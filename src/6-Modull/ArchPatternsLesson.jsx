@@ -109,6 +109,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -186,8 +211,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1409,15 +1434,15 @@ const QZ_BG_SHAPES = [
 // 🎓 Metodist: savol matni sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
   { q: { uz: "MVC'da foydalanuvchi ko'radigan qism qaysi?", ru: 'Какую часть MVC видит пользователь?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — слой данных' }, { uz: 'Hech qaysi qism mos emas', ru: 'Ни одна часть не подходит' }], correct: 0 },
-  { q: { uz: "Ma'lumot va uning qoidalari bilan MVC'ning qaysi qismi ishlaydi?", ru: 'Какая часть MVC работает с данными и их правилами?' }, opts: [{ uz: "View — ma'lumotni ko'rsatadi", ru: 'View — показывает данные' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Controller — so'rovni yo'naltiradi", ru: 'Controller — направляет запрос' }, { uz: "MVC'dan butunlay tashqarida", ru: 'Полностью вне MVC' }], correct: 1 },
-  { q: { uz: "So'rovni qabul qilib, ishni yo'naltiradigan qism qaysi?", ru: 'Какая часть принимает запрос и направляет работу?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }, { uz: 'Database — PostgreSQL', ru: 'Database — PostgreSQL' }], correct: 2 },
+  { q: { uz: "MVC'da ma'lumot va qoidalar bilan qaysi qism ishlaydi?", ru: "Какая часть MVC работает с данными и правилами?" }, opts: [{ uz: "View", ru: "View" }, { uz: "Model", ru: "Model" }, { uz: "Controller", ru: "Controller" }, { uz: "Hech qaysi", ru: "Никакая" }], correct: 1 },
+  { q: { uz: "So'rovni qabul qilib, yo'naltiradigan qism qaysi?", ru: "Какая часть принимает и направляет запрос?" }, opts: [{ uz: "View", ru: "View" }, { uz: "Model", ru: "Model" }, { uz: "Controller", ru: "Controller" }, { uz: "Database", ru: "Database" }], correct: 2 },
   { q: { uz: "«Hamma asosiy qism bitta ilovada» — bu qaysi usul?", ru: '«Все основные части в одном приложении» — какой это способ?' }, opts: [{ uz: 'Mikroservis', ru: 'Микросервисы' }, { uz: 'MVC', ru: 'Serverless' }, { uz: 'Frontend', ru: 'Peer-to-peer' }, { uz: 'Monolit', ru: 'Монолит' }], correct: 3 },
-  { q: { uz: 'Alohida ishlaydigan va alohida joylashtiriladigan bir nechta xizmat — bu?', ru: 'Несколько сервисов, которые работают и развёртываются отдельно, — это?' }, opts: [{ uz: 'Mikroservis', ru: 'Микросервисы' }, { uz: 'Monolit', ru: 'Монолит' }, { uz: 'MVC', ru: 'MVC' }, { uz: 'Frontend', ru: 'Frontend' }], correct: 0 },
-  { q: { uz: "Kichik yangi loyiha, jamoa kichik. Ko'pincha nima qulay?", ru: 'Новый небольшой проект, команда маленькая. Что чаще удобнее?' }, opts: [{ uz: 'Mikroservis — zamonaviyroq', ru: 'Микросервисы — современнее' }, { uz: 'Monolit — soddadan boshlang', ru: 'Монолит — начните с простого' }, { uz: 'Ikkalasini birga ishlatish', ru: 'Использовать оба сразу' }, { uz: 'Hech qaysi usul kerak emas', ru: 'Никакой способ не нужен' }], correct: 1 },
+  { q: { uz: "Alohida ishlaydigan bir nechta xizmat — bu nima?", ru: "Несколько отдельно работающих сервисов — это что?" }, opts: [{ uz: "Mikroservis", ru: "Микросервис" }, { uz: "Monolit", ru: "Монолит" }, { uz: "MVC", ru: "MVC" }, { uz: "Controller", ru: "Controller" }], correct: 0 },
+  { q: { uz: "Kichik yangi loyiha uchun ko'pincha nima qulay?", ru: "Что обычно удобнее для небольшого нового проекта?" }, opts: [{ uz: "Mikroservis", ru: "Микросервис" }, { uz: "Monolit", ru: "Монолит" }, { uz: "Ikkalasi birga", ru: "Оба вместе" }, { uz: "Usul kerak emas", ru: "Подход не нужен" }], correct: 1 },
   { q: { uz: "MVC'da so'rovni birinchi bo'lib kim qabul qiladi?", ru: 'Кто в MVC первым принимает запрос?' }, opts: [{ uz: 'Model', ru: 'Сразу в Model' }, { uz: 'View', ru: 'Сразу во View' }, { uz: 'Controller', ru: 'В Controller (центр)' }, { uz: 'Database', ru: 'Сразу в Database' }], correct: 2 },
-  { q: { uz: "Yuk ko'p tushgan xizmatga yana bir nusxa qo'shish nima deyiladi?", ru: 'Как называется добавление ещё одной копии сервису с большой нагрузкой?' }, opts: [{ uz: 'Qayta yozish', ru: 'Переписывание' }, { uz: 'Joylashtirish (deploy)', ru: 'Развёртывание (deploy)' }, { uz: 'Xatoni tuzatish', ru: 'Исправление ошибки' }, { uz: 'Miqyoslash (scaling)', ru: 'Масштабирование (scaling)' }], correct: 3 },
-  { q: { uz: 'Pattern nima?', ru: 'Что такое паттерн?' }, opts: [{ uz: "Muammoning sinab ko'rilgan yechim usuli", ru: 'Проверенный способ решения задачи' }, { uz: 'Yangi bir dasturlash tili nomi', ru: 'Название нового языка программирования' }, { uz: "Database'ning bir turi", ru: 'Разновидность Database' }, { uz: "Tayyor ko'chirib olinadigan kod", ru: 'Готовый код, который можно скопировать' }], correct: 0 },
-  { q: { uz: 'PostgreSQL MVC tuzilmasida nima qiladi?', ru: 'Что делает PostgreSQL в структуре MVC?' }, opts: [{ uz: "Controller'ning o'zi — so'rovni boshqaradi", ru: 'Это сам Controller — управляет запросом' }, { uz: "Ma'lumotni saqlaydi — Model u bilan ishlaydi", ru: 'Хранит данные — Model с ними работает' }, { uz: "View'ning o'zi — sahifani ko'rsatadi", ru: 'Это сам View — показывает страницу' }, { uz: "Model'ning o'zi — boshqa narsa kerak emas", ru: 'Это сам Model — больше ничего не нужно' }], correct: 1 },
+  { q: { uz: "Band xizmatga yana bir nusxa qo'shish nima deyiladi?", ru: "Как называется добавление копии загруженному сервису?" }, opts: [{ uz: "Qayta yozish", ru: "Переписывание" }, { uz: "Joylashtirish (deploy)", ru: "Размещение (deploy)" }, { uz: "Xatoni tuzatish", ru: "Исправление ошибки" }, { uz: "Miqyoslash (scaling)", ru: "Масштабирование (scaling)" }], correct: 3 },
+  { q: { uz: "Pattern nima?", ru: "Что такое паттерн?" }, opts: [{ uz: "Sinab ko'rilgan yechim usuli", ru: "Проверенный способ решения" }, { uz: "Yangi dasturlash tili", ru: "Новый язык программирования" }, { uz: "Database'ning bir turi", ru: "Вид Database" }, { uz: "Tayyor nusxalanadigan kod", ru: "Готовый код для копирования" }], correct: 0 },
+  { q: { uz: "PostgreSQL MVC'da nima qiladi?", ru: "Что делает PostgreSQL в MVC?" }, opts: [{ uz: "So'rovni yo'naltiradi", ru: "Направляет запрос" }, { uz: "Ma'lumotni saqlaydi", ru: "Хранит данные" }, { uz: "Sahifani ko'rsatadi", ru: "Показывает страницу" }, { uz: "Qoidalarni tekshiradi", ru: "Проверяет правила" }], correct: 1 },
   { q: { uz: 'Mikroservisning asosiy foydasi nimada?', ru: 'В чём главная польза микросервисов?' }, opts: [{ uz: 'Soddalik va arzonlik', ru: 'Простота и дешевизна' }, { uz: 'Hammasi bitta katta faylda', ru: 'Всё в одном большом файле' }, { uz: 'Qismlarni alohida kuchaytirish', ru: 'Усиливать части по отдельности' }, { uz: 'Kod yozish shart emasligi', ru: 'Что код писать не нужно' }], correct: 2 },
   { q: { uz: "Nest'dagi controller MVC'da qaysi qism?", ru: 'Контроллер в Nest — какая это часть MVC?' }, opts: [{ uz: "View — ko'rinish", ru: 'View — представление' }, { uz: "Model — ma'lumot va qoidalar", ru: 'Model — данные и правила' }, { uz: "Database — ma'lumot saqlash", ru: 'Database — хранение данных' }, { uz: "Controller — yo'naltiruvchi", ru: 'Controller — направляющий' }], correct: 3 },
 ];
@@ -2601,7 +2626,7 @@ export default function ArchPatternsLesson({ lang: langProp, onFinished, liveTok
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

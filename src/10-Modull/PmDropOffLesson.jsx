@@ -34,7 +34,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QKirish, QReja, QTushuncha, QTest, QTestJavob, QBlok, QKartochka, QYakun, QVoqea, QMustaqil, QQadamlar, QXato, QIzoh, QXulosa } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QKirish, QReja, QTushuncha, QTest, QTestJavob, QBlok, QKartochka, QYakun, QVoqea, QMustaqil, QQadamlar, QXato, QIzoh, QXulosa, manoliMatn } from '../qolip/index.jsx';
 
 
 
@@ -100,6 +100,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -177,8 +202,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -859,10 +884,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; chap — vizual bir marta o'zi yuradi: telefon ochiladi → to'rt kulrang ustun sonsiz o'sadi → ikki oraliqda kulrang belgi → telefonda ekran almashadi → «yangi versiya») =====
 const REJA = [
-  { t: { uz: 'Har qadamda nechta qurilma borligini sanaysiz', ru: 'Посчитаете, сколько устройств на каждом шаге' }, teg: { uz: 'sanoq', ru: 'подсчёт' } },
-  { t: { uz: "Qaysi qadamga kam odam o'tganini foizdan topasiz", ru: 'По проценту найдёте, на какой шаг перешло мало людей' }, teg: { uz: 'foiz', ru: 'процент' } },
-  { t: { uz: 'Bittasi uchun gipoteza yozasiz', ru: 'Для одного напишете гипотезу' }, teg: { uz: 'gipoteza', ru: 'гипотеза' } },
-  { t: { uz: 'Tuzatishni tekshirib, yangi versiyani chiqarasiz', ru: 'Проверите исправление и выпустите новую версию' }, teg: { uz: 'yangi versiya', ru: 'новая версия' } }
+  { t: { uz: 'Har qadamda nechta qurilma borligini sanang', ru: 'Посчитайте, сколько устройств на каждом шаге' }, teg: { uz: 'sanoq', ru: 'подсчёт' } },
+  { t: { uz: "Qaysi qadamga kam odam o'tganini foizdan toping", ru: 'По проценту найдите, на какой шаг перешло мало людей' }, teg: { uz: 'foiz', ru: 'процент' } },
+  { t: { uz: 'Bittasi uchun gipoteza yozing', ru: 'Для одного напишите гипотезу' }, teg: { uz: 'gipoteza', ru: 'гипотеза' } },
+  { t: { uz: 'Tuzatishni tekshirib, yangi versiyani chiqaring', ru: 'Проверьте исправление и выпустите новую версию' }, teg: { uz: 'yangi versiya', ru: 'новая версия' } }
 ];
 const RejaChizma = () => {
   const f = useYurish([900, 2300, 3300, 4300]);
@@ -1273,7 +1298,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     );
   } else {
     const y = ors[yulduz];
-    const ozM = String(gip.ozgaradi).trim().length >= 6 && !qadamTilga(gip.ozgaradi, qs);
+    const ozM = String(gip.ozgaradi).trim().length >= 6 && manoliMatn(gip.ozgaradi) && !qadamTilga(gip.ozgaradi, qs);
     const ikkiM = IKKI_RE.test(normS(gip.agar));
     const hammasi = GIP_MAYDON.every(m => String(gip[m.k] || '').trim());
     forma = (
@@ -1307,7 +1332,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       </div>
     );
   }
-  const navL = done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Sonlarni kiriting (${Math.min(qism, 2) + 1}/3)`, ru: `Введите числа (${Math.min(qism, 2) + 1}/3)` };
+  const navL = done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Sonlarni kiriting`, ru: `Введите числа` };
   const qadamlarT = [`1 · ${tr({ uz: 'Sonlar', ru: 'Числа' })}`, `2 · ${tr({ uz: "To'xtash", ru: 'Остановка' })}`, `3 · ${tr({ uz: 'Gipoteza', ru: 'Гипотеза' })}`];
   return (
     <Stage eyebrow={tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} scrollSignal={qism * 10 + qatorlar.length + tanlangan.length} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={tr(navL)} onClick={onNext} /></>}>
@@ -1444,18 +1469,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol, ✔ o'rni MD dagidek: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Sinfdoshingiz sanoq sahifasi manzilini bilib oldi. U sonlarni ko\'radimi?', ru: 'Одноклассник узнал адрес страницы подсчёта. Увидит ли он числа?' }, opts: [{ uz: 'Yo\'q: kalitsiz sonlar chiqmaydi', ru: 'Нет: без ключа чисел не будет' }, { uz: "Ha: manzilni bilgan har kim ko'radi", ru: 'Да: видит любой, кто знает адрес' }, { uz: 'Ha: lending hammaga ochiq turibdi', ru: 'Да: лендинг открыт для всех' }, { uz: "Ha, ilovani o'rnatgan bo'lsa ko'radi", ru: 'Да, если он установил приложение' }], correct: 0 },
-  { q: { uz: "Render'dagi Backend `SANOQ_KALITI` ni qayerdan oladi?", ru: 'Откуда Backend на Render берёт `SANOQ_KALITI`?' }, opts: [{ uz: 'Backend kodiga yozilgan qatordan', ru: 'Из строки, записанной в коде Backend' }, { uz: "Xizmatning Environment bo'limidan", ru: 'Из раздела Environment сервиса' }, { uz: "Repo'dagi README faylining ichidan", ru: 'Из файла README в репозитории' }, { uz: 'Lending sahifasining kodi ichidan', ru: 'Из кода страницы лендинга' }], correct: 1 },
-  { q: { uz: "Sanoq sahifasi o'zi qanday yangilanadi?", ru: 'Как страница подсчёта обновляется сама?' }, opts: [{ uz: "Har 5 soniyada Backend'dan qayta-qayta so'raydi", ru: "Каждые 5 секунд снова и снова спрашивает Backend" }, { uz: "Ega sahifani o'zi qo'lda yangilab o'tiradi", ru: "Владелец сам всё время обновляет страницу вручную" }, { uz: "Ulanish orqali Backend aytadi, sahifa so'raydi", ru: "Backend сообщает по соединению, страница спрашивает" }, { uz: "Ilova sonlarni sahifaga o'zi yozib boradi", ru: "Приложение само дописывает числа на страницу" }], correct: 2 },
+  { q: { uz: "Sinfdosh sanoq sahifasi manzilini bildi. Sonlarni ko'radimi?", ru: "Одноклассник узнал адрес страницы подсчёта. Увидит числа?" }, opts: [{ uz: "Yo'q, kalit kerak", ru: "Нет, нужен ключ" }, { uz: "Ha, manzil yetadi", ru: "Да, адреса хватит" }, { uz: "Ha, lending ochiq", ru: "Да, лендинг открыт" }, { uz: "Ha, ilovasi bo'lsa", ru: "Да, если есть приложение" }], correct: 0 },
+  { q: { uz: "Backend `SANOQ_KALITI` ni qayerdan oladi?", ru: "Откуда Backend берёт `SANOQ_KALITI`?" }, opts: [{ uz: "Backend kodidagi qatordan", ru: "Из строки в коде Backend" }, { uz: "Render'dagi Environment'dan", ru: "Из Environment в Render" }, { uz: "Repo'dagi README'dan", ru: "Из README в репозитории" }, { uz: "Lending sahifasi kodidan", ru: "Из кода страницы лендинга" }], correct: 1 },
+  { q: { uz: "Sanoq sahifasi o'zi qanday yangilanadi?", ru: "Как страница подсчёта обновляется сама?" }, opts: [{ uz: "Har 5 soniyada so'raydi", ru: "Спрашивает каждые 5 секунд" }, { uz: "Ega qo'lda yangilaydi", ru: "Владелец обновляет вручную" }, { uz: "Ulanishdan xabar keladi", ru: "Сообщение приходит по соединению" }, { uz: "Ilova sonni yozib boradi", ru: "Приложение само пишет числа" }], correct: 2 },
   { q: { uz: "20 qurilmadan 15 tasi keyingi qadamga o'tdi. Foiz qancha?", ru: 'Из 20 устройств 15 перешли на следующий шаг. Сколько процентов?' }, opts: [{ uz: '15 foiz', ru: '15 процентов' }, { uz: '20 foiz', ru: '20 процентов' }, { uz: '5 foiz', ru: '5 процентов' }, { uz: '75 foiz', ru: '75 процентов' }], correct: 3 },
-  { q: { uz: 'Yangi telefonda ilovani uch marta ochdingiz. `ochdi` qancha oshadi?', ru: 'Вы открыли приложение на новом телефоне три раза. На сколько вырастет `ochdi`?' }, opts: [{ uz: 'Bittaga: turli qurilmalar sanaladi', ru: 'На один: считаются разные устройства' }, { uz: 'Uchtaga: har ochish alohida sanaladi', ru: 'На три: каждое открытие считается отдельно' }, { uz: 'Oshmaydi: egasi sanoqqa kirmaydi', ru: 'Не вырастет: владелец не считается' }, { uz: 'Ikkitaga: birinchi ochish sanalmaydi', ru: 'На два: первое открытие не считается' }], correct: 0 },
-  { q: { uz: "Sanoqda «ro'yxatdan o'tdi» — 30, Database'da — 28. Nima deysiz?", ru: 'В подсчёте «зарегистрировался» — 30, в Database — 28. Что скажете?' }, opts: [{ uz: "Ikkalasi bir narsa, farqini o'chiramiz", ru: 'Это одно и то же, разницу уберём' }, { uz: "O'lchovi boshqa: qurilma va akkaunt", ru: "Считают разное: устройство и аккаунт" }, { uz: 'Biri xato, qaysi biri ekanini qidiramiz', ru: 'Одно ошибочно, ищем, какое' }, { uz: "Teng bo'lishi shart, bo'lmasa sanoq xato", ru: 'Должны совпадать, иначе подсчёт неверен' }], correct: 1 },
-  { q: { uz: "2016-yilda Netflix aytishicha, ko'rishlarning qariyb 80 foizi qayerdan keladi?", ru: 'По словам Netflix в 2016 году, откуда приходят почти 80 процентов просмотров?' }, opts: [{ uz: 'Qidiruv qatoridan', ru: 'Из строки поиска' }, { uz: 'Reklama oynalaridan', ru: 'Из рекламных окон' }, { uz: 'Tavsiyalar qatoridan', ru: 'Из ряда рекомендаций' }, { uz: "Do'stlar havolasidan", ru: 'По ссылкам друзей' }], correct: 2 },
-  { q: { uz: "Bu darsda nechta to'xtab qolish qadami tuzatiladi?", ru: "Сколько шагов, где останавливаются, исправляют на этом уроке?" }, opts: [{ uz: 'Ikkalasi ham, birdaniga', ru: "Оба, одновременно" }, { uz: 'Hech biri, avval kutiladi', ru: 'Ни одного, сначала ждут' }, { uz: 'Uchalasi ham, navbat bilan', ru: 'Все три, по очереди' }, { uz: 'Bittasi, ikkinchisi keyin', ru: "Один, второй — потом" }], correct: 3 },
-  { q: { uz: "Mentor misolida kirmagan odam «Qo'shilaman»ni bossa, nima ochiladi?", ru: "Что откроется в примере Ментора, если тот, кто не вошёл, нажмёт «Присоединяюсь»?" }, opts: [{ uz: "«Ro'yxatdan o'tish» ekrani", ru: 'Экран «Регистрация»' }, { uz: "«O'yin to'ldi» degan yozuv", ru: 'Надпись «Игра заполнена»' }, { uz: "O'yinchilar ismlari ro'yxati", ru: 'Список имён игроков' }, { uz: "Ilovaning o'rnatish fayli", ru: 'Файл установки приложения' }], correct: 0 },
-  { q: { uz: "Mehmon ko'rinishi APK o'rnatgan telefonda qachon chiqadi?", ru: 'Когда гостевой вид появится на телефоне с установленным APK?' }, opts: [{ uz: '`git push` qilinishi bilanoq', ru: 'Сразу после `git push`' }, { uz: "Yangi faylni o'rnatgandan keyin", ru: 'После установки нового файла' }, { uz: 'Render qayta ishga tushganda', ru: 'Когда Render перезапустится' }, { uz: 'Ilovani yopib, qaytadan ochganda', ru: 'Когда закроют и снова откроют приложение' }], correct: 1 },
-  { q: { uz: "Gipotezaning «chunki» qismi nimani aytadi?", ru: 'Что говорит часть гипотезы «потому что»?' }, opts: [{ uz: "Qaysi ekranda nima o'zgarishini", ru: 'Что изменится на каком экране' }, { uz: 'Tuzatishga qancha vaqt ketishini', ru: 'Сколько времени займёт исправление' }, { uz: 'Nega shunday kutayotganimizni', ru: "Почему мы ждём такого изменения" }, { uz: 'Tuzatishni kim yozib berishini', ru: "Кто напишет это исправление" }], correct: 2 },
-  { q: { uz: "Agent «tuzatdim» dedi. Birinchi nima qilasiz?", ru: 'Агент сказал «исправил». Что сделаете первым?' }, opts: [{ uz: "Yangi o'rnatish faylini tayyorlaysiz", ru: 'Подготовите новый файл установки' }, { uz: "Lendingga yangi havolani qo'yib qo'yasiz", ru: 'Поставите новую ссылку на лендинг' }, { uz: 'Gipotezani isbotlandi deb yozib qo\'yasiz', ru: 'Запишете, что гипотеза доказана' }, { uz: "Ilovada tuzatishni o'zingiz tekshirasiz", ru: "Проверите исправление в приложении" }], correct: 3 },
+  { q: { uz: "Yangi telefonda 3 marta ochdingiz. `ochdi` qanchaga oshadi?", ru: "Открыли 3 раза на новом телефоне. На сколько вырастет `ochdi`?" }, opts: [{ uz: "Bittaga", ru: "На один" }, { uz: "Uchtaga", ru: "На три" }, { uz: "Oshmaydi", ru: "Не вырастет" }, { uz: "Ikkitaga", ru: "На два" }], correct: 0 },
+  { q: { uz: "«Ro'yxatdan o'tdi»: sanoqda 30, Database'da 28. Nega?", ru: "«Зарегистрировался»: в подсчёте 30, в Database 28. Почему?" }, opts: [{ uz: "Sanoq xato sanagan", ru: "Подсчёт ошибся" }, { uz: "Qurilma va akkaunt farqi", ru: "Разница устройств и аккаунтов" }, { uz: "Database xato yozgan", ru: "Database записала с ошибкой" }, { uz: "Kimdir ikki marta ochgan", ru: "Кто-то открыл дважды" }], correct: 1 },
+  { q: { uz: "Netflix: ko'rishlarning qariyb 80 foizi qayerdan keladi?", ru: "Netflix: откуда приходят почти 80 процентов просмотров?" }, opts: [{ uz: "Qidiruv qatoridan", ru: "Из строки поиска" }, { uz: "Reklama oynalaridan", ru: "Из рекламных окон" }, { uz: "Tavsiyalar qatoridan", ru: "Из ряда рекомендаций" }, { uz: "Do'stlar havolasidan", ru: "Из ссылок друзей" }], correct: 2 },
+  { q: { uz: "Bu darsda nechta to'xtab qolish qadami tuzatiladi?", ru: "Сколько шагов остановки исправляют на этом уроке?" }, opts: [{ uz: "Ikkalasi, birdaniga", ru: "Оба, сразу" }, { uz: "Hech biri, kutiladi", ru: "Ни одного, ждём" }, { uz: "Uchalasi, navbat bilan", ru: "Все три, по очереди" }, { uz: "Bittasi, ikkinchisi keyin", ru: "Один, второй потом" }], correct: 3 },
+  { q: { uz: "Kirmagan odam «Qo'shilaman»ni bossa, nima ochiladi?", ru: "Что откроется, если невошедший нажмёт «Присоединиться»?" }, opts: [{ uz: "«Ro'yxatdan o'tish» ekrani", ru: "Экран «Регистрация»" }, { uz: "«O'yin to'ldi» yozuvi", ru: "Надпись «Игра заполнена»" }, { uz: "O'yinchilar ismlari", ru: "Имена игроков" }, { uz: "O'rnatish fayli", ru: "Файл установки" }], correct: 0 },
+  { q: { uz: "Mehmon ko'rinishi APK'li telefonda qachon chiqadi?", ru: "Когда гостевой вид появится на телефоне с APK?" }, opts: [{ uz: "`git push` qilinganda", ru: "После `git push`" }, { uz: "Yangi faylni o'rnatgach", ru: "После установки нового файла" }, { uz: "Render qayta yoqilganda", ru: "Когда перезапустится Render" }, { uz: "Ilova qayta ochilganda", ru: "Когда приложение переоткроют" }], correct: 1 },
+  { q: { uz: "Gipotezada «chunki» qismi nimani aytadi?", ru: "Что говорит часть «потому что» в гипотезе?" }, opts: [{ uz: "Nimani o'zgartirishimizni", ru: "Что мы изменим" }, { uz: "Qancha vaqt ketishini", ru: "Сколько уйдёт времени" }, { uz: "Nega shunday kutishimizni", ru: "Почему мы этого ждём" }, { uz: "Kim tuzatib berishini", ru: "Кто исправит" }], correct: 2 },
+  { q: { uz: "Agent «tuzatdim» dedi. Birinchi nima qilasiz?", ru: "Агент сказал «исправил». Что сделаете сначала?" }, opts: [{ uz: "Yangi fayl tayyorlaysiz", ru: "Готовите новый файл" }, { uz: "Lendingga havola qo'yasiz", ru: "Ставите ссылку на лендинг" }, { uz: "Gipoteza isbotlandi deysiz", ru: "Говорите, что гипотеза доказана" }, { uz: "O'zingiz tekshirasiz", ru: "Проверяете сами" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2096,7 +2121,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, t
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className="do-blok">
-        <QBlok ulgur={ulgur && !done ? fmtCode(tr(ulgur)) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? fmtCode(tr(ulgur)) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: <>{c.t}{c.prompt && <DoPrompt satrlar={c.prompt.satrlar} namuna={c.prompt.namuna} toldir={c.prompt.toldir} />}</>,

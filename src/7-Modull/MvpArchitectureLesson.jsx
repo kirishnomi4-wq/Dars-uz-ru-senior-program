@@ -105,6 +105,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -182,8 +207,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1569,18 +1594,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD), to'g'ri javoblar A·B·C·D ×3 (✔ o'rni qurilgandan keyin o'zgarmaydi)
 const QUIZ_BANK = [
-  { q: { uz: '«Maydon» MVP siga qaysi qismlar yetadi?', ru: 'Каких частей хватает MVP «Maydon»?' }, opts: [{ uz: 'Sayt, Backend va Database', ru: 'Сайт, Backend и Database' }, { uz: 'Faqat sayt — hammasi brauzerda', ru: 'Только сайт — всё в браузере' }, { uz: 'Sayt, Backend, AI va Bot', ru: 'Сайт, Backend, AI и бот' }, { uz: 'Faqat Database va bitta jadval', ru: 'Только Database и одна таблица' }], correct: 0 },
-  { q: { uz: 'Vaqt kataklarini ekranda qaysi qism chizadi?', ru: 'Какая часть рисует ячейки времени на экране?' }, opts: [{ uz: 'Backend — u kataklarni hisoblaydi', ru: 'Backend — он вычисляет ячейки' }, { uz: "Sayt — u o'yinchiga ko'rsatadi", ru: 'Сайт — он показывает игроку' }, { uz: 'Database — u bandlarni saqlaydi', ru: 'Database — она хранит брони' }, { uz: 'Agent — u kodni yozib bergan', ru: 'Агент — он написал код' }], correct: 1 },
+  { q: { uz: "«Maydon» MVP siga qaysi qismlar yetadi?", ru: "Каких частей хватает MVP «Maydon»?" }, opts: [{ uz: "Sayt, Backend va Database", ru: "Сайт, Backend и Database" }, { uz: "Faqat sayt — brauzerda", ru: "Только сайт — в браузере" }, { uz: "Sayt, Backend, AI va Bot", ru: "Сайт, Backend, AI и бот" }, { uz: "Faqat Database va jadval", ru: "Только Database и таблица" }], correct: 0 },
+  { q: { uz: "Kataklarni ekranda qaysi qism chizadi?", ru: "Какая часть рисует ячейки на экране?" }, opts: [{ uz: "Backend — hisoblaydi", ru: "Backend — вычисляет" }, { uz: "Sayt — ko'rsatadi", ru: "Сайт — показывает" }, { uz: "Database — saqlaydi", ru: "Database — хранит" }, { uz: "Agent — kod yozgan", ru: "Агент — написал код" }], correct: 1 },
   { q: { uz: "Yangi band qilinganda `bandlar` jadvaliga nima qo'shiladi?", ru: 'Что добавляется в таблицу `bandlar` при новой брони?' }, opts: [{ uz: 'Yangi ustun', ru: 'Новый столбец' }, { uz: 'Yangi jadval', ru: 'Новая таблица' }, { uz: 'Yangi qator', ru: 'Новая строка' }, { uz: "Yangi yo'l", ru: 'Новый маршрут' }], correct: 2 },
-  { q: { uz: '`baho` ustuni nega jadvalda yo\'q?', ru: 'Почему в таблице нет столбца `baho`?' }, opts: [{ uz: 'Database bahoni saqlay olmaydi', ru: 'Database не умеет хранить оценку' }, { uz: 'Bahoni sayt o\'zi hisoblab chiqadi', ru: 'Оценку сайт вычисляет сам' }, { uz: 'Jadvalda ustunlar soni cheklangan', ru: 'Число столбцов в таблице ограничено' }, { uz: 'Baho «qilmaymiz» ro\'yxatida', ru: 'Оценка в списке «не делаем»' }], correct: 3 },
+  { q: { uz: "`baho` ustuni nega jadvalda yo'q?", ru: "Почему в таблице нет столбца `baho`?" }, opts: [{ uz: "Database baho saqlamaydi", ru: "Database не хранит оценку" }, { uz: "Bahoni sayt hisoblaydi", ru: "Оценку вычисляет сайт" }, { uz: "Ustunlar soni cheklangan", ru: "Число столбцов ограничено" }, { uz: "Baho «qilmaymiz» ro'yxatida", ru: "Оценка в списке «не делаем»" }], correct: 3 },
   { q: { uz: "Sayt kataklarni qaysi yo'ldan oladi?", ru: 'По какому маршруту сайт получает ячейки?' }, opts: [{ uz: '`GET /vaqtlar`', ru: '`GET /vaqtlar`' }, { uz: '`POST /bandlar`', ru: '`POST /bandlar`' }, { uz: '`POST /kirish`', ru: '`POST /kirish`' }, { uz: '`GET /bandlar`', ru: '`GET /bandlar`' }], correct: 0 },
-  { q: { uz: "Dushanba uchun jadvalda qator yo'q. Saytda nima ko'rinadi?", ru: 'На понедельник в таблице строк нет. Что видно на сайте?' }, opts: [{ uz: 'Kataklar umuman chiqmaydi', ru: 'Ячейки вообще не появятся' }, { uz: "Olti katak, hammasi bo'sh", ru: 'Шесть ячеек, все свободны' }, { uz: 'Olti katak, hammasi band', ru: 'Шесть ячеек, все заняты' }, { uz: "Sayt xatoni ko'rsatib qo'yadi", ru: 'Сайт покажет ошибку' }], correct: 1 },
-  { q: { uz: "Kimdir tokensiz bandlar ro'yxatini so'radi. Backend nima qiladi?", ru: 'Кто-то запросил список броней без токена. Что сделает Backend?' }, opts: [{ uz: "Ro'yxatni to'liq qaytaradi", ru: 'Вернёт весь список' }, { uz: "Bo'sh ro'yxat qaytaradi", ru: 'Вернёт пустой список' }, { uz: '401 bilan rad etadi', ru: 'Откажет с кодом 401' }, { uz: 'Saytni yopib qo\'yadi', ru: 'Закроет сайт' }], correct: 2 },
+  { q: { uz: "Dushanba uchun qator yo'q. Sayt nima ko'rsatadi?", ru: "На понедельник строк нет. Что покажет сайт?" }, opts: [{ uz: "Kataklar chiqmaydi", ru: "Ячейки не появятся" }, { uz: "Olti katak, hammasi bo'sh", ru: "Шесть ячеек, все свободны" }, { uz: "Olti katak, hammasi band", ru: "Шесть ячеек, все заняты" }, { uz: "Sayt xato ko'rsatadi", ru: "Сайт покажет ошибку" }], correct: 1 },
+  { q: { uz: "Tokensiz bandlar so'raldi. Backend nima qiladi?", ru: "Брони запросили без токена. Что сделает Backend?" }, opts: [{ uz: "Ro'yxatni to'liq qaytaradi", ru: "Вернёт весь список" }, { uz: "Bo'sh ro'yxat qaytaradi", ru: "Вернёт пустой список" }, { uz: "401 bilan rad etadi", ru: "Откажет с кодом 401" }, { uz: "Saytni yopib qo'yadi", ru: "Закроет сайт" }], correct: 2 },
   { q: { uz: 'Ega to\'g\'ri parol yozdi. `POST /kirish` nima qaytaradi?', ru: 'Владелец ввёл верный пароль. Что вернёт `POST /kirish`?' }, opts: [{ uz: "Bandlar ro'yxatini", ru: 'Список броней' }, { uz: "Parolning o'zini", ru: 'Сам пароль' }, { uz: "Kataklar ro'yxatini", ru: 'Список ячеек' }, { uz: 'Ega uchun tokenni', ru: 'Токен для владельца' }], correct: 3 },
-  { q: { uz: "`.env` repo'ga qo'shilmasligi uchun nima qilinadi?", ru: 'Что делают, чтобы `.env` не попал в репо?' }, opts: [{ uz: 'U `.gitignore` ga yoziladi', ru: 'Его вписывают в `.gitignore`' }, { uz: "Fayl nomi o'zgartiriladi", ru: 'Меняют имя файла' }, { uz: "Fayl `web/` ga ko'chiriladi", ru: 'Файл переносят в `web/`' }, { uz: "Ichidagi qatorlar o'chiriladi", ru: 'Удаляют строки внутри' }], correct: 0 },
-  { q: { uz: 'Stack nima?', ru: 'Что такое стек?' }, opts: [{ uz: 'Bitta katta dastur fayli', ru: 'Один большой файл программы' }, { uz: 'Birga ishlaydigan texnologiyalar', ru: 'Технологии, работающие вместе' }, { uz: 'Saytdagi tugmalar va sahifalar', ru: 'Кнопки и страницы сайта' }, { uz: "Database'dagi jadvallar ro'yxati", ru: 'Список таблиц в Database' }], correct: 1 },
-  { q: { uz: "Sayt internetda, Backend kompyuteringizda. Do'st nimani ko'radi?", ru: 'Сайт в интернете, Backend на вашем компьютере. Что увидит друг?' }, opts: [{ uz: "Hamma kataklarni ko'radi", ru: 'Увидит все ячейки' }, { uz: 'Hech narsa — sahifa ochilmaydi', ru: 'Ничего — страница не откроется' }, { uz: 'Sahifani, lekin kataklarsiz', ru: 'Страницу, но без ячеек' }, { uz: 'Faqat band kataklarni', ru: 'Только занятые ячейки' }], correct: 2 },
-  { q: { uz: 'Kod yozishdan oldin chizma nega kerak?', ru: 'Зачем схема до написания кода?' }, opts: [{ uz: 'Kod o\'zi ancha tezroq ishlay boshlaydi', ru: 'Код сам начнёт работать быстрее' }, { uz: 'Saytning dizayni ancha chiroyli chiqadi', ru: 'Дизайн сайта получится красивее' }, { uz: 'Keyin deploy qilish umuman shart bo\'lmaydi', ru: 'Потом деплой вообще не понадобится' }, { uz: "Agentga qism va yo'llarni aniq aytasiz", ru: 'Вы точно скажете агенту части и маршруты' }], correct: 3 }
+  { q: { uz: "`.env` repo'ga qo'shilmasin. Nima qilasiz?", ru: "`.env` не должен попасть в репо. Что делаете?" }, opts: [{ uz: "`.gitignore` ga yozaman", ru: "Впишу в `.gitignore`" }, { uz: "Fayl nomini o'zgartiraman", ru: "Поменяю имя файла" }, { uz: "Faylni `web/` ga ko'chiraman", ru: "Перенесу файл в `web/`" }, { uz: "Qatorlarini o'chiraman", ru: "Удалю строки внутри" }], correct: 0 },
+  { q: { uz: "Stack nima?", ru: "Что такое стек?" }, opts: [{ uz: "Bitta katta dastur fayli", ru: "Один большой файл программы" }, { uz: "Birga ishlovchi texnologiyalar", ru: "Технологии, работающие вместе" }, { uz: "Saytdagi tugma va sahifalar", ru: "Кнопки и страницы сайта" }, { uz: "Database'dagi jadvallar", ru: "Таблицы в Database" }], correct: 1 },
+  { q: { uz: "Sayt internetda, Backend sizda. Do'st nima ko'radi?", ru: "Сайт в интернете, Backend у вас. Что увидит друг?" }, opts: [{ uz: "Hamma kataklarni", ru: "Все ячейки" }, { uz: "Hech narsa — ochilmaydi", ru: "Ничего — не откроется" }, { uz: "Sahifani, lekin kataklarsiz", ru: "Страницу, но без ячеек" }, { uz: "Faqat band kataklarni", ru: "Только занятые ячейки" }], correct: 2 },
+  { q: { uz: "Kod yozishdan oldin chizma nega kerak?", ru: "Зачем схема до написания кода?" }, opts: [{ uz: "Kod tezroq ishlaydi", ru: "Код работает быстрее" }, { uz: "Dizayn chiroyli chiqadi", ru: "Дизайн получится красивее" }, { uz: "Deploy shart bo'lmaydi", ru: "Деплой не понадобится" }, { uz: "Agentga joyni aniq aytasiz", ru: "Вы точно скажете агенту, где что" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2157,7 +2182,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   const qaytar = (i) => { if (done || isMentorLive) return; setStepN(i); };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({ h: tr(c.h), t: fmtCode(tr(c.t)), prompt: c.prompt && c.prompt.map(l => tr(l)), kimga: c.prompt && tr(c.kimga || { uz: 'Siz → Antigravity', ru: 'Вы → Antigravity' }), xato: c.err && fmtCode(tr(c.err)) }))}
         joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
         tugadi={done} tugadiMatn={tr(doneText)} natija={natija} natijaYorliq={natijaYorliq && tr(natijaYorliq)} ortda={ortda}
@@ -2443,8 +2468,8 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
         /* ===== «Maydon» chizmasi va maketlari (.mz-) — bitta vizual, ekranlar 0–11 va A1/A2 ===== */
         /* SABOQ 11: navbatdagi bosiladigan element — halqa doim, yengil puls; kam harakat rejimida puls o'chadi, halqa qoladi */
         .mz-navbat { box-shadow: 0 0 0 2px ${T.accent}; animation: mz-navbat 1.6s ease-out infinite; }
-        @keyframes mz-navbat { 0% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 2px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 12px ${fon(T.accent, 0)}; } }
-        .mz-navbat-k > .q-bashorat, .mz-navbat-k2 { border-radius: 14px; box-shadow: 0 0 0 2px ${T.accent}; animation: mz-navbat 1.6s ease-out infinite; }
+        @keyframes mz-navbat { 0% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 1.5px ${fon(T.accent, 0.35)}; } 100% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 8px ${fon(T.accent, 0)}; } }
+        .mz-navbat-k .q-chip:not(:disabled), .mz-navbat-k2 { border-radius: 14px; box-shadow: 0 0 0 2px ${T.accent}; animation: mz-navbat 1.6s ease-out infinite; }
         .mz-navbat-k2 { padding: 8px; }
         .mz-silk { animation: q-silk 0.32s ease-in-out; }
         .mz-taxmin { display: flex; align-items: center; gap: 6px 12px; flex-wrap: wrap; padding: 9px 14px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 12px; }
@@ -2456,8 +2481,7 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
         .mz-chips, .mz-yol-tanlov { display: flex; flex-wrap: wrap; gap: 8px; }
         /* Kirish: agent chati + ikki telefon */
         .mz-hook { display: flex; flex-direction: column; gap: 10px; }
-        .q-kirish:has(.mz-hook.tanla) .q-variantlar-kol { border-radius: 14px; box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}; animation: mz-navbat-g 1.6s ease-out infinite; }
-        @keyframes mz-navbat-g { 0% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 9px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 19px ${fon(T.accent, 0)}; } }
+        .q-kirish:has(.mz-hook.tanla) .q-variant:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: mz-navbat 1.6s ease-out infinite; }
         .mz-chat { display: flex; flex-direction: column; gap: 6px; padding: 10px; border: 1px solid ${T.line}; border-radius: 14px; background: ${T.bg}; }
         .mz-chat-h { display: inline-flex; align-items: center; gap: 7px; font-weight: 800; font-size: 12.5px; color: ${T.ink}; }
         p.mz-pufak { margin: 0; max-width: 90%; padding: 6px 11px; border-radius: 12px; font-size: 13px; font-weight: 500; line-height: 1.4; color: ${T.ink}; background: ${T.paper}; border: 1px solid ${T.line}; }
@@ -2647,7 +2671,7 @@ export default function MvpArchitectureLesson({ lang: langProp, onFinished, live
           .mz-bosh-joy { display: none; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .mz-navbat, .mz-navbat-k > .q-bashorat, .mz-navbat-k2, .q-kirish:has(.mz-hook.tanla) .q-variantlar-kol, .mz-flash.yangi .fc-card:not(.flip) .fc-front, .mz-fc-ipucha i { animation: none; }
+          .mz-navbat, .mz-navbat-k .q-chip:not(:disabled), .mz-navbat-k2, .q-kirish:has(.mz-hook.tanla) .q-variant:not(:disabled), .mz-flash.yangi .fc-card:not(.flip) .fc-front, .mz-fc-ipucha i { animation: none; }
           .mz-konvert.bor, .mz-konvert.qayt, .mz-ish-k, .mz-ish-k.uch, table.mz-jt th.ochiq, table.mz-jt tr.yangi td, .mz-zona-t > .mz-tugun, .mz-silk { animation: none; }
           .mz-konvert.bor { left: 100%; transform: translate(-70%, -50%); }
           .mz-konvert.qayt { left: 0; transform: translate(-30%, -50%); }

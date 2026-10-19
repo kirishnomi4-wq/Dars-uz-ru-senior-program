@@ -95,6 +95,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -172,8 +197,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -870,7 +895,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     ketma([[1900, () => { set({ royxat: 'almash' }); setDots(d => ({ ...d, yuklanish: 'yashil' })); setNom(1); }], [1200, bosKarta], [700, () => { set({ ekran: 'oyin', royxat: 'karta', bosish: null }); setQ(3); setBand(false); }]]);
   };
   const ochHalqa = !!taxmin && q === 0 && !band;
-  const mentor = !taxmin || q === 0 ? { uz: "Avval taxminingizni belgilang, keyin sahnada «O'yinlar»ni oching.", ru: 'Сначала отметьте предположение, затем откройте на сцене «Игры».' }
+  const mentor = !taxmin ? { uz: "Avval taxminingizni belgilang.", ru: "Сначала отметьте предположение." }
+    : q === 0 ? { uz: "Sahnada «O'yinlar»ni oching.", ru: 'Откройте на сцене «Игры».' }
     : q === 1 ? { uz: "Endi «O'yin» ekranida «Qo'shilaman»ni bosing.", ru: 'Теперь на экране «Игра» нажмите «Присоединяюсь».' }
       : q === 2 ? { uz: "Endi tepadagi «Keyin»ni bosing — Mentor o'zgartirgan ilova ochiladi.", ru: 'Теперь нажмите «После» вверху — откроется приложение, изменённое Ментором.' }
         : q === 3 ? { uz: "Endi «Qo'shilaman»ni yana bir marta bosing.", ru: 'Теперь ещё раз нажмите «Присоединяюсь».' }
@@ -950,7 +976,7 @@ const Screen4 = (props) => (
       3: { uz: 'Ekran almashsa, yuborilganini qayerdan bilasiz?', ru: 'Если экран сменится, как узнать, что отправлено?' },
       default: { uz: 'Bir lahza jim tugmani odam yana bosmaydimi?', ru: 'Не нажмёт ли человек снова на замершую кнопку?' }
     }}
-    vizual={<YuborishVizual />} />
+ />
 );
 
 // ===== SCREEN 5 — TUSHUNCHA (QTushuncha): «Harakatni kamaytirish» kaliti + «Harakat · Holat» jadvali (P-057); bashorat + 2 harakat =====
@@ -1054,7 +1080,7 @@ const Screen7 = (props) => (
       3: { uz: 'Sozlama harakatga tegadi, yangilashga emas.', ru: 'Настройка касается движения, а не обновления.' },
       default: { uz: "Animatsiya o'chdi. Holat ham o'chishi kerakmi?", ru: 'Анимация выключилась. Должно ли выключаться и состояние?' }
     }}
-    vizual={<SonVizual />} />
+ />
 );
 
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
@@ -1142,18 +1168,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (MD aynan); ekran savollarining nusxasi emas (§144)
 const QUIZ_BANK = [
-  { q: { uz: "Bu darsda demo yo'lidagi qaysi uch joy o'zgaradi?", ru: 'Какие три места на пути демо меняются на этом уроке?' }, opts: [{ uz: 'Bosish, yuklanish va muvaffaqiyat', ru: 'Нажатие, загрузка и успех' }, { uz: "Kirish, ro'yxatdan o'tish va chiqish", ru: 'Вход, регистрация и выход' }, { uz: 'Rasmlar, kutubxona va kod hajmi', ru: 'Картинки, библиотека и объём кода' }, { uz: 'Lending, maxfiylik va oferta sahifasi', ru: 'Лендинг, конфиденциальность и оферта' }], correct: 0 },
-  { q: { uz: "Sayqaldan keyin demo yo'lida nima o'zgaradi?", ru: 'Что меняется на пути демо после шлифовки?' }, opts: [{ uz: 'Ekranlar soni va ularning tartibi', ru: 'Число экранов и их порядок' }, { uz: "O'sha ekranlarda uch joy ko'rinishi", ru: 'Вид трёх мест на тех же экранах' }, { uz: "Backend va Database'ning tuzilishi", ru: 'Устройство Backend и Database' }, { uz: 'Ilovaning nomi va bosh ekrani rangi', ru: 'Название приложения и цвет главного экрана' }], correct: 1 },
-  { q: { uz: "Javob sekin kelsa, «Qo'shilaman» bosilgach qanday turadi?", ru: 'Как выглядит «Qo\'shilaman» после нажатия, если ответ медленный?' }, opts: [{ uz: 'Avvalgidek turadi, yana bosish mumkin', ru: 'Как прежде, можно нажать снова' }, { uz: "Yo'qolib, o'rnida bo'sh joy qoladi", ru: 'Исчезает, на её месте пусто' }, { uz: "«Qo'shilmoqda…» yozuvi bilan, o'chiq", ru: 'С надписью «Qo\'shilmoqda…», неактивна' }, { uz: "«Qo'shildingiz» bo'lib, bosiladi", ru: 'Становится «Qo\'shildingiz» и нажимается' }], correct: 2 },
-  { q: { uz: 'Joy egallovchi qayerda turadi?', ru: 'Где стоит заполнитель?' }, opts: [{ uz: 'Ekranning eng tepasida, kichik bo\'lib', ru: 'В самом верху экрана, маленьким' }, { uz: "Alohida ekranda, ro'yxatdan oldin", ru: 'На отдельном экране, перед списком' }, { uz: 'Tugmaning ichida, yozuv o\'rnida', ru: 'Внутри кнопки, вместо надписи' }, { uz: "Ma'lumot o'rnida, uning o'lchamida", ru: 'На месте данных, в их размере' }], correct: 3 },
-  { q: { uz: "Kulrang kartalar nega haqiqiy karta o'lchamida bo'ladi?", ru: 'Почему серые карточки размером с настоящую карточку?' }, opts: [{ uz: "Ro'yxat kelganda sakrash kamaysin", ru: 'Чтобы было меньше скачка, когда придёт список' }, { uz: "Kartalar chiroyliroq ko'rinsin deb", ru: 'Чтобы карточки выглядели красивее' }, { uz: 'Backend javobi tezroq kelsin deb', ru: 'Чтобы ответ Backend пришёл быстрее' }, { uz: "Kutish yozuvi kerak bo'lmasin deb", ru: 'Чтобы надпись ожидания была не нужна' }], correct: 0 },
-  { q: { uz: 'Kutish yozuvi bo\'lsa, kulrang kartalar nima beradi?', ru: 'Что дают серые карточки, если есть надпись ожидания?' }, opts: [{ uz: "Ro'yxatni tezroq yuklab beradi", ru: 'Загружают список быстрее' }, { uz: "Nima kelishini oldindan ko'rsatadi", ru: 'Заранее показывают, что придёт' }, { uz: "Backend'ni demo oldidan uyg'otadi", ru: 'Будят Backend перед демо' }, { uz: 'Kutish yozuvini butunlay almashtiradi', ru: 'Полностью заменяют надпись ожидания' }], correct: 1 },
-  { q: { uz: 'Harakat kamaytirilgan qurilmada sayqaldan nima qoladi?', ru: 'Что остаётся от шлифовки на устройстве с уменьшенным движением?' }, opts: [{ uz: "Hech narsa qolmaydi — hammasi o'chadi", ru: 'Ничего — всё выключается' }, { uz: 'Faqat animatsiyalar qoladi, yozuvsiz', ru: 'Только анимации, без надписи' }, { uz: 'Yozuv, kulrang kartalar va yangi son', ru: 'Надпись, серые карточки и новое число' }, { uz: 'Faqat aylanadigan kutish belgisi', ru: 'Только вращающийся значок ожидания' }], correct: 2 },
-  { q: { uz: "Harakat kamaytirilganini DevTools'da qayerda tanlaysiz?", ru: 'Где в DevTools выбрать уменьшение движения?' }, opts: [{ uz: "Network bo'limidagi ro'yxatda", ru: 'В списке раздела Network' }, { uz: "Lighthouse bo'limidagi sozlamada", ru: 'В настройке раздела Lighthouse' }, { uz: "Console bo'limidagi qatorlarda", ru: 'В строках раздела Console' }, { uz: "Rendering bo'limidagi ro'yxatda", ru: 'В списке раздела Rendering' }], correct: 3 },
-  { q: { uz: "Ro'yxat sekin kelishini DevTools'da qanday ko'rasiz?", ru: 'Как в DevTools увидеть медленную загрузку списка?' }, opts: [{ uz: "Network'da «Slow 4G» ni tanlab", ru: 'Выбрав «Slow 4G» в Network' }, { uz: "Lighthouse'da «Mobile» ni tanlab", ru: 'Выбрав «Mobile» в Lighthouse' }, { uz: "Rendering'da «reduce» ni tanlab", ru: 'Выбрав «reduce» в Rendering' }, { uz: "Console'da xato qatorini o'qib", ru: 'Прочитав строку ошибки в Console' }], correct: 0 },
-  { q: { uz: "Muvaffaqiyat animatsiyasi qanday bo'lishi kerak?", ru: 'Какой должна быть анимация успеха?' }, opts: [{ uz: "Uzun: ekran bo'ylab bayram chiqadi", ru: 'Долгой: праздник по всему экрану' }, { uz: "Qisqa: bir marta o'ynab, to'xtaydi", ru: 'Короткой: проигрывается раз и останавливается' }, { uz: "Doimiy: son to'xtamay miltillaydi", ru: 'Постоянной: число мигает без остановки' }, { uz: 'Takroriy: har soniyada qaytadan', ru: 'Повторяющейся: заново каждую секунду' }], correct: 1 },
-  { q: { uz: "Animatsiya uchun nega yangi kutubxona qo'shilmaydi?", ru: 'Почему для анимации не добавляют новую библиотеку?' }, opts: [{ uz: "Kutubxona faqat web'da ishlaydi", ru: 'Библиотека работает только в вебе' }, { uz: "Agent kutubxona o'rnata olmaydi", ru: 'Агент не может установить библиотеку' }, { uz: "Kod hajmi oshib ketishi mumkin", ru: 'Может вырасти объём кода' }, { uz: "Kutubxona Backend'ni sekinlatadi", ru: 'Библиотека замедляет Backend' }], correct: 2 },
-  { q: { uz: 'Sayqal ishlashini qanday bilasiz?', ru: 'Как узнать, что шлифовка работает?' }, opts: [{ uz: "Agent «hammasi tayyor» deb yozadi", ru: 'Агент пишет «всё готово»' }, { uz: "Kod ichida animatsiya so'zi bor", ru: 'В коде есть слово «анимация»' }, { uz: "Sinfdosh «chiroyli chiqibdi» deydi", ru: 'Одноклассник говорит «красиво вышло»' }, { uz: "Sekin tarmoqda o'zingiz ko'rasiz", ru: 'Сами видите на медленной сети' }], correct: 3 },
+  { q: { uz: "Demo yo'lida qaysi uch joy o'zgaradi?", ru: "Какие три места меняются на пути демо?" }, opts: [{ uz: "Bosish, yuklanish, natija", ru: "Нажатие, загрузка, результат" }, { uz: "Kirish, ro'yxat, chiqish", ru: "Вход, регистрация, выход" }, { uz: "Rasm, kutubxona, kod hajmi", ru: "Картинки, библиотека, объём кода" }, { uz: "Lending, maxfiylik, oferta", ru: "Лендинг, конфиденциальность, оферта" }], correct: 0 },
+  { q: { uz: "Sayqaldan keyin demo yo'lida nima o'zgaradi?", ru: "Что меняется на пути демо после шлифовки?" }, opts: [{ uz: "Ekranlar soni va tartibi", ru: "Число экранов и порядок" }, { uz: "Uch joyning ko'rinishi", ru: "Вид трёх мест" }, { uz: "Backend va Database", ru: "Backend и Database" }, { uz: "Ilova nomi va rangi", ru: "Название и цвет приложения" }], correct: 1 },
+  { q: { uz: "Javob sekin kelsa, bosilgan tugma qanday turadi?", ru: "Как выглядит нажатая кнопка, если ответ медленный?" }, opts: [{ uz: "Avvalgidek turadi", ru: "Как прежде" }, { uz: "Yo'qolib qoladi", ru: "Исчезает" }, { uz: "«Qo'shilmoqda…», o'chiq", ru: "«Qo'shilmoqda…», неактивна" }, { uz: "«Qo'shildingiz» bo'ladi", ru: "Становится «Qo'shildingiz»" }], correct: 2 },
+  { q: { uz: "Joy egallovchi qayerda turadi?", ru: "Где стоит заполнитель?" }, opts: [{ uz: "Ekranning eng tepasida", ru: "В самом верху экрана" }, { uz: "Ro'yxatdan oldingi ekranda", ru: "На экране перед списком" }, { uz: "Tugma yozuvi o'rnida", ru: "Вместо надписи кнопки" }, { uz: "Ma'lumot o'rnida", ru: "На месте данных" }], correct: 3 },
+  { q: { uz: "Kulrang karta nega haqiqiy karta o'lchamida?", ru: "Почему серая карточка размером с настоящую?" }, opts: [{ uz: "Ro'yxat kelganda sakramasin", ru: "Чтобы не было скачка при загрузке списка" }, { uz: "Chiroyli ko'rinsin", ru: "Чтобы выглядела красиво" }, { uz: "Backend tez javob bersin", ru: "Чтобы Backend ответил быстрее" }, { uz: "Kutish yozuvi kerak emas", ru: "Надпись ожидания не нужна" }], correct: 0 },
+  { q: { uz: "Kutish yozuvi bor bo'lsa, kulrang kartalar nima beradi?", ru: "Что дают серые карточки, если есть надпись ожидания?" }, opts: [{ uz: "Ro'yxatni tezlatadi", ru: "Ускоряют список" }, { uz: "Nima kelishini ko'rsatadi", ru: "Показывают, что придёт" }, { uz: "Backend'ni uyg'otadi", ru: "Будят Backend" }, { uz: "Yozuvni almashtiradi", ru: "Заменяют надпись" }], correct: 1 },
+  { q: { uz: "Harakat kamaytirilsa, sayqaldan nima qoladi?", ru: "Что остаётся от шлифовки при уменьшенном движении?" }, opts: [{ uz: "Hech narsa qolmaydi", ru: "Ничего не остаётся" }, { uz: "Faqat animatsiyalar", ru: "Только анимации" }, { uz: "Yozuv, kartalar va son", ru: "Надпись, карточки и число" }, { uz: "Faqat kutish belgisi", ru: "Только значок ожидания" }], correct: 2 },
+  { q: { uz: "Harakat kamaytirilganini DevTools'da qayerda tanlaysiz?", ru: "Где в DevTools выбрать уменьшение движения?" }, opts: [{ uz: "Network bo'limida", ru: "В разделе Network" }, { uz: "Lighthouse bo'limida", ru: "В разделе Lighthouse" }, { uz: "Console bo'limida", ru: "В разделе Console" }, { uz: "Rendering bo'limida", ru: "В разделе Rendering" }], correct: 3 },
+  { q: { uz: "Ro'yxat sekin kelishini DevTools'da qanday ko'rasiz?", ru: "Как в DevTools увидеть медленную загрузку списка?" }, opts: [{ uz: "Network'da «Slow 4G»", ru: "«Slow 4G» в Network" }, { uz: "Lighthouse'da «Mobile»", ru: "«Mobile» в Lighthouse" }, { uz: "Rendering'da «reduce»", ru: "«reduce» в Rendering" }, { uz: "Console'da xato qatori", ru: "Строка ошибки в Console" }], correct: 0 },
+  { q: { uz: "Muvaffaqiyat animatsiyasi qanday bo'ladi?", ru: "Какой бывает анимация успеха?" }, opts: [{ uz: "Uzun, butun ekran bo'ylab", ru: "Долгой, на весь экран" }, { uz: "Qisqa va bir marta", ru: "Короткой и один раз" }, { uz: "To'xtamay miltillaydi", ru: "Мигает без остановки" }, { uz: "Har soniyada takrorlanadi", ru: "Повторяется каждую секунду" }], correct: 1 },
+  { q: { uz: "Animatsiyaga nega yangi kutubxona qo'shilmaydi?", ru: "Почему для анимации не добавляют новую библиотеку?" }, opts: [{ uz: "Faqat web'da ishlaydi", ru: "Работает только в вебе" }, { uz: "Agent o'rnata olmaydi", ru: "Агент не может установить" }, { uz: "Kod hajmi oshishi mumkin", ru: "Может вырасти объём кода" }, { uz: "Backend'ni sekinlatadi", ru: "Замедляет Backend" }], correct: 2 },
+  { q: { uz: "Sayqal ishlashini qanday bilasiz?", ru: "Как узнать, что шлифовка работает?" }, opts: [{ uz: "Agent «tayyor» deydi", ru: "Агент говорит «готово»" }, { uz: "Kodda animatsiya bor", ru: "В коде есть анимация" }, { uz: "Sinfdosh «chiroyli» deydi", ru: "Одноклассник говорит «красиво»" }, { uz: "Sekin tarmoqda ko'rasiz", ru: "Видите сами на медленной сети" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1823,7 +1849,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('py-blok', qulfli && 'qulf', done && 'tugadi')}>
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={qadamlar}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={done && tk === 'ok' && doneText ? tx(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}

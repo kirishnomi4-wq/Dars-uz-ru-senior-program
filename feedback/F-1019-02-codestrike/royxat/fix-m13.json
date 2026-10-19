@@ -1,0 +1,4135 @@
+[
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 142 belgi — variantlar qisqartirildi.",
+  "q": {
+   "uz": "Jalb qilish narxida qaysi pul olinadi?",
+   "ru": "Какие деньги берут для цены привлечения?"
+  },
+  "opts": [
+   {
+    "uz": "Kanallarga ketgan pul",
+    "ru": "Деньги на каналы"
+   },
+   {
+    "uz": "Pro uchun to'langan pul",
+    "ru": "Деньги за Pro"
+   },
+   {
+    "uz": "O'yinchi bergan pul",
+    "ru": "Деньги от игрока"
+   },
+   {
+    "uz": "Postga ketgan vaqt",
+    "ru": "Время на пост"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida bepul kanallar nimaga tushdi?",
+   "ru": "Во что обошлись бесплатные каналы в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Har kishiga 5 000 so'm",
+    "ru": "5 000 сумов на человека"
+   },
+   {
+    "uz": "Pulga emas, vaqtga",
+    "ru": "Не в деньги, а во время"
+   },
+   {
+    "uz": "Pro narxiga, 10 000 so'm",
+    "ru": "В цену Pro, 10 000 сумов"
+   },
+   {
+    "uz": "Hech narsaga, vaqt ham yo'q",
+    "ru": "Ни во что, даже времени нет"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 150 belgi — variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida ilovaga kim pul to'lashi mumkin?",
+   "ru": "Кто может платить за приложение в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Har bir foydalanuvchi",
+    "ru": "Каждый пользователь"
+   },
+   {
+    "uz": "Faqat sinfdoshlar",
+    "ru": "Только одноклассники"
+   },
+   {
+    "uz": "Pro oladigan tashkilotchi",
+    "ru": "Организатор, берущий Pro"
+   },
+   {
+    "uz": "Maydon egasi har o'yinda",
+    "ru": "Владелец поля за каждую игру"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Mentor taxmini: Pro tashkilotchi qancha keltiradi?",
+   "ru": "Предположение Ментора: сколько принесёт организатор с Pro?"
+  },
+  "opts": [
+   {
+    "uz": "30 000 so'm",
+    "ru": "30 000 сумов"
+   },
+   {
+    "uz": "10 000 so'm",
+    "ru": "10 000 сумов"
+   },
+   {
+    "uz": "60 000 so'm",
+    "ru": "60 000 сумов"
+   },
+   {
+    "uz": "20 000 so'm",
+    "ru": "20 000 сумов"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi; variantlardan izohlar olindi.",
+  "q": {
+   "uz": "Yangi kelganlar 0 bo'lsa, jalbNarxi nima qaytaradi?",
+   "ru": "Что вернёт jalbNarxi, если новых пользователей 0?"
+  },
+  "opts": [
+   {
+    "uz": "0",
+    "ru": "0"
+   },
+   {
+    "uz": "null",
+    "ru": "null"
+   },
+   {
+    "uz": "Sarflangan pulni",
+    "ru": "Потраченные деньги"
+   },
+   {
+    "uz": "Infinity",
+    "ru": "Infinity"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant 32 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Qaytganlar foizi nimani sanaydi?",
+   "ru": "Что считает процент вернувшихся?"
+  },
+  "opts": [
+   {
+    "uz": "Obunani uzaytirganlarni",
+    "ru": "Тех, кто продлил подписку"
+   },
+   {
+    "uz": "Pro olgan tashkilotchilarni",
+    "ru": "Организаторов, взявших Pro"
+   },
+   {
+    "uz": "Yana ochgan qurilmalarni",
+    "ru": "Устройства, открывшие снова"
+   },
+   {
+    "uz": "Kanaldan kelgan yangilarni",
+    "ru": "Новых людей из каналов"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 64 belgi; variantlar darsdagi to'rt xulosa nomiga keltirildi.",
+  "q": {
+   "uz": "Jalb qilish narxi 25 000, keltiradi 20 000. Natija?",
+   "ru": "Цена привлечения 25 000, приносит 20 000. Итог?"
+  },
+  "opts": [
+   {
+    "uz": "Qoplanadi",
+    "ru": "Окупается"
+   },
+   {
+    "uz": "Teng",
+    "ru": "Равно"
+   },
+   {
+    "uz": "Noma'lum",
+    "ru": "Неизвестно"
+   },
+   {
+    "uz": "Zarar",
+    "ru": "Убыток"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida bepul kanallar nega chegarali?",
+   "ru": "Почему бесплатные каналы в примере Ментора ограничены?"
+  },
+  "opts": [
+   {
+    "uz": "A'zolar soni cheklangan",
+    "ru": "Число участников ограничено"
+   },
+   {
+    "uz": "Keyin pul to'lash kerak",
+    "ru": "Потом нужно платить"
+   },
+   {
+    "uz": "Post yozish taqiqlangan",
+    "ru": "Посты писать запрещено"
+   },
+   {
+    "uz": "Bir haftada yopiladi",
+    "ru": "Закрываются через неделю"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha — qisqartirildi.",
+  "q": {
+   "uz": "Jalb qilish narxida kim yangi sanaladi?",
+   "ru": "Кто считается новым в цене привлечения?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani bir marta ochgan",
+    "ru": "Кто раз открыл приложение"
+   },
+   {
+    "uz": "Shu davrda ro'yxatdan o'tgan",
+    "ru": "Кто зарегистрировался за период"
+   },
+   {
+    "uz": "Pro uchun pul to'lagan",
+    "ru": "Кто заплатил за Pro"
+   },
+   {
+    "uz": "Postni o'qigan har kim",
+    "ru": "Каждый, кто прочитал пост"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 58, variant 31 belgi — darsdagi «to'lovchi» atamasi bilan qisqartirildi.",
+  "q": {
+   "uz": "Pullik kanalda kimni jalb qilish narxi olinadi?",
+   "ru": "Чью цену привлечения берут для платного канала?"
+  },
+  "opts": [
+   {
+    "uz": "Kanaldan kelgan har kishini",
+    "ru": "Каждого пришедшего из канала"
+   },
+   {
+    "uz": "Ilovadagi hammani",
+    "ru": "Всех в приложении"
+   },
+   {
+    "uz": "To'lovchini",
+    "ru": "Плательщика"
+   },
+   {
+    "uz": "Eng ko'p o'ynaganni",
+    "ru": "Кто больше всех играет"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi — formulaga keltirildi.",
+  "q": {
+   "uz": "Keltiradigan pulni qanday hisoblaymiz?",
+   "ru": "Как считаем приносимые деньги?"
+  },
+  "opts": [
+   {
+    "uz": "Narx × kishilar soni",
+    "ru": "Цена × число людей"
+   },
+   {
+    "uz": "Narx + kanal puli",
+    "ru": "Цена + деньги на канал"
+   },
+   {
+    "uz": "Oylar ÷ kishilar soni",
+    "ru": "Месяцы ÷ число людей"
+   },
+   {
+    "uz": "Narx × oylar soni",
+    "ru": "Цена × число месяцев"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 155 — qisqartirildi.",
+  "q": {
+   "uz": "Reklama modelida pulni kim to'laydi?",
+   "ru": "Кто платит в рекламной модели?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani ishlatgan har kim",
+    "ru": "Каждый, кто пользуется"
+   },
+   {
+    "uz": "Reklamani ko'rgan odam",
+    "ru": "Кто увидел рекламу"
+   },
+   {
+    "uz": "Reklama bergan kompaniya",
+    "ru": "Компания, давшая рекламу"
+   },
+   {
+    "uz": "Ilova xizmat qilgan biznes",
+    "ru": "Бизнес, которому служит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgigacha — qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida B2B bo'lsa, kim to'lardi?",
+   "ru": "Кто платил бы в примере Ментора при B2B?"
+  },
+  "opts": [
+   {
+    "uz": "Qo'shiladigan o'yinchilar",
+    "ru": "Присоединяющиеся игроки"
+   },
+   {
+    "uz": "Maydonning egasi",
+    "ru": "Владелец поля"
+   },
+   {
+    "uz": "Reklama bergan kompaniya",
+    "ru": "Компания, давшая рекламу"
+   },
+   {
+    "uz": "E'lon beruvchi tashkilotchi",
+    "ru": "Организатор, дающий объявление"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 54, variant 33 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida tranzaksiya qaysi ish bo'lardi?",
+   "ru": "Что было бы транзакцией в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Har hafta o'yin e'loni",
+    "ru": "Объявление игры каждую неделю"
+   },
+   {
+    "uz": "O'yinga qo'shilish",
+    "ru": "Присоединение к игре"
+   },
+   {
+    "uz": "Eslatma yuborish",
+    "ru": "Отправка напоминаний"
+   },
+   {
+    "uz": "Maydon pulini bo'lishish",
+    "ru": "Деление денег за поле"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 182 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Maydon pulini bo'lishish nega hozir emas?",
+   "ru": "Почему деление денег за поле не сейчас?"
+  },
+  "opts": [
+   {
+    "uz": "Foydalanuvchi hali kam",
+    "ru": "Пользователей пока мало"
+   },
+   {
+    "uz": "Maydon egasi ishlatmaydi",
+    "ru": "Владелец поля не пользуется"
+   },
+   {
+    "uz": "Yuridik shaxs va shartnoma",
+    "ru": "Юрлицо и договор"
+   },
+   {
+    "uz": "Roadmap'da hozirgi ufqda",
+    "ru": "В roadmap на текущем горизонте"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 170 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Pro'siz o'yinchi ilovada nima qila oladi?",
+   "ru": "Что игрок может делать в приложении без Pro?"
+  },
+  "opts": [
+   {
+    "uz": "Bepul o'yinga qo'shiladi",
+    "ru": "Бесплатно присоединяется к игре"
+   },
+   {
+    "uz": "Faqat e'lonlarni o'qiydi",
+    "ru": "Только читает объявления"
+   },
+   {
+    "uz": "Faqat bitta o'yinga kiradi",
+    "ru": "Входит только в одну игру"
+   },
+   {
+    "uz": "Hech narsa, ilova pullik",
+    "ru": "Ничего, приложение платное"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 62 belgi — qisqartirildi.",
+  "q": {
+   "uz": "2024-yilda Premium'ga obunalar qanday o'zgardi?",
+   "ru": "Как изменились подписки на Premium в 2024 году?"
+  },
+  "opts": [
+   {
+    "uz": "Deyarli o'zgarmadi",
+    "ru": "Почти не изменились"
+   },
+   {
+    "uz": "Uch barobar ko'paydi",
+    "ru": "Выросли в три раза"
+   },
+   {
+    "uz": "Ikki barobar kamaydi",
+    "ru": "Упали в два раза"
+   },
+   {
+    "uz": "O'n barobar ko'paydi",
+    "ru": "Выросли в десять раз"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Savol 60 belgi; «Pulni boshqa kompaniya to'laydi» bepul qism haqidagi savolga javob emas edi — variantlar bir shaklga keltirildi.",
+  "q": {
+   "uz": "Pullik obuna modelida bepul qism bormi?",
+   "ru": "Есть ли бесплатная часть в модели платной подписки?"
+  },
+  "opts": [
+   {
+    "uz": "Asosiy ish bepul",
+    "ru": "Основное бесплатно"
+   },
+   {
+    "uz": "Faqat reklamali qism",
+    "ru": "Только часть с рекламой"
+   },
+   {
+    "uz": "Bepul qism kattaroq",
+    "ru": "Бесплатная часть больше"
+   },
+   {
+    "uz": "Yo'q, hamma to'laydi",
+    "ru": "Нет, платят все"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 189 — qisqartirildi.",
+  "q": {
+   "uz": "SQL'da DISTINCT nima uchun kerak?",
+   "ru": "Зачем в SQL нужен DISTINCT?"
+  },
+  "opts": [
+   {
+    "uz": "Tashkilotchi bir marta kirsin",
+    "ru": "Чтобы организатор вошёл один раз"
+   },
+   {
+    "uz": "Namuna hisoblar kirmasin",
+    "ru": "Чтобы не вошли образцовые аккаунты"
+   },
+   {
+    "uz": "Jadvallar id bilan bog'lansin",
+    "ru": "Чтобы таблицы связались по id"
+   },
+   {
+    "uz": "Faqat Pro olganlar kirsin",
+    "ru": "Чтобы вошли только с Pro"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 179 belgi — qisqartirildi, darsdagi «namuna akkaunt» atamasi olindi.",
+  "q": {
+   "uz": "`namuna = false` sharti nima qiladi?",
+   "ru": "Что делает условие `namuna = false`?"
+  },
+  "opts": [
+   {
+    "uz": "Pro'siz akkauntni sanamaydi",
+    "ru": "Не считает аккаунты без Pro"
+   },
+   {
+    "uz": "Namuna akkauntni sanamaydi",
+    "ru": "Не считает образцовые аккаунты"
+   },
+   {
+    "uz": "E'lonsizni ham sanaydi",
+    "ru": "Считает и тех, кто без объявлений"
+   },
+   {
+    "uz": "Sinfdoshni alohida sanaydi",
+    "ru": "Считает одноклассников отдельно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61, variant 35 belgi, jami 190 — qisqartirildi.",
+  "q": {
+   "uz": "Webhook bilan bot xabarni qanday olardi?",
+   "ru": "Как бот получал сообщение через webhook?"
+  },
+  "opts": [
+   {
+    "uz": "Telegram o'zi yuborardi",
+    "ru": "Telegram сам присылал"
+   },
+   {
+    "uz": "Bot Telegram'dan so'rardi",
+    "ru": "Бот спрашивал у Telegram"
+   },
+   {
+    "uz": "Foydalanuvchi yuborardi",
+    "ru": "Присылал пользователь"
+   },
+   {
+    "uz": "Render tekshirib turardi",
+    "ru": "Render проверял"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Backtick faqat to'g'ri variantda edi, jami 153 — fayl nomlari hamma variantga qo'yildi.",
+  "q": {
+   "uz": "`TOLOV_KALITI` qiymatini qayerga yozasiz?",
+   "ru": "Куда вы запишете значение `TOLOV_KALITI`?"
+  },
+  "opts": [
+   {
+    "uz": "README.md fayliga",
+    "ru": "В файл README.md"
+   },
+   {
+    "uz": "app.js kodiga",
+    "ru": "В код app.js"
+   },
+   {
+    "uz": "Agent promptiga",
+    "ru": "В промпт агента"
+   },
+   {
+    "uz": ".env va Render'ga",
+    "ru": "В .env и в Render"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 157 — qisqartirildi.",
+  "q": {
+   "uz": "Imzo mos keldi. Bu nimani ko'rsatadi?",
+   "ru": "Подпись совпала. Что это показывает?"
+  },
+  "opts": [
+   {
+    "uz": "Kalitni bilgan yuborgan",
+    "ru": "Отправил знающий ключ"
+   },
+   {
+    "uz": "To'lov o'tib bo'lgan",
+    "ru": "Оплата уже прошла"
+   },
+   {
+    "uz": "Summa narxga teng",
+    "ru": "Сумма равна цене"
+   },
+   {
+    "uz": "Xabar ilk bor kelgan",
+    "ru": "Сообщение пришло впервые"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 161 — qisqartirildi.",
+  "q": {
+   "uz": "Javob yo'qolsa, Payme nima qiladi?",
+   "ru": "Что делает Payme, если ответ потерялся?"
+  },
+  "opts": [
+   {
+    "uz": "Boshqa yubormaydi",
+    "ru": "Больше не отправляет"
+   },
+   {
+    "uz": "Shu so'rovni qayta yuboradi",
+    "ru": "Отправляет тот же запрос снова"
+   },
+   {
+    "uz": "Yangi raqam bilan yuboradi",
+    "ru": "Отправляет с новым номером"
+   },
+   {
+    "uz": "Tashkilotchiga yozadi",
+    "ru": "Пишет организатору"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 188 — qisqartirildi.",
+  "q": {
+   "uz": "Stripe takror xabar uchun nima deydi?",
+   "ru": "Что советует Stripe про повторные сообщения?"
+  },
+  "opts": [
+   {
+    "uz": "Xabarni ikki marta yozishni",
+    "ru": "Записывать сообщение дважды"
+   },
+   {
+    "uz": "Tartib bilan kutishni",
+    "ru": "Ждать по порядку"
+   },
+   {
+    "uz": "Ishlangan raqamni yozishni",
+    "ru": "Записывать обработанные номера"
+   },
+   {
+    "uz": "Takrorga 401 qaytarishni",
+    "ru": "Возвращать 401 на повтор"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 148 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Backend takror xabarni nimaga qarab taniydi?",
+   "ru": "По чему Backend узнаёт повторное сообщение?"
+  },
+  "opts": [
+   {
+    "uz": "Xabardagi summaga",
+    "ru": "По сумме в сообщении"
+   },
+   {
+    "uz": "To'lovchi ismiga",
+    "ru": "По имени плательщика"
+   },
+   {
+    "uz": "Kelgan vaqtiga",
+    "ru": "По времени прихода"
+   },
+   {
+    "uz": "To'lov raqamiga",
+    "ru": "По номеру оплаты"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 150 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Mashq to'lov sahifasi qayerda turadi?",
+   "ru": "Где находится учебная страница оплаты?"
+  },
+  "opts": [
+   {
+    "uz": "Backend'ingizda",
+    "ru": "В вашем Backend"
+   },
+   {
+    "uz": "Payme serverida",
+    "ru": "На сервере Payme"
+   },
+   {
+    "uz": "Telefon xotirasida",
+    "ru": "В памяти телефона"
+   },
+   {
+    "uz": "GitHub sahifasida",
+    "ru": "На странице GitHub"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 160 belgi — variantlar bir so'zga qisqartirildi.",
+  "q": {
+   "uz": "Mashq to'lov sahifasi xabarni qayerda imzolaydi?",
+   "ru": "Где учебная страница оплаты подписывает сообщение?"
+  },
+  "opts": [
+   {
+    "uz": "Brauzerda",
+    "ru": "В браузере"
+   },
+   {
+    "uz": "Backend'da",
+    "ru": "В Backend"
+   },
+   {
+    "uz": "Telefonda",
+    "ru": "В телефоне"
+   },
+   {
+    "uz": "GitHub'da",
+    "ru": "В GitHub"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 155 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Sxemada ilova Pro holatini qayerdan biladi?",
+   "ru": "Откуда приложение в схеме знает статус Pro?"
+  },
+  "opts": [
+   {
+    "uz": "To'lov xizmati xabaridan",
+    "ru": "Из сообщения платёжного сервиса"
+   },
+   {
+    "uz": "To'lov sahifasidan",
+    "ru": "Со страницы оплаты"
+   },
+   {
+    "uz": "Telefonga kelgan SMS'dan",
+    "ru": "Из SMS на телефон"
+   },
+   {
+    "uz": "Backend'dan so'rab",
+    "ru": "Спросив у Backend"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi, jami 183 — qisqartirildi.",
+  "q": {
+   "uz": "Mentor ilovasida to'lov sahifasi qayerda ochiladi?",
+   "ru": "Где открывается страница оплаты в приложении Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Telefon brauzerida",
+    "ru": "В браузере телефона"
+   },
+   {
+    "uz": "Ilova ichidagi oynada",
+    "ru": "В окне внутри приложения"
+   },
+   {
+    "uz": "Telegram botida",
+    "ru": "В Telegram-боте"
+   },
+   {
+    "uz": "Play do'konida",
+    "ru": "В магазине Play"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 58, variant 35 belgi — qisqartirildi.",
+  "q": {
+   "uz": "«Doimiy o'yin» tashkilotchiga nima beradi?",
+   "ru": "Что даёт организатору «Постоянная игра»?"
+  },
+  "opts": [
+   {
+    "uz": "Maydonni o'zi band qiladi",
+    "ru": "Сама бронирует поле"
+   },
+   {
+    "uz": "O'yinni o'zi e'lon qiladi",
+    "ru": "Сама объявляет игру"
+   },
+   {
+    "uz": "O'yinchini pulga chaqiradi",
+    "ru": "Зовёт игроков за деньги"
+   },
+   {
+    "uz": "Guruhni o'chiradi",
+    "ru": "Удаляет группу"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 52, jami 145 — qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida Pro muddatini kim uzaytiradi?",
+   "ru": "Кто продлевает срок Pro в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova, tugma bosilganda",
+    "ru": "Приложение, при нажатии"
+   },
+   {
+    "uz": "Mashq sahifasi",
+    "ru": "Учебная страница"
+   },
+   {
+    "uz": "Backend, xabar kelgach",
+    "ru": "Backend, после сообщения"
+   },
+   {
+    "uz": "Tashkilotchi o'zi",
+    "ru": "Сам организатор"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 54, variant 37 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Mashq to'lovda karta raqami qayerga yoziladi?",
+   "ru": "Куда вводится номер карты в учебной оплате?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifadagi maydonga",
+    "ru": "В поле на странице"
+   },
+   {
+    "uz": "Ilovadagi ekranga",
+    "ru": "На экран в приложении"
+   },
+   {
+    "uz": ".env fayliga",
+    "ru": "В файл .env"
+   },
+   {
+    "uz": "Hech qayerga",
+    "ru": "Никуда"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 174 — qisqartirildi.",
+  "q": {
+   "uz": "Mashq sahifasi qaysi raqam bilan ochiladi?",
+   "ru": "С каким номером открывается учебная страница?"
+  },
+  "opts": [
+   {
+    "uz": "Backend bergan raqam",
+    "ru": "Номер от Backend"
+   },
+   {
+    "uz": "Tashkilotchi yozgan raqam",
+    "ru": "Номер, введённый организатором"
+   },
+   {
+    "uz": "Ilova o'ylagan raqam",
+    "ru": "Номер, придуманный приложением"
+   },
+   {
+    "uz": "Hisobingiz raqami",
+    "ru": "Номер вашего аккаунта"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 82 belgi — tekshiruv sahnasi o'rniga qoidaning o'zi so'raldi.",
+  "q": {
+   "uz": "Doimiy o'yin vaqti o'tsa, nima bo'ladi?",
+   "ru": "Что будет, когда время постоянной игры прошло?"
+  },
+  "opts": [
+   {
+    "uz": "O'yin bekor deb chiqadi",
+    "ru": "Игра показана отменённой"
+   },
+   {
+    "uz": "Keyingi haftaga yangi o'yin",
+    "ru": "Новая игра на следующую неделю"
+   },
+   {
+    "uz": "Ilova xato ko'rsatadi",
+    "ru": "Приложение покажет ошибку"
+   },
+   {
+    "uz": "Ikkita yangi o'yin chiqadi",
+    "ru": "Появятся две новые игры"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 165 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Pro muddati tugasa, nima bo'ladi?",
+   "ru": "Что будет, когда закончится срок Pro?"
+  },
+  "opts": [
+   {
+    "uz": "Kartadan pul yechiladi",
+    "ru": "С карты спишутся деньги"
+   },
+   {
+    "uz": "Pro yana 30 kun uzayadi",
+    "ru": "Pro продлится ещё на 30 дней"
+   },
+   {
+    "uz": "Pro o'zi to'xtaydi",
+    "ru": "Pro сам остановится"
+   },
+   {
+    "uz": "Hisob o'chib ketadi",
+    "ru": "Аккаунт удалится"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 145 belgi — savol qisqartirildi.",
+  "q": {
+   "uz": "Mentorning xarajat qatorida nima turadi?",
+   "ru": "Что стоит в строке расходов у Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Telegram guruhi bepul ekani",
+    "ru": "Что Telegram-группа бесплатна"
+   },
+   {
+    "uz": "Har haftalik e'lon ishi",
+    "ru": "Еженедельная работа с объявлением"
+   },
+   {
+    "uz": "30 kun uchun 15 000 so'm",
+    "ru": "15 000 сумов за 30 дней"
+   },
+   {
+    "uz": "Uxlamaydigan Backend puli",
+    "ru": "Деньги на неспящий Backend"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 158 belgi — qisqartirildi, ikki nuqta boshqa variantlarga ham qo'yildi.",
+  "q": {
+   "uz": "Har to'lov ekranida qaysi qator turadi?",
+   "ru": "Какая строка есть на каждом экране оплаты?"
+  },
+  "opts": [
+   {
+    "uz": "Test rejim: pul yechilmaydi",
+    "ru": "Тестовый режим: деньги не списываются"
+   },
+   {
+    "uz": "Chegirma: faqat bugun",
+    "ru": "Скидка: только сегодня"
+   },
+   {
+    "uz": "Karta raqamini kiriting",
+    "ru": "Введите номер карты"
+   },
+   {
+    "uz": "Diqqat: narx oshadi",
+    "ru": "Внимание: цена вырастет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 197 — qisqartirildi.",
+  "q": {
+   "uz": "Agent «tayyor» dedi. Keyin nima qilasiz?",
+   "ru": "Агент сказал «готово». Что дальше?"
+  },
+  "opts": [
+   {
+    "uz": "Darsni tugatib qo'yaman",
+    "ru": "Закончу урок"
+   },
+   {
+    "uz": "Agentdan qayta so'rayman",
+    "ru": "Спрошу агента ещё раз"
+   },
+   {
+    "uz": "O'zim tekshirib ko'raman",
+    "ru": "Проверю сам"
+   },
+   {
+    "uz": "Kodni o'qimay push qilaman",
+    "ru": "Сделаю push, не читая код"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 62 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Tashkilotchi bugun o'yinni nima bilan yig'adi?",
+   "ru": "Чем организатор сегодня собирает игру?"
+  },
+  "opts": [
+   {
+    "uz": "Pro'dagi «Doimiy o'yin»",
+    "ru": "«Постоянная игра» в Pro"
+   },
+   {
+    "uz": "Lendingdagi tugma",
+    "ru": "Кнопка на лендинге"
+   },
+   {
+    "uz": "Maydon egasi ilovasi",
+    "ru": "Приложение владельца поля"
+   },
+   {
+    "uz": "Bepul Telegram guruhi",
+    "ru": "Бесплатная Telegram-группа"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 157 belgi — qisqartirildi.",
+  "q": {
+   "uz": "«Kechiktirib yuborish» nimaning mashqi?",
+   "ru": "Упражнением на что является «Kechiktirib yuborish»?"
+  },
+  "opts": [
+   {
+    "uz": "Ikki marta kelgan xabar",
+    "ru": "Сообщение, пришедшее дважды"
+   },
+   {
+    "uz": "Uxlab qolgan Backend",
+    "ru": "Уснувший Backend"
+   },
+   {
+    "uz": "Soxta imzoli xabar",
+    "ru": "Сообщение с поддельной подписью"
+   },
+   {
+    "uz": "Rad etilgan to'lov",
+    "ru": "Отклонённая оплата"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 42 belgi, jami 211 — qisqartirildi.",
+  "q": {
+   "uz": "To'lovni qayerda, qanday buzasiz?",
+   "ru": "Где и как вы ломаете оплату?"
+  },
+  "opts": [
+   {
+    "uz": "Sinfdosh saytida, mashq bilan",
+    "ru": "На сайте одноклассника, учебной кнопкой"
+   },
+   {
+    "uz": "Payme'da, kartam bilan",
+    "ru": "В Payme, своей картой"
+   },
+   {
+    "uz": "O'z mahsulotimda, mashq bilan",
+    "ru": "В своём продукте, учебной кнопкой"
+   },
+   {
+    "uz": "O'z mahsulotimda, pul bilan",
+    "ru": "В своём продукте, деньгами"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 57, variant 38 belgi, jami 200 — qisqartirildi.",
+  "q": {
+   "uz": "Imzo noto'g'ri. Backend nima qilishi kerak?",
+   "ru": "Подпись неверна. Что должен сделать Backend?"
+  },
+  "opts": [
+   {
+    "uz": "200, to'lovni yozadi",
+    "ru": "200, записывает оплату"
+   },
+   {
+    "uz": "200, faqat Pro'ni yoqadi",
+    "ru": "200, только включает Pro"
+   },
+   {
+    "uz": "401, lekin Pro'ni yoqadi",
+    "ru": "401, но включает Pro"
+   },
+   {
+    "uz": "401, hech narsa yozmaydi",
+    "ru": "401, ничего не записывает"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 53, jami 169 — qisqartirildi.",
+  "q": {
+   "uz": "Ikki marta kelgan xabar nimani buzdi?",
+   "ru": "Что сломало сообщение, пришедшее дважды?"
+  },
+  "opts": [
+   {
+    "uz": "Jadvalda ikki qator bo'ldi",
+    "ru": "В таблице стало две строки"
+   },
+   {
+    "uz": "Pro ikki marta uzaydi",
+    "ru": "Pro продлился дважды"
+   },
+   {
+    "uz": "Imzodan o'tmadi",
+    "ru": "Не прошло подпись"
+   },
+   {
+    "uz": "Ilova Pro'ni ko'rsatmadi",
+    "ru": "Приложение не показало Pro"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 155 belgi — variantlar qisqartirildi.",
+  "q": {
+   "uz": "Javob 10 soniyada kelmadi. Sahifa nima deyishi kerak?",
+   "ru": "Ответ не пришёл за 10 секунд. Что должна сказать страница?"
+  },
+  "opts": [
+   {
+    "uz": "«To'lov o'tmadi»",
+    "ru": "«Оплата не прошла»"
+   },
+   {
+    "uz": "«To'landi (mashq)»",
+    "ru": "«Оплачено (учебно)»"
+   },
+   {
+    "uz": "«Javob kutilmoqda»",
+    "ru": "«Ожидается ответ»"
+   },
+   {
+    "uz": "Hech narsa demaydi",
+    "ru": "Ничего не говорит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 57, jami 169 — qisqartirildi.",
+  "q": {
+   "uz": "Ilova Pro holatini qachon qayta so'raydi?",
+   "ru": "Когда приложение снова запрашивает статус Pro?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat ilk ochilganda",
+    "ru": "Только при первом открытии"
+   },
+   {
+    "uz": "Har soniyada, to'xtamasdan",
+    "ru": "Каждую секунду, без остановки"
+   },
+   {
+    "uz": "Faqat to'lov rad etilganda",
+    "ru": "Только при отказе в оплате"
+   },
+   {
+    "uz": "Qaytganda, tugma bosilganda",
+    "ru": "При возврате и нажатии кнопки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 159 belgi — qisqartirildi.",
+  "q": {
+   "uz": "«Tuzatish qilindi» belgisi nimani aytadi?",
+   "ru": "О чём говорит отметка «Исправление сделано»?"
+  },
+  "opts": [
+   {
+    "uz": "Muammo qaytmasligini",
+    "ru": "Что проблема не вернётся"
+   },
+   {
+    "uz": "Kod o'zgarganini",
+    "ru": "Что код изменён"
+   },
+   {
+    "uz": "Agent yozuvni o'qiganini",
+    "ru": "Что агент прочитал запись"
+   },
+   {
+    "uz": "Urinish buzilmaganini",
+    "ru": "Что попытка не сломалась"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 57, jami 169 — qisqartirildi.",
+  "q": {
+   "uz": "Pro tugadi. E'lon qilingan o'yinlar nima bo'ladi?",
+   "ru": "Pro закончился. Что будет с объявленными играми?"
+  },
+  "opts": [
+   {
+    "uz": "Pro bilan o'chib ketadi",
+    "ru": "Удалятся вместе с Pro"
+   },
+   {
+    "uz": "Pro qaytguncha yashirinadi",
+    "ru": "Скроются, пока Pro не вернётся"
+   },
+   {
+    "uz": "Ro'yxatda qoladi",
+    "ru": "Останутся в списке"
+   },
+   {
+    "uz": "Keyingi haftaga ko'chadi",
+    "ru": "Перенесутся на неделю"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 172 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Kech urinishda Pro yoqilgani qayerda ko'rindi?",
+   "ru": "Где в поздней попытке было видно, что Pro включён?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovada, ekran yangilanib",
+    "ru": "В приложении, экран обновился"
+   },
+   {
+    "uz": "Sahifadagi «To'landi»dan",
+    "ru": "По «Оплачено» на странице"
+   },
+   {
+    "uz": "Agentning javobidan",
+    "ru": "По ответу агента"
+   },
+   {
+    "uz": "Neon'dagi muddat qatoridan",
+    "ru": "По строке срока в Neon"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 163 — qisqartirildi.",
+  "q": {
+   "uz": "Bu darsda suhbat nima?",
+   "ru": "Что такое беседа в этом уроке?"
+  },
+  "opts": [
+   {
+    "uz": "Narx haqida odamdan so'rash",
+    "ru": "Спросить человека о цене"
+   },
+   {
+    "uz": "Tanishlarga sotish usuli",
+    "ru": "Способ продать знакомым"
+   },
+   {
+    "uz": "Ilovani do'stlarga ko'rsatish",
+    "ru": "Показать приложение друзьям"
+   },
+   {
+    "uz": "Narxni Mentor bilan kelishish",
+    "ru": "Согласовать цену с Ментором"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 177 — variantlardan izohlar olindi.",
+  "q": {
+   "uz": "Mentor misolida narx qaysi savolda aytiladi?",
+   "ru": "В каком вопросе в примере Ментора называется цена?"
+  },
+  "opts": [
+   {
+    "uz": "Birinchi savolda",
+    "ru": "В первом вопросе"
+   },
+   {
+    "uz": "Ikkinchi savolda",
+    "ru": "Во втором вопросе"
+   },
+   {
+    "uz": "Uchinchi savolda",
+    "ru": "В третьем вопросе"
+   },
+   {
+    "uz": "To'rtinchi savolda",
+    "ru": "В четвёртом вопросе"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 170 — qisqartirildi.",
+  "q": {
+   "uz": "Mentor to'rtinchi savolni qachon beradi?",
+   "ru": "Когда Ментор задаёт четвёртый вопрос?"
+  },
+  "opts": [
+   {
+    "uz": "Suhbat boshlanishi bilan",
+    "ru": "Сразу в начале беседы"
+   },
+   {
+    "uz": "«Yo'q» yoki «qimmat» desa",
+    "ru": "Если сказали «нет» или «дорого»"
+   },
+   {
+    "uz": "Tashkilotchi «ha» desa",
+    "ru": "Если организатор сказал «да»"
+   },
+   {
+    "uz": "Umuman javob bermasa",
+    "ru": "Если вообще не ответил"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Qaysi gap sotish gapi?",
+   "ru": "Какая фраза — фраза продажи?"
+  },
+  "opts": [
+   {
+    "uz": "Hozir buni qanday qilyapsiz?",
+    "ru": "Как вы делаете это сейчас?"
+   },
+   {
+    "uz": "Bunga hozir pul sarflaysizmi?",
+    "ru": "Тратите ли вы на это деньги сейчас?"
+   },
+   {
+    "uz": "Vaqtingiz uchun rahmat!",
+    "ru": "Спасибо за ваше время!"
+   },
+   {
+    "uz": "Hamma oldi, siz ham olasizmi?",
+    "ru": "Все взяли, возьмёте и вы?"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63, jami 185 — qisqartirildi.",
+  "q": {
+   "uz": "«Qimmat, yarim narxda olardim». Nima yoziladi?",
+   "ru": "«Дорого, за полцены взял бы». Что записывается?"
+  },
+  "opts": [
+   {
+    "uz": "«Qimmat» va uning narxi",
+    "ru": "«Дорого» и его цена"
+   },
+   {
+    "uz": "«Ha» va savoldagi narx",
+    "ru": "«Да» и цена из вопроса"
+   },
+   {
+    "uz": "«Yo'q», narx yozilmaydi",
+    "ru": "«Нет», цена не пишется"
+   },
+   {
+    "uz": "«Javob yo'q», gap yo'q",
+    "ru": "«Нет ответа», слов нет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 55, jami 171 — variantlar bir so'zga qisqartirildi.",
+  "q": {
+   "uz": "Uch tashkilotchidan nechtasi «ha» dedi?",
+   "ru": "Сколько из трёх организаторов сказали «да»?"
+  },
+  "opts": [
+   {
+    "uz": "Uchalasi",
+    "ru": "Все трое"
+   },
+   {
+    "uz": "Bittasi",
+    "ru": "Один"
+   },
+   {
+    "uz": "Ikkitasi",
+    "ru": "Двое"
+   },
+   {
+    "uz": "Hech biri",
+    "ru": "Ни один"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 172 belgi — variantlar belgining o'ziga qisqartirildi.",
+  "q": {
+   "uz": "Odam xabaringizga javob bermadi. Qaysi belgi qo'yiladi?",
+   "ru": "Человек не ответил на сообщение. Какая отметка ставится?"
+  },
+  "opts": [
+   {
+    "uz": "«Yo'q»",
+    "ru": "«Нет»"
+   },
+   {
+    "uz": "«Qimmat»",
+    "ru": "«Дорого»"
+   },
+   {
+    "uz": "«Javob yo'q»",
+    "ru": "«Нет ответа»"
+   },
+   {
+    "uz": "Hech qanday",
+    "ru": "Никакая"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi, jami 168 — qisqartirildi.",
+  "q": {
+   "uz": "Odam «ha, olaman» dedi. Nima qilasiz?",
+   "ru": "Человек сказал «да, возьму». Что вы делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Pulni naqd olib qo'yaman",
+    "ru": "Сразу беру деньги наличными"
+   },
+   {
+    "uz": "Narxni oshiraman",
+    "ru": "Повышаю цену"
+   },
+   {
+    "uz": "Do'stini ham olishga undayman",
+    "ru": "Уговариваю и его друзей"
+   },
+   {
+    "uz": "Gapini yozaman, pul olmayman",
+    "ru": "Записываю слова, денег не беру"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 162 belgi; to'g'ri javob darsdagi «to'laydigan roldagi tanish» mezoniga keltirildi.",
+  "q": {
+   "uz": "Narx suhbati uchun kimni tanlaysiz?",
+   "ru": "Кого вы выберете для беседы о цене?"
+  },
+  "opts": [
+   {
+    "uz": "To'laydigan roldagi tanishni",
+    "ru": "Знакомого в роли плательщика"
+   },
+   {
+    "uz": "Internetdagi notanishni",
+    "ru": "Незнакомца из интернета"
+   },
+   {
+    "uz": "Mahsulotga aloqasiz odamni",
+    "ru": "Человека, не связанного с продуктом"
+   },
+   {
+    "uz": "O'zimni o'zim so'rayman",
+    "ru": "Спрошу сам себя"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 57, jami 178 — qisqartirildi.",
+  "q": {
+   "uz": "Guruhdagi tanishga yozishdan oldin nima qilasiz?",
+   "ru": "Что вы сделаете, прежде чем написать знакомому из группы?"
+  },
+  "opts": [
+   {
+    "uz": "Hammaga yozaman",
+    "ru": "Пишу всем"
+   },
+   {
+    "uz": "Guruh egasidan ruxsat olaman",
+    "ru": "Беру разрешение у владельца группы"
+   },
+   {
+    "uz": "Telefon raqamini topaman",
+    "ru": "Нахожу его номер телефона"
+   },
+   {
+    "uz": "Hech narsa, u tanish",
+    "ru": "Ничего, он знакомый"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi, jami 174 — qisqartirildi.",
+  "q": {
+   "uz": "Rol o'yinidagi yozuv nega real suhbatga kirmaydi?",
+   "ru": "Почему запись ролевой игры не входит в реальные беседы?"
+  },
+  "opts": [
+   {
+    "uz": "Narx aytilmagan",
+    "ru": "Цена не названа"
+   },
+   {
+    "uz": "Mentor tekshirmagan",
+    "ru": "Ментор не проверил"
+   },
+   {
+    "uz": "Sherik «yo'q» degan",
+    "ru": "Партнёр сказал «нет»"
+   },
+   {
+    "uz": "Sherik rol o'ynagan",
+    "ru": "Партнёр играл роль"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 167 — qisqartirildi.",
+  "q": {
+   "uz": "Oferta qanday taklif?",
+   "ru": "Что за предложение — оферта?"
+  },
+  "opts": [
+   {
+    "uz": "Ochiq, shartlari yozilgan",
+    "ru": "Открытое, условия записаны"
+   },
+   {
+    "uz": "Yashirin, faqat do'stlarga",
+    "ru": "Скрытое, только друзьям"
+   },
+   {
+    "uz": "Og'zaki, narxsiz aytilgan",
+    "ru": "Устное, без цены"
+   },
+   {
+    "uz": "To'lovdan keyin ko'rinadigan",
+    "ru": "Видно только после оплаты"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 172 belgi — variantlar qisqartirildi.",
+  "q": {
+   "uz": "Odam to'lasa, ofertaga nisbatan nima bo'ladi?",
+   "ru": "Что происходит с офертой, если человек платит?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsa, narxni ko'rdi",
+    "ru": "Ничего, он видел цену"
+   },
+   {
+    "uz": "Shartlarga rozi bo'ladi",
+    "ru": "Соглашается с условиями"
+   },
+   {
+    "uz": "Oferta bekor bo'ladi",
+    "ru": "Оферта отменяется"
+   },
+   {
+    "uz": "Shartni o'zi o'zgartiradi",
+    "ru": "Сам меняет условия"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61, jami 185 — qisqartirildi.",
+  "q": {
+   "uz": "«Bekor qilsam, pulim qaytadimi?» Javob qayerda?",
+   "ru": "«Если отменю, деньги вернутся?» Где ответ?"
+  },
+  "opts": [
+   {
+    "uz": "To'lov ekranidagi narxda",
+    "ru": "В цене на экране оплаты"
+   },
+   {
+    "uz": "Mashq sahifasi tugmasida",
+    "ru": "В кнопке учебной страницы"
+   },
+   {
+    "uz": "Ofertaning tegishli bandida",
+    "ru": "В нужном пункте оферты"
+   },
+   {
+    "uz": "E'lon qismida",
+    "ru": "В разделе объявлений"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 182 — qisqartirildi.",
+  "q": {
+   "uz": "Mentor ofertasida sotuvchi qatori nega bo'sh?",
+   "ru": "Почему в оферте Ментора пуста строка продавца?"
+  },
+  "opts": [
+   {
+    "uz": "Mentor ismini unutgan",
+    "ru": "Ментор забыл своё имя"
+   },
+   {
+    "uz": "Agent keyin o'zi qo'yadi",
+    "ru": "Агент потом впишет сам"
+   },
+   {
+    "uz": "Pro olgan odam to'ldiradi",
+    "ru": "Заполнит тот, кто взял Pro"
+   },
+   {
+    "uz": "Real ishga tushirish yo'q",
+    "ru": "Реального запуска нет"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 40 belgi va eng uzuni edi — qisqartirildi.",
+  "q": {
+   "uz": "Qaysi gap ofertaga yoziladi?",
+   "ru": "Какая фраза пишется в оферту?"
+  },
+  "opts": [
+   {
+    "uz": "Pro tugasa, o'yinlar qoladi",
+    "ru": "Когда Pro кончится, игры останутся"
+   },
+   {
+    "uz": "Tez orada yangi qulaylik",
+    "ru": "Скоро новая возможность"
+   },
+   {
+    "uz": "Boshqalar ham Pro'ni oldi",
+    "ru": "Другие тоже взяли Pro"
+   },
+   {
+    "uz": "Har o'yiningiz to'lib boradi",
+    "ru": "Каждая ваша игра заполнится"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 193 — qisqartirildi.",
+  "q": {
+   "uz": "Pro muddati tugasa, nima bo'ladi?",
+   "ru": "Что будет, когда закончится срок Pro?"
+  },
+  "opts": [
+   {
+    "uz": "Keyingi oy puli yechiladi",
+    "ru": "Спишутся деньги за след. месяц"
+   },
+   {
+    "uz": "Pro o'zi to'xtaydi",
+    "ru": "Pro сам остановится"
+   },
+   {
+    "uz": "O'yinlar o'chib ketadi",
+    "ru": "Игры удалятся"
+   },
+   {
+    "uz": "Ilova o'yinchiga pullik",
+    "ru": "Приложение платное для игрока"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 172 — qisqartirildi.",
+  "q": {
+   "uz": "Real ishga tushirishga nima kerak?",
+   "ru": "Что нужно для реального запуска?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani do'konga joylash",
+    "ru": "Выложить приложение в магазин"
+   },
+   {
+    "uz": "Sinfdoshlar og'zaki roziligi",
+    "ru": "Устное согласие одноклассников"
+   },
+   {
+    "uz": "Ota-ona roziligi va sotuvchi",
+    "ru": "Согласие родителей и продавец"
+   },
+   {
+    "uz": "Ofertani lendingga qo'yish",
+    "ru": "Разместить оферту на лендинге"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 184 belgi — variantlar qisqartirildi.",
+  "q": {
+   "uz": "Agent ofertada «[savol]» qoldirdi. Bu nimani bildiradi?",
+   "ru": "Агент оставил в оферте «[savol]». Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Bandni o'chirish kerak",
+    "ru": "Пункт надо удалить"
+   },
+   {
+    "uz": "Sahifa ochilmaydi",
+    "ru": "Страница не откроется"
+   },
+   {
+    "uz": "Agent keyin to'ldiradi",
+    "ru": "Агент заполнит потом"
+   },
+   {
+    "uz": "Agent koddan bilolmagan",
+    "ru": "Агент не узнал это из кода"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Savol 65 belgi va o'quvchiga begona «kitob almashish ilovangiz» deb so'ralgan edi — o'z ofertasi haqida so'raldi.",
+  "q": {
+   "uz": "Ofertadagi narxni qanday tekshirasiz?",
+   "ru": "Как вы проверите цену в оферте?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova va kodda ko'raman",
+    "ru": "Смотрю в приложении и коде"
+   },
+   {
+    "uz": "Agentdan so'rayman",
+    "ru": "Спрашиваю агента"
+   },
+   {
+    "uz": "Sinfdoshdan so'rayman",
+    "ru": "Спрашиваю одноклассника"
+   },
+   {
+    "uz": "Tekshirmayman",
+    "ru": "Не проверяю"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 192 — qisqartirildi.",
+  "q": {
+   "uz": "To'lov bandida qaysi gap rost?",
+   "ru": "Какая фраза в пункте об оплате верна?"
+  },
+  "opts": [
+   {
+    "uz": "Kartani biz xavfsiz saqlaymiz",
+    "ru": "Мы надёжно храним карту"
+   },
+   {
+    "uz": "Kartani mahsulot saqlamaydi",
+    "ru": "Продукт не хранит карту"
+   },
+   {
+    "uz": "Hech narsa saqlanmaydi",
+    "ru": "Ничего не хранится"
+   },
+   {
+    "uz": "Kartani Mentor tekshiradi",
+    "ru": "Карту проверяет Ментор"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 188 — qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida to'lov uchun nima saqlanadi?",
+   "ru": "Что хранится об оплате в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Karta raqami va telefon",
+    "ru": "Номер карты и телефон"
+   },
+   {
+    "uz": "Ism va maktab raqami",
+    "ru": "Имя и номер школы"
+   },
+   {
+    "uz": "To'lov raqami va holati",
+    "ru": "Номер оплаты и её статус"
+   },
+   {
+    "uz": "Hech narsa saqlanmaydi",
+    "ru": "Ничего не хранится"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 182 belgi — variantlar qisqartirildi.",
+  "q": {
+   "uz": "Tashkilotchi Pro shartlarini qachon o'qiy olishi kerak?",
+   "ru": "Когда организатор должен иметь возможность прочитать условия Pro?"
+  },
+  "opts": [
+   {
+    "uz": "To'lovdan keyin, chatda",
+    "ru": "После оплаты, в чате"
+   },
+   {
+    "uz": "Pro tugagan kuni",
+    "ru": "В день окончания Pro"
+   },
+   {
+    "uz": "Mentordan so'raganda",
+    "ru": "Когда спросит Ментора"
+   },
+   {
+    "uz": "To'lashdan oldin",
+    "ru": "До оплаты"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 183 — qisqartirildi.",
+  "q": {
+   "uz": "Ilovani yana ochmagan beshtadan ko'pi nima dedi?",
+   "ru": "Что сказали большинство из пяти, кто не открыл снова?"
+  },
+  "opts": [
+   {
+    "uz": "«Yangi o'yinni bilmadim»",
+    "ru": "«Не знал о новой игре»"
+   },
+   {
+    "uz": "«Ilova yoqmadi»",
+    "ru": "«Приложение не понравилось»"
+   },
+   {
+    "uz": "«Telefonda joy qolmadi»",
+    "ru": "«На телефоне нет места»"
+   },
+   {
+    "uz": "«O'yinlar qimmat»",
+    "ru": "«Игры дорогие»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 191 — qisqartirildi.",
+  "q": {
+   "uz": "Bot odamga birinchi yoza oladimi?",
+   "ru": "Может ли бот написать человеку первым?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, Backend chatni topadi",
+    "ru": "Да, Backend найдёт чат"
+   },
+   {
+    "uz": "Yo'q, odam botni boshlaydi",
+    "ru": "Нет, человек сам запускает бота"
+   },
+   {
+    "uz": "Ha, istalgan odamga yozadi",
+    "ru": "Да, пишет любому"
+   },
+   {
+    "uz": "Yo'q, telefon raqami kerak",
+    "ru": "Нет, нужен номер телефона"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 55, variant 45 belgi, jami 215 — qisqartirildi.",
+  "q": {
+   "uz": "Bir martalik kod nima uchun kerak?",
+   "ru": "Зачем нужен одноразовый код?"
+  },
+  "opts": [
+   {
+    "uz": "Botni tezroq topish uchun",
+    "ru": "Чтобы быстрее найти бота"
+   },
+   {
+    "uz": "Xabarni tezroq yetkazish",
+    "ru": "Быстрее доставить сообщение"
+   },
+   {
+    "uz": "Chatni hisob bilan bog'lash",
+    "ru": "Связать чат с аккаунтом"
+   },
+   {
+    "uz": "Tokenni odamga ko'rsatish",
+    "ru": "Показать токен человеку"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 67 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Telegram so'rovida Backend avval nimani tekshiradi?",
+   "ru": "Что Backend проверяет первым в запросе Telegram?"
+  },
+  "opts": [
+   {
+    "uz": "Odamning Telegram nomini",
+    "ru": "Имя человека в Telegram"
+   },
+   {
+    "uz": "Xabardagi chat raqamini",
+    "ru": "Номер чата в сообщении"
+   },
+   {
+    "uz": "Botning nomini",
+    "ru": "Имя бота"
+   },
+   {
+    "uz": "Sarlavhadagi maxfiy kalitni",
+    "ru": "Секретный ключ в заголовке"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 42 belgi va eng uzuni edi — fayl nomlari hamma variantga taqsimlandi.",
+  "q": {
+   "uz": "Bot tokeni qayerda turadi?",
+   "ru": "Где хранится токен бота?"
+  },
+  "opts": [
+   {
+    "uz": ".env va Render'da",
+    "ru": "В .env и в Render"
+   },
+   {
+    "uz": "Ilova kodida",
+    "ru": "В коде приложения"
+   },
+   {
+    "uz": "README.md faylida",
+    "ru": "В файле README.md"
+   },
+   {
+    "uz": "Bot javobi matnida",
+    "ru": "В тексте ответа бота"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi, jami 183 — qisqartirildi.",
+  "q": {
+   "uz": "Ulanganda Backend Telegram'dan nimani saqlaydi?",
+   "ru": "Что Backend сохраняет из Telegram при подключении?"
+  },
+  "opts": [
+   {
+    "uz": "Ism va Telegram nomini",
+    "ru": "Имя и ник в Telegram"
+   },
+   {
+    "uz": "Faqat chat raqamini",
+    "ru": "Только номер чата"
+   },
+   {
+    "uz": "Telefon va chat raqamini",
+    "ru": "Телефон и номер чата"
+   },
+   {
+    "uz": "Hamma xabarlarni",
+    "ru": "Все сообщения"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi va «-chi» yuklamasi bor edi — qayta yozildi.",
+  "q": {
+   "uz": "Bu hafta ikki xabar ketdi. Uchinchisi nima bo'ladi?",
+   "ru": "На этой неделе ушло два сообщения. Что будет с третьим?"
+  },
+  "opts": [
+   {
+    "uz": "Baribir yuboriladi",
+    "ru": "Всё равно отправится"
+   },
+   {
+    "uz": "Ilovada eslatma bo'ladi",
+    "ru": "Станет напоминанием в приложении"
+   },
+   {
+    "uz": "Bu hafta yuborilmaydi",
+    "ru": "На этой неделе не отправится"
+   },
+   {
+    "uz": "Ertaga yuboriladi",
+    "ru": "Отправится завтра"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 44 belgi, jami 199 — qisqartirildi.",
+  "q": {
+   "uz": "Qaysi Telegram xabari qoidaga mos?",
+   "ru": "Какое сообщение Telegram соответствует правилу?"
+  },
+  "opts": [
+   {
+    "uz": "Pro oling, o'yin to'lsin!",
+    "ru": "Возьмите Pro, игра заполнится!"
+   },
+   {
+    "uz": "Hamma qaytdi, siz yo'qsiz!",
+    "ru": "Все вернулись, нет только вас!"
+   },
+   {
+    "uz": "Tezroq ilovani oching!",
+    "ru": "Скорее откройте приложение!"
+   },
+   {
+    "uz": "O'yiningiz yana e'lon qilindi",
+    "ru": "Ваша игра снова объявлена"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 189 — qisqartirildi.",
+  "q": {
+   "uz": "«Telegram xabarlarini o'chirish» nima qiladi?",
+   "ru": "Что делает «Отключить сообщения Telegram»?"
+  },
+  "opts": [
+   {
+    "uz": "Chat raqamini o'chiradi",
+    "ru": "Удаляет номер чата"
+   },
+   {
+    "uz": "Hisobni o'chiradi",
+    "ru": "Удаляет аккаунт"
+   },
+   {
+    "uz": "Botni Telegram'dan o'chiradi",
+    "ru": "Удаляет бота из Telegram"
+   },
+   {
+    "uz": "Xabarni kechga suradi",
+    "ru": "Переносит сообщения на вечер"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 179 — qisqartirildi.",
+  "q": {
+   "uz": "`telegramdan-ochdi` qachon yoziladi?",
+   "ru": "Когда записывается `telegramdan-ochdi`?"
+  },
+  "opts": [
+   {
+    "uz": "Xabar yuborilganda",
+    "ru": "Когда сообщение отправлено"
+   },
+   {
+    "uz": "Havola bilan ochilganda",
+    "ru": "Когда открыли по ссылке"
+   },
+   {
+    "uz": "Bot «Start»ni olganda",
+    "ru": "Когда бот получил «Start»"
+   },
+   {
+    "uz": "Ilova o'rnatilganda",
+    "ru": "Когда установили приложение"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 198 — qisqartirildi, backtick'lar olindi.",
+  "q": {
+   "uz": "Sinfdagi tekshiruv yozuvlari nima bo'ladi?",
+   "ru": "Что будет с проверочными записями в классе?"
+  },
+  "opts": [
+   {
+    "uz": "Shundayicha qoladi",
+    "ru": "Остаются как есть"
+   },
+   {
+    "uz": "Bir haftada o'zi o'chadi",
+    "ru": "Сами удалятся через неделю"
+   },
+   {
+    "uz": "Tekshirgach o'chiriladi",
+    "ru": "Удаляются после проверки"
+   },
+   {
+    "uz": "Namunaga ko'chiriladi",
+    "ru": "Копируются в образец"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61, variant 53 belgi, jami 256 — farqning bir yarmi savolga o'tkazildi.",
+  "q": {
+   "uz": "Telegram xabarini Backend yuboradi. Eslatmani kim qo'yadi?",
+   "ru": "Сообщение Telegram шлёт Backend. Кто ставит напоминание?"
+  },
+  "opts": [
+   {
+    "uz": "Yana Backend",
+    "ru": "Тоже Backend"
+   },
+   {
+    "uz": "Telegram bot",
+    "ru": "Telegram-бот"
+   },
+   {
+    "uz": "Tashkilotchi",
+    "ru": "Организатор"
+   },
+   {
+    "uz": "Ilovaning o'zi",
+    "ru": "Само приложение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 35 belgi va eng uzuni edi — qisqartirildi.",
+  "q": {
+   "uz": "Bu darsda yozma tasdiq nima?",
+   "ru": "Что такое письменное подтверждение в этом уроке?"
+  },
+  "opts": [
+   {
+    "uz": "Siz yozib olgan gapi",
+    "ru": "Его слова, записанные вами"
+   },
+   {
+    "uz": "Odam yozgan narxli javob",
+    "ru": "Ответ с ценой, написанный человеком"
+   },
+   {
+    "uz": "Oldindan berilgan pul",
+    "ru": "Деньги, отданные заранее"
+   },
+   {
+    "uz": "Mashq to'lovdagi tugma",
+    "ru": "Кнопка в учебной оплате"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 181 belgi — variantlar songa qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida nechta tashkilotchidan so'raldi?",
+   "ru": "У скольких организаторов спросили в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Uchtadan",
+    "ru": "У трёх"
+   },
+   {
+    "uz": "Bittadan",
+    "ru": "У одного"
+   },
+   {
+    "uz": "44 tadan",
+    "ru": "У 44"
+   },
+   {
+    "uz": "Oltitadan",
+    "ru": "У шести"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 190 — variantlar songa qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida nechta yozma tasdiq bor?",
+   "ru": "Сколько письменных подтверждений в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta",
+    "ru": "Одно"
+   },
+   {
+    "uz": "Oltita",
+    "ru": "Шесть"
+   },
+   {
+    "uz": "Uchta",
+    "ru": "Три"
+   },
+   {
+    "uz": "Ikkita",
+    "ru": "Два"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 76 belgi, jami 212 — qisqartirildi.",
+  "q": {
+   "uz": "«15 000 qimmat. 10 000 bo'lsa, to'layman». Bu nima?",
+   "ru": "«15 000 дорого. За 10 000 заплачу». Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Hozir yo'q",
+    "ru": "Пока нет"
+   },
+   {
+    "uz": "Javob yo'q",
+    "ru": "Нет ответа"
+   },
+   {
+    "uz": "Sotish gapi",
+    "ru": "Фраза продажи"
+   },
+   {
+    "uz": "Yozma tasdiq",
+    "ru": "Письменное подтверждение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 53, jami 183 — qisqartirildi.",
+  "q": {
+   "uz": "«Kim tasdiqladi?» savoli nimani tekshiradi?",
+   "ru": "Что проверяет вопрос «Кто подтвердил?»?"
+  },
+  "opts": [
+   {
+    "uz": "Yozgan to'lovchi ekanini",
+    "ru": "Что писавший — плательщик"
+   },
+   {
+    "uz": "Uning ism-familiyasini",
+    "ru": "Его имя и фамилию"
+   },
+   {
+    "uz": "Necha yoshda ekanini",
+    "ru": "Сколько ему лет"
+   },
+   {
+    "uz": "Pulni qachon berishini",
+    "ru": "Когда он отдаст деньги"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 171 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida tekshiruv javobi qanday?",
+   "ru": "Каков ответ проверки в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Tuzatish: uchtasi yetmaydi",
+    "ru": "Исправить: трёх не хватает"
+   },
+   {
+    "uz": "Tuzatish: biri 10 000 da",
+    "ru": "Исправить: одно за 10 000"
+   },
+   {
+    "uz": "Qabul: uch savolga «ha»",
+    "ru": "Принято: «да» на три вопроса"
+   },
+   {
+    "uz": "Tekshirilmadi: sherik yo'q",
+    "ru": "Не проверено: нет партнёра"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 57, jami 188 — qisqartirildi.",
+  "q": {
+   "uz": "O'zingiz yozgan «tasdiq» nima bo'ladi?",
+   "ru": "Что будет с «подтверждением», которое вы написали сами?"
+  },
+  "opts": [
+   {
+    "uz": "Qabul: narx bo'lsa",
+    "ru": "Принято, если есть цена"
+   },
+   {
+    "uz": "Tuzatish: odam yozmagan",
+    "ru": "Исправить: писал не человек"
+   },
+   {
+    "uz": "Tuzatish: uchta emas",
+    "ru": "Исправить: их не три"
+   },
+   {
+    "uz": "Qabul: so'zma-so'z bo'lsa",
+    "ru": "Принято, если дословно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 72, jami 194 — qisqartirildi.",
+  "q": {
+   "uz": "Tasdiq «hozir olmasangiz, qimmatlashadi» deb olindi. Natija?",
+   "ru": "Подтверждение получено словами «не возьмёте сейчас — подорожает». Итог?"
+  },
+  "opts": [
+   {
+    "uz": "Qabul: odam o'zi yozgan",
+    "ru": "Принято: человек написал сам"
+   },
+   {
+    "uz": "Qabul: narxi bor",
+    "ru": "Принято: цена есть"
+   },
+   {
+    "uz": "Tuzatish: narx qimmat",
+    "ru": "Исправить: цена дорогая"
+   },
+   {
+    "uz": "Tuzatish: bosim bor",
+    "ru": "Исправить: было давление"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 184 — izohlar olindi.",
+  "q": {
+   "uz": "Mentor misolida yozma tasdiq kimlardan so'raldi?",
+   "ru": "У кого просили письменное подтверждение в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Tashkilotchilardan",
+    "ru": "У организаторов"
+   },
+   {
+    "uz": "O'yinchilardan",
+    "ru": "У игроков"
+   },
+   {
+    "uz": "Sinfdoshlardan",
+    "ru": "У одноклассников"
+   },
+   {
+    "uz": "Maydon egasidan",
+    "ru": "У владельца поля"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi, jami 185 — qisqartirildi.",
+  "q": {
+   "uz": "Yozma tasdiq bergan odamga nima yuboriladi?",
+   "ru": "Что отправляют человеку, давшему письменное подтверждение?"
+  },
+  "opts": [
+   {
+    "uz": "Mashq to'lov havolasi",
+    "ru": "Ссылку на учебную оплату"
+   },
+   {
+    "uz": "Pul o'tkazish iltimosi",
+    "ru": "Просьбу перевести деньги"
+   },
+   {
+    "uz": "Hech narsa",
+    "ru": "Ничего"
+   },
+   {
+    "uz": "Do'stlarni chaqirish",
+    "ru": "Просьбу позвать друзей"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 145 belgi — savol qisqartirildi.",
+  "q": {
+   "uz": "Skrinshot ko'rsatsangiz, nimani yopasiz?",
+   "ru": "Что закрываете, если показываете скриншот?"
+  },
+  "opts": [
+   {
+    "uz": "Odam yozib bergan narxni",
+    "ru": "Цену, которую написал человек"
+   },
+   {
+    "uz": "Ism va telefon raqamini",
+    "ru": "Имя и номер телефона"
+   },
+   {
+    "uz": "Nima uchun to'layotganini",
+    "ru": "За что он платит"
+   },
+   {
+    "uz": "Xabar kelgan kun va vaqtni",
+    "ru": "День и время сообщения"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi, jami 168 — qisqartirildi.",
+  "q": {
+   "uz": "Mentor xabarida qaysi gap bor?",
+   "ru": "Какая фраза есть в сообщении Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "«Bu to'lov emas»",
+    "ru": "«Это не оплата»"
+   },
+   {
+    "uz": "«Olmasangiz, qimmatlashadi»",
+    "ru": "«Не возьмёте — подорожает»"
+   },
+   {
+    "uz": "«Boshqalar ham oldi»",
+    "ru": "«Другие тоже взяли»"
+   },
+   {
+    "uz": "«Do'stlarga ham yuboring»",
+    "ru": "«Отправьте и друзьям»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 78, variant 39 belgi, jami 217; «» faqat to'g'ri variantda edi — qisqartirildi.",
+  "q": {
+   "uz": "Ikki kishi bir xil havola yubordi. Umami nimani ko'radi?",
+   "ru": "Двое отправили одинаковую ссылку. Что видит Umami?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat kanalni",
+    "ru": "Только канал"
+   },
+   {
+    "uz": "Kim yuborganini",
+    "ru": "Кто отправил"
+   },
+   {
+    "uz": "Login va ismini",
+    "ru": "Логин и имя"
+   },
+   {
+    "uz": "Kim o'ynaganini",
+    "ru": "Кто играл"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 34 belgi, jami 174 — qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida taklif kodi nimadan iborat?",
+   "ru": "Из чего состоит код приглашения в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Ism va ikki raqam",
+    "ru": "Имя и две цифры"
+   },
+   {
+    "uz": "Olti belgili harf-raqam",
+    "ru": "Шесть знаков: буквы и цифры"
+   },
+   {
+    "uz": "Telefon raqami oxiri",
+    "ru": "Конец номера телефона"
+   },
+   {
+    "uz": "O'yin raqami va kuni",
+    "ru": "Номер игры и день"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66, jami 198 — qisqartirildi.",
+  "q": {
+   "uz": "Taklif havolasi ochilganda lending Umami'ga nima yuboradi?",
+   "ru": "Что лендинг отправляет в Umami при открытии ссылки-приглашения?"
+  },
+  "opts": [
+   {
+    "uz": "Kod va kanal belgisini",
+    "ru": "Код и метку канала"
+   },
+   {
+    "uz": "Taklif qilgan loginini",
+    "ru": "Логин пригласившего"
+   },
+   {
+    "uz": "Faqat «taklif» kanalini",
+    "ru": "Только канал «taklif»"
+   },
+   {
+    "uz": "Hech narsa",
+    "ru": "Ничего"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 68, variant 40 belgi, jami 217 — qisqartirildi.",
+  "q": {
+   "uz": "Taklif kodisiz ro'yxatdan o'tsa bo'ladimi?",
+   "ru": "Можно ли зарегистрироваться без кода приглашения?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, kod majburiy",
+    "ru": "Нет, код обязателен"
+   },
+   {
+    "uz": "Yo'q, faqat havola orqali",
+    "ru": "Нет, только по ссылке"
+   },
+   {
+    "uz": "Ha, faqat iPhone'da",
+    "ru": "Да, только на iPhone"
+   },
+   {
+    "uz": "Ha, maydon majburiy emas",
+    "ru": "Да, поле не обязательно"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 180 — qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida taklif uchun mukofot nima?",
+   "ru": "Какая награда за приглашение в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Pro'ga 7 kun qo'shiladi",
+    "ru": "К Pro добавляется 7 дней"
+   },
+   {
+    "uz": "So'mda pul beriladi",
+    "ru": "Даются деньги в сумах"
+   },
+   {
+    "uz": "Obunaga chegirma beriladi",
+    "ru": "Даётся скидка на подписку"
+   },
+   {
+    "uz": "Pro'ga bir oy qo'shiladi",
+    "ru": "К Pro добавляется месяц"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 71 belgi va «-chi» yuklamasi bor edi — qayta yozildi.",
+  "q": {
+   "uz": "Yangi hisob hech narsa qilmadi. Mukofot bormi?",
+   "ru": "Новый аккаунт ничего не сделал. Награда есть?"
+  },
+  "opts": [
+   {
+    "uz": "Bor, ro'yxat yetarli",
+    "ru": "Есть, регистрации достаточно"
+   },
+   {
+    "uz": "Hali yo'q, harakat kutiladi",
+    "ru": "Пока нет, ждём действия"
+   },
+   {
+    "uz": "Bor, kod to'g'ri yozilgan",
+    "ru": "Есть, код введён верно"
+   },
+   {
+    "uz": "Yo'q, hisob sanalmaydi",
+    "ru": "Нет, аккаунт не считается"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 174 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Bir hisobga haftasiga nechta mukofot beriladi?",
+   "ru": "Сколько наград в неделю даётся одному аккаунту?"
+  },
+  "opts": [
+   {
+    "uz": "Cheklovsiz",
+    "ru": "Без ограничений"
+   },
+   {
+    "uz": "Oyiga bitta",
+    "ru": "Одна в месяц"
+   },
+   {
+    "uz": "Ko'pi bilan ikkita",
+    "ru": "Не больше двух"
+   },
+   {
+    "uz": "Faqat birinchisiga",
+    "ru": "Только за первое"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 74 belgi va «-chi» yuklamasi bor edi — qayta yozildi.",
+  "q": {
+   "uz": "O'zini boshqa telefondan taklif qildi. Ushlanadimi?",
+   "ru": "Пригласил себя с другого телефона. Это поймают?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, kod bir xil",
+    "ru": "Да, код одинаковый"
+   },
+   {
+    "uz": "Ha, loginlar o'xshash",
+    "ru": "Да, логины похожи"
+   },
+   {
+    "uz": "Yo'q, harakat yo'q",
+    "ru": "Нет, действия нет"
+   },
+   {
+    "uz": "Yo'q, qurilmalar har xil",
+    "ru": "Нет, устройства разные"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 184 belgi — qisqartirildi.",
+  "q": {
+   "uz": "18 tashrif va 7 hisob. Ayirsa bo'ladimi?",
+   "ru": "18 посещений и 7 аккаунтов. Можно ли вычесть?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, o'lchovlar har xil",
+    "ru": "Нет, это разные измерения"
+   },
+   {
+    "uz": "Ha, 11 kishi o'tmagan",
+    "ru": "Да, 11 не зарегистрировались"
+   },
+   {
+    "uz": "Ha, 11 tasi o'chirgan",
+    "ru": "Да, 11 удалили"
+   },
+   {
+    "uz": "Yo'q, Umami ishonchsiz",
+    "ru": "Нет, Umami ненадёжен"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 49 belgi va eng uzuni edi, jami 227 — qisqartirildi.",
+  "q": {
+   "uz": "Jami ro'yxatdan o'tgan 51. Bu qanday son?",
+   "ru": "Всего зарегистрировано 51. Что это за число?"
+  },
+  "opts": [
+   {
+    "uz": "Har hafta keladiganlar",
+    "ru": "Кто приходит каждую неделю"
+   },
+   {
+    "uz": "44 eski va 7 yangi hisob",
+    "ru": "44 старых и 7 новых аккаунтов"
+   },
+   {
+    "uz": "Faqat havola orqali kelgan",
+    "ru": "Только пришедшие по ссылке"
+   },
+   {
+    "uz": "50 maqsadi, ish tugadi",
+    "ru": "Цель 50, работа окончена"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi, jami 192 — qisqartirildi.",
+  "q": {
+   "uz": "Sinfda tekshiruv akkaunti ochdingiz. Keyin nima qilasiz?",
+   "ru": "Вы открыли в классе проверочный аккаунт. Что дальше?"
+  },
+  "opts": [
+   {
+    "uz": "Sanoqda qoldiraman",
+    "ru": "Оставлю в подсчёте"
+   },
+   {
+    "uz": "Parolini o'zgartiraman",
+    "ru": "Сменю пароль"
+   },
+   {
+    "uz": "Hisobni o'chiraman",
+    "ru": "Удалю аккаунт"
+   },
+   {
+    "uz": "Sherigimga beraman",
+    "ru": "Отдам партнёру"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 174 — darsdagi «faqat tanishlaringizga» qoidasiga keltirildi.",
+  "q": {
+   "uz": "Havolangizni qayerga yuborasiz?",
+   "ru": "Куда вы отправите свою ссылку?"
+  },
+  "opts": [
+   {
+    "uz": "Shahar futbol kanaliga",
+    "ru": "В городской футбольный канал"
+   },
+   {
+    "uz": "Egasidan so'ramay guruhga",
+    "ru": "В группу, не спросив владельца"
+   },
+   {
+    "uz": "Notanish tashkilotchilarga",
+    "ru": "Незнакомым организаторам"
+   },
+   {
+    "uz": "Faqat tanishlaringizga",
+    "ru": "Только знакомым"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 46 belgi va eng uzuni edi, jami 207 — qisqartirildi.",
+  "q": {
+   "uz": "Bu darsda holat nimani aytadi?",
+   "ru": "О чём говорит статус в этом уроке?"
+  },
+  "opts": [
+   {
+    "uz": "Ish ufqiga qarab qayerda",
+    "ru": "Где работа относительно горизонта"
+   },
+   {
+    "uz": "Qancha vaqt sarflangani",
+    "ru": "Сколько времени потрачено"
+   },
+   {
+    "uz": "Ishni kim yozib bergani",
+    "ru": "Кто написал работу"
+   },
+   {
+    "uz": "Ishning RICE bahosi",
+    "ru": "Оценка RICE работы"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 172 belgi — variantlar holat nomiga qisqartirildi.",
+  "q": {
+   "uz": "Ish o'z ufqidan keyin tugadi. Holati qanday?",
+   "ru": "Работа закончилась после своего горизонта. Какой статус?"
+  },
+  "opts": [
+   {
+    "uz": "Bajarildi",
+    "ru": "Выполнено"
+   },
+   {
+    "uz": "Olib tashlandi",
+    "ru": "Убрано"
+   },
+   {
+    "uz": "Kechikdi",
+    "ru": "Задержано"
+   },
+   {
+    "uz": "Yangi qo'shildi",
+    "ru": "Добавлено новое"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 185 belgi — variantlar holat nomiga qisqartirildi.",
+  "q": {
+   "uz": "Mentor «Maydon pulini bo'lishish»ga qaysi holatni qo'ydi?",
+   "ru": "Какой статус Ментор поставил «Делению денег за поле»?"
+  },
+  "opts": [
+   {
+    "uz": "Olib tashlandi",
+    "ru": "Убрано"
+   },
+   {
+    "uz": "Uzoqroqda qoldi",
+    "ru": "Осталось на дальнем горизонте"
+   },
+   {
+    "uz": "Kechikdi",
+    "ru": "Задержано"
+   },
+   {
+    "uz": "Bajarildi",
+    "ru": "Выполнено"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 162 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Mentor roadmap'ida qaysi ish yo'q edi?",
+   "ru": "Какой работы не было в roadmap Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "O'yin kuni tasdiq",
+    "ru": "Подтверждение в день игры"
+   },
+   {
+    "uz": "O'yindan oldin eslatma",
+    "ru": "Напоминание перед игрой"
+   },
+   {
+    "uz": "Maydon pulini bo'lishish",
+    "ru": "Деление денег за поле"
+   },
+   {
+    "uz": "Telegram xabari",
+    "ru": "Сообщение Telegram"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 183 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Voz kechilgan ish roadmap'da qanday qoladi?",
+   "ru": "Как в roadmap остаётся работа, от которой отказались?"
+  },
+  "opts": [
+   {
+    "uz": "«Olib tashlandi» va sabab",
+    "ru": "«Убрано» и причина"
+   },
+   {
+    "uz": "Izi qolmay o'chiriladi",
+    "ru": "Удаляется без следа"
+   },
+   {
+    "uz": "«Kechikdi» deb suriladi",
+    "ru": "Переносится как «Задержано»"
+   },
+   {
+    "uz": "Holatsiz, o'z ustunida",
+    "ru": "Без статуса, в своей колонке"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 156 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Holat yonida yana nima yoziladi?",
+   "ru": "Что ещё пишется рядом со статусом?"
+  },
+  "opts": [
+   {
+    "uz": "RICE bahosi va ufqi",
+    "ru": "Оценка RICE и горизонт"
+   },
+   {
+    "uz": "Holatning sababi",
+    "ru": "Причина статуса"
+   },
+   {
+    "uz": "Agentga yozilgan prompt",
+    "ru": "Промпт для агента"
+   },
+   {
+    "uz": "Koddan olingan bo'lak",
+    "ru": "Кусок из кода"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 170 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Tesla 2006-yilgi rejasini kimga ko'rsatgan?",
+   "ru": "Кому Tesla показала свой план 2006 года?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat kompaniya ichida",
+    "ru": "Только внутри компании"
+   },
+   {
+    "uz": "Bir necha tanishga",
+    "ru": "Нескольким знакомым"
+   },
+   {
+    "uz": "Hammaga ochiq qilib",
+    "ru": "Всем, открыто"
+   },
+   {
+    "uz": "Hech kimga ko'rsatmagan",
+    "ru": "Никому не показала"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 171 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Tesla rejasining birinchi bosqichi nima edi?",
+   "ru": "Каким был первый этап плана Tesla?"
+  },
+  "opts": [
+   {
+    "uz": "Ommaviy mashina",
+    "ru": "Массовая машина"
+   },
+   {
+    "uz": "Arzonroq mashina",
+    "ru": "Более дешёвая машина"
+   },
+   {
+    "uz": "Rejani e'lon qilish",
+    "ru": "Объявить план"
+   },
+   {
+    "uz": "Qimmat sport mashinasi",
+    "ru": "Дорогая спортивная машина"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 178 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Shaxsiy hisobotning birinchi savoli nima haqida?",
+   "ru": "О чём первый вопрос личного отчёта?"
+  },
+  "opts": [
+   {
+    "uz": "O'z qarorim haqida",
+    "ru": "О моём собственном решении"
+   },
+   {
+    "uz": "Agent qilgan ish haqida",
+    "ru": "О том, что сделал агент"
+   },
+   {
+    "uz": "Mentor bahosi haqida",
+    "ru": "Об оценке Ментора"
+   },
+   {
+    "uz": "Kechikkan ish haqida",
+    "ru": "О задержанной работе"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 178 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Mentor qaysi qarorini qayta ko'rdi?",
+   "ru": "Какое своё решение Ментор пересмотрел?"
+  },
+  "opts": [
+   {
+    "uz": "Pro'ni tashkilotchiga qo'yish",
+    "ru": "Дать Pro организатору"
+   },
+   {
+    "uz": "1-darsdagi narx taxmini",
+    "ru": "Оценку цены из 1-го урока"
+   },
+   {
+    "uz": "Telegram xabarini qo'shish",
+    "ru": "Добавить сообщение Telegram"
+   },
+   {
+    "uz": "Maydon pulini surish",
+    "ru": "Отложить деление денег за поле"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 183 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Qaysi biri keyingi 4 haftaga aniq ish?",
+   "ru": "Что из этого — конкретная работа на следующие 4 недели?"
+  },
+  "opts": [
+   {
+    "uz": "Mahsulotni yaxshilayman",
+    "ru": "Улучшу продукт"
+   },
+   {
+    "uz": "Hammasini vaqtida qilaman",
+    "ru": "Всё сделаю вовремя"
+   },
+   {
+    "uz": "Uch tanishdan narx so'rayman",
+    "ru": "Спрошу цену у трёх знакомых"
+   },
+   {
+    "uz": "Ilovam mashhur bo'ladi",
+    "ru": "Приложение станет популярным"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 175 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Noto'g'ri chiqqan qarorni hisobotda nima qilasiz?",
+   "ru": "Что вы делаете в отчёте с решением, оказавшимся неверным?"
+  },
+  "opts": [
+   {
+    "uz": "Yashiraman",
+    "ru": "Скрываю"
+   },
+   {
+    "uz": "To'g'ri deb yozaman",
+    "ru": "Пишу, что оно верное"
+   },
+   {
+    "uz": "Faqat og'zaki aytaman",
+    "ru": "Говорю только устно"
+   },
+   {
+    "uz": "Dalili bilan yozaman",
+    "ru": "Пишу с доказательством"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 150 belgi — savol qisqartirildi.",
+  "q": {
+   "uz": "Besh yo'lni yozuv bilan tekshirish nima deyiladi?",
+   "ru": "Как называется проверка пяти путей с записью?"
+  },
+  "opts": [
+   {
+    "uz": "Barqarorlik tekshiruvi",
+    "ru": "Проверка стабильности"
+   },
+   {
+    "uz": "Yangi funksiya qo'shish",
+    "ru": "Добавление новой функции"
+   },
+   {
+    "uz": "Pullik obunani yoqish",
+    "ru": "Включение платной подписки"
+   },
+   {
+    "uz": "Havolani tarqatish",
+    "ru": "Рассылка ссылки"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 69, jami 192 — qisqartirildi.",
+  "q": {
+   "uz": "Kod qo'shilgach, nega ro'yxatdan o'tish tekshirildi?",
+   "ru": "Почему после добавления кода проверили регистрацию?"
+  },
+  "opts": [
+   {
+    "uz": "Login o'zgargani uchun",
+    "ru": "Потому что изменился логин"
+   },
+   {
+    "uz": "Kod shu formada turadi",
+    "ru": "Код стоит в этой форме"
+   },
+   {
+    "uz": "Bot formani yangilagan",
+    "ru": "Бот обновил форму"
+   },
+   {
+    "uz": "Ro'yxat o'zi o'zgaradi",
+    "ru": "Список меняется сам"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 198 — qisqartirildi.",
+  "q": {
+   "uz": "Tekshirishda qaysi hisobdan foydalanasiz?",
+   "ru": "Какой аккаунт вы используете для проверки?"
+  },
+  "opts": [
+   {
+    "uz": "Sinfdosh hisobidan",
+    "ru": "Аккаунт одноклассника"
+   },
+   {
+    "uz": "Eng faol o'yinchi hisobidan",
+    "ru": "Аккаунт самого активного игрока"
+   },
+   {
+    "uz": "Yangi tekshiruv akkauntidan",
+    "ru": "Новый проверочный аккаунт"
+   },
+   {
+    "uz": "Hisobsiz, mehmon bo'lib",
+    "ru": "Без аккаунта, как гость"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 150 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Nima kutishingizni qachon yozasiz?",
+   "ru": "Когда вы пишете, что ожидаете?"
+  },
+  "opts": [
+   {
+    "uz": "Natijani ko'rgach",
+    "ru": "После того как увидели результат"
+   },
+   {
+    "uz": "Agent «Tayyor!» degach",
+    "ru": "Когда агент сказал «Готово!»"
+   },
+   {
+    "uz": "Dars oxirida",
+    "ru": "В конце урока"
+   },
+   {
+    "uz": "Tekshirishdan oldin",
+    "ru": "До проверки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 191 belgi — qisqartirildi.",
+  "q": {
+   "uz": "Nega bugun yangi funksiya qo'shilmaydi?",
+   "ru": "Почему сегодня не добавляют новую функцию?"
+  },
+  "opts": [
+   {
+    "uz": "Tekshirilmagan yo'l ochadi",
+    "ru": "Открывает непроверенный путь"
+   },
+   {
+    "uz": "Agent bugun kod yozmaydi",
+    "ru": "Агент сегодня не пишет код"
+   },
+   {
+    "uz": "U faqat pullik bo'ladi",
+    "ru": "Она будет только платной"
+   },
+   {
+    "uz": "Foydalanuvchi sezmaydi",
+    "ru": "Пользователь не заметит"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 42 belgi va «-chi» yuklamasi bor edi — qayta yozildi.",
+  "q": {
+   "uz": "Ulgurmagan topilma nima qilinadi?",
+   "ru": "Что делают с находкой, до которой не дошли руки?"
+  },
+  "opts": [
+   {
+    "uz": "XATOLAR.md dan o'chiriladi",
+    "ru": "Удаляется из XATOLAR.md"
+   },
+   {
+    "uz": "XATOLAR.md da «qoldi» deb",
+    "ru": "В XATOLAR.md как «осталось»"
+   },
+   {
+    "uz": "«Tuzatish qilindi» deb",
+    "ru": "Пишется «Исправление сделано»"
+   },
+   {
+    "uz": "Aytilmay keyinga qoladi",
+    "ru": "Молча откладывается"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 71 belgi — qisqartirildi, variantlardan izohlar olindi.",
+  "q": {
+   "uz": "«Ikki marta yuborish»dan keyin Pro necha kunga yoqildi?",
+   "ru": "На сколько дней включился Pro после «Отправить дважды»?"
+  },
+  "opts": [
+   {
+    "uz": "60 kunga",
+    "ru": "На 60 дней"
+   },
+   {
+    "uz": "7 kunga",
+    "ru": "На 7 дней"
+   },
+   {
+    "uz": "30 kunga",
+    "ru": "На 30 дней"
+   },
+   {
+    "uz": "Yoqilmadi",
+    "ru": "Не включился"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 165 — qisqartirildi.",
+  "q": {
+   "uz": "«Tuzatish qilindi» nimani bildiradi?",
+   "ru": "Что означает «Исправление сделано»?"
+  },
+  "opts": [
+   {
+    "uz": "Qayta buzilmaganini",
+    "ru": "Что повторно не сломалось"
+   },
+   {
+    "uz": "Topilma o'chganini",
+    "ru": "Что находка удалена"
+   },
+   {
+    "uz": "Agent ish boshlaganini",
+    "ru": "Что агент начал работу"
+   },
+   {
+    "uz": "Kod o'zgarganini",
+    "ru": "Что код изменён"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63, variant 40 belgi, jami 208 — qisqartirildi.",
+  "q": {
+   "uz": "backend/ tuzatildi. APK kerakmi?",
+   "ru": "Исправлен backend/. Нужен ли новый APK?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, ilova Backend'ga ulanadi",
+    "ru": "Нет, приложение подключено к Backend"
+   },
+   {
+    "uz": "Ha, APK har safar yangilanadi",
+    "ru": "Да, APK каждый раз обновляется"
+   },
+   {
+    "uz": "Ha, Render APK yig'adi",
+    "ru": "Да, Render собирает APK"
+   },
+   {
+    "uz": "Yo'q, APK yangilanmaydi",
+    "ru": "Нет, APK не обновить"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 69, jami 209 — qisqartirildi.",
+  "q": {
+   "uz": "Push'dan keyin brauzer ko'rinishi yangilanadimi?",
+   "ru": "Обновляется ли браузерная версия после push?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, Netlify o'zi yig'adi",
+    "ru": "Да, Netlify сам собирает"
+   },
+   {
+    "uz": "Yo'q, qayta deploy kerak",
+    "ru": "Нет, нужен повторный deploy"
+   },
+   {
+    "uz": "Ha, Expo Go yangilaydi",
+    "ru": "Да, Expo Go обновляет"
+   },
+   {
+    "uz": "Yo'q, APK almashtiradi",
+    "ru": "Нет, её заменяет APK"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 74, jami 220 — qisqartirildi.",
+  "q": {
+   "uz": "Ikki telefon bir vaqtda «O'yinlar»ni ochdi. Natija?",
+   "ru": "Два телефона одновременно открыли «Игры». Итог?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta o'yin, bitta xabar",
+    "ru": "Одна игра, одно сообщение"
+   },
+   {
+    "uz": "Ilova yopildi",
+    "ru": "Приложение закрылось"
+   },
+   {
+    "uz": "O'yin ikki marta yaratildi",
+    "ru": "Игра создалась дважды"
+   },
+   {
+    "uz": "O'yinlar o'chib ketdi",
+    "ru": "Игры удалились"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "ikki-javob"
+  ],
+  "izoh": "Jami 161 belgi; «namuna deb belgilanib qoladi» ham sanoqdan chiqaradi (8-darsdagi namuna tekshiruv hisobi) — ikkinchi to'g'ri javobga o'xshardi, almashtirildi.",
+  "q": {
+   "uz": "Darsdan keyin tekshiruv akkauntlari nima qilinadi?",
+   "ru": "Что делают с проверочными аккаунтами после урока?"
+  },
+  "opts": [
+   {
+    "uz": "Sanoqda qolaveradi",
+    "ru": "Остаются в подсчёте"
+   },
+   {
+    "uz": "Sinfdoshlarga beriladi",
+    "ru": "Отдаются одноклассникам"
+   },
+   {
+    "uz": "Bir haftada o'zi o'chadi",
+    "ru": "Сами удалятся через неделю"
+   },
+   {
+    "uz": "Tekshirgach o'chiriladi",
+    "ru": "Удаляются после проверки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "«» va ikki nuqta faqat to'g'ri variantda edi.",
+  "q": {
+   "uz": "Suhbat yozuvida odam qanday ataladi?",
+   "ru": "Как называют человека в записи разговора?"
+  },
+  "opts": [
+   {
+    "uz": "Ism: «Akmal Karimov»",
+    "ru": "Имя: «Акмал Каримов»"
+   },
+   {
+    "uz": "Telegram: «@akmal_07»",
+    "ru": "Telegram: «@akmal_07»"
+   },
+   {
+    "uz": "Rol: «tashkilotchi»",
+    "ru": "Роль: «организатор»"
+   },
+   {
+    "uz": "Hech qanday nom yozilmaydi",
+    "ru": "Никакое имя не пишут"
+   }
+  ],
+  "correct": 2
+ }
+]

@@ -1,0 +1,5537 @@
+[
+ {
+  "key": "m4a-01",
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "`Controller` restoranda kim?",
+     "ru": "`Controller` — кто он в ресторане?"
+    },
+    "opts": [
+     {
+      "uz": "Oshpaz — asosiy ishni oshxonada bajaradi",
+      "ru": "Повар — делает основную работу на кухне"
+     },
+     {
+      "uz": "Ofitsiant — so'rov oladi, javob beradi",
+      "ru": "Официант — принимает запрос, отдаёт ответ"
+     },
+     {
+      "uz": "Omborchi — javonga o'zi olib qo'yadi",
+      "ru": "Кладовщик — сам раскладывает по полкам"
+     },
+     {
+      "uz": "Qo'riqchi — eshikda tokenni tekshiradi",
+      "ru": "Охранник — проверяет токен у двери"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 40,
+     "jami": 180,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Tokensiz mijoz qanday javob oladi?",
+     "ru": "Какой ответ получит клиент без токена?"
+    },
+    "opts": [
+     {
+      "uz": "`200` — hammasi joyida",
+      "ru": "`200` — всё в порядке"
+     },
+     {
+      "uz": "`201` — yangi yozuv yaratildi",
+      "ru": "`201` — создана новая запись"
+     },
+     {
+      "uz": "`500` — serverda ichki xato",
+      "ru": "`500` — внутренняя ошибка сервера"
+     },
+     {
+      "uz": "`401` — ruxsat berilmadi",
+      "ru": "`401` — доступ не разрешён"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 29,
+     "jami": 136,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`Service` nima qiladi?",
+     "ru": "Что делает `Service`?"
+    },
+    "opts": [
+     {
+      "uz": "Asosiy ishni bajaradi — oshpaz",
+      "ru": "Делает основную работу — повар"
+     },
+     {
+      "uz": "Papkalarni tartibga solib turadi",
+      "ru": "Наводит порядок в папках"
+     },
+     {
+      "uz": "Serverni yoqib, kuzatib turadi",
+      "ru": "Включает сервер и следит за ним"
+     },
+     {
+      "uz": "Sahifani brauzerda chizadi",
+      "ru": "Рисует страницу в браузере"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 22,
+     "maxVariant": 32,
+     "jami": 140,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`DTO` — bu nima?",
+     "ru": "`DTO` — что это?"
+    },
+    "opts": [
+     {
+      "uz": "Ombordagi javonning chizmasi — tokchalar",
+      "ru": "Чертёж стеллажа на складе — полки"
+     },
+     {
+      "uz": "Server ishlaydigan portning raqami",
+      "ru": "Номер порта, на котором работает сервер"
+     },
+     {
+      "uz": "Buyurtma anketasi — ma'lumot qoidalari",
+      "ru": "Анкета заказа — правила для данных"
+     },
+     {
+      "uz": "Loyihaning GitHub'dagi rasmiy nomi",
+      "ru": "Официальное имя проекта на GitHub"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 16,
+     "maxVariant": 40,
+     "jami": 162,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "`@Module` ichidagi `providers` nimani bildiradi?",
+     "ru": "Что означает `providers` внутри `@Module`?"
+    },
+    "opts": [
+     {
+      "uz": "Loyihaning GitHub'dagi nomini",
+      "ru": "Имя проекта на GitHub"
+     },
+     {
+      "uz": "Bazaga ulanish uchun parolni",
+      "ru": "Пароль для подключения к базе"
+     },
+     {
+      "uz": "Loyiha fayllarining umumiy hajmini",
+      "ru": "Общий размер файлов проекта"
+     },
+     {
+      "uz": "Bu bo'limdagi xodimlar ro'yxatini",
+      "ru": "Список сотрудников этого раздела"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 34,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`npm run start:dev` nima qiladi?",
+     "ru": "Что делает `npm run start:dev`?"
+    },
+    "opts": [
+     {
+      "uz": "Serverni yoqadi va kuzatib turadi",
+      "ru": "Включает сервер и следит за изменениями"
+     },
+     {
+      "uz": "Loyihani GitHub'ga yuklab qo'yadi",
+      "ru": "Загружает проект на GitHub"
+     },
+     {
+      "uz": "Ombordagi hamma ma'lumotni o'chiradi",
+      "ru": "Удаляет все данные со склада"
+     },
+     {
+      "uz": "Yangi bo'limning fayllarini yozadi",
+      "ru": "Пишет файлы нового раздела"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 36,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Anketa xato to'ldirilsa qaysi kod qaytadi?",
+     "ru": "Какой код вернётся, если анкета заполнена неверно?"
+    },
+    "opts": [
+     {
+      "uz": "`201` — yozuv yaratildi",
+      "ru": "`201` — запись создана"
+     },
+     {
+      "uz": "`401` — ruxsat berilmadi",
+      "ru": "`401` — доступ не разрешён"
+     },
+     {
+      "uz": "`400` — anketa noto'g'ri",
+      "ru": "`400` — анкета неверная"
+     },
+     {
+      "uz": "`200` — hammasi joyida",
+      "ru": "`200` — всё в порядке"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 24,
+     "jami": 135,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "`Entity` nimani belgilaydi?",
+     "ru": "Что определяет `Entity`?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifadagi ranglar palitrasini",
+      "ru": "Палитру цветов на странице"
+     },
+     {
+      "uz": "Ombordagi tokchalar ro'yxatini",
+      "ru": "Список полок на складе"
+     },
+     {
+      "uz": "Serverning ishlash tezligini",
+      "ru": "Скорость работы сервера"
+     },
+     {
+      "uz": "Ofitsiantning ish jadvali va vaqtini",
+      "ru": "График и время работы официанта"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 36,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`git clone` nima qiladi?",
+     "ru": "Что делает `git clone`?"
+    },
+    "opts": [
+     {
+      "uz": "Tayyor loyihani kompyuterga oladi",
+      "ru": "Забирает готовый проект на компьютер"
+     },
+     {
+      "uz": "Loyihani butunlay o'chirib tashlaydi",
+      "ru": "Полностью удаляет проект"
+     },
+     {
+      "uz": "Omborni ma'lumot bilan to'ldiradi",
+      "ru": "Наполняет склад данными"
+     },
+     {
+      "uz": "Ishlab turgan serverni to'xtatadi",
+      "ru": "Останавливает работающий сервер"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 24,
+     "maxVariant": 36,
+     "jami": 159,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "`Swagger` — bu nima?",
+     "ru": "`Swagger` — что это?"
+    },
+    "opts": [
+     {
+      "uz": "Ombordagi javonning chizmasi",
+      "ru": "Чертёж стеллажа на складе"
+     },
+     {
+      "uz": "Maxfiy kalitlar saqlanadigan fayl",
+      "ru": "Файл, где хранятся секретные ключи"
+     },
+     {
+      "uz": "Menyu — API eshiklari ro'yxati",
+      "ru": "Меню — список дверей API"
+     },
+     {
+      "uz": "Parolni shifrlaydigan dastur",
+      "ru": "Инструмент для шифрования пароля"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 20,
+     "maxVariant": 33,
+     "jami": 139,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Yangi bo'lim qo'shishning to'g'ri tartibi qaysi?",
+     "ru": "Каков правильный порядок при добавлении нового раздела?"
+    },
+    "opts": [
+     "Module → Controller → Service → DTO → Entity",
+     "Controller → Module → Entity → DTO → Service",
+     "Service → Entity → Module → Controller → DTO",
+     "Entity → DTO → Service → Controller → Module"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 44,
+     "jami": 224,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "`successRes` nima uchun kerak?",
+     "ru": "Зачем нужен `successRes`?"
+    },
+    "opts": [
+     {
+      "uz": "Xato xabarlarini mijozdan yashirish uchun",
+      "ru": "Чтобы прятать сообщения об ошибках от клиента"
+     },
+     {
+      "uz": "Har javob bir xil shaklda chiqishi uchun",
+      "ru": "Чтобы каждый ответ выходил в одинаковой форме"
+     },
+     {
+      "uz": "Serverning ishini tezlashtirish uchun",
+      "ru": "Чтобы ускорить работу сервера"
+     },
+     {
+      "uz": "Parolni omborda shifrlab saqlash uchun",
+      "ru": "Чтобы хранить пароль на складе в зашифрованном виде"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 30,
+     "maxVariant": 41,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4a-02",
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Yuk nima?",
+     "ru": "Что такое нагрузка?"
+    },
+    "opts": [
+     {
+      "uz": "Hamma birdan kirganda saytga tushadigan og'irlik",
+      "ru": "Тяжесть, которая ложится на сайт, когда все заходят разом"
+     },
+     {
+      "uz": "Bir odam sayt ochilishini kutgan vaqt",
+      "ru": "Время, которое один человек ждёт открытия сайта"
+     },
+     {
+      "uz": "Sayt ekranida ko'rinadigan rasmlarning hajmi",
+      "ru": "Размер картинок, которые видны на экране сайта"
+     },
+     {
+      "uz": "Saytga bir kunda kirgan odamlarning umumiy soni",
+      "ru": "Общее число людей, зашедших на сайт за день"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 9,
+     "maxVariant": 48,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Yuk qachon og'irlashadi?",
+     "ru": "Когда нагрузка становится тяжелее?"
+    },
+    "opts": [
+     {
+      "uz": "Har kim har xil vaqtda ochganda",
+      "ru": "Когда каждый открывает в своё время"
+     },
+     {
+      "uz": "Saytga yangi sahifa qo'shilganda",
+      "ru": "Когда на сайт добавили новую страницу"
+     },
+     {
+      "uz": "Odamlar kun bo'yi tarqalib kirganda",
+      "ru": "Когда люди заходят в течение всего дня"
+     },
+     {
+      "uz": "Hammasi bir vaqtda kirganda",
+      "ru": "Когда все заходят одновременно"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 24,
+     "maxVariant": 35,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Hamma birdan kirganda qaysi qism birinchi sinadi?",
+     "ru": "Когда все заходят разом, какая часть ломается первой?"
+    },
+    "opts": [
+     {
+      "uz": "Hamma talashmasdan ko'radigan qism",
+      "ru": "Часть, которую смотрят без борьбы"
+     },
+     {
+      "uz": "Odamlar eng oxirida ochadigan qism",
+      "ru": "Часть, которую открывают в самом конце"
+     },
+     {
+      "uz": "Hamma bitta narsani talashadigan qism",
+      "ru": "Часть, за которую все борются"
+     },
+     {
+      "uz": "Har kim har xil vaqtda ochadigan qism",
+      "ru": "Часть, которую каждый открывает в своё время"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 37,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "O'rindiq tanlash nega birinchi sindi?",
+     "ru": "Почему выбор места сломался первым?"
+    },
+    "opts": [
+     {
+      "uz": "Hamma uni ochish uchun uzoq kutadi",
+      "ru": "Все долго ждут, чтобы его открыть"
+     },
+     {
+      "uz": "Hamma birdan bir joyni talashadi",
+      "ru": "Все разом борются за одно место"
+     },
+     {
+      "uz": "Har kim uni har xil vaqtda ochadi",
+      "ru": "Каждый открывает его в своё время"
+     },
+     {
+      "uz": "Unda rasm va videolar juda ko'p",
+      "ru": "В нём слишком много картинок и видео"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 34,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "E'lon sahifasi nega eng oxirida sindi?",
+     "ru": "Почему страница афиши сломалась последней?"
+    },
+    "opts": [
+     {
+      "uz": "Unda har kimga alohida javob kerak",
+      "ru": "В ней каждому нужен отдельный ответ"
+     },
+     {
+      "uz": "U hammaga bir xil, eng yengil ish",
+      "ru": "Она одинакова для всех — самая лёгкая работа"
+     },
+     {
+      "uz": "Unda hamma bitta narsani talashadi",
+      "ru": "В ней все борются за одно и то же"
+     },
+     {
+      "uz": "Uni odamlar deyarli ochmaydi",
+      "ru": "Её почти никто не открывает"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 34,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Sig'im nima?",
+     "ru": "Что такое ёмкость?"
+    },
+    "opts": [
+     {
+      "uz": "Qism bir vaqtda ko'tara oladigan odam soni",
+      "ru": "Сколько человек часть держит одновременно"
+     },
+     {
+      "uz": "Saytdagi sahifalarning umumiy soni",
+      "ru": "Общее число страниц на сайте"
+     },
+     {
+      "uz": "Bir kunda saytga kirgan odamlar soni",
+      "ru": "Сколько человек зашло на сайт за день"
+     },
+     {
+      "uz": "Saytni qurgan dasturchilarning soni",
+      "ru": "Сколько программистов строили сайт"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 12,
+     "maxVariant": 42,
+     "jami": 159,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Bitta qismni kuchaytirsangiz — qaysi birini?",
+     "ru": "Если усилить одну часть — какую?"
+    },
+    "opts": [
+     {
+      "uz": "Odam birinchi ko'radigan qismni",
+      "ru": "Ту, которую человек видит первой"
+     },
+     {
+      "uz": "Hech kim talashmaydigan qismni",
+      "ru": "Ту, за которую никто не борется"
+     },
+     {
+      "uz": "Hamma birdan talashadigan qismni",
+      "ru": "Ту, за которую все борются разом"
+     },
+     {
+      "uz": "Eng oxirida sinadigan qismni",
+      "ru": "Ту, что ломается последней"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 32,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Nega hamma qismni birga kuchaytirmaymiz?",
+     "ru": "Почему не усиливаем все части сразу?"
+    },
+    "opts": [
+     {
+      "uz": "Kuchaytirilgan qism ham baribir sinadi",
+      "ru": "Усиленная часть всё равно сломается"
+     },
+     {
+      "uz": "Kod juda uzun bo'lib qoladi",
+      "ru": "Код станет слишком длинным"
+     },
+     {
+      "uz": "Sahifalar sekin ochiladigan bo'ladi",
+      "ru": "Страницы станут открываться медленно"
+     },
+     {
+      "uz": "Kuch hech qayerga yetmay qoladi",
+      "ru": "Сил не хватит ни на что"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 38,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Uzum yetkazish yo'lini qachon qurgan?",
+     "ru": "Когда Uzum построил доставку?"
+    },
+    "opts": [
+     {
+      "uz": "Hali ochilmasidan, birinchi kundanoq",
+      "ru": "Ещё до открытия, с самого первого дня"
+     },
+     {
+      "uz": "2025-yilda, o'sib ulgurgach",
+      "ru": "В 2025 году, когда уже вырос"
+     },
+     {
+      "uz": "Sayt mashhur bo'lganidan keyin",
+      "ru": "После того как сайт стал популярным"
+     },
+     {
+      "uz": "Odamlar ko'payib qiynalgandan keyin",
+      "ru": "После того как людей стало много и стало тяжело"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 36,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "2025-yilda Uzumdan oyiga nechta odam foydalanadi?",
+     "ru": "Сколько человек в месяц пользуются Uzum в 2025 году?"
+    },
+    "opts": [
+     {
+      "uz": "Qariyb 2 million",
+      "ru": "Почти 2 миллиона"
+     },
+     {
+      "uz": "Qariyb 40 million",
+      "ru": "Почти 40 миллионов"
+     },
+     {
+      "uz": "Qariyb 17 million",
+      "ru": "Почти 17 миллионов"
+     },
+     {
+      "uz": "Qariyb 12 million",
+      "ru": "Почти 12 миллионов"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 17,
+     "jami": 116,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Chidagan sayt bilan singan saytning farqi nimada?",
+     "ru": "В чём разница между сайтом, который выдержал, и сломавшимся?"
+    },
+    "opts": [
+     {
+      "uz": "U boshqalardan keyinroq ochilgan",
+      "ru": "Он открылся позже остальных"
+     },
+     {
+      "uz": "U shu daqiqaga oldindan qurilgan",
+      "ru": "Он был построен под эту минуту заранее"
+     },
+     {
+      "uz": "Unda rasm va video kamroq bo'ladi",
+      "ru": "В нём меньше картинок и видео"
+     },
+     {
+      "uz": "Unga o'sha daqiqada omad kulgan",
+      "ru": "Ему в ту минуту просто повезло"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 33,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Yukni oldindan o'ylashni kim hal qiladi?",
+     "ru": "Кто решает, что о нагрузке надо подумать заранее?"
+    },
+    "opts": [
+     {
+      "uz": "Chipta sotib olgan odam",
+      "ru": "Человек, купивший билет"
+     },
+     {
+      "uz": "Konsert tashkilotchisi",
+      "ru": "Организатор концерта"
+     },
+     {
+      "uz": "Kodni yozgan dasturchi",
+      "ru": "Программист, написавший код"
+     },
+     {
+      "uz": "Mahsulotni o'ylaydigan odam",
+      "ru": "Человек, который думает о продукте"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 27,
+     "jami": 134,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4a-03",
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "`Entity` nimani belgilaydi?",
+     "ru": "Что определяет `Entity`?"
+    },
+    "opts": [
+     {
+      "uz": "So'rov qaysi eshikdan kirishini bildiradi",
+      "ru": "Через какую дверь входит запрос"
+     },
+     {
+      "uz": "Loyihani qaysi tartibda ishga tushishini",
+      "ru": "В каком порядке запускается проект"
+     },
+     {
+      "uz": "Foydalanuvchi ekranidagi ranglarni",
+      "ru": "Цвета на экране пользователя"
+     },
+     {
+      "uz": "Bazadagi jadval qanday ko'rinishini",
+      "ru": "Как выглядит таблица в базе"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 41,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`BaseEntity` qaysi ustunlarni tekin beradi?",
+     "ru": "Какие столбцы `BaseEntity` даёт бесплатно?"
+    },
+    "opts": [
+     {
+      "uz": "brand, model hamda price ustunlarini",
+      "ru": "Столбцы brand, model и price"
+     },
+     {
+      "uz": "id, created_at va updated_at ustunlarini",
+      "ru": "Столбцы id, created_at и updated_at"
+     },
+     {
+      "uz": "username hamda password ustunlarini",
+      "ru": "Столбцы username и password"
+     },
+     {
+      "uz": "imports va controllers ro'yxatlarini",
+      "ru": "Списки imports и controllers"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 40,
+     "jami": 190,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`DTO` nima uchun kerak?",
+     "ru": "Зачем нужен `DTO`?"
+    },
+    "opts": [
+     {
+      "uz": "Kelgan ma'lumot qoidalarini tekshirish uchun",
+      "ru": "Чтобы проверять правила входящих данных"
+     },
+     {
+      "uz": "Bazadagi jadval ustunlarini yaratish uchun",
+      "ru": "Чтобы создавать столбцы таблицы в базе"
+     },
+     {
+      "uz": "CarModule'ni AppModule'ga ulab qo'yish uchun",
+      "ru": "Чтобы подключить CarModule к AppModule"
+     },
+     {
+      "uz": "NestJS serverini ishga tushirish uchun",
+      "ru": "Чтобы запустить сервер NestJS"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 23,
+     "maxVariant": 44,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Bo'sh `brand` bilan POST /car yuborilsa?",
+     "ru": "Отправили POST /car с пустым `brand` — что будет?"
+    },
+    "opts": [
+     {
+      "uz": "Mashina baribir bazaga saqlanadi",
+      "ru": "Машина всё равно сохранится в базу"
+     },
+     {
+      "uz": "Server butunlay ishdan chiqadi",
+      "ru": "Сервер полностью упадёт"
+     },
+     {
+      "uz": "400 qaytadi — bazaga bormaydi",
+      "ru": "Вернётся 400 — до базы не дойдёт"
+     },
+     {
+      "uz": "brand qiymati avtomatik to'ldiriladi",
+      "ru": "Значение brand заполнится автоматически"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 36,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "`PartialType(CreateCarDto)` nima qiladi?",
+     "ru": "Что делает `PartialType(CreateCarDto)`?"
+    },
+    "opts": [
+     {
+      "uz": "Barcha maydonni majburiy qiladi",
+      "ru": "Делает все поля обязательными"
+     },
+     {
+      "uz": "Barcha maydonni ixtiyoriy qiladi",
+      "ru": "Делает все поля необязательными"
+     },
+     {
+      "uz": "Bazada butunlay yangi jadval yaratadi",
+      "ru": "Создаёт в базе совершенно новую таблицу"
+     },
+     {
+      "uz": "Mavjud endpointlarni o'chirib qo'yadi",
+      "ru": "Удаляет существующие эндпоинты"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 37,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "CRUD metodlarini (create, findAll, remove) kim beradi?",
+     "ru": "Кто даёт CRUD-методы (create, findAll, remove)?"
+    },
+    "opts": [
+     {
+      "uz": "Controller o'zi to'liq yozib chiqadi",
+      "ru": "Controller сам всё напишет"
+     },
+     {
+      "uz": "PostgreSQL o'zi avtomatik yozadi",
+      "ru": "PostgreSQL напишет их автоматически"
+     },
+     {
+      "uz": "Har resursda qaytadan qo'lda yoziladi",
+      "ru": "В каждом ресурсе пишутся заново вручную"
+     },
+     {
+      "uz": "`BaseService` — meros bo'lib keladi",
+      "ru": "`BaseService` — приходят по наследству"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 37,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Yangi mashina qo'shish uchun qaysi dekorator?",
+     "ru": "Какой декоратор — добавить новую машину?"
+    },
+    "opts": [
+     {
+      "uz": "`@Post()` — yangisini qo'shish uchun",
+      "ru": "`@Post()` — добавить новое"
+     },
+     {
+      "uz": "`@Get()` — mavjudini o'qish uchun",
+      "ru": "`@Get()` — прочитать существующее"
+     },
+     {
+      "uz": "`@Column()` — ustunni belgilash uchun",
+      "ru": "`@Column()` — задать столбец"
+     },
+     {
+      "uz": "`@Module()` — bo'limni ulash uchun",
+      "ru": "`@Module()` — подключить отдел"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 37,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "`Controller` nima qiladi?",
+     "ru": "Что делает `Controller`?"
+    },
+    "opts": [
+     {
+      "uz": "Jadval ustunlarini aniq belgilab beradi",
+      "ru": "Точно задаёт столбцы таблицы"
+     },
+     {
+      "uz": "Ma'lumotni to'g'ridan-to'g'ri diskka yozadi",
+      "ru": "Пишет данные напрямую на диск"
+     },
+     {
+      "uz": "So'rovni qabul qilib, service'ni chaqiradi",
+      "ru": "Принимает запрос и вызывает service"
+     },
+     {
+      "uz": "Loyihani noldan build qilib ishga tushiradi",
+      "ru": "Собирает проект с нуля и запускает"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 25,
+     "maxVariant": 43,
+     "jami": 192,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`CarModule` `AppModule` imports'iga qo'shilmasa?",
+     "ru": "`CarModule` не добавлен в imports `AppModule` — что будет?"
+    },
+    "opts": [
+     {
+      "uz": "Hammasi baribir avvalgidek ishlaydi",
+      "ru": "Всё продолжит работать как раньше"
+     },
+     {
+      "uz": "/car endpointlari ishlamaydi — 404",
+      "ru": "Эндпоинты /car не работают — 404"
+     },
+     {
+      "uz": "Faqat GET so'rovlari ishlayveradi",
+      "ru": "Работать будут только GET-запросы"
+     },
+     {
+      "uz": "Butun loyiha ishga tushmay qoladi",
+      "ru": "Весь проект не запустится"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 35,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "`super(carRepo)` nima uchun chaqiriladi?",
+     "ru": "Зачем вызывается `super(carRepo)`?"
+    },
+    "opts": [
+     {
+      "uz": "Bazada yangi jadval yaratish uchun",
+      "ru": "Чтобы создать в базе новую таблицу"
+     },
+     {
+      "uz": "Serverni qaytadan ishga tushirish uchun",
+      "ru": "Чтобы перезапустить сервер"
+     },
+     {
+      "uz": "Endpointni ro'yxatdan o'tkazish uchun",
+      "ru": "Чтобы зарегистрировать эндпоинт"
+     },
+     {
+      "uz": "BaseService'ga repozitoriyni berish uchun",
+      "ru": "Чтобы дать BaseService репозиторий"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 41,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "`car.module.ts` ichida nima bo'ladi?",
+     "ru": "Что находится внутри `car.module.ts`?"
+    },
+    "opts": [
+     {
+      "uz": "@Column'dagi ustunlar ro'yxati",
+      "ru": "Список столбцов из @Column"
+     },
+     {
+      "uz": "@IsString kabi qoidalar ro'yxati",
+      "ru": "Список правил вроде @IsString"
+     },
+     {
+      "uz": "imports, controllers, providers",
+      "ru": "imports, controllers, providers"
+     },
+     {
+      "uz": "main.ts faylining sozlamalari",
+      "ru": "Настройки файла main.ts"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 32,
+     "jami": 158,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Yangi resurs qo'shishning to'g'ri tartibi?",
+     "ru": "Правильный порядок добавления нового ресурса?"
+    },
+    "opts": [
+     "Entity → DTO → Service → Controller → Module",
+     "Controller → Module → Entity → DTO → Service",
+     "Module → Controller → Service → DTO → Entity",
+     "DTO → Entity → Controller → Module → Service"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 44,
+     "jami": 218,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4a-04",
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Yangi resurs (masalan Book) uchun nechta fayl kerak?",
+     "ru": "Сколько файлов нужно для нового ресурса (например, Book)?"
+    },
+    "opts": [
+     {
+      "uz": "2 — faqat entity va controller",
+      "ru": "2 — только entity и controller"
+     },
+     {
+      "uz": "3 — entity, service va module",
+      "ru": "3 — entity, service и module"
+     },
+     {
+      "uz": "5 — har qatlam uchun bitta fayl",
+      "ru": "5 — по файлу на каждый слой"
+     },
+     {
+      "uz": "1 — hammasi bitta katta faylga yoziladi",
+      "ru": "1 — всё пишется в один большой файл"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 39,
+     "jami": 181,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Bo'lim AppModule'ga ulanmasa nima bo'ladi?",
+     "ru": "Что будет, если отдел не подключить к AppModule?"
+    },
+    "opts": [
+     {
+      "uz": "Eshik topilmaydi — 404 qaytadi",
+      "ru": "Дверь не найдётся — вернётся 404"
+     },
+     {
+      "uz": "Server umuman ishga tushmay qoladi",
+      "ru": "Сервер вообще не запустится"
+     },
+     {
+      "uz": "Ma'lumot bazaga saqlanmaydi",
+      "ru": "Данные не сохранятся в базу"
+     },
+     {
+      "uz": "Swagger'da 500 xatosi chiqadi",
+      "ru": "В Swagger выйдет ошибка 500"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 34,
+     "jami": 162,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Kitobni kategoriyaga bog'lash uchun qaysi dekorator?",
+     "ru": "Какой декоратор связывает книгу с категорией?"
+    },
+    "opts": [
+     {
+      "uz": "`@Column()` (oddiy ustun uchun)",
+      "ru": "`@Column()` (для обычной колонки)"
+     },
+     "`@UseGuards()`",
+     "`@Roles()`",
+     "`@ManyToOne()`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 31,
+     "jami": 121,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`@ManyToOne` qaysi faylga yoziladi?",
+     "ru": "В какой файл пишется `@ManyToOne`?"
+    },
+    "opts": [
+     "`category.entity.ts`",
+     "`book.entity.ts`",
+     "`book.controller.ts`",
+     "`app.module.ts`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 20,
+     "jami": 106,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Token'siz mijoz `POST /book` qilsa, server nima qaytaradi?",
+     "ru": "Клиент без токена делает `POST /book` — что вернёт сервер?"
+    },
+    "opts": [
+     {
+      "uz": "401/403 — qo'riqchi rad etadi",
+      "ru": "401/403 — страж откажет"
+     },
+     {
+      "uz": "201 — kitob baribir qo'shiladi",
+      "ru": "201 — книга всё равно добавится"
+     },
+     {
+      "uz": "404 — bunday eshik topilmadi",
+      "ru": "404 — такая дверь не найдена"
+     },
+     {
+      "uz": "200 — bo'sh ro'yxat qaytadi",
+      "ru": "200 — вернётся пустой список"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 30,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Eshikka qo'riqchi qo'yadigan dekorator qaysi?",
+     "ru": "Какой декоратор ставит стража у двери?"
+    },
+    "opts": [
+     "`@Injectable()`",
+     "`@Entity()`",
+     "`@UseGuards()`",
+     "`@Controller()`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 15,
+     "jami": 100,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`GET /book` hamma uchun ochiq bo'lsin desak?",
+     "ru": "Хотим, чтобы `GET /book` был открыт для всех?"
+    },
+    "opts": [
+     {
+      "uz": "`@Roles(UserRole.ADMIN)` qo'yamiz",
+      "ru": "Поставим `@Roles(UserRole.ADMIN)`"
+     },
+     {
+      "uz": "`@Roles('public')` qo'yamiz",
+      "ru": "Поставим `@Roles('public')`"
+     },
+     {
+      "uz": "Qo'riqchini butunlay o'chiramiz",
+      "ru": "Совсем удалим стража"
+     },
+     {
+      "uz": "Frontend'da yashirib qo'yamiz",
+      "ru": "Спрячем на фронтенде"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 33,
+     "jami": 164,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Faqat `is_featured: true` kitoblarni qanday qaytaramiz?",
+     "ru": "Как вернуть только книги с `is_featured: true`?"
+    },
+    "opts": [
+     {
+      "uz": "Yangi CRUD metodini noldan yozamiz",
+      "ru": "Напишем новый CRUD-метод с нуля"
+     },
+     {
+      "uz": "Hammasini olib, frontend'da filtrlaymiz",
+      "ru": "Заберём всё и отфильтруем на фронтенде"
+     },
+     {
+      "uz": "To'g'ridan-to'g'ri xom SQL yozamiz",
+      "ru": "Напишем сырой SQL напрямую"
+     },
+     {
+      "uz": "`findAll` ga `where` shartini beramiz",
+      "ru": "Передадим `findAll` условие `where`"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 39,
+     "jami": 199,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`BaseService` ni meros olgan service nimani tekin oladi?",
+     "ru": "Что бесплатно получает service, унаследовавший `BaseService`?"
+    },
+    "opts": [
+     {
+      "uz": "Eshik qo'riqchisini (guard)",
+      "ru": "Стража двери (guard)"
+     },
+     {
+      "uz": "Swagger hujjatini",
+      "ru": "Документацию Swagger"
+     },
+     {
+      "uz": "Bazaga ulanishni",
+      "ru": "Подключение к базе"
+     },
+     {
+      "uz": "Tayyor CRUD metodlarini",
+      "ru": "Готовые CRUD-методы"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 27,
+     "jami": 139,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Muvaffaqiyatli POST (qo'shildi) qaysi status kodni qaytaradi?",
+     "ru": "Какой статус-код возвращает успешный POST (добавлено)?"
+    },
+    "opts": [
+     "200 OK",
+     "201 Created",
+     "204 No Content",
+     "301 Moved"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 14,
+     "jami": 101,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "DTO nima uchun kerak?",
+     "ru": "Зачем нужен DTO?"
+    },
+    "opts": [
+     {
+      "uz": "Kiruvchi so'rovning qoidalari",
+      "ru": "Правила входящего запроса"
+     },
+     {
+      "uz": "Jadval ustunlarini belgilaydi",
+      "ru": "Задаёт колонки таблицы"
+     },
+     {
+      "uz": "Bo'limni AppModule'ga ulaydi",
+      "ru": "Подключает отдел к AppModule"
+     },
+     {
+      "uz": "Bazaga ulanish sozlamalarini belgilaydi",
+      "ru": "Задаёт настройки подключения к базе"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 21,
+     "maxVariant": 39,
+     "jami": 146,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Kitob bilan birga uning kategoriyasini ham olib kelish uchun `findAll` ga nima beriladi?",
+     "ru": "Что передать в `findAll`, чтобы вместе с книгой пришла и её категория?"
+    },
+    "opts": [
+     "`order: { id: 'DESC' }`",
+     "`select: { title: true }`",
+     "`relations: { category: true }`",
+     "`where: { is_featured: true, id: 1 }`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 88,
+     "maxVariant": 37,
+     "jami": 204,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4b-01",
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Unit-test nima qiladi?",
+     "ru": "Что делает юнит-тест?"
+    },
+    "opts": [
+     {
+      "uz": "Saytning tashqi ko'rinishini chiroyli qiladi",
+      "ru": "Делает внешний вид сайта красивым"
+     },
+     {
+      "uz": "Foydalanuvchi kiritgan ma'lumotni bazaga yozib qo'yadi",
+      "ru": "Записывает данные пользователя в базу"
+     },
+     {
+      "uz": "Loyiha serverini ishga tushirib, ulanishni ochadi",
+      "ru": "Запускает сервер проекта и открывает соединение"
+     },
+     {
+      "uz": "Funksiya kirish→chiqishini avtomatik tekshiradi",
+      "ru": "Автоматически проверяет вход→выход функции"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 22,
+     "maxVariant": 54,
+     "jami": 216,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`expect(natija).toBe(kutilgan)` — bu nima?",
+     "ru": "`expect(результат).toBe(ожидаемое)` — что это?"
+    },
+    "opts": [
+     {
+      "uz": "Natijani darhol ekranga chiqarib ko'rsatadi",
+      "ru": "Сразу выводит результат на экран"
+     },
+     {
+      "uz": "Sinaladigan funksiyani chaqirib ishga tushiradi",
+      "ru": "Вызывает и запускает испытуемую функцию"
+     },
+     {
+      "uz": "Tasdiq: natija kutilgan qiymatga tengmi",
+      "ru": "Утверждение: равен ли результат ожидаемому"
+     },
+     {
+      "uz": "Yozilgan testni butunlay o'chirib tashlaydi",
+      "ru": "Полностью удаляет написанный тест"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 47,
+     "jami": 214,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`describe` nima uchun kerak?",
+     "ru": "Зачем нужен `describe`?"
+    },
+    "opts": [
+     {
+      "uz": "Jest dasturini loyihaga o'rnatib sozlaydi",
+      "ru": "Устанавливает и настраивает Jest в проекте"
+     },
+     {
+      "uz": "Bog'liq testlarni bitta guruhga yig'adi",
+      "ru": "Собирает связанные тесты в одну группу"
+     },
+     {
+      "uz": "Natijani kutilgan qiymat bilan tekshiradi",
+      "ru": "Проверяет результат по ожидаемому значению"
+     },
+     {
+      "uz": "Funksiyani chaqirib, ishga tushiradi",
+      "ru": "Вызывает и запускает функцию"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 41,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Test fayli qanday nomlanadi?",
+     "ru": "Как называется файл теста?"
+    },
+    "opts": [
+     "order.js",
+     "`order.spec.ts`",
+     "order.jest",
+     "order.test.html"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 15,
+     "jami": 76,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "`npm test` nima qiladi?",
+     "ru": "Что делает `npm test`?"
+    },
+    "opts": [
+     {
+      "uz": "Loyihadagi bazani butunlay tozalab tashlaydi",
+      "ru": "Полностью очищает базу проекта"
+     },
+     {
+      "uz": "Loyihani internet serveriga yuklab qo'yadi",
+      "ru": "Загружает проект на интернет-сервер"
+     },
+     {
+      "uz": "Yangi funksiya yozib, alohida faylga saqlaydi",
+      "ru": "Пишет новую функцию и сохраняет её в отдельный файл"
+     },
+     {
+      "uz": "Jest'ni ishga tushiradi va testlarni tekshiradi",
+      "ru": "Запускает Jest и проверяет тесты"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 23,
+     "maxVariant": 47,
+     "jami": 201,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Testda `console.log` yozsak, u nimani tekshiradi?",
+     "ru": "Если написать в тесте `console.log` — что он проверит?"
+    },
+    "opts": [
+     {
+      "uz": "Natijani kutilgan qiymat bilan avtomatik solishtiradi",
+      "ru": "Автоматически сравнит результат с ожидаемым"
+     },
+     {
+      "uz": "Funksiyaning ishlash tezligini o'lchab beradi",
+      "ru": "Измерит скорость работы функции"
+     },
+     {
+      "uz": "Hech narsani — u faqat ekranga chiqaradi, xolos",
+      "ru": "Ничего — он лишь выводит на экран, и всё"
+     },
+     {
+      "uz": "Kodning umumiy qatorlar sonini hisoblaydi",
+      "ru": "Посчитает общее число строк кода"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 53,
+     "jami": 235,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`it(...)` bitta testda nechta xatti-harakat tekshirilishi kerak?",
+     "ru": "Сколько поведений должен проверять один тест `it(...)`?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat bitta aniq xatti-harakat tekshiriladi",
+      "ru": "Проверяется только одно конкретное поведение"
+     },
+     {
+      "uz": "Hech qanday xatti-harakat tekshirilmaydi",
+      "ru": "Никакое поведение не проверяется"
+     },
+     {
+      "uz": "Kamida beshta xatti-harakat birdan tekshiriladi",
+      "ru": "Сразу проверяется минимум пять поведений"
+     },
+     {
+      "uz": "Cheksiz miqdorda xatti-harakat tekshirilaveradi",
+      "ru": "Проверяется сколько угодно поведений подряд"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 47,
+     "jami": 241,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Kutilgan 20000, kelgan 10002. Jest nima qiladi?",
+     "ru": "Ожидалось 20000, пришло 10002. Что сделает Jest?"
+    },
+    "opts": [
+     {
+      "uz": "Qizil FAIL beradi va Expected/Received ko'rsatadi",
+      "ru": "Выдаст красный FAIL и покажет Expected/Received"
+     },
+     {
+      "uz": "Hech narsa qilmaydi, sukut saqlab jim turaveradi",
+      "ru": "Ничего не сделает — будет молчать"
+     },
+     {
+      "uz": "Xato chiqqan funksiyani darhol o'chirib tashlaydi",
+      "ru": "Сразу удалит функцию с ошибкой"
+     },
+     {
+      "uz": "Kodni avtomatik ravishda o'zi tuzatib beradi",
+      "ru": "Сам автоматически исправит код"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 49,
+     "jami": 237,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Testda `expect` umuman bo'lmasa, natija qanday bo'ladi?",
+     "ru": "Если в тесте вообще нет `expect` — каким будет результат?"
+    },
+    "opts": [
+     {
+      "uz": "Doim faqat qizil rangda FAIL xatosi chiqadi",
+      "ru": "Всегда будет только красный FAIL"
+     },
+     {
+      "uz": "Doim yashil PASS — hech narsa tekshirilmagan holda",
+      "ru": "Всегда зелёный PASS — хотя ничего не проверено"
+     },
+     {
+      "uz": "Jest darhol xato berib, ishlashdan to'xtab qoladi",
+      "ru": "Jest сразу выдаст ошибку и остановится"
+     },
+     {
+      "uz": "Bitta test ikki marta qatorma-qator ishlab chiqadi",
+      "ru": "Один тест выполнится дважды, строка за строкой"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 50,
+     "jami": 247,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Etalon (`toBe`) qiymati noto'g'ri yozilsa nima bo'ladi?",
+     "ru": "Что будет, если в эталоне (`toBe`) записано неверное значение?"
+    },
+    "opts": [
+     {
+      "uz": "Kod to'g'ri bo'lsa ham test baribir qizil chiqadi",
+      "ru": "Даже при верном коде тест всё равно будет красным"
+     },
+     {
+      "uz": "Jest etalonni avtomatik ravishda o'zi tuzatib qo'yadi",
+      "ru": "Jest сам автоматически исправит эталон"
+     },
+     {
+      "uz": "Test butunlay o'tkazib yuborilib, ishlamay qoladi",
+      "ru": "Тест будет полностью пропущен и не запустится"
+     },
+     {
+      "uz": "Funksiyaning ichki mantig'i sezilarli darajada o'zgaradi",
+      "ru": "Внутренняя логика функции заметно изменится"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 56,
+     "jami": 262,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "AAA tartibi nima?",
+     "ru": "Что такое порядок AAA?"
+    },
+    "opts": [
+     {
+      "uz": "Aniqla · Aylantir · Arxivla — uchta noto'g'ri bosqich",
+      "ru": "Определи · Поверни · Заархивируй — три неверных шага"
+     },
+     {
+      "uz": "Aloqa · Aksiya · Aniqlik — mos kelmaydigan qadamlar",
+      "ru": "Связь · Акция · Точность — шаги не из той оперы"
+     },
+     {
+      "uz": "Tayyorlash → Chaqirish → Tekshirish (Arrange-Act-Assert)",
+      "ru": "Подготовка → Вызов → Проверка (Arrange-Act-Assert)"
+     },
+     {
+      "uz": "Avtomat · Analiz · Audit — bog'liqsiz uchta qism",
+      "ru": "Автомат · Анализ · Аудит — три части ни при чём"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 17,
+     "maxVariant": 56,
+     "jami": 225,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Jest `--save-dev` bilan o'rnatiladi. Nega?",
+     "ru": "Jest устанавливают с `--save-dev`. Почему?"
+    },
+    "opts": [
+     {
+      "uz": "Boshqa paketlardan sezilarli darajada tezroq ishlashi uchun",
+      "ru": "Чтобы он работал заметно быстрее других пакетов"
+     },
+     {
+      "uz": "Litsenziyasi butunlay bepul bo'lgani uchun tanlanadi",
+      "ru": "Потому что у него полностью бесплатная лицензия"
+     },
+     {
+      "uz": "Yangi test fayllarini avtomatik ravishda yaratib berishi uchun",
+      "ru": "Чтобы он автоматически создавал новые файлы тестов"
+     },
+     {
+      "uz": "U faqat ishlab chiqishda kerak — mijozga yuborilmaydi",
+      "ru": "Он нужен только при разработке — клиенту не отправляется"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 62,
+     "jami": 268,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4b-02",
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Sifat nima?",
+     "ru": "Что такое качество?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova har safar aytganini qilsa",
+      "ru": "Когда приложение каждый раз делает обещанное"
+     },
+     {
+      "uz": "Ilovani juda ko'p odam yuklab olsa",
+      "ru": "Когда приложение скачивает очень много людей"
+     },
+     {
+      "uz": "Ilova boshqalardan tez ochilsa",
+      "ru": "Когда приложение открывается быстрее других"
+     },
+     {
+      "uz": "Ilovada tugmalar chiroyli qo'yilsa",
+      "ru": "Когда в приложении красиво расставлены кнопки"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 11,
+     "maxVariant": 34,
+     "jami": 140,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Qaysi holat — nosozlik?",
+     "ru": "Какой случай — поломка?"
+    },
+    "opts": [
+     {
+      "uz": "Skuter ro'yxatda uzoqroqda ko'rinadi",
+      "ru": "Самокат в списке показан подальше"
+     },
+     {
+      "uz": "Safar tugagach baho so'raladi",
+      "ru": "После поездки просят оценку"
+     },
+     {
+      "uz": "Narx kecha arzonroq edi",
+      "ru": "Вчера цена была ниже"
+     },
+     {
+      "uz": "Tugatish bosildi, hisoblagich yurdi",
+      "ru": "Нажали «Завершить», а счётчик пошёл дальше"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 23,
+     "maxVariant": 36,
+     "jami": 146,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Ilova aytganini qildi, lekin yoqmadi — bu nima?",
+     "ru": "Приложение сделало обещанное, но не понравилось — что это?"
+    },
+    "opts": [
+     {
+      "uz": "Nosozlik — kartaga yoziladi",
+      "ru": "Поломка — записывается в карточку"
+     },
+     {
+      "uz": "Yoqmagani muhim emas — bu nosozlik",
+      "ru": "Неважно, что не понравилось — это поломка"
+     },
+     {
+      "uz": "Nosozlik emas — yoqmagan narsa",
+      "ru": "Не поломка — просто не понравилось"
+     },
+     {
+      "uz": "Nosozlik — javonga qo'yiladi",
+      "ru": "Поломка — ставится на полку"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 34,
+     "jami": 166,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Nosozlik qayerda tutilsa eng arzon?",
+     "ru": "Где поломку поймать дешевле всего?"
+    },
+    "opts": [
+     {
+      "uz": "Chiqarishdan oldin",
+      "ru": "Перед выпуском"
+     },
+     {
+      "uz": "Kod yozilayotganda",
+      "ru": "Пока пишется код"
+     },
+     {
+      "uz": "Odamlar qo'lida",
+      "ru": "В руках у людей"
+     },
+     {
+      "uz": "Birinchi sharhlar chiqqanda",
+      "ru": "Когда выйдут первые отзывы"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 27,
+     "jami": 113,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Nosozlik qayerda chiqsa odam ketadi?",
+     "ru": "Где вылезшая поломка уводит людей?"
+    },
+    "opts": [
+     {
+      "uz": "Kod yozilayotganda",
+      "ru": "Пока пишется код"
+     },
+     {
+      "uz": "Odamlar qo'lida",
+      "ru": "В руках у людей"
+     },
+     {
+      "uz": "Chiqarishdan oldin",
+      "ru": "Перед выпуском"
+     },
+     {
+      "uz": "Test yozilayotganda",
+      "ru": "Пока пишется тест"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 19,
+     "jami": 106,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Nosozlik qancha kech topilsa nima bo'ladi?",
+     "ru": "Что будет, чем позже найдена поломка?"
+    },
+    "opts": [
+     {
+      "uz": "Shuncha qimmatga tushadi",
+      "ru": "Тем дороже она обойдётся"
+     },
+     {
+      "uz": "Shuncha tez tuzatiladi",
+      "ru": "Тем быстрее её починят"
+     },
+     {
+      "uz": "Shuncha kam odam ko'radi",
+      "ru": "Тем меньше людей её увидит"
+     },
+     {
+      "uz": "Shuncha arzonga tushadi",
+      "ru": "Тем дешевле она обойдётся"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 24,
+     "jami": 135,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Karta birinchi qatorida nima yoziladi?",
+     "ru": "Что пишут в первой строке карточки?"
+    },
+    "opts": [
+     {
+      "uz": "Nosozlik qachon tuzatilishi",
+      "ru": "Когда поломку починят"
+     },
+     {
+      "uz": "Nosozlikni kim topgani",
+      "ru": "Кто нашёл поломку"
+     },
+     {
+      "uz": "Nima bosildi — nima bo'ldi",
+      "ru": "Что нажали — что произошло"
+     },
+     {
+      "uz": "Nosozlik qaysi javonga tushishi",
+      "ru": "На какую полку попадёт поломка"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 31,
+     "jami": 144,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Qaysi nosozlik birinchi tuzatiladi?",
+     "ru": "Какую поломку чинят первой?"
+    },
+    "opts": [
+     {
+      "uz": "Ba'zilarda — ish to'xtaydi",
+      "ru": "У некоторых — работа останавливается"
+     },
+     {
+      "uz": "Ba'zilarda — noqulay, lekin ishlaydi",
+      "ru": "У некоторых — неудобно, но работает"
+     },
+     {
+      "uz": "Hammada — noqulay, lekin ishlaydi",
+      "ru": "У всех — неудобно, но работает"
+     },
+     {
+      "uz": "Hammada — ish to'xtaydi",
+      "ru": "У всех — работа останавливается"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 36,
+     "jami": 153,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "«Ba'zilarda · noqulay» karta qaysi javonga tushadi?",
+     "ru": "На какую полку попадает карточка «у некоторых · неудобно»?"
+    },
+    "opts": [
+     {
+      "uz": "Keyin javoniga",
+      "ru": "На полку «Потом»"
+     },
+     {
+      "uz": "Kartaga yozilmaydi",
+      "ru": "Её не записывают в карточку"
+     },
+     {
+      "uz": "Hozir javoniga",
+      "ru": "На полку «Сейчас»"
+     },
+     {
+      "uz": "Bugun javoniga",
+      "ru": "На полку «Сегодня»"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 18,
+     "jami": 111,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Cyberpunk 2077 nosozliklari kimning qo'lida chiqdi?",
+     "ru": "В чьих руках вылезли поломки Cyberpunk 2077?"
+    },
+    "opts": [
+     {
+      "uz": "O'yinni yasagan jamoada",
+      "ru": "У команды, сделавшей игру"
+     },
+     {
+      "uz": "Do'kon tekshiruvchilarida",
+      "ru": "У проверяющих магазина"
+     },
+     {
+      "uz": "Sotib olgan o'yinchilarda",
+      "ru": "У купивших игроков"
+     },
+     {
+      "uz": "Reklama yozganlarda",
+      "ru": "У тех, кто писал рекламу"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 25,
+     "jami": 143,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Sony o'yinni do'kondan qancha vaqtga olib tashladi?",
+     "ru": "На сколько Sony убрала игру из магазина?"
+    },
+    "opts": [
+     {
+      "uz": "Bir necha kunga",
+      "ru": "На несколько дней"
+     },
+     {
+      "uz": "Qariyb yarim yilga",
+      "ru": "Почти на полгода"
+     },
+     {
+      "uz": "Bir oyga yaqin",
+      "ru": "Примерно на месяц"
+     },
+     {
+      "uz": "Butunlay, qaytarmadi",
+      "ru": "Совсем, не вернула"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 20,
+     "jami": 118,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Narx testi qizil chiqdi — bu nima degani?",
+     "ru": "Тест цены стал красным — что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "Kod umuman ishga tushmay qoldi",
+      "ru": "Код вообще перестал запускаться"
+     },
+     {
+      "uz": "Testni qaytadan yozish kerak bo'ldi",
+      "ru": "Тест придётся переписывать заново"
+     },
+     {
+      "uz": "Odamlar shikoyat qila boshladi",
+      "ru": "Люди начали жаловаться"
+     },
+     {
+      "uz": "Nosozlik dasturchi stolida tutildi",
+      "ru": "Поломку поймали на столе у программиста"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 35,
+     "jami": 170,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4b-03",
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Edge case (chegara holati) nima?",
+     "ru": "Что такое edge case (граничный случай)?"
+    },
+    "opts": [
+     {
+      "uz": "Eng ko'p uchraydigan, dasturchi doim kutadigan oddiy va tipik kirish",
+      "ru": "Самый частый, обычный и типичный ввод, которого всегда ждёт разработчик"
+     },
+     {
+      "uz": "Funksiyaga berilgan nom yoki uning ichidagi o'zgaruvchi nomi",
+      "ru": "Имя, данное функции, или имя переменной внутри неё"
+     },
+     {
+      "uz": "Oddiylikning chetidagi qiymati: 0, manfiy yoki juda katta son",
+      "ru": "Значение на краю обычного: 0, отрицательное или очень большое число"
+     },
+     {
+      "uz": "Faqat har doim xatosiz ishlaydigan, muammosiz oddiy kirish",
+      "ru": "Только простой ввод, который всегда работает без ошибок"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 68,
+     "jami": 279,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "orderTotal(10000, 0) himoyasiz funksiyada nima qaytaradi?",
+     "ru": "Что вернёт orderTotal(10000, 0) в функции без защиты?"
+    },
+    "opts": [
+     {
+      "uz": "Error tashlaydi va funksiyani darhol to'xtatadi",
+      "ru": "Бросит Error и сразу остановит функцию"
+     },
+     {
+      "uz": "NaN qaytaradi — hisoblash muvaffaqiyatsiz bo'ladi",
+      "ru": "Вернёт NaN — вычисление не удастся"
+     },
+     {
+      "uz": "10000 qaytaradi — bitta buyurtma narxi kabi",
+      "ru": "Вернёт 10000 — как цену одного заказа"
+     },
+     {
+      "uz": "0 — bepul buyurtma, lekin xato sezilmay qoladi",
+      "ru": "0 — бесплатный заказ, но ошибка останется незамеченной"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 49,
+     "jami": 242,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Mijoz raqam o'rniga matn (\"ikki\") yuborsa, himoyasiz funksiya nima qaytaradi?",
+     "ru": "Клиент прислал вместо числа текст («ikki») — что вернёт функция без защиты?"
+    },
+    "opts": [
+     {
+      "uz": "0 qaytaradi — matn avtomatik ravishda nolga aylantirib yuboriladi",
+      "ru": "Вернёт 0 — текст автоматически превратится в ноль"
+     },
+     {
+      "uz": "NaN — \"Not a Number\", hisoblash jim ravishda buzilib ketadi",
+      "ru": "NaN — «Not a Number», вычисление тихо сломается"
+     },
+     {
+      "uz": "Error tashlaydi va so'rovni darhol, hech ikkilanmasdan rad etadi",
+      "ru": "Бросит Error и сразу, без колебаний отклонит запрос"
+     },
+     {
+      "uz": "10000 — narx hech qanday o'zgarishsiz, o'sha holicha qaytariladi",
+      "ru": "10000 — цена вернётся как есть, без изменений"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 77,
+     "maxVariant": 65,
+     "jami": 329,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Guard (himoya) qanday yoziladi?",
+     "ru": "Как пишется guard (защита)?"
+    },
+    "opts": [
+     {
+      "uz": "if (shart) throw new Error(...) — noto'g'ri kirishni rad etadi",
+      "ru": "if (условие) throw new Error(...) — отклоняет неверный ввод"
+     },
+     {
+      "uz": "console.log(quantity) yordamida qiymatni ekranga chiqarib tekshiriladi",
+      "ru": "Через console.log(quantity) — вывести значение на экран и посмотреть"
+     },
+     {
+      "uz": "return 0 yozib, noto'g'ri holatni jimgina o'tkazib yuborish orqali",
+      "ru": "Написать return 0 и тихо пропустить неверный случай"
+     },
+     {
+      "uz": "Guard umuman yozilmaydi — Jest buni o'zi avtomatik tekshirib qo'yadi",
+      "ru": "Guard вообще не пишут — Jest проверит это сам, автоматически"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 70,
+     "jami": 297,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Funksiya xato tashlashini sinash uchun qaysi yozuv to'g'ri?",
+     "ru": "Какая запись правильно проверяет, что функция бросает ошибку?"
+    },
+    "opts": [
+     {
+      "uz": "expect(orderTotal(10000, 0)).toThrow() — o'ramasdan chaqiriladi",
+      "ru": "expect(orderTotal(10000, 0)).toThrow() — вызов без обёртки"
+     },
+     {
+      "uz": "expect(orderTotal(10000, 0)).toBe(0) — natijani solishtiradi",
+      "ru": "expect(orderTotal(10000, 0)).toBe(0) — сравнивает результат"
+     },
+     {
+      "uz": "orderTotal(10000, 0).toThrow() — funksiyaga bevosita ulanadi",
+      "ru": "orderTotal(10000, 0).toThrow() — цепляется прямо к функции"
+     },
+     {
+      "uz": "expect(() => orderTotal(10000, 0)).toThrow() — o'rab chaqiradi",
+      "ru": "expect(() => orderTotal(10000, 0)).toThrow() — вызов в обёртке"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 63,
+     "jami": 304,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "() => bilan o'ralmasa nima bo'ladi?",
+     "ru": "Что будет, если не обернуть в () =>?"
+    },
+    "opts": [
+     {
+      "uz": "Test odatdagidan biroz sekinroq, lekin natija xuddi shunday chiqaveradi",
+      "ru": "Тест чуть медленнее обычного, но результат тот же"
+     },
+     {
+      "uz": "Hech narsa — funksiya har doimgidek xatosiz yaxshi ishlayveradi",
+      "ru": "Ничего — функция продолжит работать как ни в чём не бывало"
+     },
+     {
+      "uz": "Funksiya darrov chaqiriladi, xato tashlaydi va test o'zi qulaydi",
+      "ru": "Функция вызовется сразу, бросит ошибку — и тест рухнет сам"
+     },
+     {
+      "uz": "Jest ogohlantiradi, lekin testni baribir o'tkazib yuboradi",
+      "ru": "Jest выдаст предупреждение, но тест всё равно пропустит"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 71,
+     "jami": 291,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Chegara (boundary) sinovida nimalar tekshiriladi?",
+     "ru": "Что проверяют в тесте границы (boundary)?"
+    },
+    "opts": [
+     {
+      "uz": "Chegaraning ikki tomoni — masalan 1 (to'g'ri) va 0 (noto'g'ri)",
+      "ru": "Обе стороны границы — например 1 (верно) и 0 (неверно)"
+     },
+     {
+      "uz": "Faqat eng katta qiymat, boshqa hech qanday holat tekshirilmaydi",
+      "ru": "Только наибольшее значение, больше ничего не проверяется"
+     },
+     {
+      "uz": "Faqat manfiy sonlar, musbat qiymatlar umuman tekshirilmaydi",
+      "ru": "Только отрицательные числа, положительные не проверяются вовсе"
+     },
+     {
+      "uz": "Faqat matn ko'rinishidagi noto'g'ri kirishlar tekshiriladi",
+      "ru": "Только неверный ввод в виде текста"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 63,
+     "jami": 291,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "orderTotal funksiyasida throw ishlatilgan. Bu API'da nimaga mos keladi?",
+     "ru": "В orderTotal используется throw. Чему это соответствует в API?"
+    },
+    "opts": [
+     {
+      "uz": "200 OK — so'rov muvaffaqiyatli bajarilgani ko'rsatiladi",
+      "ru": "200 OK — запрос выполнен успешно"
+     },
+     {
+      "uz": "400 Bad Request — DTO tekshiruvi kirishni rad etganini bildiradi",
+      "ru": "400 Bad Request — проверка DTO отклонила ввод"
+     },
+     {
+      "uz": "500 Internal Error — serverning o'zida nosozlik borligini bildiradi",
+      "ru": "500 Internal Error — сбой на самом сервере"
+     },
+     {
+      "uz": "Hech nimaga mos kelmaydi — bu faqat unit-testga tegishli tushuncha",
+      "ru": "Ничему — это понятие относится только к юнит-тестам"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 67,
+     "jami": 323,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Faqat happy-path testi yozilgan bo'lsa, qanday xavf bor?",
+     "ru": "Написаны только happy-path тесты — в чём риск?"
+    },
+    "opts": [
+     {
+      "uz": "Edge holatdagi xato (masalan manfiy buyurtma) sezilmay ishlab ketadi",
+      "ru": "Ошибка в edge-случае (например, отрицательный заказ) проскочит незамеченной"
+     },
+     {
+      "uz": "Test odatdagidan bir oz sekinroq ishga tushadi, boshqa hech qanday farqi yo'q",
+      "ru": "Тесты запустятся чуть медленнее — и больше никакой разницы"
+     },
+     {
+      "uz": "Kod umuman ishlamay qoladi va dastur birdaniga to'liq yiqilib tushadi",
+      "ru": "Код совсем перестанет работать, и программа сразу рухнет целиком"
+     },
+     {
+      "uz": "Xavf umuman yo'q — happy-path testi bu holatda ham yetarli",
+      "ru": "Риска нет — happy-path тестов и так вполне достаточно"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 77,
+     "jami": 328,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "AI yozgan testda faqat happy-path bo'lsa, tekshiruvchi nima qilishi kerak?",
+     "ru": "AI написал тесты только на happy-path — что должен сделать проверяющий?"
+    },
+    "opts": [
+     {
+      "uz": "AI'ga to'liq ishonib, testni tekshirmasdan o'tkazib yuborish",
+      "ru": "Полностью довериться AI и пропустить тесты без проверки"
+     },
+     {
+      "uz": "Yetishmayotgan edge case testlarni topib, qo'shib qo'yish",
+      "ru": "Найти недостающие edge case тесты и добавить их"
+     },
+     {
+      "uz": "Butun testni o'chirib, boshidan qaytadan yozib chiqish",
+      "ru": "Удалить все тесты и переписать их с нуля"
+     },
+     {
+      "uz": "Faqat console.log qo'shib, natijani ko'z bilan kuzatish",
+      "ru": "Просто добавить console.log и следить за результатом глазами"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 74,
+     "maxVariant": 60,
+     "jami": 300,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "expect(orderTotal(10000, -5)).toBe(-50000) — bu yozuv edge xatoni tutadimi?",
+     "ru": "expect(orderTotal(10000, -5)).toBe(-50000) — поймает ли такая запись edge-ошибку?"
+    },
+    "opts": [
+     {
+      "uz": "Ha — chunki javobida manfiy son ishtirok etib turgani ko'rinadi",
+      "ru": "Да — ведь в ответе фигурирует отрицательное число"
+     },
+     {
+      "uz": "Ha — toBe tekshiruvchisi (matcher) har doim edge testga tegishli",
+      "ru": "Да — проверка (matcher) toBe всегда относится к edge-тестам"
+     },
+     {
+      "uz": "Yo'q — bu hali himoyasiz funksiyani 'to'g'ri' deb hisoblaydi",
+      "ru": "Нет — она считает ещё незащищённую функцию «правильной»"
+     },
+     {
+      "uz": "Bu umuman test emas — oddiy hisoblash amali, boshqa hech narsa emas",
+      "ru": "Это вообще не тест — обычное вычисление, и только"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 75,
+     "maxVariant": 67,
+     "jami": 329,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Guard qo'shilgach, eski expect(orderTotal(10000, 0)).toBe(0) testi nima bo'ladi?",
+     "ru": "После добавления guard что станет со старым тестом expect(orderTotal(10000, 0)).toBe(0)?"
+    },
+    "opts": [
+     {
+      "uz": "Baribir PASS bo'lib qolaveradi, hech qanday o'zgarish sezilmaydi",
+      "ru": "Так и останется PASS, никаких изменений не будет"
+     },
+     {
+      "uz": "Testlar ro'yxatidan Jest tomonidan avtomatik chiqarib tashlanadi",
+      "ru": "Jest автоматически уберёт его из списка тестов"
+     },
+     {
+      "uz": "Jest buni o'zi payqab, qatorni avtomatik ravishda tuzatib qo'yadi",
+      "ru": "Jest сам это заметит и автоматически исправит строку"
+     },
+     {
+      "uz": "FAIL bo'ladi — endi funksiya 0 o'rniga xato tashlab qo'yadi",
+      "ru": "Станет FAIL — функция теперь бросает ошибку вместо 0"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 80,
+     "maxVariant": 65,
+     "jami": 332,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4c-01",
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Pipeline (lenta) nima?",
+     "ru": "Что такое pipeline (лента)?"
+    },
+    "opts": [
+     {
+      "uz": "Kodni chiroyli qilib formatlaydigan alohida dastur",
+      "ru": "Отдельная программа, которая красиво форматирует код"
+     },
+     {
+      "uz": "Faqat testlarni yozib beradigan yordamchi dastur",
+      "ru": "Вспомогательный инструмент, который только пишет тесты"
+     },
+     {
+      "uz": "Push qilingan kodni avtomatik tekshiradigan ketma-ket nuqtalar",
+      "ru": "Цепочка точек, автоматически проверяющая запушенный код"
+     },
+     {
+      "uz": "Serverni qo'lda qayta ishga tushiruvchi maxsus buyruq, hech narsani tekshirmaydi",
+      "ru": "Специальная команда ручного перезапуска сервера, ничего не проверяет"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 22,
+     "maxVariant": 80,
+     "jami": 262,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`npm install` qaysi nuqtada ishlaydi?",
+     "ru": "На какой точке работает `npm install`?"
+    },
+    "opts": [
+     {
+      "uz": "Yig'ish (install) — birinchi nuqtada ishlaydi",
+      "ru": "Сборка (install) — работает на первой точке"
+     },
+     {
+      "uz": "Uchirish (deploy) nuqtasida, eng oxirida ishga tushadi",
+      "ru": "На точке Взлёт (deploy), запускается в самом конце"
+     },
+     {
+      "uz": "O'lcham ramkasi (lint) nuqtasida ishlaydi",
+      "ru": "На точке рамки (lint)"
+     },
+     {
+      "uz": "O'rash (build) nuqtasida bajariladi",
+      "ru": "Выполняется на точке Упаковка (build)"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 54,
+     "jami": 212,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Test qizil (FAIL) bo'lsa nima bo'ladi?",
+     "ru": "Что будет, если тест красный (FAIL)?"
+    },
+    "opts": [
+     {
+      "uz": "Lenta baribir davom etadi va uchirishni to'liq bajaraveradi",
+      "ru": "Лента всё равно продолжит и полностью выполнит взлёт"
+     },
+     {
+      "uz": "Lenta shu nuqtada to'xtaydi, keyingisi o'tkazib yuboriladi",
+      "ru": "Лента остановится на этой точке, следующие будут пропущены"
+     },
+     {
+      "uz": "Server butunlay o'chib, ishlamay qoladi",
+      "ru": "Сервер полностью выключится и перестанет работать"
+     },
+     {
+      "uz": "Kod xatosi avtomatik ravishda o'zi tuzatiladi",
+      "ru": "Ошибка в коде исправится сама, автоматически"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 59,
+     "jami": 239,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "CI (Continuous Integration) nimani anglatadi?",
+     "ru": "Что означает CI (Continuous Integration)?"
+    },
+    "opts": [
+     {
+      "uz": "Sayt dizaynini doimiy yangilab turish jarayoni",
+      "ru": "Процесс постоянного обновления дизайна сайта"
+     },
+     {
+      "uz": "Serverni uzluksiz kuzatib turadigan monitoring",
+      "ru": "Мониторинг, который непрерывно следит за сервером"
+     },
+     {
+      "uz": "Kodni qo'lda birlashtiradigan eski usul",
+      "ru": "Старый способ объединять код вручную"
+     },
+     {
+      "uz": "Har push'ni birlashtirib avtomatik tekshirish",
+      "ru": "Объединять каждый push и автоматически проверять"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 46,
+     "jami": 221,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "CD (Continuous Deployment) nima qiladi?",
+     "ru": "Что делает CD (Continuous Deployment)?"
+    },
+    "opts": [
+     {
+      "uz": "Tekshiruvdan o'tgan yukni avtomatik internetga chiqaradi",
+      "ru": "Автоматически выкладывает проверенный груз в интернет"
+     },
+     {
+      "uz": "Kodni faqat serverga qo'lda, o'zi nusxalaydi doimo",
+      "ru": "Постоянно копирует код на сервер вручную"
+     },
+     {
+      "uz": "Testlarni o'zi o'ylab yozib chiqadi",
+      "ru": "Сам придумывает и пишет тесты"
+     },
+     {
+      "uz": "Loyihani repozitoriyga yuklab qo'yadi",
+      "ru": "Загружает проект в репозиторий"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 56,
+     "jami": 217,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`on: push` nimani bildiradi?",
+     "ru": "Что означает `on: push`?"
+    },
+    "opts": [
+     {
+      "uz": "Lenta faqat maxsus tugma bosilganda ishlaydi",
+      "ru": "Лента работает только по нажатию специальной кнопки"
+     },
+     {
+      "uz": "Lenta yiliga bir marta ishga tushadi",
+      "ru": "Лента запускается раз в год"
+     },
+     {
+      "uz": "Lenta har push'da avtomatik ishga tushadi",
+      "ru": "Лента запускается автоматически на каждый push"
+     },
+     {
+      "uz": "Lenta hech qachon o'z-o'zidan ishlamaydi",
+      "ru": "Лента никогда не запускается сама"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 44,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`eslint .` qaysi nuqtada ishlatiladi?",
+     "ru": "На какой точке используется `eslint .`?"
+    },
+    "opts": [
+     {
+      "uz": "Uchirish (deploy) nuqtasida, oxirida ishlatiladi",
+      "ru": "На точке Взлёт (deploy), в самом конце"
+     },
+     {
+      "uz": "Yig'ish (install) nuqtasida ishlatiladi",
+      "ru": "На точке Сборка (install)"
+     },
+     {
+      "uz": "O'rash (build) nuqtasida ishlatiladi",
+      "ru": "На точке Упаковка (build)"
+     },
+     {
+      "uz": "O'lcham ramkasi (lint) nuqtasida ishlatiladi",
+      "ru": "На точке рамки (lint)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 48,
+     "jami": 204,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Artefakt (o'ralgan yuk) qaysi nuqtada tayyor bo'ladi?",
+     "ru": "На какой точке готов артефакт (упакованный груз)?"
+    },
+    "opts": [
+     {
+      "uz": "Skaner (test) nuqtasida tayyor bo'ladi",
+      "ru": "На точке Сканер (test)"
+     },
+     {
+      "uz": "O'rash (build) nuqtasida tayyor bo'ladi",
+      "ru": "На точке Упаковка (build)"
+     },
+     {
+      "uz": "Yig'ish (install) nuqtasida tayyor bo'ladi",
+      "ru": "На точке Сборка (install)"
+     },
+     {
+      "uz": "Uchirish (deploy)dan keyin tayyor bo'ladi",
+      "ru": "После точки Взлёт (deploy)"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 42,
+     "jami": 213,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`runs-on: ubuntu-latest` nimani bildiradi?",
+     "ru": "Что означает `runs-on: ubuntu-latest`?"
+    },
+    "opts": [
+     {
+      "uz": "Loyihaning to'liq rasmiy nomini",
+      "ru": "Полное официальное название проекта"
+     },
+     {
+      "uz": "Bazaga ulanish uchun maxfiy parolni",
+      "ru": "Секретный пароль для подключения к базе"
+     },
+     {
+      "uz": "Lenta mashinasi qanday muhitda ishlashini bildiradi",
+      "ru": "В какой среде работает машина ленты"
+     },
+     {
+      "uz": "Lentada nechta test borligini",
+      "ru": "Сколько тестов на ленте"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 51,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Uchirish avtomatik bo'lishi uchun nima shart?",
+     "ru": "Что нужно, чтобы взлёт был автоматическим?"
+    },
+    "opts": [
+     {
+      "uz": "Dasturchi maxsus tugmani bosishi shart",
+      "ru": "Разработчик должен нажать специальную кнопку"
+     },
+     {
+      "uz": "Kod hajmi juda kichik bo'lishi shart",
+      "ru": "Код должен быть совсем маленьким"
+     },
+     {
+      "uz": "Hafta oxiri kunlari bo'lishi shart",
+      "ru": "Должны быть выходные дни"
+     },
+     {
+      "uz": "Barcha oldingi nuqtalar yashil bo'lishi shart",
+      "ru": "Все предыдущие точки должны быть зелёными"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 45,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Rollback (eski yukni qaytarish) qachon kerak bo'ladi?",
+     "ru": "Когда нужен rollback (возврат старого груза)?"
+    },
+    "opts": [
+     {
+      "uz": "Yangi versiya productionda muammo chiqarganda",
+      "ru": "Когда новая версия вызвала проблемы в production"
+     },
+     {
+      "uz": "Har push'da doim, sharoitidan qat'i nazar",
+      "ru": "Всегда, на каждый push, независимо от ситуации"
+     },
+     {
+      "uz": "Test hali yashil bo'lgan paytda",
+      "ru": "Пока тесты ещё зелёные"
+     },
+     {
+      "uz": "Lenta hali ishga tushmagan paytda",
+      "ru": "Пока лента ещё не запускалась"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 45,
+     "jami": 203,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Secret (seyf/maxfiy kalit) qayerda saqlanadi?",
+     "ru": "Где хранится secret (секретный ключ)?"
+    },
+    "opts": [
+     {
+      "uz": "ci.yml faylining o'zida, hammaga ochiq holda turadi",
+      "ru": "Прямо в файле ci.yml, открыто для всех"
+     },
+     {
+      "uz": "Maxsus xavfsiz seyf sozlamalarida",
+      "ru": "В специальных защищённых настройках-сейфе"
+     },
+     {
+      "uz": "README faylining oxirgi qatorida",
+      "ru": "В последней строке файла README"
+     },
+     {
+      "uz": "Terminal buyruqlar tarixida",
+      "ru": "В истории команд терминала"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 51,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4c-02",
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Reliz nima?",
+     "ru": "Что такое релиз?"
+    },
+    "opts": [
+     {
+      "uz": "Tayyor bo'lakni odamlar ishlatadigan joyga chiqarish",
+      "ru": "Вывести готовый кусочек туда, где им пользуются люди"
+     },
+     {
+      "uz": "Kodni o'z kompyuterida ishga tushirib tekshirib ko'rish",
+      "ru": "Запустить код у себя на компьютере и проверить"
+     },
+     {
+      "uz": "Saytga yangi rasm va rang tanlash",
+      "ru": "Выбрать для сайта новые картинки и цвета"
+     },
+     {
+      "uz": "Ishni haftalarga bo'lib rejalashtirish",
+      "ru": "Расписать задачу по неделям"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 11,
+     "maxVariant": 55,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Kod faqat o'z kompyuteringizda ishlasa — bu relizmi?",
+     "ru": "Код работает только на вашем компьютере — это релиз?"
+    },
+    "opts": [
+     {
+      "uz": "Ha — kod ishlayotgani yetadi",
+      "ru": "Да — достаточно, что код работает"
+     },
+     {
+      "uz": "Yo'q — bu o'zgarish juda kichkina",
+      "ru": "Нет — это изменение слишком маленькое"
+     },
+     {
+      "uz": "Ha — sinfdosh uni ko'rgan",
+      "ru": "Да — одноклассник его видел"
+     },
+     {
+      "uz": "Yo'q — odamlar ishlata olmaydi",
+      "ru": "Нет — люди не могут им пользоваться"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 33,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Ikki sinfdosh bir vaqtda boshladi. 6-haftada kim keyingi bo'lakni aniq biladi?",
+     "ru": "Два одноклассника начали одновременно. Кто на 6-й неделе точно знает следующий кусочек?"
+    },
+    "opts": [
+     {
+      "uz": "Kod ko'proq yozgani",
+      "ru": "Тот, кто написал больше кода"
+     },
+     {
+      "uz": "Rejasini eng uzoq o'ylab chiqqani",
+      "ru": "Тот, кто дольше всех продумывал план"
+     },
+     {
+      "uz": "Har hafta chiqarib turgani",
+      "ru": "Тот, кто выпускал каждую неделю"
+     },
+     {
+      "uz": "Saytni kech ochgani",
+      "ru": "Тот, кто открыл сайт позже"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 78,
+     "maxVariant": 33,
+     "jami": 175,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "«Har hafta kichik» sayti 6 haftada necha marta bilib oldi?",
+     "ru": "Сколько раз за 6 недель узнал сайт «каждую неделю по чуть-чуть»?"
+    },
+    "opts": [
+     {
+      "uz": "3 marta",
+      "ru": "3 раза"
+     },
+     {
+      "uz": "6 marta",
+      "ru": "6 раз"
+     },
+     {
+      "uz": "Hech marta",
+      "ru": "Ни разу"
+     },
+     {
+      "uz": "1 marta",
+      "ru": "1 раз"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 10,
+     "jami": 89,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«Bir marta katta» sayti 6-haftada nimani kech bildi?",
+     "ru": "Что сайт «один раз, но большой» узнал слишком поздно на 6-й неделе?"
+    },
+    "opts": [
+     {
+      "uz": "Odamlar saytni topa olmaganini",
+      "ru": "Что люди не смогли найти сайт"
+     },
+     {
+      "uz": "Xarita va reytingni ochmaganlarini",
+      "ru": "Что карту и рейтинг никто не открыл"
+     },
+     {
+      "uz": "Chat oynasi ishlamay qolganini",
+      "ru": "Что окно чата перестало работать"
+     },
+     {
+      "uz": "E'lonlar ro'yxati umuman ochilmasligini",
+      "ru": "Что список объявлений вообще не открывается"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 39,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Haftalik bo'lak qaysi ikki chiroqdan o'tadi?",
+     "ru": "Через какие две лампочки проходит недельный кусочек?"
+    },
+    "opts": [
+     {
+      "uz": "Haftaga sig'adi · odam ishlata oladi",
+      "ru": "Помещается в неделю · человек может пользоваться"
+     },
+     {
+      "uz": "Bir kunda tayyor · bepul chiqadi",
+      "ru": "Готов за день · выходит бесплатно"
+     },
+     {
+      "uz": "Tez yoziladi · kam kod talab qiladi",
+      "ru": "Быстро пишется · требует мало кода"
+     },
+     {
+      "uz": "Rasmli bo'ladi · chiroyli ko'rinib turadi",
+      "ru": "С картинкой · красиво выглядит"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 41,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "«Bosilsa hali hech narsa bo'lmaydi» bo'lagiga nima yetishmaydi?",
+     "ru": "Чего не хватает кусочку «при нажатии пока ничего не происходит»?"
+    },
+    "opts": [
+     {
+      "uz": "Uni bosadigan odam",
+      "ru": "Человека, который нажмёт"
+     },
+     {
+      "uz": "Unga qo'yiladigan rasm",
+      "ru": "Картинки для него"
+     },
+     {
+      "uz": "Bosgandan keyingi ish",
+      "ru": "Работы после нажатия"
+     },
+     {
+      "uz": "Haftaga sig'adigan vaqt",
+      "ru": "Времени, чтобы поместиться в неделю"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 23,
+     "jami": 147,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "≈11 kunlik bo'lakka darvoza nima deydi?",
+     "ru": "Что скажут ворота кусочку на ≈11 дней?"
+    },
+    "opts": [
+     {
+      "uz": "Kunlar hisoblanmagan",
+      "ru": "Дни не посчитаны"
+     },
+     {
+      "uz": "Odam uni ishlata olmaydi",
+      "ru": "Человек им не сможет пользоваться"
+     },
+     {
+      "uz": "Bu bo'lak takrorlangan",
+      "ru": "Этот кусочек повторяется"
+     },
+     {
+      "uz": "Bu hafta sig'maydi",
+      "ru": "В неделю не помещается"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 24,
+     "jami": 123,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Telegram katta yangilanishni qanchalik tez-tez chiqaradi?",
+     "ru": "Как часто Telegram выпускает большое обновление?"
+    },
+    "opts": [
+     {
+      "uz": "Deyarli har oy",
+      "ru": "Почти каждый месяц"
+     },
+     {
+      "uz": "Uch yilda bir marta",
+      "ru": "Раз в три года"
+     },
+     {
+      "uz": "Yiliga bir marta",
+      "ru": "Раз в год"
+     },
+     {
+      "uz": "Ikki haftada bir",
+      "ru": "Раз в две недели"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 19,
+     "jami": 122,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Reaksiya, stiker, kanal boshqa yozishuv ilovalarida qachon paydo bo'ldi?",
+     "ru": "Когда реакции, стикеры и каналы появились в других мессенджерах?"
+    },
+    "opts": [
+     {
+      "uz": "Bir necha hafta ichida",
+      "ru": "В течение нескольких недель"
+     },
+     {
+      "uz": "O'sha kuniyoq, birga",
+      "ru": "В тот же день, вместе"
+     },
+     {
+      "uz": "Bir necha yil o'tgach",
+      "ru": "Спустя несколько лет"
+     },
+     {
+      "uz": "Telegramdan oldinroq",
+      "ru": "Раньше Telegram"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 72,
+     "maxVariant": 22,
+     "jami": 155,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "2025-yil martida Telegramdan oyiga nechta odam foydalanadi?",
+     "ru": "Сколько человек в месяц пользовались Telegram в марте 2025 года?"
+    },
+    "opts": [
+     {
+      "uz": "100 million",
+      "ru": "100 миллионов"
+     },
+     {
+      "uz": "1 milliard",
+      "ru": "1 миллиард"
+     },
+     {
+      "uz": "3 milliard",
+      "ru": "3 миллиарда"
+     },
+     {
+      "uz": "500 million",
+      "ru": "500 миллионов"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 11,
+     "jami": 101,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Nimani qachon chiqarishni kim hal qiladi?",
+     "ru": "Кто решает, что и когда выпускать?"
+    },
+    "opts": [
+     {
+      "uz": "Kodni yozgan dasturchi",
+      "ru": "Программист, написавший код"
+     },
+     {
+      "uz": "Saytga kirgan odam",
+      "ru": "Человек, зашедший на сайт"
+     },
+     {
+      "uz": "Saytni joylashtirgan xizmat egasi",
+      "ru": "Владелец сервиса, где размещён сайт"
+     },
+     {
+      "uz": "Mahsulotni o'ylaydigan odam",
+      "ru": "Человек, который думает о продукте"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 33,
+     "jami": 141,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4c-03",
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "`.github/workflows/ci.yml` — bu fayl nima?",
+     "ru": "`.github/workflows/ci.yml` — что это за файл?"
+    },
+    "opts": [
+     {
+      "uz": "Loyihaning butun manba kodi shu yerda saqlanadi, boshqa hech narsa yo'q",
+      "ru": "Здесь хранится весь исходный код проекта, и больше ничего"
+     },
+     {
+      "uz": "Yo'l xaritasi — lentaning ishini belgilaydi",
+      "ru": "Карта маршрута — она определяет работу ленты"
+     },
+     {
+      "uz": "Foydalanuvchi ko'radigan saytning zaxira nusxasi",
+      "ru": "Резервная копия сайта, который видит пользователь"
+     },
+     {
+      "uz": "GitHub'ning o'zi uchun yashirin ichki sozlamalar",
+      "ru": "Скрытые внутренние настройки самого GitHub"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 71,
+     "jami": 252,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`on: push` nima uchun kerak?",
+     "ru": "Зачем нужен `on: push`?"
+    },
+    "opts": [
+     {
+      "uz": "Lentani har push'da avtomatik ishga tushiradi",
+      "ru": "Автоматически запускает ленту при каждом пуше"
+     },
+     {
+      "uz": "Repozitoriyni butunlay o'chirib tashlash buyrug'i",
+      "ru": "Команда полностью удалить репозиторий"
+     },
+     {
+      "uz": "Faqat loyiha hujjatlarini yangilab turish uchun",
+      "ru": "Только чтобы обновлять документацию проекта"
+     },
+     {
+      "uz": "Har push'dan keyin kodni qo'lda serverga joylash kerak bo'ladi",
+      "ru": "После каждого пуша придётся вручную выкладывать код на сервер"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 62,
+     "jami": 231,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`runs-on: ubuntu-latest` nimani bildiradi?",
+     "ru": "Что означает `runs-on: ubuntu-latest`?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat Ubuntu tizimida yozish mumkin degan ma'no",
+      "ru": "Что писать код можно только в системе Ubuntu"
+     },
+     {
+      "uz": "Loyihaning nomi aynan shunday bo'lishi shart, boshqacha bo'lmaydi",
+      "ru": "Что проект обязан называться именно так и никак иначе"
+     },
+     {
+      "uz": "Lentani aylantiradigan mashina — GitHub bepul beradi",
+      "ru": "Машина, которая крутит ленту — GitHub даёт её бесплатно"
+     },
+     {
+      "uz": "Testlar hech qachon ishga tushmaydi degan belgi",
+      "ru": "Знак, что тесты никогда не запустятся"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 65,
+     "jami": 253,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "YIG'ISH nuqtasida nima bajariladi?",
+     "ru": "Что происходит в точке 📦 СБОРКА?"
+    },
+    "opts": [
+     {
+      "uz": "Loyiha kerak qiladigan kutubxonalar o'rnatiladi",
+      "ru": "Устанавливаются библиотеки, которые нужны проекту"
+     },
+     {
+      "uz": "Yozilgan kod o'lcham ramkasi bo'yicha tekshiriladi",
+      "ru": "Код проверяется по рамке-измерителю"
+     },
+     {
+      "uz": "Tayyor sayt foydalanuvchiga to'g'ridan-to'g'ri yuboriladi, hech narsa tekshirilmaydi",
+      "ru": "Готовый сайт сразу отправляется пользователю безо всякой проверки"
+     },
+     {
+      "uz": "Avvalgi eski yuk qaytadan tiklab olinadi",
+      "ru": "Восстанавливается прошлый старый груз"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 84,
+     "jami": 255,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "SKANER nuqtasi tushirib qoldirilsa nima bo'ladi?",
+     "ru": "Что будет, если пропустить точку 🔍 СКАНЕР?"
+    },
+    "opts": [
+     {
+      "uz": "Lenta odatdagidan biroz sekinroq aylanib qoladi, xolos",
+      "ru": "Лента просто будет крутиться чуть медленнее, и всё"
+     },
+     {
+      "uz": "GitHub bu bosqichni avtomatik o'zi qo'shib qo'yadi, siz hech narsa qilmaysiz",
+      "ru": "GitHub сам автоматически добавит этот шаг, вам ничего делать не надо"
+     },
+     {
+      "uz": "Buzuq yuk to'g'ridan-to'g'ri foydalanuvchiga uchib ketadi",
+      "ru": "Сломанный груз улетит прямо к пользователю"
+     },
+     {
+      "uz": "Faqat ogohlantirish chiqadi, yuk baribir tekshiriladi",
+      "ru": "Выйдет только предупреждение, груз всё равно проверят"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 76,
+     "jami": 288,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Amallar (steps) qanday tartibda bajariladi?",
+     "ru": "В каком порядке выполняются шаги (steps)?"
+    },
+    "opts": [
+     {
+      "uz": "Har safar tasodifiy, boshqa-boshqa tartibda ishlaydi, hech qanday qoida yo'q",
+      "ru": "Каждый раз в случайном, разном порядке — никаких правил нет"
+     },
+     {
+      "uz": "Yozilgan tartibda, yuqoridan pastga ketma-ket bajariladi",
+      "ru": "В написанном порядке, сверху вниз, друг за другом"
+     },
+     {
+      "uz": "Eng oxirgi yozilgan amal birinchi bajariladi",
+      "ru": "Последний написанный шаг выполняется первым"
+     },
+     {
+      "uz": "Barcha amallar bir vaqtning o'zida, tartibsiz",
+      "ru": "Все шаги одновременно, без всякого порядка"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 76,
+     "jami": 264,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`uses: actions/checkout@v4` amali nima qiladi?",
+     "ru": "Что делает шаг `uses: actions/checkout@v4`?"
+    },
+    "opts": [
+     {
+      "uz": "Loyihadagi butun kodni izsiz o'chirib tashlaydi",
+      "ru": "Бесследно удаляет весь код проекта"
+     },
+     {
+      "uz": "Yangi bir lenta mashinasini alohida sotib oladi",
+      "ru": "Отдельно покупает новую машину ленты"
+     },
+     {
+      "uz": "Testlarni siz o'rniga avtomatik yozib beradi, o'zi tekshirib chiqadi",
+      "ru": "Автоматически пишет тесты за вас и сам всё проверяет"
+     },
+     {
+      "uz": "Repodagi kodni lenta mashinasiga olib keladi",
+      "ru": "Приносит код из репозитория на машину ленты"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 68,
+     "jami": 252,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "PARALLEL LENTALAR (matrix) nima uchun ishlatiladi?",
+     "ru": "Для чего используются ПАРАЛЛЕЛЬНЫЕ ЛЕНТЫ (matrix)?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta yukni ikki qismga bo'lib yuborish uchun",
+      "ru": "Чтобы разделить один груз на две части и отправить"
+     },
+     {
+      "uz": "Lenta mashinasini butunlay to'xtatib, o'chirish uchun",
+      "ru": "Чтобы полностью остановить и выключить машину ленты"
+     },
+     {
+      "uz": "Bitta yukni bir nechta sharoitda birdan sinash uchun",
+      "ru": "Чтобы проверить один груз сразу в нескольких условиях"
+     },
+     {
+      "uz": "Faqat rasm fayllarini siqib kichraytirish uchun, boshqa vazifasi yo'q",
+      "ru": "Только чтобы сжимать картинки, других задач нет"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 69,
+     "jami": 269,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "YAQIN JAVON (cache) nima beradi?",
+     "ru": "Что даёт БЛИЖНЯЯ ПОЛКА (cache)?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat mentorning o'z kompyuterida ishlaydi",
+      "ru": "Работает только на компьютере ментора"
+     },
+     {
+      "uz": "Har safar hamma narsani qaytadan noldan yuklaydi, hech narsa saqlanmaydi",
+      "ru": "Каждый раз всё заново качает с нуля, ничего не сохраняет"
+     },
+     {
+      "uz": "Skanerlash bosqichini butunlay o'chirib qo'yadi",
+      "ru": "Полностью отключает этап сканирования"
+     },
+     {
+      "uz": "Noldan yuklamay, tayyor javobdan foydalanib tezlashtiradi",
+      "ru": "Ускоряет работу: берёт готовое, а не качает с нуля"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 72,
+     "jami": 250,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Maxfiy kalitni to'g'ridan-to'g'ri yo'l xaritasiga ochiq yozsangiz nima bo'ladi?",
+     "ru": "Что будет, если написать секретный ключ прямо в карте маршрута открыто?"
+    },
+    "opts": [
+     {
+      "uz": "Butun dunyo uni ochiq holda ko'rishi mumkin bo'ladi",
+      "ru": "Его сможет увидеть весь мир в открытом виде"
+     },
+     {
+      "uz": "Faqat siz ko'rasiz, boshqa hech kim ko'ra olmaydi, hammasi maxfiy",
+      "ru": "Его увидите только вы, больше никто — всё секретно"
+     },
+     {
+      "uz": "Hech narsa — GitHub uni avtomatik yashirib qo'yadi, xavotir yo'q",
+      "ru": "Ничего — GitHub автоматически его спрячет, не волнуйтесь"
+     },
+     {
+      "uz": "Lenta bu holatda umuman ishga tushmay qoladi",
+      "ru": "Лента в этом случае вообще не запустится"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 79,
+     "maxVariant": 65,
+     "jami": 303,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "`${{ secrets.API_KEY }}` yozuvi nimani bildiradi?",
+     "ru": "Что означает запись `${{ secrets.API_KEY }}`?"
+    },
+    "opts": [
+     {
+      "uz": "Kalitni oddiy matn sifatida ekranga to'g'ridan-to'g'ri chiqarish",
+      "ru": "Вывести ключ на экран обычным текстом"
+     },
+     {
+      "uz": "Kalitni seyfdan xavfsiz shaklda olib kelish",
+      "ru": "Безопасно достать ключ из сейфа"
+     },
+     {
+      "uz": "Kalitni boshqa bir loyihaga ko'chirib qo'yish",
+      "ru": "Скопировать ключ в другой проект"
+     },
+     {
+      "uz": "Kalitni butunlay o'chirib, izsiz yo'q qilib tashlash",
+      "ru": "Полностью удалить ключ без следа"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 64,
+     "jami": 253,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "TABLO (status badge) nimani ko'rsatadi?",
+     "ru": "Что показывает ТАБЛО (status badge)?"
+    },
+    "opts": [
+     {
+      "uz": "Loyihaning umumiy fayl hajmini ko'rsatadi",
+      "ru": "Общий размер файлов проекта"
+     },
+     {
+      "uz": "Serverning qaysi mamlakatda joylashganini",
+      "ru": "В какой стране находится сервер"
+     },
+     {
+      "uz": "Nechta o'quvchi darsni tugatganini ko'rsatib beradi, statistika chiqaradi",
+      "ru": "Сколько учеников закончили урок — выводит статистику"
+     },
+     {
+      "uz": "Repo sahifasida lenta yashilmi yoki qizilmi ekanini",
+      "ru": "Зелёная лента сейчас или красная — прямо на странице репо"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 73,
+     "jami": 245,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4c-04",
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "To'liq lentada 5 nuqta qaysi tartibda ishlaydi?",
+     "ru": "В каком порядке работают 5 точек полного конвейера?"
+    },
+    "opts": [
+     {
+      "uz": "Uchirish, so'ng Yig'ish, Skaner, O'rash, O'lcham ramkasi",
+      "ru": "Взлёт, затем Сборка, Сканер, Упаковка, Габарит-рамка"
+     },
+     {
+      "uz": "Skaner, Yig'ish, O'rash, O'lcham ramkasi, Uchirish",
+      "ru": "Сканер, Сборка, Упаковка, Габарит-рамка, Взлёт"
+     },
+     {
+      "uz": "O'rash, Skaner, Yig'ish, Uchirish, O'lcham ramkasi",
+      "ru": "Упаковка, Сканер, Сборка, Взлёт, Габарит-рамка"
+     },
+     {
+      "uz": "Yig'ish, Skaner, O'lcham ramkasi, O'rash, Uchirish",
+      "ru": "Сборка, Сканер, Габарит-рамка, Упаковка, Взлёт"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 56,
+     "jami": 253,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`on: push` yozuvi lentada nima vazifani bajaradi?",
+     "ru": "Что делает запись `on: push` в конвейере?"
+    },
+    "opts": [
+     {
+      "uz": "Push bo'lganda lentani avtomatik ishga tushiradi",
+      "ru": "Автоматически запускает конвейер при push"
+     },
+     {
+      "uz": "Testlarni doimiy ravishda butunlay o'chirib qo'yadi",
+      "ru": "Навсегда полностью отключает тесты"
+     },
+     {
+      "uz": "Maxfiy kalitni doimiy saqlab turadi",
+      "ru": "Постоянно хранит секретный ключ"
+     },
+     {
+      "uz": "Faylni to'g'ridan-to'g'ri serverga nusxalaydi",
+      "ru": "Копирует файл напрямую на сервер"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 51,
+     "jami": 228,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "O'lcham ramkasi nuqtasi lentadan olib tashlansa nima bo'ladi?",
+     "ru": "Что будет, если убрать с конвейера точку 📐 Габарит-рамка?"
+    },
+    "opts": [
+     {
+      "uz": "Lenta hech qanday ogohlantirishsiz ishga tushmay qoladi",
+      "ru": "Конвейер перестанет запускаться без всякого предупреждения"
+     },
+     {
+      "uz": "Testlar ikki marta ketma-ket ishga tushib ketadi",
+      "ru": "Тесты начнут запускаться дважды подряд"
+     },
+     {
+      "uz": "Kod qoidaga zid yozilsa ham hech kim tutmaydi",
+      "ru": "Даже если код нарушает правила, его никто не поймает"
+     },
+     {
+      "uz": "Yuk hech qachon avtomatik ravishda o'ralmay qoladi",
+      "ru": "Багаж больше никогда не будет упаковываться автоматически"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 55,
+     "jami": 259,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Tartib teskari bo'lib, ✈️ Uchirish 🔍 Skanerdan OLDIN tursa nima bo'ladi?",
+     "ru": "Что будет, если порядок перепутан и ✈️ Взлёт стоит ДО 🔍 Сканера?"
+    },
+    "opts": [
+     {
+      "uz": "Hech narsa o'zgarmaydi, natija bir xil",
+      "ru": "Ничего не изменится, результат тот же"
+     },
+     {
+      "uz": "Tekshirilmagan buzuq yuk yo'lovchiga chiqib ketadi",
+      "ru": "Непроверенный сломанный багаж улетит к пассажиру"
+     },
+     {
+      "uz": "Lenta buyruqni o'zi to'g'irlab qo'yadi",
+      "ru": "Конвейер сам исправит команду"
+     },
+     {
+      "uz": "Faqat jurnalga ogohlantirish yoziladi, lekin deploy baribir bo'lmaydi",
+      "ru": "В журнал запишется предупреждение, но deploy всё равно не случится"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 73,
+     "maxVariant": 69,
+     "jami": 268,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Maxfiy kalitni ci.yml faylida qanday ishlatamiz?",
+     "ru": "Как мы используем секретный ключ в файле ci.yml?"
+    },
+    "opts": [
+     {
+      "uz": "`${{ secrets.NOM }}` orqali SEYFdan xavfsiz olamiz",
+      "ru": "Безопасно берём из СЕЙФА через `${{ secrets.NOM }}`"
+     },
+     {
+      "uz": "Kodning o'zi ichiga doimiy o'zgaruvchi sifatida qo'shib qo'yamiz",
+      "ru": "Вписываем прямо в код как постоянную переменную"
+     },
+     {
+      "uz": "Har safar qo'lda terib, push oldidan yuboramiz",
+      "ru": "Каждый раз набираем вручную и отправляем перед push"
+     },
+     {
+      "uz": "To'g'ridan-to'g'ri ochiq matn sifatida yozamiz",
+      "ru": "Пишем открытым текстом напрямую"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 64,
+     "jami": 254,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Sinov reysi (staging) nima uchun kerak?",
+     "ru": "Зачем нужен пробный рейс (staging)?"
+    },
+    "opts": [
+     {
+      "uz": "Yo'lovchilar sonini hisoblash uchun",
+      "ru": "Чтобы считать количество пассажиров"
+     },
+     {
+      "uz": "Lentani butunlay to'xtatish uchun",
+      "ru": "Чтобы полностью остановить конвейер"
+     },
+     {
+      "uz": "Maxfiy kalitlarni doimiy ravishda ochiq ko'rsatish uchun",
+      "ru": "Чтобы постоянно показывать секретные ключи открыто"
+     },
+     {
+      "uz": "Haqiqiy yo'lovchisiz, xatolarni oldindan sinash uchun",
+      "ru": "Чтобы заранее проверять ошибки без настоящих пассажиров"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 56,
+     "jami": 216,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Production (haqiqiy reys) sinov reysidan nimasi bilan farq qiladi?",
+     "ru": "Чем production (настоящий рейс) отличается от пробного?"
+    },
+    "opts": [
+     {
+      "uz": "U yerda hech qanday kod ishlab turmaydi, hammasi o'chirilgan",
+      "ru": "Там никакой код не работает, всё отключено"
+     },
+     {
+      "uz": "U yerda haqiqiy yo'lovchi (foydalanuvchi) bor",
+      "ru": "Там есть настоящий пассажир (пользователь)"
+     },
+     {
+      "uz": "U yerda test umuman o'tkazilmaydi",
+      "ru": "Там вообще не проводятся тесты"
+     },
+     {
+      "uz": "U faqat mentor ekranida ko'rinadi",
+      "ru": "Он виден только на экране ментора"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 60,
+     "jami": 237,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Yangi versiya production'da xato chiqarsa, tezkor yechim nima?",
+     "ru": "Новая версия выдала ошибку в production — какое быстрое решение?"
+    },
+    "opts": [
+     {
+      "uz": "Butun repozitoriyni o'chirib tashlash",
+      "ru": "Удалить весь репозиторий"
+     },
+     {
+      "uz": "Barcha o'quvchilarga xabar yuborish",
+      "ru": "Разослать сообщение всем ученикам"
+     },
+     {
+      "uz": "Eski yukni qaytarish (rollback)",
+      "ru": "Вернуть старый багаж (rollback)"
+     },
+     {
+      "uz": "Lentani butunlay o'chirib qo'yish",
+      "ru": "Полностью выключить конвейер"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 62,
+     "maxVariant": 37,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Eski yukni qaytarish (rollback) qachon eng to'g'ri qaror bo'ladi?",
+     "ru": "Когда возврат старого багажа (rollback) — самое верное решение?"
+    },
+    "opts": [
+     {
+      "uz": "Push hali qilinmagan paytda",
+      "ru": "Когда push ещё не сделан"
+     },
+     {
+      "uz": "Lenta hali umuman ishga tushirilmagan holatda turgan paytda",
+      "ru": "Когда конвейер ещё вообще не запускался"
+     },
+     {
+      "uz": "Test hali yashil ko'rinib turgan paytda",
+      "ru": "Когда тесты ещё горят зелёным"
+     },
+     {
+      "uz": "Yangi versiya productionda muammo chiqarganda",
+      "ru": "Когда новая версия создала проблему в production"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 65,
+     "maxVariant": 59,
+     "jami": 235,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "TABLO (status badge) repo sahifasida nimani ko'rsatadi?",
+     "ru": "Что показывает ТАБЛО (status badge) на странице репозитория?"
+    },
+    "opts": [
+     {
+      "uz": "Lenta hozir yashilmi yoki qizilmi ekanini",
+      "ru": "Зелёный сейчас конвейер или красный"
+     },
+     {
+      "uz": "Loyihaning umumiy og'irligini",
+      "ru": "Общий вес проекта"
+     },
+     {
+      "uz": "Nechta o'quvchi bu darsni to'liq tugatib ulgurganini",
+      "ru": "Сколько учеников успело полностью пройти этот урок"
+     },
+     {
+      "uz": "Serverning geografik joylashuvini",
+      "ru": "Географическое расположение сервера"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 52,
+     "jami": 210,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "LENTA JURNALIDA qizil chiroq ko'rinsa, birinchi navbatda nima qilinadi?",
+     "ru": "В ЖУРНАЛЕ КОНВЕЙЕРА виден красный сигнал — что делают в первую очередь?"
+    },
+    "opts": [
+     {
+      "uz": "Darhol butun lentani o'chirib tashlanadi",
+      "ru": "Немедленно удаляют весь конвейер"
+     },
+     {
+      "uz": "Jurnal o'qilib, qaysi nuqta va nega to'xtaganini topiladi",
+      "ru": "Читают журнал и находят, какая точка и почему остановилась"
+     },
+     {
+      "uz": "Kod hech qayerga tegilmasdan yana bir bor push qilib yuboriladi",
+      "ru": "Ничего не трогая, просто делают push ещё раз"
+     },
+     {
+      "uz": "Mentordan yangi maxfiy kalit so'raladi",
+      "ru": "Просят у ментора новый секретный ключ"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 63,
+     "jami": 269,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Bitta yo'l xaritasida ikkita mustaqil nuqta parallel ishlasa, ular bir-biriga qanday ta'sir qiladi?",
+     "ru": "Две независимые точки в одной карте маршрута работают параллельно — как они влияют друг на друга?"
+    },
+    "opts": [
+     {
+      "uz": "Biri albatta ikkinchisini to'xtatadi",
+      "ru": "Одна обязательно остановит другую"
+     },
+     {
+      "uz": "Ular hech qachon parallel bo'lmaydi, doim navbat bilan ketma-ket ishlaydi",
+      "ru": "Они никогда не работают параллельно, всегда строго по очереди"
+     },
+     {
+      "uz": "Mustaqil — biri yiqilsa, ikkinchisi baribir davom etadi",
+      "ru": "Они независимы — если одна упала, вторая всё равно продолжит"
+     },
+     {
+      "uz": "Faqat birinchisi natija beradi",
+      "ru": "Результат даёт только первая"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 99,
+     "maxVariant": 73,
+     "jami": 293,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4c-05",
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Lenta jurnalida qizil chiroq yonganda birinchi navbatda nima qilasiz?",
+     "ru": "Красный свет на ленте — что вы сделаете в первую очередь?"
+    },
+    "opts": [
+     {
+      "uz": "Hech narsa qilmayman, indamay kutib turaman",
+      "ru": "Ничего не сделаю, просто молча подожду"
+     },
+     {
+      "uz": "Loyihani hech narsasiz qayta yozib chiqaman",
+      "ru": "Перепишу проект заново безо всяких причин"
+     },
+     {
+      "uz": "Jurnalni ochib, to'xtagan nuqtani ko'raman",
+      "ru": "Открою журнал и посмотрю, где остановилось"
+     },
+     {
+      "uz": "So'ramasdan darhol qayta push qilib yuboraman",
+      "ru": "Сразу сделаю push ещё раз, ничего не выясняя"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 69,
+     "maxVariant": 45,
+     "jami": 242,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Copilot'ga qanday so'rov eng foydali javob beradi?",
+     "ru": "Какой запрос Copilot даст самый полезный ответ?"
+    },
+    "opts": [
+     {
+      "uz": "Qator, kutilgan va kelgan qiymatni aytish",
+      "ru": "Назвать строку, ожидаемое и полученное значение"
+     },
+     {
+      "uz": "Hech qanday tafsilotsiz \"yordam ber\" deyish",
+      "ru": "Сказать «помоги» безо всяких деталей"
+     },
+     {
+      "uz": "Butun kodni ko'rsatmasdan \"top\" deb so'rash",
+      "ru": "Сказать «найди сам», не показывая код"
+     },
+     {
+      "uz": "Faqat bitta so'z bilan \"ishlamayapti\" deyish",
+      "ru": "Написать одно слово — «не работает»"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 44,
+     "jami": 221,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Copilot tuzatish taklif qildi. Bu nima degani?",
+     "ru": "Copilot предложил исправление. Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "Bu 100% to'g'ri, boshqa tekshiruv shart emas",
+      "ru": "Это 100% верно, проверять больше не нужно"
+     },
+     {
+      "uz": "Bu tekshirilishi kerak bo'lgan taxmin, xolos",
+      "ru": "Это всего лишь гипотеза, которую нужно проверить"
+     },
+     {
+      "uz": "Bu avtomatik ravishda o'zi push bo'lib ketadi",
+      "ru": "Оно само автоматически уйдёт в push"
+     },
+     {
+      "uz": "Bu har doim eng oxirgi to'g'ri yechim bo'ladi",
+      "ru": "Это всегда окончательное верное решение"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 45,
+     "jami": 224,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Jurnalda \"kutildi: Ali, keldi: undefined\" degan qator nimani bildiradi?",
+     "ru": "Что означает строка «ожидалось: Ali, получено: undefined» в журнале?"
+    },
+    "opts": [
+     {
+      "uz": "Fayl serverda umuman topilmagan degani",
+      "ru": "Файл вообще не найден на сервере"
+     },
+     {
+      "uz": "Internet ulanishi to'satdan uzilgan degani",
+      "ru": "Интернет-соединение внезапно оборвалось"
+     },
+     {
+      "uz": "Lenta hali umuman ishga tushmagan degani",
+      "ru": "Лента ещё вообще не запускалась"
+     },
+     {
+      "uz": "Kutilgan va haqiqiy natija mos kelmagani",
+      "ru": "Ожидаемый и реальный результат не совпали"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 42,
+     "jami": 231,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Copilot taklifini tekshirish uchun nimadan foydalanasiz?",
+     "ru": "Чем вы проверяете предложение Copilot?"
+    },
+    "opts": [
+     {
+      "uz": "Lenta jurnalidagi haqiqiy dalillardan",
+      "ru": "Реальными уликами из журнала ленты"
+     },
+     {
+      "uz": "Tasodifiy o'ylab topilgan taxmindan",
+      "ru": "Случайной выдуманной догадкой"
+     },
+     {
+      "uz": "Boshqa loyihadagi eskirgan koddan",
+      "ru": "Устаревшим кодом из другого проекта"
+     },
+     {
+      "uz": "Faqat o'z xotirangizdagi noaniq taxminlardan",
+      "ru": "Только смутными догадками по памяти"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 44,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Copilot sababni noto'g'ri aytishi mumkinmi?",
+     "ru": "Может ли Copilot поставить неверный диагноз?"
+    },
+    "opts": [
+     {
+      "uz": "Yo'q, Copilot hech qachon xato qilmaydi",
+      "ru": "Нет, Copilot никогда не ошибается"
+     },
+     {
+      "uz": "Ha, shuning uchun taklifni tekshirasiz",
+      "ru": "Да, поэтому вы проверяете предложение"
+     },
+     {
+      "uz": "Yo'q, chunki u odam emas, dastur, xolos",
+      "ru": "Нет, ведь он не человек, а просто программа"
+     },
+     {
+      "uz": "Faqat dushanba kunlari xato qilib turadi",
+      "ru": "Ошибается только по понедельникам"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 40,
+     "jami": 199,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Aniqlashtiruvchi so'rov (follow-up) qachon kerak bo'ladi?",
+     "ru": "Когда нужен уточняющий запрос (follow-up)?"
+    },
+    "opts": [
+     {
+      "uz": "Birinchi taklif to'liq to'g'ri chiqqanda",
+      "ru": "Когда первое предложение полностью верное"
+     },
+     {
+      "uz": "Lenta hali umuman ishga tushmaganda",
+      "ru": "Когда лента ещё вообще не запускалась"
+     },
+     {
+      "uz": "Faqat barcha testlar yashil bo'lganda",
+      "ru": "Только когда все тесты зелёные"
+     },
+     {
+      "uz": "Taklif noaniq yoki xato bo'lganda",
+      "ru": "Когда предложение неточное или неверное"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 40,
+     "jami": 202,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Yakuniy qarorni — tuzatishni qabul qilish yoki qilmaslikni — kim beradi?",
+     "ru": "Кто принимает финальное решение — брать исправление или нет?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat Copilot o'zi mustaqil qaror qiladi",
+      "ru": "Только Copilot, сам и независимо"
+     },
+     {
+      "uz": "Hech kim, u tasodifan o'zi hal bo'ladi",
+      "ru": "Никто — оно как-нибудь решится само"
+     },
+     {
+      "uz": "Har doim siz — mas'uliyat sizda qoladi",
+      "ru": "Всегда вы — ответственность остаётся на вас"
+     },
+     {
+      "uz": "Lenta mashinasi buni avtomatik hal qiladi",
+      "ru": "Машина ленты решает это автоматически"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 72,
+     "maxVariant": 41,
+     "jami": 229,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Copilot'ning taklifi jurnaldagi sabab bilan mos kelmasa nima qilish kerak?",
+     "ru": "Предложение Copilot не сходится с причиной из журнала. Что делать?"
+    },
+    "opts": [
+     {
+      "uz": "Baribir taklifni qo'llab, darhol push qilish",
+      "ru": "Всё равно применить его и сразу сделать push"
+     },
+     {
+      "uz": "Taklifni rad etib, haqiqiy sababni izlash",
+      "ru": "Отклонить предложение и искать настоящую причину"
+     },
+     {
+      "uz": "Loyihani butunlay tashlab, voz kechish",
+      "ru": "Совсем бросить проект и сдаться"
+     },
+     {
+      "uz": "Copilot'dan boshqa savol umuman bermaslik",
+      "ru": "Больше вообще не задавать Copilot вопросов"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 74,
+     "maxVariant": 44,
+     "jami": 238,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Jurnal qatorida fayl nomi va qator raqami nega muhim?",
+     "ru": "Почему важны имя файла и номер строки в журнале?"
+    },
+    "opts": [
+     {
+      "uz": "Chunki ular saytning ranglarini belgilaydi",
+      "ru": "Потому что они задают цвета сайта"
+     },
+     {
+      "uz": "Chunki ular deploy tugmasi o'rnini bosadi",
+      "ru": "Потому что они заменяют кнопку deploy"
+     },
+     {
+      "uz": "Chunki ular faqat estetik ko'rinish uchun",
+      "ru": "Потому что это просто для красоты"
+     },
+     {
+      "uz": "Chunki ular xato qayerdaligini ko'rsatadi",
+      "ru": "Потому что они показывают, где именно ошибка"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 42,
+     "jami": 218,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Copilot bilan tuzatishning to'g'ri tartibi qaysi?",
+     "ru": "Какой порядок починки с Copilot правильный?"
+    },
+    "opts": [
+     {
+      "uz": "Jurnal, so'rov, tekshirish, tuzatish, push",
+      "ru": "Журнал, запрос, проверка, починка, push"
+     },
+     {
+      "uz": "Tekshirish, push, jurnal, so'rov tartibida",
+      "ru": "Проверка, push, журнал, запрос"
+     },
+     {
+      "uz": "Push, so'rov, tekshirish, jurnal tartibida",
+      "ru": "Push, запрос, проверка, журнал"
+     },
+     {
+      "uz": "So'rov, keyin push, keyin jurnal, tekshirish",
+      "ru": "Запрос, потом push, потом журнал и проверка"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 44,
+     "jami": 219,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Copilot bilan ishlashning asosiy saboqi nima?",
+     "ru": "Главный урок работы с Copilot ленты — какой?"
+    },
+    "opts": [
+     {
+      "uz": "AI hamma narsani siz o'rniga hal qiladi",
+      "ru": "AI решит всё за вас"
+     },
+     {
+      "uz": "AI faqat rasm chizadi, kodga aloqasi yo'q",
+      "ru": "AI только рисует картинки и не связан с кодом"
+     },
+     {
+      "uz": "AI tez yordam beradi, qaror sizda qoladi",
+      "ru": "AI помогает быстро, а решение остаётся за вами"
+     },
+     {
+      "uz": "AI ishlatish umuman shart emas, foydasiz",
+      "ru": "AI использовать вообще незачем, он бесполезен"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 41,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4c-06",
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "O'lchagich nima?",
+     "ru": "Что такое измеритель?"
+    },
+    "opts": [
+     {
+      "uz": "Chiqqandan keyin saytni o'lchab turadigan dastur",
+      "ru": "Прибор, который измеряет сайт после выпуска"
+     },
+     {
+      "uz": "Sayt kodini chiqarishdan oldin tekshiradigan dastur",
+      "ru": "Прибор, который проверяет код сайта перед выпуском"
+     },
+     {
+      "uz": "Sayt sahifalarini yozib beradigan dastur",
+      "ru": "Программа, которая пишет страницы сайта"
+     },
+     {
+      "uz": "Sayt havolasini saqlab qo'yadigan ro'yxat",
+      "ru": "Список, где хранится ссылка на сайт"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 16,
+     "maxVariant": 51,
+     "jami": 196,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "O'lchagich qachon ishlaydi?",
+     "ru": "Когда работает измеритель?"
+    },
+    "opts": [
+     {
+      "uz": "Chiqarishgacha — kodni tekshirib beradi",
+      "ru": "До выпуска — проверяет код"
+     },
+     {
+      "uz": "Chiqarishgacha — xatoni oldin topadi",
+      "ru": "До выпуска — находит ошибку раньше"
+     },
+     {
+      "uz": "Chiqqandan keyin — sayt tez ochilsin uchun",
+      "ru": "После выпуска — чтобы сайт открывался быстрее"
+     },
+     {
+      "uz": "Chiqqandan keyin — sayt odamlar qo'lida",
+      "ru": "После выпуска — сайт в руках у людей"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 42,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "«Javob vaqti» nimani ko'rsatadi?",
+     "ru": "Что показывает «время ответа»?"
+    },
+    "opts": [
+     {
+      "uz": "100 kirishdan nechtasi xato bilan tugaganini",
+      "ru": "Сколько из 100 заходов закончились ошибкой"
+     },
+     {
+      "uz": "Sahifada nechta rasm borligini",
+      "ru": "Сколько на странице картинок"
+     },
+     {
+      "uz": "Sahifa necha soniyada kelganini",
+      "ru": "За сколько секунд пришла страница"
+     },
+     {
+      "uz": "Sayt bir kunda necha marta ochilganini",
+      "ru": "Сколько раз за день открыли сайт"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 44,
+     "jami": 175,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Signal nima?",
+     "ru": "Что такое сигнал?"
+    },
+    "opts": [
+     {
+      "uz": "Chegara qilib qo'ygan soningiz",
+      "ru": "Число, которое вы поставили границей"
+     },
+     {
+      "uz": "Chegaradan o'tganda keladigan xabar",
+      "ru": "Сообщение, которое приходит при переходе границы"
+     },
+     {
+      "uz": "Saytga kirgan odam yozib qoldirgan izoh-xabar",
+      "ru": "Отзыв, который оставил зашедший человек"
+     },
+     {
+      "uz": "Sayt ochilmay qolgan payt",
+      "ru": "Момент, когда сайт перестал открываться"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 12,
+     "maxVariant": 45,
+     "jami": 147,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Qaysi signal chin?",
+     "ru": "Какой сигнал настоящий?"
+    },
+    "opts": [
+     {
+      "uz": "Kechasi odam uxlayotganda kelgan signal",
+      "ru": "Сигнал, пришедший ночью, когда человек спит"
+     },
+     {
+      "uz": "Saytga kirgan odam sezgan signal",
+      "ru": "Сигнал, который заметил зашедший на сайт человек"
+     },
+     {
+      "uz": "Har mayda sakrashdan kelgan signal",
+      "ru": "Сигнал от каждого мелкого скачка"
+     },
+     {
+      "uz": "Ketma-ket ikki marta kelgan signal",
+      "ru": "Сигнал, пришедший дважды подряд"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 18,
+     "maxVariant": 39,
+     "jami": 157,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Kechasi javob bir zumga sekinlashdi va o'ziga qaytdi — bu qanday signal?",
+     "ru": "Ночью ответ на мгновение замедлился и вернулся к норме — какой это сигнал?"
+    },
+    "opts": [
+     {
+      "uz": "Quruq — uni hech kim sezmadi",
+      "ru": "Пустой — его никто не заметил"
+     },
+     {
+      "uz": "Quruq — u kechasi keldi",
+      "ru": "Пустой — он пришёл ночью"
+     },
+     {
+      "uz": "Chin — javob sekinlashdi",
+      "ru": "Настоящий — ответ замедлился"
+     },
+     {
+      "uz": "Chin — o'lchagich xabar berdi",
+      "ru": "Настоящий — измеритель прислал сообщение"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 72,
+     "maxVariant": 29,
+     "jami": 176,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Chegara juda past bo'lsa nima bo'ladi?",
+     "ru": "Что будет, если граница слишком низкая?"
+    },
+    "opts": [
+     {
+      "uz": "Quruq signal umuman kelmaydi",
+      "ru": "Пустые сигналы вообще не придут"
+     },
+     {
+      "uz": "O'lchagich xatoni ko'rmay qoladi",
+      "ru": "Измеритель перестанет видеть ошибки"
+     },
+     {
+      "uz": "Quruq signallar ko'payadi",
+      "ru": "Пустых сигналов станет больше"
+     },
+     {
+      "uz": "Sayt tezroq ochiladigan bo'ladi",
+      "ru": "Сайт станет открываться быстрее"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 32,
+     "jami": 154,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Chegara juda baland bo'lsa nima bo'ladi?",
+     "ru": "Что будет, если граница слишком высокая?"
+    },
+    "opts": [
+     {
+      "uz": "Har mayda sakrash xabar beradi",
+      "ru": "Каждый мелкий скачок будет слать сообщение"
+     },
+     {
+      "uz": "Sayt umuman ochilmay qoladi",
+      "ru": "Сайт вообще перестанет открываться"
+     },
+     {
+      "uz": "O'lchagich uch o'lchovni almashtiradi",
+      "ru": "Измеритель поменяет три измерения местами"
+     },
+     {
+      "uz": "Odam sizdan oldin sezadi",
+      "ru": "Человек заметит раньше вас"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 37,
+     "jami": 158,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Network'da har qator haqida qaysi ikki raqam turadi?",
+     "ru": "Какие два числа стоят в Network для каждой строки?"
+    },
+    "opts": [
+     {
+      "uz": "Holat (200 · 404) va vaqt (ms)",
+      "ru": "Состояние (200 · 404) и время (мс)"
+     },
+     {
+      "uz": "Sahifa nomi va rasm o'lchami",
+      "ru": "Название страницы и размер картинки"
+     },
+     {
+      "uz": "Sahifa holati va kirganlar soni",
+      "ru": "Состояние страницы и число зашедших"
+     },
+     {
+      "uz": "Sayt havolasi va ochilgan vaqt",
+      "ru": "Ссылка на сайт и время открытия"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 31,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Holat 404 nimani bildiradi?",
+     "ru": "Что означает состояние 404?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifa odatdagidek keldi",
+      "ru": "Страница пришла как обычно"
+     },
+     {
+      "uz": "Sahifa juda sekin keldi",
+      "ru": "Страница пришла очень медленно"
+     },
+     {
+      "uz": "Bunday sahifa topilmadi",
+      "ru": "Такая страница не найдена"
+     },
+     {
+      "uz": "Sayt butunlay ochilmadi",
+      "ru": "Сайт не открылся совсем"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 24,
+     "jami": 120,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Javob bir zumga sekinlashdi va qaytdi — bu signalga qaysi yo'l to'g'ri?",
+     "ru": "Ответ на мгновение замедлился и вернулся — какой путь верен для этого сигнала?"
+    },
+    "opts": [
+     {
+      "uz": "Hozir xabarga — javob sekinlashdi",
+      "ru": "Сообщить сейчас — ответ замедлился"
+     },
+     {
+      "uz": "Jurnalga — uni hech kim sezmadi",
+      "ru": "В журнал — его никто не заметил"
+     },
+     {
+      "uz": "Hozir xabarga — sayt ochilmay qoldi",
+      "ru": "Сообщить сейчас — сайт перестал открываться"
+     },
+     {
+      "uz": "Jurnalga — saytda xato ko'paydi",
+      "ru": "В журнал — на сайте стало больше ошибок"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 35,
+     "jami": 201,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Chiqqandan keyin saytni o'lchashni kim hal qiladi?",
+     "ru": "Кто решает, измерять ли сайт после выпуска?"
+    },
+    "opts": [
+     {
+      "uz": "Brauzer — u xabar yuborib turadi",
+      "ru": "Браузер — он присылает сообщения"
+     },
+     {
+      "uz": "Saytga kirgan odamlar",
+      "ru": "Люди, зашедшие на сайт"
+     },
+     {
+      "uz": "Hech kim — sayt o'zi ishlab ketaveradi",
+      "ru": "Никто — сайт работает сам"
+     },
+     {
+      "uz": "Saytni chiqargan odam — siz",
+      "ru": "Тот, кто выпустил сайт, — вы"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 38,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4c-07",
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Parallel lentalar (matrix) nima uchun ishlatiladi?",
+     "ru": "Для чего используются параллельные ленты (matrix)?"
+    },
+    "opts": [
+     {
+      "uz": "Bir nechta muhitda (masalan, Node versiyalarida) bir vaqtda sinash uchun",
+      "ru": "Чтобы тестировать одновременно в нескольких средах (например, версиях Node)"
+     },
+     {
+      "uz": "Faqat production serverini qayta yuklab, ishga tushirish uchun ishlatiladi",
+      "ru": "Чтобы просто перезагружать и запускать продакшен-сервер"
+     },
+     {
+      "uz": "Kodni faqat bitta muhitda biroz sekinroq tekshirish uchun maxsus ishlatiladi",
+      "ru": "Чтобы проверять код в одной-единственной среде, но чуть медленнее"
+     },
+     {
+      "uz": "Maxfiy kalitlarni bitta joyga yig'ib, doim yashirib qo'yish uchun ishlatiladi",
+      "ru": "Чтобы собрать секретные ключи в одном месте и всегда их прятать"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 77,
+     "jami": 349,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Yaqin javon (cache) nimani tezlashtiradi?",
+     "ru": "Что ускоряет ближняя полка (cache)?"
+    },
+    "opts": [
+     {
+      "uz": "Foydalanuvchi brauzeridagi sahifa render bo'lish tezligini oshirib beradi",
+      "ru": "Скорость отрисовки страницы в браузере пользователя"
+     },
+     {
+      "uz": "Faqat production serverining internetga ulanish tezligini oshirib beradi",
+      "ru": "Только скорость подключения продакшен-сервера к интернету"
+     },
+     {
+      "uz": "Testlarning ichidagi mantiqiy hisob-kitoblarini bajarish tezligini oshiradi",
+      "ru": "Скорость логических вычислений внутри тестов"
+     },
+     {
+      "uz": "Paketlarni qaytadan yuklamaslik orqali install bosqichini tezlashtiradi",
+      "ru": "Этап install — пакеты не скачиваются заново"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 75,
+     "jami": 332,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Maxfiy kalitni (masalan API_KEY) yo'l xaritasiga qanday yozish xavfsiz?",
+     "ru": "Как безопасно записать секретный ключ (например, API_KEY) в маршрутную карту?"
+    },
+    "opts": [
+     {
+      "uz": "To'g'ridan-to'g'ri ochiq matn sifatida faylning ichiga yozib qo'yiladi",
+      "ru": "Записать прямо в файл открытым текстом"
+     },
+     {
+      "uz": "README faylining eng boshiga alohida qatorga yozib qo'yiladi",
+      "ru": "Записать отдельной строкой в самом начале README"
+     },
+     {
+      "uz": "Seyfga saqlab, keyin maxsus belgi orqali chaqirib ishlatiladi",
+      "ru": "Сохранить в сейфе и вызывать через специальную запись"
+     },
+     {
+      "uz": "Commit izohiga (commit message) yozib, keyin push qilib yuboriladi",
+      "ru": "Записать в сообщение коммита и отправить push"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 70,
+     "jami": 328,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Sinov reysi (staging) nima uchun kerak bo'ladi?",
+     "ru": "Зачем нужен тестовый рейс (staging)?"
+    },
+    "opts": [
+     {
+      "uz": "Kodni to'g'ridan-to'g'ri yo'lovchi qo'liga tezroq yetkazish uchun kerak",
+      "ru": "Чтобы быстрее доставить код прямо в руки пассажира"
+     },
+     {
+      "uz": "Haqiqiy reysdan oldin yo'lovchisiz alohida sinab ko'rish uchun",
+      "ru": "Чтобы отдельно всё проверить без пассажиров перед настоящим рейсом"
+     },
+     {
+      "uz": "Parallel lentalarni bitta katta lentaga birlashtirib qo'yish uchun kerak",
+      "ru": "Чтобы объединить параллельные ленты в одну большую ленту"
+     },
+     {
+      "uz": "Maxfiy kalitlarni ochiq holda saqlab qo'yish uchun ishlatiladi doimo",
+      "ru": "Чтобы всегда хранить секретные ключи в открытом виде"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 72,
+     "jami": 320,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Yangi o'ralgan yuk productionda buzuq chiqdi. Eng tez yechim nima bo'ladi?",
+     "ru": "Новый упакованный багаж в продакшене оказался сломанным. Какое решение самое быстрое?"
+    },
+    "opts": [
+     {
+      "uz": "Yaqin javonni (cache) to'liq tozalab, yana boshidan yuklab olinadi",
+      "ru": "Полностью очистить кеш (cache) и загрузить всё заново"
+     },
+     {
+      "uz": "Barcha maxfiy kalitlarni butunlay o'chirib, so'ngra yangidan yaratib qo'yiladi",
+      "ru": "Удалить все секретные ключи и создать их заново"
+     },
+     {
+      "uz": "Parallel lentalar sonini yana ko'proq oshirib, qayta sinab ko'riladi",
+      "ru": "Увеличить количество параллельных лент и попробовать снова"
+     },
+     {
+      "uz": "Eski yukni qaytarish (rollback) bilan oldingi versiyaga darhol qaytiladi",
+      "ru": "Сразу вернуться к прежней версии через rollback (возврат старого багажа)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 74,
+     "maxVariant": 78,
+     "jami": 358,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Matrix'da 2 muhitdan biri (masalan Node 22) qizil chiroq bersa nima bo'ladi?",
+     "ru": "Что будет, если в matrix одна из 2 сред (например, Node 22) даст красный свет?"
+    },
+    "opts": [
+     {
+      "uz": "Aynan o'sha muhit qizil ko'rinadi, qaysi sharoitda singani aniqlanadi",
+      "ru": "Красной станет именно эта среда — сразу ясно, в каких условиях всё сломалось"
+     },
+     {
+      "uz": "Ikkinchi muhit ham avtomatik ravishda qizil bo'lib qoladi",
+      "ru": "Вторая среда тоже автоматически станет красной"
+     },
+     {
+      "uz": "Butun lenta darhol butunlay o'chib, hammasi qayta o'rnatilishi kerak bo'ladi",
+      "ru": "Вся лента сразу выключится, и всё придётся переустанавливать"
+     },
+     {
+      "uz": "Barcha muhitlar birlashib, o'rtacha bitta natija chiqarib beriladi",
+      "ru": "Все среды объединятся и выдадут один усреднённый результат"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 76,
+     "maxVariant": 76,
+     "jami": 344,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Yaqin javon (cache) qanday qilib ishlaydi?",
+     "ru": "Как работает ближняя полка (cache)?"
+    },
+    "opts": [
+     {
+      "uz": "Har reysda hamma narsani doim noldan boshlab qayta yozib chiqaveradi",
+      "ru": "На каждом рейсе всегда всё переделывает заново с нуля"
+     },
+     {
+      "uz": "Avvalgi reysda yuklangan paketlarni saqlab, keyin qayta ishlatiladi",
+      "ru": "Сохраняет пакеты с прошлого рейса и использует их снова"
+     },
+     {
+      "uz": "Testlar natijasini butunlay eslab qolib, qayta ishga tushirmaydi",
+      "ru": "Запоминает результаты тестов и больше их не запускает"
+     },
+     {
+      "uz": "Faqat maxfiy kalitlarni saqlaydi, boshqa hech narsani saqlamaydi",
+      "ru": "Хранит только секретные ключи и больше ничего"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 68,
+     "jami": 305,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Seyf (secrets) qayerda saqlanishi kerak bo'ladi?",
+     "ru": "Где должны храниться секреты (secrets)?"
+    },
+    "opts": [
+     {
+      "uz": "ci.yml faylining o'zida, hammaga ochiq matn sifatida turadi doimo",
+      "ru": "Прямо в файле ci.yml, открытым текстом на виду у всех"
+     },
+     {
+      "uz": "Lenta jurnalining (logs) eng oxirgi qatoriga yozib qo'yiladi",
+      "ru": "В самой последней строке журнала ленты (logs)"
+     },
+     {
+      "uz": "Platformaning maxsus xavfsiz seyf sozlamalar bo'limida saqlanadi",
+      "ru": "В специальном безопасном разделе-сейфе в настройках платформы"
+     },
+     {
+      "uz": "Foydalanuvchiga ochiq ko'rinadigan README faylida saqlanadi",
+      "ru": "В файле README, открытом для любого пользователя"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 65,
+     "jami": 296,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Sinov reysi (staging) va haqiqiy reys (production) orasidagi farq nima?",
+     "ru": "В чём разница между тестовым рейсом (staging) и настоящим (production)?"
+    },
+    "opts": [
+     {
+      "uz": "Sinov reysida yo'lovchi yo'q, haqiqiy reysda esa yo'lovchi bor",
+      "ru": "На тестовом рейсе пассажиров нет, а на настоящем — есть"
+     },
+     {
+      "uz": "Sinov reysi faqat dushanba kunlari ishga tushib, keyin o'chadi",
+      "ru": "Тестовый рейс запускается только по понедельникам, а потом отключается"
+     },
+     {
+      "uz": "Ikkalasi ham aslida bir xil, faqat nomlari boshqacha qo'yilgan",
+      "ru": "На самом деле они одинаковые, просто названия разные"
+     },
+     {
+      "uz": "Haqiqiy reys hech qachon hech qanday tekshiruvdan o'tmasligi kerak",
+      "ru": "Настоящий рейс вообще не должен проходить никаких проверок"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 66,
+     "jami": 323,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Eski yukni qaytarish (rollback) qachon ishlatilishi kerak bo'ladi?",
+     "ru": "Когда нужно использовать возврат старого багажа (rollback)?"
+    },
+    "opts": [
+     {
+      "uz": "Har push'da, sharoitidan qat'i nazar har doim ishlatilishi kerak",
+      "ru": "При каждом push, всегда и независимо от ситуации"
+     },
+     {
+      "uz": "Yangi versiya productionda muammo chiqarganda, tez qaytish uchun",
+      "ru": "Когда новая версия дала сбой в продакшене — чтобы быстро вернуться"
+     },
+     {
+      "uz": "Yaqin javon (cache) hali bo'sh bo'lgan paytda ishlatilishi kerak",
+      "ru": "Когда ближняя полка (cache) ещё пустая"
+     },
+     {
+      "uz": "Faqat matrix barcha muhitlarda to'liq yashil bo'lgan paytda ishlatiladi",
+      "ru": "Только когда matrix полностью зелёный во всех средах"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 71,
+     "jami": 329,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Parallel lentalar foydali — turli muhitda kod boshqacha ishlashi mumkinmi?",
+     "ru": "Параллельные ленты полезны — а может ли код в разных средах работать по-разному?"
+    },
+    "opts": [
+     {
+      "uz": "Ha, lekin bu faqat yakshanba kunlari shunday bo'lib qoladi",
+      "ru": "Да, но только по воскресеньям"
+     },
+     {
+      "uz": "Yo'q, barcha muhitlarda kod har doim aynan bir xil ishlaydi",
+      "ru": "Нет, во всех средах код всегда работает одинаково"
+     },
+     {
+      "uz": "Yo'q, matrix faqat sayt dizaynini tekshiradi, kodni umuman tekshirmaydi",
+      "ru": "Нет, matrix проверяет только дизайн сайта, а код — вообще нет"
+     },
+     {
+      "uz": "Ha, chunki turli muhitlarda kod har xil natija berishi mumkin bo'ladi",
+      "ru": "Да, ведь в разных средах код может давать разный результат"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 74,
+     "maxVariant": 71,
+     "jami": 331,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Ishonchli lentada to'g'ri tartib qanday bo'lishi kerak?",
+     "ru": "Каким должен быть правильный порядок в надёжной ленте?"
+    },
+    "opts": [
+     {
+      "uz": "Avval production ishga tushadi, so'ngra sinov reysi (staging) boshlanadi",
+      "ru": "Сначала запускается production, затем начинается тестовый рейс (staging)"
+     },
+     {
+      "uz": "Avval rollback qilinib, keyin yangi yuk chiqarib yuboriladi",
+      "ru": "Сначала делается rollback, потом выпускается новый багаж"
+     },
+     {
+      "uz": "Avval sinov reysi (staging), so'ngra haqiqiy reys (production)",
+      "ru": "Сначала тестовый рейс (staging), затем настоящий рейс (production)"
+     },
+     {
+      "uz": "Avval seyf o'chiriladi, keyin kod yozishga kirishiladi",
+      "ru": "Сначала отключается сейф, потом начинают писать код"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 72,
+     "jami": 302,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ }
+]

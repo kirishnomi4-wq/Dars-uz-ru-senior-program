@@ -111,6 +111,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -188,8 +213,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1400,18 +1425,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (aylanma, MD); ekran testlarining nusxasi emas (§144)
 const QUIZ_BANK = [
-  { q: { uz: 'SQL injection nima?', ru: 'Что такое SQL injection?' }, opts: [{ uz: "Foydalanuvchi matni so'rovga buyruq bo'lib qo'shilishi", ru: 'Текст пользователя попадает в запрос как команда' }, { uz: "Database'dagi bitta jadvalning noto'g'ri nomlanishi", ru: 'Неверное название одной таблицы в Database' }, { uz: "Backend'ning so'rovga sekin javob berishi", ru: 'Backend медленно отвечает на запрос' }, { uz: "Saytning telefon raqamini xato ko'rsatishi", ru: 'Сайт неверно показывает номер телефона' }], correct: 0 },
-  { q: { uz: "Qidiruvni SQL injection'dan nima yopadi?", ru: 'Что закрывает SQL injection в поиске?' }, opts: [{ uz: 'Telefonni katta harfga aylantirish', ru: 'Перевести телефон в заглавные буквы' }, { uz: "Parametrli so'rov", ru: 'Параметризованный запрос' }, { uz: "Qidiruvni butunlay o'chirish", ru: 'Совсем убрать поиск' }, { uz: "So'rovni `POST` bilan yuborish", ru: 'Отправлять запрос через `POST`' }], correct: 1 },
-  { q: { uz: 'Kodda SQL injection belgisi qaysi?', ru: 'Какой признак SQL injection в коде?' }, opts: [{ uz: "So'rov `bandlar` jadvaliga yuborilgani", ru: 'Запрос отправлен в таблицу `bandlar`' }, { uz: "Qidiruv ism emas, telefon bo'yicha ekani", ru: 'Поиск идёт по телефону, а не по имени' }, { uz: "Foydalanuvchi matni so'rov satriga qo'shilgani", ru: 'Текст пользователя вставлен в строку запроса' }, { uz: "So'rov Database'dan bitta javob qaytargani", ru: 'Запрос вернул из Database один ответ' }], correct: 2 },
-  { q: { uz: 'XSS (Cross-Site Scripting) nima?', ru: 'Что такое XSS (Cross-Site Scripting)?' }, opts: [{ uz: "Backend'ning ikki marta ketma-ket ishga tushishi", ru: 'Backend запускается дважды подряд' }, { uz: 'Parolning sayt kodida ochiq qolib ketishi', ru: 'Пароль остался открытым в коде сайта' }, { uz: "Database so'rovining sezilarli sekinlashuvi", ru: 'Запрос к Database заметно замедлился' }, { uz: "Foydalanuvchi matni sahifada kod bo'lib ishlashi", ru: 'Текст пользователя работает на странице как код' }], correct: 3 },
-  { q: { uz: "Ega ro'yxatidagi ismni XSS'dan nima yopadi?", ru: 'Что закрывает XSS в имени из списка владельца?' }, opts: [{ uz: 'Oddiy matn sifatida chiqarish', ru: 'Вывод обычным текстом' }, { uz: "Ismni Database'dan o'chirish", ru: 'Удалить имя из Database' }, { uz: 'Ismni katta harf qilish', ru: 'Сделать имя заглавными' }, { uz: 'Ism uzunligini cheklash', ru: 'Ограничить длину имени' }], correct: 0 },
-  { q: { uz: 'Kodda XSS belgisi qaysi?', ru: 'Какой признак XSS в коде?' }, opts: [{ uz: "Ism Database'da saqlangani (`bandlar` jadvalida)", ru: 'Имя хранится в Database (в таблице `bandlar`)' }, { uz: 'Ism HTML sifatida chiqarilgani (`dangerouslySetInnerHTML`)', ru: 'Имя выводится как HTML (`dangerouslySetInnerHTML`)' }, { uz: "Ism ro'yxatda ko'ringani (`Ega.jsx` sahifasida)", ru: 'Имя видно в списке (на странице `Ega.jsx`)' }, { uz: 'Ism token bilan kelgani (`GET /bandlar` javobida)', ru: 'Имя пришло с токеном (в ответе `GET /bandlar`)' }], correct: 1 },
-  { q: { uz: 'Maxfiy kalit qayerda turishi kerak?', ru: 'Где должен лежать секретный ключ?' }, opts: [{ uz: '`app.module.ts` faylining boshida', ru: 'В начале файла `app.module.ts`' }, { uz: 'Sayt kodining ichida', ru: 'Внутри кода сайта' }, { uz: '`.env` faylida, kodda emas', ru: 'В файле `.env`, не в коде' }, { uz: "Database'dagi alohida jadvalda", ru: 'В отдельной таблице в Database' }], correct: 2 },
-  { q: { uz: '`JWT_SECRET` ga zaxira qiymat nega yozilmaydi?', ru: 'Почему для `JWT_SECRET` не пишут запасное значение?' }, opts: [{ uz: "Backend uni o'qiy olmaydi", ru: 'Backend не сможет его прочитать' }, { uz: "Zaxira qiymat juda uzun bo'ladi", ru: 'Запасное значение слишком длинное' }, { uz: "Qiymat Database'ga ko'chadi", ru: 'Значение переедет в Database' }, { uz: "Kodni o'qigan har kim uni ko'radi", ru: 'Его видит любой, кто читает код' }], correct: 3 },
-  { q: { uz: '2FA nima?', ru: 'Что такое 2FA?' }, opts: [{ uz: 'Parol va telefon ilovasidagi 6 xonali kod', ru: 'Пароль и 6-значный код из приложения на телефоне' }, { uz: 'Ikki xil parol bilan ketma-ket kirish', ru: 'Вход с двумя разными паролями подряд' }, { uz: 'Parolni ikki marta, ikki joyga yozish', ru: 'Ввести пароль дважды, в два места' }, { uz: "Database'ning ikki nusxasini saqlash", ru: 'Хранить две копии Database' }], correct: 0 },
-  { q: { uz: '6 xonali kodni nima hisoblaydi?', ru: 'Кто вычисляет 6-значный код?' }, opts: [{ uz: "Faqat Backend o'zi, ilovasiz hisoblaydi", ru: 'Только сам Backend, без приложения' }, { uz: 'Telefon ilovasi va Backend bir kalitdan', ru: 'Приложение на телефоне и Backend из одного ключа' }, { uz: "Faqat telefon ilovasi, Backend'siz", ru: 'Только приложение на телефоне, без Backend' }, { uz: "Database har so'rovda yangidan yaratadi", ru: 'Database создаёт заново при каждом запросе' }], correct: 1 },
-  { q: { uz: 'Zaiflik yopilganini qanday tekshiramiz?', ru: 'Как проверить, что уязвимость закрыта?' }, opts: [{ uz: "Boshqa odamning saytini sinab ko'rib", ru: 'Проверив сайт другого человека' }, { uz: "Agentdan so'rab, uning javobiga ishonib", ru: 'Спросив агента и поверив его ответу' }, { uz: "Kodni o'qib va oddiy ma'lumot bilan sinab", ru: 'Прочитав код и проверив на обычных данных' }, { uz: 'Sahifa xatosiz ochilishini kutib turib', ru: 'Дождавшись, что страница откроется без ошибок' }], correct: 2 },
-  { q: { uz: 'Push qachon qilinadi?', ru: 'Когда делается push?' }, opts: [{ uz: 'Zaifliklardan oldin, keyin tuzatib', ru: 'До уязвимостей, потом исправив' }, { uz: 'Dars boshida, hammasidan avval', ru: 'В начале урока, раньше всего' }, { uz: 'Agent aytganda, tekshirmasdan', ru: 'Когда скажет агент, без проверки' }, { uz: 'Zaifliklar yopilgandan keyin', ru: 'После того как уязвимости закрыты' }], correct: 3 },
+  { q: { uz: "SQL injection nima?", ru: "Что такое SQL injection?" }, opts: [{ uz: "Matn so'rovda buyruq bo'lishi", ru: "Текст становится командой в запросе" }, { uz: "Jadval nomi xato bo'lishi", ru: "Неверное имя таблицы" }, { uz: "Backend sekin javob berishi", ru: "Backend медленно отвечает" }, { uz: "Telefon xato ko'rsatilishi", ru: "Телефон показан с ошибкой" }], correct: 0 },
+  { q: { uz: "Qidiruvni SQL injection'dan nima yopadi?", ru: "Что защищает поиск от SQL injection?" }, opts: [{ uz: "Telefonni katta harf qilish", ru: "Перевести телефон в заглавные" }, { uz: "Parametrli so'rov yozish", ru: "Параметризованный запрос" }, { uz: "Qidiruvni o'chirish", ru: "Убрать поиск" }, { uz: "`POST` bilan yuborish", ru: "Отправлять через `POST`" }], correct: 1 },
+  { q: { uz: "Kodda SQL injection belgisi qaysi?", ru: "Какой признак SQL injection в коде?" }, opts: [{ uz: "So'rov `bandlar`ga borgani", ru: "Запрос идёт в `bandlar`" }, { uz: "Qidiruv telefon bo'yicha", ru: "Поиск по телефону" }, { uz: "Matn so'rovga qo'shilgani", ru: "Текст вклеен в запрос" }, { uz: "Bitta javob qaytgani", ru: "Вернулся один ответ" }], correct: 2 },
+  { q: { uz: "XSS (Cross-Site Scripting) nima?", ru: "Что такое XSS (Cross-Site Scripting)?" }, opts: [{ uz: "Backend ikki marta ishlashi", ru: "Backend запускается дважды" }, { uz: "Parol kodda ochiq qolishi", ru: "Пароль открыт в коде" }, { uz: "Database sekinlashishi", ru: "Database тормозит" }, { uz: "Matn sahifada kod bo'lishi", ru: "Текст становится кодом на странице" }], correct: 3 },
+  { q: { uz: "Ismni XSS'dan nima yopadi?", ru: "Что защищает имя от XSS?" }, opts: [{ uz: "Oddiy matn qilib chiqarish", ru: "Выводить как обычный текст" }, { uz: "Ismni Database'dan o'chirish", ru: "Удалить имя из Database" }, { uz: "Ismni katta harf qilish", ru: "Сделать имя заглавными" }, { uz: "Ism uzunligini cheklash", ru: "Ограничить длину имени" }], correct: 0 },
+  { q: { uz: "Kodda XSS belgisi qaysi?", ru: "Какой признак XSS в коде?" }, opts: [{ uz: "Ism Database'da saqlangani", ru: "Имя сохранено в Database" }, { uz: "Ism HTML bo'lib chiqarilgani", ru: "Имя выведено как HTML" }, { uz: "Ism ro'yxatda ko'ringani", ru: "Имя видно в списке" }, { uz: "Ism HTML'siz matn bo'lgani", ru: "Имя — простой текст без HTML" }], correct: 1 },
+  { q: { uz: "Maxfiy kalit qayerda turishi kerak?", ru: "Где должен храниться секретный ключ?" }, opts: [{ uz: "`app.module.ts` boshida", ru: "В начале `app.module.ts`" }, { uz: "Sayt kodining ichida", ru: "Внутри кода сайта" }, { uz: "`.env` faylida", ru: "В файле `.env`" }, { uz: "Database jadvalida", ru: "В таблице Database" }], correct: 2 },
+  { q: { uz: "Kalitga zaxira qiymat nega yozilmaydi?", ru: "Почему ключу не пишут запасное значение?" }, opts: [{ uz: "Backend uni o'qimaydi", ru: "Backend его не читает" }, { uz: "Qiymat juda uzun bo'ladi", ru: "Значение слишком длинное" }, { uz: "Database'ga ko'chib qoladi", ru: "Оно попадёт в Database" }, { uz: "Kodni o'qigan uni ko'radi", ru: "Его увидит читающий код" }], correct: 3 },
+  { q: { uz: "2FA nima?", ru: "Что такое 2FA?" }, opts: [{ uz: "Parol + ilovadagi 6 xonali kod", ru: "Пароль + 6-значный код из приложения" }, { uz: "Ikki parol bilan kirish", ru: "Вход по двум паролям" }, { uz: "Parolni ikki joyga yozish", ru: "Запись пароля в два места" }, { uz: "Database'ning ikki nusxasi", ru: "Две копии Database" }], correct: 0 },
+  { q: { uz: "6 xonali kodni nima hisoblaydi?", ru: "Что вычисляет 6-значный код?" }, opts: [{ uz: "Faqat Backend, ilovasiz", ru: "Только Backend, без приложения" }, { uz: "Ilova va Backend bir kalitdan", ru: "Приложение и Backend из одного ключа" }, { uz: "Faqat ilova, Backend'siz", ru: "Только приложение, без Backend" }, { uz: "Database har safar yaratadi", ru: "Database создаёт каждый раз" }], correct: 1 },
+  { q: { uz: "Zaiflik yopilganini qanday bilamiz?", ru: "Как узнаём, что уязвимость закрыта?" }, opts: [{ uz: "Boshqa saytni sinab ko'rib", ru: "Проверив чужой сайт" }, { uz: "Agentning javobiga ishonib", ru: "Поверив ответу агента" }, { uz: "Kodni o'qib va sinab ko'rib", ru: "Прочитав код и проверив" }, { uz: "Sahifa ochilishini kutib", ru: "Дождавшись открытия страницы" }], correct: 2 },
+  { q: { uz: "Push qachon qilinadi?", ru: "Когда делается push?" }, opts: [{ uz: "Tuzatishdan oldin", ru: "До исправлений" }, { uz: "Dars boshida, avval", ru: "В начале урока" }, { uz: "Agent aytgan zahoti", ru: "Как только скажет агент" }, { uz: "Zaifliklar yopilgach", ru: "Когда уязвимости закрыты" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1988,7 +2013,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   const qaytar = (i) => { if (done || isMentorLive) return; setStepN(i); };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({ h: tr(c.h), t: typeof c.t === 'function' ? c.t() : fmtCode(tr(c.t)), prompt: c.prompt && c.prompt.map(l => tr(l)), kimga: c.prompt && tr(c.kimga || { uz: 'Siz → Antigravity', ru: 'Вы → Antigravity' }), xato: c.err && fmtCode(tr(c.err)) }))}
         joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
         tugadi={done} tugadiMatn={fmtCode(tr(doneText))} natija={natija} natijaYorliq={natijaYorliq && tr(natijaYorliq)} ortda={ortda}

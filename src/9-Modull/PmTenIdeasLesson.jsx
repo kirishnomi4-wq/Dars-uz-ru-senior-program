@@ -104,6 +104,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -181,8 +206,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -809,16 +834,6 @@ const RoyxatOl = ({ ikki, children }) => {
   return <div className="ti-gq-2"><ol className="ti-gq-ro">{a.slice(0, 3)}</ol><ol className="ti-gq-ro">{a.slice(3)}</ol></div>;
 };
 // Artefakt-strip «G'oyalarim · n / 6» (U-042): faqat yakun (F-1015-116: 10, 11-ekranda topshiriqqa aloqasiz edi)
-const GStrip = () => {
-  const n = goyalarLs().length;
-  return (
-    <div className="ti-strip fade-up">
-      <span className="ti-strip-l">{tr(ROYXAT_YORLIQ.mening)}</span>
-      <span className="ti-strip-d" aria-hidden="true"><i style={{ width: `${Math.round(n / GOYA_SONI * 100)}%` }} /></span>
-      <span className="ti-strip-n">{n} / {GOYA_SONI}</span>
-    </div>
-  );
-};
 const Airbnb = () => <span className="ti-brend airbnb">Airbnb</span>;
 // Bosiladigan joy halqasi (SABOQ 11): accent halqa doim, yengil to'lqin 2–3 marta
 const halqa = (on) => (on ? 'ti-halqa' : undefined);
@@ -872,10 +887,10 @@ const USTAXONA = {
   yechim: { uz: 'yaqin ustaxonalar xaritasi', ru: 'карта ближайших мастерских' }
 };
 const REJA = [
-  { t: { uz: "G'oyaning uch qatorini yozasiz", ru: 'Напишете три строки идеи' } },
-  { t: { uz: 'Muammoni yechimdan ajratasiz', ru: 'Отличите проблему от решения' } },
-  { t: { uz: <><Airbnb /> g'oyasi qayerdan kelganini ko'rasiz</>, ru: <>Увидите, откуда пришла идея <Airbnb /></> } },
-  { t: { uz: "Beshta g'oya yozib, bittasini sherigingizga tekshirtirasiz", ru: 'Напишете пять идей и одну проверите с партнёром' } }
+  { t: { uz: "G'oyaning uch qatorini yozing", ru: 'Напишите три строки идеи' } },
+  { t: { uz: 'Muammoni yechimdan ajrating', ru: 'Отличите проблему от решения' } },
+  { t: { uz: <><Airbnb /> g'oyasi qayerdan kelganini ko'ring</>, ru: <>Посмотрите, откуда пришла идея <Airbnb /></> } },
+  { t: { uz: "Beshta g'oya yozib, bittasini sherigingizga tekshirting", ru: 'Напишите пять идей и одну проверьте с партнёром' } }
 ];
 const RejaChizma = () => (
   <div className="ti-rj">
@@ -964,11 +979,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <div className="ti-bash"><QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "G'oya bo'lishi uchun bu yozuvga nechta savol kerak?", ru: 'Сколько вопросов нужно этой записи, чтобы стать идеей?' })} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} /></div>
           : !done && <div className="ti-bashq fade-step"><span>{tr({ uz: "G'oya bo'lishi uchun bu yozuvga nechta savol kerak?", ru: 'Сколько вопросов нужно этой записи, чтобы стать идеей?' })}</span><span className="ti-bashq-t">{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: <b>{tx.t}</b></span></div>}
-        vizual={<div className={cxx('ti-s2', tugadi && 'tinch')}>
+        vizual={!taxmin && !tugadi ? null : <div className="q-kir">{<div className={cxx('ti-s2', tugadi && 'tinch')}>
           <S2Chizma q={q} />
           <GoyaKarta nom={USTAXONA.nom} goya={done} qator={qator} tinch={tugadi}
             ostida={done && <QIzoh>{tr({ uz: "Uch savolga javob yozilgan yozuv — g'oya. «Ustaxona xaritasi» esa uning nomi.", ru: 'Запись, в которой есть ответы на три вопроса, — идея. А «Карта мастерских» — её название.' })}</QIzoh>} />
-        </div>}
+        </div>}</div>}
         natija={!done && ipucha && <QIzoh>{tr({ uz: "Kartadagi yoqilgan savolni bosing — qator nima bo'lishini ko'ring.", ru: 'Нажмите подсвеченный вопрос на карточке — посмотрите, что станет со строкой.' })}</QIzoh>}
         xulosa={done && <>{tx && <span className={cxx('ti-tx', taxmin === '3' && 'ok')}>{taxmin === '3' ? tr({ uz: "Taxminingiz to'g'ri chiqdi", ru: 'Ваше предположение оказалось верным' }) : <>{tr({ uz: 'Taxminingiz', ru: 'Ваше предположение' })}: {tx.t} · {tr({ uz: 'haqiqatda', ru: 'на деле' })}: <b>3</b></>}</span>}{tr({ uz: "G'oya uch qatordan iborat: muammo, kim uchun va yechim.", ru: 'Идея состоит из трёх строк: проблема, для кого и решение.' })}</>}
       />
@@ -1032,12 +1047,7 @@ const Screen3 = (props) => (
       3: { uz: "Nom g'oyaning qatori emas — uch qatorga qarang.", ru: 'Название — не строка идеи: смотрите на три строки.' },
       default: { uz: 'Uch qatorni birma-bir qidiring: qaysi biri yo\'q?', ru: 'Ищите три строки по очереди: какой нет?' }
     }}
-    vizual={<GoyaKarta className="kichik" nom={{ uz: 'Oshxona boti', ru: 'Бот столовой' }}
-      qator={{
-        muammo: { holat: 'ajrat', matn: { uz: "Oshxonada bugun nima borligini bilish uchun navbatga turib ko'rishadi.", ru: 'Чтобы узнать, что сегодня в столовой, встают в очередь и смотрят.' } },
-        kim: { holat: 'bor', matn: { uz: "o'quvchilar", ru: 'ученики' }, belgi: '✓' },
-        yechim: { holat: 'bor', matn: { uz: "oshxona menyusini ko'rsatadi", ru: 'показывает меню столовой' }, belgi: '✓' }
-      }} />} />
+ />
 );
 
 // Rasm palitrasi (SABOQ 36 — odamlar real: teri, soch, rangli kiyim; iliq ranglar). UI tokeni emas — faqat chizmalar ichida.
@@ -1161,12 +1171,7 @@ const Screen5 = (props) => (
       3: { uz: "To'lov — boshqa muammo, avtobus vaqti noma'lum.", ru: 'Оплата — другая проблема, время автобуса неизвестно.' },
       default: { uz: 'Muammo qatorini qayta o\'qing: yechim shunga javob bersin.', ru: 'Перечитайте строку «Проблема»: пусть решение отвечает на неё.' }
     }}
-    vizual={<div className="ti-bogli"><GoyaKarta className="kichik" nom={{ uz: 'Avtobus vaqti', ru: 'Время автобуса' }}
-      qator={{
-        muammo: { holat: 'bor', matn: { uz: 'avtobus qachon kelishi bilinmaydi', ru: 'неизвестно, когда придёт автобус' } },
-        kim: { holat: 'bor', matn: { uz: "bekatda kutadigan o'quvchilar", ru: 'ученики, которые ждут на остановке' } },
-        yechim: { holat: 'bor', matn: { uz: "Avtobus necha daqiqada kelishini ko'rsatadi", ru: 'Показывает, через сколько минут придёт автобус' } }
-      }} /><Bog kalit="s5" juftlar={[{ dan: '[data-q="muammo"]', gacha: '[data-q="yechim"]', tur: 'ok', yon: 'chap' }]} /></div>} />
+ />
 );
 
 // 9-Modul 1-darsidagi Mentor ro'yxati — besh yozuv, m7-01 bilan aynan (F-1015-109: ro'yxat 10 → 5); ekranda qisqa «…»; oxirgisi — «Eski darsliklar»
@@ -1226,7 +1231,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const Keyingi = ({ izoh }) => <div className="ti-s6-keyin fade-step">{izoh && <QIzoh>{izoh}</QIzoh>}<QTugma className={halqa(true)} onClick={() => setQadam(q => q + 1)}>{tr({ uz: 'Keyingi manba', ru: 'Следующий источник' })}</QTugma></div>;
   const QADAM_NOM = MANBALAR.map(m => tr(m.t));
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · manba', ru: 'Понятие · источник' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Manbani oching', ru: 'Откройте источник' })} (${qadam}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · manba', ru: 'Понятие · источник' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Manbani oching', ru: 'Откройте источник' })}`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
         sarlavha={tr({ uz: <>Muammoni <A>qayerdan</A> topasiz?</>, ru: <>Где <A>найти</A> проблему?</> })}
         mentor={<Mentor>{tr({ uz: 'Muammo uch joyda bo\'ladi. Bittalab oching.', ru: 'Проблема бывает в трёх местах. Открывайте по одному.' })}</Mentor>}
@@ -1982,18 +1987,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 1·5·10 · B 3·7·12 · C 2·8·11 · D 4·6·9 (MD; har biri 3 marta)
 const QUIZ_BANK = [
-  { q: { uz: "Sinfdoshingiz «maktab ilovasi qilaman» dedi. G'oyaga yana nima kerak?", ru: 'Одноклассник сказал: «сделаю школьное приложение». Что ещё нужно идее?' }, opts: [{ uz: 'Muammo, kim uchun va yechim', ru: 'Проблема, для кого и решение' }, { uz: 'Ilovaning chiroyli nomi, rangi', ru: 'Красивое название и цвет приложения' }, { uz: 'Ilovaning narxi va reklamasi', ru: 'Цена и реклама приложения' }, { uz: 'Tugmalar soni va ekran rangi', ru: 'Число кнопок и цвет экрана' }], correct: 0 },
-  { q: { uz: "Qaysi gap g'oyaning yechim qatoriga yoziladi?", ru: 'Какая фраза пишется в строку «Решение»?' }, opts: [{ uz: 'Sinfdoshlar vazifani chatda yo\'qotadi', ru: 'Одноклассники теряют задание в чате' }, { uz: "Maktabdagi barcha sinf o'quvchilari uchun", ru: 'Для учеников всех классов школы' }, { uz: "Har fan vazifasini bir joyda ko'rsatadi", ru: 'Показывает задания по каждому предмету в одном месте' }, { uz: 'Vazifalar chiroyli turishini xohlaydi', ru: 'Хочет, чтобы задания красиво выглядели' }], correct: 2 },
-  { q: { uz: "Qaysi gap g'oyaning muammo qatoriga yoziladi?", ru: 'Какая фраза пишется в строку «Проблема»?' }, opts: [{ uz: "Ilovada chat bo'lishini xohlaydi", ru: 'Хочет, чтобы в приложении был чат' }, { uz: "Uy vazifasi chatlarda yo'qoladi", ru: 'Домашнее задание теряется в чатах' }, { uz: "Ilova chiroyli bo'lsa yaxshi edi", ru: 'Хорошо бы приложение было красивым' }, { uz: 'Bot tez ishlashini juda xohlaydi', ru: 'Очень хочет, чтобы бот работал быстро' }], correct: 1 },
-  { q: { uz: '«Kim uchun» qatoriga qaysi biri aniq yozilgan?', ru: "Что в строке «Для кого» записано точно?" }, opts: [{ uz: 'Shahardagi har xil yoshdagi odamlar', ru: 'Люди разного возраста в городе' }, { uz: 'Telefoni va interneti bor har bir odam', ru: 'Каждый, у кого есть телефон и интернет' }, { uz: 'Yoshlar ham, kattalar ham — hamma odam', ru: 'И молодые, и взрослые — все люди' }, { uz: "To'garak izlayotgan maktab o'smirlari", ru: 'Школьники-подростки, которые ищут кружок' }], correct: 3 },
-  { q: { uz: "«Ilovada to'lov tugmasi yo'q» — bu qaysi qatorga o'xshaydi?", ru: '«В приложении нет кнопки оплаты» — на какую строку это похоже?' }, opts: [{ uz: 'Yechimga — unda yechim tayyor', ru: 'На решение — в ней готовое решение' }, { uz: 'Muammoga — odam qiynalyapti', ru: 'На проблему — человек мучается' }, { uz: 'Kim uchun qatoriga mos keladi', ru: 'Подходит к строке «Для кого»' }, { uz: 'Hech qaysi qatorga mos emas', ru: 'Не подходит ни к одной строке' }], correct: 0 },
-  { q: { uz: "Airbnb asoschilari g'oyani qayerdan topgan?", ru: 'Где основатели Airbnb нашли идею?' }, opts: [{ uz: 'Investorlar bergan topshiriqdan', ru: 'В задании от инвесторов' }, { uz: 'Boshqa ilovani ko\'chirib olib', ru: 'Скопировав другое приложение' }, { uz: "Kompyuter o'yinini o'ynab", ru: 'Играя в компьютерную игру' }, { uz: "O'zlari ko'rgan voqeadan", ru: 'В случае, который видели сами' }], correct: 3 },
-  { q: { uz: "2007-yilda San-Fransiskoda nima bo'lgan?", ru: 'Что было в Сан-Франциско в 2007 году?' }, opts: [{ uz: 'Shaharda yangi aeroport ochilgan', ru: 'В городе открыли новый аэропорт' }, { uz: "Konferensiya, mehmonxonalar to'la", ru: 'Конференция, гостиницы заполнены' }, { uz: "Shaharda transport to'xtab qolgan", ru: 'В городе остановился транспорт' }, { uz: 'Hamma uylar sotuvga chiqarilgan', ru: 'Все дома выставили на продажу' }], correct: 1 },
-  { q: { uz: 'Airbnb asoschilari birinchi bo\'lib nima qilgan?', ru: 'Что основатели Airbnb сделали первым?' }, opts: [{ uz: 'Katta mehmonxona qurishgan', ru: 'Построили большую гостиницу' }, { uz: 'Ilova uchun reklama berishgan', ru: 'Дали рекламу приложения' }, { uz: "Uyidagi havo to'shagini ijaraga berishgan", ru: 'Сдали надувной матрас у себя дома' }, { uz: "Konferensiyani boshqa shaharga ko'chirishgan", ru: 'Перенесли конференцию в другой город' }], correct: 2 },
-  { q: { uz: "Beshta g'oyani yozayotganda har biri bilan nima qilasiz?", ru: 'Что вы делаете с каждой идеей, когда пишете пять?' }, opts: [{ uz: "Yozgan zahoti kuchsizini o'chirasiz", ru: 'Сразу удаляете слабую' }, { uz: 'Faqat eng qiziq uchtasini yozib olasiz', ru: 'Записываете только три самые интересные' }, { uz: "Har biriga chiroyli nom o'ylab topasiz", ru: 'Придумываете каждой красивое название' }, { uz: "Uch qatorini yozib, keyingisiga o'tasiz", ru: 'Пишете три части и переходите к следующей' }], correct: 3 },
-  { q: { uz: 'Sherigingiz faqat yechimni eshitib, boshqa muammoni aytdi. Bu nimani bildiradi?', ru: 'Партнёр услышал только решение и назвал другую проблему. Что это значит?' }, opts: [{ uz: 'Faqat yechimdan muammo bilinmasligi mumkin', ru: 'По одному решению проблема может быть непонятна' }, { uz: "Sherigingiz g'oyani yaxshi tinglamay qolgan", ru: 'Партнёр плохо слушал идею' }, { uz: "G'oyani o'chirib, yangisini yozish kerak", ru: 'Нужно удалить идею и написать новую' }, { uz: 'Yechim qatorini butunlay olib tashlash kerak', ru: 'Нужно совсем убрать строку «Решение»' }], correct: 0 },
-  { q: { uz: 'Atrofni kuzatganda nimaga qaraysiz?', ru: 'На что вы смотрите, наблюдая вокруг?' }, opts: [{ uz: "Qaysi ilova eng ko'p yuklanganiga", ru: 'Какое приложение скачивают больше всего' }, { uz: "Do'stlar qaysi o'yinni o'ynashiga", ru: 'В какую игру играют друзья' }, { uz: 'Kim, qayerda, nimadan qiynalganiga', ru: "Кто, где и с чем мучился" }, { uz: 'Qaysi texnologiya eng yangi ekaniga', ru: 'Какая технология самая новая' }], correct: 2 },
-  { q: { uz: "«Keyin» qutisidagi funksiyadan g'oya qilish uchun nima qo'shasiz?", ru: 'Что добавить, чтобы из функции в коробке «Потом» сделать идею?' }, opts: [{ uz: 'Funksiyaga qisqa va qiziq nom', ru: 'Короткое интересное название функции' }, { uz: 'Funksiya hal qiladigan muammo', ru: 'Проблему, которую решает функция' }, { uz: 'Yana bitta yangi funksiya', ru: 'Ещё одну новую функцию' }, { uz: 'Funksiyani qurish uchun kod', ru: 'Код, чтобы построить функцию' }], correct: 1 },
+  { q: { uz: "«Maktab ilovasi» g'oyasiga yana nima kerak?", ru: "Что ещё нужно идее «школьное приложение»?" }, opts: [{ uz: "Muammo, kim uchun, yechim", ru: "Проблема, для кого, решение" }, { uz: "Chiroyli nom va rang", ru: "Красивое название и цвет" }, { uz: "Narxi va reklamasi", ru: "Цена и реклама" }, { uz: "Tugmalar soni, rangi", ru: "Число и цвет кнопок" }], correct: 0 },
+  { q: { uz: "Qaysi gap yechim qatoriga yoziladi?", ru: "Какая фраза пишется в строку «Решение»?" }, opts: [{ uz: "Vazifa chatda yo'qoladi", ru: "Задание теряется в чате" }, { uz: "Maktab o'quvchilari uchun", ru: "Для учеников школы" }, { uz: "Vazifalar bir joyda turadi", ru: "Все задания в одном месте" }, { uz: "Chiroyli bo'lsin deyishadi", ru: "Хотят, чтобы было красиво" }], correct: 2 },
+  { q: { uz: "Qaysi gap muammo qatoriga yoziladi?", ru: "Какая фраза пишется в строку «Проблема»?" }, opts: [{ uz: "Ilovada chat bo'lsin", ru: "Пусть в приложении будет чат" }, { uz: "Vazifa chatda yo'qoladi", ru: "Задание теряется в чате" }, { uz: "Ilova chiroyli bo'lsin", ru: "Пусть приложение будет красивым" }, { uz: "Bot tez ishlasin", ru: "Пусть бот работает быстро" }], correct: 1 },
+  { q: { uz: "Qaysi «Kim uchun» qatori aniq?", ru: "Какая строка «Для кого» точная?" }, opts: [{ uz: "Shahardagi har xil odamlar", ru: "Разные люди в городе" }, { uz: "Telefoni bor har bir odam", ru: "Каждый, у кого есть телефон" }, { uz: "Yoshlar ham, kattalar ham", ru: "И молодые, и взрослые" }, { uz: "To'garak izlayotgan o'smirlar", ru: "Подростки, которые ищут кружок" }], correct: 3 },
+  { q: { uz: "«Ilovada to'lov tugmasi yo'q» qaysi qatorga mos?", ru: "«В приложении нет кнопки оплаты» — к какой строке?" }, opts: [{ uz: "Yechimga: ichida yechim bor", ru: "К решению: внутри есть решение" }, { uz: "Muammoga: odam qiynalgan", ru: "К проблеме: человеку трудно" }, { uz: "Kim uchun qatoriga", ru: "К строке «Для кого»" }, { uz: "Hech qaysi qatorga", ru: "Ни к какой строке" }], correct: 0 },
+  { q: { uz: "Airbnb asoschilari g'oyani qayerdan topgan?", ru: "Где основатели Airbnb нашли идею?" }, opts: [{ uz: "Investor topshirig'idan", ru: "Из задания инвестора" }, { uz: "Boshqa ilovadan ko'chirib", ru: "Скопировали у другого приложения" }, { uz: "Kompyuter o'yinidan", ru: "Из компьютерной игры" }, { uz: "O'zlari ko'rgan voqeadan", ru: "Из случая, который увидели сами" }], correct: 3 },
+  { q: { uz: "2007-yilda San-Fransiskoda nima bo'lgan?", ru: "Что было в Сан-Франциско в 2007 году?" }, opts: [{ uz: "Yangi aeroport ochilgan", ru: "Открылся новый аэропорт" }, { uz: "Katta konferensiya bo'lgan", ru: "Прошла большая конференция" }, { uz: "Transport to'xtab qolgan", ru: "Остановился транспорт" }, { uz: "Uylar sotuvga chiqqan", ru: "Дома выставили на продажу" }], correct: 1 },
+  { q: { uz: "Airbnb asoschilari avval nima qilgan?", ru: "Что основатели Airbnb сделали сначала?" }, opts: [{ uz: "Mehmonxona qurgan", ru: "Построили гостиницу" }, { uz: "Ilovaga reklama bergan", ru: "Дали рекламу приложению" }, { uz: "Havo to'shagini ijaraga bergan", ru: "Сдали надувной матрас" }, { uz: "Konferensiyani ko'chirgan", ru: "Перенесли конференцию" }], correct: 2 },
+  { q: { uz: "Beshta g'oya yozganda nima qilasiz?", ru: "Что вы делаете, когда пишете пять идей?" }, opts: [{ uz: "Kuchsizini o'chirasiz", ru: "Удаляете слабую" }, { uz: "Faqat uchtasini yozasiz", ru: "Пишете только три" }, { uz: "Har biriga nom o'ylaysiz", ru: "Придумываете каждой название" }, { uz: "Har biriga uch qator yozasiz", ru: "Пишете каждой три строки" }], correct: 3 },
+  { q: { uz: "Sherik yechimdan boshqa muammo aytdi. Nega?", ru: "Партнёр назвал по решению другую проблему. Почему?" }, opts: [{ uz: "Yechim ikki muammoga mos", ru: "Решение подходит к двум проблемам" }, { uz: "Sherik yaxshi eshitmagan", ru: "Партнёр плохо слушал" }, { uz: "G'oya yaroqsiz bo'lgan", ru: "Идея оказалась негодной" }, { uz: "Yechim qatori ortiqcha", ru: "Строка решения лишняя" }], correct: 0 },
+  { q: { uz: "Atrofni kuzatganda nimaga qaraysiz?", ru: "На что вы смотрите, наблюдая вокруг?" }, opts: [{ uz: "Eng ko'p yuklangan ilovaga", ru: "На самое скачиваемое приложение" }, { uz: "Do'stlar o'ynaydigan o'yinga", ru: "На игру, в которую играют друзья" }, { uz: "Kim nimadan qiynalganiga", ru: "Кому и в чём трудно" }, { uz: "Eng yangi texnologiyaga", ru: "На самую новую технологию" }], correct: 2 },
+  { q: { uz: "Funksiyadan g'oya qilish uchun nima topasiz?", ru: "Что нужно найти, чтобы из функции сделать идею?" }, opts: [{ uz: "Qisqa va qiziq nom", ru: "Короткое яркое название" }, { uz: "U hal qiladigan muammo", ru: "Проблему, которую она решает" }, { uz: "Yana bitta funksiya", ru: "Ещё одну функцию" }, { uz: "Uni quradigan kod", ru: "Код, который её строит" }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2639,7 +2644,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           ? tr({ uz: <>Beshta g'oyangiz <A>tayyor</A>.</>, ru: <>Ваши пять идей <A>готовы</A>.</> })
           : tr({ uz: <>{n} ta g'oya yozildi — <A>qolgani uyda</A>.</>, ru: <>Записано идей: {n} — <A>остальные дома</A>.</> })}
         cta={<>
-          {!isMentorL && <GStrip />}
           <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
             <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
           </div>
@@ -2985,11 +2989,6 @@ export default function PmTenIdeasLesson({ lang: langProp, onFinished, liveToken
         .ti-gq-ochiq { padding: 2px 12px 10px 37px; display: flex; flex-direction: column; gap: 4px; }
         p.ti-gq-o { margin: 0; display: grid; grid-template-columns: 82px minmax(0,1fr); gap: 8px; font-size: 13px; line-height: 1.4; color: ${T.ink}; }
         p.ti-gq-o b { padding-top: 2px; font-size: 10.5px; letter-spacing: 0.05em; text-transform: uppercase; color: ${T.ink2}; }
-        .ti-strip { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: ${T.paper}; border: 1px solid ${T.line}; }
-        .ti-strip-l { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.accent}; }
-        .ti-strip-d { position: relative; width: 110px; height: 8px; border-radius: 4px; background: ${T.line}; overflow: hidden; }
-        .ti-strip-d i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; background: ${T.accent}; transition: width 0.6s ease-out; }
-        .ti-strip-n { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink2}; }
 
         /* --- Umumiy: Mentor eslatmasi, nishon qatori, statistika, bashorat qatori, xulosa ichidagi taxmin --- */
         .ti-mnote-c { align-self: flex-end; }

@@ -1,0 +1,3659 @@
+[
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "JSON nima?",
+   "ru": "Что такое JSON?"
+  },
+  "opts": [
+   {
+    "uz": "Rasm siqadigan format",
+    "ru": "Формат сжатия картинок"
+   },
+   {
+    "uz": "Tartibli kalit: qiymat",
+    "ru": "Упорядоченные ключ: значение"
+   },
+   {
+    "uz": "Internet tezligi o'lchovi",
+    "ru": "Измерение скорости интернета"
+   },
+   {
+    "uz": "Brauzerning bir turi",
+    "ru": "Вид браузера"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Jadvalda `id` ustuni nimaga kerak?",
+   "ru": "Зачем в таблице столбец `id`?"
+  },
+  "opts": [
+   {
+    "uz": "Har yozuvga yagona raqam",
+    "ru": "Уникальный номер каждой записи"
+   },
+   {
+    "uz": "Yozuv rangini saqlash",
+    "ru": "Хранить цвет записи"
+   },
+   {
+    "uz": "Sahifani ekranga chizish",
+    "ru": "Рисовать страницу на экране"
+   },
+   {
+    "uz": "Hech narsaga — ortiqcha",
+    "ru": "Ни для чего — лишний"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "darsda-yoq"
+  ],
+  "izoh": "Uzun edi; «brauzer keshi» darsda o'tilmagan — darsdagi «havoda» bilan almashtirildi.",
+  "q": {
+   "uz": "Server o'chsa, postlar qayerda qoladi?",
+   "ru": "Где остаются посты, если сервер выключен?"
+  },
+  "opts": [
+   {
+    "uz": "Hech qayerda — yo'qoladi",
+    "ru": "Нигде — пропадают"
+   },
+   {
+    "uz": "Server xotirasida (RAM)",
+    "ru": "В памяти сервера (RAM)"
+   },
+   {
+    "uz": "Internetda — «havoda»",
+    "ru": "В интернете — «в воздухе»"
+   },
+   {
+    "uz": "Ma'lumotlar bazasida",
+    "ru": "В базе данных"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Oxirgi variant 41 belgi edi.",
+  "q": {
+   "uz": "Jadvaldagi bitta `qator` (row) nima?",
+   "ru": "Что такое одна `строка` (row) таблицы?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta ustunning nomi",
+    "ru": "Название одного столбца"
+   },
+   {
+    "uz": "Butun jadvalning o'zi",
+    "ru": "Вся таблица целиком"
+   },
+   {
+    "uz": "Bitta to'liq yozuv (post)",
+    "ru": "Одна полная запись (пост)"
+   },
+   {
+    "uz": "Ustun nomlari qatori",
+    "ru": "Строка с названиями столбцов"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun, jami 168 belgi edi.",
+  "q": {
+   "uz": "`posts.user_id` ustuni nimaga kerak?",
+   "ru": "Зачем нужен столбец `posts.user_id`?"
+  },
+  "opts": [
+   {
+    "uz": "Post rangini saqlash",
+    "ru": "Хранить цвет поста"
+   },
+   {
+    "uz": "Hech narsaga — ortiqcha",
+    "ru": "Ни для чего — лишний"
+   },
+   {
+    "uz": "Postni butunlay o'chirish",
+    "ru": "Полностью удалять пост"
+   },
+   {
+    "uz": "Postni egasiga bog'lash",
+    "ru": "Связать пост с владельцем"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi; javob darsdagi «bog'lanishlar xaritasi» so'ziga keltirildi.",
+  "q": {
+   "uz": "`Sxema` nima?",
+   "ru": "Что такое `схема`?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta jadvalning nomi",
+    "ru": "Название одной таблицы"
+   },
+   {
+    "uz": "Bog'lanishlar xaritasi",
+    "ru": "Карта связей"
+   },
+   {
+    "uz": "Ilova rang palitrasi",
+    "ru": "Цветовая палитра приложения"
+   },
+   {
+    "uz": "Serverning manzili",
+    "ru": "Адрес сервера"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "«Bitta maydon — hamma sarlavhalar» chalkash edi, jami 149 belgi.",
+  "q": {
+   "uz": "Jadvaldagi bitta `ustun` (column) nima?",
+   "ru": "Что такое один `столбец` (column) таблицы?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta maydon (sarlavha kabi)",
+    "ru": "Одно поле (например, заголовок)"
+   },
+   {
+    "uz": "Butun jadvalning o'zi",
+    "ru": "Вся таблица целиком"
+   },
+   {
+    "uz": "Bitta to'liq yozuv (post)",
+    "ru": "Одна полная запись (пост)"
+   },
+   {
+    "uz": "Ustun nomlari qatori",
+    "ru": "Строка с названиями столбцов"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi, variantlar uzun edi.",
+  "q": {
+   "uz": "Foydalanuvchi va postlari qanday bog'langan?",
+   "ru": "Как связаны пользователь и его посты?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta — bitta",
+    "ru": "Один — один"
+   },
+   {
+    "uz": "Bog'lanish yo'q",
+    "ru": "Связи нет"
+   },
+   {
+    "uz": "Bitta → ko'p",
+    "ru": "Один → много"
+   },
+   {
+    "uz": "Har post — hammaniki",
+    "ru": "Каждый пост — общий"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61, variant 41 belgi edi.",
+  "q": {
+   "uz": "RAM va ma'lumotlar bazasi farqi nimada?",
+   "ru": "Чем отличаются RAM и база данных?"
+  },
+  "opts": [
+   {
+    "uz": "RAM o'chadi, baza qoladi",
+    "ru": "RAM стирается, база остаётся"
+   },
+   {
+    "uz": "RAM ko'proq saqlaydi",
+    "ru": "RAM хранит больше"
+   },
+   {
+    "uz": "Baza RAM'dan tezroq",
+    "ru": "База быстрее RAM"
+   },
+   {
+    "uz": "Farqi yo'q, bir xil",
+    "ru": "Разницы нет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob kod bilan ajralib turardi.",
+  "q": {
+   "uz": "FK ustun qayerga ulanishini qanday bilamiz?",
+   "ru": "Как понять, куда ведёт столбец FK?"
+  },
+  "opts": [
+   {
+    "uz": "Ustunning rangidan",
+    "ru": "По цвету столбца"
+   },
+   {
+    "uz": "Ustunning nomidan",
+    "ru": "По названию столбца"
+   },
+   {
+    "uz": "Bilib bo'lmaydi",
+    "ru": "Узнать нельзя"
+   },
+   {
+    "uz": "Ustunning o'rnidan",
+    "ru": "По месту столбца"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgigacha, jami 176 belgi edi.",
+  "q": {
+   "uz": "Ilova ertaga nimani qayta ko'rsata oladi?",
+   "ru": "Что приложение сможет показать завтра снова?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat yozib qo'yganini",
+    "ru": "Только то, что записало"
+   },
+   {
+    "uz": "Ekranda bir ko'ringanini",
+    "ru": "То, что разок мелькнуло на экране"
+   },
+   {
+    "uz": "Siz so'ragan hamma narsani",
+    "ru": "Всё, что вы попросите"
+   },
+   {
+    "uz": "Boshqa ilovadagi narsani",
+    "ru": "То, что было в другом приложении"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha edi.",
+  "q": {
+   "uz": "Maydon nima?",
+   "ru": "Что такое поле?"
+  },
+  "opts": [
+   {
+    "uz": "Ekrandagi bo'lim nomi",
+    "ru": "Название раздела на экране"
+   },
+   {
+    "uz": "Siz bosadigan tugma",
+    "ru": "Кнопка, которую вы нажимаете"
+   },
+   {
+    "uz": "Ilova yozib qo'yadigan narsa",
+    "ru": "То, что приложение записывает"
+   },
+   {
+    "uz": "Bir marta chiqadigan xabar",
+    "ru": "Сообщение, которое появится раз"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Jami 151 belgi; savol darsdagi «qo'shiq nomlaridan quriladi» shakliga keltirildi.",
+  "q": {
+   "uz": "Qo'shiq nomlaridan qaysi bo'lim quriladi?",
+   "ru": "Какой раздел строится из названий песен?"
+  },
+  "opts": [
+   {
+    "uz": "«Sizga yoqadi»",
+    "ru": "«Вам понравится»"
+   },
+   {
+    "uz": "«Yaqinda tinglaganlaringiz»",
+    "ru": "«Недавно прослушанные»"
+   },
+   {
+    "uz": "«Kechqurun tinglaganlaringiz»",
+    "ru": "«Слушали вечером»"
+   },
+   {
+    "uz": "«Albomdagi qo'shiqlar»",
+    "ru": "«Песни из альбома»"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61, variant 40 belgi, jami 198 edi.",
+  "q": {
+   "uz": "Maydon bo'lim bermadi. Bu nimani bildiradi?",
+   "ru": "Поле не дало раздела. Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Bo'lim keyin o'zi ochiladi",
+    "ru": "Раздел потом откроется сам"
+   },
+   {
+    "uz": "Maydon bekorga saqlangan",
+    "ru": "Поле хранится зря"
+   },
+   {
+    "uz": "Ilova uni o'qiy olmaydi",
+    "ru": "Приложение не может его прочитать"
+   },
+   {
+    "uz": "Bo'lim boshqa ilovada",
+    "ru": "Раздел в другом приложении"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi edi.",
+  "q": {
+   "uz": "Yaxshi maydonning belgisi nima?",
+   "ru": "Признак хорошего поля?"
+  },
+  "opts": [
+   {
+    "uz": "Nomi qisqa yozilgan",
+    "ru": "Короткое название"
+   },
+   {
+    "uz": "Ilovada kam joy oladi",
+    "ru": "Занимает мало места"
+   },
+   {
+    "uz": "Darhol ekranda ko'rinadi",
+    "ru": "Сразу видно на экране"
+   },
+   {
+    "uz": "Ortida bitta bo'lim turadi",
+    "ru": "За ним стоит один раздел"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 38 belgigacha edi.",
+  "q": {
+   "uz": "«Umumiy ma'lumot» nega yomon maydon?",
+   "ru": "Почему «общая информация» — плохое поле?"
+  },
+  "opts": [
+   {
+    "uz": "Yozish uzoq vaqt oladi",
+    "ru": "Его долго записывать"
+   },
+   {
+    "uz": "Ilova uni saqlay olmaydi",
+    "ru": "Приложение не может его хранить"
+   },
+   {
+    "uz": "Undan bo'lim qurilmaydi",
+    "ru": "Из него не строится раздел"
+   },
+   {
+    "uz": "Boshqa maydonni o'chiradi",
+    "ru": "Стирает другие поля"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 181 edi.",
+  "q": {
+   "uz": "Netflix bosh sahifasi nimadan yig'iladi?",
+   "ru": "Из чего собирается главная Netflix?"
+  },
+  "opts": [
+   {
+    "uz": "Har kim ko'rgan kinolardan",
+    "ru": "Из фильмов, которые смотрел каждый"
+   },
+   {
+    "uz": "Eng qimmat kinolardan",
+    "ru": "Из самых дорогих фильмов"
+   },
+   {
+    "uz": "Hammaga bitta ro'yxatdan",
+    "ru": "Из одного списка для всех"
+   },
+   {
+    "uz": "Kino uzunligi tartibidan",
+    "ru": "Из порядка по длине фильма"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Bitta variant 38 belgi edi.",
+  "q": {
+   "uz": "Netflix ko'rishlarining qanchasi tavsiyadan keladi?",
+   "ru": "Какая доля просмотров Netflix приходит из рекомендаций?"
+  },
+  "opts": [
+   {
+    "uz": "Har to'rttadan bittasi",
+    "ru": "Один из четырёх"
+   },
+   {
+    "uz": "Har ikkitadan bittasi",
+    "ru": "Один из двух"
+   },
+   {
+    "uz": "Deyarli hech biri",
+    "ru": "Почти ни один"
+   },
+   {
+    "uz": "Har beshtadan to'rttasi",
+    "ru": "Четыре из пяти"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 44 belgi — boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Bitta yozuvga yangi maydon qayerda oson?",
+   "ru": "Где легче добавить поле одной записи?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkalasida ham bo'lmaydi",
+    "ru": "Нигде нельзя"
+   },
+   {
+    "uz": "SQL — ustun o'zi ochiladi",
+    "ru": "SQL — столбец появится сам"
+   },
+   {
+    "uz": "NoSQL — hujjatga qo'shiladi",
+    "ru": "NoSQL — добавляется в документ"
+   },
+   {
+    "uz": "Faqat qo'lda yoziladi",
+    "ru": "Только вручную"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "«Ustun qo'shsa nima bo'ladi?» savoliga «o'zgartirish kerak» javobi mos emas edi.",
+  "q": {
+   "uz": "SQL'da yangi ustun uchun nima kerak?",
+   "ru": "Что нужно для нового столбца в SQL?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat NoSQL'da mumkin",
+    "ru": "Можно только в NoSQL"
+   },
+   {
+    "uz": "Hech narsa — o'zi qo'shiladi",
+    "ru": "Ничего — добавится сам"
+   },
+   {
+    "uz": "Bazani o'chirish kerak",
+    "ru": "Нужно удалить базу"
+   },
+   {
+    "uz": "Jadval shaklini o'zgartirish",
+    "ru": "Изменить структуру таблицы"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha edi.",
+  "q": {
+   "uz": "`JOIN` nima qiladi?",
+   "ru": "Что делает `JOIN`?"
+  },
+  "opts": [
+   {
+    "uz": "Ikki jadvalni id bilan ulaydi",
+    "ru": "Связывает две таблицы по id"
+   },
+   {
+    "uz": "Hamma faylni o'chiradi",
+    "ru": "Удаляет все файлы"
+   },
+   {
+    "uz": "Yangi bo'sh baza yaratadi",
+    "ru": "Создаёт новую пустую базу"
+   },
+   {
+    "uz": "Sahifani qayta yuklaydi",
+    "ru": "Перезагружает страницу"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 163 belgi edi.",
+  "q": {
+   "uz": "Bank ilovasi uchun qaysi baza to'g'ri?",
+   "ru": "Какая база подходит банковскому приложению?"
+  },
+  "opts": [
+   {
+    "uz": "SQL — bog'langan, ishonchli",
+    "ru": "SQL — связанная, надёжная"
+   },
+   {
+    "uz": "NoSQL — tezroq javob beradi",
+    "ru": "NoSQL — быстрее отвечает"
+   },
+   {
+    "uz": "Ikkalasi bir xil",
+    "ru": "Обе одинаковы"
+   },
+   {
+    "uz": "Bunga baza kerak emas",
+    "ru": "База здесь не нужна"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 38 belgigacha, jami 183 edi.",
+  "q": {
+   "uz": "Nega loyihalarimizga PostgreSQL?",
+   "ru": "Почему для наших проектов PostgreSQL?"
+  },
+  "opts": [
+   {
+    "uz": "Ishonchli, bepul, JSON ham",
+    "ru": "Надёжная, бесплатная, и JSON тоже"
+   },
+   {
+    "uz": "Boshqa baza yo'qligidan",
+    "ru": "Других баз нет"
+   },
+   {
+    "uz": "Faqat kichik loyihaga mos",
+    "ru": "Подходит только маленьким"
+   },
+   {
+    "uz": "Eng modaviy bo'lgani uchun",
+    "ru": "Потому что самая модная"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 143 edi.",
+  "q": {
+   "uz": "Baza modaga qarab tanlanadimi?",
+   "ru": "Базу выбирают по моде?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, doim yangisi yaxshi",
+    "ru": "Да, новее — лучше"
+   },
+   {
+    "uz": "Ha, NoSQL doim ustun",
+    "ru": "Да, NoSQL всегда лучше"
+   },
+   {
+    "uz": "Yo'q — vazifaga qarab",
+    "ru": "Нет — по задаче"
+   },
+   {
+    "uz": "Faqat narxga qarab",
+    "ru": "Только по цене"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 38 belgigacha, jami 155 edi.",
+  "q": {
+   "uz": "Server nima?",
+   "ru": "Что такое сервер?"
+  },
+  "opts": [
+   {
+    "uz": "Internetni tezlatuvchi qurilma",
+    "ru": "Устройство, ускоряющее интернет"
+   },
+   {
+    "uz": "Rasmlar turadigan papka",
+    "ru": "Папка с картинками"
+   },
+   {
+    "uz": "Brauzerdagi bitta oyna",
+    "ru": "Одно окно в браузере"
+   },
+   {
+    "uz": "So'rovga javob beruvchi dastur",
+    "ru": "Программа, отвечающая на запросы"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 34 belgigacha edi.",
+  "q": {
+   "uz": "`Node.js` nima imkon beradi?",
+   "ru": "Что позволяет `Node.js`?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat HTML sahifa yasaydi",
+    "ru": "Делает только HTML-страницы"
+   },
+   {
+    "uz": "Rasmlarni tahrirlaydi",
+    "ru": "Редактирует картинки"
+   },
+   {
+    "uz": "JavaScript serverda ishlaydi",
+    "ru": "JavaScript работает на сервере"
+   },
+   {
+    "uz": "Internetni ulab beradi",
+    "ru": "Подключает интернет"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgigacha edi.",
+  "q": {
+   "uz": "`npm` nima qiladi?",
+   "ru": "Что делает `npm`?"
+  },
+  "opts": [
+   {
+    "uz": "Tayyor paketlarni o'rnatadi",
+    "ru": "Устанавливает готовые пакеты"
+   },
+   {
+    "uz": "Kodni o'zi o'chiradi",
+    "ru": "Сам удаляет код"
+   },
+   {
+    "uz": "Serverni butunlay o'chiradi",
+    "ru": "Полностью выключает сервер"
+   },
+   {
+    "uz": "Brauzer oynasini ochadi",
+    "ru": "Открывает окно браузера"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri javob 31 belgi edi.",
+  "q": {
+   "uz": "`Express` nima?",
+   "ru": "Что такое `Express`?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumot saqlovchi baza",
+    "ru": "База для хранения данных"
+   },
+   {
+    "uz": "Serverni osonlatuvchi paket",
+    "ru": "Пакет, упрощающий сервер"
+   },
+   {
+    "uz": "Rasm uchun maxsus format",
+    "ru": "Особый формат картинок"
+   },
+   {
+    "uz": "Brauzerning yangi turi",
+    "ru": "Новый вид браузера"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 142 belgi edi.",
+  "q": {
+   "uz": "`app.listen(3000)` nima qiladi?",
+   "ru": "Что делает `app.listen(3000)`?"
+  },
+  "opts": [
+   {
+    "uz": "Serverni yoqib, so'rov kutadi",
+    "ru": "Включает сервер и ждёт запросы"
+   },
+   {
+    "uz": "Yangi bo'sh fayl yaratadi",
+    "ru": "Создаёт новый пустой файл"
+   },
+   {
+    "uz": "Barcha ma'lumotni o'chiradi",
+    "ru": "Удаляет все данные"
+   },
+   {
+    "uz": "Brauzer oynasini yopadi",
+    "ru": "Закрывает окно браузера"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi edi; ikki variant deyarli bir xil edi.",
+  "q": {
+   "uz": "`localhost:3000` nima?",
+   "ru": "Что такое `localhost:3000`?"
+  },
+  "opts": [
+   {
+    "uz": "Uzoqdagi tashqi sayt",
+    "ru": "Удалённый внешний сайт"
+   },
+   {
+    "uz": "Ma'lumot saqlovchi baza",
+    "ru": "База для хранения данных"
+   },
+   {
+    "uz": "O'z kompyuteringizdagi server",
+    "ru": "Сервер на вашем компьютере"
+   },
+   {
+    "uz": "Wi-Fi routerning nomi",
+    "ru": "Имя Wi-Fi роутера"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 149 belgi edi.",
+  "q": {
+   "uz": "`NestJS` Express'dan nimasi bilan farq qiladi?",
+   "ru": "Чем `NestJS` отличается от Express?"
+  },
+  "opts": [
+   {
+    "uz": "U umuman ishlamaydi",
+    "ru": "Он вообще не работает"
+   },
+   {
+    "uz": "Tartibli, katta loyihaga",
+    "ru": "Упорядочен, для больших проектов"
+   },
+   {
+    "uz": "Faqat HTML kod yozadi",
+    "ru": "Пишет только HTML"
+   },
+   {
+    "uz": "Serverni sekinlatadi",
+    "ru": "Замедляет сервер"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgi, jami 187 edi; qadam nomlari qisqartirildi (eshik = endpoint).",
+  "q": {
+   "uz": "Server kodi tartibi qanday?",
+   "ru": "Каков порядок кода сервера?"
+  },
+  "opts": [
+   {
+    "uz": "Yoq → eshik → yarat → chaqir",
+    "ru": "Включить → вход → создать → подключить"
+   },
+   {
+    "uz": "Eshik → yoq → chaqir → yarat",
+    "ru": "Вход → включить → подключить → создать"
+   },
+   {
+    "uz": "Yarat → yoq → chaqir → eshik",
+    "ru": "Создать → включить → подключить → вход"
+   },
+   {
+    "uz": "Chaqir → yarat → eshik → yoq",
+    "ru": "Подключить → создать → вход → включить"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/RoutingLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgigacha, jami 153 edi.",
+  "q": {
+   "uz": "Route nimadan iborat?",
+   "ru": "Из чего состоит route?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat path — manzil",
+    "ru": "Только path — адрес"
+   },
+   {
+    "uz": "method + path birga",
+    "ru": "method + path вместе"
+   },
+   {
+    "uz": "Faqat method — shtamp",
+    "ru": "Только method — штамп"
+   },
+   {
+    "uz": "Brauzer turi",
+    "ru": "Тип браузера"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/RoutingLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgigacha, jami 162 edi.",
+  "q": {
+   "uz": "`GET /games` va `POST /games` farqi nimada?",
+   "ru": "Чем отличаются `GET /games` и `POST /games`?"
+  },
+  "opts": [
+   {
+    "uz": "Farqi yo'q — bir xil",
+    "ru": "Разницы нет — одинаковы"
+   },
+   {
+    "uz": "Server nomi boshqa",
+    "ru": "Разные имена сервера"
+   },
+   {
+    "uz": "Biri oladi, biri qo'shadi",
+    "ru": "Один получает, другой добавляет"
+   },
+   {
+    "uz": "Javob tili boshqa",
+    "ru": "Разный язык ответа"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/RoutingLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 183 edi.",
+  "q": {
+   "uz": "Server qaysi kodni ishlatishni qanday biladi?",
+   "ru": "Как сервер понимает, какой код запустить?"
+  },
+  "opts": [
+   {
+    "uz": "Tasodifan tanlaydi",
+    "ru": "Выбирает случайно"
+   },
+   {
+    "uz": "Doim birinchisini oladi",
+    "ru": "Всегда берёт первый"
+   },
+   {
+    "uz": "Brauzerdan so'raydi",
+    "ru": "Спрашивает у браузера"
+   },
+   {
+    "uz": "method + path bo'yicha",
+    "ru": "По method + path"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/RoutingLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "darsda-yoq"
+  ],
+  "izoh": "«Shablon» so'zi darsda yo'q — darsdagi «joy belgisi» olindi.",
+  "q": {
+   "uz": "`:id` nima?",
+   "ru": "Что такое `:id`?"
+  },
+  "opts": [
+   {
+    "uz": "Har doim 1 ga teng son",
+    "ru": "Число, всегда равное 1"
+   },
+   {
+    "uz": "Path'ning doimiy qismi",
+    "ru": "Постоянная часть path"
+   },
+   {
+    "uz": "Qiymat keladigan joy belgisi",
+    "ru": "Метка места, куда придёт значение"
+   },
+   {
+    "uz": "Controller klassi nomi",
+    "ru": "Имя класса controller"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/RoutingLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob (22) boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Metodni so'rovga nima bog'laydi?",
+   "ru": "Что связывает метод с запросом?"
+  },
+  "opts": [
+   {
+    "uz": "faqat path manzili",
+    "ru": "только путь (path)"
+   },
+   {
+    "uz": "dekorator (@Get/@Post)",
+    "ru": "декоратор (@Get/@Post)"
+   },
+   {
+    "uz": "metodning nomi",
+    "ru": "имя метода"
+   },
+   {
+    "uz": "controller klassi nomi",
+    "ru": "имя класса controller"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 74 belgi; `INSERT INTO` boshqa variantlardan uzunligi bilan ajralib turardi.",
+  "q": {
+   "uz": "Yangi mahsulot keldi. Qaysi buyruq qator qo'shadi?",
+   "ru": "Пришёл новый товар. Какая команда добавит строку?"
+  },
+  "opts": [
+   "`INSERT INTO`",
+   "`SELECT *`",
+   "`UPDATE`",
+   "`DELETE FROM`"
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi, jami 143 edi.",
+  "q": {
+   "uz": "`INSERT`da `VALUES` nimadan keyin yoziladi?",
+   "ru": "После чего пишется `VALUES` в `INSERT`?"
+  },
+  "opts": [
+   {
+    "uz": "`WHERE` shartidan keyin",
+    "ru": "После условия `WHERE`"
+   },
+   {
+    "uz": "Ustunlar ro'yxatidan keyin",
+    "ru": "После списка столбцов"
+   },
+   {
+    "uz": "`SET` so'zidan keyin",
+    "ru": "После `SET`"
+   },
+   {
+    "uz": "`FROM` so'zidan keyin",
+    "ru": "После `FROM`"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "togri-uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "To'g'ri javob (24) boshqalardan ancha uzun edi; «bo'p-bo'sh» so'zlashuv so'zi olindi.",
+  "q": {
+   "uz": "Bo'sh jadvalga birinchi mahsulotni nima qo'shadi?",
+   "ru": "Что добавит первый товар в пустую таблицу?"
+  },
+  "opts": [
+   "`SELECT * FROM`",
+   "`UPDATE ... SET`",
+   "`INSERT INTO`",
+   "`WHERE`"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 78 belgi edi.",
+  "q": {
+   "uz": "Faqat arzon mahsulotlarni qaysi so'z ajratadi?",
+   "ru": "Какое слово отберёт только дешёвые товары?"
+  },
+  "opts": [
+   "`VALUES`",
+   "`SET`",
+   "`WHERE`",
+   "`INTO`"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 67 belgi edi.",
+  "q": {
+   "uz": "Klaviatura narxi tushdi. Qaysi buyruq kerak?",
+   "ru": "Клавиатура подешевела. Какая команда нужна?"
+  },
+  "opts": [
+   "`INSERT`",
+   "`SELECT`",
+   "`DELETE`",
+   "`UPDATE`"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 157 edi.",
+  "q": {
+   "uz": "`UPDATE`da `WHERE` yozilmasa nima bo'ladi?",
+   "ru": "Что будет, если в `UPDATE` нет `WHERE`?"
+  },
+  "opts": [
+   {
+    "uz": "Xato beradi, o'zgarmaydi",
+    "ru": "Ошибка, ничего не меняется"
+   },
+   {
+    "uz": "Hamma qator o'zgaradi",
+    "ru": "Изменятся все строки"
+   },
+   {
+    "uz": "Hech narsa bo'lmaydi",
+    "ru": "Ничего не произойдёт"
+   },
+   {
+    "uz": "Faqat 1-qator o'zgaradi",
+    "ru": "Изменится только 1-я строка"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 61 belgi; `DELETE FROM` uzunligi bilan ajralib turardi.",
+  "q": {
+   "uz": "Mahsulotni jadvaldan o'chiradigan buyruq qaysi?",
+   "ru": "Какая команда удаляет товар из таблицы?"
+  },
+  "opts": [
+   "`SELECT *`",
+   "`DELETE FROM`",
+   "`UPDATE`",
+   "`INSERT INTO`"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 34 belgigacha, jami 188 edi.",
+  "q": {
+   "uz": "AI SQL yozib berdi. Nima qilasiz?",
+   "ru": "AI написал SQL. Что вы сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'rmasdan ishga tushiraman",
+    "ru": "Запущу, не глядя"
+   },
+   {
+    "uz": "AI to'g'ri — tekshirmayman",
+    "ru": "AI прав — не проверяю"
+   },
+   {
+    "uz": "O'qib, tekshirib, ishlataman",
+    "ru": "Прочитаю, проверю, запущу"
+   },
+   {
+    "uz": "O'chirib, qo'lda yozaman",
+    "ru": "Удалю и напишу вручную"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi edi.",
+  "q": {
+   "uz": "CRUD qaysi 4 amal?",
+   "ru": "Какие 4 действия — это CRUD?"
+  },
+  "opts": [
+   {
+    "uz": "Create, Read, Update, Delete",
+    "ru": "Create, Read, Update, Delete"
+   },
+   {
+    "uz": "Faqat qo'shish va o'chirish",
+    "ru": "Только добавление и удаление"
+   },
+   {
+    "uz": "Create, Read, Undo, Delete",
+    "ru": "Create, Read, Undo, Delete"
+   },
+   {
+    "uz": "Faqat SELECT va UPDATE",
+    "ru": "Только SELECT и UPDATE"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 47 belgi — eng uzuni edi, jami 191.",
+  "q": {
+   "uz": "Ochiq ma'lumot nima?",
+   "ru": "Что такое открытые данные?"
+  },
+  "opts": [
+   {
+    "uz": "Begona ko'rsa ham zarar yo'q",
+    "ru": "Даже если увидит чужой — вреда нет"
+   },
+   {
+    "uz": "Ko'p odam o'qiydigan narsa",
+    "ru": "То, что читают многие"
+   },
+   {
+    "uz": "Kam vaqtda yozilgan narsa",
+    "ru": "То, что записали быстро"
+   },
+   {
+    "uz": "Ilova birinchi saqlagani",
+    "ru": "То, что приложение сохранило первым"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 167 edi.",
+  "q": {
+   "uz": "Yopiq ma'lumot nima?",
+   "ru": "Что такое закрытые данные?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova uzunroq yozadigani",
+    "ru": "То, что приложение пишет длиннее"
+   },
+   {
+    "uz": "Alohida joyda saqlangani",
+    "ru": "То, что хранится отдельно"
+   },
+   {
+    "uz": "Bir necha kunda yopiladigani",
+    "ru": "То, что закроется через пару дней"
+   },
+   {
+    "uz": "Begona ko'rsa, egasiga zarar",
+    "ru": "Увидит чужой — владельцу вред"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Jami 147 belgi; to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Ma'lumotni yopiq qiladigan narsa nima?",
+   "ru": "Что делает данные закрытыми?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumotning turi",
+    "ru": "Тип данных"
+   },
+   {
+    "uz": "Yozgan odamning ismi",
+    "ru": "Имя того, кто записал"
+   },
+   {
+    "uz": "Begona ko'rsa zarar",
+    "ru": "Вред, если увидит чужой"
+   },
+   {
+    "uz": "Qo'shilgan sanasi",
+    "ru": "Дата добавления"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 37 belgigacha, jami 168 edi.",
+  "q": {
+   "uz": "Ism va sinf nega ochiq qoladi?",
+   "ru": "Почему имя и класс остаются открытыми?"
+  },
+  "opts": [
+   {
+    "uz": "Har kuni yangilanib turadi",
+    "ru": "Обновляются каждый день"
+   },
+   {
+    "uz": "Ko'rgan odam zarar bermaydi",
+    "ru": "Увидевший не навредит"
+   },
+   {
+    "uz": "Ularni yopish ilovaga qiyin",
+    "ru": "Приложению трудно их закрыть"
+   },
+   {
+    "uz": "Ular keyin qo'shilgan",
+    "ru": "Их добавили позже"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 156 belgi edi.",
+  "q": {
+   "uz": "Hamma qatorni yopsangiz nima bo'ladi?",
+   "ru": "Что будет, если закрыть все строки?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovadan foyda qolmaydi",
+    "ru": "От приложения не будет пользы"
+   },
+   {
+    "uz": "Ilova tezroq ishlaydi",
+    "ru": "Приложение заработает быстрее"
+   },
+   {
+    "uz": "Sinfdosh baribir ko'radi",
+    "ru": "Одноклассник всё равно увидит"
+   },
+   {
+    "uz": "Ilova ularni o'zi ochadi",
+    "ru": "Приложение само их откроет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 144 edi.",
+  "q": {
+   "uz": "Parolni bilgan odam nima qila oladi?",
+   "ru": "Что может человек, знающий пароль?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifa rangini almashtiradi",
+    "ru": "Сменит цвет страницы"
+   },
+   {
+    "uz": "Baholarni to'g'rilaydi",
+    "ru": "Исправит оценки"
+   },
+   {
+    "uz": "Yangi ilova yuklab oladi",
+    "ru": "Скачает новое приложение"
+   },
+   {
+    "uz": "Sizning nomingizdan kiradi",
+    "ru": "Войдёт от вашего имени"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 57 belgi, variantlar uzun, jami 177 edi.",
+  "q": {
+   "uz": "Ilova nima yig'ishini eng erta qachon bilasiz?",
+   "ru": "Когда раньше всего можно узнать, что собирает приложение?"
+  },
+  "opts": [
+   {
+    "uz": "Yuklashdan oldin ham",
+    "ru": "Ещё до установки"
+   },
+   {
+    "uz": "Bir oy ishlatgach",
+    "ru": "Через месяц использования"
+   },
+   {
+    "uz": "Yuklab bo'lgach",
+    "ru": "После установки"
+   },
+   {
+    "uz": "Birinchi xabar kelganda",
+    "ru": "Когда придёт первое сообщение"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 43 belgigacha, jami 201 edi.",
+  "q": {
+   "uz": "Yuborilmagan ma'lumot haqida qoida nima?",
+   "ru": "Какое правило о неотправленных данных?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova uni o'zi yuboradi",
+    "ru": "Приложение отправит их само"
+   },
+   {
+    "uz": "U sizib ham ketmaydi",
+    "ru": "Они и не утекут"
+   },
+   {
+    "uz": "U yopiq hisoblanmaydi",
+    "ru": "Они не считаются закрытыми"
+   },
+   {
+    "uz": "U xabarga qaytadi",
+    "ru": "Они вернутся в сообщение"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha, jami 155 edi.",
+  "q": {
+   "uz": "Bitta mashina narxini nima o'zgartiradi?",
+   "ru": "Что меняет цену одной машины?"
+  },
+  "opts": [
+   "POST → INSERT INTO cars",
+   "PUT → UPDATE ... WHERE id",
+   "GET → SELECT * FROM cars",
+   "DELETE → DELETE FROM cars"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 68 belgigacha, jami 255 edi.",
+  "q": {
+   "uz": "AI'ga eng aniq buyruq qaysi?",
+   "ru": "Какая команда для AI самая точная?"
+  },
+  "opts": [
+   {
+    "uz": "Mashinalarni chiqarib ber",
+    "ru": "Выведи мне машины"
+   },
+   {
+    "uz": "Bazadan biror narsa olib ber",
+    "ru": "Достань что-нибудь из базы"
+   },
+   {
+    "uz": "GET /api/cars → SELECT → JSON",
+    "ru": "GET /api/cars → SELECT → JSON"
+   },
+   {
+    "uz": "Yaxshi backend kodi yozib ber",
+    "ru": "Напиши хороший backend-код"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 46 belgi, jami 150 edi.",
+  "q": {
+   "uz": "`res.json(...)` nima qiladi?",
+   "ru": "Что делает `res.json(...)`?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi jadval yaratadi",
+    "ru": "Создаёт новую таблицу"
+   },
+   {
+    "uz": "Serverni yoqib, port ochadi",
+    "ru": "Включает сервер и открывает порт"
+   },
+   {
+    "uz": "Natijani JSON qilib qaytaradi",
+    "ru": "Возвращает результат в JSON"
+   },
+   {
+    "uz": "Faylni diskka yozadi",
+    "ru": "Пишет файл на диск"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60, variant 53 belgi, jami 230 edi.",
+  "q": {
+   "uz": "Nega SQL'da $1, $2 ishlatamiz?",
+   "ru": "Зачем в SQL пишем $1, $2?"
+  },
+  "opts": [
+   {
+    "uz": "Matn kod bo'lib qolmasin deb",
+    "ru": "Чтобы текст не стал кодом"
+   },
+   {
+    "uz": "So'rov tezroq ishlasin deb",
+    "ru": "Чтобы запрос шёл быстрее"
+   },
+   {
+    "uz": "PostgreSQL shuni talab qiladi",
+    "ru": "Так требует PostgreSQL"
+   },
+   {
+    "uz": "Ustun nomi qisqarsin deb",
+    "ru": "Чтобы сократить имя столбца"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 58, variant 42 belgi, jami 220 edi.",
+  "q": {
+   "uz": "500: column \"price\" does not exist. Sabab?",
+   "ru": "500: column \"price\" does not exist. Причина?"
+  },
+  "opts": [
+   {
+    "uz": "Baza o'chib qolgan",
+    "ru": "База выключена"
+   },
+   {
+    "uz": "Kodda price, sxemada narx",
+    "ru": "В коде price, в схеме narx"
+   },
+   {
+    "uz": "Internet uzilgan",
+    "ru": "Пропал интернет"
+   },
+   {
+    "uz": "Postman noto'g'ri sozlangan",
+    "ru": "Postman настроен неверно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi edi.",
+  "q": {
+   "uz": "Muvaffaqiyatli POST qaysi status qaytaradi?",
+   "ru": "Какой статус возвращает успешный POST?"
+  },
+  "opts": [
+   "404 Not Found",
+   "500 Server Error",
+   "200 OK",
+   "201 Created"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 47 belgigacha, jami 183 edi.",
+  "q": {
+   "uz": "`GET` so'rovi nima qiladi?",
+   "ru": "Что делает запрос `GET`?"
+  },
+  "opts": [
+   {
+    "uz": "Bazadan ma'lumot o'chiradi",
+    "ru": "Удаляет данные из базы"
+   },
+   {
+    "uz": "Yangi ma'lumot qo'shadi",
+    "ru": "Добавляет новые данные"
+   },
+   {
+    "uz": "Serverni o'chirib qo'yadi",
+    "ru": "Выключает сервер"
+   },
+   {
+    "uz": "Ma'lumotni o'qib oladi",
+    "ru": "Читает данные"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 45 belgigacha, jami 177 edi.",
+  "q": {
+   "uz": "API nima?",
+   "ru": "Что такое API?"
+  },
+  "opts": [
+   {
+    "uz": "Ikki dastur gaplashadigan til",
+    "ru": "Язык общения двух программ"
+   },
+   {
+    "uz": "Rasmlar saqlanadigan papka",
+    "ru": "Папка для картинок"
+   },
+   {
+    "uz": "Sahifani bezaydigan dastur",
+    "ru": "Программа для украшения страниц"
+   },
+   {
+    "uz": "Internetni tezlatuvchi qurilma",
+    "ru": "Устройство, ускоряющее интернет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha, jami 186 edi.",
+  "q": {
+   "uz": "`201 Created` statusi nimani bildiradi?",
+   "ru": "Что означает статус `201 Created`?"
+  },
+  "opts": [
+   {
+    "uz": "Server javob bermadi",
+    "ru": "Сервер не ответил"
+   },
+   {
+    "uz": "Yangi narsa yaratildi",
+    "ru": "Создано новое"
+   },
+   {
+    "uz": "So'rovda xatolik bor",
+    "ru": "В запросе ошибка"
+   },
+   {
+    "uz": "Manzil serverda topilmadi",
+    "ru": "Адрес не найден на сервере"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 44 belgigacha, jami 198 edi.",
+  "q": {
+   "uz": "`POST` so'rovida BODY nimaga kerak?",
+   "ru": "Зачем в запросе `POST` нужен BODY?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifani chiroyli qilish",
+    "ru": "Сделать страницу красивой"
+   },
+   {
+    "uz": "Javobni tezlashtirish",
+    "ru": "Ускорить ответ"
+   },
+   {
+    "uz": "Yangi ma'lumotni tashish",
+    "ru": "Нести новые данные"
+   },
+   {
+    "uz": "Manzilni yashirish",
+    "ru": "Спрятать адрес"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 165 edi.",
+  "q": {
+   "uz": "Postman qanday dastur?",
+   "ru": "Что за программа Postman?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt dizaynini chizadi",
+    "ru": "Рисует дизайн сайта"
+   },
+   {
+    "uz": "Serverga rasm yuklaydi",
+    "ru": "Загружает картинки на сервер"
+   },
+   {
+    "uz": "Frontendsiz API'ni sinaydi",
+    "ru": "Проверяет API без фронтенда"
+   },
+   {
+    "uz": "Bazadan ma'lumot o'chiradi",
+    "ru": "Удаляет данные из базы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgigacha, jami 162 edi.",
+  "q": {
+   "uz": "`404 Not Found` nima demoqchi?",
+   "ru": "Что значит `404 Not Found`?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumot qaytib keldi",
+    "ru": "Данные вернулись"
+   },
+   {
+    "uz": "Manzil topilmadi",
+    "ru": "Адрес не найден"
+   },
+   {
+    "uz": "Yangi yozuv yaratildi",
+    "ru": "Создана новая запись"
+   },
+   {
+    "uz": "Kirish taqiqlangan",
+    "ru": "Доступ запрещён"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 186 edi.",
+  "q": {
+   "uz": "Sayt ma'lumot kerak bo'lganda nima qiladi?",
+   "ru": "Что делает сайт, когда нужны данные?"
+  },
+  "opts": [
+   {
+    "uz": "Bazaga o'zi kiradi",
+    "ru": "Сам заходит в базу"
+   },
+   {
+    "uz": "Hech kimsiz o'zi ishlaydi",
+    "ru": "Работает сам, ни с кем"
+   },
+   {
+    "uz": "Boshqa saytdan nusxa oladi",
+    "ru": "Копирует с другого сайта"
+   },
+   {
+    "uz": "API'ga so'rov yuboradi",
+    "ru": "Отправляет запрос в API"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 163 edi.",
+  "q": {
+   "uz": "Javob konverti (response) nimadan iborat?",
+   "ru": "Из чего состоит конверт ответа (response)?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat bitta rasm fayli",
+    "ru": "Только один файл-картинка"
+   },
+   {
+    "uz": "STATUS + DATA (JSON)",
+    "ru": "STATUS + DATA (JSON)"
+   },
+   {
+    "uz": "Faqat foydalanuvchi paroli",
+    "ru": "Только пароль пользователя"
+   },
+   {
+    "uz": "Faqat so'rov manzili (URL)",
+    "ru": "Только адрес запроса (URL)"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 43 belgi, jami 151 edi.",
+  "q": {
+   "uz": "`fetch` nima qiladi?",
+   "ru": "Что делает `fetch`?"
+  },
+  "opts": [
+   {
+    "uz": "Faylni papkaga yuklab oladi",
+    "ru": "Скачивает файл в папку"
+   },
+   {
+    "uz": "Sahifa dizaynini bezaydi",
+    "ru": "Украшает дизайн страницы"
+   },
+   {
+    "uz": "Serverdan ma'lumot so'raydi",
+    "ru": "Запрашивает данные у сервера"
+   },
+   {
+    "uz": "Bazani o'chirib tashlaydi",
+    "ru": "Удаляет базу"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 54 belgigacha, jami 198 edi.",
+  "q": {
+   "uz": "`useEffect([])` nega bo'sh massiv bilan?",
+   "ru": "Почему `useEffect([])` с пустым массивом?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat bir marta ishlasin",
+    "ru": "Чтобы сработал один раз"
+   },
+   {
+    "uz": "Har soniyada ishlab tursin",
+    "ru": "Чтобы работал каждую секунду"
+   },
+   {
+    "uz": "Hech qachon ishlamasin",
+    "ru": "Чтобы никогда не работал"
+   },
+   {
+    "uz": "Xatoni yashirib tursin",
+    "ru": "Чтобы прятал ошибку"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 59, jami 204 belgi edi.",
+  "q": {
+   "uz": "CORS xatosini ko'rsangiz, nima qilasiz?",
+   "ru": "Видите ошибку CORS — что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni qaytadan yozaman",
+    "ru": "Перепишу сайт заново"
+   },
+   {
+    "uz": "Serverga cors() qo'shaman",
+    "ru": "Добавлю cors() на сервер"
+   },
+   {
+    "uz": "Internetni tekshiraman",
+    "ru": "Проверю интернет"
+   },
+   {
+    "uz": "Brauzerni almashtiraman",
+    "ru": "Сменю браузер"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 45 belgi, jami 149 edi.",
+  "q": {
+   "uz": "CORS xatosi nega chiqadi?",
+   "ru": "Почему возникает ошибка CORS?"
+  },
+  "opts": [
+   {
+    "uz": "Baza to'lib qolgani uchun",
+    "ru": "Потому что база переполнена"
+   },
+   {
+    "uz": "Internet aloqasi yo'qligidan",
+    "ru": "Из-за отсутствия интернета"
+   },
+   {
+    "uz": "Kodda imlo xatosi borligidan",
+    "ru": "Из-за опечатки в коде"
+   },
+   {
+    "uz": "Brauzer boshqa portni to'sadi",
+    "ru": "Браузер блокирует другой порт"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 142 edi.",
+  "q": {
+   "uz": "`res.json()` nima qiladi?",
+   "ru": "Что делает `res.json()`?"
+  },
+  "opts": [
+   {
+    "uz": "So'rovni butunlay bekor qiladi",
+    "ru": "Полностью отменяет запрос"
+   },
+   {
+    "uz": "Yangi server ochib beradi",
+    "ru": "Открывает новый сервер"
+   },
+   {
+    "uz": "Javobni massivga aylantiradi",
+    "ru": "Превращает ответ в массив"
+   },
+   {
+    "uz": "CSS faylini o'qiydi",
+    "ru": "Читает CSS-файл"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 42 belgi, jami 148 edi.",
+  "q": {
+   "uz": "Javob kelguncha sahifada nima ko'rsatiladi?",
+   "ru": "Что показывает страница, пока нет ответа?"
+  },
+  "opts": [
+   {
+    "uz": "«Yuklanmoqda» yozuvi",
+    "ru": "Надпись «Загрузка»"
+   },
+   {
+    "uz": "Bo'sh oq ekran",
+    "ru": "Пустой белый экран"
+   },
+   {
+    "uz": "Qizil xato xabari",
+    "ru": "Красное сообщение об ошибке"
+   },
+   {
+    "uz": "Boshqa sayt",
+    "ru": "Другой сайт"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 154 edi.",
+  "q": {
+   "uz": "`GET` bazada nimani o'zgartiradi?",
+   "ru": "Что `GET` меняет в базе?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma qatorni o'chiradi",
+    "ru": "Удаляет все строки"
+   },
+   {
+    "uz": "Hech narsani — faqat o'qiydi",
+    "ru": "Ничего — только читает"
+   },
+   {
+    "uz": "Jadvalga yangi qator qo'shadi",
+    "ru": "Добавляет новую строку"
+   },
+   {
+    "uz": "Jadval nomini yangilaydi",
+    "ru": "Меняет имя таблицы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi edi.",
+  "q": {
+   "uz": "Front va back qanday gaplashadi?",
+   "ru": "Как общаются фронт и бэк?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta fayl ichida",
+    "ru": "Внутри одного файла"
+   },
+   {
+    "uz": "Hech qanday — mustaqil",
+    "ru": "Никак — каждый сам"
+   },
+   {
+    "uz": "Faqat CSS orqali",
+    "ru": "Только через CSS"
+   },
+   {
+    "uz": "fetch so'rovi orqali",
+    "ru": "Через запрос fetch"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 48 belgi, jami 185 edi.",
+  "q": {
+   "uz": "Nega tartib `fetch` → `json` → `setCars`?",
+   "ru": "Почему порядок `fetch` → `json` → `setCars`?"
+  },
+  "opts": [
+   {
+    "uz": "Tartib muhim emas",
+    "ru": "Порядок не важен"
+   },
+   {
+    "uz": "Avval setCars, keyin fetch",
+    "ru": "Сначала setCars, потом fetch"
+   },
+   {
+    "uz": "Olamiz, o'qiymiz, saqlaymiz",
+    "ru": "Получаем, читаем, сохраняем"
+   },
+   {
+    "uz": "Faqat json yetarli",
+    "ru": "Хватит одного json"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 51 belgi edi; variantlar uzunligi juda notekis edi.",
+  "q": {
+   "uz": "Token har so'rovda qayerda yuboriladi?",
+   "ru": "Где отправляется токен в каждом запросе?"
+  },
+  "opts": [
+   {
+    "uz": "URL manzil ichida",
+    "ru": "Внутри URL-адреса"
+   },
+   {
+    "uz": "Authorization: Bearer",
+    "ru": "Authorization: Bearer"
+   },
+   {
+    "uz": "Parol maydonida",
+    "ru": "В поле пароля"
+   },
+   {
+    "uz": "Cookie nomida",
+    "ru": "В имени cookie"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 42 belgi; to'g'ri javob qisqa variantlar orasida ajralib turardi.",
+  "q": {
+   "uz": "`jwt.sign` tokenni nimadan yasaydi?",
+   "ru": "Из чего `jwt.sign` делает токен?"
+  },
+  "opts": [
+   {
+    "uz": "Brauzer nomi va versiyasi",
+    "ru": "Имя и версия браузера"
+   },
+   {
+    "uz": "Kompyuterning IP manzili",
+    "ru": "IP-адрес компьютера"
+   },
+   {
+    "uz": "Faqat foydalanuvchi paroli",
+    "ru": "Только пароль пользователя"
+   },
+   {
+    "uz": "userId va `JWT_SECRET`",
+    "ru": "userId и `JWT_SECRET`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 41 belgi; to'g'ri javob qisqa variantlardan ancha uzun edi.",
+  "q": {
+   "uz": "Guard tokenni qanday tekshiradi?",
+   "ru": "Как guard проверяет токен?"
+  },
+  "opts": [
+   {
+    "uz": "Bazadan qidirib solishtiradi",
+    "ru": "Ищет в базе и сравнивает"
+   },
+   {
+    "uz": "`jwt.verify(token, SECRET)`",
+    "ru": "`jwt.verify(token, SECRET)`"
+   },
+   {
+    "uz": "Parolni qayta so'raydi",
+    "ru": "Снова спрашивает пароль"
+   },
+   {
+    "uz": "Umuman tekshirmaydi",
+    "ru": "Вообще не проверяет"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 44 belgi; to'g'ri javob qisqa variantlardan ancha uzun edi.",
+  "q": {
+   "uz": "Nega soxta imzoli token rad etiladi?",
+   "ru": "Почему токен с поддельной подписью отклоняется?"
+  },
+  "opts": [
+   {
+    "uz": "Token juda uzunligidan",
+    "ru": "Токен слишком длинный"
+   },
+   {
+    "uz": "Internet sekinligidan",
+    "ru": "Интернет медленный"
+   },
+   {
+    "uz": "Brauzer uni bloklaydi",
+    "ru": "Браузер его блокирует"
+   },
+   {
+    "uz": "Imzo SECRET'ga mos kelmaydi",
+    "ru": "Подпись не совпадает с SECRET"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob qavsdagi izoh bilan boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "JWT token necha qismdan iborat?",
+   "ru": "Из скольких частей состоит JWT-токен?"
+  },
+  "opts": [
+   {
+    "uz": "1 ta",
+    "ru": "1"
+   },
+   {
+    "uz": "2 ta",
+    "ru": "2"
+   },
+   {
+    "uz": "3 ta",
+    "ru": "3"
+   },
+   {
+    "uz": "4 ta",
+    "ru": "4"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 43 belgi; variantlar uzunligi juda notekis edi.",
+  "q": {
+   "uz": "Nega JWT'ni soxta yasab bo'lmaydi?",
+   "ru": "Почему JWT нельзя подделать?"
+  },
+  "opts": [
+   {
+    "uz": "Imzo SECRET bilan qo'yiladi",
+    "ru": "Подпись ставится с SECRET"
+   },
+   {
+    "uz": "U juda qisqa bo'ladi",
+    "ru": "Он очень короткий"
+   },
+   {
+    "uz": "Har kuni o'zi o'zgaradi",
+    "ru": "Каждый день меняется сам"
+   },
+   {
+    "uz": "Uni hech kim ko'rmaydi",
+    "ru": "Его никто не видит"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 34 belgi edi; ikki variant deyarli bir xil edi.",
+  "q": {
+   "uz": "Payload ichida nima saqlanadi?",
+   "ru": "Что хранится в payload?"
+  },
+  "opts": [
+   {
+    "uz": "Server paroli",
+    "ru": "Пароль сервера"
+   },
+   {
+    "uz": "Foydalanuvchi paroli",
+    "ru": "Пароль пользователя"
+   },
+   {
+    "uz": "Maxfiy kalit (SECRET)",
+    "ru": "Секретный ключ (SECRET)"
+   },
+   {
+    "uz": "userId (kim ekaningiz)",
+    "ru": "userId (кто вы)"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 34 belgi; to'g'ri javob qisqa variantlardan ancha uzun edi.",
+  "q": {
+   "uz": "Kod `.env` qiymatini qanday o'qiydi?",
+   "ru": "Как код читает значение из `.env`?"
+  },
+  "opts": [
+   {
+    "uz": "fetch so'rovi bilan",
+    "ru": "Запросом fetch"
+   },
+   {
+    "uz": "Faylni import qilib",
+    "ru": "Импортируя файл"
+   },
+   {
+    "uz": "`process.env.JWT_SECRET`",
+    "ru": "`process.env.JWT_SECRET`"
+   },
+   {
+    "uz": "console.log bilan",
+    "ru": "Через console.log"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 51 belgi; to'g'ri javob boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "`.env` `.gitignore`da bo'lmasa nima xavf?",
+   "ru": "Чем опасно, если `.env` нет в `.gitignore`?"
+  },
+  "opts": [
+   {
+    "uz": "Kalit GitHub'ga chiqadi",
+    "ru": "Ключ попадёт на GitHub"
+   },
+   {
+    "uz": "Kod ishlamay qoladi",
+    "ru": "Код перестанет работать"
+   },
+   {
+    "uz": "Hech qanday xavf yo'q",
+    "ru": "Никакой опасности"
+   },
+   {
+    "uz": "Sayt sekinlashadi",
+    "ru": "Сайт замедлится"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 64 belgigacha, jami 214 edi.",
+  "q": {
+   "uz": "Sxema nima?",
+   "ru": "Что такое схема?"
+  },
+  "opts": [
+   {
+    "uz": "Yoziladigan ustunlar ro'yxati",
+    "ru": "Список столбцов, которые записываются"
+   },
+   {
+    "uz": "Bosiladigan tugmalar ro'yxati",
+    "ru": "Список кнопок, которые нажимают"
+   },
+   {
+    "uz": "Ochiladigan bo'limlar ro'yxati",
+    "ru": "Список разделов, которые открываются"
+   },
+   {
+    "uz": "Dasturchi kodi qatorlari",
+    "ru": "Строки кода программиста"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 48 belgigacha, jami 215 edi.",
+  "q": {
+   "uz": "Sxemada yo'q narsani ilova ko'rsata oladimi?",
+   "ru": "Может ли приложение показать то, чего нет в схеме?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, bir ko'ringan bo'lsa",
+    "ru": "Да, если разок мелькнуло"
+   },
+   {
+    "uz": "Ha, qidirsa topadi",
+    "ru": "Да, найдёт по поиску"
+   },
+   {
+    "uz": "Yo'q, dasturchi ko'radi",
+    "ru": "Нет, это видит программист"
+   },
+   {
+    "uz": "Yo'q, ilova uni bilmaydi",
+    "ru": "Нет, приложение этого не знает"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 167 belgi edi.",
+  "q": {
+   "uz": "Gapga mos ustun yo'q. Nima qilinadi?",
+   "ru": "Для фразы нет столбца. Что делать?"
+  },
+  "opts": [
+   {
+    "uz": "Gap e'londan olinadi",
+    "ru": "Фразу убирают из анонса"
+   },
+   {
+    "uz": "Gap boshqa ustunga yoziladi",
+    "ru": "Фразу пишут в другой столбец"
+   },
+   {
+    "uz": "Sxemaga yangi ustun ochiladi",
+    "ru": "В схеме открывают новый столбец"
+   },
+   {
+    "uz": "Ustun nomi qayta yoziladi",
+    "ru": "Имя столбца переписывают"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 183 belgi; savolda emoji bor edi.",
+  "q": {
+   "uz": "Ustunning ochiq/yopiq belgisi nimani aytadi?",
+   "ru": "О чём говорит метка столбца «открыт/закрыт»?"
+  },
+  "opts": [
+   {
+    "uz": "Ustunning tartib raqamini",
+    "ru": "Порядковый номер столбца"
+   },
+   {
+    "uz": "Ustunni kim ko'rishini",
+    "ru": "Кто видит столбец"
+   },
+   {
+    "uz": "Qiymat uzunligini",
+    "ru": "Длину значения"
+   },
+   {
+    "uz": "Ekrandagi rangini",
+    "ru": "Его цвет на экране"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 64 belgi edi; variantlardan emoji olindi.",
+  "q": {
+   "uz": "Kitob qachon bo'shashini qaysi ustun aytadi?",
+   "ru": "Какой столбец говорит, когда книга освободится?"
+  },
+  "opts": [
+   {
+    "uz": "Holati",
+    "ru": "Статус"
+   },
+   {
+    "uz": "Qaytarish sanasi",
+    "ru": "Дата возврата"
+   },
+   {
+    "uz": "Band qilgan o'quvchi",
+    "ru": "Кто забронировал"
+   },
+   {
+    "uz": "Kitob nomi",
+    "ru": "Название книги"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 152 belgi edi.",
+  "q": {
+   "uz": "Hech qaysi gapga ulanmagan ustun nima qilinadi?",
+   "ru": "Что делают со столбцом, не связанным ни с одной фразой?"
+  },
+  "opts": [
+   {
+    "uz": "Sxemadan olib tashlanadi",
+    "ru": "Убирают из схемы"
+   },
+   {
+    "uz": "Zaxira uchun saqlanadi",
+    "ru": "Хранят про запас"
+   },
+   {
+    "uz": "Bo'sh holida qoladi",
+    "ru": "Оставляют пустым"
+   },
+   {
+    "uz": "Boshqa gapga ulanadi",
+    "ru": "Привязывают к другой фразе"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 68 belgi edi; variantlardan emoji olindi.",
+  "q": {
+   "uz": "«Faqat kutubxonachi ko'radi» — ustun qanday?",
+   "ru": "«Видит только библиотекарь» — какой столбец?"
+  },
+  "opts": [
+   {
+    "uz": "Ochiq",
+    "ru": "Открытый"
+   },
+   {
+    "uz": "Belgisiz",
+    "ru": "Без метки"
+   },
+   {
+    "uz": "Yopiq",
+    "ru": "Закрытый"
+   },
+   {
+    "uz": "Ikkalasi birga",
+    "ru": "Оба сразу"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 141 belgi edi.",
+  "q": {
+   "uz": "E'lon hech kimni qiziqtirmasa nima bo'ladi?",
+   "ru": "Что будет, если анонс никого не заинтересует?"
+  },
+  "opts": [
+   {
+    "uz": "Mahsulot qurilmaydi",
+    "ru": "Продукт не строят"
+   },
+   {
+    "uz": "Kichikroq quriladi",
+    "ru": "Строят поменьше"
+   },
+   {
+    "uz": "Baribir quriladi",
+    "ru": "Всё равно строят"
+   },
+   {
+    "uz": "Boshqa tilda yoziladi",
+    "ru": "Пишут на другом языке"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 165 edi.",
+  "q": {
+   "uz": "Ustun savoli nimani aytadi?",
+   "ru": "О чём говорит вопрос столбца?"
+  },
+  "opts": [
+   {
+    "uz": "Ustunga qancha sig'ishini",
+    "ru": "Сколько влезет в столбец"
+   },
+   {
+    "uz": "Odam undan nimani bilishini",
+    "ru": "Что человек из него узнает"
+   },
+   {
+    "uz": "Ustunni kim yozganini",
+    "ru": "Кто написал столбец"
+   },
+   {
+    "uz": "Ustun nechanchi turishini",
+    "ru": "Каким по счёту стоит столбец"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 153 belgi edi.",
+  "q": {
+   "uz": "Sxemadagi ustun yozuvda yozilmasa nima chiqadi?",
+   "ru": "Что будет, если столбца схемы нет в записи?"
+  },
+  "opts": [
+   {
+    "uz": "Yozuv o'chib ketadi",
+    "ru": "Запись удалится"
+   },
+   {
+    "uz": "Ilova ogohlantiradi",
+    "ru": "Приложение предупредит"
+   },
+   {
+    "uz": "Ilova o'zi to'ldiradi",
+    "ru": "Приложение заполнит само"
+   },
+   {
+    "uz": "Savol javobsiz qoladi",
+    "ru": "Вопрос останется без ответа"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/FullstackProjectDayLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 152 edi.",
+  "q": {
+   "uz": "Baza (2 jadval) nima uchun kerak?",
+   "ru": "Зачем нужна база (2 таблицы)?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumotni saqlab, bog'lash",
+    "ru": "Хранить и связывать данные"
+   },
+   {
+    "uz": "Faqat rang berish uchun",
+    "ru": "Только чтобы задать цвет"
+   },
+   {
+    "uz": "Sahifani bezash uchun",
+    "ru": "Чтобы украсить страницу"
+   },
+   {
+    "uz": "Internetni tezlatish uchun",
+    "ru": "Чтобы ускорить интернет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/FullstackProjectDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 145 belgi edi.",
+  "q": {
+   "uz": "`REFERENCES joylar(id)` nima beradi?",
+   "ru": "Что даёт `REFERENCES joylar(id)`?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi jadval yaratadi",
+    "ru": "Создаёт новую таблицу"
+   },
+   {
+    "uz": "Ustunga rang beradi",
+    "ru": "Красит столбец"
+   },
+   {
+    "uz": "So'rovni tezlashtiradi",
+    "ru": "Ускоряет запрос"
+   },
+   {
+    "uz": "Foreign key bog'lanishi",
+    "ru": "Связь foreign key"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/FullstackProjectDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 142 belgi edi.",
+  "q": {
+   "uz": "Qorovulga eng yaxshi panel qanday?",
+   "ru": "Какая панель лучше всего для охранника?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'p matn, mayda tugmalar",
+    "ru": "Много текста, мелкие кнопки"
+   },
+   {
+    "uz": "Raqamli quruq jadval",
+    "ru": "Сухая таблица с цифрами"
+   },
+   {
+    "uz": "Rang, katta tugma, kam matn",
+    "ru": "Цвет, большие кнопки, мало текста"
+   },
+   {
+    "uz": "Uzun ko'rsatma matni",
+    "ru": "Длинная инструкция"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgigacha, jami 178 edi; qo'shimcha izohlar javobga ishora qilardi.",
+  "q": {
+   "uz": "Qaysi fikr eng foydali?",
+   "ru": "Какой отзыв самый полезный?"
+  },
+  "opts": [
+   {
+    "uz": "«Rangi chiroyli ekan»",
+    "ru": "«Красивый цвет»"
+   },
+   {
+    "uz": "«Umuman zo'r ekan!»",
+    "ru": "«В целом круто!»"
+   },
+   {
+    "uz": "«Bilmadim, normal»",
+    "ru": "«Не знаю, нормально»"
+   },
+   {
+    "uz": "«Chiqishda tasdiq yo'q»",
+    "ru": "«Нет подтверждения при выезде»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 154 belgi edi; bitta variant ma'nosiz edi.",
+  "q": {
+   "uz": "«Zo'r ekan!» nega yetarli fikr emas?",
+   "ru": "Почему «Круто!» — недостаточный отзыв?"
+  },
+  "opts": [
+   {
+    "uz": "Juda uzun yozilgan",
+    "ru": "Слишком длинный"
+   },
+   {
+    "uz": "Nimani tuzatishni aytmaydi",
+    "ru": "Не говорит, что исправить"
+   },
+   {
+    "uz": "Doim yolg'on bo'ladi",
+    "ru": "Всегда ложь"
+   },
+   {
+    "uz": "Uni faqat mentor aytadi",
+    "ru": "Его говорит только ментор"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 43 belgi, jami 206 edi.",
+  "q": {
+   "uz": "«Yoqmadi» degan fikrni qanday aniqlaymiz?",
+   "ru": "Как уточнить отзыв «Не понравилось»?"
+  },
+  "opts": [
+   {
+    "uz": "E'tibor bermaymiz",
+    "ru": "Не обращаем внимания"
+   },
+   {
+    "uz": "«Ko'proq yoqsin» deymiz",
+    "ru": "Говорим «пусть нравится больше»"
+   },
+   {
+    "uz": "«Nima chalkash edi?» deymiz",
+    "ru": "Спрашиваем «что было непонятно?»"
+   },
+   {
+    "uz": "Loyihani o'chirib tashlaymiz",
+    "ru": "Удаляем проект"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 178 belgi edi.",
+  "q": {
+   "uz": "«Eng qiyinini avval qilamiz» nega xato?",
+   "ru": "Почему «сначала самое трудное» — ошибка?"
+  },
+  "opts": [
+   {
+    "uz": "Qiyin ish doim befoyda",
+    "ru": "Трудное всегда бесполезно"
+   },
+   {
+    "uz": "Natija juda kech ko'rinadi",
+    "ru": "Результат виден слишком поздно"
+   },
+   {
+    "uz": "Oson ishlar qolib ketadi",
+    "ru": "Лёгкие дела останутся"
+   },
+   {
+    "uz": "Foyda muhim emas",
+    "ru": "Польза не важна"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 164 belgi edi; variantlardagi emoji va izohlar olindi.",
+  "q": {
+   "uz": "Ko'p foydali, lekin katta ish qayerga?",
+   "ru": "Куда большая, но очень полезная работа?"
+  },
+  "opts": [
+   {
+    "uz": "«Rejaga ol»",
+    "ru": "«В план»"
+   },
+   {
+    "uz": "«Avval shu»",
+    "ru": "«Сначала это»"
+   },
+   {
+    "uz": "«Shart emas»",
+    "ru": "«Не обязательно»"
+   },
+   {
+    "uz": "«Oson, keyin»",
+    "ru": "«Легко, потом»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 151 belgi edi.",
+  "q": {
+   "uz": "Band joyni adashib chiqarishni nima to'xtatadi?",
+   "ru": "Что не даст случайно освободить занятое место?"
+  },
+  "opts": [
+   {
+    "uz": "Dashboard paneli",
+    "ru": "Панель dashboard"
+   },
+   {
+    "uz": "Narxni oshirish",
+    "ru": "Повышение цены"
+   },
+   {
+    "uz": "Joylarni ko'paytirish",
+    "ru": "Больше мест"
+   },
+   {
+    "uz": "Chiqishda tasdiq",
+    "ru": "Подтверждение при выезде"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 154 belgi edi.",
+  "q": {
+   "uz": "Bo'sh, band va tushumni bir qarashda nima ko'rsatadi?",
+   "ru": "Что сразу показывает свободные, занятые и выручку?"
+  },
+  "opts": [
+   {
+    "uz": "Chiqishda tasdiq",
+    "ru": "Подтверждение при выезде"
+   },
+   {
+    "uz": "Joylarni kamaytirish",
+    "ru": "Меньше мест"
+   },
+   {
+    "uz": "Dashboard (holat paneli)",
+    "ru": "Dashboard (панель состояния)"
+   },
+   {
+    "uz": "Narxni yashirish",
+    "ru": "Скрыть цену"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 161 belgi edi.",
+  "q": {
+   "uz": "Qorovul narxni o'zi o'zgartirishi uchun nima kerak?",
+   "ru": "Что нужно, чтобы охранник сам менял цену?"
+  },
+  "opts": [
+   {
+    "uz": "Sozlamalar paneli",
+    "ru": "Панель настроек"
+   },
+   {
+    "uz": "Kodni qayta yozish",
+    "ru": "Переписать код"
+   },
+   {
+    "uz": "Yangi sayt ochish",
+    "ru": "Открыть новый сайт"
+   },
+   {
+    "uz": "Hech narsa — imkonsiz",
+    "ru": "Ничего — невозможно"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlardagi izohlar javobni aytib qo'yardi, jami 194 edi.",
+  "q": {
+   "uz": "Narxni o'zgartirish uchun qaysi SQL amali?",
+   "ru": "Какая SQL-команда меняет цену?"
+  },
+  "opts": [
+   {
+    "uz": "INSERT",
+    "ru": "INSERT"
+   },
+   {
+    "uz": "DELETE",
+    "ru": "DELETE"
+   },
+   {
+    "uz": "UPDATE",
+    "ru": "UPDATE"
+   },
+   {
+    "uz": "SELECT",
+    "ru": "SELECT"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 51 belgi — eng uzuni edi, jami 215.",
+  "q": {
+   "uz": "UPDATE'ning INSERT'dan farqi nimada?",
+   "ru": "Чем UPDATE отличается от INSERT?"
+  },
+  "opts": [
+   {
+    "uz": "Farqi yo'q, bir xil",
+    "ru": "Разницы нет"
+   },
+   {
+    "uz": "Mavjud qatorni o'zgartiradi",
+    "ru": "Меняет существующую строку"
+   },
+   {
+    "uz": "Jadvalga yangi qator qo'shadi",
+    "ru": "Добавляет новую строку"
+   },
+   {
+    "uz": "Faqat nomi boshqacha",
+    "ru": "Отличается только названием"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 53 belgi — eng uzuni edi, jami 229.",
+  "q": {
+   "uz": "Qurgandan keyin yaxshilash sikli qanday?",
+   "ru": "Каков цикл улучшения после сборки?"
+  },
+  "opts": [
+   {
+    "uz": "E'lon qilish → unutish",
+    "ru": "Объявить → забыть"
+   },
+   {
+    "uz": "Fikrsiz o'zicha tuzatish",
+    "ru": "Исправлять самому без отзывов"
+   },
+   {
+    "uz": "Hammasini birdan tuzatish",
+    "ru": "Исправить всё сразу"
+   },
+   {
+    "uz": "Fikr → saralash → upgrade",
+    "ru": "Отзывы → отбор → апгрейд"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 159 belgi edi.",
+  "q": {
+   "uz": "Texnik so'zli javobdan odam nima oladi?",
+   "ru": "Что человек получает из ответа с техническим словом?"
+  },
+  "opts": [
+   {
+    "uz": "Javob o'rniga notanish so'z",
+    "ru": "Незнакомое слово вместо ответа"
+   },
+   {
+    "uz": "Ikkinchi savoliga javob",
+    "ru": "Ответ и на второй вопрос"
+   },
+   {
+    "uz": "O'ziga tanish misol",
+    "ru": "Знакомый ему пример"
+   },
+   {
+    "uz": "Javobning qisqasini",
+    "ru": "Короткую версию ответа"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 152 edi.",
+  "q": {
+   "uz": "Rost javob qachon odamga yetib boradi?",
+   "ru": "Когда правдивый ответ доходит до человека?"
+  },
+  "opts": [
+   {
+    "uz": "Ikki marta takrorlanganda",
+    "ru": "Когда повторён дважды"
+   },
+   {
+    "uz": "Uzunroq aytilganda",
+    "ru": "Когда сказан длиннее"
+   },
+   {
+    "uz": "Kasb-so'zi qo'shilganda",
+    "ru": "Когда добавлено профи-слово"
+   },
+   {
+    "uz": "Oddiy so'z bilan aytilganda",
+    "ru": "Когда сказан простыми словами"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 48 belgigacha, jami 190 edi.",
+  "q": {
+   "uz": "Ko'rinadigan sahifa nima qiladi?",
+   "ru": "Что делает видимая страница?"
+  },
+  "opts": [
+   {
+    "uz": "Band joylarni tozalaydi",
+    "ru": "Очищает занятые места"
+   },
+   {
+    "uz": "Bo'sh joylarni ko'rsatadi",
+    "ru": "Показывает свободные места"
+   },
+   {
+    "uz": "Joy narxini hisoblaydi",
+    "ru": "Считает цену места"
+   },
+   {
+    "uz": "Ro'yxatni o'zi yangilaydi",
+    "ru": "Сама обновляет список"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 34 belgi edi.",
+  "q": {
+   "uz": "Server nima qiladi?",
+   "ru": "Что делает сервер?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifa rangini tanlaydi",
+    "ru": "Выбирает цвет страницы"
+   },
+   {
+    "uz": "Joy bo'shligini tekshiradi",
+    "ru": "Проверяет, свободно ли место"
+   },
+   {
+    "uz": "Joylarga yangi raqam beradi",
+    "ru": "Даёт местам новые номера"
+   },
+   {
+    "uz": "Tugmani kattalashtiradi",
+    "ru": "Увеличивает кнопку"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi, jami 142 edi.",
+  "q": {
+   "uz": "Baza nima qiladi?",
+   "ru": "Что делает база?"
+  },
+  "opts": [
+   {
+    "uz": "Band joylarni eslab qoladi",
+    "ru": "Запоминает занятые места"
+   },
+   {
+    "uz": "Odamga savol berib turadi",
+    "ru": "Задаёт человеку вопросы"
+   },
+   {
+    "uz": "Bo'sh joylarni chizadi",
+    "ru": "Рисует свободные места"
+   },
+   {
+    "uz": "Sahifa rangini almashtiradi",
+    "ru": "Меняет цвет страницы"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgigacha, jami 191 edi.",
+  "q": {
+   "uz": "Bitta bosish qavatlardan qaysi tartibda o'tadi?",
+   "ru": "В каком порядке одно нажатие проходит этажи?"
+  },
+  "opts": [
+   {
+    "uz": "Baza → server → sahifa",
+    "ru": "База → сервер → страница"
+   },
+   {
+    "uz": "Server → sahifa → baza",
+    "ru": "Сервер → страница → база"
+   },
+   {
+    "uz": "Sahifa → server → baza",
+    "ru": "Страница → сервер → база"
+   },
+   {
+    "uz": "Baza → sahifa → server",
+    "ru": "База → страница → сервер"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 62 belgi edi.",
+  "q": {
+   "uz": "Telefon o'chsa ham joylar saqlanadi. Qaysi qavat?",
+   "ru": "Места сохраняются, даже если телефон выключен. Какой этаж?"
+  },
+  "opts": [
+   {
+    "uz": "Yuqori — sahifa",
+    "ru": "Верхний — страница"
+   },
+   {
+    "uz": "O'rta — server",
+    "ru": "Средний — сервер"
+   },
+   {
+    "uz": "Uchalasi navbat bilan",
+    "ru": "Все три по очереди"
+   },
+   {
+    "uz": "Pastki — baza",
+    "ru": "Нижний — база"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi edi.",
+  "q": {
+   "uz": "Airbnb besh qadamida qaysi biri yo'q edi?",
+   "ru": "Чего не было в пяти шагах Airbnb?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt qanday qurilgani",
+    "ru": "Как устроен сайт"
+   },
+   {
+    "uz": "Odamlarning qiyinchiligi",
+    "ru": "Трудности людей"
+   },
+   {
+    "uz": "Qancha odam kutayotgani",
+    "ru": "Сколько людей ждут решения"
+   },
+   {
+    "uz": "Ishni kim qilayotgani",
+    "ru": "Кто делает работу"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 146 belgi edi.",
+  "q": {
+   "uz": "Airbnb ishini avval nima bilan tushuntirgan?",
+   "ru": "Чем Airbnb сначала объяснял свою работу?"
+  },
+  "opts": [
+   {
+    "uz": "Tayyor sayt bilan",
+    "ru": "Готовым сайтом"
+   },
+   {
+    "uz": "Uzun video bilan",
+    "ru": "Длинным видео"
+   },
+   {
+    "uz": "O'nga yaqin varaq bilan",
+    "ru": "Примерно десятью листами"
+   },
+   {
+    "uz": "Uzun maktublar bilan",
+    "ru": "Длинными письмами"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 150 edi.",
+  "q": {
+   "uz": "Ko'rinmas qavat ishlayotganini odam qanday ko'radi?",
+   "ru": "Как человек видит, что невидимый этаж работает?"
+  },
+  "opts": [
+   {
+    "uz": "Server javobini o'qib",
+    "ru": "Читая ответ сервера"
+   },
+   {
+    "uz": "Baza jadvalini ochib",
+    "ru": "Открыв таблицу базы"
+   },
+   {
+    "uz": "Kodni ochib ko'rib",
+    "ru": "Открыв код"
+   },
+   {
+    "uz": "Holat-qatorini o'qib",
+    "ru": "Читая строку состояния"
+   }
+  ],
+  "correct": 3
+ }
+]

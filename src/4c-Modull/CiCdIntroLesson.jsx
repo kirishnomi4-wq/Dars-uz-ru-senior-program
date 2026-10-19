@@ -876,48 +876,88 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 2 — QO'LDA YUK TASHISH (charchatadi) =====
+// F-1019-04 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatosiga bir qatorli sabab, qayta tanlash.
+// Har qadam key bilan yangilanadi (tanlovlar tozalanadi). Qolipsiz dars — tugma/xato uslubi shu darsniki (.qr-*).
+const Qaror = ({ savol, variantlar, onTogri }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const tanla = (j) => {
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="qr fade-step">
+      <p className="qr-s">{tr(savol)}</p>
+      <div className="qr-v">{variantlar.map((v, j) => <button key={j} type="button" className={`qr-chip ${xato.includes(j) ? 'err' : ''}`} disabled={xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</button>)}</div>
+      {izoh && <p className="qr-xato fade-step" role="status" key={tr(izoh)}>{tr(izoh)}</p>}
+    </div>
+  );
+};
+// Har nuqta uchun bitta qaror: shu nuqtada qo'lda nima qilinadi (tartib — POINTS bilan bir xil)
+const S2_QAROR = [
+  { savol: { uz: "Yig'ish nuqtasida qo'lda nima qilasiz?", ru: 'Что вы делаете вручную в точке «Сборка»?' }, v: [
+    { ok: true, t: { uz: "Kerakli paketlarni o'rnatasiz", ru: 'Устанавливаете нужные пакеты' } },
+    { t: { uz: 'Saytni internetga chiqarasiz', ru: 'Выкладываете сайт в интернет' }, izoh: { uz: "Internetga chiqarish oxirgi nuqtada bo'ladi, Uchirishda.", ru: 'Выкладка в интернет — последняя точка, «Взлёт».' } },
+    { t: { uz: 'Kodni qoidaga moslab tekshirasiz', ru: 'Проверяете код на соответствие правилам' }, izoh: { uz: "Qoidaga moslikni O'lcham ramkasi tekshiradi.", ru: 'Соответствие правилам проверяет «Рамка».' } }
+  ] },
+  { savol: { uz: "Skaner nuqtasida qo'lda nima qilasiz?", ru: 'Что вы делаете вручную в точке «Сканер»?' }, v: [
+    { t: { uz: "Fayllarni internetga tayyor holga o'raysiz", ru: 'Упаковываете файлы в готовый для интернета вид' }, izoh: { uz: "Bu O'rash nuqtasi. Skaner kod to'g'ri ishlashini tekshiradi.", ru: 'Это точка «Упаковка». Сканер проверяет, правильно ли работает код.' } },
+    { ok: true, t: { uz: 'Testlarni ishga tushirasiz', ru: 'Запускаете тесты' } },
+    { t: { uz: "Paketlarni qayta o'rnatasiz", ru: 'Заново устанавливаете пакеты' }, izoh: { uz: "Paketlar Yig'ishda o'rnatildi. Bu yerda testlar ishlaydi.", ru: 'Пакеты уже установлены в «Сборке». Здесь идут тесты.' } }
+  ] },
+  { savol: { uz: "O'lcham ramkasi nimani tekshiradi?", ru: 'Что проверяет «Рамка»?' }, v: [
+    { t: { uz: "Sahifa telefon ekraniga sig'ishini", ru: 'Помещается ли страница на экран телефона' }, izoh: { uz: "Bu ramka sahifa o'lchamini emas, kod yozilishini tekshiradi.", ru: 'Эта рамка проверяет не размер страницы, а то, как написан код.' } },
+    { t: { uz: 'Kod qancha tez ishlashini', ru: 'Насколько быстро работает код' }, izoh: { uz: "Tezlik o'lchanmaydi. Faqat yozish qoidalari tekshiriladi.", ru: 'Скорость не измеряется. Проверяются только правила написания.' } },
+    { ok: true, t: { uz: 'Kod qoidalarga mos yozilganini', ru: 'Написан ли код по правилам' } }
+  ] },
+  { savol: { uz: "O'rash nuqtasida nima bo'ladi?", ru: 'Что происходит в точке «Упаковка»?' }, v: [
+    { ok: true, t: { uz: 'Yuk internet uchun yengil qilinadi', ru: 'Груз делают лёгким для интернета' } },
+    { t: { uz: 'Kod zip faylga solinadi', ru: 'Код кладут в zip-архив' }, izoh: { uz: "Zip emas. O'rash kodni brauzer uchun yengil qiladi.", ru: 'Не zip. Упаковка делает код лёгким для браузера.' } },
+    { t: { uz: 'Testlar yana bir marta ishga tushiriladi', ru: 'Тесты запускают ещё раз' }, izoh: { uz: "Testlar Skanerda o'tdi. O'rash ularni takrorlamaydi.", ru: 'Тесты прошли в «Сканере». Упаковка их не повторяет.' } }
+  ] },
+  { savol: { uz: "Uchirish nuqtasida nima bo'ladi?", ru: 'Что происходит в точке «Взлёт»?' }, v: [
+    { t: { uz: 'Kod qaytadan tekshiriladi', ru: 'Код проверяют заново' }, izoh: { uz: "Tekshiruv oldingi nuqtalarda bo'ldi. Bu yerda yuk internetga chiqadi.", ru: 'Проверка была в прошлых точках. Здесь груз улетает.' } },
+    { t: { uz: 'Faqat sizning kompyuteringizda ochiladi', ru: 'Открывается только на вашем компьютере' }, izoh: { uz: "Kompyuterda ochish uchirish emas. Sayt hammaga chiqadi.", ru: 'Открыть на компьютере — не взлёт. Сайт выходит для всех.' } },
+    { ok: true, t: { uz: 'Tayyor sayt foydalanuvchilarga chiqadi', ru: 'Готовый сайт выходит к пользователям' } }
+  ] }
+];
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [seen, setSeen] = useState(storedAnswer ? new Set(POINTS.map(p => p.id)) : new Set());
-  const [active, setActive] = useState(null);
+  const [q, setQ] = useState(storedAnswer ? POINTS.length : 0);
   const [skipped, setSkipped] = useState(false);
   const [sc, setSc] = useState(0);
-  const done = seen.size >= POINTS.length;
-  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
+  const done = q >= POINTS.length;
+  const seen = new Set(POINTS.slice(0, q).map(p => p.id));
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, q);   // 13-band klapan
   const minutes = seen.size * 4;
-  const tap = (id) => { setActive(id); setSkipped(false); setSc(n => n + 1); setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); };
+  const togri = () => { setSkipped(false); setSc(n => n + 1); setQ(n => Math.min(POINTS.length, n + 1)); };
   const tempt = () => { setSkipped(true); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
-  const cur = POINTS.find(p => p.id === active);
   return (
-    <Stage eyebrow={tr({ uz: "Muammo · qo'lda", ru: 'Проблема · вручную' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `5 nuqtani qo'lda o'tkazing (${seen.size}/5)`, ru: `Проведите 5 точек вручную (${seen.size}/5)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Muammo · qo'lda", ru: 'Проблема · вручную' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta uchirish — aslida <span className="italic" style={{ color: T.accent }}>nechta amal</span>?</>, ru: <>Один запуск — сколько это <span className="italic" style={{ color: T.accent }}>действий</span> на самом деле?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Chamadonni har nuqtadan siz qo'lda olib o'tasiz. Har nuqtani bosib ko'ring — va bu <b style={{ color: T.ink }}>har push'da</b> qaytarilishini his qiling. Vaqt qanchalik cho'zilishini kuzating.</>, ru: <>Вы вручную проносите чемодан через каждую точку. Нажмите на каждую — и почувствуйте, что это повторяется на <b style={{ color: T.ink }}>каждый push</b>. Следите, как растёт время.</> })}</Mentor>
-        <Zoomable off={!cur && !skipped}>{/* F-0926-06: ⛶ bo'sh ustunda yolg'iz chiqmasin */}
+        <Mentor>{tr({ uz: <>Chamadonni har nuqtadan siz qo'lda olib o'tasiz. Har savolga javob bering — to'g'ri javob chamadonni keyingi nuqtaga o'tkazadi. Bu <b style={{ color: T.ink }}>har push'da</b> qaytarilishini his qiling va vaqt qanchalik cho'zilishini kuzating.</>, ru: <>Вы вручную проносите чемодан через каждую точку. Ответьте на каждый вопрос — верный ответ переносит чемодан в следующую точку. Почувствуйте, что это повторяется на <b style={{ color: T.ink }}>каждый push</b>, и следите, как растёт время.</> })}</Mentor>
+        <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1 cj-items">
-              {POINTS.map(p => <button key={p.id} className={`itm-card ${seen.has(p.id) ? '' : 'tap-hint'}`} onClick={() => tap(p.id)} style={seen.has(p.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}` } : undefined}><span className="itm-ico">{p.icon}</span><span className="itm-nm">{seen.has(p.id) ? '✓ ' : ''}{tr(p.label)}</span></button>)}
+              {POINTS.map(p => <div key={p.id} className="itm-card static" style={seen.has(p.id) ? { boxShadow: `inset 0 0 0 1.5px ${T.success}` } : undefined}><span className="itm-ico">{p.icon}</span><span className="itm-nm">{seen.has(p.id) ? '✓ ' : ''}{tr(p.label)}</span></div>)}
             </div>
             <div className="timer-row fade-up delay-2">
               <div className={`timer-chip ${minutes >= 12 ? 'danger' : ''}`}><span className="tc-lbl">{tr({ uz: "Qo'lda ketgan vaqt", ru: 'Время вручную' })}</span><span className="tc-val">{minutes} {tr({ uz: 'daq', ru: 'мин' })}</span></div>
               <div className="timer-chip success"><span className="tc-lbl">{tr({ uz: 'Lenta bilan (keyingi ekran)', ru: 'С лентой (следующий экран)' })}</span><span className="tc-val">{tr({ uz: '4 son', ru: '4 сек' })}</span></div>
             </div>
-            <button className="tempt-btn" onClick={tempt}>{tr({ uz: "😮‍💨 Skanerni tashlab ketish (tez bo'ladi)", ru: '😮‍💨 Пропустить сканер (так быстрее)' })}</button>
+            {!done && <button className="tempt-btn" onClick={tempt}>{tr({ uz: "😮‍💨 Skanerni tashlab ketish (tez bo'ladi)", ru: '😮‍💨 Пропустить сканер (так быстрее)' })}</button>}
           </Col>
           <Col>
-            {(skipped || cur) && <p className="flow-label">{tr({ uz: 'nuqta tafsiloti', ru: 'детали точки' })}</p>}{/* F-0926-06: bo'sh ustunda yorliq yolg'iz qolmasin */}
-            {skipped
-              ? <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '⚠️ Skanerni tashlab ketdingiz', ru: '⚠️ Вы пропустили сканер' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tez bo'ldi — lekin endi kod tekshirilmagan holda uchib ketadi. Agar xato bo'lsa, foydalanuvchi buzuq saytni ko'radi.", ru: 'Быстро — но теперь код улетит непроверенным. Если там ошибка, пользователь увидит сломанный сайт.' })}</p><PhoneMock state="broken" /></div>
-              : cur
-                ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ color: T.accent }}>{cur.icon} {tr(cur.label)}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-                : null}
+            {!done && <Qaror key={q} savol={S2_QAROR[q].savol} variantlar={S2_QAROR[q].v} onTogri={togri} />}
+            {skipped && !done && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.danger }}>{tr({ uz: '⚠️ Skanerni tashlab ketdingiz', ru: '⚠️ Вы пропустили сканер' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tez bo'ldi — lekin endi kod tekshirilmagan holda uchib ketadi. Agar xato bo'lsa, foydalanuvchi buzuq saytni ko'radi.", ru: 'Быстро — но теперь код улетит непроверенным. Если там ошибка, пользователь увидит сломанный сайт.' })}</p><PhoneMock state="broken" /></div>}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "5 nuqta — har push'da qo'lda takrorlanadi. Sekin, zerikarli, va bir kuni bittasini unutasiz. Buni avtomatlashtirsak-chi?", ru: '5 точек — и так вручную на каждый push. Медленно, скучно, и однажды вы одну из них забудете. А если это автоматизировать?' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har nuqtani birma-bir bosing — qo'lda o'tkazganda diqqat qayerda charchaydi?", ru: '💡 Нажимайте каждую точку по очереди — где внимание устаёт, когда делаешь это вручную?' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Nuqta nomiga qarang: Skaner tekshiradi, O'rash o'raydi, Uchirish chiqaradi.", ru: '💡 Посмотрите на название точки: Сканер проверяет, Упаковка упаковывает, Взлёт отправляет.' })}</p>}
       </div>
     </Stage>
   );
@@ -944,7 +984,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     tick(0);
   };
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · lenta', ru: 'Понятие · лента' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Lentani yoqing', ru: 'Включите ленту' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · lenta', ru: 'Понятие · лента' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Lentani yoqing', ru: 'Включите ленту' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir marta sozlasangiz — keyin <span className="italic" style={{ color: T.accent }}>o'zi ishlasa-chi</span>?</>, ru: <>Настроить один раз — а дальше пусть <span className="italic" style={{ color: T.accent }}>работает сама</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Aeroport bagaj lentasini tasavvur qiling: <b style={{ color: T.ink }}>kod = chamadon</b>. Siz uni push qilasiz, u <b style={{ color: T.ink }}>lentaga</b> tushadi. Har nuqta chamadon bilan o'z ishini qiladi — birortasi qizil bersa, keyingisiga o'tmaydi. Oxirida, hammasi yashil bo'lsa, samolyot avtomatik ko'tariladi. Tugmani bosing.</>, ru: <>Представьте багажную ленту в аэропорту: <b style={{ color: T.ink }}>код = чемодан</b>. Вы делаете push — и он попадает <b style={{ color: T.ink }}>на ленту</b>. Каждая точка делает с чемоданом свою работу; если какая-то даёт красный, дальше он не едет. А если в конце всё зелёное — самолёт взлетает автоматически. Нажмите кнопку.</> })}</Mentor>
@@ -967,7 +1007,6 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Lentani ishga tushiring va nuqtalar ketma-ket yonishini kuzating.", ru: '💡 Запустите ленту и посмотрите, как точки загораются одна за другой.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -994,39 +1033,54 @@ const SUITCASES = [
   { id: 'vali', name: 'Vali', work: { uz: 'login sahifasi', ru: 'страница логина' } },
   { id: 'sora', name: 'Sora', work: { uz: "mahsulot ro'yxati", ru: 'список товаров' } }
 ];
+// F-1019-06 (DE 213.22): har dasturchi — bitta qaror; to'g'ri javob uning chamadonini lentaga qo'yadi (tartib SUITCASES bilan bir xil)
+const S5_QAROR = [
+  { savol: { uz: 'Ali push qildi. Lenta uning kodini qachon tekshiradi?', ru: 'Ali сделал push. Когда лента проверит его код?' }, v: [
+    { t: { uz: "Hafta oxirida, hamma kod yig'ilganda", ru: 'В конце недели, когда соберётся весь код' }, izoh: { uz: 'CI kutmaydi: har yuborilgan kod darhol tekshiriladi.', ru: 'CI не ждёт: каждый отправленный код проверяется сразу.' } },
+    { ok: true, t: { uz: 'Kod yuborilishi bilan darhol', ru: 'Сразу, как только код отправлен' } },
+    { t: { uz: "Ali tekshirishni so'raganda", ru: 'Когда Ali попросит проверить' }, izoh: { uz: "Hech kim so'ramaydi: tekshiruvni push o'zi boshlaydi.", ru: 'Никто не просит: проверку запускает сам push.' } }
+  ] },
+  { savol: { uz: 'Valining kodi uyida ishlagan, lentada esa Skaner qizil berdi. Nega?', ru: 'У Vali код работал дома, а на ленте «Сканер» загорелся красным. Почему?' }, v: [
+    { t: { uz: "Lentaning o'zi buzilgan, kodda ayb yo'q", ru: 'Сломана сама лента, код ни при чём' }, izoh: { uz: "Alining kodi shu lentada yashil o'tdi, demak lenta soz.", ru: 'Код Ali прошёл эту ленту зелёным — значит, лента исправна.' } },
+    { t: { uz: 'Skaner adashdi, uyda ishlagani yetarli', ru: 'Сканер ошибся, а дома код работал без ошибок' }, izoh: { uz: "Uyda boshqa sozlama bor, xato o'sha yerda yashirinib qoladi.", ru: 'Дома другие настройки — там ошибка прячется.' } },
+    { ok: true, t: { uz: 'Hamma bir xil sharoitda sinaladi', ru: 'Всех проверяют в одинаковых условиях' } }
+  ] },
+  { savol: { uz: 'Sora ham push qildi. CI nomidagi «birlashtirish» nimani bildiradi?', ru: 'Sora тоже сделала push. Что значит «интеграция» в названии CI?' }, v: [
+    { ok: true, t: { uz: "Har kimning kodi umumiy loyihaga qo'shiladi", ru: 'Код каждого добавляется в общий проект' } },
+    { t: { uz: 'Uchala dasturchi bitta kompyuterda birga ishlaydi', ru: 'Все трое работают вместе за одним компьютером' }, izoh: { uz: "Har kim o'z kompyuterida yozadi, kod esa umumiy joyga boradi.", ru: 'Каждый пишет на своём компьютере, а код уходит в общее место.' } },
+    { t: { uz: 'Hamma fayl bitta katta faylga yopishtiriladi', ru: 'Все файлы склеиваются в один большой файл' }, izoh: { uz: "Fayllar alohida qoladi. Gap kodni bir loyihaga qo'shishda.", ru: 'Файлы остаются отдельными. Речь о том, чтобы добавить код в один проект.' } }
+  ] }
+];
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [seen, setSeen] = useState(storedAnswer ? new Set(SUITCASES.map(d => d.id)) : new Set());
-  const [active, setActive] = useState(null);
+  const [q, setQ] = useState(storedAnswer ? SUITCASES.length : 0);
   const [sc, setSc] = useState(0);
-  const done = seen.size >= SUITCASES.length;
-  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
-  const tap = (id) => { setActive(id); setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
+  const done = q >= SUITCASES.length;
+  const seen = new Set(SUITCASES.slice(0, q).map(d => d.id));
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, q);   // 13-band klapan
+  const togri = () => { setQ(n => Math.min(SUITCASES.length, n + 1)); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
-  const cur = SUITCASES.find(d => d.id === active);
+  const cur = q > 0 && !done ? SUITCASES[q - 1] : null;   // oxirgi lentaga tushgan chamadon (ish tugagach — faqat xulosa, 213.14)
   const result = cur && cur.id === 'vali' ? 'bad' : cur ? 'ok' : null;
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · CI', ru: 'Понятие · CI' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Chamadonlarni ko'ring (${seen.size}/3)`, ru: `Посмотрите чемоданы (${seen.size}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · CI', ru: 'Понятие · CI' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>CI — <span className="italic" style={{ color: T.accent }}>Continuous Integration</span>: uch chamadon, bitta lenta.</>, ru: <>CI — <span className="italic" style={{ color: T.accent }}>Continuous Integration</span>: три чемодана, одна лента.</> })}</h2></div>
-        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>CI = uzluksiz birlashtirish.</b> Jamoadagi har kishi kod yozadi. Har push'da CI chamadonni umumiy lentaga qo'yadi va <b style={{ color: T.ink }}>darhol avtomatik tekshiradi</b>. Har dasturchini bosing.</>, ru: <><b style={{ color: T.ink }}>CI = непрерывная интеграция.</b> В команде каждый пишет код. На каждый push CI кладёт чемодан на общую ленту и <b style={{ color: T.ink }}>сразу автоматически проверяет</b>. Нажмите на каждого разработчика.</> })}</Mentor>
-        <Zoomable off={!cur}>{/* F-0926-06: ⛶ bo'sh ustunda yolg'iz chiqmasin */}
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>CI = uzluksiz birlashtirish.</b> Jamoadagi har kishi kod yozadi. Har push'da CI chamadonni umumiy lentaga qo'yadi va <b style={{ color: T.ink }}>avtomatik tekshiradi</b>. Har savolga javob bering — to'g'ri javob navbatdagi chamadonni lentaga qo'yadi.</>, ru: <><b style={{ color: T.ink }}>CI = непрерывная интеграция.</b> В команде каждый пишет код. На каждый push CI кладёт чемодан на общую ленту и <b style={{ color: T.ink }}>автоматически проверяет</b>. Ответьте на каждый вопрос — верный ответ кладёт на ленту следующий чемодан.</> })}</Mentor>
+        <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1 cj-items">
-              {SUITCASES.map(d => <button key={d.id} className={`itm-card ${seen.has(d.id) ? '' : 'tap-hint'}`} onClick={() => tap(d.id)} style={seen.has(d.id) ? { boxShadow: `inset 0 0 0 1.5px ${d.id === 'vali' ? T.danger : T.success}` } : undefined}><span className="itm-nm">{seen.has(d.id) ? '✓ ' : ''}{d.name}</span></button>)}
+              {SUITCASES.map(d => <div key={d.id} className="itm-card static" style={seen.has(d.id) ? { boxShadow: `inset 0 0 0 1.5px ${d.id === 'vali' ? T.danger : T.success}` } : undefined}><span className="itm-nm">{seen.has(d.id) ? '✓ ' : ''}{d.name}</span></div>)}
             </div>
+            {cur && <div className={result === 'bad' ? 'frame-warn fade-step' : 'sk-info fade-step'} key={cur.id}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>{cur.name}ning chamadoni ({tr(cur.work)}) lentaga tushdi.</>, ru: <>Чемодан {cur.name} ({tr(cur.work)}) попал на ленту.</> })} {result === 'bad' ? tr({ uz: <>🔍 Skaner nuqtasida <b style={{ color: T.danger }}>qizil</b> berdi — testi yiqildi.</>, ru: <>🔍 На точке «Сканер» загорелся <b style={{ color: T.danger }}>красный</b> — тест упал.</> }) : tr({ uz: <><b style={{ color: T.success }}>✓ yashil</b>, hammasi joyida.</>, ru: <><b style={{ color: T.success }}>✓ зелёный</b>, всё в порядке.</> })}</p></div>}
           </Col>
           <Col>
-            {cur && <p className="flow-label">{tr({ uz: 'lenta natijasi', ru: 'результат ленты' })}</p>}{/* F-0926-06: bo'sh ustunda yorliq yolg'iz qolmasin */}
-            {cur
-              ? <div className={result === 'bad' ? 'frame-warn fade-step' : 'sk-info fade-step'} key={active}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>{cur.name}ning chamadoni ({tr(cur.work)}) lentaga tushdi.</>, ru: <>Чемодан {cur.name} ({tr(cur.work)}) попал на ленту.</> })} {result === 'bad' ? tr({ uz: <>🔍 Skaner nuqtasida <b style={{ color: T.danger }}>qizil</b> berdi — testi yiqildi.</>, ru: <>🔍 На точке «Сканер» загорелся <b style={{ color: T.danger }}>красный</b> — тест упал.</> }) : tr({ uz: <><b style={{ color: T.success }}>✓ yashil</b>, hammasi joyida.</>, ru: <><b style={{ color: T.success }}>✓ зелёный</b>, всё в порядке.</> })}</p></div>
-              : null}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Valiniki uyidagi kompyuterda ishlagan edi. Lenta esa hammani <b>bir xil sharoitda</b> sinaydi — shuning uchun aynan shu yerda xato topildi.</>, ru: <>У Вали код работал на домашнем компьютере. А лента проверяет всех <b>в одинаковых условиях</b> — поэтому ошибка нашлась именно здесь.</> })}</p></div>}
+            {!done && <Qaror key={q} savol={S5_QAROR[q].savol} variantlar={S5_QAROR[q].v} onTogri={togri} />}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ali va Sora yashil, Vali qizil. CI har push'ni darhol va <b>bir xil sharoitda</b> tekshiradi.</>, ru: <>У Ali и Sora зелёный, у Vali красный. CI проверяет каждый push сразу и <b>в одинаковых условиях</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har chamadonni oching — ichidagi yuk lentaning qaysi nuqtasida tekshiriladi?", ru: '💡 Откройте каждый чемодан — на какой точке ленты проверяется то, что внутри?' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Xato variant ostidagi sababni o'qing — u qaysi tomonga qarashni aytadi.", ru: '💡 Прочитайте причину под неверным вариантом — она подскажет, куда смотреть.' })}</p>}
       </div>
     </Stage>
   );
@@ -1037,71 +1091,113 @@ const CD_MODES = [
   { id: 'delivery', label: { uz: 'Yetkazish', ru: 'Доставка' }, icon: '🖐️', d: { uz: "Lenta oxirigacha yetadi va tayyor turadi — lekin sizdan tasdiq so'raydi. Siz «Uchirish» tugmasini bosishingiz kerak.", ru: 'Лента доезжает до конца, и всё готово — но она ждёт вашего подтверждения. Кнопку «Взлёт» нажимаете вы.' } },
   { id: 'deployment', label: 'Deployment', icon: '⚙️', d: { uz: "Lenta oxirigacha yetsa — hech kimdan so'ramaydi, o'zi uchiradi. To'liq avtomatik.", ru: 'Доехав до конца, лента никого не спрашивает — отправляет сама. Полностью автоматически.' } }
 ];
+// F-1019-06 (DE 213.22): 1–2-qaror rejimni ochadi (tartib CD_MODES bilan bir xil), 3-qarorda o'quvchi rejimni o'zi tanlaydi
+const S6_QAROR = [
+  { savol: { uz: "Yetkazish rejimida lenta oxiriga yetdi. Endi nima bo'ladi?", ru: 'В режиме «Доставка» лента доехала до конца. Что дальше?' }, v: [
+    { ok: true, t: { uz: 'Siz tasdiqlaguningizcha kutib turadi', ru: 'Ждёт, пока вы подтвердите' } },
+    { t: { uz: "O'zi darhol internetga chiqaradi", ru: 'Сама сразу выкладывает в интернет' }, izoh: { uz: 'Bu Deployment rejimi. Yetkazish sizdan tasdiq kutadi.', ru: 'Это режим Deployment. «Доставка» ждёт вашего подтверждения.' } },
+    { t: { uz: 'Kodni boshidan qayta tekshira boshlaydi', ru: 'Начинает проверять код заново' }, izoh: { uz: 'Tekshiruv tugagan. Endi faqat uchirish qoladi.', ru: 'Проверка закончена. Остался только взлёт.' } }
+  ] },
+  { savol: { uz: "Deployment rejimida skaner yashil bo'ldi. Uchirishni kim bosadi?", ru: 'В режиме Deployment сканер зелёный. Кто нажимает «Взлёт»?' }, v: [
+    { t: { uz: 'Jamoa rahbari, tasdiq tugmasi orqali', ru: 'Руководитель команды, кнопкой подтверждения' }, izoh: { uz: 'Tasdiq Yetkazish rejimida kerak. Bu yerda hech kim bosmaydi.', ru: 'Подтверждение нужно в «Доставке». Здесь никто не нажимает.' } },
+    { t: { uz: "Kodni yozgan dasturchining o'zi", ru: 'Сам разработчик, который писал код' }, izoh: { uz: 'Dasturchi faqat push qiladi, uchirishni lenta qiladi.', ru: 'Разработчик только делает push, взлёт делает лента.' } },
+    { ok: true, t: { uz: "Hech kim, lenta o'zi uchiradi", ru: 'Никто, лента отправляет сама' } }
+  ] },
+  { savol: { uz: "Pul o'tkazish ilovasida har yangilanishni mas'ul xodim ko'rib chiqadi. Qaysi rejim mos?", ru: 'В приложении для переводов денег каждое обновление смотрит ответственный сотрудник. Какой режим подходит?' }, v: [
+    { t: { uz: "Deployment: tasdiqsiz o'zi uchadi", ru: 'Deployment: взлетает сам, без подтверждения' }, izoh: { uz: "Tasdiqsiz uchsa, xodim ko'rib chiqishga ulgurmaydi.", ru: 'Без подтверждения сотрудник не успеет посмотреть.' } },
+    { ok: true, t: { uz: 'Yetkazish: tasdiqdan keyin uchadi', ru: 'Доставка: взлёт после подтверждения' } },
+    { t: { uz: "Lentasiz: hammasini qo'lda bajarish", ru: 'Без ленты: всё делать вручную' }, izoh: { uz: 'Tekshiruvni lenta qiladi, tasdiqni esa Yetkazish beradi.', ru: 'Проверку делает лента, а подтверждение даёт «Доставка».' } }
+  ] }
+];
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [seen, setSeen] = useState(storedAnswer ? new Set(CD_MODES.map(m => m.id)) : new Set());
-  const [active, setActive] = useState(null);
+  const [q, setQ] = useState(storedAnswer ? S6_QAROR.length : 0);
   const [sc, setSc] = useState(0);
-  const done = seen.size >= CD_MODES.length;
-  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
-  const tap = (id) => { setActive(id); setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
+  const done = q >= S6_QAROR.length;
+  const ochiq = Math.min(q, CD_MODES.length);   // nechta rejim ochildi
+  const seen = new Set(CD_MODES.slice(0, ochiq).map(m => m.id));
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, q);   // 13-band klapan
+  const togri = () => { setQ(n => Math.min(S6_QAROR.length, n + 1)); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
-  const cur = CD_MODES.find(m => m.id === active);
+  const cur = ochiq > 0 && !done ? CD_MODES[ochiq - 1] : null;   // oxirgi ochilgan rejim (ish tugagach — faqat xulosa, 213.14)
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · CD', ru: 'Понятие · CD' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Ikkala rejimni sinang', ru: 'Попробуйте оба режима' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · CD', ru: 'Понятие · CD' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>CD — <span className="italic" style={{ color: T.accent }}>Continuous Deployment</span>: kim uchiradi?</>, ru: <>CD — <span className="italic" style={{ color: T.accent }}>Continuous Deployment</span>: кто отправляет в полёт?</> })}</h2></div>
-        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>CD = uzluksiz yetkazish.</b> Skaner yashil bo'lsa, keyin ikki yo'l bor: siz tasdiqlaysizmi, yoki lenta o'zi uchiradimi? Ikkalasini sinang.</>, ru: <><b style={{ color: T.ink }}>CD = непрерывная доставка.</b> Если сканер зелёный, дальше два пути: подтверждаете вы — или лента отправляет сама? Попробуйте оба.</> })}</Mentor>
-        <Zoomable off={!cur}>{/* F-0926-06: ⛶ bo'sh ustunda yolg'iz chiqmasin */}
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>CD = uzluksiz yetkazish.</b> Skaner yashil bo'lsa, keyin ikki yo'l bor: siz tasdiqlaysizmi, yoki lenta o'zi uchiradimi? Har savolga javob bering — oxirgisida rejimni o'zingiz tanlaysiz.</>, ru: <><b style={{ color: T.ink }}>CD = непрерывная доставка.</b> Если сканер зелёный, дальше два пути: подтверждаете вы — или лента отправляет сама? Ответьте на каждый вопрос — в последнем режим выбираете вы сами.</> })}</Mentor>
+        <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {CD_MODES.map(m => (
-                <button key={m.id} className="vcard" onClick={() => tap(m.id)} style={{ boxShadow: active === m.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
+                <div key={m.id} className="vcard static" style={{ boxShadow: cur && cur.id === m.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
                   <span className="role-ico">{m.icon}</span>
                   <span className="vlbl">{tr(m.label)}</span>
                   <span className="vseen" style={{ color: seen.has(m.id) ? T.success : T.ink3 }}>{seen.has(m.id) ? '✓' : ''}</span>
-                </button>
+                </div>
               ))}
             </div>
+            {cur && <div className="frame fade-step" key={cur.id}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>}
           </Col>
           <Col>
-            {cur
-              ? <div className="frame fade-step" key={active}>{/* F-0926-06 (CC4): sarlavha olindi — faol karta halqasi shuni aytadi */}<p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : null}
+            {!done && <Qaror key={q} savol={S6_QAROR[q].savol} variantlar={S6_QAROR[q].v} onTogri={togri} />}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ham CD. Farqi — oxirgi qadamda: <b>tasdiq kerakmi</b> yoki <b>yo'qmi</b>.</>, ru: <>Оба варианта — CD. Разница в последнем шаге: <b>нужно подтверждение</b> или <b>нет</b>.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikkala rejimni ham yoqing: biri faqat tekshiradi, ikkinchisi uchiradi ham.", ru: '💡 Включите оба режима: один только проверяет, второй ещё и отправляет в полёт.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Farq faqat oxirgi qadamda: uchirishdan oldin tasdiq kerakmi, yo'qmi.", ru: '💡 Разница только в последнем шаге: нужно ли подтверждение перед взлётом.' })}</p>}
       </div>
     </Stage>
   );
 };
 
 // ===== SCREEN 7 — LENTA NUQTALARI =====
+// F-1019-06 (DE 213.22): har nuqta — bitta qaror (2-ekran vazifani so'ragan, bu yerda buyruq va tartib); tartib POINTS bilan bir xil
+const S7_QAROR = [
+  { savol: { uz: "Yig'ish nuqtasi qaysi buyruqni ishga tushiradi?", ru: 'Какую команду запускает точка «Сборка»?' }, v: [
+    { t: { uz: 'npm run build', ru: 'npm run build' }, izoh: { uz: "Bu O'rash buyrug'i. Yig'ish paketlarni o'rnatadi.", ru: 'Это команда «Упаковки». Сборка устанавливает пакеты.' } },
+    { ok: true, t: { uz: 'npm install', ru: 'npm install' } },
+    { t: { uz: 'npm test', ru: 'npm test' }, izoh: { uz: 'Bu Skaner buyrug\'i, u testlarni ishga tushiradi.', ru: 'Это команда «Сканера», она запускает тесты.' } }
+  ] },
+  { savol: { uz: 'Skaner nuqtasi qaysi buyruq bilan ishlaydi?', ru: 'С какой командой работает точка «Сканер»?' }, v: [
+    { ok: true, t: { uz: 'npm test', ru: 'npm test' } },
+    { t: { uz: 'eslint .', ru: 'eslint .' }, izoh: { uz: "eslint yozilish qoidasini tekshiradi, bu O'lcham ramkasi.", ru: 'eslint проверяет правила написания — это «Рамка».' } },
+    { t: { uz: 'npm install', ru: 'npm install' }, izoh: { uz: "Paketlar Yig'ishda o'rnatildi. Skaner testlarni ishlatadi.", ru: 'Пакеты уже установлены в «Сборке». Сканер запускает тесты.' } }
+  ] },
+  { savol: { uz: "O'lcham ramkasi qaysi buyruqni ishlatadi?", ru: 'Какую команду использует «Рамка»?' }, v: [
+    { t: { uz: 'npm test', ru: 'npm test' }, izoh: { uz: 'npm test kod ishlashini sinaydi, yozilishini emas.', ru: 'npm test проверяет, работает ли код, а не как он написан.' } },
+    { t: { uz: 'npm start', ru: 'npm start' }, izoh: { uz: 'npm start saytni kompyuterda ochadi, hech narsa tekshirmaydi.', ru: 'npm start открывает сайт на компьютере и ничего не проверяет.' } },
+    { ok: true, t: { uz: 'eslint .', ru: 'eslint .' } }
+  ] },
+  { savol: { uz: "O'rash nuqtasi qaysi buyruqni ishga tushiradi?", ru: 'Какую команду запускает точка «Упаковка»?' }, v: [
+    { t: { uz: 'npm install', ru: 'npm install' }, izoh: { uz: "Bu Yig'ish buyrug'i. O'rash tayyor kodni yengil qiladi.", ru: 'Это команда «Сборки». Упаковка делает готовый код лёгким.' } },
+    { ok: true, t: { uz: 'npm run build', ru: 'npm run build' } },
+    { t: { uz: 'npm run preview', ru: 'npm run preview' }, izoh: { uz: "preview tayyor saytni faqat kompyuteringizda ko'rsatadi.", ru: 'preview только показывает готовый сайт на вашем компьютере.' } }
+  ] },
+  { savol: { uz: 'Uchirish nega eng oxirida turadi?', ru: 'Почему «Взлёт» стоит в самом конце?' }, v: [
+    { t: { uz: "U eng sekin nuqta bo'lgani uchun", ru: 'Это самая медленная точка' }, izoh: { uz: 'Gap tezlikda emas, tartibda: avval tekshiruv bo\'ladi.', ru: 'Дело не в скорости, а в порядке: сначала проверка.' } },
+    { t: { uz: "Tartibning hech qanday farqi yo'q, odat", ru: 'Порядок совсем не важен, это просто привычка' }, izoh: { uz: 'Avval uchsa, tekshirilmagan sayt foydalanuvchiga yetadi.', ru: 'Если взлететь раньше, непроверенный сайт дойдёт до пользователя.' } },
+    { ok: true, t: { uz: 'Faqat tekshirilgan yuk uchishi kerak', ru: 'Лететь может только проверенный груз' } }
+  ] }
+];
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [seen, setSeen] = useState(storedAnswer ? new Set(POINTS.map(p => p.id)) : new Set());
-  const [active, setActive] = useState(null);
+  const [q, setQ] = useState(storedAnswer ? POINTS.length : 0);
   const [sc, setSc] = useState(0);
-  const done = seen.size >= POINTS.length;
-  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
-  const statuses = {}; seen.forEach(id => { statuses[id] = 'pass'; });
-  const tap = (id) => { setActive(id); setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
+  const done = q >= POINTS.length;
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, q);   // 13-band klapan
+  const statuses = {}; POINTS.slice(0, q).forEach(p => { statuses[p.id] = 'pass'; });
+  const togri = () => { setQ(n => Math.min(POINTS.length, n + 1)); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
-  const cur = POINTS.find(p => p.id === active);
+  const cur = q > 0 && !done ? POINTS[q - 1] : null;   // oxirgi yashil bo'lgan nuqta (ish tugagach — faqat xulosa, 213.14)
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · lenta nuqtalari', ru: 'Понятие · точки ленты' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Nuqtalarni ko'ring (${seen.size}/5)`, ru: `Посмотрите точки (${seen.size}/5)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · lenta nuqtalari', ru: 'Понятие · точки ленты' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Lentada qanday <span className="italic" style={{ color: T.accent }}>nuqtalar</span> bor?</>, ru: <>Какие <span className="italic" style={{ color: T.accent }}>точки</span> есть на ленте?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Pipeline (lenta) — ketma-ket nuqtalar. Chamadon (kod) har biridan o'tadi. Har nuqtani bosib, u nima qilishini ko'ring.", ru: 'Pipeline (лента) — это точки одна за другой. Чемодан (код) проходит каждую. Нажимайте на точки и смотрите, что делает каждая.' })}</Mentor>
-        <div className="fade-up"><Belt statuses={statuses} onPick={tap} active={active} hint={id => !seen.has(id)} /></div>{/* F-0926-06 (CC5): 5 takror karta olindi — lenta bekatlari bosiladi */}
-            {cur
-              ? <div className="sk-info fade-step" key={active}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.icon}</span>{tr(cur.label)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>{cur.cmd}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : null}
+        <Mentor>{tr({ uz: "Pipeline (lenta) — ketma-ket nuqtalar. Chamadon (kod) har biridan o'tadi. Har savolga javob bering — to'g'ri javob nuqtani yashil qiladi.", ru: 'Pipeline (лента) — это точки одна за другой. Чемодан (код) проходит каждую. Ответьте на каждый вопрос — верный ответ делает точку зелёной.' })}</Mentor>
+        <div className="fade-up"><Belt statuses={statuses} /></div>
+            {cur && <div className="sk-info fade-step" key={cur.id}><p className="note-h"><span style={{ fontSize: 18, marginRight: 6 }}>{cur.icon}</span>{tr(cur.label)} <span className="mono" style={{ color: T.ink3, marginLeft: 6, fontSize: 12 }}>{cur.cmd}</span></p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>}
+            {!done && <Qaror key={q} savol={S7_QAROR[q].savol} variantlar={S7_QAROR[q].v} onTogri={togri} />}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tartibi muhim: <b>Yig'ish → Skaner → Ramka → O'rash → Uchirish</b>. Avval tekshiramiz, keyin uchiramiz — hech qachon teskari emas.</>, ru: <>Порядок важен: <b>Сборка → Сканер → Рамка → Упаковка → Взлёт</b>. Сначала проверяем, потом отправляем — и никогда наоборот.</> })}</p></div>}
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har nuqtani bosib ta'rifini o'qing — qaysi buyruq nima qilishini solishtiring.", ru: '💡 Нажмите каждую точку и прочитайте описание — сравните, какая команда что делает.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Buyruq nomiga qarang: install o'rnatadi, test sinaydi, build o'raydi.", ru: '💡 Посмотрите на название команды: install устанавливает, test проверяет, build упаковывает.' })}</p>}
       </div>
     </Stage>
   );
@@ -1189,7 +1285,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
   const navLabel = (done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : selected.size === 0 ? tr({ uz: 'Buyumlarni tanlang', ru: 'Выберите вещи' }) : running ? tr({ uz: 'Lenta aylanmoqda…', ru: 'Лента крутится…' }) : result === 'fail' ? tr({ uz: "Tuzatib qayta urinib ko'ring", ru: 'Исправьте и попробуйте снова' }) : tr({ uz: "Lentaga qo'ying", ru: 'Положите на ленту' });
   return (
-    <Stage eyebrow={tr({ uz: "Markaziy · lenta o'yini", ru: 'Главная · игра с лентой' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Markaziy · lenta o'yini", ru: 'Главная · игра с лентой' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (navLabel)} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Chamadonni <span className="italic" style={{ color: T.accent }}>o'zingiz</span> yig'ing — lentaga qo'ying.</>, ru: <>Соберите чемодан <span className="italic" style={{ color: T.accent }}>сами</span> — и положите на ленту.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Mana bu 5 buyumdan xohlaganingizni chamadonga soling, keyin <b style={{ color: T.ink }}>«Lentaga qo'ying»</b> tugmasini bosing. Har buyum boshqa xatoni tutadi — bir necha marta qayta o'ynab, qaysi nuqta nimani tekshirishini o'zingiz kashf qiling.</>, ru: <>Положите в чемодан любые из этих 5 вещей, затем нажмите <b style={{ color: T.ink }}>«Положить на ленту»</b>. Каждая вещь спотыкается на своей точке — сыграйте несколько раз и сами откройте, какая точка что проверяет.</> })}</Mentor>
@@ -1231,7 +1327,6 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Chamadonga buyum solib lentani yuboring — nima o'tmasa, lenta shuni aytadi.", ru: '💡 Положите вещи в чемодан и отправьте по ленте — что не пройдёт, лента сама скажет.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1258,43 +1353,59 @@ const WHY = [
   { id: 'trust', icon: '🛡', t: { uz: 'Ishonch', ru: 'Уверенность' }, d: { uz: "Nuqta qizil bo'lsa uchirish to'xtaydi. Buzuq yuk hech qachon uchmaydi — «juma kuni deploy qo'rquvi» yo'qoladi.", ru: 'Если точка красная — взлёт останавливается. Сломанный груз никогда не улетит: страх «пятничного деплоя» исчезает.' } },
   { id: 'team', icon: '👥', t: { uz: 'Jamoa', ru: 'Команда' }, d: { uz: "Har kishi push qiladi, lenta hammani bir xil tekshiradi. «Mening kompimda ishlayapti-ku» muammosi tugaydi.", ru: 'Каждый делает push, лента проверяет всех одинаково. Проблема «а у меня на компе работает» исчезает.' } }
 ];
+// F-1019-06 (DE 213.22): har foyda — bitta vaziyat-qaror; to'g'ri javob foydani ochadi (tartib WHY bilan bir xil)
+const S11_QAROR = [
+  { savol: { uz: "Qo'lda 5 nuqta 20 daqiqa olardi. Lenta bu vaqtni qanday tejaydi?", ru: 'Вручную 5 точек занимали 20 минут. Как лента экономит это время?' }, v: [
+    { ok: true, t: { uz: "Hamma nuqtani o'zi ketma-ket bajaradi", ru: 'Сама проходит все точки по очереди' } },
+    { t: { uz: 'Ba\'zi nuqtalarni tashlab ketadi', ru: 'Пропускает некоторые точки ради скорости' }, izoh: { uz: 'Lenta birorta nuqtani tashlamaydi, faqat tez bajaradi.', ru: 'Лента не пропускает ни одной точки, просто работает быстро.' } },
+    { t: { uz: 'Sizni kodni qisqaroq yozishga majbur qiladi', ru: 'Заставляет вас писать код покороче и проще' }, izoh: { uz: "Kod uzunligi o'zgarmaydi. Vaqtni qo'l mehnati olardi.", ru: 'Длина кода не меняется. Время уходило на ручную работу.' } }
+  ] },
+  { savol: { uz: "Kechqurun push qildingiz, Skanerda bitta test yiqildi. Foydalanuvchi nimani ko'radi?", ru: 'Вечером вы сделали push, в «Сканере» упал один тест. Что увидит пользователь?' }, v: [
+    { t: { uz: 'Xatosi bilan chiqqan yangi versiyani', ru: 'Новую версию вместе с ошибкой' }, izoh: { uz: "Qizil nuqtadan keyin lenta to'xtaydi, buzuq yuk uchmaydi.", ru: 'После красной точки лента стоит — сломанный груз не улетает.' } },
+    { t: { uz: 'Hech narsa ochilmaydigan sahifani', ru: 'Страницу, которая вообще не открывается' }, izoh: { uz: "Sayt o'chmaydi: eski versiya ishlashda davom etadi.", ru: 'Сайт не выключается: старая версия продолжает работать.' } },
+    { ok: true, t: { uz: 'Avvalgi ishlab turgan versiyani', ru: 'Прежнюю рабочую версию' } }
+  ] },
+  { savol: { uz: 'Jamoada o\'n kishi kuniga bir necha marta push qiladi. Ularni kim tekshiradi?', ru: 'В команде десять человек делают push по нескольку раз в день. Кто их проверяет?' }, v: [
+    { t: { uz: "Har kim o'z kodini o'zi tekshiradi", ru: 'Каждый сам проверяет свой код' }, izoh: { uz: "O'zicha tekshirsa, har kimning qoidasi boshqacha bo'ladi.", ru: 'Если каждый проверяет сам, у всех свои правила.' } },
+    { ok: true, t: { uz: 'Lenta hammasini bir xil qoidada', ru: 'Лента проверяет всех одинаково' } },
+    { t: { uz: 'Jamoaning eng tajribali dasturchisi', ru: 'Самый опытный разработчик команды' }, izoh: { uz: "Bitta odam kuniga o'nlab push'ga ulgurmaydi.", ru: 'Один человек не успеет за десятками push в день.' } }
+  ] }
+];
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [seen, setSeen] = useState(storedAnswer ? new Set(WHY.map(w => w.id)) : new Set());
-  const [active, setActive] = useState(null);
+  const [q, setQ] = useState(storedAnswer ? WHY.length : 0);
   const [sc, setSc] = useState(0);
-  const done = seen.size >= WHY.length;
-  const { tip: _tip, rescue: _resc } = useStuckValve(done, seen.size);   // 13-band klapan
-  const tap = (id) => { setActive(id); setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
+  const done = q >= WHY.length;
+  const seen = new Set(WHY.slice(0, q).map(w => w.id));
+  const { tip: _tip, rescue: _resc } = useStuckValve(done, q);   // 13-band klapan
+  const togri = () => { setQ(n => Math.min(WHY.length, n + 1)); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
-  const cur = WHY.find(w => w.id === active);
+  const cur = q > 0 && !done ? WHY[q - 1] : null;   // oxirgi ochilgan foyda (ish tugagach — faqat xulosa, 213.14)
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · nega', ru: 'Понятие · зачем' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `3 foydani ko'ring (${seen.size}/3)`, ru: `Посмотрите 3 выгоды (${seen.size}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · nega', ru: 'Понятие · зачем' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Nega bu mehnatni <span className="italic" style={{ color: T.accent }}>avtomatlashtiramiz</span>?</>, ru: <>Зачем <span className="italic" style={{ color: T.accent }}>автоматизировать</span> этот труд?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>CI/CD uchta katta narsani beradi: <b style={{ color: T.ink }}>tezlik, ishonch va jamoa hamohangligi</b>. Har birini bosib ko'ring.</>, ru: <>CI/CD даёт три больших плюса: <b style={{ color: T.ink }}>скорость, уверенность и слаженность команды</b>. Нажмите на каждый.</> })}</Mentor>
-        <Zoomable off={!cur}>{/* F-0926-06: ⛶ bo'sh ustunda yolg'iz chiqmasin */}
+        <Mentor>{tr({ uz: <>CI/CD uchta katta narsani beradi: <b style={{ color: T.ink }}>tezlik, ishonch va jamoa hamohangligi</b>. Har savolga javob bering — to'g'ri javob bitta foydani ochadi.</>, ru: <>CI/CD даёт три больших плюса: <b style={{ color: T.ink }}>скорость, уверенность и слаженность команды</b>. Ответьте на каждый вопрос — верный ответ открывает одну выгоду.</> })}</Mentor>
+        <Zoomable>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {WHY.map(w => (
-                <button key={w.id} className="vcard" onClick={() => tap(w.id)} style={{ boxShadow: active === w.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
+                <div key={w.id} className="vcard static" style={{ boxShadow: cur && cur.id === w.id ? `inset 0 0 0 1.5px ${T.accent}, 0 8px 20px -6px rgba(${T.shadowBase},0.2)` : undefined }}>
                   <span className="role-ico">{w.icon}</span>
                   <span className="vlbl">{tr(w.t)}</span>
                   <span className="vseen" style={{ color: seen.has(w.id) ? T.success : T.ink3 }}>{seen.has(w.id) ? '✓' : ''}</span>
-                </button>
+                </div>
               ))}
             </div>
+            {cur && <div className="frame fade-step" key={cur.id}><p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>}
           </Col>
           <Col>
-            {cur
-              ? <div className="frame fade-step" key={active}>{/* F-0926-06 (CC4): sarlavha olindi — faol karta halqasi shuni aytadi */}<p className="body" style={{ margin: 0, color: T.ink }}>{tr(cur.d)}</p></div>
-              : null}
+            {!done && <Qaror key={q} savol={S11_QAROR[q].savol} variantlar={S11_QAROR[q].v} onTogri={togri} />}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Tezlik · Ishonch · Jamoa. Shuning uchun haqiqiy ish jamoalarining deyarli barchasi CI/CD ishlatadi.", ru: 'Скорость · Уверенность · Команда. Поэтому почти все рабочие команды используют CI/CD.' })}</p></div>}
           </Col>
         </div>
         </Zoomable>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Uchala foydani ham oching — lenta nimani tejashini o'zingiz sanang.", ru: '💡 Откройте все три выгоды — сами посчитайте, что экономит лента.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Xato variant ostidagi sababni o'qing — u lenta nima qilishini eslatadi.", ru: '💡 Прочитайте причину под неверным вариантом — она напомнит, что делает лента.' })}</p>}
       </div>
     </Stage>
   );
@@ -1308,7 +1419,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { tip: _tip, rescue: _resc } = useStuckValve(done, show ? 1 : 0);   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: 'Hayotiy · jamoa', ru: 'Из жизни · команда' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkinchi holatni ko'ring", ru: 'Посмотрите второй случай' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Hayotiy · jamoa', ru: 'Из жизни · команда' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ikkinchi holatni ko'ring", ru: 'Посмотрите второй случай' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Juma, soat 18:00 — kod push qilindi. <span className="italic" style={{ color: T.accent }}>Lenta bormi</span>?</>, ru: <>Пятница, 18:00 — код запушен. <span className="italic" style={{ color: T.accent }}>Есть ли лента</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Bir xil vaziyat, ikki xil yakun. Avval lenta <b style={{ color: T.danger }}>bo'lmagan</b> holatni o'qing, keyin tugmani bosib <b style={{ color: T.success }}>bor</b> holatni ko'ring.</>, ru: <>Одна ситуация — два финала. Сначала прочитайте случай <b style={{ color: T.danger }}>без</b> ленты, потом нажмите кнопку и посмотрите случай <b style={{ color: T.success }}>с</b> лентой.</> })}</Mentor>
@@ -1333,7 +1444,6 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikkinchi holatni ham oching — ikki holat farqi asosiy gapni ko'rsatadi.", ru: '💡 Откройте и второй случай — разница между ними и есть главная мысль.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1367,7 +1477,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     else { if (achMiss) achMiss.miss(screen); wrongEverRef.current = true; setWrongKey(blank.key); setWrongMsg(tr(blank.wrong[val]) || tr({ uz: "Bu to'g'ri emas.", ru: 'Это неверно.' })); setTimeout(() => setWrongKey(k => (k === blank.key ? null : k)), 500); }
   };
   return (
-    <Stage eyebrow={tr({ uz: "Amaliyot · yo'l xaritasi", ru: 'Практика · маршрутная карта' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bo'shliqlarni to'ldiring", ru: 'Заполните пропуски' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Amaliyot · yo'l xaritasi", ru: 'Практика · маршрутная карта' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bo'shliqlarni to'ldiring", ru: 'Заполните пропуски' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Lentaning <span className="italic" style={{ color: T.accent }}>yo'l xaritasini</span> o'zingiz to'ldiring.</>, ru: <>Заполните <span className="italic" style={{ color: T.accent }}>маршрутную карту</span> ленты сами.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Bu — <span className="mono">ci.yml</span>: lenta har push'da nima qilishini shu fayl aytadi. Uchta bo'shliqni to'g'ri chipdan tanlab to'ldiring.</>, ru: <>Это — <span className="mono">ci.yml</span>: этот файл говорит ленте, что делать на каждый push. Заполните три пропуска, выбирая правильные чипы.</> })}</Mentor>
@@ -1403,7 +1513,6 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div></Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har bo'shliqqa qarang: bu qator lentaga qachon, qayerda yoki nima qilishni aytyaptimi?", ru: '💡 Посмотрите на каждый пропуск: эта строка говорит ленте когда, где или что делать?' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1583,18 +1692,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Pipeline (lenta) nima?", ru: 'Что такое pipeline (лента)?' }, opts: [{ uz: "Kodni chiroyli qilib formatlaydigan alohida dastur", ru: 'Отдельная программа, которая красиво форматирует код' }, { uz: "Faqat testlarni yozib beradigan yordamchi dastur", ru: 'Вспомогательный инструмент, который только пишет тесты' }, { uz: "Push qilingan kodni avtomatik tekshiradigan ketma-ket nuqtalar", ru: 'Цепочка точек, автоматически проверяющая запушенный код' }, { uz: "Serverni qo'lda qayta ishga tushiruvchi maxsus buyruq, hech narsani tekshirmaydi", ru: 'Специальная команда ручного перезапуска сервера, ничего не проверяет' }], correct: 2 },
-  { q: { uz: "`npm install` qaysi nuqtada ishlaydi?", ru: 'На какой точке работает `npm install`?' }, opts: [{ uz: "Yig'ish (install) — birinchi nuqtada ishlaydi", ru: 'Сборка (install) — работает на первой точке' }, { uz: "Uchirish (deploy) nuqtasida, eng oxirida ishga tushadi", ru: 'На точке Взлёт (deploy), запускается в самом конце' }, { uz: "O'lcham ramkasi (lint) nuqtasida ishlaydi", ru: 'На точке рамки (lint)' }, { uz: "O'rash (build) nuqtasida bajariladi", ru: 'Выполняется на точке Упаковка (build)' }], correct: 0 },
-  { q: { uz: "Test qizil (FAIL) bo'lsa nima bo'ladi?", ru: 'Что будет, если тест красный (FAIL)?' }, opts: [{ uz: "Lenta baribir davom etadi va uchirishni to'liq bajaraveradi", ru: 'Лента всё равно продолжит и полностью выполнит взлёт' }, { uz: "Lenta shu nuqtada to'xtaydi, keyingisi o'tkazib yuboriladi", ru: 'Лента остановится на этой точке, следующие будут пропущены' }, { uz: "Server butunlay o'chib, ishlamay qoladi", ru: 'Сервер полностью выключится и перестанет работать' }, { uz: "Kod xatosi avtomatik ravishda o'zi tuzatiladi", ru: 'Ошибка в коде исправится сама, автоматически' }], correct: 1 },
-  { q: { uz: "CI (Continuous Integration) nimani anglatadi?", ru: 'Что означает CI (Continuous Integration)?' }, opts: [{ uz: "Sayt dizaynini doimiy yangilab turish jarayoni", ru: 'Процесс постоянного обновления дизайна сайта' }, { uz: "Serverni uzluksiz kuzatib turadigan monitoring", ru: 'Мониторинг, который непрерывно следит за сервером' }, { uz: "Kodni qo'lda birlashtiradigan eski usul", ru: 'Старый способ объединять код вручную' }, { uz: "Har push'ni birlashtirib avtomatik tekshirish", ru: 'Объединять каждый push и автоматически проверять' }], correct: 3 },
-  { q: { uz: "CD (Continuous Deployment) nima qiladi?", ru: 'Что делает CD (Continuous Deployment)?' }, opts: [{ uz: "Tekshiruvdan o'tgan yukni avtomatik internetga chiqaradi", ru: 'Автоматически выкладывает проверенный груз в интернет' }, { uz: "Kodni faqat serverga qo'lda, o'zi nusxalaydi doimo", ru: 'Постоянно копирует код на сервер вручную' }, { uz: "Testlarni o'zi o'ylab yozib chiqadi", ru: 'Сам придумывает и пишет тесты' }, { uz: "Loyihani repozitoriyga yuklab qo'yadi", ru: 'Загружает проект в репозиторий' }], correct: 0 },
-  { q: { uz: "`on: push` nimani bildiradi?", ru: 'Что означает `on: push`?' }, opts: [{ uz: "Lenta faqat maxsus tugma bosilganda ishlaydi", ru: 'Лента работает только по нажатию специальной кнопки' }, { uz: "Lenta yiliga bir marta ishga tushadi", ru: 'Лента запускается раз в год' }, { uz: "Lenta har push'da avtomatik ishga tushadi", ru: 'Лента запускается автоматически на каждый push' }, { uz: "Lenta hech qachon o'z-o'zidan ishlamaydi", ru: 'Лента никогда не запускается сама' }], correct: 2 },
-  { q: { uz: "`eslint .` qaysi nuqtada ishlatiladi?", ru: 'На какой точке используется `eslint .`?' }, opts: [{ uz: "Uchirish (deploy) nuqtasida, oxirida ishlatiladi", ru: 'На точке Взлёт (deploy), в самом конце' }, { uz: "Yig'ish (install) nuqtasida ishlatiladi", ru: 'На точке Сборка (install)' }, { uz: "O'rash (build) nuqtasida ishlatiladi", ru: 'На точке Упаковка (build)' }, { uz: "O'lcham ramkasi (lint) nuqtasida ishlatiladi", ru: 'На точке рамки (lint)' }], correct: 3 },
-  { q: { uz: "Artefakt (o'ralgan yuk) qaysi nuqtada tayyor bo'ladi?", ru: 'На какой точке готов артефакт (упакованный груз)?' }, opts: [{ uz: "Skaner (test) nuqtasida tayyor bo'ladi", ru: 'На точке Сканер (test)' }, { uz: "O'rash (build) nuqtasida tayyor bo'ladi", ru: 'На точке Упаковка (build)' }, { uz: "Yig'ish (install) nuqtasida tayyor bo'ladi", ru: 'На точке Сборка (install)' }, { uz: "Uchirish (deploy)dan keyin tayyor bo'ladi", ru: 'После точки Взлёт (deploy)' }], correct: 1 },
-  { q: { uz: "`runs-on: ubuntu-latest` nimani bildiradi?", ru: 'Что означает `runs-on: ubuntu-latest`?' }, opts: [{ uz: "Loyihaning to'liq rasmiy nomini", ru: 'Полное официальное название проекта' }, { uz: "Bazaga ulanish uchun maxfiy parolni", ru: 'Секретный пароль для подключения к базе' }, { uz: "Lenta mashinasi qanday muhitda ishlashini bildiradi", ru: 'В какой среде работает машина ленты' }, { uz: "Lentada nechta test borligini", ru: 'Сколько тестов на ленте' }], correct: 2 },
-  { q: { uz: "Uchirish avtomatik bo'lishi uchun nima shart?", ru: 'Что нужно, чтобы взлёт был автоматическим?' }, opts: [{ uz: "Dasturchi maxsus tugmani bosishi shart", ru: 'Разработчик должен нажать специальную кнопку' }, { uz: "Kod hajmi juda kichik bo'lishi shart", ru: 'Код должен быть совсем маленьким' }, { uz: "Hafta oxiri kunlari bo'lishi shart", ru: 'Должны быть выходные дни' }, { uz: "Barcha oldingi nuqtalar yashil bo'lishi shart", ru: 'Все предыдущие точки должны быть зелёными' }], correct: 3 },
-  { q: { uz: "Rollback (eski yukni qaytarish) qachon kerak bo'ladi?", ru: 'Когда нужен rollback (возврат старого груза)?' }, opts: [{ uz: "Yangi versiya productionda muammo chiqarganda", ru: 'Когда новая версия вызвала проблемы в production' }, { uz: "Har push'da doim, sharoitidan qat'i nazar", ru: 'Всегда, на каждый push, независимо от ситуации' }, { uz: "Test hali yashil bo'lgan paytda", ru: 'Пока тесты ещё зелёные' }, { uz: "Lenta hali ishga tushmagan paytda", ru: 'Пока лента ещё не запускалась' }], correct: 0 },
-  { q: { uz: "Secret (seyf/maxfiy kalit) qayerda saqlanadi?", ru: 'Где хранится secret (секретный ключ)?' }, opts: [{ uz: "ci.yml faylining o'zida, hammaga ochiq holda turadi", ru: 'Прямо в файле ci.yml, открыто для всех' }, { uz: "Maxsus xavfsiz seyf sozlamalarida", ru: 'В специальных защищённых настройках-сейфе' }, { uz: "README faylining oxirgi qatorida", ru: 'В последней строке файла README' }, { uz: "Terminal buyruqlar tarixida", ru: 'В истории команд терминала' }], correct: 1 },
+  { q: { uz: "Pipeline (lenta) nima?", ru: "Что такое pipeline (лента)?" }, opts: [{ uz: "Kodni formatlovchi dastur", ru: "Программа форматирования кода" }, { uz: "Test yozib beruvchi dastur", ru: "Программа, пишущая тесты" }, { uz: "Kodni tekshiruvchi nuqtalar", ru: "Точки, проверяющие код" }, { uz: "Serverni yoquvchi buyruq", ru: "Команда запуска сервера" }], correct: 2 },
+  { q: { uz: "`npm install` qaysi nuqtada ishlaydi?", ru: "На какой точке работает `npm install`?" }, opts: [{ uz: "Yig'ish (install)", ru: "Сборка (install)" }, { uz: "Uchirish (deploy)", ru: "Взлёт (deploy)" }, { uz: "O'lcham ramkasi (lint)", ru: "Рамка (lint)" }, { uz: "O'rash (build)", ru: "Упаковка (build)" }], correct: 0 },
+  { q: { uz: "Test qizil (FAIL) bo'lsa nima bo'ladi?", ru: "Что будет, если тест красный (FAIL)?" }, opts: [{ uz: "Lenta davom etib, uchiradi", ru: "Лента продолжит и выложит" }, { uz: "Lenta shu yerda to'xtaydi", ru: "Лента остановится здесь" }, { uz: "Server butunlay o'chadi", ru: "Сервер полностью выключится" }, { uz: "Xato o'zi tuzatiladi", ru: "Ошибка исправится сама" }], correct: 1 },
+  { q: { uz: "CI nimani anglatadi?", ru: "Что означает CI?" }, opts: [{ uz: "Dizaynni doim yangilash", ru: "Постоянно обновлять дизайн" }, { uz: "Serverni uzluksiz kuzatish", ru: "Непрерывно следить за сервером" }, { uz: "Kodni qo'lda birlashtirish", ru: "Вручную объединять код" }, { uz: "Har push'ni o'zi tekshirish", ru: "Автоматически проверять каждый push" }], correct: 3 },
+  { q: { uz: "CD nima qiladi?", ru: "Что делает CD?" }, opts: [{ uz: "Tekshirilgan yukni chiqaradi", ru: "Выкладывает проверенный груз" }, { uz: "Kodni qo'lda nusxalaydi", ru: "Копирует код вручную" }, { uz: "Testlarni o'zi yozib beradi", ru: "Сам пишет тесты" }, { uz: "Loyihani repoga yuklaydi", ru: "Загружает проект в репозиторий" }], correct: 0 },
+  { q: { uz: "`on: push` nimani bildiradi?", ru: "Что означает `on: push`?" }, opts: [{ uz: "Tugma bosilganda ishlaydi", ru: "Работает по нажатию кнопки" }, { uz: "Yiliga bir marta ishlaydi", ru: "Работает раз в год" }, { uz: "Har push'da o'zi ishlaydi", ru: "Сама запускается на каждый push" }, { uz: "Hech qachon o'zi ishlamaydi", ru: "Никогда не запускается сама" }], correct: 2 },
+  { q: { uz: "`eslint .` qaysi nuqtada ishlatiladi?", ru: "На какой точке используют `eslint .`?" }, opts: [{ uz: "Uchirish (deploy)", ru: "Взлёт (deploy)" }, { uz: "Yig'ish (install)", ru: "Сборка (install)" }, { uz: "O'rash (build)", ru: "Упаковка (build)" }, { uz: "O'lcham ramkasi (lint)", ru: "Рамка (lint)" }], correct: 3 },
+  { q: { uz: "Yukni internetga tayyor holga qaysi nuqta o'raydi?", ru: "Какая точка упаковывает груз для интернета?" }, opts: [{ uz: "Skaner (test)", ru: "Сканер (test)" }, { uz: "O'rash (build)", ru: "Упаковка (build)" }, { uz: "Yig'ish (install)", ru: "Сборка (install)" }, { uz: "Uchirish (deploy)", ru: "Взлёт (deploy)" }], correct: 1 },
+  { q: { uz: "`runs-on: ubuntu-latest` nima?", ru: "Что такое `runs-on: ubuntu-latest`?" }, opts: [{ uz: "Loyihaning rasmiy nomi", ru: "Официальное имя проекта" }, { uz: "Bazaning maxfiy paroli", ru: "Секретный пароль базы" }, { uz: "Lenta mashinasining muhiti", ru: "Среда машины ленты" }, { uz: "Lentadagi testlar soni", ru: "Число тестов в ленте" }], correct: 2 },
+  { q: { uz: "Uchirish uchun nima shart?", ru: "Что нужно для взлёта?" }, opts: [{ uz: "Dasturchi tugma bosishi", ru: "Чтобы программист нажал кнопку" }, { uz: "Kod hajmi kichik bo'lishi", ru: "Чтобы код был маленьким" }, { uz: "Hafta oxiri bo'lishi", ru: "Чтобы были выходные" }, { uz: "Hamma nuqta yashil bo'lishi", ru: "Чтобы все точки были зелёными" }], correct: 3 },
+  { q: { uz: "Test qizil bo'lsa, foydalanuvchi nimani ko'radi?", ru: "Что видит пользователь, если тест красный?" }, opts: [{ uz: "Eski, ishlaydigan saytni", ru: "Старый рабочий сайт" }, { uz: "Buzuq yangi saytni", ru: "Сломанный новый сайт" }, { uz: "Bo'sh oq sahifani", ru: "Пустую белую страницу" }, { uz: "Xato haqida xabarni", ru: "Сообщение об ошибке" }], correct: 0 },
+  { q: { uz: "Maxfiy kalit (secret) qayerda saqlanadi?", ru: "Где хранится секретный ключ (secret)?" }, opts: [{ uz: "ci.yml ichida, ochiq holda", ru: "Открыто внутри ci.yml" }, { uz: "Maxsus seyf sozlamalarida", ru: "В особых настройках сейфа" }, { uz: "README oxirgi qatorida", ru: "В последней строке README" }, { uz: "Terminal tarixida", ru: "В истории терминала" }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2635,6 +2744,8 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
         .vcard { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; background: ${T.paper}; border: none; border-radius: 12px; padding: 11px 14px; cursor: pointer; transition: all 0.18s; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); }
         .vcard:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 9px 20px -7px rgba(${T.shadowBase},0.24); }
         .vcard:disabled { cursor: default; }
+        .vcard.static { cursor: default; }
+        .vcard.static:hover { transform: none; box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.16); }
         .role-ico { font-size: 20px; flex-shrink: 0; }
         .vlbl { font-family: 'Manrope'; font-weight: 700; font-size: 13.5px; color: ${T.ink}; }
         .vseen { margin-left: auto; font-weight: 700; }
@@ -3233,6 +3344,19 @@ export default function CiCdIntroLesson({ lang: langProp, onFinished, liveToken 
         .timer-chip.success .tc-val { color: ${T.success}; }
         .tempt-btn { font-family: 'Manrope'; font-weight: 700; font-size: 13px; background: ${T.dangerSoft}; color: ${T.danger}; border: 1.5px dashed ${T.danger}88; border-radius: 12px; padding: 10px 15px; cursor: pointer; transition: all 0.18s; align-self: flex-start; }
         .tempt-btn:hover { background: ${T.danger}; color: #fff; border-style: solid; }
+        /* F-1019-04 (DE 213.22): qaror qadami — savol, variant tugmalari, xato sababi. Halqa faqat bosiladigan tugmada (213.15) */
+        .qr { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .qr .qr-s { margin: 0; min-height: 32px; padding-right: 40px; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 800; line-height: 1.4; color: ${T.ink}; }
+        .qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
+        .qr-chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.45vw,14px); line-height: 1.35; text-align: left; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 11px; padding: 9px 13px; cursor: pointer; min-width: 0; overflow-wrap: anywhere; transition: border-color 0.15s, background 0.15s; }
+        .qr-chip:not(:disabled) { animation: tap-hint-pulse 1.9s ease-in-out infinite; }
+        .qr-chip:hover:not(:disabled) { border-color: ${T.accent}; }
+        .qr-chip:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .qr-chip.err { border-color: ${T.danger}; background: ${T.dangerSoft}; color: ${T.danger}; cursor: default; }
+        .qr-xato { margin: 0; color: ${T.danger}; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; line-height: 1.4; }
+        .itm-card.static { cursor: default; }
+        .itm-card.static:hover { transform: none; }
+        @media (prefers-reduced-motion: reduce) { .qr-chip:not(:disabled) { animation: none; } }
 
         /* 📱 TELEFON MOCK — foydalanuvchi ekrani (doim ko'rinadi) */
         .phone-mock { display: flex; flex-direction: column; align-items: center; gap: 8px; }

@@ -107,6 +107,23 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
   const practiceAfterBody = (/(?:const|let|var) PRACTICE_AFTER\d*\s*=\s*\{([\s\S]*?)\n\};/.exec(lessonSrc) || [])[1] || ''; // yig'mada esbuild const→var qiladi
   const practiceAfterScreen = (/^\s*(\d+)\s*:/m.exec(practiceAfterBody) || [])[1];
   const seeds = (kodingKey && kodingCandidates.length ? kodingCandidates : [-1]).map(seedFor);
+  // To'rtinchi yo'l (F-1017-226, LMS 7–14 — 20 dars): kompilyator «Kompilyatorni ochish» tugmasi bilan ochiladi (KODING_KEY/PRACTICE_AFTER yo'q).
+  // Urug': progress `practice` ekranga (oxiridan), sahifada tugma bosiladi (pastda, `tugmaBos`).
+  const tugmaYoli = /Kompilyatorni ochish/.test(lessonSrc);
+  // Nomzod ekranlar: avval `koding`, keyin `practice` (oxiridan). PM darslarida tugma darvoza-mashqdan KEYIN chiqadi
+  // (`stage2 = gpick || isMentor || done`, `done = storedAnswer.solved`) — urug'da o'sha ekran javobi solved:true qilib beriladi.
+  const kodIdxs = metaRows.map((l, k) => (/type:\s*['"]koding['"]/.test(l) ? k : -1)).filter((k) => k !== -1);
+  const practiceIdxs = metaRows.map((l, k) => (/type:\s*['"]practice['"]/.test(l) ? k : -1)).filter((k) => k !== -1).reverse();
+  // Ikki urug' har nomzodga: (a) toza — texnik darslar (tugma `!done && …`, javob bo'lsa YASHIRINADI); (b) javob berilgan — PM darvoza-mashqli darslar.
+  const progSeed = (k, ans) => `localStorage.setItem('ccProgress:${lessonId}',JSON.stringify({screen:${k},answers:${ans},earned:[],startedAt:Date.now(),total:${metaRows.length},savedAt:Date.now()}));`;
+  // (c) darvoza o'tilgan, lekin kod hali yozilmagan — `stage2 = gpick === '<ok>' …` va tugma `stage2 && !done` (PmUnitEconomics): gpick = KOD_DARVOZA'dagi ok:true id.
+  const darvozaOk = (/KOD_DARVOZA\s*=\s*\[([\s\S]*?)\n\];/.exec(lessonSrc) || [])[1] || '';
+  const okId = (/\{\s*id:\s*'([^']+)'[^\n]*ok:\s*true/.exec(darvozaOk) || [])[1] || 'togri';
+  if (tugmaYoli) for (const k of [...kodIdxs, ...practiceIdxs]) {
+    seeds.push(progSeed(k, '{}'));
+    seeds.push(progSeed(k, `{${k}:{stage:'koding',screenIdx:${k},solved:true,done:true,correct:true}}`));
+    seeds.push(progSeed(k, `{${k}:{stage:'koding',screenIdx:${k},gpick:${JSON.stringify(okId)}}}`));
+  }
   if (practiceAfterScreen !== undefined) seeds.push(`localStorage.setItem('ccPractice:${lessonId}',JSON.stringify({kind:'s${practiceAfterScreen}',screen:${practiceAfterScreen}}))`);
   const compilerPages = seeds.map((seed, k) => {
     const p = join(TMP, `page${i}-compiler${k || ''}.html`);
@@ -150,10 +167,14 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
       root: !!document.querySelector('.lesson-root, .hw-root'),
       text: (document.querySelector('.lesson-root, .hw-root')?.innerText || '').trim().length,
     }));
-    await page.screenshot({ path: shot });
-    if (SHOT) await page.screenshot({ path: SHOT });
   } catch (e) {
     errs.push('YUKLANMADI: ' + String(e.message).split('\n')[0].slice(0, 110));
+  }
+  // Skrinshot — dalil, hukm emas (F-1017-226: LiveDashboard jonli animatsiyasi ketma-ket yurishda 30 s ga cho'zilib «YUKLANMADI» berardi)
+  let shotNote = '';
+  if (out.root) {
+    try { await page.screenshot({ path: shot, timeout: 15000 }); if (SHOT) await page.screenshot({ path: SHOT, timeout: 15000 }); }
+    catch (e) { shotNote = 'skrinshot olinmadi: ' + String(e.message).split('\n')[0].slice(0, 80); }
   }
 
   // ── 3) KOMPILYATOR qatlami ochiladimi (yig'uvning butun ma'nosi shu) ──
@@ -170,6 +191,10 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
       p2.on('pageerror', (e) => errs.push('PAGEERROR(kompilyator): ' + String(e.message).slice(0, 110)));
       try {
         await p2.goto('file:///' + cp.replace(/\\/g, '/'), { waitUntil: 'domcontentloaded', timeout: 20000 });
+        if (tugmaYoli) { // to'rtinchi yo'l: tugma ko'rinsa bosiladi (ko'rinmasa — boshqa urug' sinaladi)
+          const btn = await p2.waitForSelector('button:has-text("Kompilyatorni ochish"), button:has-text("Открыть компилятор")', { timeout: 4000 }).catch(() => null);
+          if (btn) await btn.click().catch(() => {});
+        }
         await p2.waitForSelector('.hc-root', { timeout: compilerPages.length > 1 ? 8000 : 15000 });
         await p2.waitForTimeout(600);
         hc = await p2.evaluate(() => !!document.querySelector('.hc-root textarea.hc-code'));
@@ -194,7 +219,7 @@ createRoot(document.getElementById('root')).render(React.createElement(Lesson, {
     `${DIM}dars: ${out.root ? 'ha' : "yo'q"} (${out.text} belgi) · kompilyator: ${noCompiler ? (TOKEN ? 'o\'tkazildi (token-rejim)' : 'kutilmaydi') : hc ? 'ha' : "yo'q"}${R}`);
   if (lms) console.log(`     ${DIM}LMS: darvoza-izoh «${lms.note || '—'}» · belgi «${lms.badge || '—'}» · PIN-maydon: ${lms.pin ? 'ha' : "yo'q"} · kodsiz-yo'l: ${lms.self ? 'ha' : "yo'q"}${EXPECT ? ` · kutilgan «${EXPECT}»: ${lms.text.includes(EXPECT) ? 'bor' : "YO'Q"}` : ''}${R}`);
   if (errs.length) errs.forEach((e) => console.log(`     ${RED}${e}${R}`));
-  else console.log(`     ${DIM}skrinshot: ${shot}${R}`);
+  else console.log(`     ${DIM}skrinshot: ${shotNote || shot}${R}`);
   return ok;
 }
 

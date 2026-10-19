@@ -129,10 +129,10 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` (6-ekran — K5 keys, 9-ekran — Ne
   Vizual ostida bitta kulrang qator: Bu modulda haqiqiy pul to'lanmaydi va so'ralmaydi. (50)
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
-  - 01 · Mentor misolida pulni kim to'lashi mumkinligini ko'rasiz
-  - 02 · Pul topish yo'llarini «Maydon Jamoa»ga qo'yib solishtirasiz
-  - 03 · O'z mahsulotingiz uchun bittasini tanlab, sababini yozasiz
-  - 04 · To'lashi mumkin bo'lganlarni Neon'da sanaysiz
+  - 01 · Mentor misolida pulni kim to'lashi mumkinligini ko'ring
+  - 02 · Pul topish yo'llarini «Maydon Jamoa»ga qo'yib solishtiring
+  - 03 · O'z mahsulotingiz uchun bittasini tanlab, sababini yozing
+  - 04 · To'lashi mumkin bo'lganlarni Neon'da sanang
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Bir gap ayting: bu modulda pul haqida gaplashamiz, lekin hech kim haqiqiy pul to'lamaydi. O'tgan darsning «kim to'lashi mumkin» javobi bo'lmasa — dars to'xtamaydi, o'quvchi 8-ekranda o'zi yozadi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «pul topish yo'li»; «model» — kulrang yorliqda va tegda. Reja 02 «solishtirasiz» deydi, natijani (qaysi biri tanlanishini) ochmaydi (P-015). Mentor reja qadamlarini takrorlamaydi (KORPUS §216). «B2B» yorliqda ochilmagan (App.jsx osti so'zma-so'z) — qisqartma 4-ekran 3-kartasida ochiladi (T-036).

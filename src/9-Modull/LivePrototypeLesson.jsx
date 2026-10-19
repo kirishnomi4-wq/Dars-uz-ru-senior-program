@@ -109,6 +109,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -186,8 +211,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1283,7 +1308,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const jv = jq && tanlov[jq.k] !== undefined ? jq.v[tanlov[jq.k]] : null;
   const nima = holat('nima');
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · talab', ru: 'Понятие · требование' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? DAVOM : { uz: `Uch qismni tanlang (${S8_QISM.filter(q => holat(q.k) === 'aniq').length}/3)`, ru: `Выберите три части (${S8_QISM.filter(q => holat(q.k) === 'aniq').length}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · talab', ru: 'Понятие · требование' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? DAVOM : { uz: `Uch qismni tanlang`, ru: `Выберите три части` }} onClick={onNext} /></>}>
       <div className="jp-oyna">
         <QTushuncha zoom={Zoomable} tugadi={tugadi}
           sarlavha={tr({ uz: <>Wireframe suratidan tashqari <span className="italic" style={{ color: T.accent }}>agentga nima yoziladi?</span></>, ru: <>Что пишут агенту <span className="italic" style={{ color: T.accent }}>кроме снимка wireframe</span>?</> })}
@@ -1303,9 +1328,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="jp-s8-ong">
               <RepoDaraxt qayerda={holat('qayerda')} buzilmasin={holat('buzilmasin')} />
               {/* Yakuniy holat — bitta natija bloki (SABOQ 25): talab qutisi · nom qatori · xulosa */}
-              {done && <div className="jp-natija-b fade-step">
-                <p className="jp-talab-q">{tx(S8_TALAB)}</p>
-                <p className="jp-nom">{tr({ uz: <>Uch qatorli bu matn — 9-Moduldagi <b>talab</b>; wireframe surati unga ilova.</>, ru: <>Этот текст из трёх строк — <b>требование</b> из 9-го модуля; снимок wireframe — приложение к нему.</> })}</p>
+              {done && <div className="jp-natija-b fade-step">{/* F-1015-330 (213.14): atama-qatori talab qutisining yorlig'i — alohida blok emas */}
+                <div className="jp-talab-quti"><span className="jp-talab-y">{tr({ uz: <><b>talab</b> · 9-Modul · wireframe surati — ilova</>, ru: <><b>требование</b> · 9-й модуль · снимок wireframe — приложение</> })}</span><p className="jp-talab-q">{tx(S8_TALAB)}</p></div>
                 <QXulosa>{tr({ uz: "Surat ekranlarni ko'rsatadi, talab esa joyni, ishni va nimaga tegmaslikni aytadi.", ru: 'Снимок показывает экраны, а требование называет место, работу и то, чего не трогать.' })}</QXulosa>
               </div>}
             </div>
@@ -1719,16 +1743,16 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javoblar A · B · C · D ×3 (MD, aylanma); ekran savollarining nusxasi emas (§144)
 const QUIZ_BANK = [
-  { q: { uz: 'Wireframe nimani ko\'rsatadi?', ru: 'Что показывает wireframe?' }, opts: [{ uz: 'Ekranda qayerda nima turishini', ru: 'Что где стоит на экране' }, { uz: 'Tugmalar qaysi rangda bo\'lishini', ru: 'Какого цвета будут кнопки' }, { uz: 'Sarlavha qaysi shriftda yozilishini', ru: 'Каким шрифтом написан заголовок' }, { uz: 'Ma\'lumot qayerda saqlanishini', ru: 'Где хранятся данные' }], correct: 0 },
+  { q: { uz: "Wireframe nimani ko'rsatadi?", ru: "Что показывает wireframe?" }, opts: [{ uz: "Qayerda nima turishini", ru: "Что где стоит" }, { uz: "Tugmalar rangini", ru: "Цвет кнопок" }, { uz: "Sarlavha shriftini", ru: "Шрифт заголовка" }, { uz: "Ma'lumot qayerda saqlanishini", ru: "Где хранятся данные" }], correct: 0 },
   { q: { uz: 'Tashkilotchi kun va soatni qaysi ekranda yozadi?', ru: 'На каком экране организатор пишет день и время?' }, opts: [{ uz: "O'yinlar ekranida", ru: 'На экране «Игры»' }, { uz: "E'lon berish ekranida", ru: 'На экране «Объявить игру»' }, { uz: "O'yin ekranida", ru: 'На экране «Игра»' }, { uz: 'Kirish ekranida', ru: 'На экране «Вход»' }], correct: 1 },
-  { q: { uz: 'Prototip qanday ekranlar?', ru: 'Какие экраны называют прототипом?' }, opts: [{ uz: "Do'konga chiqqan birinchi versiya", ru: 'Первая версия, вышедшая в магазин' }, { uz: "Qog'ozdagi rangsiz, sodda chizma", ru: 'Бесцветный простой рисунок на бумаге' }, { uz: "Bosiladigan, lekin haqiqiy ma'lumotsiz", ru: 'Кликабельные, но без настоящих данных' }, { uz: "Backend va Database'ning to'liq chizmasi", ru: 'Полная схема Backend и Database' }], correct: 2 },
-  { q: { uz: "Prototipdagi o'yinlar ro'yxati qayerdan keladi?", ru: 'Откуда берётся список игр в прототипе?' }, opts: [{ uz: "Database'dagi `oyinlar` jadvalidan", ru: 'Из таблицы `oyinlar` в Database' }, { uz: "Backend'dagi yo'ldan", ru: 'Из пути в Backend' }, { uz: 'Telegram guruhidan', ru: 'Из группы в Telegram' }, { uz: '`namuna.js` faylidan', ru: 'Из файла `namuna.js`' }], correct: 3 },
+  { q: { uz: "Prototip qanday ekranlar?", ru: "Какие экраны называют прототипом?" }, opts: [{ uz: "Do'konga chiqqan versiya", ru: "Версия, вышедшая в магазин" }, { uz: "Qog'ozdagi sodda chizma", ru: "Простой рисунок на бумаге" }, { uz: "Bosiladi, lekin saqlamaydi", ru: "Кликабельные, но не сохраняют" }, { uz: "Backend va Database chizmasi", ru: "Схема Backend и Database" }], correct: 2 },
+  { q: { uz: "Prototipdagi o'yinlar ro'yxati qayerdan keladi?", ru: "Откуда берётся список игр в прототипе?" }, opts: [{ uz: "`oyinlar` jadvalidan", ru: "Из таблицы `oyinlar`" }, { uz: "Backend'dagi yo'ldan", ru: "Из пути в Backend" }, { uz: "Telegram guruhidan", ru: "Из группы в Telegram" }, { uz: "`namuna.js` faylidan", ru: "Из файла `namuna.js`" }], correct: 3 },
   { q: { uz: 'Bu darsda talabning «qayerda» qatoriga nima yoziladi?', ru: 'Что на этом уроке пишут в строку требования «где»?' }, opts: [{ uz: '`prototip/` papkasi', ru: 'Папка `prototip/`' }, { uz: 'Telefon ekrani', ru: 'Экран телефона' }, { uz: 'GitHub sahifasi', ru: 'Страница GitHub' }, { uz: '`backend/` papkasi', ru: 'Папка `backend/`' }], correct: 0 },
-  { q: { uz: 'Wireframe surati talabda nimaga kerak?', ru: 'Зачем в требовании снимок wireframe?' }, opts: [{ uz: 'Agentga ekran ranglarini tanlab beradi', ru: 'Выбирает агенту цвета экрана' }, { uz: "Ekranlar qanday joylashganini ko'rsatadi", ru: 'Показывает, как расположены экраны' }, { uz: "Agentga Backend'ni ulashga yordam beradi", ru: 'Помогает агенту подключить Backend' }, { uz: "Talabning uch qatori o'rniga yuboriladi", ru: 'Отправляется вместо трёх строк требования' }], correct: 1 },
-  { q: { uz: 'Agent «Tayyor!» dedi. Keyin nima qilasiz?', ru: 'Агент сказал «Готово!». Что дальше?' }, opts: [{ uz: "Tekshirmasdan, uni GitHub'ga yuboraman", ru: 'Не проверяя, отправляю на GitHub' }, { uz: 'Talabni boshidan qayta yozaman', ru: 'Пишу требование заново' }, { uz: 'Bosib, wireframe bilan solishtiraman', ru: 'Нажимаю и сравниваю с wireframe' }, { uz: "Avval uch animatsiyani qo'shaman", ru: 'Сначала добавляю три анимации' }], correct: 2 },
-  { q: { uz: 'Uchta farq topdingiz. Agentga qanday yozasiz?', ru: 'Вы нашли три отличия. Как написать агенту?' }, opts: [{ uz: "Loyihani o'chirib, boshidan yozdiraman", ru: 'Удаляю проект и прошу написать заново' }, { uz: 'Faqat eng kattasini yozaman', ru: 'Пишу только самое большое' }, { uz: "Hech narsa — agent o'zi topadi", ru: 'Ничего — агент найдёт сам' }, { uz: 'Uchalasini bitta tuzatish talabida', ru: 'Все три одним требованием на исправление' }], correct: 3 },
+  { q: { uz: "Wireframe surati nimaga kerak?", ru: "Зачем нужен снимок wireframe?" }, opts: [{ uz: "Agentga rang tanlab beradi", ru: "Выбирает агенту цвета" }, { uz: "Ekranlar joyini ko'rsatadi", ru: "Показывает, где какие экраны" }, { uz: "Agentga Backend'ni ulatadi", ru: "Подключает агенту Backend" }, { uz: "Talab o'rniga yuboriladi", ru: "Отправляется вместо требования" }], correct: 1 },
+  { q: { uz: "Agent «Tayyor!» dedi. Keyin nima qilasiz?", ru: "Агент сказал «Готово!». Что дальше?" }, opts: [{ uz: "Darhol GitHub'ga yuboraman", ru: "Сразу отправляю на GitHub" }, { uz: "Talabni qayta yozaman", ru: "Пишу требование заново" }, { uz: "Wireframe bilan solishtiraman", ru: "Сравниваю с wireframe" }, { uz: "Animatsiya qo'shaman", ru: "Добавляю анимации" }], correct: 2 },
+  { q: { uz: "Uch farq topildi. Agentga qanday yozasiz?", ru: "Найдено три отличия. Как написать агенту?" }, opts: [{ uz: "Hammasini qayta yozdiraman", ru: "Прошу написать всё заново" }, { uz: "Faqat kattasini yozaman", ru: "Пишу только самое большое" }, { uz: "Hech narsa, o'zi topadi", ru: "Ничего, сам найдёт" }, { uz: "Uchalasini bitta talabda", ru: "Все три одним требованием" }], correct: 3 },
   { q: { uz: 'Jonli prototip qanday prototip?', ru: 'Какой прототип называют живым?' }, opts: [{ uz: 'Animatsiyasi bor prototip', ru: 'Прототип с анимацией' }, { uz: "Telefonga o'rnatilgan prototip", ru: 'Прототип, установленный на телефон' }, { uz: "Backend'ga ulangan prototip", ru: 'Прототип, подключённый к Backend' }, { uz: 'Rangli chizilgan prototip', ru: 'Прототип, нарисованный в цвете' }], correct: 0 },
-  { q: { uz: 'Karta bosilganda kichrayib qaytishi uchun nima kerak?', ru: 'Что нужно, чтобы карточка при нажатии сжималась и возвращалась?' }, opts: [{ uz: '`transition` va `font-size`', ru: '`transition` и `font-size`' }, { uz: '`transform` va `transition`', ru: '`transform` и `transition`' }, { uz: '`initial` va `exit`', ru: '`initial` и `exit`' }, { uz: '`display` va `width`', ru: '`display` и `width`' }], correct: 1 },
+  { q: { uz: "Karta bosilsa kichrayib qaytsin. Nima kerak?", ru: "Карточка при нажатии сжимается и возвращается. Что нужно?" }, opts: [{ uz: "`transition` va `font-size`", ru: "`transition` и `font-size`" }, { uz: "`transform` va `transition`", ru: "`transform` и `transition`" }, { uz: "`initial` va `exit`", ru: "`initial` и `exit`" }, { uz: "`display` va `width`", ru: "`display` и `width`" }], correct: 1 },
   { q: { uz: "Bu prototipda ekrandan ekranga silliq o'tishni nima qiladi?", ru: 'Что в этом прототипе делает плавный переход между экранами?' }, opts: [{ uz: '`:active` holati', ru: 'Состояние `:active`' }, { uz: '`scale(1.3)` qiymati', ru: 'Значение `scale(1.3)`' }, { uz: 'Motion kutubxonasi', ru: 'Библиотека Motion' }, { uz: '`setTimeout` funksiyasi', ru: 'Функция `setTimeout`' }], correct: 2 },
   { q: { uz: "GitHub'dagi repo'ni kompyuterga qaysi buyruq ko'chiradi?", ru: 'Какая команда копирует репо с GitHub на компьютер?' }, opts: [{ uz: '`git push`', ru: '`git push`' }, { uz: '`git commit`', ru: '`git commit`' }, { uz: '`git status`', ru: '`git status`' }, { uz: '`git clone`', ru: '`git clone`' }], correct: 3 }
 ];
@@ -2359,7 +2383,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? DAVOM : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{c.kul && <span className="jp-kul-q">{tx(c.kul)}</span>}{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className={cxx('jp-band', b.kul && 'kul', b.yon && 'yon')}>{tx(b.kul || b.yon || b)}</span>)}{c.prompt && <JpPrompt satrlar={c.prompt} namuna={c.namuna} boshlang={c.boshlang ? c.boshlang() : {}} />}</>,
@@ -2946,6 +2970,12 @@ export default function LivePrototypeLesson({ lang: langProp, onFinished, liveTo
         .jp-fq-son.yon { background: ${fon(T.accent, 0.45)}; color: ${T.paper}; animation: jp-yon 1.2s ease-out both; }
         @keyframes jp-yon { 0% { box-shadow: 0 0 0 0 ${fon(T.accent, 0.5)}; } 100% { box-shadow: 0 0 0 8px ${fon(T.accent, 0)}; } }
         .jp-natija-b { display: flex; flex-direction: column; gap: 8px; }
+        .jp-talab-quti { display: flex; flex-direction: column; gap: 6px; }
+        .jp-talab-y { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: ${T.ink2}; } .jp-talab-y b { color: ${T.accent}; }
+        /* F-1015-329 (213.14): ish tugagach sahna butun enda — telefon o'ngda, natija chapda (amaliyot natijasi bilan bir xil) */
+        .q-fokus .jp-sahna:not(.s11) { grid-template-columns: minmax(0, 1fr) auto; }
+        .q-fokus .jp-sahna:not(.s11) > :first-child { order: 2; margin-left: 44px; } /* ⛶ (zb-joy) telefonning chap yonida — brauzer-qatori bilan to'qnashmasin */
+        @media (max-width: 760px) { .q-fokus .jp-sahna:not(.s11) { grid-template-columns: minmax(0, 1fr); } .q-fokus .jp-sahna:not(.s11) > :first-child { order: 0; } }
         .jp-izoh-k { align-self: flex-start; font-size: 12px; color: ${T.ink2}; background: ${T.bg}; border-radius: 8px; padding: 3px 9px; }
         .jp-yoq-q { display: flex; flex-wrap: wrap; gap: 8px; }
         .jp-yoq { font-size: 12.5px; font-weight: 700; color: ${T.ink2}; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 9px; padding: 5px 10px; }
@@ -2964,7 +2994,7 @@ export default function LivePrototypeLesson({ lang: langProp, onFinished, liveTo
         .jp-surat-r i { display: block; height: 5px; border: 1px solid ${fon(T.ink2, 0.6)}; border-radius: 2px; }
         .jp-surat-r.oyin i:nth-child(2) { height: 9px; border-radius: 50%; width: 9px; } .jp-surat-r.oyin i:nth-child(3) { margin-top: auto; }
         .jp-surat-r.elon i:nth-child(3) { margin-top: auto; }
-        .jp-daraxt { display: flex; flex-direction: column; gap: 3px; min-width: 150px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 12px; padding: 10px 12px; }
+        .jp-daraxt { display: flex; flex-direction: column; gap: 3px; min-width: 150px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; background: ${T.bg}; border: 1px solid transparent; /* F-1015-333 */ border-radius: 12px; padding: 10px 12px; }
         .jp-daraxt.ixcham { font-size: 12px; padding: 8px 10px; min-width: 0; }
         .jp-d-q { padding: 2px 6px 2px 18px; border-radius: 6px; color: ${T.ink}; }
         .jp-d-q.ildiz { padding-left: 4px; font-weight: 800; color: ${T.ink2}; }
@@ -2975,7 +3005,7 @@ export default function LivePrototypeLesson({ lang: langProp, onFinished, liveTo
         .jp-tel-joy { display: none; }
         .jp-kir-chap { animation: jp-kir-chap 0.45s ease-out both; }
         @keyframes jp-kir-chap { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: none; } }
-        p.jp-talab-q { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; color: ${T.ink}; background: ${T.paper}; border: 1px solid ${T.line}; border-left: 0; border-radius: 12px; padding: 10px 14px; }
+        p.jp-talab-q { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.6; color: ${T.ink}; background: ${T.bg}; border: 1px solid transparent; border-left: 0; border-radius: 12px; padding: 10px 14px; }
         /* 10-ekran */
         .jp-s10 { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: start; }
         .jp-solish { display: flex; flex-direction: column; gap: 10px; }

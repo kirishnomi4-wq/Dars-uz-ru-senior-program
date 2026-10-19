@@ -143,10 +143,10 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` (Mentor tekshiruvi �
   Javoblar va sonlar yo'q — 2-ekran kashfiyotini ochmaydi (P-036); ustun va qator nomlari — haqiqiy mazmun (SABOQ 33).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
-  - 01 · Odamning o'zi yozgan javobini suhbatdagi gapdan ajratasiz
-  - 02 · Yozuvlarni uch savol bilan tekshirasiz
-  - 03 · Tanishlaringizga bosimsiz xabar yozasiz
-  - 04 · Sherigingiz bilan yozuvlaringizni tekshirasiz
+  - 01 · Odamning o'zi yozgan javobini suhbatdagi gapdan ajrating
+  - 02 · Yozuvlarni uch savol bilan tekshiring
+  - 03 · Tanishlaringizga bosimsiz xabar yozing
+  - 04 · Sherigingiz bilan yozuvlaringizni tekshiring
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Menyu ostidagi «uchta yozma tasdiq» — dastur natijasi. Darsda — xabar va kelgan javoblar; ko'p o'quvchida darsda yozma tasdiq 0–1 bo'ladi, qolgani uyda. Uchtaga yetmaslik — baho emas. Darsda hech kim pul olmaydi va hech narsa sotmaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «yozma tasdiq» faqat chap yorliqda (App.jsx osti so'zma-so'z) va kulrang tegda; ta'rif — 2-ekranda (P-014). Chap kulrang qator menyu ostini darsdagi haqiqatga chegaralaydi (11-Modul 03-FILTR 1 sinfi).

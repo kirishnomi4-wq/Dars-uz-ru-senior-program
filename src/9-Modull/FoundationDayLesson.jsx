@@ -97,6 +97,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -174,8 +199,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1211,18 +1236,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD), to'g'ri javob o'rni A·B·C·D ×3 (3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: 'Ilova kirgan o\'yinchini keyingi so\'rovlarda qanday taniydi?', ru: "Как приложение узнаёт вошедшего игрока в следующих запросах?" }, opts: [{ uz: 'Telefonda saqlangan token orqali', ru: "По токену, сохранённому на телефоне" }, { uz: 'Har safar telefon raqamini so\'rab', ru: "Каждый раз спрашивая номер телефона" }, { uz: 'Database\'dagi parolni o\'qib chiqib', ru: "Прочитав пароль из Database" }, { uz: 'Expo Go akkauntining nomi orqali', ru: "По имени аккаунта Expo Go" }], correct: 0 },
-  { q: { uz: '`oyinchilar` jadvalida parol qanday turadi?', ru: "Как хранится пароль в таблице `oyinchilar`?" }, opts: [{ uz: 'Parolning o\'zi, ochiq matn bo\'lib', ru: "Сам пароль, открытым текстом" }, { uz: 'Paroldan yasalgan hash bo\'lib', ru: "Хешем, сделанным из пароля" }, { uz: 'Telefon raqamiga qo\'shib yozilib', ru: "Дописанным к номеру телефона" }, { uz: 'Token ichiga joylab qo\'yilib', ru: "Вложенным внутрь токена" }], correct: 1 },
-  { q: { uz: 'Tokensiz `GET /oyinlar` so\'rovi kelsa, Backend nima qiladi?', ru: "Что делает Backend, если пришёл `GET /oyinlar` без токена?" }, opts: [{ uz: 'O\'yinlarning to\'liq ro\'yxatini beradi', ru: "Отдаёт полный список игр" }, { uz: 'Faqat birinchi o\'yinni qaytaradi', ru: "Возвращает только первую игру" }, { uz: '401 qaytaradi, ro\'yxatni bermaydi', ru: "Возвращает 401, список не отдаёт" }, { uz: '«Kirish» ekranini o\'zi ochib beradi', ru: "Сам открывает экран «Вход»" }], correct: 2 },
-  { q: { uz: 'Token telefonda qayerda saqlanadi?', ru: "Где на телефоне хранится токен?" }, opts: [{ uz: 'Database\'dagi `oyinchilar` jadvalida', ru: "В таблице `oyinchilar` в Database" }, { uz: 'Ilovaning `.env` faylidagi qatorda', ru: "В строке файла `.env` приложения" }, { uz: 'Repo\'dagi `README.md` bo\'limida', ru: "В разделе `README.md` в репо" }, { uz: '`expo-secure-store` da, shifrlab', ru: "В `expo-secure-store`, зашифрованным" }], correct: 3 },
+  { q: { uz: "Backend kirgan o'yinchini qanday taniydi?", ru: "Как Backend узнаёт вошедшего игрока?" }, opts: [{ uz: "So'rovdagi token orqali", ru: "По токену в запросе" }, { uz: "Telefon raqamini so'rab", ru: "Спрашивая номер телефона" }, { uz: "Database'dagi paroldan", ru: "По паролю в Database" }, { uz: "Expo Go akkaunti orqali", ru: "По аккаунту Expo Go" }], correct: 0 },
+  { q: { uz: "Jadvalda parol qanday saqlanadi?", ru: "Как пароль хранится в таблице?" }, opts: [{ uz: "Parolning o'zi bo'lib", ru: "Как сам пароль" }, { uz: "Paroldan yasalgan hash bo'lib", ru: "Как hash из пароля" }, { uz: "Telefon raqamiga qo'shilib", ru: "Вместе с номером телефона" }, { uz: "Token ichiga joylanib", ru: "Внутри токена" }], correct: 1 },
+  { q: { uz: "Tokensiz `GET /oyinlar` kelsa, Backend nima qiladi?", ru: "Что делает Backend, если пришёл `GET /oyinlar` без токена?" }, opts: [{ uz: "Ro'yxatni beradi", ru: "Отдаёт список" }, { uz: "Birinchi o'yinni beradi", ru: "Отдаёт первую игру" }, { uz: "401 qaytaradi", ru: "Возвращает 401" }, { uz: "«Kirish»ni ochadi", ru: "Открывает «Вход»" }], correct: 2 },
+  { q: { uz: "Token telefonda qayerda saqlanadi?", ru: "Где токен хранится на телефоне?" }, opts: [{ uz: "`oyinchilar` jadvalida", ru: "В таблице `oyinchilar`" }, { uz: "Ilovaning `.env` faylida", ru: "В файле `.env` приложения" }, { uz: "Repo'dagi `README.md` da", ru: "В `README.md` в репо" }, { uz: "`expo-secure-store` da", ru: "В `expo-secure-store`" }], correct: 3 },
   { q: { uz: 'Telefondagi ilova uchun `localhost` nimani bildiradi?', ru: "Что означает `localhost` для приложения на телефоне?" }, opts: [{ uz: 'Telefonning o\'zini', ru: "Сам телефон" }, { uz: 'Laptopdagi Backend\'ni', ru: "Backend на ноутбуке" }, { uz: 'Render\'dagi Backend\'ni', ru: "Backend на Render" }, { uz: 'Neon\'dagi Database\'ni', ru: "Database на Neon" }], correct: 0 },
-  { q: { uz: 'Nega Backend shu darsda Render\'ga chiqadi?', ru: "Почему на этом уроке Backend выходит на Render?" }, opts: [{ uz: 'Laptopda u sekin ishlagani uchun', ru: "Потому что на ноутбуке он медленный" }, { uz: 'Telefon Internet orqali ulanishi uchun', ru: "Чтобы телефон подключался через Интернет" }, { uz: 'Render Database\'ni o\'zi yaratgani uchun', ru: "Потому что Render сам создаёт Database" }, { uz: 'Expo Go faqat Render bilan ishlagani uchun', ru: "Потому что Expo Go работает только с Render" }], correct: 1 },
-  { q: { uz: 'Ilovaning `EXPO_PUBLIC_API_URL` qatoriga nima yoziladi?', ru: "Что пишется в строку `EXPO_PUBLIC_API_URL` приложения?" }, opts: [{ uz: '`http://localhost:3000` manzili', ru: "Адрес `http://localhost:3000`" }, { uz: '`JWT_SECRET` kalitining qiymati', ru: "Значение ключа `JWT_SECRET`" }, { uz: 'Render\'dagi Backend manzili', ru: "Адрес Backend на Render" }, { uz: 'Neon\'dagi `DATABASE_URL` satri', ru: "Строка `DATABASE_URL` из Neon" }], correct: 2 },
-  { q: { uz: 'Nega `EXPO_PUBLIC_` qatoriga maxfiy kalit yozilmaydi?', ru: "Почему в строку `EXPO_PUBLIC_` не пишут секретный ключ?" }, opts: [{ uz: 'Ilova ochilishi sekinlashib qoladi', ru: "Приложение станет медленнее открываться" }, { uz: 'Expo Go bunday qatorni o\'chirib tashlaydi', ru: "Expo Go удалит такую строку" }, { uz: 'Render bu qatorni o\'qiy olmay qoladi', ru: "Render не сможет прочитать эту строку" }, { uz: 'U ilova ichida ochiq matn bo\'lib turadi', ru: "Оно лежит внутри приложения открытым текстом" }], correct: 3 },
-  { q: { uz: 'Internetdagi Backend uchun `JWT_SECRET` qayerda turadi?', ru: "Где хранится `JWT_SECRET` для Backend в интернете?" }, opts: [{ uz: 'Render\'dagi Environment bo\'limida', ru: "В разделе Environment на Render" }, { uz: 'Ilovaning `mobil/.env` faylidagi qatorda', ru: "В строке файла `mobil/.env` приложения" }, { uz: 'GitHub\'dagi `README.md` faylida', ru: "В файле `README.md` на GitHub" }, { uz: 'Agentga yozilgan talab matnida', ru: "В тексте требования для агента" }], correct: 0 },
-  { q: { uz: 'Telefon brauzerida Render manzili `/oyinlar` — 401 chiqdi. Bu nimani bildiradi?', ru: "В браузере телефона по адресу Render `/oyinlar` — ответ 401. Что это значит?" }, opts: [{ uz: 'Backend ishlamayapti — Render xato berdi', ru: "Backend не работает — Render выдал ошибку" }, { uz: 'Backend internetda va tokensiz yopiq', ru: "Backend в интернете и без токена закрыт" }, { uz: 'Database\'da o\'yinlar hali yozilmagan', ru: "В Database ещё нет игр" }, { uz: 'Telefonning o\'zi Internetga ulanmagan', ru: "Сам телефон не подключён к Интернету" }], correct: 1 },
-  { q: { uz: 'Push\'dan oldin fayllarni qanday qo\'shasiz?', ru: "Как добавить файлы перед push?" }, opts: [{ uz: '`git add .` bilan hammasini birdan', ru: "Все сразу через `git add .`" }, { uz: '`.env` ni ham qo\'shib, hammasini', ru: "Все, вместе с `.env`" }, { uz: 'Agent aytgan fayllarni bittadan', ru: "По одному — файлы, которые назвал агент" }, { uz: 'Faqat `README.md` faylini qo\'shib', ru: "Только файл `README.md`" }], correct: 2 },
-  { q: { uz: 'Ilova `GET /oyinlar` dan `401` oldi. Ilova nima qiladi?', ru: "Приложение получило `401` от `GET /oyinlar`. Что оно делает?" }, opts: [{ uz: 'O\'yinlarni namunadan ko\'rsataveradi', ru: "Продолжает показывать игры из образца" }, { uz: 'Parolni o\'zi qayta yuborib turadi', ru: "Само снова отправляет пароль" }, { uz: 'Render\'dagi Backend\'ni qayta yoqadi', ru: "Перезапускает Backend на Render" }, { uz: 'Tokenni o\'chirib, «Kirish»ni ochadi', ru: "Удаляет токен и открывает «Вход»" }], correct: 3 },
+  { q: { uz: "Backend nega Render'ga chiqadi?", ru: "Зачем Backend выкладывают на Render?" }, opts: [{ uz: "Laptopda sekin ishlaydi", ru: "На ноутбуке он медленный" }, { uz: "Telefon unga ulana oladi", ru: "Телефон сможет к нему подключиться" }, { uz: "Render Database yaratadi", ru: "Render создаёт Database" }, { uz: "Expo Go Render'ni talab qiladi", ru: "Expo Go требует Render" }], correct: 1 },
+  { q: { uz: "`EXPO_PUBLIC_API_URL` ga nima yoziladi?", ru: "Что пишется в `EXPO_PUBLIC_API_URL`?" }, opts: [{ uz: "`http://localhost:3000`", ru: "`http://localhost:3000`" }, { uz: "`JWT_SECRET` qiymati", ru: "Значение `JWT_SECRET`" }, { uz: "Render'dagi Backend manzili", ru: "Адрес Backend на Render" }, { uz: "Neon'dagi `DATABASE_URL`", ru: "`DATABASE_URL` из Neon" }], correct: 2 },
+  { q: { uz: "Maxfiy kalit nega `EXPO_PUBLIC_` ga yozilmaydi?", ru: "Почему секретный ключ не пишут в `EXPO_PUBLIC_`?" }, opts: [{ uz: "Ilova sekinlashadi", ru: "Приложение замедлится" }, { uz: "Expo Go uni o'chiradi", ru: "Expo Go его удалит" }, { uz: "Render uni o'qimaydi", ru: "Render его не прочитает" }, { uz: "Ilovada ochiq ko'rinadi", ru: "Он открыто виден в приложении" }], correct: 3 },
+  { q: { uz: "Deploy'dan keyin `JWT_SECRET` qayerda turadi?", ru: "Где хранится `JWT_SECRET` после деплоя?" }, opts: [{ uz: "Render'da, Environment'da", ru: "На Render, в Environment" }, { uz: "`mobil/.env` faylida", ru: "В файле `mobil/.env`" }, { uz: "`README.md` faylida", ru: "В файле `README.md`" }, { uz: "Agentga talab matnida", ru: "В тексте требования агенту" }], correct: 0 },
+  { q: { uz: "Render manzilida 401 chiqdi. Bu nima degani?", ru: "По адресу Render — 401. Что это значит?" }, opts: [{ uz: "Backend ishlamayapti", ru: "Backend не работает" }, { uz: "Ishlaydi, tokensiz yopiq", ru: "Работает, без токена закрыт" }, { uz: "Database'da o'yin yo'q", ru: "В Database нет игр" }, { uz: "Telefonda internet yo'q", ru: "На телефоне нет интернета" }], correct: 1 },
+  { q: { uz: "Push'dan oldin fayllarni qanday qo'shasiz?", ru: "Как вы добавляете файлы перед push?" }, opts: [{ uz: "`git add .` bilan birdan", ru: "Сразу через `git add .`" }, { uz: "`.env` ni ham qo'shib", ru: "Вместе с `.env`" }, { uz: "Agent aytganlarini bittadan", ru: "Названные агентом — по одному" }, { uz: "Faqat `README.md` ni", ru: "Только `README.md`" }], correct: 2 },
+  { q: { uz: "Ilova `GET /oyinlar` dan `401` oldi. Nima qiladi?", ru: "Приложение получило `401` от `GET /oyinlar`. Что оно делает?" }, opts: [{ uz: "Namunani ko'rsatadi", ru: "Показывает образец" }, { uz: "Parolni qayta yuboradi", ru: "Снова отправляет пароль" }, { uz: "Backend'ni qayta yoqadi", ru: "Перезапускает Backend" }, { uz: "«Kirish»ni ochadi", ru: "Открывает «Вход»" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1856,7 +1881,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="fd-band">{tx(b)}</span>)}{c.prompt && <FdPrompt satrlar={c.prompt} namuna={c.namuna} />}</>,
@@ -2272,10 +2297,11 @@ export default function FoundationDayLesson({ lang: langProp, onFinished, liveTo
         @keyframes fd-tush { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
         @keyframes fd-yig { from { opacity: 0.3; transform: scaleY(1.7); } to { opacity: 1; transform: none; } }
         @keyframes fd-chiz { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-        .fd-navbat-k .q-bashorat { outline: 2px solid ${T.accent}; outline-offset: 2px; animation: fd-kot 0.5s cubic-bezier(.2,.9,.3,1.1) both, fd-puls 1.8s ease-out 0.7s infinite; }
+        .fd-navbat-k .q-bashorat { animation: fd-kot 0.5s cubic-bezier(.2,.9,.3,1.1) both; }
+        .fd-navbat-k .q-chip:not(:disabled) { outline: 1.5px solid ${T.accent}; outline-offset: 2px; animation: fd-puls 1.8s ease-out 0.7s infinite; }
         .fd-navbat-k .q-chip { animation: fd-kot 0.4s ease-out 0.15s both; }
         .fd-navbat-k .q-chip:nth-child(2) { animation-delay: 0.25s; } .fd-navbat-k .q-chip:nth-child(3) { animation-delay: 0.35s; }
-        .q-kirish:has(.fd-ikki.kutish) .q-variantlar-kol { border-radius: 14px; outline: 2px solid ${T.accent}; outline-offset: 5px; animation: fd-puls 1.8s ease-out 0.9s infinite; }
+        .q-kirish:has(.fd-ikki.kutish) .q-variant:not(:disabled) { outline: 1.5px solid ${T.accent}; outline-offset: 2px; animation: fd-puls 1.8s ease-out 0.9s infinite; }
         .fd-taxmin { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 10px 14px; border-radius: 12px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 13.5px; transform-origin: top; animation: fd-yig 0.45s cubic-bezier(.2,.9,.3,1) both; }
         .fd-taxmin-y { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: ${T.accent}; }
         .fd-taxmin-s { color: ${T.ink2}; }
@@ -2345,22 +2371,22 @@ export default function FoundationDayLesson({ lang: langProp, onFinished, liveTo
         .fd-be-h { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: ${T.ink}; }
         .fd-chiroq { width: 8px; height: 8px; border-radius: 50%; background: ${T.ok}; box-shadow: 0 0 0 3px ${fon(T.ok, 0.2)}; }
         .fd-be-joy { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink2}; overflow-wrap: anywhere; }
-        .fd-yol { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 5px 9px; border-radius: 8px; background: ${T.bg}; border: 1px solid ${T.line}; transition: border-color 0.3s, background 0.3s; }
+        .fd-yol { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 5px 9px; border-radius: 8px; background: ${T.bg}; border: 1px solid transparent; /* F-1015-333 */ transition: border-color 0.3s, background 0.3s; }
         .fd-yol code { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink}; }
         .fd-yol.on { border-color: ${T.accent}; background: ${T.accentSoft}; }
-        .fd-yol.ok { border-color: ${fon(T.ok, 0.5)}; background: ${T.okFon}; }
+        .fd-yol.ok { background: ${T.okFon}; }
         .fd-qulf-b { position: relative; width: 10px; height: 8px; margin-top: 5px; border-radius: 2px; background: ${T.ink2}; flex: none; transition: background 0.3s; }
         .fd-qulf-b::before { content: ''; position: absolute; left: 2px; top: -6px; width: 6px; height: 7px; border: 1.5px solid ${T.ink2}; border-bottom: 0; border-radius: 4px 4px 0 0; box-sizing: border-box; transform-origin: right bottom; transition: transform 0.35s, border-color 0.3s; }
         .fd-qulf-b.ochiq { background: ${T.ok}; } .fd-qulf-b.ochiq::before { border-color: ${T.ok}; transform: translateY(-3px) rotate(-25deg); }
         .fd-solish { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: ${T.ok}; animation: fd-kot 0.35s ease-out both; }
         .fd-solish code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; }
         .fd-solish b { margin-left: auto; width: 18px; height: 18px; border-radius: 50%; background: ${T.ok}; color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; animation: fd-pop 0.45s cubic-bezier(.3,1.5,.5,1) 0.15s both; }
-        .fd-jwt { display: flex; align-items: center; gap: 8px; padding: 5px 9px; border-radius: 8px; background: ${T.bg}; border: 1px solid ${T.line}; transition: border-color 0.3s, background 0.3s, box-shadow 0.3s; }
+        .fd-jwt { display: flex; align-items: center; gap: 8px; padding: 5px 9px; border-radius: 8px; background: ${T.bg}; border: 1px solid transparent; transition: border-color 0.3s, background 0.3s, box-shadow 0.3s; }
         .fd-jwt code { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink}; }
         .fd-jwt.yon { border-color: ${T.accent}; background: ${T.accentSoft}; box-shadow: 0 0 0 4px ${fon(T.accent, 0.16)}; }
         .fd-db { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; border-radius: 14px; border: 1.5px solid ${T.line}; background: ${fon(T.ink, 0.025)}; min-width: 0; }
         .fd-db-h { font-size: 13.5px; font-weight: 700; color: ${T.ink}; }
-        .fd-jad { display: flex; flex-direction: column; gap: 4px; padding: 7px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; min-width: 0; transition: opacity 0.3s, border-color 0.3s, box-shadow 0.3s; }
+        .fd-jad { display: flex; flex-direction: column; gap: 4px; padding: 7px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid transparent; min-width: 0; transition: opacity 0.3s, border-color 0.3s, box-shadow 0.3s; }
         .fd-jad.yon { border-color: ${T.ok}; box-shadow: 0 0 0 3px ${fon(T.ok, 0.15)}; }
         .fd-jad.xira { opacity: 0.45; }
         .fd-jad-n { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink}; }
@@ -2420,10 +2446,10 @@ export default function FoundationDayLesson({ lang: langProp, onFinished, liveTo
         .fd-ichi-h code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink2}; }
         .fd-ichi-joy { display: flex; flex-direction: column; gap: 6px; min-height: 32px; }
         .fd-ichi-bosh { display: block; height: 32px; border-radius: 8px; border: 1.5px solid transparent; background: ${T.bg}; }
-        .fd-env { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 6px 10px; border-radius: 8px; background: ${T.bg}; border: 1px solid ${T.line}; animation: fd-tush 0.45s ease-out both; }
+        .fd-env { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 6px 10px; border-radius: 8px; background: ${T.bg}; border: 1px solid transparent; animation: fd-tush 0.45s ease-out both; }
         .fd-env code { flex: 1 1 auto; min-width: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink}; overflow-wrap: anywhere; }
         .fd-env.xato { border-color: ${fon(T.err, 0.45)}; background: ${T.errFon}; }
-        .fd-env.ok { border-color: ${fon(T.ok, 0.45)}; background: ${T.okFon}; }
+        .fd-env.ok { background: ${T.okFon}; }
         .fd-env.jwt-qator.xato .fd-env-v { color: ${T.err}; background: ${fon(T.err, 0.14)}; border-radius: 4px; padding: 0 3px; }
         .fd-env-b { font-size: 14px; } .fd-env.xato .fd-env-b { color: ${T.err}; } .fd-env.ok .fd-env-b { color: ${T.ok}; }
         .fd-env-y { flex-basis: 100%; font-size: 12.5px; font-weight: 600; color: ${T.err}; }
@@ -2499,7 +2525,7 @@ export default function FoundationDayLesson({ lang: langProp, onFinished, liveTo
         @media (prefers-reduced-motion: reduce) {
           .fd-navbat, .fd-navbat-k .q-bashorat, .fd-navbat-k .q-chip, .q-kirish .q-variantlar-kol, .fd-taxmin, .fd-konvert, .fd-tel-ekran, .fd-son.yangi, .fd-doiralar i.yangi, .fd-karta, .fd-tel-xato, .fd-tel-qora,
           .fd-token, .fd-solish, .fd-solish b, .fd-jt tr.kir, .fd-hash-y, .fd-env, .fd-qk, .fd-qk-n, .fd-kir, .fd-orada-ch, .fd-orada-k, .fd-ikki > .fd-t1, .fd-ikki > .fd-t2,
-          .fd-flash.yangi .fc-card:not(.flip) .fc-front, p.fd-fc-ipucha i { animation: none !important; }
+          .fd-flash.yangi .fc-card:not(.flip) .fc-front, p.fd-fc-ipucha i, .fd-navbat-k .q-chip:not(:disabled), .q-kirish:has(.fd-ikki.kutish) .q-variant:not(:disabled) { animation: none !important; }
           .fd-tel-btn, .fd-be, .fd-yol, .fd-qulf, .fd-qulf-b, .fd-qulf-b::before, .fd-jad, .fd-db-k, .fd-jwt { transition: none !important; }
         }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px ${fon(T.accent, 0.35)}, 0 0 0 1px ${fon(T.accent, 0.12)}; }

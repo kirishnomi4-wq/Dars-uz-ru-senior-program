@@ -1,0 +1,3977 @@
+[
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sarlavhada faqat nom bor. Nima yetishmaydi?",
+   "ru": "В заголовке только название. Чего не хватает?"
+  },
+  "opts": [
+   {
+    "uz": "Kim uchun va nima foyda",
+    "ru": "Для кого и какая польза"
+   },
+   {
+    "uz": "Rang va shrift kattaligi",
+    "ru": "Цвета и размера шрифта"
+   },
+   {
+    "uz": "Narxi va chiqqan sanasi",
+    "ru": "Цены и даты выхода"
+   },
+   {
+    "uz": "Logotip va nomning rangi",
+    "ru": "Логотипа и цвета названия"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Lendingda «Maydon Jamoa» nomi qayerda turadi?",
+   "ru": "Где на лендинге стоит название «Maydon Jamoa»?"
+  },
+  "opts": [
+   {
+    "uz": "Sarlavha o'rnida, katta",
+    "ru": "На месте заголовка, крупно"
+   },
+   {
+    "uz": "Tepada, kichik yozuv",
+    "ru": "Наверху, мелкой надписью"
+   },
+   {
+    "uz": "Tugma ichida, qalin",
+    "ru": "Внутри кнопки, жирно"
+   },
+   {
+    "uz": "Eng pastda, xira",
+    "ru": "В самом низу, бледно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Kutubxona sayti kitob bor-yo'qligini aytadi. Foyda qaysi?",
+   "ru": "Сайт библиотеки показывает, есть ли книга. Где польза?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxat saqlanadi",
+    "ru": "Список хранится"
+   },
+   {
+    "uz": "Nomini qidirasiz",
+    "ru": "Ищете по названию"
+   },
+   {
+    "uz": "Bekorga bormaysiz",
+    "ru": "Не ходите зря"
+   },
+   {
+    "uz": "Ro'yxat yangilanadi",
+    "ru": "Список обновляется"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol darsdagi «eslatma» so'ziga keltirildi, variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor sahifasiga «eslatma» nega yozilmadi?",
+   "ru": "Почему на странице Ментора нет «напоминания»?"
+  },
+  "opts": [
+   {
+    "uz": "O'yinchilarga yoqmagan",
+    "ru": "Не понравилось игрокам"
+   },
+   {
+    "uz": "Sahifada joy qolmagan",
+    "ru": "На странице нет места"
+   },
+   {
+    "uz": "Eslatma juda uzun",
+    "ru": "Напоминание слишком длинное"
+   },
+   {
+    "uz": "Ilovada hali qurilmagan",
+    "ru": "В приложении его ещё нет"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Qanday qo'shilaman» bo'limida nima yozilgan?",
+   "ru": "Что написано в разделе «Как присоединиться»?"
+  },
+  "opts": [
+   {
+    "uz": "Yuklab olish havolasi",
+    "ru": "Ссылка на скачивание"
+   },
+   {
+    "uz": "Ism va telefon formasi",
+    "ru": "Форма для имени и телефона"
+   },
+   {
+    "uz": "O'yinlar va «8 / 10» soni",
+    "ru": "Игры и число «8 / 10»"
+   },
+   {
+    "uz": "Havola hozircha yo'qligi",
+    "ru": "Что ссылки пока нет"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Tugma nomlari olib tashlandi, savol qisqardi.",
+  "q": {
+   "uz": "Sahifada uchta tugma bor. Qoidaga ko'ra nima qilasiz?",
+   "ru": "На странице три кнопки. Что делаете по правилу?"
+  },
+  "opts": [
+   {
+    "uz": "Bittasini qoldirasiz",
+    "ru": "Оставляете одну"
+   },
+   {
+    "uz": "Bir qatorga terasiz",
+    "ru": "Ставите в один ряд"
+   },
+   {
+    "uz": "Yana bitta qo'shasiz",
+    "ru": "Добавляете ещё одну"
+   },
+   {
+    "uz": "Kichikroq qilasiz",
+    "ru": "Делаете поменьше"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Asoschilar Burbn'da qaysi funksiyalarni qoldirgan?",
+   "ru": "Какие функции основатели оставили в Burbn?"
+  },
+  "opts": [
+   {
+    "uz": "Eng qiyinlarini",
+    "ru": "Самые сложные"
+   },
+   {
+    "uz": "Odamlarga yoqqanlarini",
+    "ru": "Те, что понравились людям"
+   },
+   {
+    "uz": "O'zlariga yoqqanlarini",
+    "ru": "Те, что понравились им самим"
+   },
+   {
+    "uz": "Oxirgilarini",
+    "ru": "Последние"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Instagram voqeasidagi «25 000» soni nima?",
+   "ru": "Что за число «25 000» в истории Instagram?"
+  },
+  "opts": [
+   {
+    "uz": "Kunlik eng kam natija",
+    "ru": "Минимальный результат за день"
+   },
+   {
+    "uz": "Har lending maqsadi",
+    "ru": "Цель каждого лендинга"
+   },
+   {
+    "uz": "Faqat shu voqea soni",
+    "ru": "Просто число этой истории"
+   },
+   {
+    "uz": "Sarlavhadagi son",
+    "ru": "Число для заголовка"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sahifaga ism va telefon formasi qo'yasizmi?",
+   "ru": "Ставите на страницу форму для имени и телефона?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, asosiy tugma ostiga",
+    "ru": "Да, под главной кнопкой"
+   },
+   {
+    "uz": "Ha, faqat telefon uchun",
+    "ru": "Да, только для телефона"
+   },
+   {
+    "uz": "Yo'q, ma'lumot yig'ilmaydi",
+    "ru": "Нет, данные не собираются"
+   },
+   {
+    "uz": "Ha, faqat mobil trekda",
+    "ru": "Да, только в мобильном треке"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 106 belgidan qisqartirildi.",
+  "q": {
+   "uz": "Sherik «Kim uchun?»ga javob bermadi. Nimani tuzatasiz?",
+   "ru": "Партнёр не ответил на «Для кого?». Что исправите?"
+  },
+  "opts": [
+   {
+    "uz": "Uchta foyda qatorini",
+    "ru": "Три строки пользы"
+   },
+   {
+    "uz": "Tugmaning yozuvini",
+    "ru": "Надпись на кнопке"
+   },
+   {
+    "uz": "Sahifa manzilini",
+    "ru": "Адрес страницы"
+   },
+   {
+    "uz": "Sahifa sarlavhasini",
+    "ru": "Заголовок страницы"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Agent yig'gan sahifa matnini qanday tekshirasiz?",
+   "ru": "Как проверите текст страницы, собранной агентом?"
+  },
+  "opts": [
+   {
+    "uz": "Yozganingizga solishtirib",
+    "ru": "Сравнив со своим текстом"
+   },
+   {
+    "uz": "Agent hisobotini o'qib",
+    "ru": "Прочитав отчёт агента"
+   },
+   {
+    "uz": "Brauzerda ochilganiga qarab",
+    "ru": "По тому, что открылась в браузере"
+   },
+   {
+    "uz": "Fayllarni sanab",
+    "ru": "Посчитав файлы"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmLandingLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Tugma necha marta bosilganini qayerdan bilasiz?",
+   "ru": "Где узнаете, сколько раз нажали кнопку?"
+  },
+  "opts": [
+   {
+    "uz": "Netlify sozlamalaridan",
+    "ru": "Из настроек Netlify"
+   },
+   {
+    "uz": "Umami hodisalaridan",
+    "ru": "Из событий в Umami"
+   },
+   {
+    "uz": "GitHub commitlaridan",
+    "ru": "Из коммитов в GitHub"
+   },
+   {
+    "uz": "Brauzer tarixidan",
+    "ru": "Из истории браузера"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/WebSocketBasicsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qayta-qayta so'rashda yangi son qachon chiqadi?",
+   "ru": "Когда при повторных запросах появится новое число?"
+  },
+  "opts": [
+   {
+    "uz": "Keyingi so'rovda",
+    "ru": "При следующем запросе"
+   },
+   {
+    "uz": "Database o'zgarganda",
+    "ru": "Когда изменится Database"
+   },
+   {
+    "uz": "Hodisa kelganda",
+    "ru": "Когда придёт событие"
+   },
+   {
+    "uz": "Ulanish tiklanganda",
+    "ru": "Когда восстановится связь"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/WebSocketBasicsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlardagi tire olib tashlandi, bir xil shaklga keltirildi.",
+  "q": {
+   "uz": "Doimiy ulanishni kim ochadi?",
+   "ru": "Кто открывает постоянное соединение?"
+  },
+  "opts": [
+   {
+    "uz": "Backend ilovaga ulanadi",
+    "ru": "Backend подключается к приложению"
+   },
+   {
+    "uz": "Ilova Backend'ga ulanadi",
+    "ru": "Приложение подключается к Backend"
+   },
+   {
+    "uz": "Database ikkalasini ulaydi",
+    "ru": "Database соединяет обоих"
+   },
+   {
+    "uz": "Ikkinchi telefon ulaydi",
+    "ru": "Второй телефон соединяет"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/WebSocketBasicsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi.",
+  "q": {
+   "uz": "Hodisa kelgach, ilova yangi sonni qayerdan oladi?",
+   "ru": "Откуда приложение берёт новое число после события?"
+  },
+  "opts": [
+   {
+    "uz": "Hodisaning ma'lumotidan",
+    "ru": "Из данных события"
+   },
+   {
+    "uz": "Backend'dan qayta so'rab",
+    "ru": "Заново запросив у Backend"
+   },
+   {
+    "uz": "Telefon xotirasidan",
+    "ru": "Из памяти телефона"
+   },
+   {
+    "uz": "Ikkinchi telefondan",
+    "ru": "Со второго телефона"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/WebSocketBasicsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Backtick faqat ikki variantda edi va jami uzun; savol «qachon» shakliga o'tkazildi.",
+  "q": {
+   "uz": "`.on('oyin-ozgardi', korsat)` — korsat qachon ishlaydi?",
+   "ru": "`.on('oyin-ozgardi', korsat)` — когда сработает korsat?"
+  },
+  "opts": [
+   {
+    "uz": "Tugma bosilganda",
+    "ru": "Когда нажмут кнопку"
+   },
+   {
+    "uz": "Ulanish ochilganda",
+    "ru": "Когда откроется соединение"
+   },
+   {
+    "uz": "Hodisa kelganda",
+    "ru": "Когда придёт событие"
+   },
+   {
+    "uz": "Ulanish uzilganda",
+    "ru": "Когда соединение оборвётся"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/WebSocketBasicsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Belgi «Ulanmagan». Bu nimani bildiradi?",
+   "ru": "Значок «Не подключено». Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova urinmayapti",
+    "ru": "Приложение не пытается"
+   },
+   {
+    "uz": "Ilova qayta urinmoqda",
+    "ru": "Приложение пробует снова"
+   },
+   {
+    "uz": "Hodisalar kelmoqda",
+    "ru": "События приходят"
+   },
+   {
+    "uz": "Son yangilanmoqda",
+    "ru": "Число обновляется"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/WebSocketBasicsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Uchish rejimi o'chirildi. socket.io nima qiladi?",
+   "ru": "Режим полёта выключен. Что делает socket.io?"
+  },
+  "opts": [
+   {
+    "uz": "Parolni qayta so'raydi",
+    "ru": "Снова спрашивает пароль"
+   },
+   {
+    "uz": "Qayta ulanishga urinadi",
+    "ru": "Пытается переподключиться"
+   },
+   {
+    "uz": "Ilovani qayta ochadi",
+    "ru": "Перезапускает приложение"
+   },
+   {
+    "uz": "Hodisalarni saqlaydi",
+    "ru": "Сохраняет события"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/WebSocketBasicsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sxemada `elon-berildi` sababi qachon yuboriladi?",
+   "ru": "Когда в схеме отправляется причина `elon-berildi`?"
+  },
+  "opts": [
+   {
+    "uz": "O'yinchi qo'shilganda",
+    "ru": "Когда игрок присоединился"
+   },
+   {
+    "uz": "Navbatga yozilganda",
+    "ru": "Когда записался в очередь"
+   },
+   {
+    "uz": "Kelishi tasdiqlanganda",
+    "ru": "Когда подтвердил приход"
+   },
+   {
+    "uz": "O'yin e'lon qilinganda",
+    "ru": "Когда объявили игру"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Backend hodisani qachon yuboradi?",
+   "ru": "Когда Backend отправляет событие?"
+  },
+  "opts": [
+   {
+    "uz": "Database'ga yozib bo'lgach",
+    "ru": "После записи в Database"
+   },
+   {
+    "uz": "Database'ga yozishdan oldin",
+    "ru": "До записи в Database"
+   },
+   {
+    "uz": "Ilova so'rov yuborganda",
+    "ru": "Когда приложение шлёт запрос"
+   },
+   {
+    "uz": "Ro'yxat tortilganda",
+    "ru": "Когда тянут список"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Ulanmoqda…» paytida ro'yxat nima bo'ladi?",
+   "ru": "Что со списком во время «Подключение…»?"
+  },
+  "opts": [
+   {
+    "uz": "Ekrandan o'chib ketadi",
+    "ru": "Исчезает с экрана"
+   },
+   {
+    "uz": "Ekranda eski holicha qoladi",
+    "ru": "Остаётся на экране, как был"
+   },
+   {
+    "uz": "Har soniyada yangilanadi",
+    "ru": "Обновляется каждую секунду"
+   },
+   {
+    "uz": "Xato oynasiga almashadi",
+    "ru": "Сменяется окном ошибки"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Belgi «Ulanmagan». Ro'yxatni qanday yangilaysiz?",
+   "ru": "Значок «Не подключено». Как обновите список?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani qayta o'rnatib",
+    "ru": "Переустановив приложение"
+   },
+   {
+    "uz": "Backend'ni qayta yoqib",
+    "ru": "Перезапустив Backend"
+   },
+   {
+    "uz": "Ekranni pastga tortib",
+    "ru": "Потянув экран вниз"
+   },
+   {
+    "uz": "Database'da o'zgartirib",
+    "ru": "Изменив в Database"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qaysi biri chekka holat?",
+   "ru": "Что из этого — крайний случай?"
+  },
+  "opts": [
+   {
+    "uz": "«Qo'shilaman» bosildi",
+    "ru": "Нажали «Присоединиться»"
+   },
+   {
+    "uz": "Yangi o'yin e'lon qilindi",
+    "ru": "Объявлена новая игра"
+   },
+   {
+    "uz": "O'yin kuni «Kelaman» bosildi",
+    "ru": "В день игры нажали «Приду»"
+   },
+   {
+    "uz": "Qo'shilishda internet uzildi",
+    "ru": "При записи пропал интернет"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Takrorlangan «Vaziyatni va» savolga ko'chirildi.",
+  "q": {
+   "uz": "Chekka holat qatorida vaziyatdan tashqari nima yoziladi?",
+   "ru": "Что, кроме ситуации, пишут в строке крайнего случая?"
+  },
+  "opts": [
+   {
+    "uz": "Unda nima bo'lishi",
+    "ru": "Что в ней должно быть"
+   },
+   {
+    "uz": "Uni kim yaratgani",
+    "ru": "Кто её создал"
+   },
+   {
+    "uz": "Qaysi faylda turishi",
+    "ru": "В каком файле она лежит"
+   },
+   {
+    "uz": "Necha marta bo'lgani",
+    "ru": "Сколько раз она была"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Uzilish paytida kimdir qo'shildi. Hodisa keyin keladimi?",
+   "ru": "Во время обрыва кто-то записался. Событие придёт потом?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, ulanish qaytgach",
+    "ru": "Да, когда связь вернётся"
+   },
+   {
+    "uz": "Yo'q, umuman kelmaydi",
+    "ru": "Нет, вообще не придёт"
+   },
+   {
+    "uz": "Ha, Backend saqlaydi",
+    "ru": "Да, Backend его хранит"
+   },
+   {
+    "uz": "Yo'q, boshqa telefonga",
+    "ru": "Нет, на другой телефон"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ilova fondan qaytganda nima ko'rinishi kerak?",
+   "ru": "Что должно быть видно, когда приложение вернулось из фона?"
+  },
+  "opts": [
+   {
+    "uz": "Oxirgi ko'rilgan eski son",
+    "ru": "Последнее увиденное старое число"
+   },
+   {
+    "uz": "Bo'sh ro'yxat va kutish",
+    "ru": "Пустой список и ожидание"
+   },
+   {
+    "uz": "O'yinlarning yangi holati",
+    "ru": "Новое состояние игр"
+   },
+   {
+    "uz": "Faqat ulanish belgisi",
+    "ru": "Только значок соединения"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mobil trekda tekshiruv so'rovini kim yuboradi?",
+   "ru": "Кто в мобильном треке отправляет проверочный запрос?"
+  },
+  "opts": [
+   {
+    "uz": "Notanish o'yinchi",
+    "ru": "Незнакомый игрок"
+   },
+   {
+    "uz": "Tashkilotchi",
+    "ru": "Организатор"
+   },
+   {
+    "uz": "Ilovaning o'zi",
+    "ru": "Само приложение"
+   },
+   {
+    "uz": "Agentning o'zi",
+    "ru": "Сам агент"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Agent yaratgan tekshiruv yozuvlarini qanday o'chirasiz?",
+   "ru": "Как удалите проверочные записи, созданные агентом?"
+  },
+  "opts": [
+   {
+    "uz": "U aytgan id lar bo'yicha",
+    "ru": "По id, которые он назвал"
+   },
+   {
+    "uz": "Jadvalni tozalab",
+    "ru": "Очистив таблицу"
+   },
+   {
+    "uz": "Ilovani qayta yoqib",
+    "ru": "Перезапустив приложение"
+   },
+   {
+    "uz": "Oxirgi o'ntasini o'chirib",
+    "ru": "Удалив последние десять"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Real vaqt talabi PRD'dan farqli nimani aytadi?",
+   "ru": "Что, в отличие от PRD, говорит требование реального времени?"
+  },
+  "opts": [
+   {
+    "uz": "Mahsulot kim uchun ekani",
+    "ru": "Для кого продукт"
+   },
+   {
+    "uz": "O'zgarish ekranda ko'rinishi",
+    "ru": "Как изменение видно на экране"
+   },
+   {
+    "uz": "Bosh raqam sanog'i",
+    "ru": "Подсчёт главной цифры"
+   },
+   {
+    "uz": "Qaysi muammoni yechishi",
+    "ru": "Какую проблему решает"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Savol talabdagi chekka holat qatoriga bog'landi: «ikki marta yangiladi» Hodisalar bo'limidagi prompt bilan ham chalkashardi.",
+  "q": {
+   "uz": "Qayta ulangach ekran bir marta yangilansin. Qaysi bo'lim?",
+   "ru": "После переподключения экран обновится один раз. Какой раздел?"
+  },
+  "opts": [
+   {
+    "uz": "Hodisalar",
+    "ru": "События"
+   },
+   {
+    "uz": "Ulanish holatlari",
+    "ru": "Состояния соединения"
+   },
+   {
+    "uz": "Chekka holatlar",
+    "ru": "Крайние случаи"
+   },
+   {
+    "uz": "Nima buzilmasin",
+    "ru": "Что не должно сломаться"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Web-trekda «Ulanmagan». Ro'yxat nima bilan yangilanadi?",
+   "ru": "В веб-треке «Не подключено». Чем обновить список?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifani yopib-ochib",
+    "ru": "Закрыв и открыв страницу"
+   },
+   {
+    "uz": "Agentga talab yozib",
+    "ru": "Написав агенту требование"
+   },
+   {
+    "uz": "Backend'ni qayta yoqib",
+    "ru": "Перезапустив Backend"
+   },
+   {
+    "uz": "«Yangilash»ni bosib",
+    "ru": "Нажав «Обновить»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "`korayotganlar-ozgardi` kimlarga boradi?",
+   "ru": "Кому уходит `korayotganlar-ozgardi`?"
+  },
+  "opts": [
+   {
+    "uz": "Shu o'yin xonasidagilarga",
+    "ru": "Тем, кто в комнате этой игры"
+   },
+   {
+    "uz": "Hamma ulangan ilovalarga",
+    "ru": "Всем подключённым приложениям"
+   },
+   {
+    "uz": "O'yin tashkilotchisiga",
+    "ru": "Организатору игры"
+   },
+   {
+    "uz": "Hamma o'yinchilarga",
+    "ru": "Всем игрокам"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi, tire olib tashlandi.",
+  "q": {
+   "uz": "«O'yinlar» ekranidasiz, kimdir o'yinni ochdi. Son keladimi?",
+   "ru": "Вы на экране «Игры», кто-то открыл игру. Число придёт?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, hammaga boradi",
+    "ru": "Да, уходит всем"
+   },
+   {
+    "uz": "Yo'q, xonada emassiz",
+    "ru": "Нет, вы не в комнате"
+   },
+   {
+    "uz": "Ha, har kartaga",
+    "ru": "Да, в каждую карточку"
+   },
+   {
+    "uz": "Yo'q, son Database'da",
+    "ru": "Нет, число в Database"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Kimdir o'yinni yopdi. «Hozir ko'ryapti» nima bo'ladi?",
+   "ru": "Кто-то закрыл игру. Что с «Сейчас смотрят»?"
+  },
+  "opts": [
+   {
+    "uz": "Tortganda kamayadi",
+    "ru": "Уменьшится, если потянуть"
+   },
+   {
+    "uz": "Nolga tushib qoladi",
+    "ru": "Упадёт до нуля"
+   },
+   {
+    "uz": "O'zi bittaga kamayadi",
+    "ru": "Само уменьшится на один"
+   },
+   {
+    "uz": "O'zi bittaga oshadi",
+    "ru": "Само вырастет на один"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Nega «Hozir ko'ryapti» sonini hodisaning o'zi olib keladi?",
+   "ru": "Почему число «Сейчас смотрят» приносит само событие?"
+  },
+  "opts": [
+   {
+    "uz": "Son tez o'zgaradi",
+    "ru": "Число быстро меняется"
+   },
+   {
+    "uz": "Ilova so'ray olmaydi",
+    "ru": "Приложение не может спросить"
+   },
+   {
+    "uz": "Backend tezroq ishlaydi",
+    "ru": "Backend так быстрее"
+   },
+   {
+    "uz": "Son Database'da yo'q",
+    "ru": "Числа нет в Database"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ilova ochiq, o'yinda joy bo'shadi. Nima ko'rasiz?",
+   "ru": "Приложение открыто, в игре освободилось место. Что увидите?"
+  },
+  "opts": [
+   {
+    "uz": "Tepada qisqa jonli xabar",
+    "ru": "Короткое живое сообщение сверху"
+   },
+   {
+    "uz": "Telefonda eslatma kartasi",
+    "ru": "Карточку напоминания на телефоне"
+   },
+   {
+    "uz": "Hech narsa ko'rinmaydi",
+    "ru": "Ничего не видно"
+   },
+   {
+    "uz": "Ilova qayta ochiladi",
+    "ru": "Приложение перезапустится"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi, tire olib tashlandi.",
+  "q": {
+   "uz": "O'zingiz «Qo'shilaman»ni bosdingiz. Jonli xabar chiqadimi?",
+   "ru": "Вы сами нажали «Присоединиться». Будет живое сообщение?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, har qo'shilishda",
+    "ru": "Да, при каждой записи"
+   },
+   {
+    "uz": "Yo'q, o'z harakatingiz",
+    "ru": "Нет, это ваше действие"
+   },
+   {
+    "uz": "Ha, ismingiz bilan",
+    "ru": "Да, с вашим именем"
+   },
+   {
+    "uz": "Faqat tashkilotchiga",
+    "ru": "Только организатору"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Rejalashtirilgan eslatmani kim qo'yadi?",
+   "ru": "Кто ставит запланированное напоминание?"
+  },
+  "opts": [
+   {
+    "uz": "Backend, hodisa zahoti",
+    "ru": "Backend, сразу при событии"
+   },
+   {
+    "uz": "Tashkilotchi, e'londa",
+    "ru": "Организатор, при объявлении"
+   },
+   {
+    "uz": "Ilova, oldindan belgilab",
+    "ru": "Приложение, заранее"
+   },
+   {
+    "uz": "Telefon, har kuni o'zi",
+    "ru": "Телефон, сам каждый день"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida eslatma qachon chiqishi kerak?",
+   "ru": "Когда в примере Ментора должно прийти напоминание?"
+  },
+  "opts": [
+   {
+    "uz": "O'yin boshlanganda",
+    "ru": "Когда игра начнётся"
+   },
+   {
+    "uz": "Qo'shilgan zahoti",
+    "ru": "Сразу после записи"
+   },
+   {
+    "uz": "O'yindan bir kun oldin",
+    "ru": "За день до игры"
+   },
+   {
+    "uz": "O'yindan bir soat oldin",
+    "ru": "За час до игры"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«O'yindan chiqish» bosildi. Eslatma nima bo'ladi?",
+   "ru": "Нажали «Выйти из игры». Что с напоминанием?"
+  },
+  "opts": [
+   {
+    "uz": "Bekor qilinadi",
+    "ru": "Отменяется"
+   },
+   {
+    "uz": "Baribir chiqadi",
+    "ru": "Всё равно придёт"
+   },
+   {
+    "uz": "Boshqa o'yinga o'tadi",
+    "ru": "Переходит на другую игру"
+   },
+   {
+    "uz": "Tashkilotchiga ketadi",
+    "ru": "Уходит организатору"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi, backtick olib tashlandi.",
+  "q": {
+   "uz": "Backend yuboradigan eslatma uchun nima kerak?",
+   "ru": "Что нужно для напоминания, которое отправляет Backend?"
+  },
+  "opts": [
+   {
+    "uz": "Expo Go va eslatma ruxsati",
+    "ru": "Expo Go и разрешение"
+   },
+   {
+    "uz": "Google yoki Apple xizmati",
+    "ru": "Сервис Google или Apple"
+   },
+   {
+    "uz": "Ochiq ulanish va xona",
+    "ru": "Открытое соединение и комната"
+   },
+   {
+    "uz": "Faqat eslatma paketi",
+    "ru": "Только пакет напоминаний"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Eslatmaga ruxsat berilmadi. Nima bo'ladi?",
+   "ru": "Разрешение на напоминания не дали. Что будет?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkalasi ishlaydi",
+    "ru": "Работает и то и другое"
+   },
+   {
+    "uz": "Ilova ochilmaydi",
+    "ru": "Приложение не откроется"
+   },
+   {
+    "uz": "Faqat ilova ishlaydi",
+    "ru": "Работает только приложение"
+   },
+   {
+    "uz": "Faqat eslatma chiqadi",
+    "ru": "Приходит только напоминание"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Web-trekda uchinchi amaliyotda nima quriladi?",
+   "ru": "Что строят в третьей практике веб-трека?"
+  },
+  "opts": [
+   {
+    "uz": "Brauzer eslatmasi",
+    "ru": "Напоминание браузера"
+   },
+   {
+    "uz": "Telefonga SMS xabar",
+    "ru": "SMS на телефон"
+   },
+   {
+    "uz": "Sahifani avto yangilash",
+    "ru": "Автообновление страницы"
+   },
+   {
+    "uz": "«Xabarlar» tasmasi",
+    "ru": "Лента «Сообщения»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/BreakAndFixLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Uchish rejimi yoqilsa, ulanish nima bo'ladi?",
+   "ru": "Что будет с соединением в режиме полёта?"
+  },
+  "opts": [
+   {
+    "uz": "Uziladi, qayta urinadi",
+    "ru": "Обрывается, пробует снова"
+   },
+   {
+    "uz": "Ochiq qoladi, kutadi",
+    "ru": "Остаётся открытым, ждёт"
+   },
+   {
+    "uz": "Yopiladi, urinmaydi",
+    "ru": "Закрывается, не пробует"
+   },
+   {
+    "uz": "O'zi tiklanib qoladi",
+    "ru": "Само восстанавливается"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/BreakAndFixLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "darsda-yoq",
+   "tushunarsiz",
+   "uzun"
+  ],
+  "izoh": "Urinishlar soni faqat o'qituvchi eslatmasida; savol darsdagi «connect har qayta ulanishda ishlaydi» faktiga o'tkazildi.",
+  "q": {
+   "uz": "Ilova qayta ulanganda qaysi hodisa ishlaydi?",
+   "ru": "Какое событие срабатывает при переподключении?"
+  },
+  "opts": [
+   {
+    "uz": "Hech qaysi hodisa",
+    "ru": "Никакое событие"
+   },
+   {
+    "uz": "`connect` yana ishlaydi",
+    "ru": "Снова срабатывает `connect`"
+   },
+   {
+    "uz": "`disconnect` yana ishlaydi",
+    "ru": "Снова срабатывает `disconnect`"
+   },
+   {
+    "uz": "Ilova qaytadan ochiladi",
+    "ru": "Приложение открывается заново"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/BreakAndFixLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi, bir xil shaklga keltirildi.",
+  "q": {
+   "uz": "`connect` ichidagi kod qachon ishlaydi?",
+   "ru": "Когда работает код внутри `connect`?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat birinchi ulanishda",
+    "ru": "Только при первом подключении"
+   },
+   {
+    "uz": "Faqat hodisa kelganda",
+    "ru": "Только когда приходит событие"
+   },
+   {
+    "uz": "Har ulanishda, qaytada ham",
+    "ru": "При каждом подключении, и повторном"
+   },
+   {
+    "uz": "Faqat ilova yopilganda",
+    "ru": "Только когда приложение закрыто"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/BreakAndFixLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Takror hodisa nima?",
+   "ru": "Что такое повторное событие?"
+  },
+  "opts": [
+   {
+    "uz": "Ikki o'yindagi o'zgarish",
+    "ru": "Изменение в двух играх"
+   },
+   {
+    "uz": "Ikki telefondagi bir xil son",
+    "ru": "Одно число на двух телефонах"
+   },
+   {
+    "uz": "Bir o'yinchining ikki akkaunti",
+    "ru": "Два аккаунта одного игрока"
+   },
+   {
+    "uz": "Bir o'zgarishning ikki ta'siri",
+    "ru": "Два действия одного изменения"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/BreakAndFixLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qayta ulangach ro'yxat nega qayta so'raladi?",
+   "ru": "Зачем после переподключения список запрашивают заново?"
+  },
+  "opts": [
+   {
+    "uz": "Uzilishdagi o'zgarish uchun",
+    "ru": "Ради изменения во время обрыва"
+   },
+   {
+    "uz": "Belgi o'zgarishi uchun",
+    "ru": "Чтобы сменился значок"
+   },
+   {
+    "uz": "Tinglovchi uchun",
+    "ru": "Ради слушателя"
+   },
+   {
+    "uz": "Hodisani olish uchun",
+    "ru": "Чтобы получить событие"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/BreakAndFixLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi, tire faqat variantlarda turmasin.",
+  "q": {
+   "uz": "Agent «tuzatdim» dedi, siz tekshirmadingiz. Nima yoziladi?",
+   "ru": "Агент сказал «исправил», вы не проверили. Что пишется?"
+  },
+  "opts": [
+   {
+    "uz": "«Takrorlanmadi»",
+    "ru": "«Не повторилось»"
+   },
+   {
+    "uz": "«Buzilmadi»",
+    "ru": "«Не сломалось»"
+   },
+   {
+    "uz": "«Tuzatish qilindi»",
+    "ru": "«Исправление сделано»"
+   },
+   {
+    "uz": "«Hammasi ishlaydi»",
+    "ru": "«Всё работает»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/BreakAndFixLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "«qaysi usul bilan» deb so'ralib, variantlarning yarmi usul emas edi; savol «qanday» shakliga o'tdi.",
+  "q": {
+   "uz": "Agent tuzatgach, natijani qanday tekshirasiz?",
+   "ru": "Агент исправил. Как проверите результат?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi usul bilan buzib",
+    "ru": "Сломав новым способом"
+   },
+   {
+    "uz": "Agent javobini o'qib",
+    "ru": "Прочитав ответ агента"
+   },
+   {
+    "uz": "Koddagi o'zgarishni o'qib",
+    "ru": "Прочитав изменения в коде"
+   },
+   {
+    "uz": "O'sha usul bilan qayta buzib",
+    "ru": "Снова сломав тем же способом"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/BreakAndFixLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Render yangi versiyani chiqarsa, ulanishlar nima bo'ladi?",
+   "ru": "Что с соединениями, когда Render выпускает новую версию?"
+  },
+  "opts": [
+   {
+    "uz": "Uziladi, qayta urinadi",
+    "ru": "Обрываются, пробуют снова"
+   },
+   {
+    "uz": "Ochiq qoladi",
+    "ru": "Остаются открытыми"
+   },
+   {
+    "uz": "Faqat yangilari uziladi",
+    "ru": "Обрываются только новые"
+   },
+   {
+    "uz": "Database saqlab turadi",
+    "ru": "Database их хранит"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/BreakAndFixLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida fonga olish urinishi nima ko'rsatdi?",
+   "ru": "Что показала попытка с фоном в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Son eski qoldi",
+    "ru": "Число осталось старым"
+   },
+   {
+    "uz": "Xabar ikki marta chiqdi",
+    "ru": "Сообщение пришло дважды"
+   },
+   {
+    "uz": "Buzilmadi, son yangi",
+    "ru": "Не сломалось, число новое"
+   },
+   {
+    "uz": "Ilova qayta ochildi",
+    "ru": "Приложение перезапустилось"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmChannelsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol qisqartirildi, variantlar darsdagi uch savol shaklida tenglashtirildi.",
+  "q": {
+   "uz": "Intervyu javobi qaysi savolga dalil bo'ladi?",
+   "ru": "На какой вопрос ответ из интервью — доказательство?"
+  },
+  "opts": [
+   {
+    "uz": "Siz u yerda a'zomisiz?",
+    "ru": "Вы там участник?"
+   },
+   {
+    "uz": "U yerda ruxsat bormi?",
+    "ru": "Там есть разрешение?"
+   },
+   {
+    "uz": "Auditoriyangiz shu yerdami?",
+    "ru": "Ваша аудитория здесь?"
+   },
+   {
+    "uz": "U yerda necha kishi bor?",
+    "ru": "Сколько там человек?"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmChannelsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida shahar futbol kanali nega tanlanmadi?",
+   "ru": "Почему в примере Ментора не выбран городской футбольный канал?"
+  },
+  "opts": [
+   {
+    "uz": "A'zo emas, ruxsat yo'q",
+    "ru": "Не участник, нет разрешения"
+   },
+   {
+    "uz": "Futbol haqida emas",
+    "ru": "Он не про футбол"
+   },
+   {
+    "uz": "Kanalda odam kam",
+    "ru": "В канале мало людей"
+   },
+   {
+    "uz": "Kanal yangi ochilgan",
+    "ru": "Канал только открылся"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmChannelsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Guruhga qo'shilgan kuniyoq post yozildi. Nima qilinmadi?",
+   "ru": "Пост написали в день вступления в группу. Что не сделали?"
+  },
+  "opts": [
+   {
+    "uz": "Rasm qo'yilmadi",
+    "ru": "Не добавили фото"
+   },
+   {
+    "uz": "Ruxsat so'ralmadi",
+    "ru": "Не спросили разрешения"
+   },
+   {
+    "uz": "Post qisqartirilmadi",
+    "ru": "Не сократили пост"
+   },
+   {
+    "uz": "Havola qo'yilmadi",
+    "ru": "Не поставили ссылку"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmChannelsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlardagi tire va izohlar olib tashlandi.",
+  "q": {
+   "uz": "Postning qaysi qatori odamni sahifaga olib boradi?",
+   "ru": "Какая строка поста ведёт человека на страницу?"
+  },
+  "opts": [
+   {
+    "uz": "Kim uchun",
+    "ru": "Для кого"
+   },
+   {
+    "uz": "Nima foyda",
+    "ru": "Какая польза"
+   },
+   {
+    "uz": "Halol holat",
+    "ru": "Честное состояние"
+   },
+   {
+    "uz": "Bitta harakat",
+    "ru": "Одно действие"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmChannelsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Postda «Tez orada hammasi bo'ladi». Nima qilasiz?",
+   "ru": "В посте «Скоро будет всё». Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Tayyor narsani yozasiz",
+    "ru": "Напишете, что готово сейчас"
+   },
+   {
+    "uz": "Gapni oxiriga surasiz",
+    "ru": "Перенесёте фразу в конец"
+   },
+   {
+    "uz": "Undov belgisi qo'yasiz",
+    "ru": "Поставите восклицательный знак"
+   },
+   {
+    "uz": "Qalin harfda yozasiz",
+    "ru": "Напишете жирным"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmChannelsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Notanish odam uchrashuvga chaqirdi. Nima qilasiz?",
+   "ru": "Незнакомец зовёт на встречу. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Yolg'iz borasiz",
+    "ru": "Пойдёте один"
+   },
+   {
+    "uz": "Kattalar bilan hal qilasiz",
+    "ru": "Решите только со взрослыми"
+   },
+   {
+    "uz": "Sinfdosh bilan borasiz",
+    "ru": "Пойдёте с одноклассником"
+   },
+   {
+    "uz": "Manzilingizni yozasiz",
+    "ru": "Напишете свой адрес"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmChannelsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Guruh egasi javob bermadi. Nima qilasiz?",
+   "ru": "Владелец группы не ответил. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Boshqa kanaldan boshlaysiz",
+    "ru": "Начнёте с другого канала"
+   },
+   {
+    "uz": "Kutmasdan yuborasiz",
+    "ru": "Отправите, не дожидаясь"
+   },
+   {
+    "uz": "A'zolarga alohida yozasiz",
+    "ru": "Напишете участникам лично"
+   },
+   {
+    "uz": "Boshqa akkauntdan yozasiz",
+    "ru": "Напишете с другого аккаунта"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmChannelsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Havoladagi «?kanal=sinf» nimani ko'rsatadi?",
+   "ru": "Что показывает «?kanal=sinf» в ссылке?"
+  },
+  "opts": [
+   {
+    "uz": "Bosgan odamning ismini",
+    "ru": "Имя того, кто нажал"
+   },
+   {
+    "uz": "Sinf chatidan kelganini",
+    "ru": "Что пришли из чата класса"
+   },
+   {
+    "uz": "Sinfdagi o'quvchilar sonini",
+    "ru": "Число учеников в классе"
+   },
+   {
+    "uz": "Chatdagi postlar sonini",
+    "ru": "Число постов в чате"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmChannelsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savoldagi tire olib tashlandi, variantlar qisqartirildi.",
+  "q": {
+   "uz": "Postdan keyin tashriflar 31 ta. Bu nima?",
+   "ru": "После поста 31 посещение. Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatdan o'tganlar soni",
+    "ru": "Число регистраций"
+   },
+   {
+    "uz": "Ilovani o'rnatganlar soni",
+    "ru": "Число установок приложения"
+   },
+   {
+    "uz": "Postni o'qiganlar soni",
+    "ru": "Число прочитавших пост"
+   },
+   {
+    "uz": "Sahifa ochilishlari soni",
+    "ru": "Сколько раз открыли страницу"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor rejasida 1-bosqich kanali qaysi?",
+   "ru": "Какой канал у 1-го этапа в плане Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Sinf chati, mahalla guruhi",
+    "ru": "Чат класса, группа махалли"
+   },
+   {
+    "uz": "Shahar futbol kanali",
+    "ru": "Городской футбольный канал"
+   },
+   {
+    "uz": "Notanishlarga shaxsiy xabar",
+    "ru": "Личные сообщения незнакомым"
+   },
+   {
+    "uz": "Sotib olingan obunachilar",
+    "ru": "Купленные подписчики"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol harakat shakliga o'tkazildi, variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida asosiy harakat nima?",
+   "ru": "Что в примере Ментора — главное действие?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani o'rnatib ochish",
+    "ru": "Установить и открыть приложение"
+   },
+   {
+    "uz": "Qo'shilish yoki e'lon berish",
+    "ru": "Записаться или объявить игру"
+   },
+   {
+    "uz": "Lending tugmasini bosish",
+    "ru": "Нажать кнопку на лендинге"
+   },
+   {
+    "uz": "Postni do'stga yuborish",
+    "ru": "Переслать пост другу"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor nega telefon raqamini so'ramaydi?",
+   "ru": "Почему Ментор не спрашивает номер телефона?"
+  },
+  "opts": [
+   {
+    "uz": "Raqam yozish uzoq",
+    "ru": "Номер долго вводить"
+   },
+   {
+    "uz": "Raqamni hamma bilmaydi",
+    "ru": "Номер помнят не все"
+   },
+   {
+    "uz": "Mahsulotga raqam kerak emas",
+    "ru": "Продукту номер не нужен"
+   },
+   {
+    "uz": "Raqam Database'ga sig'maydi",
+    "ru": "Номер не влезет в Database"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi; mantiqsiz «uch marta» varianti almashtirildi.",
+  "q": {
+   "uz": "Bir odam ikki telefonda ochdi. `ochdi` qanchaga oshadi?",
+   "ru": "Человек открыл на двух телефонах. На сколько вырастет `ochdi`?"
+  },
+  "opts": [
+   {
+    "uz": "Bittaga, login bir xil",
+    "ru": "На один, логин тот же"
+   },
+   {
+    "uz": "Bittaga, ism bir xil",
+    "ru": "На один, имя то же"
+   },
+   {
+    "uz": "Oshmaydi, bu egasi",
+    "ru": "Не вырастет, это владелец"
+   },
+   {
+    "uz": "Ikkitaga, ikki qurilma",
+    "ru": "На два, два устройства"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ro'yxatdan o'tganlar soni qayerdan olinadi?",
+   "ru": "Откуда берут число зарегистрированных?"
+  },
+  "opts": [
+   {
+    "uz": "Database'dan, so'rov bilan",
+    "ru": "Из Database, запросом"
+   },
+   {
+    "uz": "Rejadagi kutilgan sondan",
+    "ru": "Из ожидаемого числа в плане"
+   },
+   {
+    "uz": "Lending tashriflaridan",
+    "ru": "Из посещений лендинга"
+   },
+   {
+    "uz": "Guruh a'zolari sonidan",
+    "ru": "Из числа участников группы"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Hisobni o'chirish» tasdiqlansa nima bo'ladi?",
+   "ru": "Что будет, если подтвердить «Удалить аккаунт»?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat parol o'chadi",
+    "ru": "Удалится только пароль"
+   },
+   {
+    "uz": "Akkaunt va yozuvlari o'chadi",
+    "ru": "Удалятся аккаунт и его записи"
+   },
+   {
+    "uz": "Ilova telefondan o'chadi",
+    "ru": "Приложение удалится с телефона"
+   },
+   {
+    "uz": "Hamma akkauntlar o'chadi",
+    "ru": "Удалятся все аккаунты"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Maxfiylik sahifasini nima bilan solishtirasiz?",
+   "ru": "С чем сравниваете страницу конфиденциальности?"
+  },
+  "opts": [
+   {
+    "uz": "Agent hisoboti bilan",
+    "ru": "С отчётом агента"
+   },
+   {
+    "uz": "Boshqa ilova sahifasi bilan",
+    "ru": "Со страницей другого приложения"
+   },
+   {
+    "uz": "Ilovangiz kodi bilan",
+    "ru": "С кодом вашего приложения"
+   },
+   {
+    "uz": "Lending sarlavhasi bilan",
+    "ru": "С заголовком лендинга"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Agentga xato yuborganda nimani yuborasiz?",
+   "ru": "Что отправляете агенту при ошибке?"
+  },
+  "opts": [
+   {
+    "uz": "Xato qatorining o'zini",
+    "ru": "Только строку ошибки"
+   },
+   {
+    "uz": "`.env` dagi qiymatlarni",
+    "ru": "Значения из `.env`"
+   },
+   {
+    "uz": "Token va xato qatorini",
+    "ru": "Токен и строку ошибки"
+   },
+   {
+    "uz": "Maxfiy kalit va kodni",
+    "ru": "Секретный ключ и код"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Guruhga post yuborishdan oldin nima qilasiz?",
+   "ru": "Что делаете до отправки поста в группу?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi akkaunt ochasiz",
+    "ru": "Создаёте новый аккаунт"
+   },
+   {
+    "uz": "Egasidan ruxsat so'raysiz",
+    "ru": "Спрашиваете разрешения у владельца"
+   },
+   {
+    "uz": "O'nta guruhga tashlaysiz",
+    "ru": "Кидаете в десять групп"
+   },
+   {
+    "uz": "Telefon raqam qo'shasiz",
+    "ru": "Добавляете номер телефона"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "`ochdi` hodisasi bilan Backend'ga nima boradi?",
+   "ru": "Что уходит в Backend с событием `ochdi`?"
+  },
+  "opts": [
+   {
+    "uz": "Hodisa nomi va login",
+    "ru": "Имя события и логин"
+   },
+   {
+    "uz": "O'yinchi ismi va qurilma ID",
+    "ru": "Имя игрока и ID устройства"
+   },
+   {
+    "uz": "Hodisa nomi va qurilma ID",
+    "ru": "Имя события и ID устройства"
+   },
+   {
+    "uz": "Login va parol hash",
+    "ru": "Логин и хеш пароля"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Rejada 20, aslida 12 kishi. Nima qilasiz?",
+   "ru": "В плане 20, на деле 12 человек. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Soxta akkaunt ochasiz",
+    "ru": "Создадите фейковые аккаунты"
+   },
+   {
+    "uz": "Yana 8 marta o'tasiz",
+    "ru": "Зарегистрируетесь ещё 8 раз"
+   },
+   {
+    "uz": "Notanishlarga yuborasiz",
+    "ru": "Разошлёте незнакомым"
+   },
+   {
+    "uz": "Sonni yozib, davom etasiz",
+    "ru": "Запишете число и продолжите"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sinfdosh sanoq sahifasi manzilini bildi. Sonlarni ko'radimi?",
+   "ru": "Одноклассник узнал адрес страницы подсчёта. Увидит числа?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, kalit kerak",
+    "ru": "Нет, нужен ключ"
+   },
+   {
+    "uz": "Ha, manzil yetadi",
+    "ru": "Да, адреса хватит"
+   },
+   {
+    "uz": "Ha, lending ochiq",
+    "ru": "Да, лендинг открыт"
+   },
+   {
+    "uz": "Ha, ilovasi bo'lsa",
+    "ru": "Да, если есть приложение"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Backend `SANOQ_KALITI` ni qayerdan oladi?",
+   "ru": "Откуда Backend берёт `SANOQ_KALITI`?"
+  },
+  "opts": [
+   {
+    "uz": "Backend kodidagi qatordan",
+    "ru": "Из строки в коде Backend"
+   },
+   {
+    "uz": "Render'dagi Environment'dan",
+    "ru": "Из Environment в Render"
+   },
+   {
+    "uz": "Repo'dagi README'dan",
+    "ru": "Из README в репозитории"
+   },
+   {
+    "uz": "Lending sahifasi kodidan",
+    "ru": "Из кода страницы лендинга"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sanoq sahifasi o'zi qanday yangilanadi?",
+   "ru": "Как страница подсчёта обновляется сама?"
+  },
+  "opts": [
+   {
+    "uz": "Har 5 soniyada so'raydi",
+    "ru": "Спрашивает каждые 5 секунд"
+   },
+   {
+    "uz": "Ega qo'lda yangilaydi",
+    "ru": "Владелец обновляет вручную"
+   },
+   {
+    "uz": "Ulanishdan xabar keladi",
+    "ru": "Сообщение приходит по соединению"
+   },
+   {
+    "uz": "Ilova sonni yozib boradi",
+    "ru": "Приложение само пишет числа"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi, variantlardan sabablar olib tashlandi.",
+  "q": {
+   "uz": "Yangi telefonda 3 marta ochdingiz. `ochdi` qanchaga oshadi?",
+   "ru": "Открыли 3 раза на новом телефоне. На сколько вырастет `ochdi`?"
+  },
+  "opts": [
+   {
+    "uz": "Bittaga",
+    "ru": "На один"
+   },
+   {
+    "uz": "Uchtaga",
+    "ru": "На три"
+   },
+   {
+    "uz": "Oshmaydi",
+    "ru": "Не вырастет"
+   },
+   {
+    "uz": "Ikkitaga",
+    "ru": "На два"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Ro'yxatdan o'tdi»: sanoqda 30, Database'da 28. Nega?",
+   "ru": "«Зарегистрировался»: в подсчёте 30, в Database 28. Почему?"
+  },
+  "opts": [
+   {
+    "uz": "Sanoq xato sanagan",
+    "ru": "Подсчёт ошибся"
+   },
+   {
+    "uz": "Qurilma va akkaunt farqi",
+    "ru": "Разница устройств и аккаунтов"
+   },
+   {
+    "uz": "Database xato yozgan",
+    "ru": "Database записала с ошибкой"
+   },
+   {
+    "uz": "Kimdir ikki marta ochgan",
+    "ru": "Кто-то открыл дважды"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi.",
+  "q": {
+   "uz": "Netflix: ko'rishlarning qariyb 80 foizi qayerdan keladi?",
+   "ru": "Netflix: откуда приходят почти 80 процентов просмотров?"
+  },
+  "opts": [
+   {
+    "uz": "Qidiruv qatoridan",
+    "ru": "Из строки поиска"
+   },
+   {
+    "uz": "Reklama oynalaridan",
+    "ru": "Из рекламных окон"
+   },
+   {
+    "uz": "Tavsiyalar qatoridan",
+    "ru": "Из ряда рекомендаций"
+   },
+   {
+    "uz": "Do'stlar havolasidan",
+    "ru": "Из ссылок друзей"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bu darsda nechta to'xtab qolish qadami tuzatiladi?",
+   "ru": "Сколько шагов остановки исправляют на этом уроке?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkalasi, birdaniga",
+    "ru": "Оба, сразу"
+   },
+   {
+    "uz": "Hech biri, kutiladi",
+    "ru": "Ни одного, ждём"
+   },
+   {
+    "uz": "Uchalasi, navbat bilan",
+    "ru": "Все три, по очереди"
+   },
+   {
+    "uz": "Bittasi, ikkinchisi keyin",
+    "ru": "Один, второй потом"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Kirmagan odam «Qo'shilaman»ni bossa, nima ochiladi?",
+   "ru": "Что откроется, если невошедший нажмёт «Присоединиться»?"
+  },
+  "opts": [
+   {
+    "uz": "«Ro'yxatdan o'tish» ekrani",
+    "ru": "Экран «Регистрация»"
+   },
+   {
+    "uz": "«O'yin to'ldi» yozuvi",
+    "ru": "Надпись «Игра заполнена»"
+   },
+   {
+    "uz": "O'yinchilar ismlari",
+    "ru": "Имена игроков"
+   },
+   {
+    "uz": "O'rnatish fayli",
+    "ru": "Файл установки"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mehmon ko'rinishi APK'li telefonda qachon chiqadi?",
+   "ru": "Когда гостевой вид появится на телефоне с APK?"
+  },
+  "opts": [
+   {
+    "uz": "`git push` qilinganda",
+    "ru": "После `git push`"
+   },
+   {
+    "uz": "Yangi faylni o'rnatgach",
+    "ru": "После установки нового файла"
+   },
+   {
+    "uz": "Render qayta yoqilganda",
+    "ru": "Когда перезапустится Render"
+   },
+   {
+    "uz": "Ilova qayta ochilganda",
+    "ru": "Когда приложение переоткроют"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Gipotezada «chunki» qismi nimani aytadi?",
+   "ru": "Что говорит часть «потому что» в гипотезе?"
+  },
+  "opts": [
+   {
+    "uz": "Nimani o'zgartirishimizni",
+    "ru": "Что мы изменим"
+   },
+   {
+    "uz": "Qancha vaqt ketishini",
+    "ru": "Сколько уйдёт времени"
+   },
+   {
+    "uz": "Nega shunday kutishimizni",
+    "ru": "Почему мы этого ждём"
+   },
+   {
+    "uz": "Kim tuzatib berishini",
+    "ru": "Кто исправит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmDropOffLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Agent «tuzatdim» dedi. Birinchi nima qilasiz?",
+   "ru": "Агент сказал «исправил». Что сделаете сначала?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi fayl tayyorlaysiz",
+    "ru": "Готовите новый файл"
+   },
+   {
+    "uz": "Lendingga havola qo'yasiz",
+    "ru": "Ставите ссылку на лендинг"
+   },
+   {
+    "uz": "Gipoteza isbotlandi deysiz",
+    "ru": "Говорите, что гипотеза доказана"
+   },
+   {
+    "uz": "O'zingiz tekshirasiz",
+    "ru": "Проверяете сами"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "46 qurilmadan 17 tasi yana ochdi. Bu nima?",
+   "ru": "Из 46 устройств 17 открыли снова. Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Qaytgan qurilmalar soni",
+    "ru": "Число вернувшихся устройств"
+   },
+   {
+    "uz": "Ro'yxatdan o'tganlar soni",
+    "ru": "Число зарегистрированных"
+   },
+   {
+    "uz": "Eslatmadan ochganlar soni",
+    "ru": "Число открывших из напоминания"
+   },
+   {
+    "uz": "Qo'shilganlar soni",
+    "ru": "Число записавшихся"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlardagi tire olib tashlandi, qisqartirildi.",
+  "q": {
+   "uz": "Web-trekda sayt yopiq. O'yinchiga xabar yetadimi?",
+   "ru": "В веб-треке сайт закрыт. Сообщение дойдёт до игрока?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, brauzer ko'rsatadi",
+    "ru": "Да, браузер покажет"
+   },
+   {
+    "uz": "Yo'q, qaytganda ko'radi",
+    "ru": "Нет, увидит, когда вернётся"
+   },
+   {
+    "uz": "Ha, Backend ochib beradi",
+    "ru": "Да, Backend откроет сайт"
+   },
+   {
+    "uz": "Yo'q, hech qachon",
+    "ru": "Нет, никогда"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«2 joy qoldi» uchun Backend qaysi hodisani yuboradi?",
+   "ru": "Какое событие Backend шлёт для «осталось 2 места»?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi `joy-qoldi` ni",
+    "ru": "Новое `joy-qoldi`"
+   },
+   {
+    "uz": "Joy soni hodisasini",
+    "ru": "Событие с числом мест"
+   },
+   {
+    "uz": "Odatiy `oyin-ozgardi`",
+    "ru": "Обычное `oyin-ozgardi`"
+   },
+   {
+    "uz": "Har soniyada sonni",
+    "ru": "Число каждую секунду"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«2 joy qoldi» xabari kimga chiqadi?",
+   "ru": "Кому приходит сообщение «осталось 2 места»?"
+  },
+  "opts": [
+   {
+    "uz": "O'yinga qo'shilganlarga",
+    "ru": "Записавшимся в игру"
+   },
+   {
+    "uz": "O'yin tashkilotchisiga",
+    "ru": "Организатору игры"
+   },
+   {
+    "uz": "Hozir qo'shilgan o'yinchiga",
+    "ru": "Игроку, который только записался"
+   },
+   {
+    "uz": "O'yinga qo'shilmaganga",
+    "ru": "Тому, кто не записался"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi, tire vergulga almashtirildi.",
+  "q": {
+   "uz": "Rejalashtirilgan eslatmani kim qo'yadi?",
+   "ru": "Кто ставит запланированное напоминание?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova, oldindan telefonda",
+    "ru": "Приложение, заранее на телефоне"
+   },
+   {
+    "uz": "Backend, kimdir qo'shilsa",
+    "ru": "Backend, когда кто-то записался"
+   },
+   {
+    "uz": "Tashkilotchi, e'lon paytida",
+    "ru": "Организатор, при объявлении"
+   },
+   {
+    "uz": "Telefon, har kuni o'zi",
+    "ru": "Телефон, сам каждый день"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Nega uch kunlik eslatma «Yangi o'yin chiqdi» demaydi?",
+   "ru": "Почему трёхдневное напоминание не говорит «Вышла новая игра»?"
+  },
+  "opts": [
+   {
+    "uz": "Matn uzun bo'lib qoladi",
+    "ru": "Текст станет длинным"
+   },
+   {
+    "uz": "Yopiq ilova buni bilmaydi",
+    "ru": "Закрытое приложение этого не знает"
+   },
+   {
+    "uz": "Yangi o'yinlar kam",
+    "ru": "Новых игр мало"
+   },
+   {
+    "uz": "Telefon ko'rsatmaydi",
+    "ru": "Телефон не покажет"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi, «-chi» olib tashlandi.",
+  "q": {
+   "uz": "Bu hafta ikki o'yin eslatmasi bor. Uch kunligi qo'yiladimi?",
+   "ru": "На этой неделе два напоминания об играх. Трёхдневное поставят?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, uchinchi bo'lib",
+    "ru": "Да, третьим"
+   },
+   {
+    "uz": "Ha, birining o'rniga",
+    "ru": "Да, вместо одного из них"
+   },
+   {
+    "uz": "Yo'q, bu hafta emas",
+    "ru": "Нет, не на этой неделе"
+   },
+   {
+    "uz": "Ha, ikki marta",
+    "ru": "Да, дважды"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Eslatmalar» o'chirilsa, nima bo'ladi?",
+   "ru": "Что будет, если выключить «Напоминания»?"
+  },
+  "opts": [
+   {
+    "uz": "Ruxsat qayta so'raladi",
+    "ru": "Снова спросят разрешение"
+   },
+   {
+    "uz": "Faqat ertangisi qoladi",
+    "ru": "Останется только завтрашнее"
+   },
+   {
+    "uz": "Ilova hisobdan chiqadi",
+    "ru": "Приложение выйдет из аккаунта"
+   },
+   {
+    "uz": "Hammasi bekor qilinadi",
+    "ru": "Все отменятся"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Test holati nima uchun kerak?",
+   "ru": "Зачем нужен тестовый режим?"
+  },
+  "opts": [
+   {
+    "uz": "Bir daqiqada tekshirish uchun",
+    "ru": "Чтобы проверить за минуту"
+   },
+   {
+    "uz": "Tezroq yuborish uchun",
+    "ru": "Чтобы отправить быстрее"
+   },
+   {
+    "uz": "Chegarani butunlay o'chirish",
+    "ru": "Убрать лимит навсегда"
+   },
+   {
+    "uz": "Ruxsat oynasini yopish uchun",
+    "ru": "Чтобы убрать окно разрешения"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "`eslatmadan-ochdi` qachon yoziladi?",
+   "ru": "Когда записывается `eslatmadan-ochdi`?"
+  },
+  "opts": [
+   {
+    "uz": "Eslatma ekranga chiqqanda",
+    "ru": "Когда напоминание появилось"
+   },
+   {
+    "uz": "Eslatma bosib ochilganda",
+    "ru": "Когда по напоминанию открыли"
+   },
+   {
+    "uz": "Eslatma rejalashtirilganda",
+    "ru": "Когда напоминание запланировали"
+   },
+   {
+    "uz": "Eslatma bekor bo'lganda",
+    "ru": "Когда напоминание отменили"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sinfda eslatmani o'zingiz bosdingiz. Bu yozuv nima bo'ladi?",
+   "ru": "В классе вы сами нажали напоминание. Что с этой записью?"
+  },
+  "opts": [
+   {
+    "uz": "Haqiqiy deb sanaladi",
+    "ru": "Считается настоящей"
+   },
+   {
+    "uz": "Umuman yozilmaydi",
+    "ru": "Вообще не пишется"
+   },
+   {
+    "uz": "Tekshirgach o'chiriladi",
+    "ru": "Удаляется после проверки"
+   },
+   {
+    "uz": "Ikki marta sanaladi",
+    "ru": "Считается дважды"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/RetentionDayLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi, tire olib tashlandi.",
+  "q": {
+   "uz": "Ilova o'zgardi. Eski APK'da bugungi eslatma bormi?",
+   "ru": "Приложение изменилось. В старом APK есть сегодняшнее напоминание?"
+  },
+  "opts": [
+   {
+    "uz": "Bor, APK o'zi yangilanadi",
+    "ru": "Есть, APK обновится сам"
+   },
+   {
+    "uz": "Yo'q, faqat iPhone'da",
+    "ru": "Нет, только на iPhone"
+   },
+   {
+    "uz": "Bor, Render yuboradi",
+    "ru": "Есть, Render пришлёт"
+   },
+   {
+    "uz": "Yo'q, yangi fayl kerak",
+    "ru": "Нет, нужен новый файл"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Hisobotda «ro'yxatdan o'tgan» soni qayerdan olingan?",
+   "ru": "Откуда в отчёте взято число «зарегистрировались»?"
+  },
+  "opts": [
+   {
+    "uz": "Umami tashriflaridan",
+    "ru": "Из посещений в Umami"
+   },
+   {
+    "uz": "Database'dan, namunasiz",
+    "ru": "Из Database, без образцов"
+   },
+   {
+    "uz": "Sinf chati javoblaridan",
+    "ru": "Из ответов в чате класса"
+   },
+   {
+    "uz": "Lending tugmasidan",
+    "ru": "Из кнопки лендинга"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Takrorlangan «Har qadamda» olib tashlandi.",
+  "q": {
+   "uz": "Sanoq sahifasidagi qadamlar nimani sanaydi?",
+   "ru": "Что считают шаги на странице подсчёта?"
+  },
+  "opts": [
+   {
+    "uz": "Turli qurilmalarni",
+    "ru": "Разные устройства"
+   },
+   {
+    "uz": "Turli akkauntlarni",
+    "ru": "Разные аккаунты"
+   },
+   {
+    "uz": "Lending tashriflarini",
+    "ru": "Посещения лендинга"
+   },
+   {
+    "uz": "Tugma bosilishlarini",
+    "ru": "Нажатия кнопки"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Hisobotda sinfdoshlar qanday aytiladi?",
+   "ru": "Как в отчёте указывают одноклассников?"
+  },
+  "opts": [
+   {
+    "uz": "Sanalmaydi, chiqariladi",
+    "ru": "Не считают, исключают"
+   },
+   {
+    "uz": "Sanaladi, alohida emas",
+    "ru": "Считают, но не отдельно"
+   },
+   {
+    "uz": "Faqat ular yoziladi",
+    "ru": "Пишут только их"
+   },
+   {
+    "uz": "Sanaladi, alohida aytiladi",
+    "ru": "Считают, но называют отдельно"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "`WHERE namuna = false` nima qiladi?",
+   "ru": "Что делает `WHERE namuna = false`?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat sinfdoshlarni qoldiradi",
+    "ru": "Оставляет только одноклассников"
+   },
+   {
+    "uz": "Kunlarni tartiblaydi",
+    "ru": "Сортирует дни"
+   },
+   {
+    "uz": "Namuna akkauntlarni sanamaydi",
+    "ru": "Не считает образцовые аккаунты"
+   },
+   {
+    "uz": "Ism va loginni yashiradi",
+    "ru": "Скрывает имя и логин"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "SQL'ga `GROUP BY kun` qo'shilsa, Neon nima ko'rsatadi?",
+   "ru": "Что покажет Neon, если добавить в SQL `GROUP BY kun`?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma kunga bitta son",
+    "ru": "Одно число на все дни"
+   },
+   {
+    "uz": "Har kunga alohida son",
+    "ru": "Отдельное число на каждый день"
+   },
+   {
+    "uz": "Faqat bugungi son",
+    "ru": "Только сегодняшнее число"
+   },
+   {
+    "uz": "Eng ko'p ro'yxatli kun",
+    "ru": "День с наибольшим числом"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor tekshiruvining uchinchi savoli nimaga qaraydi?",
+   "ru": "На что смотрит третий вопрос проверки Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "50 ga qancha qolganiga",
+    "ru": "Сколько осталось до 50"
+   },
+   {
+    "uz": "Sinfdoshlar o'sishiga",
+    "ru": "На рост одноклассников"
+   },
+   {
+    "uz": "Lending tashriflariga",
+    "ru": "На посещения лендинга"
+   },
+   {
+    "uz": "Oldingi son borligiga",
+    "ru": "Есть ли прежнее число"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Hisobotda foydalanuvchilar haqida nima yoziladi?",
+   "ru": "Что пишут в отчёте о пользователях?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat sonlar, ismsiz",
+    "ru": "Только числа, без имён"
+   },
+   {
+    "uz": "Har odamning ismi va sanasi",
+    "ru": "Имя и дата каждого"
+   },
+   {
+    "uz": "Sinfdoshlar ismlari",
+    "ru": "Имена одноклассников"
+   },
+   {
+    "uz": "Har birining logini",
+    "ru": "Логин каждого"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Duolingo'ning asosiy qaytarish mexanikasi qaysi?",
+   "ru": "Какая главная механика возврата у Duolingo?"
+  },
+  "opts": [
+   {
+    "uz": "Eslatmalar",
+    "ru": "Напоминания"
+   },
+   {
+    "uz": "«Muzlatish»",
+    "ru": "«Заморозка»"
+   },
+   {
+    "uz": "Ketma-ket kunlar",
+    "ru": "Дни подряд"
+   },
+   {
+    "uz": "Yangi so'zlar",
+    "ru": "Новые слова"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qaytganlar foizi nimani ko'rsatadi?",
+   "ru": "Что показывает процент вернувшихся?"
+  },
+  "opts": [
+   {
+    "uz": "Keyin ham ochganlar foizini",
+    "ru": "Долю тех, кто открыл и позже"
+   },
+   {
+    "uz": "Yangi ro'yxatlar sonini",
+    "ru": "Число новых регистраций"
+   },
+   {
+    "uz": "Tugmani bosganlar foizini",
+    "ru": "Долю нажавших кнопку"
+   },
+   {
+    "uz": "Qo'shilganlar foizini",
+    "ru": "Долю записавшихся"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Zaxira rejada bir haftaga nechta ish yoziladi?",
+   "ru": "Сколько дел на неделю пишут в запасном плане?"
+  },
+  "opts": [
+   {
+    "uz": "Har bo'g'inga bittadan",
+    "ru": "По одному на каждое звено"
+   },
+   {
+    "uz": "Iloji boricha ko'p",
+    "ru": "Как можно больше"
+   },
+   {
+    "uz": "Ish yo'q, faqat gipoteza",
+    "ru": "Без дел, только гипотеза"
+   },
+   {
+    "uz": "Bitta bo'g'inga bitta",
+    "ru": "Одно дело на одно звено"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor zaxira reja uchun qaysi bo'g'inni tanladi?",
+   "ru": "Какое звено Ментор выбрал для запасного плана?"
+  },
+  "opts": [
+   {
+    "uz": "Lending: kam bosilgan",
+    "ru": "Лендинг: мало нажатий"
+   },
+   {
+    "uz": "Ro'yxat: kam o'tilgan",
+    "ru": "Регистрация: мало прошли"
+   },
+   {
+    "uz": "Kanal: post kam yetgan",
+    "ru": "Канал: пост дошёл мало куда"
+   },
+   {
+    "uz": "Asosiy harakat: kam",
+    "ru": "Главное действие: мало"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi, variantlar bo'g'in nomiga keltirildi.",
+  "q": {
+   "uz": "Lendingga 90 tashrif, tugma 6 marta bosildi. Qaysi bo'g'in?",
+   "ru": "На лендинге 90 посещений, кнопку нажали 6 раз. Какое звено?"
+  },
+  "opts": [
+   {
+    "uz": "Kanal",
+    "ru": "Канал"
+   },
+   {
+    "uz": "Lending",
+    "ru": "Лендинг"
+   },
+   {
+    "uz": "Ro'yxat",
+    "ru": "Регистрация"
+   },
+   {
+    "uz": "Asosiy harakat",
+    "ru": "Главное действие"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Pitchdagi qaysi gap da'vo?",
+   "ru": "Какая фраза в питче — утверждение?"
+  },
+  "opts": [
+   {
+    "uz": "30 kishi ro'yxatdan o'tdi",
+    "ru": "Зарегистрировались 30 человек"
+   },
+   {
+    "uz": "Hozir telefonda ko'rsataman",
+    "ru": "Сейчас покажу на телефоне"
+   },
+   {
+    "uz": "Savollaringizni bering",
+    "ru": "Задавайте вопросы"
+   },
+   {
+    "uz": "Tinglaganingiz uchun rahmat",
+    "ru": "Спасибо, что выслушали"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Dalil nima?",
+   "ru": "Что такое доказательство?"
+  },
+  "opts": [
+   {
+    "uz": "Eng ishonchli ko'ringan gap",
+    "ru": "Самая убедительная фраза"
+   },
+   {
+    "uz": "Da'voni ko'rsatadigan son",
+    "ru": "Число, которое подтверждает утверждение"
+   },
+   {
+    "uz": "Zal beradigan savol",
+    "ru": "Вопрос, который задаст зал"
+   },
+   {
+    "uz": "Keyingi qadam gapi",
+    "ru": "Фраза о следующем шаге"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Ilovani odamlar ishlatyapti» dalili qayerdan?",
+   "ru": "Откуда доказательство «Приложением пользуются»?"
+  },
+  "opts": [
+   {
+    "uz": "Umami: lending tashriflari",
+    "ru": "Umami: посещения лендинга"
+   },
+   {
+    "uz": "11-Modul intervyulari",
+    "ru": "Интервью из 11-го модуля"
+   },
+   {
+    "uz": "Sinfdoshlar gapi",
+    "ru": "Слова одноклассников"
+   },
+   {
+    "uz": "Database: ro'yxatdan o'tganlar",
+    "ru": "Database: зарегистрированные"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Umami lendingda nimani sanaydi?",
+   "ru": "Что считает Umami на лендинге?"
+  },
+  "opts": [
+   {
+    "uz": "Tashrif va tugma bosilishini",
+    "ru": "Посещения и нажатия кнопки"
+   },
+   {
+    "uz": "Ro'yxatdan o'tganlarni",
+    "ru": "Зарегистрированных"
+   },
+   {
+    "uz": "O'yinga qo'shilganlarni",
+    "ru": "Записавшихся в игру"
+   },
+   {
+    "uz": "Ilovani ochgan qurilmalarni",
+    "ru": "Устройства, открывшие приложение"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi, variantlardagi tire olib tashlandi.",
+  "q": {
+   "uz": "Foydalanuvchilar soni o'sdi. Pitchda qaysi sonni aytasiz?",
+   "ru": "Число пользователей выросло. Какое назовёте в питче?"
+  },
+  "opts": [
+   {
+    "uz": "Birinchi kungi sonni",
+    "ru": "Число первого дня"
+   },
+   {
+    "uz": "Yangisini, sanasi bilan",
+    "ru": "Новое, с датой"
+   },
+   {
+    "uz": "Ikkisining o'rtachasini",
+    "ru": "Среднее двух"
+   },
+   {
+    "uz": "Ikkisining jamini",
+    "ru": "Сумму двух"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Ilova yoqdi» gapi bilan Mentor nima qildi?",
+   "ru": "Что Ментор сделал с фразой «Приложение понравилось»?"
+  },
+  "opts": [
+   {
+    "uz": "O'zgarishsiz qoldirdi",
+    "ru": "Оставил без изменений"
+   },
+   {
+    "uz": "Keyingi qadamga ko'chirdi",
+    "ru": "Перенёс в следующий шаг"
+   },
+   {
+    "uz": "Sonlar bilan qayta yozdi",
+    "ru": "Переписал с числами"
+   },
+   {
+    "uz": "Sinfdoshlardan so'radi",
+    "ru": "Спросил у одноклассников"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Tez orada 50 ga yetamiz» nega olib tashlandi?",
+   "ru": "Почему убрали «Скоро дойдём до 50»?"
+  },
+  "opts": [
+   {
+    "uz": "Maqsad juda katta edi",
+    "ru": "Цель была слишком большой"
+   },
+   {
+    "uz": "Zal kelajakni eshitmaydi",
+    "ru": "Зал не слушает о будущем"
+   },
+   {
+    "uz": "Sinfdoshlar aytilmagan edi",
+    "ru": "Не назвали одноклассников"
+   },
+   {
+    "uz": "Dalili yo'q, bu va'da",
+    "ru": "Нет доказательства, это обещание"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Dalilda sinfdoshlar qanday aytiladi?",
+   "ru": "Как в доказательстве указывают одноклассников?"
+  },
+  "opts": [
+   {
+    "uz": "Alohida, nechtasi sinfdosh",
+    "ru": "Отдельно: сколько из них одноклассники"
+   },
+   {
+    "uz": "Aytilmaydi, ular ham odam",
+    "ru": "Не указывают, они тоже люди"
+   },
+   {
+    "uz": "Sanoqdan chiqariladi",
+    "ru": "Исключают из подсчёта"
+   },
+   {
+    "uz": "Faqat ular aytiladi",
+    "ru": "Называют только их"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qayta yozilgan da'voda nima bo'ladi?",
+   "ru": "Что есть в переписанном утверждении?"
+  },
+  "opts": [
+   {
+    "uz": "Chiroyli sifat so'zlari",
+    "ru": "Красивые прилагательные"
+   },
+   {
+    "uz": "Dalildagi son gapning o'zida",
+    "ru": "Число из доказательства в самой фразе"
+   },
+   {
+    "uz": "Zal savoliga javob",
+    "ru": "Ответ на вопрос зала"
+   },
+   {
+    "uz": "Avvalgi gapning qisqasi",
+    "ru": "Короткая версия прежней фразы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Intervyu yozuvlari qaysi da'voga dalil bo'ladi?",
+   "ru": "Для какого утверждения записи интервью — доказательство?"
+  },
+  "opts": [
+   {
+    "uz": "Foydalanuvchilar soniga",
+    "ru": "Числу пользователей"
+   },
+   {
+    "uz": "Lending tashriflariga",
+    "ru": "Посещениям лендинга"
+   },
+   {
+    "uz": "Odamlar qiynalganiga",
+    "ru": "Тому, что людям трудно"
+   },
+   {
+    "uz": "To'lgan o'yinlar soniga",
+    "ru": "Числу заполненных игр"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Yakkama-yakkada Mentor bilan nimani ko'rasiz?",
+   "ru": "Что смотрите с Ментором один на один?"
+  },
+  "opts": [
+   {
+    "uz": "Arena ballaringizni",
+    "ru": "Баллы арены"
+   },
+   {
+    "uz": "Kodning har qatorini",
+    "ru": "Каждую строку кода"
+   },
+   {
+    "uz": "Lending dizaynini",
+    "ru": "Дизайн лендинга"
+   },
+   {
+    "uz": "Da'vo va dalillaringizni",
+    "ru": "Утверждения и доказательства"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi; olib tashlangan Uzum keysiga ishora qilgan chalg'ituvchi almashtirildi.",
+  "q": {
+   "uz": "Raqamlarda grafik va bosh raqam yonida yana nima bor?",
+   "ru": "Что ещё есть в «Цифрах» рядом с графиком и главным числом?"
+  },
+  "opts": [
+   {
+    "uz": "Boshqa ilova bilan farq",
+    "ru": "Сравнение с другим приложением"
+   },
+   {
+    "uz": "Sonlar haqida halol gap",
+    "ru": "Честная фраза о числах"
+   },
+   {
+    "uz": "Hamma kunlar jadvali",
+    "ru": "Таблица всех дней"
+   },
+   {
+    "uz": "Sinfdoshlar ismlari",
+    "ru": "Имена одноклассников"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Grafikda «ishga tushirish kuni» qayerda turadi?",
+   "ru": "Где на графике стоит «день запуска»?"
+  },
+  "opts": [
+   {
+    "uz": "Birinchi ustun ustida",
+    "ru": "Над первым столбиком"
+   },
+   {
+    "uz": "Sarlavha o'rnida",
+    "ru": "На месте заголовка"
+   },
+   {
+    "uz": "Birinchi ustun ostida",
+    "ru": "Под первым столбиком"
+   },
+   {
+    "uz": "Eng baland ustun ichida",
+    "ru": "Внутри самого высокого столбика"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Grafikdan bir hafta tushib qolsa, nima buziladi?",
+   "ru": "Что сломается, если на графике пропустить неделю?"
+  },
+  "opts": [
+   {
+    "uz": "Noldan boshlanmay qoladi",
+    "ru": "Перестанет начинаться с нуля"
+   },
+   {
+    "uz": "Sarlavha o'chib qoladi",
+    "ru": "Пропадёт заголовок"
+   },
+   {
+    "uz": "Sonlar kattalashadi",
+    "ru": "Числа станут больше"
+   },
+   {
+    "uz": "Oraliqlar teng bo'lmaydi",
+    "ru": "Промежутки станут неравными"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Nega o'zgargan bo'lakni qayta aytasiz?",
+   "ru": "Зачем снова рассказываете изменённую часть?"
+  },
+  "opts": [
+   {
+    "uz": "Zal savoliga javob bo'ldimi",
+    "ru": "Ответила ли она на вопрос зала"
+   },
+   {
+    "uz": "Dars vaqti ortgani uchun",
+    "ru": "Потому что осталось время"
+   },
+   {
+    "uz": "Sherik xohlagani uchun",
+    "ru": "Потому что партнёр хочет"
+   },
+   {
+    "uz": "Taymer shunday sozlangan",
+    "ru": "Так настроен таймер"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "darsda-yoq"
+  ],
+  "izoh": "«Unicorn» va Uzum keysi darsdan olib tashlangan (fayl boshidagi izoh: «Olindi: … Uzum keysi»); savol darsdagi grafik mashqiga almashtirildi.",
+  "q": {
+   "uz": "Noldan chizilsa, 44 ustuni 20 dan necha barobar baland?",
+   "ru": "Если рисовать с нуля, во сколько раз столбик 44 выше столбика 20?"
+  },
+  "opts": [
+   {
+    "uz": "O'n barobarga yaqin",
+    "ru": "Почти в десять раз"
+   },
+   {
+    "uz": "Ikki barobarga yaqin",
+    "ru": "Почти в два раза"
+   },
+   {
+    "uz": "Besh barobarga yaqin",
+    "ru": "Почти в пять раз"
+   },
+   {
+    "uz": "To'rt barobarga yaqin",
+    "ru": "Почти в четыре раза"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Jonli demoda ikkinchi telefonda zal nimani ko'radi?",
+   "ru": "Что зал видит на втором телефоне в живом демо?"
+  },
+  "opts": [
+   {
+    "uz": "Tugma o'chib qolganini",
+    "ru": "Что кнопка пропала"
+   },
+   {
+    "uz": "Ilova qayta yuklanganini",
+    "ru": "Что приложение перезагрузилось"
+   },
+   {
+    "uz": "Son o'zi o'zgarganini",
+    "ru": "Что число изменилось само"
+   },
+   {
+    "uz": "Belgi o'chib qolganini",
+    "ru": "Что значок пропал"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Pitchdan oldin ikkala qurilmada nimani tekshirasiz?",
+   "ru": "Что проверяете на обоих устройствах перед питчем?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta akkaunt borligini",
+    "ru": "Что там один аккаунт"
+   },
+   {
+    "uz": "Ilova yopiq turganini",
+    "ru": "Что приложение закрыто"
+   },
+   {
+    "uz": "Ro'yxat tortilganini",
+    "ru": "Что список обновлён потягиванием"
+   },
+   {
+    "uz": "Belgi «Ulangan» ekanini",
+    "ru": "Что значок «Подключено»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sanoqda sinfdoshlar bor. Halol gapda nima deysiz?",
+   "ru": "В подсчёте есть одноклассники. Что скажете в честной фразе?"
+  },
+  "opts": [
+   {
+    "uz": "Sanoqdan chiqaraman",
+    "ru": "Уберу их из подсчёта"
+   },
+   {
+    "uz": "Sonini alohida aytaman",
+    "ru": "Назову их число отдельно"
+   },
+   {
+    "uz": "Hech narsa demayman",
+    "ru": "Ничего не скажу"
+   },
+   {
+    "uz": "Foydalanuvchi deyman",
+    "ru": "Назову пользователями"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "«SQL» faqat to'g'ri variantda edi; variantlar qisqartirildi.",
+  "q": {
+   "uz": "Grafikdagi sonlarni qayerdan olasiz?",
+   "ru": "Откуда берёте числа для графика?"
+  },
+  "opts": [
+   {
+    "uz": "O'z Database'ingizdan",
+    "ru": "Из своей Database"
+   },
+   {
+    "uz": "Sinfdoshlar taxminidan",
+    "ru": "Из догадок одноклассников"
+   },
+   {
+    "uz": "Mentor misoli sonlaridan",
+    "ru": "Из чисел примера Ментора"
+   },
+   {
+    "uz": "Umami tashriflaridan",
+    "ru": "Из посещений в Umami"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Raqamlarga izoh: «nima sanalgan?». Nima qilasiz?",
+   "ru": "Комментарий к «Цифрам»: «что посчитано?». Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Raqamlarni olasiz",
+    "ru": "Уберёте «Цифры»"
+   },
+   {
+    "uz": "Sonni kattalashtirasiz",
+    "ru": "Увеличите числа"
+   },
+   {
+    "uz": "Sarlavhaga buni yozasiz",
+    "ru": "Напишете это в заголовке"
+   },
+   {
+    "uz": "Sherikdan ✓ so'raysiz",
+    "ru": "Попросите у партнёра ✓"
+   }
+  ],
+  "correct": 2
+ }
+]

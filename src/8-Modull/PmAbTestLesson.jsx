@@ -102,6 +102,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -179,8 +204,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -865,10 +890,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda A/B maketi o'zi o'ynaydi — kulrang doiralar ikki telefonga bo'linadi, raqamsiz; o'ngda «01 · matn · teg») =====
 const REJA = [
-  { t: { uz: "Tajribani tekshirsa bo'ladigan gapga aylantirasiz", ru: 'Превратите эксперимент во фразу, которую можно проверить' }, teg: { uz: 'gipoteza', ru: 'гипотеза' } },
-  { t: { uz: "Odamlarni ikki guruhga bo'lishni o'rganasiz", ru: 'Научитесь делить людей на две группы' }, teg: 'A/B test' },
-  { t: { uz: "«Maydon»da tugmaning yangi matnini ishga tushirasiz", ru: 'Запустите в «Maydon» новый текст кнопки' }, teg: { uz: 'variant', ru: 'вариант' } },
-  { t: { uz: "Ikki guruh foizini dashboard'da solishtirasiz", ru: "Сравните процент двух групп в дашборде" }, teg: { uz: 'foiz', ru: 'процент' } }
+  { t: { uz: "Tajribani tekshirsa bo'ladigan gapga aylantiring", ru: 'Превратите эксперимент во фразу, которую можно проверить' }, teg: { uz: 'gipoteza', ru: 'гипотеза' } },
+  { t: { uz: "Odamlarni ikki guruhga bo'lishni o'rganing", ru: 'Научитесь делить людей на две группы' }, teg: 'A/B test' },
+  { t: { uz: "«Maydon»da tugmaning yangi matnini ishga tushiring", ru: 'Запустите в «Maydon» новый текст кнопки' }, teg: { uz: 'variant', ru: 'вариант' } },
+  { t: { uz: "Ikki guruh foizini dashboard'da solishtiring", ru: "Сравните процент двух групп в дашборде" }, teg: { uz: 'foiz', ru: 'процент' } }
 ];
 const REJA_OQIM = [['7f3a…', 'A'], ['c2a8…', 'B'], ['b41d…', 'A'], ['9e07…', 'B'], ['3f2c…', 'A'], ['a90c…', 'B']];
 // Oqim o'zi bir marta o'ynaydi (DE-200): har brauzer tepada paydo bo'ladi va o'z telefoni tomoniga o'tadi; tugagach — to'xtaydi (bezak-aylanish yo'q)
@@ -1282,7 +1307,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Qaysi o'yinchi A ni, <A>qaysi biri B ni</A> ko'radi?</>, ru: <>Какой игрок видит A, а <A>какой — B</A>?</> })}
         mentor={<Mentor>{tr({ uz: "Sinfdoshlar bugun «Maydon»ni telefonida ochadi — ularni ikki guruhga bo'lish kerak. Har usulni sinab, maketga qarang.", ru: 'Сегодня одноклассники откроют «Maydon» на телефонах — их нужно разделить на две группы. Попробуйте каждый способ и смотрите на макет.' })}</Mentor>}
         harakat={harakat}
-        vizual={vizual}
+        vizual={!taxmin ? null : <div className="q-kir">{vizual}</div>}
       >
         <MentorNote>{tr({ uz: "«Nega o'tgan hafta bilan solishtirmaymiz?» — haftalar orasida boshqa narsa ham o'zgaradi (e'lon, bayram, ob-havo). «Eslab qoladi» — brauzer xotirasi (localStorage), brauzer ID yonida. Bitta o'yinchi telefon va laptopdan kirsa, ikki xil variant ko'rishi mumkin: variant brauzerga beriladi, odamga emas.", ru: '«Почему не сравниваем с прошлой неделей?» — между неделями меняется и другое (объявление, праздник, погода). «Запоминает» — память браузера (localStorage), рядом с ID браузера. Если один игрок заходит с телефона и с ноутбука, он может увидеть два разных варианта: вариант выдаётся браузеру, а не человеку.' })}</MentorNote>
       </QTushuncha>
@@ -1373,18 +1398,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol (MD), to'g'ri javob o'rni: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Gipoteza qaysi shaklda yoziladi?', ru: 'В какой форме пишется гипотеза?' }, opts: [{ uz: "Agar … qilsak, … o'zgaradi, chunki …", ru: 'Если сделаем …, изменится …, потому что …' }, { uz: '… ni qilamiz, chunki bu juda yaxshi g\'oya', ru: 'Сделаем …, потому что это очень хорошая идея' }, { uz: 'Hozir … ta bor, oy oxirida … taga yetsin', ru: 'Сейчас …, к концу месяца пусть станет …' }, { uz: "Avval … ni qilamiz, keyin … ni ko'ramiz", ru: 'Сначала сделаем …, потом посмотрим …' }], correct: 0 },
-  { q: { uz: '«Maydon» gipotezasida «chunki» qismi qaysi?', ru: 'Какая часть гипотезы «Maydon» — «потому что»?' }, opts: [{ uz: 'Tugmada tanlangan soatni yozsak', ru: 'Напишем на кнопке выбранное время' }, { uz: "O'yinchi tanlagan vaqtini tugmada ko'radi", ru: 'Игрок видит выбранное время на кнопке' }, { uz: "Vaqtni tanlaganlardan ko'proq o'yinchi band qiladi", ru: 'Больше игроков из выбравших время забронируют' }, { uz: 'Vaqtni tanlaganlardan band qilganlar foizi', ru: 'Процент забронировавших среди выбравших время' }], correct: 1 },
-  { q: { uz: '«Band qilish» tugmasi qaysi qadamdan keyin chiqadi?', ru: "После какого шага появляется кнопка «Забронировать»?" }, opts: [{ uz: 'Sahifa ochilgandan keyin', ru: 'После открытия страницы' }, { uz: "Band qilib bo'lgandan keyin", ru: 'После бронирования' }, { uz: 'Vaqtni tanlagandan keyin', ru: 'После выбора времени' }, { uz: 'Parolni kiritgandan keyin', ru: 'После ввода пароля' }], correct: 2 },
-  { q: { uz: 'A/B testda variant A qaysi biri?', ru: 'Какой вариант в A/B-тесте — A?' }, opts: [{ uz: "Yangi, sinab ko'riladigan variant", ru: 'Новый вариант, который пробуют' }, { uz: "Ega o'zi tanlagan eng yaxshisi", ru: 'Лучший, выбранный владельцем' }, { uz: "Dashboard'da birinchi turgani", ru: "Первый в дашборде" }, { uz: "Hozirgi, o'zgarmagan variant", ru: 'Текущий, неизменённый вариант' }], correct: 3 },
-  { q: { uz: 'Nega A va B bir vaqtda ishlaydi?', ru: 'Почему A и B работают одновременно?' }, opts: [{ uz: 'Boshqa vaqtning farqi aralashmasligi uchun', ru: "Чтобы не примешались изменения другого времени" }, { uz: "Backend'ga kamroq so'rov kelishi uchun", ru: 'Чтобы в Backend приходило меньше запросов' }, { uz: "O'yinchi ikkalasini solishtirishi uchun", ru: 'Чтобы игрок сравнил оба' }, { uz: "Dashboard'dagi raqamlar tezroq chiqishi uchun", ru: "Чтобы числа в дашборде появлялись быстрее" }], correct: 0 },
-  { q: { uz: 'Bizning testda brauzer variantni qachon oladi?', ru: 'Когда браузер получает вариант в нашем тесте?' }, opts: [{ uz: 'Har safar sahifa yangilanganda', ru: 'При каждом обновлении страницы' }, { uz: 'Birinchi kirganda, bir marta', ru: 'При первом входе, один раз' }, { uz: 'Band qilish tugmasini bosganda', ru: 'При нажатии кнопки бронирования' }, { uz: "Ega dashboard'ni ochgan paytda", ru: "Когда владелец открывает дашборд" }], correct: 1 },
-  { q: { uz: "Brauzer sahifani yangilaganda A ni ham, B ni ham ko'rdi. Muammo nima?", ru: 'При обновлении страницы браузер увидел и A, и B. В чём проблема?' }, opts: [{ uz: "Tugma matni juda uzun bo'lib qoldi", ru: 'Текст кнопки стал слишком длинным' }, { uz: "Backend hodisani qabul qilmay qo'ydi", ru: 'Backend перестал принимать событие' }, { uz: "Uni qaysi guruhga sanash noma'lum", ru: 'Неизвестно, в какую группу его считать' }, { uz: 'Brauzer ID har safar yangilanadi', ru: 'ID браузера каждый раз обновляется' }], correct: 2 },
+  { q: { uz: "Gipoteza qanday yoziladi?", ru: "Как записывается гипотеза?" }, opts: [{ uz: "Agar …, … o'zgaradi, chunki …", ru: "Если …, изменится …, потому что …" }, { uz: "… qilamiz, chunki bu yaxshi", ru: "Делаем …, потому что это хорошо" }, { uz: "Hozir … ta, oy oxirida … ta", ru: "Сейчас …, к концу месяца …" }, { uz: "Avval …, keyin … ko'ramiz", ru: "Сначала …, потом посмотрим …" }], correct: 0 },
+  { q: { uz: "«Maydon» gipotezasida «chunki» qismi qaysi?", ru: "Какая часть гипотезы «Maydon» — «потому что»?" }, opts: [{ uz: "Tugmada soat yozilsa", ru: "Если на кнопке будет час" }, { uz: "Tanlaganini tugmada ko'radi", ru: "Видит выбранное на кнопке" }, { uz: "Ko'proq o'yinchi band qiladi", ru: "Больше игроков забронирует" }, { uz: "Band qilganlar foizi", ru: "Процент забронировавших" }], correct: 1 },
+  { q: { uz: "«Band qilish» tugmasi qaysi qadamdan keyin chiqadi?", ru: "После какого шага появляется кнопка «Забронировать»?" }, opts: [{ uz: "Sahifa ochilgach", ru: "После открытия страницы" }, { uz: "Band qilingach", ru: "После брони" }, { uz: "Vaqt tanlangach", ru: "После выбора времени" }, { uz: "Parol kiritilgach", ru: "После ввода пароля" }], correct: 2 },
+  { q: { uz: "A/B testda variant A qaysi biri?", ru: "Какой вариант в A/B-тесте — A?" }, opts: [{ uz: "Yangi, sinaladigan variant", ru: "Новый, проверяемый вариант" }, { uz: "Ega tanlagan eng yaxshisi", ru: "Лучший по выбору владельца" }, { uz: "Dashboard'da birinchisi", ru: "Первый на дашборде" }, { uz: "Hozirgi, o'zgarmagan variant", ru: "Текущий, неизменённый вариант" }], correct: 3 },
+  { q: { uz: "Nega A va B bir vaqtda ishlaydi?", ru: "Почему A и B работают одновременно?" }, opts: [{ uz: "E'lon kabi farq aralashmasin", ru: "Чтобы не примешались объявления и т. п." }, { uz: "Backend'ga kam so'rov kelsin", ru: "Чтобы в Backend шло меньше запросов" }, { uz: "O'yinchi ikkalasini ko'rsin", ru: "Чтобы игрок увидел оба" }, { uz: "Raqamlar tez chiqsin", ru: "Чтобы числа появились быстрее" }], correct: 0 },
+  { q: { uz: "Bizning testda brauzer variantni qachon oladi?", ru: "Когда браузер получает вариант в нашем тесте?" }, opts: [{ uz: "Har yangilanganda", ru: "При каждом обновлении" }, { uz: "Birinchi kirganda", ru: "При первом входе" }, { uz: "Tugmani bosganda", ru: "При нажатии кнопки" }, { uz: "Ega dashboard ochganda", ru: "Когда владелец откроет дашборд" }], correct: 1 },
+  { q: { uz: "Brauzer A va B ni ko'rdi. Muammo nima?", ru: "Браузер увидел и A, и B. В чём проблема?" }, opts: [{ uz: "Tugma matni uzun bo'ldi", ru: "Текст кнопки стал длинным" }, { uz: "Backend hodisani olmadi", ru: "Backend не принял событие" }, { uz: "Guruhi noma'lum bo'lib qoldi", ru: "Непонятно, в какой он группе" }, { uz: "Brauzer ID o'zgarib qoldi", ru: "ID браузера изменился" }], correct: 2 },
   { q: { uz: 'A — 9 tadan 3, B — 8 tadan 4. B ning foizi qancha?', ru: 'A — 3 из 9, B — 4 из 8. Какой процент у B?' }, opts: [{ uz: '4 foiz', ru: '4 процента' }, { uz: '33 foiz', ru: '33 процента' }, { uz: '12 foiz', ru: '12 процентов' }, { uz: '50 foiz', ru: '50 процентов' }], correct: 3 },
-  { q: { uz: 'Guruhlar 9 va 8 chiqdi. Bu nimani bildiradi?', ru: 'Группы вышли 9 и 8. Что это значит?' }, opts: [{ uz: 'Tasodifiy bo\'lishda bu tabiiy hol', ru: 'При случайном делении это обычно' }, { uz: "Bo'lish noto'g'ri, qayta boshlash kerak", ru: 'Деление неверное, нужно начать заново' }, { uz: "B guruhidagi tugma kamroq yoqqan", ru: 'Кнопка в группе B понравилась меньше' }, { uz: 'Kimdir ikki marta sanalib qolgan', ru: 'Кого-то посчитали дважды' }], correct: 0 },
+  { q: { uz: "Guruhlar 9 va 8 chiqdi. Bu nima degani?", ru: "Группы вышли 9 и 8. Что это значит?" }, opts: [{ uz: "Tasodifda bu tabiiy hol", ru: "При случайном делении это нормально" }, { uz: "Bo'lish xato, qaytadan", ru: "Деление неверное, заново" }, { uz: "B dagi tugma kamroq yoqqan", ru: "Кнопка B понравилась меньше" }, { uz: "Kimdir ikki marta sanalgan", ru: "Кого-то посчитали дважды" }], correct: 0 },
   { q: { uz: "2017-yilda Booking.com bir vaqtda nechta A/B test o'tkazgan?", ru: 'Сколько A/B-тестов одновременно проводил Booking.com в 2017 году?' }, opts: [{ uz: '10 dan ortiq', ru: 'Больше 10' }, { uz: '1000 dan ortiq', ru: 'Больше 1000' }, { uz: '100 dan ortiq', ru: 'Больше 100' }, { uz: '5000 dan ortiq', ru: 'Больше 5000' }], correct: 1 },
-  { q: { uz: 'Hodisa qaysi variantdan kelganini Backend qanday biladi?', ru: 'Как Backend узнаёт, из какого варианта пришло событие?' }, opts: [{ uz: 'Brauzer ID ning birinchi harfidan', ru: 'По первой букве ID браузера' }, { uz: 'Hodisa yozilgan soat va daqiqadan', ru: 'По часу и минуте записи события' }, { uz: 'Hodisa bilan kelgan variantdan', ru: 'По варианту, пришедшему с событием' }, { uz: "Ega sahifasidagi bandlar ro'yxatidan", ru: 'По списку броней на странице владельца' }], correct: 2 },
-  { q: { uz: "Gipotezada «sayt yaxshiroq bo'ladi» deyilgan. Nima yetishmaydi?", ru: 'В гипотезе сказано «сайт станет лучше». Чего не хватает?' }, opts: [{ uz: 'Qancha vaqt kutish kerakligi', ru: 'Сколько нужно ждать' }, { uz: 'Saytga nechta odam kirishi', ru: 'Сколько людей зайдёт на сайт' }, { uz: 'Kodni kim yozishi kerakligi', ru: 'Кто должен писать код' }, { uz: "Qaysi raqam o'zgarishi", ru: 'Какое число изменится' }], correct: 3 },
+  { q: { uz: "Backend hodisa variantini qanday biladi?", ru: "Как Backend узнаёт вариант события?" }, opts: [{ uz: "Brauzer ID ning harfidan", ru: "По букве ID браузера" }, { uz: "Hodisa yozilgan soatdan", ru: "По времени события" }, { uz: "Hodisadagi `variant`dan", ru: "По `variant` в событии" }, { uz: "Bandlar ro'yxatidan", ru: "По списку броней" }], correct: 2 },
+  { q: { uz: "«Sayt yaxshiroq bo'ladi» — gipotezada nima yetishmaydi?", ru: "«Сайт станет лучше» — чего не хватает в гипотезе?" }, opts: [{ uz: "Qancha kutish kerakligi", ru: "Сколько ждать" }, { uz: "Nechta odam kirishi", ru: "Сколько людей зайдёт" }, { uz: "Kodni kim yozishi", ru: "Кто напишет код" }, { uz: "Qaysi raqam o'zgarishi", ru: "Какое число изменится" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1989,7 +2014,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mentor)}</Mentor>{ust && ust(fq)}</>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mentor)}</Mentor>{ust && ust(fq)}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: c.forma && forma ? <>{fmtCode(tr(c.t))}{forma.render(fq, yoz)}</> : fmtCode(tr(c.t)),
@@ -2377,7 +2402,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
         togri={correct} jami={total}
         sarlavha={tr({ uz: <>Gipoteza endi <A>raqam bilan</A> tekshirilmoqda.</>, ru: <>Гипотезу теперь проверяют <A>числом</A>.</> })}
         cta={<>
-          <GipStrip />
           <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
             <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
           </div>

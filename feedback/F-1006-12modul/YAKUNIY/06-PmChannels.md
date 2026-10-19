@@ -51,10 +51,10 @@ Mentor misoli (dars bo'yi bir xil):
   - Telefon (chatlar ro'yxati, qatorlar navbat bilan chiziladi): Mahalla futbol guruhi · Telegram guruhi · 60 kishi · Shahar futbol kanali · Telegram kanali · katta · Sinf chati · Telegram guruhi · ostida bo'sh pufak «…» va «Yuborilmagan»
 - O'ng:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-  - 01 · Mahsulotingiz haqida qayerda yozishni tanlaysiz
-  - 02 · Yuborishdan oldin nimani tekshirishni bilib olasiz
-  - 03 · Facebook kimlardan boshlanganini ko'rasiz
-  - 04 · Birinchi postni yozib, sinf chatiga yuborasiz
+  - 01 · Mahsulotingiz haqida qayerda yozishni tanlang
+  - 02 · Yuborishdan oldin nimani tekshirishni bilib oling
+  - 03 · Facebook kimlardan boshlanganini ko'ring
+  - 04 · Birinchi postni yozib, sinf chatiga yuboring
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Uch savol

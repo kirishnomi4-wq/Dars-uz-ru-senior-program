@@ -1,0 +1,18 @@
+s3 boshida: nav=Savollarga javob bering (yopiq) · yoqilgan sayt tugmalari: 0
+  1 OLX: «OLX sahifasining birinchi blokida nima turadi?» · xato «E'lon berish tugmasi» → «Tugma oxirida turadi: avval odam nega bosishini bilishi kerak.» (tugma yopildi: true, karta ichida: true) → to'g'ri «Sayt nima taklif qilishi» → o'ngda: OLX
+  2 Yangiliklar: «Yangiliklar saytida obuna tugmasi qayerda turadi?» · xato «Eng tepada» → «Tepada odam hali nega obuna bo'lishini bilmaydi.» (tugma yopildi: true, karta ichida: true) → to'g'ri «Eng oxirida» → o'ngda: Yangiliklar
+  3 Video: «Video saytining birinchi blokida nima turadi?» · xato «Ko'rishni boshlash tugmasi» → «Tugma oxirida: avval odam nimani ko'rishini bilishi kerak.» (tugma yopildi: true, karta ichida: true) → to'g'ri «Tavsiya etilgan video» → o'ngda: Video
+s3 oxiri: nav=Davom etish (ochiq) · xulosa: true
+  OLX qayta bosildi → o'ngda: OLX
+  qaytganda (s3): nav=Davom etish (ochiq) · savol kartasi: false · ✓ soni: 6
+  qayta yuklanganda: ekran=REAL SAYTLAR · nav=Davom etish (ochiq) · savol kartasi: false
+s5 boshida: nav=Savollarga javob bering (yopiq)
+  1 Birinchi blok: «Birinchi blok nima qiladi?» · xato «Saytni chiroyli qilib bezaydi» → «Birinchi blok bezak emas: u bir jumlada taklifni aytadi.» (tugma yopildi: true, karta ichida: true) → to'g'ri «Sayt nima taklif qilishini aytadi» → o'ngda: Birinchi blok (hero)
+  2 Muammo: «Muammo bo'limi nima qiladi?» · xato «Saytning kamchiliklarini aytadi» → «Bu yerda saytning emas, foydalanuvchining qiyinchiligi aytiladi.» (tugma yopildi: true, karta ichida: true) → to'g'ri «Tanish qiyinchilikni eslatadi» → o'ngda: Muammo
+  3 Qanday ishlaydi: ««Qanday ishlaydi» bo'limi nima qiladi?» · xato «Saytning ichki kodini» → «Foydalanuvchiga kod emas, foydalanish qadamlari kerak.» (tugma yopildi: true, karta ichida: true) → to'g'ri «Qiyinchilik qanday yengilishini aytadi» → o'ngda: Qanday ishlaydi
+  4 Isbot: «Isbot bo'limi nima qiladi?» · xato «Ro'yxatdan o'tish» → «Bu «Qanday ishlaydi» bo'limining vazifasi.» (tugma yopildi: true, karta ichida: true) → to'g'ri «Boshqalar foydalanganini» → o'ngda: Isbot
+  5 Harakat tugmasi: «Harakat tugmasi nima qiladi?» · xato «Sahifa boshiga qaytaradi» → «Tugma orqaga emas, oldinga chaqiradi: e'lon berish, obuna.» (tugma yopildi: true, karta ichida: true) → to'g'ri «Aniq keyingi qadamni beradi» → o'ngda: Harakat tugmasi
+s5 oxiri: nav=Davom etish (ochiq)
+  qaytganda (s5): nav=Davom etish (ochiq) · savol kartasi: false · ✓ soni: 10
+  qayta yuklanganda: ekran=BO'LIM VAZIFASI · nav=Davom etish (ochiq) · savol kartasi: false
+pageerror: 0

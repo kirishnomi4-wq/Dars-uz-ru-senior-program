@@ -38,10 +38,10 @@ Mentor misoli (dars bo'yi bir xil):
 - Chap: Dars oxirida — bosh raqam, OKR va birinchi tajriba
   - OKR doskasi skeleti: maqsad, uchta qator va tajriba qatori kulrang chiziqlardan birma-bir to'q chiziqqa aylanadi (matnsiz), oxirida tajriba chizig'i bitta qatorga ulanadi
 - Reja (teg yo'q — keyingi ekranlar eyebrow'ini takrorlardi) *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*:
-  1. Qaysi raqamni o'stirishni tanlaysiz
-  2. Oy oxirida yetganingizni sanashni o'rganasiz
-  3. Oyning birinchi o'zgarishini tanlaysiz
-  4. Loyihangizga keyingi oy uchun yozasiz
+  1. Qaysi raqamni o'stirishni tanlang
+  2. Oy oxirida yetganingizni sanashni o'rganing
+  3. Oyning birinchi o'zgarishini tanlang
+  4. Loyihangizga keyingi oy uchun yozing
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Maqsad va asosiy natija

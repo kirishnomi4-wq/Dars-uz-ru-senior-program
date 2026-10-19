@@ -31,7 +31,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QTaxmin, QXulosa, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKod, QVoqea, QMustaqil, QKartochka, QYakun } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QTaxmin, QXulosa, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKod, QVoqea, QMustaqil, QKartochka, QYakun, manoliMatn } from '../qolip/index.jsx';
 // Kod oynasi — umumiy modul (s11; PM-082, «Kompilyatorni ochish» platforma tugmasi)
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 
@@ -105,6 +105,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -182,8 +207,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -933,10 +958,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda beshta qator-karta skeleti ✓ oladi; skelet matnsiz, P-015 · F-1015-113: bo'sh karta va teg-chiplar olindi) =====
 const REJA = [
-  { t: { uz: 'Mahsulot va loyiha farqini ajratasiz', ru: 'Отличите продукт от проекта' }, teg: { uz: 'farq', ru: 'разница' } },
-  { t: { uz: 'Uchta ishlaydigan mahsulotni tahlil qilasiz', ru: 'Разберёте три работающих продукта' }, teg: { uz: 'tahlil', ru: 'разбор' } },
-  { t: { uz: "Dropbox boshqalarga kerakligi qanday bilinganini ko'rasiz", ru: 'Увидите, как стало понятно, что Dropbox нужен другим' }, teg: { uz: 'voqea', ru: 'история' } },
-  { t: { uz: "Sinfdoshingiz bilan atrofdan muammo yig'asiz", ru: 'Вместе с одноклассником соберёте проблемы вокруг' }, teg: { uz: 'juftlik', ru: 'пара' } }
+  { t: { uz: 'Mahsulot va loyiha farqini ajrating', ru: 'Отличите продукт от проекта' }, teg: { uz: 'farq', ru: 'разница' } },
+  { t: { uz: 'Uchta ishlaydigan mahsulotni tahlil qiling', ru: 'Разберите три работающих продукта' }, teg: { uz: 'tahlil', ru: 'разбор' } },
+  { t: { uz: "Dropbox boshqalarga kerakligi qanday bilinganini ko'ring", ru: 'Посмотрите, как стало понятно, что Dropbox нужен другим' }, teg: { uz: 'voqea', ru: 'история' } },
+  { t: { uz: "Sinfdoshingiz bilan atrofdan muammo yig'ing", ru: 'Вместе с одноклассником соберите проблемы вокруг' }, teg: { uz: 'juftlik', ru: 'пара' } }
 ];
 const RejaChizma = () => {
   const [n, setN] = useState(() => (kamHarakat() ? MUAMMO_SONI : 0));
@@ -1923,7 +1948,7 @@ const Screen13 = ({ screen, onNext, onPrev }) => {
   // tanlovdan keyin ro'yxat yig'iladi — karta va xulosa 773 balandlikda pastki panel ostiga kirmaydi; «Boshqa muammoni tanlash» qayta ochadi
   const [roOchiq, setRoOchiq] = useState(() => !(saqlangan && saqlangan.matn && royxat.some(m => m.matn === saqlangan.matn)));
   const zaxira = isMentor || royxat.length === 0;
-  const yozildi = kim.trim().length >= 8;
+  const yozildi = kim.trim().length >= 8 && manoliMatn(kim);
   const tayyor = zaxira || (!!tanlov && yozildi);
   useEffect(() => { if (zaxira || !tanlov || !yozildi) return; lsSet(KEY_TANLANGAN, { matn: tanlov, kim: kim.trim() }); }, [tanlov, kim]); // eslint-disable-line
   const timerMatn = yakka
@@ -2046,18 +2071,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol, to'g'ri javob: A — 1, 7, 11 · B — 3, 6, 10 · C — 2, 5, 12 · D — 4, 8, 9 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Qaysi biri loyiha?', ru: 'Что из этого — проект?' }, opts: [{ uz: "Saytni to'rt hafta ichida qurish ishi", ru: 'Работа по созданию сайта за четыре недели' }, { uz: 'Siz qurgan, sinfdoshlar ishlatadigan bot', ru: 'Ваш бот, которым пользуются одноклассники' }, { uz: "Yo'lovchilar taksi chaqiradigan ilova", ru: 'Приложение, где пассажиры вызывают такси' }, { uz: "Odamlar hisobini to'ldiradigan ilova", ru: 'Приложение, где люди пополняют баланс' }], correct: 0 },
-  { q: { uz: 'Mahsulotni kim ishlatadi?', ru: 'Кто пользуется продуктом?' }, opts: [{ uz: 'Faqat uni qurgan odamning o\'zi', ru: 'Только тот, кто его построил' }, { uz: "Qurgan odam ko'rsatgan do'stlar", ru: 'Друзья, которым его показали' }, { uz: "Odamlar — o'z muammosi uchun", ru: 'Люди — для своей проблемы' }, { uz: 'Mentor — vazifani tekshirish uchun', ru: 'Ментор — чтобы проверить задание' }], correct: 2 },
-  { q: { uz: 'Saytingiz internetga chiqdi, lekin uni faqat o\'zingiz ochasiz. Bu nima?', ru: 'Ваш сайт вышел в интернет, но открываете его только вы. Что это?' }, opts: [{ uz: 'Mahsulot — chunki u internetda turibdi', ru: 'Продукт — ведь он в интернете' }, { uz: 'Loyiha tugadi — hech kim ishlatmaydi', ru: 'Проект завершён — никто не пользуется' }, { uz: 'Mahsulot — chunki uni hamma ocha oladi', ru: 'Продукт — ведь его может открыть любой' }, { uz: 'Loyiha — chunki kodi juda kam yozilgan', ru: 'Проект — ведь кода написано мало' }], correct: 1 },
-  { q: { uz: "Ilovani ishlatsangiz, auditoriya-kartaning qaysi qatori ko'rinib turadi?", ru: 'Когда вы пользуетесь приложением, какая строка карты аудитории видна?' }, opts: [{ uz: 'KIM — ilovani kimlar ishlatishi', ru: 'КТО — кто пользуется приложением' }, { uz: 'MUAMMO — odam nimadan qiynalgani', ru: 'ПРОБЛЕМА — с чем мучился человек' }, { uz: 'Hech biri — hammasi yashirin', ru: 'Ни одна — всё скрыто' }, { uz: 'YECHIM — ilova nima qilishi', ru: 'РЕШЕНИЕ — что делает приложение' }], correct: 3 },
-  { q: { uz: 'Google Maps uchun MUAMMO qatoriga nima yoziladi?', ru: 'Что пишется в строку ПРОБЛЕМА для Google Maps?' }, opts: [{ uz: "Xaritada chiroyli rang bo'lishini xohlardi", ru: 'Хотел красивые цвета на карте' }, { uz: "Shaharda ko'chalar juda ko'p edi", ru: 'В городе было очень много улиц' }, { uz: "Yangi joyni odamlardan so'rab topardi", ru: 'Находил новое место, расспрашивая людей' }, { uz: "Telefonda xarita ko'rishni yaxshi ko'rardi", ru: 'Любил смотреть карту в телефоне' }], correct: 2 },
-  { q: { uz: 'Muammoning uch belgisidan biri qaysi?', ru: 'Какой из трёх признаков проблемы здесь?' }, opts: [{ uz: 'Odam «menda muammo bor» deb aytadi', ru: 'Человек говорит: «у меня проблема»' }, { uz: "Odam o'zicha boshqa yo'l topgan", ru: 'Человек сам нашёл другой путь' }, { uz: 'Muammo haqida internetda yozilgan', ru: 'О проблеме написали в интернете' }, { uz: 'Muammoni yechadigan ilova bor', ru: 'Есть приложение, которое её решает' }], correct: 1 },
-  { q: { uz: '«Maktabga yangi oshxona qurish kerak.» Bu yozuv nima?', ru: '«Школе нужно построить новую столовую». Что это за запись?' }, opts: [{ uz: "Yechim — unda kim qiynalgani yo'q", ru: 'Решение — в ней нет того, кто мучился' }, { uz: 'Muammo — unda «kerak» so\'zi bor', ru: 'Проблема — в ней есть слово «нужно»' }, { uz: "Muammo — u maktabda bo'lyapti", ru: 'Проблема — это происходит в школе' }, { uz: 'Yechim — chunki u juda qimmat', ru: 'Решение — потому что это очень дорого' }], correct: 0 },
-  { q: { uz: 'Dropbox qanday muammodan boshlangan?', ru: 'С какой проблемы начался Dropbox?' }, opts: [{ uz: 'Kompyuterlar juda qimmat turardi', ru: 'Компьютеры стоили очень дорого' }, { uz: 'Internet juda sekin ishlab turardi', ru: 'Интернет работал очень медленно' }, { uz: 'Fayllarni chop etish juda qiyin edi', ru: 'Печатать файлы было очень трудно' }, { uz: 'Fayllar bor fleshka uyda qolgan edi', ru: 'Флешка с файлами осталась дома' }], correct: 3 },
-  { q: { uz: "Dropbox'ni ko'rsatadigan video chiqqach nima bo'ldi?", ru: 'Что случилось после выхода видео о Dropbox?' }, opts: [{ uz: "Dasturni faqat do'stlari ko'rib chiqdi", ru: 'Программу посмотрели только друзья' }, { uz: "Dastur shu kuni yopib qo'yildi", ru: 'Программу в тот же день закрыли' }, { uz: "Videoni hech kim ko'rmay qoldi", ru: 'Видео никто не посмотрел' }, { uz: "O'n minglab odam ro'yxatga yozildi", ru: 'Десятки тысяч людей записались в список' }], correct: 3 },
-  { q: { uz: "Do'stingiz siz yuborgan havola orqali kelib, botdan har kuni jadval ko'radi. Bot nima?", ru: 'Друг пришёл по вашей ссылке и каждый день смотрит в боте расписание. Что такое бот?' }, opts: [{ uz: 'Loyiha — chunki havolani o\'zingiz yuborgansiz', ru: 'Проект — ведь ссылку отправили вы' }, { uz: "Mahsulot — botni o'z ishi uchun ishlatadi", ru: 'Продукт — он пользуется ботом для своего дела' }, { uz: 'Mahsulot — chunki havolasi ishlayapti', ru: 'Продукт — ведь ссылка работает' }, { uz: 'Loyiha — chunki bot hali kichik', ru: 'Проект — ведь бот ещё маленький' }], correct: 1 },
-  { q: { uz: "Muammo yig'ishda sherigingizdan nimani so'raysiz?", ru: 'О чём вы спросите партнёра при сборе проблем?' }, opts: [{ uz: "Nimani bilish uchun kimdandir so'raganini", ru: 'Что он спрашивал у кого-то, чтобы узнать' }, { uz: 'Qaysi ilovani qurib berishingizni xohlashini', ru: 'Какое приложение он хочет, чтобы вы сделали' }, { uz: 'Qaysi ilovani eng chiroyli deb bilishini', ru: 'Какое приложение он считает самым красивым' }, { uz: "G'oyangiz unga yoqadimi yoki yoqmaydimi", ru: 'Нравится ли ему ваша идея' }], correct: 0 },
-  { q: { uz: 'Mentor nega maydon muammosini tanladi?', ru: 'Почему Ментор выбрал проблему поля?' }, opts: [{ uz: "Futbolni hammadan ham yaxshi ko'rgani uchun", ru: 'Потому что любит футбол больше всего' }, { uz: "Yangi maydon qurish arzon bo'lgani uchun", ru: 'Потому что построить новое поле дёшево' }, { uz: "O'yinchilardan so'rab bila olgani uchun", ru: 'Потому что может узнать у самих игроков' }, { uz: "Ro'yxatda u eng birinchi turgani uchun", ru: 'Потому что она стоит первой в списке' }], correct: 2 },
+  { q: { uz: "Qaysi biri loyiha?", ru: "Что из этого — проект?" }, opts: [{ uz: "Saytni 4 hafta qurish ishi", ru: "Работа: сайт за 4 недели" }, { uz: "Sinfdoshlar ishlatadigan bot", ru: "Бот, которым пользуются одноклассники" }, { uz: "Taksi chaqiradigan ilova", ru: "Приложение для вызова такси" }, { uz: "Hisob to'ldiradigan ilova", ru: "Приложение для пополнения баланса" }], correct: 0 },
+  { q: { uz: "Mahsulotni kim ishlatadi?", ru: "Кто пользуется продуктом?" }, opts: [{ uz: "Faqat uni qurgan odam", ru: "Только тот, кто его создал" }, { uz: "Egasi ko'rsatgan do'stlar", ru: "Друзья, которым показал автор" }, { uz: "Odamlar — o'z muammosi uchun", ru: "Люди — для своей проблемы" }, { uz: "Mentor — tekshirish uchun", ru: "Ментор — чтобы проверить" }], correct: 2 },
+  { q: { uz: "Saytni faqat siz ochasiz. U nima?", ru: "Сайт открываете только вы. Что это?" }, opts: [{ uz: "Mahsulot — internetda bor", ru: "Продукт — он в интернете" }, { uz: "Loyiha — hech kim ishlatmaydi", ru: "Проект — никто не пользуется" }, { uz: "Mahsulot — hamma ocha oladi", ru: "Продукт — открыть может каждый" }, { uz: "Loyiha — kodi hali kam", ru: "Проект — кода пока мало" }], correct: 1 },
+  { q: { uz: "Ilovada odatda avval qaysi qator ko'rinadi?", ru: "Какая строка обычно видна в приложении первой?" }, opts: [{ uz: "KIM — kim ishlatadi", ru: "КТО — кто пользуется" }, { uz: "MUAMMO — nimadan qiynalgan", ru: "ПРОБЛЕМА — от чего страдал" }, { uz: "Hech biri ko'rinmaydi", ru: "Никакая не видна" }, { uz: "YECHIM — ilova nima qiladi", ru: "РЕШЕНИЕ — что делает приложение" }], correct: 3 },
+  { q: { uz: "Google Maps: MUAMMO qatori qaysi?", ru: "Google Maps: какая строка ПРОБЛЕМА?" }, opts: [{ uz: "Xarita chiroyli bo'lsin derdi", ru: "Хотел, чтобы карта была красивой" }, { uz: "Ko'chalar juda ko'p edi", ru: "Улиц было очень много" }, { uz: "Joyni so'rab-so'rab topardi", ru: "Искал место, расспрашивая людей" }, { uz: "Xarita ko'rishni yoqtirardi", ru: "Любил смотреть карты" }], correct: 2 },
+  { q: { uz: "Muammoning uch belgisidan biri qaysi?", ru: "Какой из трёх признаков проблемы?" }, opts: [{ uz: "Odam «muammo bor» deydi", ru: "Человек говорит «есть проблема»" }, { uz: "Odam o'zicha yo'l topgan", ru: "Человек сам нашёл обходной путь" }, { uz: "Bu haqda internetda yozilgan", ru: "Об этом написано в интернете" }, { uz: "Uni yechadigan ilova bor", ru: "Есть приложение, которое её решает" }], correct: 1 },
+  { q: { uz: "«Oshxona qurish kerak.» Bu nima?", ru: "«Нужно построить столовую». Что это?" }, opts: [{ uz: "Yechim — kim qiynalgani yo'q", ru: "Решение — нет, кто страдает" }, { uz: "Muammo — «kerak» so'zi bor", ru: "Проблема — есть слово «нужно»" }, { uz: "Muammo — maktabda bo'lyapti", ru: "Проблема — это происходит в школе" }, { uz: "Yechim — chunki qimmat", ru: "Решение — потому что дорого" }], correct: 0 },
+  { q: { uz: "Dropbox qanday muammodan boshlangan?", ru: "С какой проблемы начался Dropbox?" }, opts: [{ uz: "Kompyuter juda qimmat edi", ru: "Компьютеры были очень дорогими" }, { uz: "Internet juda sekin edi", ru: "Интернет был очень медленным" }, { uz: "Fayl chop etish qiyin edi", ru: "Файлы было трудно печатать" }, { uz: "Fleshka uyda qolgan edi", ru: "Флешка осталась дома" }], correct: 3 },
+  { q: { uz: "Dropbox videosi chiqqach nima bo'ldi?", ru: "Что случилось после видео Dropbox?" }, opts: [{ uz: "Faqat do'stlari ko'rdi", ru: "Посмотрели только друзья" }, { uz: "Dastur yopib qo'yildi", ru: "Программу закрыли" }, { uz: "Videoni hech kim ko'rmadi", ru: "Видео никто не посмотрел" }, { uz: "75 000 kishi ro'yxatga yozildi", ru: "75 000 человек записались в список" }], correct: 3 },
+  { q: { uz: "Havola sizdan, do'st botni doim ishlatadi. Bot nima?", ru: "Ссылка от вас, друг постоянно пользуется ботом. Что такое бот?" }, opts: [{ uz: "Loyiha — havola sizdan", ru: "Проект — ссылка от вас" }, { uz: "Mahsulot — o'z ishi uchun", ru: "Продукт — для своего дела" }, { uz: "Mahsulot — havola bor", ru: "Продукт — есть ссылка" }, { uz: "Loyiha — bot kichik", ru: "Проект — бот маленький" }], correct: 1 },
+  { q: { uz: "Muammo yig'ishda sherikdan nimani so'raysiz?", ru: "Что спрашиваете у партнёра при сборе проблем?" }, opts: [{ uz: "Nimani kimdandir so'ragani", ru: "Что он у кого-то спрашивал" }, { uz: "Qanday ilova xohlashini", ru: "Какое приложение он хочет" }, { uz: "Qaysi ilova chiroyliroq", ru: "Какое приложение красивее" }, { uz: "G'oyangiz unga yoqadimi", ru: "Нравится ли ему ваша идея" }], correct: 0 },
+  { q: { uz: "Mentor nega maydon muammosini tanladi?", ru: "Почему ментор выбрал проблему с полем?" }, opts: [{ uz: "Futbolni yaxshi ko'rgani", ru: "Любит футбол" }, { uz: "Maydon qurish arzonligi", ru: "Построить поле дёшево" }, { uz: "O'yinchilardan so'ray olgani", ru: "Можно спросить у игроков" }, { uz: "Ro'yxatda birinchi turgani", ru: "Стоит первой в списке" }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

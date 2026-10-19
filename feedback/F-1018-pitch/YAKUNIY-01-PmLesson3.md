@@ -6,7 +6,7 @@ lessonId `pm-pitch-03-v19` → **`pm-pitch-03-v20`** (eski progress qayta boshla
 | № | id | Ekran | O'quvchi | Ball |
 |---|---|---|---|---|
 | 1 | s0 | Kirish — ikki variant nutq | 2 variantni o'qiydi, «qaysi biri ushlaydi?» 3 variantdan tanlaydi; javob qisqa (216) | — |
-| 2 | s1 | Reja — 3 daqiqa 6 bo'lak | chiziq 20·30·25·60·25·20 s; 4 qadam: aniqlaysiz · ikki ekranda yozasiz · ovoz chiqarib aytasiz · sherik bilan savol-javob | — |
+| 2 | s1 | Reja — 3 daqiqa 6 bo'lak | chiziq 20·30·25·60·25·20 s; 4 qadam: aniqlang · ikki ekranda yozing · ovoz chiqarib ayting · sherik bilan savol-javob | — |
 | 3 | s2 | Nutq varag'i 1 — muammo + birinchi savol | sayt turi → 3 savol (chip yoki o'zi yozadi) → gap yig'iladi («Sinfdoshlarim … Mening saytim …») → **birinchi savol** maydoni (namuna mentor gapida); tugma «Javob bering (n/4)» → «Davom etish» | — (nishon Problem Finder!) |
 | 4 | s3 | Nutq varag'i 2 — yechim + jonli demo | chap: tanish ilovalar jumlasi (4 tugma) + «Saytingiz nima qiladi? Bitta jumla»; o'ng: demo 3 qadam (bosib ochiladi) + sayt manzili (m1-11 Deploy `ccPitch3.link` dan to'lib keladi). «Qanday qildim» va «Keyingi qadam» tayyor gap bilan nutqqa tushadi | — |
 | 5 | s4 | Test — «Jonli demoda zaldagi odamga nimani ko'rsatasiz?» | 4 variant, to'g'ri C (saytning o'zi); RECAPS {4} mentor-statistikasiga ulangan | 1 (INLINE_KEYS s4: 2) |

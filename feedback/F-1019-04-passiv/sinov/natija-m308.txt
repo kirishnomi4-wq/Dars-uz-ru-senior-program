@@ -1,0 +1,15 @@
+s3 boshida: nav=Savollarga javob bering (0/3) (yopiq) · bosiladigan token: 0 · joriy token: fetch
+  1 «fetch serverga boradi. U yerdagi ro'yxat bilan nima qiladi?»: xato «Yangi o'yin qo'shib qaytadi» → «Bu GET so'rovi: u faqat oladi, ro'yxatga hech narsa qo'shmaydi.» (tugma yopildi: true)
+  1 «fetch serverga boradi. U yerdagi ro'yxat bilan nima qiladi?»: xato «Ro'yxatni serverdan ko'chirib oladi» → «Ro'yxat serverda qoladi — boshqa qurilmalar ham undan oladi.» (tugma yopildi: true)
+  1: to'g'ri «Faqat o'qiydi va olib keladi» ✓ · pasport: ["GET — borib olib kel","?","?"] · izoh-karta: fetch — buyruq · nav=Savollarga javob bering (1/3) (yopiq)
+  2 «Belgilangan qism fetch buyrug'iga nimani aytadi?»: xato «Serverdagi qaysi bo'lim kerakligini» → «Bo'limni oxiridagi /games aytadi; bu qism faqat serverni bildiradi.» (tugma yopildi: true)
+  2 «Belgilangan qism fetch buyrug'iga nimani aytadi?»: xato «Bizning saytimiz qayerda turishini» → «Bu sizning saytingiz emas — ma'lumot turgan server manzili.» (tugma yopildi: true)
+  2: to'g'ri «Qaysi serverga borish kerakligini» ✓ · pasport: ["GET — borib olib kel","https://robo-api.example","?"] · izoh-karta: https://robo-api.example — server manzili · nav=Savollarga javob bering (2/3) (yopiq)
+  3 «Oxiridagi /games nimani bildiradi?»: xato «Kompyuteringizdagi papka nomini» → «Bu serverdagi bo'lim — kompyuteringizdagi papka emas.» (tugma yopildi: true)
+  3 «Oxiridagi /games nimani bildiradi?»: xato «Serverdagi faqat birinchi o'yinni» → «/games bo'limdagi butun ro'yxatni so'raydi, bittasini emas.» (tugma yopildi: true)
+  3: to'g'ri «Server ichidagi kerakli bo'limni» ✓ · pasport: ["GET — borib olib kel","https://robo-api.example","/games"] · izoh-karta: /games — endpoint · nav=Davom etish (ochiq)
+s3 oxiri: nav=Davom etish (ochiq) · qaror karta qoldimi: false · 200 OK: true · xulosa: true
+saqlangan javob: {"correct":true,"picked":true}
+qaytganda: nav=Davom etish (ochiq) · qaror: false · pasport: ["GET — borib olib kel","https://robo-api.example","/games"]
+qayta yuklanganda: ekran=04 / 20 · nav=Davom etish (ochiq) · qaror: false
+pageerror: 0

@@ -151,10 +151,10 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 10-Modul `06-PmTrustAudit-v3.m
   tepada «Mashq hujjati — real to'lov qabul qilinmaydi», sarlavha «Pro shartlari», olti band sarlavhasi (Kim taklif qiladi · Nima beriladi · Narx va muddat · Pro tugasa · Bekor qilish va pulni qaytarish · Aloqa) — matnsiz: band matni va qaysi biri bugun yozilishi — 4-ekran kashfiyoti (P-015); sarlavhalar — haqiqiy mazmun (SABOQ 33).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
-  - 01 · To'lovchi nimaga rozi bo'lishini bilasiz
-  - 02 · Qaysi shart bugun yozilishini ajratasiz
-  - 03 · O'z shartlaringizni sahifaga yozasiz
-  - 04 · Siyosatga to'lov haqida gap qo'shib, havola qo'yasiz
+  - 01 · To'lovchi nimaga rozi bo'lishini bilib oling
+  - 02 · Qaysi shart bugun yozilishini ajrating
+  - 03 · O'z shartlaringizni sahifaga yozing
+  - 04 · Siyosatga to'lov haqida gap qo'shib, havola qo'ying
 - Pastki qator (mono, kichik): repo — o'z repo'ngiz · Mentor misoli `maydon-jamoa` · namuna `m13-dars-07-done`
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Menyu ostidagi «saytda» — dars natijasi: oferta va siyosat lending sahifalari bo'lib internetda turadi. Darsda hech kim pul olmaydi va hech narsa sotmaydi; oferta — mashq hujjati. Sotuvchi, pulni qaytarish va aloqa — real ishga tushirishda (bu kursda emas).

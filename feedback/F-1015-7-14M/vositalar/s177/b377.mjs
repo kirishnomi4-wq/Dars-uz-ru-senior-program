@@ -1,0 +1,15 @@
+import { chromium } from '/home/kali/Desktop/internetLesson/node_modules/playwright-core/index.mjs';
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
+const ctx = await b.newContext({ viewport: { width: 1280, height: 860 }, reducedMotion: 'reduce' }); const p = await ctx.newPage();
+const err = []; p.on('pageerror', e => err.push(e.message));
+await p.addInitScript(() => { localStorage.setItem('cc_lang', 'uz'); localStorage.setItem('ccProgress:pm-m11d1-v1', JSON.stringify({ screen: 8, answers: { 0: { stage: 'hook', picked: 'a' }, 8: { stage: 'practice', gapirdi: true, tab: 1, belgi: [null, null, null] } }, earned: [], total: 14, savedAt: Date.now() })); });
+await p.goto('http://localhost:5300/#/lesson/m11-01', { waitUntil: 'domcontentloaded' }); await p.waitForSelector('.lesson-root', { timeout: 15000 }).catch(() => {});
+await p.locator('[data-live=self]').first().click({ timeout: 6000 }).catch(() => {});
+await p.waitForTimeout(1300);
+const bb = p.locator('.bs-belgi-b'); await bb.nth(1).click(); await bb.nth(2).click(); await bb.nth(4).click(); await p.waitForTimeout(300);
+await p.locator('.bs-vq-iz input, .bs-vq-iz textarea').first().fill('sdfghjklqwrt'); await p.waitForTimeout(200);
+await p.getByRole('button', { name: '3 · Tuzating' }).click(); await p.waitForTimeout(400);
+console.log('gibberish:', await p.locator('.q-xato, .bs-varaq .q-xato').allInnerTexts().catch(() => []));
+await p.locator('.bs-vq-iz input, .bs-vq-iz textarea').first().fill('Manba aytilmadi'); await p.getByRole('button', { name: '3 · Tuzating' }).click(); await p.waitForTimeout(400);
+console.log('haqiqiy:', await p.locator('.bs-kartatab.joriy').innerText().catch(() => '-'), 'xato', err);
+await b.close();

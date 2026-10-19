@@ -1,0 +1,4103 @@
+[
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi edi.",
+  "q": {
+   "uz": "«Shu hodisa kelsa, shuni qil» deydigan kod qismi?",
+   "ru": "Часть кода «пришло событие — сделай это»?"
+  },
+  "opts": [
+   {
+    "uz": "Handler",
+    "ru": "Handler"
+   },
+   {
+    "uz": "Token",
+    "ru": "Токен"
+   },
+   {
+    "uz": "Webhook",
+    "ru": "Webhook"
+   },
+   {
+    "uz": ".env fayli",
+    "ru": "Файл .env"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun, jami 149 belgi edi.",
+  "q": {
+   "uz": "Token nima uchun kerak?",
+   "ru": "Зачем нужен токен?"
+  },
+  "opts": [
+   {
+    "uz": "Botning rangini belgilaydi",
+    "ru": "Задаёт цвет бота"
+   },
+   {
+    "uz": "Xabarni boshqa tilga o'giradi",
+    "ru": "Переводит сообщения"
+   },
+   {
+    "uz": "Botni sizniki deb tasdiqlaydi",
+    "ru": "Подтверждает, что бот ваш"
+   },
+   {
+    "uz": "Mijoz parolini saqlaydi",
+    "ru": "Хранит пароль клиента"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar va jami uzun edi (172).",
+  "q": {
+   "uz": "Mos handler va fallback yo'q. Bot nima qiladi?",
+   "ru": "Нет ни подходящего handler, ни fallback. Что сделает бот?"
+  },
+  "opts": [
+   {
+    "uz": "Xato chiqarib o'chadi",
+    "ru": "Выдаст ошибку и выключится"
+   },
+   {
+    "uz": "Tasodifiy javob yozadi",
+    "ru": "Напишет случайный ответ"
+   },
+   {
+    "uz": "Boshqa botga ulanadi",
+    "ru": "Подключится к другому боту"
+   },
+   {
+    "uz": "Jim qoladi, javob bermaydi",
+    "ru": "Промолчит, не ответит"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi (36 belgi).",
+  "q": {
+   "uz": "Bot tokenini kim beradi?",
+   "ru": "Кто выдаёт токен бота?"
+  },
+  "opts": [
+   {
+    "uz": "Telegram administratori",
+    "ru": "Администратор Telegram"
+   },
+   {
+    "uz": "Foydalanuvchi o'ylab topadi",
+    "ru": "Пользователь придумывает сам"
+   },
+   {
+    "uz": "@BotFather",
+    "ru": "@BotFather"
+   },
+   {
+    "uz": "Bot API o'zi yaratadi",
+    "ru": "Bot API создаёт сам"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun, jami 189 belgi edi.",
+  "q": {
+   "uz": "Token ochiq kodda qolsa, xavfi nima?",
+   "ru": "Токен остался в открытом коде — в чём опасность?"
+  },
+  "opts": [
+   {
+    "uz": "Begona odam bot nomidan yozadi",
+    "ru": "Чужой пишет от имени бота"
+   },
+   {
+    "uz": "Bot tezroq ishlay boshlaydi",
+    "ru": "Бот начнёт работать быстрее"
+   },
+   {
+    "uz": "Hech qanday xavf yo'q",
+    "ru": "Никакой опасности"
+   },
+   {
+    "uz": "Telegram botni o'chiradi",
+    "ru": "Telegram удалит бота"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi (41 belgi).",
+  "q": {
+   "uz": "Token oshkor bo'lsa, birinchi qadam nima?",
+   "ru": "Токен раскрыт — каков первый шаг?"
+  },
+  "opts": [
+   {
+    "uz": "/start bilan o'chirish",
+    "ru": "Удалить через /start"
+   },
+   {
+    "uz": "Telegram'ni qayta o'rnatish",
+    "ru": "Переустановить Telegram"
+   },
+   {
+    "uz": "/newbot bilan yangi bot",
+    "ru": "Новый бот через /newbot"
+   },
+   {
+    "uz": "/revoke bilan bekor qilish",
+    "ru": "Отменить через /revoke"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Variantlar uzun edi; «faqat kunduzi ishlaydi» savolga mos emasdi.",
+  "q": {
+   "uz": "Bot nega 03:00 da ham javob beradi?",
+   "ru": "Почему бот отвечает даже в 03:00?"
+  },
+  "opts": [
+   {
+    "uz": "Kechasi odam javob yozadi",
+    "ru": "Ночью отвечает человек"
+   },
+   {
+    "uz": "Dasturi hodisani kutib turadi",
+    "ru": "Программа ждёт событие"
+   },
+   {
+    "uz": "Telegram o'zi javob beradi",
+    "ru": "Telegram отвечает сам"
+   },
+   {
+    "uz": "Tasodifiy vaqtda yonadi",
+    "ru": "Включается в случайное время"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun, jami 199 belgi edi.",
+  "q": {
+   "uz": "Uch mijoz birdan yozsa, bot nima qiladi?",
+   "ru": "Трое клиентов пишут сразу. Что сделает бот?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat birinchisiga javob",
+    "ru": "Ответит только первому"
+   },
+   {
+    "uz": "Xabarlarni qo'shib yuboradi",
+    "ru": "Склеит сообщения в одно"
+   },
+   {
+    "uz": "Ertalabgacha kutdiradi",
+    "ru": "Заставит ждать до утра"
+   },
+   {
+    "uz": "Har biriga alohida javob",
+    "ru": "Ответит каждому отдельно"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 64 belgi, jami 167 edi.",
+  "q": {
+   "uz": "Hech bir handler mos kelmasa, nima yordam beradi?",
+   "ru": "Ни один handler не подошёл. Что поможет?"
+  },
+  "opts": [
+   {
+    "uz": "Fallback handler",
+    "ru": "Fallback handler"
+   },
+   {
+    "uz": "Botni qayta yoqish",
+    "ru": "Перезапустить бота"
+   },
+   {
+    "uz": "Bot API'ni yopish",
+    "ru": "Закрыть Bot API"
+   },
+   {
+    "uz": "Yangi token olish",
+    "ru": "Получить новый токен"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 149 belgi edi.",
+  "q": {
+   "uz": "Bugun o'rgangan uchta asosiy tushuncha?",
+   "ru": "Три главных понятия сегодняшнего урока?"
+  },
+  "opts": [
+   {
+    "uz": "Rang, shrift va dizayn",
+    "ru": "Цвет, шрифт и дизайн"
+   },
+   {
+    "uz": "Ekran, sichqoncha, klaviatura",
+    "ru": "Экран, мышь, клавиатура"
+   },
+   {
+    "uz": "Token, handler va sikl",
+    "ru": "Токен, handler и цикл"
+   },
+   {
+    "uz": "Rasm, video va ovoz",
+    "ru": "Фото, видео и звук"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 42 belgi, jami 182 edi.",
+  "q": {
+   "uz": "Birinchi foydalanuvchilar kim?",
+   "ru": "Кто такие первые пользователи?"
+  },
+  "opts": [
+   {
+    "uz": "Botni birinchi ishlatganlar",
+    "ru": "Первыми пользуются ботом"
+   },
+   {
+    "uz": "Bot yozishga yordam berganlar",
+    "ru": "Помогали писать бота"
+   },
+   {
+    "uz": "Botga bir marta yozganlar",
+    "ru": "Написали боту один раз"
+   },
+   {
+    "uz": "Bot haqida faqat eshitganlar",
+    "ru": "Только слышали о боте"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 48 belgi, jami 216 edi.",
+  "q": {
+   "uz": "Botga birinchi odamlarni kim olib keladi?",
+   "ru": "Кто приводит к боту первых людей?"
+  },
+  "opts": [
+   {
+    "uz": "Telegram — hammaga aytadi",
+    "ru": "Telegram — сообщает всем"
+   },
+   {
+    "uz": "Qidiruv — bot o'zi chiqadi",
+    "ru": "Поиск — бот всплывает сам"
+   },
+   {
+    "uz": "Bot — odamlarni chaqiradi",
+    "ru": "Бот — сам зовёт людей"
+   },
+   {
+    "uz": "Siz — o'zingiz aytasiz",
+    "ru": "Вы — рассказываете сами"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 46 belgi, jami 200 edi.",
+  "q": {
+   "uz": "Tanish guruhda xabar nega tez tarqaladi?",
+   "ru": "Почему в знакомой группе весть расходится быстро?"
+  },
+  "opts": [
+   {
+    "uz": "U yerda odam soni ko'p",
+    "ru": "Там много людей"
+   },
+   {
+    "uz": "Xabarni bot o'zi aytadi",
+    "ru": "Бот сам сообщает"
+   },
+   {
+    "uz": "Bir-birini tez-tez ko'radi",
+    "ru": "Часто видят друг друга"
+   },
+   {
+    "uz": "Bir-birini izlab yuradi",
+    "ru": "Ищут друг друга"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 171 belgi edi.",
+  "q": {
+   "uz": "Qaysi halqa ko'proq odam berdi?",
+   "ru": "Какое кольцо дало больше людей?"
+  },
+  "opts": [
+   {
+    "uz": "Sizni tanimaydiganlar",
+    "ru": "Те, кто вас не знает"
+   },
+   {
+    "uz": "Har kuni ko'rishadiganlar",
+    "ru": "Видятся каждый день"
+   },
+   {
+    "uz": "Ba'zan ko'rishadiganlar",
+    "ru": "Видятся иногда"
+   },
+   {
+    "uz": "Uchalasi bir xil",
+    "ru": "Все три одинаково"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgi, jami 185 edi.",
+  "q": {
+   "uz": "Katta guruhda odam ko'p — nega ishlatgani kam?",
+   "ru": "В большой группе людей много — почему пользуются мало?"
+  },
+  "opts": [
+   {
+    "uz": "U yerda bot ochilmaydi",
+    "ru": "Там бот не открывается"
+   },
+   {
+    "uz": "Ular sizni tanimaydi",
+    "ru": "Они вас не знают"
+   },
+   {
+    "uz": "Xabar u yerga yetmaydi",
+    "ru": "Весть туда не доходит"
+   },
+   {
+    "uz": "Bot u yerda sekin ishlaydi",
+    "ru": "Там бот работает медленно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 57 belgi, jami 245 edi.",
+  "q": {
+   "uz": "Xabar qaysi guruhda tez tarqaladi?",
+   "ru": "В какой группе весть расходится быстро?"
+  },
+  "opts": [
+   {
+    "uz": "Tanish: bir-biriga aytadi",
+    "ru": "Знакомой: рассказывают друг другу"
+   },
+   {
+    "uz": "Tanish: odam soni ko'p",
+    "ru": "Знакомой: людей много"
+   },
+   {
+    "uz": "Notanish: odam soni ko'p",
+    "ru": "Незнакомой: людей много"
+   },
+   {
+    "uz": "Notanish: bir-biriga aytadi",
+    "ru": "Незнакомой: рассказывают друг другу"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 44 belgi, jami 205 edi.",
+  "q": {
+   "uz": "Facebook 2004-yilda qayerda ochilgan?",
+   "ru": "Где открылся Facebook в 2004 году?"
+  },
+  "opts": [
+   {
+    "uz": "Butun dunyoda, hamma uchun",
+    "ru": "Во всём мире, для всех"
+   },
+   {
+    "uz": "Ikki shahardagi maktablarda",
+    "ru": "В школах двух городов"
+   },
+   {
+    "uz": "Uch shaharda, bittadan joyda",
+    "ru": "В трёх городах, по одному месту"
+   },
+   {
+    "uz": "Bitta universitetda",
+    "ru": "В одном университете"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 145 belgi edi.",
+  "q": {
+   "uz": "Facebook voqeasida nima ish bergan?",
+   "ru": "Что сработало в истории Facebook?"
+  },
+  "opts": [
+   {
+    "uz": "Saytning tez ochilishi",
+    "ru": "Сайт быстро открывался"
+   },
+   {
+    "uz": "Yozilgan odamlar soni",
+    "ru": "Число записавшихся"
+   },
+   {
+    "uz": "Odamlar bir-birini tanishi",
+    "ru": "Люди знали друг друга"
+   },
+   {
+    "uz": "Saytdagi tugmalar ko'pligi",
+    "ru": "Много кнопок на сайте"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 64 belgi, jami 202 edi.",
+  "q": {
+   "uz": "Qaysi biri tanish guruh?",
+   "ru": "Что из этого — знакомая группа?"
+  },
+  "opts": [
+   {
+    "uz": "Bir mahalladagi notanishlar",
+    "ru": "Незнакомые соседи по махалле"
+   },
+   {
+    "uz": "Sinfdoshlar: har kuni birga",
+    "ru": "Одноклассники: каждый день вместе"
+   },
+   {
+    "uz": "Kanalning 5000 obunachisi",
+    "ru": "5000 подписчиков канала"
+   },
+   {
+    "uz": "Bekatda avtobus kutganlar",
+    "ru": "Ждущие автобус на остановке"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 56, variantlar 39 belgi, jami 204 edi.",
+  "q": {
+   "uz": "Har guruh haqida nimalarni yozasiz?",
+   "ru": "Что вы пишете о каждой группе?"
+  },
+  "opts": [
+   {
+    "uz": "Guruh nomi va odamlar yoshi",
+    "ru": "Название и возраст людей"
+   },
+   {
+    "uz": "Faqat odam soni",
+    "ru": "Только число людей"
+   },
+   {
+    "uz": "Guruh nomi, admini, sanasi",
+    "ru": "Название, админ, дата"
+   },
+   {
+    "uz": "Nomi, kimlar bor, odam soni",
+    "ru": "Название, кто там, сколько людей"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 42 belgi, jami 183 edi.",
+  "q": {
+   "uz": "Bot tokeni qayerda saqlanadi?",
+   "ru": "Где хранится токен бота?"
+  },
+  "opts": [
+   {
+    "uz": "new Telegraf(...) qatorida",
+    "ru": "В строке new Telegraf(...)"
+   },
+   {
+    "uz": "README.md faylida",
+    "ru": "В файле README.md"
+   },
+   {
+    "uz": ".env faylida",
+    "ru": "В файле .env"
+   },
+   {
+    "uz": "@BotFather tavsifida",
+    "ru": "В описании у @BotFather"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 61 belgi, jami 239 edi.",
+  "q": {
+   "uz": "Telegraf nima?",
+   "ru": "Что такое Telegraf?"
+  },
+  "opts": [
+   {
+    "uz": "Bot uchun Node.js kutubxonasi",
+    "ru": "Библиотека Node.js для ботов"
+   },
+   {
+    "uz": "Node.js'dagi xabarlar bazasi",
+    "ru": "База сообщений в Node.js"
+   },
+   {
+    "uz": "Rasm yuklaydigan xizmat",
+    "ru": "Сервис загрузки картинок"
+   },
+   {
+    "uz": "Kompyuterdagi Telegram ilovasi",
+    "ru": "Приложение Telegram на компьютере"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 54 belgi, jami 213 edi.",
+  "q": {
+   "uz": "`ctx` nima?",
+   "ru": "Что такое `ctx`?"
+  },
+  "opts": [
+   {
+    "uz": "Bot sozlamalari fayli",
+    "ru": "Файл настроек бота"
+   },
+   {
+    "uz": "Parol saqlanadigan obyekt",
+    "ru": "Объект для хранения пароля"
+   },
+   {
+    "uz": "Server soati funksiyasi",
+    "ru": "Функция часов сервера"
+   },
+   {
+    "uz": "Hodisa haqidagi ma'lumot",
+    "ru": "Данные о событии"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 52 belgi, jami 233 edi.",
+  "q": {
+   "uz": "Inline tugma bosilganda nima bo'ladi?",
+   "ru": "Что происходит при нажатии inline-кнопки?"
+  },
+  "opts": [
+   {
+    "uz": "Matni chatga xabar bo'ladi",
+    "ru": "Текст уходит в чат"
+   },
+   {
+    "uz": "Botga tugma ma'lumoti keladi",
+    "ru": "Боту приходят данные кнопки"
+   },
+   {
+    "uz": "Serverga rasm yuklanadi",
+    "ru": "На сервер грузится картинка"
+   },
+   {
+    "uz": "Bot suhbatni tozalaydi",
+    "ru": "Бот очищает переписку"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 45 belgi, jami 224 edi.",
+  "q": {
+   "uz": "Reply klaviatura bosilsa nima bo'ladi?",
+   "ru": "Что происходит при нажатии reply-клавиатуры?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsa, u faqat bezak",
+    "ru": "Ничего, это украшение"
+   },
+   {
+    "uz": "Matni chatga xabar bo'ladi",
+    "ru": "Текст уходит в чат"
+   },
+   {
+    "uz": "Bot chatdan chiqib ketadi",
+    "ru": "Бот выходит из чата"
+   },
+   {
+    "uz": "Akkaunt bloklanadi",
+    "ru": "Аккаунт блокируется"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 42 belgi, jami 194 edi.",
+  "q": {
+   "uz": "`bot.action(...)` nimani ushlaydi?",
+   "ru": "Что ловит `bot.action(...)`?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat / bilan buyruqlarni",
+    "ru": "Только команды с /"
+   },
+   {
+    "uz": "Reply tugmadagi matnni",
+    "ru": "Текст reply-кнопки"
+   },
+   {
+    "uz": "Inline tugma bosilishini",
+    "ru": "Нажатие inline-кнопки"
+   },
+   {
+    "uz": "Yuborilgan rasm va fayllarni",
+    "ru": "Присланные фото и файлы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 55 belgi, jami 233 edi.",
+  "q": {
+   "uz": "`bot.hears(...)` nimani ushlaydi?",
+   "ru": "Что ловит `bot.hears(...)`?"
+  },
+  "opts": [
+   {
+    "uz": "Aniq matnli xabarni",
+    "ru": "Сообщение с точным текстом"
+   },
+   {
+    "uz": "Inline tugma bosilishini",
+    "ru": "Нажатие inline-кнопки"
+   },
+   {
+    "uz": "Bot yoqilgan-o'chganini",
+    "ru": "Включение и выключение бота"
+   },
+   {
+    "uz": "Faqat ovozli xabarlarni",
+    "ru": "Только голосовые"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 53 belgi, jami 223 edi.",
+  "q": {
+   "uz": "Fallback handler nima uchun kerak?",
+   "ru": "Зачем нужен fallback handler?"
+  },
+  "opts": [
+   {
+    "uz": "Bot tezroq ishlashi uchun",
+    "ru": "Чтобы бот работал быстрее"
+   },
+   {
+    "uz": "Rasmga xato yozish uchun",
+    "ru": "Чтобы писать ошибку на фото"
+   },
+   {
+    "uz": "Tokenni himoyalash uchun",
+    "ru": "Чтобы защитить токен"
+   },
+   {
+    "uz": "Har xabarga javob berish uchun",
+    "ru": "Чтобы ответить на любое сообщение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 174 belgi edi.",
+  "q": {
+   "uz": "`ctx.reply(...)` javobni qaysi chatga yuboradi?",
+   "ru": "В какой чат `ctx.reply(...)` шлёт ответ?"
+  },
+  "opts": [
+   {
+    "uz": "Bot egasining chatiga",
+    "ru": "В чат владельца бота"
+   },
+   {
+    "uz": "Oxirgi yozgan odamga",
+    "ru": "Последнему написавшему"
+   },
+   {
+    "uz": "Hamma foydalanuvchiga",
+    "ru": "Всем пользователям"
+   },
+   {
+    "uz": "Xabar kelgan chatga",
+    "ru": "В чат, откуда пришло сообщение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 62 belgi, jami 240 edi.",
+  "q": {
+   "uz": "Polling nimani bildiradi?",
+   "ru": "Что означает polling?"
+  },
+  "opts": [
+   {
+    "uz": "Telegram xabarni o'zi yuboradi",
+    "ru": "Telegram сам шлёт сообщение"
+   },
+   {
+    "uz": "Bot qayta-qayta xabar so'raydi",
+    "ru": "Бот снова и снова спрашивает"
+   },
+   {
+    "uz": "Ovozni matnga aylantirish",
+    "ru": "Перевод голоса в текст"
+   },
+   {
+    "uz": "Xabarlarni o'chirish",
+    "ru": "Удаление сообщений"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 53 belgi, jami 229 edi.",
+  "q": {
+   "uz": "`bot.launch()` nima qiladi?",
+   "ru": "Что делает `bot.launch()`?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi token yaratadi",
+    "ru": "Создаёт новый токен"
+   },
+   {
+    "uz": "Botni Telegram'dan o'chiradi",
+    "ru": "Удаляет бота из Telegram"
+   },
+   {
+    "uz": "Botni ishga tushiradi",
+    "ru": "Запускает бота"
+   },
+   {
+    "uz": "Bot rasmini yangilaydi",
+    "ru": "Обновляет фото бота"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 51 belgi, jami 255 edi.",
+  "q": {
+   "uz": "Bot nega oldingi javobni unutadi?",
+   "ru": "Почему бот забывает предыдущий ответ?"
+  },
+  "opts": [
+   {
+    "uz": "Internetda xabar yo'qoladi",
+    "ru": "Сообщение теряется в сети"
+   },
+   {
+    "uz": "Mijoz juda tez yozadi",
+    "ru": "Клиент пишет слишком быстро"
+   },
+   {
+    "uz": "Bot holatni saqlamaydi",
+    "ru": "Бот не хранит состояние"
+   },
+   {
+    "uz": "Telegram tartibni buzadi",
+    "ru": "Telegram путает порядок"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 80 belgi, jami 281 edi.",
+  "q": {
+   "uz": "Ikki mijoz aralashmasligi uchun nima kerak?",
+   "ru": "Что нужно, чтобы два клиента не смешивались?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta umumiy o'zgaruvchi",
+    "ru": "Одна общая переменная"
+   },
+   {
+    "uz": "Har biriga o'z boti",
+    "ru": "Каждому свой бот"
+   },
+   {
+    "uz": "Umumiy holat PostgreSQL'da",
+    "ru": "Общее состояние в PostgreSQL"
+   },
+   {
+    "uz": "Har biriga alohida sessiya",
+    "ru": "Каждому отдельная сессия"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 65 belgi, jami 226 edi.",
+  "q": {
+   "uz": "Qayta ishga tushganda qaysi ma'lumot qoladi?",
+   "ru": "Какие данные останутся после перезапуска?"
+  },
+  "opts": [
+   {
+    "uz": "PostgreSQL jadvalidagi",
+    "ru": "В таблице PostgreSQL"
+   },
+   {
+    "uz": "JavaScript obyektidagi",
+    "ru": "В объекте JavaScript"
+   },
+   {
+    "uz": "Hech qaysi biri",
+    "ru": "Никакие"
+   },
+   {
+    "uz": "Handler o'zgaruvchisidagi",
+    "ru": "В переменной handler"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 79, variantlar 55 belgi, jami 293 edi.",
+  "q": {
+   "uz": "Bot «o'lchamni kutyapman» deb yozib qo'ydi. Bu nima?",
+   "ru": "Бот записал «жду размер». Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Webhook",
+    "ru": "Webhook"
+   },
+   {
+    "uz": "Holat",
+    "ru": "Состояние"
+   },
+   {
+    "uz": "Token",
+    "ru": "Токен"
+   },
+   {
+    "uz": "Fallback",
+    "ru": "Fallback"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 44 belgi, jami 211 edi.",
+  "q": {
+   "uz": "SELECT botga nima uchun kerak?",
+   "ru": "Зачем боту SELECT?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi mijozni qo'shish uchun",
+    "ru": "Добавить нового клиента"
+   },
+   {
+    "uz": "Ma'lumotni o'chirish uchun",
+    "ru": "Удалить данные"
+   },
+   {
+    "uz": "Jadvalni qayta qurish uchun",
+    "ru": "Перестроить таблицу"
+   },
+   {
+    "uz": "Holatni bazadan o'qish uchun",
+    "ru": "Прочитать состояние из базы"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 93 belgi, jami 239 edi.",
+  "q": {
+   "uz": "Yangi mijoz /start bosdi, qatori yo'q. Qaysi buyruq?",
+   "ru": "Новый клиент нажал /start, строки нет. Какая команда?"
+  },
+  "opts": [
+   {
+    "uz": "SELECT",
+    "ru": "SELECT"
+   },
+   {
+    "uz": "INSERT",
+    "ru": "INSERT"
+   },
+   {
+    "uz": "UPDATE",
+    "ru": "UPDATE"
+   },
+   {
+    "uz": "DELETE",
+    "ru": "DELETE"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 68 belgi, jami 255 edi.",
+  "q": {
+   "uz": "Holat keyingi bosqichga qanday o'tadi?",
+   "ru": "Как состояние переходит на следующий шаг?"
+  },
+  "opts": [
+   {
+    "uz": "UPDATE bilan o'zgaradi",
+    "ru": "Меняется через UPDATE"
+   },
+   {
+    "uz": "INSERT bilan qo'shiladi",
+    "ru": "Добавляется через INSERT"
+   },
+   {
+    "uz": "SELECT bilan o'qiladi",
+    "ru": "Читается через SELECT"
+   },
+   {
+    "uz": "DELETE bilan o'chadi",
+    "ru": "Удаляется через DELETE"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 81 belgi, jami 247 edi.",
+  "q": {
+   "uz": "Holat koddagi obyektda: kamchiligi?",
+   "ru": "Состояние в объекте кода: в чём минус?"
+  },
+  "opts": [
+   {
+    "uz": "Botni juda sekinlashtiradi",
+    "ru": "Сильно замедляет бота"
+   },
+   {
+    "uz": "Diskda ko'p joy oladi",
+    "ru": "Занимает много места на диске"
+   },
+   {
+    "uz": "Qayta ishga tushsa, yo'qoladi",
+    "ru": "При перезапуске пропадает"
+   },
+   {
+    "uz": "Faqat bitta mijozga yetadi",
+    "ru": "Хватает только на одного клиента"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 44 belgi, jami 217 edi.",
+  "q": {
+   "uz": "users jadvalidagi `holat` ustuni nima uchun?",
+   "ru": "Зачем столбец `holat` в таблице users?"
+  },
+  "opts": [
+   {
+    "uz": "Mijoz ismini saqlash",
+    "ru": "Хранить имя клиента"
+   },
+   {
+    "uz": "Tanlangan pitsani saqlash",
+    "ru": "Хранить выбранную пиццу"
+   },
+   {
+    "uz": "Suhbat bosqichini saqlash",
+    "ru": "Хранить шаг беседы"
+   },
+   {
+    "uz": "Xabar vaqtini yozish",
+    "ru": "Записывать время сообщения"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 49 belgi, jami 235 edi.",
+  "q": {
+   "uz": "Har mijozga alohida sessiya nega kerak?",
+   "ru": "Зачем каждому клиенту отдельная сессия?"
+  },
+  "opts": [
+   {
+    "uz": "Suhbatlar aralashmaydi",
+    "ru": "Беседы не смешиваются"
+   },
+   {
+    "uz": "Bot tezroq ishlaydi",
+    "ru": "Бот работает быстрее"
+   },
+   {
+    "uz": "Qayta yonsa ham saqlanadi",
+    "ru": "Сохранится после перезапуска"
+   },
+   {
+    "uz": "Faqat katta botlarga kerak",
+    "ru": "Нужно только большим ботам"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 49 belgi, jami 229 edi.",
+  "q": {
+   "uz": "Xabar kelganda bot birinchi nima qiladi?",
+   "ru": "Что бот делает первым, когда приходит сообщение?"
+  },
+  "opts": [
+   {
+    "uz": "INSERT bilan qo'shadi",
+    "ru": "Добавляет через INSERT"
+   },
+   {
+    "uz": "SELECT bilan o'qiydi",
+    "ru": "Читает через SELECT"
+   },
+   {
+    "uz": "UPDATE bilan yozadi",
+    "ru": "Записывает через UPDATE"
+   },
+   {
+    "uz": "Ismini qayta so'raydi",
+    "ru": "Снова спрашивает имя"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 79 belgi, jami 273 edi.",
+  "q": {
+   "uz": "Qayta ishga tushsa ham suhbat saqlanishi uchun?",
+   "ru": "Чтобы беседа сохранилась и после перезапуска?"
+  },
+  "opts": [
+   {
+    "uz": "/start qayta bosilsin",
+    "ru": "Снова нажать /start"
+   },
+   {
+    "uz": "Internet tezroq bo'lsin",
+    "ru": "Интернет побыстрее"
+   },
+   {
+    "uz": "Holat obyektda tursin",
+    "ru": "Состояние в объекте"
+   },
+   {
+    "uz": "Holat PostgreSQL'da tursin",
+    "ru": "Состояние в PostgreSQL"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "javob-yoq",
+   "uzun"
+  ],
+  "izoh": "«To'g'ri» variant «texnologiya va token yo'q» degan, darsda esa ular promptda aytilmaydi (repo va .env'da); darsdagi sabab — juftlar va tugma turi yo'q.",
+  "q": {
+   "uz": "«Bot yasab ber» nega noaniq prompt?",
+   "ru": "Почему «сделай бота» — нечёткий промпт?"
+  },
+  "opts": [
+   {
+    "uz": "AI o'zbekchani tushunmaydi",
+    "ru": "AI не понимает узбекский"
+   },
+   {
+    "uz": "Juftlar va tugma turi yo'q",
+    "ru": "Нет пар и типа кнопок"
+   },
+   {
+    "uz": "«Iltimos» deyilmagan",
+    "ru": "Не сказано «пожалуйста»"
+   },
+   {
+    "uz": "AI bot kodini yoza olmaydi",
+    "ru": "AI не умеет писать ботов"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 44 belgi, jami 211 edi.",
+  "q": {
+   "uz": "Prompt yozishdan oldin nima qilinadi?",
+   "ru": "Что делают до того, как писать промпт?"
+  },
+  "opts": [
+   {
+    "uz": "Tayyor kod olinadi",
+    "ru": "Берётся готовый код"
+   },
+   {
+    "uz": "Kod → serverga joylanadi",
+    "ru": "Код → выкладывается на сервер"
+   },
+   {
+    "uz": "Token → kodga yoziladi",
+    "ru": "Токен → пишется в код"
+   },
+   {
+    "uz": "Hodisa → javob rejasi tuziladi",
+    "ru": "Составляется план событие → ответ"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgi, jami 181 edi.",
+  "q": {
+   "uz": "Bugungi promptda nima aytiladi?",
+   "ru": "Что говорится в сегодняшнем промпте?"
+  },
+  "opts": [
+   {
+    "uz": "Hodisa → javob, tugma turi",
+    "ru": "Событие → ответ, тип кнопки"
+   },
+   {
+    "uz": "Bot nomi → rangi, rasmi",
+    "ru": "Имя бота → цвет, картинка"
+   },
+   {
+    "uz": "Token → parol va login",
+    "ru": "Токен → пароль и логин"
+   },
+   {
+    "uz": "Server → domen va narx",
+    "ru": "Сервер → домен и цена"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 47 belgi, jami 215 edi.",
+  "q": {
+   "uz": "AI kod bergach, birinchi nima qilasiz?",
+   "ru": "AI дал код. Что вы делаете сначала?"
+  },
+  "opts": [
+   {
+    "uz": "Darrov mijozlarga beraman",
+    "ru": "Сразу отдаю клиентам"
+   },
+   {
+    "uz": "O'chirib, o'zim yozaman",
+    "ru": "Удаляю и пишу сам"
+   },
+   {
+    "uz": "O'qiyman va test qilaman",
+    "ru": "Читаю и тестирую"
+   },
+   {
+    "uz": "Yana o'sha kodni so'rayman",
+    "ru": "Прошу тот же код ещё раз"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi, jami 222 edi.",
+  "q": {
+   "uz": "Tugmali xabar keldi, bosilsa jim. Sabab?",
+   "ru": "Сообщение с кнопкой пришло, но нажатие — тишина. Причина?"
+  },
+  "opts": [
+   {
+    "uz": "Token noto'g'ri",
+    "ru": "Неверный токен"
+   },
+   {
+    "uz": "bot.action handleri yo'q",
+    "ru": "Нет handler bot.action"
+   },
+   {
+    "uz": "Reply tugma kerak edi",
+    "ru": "Нужна была reply-кнопка"
+   },
+   {
+    "uz": "bot.launch() yozilmagan",
+    "ru": "Не написан bot.launch()"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 58, jami 209 belgi edi.",
+  "q": {
+   "uz": "AI tokenni kodga ochiq yozdi. Nima qilasiz?",
+   "ru": "AI записал токен прямо в код. Что делать?"
+  },
+  "opts": [
+   {
+    "uz": ".env fayliga ko'chiraman",
+    "ru": "Перенесу в файл .env"
+   },
+   {
+    "uz": "bot.js oxiriga ko'chiraman",
+    "ru": "Перенесу в конец bot.js"
+   },
+   {
+    "uz": "Uzunroq qilib yozaman",
+    "ru": "Сделаю его длиннее"
+   },
+   {
+    "uz": "Shundayligicha qoldiraman",
+    "ru": "Оставлю как есть"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 50 belgi, jami 231 edi.",
+  "q": {
+   "uz": "AI bilan ishda kim nima qiladi?",
+   "ru": "Кто что делает при работе с AI?"
+  },
+  "opts": [
+   {
+    "uz": "AI hal qiladi, siz kutasiz",
+    "ru": "AI решает, вы ждёте"
+   },
+   {
+    "uz": "Siz yozasiz, AI o'qiydi",
+    "ru": "Вы пишете, AI читает"
+   },
+   {
+    "uz": "AI yozadi va o'zi tekshiradi",
+    "ru": "AI пишет и сам проверяет"
+   },
+   {
+    "uz": "AI kod yozadi, siz tekshirasiz",
+    "ru": "AI пишет код, вы проверяете"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 43 belgi, jami 208 edi.",
+  "q": {
+   "uz": "AI kodida qanday xato uchraydi?",
+   "ru": "Какая ошибка бывает в коде от AI?"
+  },
+  "opts": [
+   {
+    "uz": "Xato bo'lmaydi, u mukammal",
+    "ru": "Ошибок нет, он идеален"
+   },
+   {
+    "uz": "Tugma handleri yozilmay qoladi",
+    "ru": "Не написан handler кнопки"
+   },
+   {
+    "uz": "Faqat token xato bo'ladi",
+    "ru": "Ошибается только токен"
+   },
+   {
+    "uz": "Faqat sekin internetda",
+    "ru": "Только при медленном интернете"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 198 belgi edi.",
+  "q": {
+   "uz": "Test paytida xato topildi. Keyin nima qilinadi?",
+   "ru": "В тесте нашли ошибку. Что дальше?"
+  },
+  "opts": [
+   {
+    "uz": "Boshqa g'oya olinadi",
+    "ru": "Берут другую идею"
+   },
+   {
+    "uz": "Bot noldan yoziladi",
+    "ru": "Пишут бота с нуля"
+   },
+   {
+    "uz": "Tuzatish prompti yoziladi",
+    "ru": "Пишут промпт на исправление"
+   },
+   {
+    "uz": "Kod o'chirib tashlanadi",
+    "ru": "Удаляют код"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 50 belgi, jami 220 edi.",
+  "q": {
+   "uz": "Bot yozishning to'g'ri tartibi?",
+   "ru": "Правильный порядок создания бота?"
+  },
+  "opts": [
+   {
+    "uz": "Prompt → kod → ishlatish",
+    "ru": "Промпт → код → запуск"
+   },
+   {
+    "uz": "Test → reja → prompt → kod",
+    "ru": "Тест → план → промпт → код"
+   },
+   {
+    "uz": "Kod → ishlatish → tashlash",
+    "ru": "Код → запуск → бросить"
+   },
+   {
+    "uz": "Reja → prompt → kod → test",
+    "ru": "План → промпт → код → тест"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 45 belgi, jami 169 edi.",
+  "q": {
+   "uz": "«Iteratsiya» nima?",
+   "ru": "Что такое «итерация»?"
+  },
+  "opts": [
+   {
+    "uz": "Test → tuzatish → qayta test",
+    "ru": "Тест → исправление → снова тест"
+   },
+   {
+    "uz": "Yozish → tegmaslik",
+    "ru": "Написать → не трогать"
+   },
+   {
+    "uz": "Token → yangi token",
+    "ru": "Токен → новый токен"
+   },
+   {
+    "uz": "Bot → qayta ishga tushirish",
+    "ru": "Бот → перезапуск"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 48 belgi, jami 225 edi.",
+  "q": {
+   "uz": "AI yozsa ham, kodni tushunish nega kerak?",
+   "ru": "Зачем понимать код, если его пишет AI?"
+  },
+  "opts": [
+   {
+    "uz": "AI faqat bilganga yozadi",
+    "ru": "AI пишет только знающим"
+   },
+   {
+    "uz": "Aks holda AI yozmaydi",
+    "ru": "Иначе AI не станет писать"
+   },
+   {
+    "uz": "Xatoni topib tuzatish uchun",
+    "ru": "Чтобы найти и исправить ошибку"
+   },
+   {
+    "uz": "Kod tezroq ishlashi uchun",
+    "ru": "Чтобы код работал быстрее"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi, jami 188 edi.",
+  "q": {
+   "uz": "System prompt bo'lmasa, AI qanday javob beradi?",
+   "ru": "Без system prompt как ответит AI?"
+  },
+  "opts": [
+   {
+    "uz": "Umuman javob bermaydi",
+    "ru": "Вообще не ответит"
+   },
+   {
+    "uz": "Mavzudan chetga chiqadi",
+    "ru": "Уйдёт от темы"
+   },
+   {
+    "uz": "Faqat «tushunmadim» deydi",
+    "ru": "Скажет только «не понял»"
+   },
+   {
+    "uz": "Bot o'chib qoladi",
+    "ru": "Бот выключится"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "«Xulqi va chegarasi» darsdagi ifoda emas; darsda — u kim, qanday va nima haqida gapiradi.",
+  "q": {
+   "uz": "System prompt nimani belgilaydi?",
+   "ru": "Что задаёт system prompt?"
+  },
+  "opts": [
+   {
+    "uz": "AI javob yozish tezligini",
+    "ru": "Скорость ответа AI"
+   },
+   {
+    "uz": "Botning rangi va shriftini",
+    "ru": "Цвет и шрифт бота"
+   },
+   {
+    "uz": "Server joylashgan shaharni",
+    "ru": "Город, где стоит сервер"
+   },
+   {
+    "uz": "AI kimligi va mavzusini",
+    "ru": "Кто такой AI и о чём говорит"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi edi.",
+  "q": {
+   "uz": "Prompt nima?",
+   "ru": "Что такое промпт?"
+  },
+  "opts": [
+   {
+    "uz": "AI'ga yuboriladigan matn",
+    "ru": "Текст, который шлют AI"
+   },
+   {
+    "uz": "Botning xatolar jurnali",
+    "ru": "Журнал ошибок бота"
+   },
+   {
+    "uz": "AI API manzili",
+    "ru": "Адрес AI API"
+   },
+   {
+    "uz": "Telegram kanal nomi",
+    "ru": "Имя Telegram-канала"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi, jami 142 edi.",
+  "q": {
+   "uz": "Kontekst oynasi nima?",
+   "ru": "Что такое контекстное окно?"
+  },
+  "opts": [
+   {
+    "uz": "AI javob yozish tezligi",
+    "ru": "Скорость ответа AI"
+   },
+   {
+    "uz": "Telegram'dagi chat oynasi",
+    "ru": "Окно чата в Telegram"
+   },
+   {
+    "uz": "AI ko'ra oladigan matn hajmi",
+    "ru": "Объём текста, который видит AI"
+   },
+   {
+    "uz": "Bazadagi jadvallar soni",
+    "ru": "Число таблиц в базе"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi edi.",
+  "q": {
+   "uz": "Tarix oynaga sig'masa, qaysi xabar chiqib ketadi?",
+   "ru": "История не влезает в окно. Какое сообщение уйдёт?"
+  },
+  "opts": [
+   {
+    "uz": "Eng yangi xabar",
+    "ru": "Самое новое"
+   },
+   {
+    "uz": "Eng eski xabar",
+    "ru": "Самое старое"
+   },
+   {
+    "uz": "Eng qisqa xabar",
+    "ru": "Самое короткое"
+   },
+   {
+    "uz": "Tasodifiy bir xabar",
+    "ru": "Случайное"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 38 belgi, jami 196 edi.",
+  "q": {
+   "uz": "Ism yo'qolmasligi uchun bot nima qiladi?",
+   "ru": "Что делает бот, чтобы имя не потерялось?"
+  },
+  "opts": [
+   {
+    "uz": "Ismni bazada saqlaydi",
+    "ru": "Хранит имя в базе"
+   },
+   {
+    "uz": "Oynani kattalashtiradi",
+    "ru": "Увеличивает окно"
+   },
+   {
+    "uz": "Temperature'ni pastlatadi",
+    "ru": "Понижает temperature"
+   },
+   {
+    "uz": "AI'ni qayta yoqadi",
+    "ru": "Перезапускает AI"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi, jami 157 edi.",
+  "q": {
+   "uz": "Temperature past (0.1) bo'lsa, javob qanday?",
+   "ru": "Temperature низкая (0.1) — каким будет ответ?"
+  },
+  "opts": [
+   {
+    "uz": "Har safar boshqacha",
+    "ru": "Каждый раз другой"
+   },
+   {
+    "uz": "Har safar xato",
+    "ru": "Каждый раз ошибка"
+   },
+   {
+    "uz": "Juda uzun va batafsil",
+    "ru": "Очень длинный"
+   },
+   {
+    "uz": "Deyarli bir xil",
+    "ru": "Почти одинаковый"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 67 belgi, jami 174 edi.",
+  "q": {
+   "uz": "Temperature baland (1.5): menyu uchun nima yomon?",
+   "ru": "Temperature высокая (1.5): что плохо для меню?"
+  },
+  "opts": [
+   {
+    "uz": "Bot to'xtab qoladi",
+    "ru": "Бот остановится"
+   },
+   {
+    "uz": "Javob har safar boshqacha",
+    "ru": "Ответ каждый раз другой"
+   },
+   {
+    "uz": "Internet uziladi",
+    "ru": "Пропадёт интернет"
+   },
+   {
+    "uz": "API kaliti oshkor bo'ladi",
+    "ru": "Раскроется ключ API"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 70 belgi edi.",
+  "q": {
+   "uz": "Menyuni har safar bir xil aytish uchun qaysi temperature?",
+   "ru": "Какая temperature, чтобы меню звучало одинаково?"
+  },
+  "opts": [
+   {
+    "uz": "Baland (1.5)",
+    "ru": "Высокая (1.5)"
+   },
+   {
+    "uz": "O'rtacha, xohlagancha",
+    "ru": "Средняя, любая"
+   },
+   {
+    "uz": "Past (0.1)",
+    "ru": "Низкая (0.1)"
+   },
+   {
+    "uz": "Har so'rovda boshqa",
+    "ru": "Разная в каждом запросе"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 75 belgi, jami 195 edi.",
+  "q": {
+   "uz": "AI menyuda yo'q «ananasli pitsa»ni aytdi. Bu nima?",
+   "ru": "AI назвал «пиццу с ананасом», которой нет в меню. Что это?"
+  },
+  "opts": [
+   {
+    "uz": "To'g'ri javob",
+    "ru": "Верный ответ"
+   },
+   {
+    "uz": "Bot API xatosi",
+    "ru": "Ошибка Bot API"
+   },
+   {
+    "uz": "Kalit oshkor bo'lgani",
+    "ru": "Утечка ключа"
+   },
+   {
+    "uz": "Hallutsinatsiya",
+    "ru": "Галлюцинация"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 151 belgi edi.",
+  "q": {
+   "uz": "AI aytgan narx qachon tekshiriladi?",
+   "ru": "Когда проверяют цену, названную AI?"
+  },
+  "opts": [
+   {
+    "uz": "Mijozga yuborishdan oldin",
+    "ru": "До отправки клиенту"
+   },
+   {
+    "uz": "Hech qachon",
+    "ru": "Никогда"
+   },
+   {
+    "uz": "Temperature past bo'lsagina",
+    "ru": "Только при низкой temperature"
+   },
+   {
+    "uz": "Faqat mijoz shikoyat qilsa",
+    "ru": "Только если клиент жалуется"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 143 edi.",
+  "q": {
+   "uz": "AI API kaliti qayerda saqlanadi?",
+   "ru": "Где хранится ключ AI API?"
+  },
+  "opts": [
+   {
+    "uz": "bot.js kodida, ochiq holda",
+    "ru": "Открыто в коде bot.js"
+   },
+   {
+    "uz": "Mijozga chatda yuboriladi",
+    "ru": "Отправляется клиенту в чат"
+   },
+   {
+    "uz": ".env faylida",
+    "ru": "В файле .env"
+   },
+   {
+    "uz": "Telegram profil sozlamasida",
+    "ru": "В настройках профиля Telegram"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 171 belgi edi.",
+  "q": {
+   "uz": "To'liq botning to'rt qismi?",
+   "ru": "Четыре части полного бота?"
+  },
+  "opts": [
+   {
+    "uz": "Token, API, dizayn, reklama",
+    "ru": "Токен, API, дизайн, реклама"
+   },
+   {
+    "uz": "Token, handler, baza, AI",
+    "ru": "Токен, handler, база, AI"
+   },
+   {
+    "uz": "Handler, rasm, video, musiqa",
+    "ru": "Handler, фото, видео, музыка"
+   },
+   {
+    "uz": "Telefon, laptop, kabel, Wi-Fi",
+    "ru": "Телефон, ноутбук, кабель, Wi-Fi"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 46 belgi, jami 192 edi.",
+  "q": {
+   "uz": "Deploy nima degani?",
+   "ru": "Что значит deploy?"
+  },
+  "opts": [
+   {
+    "uz": "Kodni serverda ishga tushirish",
+    "ru": "Запустить код на сервере"
+   },
+   {
+    "uz": "Botni o'chirib, qayta yaratish",
+    "ru": "Удалить и пересоздать бота"
+   },
+   {
+    "uz": "Tokenni yangisiga almashtirish",
+    "ru": "Сменить токен на новый"
+   },
+   {
+    "uz": "Botga mijoz taklif qilish",
+    "ru": "Пригласить клиентов в бота"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 43 belgi, jami 154 edi.",
+  "q": {
+   "uz": "Server — bu nima?",
+   "ru": "Что такое сервер?"
+  },
+  "opts": [
+   {
+    "uz": "Telegram ichidagi kanal",
+    "ru": "Канал внутри Telegram"
+   },
+   {
+    "uz": "Laptopdagi alohida papka",
+    "ru": "Отдельная папка на ноутбуке"
+   },
+   {
+    "uz": "Doim ishlab turuvchi kompyuter",
+    "ru": "Компьютер, работающий без остановки"
+   },
+   {
+    "uz": "Telefondagi Telegram ilovasi",
+    "ru": "Telegram на телефоне"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgi, jami 194 edi.",
+  "q": {
+   "uz": "Botni serverga joylasak, nima o'zgaradi?",
+   "ru": "Что изменится, если выложить бота на сервер?"
+  },
+  "opts": [
+   {
+    "uz": "Bot sekinroq javob beradi",
+    "ru": "Бот отвечает медленнее"
+   },
+   {
+    "uz": "Laptopsiz ham javob beradi",
+    "ru": "Отвечает и без ноутбука"
+   },
+   {
+    "uz": "Faqat kunduzi javob beradi",
+    "ru": "Отвечает только днём"
+   },
+   {
+    "uz": "Hech narsa o'zgarmaydi",
+    "ru": "Ничего не изменится"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 53 belgi, qolganlardan ancha uzun edi.",
+  "q": {
+   "uz": "Serverda BOT_TOKEN qayerga yoziladi?",
+   "ru": "Куда на сервере записывают BOT_TOKEN?"
+  },
+  "opts": [
+   {
+    "uz": "Server sozlamalariga",
+    "ru": "В настройки сервера"
+   },
+   {
+    "uz": "bot.js kodining ichiga",
+    "ru": "Внутрь кода bot.js"
+   },
+   {
+    "uz": "Botning Telegram tavsifiga",
+    "ru": "В описание бота в Telegram"
+   },
+   {
+    "uz": "Hech qayerga, o'zi topadi",
+    "ru": "Никуда, сервер найдёт сам"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 43 belgi, jami 202 edi.",
+  "q": {
+   "uz": "Polling'da yangi xabarni kim so'raydi?",
+   "ru": "Кто при polling спрашивает о новых сообщениях?"
+  },
+  "opts": [
+   {
+    "uz": "Mijoz — Telegram'dan",
+    "ru": "Клиент — у Telegram"
+   },
+   {
+    "uz": "Telegram — botdan",
+    "ru": "Telegram — у бота"
+   },
+   {
+    "uz": "Server — mijozdan",
+    "ru": "Сервер — у клиента"
+   },
+   {
+    "uz": "Bot — Telegram'dan",
+    "ru": "Бот — у Telegram"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 50 belgi, jami 234 edi.",
+  "q": {
+   "uz": "Webhook'da xabarni botga kim yetkazadi?",
+   "ru": "Кто при webhook доставляет сообщение боту?"
+  },
+  "opts": [
+   {
+    "uz": "Bot o'zi so'rab oladi",
+    "ru": "Бот сам запрашивает"
+   },
+   {
+    "uz": "Telegram o'zi yuboradi",
+    "ru": "Telegram сам отправляет"
+   },
+   {
+    "uz": "Mijoz serverga yozadi",
+    "ru": "Клиент пишет на сервер"
+   },
+   {
+    "uz": "Hech kim, o'zi paydo bo'ladi",
+    "ru": "Никто, появляется само"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 44 belgi, jami 194 edi.",
+  "q": {
+   "uz": "Serverga joylashdan oldin nima qilinadi?",
+   "ru": "Что делают перед выкладкой на сервер?"
+  },
+  "opts": [
+   {
+    "uz": "Token kodga yoziladi",
+    "ru": "Токен пишут в код"
+   },
+   {
+    "uz": "Hech narsa qilinmaydi",
+    "ru": "Ничего"
+   },
+   {
+    "uz": "Laptopdagi baza o'chiriladi",
+    "ru": "Удаляют базу на ноутбуке"
+   },
+   {
+    "uz": "Kod laptopda sinab ko'riladi",
+    "ru": "Проверяют код на ноутбуке"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgi, jami 205 edi.",
+  "q": {
+   "uz": "AI javob bermasa, bot jim qolmasligi uchun?",
+   "ru": "Чтобы бот не молчал, если AI не ответил?"
+  },
+  "opts": [
+   {
+    "uz": "Xatoni ushlab, uzr so'raydi",
+    "ru": "Ловит ошибку и извиняется"
+   },
+   {
+    "uz": "Bot qo'lda qayta yoqiladi",
+    "ru": "Бота включают вручную"
+   },
+   {
+    "uz": "Yangi token olinadi",
+    "ru": "Берут новый токен"
+   },
+   {
+    "uz": "Hech narsa, o'zi tuzaladi",
+    "ru": "Ничего, само пройдёт"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 184 belgi edi.",
+  "q": {
+   "uz": "Laptop yopiq, bot javob beryapti. Nega?",
+   "ru": "Ноутбук закрыт, а бот отвечает. Почему?"
+  },
+  "opts": [
+   {
+    "uz": "Javoblar navbatda turgan",
+    "ru": "Ответы стояли в очереди"
+   },
+   {
+    "uz": "Telegram botni o'zi ishlatadi",
+    "ru": "Telegram сам запускает бота"
+   },
+   {
+    "uz": "Bot serverda ishlayapti",
+    "ru": "Бот работает на сервере"
+   },
+   {
+    "uz": "Mijoz botni yoqqan",
+    "ru": "Клиент включил бота"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 52 belgi, jami 208 edi.",
+  "q": {
+   "uz": "Suhbat nima?",
+   "ru": "Что такое беседа (интервью)?"
+  },
+  "opts": [
+   {
+    "uz": "Odamdan o'tgan ishini so'rash",
+    "ru": "Спросить человека о прошлом деле"
+   },
+   {
+    "uz": "O'zingiz taxmin qilish",
+    "ru": "Догадаться самому"
+   },
+   {
+    "uz": "Kelasi haftasini so'rash",
+    "ru": "Спросить о следующей неделе"
+   },
+   {
+    "uz": "Bot haqidagi fikrini so'rash",
+    "ru": "Спросить мнение о боте"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 151 belgi edi.",
+  "q": {
+   "uz": "Suhbatda nima so'raladi?",
+   "ru": "О чём спрашивают в беседе?"
+  },
+  "opts": [
+   {
+    "uz": "O'tgan ishga qo'ygan bahosi",
+    "ru": "Его оценку прошлого дела"
+   },
+   {
+    "uz": "Kelasi haftadagi rejasi",
+    "ru": "Его план на неделю"
+   },
+   {
+    "uz": "Bot haqidagi fikri",
+    "ru": "Его мнение о боте"
+   },
+   {
+    "uz": "O'tgan kunlarda qilgan ishi",
+    "ru": "Что он делал в прошлые дни"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 50 belgi, jami 181 edi.",
+  "q": {
+   "uz": "Voqea savoli nima?",
+   "ru": "Что такое вопрос о случае?"
+  },
+  "opts": [
+   {
+    "uz": "Kelajakni so'ragan savol",
+    "ru": "Вопрос о будущем"
+   },
+   {
+    "uz": "Kerakli tugmani so'ragan savol",
+    "ru": "Вопрос о нужной кнопке"
+   },
+   {
+    "uz": "Bo'lgan ishni so'ragan savol",
+    "ru": "Вопрос о том, что уже было"
+   },
+   {
+    "uz": "Javobi «ha» bo'ladigan savol",
+    "ru": "Вопрос с ответом «да»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 54 belgi, jami 189 edi.",
+  "q": {
+   "uz": "Bo'sh savol nima?",
+   "ru": "Что такое пустой вопрос?"
+  },
+  "opts": [
+   {
+    "uz": "Javobida ish ko'p aytilgan",
+    "ru": "В ответе много дел"
+   },
+   {
+    "uz": "Javobidan ish bilinmaydigan",
+    "ru": "Из ответа не видно дела"
+   },
+   {
+    "uz": "Suhbat oxiridagi savol",
+    "ru": "Вопрос в конце беседы"
+   },
+   {
+    "uz": "Ikki marta berilgan savol",
+    "ru": "Вопрос, заданный дважды"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 172 belgi edi.",
+  "q": {
+   "uz": "«Botim yoqdimi?» — qanday savol va nega?",
+   "ru": "«Понравился мой бот?» — какой это вопрос и почему?"
+  },
+  "opts": [
+   {
+    "uz": "Voqea: botni tilga oldi",
+    "ru": "О случае: упомянут бот"
+   },
+   {
+    "uz": "Bo'sh: ish so'ralmadi",
+    "ru": "Пустой: дело не спросили"
+   },
+   {
+    "uz": "Bo'sh: savol juda qisqa",
+    "ru": "Пустой: слишком короткий"
+   },
+   {
+    "uz": "Voqea: javobi bir og'iz",
+    "ru": "О случае: ответ в одно слово"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgi, jami 199 edi.",
+  "q": {
+   "uz": "«Oxirgi marta qachon unutgansiz?» — qanday savol?",
+   "ru": "«Когда вы в последний раз забыли?» — какой это вопрос?"
+  },
+  "opts": [
+   {
+    "uz": "Voqea: kunni so'radi",
+    "ru": "О случае: спросил день"
+   },
+   {
+    "uz": "Voqea: javobi «ha»",
+    "ru": "О случае: ответ «да»"
+   },
+   {
+    "uz": "Bo'sh: kelajakni so'radi",
+    "ru": "Пустой: спросил о будущем"
+   },
+   {
+    "uz": "Bo'sh: botni so'ramadi",
+    "ru": "Пустой: не спросил о боте"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 56 belgi, jami 161 edi.",
+  "q": {
+   "uz": "Suhbatdosh «Ha, ishlataman» dedi. Nima bilinadi?",
+   "ru": "Собеседник сказал «Да, буду пользоваться». Что это даёт?"
+  },
+  "opts": [
+   {
+    "uz": "Botni har kuni ochishi",
+    "ru": "Что он открывает бота ежедневно"
+   },
+   {
+    "uz": "Eslatmani bosgani",
+    "ru": "Что он нажал напоминание"
+   },
+   {
+    "uz": "Faqat uning va'dasi",
+    "ru": "Только его обещание"
+   },
+   {
+    "uz": "Vazifani unutgani",
+    "ru": "Что он забыл задание"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi edi.",
+  "q": {
+   "uz": "Varaqqa qaysi gap tushadi?",
+   "ru": "Какая фраза попадает на лист?"
+  },
+  "opts": [
+   {
+    "uz": "Siz chiqargan xulosa",
+    "ru": "Ваш вывод"
+   },
+   {
+    "uz": "Kerakli tugmalar ro'yxati",
+    "ru": "Список нужных кнопок"
+   },
+   {
+    "uz": "Hammaga oid umumiy gap",
+    "ru": "Общая фраза обо всех"
+   },
+   {
+    "uz": "Eshitgan javobning o'zi",
+    "ru": "Сам услышанный ответ"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 72 belgi, jami 200 edi.",
+  "q": {
+   "uz": "Uylar band qilinmagach, Airbnb asoschilari qayerga bordi?",
+   "ru": "Когда жильё не бронировали, куда поехали основатели Airbnb?"
+  },
+  "opts": [
+   {
+    "uz": "Nyu-Yorkka, uy egalariga",
+    "ru": "В Нью-Йорк, к хозяевам"
+   },
+   {
+    "uz": "San-Frantsiskodagi yig'inga",
+    "ru": "На встречу в Сан-Франциско"
+   },
+   {
+    "uz": "Mehmonxonalarga",
+    "ru": "В гостиницы"
+   },
+   {
+    "uz": "Hech qayerga",
+    "ru": "Никуда"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "«Ular» kimligi savolning o'zida yo'q edi; variantlar 44 belgi, jami 197.",
+  "q": {
+   "uz": "Airbnb asoschilari Nyu-Yorkda nimani bildi?",
+   "ru": "Что основатели Airbnb узнали в Нью-Йорке?"
+  },
+  "opts": [
+   {
+    "uz": "Narx juda baland ekanini",
+    "ru": "Что цена слишком высокая"
+   },
+   {
+    "uz": "Saytga kam kirishini",
+    "ru": "Что редко заходят на сайт"
+   },
+   {
+    "uz": "Suratlar yomon chiqqanini",
+    "ru": "Что фото получились плохими"
+   },
+   {
+    "uz": "Mehmonlar bekor qilishini",
+    "ru": "Что гости отменяют бронь"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 156 belgi edi.",
+  "q": {
+   "uz": "Suhbatni kimdan boshlaysiz?",
+   "ru": "С кого вы начнёте беседу?"
+  },
+  "opts": [
+   {
+    "uz": "Bot haqida eshitmagan odamdan",
+    "ru": "С того, кто не слышал о боте"
+   },
+   {
+    "uz": "Botingizni ishlatgan odamdan",
+    "ru": "С того, кто пользовался ботом"
+   },
+   {
+    "uz": "Sinfdagi a'lochi odamdan",
+    "ru": "С отличника класса"
+   },
+   {
+    "uz": "Bot yozishga yordamlashgandan",
+    "ru": "С того, кто помогал писать бота"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 163 belgi edi.",
+  "q": {
+   "uz": "Eshitgan javobni varaqqa qanday yozasiz?",
+   "ru": "Как вы запишете услышанный ответ?"
+  },
+  "opts": [
+   {
+    "uz": "«Hamma shunday deydi» deb",
+    "ru": "«Все так говорят»"
+   },
+   {
+    "uz": "Qisqartirib, xulosam bilan",
+    "ru": "Кратко, со своим выводом"
+   },
+   {
+    "uz": "Yozmayman, esimda qoladi",
+    "ru": "Не пишу, запомню"
+   },
+   {
+    "uz": "U aytganidek yozaman",
+    "ru": "Пишу так, как он сказал"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 71 belgi, jami 181 edi.",
+  "q": {
+   "uz": "«/start bosdim, menyu chiqmadi» — qaysi tur?",
+   "ru": "«Нажал /start, меню не появилось» — какой тип?"
+  },
+  "opts": [
+   {
+    "uz": "Maqtov: mijoz mamnun",
+    "ru": "Похвала: клиент доволен"
+   },
+   {
+    "uz": "Bug: joy va muammo bor",
+    "ru": "Баг: есть место и проблема"
+   },
+   {
+    "uz": "Taklif: yo'q narsa so'radi",
+    "ru": "Предложение: просит новое"
+   },
+   {
+    "uz": "Shovqin: e'tibor shart emas",
+    "ru": "Шум: можно не обращать внимания"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 143 belgi edi.",
+  "q": {
+   "uz": "«Yaxshi bot» degan fikr nega kam foydali?",
+   "ru": "Почему отзыв «Хороший бот» мало полезен?"
+  },
+  "opts": [
+   {
+    "uz": "Bu salbiy fikr",
+    "ru": "Это негативный отзыв"
+   },
+   {
+    "uz": "Maqtov kam uchraydi",
+    "ru": "Похвала редкость"
+   },
+   {
+    "uz": "Botni yomon ko'rsatadi",
+    "ru": "Выставляет бота плохим"
+   },
+   {
+    "uz": "Aniq joy aytilmagan",
+    "ru": "Не названо конкретное место"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 101 belgi, jami 241 edi.",
+  "q": {
+   "uz": "18 kishi bir xil, 1 kishi boshqa narsa yozdi. Qaysi avval?",
+   "ru": "18 человек написали одно, 1 — другое. Что сначала?"
+  },
+  "opts": [
+   {
+    "uz": "18 kishinikini",
+    "ru": "То, что написали 18"
+   },
+   {
+    "uz": "1 kishinikini",
+    "ru": "То, что написал 1"
+   },
+   {
+    "uz": "Ikkalasini birga",
+    "ru": "Оба сразу"
+   },
+   {
+    "uz": "Hech birini",
+    "ru": "Ни то, ни другое"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 197 belgi edi.",
+  "q": {
+   "uz": "Qaysi tuzatish birinchi — nimaga qarab?",
+   "ru": "Какую правку первой — по какому признаку?"
+  },
+  "opts": [
+   {
+    "uz": "Eng jahldor fikrga qarab",
+    "ru": "По самому злому отзыву"
+   },
+   {
+    "uz": "Birinchi kelgan fikrga",
+    "ru": "По первому пришедшему"
+   },
+   {
+    "uz": "Chastota va ta'sirga qarab",
+    "ru": "По частоте и влиянию"
+   },
+   {
+    "uz": "O'zimga qiziq tuyulganiga",
+    "ru": "По тому, что интересно мне"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "Darsda voronka ekrani yo'q; darsda faqat «ketib qolish (drop-off)» kartasi bor: o'sha qadamda nimadir xalaqit beradi.",
+  "q": {
+   "uz": "Ko'p odam suhbatning bir joyida ketdi. Demak?",
+   "ru": "Многие ушли в одном месте диалога. Значит?"
+  },
+  "opts": [
+   {
+    "uz": "Odamlar botdan mamnun",
+    "ru": "Люди довольны ботом"
+   },
+   {
+    "uz": "O'sha qadam xalaqit beryapti",
+    "ru": "Этот шаг чем-то мешает"
+   },
+   {
+    "uz": "Bot juda tez ishlayapti",
+    "ru": "Бот работает слишком быстро"
+   },
+   {
+    "uz": "Bu shunchaki tasodif",
+    "ru": "Это просто случайность"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "«Menyu tugmasi, 60 dan 15 ga» darsda yo'q; darsdagi misol — narx shikoyati (18 kishi). Savol 96 belgi edi.",
+  "q": {
+   "uz": "Narx qo'shilgach, shikoyat 18 dan 2 ga tushdi. Demak?",
+   "ru": "После добавления цены жалоб стало не 18, а 2. Значит?"
+  },
+  "opts": [
+   {
+    "uz": "Tuzatish ishlamadi",
+    "ru": "Правка не сработала"
+   },
+   {
+    "uz": "Sonlar tasodifiy",
+    "ru": "Числа случайны"
+   },
+   {
+    "uz": "Yangi bug chiqdi",
+    "ru": "Появился новый баг"
+   },
+   {
+    "uz": "Tuzatish ishladi",
+    "ru": "Правка сработала"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "tushunarsiz",
+   "uzun"
+  ],
+  "izoh": "«Sharhga javob yozish — tuzatish emas» chalkash edi; darsdagi g'oya — noaniq fikrda joy va muammo yo'q.",
+  "q": {
+   "uz": "«Bot ahmoq» fikridan nega tuzatish chiqmaydi?",
+   "ru": "Почему из отзыва «Бот тупой» не выйдет правки?"
+  },
+  "opts": [
+   {
+    "uz": "Unda joy va muammo yo'q",
+    "ru": "В нём нет места и проблемы"
+   },
+   {
+    "uz": "Unga javob yozib bo'lmaydi",
+    "ru": "На него нельзя ответить"
+   },
+   {
+    "uz": "Yozgan odam ishlatmagan",
+    "ru": "Автор не пользовался ботом"
+   },
+   {
+    "uz": "U maqtov hisoblanadi",
+    "ru": "Это считается похвалой"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 70 belgi, jami 220 edi; to'g'ri javob darsdagi «hozir emas» qaroriga yaqinlashtirildi.",
+  "q": {
+   "uz": "Taklif faqat 1 kishiga kerak. Nima qilasiz?",
+   "ru": "Предложение нужно только одному. Что вы сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Darrov qo'shaman",
+    "ru": "Сразу добавлю"
+   },
+   {
+    "uz": "U odamni bloklayman",
+    "ru": "Заблокирую его"
+   },
+   {
+    "uz": "«Hozir emas» deyman",
+    "ru": "Скажу «не сейчас»"
+   },
+   {
+    "uz": "Hamma so'rovni qo'shaman",
+    "ru": "Добавлю все просьбы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 174 belgi edi.",
+  "q": {
+   "uz": "Tuzatishdan keyin nima qilasiz?",
+   "ru": "Что вы делаете после правки?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsa: albatta ishlaydi",
+    "ru": "Ничего: точно сработает"
+   },
+   {
+    "uz": "Qayta o'lchayman",
+    "ru": "Снова измеряю"
+   },
+   {
+    "uz": "Yana katta o'zgarish qilaman",
+    "ru": "Делаю ещё большое изменение"
+   },
+   {
+    "uz": "Fikr yig'ishni to'xtataman",
+    "ru": "Перестаю собирать отзывы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 206 belgi edi.",
+  "q": {
+   "uz": "Birinchi versiya chiqdi. Ish tugadimi?",
+   "ru": "Первая версия вышла. Работа закончена?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q: fikr bilan yaxshilanadi",
+    "ru": "Нет: улучшается по отзывам"
+   },
+   {
+    "uz": "Ha: bu tayyor mahsulot",
+    "ru": "Да: это готовый продукт"
+   },
+   {
+    "uz": "Testlar o'tsa — tugadi",
+    "ru": "Если тесты прошли — да"
+   },
+   {
+    "uz": "Shikoyat kelmasa — tugadi",
+    "ru": "Если нет жалоб — да"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "tushunarsiz",
+   "uzun"
+  ],
+  "izoh": "Noaniq fikr bilan aniq o'zgarishni solishtirish chalkash edi, «menyu chalkash» misoli darsda yo'q; darsda — Antigravity'ga shikoyat emas, aniq o'zgarish beriladi.",
+  "q": {
+   "uz": "Antigravity'ga shikoyat o'rniga nima berasiz?",
+   "ru": "Что вы даёте Antigravity вместо жалобы?"
+  },
+  "opts": [
+   {
+    "uz": "Fikr yozgan odam ismini",
+    "ru": "Имя автора отзыва"
+   },
+   {
+    "uz": "Bot tokenini",
+    "ru": "Токен бота"
+   },
+   {
+    "uz": "Yangi g'oyalar ro'yxatini",
+    "ru": "Список новых идей"
+   },
+   {
+    "uz": "Aniq o'zgarishni",
+    "ru": "Конкретное изменение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 69 belgi, jami 217 edi.",
+  "q": {
+   "uz": "Maqtovga nega e'tibor berasiz?",
+   "ru": "Зачем обращать внимание на похвалу?"
+  },
+  "opts": [
+   {
+    "uz": "Maqtovni ham tuzatish kerak",
+    "ru": "Похвалу тоже надо править"
+   },
+   {
+    "uz": "Yozganga chegirma beriladi",
+    "ru": "Автору дают скидку"
+   },
+   {
+    "uz": "Nima yaxshi ishlashini aytadi",
+    "ru": "Говорит, что работает хорошо"
+   },
+   {
+    "uz": "Maqtovda ko'p bug bo'ladi",
+    "ru": "В похвале много багов"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 44 belgi, jami 194 edi.",
+  "q": {
+   "uz": "AI-bot va AI-agentning asosiy farqi?",
+   "ru": "Главное отличие AI-бота от AI-агента?"
+  },
+  "opts": [
+   {
+    "uz": "Agentning rangi boshqacha",
+    "ru": "У агента другой цвет"
+   },
+   {
+    "uz": "Agent qadamni o'zi tanlaydi",
+    "ru": "Агент сам выбирает шаг"
+   },
+   {
+    "uz": "Hech qanday farq yo'q",
+    "ru": "Разницы нет"
+   },
+   {
+    "uz": "Agent ancha sekin ishlaydi",
+    "ru": "Агент намного медленнее"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 157 belgi edi.",
+  "q": {
+   "uz": "Agent siklidagi «Amal» qadami nima?",
+   "ru": "Что такое шаг «Действие» в цикле агента?"
+  },
+  "opts": [
+   {
+    "uz": "Keyingi xabarni kutish",
+    "ru": "Ждать следующее сообщение"
+   },
+   {
+    "uz": "Salom va menyu yuborish",
+    "ru": "Отправить привет и меню"
+   },
+   {
+    "uz": "O'zini o'chirib qo'yish",
+    "ru": "Выключить себя"
+   },
+   {
+    "uz": "Tanlangan tool'ni chaqirish",
+    "ru": "Вызвать выбранный tool"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi edi.",
+  "q": {
+   "uz": "Tool nima?",
+   "ru": "Что такое tool?"
+  },
+  "opts": [
+   {
+    "uz": "Agent chaqiradigan funksiya",
+    "ru": "Функция, которую вызывает агент"
+   },
+   {
+    "uz": "Botning shrift sozlamasi",
+    "ru": "Настройка шрифта бота"
+   },
+   {
+    "uz": "Serverning IP-manzili",
+    "ru": "IP-адрес сервера"
+   },
+   {
+    "uz": "Internet tezligi",
+    "ru": "Скорость интернета"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 37 belgi, jami 188 edi.",
+  "q": {
+   "uz": "Agent tool'ni qanday tanlaydi?",
+   "ru": "Как агент выбирает tool?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatda birinchisini oladi",
+    "ru": "Берёт первый в списке"
+   },
+   {
+    "uz": "Tavakkaliga tanlaydi",
+    "ru": "Наугад"
+   },
+   {
+    "uz": "Maqsad va vaziyatga qarab",
+    "ru": "По цели и ситуации"
+   },
+   {
+    "uz": "Odam qo'lda tanlab beradi",
+    "ru": "Выбирает человек вручную"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgi, jami 195 edi.",
+  "q": {
+   "uz": "Agent bitta amalni bajardi. Endi nima qiladi?",
+   "ru": "Агент выполнил одно действие. Что дальше?"
+  },
+  "opts": [
+   {
+    "uz": "Shu zahoti to'xtaydi",
+    "ru": "Сразу останавливается"
+   },
+   {
+    "uz": "Natijaga qarab davom etadi",
+    "ru": "Смотрит на результат и продолжает"
+   },
+   {
+    "uz": "O'sha amalni takrorlaydi",
+    "ru": "Повторяет то же действие"
+   },
+   {
+    "uz": "Mijoz buyrug'ini kutadi",
+    "ru": "Ждёт команды клиента"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgi, jami 168 edi.",
+  "q": {
+   "uz": "Agentga siz qaysi uch narsani berasiz?",
+   "ru": "Какие три вещи вы даёте агенту?"
+  },
+  "opts": [
+   {
+    "uz": "Maqsad, tool'lar va chegara",
+    "ru": "Цель, tools и границы"
+   },
+   {
+    "uz": "Faqat system prompt",
+    "ru": "Только system prompt"
+   },
+   {
+    "uz": "Har hodisaga tayyor javob",
+    "ru": "Готовый ответ на каждое событие"
+   },
+   {
+    "uz": "Token va server manzili",
+    "ru": "Токен и адрес сервера"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 172 belgi edi.",
+  "q": {
+   "uz": "Chegara (guardrail) nima uchun kerak?",
+   "ru": "Зачем нужна граница (guardrail)?"
+  },
+  "opts": [
+   {
+    "uz": "Botni chiroyli ko'rsatish",
+    "ru": "Чтобы бот выглядел красиво"
+   },
+   {
+    "uz": "Javobni tezlashtirish",
+    "ru": "Чтобы ускорить ответ"
+   },
+   {
+    "uz": "Mijozga rang tanlash",
+    "ru": "Чтобы выбрать клиенту цвет"
+   },
+   {
+    "uz": "Xavfli amalni to'xtatish",
+    "ru": "Чтобы остановить опасное действие"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 146 belgi edi.",
+  "q": {
+   "uz": "Agent pul yechishdan oldin nima qilishi kerak?",
+   "ru": "Что агент должен сделать перед списанием денег?"
+  },
+  "opts": [
+   {
+    "uz": "Tasdiqsiz yechaverishi",
+    "ru": "Списать без подтверждения"
+   },
+   {
+    "uz": "Odamdan tasdiq so'rashi",
+    "ru": "Спросить подтверждение у человека"
+   },
+   {
+    "uz": "Botni o'chirib qo'yishi",
+    "ru": "Выключить бота"
+   },
+   {
+    "uz": "Tezroq yechishi",
+    "ru": "Списать побыстрее"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 184 belgi edi.",
+  "q": {
+   "uz": "Odam nazorati (human-in-the-loop) nima?",
+   "ru": "Что такое человеческий контроль (human-in-the-loop)?"
+  },
+  "opts": [
+   {
+    "uz": "Agent hammasini o'zi qiladi",
+    "ru": "Агент делает всё сам"
+   },
+   {
+    "uz": "Odam umuman aralashmaydi",
+    "ru": "Человек не вмешивается"
+   },
+   {
+    "uz": "Muhim qarorni odam qiladi",
+    "ru": "Важное решение принимает человек"
+   },
+   {
+    "uz": "Mijoz bloklanadi",
+    "ru": "Клиента блокируют"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgi, jami 182 edi.",
+  "q": {
+   "uz": "«Cheklangan tool'lar» nimani bildiradi?",
+   "ru": "Что означает «ограниченные tools»?"
+  },
+  "opts": [
+   {
+    "uz": "Tool'lar sekin ishlaydi",
+    "ru": "Tools работают медленно"
+   },
+   {
+    "uz": "Tool'lar bepul bo'ladi",
+    "ru": "Tools бесплатны"
+   },
+   {
+    "uz": "Agentga hamma tool beriladi",
+    "ru": "Агенту дают все tools"
+   },
+   {
+    "uz": "Faqat kerakli tool beriladi",
+    "ru": "Дают только нужные tools"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 33 belgi, jami 167 edi.",
+  "q": {
+   "uz": "Agent sikli qaysi tartibda ishlaydi?",
+   "ru": "В каком порядке идёт цикл агента?"
+  },
+  "opts": [
+   {
+    "uz": "Idrok → Qaror → Amal",
+    "ru": "Восприятие → Решение → Действие"
+   },
+   {
+    "uz": "Amal → Idrok → Qaror",
+    "ru": "Действие → Восприятие → Решение"
+   },
+   {
+    "uz": "Qaror → Amal → Idrok",
+    "ru": "Решение → Действие → Восприятие"
+   },
+   {
+    "uz": "Idrok → Amal → Qaror",
+    "ru": "Восприятие → Действие → Решение"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 37 belgi, jami 183 edi.",
+  "q": {
+   "uz": "Agent siklida «Qaror» qadamini kim bajaradi?",
+   "ru": "Кто выполняет шаг «Решение» в цикле агента?"
+  },
+  "opts": [
+   {
+    "uz": "Foydalanuvchi qo'lda tanlaydi",
+    "ru": "Пользователь выбирает вручную"
+   },
+   {
+    "uz": "Server tasodifiy tanlaydi",
+    "ru": "Сервер выбирает случайно"
+   },
+   {
+    "uz": "AI tool'ni tanlaydi",
+    "ru": "AI выбирает tool"
+   },
+   {
+    "uz": "Tool AI'siz hal qiladi",
+    "ru": "Tool решает без AI"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 32 belgi, jami 141 edi.",
+  "q": {
+   "uz": "Qaytgan odam kim?",
+   "ru": "Кто такой вернувшийся?"
+  },
+  "opts": [
+   {
+    "uz": "Kecha ham, bugun ham kelgan",
+    "ru": "Пришёл и вчера, и сегодня"
+   },
+   {
+    "uz": "Bugun birinchi kelgan",
+    "ru": "Пришёл сегодня впервые"
+   },
+   {
+    "uz": "Kecha kelib, bugun kelmagan",
+    "ru": "Был вчера, сегодня нет"
+   },
+   {
+    "uz": "Bugun ikki marta kelgan",
+    "ru": "Пришёл сегодня дважды"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgi, jami 145 edi.",
+  "q": {
+   "uz": "Bir kunda qaysi ikki son yoziladi?",
+   "ru": "Какие два числа записывают за день?"
+  },
+  "opts": [
+   {
+    "uz": "Kelganlar va e'lonlar",
+    "ru": "Пришедшие и объявления"
+   },
+   {
+    "uz": "Qaytganlar va so'zlar",
+    "ru": "Вернувшиеся и слова"
+   },
+   {
+    "uz": "Kunlar va soatlar",
+    "ru": "Дни и часы"
+   },
+   {
+    "uz": "Kelganlar va qaytganlar",
+    "ru": "Пришедшие и вернувшиеся"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 166 belgi edi.",
+  "q": {
+   "uz": "Hisobning 1-kunida qaytganlar nechta?",
+   "ru": "Сколько вернувшихся в 1-й день учёта?"
+  },
+  "opts": [
+   {
+    "uz": "Kelganlar soniga teng",
+    "ru": "Столько же, сколько пришло"
+   },
+   {
+    "uz": "Oldingi kundan olinadi",
+    "ru": "Берётся из прошлого дня"
+   },
+   {
+    "uz": "0 ta, oldingi kun yo'q",
+    "ru": "0, предыдущего дня нет"
+   },
+   {
+    "uz": "Ertasi kungi songa teng",
+    "ru": "Как на следующий день"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgi, jami 204 edi.",
+  "q": {
+   "uz": "Nega qaytganlar kelganlardan oshmaydi?",
+   "ru": "Почему вернувшихся не больше пришедших?"
+  },
+  "opts": [
+   {
+    "uz": "Bot bir marta sanaydi",
+    "ru": "Бот считает один раз"
+   },
+   {
+    "uz": "Ular shu kelganlar ichidan",
+    "ru": "Они — из числа пришедших"
+   },
+   {
+    "uz": "Kechagi ro'yxat o'chadi",
+    "ru": "Вчерашний список стирается"
+   },
+   {
+    "uz": "E'lon faqat kelganni oshiradi",
+    "ru": "Объявление растит только пришедших"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 143 belgi edi.",
+  "q": {
+   "uz": "Misoldagi e'lon qaysi sonni ko'tardi?",
+   "ru": "Какое число подняло объявление в примере?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat qaytganlarni",
+    "ru": "Только вернувшихся"
+   },
+   {
+    "uz": "O'sha kuni kelganlarni",
+    "ru": "Пришедших в тот день"
+   },
+   {
+    "uz": "Ikkalasini bir xil",
+    "ru": "Оба одинаково"
+   },
+   {
+    "uz": "Hech qaysisini",
+    "ru": "Ни одно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 68 belgi, jami 179 edi.",
+  "q": {
+   "uz": "Bugun 10 kishi, 3 tasi kecha ham kelgan. Qaytgan nechta?",
+   "ru": "Сегодня 10 человек, 3 были и вчера. Сколько вернулось?"
+  },
+  "opts": [
+   {
+    "uz": "3 — ikkala kunda",
+    "ru": "3 — были в оба дня"
+   },
+   {
+    "uz": "10 — bugungi hamma",
+    "ru": "10 — все сегодняшние"
+   },
+   {
+    "uz": "7 — kecha kelmaganlar",
+    "ru": "7 — не было вчера"
+   },
+   {
+    "uz": "13 — ikki son yig'indisi",
+    "ru": "13 — сумма двух чисел"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61, variantlar 42 belgi, jami 221 edi.",
+  "q": {
+   "uz": "Qaytganni bilishga bugungi son nega yetmaydi?",
+   "ru": "Почему сегодняшнего числа мало, чтобы узнать вернувшихся?"
+  },
+  "opts": [
+   {
+    "uz": "Odam kam keladi",
+    "ru": "Людей приходит мало"
+   },
+   {
+    "uz": "E'lon kunora beriladi",
+    "ru": "Объявление через день"
+   },
+   {
+    "uz": "Kechagi kunni ko'rsatmaydi",
+    "ru": "Не показывает вчерашний день"
+   },
+   {
+    "uz": "Kechqurun sanaladi",
+    "ru": "Считается вечером"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 42 belgi, jami 177 edi.",
+  "q": {
+   "uz": "Qaytish nimadan ko'rinadi?",
+   "ru": "Из чего видно возвращение?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta kunning katagidan",
+    "ru": "Из клетки одного дня"
+   },
+   {
+    "uz": "Kelganlar sonining o'sishidan",
+    "ru": "Из роста числа пришедших"
+   },
+   {
+    "uz": "Botdagi xabarlar sonidan",
+    "ru": "Из числа сообщений боту"
+   },
+   {
+    "uz": "Ikki kunni solishtirishdan",
+    "ru": "Из сравнения двух дней"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgi, jami 180 edi.",
+  "q": {
+   "uz": "Duolingo'dagi olov belgili raqam nimani sanaydi?",
+   "ru": "Что считает число с огоньком в Duolingo?"
+  },
+  "opts": [
+   {
+    "uz": "Ketma-ket dars kunlarini",
+    "ru": "Дни занятий подряд"
+   },
+   {
+    "uz": "Yodlangan so'zlar sonini",
+    "ru": "Число выученных слов"
+   },
+   {
+    "uz": "Ilovadagi soatlarni",
+    "ru": "Часы в приложении"
+   },
+   {
+    "uz": "Do'stlar bilan ballarni",
+    "ru": "Баллы с друзьями"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 69 belgi, jami 168 edi.",
+  "q": {
+   "uz": "Bir kun dars qilinmasa, olov raqami nima bo'ladi?",
+   "ru": "Если пропустить день, что станет с числом-огоньком?"
+  },
+  "opts": [
+   {
+    "uz": "Joyida turaveradi",
+    "ru": "Останется прежним"
+   },
+   {
+    "uz": "Bir kunga suriladi",
+    "ru": "Сдвинется на день"
+   },
+   {
+    "uz": "Noldan boshlanadi",
+    "ru": "Начнётся с нуля"
+   },
+   {
+    "uz": "Sekinroq o'sadi",
+    "ru": "Будет расти медленнее"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 48 belgi, jami 214 edi.",
+  "q": {
+   "uz": "Odam 1, 3 va 5-kunlari keldi. Nechta qaytish kuni?",
+   "ru": "Человек приходил в 1, 3 и 5-й дни. Сколько дней возвращения?"
+  },
+  "opts": [
+   {
+    "uz": "Uchta — uch kun kelgan",
+    "ru": "Три — приходил три дня"
+   },
+   {
+    "uz": "Yo'q — oldingi kun bo'sh",
+    "ru": "Ни одного — прошлый день пуст"
+   },
+   {
+    "uz": "Ikkita — 3 va 5-kun",
+    "ru": "Два — 3-й и 5-й"
+   },
+   {
+    "uz": "Bitta — 5-kun",
+    "ru": "Один — 5-й"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 54 belgi, jami 171 edi.",
+  "q": {
+   "uz": "Botingizning uch kunlik hisobini kim yozdi?",
+   "ru": "Кто записал трёхдневный учёт вашего бота?"
+  },
+  "opts": [
+   {
+    "uz": "Bot o'zi sanab yozdi",
+    "ru": "Бот посчитал сам"
+   },
+   {
+    "uz": "Mentor yozib berdi",
+    "ru": "Записал ментор"
+   },
+   {
+    "uz": "Telegram hisobladi",
+    "ru": "Посчитал Telegram"
+   },
+   {
+    "uz": "O'zingiz yozdingiz",
+    "ru": "Вы сами"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi edi.",
+  "q": {
+   "uz": "Metrika nima?",
+   "ru": "Что такое метрика?"
+  },
+  "opts": [
+   {
+    "uz": "Sanab tekshiriladigan raqam",
+    "ru": "Число, которое можно проверить подсчётом"
+   },
+   {
+    "uz": "Bot haqidagi yaxshi fikr",
+    "ru": "Хорошее мнение о боте"
+   },
+   {
+    "uz": "Botga o'zingiz qo'ygan ball",
+    "ru": "Ваша оценка боту"
+   },
+   {
+    "uz": "Botdagi har qanday son",
+    "ru": "Любое число в боте"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 77 belgi edi.",
+  "q": {
+   "uz": "Kamola bugun 3 marta yozdi. «Bugun kelganlar»ga nechta?",
+   "ru": "Камола написала сегодня 3 раза. Сколько добавится к «Пришли сегодня»?"
+  },
+  "opts": [
+   {
+    "uz": "3 ta",
+    "ru": "3"
+   },
+   {
+    "uz": "2 ta",
+    "ru": "2"
+   },
+   {
+    "uz": "1 ta",
+    "ru": "1"
+   },
+   {
+    "uz": "0 ta",
+    "ru": "0"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 72 belgi edi.",
+  "q": {
+   "uz": "Kecha 10 odam keldi, 5 tasi bugun qaytdi. Necha foiz?",
+   "ru": "Вчера пришли 10 человек, 5 из них вернулись сегодня. Сколько процентов?"
+  },
+  "opts": [
+   {
+    "uz": "5 foiz",
+    "ru": "5 процентов"
+   },
+   {
+    "uz": "50 foiz",
+    "ru": "50 процентов"
+   },
+   {
+    "uz": "10 foiz",
+    "ru": "10 процентов"
+   },
+   {
+    "uz": "15 foiz",
+    "ru": "15 процентов"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 143 belgi edi.",
+  "q": {
+   "uz": "Darsdagi botda bosh raqam nimani sanaydi?",
+   "ru": "Что считает главное число у бота из урока?"
+  },
+  "opts": [
+   {
+    "uz": "Keragini olganlarni",
+    "ru": "Тех, кто получил нужное"
+   },
+   {
+    "uz": "Kelgan hamma odamni",
+    "ru": "Всех пришедших"
+   },
+   {
+    "uz": "Javob olgan hammani",
+    "ru": "Всех, кто получил ответ"
+   },
+   {
+    "uz": "Bot xabarlari sonini",
+    "ru": "Число сообщений бота"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 64 belgi, jami 161 edi.",
+  "q": {
+   "uz": "Bot «Tushunmadim» dedi. Bosh raqamga qo'shiladimi?",
+   "ru": "Бот ответил «Не понял». Это идёт в главное число?"
+  },
+  "opts": [
+   {
+    "uz": "Ha — bot javob berdi",
+    "ru": "Да — бот ответил"
+   },
+   {
+    "uz": "Ha — odam botga yozdi",
+    "ru": "Да — человек написал боту"
+   },
+   {
+    "uz": "Yo'q — /start bosmagan",
+    "ru": "Нет — не нажал /start"
+   },
+   {
+    "uz": "Yo'q — keragini olmadi",
+    "ru": "Нет — не получил нужное"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60, variantlar 38 belgi, jami 192 edi.",
+  "q": {
+   "uz": "Booking nega avval bir qismga ko'rsatadi?",
+   "ru": "Почему Booking сначала показывает части людей?"
+  },
+  "opts": [
+   {
+    "uz": "Rang hali tayyor emas",
+    "ru": "Цвет ещё не готов"
+   },
+   {
+    "uz": "Hamma birdan kirmaydi",
+    "ru": "Все не заходят сразу"
+   },
+   {
+    "uz": "Ikki guruhni solishtirish",
+    "ru": "Чтобы сравнить две группы"
+   },
+   {
+    "uz": "Server og'irlashmasin",
+    "ru": "Чтобы не нагружать сервер"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 151 belgi edi.",
+  "q": {
+   "uz": "Qaytganlar foizi qaysi savolga javob beradi?",
+   "ru": "На какой вопрос отвечает процент вернувшихся?"
+  },
+  "opts": [
+   {
+    "uz": "Bugun nechta odam keldi?",
+    "ru": "Сколько пришло сегодня?"
+   },
+   {
+    "uz": "Kechagilar bugun keldimi?",
+    "ru": "Вчерашние пришли сегодня?"
+   },
+   {
+    "uz": "Bot keragini berdimi?",
+    "ru": "Бот дал нужное?"
+   },
+   {
+    "uz": "Jami nechta yig'ildi?",
+    "ru": "Сколько набралось всего?"
+   }
+  ],
+  "correct": 1
+ }
+]

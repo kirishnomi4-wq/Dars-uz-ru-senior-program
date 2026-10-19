@@ -50,13 +50,19 @@ const OUT_MAP = [
   ['src/4a-Modull', '6-M'],          // LMS kursidagi 6-Modul (Nest + test + CI/CD)
   ['src/4b-Modull', '6-M'],
   ['src/4c-Modull', '6-M'],
+  // F-1017-226: LMS 7–14 (ildizga tushib 1–2-M bilan aralashmasin)
+  ['src/5-Modull', '7-M'], ['src/pm/PmMetricsLesson.jsx', '7-M'], // m5-14 PM darsi
+  ['src/6-Modull', '8-M'], ['src/7-Modull', '9-M'], ['src/8-Modull', '10-M'], ['src/9-Modull', '11-M'],
+  ['src/10-Modull', '12-M'], ['src/11-Modull', '13-M'], ['src/12-Modull', '14-M'],
+  ['src/pm/PmJtbdLesson.jsx', '4-M'], // m3-17 (hozircha --skip)
 ];
 const outDirFor = (entry) => {
   const e = entry.replace(/\\/g, '/');
   const hit = OUT_MAP.find(([pref]) => e === pref || e.startsWith(pref + '/'));
   return hit ? join(OUT_DIR, hit[1]) : OUT_DIR;
 };
-const SRC_DIRS = ['src/1-Modull', 'src/2-Modull', 'src/3-Modull', 'src/4-Modull', 'src/4a-Modull', 'src/4b-Modull', 'src/4c-Modull'];
+const SRC_DIRS = ['src/1-Modull', 'src/2-Modull', 'src/3-Modull', 'src/4-Modull', 'src/4a-Modull', 'src/4b-Modull', 'src/4c-Modull',
+  'src/5-Modull', 'src/6-Modull', 'src/7-Modull', 'src/8-Modull', 'src/9-Modull', 'src/10-Modull', 'src/11-Modull', 'src/12-Modull']; // F-1017-226
 const COMPILER = 'src/compilator/HtmlCompiler.jsx';
 
 const RED = '\x1b[31m', GRN = '\x1b[32m', DIM = '\x1b[2m', B = '\x1b[1m', R = '\x1b[0m';

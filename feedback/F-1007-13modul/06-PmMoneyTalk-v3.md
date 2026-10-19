@@ -139,10 +139,10 @@ namunalar: 12-Modul `06-PmChannels-v3.md` + `06-FILTR.md` (juftlik va yakka reji
   Savol matni yo'q — 2-ekran kashfiyotini ochmaydi (P-036); ustun nomlari — haqiqiy mazmun (SABOQ 33).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
-  - 01 · Narxni suhbatning qayerida aytishni bilasiz
-  - 02 · Odamning javobini so'zma-so'z yozasiz
-  - 03 · O'z narxingiz uchun savollar yozasiz
-  - 04 · Sherigingiz bilan rol o'yinida mashq qilasiz
+  - 01 · Narxni suhbatning qayerida aytishni bilib oling
+  - 02 · Odamning javobini so'zma-so'z yozing
+  - 03 · O'z narxingiz uchun savollar yozing
+  - 04 · Sherigingiz bilan rol o'yinida mashq qiling
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Menyu ostidagi «uchta real suhbat» — dastur natijasi: darsda — suhbat savollari, rol o'yini va imkon bo'lsa bitta real suhbat; qolgani uyda (Qaror-0 11). Darsda hech kim pul olmaydi va hech narsa sotmaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011); «suhbat», «suhbat savollari», «rol o'yini» — faqat kulrang teglarda (P-015). Chap yorliq App.jsx ostini so'zma-so'z beradi, ostidagi kulrang qator uni darsdagi haqiqatga chegaralaydi (11-Modul 03-FILTR 1 sinfi: menyu osti darsda bo'lmaydigan sonni va'da qilmasin).

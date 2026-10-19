@@ -70,10 +70,10 @@ Vaqt: ≈ 70 daqiqa (kirish 2 · reja 1 · uch qator 4 · test 3 · muammo/yechi
 - Mentor: Dars oxirida beshta g'oya kartangiz bo'ladi. Ulardan biri bitiruvgacha quriladi. *(73-qonun: ekranda «keyingi darsda» va'dasi yo'q)*
 - Chap: yorliq «Dars oxirida — beshta shunday karta» · bitta to'ldirilgan karta (Ustaxona xaritasi: Muammo · Kim uchun · Yechim) va yonida «× 5»
 - Reja:
-  1. G'oyaning uch qatorini yozasiz
-  2. Muammoni yechimdan ajratasiz
-  3. Airbnb g'oyasi qayerdan kelganini ko'rasiz
-  4. Beshta g'oya yozib, bittasini sherigingizga tekshirtirasiz
+  1. G'oyaning uch qatorini yozing
+  2. Muammoni yechimdan ajrating
+  3. Airbnb g'oyasi qayerdan kelganini ko'ring
+  4. Beshta g'oya yozib, bittasini sherigingizga tekshirting
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Uch qator

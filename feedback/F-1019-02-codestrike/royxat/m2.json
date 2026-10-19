@@ -1,0 +1,4826 @@
+[
+ {
+  "key": "m1-01",
+  "file": "src/1-Modull/InternetLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "youtube.com yozib Enter bosdingiz. Brauzer ENG BIRINCHI kimga murojaat qiladi?",
+     "ru": "Вы набрали youtube.com и нажали Enter. К кому браузер обращается ПЕРВЫМ?"
+    },
+    "opts": [
+     {
+      "uz": "Serverga",
+      "ru": "К серверу"
+     },
+     {
+      "uz": "DNS'ga",
+      "ru": "К DNS"
+     },
+     {
+      "uz": "Ekranga",
+      "ru": "К экрану"
+     },
+     {
+      "uz": "Wi-Fi routerga",
+      "ru": "К Wi-Fi роутеру"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 78,
+     "maxVariant": 14,
+     "jami": 113,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "DNS'ning asl vazifasi qaysi qatorda?",
+     "ru": "В какой строке настоящая задача DNS?"
+    },
+    "opts": [
+     {
+      "uz": "Saytni ekranga chizish",
+      "ru": "Нарисовать сайт на экране"
+     },
+     {
+      "uz": "Sahifalarni saqlash",
+      "ru": "Хранить страницы"
+     },
+     {
+      "uz": "Domenni IP raqamga aylantirish",
+      "ru": "Превратить домен в IP-адрес"
+     },
+     {
+      "uz": "Internet tezligini oshirish",
+      "ru": "Повысить скорость интернета"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 30,
+     "jami": 134,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "142.250.190.78 va 142.250.190.87 — bular…",
+     "ru": "142.250.190.78 и 142.250.190.87 — это…"
+    },
+    "opts": [
+     {
+      "uz": "Ikki XIL kompyuter",
+      "ru": "Два РАЗНЫХ компьютера"
+     },
+     {
+      "uz": "Bitta kompyuter",
+      "ru": "Один компьютер"
+     },
+     {
+      "uz": "Bitta saytning ikki nomi",
+      "ru": "Два имени одного сайта"
+     },
+     {
+      "uz": "Xato yozilgan bitta IP",
+      "ru": "Один IP, записанный с ошибкой"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 24,
+     "jami": 120,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Server brauzerga aniq nima yuboradi?",
+     "ru": "Что именно сервер отправляет браузеру?"
+    },
+    "opts": [
+     {
+      "uz": "HTML kodni",
+      "ru": "HTML-код"
+     },
+     {
+      "uz": "Tayyor suratni",
+      "ru": "Готовую картинку"
+     },
+     {
+      "uz": "IP manzilni",
+      "ru": "IP-адрес"
+     },
+     {
+      "uz": "Yangi brauzerni",
+      "ru": "Новый браузер"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 15,
+     "jami": 86,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«Inter-net» so'zining asl ma'nosi nima?",
+     "ru": "Что на самом деле означает слово «Интер-нет»?"
+    },
+    "opts": [
+     {
+      "uz": "Tezkor aloqa",
+      "ru": "Быстрая связь"
+     },
+     {
+      "uz": "Simsiz aloqa",
+      "ru": "Беспроводная связь"
+     },
+     {
+      "uz": "Butunjahon kompyuteri",
+      "ru": "Всемирный компьютер"
+     },
+     {
+      "uz": "Tarmoqlararo",
+      "ru": "Между сетями"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 21,
+     "jami": 96,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "youtub.com (bir harf kam!) yozsangiz nima bo'ladi?",
+     "ru": "Что будет, если набрать youtub.com (одной буквы не хватает)?"
+    },
+    "opts": [
+     {
+      "uz": "YouTube baribir ochiladi",
+      "ru": "YouTube всё равно откроется"
+     },
+     {
+      "uz": "Kompyuter sekinlashadi",
+      "ru": "Компьютер замедлится"
+     },
+     {
+      "uz": "Butun internet uziladi",
+      "ru": "Весь интернет отключится"
+     },
+     {
+      "uz": "DNS saytni topolmaydi",
+      "ru": "DNS не найдёт сайт"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 24,
+     "jami": 139,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Sayt «yashaydigan», DOIM yoniq turadigan kompyuter?",
+     "ru": "Компьютер, где «живёт» сайт и который ВСЕГДА включён?"
+    },
+    "opts": [
+     {
+      "uz": "Router",
+      "ru": "Роутер"
+     },
+     {
+      "uz": "Server",
+      "ru": "Сервер"
+     },
+     {
+      "uz": "Brauzer",
+      "ru": "Браузер"
+     },
+     {
+      "uz": "Planshet",
+      "ru": "Планшет"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 8,
+     "jami": 78,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Qaysi biri DOMEN?",
+     "ru": "Что из этого — ДОМЕН?"
+    },
+    "opts": [
+     {
+      "uz": "142.250.190.78",
+      "ru": "142.250.190.78"
+     },
+     {
+      "uz": "Chrome",
+      "ru": "Chrome"
+     },
+     {
+      "uz": "wikipedia.org",
+      "ru": "wikipedia.org"
+     },
+     {
+      "uz": "HTML",
+      "ru": "HTML"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 17,
+     "maxVariant": 14,
+     "jami": 54,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "HTML kodni o'qib, chiroyli sahifaga aylantiradigan kim?",
+     "ru": "Кто читает HTML-код и превращает его в красивую страницу?"
+    },
+    "opts": [
+     {
+      "uz": "Server",
+      "ru": "Сервер"
+     },
+     {
+      "uz": "DNS",
+      "ru": "DNS"
+     },
+     {
+      "uz": "Domen",
+      "ru": "Домен"
+     },
+     {
+      "uz": "Brauzer",
+      "ru": "Браузер"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 7,
+     "jami": 76,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "So'rovning TO'G'RI tartibi qaysi?",
+     "ru": "Какой ПРАВИЛЬНЫЙ порядок запроса?"
+    },
+    "opts": [
+     {
+      "uz": "Brauzer → DNS → Server → Ekran",
+      "ru": "Браузер → DNS → Сервер → Экран"
+     },
+     {
+      "uz": "DNS → Brauzer → Ekran → Server",
+      "ru": "DNS → Браузер → Экран → Сервер"
+     },
+     {
+      "uz": "Server → Brauzer → DNS → Ekran",
+      "ru": "Сервер → Браузер → DNS → Экран"
+     },
+     {
+      "uz": "Brauzer → Server → DNS → Ekran",
+      "ru": "Браузер → Сервер → DNS → Экран"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 30,
+     "jami": 153,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "coddycamp.uz'dagi «.uz» nimani bildiradi?",
+     "ru": "Что означает «.uz» в coddycamp.uz?"
+    },
+    "opts": [
+     {
+      "uz": "Saytning nomi",
+      "ru": "Название сайта"
+     },
+     {
+      "uz": "O'zbekiston zonasi",
+      "ru": "Зона Узбекистана"
+     },
+     {
+      "uz": "Parol",
+      "ru": "Пароль"
+     },
+     {
+      "uz": "Serverning IP'si",
+      "ru": "IP сервера"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 18,
+     "jami": 93,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "DNS «telefon kitobi» bo'lsa, undagi ism va raqam nima?",
+     "ru": "Если DNS — «телефонная книга», что в ней имя и номер?"
+    },
+    "opts": [
+     {
+      "uz": "Ism=IP · Raqam=domen",
+      "ru": "Имя=IP · Номер=домен"
+     },
+     {
+      "uz": "Ism=brauzer · Raqam=server",
+      "ru": "Имя=браузер · Номер=сервер"
+     },
+     {
+      "uz": "Ism=domen · Raqam=IP",
+      "ru": "Имя=домен · Номер=IP"
+     },
+     {
+      "uz": "Ism=sayt · Raqam=parol",
+      "ru": "Имя=сайт · Номер=пароль"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 26,
+     "jami": 142,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-02",
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Sayt ENG AVVAL nima uchun yaratiladi?",
+     "ru": "Ради чего сайт создают В ПЕРВУЮ ОЧЕРЕДЬ?"
+    },
+    "opts": [
+     {
+      "uz": "Ko'proq odam kirib mashhur bo'lishi uchun",
+      "ru": "Чтобы заходило больше людей и он стал популярным"
+     },
+     {
+      "uz": "Egasiga ko'proq pul topib berishi uchun",
+      "ru": "Чтобы приносить владельцу больше денег"
+     },
+     {
+      "uz": "Aniq odamning muammosini yechish uchun",
+      "ru": "Чтобы решить проблему конкретного человека"
+     },
+     {
+      "uz": "Zamonaviy va chiroyli ko'rinishi uchun",
+      "ru": "Чтобы выглядеть современно и красиво"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 41,
+     "jami": 193,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "«Hamma uchun» qilingan sayt aslida…",
+     "ru": "Сайт, сделанный «для всех», на деле…"
+    },
+    "opts": [
+     {
+      "uz": "hech kim uchun bo'lib qoladi",
+      "ru": "оказывается ни для кого"
+     },
+     {
+      "uz": "eng ko'p odamni o'ziga yig'adi",
+      "ru": "собирает больше всего людей"
+     },
+     {
+      "uz": "eng tez va ravon ishlaydi",
+      "ru": "работает быстрее и глаже всех"
+     },
+     {
+      "uz": "eng ko'p pul ishlab topadi",
+      "ru": "зарабатывает больше всех денег"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 30,
+     "jami": 144,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Mahsulot menejeri birinchi bo'lib nimani aniqlaydi?",
+     "ru": "Что продакт-менеджер выясняет первым?"
+    },
+    "opts": [
+     {
+      "uz": "Sayt dizayni qanday bo'lishi kerakligini",
+      "ru": "Каким должен быть дизайн сайта"
+     },
+     {
+      "uz": "KIM va uning qanday MUAMMOSI borligini",
+      "ru": "КТО он и какая у него ПРОБЛЕМА"
+     },
+     {
+      "uz": "Saytga qanday zo'r nom topish kerakligini",
+      "ru": "Какое классное имя придумать сайту"
+     },
+     {
+      "uz": "Saytga qancha pul va vaqt ketishini",
+      "ru": "Сколько денег и времени уйдёт на сайт"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 41,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Sayt hech kimning muammosini yechmasa, nima bo'ladi?",
+     "ru": "Что будет, если сайт не решает ничьей проблемы?"
+    },
+    "opts": [
+     {
+      "uz": "Sayt tezroq ochiladigan bo'ladi",
+      "ru": "Сайт станет открываться быстрее"
+     },
+     {
+      "uz": "Sayt xuddi shunday ishlayveradi",
+      "ru": "Сайт будет работать как ни в чём не бывало"
+     },
+     {
+      "uz": "Saytga reklama ko'proq keladi",
+      "ru": "На сайт придёт больше рекламы"
+     },
+     {
+      "uz": "Unga hech kim kirmay qo'yadi",
+      "ru": "На него перестанут заходить"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 31,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "To'liq g'oyada qaysi uch javob bo'ladi?",
+     "ru": "Какие три ответа есть в полной идее?"
+    },
+    "opts": [
+     {
+      "uz": "KIM + MUAMMO + YECHIM",
+      "ru": "КТО + ПРОБЛЕМА + РЕШЕНИЕ"
+     },
+     {
+      "uz": "NOM + RANG + TUGMA",
+      "ru": "ИМЯ + ЦВЕТ + КНОПКА"
+     },
+     {
+      "uz": "DIZAYN + REKLAMA + PUL",
+      "ru": "ДИЗАЙН + РЕКЛАМА + ДЕНЬГИ"
+     },
+     {
+      "uz": "SAYT + ILOVA + O'YIN",
+      "ru": "САЙТ + ПРИЛОЖЕНИЕ + ИГРА"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 22,
+     "jami": 120,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Lavash do'koni saytiga kirgan O'QUVCHI birinchi nimaga qaraydi?",
+     "ru": "На что первым делом смотрит ШКОЛЬНИК на сайте лавашной?"
+    },
+    "opts": [
+     {
+      "uz": "Kelgan buyurtmalar ro'yxatiga",
+      "ru": "На список поступивших заказов"
+     },
+     {
+      "uz": "Doimiy buyurtma shartlariga",
+      "ru": "На условия постоянного заказа"
+     },
+     {
+      "uz": "Oldindan buyurtma tugmasiga",
+      "ru": "На кнопку заказа заранее"
+     },
+     {
+      "uz": "Saytning rangi va bezagiga",
+      "ru": "На цвет и оформление сайта"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 29,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Mashhurlik va pul — bu…",
+     "ru": "Популярность и деньги — это…"
+    },
+    "opts": [
+     {
+      "uz": "muammo yechilganidan keyingi NATIJA",
+      "ru": "РЕЗУЛЬТАТ после решённой проблемы"
+     },
+     {
+      "uz": "saytning eng birinchi maqsadi",
+      "ru": "самая первая цель сайта"
+     },
+     {
+      "uz": "faqat reklamaga bog'liq bo'lgan narsa",
+      "ru": "то, что зависит только от рекламы"
+     },
+     {
+      "uz": "faqat omad va tasodifga bog'liq narsa",
+      "ru": "то, что зависит только от удачи и случая"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 23,
+     "maxVariant": 37,
+     "jami": 161,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Qaysi biri ishlashga arziydigan REAL muammo?",
+     "ru": "Что из этого — НАСТОЯЩАЯ проблема, над которой стоит работать?"
+    },
+    "opts": [
+     {
+      "uz": "«Saytni chiroyli ko'k rangga bo'yash kerak»",
+      "ru": "«Надо покрасить сайт в красивый синий»"
+     },
+     {
+      "uz": "«Saytga zo'r va yodda qoladigan nom kerak»",
+      "ru": "«Сайту нужно классное запоминающееся имя»"
+     },
+     {
+      "uz": "«Saytga yana ko'proq tugma qo'shish kerak»",
+      "ru": "«Надо добавить на сайт ещё больше кнопок»"
+     },
+     {
+      "uz": "«Bekatda avtobusni qancha kutish noma'lum»",
+      "ru": "«На остановке неизвестно, сколько ждать автобус»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 43,
+     "jami": 213,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Do'stingiz g'oyasida MUAMMO katagi bo'sh. Bu nimani bildiradi?",
+     "ru": "В идее друга клетка ПРОБЛЕМА пустая. О чём это говорит?"
+    },
+    "opts": [
+     {
+      "uz": "G'oya baribir to'liq va tayyor",
+      "ru": "Идея всё равно полная и готовая"
+     },
+     {
+      "uz": "Sayt nima uchun kerakligi noma'lum",
+      "ru": "Непонятно, зачем нужен сайт"
+     },
+     {
+      "uz": "Faqat dizayn qismi yetishmayapti",
+      "ru": "Не хватает только части с дизайном"
+     },
+     {
+      "uz": "Faqat yaxshi nom yetishmayapti",
+      "ru": "Не хватает только хорошего имени"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 62,
+     "maxVariant": 34,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Bitta saytga kiradigan har xil odamlar (o'quvchi, sotuvchi, ofis xodimi)…",
+     "ru": "Разные люди на одном сайте (школьник, продавец, офисный работник)…"
+    },
+    "opts": [
+     {
+      "uz": "hammasi bir xil narsani izlaydi",
+      "ru": "все ищут одно и то же"
+     },
+     {
+      "uz": "faqat dizaynga qaraydi",
+      "ru": "смотрят только на дизайн"
+     },
+     {
+      "uz": "har biri O'ZINIKINI izlaydi",
+      "ru": "каждый ищет СВОЁ"
+     },
+     {
+      "uz": "faqat narxga qaraydi",
+      "ru": "смотрят только на цену"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 73,
+     "maxVariant": 31,
+     "jami": 173,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Yechim qanday bo'lishi SHART?",
+     "ru": "Каким РЕШЕНИЕ обязано быть?"
+    },
+    "opts": [
+     {
+      "uz": "Iloji boricha kattaroq",
+      "ru": "Как можно более крупным"
+     },
+     {
+      "uz": "Aynan o'sha muammoga mos",
+      "ru": "Подходящим именно к той проблеме"
+     },
+     {
+      "uz": "Hammaga birdek yoqadigan",
+      "ru": "Нравящимся всем одинаково"
+     },
+     {
+      "uz": "Eng zamonaviy uslubda",
+      "ru": "В самом современном стиле"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 29,
+     "maxVariant": 24,
+     "jami": 120,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "«Tanaffusda shoshgan o'quvchilar uchun lavashni oldindan buyurtma qilish» — bu g'oyada nima aniq?",
+     "ru": "«Заказ лаваша заранее для школьников, которые спешат на перемене» — что в этой идее ясно?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat YECHIM qismi aniq",
+      "ru": "Ясна только часть РЕШЕНИЕ"
+     },
+     {
+      "uz": "Faqat KIM aniq, qolgani yo'q",
+      "ru": "Ясно только КТО, остальное нет"
+     },
+     {
+      "uz": "Hech narsa umuman aniq emas",
+      "ru": "Вообще ничего не ясно"
+     },
+     {
+      "uz": "KIM ham, MUAMMO ham, YECHIM ham",
+      "ru": "И КТО, и ПРОБЛЕМА, и РЕШЕНИЕ"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 97,
+     "maxVariant": 31,
+     "jami": 206,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-03",
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Yopuvchi teg qaysi belgi bilan boshlanadi?",
+     "ru": "С какого символа начинается закрывающий тег?"
+    },
+    "opts": [
+     "`\\`",
+     "`!`",
+     "`#`",
+     "`/`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 3,
+     "jami": 54,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Sarlavha teglaridan eng KICHIGI qaysi?",
+     "ru": "Какой из тегов заголовков — самый МАЛЕНЬКИЙ?"
+    },
+    "opts": [
+     "`h1`",
+     "`h3`",
+     "`h6`",
+     "`p`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 4,
+     "jami": 53,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Tartibsiz (nuqtali) ro'yxatni qaysi teg boshlaydi?",
+     "ru": "Какой тег начинает маркированный (с точками) список?"
+    },
+    "opts": [
+     "`ul`",
+     "`ol`",
+     "`li`",
+     "`a`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 4,
+     "jami": 65,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Ro'yxatning har bir bandi qaysi tegga o'raladi?",
+     "ru": "В какой тег оборачивается каждый пункт списка?"
+    },
+    "opts": [
+     "`ul`",
+     "`li`",
+     "`ol`",
+     "`dd`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 4,
+     "jami": 63,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Havolada (link) manzil qaysi atributga yoziladi?",
+     "ru": "В какой атрибут ссылки пишется адрес?"
+    },
+    "opts": [
+     "`src`",
+     "`link`",
+     "`href`",
+     "`url`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 6,
+     "jami": 70,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`title` tegidagi matn qayerda ko'rinadi?",
+     "ru": "Где виден текст из тега `title`?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifaning o'rtasida",
+      "ru": "В центре страницы"
+     },
+     {
+      "uz": "Brauzer yorlig'ida",
+      "ru": "На вкладке браузера"
+     },
+     {
+      "uz": "Tugmaning ustida",
+      "ru": "На кнопке"
+     },
+     {
+      "uz": "Hech qayerda ko'rinmaydi",
+      "ru": "Нигде не виден"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 24,
+     "jami": 118,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Ko'rinmaydigan sozlamalar (`title`, `meta`) qaysi qismga yoziladi?",
+     "ru": "В какую часть пишутся невидимые настройки (`title`, `meta`)?"
+    },
+    "opts": [
+     "`body`",
+     "`p`",
+     "`head`",
+     "`h1`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 6,
+     "jami": 85,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Matnni QALIN (bold) qilish uchun qaysi teg?",
+     "ru": "Какой тег делает текст ЖИРНЫМ (bold)?"
+    },
+    "opts": [
+     "`strong`",
+     "`em`",
+     "`p`",
+     "`i`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 8,
+     "jami": 61,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`<!DOCTYPE html>` nimani bildiradi?",
+     "ru": "Что означает `<!DOCTYPE html>`?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifaning fon rangini",
+      "ru": "Цвет фона страницы"
+     },
+     {
+      "uz": "Rasm qo'shilishini",
+      "ru": "Добавление картинки"
+     },
+     {
+      "uz": "Sahifa tugaganini",
+      "ru": "Конец страницы"
+     },
+     {
+      "uz": "HTML5 hujjat ekanini",
+      "ru": "Что это документ HTML5"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 22,
+     "jami": 112,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Sahifa skeletining (shablonining) to'g'ri tartibi qaysi?",
+     "ru": "Какой порядок скелета (шаблона) страницы верный?"
+    },
+    "opts": [
+     {
+      "uz": "`head` ichida `html` va `body`",
+      "ru": "`html` и `body` внутри `head`"
+     },
+     {
+      "uz": "`body` ichida `head` va `html`",
+      "ru": "`head` и `html` внутри `body`"
+     },
+     {
+      "uz": "`title` ichida `head`",
+      "ru": "`head` внутри `title`"
+     },
+     {
+      "uz": "`html` ichida `head` va `body`",
+      "ru": "`head` и `body` внутри `html`"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 30,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "HTML kodni o'qib, sahifaga aylantiradigan dastur qaysi?",
+     "ru": "Какая программа читает HTML-код и превращает его в страницу?"
+    },
+    "opts": [
+     {
+      "uz": "Server",
+      "ru": "Сервер"
+     },
+     {
+      "uz": "Brauzer",
+      "ru": "Браузер"
+     },
+     "Word",
+     {
+      "uz": "Fayl menejeri",
+      "ru": "Файловый менеджер"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 13,
+     "jami": 85,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Matnni QIYA (kursiv) qilish uchun qaysi teg?",
+     "ru": "Какой тег делает текст НАКЛОННЫМ (курсив)?"
+    },
+    "opts": [
+     "`em`",
+     "`ul`",
+     "`a`",
+     "`h1`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 4,
+     "jami": 59,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-04",
+  "file": "src/1-Modull/Htmllesson2.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Sahifaga rasm qo'shish uchun qaysi teg ishlatiladi?",
+     "ru": "Какой тег используется, чтобы добавить картинку на страницу?"
+    },
+    "opts": [
+     "`<img>`",
+     "`<image>`",
+     "`<src>`",
+     "`<pic>`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 9,
+     "jami": 81,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Rasmning manzili (qayerdaligi) qaysi atributga yoziladi?",
+     "ru": "В какой атрибут пишется адрес картинки (где она лежит)?"
+    },
+    "opts": [
+     "`href`",
+     "`alt`",
+     "`src`",
+     "`link`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 6,
+     "jami": 78,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Rasm yuklanmasa ko'rinadigan (va ko'zi ojizlarga o'qiladigan) matn qaysi atribut?",
+     "ru": "Какой атрибут — текст, видимый при незагрузке картинки (и читаемый незрячим)?"
+    },
+    "opts": [
+     "`title`",
+     "`alt`",
+     "`name`",
+     "`text`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 81,
+     "maxVariant": 7,
+     "jami": 105,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Logo va asosiy menyu odatda qaysi bo'limga joylanadi?",
+     "ru": "В какой раздел обычно помещаются лого и главное меню?"
+    },
+    "opts": [
+     "`<main>`",
+     "`<footer>`",
+     "`<aside>`",
+     "`<header>`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 10,
+     "jami": 90,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Sahifaning ASOSIY mazmuni qaysi teg ichiga yoziladi?",
+     "ru": "Внутрь какого тега пишется ОСНОВНОЕ содержимое страницы?"
+    },
+    "opts": [
+     "`<header>`",
+     "`<main>`",
+     "`<footer>`",
+     "`<body2>`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 10,
+     "jami": 89,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Sahifaning eng pastki qismi (aloqa, © belgisi) uchun qaysi teg?",
+     "ru": "Какой тег для самой нижней части страницы (контакты, знак ©)?"
+    },
+    "opts": [
+     "`<end>`",
+     "`<bottom>`",
+     "`<header>`",
+     "`<footer>`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 10,
+     "jami": 100,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Butun formani o'rab turuvchi teg qaysi?",
+     "ru": "Какой тег оборачивает всю форму?"
+    },
+    "opts": [
+     "`<form>`",
+     "`<input>`",
+     "`<fieldset>`",
+     "`<div>`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 12,
+     "jami": 75,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Foydalanuvchi matn kiritadigan maydonni qaysi teg yasaydi?",
+     "ru": "Какой тег создаёт поле, куда пользователь вводит текст?"
+    },
+    "opts": [
+     "`<label>`",
+     "`<button>`",
+     "`<input>`",
+     "`<text>`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 10,
+     "jami": 94,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Maydon oldidagi yozuv (masalan «Ismingiz:») qaysi teg bilan beriladi?",
+     "ru": "Каким тегом задаётся подпись перед полем (например «Ваше имя:»)?"
+    },
+    "opts": [
+     "`<label>`",
+     "`<title>`",
+     "`<span>`",
+     "`<p>`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 69,
+     "maxVariant": 9,
+     "jami": 100,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Email uchun to'g'ri `input` turi qaysi?",
+     "ru": "Какой тип `input` правильный для email?"
+    },
+    "opts": [
+     "`type=\"text\"`",
+     "`type=\"mail\"`",
+     "`type=\"email\"`",
+     "`type=\"@\"`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 14,
+     "jami": 89,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Parolni nuqta/yulduzcha bilan yashiradigan `input` turi qaysi?",
+     "ru": "Какой тип `input` прячет пароль точками/звёздочками?"
+    },
+    "opts": [
+     "`type=\"hidden\"`",
+     "`type=\"password\"`",
+     "`type=\"secret\"`",
+     "`type=\"lock\"`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 62,
+     "maxVariant": 17,
+     "jami": 122,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Brauzerda DevTools (kodni ko'rish) odatda qaysi tugma bilan ochiladi?",
+     "ru": "Какой клавишей обычно открывается DevTools (просмотр кода) в браузере?"
+    },
+    "opts": [
+     "`Ctrl+P`",
+     "`Esc`",
+     "`Caps Lock`",
+     "`F12`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 69,
+     "maxVariant": 11,
+     "jami": 98,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-14",
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "`<p>Biz <strong>g'olibmiz</strong></p>` — brauzer nimani ko'rsatadi?",
+     "ru": "`<p>Biz <strong>g'olibmiz</strong></p>` — что покажет браузер?"
+    },
+    "opts": [
+     {
+      "uz": "Butun gap qalin chiqadi",
+      "ru": "Вся фраза выйдет жирной"
+     },
+     {
+      "uz": "Teglar ham ekranda ko'rinadi",
+      "ru": "Теги тоже будут видны на экране"
+     },
+     {
+      "uz": "Faqat «g'olibmiz» qalin chiqadi",
+      "ru": "Жирным выйдет только «g'olibmiz»"
+     },
+     {
+      "uz": "Faqat «Biz» so'zi ko'rinadi",
+      "ru": "Будет видно только слово «Biz»"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 68,
+     "maxVariant": 31,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Jamoa suratini qo'yish uchun qaysi yozuv TO'G'RI?",
+     "ru": "Какая запись ВЕРНА, чтобы поставить фото команды?"
+    },
+    "opts": [
+     "`<img scr=\"jamoa.jpg\" alt=\"Jamoa\">`",
+     "`<img src=\"jamoa.jpg\" alt=\"Jamoa\">`",
+     "`<imag src=\"jamoa.jpg\" alt=\"Jamoa\">`",
+     "`<img href=\"jamoa.jpg\" alt=\"Jamoa\">`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 36,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Ro'yxatdagi har bir o'yinchi ismi qaysi tegga o'raladi?",
+     "ru": "В какой тег оборачивается имя каждого игрока в списке?"
+    },
+    "opts": [
+     "`ul`",
+     "`ol`",
+     "`li`",
+     "`a`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 4,
+     "jami": 70,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`<ul>` ichida 3 ta `<li>` bor. Ekranda nima chiziladi?",
+     "ru": "Внутри `<ul>` есть 3 `<li>`. Что нарисуется на экране?"
+    },
+    "opts": [
+     {
+      "uz": "1·2·3 raqamli ro'yxat",
+      "ru": "Нумерованный список 1·2·3"
+     },
+     {
+      "uz": "Bir qatorda yonma-yon matn",
+      "ru": "Текст в одну строку подряд"
+     },
+     {
+      "uz": "Uchta jadval katakchasi",
+      "ru": "Три ячейки таблицы"
+     },
+     {
+      "uz": "Uchta nuqtali band ustma-ust",
+      "ru": "Три пункта с точками друг под другом"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 28,
+     "jami": 152,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Kodda `<a herf=\"...\">Kanal</a>` deb yozilgan. Nima bo'ladi?",
+     "ru": "В коде написано `<a herf=\"...\">Kanal</a>`. Что будет?"
+    },
+    "opts": [
+     {
+      "uz": "«Kanal» ko'rinadi, lekin bosilmaydi",
+      "ru": "«Kanal» виден, но не нажимается"
+     },
+     {
+      "uz": "Havola odatdagidek ishlaydi",
+      "ru": "Ссылка работает как обычно"
+     },
+     {
+      "uz": "Sahifa umuman ochilmaydi",
+      "ru": "Страница вообще не откроется"
+     },
+     {
+      "uz": "«Kanal» o'rniga manzil chiqadi",
+      "ru": "Вместо «Kanal» выйдет адрес"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 35,
+     "jami": 175,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "«Chempionlar» so'zi sahifada hammadan katta chiqsin. Qaysi teg?",
+     "ru": "Слово «Chempionlar» должно выйти крупнее всего. Какой тег?"
+    },
+    "opts": [
+     "`p`",
+     "`h1`",
+     "`li`",
+     "`strong`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 8,
+     "jami": 82,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`alt=\"Jamoa surati\"` yozuvi nima uchun kerak?",
+     "ru": "Зачем нужна запись `alt=\"Jamoa surati\"`?"
+    },
+    "opts": [
+     {
+      "uz": "Rasm ochilmasa shu matn chiqadi",
+      "ru": "Если фото не откроется, выйдет этот текст"
+     },
+     {
+      "uz": "Rasm o'lchamini belgilaydi",
+      "ru": "Задаёт размер картинки"
+     },
+     {
+      "uz": "Rasmga chiroyli ramka chizadi",
+      "ru": "Рисует красивую рамку у картинки"
+     },
+     {
+      "uz": "Rasmni havolaga aylantiradi",
+      "ru": "Превращает картинку в ссылку"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 31,
+     "jami": 158,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Formada foydalanuvchi ism YOZADIGAN katak qaysi teg?",
+     "ru": "Каким тегом делается поле, куда пользователь ПИШЕТ имя?"
+    },
+    "opts": [
+     "`button`",
+     "`label`",
+     "`p`",
+     "`input`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 8,
+     "jami": 77,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Sarlavha, ro'yxat va rasm — ko'rinadigan mazmun qayerga yoziladi?",
+     "ru": "Заголовок, список и фото — куда пишется видимое содержимое?"
+    },
+    "opts": [
+     "`head`",
+     "`body`",
+     "`title`",
+     "`html`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 65,
+     "maxVariant": 7,
+     "jami": 90,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "`<a href=\"https://t.me/chempionlar\">Kanalimiz</a>` — ekranda nima ko'rinadi?",
+     "ru": "`<a href=\"https://t.me/chempionlar\">Kanalimiz</a>` — что видно на экране?"
+    },
+    "opts": [
+     {
+      "uz": "Bosiladigan «Kanalimiz» yozuvi",
+      "ru": "Кликабельная надпись «Kanalimiz»"
+     },
+     {
+      "uz": "To'liq https-manzilning o'zi",
+      "ru": "Сам полный https-адрес"
+     },
+     {
+      "uz": "Telegram belgisi (rasm)",
+      "ru": "Значок Telegram (картинка)"
+     },
+     {
+      "uz": "«href» degan yozuvning o'zi",
+      "ru": "Сама надпись «href»"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 76,
+     "maxVariant": 30,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Qaysi qatorda teg TO'G'RI yopilgan?",
+     "ru": "В какой строке тег закрыт ВЕРНО?"
+    },
+    "opts": [
+     "`<li>Aziz<li>`",
+     "`<li>Aziz<il>`",
+     "`<li>Aziz</li`",
+     "`<li>Aziz</li>`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 15,
+     "jami": 92,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Sardor ismini QALIN qilish uchun qaysi teg?",
+     "ru": "Какой тег сделает имя капитана ЖИРНЫМ?"
+    },
+    "opts": [
+     "`p`",
+     "`li`",
+     "`strong`",
+     "`ul`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 8,
+     "jami": 62,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-05",
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Sayt strukturasi (bo'limlar tartibi) aslida nima?",
+     "ru": "Что такое структура сайта (порядок разделов) на самом деле?"
+    },
+    "opts": [
+     {
+      "uz": "Foydalanuvchi uchun qilingan qulaylik",
+      "ru": "Удобство, сделанное для пользователя"
+     },
+     {
+      "uz": "Sahifani chiroyli ko'rsatuvchi bezak",
+      "ru": "Украшение, которое красит страницу"
+     },
+     {
+      "uz": "Dizayner o'z didiga qarab tanlagan shakl",
+      "ru": "Форма, выбранная дизайнером по своему вкусу"
+     },
+     {
+      "uz": "Hamma sayt uchun bir xil tayyor andoza",
+      "ru": "Готовый шаблон, одинаковый для всех сайтов"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 40,
+     "jami": 200,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Foydalanuvchi saytni ochganda birinchi nimani ko'radi?",
+     "ru": "Что пользователь видит первым, открыв сайт?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifa oxiridagi havolalar qismini",
+      "ru": "Блок со ссылками в конце страницы"
+     },
+     {
+      "uz": "Birinchi blokni — sarlavha va izohni",
+      "ru": "Первый блок — заголовок и пояснение"
+     },
+     {
+      "uz": "Yon tarafdagi reklama bannerini",
+      "ru": "Рекламный баннер сбоку"
+     },
+     {
+      "uz": "Menyu va qidiruv qatorini",
+      "ru": "Меню и строку поиска"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 36,
+     "jami": 180,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Harakat tugmasi (CTA) qayerda turishi mantiqiy?",
+     "ru": "Где логично стоять кнопке действия (CTA)?"
+    },
+    "opts": [
+     {
+      "uz": "Eng tepada, hammadan oldin",
+      "ru": "В самом верху, раньше всего"
+     },
+     {
+      "uz": "Menyuda, havolalar orasida",
+      "ru": "В меню, среди ссылок"
+     },
+     {
+      "uz": "Foydalanuvchi ishongandan keyin",
+      "ru": "После того как пользователь поверил"
+     },
+     {
+      "uz": "Yon tomonda, matndan ajratib",
+      "ru": "Сбоку, отдельно от текста"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 31,
+     "jami": 158,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Bo'limlarning eng mantiqiy tartibi qaysi?",
+     "ru": "Какой порядок разделов самый логичный?"
+    },
+    "opts": [
+     {
+      "uz": "Tugma, isbot, birinchi blok, muammo, yechim",
+      "ru": "Кнопка, доказательство, первый блок, проблема, решение"
+     },
+     {
+      "uz": "Isbot, tugma, muammo, yechim, birinchi blok",
+      "ru": "Доказательство, кнопка, проблема, решение, первый блок"
+     },
+     {
+      "uz": "Muammo, tugma, birinchi blok, yechim, isbot",
+      "ru": "Проблема, кнопка, первый блок, решение, доказательство"
+     },
+     {
+      "uz": "Birinchi blok, muammo, yechim, isbot, tugma",
+      "ru": "Первый блок, проблема, решение, доказательство, кнопка"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 43,
+     "jami": 213,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Birinchi blok (hero) qanday vazifani bajaradi?",
+     "ru": "Какую задачу решает первый блок (hero)?"
+    },
+    "opts": [
+     {
+      "uz": "Foydalanuvchidan ariza va to'lov qabul qiladi",
+      "ru": "Принимает заявку и оплату от пользователя"
+     },
+     {
+      "uz": "Bir jumlada sayt nima taklif qilishini aytadi",
+      "ru": "Одной фразой говорит, что предлагает сайт"
+     },
+     {
+      "uz": "Boshqa foydalanuvchilarning izohini ko'rsatadi",
+      "ru": "Показывает отзывы других пользователей"
+     },
+     {
+      "uz": "Sahifa oxirida havola va aloqa ma'lumotini beradi",
+      "ru": "Даёт ссылки и контакты в конце страницы"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 49,
+     "jami": 231,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "«Isbot» bo'limi nima uchun kerak?",
+     "ru": "Зачем нужен раздел «Доказательство»?"
+    },
+    "opts": [
+     {
+      "uz": "Foydalanuvchida ishonch uyg'otish uchun",
+      "ru": "Чтобы вызвать у пользователя доверие"
+     },
+     {
+      "uz": "Mahsulot narxini e'lon qilish uchun",
+      "ru": "Чтобы объявить цену товара"
+     },
+     {
+      "uz": "Sayt nomini eslatib turish uchun",
+      "ru": "Чтобы напоминать название сайта"
+     },
+     {
+      "uz": "Aloqa ma'lumotini berish uchun",
+      "ru": "Чтобы дать контактные данные"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 39,
+     "jami": 169,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Yaxshi tuzilgan sahifa nimaga o'xshaydi?",
+     "ru": "На что похожа хорошо собранная страница?"
+    },
+    "opts": [
+     {
+      "uz": "Alifbo bo'yicha tuzilgan lug'atga",
+      "ru": "На словарь, собранный по алфавиту"
+     },
+     {
+      "uz": "Mahsulotlar ro'yxati — katalogga",
+      "ru": "На каталог — список товаров"
+     },
+     {
+      "uz": "Har xil xabarlar yig'ilgan lentaga",
+      "ru": "На ленту из разных сообщений"
+     },
+     {
+      "uz": "Hikoyaga — qadam-baqadam yetaklaydi",
+      "ru": "На историю — ведёт шаг за шагом"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 35,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Bo'limlar tartibi nega muhim?",
+     "ru": "Почему важен порядок разделов?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifaga chiroyli ko'rinish berish uchun",
+      "ru": "Чтобы страница выглядела красиво"
+     },
+     {
+      "uz": "Sahifani uzunroq va to'liqroq qilish uchun",
+      "ru": "Чтобы страница стала длиннее и полнее"
+     },
+     {
+      "uz": "Foydalanuvchini muammodan yechimga olib boradi",
+      "ru": "Он ведёт пользователя от проблемы к решению"
+     },
+     {
+      "uz": "Qidiruvda yuqoriroq chiqib turish uchun",
+      "ru": "Чтобы быть выше в поиске"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 29,
+     "maxVariant": 46,
+     "jami": 196,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Bo'limlar aralash tartibda bo'lsa nima bo'ladi?",
+     "ru": "Что будет, если разделы стоят вперемешку?"
+    },
+    "opts": [
+     {
+      "uz": "Foydalanuvchi adashadi va sahifadan ketadi",
+      "ru": "Пользователь теряется и уходит со страницы"
+     },
+     {
+      "uz": "Foydalanuvchi kerakli bo'limni o'zi topib oladi",
+      "ru": "Пользователь сам найдёт нужный раздел"
+     },
+     {
+      "uz": "Sahifa yangicha va qiziqarli ko'rinadi",
+      "ru": "Страница выглядит свежо и интересно"
+     },
+     {
+      "uz": "Sahifa avvalgidan tezroq ochiladi",
+      "ru": "Страница открывается быстрее прежнего"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 47,
+     "jami": 207,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "«Muammo» bo'limi qanday his uyg'otishi kerak?",
+     "ru": "Какое чувство должен вызывать раздел «Проблема»?"
+    },
+    "opts": [
+     {
+      "uz": "«Endi darrov sotib olaman»",
+      "ru": "«Сейчас же куплю»"
+     },
+     {
+      "uz": "«Bu sayt ishonchli ekan»",
+      "ru": "«А сайт-то надёжный»"
+     },
+     {
+      "uz": "«Bu qanday ishlar ekan?»",
+      "ru": "«А как это работает?»"
+     },
+     {
+      "uz": "«Bu menga tanish»",
+      "ru": "«Это мне знакомо»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 26,
+     "jami": 136,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Chiroyli va ishonchli sayt farqi ko'pincha nimada?",
+     "ru": "Чем чаще всего отличается красивый сайт от надёжного?"
+    },
+    "opts": [
+     {
+      "uz": "Ishlatilgan ranglarida",
+      "ru": "Использованными цветами"
+     },
+     {
+      "uz": "Tartibida (strukturasida)",
+      "ru": "Порядком (структурой)"
+     },
+     {
+      "uz": "Shrift o'lchami va turida",
+      "ru": "Размером и видом шрифта"
+     },
+     {
+      "uz": "Qo'shilgan rasmlar sonida",
+      "ru": "Количеством добавленных картинок"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 25,
+     "jami": 147,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Mahsulot taqdim qiluvchi sahifa qanday mantiqqa amal qiladi?",
+     "ru": "Какой логике следует страница, представляющая продукт?"
+    },
+    "opts": [
+     {
+      "uz": "Avval harakat tugmasi, keyin izoh",
+      "ru": "Сначала кнопка действия, потом пояснение"
+     },
+     {
+      "uz": "Bo'limlar alifbo tartibida joylashadi",
+      "ru": "Разделы идут по алфавиту"
+     },
+     {
+      "uz": "Avval eng muhimi, oxirida harakat",
+      "ru": "Сначала самое важное, в конце — действие"
+     },
+     {
+      "uz": "Avval aloqa, keyin mahsulot izohi",
+      "ru": "Сначала контакты, потом описание продукта"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 37,
+     "jami": 196,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-06",
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "CSS nima uchun ishlatiladi?",
+     "ru": "Для чего используется CSS?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifani bezash (rang, shrift, bo'shliq)",
+      "ru": "Оформление страницы (цвет, шрифт, отступы)"
+     },
+     {
+      "uz": "Sahifa tuzilishini yaratish",
+      "ru": "Создание структуры страницы"
+     },
+     {
+      "uz": "Ma'lumotlar bazasi",
+      "ru": "База данных"
+     },
+     {
+      "uz": "Serverga so'rov",
+      "ru": "Запрос к серверу"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 40,
+     "jami": 127,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`h1 { color: red; }` da `h1` nima deb ataladi?",
+     "ru": "Как называется `h1` в `h1 { color: red; }`?"
+    },
+    "opts": [
+     {
+      "uz": "Xususiyat",
+      "ru": "Свойство"
+     },
+     {
+      "uz": "Selektor",
+      "ru": "Селектор"
+     },
+     {
+      "uz": "Qiymat",
+      "ru": "Значение"
+     },
+     {
+      "uz": "Teg",
+      "ru": "Тег"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 9,
+     "jami": 72,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`color: red;` da `red` nima?",
+     "ru": "Что такое `red` в `color: red;`?"
+    },
+    "opts": [
+     {
+      "uz": "Selektor",
+      "ru": "Селектор"
+     },
+     {
+      "uz": "Xususiyat",
+      "ru": "Свойство"
+     },
+     {
+      "uz": "Qiymat",
+      "ru": "Значение"
+     },
+     "Property"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 9,
+     "jami": 59,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Matn rangini qaysi xususiyat o'zgartiradi?",
+     "ru": "Какое свойство меняет цвет текста?"
+    },
+    "opts": [
+     "`background-color`",
+     "`margin`",
+     "`font-size`",
+     "`color`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 18,
+     "jami": 86,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Fon rangini qaysi xususiyat belgilaydi?",
+     "ru": "Какое свойство задаёт цвет фона?"
+    },
+    "opts": [
+     "`background-color`",
+     "`color`",
+     "`border`",
+     "`padding`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 18,
+     "jami": 81,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Shrift turini (Arial) qaysi xususiyat tanlaydi?",
+     "ru": "Какое свойство выбирает вид шрифта (Arial)?"
+    },
+    "opts": [
+     "`font-size`",
+     "`font-family`",
+     "`font-weight`",
+     "`text-align`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 13,
+     "jami": 96,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Shrift o'lchamini qaysi xususiyat belgilaydi?",
+     "ru": "Какое свойство задаёт размер шрифта?"
+    },
+    "opts": [
+     "`font-family`",
+     "`color`",
+     "`font-size`",
+     "`line-height`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 13,
+     "jami": 89,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Matnni qalin (bold) qilish uchun qaysi xususiyat?",
+     "ru": "Какое свойство делает текст жирным (bold)?"
+    },
+    "opts": [
+     "`font-style`",
+     "`text-align`",
+     "`font-size`",
+     "`font-weight`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 13,
+     "jami": 97,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Kontent bilan chet orasidagi ICHKI bo'shliq qaysi?",
+     "ru": "Какой из них — ВНУТРЕННИЙ отступ между контентом и краем?"
+    },
+    "opts": [
+     "`padding`",
+     "`margin`",
+     "`border`",
+     "`gap`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 9,
+     "jami": 80,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Element bilan boshqalar orasidagi TASHQI bo'shliq qaysi?",
+     "ru": "Какой из них — ВНЕШНИЙ отступ между элементом и остальными?"
+    },
+    "opts": [
+     "`padding`",
+     "`margin`",
+     "`color`",
+     "`font-size`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 11,
+     "jami": 91,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Har CSS satri oxiriga nima qo'yiladi?",
+     "ru": "Что ставится в конце каждой строки CSS?"
+    },
+    "opts": [
+     {
+      "uz": "Nuqta",
+      "ru": "Точка"
+     },
+     {
+      "uz": "Vergul",
+      "ru": "Запятая"
+     },
+     {
+      "uz": "Nuqta-vergul (`;`)",
+      "ru": "Точка с запятой (`;`)"
+     },
+     {
+      "uz": "Ikki nuqta",
+      "ru": "Двоеточие"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 18,
+     "jami": 76,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Xususiyat va qiymat orasida qaysi belgi?",
+     "ru": "Какой знак стоит между свойством и значением?"
+    },
+    "opts": [
+     {
+      "uz": "Nuqta-vergul (`;`)",
+      "ru": "Точка с запятой (`;`)"
+     },
+     {
+      "uz": "Teng (`=`)",
+      "ru": "Равно (`=`)"
+     },
+     {
+      "uz": "Vergul",
+      "ru": "Запятая"
+     },
+     {
+      "uz": "Ikki nuqta (`:`)",
+      "ru": "Двоеточие (`:`)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 18,
+     "jami": 90,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-07",
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "'block' element sahifada qanday joylashadi?",
+     "ru": "Как располагается элемент 'block' на странице?"
+    },
+    "opts": [
+     {
+      "uz": "Butun qatorni egallaydi",
+      "ru": "Занимает всю строку"
+     },
+     {
+      "uz": "Yonma-yon joylashadi",
+      "ru": "Стоит в ряд с другими"
+     },
+     {
+      "uz": "Har doim markazda turadi",
+      "ru": "Всегда стоит по центру"
+     },
+     {
+      "uz": "Faqat o'z kengligini oladi",
+      "ru": "Занимает только свою ширину"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 26,
+     "jami": 136,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Qaysi biri 'inline' element?",
+     "ru": "Какой из них — 'inline'-элемент?"
+    },
+    "opts": [
+     "div",
+     "h1",
+     "span",
+     "p"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 4,
+     "jami": 38,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Elementlarni yonma-yon qatorga tizish uchun qaysi xususiyat?",
+     "ru": "Какое свойство выстраивает элементы в один ряд?"
+    },
+    "opts": [
+     "display: flex",
+     "text-align: center",
+     "font-size: 20px",
+     "color: red"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 18,
+     "jami": 116,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "'display: flex' qayerga yoziladi?",
+     "ru": "Куда пишется 'display: flex'?"
+    },
+    "opts": [
+     {
+      "uz": "O'rab turgan konteynerga",
+      "ru": "Обёртывающему контейнеру"
+     },
+     {
+      "uz": "Har bir ichki elementga alohida",
+      "ru": "Каждому внутреннему элементу отдельно"
+     },
+     {
+      "uz": "Faqat body tegiga",
+      "ru": "Только тегу body"
+     },
+     {
+      "uz": "Matnning o'ziga",
+      "ru": "Самому тексту"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 31,
+     "jami": 120,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Flex elementlarni vertikal ustunga tizish uchun?",
+     "ru": "Как выстроить flex-элементы в вертикальный столбик?"
+    },
+    "opts": [
+     "flex-direction: row",
+     "display: block",
+     "flex-direction: column",
+     "justify-content: center"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 23,
+     "jami": 126,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Flex elementlar orasidagi bo'shliqni qaysi xususiyat ochadi?",
+     "ru": "Какое свойство раздвигает flex-элементы?"
+    },
+    "opts": [
+     "margin-top",
+     "padding",
+     "border",
+     "gap"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 10,
+     "jami": 86,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Flex'ni gorizontal markazga qo'yish uchun?",
+     "ru": "Как поставить flex по центру по горизонтали?"
+    },
+    "opts": [
+     "align-items: center",
+     "text-align: center",
+     "margin: auto",
+     "justify-content: center"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 23,
+     "jami": 114,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Flex'ni vertikal markazga qo'yish uchun?",
+     "ru": "Как поставить flex по центру по вертикали?"
+    },
+    "opts": [
+     "justify-content: center",
+     "flex-direction: column",
+     "gap: center",
+     "align-items: center"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 23,
+     "jami": 115,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "'justify-content: space-between' nima qiladi?",
+     "ru": "Что делает 'justify-content: space-between'?"
+    },
+    "opts": [
+     {
+      "uz": "Hammasini markazga to'playdi",
+      "ru": "Собирает всё по центру"
+     },
+     {
+      "uz": "Chetlarga yoyib teng ochadi",
+      "ru": "Разводит по краям с равными промежутками"
+     },
+     {
+      "uz": "Ustma-ust taxlab qo'yadi",
+      "ru": "Складывает друг на друга"
+     },
+     {
+      "uz": "Elementlarni yashiradi",
+      "ru": "Прячет элементы"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 28,
+     "jami": 146,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "DevTools'ni odatda qaysi tugma ochadi?",
+     "ru": "Какой клавишей обычно открывают DevTools?"
+    },
+    "opts": [
+     "Ctrl + S",
+     "F12",
+     "Ctrl + P",
+     "Alt + Tab"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 9,
+     "jami": 66,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "DevTools'da CSS qaysi panelda ko'rinadi?",
+     "ru": "В какой панели DevTools виден CSS?"
+    },
+    "opts": [
+     "Console",
+     "Network",
+     "Styles",
+     "Sources"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 7,
+     "jami": 67,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "DevTools'da CSS qiymatini o'zgartirsangiz?",
+     "ru": "Что будет, если изменить значение CSS в DevTools?"
+    },
+    "opts": [
+     {
+      "uz": "Fayl butunlay o'zgaradi",
+      "ru": "Файл изменится навсегда"
+     },
+     {
+      "uz": "Vaqtincha, faqat sizda",
+      "ru": "Временно, только у вас"
+     },
+     {
+      "uz": "Butun sayt buziladi",
+      "ru": "Весь сайт сломается"
+     },
+     {
+      "uz": "Hech narsa bo'lmaydi",
+      "ru": "Ничего не произойдёт"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 23,
+     "jami": 126,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-15",
+  "file": "src/1-Modull/VsCodeLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Dunyodagi dasturchilar eng ko'p ishlatadigan kod redaktori qaysi?",
+     "ru": "Каким редактором кода пользуется больше всего разработчиков в мире?"
+    },
+    "opts": [
+     "Word",
+     "VS Code",
+     "Excel",
+     "PowerPoint"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 65,
+     "maxVariant": 10,
+     "jami": 91,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "VS Code qaysi saytdan yuklab olinadi?",
+     "ru": "С какого сайта скачивается VS Code?"
+    },
+    "opts": [
+     "`code.visualstudio.com`",
+     "`vscode-download.net`",
+     "`microsoft-code.uz`",
+     "`get-vscode.org`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 23,
+     "jami": 116,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Loyihadagi fayllar ro'yxati ko'rinadigan chap panel qanday ataladi?",
+     "ru": "Как называется левая панель со списком файлов проекта?"
+    },
+    "opts": [
+     {
+      "uz": "Terminal",
+      "ru": "Terminal"
+     },
+     {
+      "uz": "Extensions",
+      "ru": "Extensions"
+     },
+     {
+      "uz": "Explorer",
+      "ru": "Explorer"
+     },
+     {
+      "uz": "Status bar",
+      "ru": "Status bar"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 67,
+     "maxVariant": 10,
+     "jami": 103,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Live Server nima?",
+     "ru": "Что такое Live Server?"
+    },
+    "opts": [
+     {
+      "uz": "Rasm tahrirlaydigan kichik dastur",
+      "ru": "Небольшой редактор картинок"
+     },
+     {
+      "uz": "Kodni saqlaydigan xotira turi",
+      "ru": "Вид памяти для хранения кода"
+     },
+     {
+      "uz": "Shriftlarni o'rnatadigan dastur",
+      "ru": "Программа для установки шрифтов"
+     },
+     {
+      "uz": "Sahifani jonli ochadigan dastur",
+      "ru": "Программа, открывающая страницу вживую"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 17,
+     "maxVariant": 33,
+     "jami": 141,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«Go Live» tugmasi VS Code oynasining qayerida turadi?",
+     "ru": "Где в окне VS Code находится кнопка «Go Live»?"
+    },
+    "opts": [
+     {
+      "uz": "Yuqoridagi menyu qatorida",
+      "ru": "В строке меню сверху"
+     },
+     {
+      "uz": "Pastdagi ko'k status bar chizig'ida",
+      "ru": "На нижней синей полосе status bar"
+     },
+     {
+      "uz": "Explorer panelining ichida",
+      "ru": "Внутри панели Explorer"
+     },
+     {
+      "uz": "Sichqoncha o'ng tugma menyusida",
+      "ru": "В меню правой кнопки мыши"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 35,
+     "jami": 170,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`127.0.0.1` manzili nimani bildiradi?",
+     "ru": "Что означает адрес `127.0.0.1`?"
+    },
+    "opts": [
+     {
+      "uz": "Internetdagi katta serverni",
+      "ru": "Большой сервер в интернете"
+     },
+     {
+      "uz": "Google'ning bosh sahifasini",
+      "ru": "Главную страницу Google"
+     },
+     {
+      "uz": "O'z kompyuteringizni",
+      "ru": "Ваш собственный компьютер"
+     },
+     {
+      "uz": "Uydagi Wi-Fi routerni",
+      "ru": "Домашний Wi-Fi роутер"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 27,
+     "jami": 132,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`127.0.0.1:5500` dagi 5500 raqami nima?",
+     "ru": "Что за число 5500 в `127.0.0.1:5500`?"
+    },
+    "opts": [
+     {
+      "uz": "Port, ya'ni eshik raqami",
+      "ru": "Порт, то есть номер двери"
+     },
+     {
+      "uz": "Sahifadagi belgilar soni",
+      "ru": "Число символов на странице"
+     },
+     {
+      "uz": "Koddagi qatorlar soni",
+      "ru": "Число строк в коде"
+     },
+     {
+      "uz": "Kirish uchun parol raqami",
+      "ru": "Числовой пароль для входа"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 25,
+     "jami": 133,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Bo'sh index.html'da tayyor HTML shablonni nima chiqaradi?",
+     "ru": "Что выдаёт готовый HTML-шаблон в пустом index.html?"
+    },
+    "opts": [
+     "`?` + Enter",
+     "`#` + Space",
+     "`*` + Shift",
+     "`!` + Tab"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 11,
+     "jami": 99,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`Ctrl + S` birikmasi nima qiladi?",
+     "ru": "Что делает сочетание `Ctrl + S`?"
+    },
+    "opts": [
+     {
+      "uz": "Faylni saqlaydi",
+      "ru": "Сохраняет файл"
+     },
+     {
+      "uz": "Faylni o'chiradi",
+      "ru": "Удаляет файл"
+     },
+     {
+      "uz": "Yangi fayl ochadi",
+      "ru": "Открывает новый файл"
+     },
+     {
+      "uz": "Kodni nusxalaydi",
+      "ru": "Копирует код"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 17,
+     "jami": 97,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Yangi qo'shimcha dastur (extension) qayerdan o'rnatiladi?",
+     "ru": "Откуда устанавливается новое дополнение (extension)?"
+    },
+    "opts": [
+     {
+      "uz": "Explorer panelidan",
+      "ru": "Из панели Explorer"
+     },
+     {
+      "uz": "Terminal panelidan",
+      "ru": "Из панели Terminal"
+     },
+     {
+      "uz": "Status bar'dagi tugmadan",
+      "ru": "С кнопки на status bar"
+     },
+     {
+      "uz": "Extensions panelidan",
+      "ru": "Из панели Extensions"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 24,
+     "jami": 137,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "style.css sahifaga qaysi teg bilan ulanadi?",
+     "ru": "Каким тегом style.css подключается к странице?"
+    },
+    "opts": [
+     "`<style src=\"style.css\">`",
+     "`<link rel=\"stylesheet\">`",
+     "`<css href=\"style.css\">`",
+     "`<script src=\"style.css\">`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 26,
+     "jami": 143,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Loyiha papkasi VS Code'da qanday ochiladi?",
+     "ru": "Как открыть папку проекта в VS Code?"
+    },
+    "opts": [
+     "Edit → Copy Folder",
+     "View → Show Folder",
+     "File → Open Folder",
+     "Help → Load Folder"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 18,
+     "jami": 114,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-08",
+  "file": "src/1-Modull/HtmlPractice.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Portfolioda `</footer>` kabi yopuvchi teg qaysi belgi bilan boshlanadi?",
+     "ru": "С какого символа начинается закрывающий тег вроде `</footer>` в портфолио?"
+    },
+    "opts": [
+     "`\\`",
+     "`!`",
+     "`#`",
+     "`/`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 3,
+     "jami": 83,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Sarlavha teglari orasida eng KICHIGI qaysi?",
+     "ru": "Какой из тегов заголовков — самый МАЛЕНЬКИЙ?"
+    },
+    "opts": [
+     "`h1`",
+     "`h3`",
+     "`h6`",
+     "`p`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 4,
+     "jami": 58,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Loyihalar ro'yxatini (nuqtali) qaysi teg boshlaydi?",
+     "ru": "Какой тег начинает список проектов (с точками)?"
+    },
+    "opts": [
+     "`ul`",
+     "`ol`",
+     "`li`",
+     "`a`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 4,
+     "jami": 66,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Loyihalar ro'yxatida har bir loyiha qaysi tegga o'raladi?",
+     "ru": "В какой тег оборачивается каждый проект в списке?"
+    },
+    "opts": [
+     "`ul`",
+     "`li`",
+     "`ol`",
+     "`dd`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 4,
+     "jami": 73,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Aloqa havolasida manzil qaysi atributga yoziladi?",
+     "ru": "В какой атрибут пишется адрес в контактной ссылке?"
+    },
+    "opts": [
+     "`src`",
+     "`link`",
+     "`href`",
+     "`url`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 6,
+     "jami": 71,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Sahifa `title` ichidagi matn qayerda ko'rinadi?",
+     "ru": "Где виден текст из `title` страницы?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifaning o'rtasida",
+      "ru": "В центре страницы"
+     },
+     {
+      "uz": "Brauzer yorlig'ida",
+      "ru": "На вкладке браузера"
+     },
+     {
+      "uz": "Tugmaning ustida",
+      "ru": "На кнопке"
+     },
+     {
+      "uz": "Hech qayerda ko'rinmaydi",
+      "ru": "Нигде не виден"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 24,
+     "jami": 125,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Ko'rinmaydigan sozlamalar (`title`, `meta`) qaysi qismga yoziladi?",
+     "ru": "В какую часть пишутся невидимые настройки (`title`, `meta`)?"
+    },
+    "opts": [
+     "`body`",
+     "`p`",
+     "`head`",
+     "`h1`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 6,
+     "jami": 85,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Ismingizni QALIN (bold) qilish uchun qaysi teg?",
+     "ru": "Какой тег сделает ваше имя ЖИРНЫМ (bold)?"
+    },
+    "opts": [
+     "`strong`",
+     "`small`",
+     "`span`",
+     "`mark`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 8,
+     "jami": 74,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`<!DOCTYPE html>` nimani bildiradi?",
+     "ru": "Что означает `<!DOCTYPE html>`?"
+    },
+    "opts": [
+     {
+      "uz": "HTML faylning nomini",
+      "ru": "Имя HTML-файла"
+     },
+     {
+      "uz": "Sahifa tili o'zbekcha ekanini",
+      "ru": "Что язык страницы узбекский"
+     },
+     {
+      "uz": "Sahifa tugaganini",
+      "ru": "Конец страницы"
+     },
+     {
+      "uz": "HTML5 hujjat ekanini",
+      "ru": "Что это документ HTML5"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 29,
+     "jami": 121,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Sahifa skeletining (shablonining) to'g'ri tartibi qaysi?",
+     "ru": "Какой порядок скелета (шаблона) страницы верный?"
+    },
+    "opts": [
+     {
+      "uz": "`head` ichida `html` va `body`",
+      "ru": "`html` и `body` внутри `head`"
+     },
+     {
+      "uz": "`body` ichida `head` va `html`",
+      "ru": "`head` и `html` внутри `body`"
+     },
+     {
+      "uz": "`title` ichida `head`",
+      "ru": "`head` внутри `title`"
+     },
+     {
+      "uz": "`html` ichida `head` va `body`",
+      "ru": "`head` и `body` внутри `html`"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 30,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Portfolio kodini o'qib, saytga aylantiradigan dastur qaysi?",
+     "ru": "Какая программа читает код портфолио и превращает его в сайт?"
+    },
+    "opts": [
+     {
+      "uz": "Server",
+      "ru": "Сервер"
+     },
+     {
+      "uz": "Brauzer",
+      "ru": "Браузер"
+     },
+     "Word",
+     {
+      "uz": "Fayl menejeri",
+      "ru": "Файловый менеджер"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 13,
+     "jami": 89,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Yo'nalishingizni QIYA (kursiv) qilish uchun qaysi teg?",
+     "ru": "Какой тег сделает ваше направление НАКЛОННЫМ (курсив)?"
+    },
+    "opts": [
+     "`em`",
+     "`ul`",
+     "`a`",
+     "`h1`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 4,
+     "jami": 69,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-10",
+  "file": "src/1-Modull/CssPractice.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Matn (harflar) rangini qaysi xususiyat beradi?",
+     "ru": "Какое свойство задаёт цвет текста (букв)?"
+    },
+    "opts": [
+     "color",
+     "background-color",
+     "font-size",
+     "text-align"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 16,
+     "jami": 86,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Element orqa fon rangini qaysi xususiyat beradi?",
+     "ru": "Какое свойство задаёт цвет заднего фона элемента?"
+    },
+    "opts": [
+     "color",
+     "border",
+     "background-color",
+     "margin"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 16,
+     "jami": 81,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Matnni markazga qaysi qiymat qo'yadi?",
+     "ru": "Какое значение ставит текст по центру?"
+    },
+    "opts": [
+     "text-align: left",
+     "text-align: center",
+     "text-align: middle",
+     "align: center"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 18,
+     "jami": 102,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Havolalarni bir qatorga tizadigan qoida?",
+     "ru": "Правило, выстраивающее ссылки в один ряд?"
+    },
+    "opts": [
+     "display: block",
+     "display: none",
+     "text-align: center",
+     "display: flex"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 18,
+     "jami": 98,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Flex elementlar orasidagi bo'shliqni nima ochadi?",
+     "ru": "Что раздвигает flex-элементы (промежуток между ними)?"
+    },
+    "opts": [
+     "gap",
+     "padding",
+     "margin-top",
+     "border"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 10,
+     "jami": 75,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Element ICHIDAGI bo'shliq qaysi xususiyat?",
+     "ru": "Какое свойство — отступ ВНУТРИ элемента?"
+    },
+    "opts": [
+     "margin",
+     "gap",
+     "padding",
+     "text-align"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 10,
+     "jami": 68,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Elementlar ORASIDAGI (tashqi) bo'shliq qaysi xususiyat?",
+     "ru": "Какое свойство — отступ МЕЖДУ элементами (внешний)?"
+    },
+    "opts": [
+     "padding",
+     "gap",
+     "border",
+     "margin"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 7,
+     "jami": 77,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "CSS qoidasida `h1` — bu qaysi qism?",
+     "ru": "Какая это часть правила CSS — `h1`?"
+    },
+    "opts": [
+     {
+      "uz": "xususiyat",
+      "ru": "свойство"
+     },
+     {
+      "uz": "selektor",
+      "ru": "селектор"
+     },
+     {
+      "uz": "qiymat",
+      "ru": "значение"
+     },
+     {
+      "uz": "izoh",
+      "ru": "комментарий"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 9,
+     "jami": 62,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "CSS qoidasida `color` — bu qaysi qism?",
+     "ru": "Какая это часть правила CSS — `color`?"
+    },
+    "opts": [
+     {
+      "uz": "xususiyat",
+      "ru": "свойство"
+     },
+     {
+      "uz": "selektor",
+      "ru": "селектор"
+     },
+     {
+      "uz": "qiymat",
+      "ru": "значение"
+     },
+     {
+      "uz": "teg",
+      "ru": "тег"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 9,
+     "jami": 64,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Har bir CSS satri qaysi belgi bilan tugaydi?",
+     "ru": "Каким символом заканчивается каждая строка CSS?"
+    },
+    "opts": [
+     {
+      "uz": "vergul ,",
+      "ru": "запятая ,"
+     },
+     {
+      "uz": "nuqta .",
+      "ru": "точка ."
+     },
+     {
+      "uz": "ikki nuqta :",
+      "ru": "двоеточие :"
+     },
+     {
+      "uz": "nuqta-vergul ;",
+      "ru": "точка с запятой ;"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 14,
+     "jami": 85,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Flex menyuni gorizontal markazga qaysi xususiyat qo'yadi?",
+     "ru": "Какое свойство ставит flex-меню в горизонтальный центр?"
+    },
+    "opts": [
+     "align-items: center",
+     "justify-content: center",
+     "text-align: center",
+     "gap: center"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 23,
+     "jami": 128,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Kartani ekran markaziga qo'yuvchi qiymat?",
+     "ru": "Значение, ставящее карточку в центр экрана?"
+    },
+    "opts": [
+     "margin: 0",
+     "margin: center",
+     "margin: 0 auto",
+     "padding: auto"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 14,
+     "jami": 91,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-09",
+  "file": "src/1-Modull/GitLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Git kompyuterda qanday ish qiladi?",
+     "ru": "Какую работу делает Git на компьютере?"
+    },
+    "opts": [
+     {
+      "uz": "Kod versiyalarini saqlaydi va qaytaradi",
+      "ru": "Хранит и возвращает версии кода"
+     },
+     {
+      "uz": "Kodni ranglaydi",
+      "ru": "Раскрашивает код"
+     },
+     {
+      "uz": "Internet tezligini oshiradi",
+      "ru": "Ускоряет интернет"
+     },
+     {
+      "uz": "Rasmlarni tahrirlaydi",
+      "ru": "Редактирует картинки"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 39,
+     "jami": 136,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Kod internetda qaysi saytda saqlanadi?",
+     "ru": "На каком сайте код хранится в интернете?"
+    },
+    "opts": [
+     {
+      "uz": "google.com",
+      "ru": "google.com"
+     },
+     "github.com",
+     {
+      "uz": "youtube.com",
+      "ru": "youtube.com"
+     },
+     {
+      "uz": "telegram.org",
+      "ru": "telegram.org"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 12,
+     "jami": 81,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Git o'rnatilganini qaysi buyruq tekshiradi?",
+     "ru": "Какая команда проверяет установку Git?"
+    },
+    "opts": [
+     {
+      "uz": "git start",
+      "ru": "git start"
+     },
+     {
+      "uz": "git open",
+      "ru": "git open"
+     },
+     "git --version",
+     {
+      "uz": "git check",
+      "ru": "git check"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 13,
+     "jami": 82,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "GitHub'da bitta loyiha uchun ochilgan joy qanday ataladi?",
+     "ru": "Как называется место на GitHub под один проект?"
+    },
+    "opts": [
+     {
+      "uz": "Parol",
+      "ru": "Пароль"
+     },
+     {
+      "uz": "Brauzer",
+      "ru": "Браузер"
+     },
+     {
+      "uz": "Domen",
+      "ru": "Домен"
+     },
+     {
+      "uz": "Repo (repository)",
+      "ru": "Репо (repository)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 17,
+     "jami": 91,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Qaysi qadam yuboriladigan fayllarni tanlaydi?",
+     "ru": "Какой шаг выбирает файлы для отправки?"
+    },
+    "opts": [
+     {
+      "uz": "push",
+      "ru": "push"
+     },
+     "add",
+     {
+      "uz": "pull",
+      "ru": "pull"
+     },
+     {
+      "uz": "clone",
+      "ru": "clone"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 5,
+     "jami": 61,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Saqlangan nuqta qanday ataladi?",
+     "ru": "Как называется сохранённая точка?"
+    },
+    "opts": [
+     "commit",
+     {
+      "uz": "Domen",
+      "ru": "Домен"
+     },
+     {
+      "uz": "Parol",
+      "ru": "Пароль"
+     },
+     {
+      "uz": "Papka",
+      "ru": "Папка"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 6,
+     "jami": 52,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Qadamlar qaysi tartibda bajariladi?",
+     "ru": "В каком порядке идут шаги?"
+    },
+    "opts": [
+     {
+      "uz": "commit → add → push",
+      "ru": "commit → add → push"
+     },
+     {
+      "uz": "push → commit → add",
+      "ru": "push → commit → add"
+     },
+     {
+      "uz": "add → push → commit",
+      "ru": "add → push → commit"
+     },
+     {
+      "uz": "add → commit → push",
+      "ru": "add → commit → push"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 19,
+     "jami": 111,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "commit buyrug'idagi -m nima uchun kerak?",
+     "ru": "Зачем в команде commit нужен -m?"
+    },
+    "opts": [
+     {
+      "uz": "Faylni o'chirish uchun",
+      "ru": "Чтобы удалить файл"
+     },
+     {
+      "uz": "Rang berish uchun",
+      "ru": "Чтобы задать цвет"
+     },
+     {
+      "uz": "Izoh yozish uchun",
+      "ru": "Чтобы написать комментарий"
+     },
+     {
+      "uz": "Internetga ulanish uchun",
+      "ru": "Чтобы подключиться к интернету"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 24,
+     "jami": 120,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Git bilan GitHub orasidagi farq nimada?",
+     "ru": "В чём разница между Git и GitHub?"
+    },
+    "opts": [
+     {
+      "uz": "Git — dastur, GitHub — sayt",
+      "ru": "Git — программа, GitHub — сайт"
+     },
+     {
+      "uz": "Git — sayt, GitHub — dastur",
+      "ru": "Git — сайт, GitHub — программа"
+     },
+     {
+      "uz": "Ikkalasi bir xil",
+      "ru": "Это одно и то же"
+     },
+     {
+      "uz": "Git — brauzer, GitHub — redaktor",
+      "ru": "Git — браузер, GitHub — редактор"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 32,
+     "jami": 141,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Kompyuter buzildi. Kod qayerdan qaytadi?",
+     "ru": "Компьютер сломался. Откуда вернётся код?"
+    },
+    "opts": [
+     {
+      "uz": "Brauzer tarixidan",
+      "ru": "Из истории браузера"
+     },
+     {
+      "uz": "Hech qayerdan",
+      "ru": "Ниоткуда"
+     },
+     {
+      "uz": "GitHub'dagi repodan",
+      "ru": "Из репо на GitHub"
+     },
+     {
+      "uz": "VS Code sozlamalaridan",
+      "ru": "Из настроек VS Code"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 22,
+     "jami": 111,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Repodagi yangi nuqtalarni kompyuterga qaysi buyruq oladi?",
+     "ru": "Какая команда забирает новые точки из репо на компьютер?"
+    },
+    "opts": [
+     {
+      "uz": "git push",
+      "ru": "git push"
+     },
+     "git pull",
+     {
+      "uz": "git add",
+      "ru": "git add"
+     },
+     {
+      "uz": "git commit",
+      "ru": "git commit"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 10,
+     "jami": 90,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Repo ichidagi README fayli nima uchun?",
+     "ru": "Для чего в репо файл README?"
+    },
+    "opts": [
+     {
+      "uz": "Parolni saqlash uchun",
+      "ru": "Чтобы хранить пароль"
+     },
+     {
+      "uz": "Saytni tezlashtirish uchun",
+      "ru": "Чтобы ускорить сайт"
+     },
+     {
+      "uz": "Rasmlarni saqlash uchun",
+      "ru": "Чтобы хранить картинки"
+     },
+     {
+      "uz": "Loyiha haqida qisqa yozuv",
+      "ru": "Короткая запись о проекте"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 26,
+     "jami": 133,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-11",
+  "file": "src/1-Modull/DeployLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Netlify nima qiladi?",
+     "ru": "Что делает Netlify?"
+    },
+    "opts": [
+     {
+      "uz": "Sayt papkasini internetda saqlab, havola beradi",
+      "ru": "Хранит папку сайта в интернете и выдаёт ссылку"
+     },
+     {
+      "uz": "Kodni chiroyli ranglar bilan bezaydi",
+      "ru": "Красиво раскрашивает код"
+     },
+     {
+      "uz": "Internet tezligini oshiradi",
+      "ru": "Увеличивает скорость интернета"
+     },
+     {
+      "uz": "Telefonni zaryadlaydi",
+      "ru": "Заряжает телефон"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 20,
+     "maxVariant": 47,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "AI bergan bosh sahifa faylini qaysi nom bilan saqlaysiz?",
+     "ru": "Под каким именем сохраните файл главной страницы от AI?"
+    },
+    "opts": [
+     "style.css",
+     "index.html",
+     "rasm.jpg",
+     "netlify.txt"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 11,
+     "jami": 94,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Saytni internetga chiqarish qanday ataladi?",
+     "ru": "Как называется выкладка сайта в интернет?"
+    },
+    "opts": [
+     {
+      "uz": "Nusxalash",
+      "ru": "Копирование"
+     },
+     {
+      "uz": "Restart",
+      "ru": "Рестарт"
+     },
+     {
+      "uz": "Deploy",
+      "ru": "Деплой"
+     },
+     {
+      "uz": "Zoom",
+      "ru": "Zoom"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 9,
+     "jami": 69,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Netlify'ga qanday kiriladi?",
+     "ru": "Как входят в Netlify?"
+    },
+    "opts": [
+     {
+      "uz": "Yangi parol o'ylab topib",
+      "ru": "Придумав новый пароль"
+     },
+     {
+      "uz": "SMS kod bilan",
+      "ru": "По коду из SMS"
+     },
+     {
+      "uz": "Bank kartasi bilan",
+      "ru": "По банковской карте"
+     },
+     {
+      "uz": "GitHub hisobi bilan",
+      "ru": "Через аккаунт GitHub"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 24,
+     "jami": 101,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Bugun saytni Netlify'ga qanday qo'ydik?",
+     "ru": "Как мы сегодня положили сайт на Netlify?"
+    },
+    "opts": [
+     {
+      "uz": "Telegram orqali yuborib",
+      "ru": "Отправив через Telegram"
+     },
+     {
+      "uz": "Elektron pochtaga yozib",
+      "ru": "Написав на электронную почту"
+     },
+     {
+      "uz": "Sayt papkasini sudrab tashlab",
+      "ru": "Перетащив папку сайта"
+     },
+     {
+      "uz": "Flesh kartaga yozib",
+      "ru": "Записав на флешку"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 29,
+     "jami": 133,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Saytni o'zgartirdingiz. Internetdagi versiya qanday yangilanadi?",
+     "ru": "Вы изменили сайт. Как обновится версия в интернете?"
+    },
+    "opts": [
+     {
+      "uz": "Papkani Netlify'ga qayta sudrab tashlayman",
+      "ru": "Снова перетаскиваю папку в Netlify"
+     },
+     {
+      "uz": "Havolani o'chirib qayta yozaman",
+      "ru": "Удаляю и заново пишу ссылку"
+     },
+     {
+      "uz": "Kompyuterni o'chirib yoqaman",
+      "ru": "Перезагружаю компьютер"
+     },
+     {
+      "uz": "O'z-o'zidan, hech narsa qilmayman",
+      "ru": "Само собой, ничего не делаю"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 42,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Deploydan keyin Netlify sizga nima beradi?",
+     "ru": "Что выдаёт Netlify после деплоя?"
+    },
+    "opts": [
+     {
+      "uz": "Yangi kompyuter",
+      "ru": "Новый компьютер"
+     },
+     {
+      "uz": "Sayt havolasini",
+      "ru": "Ссылку на сайт"
+     },
+     {
+      "uz": "Yangi parol",
+      "ru": "Новый пароль"
+     },
+     {
+      "uz": "Bepul internet",
+      "ru": "Бесплатный интернет"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 15,
+     "jami": 97,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Do'stingiz saytni telefonida ochishi uchun unga nima yuborasiz?",
+     "ru": "Что вы отправите другу, чтобы он открыл сайт на телефоне?"
+    },
+    "opts": [
+     {
+      "uz": "index.html faylini",
+      "ru": "Файл index.html"
+     },
+     {
+      "uz": "GitHub parolimni",
+      "ru": "Свой пароль от GitHub"
+     },
+     {
+      "uz": "Sayt papkasini arxiv qilib",
+      "ru": "Папку сайта архивом"
+     },
+     {
+      "uz": "Sayt havolasini",
+      "ru": "Ссылку на сайт"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 26,
+     "jami": 138,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Sayt sahifalari bir-biriga nima orqali ulanadi?",
+     "ru": "Через что страницы сайта связаны между собой?"
+    },
+    "opts": [
+     {
+      "uz": "Menyudagi havolalar orqali",
+      "ru": "Через ссылки в меню"
+     },
+     {
+      "uz": "Rasmlar orqali",
+      "ru": "Через картинки"
+     },
+     {
+      "uz": "Parol orqali",
+      "ru": "Через пароль"
+     },
+     {
+      "uz": "Fayl hajmi orqali",
+      "ru": "Через размер файла"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 26,
+     "jami": 116,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "AI'ga sayt topshirig'ini yozganda nima ko'rsatiladi?",
+     "ru": "Что указывают в задании для AI при заказе сайта?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat sevimli rang",
+      "ru": "Только любимый цвет"
+     },
+     {
+      "uz": "Faqat ism",
+      "ru": "Только имя"
+     },
+     {
+      "uz": "Sahifalar ro'yxati va shartlar",
+      "ru": "Список страниц и условия"
+     },
+     {
+      "uz": "Hech narsa",
+      "ru": "Ничего"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 30,
+     "jami": 119,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Sayt telefonda ham chiroyli chiqishi uchun AI topshirig'iga nima yozasiz?",
+     "ru": "Что написать в задании для AI, чтобы сайт красиво выглядел и на телефоне?"
+    },
+    "opts": [
+     {
+      "uz": "Hamma sahifa bitta faylda bo'lsin",
+      "ru": "Все страницы в одном файле"
+     },
+     {
+      "uz": "Rasm umuman qo'yma",
+      "ru": "Вообще не ставь картинки"
+     },
+     {
+      "uz": "Faqat kompyuter uchun qil",
+      "ru": "Сделай только для компьютера"
+     },
+     {
+      "uz": "Telefonda ham, kompyuterda ham chiroyli ko'rinsin",
+      "ru": "Пусть красиво выглядит и на телефоне, и на компьютере"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 73,
+     "maxVariant": 49,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Deploydan keyin saytni kim ko'ra oladi?",
+     "ru": "Кто сможет увидеть сайт после деплоя?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat men, o'z kompyuterimda",
+      "ru": "Только я, на своём компьютере"
+     },
+     {
+      "uz": "Havolani bilgan har kim",
+      "ru": "Каждый, кто знает ссылку"
+     },
+     {
+      "uz": "Faqat mentor",
+      "ru": "Только ментор"
+     },
+     {
+      "uz": "Faqat GitHub xodimlari",
+      "ru": "Только сотрудники GitHub"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 28,
+     "jami": 124,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m1-12",
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Demo Day nutqi qancha davom etadi?",
+     "ru": "Сколько длится речь на Демо-дне?"
+    },
+    "opts": [
+     {
+      "uz": "3 daqiqa",
+      "ru": "3 минуты"
+     },
+     {
+      "uz": "Yarim soat",
+      "ru": "Полчаса"
+     },
+     {
+      "uz": "10 soniya",
+      "ru": "10 секунд"
+     },
+     {
+      "uz": "Qancha xohlasangiz, shuncha",
+      "ru": "Сколько захотите"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 27,
+     "jami": 88,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Nutqning eng katta bo'lagi qaysi?",
+     "ru": "Какая часть речи самая большая?"
+    },
+    "opts": [
+     {
+      "uz": "Salomlashuv",
+      "ru": "Приветствие"
+     },
+     {
+      "uz": "Jonli demo — saytni ochib ko'rsatish",
+      "ru": "Живое демо — открыть и показать сайт"
+     },
+     {
+      "uz": "Qanday qilganingiz",
+      "ru": "Как вы это сделали"
+     },
+     {
+      "uz": "Rahmat aytish",
+      "ru": "Слова благодарности"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 36,
+     "jami": 111,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Nutq nima bilan boshlanadi?",
+     "ru": "С чего начинается речь?"
+    },
+    "opts": [
+     {
+      "uz": "Saytning nomini aytish bilan",
+      "ru": "С названия сайта"
+     },
+     {
+      "uz": "Uzun salomlashuv bilan",
+      "ru": "С длинного приветствия"
+     },
+     {
+      "uz": "Zalga beriladigan savol bilan",
+      "ru": "С вопроса залу"
+     },
+     {
+      "uz": "Qaysi dasturda qilinganini aytish bilan",
+      "ru": "С рассказа, в какой программе он сделан"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 39,
+     "jami": 145,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Saytingiz nega kerakligi qanday aytiladi?",
+     "ru": "Как объяснить, зачем нужен ваш сайт?"
+    },
+    "opts": [
+     {
+      "uz": "Nechta bo'limi borligi bilan",
+      "ru": "Через число разделов"
+     },
+     {
+      "uz": "Qaysi rangda qilinganligi bilan",
+      "ru": "Через цвет сайта"
+     },
+     {
+      "uz": "Necha kun ishlaganingiz bilan",
+      "ru": "Через число дней работы"
+     },
+     {
+      "uz": "Kim ishlatishi va unga nimasi qiyin edi bilan",
+      "ru": "Через то, кто им пользуется и что ему было трудно"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 45,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Jonli demoda nima ochiladi?",
+     "ru": "Что открывают в живом демо?"
+    },
+    "opts": [
+     {
+      "uz": "Saytning o'zi — manzilidan",
+      "ru": "Сам сайт — по его адресу"
+     },
+     {
+      "uz": "VS Code oynasi",
+      "ru": "Окно VS Code"
+     },
+     {
+      "uz": "GitHub papkasi",
+      "ru": "Папку на GitHub"
+     },
+     {
+      "uz": "Netlify sozlamalari",
+      "ru": "Настройки Netlify"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 26,
+     "jami": 100,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Ota-onangizga qaysi gap tushunarli?",
+     "ru": "Какая фраза понятна вашим родителям?"
+    },
+    "opts": [
+     {
+      "uz": "«Semantik struktura yaratdim»",
+      "ru": "«Я создал семантическую структуру»"
+     },
+     {
+      "uz": "«Bo'limlarni o'zim qo'ydim: sarlavha, matn, rasm»",
+      "ru": "«Разделы я расставил сам: заголовок, текст, картинка»"
+     },
+     {
+      "uz": "«Stillarni kaskad bo'yicha qo'lladim»",
+      "ru": "«Я применил стили каскадом»"
+     },
+     {
+      "uz": "«Repozitoriyani deploy qildim»",
+      "ru": "«Я задеплоил репозиторий»"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 49,
+     "jami": 180,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Ota-onangiz «Bu kimga kerak?» desa, qaysi javob kuchli?",
+     "ru": "Родители спрашивают «А кому это нужно?» — какой ответ сильный?"
+    },
+    "opts": [
+     {
+      "uz": "«Hammaga kerak, hamma ishlatadi»",
+      "ru": "«Всем нужно, все пользуются»"
+     },
+     {
+      "uz": "«Bilmadim, shunchaki qildim»",
+      "ru": "«Не знаю, просто так сделал»"
+     },
+     {
+      "uz": "«Mentor shunday deb aytgan edi»",
+      "ru": "«Так мне сказал ментор»"
+     },
+     {
+      "uz": "«Sinfdoshlarimga: kitobni bir joydan topadi»",
+      "ru": "«Одноклассникам: книгу находят в одном месте»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 44,
+     "jami": 190,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Juftlik mashqida sherigingiz kim rolida?",
+     "ru": "Кто ваш напарник в парной тренировке?"
+    },
+    "opts": [
+     {
+      "uz": "Hakam — ball qo'yadi",
+      "ru": "Судья — ставит баллы"
+     },
+     {
+      "uz": "Mentor — xatoni tuzatadi",
+      "ru": "Ментор — исправляет ошибки"
+     },
+     {
+      "uz": "Zaldagi ota-ona — savol beradi",
+      "ru": "Родитель в зале — задаёт вопросы"
+     },
+     {
+      "uz": "Tomoshabin — jim o'tiradi",
+      "ru": "Зритель — молча сидит"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 30,
+     "jami": 139,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Sahnada «HTML va CSS ishlatdim» deyish nega yetarli emas?",
+     "ru": "Почему на сцене мало сказать «я использовал HTML и CSS»?"
+    },
+    "opts": [
+     {
+      "uz": "Ota-onangiz bu so'zlardan nima qilganingizni bilmaydi",
+      "ru": "Родители по этим словам не поймут, что вы сделали"
+     },
+     {
+      "uz": "Bu yolg'on gap, bunday deyish mumkin emas",
+      "ru": "Это неправда, так говорить нельзя"
+     },
+     {
+      "uz": "Juda uzun, vaqt yetmay qoladi",
+      "ru": "Слишком длинно, не хватит времени"
+     },
+     {
+      "uz": "Netlify va GitHub aytilmagan",
+      "ru": "Не названы Netlify и GitHub"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 53,
+     "jami": 208,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "«Buni o'zing qildingmi?» degan savolga qanday javob beriladi?",
+     "ru": "Как отвечают на вопрос «Ты сделал это сам?»"
+    },
+    "opts": [
+     {
+      "uz": "«Bilmadim, shunchaki chiqib qoldi»",
+      "ru": "«Не знаю, как-то само получилось»"
+     },
+     {
+      "uz": "«Mentor o'rgatdi, saytni o'zim qildim»",
+      "ru": "«Ментор научил, а сайт я сделал сам»"
+     },
+     {
+      "uz": "«Hech kim yordam bermadi»",
+      "ru": "«Мне никто не помогал»"
+     },
+     {
+      "uz": "«Bu savolga javob bermayman»",
+      "ru": "«На этот вопрос я не отвечаю»"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 38,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Jonli demo necha qadamdan iborat?",
+     "ru": "Из скольких шагов состоит живое демо?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta — shunchaki saytni ochish",
+      "ru": "Из одного — просто открыть сайт"
+     },
+     {
+      "uz": "Ikkita: ochaman va yopaman",
+      "ru": "Из двух: открываю и закрываю"
+     },
+     {
+      "uz": "Uchta: ochaman · ko'rsataman · aytaman",
+      "ru": "Из трёх: открываю · показываю · рассказываю"
+     },
+     {
+      "uz": "Har bir bo'limni birma-bir ko'rsataman",
+      "ru": "Показываю каждый раздел по очереди"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 38,
+     "jami": 166,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Nutqni yozib bo'lgach nima qilinadi?",
+     "ru": "Что делают, когда речь написана?"
+    },
+    "opts": [
+     {
+      "uz": "Darhol unutiladi",
+      "ru": "Сразу забывают"
+     },
+     {
+      "uz": "Ikki barobar uzaytiriladi",
+      "ru": "Удлиняют вдвое"
+     },
+     {
+      "uz": "Qog'ozga yozib qo'yiladi",
+      "ru": "Переписывают на бумагу"
+     },
+     {
+      "uz": "Ovoz chiqarib, taymer bilan repetitsiya qilinadi",
+      "ru": "Репетируют вслух с таймером"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 48,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   }
+  ]
+ }
+]

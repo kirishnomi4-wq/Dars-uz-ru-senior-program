@@ -6,7 +6,7 @@ Ustaxona (s10), juftlik (s11: Ayting · Baholang · Tuzating), to'rt bo'lak (s2)
 | № | id | Ekran | O'quvchi | Ball / nishon |
 |---|---|---|---|---|
 | 1 | s0 | Kirish — zal 3 daqiqada nimani ko'rmoqchi | radio-variant (ballsiz) | — |
-| 2 | s1 | Reja | 4 qadam: muammo dalil bilan · mahsulot bir gapda · **pitchni sherikka 3 daq aytib, baholatib, tuzatib 1 daq qayta aytasiz** · **ilovani Demo Day oldidan telefonda tekshirasiz** | — |
+| 2 | s1 | Reja | 4 qadam: muammo dalil bilan · mahsulot bir gapda · **pitchni sherikka 3 daq aytib, baholatib, tuzatib 1 daq qayta ayting** · **ilovani Demo Day oldidan telefonda tekshiring** | — |
 | 3 | s2 | To'rt bo'lak | Mentor pitchi yig'iladi, taymer bo'linadi | — |
 | 4 | s4 | Muammo va dalil | sanoq va harakat belgisi jadvaldan bo'lakka | — |
 | 5 | s8 | Jonli demo | kutish yozuvi → asosiy harakat → sinovdagi tuzatish | — |

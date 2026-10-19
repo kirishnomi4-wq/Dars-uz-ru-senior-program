@@ -109,6 +109,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -186,8 +211,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -986,10 +1011,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda yakuniy chiziq oldindan — matnsiz kartalar navbat bilan tushadi, «Keyin» yonadi; o'ngda «01 · matn · teg») =====
 const REJA = [
-  { t: { uz: "Loyihalaringizni qurilgan tartibida bitta chiziqqa qo'yasiz", ru: "Поставите свои проекты на одну линию в порядке их создания" }, teg: { uz: "vaqt chizig'i", ru: "линия времени" } },
-  { t: { uz: "Har loyihada nimani o'rganganingizni yozasiz", ru: "Напишете, чему научились в каждом проекте" }, teg: { uz: "o'rgandim", ru: "умею" } },
-  { t: { uz: "Uzum'ning ikki sanasini chiziqda ko'rasiz", ru: "Увидите на линии две даты Uzum" }, teg: { uz: 'voqea', ru: "история" } },
-  { t: { uz: 'Bitta keyingi qadamni tanlaysiz', ru: "Выберете один следующий шаг" }, teg: { uz: 'keyingi qadam', ru: "следующий шаг" } }
+  { t: { uz: "Loyihalaringizni qurilgan tartibida bitta chiziqqa qo'ying", ru: "Поставьте свои проекты на одну линию в порядке их создания" }, teg: { uz: "vaqt chizig'i", ru: "линия времени" } },
+  { t: { uz: "Har loyihada nimani o'rganganingizni yozing", ru: "Напишите, чему научились в каждом проекте" }, teg: { uz: "o'rgandim", ru: "умею" } },
+  { t: { uz: "Uzum'ning ikki sanasini chiziqda ko'ring", ru: "Посмотрите на линии две даты Uzum" }, teg: { uz: 'voqea', ru: "история" } },
+  { t: { uz: 'Bitta keyingi qadamni tanlang', ru: "Выберите один следующий шаг" }, teg: { uz: 'keyingi qadam', ru: "следующий шаг" } }
 ];
 // Dars oxiridagi chiziqning oldindan ko'rinishi (SABOQ 20): matnsiz kartalar navbat bilan chiziqqa tushadi, oxirida «Keyin» yonadi —
 // loyiha nomlari yozilmaydi (2-ekran javobini ochmaydi, MD 1-ekran)
@@ -1963,18 +1988,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (MD; har biri 3 marta)
 const QUIZ_BANK = [
-  { q: { uz: "Vaqt chizig'ida loyihalar qanday tartibda turadi?", ru: "В каком порядке стоят проекты на линии времени?" }, opts: [{ uz: "Qurilgan vaqti bo'yicha, birinchisidan", ru: "По времени создания, с первого" }, { uz: 'Eng yoqqanidan boshlab, eng yoqmaganigacha', ru: "От самого любимого до самого нелюбимого" }, { uz: 'Eng kattasidan boshlab, kichigigacha', ru: "От самого большого до маленького" }, { uz: "Ko'p vaqt olganidan boshlab, ozigacha", ru: "От самого долгого до короткого" }], correct: 0 },
-  { q: { uz: 'Bir yil oldingi portfolio sayt chiziqning qayeriga yaqin turadi?', ru: "Ближе к какому месту линии стоит прошлогодний сайт-портфолио?" }, opts: [{ uz: 'Oxiriga — eng yangi loyiha sifatida', ru: "К концу — как самый новый проект" }, { uz: 'Boshiga — dastlabki loyihalardan biri', ru: "К началу — один из первых проектов" }, { uz: "O'rtasiga — eng muhim loyiha bo'lgani uchun", ru: "К середине — как самый важный проект" }, { uz: 'Hech qayerga — u juda kichik loyiha', ru: "Никуда — это слишком маленький проект" }], correct: 1 },
-  { q: { uz: "«AvtoIjara saytini qurdim» — «O'rgandim»ga to'g'ri keladimi?", ru: "«Я построил(а) сайт AvtoIjara» — подходит для «Умею»?" }, opts: [{ uz: 'Ha — loyiha nomi aniq yozilgan', ru: "Да — название проекта написано точно" }, { uz: "Ha — gap o'tgan zamonda to'g'ri yozilgan", ru: "Да — фраза верно написана в прошедшем времени" }, { uz: "Yo'q — u loyiha nomini takrorlaydi", ru: "Нет — она повторяет название проекта" }, { uz: "Yo'q — gap juda qisqa yozilgan", ru: "Нет — фраза слишком короткая" }], correct: 2 },
-  { q: { uz: "Qaysi gap «O'rgandim»ga mos keladi?", ru: "Какая фраза подходит для «Умею»?" }, opts: [{ uz: "Endi loyiham juda chiroyli ko'rinadi", ru: "Теперь мой проект выглядит очень красиво" }, { uz: "Endi KitobShop'ni oxirigacha qurib bo'ldim", ru: "Теперь я достроил(а) KitobShop до конца" }, { uz: 'Endi Mentor loyihamni juda maqtaydi', ru: "Теперь Ментор очень хвалит мой проект" }, { uz: "Endi botga AI'ni o'zim ulay olaman", ru: "Теперь я умею без помощи подключать ИИ к боту" }], correct: 3 },
+  { q: { uz: "Vaqt chizig'ida loyihalar qanday turadi?", ru: "Как стоят проекты на линии времени?" }, opts: [{ uz: "Qurilgan vaqti bo'yicha", ru: "По времени создания" }, { uz: "Eng yoqqanidan boshlab", ru: "Начиная с любимого" }, { uz: "Eng kattasidan boshlab", ru: "Начиная с самого большого" }, { uz: "Ko'p vaqt olganidan boshlab", ru: "Начиная с самого долгого" }], correct: 0 },
+  { q: { uz: "Bir yil oldingi portfolio chiziqda qayerda?", ru: "Где на линии портфолио годичной давности?" }, opts: [{ uz: "Oxirida — eng yangisi", ru: "В конце — самый новый" }, { uz: "Boshida — ilk loyihalardan", ru: "В начале — среди первых" }, { uz: "O'rtasida — eng muhimi", ru: "В середине — самый важный" }, { uz: "Hech qayerda — juda kichik", ru: "Нигде — слишком маленький" }], correct: 1 },
+  { q: { uz: "«AvtoIjara saytini qurdim» — «O'rgandim»ga mosmi?", ru: "«Построил сайт AvtoIjara» — подходит для «Научился»?" }, opts: [{ uz: "Ha — nomi aniq yozilgan", ru: "Да — название указано точно" }, { uz: "Ha — zamoni to'g'ri", ru: "Да — время глагола верное" }, { uz: "Yo'q — nomni takrorlaydi", ru: "Нет — повторяет название" }, { uz: "Yo'q — juda qisqa", ru: "Нет — слишком коротко" }], correct: 2 },
+  { q: { uz: "Qaysi gap «O'rgandim»ga mos keladi?", ru: "Какая фраза подходит для «Научился»?" }, opts: [{ uz: "Loyiham chiroyli ko'rinadi", ru: "Мой проект выглядит красиво" }, { uz: "KitobShop'ni qurib bo'ldim", ru: "Достроил KitobShop" }, { uz: "Mentor loyihamni maqtaydi", ru: "Ментор хвалит мой проект" }, { uz: "Botga AI'ni ulay olaman", ru: "Умею подключать AI к боту" }], correct: 3 },
   { q: { uz: 'Uzum qachon ishga tushgan?', ru: "Когда запустился Uzum?" }, opts: [{ uz: '2022-yil oktabrda', ru: "В октябре 2022 года" }, { uz: '2020-yil sentabrda', ru: "В сентябре 2020 года" }, { uz: '2024-yil martda', ru: "В марте 2024 года" }, { uz: '2019-yil oktabrda', ru: "В октябре 2019 года" }], correct: 0 },
-  { q: { uz: "Uzum'gacha odamlar narsani ko'pincha qayerdan olardi?", ru: "Где люди чаще всего покупали вещи до Uzum?" }, opts: [{ uz: 'Chet eldagi katta saytlardan', ru: "На больших зарубежных сайтах" }, { uz: 'Telegram va Instagram guruhlaridan', ru: "В группах Telegram и Instagram" }, { uz: "Shahardagi katta bozor va do'konlardan", ru: "На больших рынках и в магазинах города" }, { uz: "Maktabdagi e'lonlar taxtasidan", ru: "С доски объявлений в школе" }], correct: 1 },
-  { q: { uz: "Uzum 2024-yilda «unicorn» bo'ldi. Bu nimani bildiradi?", ru: "В 2024 году Uzum стал «единорогом». Что это значит?" }, opts: [{ uz: 'Ishchilari soni mingtadan oshganini', ru: "Что сотрудников стало больше тысячи" }, { uz: "Bir yilda o'nta shaharga ochilganini", ru: "Что за год открылся в десяти городах" }, { uz: 'Bahosi 1 milliard dollardan oshganini', ru: "Что его стоимость превысила 1 миллиард долларов" }, { uz: 'Hamma xaridni o\'zi yetkaza boshlaganini', ru: "Что начал сам доставлять все покупки" }], correct: 2 },
-  { q: { uz: "Uzum'ning birinchi qadami nimadan o'sgan?", ru: "Из чего вырос первый шаг Uzum?" }, opts: [{ uz: 'Sayt dizayni eskirib qolganidan', ru: "Из того, что дизайн сайта устарел" }, { uz: "Shaharda do'konlar kamligidan", ru: "Из того, что в городе мало магазинов" }, { uz: 'Reklama juda arzonlashganidan', ru: "Из того, что реклама сильно подешевела" }, { uz: 'Yetkazib berishsiz xariddan', ru: "Из покупок без доставки" }], correct: 3 },
+  { q: { uz: "Uzum'gacha odamlar internetda qayerdan xarid qilardi?", ru: "Где люди покупали в интернете до Uzum?" }, opts: [{ uz: "Chet el saytlaridan", ru: "На зарубежных сайтах" }, { uz: "Telegram va Instagram'dan", ru: "В Telegram и Instagram" }, { uz: "Bank ilovalari orqali", ru: "Через банковские приложения" }, { uz: "Maktab saytlaridan", ru: "На школьных сайтах" }], correct: 1 },
+  { q: { uz: "Uzum «unicorn» bo'ldi — bu nima?", ru: "Uzum стал «единорогом» — что это значит?" }, opts: [{ uz: "Ishchilari mingdan oshgan", ru: "Сотрудников больше тысячи" }, { uz: "O'nta shaharga ochilgan", ru: "Открылся в десяти городах" }, { uz: "Bahosi 1 mlrd dollardan oshgan", ru: "Оценка выше 1 млрд долларов" }, { uz: "Hammasini o'zi yetkazadi", ru: "Сам доставляет всё" }], correct: 2 },
+  { q: { uz: "Uzum'ning birinchi qadami nimadan o'sgan?", ru: "Из чего вырос первый шаг Uzum?" }, opts: [{ uz: "Sayt dizayni eskirganidan", ru: "Из устаревшего дизайна сайта" }, { uz: "Do'konlar kamligidan", ru: "Из нехватки магазинов" }, { uz: "Reklama arzonlashganidan", ru: "Из удешевления рекламы" }, { uz: "Yetkazib berishsiz xariddan", ru: "Из покупок без доставки" }], correct: 3 },
   { q: { uz: 'Keyingi qadamning belgilaridan biri qaysi?', ru: "Какой из признаков следующего шага?" }, opts: [{ uz: 'Bitta va aniq ish', ru: "Одна конкретная работа" }, { uz: 'Eng katta va qiyin ish', ru: "Самая большая и трудная работа" }, { uz: 'Hammaga yoqadigan ish', ru: "Работа, которая нравится всем" }, { uz: 'Tez tugaydigan ish', ru: "Работа, которая быстро заканчивается" }], correct: 0 },
-  { q: { uz: "«Ko'proq o'rganaman» — keyingi qadam bo'ladimi?", ru: "«Буду больше учиться» — это следующий шаг?" }, opts: [{ uz: 'Ha — u kelajakdagi ish haqida yozilgan', ru: "Да — она написана о будущей работе" }, { uz: "Yo'q — qaysi ish ekani aniq emas", ru: "Нет — неясно, какая это работа" }, { uz: "Ha — o'rganish hammaga kerak", ru: "Да — учиться нужно всем" }, { uz: "Yo'q — u juda uzun yozilgan", ru: "Нет — она слишком длинная" }], correct: 1 },
-  { q: { uz: "«Maydon» keyingi qadami nimadan o'sdi?", ru: "Из чего вырос следующий шаг «Maydon»?" }, opts: [{ uz: 'Mentorning futbolga qiziqishidan', ru: "Из интереса Ментора к футболу" }, { uz: "Boshqa saytlarda ko'rgan narsadan", ru: "Из того, что видели на других сайтах" }, { uz: 'Suhbatda o\'yinchilar aytganidan', ru: "Из того, что игроки сказали в разговорах" }, { uz: "A/B testdagi B variantining yutug'idan", ru: "Из победы варианта B в A/B-тесте" }], correct: 2 },
-  { q: { uz: 'Bu modulda loyiha qurmagan bo\'lsangiz, chiziqda nima qilasiz?', ru: "Если в этом модуле вы не строили проект, что делаете на линии?" }, opts: [{ uz: 'Sinfdoshimning loyihasini yozib qo\'yaman', ru: "Записываю проект одноклассника" }, { uz: "O'ylab topilgan loyiha nomini yozaman", ru: "Пишу придуманное название проекта" }, { uz: 'Chiziqni shu joyda tugatib qo\'yaman', ru: "Заканчиваю линию на этом месте" }, { uz: "Modulni «o'tkazildi» deb belgilayman", ru: "Отмечаю модуль как «пропущено»" }], correct: 3 },
+  { q: { uz: "«Ko'proq o'rganaman» — keyingi qadam bo'ladimi?", ru: "«Буду больше учиться» — это следующий шаг?" }, opts: [{ uz: "Ha — kelajak haqida", ru: "Да — это о будущем" }, { uz: "Yo'q — ish aniq emas", ru: "Нет — дело не конкретное" }, { uz: "Ha — o'rganish kerak", ru: "Да — учиться нужно" }, { uz: "Yo'q — juda uzun", ru: "Нет — слишком длинно" }], correct: 1 },
+  { q: { uz: "«Maydon» keyingi qadami nimadan o'sdi?", ru: "Из чего вырос следующий шаг «Maydon»?" }, opts: [{ uz: "Mentorning qiziqishidan", ru: "Из интереса Ментора" }, { uz: "Boshqa saytlarda ko'rganidan", ru: "Из увиденного на других сайтах" }, { uz: "O'yinchilar aytganidan", ru: "Из слов игроков" }, { uz: "B variantining yutug'idan", ru: "Из победы варианта B" }], correct: 2 },
+  { q: { uz: "Loyiha qurmagan modulni nima qilasiz?", ru: "Что делаете с модулем, где не было проекта?" }, opts: [{ uz: "Sinfdoshnikini yozasiz", ru: "Пишете проект одноклассника" }, { uz: "O'ylab topib yozasiz", ru: "Придумываете проект" }, { uz: "Chiziqni tugatasiz", ru: "Заканчиваете линию" }, { uz: "«O'tkazildi» deb belgilaysiz", ru: "Отмечаете «пропущен»" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

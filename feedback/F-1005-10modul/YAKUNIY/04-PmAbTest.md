@@ -28,10 +28,10 @@ Barcha ekranlarda: telefonda Mentor yig'iladi — «Mentor · ko'rsatmani ochish
 - Chap yorliq: Dars oxirida: gipoteza va A/B test — B varianti bugun ishga tushadi
 - Chap maket (o'zi bir marta o'ynaydi): kulrang doiralar tepadan kirib, ikki telefon tomoniga bo'linadi; chap telefonda «Band qilish», o'ngda «18:00 ni band qilish»; ostida mini uch qadam (ochdi · vaqtni tanladi · band qildi) — raqamsiz, kulrang chiziq
 - O'ng (raqam · matn; teg yo'q — atama rejada misoldan oldin chiqardi va keyingi ekranlarda takrorlanardi) *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*:
-  - 01 · Tajribani tekshirsa bo'ladigan gapga aylantirasiz
-  - 02 · Odamlarni ikki guruhga bo'lishni o'rganasiz
-  - 03 · «Maydon»da tugmaning yangi matnini ishga tushirasiz
-  - 04 · Ikki guruh foizini dashboard'da solishtirasiz
+  - 01 · Tajribani tekshirsa bo'ladigan gapga aylantiring
+  - 02 · Odamlarni ikki guruhga bo'lishni o'rganing
+  - 03 · «Maydon»da tugmaning yangi matnini ishga tushiring
+  - 04 · Ikki guruh foizini dashboard'da solishtiring
 - Pastki qator: repo `maydon` · boshlang'ich holat `m10-dars-04-start` · tayyor namuna `m10-dars-04-done`
 - Tugmalar: Orqaga · Boshlaymiz
 

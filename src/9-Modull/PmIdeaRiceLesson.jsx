@@ -101,6 +101,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -178,8 +203,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1006,9 +1031,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda «Dars oxirida» — voronka 5 → 4 → 3 → 2, F-1015-177 MD v4; natija sonlari — dars yo'li, g'oya nomlari ochilmaydi — P-036) =====
 const REJA = [
-  { t: { uz: "Har g'oyaga uchta «ha / yo'q» savol berasiz", ru: 'Зададите каждой идее три вопроса «да / нет»' }, teg: { uz: 'saralash', ru: 'отбор' } },
-  { t: { uz: "RICE ning to'rt savoli bilan baholaysiz", ru: 'Оцените четырьмя вопросами RICE' }, teg: { uz: 'RICE', ru: 'RICE' } },
-  { t: { uz: "Bitta son o'zgarsa, tartib nima bo'lishini ko'rasiz", ru: 'Увидите, что станет с порядком, если изменится одно число' }, teg: { uz: 'juftlik', ru: 'пара' } }
+  { t: { uz: "Har g'oyaga uchta «ha / yo'q» savol bering", ru: 'Задайте каждой идее три вопроса «да / нет»' }, teg: { uz: 'saralash', ru: 'отбор' } },
+  { t: { uz: "RICE ning to'rt savoli bilan baholang", ru: 'Оцените четырьмя вопросами RICE' }, teg: { uz: 'RICE', ru: 'RICE' } },
+  { t: { uz: "Bitta son o'zgarsa, tartib nima bo'lishini ko'ring", ru: 'Посмотрите, что станет с порядком, если изменится одно число' }, teg: { uz: 'juftlik', ru: 'пара' } }
 ];
 const VORONKA = [
   { n: 5, t: { uz: "g'oyangiz", ru: 'ваших идей' } },
@@ -1132,7 +1157,7 @@ const Screen3 = (props) => (
       3: { uz: 'Ikki tanish kam: bu savolga kamida 5 kerak.', ru: 'Двух знакомых мало: для этого вопроса нужно хотя бы 5.' },
       default: { uz: 'Uch savolni eslang: qaysi biri odamlar haqida?', ru: 'Вспомните три вопроса: какой из них — о людях?' }
     }}
-    vizual={<S3Vizual />} />
+ />
 );
 
 // ===== SCREEN 4 — RICE: TO'RT SAVOL (QTushuncha markaziy, bitta karta — F-1015-177 MD v4: bitta g'oya, savollar bittalab → formula → bashorat → to'rt g'oya chiziqlarda) =====
@@ -1389,7 +1414,7 @@ const Screen7 = (props) => (
       3: { uz: "Voqeada qurish vaqti haqida gap bo'lmadi.", ru: 'В истории не было речи о времени на постройку.' },
       default: { uz: "Instagram'da nima ko'p edi — shuni eslang.", ru: 'Вспомните, чего было много в Instagram.' }
     }}
-    vizual={<S7Vizual />} />
+ />
 );
 
 // ===== SCREEN 8 — SARALASH (QMustaqil, USTAXONA — ketma-ket karta; SABOQ 9, 13, 17, 29) · o'qiydi pm-m9d1-goyalar · yozadi pm-m9d2-rice.otdi · nishon sortedIt =====
@@ -2040,7 +2065,7 @@ const Screen12 = (props) => (
       3: { uz: 'RICE chetga chiqarmaydi — u faqat tartiblaydi.', ru: 'RICE не отводит в сторону — он только упорядочивает.' },
       default: { uz: 'RICE nimaga yordam berishini eslang.', ru: 'Вспомните, в чём помогает RICE.' }
     }}
-    vizual={<S12Vizual />} />
+ />
 );
 
 // ===== 🏅 BADGES (nishonlar) — ish qilingan ekranlarda, tekin bonus yo'q (S-034); medal belgisi — o'yin qatlami =====
@@ -2131,17 +2156,17 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (MD; har biri 3 marta)
 const QUIZ_BANK = [
   { q: { uz: "G'oya uch savoldan qachon o'tadi?", ru: 'Когда идея проходит три вопроса?' }, opts: [{ uz: "Uchala savolga «ha» olsa", ru: 'Если получит «да» на все три' }, { uz: "Ikkita savolga «ha» olsa", ru: 'Если получит «да» на два' }, { uz: "Birinchi savolga «ha» olsa", ru: 'Если получит «да» на первый' }, { uz: "Bitta savolga «yo'q» olsa", ru: 'Если получит «нет» на один' }], correct: 0 },
-  { q: { uz: '«Real auditoriya bormi?» savoli nimani so\'raydi?', ru: 'О чём спрашивает вопрос «Есть реальная аудитория?»' }, opts: [{ uz: '6 hafta ichida qura olasizmi', ru: 'Сможете ли построить за 6 недель' }, { uz: 'Kamida 5 tanishingiz bormi', ru: 'Есть ли хотя бы 5 знакомых' }, { uz: "Shu g'oya o'zingizga qiziqmi", ru: 'Интересна ли вам эта идея' }, { uz: 'Ilovani necha kishi yuklaydi', ru: 'Сколько человек скачает приложение' }], correct: 1 },
-  { q: { uz: "Qaysi g'oyaning birinchi versiyasini 6 haftada qurish qiyin?", ru: 'Первую версию какой идеи трудно построить за 6 недель?' }, opts: [{ uz: "Sinf vazifalari ro'yxati", ru: 'Список заданий класса' }, { uz: 'Oshxona menyusi sahifasi', ru: 'Страница меню столовой' }, { uz: 'Uyga ovqat yetkazish xizmati', ru: 'Служба доставки еды на дом' }, { uz: "To'garaklar jadvali sahifasi", ru: 'Страница расписания кружков' }], correct: 2 },
+  { q: { uz: "«Real auditoriya bormi?» nimani so'raydi?", ru: "Что спрашивает «Есть ли реальная аудитория?»?" }, opts: [{ uz: "6 haftada qura olasizmi", ru: "Сможете ли собрать за 6 недель" }, { uz: "Kamida 5 tanishingiz bormi", ru: "Есть ли хотя бы 5 знакомых" }, { uz: "Bu g'oya sizga qiziqmi", ru: "Интересна ли вам эта идея" }, { uz: "Necha kishi yuklaydi", ru: "Сколько людей скачает" }], correct: 1 },
+  { q: { uz: "Qaysi g'oyani 6 haftada qurish qiyin?", ru: "Какую идею трудно собрать за 6 недель?" }, opts: [{ uz: "Sinf vazifalari ro'yxati", ru: "Список заданий класса" }, { uz: "Oshxona menyusi sahifasi", ru: "Страница меню столовой" }, { uz: "Uyga ovqat yetkazish", ru: "Доставка еды на дом" }, { uz: "To'garaklar jadvali", ru: "Расписание кружков" }], correct: 2 },
   { q: { uz: "Ta'sir 3 nimani bildiradi?", ru: 'Что означает влияние 3?' }, opts: [{ uz: 'Uch kishiga foyda yetkazadi', ru: 'Приносит пользу трём людям' }, { uz: 'Uch hafta mehnat talab qiladi', ru: 'Требует трёх недель усилий' }, { uz: "Ro'yxatda uchinchi o'rinda", ru: 'На третьем месте в списке' }, { uz: 'Har odamga juda katta foyda', ru: 'Очень большая польза каждому' }], correct: 3 },
-  { q: { uz: "Bu kursda ishonch 50% qachon qo'yiladi?", ru: 'Когда в этом курсе ставят уверенность 50%?' }, opts: [{ uz: "Dalil yo'q, faqat taxmin bo'lsa", ru: "Если доводов нет, только предположение" }, { uz: "O'lchangan aniq son bor bo'lsa", ru: 'Если есть точное измеренное число' }, { uz: "Ko'p odamlar shuni aytgan bo'lsa", ru: 'Если об этом сказали многие' }, { uz: "G'oyaning yarmi qurilgan bo'lsa", ru: 'Если идея построена наполовину' }], correct: 0 },
-  { q: { uz: 'Bu kursda mehnat qanday sanaladi?', ru: 'Как в этом курсе считают усилия?' }, opts: [{ uz: 'Odam-oyda — bitta odam bir oyda', ru: 'В человеко-месяцах — один человек за месяц' }, { uz: 'Haftada — bir odam necha hafta', ru: 'В неделях — сколько недель один человек' }, { uz: 'Kunda — butun sinf necha kun', ru: 'В днях — сколько дней весь класс' }, { uz: 'Soatda — kod necha soat oladi', ru: 'В часах — сколько часов займёт код' }], correct: 1 },
-  { q: { uz: "Ishonch 50% dan 80% ga ko'tarilsa, RICE nima bo'ladi?", ru: 'Что будет с RICE, если уверенность вырастет с 50% до 80%?' }, opts: [{ uz: "Kamayadi — chunki mehnat ko'payadi", ru: 'Уменьшится — ведь усилия растут' }, { uz: "O'zgarmaydi — qamrov bir xil qoladi", ru: 'Не изменится — охват остаётся тем же' }, { uz: "Oshadi — g'oya ko'tarilishi mumkin", ru: 'Вырастет — идея может подняться' }, { uz: "Nolga tushadi — chunki dalil yo'q", ru: 'Упадёт до нуля — ведь довода нет' }], correct: 2 },
-  { q: { uz: "Qamrovi katta g'oyaning bahosi nega past chiqishi mumkin?", ru: 'Почему у идеи с большим охватом оценка может выйти низкой?' }, opts: [{ uz: "Odam ko'p bo'lsa, baho o'zi pasayadi", ru: 'Когда людей много, оценка сама падает' }, { uz: 'Qamrov bahoda umuman sanalmaydi', ru: 'Охват в оценке вообще не считается' }, { uz: "Mehnati juda kam bo'lgani uchun", ru: 'Потому что усилия очень малы' }, { uz: "Ta'sir yoki ishonch kichik bo'lsa", ru: 'Если влияние или уверенность малы' }], correct: 3 },
-  { q: { uz: 'Stories voqeasidan qaysi xulosa chiqadi?', ru: 'Какой вывод следует из истории Stories?' }, opts: [{ uz: 'Yaxshiroq yetkazgan ilova yutdi', ru: 'Выиграло приложение, лучше донёсшее формат' }, { uz: 'Uni birinchi o\'ylab topgan yutdi', ru: 'Выиграл тот, кто придумал первым' }, { uz: 'Arzonroq bo\'lgan ilova yutdi', ru: 'Выиграло более дешёвое приложение' }, { uz: 'Eng keyin chiqqan ilova yutdi', ru: 'Выиграло приложение, вышедшее последним' }], correct: 0 },
-  { q: { uz: 'Sherigingiz bitta soningizga «nega?» dedi. Nima qilasiz?', ru: "Партнёр спросил «почему?» про одно ваше число. Что сделаете?" }, opts: [{ uz: 'Hech narsa demay, sonni o\'zgartirmaysiz', ru: 'Ничего не говорите и не меняете число' }, { uz: 'Sababini aytib, kerak bo\'lsa tuzatasiz', ru: "Называете причину и при необходимости исправляете" }, { uz: "G'oyani butunlay chetga chiqarasiz", ru: 'Полностью отводите идею в сторону' }, { uz: 'Sherigingiz aytgan sonni yozib qo\'yasiz', ru: 'Записываете число, которое назвал партнёр' }], correct: 1 },
-  { q: { uz: "Mentorning jamoa yig'ish g'oyasida ishonch nega 80%?", ru: 'Почему в идее Ментора о сборе команды уверенность 80%?' }, opts: [{ uz: 'Mentorga bu g\'oya hammasidan qiziq', ru: 'Ментору эта идея интереснее всех' }, { uz: "Bu g'oyaning ta'siri ikkiga teng", ru: 'Влияние этой идеи равно двум' }, { uz: '9-Modulda 5 kishidan 2 tasi aytgan', ru: 'В 9-м модуле так сказали 2 из 5 человек' }, { uz: "Uning mehnati 4 hafta — eng ko'p", ru: 'Её усилия — 4 недели, больше всех' }], correct: 2 },
-  { q: { uz: '`rice(g)` funksiyasi nimani qaytaradi?', ru: 'Что возвращает функция `rice(g)`?' }, opts: [{ uz: "Bitta g'oyaning qisqa nomini", ru: 'Короткое название одной идеи' }, { uz: "Eng yuqori uchta g'oya nomini", ru: 'Названия трёх верхних идей' }, { uz: "Ro'yxatdagi g'oyalar sonini", ru: 'Число идей в списке' }, { uz: "Bitta g'oyaning bahosini", ru: 'Оценку одной идеи' }], correct: 3 },
+  { q: { uz: "Bu kursda ishonch 50% qachon qo'yiladi?", ru: "Когда в этом курсе ставят уверенность 50%?" }, opts: [{ uz: "Dalil yo'q, faqat taxmin", ru: "Довода нет, только догадка" }, { uz: "O'lchangan aniq son bor", ru: "Есть точное измеренное число" }, { uz: "Ko'p odam shuni aytgan", ru: "Многие это сказали" }, { uz: "G'oya yarmi qurilgan", ru: "Половина идеи собрана" }], correct: 0 },
+  { q: { uz: "Bu kursda mehnat qanday sanaladi?", ru: "Как в этом курсе считают усилия?" }, opts: [{ uz: "Odam necha oy ishlaydi", ru: "Сколько месяцев работает человек" }, { uz: "Odam necha hafta ishlaydi", ru: "Сколько недель работает человек" }, { uz: "Sinf necha kun ishlaydi", ru: "Сколько дней работает класс" }, { uz: "Kod necha soat yoziladi", ru: "Сколько часов пишется код" }], correct: 1 },
+  { q: { uz: "Ishonch 50% dan 80% ga oshsa, baho nima bo'ladi?", ru: "Если уверенность вырастет с 50% до 80%, что будет с оценкой?" }, opts: [{ uz: "Kamayadi", ru: "Уменьшится" }, { uz: "O'zgarmaydi", ru: "Не изменится" }, { uz: "Oshadi", ru: "Вырастет" }, { uz: "Nolga tushadi", ru: "Упадёт до нуля" }], correct: 2 },
+  { q: { uz: "Qamrovi katta g'oya nega past baho oladi?", ru: "Почему идея с большим охватом получает низкую оценку?" }, opts: [{ uz: "Odamlar ko'p bo'lgani", ru: "Потому что людей много" }, { uz: "Qamrov sanalmagani", ru: "Охват не учитывается" }, { uz: "Mehnati juda kam bo'lgani", ru: "Усилий совсем мало" }, { uz: "Ta'siri yoki ishonchi kichik", ru: "Влияние или уверенность малы" }], correct: 3 },
+  { q: { uz: "Stories voqeasidan qaysi xulosa chiqadi?", ru: "Какой вывод из истории Stories?" }, opts: [{ uz: "Yaxshiroq yetkazgan yutdi", ru: "Победил тот, кто лучше донёс" }, { uz: "Birinchi o'ylab topgan yutdi", ru: "Победил тот, кто придумал первым" }, { uz: "Arzonroq ilova yutdi", ru: "Победило более дешёвое приложение" }, { uz: "Eng keyin chiqqan yutdi", ru: "Победил тот, кто вышел последним" }], correct: 0 },
+  { q: { uz: "Sherik soningizga «nega?» dedi. Nima qilasiz?", ru: "Партнёр спросил «почему?» про ваше число. Что делаете?" }, opts: [{ uz: "Indamay qoldirasiz", ru: "Молча оставляете" }, { uz: "Sababini tushuntirasiz", ru: "Объясняете причину" }, { uz: "G'oyani chetga chiqarasiz", ru: "Убираете идею в сторону" }, { uz: "Sherik sonini yozasiz", ru: "Пишете число партнёра" }], correct: 1 },
+  { q: { uz: "«Jamoa yig'ish»da ishonch nega 80%?", ru: "Почему у «Сбора команды» уверенность 80%?" }, opts: [{ uz: "Mentorga eng qiziq g'oya", ru: "Самая интересная идея для Ментора" }, { uz: "Ta'siri ikkiga teng", ru: "Влияние равно двум" }, { uz: "5 kishidan 2 tasi aytgan", ru: "Об этом сказали 2 из 5" }, { uz: "Mehnati eng ko'p, 4 hafta", ru: "Больше всего усилий, 4 недели" }], correct: 2 },
+  { q: { uz: "`rice(g)` funksiyasi nimani qaytaradi?", ru: "Что возвращает функция `rice(g)`?" }, opts: [{ uz: "G'oyaning qisqa nomini", ru: "Короткое название идеи" }, { uz: "Eng yaxshi uchta nomni", ru: "Названия трёх лучших" }, { uz: "Ro'yxat uzunligini", ru: "Длину списка" }, { uz: "Bitta g'oyaning bahosini", ru: "Оценку одной идеи" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2789,7 +2814,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           ? tr({ uz: <>Uchta g'oyangiz <A>RICE jadvalida</A> oldinga chiqdi.</>, ru: <>Три ваши идеи <A>вышли вперёд</A> в таблице RICE.</> })
           : tr({ uz: <>{k} ta g'oya baholandi — <A>qolgani uyda</A>.</>, ru: <>Оценено идей: {k} — <A>остальные дома</A>.</> })}
         cta={<>
-          {!isMentorL && <UchtaStrip />}
           <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
             <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
           </div>

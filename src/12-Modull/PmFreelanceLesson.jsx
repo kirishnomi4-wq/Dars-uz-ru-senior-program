@@ -31,7 +31,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKartochka, QYakun, QMustaqil, QChip, QXato, QIzoh, QXulosa } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKartochka, QYakun, QMustaqil, QChip, QXato, QIzoh, QXulosa, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
 
 
 
@@ -97,6 +97,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -174,8 +199,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -665,6 +690,7 @@ const FUNKSIYA_RE = /funksiya|функци/;
 const tekshirBuy = (id, matn) => {
   const n = normT(matn);
   if (!n) return { x: 'bosh', blok: true };
+  if (!manoliMatn(matn)) return { x: 'manosiz', blok: true };
   if (AKK_RE.test(n) || HAVOLA_RE.test(n)) return { x: id === 'nima' ? 'akkNima' : 'akk', blok: true };
   if (RAQAM_RE.test(n)) return { x: 'raqam' };
   if (id === 'kim' && XALQARO_RE.test(n)) return { x: 'xalqaro' };
@@ -810,7 +836,7 @@ const Bolim = ({ id, joriy, toliq, children }) => (
 );
 const IshVaraq = ({ rejim = 'mentor', telefon = true, telRef, telKetdi, telOsti, qism, toliq = [], yollar, buyurtma, xatlar, ostida, className }) => (
   <div className={cxx('fr-sahna', !telefon && 'tel-yoq', className)}>
-    {telefon && <div className="fr-sahna-tel"><div ref={telRef}><JamoaTelefon ketdi={telKetdi} /></div>{telOsti}</div>}
+    {telefon && <div className="fr-sahna-tel"><span className="fr-sahna-y">{tr({ uz: 'Siz qurgan ilova', ru: 'Приложение, которое вы сделали' })}</span><div ref={telRef}><JamoaTelefon ketdi={telKetdi} /></div>{telOsti}</div>}
     <div className="fr-varaq">
       <div className="fr-varaq-h">{tr(rejim === 'mentor' ? { uz: 'Mentor misoli · Buyurtma va xatlar', ru: 'Пример Ментора · Заказ и письма' } : { uz: 'Buyurtma va xatlarim', ru: 'Мой заказ и письма' })}</div>
       {yollar && <Bolim id="yollar" joriy={qism === 'yollar'} toliq={toliq.includes('yollar')}>{yollar}</Bolim>}
@@ -827,7 +853,7 @@ const XatlarIx = ({ n = 0 }) => <span className="fr-ix">{[0, 1].map(i => <em key
 // Yo'l kartasi (2-ekran): yopiq — nomsiz uzuq karta; ochiq — belgisi, qatori va holati
 const YolKarta = ({ id, ochiq, refs, sayt }) => {
   const y = MENTOR_ISH.yollar.find(v => v.id === id);
-  if (!ochiq) return <div className="fr-yol bosh" />;
+  if (!ochiq) return <div className="fr-yol bosh"><b className="fr-yol-nom">{tr(YOL_NOM[id])}</b></div>; // F-1015-391: navbatdagi yo'l — nomi xira, bo'sh karta emas
   return (
     <div className={cxx('fr-yol', y.bugun && 'bugun')}>
       <div className="fr-yol-ust"><b className="fr-yol-nom">{tr(YOL_NOM[id])}</b><em className={cxx('fr-yol-holat', y.bugun && 'acc')}>{tr(y.holat)}</em></div>
@@ -891,7 +917,7 @@ const Tugmalar3 = ({ nomlar, q, faol, onBos }) => (q === 0 && !faol ? null : (
 ));
 const IPUCHA = (t) => <p className="fr-ipucha fade-step">{t}</p>;
 const ixchamBashorat = (taxmin, el) => <div className={cxx('fr-bash', taxmin && 'ix')}>{el}</div>;
-const tugmaYorliq = (taxmin, q, done) => (done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: 'Tugmalarni bosing (' + q + '/3)', ru: 'Нажмите кнопки (' + q + '/3)' }));
+const tugmaYorliq = (taxmin, q, done) => (done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: 'Tugmani bosing', ru: 'Нажмите кнопку' }) /* F-1015-391: son yo'q — qadam chipi bor (213.21) */);
 
 // ===== SCREEN 0 — KIRISH (QKirish; sof so'rovnoma — J-026: correct false hammaga; javob «Aynan!» / «Qiziq fikr!» — T-028, T-067) =====
 const HOOK_OPTS = [
@@ -940,10 +966,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; varaq skeleti o'zi yoziladi, tugagach «Boshlaymiz» halqada) =====
 const REJA = [
-  { t: { uz: 'Birinchi buyurtma qayerdan chiqishi mumkinligini bilib olasiz', ru: 'Узнаете, откуда может прийти первый заказ' }, teg: { uz: "uch yo'l", ru: 'три пути' } },
-  { t: { uz: "Buyurtma rejasini tuzishni o'rganasiz", ru: 'Научитесь составлять план заказа' }, teg: { uz: 'kim · nima · qachon', ru: 'кто · что · когда' } },
-  { t: { uz: "Kompaniyaga hurmatli xat yozishni o'rganasiz", ru: 'Научитесь писать вежливое письмо в компанию' }, teg: { uz: 'xat', ru: 'письмо' } },
-  { t: { uz: "O'zingiz uchun reja va ikki xat yozasiz", ru: 'Напишете план и два письма для себя' }, teg: { uz: 'buyurtma va xatlar', ru: 'заказ и письма' } }
+  { t: { uz: 'Birinchi buyurtma qayerdan chiqishi mumkinligini bilib oling', ru: 'Узнайте, откуда может прийти первый заказ' }, teg: { uz: "uch yo'l", ru: 'три пути' } },
+  { t: { uz: "Buyurtma rejasini tuzishni o'rganing", ru: 'Научитесь составлять план заказа' }, teg: { uz: 'kim · nima · qachon', ru: 'кто · что · когда' } },
+  { t: { uz: "Kompaniyaga hurmatli xat yozishni o'rganing", ru: 'Научитесь писать вежливое письмо в компанию' }, teg: { uz: 'xat', ru: 'письмо' } },
+  { t: { uz: "O'zingiz uchun reja va ikki xat yozing", ru: 'Напишите план и два письма для себя' }, teg: { uz: 'buyurtma va xatlar', ru: 'заказ и письма' } }
 ];
 const RejaSkelet = () => (
   <div className="fr-sahna fr-skelet">
@@ -1011,7 +1037,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const xatlar = q >= 3
     ? <span className="fr-ix"><span ref={el => { refs.current.xat1 = el; }} className={cxx('fr-konv-chip', xat1 && 'tushdi')}><KonvBelgi />1-{tr({ uz: 'xat', ru: 'письмо' })}</span></span>
     : <XatlarIx n={0} />;
-  const sahna = <IshVaraq qism="yollar" telefon={!tugadi} className={cxx(tugadi && 'tugadi')} telRef={telRef} yollar={yollar} buyurtma={<BuyurtmaIx />} xatlar={xatlar} />;
+  const sahna = <IshVaraq qism="yollar" telefon={false} className={cxx(tugadi && 'tugadi')} telRef={telRef} yollar={yollar} buyurtma={tugadi && <BuyurtmaIx />} xatlar={tugadi && xatlar} />; // F-1015-391: telefon va boshqa bo'limlar olindi — faqat joriy bo'lim
   const tx = S2_TAXMIN.find(t => t.k === taxmin);
   return (
     <Stage eyebrow={tr({ uz: "Tushuncha · uch yo'l", ru: 'Понятие · три пути' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={tugmaYorliq(taxmin, q, done)} onClick={onNext} /></>}>
@@ -1059,7 +1085,7 @@ const Screen3 = (props) => (
       3: { uz: 'Shartni o\'qimasa, unga mosligini qayerdan biladi?', ru: 'Не прочитав условие, как он узнает, подходит ли он?' },
       default: { uz: 'Xalqaro sayt kartasida qaysi shartlar bor edi?', ru: 'Какие условия были на карточке международного сайта?' }
     }}
-    vizual={<XalqaroMini />} />
+ />
 );
 
 // ===== SCREEN 4 — BUYURTMA REJASI (QTushuncha keng; bashorat → Kim · Nima · Qachon; Nima — lending kartasi katakka uchadi) =====
@@ -1095,8 +1121,8 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     kim: q >= 1 && <span className="fr-katak-yon"><Rol B={Koptok} t={tr({ uz: 'murabbiy', ru: 'тренер' })} belgi={tr({ uz: 'tanish', ru: 'знакомый' })} />{q >= 3 && <Rol B={Uy} i={1} t={tr({ uz: 'ota-ona', ru: 'родители' })} />}</span>
   };
   const telOsti = q >= 2 && <LendingKarta refEl={lendRef} togarak={nima} className="osti" />;
-  const sahna = <IshVaraq qism="buyurtma" telefon={!tugadi} className={cxx(tugadi && 'tugadi')} telOsti={telOsti}
-    yollar={<YollarIx ajrat={['tanish']} />} buyurtma={<BuyurtmaTo q={qiymat} holat={holat} yon={yon} refs={refs.current} ajrat={q >= 3 && yashil === 'qachon'} />} xatlar={<XatlarIx n={0} />} />;
+  const sahna = <IshVaraq qism="buyurtma" telefon={false} className={cxx(tugadi && 'tugadi')}
+    yollar={tugadi && <YollarIx ajrat={['tanish']} />} buyurtma={<BuyurtmaTo q={qiymat} holat={holat} yon={yon} refs={refs.current} ajrat={q >= 3 && yashil === 'qachon'} />} xatlar={tugadi && <XatlarIx n={0} />} />; // F-1015-391
   const tx = S4_TAXMIN.find(t => t.k === taxmin);
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · buyurtma rejasi', ru: 'Понятие · план заказа' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={tugmaYorliq(taxmin, q, done)} onClick={onNext} /></>}>
@@ -1143,7 +1169,7 @@ const Screen5 = (props) => (
       3: { uz: '«Qachondir» — bu qaysi payt?', ru: '«Когда-нибудь» — это какой момент?' },
       default: { uz: 'Mentor rejasining uch qatorini eslang.', ru: 'Вспомните три строки плана Ментора.' }
     }}
-    vizual={<BuyurtmaMini />} />
+ />
 );
 
 // ===== SCREEN 6 — KOMPANIYAGA XAT (QTushuncha keng; bashorat → Kimman · Nima qurdim · Nima so'rayman; telefon ekrani xatga uchadi) =====
@@ -1191,7 +1217,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <p className="fr-xavf">{tr(XAVF_QATOR)}</p>
     </div>
     : <div className="fr-konvlar"><Konvert n={1} tur={tur} holat="ochiq" satrlar={satrlar} osti={osti} /></div>;
-  const sahna = <IshVaraq qism="xatlar" telefon={!tugadi} className={cxx(tugadi && 'tugadi')} telRef={telRef} telKetdi={ketdi} yollar={<YollarIx ajrat={['kompaniya']} />} buyurtma={<BuyurtmaIx />} xatlar={xatlar} />;
+  const sahna = <IshVaraq qism="xatlar" telefon={!tugadi} className={cxx(tugadi && 'tugadi', 'fr-tel-kichik')} telRef={telRef} telKetdi={ketdi} yollar={tugadi && <YollarIx ajrat={['kompaniya']} />} buyurtma={tugadi && <BuyurtmaIx />} xatlar={xatlar} />;
   const tx = S6_TAXMIN.find(t => t.k === taxmin);
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · kompaniyaga xat', ru: 'Понятие · письмо в компанию' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={tugmaYorliq(taxmin, q, done)} onClick={onNext} /></>}>
@@ -1223,6 +1249,7 @@ const S7_KULRANG = {
   qachon: PUL_QATOR
 };
 const S7_XATO = {
+  manosiz: MANOSIZ_XATO,
   bosh: { uz: 'Bitta qisqa javob yozing.', ru: 'Напишите один короткий ответ.' },
   akk: { uz: 'Rol yozing — ism, telefon va akkaunt nomi emas.', ru: 'Напишите роль — не имя, телефон или аккаунт.' },
   akkNima: { uz: 'Bu yerga ish yoziladi — telefon va akkaunt emas.', ru: 'Здесь пишут работу — не телефон и не аккаунт.' },
@@ -1496,7 +1523,7 @@ const Screen8 = (props) => (
       2: { uz: 'Notanish joyga kim bilan boriladi?', ru: 'С кем идут в незнакомое место?' },
       default: { uz: 'Javob kelmasa nima qilinadi — eslang.', ru: 'Вспомните, что делают, если ответа нет.' }
     }}
-    vizual={<XatlarMini />} />
+ />
 );
 
 // ===== 🏅 BADGES (nishonlar, 4 — PM: «!» bilan, 9.23) — faqat ish qilingan ekranlarda (S-034) =====
@@ -1590,12 +1617,12 @@ const QUIZ_BANK = [
   { q: { uz: 'Buyurtmada pul va kelishuv kim orqali bo\'ladi?', ru: 'Через кого в заказе деньги и договорённость?' }, opts: [{ uz: 'Sinfdoshingiz orqali', ru: 'Через одноклассника' }, { uz: 'Faqat o\'zingiz orqali', ru: 'Только через вас самих' }, { uz: 'Ota-onangiz orqali', ru: 'Через ваших родителей' }, { uz: 'Xalqaro sayt orqali', ru: 'Через международный сайт' }], correct: 2 },
   { q: { uz: 'Mentor birinchi xatida nimani so\'raydi?', ru: 'О чём Ментор просит в первом письме?' }, opts: [{ uz: 'Ilovasi uchun investitsiya', ru: 'Инвестиции в приложение' }, { uz: 'Kompaniyada doimiy ish', ru: 'Постоянную работу в компании' }, { uz: 'Ilovasini sotib olishni', ru: 'Купить его приложение' }, { uz: "Stajirovka bor-yo'qligini", ru: 'Есть ли стажировка' }], correct: 3 },
   { q: { uz: 'Uchrashuv taklifi kelsa, kim bilan borasiz?', ru: 'Если предложат встречу, с кем пойдёте?' }, opts: [{ uz: 'Faqat kattalar bilan', ru: 'Только со взрослыми' }, { uz: "Yolg'iz o'zim boraman", ru: 'Пойду один' }, { uz: 'Sinfdoshim bilan birga', ru: 'Вместе с одноклассником' }, { uz: 'Chatdagi tanishim bilan', ru: 'Со знакомым из чата' }], correct: 0 },
-  { q: { uz: 'Upwork kabi saytning yosh shartini qayerdan bilasiz?', ru: 'Где узнать возрастное условие сайта вроде Upwork?' }, opts: [{ uz: 'Sinfdoshlarim aytgan gapdan', ru: 'Со слов одноклассников' }, { uz: "Saytdan, ota-ona bilan o'qib", ru: 'На сайте, прочитав с родителями' }, { uz: "Yoshimni kattaroq yozib ko'rib", ru: 'Указав возраст побольше' }, { uz: 'Kanaldagi reklama postidan', ru: 'Из рекламного поста в канале' }], correct: 1 },
+  { q: { uz: "Upwork kabi saytning yosh shartini qayerdan bilasiz?", ru: "Где узнать возрастное условие сайта вроде Upwork?" }, opts: [{ uz: "Sinfdoshlar gapidan", ru: "Со слов одноклассников" }, { uz: "Saytdan, ota-ona bilan", ru: "На сайте, с родителями" }, { uz: "Yoshni katta yozib ko'rib", ru: "Указав возраст побольше" }, { uz: "Kanaldagi reklamadan", ru: "Из рекламы в канале" }], correct: 1 },
   { q: { uz: 'Bitta xat nechta kompaniyaga yuboriladi?', ru: 'Скольким компаниям отправляют одно письмо?' }, opts: [{ uz: 'Ikkitaga', ru: 'Двум' }, { uz: 'Beshtaga', ru: 'Пяти' }, { uz: 'Bittaga', ru: 'Одной' }, { uz: "O'ntaga", ru: 'Десяти' }], correct: 2 },
-  { q: { uz: "Kompaniya «hozir stajirovka yo'q» dedi. Keyin-chi?", ru: 'Компания ответила: «сейчас стажировки нет». Что дальше?' }, opts: [{ uz: "Har hafta yana so'rab turaman", ru: 'Буду спрашивать каждую неделю' }, { uz: "Xodimning telefonini so'rayman", ru: 'Попрошу телефон сотрудника' }, { uz: "Ofisiga borib, qayta so'rayman", ru: 'Пойду в офис и спрошу снова' }, { uz: 'Bu kompaniyaga qayta yozmayman', ru: 'Больше не пишу этой компании' }], correct: 3 },
-  { q: { uz: 'Buyurtmachiga birinchi navbatda qanday ish qilib berasiz?', ru: 'Какую работу вы в первую очередь сделаете заказчику?' }, opts: [{ uz: "Kursda qurganimga o'xshash ish", ru: 'Похожую на то, что строил на курсе' }, { uz: 'Hali hech qilmagan katta ish', ru: 'Большую работу, которую ещё не делал' }, { uz: 'Buyurtmachi aytgan har qanday ish', ru: 'Любую работу, которую скажет заказчик' }, { uz: "Do'stim maslahat bergan ish", ru: 'Работу, которую посоветовал друг' }], correct: 0 },
-  { q: { uz: 'Mentor buyurtmachi bilan qachon gaplashadi?', ru: 'Когда Ментор поговорит с заказчиком?' }, opts: [{ uz: "Lending to'liq tayyor bo'lgach", ru: 'Когда лендинг будет полностью готов' }, { uz: "Keyingi mashg'ulotdan keyin", ru: 'После следующего занятия' }, { uz: 'Kompaniyadan javob kelgandan keyin', ru: 'После ответа от компании' }, { uz: "Upwork'da profil ochilgandan keyin", ru: 'После открытия профиля на Upwork' }], correct: 1 },
-  { q: { uz: "Xatning «Nima qurdim» qismiga nima yoziladi?", ru: 'Что пишут в часть письма «Что я построил»?' }, opts: [{ uz: 'Mahsulotning hamma funksiyasi', ru: 'Все функции продукта' }, { uz: 'Telefon raqami va uy manzili', ru: 'Номер телефона и домашний адрес' }, { uz: 'Mahsulot va u nima qilishi', ru: 'Продукт и что он делает' }, { uz: 'Kompaniyani maqtaydigan gap', ru: 'Фразу, хвалящую компанию' }], correct: 2 },
+  { q: { uz: "Kompaniyadan javob kelmadi. Nima qilasiz?", ru: "Компания не ответила. Что сделаете?" }, opts: [{ uz: "Har hafta yana so'rayman", ru: "Буду спрашивать каждую неделю" }, { uz: "Xodim telefonini so'rayman", ru: "Попрошу телефон сотрудника" }, { uz: "Ofisiga borib so'rayman", ru: "Пойду в офис и спрошу" }, { uz: "Boshqa kompaniyaga yozaman", ru: "Напишу другой компании" }], correct: 3 },
+  { q: { uz: "Birinchi buyurtmaga qanday ish olasiz?", ru: "Какую работу берёте первым заказом?" }, opts: [{ uz: "Kursdagiga o'xshash ish", ru: "Похожую на сделанное в курсе" }, { uz: "Hali qilmagan katta ish", ru: "Большую, какую ещё не делал" }, { uz: "Aytilgan har qanday ish", ru: "Любую, какую скажут" }, { uz: "Do'st maslahat bergan ish", ru: "Ту, что посоветовал друг" }], correct: 0 },
+  { q: { uz: "Mentor buyurtmachi bilan qachon gaplashadi?", ru: "Когда Ментор поговорит с заказчиком?" }, opts: [{ uz: "Lending tayyor bo'lgach", ru: "Когда лендинг будет готов" }, { uz: "Keyingi mashg'ulotdan keyin", ru: "После следующей тренировки" }, { uz: "Kompaniya javob bergach", ru: "Когда ответит компания" }, { uz: "Upwork profili ochilgach", ru: "Когда откроет профиль на Upwork" }], correct: 1 },
+  { q: { uz: "Xatning «Nima qurdim» qismiga nima yoziladi?", ru: "Что пишут в части письма «Что я построил»?" }, opts: [{ uz: "Hamma funksiyalar", ru: "Все функции" }, { uz: "Telefon va uy manzili", ru: "Телефон и домашний адрес" }, { uz: "Mahsulot va u nima qiladi", ru: "Продукт и что он делает" }, { uz: "Kompaniyaga maqtov", ru: "Похвала компании" }], correct: 2 },
   { q: { uz: "Rejaning «Kim» qatoriga nima yoziladi?", ru: 'Что пишут в строку плана «Кто»?' }, opts: [{ uz: 'Ish tugaydigan kun', ru: 'День окончания работы' }, { uz: "Ishning narxi so'mda", ru: 'Цену работы в сумах' }, { uz: 'Buyurtmachining ismi', ru: 'Имя заказчика' }, { uz: 'Uning roli, ismsiz', ru: 'Его роль, без имени' }], correct: 3 },
 ];
 
@@ -2434,6 +2461,7 @@ export default function PmFreelanceLesson({ lang: langProp, onFinished, liveToke
         /* IshVaraq: chapda telefon, o'ngda varaq */
         .fr-sahna { display: grid; grid-template-columns: 170px minmax(0,1fr); gap: 22px; align-items: start; }
         .fr-sahna.tel-yoq { grid-template-columns: minmax(0,1fr); }
+        .fr-sahna.fr-tel-kichik { grid-template-columns: 120px minmax(0,1fr); } .fr-sahna.fr-tel-kichik .fr-sahna-tel > div { zoom: .68; }
         .fr-sahna-tel { display: flex; flex-direction: column; gap: 10px; align-items: center; }
         .fr-sahna-y { align-self: flex-start; font-size: 11.5px; font-weight: 700; color: ${T.ink2}; background: ${T.bg}; border-radius: 6px; padding: 3px 9px; }
         .fr-tel { width: 166px; height: 290px; border-radius: 30px; background: #1E1B26; padding: 7px; box-shadow: 0 14px 30px -14px rgba(${T.shadowBase},0.5); display: flex; flex: none; }
@@ -2478,10 +2506,10 @@ export default function PmFreelanceLesson({ lang: langProp, onFinished, liveToke
         .fr-rol-o b { font-size: 14px; font-weight: 700; color: ${T.ink}; white-space: nowrap; }
         .fr-rol-o small { font-size: 11px; font-weight: 800; color: ${T.ink2}; text-transform: uppercase; letter-spacing: .05em; }
         /* Varaq va bo'limlar */
-        .fr-varaq { display: flex; flex-direction: column; gap: 8px; min-width: 0; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 16px; padding: 12px 14px; box-shadow: 0 12px 28px -18px rgba(${T.shadowBase},0.35); }
+        .fr-varaq { display: flex; flex-direction: column; gap: 8px; min-width: 0; background: ${T.paper}; border: 0; border-radius: 16px; padding: 12px 14px; box-shadow: 0 12px 28px -18px rgba(${T.shadowBase},0.35); }
         .fr-varaq-h { font-size: 13px; font-weight: 800; color: ${T.ink2}; letter-spacing: .01em; }
         .fr-bolim { min-width: 0; border-radius: 12px; }
-        .fr-bolim.joriy, .fr-bolim.toliq { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; border: 2px solid ${T.accent}; box-shadow: 0 0 0 4px ${T.accentSoft}; }
+        .fr-bolim.joriy, .fr-bolim.toliq { display: flex; flex-direction: column; gap: 8px; padding: 4px 0; border: 0; box-shadow: none; } /* F-1015-391: bo'lim — sarlavha va qatorlar, ramka yo'q (uch daraja) */
         .fr-bolim.toliq { border: 1.5px solid ${T.line}; box-shadow: none; }
         .fr-bolim.joriy .fr-bolim-h, .fr-bolim.toliq .fr-bolim-h { font-size: 14px; font-weight: 800; color: ${T.accent}; }
         .fr-bolim.toliq .fr-bolim-h { color: ${T.ink}; }
@@ -2494,8 +2522,8 @@ export default function PmFreelanceLesson({ lang: langProp, onFinished, liveToke
         /* Yo'llar (2-ekran) */
         .fr-yollar-q { display: flex; flex-direction: column; gap: 8px; }
         .fr-yollar { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
-        .fr-yol { display: flex; flex-direction: column; gap: 7px; min-width: 0; min-height: 150px; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 12px; padding: 10px 11px; animation: fr-kir .4s ease-out both; }
-        .fr-yol.bosh { border-style: solid; background: ${T.bg}; animation: none; }
+        .fr-yol { display: flex; flex-direction: column; gap: 7px; min-width: 0; min-height: 150px; background: ${T.paper}; border: 1.5px solid transparent; border-radius: 12px; padding: 10px 11px; animation: fr-kir .4s ease-out both; }
+        .fr-yol.bosh { min-height: 0; opacity: .45; animation: none; } /* navbati kelmagan yo'l — faqat nomi */
         .fr-yol.bugun { border-color: ${fon(T.accent, 0.55)}; }
         .fr-yol-nom { font-size: 15px; font-weight: 800; color: ${T.ink}; }
         .fr-yol-ust { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 8px; }
@@ -2522,10 +2550,10 @@ export default function PmFreelanceLesson({ lang: langProp, onFinished, liveToke
         p.fr-qoida { margin: 0; font-size: 14px; line-height: 1.45; color: ${T.ink2}; animation: fr-kir .4s ease-out .2s both; }
         /* Buyurtma kataklari */
         .fr-buy { display: flex; flex-direction: column; gap: 6px; }
-        .fr-katak { position: relative; display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 7px 12px; border-radius: 10px; background: ${T.paper}; border: 1.5px solid ${T.line}; transition: border-color .3s, background .3s; }
-        .fr-katak.bosh { border-style: solid; background: ${T.bg}; }
+        .fr-katak { position: relative; display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 7px 12px; border-radius: 10px; background: ${T.bg}; border: 1.5px solid transparent; transition: border-color .3s, background .3s; }
+        .fr-katak.bosh { background: ${T.bg}; }
         .fr-katak.kutadi { border-style: solid; border-color: ${fon(T.accent, 0.6)}; background: ${T.bg}; }
-        .fr-katak.ok { border-color: ${T.ok}; background: ${T.okFon}; }
+        .fr-katak.ok { border-color: transparent; background: ${T.bg}; } /* yashil — faqat tasdiqlangan javob uchun; to'lgan qator neytral */
         .fr-katak.yangi { animation: fr-yashil 1.1s ease-out both; }
         .fr-katak-n { flex: none; min-width: 64px; font-size: 13px; font-weight: 800; color: ${T.ink2}; }
         .fr-katak-m { flex: 1; min-width: 0; font-size: 15px; line-height: 1.4; color: ${T.ink}; animation: fr-sirg .45s ease-out both; }

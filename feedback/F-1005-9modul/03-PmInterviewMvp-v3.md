@@ -103,10 +103,10 @@ Sanoq: band 4/5 · telefon 3/5 · jamoa 2/5 · pul 1/5 (tayanch bilan aynan). «
 - Chap: doskaning bo'sh shakli — tepada bo'sh muammo qatori «? / 5», pastda uch quti «Qilamiz · Keyin · Qilmaymiz»; kataklar ichida kulrang skelet-chiziqlar navbat bilan paydo bo'ladi (matnsiz — 4 va 9-ekran kashfiyotini ochmaydi, P-015).
 - O'ng yorliq: Bugungi 4 qadam
 - Qadamlar (01 · matn; bosilmaydi; teg yo'q — matnni takrorlardi) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*:
-  - 01 · Besh yozuvdagi shikoyatlarni sanaysiz
-  - 02 · Eng ko'p chiqqanini bitta gapga yozasiz
-  - 03 · Imkoniyatlarni uch qutiga ajratasiz
-  - 04 · Shikoyatlarni kod bilan sanaysiz
+  - 01 · Besh yozuvdagi shikoyatlarni sanang
+  - 02 · Eng ko'p chiqqanini bitta gapga yozing
+  - 03 · Imkoniyatlarni uch qutiga ajrating
+  - 04 · Shikoyatlarni kod bilan sanang
 - Tugmalar: Orqaga · Boshlaymiz →
 
 ## 2 · Besh yozuv  ← QTushuncha

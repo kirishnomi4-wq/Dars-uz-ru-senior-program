@@ -629,7 +629,7 @@ const PitchSahna = ({ slaydlar, pufak = null, burilish = null, yorliq, plus = fa
               {s.manba && <span className="ps-manba">{s.manba}</span>}
               {s.sarlavha && <p className="ps-slayd-s">{s.sarlavha}</p>}
               <div className="ps-qatorlar">
-                {s.qatorlar.map(q => (
+                {s.qatorlar.filter(q => q.holat === 'joriy' || (q.t && !['bosh', 'yopiq', 'demo'].includes(q.holat))).map(q => ( // F-1019-08 (213.23a): bo'sh qator (punktir) chizilmaydi — to'lganda paydo bo'ladi; joriy nishon qoladi
                   <div key={q.k} className={cxx('ps-q', q.holat, q.katta && 'katta')} style={q.dd != null ? { '--dd': `${q.dd}s` } : undefined}>
                     {q.yorliq && <span className="ps-q-yorliq">{q.yorliq}</span>}
                     {q.holat === 'bosh' || q.holat === 'yopiq' || q.holat === 'demo' || !q.t ? <span className="ps-chiziq" aria-hidden="true" /> : <span className="ps-q-t">{q.t}</span>}
@@ -781,10 +781,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda uch slayd skeleti, qatorlar birma-bir to'q chiziqqa aylanadi — matnsiz, P-015) =====
 const REJA = [
-  { t: { uz: "Raqam yonida yana nima turishini ko'rasiz", ru: 'Увидите, что ещё стоит рядом с числом' }, teg: { uz: 'raqam', ru: 'число' } },
-  { t: { uz: 'Pitchga qaysi gap chiqishini ajratasiz', ru: 'Отберёте, какая фраза попадёт в питч' }, teg: { uz: 'yozuv', ru: 'запись' } },
-  { t: { uz: 'Loyihangiz pitchini uch slaydga yozasiz', ru: 'Напишете питч проекта на трёх слайдах' }, teg: { uz: 'pitch', ru: 'питч' } },
-  { t: { uz: 'Ikki marta ovoz chiqarib aytasiz: sinfdoshga, keyin tuzatib yana', ru: 'Дважды произнесёте вслух: однокласснику, потом ещё раз с правкой' }, teg: { uz: 'repetitsiya', ru: 'репетиция' } }
+  { t: { uz: "Raqam yonida yana nima turishini ko'ring", ru: 'Посмотрите, что ещё стоит рядом с числом' }, teg: { uz: 'raqam', ru: 'число' } },
+  { t: { uz: 'Pitchga qaysi gap chiqishini ajrating', ru: 'Отберите, какая фраза попадёт в питч' }, teg: { uz: 'yozuv', ru: 'запись' } },
+  { t: { uz: 'Loyihangiz pitchini uch slaydga yozing', ru: 'Напишите питч проекта на трёх слайдах' }, teg: { uz: 'pitch', ru: 'питч' } },
+  { t: { uz: 'Ikki marta ovoz chiqarib ayting: sinfdoshga, keyin tuzatib yana', ru: 'Дважды произнесите вслух: однокласснику, потом ещё раз с правкой' }, teg: { uz: 'repetitsiya', ru: 'репетиция' } }
 ];
 const S1_QATOR = [2, 1, 2];
 const Screen1 = ({ screen, onNext, onPrev }) => {
@@ -814,6 +814,43 @@ const S2_QADAM = [
   { uz: "Raqam o'rniga bitta odam bilan bo'lgan voqeani qo'ying", ru: 'Вместо числа поставьте случай с одним человеком' },
   { uz: "Ikkalasini birga qo'ying", ru: 'Поставьте оба вместе' }
 ];
+// F-1019-08 (213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatoga bir qatorli sabab, xato tugma yopiladi. Namuna — PmStoryPitchLesson Qaror.
+const Qaror = ({ savol, variantlar, onTogri }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const [togri, setTogri] = useState(null);
+  const tanla = (j) => {
+    if (togri !== null) return;
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); setTogri(j); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="ps-qr fade-step">
+      <p className="ps-qr-s">{tr(savol)}</p>
+      <div className="ps-qr-v">{variantlar.map((v, j) => <QChip key={j} holat={togri === j ? 'ok' : xato.includes(j) ? 'err' : undefined} disabled={togri !== null || xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</QChip>)}</div>
+      {izoh && <QXato key={tr(izoh)}>{tr(izoh)}</QXato>}
+    </div>
+  );
+};
+const S2_QAROR = [
+  { savol: { uz: "Muammo slaydiga avval nima qo'yiladi?", ru: 'Что сначала ставят на слайд «Проблема»?' }, v: [
+    { t: { uz: 'Saytdan olingan skrinshot', ru: 'Скриншот с сайта' }, izoh: { uz: "Skrinshot yechimni ko'rsatadi; muammo slaydi odamlar haqida.", ru: 'Скриншот показывает решение; слайд проблемы — о людях.' } },
+    { ok: true, t: { uz: 'Suhbatdagi raqam', ru: 'Число из бесед' } },
+    { t: { uz: 'Keyingi oy uchun reja', ru: 'План на следующий месяц' }, izoh: { uz: "Reja — oxirgi slaydda; bu slayd muammo haqida.", ru: 'План — на последнем слайде; этот слайд о проблеме.' } }
+  ] },
+  { savol: { uz: "Zal so'raydi: «Bu qanday bo'lgan?» Raqam o'rniga nima qo'yasiz?", ru: 'Зал спрашивает: «Как это было?» Что поставите вместо числа?' }, v: [
+    { t: { uz: 'Kattaroq raqam', ru: 'Число побольше' }, izoh: { uz: "Raqam «qanday bo'lgan?» savoliga javob bermaydi — voqea kerak.", ru: 'Число не отвечает на «как это было?» — нужен случай.' } },
+    { ok: true, t: { uz: "Bitta odamning voqeasi", ru: 'Случай одного человека' } },
+    { t: { uz: '«Muammo juda katta» degan gap', ru: 'Фразу «проблема очень большая»' }, izoh: { uz: "Baho voqea emas: zal bitta odamning kunini eshitmoqchi.", ru: 'Оценка — не случай: зал хочет услышать день одного человека.' } }
+  ] },
+  { savol: { uz: "Zal so'raydi: «Bu nechta odamda bo'lgan?» Slaydda nima qoladi?", ru: 'Зал спрашивает: «У скольких людей так было?» Что останется на слайде?' }, v: [
+    { t: { uz: 'Faqat voqea, raqamsiz', ru: 'Только случай, без числа' }, izoh: { uz: "Voqea bitta odamni ko'rsatadi; nechta ekanini raqam aytadi.", ru: 'Случай показывает одного человека; сколько их — говорит число.' } },
+    { t: { uz: 'Faqat raqam, voqeasiz', ru: 'Только число, без случая' }, izoh: { uz: "Raqam yolg'iz qolsa, zal yana «qanday bo'lgan?» deydi.", ru: 'Если число одно, зал снова спросит «как это было?».' } },
+    { ok: true, t: { uz: 'Raqam va voqea birga', ru: 'Число и случай вместе' } }
+  ] }
+];
+const IPUCHA_QAROR = { uz: "Variantlardan birini tanlang — xato bo'lsa, sababini o'qib, qayta tanlang.", ru: 'Выберите вариант — если ошиблись, прочитайте причину и выберите снова.' };
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
   const [q, setQ] = useState(storedAnswer ? 3 : 0);
@@ -830,15 +867,15 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         : [{ k: 'r', t: MAYDON.raqam, holat: 'yozildi', katta: true, yorliq: tr({ uz: 'raqam', ru: 'число' }) }, { k: 'i', t: tr(MAYDON.raqamIzoh), holat: 'matn' }, { ...hik, yorliq: tr({ uz: 'hikoya', ru: 'история' }) }];
   const pufak = q === 1 ? { joy: 0, t: SLAYD[0].pufak } : q === 2 ? { joy: 0, t: NECHTA } : q >= 3 ? 'ok' : null;
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · raqam yonida', ru: 'Понятие · рядом с числом' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Qadamlarni bajaring', ru: 'Выполните шаги' })} (${q}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · raqam yonida', ru: 'Понятие · рядом с числом' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi}
         sarlavha={tr({ uz: <>Raqamdan keyin zal <A>yana nimani so'raydi?</A></>, ru: <>Что ещё <A>спросит зал</A> после числа?</> })}
-        mentor={<Mentor>{tr({ uz: "Raqam slaydini o'tgan modulda yozgansiz — endi unga yozuvdan bo'laklar qo'shib, zalga qarang.", ru: 'Слайд с числом вы писали в прошлом модуле — теперь добавляйте к нему куски из записей и смотрите на зал.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Raqam slaydini o'tgan modulda yozgansiz. Har savolga javob bering — slayd va zal savoli qanday o'zgarishini ko'rasiz.", ru: 'Слайд с числом вы писали в прошлом модуле. Ответьте на каждый вопрос — увидите, как меняются слайд и вопрос зала.' })}</Mentor>}
         bashorat={!done && <Bashorat savol={tr({ uz: "Qaysi holat muammoni aniqroq ko'rsatadi?", ru: 'Какой вариант точнее показывает проблему?' })} variantlar={TX} tanlov={taxmin} onTanla={setTaxmin} />}
         harakat={!taxmin ? null : <div className={cxx('ps-s2-chap', !taxmin && 'ps-qulf')}>
           <QQadamlar qadamlar={S2_QADAM.map(tr)} joriy={done ? undefined : q} />
-          {taxmin && !done && <div className="ps-amal"><QTugma className="ps-bos" key={q} onClick={() => setQ(n => Math.min(3, n + 1))}>{tr({ uz: "Slaydga qo'ying", ru: 'Вставьте в слайд' })}</QTugma></div>}
-          {ipucha && <QIzoh>{tr({ uz: "Keyingi qadamni bosing — zal yana nima so'rashini ko'ring.", ru: 'Нажмите следующий шаг — посмотрите, что ещё спросит зал.' })}</QIzoh>}
+          {taxmin && !done && <Qaror key={q} savol={S2_QAROR[q].savol} variantlar={S2_QAROR[q].v} onTogri={() => setQ(n => Math.min(3, n + 1))} />}
+          {ipucha && <QIzoh>{tr(IPUCHA_QAROR)}</QIzoh>}
         </div>}
         vizual={!taxmin ? null : <div className="q-kir">{<PitchSahna slaydlar={[{ id: 'muammo', nom: tr(SLAYD[0].nom), sarlavha: tr(MAYDON.sarlavha), qatorlar, toliq: q >= 3 }]} pufak={pufak} className={cxx('ps-s2', `q${q}`)} />}</div>}
         natija={tugadi && taxmin && <Taxmin tanlov={taxmin} togri="birga" variantlar={TX} haqiqat={tr({ uz: "ikkalasi birga bo'lsa", ru: 'если оба вместе' })} />}
@@ -1318,18 +1355,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol (MD), to'g'ri javob: A — 1, 5, 9 · B — 2, 6, 10 · C — 3, 7, 11 · D — 4, 8, 12 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: '«5 kishidan 4 tasi» zalga nimani aytadi?', ru: 'Что говорит залу «4 из 5 человек»?' }, opts: [{ uz: 'Beshta intervyudan nechtasida chiqqanini', ru: 'В скольких из пяти интервью это было' }, { uz: 'Muammo bir odamda qanday kechganini', ru: 'Как проблема прошла у одного человека' }, { uz: 'Saytni nechta odam qurganini', ru: 'Сколько человек делали сайт' }, { uz: 'Intervyu qancha davom etganini', ru: 'Сколько длилось интервью' }], correct: 0 },
-  { q: { uz: 'Pitchda faqat hikoya bor. Yoniga nima qo\'yiladi?', ru: 'В питче есть только история. Что ставят рядом?' }, opts: [{ uz: 'Yana bitta shunday hikoya', ru: 'Ещё одну такую историю' }, { uz: 'Intervyudan olingan raqam', ru: 'Число из интервью' }, { uz: 'Saytning rangli rasmi', ru: 'Цветную картинку сайта' }, { uz: "Jamoa a'zolari ro'yxati", ru: 'Список членов команды' }], correct: 1 },
-  { q: { uz: "Pitch uchun to'rt gap. Qaysi biri fikr?", ru: 'Четыре фразы для питча. Какая из них — мнение?' }, opts: [{ uz: '«Kelganimizda maydon band edi»', ru: '«Когда пришли, поле было занято»' }, { uz: "«Egasi telefonni ko'tarmadi»", ru: '«Владелец не взял трубку»' }, { uz: '«Bu sayt juda yaxshi chiqdi»', ru: '«Этот сайт получился очень хорошим»' }, { uz: '«Tugmani topa olmadim»', ru: '«Я не нашёл кнопку»' }], correct: 2 },
-  { q: { uz: "«O'yinchilar saytni albatta ishlatadi» — bu qanday gap?", ru: '«Игроки обязательно будут пользоваться сайтом» — что это за фраза?' }, opts: [{ uz: 'Intervyudan olingan hikoya', ru: 'История из интервью' }, { uz: 'Sinovda yozilgan kuzatuv', ru: 'Наблюдение, записанное на тесте' }, { uz: 'Muammoni sanagan raqam', ru: 'Число, посчитавшее проблему' }, { uz: "Hali bo'lib o'tmagan va'da", ru: 'Обещание, которое ещё не сбылось' }], correct: 3 },
-  { q: { uz: "Yozuvda: «egasi telefonni ko'tarmadi». Pitchga nima yozasiz?", ru: 'В записи: «владелец не взял трубку». Что напишете в питч?' }, opts: [{ uz: "Yozuvdagi gapni o'zgartirmasdan", ru: 'Фразу из записи без изменений' }, { uz: "Maydon egalari telefon ko'tarmaydi", ru: 'Владельцы полей не берут трубку' }, { uz: 'Egasi o\'yinchilarni yoqtirmaydi', ru: 'Владелец не любит игроков' }, { uz: "Egasi bilan janjal bo'lib o'tgan", ru: 'С владельцем была ссора' }], correct: 0 },
+  { q: { uz: "«5 kishidan 4 tasi» nimani aytadi?", ru: "Что говорит «4 из 5 человек»?" }, opts: [{ uz: "Necha suhbatda chiqqanini", ru: "В скольких беседах это было" }, { uz: "Bir odamda qanday kechgani", ru: "Как это было у одного человека" }, { uz: "Saytni kim qurganini", ru: "Кто делал сайт" }, { uz: "Suhbat qancha davom etgani", ru: "Сколько длилась беседа" }], correct: 0 },
+  { q: { uz: "Slaydda faqat hikoya. Yoniga nima qo'yiladi?", ru: "На слайде только история. Что ставят рядом?" }, opts: [{ uz: "Yana bitta shunday hikoya", ru: "Ещё одну такую историю" }, { uz: "Intervyudan olingan raqam", ru: "Число из интервью" }, { uz: "Saytning rangli rasmi", ru: "Цветную картинку сайта" }, { uz: "Jamoa a'zolari ro'yxati", ru: "Список членов команды" }], correct: 1 },
+  { q: { uz: "Pitchdagi qaysi gap fikr?", ru: "Какая фраза в питче — мнение?" }, opts: [{ uz: "«Kelganimizda maydon band edi»", ru: "«Когда пришли, поле было занято»" }, { uz: "«Egasi telefonni ko'tarmadi»", ru: "«Владелец не взял трубку»" }, { uz: "«Bu sayt juda yaxshi chiqdi»", ru: "«Этот сайт получился очень хорошим»" }, { uz: "«Tugmani topa olmadim»", ru: "«Я не нашёл кнопку»" }], correct: 2 },
+  { q: { uz: "«Saytni albatta ishlatadi» — bu nima?", ru: "«Обязательно будут пользоваться сайтом» — что это?" }, opts: [{ uz: "Intervyudan olingan hikoya", ru: "История из интервью" }, { uz: "Sinovda yozilgan kuzatuv", ru: "Наблюдение с теста" }, { uz: "Muammoni sanagan raqam", ru: "Число, посчитавшее проблему" }, { uz: "Hali bo'lib o'tmagan va'da", ru: "Обещание, которое ещё не сбылось" }], correct: 3 },
+  { q: { uz: "«Egasi telefonni ko'tarmadi» pitchga qanday yoziladi?", ru: "Как «владелец не взял трубку» пишется в питч?" }, opts: [{ uz: "Xuddi yozuvdagidek", ru: "Точно как в записи" }, { uz: "Hech bir ega ko'tarmaydi", ru: "Ни один владелец не берёт" }, { uz: "Ega bizni yoqtirmaydi", ru: "Владелец нас не любит" }, { uz: "Janjal bo'lib o'tdi", ru: "Была ссора" }], correct: 0 },
   { q: { uz: "Intervyudagi o'yinchining hikoyasi qaysi slaydga chiqadi?", ru: 'На какой слайд попадёт история игрока из интервью?' }, opts: [{ uz: 'Foydalanuvchi slaydiga', ru: 'На слайд «Пользователь»' }, { uz: 'Muammo slaydiga', ru: 'На слайд «Проблема»' }, { uz: 'Yechim slaydiga', ru: 'На слайд «Решение»' }, { uz: 'Uchala slaydga ham', ru: 'На все три слайда' }], correct: 1 },
-  { q: { uz: 'Pitch slaydlari qaysi tartibda boradi?', ru: 'В каком порядке идут слайды питча?' }, opts: [{ uz: 'Yechim → muammo → foydalanuvchi', ru: 'Решение → проблема → пользователь' }, { uz: 'Foydalanuvchi → muammo → yechim', ru: 'Пользователь → проблема → решение' }, { uz: 'Muammo → yechim → foydalanuvchi', ru: 'Проблема → решение → пользователь' }, { uz: 'Muammo → foydalanuvchi → yechim', ru: 'Проблема → пользователь → решение' }], correct: 2 },
-  { q: { uz: "«Ko'pchilik bo'sh vaqtni bilmaydi» hikoya bo'lishi uchun nima kerak?", ru: 'Что нужно, чтобы «Многие не знают свободное время» стало историей?' }, opts: [{ uz: 'Muammoni boshqacha nomlash', ru: 'Назвать проблему иначе' }, { uz: 'Gapni ikki barobar uzaytirish', ru: 'Удлинить фразу вдвое' }, { uz: "Yoniga katta raqam qo'yish", ru: 'Поставить рядом большое число' }, { uz: 'Bitta odam va uning ishi', ru: 'Один человек и то, что с ним было' }], correct: 3 },
-  { q: { uz: 'Repetitsiyada sherigingiz bir daqiqa tinglaydi. Keyin u nima yozadi?', ru: 'На репетиции напарник слушает минуту. Что он потом пишет?' }, opts: [{ uz: 'Qaysi slaydda hikoya yetishmaganini', ru: 'На каком слайде не хватило истории' }, { uz: 'Pitch yoqqan yoki yoqmaganini', ru: 'Понравился питч или нет' }, { uz: 'Slaydlar nechta bo\'lganini', ru: 'Сколько было слайдов' }, { uz: 'Ovoz baland yoki past bo\'lganini', ru: 'Громким был голос или тихим' }], correct: 0 },
-  { q: { uz: 'Sinovdagi odamni pitchda qanday tilga olasiz?', ru: 'Как вы упомянете человека с теста в питче?' }, opts: [{ uz: "To'liq ismi va familiyasi bilan", ru: 'С полным именем и фамилией' }, { uz: "Kimligi bilan, masalan o'yinchi", ru: 'Кто он, например игрок' }, { uz: 'Telefon raqami bilan birga', ru: 'Вместе с номером телефона' }, { uz: 'Sinfi va maktabi nomi bilan', ru: 'С классом и названием школы' }], correct: 1 },
-  { q: { uz: 'Repetitsiyada sinfdoshingiz nima qiladi?', ru: 'Что делает одноклассник на репетиции?' }, opts: [{ uz: "Pitchingizga ball qo'yadi", ru: 'Ставит оценку вашему питчу' }, { uz: 'Pitchni siz uchun aytadi', ru: 'Рассказывает питч за вас' }, { uz: 'Eslab qolganini aytib beradi', ru: 'Пересказывает, что запомнил' }, { uz: 'Slaydlaringizni qayta yozadi', ru: 'Переписывает ваши слайды' }], correct: 2 },
-  { q: { uz: "Sinovda o'yinchi tugmani topa olmadi. Pitchda keyin nima aytiladi?", ru: 'На тесте игрок не нашёл кнопку. Что говорят в питче дальше?' }, opts: [{ uz: 'Intervyudagi raqam qaytadan', ru: 'Ещё раз число из интервью' }, { uz: 'Saytni qurgan haftalar soni', ru: 'Сколько недель делали сайт' }, { uz: "Keyin qo'shiladigan to'lov", ru: 'Оплата, которую добавят позже' }, { uz: 'Tugma qanday tuzatilgani', ru: 'Как исправили кнопку' }], correct: 3 },
+  { q: { uz: "Slaydlar tartibi qaysi?", ru: "Какой порядок слайдов?" }, opts: [{ uz: "Yechim, muammo, foydalanuvchi", ru: "Решение, проблема, пользователь" }, { uz: "Foydalanuvchi, muammo, yechim", ru: "Пользователь, проблема, решение" }, { uz: "Muammo, yechim, foydalanuvchi", ru: "Проблема, решение, пользователь" }, { uz: "Muammo, foydalanuvchi, yechim", ru: "Проблема, пользователь, решение" }], correct: 2 },
+  { q: { uz: "Hikoya bo'lishi uchun gapda nima kerak?", ru: "Что нужно во фразе, чтобы она стала историей?" }, opts: [{ uz: "Muammoni boshqacha nomlash", ru: "Назвать проблему иначе" }, { uz: "Gapni uzaytirish", ru: "Удлинить фразу" }, { uz: "Yoniga katta raqam qo'yish", ru: "Поставить рядом большое число" }, { uz: "Bitta odam va uning ishi", ru: "Один человек и то, что с ним было" }], correct: 3 },
+  { q: { uz: "Repetitsiyadan keyin qatorga nima yoziladi?", ru: "Что записывают в строку после репетиции?" }, opts: [{ uz: "Sherik eslab qolgan odam", ru: "Человека, которого запомнил напарник" }, { uz: "Pitch yoqdimi-yo'qmi", ru: "Понравился ли питч" }, { uz: "Nechta slayd bo'lgani", ru: "Сколько было слайдов" }, { uz: "Ovoz baland-pastligi", ru: "Громкий или тихий голос" }], correct: 0 },
+  { q: { uz: "Sinovdagi odamni pitchda qanday tilga olasiz?", ru: "Как упомянете человека с теста в питче?" }, opts: [{ uz: "Ism-familiyasi bilan", ru: "По имени и фамилии" }, { uz: "Kimligi bilan: «o'yinchi»", ru: "Кто он: «игрок»" }, { uz: "Telefon raqami bilan", ru: "С номером телефона" }, { uz: "Sinfi va maktabi bilan", ru: "С классом и школой" }], correct: 1 },
+  { q: { uz: "Repetitsiyada sinfdoshingiz nima qiladi?", ru: "Что делает одноклассник на репетиции?" }, opts: [{ uz: "Pitchga ball qo'yadi", ru: "Ставит оценку питчу" }, { uz: "Pitchni siz uchun aytadi", ru: "Рассказывает питч за вас" }, { uz: "Eslab qolganini aytadi", ru: "Говорит, что запомнил" }, { uz: "Slaydlarni qayta yozadi", ru: "Переписывает слайды" }], correct: 2 },
+  { q: { uz: "Sinovda tugma topilmadi. Pitchda nima aytiladi?", ru: "На тесте не нашли кнопку. Что скажете в питче?" }, opts: [{ uz: "Intervyu raqami qayta", ru: "Снова число из интервью" }, { uz: "Qurish haftalari soni", ru: "Сколько недель строили" }, { uz: "Keyingi to'lov funksiyasi", ru: "Будущая функция оплаты" }, { uz: "Tugma qanday tuzatilgani", ru: "Как исправили кнопку" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2084,6 +2121,10 @@ export default function PmUserStoryPitchLesson({ lang: langProp, onFinished, liv
         .q-kirish .q-variant:not(:disabled), .q-bashorat .q-chip:not(:disabled), .ps-tanlov .q-chip:not(:disabled):not(.q-silk) { animation: ps-puls 1.6s ease-out .7s 2; }
         .ps-qulf { opacity: .45; pointer-events: none; }
         .ps-amal { display: flex; justify-content: flex-end; align-items: center; gap: 10px; flex-wrap: wrap; }
+        /* F-1019-08 (213.22): qaror qadami */
+        .ps-qr { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .ps-qr-s { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.4; color: ${T.ink}; }
+        .ps-qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
         .ps-amal.ikki, .ps-amal.uch { justify-content: center; }
         .ps-kirit { width: 100%; resize: none; border: 1.5px solid ${T.line}; border-radius: 10px; padding: 9px 11px; font-family: 'Manrope', sans-serif; font-size: 14px; line-height: 1.45; color: ${T.ink}; background: ${T.paper}; outline: none; min-height: 40px; }
         .ps-kirit:focus { border-color: ${T.accent}; }

@@ -102,6 +102,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -179,8 +204,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -967,10 +992,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — MAQSAD (QReja: chapda doskaning bo'sh shakli, o'ngda «01 · matn · teg») =====
 const REJA = [
-  { t: { uz: 'Besh yozuvdagi shikoyatlarni sanaysiz', ru: 'Посчитаете жалобы в пяти записях' }, teg: { uz: 'sanoq', ru: 'подсчёт' } },
-  { t: { uz: "Eng ko'p chiqqanini bitta gapga yozasiz", ru: 'Самую частую запишете одной фразой' }, teg: { uz: 'muammo', ru: 'проблема' } },
-  { t: { uz: 'Imkoniyatlarni uch qutiga ajratasiz', ru: 'Разложите возможности по трём коробкам' }, teg: { uz: 'MVP', ru: 'MVP' } },
-  { t: { uz: 'Shikoyatlarni kod bilan sanaysiz', ru: 'Посчитаете жалобы кодом' }, teg: { uz: 'kod', ru: 'код' } }
+  { t: { uz: 'Besh yozuvdagi shikoyatlarni sanang', ru: 'Посчитайте жалобы в пяти записях' }, teg: { uz: 'sanoq', ru: 'подсчёт' } },
+  { t: { uz: "Eng ko'p chiqqanini bitta gapga yozing", ru: 'Самую частую запишите одной фразой' }, teg: { uz: 'muammo', ru: 'проблема' } },
+  { t: { uz: 'Imkoniyatlarni uch qutiga ajrating', ru: 'Разложите возможности по трём коробкам' }, teg: { uz: 'MVP', ru: 'MVP' } },
+  { t: { uz: 'Shikoyatlarni kod bilan sanang', ru: 'Посчитайте жалобы кодом' }, teg: { uz: 'kod', ru: 'код' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Maqsad', ru: 'Цель' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
@@ -1858,18 +1883,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol, to'g'ri javob: A — 1, 6, 12 · B — 3, 5, 10 · C — 2, 8, 11 · D — 4, 7, 9 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Oshxona haqida besh intervyu qildingiz, deylik. Qaysi shikoyatdan boshlaysiz?', ru: 'Допустим, вы провели пять интервью о столовой. С какой жалобы начнёте?' }, opts: [{ uz: "To'rt yozuvda chiqqanidan", ru: 'С той, что в четырёх записях' }, { uz: 'Eng qattiq aytilganidan', ru: 'С самой резкой' }, { uz: "O'zingizga qiziq bo'lganidan", ru: 'С интересной вам' }, { uz: 'Oxirgi yozuvdagisidan', ru: 'С той, что в последней записи' }], correct: 0 },
-  { q: { uz: "Qaysi gap muammo gapi bo'la oladi?", ru: 'Какая фраза может быть формулировкой проблемы?' }, opts: [{ uz: 'Maydonni band qiladigan sayt kerak', ru: 'Нужен сайт для брони поля' }, { uz: "Shanba kuni futbol o'ynash juda yoqadi", ru: 'В субботу очень нравится играть в футбол' }, { uz: "O'yinchilar bo'sh vaqtni bila olmaydi", ru: 'Игроки не могут узнать свободное время' }, { uz: "Mahallada futbol o'ynaydiganlar ko'p", ru: 'В махалле много футболистов' }], correct: 2 },
-  { q: { uz: 'Bitta o\'yinchi «chat kerak» dedi. Bu nimani bildiradi?', ru: 'Один игрок сказал «нужен чат». Что это значит?' }, opts: [{ uz: "Chat — MVP'ning eng muhim qismi", ru: 'Чат — главная часть MVP' }, { uz: "Hozircha bu bir odamning gapi", ru: 'Пока это слова одного человека' }, { uz: "Hamma o'yinchiga chat kerak ekan", ru: 'Чат нужен всем игрокам' }, { uz: 'Chatni bugunoq qurish kerak', ru: 'Чат нужно строить сегодня же' }], correct: 1 },
-  { q: { uz: 'MVP nima?', ru: 'Что такое MVP?' }, opts: [{ uz: 'Mahsulotning eng chiroyli to\'liq versiyasi', ru: 'Самая красивая полная версия продукта' }, { uz: 'Barcha imkoniyati bor oxirgi versiyasi', ru: 'Последняя версия со всеми возможностями' }, { uz: 'Faqat rasmi chizilgan birinchi versiyasi', ru: 'Первая версия, где есть только рисунок' }, { uz: 'Ish beradigan eng sodda birinchi versiya', ru: 'Самая простая работающая первая версия' }], correct: 3 },
-  { q: { uz: '«Keyin» qutisidagi imkoniyat bilan nima bo\'ladi?', ru: 'Что происходит с возможностью в коробке «Потом»?' }, opts: [{ uz: "Butunlay o'chirib tashlanadi", ru: 'Полностью удаляется' }, { uz: 'Saqlanadi, navbati suriladi', ru: 'Сохраняется, очередь сдвигается' }, { uz: "Bugunoq MVP'ga qo'shiladi", ru: 'Сегодня же добавляется в MVP' }, { uz: 'Boshqa mahsulotga beriladi', ru: 'Отдаётся другому продукту' }], correct: 1 },
-  { q: { uz: "«Jamoa yig'ish» nega «Keyin» qutisida?", ru: 'Почему «Сбор команды» в коробке «Потом»?' }, opts: [{ uz: 'Yozuvda bor, lekin MVP busiz ishlaydi', ru: 'Есть в записях, но MVP работает без него' }, { uz: 'Uni hech bir yozuvda hech kim aytmagan', ru: 'О нём никто не сказал ни в одной записи' }, { uz: "Busiz MVP bo'sh vaqtni ko'rsatmaydi", ru: 'Без него MVP не покажет свободное время' }, { uz: 'Uni besh yozuvning hammasida aytishgan', ru: 'О нём сказали во всех пяти записях' }], correct: 0 },
-  { q: { uz: '«Maydonga baho» nega «Qilmaymiz» qutisida?', ru: 'Почему «Оценка поля» в коробке «Не делаем»?' }, opts: [{ uz: 'Uni qurish juda qiyin bo\'lgani uchun', ru: 'Потому что её очень трудно сделать' }, { uz: 'Jamoaning o\'ziga u yoqmagani uchun', ru: 'Потому что она не нравится команде' }, { uz: "Uni ko'p o'yinchi so'ragani uchun", ru: 'Потому что её просили многие игроки' }, { uz: "Yozuvlarda unga sabab yo'qligi uchun", ru: 'Потому что в записях нет для неё причины' }], correct: 3 },
-  { q: { uz: "«Egasi uchun bandlar ro'yxati»siz nima bo'ladi?", ru: 'Что будет без «Списка броней для владельца»?' }, opts: [{ uz: "Hech narsa — bu ro'yxat o'yinchilarga kerak emas", ru: 'Ничего — игрокам этот список не нужен' }, { uz: "O'yinchilar sayt kataklarini umuman ko'ra olmaydi", ru: 'Игроки совсем не увидят ячейки сайта' }, { uz: 'Egasi maydonni boshqaga berib yuborishi mumkin', ru: 'Владелец может отдать поле другим' }, { uz: 'Sayt ochilmaydi va hech kim band qila olmaydi', ru: 'Сайт не откроется, и никто не забронирует' }], correct: 2 },
+  { q: { uz: "Besh yozuvda qaysi shikoyatdan boshlaysiz?", ru: "С какой жалобы из пяти записей начнёте?" }, opts: [{ uz: "To'rt yozuvda chiqqanidan", ru: "С той, что в четырёх записях" }, { uz: "Eng qattiq aytilganidan", ru: "С самой резкой" }, { uz: "O'zingizga qiziq bo'lganidan", ru: "С интересной вам" }, { uz: "Oxirgi yozuvdagisidan", ru: "С той, что в последней записи" }], correct: 0 },
+  { q: { uz: "Qaysi gap muammo gapi bo'la oladi?", ru: "Какая фраза может быть формулировкой проблемы?" }, opts: [{ uz: "Band qiladigan sayt kerak", ru: "Нужен сайт для брони" }, { uz: "Futbol o'ynash juda yoqadi", ru: "Очень нравится играть в футбол" }, { uz: "O'yinchi bo'sh vaqtni bilmaydi", ru: "Игрок не знает свободное время" }, { uz: "Mahallada futbolchi ko'p", ru: "В махалле много футболистов" }], correct: 2 },
+  { q: { uz: "Bir o'yinchi «chat kerak» dedi. Bu nima?", ru: "Один игрок сказал «нужен чат». Что это значит?" }, opts: [{ uz: "Chat — MVP'ning asosi", ru: "Чат — основа MVP" }, { uz: "Bu hozircha bir odam gapi", ru: "Пока это слова одного человека" }, { uz: "Hamma o'yinchiga chat kerak", ru: "Чат нужен всем игрокам" }, { uz: "Chatni bugun qurish kerak", ru: "Чат нужно строить сегодня" }], correct: 1 },
+  { q: { uz: "MVP nima?", ru: "Что такое MVP?" }, opts: [{ uz: "Eng chiroyli to'liq versiya", ru: "Самая красивая полная версия" }, { uz: "Barcha imkoniyatli versiya", ru: "Версия со всеми возможностями" }, { uz: "Faqat rasmi chizilgan versiya", ru: "Версия, где есть только рисунок" }, { uz: "Ishlaydigan eng sodda versiya", ru: "Самая простая работающая версия" }], correct: 3 },
+  { q: { uz: "«Keyin» qutisidagi imkoniyat nima bo'ladi?", ru: "Что будет с возможностью в коробке «Потом»?" }, opts: [{ uz: "Butunlay o'chiriladi", ru: "Полностью удаляется" }, { uz: "Saqlanadi, navbati suriladi", ru: "Сохраняется, очередь сдвигается" }, { uz: "Bugunoq MVP'ga qo'shiladi", ru: "Сегодня же добавляется в MVP" }, { uz: "Boshqa mahsulotga beriladi", ru: "Отдаётся другому продукту" }], correct: 1 },
+  { q: { uz: "«Jamoa yig'ish» nega «Keyin» qutisida?", ru: "Почему «Сбор команды» в коробке «Потом»?" }, opts: [{ uz: "Yozuvda bor, lekin shart emas", ru: "Есть в записях, но не обязателен" }, { uz: "Hech kim uni aytmagan", ru: "О нём никто не сказал" }, { uz: "Busiz bo'sh vaqt ko'rinmaydi", ru: "Без него не видно свободное время" }, { uz: "Beshala yozuvda aytilgan", ru: "О нём сказали во всех пяти записях" }], correct: 0 },
+  { q: { uz: "«Maydonga baho» nega «Qilmaymiz» qutisida?", ru: "Почему «Оценка поля» в коробке «Не делаем»?" }, opts: [{ uz: "Uni qurish juda qiyin", ru: "Её очень трудно сделать" }, { uz: "Jamoaning o'ziga yoqmagan", ru: "Она не нравится команде" }, { uz: "Ko'p o'yinchi so'ragan", ru: "Её просили многие игроки" }, { uz: "Yozuvlarda sababi yo'q", ru: "В записях нет для неё причины" }], correct: 3 },
+  { q: { uz: "Egasi bandlar ro'yxatini ko'rmasa-chi?", ru: "А если владелец не видит список броней?" }, opts: [{ uz: "Hech narsa — u kerak emas", ru: "Ничего — он не нужен" }, { uz: "O'yinchi katak ko'rmaydi", ru: "Игрок не увидит ячейки" }, { uz: "Egasi maydonni boshqaga beradi", ru: "Владелец отдаст поле другим" }, { uz: "Sayt umuman ochilmaydi", ru: "Сайт вообще не откроется" }], correct: 2 },
   { q: { uz: 'Burbn jamoasi qaysi imkoniyatni qoldirdi?', ru: 'Какую возможность оставила команда Burbn?' }, opts: [{ uz: 'Joyni belgilashni', ru: 'Отметку места' }, { uz: 'Uchrashuv rejasini', ru: 'План встречи' }, { uz: "Ball yig'ishni", ru: 'Сбор баллов' }, { uz: 'Surat joylashni', ru: 'Публикацию фото' }], correct: 3 },
-  { q: { uz: 'Burbn jamoasi qarorni nimaga qarab qildi?', ru: 'На что смотрела команда Burbn, принимая решение?' }, opts: [{ uz: "Jamoaning o'z xohishiga qarab", ru: 'На своё желание' }, { uz: 'Odamlar nima qilganiga qarab', ru: 'На то, что делали люди' }, { uz: 'Eng oson imkoniyatga qarab', ru: 'На самую простую возможность' }, { uz: 'Bitta odamning gapiga qarab', ru: 'На слова одного человека' }], correct: 1 },
-  { q: { uz: 'Kodda `yozuvlar[j].includes("band")` nimani tekshiradi?', ru: 'Что проверяет в коде `yozuvlar[j].includes("band")`?' }, opts: [{ uz: 'Yozuvlar soni nechtaligini', ru: 'Сколько всего записей' }, { uz: 'Birinchi yozuv nimaligini', ru: 'Что в первой записи' }, { uz: 'j-yozuvda «band» bormi', ru: 'Есть ли «band» в записи j' }, { uz: '«band» so\'zi uzunligini', ru: 'Длину слова «band»' }], correct: 2 },
-  { q: { uz: "Ikki shikoyat bitta qiyinchilikni ko'rsatsa, nima qilasiz?", ru: 'Если две жалобы показывают одну трудность, что вы сделаете?' }, opts: [{ uz: 'Ikkalasini bitta muammo gapiga yozaman', ru: 'Запишу обе в одну формулировку проблемы' }, { uz: "Ulardan birini o'chirib, bittasini qoldiraman", ru: 'Одну удалю, другую оставлю' }, { uz: 'Har biri uchun alohida sayt qilaman', ru: 'Сделаю отдельный сайт для каждой' }, { uz: "Ikkalasini ham «Keyin» qutisiga qo'yaman", ru: 'Положу обе в коробку «Потом»' }], correct: 0 }
+  { q: { uz: "Burbn jamoasi nimaga qarab qaror qildi?", ru: "На что смотрела команда Burbn, принимая решение?" }, opts: [{ uz: "O'z xohishiga", ru: "На своё желание" }, { uz: "Odamlar nima qilganiga", ru: "На то, что делали люди" }, { uz: "Eng oson imkoniyatga", ru: "На самую простую возможность" }, { uz: "Bitta odamning gapiga", ru: "На слова одного человека" }], correct: 1 },
+  { q: { uz: "`yozuvlar[j].includes(\"band\")` nimani tekshiradi?", ru: "Что проверяет `yozuvlar[j].includes(\"band\")`?" }, opts: [{ uz: "Yozuvlar nechtaligini", ru: "Сколько всего записей" }, { uz: "Birinchi yozuv nimaligini", ru: "Что в первой записи" }, { uz: "j-yozuvda «band» bormi", ru: "Есть ли «band» в записи j" }, { uz: "«band» so'zi uzunligini", ru: "Длину слова «band»" }], correct: 2 },
+  { q: { uz: "Ikki shikoyat — bir qiyinchilik. Nima qilasiz?", ru: "Две жалобы — одна трудность. Что сделаете?" }, opts: [{ uz: "Bitta gapga birlashtiraman", ru: "Объединю в одну формулировку" }, { uz: "Birini o'chiraman", ru: "Одну удалю" }, { uz: "Har biriga sayt qilaman", ru: "Сделаю сайт для каждой" }, { uz: "Ikkisini «Keyin»ga suraman", ru: "Отложу обе в «Потом»" }], correct: 0 }
 ];
 
 const CsNeonBolt = ({ flip }) => (

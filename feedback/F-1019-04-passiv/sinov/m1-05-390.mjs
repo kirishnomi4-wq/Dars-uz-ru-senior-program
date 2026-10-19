@@ -1,0 +1,12 @@
+import { chromium } from 'playwright-core';
+const OUT = '/home/kali/Desktop/internetLesson/feedback/F-1019-04-passiv/suratlar/m1-05-uz'; const ID = 'pm-m1d6-v1';
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', headless: true }); const errs = [];
+const ctx = await b.newContext({ viewport: { width: 390, height: 844 } }); await ctx.route(/^https?:\/\//, r => r.abort());
+await ctx.addInitScript((id) => { for (const r of ['mentor','learner','student','self']) { localStorage.setItem('inetOnboarded_'+r,'1'); localStorage.setItem('hcOnboarded_'+r,'1'); } localStorage.setItem('liveSession:'+id, JSON.stringify({mode:'self'})); localStorage.setItem('ccProgress:'+id, JSON.stringify({ screen: 5, maxReached: 5, answers: {}, earned: [], startedAt: Date.now(), total: 17, savedAt: Date.now() })); }, ID);
+const p = await ctx.newPage(); p.on('pageerror', e => errs.push(e.message));
+await p.goto('file://' + OUT + '/_p.html'); await p.waitForSelector('.lesson-root'); await p.waitForTimeout(900);
+await p.locator('.qr-v button', { hasText: 'Sayt nima taklif qilishini aytadi' }).click(); await p.waitForTimeout(700);
+const r = await p.evaluate(() => { const n = document.querySelector('.sk-info.fade-step:not(.qr)'), q = document.querySelector('.sk-info.qr'); return { natija: n && Math.round(n.getBoundingClientRect().top), savol: q && Math.round(q.getBoundingClientRect().top) }; });
+console.log('390: natija top', r.natija, '· savol top', r.savol, '·', r.natija < r.savol ? 'natija savol USTIDA ✓' : 'natija pastda ✗');
+await p.screenshot({ path: OUT + '/t-s5-390-1.png', fullPage: true });
+console.log('pageerror', errs.length); await b.close();

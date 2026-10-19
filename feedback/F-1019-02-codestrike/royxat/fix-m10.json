@@ -1,0 +1,3636 @@
+[
+ {
+  "file": "src/8-Modull/PmOkrLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 147 belgi, variantlardagi «Haftada … soni» takrori qisqartirildi.",
+  "q": {
+   "uz": "«Maydon»da haftalik bosh raqam qaysi?",
+   "ru": "Какое главное число «Maydon» за неделю?"
+  },
+  "opts": [
+   {
+    "uz": "Band qilingan vaqtlar",
+    "ru": "Забронированные слоты"
+   },
+   {
+    "uz": "Saytni ochganlar",
+    "ru": "Открывшие сайт"
+   },
+   {
+    "uz": "Vaqt tanlaganlar",
+    "ru": "Выбравшие время"
+   },
+   {
+    "uz": "Chatdagi e'lonlar",
+    "ru": "Объявления в чате"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmOkrLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 179.",
+  "q": {
+   "uz": "Qaysi gap maqsad bo'la oladi?",
+   "ru": "Какая фраза может быть целью?"
+  },
+  "opts": [
+   {
+    "uz": "Haftada 20 band bo'lsin",
+    "ru": "20 броней в неделю"
+   },
+   {
+    "uz": "O'yinchilar oson band qilsin",
+    "ru": "Игроки бронируют легко"
+   },
+   {
+    "uz": "Tugmaga soatni yozish",
+    "ru": "Написать час на кнопке"
+   },
+   {
+    "uz": "Foiz 40 ga yetsin",
+    "ru": "Процент дойдёт до 40"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmOkrLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi.",
+  "q": {
+   "uz": "«Bandlar: hozir 6, oy oxirida 20» — bu qaysi qator?",
+   "ru": "«Брони: сейчас 6, к концу месяца 20» — что это за строка?"
+  },
+  "opts": [
+   {
+    "uz": "Maqsad qatori",
+    "ru": "Строка цели"
+   },
+   {
+    "uz": "Tajriba qatori",
+    "ru": "Строка эксперимента"
+   },
+   {
+    "uz": "Asosiy natija",
+    "ru": "Ключевой результат"
+   },
+   {
+    "uz": "Mehnat raqami",
+    "ru": "Число труда"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmOkrLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi.",
+  "q": {
+   "uz": "«Yozilgan yangi matnlar: 0 dan 5 ga» — qanday raqam?",
+   "ru": "«Новые написанные тексты: с 0 до 5» — что это за число?"
+  },
+  "opts": [
+   {
+    "uz": "Bosh raqam",
+    "ru": "Главное число"
+   },
+   {
+    "uz": "Mehnat raqami",
+    "ru": "Число труда"
+   },
+   {
+    "uz": "Asosiy natija",
+    "ru": "Ключевой результат"
+   },
+   {
+    "uz": "Qadam foizi",
+    "ru": "Процент шага"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmOkrLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 38 belgigacha, jami 181.",
+  "q": {
+   "uz": "Tajriba nega bitta o'zgarish?",
+   "ru": "Почему эксперимент — одно изменение?"
+  },
+  "opts": [
+   {
+    "uz": "Uni tezroq qilsa bo'ladi",
+    "ru": "Его можно сделать быстрее"
+   },
+   {
+    "uz": "Uni yozish qisqaroq bo'ladi",
+    "ru": "Его короче записать"
+   },
+   {
+    "uz": "Doskada bitta qator bor",
+    "ru": "На доске одна строка"
+   },
+   {
+    "uz": "Nima yordam bergani ajraladi",
+    "ru": "Видно, что именно помогло"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmOkrLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 149 belgi.",
+  "q": {
+   "uz": "OKR qaysi qismlardan iborat?",
+   "ru": "Из каких частей состоит OKR?"
+  },
+  "opts": [
+   {
+    "uz": "Maqsad va asosiy natijalar",
+    "ru": "Цель и ключевые результаты"
+   },
+   {
+    "uz": "Bosh raqam va foizlar",
+    "ru": "Главное число и проценты"
+   },
+   {
+    "uz": "Muammo va yechimlar",
+    "ru": "Проблема и решения"
+   },
+   {
+    "uz": "Tajriba va ishlar",
+    "ru": "Эксперимент и задачи"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmOkrLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 65, variant 40 belgi, jami 208.",
+  "q": {
+   "uz": "Maqsad qatoriga raqam yozilgan. Nima qilasiz?",
+   "ru": "В строке цели написано число. Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Shunday qoldirasiz",
+    "ru": "Оставляете так"
+   },
+   {
+    "uz": "Asosiy natijaga o'tkazasiz",
+    "ru": "Переносите в ключевой результат"
+   },
+   {
+    "uz": "Tajriba qatoriga o'tkazasiz",
+    "ru": "Переносите в эксперимент"
+   },
+   {
+    "uz": "Yana bir raqam qo'shasiz",
+    "ru": "Добавляете ещё число"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmOkrLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 155 belgi.",
+  "q": {
+   "uz": "«Ikkinchi marta band qilganlar» nimani sanaydi?",
+   "ru": "Что считает «забронировавшие второй раз»?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni ochganlarni",
+    "ru": "Открывших сайт"
+   },
+   {
+    "uz": "Vaqt tanlaganlarni",
+    "ru": "Выбравших время"
+   },
+   {
+    "uz": "Qaytib kelganlarni",
+    "ru": "Вернувшихся"
+   },
+   {
+    "uz": "Ega ochgan vaqtlarni",
+    "ru": "Слоты, открытые владельцем"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmOkrLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 73 belgi, jami 217.",
+  "q": {
+   "uz": "Tajriba hech qatorga ulanmagan. Nima qilasiz?",
+   "ru": "Эксперимент не привязан ни к одной строке. Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Yana tajriba qo'shasiz",
+    "ru": "Добавляете ещё эксперимент"
+   },
+   {
+    "uz": "Maqsad qatoriga ko'chirasiz",
+    "ru": "Переносите в цель"
+   },
+   {
+    "uz": "Doskadan o'chirasiz",
+    "ru": "Удаляете с доски"
+   },
+   {
+    "uz": "Asosiy natijaga ulaysiz",
+    "ru": "Привязываете к ключевому результату"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/EventTrackingLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "darsda-yoq"
+  ],
+  "izoh": "Variantlar 39 belgigacha; «analitika» so'zi darsda o'tilmagan, darsda «harakat jadvalga yoziladi».",
+  "q": {
+   "uz": "Hodisa nima?",
+   "ru": "Что такое событие?"
+  },
+  "opts": [
+   {
+    "uz": "Jadvalga yoziladigan harakat",
+    "ru": "Действие, записываемое в таблицу"
+   },
+   {
+    "uz": "Jadvaldagi yangi ustun",
+    "ru": "Новый столбец таблицы"
+   },
+   {
+    "uz": "Saytdagi katta tugma",
+    "ru": "Большая кнопка на сайте"
+   },
+   {
+    "uz": "Backend'dagi so'rov yo'li",
+    "ru": "Маршрут запроса в Backend"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/EventTrackingLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 181 belgi.",
+  "q": {
+   "uz": "Sahifa ochilishini jadvalga kim yuboradi?",
+   "ru": "Кто отправляет открытие страницы в таблицу?"
+  },
+  "opts": [
+   {
+    "uz": "Umami `ochdi`ni yozadi",
+    "ru": "Umami пишет `ochdi`"
+   },
+   {
+    "uz": "Database `ochdi` qo'shadi",
+    "ru": "Database сама добавит `ochdi`"
+   },
+   {
+    "uz": "Sayt `ochdi` deb yuboradi",
+    "ru": "Сайт отправляет `ochdi`"
+   },
+   {
+    "uz": "Backend `ochdi` qo'shadi",
+    "ru": "Backend сам добавит `ochdi`"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/EventTrackingLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 159 belgi.",
+  "q": {
+   "uz": "Hodisaga nega telefon yozilmaydi?",
+   "ru": "Почему в событие не пишут телефон?"
+  },
+  "opts": [
+   {
+    "uz": "Raqam jadvalga sig'maydi",
+    "ru": "Номер не помещается"
+   },
+   {
+    "uz": "Backend raqamni o'qimaydi",
+    "ru": "Backend не читает номер"
+   },
+   {
+    "uz": "Umami raqamni yashiradi",
+    "ru": "Umami скрывает номер"
+   },
+   {
+    "uz": "Ochgan odam hali bermagan",
+    "ru": "Открывший его ещё не дал"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/EventTrackingLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 38 belgigacha, jami 173.",
+  "q": {
+   "uz": "Brauzer ID qayerda saqlanadi?",
+   "ru": "Где хранится ID браузера?"
+  },
+  "opts": [
+   {
+    "uz": "Brauzer xotirasida",
+    "ru": "В памяти браузера"
+   },
+   {
+    "uz": "`bandlar` jadvalida",
+    "ru": "В таблице `bandlar`"
+   },
+   {
+    "uz": "Umami sozlamalarida",
+    "ru": "В настройках Umami"
+   },
+   {
+    "uz": "Backend'ning `.env` faylida",
+    "ru": "В файле `.env` Backend"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/EventTrackingLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 159 belgi.",
+  "q": {
+   "uz": "Sahifa yangilandi. Brauzer ID nima bo'ladi?",
+   "ru": "Страницу обновили. Что будет с ID браузера?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi ID olinadi",
+    "ru": "Берётся новый ID"
+   },
+   {
+    "uz": "O'zgarmay qoladi",
+    "ru": "Остаётся прежним"
+   },
+   {
+    "uz": "Telefonga almashadi",
+    "ru": "Заменяется телефоном"
+   },
+   {
+    "uz": "Backend uni o'chiradi",
+    "ru": "Backend его удаляет"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/EventTrackingLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 155 belgi.",
+  "q": {
+   "uz": "`COUNT(DISTINCT brauzer_id)` nimani sanaydi?",
+   "ru": "Что считает `COUNT(DISTINCT brauzer_id)`?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma qatorlar sonini",
+    "ru": "Число всех строк"
+   },
+   {
+    "uz": "Hodisa nomlari sonini",
+    "ru": "Число названий событий"
+   },
+   {
+    "uz": "Bo'sh kataklar sonini",
+    "ru": "Число пустых слотов"
+   },
+   {
+    "uz": "Har xil brauzerlar sonini",
+    "ru": "Число разных браузеров"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/EventTrackingLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 180 belgi.",
+  "q": {
+   "uz": "Qatorlarni sanasak, qanday xato chiqadi?",
+   "ru": "Какая ошибка, если считать строки?"
+  },
+  "opts": [
+   {
+    "uz": "Bir brauzer ko'p sanaladi",
+    "ru": "Один браузер считается много раз"
+   },
+   {
+    "uz": "Band qilganlar sanalmaydi",
+    "ru": "Забронировавшие не считаются"
+   },
+   {
+    "uz": "Umami soni ikkilanadi",
+    "ru": "Число Umami удваивается"
+   },
+   {
+    "uz": "Bo'sh kataklar sanaladi",
+    "ru": "Считаются пустые слоты"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/EventTrackingLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 173 belgi.",
+  "q": {
+   "uz": "Umami 31, jadval 36. Bu nima degani?",
+   "ru": "Umami 31, таблица 36. Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Jadval xato, tuzatamiz",
+    "ru": "Таблица ошибается, исправим"
+   },
+   {
+    "uz": "Ikki tizim har xil sanaydi",
+    "ru": "Две системы считают по-разному"
+   },
+   {
+    "uz": "Umami xato, o'chiramiz",
+    "ru": "Umami ошибается, уберём"
+   },
+   {
+    "uz": "Besh kishi ikki marta ochgan",
+    "ru": "Пятеро открыли дважды"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/EventTrackingLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 162 belgi.",
+  "q": {
+   "uz": "Hodisalarni nega o'z jadvalimizga ham yozamiz?",
+   "ru": "Зачем пишем события ещё и в свою таблицу?"
+  },
+  "opts": [
+   {
+    "uz": "Umami endi kerak emas",
+    "ru": "Umami больше не нужен"
+   },
+   {
+    "uz": "Sayt tezroq ochiladi",
+    "ru": "Сайт открывается быстрее"
+   },
+   {
+    "uz": "Backend shunda uxlamaydi",
+    "ru": "Тогда Backend не засыпает"
+   },
+   {
+    "uz": "Sonlarni o'zimiz sanaymiz",
+    "ru": "Считаем числа сами"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 52 belgigacha, jami 226.",
+  "q": {
+   "uz": "Dashboard (holat paneli) nima?",
+   "ru": "Что такое дашборд (панель состояния)?"
+  },
+  "opts": [
+   {
+    "uz": "Raqamlar jamlangan sahifa",
+    "ru": "Страница со всеми числами"
+   },
+   {
+    "uz": "Vaqt band qilinadigan sahifa",
+    "ru": "Страница бронирования"
+   },
+   {
+    "uz": "Hodisalar jadvali",
+    "ru": "Таблица событий"
+   },
+   {
+    "uz": "Backend'ni yoqish buyrug'i",
+    "ru": "Команда запуска Backend"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 53 belgigacha, jami 258.",
+  "q": {
+   "uz": "«Oxirgi 5 daqiqada» nimani sanaydi?",
+   "ru": "Что считает «За последние 5 минут»?"
+  },
+  "opts": [
+   {
+    "uz": "Bugun ochgan brauzerlarni",
+    "ru": "Браузеры, открывшие сегодня"
+   },
+   {
+    "uz": "Hodisa yuborgan brauzerlarni",
+    "ru": "Браузеры, отправившие событие"
+   },
+   {
+    "uz": "Sahifasi ochiq odamlarni",
+    "ru": "Людей с открытой страницей"
+   },
+   {
+    "uz": "Band qilgan o'yinchilarni",
+    "ru": "Забронировавших игроков"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi, variantlar 38 belgigacha.",
+  "q": {
+   "uz": "Brauzer uch katak bosdi. «Vaqtni tanladi» nechaga oshadi?",
+   "ru": "Один браузер нажал три слота. На сколько вырастет «Выбрали время»?"
+  },
+  "opts": [
+   {
+    "uz": "Uchtaga",
+    "ru": "На три"
+   },
+   {
+    "uz": "Oshmaydi",
+    "ru": "Не вырастет"
+   },
+   {
+    "uz": "Bittaga",
+    "ru": "На один"
+   },
+   {
+    "uz": "Ikkitaga",
+    "ru": "На два"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 228 belgi.",
+  "q": {
+   "uz": "Nega turli brauzerlar sanaladi?",
+   "ru": "Почему считают разные браузеры?"
+  },
+  "opts": [
+   {
+    "uz": "Raqamlar katta ko'rinadi",
+    "ru": "Числа выглядят больше"
+   },
+   {
+    "uz": "Backend tezroq javob beradi",
+    "ru": "Backend отвечает быстрее"
+   },
+   {
+    "uz": "Database'da joy tejaladi",
+    "ru": "Экономится место в Database"
+   },
+   {
+    "uz": "Qadamlarni solishtirsa bo'ladi",
+    "ru": "Шаги можно сравнить"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 206 belgi.",
+  "q": {
+   "uz": "Dashboard raqamlarni qanday yangilaydi?",
+   "ru": "Как дашборд обновляет числа?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt har 5 soniyada so'raydi",
+    "ru": "Сайт спрашивает каждые 5 секунд"
+   },
+   {
+    "uz": "Ega F5 ni bosib turadi",
+    "ru": "Владелец жмёт F5"
+   },
+   {
+    "uz": "Database o'zi yuboradi",
+    "ru": "Database присылает сама"
+   },
+   {
+    "uz": "Umami ko'chirib beradi",
+    "ru": "Umami копирует их"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 212 belgi.",
+  "q": {
+   "uz": "Tokensiz `GET /hodisalar/sanoq` nima qaytaradi?",
+   "ru": "Что вернёт `GET /hodisalar/sanoq` без токена?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma raqamlarni beradi",
+    "ru": "Отдаст все числа"
+   },
+   {
+    "uz": "401 qaytaradi",
+    "ru": "Вернёт 401"
+   },
+   {
+    "uz": "Faqat 5 daqiqalikni beradi",
+    "ru": "Отдаст только 5-минутное"
+   },
+   {
+    "uz": "Parol sahifasini ochadi",
+    "ru": "Откроет страницу пароля"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Jami 190 belgi; «qachondan sanamaydi» qaysi raqam haqida ekani aytilmagan edi.",
+  "q": {
+   "uz": "Saytni yopgan «Oxirgi 5 daqiqada»dan qachon tushadi?",
+   "ru": "Когда закрывший сайт пропадёт из «За последние 5 минут»?"
+  },
+  "opts": [
+   {
+    "uz": "Yopgan soniyadayoq",
+    "ru": "В ту же секунду"
+   },
+   {
+    "uz": "Yangi kun boshlanganda",
+    "ru": "Когда начнётся новый день"
+   },
+   {
+    "uz": "Hodisadan 5 daqiqa keyin",
+    "ru": "Через 5 минут после события"
+   },
+   {
+    "uz": "Ega yangilaganda",
+    "ru": "Когда владелец обновит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 185 belgi.",
+  "q": {
+   "uz": "Dashboard ochilsa, «Oxirgi 5 daqiqada» oshadimi?",
+   "ru": "Если открыть дашборд, вырастет ли «За последние 5 минут»?"
+  },
+  "opts": [
+   {
+    "uz": "Ha — sahifa sanaladi",
+    "ru": "Да — страница считается"
+   },
+   {
+    "uz": "Ha — ega ham odam",
+    "ru": "Да — владелец тоже человек"
+   },
+   {
+    "uz": "Yo'q — parol to'xtatadi",
+    "ru": "Нет — пароль останавливает"
+   },
+   {
+    "uz": "Yo'q — hodisa yozilmaydi",
+    "ru": "Нет — событие не пишется"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgigacha, jami 175.",
+  "q": {
+   "uz": "Brauzer ID nimani bildiradi?",
+   "ru": "Что обозначает ID браузера?"
+  },
+  "opts": [
+   {
+    "uz": "Brauzerni, odamni emas",
+    "ru": "Браузер, а не человека"
+   },
+   {
+    "uz": "O'yinchi ismi va telefonini",
+    "ru": "Имя и телефон игрока"
+   },
+   {
+    "uz": "Odamning yoshi va shahrini",
+    "ru": "Возраст и город человека"
+   },
+   {
+    "uz": "Ega paroli bilan tokenni",
+    "ru": "Токен по паролю владельца"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 82 belgi, jami 252.",
+  "q": {
+   "uz": "«Yangilandi» har 5 soniyada o'zgaradi. Bu nima degani?",
+   "ru": "«Обновлено» меняется каждые 5 секунд. Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "O'yinchilar kiryapti",
+    "ru": "Заходят игроки"
+   },
+   {
+    "uz": "Backend javob beryapti",
+    "ru": "Backend отвечает"
+   },
+   {
+    "uz": "Token eskirib qoldi",
+    "ru": "Токен устарел"
+   },
+   {
+    "uz": "Raqamlar oshyapti",
+    "ru": "Числа растут"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/LiveDashboardLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 226 belgi.",
+  "q": {
+   "uz": "Sanoq to'g'riligini qanday tekshirasiz?",
+   "ru": "Как проверите, что подсчёт верный?"
+  },
+  "opts": [
+   {
+    "uz": "Agentdan yana so'raysiz",
+    "ru": "Ещё раз спросите агента"
+   },
+   {
+    "uz": "Katta raqamga ishonasiz",
+    "ru": "Поверите большому числу"
+   },
+   {
+    "uz": "Keyingi talabga o'tasiz",
+    "ru": "Перейдёте к следующему"
+   },
+   {
+    "uz": "Inkognitoda bosib ko'rasiz",
+    "ru": "Нажмёте в инкогнито"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha, jami 188.",
+  "q": {
+   "uz": "Gipoteza qanday yoziladi?",
+   "ru": "Как записывается гипотеза?"
+  },
+  "opts": [
+   {
+    "uz": "Agar …, … o'zgaradi, chunki …",
+    "ru": "Если …, изменится …, потому что …"
+   },
+   {
+    "uz": "… qilamiz, chunki bu yaxshi",
+    "ru": "Делаем …, потому что это хорошо"
+   },
+   {
+    "uz": "Hozir … ta, oy oxirida … ta",
+    "ru": "Сейчас …, к концу месяца …"
+   },
+   {
+    "uz": "Avval …, keyin … ko'ramiz",
+    "ru": "Сначала …, потом посмотрим …"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 50 belgigacha, jami 207.",
+  "q": {
+   "uz": "«Maydon» gipotezasida «chunki» qismi qaysi?",
+   "ru": "Какая часть гипотезы «Maydon» — «потому что»?"
+  },
+  "opts": [
+   {
+    "uz": "Tugmada soat yozilsa",
+    "ru": "Если на кнопке будет час"
+   },
+   {
+    "uz": "Tanlaganini tugmada ko'radi",
+    "ru": "Видит выбранное на кнопке"
+   },
+   {
+    "uz": "Ko'proq o'yinchi band qiladi",
+    "ru": "Больше игроков забронирует"
+   },
+   {
+    "uz": "Band qilganlar foizi",
+    "ru": "Процент забронировавших"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 151 belgi.",
+  "q": {
+   "uz": "«Band qilish» tugmasi qaysi qadamdan keyin chiqadi?",
+   "ru": "После какого шага появляется кнопка «Забронировать»?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifa ochilgach",
+    "ru": "После открытия страницы"
+   },
+   {
+    "uz": "Band qilingach",
+    "ru": "После брони"
+   },
+   {
+    "uz": "Vaqt tanlangach",
+    "ru": "После выбора времени"
+   },
+   {
+    "uz": "Parol kiritilgach",
+    "ru": "После ввода пароля"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 152 belgi.",
+  "q": {
+   "uz": "A/B testda variant A qaysi biri?",
+   "ru": "Какой вариант в A/B-тесте — A?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi, sinaladigan variant",
+    "ru": "Новый, проверяемый вариант"
+   },
+   {
+    "uz": "Ega tanlagan eng yaxshisi",
+    "ru": "Лучший по выбору владельца"
+   },
+   {
+    "uz": "Dashboard'da birinchisi",
+    "ru": "Первый на дашборде"
+   },
+   {
+    "uz": "Hozirgi, o'zgarmagan variant",
+    "ru": "Текущий, неизменённый вариант"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 45 belgigacha, jami 196.",
+  "q": {
+   "uz": "Nega A va B bir vaqtda ishlaydi?",
+   "ru": "Почему A и B работают одновременно?"
+  },
+  "opts": [
+   {
+    "uz": "E'lon kabi farq aralashmasin",
+    "ru": "Чтобы не примешались объявления и т. п."
+   },
+   {
+    "uz": "Backend'ga kam so'rov kelsin",
+    "ru": "Чтобы в Backend шло меньше запросов"
+   },
+   {
+    "uz": "O'yinchi ikkalasini ko'rsin",
+    "ru": "Чтобы игрок увидел оба"
+   },
+   {
+    "uz": "Raqamlar tez chiqsin",
+    "ru": "Чтобы числа появились быстрее"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 164 belgi.",
+  "q": {
+   "uz": "Bizning testda brauzer variantni qachon oladi?",
+   "ru": "Когда браузер получает вариант в нашем тесте?"
+  },
+  "opts": [
+   {
+    "uz": "Har yangilanganda",
+    "ru": "При каждом обновлении"
+   },
+   {
+    "uz": "Birinchi kirganda",
+    "ru": "При первом входе"
+   },
+   {
+    "uz": "Tugmani bosganda",
+    "ru": "При нажатии кнопки"
+   },
+   {
+    "uz": "Ega dashboard ochganda",
+    "ru": "Когда владелец откроет дашборд"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 69 belgi, jami 204.",
+  "q": {
+   "uz": "Brauzer A va B ni ko'rdi. Muammo nima?",
+   "ru": "Браузер увидел и A, и B. В чём проблема?"
+  },
+  "opts": [
+   {
+    "uz": "Tugma matni uzun bo'ldi",
+    "ru": "Текст кнопки стал длинным"
+   },
+   {
+    "uz": "Backend hodisani olmadi",
+    "ru": "Backend не принял событие"
+   },
+   {
+    "uz": "Guruhi noma'lum bo'lib qoldi",
+    "ru": "Непонятно, в какой он группе"
+   },
+   {
+    "uz": "Brauzer ID o'zgarib qoldi",
+    "ru": "ID браузера изменился"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 180 belgi.",
+  "q": {
+   "uz": "Guruhlar 9 va 8 chiqdi. Bu nima degani?",
+   "ru": "Группы вышли 9 и 8. Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Tasodifda bu tabiiy hol",
+    "ru": "При случайном делении это нормально"
+   },
+   {
+    "uz": "Bo'lish xato, qaytadan",
+    "ru": "Деление неверное, заново"
+   },
+   {
+    "uz": "B dagi tugma kamroq yoqqan",
+    "ru": "Кнопка B понравилась меньше"
+   },
+   {
+    "uz": "Kimdir ikki marta sanalgan",
+    "ru": "Кого-то посчитали дважды"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 188 belgi.",
+  "q": {
+   "uz": "Backend hodisa variantini qanday biladi?",
+   "ru": "Как Backend узнаёт вариант события?"
+  },
+  "opts": [
+   {
+    "uz": "Brauzer ID ning harfidan",
+    "ru": "По букве ID браузера"
+   },
+   {
+    "uz": "Hodisa yozilgan soatdan",
+    "ru": "По времени события"
+   },
+   {
+    "uz": "Hodisadagi `variant`dan",
+    "ru": "По `variant` в событии"
+   },
+   {
+    "uz": "Bandlar ro'yxatidan",
+    "ru": "По списку броней"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmAbTestLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi, jami 166.",
+  "q": {
+   "uz": "«Sayt yaxshiroq bo'ladi» — gipotezada nima yetishmaydi?",
+   "ru": "«Сайт станет лучше» — чего не хватает в гипотезе?"
+  },
+  "opts": [
+   {
+    "uz": "Qancha kutish kerakligi",
+    "ru": "Сколько ждать"
+   },
+   {
+    "uz": "Nechta odam kirishi",
+    "ru": "Сколько людей зайдёт"
+   },
+   {
+    "uz": "Kodni kim yozishi",
+    "ru": "Кто напишет код"
+   },
+   {
+    "uz": "Qaysi raqam o'zgarishi",
+    "ru": "Какое число изменится"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 54 belgigacha, jami 207.",
+  "q": {
+   "uz": "SQL injection nima?",
+   "ru": "Что такое SQL injection?"
+  },
+  "opts": [
+   {
+    "uz": "Matn so'rovda buyruq bo'lishi",
+    "ru": "Текст становится командой в запросе"
+   },
+   {
+    "uz": "Jadval nomi xato bo'lishi",
+    "ru": "Неверное имя таблицы"
+   },
+   {
+    "uz": "Backend sekin javob berishi",
+    "ru": "Backend медленно отвечает"
+   },
+   {
+    "uz": "Telefon xato ko'rsatilishi",
+    "ru": "Телефон показан с ошибкой"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 149 belgi.",
+  "q": {
+   "uz": "Qidiruvni SQL injection'dan nima yopadi?",
+   "ru": "Что защищает поиск от SQL injection?"
+  },
+  "opts": [
+   {
+    "uz": "Telefonni katta harf qilish",
+    "ru": "Перевести телефон в заглавные"
+   },
+   {
+    "uz": "Parametrli so'rov yozish",
+    "ru": "Параметризованный запрос"
+   },
+   {
+    "uz": "Qidiruvni o'chirish",
+    "ru": "Убрать поиск"
+   },
+   {
+    "uz": "`POST` bilan yuborish",
+    "ru": "Отправлять через `POST`"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 46 belgigacha, jami 200.",
+  "q": {
+   "uz": "Kodda SQL injection belgisi qaysi?",
+   "ru": "Какой признак SQL injection в коде?"
+  },
+  "opts": [
+   {
+    "uz": "So'rov `bandlar`ga borgani",
+    "ru": "Запрос идёт в `bandlar`"
+   },
+   {
+    "uz": "Qidiruv telefon bo'yicha",
+    "ru": "Поиск по телефону"
+   },
+   {
+    "uz": "Matn so'rovga qo'shilgani",
+    "ru": "Текст вклеен в запрос"
+   },
+   {
+    "uz": "Bitta javob qaytgani",
+    "ru": "Вернулся один ответ"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 48 belgigacha, jami 212.",
+  "q": {
+   "uz": "XSS (Cross-Site Scripting) nima?",
+   "ru": "Что такое XSS (Cross-Site Scripting)?"
+  },
+  "opts": [
+   {
+    "uz": "Backend ikki marta ishlashi",
+    "ru": "Backend запускается дважды"
+   },
+   {
+    "uz": "Parol kodda ochiq qolishi",
+    "ru": "Пароль открыт в коде"
+   },
+   {
+    "uz": "Database sekinlashishi",
+    "ru": "Database тормозит"
+   },
+   {
+    "uz": "Matn sahifada kod bo'lishi",
+    "ru": "Текст становится кодом на странице"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 146 belgi.",
+  "q": {
+   "uz": "Ismni XSS'dan nima yopadi?",
+   "ru": "Что защищает имя от XSS?"
+  },
+  "opts": [
+   {
+    "uz": "Oddiy matn qilib chiqarish",
+    "ru": "Выводить как обычный текст"
+   },
+   {
+    "uz": "Ismni Database'dan o'chirish",
+    "ru": "Удалить имя из Database"
+   },
+   {
+    "uz": "Ismni katta harf qilish",
+    "ru": "Сделать имя заглавными"
+   },
+   {
+    "uz": "Ism uzunligini cheklash",
+    "ru": "Ограничить длину имени"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 58 belgigacha, jami 226.",
+  "q": {
+   "uz": "Kodda XSS belgisi qaysi?",
+   "ru": "Какой признак XSS в коде?"
+  },
+  "opts": [
+   {
+    "uz": "Ism Database'da saqlangani",
+    "ru": "Имя сохранено в Database"
+   },
+   {
+    "uz": "Ism HTML bo'lib chiqarilgani",
+    "ru": "Имя выведено как HTML"
+   },
+   {
+    "uz": "Ism ro'yxatda ko'ringani",
+    "ru": "Имя видно в списке"
+   },
+   {
+    "uz": "Ism HTML'siz matn bo'lgani",
+    "ru": "Имя — простой текст без HTML"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 144 belgi.",
+  "q": {
+   "uz": "Maxfiy kalit qayerda turishi kerak?",
+   "ru": "Где должен храниться секретный ключ?"
+  },
+  "opts": [
+   {
+    "uz": "`app.module.ts` boshida",
+    "ru": "В начале `app.module.ts`"
+   },
+   {
+    "uz": "Sayt kodining ichida",
+    "ru": "Внутри кода сайта"
+   },
+   {
+    "uz": "`.env` faylida",
+    "ru": "В файле `.env`"
+   },
+   {
+    "uz": "Database jadvalida",
+    "ru": "В таблице Database"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 162 belgi.",
+  "q": {
+   "uz": "Kalitga zaxira qiymat nega yozilmaydi?",
+   "ru": "Почему ключу не пишут запасное значение?"
+  },
+  "opts": [
+   {
+    "uz": "Backend uni o'qimaydi",
+    "ru": "Backend его не читает"
+   },
+   {
+    "uz": "Qiymat juda uzun bo'ladi",
+    "ru": "Значение слишком длинное"
+   },
+   {
+    "uz": "Database'ga ko'chib qoladi",
+    "ru": "Оно попадёт в Database"
+   },
+   {
+    "uz": "Kodni o'qigan uni ko'radi",
+    "ru": "Его увидит читающий код"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha, jami 160.",
+  "q": {
+   "uz": "2FA nima?",
+   "ru": "Что такое 2FA?"
+  },
+  "opts": [
+   {
+    "uz": "Parol + ilovadagi 6 xonali kod",
+    "ru": "Пароль + 6-значный код из приложения"
+   },
+   {
+    "uz": "Ikki parol bilan kirish",
+    "ru": "Вход по двум паролям"
+   },
+   {
+    "uz": "Parolni ikki joyga yozish",
+    "ru": "Запись пароля в два места"
+   },
+   {
+    "uz": "Database'ning ikki nusxasi",
+    "ru": "Две копии Database"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 182 belgi.",
+  "q": {
+   "uz": "6 xonali kodni nima hisoblaydi?",
+   "ru": "Что вычисляет 6-значный код?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat Backend, ilovasiz",
+    "ru": "Только Backend, без приложения"
+   },
+   {
+    "uz": "Ilova va Backend bir kalitdan",
+    "ru": "Приложение и Backend из одного ключа"
+   },
+   {
+    "uz": "Faqat ilova, Backend'siz",
+    "ru": "Только приложение, без Backend"
+   },
+   {
+    "uz": "Database har safar yaratadi",
+    "ru": "Database создаёт каждый раз"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 193 belgi.",
+  "q": {
+   "uz": "Zaiflik yopilganini qanday bilamiz?",
+   "ru": "Как узнаём, что уязвимость закрыта?"
+  },
+  "opts": [
+   {
+    "uz": "Boshqa saytni sinab ko'rib",
+    "ru": "Проверив чужой сайт"
+   },
+   {
+    "uz": "Agentning javobiga ishonib",
+    "ru": "Поверив ответу агента"
+   },
+   {
+    "uz": "Kodni o'qib va sinab ko'rib",
+    "ru": "Прочитав код и проверив"
+   },
+   {
+    "uz": "Sahifa ochilishini kutib",
+    "ru": "Дождавшись открытия страницы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Jami 142 belgi; to'g'ri javob boshqalardan ajralib turardi.",
+  "q": {
+   "uz": "Push qachon qilinadi?",
+   "ru": "Когда делается push?"
+  },
+  "opts": [
+   {
+    "uz": "Tuzatishdan oldin",
+    "ru": "До исправлений"
+   },
+   {
+    "uz": "Dars boshida, avval",
+    "ru": "В начале урока"
+   },
+   {
+    "uz": "Agent aytgan zahoti",
+    "ru": "Как только скажет агент"
+   },
+   {
+    "uz": "Zaifliklar yopilgach",
+    "ru": "Когда уязвимости закрыты"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 43 belgigacha, jami 190.",
+  "q": {
+   "uz": "Shaxsiy ma'lumot nima?",
+   "ru": "Что такое персональные данные?"
+  },
+  "opts": [
+   {
+    "uz": "Odamni aniqlaydigan ma'lumot",
+    "ru": "Данные, по которым узнают человека"
+   },
+   {
+    "uz": "Parolli sahifadagi yozuv",
+    "ru": "Запись на странице с паролем"
+   },
+   {
+    "uz": "Jadvaldagi har bir qator",
+    "ru": "Любая строка таблицы"
+   },
+   {
+    "uz": "Eng ko'p bosilgan tugma",
+    "ru": "Самая нажимаемая кнопка"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 182 belgi.",
+  "q": {
+   "uz": "O'yinchi sahifasida band haqida nima ko'rinadi?",
+   "ru": "Что видно о брони на странице игрока?"
+  },
+  "opts": [
+   {
+    "uz": "O'yinchining ismi va soat",
+    "ru": "Имя игрока и час"
+   },
+   {
+    "uz": "Soat va «band» yozuvi",
+    "ru": "Час и надпись «занято»"
+   },
+   {
+    "uz": "O'yinchining telefoni",
+    "ru": "Телефон игрока"
+   },
+   {
+    "uz": "Ism, telefon va kun",
+    "ru": "Имя, телефон и день"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 44 belgigacha, jami 170.",
+  "q": {
+   "uz": "GDPR qanday qoida?",
+   "ru": "Что за правило GDPR?"
+  },
+  "opts": [
+   {
+    "uz": "O'zbekiston qonuni, 2019",
+    "ru": "Закон Узбекистана, 2019"
+   },
+   {
+    "uz": "«Maydon»ning ichki qoidasi",
+    "ru": "Внутреннее правило «Maydon»"
+   },
+   {
+    "uz": "Yevropa Ittifoqi, 2018-yildan",
+    "ru": "Евросоюз, с 2018 года"
+   },
+   {
+    "uz": "Umami'ning ichki qoidasi",
+    "ru": "Внутреннее правило Umami"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Savol 74 belgi va modda raqamini yodlashni tekshirardi; endi qoidaning mazmuni so'raladi.",
+  "q": {
+   "uz": "Qonunga ko'ra, maqsad tugagach ma'lumot nima qilinadi?",
+   "ru": "Что по закону делают с данными, когда цель достигнута?"
+  },
+  "opts": [
+   {
+    "uz": "Arxivga o'tkaziladi",
+    "ru": "Переносят в архив"
+   },
+   {
+    "uz": "Yana bir yil saqlanadi",
+    "ru": "Хранят ещё год"
+   },
+   {
+    "uz": "Ochiq e'lon qilinadi",
+    "ru": "Публикуют открыто"
+   },
+   {
+    "uz": "Yo'q qilinadi",
+    "ru": "Уничтожают"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 173 belgi.",
+  "q": {
+   "uz": "Sizib chiqish nima?",
+   "ru": "Что такое утечка?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumot o'chib ketishi",
+    "ru": "Данные удалились"
+   },
+   {
+    "uz": "Begona qo'lga o'tishi",
+    "ru": "Попадание к посторонним"
+   },
+   {
+    "uz": "Backend javob bermasligi",
+    "ru": "Backend не отвечает"
+   },
+   {
+    "uz": "O'yinchi kelmay qolishi",
+    "ru": "Игрок не пришёл"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 206 belgi.",
+  "q": {
+   "uz": "Eski bandlar o'chirilmasa, begona nimani ko'radi?",
+   "ru": "Если старые брони не удаляются, что увидит посторонний?"
+  },
+  "opts": [
+   {
+    "uz": "Eng eski bandlarni ham",
+    "ru": "Даже самые старые брони"
+   },
+   {
+    "uz": "Faqat bugungi bandlarni",
+    "ru": "Только сегодняшние брони"
+   },
+   {
+    "uz": "Hech qanday bandni",
+    "ru": "Ни одной брони"
+   },
+   {
+    "uz": "Faqat parol oynasini",
+    "ru": "Только окно пароля"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 182 belgi.",
+  "q": {
+   "uz": "Amaliyotdan keyin band qancha saqlanadi?",
+   "ru": "Сколько хранится бронь после практики?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt ishlagan butun vaqt",
+    "ru": "Всё время работы сайта"
+   },
+   {
+    "uz": "Band kunining oxirigacha",
+    "ru": "До конца дня брони"
+   },
+   {
+    "uz": "O'yinchi saytni yopguncha",
+    "ru": "Пока игрок не закроет сайт"
+   },
+   {
+    "uz": "O'yindan keyin 30 kun",
+    "ru": "30 дней после игры"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 162 belgi.",
+  "q": {
+   "uz": "Kerakli minimum nima degani?",
+   "ru": "Что значит «необходимый минимум»?"
+  },
+  "opts": [
+   {
+    "uz": "Formani qisqa bezash",
+    "ru": "Коротко оформить форму"
+   },
+   {
+    "uz": "Ma'lumotni qisqa saqlash",
+    "ru": "Коротко хранить данные"
+   },
+   {
+    "uz": "Faqat keraklisini so'rash",
+    "ru": "Спрашивать только нужное"
+   },
+   {
+    "uz": "Parolni qisqa tuzish",
+    "ru": "Сделать короткий пароль"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 51 belgigacha, jami 210.",
+  "q": {
+   "uz": "Audit nima?",
+   "ru": "Что такое аудит?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatli maxfiylik tekshiruvi",
+    "ru": "Проверка приватности по списку"
+   },
+   {
+    "uz": "Agentga yangi sahifa talabi",
+    "ru": "Запрос агенту на новую страницу"
+   },
+   {
+    "uz": "Eski bandlarni o'chiruvchi kod",
+    "ru": "Код, удаляющий старые брони"
+   },
+   {
+    "uz": "Brauzerlarni sanovchi sahifa",
+    "ru": "Страница подсчёта браузеров"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 180 belgi.",
+  "q": {
+   "uz": "Qaysi biri maxfiylik siyosatidagi savol?",
+   "ru": "Какой вопрос есть в политике конфиденциальности?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt qaysi tilda yozilgan?",
+    "ru": "На каком языке написан сайт?"
+   },
+   {
+    "uz": "Tugma qaysi rangda?",
+    "ru": "Какого цвета кнопка?"
+   },
+   {
+    "uz": "Maydon qayerda joylashgan?",
+    "ru": "Где находится поле?"
+   },
+   {
+    "uz": "Ma'lumot qancha saqlanadi?",
+    "ru": "Сколько хранятся данные?"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 201 belgi.",
+  "q": {
+   "uz": "Forma ostida siyosat havolasi turibdi. Bu qaysi fikr?",
+   "ru": "Под формой ссылка на политику. Какая это идея?"
+  },
+  "opts": [
+   {
+    "uz": "Kerakli minimum",
+    "ru": "Необходимый минимум"
+   },
+   {
+    "uz": "O'chirish muddati",
+    "ru": "Срок удаления"
+   },
+   {
+    "uz": "Ochiq aytish",
+    "ru": "Открыто сообщать"
+   },
+   {
+    "uz": "Audit varag'i",
+    "ru": "Лист аудита"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 213 belgi.",
+  "q": {
+   "uz": "«30 kun»ni qanday tekshirasiz?",
+   "ru": "Как проверите «30 дней»?"
+  },
+  "opts": [
+   {
+    "uz": "Agentdan yana so'raysiz",
+    "ru": "Ещё раз спросите агента"
+   },
+   {
+    "uz": "Eski band o'chganini ko'rasiz",
+    "ru": "Увидите, что старая бронь удалена"
+   },
+   {
+    "uz": "Siyosatni qayta o'qiysiz",
+    "ru": "Перечитаете политику"
+   },
+   {
+    "uz": "Keyingi ishga o'tasiz",
+    "ru": "Перейдёте к следующему"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 170 belgi.",
+  "q": {
+   "uz": "Netlify nomi nimani o'zgartiradi?",
+   "ru": "Что меняет имя в Netlify?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt manzili boshini",
+    "ru": "Начало адреса сайта"
+   },
+   {
+    "uz": "Render manzilini",
+    "ru": "Адрес Render"
+   },
+   {
+    "uz": "Jadvallar nomini",
+    "ru": "Имена таблиц"
+   },
+   {
+    "uz": "Tugma matnini",
+    "ru": "Текст кнопки"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 179 belgi.",
+  "q": {
+   "uz": "Nom o'zgargach kataklar chiqmadi. Nega?",
+   "ru": "После смены имени слоты не появились. Почему?"
+  },
+  "opts": [
+   {
+    "uz": "Bandlar o'chib ketgan",
+    "ru": "Брони удалились"
+   },
+   {
+    "uz": "WEB_ORIGIN da eski manzil",
+    "ru": "В WEB_ORIGIN старый адрес"
+   },
+   {
+    "uz": "Netlify DNS yangilamagan",
+    "ru": "Netlify не обновил DNS"
+   },
+   {
+    "uz": "Brauzer nomni tanimagan",
+    "ru": "Браузер не узнал имя"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 182 belgi.",
+  "q": {
+   "uz": "WEB_ORIGIN nima uchun kerak?",
+   "ru": "Зачем нужен WEB_ORIGIN?"
+  },
+  "opts": [
+   {
+    "uz": "Database manzilini saqlash",
+    "ru": "Хранить адрес Database"
+   },
+   {
+    "uz": "Ega parolini tekshirish",
+    "ru": "Проверять пароль владельца"
+   },
+   {
+    "uz": "Sayt so'roviga ruxsat berish",
+    "ru": "Разрешать запросы сайта"
+   },
+   {
+    "uz": "Monitor intervalini berish",
+    "ru": "Задавать интервал монитора"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 175 belgi.",
+  "q": {
+   "uz": "HTTPS bo'lsa, yo'ldagi Wi-Fi nimani ko'radi?",
+   "ru": "Что видит Wi-Fi по пути, если есть HTTPS?"
+  },
+  "opts": [
+   {
+    "uz": "Ism va telefonni ochiq",
+    "ru": "Имя и телефон открыто"
+   },
+   {
+    "uz": "Faqat telefon raqamini",
+    "ru": "Только номер телефона"
+   },
+   {
+    "uz": "Hech qanday so'rovni",
+    "ru": "Никаких запросов"
+   },
+   {
+    "uz": "O'qib bo'lmaydigan ma'lumot",
+    "ru": "Нечитаемые данные"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 169 belgi.",
+  "q": {
+   "uz": "*.netlify.app manzilida HTTPS ni kim yoqadi?",
+   "ru": "Кто включает HTTPS на адресе *.netlify.app?"
+  },
+  "opts": [
+   {
+    "uz": "O'quvchi sertifikat oladi",
+    "ru": "Ученик покупает сертификат"
+   },
+   {
+    "uz": "Netlify o'zi yoqadi",
+    "ru": "Netlify включает сам"
+   },
+   {
+    "uz": "Render WEB_ORIGIN orqali",
+    "ru": "Render через WEB_ORIGIN"
+   },
+   {
+    "uz": "UptimeRobot monitori",
+    "ru": "Монитор UptimeRobot"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 152 belgi.",
+  "q": {
+   "uz": "O'z domenida sertifikat qachon olinadi?",
+   "ru": "Когда получают сертификат для своего домена?"
+  },
+  "opts": [
+   {
+    "uz": "Domen olingan zahoti",
+    "ru": "Сразу после покупки домена"
+   },
+   {
+    "uz": "WEB_ORIGIN yangilangach",
+    "ru": "После обновления WEB_ORIGIN"
+   },
+   {
+    "uz": "DNS yozuvi to'g'ri bo'lgach",
+    "ru": "Когда DNS-запись верна"
+   },
+   {
+    "uz": "Monitor qo'shilgach",
+    "ru": "После добавления монитора"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "darsda-yoq"
+  ],
+  "izoh": "Darsda GET / va 503/200 kodlari o'tilmagan; dars `/health` Database'ni so'ramasligini o'rgatadi.",
+  "q": {
+   "uz": "Database to'xtasa, `/health` nima qaytaradi?",
+   "ru": "Что вернёт `/health`, если Database остановилась?"
+  },
+  "opts": [
+   {
+    "uz": "Database `error`ini qaytaradi",
+    "ru": "Возвращает `error` Database"
+   },
+   {
+    "uz": "Umuman javob bermaydi",
+    "ru": "Вообще не отвечает"
+   },
+   {
+    "uz": "Backend'ni `stop` qiladi",
+    "ru": "Делает `stop` Backend"
+   },
+   {
+    "uz": "Baribir `ok` qaytaradi",
+    "ru": "Всё равно возвращает `ok`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 156 belgi.",
+  "q": {
+   "uz": "/health nega Database'ni so'ramaydi?",
+   "ru": "Почему /health не спрашивает Database?"
+  },
+  "opts": [
+   {
+    "uz": "Bepul Neon limiti tugamasin",
+    "ru": "Чтобы не кончился лимит Neon"
+   },
+   {
+    "uz": "Backend uni ko'rmaydi",
+    "ru": "Backend её не видит"
+   },
+   {
+    "uz": "Database sekin javob beradi",
+    "ru": "Database отвечает медленно"
+   },
+   {
+    "uz": "UptimeRobot SQL bilmaydi",
+    "ru": "UptimeRobot не знает SQL"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 151 belgi.",
+  "q": {
+   "uz": "Bepul rejada ogohlantirish qayerga keladi?",
+   "ru": "Куда приходит оповещение на бесплатном плане?"
+  },
+  "opts": [
+   {
+    "uz": "Telegram botiga",
+    "ru": "В Telegram-бот"
+   },
+   {
+    "uz": "SMS va qo'ng'iroq bilan",
+    "ru": "SMS и звонком"
+   },
+   {
+    "uz": "Email va telefon ilovasiga",
+    "ru": "На email и в приложение"
+   },
+   {
+    "uz": "Render sahifasiga",
+    "ru": "На страницу Render"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/ProductionDeployLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 157 belgi.",
+  "q": {
+   "uz": "UptimeRobot so'rovlari bepul Render'ga nima qiladi?",
+   "ru": "Что запросы UptimeRobot делают с бесплатным Render?"
+  },
+  "opts": [
+   {
+    "uz": "Backend sekinlashadi",
+    "ru": "Backend замедляется"
+   },
+   {
+    "uz": "Render pullik bo'ladi",
+    "ru": "Render становится платным"
+   },
+   {
+    "uz": "Database to'lib qoladi",
+    "ru": "Database переполняется"
+   },
+   {
+    "uz": "Backend uxlab qolmaydi",
+    "ru": "Backend не засыпает"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 50 belgigacha, jami 206.",
+  "q": {
+   "uz": "Prod ro'yxati nima?",
+   "ru": "Что такое прод-список?"
+  },
+  "opts": [
+   {
+    "uz": "Ishonchliroq qiladigan ishlar",
+    "ru": "Работы, повышающие надёжность"
+   },
+   {
+    "uz": "Keyingi funksiyalar ro'yxati",
+    "ru": "Список будущих функций"
+   },
+   {
+    "uz": "Sahifalar manzillari ro'yxati",
+    "ru": "Список адресов страниц"
+   },
+   {
+    "uz": "Bugungi bandlar ro'yxati",
+    "ru": "Список сегодняшних броней"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 196 belgi.",
+  "q": {
+   "uz": "So'rovlar chegarasi nimani sanaydi?",
+   "ru": "Что считает лимит запросов?"
+  },
+  "opts": [
+   {
+    "uz": "Saytdagi odamlar sonini",
+    "ru": "Число людей на сайте"
+   },
+   {
+    "uz": "Bir IP'dan daqiqalik so'rovni",
+    "ru": "Запросы с одного IP за минуту"
+   },
+   {
+    "uz": "Bir IP'dagi odamlar sonini",
+    "ru": "Число людей на одном IP"
+   },
+   {
+    "uz": "O'yinchilar bandlarini",
+    "ru": "Брони игроков"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 210 belgi.",
+  "q": {
+   "uz": "Chegaradan oshgan so'rovga Backend nima qaytaradi?",
+   "ru": "Что Backend возвращает на запрос сверх лимита?"
+  },
+  "opts": [
+   {
+    "uz": "`401` — parol noto'g'ri",
+    "ru": "`401` — неверный пароль"
+   },
+   {
+    "uz": "`409` — vaqt band",
+    "ru": "`409` — время занято"
+   },
+   {
+    "uz": "`429` — ko'p so'rov",
+    "ru": "`429` — слишком много запросов"
+   },
+   {
+    "uz": "`400` — ism yo'q",
+    "ru": "`400` — нет имени"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 192 belgi.",
+  "q": {
+   "uz": "Chegara nega Backend'da qo'yiladi?",
+   "ru": "Почему лимит ставят в Backend?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt kodi sekinroq ishlaydi",
+    "ru": "Код сайта работает медленнее"
+   },
+   {
+    "uz": "Saytda joy qolmagan",
+    "ru": "На сайте нет места"
+   },
+   {
+    "uz": "Backend kodi yashirin",
+    "ru": "Код Backend скрыт"
+   },
+   {
+    "uz": "Har so'rov Backend'dan o'tadi",
+    "ru": "Каждый запрос идёт через Backend"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 204 belgi.",
+  "q": {
+   "uz": "Qaysi yo'lga eng qattiq chegara qo'yiladi?",
+   "ru": "На какой путь ставится самый строгий лимит?"
+  },
+  "opts": [
+   {
+    "uz": "`POST /kirish`",
+    "ru": "`POST /kirish`"
+   },
+   {
+    "uz": "`POST /hodisalar`",
+    "ru": "`POST /hodisalar`"
+   },
+   {
+    "uz": "`GET /vaqtlar`",
+    "ru": "`GET /vaqtlar`"
+   },
+   {
+    "uz": "`POST /bandlar`",
+    "ru": "`POST /bandlar`"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 65 belgi, jami 183.",
+  "q": {
+   "uz": "Bir Wi-Fi'dagi telefonlar Backend'ga qanday ko'rinadi?",
+   "ru": "Как телефоны в одном Wi-Fi выглядят для Backend?"
+  },
+  "opts": [
+   {
+    "uz": "O'z brauzer ID si bilan",
+    "ru": "Каждый со своим ID браузера"
+   },
+   {
+    "uz": "Bitta IP manzildek",
+    "ru": "Как один IP-адрес"
+   },
+   {
+    "uz": "Alohida Render orqali",
+    "ru": "Через отдельный Render"
+   },
+   {
+    "uz": "Netlify manzilidan",
+    "ru": "С адреса Netlify"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 195 belgi.",
+  "q": {
+   "uz": "Backend kechiksa, prod sayt nima qiladi?",
+   "ru": "Что делает прод-сайт, если Backend задерживается?"
+  },
+  "opts": [
+   {
+    "uz": "«Yuklanmoqda…» deb turadi",
+    "ru": "Стоит на «Загрузка…»"
+   },
+   {
+    "uz": "Kataklarni bo'sh chizadi",
+    "ru": "Рисует пустые слоты"
+   },
+   {
+    "uz": "Xabar yozib, qayta so'raydi",
+    "ru": "Пишет сообщение и спрашивает снова"
+   },
+   {
+    "uz": "Har soniya yangilanadi",
+    "ru": "Обновляется каждую секунду"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 185 belgi.",
+  "q": {
+   "uz": "Bir daqiqadan keyin ham javob bo'lmasa, nima chiqadi?",
+   "ru": "Что появится, если ответа нет и через минуту?"
+  },
+  "opts": [
+   {
+    "uz": "Backend xatosi matni",
+    "ru": "Текст ошибки Backend"
+   },
+   {
+    "uz": "Bo'sh oq sahifa",
+    "ru": "Пустая белая страница"
+   },
+   {
+    "uz": "«Band qilindi» belgisi",
+    "ru": "Значок «Забронировано»"
+   },
+   {
+    "uz": "Xabar va «Qayta urinish»",
+    "ru": "Сообщение и «Повторить»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 206 belgi.",
+  "q": {
+   "uz": "`429` kelsa, band formasidagi ism va telefon-chi?",
+   "ru": "Пришёл `429`. Что с именем и телефоном в форме брони?"
+  },
+  "opts": [
+   {
+    "uz": "Joyida qoladi",
+    "ru": "Остаются на месте"
+   },
+   {
+    "uz": "O'chib ketadi",
+    "ru": "Стираются"
+   },
+   {
+    "uz": "Egaga yuboriladi",
+    "ru": "Уходят владельцу"
+   },
+   {
+    "uz": "Ertangi formaga o'tadi",
+    "ru": "Переносятся в завтрашнюю форму"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 186 belgi.",
+  "q": {
+   "uz": "A — 42 tadan 12, B — 40 tadan 17. Qaysi biri qoladi?",
+   "ru": "A — 12 из 42, B — 17 из 40. Какой остаётся?"
+  },
+  "opts": [
+   {
+    "uz": "A — tanlaganlar ko'proq",
+    "ru": "A — выбравших больше"
+   },
+   {
+    "uz": "B — foizi kattaroq",
+    "ru": "B — процент выше"
+   },
+   {
+    "uz": "A — hozirgi variant",
+    "ru": "A — текущий вариант"
+   },
+   {
+    "uz": "B — tugmasi chiroyli",
+    "ru": "B — кнопка красивее"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 166 belgi.",
+  "q": {
+   "uz": "Nega «B aniq yaxshi» deb xulosa qilinmaydi?",
+   "ru": "Почему не делают вывод «B точно лучше»?"
+  },
+  "opts": [
+   {
+    "uz": "Foiz A da kattaroq",
+    "ru": "Процент выше у A"
+   },
+   {
+    "uz": "Dashboard faqat bugungi",
+    "ru": "Дашборд только за сегодня"
+   },
+   {
+    "uz": "82 ta brauzer hali kam",
+    "ru": "82 браузера пока мало"
+   },
+   {
+    "uz": "SQL noto'g'ri sanagan",
+    "ru": "SQL посчитал неверно"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 64 belgi, jami 224.",
+  "q": {
+   "uz": "`prod` push qilindi. Internetdagi sayt-chi?",
+   "ru": "`prod` запушен. А сайт в интернете?"
+  },
+  "opts": [
+   {
+    "uz": "Darhol `prod`ga o'tadi",
+    "ru": "Сразу переходит на `prod`"
+   },
+   {
+    "uz": "Render uxlab qoladi",
+    "ru": "Render засыпает"
+   },
+   {
+    "uz": "Alohida manzilda chiqadi",
+    "ru": "Выходит на отдельном адресе"
+   },
+   {
+    "uz": "O'zgarmaydi, `main`dan oladi",
+    "ru": "Не меняется, берёт из `main`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 56 belgigacha, jami 230.",
+  "q": {
+   "uz": "Pull Request (PR) nima?",
+   "ru": "Что такое Pull Request (PR)?"
+  },
+  "opts": [
+   {
+    "uz": "O'zgarishni ko'rsatish so'rovi",
+    "ru": "Запрос на показ изменений"
+   },
+   {
+    "uz": "Kodni internetga chiqarish",
+    "ru": "Выкладка кода в интернет"
+   },
+   {
+    "uz": "Repo'dan nusxa olish tugmasi",
+    "ru": "Кнопка копии репо"
+   },
+   {
+    "uz": "Kod qatoriga yozilgan izoh",
+    "ru": "Комментарий к строке кода"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 173 belgi.",
+  "q": {
+   "uz": "Code review nima?",
+   "ru": "Что такое code review?"
+  },
+  "opts": [
+   {
+    "uz": "Kodni main'ga birlashtirish",
+    "ru": "Слияние кода в main"
+   },
+   {
+    "uz": "Boshqa odam kodni o'qishi",
+    "ru": "Другой человек читает код"
+   },
+   {
+    "uz": "Agent kodni o'zi tuzatishi",
+    "ru": "Агент сам правит код"
+   },
+   {
+    "uz": "Saytni telefonda sinash",
+    "ru": "Проверка сайта на телефоне"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 172 belgi.",
+  "q": {
+   "uz": "Netlify qaysi tarmoqdan (branch) yangilanadi?",
+   "ru": "Из какой ветки (branch) обновляется Netlify?"
+  },
+  "opts": [
+   {
+    "uz": "prod'dan, har push'da",
+    "ru": "Из prod, при каждом push"
+   },
+   {
+    "uz": "Ochiq PR'ning o'zidan",
+    "ru": "Из открытого PR"
+   },
+   {
+    "uz": "main'dan, PR birlashgach",
+    "ru": "Из main, после слияния PR"
+   },
+   {
+    "uz": "Laptopdagi web/ dan",
+    "ru": "Из web/ на ноутбуке"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 199 belgi.",
+  "q": {
+   "uz": "Ochiq PR bor. prod'ga push qilsangiz-chi?",
+   "ru": "Есть открытый PR. Что если запушить в prod?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt darhol yangilanadi",
+    "ru": "Сайт сразу обновится"
+   },
+   {
+    "uz": "PR yopilib, yangisi ochiladi",
+    "ru": "PR закроется, откроется новый"
+   },
+   {
+    "uz": "Push rad etiladi",
+    "ru": "Push отклонят"
+   },
+   {
+    "uz": "Commit PR'ga qo'shiladi",
+    "ru": "Коммит добавится в PR"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 142 belgi.",
+  "q": {
+   "uz": "Yaxshi izoh qaysi uch qismdan iborat?",
+   "ru": "Из каких трёх частей состоит хороший комментарий?"
+  },
+  "opts": [
+   {
+    "uz": "Joy, nega muhim, taklif",
+    "ru": "Место, почему важно, предложение"
+   },
+   {
+    "uz": "Ism, sana va baho",
+    "ru": "Имя, дата и оценка"
+   },
+   {
+    "uz": "Fayl, tarmoq, commit",
+    "ru": "Файл, ветка, коммит"
+   },
+   {
+    "uz": "Savol, javob, ball",
+    "ru": "Вопрос, ответ, балл"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 43 belgigacha, jami 196.",
+  "q": {
+   "uz": "Qaysi izoh kodga qaratilgan?",
+   "ru": "Какой комментарий направлен на код?"
+  },
+  "opts": [
+   {
+    "uz": "«Siz o'ylamasdan yozgansiz»",
+    "ru": "«Вы писали не думая»"
+   },
+   {
+    "uz": "«Yuklanish holatini qo'shing»",
+    "ru": "«Добавьте состояние загрузки»"
+   },
+   {
+    "uz": "«E'tiborliroq bo'ling»",
+    "ru": "«Будьте внимательнее»"
+   },
+   {
+    "uz": "«Mavzuni qayta o'qing»",
+    "ru": "«Перечитайте тему»"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 206 belgi.",
+  "q": {
+   "uz": "Sinfdosh taklifiga rozi emassiz. Nima yozasiz?",
+   "ru": "Вы не согласны с предложением одноклассника. Что пишете?"
+  },
+  "opts": [
+   {
+    "uz": "«Yo'q» deb yopasiz",
+    "ru": "Пишете «нет» и закрываете"
+   },
+   {
+    "uz": "Javobsiz birlashtirasiz",
+    "ru": "Сливаете без ответа"
+   },
+   {
+    "uz": "Sabab va «qoldi» yozasiz",
+    "ru": "Пишете причину и «оставил»"
+   },
+   {
+    "uz": "O'ylamay qabul qilasiz",
+    "ru": "Принимаете не думая"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 187 belgi.",
+  "q": {
+   "uz": "Agent yozgan kodga «Nega?» deyildi. Nima qilasiz?",
+   "ru": "К коду агента спросили «Почему?». Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "«Agent yozgan» deysiz",
+    "ru": "Говорите «написал агент»"
+   },
+   {
+    "uz": "Agent gapini qo'yasiz",
+    "ru": "Вставляете слова агента"
+   },
+   {
+    "uz": "Javobsiz yopasiz",
+    "ru": "Закрываете без ответа"
+   },
+   {
+    "uz": "Tekshirib, sabab yozasiz",
+    "ru": "Проверяете и пишете причину"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 158 belgi.",
+  "q": {
+   "uz": "Izohlar «Submit review»dan oldin kimga ko'rinadi?",
+   "ru": "Кому видны комментарии до «Submit review»?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat PR muallifiga",
+    "ru": "Только автору PR"
+   },
+   {
+    "uz": "Faqat izoh yozganga",
+    "ru": "Только написавшему комментарий"
+   },
+   {
+    "uz": "Repo'ni ochgan hammaga",
+    "ru": "Всем, кто открыл репо"
+   },
+   {
+    "uz": "Mentor va muallifga",
+    "ru": "Ментору и автору"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 181 belgi.",
+  "q": {
+   "uz": "Maydon PR'ida nega B varianti qoldi?",
+   "ru": "Почему в PR «Maydon» остался вариант B?"
+  },
+  "opts": [
+   {
+    "uz": "B matni chiroyliroq",
+    "ru": "Текст B красивее"
+   },
+   {
+    "uz": "Sinfdoshlar B ni maqtadi",
+    "ru": "Одноклассники хвалили B"
+   },
+   {
+    "uz": "Hozircha B foizi yuqori",
+    "ru": "Пока процент B выше"
+   },
+   {
+    "uz": "A ni Netlify ko'rsatmadi",
+    "ru": "Netlify не показывал A"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/ProdReviewLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 57 belgi, jami 212.",
+  "q": {
+   "uz": "Sinfdosh «Approve» berdi. Keyin nima qilasiz?",
+   "ru": "Одноклассник поставил «Approve». Что дальше?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi PR ochasiz",
+    "ru": "Открываете новый PR"
+   },
+   {
+    "uz": "main'ga qo'lda ko'chirasiz",
+    "ru": "Копируете в main вручную"
+   },
+   {
+    "uz": "prod'ni o'chirasiz",
+    "ru": "Удаляете prod"
+   },
+   {
+    "uz": "PR'ni birlashtirasiz",
+    "ru": "Сливаете PR"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 202 belgi.",
+  "q": {
+   "uz": "Vaqt chizig'ida loyihalar qanday turadi?",
+   "ru": "Как стоят проекты на линии времени?"
+  },
+  "opts": [
+   {
+    "uz": "Qurilgan vaqti bo'yicha",
+    "ru": "По времени создания"
+   },
+   {
+    "uz": "Eng yoqqanidan boshlab",
+    "ru": "Начиная с любимого"
+   },
+   {
+    "uz": "Eng kattasidan boshlab",
+    "ru": "Начиная с самого большого"
+   },
+   {
+    "uz": "Ko'p vaqt olganidan boshlab",
+    "ru": "Начиная с самого долгого"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 64 belgi, jami 214.",
+  "q": {
+   "uz": "Bir yil oldingi portfolio chiziqda qayerda?",
+   "ru": "Где на линии портфолио годичной давности?"
+  },
+  "opts": [
+   {
+    "uz": "Oxirida — eng yangisi",
+    "ru": "В конце — самый новый"
+   },
+   {
+    "uz": "Boshida — ilk loyihalardan",
+    "ru": "В начале — среди первых"
+   },
+   {
+    "uz": "O'rtasida — eng muhimi",
+    "ru": "В середине — самый важный"
+   },
+   {
+    "uz": "Hech qayerda — juda kichik",
+    "ru": "Нигде — слишком маленький"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 194 belgi.",
+  "q": {
+   "uz": "«AvtoIjara saytini qurdim» — «O'rgandim»ga mosmi?",
+   "ru": "«Построил сайт AvtoIjara» — подходит для «Научился»?"
+  },
+  "opts": [
+   {
+    "uz": "Ha — nomi aniq yozilgan",
+    "ru": "Да — название указано точно"
+   },
+   {
+    "uz": "Ha — zamoni to'g'ri",
+    "ru": "Да — время глагола верное"
+   },
+   {
+    "uz": "Yo'q — nomni takrorlaydi",
+    "ru": "Нет — повторяет название"
+   },
+   {
+    "uz": "Yo'q — juda qisqa",
+    "ru": "Нет — слишком коротко"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 182 belgi.",
+  "q": {
+   "uz": "Qaysi gap «O'rgandim»ga mos keladi?",
+   "ru": "Какая фраза подходит для «Научился»?"
+  },
+  "opts": [
+   {
+    "uz": "Loyiham chiroyli ko'rinadi",
+    "ru": "Мой проект выглядит красиво"
+   },
+   {
+    "uz": "KitobShop'ni qurib bo'ldim",
+    "ru": "Достроил KitobShop"
+   },
+   {
+    "uz": "Mentor loyihamni maqtaydi",
+    "ru": "Ментор хвалит мой проект"
+   },
+   {
+    "uz": "Botga AI'ni ulay olaman",
+    "ru": "Умею подключать AI к боту"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "ikki-javob"
+  ],
+  "izoh": "Jami 183 belgi; «bozor va do'konlar» hayotda ham to'g'ri bo'lardi — savol internet xaridiga aniqlashtirildi.",
+  "q": {
+   "uz": "Uzum'gacha odamlar internetda qayerdan xarid qilardi?",
+   "ru": "Где люди покупали в интернете до Uzum?"
+  },
+  "opts": [
+   {
+    "uz": "Chet el saytlaridan",
+    "ru": "На зарубежных сайтах"
+   },
+   {
+    "uz": "Telegram va Instagram'dan",
+    "ru": "В Telegram и Instagram"
+   },
+   {
+    "uz": "Bank ilovalari orqali",
+    "ru": "Через банковские приложения"
+   },
+   {
+    "uz": "Maktab saytlaridan",
+    "ru": "На школьных сайтах"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 201 belgi.",
+  "q": {
+   "uz": "Uzum «unicorn» bo'ldi — bu nima?",
+   "ru": "Uzum стал «единорогом» — что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Ishchilari mingdan oshgan",
+    "ru": "Сотрудников больше тысячи"
+   },
+   {
+    "uz": "O'nta shaharga ochilgan",
+    "ru": "Открылся в десяти городах"
+   },
+   {
+    "uz": "Bahosi 1 mlrd dollardan oshgan",
+    "ru": "Оценка выше 1 млрд долларов"
+   },
+   {
+    "uz": "Hammasini o'zi yetkazadi",
+    "ru": "Сам доставляет всё"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 157 belgi.",
+  "q": {
+   "uz": "Uzum'ning birinchi qadami nimadan o'sgan?",
+   "ru": "Из чего вырос первый шаг Uzum?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt dizayni eskirganidan",
+    "ru": "Из устаревшего дизайна сайта"
+   },
+   {
+    "uz": "Do'konlar kamligidan",
+    "ru": "Из нехватки магазинов"
+   },
+   {
+    "uz": "Reklama arzonlashganidan",
+    "ru": "Из удешевления рекламы"
+   },
+   {
+    "uz": "Yetkazib berishsiz xariddan",
+    "ru": "Из покупок без доставки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 172 belgi.",
+  "q": {
+   "uz": "«Ko'proq o'rganaman» — keyingi qadam bo'ladimi?",
+   "ru": "«Буду больше учиться» — это следующий шаг?"
+  },
+  "opts": [
+   {
+    "uz": "Ha — kelajak haqida",
+    "ru": "Да — это о будущем"
+   },
+   {
+    "uz": "Yo'q — ish aniq emas",
+    "ru": "Нет — дело не конкретное"
+   },
+   {
+    "uz": "Ha — o'rganish kerak",
+    "ru": "Да — учиться нужно"
+   },
+   {
+    "uz": "Yo'q — juda uzun",
+    "ru": "Нет — слишком длинно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 172 belgi.",
+  "q": {
+   "uz": "«Maydon» keyingi qadami nimadan o'sdi?",
+   "ru": "Из чего вырос следующий шаг «Maydon»?"
+  },
+  "opts": [
+   {
+    "uz": "Mentorning qiziqishidan",
+    "ru": "Из интереса Ментора"
+   },
+   {
+    "uz": "Boshqa saytlarda ko'rganidan",
+    "ru": "Из увиденного на других сайтах"
+   },
+   {
+    "uz": "O'yinchilar aytganidan",
+    "ru": "Из слов игроков"
+   },
+   {
+    "uz": "B variantining yutug'idan",
+    "ru": "Из победы варианта B"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmYearPathLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi, jami 209.",
+  "q": {
+   "uz": "Loyiha qurmagan modulni nima qilasiz?",
+   "ru": "Что делаете с модулем, где не было проекта?"
+  },
+  "opts": [
+   {
+    "uz": "Sinfdoshnikini yozasiz",
+    "ru": "Пишете проект одноклассника"
+   },
+   {
+    "uz": "O'ylab topib yozasiz",
+    "ru": "Придумываете проект"
+   },
+   {
+    "uz": "Chiziqni tugatasiz",
+    "ru": "Заканчиваете линию"
+   },
+   {
+    "uz": "«O'tkazildi» deb belgilaysiz",
+    "ru": "Отмечаете «пропущен»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi.",
+  "q": {
+   "uz": "«Endi nima qilasiz?» — qaysi slayd javob beradi?",
+   "ru": "«Что будете делать дальше?» — какой слайд отвечает?"
+  },
+  "opts": [
+   {
+    "uz": "Foydalanuvchi slaydi",
+    "ru": "Слайд пользователя"
+   },
+   {
+    "uz": "Keyingi qadam slaydi",
+    "ru": "Слайд следующего шага"
+   },
+   {
+    "uz": "Raqamlar slaydi",
+    "ru": "Слайд с цифрами"
+   },
+   {
+    "uz": "Muammo slaydi",
+    "ru": "Слайд проблемы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 158 belgi.",
+  "q": {
+   "uz": "«B — 40 tadan 17» da 40 nimani sanaydi?",
+   "ru": "Что считает 40 в «B — 17 из 40»?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni ochgan brauzerlarni",
+    "ru": "Браузеры, открывшие сайт"
+   },
+   {
+    "uz": "Band qilgan brauzerlarni",
+    "ru": "Забронировавшие браузеры"
+   },
+   {
+    "uz": "Vaqt tanlagan brauzerlarni",
+    "ru": "Браузеры, выбравшие время"
+   },
+   {
+    "uz": "Sayt ishlagan kunlarni",
+    "ru": "Дни работы сайта"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 186 belgi.",
+  "q": {
+   "uz": "Tuzatilgan slayd nega darhol qayta aytiladi?",
+   "ru": "Зачем исправленный слайд сразу рассказывают снова?"
+  },
+  "opts": [
+   {
+    "uz": "Dars vaqti ortib qoldi",
+    "ru": "Осталось время урока"
+   },
+   {
+    "uz": "Sherik zerikib qolmasin",
+    "ru": "Чтобы партнёр не скучал"
+   },
+   {
+    "uz": "Slaydlar soni o'zgardi",
+    "ru": "Изменилось число слайдов"
+   },
+   {
+    "uz": "Javob bo'lganini bilish uchun",
+    "ru": "Чтобы понять, стал ли он ответом"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 157 belgi.",
+  "q": {
+   "uz": "«82 ta brauzer hali kam» nimani aytadi?",
+   "ru": "О чём говорит «82 браузера пока мало»?"
+  },
+  "opts": [
+   {
+    "uz": "Xulosaga brauzer kamligini",
+    "ru": "Для вывода мало браузеров"
+   },
+   {
+    "uz": "Backend sekinligini",
+    "ru": "Backend медленный"
+   },
+   {
+    "uz": "Reklamaga kam pul ketganini",
+    "ru": "На рекламу ушло мало денег"
+   },
+   {
+    "uz": "B varianti yomon chiqqanini",
+    "ru": "Вариант B оказался плохим"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 49 belgi — boshqalardan ancha uzun, jami 189.",
+  "q": {
+   "uz": "Repetitsiyada juftlik qanday ishlaydi?",
+   "ru": "Как работает пара на репетиции?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkalasi birga gapiradi",
+    "ru": "Оба говорят одновременно"
+   },
+   {
+    "uz": "A gapiradi, keyin almashasiz",
+    "ru": "Говорит A, потом меняетесь"
+   },
+   {
+    "uz": "Faqat bittasi gapiradi",
+    "ru": "Говорит только один"
+   },
+   {
+    "uz": "Har kim o'ziga aytadi",
+    "ru": "Каждый рассказывает себе"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 68 belgi, jami 163.",
+  "q": {
+   "uz": "Hamma slaydga ✓ qo'yildi. Nimani tuzatasiz?",
+   "ru": "На всех слайдах ✓. Что исправляете?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsani — tayyor",
+    "ru": "Ничего — готово"
+   },
+   {
+    "uz": "Birinchi slaydni",
+    "ru": "Первый слайд"
+   },
+   {
+    "uz": "Eng zaif slaydni",
+    "ru": "Самый слабый слайд"
+   },
+   {
+    "uz": "Hamma slaydni qaytadan",
+    "ru": "Все слайды заново"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 188 belgi.",
+  "q": {
+   "uz": "Qaysi fidbek qattiq, lekin hurmatli?",
+   "ru": "Какой фидбек жёсткий, но уважительный?"
+  },
+  "opts": [
+   {
+    "uz": "«Hammasi yoqdi, zo'r»",
+    "ru": "«Всё понравилось, супер»"
+   },
+   {
+    "uz": "«Raqamlarda qo'rqdingiz»",
+    "ru": "«На цифрах вы испугались»"
+   },
+   {
+    "uz": "«Keyingi qadam kerak emas»",
+    "ru": "«Следующий шаг не нужен»"
+   },
+   {
+    "uz": "«Yechimda sayt ishi aytilmadi»",
+    "ru": "«В решении не сказано, что делает сайт»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 143 belgi.",
+  "q": {
+   "uz": "Baholash varag'ida har slayd uchun nima yozilgan?",
+   "ru": "Что написано в листе оценки для каждого слайда?"
+  },
+  "opts": [
+   {
+    "uz": "Zalning bitta savoli",
+    "ru": "Один вопрос зала"
+   },
+   {
+    "uz": "Slayd rangi va shrifti",
+    "ru": "Цвет и шрифт слайда"
+   },
+   {
+    "uz": "Gapiruvchi ismi",
+    "ru": "Имя выступающего"
+   },
+   {
+    "uz": "Slayddagi so'zlar soni",
+    "ru": "Число слов на слайде"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 206 belgi.",
+  "q": {
+   "uz": "Yechim slaydiga ✗ qo'yildi. Nima qilasiz?",
+   "ru": "На слайде решения ✗. Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Slaydni olib tashlaysiz",
+    "ru": "Убираете слайд"
+   },
+   {
+    "uz": "Izohga qarab qayta yozasiz",
+    "ru": "Переписываете по комментарию"
+   },
+   {
+    "uz": "✗ belgisini o'chirasiz",
+    "ru": "Стираете знак ✗"
+   },
+   {
+    "uz": "Sinfdoshdan ✓ so'raysiz",
+    "ru": "Просите у одноклассника ✓"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 153 belgi.",
+  "q": {
+   "uz": "Yechim slaydiga nima yoziladi?",
+   "ru": "Что пишут на слайде решения?"
+  },
+  "opts": [
+   {
+    "uz": "Texnologiyalar ro'yxati",
+    "ru": "Список технологий"
+   },
+   {
+    "uz": "Ketgan haftalar soni",
+    "ru": "Сколько ушло недель"
+   },
+   {
+    "uz": "Muammoni qanday hal qilishi",
+    "ru": "Как сайт решает проблему"
+   },
+   {
+    "uz": "A/B testi foizlari",
+    "ru": "Проценты A/B-теста"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 192 belgi.",
+  "q": {
+   "uz": "Pitch 5 daqiqadan oshdi. Nima qilasiz?",
+   "ru": "Питч вышел за 5 минут. Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Oxirini tezroq gapirasiz",
+    "ru": "Говорите конец быстрее"
+   },
+   {
+    "uz": "Bitta slaydni olib tashlaysiz",
+    "ru": "Убираете один слайд"
+   },
+   {
+    "uz": "Taymerni o'chirasiz",
+    "ru": "Выключаете таймер"
+   },
+   {
+    "uz": "Har slayddan bir gap olasiz",
+    "ru": "Убираете по фразе с каждого слайда"
+   }
+  ],
+  "correct": 3
+ }
+]

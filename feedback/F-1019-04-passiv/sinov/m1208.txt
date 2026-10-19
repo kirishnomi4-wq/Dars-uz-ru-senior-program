@@ -1,0 +1,34 @@
+== uz
+  boshida: nav=Avval belgilang (yopiq) · stepper (fp-qadamlar): false
+  bashoratdan keyin: nav=Savollarga javob bering (0/3) (yopiq) · savol: Mentor pitchini tuzatishni nimadan boshlaydi? · variantlar: ["Pitchni boshidan qayta yozishdan","Pitchni taymer bilan aytishdan","Baholash varag'idagi izohlardan"]
+  1 · Varaq: «Mentor pitchini tuzatishni nimadan boshlaydi?» · xato «boshidan qayta» → sabab «Pitch qayta yozilmaydi: varaqdagi izohlar tuzatiladi.» (53 belgi; tugma yopildi: true) → to'g'ri «Baholash varag'idagi» ✓
+    sahna: ✗ belgili bo'lak 2 · hakam pufagi 1 · nav=Savollarga javob bering (1/3) (yopiq)
+  2 · Tuzatishlar: «Varaqda uch izoh bor. Tuzatish qanday kiritiladi?» · xato «Butun pitch» → sabab «Faqat izoh turgan uch bo'lak o'zgaradi, qolgani joyida.» (55 belgi; tugma yopildi: true) → to'g'ri «Eski gap o'rniga» ✓
+    sahna: qo'llandi 3 · izoh sahna ichida: «Gap almashtirilgani reja vaqtini o'zgartirmaydi. Haqiqiy vaqtni pitchni aytib, taymer bilan bilasiz.» · harakatdagi QIzoh: 0 · nav=Savollarga javob bering (2/3) (yopiq)
+  3 · Taymer: «Uch gap uzaydi, reja hali ham 5:00. Pitch sig'adimi?» · xato «Ha, reja» → sabab «Reja vaqti o'zgarmaydi: haqiqiy vaqtni taymer ko'rsatadi.» (57 belgi; tugma yopildi: true) → to'g'ri «Taymer bilan aytganda» ✓
+    taymer yurmoqda: savol qoldimi false · nav=Savollarga javob bering (3/3) (yopiq)
+  tugadi: nav=Davom etish (ochiq) · xulosa: true · taymer: 5:00
+  qaytganda: eyebrow=TUSHUNCHA · TUZATISH VA TAYMER · nav=Davom etish (ochiq) · savol: false · xulosa: true · bashorat: false
+== uz-390
+  boshida: nav=Avval belgilang (yopiq) · stepper (fp-qadamlar): false
+  bashoratdan keyin: nav=Savollarga javob bering (0/3) (yopiq) · savol: Mentor pitchini tuzatishni nimadan boshlaydi? · variantlar: ["Pitchni boshidan qayta yozishdan","Pitchni taymer bilan aytishdan","Baholash varag'idagi izohlardan"]
+  1 · Varaq: «Mentor pitchini tuzatishni nimadan boshlaydi?» · xato «boshidan qayta» → sabab «Pitch qayta yozilmaydi: varaqdagi izohlar tuzatiladi.» (53 belgi; tugma yopildi: true) → to'g'ri «Baholash varag'idagi» ✓
+    sahna: ✗ belgili bo'lak 2 · hakam pufagi 1 · nav=Savollarga javob bering (1/3) (yopiq)
+  2 · Tuzatishlar: «Varaqda uch izoh bor. Tuzatish qanday kiritiladi?» · xato «Butun pitch» → sabab «Faqat izoh turgan uch bo'lak o'zgaradi, qolgani joyida.» (55 belgi; tugma yopildi: true) → to'g'ri «Eski gap o'rniga» ✓
+    sahna: qo'llandi 3 · izoh sahna ichida: «Gap almashtirilgani reja vaqtini o'zgartirmaydi. Haqiqiy vaqtni pitchni aytib, taymer bilan bilasiz.» · harakatdagi QIzoh: 0 · nav=Savollarga javob bering (2/3) (yopiq)
+  3 · Taymer: «Uch gap uzaydi, reja hali ham 5:00. Pitch sig'adimi?» · xato «Ha, reja» → sabab «Reja vaqti o'zgarmaydi: haqiqiy vaqtni taymer ko'rsatadi.» (57 belgi; tugma yopildi: true) → to'g'ri «Taymer bilan aytganda» ✓
+    taymer yurmoqda: savol qoldimi false · nav=Savollarga javob bering (3/3) (yopiq)
+  tugadi: nav=Davom etish (ochiq) · xulosa: true · taymer: 5:00
+  qaytganda: eyebrow=TUSHUNCHA · TUZATISH VA TAYMER · nav=Davom etish (ochiq) · savol: false · xulosa: true · bashorat: false
+== ru
+  boshida: nav=Сначала отметьте (yopiq) · stepper (fp-qadamlar): false
+  bashoratdan keyin: nav=Ответьте на вопросы (0/3) (yopiq) · savol: С чего Ментор начинает исправлять питч? · variantlar: ["С того, что пишет питч заново","С того, что рассказывает с таймером","С замечаний из листа оценки"]
+  1 · Varaq: «С чего Ментор начинает исправлять питч?» · xato «пишет питч заново» → sabab «Питч не пишут заново: исправляют замечания из листа.» (52 belgi; tugma yopildi: true) → to'g'ri «С замечаний из листа» ✓
+    sahna: ✗ belgili bo'lak 2 · hakam pufagi 1 · nav=Ответьте на вопросы (1/3) (yopiq)
+  2 · Tuzatishlar: «В листе три замечания. Как вносят исправление?» · xato «Весь питч» → sabab «Меняются только три части с замечаниями, остальное на месте.» (60 belgi; tugma yopildi: true) → to'g'ri «Вместо старой фразы» ✓
+    sahna: qo'llandi 3 · izoh sahna ichida: «Замена фразы не меняет время по плану. Настоящее время узнаете, рассказав питч с таймером.» · harakatdagi QIzoh: 0 · nav=Ответьте на вопросы (2/3) (yopiq)
+  3 · Taymer: «Три фразы стали длиннее, план всё ещё 5:00. Уложится ли питч?» · xato «Да, план» → sabab «Время по плану не меняется: настоящее время покажет таймер.» (59 belgi; tugma yopildi: true) → to'g'ri «Узнаем, рассказав» ✓
+    taymer yurmoqda: savol qoldimi false · nav=Ответьте на вопросы (3/3) (yopiq)
+  tugadi: nav=Продолжить (ochiq) · xulosa: true · taymer: 5:00
+  qaytganda: eyebrow=ПОНЯТИЕ · ИСПРАВЛЕНИЕ И ТАЙМЕР · nav=Продолжить (ochiq) · savol: false · xulosa: true · bashorat: false
+pageerror: 0

@@ -785,44 +785,82 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 3 — FETCH TUZILISHI (3 bosiladigan qism) =====
+// ===== SCREEN 3 — FETCH TUZILISHI (3 qism — har qism uchun qaror) =====
+// F-1019-04 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato),
+// xatosiga bir qatorli sabab, o'sha tugma yopiladi, qayta tanlash. Har qadam key bilan yangilanadi.
+const Qaror = ({ savol, variantlar, onTogri }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const tanla = (j) => {
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="qr fade-step">
+      <p className="qr-s">{tr(savol)}</p>
+      <div className="qr-v">{variantlar.map((v, j) => <button key={j} type="button" className={`chip${xato.includes(j) ? ' chip-err' : ''}`} disabled={xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</button>)}</div>
+      {izoh && <div key={tr(izoh)} className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr(izoh)}</p></div>}
+    </div>
+  );
+};
+const S3_QISM = ['fetch', 'url', 'ep'];
+const S3_QAROR = [
+  { savol: { uz: "fetch serverga boradi. U yerdagi ro'yxat bilan nima qiladi?", ru: 'fetch идёт на сервер. Что он делает со списком там?' }, v: [
+    { t: { uz: "Yangi o'yin qo'shib qaytadi", ru: 'Добавляет новую игру и возвращается' }, izoh: { uz: "Bu GET so'rovi: u faqat oladi, ro'yxatga hech narsa qo'shmaydi.", ru: 'Это GET-запрос: он только получает, в список ничего не добавляет.' } },
+    { ok: true, t: { uz: "Faqat o'qiydi va olib keladi", ru: 'Только читает и приносит' } },
+    { t: { uz: "Ro'yxatni serverdan ko'chirib oladi", ru: 'Забирает список с сервера' }, izoh: { uz: "Ro'yxat serverda qoladi — boshqa qurilmalar ham undan oladi.", ru: 'Список остаётся на сервере — его берут и другие устройства.' } }
+  ] },
+  { savol: { uz: "Belgilangan qism fetch buyrug'iga nimani aytadi?", ru: 'Что выделенная часть говорит команде fetch?' }, v: [
+    { t: { uz: "Serverdagi qaysi bo'lim kerakligini", ru: 'Какой раздел сервера нужен' }, izoh: { uz: "Bo'limni oxiridagi /games aytadi; bu qism faqat serverni bildiradi.", ru: 'Раздел задаёт /games в конце; эта часть — только сервер.' } },
+    { t: { uz: 'Bizning saytimiz qayerda turishini', ru: 'Где находится наш сайт' }, izoh: { uz: "Bu sizning saytingiz emas — ma'lumot turgan server manzili.", ru: 'Это не ваш сайт — это адрес сервера с данными.' } },
+    { ok: true, t: { uz: 'Qaysi serverga borish kerakligini', ru: 'На какой сервер идти' } }
+  ] },
+  { savol: { uz: 'Oxiridagi /games nimani bildiradi?', ru: 'Что означает /games в конце?' }, v: [
+    { ok: true, t: { uz: "Server ichidagi kerakli bo'limni", ru: 'Нужный раздел внутри сервера' } },
+    { t: { uz: 'Kompyuteringizdagi papka nomini', ru: 'Имя папки на вашем компьютере' }, izoh: { uz: "Bu serverdagi bo'lim — kompyuteringizdagi papka emas.", ru: 'Это раздел на сервере, а не папка на вашем компьютере.' } },
+    { t: { uz: "Serverdagi faqat birinchi o'yinni", ru: 'Только первую игру на сервере' }, izoh: { uz: "/games bo'limdagi butun ro'yxatni so'raydi, bittasini emas.", ru: '/games просит весь список раздела, а не одну игру.' } }
+  ] }
+];
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = {
     fetch: { title: { uz: 'fetch — buyruq', ru: 'fetch — команда' }, desc: { uz: <>Ma'nosi: <b>"shu manzilga borib, ma'lumotni olib kel"</b>. Bu GET so'rovi — faqat olish, serverda hech narsani o'zgartirmaslik.</>, ru: <>Смысл: <b>«сходи по этому адресу и принеси данные»</b>. Это GET-запрос — только получить, ничего на сервере не менять.</> } },
     url: { title: { uz: 'https://robo-api.example — server manzili', ru: 'https://robo-api.example — адрес сервера' }, desc: { uz: <>Qaysi serverga borish kerakligi. Xuddi do'kon manzili: avval <b>qayerga</b> borishni bilish kerak.</>, ru: <>На какой сервер идти. Как адрес магазина: сначала нужно знать, <b>куда</b> идти.</> } },
     ep: { title: { uz: '/games — endpoint', ru: '/games — эндпоинт' }, desc: { uz: <>Serverning <b>qaysi bo'limi</b> kerakligi. Bitta serverda bir nechta "eshik" bo'ladi — bu haqda birozdan keyin.</>, ru: <>Какой <b>раздел</b> сервера нужен. У одного сервера бывает несколько «дверей» — об этом чуть позже.</> } }
   };
-  const [active, setActive] = useState(null);
-  const [seen, setSeen] = useState(storedAnswer ? new Set(['fetch', 'url', 'ep']) : new Set());
-  const done = seen.size >= 3;
-  const tap = (k) => { setActive(k); setSeen(prev => { const s = new Set(prev); s.add(k); return s; }); };
+  const [q, setQ] = useState(storedAnswer ? 3 : 0); // nechta qism ochildi (har biri — to'g'ri qaror)
+  const done = q >= 3;
+  const seen = (k) => S3_QISM.indexOf(k) < q;
+  const active = done ? 'ep' : (q > 0 ? S3_QISM[q - 1] : null); // oxirgi ochilgan qism izohi
+  const joriy = done ? null : S3_QISM[q];
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const tokCls = (k) => `fa-tok ${active === k ? 'on' : ''} ${seen.has(k) ? 'seen' : ''}`;
-  const audio = useAudio([{ id: 's3', text: `Serverdan ma'lumotni qaysi buyruq olib keladi? Tanishing: fetch. Internet darsidagi ofitsiantni eslaysizmi — fetch ham shunday: manzilni berasiz, u serverga boradi va javobni olib keladi. Buyruqning uch qismini birma-bir bosing: fetch — buyruqning o'zi, manzil — qaysi server, va bo'lim — serverning qaysi eshigi.`, trigger: 'on_mount', waits_for: null }]);
+  const tokCls = (k) => `fa-tok ${joriy === k ? 'on' : ''} ${seen(k) ? 'seen' : ''}`;
+  const audio = useAudio([{ id: 's3', text: `Serverdan ma'lumotni qaysi buyruq olib keladi? Tanishing: fetch. Internet darsidagi ofitsiantni eslaysizmi — fetch ham shunday: manzilni berasiz, u serverga boradi va javobni olib keladi. Buyruqning uch qismi bor: fetch — buyruqning o'zi, manzil — qaysi server, va bo'lim — serverning qaysi eshigi. Har savolga javob bering.`, trigger: 'on_mount', waits_for: null }]);
   const Row = ({ k, lbl, val }) => (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', borderRadius: 12, background: seen.has(k) ? T.successSoft : T.paper, boxShadow: seen.has(k) ? 'none' /* F-0926-06: bajarilgan qator — faqat yumshoq yashil fon, ramka olindi (G3) */ : `0 4px 12px -6px rgba(${T.shadowBase},0.14)`, transition: 'all 0.3s' }}>
-      <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.08em', color: seen.has(k) ? T.success : T.ink3, minWidth: 64 }}>{lbl}</span>
-      <span key={seen.has(k) ? 'v' : 'q'} className={`mono ${seen.has(k) ? 'el-in' : ''}`} style={{ fontSize: 12.5, color: seen.has(k) ? T.ink : T.ink3 }}>{seen.has(k) ? val : '?'}</span>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', borderRadius: 12, background: seen(k) ? T.successSoft : T.paper, boxShadow: seen(k) ? 'none' /* F-0926-06: bajarilgan qator — faqat yumshoq yashil fon, ramka olindi (G3) */ : `0 4px 12px -6px rgba(${T.shadowBase},0.14)`, transition: 'all 0.3s' }}>
+      <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 700, fontSize: 11, letterSpacing: '0.08em', color: seen(k) ? T.success : T.ink3, minWidth: 64 }}>{lbl}</span>
+      <span key={seen(k) ? 'v' : 'q'} className={`mono ${seen(k) ? 'el-in' : ''}`} style={{ fontSize: 12.5, color: seen(k) ? T.ink : T.ink3 }}>{seen(k) ? val : '?'}</span>
     </div>
   );
   return (
-    <Stage eyebrow="fetch" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/3 ${tr({ uz: "qismni o'rganing", ru: 'части — изучите' })}`} onClick={onNext} /></>}>
+    <Stage eyebrow="fetch" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Savollarga javob bering (${q}/3)`, ru: `Ответьте на вопросы (${q}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Serverdan ma'lumotni <span className="italic" style={{ color: T.accent }}>qaysi buyruq</span> olib keladi?</>, ru: <><span className="italic" style={{ color: T.accent }}>Какая команда</span> приносит данные с сервера?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Tanishing: <span className="mono">fetch</span>. Internet darsidagi ofitsiantni eslaysizmi? <span className="mono">fetch</span> ham shunday ishlaydi: manzilni berasiz — u serverga boradi va javobni olib keladi. Buyruqning <b style={{ color: T.ink }}>3 qismini bosib</b> o'rganing.</>, ru: <>Знакомьтесь: <span className="mono">fetch</span>. Помните официанта из урока про интернет? <span className="mono">fetch</span> работает так же: даёте адрес — он идёт на сервер и приносит ответ. <b style={{ color: T.ink }}>Нажмите на 3 части</b> команды и изучите их.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Tanishing: <span className="mono">fetch</span>. Internet darsidagi ofitsiantni eslaysizmi? <span className="mono">fetch</span> ham shunday ishlaydi: manzilni berasiz — u serverga boradi va javobni olib keladi. Har savolga javob bering — to'g'ri javob <b style={{ color: T.ink }}>so'rov pasportiga</b> bitta qatorni yozadi.</>, ru: <>Знакомьтесь: <span className="mono">fetch</span>. Помните официанта из урока про интернет? <span className="mono">fetch</span> работает так же: даёте адрес — он идёт на сервер и приносит ответ. Ответьте на каждый вопрос — верный ответ заполняет одну строку <b style={{ color: T.ink }}>паспорта запроса</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <pre className="code-box fade-up delay-1" style={{ fontSize: 'clamp(13px,1.9vw,16px)', lineHeight: 2.1, padding: '16px 18px' }}>
-              <span onClick={() => tap('fetch')} className={tokCls('fetch')}><Jx>fetch</Jx></span>
+              <span className={tokCls('fetch')}><Jx>fetch</Jx></span>
               {'('}
-              <span onClick={() => tap('url')} className={tokCls('url')}><St>'https://robo-api.example</St></span>
-              <span onClick={() => tap('ep')} className={tokCls('ep')}><St>/games'</St></span>
+              <span className={tokCls('url')}><St>'https://robo-api.example</St></span>
+              <span className={tokCls('ep')}><St>/games'</St></span>
               {')'}
             </pre>
             {active
               ? <div className="sk-info" key={active}><p className="note-h" style={{ color: T.accent }}>{tr(PARTS[active].title)}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr(PARTS[active].desc)}</p></div>
               : null}
+            {!done && <Qaror key={q} savol={S3_QAROR[q].savol} variantlar={S3_QAROR[q].v} onTogri={() => setQ(n => Math.min(3, n + 1))} />}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: "So'rov pasporti", ru: 'Паспорт запроса' })}</p>
@@ -1763,18 +1801,18 @@ const QZ_BG_SHAPES = [
 // ⚔️ Mustahkamlash-jang savollari — fetch/server/GET/JSON/.json()/useEffect/loading/setGames/endpoint/404/200 OK.
 // To'g'ri javoblar 4 pozitsiyaga TENG taqsimlangan (12 savol: 3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: "`fetch` nima qiladi?", ru: 'Что делает `fetch`?' }, opts: [{ uz: "Manzilga borib ma'lumot olib keladi", ru: 'Идёт по адресу и приносит данные' }, { uz: "Saytni to'liq qayta yuklaydi", ru: 'Полностью перезагружает сайт' }, { uz: "Faylni kompyuterga yuklab saqlaydi", ru: 'Скачивает файл на компьютер' }, { uz: "Yangi bo'sh oyna ochadi", ru: 'Открывает новое пустое окно' }], correct: 0 },
+  { q: { uz: "`fetch` nima qiladi?", ru: "Что делает `fetch`?" }, opts: [{ uz: "Ma'lumot olib keladi", ru: "Приносит данные" }, { uz: "Saytni qayta yuklaydi", ru: "Перезагружает сайт" }, { uz: "Faylni diskka saqlaydi", ru: "Сохраняет файл на диск" }, { uz: "Yangi bo'sh oyna ochadi", ru: "Открывает новое пустое окно" }], correct: 0 },
   { q: { uz: "Server nima?", ru: 'Что такое сервер?' }, opts: [{ uz: "Ma'lumot saqlanadigan markaz", ru: 'Центр, где хранятся данные' }, { uz: "Telefonning ichki xotirasi", ru: 'Внутренняя память телефона' }, { uz: "Kompyuterdagi rasm papkasi", ru: 'Папка с картинками на компьютере' }, { uz: "Brauzer xotirasidagi nusxa", ru: 'Копия в памяти браузера' }], correct: 0 },
-  { q: { uz: "`GET` so'rovi serverda nimani o'zgartiradi?", ru: 'Что меняет `GET`-запрос на сервере?' }, opts: [{ uz: "Hech narsani o'zgartirmaydi", ru: 'Ничего не меняет' }, { uz: "Ma'lumotni butunlay o'chiradi", ru: 'Полностью удаляет данные' }, { uz: "Yangi ma'lumot yaratadi", ru: 'Создаёт новые данные' }, { uz: "Serverni o'chirib qo'yadi", ru: 'Выключает сервер' }], correct: 0 },
+  { q: { uz: "`GET` so'rovi serverda nimani o'zgartiradi?", ru: "Что меняет на сервере запрос `GET`?" }, opts: [{ uz: "Hech narsani", ru: "Ничего" }, { uz: "Ma'lumotni o'chiradi", ru: "Удаляет данные" }, { uz: "Yangi yozuv yaratadi", ru: "Создаёт новую запись" }, { uz: "Serverni o'chiradi", ru: "Выключает сервер" }], correct: 0 },
   { q: { uz: "Server javobi dastlab qanday keladi?", ru: 'В каком виде сначала приходит ответ сервера?' }, opts: [{ uz: "Tayyor massiv", ru: 'Готовый массив' }, { uz: "Matn (string)", ru: 'Текст (string)' }, { uz: "Rasm", ru: 'Картинка' }, { uz: "HTML sahifa", ru: 'HTML-страница' }], correct: 1 },
   { q: { uz: "`.json()` nima qiladi?", ru: 'Что делает `.json()`?' }, opts: [{ uz: "Qaytadan so'rov yuboradi", ru: 'Отправляет запрос заново' }, { uz: "Matnni massivga aylantiradi", ru: 'Превращает текст в массив' }, { uz: "Javobni faylga saqlaydi", ru: 'Сохраняет ответ в файл' }, { uz: "Sahifani qayta yangilaydi", ru: 'Обновляет страницу' }], correct: 1 },
-  { q: { uz: "`useEffect(…, [])` nega bo'sh massiv bilan yoziladi?", ru: 'Зачем в `useEffect(…, [])` пустой массив?' }, opts: [{ uz: "Har soniyada qayta-qayta ishlashi uchun", ru: 'Чтобы срабатывал каждую секунду' }, { uz: "Ochilganda bir marta ishlashi uchun", ru: 'Чтобы сработал один раз при открытии' }, { uz: "Tugma har bosilganda ishlashi uchun", ru: 'Чтобы срабатывал при каждом нажатии кнопки' }, { uz: "Umuman hech qachon ishlamasligi uchun", ru: 'Чтобы вообще никогда не срабатывал' }], correct: 1 },
-  { q: { uz: "Javob kelguncha ekranda nima ko'rsatiladi?", ru: 'Что показывают на экране, пока идёт ответ?' }, opts: [{ uz: "Xatolik oynasi chiqadi", ru: 'Появляется окно ошибки' }, { uz: "Bo'sh oq ekran turadi", ru: 'Стоит пустой белый экран' }, { uz: "Skeleton — kulrang sharpa", ru: 'Скелетон — серый призрак' }, { uz: "Reklama ko'rsatiladi", ru: 'Показывается реклама' }], correct: 2 },
-  { q: { uz: "Serverdan kelgan ro'yxat ekranga qanday chiqadi?", ru: 'Как список с сервера попадает на экран?' }, opts: [{ uz: "`fetch` o'zi chizadi", ru: '`fetch` сам рисует' }, { uz: "`useEffect` o'zi chizadi", ru: '`useEffect` сам рисует' }, { uz: "`setGames` → state → React chizadi", ru: '`setGames` → state → React рисует' }, { uz: "Qo'lda yoziladi", ru: 'Пишется вручную' }], correct: 2 },
+  { q: { uz: "`useEffect`da bo'sh `[]` nima uchun?", ru: "Зачем пустой `[]` в `useEffect`?" }, opts: [{ uz: "Har soniyada ishlashi uchun", ru: "Чтобы работал каждую секунду" }, { uz: "Bir marta ishlashi uchun", ru: "Чтобы сработал один раз" }, { uz: "Har bosishda ishlashi uchun", ru: "Чтобы работал при каждом клике" }, { uz: "Hech ishlamasligi uchun", ru: "Чтобы не работал вовсе" }], correct: 1 },
+  { q: { uz: "Javob kelguncha nima ko'rsatgan ma'qul?", ru: "Что лучше показывать, пока нет ответа?" }, opts: [{ uz: "Xatolik oynasi chiqadi", ru: "Окно с ошибкой" }, { uz: "Bo'sh oq ekran turadi", ru: "Пустой белый экран" }, { uz: "Skeleton — kulrang sharpa", ru: "Skeleton — серый силуэт" }, { uz: "Reklama ko'rsatiladi", ru: "Показывают рекламу" }], correct: 2 },
+  { q: { uz: "Serverdan kelgan ro'yxatni ekranga kim chizadi?", ru: "Кто рисует на экране список с сервера?" }, opts: [{ uz: "`fetch` o'zi chizadi", ru: "`fetch` рисует сам" }, { uz: "`useEffect` o'zi chizadi", ru: "`useEffect` рисует сам" }, { uz: "`setGames` → React chizadi", ru: "`setGames` → рисует React" }, { uz: "Qo'lda yoziladi", ru: "Пишется вручную" }], correct: 2 },
   { q: { uz: "Endpoint nimani bildiradi?", ru: 'Что означает эндпоинт?' }, opts: [{ uz: "Manzilning boshlanishini", ru: 'Начало адреса' }, { uz: "Faylning to'liq ismini", ru: 'Полное имя файла' }, { uz: "Serverning qaysi bo'limini", ru: 'Какой раздел сервера нужен' }, { uz: "Internet ulanish tezligini", ru: 'Скорость интернет-соединения' }], correct: 2 },
   { q: { uz: "Konsolda `404` ko'rsangiz birinchi nima qilasiz?", ru: 'Увидели `404` в консоли — что сделаете первым?' }, opts: [{ uz: "Kompyuterni o'chirib yoqasiz", ru: 'Перезагрузите компьютер' }, { uz: "React'ni qayta o'rnatasiz", ru: 'Переустановите React' }, { uz: "Biroz kutasiz", ru: 'Немного подождёте' }, { uz: "Manzilni tekshirasiz", ru: 'Проверите адрес' }], correct: 3 },
   { q: { uz: "`200 OK` nimani bildiradi?", ru: 'Что означает `200 OK`?' }, opts: [{ uz: "Server o'chib qoldi", ru: 'Сервер отключился' }, { uz: "So'ralgan manzil topilmadi", ru: 'Запрошенный адрес не найден' }, { uz: "Internet ulanishi yo'q", ru: 'Нет интернет-соединения' }, { uz: "Muvaffaqiyat — javob keldi", ru: 'Успех — ответ пришёл' }], correct: 3 },
-  { q: { uz: "`fetch → .json() → setGames` tartibi nega muhim?", ru: 'Почему важен порядок `fetch → .json() → setGames`?' }, opts: [{ uz: "Aslida bu tartib umuman muhim emas", ru: 'На самом деле порядок вообще не важен' }, { uz: "Faqat kod chiroyli ko'rinishi uchun", ru: 'Только чтобы код красиво выглядел' }, { uz: "Tartib butunlay tasodifiy tanlangan", ru: 'Порядок выбран совершенно случайно' }, { uz: "Har qadam oldingi qadamga tayanadi", ru: 'Каждый шаг опирается на предыдущий' }], correct: 3 },
+  { q: { uz: "Nega `fetch → .json() → set` tartibi muhim?", ru: "Почему важен порядок `fetch → .json() → set`?" }, opts: [{ uz: "Kod chiroyli ko'rinadi", ru: "Код выглядит красиво" }, { uz: "Tartib muhim emas", ru: "Порядок не важен" }, { uz: "Tasodifan shunday yozilgan", ru: "Так написано случайно" }, { uz: "Har qadam oldingisini kutadi", ru: "Каждый шаг ждёт предыдущий" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2760,18 +2798,26 @@ export default function ReactApiGetLesson({ lang: langProp, onFinished, liveToke
         .json-body { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 12px; color: ${CODE.text}; margin: 0; white-space: pre-wrap; word-break: break-word; line-height: 1.55; }
         .json-card.txt .json-body { color: #8A93A6; }
 
-        /* fetch qismlari — bosishga chorlovchi (Screen3) */
-        .fa-tok { cursor: pointer; border-radius: 6px; padding: 3px 5px; transition: all 0.18s; }
-        .fa-tok:not(.seen):not(.on) { animation: fa-invite 2.2s ease-in-out infinite; }
+        /* fetch qismlari (Screen3) — F-1019-04: endi bosilmaydi; joriy qism .on, ochilgani .seen, savol pastda */
+        .fa-tok { cursor: default; border-radius: 6px; padding: 3px 5px; transition: all 0.18s; }
+        .fa-tok:not(.seen):not(.on) { background: rgba(255,255,255,0.05); }
         @keyframes fa-invite { 0%,100% { box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.2); background: rgba(255,255,255,0.05); } 50% { box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.5); background: rgba(255,79,40,0.08); } }
         .fa-tok.on { background: rgba(255,79,40,0.22); box-shadow: inset 0 0 0 1px ${T.accent}; }
         .fa-tok.seen:not(.on) { background: rgba(31,122,77,0.14); }
+        /* Qaror qadami (Screen3, F-1019-04 · DE 213.22): savol, uch variant, xato sababi — bitta karta ichida */
+        .qr { display: flex; flex-direction: column; gap: 10px; background: ${T.paper}; border-radius: 12px; padding: 14px 16px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.16); }
+        .qr-s { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(13.5px,1.7vw,15px); line-height: 1.4; color: ${T.ink}; }
+        .qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
+        .qr-v .chip { background: ${T.bg}; text-align: left; box-shadow: inset 0 0 0 1.5px ${T.line}; }
+        .qr-v .chip:hover:not(:disabled) { box-shadow: inset 0 0 0 1.5px ${T.accent}; }
+        .qr-v .chip.chip-err:disabled { opacity: 1; background: ${T.accentSoft}; color: ${T.accent}; text-decoration: line-through; box-shadow: none; }
+        .qr .frame-warn { padding: 10px 13px; }
 
         /* Tinch variant — «Ofitsiant safari» harakatlari (skeleton lipillashi, tap-hint, tomchi, qopqoq-flip, posilka) */
         @media (prefers-reduced-motion: reduce) {
           .skel { animation: none !important; background: #ECE9E2 !important; }
           .flow-dot { animation: none !important; opacity: 0.5; }
-          .fa-tok:not(.seen):not(.on) { animation: none !important; box-shadow: inset 0 0 0 1.5px rgba(255,79,40,0.4); }
+          .fa-tok:not(.seen):not(.on) { animation: none !important; }
           .json-card.arr { animation: fade-step 0.3s ease-out !important; }
           .parcel, .fly-in, .mig-packet { animation-duration: 0.01s !important; }
           .shake, .dd-shake, .hpop { animation: none !important; }

@@ -1,0 +1,4293 @@
+[
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Mahsulot va buyurtmalar qayerda doimiy saqlanadi?",
+   "ru": "Где постоянно хранятся товары и заказы?"
+  },
+  "opts": [
+   {
+    "uz": "Database'da",
+    "ru": "В Database"
+   },
+   {
+    "uz": "Frontend'da",
+    "ru": "В Frontend"
+   },
+   {
+    "uz": "Backend'da",
+    "ru": "В Backend"
+   },
+   {
+    "uz": "AI'da",
+    "ru": "В AI"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Frontend asosan nima qiladi?",
+   "ru": "Чем в основном занимается Frontend?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumotni saqlaydi",
+    "ru": "Хранит данные"
+   },
+   {
+    "uz": "Narxni hisoblaydi",
+    "ru": "Считает цену"
+   },
+   {
+    "uz": "Ekranda ko'rsatadi",
+    "ru": "Показывает на экране"
+   },
+   {
+    "uz": "Parolni tekshiradi",
+    "ru": "Проверяет пароль"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri yo'l varianti boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "«Savatga» so'rovi qaysi yo'ldan boradi?",
+   "ru": "Каким путём идёт запрос «В корзину»?"
+  },
+  "opts": [
+   {
+    "uz": "Frontend → Database",
+    "ru": "Frontend → Database"
+   },
+   {
+    "uz": "Database → Frontend",
+    "ru": "Database → Frontend"
+   },
+   {
+    "uz": "Frontend → Backend → Database",
+    "ru": "Frontend → Backend → Database"
+   },
+   {
+    "uz": "Database → Backend → Frontend",
+    "ru": "Database → Backend → Frontend"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Nega Frontend Database'ga to'g'ridan bormaydi?",
+   "ru": "Почему Frontend не идёт в Database напрямую?"
+  },
+  "opts": [
+   {
+    "uz": "Database juda sekin",
+    "ru": "Database слишком медленная"
+   },
+   {
+    "uz": "Xavfsizlik uchun",
+    "ru": "Ради безопасности"
+   },
+   {
+    "uz": "Ular boshqa tilda",
+    "ru": "Они на разных языках"
+   },
+   {
+    "uz": "Texnik iloji yo'q",
+    "ru": "Технически невозможно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Backend'ning asosiy vazifasi nima?",
+   "ru": "В чём главная задача Backend?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifa dizaynini chizadi",
+    "ru": "Рисует дизайн страницы"
+   },
+   {
+    "uz": "Foydalanuvchiga ko'rinadi",
+    "ru": "Виден пользователю"
+   },
+   {
+    "uz": "Matnni tarjima qiladi",
+    "ru": "Переводит текст"
+   },
+   {
+    "uz": "Tekshiradi, Database'ga yozadi",
+    "ru": "Проверяет, пишет в Database"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Web sayt va bot bir xil buyurtmani qanday ko'radi?",
+   "ru": "Как сайт и бот видят одни и те же заказы?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta Backend'ga ulanadi",
+    "ru": "Подключены к одному Backend"
+   },
+   {
+    "uz": "Alohida Database quriladi",
+    "ru": "Строят отдельные Database"
+   },
+   {
+    "uz": "Qo'lda ko'chiriladi",
+    "ru": "Переносят вручную"
+   },
+   {
+    "uz": "Buning iloji yo'q",
+    "ru": "Это невозможно"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "«Ko'p kirish yo'li, bitta tizim» — bu nima?",
+   "ru": "Что значит «много точек входа, одна система»?"
+  },
+  "opts": [
+   {
+    "uz": "Har yo'lga alohida tizim",
+    "ru": "Каждому входу своя система"
+   },
+   {
+    "uz": "Bitta yo'l yetarli",
+    "ru": "Хватит одного входа"
+   },
+   {
+    "uz": "Faqat web sayt bo'ladi",
+    "ru": "Бывает только веб-сайт"
+   },
+   {
+    "uz": "Hamma yo'l bitta Backend'ga",
+    "ru": "Все входы — в один Backend"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Database o'chirilsa nima bo'ladi?",
+   "ru": "Что будет, если отключить Database?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsa o'zgarmaydi",
+    "ru": "Ничего не изменится"
+   },
+   {
+    "uz": "Ma'lumot saqlanmaydi",
+    "ru": "Данные не сохранятся"
+   },
+   {
+    "uz": "Sahifa ranglari o'chadi",
+    "ru": "Погаснут цвета страницы"
+   },
+   {
+    "uz": "Tizim tezlashadi",
+    "ru": "Система ускорится"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Tayyor tizimga mobil ilova qanday qo'shiladi?",
+   "ru": "Как добавить мобильное приложение к готовой системе?"
+  },
+  "opts": [
+   {
+    "uz": "Hammasi noldan yoziladi",
+    "ru": "Всё пишут с нуля"
+   },
+   {
+    "uz": "Yangi Frontend ulanadi",
+    "ru": "Подключают новый Frontend"
+   },
+   {
+    "uz": "Alohida Database quriladi",
+    "ru": "Строят отдельную Database"
+   },
+   {
+    "uz": "Buning iloji yo'q",
+    "ru": "Это невозможно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "AI tizimda nima qiladi?",
+   "ru": "Что делает AI в системе?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumotni saqlaydi",
+    "ru": "Хранит данные"
+   },
+   {
+    "uz": "Hamma qarorni o'zi qiladi",
+    "ru": "Сам принимает все решения"
+   },
+   {
+    "uz": "Maslahat beradi",
+    "ru": "Даёт советы"
+   },
+   {
+    "uz": "Sahifani ko'rsatadi",
+    "ru": "Показывает страницу"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Besh qismli zanjir variantlari juda uzun edi; savol bitta qadamga qisqartirildi.",
+  "q": {
+   "uz": "Ma'lumot yo'lida foydalanuvchidan keyin nima turadi?",
+   "ru": "Что идёт в пути данных после пользователя?"
+  },
+  "opts": [
+   {
+    "uz": "Database",
+    "ru": "Database"
+   },
+   {
+    "uz": "Backend",
+    "ru": "Backend"
+   },
+   {
+    "uz": "AI",
+    "ru": "AI"
+   },
+   {
+    "uz": "Frontend",
+    "ru": "Frontend"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Kod yozishdan oldin chizma nega kerak?",
+   "ru": "Зачем схема до написания кода?"
+  },
+  "opts": [
+   {
+    "uz": "Qism vazifasi aniq bo'ladi",
+    "ru": "Ясно, что делает каждая часть"
+   },
+   {
+    "uz": "Kodni o'zi yozib beradi",
+    "ru": "Сама пишет код"
+   },
+   {
+    "uz": "Serverni tezlashtiradi",
+    "ru": "Ускоряет сервер"
+   },
+   {
+    "uz": "Dizaynni chiroyli qiladi",
+    "ru": "Делает дизайн красивым"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "G'oya og'zaki aytilsa, nima xavfi bor?",
+   "ru": "Чем опасно рассказать идею устно?"
+  },
+  "opts": [
+   {
+    "uz": "Har kim o'zicha tushunadi",
+    "ru": "Каждый поймёт по-своему"
+   },
+   {
+    "uz": "Hamma darrov yoqtirib qoladi",
+    "ru": "Всем сразу понравится"
+   },
+   {
+    "uz": "G'oya juda tez tarqaladi",
+    "ru": "Идея быстро разойдётся"
+   },
+   {
+    "uz": "Yozib berishni so'rashadi",
+    "ru": "Попросят записать"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "«Menga PRD bering» — dasturchi nimani so'rayapti?",
+   "ru": "«Дайте мне PRD» — что просит разработчик?"
+  },
+  "opts": [
+   {
+    "uz": "Tayyor kodni",
+    "ru": "Готовый код"
+   },
+   {
+    "uz": "Narx qog'ozini",
+    "ru": "Бумагу с ценой"
+   },
+   {
+    "uz": "Ekran rasmlarini",
+    "ru": "Картинки экранов"
+   },
+   {
+    "uz": "Talablar hujjatini",
+    "ru": "Документ требований"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "«Qaysi kuni yozilganini eslay olmaydi» misoli darsdagi basseyn muammosiga o'xshamas va tushunarsiz edi.",
+  "q": {
+   "uz": "«Guruh to'lib, odam bekorga qaytadi» — qaysi katak?",
+   "ru": "«Группа полна, человек уходит зря» — какая ячейка?"
+  },
+  "opts": [
+   {
+    "uz": "Kim",
+    "ru": "Кто"
+   },
+   {
+    "uz": "Yechim",
+    "ru": "Решение"
+   },
+   {
+    "uz": "Muammo",
+    "ru": "Проблема"
+   },
+   {
+    "uz": "O'lchov",
+    "ru": "Измерение"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "«Kim» katagiga qaysi qator to'g'ri?",
+   "ru": "Какая строка подходит в ячейку «Кто»?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma foydalanuvchilar",
+    "ru": "Все пользователи"
+   },
+   {
+    "uz": "Ertalab suzishga keladiganlar",
+    "ru": "Кто ходит плавать по утрам"
+   },
+   {
+    "uz": "Ilovaga pul to'laydiganlar",
+    "ru": "Кто платит за приложение"
+   },
+   {
+    "uz": "Kod yozadigan dasturchilar",
+    "ru": "Разработчики, пишущие код"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Yechim katagiga qaysi qator tushadi?",
+   "ru": "Какая строка идёт в ячейку «Решение»?"
+  },
+  "opts": [
+   {
+    "uz": "Zamonaviy va tez ilova",
+    "ru": "Современное быстрое приложение"
+   },
+   {
+    "uz": "Bo'sh joy ko'rsatuvchi sahifa",
+    "ru": "Страница, показывающая места"
+   },
+   {
+    "uz": "Ikki haftada bitadigan ish",
+    "ru": "Работа на две недели"
+   },
+   {
+    "uz": "JavaScript'dagi kod",
+    "ru": "Код на JavaScript"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "O'lchov katagi nima uchun kerak?",
+   "ru": "Зачем нужна ячейка «Измерение»?"
+  },
+  "opts": [
+   {
+    "uz": "Natijani son bilan ko'rsatadi",
+    "ru": "Показывает результат числом"
+   },
+   {
+    "uz": "Ilova narxini hisoblaydi",
+    "ru": "Считает цену приложения"
+   },
+   {
+    "uz": "Dasturchilar sonini aytadi",
+    "ru": "Называет число разработчиков"
+   },
+   {
+    "uz": "Ish muddatini aytadi",
+    "ru": "Называет срок работы"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "O'lchov katagi bo'sh qolsa, nima yo'qoladi?",
+   "ru": "Что теряется, если ячейка «Измерение» пуста?"
+  },
+  "opts": [
+   {
+    "uz": "Ishni boshlash imkoni",
+    "ru": "Возможность начать работу"
+   },
+   {
+    "uz": "Qolgan uch katak",
+    "ru": "Остальные три ячейки"
+   },
+   {
+    "uz": "Natija bo'ldimi degan javob",
+    "ru": "Ответ, был ли результат"
+   },
+   {
+    "uz": "Dasturchining haqi",
+    "ru": "Оплата разработчика"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Varaq to'ldirilgach uch dasturchi nima qurdi?",
+   "ru": "Что построили три разработчика по заполненному листу?"
+  },
+  "opts": [
+   {
+    "uz": "Har biri boshqa narsa",
+    "ru": "Каждый — своё"
+   },
+   {
+    "uz": "Hech biri boshlay olmadi",
+    "ru": "Никто не смог начать"
+   },
+   {
+    "uz": "Ikkitasi qurdi, biri yo'q",
+    "ru": "Двое построили, один нет"
+   },
+   {
+    "uz": "Uchalasi bir xil ekran",
+    "ru": "Все трое — одинаковый экран"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Geyts va Allen ishni qanday tartibda qildi?",
+   "ru": "В каком порядке работали Гейтс и Аллен?"
+  },
+  "opts": [
+   {
+    "uz": "Avval aytdi, keyin yozdi",
+    "ru": "Сначала сказали, потом написали"
+   },
+   {
+    "uz": "Avval yozdi, keyin aytdi",
+    "ru": "Сначала написали, потом сказали"
+   },
+   {
+    "uz": "Avval sinadi, keyin aytdi",
+    "ru": "Сначала проверили, потом сказали"
+   },
+   {
+    "uz": "Uzoq sinab, keyin aytdi",
+    "ru": "Долго проверяли, потом сказали"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Til hali yozilmagan payt ular nima qildi?",
+   "ru": "Что они сделали, когда язык ещё не был написан?"
+  },
+  "opts": [
+   {
+    "uz": "Altairni sotib oldi",
+    "ru": "Купили Altair"
+   },
+   {
+    "uz": "Tayyor tilni yubordi",
+    "ru": "Отправили готовый язык"
+   },
+   {
+    "uz": "«Bizda til bor» dedi",
+    "ru": "Сказали «у нас есть язык»"
+   },
+   {
+    "uz": "Jurnalga maqola yozdi",
+    "ru": "Написали статью в журнал"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Varaq qachon tayyor bo'ladi?",
+   "ru": "Когда лист готов?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkita katagi yozilganda",
+    "ru": "Когда заполнены две ячейки"
+   },
+   {
+    "uz": "Har katak savolga javob bersa",
+    "ru": "Когда каждая ячейка отвечает"
+   },
+   {
+    "uz": "Kod bilan topshirilganda",
+    "ru": "Когда сдан вместе с кодом"
+   },
+   {
+    "uz": "Uzun gaplar yozilganda",
+    "ru": "Когда написаны длинные фразы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson22.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun edi; darsdagi «dasturchi taxmin qiladi» qoidasiga yaqinlashtirildi.",
+  "q": {
+   "uz": "Varaq bo'sh qolsa, kim taxmin qiladi?",
+   "ru": "Если лист пуст, кто будет угадывать?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani ochgan odam",
+    "ru": "Тот, кто открыл приложение"
+   },
+   {
+    "uz": "Basseyn murabbiysi",
+    "ru": "Тренер бассейна"
+   },
+   {
+    "uz": "Sinov o'tkazuvchi",
+    "ru": "Тестировщик"
+   },
+   {
+    "uz": "Kod yozadigan dasturchi",
+    "ru": "Разработчик, пишущий код"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi; variantlarda javob takrorlanardi.",
+  "q": {
+   "uz": "MVC'da ma'lumot va qoidalar bilan qaysi qism ishlaydi?",
+   "ru": "Какая часть MVC работает с данными и правилами?"
+  },
+  "opts": [
+   {
+    "uz": "View",
+    "ru": "View"
+   },
+   {
+    "uz": "Model",
+    "ru": "Model"
+   },
+   {
+    "uz": "Controller",
+    "ru": "Controller"
+   },
+   {
+    "uz": "Hech qaysi",
+    "ru": "Никакая"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "So'rovni qabul qilib, yo'naltiradigan qism qaysi?",
+   "ru": "Какая часть принимает и направляет запрос?"
+  },
+  "opts": [
+   {
+    "uz": "View",
+    "ru": "View"
+   },
+   {
+    "uz": "Model",
+    "ru": "Model"
+   },
+   {
+    "uz": "Controller",
+    "ru": "Controller"
+   },
+   {
+    "uz": "Database",
+    "ru": "Database"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Alohida ishlaydigan bir nechta xizmat — bu nima?",
+   "ru": "Несколько отдельно работающих сервисов — это что?"
+  },
+  "opts": [
+   {
+    "uz": "Mikroservis",
+    "ru": "Микросервис"
+   },
+   {
+    "uz": "Monolit",
+    "ru": "Монолит"
+   },
+   {
+    "uz": "MVC",
+    "ru": "MVC"
+   },
+   {
+    "uz": "Controller",
+    "ru": "Controller"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Kichik yangi loyiha uchun ko'pincha nima qulay?",
+   "ru": "Что обычно удобнее для небольшого нового проекта?"
+  },
+  "opts": [
+   {
+    "uz": "Mikroservis",
+    "ru": "Микросервис"
+   },
+   {
+    "uz": "Monolit",
+    "ru": "Монолит"
+   },
+   {
+    "uz": "Ikkalasi birga",
+    "ru": "Оба вместе"
+   },
+   {
+    "uz": "Usul kerak emas",
+    "ru": "Подход не нужен"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Band xizmatga yana bir nusxa qo'shish nima deyiladi?",
+   "ru": "Как называется добавление копии загруженному сервису?"
+  },
+  "opts": [
+   {
+    "uz": "Qayta yozish",
+    "ru": "Переписывание"
+   },
+   {
+    "uz": "Joylashtirish (deploy)",
+    "ru": "Размещение (deploy)"
+   },
+   {
+    "uz": "Xatoni tuzatish",
+    "ru": "Исправление ошибки"
+   },
+   {
+    "uz": "Miqyoslash (scaling)",
+    "ru": "Масштабирование (scaling)"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Pattern nima?",
+   "ru": "Что такое паттерн?"
+  },
+  "opts": [
+   {
+    "uz": "Sinab ko'rilgan yechim usuli",
+    "ru": "Проверенный способ решения"
+   },
+   {
+    "uz": "Yangi dasturlash tili",
+    "ru": "Новый язык программирования"
+   },
+   {
+    "uz": "Database'ning bir turi",
+    "ru": "Вид Database"
+   },
+   {
+    "uz": "Tayyor nusxalanadigan kod",
+    "ru": "Готовый код для копирования"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/ArchPatternsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "PostgreSQL MVC'da nima qiladi?",
+   "ru": "Что делает PostgreSQL в MVC?"
+  },
+  "opts": [
+   {
+    "uz": "So'rovni yo'naltiradi",
+    "ru": "Направляет запрос"
+   },
+   {
+    "uz": "Ma'lumotni saqlaydi",
+    "ru": "Хранит данные"
+   },
+   {
+    "uz": "Sahifani ko'rsatadi",
+    "ru": "Показывает страницу"
+   },
+   {
+    "uz": "Qoidalarni tekshiradi",
+    "ru": "Проверяет правила"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 30 belgidan uzun va eng uzuni edi.",
+  "q": {
+   "uz": "Oddiy AI va agentning asosiy farqi nima?",
+   "ru": "В чём главное отличие обычного AI от агента?"
+  },
+  "opts": [
+   {
+    "uz": "Agent ishni bajaradi",
+    "ru": "Агент выполняет работу"
+   },
+   {
+    "uz": "Agent chiroyliroq gapiradi",
+    "ru": "Агент говорит красивее"
+   },
+   {
+    "uz": "Oddiy AI doim tezroq",
+    "ru": "Обычный AI всегда быстрее"
+   },
+   {
+    "uz": "Hech qanday farqi yo'q",
+    "ru": "Разницы нет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun, chalg'ituvchilar kulgili edi.",
+  "q": {
+   "uz": "Tool nima?",
+   "ru": "Что такое tool?"
+  },
+  "opts": [
+   {
+    "uz": "AI modelining nomi",
+    "ru": "Название AI-модели"
+   },
+   {
+    "uz": "Agent chaqiradigan funksiya",
+    "ru": "Функция, которую вызывает агент"
+   },
+   {
+    "uz": "Database'ning bir turi",
+    "ru": "Вид Database"
+   },
+   {
+    "uz": "Frontend sahifasi",
+    "ru": "Страница Frontend"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun, chalg'ituvchilar tool emas edi.",
+  "q": {
+   "uz": "Agent buyurtma holatini o'qishi — qaysi tool?",
+   "ru": "Агент читает статус заказа — какой это tool?"
+  },
+  "opts": [
+   {
+    "uz": "Database tool'i",
+    "ru": "Tool Database"
+   },
+   {
+    "uz": "API tool'i",
+    "ru": "Tool API"
+   },
+   {
+    "uz": "Xabar tool'i",
+    "ru": "Tool сообщений"
+   },
+   {
+    "uz": "Tool kerak emas",
+    "ru": "Tool не нужен"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Bir martalik ish (masalan, tarjima) uchun nima yetadi?",
+   "ru": "Чего хватит для разовой задачи (например, перевода)?"
+  },
+  "opts": [
+   {
+    "uz": "Albatta agent kerak",
+    "ru": "Обязательно нужен агент"
+   },
+   {
+    "uz": "Hech qaysi to'g'ri emas",
+    "ru": "Ничего не подходит"
+   },
+   {
+    "uz": "AI va agent birga",
+    "ru": "AI и агент вместе"
+   },
+   {
+    "uz": "Oddiy AI",
+    "ru": "Обычный AI"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun, «skript» darsda o'tilmagan.",
+  "q": {
+   "uz": "Bir necha qadamli, tool kerak ishga nima mos?",
+   "ru": "Что подходит для многошаговой задачи с tool?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta javobli oddiy AI",
+    "ru": "Обычный AI с одним ответом"
+   },
+   {
+    "uz": "Faqat Database",
+    "ru": "Только Database"
+   },
+   {
+    "uz": "Faqat frontend qismi",
+    "ru": "Только frontend"
+   },
+   {
+    "uz": "AI-agent",
+    "ru": "AI-агент"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Bizning tizimda agent qayerda ishlaydi?",
+   "ru": "Где работает агент в нашей системе?"
+  },
+  "opts": [
+   {
+    "uz": "Frontendda",
+    "ru": "Во frontend"
+   },
+   {
+    "uz": "Backend ichida",
+    "ru": "Внутри backend"
+   },
+   {
+    "uz": "Database ichida",
+    "ru": "Внутри Database"
+   },
+   {
+    "uz": "Tizimdan tashqarida",
+    "ru": "Вне системы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Agent tizimga qanday amal qiladi?",
+   "ru": "Как агент действует в системе?"
+  },
+  "opts": [
+   {
+    "uz": "O'z-o'zidan, tool'siz",
+    "ru": "Сам по себе, без tool"
+   },
+   {
+    "uz": "Siz bergan tool'lar orqali",
+    "ru": "Через выданные вами tool"
+   },
+   {
+    "uz": "Faqat javob yozib",
+    "ru": "Только пишет ответ"
+   },
+   {
+    "uz": "Ekranni o'zi chizib",
+    "ru": "Сам рисует экран"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 30 belgidan uzun va eng uzuni edi.",
+  "q": {
+   "uz": "Nega agentga chegara kerak?",
+   "ru": "Зачем агенту ограничения?"
+  },
+  "opts": [
+   {
+    "uz": "U real amal qiladi",
+    "ru": "Он совершает реальные действия"
+   },
+   {
+    "uz": "U juda sekin ishlaydi",
+    "ru": "Он работает очень медленно"
+   },
+   {
+    "uz": "U ko'p xotira egallaydi",
+    "ru": "Он занимает много памяти"
+   },
+   {
+    "uz": "Chegara kerak emas",
+    "ru": "Ограничения не нужны"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Agentga ketma-ket qadamlar imkonini nima beradi?",
+   "ru": "Что позволяет агенту делать шаги подряд?"
+  },
+  "opts": [
+   {
+    "uz": "Katta xotira",
+    "ru": "Большая память"
+   },
+   {
+    "uz": "Chiroyli interfeys",
+    "ru": "Красивый интерфейс"
+   },
+   {
+    "uz": "Agent sikli",
+    "ru": "Цикл агента"
+   },
+   {
+    "uz": "Tez internet",
+    "ru": "Быстрый интернет"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Har vazifaga agent ishlatish — bu nima?",
+   "ru": "Агент для каждой задачи — это что?"
+  },
+  "opts": [
+   {
+    "uz": "Doim eng to'g'ri yechim",
+    "ru": "Всегда лучшее решение"
+   },
+   {
+    "uz": "Vaqtni tejash usuli",
+    "ru": "Способ сэкономить время"
+   },
+   {
+    "uz": "Tizimni tezlashtirish",
+    "ru": "Ускорение системы"
+   },
+   {
+    "uz": "Ortiqcha murakkablik",
+    "ru": "Лишняя сложность"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Besh bo'lakli tartib variantlari juda uzun edi va 1-savolni takrorlardi; siklning «natijani tekshirish» qadami so'raladi.",
+  "q": {
+   "uz": "Agent har amaldan keyin nima qiladi?",
+   "ru": "Что делает агент после каждого действия?"
+  },
+  "opts": [
+   {
+    "uz": "Darhol to'xtaydi",
+    "ru": "Сразу останавливается"
+   },
+   {
+    "uz": "Foydalanuvchini kutadi",
+    "ru": "Ждёт пользователя"
+   },
+   {
+    "uz": "Natijani tekshiradi",
+    "ru": "Проверяет результат"
+   },
+   {
+    "uz": "Siklni o'chiradi",
+    "ru": "Выключает цикл"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Claude Skill nima?",
+   "ru": "Что такое Claude Skill?"
+  },
+  "opts": [
+   {
+    "uz": "Kuchliroq AI modeli nomi",
+    "ru": "Название более сильной AI-модели"
+   },
+   {
+    "uz": "Internetdagi qidiruv",
+    "ru": "Поиск в интернете"
+   },
+   {
+    "uz": "AI uchun yozma yo'riqnoma",
+    "ru": "Письменная инструкция для AI"
+   },
+   {
+    "uz": "Dastur ikonka fayli",
+    "ru": "Файл иконки программы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "description nima uchun kerak?",
+   "ru": "Зачем нужен description?"
+  },
+  "opts": [
+   {
+    "uz": "Skill'ni bezash uchun",
+    "ru": "Чтобы украсить Skill"
+   },
+   {
+    "uz": "Modelni almashtirish uchun",
+    "ru": "Чтобы сменить модель"
+   },
+   {
+    "uz": "Faqat odam o'qishi uchun",
+    "ru": "Только чтобы читал человек"
+   },
+   {
+    "uz": "Qachon ishlashini aytish uchun",
+    "ru": "Чтобы сказать, когда он нужен"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Progressive disclosure nima?",
+   "ru": "Что такое progressive disclosure?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma Skill doim ochiq",
+    "ru": "Все Skill всегда открыты"
+   },
+   {
+    "uz": "Skill faqat kechasi ishlaydi",
+    "ru": "Skill работает только ночью"
+   },
+   {
+    "uz": "Skill AI'ni tezlashtiradi",
+    "ru": "Skill ускоряет AI"
+   },
+   {
+    "uz": "Matn kerak bo'lganda ochiladi",
+    "ru": "Текст открывается, когда нужен"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Claude oldindan nimani ko'rib turadi?",
+   "ru": "Что Claude видит заранее?"
+  },
+  "opts": [
+   {
+    "uz": "Skill nomi va description'i",
+    "ru": "Имя и description Skill"
+   },
+   {
+    "uz": "Har Skill'ning butun matni",
+    "ru": "Весь текст каждого Skill"
+   },
+   {
+    "uz": "Foydalanuvchi suhbatlari",
+    "ru": "Чаты пользователя"
+   },
+   {
+    "uz": "Kompyuterdagi fayllar",
+    "ru": "Файлы на компьютере"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Skill oddiy so'rovdan nimasi bilan farq qiladi?",
+   "ru": "Чем Skill отличается от обычного запроса?"
+  },
+  "opts": [
+   {
+    "uz": "Skill — bir martalik gap",
+    "ru": "Skill — разовая фраза"
+   },
+   {
+    "uz": "Saqlanadi, qayta ishlatiladi",
+    "ru": "Хранится и используется снова"
+   },
+   {
+    "uz": "Modelni kuchaytiradi",
+    "ru": "Усиливает модель"
+   },
+   {
+    "uz": "Internetga ulaydi",
+    "ru": "Подключает к интернету"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Yaxshi Skill'ning belgisi qaysi?",
+   "ru": "Какой признак хорошего Skill?"
+  },
+  "opts": [
+   {
+    "uz": "Uzun, chalkash matn",
+    "ru": "Длинный запутанный текст"
+   },
+   {
+    "uz": "Faqat bitta so'z",
+    "ru": "Только одно слово"
+   },
+   {
+    "uz": "Aniq qadamlar va misol",
+    "ru": "Чёткие шаги и пример"
+   },
+   {
+    "uz": "Ko'p rangli bezaklar",
+    "ru": "Много цветных украшений"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Qanday vazifa Skill uchun eng mos?",
+   "ru": "Какая задача лучше всего подходит для Skill?"
+  },
+  "opts": [
+   {
+    "uz": "Takrorlanadigan vazifa",
+    "ru": "Повторяющаяся задача"
+   },
+   {
+    "uz": "Bir martalik tasodifiy ish",
+    "ru": "Разовое случайное дело"
+   },
+   {
+    "uz": "Faqat rasm chizish",
+    "ru": "Только рисование"
+   },
+   {
+    "uz": "Faqat o'yin o'ynash",
+    "ru": "Только игры"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Skill natijaga qanday ta'sir qiladi?",
+   "ru": "Как Skill влияет на результат?"
+  },
+  "opts": [
+   {
+    "uz": "Natijani tasodifiy qiladi",
+    "ru": "Делает результат случайным"
+   },
+   {
+    "uz": "Hech ta'sir qilmaydi",
+    "ru": "Никак не влияет"
+   },
+   {
+    "uz": "AI'ni sekinlashtiradi",
+    "ru": "Замедляет AI"
+   },
+   {
+    "uz": "Uslubingizga yaqinlashtiradi",
+    "ru": "Приближает к вашему стилю"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "System prompt va Skill farqi qaysi?",
+   "ru": "В чём разница system prompt и Skill?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkalasi aynan bir xil",
+    "ru": "Это одно и то же"
+   },
+   {
+    "uz": "System prompt kechasi ishlaydi",
+    "ru": "System prompt работает ночью"
+   },
+   {
+    "uz": "Skill faqat kerak bo'lganda",
+    "ru": "Skill — только когда нужен"
+   },
+   {
+    "uz": "Skill — AI modelining nomi",
+    "ru": "Skill — название AI-модели"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Noaniq description nimaga olib keladi?",
+   "ru": "К чему приводит неточный description?"
+  },
+  "opts": [
+   {
+    "uz": "Skill tezroq ishlaydi",
+    "ru": "Skill работает быстрее"
+   },
+   {
+    "uz": "Skill ochilmay qolishi mumkin",
+    "ru": "Skill может не открыться"
+   },
+   {
+    "uz": "AI modeli o'zgarib qoladi",
+    "ru": "AI-модель сменится"
+   },
+   {
+    "uz": "Internet aloqasi uziladi",
+    "ru": "Пропадёт интернет"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan ancha uzun edi.",
+  "q": {
+   "uz": "Chegara nima haqidagi qaror?",
+   "ru": "Чего касается решение-граница?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova o'zi nima qilmasligi",
+    "ru": "Что приложение не делает само"
+   },
+   {
+    "uz": "Ilova avval nima qilishi",
+    "ru": "Что приложение делает первым"
+   },
+   {
+    "uz": "Ilova kimga yozishi",
+    "ru": "Кому пишет приложение"
+   },
+   {
+    "uz": "Ilova qaysi rangda bo'lishi",
+    "ru": "Какого цвета приложение"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Ilova so'rab qiladigan ishning afzalligi nima?",
+   "ru": "В чём плюс дела, которое приложение делает со спросом?"
+  },
+  "opts": [
+   {
+    "uz": "Tezroq bajariladi",
+    "ru": "Выполняется быстрее"
+   },
+   {
+    "uz": "Ikki marta bajariladi",
+    "ru": "Выполняется дважды"
+   },
+   {
+    "uz": "Odamga ko'rinmaydi",
+    "ru": "Не видно человеку"
+   },
+   {
+    "uz": "Odam to'xtata oladi",
+    "ru": "Человек может остановить"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun edi; darsdagi savol shakliga keltirildi.",
+  "q": {
+   "uz": "Chegara avvalo qaysi ishga kerak?",
+   "ru": "Для какого дела граница нужна в первую очередь?"
+  },
+  "opts": [
+   {
+    "uz": "Qo'lda qilinadigan ishga",
+    "ru": "Для дела, сделанного вручную"
+   },
+   {
+    "uz": "So'rab qilinadigan ishga",
+    "ru": "Для дела со спросом"
+   },
+   {
+    "uz": "So'ramay qilinadigan ishga",
+    "ru": "Для дела без спроса"
+   },
+   {
+    "uz": "Hech qilinmaydigan ishga",
+    "ru": "Для дела, которое не делают"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Ilova savatdan mahsulotni o'zi olsa, kimga tegadi?",
+   "ru": "Если приложение само уберёт товар из корзины — кого заденет?"
+  },
+  "opts": [
+   {
+    "uz": "Tovar keltiruvchi sotuvchi",
+    "ru": "Поставщик товара"
+   },
+   {
+    "uz": "To'lovga o'tayotgan mijoz",
+    "ru": "Клиент, идущий к оплате"
+   },
+   {
+    "uz": "Saytni yasagan dasturchi",
+    "ru": "Разработчик сайта"
+   },
+   {
+    "uz": "Ombordagi xodim",
+    "ru": "Работник склада"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Tavsifni hech kim o'qimasa, nima bo'ladi?",
+   "ru": "Что будет, если описание никто не прочитает?"
+  },
+  "opts": [
+   {
+    "uz": "Mijoz tavsifni ko'rmaydi",
+    "ru": "Клиент не увидит описание"
+   },
+   {
+    "uz": "Mijoz xato tavsifga ishonadi",
+    "ru": "Клиент поверит ошибочному описанию"
+   },
+   {
+    "uz": "Sayt uni qayta yozadi",
+    "ru": "Сайт перепишет его"
+   },
+   {
+    "uz": "Buyurtma bekor bo'ladi",
+    "ru": "Заказ отменится"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Ilova buyurtmani o'zi bekor qilsa, kimga tegadi?",
+   "ru": "Если приложение само отменит заказ — кого заденет?"
+  },
+  "opts": [
+   {
+    "uz": "Manzilni qisqa yozgan mijoz",
+    "ru": "Клиент с коротким адресом"
+   },
+   {
+    "uz": "Yetkazuvchi haydovchi",
+    "ru": "Водитель-курьер"
+   },
+   {
+    "uz": "Tovar keltiruvchi",
+    "ru": "Поставщик"
+   },
+   {
+    "uz": "To'lov hisobchisi",
+    "ru": "Бухгалтер оплат"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun edi.",
+  "q": {
+   "uz": "Ilova yetkazish vaqtini o'zi surdi. Nega chegara kerak?",
+   "ru": "Приложение само перенесло доставку. Зачем граница?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt sekinlashadi",
+    "ru": "Сайт замедлится"
+   },
+   {
+    "uz": "Vaqt ikki marta yoziladi",
+    "ru": "Время запишется дважды"
+   },
+   {
+    "uz": "Kutgan mijoz aldanadi",
+    "ru": "Ждущий клиент будет обманут"
+   },
+   {
+    "uz": "Hisobotga tushmaydi",
+    "ru": "Не попадёт в отчёт"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Bot tasdiqni kechasi ikkida yuborsa, kimga tegadi?",
+   "ru": "Если бот пришлёт подтверждение в два ночи — кого заденет?"
+  },
+  "opts": [
+   {
+    "uz": "Ertalab shoshadigan mijoz",
+    "ru": "Клиент, спешащий утром"
+   },
+   {
+    "uz": "Do'kon egasi",
+    "ru": "Владелец магазина"
+   },
+   {
+    "uz": "Ertalabki haydovchi",
+    "ru": "Утренний водитель"
+   },
+   {
+    "uz": "Telefoni yostiq yonidagi mijoz",
+    "ru": "Клиент с телефоном у подушки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi; darsdagi «kasal bo'lib yotgan mijoz» misoliga moslandi.",
+  "q": {
+   "uz": "Kasal yotgan mijozga botning qaysi qarori tegdi?",
+   "ru": "Какое решение бота задело заболевшего клиента?"
+  },
+  "opts": [
+   {
+    "uz": "Buyurtmani bekor qilish",
+    "ru": "Отмена заказа"
+   },
+   {
+    "uz": "Kechasi tasdiq yuborish",
+    "ru": "Подтверждение ночью"
+   },
+   {
+    "uz": "Tavsifni qayta yozish",
+    "ru": "Переписать описание"
+   },
+   {
+    "uz": "Har o'n daqiqada yozish",
+    "ru": "Писать каждые десять минут"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun edi.",
+  "q": {
+   "uz": "Yangi mijoz chegirmani bilmadi. Nega?",
+   "ru": "Новый клиент не узнал о скидке. Почему?"
+  },
+  "opts": [
+   {
+    "uz": "Kechasi tasdiq yuborish",
+    "ru": "Подтверждение ночью"
+   },
+   {
+    "uz": "Buyurtmani bekor qilish",
+    "ru": "Отмена заказа"
+   },
+   {
+    "uz": "Chegirma faqat doimiy mijozga",
+    "ru": "Скидка только постоянным"
+   },
+   {
+    "uz": "Har o'n daqiqada yozish",
+    "ru": "Писать каждые десять минут"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Egasi har buyurtmani o'qishga majbur. Nega?",
+   "ru": "Владелец вынужден читать каждый заказ. Почему?"
+  },
+  "opts": [
+   {
+    "uz": "AI o'zi javob yozgan",
+    "ru": "AI сам написал ответ"
+   },
+   {
+    "uz": "Hamma ishga chegara qo'yilgan",
+    "ru": "Граница стоит на всех делах"
+   },
+   {
+    "uz": "Bot kechasi ishlamaydi",
+    "ru": "Бот не работает ночью"
+   },
+   {
+    "uz": "Chegirma hammaga ketgan",
+    "ru": "Скидка ушла всем"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson23.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "ikki-javob"
+  ],
+  "izoh": "Savol uzun edi; «kod yozgan dasturchi» ham ilovani yaratayotgan odam bo'lgani uchun ikkinchi to'g'ri javobga o'xshardi.",
+  "q": {
+   "uz": "Tabrikni bot o'zi yuborsinmi — buni kim hal qiladi?",
+   "ru": "Слать ли боту поздравление самому — кто решает?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovaning o'zi",
+    "ru": "Само приложение"
+   },
+   {
+    "uz": "Tabrik olgan mijoz",
+    "ru": "Клиент, получивший поздравление"
+   },
+   {
+    "uz": "Yetkazuvchi haydovchi",
+    "ru": "Водитель-курьер"
+   },
+   {
+    "uz": "Ilovani yaratayotgan odam",
+    "ru": "Человек, создающий приложение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "description AI'ga nimani aytadi?",
+   "ru": "Что description сообщает AI?"
+  },
+  "opts": [
+   {
+    "uz": "Nima qiladi, qachon kerak",
+    "ru": "Что делает и когда нужен"
+   },
+   {
+    "uz": "Faylning rangi va o'lchami",
+    "ru": "Цвет и размер файла"
+   },
+   {
+    "uz": "Xabar kimga yuborilishi",
+    "ru": "Кому отправить сообщение"
+   },
+   {
+    "uz": "Necha ball berilishi",
+    "ru": "Сколько баллов дать"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Kontekst-injiniring nima?",
+   "ru": "Что такое контекст-инжиниринг?"
+  },
+  "opts": [
+   {
+    "uz": "Skill'ni noldan qayta yozish",
+    "ru": "Переписать skill с нуля"
+   },
+   {
+    "uz": "AI'ga to'g'ri ko'rsatma berish",
+    "ru": "Дать AI правильное указание"
+   },
+   {
+    "uz": "AI modelini almashtirish",
+    "ru": "Сменить модель AI"
+   },
+   {
+    "uz": "Kuchliroq model sotib olish",
+    "ru": "Купить модель мощнее"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Natija kutilgandek chiqmasa, eng yaxshi qadam?",
+   "ru": "Лучший шаг, если результат не тот?"
+  },
+  "opts": [
+   {
+    "uz": "O'sha joyni tuzatib sinash",
+    "ru": "Исправить то место и проверить"
+   },
+   {
+    "uz": "Skill'dan voz kechish",
+    "ru": "Отказаться от Skill"
+   },
+   {
+    "uz": "Hammasini qayta yozish",
+    "ru": "Переписать всё"
+   },
+   {
+    "uz": "Kuchliroq model izlash",
+    "ru": "Искать модель сильнее"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Yaxshi description qanday bo'ladi?",
+   "ru": "Каким бывает хороший description?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta so'z, masalan «javob»",
+    "ru": "Одно слово, например «ответ»"
+   },
+   {
+    "uz": "Nima va qachon ekanini aytadi",
+    "ru": "Говорит, что и когда"
+   },
+   {
+    "uz": "Noaniq, har narsaga mos",
+    "ru": "Размытый, подходит ко всему"
+   },
+   {
+    "uz": "Faqat emojidan iborat",
+    "ru": "Только из эмодзи"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Skill narxni unutyapti. Eng aniq tuzatish?",
+   "ru": "Skill забывает цену. Самое точное исправление?"
+  },
+  "opts": [
+   {
+    "uz": "Hammasini qayta yozish",
+    "ru": "Переписать всё"
+   },
+   {
+    "uz": "description'ni uzaytirish",
+    "ru": "Удлинить description"
+   },
+   {
+    "uz": "AI'ga ko'proq pul to'lash",
+    "ru": "Платить AI больше"
+   },
+   {
+    "uz": "Qadamlarga narx qoidasi",
+    "ru": "Правило о цене в шаги"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Skill yozishning to'g'ri sikli qaysi?",
+   "ru": "Какой правильный цикл написания Skill?"
+  },
+  "opts": [
+   {
+    "uz": "Yozish → yuborish → kutish",
+    "ru": "Написать → отправить → ждать"
+   },
+   {
+    "uz": "Yozish → sinash → tuzatish",
+    "ru": "Написать → проверить → исправить"
+   },
+   {
+    "uz": "Sinash → o'chirish → unutish",
+    "ru": "Проверить → удалить → забыть"
+   },
+   {
+    "uz": "Nusxalash → yuborish",
+    "ru": "Скопировать → отправить"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Noaniq description nimaga olib keladi?",
+   "ru": "К чему приводит неточный description?"
+  },
+  "opts": [
+   {
+    "uz": "Skill tezroq ishlaydi",
+    "ru": "Skill работает быстрее"
+   },
+   {
+    "uz": "Hech qanday ta'sir yo'q",
+    "ru": "Никакого влияния"
+   },
+   {
+    "uz": "Kerakli paytda ishlamaydi",
+    "ru": "Не срабатывает, когда нужно"
+   },
+   {
+    "uz": "Ball o'zi oshib ketadi",
+    "ru": "Баллы растут сами"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/WriteSkillLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol uzun emas, lekin jami me'yordan oshgan edi.",
+  "q": {
+   "uz": "Yaxshi Skill qanday bo'ladi?",
+   "ru": "Каким бывает хороший Skill?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta vazifaga, aniq, sinalgan",
+    "ru": "Для одной задачи, чёткий, проверен"
+   },
+   {
+    "uz": "Iloji boricha uzun, batafsil",
+    "ru": "Как можно длиннее и подробнее"
+   },
+   {
+    "uz": "Ko'p vazifani birga qiladigan",
+    "ru": "Делает много задач сразу"
+   },
+   {
+    "uz": "Faqat nomdan iborat",
+    "ru": "Только из названия"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Pipeline nima degani?",
+   "ru": "Что значит pipeline?"
+  },
+  "opts": [
+   {
+    "uz": "Qismdan qismga ma'lumot oqimi",
+    "ru": "Поток данных от части к части"
+   },
+   {
+    "uz": "Bitta katta kod fayli",
+    "ru": "Один большой файл кода"
+   },
+   {
+    "uz": "Faqat frontend qismi",
+    "ru": "Только frontend"
+   },
+   {
+    "uz": "Ulanmagan alohida dasturlar",
+    "ru": "Отдельные несвязанные программы"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "AI bilan kod yozganda sizning vazifangiz?",
+   "ru": "Ваша задача при коде с AI?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma kodni qo'lda yozish",
+    "ru": "Писать весь код вручную"
+   },
+   {
+    "uz": "Aniq topshiriq, o'qish, sinash",
+    "ru": "Чёткое задание, чтение, проверка"
+   },
+   {
+    "uz": "Hech narsa qilmaslik",
+    "ru": "Ничего не делать"
+   },
+   {
+    "uz": "Kodni o'qimay ishlatish",
+    "ru": "Запускать код не читая"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar va jami uzun edi.",
+  "q": {
+   "uz": "«Failed to fetch» ko'pincha nimadan chiqadi?",
+   "ru": "Отчего чаще всего бывает «Failed to fetch»?"
+  },
+  "opts": [
+   {
+    "uz": "Logotip kichikligidan",
+    "ru": "Из-за маленького логотипа"
+   },
+   {
+    "uz": "Rasm rangi xatosidan",
+    "ru": "Из-за цвета картинки"
+   },
+   {
+    "uz": "Sarlavha xatosidan",
+    "ru": "Из-за ошибки в заголовке"
+   },
+   {
+    "uz": "Backend manzili xatosidan",
+    "ru": "Из-за неверного адреса backend"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Aniq prompt qanday bo'ladi?",
+   "ru": "Каким бывает точный промпт?"
+  },
+  "opts": [
+   {
+    "uz": "Nima, qayerda, qanday natija",
+    "ru": "Что, где и какой результат"
+   },
+   {
+    "uz": "«Saytni yaxshi qilib ber»",
+    "ru": "«Сделай сайт получше»"
+   },
+   {
+    "uz": "«O'zing bilganingcha qil»",
+    "ru": "«Делай как знаешь»"
+   },
+   {
+    "uz": "Topshiriqsiz, umumiy",
+    "ru": "Общий, без задания"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "AI yozgan kodni nega o'qiysiz?",
+   "ru": "Зачем читать код, написанный AI?"
+  },
+  "opts": [
+   {
+    "uz": "Rangini o'zgartirish uchun",
+    "ru": "Чтобы сменить цвет"
+   },
+   {
+    "uz": "Xatoni ko'rib tuzatish uchun",
+    "ru": "Чтобы увидеть и исправить ошибку"
+   },
+   {
+    "uz": "Faylni kattalashtirish uchun",
+    "ru": "Чтобы увеличить файл"
+   },
+   {
+    "uz": "Chiroyli ko'rsatish uchun",
+    "ru": "Чтобы красиво показать"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Bu loyihada NestJS nima qiladi?",
+   "ru": "Что делает NestJS в этом проекте?"
+  },
+  "opts": [
+   {
+    "uz": "So'rovlarni qabul qiladi",
+    "ru": "Принимает запросы"
+   },
+   {
+    "uz": "Rasm va chizma chizadi",
+    "ru": "Рисует картинки"
+   },
+   {
+    "uz": "Ma'lumotni saqlaydi",
+    "ru": "Хранит данные"
+   },
+   {
+    "uz": "Parolni ekranda ko'rsatadi",
+    "ru": "Показывает пароль на экране"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Buyurtma ma'lumoti qayerda saqlanadi?",
+   "ru": "Где хранятся данные заказа?"
+  },
+  "opts": [
+   {
+    "uz": "Admin Telegram xabarida",
+    "ru": "В Telegram-сообщении админу"
+   },
+   {
+    "uz": "Database'dagi jadvalda",
+    "ru": "В таблице Database"
+   },
+   {
+    "uz": "Mijoz brauzeri tarixida",
+    "ru": "В истории браузера клиента"
+   },
+   {
+    "uz": "Hech qayerda",
+    "ru": "Нигде"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "AI bilan kod yozish sikli qanday?",
+   "ru": "Какой цикл кода с AI?"
+  },
+  "opts": [
+   {
+    "uz": "Prompt → kod → ishlatish",
+    "ru": "Промпт → код → запуск"
+   },
+   {
+    "uz": "Kodni o'qimay ishlatish",
+    "ru": "Запуск кода без чтения"
+   },
+   {
+    "uz": "Prompt → kod → test → tuzatish",
+    "ru": "Промпт → код → тест → исправление"
+   },
+   {
+    "uz": "Bitta promptda hammasi",
+    "ru": "Всё в одном промпте"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PipelineProjectLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "«End-to-end test» nimani tekshiradi?",
+   "ru": "Что проверяет «end-to-end тест»?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta tugmaning rangini",
+    "ru": "Цвет одной кнопки"
+   },
+   {
+    "uz": "Faqat login sahifasini",
+    "ru": "Только страницу входа"
+   },
+   {
+    "uz": "Database'ning nomini",
+    "ru": "Имя Database"
+   },
+   {
+    "uz": "Butun buyurtma oqimini",
+    "ru": "Весь поток заказа"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "React Native nima?",
+   "ru": "Что такое React Native?"
+  },
+  "opts": [
+   {
+    "uz": "React bilan mobil ilova",
+    "ru": "Мобильное приложение на React"
+   },
+   {
+    "uz": "Saytni bezash kutubxonasi",
+    "ru": "Библиотека украшения сайта"
+   },
+   {
+    "uz": "Database boshqaruvchi server",
+    "ru": "Сервер управления Database"
+   },
+   {
+    "uz": "Rasm tahrirlash dasturi",
+    "ru": "Программа для редактирования фото"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Expo nima uchun kerak?",
+   "ru": "Зачем нужен Expo?"
+  },
+  "opts": [
+   {
+    "uz": "Database'ni boshqarish uchun",
+    "ru": "Чтобы управлять Database"
+   },
+   {
+    "uz": "Saytni joylash uchun",
+    "ru": "Чтобы разместить сайт"
+   },
+   {
+    "uz": "Telefonda oson sinash uchun",
+    "ru": "Чтобы легко проверять на телефоне"
+   },
+   {
+    "uz": "Rasm chizish uchun",
+    "ru": "Чтобы рисовать картинки"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Expo Go QR kod bilan nima qiladi?",
+   "ru": "Что делает Expo Go с QR-кодом?"
+  },
+  "opts": [
+   {
+    "uz": "Kodni o'zi yozib beradi",
+    "ru": "Сам пишет код"
+   },
+   {
+    "uz": "Ma'lumotni saqlaydi",
+    "ru": "Хранит данные"
+   },
+   {
+    "uz": "Saytni brauzerda ochadi",
+    "ru": "Открывает сайт в браузере"
+   },
+   {
+    "uz": "Loyihani telefonda ochadi",
+    "ru": "Открывает проект на телефоне"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "React Native'ga o'tganda nima o'zgarmaydi?",
+   "ru": "Что не меняется при переходе на React Native?"
+  },
+  "opts": [
+   {
+    "uz": "Ekran elementlari (div, p)",
+    "ru": "Элементы экрана (div, p)"
+   },
+   {
+    "uz": "Komponent, props va state",
+    "ru": "Компоненты, props и state"
+   },
+   {
+    "uz": "Alohida CSS fayl",
+    "ru": "Отдельный CSS-файл"
+   },
+   {
+    "uz": "HTML teglari",
+    "ru": "HTML-теги"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Besh bo'lakli tartib variantlari juda uzun edi; savol birinchi qadamga qisqartirildi.",
+  "q": {
+   "uz": "Bugungi mashq qaysi qadamdan boshlanadi?",
+   "ru": "С какого шага начинается сегодняшняя практика?"
+  },
+  "opts": [
+   {
+    "uz": "QR skan",
+    "ru": "Скан QR"
+   },
+   {
+    "uz": "Telefonda ko'rish",
+    "ru": "Просмотр на телефоне"
+   },
+   {
+    "uz": "StyleSheet",
+    "ru": "StyleSheet"
+   },
+   {
+    "uz": "Expo loyiha",
+    "ru": "Проект Expo"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi; izohlar javobni ochib qo'yardi.",
+  "q": {
+   "uz": "Pitsalar ro'yxati uchun qaysi komponent?",
+   "ru": "Какой компонент для списка пицц?"
+  },
+  "opts": [
+   {
+    "uz": "FlatList",
+    "ru": "FlatList"
+   },
+   {
+    "uz": "Text",
+    "ru": "Text"
+   },
+   {
+    "uz": "Image",
+    "ru": "Image"
+   },
+   {
+    "uz": "TextInput",
+    "ru": "TextInput"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Boshqa ekranga o'tish uchun nima chaqiriladi?",
+   "ru": "Что вызывают для перехода на другой экран?"
+  },
+  "opts": [
+   {
+    "uz": "window.location.reload()",
+    "ru": "window.location.reload()"
+   },
+   {
+    "uz": "navigation.navigate()",
+    "ru": "navigation.navigate()"
+   },
+   {
+    "uz": "app.open()",
+    "ru": "app.open()"
+   },
+   {
+    "uz": "<a href> tegi",
+    "ru": "тег <a href>"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Yangi ekran ochilganda dastada nima bo'ladi?",
+   "ru": "Что происходит со стопкой при открытии экрана?"
+  },
+  "opts": [
+   {
+    "uz": "Eski ekran o'chadi (pop)",
+    "ru": "Старый экран удаляется (pop)"
+   },
+   {
+    "uz": "Qayta yuklanadi (reload)",
+    "ru": "Перезагружается (reload)"
+   },
+   {
+    "uz": "Ustiga qo'yiladi (push)",
+    "ru": "Кладётся сверху (push)"
+   },
+   {
+    "uz": "Hech narsa o'zgarmaydi",
+    "ru": "Ничего не меняется"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Backend'dan ma'lumot nima bilan olinadi?",
+   "ru": "Чем получают данные с backend?"
+  },
+  "opts": [
+   {
+    "uz": "AsyncStorage",
+    "ru": "AsyncStorage"
+   },
+   {
+    "uz": "localStorage",
+    "ru": "localStorage"
+   },
+   {
+    "uz": "Qo'lda yozilgan massiv",
+    "ru": "Массив, написанный вручную"
+   },
+   {
+    "uz": "fetch",
+    "ru": "fetch"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Ma'lumotni bir marta yuklash qayerda yoziladi?",
+   "ru": "Где пишут однократную загрузку данных?"
+  },
+  "opts": [
+   {
+    "uz": "useEffect(…, []) ichida",
+    "ru": "Внутри useEffect(…, [])"
+   },
+   {
+    "uz": "Komponent tanasida",
+    "ru": "В теле компонента"
+   },
+   {
+    "uz": "useState([]) ichida",
+    "ru": "Внутри useState([])"
+   },
+   {
+    "uz": "Hech qayerda",
+    "ru": "Нигде"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Savatni telefonning o'zida nima saqlaydi?",
+   "ru": "Что хранит корзину на самом телефоне?"
+  },
+  "opts": [
+   {
+    "uz": "Backend Database'i",
+    "ru": "Database на backend"
+   },
+   {
+    "uz": "AsyncStorage",
+    "ru": "AsyncStorage"
+   },
+   {
+    "uz": "fetch",
+    "ru": "fetch"
+   },
+   {
+    "uz": "FlatList",
+    "ru": "FlatList"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun edi; darsdagi savol shakliga keltirildi.",
+  "q": {
+   "uz": "Mobil ilova uchun backend'ni nima qilasiz?",
+   "ru": "Что делаете с backend для мобильного приложения?"
+  },
+  "opts": [
+   {
+    "uz": "Yangisi quriladi",
+    "ru": "Строится новый"
+   },
+   {
+    "uz": "Backend kerak emas",
+    "ru": "Backend не нужен"
+   },
+   {
+    "uz": "O'sha backend'ga ulanadi",
+    "ru": "Подключается к тому же backend"
+   },
+   {
+    "uz": "Ma'lumot qo'lda ko'chiriladi",
+    "ru": "Данные переносятся вручную"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Bosiladigan element uchun qaysi komponent?",
+   "ru": "Какой компонент для нажимаемого элемента?"
+  },
+  "opts": [
+   {
+    "uz": "FlatList",
+    "ru": "FlatList"
+   },
+   {
+    "uz": "ScrollView",
+    "ru": "ScrollView"
+   },
+   {
+    "uz": "Image",
+    "ru": "Image"
+   },
+   {
+    "uz": "Pressable",
+    "ru": "Pressable"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Web, bot, mobil — bitta serverda. Bu nima?",
+   "ru": "Веб, бот, мобильное — на одном сервере. Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Har biriga alohida backend",
+    "ru": "Каждому свой backend"
+   },
+   {
+    "uz": "Backend kerak emas",
+    "ru": "Backend не нужен"
+   },
+   {
+    "uz": "Faqat web ulanadi",
+    "ru": "Подключается только веб"
+   },
+   {
+    "uz": "Ko'p kirish yo'li, bitta tizim",
+    "ru": "Много входов, одна система"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mobil ilova menyuni qayerdan oladi?",
+   "ru": "Откуда мобильное приложение берёт меню?"
+  },
+  "opts": [
+   {
+    "uz": "Tayyor backend'dan",
+    "ru": "С готового backend"
+   },
+   {
+    "uz": "Qo'lda yozilgan ro'yxatdan",
+    "ru": "Из списка, написанного вручную"
+   },
+   {
+    "uz": "Yangi mobil serverdan",
+    "ru": "С нового мобильного сервера"
+   },
+   {
+    "uz": "Hech qayerdan",
+    "ru": "Ниоткуда"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Loyiha kunida sizning vazifangiz nima?",
+   "ru": "Ваша задача в день проекта?"
+  },
+  "opts": [
+   {
+    "uz": "Kodni o'qimay ishlatish",
+    "ru": "Запускать код не читая"
+   },
+   {
+    "uz": "Topshiriq, o'qish va sinash",
+    "ru": "Задание, чтение и проверка"
+   },
+   {
+    "uz": "Hamma kodni qo'lda yozish",
+    "ru": "Писать весь код вручную"
+   },
+   {
+    "uz": "Faqat dizaynni tanlash",
+    "ru": "Только выбирать дизайн"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "«Yuborish» bosilsa nima bo'ladi?",
+   "ru": "Что будет при нажатии «Отправить»?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat telefonda saqlanadi",
+    "ru": "Хранится только в телефоне"
+   },
+   {
+    "uz": "Hech narsa bo'lmaydi",
+    "ru": "Ничего не произойдёт"
+   },
+   {
+    "uz": "Yangi mobil API ishlaydi",
+    "ru": "Запустится новый мобильный API"
+   },
+   {
+    "uz": "Backend'ga POST /buyurtma",
+    "ru": "POST /buyurtma на backend"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Savat soni belgisi nima bilan bog'lanadi?",
+   "ru": "С чем связан значок количества в корзине?"
+  },
+  "opts": [
+   {
+    "uz": "Backend `fayl` nomi bilan",
+    "ru": "С именем `fayl` в Backend"
+   },
+   {
+    "uz": "`savat.length` bilan",
+    "ru": "С `savat.length`"
+   },
+   {
+    "uz": "`rasm.width` bilan",
+    "ru": "С `rasm.width`"
+   },
+   {
+    "uz": "Sahifa `title` bilan",
+    "ru": "С `title` страницы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Expo Go asosan nima uchun kerak?",
+   "ru": "Для чего в основном нужен Expo Go?"
+  },
+  "opts": [
+   {
+    "uz": "Kodni tarjima qilish uchun",
+    "ru": "Чтобы переводить код"
+   },
+   {
+    "uz": "Backend qurish uchun",
+    "ru": "Чтобы строить backend"
+   },
+   {
+    "uz": "Rasm chizish uchun",
+    "ru": "Чтобы рисовать"
+   },
+   {
+    "uz": "Sinash va ulashish uchun",
+    "ru": "Чтобы проверять и делиться"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Mobil ilovani qanday sinaymiz?",
+   "ru": "Как проверяем мобильное приложение?"
+  },
+  "opts": [
+   {
+    "uz": "Umuman sinamaymiz",
+    "ru": "Вообще не проверяем"
+   },
+   {
+    "uz": "Faqat kodga qarab",
+    "ru": "Только глядя на код"
+   },
+   {
+    "uz": "Kodni o'qib, telefonda bosib",
+    "ru": "Читаем код, жмём на телефоне"
+   },
+   {
+    "uz": "Faqat ranglarni ko'rib",
+    "ru": "Только смотрим цвета"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Web, bot va mobil bir xil buyurtmani qanday ko'radi?",
+   "ru": "Как веб, бот и мобильное видят одни заказы?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta backend'ga ulanadi",
+    "ru": "Подключены к одному backend"
+   },
+   {
+    "uz": "Alohida Database quriladi",
+    "ru": "Строят отдельные Database"
+   },
+   {
+    "uz": "Qo'lda nusxalanadi",
+    "ru": "Копируются вручную"
+   },
+   {
+    "uz": "Buning iloji yo'q",
+    "ru": "Это невозможно"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Ilova ishlagach, yana nima kerak?",
+   "ru": "Что ещё нужно, когда приложение работает?"
+  },
+  "opts": [
+   {
+    "uz": "Boshqa hech narsa",
+    "ru": "Больше ничего"
+   },
+   {
+    "uz": "StyleSheet'ni o'chirish",
+    "ru": "Удалить StyleSheet"
+   },
+   {
+    "uz": "Hammasini qayta yozish",
+    "ru": "Переписать всё"
+   },
+   {
+    "uz": "StyleSheet bilan sayqal",
+    "ru": "Довести через StyleSheet"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Nega telefonda ham sinash kerak?",
+   "ru": "Зачем проверять и на телефоне?"
+  },
+  "opts": [
+   {
+    "uz": "Kod tezroq yuklanadi",
+    "ru": "Код грузится быстрее"
+   },
+   {
+    "uz": "Qurilma xatolari ko'rinadi",
+    "ru": "Видны ошибки устройства"
+   },
+   {
+    "uz": "Kod yozish kerak emas",
+    "ru": "Код писать не нужно"
+   },
+   {
+    "uz": "Internet kerak emas",
+    "ru": "Интернет не нужен"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Ishlar nimaga qarab ufqlarga bo'linadi?",
+   "ru": "По какому признаку дела делятся по горизонтам?"
+  },
+  "opts": [
+   {
+    "uz": "Qachon boshlanishiga",
+    "ru": "Когда они начинаются"
+   },
+   {
+    "uz": "Qancha vaqt olishiga",
+    "ru": "Сколько времени займут"
+   },
+   {
+    "uz": "Nechta odam so'raganiga",
+    "ru": "Сколько людей просили"
+   },
+   {
+    "uz": "Kim boshlashiga",
+    "ru": "Кто их начнёт"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Ish qaysi ufqda turishini nima belgilaydi?",
+   "ru": "Что определяет горизонт дела?"
+  },
+  "opts": [
+   {
+    "uz": "Necha kun olishi",
+    "ru": "Сколько дней займёт"
+   },
+   {
+    "uz": "Necha odamga kerakligi",
+    "ru": "Скольким людям нужно"
+   },
+   {
+    "uz": "Kerak narsa qachon tayyorligi",
+    "ru": "Когда готово нужное"
+   },
+   {
+    "uz": "Ro'yxatga qo'shilgan payti",
+    "ru": "Когда добавлено в список"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "To'garakning «eng yaxshi ishlar» sahifasi nega kutadi?",
+   "ru": "Почему страница «лучшие работы» кружка ждёт?"
+  },
+  "opts": [
+   {
+    "uz": "Yozish uzoq vaqt oladi",
+    "ru": "Долго писать"
+   },
+   {
+    "uz": "Ishlar hali yig'ilmagan",
+    "ru": "Работы ещё не собраны"
+   },
+   {
+    "uz": "Kam odam kutyapti",
+    "ru": "Мало кто ждёт"
+   },
+   {
+    "uz": "Rejaga kech qo'shilgan",
+    "ru": "Поздно добавлена в план"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "«Sartarosh suratlari» nega bugun boshlangan?",
+   "ru": "Почему «фото барберов» начаты сегодня?"
+  },
+  "opts": [
+   {
+    "uz": "Eng oson ish ekani uchun",
+    "ru": "Это самое лёгкое дело"
+   },
+   {
+    "uz": "Suratlar allaqachon bor",
+    "ru": "Фото уже есть"
+   },
+   {
+    "uz": "Ko'p odam kutgani uchun",
+    "ru": "Многие ждали"
+   },
+   {
+    "uz": "Navbat to'plangani uchun",
+    "ru": "Записи уже накопились"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "«Bu ish olti oydan keyin» — bu nima degani?",
+   "ru": "«Это дело через полгода» — что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "O'shanda ish boshlanadi",
+    "ru": "Тогда дело начнётся"
+   },
+   {
+    "uz": "O'shanda ish tugaydi",
+    "ru": "Тогда дело закончится"
+   },
+   {
+    "uz": "Ish olti oy davom etadi",
+    "ru": "Дело длится полгода"
+   },
+   {
+    "uz": "Olti oydan beri kutyapti",
+    "ru": "Ждёт уже полгода"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Sinf uzoq ishni «Hozir»ga ko'chirdi. Nima bo'ladi?",
+   "ru": "Класс перенёс дальнее дело в «Сейчас». Что будет?"
+  },
+  "opts": [
+   {
+    "uz": "Darhol boshlanadi",
+    "ru": "Сразу начнётся"
+   },
+   {
+    "uz": "Boshqa ish kutib qoladi",
+    "ru": "Другое дело будет ждать"
+   },
+   {
+    "uz": "Baribir to'xtaydi",
+    "ru": "Всё равно остановится"
+   },
+   {
+    "uz": "Sekinroq boshlanadi",
+    "ru": "Начнётся медленнее"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Uch ufqli reja odatda qanday ko'rinadi?",
+   "ru": "Как обычно выглядит план из трёх горизонтов?"
+  },
+  "opts": [
+   {
+    "uz": "Uzog'ida ish ko'p",
+    "ru": "Больше дел в дальнем"
+   },
+   {
+    "uz": "Uchalasida teng",
+    "ru": "Поровну во всех"
+   },
+   {
+    "uz": "O'rtasida ish ko'p",
+    "ru": "Больше дел в среднем"
+   },
+   {
+    "uz": "Yaqinida ish ko'p",
+    "ru": "Больше дел в ближнем"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Tesla usulida birinchi bosqich qanday bo'ladi?",
+   "ru": "Каким бывает первый этап по методу Tesla?"
+  },
+  "opts": [
+   {
+    "uz": "Keyingisiga yo'l ochadigan",
+    "ru": "Открывает путь следующему"
+   },
+   {
+    "uz": "Hamma birdan ko'radigan",
+    "ru": "Который все сразу увидят"
+   },
+   {
+    "uz": "Pul deyarli ketmaydigan",
+    "ru": "Почти без затрат"
+   },
+   {
+    "uz": "Eng qiyin bo'lgan",
+    "ru": "Самый трудный"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Tesla 1-mashinasi sotilmasa nima bo'lardi?",
+   "ru": "Что было бы, не продайся первая машина Tesla?"
+  },
+  "opts": [
+   {
+    "uz": "Reja o'zgarmasdi",
+    "ru": "План не изменился бы"
+   },
+   {
+    "uz": "Ikkinchisi tezroq qurilardi",
+    "ru": "Вторую построили бы быстрее"
+   },
+   {
+    "uz": "Ikkinchisiga pul bo'lmasdi",
+    "ru": "На вторую не было бы денег"
+   },
+   {
+    "uz": "Uchinchisi oldin qurilardi",
+    "ru": "Третью построили бы раньше"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson24.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "ikki-javob"
+  ],
+  "izoh": "Variantlar uzun edi; «kodni yozadigan dasturchi» ham ilovani yaratayotgan odam bo'lishi mumkin edi.",
+  "q": {
+   "uz": "Yangi ish qaysi ufqqa tushishini kim aytadi?",
+   "ru": "Кто решает, в какой горизонт попадёт новое дело?"
+  },
+  "opts": [
+   {
+    "uz": "Dastur kodining o'zi",
+    "ru": "Сам код программы"
+   },
+   {
+    "uz": "Ilovani yuklagan odam",
+    "ru": "Тот, кто скачал приложение"
+   },
+   {
+    "uz": "Ma'lumot serveri",
+    "ru": "Сервер данных"
+   },
+   {
+    "uz": "Ilovani yaratayotgan odam",
+    "ru": "Человек, создающий приложение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Web, mobil va bot nega «bitta tizim»?",
+   "ru": "Почему веб, мобильное и бот — «одна система»?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta backend'dan foydalanadi",
+    "ru": "Используют один backend"
+   },
+   {
+    "uz": "Har birida alohida Database",
+    "ru": "У каждого своя Database"
+   },
+   {
+    "uz": "Bir-biriga bog'liq emas",
+    "ru": "Не связаны между собой"
+   },
+   {
+    "uz": "Faqat ranglari o'xshash",
+    "ru": "Похожи только цвета"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "«Ko'p kirish yo'li, bitta tizim» nima degani?",
+   "ru": "Что значит «много входов, одна система»?"
+  },
+  "opts": [
+   {
+    "uz": "Hammasi bitta backend'ga",
+    "ru": "Все — к одному backend"
+   },
+   {
+    "uz": "Bitta kanal yetarli",
+    "ru": "Хватит одного канала"
+   },
+   {
+    "uz": "Har kanalga alohida tizim",
+    "ru": "Каждому каналу своя система"
+   },
+   {
+    "uz": "Faqat web bo'ladi",
+    "ru": "Бывает только веб"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "End-to-end test nimani sinaydi?",
+   "ru": "Что проверяет end-to-end тест?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta funksiyani alohida",
+    "ru": "Одну функцию отдельно"
+   },
+   {
+    "uz": "Ranglar va dizaynni",
+    "ru": "Цвета и дизайн"
+   },
+   {
+    "uz": "Amalning barcha qadamlarini",
+    "ru": "Все шаги одного действия"
+   },
+   {
+    "uz": "Kodni o'qib, ishlatmay",
+    "ru": "Код, прочитав без запуска"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "Test jadvalida qizil katak nimani bildiradi?",
+   "ru": "Что значит красная клетка в таблице тестов?"
+  },
+  "opts": [
+   {
+    "uz": "Hammasi to'g'ri ishladi",
+    "ru": "Всё сработало верно"
+   },
+   {
+    "uz": "O'sha kanal × qadamda xato",
+    "ru": "Ошибка в этом канале × шаге"
+   },
+   {
+    "uz": "Dizayn ishi tugadi",
+    "ru": "Дизайн закончен"
+   },
+   {
+    "uz": "Database tez ishlayapti",
+    "ru": "Database работает быстро"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Ulanish joyidagi xatoni qanday tuzatamiz?",
+   "ru": "Как исправить ошибку в месте соединения?"
+  },
+  "opts": [
+   {
+    "uz": "Hammasini qayta yozamiz",
+    "ru": "Переписываем всё"
+   },
+   {
+    "uz": "E'tibor bermaymiz",
+    "ru": "Не обращаем внимания"
+   },
+   {
+    "uz": "Sababini topib tuzatamiz",
+    "ru": "Находим причину и чиним"
+   },
+   {
+    "uz": "Faqat rangni o'zgartiramiz",
+    "ru": "Меняем только цвет"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Ishga tushirishdan oldin nima shart?",
+   "ru": "Что обязательно перед запуском?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsa, darrov chiqaramiz",
+    "ru": "Ничего, сразу выпускаем"
+   },
+   {
+    "uz": "Test o'tgan, sozlama to'g'ri",
+    "ru": "Тест пройден, настройки верны"
+   },
+   {
+    "uz": "Ko'proq rang va bezak",
+    "ru": "Больше цвета и украшений"
+   },
+   {
+    "uz": "Logotip va nom tayyor",
+    "ru": "Готовы логотип и имя"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun edi.",
+  "q": {
+   "uz": "«Deploy» nima degani?",
+   "ru": "Что значит «deploy»?"
+  },
+  "opts": [
+   {
+    "uz": "Kodni o'chirish",
+    "ru": "Удалить код"
+   },
+   {
+    "uz": "Dizayn chizish",
+    "ru": "Нарисовать дизайн"
+   },
+   {
+    "uz": "Serverga joylashtirish",
+    "ru": "Разместить на сервере"
+   },
+   {
+    "uz": "Yangi til o'rganish",
+    "ru": "Учить новый язык"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol va variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Bir kanaldagi buyurtma boshqasida ko'rinadimi?",
+   "ru": "Виден ли заказ из одного канала в другом?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, har kanal alohida",
+    "ru": "Нет, каждый канал отдельно"
+   },
+   {
+    "uz": "Faqat qo'lda ko'chirsa",
+    "ru": "Только если перенести вручную"
+   },
+   {
+    "uz": "Buni qilib bo'lmaydi",
+    "ru": "Это невозможно"
+   },
+   {
+    "uz": "Ha, Database bitta",
+    "ru": "Да, Database одна"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol va variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Tizimga mobil kanal qo'shishning oson yo'li?",
+   "ru": "Самый простой способ добавить мобильный канал?"
+  },
+  "opts": [
+   {
+    "uz": "Hammasini noldan yozish",
+    "ru": "Написать всё с нуля"
+   },
+   {
+    "uz": "Yangi frontend'ni ulash",
+    "ru": "Подключить новый frontend"
+   },
+   {
+    "uz": "Alohida Database qurish",
+    "ru": "Построить отдельную Database"
+   },
+   {
+    "uz": "Buni qilib bo'lmaydi",
+    "ru": "Это невозможно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "AI tizimda qanday rol o'ynaydi?",
+   "ru": "Какую роль играет AI в системе?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumotni saqlaydi",
+    "ru": "Хранит данные"
+   },
+   {
+    "uz": "Hamma qarorni o'zi qiladi",
+    "ru": "Сам принимает все решения"
+   },
+   {
+    "uz": "Buyurtmani o'zi yozadi",
+    "ru": "Сам записывает заказ"
+   },
+   {
+    "uz": "Savolga javob yozadi",
+    "ru": "Пишет ответ на вопрос"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Besh bo'lakli tartib variantlari juda uzun edi; savol oxirgi qadamga qisqartirildi.",
+  "q": {
+   "uz": "To'liq tizimni yetkazishda oxirgi qadam qaysi?",
+   "ru": "Какой последний шаг при сдаче полной системы?"
+  },
+  "opts": [
+   {
+    "uz": "Yig'ish",
+    "ru": "Сборка"
+   },
+   {
+    "uz": "Sinash",
+    "ru": "Проверка"
+   },
+   {
+    "uz": "Xatoni topish",
+    "ru": "Поиск ошибки"
+   },
+   {
+    "uz": "Ishga tushirish",
+    "ru": "Запуск"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Kuchli dalil raqami nimani sanaydi?",
+   "ru": "Что считает число-доказательство?"
+  },
+  "opts": [
+   {
+    "uz": "Foydalanuvchi olgan natijani",
+    "ru": "Результат, полученный пользователем"
+   },
+   {
+    "uz": "Qurishga ketgan vaqtni",
+    "ru": "Время на постройку"
+   },
+   {
+    "uz": "Kod satrlari sonini",
+    "ru": "Число строк кода"
+   },
+   {
+    "uz": "Ishlagan odamlar sonini",
+    "ru": "Число работавших людей"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "«28 ta rasm chizildi» nimani sanaydi?",
+   "ru": "Что считает «нарисовано 28 картинок»?"
+  },
+  "opts": [
+   {
+    "uz": "Tizimni ochgan odamlarni",
+    "ru": "Людей, открывших систему"
+   },
+   {
+    "uz": "Javob olgan odamlarni",
+    "ru": "Людей, получивших ответ"
+   },
+   {
+    "uz": "Telefondan ochganlarni",
+    "ru": "Открывших с телефона"
+   },
+   {
+    "uz": "Sizning mehnatingizni",
+    "ru": "Ваш труд"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Slaydda faqat «150». Bu raqam nima qiladi?",
+   "ru": "На слайде только «150». Что делает это число?"
+  },
+  "opts": [
+   {
+    "uz": "Hammasini aytib beradi",
+    "ru": "Рассказывает всё"
+   },
+   {
+    "uz": "Odamlarni sanab turadi",
+    "ru": "Считает людей"
+   },
+   {
+    "uz": "Savol tug'diradi, xolos",
+    "ru": "Только вызывает вопрос"
+   },
+   {
+    "uz": "Qatorlarni o'zi to'ldiradi",
+    "ru": "Сам заполняет строки"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Gapiradigan slaydda nechta qator bo'ladi?",
+   "ru": "Сколько строк в «говорящем» слайде?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkita",
+    "ru": "Две"
+   },
+   {
+    "uz": "Uchta",
+    "ru": "Три"
+   },
+   {
+    "uz": "To'rtta",
+    "ru": "Четыре"
+   },
+   {
+    "uz": "Bitta",
+    "ru": "Одна"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Slaydda «120 · odam saytdan foydalandi». Yana nima kerak?",
+   "ru": "На слайде «120 · человек пользовались сайтом». Что ещё нужно?"
+  },
+  "opts": [
+   {
+    "uz": "Qaysi kuni sanalgani",
+    "ru": "В какой день посчитано"
+   },
+   {
+    "uz": "U nimani ko'rsatishi",
+    "ru": "Что это число показывает"
+   },
+   {
+    "uz": "Qaysi sahifa sanagani",
+    "ru": "Какая страница считала"
+   },
+   {
+    "uz": "120 ni yana bir bor",
+    "ru": "Ещё раз число 120"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi; darsdagi savol shakliga keltirildi.",
+  "q": {
+   "uz": "Ikki natija raqamidan qaysi biri sahnaga chiqadi?",
+   "ru": "Какое из двух чисел-результатов выходит на сцену?"
+  },
+  "opts": [
+   {
+    "uz": "Ish oxirigacha yetgani",
+    "ru": "То, где дело дошло до конца"
+   },
+   {
+    "uz": "Foydalanish boshlangani",
+    "ru": "То, где использование началось"
+   },
+   {
+    "uz": "Soni kattarog'i",
+    "ru": "То, что больше"
+   },
+   {
+    "uz": "Birinchi yozilgani",
+    "ru": "То, что записано первым"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "«41 odam tizimni ochdi» nimani ko'rsatadi?",
+   "ru": "Что показывает «41 человек открыл систему»?"
+  },
+  "opts": [
+   {
+    "uz": "Necha hafta qurilganini",
+    "ru": "Сколько недель строили"
+   },
+   {
+    "uz": "Nechta sahifa borligini",
+    "ru": "Сколько в ней страниц"
+   },
+   {
+    "uz": "Foydalanish boshlanganini",
+    "ru": "Что использование началось"
+   },
+   {
+    "uz": "Arizaga javob berilganini",
+    "ru": "Что на заявки ответили"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Airbnb varaqlarida raqam qayerda turgan?",
+   "ru": "Где стояло число на листах Airbnb?"
+  },
+  "opts": [
+   {
+    "uz": "Oxirida, jamoadan keyin",
+    "ru": "В конце, после команды"
+   },
+   {
+    "uz": "Mahsulotdan keyin",
+    "ru": "После продукта"
+   },
+   {
+    "uz": "Qiyinchilikdan oldin",
+    "ru": "Перед проблемой"
+   },
+   {
+    "uz": "Yechimdan keyin",
+    "ru": "После решения"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Airbnb raqami qiyinchilik haqida nimani aytgan?",
+   "ru": "Что число Airbnb говорило о проблеме?"
+  },
+  "opts": [
+   {
+    "uz": "Qancha odamda borligini",
+    "ru": "У скольких людей она есть"
+   },
+   {
+    "uz": "Qancha vaqtda yechilganini",
+    "ru": "За сколько её решили"
+   },
+   {
+    "uz": "Nechta uy qo'yilganini",
+    "ru": "Сколько домов выставлено"
+   },
+   {
+    "uz": "Jamoa a'zolari ismini",
+    "ru": "Имена членов команды"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "«5 hafta ishlandi» nega natija raqami emas?",
+   "ru": "Почему «работали 5 недель» — не число-результат?"
+  },
+  "opts": [
+   {
+    "uz": "5 juda kichik son",
+    "ru": "5 — слишком маленькое число"
+   },
+   {
+    "uz": "Hafta soni o'zgaradi",
+    "ru": "Число недель меняется"
+   },
+   {
+    "uz": "U mehnatni sanaydi",
+    "ru": "Оно считает труд"
+   },
+   {
+    "uz": "Uni hech kim ko'rmaydi",
+    "ru": "Его никто не видит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Tizimni hech kim sinamagan. Nima qilinadi?",
+   "ru": "Систему никто не пробовал. Что делать?"
+  },
+  "opts": [
+   {
+    "uz": "Taxminiy raqam o'ylanadi",
+    "ru": "Придумывают примерное число"
+   },
+   {
+    "uz": "Tizim qilgan ishlar sanaladi",
+    "ru": "Считают дела, сделанные системой"
+   },
+   {
+    "uz": "Slayd raqamsiz chiqadi",
+    "ru": "Слайд выходит без числа"
+   },
+   {
+    "uz": "Ketgan soatlar yoziladi",
+    "ru": "Пишут потраченные часы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/6-Modull/PmLesson25.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi; «kodni yozgan dasturchi» chalg'ituvchisi olib tashlandi.",
+  "q": {
+   "uz": "Sahnaga qaysi raqam chiqishini kim hal qiladi?",
+   "ru": "Кто решает, какое число выйдет на сцену?"
+  },
+  "opts": [
+   {
+    "uz": "Sahnadagi katta ekran",
+    "ru": "Большой экран на сцене"
+   },
+   {
+    "uz": "Tizimning o'zi tanlaydi",
+    "ru": "Система выбирает сама"
+   },
+   {
+    "uz": "Zaldagi mehmonlar",
+    "ru": "Гости в зале"
+   },
+   {
+    "uz": "Ilovani yaratayotgan siz",
+    "ru": "Вы, создающий приложение"
+   }
+  ],
+  "correct": 3
+ }
+]

@@ -98,7 +98,7 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 export const SCREEN_INTENTS = {
   s0: "Bola sinfdoshi sahifasini ochsa nima ko'rishini tanlaydi va sahifada beshala qator o'qilib turganini ko'radi",
   s1: "Bola dars oxirida uch qatorga qaror chiqarib, har biriga sabab yoza olishini oldindan ko'radi",
-  s2: "Bola ikki kartani ochib ochiq va yopiq ma'lumot farqini o'zi topadi",
+  s2: "Bola ikki misolda kim zarar ko'rishini tanlab, ochiq va yopiq ma'lumot farqini o'zi topadi",
   s3: "Bola ma'lumotni yopiq qiladigan narsa zarar ekanini tanlaydi",
   s4: "Bola bitta sahifani uch odam kirishida ochadi va sinfdosh ko'rmasligi kerak bo'lgan qatorlarni o'zi topadi",
   s5: "Bola ochiq qolish ham qaror ekanini aniqlaydi",
@@ -820,36 +820,46 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
   </Stage>
 );
 
-// ===== SCREEN 2 — TEORIYA-1: ochiq ma'lumot ↔ yopiq ma'lumot (46-qonun toggle) =====
+// ===== SCREEN 2 — TEORIYA-1: ochiq ma'lumot ↔ yopiq ma'lumot (har karta qaror bilan ochiladi) =====
 const S2_CARDS = [
   { ic: '👁', h: { uz: 'Ochiq ma\'lumot', ru: 'Открытые данные' }, b: { uz: 'Begona odam ko\'rsa ham hech kim zarar ko\'rmaydi', ru: 'Даже если увидит чужой — никому не будет вреда' } },
   { ic: '🔒', h: { uz: 'Yopiq ma\'lumot', ru: 'Закрытые данные' }, b: { uz: 'Begona odam ko\'rsa, egasi zarar ko\'radi', ru: 'Если увидит чужой — пострадает владелец' } },
 ];
-const Screen2 = ({ screen, onNext, onPrev }) => {
+// F-1019-06 (DE 213.22): kartalar endi qaror bilan ochiladi — har karta oldidan bitta misol
+// (s1 va s4 qatorlaridan TASHQARIDA — spoyler-taqiq), 3 variant (biri to'g'ri, qolgani tipik
+// xato), xatosiga bir qatorli sabab. To'g'ri javob navbatdagi kartani ochadi. Qaror komponenti
+// s4 dan oldin e'lon qilingan bo'lsa ham shu yerda ishlaydi (funksiya render paytida chaqiriladi).
+const S2_QAROR = [
+  { savol: { uz: "Begona odam sevimli futbol jamoangiz nomini bilib oldi. Nima bo'ladi?", ru: 'Чужой узнал название вашей любимой футбольной команды. Что будет?' }, v: [
+    { t: { uz: "Siz zarar ko'rasiz, chunki bu sizning ma'lumotingiz", ru: 'Вы пострадаете, ведь это ваши данные' }, izoh: { uz: "Ma'lumot sizniki bo'lgani hali zarar degani emas.", ru: 'То, что данные ваши, ещё не значит, что будет вред.' } },
+    { ok: true, t: { uz: "Hech kim zarar ko'rmaydi", ru: 'Никто не пострадает' } },
+    { t: { uz: "Uni darhol yashirish kerak bo'ladi", ru: 'Его нужно срочно спрятать' }, izoh: { uz: 'Jamoa nomini bilgan odam sizga hech narsa qila olmaydi.', ru: 'Зная название команды, чужой ничего вам не сделает.' } }
+  ] },
+  { savol: { uz: "Endi begona odam bank kartangizning PIN-kodini ko'rib qoldi. Kim zarar ko'radi?", ru: 'Теперь чужой увидел PIN-код вашей банковской карты. Кто пострадает?' }, v: [
+    { t: { uz: "Hech kim, bu shunchaki to'rtta raqam", ru: 'Никто, это просто четыре цифры' }, izoh: { uz: "Shu to'rt raqam bilan begona kartadagi pulni yechib oladi.", ru: 'С этими четырьмя цифрами чужой снимет деньги с карты.' } },
+    { t: { uz: "Kodni ko'rib qolgan begona odam", ru: 'Чужой, который увидел код' }, izoh: { uz: "Begona yutadi, pulni esa karta egasi yo'qotadi.", ru: 'Чужой выигрывает, а деньги теряет владелец карты.' } },
+    { ok: true, t: { uz: "Kartaning egasi, ya'ni o'zingiz", ru: 'Владелец карты, то есть вы' } }
+  ] }
+];
+const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const isMentor = !!(gate.live && gate.live.mode === 'mentor');
-  const [opened, setOpened] = useState([false, false]);
-  const [seen, setSeen] = useState([false, false]);
-  const allSeen = seen.every(Boolean);
-  // 46-qonun: birinchi bosishdan keyin karta QULFLANMAYDI — qayta bosilsa yopilib-ochiladi.
-  const toggle = (i) => {
-    setOpened(prev => prev.map((v, k) => (k === i ? !v : v)));
-    setSeen(prev => (prev[i] ? prev : prev.map((v, k) => (k === i ? true : v))));
-  };
-  const pend = S2_CARDS.map((_, i) => String(i)).filter(k => !seen[Number(k)]);
-  const lit = useTurnWalk(pend);
-  const qoldi = seen.filter(v => !v).length;
+  // q — ochilgan kartalar soni; qaytganda (storedAnswer) ekran tugagan holatda ochiladi
+  const [q, setQ] = useState(storedAnswer ? S2_CARDS.length : 0);
+  const done = q >= S2_CARDS.length;
+  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: "Muhokama · ikki xil ma'lumot", ru: 'Обсуждение · два вида данных' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!allSeen && !isMentor} disabled={!allSeen && !isMentor} label={allSeen || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `👆 Yana ${qoldi} kartani oching`, ru: `👆 Откройте ещё ${qoldi} карточк${qoldi === 1 ? 'у' : 'и'}` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Muhokama · ikki xil ma'lumot", ru: 'Обсуждение · два вида данных' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done && !isMentor} disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ilovadagi hamma narsa <span className="italic" style={{ color: T.accent }}>hammaga</span> ko'rinishi kerakmi?</>, ru: <>Должно ли всё в приложении быть видно <span className="italic" style={{ color: T.accent }}>всем</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Ikki kartani bosib solishtiring.', ru: 'Нажмите на две карточки и сравните.' })}</Mentor>
+        <Mentor>{tr({ uz: "Har savolga javob bering — to'g'ri javob navbatdagi kartani ochadi.", ru: 'Ответьте на каждый вопрос — верный ответ открывает следующую карточку.' })}</Mentor>
+        {!done && <Qaror key={q} savol={S2_QAROR[q].savol} variantlar={S2_QAROR[q].v} onTogri={() => setQ(n => Math.min(S2_CARDS.length, n + 1))} />}
         <div className="dfc-grid fade-up delay-1">
           {S2_CARDS.map((c, i) => (
-            <button key={i} type="button" className={`dfc${opened[i] ? ' open' : ''}${turnCls(lit, String(i), pend.length > 1)}`} onClick={() => toggle(i)}>
+            <div key={i} className={`dfc static${i < q ? ' open' : ''}`}>
               <span className="dfc-top"><span className="dfc-ic">{c.ic}</span><span className="dfc-h">{tr(c.h)}</span></span>
-              <span className="dfc-b">{opened[i] ? tr(c.b) : '· · ·'}</span>
-            </button>
+              <span className="dfc-b">{i < q ? tr(c.b) : '· · ·'}</span>
+            </div>
           ))}
         </div>
       </div>
@@ -877,6 +887,37 @@ const Screen3 = (props) => (
 );
 
 // ===== SCREEN 4 — YADRO: UCH KIRISH — BIR SAHIFA (markaziy mexanika) =====
+// F-1019-04 (DE 213.22): kirish endi qaror bilan ochiladi — savol, 3 variant (biri to'g'ri,
+// qolgani tipik xato), xatosiga bir qatorli sabab, o'sha tugma yopiladi, qayta tanlash.
+// To'g'ri javob o'sha odamning kirishini ochadi. Qaysi qator yopilishini savol AYTMAYDI (98b).
+const Qaror = ({ savol, variantlar, onTogri }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const tanla = (j) => {
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="p12-qr fade-step">
+      <p className="p12-qr-s">{tr(savol)}</p>
+      <div className="p12-qr-v">{variantlar.map((v, j) => <button key={j} type="button" className={`p12-qr-c${xato.includes(j) ? ' xato' : ''}`} disabled={xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</button>)}</div>
+      {izoh && <p key={tr(izoh)} className="jres ask fade-step">{tr(izoh)}</p>}
+    </div>
+  );
+};
+const S4_QAROR = {
+  rahbar: { savol: { uz: "Sinf rahbari jurnalni ochdi. U kimning sahifalarini ko'radi?", ru: 'Классный руководитель открыл журнал. Чьи страницы он видит?' }, v: [
+    { t: { uz: "Faqat o'z farzandining sahifasini", ru: 'Только страницу своего ребёнка' }, izoh: { uz: "Farzand sahifasini ota-ona ochadi; rahbar butun sinfni ko'radi.", ru: 'Страницу ребёнка открывают родители; руководитель видит весь класс.' } },
+    { t: { uz: "Faqat a'lochilarning sahifasini", ru: 'Только страницы отличников' }, izoh: { uz: "Rahbar baho bo'yicha tanlamaydi — sinfdagi har o'quvchini ko'radi.", ru: 'Руководитель не выбирает по оценкам — он видит каждого ученика.' } },
+    { ok: true, t: { uz: "Butun sinfning sahifalarini", ru: 'Страницы всего класса' } }
+  ] },
+  sinfdosh: { savol: { uz: "Endi sinfdoshingiz sahifangizni ochdi. Hozir u nimani ko'radi?", ru: 'Теперь вашу страницу открыл одноклассник. Что он сейчас видит?' }, v: [
+    { ok: true, t: { uz: 'Sahifadagi beshala qatorni', ru: 'Все пять строк страницы' } },
+    { t: { uz: 'Faqat ism va sinf qatorlarini', ru: 'Только строки с именем и классом' }, izoh: { uz: "Hali hech qator yopilmagan — u ham hammasini ko'radi.", ru: 'Ни одна строка ещё не закрыта — он тоже видит всё.' } },
+    { t: { uz: "Hech qaysi qatorni ko'rmaydi", ru: 'Не видит ни одной строки' }, izoh: { uz: "Sahifa bitta: hozir kim ochsa, bir xil qatorlarni ko'radi.", ru: 'Страница одна: сейчас кто ни откроет, видит те же строки.' } }
+  ] }
+};
 // 🔴 IPUCHA-ZINAPOYASI (M3-D10 saboqi): taymer o'quvchining bosishlariga BOG'LIQ EMAS —
 // u ekran ochiq turganda yuradi; ikkinchi o'lchov — YANGI qator yopmagan urinishlar soni.
 const TIP1_SEC = 40, TIP1_TRY = 3;      // 1-bosqich: qoida-ipuchasi (javobni AYTMAYDI)
@@ -930,20 +971,21 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tip1 = allSeen && !done && !isMentor && (sec >= TIP1_SEC || tries >= TIP1_TRY);
   const rescue = allSeen && !done && !isMentor && (sec >= TIP2_SEC || tries >= TIP2_TRY);
   const pendKir = KIRISHLAR.map(k => k.k).filter(k => !seen.includes(k));
-  const lit = useTurnWalk(pendKir, !isMentor);
+  const qKir = pendKir[0] && S4_QAROR[pendKir[0]] ? pendKir[0] : null; // joriy qaror — navbatdagi kirish
   // 👦-3 / korpus §80: s4 da bitta fe'l — qator YOPILADI. «Ortiqcha» s9 da «olib tashlash»
   // ma'nosida yuradi, shuning uchun bu ekranda ishlatilmaydi (bola o'chirish deb tushunmasin).
-  const navLabel = done || isMentor || rescue ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !allSeen ? tr({ uz: `① Uchala kirishni oching (${seen.length}/3)`, ru: `① Откройте все три входа (${seen.length}/3)` }) : tr({ uz: '② Yopiladigan qatorlarni bosing', ru: '② Нажмите строки, которые нужно закрыть' });
+  const navLabel = done || isMentor || rescue ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !allSeen ? tr({ uz: '① Savollarga javob bering', ru: '① Ответьте на вопросы' }) : tr({ uz: '② Yopiladigan qatorlarni bosing', ru: '② Нажмите строки, которые нужно закрыть' });
   return (
     <Stage eyebrow={tr({ uz: 'Sinov · bitta sahifa', ru: 'Проба · одна страница' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor && !rescue} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.3vw,13px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sahifangizni <span className="italic" style={{ color: T.accent }}>uch odam</span> ochib ko'ring.</>, ru: <>Откройте свою страницу глазами <span className="italic" style={{ color: T.accent }}>трёх человек</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Har odamning kirishini birma-bir bosing.', ru: 'Нажмите вход каждого по очереди.' })}</Mentor>
-        {/* 72-qonun: yorliqli idish + diqqat-signali; kirish ochilgach signal tinadi */}
-        <div className={`kdock${allSeen ? ' calm' : ''}`}>
+        <Mentor>{tr({ uz: "Har savolga javob bering — to'g'ri javobdan keyin sahifani o'sha odam ochadi.", ru: 'Ответьте на каждый вопрос — после верного ответа страницу открывает этот человек.' })}</Mentor>
+        {/* 72-qonun: yorliqli idish. F-1019-04: navbatdagi kirish qaror bilan ochiladi — idish tinch,
+            ochilgan kirishlar o'rtasida almashish mumkin (mentor — hammasini o'zi ochadi) */}
+        <div className="kdock calm">
           <div className="kdock-btns">
             {KIRISHLAR.map(k => (
-              <button key={k.k} type="button" className={`kbtn${who === k.k ? ' on' : ''}${seen.includes(k.k) ? ' seen' : ''}${turnCls(lit, k.k, pendKir.length > 1)}`} onClick={() => openKirish(k.k)}>
+              <button key={k.k} type="button" className={`kbtn${who === k.k ? ' on' : ''}${seen.includes(k.k) ? ' seen' : ''}`} disabled={!isMentor && !seen.includes(k.k)} onClick={() => openKirish(k.k)}>
                 <span className="kbtn-ic">{k.ic}</span><span className="kbtn-t">{tr(k.nom)}</span>
               </button>
             ))}
@@ -956,6 +998,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <JPage yopiq={yopiq} mask={who === 'sinfdosh'} clickable={allSeen && !done && !isMentor} onRow={rowClick} just={just} whoIc={kir.ic} />
           </Col>
           <Col gap={9}>
+            {!allSeen && qKir && <Qaror key={qKir} savol={S4_QAROR[qKir].savol} variantlar={S4_QAROR[qKir].v} onTogri={() => openKirish(qKir)} />}
             {allSeen && !done && <p className="jtask fade-step">{tr({ uz: 'Sinfdoshingiz ochganda qaysi qatorlar turmasligi kerak? Ularni bosing.', ru: 'Каких строк не должно быть, когда страницу открывает одноклассник? Нажмите на них.' })}</p>}
             {/* 106d/71: har bosishdan keyin belgi VA yonidagi bitta qator — taxmin qoldirilmaydi */}
             {just && <p className={`jres ${just.ok ? 'ok' : 'ask'} fade-step`}>{just.ok ? '✅' : '🤔'} {tr(just.res)}</p>}
@@ -1857,7 +1900,7 @@ const QUIZ_BANK = [
   // Shuning uchun uchala distraktordan mutlaq so'z («eng ko'p» · «faqat» · «hammadan») olindi,
   // aks holda bola mazmunni emas, yolg'iz qolgan shaklni o'qirdi. Uchalasi ham «noto'g'ri
   // mezon» sinfida qoldi (ommaboplik · mehnat · saqlash tartibi) — TEST-1 reveali ularni rad etadi.
-  { q: { uz: "Ochiq ma'lumot nima?", ru: 'Что такое открытые данные?' }, opts: [{ uz: "Begona odam ko'rsa ham hech kim zarar ko'rmaydi", ru: 'Даже если увидит чужой — никому не будет вреда' }, { uz: "Ilovada ko'p odam o'qiydigan ma'lumot bo'ladi", ru: 'Данные, которые в приложении читают многие' }, { uz: "Uni yozishga kam vaqt ketgan bo'ladi", ru: 'На их запись ушло мало времени' }, { uz: 'Ilova uni boshqa qatorlardan oldin saqlaydi', ru: 'Приложение сохраняет их раньше других строк' }], correct: 0 },
+  { q: { uz: "Ochiq ma'lumot nima?", ru: "Что такое открытые данные?" }, opts: [{ uz: "Begona ko'rsa ham zarar yo'q", ru: "Даже если увидит чужой — вреда нет" }, { uz: "Ko'p odam o'qiydigan narsa", ru: "То, что читают многие" }, { uz: "Kam vaqtda yozilgan narsa", ru: "То, что записали быстро" }, { uz: "Ilova birinchi saqlagani", ru: "То, что приложение сохранило первым" }], correct: 0 },
   // 17-qonun (darslik-jonli): eski 3-variant «Uni ilova umuman saqlamasligi ham mumkin»
   // s8 yulduzchasida ROST bo'lib turardi («ilova umuman saqlamasligi kerak bo'lgan narsa»)
   // — ikkinchi himoyalanadigan javob chiqardi. O'rniga ekranda ham, hayotda ham rost
@@ -1869,8 +1912,8 @@ const QUIZ_BANK = [
   // Shu §110-sinfi: «Uni faqat kechqurun ochib o'qish mumkin» kulgili-bo'sh edi va mutlaq
   // so'z olib yurardi — o'rniga vaqt-mezoni qo'yildi (bola «yopiqlik vaqt bilan keladi» deb
   // o'ylashi mumkin), u ham TEST-1 reveali bilan rad etiladi: mezon bitta — zarar.
-  { q: { uz: "Yopiq ma'lumot nima?", ru: 'Что такое закрытые данные?' }, opts: [{ uz: 'Uni ilova boshqalardan uzunroq yozadi', ru: 'Приложение записывает их дольше других' }, { uz: 'Uni ilova alohida joyda saqlaydi', ru: 'Приложение хранит их в отдельном месте' }, { uz: 'Uni ilova bir necha kundan keyin yopadi', ru: 'Приложение закрывает их через несколько дней' }, { uz: "Begona odam ko'rsa, egasi zarar ko'radi", ru: 'Если увидит чужой — пострадает владелец' }], correct: 3 },
-  { q: { uz: "Ma'lumotni yopiq qiladigan narsa nima?", ru: 'Что делает данные закрытыми?' }, opts: [{ uz: "Ma'lumotning uzunligi va turi", ru: 'Длина и тип данных' }, { uz: 'Uni yozgan odamning ismi', ru: 'Имя того, кто их записал' }, { uz: "Begona ko'rsa yetadigan zarar", ru: 'Вред, если их увидит чужой' }, { uz: 'Uni ilovaga qo\'shilgan sana', ru: 'Дата, когда их добавили в приложение' }], correct: 2 },
+  { q: { uz: "Yopiq ma'lumot nima?", ru: "Что такое закрытые данные?" }, opts: [{ uz: "Ilova uzunroq yozadigani", ru: "То, что приложение пишет длиннее" }, { uz: "Alohida joyda saqlangani", ru: "То, что хранится отдельно" }, { uz: "Bir necha kunda yopiladigani", ru: "То, что закроется через пару дней" }, { uz: "Begona ko'rsa, egasiga zarar", ru: "Увидит чужой — владельцу вред" }], correct: 3 },
+  { q: { uz: "Ma'lumotni yopiq qiladigan narsa nima?", ru: "Что делает данные закрытыми?" }, opts: [{ uz: "Ma'lumotning turi", ru: "Тип данных" }, { uz: "Yozgan odamning ismi", ru: "Имя того, кто записал" }, { uz: "Begona ko'rsa zarar", ru: "Вред, если увидит чужой" }, { uz: "Qo'shilgan sanasi", ru: "Дата добавления" }], correct: 2 },
   // 4-variant sahifadagi qator BO'LISHI mumkin emas: yopiladigan uchta qator (baho · telefon ·
   // parol) javob bo'lib qolardi. Shuning uchun hammaga ochiq maktab ma'lumoti olindi — s9 da
   // «Maktab manzili va telefoni» xabarda qolgani uni darsdan chiqarib tashlashga o'rgatadi.
@@ -1879,16 +1922,16 @@ const QUIZ_BANK = [
   // javobda esa yo'q edi — bola mutlaq so'zsizini tanlab qo'yardi. Ikkovi ham TEST-2 ning
   // «texnik bahona» sinfiga o'tkazildi; «umuman saqlamaydi» bundan tashqari s10 sxemasiga
   // zid edi (ism va sinf ustunlari jadvalda turibdi).
-  { q: { uz: 'Ism va sinf nega ochiq qoladi?', ru: 'Почему имя и класс остаются открытыми?' }, opts: [{ uz: 'Ilova ularni har kuni yangilab turadi', ru: 'Приложение обновляет их каждый день' }, { uz: "Ularni ko'rgan odam zarar bermaydi", ru: 'Тот, кто их увидит, не навредит' }, { uz: 'Ularni yopish ilovaga qiyin bo\'ladi', ru: 'Приложению трудно их закрыть' }, { uz: "Ular ilovaga keyinroq qo'shilgan", ru: 'Их добавили в приложение позже' }], correct: 1 },
-  { q: { uz: "Hamma qatorni yopib qo'ysangiz nima bo'ladi?", ru: 'Что будет, если закрыть все строки?' }, opts: [{ uz: 'Ilovadan foyda qolmaydi', ru: 'От приложения не останется пользы' }, { uz: 'Ilova tezroq ishlaydigan bo\'ladi', ru: 'Приложение станет работать быстрее' }, { uz: "Sinfdoshingiz baribir ko'radi", ru: 'Одноклассник всё равно увидит' }, { uz: 'Ilova qatorlarni o\'zi ochadi', ru: 'Приложение само откроет строки' }], correct: 0 },
+  { q: { uz: "Ism va sinf nega ochiq qoladi?", ru: "Почему имя и класс остаются открытыми?" }, opts: [{ uz: "Har kuni yangilanib turadi", ru: "Обновляются каждый день" }, { uz: "Ko'rgan odam zarar bermaydi", ru: "Увидевший не навредит" }, { uz: "Ularni yopish ilovaga qiyin", ru: "Приложению трудно их закрыть" }, { uz: "Ular keyin qo'shilgan", ru: "Их добавили позже" }], correct: 1 },
+  { q: { uz: "Hamma qatorni yopsangiz nima bo'ladi?", ru: "Что будет, если закрыть все строки?" }, opts: [{ uz: "Ilovadan foyda qolmaydi", ru: "От приложения не будет пользы" }, { uz: "Ilova tezroq ishlaydi", ru: "Приложение заработает быстрее" }, { uz: "Sinfdosh baribir ko'radi", ru: "Одноклассник всё равно увидит" }, { uz: "Ilova ularni o'zi ochadi", ru: "Приложение само их откроет" }], correct: 0 },
   { q: { uz: 'Ota-onaning telefon raqami kimniki?', ru: 'Кому принадлежит номер телефона родителей?' }, opts: [{ uz: 'Jurnal ilovasiniki', ru: 'Приложению-журналу' }, { uz: 'Sinf rahbariniki', ru: 'Классному руководителю' }, { uz: 'Boshqa odamniki', ru: 'Другому человеку' }, { uz: "Sizning o'zingizniki", ru: 'Лично вам' }], correct: 2 },
-  { q: { uz: 'Parolni bilgan odam nima qila oladi?', ru: 'Что может сделать тот, кто знает пароль?' }, opts: [{ uz: 'Sahifangiz rangini almashtiradi', ru: 'Поменять цвет вашей страницы' }, { uz: "Baholaringizni to'g'rilaydi", ru: 'Исправить ваши оценки' }, { uz: 'Yangi ilova yuklab oladi', ru: 'Установить новое приложение' }, { uz: 'Sizning nomingizdan kiradi', ru: 'Войти от вашего имени' }], correct: 3 },
+  { q: { uz: "Parolni bilgan odam nima qila oladi?", ru: "Что может человек, знающий пароль?" }, opts: [{ uz: "Sahifa rangini almashtiradi", ru: "Сменит цвет страницы" }, { uz: "Baholarni to'g'rilaydi", ru: "Исправит оценки" }, { uz: "Yangi ilova yuklab oladi", ru: "Скачает новое приложение" }, { uz: "Sizning nomingizdan kiradi", ru: "Войдёт от вашего имени" }], correct: 3 },
   // §107 (shakl-telli): ilgari uchala distraktor «Faqat» bilan boshlanardi — bola naqshni
   // o'qib topardi. Savolga «eng erta» qo'shilgach cheklov-so'zi umuman kerak emas: uchala
   // vaqt ham hayotda mumkin, lekin ENG ERTASI faqat bittasi — yuklashdan oldin.
-  { q: { uz: "Ilova nimani yig'ishini odam eng erta qachon o'qiy oladi?", ru: 'Когда раньше всего можно прочитать, что собирает приложение?' }, opts: [{ uz: 'Ilovani yuklashdan oldin ham', ru: 'Ещё до установки приложения' }, { uz: 'Bir oy foydalangandan keyin', ru: 'Через месяц использования' }, { uz: "Ilovani yuklab bo'lgandan keyin", ru: 'После установки приложения' }, { uz: 'Ilova birinchi xabarini yuborganda', ru: 'Когда приложение пришлёт первое сообщение' }], correct: 0 },
+  { q: { uz: "Ilova nima yig'ishini eng erta qachon bilasiz?", ru: "Когда раньше всего можно узнать, что собирает приложение?" }, opts: [{ uz: "Yuklashdan oldin ham", ru: "Ещё до установки" }, { uz: "Bir oy ishlatgach", ru: "Через месяц использования" }, { uz: "Yuklab bo'lgach", ru: "После установки" }, { uz: "Birinchi xabar kelganda", ru: "Когда придёт первое сообщение" }], correct: 0 },
   { q: { uz: 'Ota-onaga ketadigan xabarga nima yozilmaydi?', ru: 'Что не пишут в сообщении родителям?' }, opts: [{ uz: 'Bu hafta olgan baholaringiz', ru: 'Ваши оценки за эту неделю' }, { uz: 'Ertangi dars jadvali', ru: 'Расписание на завтра' }, { uz: 'Ilovaga kirish paroli', ru: 'Пароль для входа в приложение' }, { uz: 'Maktab manzili va telefoni', ru: 'Адрес и телефон школы' }], correct: 2 },
-  { q: { uz: "Yuborilmagan ma'lumot haqida qoida nima?", ru: 'Какое правило про неотправленные данные?' }, opts: [{ uz: "Yuborilmagan ma'lumotni ilova o'zi yuboradi", ru: 'Неотправленные данные приложение отправит само' }, { uz: "Yuborilmagan ma'lumot sizib ham ketmaydi", ru: 'Неотправленные данные не могут утечь' }, { uz: "Yuborilmagan ma'lumot yopiq hisoblanmaydi", ru: 'Неотправленные данные не считаются закрытыми' }, { uz: "Yuborilmagan ma'lumot xabarga qaytadi", ru: 'Неотправленные данные возвращаются в сообщение' }], correct: 1 },
+  { q: { uz: "Yuborilmagan ma'lumot haqida qoida nima?", ru: "Какое правило о неотправленных данных?" }, opts: [{ uz: "Ilova uni o'zi yuboradi", ru: "Приложение отправит их само" }, { uz: "U sizib ham ketmaydi", ru: "Они и не утекут" }, { uz: "U yopiq hisoblanmaydi", ru: "Они не считаются закрытыми" }, { uz: "U xabarga qaytadi", ru: "Они вернутся в сообщение" }], correct: 1 },
   // To'g'ri javobdagi «hamma» — s10 darvoza-mashqining o'z so'zi, qoladi. Distraktorlardan
   // mutlaq so'z olindi («Faqat …» · «Hech narsani»), uchalasi ham m4-01 chalkashliklaridan:
   // qaysi ustun · ustun ↔ qator · qiymat ↔ ustun nomi. Uchtasi bir shaklda — yolg'iz variant yo'q.
@@ -2745,6 +2788,16 @@ const CSS_LESSON = `
   .jres { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(12.5px,1.5vw,13.5px); line-height: 1.45; border-radius: 10px; padding: 9px 12px; min-width: 0; overflow-wrap: anywhere; }
   .jres.ok { color: ${T.success}; background: ${T.successSoft}; }
   .jres.ask { color: ${T.accent}; background: ${T.accentSoft}; }
+  /* F-1019-04 (DE 213.22): kirish-qarori — savol, uch variant, sabab bitta karta ichida; qizil yo'q (ekran rang-qonuni) */
+  .p12-qr { display: flex; flex-direction: column; gap: 10px; background: ${T.paper}; border-radius: 12px; padding: 12px 14px; box-shadow: 0 10px 24px -12px rgba(${T.shadowBase},0.2); min-width: 0; }
+  .p12-qr-s { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); line-height: 1.45; color: ${T.ink}; overflow-wrap: anywhere; }
+  .p12-qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
+  .p12-qr-c { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(12.5px,1.5vw,14px); text-align: left; padding: 9px 14px; border-radius: 99px; border: none; background: ${T.bg}; color: ${T.ink}; cursor: pointer; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: transform 0.14s, box-shadow 0.16s; min-width: 0; overflow-wrap: anywhere; }
+  .p12-qr-c:hover:not(:disabled) { transform: translateY(-1px); box-shadow: inset 0 0 0 1.5px ${T.accent}; }
+  .p12-qr-c.xato:disabled { cursor: not-allowed; background: ${T.accentSoft}; color: ${T.accent}; text-decoration: line-through; box-shadow: none; }
+  .kbtn:disabled { cursor: default; opacity: 0.5; }
+  .kbtn:disabled:hover { transform: none; box-shadow: inset 0 0 0 1.5px ${T.line}, 0 6px 16px -8px rgba(${T.shadowBase},0.16); }
+  @media (prefers-reduced-motion: reduce) { .p12-qr-c { transition: none; } .p12-qr-c:hover:not(:disabled) { transform: none; } }
 
   /* MAQSAD (s1) — ro'yxat o'z-o'zidan yozilib chiqadi (18-qonun) */
   .s1demo { display: flex; flex-direction: column; gap: 9px; background: ${T.paper}; border-radius: 18px; padding: clamp(13px,2vw,18px) clamp(15px,2.4vw,22px); box-shadow: 0 12px 28px -14px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; max-width: 640px; align-self: center; width: 100%; }
@@ -2769,6 +2822,8 @@ const CSS_LESSON = `
   .dfc { display: flex; flex-direction: column; gap: 9px; text-align: left; background: ${T.paper}; border: none; border-radius: 16px; padding: clamp(13px,2vw,18px); cursor: pointer; box-shadow: 0 12px 28px -14px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; transition: transform 0.16s, box-shadow 0.16s; min-width: 0; }
   .dfc:hover { transform: translateY(-2px); box-shadow: 0 14px 26px -9px rgba(${T.shadowBase},0.3), inset 0 0 0 1.5px ${T.accent}44; }
   .dfc:active { transform: translateY(0); }
+  .dfc.static, .dfc.static:hover, .dfc.static:active { cursor: default; transform: none; }
+  .dfc.static:not(.open):hover { box-shadow: 0 12px 28px -14px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; }
   .dfc.open { box-shadow: inset 0 0 0 1.5px ${T.accent}66, 0 12px 26px -14px rgba(91,61,230,0.3); }
   .dfc-top { display: flex; align-items: center; gap: 9px; }
   .dfc-ic { font-size: clamp(20px,2.8vw,26px); line-height: 1; }

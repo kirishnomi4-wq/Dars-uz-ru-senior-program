@@ -21,6 +21,29 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // PM-STUDIA IDENTITET (P0 dan AYNAN)
 // ============================================================
+// F-1015-377: ma'nosiz yozuv tekshiruvi (qolip `manoliMatn` nusxasi - bu dars qolipsiz)
+const MN_HARF = /[a-z\u0430-\u044f\u0451\u0493\u049b\u04b3\u045e]/gi;
+const MN_UNLI = /[aeiou\u0430\u0435\u0451\u0438\u043e\u0443\u044b\u044d\u044e\u044f\u045e]/gi;
+const MN_QISQA = new Set(['html', 'css', 'npm', 'crm', 'mvp', 'pdf', 'sms', 'http', 'https', 'www', 'src', 'cmd', 'pwd', 'jsx', 'dns', 'ssl', 'cdn', 'sql', 'xml', 'png', 'jpg', 'svg', 'gps', 'mln', 'mlrd', 'kpi', 'nps', 'ltv', 'cac']);
+const manoliMatn = (t, yumshoq) => {
+  const s = String(t || '').trim();
+  const harf = (s.match(MN_HARF) || []).length;
+  const tozasi = s.replace(/[\s\u02bb\u02bc'`\u2018\u2019\-.,!?:;\u00ab\u00bb"()]/g, '');
+  if (harf < 3 || !tozasi.length || harf / tozasi.length < 0.5) return false;
+  if (/(.)\1{3,}/i.test(s)) return false;
+  if (!(s.match(MN_UNLI) || []).length) return false;
+  const sozlar = s.split(/\s+/);
+  if (!yumshoq) { // F-1015-392: «fast freak. afs sdfa dfs», «fasted saf s f», «qwe rty», «asd asd asd»
+    const toza = sozlar.map(w => w.replace(/[.,!?:;]+$/, ''));
+    if (toza.some(w => /^[a-z]{3,}$/.test(w) && !/[aeiouy]/.test(w) && !MN_QISQA.has(w))) return false;
+    const yakka = toza.filter(w => /^[b-df-hj-np-tv-xz]$/.test(w)).length;
+    if (yakka >= 2 && yakka / toza.length >= 0.25) return false;
+    if (/qwe|asdf|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|\u0439\u0446\u0443\u043a|\u0444\u044b\u0432\u0430|\u044f\u0447\u0441\u043c/i.test(s)) return false;
+    if (toza.length >= 3 && new Set(toza.map(w => w.toLowerCase())).size * 3 <= toza.length) return false;
+  }
+  return sozlar.every(w => { const h = (w.match(MN_HARF) || []).join(''); if (h.length < 5) return true; return ((h.match(MN_UNLI) || []).length / h.length) >= 0.2; });
+};
+
 const T = {
   bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
@@ -1160,7 +1183,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const savedRef = useRef(false);
   const idx = edit === null ? Math.min(list.length, 2) : edit;
   const cur = UFQLAR[idx];
-  const uzun = draft.trim().length >= 8;
+  const uzun = draft.trim().length >= 8 && manoliMatn(draft);
   const bosh = uzun && normIsh(draft).split(' ').every(w => BOSH_SET.includes(w));
   const kutadi = uzun && idx === 0 && KUTISH_RE.test(draft);
   const takror = uzun && list.some((r, k) => k !== edit && ishOxshash(draft, r.ish));
@@ -1632,7 +1655,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const yakka = !live || live.mode === 'self';
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
-  const written = text.trim().length >= 8;
+  const written = text.trim().length >= 8 && manoliMatn(text);
   const [pairStage, setPairStage] = useState('idle');
   const [reflFocus, setReflFocus] = useState(false);
   const inputTurn = useTurnHint(pairStage === 'done' && !written && !reflFocus);
@@ -1894,18 +1917,18 @@ const QZ_BG_SHAPES = [
 // darslik-jonli TASDIQLAYDI. §138-C: darsning kalit-ildizlari («kut-», «boshlan-») distraktorlarda
 // ham yashaydi — to'g'ri javob bitta so'z bilan topilmasin.
 const QUIZ_BANK = [
-  { q: { uz: "To'garak uchun reja yozyapsiz. Ishlar nimaga qarab ufqlarga bo'linadi?", ru: 'Вы пишете план для кружка. По какому признаку задачи делятся на горизонты?' }, opts: [{ uz: "Ish qachon boshlanishiga qarab", ru: 'По тому, когда задача начинается' }, { uz: "Ish qancha vaqt olishiga qarab", ru: 'По тому, сколько времени она займёт' }, { uz: "Ishni qancha odam so'raganiga qarab", ru: 'По тому, сколько людей её просили' }, { uz: "Ishni qaysi o'quvchi boshlashiga qarab", ru: 'По тому, какой ученик её начнёт' }], correct: 0 },
+  { q: { uz: "Ishlar nimaga qarab ufqlarga bo'linadi?", ru: "По какому признаку дела делятся по горизонтам?" }, opts: [{ uz: "Qachon boshlanishiga", ru: "Когда они начинаются" }, { uz: "Qancha vaqt olishiga", ru: "Сколько времени займут" }, { uz: "Nechta odam so'raganiga", ru: "Сколько людей просили" }, { uz: "Kim boshlashiga", ru: "Кто их начнёт" }], correct: 0 },
   { q: { uz: "Bugungi rejada nechta ufq bilan ishladik?", ru: 'Со сколькими горизонтами мы работали в сегодняшнем плане?' }, opts: [{ uz: 'Ikkita', ru: 'Два' }, { uz: 'Beshta', ru: 'Пять' }, { uz: 'Oltita', ru: 'Шесть' }, { uz: 'Uchta', ru: 'Три' }], correct: 3 },
-  { q: { uz: "To'garak rejangizdagi ish qaysi ufqda turishini nima belgilaydi?", ru: 'Что определяет, на каком горизонте стоит задача из плана кружка?' }, opts: [{ uz: "Ishning bajarilishi necha kun olishi", ru: 'Сколько дней займёт выполнение задачи' }, { uz: "Ishning qancha odamga kerak bo'lishi", ru: 'Скольким людям нужна задача' }, { uz: "Unga kerak narsa qachon tayyor bo'lishi", ru: 'Когда будет готово то, чего ждёт задача' }, { uz: "Ishning ro'yxatga qachon qo'shilgani", ru: 'Когда задачу добавили в список' }], correct: 2 },
-  { q: { uz: "To'garak saytida «eng yaxshi ishlar» sahifasi nega bugun boshlanmaydi?", ru: 'Почему страница «лучшие работы» на сайте кружка не начинается сегодня?' }, opts: [{ uz: 'Uni yozish juda uzoq vaqt oladi', ru: 'Её очень долго писать' }, { uz: "Ko'rsatadigan ishlar hali yig'ilmagan", ru: 'Работы, которые она покажет, ещё не собраны' }, { uz: 'Uni kam odam kutayotgani uchun', ru: 'Потому что её ждёт мало людей' }, { uz: "U rejaga keyinroq qo'shilgan", ru: 'Её добавили в план позже' }], correct: 1 },
-  { q: { uz: '«Sartarosh suratlari» nega bugun boshlangan?', ru: 'Почему задача «Фото парикмахеров» началась сегодня?' }, opts: [{ uz: "Suratlar eng oson ish bo'lgani uchun", ru: 'Потому что фото — самая лёгкая задача' }, { uz: 'Suratlar allaqachon bor, hech narsa kutmaydi', ru: 'Фото уже есть, задача ничего не ждёт' }, { uz: "Suratlarni ko'p odam kutayotgani uchun", ru: 'Потому что фото ждёт много людей' }, { uz: "Suratlar navbatlar to'plangach kerak bo'ladi", ru: 'Фото понадобятся, когда накопятся записи' }], correct: 1 },
-  { q: { uz: "Do'stingiz «bu ish olti oydan keyin» dedi. U nimani aytdi?", ru: 'Друг сказал: «эта задача — через шесть месяцев». Что он имел в виду?' }, opts: [{ uz: "O'sha paytda ish boshlanadi", ru: 'Тогда задача начнётся' }, { uz: "O'sha paytda ish tugab bo'ladi", ru: 'К тому времени задача уже будет готова' }, { uz: 'Ish olti oy davomida qilinadi', ru: 'Задачу будут делать шесть месяцев' }, { uz: 'Ish olti oydan beri kutib turibdi', ru: 'Задача ждёт уже шесть месяцев' }], correct: 0 },
-  { q: { uz: "Sinf ovoz berib, uzoq ishni «Hozir» ufqiga ko'chirdi. Nima bo'ladi?", ru: 'Класс проголосовал и перенёс дальнюю задачу на горизонт «Сейчас». Что будет?' }, opts: [{ uz: "Boshlanadi — ko'pchilik shuni tanladi", ru: 'Начнётся — так выбрало большинство' }, { uz: "Boshqa ish uning o'rniga kutib qoladi", ru: 'Вместо неё будет ждать другая задача' }, { uz: "Baribir kutadi — kerak narsa hali yo'q", ru: 'Всё равно будет ждать — нужного ещё нет' }, { uz: 'Baribir boshlanadi, lekin sekinroq yuradi', ru: 'Всё равно начнётся, но пойдёт медленнее' }], correct: 2 },
-  { q: { uz: "Uch ufqli reja odatda qanday ko'rinadi?", ru: 'Как обычно выглядит план на три горизонта?' }, opts: [{ uz: "Uzog'ida ish ko'p, yaqinida oz", ru: 'Вдали задач много, вблизи мало' }, { uz: "Uchala ufqda ham ish teng bo'linadi", ru: 'На всех трёх горизонтах задач поровну' }, { uz: "Faqat o'rtadagi ufqda ish to'planadi", ru: 'Задачи собираются только на среднем горизонте' }, { uz: "Yaqinida ish ko'p, uzog'ida oz", ru: 'Вблизи задач много, вдали мало' }], correct: 3 },
-  { q: { uz: "Tesla usuli bilan reja yozsangiz, birinchi bosqich qanday bo'ladi?", ru: 'Если писать план по методу Tesla, каким будет первый этап?' }, opts: [{ uz: "Eng tez boshlanadigani — u keyingisiga yo'l ochadi", ru: 'Тот, что начинается быстрее всех, — он открывает дорогу следующему' }, { uz: "Eng kattasi — uni hamma birdan ko'radi", ru: 'Самый большой — его сразу увидят все' }, { uz: "Eng arzoni — unga pul deyarli ketmaydi", ru: 'Самый дешёвый — на него почти не нужны деньги' }, { uz: 'Eng qiyini — qiyin ish oldin boshlanadi', ru: 'Самый трудный — трудное начинают первым' }], correct: 0 },
-  { q: { uz: "Tesla birinchi mashinasini sotmaganida, reja bo'yicha nima bo'lardi?", ru: 'Что было бы по плану, если бы Tesla не продала первую машину?' }, opts: [{ uz: "Reja o'zgarmasdi — ikkinchisi baribir qurilardi", ru: 'План бы не изменился — вторую всё равно построили бы' }, { uz: 'Ikkinchisi bir yil oldin qurilardi', ru: 'Вторую построили бы на год раньше' }, { uz: "Ikkinchisiga rejadagi pul bo'lmasdi — reja to'xtardi", ru: 'Для второй не было бы денег, заложенных в плане, — план бы остановился' }, { uz: 'Uchinchisi ikkinchisidan oldin qurilardi', ru: 'Третью построили бы раньше второй' }], correct: 2 },
+  { q: { uz: "Ish qaysi ufqda turishini nima belgilaydi?", ru: "Что определяет горизонт дела?" }, opts: [{ uz: "Necha kun olishi", ru: "Сколько дней займёт" }, { uz: "Necha odamga kerakligi", ru: "Скольким людям нужно" }, { uz: "Kerak narsa qachon tayyorligi", ru: "Когда готово нужное" }, { uz: "Ro'yxatga qo'shilgan payti", ru: "Когда добавлено в список" }], correct: 2 },
+  { q: { uz: "To'garakning «eng yaxshi ishlar» sahifasi nega kutadi?", ru: "Почему страница «лучшие работы» кружка ждёт?" }, opts: [{ uz: "Yozish uzoq vaqt oladi", ru: "Долго писать" }, { uz: "Ishlar hali yig'ilmagan", ru: "Работы ещё не собраны" }, { uz: "Kam odam kutyapti", ru: "Мало кто ждёт" }, { uz: "Rejaga kech qo'shilgan", ru: "Поздно добавлена в план" }], correct: 1 },
+  { q: { uz: "«Sartarosh suratlari» nega bugun boshlangan?", ru: "Почему «фото барберов» начаты сегодня?" }, opts: [{ uz: "Eng oson ish ekani uchun", ru: "Это самое лёгкое дело" }, { uz: "Suratlar allaqachon bor", ru: "Фото уже есть" }, { uz: "Ko'p odam kutgani uchun", ru: "Многие ждали" }, { uz: "Navbat to'plangani uchun", ru: "Записи уже накопились" }], correct: 1 },
+  { q: { uz: "«Bu ish olti oydan keyin» — bu nima degani?", ru: "«Это дело через полгода» — что это значит?" }, opts: [{ uz: "O'shanda ish boshlanadi", ru: "Тогда дело начнётся" }, { uz: "O'shanda ish tugaydi", ru: "Тогда дело закончится" }, { uz: "Ish olti oy davom etadi", ru: "Дело длится полгода" }, { uz: "Olti oydan beri kutyapti", ru: "Ждёт уже полгода" }], correct: 0 },
+  { q: { uz: "Sinf uzoq ishni «Hozir»ga ko'chirdi. Nima bo'ladi?", ru: "Класс перенёс дальнее дело в «Сейчас». Что будет?" }, opts: [{ uz: "Darhol boshlanadi", ru: "Сразу начнётся" }, { uz: "Boshqa ish kutib qoladi", ru: "Другое дело будет ждать" }, { uz: "Baribir to'xtaydi", ru: "Всё равно остановится" }, { uz: "Sekinroq boshlanadi", ru: "Начнётся медленнее" }], correct: 2 },
+  { q: { uz: "Uch ufqli reja odatda qanday ko'rinadi?", ru: "Как обычно выглядит план из трёх горизонтов?" }, opts: [{ uz: "Uzog'ida ish ko'p", ru: "Больше дел в дальнем" }, { uz: "Uchalasida teng", ru: "Поровну во всех" }, { uz: "O'rtasida ish ko'p", ru: "Больше дел в среднем" }, { uz: "Yaqinida ish ko'p", ru: "Больше дел в ближнем" }], correct: 3 },
+  { q: { uz: "Tesla usulida birinchi bosqich qanday bo'ladi?", ru: "Каким бывает первый этап по методу Tesla?" }, opts: [{ uz: "Keyingisiga yo'l ochadigan", ru: "Открывает путь следующему" }, { uz: "Hamma birdan ko'radigan", ru: "Который все сразу увидят" }, { uz: "Pul deyarli ketmaydigan", ru: "Почти без затрат" }, { uz: "Eng qiyin bo'lgan", ru: "Самый трудный" }], correct: 0 },
+  { q: { uz: "Tesla 1-mashinasi sotilmasa nima bo'lardi?", ru: "Что было бы, не продайся первая машина Tesla?" }, opts: [{ uz: "Reja o'zgarmasdi", ru: "План не изменился бы" }, { uz: "Ikkinchisi tezroq qurilardi", ru: "Вторую построили бы быстрее" }, { uz: "Ikkinchisiga pul bo'lmasdi", ru: "На вторую не было бы денег" }, { uz: "Uchinchisi oldin qurilardi", ru: "Третью построили бы раньше" }], correct: 2 },
   { q: { uz: "Tesla uzoq rejasini kimlar ko'ra olardi?", ru: 'Кто мог видеть длинный план Tesla?' }, opts: [{ uz: 'Faqat kompaniya ichidagilar', ru: 'Только сотрудники компании' }, { uz: 'Xohlagan har bir odam', ru: 'Любой желающий' }, { uz: 'Mashina sotib olganlar', ru: 'Те, кто купил машину' }, { uz: 'Hech kim — reja yopiq edi', ru: 'Никто — план был закрытым' }], correct: 1 },
-  { q: { uz: "Yangi ish qaysi ufqqa tushishini kim aytadi?", ru: 'Кто говорит, на какой горизонт попадёт новая задача?' }, opts: [{ uz: 'Kodni yozadigan dasturchi', ru: 'Программист, который пишет код' }, { uz: 'Ilovani yuklab olgan odam', ru: 'Человек, который скачал приложение' }, { uz: "Ma'lumotlarni saqlaydigan server", ru: 'Сервер, который хранит данные' }, { uz: "Ilovani yaratayotgan odam", ru: 'Тот, кто создаёт приложение' }], correct: 3 }
+  { q: { uz: "Yangi ish qaysi ufqqa tushishini kim aytadi?", ru: "Кто решает, в какой горизонт попадёт новое дело?" }, opts: [{ uz: "Dastur kodining o'zi", ru: "Сам код программы" }, { uz: "Ilovani yuklagan odam", ru: "Тот, кто скачал приложение" }, { uz: "Ma'lumot serveri", ru: "Сервер данных" }, { uz: "Ilovani yaratayotgan odam", ru: "Человек, создающий приложение" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -3057,7 +3080,7 @@ const CSS_LESSON = `
   .fc-fly.out-again { animation: fc-out-again 0.42s ease forwards; }
   @keyframes fc-out-knew { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(70%) rotate(5deg); opacity: 0; } }
   @keyframes fc-out-again { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(-70%) rotate(-5deg); opacity: 0; } }
-  .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+  .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
   .fc-card.flip { transform: rotateY(180deg); }
   .fc-card:not(.flip):hover { transform: translateY(-3px); }
   .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

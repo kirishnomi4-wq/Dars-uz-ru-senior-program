@@ -117,6 +117,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -194,8 +219,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1438,17 +1463,17 @@ const QZ_BG_SHAPES = [
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
   { q: { uz: "Skill'ning asosiy qismlari qaysi?", ru: 'Какие основные части у Skill?' }, opts: [{ uz: "Rang, o'lcham va narx", ru: 'Цвет, размер и цена' }, { uz: 'Server, Database va dizayn', ru: 'Сервер, Database и дизайн' }, { uz: 'name, description va body', ru: 'name, description и body' }, { uz: 'Rasm, video va ovoz', ru: 'Картинка, видео и звук' }], correct: 2 },
-  { q: { uz: "description AI'ga nimani aytadi?", ru: 'Что description говорит ИИ?' }, opts: [{ uz: 'Skill nima qiladi va qachon kerak', ru: 'Что делает Skill и когда он нужен' }, { uz: "Skill faylining rangi va o'lchami", ru: 'Цвет и размер файла Skill' }, { uz: 'Xabarni kimga yuborish kerakligi', ru: 'Кому нужно отправить сообщение' }, { uz: 'Necha ball berilishini', ru: 'Сколько баллов начислить' }], correct: 0 },
+  { q: { uz: "description AI'ga nimani aytadi?", ru: "Что description сообщает AI?" }, opts: [{ uz: "Nima qiladi, qachon kerak", ru: "Что делает и когда нужен" }, { uz: "Faylning rangi va o'lchami", ru: "Цвет и размер файла" }, { uz: "Xabar kimga yuborilishi", ru: "Кому отправить сообщение" }, { uz: "Necha ball berilishi", ru: "Сколько баллов дать" }], correct: 0 },
   { q: { uz: 'Qadamlarni kuchli qiladigan narsa?', ru: 'Что делает шаги сильными?' }, opts: [{ uz: 'Iloji boricha uzun matn', ru: 'Как можно более длинный текст' }, { uz: 'Faqat sarlavha', ru: 'Только заголовок' }, { uz: '«Yaxshi qil» degan umumiy gap', ru: 'Общая фраза «сделай хорошо»' }, { uz: 'Aniq qadamlar va misol', ru: 'Точные шаги и пример' }], correct: 3 },
-  { q: { uz: 'Kontekst-injiniring nima?', ru: 'Что такое контекст-инжиниринг?' }, opts: [{ uz: "Skill'ni noldan boshlab qayta yozish", ru: 'Переписать Skill с нуля' }, { uz: "AI'ga to'g'ri ma'lumot va ko'rsatma berish", ru: 'Давать ИИ правильную информацию и указания' }, { uz: "Skill'ni butunlay o'chirish", ru: 'Полностью удалить Skill' }, { uz: 'AI uchun kuchliroq model sotib olish', ru: 'Купить для ИИ модель помощнее' }], correct: 1 },
-  { q: { uz: 'Natija kutilgandek chiqmasa, eng yaxshi qadam?', ru: 'Результат не такой, как ожидали, — какой шаг лучший?' }, opts: [{ uz: "Kamchilikni topib, o'sha joyni tuzatib sinash", ru: 'Найти недочёт, исправить это место и протестировать' }, { uz: "Skill'dan butunlay voz kechish", ru: 'Совсем отказаться от Skill' }, { uz: 'Hammasini noldan boshlab qayta yozish', ru: 'Переписать всё с нуля' }, { uz: "AI'ni ayblab, boshqa kuchliroq model izlash", ru: 'Обвинить ИИ и искать другую модель помощнее' }], correct: 0 },
+  { q: { uz: "Kontekst-injiniring nima?", ru: "Что такое контекст-инжиниринг?" }, opts: [{ uz: "Skill'ni noldan qayta yozish", ru: "Переписать skill с нуля" }, { uz: "AI'ga to'g'ri ko'rsatma berish", ru: "Дать AI правильное указание" }, { uz: "AI modelini almashtirish", ru: "Сменить модель AI" }, { uz: "Kuchliroq model sotib olish", ru: "Купить модель мощнее" }], correct: 1 },
+  { q: { uz: "Natija kutilgandek chiqmasa, eng yaxshi qadam?", ru: "Лучший шаг, если результат не тот?" }, opts: [{ uz: "O'sha joyni tuzatib sinash", ru: "Исправить то место и проверить" }, { uz: "Skill'dan voz kechish", ru: "Отказаться от Skill" }, { uz: "Hammasini qayta yozish", ru: "Переписать всё" }, { uz: "Kuchliroq model izlash", ru: "Искать модель сильнее" }], correct: 0 },
   { q: { uz: "Nega Skill'ni sinab ko'rish kerak?", ru: 'Зачем тестировать Skill?' }, opts: [{ uz: "Chiroyliroq ko'rinishi uchun", ru: 'Чтобы выглядел красивее' }, { uz: 'Ballni oshirish uchun', ru: 'Чтобы повысить баллы' }, { uz: "Faylni o'chirish uchun", ru: 'Чтобы удалить файл' }, { uz: 'Ishlashini faqat sinab bilamiz', ru: 'Работает ли он, узнаём только тестом' }], correct: 3 },
-  { q: { uz: "Yaxshi description qanday bo'ladi?", ru: 'Каким бывает хороший description?' }, opts: [{ uz: "Bitta so'zdan iborat, masalan «javob»", ru: 'Из одного слова, например «ответ»' }, { uz: 'Nima qilishi va qachon kerakligini aytadi', ru: 'Говорит, что делает и когда нужен' }, { uz: 'Iloji boricha noaniq, har narsaga mos', ru: 'Как можно размытее, подходит ко всему' }, { uz: 'Faqat emojidan iborat qisqa satr', ru: 'Короткая строка только из эмодзи' }], correct: 1 },
+  { q: { uz: "Yaxshi description qanday bo'ladi?", ru: "Каким бывает хороший description?" }, opts: [{ uz: "Bitta so'z, masalan «javob»", ru: "Одно слово, например «ответ»" }, { uz: "Nima va qachon ekanini aytadi", ru: "Говорит, что и когда" }, { uz: "Noaniq, har narsaga mos", ru: "Размытый, подходит ко всему" }, { uz: "Faqat emojidan iborat", ru: "Только из эмодзи" }], correct: 1 },
   { q: { uz: 'Misol Skill uchun nega foydali?', ru: 'Чем пример полезен для Skill?' }, opts: [{ uz: 'Faylni uzunroq qiladi', ru: 'Делает файл длиннее' }, { uz: 'Faqat bezak uchun', ru: 'Только для украшения' }, { uz: "Kutilgan natijani ko'rsatadi", ru: 'Показывает ожидаемый результат' }, { uz: "Hech qanday ta'sir qilmaydi", ru: 'Ни на что не влияет' }], correct: 2 },
-  { q: { uz: 'Skill har safar narxni unutyapti. Eng aniq tuzatish?', ru: 'Skill каждый раз забывает про цену. Какая правка самая точная?' }, opts: [{ uz: "Butun Skill'ni o'chirib, boshidan yozish", ru: 'Удалить весь Skill и написать с начала' }, { uz: "description'ni uzunroq qilib yozish", ru: 'Написать description длиннее' }, { uz: "AI'ga ko'proq pul to'lab, kuchaytirish", ru: 'Заплатить ИИ больше, чтобы стал сильнее' }, { uz: "Qadamlarga «narxni ko'rsat» qoidasini qo'shish", ru: 'Добавить в шаги правило «укажи цену»' }], correct: 3 },
-  { q: { uz: "Skill yozishning to'g'ri sikli qaysi?", ru: 'Какой цикл написания Skill верный?' }, opts: [{ uz: 'Bir marta yozish, hech qachon tekshirmaslik', ru: 'Написать один раз и никогда не проверять' }, { uz: 'Yozish → sinash → tuzatish → qayta sinash', ru: 'Написать → протестировать → исправить → протестировать снова' }, { uz: "Sinash → o'chirish → unutish", ru: 'Протестировать → удалить → забыть' }, { uz: "Ko'chirish → jo'natish → kutish", ru: 'Скопировать → отправить → ждать' }], correct: 1 },
-  { q: { uz: 'Noaniq description nimaga olib keladi?', ru: 'К чему приводит размытый description?' }, opts: [{ uz: 'Skill ikki barobar tezroq ishlaydi', ru: 'Skill работает в два раза быстрее' }, { uz: "Hech qanday ta'sir yo'q, hammasi bir xil", ru: 'Ни на что не влияет, всё то же самое' }, { uz: 'Skill kerakli paytda ishlamasligi mumkin', ru: 'Skill может не сработать в нужный момент' }, { uz: "Ball o'z-o'zidan oshib ketadi", ru: 'Баллы сами собой вырастут' }], correct: 2 },
-  { q: { uz: "Yaxshi Skill qanday bo'ladi?", ru: 'Каким бывает хороший Skill?' }, opts: [{ uz: 'Bitta vazifaga, aniq va sinalgan', ru: 'На одну задачу, точный и протестированный' }, { uz: 'Iloji boricha uzun va batafsil', ru: 'Как можно длиннее и подробнее' }, { uz: "Ko'p vazifani birga bajaradigan", ru: 'Делающая много задач сразу' }, { uz: "Faqat nomdan iborat bo'lgan", ru: 'Состоящий только из имени' }], correct: 0 },
+  { q: { uz: "Skill narxni unutyapti. Eng aniq tuzatish?", ru: "Skill забывает цену. Самое точное исправление?" }, opts: [{ uz: "Hammasini qayta yozish", ru: "Переписать всё" }, { uz: "description'ni uzaytirish", ru: "Удлинить description" }, { uz: "AI'ga ko'proq pul to'lash", ru: "Платить AI больше" }, { uz: "Qadamlarga narx qoidasi", ru: "Правило о цене в шаги" }], correct: 3 },
+  { q: { uz: "Skill yozishning to'g'ri sikli qaysi?", ru: "Какой правильный цикл написания Skill?" }, opts: [{ uz: "Yozish → yuborish → kutish", ru: "Написать → отправить → ждать" }, { uz: "Yozish → sinash → tuzatish", ru: "Написать → проверить → исправить" }, { uz: "Sinash → o'chirish → unutish", ru: "Проверить → удалить → забыть" }, { uz: "Nusxalash → yuborish", ru: "Скопировать → отправить" }], correct: 1 },
+  { q: { uz: "Noaniq description nimaga olib keladi?", ru: "К чему приводит неточный description?" }, opts: [{ uz: "Skill tezroq ishlaydi", ru: "Skill работает быстрее" }, { uz: "Hech qanday ta'sir yo'q", ru: "Никакого влияния" }, { uz: "Kerakli paytda ishlamaydi", ru: "Не срабатывает, когда нужно" }, { uz: "Ball o'zi oshib ketadi", ru: "Баллы растут сами" }], correct: 2 },
+  { q: { uz: "Yaxshi Skill qanday bo'ladi?", ru: "Каким бывает хороший Skill?" }, opts: [{ uz: "Bitta vazifaga, aniq, sinalgan", ru: "Для одной задачи, чёткий, проверен" }, { uz: "Iloji boricha uzun, batafsil", ru: "Как можно длиннее и подробнее" }, { uz: "Ko'p vazifani birga qiladigan", ru: "Делает много задач сразу" }, { uz: "Faqat nomdan iborat", ru: "Только из названия" }], correct: 0 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2640,7 +2665,7 @@ export default function WriteSkillLesson({ lang: langProp, onFinished, liveToken
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

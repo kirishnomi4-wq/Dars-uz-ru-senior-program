@@ -101,6 +101,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -178,8 +203,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -894,10 +919,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; chap — vizual bir marta o'zi yuradi: uch bosqich (sonsiz) → post → lending → «Ro'yxatdan o'tish» → «O'yinlar»; 2-ekran sonlari ochilmaydi) =====
 const REJA = [
-  { t: { uz: '50 foydalanuvchiga uch bosqichli reja tuzasiz', ru: 'Составите план из трёх этапов на 50 пользователей' }, teg: { uz: 'reja', ru: 'план' } },
-  { t: { uz: "Ro'yxatdan o'tishda faqat keraklisini so'raysiz", ru: 'При регистрации будете спрашивать только нужное' }, teg: { uz: "ma'lumot", ru: 'данные' } },
-  { t: { uz: 'Ilovada qadamlar sanashini yoqasiz', ru: 'Включите подсчёт шагов в приложении' }, teg: { uz: "o'lchov", ru: 'измерение' } },
-  { t: { uz: "Havolani lendingga qo'yib, post yuborasiz", ru: "Поставите ссылку на лендинге и отправите пост" }, teg: { uz: 'havola', ru: 'ссылка' } }
+  { t: { uz: '50 foydalanuvchiga uch bosqichli reja tuzing', ru: 'Составьте план из трёх этапов на 50 пользователей' }, teg: { uz: 'reja', ru: 'план' } },
+  { t: { uz: "Ro'yxatdan o'tishda faqat keraklisini so'rang", ru: 'При регистрации спрашивайте только нужное' }, teg: { uz: "ma'lumot", ru: 'данные' } },
+  { t: { uz: 'Ilovada qadamlar sanashini yoqing', ru: 'Включите подсчёт шагов в приложении' }, teg: { uz: "o'lchov", ru: 'измерение' } },
+  { t: { uz: "Havolani lendingga qo'yib, post yuboring", ru: "Поставьте ссылку на лендинге и отправьте пост" }, teg: { uz: 'havola', ru: 'ссылка' } }
 ];
 const RejaChizma = () => (
   <div className="fu-rj">
@@ -1335,18 +1360,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol, ✔ o'rni MD dagidek: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Mentor rejasida 1-bosqich qayerdan boshlanadi?', ru: 'С чего начинается 1-й этап в плане Ментора?' }, opts: [{ uz: 'Sinf chati va mahalla futbol guruhidan', ru: 'С чата класса и футбольной группы махалли' }, { uz: "Shahar bo'yicha katta futbol kanalidan", ru: 'С большого городского футбольного канала' }, { uz: 'Notanish odamlarga shaxsiy xabardan', ru: "С личных сообщений незнакомым людям" }, { uz: "Sotib olingan obunachilar ro'yxatidan", ru: 'Со списка купленных подписчиков' }], correct: 0 },
-  { q: { uz: "Mentor misolida «asosiy harakatni qilgan» kim?", ru: 'Кто в примере Ментора «сделал основное действие»?' }, opts: [{ uz: 'Ilovani telefoniga o\'rnatib ochgan odam', ru: "Тот, кто установил приложение и открыл его" }, { uz: "O'yinga qo'shilgan yoki e'lon bergan odam", ru: 'Тот, кто присоединился к игре или объявил её' }, { uz: 'Lendingdagi tugmani bir marta bosgan odam', ru: 'Тот, кто один раз нажал кнопку на лендинге' }, { uz: "Postni o'qib, do'stiga yuborgan odam", ru: "Тот, кто прочитал пост и переслал его другу" }], correct: 1 },
-  { q: { uz: "Mentor nega telefon raqamini so'ramaydigan qildi?", ru: 'Почему Ментор перестал спрашивать номер телефона?' }, opts: [{ uz: 'Raqamni yozish uzoq vaqt oladi', ru: "Номер вводить слишком долго" }, { uz: 'Raqamni hamma yoddan bilmaydi', ru: 'Не все помнят номер наизусть' }, { uz: 'Mahsulotga raqam kerak emas', ru: "Продукту этот номер не нужен" }, { uz: "Raqam Database'ga sig'maydi", ru: 'Номер не помещается в Database' }], correct: 2 },
-  { q: { uz: 'Bitta o\'yinchi ilovani ikki telefonda ochdi. `ochdi` da nechta qurilma?', ru: 'Один игрок открыл приложение на двух телефонах. Сколько устройств в `ochdi`?' }, opts: [{ uz: 'Bitta, chunki login bir xil', ru: 'Одно, потому что логин один' }, { uz: 'Bitta, chunki ism bir xil', ru: 'Одно, потому что имя одно' }, { uz: 'Uchta, chunki uch marta ochdi', ru: 'Три, потому что открыл три раза' }, { uz: 'Ikkita, chunki ikki qurilma', ru: 'Два, потому что два устройства' }], correct: 3 },
-  { q: { uz: "Haqiqiy «ro'yxatdan o'tgan» soni qayerdan olinadi?", ru: 'Откуда берут настоящее число «зарегистрировавшихся»?' }, opts: [{ uz: "Database'dan, so'rov bilan", ru: "Из Database, с помощью запроса" }, { uz: 'Rejada yozilgan kutilgan sondan', ru: 'Из ожидаемого числа в плане' }, { uz: 'Lendingdagi tashriflar sonidan', ru: 'Из числа визитов на лендинг' }, { uz: "Guruhdagi hamma a'zolar sonidan", ru: 'Из числа всех участников группы' }], correct: 0 },
-  { q: { uz: "«Hisobni o'chirish» tasdiqlansa nima bo'ladi?", ru: 'Что произойдёт после подтверждения «Удалить аккаунт»?' }, opts: [{ uz: "Akkaunt qoladi, faqat parol o'chadi", ru: 'Аккаунт останется, удалится только пароль' }, { uz: "Akkaunt va qatnashuv yozuvlari o'chadi", ru: 'Удалятся аккаунт и записи об участии' }, { uz: "Ilova telefondan o'zi o'chib ketadi", ru: 'Приложение само удалится с телефона' }, { uz: "Hamma o'yinchilarning akkaunti o'chadi", ru: 'Удалятся аккаунты всех игроков' }], correct: 1 },
-  { q: { uz: 'Maxfiylik sahifasidagi gapni nima bilan solishtirasiz?', ru: "С чем сравниваете фразу со страницы политики конфиденциальности?" }, opts: [{ uz: 'Agentning hisoboti bilan', ru: "С отчётом, который дал агент" }, { uz: 'Boshqa ilova sahifasi bilan', ru: 'Со страницей другого приложения' }, { uz: 'Ilovangizning kodi bilan', ru: 'С кодом вашего приложения' }, { uz: 'Lending sarlavhasi bilan', ru: "С заголовком на лендинге" }], correct: 2 },
+  { q: { uz: "Mentor rejasida 1-bosqich kanali qaysi?", ru: "Какой канал у 1-го этапа в плане Ментора?" }, opts: [{ uz: "Sinf chati, mahalla guruhi", ru: "Чат класса, группа махалли" }, { uz: "Shahar futbol kanali", ru: "Городской футбольный канал" }, { uz: "Notanishlarga shaxsiy xabar", ru: "Личные сообщения незнакомым" }, { uz: "Sotib olingan obunachilar", ru: "Купленные подписчики" }], correct: 0 },
+  { q: { uz: "Mentor misolida asosiy harakat nima?", ru: "Что в примере Ментора — главное действие?" }, opts: [{ uz: "Ilovani o'rnatib ochish", ru: "Установить и открыть приложение" }, { uz: "Qo'shilish yoki e'lon berish", ru: "Записаться или объявить игру" }, { uz: "Lending tugmasini bosish", ru: "Нажать кнопку на лендинге" }, { uz: "Postni do'stga yuborish", ru: "Переслать пост другу" }], correct: 1 },
+  { q: { uz: "Mentor nega telefon raqamini so'ramaydi?", ru: "Почему Ментор не спрашивает номер телефона?" }, opts: [{ uz: "Raqam yozish uzoq", ru: "Номер долго вводить" }, { uz: "Raqamni hamma bilmaydi", ru: "Номер помнят не все" }, { uz: "Mahsulotga raqam kerak emas", ru: "Продукту номер не нужен" }, { uz: "Raqam Database'ga sig'maydi", ru: "Номер не влезет в Database" }], correct: 2 },
+  { q: { uz: "Bir odam ikki telefonda ochdi. `ochdi` qanchaga oshadi?", ru: "Человек открыл на двух телефонах. На сколько вырастет `ochdi`?" }, opts: [{ uz: "Bittaga, login bir xil", ru: "На один, логин тот же" }, { uz: "Bittaga, ism bir xil", ru: "На один, имя то же" }, { uz: "Oshmaydi, bu egasi", ru: "Не вырастет, это владелец" }, { uz: "Ikkitaga, ikki qurilma", ru: "На два, два устройства" }], correct: 3 },
+  { q: { uz: "Ro'yxatdan o'tganlar soni qayerdan olinadi?", ru: "Откуда берут число зарегистрированных?" }, opts: [{ uz: "Database'dan, so'rov bilan", ru: "Из Database, запросом" }, { uz: "Rejadagi kutilgan sondan", ru: "Из ожидаемого числа в плане" }, { uz: "Lending tashriflaridan", ru: "Из посещений лендинга" }, { uz: "Guruh a'zolari sonidan", ru: "Из числа участников группы" }], correct: 0 },
+  { q: { uz: "«Hisobni o'chirish» tasdiqlansa nima bo'ladi?", ru: "Что будет, если подтвердить «Удалить аккаунт»?" }, opts: [{ uz: "Faqat parol o'chadi", ru: "Удалится только пароль" }, { uz: "Akkaunt va yozuvlari o'chadi", ru: "Удалятся аккаунт и его записи" }, { uz: "Ilova telefondan o'chadi", ru: "Приложение удалится с телефона" }, { uz: "Hamma akkauntlar o'chadi", ru: "Удалятся все аккаунты" }], correct: 1 },
+  { q: { uz: "Maxfiylik sahifasini nima bilan solishtirasiz?", ru: "С чем сравниваете страницу конфиденциальности?" }, opts: [{ uz: "Agent hisoboti bilan", ru: "С отчётом агента" }, { uz: "Boshqa ilova sahifasi bilan", ru: "Со страницей другого приложения" }, { uz: "Ilovangiz kodi bilan", ru: "С кодом вашего приложения" }, { uz: "Lending sarlavhasi bilan", ru: "С заголовком лендинга" }], correct: 2 },
   { q: { uz: "Mentor misolida brauzer ko'rinishida hozircha nima yo'q?", ru: "Чего в примере Ментора пока нет в браузерной версии?" }, opts: [{ uz: "O'yinlar ro'yxati", ru: "Экрана со списком игр" }, { uz: "Qo'shilish tugmasi", ru: 'Кнопки присоединения' }, { uz: "Ro'yxatdan o'tish", ru: "Экрана регистрации" }, { uz: "O'yin eslatmasi", ru: 'Напоминания об игре' }], correct: 3 },
-  { q: { uz: 'Agentga xato yuborganda nimani yuborasiz?', ru: 'Что отправляете агенту при ошибке?' }, opts: [{ uz: "Xato chiqqan qatorning o'zini", ru: "Саму строку, где вышла ошибка" }, { uz: '`.env` faylidagi hamma qiymatni', ru: 'Все значения из файла `.env`' }, { uz: 'Tokenni va xato chiqqan qatorni', ru: 'Токен и строку с ошибкой' }, { uz: 'Maxfiy kalitni va butun kodni', ru: 'Секретный ключ и весь код' }], correct: 0 },
-  { q: { uz: 'Guruhga post yuborishdan oldin nima qilasiz?', ru: 'Что делаете перед отправкой поста в группу?' }, opts: [{ uz: 'Yangi akkaunt ochib olasiz', ru: "Заводите себе новый аккаунт" }, { uz: "Guruh egasidan ruxsat so'raysiz", ru: "Спрашиваете разрешения у владельца" }, { uz: "Postni o'nta guruhga tashlaysiz", ru: 'Кидаете пост в десять групп' }, { uz: "Postga telefon raqam qo'shasiz", ru: 'Добавляете в пост номер телефона' }], correct: 1 },
-  { q: { uz: "`ochdi` hodisasi bilan Backend'ga nima boradi?", ru: 'Что уходит в Backend с событием `ochdi`?' }, opts: [{ uz: "Hodisa nomi va o'yinchi logini", ru: 'Имя события и логин игрока' }, { uz: "O'yinchi ismi va qurilma ID", ru: 'Имя игрока и ID устройства' }, { uz: 'Hodisa nomi va qurilma ID', ru: 'Имя события и ID устройства' }, { uz: "O'yinchi logini va parol hash", ru: 'Логин игрока и hash пароля' }], correct: 2 },
-  { q: { uz: "Sinf chatidan keyin 12 kishi ro'yxatdan o'tdi, rejada 20 edi. Nima qilasiz?", ru: 'После чата класса зарегистрировались 12, в плане было 20. Что сделаете?' }, opts: [{ uz: 'Soxta akkaunt ochib, 20 ga yetkazasiz', ru: 'Откроете фейковые аккаунты и дотянете до 20' }, { uz: "O'zingiz yana sakkiz marta ro'yxatdan o'tasiz", ru: 'Сами зарегистрируетесь ещё восемь раз' }, { uz: 'Postni notanish guruhlarga tashlaysiz', ru: "Разошлёте пост по незнакомым группам" }, { uz: "Sonni yozib, keyingi bosqichga o'tasiz", ru: 'Запишете число и перейдёте к следующему этапу' }], correct: 3 },
+  { q: { uz: "Agentga xato yuborganda nimani yuborasiz?", ru: "Что отправляете агенту при ошибке?" }, opts: [{ uz: "Xato qatorining o'zini", ru: "Только строку ошибки" }, { uz: "`.env` dagi qiymatlarni", ru: "Значения из `.env`" }, { uz: "Token va xato qatorini", ru: "Токен и строку ошибки" }, { uz: "Maxfiy kalit va kodni", ru: "Секретный ключ и код" }], correct: 0 },
+  { q: { uz: "Guruhga post yuborishdan oldin nima qilasiz?", ru: "Что делаете до отправки поста в группу?" }, opts: [{ uz: "Yangi akkaunt ochasiz", ru: "Создаёте новый аккаунт" }, { uz: "Egasidan ruxsat so'raysiz", ru: "Спрашиваете разрешения у владельца" }, { uz: "O'nta guruhga tashlaysiz", ru: "Кидаете в десять групп" }, { uz: "Telefon raqam qo'shasiz", ru: "Добавляете номер телефона" }], correct: 1 },
+  { q: { uz: "`ochdi` hodisasi bilan Backend'ga nima boradi?", ru: "Что уходит в Backend с событием `ochdi`?" }, opts: [{ uz: "Hodisa nomi va login", ru: "Имя события и логин" }, { uz: "O'yinchi ismi va qurilma ID", ru: "Имя игрока и ID устройства" }, { uz: "Hodisa nomi va qurilma ID", ru: "Имя события и ID устройства" }, { uz: "Login va parol hash", ru: "Логин и хеш пароля" }], correct: 2 },
+  { q: { uz: "Rejada 20, aslida 12 kishi. Nima qilasiz?", ru: "В плане 20, на деле 12 человек. Что сделаете?" }, opts: [{ uz: "Soxta akkaunt ochasiz", ru: "Создадите фейковые аккаунты" }, { uz: "Yana 8 marta o'tasiz", ru: "Зарегистрируетесь ещё 8 раз" }, { uz: "Notanishlarga yuborasiz", ru: "Разошлёте незнакомым" }, { uz: "Sonni yozib, davom etasiz", ru: "Запишете число и продолжите" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1984,7 +2009,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, eyebrow, t
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cxx('fu-blok', qulf && 'fu-qulf')}>
-        <QBlok ulgur={ulgur && !done ? fmtCode(tr(ulgur)) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? fmtCode(tr(ulgur)) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: <>{c.t}{c.prompt && <FuPrompt satrlar={c.prompt.satrlar} namuna={c.prompt.namuna} toldir={c.prompt.toldir} />}</>,

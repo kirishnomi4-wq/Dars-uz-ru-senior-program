@@ -1846,7 +1846,7 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · naqshsiz (2,0,3,1,1,3,0,2,3,0,2,1). darslik-jonli TASDIQLAYDI.
 const QUIZ_BANK = [
-  { q: { uz: 'Mahsulot odam uchun bajaradigan narsa nima deyiladi?' }, opts: [{ uz: 'narxi' }, { uz: 'rangi' }, { uz: 'vazifasi' }, { uz: 'nomi' }], correct: 2 },
+  { q: { uz: "Mahsulot odam uchun bajaradigan narsa nima deyiladi?", ru: "Как называется то, что продукт делает для человека?" }, opts: [{ uz: "reklamasi", ru: "реклама" }, { uz: "qadog'i", ru: "упаковка" }, { uz: "vazifasi", ru: "задача" }, { uz: "brendi", ru: "бренд" }], correct: 2 },
   { q: { uz: '«Menga amalda nima beradi?» — qaysi tur savoli?' }, opts: [{ uz: 'funksional' }, { uz: 'ijtimoiy' }, { uz: 'emotsional' }, { uz: 'hech qaysi' }], correct: 0 },
   { q: { uz: "«Boshqalar oldida qanday bo'laman?» — qaysi tur savoli?" }, opts: [{ uz: 'funksional' }, { uz: 'emotsional' }, { uz: 'hech qaysi' }, { uz: 'ijtimoiy' }], correct: 3 },
   { q: { uz: "«O'zimni qanday his qilaman?» — qaysi tur savoli?" }, opts: [{ uz: 'ijtimoiy' }, { uz: 'emotsional' }, { uz: 'funksional' }, { uz: 'hech qaysi' }], correct: 1 },
@@ -1856,8 +1856,8 @@ const QUIZ_BANK = [
   { q: { uz: "Starbucks o'zini qanday joy deb qurgan?" }, opts: [{ uz: "eng arzon kofe do'koni" }, { uz: 'tez olib ketiladigan joy' }, { uz: 'uchinchi joy' }, { uz: "faqat ichimlik do'koni" }], correct: 2 },
   { q: { uz: 'Starbucks nechta tur vazifani birga bajaradi?' }, opts: [{ uz: 'bittasini' }, { uz: 'ikkitasini' }, { uz: 'hech birini' }, { uz: 'uchalasini' }], correct: 3 },
   { q: { uz: 'Saytda har vazifani nima bajaradi?' }, opts: [{ uz: "o'z komponenti" }, { uz: 'alohida sayt' }, { uz: 'yangi rang' }, { uz: 'yangi nom' }], correct: 0 },
-  { q: { uz: 'Saytda faqat jadval va narxlar bor. Qaysi tur vazifa bajarilmaydi?' }, opts: [{ uz: 'funksional' }, { uz: 'hech qaysi' }, { uz: 'emotsional' }, { uz: 'hammasi bajariladi' }], correct: 2 },
-  { q: { uz: "Kodda «qo'rqmaslik» vazifasiga `tur: 'funksional'` yozilgan. Nima qilinadi?" }, opts: [{ uz: "qator o'chiriladi" }, { uz: "tur 'emotsional' qilinadi" }, { uz: "vazifa o'chiriladi" }, { uz: 'hech narsa qilinmaydi' }], correct: 1 },
+  { q: { uz: "Saytda faqat jadval va narx. Qaysi tur bajarilmaydi?", ru: "На сайте только расписание и цены. Какой тип не выполнен?" }, opts: [{ uz: "funksional", ru: "функциональная" }, { uz: "hech qaysi", ru: "никакая" }, { uz: "emotsional", ru: "эмоциональная" }, { uz: "hammasi bajariladi", ru: "все выполнены" }], correct: 2 },
+  { q: { uz: "Kodda «qo'rqmaslik» turi 'funksional'. Nima qilinadi?", ru: "В коде у «не бояться» тип «функциональная». Что делать?" }, opts: [{ uz: "qator o'chiriladi", ru: "удалить строку" }, { uz: "tur 'emotsional' qilinadi", ru: "тип меняют на 'emotsional'" }, { uz: "vazifa o'chiriladi", ru: "удалить задачу" }, { uz: "hech narsa qilinmaydi", ru: "ничего не делать" }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

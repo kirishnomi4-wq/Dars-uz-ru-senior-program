@@ -1932,17 +1932,17 @@ const QZ_BG_SHAPES = [
   { ch: 'bold',     l: 2,  t: 46, s: 22, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: { uz: "CSS nima uchun ishlatiladi?", ru: 'Для чего используется CSS?' }, opts: [{ uz: "Sahifani bezash (rang, shrift, bo'shliq)", ru: 'Оформление страницы (цвет, шрифт, отступы)' }, { uz: "Sahifa tuzilishini yaratish", ru: 'Создание структуры страницы' }, { uz: "Ma'lumotlar bazasi", ru: 'База данных' }, { uz: "Serverga so'rov", ru: 'Запрос к серверу' }], correct: 0 },
-  { q: { uz: "`h1 { color: red; }` da `h1` nima deb ataladi?", ru: 'Как называется `h1` в `h1 { color: red; }`?' }, opts: [{ uz: "Xususiyat", ru: 'Свойство' }, { uz: "Selektor", ru: 'Селектор' }, { uz: "Qiymat", ru: 'Значение' }, { uz: "Teg", ru: 'Тег' }], correct: 1 },
+  { q: { uz: "CSS nima uchun ishlatiladi?", ru: "Для чего используется CSS?" }, opts: [{ uz: "Sahifani bezash uchun", ru: "Чтобы оформлять страницу" }, { uz: "Tuzilma yaratish uchun", ru: "Чтобы создавать структуру" }, { uz: "Ma'lumot saqlash uchun", ru: "Чтобы хранить данные" }, { uz: "So'rov yuborish uchun", ru: "Чтобы отправлять запросы" }], correct: 0 },
+  { q: { uz: "`h1 { color: red; }` da `h1` nima deb ataladi?", ru: "Как называется `h1` в `h1 { color: red; }`?" }, opts: [{ uz: "Xususiyat", ru: "Свойство" }, { uz: "Selektor", ru: "Селектор" }, { uz: "Qiymat", ru: "Значение" }, { uz: "Izoh", ru: "Комментарий" }], correct: 1 },
   { q: { uz: "`color: red;` da `red` nima?", ru: 'Что такое `red` в `color: red;`?' }, opts: [{ uz: "Selektor", ru: 'Селектор' }, { uz: "Xususiyat", ru: 'Свойство' }, { uz: "Qiymat", ru: 'Значение' }, 'Property'], correct: 2 },
   { q: { uz: "Matn rangini qaysi xususiyat o'zgartiradi?", ru: 'Какое свойство меняет цвет текста?' }, opts: ["`background-color`", "`margin`", "`font-size`", "`color`"], correct: 3 },
-  { q: { uz: "Fon rangini qaysi xususiyat belgilaydi?", ru: 'Какое свойство задаёт цвет фона?' }, opts: ["`background-color`", "`color`", "`border`", "`padding`"], correct: 0 },
+  { q: { uz: "Fon rangini qaysi xususiyat belgilaydi?", ru: "Какое свойство задаёт цвет фона?" }, opts: ["`background-color`", "`color`", "`border-color`", "`font-family`"], correct: 0 },
   { q: { uz: "Shrift turini (Arial) qaysi xususiyat tanlaydi?", ru: 'Какое свойство выбирает вид шрифта (Arial)?' }, opts: ["`font-size`", "`font-family`", "`font-weight`", "`text-align`"], correct: 1 },
   { q: { uz: "Shrift o'lchamini qaysi xususiyat belgilaydi?", ru: 'Какое свойство задаёт размер шрифта?' }, opts: ["`font-family`", "`color`", "`font-size`", "`line-height`"], correct: 2 },
   { q: { uz: "Matnni qalin (bold) qilish uchun qaysi xususiyat?", ru: 'Какое свойство делает текст жирным (bold)?' }, opts: ["`font-style`", "`text-align`", "`font-size`", "`font-weight`"], correct: 3 },
   { q: { uz: "Kontent bilan chet orasidagi ICHKI bo'shliq qaysi?", ru: 'Какой из них — ВНУТРЕННИЙ отступ между контентом и краем?' }, opts: ["`padding`", "`margin`", "`border`", "`gap`"], correct: 0 },
   { q: { uz: "Element bilan boshqalar orasidagi TASHQI bo'shliq qaysi?", ru: 'Какой из них — ВНЕШНИЙ отступ между элементом и остальными?' }, opts: ["`padding`", "`margin`", "`color`", "`font-size`"], correct: 1 },
-  { q: { uz: "Har CSS satri oxiriga nima qo'yiladi?", ru: 'Что ставится в конце каждой строки CSS?' }, opts: [{ uz: "Nuqta", ru: 'Точка' }, { uz: "Vergul", ru: 'Запятая' }, { uz: "Nuqta-vergul (`;`)", ru: 'Точка с запятой (`;`)' }, { uz: "Ikki nuqta", ru: 'Двоеточие' }], correct: 2 },
+  { q: { uz: "Har CSS satri oxiriga nima qo'yiladi?", ru: "Что ставится в конце каждой строки CSS?" }, opts: [{ uz: "Nuqta (`.`)", ru: "Точка (`.`)" }, { uz: "Vergul (`,`)", ru: "Запятая (`,`)" }, { uz: "Nuqta-vergul (`;`)", ru: "Точка с запятой (`;`)" }, { uz: "Ikki nuqta (`:`)", ru: "Двоеточие (`:`)" }], correct: 2 },
   { q: { uz: "Xususiyat va qiymat orasida qaysi belgi?", ru: 'Какой знак стоит между свойством и значением?' }, opts: [{ uz: "Nuqta-vergul (`;`)", ru: 'Точка с запятой (`;`)' }, { uz: "Teng (`=`)", ru: 'Равно (`=`)' }, { uz: "Vergul", ru: 'Запятая' }, { uz: "Ikki nuqta (`:`)", ru: 'Двоеточие (`:`)' }], correct: 3 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));

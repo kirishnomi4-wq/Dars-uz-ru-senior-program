@@ -1,0 +1,4669 @@
+[
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgigacha cho'zilgan.",
+  "q": {
+   "uz": "`Controller` restoranda kim?",
+   "ru": "`Controller` — кто он в ресторане?"
+  },
+  "opts": [
+   {
+    "uz": "Oshpaz — taomni pishiradi",
+    "ru": "Повар — готовит блюдо"
+   },
+   {
+    "uz": "Ofitsiant — so'rov oladi",
+    "ru": "Официант — принимает запрос"
+   },
+   {
+    "uz": "Omborchi — javonga qo'yadi",
+    "ru": "Кладовщик — кладёт на полку"
+   },
+   {
+    "uz": "Qo'riqchi — token tekshiradi",
+    "ru": "Охранник — проверяет токен"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun; to'g'ri javob «oshpaz» izohi bilan ajralib turardi.",
+  "q": {
+   "uz": "`Service` nima qiladi?",
+   "ru": "Что делает `Service`?"
+  },
+  "opts": [
+   {
+    "uz": "Asosiy ishni bajaradi",
+    "ru": "Делает основную работу"
+   },
+   {
+    "uz": "Papkalarni tartiblaydi",
+    "ru": "Наводит порядок в папках"
+   },
+   {
+    "uz": "Serverni yoqib turadi",
+    "ru": "Держит сервер включённым"
+   },
+   {
+    "uz": "Brauzerda sahifa chizadi",
+    "ru": "Рисует страницу в браузере"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`DTO` — bu nima?",
+   "ru": "`DTO` — что это?"
+  },
+  "opts": [
+   {
+    "uz": "Javon chizmasi — tokchalar",
+    "ru": "Чертёж стеллажа — полки"
+   },
+   {
+    "uz": "Server portining raqami",
+    "ru": "Номер порта сервера"
+   },
+   {
+    "uz": "Anketa — ma'lumot qoidalari",
+    "ru": "Анкета — правила данных"
+   },
+   {
+    "uz": "Loyihaning GitHub nomi",
+    "ru": "Имя проекта на GitHub"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun; to'g'ri javob darsdagi «oshxona xodimlari» bilan bir xil emas edi.",
+  "q": {
+   "uz": "`@Module` ichida `providers` nima?",
+   "ru": "Что такое `providers` в `@Module`?"
+  },
+  "opts": [
+   {
+    "uz": "Loyihaning GitHub nomini",
+    "ru": "Имя проекта на GitHub"
+   },
+   {
+    "uz": "Bazaga ulanish parolini",
+    "ru": "Пароль к базе"
+   },
+   {
+    "uz": "Fayllarning umumiy hajmini",
+    "ru": "Общий объём файлов"
+   },
+   {
+    "uz": "Oshxona xodimlari ro'yxatini",
+    "ru": "Список сотрудников кухни"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn me'yordan oshgan.",
+  "q": {
+   "uz": "`npm run start:dev` nima qiladi?",
+   "ru": "Что делает `npm run start:dev`?"
+  },
+  "opts": [
+   {
+    "uz": "Serverni yoqib kuzatadi",
+    "ru": "Включает сервер и следит"
+   },
+   {
+    "uz": "Kodni GitHub'ga yuklaydi",
+    "ru": "Загружает код на GitHub"
+   },
+   {
+    "uz": "Bazani tozalab tashlaydi",
+    "ru": "Очищает базу"
+   },
+   {
+    "uz": "Yangi bo'lim yaratadi",
+    "ru": "Создаёт новый раздел"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "tushunarsiz"
+  ],
+  "izoh": "To'g'ri variant savoldagi «anketa» so'zini takrorlab, javobni ochib qo'yardi.",
+  "q": {
+   "uz": "Anketa xato to'ldirilsa qaysi kod qaytadi?",
+   "ru": "Какой код вернётся, если анкета заполнена неверно?"
+  },
+  "opts": [
+   {
+    "uz": "`201` — yozuv yaratildi",
+    "ru": "`201` — запись создана"
+   },
+   {
+    "uz": "`401` — ruxsat berilmadi",
+    "ru": "`401` — доступ запрещён"
+   },
+   {
+    "uz": "`400` — so'rov noto'g'ri",
+    "ru": "`400` — неверный запрос"
+   },
+   {
+    "uz": "`200` — hammasi joyida",
+    "ru": "`200` — всё в порядке"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`Entity` nimani belgilaydi?",
+   "ru": "Что задаёт `Entity`?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifa ranglarini",
+    "ru": "Цвета страницы"
+   },
+   {
+    "uz": "Ombordagi tokchalarni",
+    "ru": "Полки на складе"
+   },
+   {
+    "uz": "Server tezligini",
+    "ru": "Скорость сервера"
+   },
+   {
+    "uz": "Ofitsiant ish vaqtini",
+    "ru": "График официанта"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`git clone` nima qiladi?",
+   "ru": "Что делает `git clone`?"
+  },
+  "opts": [
+   {
+    "uz": "Loyihani kompyuterga oladi",
+    "ru": "Скачивает проект на компьютер"
+   },
+   {
+    "uz": "Loyihani o'chirib tashlaydi",
+    "ru": "Удаляет проект"
+   },
+   {
+    "uz": "Bazani ma'lumotga to'ldiradi",
+    "ru": "Заполняет базу данными"
+   },
+   {
+    "uz": "Yoqilgan serverni o'chiradi",
+    "ru": "Выключает работающий сервер"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`Swagger` — bu nima?",
+   "ru": "`Swagger` — что это?"
+  },
+  "opts": [
+   {
+    "uz": "Ombordagi javon chizmasi",
+    "ru": "Чертёж стеллажа на складе"
+   },
+   {
+    "uz": "Maxfiy kalitlar fayli",
+    "ru": "Файл секретных ключей"
+   },
+   {
+    "uz": "Menyu — eshiklar ro'yxati",
+    "ru": "Меню — список дверей"
+   },
+   {
+    "uz": "Parol shifrlovchi dastur",
+    "ru": "Программа шифрования паролей"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Besh qadamli tartib variantlari 43 belgidan uzun; dastlabki uch qadam so'raladi.",
+  "q": {
+   "uz": "Yangi bo'lim: birinchi uch qadam?",
+   "ru": "Новый раздел: первые три шага?"
+  },
+  "opts": [
+   "Module → Controller → DTO",
+   "Controller → Module → Entity",
+   "Service → Entity → Module",
+   "Entity → DTO → Service"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`successRes` nima uchun kerak?",
+   "ru": "Зачем нужен `successRes`?"
+  },
+  "opts": [
+   {
+    "uz": "Xatoni mijozdan yashiradi",
+    "ru": "Прячет ошибки от клиента"
+   },
+   {
+    "uz": "Javoblarni bir xil qiladi",
+    "ru": "Делает ответы одинаковыми"
+   },
+   {
+    "uz": "Serverni tezlashtiradi",
+    "ru": "Ускоряет сервер"
+   },
+   {
+    "uz": "Parolni shifrlab saqlaydi",
+    "ru": "Хранит пароль в шифре"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun; to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Yuk nima?",
+   "ru": "Что такое нагрузка?"
+  },
+  "opts": [
+   {
+    "uz": "Birdan kelgan og'irlik",
+    "ru": "Тяжесть, пришедшая разом"
+   },
+   {
+    "uz": "Sahifani kutish vaqti",
+    "ru": "Время ожидания страницы"
+   },
+   {
+    "uz": "Saytdagi rasmlar hajmi",
+    "ru": "Объём картинок на сайте"
+   },
+   {
+    "uz": "Bir kunda kirganlar soni",
+    "ru": "Сколько зашло за день"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Yuk qachon og'irlashadi?",
+   "ru": "Когда нагрузка тяжелеет?"
+  },
+  "opts": [
+   {
+    "uz": "Har xil vaqtda kirganda",
+    "ru": "Когда заходят в разное время"
+   },
+   {
+    "uz": "Yangi sahifa qo'shilganda",
+    "ru": "Когда добавили страницу"
+   },
+   {
+    "uz": "Kun bo'yi tarqalib kirganda",
+    "ru": "Когда заходят весь день вразброс"
+   },
+   {
+    "uz": "Hammasi bir vaqtda kirganda",
+    "ru": "Когда все заходят одновременно"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Qaysi qism birinchi sinadi?",
+   "ru": "Какая часть ломается первой?"
+  },
+  "opts": [
+   {
+    "uz": "Hech kim talashmaydigan qism",
+    "ru": "Та, за которую никто не борется"
+   },
+   {
+    "uz": "Eng oxirida ochiladigan qism",
+    "ru": "Та, что открывают последней"
+   },
+   {
+    "uz": "Hamma talashadigan qism",
+    "ru": "Та, за которую борются все"
+   },
+   {
+    "uz": "Kam odam ochadigan qism",
+    "ru": "Та, что открывают немногие"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "O'rindiq tanlash nega birinchi sindi?",
+   "ru": "Почему выбор места сломался первым?"
+  },
+  "opts": [
+   {
+    "uz": "Uni ochish uzoq kutiladi",
+    "ru": "Его долго ждут"
+   },
+   {
+    "uz": "Hamma bir joyni talashadi",
+    "ru": "Все борются за одно место"
+   },
+   {
+    "uz": "Uni har xil vaqtda ochishadi",
+    "ru": "Его открывают в разное время"
+   },
+   {
+    "uz": "Unda rasm va video ko'p",
+    "ru": "В нём много фото и видео"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn me'yordan oshgan.",
+  "q": {
+   "uz": "E'lon sahifasi nega oxirida sindi?",
+   "ru": "Почему страница афиши сломалась последней?"
+  },
+  "opts": [
+   {
+    "uz": "Har kimga alohida javob",
+    "ru": "Каждому отдельный ответ"
+   },
+   {
+    "uz": "Hammaga bir xil, yengil",
+    "ru": "Для всех одинакова, лёгкая"
+   },
+   {
+    "uz": "Hamma uni talashadi",
+    "ru": "Все за неё борются"
+   },
+   {
+    "uz": "Uni hech kim ochmaydi",
+    "ru": "Её никто не открывает"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzun va 30 belgidan oshgan edi.",
+  "q": {
+   "uz": "Sig'im nima?",
+   "ru": "Что такое ёмкость?"
+  },
+  "opts": [
+   {
+    "uz": "Qism ko'taradigan odam soni",
+    "ru": "Сколько людей держит часть"
+   },
+   {
+    "uz": "Saytdagi sahifalar soni",
+    "ru": "Число страниц сайта"
+   },
+   {
+    "uz": "Bir kunda kirganlar soni",
+    "ru": "Сколько зашло за день"
+   },
+   {
+    "uz": "Saytni qurganlar soni",
+    "ru": "Сколько людей строили сайт"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol aniq emas va uzun edi.",
+  "q": {
+   "uz": "Qaysi qism birinchi kuchaytiriladi?",
+   "ru": "Какую часть усиливают первой?"
+  },
+  "opts": [
+   {
+    "uz": "Birinchi ko'rinadigan qism",
+    "ru": "Та, что видна первой"
+   },
+   {
+    "uz": "Hech kim talashmaydigan qism",
+    "ru": "Та, за которую никто не борется"
+   },
+   {
+    "uz": "Hamma talashadigan qism",
+    "ru": "Та, за которую борются все"
+   },
+   {
+    "uz": "Oxirida sinadigan qism",
+    "ru": "Та, что ломается последней"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn me'yordan oshgan.",
+  "q": {
+   "uz": "Nega hamma qismni kuchaytirmaymiz?",
+   "ru": "Почему не усиливаем все части?"
+  },
+  "opts": [
+   {
+    "uz": "Baribir hammasi sinadi",
+    "ru": "Всё равно всё сломается"
+   },
+   {
+    "uz": "Kod juda uzun bo'lib qoladi",
+    "ru": "Код станет слишком длинным"
+   },
+   {
+    "uz": "Sahifalar sekin ochiladi",
+    "ru": "Страницы будут медленными"
+   },
+   {
+    "uz": "Kuch hech qayerga yetmaydi",
+    "ru": "Сил ни на что не хватит"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Uzum yetkazish yo'lini qachon qurgan?",
+   "ru": "Когда Uzum построил доставку?"
+  },
+  "opts": [
+   {
+    "uz": "Birinchi kundanoq",
+    "ru": "С первого же дня"
+   },
+   {
+    "uz": "2025-yilda, o'sgach",
+    "ru": "В 2025-м, когда вырос"
+   },
+   {
+    "uz": "Mashhur bo'lgandan keyin",
+    "ru": "После того как стал известен"
+   },
+   {
+    "uz": "Odamlar qiynalgandan keyin",
+    "ru": "Когда люди намучились"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/PmLesson15.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun va chalkash edi.",
+  "q": {
+   "uz": "Sayt yukka nega chidadi?",
+   "ru": "Почему сайт выдержал нагрузку?"
+  },
+  "opts": [
+   {
+    "uz": "U keyinroq ochilgan",
+    "ru": "Его открыли позже"
+   },
+   {
+    "uz": "Oldindan shunga qurilgan",
+    "ru": "Его заранее так построили"
+   },
+   {
+    "uz": "Unda rasm va video kam",
+    "ru": "В нём мало фото и видео"
+   },
+   {
+    "uz": "O'sha kuni omadi kelgan",
+    "ru": "В тот день ему повезло"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`Entity` nimani belgilaydi?",
+   "ru": "Что задаёт `Entity`?"
+  },
+  "opts": [
+   {
+    "uz": "So'rov kiradigan eshikni",
+    "ru": "Дверь для запроса"
+   },
+   {
+    "uz": "Ishga tushish tartibini",
+    "ru": "Порядок запуска"
+   },
+   {
+    "uz": "Ekrandagi ranglarni",
+    "ru": "Цвета на экране"
+   },
+   {
+    "uz": "Bazadagi jadval ko'rinishini",
+    "ru": "Вид таблицы в базе"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`BaseEntity` qaysi ustunlarni tekin beradi?",
+   "ru": "Какие столбцы бесплатно даёт `BaseEntity`?"
+  },
+  "opts": [
+   {
+    "uz": "brand, model va price",
+    "ru": "brand, model и price"
+   },
+   {
+    "uz": "id, created_at, updated_at",
+    "ru": "id, created_at, updated_at"
+   },
+   {
+    "uz": "username, password",
+    "ru": "username, password"
+   },
+   {
+    "uz": "imports, controllers",
+    "ru": "imports, controllers"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`DTO` nima uchun kerak?",
+   "ru": "Зачем нужен `DTO`?"
+  },
+  "opts": [
+   {
+    "uz": "Kelgan ma'lumotni tekshirish",
+    "ru": "Проверять пришедшие данные"
+   },
+   {
+    "uz": "Jadval ustunlarini yaratish",
+    "ru": "Создавать столбцы таблицы"
+   },
+   {
+    "uz": "Bo'limni AppModule'ga ulash",
+    "ru": "Подключать раздел к AppModule"
+   },
+   {
+    "uz": "Serverni ishga tushirish",
+    "ru": "Запускать сервер"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Bo'sh `brand` bilan POST /car yuborilsa?",
+   "ru": "Что будет, если отправить POST /car с пустым `brand`?"
+  },
+  "opts": [
+   {
+    "uz": "Mashina baribir saqlanadi",
+    "ru": "Машина всё равно сохранится"
+   },
+   {
+    "uz": "Server ishdan chiqadi",
+    "ru": "Сервер упадёт"
+   },
+   {
+    "uz": "400 — bazaga bormaydi",
+    "ru": "400 — до базы не дойдёт"
+   },
+   {
+    "uz": "brand o'zi to'ldiriladi",
+    "ru": "brand заполнится сам"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn me'yordan oshgan.",
+  "q": {
+   "uz": "`PartialType` nima qiladi?",
+   "ru": "Что делает `PartialType`?"
+  },
+  "opts": [
+   {
+    "uz": "Maydonlarni majburiy qiladi",
+    "ru": "Делает поля обязательными"
+   },
+   {
+    "uz": "Maydonlarni ixtiyoriy qiladi",
+    "ru": "Делает поля необязательными"
+   },
+   {
+    "uz": "Bazada yangi jadval yaratadi",
+    "ru": "Создаёт новую таблицу в базе"
+   },
+   {
+    "uz": "Endpointlarni o'chiradi",
+    "ru": "Удаляет эндпоинты"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun.",
+  "q": {
+   "uz": "Tayyor CRUD metodlarini kim beradi?",
+   "ru": "Кто даёт готовые CRUD-методы?"
+  },
+  "opts": [
+   {
+    "uz": "Controller o'zi yozadi",
+    "ru": "Controller пишет сам"
+   },
+   {
+    "uz": "PostgreSQL o'zi yozadi",
+    "ru": "PostgreSQL пишет сам"
+   },
+   {
+    "uz": "Har resursda qo'lda yoziladi",
+    "ru": "Пишутся вручную в каждом ресурсе"
+   },
+   {
+    "uz": "`BaseService` — meros bilan",
+    "ru": "`BaseService` — по наследству"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "tushunarsiz",
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant izohi («qo'shish uchun») savolni takrorlab, javobni ochib qo'yardi.",
+  "q": {
+   "uz": "Yangi mashina qo'shish uchun qaysi dekorator?",
+   "ru": "Какой декоратор нужен, чтобы добавить машину?"
+  },
+  "opts": [
+   {
+    "uz": "`@Post()`",
+    "ru": "`@Post()`"
+   },
+   {
+    "uz": "`@Get()`",
+    "ru": "`@Get()`"
+   },
+   {
+    "uz": "`@Column()`",
+    "ru": "`@Column()`"
+   },
+   {
+    "uz": "`@Module()`",
+    "ru": "`@Module()`"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`Controller` nima qiladi?",
+   "ru": "Что делает `Controller`?"
+  },
+  "opts": [
+   {
+    "uz": "Jadval ustunlarini belgilaydi",
+    "ru": "Задаёт столбцы таблицы"
+   },
+   {
+    "uz": "Ma'lumotni diskka yozadi",
+    "ru": "Пишет данные на диск"
+   },
+   {
+    "uz": "So'rov olib, service chaqiradi",
+    "ru": "Принимает запрос, вызывает service"
+   },
+   {
+    "uz": "Loyihani build qilib yoqadi",
+    "ru": "Собирает и запускает проект"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun.",
+  "q": {
+   "uz": "`CarModule` AppModule'ga ulanmasa?",
+   "ru": "Что будет, если не подключить `CarModule` к AppModule?"
+  },
+  "opts": [
+   {
+    "uz": "Hammasi avvalgidek ishlaydi",
+    "ru": "Всё работает как раньше"
+   },
+   {
+    "uz": "/car topilmaydi — 404",
+    "ru": "/car не найден — 404"
+   },
+   {
+    "uz": "Faqat GET ishlaydi",
+    "ru": "Работает только GET"
+   },
+   {
+    "uz": "Loyiha umuman yoqilmaydi",
+    "ru": "Проект вообще не запустится"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`super(carRepo)` nima qiladi?",
+   "ru": "Что делает `super(carRepo)`?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi jadval yaratadi",
+    "ru": "Создаёт новую таблицу"
+   },
+   {
+    "uz": "Serverni qayta yoqadi",
+    "ru": "Перезапускает сервер"
+   },
+   {
+    "uz": "Eshikni ro'yxatga oladi",
+    "ru": "Регистрирует дверь"
+   },
+   {
+    "uz": "Omborni BaseService'ga beradi",
+    "ru": "Передаёт склад в BaseService"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant 30 belgidan uzun edi.",
+  "q": {
+   "uz": "`car.module.ts` ichida nima bo'ladi?",
+   "ru": "Что находится в `car.module.ts`?"
+  },
+  "opts": [
+   {
+    "uz": "@Column ustunlari ro'yxati",
+    "ru": "Список столбцов @Column"
+   },
+   {
+    "uz": "@IsString qoidalari ro'yxati",
+    "ru": "Список правил @IsString"
+   },
+   {
+    "uz": "controllers va providers",
+    "ru": "controllers и providers"
+   },
+   {
+    "uz": "main.ts port sozlamalari",
+    "ru": "Настройки порта main.ts"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Besh qadamli tartib variantlari 43 belgidan uzun; dastlabki uch qadam so'raladi.",
+  "q": {
+   "uz": "Yangi resurs: birinchi uch qadam?",
+   "ru": "Новый ресурс: первые три шага?"
+  },
+  "opts": [
+   "Entity → DTO → Service",
+   "Controller → Module → Entity",
+   "Module → Controller → Service",
+   "DTO → Entity → Controller"
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Yangi resurs uchun nechta fayl kerak?",
+   "ru": "Сколько файлов нужно для нового ресурса?"
+  },
+  "opts": [
+   {
+    "uz": "2 — entity va controller",
+    "ru": "2 — entity и controller"
+   },
+   {
+    "uz": "3 — entity, service, module",
+    "ru": "3 — entity, service, module"
+   },
+   {
+    "uz": "5 — har qatlamga bittadan",
+    "ru": "5 — по одному на слой"
+   },
+   {
+    "uz": "1 — hammasi bitta faylda",
+    "ru": "1 — всё в одном файле"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Bo'lim AppModule'ga ulanmasa nima bo'ladi?",
+   "ru": "Что будет, если раздел не подключить к AppModule?"
+  },
+  "opts": [
+   {
+    "uz": "Eshik topilmaydi — 404",
+    "ru": "Дверь не найдена — 404"
+   },
+   {
+    "uz": "Server ishga tushmaydi",
+    "ru": "Сервер не запустится"
+   },
+   {
+    "uz": "Ma'lumot saqlanmaydi",
+    "ru": "Данные не сохранятся"
+   },
+   {
+    "uz": "Swagger'da 500 chiqadi",
+    "ru": "В Swagger будет 500"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "tushunarsiz",
+   "uzun"
+  ],
+  "izoh": "Faqat bitta variantda izoh bor edi; variantlar bir xil shaklga keltirildi.",
+  "q": {
+   "uz": "Kitobni kategoriyaga qaysi dekorator bog'laydi?",
+   "ru": "Какой декоратор связывает книгу с категорией?"
+  },
+  "opts": [
+   {
+    "uz": "`@Column()`",
+    "ru": "`@Column()`"
+   },
+   {
+    "uz": "`@UseGuards()`",
+    "ru": "`@UseGuards()`"
+   },
+   {
+    "uz": "`@Roles()`",
+    "ru": "`@Roles()`"
+   },
+   {
+    "uz": "`@ManyToOne()`",
+    "ru": "`@ManyToOne()`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun.",
+  "q": {
+   "uz": "Tokensiz mijoz `POST /book` qilsa?",
+   "ru": "Клиент без токена делает `POST /book` — что будет?"
+  },
+  "opts": [
+   {
+    "uz": "401/403 — qo'riqchi rad etadi",
+    "ru": "401/403 — страж отказывает"
+   },
+   {
+    "uz": "201 — kitob baribir qo'shiladi",
+    "ru": "201 — книга всё равно добавится"
+   },
+   {
+    "uz": "404 — eshik topilmadi",
+    "ru": "404 — дверь не найдена"
+   },
+   {
+    "uz": "200 — bo'sh ro'yxat",
+    "ru": "200 — пустой список"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`GET /book` hamma uchun ochiq bo'lsin desak?",
+   "ru": "Как сделать `GET /book` открытым для всех?"
+  },
+  "opts": [
+   {
+    "uz": "`@Roles(UserRole.ADMIN)`",
+    "ru": "`@Roles(UserRole.ADMIN)`"
+   },
+   {
+    "uz": "`@Roles('public')`",
+    "ru": "`@Roles('public')`"
+   },
+   {
+    "uz": "Qo'riqchini o'chiramiz",
+    "ru": "Уберём стража"
+   },
+   {
+    "uz": "Frontend'da yashiramiz",
+    "ru": "Спрячем во фронтенде"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "`where` sharti bu darsda o'rgatilmagan; darsdagi agent ishini tekshirish so'raladi.",
+  "q": {
+   "uz": "Agent yozgan kodni qachon «Keep» qilasiz?",
+   "ru": "Когда вы нажимаете «Keep» для кода агента?"
+  },
+  "opts": [
+   {
+    "uz": "Darhol, o'qimasdan",
+    "ru": "Сразу, не читая"
+   },
+   {
+    "uz": "Agent tugatishi bilan",
+    "ru": "Как только агент закончит"
+   },
+   {
+    "uz": "Server yoqilmasdan oldin",
+    "ru": "До запуска сервера"
+   },
+   {
+    "uz": "Tekshiruvdan o'tganda",
+    "ru": "Когда прошёл проверку"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun.",
+  "q": {
+   "uz": "Muvaffaqiyatli POST qaysi kodni qaytaradi?",
+   "ru": "Какой код возвращает успешный POST?"
+  },
+  "opts": [
+   "200 OK",
+   "201 Created",
+   "204 No Content",
+   "301 Moved"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun va grammatik shakli har xil edi.",
+  "q": {
+   "uz": "DTO nima uchun kerak?",
+   "ru": "Зачем нужен DTO?"
+  },
+  "opts": [
+   {
+    "uz": "Kelgan so'rovni tekshirish",
+    "ru": "Проверять входящий запрос"
+   },
+   {
+    "uz": "Jadval ustunlarini belgilash",
+    "ru": "Задавать столбцы таблицы"
+   },
+   {
+    "uz": "Bo'limni AppModule'ga ulash",
+    "ru": "Подключать раздел к AppModule"
+   },
+   {
+    "uz": "Bazaga ulanishni sozlash",
+    "ru": "Настраивать подключение к базе"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "`relations` bu darsda o'rgatilmagan; darsdagi 403 debug misoli so'raladi.",
+  "q": {
+   "uz": "Mijoz `POST /order` da 403 oldi. Sabab?",
+   "ru": "Клиент получил 403 на `POST /order`. Причина?"
+  },
+  "opts": [
+   "`@Controller('order')`",
+   "`@Post()`",
+   "`@Roles(UserRole.ADMIN)`",
+   "`@Get()`"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Unit-test nima qiladi?",
+   "ru": "Что делает unit-тест?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni chiroyli qiladi",
+    "ru": "Делает сайт красивым"
+   },
+   {
+    "uz": "Ma'lumotni bazaga yozadi",
+    "ru": "Пишет данные в базу"
+   },
+   {
+    "uz": "Serverni ishga tushiradi",
+    "ru": "Запускает сервер"
+   },
+   {
+    "uz": "Funksiya natijasini tekshiradi",
+    "ru": "Проверяет результат функции"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "`expect(...).toBe(...)` nima qiladi?",
+   "ru": "Что делает `expect(...).toBe(...)`?"
+  },
+  "opts": [
+   {
+    "uz": "Natijani ekranga chiqaradi",
+    "ru": "Выводит результат на экран"
+   },
+   {
+    "uz": "Funksiyani chaqiradi",
+    "ru": "Вызывает функцию"
+   },
+   {
+    "uz": "Natijani etalonga solishtiradi",
+    "ru": "Сравнивает результат с эталоном"
+   },
+   {
+    "uz": "Testni o'chiradi",
+    "ru": "Удаляет тест"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`describe` nima uchun kerak?",
+   "ru": "Зачем нужен `describe`?"
+  },
+  "opts": [
+   {
+    "uz": "Jest'ni loyihaga o'rnatadi",
+    "ru": "Устанавливает Jest в проект"
+   },
+   {
+    "uz": "Testlarni bir guruhga yig'adi",
+    "ru": "Собирает тесты в одну группу"
+   },
+   {
+    "uz": "Natijani tekshiradi",
+    "ru": "Проверяет результат"
+   },
+   {
+    "uz": "Funksiyani ishga tushiradi",
+    "ru": "Запускает функцию"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "tushunarsiz"
+  ],
+  "izoh": "Faqat to'g'ri variant kod shaklida (backtick bilan) yozilib, javobni ochib qo'yardi.",
+  "q": {
+   "uz": "Test fayli qanday nomlanadi?",
+   "ru": "Как называется файл теста?"
+  },
+  "opts": [
+   "`order.js`",
+   "`order.spec.ts`",
+   "`order.jest`",
+   "`order.test.html`"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`npm test` nima qiladi?",
+   "ru": "Что делает `npm test`?"
+  },
+  "opts": [
+   {
+    "uz": "Bazani tozalab tashlaydi",
+    "ru": "Очищает базу"
+   },
+   {
+    "uz": "Loyihani serverga yuklaydi",
+    "ru": "Загружает проект на сервер"
+   },
+   {
+    "uz": "Yangi funksiya yozib beradi",
+    "ru": "Пишет новую функцию"
+   },
+   {
+    "uz": "Testlarni ishga tushiradi",
+    "ru": "Запускает тесты"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Testdagi `console.log` nimani tekshiradi?",
+   "ru": "Что проверяет `console.log` в тесте?"
+  },
+  "opts": [
+   {
+    "uz": "Natija etalonga tengligini",
+    "ru": "Равен ли результат эталону"
+   },
+   {
+    "uz": "Funksiyaning tezligini",
+    "ru": "Скорость функции"
+   },
+   {
+    "uz": "Hech narsani tekshirmaydi",
+    "ru": "Ничего не проверяет"
+   },
+   {
+    "uz": "Kod qatorlari sonini",
+    "ru": "Число строк кода"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun, variantlar takrorlanuvchi.",
+  "q": {
+   "uz": "Bitta `it` nechta xatti-harakatni tekshiradi?",
+   "ru": "Сколько поведений проверяет один `it`?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat bittasini",
+    "ru": "Только одно"
+   },
+   {
+    "uz": "Hech birini",
+    "ru": "Ни одного"
+   },
+   {
+    "uz": "Kamida beshtasini",
+    "ru": "Не меньше пяти"
+   },
+   {
+    "uz": "Cheksiz ko'pini",
+    "ru": "Сколько угодно"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun; to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Kutilgan 20000, kelgan 10002. Jest nima qiladi?",
+   "ru": "Ожидалось 20000, пришло 10002. Что сделает Jest?"
+  },
+  "opts": [
+   {
+    "uz": "FAIL: Expected va Received",
+    "ru": "FAIL: Expected и Received"
+   },
+   {
+    "uz": "Hech narsa demaydi",
+    "ru": "Ничего не скажет"
+   },
+   {
+    "uz": "Funksiyani o'chiradi",
+    "ru": "Удалит функцию"
+   },
+   {
+    "uz": "Kodni o'zi tuzatib beradi",
+    "ru": "Сам исправит код"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Testda `expect` bo'lmasa nima bo'ladi?",
+   "ru": "Что будет, если в тесте нет `expect`?"
+  },
+  "opts": [
+   {
+    "uz": "Doim qizil FAIL chiqadi",
+    "ru": "Всегда красный FAIL"
+   },
+   {
+    "uz": "Doim PASS — yolg'on test",
+    "ru": "Всегда PASS — ложный тест"
+   },
+   {
+    "uz": "Jest ishlamay to'xtaydi",
+    "ru": "Jest остановится"
+   },
+   {
+    "uz": "Test ikki marta ishlaydi",
+    "ru": "Тест запустится дважды"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Etalon xato yozilsa nima bo'ladi?",
+   "ru": "Что будет, если эталон записан неверно?"
+  },
+  "opts": [
+   {
+    "uz": "Kod to'g'ri bo'lsa ham qizil",
+    "ru": "Красный, даже если код верный"
+   },
+   {
+    "uz": "Jest etalonni o'zi tuzatadi",
+    "ru": "Jest сам исправит эталон"
+   },
+   {
+    "uz": "Test o'tkazib yuboriladi",
+    "ru": "Тест будет пропущен"
+   },
+   {
+    "uz": "Funksiya mantig'i o'zgaradi",
+    "ru": "Изменится логика функции"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri javob boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "AAA tartibi nima?",
+   "ru": "Что такое порядок AAA?"
+  },
+  "opts": [
+   {
+    "uz": "Aniqla → Aylantir → Arxivla",
+    "ru": "Определи → Поверни → Архивируй"
+   },
+   {
+    "uz": "Aloqa → Aksiya → Aniqlik",
+    "ru": "Связь → Акция → Точность"
+   },
+   {
+    "uz": "Tayyorla → Chaqir → Tekshir",
+    "ru": "Подготовь → Вызови → Проверь"
+   },
+   {
+    "uz": "Avtomat → Analiz → Audit",
+    "ru": "Автомат → Анализ → Аудит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Jest nega `--save-dev` bilan o'rnatiladi?",
+   "ru": "Почему Jest ставят с `--save-dev`?"
+  },
+  "opts": [
+   {
+    "uz": "Tezroq ishlashi uchun",
+    "ru": "Чтобы работал быстрее"
+   },
+   {
+    "uz": "Bepul bo'lgani uchun",
+    "ru": "Потому что бесплатный"
+   },
+   {
+    "uz": "Testni o'zi yozishi uchun",
+    "ru": "Чтобы сам писал тесты"
+   },
+   {
+    "uz": "Faqat ishlab chiqish uchun",
+    "ru": "Нужен только в разработке"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Sifat nima?",
+   "ru": "Что такое качество?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova har gal aytganini qilsa",
+    "ru": "Приложение каждый раз делает обещанное"
+   },
+   {
+    "uz": "Ilovani ko'p odam yuklasa",
+    "ru": "Приложение скачали многие"
+   },
+   {
+    "uz": "Ilova hammadan tez ochilsa",
+    "ru": "Приложение открывается быстрее всех"
+   },
+   {
+    "uz": "Tugmalari chiroyli tursa",
+    "ru": "Кнопки стоят красиво"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri javob 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Qaysi holat — nosozlik?",
+   "ru": "Какой случай — поломка?"
+  },
+  "opts": [
+   {
+    "uz": "Skuter uzoqroqda ko'rinadi",
+    "ru": "Самокат виден дальше"
+   },
+   {
+    "uz": "Safardan keyin baho so'raladi",
+    "ru": "После поездки просят оценку"
+   },
+   {
+    "uz": "Narx kecha arzonroq edi",
+    "ru": "Вчера цена была ниже"
+   },
+   {
+    "uz": "Tugatsa ham hisoblagich yuradi",
+    "ru": "Завершили, а счётчик идёт"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Aytganini qildi, ammo yoqmadi — bu?",
+   "ru": "Сделало обещанное, но не понравилось — это?"
+  },
+  "opts": [
+   {
+    "uz": "Nosozlik — karta yoziladi",
+    "ru": "Поломка — пишем карточку"
+   },
+   {
+    "uz": "Nosozlik — tuzatiladi",
+    "ru": "Поломка — её чинят"
+   },
+   {
+    "uz": "Nosozlik emas — yoqmagan narsa",
+    "ru": "Не поломка — просто не понравилось"
+   },
+   {
+    "uz": "Nosozlik — Keyin javoniga",
+    "ru": "Поломка — на полку «Потом»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Karta birinchi qatorida nima yoziladi?",
+   "ru": "Что пишут в первой строке карточки?"
+  },
+  "opts": [
+   {
+    "uz": "Nosozlik qachon tuzatilishi",
+    "ru": "Когда починят поломку"
+   },
+   {
+    "uz": "Nosozlikni kim topgani",
+    "ru": "Кто нашёл поломку"
+   },
+   {
+    "uz": "Nima bosildi — nima bo'ldi",
+    "ru": "Что нажали — что произошло"
+   },
+   {
+    "uz": "Qaysi javonga tushishi",
+    "ru": "На какую полку попадёт"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn me'yordan oshgan.",
+  "q": {
+   "uz": "Qaysi nosozlik birinchi tuzatiladi?",
+   "ru": "Какую поломку чинят первой?"
+  },
+  "opts": [
+   {
+    "uz": "Ba'zilarda — ish to'xtaydi",
+    "ru": "У некоторых — работа стоит"
+   },
+   {
+    "uz": "Ba'zilarda — noqulay",
+    "ru": "У некоторых — неудобно"
+   },
+   {
+    "uz": "Hammada — noqulay",
+    "ru": "У всех — неудобно"
+   },
+   {
+    "uz": "Hammada — ish to'xtaydi",
+    "ru": "У всех — работа стоит"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun.",
+  "q": {
+   "uz": "Cyberpunk 2077 nosozliklari qayerda chiqdi?",
+   "ru": "Где вылезли поломки Cyberpunk 2077?"
+  },
+  "opts": [
+   {
+    "uz": "O'yinni yasagan jamoada",
+    "ru": "У команды разработчиков"
+   },
+   {
+    "uz": "Do'kon tekshiruvchilarida",
+    "ru": "У проверяющих магазина"
+   },
+   {
+    "uz": "Sotib olgan o'yinchilarda",
+    "ru": "У купивших игроков"
+   },
+   {
+    "uz": "Reklama yozganlarda",
+    "ru": "У авторов рекламы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/PmLesson16.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Narx testi qizil chiqdi — bu nima degani?",
+   "ru": "Тест цены покраснел — что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Kod ishga tushmay qoldi",
+    "ru": "Код не запустился"
+   },
+   {
+    "uz": "Testni qayta yozish kerak",
+    "ru": "Тест надо переписать"
+   },
+   {
+    "uz": "Odamlar shikoyat qildi",
+    "ru": "Люди пожаловались"
+   },
+   {
+    "uz": "Nosozlik odamgacha tutildi",
+    "ru": "Поломку поймали до людей"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Edge case nima?",
+   "ru": "Что такое edge case?"
+  },
+  "opts": [
+   {
+    "uz": "Eng ko'p uchraydigan kirish",
+    "ru": "Самый частый ввод"
+   },
+   {
+    "uz": "Funksiya yoki o'zgaruvchi nomi",
+    "ru": "Имя функции или переменной"
+   },
+   {
+    "uz": "0, manfiy yoki juda katta son",
+    "ru": "0, отрицательное или огромное число"
+   },
+   {
+    "uz": "Doim xatosiz o'tadigan kirish",
+    "ru": "Ввод, который всегда проходит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Himoyasiz orderTotal(10000, 0) nima beradi?",
+   "ru": "Что вернёт незащищённая orderTotal(10000, 0)?"
+  },
+  "opts": [
+   {
+    "uz": "Error — darhol to'xtaydi",
+    "ru": "Error — сразу остановится"
+   },
+   {
+    "uz": "NaN — hisob buziladi",
+    "ru": "NaN — расчёт сломается"
+   },
+   {
+    "uz": "10000 — bitta narx",
+    "ru": "10000 — цена одной"
+   },
+   {
+    "uz": "0 — bepul, xato sezilmaydi",
+    "ru": "0 — бесплатно, ошибку не видно"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Himoyasiz funksiyaga «ikki» kelsa?",
+   "ru": "Что будет, если в незащищённую функцию придёт «ikki»?"
+  },
+  "opts": [
+   {
+    "uz": "0 — matn nolga aylanadi",
+    "ru": "0 — текст станет нулём"
+   },
+   {
+    "uz": "NaN — hisob jim buziladi",
+    "ru": "NaN — расчёт тихо ломается"
+   },
+   {
+    "uz": "Error — so'rov rad etiladi",
+    "ru": "Error — запрос отклонён"
+   },
+   {
+    "uz": "10000 — narx o'zgarmaydi",
+    "ru": "10000 — цена не меняется"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar juda uzun.",
+  "q": {
+   "uz": "Guard (himoya) qanday yoziladi?",
+   "ru": "Как пишется guard (защита)?"
+  },
+  "opts": [
+   {
+    "uz": "if (shart) throw new Error()",
+    "ru": "if (условие) throw new Error()"
+   },
+   {
+    "uz": "console.log(quantity)",
+    "ru": "console.log(quantity)"
+   },
+   {
+    "uz": "if (shart) return 0",
+    "ru": "if (условие) return 0"
+   },
+   {
+    "uz": "Yozilmaydi — Jest o'zi tutadi",
+    "ru": "Не пишется — Jest поймает сам"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Kod variantlari 38 belgidan uzun edi; funksiya qisqa f() bilan berildi.",
+  "q": {
+   "uz": "f() xato tashlashini qaysi yozuv sinaydi?",
+   "ru": "Какая запись проверяет, что f() бросает ошибку?"
+  },
+  "opts": [
+   {
+    "uz": "expect(f()).toThrow()",
+    "ru": "expect(f()).toThrow()"
+   },
+   {
+    "uz": "expect(f()).toBe(0)",
+    "ru": "expect(f()).toBe(0)"
+   },
+   {
+    "uz": "f().toThrow()",
+    "ru": "f().toThrow()"
+   },
+   {
+    "uz": "expect(() => f()).toThrow()",
+    "ru": "expect(() => f()).toThrow()"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar juda uzun.",
+  "q": {
+   "uz": "toThrow'da () => yozilmasa?",
+   "ru": "Что будет, если в toThrow не написать () =>?"
+  },
+  "opts": [
+   {
+    "uz": "Test sekinroq, natija bir xil",
+    "ru": "Тест медленнее, итог тот же"
+   },
+   {
+    "uz": "Hech narsa o'zgarmaydi",
+    "ru": "Ничего не изменится"
+   },
+   {
+    "uz": "Xato chiqib, test o'zi qulaydi",
+    "ru": "Ошибка вылетит, тест упадёт сам"
+   },
+   {
+    "uz": "Jest ogohlantirib, o'tkazadi",
+    "ru": "Jest предупредит и пропустит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Boundary sinovida nima tekshiriladi?",
+   "ru": "Что проверяют в boundary-тесте?"
+  },
+  "opts": [
+   {
+    "uz": "Ikki tomon: 1 va 0",
+    "ru": "Обе стороны: 1 и 0"
+   },
+   {
+    "uz": "Faqat eng katta qiymat",
+    "ru": "Только самое большое значение"
+   },
+   {
+    "uz": "Faqat manfiy sonlar",
+    "ru": "Только отрицательные числа"
+   },
+   {
+    "uz": "Faqat matnli kirish",
+    "ru": "Только текстовый ввод"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "throw API'da qanday javobga aylanadi?",
+   "ru": "Во что превращается throw в API?"
+  },
+  "opts": [
+   {
+    "uz": "200 OK",
+    "ru": "200 OK"
+   },
+   {
+    "uz": "400 Bad Request",
+    "ru": "400 Bad Request"
+   },
+   {
+    "uz": "500 Internal Error",
+    "ru": "500 Internal Error"
+   },
+   {
+    "uz": "Hech qanday javob",
+    "ru": "Ни во что"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Faqat happy path sinalsa, qanday xavf bor?",
+   "ru": "Чем опасно, если проверен только happy path?"
+  },
+  "opts": [
+   {
+    "uz": "Edge xato sezilmay qoladi",
+    "ru": "Ошибка на краю останется незамеченной"
+   },
+   {
+    "uz": "Test biroz sekinlashadi",
+    "ru": "Тест немного замедлится"
+   },
+   {
+    "uz": "Dastur darhol yiqiladi",
+    "ru": "Программа сразу упадёт"
+   },
+   {
+    "uz": "Xavf yo'q — shu yetarli",
+    "ru": "Опасности нет — этого хватит"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "AI testida faqat happy path bo'lsa?",
+   "ru": "Что делать, если в тесте от ИИ только happy path?"
+  },
+  "opts": [
+   {
+    "uz": "Ishonib o'tkazish",
+    "ru": "Довериться и пропустить"
+   },
+   {
+    "uz": "Edge testlarni qo'shish",
+    "ru": "Добавить edge-тесты"
+   },
+   {
+    "uz": "Qaytadan yozib chiqish",
+    "ru": "Переписать заново"
+   },
+   {
+    "uz": "console.log qo'shish",
+    "ru": "Добавить console.log"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "-5 dona uchun toBe(-50000) xatoni tutadimi?",
+   "ru": "Ловит ли ошибку toBe(-50000) для -5 штук?"
+  },
+  "opts": [
+   {
+    "uz": "Ha — manfiy son bor",
+    "ru": "Да — там отрицательное число"
+   },
+   {
+    "uz": "Ha — toBe doim edge testi",
+    "ru": "Да — toBe всегда edge-тест"
+   },
+   {
+    "uz": "Yo'q — xatoni to'g'ri deydi",
+    "ru": "Нет — считает ошибку верной"
+   },
+   {
+    "uz": "Bu umuman test emas",
+    "ru": "Это вообще не тест"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Guard qo'shilgach eski toBe(0) testi?",
+   "ru": "Что станет со старым тестом toBe(0) после guard?"
+  },
+  "opts": [
+   {
+    "uz": "Baribir PASS bo'laveradi",
+    "ru": "Останется PASS"
+   },
+   {
+    "uz": "Jest uni o'zi o'chiradi",
+    "ru": "Jest сам его удалит"
+   },
+   {
+    "uz": "Jest uni o'zi tuzatadi",
+    "ru": "Jest сам его исправит"
+   },
+   {
+    "uz": "FAIL — endi xato tashlanadi",
+    "ru": "FAIL — теперь бросается ошибка"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun; bittasi 80 belgidan oshgan.",
+  "q": {
+   "uz": "Pipeline (lenta) nima?",
+   "ru": "Что такое pipeline (лента)?"
+  },
+  "opts": [
+   {
+    "uz": "Kodni formatlovchi dastur",
+    "ru": "Программа форматирования кода"
+   },
+   {
+    "uz": "Test yozib beruvchi dastur",
+    "ru": "Программа, пишущая тесты"
+   },
+   {
+    "uz": "Kodni tekshiruvchi nuqtalar",
+    "ru": "Точки, проверяющие код"
+   },
+   {
+    "uz": "Serverni yoquvchi buyruq",
+    "ru": "Команда запуска сервера"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`npm install` qaysi nuqtada ishlaydi?",
+   "ru": "На какой точке работает `npm install`?"
+  },
+  "opts": [
+   {
+    "uz": "Yig'ish (install)",
+    "ru": "Сборка (install)"
+   },
+   {
+    "uz": "Uchirish (deploy)",
+    "ru": "Взлёт (deploy)"
+   },
+   {
+    "uz": "O'lcham ramkasi (lint)",
+    "ru": "Рамка (lint)"
+   },
+   {
+    "uz": "O'rash (build)",
+    "ru": "Упаковка (build)"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Test qizil (FAIL) bo'lsa nima bo'ladi?",
+   "ru": "Что будет, если тест красный (FAIL)?"
+  },
+  "opts": [
+   {
+    "uz": "Lenta davom etib, uchiradi",
+    "ru": "Лента продолжит и выложит"
+   },
+   {
+    "uz": "Lenta shu yerda to'xtaydi",
+    "ru": "Лента остановится здесь"
+   },
+   {
+    "uz": "Server butunlay o'chadi",
+    "ru": "Сервер полностью выключится"
+   },
+   {
+    "uz": "Xato o'zi tuzatiladi",
+    "ru": "Ошибка исправится сама"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "CI nimani anglatadi?",
+   "ru": "Что означает CI?"
+  },
+  "opts": [
+   {
+    "uz": "Dizaynni doim yangilash",
+    "ru": "Постоянно обновлять дизайн"
+   },
+   {
+    "uz": "Serverni uzluksiz kuzatish",
+    "ru": "Непрерывно следить за сервером"
+   },
+   {
+    "uz": "Kodni qo'lda birlashtirish",
+    "ru": "Вручную объединять код"
+   },
+   {
+    "uz": "Har push'ni o'zi tekshirish",
+    "ru": "Автоматически проверять каждый push"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "CD nima qiladi?",
+   "ru": "Что делает CD?"
+  },
+  "opts": [
+   {
+    "uz": "Tekshirilgan yukni chiqaradi",
+    "ru": "Выкладывает проверенный груз"
+   },
+   {
+    "uz": "Kodni qo'lda nusxalaydi",
+    "ru": "Копирует код вручную"
+   },
+   {
+    "uz": "Testlarni o'zi yozib beradi",
+    "ru": "Сам пишет тесты"
+   },
+   {
+    "uz": "Loyihani repoga yuklaydi",
+    "ru": "Загружает проект в репозиторий"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`on: push` nimani bildiradi?",
+   "ru": "Что означает `on: push`?"
+  },
+  "opts": [
+   {
+    "uz": "Tugma bosilganda ishlaydi",
+    "ru": "Работает по нажатию кнопки"
+   },
+   {
+    "uz": "Yiliga bir marta ishlaydi",
+    "ru": "Работает раз в год"
+   },
+   {
+    "uz": "Har push'da o'zi ishlaydi",
+    "ru": "Сама запускается на каждый push"
+   },
+   {
+    "uz": "Hech qachon o'zi ishlamaydi",
+    "ru": "Никогда не запускается сама"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`eslint .` qaysi nuqtada ishlatiladi?",
+   "ru": "На какой точке используют `eslint .`?"
+  },
+  "opts": [
+   {
+    "uz": "Uchirish (deploy)",
+    "ru": "Взлёт (deploy)"
+   },
+   {
+    "uz": "Yig'ish (install)",
+    "ru": "Сборка (install)"
+   },
+   {
+    "uz": "O'rash (build)",
+    "ru": "Упаковка (build)"
+   },
+   {
+    "uz": "O'lcham ramkasi (lint)",
+    "ru": "Рамка (lint)"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "«Artefakt» atamasi darsda o'rgatilmagan; darsdagi «o'raydi» ta'rifi bilan so'raladi.",
+  "q": {
+   "uz": "Yukni internetga tayyor holga qaysi nuqta o'raydi?",
+   "ru": "Какая точка упаковывает груз для интернета?"
+  },
+  "opts": [
+   {
+    "uz": "Skaner (test)",
+    "ru": "Сканер (test)"
+   },
+   {
+    "uz": "O'rash (build)",
+    "ru": "Упаковка (build)"
+   },
+   {
+    "uz": "Yig'ish (install)",
+    "ru": "Сборка (install)"
+   },
+   {
+    "uz": "Uchirish (deploy)",
+    "ru": "Взлёт (deploy)"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`runs-on: ubuntu-latest` nima?",
+   "ru": "Что такое `runs-on: ubuntu-latest`?"
+  },
+  "opts": [
+   {
+    "uz": "Loyihaning rasmiy nomi",
+    "ru": "Официальное имя проекта"
+   },
+   {
+    "uz": "Bazaning maxfiy paroli",
+    "ru": "Секретный пароль базы"
+   },
+   {
+    "uz": "Lenta mashinasining muhiti",
+    "ru": "Среда машины ленты"
+   },
+   {
+    "uz": "Lentadagi testlar soni",
+    "ru": "Число тестов в ленте"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Uchirish uchun nima shart?",
+   "ru": "Что нужно для взлёта?"
+  },
+  "opts": [
+   {
+    "uz": "Dasturchi tugma bosishi",
+    "ru": "Чтобы программист нажал кнопку"
+   },
+   {
+    "uz": "Kod hajmi kichik bo'lishi",
+    "ru": "Чтобы код был маленьким"
+   },
+   {
+    "uz": "Hafta oxiri bo'lishi",
+    "ru": "Чтобы были выходные"
+   },
+   {
+    "uz": "Hamma nuqta yashil bo'lishi",
+    "ru": "Чтобы все точки были зелёными"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "Rollback bu darsda o'rgatilmagan; darsdagi «yo'lovchi eski saytni ko'radi» fakti so'raladi.",
+  "q": {
+   "uz": "Test qizil bo'lsa, foydalanuvchi nimani ko'radi?",
+   "ru": "Что видит пользователь, если тест красный?"
+  },
+  "opts": [
+   {
+    "uz": "Eski, ishlaydigan saytni",
+    "ru": "Старый рабочий сайт"
+   },
+   {
+    "uz": "Buzuq yangi saytni",
+    "ru": "Сломанный новый сайт"
+   },
+   {
+    "uz": "Bo'sh oq sahifani",
+    "ru": "Пустую белую страницу"
+   },
+   {
+    "uz": "Xato haqida xabarni",
+    "ru": "Сообщение об ошибке"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Maxfiy kalit (secret) qayerda saqlanadi?",
+   "ru": "Где хранится секретный ключ (secret)?"
+  },
+  "opts": [
+   {
+    "uz": "ci.yml ichida, ochiq holda",
+    "ru": "Открыто внутри ci.yml"
+   },
+   {
+    "uz": "Maxsus seyf sozlamalarida",
+    "ru": "В особых настройках сейфа"
+   },
+   {
+    "uz": "README oxirgi qatorida",
+    "ru": "В последней строке README"
+   },
+   {
+    "uz": "Terminal tarixida",
+    "ru": "В истории терминала"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Reliz nima?",
+   "ru": "Что такое релиз?"
+  },
+  "opts": [
+   {
+    "uz": "Bo'lakni odamlarga chiqarish",
+    "ru": "Вывести кусочек к людям"
+   },
+   {
+    "uz": "Kodni o'zida sinab ko'rish",
+    "ru": "Проверить код у себя"
+   },
+   {
+    "uz": "Saytga rasm va rang tanlash",
+    "ru": "Подобрать сайту фото и цвет"
+   },
+   {
+    "uz": "Ishni haftalarga bo'lish",
+    "ru": "Разбить работу по неделям"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun.",
+  "q": {
+   "uz": "Kod faqat o'zingizda ishlasa — relizmi?",
+   "ru": "Код работает только у вас — это релиз?"
+  },
+  "opts": [
+   {
+    "uz": "Ha — kod ishlayapti",
+    "ru": "Да — код работает"
+   },
+   {
+    "uz": "Yo'q — o'zgarish kichkina",
+    "ru": "Нет — изменение маленькое"
+   },
+   {
+    "uz": "Ha — sinfdosh ko'rgan",
+    "ru": "Да — одноклассник видел"
+   },
+   {
+    "uz": "Yo'q — odamlar ishlata olmaydi",
+    "ru": "Нет — люди не могут пользоваться"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "6-haftada kim keyingi bo'lakni aniq biladi?",
+   "ru": "Кто на 6-й неделе точно знает следующий кусочек?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'proq kod yozgan",
+    "ru": "Кто написал больше кода"
+   },
+   {
+    "uz": "Rejani uzoq o'ylagan",
+    "ru": "Кто дольше думал над планом"
+   },
+   {
+    "uz": "Har hafta chiqargan",
+    "ru": "Кто выпускал каждую неделю"
+   },
+   {
+    "uz": "Saytni kech ochgan",
+    "ru": "Кто открыл сайт позже"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn me'yordan oshgan.",
+  "q": {
+   "uz": "«Bir marta katta» nimani kech bildi?",
+   "ru": "Что поздно узнал «Один раз большой»?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni topa olmaganlarini",
+    "ru": "Что сайт не могли найти"
+   },
+   {
+    "uz": "Xaritani hech kim ochmaganini",
+    "ru": "Что карту никто не открыл"
+   },
+   {
+    "uz": "Chat ishlamay qolganini",
+    "ru": "Что чат перестал работать"
+   },
+   {
+    "uz": "E'lonlar ochilmasligini",
+    "ru": "Что объявления не открываются"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn me'yordan oshgan.",
+  "q": {
+   "uz": "Haftalik bo'lakning ikki chirog'i?",
+   "ru": "Две лампочки недельного кусочка?"
+  },
+  "opts": [
+   {
+    "uz": "Haftaga sig'adi · ishlatiladi",
+    "ru": "Влезает в неделю · им пользуются"
+   },
+   {
+    "uz": "Bir kunda tayyor · bepul",
+    "ru": "Готов за день · бесплатный"
+   },
+   {
+    "uz": "Tez yoziladi · kodi kam",
+    "ru": "Пишется быстро · мало кода"
+   },
+   {
+    "uz": "Rasmli · chiroyli ko'rinadi",
+    "ru": "С картинкой · красиво выглядит"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "«Bosilsa hech narsa bo'lmaydi» — nima yetmaydi?",
+   "ru": "«При нажатии ничего не происходит» — чего не хватает?"
+  },
+  "opts": [
+   {
+    "uz": "Uni bosadigan odam",
+    "ru": "Человека, который нажмёт"
+   },
+   {
+    "uz": "Unga qo'yiladigan rasm",
+    "ru": "Картинки для него"
+   },
+   {
+    "uz": "Bosgandan keyingi ish",
+    "ru": "Действия после нажатия"
+   },
+   {
+    "uz": "Haftaga sig'adigan vaqt",
+    "ru": "Времени, чтобы влезть в неделю"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "i": 9,
+  "sabab": [
+   "tushunarsiz",
+   "uzun"
+  ],
+  "izoh": "Savol uzun va «Telegramdan keyin» mazmuni tushib qolgan edi.",
+  "q": {
+   "uz": "Telegramdagi reaksiya boshqa ilovalarga qachon keldi?",
+   "ru": "Когда реакции из Telegram пришли в другие приложения?"
+  },
+  "opts": [
+   {
+    "uz": "Bir necha haftada",
+    "ru": "Через несколько недель"
+   },
+   {
+    "uz": "O'sha kuniyoq",
+    "ru": "В тот же день"
+   },
+   {
+    "uz": "Bir necha yildan keyin",
+    "ru": "Через несколько лет"
+   },
+   {
+    "uz": "Telegramdan oldin",
+    "ru": "Раньше Telegram"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/PmLesson17.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Nimani qachon chiqarishni kim hal qiladi?",
+   "ru": "Кто решает, что и когда выпускать?"
+  },
+  "opts": [
+   {
+    "uz": "Kodni yozgan dasturchi",
+    "ru": "Программист, писавший код"
+   },
+   {
+    "uz": "Saytga kirgan odam",
+    "ru": "Человек, зашедший на сайт"
+   },
+   {
+    "uz": "Sayt joylangan xizmat",
+    "ru": "Сервис, где размещён сайт"
+   },
+   {
+    "uz": "Mahsulotni o'ylaydigan odam",
+    "ru": "Человек, который думает о продукте"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun; bittasi 70 belgidan oshgan.",
+  "q": {
+   "uz": "`.github/workflows/ci.yml` — bu fayl nima?",
+   "ru": "`.github/workflows/ci.yml` — что это за файл?"
+  },
+  "opts": [
+   {
+    "uz": "Loyihaning manba kodi",
+    "ru": "Исходный код проекта"
+   },
+   {
+    "uz": "Lentaning yo'l xaritasi",
+    "ru": "Карта маршрута ленты"
+   },
+   {
+    "uz": "Saytning zaxira nusxasi",
+    "ru": "Резервная копия сайта"
+   },
+   {
+    "uz": "GitHub'ning ichki sozlamasi",
+    "ru": "Внутренняя настройка GitHub"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`on: push` nima uchun kerak?",
+   "ru": "Зачем нужен `on: push`?"
+  },
+  "opts": [
+   {
+    "uz": "Lentani har push'da yoqadi",
+    "ru": "Запускает ленту на каждый push"
+   },
+   {
+    "uz": "Repozitoriyni o'chiradi",
+    "ru": "Удаляет репозиторий"
+   },
+   {
+    "uz": "Hujjatlarni yangilaydi",
+    "ru": "Обновляет документы"
+   },
+   {
+    "uz": "Kodni qo'lda joylashtiradi",
+    "ru": "Выкладывает код вручную"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`runs-on: ubuntu-latest` nima?",
+   "ru": "Что такое `runs-on: ubuntu-latest`?"
+  },
+  "opts": [
+   {
+    "uz": "Kod Ubuntu'da yozilishi",
+    "ru": "Код пишут в Ubuntu"
+   },
+   {
+    "uz": "Loyihaning rasmiy nomi",
+    "ru": "Официальное имя проекта"
+   },
+   {
+    "uz": "GitHub bergan mashina",
+    "ru": "Машина, которую даёт GitHub"
+   },
+   {
+    "uz": "Testlar o'chirilgani",
+    "ru": "Тесты отключены"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "YIG'ISH nuqtasida nima bajariladi?",
+   "ru": "Что делается на точке СБОРКА?"
+  },
+  "opts": [
+   {
+    "uz": "Kutubxonalar o'rnatiladi",
+    "ru": "Ставятся библиотеки"
+   },
+   {
+    "uz": "Kod qoidaga tekshiriladi",
+    "ru": "Код сверяют с правилами"
+   },
+   {
+    "uz": "Sayt foydalanuvchiga ketadi",
+    "ru": "Сайт уходит пользователю"
+   },
+   {
+    "uz": "Eski yuk tiklanadi",
+    "ru": "Восстанавливается старый груз"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "SKANER nuqtasi bo'lmasa nima bo'ladi?",
+   "ru": "Что будет без точки СКАНЕР?"
+  },
+  "opts": [
+   {
+    "uz": "Lenta biroz sekinlashadi",
+    "ru": "Лента чуть замедлится"
+   },
+   {
+    "uz": "GitHub uni o'zi qo'shadi",
+    "ru": "GitHub добавит её сам"
+   },
+   {
+    "uz": "Buzuq yuk odamlarga ketadi",
+    "ru": "Сломанный груз уйдёт к людям"
+   },
+   {
+    "uz": "Faqat ogohlantirish chiqadi",
+    "ru": "Будет только предупреждение"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Amallar (steps) qanday tartibda bajariladi?",
+   "ru": "В каком порядке выполняются шаги (steps)?"
+  },
+  "opts": [
+   {
+    "uz": "Tasodifiy tartibda",
+    "ru": "В случайном порядке"
+   },
+   {
+    "uz": "Yuqoridan pastga, ketma-ket",
+    "ru": "Сверху вниз, по очереди"
+   },
+   {
+    "uz": "Oxirgisi birinchi bajariladi",
+    "ru": "Последний выполняется первым"
+   },
+   {
+    "uz": "Hammasi bir vaqtda",
+    "ru": "Все одновременно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "`actions/checkout@v4` nima qiladi?",
+   "ru": "Что делает `actions/checkout@v4`?"
+  },
+  "opts": [
+   {
+    "uz": "Butun kodni o'chiradi",
+    "ru": "Удаляет весь код"
+   },
+   {
+    "uz": "Yangi mashina sotib oladi",
+    "ru": "Покупает новую машину"
+   },
+   {
+    "uz": "Testlarni o'zi yozadi",
+    "ru": "Сам пишет тесты"
+   },
+   {
+    "uz": "Kodni repodan mashinaga oladi",
+    "ru": "Переносит код из репо на машину"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "PARALLEL LENTALAR (matrix) nima uchun?",
+   "ru": "Зачем нужны ПАРАЛЛЕЛЬНЫЕ ЛЕНТЫ (matrix)?"
+  },
+  "opts": [
+   {
+    "uz": "Yukni ikkiga bo'lish uchun",
+    "ru": "Чтобы разделить груз надвое"
+   },
+   {
+    "uz": "Mashinani to'xtatish uchun",
+    "ru": "Чтобы остановить машину"
+   },
+   {
+    "uz": "Ko'p sharoitda sinash uchun",
+    "ru": "Чтобы проверить в разных условиях"
+   },
+   {
+    "uz": "Rasmlarni siqish uchun",
+    "ru": "Чтобы сжать картинки"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "YAQIN JAVON (cache) nima beradi?",
+   "ru": "Что даёт БЛИЖНЯЯ ПОЛКА (cache)?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat mentorda ishlaydi",
+    "ru": "Работает только у ментора"
+   },
+   {
+    "uz": "Hammasini noldan yuklaydi",
+    "ru": "Качает всё с нуля"
+   },
+   {
+    "uz": "Skanerni o'chirib qo'yadi",
+    "ru": "Отключает сканер"
+   },
+   {
+    "uz": "Tayyorini olib, tezlashtiradi",
+    "ru": "Берёт готовое и ускоряет"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Kalitni yo'l xaritasiga ochiq yozsangiz?",
+   "ru": "Что будет, если открыто написать ключ в карте маршрута?"
+  },
+  "opts": [
+   {
+    "uz": "Uni hamma ko'ra oladi",
+    "ru": "Его увидят все"
+   },
+   {
+    "uz": "Faqat siz ko'rasiz",
+    "ru": "Его видите только вы"
+   },
+   {
+    "uz": "GitHub o'zi yashiradi",
+    "ru": "GitHub сам его спрячет"
+   },
+   {
+    "uz": "Lenta ishga tushmaydi",
+    "ru": "Лента не запустится"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "`${{ secrets.API_KEY }}` nima qiladi?",
+   "ru": "Что делает `${{ secrets.API_KEY }}`?"
+  },
+  "opts": [
+   {
+    "uz": "Kalitni ekranga chiqaradi",
+    "ru": "Выводит ключ на экран"
+   },
+   {
+    "uz": "Kalitni seyfdan olib keladi",
+    "ru": "Достаёт ключ из сейфа"
+   },
+   {
+    "uz": "Kalitni ko'chirib qo'yadi",
+    "ru": "Копирует ключ"
+   },
+   {
+    "uz": "Kalitni o'chirib yuboradi",
+    "ru": "Удаляет ключ"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/GithubActionsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "TABLO (status badge) nimani ko'rsatadi?",
+   "ru": "Что показывает ТАБЛО (status badge)?"
+  },
+  "opts": [
+   {
+    "uz": "Loyiha fayllari hajmini",
+    "ru": "Объём файлов проекта"
+   },
+   {
+    "uz": "Server qaysi mamlakatda",
+    "ru": "В какой стране сервер"
+   },
+   {
+    "uz": "Nechta o'quvchi tugatganini",
+    "ru": "Сколько учеников закончили"
+   },
+   {
+    "uz": "Lenta yashilmi yoki qizilmi",
+    "ru": "Зелёная лента или красная"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Besh nuqtali tartib variantlari 45 belgidan uzun; dastlabki uch nuqta so'raladi.",
+  "q": {
+   "uz": "Lentaning dastlabki uch nuqtasi qaysi?",
+   "ru": "Какие первые три точки ленты?"
+  },
+  "opts": [
+   {
+    "uz": "Uchirish → Yig'ish → Skaner",
+    "ru": "Взлёт → Сборка → Сканер"
+   },
+   {
+    "uz": "Skaner → Yig'ish → O'rash",
+    "ru": "Сканер → Сборка → Упаковка"
+   },
+   {
+    "uz": "O'rash → Skaner → Yig'ish",
+    "ru": "Упаковка → Сканер → Сборка"
+   },
+   {
+    "uz": "Yig'ish → Skaner → Ramka",
+    "ru": "Сборка → Сканер → Рамка"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "`on: push` nima qiladi?",
+   "ru": "Что делает `on: push`?"
+  },
+  "opts": [
+   {
+    "uz": "Push'da lentani o'zi yoqadi",
+    "ru": "Сам запускает ленту при push"
+   },
+   {
+    "uz": "Testlarni o'chirib qo'yadi",
+    "ru": "Отключает тесты"
+   },
+   {
+    "uz": "Maxfiy kalitni saqlaydi",
+    "ru": "Хранит секретный ключ"
+   },
+   {
+    "uz": "Faylni serverga ko'chiradi",
+    "ru": "Копирует файл на сервер"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "O'lcham ramkasi bo'lmasa nima bo'ladi?",
+   "ru": "Что будет без точки «Рамка»?"
+  },
+  "opts": [
+   {
+    "uz": "Lenta ishga tushmay qoladi",
+    "ru": "Лента не запустится"
+   },
+   {
+    "uz": "Testlar ikki marta ishlaydi",
+    "ru": "Тесты запустятся дважды"
+   },
+   {
+    "uz": "Qoidaga zid kod tutilmaydi",
+    "ru": "Код против правил не поймают"
+   },
+   {
+    "uz": "Yuk o'ralmay qoladi",
+    "ru": "Груз не упакуется"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "tushunarsiz",
+   "uzun"
+  ],
+  "izoh": "Savolda emoji bor edi, variantlar uzun.",
+  "q": {
+   "uz": "Uchirish Skanerdan oldin tursa?",
+   "ru": "Что будет, если Взлёт стоит перед Сканером?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsa o'zgarmaydi",
+    "ru": "Ничего не изменится"
+   },
+   {
+    "uz": "Buzuq yuk yo'lovchiga ketadi",
+    "ru": "Сломанный груз уйдёт пассажиру"
+   },
+   {
+    "uz": "Lenta tartibni o'zi tuzatadi",
+    "ru": "Лента сама исправит порядок"
+   },
+   {
+    "uz": "Faqat ogohlantirish chiqadi",
+    "ru": "Будет только предупреждение"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "`${{ secrets }}` yozuvi bu darsda o'rgatilmagan; darsdagi «kalit ulanmasa — 401» fakti so'raladi.",
+  "q": {
+   "uz": "Uchirishga kalit ulanmasa nima bo'ladi?",
+   "ru": "Что будет, если к Взлёту не подключить ключ?"
+  },
+  "opts": [
+   {
+    "uz": "Deploy 401 bilan yiqiladi",
+    "ru": "Deploy упадёт с 401"
+   },
+   {
+    "uz": "Lenta tezroq ishlaydi",
+    "ru": "Лента заработает быстрее"
+   },
+   {
+    "uz": "Kalit ochiq ko'rinadi",
+    "ru": "Ключ станет виден"
+   },
+   {
+    "uz": "Testlar o'tkazib yuboriladi",
+    "ru": "Тесты будут пропущены"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "Sinov reysi (staging) bu darsda o'rgatilmagan; darsdagi START SIGNALI fakti so'raladi.",
+  "q": {
+   "uz": "START SIGNALI bo'lmasa nima bo'ladi?",
+   "ru": "Что будет без СТАРТОВОГО СИГНАЛА?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat Skaner ishlaydi",
+    "ru": "Сработает только Сканер"
+   },
+   {
+    "uz": "Lenta har daqiqa aylanadi",
+    "ru": "Лента крутится каждую минуту"
+   },
+   {
+    "uz": "Uchirish birinchi ishlaydi",
+    "ru": "Взлёт сработает первым"
+   },
+   {
+    "uz": "Lenta umuman aylanmaydi",
+    "ru": "Лента вообще не крутится"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "Production/staging farqi bu darsda o'rgatilmagan; darsdagi jurnal (skip) fakti so'raladi.",
+  "q": {
+   "uz": "O'lcham ramkasi qizil. O'rash va Uchirish-chi?",
+   "ru": "Рамка красная. А Упаковка и Взлёт?"
+  },
+  "opts": [
+   {
+    "uz": "Baribir bajariladi",
+    "ru": "Всё равно выполнятся"
+   },
+   {
+    "uz": "O'tkazib yuboriladi",
+    "ru": "Будут пропущены"
+   },
+   {
+    "uz": "Birinchi bajariladi",
+    "ru": "Выполнятся первыми"
+   },
+   {
+    "uz": "Ikki marta bajariladi",
+    "ru": "Выполнятся дважды"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun, «production» atamasi darsda yo'q.",
+  "q": {
+   "uz": "Yangi yuk yo'lovchida buzildi. Tez yechim?",
+   "ru": "Новый груз сломался у пассажира. Быстрое решение?"
+  },
+  "opts": [
+   {
+    "uz": "Repozitoriyni o'chirish",
+    "ru": "Удалить репозиторий"
+   },
+   {
+    "uz": "Hammaga xabar yuborish",
+    "ru": "Написать всем"
+   },
+   {
+    "uz": "Eski yukni qaytarish",
+    "ru": "Вернуть старый груз"
+   },
+   {
+    "uz": "Lentani o'chirib qo'yish",
+    "ru": "Отключить ленту"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Uzun va 7-savolni aynan takrorlardi; darsdagi rollback maqsadi so'raladi.",
+  "q": {
+   "uz": "Eski yukni qaytarishdan maqsad nima?",
+   "ru": "Зачем возвращать старый груз?"
+  },
+  "opts": [
+   {
+    "uz": "Lentani tezroq aylantirish",
+    "ru": "Быстрее крутить ленту"
+   },
+   {
+    "uz": "Testlarni kamaytirish",
+    "ru": "Сократить тесты"
+   },
+   {
+    "uz": "Kodni qayta yozmaslik",
+    "ru": "Не переписывать код"
+   },
+   {
+    "uz": "Yo'lovchi buzuq yuk olmasin",
+    "ru": "Чтобы пассажир не получил сломанный груз"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "TABLO nimani ko'rsatadi?",
+   "ru": "Что показывает ТАБЛО?"
+  },
+  "opts": [
+   {
+    "uz": "Lenta yashilmi yoki qizilmi",
+    "ru": "Зелёная лента или красная"
+   },
+   {
+    "uz": "Loyihaning umumiy hajmini",
+    "ru": "Общий объём проекта"
+   },
+   {
+    "uz": "Nechta o'quvchi tugatganini",
+    "ru": "Сколько учеников закончили"
+   },
+   {
+    "uz": "Server qayerda turganini",
+    "ru": "Где стоит сервер"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "TABLO qizil — birinchi nima qilinadi?",
+   "ru": "ТАБЛО красное — что делают сначала?"
+  },
+  "opts": [
+   {
+    "uz": "Lenta o'chirib tashlanadi",
+    "ru": "Ленту удаляют"
+   },
+   {
+    "uz": "Jurnaldan sabab topiladi",
+    "ru": "Ищут причину в журнале"
+   },
+   {
+    "uz": "Qaytadan push qilinadi",
+    "ru": "Снова делают push"
+   },
+   {
+    "uz": "Yangi kalit so'raladi",
+    "ru": "Просят новый ключ"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "Mustaqil parallel nuqtalar bu darsda o'rgatilmagan; darsdagi «qo'lda tekshirish xavfi» so'raladi.",
+  "q": {
+   "uz": "5 nuqtani qo'lda tekshirishning xavfi nima?",
+   "ru": "Чем опасна ручная проверка 5 точек?"
+  },
+  "opts": [
+   {
+    "uz": "Lenta sekinlashadi",
+    "ru": "Лента замедлится"
+   },
+   {
+    "uz": "TABLO yashil bo'ladi",
+    "ru": "ТАБЛО станет зелёным"
+   },
+   {
+    "uz": "Bittasi unutilishi mumkin",
+    "ru": "Одну можно забыть"
+   },
+   {
+    "uz": "Kalit ochilib qoladi",
+    "ru": "Ключ станет открытым"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol uzun.",
+  "q": {
+   "uz": "Qizil chiroq yondi. Birinchi nima qilasiz?",
+   "ru": "Загорелся красный. Что сделаете сначала?"
+  },
+  "opts": [
+   {
+    "uz": "Indamay kutib turaman",
+    "ru": "Молча подожду"
+   },
+   {
+    "uz": "Loyihani qayta yozaman",
+    "ru": "Перепишу проект"
+   },
+   {
+    "uz": "Jurnalni o'zim o'qiyman",
+    "ru": "Сам прочитаю журнал"
+   },
+   {
+    "uz": "Darhol qayta push qilaman",
+    "ru": "Сразу снова сделаю push"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Copilot'ga qaysi so'rov foydali?",
+   "ru": "Какой запрос к Copilot полезен?"
+  },
+  "opts": [
+   {
+    "uz": "Qator, kutilgan, kelgan qiymat",
+    "ru": "Строка, ожидаемое и полученное"
+   },
+   {
+    "uz": "Tafsilotsiz «yordam ber»",
+    "ru": "«Помоги» без подробностей"
+   },
+   {
+    "uz": "Kodsiz «xatoni top» deyish",
+    "ru": "«Найди ошибку» без кода"
+   },
+   {
+    "uz": "Bitta so'z: «ishlamayapti»",
+    "ru": "Одно слово: «не работает»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Copilot taklifi — bu nima?",
+   "ru": "Предложение Copilot — это что?"
+  },
+  "opts": [
+   {
+    "uz": "100% to'g'ri yechim",
+    "ru": "100% верное решение"
+   },
+   {
+    "uz": "Tekshiriladigan taxmin",
+    "ru": "Догадка, которую надо проверить"
+   },
+   {
+    "uz": "O'zi push bo'ladigan kod",
+    "ru": "Код, который сам уйдёт в push"
+   },
+   {
+    "uz": "Doim oxirgi yechim",
+    "ru": "Всегда окончательное решение"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "«kutildi: Ali, keldi: undefined» — bu nima?",
+   "ru": "«ожидалось: Ali, получено: undefined» — что это?"
+  },
+  "opts": [
+   {
+    "uz": "Fayl serverda topilmadi",
+    "ru": "Файл не найден на сервере"
+   },
+   {
+    "uz": "Internet ulanishi uzildi",
+    "ru": "Пропал интернет"
+   },
+   {
+    "uz": "Lenta ishga tushmadi",
+    "ru": "Лента не запустилась"
+   },
+   {
+    "uz": "Kutilgan va kelgan farq qildi",
+    "ru": "Ожидаемое и полученное разные"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Copilot taklifini nima bilan tekshirasiz?",
+   "ru": "Чем вы проверяете предложение Copilot?"
+  },
+  "opts": [
+   {
+    "uz": "Jurnaldagi dalil bilan",
+    "ru": "Уликой из журнала"
+   },
+   {
+    "uz": "Tasodifiy taxmin bilan",
+    "ru": "Случайной догадкой"
+   },
+   {
+    "uz": "Eski loyiha kodi bilan",
+    "ru": "Кодом старого проекта"
+   },
+   {
+    "uz": "Xotiradagi taxmin bilan",
+    "ru": "Догадкой по памяти"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn me'yordan oshgan; «dushanba» varianti ishonarsiz edi.",
+  "q": {
+   "uz": "Copilot adashishi mumkinmi?",
+   "ru": "Может ли Copilot ошибиться?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, u hech qachon adashmaydi",
+    "ru": "Нет, он никогда не ошибается"
+   },
+   {
+    "uz": "Ha, shuning uchun tekshirasiz",
+    "ru": "Да, поэтому вы проверяете"
+   },
+   {
+    "uz": "Yo'q, u dastur, odam emas",
+    "ru": "Нет, он программа, а не человек"
+   },
+   {
+    "uz": "Faqat eski kodda adashadi",
+    "ru": "Ошибается только в старом коде"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Aniqlashtiruvchi so'rov qachon kerak?",
+   "ru": "Когда нужен уточняющий запрос?"
+  },
+  "opts": [
+   {
+    "uz": "Taklif to'g'ri bo'lsa",
+    "ru": "Когда предложение верное"
+   },
+   {
+    "uz": "Lenta yoqilmagan bo'lsa",
+    "ru": "Когда лента не запущена"
+   },
+   {
+    "uz": "Hamma test yashil bo'lsa",
+    "ru": "Когда все тесты зелёные"
+   },
+   {
+    "uz": "Taklif xato bo'lsa",
+    "ru": "Когда предложение ошибочное"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Tuzatishni qabul qilishni kim hal qiladi?",
+   "ru": "Кто решает, принять ли исправление?"
+  },
+  "opts": [
+   {
+    "uz": "Copilot o'zi hal qiladi",
+    "ru": "Copilot решает сам"
+   },
+   {
+    "uz": "Hech kim, o'zi hal bo'ladi",
+    "ru": "Никто, решится само"
+   },
+   {
+    "uz": "Siz — mas'uliyat sizda",
+    "ru": "Вы — ответственность на вас"
+   },
+   {
+    "uz": "Lenta mashinasi hal qiladi",
+    "ru": "Решает машина ленты"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Taklif jurnaldagi sababga mos kelmasa?",
+   "ru": "Что делать, если предложение не совпадает с журналом?"
+  },
+  "opts": [
+   {
+    "uz": "Baribir qo'llab, push qilish",
+    "ru": "Всё равно применить и push"
+   },
+   {
+    "uz": "Rad etib, asl sababni izlash",
+    "ru": "Отклонить и искать причину"
+   },
+   {
+    "uz": "Loyihadan voz kechish",
+    "ru": "Бросить проект"
+   },
+   {
+    "uz": "Boshqa so'ramaslik",
+    "ru": "Больше не спрашивать"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Jurnaldagi fayl va qator raqami nega kerak?",
+   "ru": "Зачем в журнале имя файла и номер строки?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt ranglarini belgilaydi",
+    "ru": "Задают цвета сайта"
+   },
+   {
+    "uz": "Deploy tugmasi o'rnida",
+    "ru": "Заменяют кнопку deploy"
+   },
+   {
+    "uz": "Faqat bezak uchun",
+    "ru": "Только для красоты"
+   },
+   {
+    "uz": "Xato joyini ko'rsatadi",
+    "ru": "Показывают место ошибки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Besh qadamli tartib variantlari uzun; dastlabki uch qadam so'raladi.",
+  "q": {
+   "uz": "Copilot bilan: dastlabki uch qadam?",
+   "ru": "С Copilot: первые три шага?"
+  },
+  "opts": [
+   {
+    "uz": "Jurnal → so'rov → tekshirish",
+    "ru": "Журнал → запрос → проверка"
+   },
+   {
+    "uz": "Tekshirish → push → jurnal",
+    "ru": "Проверка → push → журнал"
+   },
+   {
+    "uz": "Push → so'rov → tekshirish",
+    "ru": "Push → запрос → проверка"
+   },
+   {
+    "uz": "So'rov → push → jurnal",
+    "ru": "Запрос → push → журнал"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Copilot bilan ishlashning asosiy saboqi?",
+   "ru": "Главный урок работы с Copilot?"
+  },
+  "opts": [
+   {
+    "uz": "AI hammasini o'zi hal qiladi",
+    "ru": "ИИ сам всё решит"
+   },
+   {
+    "uz": "AI faqat rasm chizadi",
+    "ru": "ИИ только рисует картинки"
+   },
+   {
+    "uz": "AI yordam beradi, qaror sizda",
+    "ru": "ИИ помогает, решение за вами"
+   },
+   {
+    "uz": "AI umuman foydasiz",
+    "ru": "ИИ совсем бесполезен"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "O'lchagich nima?",
+   "ru": "Что такое измеритель?"
+  },
+  "opts": [
+   {
+    "uz": "Chiqqan saytni o'lchab turadi",
+    "ru": "Измеряет сайт после выпуска"
+   },
+   {
+    "uz": "Kodni oldindan tekshiradi",
+    "ru": "Проверяет код заранее"
+   },
+   {
+    "uz": "Sahifalarni yozib beradi",
+    "ru": "Пишет страницы"
+   },
+   {
+    "uz": "Havolalarni saqlab qo'yadi",
+    "ru": "Хранит ссылки"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 1,
+  "sabab": [
+   "ikki-javob",
+   "uzun"
+  ],
+  "izoh": "«Chiqqandan keyin — sayt tez ochilsin uchun» varianti ham vaqt bo'yicha to'g'ri edi; variantlar uzun.",
+  "q": {
+   "uz": "O'lchagich qachon ishlaydi?",
+   "ru": "Когда работает измеритель?"
+  },
+  "opts": [
+   {
+    "uz": "Chiqarishdan oldin, bir marta",
+    "ru": "До выпуска, один раз"
+   },
+   {
+    "uz": "Kod yozilayotgan paytda",
+    "ru": "Пока пишется код"
+   },
+   {
+    "uz": "Faqat siz qaraganingizda",
+    "ru": "Только когда вы смотрите"
+   },
+   {
+    "uz": "Chiqqandan keyin, to'xtovsiz",
+    "ru": "После выпуска, без остановки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "«Javob vaqti» nimani ko'rsatadi?",
+   "ru": "Что показывает «время ответа»?"
+  },
+  "opts": [
+   {
+    "uz": "Xato bilan tugaganlar sonini",
+    "ru": "Сколько заходов кончились ошибкой"
+   },
+   {
+    "uz": "Sahifadagi rasmlar sonini",
+    "ru": "Сколько на странице картинок"
+   },
+   {
+    "uz": "Sahifa qancha vaqtda kelganini",
+    "ru": "За сколько пришла страница"
+   },
+   {
+    "uz": "Kuniga necha ochilganini",
+    "ru": "Сколько раз открыли за день"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Signal nima?",
+   "ru": "Что такое сигнал?"
+  },
+  "opts": [
+   {
+    "uz": "Chegara qilib qo'ygan son",
+    "ru": "Число, поставленное границей"
+   },
+   {
+    "uz": "Chegaradan o'tgandagi xabar",
+    "ru": "Сообщение при переходе границы"
+   },
+   {
+    "uz": "Odam qoldirgan izoh-xabar",
+    "ru": "Комментарий от человека"
+   },
+   {
+    "uz": "Sayt ochilmay qolgan payt",
+    "ru": "Момент, когда сайт не открылся"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Qaysi signal chin?",
+   "ru": "Какой сигнал настоящий?"
+  },
+  "opts": [
+   {
+    "uz": "Kechasi kelgan signal",
+    "ru": "Пришедший ночью"
+   },
+   {
+    "uz": "Odam sezgan signal",
+    "ru": "Тот, что заметил человек"
+   },
+   {
+    "uz": "Har mayda sakrashdagi signal",
+    "ru": "От каждого мелкого скачка"
+   },
+   {
+    "uz": "Ketma-ket ikki kelgan signal",
+    "ru": "Пришедший два раза подряд"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Kechasi bir zumlik sekinlashuv — qanday signal?",
+   "ru": "Мгновенное замедление ночью — какой это сигнал?"
+  },
+  "opts": [
+   {
+    "uz": "Quruq — hech kim sezmadi",
+    "ru": "Пустой — никто не заметил"
+   },
+   {
+    "uz": "Quruq — kechasi keldi",
+    "ru": "Пустой — пришёл ночью"
+   },
+   {
+    "uz": "Chin — javob sekinlashdi",
+    "ru": "Настоящий — ответ замедлился"
+   },
+   {
+    "uz": "Chin — o'lchagich aytdi",
+    "ru": "Настоящий — измеритель сообщил"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzun.",
+  "q": {
+   "uz": "Chegara juda past bo'lsa nima bo'ladi?",
+   "ru": "Что будет, если граница слишком низкая?"
+  },
+  "opts": [
+   {
+    "uz": "Quruq signal kelmaydi",
+    "ru": "Пустых сигналов не будет"
+   },
+   {
+    "uz": "Xato ko'rinmay qoladi",
+    "ru": "Ошибка останется незамеченной"
+   },
+   {
+    "uz": "Quruq signallar ko'payadi",
+    "ru": "Пустых сигналов станет больше"
+   },
+   {
+    "uz": "Sayt tezroq ochiladi",
+    "ru": "Сайт будет открываться быстрее"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 7,
+  "sabab": [
+   "tushunarsiz",
+   "uzun"
+  ],
+  "izoh": "«Uch o'lchovni almashtiradi» varianti tushunarsiz edi; variantlar uzun.",
+  "q": {
+   "uz": "Chegara juda baland bo'lsa nima bo'ladi?",
+   "ru": "Что будет, если граница слишком высокая?"
+  },
+  "opts": [
+   {
+    "uz": "Har sakrash xabar beradi",
+    "ru": "Каждый скачок шлёт сообщение"
+   },
+   {
+    "uz": "Sayt ochilmay qoladi",
+    "ru": "Сайт перестанет открываться"
+   },
+   {
+    "uz": "Quruq signallar ko'payadi",
+    "ru": "Пустых сигналов станет больше"
+   },
+   {
+    "uz": "Odam sizdan oldin sezadi",
+    "ru": "Человек заметит раньше вас"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun.",
+  "q": {
+   "uz": "Network qatorida qaysi ikki raqam bor?",
+   "ru": "Какие два числа в строке Network?"
+  },
+  "opts": [
+   {
+    "uz": "Holat (200, 404) va vaqt (ms)",
+    "ru": "Состояние (200, 404) и время (мс)"
+   },
+   {
+    "uz": "Nom va rasm o'lchami",
+    "ru": "Имя и размер картинки"
+   },
+   {
+    "uz": "Holat va kirganlar soni",
+    "ru": "Состояние и число заходов"
+   },
+   {
+    "uz": "Havola va ochilgan soat",
+    "ru": "Ссылка и время открытия"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Bir zumlik sekinlashuvga qaysi yo'l?",
+   "ru": "Какой путь для мгновенного замедления?"
+  },
+  "opts": [
+   {
+    "uz": "Hozir xabar — sekinlashdi",
+    "ru": "Сообщить сейчас — замедлился"
+   },
+   {
+    "uz": "Jurnalga — hech kim sezmadi",
+    "ru": "В журнал — никто не заметил"
+   },
+   {
+    "uz": "Hozir xabar — sayt ochilmadi",
+    "ru": "Сообщить сейчас — сайт не открылся"
+   },
+   {
+    "uz": "Jurnalga — xato ko'paydi",
+    "ru": "В журнал — ошибок стало больше"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/PmLesson18.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn me'yordan oshgan.",
+  "q": {
+   "uz": "Chiqqan saytni o'lchashni kim hal qiladi?",
+   "ru": "Кто решает измерять сайт после выпуска?"
+  },
+  "opts": [
+   {
+    "uz": "Brauzer — xabar yuboradi",
+    "ru": "Браузер — он шлёт сообщения"
+   },
+   {
+    "uz": "Saytga kirgan odamlar",
+    "ru": "Люди, зашедшие на сайт"
+   },
+   {
+    "uz": "Hech kim, o'zi ishlaydi",
+    "ru": "Никто, работает сам"
+   },
+   {
+    "uz": "Saytni chiqargan odam — siz",
+    "ru": "Тот, кто выпустил сайт, — вы"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar juda uzun.",
+  "q": {
+   "uz": "Parallel lentalar (matrix) nima uchun?",
+   "ru": "Зачем нужны параллельные ленты (matrix)?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'p muhitda birdan sinash",
+    "ru": "Проверить сразу в разных средах"
+   },
+   {
+    "uz": "Serverni qayta yuklash",
+    "ru": "Перезагрузить сервер"
+   },
+   {
+    "uz": "Bitta muhitda sekin sinash",
+    "ru": "Медленно проверить в одной среде"
+   },
+   {
+    "uz": "Kalitlarni yashirish",
+    "ru": "Спрятать ключи"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar juda uzun.",
+  "q": {
+   "uz": "Yaqin javon (cache) nimani tezlashtiradi?",
+   "ru": "Что ускоряет ближняя полка (cache)?"
+  },
+  "opts": [
+   {
+    "uz": "Brauzerda sahifa chizishni",
+    "ru": "Отрисовку страницы в браузере"
+   },
+   {
+    "uz": "Serverning internetini",
+    "ru": "Интернет сервера"
+   },
+   {
+    "uz": "Testlar hisob-kitobini",
+    "ru": "Вычисления в тестах"
+   },
+   {
+    "uz": "Install bosqichini",
+    "ru": "Этап install"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Maxfiy kalitni qanday ishlatish xavfsiz?",
+   "ru": "Как безопасно использовать секретный ключ?"
+  },
+  "opts": [
+   {
+    "uz": "Fayl ichiga ochiq yozib",
+    "ru": "Открыто записать в файл"
+   },
+   {
+    "uz": "README boshiga yozib",
+    "ru": "Записать в начало README"
+   },
+   {
+    "uz": "Seyfga qo'yib, nomi bilan",
+    "ru": "Положить в сейф, звать по имени"
+   },
+   {
+    "uz": "Commit izohiga yozib",
+    "ru": "Записать в комментарий коммита"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar juda uzun.",
+  "q": {
+   "uz": "Sinov reysi (staging) nima uchun kerak?",
+   "ru": "Зачем нужен тестовый рейс (staging)?"
+  },
+  "opts": [
+   {
+    "uz": "Yukni tezroq yetkazish",
+    "ru": "Быстрее доставить груз"
+   },
+   {
+    "uz": "Yo'lovchisiz oldin sinash",
+    "ru": "Заранее проверить без пассажиров"
+   },
+   {
+    "uz": "Lentalarni birlashtirish",
+    "ru": "Объединить ленты"
+   },
+   {
+    "uz": "Kalitni ochiq saqlash",
+    "ru": "Хранить ключ открыто"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Productionda buzuq yuk. Eng tez yechim?",
+   "ru": "Сломанный груз в production. Самое быстрое решение?"
+  },
+  "opts": [
+   {
+    "uz": "Keshni tozalash",
+    "ru": "Очистить кеш"
+   },
+   {
+    "uz": "Kalitlarni yangidan yaratish",
+    "ru": "Создать ключи заново"
+   },
+   {
+    "uz": "Lentalar sonini oshirish",
+    "ru": "Добавить лент"
+   },
+   {
+    "uz": "Eski yukni qaytarish",
+    "ru": "Вернуть старый груз"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Matrix'da faqat Node 22 qizil bo'lsa?",
+   "ru": "Что если в matrix красный только Node 22?"
+  },
+  "opts": [
+   {
+    "uz": "Singan muhit aniq ko'rinadi",
+    "ru": "Видно, в какой среде сломалось"
+   },
+   {
+    "uz": "Node 24 ham qizil bo'ladi",
+    "ru": "Node 24 тоже покраснеет"
+   },
+   {
+    "uz": "Lenta butunlay o'chadi",
+    "ru": "Лента полностью выключится"
+   },
+   {
+    "uz": "O'rtacha natija chiqadi",
+    "ru": "Выйдет средний результат"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar juda uzun.",
+  "q": {
+   "uz": "Yaqin javon qanday ishlaydi?",
+   "ru": "Как работает ближняя полка?"
+  },
+  "opts": [
+   {
+    "uz": "Har safar noldan yuklaydi",
+    "ru": "Каждый раз качает с нуля"
+   },
+   {
+    "uz": "Paketni saqlab, qayta beradi",
+    "ru": "Сохраняет пакеты и отдаёт снова"
+   },
+   {
+    "uz": "Test natijasini eslab qoladi",
+    "ru": "Запоминает результаты тестов"
+   },
+   {
+    "uz": "Faqat kalitlarni saqlaydi",
+    "ru": "Хранит только ключи"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar juda uzun.",
+  "q": {
+   "uz": "Seyf (secrets) qayerda saqlanadi?",
+   "ru": "Где хранится сейф (secrets)?"
+  },
+  "opts": [
+   {
+    "uz": "ci.yml ichida, ochiq matnda",
+    "ru": "Открытым текстом в ci.yml"
+   },
+   {
+    "uz": "Jurnalning oxirgi qatorida",
+    "ru": "В последней строке журнала"
+   },
+   {
+    "uz": "Platforma seyf sozlamasida",
+    "ru": "В настройках сейфа платформы"
+   },
+   {
+    "uz": "Hammaga ochiq README'da",
+    "ru": "В открытом для всех README"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun; «dushanba» varianti ishonarsiz edi.",
+  "q": {
+   "uz": "Staging va production farqi nima?",
+   "ru": "Чем отличаются staging и production?"
+  },
+  "opts": [
+   {
+    "uz": "Stagingda yo'lovchi yo'q",
+    "ru": "На staging нет пассажиров"
+   },
+   {
+    "uz": "Staging tezroq ishlaydi",
+    "ru": "Staging работает быстрее"
+   },
+   {
+    "uz": "Farqi yo'q, faqat nomi",
+    "ru": "Разницы нет, только имя"
+   },
+   {
+    "uz": "Production tekshirilmaydi",
+    "ru": "Production не проверяют"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Eski yukni qaytarish qachon kerak?",
+   "ru": "Когда нужно вернуть старый груз?"
+  },
+  "opts": [
+   {
+    "uz": "Har push'dan keyin, doim",
+    "ru": "Всегда, после каждого push"
+   },
+   {
+    "uz": "Yangi versiya buzuq chiqqanda",
+    "ru": "Когда новая версия сломалась"
+   },
+   {
+    "uz": "Kesh bo'sh bo'lganda",
+    "ru": "Когда кеш пуст"
+   },
+   {
+    "uz": "Hamma muhit yashil bo'lganda",
+    "ru": "Когда все среды зелёные"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun; «yakshanba» varianti ishonarsiz edi.",
+  "q": {
+   "uz": "Kod turli muhitda turlicha ishlaydimi?",
+   "ru": "Может ли код работать по-разному в разных средах?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, faqat Windows'da",
+    "ru": "Да, только в Windows"
+   },
+   {
+    "uz": "Yo'q, doim bir xil",
+    "ru": "Нет, всегда одинаково"
+   },
+   {
+    "uz": "Yo'q, faqat dizayn o'zgaradi",
+    "ru": "Нет, меняется только дизайн"
+   },
+   {
+    "uz": "Ha, natija farq qilishi mumkin",
+    "ru": "Да, результат может отличаться"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar juda uzun.",
+  "q": {
+   "uz": "Ishonchli lentada qaysi tartib to'g'ri?",
+   "ru": "Какой порядок верный в надёжной ленте?"
+  },
+  "opts": [
+   {
+    "uz": "Production, keyin staging",
+    "ru": "Сначала production, потом staging"
+   },
+   {
+    "uz": "Rollback, keyin yangi yuk",
+    "ru": "Сначала rollback, потом новый груз"
+   },
+   {
+    "uz": "Staging, keyin production",
+    "ru": "Сначала staging, потом production"
+   },
+   {
+    "uz": "Seyf, keyin kod yozish",
+    "ru": "Сначала сейф, потом код"
+   }
+  ],
+  "correct": 2
+ }
+]

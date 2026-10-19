@@ -1,0 +1,55 @@
+src/1-Modull/CssLesson1.jsx | 1/13 darvoza yiqildi: emoji | tell 6 error→0 error | emoji 2 error→2 error
+src/1-Modull/CssLesson2.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 2 error→2 error
+src/1-Modull/DeployLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 3 error→0 error | emoji 3 error→3 error
+src/1-Modull/GitLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 2 error→0 error | emoji 6 error→6 error
+src/1-Modull/HtmlPractice.jsx | 13/13 darvoza toza. | tell 0 error→0 error | emoji 0 error→0 error
+src/1-Modull/HtmlTakrorlashLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 1 error→0 error | emoji 4 error→4 error
+src/1-Modull/Htmllesson1.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 2 error→1 error | emoji 7 error→7 error
+src/1-Modull/Htmllesson2.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 6 error→6 error
+src/1-Modull/InternetLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 2 error→2 error | emoji 16 error→16 error
+src/1-Modull/PmLesson1.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 3 error→4 error | emoji 11 error→11 error
+src/1-Modull/PmLesson2.jsx | 1/13 darvoza yiqildi: emoji | tell 2 error→0 error | emoji 7 error→7 error
+src/1-Modull/PmLesson3.jsx | 1/13 darvoza yiqildi: emoji | tell 5 error→0 error | emoji 3 error→3 error
+src/1-Modull/VsCodeLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 7 error→7 error
+src/2-Modull/JsConditionsLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 7 error→4 error | emoji 2 error→2 error
+src/2-Modull/JsFunctionsLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 5 error→2 error | emoji 4 error→4 error
+src/2-Modull/JsIntroLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 3 error→0 error | emoji 16 error→16 error
+src/2-Modull/JsLoopsLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 4 error→1 error | emoji 5 error→5 error
+src/2-Modull/JsVarsLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 6 error→3 error | emoji 5 error→5 error
+src/2-Modull/PeanStackLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 2 error→1 error | emoji 2 error→2 error
+src/2-Modull/PmLesson4.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 3 error→2 error | emoji 10 error→10 error
+src/2-Modull/PmLesson5.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 9 error→9 error
+src/2-Modull/PmLesson6.jsx | 1/13 darvoza yiqildi: emoji | tell 3 error→0 error | emoji 2 error→2 error
+src/2-Modull/PracticeLesson1.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 2 error→1 error | emoji 2 error→2 error
+src/2-Modull/PracticeLesson2.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 15 error→3 error | emoji 2 error→2 error
+src/2-Modull/PracticeLesson3.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 3 error→1 error | emoji 1 error→1 error
+src/2-Modull/PracticeLesson4.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 1 error→1 error | emoji 2 error→2 error
+src/3-Modull/PmLesson10.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 5 error→5 error
+src/3-Modull/PmLesson8.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 8 error→8 error
+src/3-Modull/PmLesson9.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 6 error→6 error
+src/3-Modull/ReactApiGetLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 4 error→4 error | emoji 1 error→1 error
+src/3-Modull/ReactApiPostLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 7 error→3 error | emoji 4 error→4 error
+src/3-Modull/ReactBuildSiteLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 11 error→3 error | emoji 3 error→3 error
+src/3-Modull/ReactCrudPracticeLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 5 error→0 error | emoji 1 error→1 error
+src/3-Modull/ReactFirstComponentLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 5 error→3 error | emoji 4 error→4 error
+src/3-Modull/ReactIntroLesson.jsx | 3/13 darvoza yiqildi: til, tell, emoji | tell 2 error→1 error | emoji 4 error→4 error
+src/3-Modull/ReactProjectDayLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 8 error→3 error | emoji 1 error→1 error
+src/3-Modull/ReactPropsReuseLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 1 error→1 error | emoji 3 error→3 error
+src/3-Modull/ReactRouterPracticeLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 2 error→2 error | emoji 1 error→1 error
+src/3-Modull/ReactStateEffectLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 7 error→6 error | emoji 2 error→2 error
+src/4-Modull/ApiPostmanLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 5 error→4 error | emoji 1 error→1 error
+src/4-Modull/AuthEnvLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 11 error→6 error | emoji 3 error→3 error
+src/4-Modull/BackendCrudPracticeLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 5 error→4 error | emoji 1 error→1 error
+src/4-Modull/DataIntroLesson.jsx | 1/13 darvoza yiqildi: tell | tell 2 error→1 error | emoji 0 error→0 error
+src/4-Modull/DbSqlNosqlLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 3 error→3 error | emoji 1 error→1 error
+src/4-Modull/FullstackConnectPracticeLesson.jsx | 1/13 darvoza yiqildi: tell | tell 5 error→3 error | emoji 0 error→0 error
+src/4-Modull/FullstackFeedbackLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 1 error→1 error | emoji 3 error→2 error
+src/4-Modull/FullstackProjectDayLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 2 error→2 error
+src/4-Modull/NodeServerLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 3 error→2 error | emoji 1 error→1 error
+src/4-Modull/PmLesson11.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 7 error→7 error
+src/4-Modull/PmLesson12.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 8 error→8 error
+src/4-Modull/PmLesson13.jsx | 1/13 darvoza yiqildi: emoji | tell 1 error→0 error | emoji 13 error→11 error
+src/4-Modull/PmLesson14.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 4 error→4 error
+src/4-Modull/PostgresCrudLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 5 error→1 error | emoji 1 error→1 error
+src/4-Modull/RoutingLesson.jsx | 1/13 darvoza yiqildi: tell | tell 4 error→2 error | emoji 0 error→0 error
+src/pm/PmJtbdLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 1 error→0 error | emoji 7 error→7 error

@@ -95,6 +95,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -172,8 +197,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1216,42 +1241,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javoblar 4 pozitsiyaga TENG (MD: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12)
 const QUIZ_BANK = [
-  { q: { uz: "Qo'shilgan o'yinchi kela olmaydi. Ilovada nima qiladi?", ru: 'Присоединившийся игрок не сможет прийти. Что он делает в приложении?' }, opts: [
-    { uz: "«O'yindan chiqish»ni bosadi", ru: "Нажимает «Выйти из игры»" }, { uz: "«Kelaman»ni bosmay kutadi", ru: "Ждёт, не нажимая «Приду»" },
-    { uz: 'Tashkilotchiga xabar yozadi', ru: 'Пишет сообщение организатору' }, { uz: "Ilovani telefondan o'chiradi", ru: 'Удаляет приложение с телефона' }], correct: 0 },
-  { q: { uz: "To'lgan o'yinda o'ynamoqchisiz. Nimani bosasiz?", ru: 'Хотите сыграть в заполненной игре. Что нажмёте?' }, opts: [
-    { uz: "«Qo'shilaman»ni qayta bosaman", ru: "Снова нажму «Присоединяюсь»" }, { uz: '«Navbatga yozilish»ni bosaman', ru: "Нажму «Записаться в очередь»" },
-    { uz: "«Kelaman»ni o'yin kuni bosaman", ru: "Нажму «Приду» в день игры" }, { uz: "«E'lon berish»ni yangidan bosaman", ru: "Заново нажму «Объявить игру»" }], correct: 1 },
-  { q: { uz: "Bo'shagan joyni kim oladi?", ru: 'Кто получает освободившееся место?' }, opts: [
-    { uz: "Ekranni birinchi yangilagan o'yinchi", ru: 'Игрок, первым обновивший экран' }, { uz: "Tashkilotchi o'zi tanlagan o'yinchi", ru: 'Игрок, которого выбрал организатор' },
-    { uz: "Navbatga birinchi yozilgan o'yinchi", ru: "Игрок, первым записавшийся в очередь" }, { uz: "Navbatga oxirgi yozilgan o'yinchi", ru: "Игрок, последним записавшийся в очередь" }], correct: 2 },
-  { q: { uz: "Navbat bo'sh, «10 / 10». Bir o'yinchi chiqdi — kartada nima?", ru: 'Очередь пуста, «10 / 10». Один игрок вышел — что на карточке?' }, opts: [
-    { uz: "10 / 10 va «O'yin to'ldi»", ru: "10 / 10 и «Игра заполнена»" }, { uz: "9 / 10 va «O'yin to'ldi»", ru: "9 / 10 и «Игра заполнена»" },
-    { uz: "10 / 10 va «Qo'shilaman»", ru: "10 / 10 и «Присоединяюсь»" }, { uz: "9 / 10 va «Qo'shilaman»", ru: "9 / 10 и «Присоединяюсь»" }], correct: 3 },
-  { q: { uz: "Navbatdagi o'yinchi qo'shilganini qachon ko'radi?", ru: 'Когда игрок из очереди видит, что он присоединился?' }, opts: [
-    { uz: 'Ekranni ochganda yoki yangilaganda', ru: 'Когда открывает или обновляет экран' }, { uz: "Tashkilotchi unga qo'ng'iroq qilganda", ru: 'Когда ему позвонит организатор' },
-    { uz: "O'yin kuni maydonga borgan paytda", ru: 'Когда придёт на поле в день игры' }, { uz: "Navbatga yozilgan paytning o'zida", ru: "В тот же момент, когда записался в очередь" }], correct: 0 },
-  { q: { uz: "Jadvalda navbatdagi o'yinchi qanday turadi?", ru: 'Как в таблице записан игрок из очереди?' }, opts: [
-    { uz: "`qoshildi` holatida, ro'yxatning oxirida", ru: 'В статусе `qoshildi`, в конце списка' }, { uz: '`navbatda` holatida, yozilgan vaqti bilan', ru: 'В статусе `navbatda`, со временем записи' },
-    { uz: "`chiqdi` holatida, joy bo'shashini kutib", ru: 'В статусе `chiqdi`, ожидая места' }, { uz: "Alohida `navbat` jadvalida, o'z raqami bilan", ru: 'В отдельной таблице `navbat`, со своим номером' }], correct: 1 },
-  { q: { uz: "Backend o'zgardi. Telefondagi ilova uni qachon ko'radi?", ru: 'Backend изменился. Когда приложение на телефоне это увидит?' }, opts: [
-    { uz: 'Laptopda `npm run start:dev` qilgach', ru: 'После `npm run start:dev` на ноутбуке' }, { uz: "Telefonda Expo Go'ni qayta o'rnatgach", ru: 'После переустановки Expo Go на телефоне' },
-    { uz: "Push'dan keyin Render yangilagach", ru: 'После push, когда Render обновит' }, { uz: "Neon'da jadvalni qayta ochib ko'rgach", ru: 'Когда заново откроете таблицу в Neon' }], correct: 2 },
-  { q: { uz: "Talabda «bir vaqtda» yo'q. Ikki kishi oxirgi joyni bosdi — nima bo'lishi mumkin?", ru: 'В требовании нет «одновременно». Двое нажали на последнее место — что может случиться?' }, opts: [
-    { uz: 'Ikkalasi ham rad etiladi, joy qoladi', ru: 'Обоим откажут, место останется' }, { uz: "Ilova ikkinchi bosishni o'zi o'chiradi", ru: 'Приложение само отключит второе нажатие' },
-    { uz: 'Tashkilotchiga ikkalasidan xabar boradi', ru: 'Организатору придут сообщения от обоих' }, { uz: "Ikkalasi yoziladi, «11 / 10» bo'ladi", ru: 'Запишутся оба, станет «11 / 10»' }], correct: 3 },
-  { q: { uz: 'Backend oxirgi joyni bitta odamga qanday beradi?', ru: 'Как Backend отдаёт последнее место одному человеку?' }, opts: [
-    { uz: 'Tekshirish va yozishni bitta ish qiladi', ru: "Делает проверку и запись одной операцией" }, { uz: "Ikkalasini yozib, keyin birini o'chiradi", ru: 'Записывает обоих, потом одного удаляет' },
-    { uz: "Yaqinroq telefonning so'rovini tanlaydi", ru: 'Выбирает запрос с ближайшего телефона' }, { uz: "Ikkala so'rovni ham rad etib qaytaradi", ru: 'Отклоняет оба запроса' }], correct: 0 },
-  { q: { uz: "«Bitta ish» paytida ikkinchi so'rov nima qiladi?", ru: "Что делает второй запрос во время «одной операции»?" }, opts: [
-    { uz: "Birinchisidan oldin o'zi yoziladi", ru: 'Записывается раньше первого' }, { uz: 'Kutib turadi, keyin javob oladi', ru: 'Ждёт, потом получает ответ' },
-    { uz: "Yo'qolib ketadi, javob kelmaydi", ru: 'Теряется, ответа нет' }, { uz: 'Birinchisi bilan birga yoziladi', ru: 'Записывается вместе с первым' }], correct: 1 },
-  { q: { uz: "Bir lahzadagi ikki so'rovni qanday tekshirasiz?", ru: 'Как проверить два запроса в один миг?' }, opts: [
-    { uz: "Ikki telefondan qo'lda bir vaqtda bosib", ru: 'Нажав вручную с двух телефонов одновременно' }, { uz: 'Bitta telefondan ikki marta tez bosib', ru: 'Быстро нажав дважды с одного телефона' },
-    { uz: "Agentga bir vaqtda so'rov yubortirib", ru: 'Попросив агента отправить запросы одновременно' }, { uz: "Neon'da jadvalni qo'lda o'zgartirib", ru: 'Изменив таблицу в Neon вручную' }], correct: 2 },
-  { q: { uz: "Uchinchi funksiyada «Nima buzilmasin»ga nima yoziladi?", ru: 'Что пишут в «Что не сломать» для третьей функции?' }, opts: [
-    { uz: "Faqat yangi funksiyaning o'z tugmalari", ru: 'Только кнопки самой новой функции' }, { uz: '`README.md` va `.gitignore` fayllari', ru: 'Файлы `README.md` и `.gitignore`' },
-    { uz: 'Render va Neon xizmatlaridagi sozlamalar', ru: 'Настройки в сервисах Render и Neon' }, { uz: "Oldingi ikki funksiyangiz va yo'llari", ru: 'Две ваши прежние функции и их пути' }], correct: 3 },
+  { q: { uz: "O'yinchi kela olmaydi. Ilovada nima qiladi?", ru: "Игрок не сможет прийти. Что он делает в приложении?" }, opts: [{ uz: "«O'yindan chiqish»ni bosadi", ru: "Нажимает «Выйти из игры»" }, { uz: "«Kelaman»ni bosmaydi", ru: "Не нажимает «Приду»" }, { uz: "Ilovaga kirmay qo'yadi", ru: "Перестаёт заходить в приложение" }, { uz: "Ilovani o'chiradi", ru: "Удаляет приложение" }], correct: 0 },
+  { q: { uz: "To'lgan o'yinda o'ynamoqchisiz. Nimani bosasiz?", ru: "Хотите сыграть в заполненной игре. Что нажмёте?" }, opts: [{ uz: "«Qo'shilaman»ni qayta", ru: "Снова «Присоединяюсь»" }, { uz: "«Navbatga yozilish»", ru: "«Записаться в очередь»" }, { uz: "«Kelaman»ni o'yin kuni", ru: "«Приду» в день игры" }, { uz: "«E'lon berish»", ru: "«Объявить игру»" }], correct: 1 },
+  { q: { uz: "Bo'shagan joyni kim oladi?", ru: "Кто получает освободившееся место?" }, opts: [{ uz: "Ekranni birinchi yangilagan", ru: "Первый, кто обновил экран" }, { uz: "Tashkilotchi tanlagan", ru: "Тот, кого выбрал организатор" }, { uz: "Navbatga birinchi yozilgan", ru: "Первый записавшийся в очередь" }, { uz: "Navbatga oxirgi yozilgan", ru: "Последний записавшийся в очередь" }], correct: 2 },
+  { q: { uz: "«10 / 10», navbat bo'sh. Biri chiqsa, kartada nima?", ru: "«10 / 10», очередь пуста. Один вышел — что на карточке?" }, opts: [{ uz: "10 / 10, «O'yin to'ldi»", ru: "10 / 10, «Игра заполнена»" }, { uz: "9 / 10, «O'yin to'ldi»", ru: "9 / 10, «Игра заполнена»" }, { uz: "10 / 10, «Qo'shilaman»", ru: "10 / 10, «Присоединяюсь»" }, { uz: "9 / 10, «Qo'shilaman»", ru: "9 / 10, «Присоединяюсь»" }], correct: 3 },
+  { q: { uz: "Navbatdagi kishi joy olganini qachon biladi?", ru: "Когда игрок из очереди узнаёт, что получил место?" }, opts: [{ uz: "Ekranni yangilaganda", ru: "Когда обновит экран" }, { uz: "Tashkilotchi aytganda", ru: "Когда скажет организатор" }, { uz: "Maydonga borganda", ru: "Когда придёт на поле" }, { uz: "Navbatga yozilgan zahoti", ru: "Сразу при записи в очередь" }], correct: 0 },
+  { q: { uz: "Navbatdagi o'yinchi jadvalda qanday turadi?", ru: "Как игрок из очереди записан в таблице?" }, opts: [{ uz: "`qoshildi` holatida", ru: "Со статусом `qoshildi`" }, { uz: "`navbatda` holatida", ru: "Со статусом `navbatda`" }, { uz: "`chiqdi` holatida", ru: "Со статусом `chiqdi`" }, { uz: "Alohida `navbat` jadvalida", ru: "В отдельной таблице `navbat`" }], correct: 1 },
+  { q: { uz: "Ilova Backend o'zgarishini qachon ko'radi?", ru: "Когда приложение увидит изменение Backend?" }, opts: [{ uz: "`start:dev` qilgach", ru: "После `start:dev`" }, { uz: "Expo Go o'rnatilgach", ru: "После установки Expo Go" }, { uz: "Push'dan, Render yangilagach", ru: "После push, когда Render обновит" }, { uz: "Neon'da jadval ochilgach", ru: "Когда откроете таблицу в Neon" }], correct: 2 },
+  { q: { uz: "«Bir vaqtda» qatori yo'q. Oxirgi joyni ikki kishi bossa?", ru: "Строки «одновременно» нет. Двое нажали на последнее место?" }, opts: [{ uz: "Ikkalasi rad etiladi", ru: "Обоим откажут" }, { uz: "Biri o'zi o'chadi", ru: "Одно нажатие само пропадёт" }, { uz: "Tashkilotchi tanlaydi", ru: "Выберет организатор" }, { uz: "Ikkalasi ham yoziladi", ru: "Запишутся оба" }], correct: 3 },
+  { q: { uz: "Oxirgi joy bir kishiga qanday tegadi?", ru: "Как последнее место достаётся одному?" }, opts: [{ uz: "Tekshiruv va yozuv bitta ish", ru: "Проверка и запись — одна операция" }, { uz: "Avval yozib, keyin o'chiradi", ru: "Записывает, потом удаляет" }, { uz: "Yaqin telefonni tanlaydi", ru: "Выбирает ближайший телефон" }, { uz: "Ikkalasini rad etadi", ru: "Отклоняет оба запроса" }], correct: 0 },
+  { q: { uz: "«Bitta ish»da ikkinchi so'rov nima qiladi?", ru: "Что делает второй запрос во время «одной операции»?" }, opts: [{ uz: "Oldinga o'tib yoziladi", ru: "Проскакивает и записывается" }, { uz: "Kutib, keyin javob oladi", ru: "Ждёт, потом получает ответ" }, { uz: "Javobsiz yo'qoladi", ru: "Пропадает без ответа" }, { uz: "U ham birga yoziladi", ru: "Записывается вместе" }], correct: 1 },
+  { q: { uz: "Bir lahzadagi so'rovlarni qanday sinaysiz?", ru: "Как проверить запросы в один миг?" }, opts: [{ uz: "Ikki telefonda bosib", ru: "Нажав на двух телефонах" }, { uz: "Bitta telefonda tez bosib", ru: "Быстро нажав на одном телефоне" }, { uz: "Agent so'rovlari bilan", ru: "Запросами агента" }, { uz: "Neon'da qo'lda yozib", ru: "Вписав вручную в Neon" }], correct: 2 },
+  { q: { uz: "Uchinchi funksiyada nima buzilmasin?", ru: "Что не должно сломаться в третьей функции?" }, opts: [{ uz: "Faqat yangi funksiyangiz", ru: "Только ваша новая функция" }, { uz: "`README.md` fayli", ru: "Файл `README.md`" }, { uz: "Kelgusi funksiyalaringiz", ru: "Ваши будущие функции" }, { uz: "Oldingi ikki funksiyangiz", ru: "Две ваши прежние функции" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1910,7 +1911,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi qadam — «${stepN + 1} · ${steps[stepN].h.uz}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${steps[stepN].h.ru}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{tepa}</>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{tepa}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="f3-band">{tx(b)}</span>)}{c.talab && <TalabPrompt blok={c.talab} ipucha={c.ipucha} />}</>,
@@ -2349,10 +2350,11 @@ export default function FeatureThreeLesson({ lang: langProp, onFinished, liveTok
         @keyframes f3-silk { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-4px); } 40% { transform: translateX(4px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(2px); } }
         @keyframes f3-uch { from { transform: translate(-50%,-50%); } to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))); } }
         @keyframes f3-sondi { to { opacity: 0; transform: translateX(10px); } }
-        .f3-bash .q-bashorat { outline: 2px solid ${T.accent}; outline-offset: 2px; animation: f3-kot 0.5s cubic-bezier(.2,.9,.3,1.1) both, f3-puls 2.6s ease-out 0.7s infinite; }
+        .f3-bash .q-bashorat { animation: f3-kot 0.5s cubic-bezier(.2,.9,.3,1.1) both; }
+        .f3-bash .q-chip:not(:disabled) { outline: 1.5px solid ${T.accent}; outline-offset: 2px; animation: f3-puls 2.6s ease-out 0.7s infinite; }
         .f3-bash .q-chip { animation: f3-kot 0.4s ease-out 0.15s both; }
         .f3-bash .q-chip:nth-child(2) { animation-delay: 0.27s; }
-        .q-kirish:has(.f3-s0.kutish) .q-variantlar-kol { border-radius: 14px; outline: 2px solid ${T.accent}; outline-offset: 5px; animation: f3-puls 2.6s ease-out 0.9s infinite; }
+        .q-kirish:has(.f3-s0.kutish) .q-variant:not(:disabled) { outline: 1.5px solid ${T.accent}; outline-offset: 2px; animation: f3-puls 2.6s ease-out 0.9s infinite; }
         @media (min-width: 768px) {
           .q-kirish:has(.f3-s0) .q-split { grid-template-columns: auto minmax(0,1fr); gap: clamp(20px,3.4vw,40px); align-items: start; }
           .q-reja:has(.f3-reja) .q-split { grid-template-columns: auto minmax(0,1fr); gap: clamp(20px,3.4vw,40px); align-items: start; }
@@ -2427,10 +2429,10 @@ export default function FeatureThreeLesson({ lang: langProp, onFinished, liveTok
         .f3-qulf.ochiq i { background: ${T.ink2}; }
         .f3-qulf.ochiq i::before { border-color: ${T.ink2}; transform: translate(4px,-2px) rotate(20deg); }
         .f3-sorovlar { display: flex; flex-wrap: wrap; gap: 6px; }
-        .f3-sorov { flex: 1 1 150px; display: flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 9px; background: ${T.bg}; border: 1.5px solid ${T.line}; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: ${T.ink}; animation: f3-kot 0.35s ease-out both; }
+        .f3-sorov { flex: 1 1 150px; display: flex; align-items: center; gap: 6px; padding: 5px 8px; border-radius: 9px; background: ${T.bg}; border: 1.5px solid transparent; /* F-1015-333 */ font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: ${T.ink}; animation: f3-kot 0.35s ease-out both; }
         .f3-sorov i { flex: none; display: flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 5px; border: 1.5px dashed ${fon(T.ink, 0.3)}; font-style: normal; font-size: 10px; font-weight: 800; color: #fff; }
-        .f3-sorov.ok { border-color: ${fon(T.ok, 0.5)}; } .f3-sorov.ok i { border: 0; background: ${T.ok}; animation: f3-tush 0.35s cubic-bezier(.3,1.4,.5,1) both; }
-        .f3-sorov.no { border-color: ${fon(T.err, 0.5)}; color: ${T.err}; } .f3-sorov.no i { border: 0; background: ${T.err}; animation: f3-tush 0.35s cubic-bezier(.3,1.4,.5,1) both; }
+        .f3-sorov.ok { background: ${T.okFon}; } .f3-sorov.ok i { border: 0; background: ${T.ok}; animation: f3-tush 0.35s cubic-bezier(.3,1.4,.5,1) both; }
+        .f3-sorov.no { background: ${fon(T.err, 0.08)}; color: ${T.err}; } .f3-sorov.no i { border: 0; background: ${T.err}; animation: f3-tush 0.35s cubic-bezier(.3,1.4,.5,1) both; }
         .f3-sorov.kut { color: ${T.ink2}; border-style: dashed; background: ${fon(T.ink, 0.04)}; font-family: 'Manrope', sans-serif; }
         .f3-sorov.kut i { border-radius: 50%; border: 2px solid ${fon(T.ink, 0.15)}; border-top-color: ${T.ink2}; animation: f3-ayl 1s linear infinite; }
         .f3-be-izoh { font-size: 12.5px; font-weight: 700; color: ${T.ink}; animation: f3-kot 0.35s ease-out both; }
@@ -2567,7 +2569,7 @@ export default function FeatureThreeLesson({ lang: langProp, onFinished, liveTok
           .f3-sahna-ong.f3-ong-keng { flex: none; max-width: 372px; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .f3-navbat, .f3-bash .q-bashorat, .q-kirish:has(.f3-s0.kutish) .q-variantlar-kol, .f3-flash.yangi .fc-card:not(.flip) .fc-front { animation: none !important; }
+          .f3-navbat, .f3-bash .q-bashorat, .f3-bash .q-chip:not(:disabled), .q-kirish:has(.f3-s0.kutish) .q-variant:not(:disabled), .f3-flash.yangi .fc-card:not(.flip) .fc-front { animation: none !important; }
           .f3-konvert, .f3-taxmin, .f3-son.qizil, .f3-doiralar i, .f3-navbatda, .f3-navbatda b, .f3-yozuv, .f3-tel-btn, .f3-barmoq, .f3-oyna, .f3-tel-kul, .f3-eski, .f3-qulf, .f3-sorov, .f3-sorov i, .f3-be-izoh,
           .f3-jt tr td, .f3-maydon, .f3-odam, .f3-bosh-joy, .f3-maydon-y, .f3-talab-q.yangi, .f3-qator-k, .f3-agent, .f3-kir, .f3-chat-q, .f3-nat-tel, .f3-tortish, p.f3-joriy { animation: none !important; transition: none !important; }
           .f3-aylan i, .f3-agent i, .f3-sorov.kut i { animation: none !important; }

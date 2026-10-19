@@ -1,0 +1,7 @@
+NestArchResourceLesson s2: oldin «(yopiq) Ustunlarni belgilang (0/4)» → 125 s dan keyin «Davom etish» · eski qator: false · pageerror 0
+NestArchResourceLesson s4: oldin «(yopiq) To'g'ri javobni toping» → 125 s dan keyin «(yopiq) To'g'ri javobni toping» · eski qator: false · pageerror 0
+NestArchResourceLesson s6: oldin «(yopiq) Ikkala variantni sinang (0/2)» → 125 s dan keyin «Davom etish» · eski qator: false · pageerror 0
+ApiPostmanLesson s2: oldin «(yopiq) 0/3 qismni ko'ring» → 125 s dan keyin «Davom etish» · eski qator: false · pageerror 0
+ApiPostmanLesson s4: oldin «(yopiq) To'g'ri javobni toping» → 125 s dan keyin «(yopiq) To'g'ri javobni toping» · eski qator: false · pageerror 0
+JestUnitTestLesson s2: oldin «(yopiq) Misollarni sinang (0/3)» → 125 s dan keyin «Davom etish» · eski qator: false · pageerror 0
+JestUnitTestLesson s5: oldin «(yopiq) 2 qadamni bajaring» → 125 s dan keyin «Davom etish» · eski qator: false · pageerror 0

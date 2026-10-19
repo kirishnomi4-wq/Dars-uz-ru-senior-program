@@ -6,7 +6,7 @@ Ustaxona (s11), repetitsiya (s12), baholash varag'i (s8), besh slayd (s2), raqam
 | № | id | Ekran | O'quvchi | Ball / nishon |
 |---|---|---|---|---|
 | 1 | s0 | Kirish — 1 daqiqalik pitch va bo'sh 4 daqiqa | radio-variant (ballsiz) | — |
-| 2 | s1 | Reja | 4 qadam: qaysi slaydlar qo'shiladi · raqamni zal ishonadigan qilib yozasiz · **besh slaydli pitchni sinfdoshga 5 daqiqada aytib, baholatasiz** · **eng zaif slaydni tuzatib, 1 daqiqada qayta aytasiz** | — |
+| 2 | s1 | Reja | 4 qadam: qaysi slaydlar qo'shiladi · raqamni zal ishonadigan qilib yozing · **besh slaydli pitchni sinfdoshga 5 daqiqada aytib, baholating** · **eng zaif slaydni tuzatib, 1 daqiqada qayta ayting** | — |
 | 3 | s2 | Besh slayd | bashorat → Raqamlar va Keyingi qadam qo'shiladi | — |
 | 4 | s6 | Raqamlar slaydi | «17» → nimani sanadi · solishtirish · halol gap | — |
 | 5 | s8 | Baholash varag'i — saralash | 5 gapni varaqqa / «Yozilmaydi»ga joylaydi | Feedback Sorter! |

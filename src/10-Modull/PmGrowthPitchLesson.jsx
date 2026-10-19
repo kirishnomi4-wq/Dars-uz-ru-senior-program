@@ -96,6 +96,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -173,8 +198,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -697,13 +722,26 @@ const Sanagich = ({ gacha, ms = 700 }) => {
   return <>{v}</>;
 };
 // Navbat bilan bosiladigan tugmalar qatori (joriysi accent va halqa, bosilgani ✓)
-const TugmaQator = ({ tugmalar, joriy, onBos, yopiq }) => (
-  <div className="gp-tq">{tugmalar.map((t, i) => (
-    <QTugma key={i} ikkinchi={i !== joriy} disabled={yopiq || i !== joriy} className={cxx('gp-tq-b', i < joriy && 'ok', i === joriy && !yopiq && 'gp-halqa')} onClick={() => onBos(i)}>
-      <span className="gp-tq-n">{i < joriy ? '✓' : i + 1}</span>{tr(t)}
-    </QTugma>
-  ))}</div>
-);
+// --- F-1019-06 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatoga bir qatorli sabab, o'sha tugma yopiladi ---
+// Har qadam key bilan yangilanadi. yopiq — to'g'ri tanlovdan keyingi animatsiya paytida variantlar bosilmaydi. Namuna: m12-04 Qaror (F-1019-03).
+const Qaror = ({ savol, variantlar, onTogri, yopiq }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const [togri, setTogri] = useState(null);
+  const tanla = (j) => {
+    if (yopiq || togri !== null) return;
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); setTogri(j); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="gp-qr fade-step">
+      <p className="gp-qr-s">{tr(savol)}</p>
+      <div className="gp-qr-v">{variantlar.map((v, j) => <QChip key={j} holat={togri === j ? 'ok' : xato.includes(j) ? 'err' : undefined} disabled={yopiq || togri !== null || xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</QChip>)}</div>
+      {izoh && <QXato key={tr(izoh)}>{tr(izoh)}</QXato>}
+    </div>
+  );
+};
 
 // --- OsishGrafigi — bitta komponent: { haftalar: [{ sana, soni }], sarlavha, noldan (okPast = 0), korinish: 'katta' | 'ixcham' } ---
 // buzilgan holat (4-ekran): okPast 18, «27» ustuni bilan; ustun o'sishi — transform: scaleY + transition
@@ -926,10 +964,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; vizual — Sahna skeleti: telefon va besh bo'lak navbat bilan to'ladi, taymer 5:00 gacha, zal ustida ✓; bo'lak nomlari va grafik ochilmaydi — 2, 4-ekran kashfiyoti) =====
 const REJA = [
-  { t: { uz: "Pitchga sonlar qayerda qo'shilishini bilib olasiz", ru: 'Узнаете, где в питч добавляются числа' }, teg: { uz: "besh bo'lak", ru: 'пять частей' } },
-  { t: { uz: "Sonlarni ustunlarda halol ko'rsatishni o'rganasiz", ru: 'Научитесь честно показывать числа столбиками' }, teg: { uz: 'grafik', ru: 'график' } },
-  { t: { uz: "Grafikni o'z sonlaringizdan chizib, pitchni besh bo'lakka yozasiz", ru: 'Начертите график по своим числам и напишете питч из пяти частей' }, teg: { uz: 'jonli demo', ru: 'живое демо' } },
-  { t: { uz: 'Pitchni sherigingizga 5 daqiqada aytib, tuzatib 1 daqiqada qayta aytasiz', ru: 'Расскажете питч партнёру за 5 минут, исправите и расскажете ещё раз за 1 минуту' }, teg: { uz: 'ikki raund', ru: 'два раунда' } }
+  { t: { uz: "Pitchga sonlar qayerda qo'shilishini bilib oling", ru: 'Узнайте, где в питч добавляются числа' }, teg: { uz: "besh bo'lak", ru: 'пять частей' } },
+  { t: { uz: "Sonlarni ustunlarda halol ko'rsatishni o'rganing", ru: 'Научитесь честно показывать числа столбиками' }, teg: { uz: 'grafik', ru: 'график' } },
+  { t: { uz: "Grafikni o'z sonlaringizdan chizib, pitchni besh bo'lakka yozing", ru: 'Начертите график по своим числам и напишите питч из пяти частей' }, teg: { uz: 'jonli demo', ru: 'живое демо' } },
+  { t: { uz: 'Pitchni sherigingizga 5 daqiqada aytib, tuzatib 1 daqiqada qayta ayting', ru: 'Расскажите питч партнёру за 5 минут, исправьте и расскажите ещё раз за 1 минуту' }, teg: { uz: 'ikki raund', ru: 'два раунда' } }
 ];
 const RejaSahna = () => {
   const [n, setN] = useState(() => (kamHarakat() ? 5 : 0));
@@ -966,7 +1004,24 @@ const S2_TAXMIN = [
   { k: 'oxir', t: { uz: 'Keyingi qadamdan keyin', ru: 'После следующего шага' } }
 ];
 const S2_SAVOL = { uz: "Sonlar pitchning qayeriga qo'shiladi?", ru: 'Куда в питче добавляются числа?' };
-const S2_TUGMA = [{ uz: "Yangi bo'lak", ru: 'Новая часть' }, { uz: 'Halol gap', ru: 'Честная фраза' }, { uz: 'Besh daqiqa', ru: 'Пять минут' }];
+// F-1019-07 (213.22): har qadam — qaror; to'g'ri tanlov avvalgi tugma qiladigan o'zgarishni yuritadi
+const S2_QAROR = [
+  { savol: { uz: "Pitchga yangi bo'lak qo'shiladi. Unda nima ko'rsatiladi?", ru: 'В питч добавляется новая часть. Что в ней показывают?' }, v: [
+    { t: { uz: "Intervyudagi va'dalar", ru: 'Обещания из интервью' }, izoh: { uz: "Va'da — hali bo'lmagan ish; bu bo'lak sanalgan sonni ko'rsatadi.", ru: 'Обещание — то, чего ещё нет; эта часть показывает посчитанное.' } },
+    { ok: true, t: { uz: 'Sanalgan sonlar', ru: 'Посчитанные числа' } },
+    { t: { uz: 'Ilovaning yangi tugmalari', ru: 'Новые кнопки приложения' }, izoh: { uz: "Tugmalarni jonli demo ko'rsatdi; bu bo'lak — natija.", ru: 'Кнопки показало живое демо; эта часть — результат.' } }
+  ] },
+  { savol: { uz: "Zal so'raydi: «Bu son qayerdan?» Nima deysiz?", ru: 'Зал спрашивает: «Откуда это число?» Что ответите?' }, v: [
+    { t: { uz: "«Ilova juda tez o'smoqda!»", ru: '«Приложение очень быстро растёт!»' }, izoh: { uz: "Bu baho; zal sonning qayerdan kelganini so'radi.", ru: 'Это оценка; зал спросил, откуда число.' } },
+    { t: { uz: 'Faqat eng katta son — 44', ru: 'Только самое большое — 44' }, izoh: { uz: "Yolg'iz 44 sinfdoshlarni va sekinlashuvni yashiradi.", ru: 'Одно 44 скрывает одноклассников и замедление.' } },
+    { ok: true, t: { uz: '11 tasi sinfdosh ekanini', ru: 'Что 11 — одноклассники' } }
+  ] },
+  { savol: { uz: "Endi bo'lak beshta. 5 daqiqa qanday bo'linadi?", ru: 'Теперь частей пять. Как делятся 5 минут?' }, v: [
+    { ok: true, t: { uz: "Har bo'lakka o'z ulushi", ru: 'Каждой части своя доля' } },
+    { t: { uz: 'Hammasini jonli demoga', ru: 'Всё — живому демо' }, izoh: { uz: "Qolgan to'rt bo'lakka vaqt qolmaydi.", ru: 'На остальные четыре части времени не останется.' } },
+    { t: { uz: "Raqamlar bo'lagiga 3 daqiqa", ru: 'Части «Цифры» 3 минуты' }, izoh: { uz: "Sonlar muhim, lekin muammo va demo ham vaqt so'raydi.", ru: 'Числа важны, но проблеме и демо тоже нужно время.' } }
+  ] }
+];
 const MentorGrafikIxcham = ({ sarlavha = true, ajrat }) => <OsishGrafigi korinish="ixcham" haftalar={MENTOR_GRAFIK()} sarlavha={sarlavha ? tr(JAMOA_PITCH.raqamlar.nima) : null} ajrat={ajrat} />;
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { live } = useJonli();
@@ -1012,17 +1067,18 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {q >= 3 && <QIzoh>{tr({ uz: "Bu mashqdagi taqsimot: o'z pitchingizda bo'lak qisqaroq yoki uzunroq bo'lishi mumkin, jami 5 daqiqa.", ru: 'Это распределение для упражнения: в вашем питче часть может быть короче или длиннее, всего 5 минут.' })}</QIzoh>}
     </div>
   );
-  const harakat = taxmin && !tugadi && <TugmaQator tugmalar={S2_TUGMA} joriy={q} onBos={bos} yopiq={q >= 3} />;
+  const tor = useIsMobile(768); // F-1019-07: telefonda savol sahnadan keyin — pastga surilganda keyingi savol ko'rinadi
+  const harakat = taxmin && !tugadi && <Qaror key={Math.min(q, 2)} savol={S2_QAROR[Math.min(q, 2)].savol} variantlar={S2_QAROR[Math.min(q, 2)].v} yopiq={q >= 3} onTogri={() => bos(q)} />;
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · besh bo'lak", ru: 'Понятие · пять частей' })} screen={screen} scrollSignal={q + (taxmin ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Tugmalarni bosing', ru: 'Нажмите кнопки' })} (${Math.min(q, 3)}/3)`} onClick={onNext} /></>}>
-      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
+    <Stage eyebrow={tr({ uz: "Tushuncha · besh bo'lak", ru: 'Понятие · пять частей' })} screen={screen} scrollSignal={q + (taxmin ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' })} onClick={onNext} /></>}>
+      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval={!tor}
         sarlavha={tr({ uz: <>Besh daqiqalik pitchda <A>sonlar qayerda turadi?</A></>, ru: <>Где в пятиминутном питче <A>стоят числа?</A></> })}
-        mentor={<Mentor>{tr({ uz: "O'tgan modulda pitch 3 daqiqa va to'rt bo'lak edi: tugmalarni birma-bir bosib, taymerga qarang.", ru: "В прошлом модуле питч длился 3 минуты и состоял из четырёх частей: нажимайте кнопки по очереди и смотрите на таймер." })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "O'tgan modulda pitch 3 daqiqa va to'rt bo'lak edi. Har savolga javob bering — pitch va taymer qanday o'zgarishini ko'rasiz.", ru: 'В прошлом модуле питч длился 3 минуты и состоял из четырёх частей. Ответьте на каждый вопрос — увидите, как меняются питч и таймер.' })}</Mentor>}
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !done && <BashoratQ savol={tr(S2_SAVOL)} javob={tr(tx.t)} />}
-        harakat={harakat}
-        vizual={!taxmin ? null : <div className="gp-s2 gp-karta-kir">{sahna}{izohlar}{ipucha && <p className="gp-ipucha fade-step">{tr({ uz: "Yoqilgan tugmani bosing — pitch va taymer qanday o'zgarishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как меняются питч и таймер.' })}</p>}</div>}
+        harakat={!taxmin && !tugadi ? null : (harakat)}
+        vizual={!taxmin ? null : <div className="gp-s2 gp-karta-kir">{sahna}{izohlar}{ipucha && <p className="gp-ipucha fade-step">{tr(IPUCHA_QAROR)}</p>}</div>}
         xulosa={done && <XulosaQ natija={tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: 'jonli demodan keyin', ru: 'после живого демо' })} />}
           matn={tr({ uz: "Bizda 5 daqiqalik pitch besh bo'lakdan iborat: muammo, yechim, jonli demo, raqamlar va keyingi qadam.", ru: 'У нас 5-минутный питч состоит из пяти частей: проблема, решение, живое демо, цифры и следующий шаг.' })} />}
       />
@@ -1037,10 +1093,33 @@ const S4_TAXMIN = [
   { k: 'on', t: { uz: "O'n barobarga yaqin", ru: 'Почти вдесятеро' } }
 ];
 const S4_SAVOL = { uz: "Noldan chizilsa, «44» ustuni «20» dan necha barobar baland bo'ladi?", ru: 'Если чертить от нуля, во сколько раз столбик «44» будет выше «20»?' };
-const S4_TUGMA = [{ uz: 'Noldan boshlang', ru: 'Начните с нуля' }, { uz: 'Oraliqni teng qiling', ru: 'Сделайте шаг равным' }, { uz: "Sana va sonni qo'ying", ru: 'Поставьте дату и число' }, { uz: 'Nima sanalganini yozing', ru: 'Напишите, что посчитано' }];
+// F-1019-07 (213.22): har qadam — buzilgan grafikning bitta kamchiligiga qaror; to'g'ri tanlov uni tuzatadi
+const S4_QAROR = [
+  { savol: { uz: 'Ustunlar 18 dan boshlanadi. Nima qilasiz?', ru: 'Столбики начинаются с 18. Что сделаете?' }, v: [
+    { t: { uz: 'Ustunlarni rangli qilaman', ru: 'Раскрашу столбики' }, izoh: { uz: "Rang farqni to'g'rilamaydi: 18 dan boshlansa, o'sish bo'rtadi.", ru: 'Цвет не исправит: от 18 рост выглядит больше.' } },
+    { ok: true, t: { uz: 'Noldan boshlayman', ru: 'Начну с нуля' } },
+    { t: { uz: 'Eng balandini ajrataman', ru: 'Выделю самый высокий' }, izoh: { uz: "Ajratish ham yordam bermaydi — ustunlar noldan chizilmagan.", ru: 'Выделение не поможет — столбики не от нуля.' } }
+  ] },
+  { savol: { uz: "Bir ustun «3 kun o'tib», qolgani haftama-hafta. Nima qilasiz?", ru: 'Один столбик «через 3 дня», остальные по неделям. Что сделаете?' }, v: [
+    { ok: true, t: { uz: 'Uni olib tashlayman', ru: 'Уберу его' } },
+    { t: { uz: "Uni o'rtaga suraman", ru: 'Сдвину его в середину' }, izoh: { uz: "Joyi o'zgarsa ham oraliq teng bo'lmaydi: 3 kun — hafta emas.", ru: 'Место другое, а шаг неравный: 3 дня — не неделя.' } },
+    { t: { uz: 'Hammasini 3 kunlik qilaman', ru: 'Сделаю все по 3 дня' }, izoh: { uz: "Sizda faqat haftalik sonlar bor — yangi son o'ylab topilmaydi.", ru: 'У вас только недельные числа — новые не придумывают.' } }
+  ] },
+  { savol: { uz: "Ustunlar ostida ham, ustida ham hech narsa yo'q. Nima qo'shasiz?", ru: 'Под столбиками и над ними пусто. Что добавите?' }, v: [
+    { t: { uz: 'Har ustunga rasmcha', ru: 'Картинку к каждому столбику' }, izoh: { uz: "Rasmcha sonni aytmaydi; zal aniq kun va sonni ko'rishi kerak.", ru: 'Картинка не называет число; залу нужны день и число.' } },
+    { t: { uz: 'Faqat oxirgi son: 44', ru: 'Только последнее число: 44' }, izoh: { uz: "Bitta son o'sishni ko'rsatmaydi — har ustunniki kerak.", ru: 'Одно число не показывает рост — нужно у каждого столбика.' } },
+    { ok: true, t: { uz: 'Sana va son', ru: 'Дату и число' } }
+  ] },
+  { savol: { uz: "Zal so'raydi: «Bu son nimani sanaydi?» Qayerga yozasiz?", ru: 'Зал спрашивает: «Что считает это число?» Где напишете?' }, v: [
+    { ok: true, t: { uz: 'Grafik sarlavhasiga', ru: 'В заголовок графика' } },
+    { t: { uz: "Faqat og'zaki aytaman", ru: 'Только расскажу устно' }, izoh: { uz: "Gap o'tib ketadi; sarlavha grafik bilan birga turadi.", ru: 'Слова забудутся; заголовок остаётся с графиком.' } },
+    { t: { uz: 'Keyingi slaydga', ru: 'На следующий слайд' }, izoh: { uz: "Zal shu grafikka qarab turibdi — javob shu yerda kerak.", ru: 'Зал смотрит на этот график — ответ нужен здесь.' } }
+  ] }
+];
 const S4_YORLIQ = [{ uz: 'noldan', ru: 'от нуля' }, { uz: 'teng oraliq', ru: 'равный шаг' }, { uz: 'sana va son', ru: 'дата и число' }, { uz: 'nima sanalgani', ru: 'что посчитано' }];
 const S4_SANA = [{ uz: 'ishga tushirish kuni', ru: 'день запуска' }, { uz: "3 kun o'tib", ru: 'через 3 дня' }, { uz: "bir hafta o'tib", ru: 'через неделю' }, { uz: "ikki hafta o'tib", ru: 'через две недели' }];
 const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const tor = useIsMobile(768); // F-1019-07: telefonda savol sahnadan keyin — pastga surilganda keyingi savol ko'rinadi
   const { live } = useJonli();
   const avval = storedAnswer !== undefined;
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
@@ -1071,19 +1150,19 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {q >= 3 && <span className="gp-kulrang fade-step">{tr({ uz: "Mentor misolida aniq kun o'rnida — necha hafta o'tgani; sizning grafigingizda — sana.", ru: 'В примере Ментора вместо точного дня — сколько прошло недель; в вашем графике — дата.' })}</span>}
       {q >= 4 && <span className="gp-kulrang fade-step">{tr({ uz: "Ustun — shu kungacha jami; ustunlar farqi — o'sha haftadagi qo'shimcha: 18, keyin 6.", ru: 'Столбик — всего к этому дню; разница столбиков — прибавка за ту неделю: 18, потом 6.' })}</span>}
       {done && <QIzoh>{tr({ uz: "Bir xil oraliqdagi sonlar ustunlari o'sish grafigi deyiladi; nima sanalgani sarlavhada yoziladi.", ru: 'Столбики чисел с одинаковым шагом называются графиком роста; что посчитано, пишут в заголовке.' })}</QIzoh>}
-      {ipucha && <p className="gp-ipucha fade-step">{tr({ uz: "Yoqilgan tugmani bosing — ustunlar qanday o'zgarishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как меняются столбики.' })}</p>}
+      {ipucha && <p className="gp-ipucha fade-step">{tr(IPUCHA_QAROR)}</p>}
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · grafik', ru: 'Понятие · график' })} screen={screen} scrollSignal={q + (taxmin ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Tugmalarni bosing', ru: 'Нажмите кнопки' })} (${q}/4)`} onClick={onNext} /></>}>
-      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
+    <Stage eyebrow={tr({ uz: 'Tushuncha · grafik', ru: 'Понятие · график' })} screen={screen} scrollSignal={q + (taxmin ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' })} onClick={onNext} /></>}>
+      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval={!tor}
         sarlavha={tr({ uz: <>Ustunlar sonni qachon <A>halol ko'rsatadi?</A></>, ru: <>Когда столбики <A>честно показывают</A> число?</> })}
-        mentor={<Mentor>{tr({ uz: 'Mentor misolining sonlaridan chizilgan grafikda kamchiliklar bor: tugmalarni birma-bir bosib, ustunlarga qarang.', ru: 'В графике по числам из примера Ментора есть недочёты: нажимайте кнопки по очереди и смотрите на столбики.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Mentor misolining sonlaridan chizilgan grafikda kamchiliklar bor. Har savolga javob bering — ustunlar qanday o'zgarishini ko'rasiz.", ru: 'В графике по числам из примера Ментора есть недочёты. Ответьте на каждый вопрос — увидите, как меняются столбики.' })}</Mentor>}
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !done && <BashoratQ savol={tr(S4_SAVOL)} javob={tr(tx.t)} />}
-        harakat={taxmin && !tugadi && <TugmaQator tugmalar={S4_TUGMA} joriy={q} onBos={bos} yopiq={done} />}
-        vizual={vizual}
+        harakat={taxmin && !tugadi && <Qaror key={Math.min(q, 3)} savol={S4_QAROR[Math.min(q, 3)].savol} variantlar={S4_QAROR[Math.min(q, 3)].v} yopiq={done} onTogri={() => bos(q)} />}
+        vizual={!taxmin && !tugadi ? null : <div className="q-kir">{vizual}</div>}
         xulosa={done && <XulosaQ natija={tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: 'ikki barobarga yaqin', ru: 'почти вдвое' })} />}
           matn={tr({ uz: "Bu misolda grafik noldan va haftama-hafta chizildi: 20 dan 44 gacha o'sish ikki barobardan sal ko'p.", ru: 'В этом примере график начерчен от нуля и по неделям: рост с 20 до 44 — чуть больше чем вдвое.' })} />}
       />
@@ -1092,16 +1171,35 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 
-// ===== SCREEN 8 — JONLI DEMO (QTushuncha ketma-ket, 3 tugma; jonli demo rejimi — tayanch 9.16; taymer va bo'laklar yo'q — P-008) =====
+// ===== SCREEN 8 — JONLI DEMO (QTushuncha ketma-ket, 3 qaror; jonli demo rejimi — tayanch 9.16; taymer va bo'laklar yo'q — P-008) =====
+// F-1019-06 (DE 213.22): har qadam — qaror; to'g'ri tanlovdan keyin avvalgi tugmaning animatsiyasi yuradi (bitta telefon · ikkinchi qurilma · zaxira)
 const S8_TAXMIN = [
   { k: 'bir', t: { uz: 'Bitta', ru: 'Одно' } },
   { k: 'ikki', ok: true, t: { uz: 'Ikkita', ru: 'Два' } },
   { k: 'uch', t: { uz: 'Uchta', ru: 'Три' } }
 ];
 const S8_SAVOL = { uz: "Ekran o'zi yangilanishini ko'rsatish uchun nechta qurilma kerak?", ru: 'Сколько устройств нужно, чтобы показать, что экран обновляется сам?' };
-const S8_TUGMA = [{ uz: 'Bitta telefonda', ru: 'На одном телефоне' }, { uz: 'Ikkinchi qurilma', ru: 'Второе устройство' }, { uz: "Zaxira yo'li", ru: 'Запасной путь' }];
+const S8_QAROR = [
+  { savol: { uz: "1-telefonda «Qo'shilaman» bosildi. Zal nimani ko'radi?", ru: 'На 1-м телефоне нажали «Присоединяюсь». Что видит зал?' }, v: [
+    { ok: true, t: { uz: 'Bosilgan tugma va o\'zgargan son', ru: 'Нажатую кнопку и новое число' } },
+    { t: { uz: 'Boshqa telefonlar ham yangilanganini', ru: 'Что другие телефоны тоже обновились' }, izoh: { uz: "Ekranda bitta telefon: boshqa qurilmani zal ko'rmaydi.", ru: 'На экране один телефон: других устройств зал не видит.' } },
+    { t: { uz: "Hech narsani, son o'zgarmaydi", ru: 'Ничего, число не меняется' }, izoh: { uz: "Son 8 dan 9 ga o'zgaradi, lekin faqat bosilgan telefonda.", ru: 'Число меняется с 8 на 9, но только на нажатом телефоне.' } }
+  ] },
+  { savol: { uz: "Zal so'radi: boshqalarda ham o'zgardimi? Nima qilinadi?", ru: 'Зал спросил: у других тоже изменилось? Что делают?' }, v: [
+    { t: { uz: 'Sahifa pastga tortib yangilanadi', ru: 'Страницу обновляют, потянув вниз' }, izoh: { uz: "Qo'lda yangilansa, son o'zi o'zgarganini zal ko'rmaydi.", ru: 'Если обновить вручную, зал не увидит, что число изменилось само.' } },
+    { t: { uz: 'Tugma yana bir necha marta bosiladi', ru: 'Кнопку нажимают ещё несколько раз' }, izoh: { uz: 'Takror bosish ham faqat shu telefonni o\'zgartiradi.', ru: 'Повторное нажатие тоже меняет только этот телефон.' } },
+    { ok: true, t: { uz: 'Ikkinchi qurilma yoniga qo\'yiladi', ru: 'Рядом ставят второе устройство' } }
+  ] },
+  { savol: { uz: "Demo kuni ilova ochilmay qoldi. Nima qilinadi?", ru: 'В день демо приложение не открылось. Что делают?' }, v: [
+    { t: { uz: "Demo bo'lagi tashlab ketiladi", ru: 'Часть с демо пропускают' }, izoh: { uz: "Demo tashlanmaydi: video ko'rsatiladi yoki og'zaki aytiladi.", ru: 'Демо не пропускают: показывают видео или рассказывают устно.' } },
+    { ok: true, t: { uz: 'Video yoki sherik telefoni', ru: 'Видео или телефон партнёра' } },
+    { t: { uz: 'Ilova ochilguncha kutib turiladi', ru: 'Ждут, пока приложение откроется' }, izoh: { uz: "Pitch 5 daqiqa: kutish vaqtni yeydi, zaxira oldindan tayyorlanadi.", ru: 'Питч — 5 минут: ждать некогда, запасной путь готовят заранее.' } }
+  ] }
+];
+const IPUCHA_QAROR = { uz: "Variantlardan birini tanlang — xato bo'lsa, sababini o'qib, qayta tanlang.", ru: 'Выберите вариант — если ошиблись, прочитайте причину и выберите снова.' };
 const DEMO_BOSH = { son1: 8, qoshildi1: false, db: 8, tel2: false, son2: 8, konvert: 0, k: 0, zaxira: 0, dbYangi: false };
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const tor = useIsMobile(768); // F-1019-07: telefonda savol sahnadan keyin — pastga surilganda keyingi savol ko'rinadi
   const { live } = useJonli();
   const avval = storedAnswer !== undefined;
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
@@ -1146,19 +1244,21 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         {q >= 2 && <QIzoh>{tr({ uz: "2-telefonda son pastga tortmasdan, odatda bir necha soniyada o'zgaradi — zal real vaqtni shunda ko'radi.", ru: "На 2-м телефоне число меняется без потягивания вниз — обычно за несколько секунд. Так зал и видит реальное время." })}</QIzoh>}
         {q >= 3 && <span className="gp-kulrang fade-step">{tr({ uz: "Ilova ochilmasa — ekran videosini ko'rsating yoki jonli demoni og'zaki aytib bering.", ru: 'Если приложение не откроется — покажите видео с экрана или расскажите живое демо устно.' })}</span>}
       </div>
-      {ipucha && <p className="gp-ipucha fade-step">{tr({ uz: "Yoqilgan tugmani bosing — qaysi qurilmada nima o'zgarishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, что меняется на каком устройстве.' })}</p>}
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · jonli demo', ru: 'Понятие · живое демо' })} screen={screen} scrollSignal={q + (taxmin ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: 'Tugmalarni bosing', ru: 'Нажмите кнопки' })} (${q}/3)`} onClick={onNext} /></>}>
-      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
+    <Stage eyebrow={tr({ uz: 'Tushuncha · jonli demo', ru: 'Понятие · живое демо' })} screen={screen} scrollSignal={q + (taxmin ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Savollarga javob bering (${q}/3)`, ru: `Ответьте на вопросы (${q}/3)` })} onClick={onNext} /></>}>
+      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval={!tor}
         sarlavha={tr({ uz: <>Ekran o'zi yangilanishini <A>zal qanday ko'radi?</A></>, ru: <>Как зал увидит, <A>что экран обновляется сам?</A></> })}
-        mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va zal nimani ko'rishiga qarang.", ru: 'Нажимайте кнопки по очереди и смотрите, что видит зал.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Har savolga javob bering — to'g'ri javobdan keyin zal nimani ko'rishiga qarang.", ru: 'Ответьте на каждый вопрос — после верного ответа смотрите, что видит зал.' })}</Mentor>}
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S8_SAVOL)} variantlar={S8_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !done && <BashoratQ savol={tr(S8_SAVOL)} javob={tr(tx.t)} />}
-        harakat={taxmin && !tugadi && <TugmaQator tugmalar={S8_TUGMA} joriy={q} onBos={bos} yopiq={q >= 3 || band} />}
-        vizual={vizual}
+        harakat={taxmin && !tugadi && q < 3 && <div className="gp-harakat">
+          <Qaror key={q} savol={S8_QAROR[q].savol} variantlar={S8_QAROR[q].v} yopiq={band} onTogri={() => bos(q)} />
+          {ipucha && <p className="gp-ipucha fade-step">{tr(IPUCHA_QAROR)}</p>}
+        </div>}
+        vizual={!taxmin && !tugadi ? null : <div className="q-kir">{vizual}</div>}
         xulosa={done && <XulosaQ natija={tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: 'ikkita', ru: 'два' })} />}
           matn={tr({ uz: "Bu misolda jonli demo ikki qurilmada: birida bosiladi, ikkinchisida son o'zi o'zgaradi.", ru: 'В этом примере живое демо на двух устройствах: на одном нажимают, на другом число меняется само.' })} />}
       />
@@ -1905,7 +2005,7 @@ const Screen12 = (props) => (
       3: { uz: "Grafik to'g'ri qoladi — halol gap nima deyishi kerak edi?", ru: 'График остаётся верным — что должна была сказать честная фраза?' },
       default: { uz: 'Grafik qoidalari va halol gapni eslang.', ru: 'Вспомните правила графика и честную фразу.' }
     }}
-    vizual={<S12Vizual />} />
+ />
 );
 
 
@@ -1995,17 +2095,17 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang — 12 savol, ✔ o'rni MD dagidek: A 1·6·11 · B 2·7·10 · C 3·8·12 · D 4·5·9 (3/3/3/3)
 const QUIZ_BANK = [
   { q: { uz: "Mentor misolida Muammo bo'lagiga qancha vaqt ajratilgan?", ru: 'Сколько времени в примере Ментора отведено на часть «Проблема»?' }, opts: [{ uz: 'Taxminan 40 soniya', ru: 'Около 40 секунд' }, { uz: 'Taxminan 2 daqiqa', ru: 'Около 2 минут' }, { uz: 'Taxminan 3 daqiqa', ru: 'Около 3 минут' }, { uz: 'Taxminan 10 soniya', ru: 'Около 10 секунд' }], correct: 0 },
-  { q: { uz: "Raqamlar bo'lagida grafik va bosh raqam yonida yana nima turadi?", ru: "Что ещё стоит в части «Цифры» рядом с графиком и главным числом?" }, opts: [{ uz: 'Uzum sonlari bilan solishtiruv', ru: 'Сравнение с числами Uzum' }, { uz: 'Sonlar haqida bitta halol gap', ru: 'Одна честная фраза о числах' }, { uz: "Hamma kunlarning to'liq jadvali", ru: 'Полная таблица за все дни' }, { uz: "Sinfdoshlarning ismlari ro'yxati", ru: 'Список имён одноклассников' }], correct: 1 },
-  { q: { uz: 'Grafikda «ishga tushirish kuni» yozuvi qayerda turadi?', ru: 'Где на графике стоит надпись «день запуска»?' }, opts: [{ uz: 'Birinchi ustunning ustida', ru: 'Над первым столбиком' }, { uz: "Grafik sarlavhasi o'rnida", ru: 'На месте заголовка графика' }, { uz: 'Birinchi ustunning ostida', ru: 'Под первым столбиком' }, { uz: 'Eng baland ustun ichida', ru: 'Внутри самого высокого столбика' }], correct: 2 },
+  { q: { uz: "Raqamlarda grafik va bosh raqam yonida yana nima bor?", ru: "Что ещё есть в «Цифрах» рядом с графиком и главным числом?" }, opts: [{ uz: "Boshqa ilova bilan farq", ru: "Сравнение с другим приложением" }, { uz: "Sonlar haqida halol gap", ru: "Честная фраза о числах" }, { uz: "Hamma kunlar jadvali", ru: "Таблица всех дней" }, { uz: "Sinfdoshlar ismlari", ru: "Имена одноклассников" }], correct: 1 },
+  { q: { uz: "Grafikda «ishga tushirish kuni» qayerda turadi?", ru: "Где на графике стоит «день запуска»?" }, opts: [{ uz: "Birinchi ustun ustida", ru: "Над первым столбиком" }, { uz: "Sarlavha o'rnida", ru: "На месте заголовка" }, { uz: "Birinchi ustun ostida", ru: "Под первым столбиком" }, { uz: "Eng baland ustun ichida", ru: "Внутри самого высокого столбика" }], correct: 2 },
   { q: { uz: "O'sish grafigining sarlavhasiga nima yoziladi?", ru: 'Что пишут в заголовке графика роста?' }, opts: [{ uz: 'Mahsulot nomi va logotipi', ru: 'Название и логотип продукта' }, { uz: 'Pitch aytiladigan sana', ru: 'Дату, когда расскажут питч' }, { uz: 'Grafikdagi eng katta son', ru: 'Самое большое число на графике' }, { uz: 'Grafikda nima sanalgani', ru: 'Что посчитано на графике' }], correct: 3 },
-  { q: { uz: 'Grafikdan bir hafta tushib qolsa, nima buziladi?', ru: 'Что сломается, если из графика выпадет неделя?' }, opts: [{ uz: 'Ustunlar noldan boshlanmay qoladi', ru: 'Столбики перестанут начинаться с нуля' }, { uz: "Sarlavha o'chib, ko'rinmay qoladi", ru: 'Заголовок исчезнет и не будет виден' }, { uz: "Sonlar o'zi kattaroq bo'lib qoladi", ru: 'Числа сами станут больше' }, { uz: "Oraliqlar endi teng bo'lmay qoladi", ru: 'Шаг станет неравным' }], correct: 3 },
-  { q: { uz: "Bo'lakni o'zgartirgandan keyin nima uchun darhol 1 daqiqada qayta aytasiz?", ru: 'Зачем сразу рассказывать изменённую часть ещё раз за 1 минуту?' }, opts: [{ uz: "Zal savoliga javob bo'ldimi, ko'rinadi", ru: 'Видно, стала ли она ответом залу' }, { uz: 'Dars vaqti ortib qolgani uchun', ru: 'Потому что осталось время урока' }, { uz: 'Sherik yana tinglashni xohlagani uchun', ru: 'Потому что партнёр хочет послушать ещё' }, { uz: 'Taymer shunday sozlangani uchun', ru: 'Потому что так настроен таймер' }], correct: 0 },
-  { q: { uz: '«Unicorn» deb qanday kompaniyaga aytiladi?', ru: "Какую компанию называют «единорогом»?" }, opts: [{ uz: "Oyiga million foydalanuvchisi bo'lgan", ru: 'С миллионом пользователей в месяц' }, { uz: 'Bahosi 1 milliard dollardan oshgan', ru: 'Оценённую дороже 1 миллиарда долларов' }, { uz: "Bir yilda o'nta shaharda ochilgan", ru: 'Открывшуюся за год в десяти городах' }, { uz: "O'z avtoparki va punktlari bo'lgan", ru: 'Со своим автопарком и пунктами' }], correct: 1 },
-  { q: { uz: "Jonli demoda ikkinchi telefonda zal nimani ko'radi?", ru: 'Что видит зал на втором телефоне в живом демо?' }, opts: [{ uz: "Siz bosgan tugma o'chib qolganini", ru: 'Что нажатая вами кнопка погасла' }, { uz: 'Ilova qaytadan ochilib yuklanganini', ru: 'Что приложение заново открылось и загрузилось' }, { uz: "Son pastga tortmasdan o'zgarganini", ru: "Что число изменилось без потягивания вниз" }, { uz: "Ulanish belgisi o'chib qolganini", ru: "Что значок соединения погас" }], correct: 2 },
-  { q: { uz: 'Pitchdan oldin ikkala qurilmada nimani tekshirasiz?', ru: 'Что проверите на обоих устройствах перед питчем?' }, opts: [{ uz: 'Ikkalasida bitta akkaunt borligini', ru: 'Что на обоих один аккаунт' }, { uz: 'Ilova hali ochilmay yopiq turganini', ru: 'Что приложение ещё закрыто' }, { uz: "Ro'yxat pastga tortib yangilanganini", ru: "Что список обновили потягиванием вниз" }, { uz: "Belgi «Ulangan» bo'lib turganini", ru: "Что значок — «Подключено»" }], correct: 3 },
-  { q: { uz: 'Hisobotingizda sinfdoshlar ham bor. Halol gapda nima deysiz?', ru: 'В вашем отчёте есть и одноклассники. Что скажете в честной фразе?' }, opts: [{ uz: 'Sinfdoshlarni sanoqdan butunlay chiqaraman', ru: 'Полностью уберу одноклассников из подсчёта' }, { uz: 'Ulardan nechtasi sinfdosh ekanini aytaman', ru: 'Скажу, сколько из них одноклассники' }, { uz: 'Hammasini «foydalanuvchi» deb aytaman', ru: 'Назову всех «пользователями»' }, { uz: 'Sinfdoshlar haqida umuman gapirmayman', ru: 'Вообще не буду говорить об одноклассниках' }], correct: 1 },
-  { q: { uz: 'Grafikdagi sonlarni qayerdan olasiz?', ru: 'Откуда берёте числа для графика?' }, opts: [{ uz: "O'z Database'ingizdan, SQL bilan", ru: 'Из своей Database, с помощью SQL' }, { uz: 'Sinfdoshlar aytgan taxminiy sondan', ru: 'Из примерного числа от одноклассников' }, { uz: 'Mentor misolidagi tayyor sonlardan', ru: 'Из готовых чисел примера Ментора' }, { uz: "Umami'dagi URL tashriflaridan", ru: 'Из посещений URL в Umami' }], correct: 0 },
-  { q: { uz: 'Sherik Raqamlar qatoriga ✗ va «nima sanalgan?» deb yozdi. Nima qilasiz?', ru: 'Партнёр поставил строке «Цифры» ✗ и написал «что посчитано?». Что сделаете?' }, opts: [{ uz: "Raqamlar bo'lagini pitchdan olasiz", ru: 'Уберёте часть «Цифры» из питча' }, { uz: "Sonlarni kattaroq qilib ko'rsatasiz", ru: 'Покажете числа крупнее' }, { uz: 'Sarlavhaga nima sanalganini yozasiz', ru: 'Напишете в заголовке, что посчитано' }, { uz: "Sherigingizdan ✓ qo'yishini so'raysiz", ru: 'Попросите партнёра поставить ✓' }], correct: 2 }
+  { q: { uz: "Grafikdan bir hafta tushib qolsa, nima buziladi?", ru: "Что сломается, если на графике пропустить неделю?" }, opts: [{ uz: "Noldan boshlanmay qoladi", ru: "Перестанет начинаться с нуля" }, { uz: "Sarlavha o'chib qoladi", ru: "Пропадёт заголовок" }, { uz: "Sonlar kattalashadi", ru: "Числа станут больше" }, { uz: "Oraliqlar teng bo'lmaydi", ru: "Промежутки станут неравными" }], correct: 3 },
+  { q: { uz: "Nega o'zgargan bo'lakni qayta aytasiz?", ru: "Зачем снова рассказываете изменённую часть?" }, opts: [{ uz: "Zal savoliga javob bo'ldimi", ru: "Ответила ли она на вопрос зала" }, { uz: "Dars vaqti ortgani uchun", ru: "Потому что осталось время" }, { uz: "Sherik xohlagani uchun", ru: "Потому что партнёр хочет" }, { uz: "Taymer shunday sozlangan", ru: "Так настроен таймер" }], correct: 0 },
+  { q: { uz: "Noldan chizilsa, 44 ustuni 20 dan necha barobar baland?", ru: "Если рисовать с нуля, во сколько раз столбик 44 выше столбика 20?" }, opts: [{ uz: "O'n barobarga yaqin", ru: "Почти в десять раз" }, { uz: "Ikki barobarga yaqin", ru: "Почти в два раза" }, { uz: "Besh barobarga yaqin", ru: "Почти в пять раз" }, { uz: "To'rt barobarga yaqin", ru: "Почти в четыре раза" }], correct: 1 },
+  { q: { uz: "Jonli demoda ikkinchi telefonda zal nimani ko'radi?", ru: "Что зал видит на втором телефоне в живом демо?" }, opts: [{ uz: "Tugma o'chib qolganini", ru: "Что кнопка пропала" }, { uz: "Ilova qayta yuklanganini", ru: "Что приложение перезагрузилось" }, { uz: "Son o'zi o'zgarganini", ru: "Что число изменилось само" }, { uz: "Belgi o'chib qolganini", ru: "Что значок пропал" }], correct: 2 },
+  { q: { uz: "Pitchdan oldin ikkala qurilmada nimani tekshirasiz?", ru: "Что проверяете на обоих устройствах перед питчем?" }, opts: [{ uz: "Bitta akkaunt borligini", ru: "Что там один аккаунт" }, { uz: "Ilova yopiq turganini", ru: "Что приложение закрыто" }, { uz: "Ro'yxat tortilganini", ru: "Что список обновлён потягиванием" }, { uz: "Belgi «Ulangan» ekanini", ru: "Что значок «Подключено»" }], correct: 3 },
+  { q: { uz: "Sanoqda sinfdoshlar bor. Halol gapda nima deysiz?", ru: "В подсчёте есть одноклассники. Что скажете в честной фразе?" }, opts: [{ uz: "Sanoqdan chiqaraman", ru: "Уберу их из подсчёта" }, { uz: "Sonini alohida aytaman", ru: "Назову их число отдельно" }, { uz: "Hech narsa demayman", ru: "Ничего не скажу" }, { uz: "Foydalanuvchi deyman", ru: "Назову пользователями" }], correct: 1 },
+  { q: { uz: "Grafikdagi sonlarni qayerdan olasiz?", ru: "Откуда берёте числа для графика?" }, opts: [{ uz: "O'z Database'ingizdan", ru: "Из своей Database" }, { uz: "Sinfdoshlar taxminidan", ru: "Из догадок одноклассников" }, { uz: "Mentor misoli sonlaridan", ru: "Из чисел примера Ментора" }, { uz: "Umami tashriflaridan", ru: "Из посещений в Umami" }], correct: 0 },
+  { q: { uz: "Raqamlarga izoh: «nima sanalgan?». Nima qilasiz?", ru: "Комментарий к «Цифрам»: «что посчитано?». Что сделаете?" }, opts: [{ uz: "Raqamlarni olasiz", ru: "Уберёте «Цифры»" }, { uz: "Sonni kattalashtirasiz", ru: "Увеличите числа" }, { uz: "Sarlavhaga buni yozasiz", ru: "Напишете это в заголовке" }, { uz: "Sherikdan ✓ so'raysiz", ru: "Попросите у партнёра ✓" }], correct: 2 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2838,6 +2938,10 @@ export default function PmGrowthPitchLesson({ lang: langProp, onFinished, liveTo
         .gp-yorl { font-size: 12px; font-weight: 700; color: ${T.ink}; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 999px; padding: 3px 10px; }
         /* --- Tugmalar qatori (1 · 2 · 3; joriysi accent, bosilgani ✓) --- */
         .gp-tq { display: flex; flex-wrap: wrap; gap: 8px; }
+        .gp-harakat { display: flex; flex-direction: column; gap: 10px; }
+        .gp-qr { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .gp-qr-s { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.4; color: ${T.ink}; }
+        .gp-qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
         .lesson-root .gp-tq-b { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; font-size: 13.5px; }
         .gp-tq-n { width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; background: ${fon(T.ink, 0.08)}; }
         .gp-tq-b.ok .gp-tq-n { background: ${T.ok}; color: #fff; }
@@ -2924,7 +3028,7 @@ export default function PmGrowthPitchLesson({ lang: langProp, onFinished, liveTo
         /* --- O'sish grafigi --- */
         .gp-gr { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
         .gp-gr-sar { font-size: 13.5px; font-weight: 800; color: ${T.ink}; min-height: 20px; animation: gp-kir .5s ease-out both; }
-        .gp-gr-sar.bosh { border: 1.5px solid transparent; background: ${T.bg}; border-radius: 8px; min-height: 22px; max-width: 220px; animation: none; }
+        .gp-gr-sar.bosh { visibility: hidden; min-height: 22px; max-width: 220px; animation: none; } /* F-1019-08 (213.23a): bo'sh sarlavha-chiziq ko'rinmaydi — joyi saqlanadi (sakrash yo'q) */
         .gp-gr-maydon { display: flex; gap: 8px; align-items: stretch; }
         .gp-gr-ok { display: flex; flex-direction: column; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${T.ink2}; padding: 18px 0 22px; border-right: 1.5px solid ${fon(T.ink, 0.3)}; padding-right: 6px; }
         .gp-gr-ok-p { animation: gp-tush .5s ease-out both; }
@@ -2980,7 +3084,7 @@ export default function PmGrowthPitchLesson({ lang: langProp, onFinished, liveTo
         .gp-db b { color: ${T.ink}; display: inline-block; animation: gp-pop .45s ease-out; }
         .gp-backend.yangi { border-color: ${T.ok}; }
         .gp-demo-joy { flex: none; width: 170px; min-height: 290px; display: flex; align-items: center; justify-content: center; }
-        .gp-demo-joy.bosh { border: 1.5px solid transparent; background: ${T.paper}; border-radius: 26px; height: 272px; min-height: 0; }
+        .gp-demo-joy.bosh { visibility: hidden; height: 272px; min-height: 0; } /* F-1019-08 (213.23a): ikkinchi qurilma o'rni bo'sh quti bo'lib ko'rinmaydi */
         .gp-zaxira { display: flex; flex-direction: column; gap: 8px; width: 100%; }
         .gp-zaxira.past { flex-direction: row; flex-wrap: wrap; justify-content: center; }
         .gp-zaxira-k { font-size: 12.5px; font-weight: 700; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 10px; padding: 9px 12px; text-align: center; animation: gp-kir .4s ease-out both; }

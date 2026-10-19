@@ -47,6 +47,31 @@ export const QChip = ({ holat, silk, className, children, ...p }) => (
 
 // ---------- Bashorat (181): ballsiz, tanlov saqlanadi ----------
 // variantlar: [{ k, t }] — t tarjima qilingan matn; tanlov: k | null
+// F-1015-377: ma'nosiz yozuv tekshiruvi (o'quvchi matni — nishon/saqlashdan oldin). Harflar kam, unli yo'q, bir belgi 4+ marta, uzun so'zda unli < 20% — ma'nosiz.
+// Raqamli/kodli maydonlarga qo'llanmaydi (faqat so'z bilan yoziladigan javob). Xabar: MANOSIZ_XATO.
+const MN_HARF = /[a-z\u0430-\u044f\u0451\u0493\u049b\u04b3\u045e]/gi;
+const MN_UNLI = /[aeiou\u0430\u0435\u0451\u0438\u043e\u0443\u044b\u044d\u044e\u044f\u045e]/gi;
+const MN_QISQA = new Set(['html', 'css', 'npm', 'crm', 'mvp', 'pdf', 'sms', 'http', 'https', 'www', 'src', 'cmd', 'pwd', 'jsx', 'dns', 'ssl', 'cdn', 'sql', 'xml', 'png', 'jpg', 'svg', 'gps', 'mln', 'mlrd', 'kpi', 'nps', 'ltv', 'cac']);
+export const manoliMatn = (t, yumshoq) => {
+  const s = String(t || '').trim();
+  const harf = (s.match(MN_HARF) || []).length;
+  const tozasi = s.replace(/[\s\u02bb\u02bc'`\u2018\u2019\-.,!?:;\u00ab\u00bb"()]/g, '');
+  if (harf < 3 || !tozasi.length || harf / tozasi.length < 0.5) return false;
+  if (/(.)\1{3,}/i.test(s)) return false;
+  if (!(s.match(MN_UNLI) || []).length) return false;
+  const sozlar = s.split(/\s+/);
+  if (!yumshoq) { // F-1015-392: «fast freak. afs sdfa dfs», «fasted saf s f», «qwe rty», «asd asd asd»
+    const toza = sozlar.map(w => w.replace(/[.,!?:;]+$/, ''));
+    if (toza.some(w => /^[a-z]{3,}$/.test(w) && !/[aeiouy]/.test(w) && !MN_QISQA.has(w))) return false;
+    const yakka = toza.filter(w => /^[b-df-hj-np-tv-xz]$/.test(w)).length;
+    if (yakka >= 2 && yakka / toza.length >= 0.25) return false;
+    if (/qwe|asdf|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|\u0439\u0446\u0443\u043a|\u0444\u044b\u0432\u0430|\u044f\u0447\u0441\u043c/i.test(s)) return false;
+    if (toza.length >= 3 && new Set(toza.map(w => w.toLowerCase())).size * 3 <= toza.length) return false;
+  }
+  return sozlar.every(w => { const h = (w.match(MN_HARF) || []).join(''); if (h.length < 5) return true; return ((h.match(MN_UNLI) || []).length / h.length) >= 0.2; });
+};
+export const MANOSIZ_XATO = { uz: "Bu javob o'qilmaydi — so'z bilan yozing.", ru: 'Этот ответ не читается — напишите словами.' };
+
 export const QBashorat = ({ yorliq, savol, variantlar, tanlov, onTanla }) => (
   <QKarta yorliq={yorliq} className="q-bashorat">
     <span className="q-bashorat-s">{savol}</span>
@@ -310,10 +335,10 @@ export const QNatija = ({ sarlavha, mentor, karta, children }) => (
 const QM = {
   uz: { org: "↻ O'rganilmoqda", bildim: '✓ Bildim', takror: '✗ Takrorlash', hammasi: 'Hammasini bilasiz!', yodlandi: 'atama yodlandi', qayta: '↻ Qaytadan takrorlash',
     togri: "to'g'ri", testlar: 'Testlar', bilasiz: 'Endi siz bilasiz', uyga: 'Uyga vazifa', uygaS: 'Amaliy topshiriqni bajarish →', nishon: 'Nishonlaringiz',
-    bajardim: 'Bajardim', qaytar: 'Qaytarish', nusxa: 'Nusxalash', nusxalandi: '✓ Nusxalandi', natija: 'kutilgan natija', ortda: 'Ortda qoldingizmi — mentor bilan:', ulgur: 'Ulgurmasangiz' },
+    bajardim: 'Bajardim', qaytar: 'Qaytarish', nusxa: 'Nusxalash', nusxalandi: '✓ Nusxalandi', natija: 'kutilgan natija', ortda: 'Ortda qoldingizmi — mentor bilan:', ulgur: 'Ulgurmasangiz', bosh: "Avval bo'sh yoki o'qilmaydigan qatorlarni so'z bilan yozing." },
   ru: { org: '↻ Изучается', bildim: '✓ Знаю', takror: '✗ Повторить', hammasi: 'Вы знаете всё!', yodlandi: 'терминов выучено', qayta: '↻ Повторить заново',
     togri: 'верно', testlar: 'Тесты', bilasiz: 'Теперь вы знаете', uyga: 'Домашнее задание', uygaS: 'Выполнить практическое задание →', nishon: 'Ваши значки',
-    bajardim: 'Готово', qaytar: 'Вернуть', nusxa: 'Скопировать', nusxalandi: '✓ Скопировано', natija: 'ожидаемый результат', ortda: 'Отстали — вместе с ментором:', ulgur: 'Если не успеваете' },
+    bajardim: 'Готово', qaytar: 'Вернуть', nusxa: 'Скопировать', nusxalandi: '✓ Скопировано', natija: 'ожидаемый результат', ortda: 'Отстали — вместе с ментором:', ulgur: 'Если не успеваете', bosh: 'Сначала заполните пустые или нечитаемые строки словами.' },
 };
 
 // ---------- 7b. Amaliyot bloki (172/173, GATE M M-q4): chap — qadamlar bittadan («Bajardim» qulfi), o'ng — kutilgan natija + «Ortda qoldingizmi» ----------
@@ -333,11 +358,22 @@ export function QPrompt({ kimga, satrlar = [], til = 'uz' }) {
 // qadamlar: [{ h, t, prompt?: [satr], kimga?, xato? }] — tarjima qilingan (t, xato — darsning fmtCode'i bilan) · joriy: bajarilgan qadamlar soni ·
 // onBajardim() · onQaytar(i) · mentorRejim: hamma qadam ochiq, tugmasiz · tugadi + tugadiMatn: yashil natija-karta ·
 // natija: kutilgan natija maketi (chat / terminal / ekran — darsdan) · natijaYorliq (sukut: «kutilgan natija») · ortda: buyruq satrlari (M-q7/q8) · pastki: mentor statistikasi.
-export function QBlok({ til = 'uz', sarlavha, mentor, zoom, qadamlar = [], joriy = 0, onBajardim, onQaytar, mentorRejim = false, tugadi = false, tugadiMatn, natija, natijaYorliq, ortda = [], ulgur, pastki, children }) {
+export function QBlok({ til = 'uz', sarlavha, mentor, zoom, qadamlar = [], joriy = 0, onBajardim, onQaytar, mentorRejim = false, tugadi = false, tugadiMatn, natija, natijaYorliq, ortda = [], ulgur, pastki, ajratSarlavha = false, children }) {
   const M = QM[til] || QM.uz;
   const korinadi = mentorRejim ? qadamlar.length : Math.min(joriy + 1, qadamlar.length);
+  // F-1015-354: joriy qadamdagi bo'sh yozish maydoni bilan «Bajardim» o'tmaydi (ixtiyoriy maydon — data-ixtiyoriy)
+  const [boshQ, setBoshQ] = useState(-1);
+  const bajar = (e, i) => {
+    const li = e.currentTarget.closest('.q-blok-q');
+    // F-1015-390: 5+ harfli, lekin o'qilmaydigan yozuv (sdfkjk…) — bo'sh hisoblanadi; raqam, fayl nomi, havola o'tadi
+    const manosiz = (v) => (String(v).match(MN_HARF) || []).length >= 5 && !manoliMatn(v, true);
+    const bosh = li ? [...li.querySelectorAll('input:not([type]), input[type=text], textarea')].filter(x => !x.disabled && !x.readOnly && !x.hasAttribute('data-ixtiyoriy') && (!String(x.value || '').trim() || manosiz(x.value))) : [];
+    if (bosh.length) { setBoshQ(i); try { bosh[0].focus(); } catch (_) { /* fokus shart emas */ } return; }
+    setBoshQ(-1);
+    if (onBajardim) onBajardim();
+  };
   return (
-    <div className="screen q-ekran q-blok">
+    <div className={'screen q-ekran q-blok' + (ajratSarlavha ? ' q-blok-v2' : '')}>
       <Bosh sarlavha={sarlavha} mentor={mentor} />
       <div className="q-split">
         <div className="q-col">
@@ -351,12 +387,16 @@ export function QBlok({ til = 'uz', sarlavha, mentor, zoom, qadamlar = [], joriy
               );
               return (
                 <li key={i} className="q-blok-q joriy">
-                  <span className="q-blok-n">{i + 1}</span>
-                  <div className="q-blok-tana">
-                    <p className="q-blok-t"><b>{c.h}</b> — {c.t}</p>
+                  {!ajratSarlavha && <span className="q-blok-n">{i + 1}</span>}
+                  <div className="q-blok-tana" onInput={() => { if (boshQ === i) setBoshQ(-1); }}>
+                    {/* F-1015-387 (QA maketi): qadam nomi — alohida sarlavha qatori (raqam doirasi + nom), matn ostida */}
+                    {ajratSarlavha
+                      ? <><div className="q-blok-sar"><span className="q-blok-n">{i + 1}</span><b>{c.h}</b></div><p className="q-blok-t">{c.t}</p></>
+                      : <p className="q-blok-t"><b>{c.h}</b> — {c.t}</p>}
                     {c.prompt && <QPrompt kimga={c.kimga} satrlar={c.prompt} til={til} />}
                     {c.xato && <p className="q-blok-xato">{c.xato}</p>}
-                    {!mentorRejim && <QTugma onClick={onBajardim}>{M.bajardim}</QTugma>}
+                    {boshQ === i && <p className="q-blok-bosh fade-step" role="alert">{M.bosh}</p>}
+                    {!mentorRejim && <QTugma onClick={(e) => bajar(e, i)}>{M.bajardim}</QTugma>}
                     {/* 213.13 (F-1015-322): «Ulgurmasangiz» — karta ichida, yig'iq; bosilsa ochiladi (kartasiz osilmaydi) */}
                     {ulgur && !tugadi && <details className="q-blok-ulgur"><summary>{M.ulgur}</summary><p>{ulgur}</p></details>}
                   </div>
@@ -369,8 +409,11 @@ export function QBlok({ til = 'uz', sarlavha, mentor, zoom, qadamlar = [], joriy
         </div>
         {/* F-1015-166 (159-sinf): yorliq natija OSTIDA izoh — ikki ustun bir chiziqdan boshlanadi; joy bo'lmasa ⛶ izoh qatorida, o'ngda */}
         <div className="q-col q-blok-ong">
-          <Z zoom={zoom}><div className="q-blok-natija">{natija}</div></Z>
-          <span className="q-yorliq q-blok-izoh">{natijaYorliq || M.natija}</span>
+          {/* F-1015-331: natija bitta ramkali kartada — yorliq tepada, ichida telefon/fayllar (QA mock) */}
+          <div className="q-blok-natija-k">
+            <span className="q-yorliq q-blok-izoh">{natijaYorliq || M.natija}</span>
+            <Z zoom={zoom}><div className="q-blok-natija">{natija}</div></Z>
+          </div>
           {ortda.length > 0 && (
             <div className="q-blok-ortda"><span>{M.ortda}</span>{ortda.map((b, i) => <code key={i} className="q-blok-buyruq">{b}</code>)}</div>
           )}
@@ -456,7 +499,7 @@ export function QYakun({ til = 'uz', chip, togri, jami, sarlavha, cta, recap = [
   const royxat = Array.isArray(uyga);
   return (
     <div className="screen q-yakun">
-      <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {chip}</span><span className={cx('score-chip', 'fade-up', jami > 0 && togri === jami ? 'toliq' : 'neytral')}>{M.testlar}: {togri}/{jami}</span></div><h2 className="title h-title fade-up d1">{sarlavha}</h2></div></div>
+      <div className="hero"><div className="hero-l"><div className="hero-chips"><span className={cx('score-chip', 'fade-up', jami > 0 && togri === jami ? 'toliq' : 'neytral')}>{M.testlar}: {togri}/{jami}</span></div><h2 className="title h-title fade-up d1">{sarlavha}</h2></div></div>
       {cta}
       {recap.length > 0 && <div className="card fade-up d3"><div className="card-lbl ok"><span className="tick">✓</span> {M.bilasiz}</div><ul className="recap">{recap.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{r}</span></li>))}</ul></div>}
       {uyga && <div className="hw-big-wrap fade-up d4">

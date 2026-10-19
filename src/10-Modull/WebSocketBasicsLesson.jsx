@@ -105,6 +105,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -182,8 +207,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -999,7 +1024,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · ulanish', ru: 'Понятие · соединение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 2, QADAMLAR_Y, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Ulanish ochiq tursa, <span className="italic" style={{ color: T.accent }}>nima o'zgaradi</span>?</>, ru: <>Если соединение открыто, <span className="italic" style={{ color: T.accent }}>что меняется</span>?</> })}
+        sarlavha={tr({ uz: <>Ilova bilan Backend orasidagi doimiy ulanish — <span className="italic" style={{ color: T.accent }}>WebSocket</span>.</>, ru: <>Постоянное соединение между приложением и Backend — <span className="italic" style={{ color: T.accent }}>WebSocket</span>.</> })}
         mentor={<Mentor>{tr({ uz: "10-Modulda dashboard Backend'dan qayta-qayta so'rardi — bugun boshqa yo'l: birinchi telefonda Maydon Jamoa'ni oching.", ru: 'В 10-м модуле дашборд снова и снова спрашивал Backend — сегодня другой путь: откройте «Maydon Jamoa» на первом телефоне.' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Ulanish ochiq turganda Backend ilovaga qachon xabar yubora oladi?', ru: 'Когда Backend может отправить приложению сообщение, пока соединение открыто?' }} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={!taxmin ? null : <div className="ws-viz ws-kir">
@@ -1010,8 +1035,6 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             t2={{ son: qoshildi ? 9 : 8, sonYangi: qoshildi && !avval, qoshildi, onQoshil: q === 1 && !band ? qoshil : null, qoshilHalqa: q === 1 && !band,
               qadam: q === 1 && !band ? { n: 2, t: { uz: 'Ikkinchi telefonda qo\'shiling', ru: 'Присоединитесь на втором телефоне' } } : null }}
             c1={c1} c2={c2} k1={k1} k2={k2} />
-          {q >= 1 && <p className="ws-nom fade-step">{tr({ uz: <>Ilova bilan Backend orasida ochiq turadigan ulanish — <b>doimiy ulanish</b>.</>, ru: <>Открытое соединение между приложением и Backend — <b>постоянное соединение</b>.</> })}</p>}
-          {q >= 2 && <p className="ws-nom fade-step">{tr({ uz: <>Doimiy ulanishni beradigan texnologiya — <b>WebSocket</b>.</>, ru: <>Технология, которая даёт постоянное соединение, — <b>WebSocket</b>.</> })}</p>}
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'istagan'} tanlov={S4_TAXMIN.find(v => v.k === taxmin).t} haqiqat={{ uz: 'istagan payt', ru: 'в любой момент' }} />} matn={tr({ uz: "Ulanish ochiq turganda ikkalasi istagan payt xabar yubora oladi: Backend ilova so'rashini kutmaydi.", ru: 'Пока соединение открыто, оба могут отправить сообщение в любой момент: Backend не ждёт, пока приложение спросит.' })} />}
       />
@@ -1049,7 +1072,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · hodisa', ru: 'Понятие · событие' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 2, QADAMLAR_Y, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Backend yuborgan xabarda <span className="italic" style={{ color: T.accent }}>nima bor</span>?</>, ru: <>Что <span className="italic" style={{ color: T.accent }}>внутри</span> сообщения от Backend?</> })}
+        sarlavha={tr({ uz: <>Ulanish orqali keladigan nomli xabar — <span className="italic" style={{ color: T.accent }}>hodisa</span>.</>, ru: <>Именованное сообщение по соединению — <span className="italic" style={{ color: T.accent }}>событие</span>.</> })}
         mentor={<Mentor>{q === 0
           ? tr({ uz: 'Birinchi telefon chetidagi konvertni bosib oching.', ru: 'Нажмите на конверт у края первого телефона и откройте его.' })
           : tr({ uz: "Ichida son yo'q: «Qayta so'rash» ni bosing.", ru: 'Внутри нет числа: нажмите «Запросить заново».' })}</Mentor>}
@@ -1059,7 +1082,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             t1={{ son, sonYangi: son === 9 && !avval, qoshilYoq: true, konvert: q === 0 ? 'yopiq' : 'ochiq', onKonvert: taxmin && q === 0 ? och : null, konvertHalqa: taxmin && q === 0,
               osti: <>{q >= 1 && <KonvertIchi />}{!tugadi && q === 1 && !band && <button type="button" className={cx('ws-qayta', halqa(true), 'fade-step')} onClick={qayta}>{tr({ uz: "Qayta so'rash", ru: 'Запросить заново' })}</button>}</> }} /* F-1015-164: konvert ochilgach chiqadi */
             be={{ db: 9, dbYon }} t2={{ son: 9, qoshildi: true }} c1="ochiq" c2="yoq" k1={k1} />
-          {q >= 1 && <p className="ws-nom fade-step">{tr({ uz: <>Ulanish orqali yuboriladigan nomli xabar — <b>hodisa</b>: nomi va ma'lumoti bor.</>, ru: <>Именованное сообщение, отправляемое по соединению, — <b>событие</b>: у него есть название и данные.</> })}</p>}
+          {q >= 1 && <p className="ws-nom fade-step">{tr({ uz: <>Hodisada ikki narsa bor: <b>nomi</b> va <b>ma'lumoti</b>.</>, ru: <>В событии две вещи: <b>название</b> и <b>данные</b>.</> })}</p>}
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'oyin'} tanlov={S5_TAXMIN.find(v => v.k === taxmin).t} haqiqat={{ uz: "faqat qaysi o'yin o'zgargani va sababi", ru: 'только какая игра изменилась и почему' }} />} matn={tr({ uz: "Bu misolda hodisa o'zgarish bo'lganini aytadi; yangi holatni ilova Backend'dan qayta so'raydi.", ru: 'В этом примере событие сообщает, что было изменение; новое состояние приложение заново запрашивает у Backend.' })} izoh={tr({ uz: "Haqiqiy sonni ilova Backend'dan qayta oladi; Backend uchun manba — Database.", ru: 'Настоящее число приложение заново получает от Backend; для Backend источник — Database.' })} />}
       />
@@ -1070,20 +1093,20 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 6 — 2-SAVOL (QuestionScreen; INLINE_KEYS.s6 = 3, D) =====
 const Screen6 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
-    questionText="Mentor misolida oyin-ozgardi hodisasi ilovaga nimani olib keladi?"
-    question={tr({ uz: <h2 className="title h-ask">Mentor misolida <code className="qcode">oyin-ozgardi</code> hodisasi ilovaga <span className="italic" style={{ color: T.accent }}>nimani</span> olib keladi?</h2>, ru: <h2 className="title h-ask">Что в примере Ментора событие <code className="qcode">oyin-ozgardi</code> <span className="italic" style={{ color: T.accent }}>приносит</span> приложению?</h2> })}
+    questionText="Hodisa ichida yangi son yo'q. Ilova yangi sonni qanday biladi?"
+    question={tr({ uz: <h2 className="title h-ask">Hodisa ichida yangi son yo'q. Ilova yangi sonni <span className="italic" style={{ color: T.accent }}>qanday biladi?</span></h2>, ru: <h2 className="title h-ask">В событии нового числа нет. <span className="italic" style={{ color: T.accent }}>Как приложение узнаёт</span> новое число?</h2> })}
     options={[
-      { uz: "O'yinning yangi sonini va ro'yxatini", ru: 'Новое число игры и список' },
-      { uz: "Qo'shilgan o'yinchining ismini", ru: 'Имя присоединившегося игрока' },
-      { uz: "O'yinlarning yangilangan ro'yxatini", ru: 'Обновлённый список игр' },
-      { uz: "Qaysi o'yin o'zgargani va sababini", ru: 'Какая игра изменилась и почему' }
+      { uz: "Sonni o'zi bittaga oshirib qo'yadi", ru: 'Само прибавляет к числу единицу' },
+      { uz: 'Keyingi hodisa kelishini kutib turadi', ru: 'Ждёт следующего события' },
+      { uz: "Butun sahifani o'zi qayta yuklaydi", ru: 'Само перезагружает всю страницу' },
+      { uz: "Hodisa kelgach, sonni Backend'dan so'raydi", ru: 'Когда приходит событие, спрашивает число у Backend' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "Hodisada `oyinId` va `sabab` bor; yangi sonni ilova `GET /oyinlar` dan qayta so'raydi.", ru: 'В событии есть `oyinId` и `sabab`; новое число приложение заново запрашивает у `GET /oyinlar`.' }}
+    explainCorrect={{ uz: "Hodisada faqat `oyinId` va `sabab`; yangi sonni ilova `GET /oyinlar` dan qayta so'raydi.", ru: 'В событии только `oyinId` и `sabab`; новое число приложение заново запрашивает у `GET /oyinlar`.' }}
     explainWrong={{
-      0: { uz: 'Konvertni ochganingizda ichida son bormidi?', ru: 'Когда вы открыли конверт, было ли внутри число?' },
-      1: { uz: "Hodisada ism yo'q edi: unda ikki maydon bor.", ru: 'В событии не было имени: в нём два поля.' },
-      2: { uz: "Ro'yxat katta, hodisa esa qisqa — ikki maydon.", ru: 'Список большой, а событие короткое — два поля.' },
-      default: { uz: "Hodisada ikki maydon bor: `oyinId` va `sabab`.", ru: 'В событии два поля: `oyinId` и `sabab`.' }
+      0: { uz: "Ikki kishi birdan qo'shilsa, son adashib ketadi.", ru: 'Если двое присоединятся сразу, число собьётся.' },
+      1: { uz: 'Keyingi hodisada ham son yo\'q — faqat ikki maydon.', ru: 'В следующем событии числа тоже нет — только два поля.' },
+      2: { uz: "Butun sahifa yuklanmaydi — faqat son so'raladi.", ru: 'Вся страница не грузится — запрашивается только число.' },
+      default: { uz: "Hodisada son yo'q: ilova uni Backend'dan oladi.", ru: 'В событии числа нет: приложение берёт его у Backend.' }
     }} />
 );
 
@@ -1128,7 +1151,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · token', ru: 'Понятие · токен' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 2, { uz: "Ikkalasini sinab ko'ring", ru: 'Попробуйте оба' }, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Backend kim ulanayotganini <span className="italic" style={{ color: T.accent }}>qayerdan biladi</span>?</>, ru: <>Откуда Backend <span className="italic" style={{ color: T.accent }}>знает</span>, кто подключается?</> })}
+        sarlavha={tr({ uz: <><span className="italic" style={{ color: T.accent }}>socket.io</span> — doimiy ulanish bilan ishlashni osonlashtiradigan kutubxona.</>, ru: <><span className="italic" style={{ color: T.accent }}>socket.io</span> — библиотека, упрощающая работу с постоянным соединением.</> })}
         mentor={<Mentor>{tr({ uz: "Mentor misolida ulanishni socket.io kutubxonasi ochadi — avval «Tokensiz ulanish» ni, keyin «Token bilan ulanish» ni bosing.", ru: 'В примере Ментора соединение открывает библиотека socket.io — сначала нажмите «Подключиться без токена», затем «Подключиться с токеном».' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: "Ulanayotgan ilova Backend'ga o'zi haqida nimani yuboradi?", ru: 'Что подключающееся приложение отправляет Backend о себе?' }} variantlar={S7_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={!taxmin ? null : <div className="ws-viz ws-kir">
@@ -1146,7 +1169,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <KodKarta yorliq={<><code>backend</code> · gateway — {tr({ uz: "Backend'da ulanishlarni qabul qiladigan klass", ru: 'класс в Backend, который принимает соединения' })}</>} qatorlar={gwQ} yon={{ 4: gwYon }} />
           </div>
-          {done && <p className="ws-nom fade-step">{tx({ uz: "socket.io — doimiy ulanish bilan ishlashni osonlashtiradigan kutubxona; u imkon bo'lsa WebSocket orqali ulanadi. Ilovada `socket.io-client`, Backend'da NestJS gateway.", ru: 'socket.io — библиотека, упрощающая работу с постоянным соединением; по возможности она подключается через WebSocket. В приложении `socket.io-client`, в Backend — NestJS gateway.' })}</p>}
+          {done && <p className="ws-nom fade-step">{tx({ uz: "socket.io imkon bo'lsa WebSocket orqali ulanadi. Ilovada `socket.io-client`, Backend'da NestJS gateway.", ru: 'socket.io по возможности подключается через WebSocket. В приложении `socket.io-client`, в Backend — NestJS gateway.' })}</p>}
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'token'} tanlov={S7_TAXMIN.find(v => v.k === taxmin).t} haqiqat={{ uz: 'tokenni', ru: 'токен' }} />} matn={tr({ uz: "Bu misolda ilova ulanayotganda tokenni yuboradi; Backend shu paytda tekshiradi va yaroqsiz bo'lsa yopadi.", ru: 'В этом примере приложение, подключаясь, отправляет токен; Backend сразу проверяет его и, если он недействителен, закрывает соединение.' })} izoh={tr({ uz: "Token yopiq so'rovlardagidek ishlatiladi, lekin bu yerda u ulanish ochilayotganda tekshiriladi.", ru: 'Токен используется как в закрытых запросах, но здесь он проверяется при открытии соединения.' })} />}
       />
@@ -1337,7 +1360,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · ulanish holati', ru: 'Понятие · состояние соединения' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 4, QADAMLAR_Y, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Ulanish uzilsa, o'yinchi buni <span className="italic" style={{ color: T.accent }}>qayerdan biladi</span>?</>, ru: <>Если соединение оборвётся, <span className="italic" style={{ color: T.accent }}>откуда</span> игрок это узнает?</> })}
+        sarlavha={tr({ uz: <>Ilovada ulanish holati <span className="italic" style={{ color: T.accent }}>uch xil belgi</span> bilan ko'rinadi.</>, ru: <>Состояние соединения в приложении видно по <span className="italic" style={{ color: T.accent }}>трём значкам</span>.</> })}
         mentor={<Mentor>{tr({ uz: 'Doimiy ulanish ham uziladi — birinchi telefonda uchish rejimini yoqing va tepadagi belgiga qarang.', ru: 'Постоянное соединение тоже обрывается — включите режим полёта на первом телефоне и посмотрите на значок вверху.' })}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={{ uz: 'Uchish rejimida belgi nimani ko\'rsatadi?', ru: 'Что покажет значок в режиме полёта?' }} variantlar={S10_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={!taxmin ? null : <div className="ws-viz ws-kir">
@@ -1439,7 +1462,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · sxema', ru: 'Понятие · схема' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Qatorlarni to'ldiring", ru: 'Заполните строки' })} (${n}/5)`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Kim nima qilsa, <span className="italic" style={{ color: T.accent }}>kimning ekrani</span> o'zgaradi?</>, ru: <>Кто что сделает — <span className="italic" style={{ color: T.accent }}>чей экран</span> изменится?</> })}
+        sarlavha={tr({ uz: <>Kim nima qilsa, kimga qaysi hodisa borishi — <span className="italic" style={{ color: T.accent }}>real vaqt oqimi sxemasi</span>.</>, ru: <>Кто что делает и кому какое событие идёт — <span className="italic" style={{ color: T.accent }}>схема потока реального времени</span>.</> })}
         mentor={<Mentor>{tr({ uz: 'Har o\'zgarish uchun Backend yuboradigan hodisaning sababini tanlang — qator jadvalga tushadi.', ru: 'Для каждого изменения выберите причину события, которое отправляет Backend, — строка попадёт в таблицу.' })}</Mentor>}
         vizual={<div className="ws-viz">
           <div className={cx('ws-sx', done && 'tayyor')}>
@@ -1453,7 +1476,6 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>}
             </div>
           </div>
-          {done && <p className="ws-nom fade-step">{tr({ uz: <>Kim nima qilganda qaysi hodisa kimga borishi va ekranda nima o'zgarishi yozilgan jadval — <b>real vaqt oqimi sxemasi</b>.</>, ru: <>Таблица, где записано, кто что делает, какое событие кому идёт и что меняется на экране, — <b>схема потока реального времени</b>.</> })}</p>}
         </div>}
         xulosa={done && <XulosaQ matn={tr({ uz: 'Mentor misolida bitta hodisa besh sabab bilan keladi; har qatorda kim olishi va nima o\'zgarishi yozilgan.', ru: 'В примере Ментора одно событие приходит с пятью причинами; в каждой строке записано, кто получает и что меняется.' })} izoh={tr({ uz: 'Sxema — reja: hodisalar hali yuborilmaydi; Mentorning sodda variantida ular hamma ulangan ilovaga boradi.', ru: 'Схема — это план: события пока не отправляются; в простом варианте Ментора они идут во все подключённые приложения.' })} />}
       />
@@ -1694,18 +1716,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni MD bo'yicha A·B·C·D ×3 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: "Qayta-qayta so'rashda yangi son qachon ko'rinadi?", ru: 'Если запрашивать снова и снова, когда появится новое число?' }, opts: [{ uz: "Keyingi so'rov yuborilganda", ru: 'Когда отправлен следующий запрос' }, { uz: "Database o'zgargan zahoti", ru: 'Сразу, как изменилась Database' }, { uz: 'Backend hodisa yuborganda', ru: 'Когда Backend отправил событие' }, { uz: 'Ulanish qayta tiklanganda', ru: 'Когда соединение восстановлено' }], correct: 0 },
-  { q: { uz: 'Doimiy ulanishni kim ochadi?', ru: 'Кто открывает постоянное соединение?' }, opts: [{ uz: "Backend — ilovaga o'zi ulanadi", ru: 'Backend — сам подключается к приложению' }, { uz: "Ilova — Backend'ga ulanadi", ru: 'Приложение — подключается к Backend' }, { uz: 'Database — ikkalasiga ulanadi', ru: 'Database — подключается к обоим' }, { uz: 'Ikkinchi telefon — ulab beradi', ru: 'Второй телефон — подключает' }], correct: 1 },
+  { q: { uz: "Qayta-qayta so'rashda yangi son qachon chiqadi?", ru: "Когда при повторных запросах появится новое число?" }, opts: [{ uz: "Keyingi so'rovda", ru: "При следующем запросе" }, { uz: "Database o'zgarganda", ru: "Когда изменится Database" }, { uz: "Hodisa kelganda", ru: "Когда придёт событие" }, { uz: "Ulanish tiklanganda", ru: "Когда восстановится связь" }], correct: 0 },
+  { q: { uz: "Doimiy ulanishni kim ochadi?", ru: "Кто открывает постоянное соединение?" }, opts: [{ uz: "Backend ilovaga ulanadi", ru: "Backend подключается к приложению" }, { uz: "Ilova Backend'ga ulanadi", ru: "Приложение подключается к Backend" }, { uz: "Database ikkalasini ulaydi", ru: "Database соединяет обоих" }, { uz: "Ikkinchi telefon ulaydi", ru: "Второй телефон соединяет" }], correct: 1 },
   { q: { uz: 'WebSocket nima beradi?', ru: 'Что даёт WebSocket?' }, opts: [{ uz: 'Parolni tekshiradigan token', ru: 'Токен для проверки пароля' }, { uz: "O'yinlar saqlanadigan jadval", ru: 'Таблицу, где хранятся игры' }, { uz: 'Ochiq turadigan doimiy ulanish', ru: 'Открытое постоянное соединение' }, { uz: "Telefonga o'rnatiladigan fayl", ru: 'Файл для установки на телефон' }], correct: 2 },
   { q: { uz: 'Hodisaning qaysi ikki qismi bor?', ru: 'Какие две части есть у события?' }, opts: [{ uz: 'Sarlavhasi va rasmi', ru: 'Заголовок и картинка' }, { uz: 'Manzili va paroli', ru: 'Адрес и пароль' }, { uz: 'Jadvali va ustuni', ru: 'Таблица и столбец' }, { uz: "Nomi va ma'lumoti", ru: 'Название и данные' }], correct: 3 },
   { q: { uz: "Hodisada `sabab: 'chiqdi'` nimani bildiradi?", ru: "Что значит `sabab: 'chiqdi'` в событии?" }, opts: [{ uz: "O'yinchi o'yindan chiqdi", ru: 'Игрок вышел из игры' }, { uz: 'Ilova hisobdan chiqdi', ru: 'Приложение вышло из аккаунта' }, { uz: 'Ulanish uzilib qoldi', ru: 'Соединение оборвалось' }, { uz: "Backend o'chib qoldi", ru: 'Backend выключился' }], correct: 0 },
-  { q: { uz: 'Hodisa kelgach, Mentor ilovasi yangi sonni qayerdan oladi?', ru: 'Откуда приложение Ментора берёт новое число после события?' }, opts: [{ uz: "Hodisaning ma'lumotidan", ru: 'Из данных события' }, { uz: "Backend'dan qayta so'rab", ru: 'Заново запросив у Backend' }, { uz: 'Telefon xotirasidan', ru: 'Из памяти телефона' }, { uz: 'Ikkinchi telefondan', ru: 'Со второго телефона' }], correct: 1 },
-  { q: { uz: "`ulanish.on('oyin-ozgardi', korsat)` qatori nima qiladi?", ru: "Что делает строка `ulanish.on('oyin-ozgardi', korsat)`?" }, opts: [{ uz: "Hodisani Backend'ga qaytarib yuboradi", ru: 'Отправляет событие обратно в Backend' }, { uz: "Ulanishni butunlay yopib qo'yadi", ru: 'Полностью закрывает соединение' }, { uz: 'Hodisa kelganda `korsat` ni ishlatadi', ru: 'Запускает `korsat`, когда приходит событие' }, { uz: 'Tugma bosilganda `korsat` ni ishlatadi', ru: 'Запускает `korsat` при нажатии кнопки' }], correct: 2 },
+  { q: { uz: "Hodisa kelgach, ilova yangi sonni qayerdan oladi?", ru: "Откуда приложение берёт новое число после события?" }, opts: [{ uz: "Hodisaning ma'lumotidan", ru: "Из данных события" }, { uz: "Backend'dan qayta so'rab", ru: "Заново запросив у Backend" }, { uz: "Telefon xotirasidan", ru: "Из памяти телефона" }, { uz: "Ikkinchi telefondan", ru: "Со второго телефона" }], correct: 1 },
+  { q: { uz: "`.on('oyin-ozgardi', korsat)` — korsat qachon ishlaydi?", ru: "`.on('oyin-ozgardi', korsat)` — когда сработает korsat?" }, opts: [{ uz: "Tugma bosilganda", ru: "Когда нажмут кнопку" }, { uz: "Ulanish ochilganda", ru: "Когда откроется соединение" }, { uz: "Hodisa kelganda", ru: "Когда придёт событие" }, { uz: "Ulanish uzilganda", ru: "Когда соединение оборвётся" }], correct: 2 },
   { q: { uz: 'Backend ulanayotgan ilovani nimadan taniydi?', ru: 'По чему Backend узнаёт подключающееся приложение?' }, opts: [{ uz: 'Yuborgan ismidan', ru: 'По отправленному имени' }, { uz: 'Yozgan parolidan', ru: 'По введённому паролю' }, { uz: 'Telefon rusumidan', ru: 'По модели телефона' }, { uz: 'Yuborgan tokenidan', ru: 'По отправленному токену' }], correct: 3 },
-  { q: { uz: 'Belgi «Ulanmagan». Bu nimani bildiradi?', ru: 'Значок «Не подключено». Что это значит?' }, opts: [{ uz: 'Ilova ulanishga urinmayapti', ru: 'Приложение не пытается подключиться' }, { uz: 'Ilova qayta urinib turibdi', ru: 'Приложение пытается снова' }, { uz: 'Hodisalar kelib turibdi', ru: 'События приходят' }, { uz: 'Backend sonni yangilayapti', ru: 'Backend обновляет число' }], correct: 0 },
-  { q: { uz: "Uchish rejimi o'chirildi. socket.io nima qiladi?", ru: 'Режим полёта выключен. Что делает socket.io?' }, opts: [{ uz: "Foydalanuvchidan parol so'raydi", ru: 'Спрашивает у пользователя пароль' }, { uz: "O'zi qayta ulanishga urinadi", ru: 'Сам пытается подключиться снова' }, { uz: 'Ilovani yopib, qayta ochadi', ru: 'Закрывает и снова открывает приложение' }, { uz: "Hodisalarni Database'ga yozadi", ru: 'Записывает события в Database' }], correct: 1 },
+  { q: { uz: "Belgi «Ulanmagan». Bu nimani bildiradi?", ru: "Значок «Не подключено». Что это значит?" }, opts: [{ uz: "Ilova urinmayapti", ru: "Приложение не пытается" }, { uz: "Ilova qayta urinmoqda", ru: "Приложение пробует снова" }, { uz: "Hodisalar kelmoqda", ru: "События приходят" }, { uz: "Son yangilanmoqda", ru: "Число обновляется" }], correct: 0 },
+  { q: { uz: "Uchish rejimi o'chirildi. socket.io nima qiladi?", ru: "Режим полёта выключен. Что делает socket.io?" }, opts: [{ uz: "Parolni qayta so'raydi", ru: "Снова спрашивает пароль" }, { uz: "Qayta ulanishga urinadi", ru: "Пытается переподключиться" }, { uz: "Ilovani qayta ochadi", ru: "Перезапускает приложение" }, { uz: "Hodisalarni saqlaydi", ru: "Сохраняет события" }], correct: 1 },
   { q: { uz: 'Sxemadagi «Kim oladi» ustuni nimani aytadi?', ru: 'Что говорит столбец «Кто получает» в схеме?' }, opts: [{ uz: 'Tugmani kim bosganini', ru: 'Кто нажал кнопку' }, { uz: 'Kodni kim yozib berganini', ru: 'Кто написал код' }, { uz: 'Hodisa kimga borishini', ru: 'Кому идёт событие' }, { uz: "E'lonni kim berganini", ru: 'Кто дал объявление' }], correct: 2 },
-  { q: { uz: 'Mentor sxemasida `elon-berildi` sababi qachon yuboriladi?', ru: 'Когда в схеме Ментора отправляется причина `elon-berildi`?' }, opts: [{ uz: "Yangi o'yinchi qo'shilganda", ru: 'Когда присоединился новый игрок' }, { uz: "O'yinchi navbatga yozilganda", ru: 'Когда игрок записался в очередь' }, { uz: "O'yinchi kelishini tasdiqlaganda", ru: 'Когда игрок подтвердил приход' }, { uz: "Tashkilotchi o'yin e'lon qilganda", ru: 'Когда организатор объявил игру' }], correct: 3 }
+  { q: { uz: "Sxemada `elon-berildi` sababi qachon yuboriladi?", ru: "Когда в схеме отправляется причина `elon-berildi`?" }, opts: [{ uz: "O'yinchi qo'shilganda", ru: "Когда игрок присоединился" }, { uz: "Navbatga yozilganda", ru: "Когда записался в очередь" }, { uz: "Kelishi tasdiqlanganda", ru: "Когда подтвердил приход" }, { uz: "O'yin e'lon qilinganda", ru: "Когда объявили игру" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2328,7 +2350,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi qadam — «${stepN + 1} · ${steps[stepN].h.uz}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${steps[stepN].h.ru}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+      <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="ws-band">{tx(b)}</span>)}{c.prompt && <WsPrompt satrlar={c.prompt} namuna={c.namuna} toldir={c.toldir} />}</>,
@@ -2828,7 +2850,8 @@ export default function WebSocketBasicsLesson({ lang: langProp, onFinished, live
         /* Backend tuguni */
         .ws-be-ust { display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .ws-sahna.yot .ws-be-joy { height: 272px; display: flex; align-items: center; justify-content: center; }
-        .ws-backend { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 132px; max-width: 190px; padding: 12px 14px; border-radius: 16px; background: ${T.ink}; color: ${T.paper}; box-shadow: 0 14px 28px -16px rgba(${T.shadowBase},0.6); transition: box-shadow 0.3s; }
+        .ws-backend { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 132px; max-width: 190px; padding: 12px 14px; border-radius: 16px; background: ${T.ink}; color: ${T.paper}; box-shadow: none; transition: box-shadow 0.3s; }
+        .ws-backend::before { content: ''; width: 18px; height: 14px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 14' fill='none' stroke='white' stroke-opacity='0.8' stroke-width='1.4'%3E%3Crect x='1' y='1' width='16' height='5' rx='1.5'/%3E%3Crect x='1' y='8' width='16' height='5' rx='1.5'/%3E%3Ccircle cx='4.2' cy='3.5' r='0.7' fill='white'/%3E%3Ccircle cx='4.2' cy='10.5' r='0.7' fill='white'/%3E%3C/svg%3E") center / contain no-repeat; } /* F-1015-350: server belgisi, soyasiz — tugmaga o'xshamasin */
         .ws-backend.yon { box-shadow: 0 0 0 4px ${fon(T.accent, 0.35)}; }
         .ws-backend.ok { box-shadow: 0 0 0 4px ${fon(T.ok, 0.35)}; } .ws-backend.xato { box-shadow: 0 0 0 4px ${fon(T.err, 0.4)}; animation: ws-be-silk .4s ease-in-out; }
         @keyframes ws-be-silk { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }

@@ -110,6 +110,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -187,8 +212,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1447,66 +1472,26 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: 'Claude Skill nima?', ru: 'Что такое Claude Skill?' }, opts: [
-    { uz: 'Kuchliroq AI modelining nomi', ru: 'Название более мощной модели ИИ' },
-    { uz: "Internetdan ma'lumot oladigan qidiruv", ru: 'Поиск, который берёт данные из интернета' },
-    { uz: "AI uchun qayta ishlatiladigan yo'riqnoma", ru: 'Многоразовая инструкция для ИИ' },
-    { uz: 'Dasturning ikonka (belgi) fayli', ru: 'Файл иконки (значка) программы' }], correct: 2 },
+  { q: { uz: "Claude Skill nima?", ru: "Что такое Claude Skill?" }, opts: [{ uz: "Kuchliroq AI modeli nomi", ru: "Название более сильной AI-модели" }, { uz: "Internetdagi qidiruv", ru: "Поиск в интернете" }, { uz: "AI uchun yozma yo'riqnoma", ru: "Письменная инструкция для AI" }, { uz: "Dastur ikonka fayli", ru: "Файл иконки программы" }], correct: 2 },
   { q: { uz: 'SKILL.md qaysi ikki qismdan iborat?', ru: 'Из каких двух частей состоит SKILL.md?' }, opts: [
     { uz: 'Frontmatter va body', ru: 'frontmatter (name + description) и body' },
     { uz: 'Rasm va ovoz fayllari', ru: 'Файлы картинок и звука' },
     { uz: 'Parol va foydalanuvchi nomi', ru: 'Пароль и имя пользователя' },
     { uz: 'Server va Database manzili', ru: 'Адрес сервера и Database' }], correct: 0 },
-  { q: { uz: 'description nima uchun kerak?', ru: 'Зачем нужен description?' }, opts: [
-    { uz: "Skill'ni chiroyli ko'rsatish uchun", ru: 'Чтобы Skill выглядел красиво' },
-    { uz: 'AI modelini almashtirish uchun', ru: 'Чтобы поменять модель ИИ' },
-    { uz: "Faqat odam o'qishi uchun", ru: 'Только для чтения человеком' },
-    { uz: 'Skill qachon kerakligini aytish uchun', ru: 'Чтобы сказать, когда нужен Skill' }], correct: 3 },
+  { q: { uz: "description nima uchun kerak?", ru: "Зачем нужен description?" }, opts: [{ uz: "Skill'ni bezash uchun", ru: "Чтобы украсить Skill" }, { uz: "Modelni almashtirish uchun", ru: "Чтобы сменить модель" }, { uz: "Faqat odam o'qishi uchun", ru: "Только чтобы читал человек" }, { uz: "Qachon ishlashini aytish uchun", ru: "Чтобы сказать, когда он нужен" }], correct: 3 },
   { q: { uz: "Skill body'sida odatda nima bo'ladi?", ru: 'Что обычно находится в body Skill?' }, opts: [
     { uz: 'Faqat Skill nomi', ru: 'Только имя Skill' },
     { uz: 'Aniq qadamlar va misol', ru: 'Точные шаги и пример' },
     { uz: 'Foydalanuvchi paroli', ru: 'Пароль пользователя' },
     { uz: 'AI modelining versiyasi', ru: 'Версия модели ИИ' }], correct: 1 },
-  { q: { uz: 'Progressive disclosure nima?', ru: 'Что такое progressive disclosure?' }, opts: [
-    { uz: "Hamma Skill doim to'liq ochiq turadi", ru: 'Все Skills всегда открыты целиком' },
-    { uz: 'Skill faqat kechasi ishlaydi', ru: 'Skill работает только ночью' },
-    { uz: "Skill AI'ni tezlashtiradi", ru: 'Skill ускоряет ИИ' },
-    { uz: "To'liq matn kerak bo'lganda ochiladi", ru: 'Полный текст открывается, когда нужно' }], correct: 3 },
-  { q: { uz: "Claude oldindan nimani ko'rib turadi?", ru: 'Что Claude видит заранее?' }, opts: [
-    { uz: "Skill'lar nomi va description'ini", ru: 'Имена и description всех Skills' },
-    { uz: "Har bir Skill'ning butun matnini", ru: 'Весь текст каждого Skill' },
-    { uz: 'Foydalanuvchining eski suhbatlarini', ru: 'Старые разговоры пользователя' },
-    { uz: 'Kompyuterdagi barcha fayllarni', ru: 'Все файлы на компьютере' }], correct: 0 },
-  { q: { uz: "Skill oddiy so'rov (prompt)dan nimasi bilan farq qiladi?", ru: 'Чем Skill отличается от обычного запроса (prompt)?' }, opts: [
-    { uz: 'Skill — bir martalik gap', ru: 'Skill — разовая реплика' },
-    { uz: 'Skill saqlanadi va qayta ishlatiladi', ru: 'Skill сохраняется и используется повторно' },
-    { uz: 'Skill modelni kuchaytiradi', ru: 'Skill усиливает модель' },
-    { uz: 'Skill internetga ulaydi', ru: 'Skill подключает к интернету' }], correct: 1 },
-  { q: { uz: "Yaxshi Skill'ning belgisi qaysi?", ru: 'Какой признак хорошего Skill?' }, opts: [
-    { uz: 'Uzun, chalkash matn', ru: 'Длинный, запутанный текст' },
-    { uz: "Faqat bitta so'z", ru: 'Всего одно слово' },
-    { uz: 'Aniq description, qadamlar va misol', ru: 'Точный description, шаги и пример' },
-    { uz: "Ko'p rangli bezaklar va emoji", ru: 'Много цветных украшений и эмодзи' }], correct: 2 },
-  { q: { uz: 'Qanday vazifa Skill uchun eng mos?', ru: 'Какая задача лучше всего подходит для Skill?' }, opts: [
-    { uz: 'Qayta-qayta bajariladigan vazifa', ru: 'Задача, которую выполняют снова и снова' },
-    { uz: "Bir martagina bo'ladigan tasodifiy ish", ru: 'Случайное дело, которое бывает лишь однажды' },
-    { uz: 'Faqat rasm chizish', ru: 'Только рисование картинок' },
-    { uz: "Faqat o'yin o'ynash", ru: 'Только игра в игры' }], correct: 0 },
-  { q: { uz: "Skill natijaga qanday ta'sir qiladi?", ru: 'Как Skill влияет на результат?' }, opts: [
-    { uz: 'Natijani har safar tasodifiy qiladi', ru: 'Делает результат каждый раз случайным' },
-    { uz: "Hech qanday ta'sir qilmaydi", ru: 'Никак не влияет' },
-    { uz: "AI'ni sekinlashtiradi", ru: 'Замедляет ИИ' },
-    { uz: 'Natijani siz yozgan uslubga yaqinlashtiradi', ru: 'Приближает результат к стилю, который вы описали' }], correct: 3 },
-  { q: { uz: 'System prompt va Skill farqi qaysi?', ru: 'В чём разница между system prompt и Skill?' }, opts: [
-    { uz: 'Ikkalasi ham aynan bir xil narsa', ru: 'Это в точности одно и то же' },
-    { uz: 'System prompt faqat kechasi ishlaydi', ru: 'System prompt работает только ночью' },
-    { uz: "System prompt — doim; Skill — kerak bo'lganda", ru: 'System prompt — всегда; Skill — когда нужно' },
-    { uz: 'Skill — eng kuchli AI modelining nomi', ru: 'Skill — название самой мощной модели ИИ' }], correct: 2 },
-  { q: { uz: 'Noaniq description qanday oqibatga olib keladi?', ru: 'К чему приводит размытый description?' }, opts: [
-    { uz: 'Skill ancha tezroq ishlaydi', ru: 'Skill работает намного быстрее' },
-    { uz: 'Skill kerakli paytda ishlamasligi mumkin', ru: 'Skill может не сработать в нужный момент' },
-    { uz: "AI modeli o'zi o'zgarib qoladi", ru: 'Модель ИИ сама собой меняется' },
-    { uz: 'Internet aloqasi uziladi', ru: 'Пропадает связь с интернетом' }], correct: 1 },
+  { q: { uz: "Progressive disclosure nima?", ru: "Что такое progressive disclosure?" }, opts: [{ uz: "Hamma Skill doim ochiq", ru: "Все Skill всегда открыты" }, { uz: "Skill faqat kechasi ishlaydi", ru: "Skill работает только ночью" }, { uz: "Skill AI'ni tezlashtiradi", ru: "Skill ускоряет AI" }, { uz: "Matn kerak bo'lganda ochiladi", ru: "Текст открывается, когда нужен" }], correct: 3 },
+  { q: { uz: "Claude oldindan nimani ko'rib turadi?", ru: "Что Claude видит заранее?" }, opts: [{ uz: "Skill nomi va description'i", ru: "Имя и description Skill" }, { uz: "Har Skill'ning butun matni", ru: "Весь текст каждого Skill" }, { uz: "Foydalanuvchi suhbatlari", ru: "Чаты пользователя" }, { uz: "Kompyuterdagi fayllar", ru: "Файлы на компьютере" }], correct: 0 },
+  { q: { uz: "Skill oddiy so'rovdan nimasi bilan farq qiladi?", ru: "Чем Skill отличается от обычного запроса?" }, opts: [{ uz: "Skill — bir martalik gap", ru: "Skill — разовая фраза" }, { uz: "Saqlanadi, qayta ishlatiladi", ru: "Хранится и используется снова" }, { uz: "Modelni kuchaytiradi", ru: "Усиливает модель" }, { uz: "Internetga ulaydi", ru: "Подключает к интернету" }], correct: 1 },
+  { q: { uz: "Yaxshi Skill'ning belgisi qaysi?", ru: "Какой признак хорошего Skill?" }, opts: [{ uz: "Uzun, chalkash matn", ru: "Длинный запутанный текст" }, { uz: "Faqat bitta so'z", ru: "Только одно слово" }, { uz: "Aniq qadamlar va misol", ru: "Чёткие шаги и пример" }, { uz: "Ko'p rangli bezaklar", ru: "Много цветных украшений" }], correct: 2 },
+  { q: { uz: "Qanday vazifa Skill uchun eng mos?", ru: "Какая задача лучше всего подходит для Skill?" }, opts: [{ uz: "Takrorlanadigan vazifa", ru: "Повторяющаяся задача" }, { uz: "Bir martalik tasodifiy ish", ru: "Разовое случайное дело" }, { uz: "Faqat rasm chizish", ru: "Только рисование" }, { uz: "Faqat o'yin o'ynash", ru: "Только игры" }], correct: 0 },
+  { q: { uz: "Skill natijaga qanday ta'sir qiladi?", ru: "Как Skill влияет на результат?" }, opts: [{ uz: "Natijani tasodifiy qiladi", ru: "Делает результат случайным" }, { uz: "Hech ta'sir qilmaydi", ru: "Никак не влияет" }, { uz: "AI'ni sekinlashtiradi", ru: "Замедляет AI" }, { uz: "Uslubingizga yaqinlashtiradi", ru: "Приближает к вашему стилю" }], correct: 3 },
+  { q: { uz: "System prompt va Skill farqi qaysi?", ru: "В чём разница system prompt и Skill?" }, opts: [{ uz: "Ikkalasi aynan bir xil", ru: "Это одно и то же" }, { uz: "System prompt kechasi ishlaydi", ru: "System prompt работает ночью" }, { uz: "Skill faqat kerak bo'lganda", ru: "Skill — только когда нужен" }, { uz: "Skill — AI modelining nomi", ru: "Skill — название AI-модели" }], correct: 2 },
+  { q: { uz: "Noaniq description nimaga olib keladi?", ru: "К чему приводит неточный description?" }, opts: [{ uz: "Skill tezroq ishlaydi", ru: "Skill работает быстрее" }, { uz: "Skill ochilmay qolishi mumkin", ru: "Skill может не открыться" }, { uz: "AI modeli o'zgarib qoladi", ru: "AI-модель сменится" }, { uz: "Internet aloqasi uziladi", ru: "Пропадёт интернет" }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2680,7 +2665,7 @@ export default function ClaudeSkillsLesson({ lang: langProp, onFinished, liveTok
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

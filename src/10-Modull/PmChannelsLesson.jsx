@@ -29,7 +29,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKod, QKartochka, QYakun, QVoqea, QMustaqil, QQadamlar, QXato, QIzoh, QXulosa, QPrompt } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKod, QKartochka, QYakun, QVoqea, QMustaqil, QQadamlar, QXato, QIzoh, QXulosa, QPrompt, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
 // Kod oynasi — umumiy modul (11-Modul darslaridagidek)
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 
@@ -101,6 +101,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -178,8 +203,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -925,10 +950,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; vizual — ChatTelefon: Mentor misolidagi joy nomlari bilan, bo'sh chiziq yo'q — SABOQ 33; kashfiyot ochilmaydi) =====
 const REJA = [
-  { t: { uz: 'Mahsulotingiz haqida qayerda yozishni tanlaysiz', ru: 'Выберете, где писать о своём продукте' }, teg: { uz: 'kanal', ru: 'канал' } },
-  { t: { uz: 'Yuborishdan oldin nimani tekshirishni bilib olasiz', ru: 'Узнаете, что проверять перед отправкой' }, teg: { uz: 'xavfsizlik', ru: 'безопасность' } },
-  { t: { uz: <><Fb /> kimlardan boshlanganini ko'rasiz</>, ru: <>Увидите, с кого начинался <Fb /></> }, teg: { uz: 'voqea', ru: 'история' } },
-  { t: { uz: 'Birinchi postni yozib, sinf chatiga yuborasiz', ru: 'Напишете первый пост и отправите в чат класса' }, teg: { uz: 'post', ru: 'пост' } }
+  { t: { uz: 'Mahsulotingiz haqida qayerda yozishni tanlang', ru: 'Выберите, где писать о своём продукте' }, teg: { uz: 'kanal', ru: 'канал' } },
+  { t: { uz: 'Yuborishdan oldin nimani tekshirishni bilib oling', ru: 'Узнайте, что проверять перед отправкой' }, teg: { uz: 'xavfsizlik', ru: 'безопасность' } },
+  { t: { uz: <><Fb /> kimlardan boshlanganini ko'ring</>, ru: <>Посмотрите, с кого начинался <Fb /></> }, teg: { uz: 'voqea', ru: 'история' } },
+  { t: { uz: 'Birinchi postni yozib, sinf chatiga yuboring', ru: 'Напишите первый пост и отправьте в чат класса' }, teg: { uz: 'post', ru: 'пост' } }
 ];
 const RejaTelefon = () => (
   <div className="kn-reja">
@@ -1051,7 +1076,7 @@ const Screen3 = (props) => (
       3: { uz: "Yangi akkaunt ham ruxsat bermaydi — egasi so'ralmagan.", ru: 'Новый аккаунт тоже не даёт разрешения — владельца не спросили.' },
       default: { uz: "Uch savolni shu guruhga bering: qaysi biri «yo'q»?", ru: "Примените к этой группе три вопроса: на какой ответ «нет»?" }
     }}
-    vizual={<div className="kn-tviz-q"><ChatQator mini q={{ k: 'sport', nom: tr({ uz: "Sport to'garagi", ru: 'Спортивный кружок' }), tur: tr({ uz: 'Telegram guruhi', ru: 'Telegram-группа' }), belgilar: [null, false, false] }} /></div>} />
+ />
 );
 
 // ===== SCREEN 4 — TO'RT QATOR (QTushuncha: yorliqni tanlash → matndagi joyini bosish, KORPUS §16; atama «post» — misoldan keyin) =====
@@ -1170,7 +1195,7 @@ const Screen5 = (props) => (
       3: { uz: 'Oxirgi gapda odamga nima qilish aytilgan?', ru: 'Что в последней фразе сказано сделать человеку?' },
       default: { uz: "To'rt qatorni birma-bir izlang: qaysi biri topilmadi?", ru: 'Ищите четыре строки по одной: какая не нашлась?' }
     }}
-    vizual={<S5Javob />} />
+ />
 );
 
 // ===== SCREEN 6 — OLTI BAND (QTushuncha ketma-ket, bitta katta karta — SABOQ 9/13; to'g'ri javob ro'yxatga uchib band bo'ladi) =====
@@ -1337,23 +1362,23 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 8 — 3-SAVOL (QuestionScreen; ✔ D, INLINE_KEYS.s8 = 3) =====
 const Screen8 = (props) => (
-  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: "Tekshiruv · Facebook'dagidek", ru: 'Проверка · как в Facebook' })}
-    questionText="Facebook voqeasi birinchi kanal haqida nimani eslatadi?"
-    question={tr({ uz: <h2 className="title h-ask"><Fb /> voqeasi birinchi kanal haqida <A>nimani eslatadi?</A></h2>, ru: <h2 className="title h-ask">Что история <Fb /> <A>подсказывает про первый канал?</A></h2> })}
+  <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · birinchi kanal', ru: 'Проверка · первый канал' })}
+    questionText="Birinchi kanalni tanlayapsiz. Qayerdan boshlagan ma'qul?"
+    question={tr({ uz: <h2 className="title h-ask">Birinchi kanalni tanlayapsiz. <A>Qayerdan boshlagan ma'qul?</A></h2>, ru: <h2 className="title h-ask">Выбираете первый канал. <A>С чего лучше начать?</A></h2> })}
     options={[
-      { uz: 'Auditoriyasi eng katta joydan boshlashni', ru: 'Начинать с места с самой большой аудиторией' },
-      { uz: 'Bir kunda hamma guruhga yozib chiqishni', ru: 'За один день написать во все группы' },
-      { uz: 'Avval universitet talabalariga yozishni', ru: 'Сначала писать студентам университета' },
-      { uz: 'Auditoriya zich turgan joydan boshlashni', ru: 'Начинать с места, где аудитория плотная' }
+      { uz: 'Auditoriyasi eng katta joydan', ru: 'С места с самой большой аудиторией' },
+      { uz: 'Hamma guruhga bir kunda yozib', ru: 'Написав во все группы за один день' },
+      { uz: 'Universitet talabalaridan', ru: 'Со студентов университета' },
+      { uz: 'Auditoriya zich turgan joydan', ru: 'С места, где аудитория плотная' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: 'Bu voqeada xizmat avval kichik, yopiq auditoriyada ochilgan.', ru: 'В этой истории сервис сначала открылся в маленькой закрытой аудитории.' }}
+    explainCorrect={{ uz: 'Facebook ham avval kichik, zich auditoriyada — Garvardda ochilgan.', ru: 'Facebook тоже сначала открылся в маленькой плотной аудитории — в Гарварде.' }}
     explainWrong={{
-      0: { uz: 'Facebook eng katta auditoriyadan boshlaganmi?', ru: 'Facebook начинал с самой большой аудитории?' },
-      1: { uz: 'Bu voqeada hamma uchun ochilish — ikki yildan keyin.', ru: "В этой истории для всех сервис открылся через два года." },
+      0: { uz: "Katta joyda post yo'qoladi; Facebook kichikdan boshlagan.", ru: 'В большом месте пост теряется; Facebook начинал с малого.' },
+      1: { uz: 'Hammaga birdan — Facebook buni ikki yildan keyin qilgan.', ru: 'Для всех сразу — Facebook сделал это через два года.' },
       2: { uz: 'Garvard — Facebook auditoriyasi edi. Siznikichi?', ru: 'Гарвард был аудиторией Facebook. А ваша?' },
-      default: { uz: 'Facebook avval kimlar uchun ochilganini eslang.', ru: 'Вспомните, для кого сначала открылся Facebook.' }
+      default: { uz: 'Odamlaringiz zich turgan joyni eslang.', ru: 'Вспомните, где ваши люди собраны плотно.' }
     }}
-    vizual={<div className="kn-tviz-q"><FbDoira className="mini" son={5} yon yashil qulf /></div>} />
+ />
 );
 
 // ===== SCREEN 9 — KANALLARINGIZ (QMustaqil, USTAXONA — bittadan karta, ko'pi bilan 3 joy; SABOQ 9, 13, 17, 29) · yozadi pm-m10d6-kanallar.kanallar · nishon myChannels =====
@@ -1536,6 +1561,7 @@ const S10_MAKTAB_RE = /\d+\s*-?\s*maktab|maktab\s*№/i;
 const S10_VADA_RE = /(^|[^a-z'])(tez orada|yaqinda|albatta)(?![a-z'])/;
 const S10_SIFAT_RE = /(^|[^a-z'])(eng yaxshi|zo[']r|ajoyib|qulay)(?![a-z'])/;
 const S10_XABAR = {
+  manosiz: MANOSIZ_XATO,
   bosh: { uz: "Bu qator bo'sh — postda joyi ko'rinmay qoladi.", ru: 'Эта строка пуста — в посте её место останется пустым.' },
   shaxsiy: { uz: 'Postga telefon va akkaunt nomi yozilmaydi.', ru: 'В пост не пишут телефон и имя аккаунта.' },
   maktab: { uz: 'Maktab raqami postga yozilmaydi.', ru: 'Номер школы в пост не пишут.' },
@@ -1545,6 +1571,7 @@ const S10_XABAR = {
 function s10Tekshir(k, v) {
   const s = String(v || '');
   if (!s.trim()) return { x: 'bosh', blok: true };
+  if (!manoliMatn(s)) return { x: 'manosiz', blok: true };
   if (S10_SHAXSIY_RE.test(s)) return { x: 'shaxsiy', blok: true };
   const n = normS(s);
   if (S10_MAKTAB_RE.test(n)) return { x: 'maktab', blok: true };
@@ -1730,7 +1757,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const chip = juft ? [{ uz: 'Yozish', ru: "Написание" }, { uz: 'Sherik', ru: 'Партнёр' }, { uz: "Ro'yxat", ru: 'Список' }, { uz: 'Yuborish', ru: 'Отправка' }]
     : [{ uz: 'Yozish', ru: "Написание" }, { uz: "O'qish", ru: 'Чтение' }, { uz: "Ro'yxat", ru: 'Список' }, { uz: 'Yuborish', ru: 'Отправка' }];
   return (
-    <Stage eyebrow={juft ? tr({ uz: 'Juftlikda ish', ru: 'Работа в паре' }) : tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} scrollSignal={qism * 10 + (fiBosh + 1)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "To'rt qismni bajaring", ru: 'Выполните четыре части' })} (${Math.min(qism - 1, 4)}/4)`} onClick={onNext} /></>}>
+    <Stage eyebrow={juft ? tr({ uz: 'Juftlikda ish', ru: 'Работа в паре' }) : tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} scrollSignal={qism * 10 + (fiBosh + 1)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "To'rt qismni bajaring", ru: 'Выполните четыре части' })}`} onClick={onNext} /></>}>
       <QMustaqil
         sarlavha={tr({ uz: <>Birinchi postni <A>yozing va tekshiring.</A></>, ru: <>Напишите первый пост <A>и проверьте его.</A></> })}
         mentor={<Mentor>{juft
@@ -1928,7 +1955,7 @@ const Screen12 = (props) => (
       3: { uz: "Bir xil post ko'p guruhda — ro'yxatning qaysi bandi?", ru: 'Один пост во многих группах — какой это пункт списка?' },
       default: { uz: "Ro'yxatning 2 va 4-bandini eslang.", ru: 'Вспомните 2-й и 4-й пункты списка.' }
     }}
-    vizual={<div className="kn-tviz-q"><BandRoyxat ixcham faqat={[1, 3]} kataklar={[false, true, false, true, false, false]} /></div>} />
+ />
 );
 
 // ===== 🏅 BADGES (nishonlar) — to'rttasi ham ish qilingan ekranda (S-034, tekin bonus yo'q) =====
@@ -2016,18 +2043,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol, ✔ o'rni MD dagidek: A 2·5·10 · B 3·7·11 · C 1·6·8 · D 4·9·12 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Intervyuda hamma «Telegram guruhida yozamiz» dedi. Bu qaysi savolga dalil?', ru: "В интервью все сказали «пишем в Telegram-группе». Довод для какого вопроса?" }, opts: [{ uz: "Siz bu guruhda a'zomisiz?", ru: 'Вы состоите в этой группе?' }, { uz: 'Bu guruhda ruxsat bormi?', ru: 'Есть ли разрешение в этой группе?' }, { uz: 'Auditoriyangiz shu yerdami?', ru: 'Ваша аудитория здесь?' }, { uz: 'Bu guruhda necha kishi bor?', ru: 'Сколько людей в группе?' }], correct: 2 },
-  { q: { uz: 'Mentor misolida shahar futbol kanali nega tanlanmadi?', ru: 'Почему в примере Ментора не выбран городской футбольный канал?' }, opts: [{ uz: "A'zo emas va ruxsat ham yo'q", ru: 'Не состоит и разрешения нет' }, { uz: 'Futbol haqida yozilmas ekan', ru: 'Там не пишут о футболе' }, { uz: 'Kanalda odam juda kam ekan', ru: 'В канале очень мало людей' }, { uz: 'Kanal endigina ochilgan ekan', ru: 'Канал только что открыт' }], correct: 0 },
-  { q: { uz: "Sinfdoshingiz guruhga qo'shilgan kuniyoq post yubordi. Nima qilinmadi?", ru: 'Одноклассник отправил пост в день вступления в группу. Что не сделано?' }, opts: [{ uz: "Postda birorta rasm yo'q edi", ru: 'В посте не было картинки' }, { uz: "Egasidan ruxsat so'ralmadi", ru: 'Не спросили разрешения владельца' }, { uz: 'Post qisqaroq qilib yozilmadi', ru: 'Пост не написали короче' }, { uz: 'Havola eng oxiriga yozilmadi', ru: 'Ссылку не поставили в самый конец' }], correct: 1 },
-  { q: { uz: 'Postning qaysi qatori odamni sahifaga olib boradi?', ru: 'Какая строка поста ведёт человека на страницу?' }, opts: [{ uz: 'Kim uchun — postdagi birinchi gap', ru: 'Для кого — первая фраза поста' }, { uz: 'Nima foyda — odam nimani olishi', ru: 'Какая польза — что получит человек' }, { uz: 'Halol holat — hozir nima tayyor', ru: 'Честное состояние — что готово сейчас' }, { uz: 'Bitta harakat — lending havolasi', ru: 'Одно действие — ссылка на лендинг' }], correct: 3 },
-  { q: { uz: 'Postingizda «Tez orada hamma narsa bo\'ladi» deb yozdingiz. Nima qilasiz?', ru: 'Вы написали в посте «Скоро будет всё». Что сделаете?' }, opts: [{ uz: 'Hozir tayyor narsani yozasiz', ru: 'Напишете, что готово сейчас' }, { uz: 'Gapni oxirgi qatorga surasiz', ru: 'Перенесёте фразу в последнюю строку' }, { uz: "Gap oxiriga undov qo'yasiz", ru: 'Поставите восклицательный знак' }, { uz: 'Gapni qalin harfda yozasiz', ru: 'Напишете фразу жирным' }], correct: 0 },
+  { q: { uz: "Intervyu javobi qaysi savolga dalil bo'ladi?", ru: "На какой вопрос ответ из интервью — доказательство?" }, opts: [{ uz: "Siz u yerda a'zomisiz?", ru: "Вы там участник?" }, { uz: "U yerda ruxsat bormi?", ru: "Там есть разрешение?" }, { uz: "Auditoriyangiz shu yerdami?", ru: "Ваша аудитория здесь?" }, { uz: "U yerda necha kishi bor?", ru: "Сколько там человек?" }], correct: 2 },
+  { q: { uz: "Mentor misolida shahar futbol kanali nega tanlanmadi?", ru: "Почему в примере Ментора не выбран городской футбольный канал?" }, opts: [{ uz: "A'zo emas, ruxsat yo'q", ru: "Не участник, нет разрешения" }, { uz: "Futbol haqida emas", ru: "Он не про футбол" }, { uz: "Kanalda odam kam", ru: "В канале мало людей" }, { uz: "Kanal yangi ochilgan", ru: "Канал только открылся" }], correct: 0 },
+  { q: { uz: "Guruhga qo'shilgan kuniyoq post yozildi. Nima qilinmadi?", ru: "Пост написали в день вступления в группу. Что не сделали?" }, opts: [{ uz: "Rasm qo'yilmadi", ru: "Не добавили фото" }, { uz: "Ruxsat so'ralmadi", ru: "Не спросили разрешения" }, { uz: "Post qisqartirilmadi", ru: "Не сократили пост" }, { uz: "Havola qo'yilmadi", ru: "Не поставили ссылку" }], correct: 1 },
+  { q: { uz: "Postning qaysi qatori odamni sahifaga olib boradi?", ru: "Какая строка поста ведёт человека на страницу?" }, opts: [{ uz: "Kim uchun", ru: "Для кого" }, { uz: "Nima foyda", ru: "Какая польза" }, { uz: "Halol holat", ru: "Честное состояние" }, { uz: "Bitta harakat", ru: "Одно действие" }], correct: 3 },
+  { q: { uz: "Postda «Tez orada hammasi bo'ladi». Nima qilasiz?", ru: "В посте «Скоро будет всё». Что сделаете?" }, opts: [{ uz: "Tayyor narsani yozasiz", ru: "Напишете, что готово сейчас" }, { uz: "Gapni oxiriga surasiz", ru: "Перенесёте фразу в конец" }, { uz: "Undov belgisi qo'yasiz", ru: "Поставите восклицательный знак" }, { uz: "Qalin harfda yozasiz", ru: "Напишете жирным" }], correct: 0 },
   { q: { uz: "Postga qaysi ma'lumot yozilmaydi?", ru: 'Какие данные не пишут в пост?' }, opts: [{ uz: 'Mahsulotning nomi', ru: 'Название продукта' }, { uz: 'Lendingning havolasi', ru: "Ссылка на лендинг" }, { uz: 'Maktabingiz raqami', ru: 'Номер вашей школы' }, { uz: 'Mahsulotning foydasi', ru: "Польза продукта" }], correct: 2 },
-  { q: { uz: 'Guruhda notanish odam uchrashishni taklif qildi. Nima qilasiz?', ru: 'Незнакомец в группе предложил встретиться. Что сделаете?' }, opts: [{ uz: "Yolg'iz o'zingiz borib ko'rasiz", ru: "Пойдёте в одиночку" }, { uz: 'Faqat kattalar bilan hal qilasiz', ru: 'Решите только со взрослыми' }, { uz: 'Sinfdosh bilan ikkovlashib borasiz', ru: 'Пойдёте вдвоём с одноклассником' }, { uz: 'Unga uy manzilingizni yozasiz', ru: 'Напишете ему домашний адрес' }], correct: 1 },
+  { q: { uz: "Notanish odam uchrashuvga chaqirdi. Nima qilasiz?", ru: "Незнакомец зовёт на встречу. Что сделаете?" }, opts: [{ uz: "Yolg'iz borasiz", ru: "Пойдёте один" }, { uz: "Kattalar bilan hal qilasiz", ru: "Решите только со взрослыми" }, { uz: "Sinfdosh bilan borasiz", ru: "Пойдёте с одноклассником" }, { uz: "Manzilingizni yozasiz", ru: "Напишете свой адрес" }], correct: 1 },
   { q: { uz: 'Facebook voqeasida nima hajmdan muhimroq?', ru: 'Что в истории Facebook важнее размера?' }, opts: [{ uz: "Saytdagi rasmlar ko'pligi", ru: 'Много картинок на сайте' }, { uz: "Funksiyalarning ko'pligi", ru: 'Много функций' }, { uz: 'Auditoriyaning zichligi', ru: 'Плотность аудитории' }, { uz: 'Asoschilarning tajribasi', ru: 'Опыт основателей' }], correct: 2 },
   { q: { uz: 'Facebook hamma uchun qachon ochilgan?', ru: 'Когда Facebook открылся для всех?' }, opts: [{ uz: 'Birinchi kuniyoq', ru: 'В первый же день' }, { uz: 'Bir oydan keyin', ru: 'Через месяц' }, { uz: 'Besh yildan keyin', ru: 'Через пять лет' }, { uz: 'Ikki yildan keyin', ru: 'Через два года' }], correct: 3 },
-  { q: { uz: "Guruh egasidan ruxsat so'radingiz, javob yo'q. Nima qilasiz?", ru: 'Вы спросили разрешения у владельца группы, ответа нет. Что сделаете?' }, opts: [{ uz: 'Boshqa kanalingizdan boshlaysiz', ru: 'Начнёте с другого своего канала' }, { uz: 'Javob kutmay guruhga yuborasiz', ru: 'Отправите в группу, не дожидаясь' }, { uz: "A'zolarga alohida yozib chiqasiz", ru: 'Напишете участникам по отдельности' }, { uz: 'Boshqa akkauntdan guruhga yozasiz', ru: 'Напишете в группу с другого аккаунта' }], correct: 0 },
-  { q: { uz: 'Havolada «?kanal=sinf» bor. Bu belgi nimani ko\'rsatadi?', ru: 'В ссылке есть «?kanal=sinf». Что показывает эта метка?' }, opts: [{ uz: 'Havolani bosgan odamning ismini', ru: 'Имя человека, нажавшего ссылку' }, { uz: 'Tashrif sinf chatidan kelganini', ru: 'Что посещение пришло из чата класса' }, { uz: "Sinfdagi o'quvchilar sonini", ru: 'Число учеников в классе' }, { uz: 'Sinf chatidagi postlar sonini', ru: 'Число постов в чате класса' }], correct: 1 },
-  { q: { uz: 'Mentor misolida postdan keyingi kun tashriflar — 31. Bu nima?', ru: 'В примере Ментора на следующий день после поста посещений — 31. Что это?' }, opts: [{ uz: "Ro'yxatdan o'tgan odamlar soni", ru: 'Число зарегистрировавшихся' }, { uz: "Ilovani o'rnatgan odamlar soni", ru: 'Число установивших приложение' }, { uz: "Postni o'qigan odamlar soni", ru: 'Число прочитавших пост' }, { uz: 'Sahifa necha marta ochilgani', ru: 'Сколько раз открыли страницу' }], correct: 3 },
+  { q: { uz: "Guruh egasi javob bermadi. Nima qilasiz?", ru: "Владелец группы не ответил. Что сделаете?" }, opts: [{ uz: "Boshqa kanaldan boshlaysiz", ru: "Начнёте с другого канала" }, { uz: "Kutmasdan yuborasiz", ru: "Отправите, не дожидаясь" }, { uz: "A'zolarga alohida yozasiz", ru: "Напишете участникам лично" }, { uz: "Boshqa akkauntdan yozasiz", ru: "Напишете с другого аккаунта" }], correct: 0 },
+  { q: { uz: "Havoladagi «?kanal=sinf» nimani ko'rsatadi?", ru: "Что показывает «?kanal=sinf» в ссылке?" }, opts: [{ uz: "Bosgan odamning ismini", ru: "Имя того, кто нажал" }, { uz: "Sinf chatidan kelganini", ru: "Что пришли из чата класса" }, { uz: "Sinfdagi o'quvchilar sonini", ru: "Число учеников в классе" }, { uz: "Chatdagi postlar sonini", ru: "Число постов в чате" }], correct: 1 },
+  { q: { uz: "Postdan keyin tashriflar 31 ta. Bu nima?", ru: "После поста 31 посещение. Что это?" }, opts: [{ uz: "Ro'yxatdan o'tganlar soni", ru: "Число регистраций" }, { uz: "Ilovani o'rnatganlar soni", ru: "Число установок приложения" }, { uz: "Postni o'qiganlar soni", ru: "Число прочитавших пост" }, { uz: "Sahifa ochilishlari soni", ru: "Сколько раз открыли страницу" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

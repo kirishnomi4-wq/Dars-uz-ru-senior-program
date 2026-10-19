@@ -85,10 +85,10 @@ Tashqi audit (ChatGPT) Filtri: `06-FILTR.md` — 05.10.2026 qo'llandi.
 - Chap — «Dars oxirida — o'z kompyuteringizda shunday»: Maydon paneli o'zi o'ynaydi (DE-200) — odam-belgisi saytni ochadi → «Saytni ochdi 1»;
   `18:00` tanlanadi → «Vaqtni tanladi 1»; 3-ustun kulrang «?».
 - O'ng (01 · matn; tex-karta, bosilmaydi — P-015) *(✎ F-1015-114, 208-qonun 0-band: teg ekran eyebrow'larini takrorlardi — olindi)*:
-  - 01 · Qaysi qadamdan keyin son keskin kamayishini topasiz
-  - 02 · Kech ulansa nima yo'qolishini ko'rasiz
-  - 03 · «Maydon»ga Umami'ni ulaysiz
-  - 04 · Vaqt tanlashni ham yozdirasiz
+  - 01 · Qaysi qadamdan keyin son keskin kamayishini toping
+  - 02 · Kech ulansa nima yo'qolishini ko'ring
+  - 03 · «Maydon»ga Umami'ni ulang
+  - 04 · Vaqt tanlashni ham yozdiring
 - Pastki qator (mono, kichik): repo `maydon` · boshlang'ich holat `dars-05-done` · tayyor namuna `dars-06-done`
 - Harakat yo'q (reja ekrani) — vizual o'zi o'ynaydi. Tugmalar: Orqaga · Boshlaymiz
 

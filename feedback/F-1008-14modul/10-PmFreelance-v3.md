@@ -133,10 +133,10 @@ namunalar: 13-Modul `09-PmPayCheck-v3.md` + `09-FILTR.md` (real odamga xabar, bo
   + vizual: `IshVaraq` skeleti o'zi yuradi (DE-200) — varaq sarlavhasi «Buyurtma va xatlar», uch qism nomi birma-bir yoziladi: Yo'llar · Buyurtma · Xatlar; kataklar va konvertlar uzuq (bo'sh), chapda telefon. Matnli javob yo'q — 2-ekran kashfiyotini ochmaydi (P-036).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
-  - 01 · Birinchi buyurtma qayerdan chiqishi mumkinligini bilib olasiz
-  - 02 · Buyurtma rejasini tuzishni o'rganasiz
-  - 03 · Kompaniyaga hurmatli xat yozishni o'rganasiz
-  - 04 · O'zingiz uchun reja va ikki xat yozasiz
+  - 01 · Birinchi buyurtma qayerdan chiqishi mumkinligini bilib oling
+  - 02 · Buyurtma rejasini tuzishni o'rganing
+  - 03 · Kompaniyaga hurmatli xat yozishni o'rganing
+  - 04 · O'zingiz uchun reja va ikki xat yozing
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
 - O'qituvchi eslatmasi: Bugun darsda hech kimga yozilmaydi va hech qayerda ro'yxatdan o'tilmaydi: reja va xatlar yoziladi, yuborish — uyda, ixtiyoriy, ota-ona bilan. Kim nechta xat yozgani so'ralmaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «frilans», «stajirovka» faqat kulrang yorliqda (App.jsx osti so'zma-so'z) va 2-ekranda ta'rif bilan tug'iladi. Mentor gapi — natija chegarasi (darsda yozish, uyda yuborish), sarlavhani takrorlamaydi.

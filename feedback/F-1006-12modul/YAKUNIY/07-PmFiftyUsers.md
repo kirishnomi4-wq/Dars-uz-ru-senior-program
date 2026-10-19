@@ -51,10 +51,10 @@ Maxfiylik sahifasi (brauzer `…/maxfiylik.html`):
 - Chap — yorliq «yig'ish rejasi va ishga tushirish»; vizual bir marta o'zi yuradi: 1-bosqich · 2-bosqich · 3-bosqich (sonsiz) → Mahalla futbol guruhi · post → lending · Qo'shilmoqchiman → Maydon Jamoa · Ro'yxatdan o'tish → Maydon Jamoa · O'yinlar
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-  1. 50 foydalanuvchiga uch bosqichli reja tuzasiz
-  2. Ro'yxatdan o'tishda faqat keraklisini so'raysiz
-  3. Ilovada qadamlar sanashini yoqasiz
-  4. Havolani lendingga qo'yib, post yuborasiz
+  1. 50 foydalanuvchiga uch bosqichli reja tuzing
+  2. Ro'yxatdan o'tishda faqat keraklisini so'rang
+  3. Ilovada qadamlar sanashini yoqing
+  4. Havolani lendingga qo'yib, post yuboring
 - Pastki qator: repo `maydon-jamoa` · boshlang'ich holat `m12-dars-07-start` · namuna `m12-dars-07-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Pastki qator 2 (web-trek tanlanmagan bo'lsa): Uyda tayyorlagan o'rnatish faylingiz eski ro'yxatdan o'tish ekrani bilan — uni odamlarga yubormang: yangisi Amaliyot 1 oxirida tayyorlanadi. Hali sozlamagan bo'lsangiz — hozir terminalda: `npm install --global eas-cli` · `eas login` · `eas build:configure` (agentga: «`eas.json` ga `preview` profili: Android uchun `buildType` — `apk`; `env` da `EXPO_PUBLIC_API_URL` — Render manzili»), keyin reja bilan davom eting.
 - Tugmalar: Orqaga · Boshlaymiz

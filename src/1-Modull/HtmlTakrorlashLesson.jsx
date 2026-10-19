@@ -903,57 +903,58 @@ function PageBuild({ built = 0, glow = -1, intro = false, big = false }) {
 
 // ===== SCREEN 0 (s0) — HOOK: sahifa nimalardan yig'ilgan? (tap-eslash o'yini) =====
 const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const audio = useAudio([{ id: 's0', text: "Mana tayyor sahifa — «Lochinlar» jamoasiniki. Siz bunday sahifaning har bir qismini yasashni allaqachon bilasiz. Eslaysizmi? Sahifadagi qismlarni bosib, qaysi teg bilan yozilganini toping.", trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
+  const audio = useAudio([{ id: 's0', text: "Mana tayyor sahifa — «Lochinlar» jamoasiniki. Siz bunday sahifaning har bir qismini yasashni allaqachon bilasiz. Eslaysizmi? Har savolga javob bering: belgilangan qism qaysi teg bilan yozilganini toping.", trigger: 'on_mount', waits_for: { type: 'option_picked' } }]);
   const G = 'Georgia, serif';
+  // F-1019-04 (DE 213.22): qismlar ketma-ket so'raladi (bosish shart emas) — har biri qaror: 3 teg, xato tegga bir qatorli sabab, xato tugma yopiladi
   const ANAT = [
-    { id: 'h1', tag: '<h1>', opts: ['<h1>', '<a>', '<li>'], lbl: { uz: 'katta sarlavha', ru: 'большой заголовок' } },
-    { id: 'p', tag: '<p>', opts: ['<img>', '<p>', '<ul>'], lbl: { uz: 'matn (paragraf)', ru: 'текст (абзац)' } },
-    { id: 'ul', tag: '<ul>', opts: ['<ul>', '<h1>', '<a>'], lbl: { uz: "tartiblanmagan ro'yxat", ru: 'неупорядоченный список' } },
-    { id: 'a', tag: '<a>', opts: ['<p>', '<img>', '<a>'], lbl: { uz: 'bosiladigan havola', ru: 'кликабельная ссылка' } },
+    { id: 'h1', tag: '<h1>', opts: ['<h1>', '<a>', '<li>'], why: { '<a>': { uz: "<a> — havola, u bosiladi. Bu qism esa sahifa sarlavhasi.", ru: '<a> — ссылка, на неё нажимают. А это заголовок страницы.' }, '<li>': { uz: "<li> — ro'yxatning bitta qatori. Bu qism esa katta sarlavha.", ru: '<li> — одна строка списка. А это крупный заголовок.' } } },
+    { id: 'p', tag: '<p>', opts: ['<img>', '<p>', '<ul>'], why: { '<img>': { uz: '<img> — rasm. Bu qism esa oddiy matn.', ru: '<img> — картинка. А это обычный текст.' }, '<ul>': { uz: "<ul> — bir necha qatorli ro'yxat. Bu yerda bitta jumla.", ru: '<ul> — список из нескольких строк. А здесь одна фраза.' } } },
+    { id: 'ul', tag: '<ul>', opts: ['<h1>', '<a>', '<ul>'], why: { '<h1>': { uz: '<h1> — bitta katta sarlavha. Bu yerda esa uchta ism qatori.', ru: '<h1> — один крупный заголовок. А здесь три строки с именами.' }, '<a>': { uz: "<a> — havola. Ismlar bosilmaydi, ular ro'yxat bo'lib turibdi.", ru: '<a> — ссылка. Имена не нажимаются, они стоят списком.' } } },
+    { id: 'a', tag: '<a>', opts: ['<p>', '<a>', '<img>'], why: { '<p>': { uz: "<p> — oddiy matn, u bosilmaydi. Bu qism esa bosiladi.", ru: '<p> — обычный текст, он не нажимается. А эту часть нажимают.' }, '<img>': { uz: "<img> — rasm. Bu yerda tagiga chizilgan bosiladigan so'z.", ru: '<img> — картинка. А здесь подчёркнутое слово, которое нажимают.' } } },
   ];
   const [found, setFound] = useState(() => (storedAnswer ? new Set(ANAT.map(x => x.id)) : new Set()));
-  const [active, setActive] = useState(null);
-  const [shake, setShake] = useState(null);
+  const [xato, setXato] = useState([]);
   const allFound = found.size === ANAT.length;
-  const part = ANAT.find(x => x.id === active);
-  const tapPart = (id) => { if (found.has(id)) return; setActive(id); };
+  // Navbatdagi qism — birinchi topilmagani; sahifadagi ✓ teg-yorliqlari yagona bosqich ko'rsatkichi (213.21)
+  const part = ANAT.find(x => !found.has(x.id));
   const pickTag = (t) => {
     if (!part) return;
     if (t === part.tag) {
-      const n = new Set(found); n.add(part.id); setFound(n); setActive(null);
+      const n = new Set(found); n.add(part.id); setFound(n); setXato([]);
       audio.triggerEvent('option_picked');
       if (n.size === ANAT.length && storedAnswer === undefined) onAnswer(screen, { stage: 'hook', screenIdx: screen, correct: true, picked: true });
-    } else { setShake(t); setTimeout(() => setShake(s => (s === t ? null : s)), 450); }
+    } else setXato(x => (x.includes(t) ? x : [...x, t]));
   };
-  const partCls = (id) => `anat-part ${found.has(id) ? 'hit' : active === id ? 'ask' : ''}`;
+  const izoh = part && xato.length ? part.why[xato[xato.length - 1]] : null;
+  const partCls = (id) => `anat-part ${found.has(id) ? 'hit' : part && part.id === id ? 'ask' : 'wait'}`;
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={!allFound} label={allFound ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: '4 ta qismni toping', ru: 'Найдите 4 части' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Bu sahifa <span className="italic" style={{ color: T.accent }}>nimalardan</span> yig'ilgan?</>, ru: <>Из чего <span className="italic" style={{ color: T.accent }}>собрана</span> эта страница?</> })}</h1>
         {/* F-0926-06 (159/11): mentor gapidan joy so'zlari («Chapdagi», «o'ngda» / «слева», «справа») olindi */}
-        <Mentor>{tr({ uz: <>Mana tayyor sahifa — «Lochinlar» jamoasiniki. Siz bunday sahifaning <b style={{ color: T.ink }}>har bir qismini</b> yasashni allaqachon bilasiz. Eslaysizmi? Sahifaning <b style={{ color: T.ink }}>to'rt qismini</b> birma-bir bosing: har birida uchta teg chiqadi — mosini tanlang.</>, ru: <>Вот готовая страница — команды «Соколы». Вы уже умеете делать <b style={{ color: T.ink }}>каждую её часть</b>. Помните? Нажмите <b style={{ color: T.ink }}>четыре части</b> страницы по очереди: для каждой появятся три тега — выберите подходящий.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana tayyor sahifa — «Lochinlar» jamoasiniki. Siz bunday sahifaning <b style={{ color: T.ink }}>har bir qismini</b> yasashni allaqachon bilasiz. Eslaysizmi? Har savolga javob bering: sahifaning <b style={{ color: T.ink }}>belgilangan qismi</b> qaysi teg bilan yozilgan — uchta tegdan mosini tanlang.</>, ru: <>Вот готовая страница — команды «Соколы». Вы уже умеете делать <b style={{ color: T.ink }}>каждую её часть</b>. Помните? Ответьте на каждый вопрос: каким тегом написана <b style={{ color: T.ink }}>отмеченная часть</b> страницы — выберите из трёх тегов подходящий.</> })}</Mentor>
         <Split>
           <Col>
             {/* F-0926-06 (159/7): «👆 Qismlarni bosing — N/4» olindi — chorlov mentorda, sanoq tugmada va ✓ teg-yorliqlarida */}
             <div className="bp-window fade-up delay-1">
               <div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-title">lochinlar.html</span></div>
               <div className="bp-body" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <button type="button" className={partCls('h1')} onClick={() => tapPart('h1')}>
+                <div className={partCls('h1')}>
                   <h1 style={{ fontFamily: G, fontSize: 'clamp(18px,2.4vw,24px)', margin: 0, color: T.ink }}>Lochinlar 🦅</h1>
                   {found.has('h1') && <span className="anat-tag mono">&lt;h1&gt; ✓</span>}
-                </button>
-                <button type="button" className={partCls('p')} onClick={() => tapPart('p')}>
+                </div>
+                <div className={partCls('p')}>
                   <p style={{ fontFamily: G, margin: 0, color: T.ink2, fontSize: 'clamp(12.5px,1.6vw,14px)' }}>{tr({ uz: 'Maktabimizning basketbol jamoasi.', ru: 'Баскетбольная команда нашей школы.' })}</p>
                   {found.has('p') && <span className="anat-tag mono">&lt;p&gt; ✓</span>}
-                </button>
-                <button type="button" className={partCls('ul')} onClick={() => tapPart('ul')}>
+                </div>
+                <div className={partCls('ul')}>
                   <ul style={{ fontFamily: G, color: T.ink, margin: 0, paddingLeft: 20, fontSize: 'clamp(12.5px,1.6vw,14px)', textAlign: 'left' }}><li>Akmal</li><li>Jasur</li><li>Umid</li></ul>
                   {found.has('ul') && <span className="anat-tag mono">&lt;ul&gt; ✓</span>}
-                </button>
-                <button type="button" className={partCls('a')} onClick={() => tapPart('a')}>
+                </div>
+                <div className={partCls('a')}>
                   <span style={{ fontFamily: G, color: T.link, textDecoration: 'underline', fontSize: 'clamp(12.5px,1.6vw,14px)' }}>{tr({ uz: 'Jamoa kanali', ru: 'Канал команды' })}</span>
                   {found.has('a') && <span className="anat-tag mono">&lt;a&gt; ✓</span>}
-                </button>
+                </div>
               </div>
             </div>
           </Col>
@@ -961,12 +962,13 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
             {!allFound && part && (
               <div className="card fade-step" key={part.id}>
                 <div className="card-lbl" style={{ color: T.accent }}>🤔 {tr({ uz: 'Bu qism qaysi teg?', ru: 'Какой это тег?' })}</div>
-                <p className="body" style={{ margin: '0 0 10px', color: T.ink2 }}>{tr({ uz: 'Siz bosgan qism —', ru: 'Часть, которую вы нажали, —' })} <b style={{ color: T.ink }}>{tr(part.lbl)}</b>.</p>
+                <p className="body" style={{ margin: '0 0 10px', color: T.ink2 }}>{tr({ uz: "Sahifada ramka bilan belgilangan qismga qarang.", ru: 'Посмотрите на часть страницы, отмеченную рамкой.' })}</p>
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                   {part.opts.map(t => (
-                    <button key={t} className={`chip mono ${shake === t ? 'anat-shake' : ''}`} onClick={() => pickTag(t)}>{t}</button>
+                    <button key={t} className={`chip mono${xato.includes(t) ? ' anat-err' : ''}`} disabled={xato.includes(t)} onClick={() => pickTag(t)}>{t}</button>
                   ))}
                 </div>
+                {izoh && <p className="small anat-why fade-step" key={xato.length}>{tr(izoh)}</p>}
               </div>
             )}
             {/* F-0926-06 (159/3·7): bo'sh-holat yo'rig'i olindi — mentor «to'rt qismini bosing» deydi; ustun birinchi bosishgacha bo'sh */}
@@ -1996,30 +1998,21 @@ const QZ_BG_SHAPES = [
 // (kod-o'qish / xato-topish / vazifa-moslash / natija-bashorat).
 // To'g'ri javob pozitsiyalari: 2,1,2,3,0,1,0,3,1,0,3,2 → 0:3 · 1:3 · 2:3 · 3:3 (siklsiz).
 const QUIZ_BANK = [
-  { q: { uz: "`<p>Biz <strong>g'olibmiz</strong></p>` — brauzer nimani ko'rsatadi?", ru: "`<p>Biz <strong>g'olibmiz</strong></p>` — что покажет браузер?" },
-    opts: [{ uz: "Butun gap qalin chiqadi", ru: 'Вся фраза выйдет жирной' }, { uz: "Teglar ham ekranda ko'rinadi", ru: 'Теги тоже будут видны на экране' }, { uz: "Faqat «g'olibmiz» qalin chiqadi", ru: "Жирным выйдет только «g'olibmiz»" }, { uz: "Faqat «Biz» so'zi ko'rinadi", ru: 'Будет видно только слово «Biz»' }], correct: 2 },
-  { q: { uz: "Jamoa suratini qo'yish uchun qaysi yozuv TO'G'RI?", ru: 'Какая запись ВЕРНА, чтобы поставить фото команды?' },
-    opts: ["`<img scr=\"jamoa.jpg\" alt=\"Jamoa\">`", "`<img src=\"jamoa.jpg\" alt=\"Jamoa\">`", "`<imag src=\"jamoa.jpg\" alt=\"Jamoa\">`", "`<img href=\"jamoa.jpg\" alt=\"Jamoa\">`"], correct: 1 },
+  { q: { uz: "`<p>Biz <strong>g'olibmiz</strong></p>` — nima ko'rinadi?", ru: "`<p>Biz <strong>g'olibmiz</strong></p>` — что будет видно?" }, opts: [{ uz: "Butun gap qalin", ru: "Вся фраза жирная" }, { uz: "Teglar ham ko'rinadi", ru: "Видны и сами теги" }, { uz: "Faqat «g'olibmiz» qalin", ru: "Жирное только «g'olibmiz»" }, { uz: "Faqat «Biz» ko'rinadi", ru: "Видно только «Biz»" }], correct: 2 },
+  { q: { uz: "Suratni qo'yish uchun qaysi yozuv TO'G'RI?", ru: "Какая запись для картинки ПРАВИЛЬНАЯ?" }, opts: ["`<img scr=\"jamoa.jpg\">`", "`<img src=\"jamoa.jpg\">`", "`<imag src=\"jamoa.jpg\">`", "`<img href=\"jamoa.jpg\">`"], correct: 1 },
   { q: { uz: "Ro'yxatdagi har bir o'yinchi ismi qaysi tegga o'raladi?", ru: 'В какой тег оборачивается имя каждого игрока в списке?' },
     opts: ["`ul`", "`ol`", "`li`", "`a`"], correct: 2 },
-  { q: { uz: "`<ul>` ichida 3 ta `<li>` bor. Ekranda nima chiziladi?", ru: 'Внутри `<ul>` есть 3 `<li>`. Что нарисуется на экране?' },
-    opts: [{ uz: "1·2·3 raqamli ro'yxat", ru: 'Нумерованный список 1·2·3' }, { uz: 'Bir qatorda yonma-yon matn', ru: 'Текст в одну строку подряд' }, { uz: 'Uchta jadval katakchasi', ru: 'Три ячейки таблицы' }, { uz: 'Uchta nuqtali band ustma-ust', ru: 'Три пункта с точками друг под другом' }], correct: 3 },
-  { q: { uz: "Kodda `<a herf=\"...\">Kanal</a>` deb yozilgan. Nima bo'ladi?", ru: 'В коде написано `<a herf="...">Kanal</a>`. Что будет?' },
-    opts: [{ uz: "«Kanal» ko'rinadi, lekin bosilmaydi", ru: '«Kanal» виден, но не нажимается' }, { uz: 'Havola odatdagidek ishlaydi', ru: 'Ссылка работает как обычно' }, { uz: 'Sahifa umuman ochilmaydi', ru: 'Страница вообще не откроется' }, { uz: "«Kanal» o'rniga manzil chiqadi", ru: 'Вместо «Kanal» выйдет адрес' }], correct: 0 },
-  { q: { uz: "«Chempionlar» so'zi sahifada hammadan katta chiqsin. Qaysi teg?", ru: 'Слово «Chempionlar» должно выйти крупнее всего. Какой тег?' },
-    opts: ["`p`", "`h1`", "`li`", "`strong`"], correct: 1 },
-  { q: { uz: "`alt=\"Jamoa surati\"` yozuvi nima uchun kerak?", ru: 'Зачем нужна запись `alt="Jamoa surati"`?' },
-    opts: [{ uz: 'Rasm ochilmasa shu matn chiqadi', ru: 'Если фото не откроется, выйдет этот текст' }, { uz: "Rasm o'lchamini belgilaydi", ru: 'Задаёт размер картинки' }, { uz: 'Rasmga chiroyli ramka chizadi', ru: 'Рисует красивую рамку у картинки' }, { uz: 'Rasmni havolaga aylantiradi', ru: 'Превращает картинку в ссылку' }], correct: 0 },
+  { q: { uz: "`<ul>` ichida 3 ta `<li>`. Ekranda nima chiqadi?", ru: "`<ul>` с тремя `<li>`. Что будет на экране?" }, opts: [{ uz: "1·2·3 raqamli ro'yxat", ru: "Нумерованный список 1·2·3" }, { uz: "Bir qatorda yonma-yon", ru: "Всё в одну строку" }, { uz: "Uchta jadval katagi", ru: "Три ячейки таблицы" }, { uz: "Uchta nuqtali band", ru: "Три пункта с точками" }], correct: 3 },
+  { q: { uz: "`<a herf=\"...\">Kanal</a>` — nima bo'ladi?", ru: "`<a herf=\"...\">Kanal</a>` — что будет?" }, opts: [{ uz: "«Kanal» chiqadi, bosilmaydi", ru: "«Kanal» виден, но не нажимается" }, { uz: "Havola odatdagidek ishlaydi", ru: "Ссылка работает как обычно" }, { uz: "Sahifa ochilmaydi", ru: "Страница не откроется" }, { uz: "Manzil ko'rinib qoladi", ru: "Вместо текста виден адрес" }], correct: 0 },
+  { q: { uz: "«Chempionlar» hammadan katta chiqsin. Qaysi teg?", ru: "Пусть «Chempionlar» будет крупнее всего. Какой тег?" }, opts: ["`p`", "`h1`", "`li`", "`strong`"], correct: 1 },
+  { q: { uz: "`alt=\"Jamoa surati\"` nima uchun kerak?", ru: "Зачем нужен `alt=\"Jamoa surati\"`?" }, opts: [{ uz: "Rasm ochilmasa matn chiqadi", ru: "Текст виден, если фото не открылось" }, { uz: "Rasm o'lchamini belgilaydi", ru: "Задаёт размер фото" }, { uz: "Rasmga ramka chizadi", ru: "Рисует рамку вокруг фото" }, { uz: "Rasmni havolaga aylantiradi", ru: "Превращает фото в ссылку" }], correct: 0 },
   { q: { uz: 'Formada foydalanuvchi ism YOZADIGAN katak qaysi teg?', ru: 'Каким тегом делается поле, куда пользователь ПИШЕТ имя?' },
     opts: ["`button`", "`label`", "`p`", "`input`"], correct: 3 },
-  { q: { uz: "Sarlavha, ro'yxat va rasm — ko'rinadigan mazmun qayerga yoziladi?", ru: 'Заголовок, список и фото — куда пишется видимое содержимое?' },
-    opts: ["`head`", "`body`", "`title`", "`html`"], correct: 1 },
-  { q: { uz: "`<a href=\"https://t.me/chempionlar\">Kanalimiz</a>` — ekranda nima ko'rinadi?", ru: '`<a href="https://t.me/chempionlar">Kanalimiz</a>` — что видно на экране?' },
-    opts: [{ uz: 'Bosiladigan «Kanalimiz» yozuvi', ru: 'Кликабельная надпись «Kanalimiz»' }, { uz: "To'liq https-manzilning o'zi", ru: 'Сам полный https-адрес' }, { uz: 'Telegram belgisi (rasm)', ru: 'Значок Telegram (картинка)' }, { uz: "«href» degan yozuvning o'zi", ru: 'Сама надпись «href»' }], correct: 0 },
+  { q: { uz: "Ko'rinadigan mazmun (sarlavha, rasm) qayerga yoziladi?", ru: "Куда пишется видимое содержимое (заголовок, картинка)?" }, opts: ["`head`", "`body`", "`title`", "`html`"], correct: 1 },
+  { q: { uz: "`<a href=\"...\">Kanalimiz</a>` — ekranda nima ko'rinadi?", ru: "`<a href=\"...\">Kanalimiz</a>` — что видно на экране?" }, opts: [{ uz: "Bosiladigan «Kanalimiz»", ru: "Кликабельная надпись «Kanalimiz»" }, { uz: "Havola manzilining o'zi", ru: "Сам адрес ссылки" }, { uz: "Telegram belgisi (rasm)", ru: "Значок Telegram (картинка)" }, { uz: "«href» so'zi", ru: "Слово «href»" }], correct: 0 },
   { q: { uz: "Qaysi qatorda teg TO'G'RI yopilgan?", ru: 'В какой строке тег закрыт ВЕРНО?' },
     opts: ["`<li>Aziz<li>`", "`<li>Aziz<il>`", "`<li>Aziz</li`", "`<li>Aziz</li>`"], correct: 3 },
-  { q: { uz: 'Sardor ismini QALIN qilish uchun qaysi teg?', ru: 'Какой тег сделает имя капитана ЖИРНЫМ?' },
-    opts: ["`p`", "`li`", "`strong`", "`ul`"], correct: 2 },
+  { q: { uz: "Sardor ismini QALIN qilish uchun qaysi teg?", ru: "Какой тег сделает имя Сардора ЖИРНЫМ?" }, opts: ["`p`", "`li`", "`strong`", "`title`"], correct: 2 },
 ];
 
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
@@ -4043,6 +4036,12 @@ export default function HtmlTakrorlashLesson({ lang: langProp, onFinished, onPra
         @keyframes anat-pulse { 0%,100% { border-color: rgba(${T.shadowBase},0.2); } 50% { border-color: rgba(255,79,40,0.55); } }
         .anat-tag { position: absolute; top: -9px; right: 8px; background: ${T.success}; color: #fff; font-size: 11px; font-weight: 700; border-radius: 8px; padding: 2px 8px; box-shadow: 0 4px 10px -3px rgba(31,122,77,0.5); }
         .anat-shake { animation: shake 0.35s ease; background: ${T.accentSoft}; color: ${T.accent}; }
+        /* F-1019-04 (DE 213.22): navbatdagi qism kutadi (bosilmaydi), xato teg yopiladi, sabab kartada */
+        .anat-part.wait { cursor: default; animation: none; }
+        .anat-part.wait:hover { border-color: rgba(${T.shadowBase},0.2); background: transparent; }
+        .anat-part.ask { cursor: default; }
+        .chip.anat-err, .chip.anat-err:disabled { background: ${T.accentSoft}; color: ${T.accent}; opacity: 1; box-shadow: none; cursor: default; }
+        .anat-why { margin: 10px 0 0; color: ${T.accent}; }
 
         /* ⚡ Blits */
         .bl-wrap { display: flex; flex-direction: column; gap: 12px; align-items: center; background: ${T.paper}; border-radius: 18px; padding: clamp(18px,3vw,28px); box-shadow: 0 12px 30px -10px rgba(${T.shadowBase},0.2); }

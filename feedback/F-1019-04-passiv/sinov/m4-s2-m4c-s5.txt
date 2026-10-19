@@ -1,0 +1,19 @@
+m4-07 (PmLesson12) s2 «Muhokama · ikki xil ma'lumot»
+  boshida: nav=Savollarga javob bering (yopiq) · kartalar: -Ochiq ma'lumot -Yopiq ma'lumot · bosiladigan karta: 0
+  1. «Begona odam sevimli futbol jamoangiz nomini bilib oldi. Nima bo'ladi?» xato «Siz zarar ko'rasiz» → «Ma'lumot sizniki bo'lgani hali zarar degani emas.» (tugma yopildi: true) → to'g'ri «Hech kim zarar ko'rmaydi» → keyingi qadam
+  1-qadamdan keyin: kartalar: +Ochiq ma'lumot -Yopiq ma'lumot · nav=Savollarga javob bering (yopiq)
+  2. «Endi begona odam bank kartangizning PIN-kodini ko'rib qoldi. Kim zarar ko'radi?» xato «Kodni ko'rib qolgan» → «Begona yutadi, pulni esa karta egasi yo'qotadi.» (tugma yopildi: true) → to'g'ri «Kartaning egasi» → keyingi qadam
+  oxiri: nav=Davom etish (ochiq) · kartalar: +Ochiq ma'lumot +Yopiq ma'lumot · savol bor: false
+  saqlangan javob [2]: {"correct":true,"picked":true}
+  qaytganda: nav=Davom etish (ochiq) · savol bor: false · kartalar: +Ochiq ma'lumot +Yopiq ma'lumot
+m4c-03 (GithubActionsLesson) s5 «Tushuncha · YAML»
+  boshida: nav=Savollarga javob bering (yopiq) · chiplar: key: value | - ro'yxat | bo'sh joy = ierarxiya · bosiladigan chip: 0 · ta'rif: YO'Q
+  1. «name: CI qatoridagi ikki nuqta nimani ajratadi?» xato «Ikki kalitni» → «Kalit bitta va u chapda turadi, o'ngdagi CI uning qiymati.» (tugma yopildi: true) → to'g'ri «Kalitni uning qiymatidan» → keyingi qadam
+  1-qadamdan keyin: chiplar: ✓ key: value | - ro'yxat | bo'sh joy = ierarxiya · ta'rif: «key: value Sodda juftlik: kalit va qiymat. Ma…»
+  2. «steps: ostidagi har bir chiziqcha (-) nimani bildiradi?» xato «Ro'yxatning sarlavhasini» → «Sarlavha steps: qatorining o'zi, chiziqcha esa ichidagi bitta element.» (tugma yopildi: true) → to'g'ri «Ro'yxatning bitta elementini» → keyingi qadam
+  2-qadamdan keyin: ta'rif: «- ro'yxat Chiziqcha (-) ro'yxat elementi. ste…»
+  3. «runs-on: qatori test: qatoridan ko'proq bo'sh joy bilan boshlanadi. Bu nimani bildiradi?» xato «Bu faqat chiroy» → «Kompyuter bo'sh joyni o'qiydi: u noto'g'ri bo'lsa, fayl ishlamaydi.» (tugma yopildi: true) → to'g'ri «U test: qatorining ichida» → keyingi qadam
+  oxiri: nav=Davom etish (ochiq) · chiplar: ✓ key: value | ✓ - ro'yxat | ✓ bo'sh joy = ierarxiya · ta'rif: «bo'sh joy = ierarxiya Chap tomondagi bo'sh jo…» · xulosa: true
+  saqlangan javob [5]: {"correct":true,"picked":true}
+  qaytganda: nav=Davom etish (ochiq) · savol bor: false · xulosa: true · chiplar: ✓ key: value | ✓ - ro'yxat | ✓ bo'sh joy = ierarxiya · ta'rif: YO'Q
+pageerror: 0

@@ -33,10 +33,10 @@ Telefon maketi: «Maydon Jamoa» · O'yinlar · Shanba · «Shanba, 18:00» · �
   - Vizual bir marta o'zi yoziladi: brauzer oynasida navbat bilan — Maydon Jamoa · sarlavha · tugma · telefon (Maydon Jamoa · 8 / 10) · yonida uch qator «foyda»; oxirida manzil qatorida qulf belgisi va `….netlify.app`
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-  1. Sahifaning birinchi qatorini yozishni bilib olasiz
-  2. Funksiyani odamga beradigan foydaga aylantirasiz
-  3. Instagram nimadan boshlanganini ko'rasiz
-  4. Sahifani sherigingiz bilan sinab, internetga chiqarasiz
+  1. Sahifaning birinchi qatorini yozishni bilib oling
+  2. Funksiyani odamga beradigan foydaga aylantiring
+  3. Instagram nimadan boshlanganini ko'ring
+  4. Sahifani sherigingiz bilan sinab, internetga chiqaring
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Sarlavha

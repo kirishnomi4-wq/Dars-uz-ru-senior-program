@@ -41,9 +41,9 @@ Darsning bitta vizuali — uch ufqli roadmap doskasi va ish kartalari. Mentor mi
 - Chap: Dars oxirida: RICE bo'yicha roadmap — uch ustun-skelet, kulrang kartalar 3 · 2 · 1 bo'lib tushadi (matnsiz)
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
-  1. PRD dagi ishlarni RICE bilan tartiblaysiz
-  2. Har ishni uch ufqdan biriga joylaysiz
-  3. O'z ishlaringizdan bitiruvgacha reja tuzasiz (F-1015-238: Uzum bandi olindi)
+  1. PRD dagi ishlarni RICE bilan tartiblang
+  2. Har ishni uch ufqdan biriga joylang
+  3. O'z ishlaringizdan bitiruvgacha reja tuzing (F-1015-238: Uzum bandi olindi)
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Funksiyalarga RICE

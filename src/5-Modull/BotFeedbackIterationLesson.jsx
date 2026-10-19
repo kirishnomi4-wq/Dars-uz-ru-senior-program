@@ -101,6 +101,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -178,8 +203,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1126,18 +1151,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Foydalanuvchi: «/start bosdim, menyu tugmasi chiqmadi». Bu qanday fikr?", ru: "Пользователь: «Нажал /start, кнопка меню не появилась». Что это за отзыв?" }, opts: [{ uz: "Maqtov: mijoz botdan mamnun", ru: "Похвала: клиент доволен ботом" }, { uz: "Bug: aniq joy va muammo bor", ru: "Баг: есть конкретное место и проблема" }, { uz: "Taklif: yangi narsa so'ralgan", ru: "Предложение: просят что-то новое" }, { uz: "Shovqin: e'tibor shart emas", ru: "Шум: внимание не нужно" }], correct: 1 },
-  { q: { uz: "«Yaxshi bot» degan fikr nega kam foydali?", ru: "Почему отзыв «Хороший бот» мало полезен?" }, opts: [{ uz: "Chunki bu salbiy fikr", ru: "Потому что это негативный отзыв" }, { uz: "Chunki maqtov kam uchraydi", ru: "Потому что похвала встречается редко" }, { uz: "Chunki botni yomon ko'rsatadi", ru: 'Потому что он показывает бота плохим' }, { uz: "Chunki aniq joy aytilmagan", ru: "Потому что не названо конкретное место" }], correct: 3 },
-  { q: { uz: "18 kishi bir xil shikoyat qildi, 1 kishi boshqa narsani aytdi. Qaysi birini birinchi ko'rib chiqasiz?", ru: "18 человек пожаловались на одно, 1 человек сказал другое. Что вы рассмотрите первым?" }, opts: [{ uz: "18 kishinikini: ko'pchilik aytgan", ru: "Жалобу 18 человек: так сказало большинство" }, { uz: "1 kishinikini: u eng birinchi yozgan", ru: "Отзыв 1 человека: он написал самым первым" }, { uz: "Ikkalasini ham bir vaqtning o'zida", ru: "Оба одновременно" }, { uz: "Hech birini: bular shunchaki hissiyot", ru: "Ничего: это просто эмоции" }], correct: 0 },
-  { q: { uz: "Qaysi tuzatishni birinchi qilishni nimaga qarab tanlaysiz?", ru: "Как вы выбираете, какую правку сделать первой?" }, opts: [{ uz: "Eng jahl bilan yozilgan fikrga qarab", ru: "По отзыву, написанному злее всех" }, { uz: "Eng birinchi kelgan fikrga qarab", ru: "По отзыву, пришедшему самым первым" }, { uz: "Ko'p aytilgani va qattiq qiynaganiga", ru: "По тому, что чаще звучит и сильнее мешает" }, { uz: "O'zimga eng qiziq tuyulganiga qarab", ru: "По тому, что мне самому интереснее" }], correct: 2 },
-  { q: { uz: "Voronkada eng katta yo'qotish qayerda ko'rinadi?", ru: "Где в воронке видна самая большая потеря?" }, opts: [{ uz: "Eng ko'p odam turgan birinchi qadamda", ru: "На первом шаге, где больше всего людей" }, { uz: "Odam soni eng ko'p kamaygan joyda", ru: "Там, где число людей упало сильнее всего" }, { uz: "Bot eng sekin javob bergan joyda", ru: "Там, где бот ответил медленнее всего" }, { uz: "Eng ko'p maqtov kelgan qadamda", ru: 'На шаге, где больше всего похвалы' }], correct: 1 },
-  { q: { uz: "Menyu tugmasi tuzatilgach, menyuni ochmasdan ketganlar 60 dan 15 ga tushdi. Bu nimani bildiradi?", ru: "После правки кнопки меню ушедших, не открыв меню, стало не 60, а 15. О чём это говорит?" }, opts: [{ uz: "Tuzatish ishlamadi, hamma ketyapti", ru: "Правка не сработала, все уходят" }, { uz: "Sonlar tasodifiy, xulosa chiqmaydi", ru: "Числа случайные, вывода нет" }, { uz: "Botda yana yangi bug paydo bo'ldi", ru: "В боте снова появился новый баг" }, { uz: "Tuzatish ishladi, muammo kamaydi", ru: "Правка сработала, проблема уменьшилась" }], correct: 3 },
-  { q: { uz: "«Bot ahmoq» sharhiga javob yozish nega eng ta'sirli tuzatish emas?", ru: "Почему ответ на отзыв «Бот тупой» — не самая влиятельная правка?" }, opts: [{ uz: "Unda nimani tuzatish kerakligi yo'q", ru: "В нём не сказано, что нужно чинить" }, { uz: "Bunday sharhga javob yozib bo'lmaydi", ru: "На такой отзыв нельзя ответить" }, { uz: "Uni yozgan odam botni ishlatmagan", ru: "Его автор не пользовался ботом" }, { uz: "Javob yozish juda ko'p vaqt oladi", ru: "Ответ займёт слишком много времени" }], correct: 0 },
-  { q: { uz: "100 kishidan bittasi faqat o'ziga kerak narsani so'radi. Nima qilasiz?", ru: "Один из 100 попросил то, что нужно только ему. Что вы сделаете?" }, opts: [{ uz: "Darrov qo'shaman: har so'rov bajarilsin", ru: "Добавлю сразу: каждая просьба выполняется" }, { uz: "U foydalanuvchini botdan bloklayman", ru: "Заблокирую этого пользователя в боте" }, { uz: "Avval ko'pchilikka keraklisini qilaman", ru: "Сначала сделаю то, что нужно большинству" }, { uz: "Hamma so'rovni navbati bilan qo'shaman", ru: "Добавлю все просьбы по очереди" }], correct: 2 },
-  { q: { uz: "Tuzatishdan keyin nima qilasiz?", ru: "Что вы делаете после правки?" }, opts: [{ uz: "Hech narsa: tuzatish albatta ishlaydi", ru: "Ничего: правка точно сработает" }, { uz: "Qayta o'lchayman: shikoyat kamaydimi", ru: "Измерю заново: стало ли меньше жалоб" }, { uz: "Darhol yana katta o'zgarish qilaman", ru: "Сразу сделаю ещё одно большое изменение" }, { uz: "Fikr yig'ishni butunlay to'xtataman", ru: "Совсем перестану собирать отзывы" }], correct: 1 },
-  { q: { uz: "Botingizning birinchi versiyasi chiqdi. Ish tugadimi?", ru: "Вышла первая версия вашего бота. Работа закончена?" }, opts: [{ uz: "Yo'q: bot fikr bilan yaxshilanib boradi", ru: "Нет: бот улучшается благодаря отзывам" }, { uz: "Ha: birinchi versiya — tayyor mahsulot", ru: "Да: первая версия — готовый продукт" }, { uz: "Testlarning hammasi o'tib bo'lsa — tugadi", ru: "Если все тесты пройдены — закончена" }, { uz: "Bir hafta shikoyat kelmasa — tugadi", ru: "Если неделю нет жалоб — закончена" }], correct: 0 },
-  { q: { uz: "Noaniq fikr («menyu chalkash») aniq o'zgarishdan nimasi bilan farq qiladi?", ru: "Чем неконкретный отзыв («меню запутанное») отличается от конкретного изменения?" }, opts: [{ uz: "Farqi yo'q, ikkalasi bir xil ishlatiladi", ru: "Ничем, оба применяются одинаково" }, { uz: "Noaniq fikr odatda yolg'on bo'ladi", ru: "Неконкретный отзыв обычно бывает ложью" }, { uz: "Aniq o'zgarishni faqat dasturchi tushunadi", ru: "Конкретное изменение понимает только программист" }, { uz: "Fikr shikoyat, aniq o'zgarish esa vazifa", ru: "Отзыв — это жалоба, а изменение — задача" }], correct: 3 },
-  { q: { uz: "Aniq maqtovni («tez va qulay, rahmat!») nega e'tiborsiz qoldirmaysiz?", ru: "Почему вы не оставляете без внимания конкретную похвалу («быстро и удобно, спасибо!»)?" }, opts: [{ uz: "Chunki maqtovni ham tuzatish kerak", ru: "Потому что похвалу тоже нужно чинить" }, { uz: "Chunki maqtov yozganga chegirma beriladi", ru: "Потому что за похвалу дают скидку" }, { uz: "Chunki u nima yaxshi ishlashini aytadi", ru: "Потому что она говорит, что работает хорошо" }, { uz: "Chunki maqtovda eng ko'p bug bo'ladi", ru: "Потому что в похвале больше всего багов" }], correct: 2 },
+  { q: { uz: "«/start bosdim, menyu chiqmadi» — qaysi tur?", ru: "«Нажал /start, меню не появилось» — какой тип?" }, opts: [{ uz: "Maqtov: mijoz mamnun", ru: "Похвала: клиент доволен" }, { uz: "Bug: joy va muammo bor", ru: "Баг: есть место и проблема" }, { uz: "Taklif: yo'q narsa so'radi", ru: "Предложение: просит новое" }, { uz: "Shovqin: e'tibor shart emas", ru: "Шум: можно не обращать внимания" }], correct: 1 },
+  { q: { uz: "«Yaxshi bot» degan fikr nega kam foydali?", ru: "Почему отзыв «Хороший бот» мало полезен?" }, opts: [{ uz: "Bu salbiy fikr", ru: "Это негативный отзыв" }, { uz: "Maqtov kam uchraydi", ru: "Похвала редкость" }, { uz: "Botni yomon ko'rsatadi", ru: "Выставляет бота плохим" }, { uz: "Aniq joy aytilmagan", ru: "Не названо конкретное место" }], correct: 3 },
+  { q: { uz: "18 kishi bir xil, 1 kishi boshqa narsa yozdi. Qaysi avval?", ru: "18 человек написали одно, 1 — другое. Что сначала?" }, opts: [{ uz: "18 kishinikini", ru: "То, что написали 18" }, { uz: "1 kishinikini", ru: "То, что написал 1" }, { uz: "Ikkalasini birga", ru: "Оба сразу" }, { uz: "Hech birini", ru: "Ни то, ни другое" }], correct: 0 },
+  { q: { uz: "Qaysi tuzatish birinchi — nimaga qarab?", ru: "Какую правку первой — по какому признаку?" }, opts: [{ uz: "Eng jahldor fikrga qarab", ru: "По самому злому отзыву" }, { uz: "Birinchi kelgan fikrga", ru: "По первому пришедшему" }, { uz: "Chastota va ta'sirga qarab", ru: "По частоте и влиянию" }, { uz: "O'zimga qiziq tuyulganiga", ru: "По тому, что интересно мне" }], correct: 2 },
+  { q: { uz: "Ko'p odam suhbatning bir joyida ketdi. Demak?", ru: "Многие ушли в одном месте диалога. Значит?" }, opts: [{ uz: "Odamlar botdan mamnun", ru: "Люди довольны ботом" }, { uz: "O'sha qadam xalaqit beryapti", ru: "Этот шаг чем-то мешает" }, { uz: "Bot juda tez ishlayapti", ru: "Бот работает слишком быстро" }, { uz: "Bu shunchaki tasodif", ru: "Это просто случайность" }], correct: 1 },
+  { q: { uz: "Narx qo'shilgach, shikoyat 18 dan 2 ga tushdi. Demak?", ru: "После добавления цены жалоб стало не 18, а 2. Значит?" }, opts: [{ uz: "Tuzatish ishlamadi", ru: "Правка не сработала" }, { uz: "Sonlar tasodifiy", ru: "Числа случайны" }, { uz: "Yangi bug chiqdi", ru: "Появился новый баг" }, { uz: "Tuzatish ishladi", ru: "Правка сработала" }], correct: 3 },
+  { q: { uz: "«Bot ahmoq» fikridan nega tuzatish chiqmaydi?", ru: "Почему из отзыва «Бот тупой» не выйдет правки?" }, opts: [{ uz: "Unda joy va muammo yo'q", ru: "В нём нет места и проблемы" }, { uz: "Unga javob yozib bo'lmaydi", ru: "На него нельзя ответить" }, { uz: "Yozgan odam ishlatmagan", ru: "Автор не пользовался ботом" }, { uz: "U maqtov hisoblanadi", ru: "Это считается похвалой" }], correct: 0 },
+  { q: { uz: "Taklif faqat 1 kishiga kerak. Nima qilasiz?", ru: "Предложение нужно только одному. Что вы сделаете?" }, opts: [{ uz: "Darrov qo'shaman", ru: "Сразу добавлю" }, { uz: "U odamni bloklayman", ru: "Заблокирую его" }, { uz: "«Hozir emas» deyman", ru: "Скажу «не сейчас»" }, { uz: "Hamma so'rovni qo'shaman", ru: "Добавлю все просьбы" }], correct: 2 },
+  { q: { uz: "Tuzatishdan keyin nima qilasiz?", ru: "Что вы делаете после правки?" }, opts: [{ uz: "Hech narsa: albatta ishlaydi", ru: "Ничего: точно сработает" }, { uz: "Qayta o'lchayman", ru: "Снова измеряю" }, { uz: "Yana katta o'zgarish qilaman", ru: "Делаю ещё большое изменение" }, { uz: "Fikr yig'ishni to'xtataman", ru: "Перестаю собирать отзывы" }], correct: 1 },
+  { q: { uz: "Birinchi versiya chiqdi. Ish tugadimi?", ru: "Первая версия вышла. Работа закончена?" }, opts: [{ uz: "Yo'q: fikr bilan yaxshilanadi", ru: "Нет: улучшается по отзывам" }, { uz: "Ha: bu tayyor mahsulot", ru: "Да: это готовый продукт" }, { uz: "Testlar o'tsa — tugadi", ru: "Если тесты прошли — да" }, { uz: "Shikoyat kelmasa — tugadi", ru: "Если нет жалоб — да" }], correct: 0 },
+  { q: { uz: "Antigravity'ga shikoyat o'rniga nima berasiz?", ru: "Что вы даёте Antigravity вместо жалобы?" }, opts: [{ uz: "Fikr yozgan odam ismini", ru: "Имя автора отзыва" }, { uz: "Bot tokenini", ru: "Токен бота" }, { uz: "Yangi g'oyalar ro'yxatini", ru: "Список новых идей" }, { uz: "Aniq o'zgarishni", ru: "Конкретное изменение" }], correct: 3 },
+  { q: { uz: "Maqtovga nega e'tibor berasiz?", ru: "Зачем обращать внимание на похвалу?" }, opts: [{ uz: "Maqtovni ham tuzatish kerak", ru: "Похвалу тоже надо править" }, { uz: "Yozganga chegirma beriladi", ru: "Автору дают скидку" }, { uz: "Nima yaxshi ishlashini aytadi", ru: "Говорит, что работает хорошо" }, { uz: "Maqtovda ko'p bug bo'ladi", ru: "В похвале много багов" }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2261,7 +2286,7 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

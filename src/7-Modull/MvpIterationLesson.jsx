@@ -92,6 +92,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -169,8 +194,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1070,17 +1095,17 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni MD dan: A·B·C·D ×3 (3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: 'Sinovdan uch muammo chiqdi. Birinchi nima qilinadi?', ru: 'Тест выявил три проблемы. Что делают первым?' }, opts: [{ uz: 'Eng muhimini tuzatib, yana sinaladi', ru: 'Исправляют самое важное и тестируют снова' }, { uz: 'Uchalasi bitta promptda tuzatiladi', ru: 'Все три исправляют одним промптом' }, { uz: "O'yinchiga sayt qanday ishlashi aytiladi", ru: 'Игроку объясняют, как работает сайт' }, { uz: 'Sayt noldan, boshqatdan qayta yoziladi', ru: 'Сайт переписывают с нуля, заново' }], correct: 0 },
-  { q: { uz: 'Maydon sinovida qaysi muammo birinchi tuzatildi?', ru: 'Какую проблему в тесте Maydon исправили первой?' }, opts: [{ uz: 'Eng oson va tez tuzatiladigani', ru: 'Самую лёгкую и быструю' }, { uz: 'Odam vazifani bajara olmagani', ru: 'Ту, из-за которой не выполнено задание' }, { uz: 'Kuzatuvda eng oxirgi yozilgani', ru: 'Записанную в наблюдениях последней' }, { uz: "Eng ko'p so'z bilan yozilgani", ru: 'Записанную самым большим числом слов' }], correct: 1 },
-  { q: { uz: 'Nega bir vaqtda bitta muammo tuzatiladi?', ru: 'Почему за раз исправляют одну проблему?' }, opts: [{ uz: "Agent bittadan ko'pini tushunmaydi", ru: 'Агент не понимает больше одной' }, { uz: "Ikkinchisi keyin o'zi tuzalib qoladi", ru: 'Вторая потом исправится сама' }, { uz: 'Nima yordam berganini ajratish oson', ru: 'Легко понять, что помогло' }, { uz: 'Qolgan muammolar muhim emas', ru: 'Остальные проблемы не важны' }], correct: 2 },
+  { q: { uz: "Uch muammo chiqdi. Avval nima qilinadi?", ru: "Нашлись три проблемы. Что делают сначала?" }, opts: [{ uz: "Eng muhimi tuzatib sinaladi", ru: "Исправляют главную и тестируют" }, { uz: "Uchalasi birga tuzatiladi", ru: "Исправляют все три сразу" }, { uz: "Sayt oldindan tushuntiriladi", ru: "Заранее объясняют сайт" }, { uz: "Sayt noldan yoziladi", ru: "Пишут сайт с нуля" }], correct: 0 },
+  { q: { uz: "Maydon'da qaysi muammo birinchi tuzatildi?", ru: "Какую проблему в Maydon исправили первой?" }, opts: [{ uz: "Eng oson tuzatiladigani", ru: "Самую лёгкую" }, { uz: "Vazifaga to'sqinlik qilgani", ru: "Ту, что мешала заданию" }, { uz: "Eng oxirgi yozilgani", ru: "Записанную последней" }, { uz: "Eng uzun yozilgani", ru: "Записанную длиннее всех" }], correct: 1 },
+  { q: { uz: "Nega bir vaqtda bitta muammo tuzatiladi?", ru: "Почему за раз исправляют одну проблему?" }, opts: [{ uz: "Agent ko'pini tushunmaydi", ru: "Агент не понимает больше одной" }, { uz: "Ikkinchisi o'zi tuzaladi", ru: "Вторая исправится сама" }, { uz: "Nima yordam berganini bilasiz", ru: "Понятно, что помогло" }, { uz: "Qolganlari muhim emas", ru: "Остальные не важны" }], correct: 2 },
   { q: { uz: '«Tugmani topa olmadi» — bu nima?', ru: '«Не нашёл кнопку» — что это?' }, opts: [{ uz: 'Agentga beriladigan talab', ru: 'Требование для агента' }, { uz: 'Sayt kodidagi xato qator', ru: 'Ошибочная строка в коде сайта' }, { uz: 'Agentga yuboriladigan prompt', ru: 'Промпт для агента' }, { uz: 'Sinovda yozilgan kuzatuv', ru: 'Наблюдение, записанное на тесте' }], correct: 3 },
-  { q: { uz: 'Talab qaysi uch qismdan iborat?', ru: 'Из каких трёх частей состоит требование?' }, opts: [{ uz: 'Qayerda, nima qilsin, nima buzilmasin', ru: 'Где, что сделать, что не сломать' }, { uz: 'Kim, qachon va qancha vaqt ichida', ru: 'Кто, когда и за какое время' }, { uz: 'Muammo, sabab va kimning aybi', ru: 'Проблема, причина и чья вина' }, { uz: 'Sarlavha, matn va rasmning joyi', ru: 'Заголовок, текст и место картинки' }], correct: 0 },
-  { q: { uz: "Tugma ko'rinmasdi. «Chiroyliroq qil» nega yetmaydi?", ru: 'Кнопку не было видно. Почему «сделай красивее» не хватает?' }, opts: [{ uz: "Agent rang so'zlarini tushunmaydi", ru: 'Агент не понимает слова о цвете' }, { uz: "Tugmaning joyi o'zgarmay qoladi", ru: 'Место кнопки остаётся прежним' }, { uz: 'Chiroyli tugma sekinroq ochiladi', ru: 'Красивая кнопка открывается медленнее' }, { uz: "Talabga rang yozib bo'lmaydi", ru: 'В требование нельзя писать цвет' }], correct: 1 },
-  { q: { uz: '«Nima buzilmasin» qatoriga nima yoziladi?', ru: 'Что пишут в строке «Что не сломать»?' }, opts: [{ uz: 'Tuzatilishi kerak bo\'lgan joy', ru: 'Место, которое нужно исправить' }, { uz: "Agent qo'shishi kerak bo'lgan narsa", ru: 'То, что агент должен добавить' }, { uz: 'Ishlab turgan, kerakli narsalar', ru: 'То, что работает и нужно' }, { uz: "O'yinchining ismi va telefoni", ru: 'Имя и телефон игрока' }], correct: 2 },
-  { q: { uz: "Agent tuzatdi. Birinchi nimani o'qiysiz?", ru: 'Агент исправил. Что прочитаете первым?' }, opts: [{ uz: "Agentning «tayyor» degan gapini", ru: 'Слова агента «готово»' }, { uz: 'Loyihadagi hamma fayllarni', ru: 'Все файлы проекта' }, { uz: "README'dagi eski yozuvlarni", ru: 'Старые записи в README' }, { uz: "O'zgargan fayl va qatorlarni", ru: 'Изменённые файлы и строки' }], correct: 3 },
-  { q: { uz: "Muammo telefonda chiqdi. Laptopda qanday ko'rasiz?", ru: 'Проблема на телефоне. Как увидеть её на ноутбуке?' }, opts: [{ uz: "Brauzerni telefon o'lchamiga o'tkazib", ru: 'Переключив браузер на размер телефона' }, { uz: "Terminalda Backend'ni qayta yoqib", ru: 'Перезапустив Backend в терминале' }, { uz: 'Sahifani katta ekranda yangilab', ru: 'Обновив страницу на большом экране' }, { uz: "Database jadvalini ochib ko'rib", ru: 'Открыв таблицу Database' }], correct: 0 },
-  { q: { uz: "Qayta sinovda o'yinchiga qaysi vazifa beriladi?", ru: 'Какое задание дают игроку на повторном тесте?' }, opts: [{ uz: 'Yangi, qiyinroq boshqa vazifa', ru: 'Новое, более трудное задание' }, { uz: "Birinchi sinovdagi o'sha vazifa", ru: 'То же задание, что на первом тесте' }, { uz: 'Faqat tuzatilgan tugmani bosish', ru: 'Только нажать исправленную кнопку' }, { uz: "Vazifasiz, o'zi aylanib ko'rsin", ru: 'Без задания, пусть сам посмотрит' }], correct: 1 },
-  { q: { uz: "Qayta sinovda o'yinchi qiynalsa, nima qilasiz?", ru: 'Что делаете, если игроку трудно на повторном тесте?' }, opts: [{ uz: "Tugmani barmog'ingiz bilan ko'rsatasiz", ru: 'Показываете кнопку пальцем' }, { uz: "Saytni qanday ishlatishni aytib berasiz", ru: 'Рассказываете, как пользоваться сайтом' }, { uz: 'Tushuntirmaysiz, kuzatib yozasiz', ru: 'Не объясняете, наблюдаете и записываете' }, { uz: "Sinovni to'xtatib, keyinga qoldirasiz", ru: 'Останавливаете тест и откладываете' }], correct: 2 },
+  { q: { uz: "Talab: «qayerda», «nima buzilmasin» va …?", ru: "Требование: «где», «что не сломать» и …?" }, opts: [{ uz: "«nima qilsin»", ru: "«что сделать»" }, { uz: "«kim, qachon»", ru: "«кто, когда»" }, { uz: "«kimning aybi»", ru: "«чья вина»" }, { uz: "«rasm joyi»", ru: "«место картинки»" }], correct: 0 },
+  { q: { uz: "Tugma ko'rinmasdi. «Chiroyliroq qil» nega yetmaydi?", ru: "Кнопку не было видно. Почему «сделай красивее» мало?" }, opts: [{ uz: "Agent rangni tushunmaydi", ru: "Агент не понимает цвет" }, { uz: "Tugma joyi o'zgarmaydi", ru: "Место кнопки не меняется" }, { uz: "Chiroyli tugma sekin", ru: "Красивая кнопка медленнее" }, { uz: "Talabga rang yozilmaydi", ru: "Цвет в требование не пишут" }], correct: 1 },
+  { q: { uz: "«Nima buzilmasin» qatoriga nima yoziladi?", ru: "Что пишут в строке «что не сломать»?" }, opts: [{ uz: "Tuzatiladigan joy", ru: "Место для исправления" }, { uz: "Agent qo'shadigan narsa", ru: "То, что добавит агент" }, { uz: "Ishlab turgan narsalar", ru: "То, что работает" }, { uz: "O'yinchi ismi, telefoni", ru: "Имя и телефон игрока" }], correct: 2 },
+  { q: { uz: "Agent tuzatdi. Birinchi nimani o'qiysiz?", ru: "Агент исправил. Что прочитаете первым?" }, opts: [{ uz: "«Tayyor» degan gapini", ru: "Его слово «готово»" }, { uz: "Loyihadagi hamma faylni", ru: "Все файлы проекта" }, { uz: "README'dagi yozuvlarni", ru: "Записи в README" }, { uz: "O'zgargan fayl va qatorlarni", ru: "Изменённые файлы и строки" }], correct: 3 },
+  { q: { uz: "Telefon muammosini laptopda qanday ko'rasiz?", ru: "Как увидеть проблему телефона на ноутбуке?" }, opts: [{ uz: "Telefon o'lchamiga o'tkazib", ru: "Переключив на размер телефона" }, { uz: "Backend'ni qayta yoqib", ru: "Перезапустив Backend" }, { uz: "Katta ekranda yangilab", ru: "Обновив на большом экране" }, { uz: "Database jadvalini ochib", ru: "Открыв таблицу Database" }], correct: 0 },
+  { q: { uz: "Qayta sinovda o'yinchiga qaysi vazifa beriladi?", ru: "Какое задание дают на повторном тесте?" }, opts: [{ uz: "Yangi, qiyinroq vazifa", ru: "Новое, более трудное" }, { uz: "O'sha vazifaning o'zi", ru: "То же самое задание" }, { uz: "Faqat tugmani bosish", ru: "Только нажать кнопку" }, { uz: "Vazifasiz aylanish", ru: "Без задания" }], correct: 1 },
+  { q: { uz: "Qayta sinovda o'yinchi qiynalsa, nima qilasiz?", ru: "Что делаете, если игроку трудно на повторном тесте?" }, opts: [{ uz: "Tugmani ko'rsatasiz", ru: "Показываете кнопку" }, { uz: "Saytni tushuntirasiz", ru: "Объясняете сайт" }, { uz: "Tushuntirmay, kuzatasiz", ru: "Не объясняете, наблюдаете" }, { uz: "Sinovni to'xtatasiz", ru: "Останавливаете тест" }], correct: 2 },
   { q: { uz: 'Kuzatish → tuzatish → qayta sinov. Bu takror nima?', ru: 'Наблюдение → исправление → повторный тест. Что это за повтор?' }, opts: [{ uz: 'Deploy', ru: 'Деплой' }, { uz: 'Talab', ru: 'Требование' }, { uz: 'Sinov rejasi', ru: 'План теста' }, { uz: 'Iteratsiya', ru: 'Итерация' }], correct: 3 }
 ];
 const CsNeonBolt = ({ flip }) => (
@@ -1665,7 +1690,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({ h: tr(c.h), t: fmtCode(tr(c.t)), prompt: c.prompt && c.prompt.map(l => tr(l)), kimga: c.prompt && tr(c.kimga || KIMGA_AGENT), xato: c.err && fmtCode(tr(c.err)) }))}
         joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
         tugadi={done} tugadiMatn={tr(doneText)} natija={natija} natijaYorliq={natijaYorliq && tr(natijaYorliq)} ortda={ortda}
@@ -2089,10 +2114,9 @@ export default function MvpIterationLesson({ lang: langProp, onFinished, liveTok
         .mi-fayl-t td:last-child { white-space: nowrap; }
         /* SABOQ 11: navbatdagi bosiladigan element — halqa + yengil puls */
         .mi-navbat { box-shadow: 0 0 0 2px ${T.accent}; animation: mi-navbat 1.6s ease-out infinite; }
-        @keyframes mi-navbat { 0% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 2px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 12px ${fon(T.accent, 0)}; } }
-        .mi-navbat-k > .q-bashorat { box-shadow: 0 0 0 2px ${T.accent}; animation: mi-navbat 1.6s ease-out infinite; }
-        .q-kirish:has(.mi-hook.tanla) .q-variantlar-kol { border-radius: 14px; box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}; animation: mi-navbat-g 1.6s ease-out infinite; }
-        @keyframes mi-navbat-g { 0% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 9px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 19px ${fon(T.accent, 0)}; } }
+        @keyframes mi-navbat { 0% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 1.5px ${fon(T.accent, 0.35)}; } 100% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 8px ${fon(T.accent, 0)}; } }
+        .mi-navbat-k .q-chip:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: mi-navbat 1.6s ease-out infinite; }
+        .q-kirish:has(.mi-hook.tanla) .q-variant:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: mi-navbat 1.6s ease-out infinite; }
         .mi-flash.yangi .fc-card:not(.flip) .fc-front { border-color: ${T.accent}; animation: mi-navbat-fc 1.6s ease-out infinite; }
         @keyframes mi-navbat-fc { 0% { box-shadow: 0 0 0 0 ${fon(T.accent, 0.4)}; } 100% { box-shadow: 0 0 0 12px ${fon(T.accent, 0)}; } }
         p.mi-fc-ipucha { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0 0; font-size: 13px; font-weight: 700; color: ${T.accent}; }
@@ -2114,7 +2138,7 @@ export default function MvpIterationLesson({ lang: langProp, onFinished, liveTok
           .mt-tugma, .mt-ekran, .mt-ramka { transition: none; }
           .mt-belgi, .mt-kun b, .mt-forma, .mt-ok, .mt-nuqta, .mt-tel.silk .mt-ramka, .kz-qator, .kz-y, .tl-joriy, p.tl-s.tola, .mi-taxmin { animation: none; }
           .uq-t.ok i, .uq-c.ok::after, .uq-c.aylana, .uq-c.uzildi, .uq-savol { animation-duration: 0.01s; animation-delay: 0s; }
-          .mi-navbat, .mi-navbat-k > .q-bashorat, .q-kirish:has(.mi-hook.tanla) .q-variantlar-kol, .mi-flash.yangi .fc-card:not(.flip) .fc-front, .mi-fc-ipucha i { animation: none; }
+          .mi-navbat, .mi-navbat-k .q-chip:not(:disabled), .q-kirish:has(.mi-hook.tanla) .q-variant:not(:disabled), .mi-flash.yangi .fc-card:not(.flip) .fc-front, .mi-fc-ipucha i { animation: none; }
         }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px ${fon(T.accent, 0.35)}, 0 0 0 1px ${fon(T.accent, 0.12)}; }
         .btn-white-accent:hover:not(:disabled) { background: ${T.accent}; color: #fff; box-shadow: 0 12px 28px -6px ${fon(T.accent, 0.55)}; }

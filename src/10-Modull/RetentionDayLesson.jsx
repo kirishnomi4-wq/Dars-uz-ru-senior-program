@@ -93,6 +93,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -170,8 +195,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -909,7 +934,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       [900, () => { setK1(null); setYangiElon(true); }],
       [700, () => { setQ(3); setBand(false); }]]);
   };
-  const mentor = !taxmin || q === 0 ? { uz: "Avval taxminingizni belgilang, keyin ikkinchi telefonda «Qo'shilaman»ni bosing.", ru: "Сначала отметьте предположение, затем на втором телефоне нажмите «Присоединяюсь»." }
+  const mentor = !taxmin ? { uz: "Avval taxminingizni belgilang.", ru: "Сначала отметьте предположение." }
+    : q === 0 ? { uz: "Ikkinchi telefonda «Qo'shilaman»ni bosing.", ru: "На втором телефоне нажмите «Присоединяюсь»." }
     : q === 1 ? { uz: "Xabar uchun yangi hodisa kerak bo'lmadi — endi birinchi telefonda «Ilovani yopish»ni, keyin ikkinchisida «E'lon berish»ni bosing.", ru: 'Для сообщения новое событие не понадобилось — теперь на первом телефоне нажмите «Закрыть приложение», затем на втором «Объявить игру».' }
       : q === 2 ? { uz: "Endi birinchi telefonda «Ilovani ochish»ni bosing.", ru: 'Теперь на первом телефоне нажмите «Открыть приложение».' }
         : { uz: 'Uchala harakat tugadi — natijani taxminingiz bilan solishtiring.', ru: 'Все три действия выполнены — сравните результат со своим предположением.' };
@@ -1050,8 +1076,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 7 — 2-SAVOL (QuestionScreen; INLINE_KEYS.s7 = 2, C) =====
 const Screen7 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
-    questionText="Qaysi eslatma darsdagi uch katakdan o'tadi?"
-    question={tr({ uz: <h2 className="title h-ask">Qaysi eslatma darsdagi <span className="italic" style={{ color: T.accent }}>uch katakdan</span> o'tadi?</h2>, ru: <h2 className="title h-ask">Какое напоминание проходит <span className="italic" style={{ color: T.accent }}>три клетки</span> урока?</h2> })}
+    questionText="Ilova yopiq. Qaysi eslatma foydali, rost va bosimsiz?"
+    question={tr({ uz: <h2 className="title h-ask">Ilova yopiq. Qaysi eslatma <span className="italic" style={{ color: T.accent }}>foydali, rost va bosimsiz?</span></h2>, ru: <h2 className="title h-ask">Приложение закрыто. Какое напоминание <span className="italic" style={{ color: T.accent }}>полезное, правдивое и без давления?</span></h2> })}
     options={[
       { uz: "«Hamma o'ynayapti, faqat siz yo'qsiz!»", ru: '«Все играют, только вас нет!»' },
       { uz: "«Kecha beshta yangi o'yin e'lon qilindi»", ru: '«Вчера объявили пять новых игр»' },
@@ -1153,18 +1179,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (MD, aylanma; ekran savollarining nusxasi emas — §144)
 const QUIZ_BANK = [
-  { q: { uz: 'Mentor misolida 46 qurilmadan 17 tasi yana ochdi. Bu nima?', ru: 'В примере Ментора из 46 устройств 17 открыли снова. Что это?' }, opts: [{ uz: 'Qaytganlar foizini beradigan son', ru: "Число, из которого получается процент вернувшихся" }, { uz: "Ro'yxatdan o'tgan odamlarning soni", ru: 'Число зарегистрировавшихся людей' }, { uz: 'Eslatmani bosib ochganlar soni', ru: 'Число открывших по напоминанию' }, { uz: "O'yinga qo'shilgan o'yinchilar soni", ru: 'Число игроков, присоединившихся к игре' }], correct: 0 },
-  { q: { uz: "Web-trekda sayt yopiq. O'yinchiga xabar yetadimi?", ru: 'В веб-треке сайт закрыт. Дойдёт ли сообщение до игрока?' }, opts: [{ uz: "Yetadi — brauzer xabarni o'zi ko'rsatadi", ru: 'Дойдёт — браузер сам покажет сообщение' }, { uz: "Yetmaydi — u qaytganda o'zgarishni ko'radi", ru: 'Не дойдёт — он увидит изменение, когда вернётся' }, { uz: "Yetadi — Backend saytni o'zi ochib beradi", ru: 'Дойдёт — Backend сам откроет сайт' }, { uz: "Yetmaydi — sayt xabarni umuman ko'rsatmaydi", ru: 'Не дойдёт — сайт вообще не показывает сообщений' }], correct: 1 },
-  { q: { uz: "«2 joy qoldi» uchun Mentor Backend'i qaysi hodisani yuboradi?", ru: "Какое событие отправляет Backend Ментора для сообщения «осталось 2 места»?" }, opts: [{ uz: 'Yangi `joy-qoldi` degan hodisani', ru: 'Новое событие `joy-qoldi`' }, { uz: "Joy sonining o'zini alohida hodisada", ru: 'Само число мест отдельным событием' }, { uz: 'Odatdagi `oyin-ozgardi` hodisasini', ru: 'Обычное событие `oyin-ozgardi`' }, { uz: 'Har soniyada yangilangan sonni', ru: 'Число, обновляемое каждую секунду' }], correct: 2 },
-  { q: { uz: '«2 joy qoldi» xabari Mentor misolida kimga chiqadi?', ru: "Кому в примере Ментора появляется сообщение «осталось 2 места»?" }, opts: [{ uz: "Shu o'yinga qo'shilgan hammaga", ru: 'Всем, кто присоединился к этой игре' }, { uz: "O'yinni e'lon qilgan tashkilotchiga", ru: 'Организатору, объявившему игру' }, { uz: "«Qo'shilaman»ni bosgan o'yinchiga", ru: "Игроку, нажавшему «Присоединяюсь»" }, { uz: "Shu o'yinga qo'shilmagan o'yinchiga", ru: 'Игроку, не присоединившемуся к этой игре' }], correct: 3 },
-  { q: { uz: "Rejalashtirilgan eslatmani kim qo'yadi?", ru: 'Кто ставит запланированное напоминание?' }, opts: [{ uz: "Ilovaning o'zi — oldindan, telefonda", ru: 'Само приложение — заранее, на телефоне' }, { uz: "Backend — boshqa o'yinchi qo'shilganda", ru: 'Backend — когда присоединится другой игрок' }, { uz: "Tashkilotchi — o'yin e'lon qilganda", ru: 'Организатор — когда объявляет игру' }, { uz: "Telefon — har kuni ertalab o'zicha", ru: 'Телефон — сам каждое утро' }], correct: 0 },
-  { q: { uz: "Nega uch kunlik eslatma «Yangi o'yin chiqdi» demaydi?", ru: 'Почему трёхдневное напоминание не говорит «Вышла новая игра»?' }, opts: [{ uz: "Matn juda uzun bo'lib qoladi", ru: 'Текст станет слишком длинным' }, { uz: "Yopiq ilova yangi e'lonni bilmaydi", ru: 'Закрытое приложение не знает о новом объявлении' }, { uz: "Yangi o'yinlar juda kam bo'ladi", ru: 'Новых игр бывает очень мало' }, { uz: "Bunday matnni telefon ko'rsatmaydi", ru: 'Телефон такой текст не покажет' }], correct: 1 },
-  { q: { uz: "Mentor misolida shu hafta ikkita o'yin eslatmasi bor. Uch kunlik eslatma-chi?", ru: 'В примере Ментора на этой неделе два напоминания об игре. А трёхдневное?' }, opts: [{ uz: "Baribir qo'yiladi — uchinchi bo'lib", ru: 'Всё равно ставится — третьим' }, { uz: "O'yin eslatmasining o'rniga qo'yiladi", ru: 'Ставится вместо напоминания об игре' }, { uz: "Bu hafta u umuman qo'yilmaydi", ru: 'На этой неделе оно вообще не ставится' }, { uz: "Ikki marta qo'yiladi — har o'yinga", ru: 'Ставится дважды — к каждой игре' }], correct: 2 },
-  { q: { uz: "Foydalanuvchi «Eslatmalar»ni o'chirsa, nima bo'ladi?", ru: "Что будет, если пользователь выключит «Напоминания»?" }, opts: [{ uz: "Ilova telefondan ruxsatni qayta so'raydi", ru: 'Приложение снова попросит разрешение у телефона' }, { uz: "Faqat ertangi kungi eslatma o'z joyida qoladi", ru: 'Останется только напоминание на завтра' }, { uz: "Ilova hisobdan o'zi chiqib, yopiladi", ru: 'Приложение само выйдет из аккаунта и закроется' }, { uz: "Rejalashtirilgan eslatmalar bekor bo'ladi", ru: 'Запланированные напоминания отменятся' }], correct: 3 },
-  { q: { uz: 'Test holati nima uchun kerak?', ru: 'Зачем нужен тестовый режим?' }, opts: [{ uz: "Eslatmani bir daqiqada ko'rib tekshirish uchun", ru: 'Чтобы увидеть и проверить напоминание через минуту' }, { uz: 'Eslatmani foydalanuvchilarga tezroq yuborish uchun', ru: 'Чтобы быстрее отправить напоминание пользователям' }, { uz: 'Haftalik chegarani butunlay olib tashlash uchun', ru: 'Чтобы совсем убрать недельный предел' }, { uz: "Ruxsat so'raydigan oynani o'chirib qo'yish uchun", ru: 'Чтобы отключить окно запроса разрешения' }], correct: 0 },
-  { q: { uz: 'Mentor misolida `eslatmadan-ochdi` qachon yoziladi?', ru: 'Когда в примере Ментора записывается `eslatmadan-ochdi`?' }, opts: [{ uz: 'Eslatma telefon ekraniga chiqqanda', ru: 'Когда напоминание появилось на экране телефона' }, { uz: 'Eslatma bosilib ilova ochilganda', ru: 'Когда по напоминанию нажали и приложение открылось' }, { uz: 'Ilova eslatmani rejalashtirganda', ru: 'Когда приложение запланировало напоминание' }, { uz: "Eslatma o'yindan oldin bekor bo'lganda", ru: 'Когда напоминание отменилось до игры' }], correct: 1 },
-  { q: { uz: "Sinfda eslatmani o'zingiz bosib tekshirdingiz. Bu yozuv nima bo'ladi?", ru: 'В классе вы сами нажали на напоминание для проверки. Что будет с этой записью?' }, opts: [{ uz: "Haqiqiy foydalanuvchi bo'lib sanaladi", ru: 'Посчитается как настоящий пользователь' }, { uz: "Tekshiruv bo'lgani uchun yozilmaydi", ru: 'Не запишется, потому что это проверка' }, { uz: "Tekshirgach, sanoqdan o'chiriladi", ru: 'После проверки удаляется из подсчёта' }, { uz: "Ikki qurilma bo'lib sanoqda qoladi", ru: 'Останется в подсчёте как два устройства' }], correct: 2 },
-  { q: { uz: "Ilova o'zgardi. Eski APK o'rnatganlarda bugungi eslatma bormi?", ru: "Приложение изменилось. Есть ли сегодняшнее напоминание у тех, кто установил старый APK?" }, opts: [{ uz: "Bor — APK o'zi yangilanib qoladi", ru: 'Есть — APK обновится сам' }, { uz: "Yo'q — eslatma faqat iPhone'da ishlaydi", ru: 'Нет — напоминание работает только на iPhone' }, { uz: 'Bor — Render yangi versiyani yuboradi', ru: 'Есть — Render отправит новую версию' }, { uz: "Yo'q — yangi faylni o'rnatishlari kerak", ru: 'Нет — нужно установить новый файл' }], correct: 3 },
+  { q: { uz: "46 qurilmadan 17 tasi yana ochdi. Bu nima?", ru: "Из 46 устройств 17 открыли снова. Что это?" }, opts: [{ uz: "Qaytgan qurilmalar soni", ru: "Число вернувшихся устройств" }, { uz: "Ro'yxatdan o'tganlar soni", ru: "Число зарегистрированных" }, { uz: "Eslatmadan ochganlar soni", ru: "Число открывших из напоминания" }, { uz: "Qo'shilganlar soni", ru: "Число записавшихся" }], correct: 0 },
+  { q: { uz: "Web-trekda sayt yopiq. O'yinchiga xabar yetadimi?", ru: "В веб-треке сайт закрыт. Сообщение дойдёт до игрока?" }, opts: [{ uz: "Ha, brauzer ko'rsatadi", ru: "Да, браузер покажет" }, { uz: "Yo'q, qaytganda ko'radi", ru: "Нет, увидит, когда вернётся" }, { uz: "Ha, Backend ochib beradi", ru: "Да, Backend откроет сайт" }, { uz: "Yo'q, hech qachon", ru: "Нет, никогда" }], correct: 1 },
+  { q: { uz: "«2 joy qoldi» uchun Backend qaysi hodisani yuboradi?", ru: "Какое событие Backend шлёт для «осталось 2 места»?" }, opts: [{ uz: "Yangi `joy-qoldi` ni", ru: "Новое `joy-qoldi`" }, { uz: "Joy soni hodisasini", ru: "Событие с числом мест" }, { uz: "Odatiy `oyin-ozgardi`", ru: "Обычное `oyin-ozgardi`" }, { uz: "Har soniyada sonni", ru: "Число каждую секунду" }], correct: 2 },
+  { q: { uz: "«2 joy qoldi» xabari kimga chiqadi?", ru: "Кому приходит сообщение «осталось 2 места»?" }, opts: [{ uz: "O'yinga qo'shilganlarga", ru: "Записавшимся в игру" }, { uz: "O'yin tashkilotchisiga", ru: "Организатору игры" }, { uz: "Hozir qo'shilgan o'yinchiga", ru: "Игроку, который только записался" }, { uz: "O'yinga qo'shilmaganga", ru: "Тому, кто не записался" }], correct: 3 },
+  { q: { uz: "Rejalashtirilgan eslatmani kim qo'yadi?", ru: "Кто ставит запланированное напоминание?" }, opts: [{ uz: "Ilova, oldindan telefonda", ru: "Приложение, заранее на телефоне" }, { uz: "Backend, kimdir qo'shilsa", ru: "Backend, когда кто-то записался" }, { uz: "Tashkilotchi, e'lon paytida", ru: "Организатор, при объявлении" }, { uz: "Telefon, har kuni o'zi", ru: "Телефон, сам каждый день" }], correct: 0 },
+  { q: { uz: "Nega uch kunlik eslatma «Yangi o'yin chiqdi» demaydi?", ru: "Почему трёхдневное напоминание не говорит «Вышла новая игра»?" }, opts: [{ uz: "Matn uzun bo'lib qoladi", ru: "Текст станет длинным" }, { uz: "Yopiq ilova buni bilmaydi", ru: "Закрытое приложение этого не знает" }, { uz: "Yangi o'yinlar kam", ru: "Новых игр мало" }, { uz: "Telefon ko'rsatmaydi", ru: "Телефон не покажет" }], correct: 1 },
+  { q: { uz: "Bu hafta ikki o'yin eslatmasi bor. Uch kunligi qo'yiladimi?", ru: "На этой неделе два напоминания об играх. Трёхдневное поставят?" }, opts: [{ uz: "Ha, uchinchi bo'lib", ru: "Да, третьим" }, { uz: "Ha, birining o'rniga", ru: "Да, вместо одного из них" }, { uz: "Yo'q, bu hafta emas", ru: "Нет, не на этой неделе" }, { uz: "Ha, ikki marta", ru: "Да, дважды" }], correct: 2 },
+  { q: { uz: "«Eslatmalar» o'chirilsa, nima bo'ladi?", ru: "Что будет, если выключить «Напоминания»?" }, opts: [{ uz: "Ruxsat qayta so'raladi", ru: "Снова спросят разрешение" }, { uz: "Faqat ertangisi qoladi", ru: "Останется только завтрашнее" }, { uz: "Ilova hisobdan chiqadi", ru: "Приложение выйдет из аккаунта" }, { uz: "Hammasi bekor qilinadi", ru: "Все отменятся" }], correct: 3 },
+  { q: { uz: "Test holati nima uchun kerak?", ru: "Зачем нужен тестовый режим?" }, opts: [{ uz: "Bir daqiqada tekshirish uchun", ru: "Чтобы проверить за минуту" }, { uz: "Tezroq yuborish uchun", ru: "Чтобы отправить быстрее" }, { uz: "Chegarani butunlay o'chirish", ru: "Убрать лимит навсегда" }, { uz: "Ruxsat oynasini yopish uchun", ru: "Чтобы убрать окно разрешения" }], correct: 0 },
+  { q: { uz: "`eslatmadan-ochdi` qachon yoziladi?", ru: "Когда записывается `eslatmadan-ochdi`?" }, opts: [{ uz: "Eslatma ekranga chiqqanda", ru: "Когда напоминание появилось" }, { uz: "Eslatma bosib ochilganda", ru: "Когда по напоминанию открыли" }, { uz: "Eslatma rejalashtirilganda", ru: "Когда напоминание запланировали" }, { uz: "Eslatma bekor bo'lganda", ru: "Когда напоминание отменили" }], correct: 1 },
+  { q: { uz: "Sinfda eslatmani o'zingiz bosdingiz. Bu yozuv nima bo'ladi?", ru: "В классе вы сами нажали напоминание. Что с этой записью?" }, opts: [{ uz: "Haqiqiy deb sanaladi", ru: "Считается настоящей" }, { uz: "Umuman yozilmaydi", ru: "Вообще не пишется" }, { uz: "Tekshirgach o'chiriladi", ru: "Удаляется после проверки" }, { uz: "Ikki marta sanaladi", ru: "Считается дважды" }], correct: 2 },
+  { q: { uz: "Ilova o'zgardi. Eski APK'da bugungi eslatma bormi?", ru: "Приложение изменилось. В старом APK есть сегодняшнее напоминание?" }, opts: [{ uz: "Bor, APK o'zi yangilanadi", ru: "Есть, APK обновится сам" }, { uz: "Yo'q, faqat iPhone'da", ru: "Нет, только на iPhone" }, { uz: "Bor, Render yuboradi", ru: "Есть, Render пришлёт" }, { uz: "Yo'q, yangi fayl kerak", ru: "Нет, нужен новый файл" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1828,7 +1854,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi bo'lim — «${stepN + 1} · ${steps[stepN].h.uz}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий раздел — «${stepN + 1} · ${steps[stepN].h.ru}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? DAVOM : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+      <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => (b.prompt
@@ -2427,7 +2453,8 @@ export default function RetentionDayLesson({ lang: langProp, onFinished, liveTok
         /* Backend tuguni */
         .qs-be-ust { display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .qs-sahna.yot .qs-be-joy { height: 272px; display: flex; align-items: center; justify-content: center; }
-        .qs-backend { display: flex; flex-direction: column; align-items: center; gap: 7px; min-width: 132px; max-width: 200px; padding: 12px 14px; border-radius: 16px; background: ${T.ink}; color: ${T.paper}; box-shadow: 0 14px 28px -16px rgba(${T.shadowBase},0.7); }
+        .qs-backend { display: flex; flex-direction: column; align-items: center; gap: 7px; min-width: 132px; max-width: 200px; padding: 12px 14px; border-radius: 16px; background: ${T.ink}; color: ${T.paper}; box-shadow: none; }
+        .qs-backend::before { content: ''; width: 18px; height: 14px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 14' fill='none' stroke='white' stroke-opacity='0.8' stroke-width='1.4'%3E%3Crect x='1' y='1' width='16' height='5' rx='1.5'/%3E%3Crect x='1' y='8' width='16' height='5' rx='1.5'/%3E%3Ccircle cx='4.2' cy='3.5' r='0.7' fill='white'/%3E%3Ccircle cx='4.2' cy='10.5' r='0.7' fill='white'/%3E%3C/svg%3E") center / contain no-repeat; } /* F-1015-350: server belgisi, soyasiz — tugmaga o'xshamasin */
         .qs-be-nom { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
         .qs-db { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 2px 9px; border-radius: 7px; background: ${fon(T.paper, 0.12)}; }
         .qs-db b { color: ${T.paper}; } .qs-db b.qs-pop { color: ${T.accent}; }

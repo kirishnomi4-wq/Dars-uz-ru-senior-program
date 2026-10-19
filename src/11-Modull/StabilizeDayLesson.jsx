@@ -88,6 +88,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -165,8 +190,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1224,18 +1249,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD aynan), to'g'ri javob A·B·C·D ×3 (aylanma)
 const QUIZ_BANK = [
-  { q: { uz: "Mentor besh yo'lni yozuv bilan qayta ko'rdi. Bu qanday ish?", ru: 'Ментор заново просмотрел пять путей с записью. Что это за работа?' }, opts: [{ uz: 'Barqarorlik tekshiruvi', ru: 'Проверка стабильности' }, { uz: "Yangi funksiya qo'shish", ru: 'Добавление новой функции' }, { uz: 'Pullik obunani yoqish', ru: 'Включение платной подписки' }, { uz: 'Taklif havolasi tarqatish', ru: 'Раздача пригласительной ссылки' }], correct: 0 },
-  { q: { uz: "Mentor taklif kodini qo'shdi. Nega ro'yxatdan o'tish ham tekshirildi?", ru: 'Ментор добавил код приглашения. Почему проверили и регистрацию?' }, opts: [{ uz: "Ro'yxat har hafta o'zi o'zgaradi", ru: 'Список сам меняется каждую неделю' }, { uz: "Kod shu formaga qo'shilgan edi", ru: 'Код был добавлен в эту форму' }, { uz: "Login endi taklif kodi bo'lgan", ru: 'Логин теперь стал кодом приглашения' }, { uz: 'Telegram bot formani yangilagan', ru: 'Telegram-бот обновил форму' }], correct: 1 },
-  { q: { uz: 'Tekshiruv uchun qaysi hisobdan foydalanasiz?', ru: 'Какой аккаунт вы используете для проверки?' }, opts: [{ uz: 'Sinfdoshingiz bergan login va paroldan', ru: 'Логин и пароль, которые дал одноклассник' }, { uz: "Ilovadagi eng faol o'yinchi hisobidan", ru: 'Аккаунт самого активного игрока в приложении' }, { uz: 'Tekshiruv uchun ochilgan yangi hisobdan', ru: 'Новый аккаунт, открытый для проверки' }, { uz: "Hisobsiz — kirmagan mehmon ko'rinishidan", ru: 'Без аккаунта — вид гостя без входа' }], correct: 2 },
-  { q: { uz: 'Nima kutishingizni qachon yozasiz?', ru: 'Когда вы пишете, что ожидаете?' }, opts: [{ uz: "Natijani ko'rganingizdan keyin", ru: 'После того как увидели результат' }, { uz: 'Agent «Tayyor!» degan zahoti', ru: 'Как только агент сказал «Готово!»' }, { uz: 'Dars oxirida, yakun ekranida', ru: 'В конце урока, на итоговом экране' }, { uz: 'Tekshirishni boshlashdan oldin', ru: 'Перед началом проверки' }], correct: 3 },
-  { q: { uz: "Nega barqarorlik kunida yangi funksiya qo'shilmaydi?", ru: 'Почему в день стабильности не добавляют новую функцию?' }, opts: [{ uz: "U tekshirilmagan yangi yo'l ochadi", ru: 'Она открывает новый непроверенный путь' }, { uz: 'Agent bugun yangi kod yoza olmaydi', ru: 'Агент сегодня не может писать новый код' }, { uz: "Yangi funksiya faqat pullik bo'ladi", ru: 'Новая функция будет только платной' }, { uz: 'Foydalanuvchilar uni umuman sezmaydi', ru: 'Пользователи её совсем не замечают' }], correct: 0 },
-  { q: { uz: 'Uch topilma bor, vaqt ikkitasiga yetdi. Uchinchisi-chi?', ru: 'Есть три находки, времени хватило на две. А третья?' }, opts: [{ uz: '`XATOLAR.md` dan butunlay o\'chiriladi', ru: 'Полностью удаляется из `XATOLAR.md`' }, { uz: '`XATOLAR.md` da «qoldi» deb, sababi bilan', ru: 'В `XATOLAR.md` как «осталось», с причиной' }, { uz: 'Agentga «Tuzatish qilindi» deb yozdiriladi', ru: 'Агента просят написать «Исправление сделано»' }, { uz: 'Hech kimga aytilmay, keyinga qoladi', ru: 'Никому не говоря, откладывается' }], correct: 1 },
-  { q: { uz: "Mentor misolida «Ikki marta yuborish»dan keyin Pro necha kunga yoqildi?", ru: 'В примере Ментора на сколько дней включился Pro после «Ikki marta yuborish»?' }, opts: [{ uz: '60 kunga — ikki marta', ru: 'На 60 дней — дважды' }, { uz: '7 kunga — mukofot kabi', ru: 'На 7 дней — как награда' }, { uz: '30 kunga — bir marta', ru: 'На 30 дней — один раз' }, { uz: 'Umuman yoqilmadi — rad', ru: 'Вообще не включился — отказ' }], correct: 2 },
-  { q: { uz: '«Tuzatish qilindi» nimani bildiradi?', ru: 'Что означает «Tuzatish qilindi»?' }, opts: [{ uz: 'Qayta tekshiruvda takrorlanmaganini', ru: 'Что при перепроверке не повторилось' }, { uz: 'Topilma `XATOLAR.md` dan o\'chganini', ru: 'Что находка удалена из `XATOLAR.md`' }, { uz: 'Agent ishni endi boshlaganini', ru: 'Что агент только начал работу' }, { uz: 'Kodda o\'zgartirish qilinganini', ru: 'Что в коде сделано изменение' }], correct: 3 },
-  { q: { uz: 'Mentor tuzatishi faqat `backend/` da. APK\'ni yangilash kerakmi?', ru: 'Исправление Ментора только в `backend/`. Нужно ли обновлять APK?' }, opts: [{ uz: "Yo'q — ilova o'sha Backend'ga ulanadi", ru: 'Нет — приложение подключается к тому же Backend' }, { uz: "Ha — APK har tuzatishda o'zi yangilanadi", ru: 'Да — APK сам обновляется при каждом исправлении' }, { uz: "Ha — Render APK'ni ham qayta yig'adi", ru: 'Да — Render пересобирает и APK' }, { uz: "Yo'q — APK'ni yangilab bo'lmaydi", ru: 'Нет — APK обновить нельзя' }], correct: 0 },
-  { q: { uz: "Mentor misolida brauzer ko'rinishi push'dan keyin o'zi yangilanadimi?", ru: 'В примере Ментора браузерная версия обновляется сама после push?' }, opts: [{ uz: "Ha — Netlify uni har safar o'zi yig'adi", ru: 'Да — Netlify каждый раз собирает её сам' }, { uz: "Yo'q — qayta eksport va deploy kerak", ru: 'Нет — нужны повторный экспорт и deploy' }, { uz: "Ha — Expo Go uni o'zi yangilaydi", ru: 'Да — Expo Go обновляет её сам' }, { uz: "Yo'q — uni faqat APK almashtiradi", ru: 'Нет — её заменяет только APK' }], correct: 1 },
-  { q: { uz: "Mentor misolida ikki telefon bir vaqtda «O'yinlar»ni ochganda nima bo'ldi?", ru: 'Что случилось в примере Ментора, когда два телефона одновременно открыли «O\'yinlar»?' }, opts: [{ uz: "Bitta o'yin yaratildi, xabar ham bitta", ru: 'Создана одна игра, сообщение тоже одно' }, { uz: 'Ikkala telefonda ilova yopilib qoldi', ru: 'На обоих телефонах приложение закрылось' }, { uz: "Keyingi o'yin ikki marta yaratildi", ru: 'Следующая игра создана дважды' }, { uz: "Hamma o'yinlar ro'yxatdan o'chib ketdi", ru: 'Все игры пропали из списка' }], correct: 2 },
-  { q: { uz: 'Darsdan keyin tekshiruv akkauntlari nima qilinadi?', ru: 'Что делают с тестовыми аккаунтами после урока?' }, opts: [{ uz: 'Haqiqiy sanoqda qolaveradi', ru: 'Остаются в настоящем счёте' }, { uz: 'Sinfdoshlarga berib yuboriladi', ru: 'Отдаются одноклассникам' }, { uz: '`namuna` deb belgilanib qoladi', ru: 'Остаются с пометкой `namuna`' }, { uz: '`id` bo\'yicha o\'chiriladi', ru: 'Удаляются по `id`' }], correct: 3 }
+  { q: { uz: "Besh yo'lni yozuv bilan tekshirish nima deyiladi?", ru: "Как называется проверка пяти путей с записью?" }, opts: [{ uz: "Barqarorlik tekshiruvi", ru: "Проверка стабильности" }, { uz: "Yangi funksiya qo'shish", ru: "Добавление новой функции" }, { uz: "Pullik obunani yoqish", ru: "Включение платной подписки" }, { uz: "Havolani tarqatish", ru: "Рассылка ссылки" }], correct: 0 },
+  { q: { uz: "Kod qo'shilgach, nega ro'yxatdan o'tish tekshirildi?", ru: "Почему после добавления кода проверили регистрацию?" }, opts: [{ uz: "Login o'zgargani uchun", ru: "Потому что изменился логин" }, { uz: "Kod shu formada turadi", ru: "Код стоит в этой форме" }, { uz: "Bot formani yangilagan", ru: "Бот обновил форму" }, { uz: "Ro'yxat o'zi o'zgaradi", ru: "Список меняется сам" }], correct: 1 },
+  { q: { uz: "Tekshirishda qaysi hisobdan foydalanasiz?", ru: "Какой аккаунт вы используете для проверки?" }, opts: [{ uz: "Sinfdosh hisobidan", ru: "Аккаунт одноклассника" }, { uz: "Eng faol o'yinchi hisobidan", ru: "Аккаунт самого активного игрока" }, { uz: "Yangi tekshiruv akkauntidan", ru: "Новый проверочный аккаунт" }, { uz: "Hisobsiz, mehmon bo'lib", ru: "Без аккаунта, как гость" }], correct: 2 },
+  { q: { uz: "Nima kutishingizni qachon yozasiz?", ru: "Когда вы пишете, что ожидаете?" }, opts: [{ uz: "Natijani ko'rgach", ru: "После того как увидели результат" }, { uz: "Agent «Tayyor!» degach", ru: "Когда агент сказал «Готово!»" }, { uz: "Dars oxirida", ru: "В конце урока" }, { uz: "Tekshirishdan oldin", ru: "До проверки" }], correct: 3 },
+  { q: { uz: "Nega bugun yangi funksiya qo'shilmaydi?", ru: "Почему сегодня не добавляют новую функцию?" }, opts: [{ uz: "Tekshirilmagan yo'l ochadi", ru: "Открывает непроверенный путь" }, { uz: "Agent bugun kod yozmaydi", ru: "Агент сегодня не пишет код" }, { uz: "U faqat pullik bo'ladi", ru: "Она будет только платной" }, { uz: "Foydalanuvchi sezmaydi", ru: "Пользователь не заметит" }], correct: 0 },
+  { q: { uz: "Ulgurmagan topilma nima qilinadi?", ru: "Что делают с находкой, до которой не дошли руки?" }, opts: [{ uz: "XATOLAR.md dan o'chiriladi", ru: "Удаляется из XATOLAR.md" }, { uz: "XATOLAR.md da «qoldi» deb", ru: "В XATOLAR.md как «осталось»" }, { uz: "«Tuzatish qilindi» deb", ru: "Пишется «Исправление сделано»" }, { uz: "Aytilmay keyinga qoladi", ru: "Молча откладывается" }], correct: 1 },
+  { q: { uz: "«Ikki marta yuborish»dan keyin Pro necha kunga yoqildi?", ru: "На сколько дней включился Pro после «Отправить дважды»?" }, opts: [{ uz: "60 kunga", ru: "На 60 дней" }, { uz: "7 kunga", ru: "На 7 дней" }, { uz: "30 kunga", ru: "На 30 дней" }, { uz: "Yoqilmadi", ru: "Не включился" }], correct: 2 },
+  { q: { uz: "«Tuzatish qilindi» nimani bildiradi?", ru: "Что означает «Исправление сделано»?" }, opts: [{ uz: "Qayta buzilmaganini", ru: "Что повторно не сломалось" }, { uz: "Topilma o'chganini", ru: "Что находка удалена" }, { uz: "Agent ish boshlaganini", ru: "Что агент начал работу" }, { uz: "Kod o'zgarganini", ru: "Что код изменён" }], correct: 3 },
+  { q: { uz: "backend/ tuzatildi. APK kerakmi?", ru: "Исправлен backend/. Нужен ли новый APK?" }, opts: [{ uz: "Yo'q, ilova Backend'ga ulanadi", ru: "Нет, приложение подключено к Backend" }, { uz: "Ha, APK har safar yangilanadi", ru: "Да, APK каждый раз обновляется" }, { uz: "Ha, Render APK yig'adi", ru: "Да, Render собирает APK" }, { uz: "Yo'q, APK yangilanmaydi", ru: "Нет, APK не обновить" }], correct: 0 },
+  { q: { uz: "Push'dan keyin brauzer ko'rinishi yangilanadimi?", ru: "Обновляется ли браузерная версия после push?" }, opts: [{ uz: "Ha, Netlify o'zi yig'adi", ru: "Да, Netlify сам собирает" }, { uz: "Yo'q, qayta deploy kerak", ru: "Нет, нужен повторный deploy" }, { uz: "Ha, Expo Go yangilaydi", ru: "Да, Expo Go обновляет" }, { uz: "Yo'q, APK almashtiradi", ru: "Нет, её заменяет APK" }], correct: 1 },
+  { q: { uz: "Ikki telefon bir vaqtda «O'yinlar»ni ochdi. Natija?", ru: "Два телефона одновременно открыли «Игры». Итог?" }, opts: [{ uz: "Bitta o'yin, bitta xabar", ru: "Одна игра, одно сообщение" }, { uz: "Ilova yopildi", ru: "Приложение закрылось" }, { uz: "O'yin ikki marta yaratildi", ru: "Игра создалась дважды" }, { uz: "O'yinlar o'chib ketdi", ru: "Игры удалились" }], correct: 2 },
+  { q: { uz: "Darsdan keyin tekshiruv akkauntlari nima qilinadi?", ru: "Что делают с проверочными аккаунтами после урока?" }, opts: [{ uz: "Sanoqda qolaveradi", ru: "Остаются в подсчёте" }, { uz: "Sinfdoshlarga beriladi", ru: "Отдаются одноклассникам" }, { uz: "Bir haftada o'zi o'chadi", ru: "Сами удалятся через неделю" }, { uz: "Tekshirgach o'chiriladi", ru: "Удаляются после проверки" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1897,7 +1922,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('sb-blok', qulfli && 'qulf')}>
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map((c, i) => ({
             h: otkaz.includes(i) ? <span className="sb-otk">{tr(c.h)} <em>· {tr({ uz: "o'tkazildi", ru: 'пропущен' })}</em></span> : tr(c.h),
             t: c.t,
@@ -2309,21 +2334,6 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== YAKUN — QYakun (DE-204, texnik darslar standarti; E 50 — «Bugungi asosiy fikr» yo'q). Uyga vazifa yo'q (loyiha kuni). Sarlavha — sakkiz holat, har biri rost (E 54) =====
-// PM-109 (SABOQ P4): erta tugatgan o'quvchi — AI «tekshiruvchi» rolida buzish holatlarini beradi, o'quvchi natijani o'zi yozadi (MD da matn yo'q — «MD ga taklif»)
-const AI_SOROV = { uz: "Sen tekshiruvchisan. Mahsulot: Maydon Jamoa — mahalladagi mini-futbol uchun jamoa yig'adigan ilova; unda kirish va ro'yxat, o'yin e'loni va qo'shilish, to'lov oqimi (test rejim), taklif havolasi va Telegram xabari bor. Menga navbat bilan besh yo'l uchun bittadan buzish holatini ber. Har holat uchun men buzish yozuvini yozaman: nima qildim, nima kutdim, nima bo'ldi va belgi — buzildi, buzilmadi yoki «Mahsulotimda hali yo'q». Sen yozuvim to'g'riligini bir gap bilan ayt: «Nima kutdim» talabga mosmi, belgi to'g'ri qo'yilganmi. Yangi funksiya taklif qilma. Karta ma'lumoti va kalit so'rama. Birinchi holatni ber.",
-  ru: 'Ты проверяющий. Продукт: Maydon Jamoa — приложение для сбора команды на мини-футбол в махалле; в нём есть вход и регистрация, объявление игры и присоединение, поток оплаты (тестовый режим), пригласительная ссылка и сообщение Telegram. Дай мне по очереди по одному случаю поломки для пяти путей. Для каждого я пишу запись поломки: что сделал, что ожидал, что получилось и метку — сломалось, не сломалось или «В моём продукте пока нет». Скажи одной фразой, верна ли запись: соответствует ли «Что ожидал» требованию, правильно ли поставлена метка. Новых функций не предлагай. Данные карты и ключи не спрашивай. Дай первый случай.' };
-const AiDavomCard = () => {
-  const [ok, setOk] = useState(false);
-  const kochir = async () => { if (await nusxala(tr(AI_SOROV))) { setOk(true); setTimeout(() => setOk(false), 1800); } };
-  return (
-    <div className="card sb-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <p className="sb-ai-m">{tr({ uz: "gemini.google.com'ni oching, pastdagi so'rovni yuboring — AI tekshiruvchi bo'lib besh yo'l uchun buzish holatlarini beradi. Har biriga yozuvni o'zingiz yozing; adashgan joyingizni «Orqaga» bilan 3, 5-ekranlarda qayta ko'ring.", ru: 'Откройте gemini.google.com, отправьте запрос ниже — AI как проверяющий даст случаи поломки для пяти путей. Запись для каждого пишите сами; где ошиблись — посмотрите снова на экранах 3, 5 через «Назад».' })}</p>
-      <pre className="sb-ai-sorov">{tr(AI_SOROV)}</pre>
-      <button type="button" className="q-chip sb-ai-btn" onClick={kochir}>{ok ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 const YAKUN_SARLAVHA = {
   takrorlanmadi: { uz: 'Tuzatish qilindi va qayta tekshiruvda takrorlanmadi.', ru: 'Исправление сделано, при перепроверке не повторилось.' },
   topilmaYoq: { uz: "Tekshirilgan yo'llarda bu safar topilma chiqmadi.", ru: 'На проверенных путях в этот раз находок нет.' },
@@ -2396,7 +2406,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           </>}
           recap={RECAP.map(tx)}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}>
-          {!isMentorL && <AiDavomCard />}
+          
           <p className="sb-keyingi fade-up" style={{ animationDelay: '0.35s' }}>{tr({ uz: <>Keyingi dars — <b>«Zaxira dars»</b></>, ru: <>Следующий урок — <b>«Резервный урок»</b></> })}</p>
         </QYakun>
       </div>
@@ -2806,7 +2816,6 @@ export default function StabilizeDayLesson({ lang: langProp, onFinished, liveTok
         p.sb-fc-ipucha { margin: 0; display: inline-flex; align-items: center; gap: 8px; align-self: center; font-size: 13.5px; font-weight: 700; color: ${T.accent}; }
         p.sb-fc-ipucha i { width: 8px; height: 8px; border-radius: 50%; background: ${T.accent}; }
         p.sb-ai-m { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: ${T.ink}; }
-        .sb-ai-sorov { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.45; color: ${T.ink}; white-space: pre-wrap; }
         .sb-ai-btn { margin: 0; }
         .sb-ai { display: flex; flex-direction: column; }
         .sb-yakun { display: contents; }

@@ -36,7 +36,7 @@ Holat: 06.10.2026 — kodga mos
   - Oxirida holat belgisi «Open» → «Merged»
 - O'ng — 3 qadam:
   - 01 · O'tgan darsdagi o'zgarishlar sinfdoshga ko'rsatiladi
-  - 02 · Code review: har qarorni tushuntirasiz
+  - 02 · Code review: har qarorni tushuntiring
   - 03 · Topilgan kamchilik tuzatilib, kod birlashtiriladi
 - Pastki qator: repo `maydon` · boshlang'ich holat `m10-dars-09-start` · namuna `m10-dars-09-done`
 - Tugmalar: Orqaga · Boshlaymiz

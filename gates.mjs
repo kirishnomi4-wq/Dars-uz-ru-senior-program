@@ -29,6 +29,7 @@ const TOOLS = [
   { id: 'undef', bin: 'node_modules/.bin/oxlint', pre: ['-c', 'oxlint-undef.json', '-A', 'all', '-D', 'no-undef'], dflt: ['src'] },
   { id: 'jsx', file: 'jsx-lint.mjs' },
   { id: 'keys', file: 'scripts/lint-keys.mjs' }, // F-0916-03: INLINE_KEYS s-kalitlari == scored ekranlar (server total_questions shu kalitdan)
+  { id: 'preview-keys', file: 'scripts/preview-keys-check.mjs' }, // F-1017-226: localStorage kaliti preview-himoyasida (src/live/previewMode.js OWN_KEY_PREFIXES) — relizgacha kutilmaydi
   { id: 'dark', file: 'dark-lint.mjs' },
   { id: 'til', file: 'til-lint.mjs' },
   { id: 'tell', file: 'lint-tell.mjs' },   // F-0929-18 D5: test javobi sotilmasin (8.4)

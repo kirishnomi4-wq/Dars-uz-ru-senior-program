@@ -45,7 +45,7 @@ Mentor misolining birinchi beshta yozuvi (4, 6-ekranlar):
 - Eyebrow: Reja · Sarlavha: Bugun *ikki g'oya* bo'yicha intervyuni boshlaysiz.
 - Mentor: RICE baholari hali taxmin. Endi ularni odamlarning o'z voqeasi bilan tekshirasiz.
 - Chap (yorliq «Dars oxirida» — F-1015-201 A, ichki «10 intervyu, 1-qism» yo'q): ikki ustunli shablon skeleti (Kim · Oxirgi marta · Qanday qildi · Eng qiyini), ustun ostida Mentor yozuvlarining «Kim»i ✓ bilan. Ostida yashil qator: «Qo'lingizda: ikki g'oyangizga bitta savol varaqasi va birinchi haqiqiy yozuv. Qolgan to'qqiz yozuv — uyda, keyingi darsgacha.»
-- Reja: 1. Ikki g'oyaga bir xil savollar tuzasiz · 2. Odamning so'zi va ishini ajratishni bilib olasiz · 3. Airbnb asoschilari uy egalari bilan qanday gaplashganini ko'rasiz · 4. Sinfdoshingizdan birinchi yozuvni olasiz
+- Reja: 1. Ikki g'oyaga bir xil savollar tuzing · 2. Odamning so'zi va ishini ajratishni bilib oling · 3. Airbnb asoschilari uy egalari bilan qanday gaplashganini ko'ring · 4. Sinfdoshingizdan birinchi yozuvni oling
 - Tugma: Boshlaymiz
 
 ## 2 · Ikkinchi g'oyaga savollar

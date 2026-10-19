@@ -95,6 +95,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -172,8 +197,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -942,13 +967,6 @@ const rejaYoz = (ishlar, d) => {
   return reja;
 };
 // Artefakt-strip (U-042): «Roadmap'im · holatlar n/N» — yakun ekranida
-const RejaStrip = () => {
-  const { ishlar } = talabaIshlar();
-  if (!ishlar || !ishlar.length) return null;
-  const d = qoralama();
-  const n = ishlar.filter(x => (d.holat || {})[x.key]).length;
-  return <div className="oo-strip fade-step"><span className="oo-strip-l">{tr(ROADMAPIM)}</span><span>{tr({ uz: 'holatlar', ru: 'статусы' })} <b>{n}/{ishlar.length}</b></span>{rejaLs() && <span className="oo-strip-ok">{tr({ uz: 'qadamlar', ru: 'шаги' })} <b>3/3</b></span>}</div>;
-};
 
 // ===== SCREEN 0 — KIRISH (QKirish: sof so'rovnoma, J-026 — hammaga correct: false, maqtovsiz) =====
 const HOOK_OPTS = [
@@ -991,10 +1009,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda Mentor doskasi kichik — «?» kulrang to'lqin, uchta «qadam» kartasi ustunlarga sirg'alib kiradi; o'ngda 01 · matn) =====
 const REJA = [
-  { t: { uz: "Roadmap'dagi har ish o'z vaqtida tugaganini belgilaysiz", ru: 'Отметите, вовремя ли закончилась каждая работа в roadmap' }, teg: { uz: 'holat', ru: 'статус' } },
-  { t: { uz: 'Oldinda rejaga nima xalaqit berishi mumkinligini topasiz', ru: 'Найдёте, что впереди может помешать плану' }, teg: { uz: 'risk', ru: 'риск' } },
-  { t: { uz: 'Har biriga bitta aniq qadam yozasiz', ru: 'Для каждого напишете один конкретный шаг' }, teg: { uz: 'qadam', ru: 'шаг' } },
-  { t: { uz: "Qadamlarni roadmap'ga qo'yib, Mentor bilan ko'rasiz", ru: 'Поставите шаги в roadmap и посмотрите их с Ментором' }, teg: { uz: 'tuzatilgan reja', ru: 'исправленный план' } }
+  { t: { uz: "Roadmap'dagi har ish o'z vaqtida tugaganini belgilang", ru: 'Отметьте, вовремя ли закончилась каждая работа в roadmap' }, teg: { uz: 'holat', ru: 'статус' } },
+  { t: { uz: 'Oldinda rejaga nima xalaqit berishi mumkinligini toping', ru: 'Найдите, что впереди может помешать плану' }, teg: { uz: 'risk', ru: 'риск' } },
+  { t: { uz: 'Har biriga bitta aniq qadam yozing', ru: 'Для каждого напишите один конкретный шаг' }, teg: { uz: 'qadam', ru: 'шаг' } },
+  { t: { uz: "Qadamlarni roadmap'ga qo'yib, Mentor bilan ko'ring", ru: 'Поставьте шаги в roadmap и посмотрите их с Ментором' }, teg: { uz: 'tuzatilgan reja', ru: 'исправленный план' } }
 ];
 const S1_QADAM = [{ key: 'b1', ufq: 'hozir', bosh: true }, { key: 'b2', ufq: 'hozir', bosh: true }, { key: 'b3', ufq: 'keyinroq', bosh: true }];
 const Screen1 = ({ screen, onNext, onPrev }) => (
@@ -1629,7 +1647,7 @@ const Screen8 = (props) => (
       3: { uz: "Ufqsiz qadam roadmap'da ko'rinmaydi — qachon qilinadi?", ru: 'Шага без горизонта не видно в roadmap — когда его делать?' },
       default: { uz: 'Tuzatilgan rejada nima turadi — shuni eslang.', ru: 'Вспомните, что стоит в исправленном плане.' }
     }}
-    vizual={<RejaDoska kor="kichik" faqat={['hozir']} className="oo-s8" ishlar={mentorIshlar(true)} qadamlar={[{ key: 'm1', idx: 0, matn: tr(mentorQadam(0)), ufq: 'hozir', tush: true }]} />} />
+ />
 );
 
 // ===== 🏅 NISHONLAR — ish qilingan ekranlarda (§184: qilingan ishni aytadi); tekin bonus — bitta: Plan Fixer (S-034); medal belgisi — o'yin qatlami =====
@@ -1719,18 +1737,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (MD; har biri 3 marta)
 const QUIZ_BANK = [
-  { q: { uz: 'Holat nimani ko\'rsatadi?', ru: 'Что показывает статус?' }, opts: [{ uz: 'Ish rejadagi vaqtiga nisbatan qayerda', ru: 'Где работа относительно планового времени' }, { uz: 'Ishga necha kun ketishini oldindan aniq', ru: "Сколько дней займёт работа — заранее и точно" }, { uz: 'Ishni aynan qaysi odam bajarishini', ru: 'Какой именно человек сделает работу' }, { uz: 'Ish nechta foydalanuvchiga kerakligini', ru: 'Скольким пользователям нужна работа' }], correct: 0 },
-  { q: { uz: 'Ish o\'z darsida ishladi, telefonda tekshirildi. Holati qanday?', ru: 'Работа заработала на своём уроке, проверена на телефоне. Какой статус?' }, opts: [{ uz: 'Kechikdi', ru: 'С опозданием' }, { uz: 'Bajarildi', ru: 'Выполнено' }, { uz: 'Boshlanmadi', ru: 'Не начато' }, { uz: 'Bekor qilindi', ru: 'Отменено' }], correct: 1 },
-  { q: { uz: 'Keyinroq ufqidagi ish hali boshlanmagan. Bu nimani bildiradi?', ru: 'Работа горизонта «позже» ещё не начата. Что это значит?' }, opts: [{ uz: 'Ish kechikdi, uni tezroq qilish kerak', ru: 'Работа опоздала, её надо сделать быстрее' }, { uz: 'Roadmap noto\'g\'ri, qayta yozish kerak', ru: 'Roadmap неверный, его надо переписать' }, { uz: 'Vaqti hali kelmagan, bu odatiy hol', ru: 'Её время ещё не пришло, это обычное дело' }, { uz: 'Ishni roadmap\'dan olib tashlash kerak', ru: 'Работу надо убрать из roadmap' }], correct: 2 },
-  { q: { uz: 'Risk nima?', ru: 'Что такое риск?' }, opts: [{ uz: 'Darsda allaqachon bo\'lib o\'tgan kechikish', ru: 'Опоздание, которое уже случилось на уроке' }, { uz: 'Kelajakda qo\'shilishi mumkin bo\'lgan funksiya', ru: 'Функция, которую могут добавить в будущем' }, { uz: 'Roadmap\'dagi bajarilgan ishlar ro\'yxati', ru: 'Список выполненных работ в roadmap' }, { uz: 'Rejaga xalaqit berishi mumkin bo\'lgan narsa', ru: 'То, что может помешать плану' }], correct: 3 },
-  { q: { uz: 'Render bepul xizmatida Backend qachon uxlaydi?', ru: 'Когда засыпает Backend на бесплатном сервисе Render?' }, opts: [{ uz: '15 daqiqa davomida so\'rov kelmasa', ru: 'Если 15 минут нет запросов' }, { uz: 'Har kuni yarim tunda, o\'z-o\'zidan', ru: 'Каждый день в полночь, сам по себе' }, { uz: 'Kuniga 100 ta so\'rovdan keyin', ru: 'После 100 запросов в день' }, { uz: 'Ilova telefonda yopilgan zahoti', ru: "Сразу, как закрыли приложение на телефоне" }], correct: 0 },
+  { q: { uz: "Holat nimani ko'rsatadi?", ru: "Что показывает статус?" }, opts: [{ uz: "Ish rejaga ko'ra qayerdaligini", ru: "Где работа относительно плана" }, { uz: "Ishga necha kun ketishini", ru: "Сколько дней займёт работа" }, { uz: "Ishni kim bajarishini", ru: "Кто выполнит работу" }, { uz: "Ish necha kishiga kerakligini", ru: "Скольким людям нужна работа" }], correct: 0 },
+  { q: { uz: "Ish o'z darsida tugadi, telefonda ishlaydi. Holati?", ru: "Работа закончена на своём уроке и работает на телефоне. Статус?" }, opts: [{ uz: "Kechikdi", ru: "С опозданием" }, { uz: "Bajarildi", ru: "Выполнено" }, { uz: "Boshlanmadi", ru: "Не начато" }, { uz: "Bekor qilindi", ru: "Отменено" }], correct: 1 },
+  { q: { uz: "Keyinroq ufqidagi ish boshlanmagan. Bu nima?", ru: "Работа на горизонте «позже» не начата. Что это значит?" }, opts: [{ uz: "Ish kechikkan", ru: "Работа опоздала" }, { uz: "Roadmap xato tuzilgan", ru: "Roadmap составлен неверно" }, { uz: "Vaqti hali kelmagan", ru: "Её время ещё не пришло" }, { uz: "Ishni o'chirish kerak", ru: "Работу надо удалить" }], correct: 2 },
+  { q: { uz: "Risk nima?", ru: "Что такое риск?" }, opts: [{ uz: "Bo'lib o'tgan kechikish", ru: "Уже случившаяся задержка" }, { uz: "Kelajakdagi yangi funksiya", ru: "Будущая новая функция" }, { uz: "Bajarilgan ishlar ro'yxati", ru: "Список выполненных работ" }, { uz: "Xalaqit berishi mumkin narsa", ru: "То, что может помешать плану" }], correct: 3 },
+  { q: { uz: "Bepul Render'da Backend qachon uxlaydi?", ru: "Когда Backend засыпает на бесплатном Render?" }, opts: [{ uz: "15 daqiqa so'rov kelmasa", ru: "Если 15 минут нет запросов" }, { uz: "Har kuni yarim tunda", ru: "Каждый день в полночь" }, { uz: "Kuniga 100 so'rovdan keyin", ru: "После 100 запросов в день" }, { uz: "Ilova yopilgan zahoti", ru: "Сразу, как закрыли приложение" }], correct: 0 },
   { q: { uz: 'Backend uxlab qolsa, birinchi ochilish qancha kutadi?', ru: 'Если Backend уснул, сколько ждать первого открытия?' }, opts: [{ uz: 'Bir necha soniya', ru: 'Несколько секунд' }, { uz: 'Bir daqiqagacha', ru: 'До минуты' }, { uz: 'Besh daqiqagacha', ru: 'До пяти минут' }, { uz: 'Bir soatdan ko\'p', ru: 'Больше часа' }], correct: 1 },
-  { q: { uz: 'Mentor misolida «3 sinovchi» riskiga qaysi qadam yozildi?', ru: 'Какой шаг в примере Ментора записан к риску «3 тестировщика»?' }, opts: [{ uz: 'Ilovaga yana bitta yangi funksiya qo\'shish', ru: 'Добавить в приложение ещё одну функцию' }, { uz: '12-Modul boshlanganda odamlarni qidirish', ru: 'Искать людей, когда начнётся 12-й модуль' }, { uz: 'Mahalla futbol guruhidan 10 kishini chaqirish', ru: 'Позвать 10 человек из футбольной группы махалли' }, { uz: 'Uch sinovchidan ilovani qayta sinashni so\'rash', ru: 'Попросить трёх тестировщиков проверить ещё раз' }], correct: 2 },
-  { q: { uz: 'Nega Expo Go Mentor roadmap\'iga risk bo\'ldi?', ru: 'Почему Expo Go стал риском для roadmap Ментора?' }, opts: [{ uz: 'U ilovani juda sekin ochgani uchun', ru: 'Потому что он слишком медленно открывает приложение' }, { uz: 'Unda Backend\'ga ulanmagani uchun', ru: 'Потому что в нём нет связи с Backend' }, { uz: 'U faqat iPhone\'da ishlagani uchun', ru: 'Потому что он работает только на iPhone' }, { uz: 'U sinash ilovasi, hammada yo\'q', ru: "Потому что это инструмент для проверки — он есть не у всех" }], correct: 3 },
-  { q: { uz: 'APK nima?', ru: 'Что такое APK?' }, opts: [{ uz: 'Android\'ga o\'rnatiladigan ilova fayli', ru: 'Файл приложения для установки на Android' }, { uz: 'iPhone\'dagi ilovalar do\'konining nomi', ru: 'Название магазина приложений на iPhone' }, { uz: 'Expo Go ichidagi maxsus sinov rejimi', ru: 'Особый тестовый режим внутри Expo Go' }, { uz: 'Render\'dagi Backend sozlamalari fayli', ru: 'Файл настроек Backend на Render' }], correct: 0 },
-  { q: { uz: 'Qadam 12-Modulda bajariladi. Qaysi ufqqa qo\'yasiz?', ru: 'Шаг выполнят в 12-м модуле. В какой горизонт его поставить?' }, opts: [{ uz: 'Hozir — shu 11-Modulda', ru: 'Сейчас — в этом 11-м модуле' }, { uz: 'Keyinroq — 12–13-Modul', ru: 'Позже — 12–13-й модуль' }, { uz: 'Uzoqroq — bitiruvdan keyin', ru: 'Дальше — после выпуска' }, { uz: 'Ufqsiz — alohida ro\'yxatda', ru: 'Без горизонта — в отдельном списке' }], correct: 1 },
-  { q: { uz: 'Qaysi biri riskka qarshi aniq qadam?', ru: 'Что из этого — конкретный шаг против риска?' }, opts: [{ uz: 'Roadmap\'ga ko\'proq e\'tibor berib ishlash', ru: 'Работать, уделяя roadmap больше внимания' }, { uz: 'Imkon qadar tezroq va ko\'proq harakat qilish', ru: 'Стараться как можно быстрее и больше' }, { uz: 'Shanba kuni 10 kishini sinovga chaqirish', ru: 'В субботу позвать на тест 10 человек' }, { uz: 'Risk haqida keyinroq yana o\'ylab ko\'rish', ru: 'Подумать о риске ещё раз позже' }], correct: 2 },
-  { q: { uz: 'Yakkama-yakkada Mentor bilan nimani ko\'rasiz?', ru: "Что вы смотрите с Ментором на встрече один на один?" }, opts: [{ uz: 'Arena natijangiz va ballingizni', ru: 'Свой результат и баллы в арене' }, { uz: 'Kodingizning har bir qatorini', ru: 'Каждую строку своего кода' }, { uz: 'O\'nta yangi g\'oyangizni birma-bir', ru: 'Десять новых идей по одной' }, { uz: 'Holatlar, risklar va qadamlarni', ru: 'Статусы, риски и шаги' }], correct: 3 },
+  { q: { uz: "«3 sinovchi» riskiga qadam qaysi?", ru: "Какой шаг против риска «3 тестировщика»?" }, opts: [{ uz: "Yangi funksiya qo'shish", ru: "Добавить новую функцию" }, { uz: "Odamni keyin qidirish", ru: "Искать людей позже" }, { uz: "10 kishini sinovga chaqirish", ru: "Позвать 10 человек на тест" }, { uz: "3 kishiga qayta sinatish", ru: "Дать троим протестировать снова" }], correct: 2 },
+  { q: { uz: "Expo Go nega Mentorga risk bo'ldi?", ru: "Почему Expo Go стал риском для Ментора?" }, opts: [{ uz: "Ilovani sekin ochadi", ru: "Медленно открывает приложение" }, { uz: "Backend'ga ulanmaydi", ru: "Не подключается к Backend" }, { uz: "Faqat iPhone'da ishlaydi", ru: "Работает только на iPhone" }, { uz: "Sinash ilovasi, hammada yo'q", ru: "Тестовое приложение, есть не у всех" }], correct: 3 },
+  { q: { uz: "APK nima?", ru: "Что такое APK?" }, opts: [{ uz: "Android'ga o'rnatiladigan fayl", ru: "Файл приложения для Android" }, { uz: "iPhone ilovalar do'koni", ru: "Магазин приложений iPhone" }, { uz: "Expo Go'dagi sinov rejimi", ru: "Тестовый режим в Expo Go" }, { uz: "Render sozlamalari fayli", ru: "Файл настроек Render" }], correct: 0 },
+  { q: { uz: "Qadam 12-Modulda bajariladi. Qaysi ufqqa qo'yasiz?", ru: "Шаг выполняется в 12-м модуле. На какой горизонт поставите?" }, opts: [{ uz: "Hozir", ru: "Сейчас" }, { uz: "Keyinroq", ru: "Позже" }, { uz: "Uzoqroq", ru: "Дальше" }, { uz: "Ufqsiz", ru: "Без горизонта" }], correct: 1 },
+  { q: { uz: "Qaysi biri riskka qarshi aniq qadam?", ru: "Что из этого — конкретный шаг против риска?" }, opts: [{ uz: "Ko'proq e'tibor berish", ru: "Уделять больше внимания" }, { uz: "Tezroq harakat qilish", ru: "Действовать быстрее" }, { uz: "Shanba 10 kishini chaqirish", ru: "Позвать 10 человек в субботу" }, { uz: "Keyinroq o'ylab ko'rish", ru: "Подумать об этом позже" }], correct: 2 },
+  { q: { uz: "Yakkama-yakkada nimani ko'rasiz?", ru: "Что смотрите на встрече один на один?" }, opts: [{ uz: "Arena natijasi va ballingizni", ru: "Результат арены и баллы" }, { uz: "Kodingizning har qatorini", ru: "Каждую строку кода" }, { uz: "O'nta yangi g'oyangizni", ru: "Десять новых идей" }, { uz: "Holat, risk va qadamlarni", ru: "Статусы, риски и шаги" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2383,7 +2401,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           ? tr({ uz: <>Roadmap'ingiz tuzatildi: <A>uch risk, uchta qadam</A>.</>, ru: <>Roadmap исправлен: <A>три риска, три шага</A>.</> })
           : tr({ uz: <>Roadmap'ingizning qolganini <A>uyda yozing</A>.</>, ru: <>Остальное в roadmap <A>допишите дома</A>.</> })}
         cta={<>
-          {!isMentorL && <RejaStrip />}
           <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
             <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
           </div>
@@ -2588,7 +2605,7 @@ export default function PmOneOnOneLesson({ lang: langProp, onFinished, liveToken
         .rd-u-h { font-size: 10.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: ${T.ink2}; }
         .rd-u.hozir .rd-u-h { color: ${T.accent}; }
         .rd-u-ich { display: flex; flex-direction: column; gap: 4px; }
-        .rd-karta { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; width: 100%; text-align: left; font: inherit; color: ${T.ink}; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 10px; padding: 4px 8px; transition: transform 0.25s, box-shadow 0.25s, background-color 0.25s; animation: oo-kir 0.35s ease-out both; animation-delay: calc(var(--i, 0) * 70ms); }
+        .rd-karta { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; width: 100%; text-align: left; font: inherit; color: ${T.ink}; background: ${T.paper}; border: 1px solid transparent; border-radius: 10px; padding: 4px 8px; transition: transform 0.25s, box-shadow 0.25s, background-color 0.25s; animation: oo-kir 0.35s ease-out both; animation-delay: calc(var(--i, 0) * 70ms); }
         .rd-karta.joriy { box-shadow: 0 0 0 2px ${T.accent}; transform: scale(1.03); z-index: 1; }
         .rd-karta.joriy::after { content: ''; position: absolute; inset: -5px; border-radius: 13px; border: 2px solid ${T.accent}; opacity: 0; pointer-events: none; animation: oo-tolqin 2.4s ease-in-out 0.4s 3; }
         .rd-karta.xato { background: ${T.errFon}; }
@@ -2759,10 +2776,6 @@ export default function PmOneOnOneLesson({ lang: langProp, onFinished, liveToken
         .oo-s7-h { display: inline-flex; align-items: center; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
         .rd-h:has(.oo-s7-h) { align-items: center; flex-wrap: wrap; }
         .oo-s7-x p.q-xulosa { padding-top: 10px; padding-bottom: 10px; }
-        .oo-strip { display: flex; align-items: center; justify-content: center; gap: 6px 12px; flex-wrap: wrap; padding: 7px 14px; border-radius: 12px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 12.5px; color: ${T.ink2}; }
-        .oo-strip-l { font-weight: 800; color: ${T.ink}; }
-        .oo-strip b { color: ${T.accent}; }
-        .oo-strip-ok b { color: ${T.ok}; }
 
         /* --- Kartochkalar va yakun --- */
         .oo-flash.yangi .fc-card:not(.flip) .fc-front { box-shadow: 0 0 0 3px ${T.accent}; animation: oo-tolqin-i 2.4s ease-in-out 0.4s 3; }

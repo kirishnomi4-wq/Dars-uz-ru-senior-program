@@ -97,6 +97,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -174,8 +199,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -911,10 +936,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; vizual — varaq: to'rt qator nomi navbat bilan yoziladi, muhr joyi bo'sh; manba va sana ko'rsatilmaydi — 2-ekran bashorati, P-036/SABOQ 33) =====
 const REJA = [
-  { t: { uz: "Hisobotga sonni qanday yozishni bilib olasiz", ru: "Узнаете, как записывать число в отчёт" }, teg: { uz: 'hisobot', ru: "отчёт" } },
-  { t: { uz: 'Sonlarni uch savol bilan tekshirasiz', ru: "Проверите числа тремя вопросами" }, teg: { uz: 'tekshiruv', ru: "проверка" } },
-  { t: { uz: <><Duo /> odamlarni nima bilan qaytarishini ko'rasiz</>, ru: <>Увидите, чем <Duo /> возвращает людей</> }, teg: { uz: 'voqea', ru: "история" } },
-  { t: { uz: "O'z sonlaringizni Database'dan olib, reja yozasiz", ru: "Возьмёте свои числа из Database и напишете план" }, teg: 'SQL' }
+  { t: { uz: "Hisobotga sonni qanday yozishni bilib oling", ru: "Узнайте, как записывать число в отчёт" }, teg: { uz: 'hisobot', ru: "отчёт" } },
+  { t: { uz: 'Sonlarni uch savol bilan tekshiring', ru: "Проверьте числа тремя вопросами" }, teg: { uz: 'tekshiruv', ru: "проверка" } },
+  { t: { uz: <><Duo /> odamlarni nima bilan qaytarishini ko'ring</>, ru: <>Посмотрите, чем <Duo /> возвращает людей</> }, teg: { uz: 'voqea', ru: "история" } },
+  { t: { uz: "O'z sonlaringizni Database'dan olib, reja yozing", ru: "Возьмите свои числа из Database и напишите план" }, teg: 'SQL' }
 ];
 const RejaVaraq = () => (
   <div className="uc-reja">
@@ -1052,10 +1077,7 @@ const Screen3 = (props) => (
       3: { uz: "Ikkala son ham Database'dan — qaysi biri nimani sanaydi?", ru: "Оба числа из Database — какое что считает?" },
       default: { uz: 'Har son yonidagi birlik yorlig\'iga qarang.', ru: "Посмотрите на метку единицы рядом с каждым числом." }
     }}
-    vizual={<div className="uc-tviz-q uc-birliklar">
-      <span className="uc-birlik-q"><span>{tr({ uz: "qo'shildi", ru: "присоединился" })} <b>18</b></span><i className="hv-birlik ajrat">{tr({ uz: 'qurilma', ru: "устройство" })}</i></span>
-      <span className="uc-birlik-q"><span>{tr({ uz: 'asosiy harakatni qilgan', ru: "сделали основное действие" })} <b>19</b></span><i className="hv-birlik ajrat">{tr({ uz: 'hisob', ru: "аккаунт" })}</i></span>
-    </div>} />
+ />
 );
 
 
@@ -1174,7 +1196,7 @@ const Screen5 = (props) => (
       3: { uz: 'Kichik son ham halol bo\'lishi mumkin — savollarni eslang.', ru: "Маленькое число тоже может быть честным — вспомните вопросы." },
       default: { uz: 'Uch savol nimaga qaraydi — shuni eslang.', ru: "Вспомните, на что смотрят три вопроса." }
     }}
-    vizual={<div className="uc-tviz-q"><div className="uc-kv"><b>31 / 50</b><span className="hv-muhr bor qabul mini">{tr({ uz: 'Qabul', ru: "Принять" })}</span></div></div>} />
+ />
 );
 
 // ===== SCREEN 6 — DUOLINGO (QVoqea, PM keys K5 — faqat bank matni; SABOQ 2, 3, 8, 26). Manba: PM_Prompt_v8.md K5 (193-qator) · tayanch 5 · src/5-Modull/PmLesson21.jsx (7-Modul shakli) =====
@@ -1289,7 +1311,7 @@ const Screen7 = (props) => (
       2: { uz: 'Bu lendingga kelganlar — ilovani yana ochganini aytadimi?', ru: "Это пришедшие на лендинг — говорит ли это о повторном открытии приложения?" },
       default: { uz: 'Qaysi qator ikki davrni solishtiradi?', ru: "Какая строка сравнивает два периода?" }
     }}
-    vizual={<div className="uc-tviz-q"><HisobotVaraq className="uc-v-bitta" qatorlar={[{ ...mentorQator(MENTOR_HISOBOT.qatorlar[3]), izoh: null, oldin: null, holat: 'joriy' }]} /></div>} />
+ />
 );
 
 // ===== SCREEN 8 — ZAXIRA REJA (QTushuncha ketma-ket: bo'g'inlar → tanlov → gipoteza → ish; atama «zaxira reja» — misoldan keyin) =====
@@ -1365,7 +1387,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
   const reja = <RejaKarta n={n} yangi={yangi} rRef={rejaRef} atama={done} telefon={n >= 3 && !tugadi} />;
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · zaxira reja', ru: "Понятие · запасной план" })} screen={screen} scrollSignal={ochiq * 10 + n + (tanlov ? 5 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Bo'g'inlarni oching", ru: "Откройте звенья" })} (${ochiq}/4)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · zaxira reja', ru: "Понятие · запасной план" })} screen={screen} scrollSignal={ochiq * 10 + n + (tanlov ? 5 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Bo'g'inlarni oching", ru: "Откройте звенья" })}`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>50 ga yetmasa, bir haftada <A>nima qilasiz?</A></>, ru: <>Если не дошли до 50, <A>что сделаете за неделю?</A></> })}
         mentor={<Mentor>{tr({ uz: "Mentor misolidagi bo'g'inlarni birma-bir oching va odam qayerda kam ekanini tanlang.", ru: "Откройте звенья в примере Ментора одно за другим и выберите, где людей мало." })}</Mentor>}
@@ -2158,7 +2180,7 @@ const Screen12 = (props) => (
       3: { uz: 'Bir haftaga hammasi sig\'adimi? Rejada nechta ish bor edi?', ru: "Поместится ли всё в неделю? Сколько дел было в плане?" },
       default: { uz: 'Son halol qolsin — keyin qayerda kamligini qidiring.', ru: "Пусть число останется честным — потом ищите, где мало." }
     }}
-    vizual={<div className="uc-tviz-q"><RejaKarta n={3} mini /></div>} />
+ />
 );
 
 
@@ -2246,18 +2268,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol, ✔ o'rni MD dagidek: A 2·7·9 · B 1·5·12 · C 4·8·11 · D 3·6·10 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: "Mentor hisobotida «ro'yxatdan o'tgan» soni qayerdan olingan?", ru: "Откуда в отчёте Ментора взято число «зарегистрировались»?" }, opts: [{ uz: "Umami'dagi lending tashriflaridan", ru: "Из посещений лендинга в Umami" }, { uz: "Database'dan, namuna akkauntsiz", ru: "Из Database, без аккаунтов-образцов" }, { uz: 'Sinf chatidagi javoblar sonidan', ru: "Из числа ответов в чате класса" }, { uz: 'Lendingdagi tugma bosilishlaridan', ru: "Из нажатий кнопки на лендинге" }], correct: 1 },
-  { q: { uz: 'Sanoq sahifasidagi qadamlar nimani sanaydi?', ru: "Что считают шаги на странице подсчёта?" }, opts: [{ uz: 'Har qadamda turli qurilmalarni', ru: "На каждом шаге — разные устройства" }, { uz: 'Har qadamda turli akkauntlarni', ru: "На каждом шаге — разные аккаунты" }, { uz: 'Har qadamda lending tashriflarini', ru: "На каждом шаге — посещения лендинга" }, { uz: 'Har qadamda tugma bosilishlarini', ru: "На каждом шаге — нажатия кнопки" }], correct: 0 },
-  { q: { uz: 'Hisobotda sinfdoshlar qanday aytiladi?', ru: "Как в отчёте называют одноклассников?" }, opts: [{ uz: 'Sanalmaydi, chiqarib tashlanadi', ru: "Не считаются, исключаются" }, { uz: 'Birga sanaladi, alohida aytilmaydi', ru: "Считаются вместе, отдельно не называются" }, { uz: 'Faqat sinfdoshlar soni yoziladi', ru: "Пишется только число одноклассников" }, { uz: 'Sanaladi, lekin alohida aytiladi', ru: "Считаются, но называются отдельно" }], correct: 3 },
-  { q: { uz: "SQL'dagi `WHERE namuna = false` qatori nima qiladi?", ru: "Что делает строка `WHERE namuna = false` в SQL?" }, opts: [{ uz: 'Faqat sinfdoshlarni qoldiradi', ru: "Оставляет только одноклассников" }, { uz: 'Kunlarni tartib bilan chiqaradi', ru: "Выводит дни по порядку" }, { uz: 'Namuna akkauntlarni sanamaydi', ru: "Не считает аккаунты-образцы" }, { uz: "Ism va loginni yashirib qo'yadi", ru: "Скрывает имя и логин" }], correct: 2 },
-  { q: { uz: "SQL'ga `GROUP BY kun` qo'shilsa, Neon nima ko'rsatadi?", ru: "Если добавить в SQL `GROUP BY kun`, что покажет Neon?" }, opts: [{ uz: 'Hamma kunlar uchun bitta son', ru: "Одно число за все дни" }, { uz: 'Har kun uchun alohida son', ru: "Отдельное число за каждый день" }, { uz: 'Faqat bugungi kunning soni', ru: "Только число за сегодня" }, { uz: "Eng ko'p ro'yxat bo'lgan kun", ru: "День с наибольшим числом регистраций" }], correct: 1 },
-  { q: { uz: 'Mentor tekshiruvining uchinchi savoli nimaga qaraydi?', ru: "На что смотрит третий вопрос проверки Ментора?" }, opts: [{ uz: '50 maqsadiga qancha qolganiga', ru: "На остаток до цели 50" }, { uz: "Sinfdoshlar soni qancha o'sganiga", ru: "На рост числа одноклассников" }, { uz: 'Lendingdagi tashriflar soniga', ru: "На число посещений лендинга" }, { uz: 'Oldingi son yonida turganiga', ru: "На предыдущее число рядом" }], correct: 3 },
-  { q: { uz: 'Hisobotda foydalanuvchilar haqida nima yoziladi?', ru: "Что пишут в отчёте о пользователях?" }, opts: [{ uz: 'Faqat sonlar, ism va loginsiz', ru: "Только числа, без имён и логинов" }, { uz: 'Har bir odamning ismi va sanasi', ru: "Имя и дата каждого человека" }, { uz: 'Sinfdoshlarning ismlari alohida', ru: "Имена одноклассников отдельно" }, { uz: 'Har birining logini va sanasi', ru: "Логин и дата каждого" }], correct: 0 },
-  { q: { uz: "Bu voqeada Duolingo'ning asosiy qaytarish mexanikasi qaysi?", ru: "Какая в этой истории основная механика возвращения Duolingo?" }, opts: [{ uz: 'Seriya atrofidagi eslatmalar', ru: "Напоминания вокруг серии" }, { uz: 'Seriya yonidagi «muzlatish»', ru: "«Заморозка» рядом с серией" }, { uz: 'Ketma-ket kunlarning seriyasi', ru: "Серия дней подряд" }, { uz: "Har kuni yangi so'z o'rganish", ru: "Каждый день учить новое слово" }], correct: 2 },
-  { q: { uz: "Qaytganlar foizi nimani ko'rsatadi?", ru: "Что показывает процент вернувшихся?" }, opts: [{ uz: 'Bir davrda ochganlardan nechtasi yana ochdi', ru: "Сколько из открывших за период открыли снова" }, { uz: "Haftada nechta yangi odam ro'yxatdan o'tdi", ru: "Сколько новых людей зарегистрировалось за неделю" }, { uz: 'Lendingga kelganlardan nechtasi tugmani bosdi', ru: "Сколько из пришедших на лендинг нажали кнопку" }, { uz: "Ro'yxatdan o'tganlardan nechtasi qo'shildi", ru: "Сколько из зарегистрировавшихся присоединились" }], correct: 0 },
-  { q: { uz: 'Zaxira rejada bir haftaga nechta ish yoziladi?', ru: "Сколько дел на неделю пишут в запасном плане?" }, opts: [{ uz: "Har bo'g'inga bittadan ish", ru: "По одному делу на каждое звено" }, { uz: 'Iloji boricha ko\'proq ishlar', ru: "Как можно больше дел" }, { uz: "Ish yo'q, gipotezaning o'zi", ru: "Дел нет, только гипотеза" }, { uz: "Bitta bo'g'inga bitta ish", ru: "Одно дело на одно звено" }], correct: 3 },
-  { q: { uz: "Mentor zaxira reja uchun qaysi bo'g'inni tanladi?", ru: "Какое звено Ментор выбрал для запасного плана?" }, opts: [{ uz: 'Lending: tugmani kam bosishgan', ru: "Лендинг: кнопку нажимали мало" }, { uz: "Ro'yxat: ochganlar o'tmagan", ru: "Регистрация: открывшие не прошли" }, { uz: 'Kanal: post ikki joyga yetgan', ru: "Канал: пост дошёл до двух мест" }, { uz: "Asosiy harakat: qo'shilish kam", ru: "Основное действие: мало присоединений" }], correct: 2 },
-  { q: { uz: "Lendingga 90 tashrif, tugma 6 marta bosildi. Qaysi bo'g'inda kam?", ru: "На лендинге 90 посещений, кнопку нажали 6 раз. В каком звене мало?" }, opts: [{ uz: 'Kanal: post odamlarga yetib bormagan', ru: "Канал: пост не дошёл до людей" }, { uz: 'Lending: kirganlar tugmani bosmadi', ru: "Лендинг: зашедшие не нажали кнопку" }, { uz: "Ro'yxat: ilovani ochganlar o'tmagan", ru: "Регистрация: открывшие приложение не прошли" }, { uz: "Asosiy harakat: o'yinga qo'shilmagan", ru: "Основное действие: не присоединились к игре" }], correct: 1 },
+  { q: { uz: "Hisobotda «ro'yxatdan o'tgan» soni qayerdan olingan?", ru: "Откуда в отчёте взято число «зарегистрировались»?" }, opts: [{ uz: "Umami tashriflaridan", ru: "Из посещений в Umami" }, { uz: "Database'dan, namunasiz", ru: "Из Database, без образцов" }, { uz: "Sinf chati javoblaridan", ru: "Из ответов в чате класса" }, { uz: "Lending tugmasidan", ru: "Из кнопки лендинга" }], correct: 1 },
+  { q: { uz: "Sanoq sahifasidagi qadamlar nimani sanaydi?", ru: "Что считают шаги на странице подсчёта?" }, opts: [{ uz: "Turli qurilmalarni", ru: "Разные устройства" }, { uz: "Turli akkauntlarni", ru: "Разные аккаунты" }, { uz: "Lending tashriflarini", ru: "Посещения лендинга" }, { uz: "Tugma bosilishlarini", ru: "Нажатия кнопки" }], correct: 0 },
+  { q: { uz: "Hisobotda sinfdoshlar qanday aytiladi?", ru: "Как в отчёте указывают одноклассников?" }, opts: [{ uz: "Sanalmaydi, chiqariladi", ru: "Не считают, исключают" }, { uz: "Sanaladi, alohida emas", ru: "Считают, но не отдельно" }, { uz: "Faqat ular yoziladi", ru: "Пишут только их" }, { uz: "Sanaladi, alohida aytiladi", ru: "Считают, но называют отдельно" }], correct: 3 },
+  { q: { uz: "`WHERE namuna = false` nima qiladi?", ru: "Что делает `WHERE namuna = false`?" }, opts: [{ uz: "Faqat sinfdoshlarni qoldiradi", ru: "Оставляет только одноклассников" }, { uz: "Kunlarni tartiblaydi", ru: "Сортирует дни" }, { uz: "Namuna akkauntlarni sanamaydi", ru: "Не считает образцовые аккаунты" }, { uz: "Ism va loginni yashiradi", ru: "Скрывает имя и логин" }], correct: 2 },
+  { q: { uz: "SQL'ga `GROUP BY kun` qo'shilsa, Neon nima ko'rsatadi?", ru: "Что покажет Neon, если добавить в SQL `GROUP BY kun`?" }, opts: [{ uz: "Hamma kunga bitta son", ru: "Одно число на все дни" }, { uz: "Har kunga alohida son", ru: "Отдельное число на каждый день" }, { uz: "Faqat bugungi son", ru: "Только сегодняшнее число" }, { uz: "Eng ko'p ro'yxatli kun", ru: "День с наибольшим числом" }], correct: 1 },
+  { q: { uz: "Mentor tekshiruvining uchinchi savoli nimaga qaraydi?", ru: "На что смотрит третий вопрос проверки Ментора?" }, opts: [{ uz: "50 ga qancha qolganiga", ru: "Сколько осталось до 50" }, { uz: "Sinfdoshlar o'sishiga", ru: "На рост одноклассников" }, { uz: "Lending tashriflariga", ru: "На посещения лендинга" }, { uz: "Oldingi son borligiga", ru: "Есть ли прежнее число" }], correct: 3 },
+  { q: { uz: "Hisobotda foydalanuvchilar haqida nima yoziladi?", ru: "Что пишут в отчёте о пользователях?" }, opts: [{ uz: "Faqat sonlar, ismsiz", ru: "Только числа, без имён" }, { uz: "Har odamning ismi va sanasi", ru: "Имя и дата каждого" }, { uz: "Sinfdoshlar ismlari", ru: "Имена одноклассников" }, { uz: "Har birining logini", ru: "Логин каждого" }], correct: 0 },
+  { q: { uz: "Duolingo'ning asosiy qaytarish mexanikasi qaysi?", ru: "Какая главная механика возврата у Duolingo?" }, opts: [{ uz: "Eslatmalar", ru: "Напоминания" }, { uz: "«Muzlatish»", ru: "«Заморозка»" }, { uz: "Ketma-ket kunlar", ru: "Дни подряд" }, { uz: "Yangi so'zlar", ru: "Новые слова" }], correct: 2 },
+  { q: { uz: "Qaytganlar foizi nimani ko'rsatadi?", ru: "Что показывает процент вернувшихся?" }, opts: [{ uz: "Keyin ham ochganlar foizini", ru: "Долю тех, кто открыл и позже" }, { uz: "Yangi ro'yxatlar sonini", ru: "Число новых регистраций" }, { uz: "Tugmani bosganlar foizini", ru: "Долю нажавших кнопку" }, { uz: "Qo'shilganlar foizini", ru: "Долю записавшихся" }], correct: 0 },
+  { q: { uz: "Zaxira rejada bir haftaga nechta ish yoziladi?", ru: "Сколько дел на неделю пишут в запасном плане?" }, opts: [{ uz: "Har bo'g'inga bittadan", ru: "По одному на каждое звено" }, { uz: "Iloji boricha ko'p", ru: "Как можно больше" }, { uz: "Ish yo'q, faqat gipoteza", ru: "Без дел, только гипотеза" }, { uz: "Bitta bo'g'inga bitta", ru: "Одно дело на одно звено" }], correct: 3 },
+  { q: { uz: "Mentor zaxira reja uchun qaysi bo'g'inni tanladi?", ru: "Какое звено Ментор выбрал для запасного плана?" }, opts: [{ uz: "Lending: kam bosilgan", ru: "Лендинг: мало нажатий" }, { uz: "Ro'yxat: kam o'tilgan", ru: "Регистрация: мало прошли" }, { uz: "Kanal: post kam yetgan", ru: "Канал: пост дошёл мало куда" }, { uz: "Asosiy harakat: kam", ru: "Главное действие: мало" }], correct: 2 },
+  { q: { uz: "Lendingga 90 tashrif, tugma 6 marta bosildi. Qaysi bo'g'in?", ru: "На лендинге 90 посещений, кнопку нажали 6 раз. Какое звено?" }, opts: [{ uz: "Kanal", ru: "Канал" }, { uz: "Lending", ru: "Лендинг" }, { uz: "Ro'yxat", ru: "Регистрация" }, { uz: "Asosiy harakat", ru: "Главное действие" }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

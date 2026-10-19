@@ -855,12 +855,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { tip: _tip, rescue: _resc } = useStuckValve(done, show ? 1 : 0);   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · happy path', ru: 'Понятие · happy path' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Happy path'ni ko'ring", ru: 'Посмотрите happy path' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · happy path', ru: 'Понятие · happy path' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Happy path'ni ko'ring", ru: 'Посмотрите happy path' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>"Happy path" — bu <span className="italic" style={{ color: T.accent }}>nima</span>?</>, ru: <>«Happy path» — это <span className="italic" style={{ color: T.accent }}>что</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Happy path</b> — hammasi rejadagidek ketadigan oddiy yo'l: mijoz to'g'ri, kutilgan ma'lumot kiritadi (2 ta kitob, 5 ta...). Dars 1'da aynan shuni sinadingiz. Tugmani bosing.</>, ru: <><b style={{ color: T.ink }}>Happy path</b> — обычный путь, где всё идёт по плану: клиент вводит правильные, ожидаемые данные (2 книги, 5...). Именно это вы проверяли на уроке 1. Нажмите кнопку.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 «Bu yetarlimi?» tugmasini bosing — happy path testi natijasi chiqadi.", ru: '💡 Нажмите «Этого достаточно?» — появится результат happy-path теста.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable off={!show}>
         <div className="split">
           <Col>
@@ -898,12 +897,11 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (i) => { setActive(i); setSeen(prev => { const s = new Set(prev); s.add(i); return s; }); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · edge', ru: 'Понятие · edge' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Chegaralarni sinang (${seen.size}/3)`, ru: `Проверьте границы (${seen.size}/3)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · edge', ru: 'Понятие · edge' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Chegaralarni sinang (${seen.size}/3)`, ru: `Проверьте границы (${seen.size}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Funksiya <span className="italic" style={{ color: T.accent }}>chegarada</span> qanday ishlaydi — 0, manfiy, eng kichik?</>, ru: <>Как функция ведёт себя <span className="italic" style={{ color: T.accent }}>на границе</span> — 0, отрицательное, наименьшее?</> })}</h2></div>
         <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Edge case</b> (chegara holati) — oddiylikning chetidagi qiymatlar: 0, manfiy, eng kichik/katta. Himoyasiz funksiya ularda <b style={{ color: T.ink }}>jim ravishda noto'g'ri</b> javob beradi. Har birini bosib ko'ring.</>, ru: <><b style={{ color: T.ink }}>Edge case</b> (граничный случай) — значения на краю обычного: 0, отрицательные, наименьшее/наибольшее. Функция без защиты <b style={{ color: T.ink }}>молча выдаёт на них неверный</b> ответ. Нажмите на каждое.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Qolgan chegara-qiymatni bosing — 0, manfiy va 1: har biri mashinaning javobini ko'rsatadi.", ru: '💡 Нажмите оставшееся граничное значение — 0, отрицательное и 1: каждое покажет ответ машины.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable off={active === null}>
         <div className="split">
           <Col>
@@ -961,12 +959,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (i) => { setActive(i); setSeen(prev => { const s = new Set(prev); s.add(i); return s; }); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · noto'g'ri ma'lumot", ru: 'Понятие · неверные данные' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ikkalasini sinang (${seen.size}/2)`, ru: `Проверьте оба (${seen.size}/2)` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tushuncha · noto'g'ri ma'lumot", ru: 'Понятие · неверные данные' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `Ikkalasini sinang (${seen.size}/2)`, ru: `Проверьте оба (${seen.size}/2)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mijoz raqam o'rniga <span className="italic" style={{ color: T.accent }}>"ikki"</span> deb yozsa nima bo'ladi?</>, ru: <>Что будет, если клиент вместо числа напишет <span className="italic" style={{ color: T.accent }}>«два»</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Foydalanuvchi har doim raqam yubormaydi — matn, bo'sh qiymat (null) kelishi mumkin. Himoyasiz funksiya bunda <b style={{ color: T.ink }}>NaN</b> yoki <b style={{ color: T.ink }}>0</b> beradi — eng yomoni, xato <b style={{ color: T.ink }}>sezilmay</b> qoladi. Sinab ko'ring.</>, ru: <>Пользователь не всегда присылает число — может прийти текст или пустое значение (null). Функция без защиты выдаст <b style={{ color: T.ink }}>NaN</b> или <b style={{ color: T.ink }}>0</b> — и, что хуже всего, ошибка останется <b style={{ color: T.ink }}>незамеченной</b>. Попробуйте.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Qolgan g'alati kirishni bosing — matn va null: mashina nima qaytarishini ko'ring.", ru: '💡 Нажмите оставшийся странный ввод — текст и null: посмотрите, что вернёт машина.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable off={active === null}>
         <div className="split">
           <Col>
@@ -997,12 +994,11 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { tip: _tip, rescue: _resc } = useStuckValve(done, show ? 1 : 0);   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Yechim · throw', ru: 'Решение · throw' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Funksiyani mustahkamlang', ru: 'Укрепите функцию' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Yechim · throw', ru: 'Решение · throw' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Funksiyani mustahkamlang', ru: 'Укрепите функцию' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Funksiya noto'g'ri kirishni qanday <span className="italic" style={{ color: T.accent }}>rad etadi</span>?</>, ru: <>Как функция <span className="italic" style={{ color: T.accent }}>отклоняет</span> неверный ввод?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Funksiya boshida <b style={{ color: T.ink }}>tekshiruv (guard)</b> qo'yamiz: agar quantity raqam bo'lmasa yoki 0 dan kichik bo'lsa — <span className="mono">throw new Error(...)</span> bilan <b style={{ color: T.ink }}>xato tashlaydi</b> va ishni to'xtatadi. Tugmani bosing.</>, ru: <>В начале функции ставим <b style={{ color: T.ink }}>проверку (guard)</b>: если quantity не число или не больше нуля — функция <b style={{ color: T.ink }}>бросает ошибку</b> через <span className="mono">throw new Error(...)</span> и останавливается. Нажмите кнопку.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 «Guard (throw) qo'shish» tugmasini bosing — funksiya boshiga tekshiruv qo'shiladi va ikki natija chiqadi.", ru: '💡 Нажмите «Добавить guard (throw)» — в начало функции добавится проверка и появятся два результата.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable off={!show}>
         <div className="split">
           <Col>
@@ -1035,12 +1031,11 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: 'b' }); }, [done]);
   const pick = (v) => { if (choice === 'b') return; setChoice(v); setSc(n => n + 1); };
   return (
-    <Stage eyebrow="toThrow" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "To'g'ri yozuvni tanlang", ru: 'Выберите правильную запись' }} onClick={onNext} /></>}>
+    <Stage eyebrow="toThrow" screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "To'g'ri yozuvni tanlang", ru: 'Выберите правильную запись' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Funksiya xato tashlasa — uni qanday <span className="italic" style={{ color: T.accent }}>sinaymiz</span>?</>, ru: <>Функция бросает ошибку — как её <span className="italic" style={{ color: T.accent }}>протестировать</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Xato tashlaydigan funksiyani to'g'ridan-to'g'ri chaqirsangiz, test ham buzilib qoladi. Shuning uchun funksiyani <span className="mono">() =&gt;</span> ichiga o'rab beramiz — Jest uni o'zi chaqiradi va <span className="mono">.toThrow()</span> bilan xato tashlaganini tekshiradi. Qaysi yozuv to'g'ri?</>, ru: <>Вызовете функцию, бросающую ошибку, напрямую — рухнет и сам тест. Поэтому оборачиваем её в <span className="mono">() =&gt;</span> — Jest вызовет её сам и проверит через <span className="mono">.toThrow()</span>, что ошибка брошена. Какая запись правильная?</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Savol: qaysi variantda funksiya darrov chaqirilmaydi, balki () => ichiga o'ralgan? Noto'g'risini bossangiz sabab chiqadi.", ru: '💡 Вопрос: в каком варианте функция не вызывается сразу, а обёрнута в () =>? Нажмёте не тот — появится причина.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="split">
           <Col>
@@ -1170,12 +1165,11 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pool = DD_CHIPS.filter(c => placed[c.id] === undefined);
   const navLabel = (done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : (!full ? { uz: `Guardni yig'ing (${Object.keys(placed).length}/3)`, ru: `Соберите guard (${Object.keys(placed).length}/3)` } : { uz: 'Testni ishga tushiring', ru: 'Запустите тест' });
   return (
-    <Stage eyebrow={tr({ uz: "Mashq · guard yig'ish", ru: 'Практика · собираем guard' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={navLabel} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Mashq · guard yig'ish", ru: 'Практика · собираем guard' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (navLabel)} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Guard funksiyasini <span className="italic" style={{ color: T.accent }}>o'zingiz yig'ing</span>.</>, ru: <>Соберите guard <span className="italic" style={{ color: T.accent }}>своими руками</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Bo'sh <span className="mono">order.ts</span>. Bloklarni joyiga <b style={{ color: T.ink }}>bosib</b> qo'ying (sudrash ham mumkin) — har katak nima kutayotganini o'zi aytadi. Yig'ib bo'lgach <span className="mono">npm test</span> bilan "0 ta buyurtmada xato beradi" testini ishga tushiring.</>, ru: <>Пустой <span className="mono">order.ts</span>. <b style={{ color: T.ink }}>Нажмите</b> на блоки, чтобы поставить их на места (можно и перетащить) — каждая ячейка сама говорит, что в неё нужно. Когда соберёте — запустите тест «ошибка при заказе 0 штук» командой <span className="mono">npm test</span>.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Blokni bosing — u o'z qatoriga o'zi tushadi: avval shart (if), keyin xato tashlash (throw), keyin hisob (return). So'ng ▶ npm test.", ru: '💡 Нажмите блок — он сам встанет в свою строку: сначала условие (if), потом бросок ошибки (throw), потом расчёт (return). Затем ▶ npm test.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="split">
           <Col>
@@ -1234,12 +1228,11 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { tip: _tip, rescue: _resc } = useStuckValve(done, (a ? 1 : 0) + (b ? 1 : 0));   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · chegara chizig'i", ru: 'Понятие · линия границы' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Ikki tomonni sinang', ru: 'Проверьте обе стороны' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tushuncha · chegara chizig'i", ru: 'Понятие · линия границы' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Ikki tomonni sinang', ru: 'Проверьте обе стороны' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Chegara qayerda — <span className="italic" style={{ color: T.accent }}>1 to'g'ri, 0 noto'g'ri</span>. Ikkalasini sinaymiz.</>, ru: <>Где проходит граница — <span className="italic" style={{ color: T.accent }}>1 верно, 0 неверно</span>. Проверим обе стороны.</> })}</h2></div>
         <Mentor>{tr({ uz: <>Eng muhim joy — chegara chizig'i. <span className="mono">quantity = 1</span> — eng kichik <b style={{ color: T.ink }}>to'g'ri</b> qiymat (PASS bo'lishi kerak). <span className="mono">quantity = 0</span> — birinchi <b style={{ color: T.ink }}>noto'g'ri</b> qiymat (xato berishi kerak). Yaxshi test chegaraning <b>ikki tomonini</b> ham sinaydi.</>, ru: <>Самое важное место — линия границы. <span className="mono">quantity = 1</span> — наименьшее <b style={{ color: T.ink }}>допустимое</b> значение (должен быть PASS). <span className="mono">quantity = 0</span> — первое <b style={{ color: T.ink }}>недопустимое</b> (должна быть ошибка). Хороший тест проверяет <b>обе стороны</b> границы.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikkala tugmani bosing — «▶ 1 ni sinash» va «▶ 0 ni sinash»: chegaraning ikki tomoni ham yashil bo'lishi kerak.", ru: '💡 Нажмите обе кнопки — «▶ Проверить 1» и «▶ Проверить 0»: обе стороны границы должны стать зелёными.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="split">
           <Col>
@@ -1298,12 +1291,11 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { tip: _tip, rescue: _resc } = useStuckValve(done, show ? 1 : 0);   // 13-band klapan
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: "Xato yo'li · API", ru: 'Путь ошибки · API' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Bog'lanishni ko'ring", ru: 'Посмотрите связь' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Xato yo'li · API", ru: 'Путь ошибки · API' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Bog'lanishni ko'ring", ru: 'Посмотрите связь' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Funksiyada <span className="mono" style={{ color: T.accent }}>throw</span> — API'da bu <span className="italic" style={{ color: T.accent }}>nimaga aylanadi</span>?</>, ru: <>В функции <span className="mono" style={{ color: T.accent }}>throw</span> — а <span className="italic" style={{ color: T.accent }}>во что это превращается</span> в API?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Esingizdami — oldingi modullarda <b style={{ color: T.ink }}>DTO</b> noto'g'ri ma'lumotni 400 bilan rad etardi. Bu o'sha g'oya: noto'g'ri kirish "error path"dan ketadi. Funksiyada <span className="mono">throw</span>, API'da <span className="mono">@IsNumber</span> → <b style={{ color: T.ink }}>400</b>. Tugmani bosing.</>, ru: <>Помните — в предыдущих модулях <b style={{ color: T.ink }}>DTO</b> отклонял неверные данные с кодом 400. Это та же идея: неверный ввод уходит по «error path». В функции — <span className="mono">throw</span>, в API — <span className="mono">@IsNumber</span> → <b style={{ color: T.ink }}>400</b>. Нажмите кнопку.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 «▶ POST /order { quantity: 0 }» tugmasini bosing — API javobi chiqadi.", ru: '💡 Нажмите «▶ POST /order { quantity: 0 }» — появится ответ API.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable off={!show}>
         <div className="split">
           <Col>
@@ -1336,12 +1328,11 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const go = () => { setStep(s => Math.min(s + 1, 2)); setSc(n => n + 1); };
   return (
-    <Stage eyebrow={tr({ uz: 'Natija · bug', ru: 'Итог · bug' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Hikoyani ko'ring", ru: 'Посмотрите историю' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Natija · bug', ru: 'Итог · bug' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Hikoyani ko'ring", ru: 'Посмотрите историю' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Faqat <span className="italic" style={{ color: T.accent }}>edge-test</span> tutadigan xato — qanday qutqaradi?</>, ru: <>Ошибка, которую ловит только <span className="italic" style={{ color: T.accent }}>edge-тест</span>, — как он спасает?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Tasavvur qiling: kimdir <span className="mono">-5</span> ta buyurtma berib, do'kondan <b style={{ color: T.ink }}>50 000 so'm "qaytim"</b> oldi. Agar faqat happy-path test bo'lsa, bu xato sezilmay ishlab ketadi. Hikoyani bosib kuzating.</>, ru: <>Представьте: кто-то заказал <span className="mono">-5</span> книг и получил от магазина <b style={{ color: T.ink }}>50 000 сумов «сдачи»</b>. Будь только happy-path тесты, эта ошибка работала бы незаметно. Нажимайте и следите за историей.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Tugmani ketma-ket bosing — avval faqat happy-path test, keyin edge test qo'shiladi: ikki natijani solishtiring.", ru: '💡 Нажимайте кнопку по очереди — сначала только happy-path тест, потом добавится edge-тест: сравните два результата.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <Zoomable>
         <div className="split">
           <Col>
@@ -1400,12 +1391,11 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'log', correct: false, label: { uz: "it('log', () => { console.log(orderTotal(10000, 0)); })", ru: "it('лог', () => { console.log(orderTotal(10000, 0)); })" }, why: { uz: "console.log faqat ekranga chiqaradi — hech narsani tekshirmaydi. Bu ham yolg'on test.", ru: 'console.log только печатает на экран — ничего не проверяет. Это тоже фальшивый тест.' } }
   ];
   return (
-    <Stage eyebrow={tr({ uz: 'Amaliyot · haqiqiy edge test', ru: 'Практика · настоящий edge-тест' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Haqiqiy edge testlarni tanlang', ru: 'Выберите настоящие edge-тесты' }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Amaliyot · haqiqiy edge test', ru: 'Практика · настоящий edge-тест' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Haqiqiy edge testlarni tanlang', ru: 'Выберите настоящие edge-тесты' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir nechta test yozildi. Qaysilari <span className="italic" style={{ color: T.accent }}>haqiqatan edge holatni tutadi</span>?</>, ru: <>Несколько тестов уже написано. Какие из них <span className="italic" style={{ color: T.accent }}>действительно ловят edge-случай</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Har testga ikkita savol bering: (1) <span className="mono">() =&gt;</span> bilan o'ralganmi? (2) to'g'ri tekshiruvchi (matcher) — <span className="mono">toThrow</span> — ishlatilganmi? Faqat haqiqiy edge testlarni varaqaga oling.</>, ru: <>Задайте каждому тесту два вопроса: (1) обёрнут ли он в <span className="mono">() =&gt;</span>? (2) использован ли правильный matcher — <span className="mono">toThrow</span>? Берите на лист только настоящие edge-тесты.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har testga ikki savol bering: () => bilan o'ralganmi? toThrow ishlatilganmi (toBe emas)? Ikkalasiga «ha» bo'lsa — haqiqiy edge test.", ru: '💡 Задайте каждому тесту два вопроса: обёрнут ли он в () =>? использован ли toThrow (а не toBe)? Если оба «да» — настоящий edge-тест.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
         <PickLines
           fileName="order.spec.ts"
           scaffoldTop={<><At>describe</At>{'('}<St>{"'orderTotal — edge cases'"}</St>{', () => {'}</>}
@@ -1623,66 +1613,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ Mustahkamlash-jang savollari (12) — ⚡ Jonli roli javob-kalitlari va taqsimotni tasdiqlaydi (3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: 'Edge case (chegara holati) nima?', ru: 'Что такое edge case (граничный случай)?' }, opts: [
-    { uz: "Eng ko'p uchraydigan, dasturchi doim kutadigan oddiy va tipik kirish", ru: 'Самый частый, обычный и типичный ввод, которого всегда ждёт разработчик' },
-    { uz: "Funksiyaga berilgan nom yoki uning ichidagi o'zgaruvchi nomi", ru: 'Имя, данное функции, или имя переменной внутри неё' },
-    { uz: "Oddiylikning chetidagi qiymati: 0, manfiy yoki juda katta son", ru: 'Значение на краю обычного: 0, отрицательное или очень большое число' },
-    { uz: "Faqat har doim xatosiz ishlaydigan, muammosiz oddiy kirish", ru: 'Только простой ввод, который всегда работает без ошибок' }], correct: 2 },
-  { q: { uz: 'orderTotal(10000, 0) himoyasiz funksiyada nima qaytaradi?', ru: 'Что вернёт orderTotal(10000, 0) в функции без защиты?' }, opts: [
-    { uz: 'Error tashlaydi va funksiyani darhol to\'xtatadi', ru: 'Бросит Error и сразу остановит функцию' },
-    { uz: 'NaN qaytaradi — hisoblash muvaffaqiyatsiz bo\'ladi', ru: 'Вернёт NaN — вычисление не удастся' },
-    { uz: '10000 qaytaradi — bitta buyurtma narxi kabi', ru: 'Вернёт 10000 — как цену одного заказа' },
-    { uz: "0 — bepul buyurtma, lekin xato sezilmay qoladi", ru: '0 — бесплатный заказ, но ошибка останется незамеченной' }], correct: 3 },
-  { q: { uz: "Mijoz raqam o'rniga matn (\"ikki\") yuborsa, himoyasiz funksiya nima qaytaradi?", ru: 'Клиент прислал вместо числа текст («ikki») — что вернёт функция без защиты?' }, opts: [
-    { uz: "0 qaytaradi — matn avtomatik ravishda nolga aylantirib yuboriladi", ru: 'Вернёт 0 — текст автоматически превратится в ноль' },
-    { uz: "NaN — \"Not a Number\", hisoblash jim ravishda buzilib ketadi", ru: 'NaN — «Not a Number», вычисление тихо сломается' },
-    { uz: "Error tashlaydi va so'rovni darhol, hech ikkilanmasdan rad etadi", ru: 'Бросит Error и сразу, без колебаний отклонит запрос' },
-    { uz: "10000 — narx hech qanday o'zgarishsiz, o'sha holicha qaytariladi", ru: '10000 — цена вернётся как есть, без изменений' }], correct: 1 },
-  { q: { uz: 'Guard (himoya) qanday yoziladi?', ru: 'Как пишется guard (защита)?' }, opts: [
-    { uz: "if (shart) throw new Error(...) — noto'g'ri kirishni rad etadi", ru: 'if (условие) throw new Error(...) — отклоняет неверный ввод' },
-    { uz: 'console.log(quantity) yordamida qiymatni ekranga chiqarib tekshiriladi', ru: 'Через console.log(quantity) — вывести значение на экран и посмотреть' },
-    { uz: "return 0 yozib, noto'g'ri holatni jimgina o'tkazib yuborish orqali", ru: 'Написать return 0 и тихо пропустить неверный случай' },
-    { uz: "Guard umuman yozilmaydi — Jest buni o'zi avtomatik tekshirib qo'yadi", ru: 'Guard вообще не пишут — Jest проверит это сам, автоматически' }], correct: 0 },
-  { q: { uz: 'Funksiya xato tashlashini sinash uchun qaysi yozuv to\'g\'ri?', ru: 'Какая запись правильно проверяет, что функция бросает ошибку?' }, opts: [
-    { uz: 'expect(orderTotal(10000, 0)).toThrow() — o\'ramasdan chaqiriladi', ru: 'expect(orderTotal(10000, 0)).toThrow() — вызов без обёртки' },
-    { uz: 'expect(orderTotal(10000, 0)).toBe(0) — natijani solishtiradi', ru: 'expect(orderTotal(10000, 0)).toBe(0) — сравнивает результат' },
-    { uz: 'orderTotal(10000, 0).toThrow() — funksiyaga bevosita ulanadi', ru: 'orderTotal(10000, 0).toThrow() — цепляется прямо к функции' },
-    { uz: 'expect(() => orderTotal(10000, 0)).toThrow() — o\'rab chaqiradi', ru: 'expect(() => orderTotal(10000, 0)).toThrow() — вызов в обёртке' }], correct: 3 },
-  { q: { uz: '() => bilan o\'ralmasa nima bo\'ladi?', ru: 'Что будет, если не обернуть в () =>?' }, opts: [
-    { uz: 'Test odatdagidan biroz sekinroq, lekin natija xuddi shunday chiqaveradi', ru: 'Тест чуть медленнее обычного, но результат тот же' },
-    { uz: 'Hech narsa — funksiya har doimgidek xatosiz yaxshi ishlayveradi', ru: 'Ничего — функция продолжит работать как ни в чём не бывало' },
-    { uz: "Funksiya darrov chaqiriladi, xato tashlaydi va test o'zi qulaydi", ru: 'Функция вызовется сразу, бросит ошибку — и тест рухнет сам' },
-    { uz: 'Jest ogohlantiradi, lekin testni baribir o\'tkazib yuboradi', ru: 'Jest выдаст предупреждение, но тест всё равно пропустит' }], correct: 2 },
-  { q: { uz: 'Chegara (boundary) sinovida nimalar tekshiriladi?', ru: 'Что проверяют в тесте границы (boundary)?' }, opts: [
-    { uz: "Chegaraning ikki tomoni — masalan 1 (to'g'ri) va 0 (noto'g'ri)", ru: 'Обе стороны границы — например 1 (верно) и 0 (неверно)' },
-    { uz: 'Faqat eng katta qiymat, boshqa hech qanday holat tekshirilmaydi', ru: 'Только наибольшее значение, больше ничего не проверяется' },
-    { uz: 'Faqat manfiy sonlar, musbat qiymatlar umuman tekshirilmaydi', ru: 'Только отрицательные числа, положительные не проверяются вовсе' },
-    { uz: "Faqat matn ko'rinishidagi noto'g'ri kirishlar tekshiriladi", ru: 'Только неверный ввод в виде текста' }], correct: 0 },
-  { q: { uz: "orderTotal funksiyasida throw ishlatilgan. Bu API'da nimaga mos keladi?", ru: 'В orderTotal используется throw. Чему это соответствует в API?' }, opts: [
-    { uz: "200 OK — so'rov muvaffaqiyatli bajarilgani ko'rsatiladi", ru: '200 OK — запрос выполнен успешно' },
-    { uz: '400 Bad Request — DTO tekshiruvi kirishni rad etganini bildiradi', ru: '400 Bad Request — проверка DTO отклонила ввод' },
-    { uz: "500 Internal Error — serverning o'zida nosozlik borligini bildiradi", ru: '500 Internal Error — сбой на самом сервере' },
-    { uz: 'Hech nimaga mos kelmaydi — bu faqat unit-testga tegishli tushuncha', ru: 'Ничему — это понятие относится только к юнит-тестам' }], correct: 1 },
-  { q: { uz: 'Faqat happy-path testi yozilgan bo\'lsa, qanday xavf bor?', ru: 'Написаны только happy-path тесты — в чём риск?' }, opts: [
-    { uz: 'Edge holatdagi xato (masalan manfiy buyurtma) sezilmay ishlab ketadi', ru: 'Ошибка в edge-случае (например, отрицательный заказ) проскочит незамеченной' },
-    { uz: "Test odatdagidan bir oz sekinroq ishga tushadi, boshqa hech qanday farqi yo'q", ru: 'Тесты запустятся чуть медленнее — и больше никакой разницы' },
-    { uz: "Kod umuman ishlamay qoladi va dastur birdaniga to'liq yiqilib tushadi", ru: 'Код совсем перестанет работать, и программа сразу рухнет целиком' },
-    { uz: "Xavf umuman yo'q — happy-path testi bu holatda ham yetarli", ru: 'Риска нет — happy-path тестов и так вполне достаточно' }], correct: 0 },
-  { q: { uz: "AI yozgan testda faqat happy-path bo'lsa, tekshiruvchi nima qilishi kerak?", ru: 'AI написал тесты только на happy-path — что должен сделать проверяющий?' }, opts: [
-    { uz: "AI'ga to'liq ishonib, testni tekshirmasdan o'tkazib yuborish", ru: 'Полностью довериться AI и пропустить тесты без проверки' },
-    { uz: "Yetishmayotgan edge case testlarni topib, qo'shib qo'yish", ru: 'Найти недостающие edge case тесты и добавить их' },
-    { uz: "Butun testni o'chirib, boshidan qaytadan yozib chiqish", ru: 'Удалить все тесты и переписать их с нуля' },
-    { uz: 'Faqat console.log qo\'shib, natijani ko\'z bilan kuzatish', ru: 'Просто добавить console.log и следить за результатом глазами' }], correct: 1 },
-  { q: { uz: 'expect(orderTotal(10000, -5)).toBe(-50000) — bu yozuv edge xatoni tutadimi?', ru: 'expect(orderTotal(10000, -5)).toBe(-50000) — поймает ли такая запись edge-ошибку?' }, opts: [
-    { uz: "Ha — chunki javobida manfiy son ishtirok etib turgani ko'rinadi", ru: 'Да — ведь в ответе фигурирует отрицательное число' },
-    { uz: "Ha — toBe tekshiruvchisi (matcher) har doim edge testga tegishli", ru: 'Да — проверка (matcher) toBe всегда относится к edge-тестам' },
-    { uz: "Yo'q — bu hali himoyasiz funksiyani 'to'g'ri' deb hisoblaydi", ru: 'Нет — она считает ещё незащищённую функцию «правильной»' },
-    { uz: 'Bu umuman test emas — oddiy hisoblash amali, boshqa hech narsa emas', ru: 'Это вообще не тест — обычное вычисление, и только' }], correct: 2 },
-  { q: { uz: "Guard qo'shilgach, eski expect(orderTotal(10000, 0)).toBe(0) testi nima bo'ladi?", ru: 'После добавления guard что станет со старым тестом expect(orderTotal(10000, 0)).toBe(0)?' }, opts: [
-    { uz: "Baribir PASS bo'lib qolaveradi, hech qanday o'zgarish sezilmaydi", ru: 'Так и останется PASS, никаких изменений не будет' },
-    { uz: "Testlar ro'yxatidan Jest tomonidan avtomatik chiqarib tashlanadi", ru: 'Jest автоматически уберёт его из списка тестов' },
-    { uz: "Jest buni o'zi payqab, qatorni avtomatik ravishda tuzatib qo'yadi", ru: 'Jest сам это заметит и автоматически исправит строку' },
-    { uz: "FAIL bo'ladi — endi funksiya 0 o'rniga xato tashlab qo'yadi", ru: 'Станет FAIL — функция теперь бросает ошибку вместо 0' }], correct: 3 },
+  { q: { uz: "Edge case nima?", ru: "Что такое edge case?" }, opts: [{ uz: "Eng ko'p uchraydigan kirish", ru: "Самый частый ввод" }, { uz: "Funksiya yoki o'zgaruvchi nomi", ru: "Имя функции или переменной" }, { uz: "0, manfiy yoki juda katta son", ru: "0, отрицательное или огромное число" }, { uz: "Doim xatosiz o'tadigan kirish", ru: "Ввод, который всегда проходит" }], correct: 2 },
+  { q: { uz: "Himoyasiz orderTotal(10000, 0) nima beradi?", ru: "Что вернёт незащищённая orderTotal(10000, 0)?" }, opts: [{ uz: "Error — darhol to'xtaydi", ru: "Error — сразу остановится" }, { uz: "NaN — hisob buziladi", ru: "NaN — расчёт сломается" }, { uz: "10000 — bitta narx", ru: "10000 — цена одной" }, { uz: "0 — bepul, xato sezilmaydi", ru: "0 — бесплатно, ошибку не видно" }], correct: 3 },
+  { q: { uz: "Himoyasiz funksiyaga «ikki» kelsa?", ru: "Что будет, если в незащищённую функцию придёт «ikki»?" }, opts: [{ uz: "0 — matn nolga aylanadi", ru: "0 — текст станет нулём" }, { uz: "NaN — hisob jim buziladi", ru: "NaN — расчёт тихо ломается" }, { uz: "Error — so'rov rad etiladi", ru: "Error — запрос отклонён" }, { uz: "10000 — narx o'zgarmaydi", ru: "10000 — цена не меняется" }], correct: 1 },
+  { q: { uz: "Guard (himoya) qanday yoziladi?", ru: "Как пишется guard (защита)?" }, opts: [{ uz: "if (shart) throw new Error()", ru: "if (условие) throw new Error()" }, { uz: "console.log(quantity)", ru: "console.log(quantity)" }, { uz: "if (shart) return 0", ru: "if (условие) return 0" }, { uz: "Yozilmaydi — Jest o'zi tutadi", ru: "Не пишется — Jest поймает сам" }], correct: 0 },
+  { q: { uz: "f() xato tashlashini qaysi yozuv sinaydi?", ru: "Какая запись проверяет, что f() бросает ошибку?" }, opts: [{ uz: "expect(f()).toThrow()", ru: "expect(f()).toThrow()" }, { uz: "expect(f()).toBe(0)", ru: "expect(f()).toBe(0)" }, { uz: "f().toThrow()", ru: "f().toThrow()" }, { uz: "expect(() => f()).toThrow()", ru: "expect(() => f()).toThrow()" }], correct: 3 },
+  { q: { uz: "toThrow'da () => yozilmasa?", ru: "Что будет, если в toThrow не написать () =>?" }, opts: [{ uz: "Test sekinroq, natija bir xil", ru: "Тест медленнее, итог тот же" }, { uz: "Hech narsa o'zgarmaydi", ru: "Ничего не изменится" }, { uz: "Xato chiqib, test o'zi qulaydi", ru: "Ошибка вылетит, тест упадёт сам" }, { uz: "Jest ogohlantirib, o'tkazadi", ru: "Jest предупредит и пропустит" }], correct: 2 },
+  { q: { uz: "Boundary sinovida nima tekshiriladi?", ru: "Что проверяют в boundary-тесте?" }, opts: [{ uz: "Ikki tomon: 1 va 0", ru: "Обе стороны: 1 и 0" }, { uz: "Faqat eng katta qiymat", ru: "Только самое большое значение" }, { uz: "Faqat manfiy sonlar", ru: "Только отрицательные числа" }, { uz: "Faqat matnli kirish", ru: "Только текстовый ввод" }], correct: 0 },
+  { q: { uz: "throw API'da qanday javobga aylanadi?", ru: "Во что превращается throw в API?" }, opts: [{ uz: "200 OK", ru: "200 OK" }, { uz: "400 Bad Request", ru: "400 Bad Request" }, { uz: "500 Internal Error", ru: "500 Internal Error" }, { uz: "Hech qanday javob", ru: "Ни во что" }], correct: 1 },
+  { q: { uz: "Faqat happy path sinalsa, qanday xavf bor?", ru: "Чем опасно, если проверен только happy path?" }, opts: [{ uz: "Edge xato sezilmay qoladi", ru: "Ошибка на краю останется незамеченной" }, { uz: "Test biroz sekinlashadi", ru: "Тест немного замедлится" }, { uz: "Dastur darhol yiqiladi", ru: "Программа сразу упадёт" }, { uz: "Xavf yo'q — shu yetarli", ru: "Опасности нет — этого хватит" }], correct: 0 },
+  { q: { uz: "AI testida faqat happy path bo'lsa?", ru: "Что делать, если в тесте от ИИ только happy path?" }, opts: [{ uz: "Ishonib o'tkazish", ru: "Довериться и пропустить" }, { uz: "Edge testlarni qo'shish", ru: "Добавить edge-тесты" }, { uz: "Qaytadan yozib chiqish", ru: "Переписать заново" }, { uz: "console.log qo'shish", ru: "Добавить console.log" }], correct: 1 },
+  { q: { uz: "-5 dona uchun toBe(-50000) xatoni tutadimi?", ru: "Ловит ли ошибку toBe(-50000) для -5 штук?" }, opts: [{ uz: "Ha — manfiy son bor", ru: "Да — там отрицательное число" }, { uz: "Ha — toBe doim edge testi", ru: "Да — toBe всегда edge-тест" }, { uz: "Yo'q — xatoni to'g'ri deydi", ru: "Нет — считает ошибку верной" }, { uz: "Bu umuman test emas", ru: "Это вообще не тест" }], correct: 2 },
+  { q: { uz: "Guard qo'shilgach eski toBe(0) testi?", ru: "Что станет со старым тестом toBe(0) после guard?" }, opts: [{ uz: "Baribir PASS bo'laveradi", ru: "Останется PASS" }, { uz: "Jest uni o'zi o'chiradi", ru: "Jest сам его удалит" }, { uz: "Jest uni o'zi tuzatadi", ru: "Jest сам его исправит" }, { uz: "FAIL — endi xato tashlanadi", ru: "FAIL — теперь бросается ошибка" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

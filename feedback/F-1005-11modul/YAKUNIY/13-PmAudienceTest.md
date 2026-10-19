@@ -55,10 +55,10 @@ Sanoq jadvali (ustunlar: To'xtash · Nechta kishida · Navbat; ostida «Vazifani
 - Chap: Dars oxirida: auditoriya bilan sinov va shu darsda tuzatish — telefon o'zi o'ynaydi: ro'yxat ustida uchta qizil nuqta bitta joyga yig'iladi → kartalar o'z joyiga uchadi (kun sarlavhalari o'rnida matnsiz chiziq) → ostida yashil qator «✓ Qayta sinov: vazifa bajarildi»
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
-  1. Har to'xtash nechta kishida takrorlanganini sanaysiz
-  2. Kim vazifani bajara olmaganini ko'rib, birinchisini tanlaysiz
-  3. Tanlangan to'xtashni o'z ilovangizda tuzatasiz
-  4. Tuzatishni yangi odam bilan qayta sinaysiz
+  1. Har to'xtash nechta kishida takrorlanganini sanang
+  2. Kim vazifani bajara olmaganini ko'rib, birinchisini tanlang
+  3. Tanlangan to'xtashni o'z ilovangizda tuzating
+  4. Tuzatishni yangi odam bilan qayta sinang
 - Pastki qator: repo `maydon-jamoa` · boshlang'ich holat `m11-dars-13-start` · namuna `m11-dars-13-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Pastki qator 2: Yozuvingiz yo'qmi? Hozir sinfdoshingiz bilan sinang: «Hisobdan chiqish» — u namuna ism va telefon bilan ro'yxatdan o'tadi.
 - Tugmalar: Orqaga · Boshlaymiz

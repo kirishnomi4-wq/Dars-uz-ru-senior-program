@@ -110,6 +110,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -187,8 +212,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1611,18 +1636,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // ✔ o'rinlari o'zgarmaydi (MD v2: 1·3·0·2·1·0·3·1·2·3·0·2) — faqat matn.
 const QUIZ_BANK = [
-  { q: { uz: 'AI\'ga system prompt berilmasa, u mijozga qanday javob beradi?', ru: "Как ИИ ответит клиенту, если ему не дали system prompt?" }, opts: [{ uz: 'Umuman javob bermay, jim qoladi', ru: "Совсем не ответит, промолчит" }, { uz: 'Umumiy, mavzudan chetga chiqqan javob', ru: "Общим ответом, который уходит от темы" }, { uz: "Faqat «tushunmadim» deb yozadi", ru: "Напишет только «не понял»" }, { uz: "Bot o'zi o'chib, qayta yonadi", ru: "Бот сам выключится и включится снова" }], correct: 1 },
-  { q: { uz: 'System prompt nimani belgilaydi?', ru: "Что задаёт system prompt?" }, opts: [{ uz: "AI'ning javob yozish tezligini", ru: "Скорость, с которой ИИ пишет ответ" }, { uz: 'Botning rangi va shriftini', ru: "Цвет и шрифт бота" }, { uz: 'Server joylashgan shaharni', ru: "Город, где стоит сервер" }, { uz: "AI'ning xulqi va chegarasini", ru: "Поведение ИИ и его границы" }], correct: 3 },
-  { q: { uz: 'Prompt nima?', ru: "Что такое промпт?" }, opts: [{ uz: "AI'ga yuboriladigan so'rov matni", ru: "Текст запроса, который отправляют ИИ" }, { uz: 'Botning xatolar jurnali', ru: "Журнал ошибок бота" }, { uz: "AI API'ning internet manzili", ru: "Интернет-адрес AI API" }, { uz: 'Telegram kanalining nomi', ru: "Название Telegram-канала" }], correct: 0 },
-  { q: { uz: 'Kontekst oynasi nima?', ru: "Что такое окно контекста?" }, opts: [{ uz: "AI'ning javob yozish tezligi", ru: "Скорость, с которой ИИ пишет ответ" }, { uz: "Botning Telegram'dagi chat oynasi", ru: "Окно чата бота в Telegram" }, { uz: "AI bir so'rovda ko'radigan matn hajmi", ru: "Объём текста, который ИИ видит за один запрос" }, { uz: 'Bazadagi jadvallar soni', ru: "Количество таблиц в базе" }], correct: 2 },
-  { q: { uz: "Suhbat tarixi oynaga sig'masa, qaysi xabar birinchi chiqib ketadi?", ru: "Какое сообщение выйдет первым, если история диалога не поместится в окно?" }, opts: [{ uz: 'Eng yangi xabar', ru: "Самое новое сообщение" }, { uz: 'Eng eski xabar', ru: "Самое старое сообщение" }, { uz: 'Eng qisqa xabar', ru: "Самое короткое сообщение" }, { uz: 'Tasodifiy bir xabar', ru: "Случайное сообщение" }], correct: 1 },
-  { q: { uz: "Mijoz ismi yo'qolmasligi uchun bot nima qiladi?", ru: "Что делает бот, чтобы имя клиента не потерялось?" }, opts: [{ uz: "Ismni bazaga saqlab, promptga qo'shadi", ru: "Сохраняет имя в базу и добавляет в промпт" }, { uz: "Kontekst oynasini o'zi kattalashtiradi", ru: "Сам увеличивает окно контекста" }, { uz: "Temperature'ni pastroq qilib qo'yadi", ru: "Ставит temperature пониже" }, { uz: "AI'ni har safar qayta ishga tushiradi", ru: "Каждый раз перезапускает ИИ" }], correct: 0 },
-  { q: { uz: "Temperature past bo'lsa (masalan, 0.1), javob qanday bo'ladi?", ru: "Каким будет ответ при низкой temperature (например, 0.1)?" }, opts: [{ uz: 'Har safar butunlay boshqacha', ru: "Каждый раз совсем другим" }, { uz: 'Har safar xato chiqadi', ru: "Каждый раз ошибочным" }, { uz: 'Juda uzun va batafsil', ru: "Очень длинным и подробным" }, { uz: "Qat'iy va deyarli bir xil", ru: 'Строгим и почти одинаковым' }], correct: 3 },
-  { q: { uz: "Temperature baland bo'lsa (masalan, 1.5), menyu uchun nima noqulay?", ru: "Что неудобно для меню при высокой temperature (например, 1.5)?" }, opts: [{ uz: "Bot butunlay to'xtab qoladi", ru: "Бот полностью остановится" }, { uz: 'Javob har safar boshqacha chiqadi', ru: "Ответ каждый раз получается другим" }, { uz: 'Internet uzilib qoladi', ru: "Пропадёт интернет" }, { uz: "API kaliti oshkor bo'ladi", ru: "Раскроется ключ API" }], correct: 1 },
-  { q: { uz: 'Menyuni har safar bir xil va aniq aytish kerak. Qaysi temperature mos?', ru: "Меню нужно каждый раз называть одинаково и точно. Какая temperature подходит?" }, opts: [{ uz: 'Baland (1.5)', ru: "Высокая (1.5)" }, { uz: "O'rtacha, xohlagancha", ru: 'Средняя, как получится' }, { uz: 'Past (0.1)', ru: "Низкая (0.1)" }, { uz: "Har so'rovda almashtirib", ru: "Менять при каждом запросе" }], correct: 2 },
-  { q: { uz: "AI «Bizda ananasli pitsa bor» dedi, menyuda esa bunday pitsa yo'q. Bu nima?", ru: "ИИ сказал «У нас есть пицца с ананасом», а в меню такой пиццы нет. Что это?" }, opts: [{ uz: "To'g'ri javob, hammasi joyida", ru: "Верный ответ, всё в порядке" }, { uz: "Telegram Bot API'ning xatosi", ru: "Ошибка Telegram Bot API" }, { uz: "API kalitining oshkor bo'lishi", ru: "Раскрытие ключа API" }, { uz: 'Hallutsinatsiya, tekshirish kerak', ru: "Галлюцинация, нужно проверить" }], correct: 3 },
-  { q: { uz: 'AI javobidagi narxni qachon tekshirish kerak?', ru: "Когда нужно проверять цену в ответе ИИ?" }, opts: [{ uz: 'Mijozga yuborishdan oldin', ru: "Перед отправкой клиенту" }, { uz: 'Hech qachon, AI adashmaydi', ru: "Никогда, ИИ не ошибается" }, { uz: "Faqat temperature past bo'lsa", ru: "Только при низкой temperature" }, { uz: 'Faqat mijoz shikoyat qilsa', ru: "Только если клиент пожалуется" }], correct: 0 },
-  { q: { uz: 'AI API kaliti qayerda saqlanadi?', ru: "Где хранится ключ AI API?" }, opts: [{ uz: 'bot.js kodining ichida, ochiq holda', ru: "Внутри кода bot.js, открыто" }, { uz: 'Mijozga chatda yuboriladi', ru: "Отправляется клиенту в чат" }, { uz: '.env faylida, kodda emas', ru: "В файле .env, а не в коде" }, { uz: 'Telegram profil sozlamasida', ru: "В настройках профиля Telegram" }], correct: 2 },
+  { q: { uz: "System prompt bo'lmasa, AI qanday javob beradi?", ru: "Без system prompt как ответит AI?" }, opts: [{ uz: "Umuman javob bermaydi", ru: "Вообще не ответит" }, { uz: "Mavzudan chetga chiqadi", ru: "Уйдёт от темы" }, { uz: "Faqat «tushunmadim» deydi", ru: "Скажет только «не понял»" }, { uz: "Bot o'chib qoladi", ru: "Бот выключится" }], correct: 1 },
+  { q: { uz: "System prompt nimani belgilaydi?", ru: "Что задаёт system prompt?" }, opts: [{ uz: "AI javob yozish tezligini", ru: "Скорость ответа AI" }, { uz: "Botning rangi va shriftini", ru: "Цвет и шрифт бота" }, { uz: "Server joylashgan shaharni", ru: "Город, где стоит сервер" }, { uz: "AI kimligi va mavzusini", ru: "Кто такой AI и о чём говорит" }], correct: 3 },
+  { q: { uz: "Prompt nima?", ru: "Что такое промпт?" }, opts: [{ uz: "AI'ga yuboriladigan matn", ru: "Текст, который шлют AI" }, { uz: "Botning xatolar jurnali", ru: "Журнал ошибок бота" }, { uz: "AI API manzili", ru: "Адрес AI API" }, { uz: "Telegram kanal nomi", ru: "Имя Telegram-канала" }], correct: 0 },
+  { q: { uz: "Kontekst oynasi nima?", ru: "Что такое контекстное окно?" }, opts: [{ uz: "AI javob yozish tezligi", ru: "Скорость ответа AI" }, { uz: "Telegram'dagi chat oynasi", ru: "Окно чата в Telegram" }, { uz: "AI ko'ra oladigan matn hajmi", ru: "Объём текста, который видит AI" }, { uz: "Bazadagi jadvallar soni", ru: "Число таблиц в базе" }], correct: 2 },
+  { q: { uz: "Tarix oynaga sig'masa, qaysi xabar chiqib ketadi?", ru: "История не влезает в окно. Какое сообщение уйдёт?" }, opts: [{ uz: "Eng yangi xabar", ru: "Самое новое" }, { uz: "Eng eski xabar", ru: "Самое старое" }, { uz: "Eng qisqa xabar", ru: "Самое короткое" }, { uz: "Tasodifiy bir xabar", ru: "Случайное" }], correct: 1 },
+  { q: { uz: "Ism yo'qolmasligi uchun bot nima qiladi?", ru: "Что делает бот, чтобы имя не потерялось?" }, opts: [{ uz: "Ismni bazada saqlaydi", ru: "Хранит имя в базе" }, { uz: "Oynani kattalashtiradi", ru: "Увеличивает окно" }, { uz: "Temperature'ni pastlatadi", ru: "Понижает temperature" }, { uz: "AI'ni qayta yoqadi", ru: "Перезапускает AI" }], correct: 0 },
+  { q: { uz: "Temperature past (0.1) bo'lsa, javob qanday?", ru: "Temperature низкая (0.1) — каким будет ответ?" }, opts: [{ uz: "Har safar boshqacha", ru: "Каждый раз другой" }, { uz: "Har safar xato", ru: "Каждый раз ошибка" }, { uz: "Juda uzun va batafsil", ru: "Очень длинный" }, { uz: "Deyarli bir xil", ru: "Почти одинаковый" }], correct: 3 },
+  { q: { uz: "Temperature baland (1.5): menyu uchun nima yomon?", ru: "Temperature высокая (1.5): что плохо для меню?" }, opts: [{ uz: "Bot to'xtab qoladi", ru: "Бот остановится" }, { uz: "Javob har safar boshqacha", ru: "Ответ каждый раз другой" }, { uz: "Internet uziladi", ru: "Пропадёт интернет" }, { uz: "API kaliti oshkor bo'ladi", ru: "Раскроется ключ API" }], correct: 1 },
+  { q: { uz: "Menyuni har safar bir xil aytish uchun qaysi temperature?", ru: "Какая temperature, чтобы меню звучало одинаково?" }, opts: [{ uz: "Baland (1.5)", ru: "Высокая (1.5)" }, { uz: "O'rtacha, xohlagancha", ru: "Средняя, любая" }, { uz: "Past (0.1)", ru: "Низкая (0.1)" }, { uz: "Har so'rovda boshqa", ru: "Разная в каждом запросе" }], correct: 2 },
+  { q: { uz: "AI menyuda yo'q «ananasli pitsa»ni aytdi. Bu nima?", ru: "AI назвал «пиццу с ананасом», которой нет в меню. Что это?" }, opts: [{ uz: "To'g'ri javob", ru: "Верный ответ" }, { uz: "Bot API xatosi", ru: "Ошибка Bot API" }, { uz: "Kalit oshkor bo'lgani", ru: "Утечка ключа" }, { uz: "Hallutsinatsiya", ru: "Галлюцинация" }], correct: 3 },
+  { q: { uz: "AI aytgan narx qachon tekshiriladi?", ru: "Когда проверяют цену, названную AI?" }, opts: [{ uz: "Mijozga yuborishdan oldin", ru: "До отправки клиенту" }, { uz: "Hech qachon", ru: "Никогда" }, { uz: "Temperature past bo'lsagina", ru: "Только при низкой temperature" }, { uz: "Faqat mijoz shikoyat qilsa", ru: "Только если клиент жалуется" }], correct: 0 },
+  { q: { uz: "AI API kaliti qayerda saqlanadi?", ru: "Где хранится ключ AI API?" }, opts: [{ uz: "bot.js kodida, ochiq holda", ru: "Открыто в коде bot.js" }, { uz: "Mijozga chatda yuboriladi", ru: "Отправляется клиенту в чат" }, { uz: ".env faylida", ru: "В файле .env" }, { uz: "Telegram profil sozlamasida", ru: "В настройках профиля Telegram" }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2867,7 +2892,7 @@ export default function BotAiBrainLesson({ lang: langProp, onFinished, liveToken
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

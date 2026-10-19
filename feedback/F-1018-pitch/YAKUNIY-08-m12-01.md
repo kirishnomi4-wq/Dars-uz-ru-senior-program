@@ -30,3 +30,6 @@ Airbnb keysi (s3) va uning ma'lumotlari (AIRBNB_KADR, SLAYD_NOM, Brend) · 1-, 2
 - shots uz 10/10, ru (3, 6), 390 px (3, 6) toza.
 - `sinov/m1201.mjs` → `natija-m1201.txt`: uch qism ketma-ket (nav «Keyingi bo'lak: Jamoa» → «… Keyingi qadam» → «Davom etish»), answers[3].qismlar 3, qayta ochilganda tiklanadi; sherik: qoralama yo'q → eslatma; bor → taymer → 6 belgi → xulosa «1 ta savolga javob yo'q: Jamoa», earned [readAloud], artefakt `sherik`, qayta ochilganda 5/1. pageerror 0.
 - Suratlar `suratlar/m1201/`.
+
+## QA fidbek F-1015-372…377 (19.10, F-1019-03)
+Bitta karta (sahna, Reja chap ustuni) · ichki qatorlar chegarasiz · bosqich bitta joyda · ma'nosiz matn bloklanadi · 213.22 — 12 qaror qadami («Olti bo'lak» 3, Bozor 3, Jamoa 3, Keyingi qadam 3). Qurish `qurish/f1019c.py`, sinov `sinov/qa372-377-m1201.mjs`, suratlar `suratlar/m1201-qa/`. Batafsil — JURNAL «F-1019-03».

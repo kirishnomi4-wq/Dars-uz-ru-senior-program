@@ -1,0 +1,23 @@
+m4c-01 (CiCdIntroLesson) s2 «Bitta uchirish — aslida nechta amal?»
+  boshida: nav=Savollarga javob bering (yopiq) · bosiladigan nuqta-karta: 0 · vaqt: 0 daq
+  vasvasa-tugma → ogohlantirish: true
+  1. «Yig'ish nuqtasida qo'lda nima qilasiz?» xato «Saytni internetga chiqarasiz» → «Internetga chiqarish oxirgi nuqtada bo'ladi, Uchirishda.» (tugma yopildi: true) → to'g'ri «Kerakli paketlarni o'rnatasiz» → keyingi qadam
+  1-qadamdan keyin: ogohlantirish yopildi: true · vaqt: 4 daq
+  2. «Skaner nuqtasida qo'lda nima qilasiz?» xato «Paketlarni qayta o'rnatasiz» → «Paketlar Yig'ishda o'rnatildi. Bu yerda testlar ishlaydi.» (tugma yopildi: true) → to'g'ri «Testlarni ishga tushirasiz» → keyingi qadam
+  3. «O'lcham ramkasi nimani tekshiradi?» xato «Kod qancha tez» → «Tezlik o'lchanmaydi. Faqat yozish qoidalari tekshiriladi.» (tugma yopildi: true) → to'g'ri «Kod qoidalarga mos yozilganini» → keyingi qadam
+  4. «O'rash nuqtasida nima bo'ladi?» xato «Kod zip faylga» → «Zip emas. O'rash kodni brauzer uchun yengil qiladi.» (tugma yopildi: true) → to'g'ri «Yuk internet uchun yengil qilinadi» → keyingi qadam
+  5. «Uchirish nuqtasida nima bo'ladi?» xato «Kod qaytadan tekshiriladi» → «Tekshiruv oldingi nuqtalarda bo'ldi. Bu yerda yuk internetga chiqadi.» (tugma yopildi: true) → to'g'ri «Tayyor sayt foydalanuvchilarga chiqadi» → keyingi qadam
+  oxiri: nav=Davom etish (ochiq) · vaqt: 20 daq · ✓ karta: 5/5 · xulosa: true · vasvasa-tugma: false
+  saqlangan javob [2]: {"correct":true,"picked":true}
+  qaytganda: nav=Davom etish (ochiq) · savol bor: false · xulosa: true · ✓: 5
+m4c-03 (GithubActionsLesson) s6 «Workflow → Job → Step qanday joylashgan?»
+  boshida: nav=Savollarga javob bering (yopiq) · bosiladigan daraja-karta: 0 · ta'rif-karta: false
+  1. «Workflow, ya'ni yo'l xaritasi, bu nima?» xato «Faylning ichidagi bitta buyruq» → «Bitta buyruq eng kichik daraja, u amal (step) deyiladi.» (tugma yopildi: true) → to'g'ri «Bitta fayldagi butun lenta rejasi» → keyingi qadam
+  1-qadamdan keyin ta'rif: «Workflow (yo'l xaritasi) Butun lenta rejasi — bitt…»
+  2. «Job, ya'ni nuqta, qayerda ishlaydi?» xato «Boshqa bir nuqtaning» → «Nuqta yo'l xaritasi ichida turadi, boshqa nuqta ichida emas.» (tugma yopildi: true) → to'g'ri «O'zining alohida mashinasida» → keyingi qadam
+  2-qadamdan keyin ta'rif: «Job (nuqta) Bitta tekshiruv nuqtasi — o'z mashinas…»
+  3. «Step, ya'ni amallar, qanday tartibda bajariladi?» xato «Hammasi bir vaqtning» → «Bir vaqtda nuqtalar ishlashi mumkin, amallar esa navbat bilan.» (tugma yopildi: true) → to'g'ri «Yuqoridan pastga navbat bilan» → keyingi qadam
+  oxiri: nav=Davom etish (ochiq) · ✓ daraja: 3/3 · ta'rif-karta: false · xulosa: true
+  saqlangan javob [6]: {"correct":true,"picked":true}
+  qaytganda: nav=Davom etish (ochiq) · savol bor: false · xulosa: true · ✓: 3
+pageerror: 0

@@ -101,6 +101,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -178,8 +203,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1561,18 +1586,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (aylanma), ekran savollarining nusxasi emas (§144)
 const QUIZ_BANK = [
-  { q: { uz: 'Netlify sayt nomi nimani o\'zgartiradi?', ru: 'Что меняет имя сайта в Netlify?' }, opts: [{ uz: 'Netlify manzilining boshini', ru: 'Начало адреса в Netlify' }, { uz: "Render'dagi Backend manzilini ham", ru: 'И адрес Backend в Render' }, { uz: "Database'dagi jadvallarning nomini", ru: 'Названия таблиц в Database' }, { uz: 'Saytdagi «Band qilish» tugmasi matnini', ru: 'Текст кнопки «Band qilish» на сайте' }], correct: 0 },
-  { q: { uz: 'Sayt nomi o\'zgargach kataklar chiqmadi. Sabab nima?', ru: "После смены имени сайта ячейки не появились. Почему?" }, opts: [{ uz: "Database'dagi bandlar o'chib ketgan", ru: 'Брони в Database удалились' }, { uz: 'WEB_ORIGIN da eski manzil qolgan', ru: 'В WEB_ORIGIN остался старый адрес' }, { uz: 'Netlify DNS ni hali yangilamagan', ru: 'Netlify ещё не обновил DNS' }, { uz: 'Brauzer yangi nomni tanimagan', ru: 'Браузер не узнал новое имя' }], correct: 1 },
-  { q: { uz: "Render'dagi WEB_ORIGIN nima uchun kerak?", ru: 'Зачем нужен WEB_ORIGIN в Render?' }, opts: [{ uz: "Database'ga ulanish manzilini saqlash", ru: 'Хранить адрес подключения к Database' }, { uz: 'Ega parolini tekshirib, token berish', ru: 'Проверять пароль владельца и выдавать токен' }, { uz: "Sayt so'roviga ruxsat berish uchun", ru: 'Чтобы разрешать запросы сайта' }, { uz: 'Monitor intervalini belgilab berish', ru: 'Задавать интервал монитора' }], correct: 2 },
-  { q: { uz: "Manzil https:// bilan bo'lsa, yo'ldagi Wi-Fi nimani ko'radi?", ru: 'Если адрес с https://, что видит Wi-Fi на пути?' }, opts: [{ uz: 'Ism va telefonni ochiq matnda', ru: 'Имя и телефон открытым текстом' }, { uz: "Faqat telefon raqamini ko'radi", ru: 'Видит только номер телефона' }, { uz: "Hech qanday so'rov o'tmaydi", ru: 'Ни один запрос не проходит' }, { uz: "O'qib bo'lmaydigan ma'lumotni", ru: 'Нечитаемые данные' }], correct: 3 },
+  { q: { uz: "Netlify nomi nimani o'zgartiradi?", ru: "Что меняет имя в Netlify?" }, opts: [{ uz: "Sayt manzili boshini", ru: "Начало адреса сайта" }, { uz: "Render manzilini", ru: "Адрес Render" }, { uz: "Jadvallar nomini", ru: "Имена таблиц" }, { uz: "Tugma matnini", ru: "Текст кнопки" }], correct: 0 },
+  { q: { uz: "Nom o'zgargach kataklar chiqmadi. Nega?", ru: "После смены имени слоты не появились. Почему?" }, opts: [{ uz: "Bandlar o'chib ketgan", ru: "Брони удалились" }, { uz: "WEB_ORIGIN da eski manzil", ru: "В WEB_ORIGIN старый адрес" }, { uz: "Netlify DNS yangilamagan", ru: "Netlify не обновил DNS" }, { uz: "Brauzer nomni tanimagan", ru: "Браузер не узнал имя" }], correct: 1 },
+  { q: { uz: "WEB_ORIGIN nima uchun kerak?", ru: "Зачем нужен WEB_ORIGIN?" }, opts: [{ uz: "Database manzilini saqlash", ru: "Хранить адрес Database" }, { uz: "Ega parolini tekshirish", ru: "Проверять пароль владельца" }, { uz: "Sayt so'roviga ruxsat berish", ru: "Разрешать запросы сайта" }, { uz: "Monitor intervalini berish", ru: "Задавать интервал монитора" }], correct: 2 },
+  { q: { uz: "HTTPS bo'lsa, yo'ldagi Wi-Fi nimani ko'radi?", ru: "Что видит Wi-Fi по пути, если есть HTTPS?" }, opts: [{ uz: "Ism va telefonni ochiq", ru: "Имя и телефон открыто" }, { uz: "Faqat telefon raqamini", ru: "Только номер телефона" }, { uz: "Hech qanday so'rovni", ru: "Никаких запросов" }, { uz: "O'qib bo'lmaydigan ma'lumot", ru: "Нечитаемые данные" }], correct: 3 },
   { q: { uz: 'SSL sertifikati nima qiladi?', ru: 'Что делает SSL-сертификат?' }, opts: [{ uz: 'Saytda HTTPS ni yoqadi', ru: 'Включает HTTPS на сайте' }, { uz: 'Saytni tezroq ochadi', ru: 'Открывает сайт быстрее' }, { uz: "Database'ni himoya qiladi", ru: 'Защищает Database' }, { uz: 'CORS ruxsatini o\'zi beradi', ru: 'Сам даёт разрешение CORS' }], correct: 0 },
-  { q: { uz: '*.netlify.app manzilida HTTPS ni kim yoqadi?', ru: 'Кто включает HTTPS на адресе *.netlify.app?' }, opts: [{ uz: "O'quvchi sertifikat sotib oladi", ru: 'Ученик покупает сертификат' }, { uz: "Netlify uni o'zi yoqib qo'yadi", ru: 'Netlify включает его сам' }, { uz: 'Render WEB_ORIGIN orqali yoqadi', ru: 'Render включает через WEB_ORIGIN' }, { uz: 'UptimeRobot monitor orqali yoqadi', ru: 'UptimeRobot включает через монитор' }], correct: 1 },
-  { q: { uz: "O'z domenida sertifikat qachon olinadi?", ru: 'Когда получают сертификат для своего домена?' }, opts: [{ uz: 'Domen sotib olingan zahotiyoq', ru: 'Сразу после покупки домена' }, { uz: 'WEB_ORIGIN yangilangan zahoti', ru: 'Сразу после обновления WEB_ORIGIN' }, { uz: "DNS yozuvi to'g'ri bo'lgach", ru: 'Когда DNS-запись верна' }, { uz: "Birinchi monitor qo'shilgach", ru: 'После добавления первого монитора' }], correct: 2 },
-  { q: { uz: 'Database javob bermasa, GET / nima qaytaradi?', ru: 'Если Database не отвечает, что вернёт GET /?' }, opts: [{ uz: '503 — xizmat hozir ishlay olmaydi', ru: '503 — сервис сейчас не может работать' }, { uz: "404 — bunday yo'l Backend'da yo'q", ru: '404 — такого пути в Backend нет' }, { uz: '401 — avval parol bilan kiring', ru: '401 — сначала войдите с паролем' }, { uz: '200 — «Maydon Backend ishlayapti»', ru: '200 — «Maydon Backend ishlayapti»' }], correct: 3 },
-  { q: { uz: "/health nega Database'ni so'ramaydi?", ru: 'Почему /health не спрашивает Database?' }, opts: [{ uz: 'Bepul Database limiti tugamasin', ru: 'Чтобы не кончился бесплатный лимит Database' }, { uz: "Database'ni Backend ko'rmaydi", ru: 'Backend не видит Database' }, { uz: 'Database javobi juda sekin keladi', ru: 'Ответ Database приходит слишком медленно' }, { uz: "UptimeRobot SQL'ni bilmaydi", ru: 'UptimeRobot не знает SQL' }], correct: 0 },
+  { q: { uz: "*.netlify.app manzilida HTTPS ni kim yoqadi?", ru: "Кто включает HTTPS на адресе *.netlify.app?" }, opts: [{ uz: "O'quvchi sertifikat oladi", ru: "Ученик покупает сертификат" }, { uz: "Netlify o'zi yoqadi", ru: "Netlify включает сам" }, { uz: "Render WEB_ORIGIN orqali", ru: "Render через WEB_ORIGIN" }, { uz: "UptimeRobot monitori", ru: "Монитор UptimeRobot" }], correct: 1 },
+  { q: { uz: "O'z domenida sertifikat qachon olinadi?", ru: "Когда получают сертификат для своего домена?" }, opts: [{ uz: "Domen olingan zahoti", ru: "Сразу после покупки домена" }, { uz: "WEB_ORIGIN yangilangach", ru: "После обновления WEB_ORIGIN" }, { uz: "DNS yozuvi to'g'ri bo'lgach", ru: "Когда DNS-запись верна" }, { uz: "Monitor qo'shilgach", ru: "После добавления монитора" }], correct: 2 },
+  { q: { uz: "Database to'xtasa, `/health` nima qaytaradi?", ru: "Что вернёт `/health`, если Database остановилась?" }, opts: [{ uz: "Database `error`ini qaytaradi", ru: "Возвращает `error` Database" }, { uz: "Umuman javob bermaydi", ru: "Вообще не отвечает" }, { uz: "Backend'ni `stop` qiladi", ru: "Делает `stop` Backend" }, { uz: "Baribir `ok` qaytaradi", ru: "Всё равно возвращает `ok`" }], correct: 3 },
+  { q: { uz: "/health nega Database'ni so'ramaydi?", ru: "Почему /health не спрашивает Database?" }, opts: [{ uz: "Bepul Neon limiti tugamasin", ru: "Чтобы не кончился лимит Neon" }, { uz: "Backend uni ko'rmaydi", ru: "Backend её не видит" }, { uz: "Database sekin javob beradi", ru: "Database отвечает медленно" }, { uz: "UptimeRobot SQL bilmaydi", ru: "UptimeRobot не знает SQL" }], correct: 0 },
   { q: { uz: "Bepul UptimeRobot manzilni necha daqiqada so'raydi?", ru: 'Как часто бесплатный UptimeRobot спрашивает адрес?' }, opts: [{ uz: 'Har bir daqiqada', ru: 'Каждую минуту' }, { uz: 'Har 5 daqiqada', ru: 'Каждые 5 минут' }, { uz: 'Har bir soatda', ru: 'Каждый час' }, { uz: 'Kuniga bir marta', ru: 'Раз в день' }], correct: 1 },
-  { q: { uz: 'Bepul rejada ogohlantirish qayerga keladi?', ru: 'Куда приходит оповещение на бесплатном тарифе?' }, opts: [{ uz: 'Telegram botiga va guruhiga', ru: 'В Telegram-бот и группу' }, { uz: "Tekin SMS va qo'ng'iroq bilan", ru: 'Бесплатными SMS и звонком' }, { uz: 'Email va telefon ilovasiga', ru: 'На email и в приложение на телефоне' }, { uz: 'Render boshqaruv sahifasiga', ru: 'На страницу управления Render' }], correct: 2 },
-  { q: { uz: "UptimeRobot so'rovlari bepul Render'ga qanday ta'sir qiladi?", ru: 'Как запросы UptimeRobot влияют на бесплатный Render?' }, opts: [{ uz: 'Backend sekinlashib qoladi', ru: 'Backend замедляется' }, { uz: 'Render pullik bo\'lib qoladi', ru: 'Render становится платным' }, { uz: "Database to'lib qoladi", ru: 'Database переполняется' }, { uz: 'Backend uxlab qolmaydi', ru: 'Backend не засыпает' }], correct: 3 },
+  { q: { uz: "Bepul rejada ogohlantirish qayerga keladi?", ru: "Куда приходит оповещение на бесплатном плане?" }, opts: [{ uz: "Telegram botiga", ru: "В Telegram-бот" }, { uz: "SMS va qo'ng'iroq bilan", ru: "SMS и звонком" }, { uz: "Email va telefon ilovasiga", ru: "На email и в приложение" }, { uz: "Render sahifasiga", ru: "На страницу Render" }], correct: 2 },
+  { q: { uz: "UptimeRobot so'rovlari bepul Render'ga nima qiladi?", ru: "Что запросы UptimeRobot делают с бесплатным Render?" }, opts: [{ uz: "Backend sekinlashadi", ru: "Backend замедляется" }, { uz: "Render pullik bo'ladi", ru: "Render становится платным" }, { uz: "Database to'lib qoladi", ru: "Database переполняется" }, { uz: "Backend uxlab qolmaydi", ru: "Backend не засыпает" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2149,7 +2174,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   const qaytar = (i) => { if (done || isMentorLive) return; setStepN(i); };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({ h: fmtCode(tr(c.h)), t: fmtCode(tr(c.t)), prompt: c.prompt && c.prompt.map(l => tr(l)), kimga: c.prompt && tr(c.kimga || { uz: 'Siz → Antigravity', ru: 'Вы → Antigravity' }), xato: c.err && fmtCode(tr(c.err)) }))}
         joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
         tugadi={done} tugadiMatn={doneText && tr(doneText)} natija={natija(done)} natijaYorliq={natijaYorliq && tr(natijaYorliq)}

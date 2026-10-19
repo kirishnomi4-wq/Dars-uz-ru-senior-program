@@ -90,6 +90,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -167,8 +192,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1210,66 +1235,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, MD dan; to'g'ri javob o'rni A·B·C·D ×3 (0 1 2 3 · 0 1 2 3 · 0 1 2 3)
 const QUIZ_BANK = [
-  { q: { uz: "Prod ro'yxati nima?", ru: 'Что такое прод-список?' }, opts: [
-    { uz: 'Loyihani ishonchliroq qiladigan ishlar ro\'yxati', ru: "Список задач, которые делают проект надёжнее" },
-    { uz: "MVP'ga keyinroq qo'shiladigan funksiyalar ro'yxati", ru: 'Список функций, которые добавят в MVP позже' },
-    { uz: "Saytdagi hamma sahifalar manzilining ro'yxati", ru: 'Список адресов всех страниц сайта' },
-    { uz: "Bugun maydonda band qilingan vaqtlar ro'yxati", ru: 'Список времени, забронированного сегодня' }], correct: 0 },
-  { q: { uz: "So'rovlar chegarasi nimani sanaydi?", ru: 'Что считает лимит запросов?' }, opts: [
-    { uz: 'Bugun saytga kirgan hamma odamlar sonini', ru: 'Число всех людей, зашедших сегодня на сайт' },
-    { uz: "Bir manzildan bir daqiqadagi so'rovlarni", ru: 'Запросы с одного адреса за минуту' },
-    { uz: "Database'dagi barcha jadvallar qatorlarini", ru: 'Строки всех таблиц в Database' },
-    { uz: "Har o'yinchining band qilgan vaqtlarini", ru: 'Забронированное время каждого игрока' }], correct: 1 },
-  { q: { uz: "Chegaradan oshgan so'rovga Backend nima qaytaradi?", ru: 'Что Backend возвращает на запрос сверх лимита?' }, opts: [
-    { uz: "`401` — parol noto'g'ri, qayta kiriting", ru: '`401` — пароль неверный, введите снова' },
-    { uz: '`409` — bu vaqt band, boshqasini tanlang', ru: '`409` — это время занято, выберите другое' },
-    { uz: "`429` — ko'p so'rov keldi, kutib turing", ru: '`429` — запросов слишком много, подождите' },
-    { uz: "`400` — ism yozilmagan, formani to'ldiring", ru: '`400` — нет имени, заполните форму' }], correct: 2 },
-  { q: { uz: "Chegara nega saytda emas, Backend'da qo'yiladi?", ru: 'Почему лимит ставят не на сайте, а в Backend?' }, opts: [
-    { uz: "Sayt kodi Backend'dan sekinroq ishlaydi", ru: 'Код сайта работает медленнее Backend' },
-    { uz: "Saytda chegara uchun joy qolmagan", ru: 'На сайте не осталось места для лимита' },
-    { uz: "Backend kodini o'quvchi o'zgartira olmaydi", ru: 'Ученик не может менять код Backend' },
-    { uz: "Hamma so'rov Backend'dan o'tadi", ru: 'Все запросы проходят через Backend' }], correct: 3 },
-  { q: { uz: '«Maydon» da qaysi yo\'lga eng qattiq chegara?', ru: 'У какого пути в «Maydon» самый строгий лимит?' }, opts: [
-    { uz: '`POST /kirish` — parol va kod tekshiriladi', ru: '`POST /kirish` — проверяются пароль и код' },
-    { uz: "`POST /hodisalar` — hodisa ko'p yuboriladi", ru: '`POST /hodisalar` — событий отправляется много' },
-    { uz: "`GET /vaqtlar` — kataklar ko'p so'raladi", ru: '`GET /vaqtlar` — ячейки запрашивают часто' },
-    { uz: "`POST /bandlar` — band ko'p qilinadi", ru: '`POST /bandlar` — бронируют часто' }], correct: 0 },
-  { q: { uz: "Bir Wi-Fi'dagi o'nta telefon Backend'ga qanday ko'rinishi mumkin?", ru: 'Как десять телефонов в одной Wi-Fi-сети могут выглядеть для Backend?' }, opts: [
-    { uz: "Har biri o'z brauzer ID si bilan", ru: 'Каждый со своим ID браузера' },
-    { uz: 'Bitta IP manzildan kelgandek', ru: 'Как будто с одного IP-адреса' },
-    { uz: 'Har biri alohida Render orqali', ru: 'Каждый через отдельный Render' },
-    { uz: 'Netlify saytining manzilidan', ru: 'С адреса сайта на Netlify' }], correct: 1 },
-  { q: { uz: 'Backend 50 soniya kechiksa, prod sayt nima qiladi?', ru: 'Если Backend задержится на 50 секунд, что сделает прод-сайт?' }, opts: [
-    { uz: '«Yuklanmoqda…» deb jim turaveradi', ru: 'Молча пишет «Загрузка…»' },
-    { uz: 'Kataklarni hammasini bo\'sh chizadi', ru: 'Рисует все ячейки свободными' },
-    { uz: "Kutishni aytib, o'zi qayta so'raydi", ru: 'Сообщает об ожидании и сам запрашивает снова' },
-    { uz: 'Sahifani har soniyada qayta yangilab turadi', ru: 'Обновляет страницу каждую секунду' }], correct: 2 },
-  { q: { uz: "Bir daqiqadan keyin ham javob bo'lmasa, nima chiqadi?", ru: 'Что появится, если ответа нет и через минуту?' }, opts: [
-    { uz: 'Backend xatosining to\'liq matni', ru: 'Полный текст ошибки Backend' },
-    { uz: "Bo'sh oq sahifa, hech qanday yozuv", ru: 'Пустая белая страница без надписей' },
-    { uz: '«Band qilindi» belgisi, kataklarsiz', ru: 'Значок «Забронировано», без ячеек' },
-    { uz: 'Xabar va «Qayta urinish» tugmasi', ru: 'Сообщение и кнопка «Повторить»' }], correct: 3 },
-  { q: { uz: '`429` kelsa, band formasidagi ism va telefon-chi?', ru: 'Если пришёл `429`, что с именем и телефоном в форме брони?' }, opts: [
-    { uz: 'Joyida qoladi, qayta yozish shart emas', ru: 'Остаются на месте, вводить заново не нужно' },
-    { uz: "O'chadi, o'yinchi ikkalasini qayta yozadi", ru: 'Стираются, игрок вводит оба заново' },
-    { uz: 'Egaga yuboriladi, band baribir saqlanadi', ru: 'Отправляются владельцу, бронь всё равно сохраняется' },
-    { uz: "Ertangi kunning formasiga ko'chiriladi", ru: 'Переносятся в форму на завтра' }], correct: 0 },
-  { q: { uz: 'A — 42 tadan 12, B — 40 tadan 17. Qaysi biri qoladi?', ru: 'A — 12 из 42, B — 17 из 40. Какой оставить?' }, opts: [
-    { uz: "A — vaqt tanlaganlar ko'proq", ru: 'A — выбравших время больше' },
-    { uz: 'B — band qilganlar foizi kattaroq', ru: 'B — процент забронировавших выше' },
-    { uz: "A — hozirgi variant, o'zgartirmaymiz", ru: 'A — текущий вариант, не меняем' },
-    { uz: "B — yangi tugma chiroyliroq ko'rinadi", ru: 'B — новая кнопка выглядит красивее' }], correct: 1 },
-  { q: { uz: 'Nega «B aniq yaxshi» deb xulosa qilinmaydi?', ru: 'Почему не делают вывод «B точно лучше»?' }, opts: [
-    { uz: 'Foiz A da kattaroq chiqdi', ru: 'Процент у A вышел больше' },
-    { uz: "Dashboard faqat bugunni ko'rsatadi", ru: 'Дашборд показывает только сегодня' },
-    { uz: '82 ta brauzer xulosa uchun hali kam', ru: '82 браузера для вывода ещё мало' },
-    { uz: "SQL sonlari noto'g'ri sanaldi", ru: 'Числа в SQL посчитаны неверно' }], correct: 2 },
-  { q: { uz: '«Maydon» sozlamasida `prod` push qilindi. Internetdagi sayt-chi?', ru: 'В настройке «Maydon» запушили `prod`. А сайт в интернете?' }, opts: [
-    { uz: "Bir necha daqiqada `prod` holatiga o'tadi", ru: 'Через несколько минут станет как `prod`' },
-    { uz: 'Render uxlab qoladi — sayt ochilmaydi', ru: 'Render уснёт — сайт не откроется' },
-    { uz: "Netlify `prod` ni alohida manzilda chiqaradi", ru: 'Netlify выложит `prod` по отдельному адресу' },
-    { uz: "O'zgarmaydi — u `main` dan yangilanadi", ru: 'Не изменится — он обновляется из `main`' }], correct: 3 }
+  { q: { uz: "Prod ro'yxati nima?", ru: "Что такое прод-список?" }, opts: [{ uz: "Ishonchliroq qiladigan ishlar", ru: "Работы, повышающие надёжность" }, { uz: "Keyingi funksiyalar ro'yxati", ru: "Список будущих функций" }, { uz: "Sahifalar manzillari ro'yxati", ru: "Список адресов страниц" }, { uz: "Bugungi bandlar ro'yxati", ru: "Список сегодняшних броней" }], correct: 0 },
+  { q: { uz: "So'rovlar chegarasi nimani sanaydi?", ru: "Что считает лимит запросов?" }, opts: [{ uz: "Saytdagi odamlar sonini", ru: "Число людей на сайте" }, { uz: "Bir IP'dan daqiqalik so'rovni", ru: "Запросы с одного IP за минуту" }, { uz: "Bir IP'dagi odamlar sonini", ru: "Число людей на одном IP" }, { uz: "O'yinchilar bandlarini", ru: "Брони игроков" }], correct: 1 },
+  { q: { uz: "Chegaradan oshgan so'rovga Backend nima qaytaradi?", ru: "Что Backend возвращает на запрос сверх лимита?" }, opts: [{ uz: "`401` — parol noto'g'ri", ru: "`401` — неверный пароль" }, { uz: "`409` — vaqt band", ru: "`409` — время занято" }, { uz: "`429` — ko'p so'rov", ru: "`429` — слишком много запросов" }, { uz: "`400` — ism yo'q", ru: "`400` — нет имени" }], correct: 2 },
+  { q: { uz: "Chegara nega Backend'da qo'yiladi?", ru: "Почему лимит ставят в Backend?" }, opts: [{ uz: "Sayt kodi sekinroq ishlaydi", ru: "Код сайта работает медленнее" }, { uz: "Saytda joy qolmagan", ru: "На сайте нет места" }, { uz: "Backend kodi yashirin", ru: "Код Backend скрыт" }, { uz: "Har so'rov Backend'dan o'tadi", ru: "Каждый запрос идёт через Backend" }], correct: 3 },
+  { q: { uz: "Qaysi yo'lga eng qattiq chegara qo'yiladi?", ru: "На какой путь ставится самый строгий лимит?" }, opts: [{ uz: "`POST /kirish`", ru: "`POST /kirish`" }, { uz: "`POST /hodisalar`", ru: "`POST /hodisalar`" }, { uz: "`GET /vaqtlar`", ru: "`GET /vaqtlar`" }, { uz: "`POST /bandlar`", ru: "`POST /bandlar`" }], correct: 0 },
+  { q: { uz: "Bir Wi-Fi'dagi telefonlar Backend'ga qanday ko'rinadi?", ru: "Как телефоны в одном Wi-Fi выглядят для Backend?" }, opts: [{ uz: "O'z brauzer ID si bilan", ru: "Каждый со своим ID браузера" }, { uz: "Bitta IP manzildek", ru: "Как один IP-адрес" }, { uz: "Alohida Render orqali", ru: "Через отдельный Render" }, { uz: "Netlify manzilidan", ru: "С адреса Netlify" }], correct: 1 },
+  { q: { uz: "Backend kechiksa, prod sayt nima qiladi?", ru: "Что делает прод-сайт, если Backend задерживается?" }, opts: [{ uz: "«Yuklanmoqda…» deb turadi", ru: "Стоит на «Загрузка…»" }, { uz: "Kataklarni bo'sh chizadi", ru: "Рисует пустые слоты" }, { uz: "Xabar yozib, qayta so'raydi", ru: "Пишет сообщение и спрашивает снова" }, { uz: "Har soniya yangilanadi", ru: "Обновляется каждую секунду" }], correct: 2 },
+  { q: { uz: "Bir daqiqadan keyin ham javob bo'lmasa, nima chiqadi?", ru: "Что появится, если ответа нет и через минуту?" }, opts: [{ uz: "Backend xatosi matni", ru: "Текст ошибки Backend" }, { uz: "Bo'sh oq sahifa", ru: "Пустая белая страница" }, { uz: "«Band qilindi» belgisi", ru: "Значок «Забронировано»" }, { uz: "Xabar va «Qayta urinish»", ru: "Сообщение и «Повторить»" }], correct: 3 },
+  { q: { uz: "`429` kelsa, band formasidagi ism va telefon-chi?", ru: "Пришёл `429`. Что с именем и телефоном в форме брони?" }, opts: [{ uz: "Joyida qoladi", ru: "Остаются на месте" }, { uz: "O'chib ketadi", ru: "Стираются" }, { uz: "Egaga yuboriladi", ru: "Уходят владельцу" }, { uz: "Ertangi formaga o'tadi", ru: "Переносятся в завтрашнюю форму" }], correct: 0 },
+  { q: { uz: "A — 42 tadan 12, B — 40 tadan 17. Qaysi biri qoladi?", ru: "A — 12 из 42, B — 17 из 40. Какой остаётся?" }, opts: [{ uz: "A — tanlaganlar ko'proq", ru: "A — выбравших больше" }, { uz: "B — foizi kattaroq", ru: "B — процент выше" }, { uz: "A — hozirgi variant", ru: "A — текущий вариант" }, { uz: "B — tugmasi chiroyli", ru: "B — кнопка красивее" }], correct: 1 },
+  { q: { uz: "Nega «B aniq yaxshi» deb xulosa qilinmaydi?", ru: "Почему не делают вывод «B точно лучше»?" }, opts: [{ uz: "Foiz A da kattaroq", ru: "Процент выше у A" }, { uz: "Dashboard faqat bugungi", ru: "Дашборд только за сегодня" }, { uz: "82 ta brauzer hali kam", ru: "82 браузера пока мало" }, { uz: "SQL noto'g'ri sanagan", ru: "SQL посчитал неверно" }], correct: 2 },
+  { q: { uz: "`prod` push qilindi. Internetdagi sayt-chi?", ru: "`prod` запушен. А сайт в интернете?" }, opts: [{ uz: "Darhol `prod`ga o'tadi", ru: "Сразу переходит на `prod`" }, { uz: "Render uxlab qoladi", ru: "Render засыпает" }, { uz: "Alohida manzilda chiqadi", ru: "Выходит на отдельном адресе" }, { uz: "O'zgarmaydi, `main`dan oladi", ru: "Не меняется, берёт из `main`" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1949,7 +1926,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: c.forma ? <>{fmtCode(tr(c.t))}{forma.render(goya, goyaYoz, tola)}</> : (typeof c.t === 'function' ? c.t() : fmtCode(tr(c.t))),

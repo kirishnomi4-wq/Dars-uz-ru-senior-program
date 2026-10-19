@@ -1,0 +1,12 @@
+s5 boshida: nav=Savollarga javob bering (0/3) (yopiq) · teglar: <?> <?> <?> · kod: <?>...</?> | <?>...</?> | <?>...</?> · bo'lim animatsiyasi: none
+  1 tepa: bo'lim «Logo · Menyu» · «Sahifaning tepa qismi qaysi teg bilan yoziladi?» · xato «<head>» → sabab «head — sahifa sozlamalari, u ekranda ko'rinmaydi.» (tugma yopildi: true) → to'g'ri «<header>» ✓ · nav=Savollarga javob bering (1/3) (yopiq)
+    teglar: <header> <?> <?> · kod: <header>...</header> | <?>...</?> | <?>...</?> · vazifa-karta: <header>
+  2 asosiy: bo'lim «Asosiy qism» · «Matn va rasmlar turadigan asosiy qism qaysi teg bilan yoziladi?» · xato «<body>» → sabab «body — ko'rinadigan butun sahifa; asosiy qism uning ichida turadi.» (tugma yopildi: true) → to'g'ri «<main>» ✓ · nav=Savollarga javob bering (2/3) (yopiq)
+    teglar: <header> <main> <?> · kod: <header>...</header> | <main>...</main> | <?>...</?> · vazifa-karta: <main>
+  3 pastki: bo'lim «Aloqa · © 2026» · «Aloqa ma'lumotlari qaysi teg ichiga yoziladi?» · xato «<main>» → sabab «main — eng muhim mazmun; aloqa undan keyin, pastda turadi.» (tugma yopildi: true) → to'g'ri «<footer>» ✓ · nav=Davom etish (ochiq)
+    teglar: <header> <main> <footer> · kod: <header>...</header> | <main>...</main> | <footer>...</footer> · vazifa-karta: <footer>
+s5 oxiri: nav=Davom etish (ochiq) · savol: false · xulosa: true · saqlandi: true
+  tugagach «Asosiy qism» bosildi → vazifa-karta: <main> Asosiy qism  Sahifaning asosiy qismi — matn, rasmlar, eng muhim narsalar shu yerda.
+s5 qaytish (saqlangan): nav=Davom etish (ochiq) · savol: false · teglar: <header> <main> <footer> · xulosa: true
+qaror xatolari (sabab yo'q / tugma yopilmadi): 0
+pageerror: 0

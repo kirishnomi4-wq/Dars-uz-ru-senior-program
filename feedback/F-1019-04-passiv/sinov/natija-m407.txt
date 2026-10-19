@@ -1,0 +1,33 @@
+s4 boshida: nav=① Savollarga javob bering (yopiq) · kirishlar: +*🧑‍🎓
+Siz -🧑‍🏫
+Sinf rahbari -🙋
+Sinfdoshingiz · idish pulsi: none
+  Sinf rahbari «Sinf rahbari jurnalni ochdi. U kimning sahifalarini ko'radi?»: xato «Faqat o'z farzandining sahifasini» → «Farzand sahifasini ota-ona ochadi; rahbar butun sinfni ko'radi.» (tugma yopildi: true)
+  Sinf rahbari «Sinf rahbari jurnalni ochdi. U kimning sahifalarini ko'radi?»: xato «Faqat a'lochilarning sahifasini» → «Rahbar baho bo'yicha tanlamaydi — sinfdagi har o'quvchini ko'radi.» (tugma yopildi: true)
+  Sinf rahbari: to'g'ri «Butun sinfning sahifalarini» ✓ · kirishlar: +🧑‍🎓
+Siz +*🧑‍🏫
+Sinf rahbari -🙋
+Sinfdoshingiz · freym: «U butun sinfning sahifasini ochadi.» · nav=① Savollarga javob bering (yopiq)
+  Sinfdosh «Endi sinfdoshingiz sahifangizni ochdi. Hozir u nimani ko'radi?»: xato «Faqat ism va sinf qatorlarini» → «Hali hech qator yopilmagan — u ham hammasini ko'radi.» (tugma yopildi: true)
+  Sinfdosh «Endi sinfdoshingiz sahifangizni ochdi. Hozir u nimani ko'radi?»: xato «Hech qaysi qatorni ko'rmaydi» → «Sahifa bitta: hozir kim ochsa, bir xil qatorlarni ko'radi.» (tugma yopildi: true)
+  Sinfdosh: to'g'ri «Sahifadagi beshala qatorni» ✓ · kirishlar: +🧑‍🎓
+Siz +🧑‍🏫
+Sinf rahbari +*🙋
+Sinfdoshingiz · freym: «U sizning sahifangizni ochdi.» · nav=② Yopiladigan qatorlarni bosing (yopiq)
+2-bosqich: qaror qoldimi: false · topshiriq: «Sinfdoshingiz ochganda qaysi qatorlar turmasligi kerak? Ularni bosing.» · nav=② Yopiladigan qatorlarni bosing (yopiq)
+  Ism bosildi → «🤔 Sinfdoshingiz ismingizni allaqachon biladi.»
+s4 oxiri: nav=Davom etish (ochiq) · yopilgan: 3 · masked (sinfdosh): 3 · yakun: true
+  «Siz» ga almashildi → masked: 0 · kirishlar: +*🧑‍🎓
+Siz +🧑‍🏫
+Sinf rahbari +🙋
+Sinfdoshingiz
+saqlangan javob: {"stage":"kirish","screenIdx":4,"seen":["siz","rahbar","sinfdosh"],"yopiq":["baho","ota_telefon","parol"],"solved":true,"correct":true}
+qaytganda: nav=Davom etish (ochiq) · qaror: false · kirishlar: +*🧑‍🎓
+Siz +🧑‍🏫
+Sinf rahbari +🙋
+Sinfdoshingiz · yopilgan: 3
+qayta yuklanganda: ekran=05 / 16 · nav=Davom etish (ochiq) · qaror: false · kirishlar: +*🧑‍🎓
+Siz +🧑‍🏫
+Sinf rahbari +🙋
+Sinfdoshingiz
+pageerror: 0

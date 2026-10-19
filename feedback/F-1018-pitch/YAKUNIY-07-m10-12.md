@@ -6,7 +6,7 @@ Besh bo'lak (s2), grafik (s4), jonli demo (s8), kod yozish (s9), ustaxona (s10),
 | № | id | Ekran | O'quvchi | Ball / nishon |
 |---|---|---|---|---|
 | 1 | s0 | Kirish | so'rovnoma (ballsiz) | — |
-| 2 | s1 | Reja | 4 qadam: sonlar qayerda · grafik halol · **grafikni o'z sonlaridan chizib, pitchni besh bo'lakka yozasiz** · **sherikka 5 daq aytib, tuzatib 1 daq qayta aytasiz** | — |
+| 2 | s1 | Reja | 4 qadam: sonlar qayerda · grafik halol · **grafikni o'z sonlaridan chizib, pitchni besh bo'lakka yozing** · **sherikka 5 daq aytib, tuzatib 1 daq qayta ayting** | — |
 | 3 | s2 | Besh bo'lak | bashorat → Raqamlar bo'lagi | — |
 | 4 | s4 | O'sish grafigi | buzilgan → to'liq | — |
 | 5 | s8 | Jonli demo | 3 tugma | — |

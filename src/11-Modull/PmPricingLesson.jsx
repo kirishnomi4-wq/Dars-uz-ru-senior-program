@@ -95,6 +95,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -172,8 +197,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -846,7 +871,7 @@ const mentorHisob = (i) => {
 // Backend tuguni: mini-jadval tolovlar (tolov_raqami · holat) va qator pro_gacha
 const BackendTugun = ({ qatorlar = [], pro, kichik }) => (
   <div className={cx('pz-be', kichik && 'kichik')}>
-    <span className="pz-be-sar">Backend</span>
+    <span className="pz-be-sar"><i className="pz-be-ic" aria-hidden="true" />Backend <em>{tr({ uz: 'server', ru: 'сервер' })}</em></span>
     <div className="pz-jad">
       <span className="pz-jad-h"><code>tolovlar</code></span>
       <span className="pz-jad-r bosh"><code>tolov_raqami</code><code>holat</code></span>
@@ -940,10 +965,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; chap — natija, vizual bir marta o'zi yuradi) =====
 const REJA = [
-  { t: { uz: 'Narxga bir necha tomondan qarashni bilib olasiz', ru: 'Узнаете, как смотреть на цену с нескольких сторон' }, teg: { uz: "narx varag'i", ru: 'лист цены' } },
-  { t: { uz: "O'z mahsulotingiz narxini asoslab yozasiz", ru: 'Обоснованно запишете цену своего продукта' }, teg: { uz: 'narx', ru: 'цена' } },
+  { t: { uz: 'Narxga bir necha tomondan qarashni bilib oling', ru: 'Узнайте, как смотреть на цену с нескольких сторон' }, teg: { uz: "narx varag'i", ru: 'лист цены' } },
+  { t: { uz: "O'z mahsulotingiz narxini asoslab yozing", ru: 'Обоснуйте и запишите цену своего продукта' }, teg: { uz: 'narx', ru: 'цена' } },
   { t: { uz: "Pullik qulaylik bosilganda to'lov ekrani chiqadi", ru: 'При нажатии на платную функцию появится экран оплаты' }, teg: { uz: 'Amaliyot 1', ru: 'Практика 1' } },
-  { t: { uz: "Mashq to'lovdan keyin qulaylik ochilishini tekshirasiz", ru: 'Проверите, что после учебной оплаты функция открывается' }, teg: { uz: 'Amaliyot 2', ru: 'Практика 2' } }
+  { t: { uz: "Mashq to'lovdan keyin qulaylik ochilishini tekshiring", ru: 'Проверьте, что после учебной оплаты функция открывается' }, teg: { uz: 'Amaliyot 2', ru: 'Практика 2' } }
 ];
 const REJA_YOL = [{ uz: "E'lon berish", ru: 'Объявление' }, { uz: "to'lov ekrani", ru: 'экран оплаты' }, { uz: "Mashq to'lov", ru: 'Учебная оплата' }, { uz: 'ilova', ru: 'приложение' }];
 const RejaYol = () => {
@@ -1085,7 +1110,7 @@ const Screen3 = (props) => (
       3: { uz: "Narx — ilova so'raydigan pul. Gap kimning ishi haqida?", ru: 'Цена — деньги, которые просит приложение. О чьём деле фраза?' },
       default: { uz: 'Gapda kim nima qilyapti?', ru: 'Кто что делает во фразе?' }
     }}
-    vizual={<KitobVaraq />} />
+ />
 );
 
 // ===== SCREEN 4 — TO'LOV TAKLIFI EKRANI (QTushuncha, ketma-ket 3 qadam: belgi → «To'lovga o'tish» → «To'lash (mashq)») =====
@@ -1323,7 +1348,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const karta = k < 5 && (
     <div key={'k' + k} ref={kartaRef} className="pz-karta fade-up">
       {k === 0 && <>
-        <p className="pz-kq"><i className="pz-in-n">1</i>{tr({ uz: 'Mahsulotni ushlab turishga oyiga qancha ketadi?', ru: 'Сколько в месяц уходит на поддержку продукта?' })}</p>
+        <p className="pz-kq">{tr({ uz: 'Mahsulotni ushlab turishga oyiga qancha ketadi?', ru: 'Сколько в месяц уходит на поддержку продукта?' })}</p>
         <div className={cx('pz-xr-g', !d.xT && 'faol')}>
           <button type="button" className={cx('pz-xr', d.xT === 'bepul' && 'on')} onClick={() => up({ xT: 'bepul' })}>{tr({ uz: "Bugun — 0 so'm (bepul rejalar)", ru: 'Сегодня — 0 сумов (бесплатные планы)' })}</button>
           <button type="button" className={cx('pz-xr', d.xT === 'ozim' && 'on')} onClick={() => up({ xT: 'ozim' })}>{tr({ uz: "O'zim yozaman", ru: 'Напишу сам' })}</button>
@@ -1377,15 +1402,15 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       ? <div className="pz-ms saqlangan fade-step">{tel}<Varaq qatorlar={sQatorlar} onTahrir={tahrirla} hisob={hisob && { ...hisob, matn: nbs(hisob.matn) }} /></div>
       : <div className="pz-ms">{tel}
         <div className="pz-ms-o">
-          <p className="pz-ms-kirish">{tr({ uz: 'Xarajat — oyiga, xizmat sahifasidan, sanasi bilan; qolgani — sizning taxminingiz.', ru: 'Расходы — в месяц, со страницы сервиса, с датой; остальное — ваше предположение.' })}</p>
           <QQadamlar qadamlar={qadamlar} joriy={k < 5 ? k : undefined} />
+          <p className="pz-ms-kirish">{tr({ uz: 'Xarajat — oyiga, xizmat sahifasidan, sanasi bilan; qolgani — sizning taxminingiz.', ru: 'Расходы — в месяц, со страницы сервиса, с датой; остальное — ваше предположение.' })}</p>
           {karta}
           {k >= 5 && <div className="pz-karta-tug"><QTugma className="pz-halqa" onClick={saqla}>{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma>{xato && <div className="pz-xato-j"><QXato>{tr(xato)}</QXato></div>}</div>}
         </div>
       </div>;
   return (
     <Stage eyebrow={tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} scrollSignal={k}
-      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!bir && !isMentor} label={bir || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Kartalarni to'ldiring (${Math.min(k, 5)}/5)`, ru: `Заполните карточки (${Math.min(k, 5)}/5)` })} onClick={onNext} /></>}>
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!bir && !isMentor} label={bir || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Kartalarni to'ldiring", ru: 'Заполните карточки' })} onClick={onNext} /></>}>
       <div className="pz-s5">
         <QMustaqil
           sarlavha={tr({ uz: <>Mahsulotingiz narxi <span className="italic" style={{ color: T.accent }}>nimaga qarab</span> chiqadi?</>, ru: <>От чего <span className="italic" style={{ color: T.accent }}>зависит цена</span> вашего продукта?</> })}
@@ -1425,7 +1450,7 @@ const Screen8 = (props) => (
       2: { uz: 'Ekranni to\'lamasdan ham yopsa bo\'ladi. Pro qayerda yoziladi?', ru: 'Экран можно закрыть и без оплаты. Где записывается Pro?' },
       default: { uz: 'Pro qayerda yoziladi?', ru: 'Где записывается Pro?' }
     }}
-    vizual={<ProMini />} />
+ />
 );
 
 // ===== NISHONLAR (4) — qilingan ishni aytadi; medal belgisi — o'yin qatlami =====
@@ -1515,18 +1540,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javoblar 4 pozitsiyaga TENG (A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12)
 const QUIZ_BANK = [
-  { q: { uz: "Mentor ilovasida to'lov sahifasi qayerda ochiladi?", ru: 'Где в приложении Ментора открывается страница оплаты?' }, opts: [{ uz: "Telefon brauzerida, sahifa bo'lib", ru: 'В браузере телефона, страницей' }, { uz: "Ilova ichida, alohida to'lov oynasida", ru: 'Внутри приложения, в отдельном окне оплаты' }, { uz: 'Telegram botida, chatning ichida', ru: 'В Telegram-боте, внутри чата' }, { uz: "Play do'konida, to'lov oynasida", ru: 'В Play-маркете, в окне оплаты' }], correct: 0 },
-  { q: { uz: "Mentor misolida «Doimiy o'yin» tashkilotchiga nima beradi?", ru: 'Что «Постоянная игра» даёт организатору в примере Ментора?' }, opts: [{ uz: "O'yinni pullik maydonda o'tkazadi", ru: 'Проводит игру на платном поле' }, { uz: "Har haftalik e'lonni o'zi qiladi", ru: 'Сама делает еженедельное объявление' }, { uz: "O'yinchilarni pul evaziga chaqiradi", ru: 'Зовёт игроков за деньги' }, { uz: "Telegram guruhini o'chirib qo'yadi", ru: 'Удаляет Telegram-группу' }], correct: 1 },
-  { q: { uz: 'Mentor misolida Pro muddatini qaysi qism uzaytiradi?', ru: 'Какая часть продлевает срок Pro в примере Ментора?' }, opts: [{ uz: 'Ilova, tugma bosilganda', ru: 'Приложение, при нажатии кнопки' }, { uz: 'Mashq sahifasi, brauzerda', ru: 'Учебная страница, в браузере' }, { uz: 'Backend, xabar kelgach', ru: 'Backend, когда пришло сообщение' }, { uz: 'Tashkilotchi, sozlamada', ru: 'Организатор, в настройках' }], correct: 2 },
-  { q: { uz: "Mashq to'lov sahifasida karta raqami qayerga yoziladi?", ru: 'Куда на учебной странице оплаты пишут номер карты?' }, opts: [{ uz: "Sahifadagi maydonga, to'lashdan oldin", ru: 'В поле на странице, перед оплатой' }, { uz: "Ilovaga, to'lov taklifi ekranida", ru: 'В приложение, на экране предложения оплаты' }, { uz: "Backend'ga, `.env` fayli orqali", ru: 'В Backend, через файл `.env`' }, { uz: "Hech qayerga, karta so'ralmaydi", ru: 'Никуда, карта не запрашивается' }], correct: 3 },
-  { q: { uz: 'Mashq sahifasi qaysi raqam bilan ochiladi?', ru: 'С каким номером открывается учебная страница?' }, opts: [{ uz: "Backend bergan to'lov raqami bilan", ru: 'С номером платежа от Backend' }, { uz: "Tashkilotchi o'zi yozgan raqam bilan", ru: 'С номером, который ввёл организатор' }, { uz: "Ilova o'ylab topgan raqam bilan", ru: 'С номером, придуманным приложением' }, { uz: "Hisobingizning o'z raqami bilan", ru: 'С номером вашего аккаунта' }], correct: 0 },
-  { q: { uz: "Mentor tekshiruv o'yinini bir hafta orqaga surdi. Ro'yxat yangilansa nima bo'ladi?", ru: 'Ментор сдвинул проверочную игру на неделю назад. Что будет, если обновить список?' }, opts: [{ uz: "Ilova o'yinni bekor deb ko'rsatadi", ru: 'Приложение покажет игру отменённой' }, { uz: "Keyingi haftaga yangi o'yin chiqadi", ru: 'Появится новая игра на следующую неделю' }, { uz: "Ilova xato ko'rsatib, ishlamay qoladi", ru: 'Приложение покажет ошибку и перестанет работать' }, { uz: "Ikkita yangi o'yin birdan chiqadi", ru: 'Сразу появятся две новые игры' }], correct: 1 },
-  { q: { uz: "Pro muddati tugasa, Mentor ilovasida nima bo'ladi?", ru: 'Что будет в приложении Ментора, когда закончится срок Pro?' }, opts: [{ uz: 'Kartadan pul o\'zi yechib olinadi', ru: 'С карты сами спишутся деньги' }, { uz: 'Pro yana 30 kunga uzayadi', ru: 'Pro снова продлится на 30 дней' }, { uz: "Pro to'xtaydi va pul yechilmaydi", ru: 'Pro выключится, деньги не спишутся' }, { uz: "Hisob butunlay o'chiriladi", ru: 'Аккаунт полностью удалится' }], correct: 2 },
-  { q: { uz: 'Mentor misolida xarajat qatoriga nima yozildi?', ru: 'Что записано в строку расходов в примере Ментора?' }, opts: [{ uz: 'Telegram guruhi bepul ekani', ru: 'Что Telegram-группа бесплатна' }, { uz: "Har haftalik e'lon ishi", ru: 'Работа с еженедельным объявлением' }, { uz: "30 kun uchun 15 000 so'm", ru: '15 000 сумов за 30 дней' }, { uz: 'Uxlamaydigan Backend puli', ru: 'Деньги на Backend без сна' }], correct: 3 },
-  { q: { uz: "Bu modulda har to'lov ekranida qaysi qator turadi?", ru: 'Какая строка есть на каждом экране оплаты в этом модуле?' }, opts: [{ uz: 'Test rejim: pul yechilmaydi', ru: 'Тестовый режим: деньги не списываются' }, { uz: 'Chegirma: faqat bugungacha', ru: 'Скидка: только до сегодня' }, { uz: 'Karta raqamingizni kiriting', ru: 'Введите номер карты' }, { uz: 'Narx tez orada qimmatlashadi', ru: 'Цена скоро вырастет' }], correct: 0 },
+  { q: { uz: "Mentor ilovasida to'lov sahifasi qayerda ochiladi?", ru: "Где открывается страница оплаты в приложении Ментора?" }, opts: [{ uz: "Telefon brauzerida", ru: "В браузере телефона" }, { uz: "Ilova ichidagi oynada", ru: "В окне внутри приложения" }, { uz: "Telegram botida", ru: "В Telegram-боте" }, { uz: "Play do'konida", ru: "В магазине Play" }], correct: 0 },
+  { q: { uz: "«Doimiy o'yin» tashkilotchiga nima beradi?", ru: "Что даёт организатору «Постоянная игра»?" }, opts: [{ uz: "Maydonni o'zi band qiladi", ru: "Сама бронирует поле" }, { uz: "O'yinni o'zi e'lon qiladi", ru: "Сама объявляет игру" }, { uz: "O'yinchini pulga chaqiradi", ru: "Зовёт игроков за деньги" }, { uz: "Guruhni o'chiradi", ru: "Удаляет группу" }], correct: 1 },
+  { q: { uz: "Mentor misolida Pro muddatini kim uzaytiradi?", ru: "Кто продлевает срок Pro в примере Ментора?" }, opts: [{ uz: "Ilova, tugma bosilganda", ru: "Приложение, при нажатии" }, { uz: "Mashq sahifasi", ru: "Учебная страница" }, { uz: "Backend, xabar kelgach", ru: "Backend, после сообщения" }, { uz: "Tashkilotchi o'zi", ru: "Сам организатор" }], correct: 2 },
+  { q: { uz: "Mashq to'lovda karta raqami qayerga yoziladi?", ru: "Куда вводится номер карты в учебной оплате?" }, opts: [{ uz: "Sahifadagi maydonga", ru: "В поле на странице" }, { uz: "Ilovadagi ekranga", ru: "На экран в приложении" }, { uz: ".env fayliga", ru: "В файл .env" }, { uz: "Hech qayerga", ru: "Никуда" }], correct: 3 },
+  { q: { uz: "Mashq sahifasi qaysi raqam bilan ochiladi?", ru: "С каким номером открывается учебная страница?" }, opts: [{ uz: "Backend bergan raqam", ru: "Номер от Backend" }, { uz: "Tashkilotchi yozgan raqam", ru: "Номер, введённый организатором" }, { uz: "Ilova o'ylagan raqam", ru: "Номер, придуманный приложением" }, { uz: "Hisobingiz raqami", ru: "Номер вашего аккаунта" }], correct: 0 },
+  { q: { uz: "Doimiy o'yin vaqti o'tsa, nima bo'ladi?", ru: "Что будет, когда время постоянной игры прошло?" }, opts: [{ uz: "O'yin bekor deb chiqadi", ru: "Игра показана отменённой" }, { uz: "Keyingi haftaga yangi o'yin", ru: "Новая игра на следующую неделю" }, { uz: "Ilova xato ko'rsatadi", ru: "Приложение покажет ошибку" }, { uz: "Ikkita yangi o'yin chiqadi", ru: "Появятся две новые игры" }], correct: 1 },
+  { q: { uz: "Pro muddati tugasa, nima bo'ladi?", ru: "Что будет, когда закончится срок Pro?" }, opts: [{ uz: "Kartadan pul yechiladi", ru: "С карты спишутся деньги" }, { uz: "Pro yana 30 kun uzayadi", ru: "Pro продлится ещё на 30 дней" }, { uz: "Pro o'zi to'xtaydi", ru: "Pro сам остановится" }, { uz: "Hisob o'chib ketadi", ru: "Аккаунт удалится" }], correct: 2 },
+  { q: { uz: "Mentorning xarajat qatorida nima turadi?", ru: "Что стоит в строке расходов у Ментора?" }, opts: [{ uz: "Telegram guruhi bepul ekani", ru: "Что Telegram-группа бесплатна" }, { uz: "Har haftalik e'lon ishi", ru: "Еженедельная работа с объявлением" }, { uz: "30 kun uchun 15 000 so'm", ru: "15 000 сумов за 30 дней" }, { uz: "Uxlamaydigan Backend puli", ru: "Деньги на неспящий Backend" }], correct: 3 },
+  { q: { uz: "Har to'lov ekranida qaysi qator turadi?", ru: "Какая строка есть на каждом экране оплаты?" }, opts: [{ uz: "Test rejim: pul yechilmaydi", ru: "Тестовый режим: деньги не списываются" }, { uz: "Chegirma: faqat bugun", ru: "Скидка: только сегодня" }, { uz: "Karta raqamini kiriting", ru: "Введите номер карты" }, { uz: "Diqqat: narx oshadi", ru: "Внимание: цена вырастет" }], correct: 0 },
   { q: { uz: 'Mentor narxi yonida qaysi yorliq turadi?', ru: 'Какая метка стоит рядом с ценой Ментора?' }, opts: [{ uz: 'Render sahifasidan', ru: 'Со страницы Render' }, { uz: 'Mentorning taxmini', ru: 'Предположение Ментора' }, { uz: 'Tashkilotchilar aytgani', ru: 'Со слов организаторов' }, { uz: "Bozordagi o'rtacha narx", ru: 'Средняя цена на рынке' }], correct: 1 },
-  { q: { uz: "Agent «Pro yoqiladi, tayyor» dedi. Keyin nima qilasiz?", ru: 'Агент сказал «Pro включается, готово». Что дальше?' }, opts: [{ uz: 'Yakunga o\'tib, darsni tugatib qo\'yaman', ru: 'Перейду к итогу и закончу урок' }, { uz: "Agentdan yana bir marta so'rayman", ru: 'Спрошу агента ещё раз' }, { uz: "Mashq to'lov bilan o'zim tekshiraman", ru: 'Сам проверю учебной оплатой' }, { uz: "Kodni o'qimasdan push qilib qo'yaman", ru: 'Сделаю push, не читая код' }], correct: 2 },
-  { q: { uz: "Mentor misolida tashkilotchi bugun o'yinni nima bilan yig'adi?", ru: 'Чем организатор в примере Ментора собирает игру сегодня?' }, opts: [{ uz: "Pro'dagi «Doimiy o'yin» bilan", ru: '«Постоянной игрой» в Pro' }, { uz: 'Lendingdagi asosiy tugma bilan', ru: 'Главной кнопкой на лендинге' }, { uz: 'Maydon egasining ilovasi bilan', ru: 'Приложением владельца поля' }, { uz: 'Bepul Telegram guruhi bilan', ru: 'Бесплатной Telegram-группой' }], correct: 3 }
+  { q: { uz: "Agent «tayyor» dedi. Keyin nima qilasiz?", ru: "Агент сказал «готово». Что дальше?" }, opts: [{ uz: "Darsni tugatib qo'yaman", ru: "Закончу урок" }, { uz: "Agentdan qayta so'rayman", ru: "Спрошу агента ещё раз" }, { uz: "O'zim tekshirib ko'raman", ru: "Проверю сам" }, { uz: "Kodni o'qimay push qilaman", ru: "Сделаю push, не читая код" }], correct: 2 },
+  { q: { uz: "Tashkilotchi bugun o'yinni nima bilan yig'adi?", ru: "Чем организатор сегодня собирает игру?" }, opts: [{ uz: "Pro'dagi «Doimiy o'yin»", ru: "«Постоянная игра» в Pro" }, { uz: "Lendingdagi tugma", ru: "Кнопка на лендинге" }, { uz: "Maydon egasi ilovasi", ru: "Приложение владельца поля" }, { uz: "Bepul Telegram guruhi", ru: "Бесплатная Telegram-группа" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2160,7 +2185,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={tor ? 0 : stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="pz-blok">
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: <>{tx(c.t)}{c.bandlar && c.bandlar.filter(Boolean).map((b, i) => (b && (b.accent !== undefined || b.kul) && b.t ? <Band key={i} accent={b.accent} kul={b.kul}>{tx(b.t)}</Band> : <Band key={i}>{tx(b)}</Band>))}{c.prompt && <PzPrompt satrlar={c.prompt} namuna={c.namuna} toldir={c.toldir} tahrir={c.tahrir !== false} />}{c.ichi}</>,
@@ -2468,29 +2493,6 @@ const HwCard = ({ qolgan, keyingi }) => (
   </div>
 );
 // Erta tugatgan o'quvchi yo'li (PM-109, SABOQ P4): AI mahsulotdan foydalanadigan odam rolida savol beradi; o'quvchi o'z narx varag'ini o'zi qayta yozadi (sinfda gemini.google.com)
-const aiSorov = () => {
-  const n = lsO(NARX_KEY);
-  const e = (n && n.ekran) || {};
-  const varaq = n && son(n.narx)
-    ? tr({ uz: 'Ekran: ', ru: 'Экран: ' }) + [e.sarlavha, e.matn, (son(n.davrKun) || 30) + tr({ uz: ' kun — ', ru: ' дней — ' }) + probel(son(n.narx)) + tr({ uz: " so'm", ru: ' сумов' }), e.tugma].filter(Boolean).join(' · ') + '\n'
-      + tr({ uz: 'Xarajat: ', ru: 'Расходы: ' }) + probel((n.xarajat && n.xarajat.oylik) || 0) + tr({ uz: " so'm, ", ru: ' сумов, ' }) + ((n.xarajat && n.xarajat.manba) || '') + '\n'
-      + tr({ uz: 'Raqobat: ', ru: 'Конкуренция: ' }) + (n.raqobat || '') + '\n' + tr({ uz: 'Qiymat: ', ru: 'Ценность: ' }) + (n.qiymat || '')
-    : tr({ uz: "Ekran: Doimiy o'yin — Pro'da · Har hafta shu kun va soatda o'yin o'zi e'lon qilinadi. · 30 kun — 15 000 so'm · To'lovga o'tish\nXarajat: 0 so'm, bepul rejalar\nRaqobat: Telegram guruhi, bepul\nQiymat: har haftalik e'lon o'zi qilinadi", ru: 'Экран: Постоянная игра — в Pro · Каждую неделю в тот же день и час игра объявляется сама. · 30 дней — 15 000 сумов · Перейти к оплате\nРасходы: 0 сумов, бесплатные планы\nКонкуренция: Telegram-группа, бесплатно\nЦенность: еженедельное объявление делается само' });
-  return tr({ uz: "Sen mening mahsulotimdan foydalanishi mumkin bo'lgan odamsan. Pastda ilovamdagi to'lov taklifi ekrani va narx varag'im. Avval ekranni o'qib, pulga nima ochilishini o'z so'zing bilan ayt. Keyin har qatorga bitta savol ber: xarajat qayerdan olingan, raqobat to'g'ri yozilganmi, qiymat sening qaysi ishingni oladi, narx nimaga qarab qo'yilgan. Narxni o'zgartirishni buyurma va pul haqida kelishma — faqat savol ber.\n\n", ru: 'Ты человек, который может пользоваться моим продуктом. Ниже экран предложения оплаты из моего приложения и мой лист цены. Сначала прочитай экран и своими словами скажи, что откроется за деньги. Потом задай по одному вопросу к каждой строке: откуда взяты расходы, верно ли записана конкуренция, какую твою работу берёт ценность, на что опирается цена. Не приказывай менять цену и не договаривайся о деньгах — только спрашивай.\n\n' }) + varaq;
-};
-const AiDavomCard = () => {
-  const [nusxa, setNusxa] = useState(false);
-  const sorov = useMemo(aiSorov, []);
-  const kochir = () => { try { navigator.clipboard.writeText(sorov); setNusxa(true); setTimeout(() => setNusxa(false), 1800); } catch { /* qo'lda belgilab oladi */ } };
-  return (
-    <div className="card pz-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <p className="pz-ai-m">{tr({ uz: "gemini.google.com'ni oching va pastdagi so'rovni yuboring — AI mahsulotingizdan foydalanadigan odam bo'lib, narx varag'ingizga savol beradi. Javob topolmagan qatoringizni «Orqaga» bilan qaytib, narx varag'ida qayta yozing.", ru: 'Откройте gemini.google.com и отправьте запрос ниже — AI в роли пользователя вашего продукта задаст вопросы к листу цены. Строку, на которую не нашли ответа, перепишите в листе цены, вернувшись «Назад».' })}</p>
-      <pre className="pz-ai-sorov">{sorov}</pre>
-      <button type="button" className="q-chip pz-ai-btn" onClick={kochir}>{nusxa ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 const A1_IDX = SCREEN_META.findIndex(m => m.id === 'a1');
 const A2_IDX = SCREEN_META.findIndex(m => m.id === 'a2');
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
@@ -2539,7 +2541,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
         >
-          {!isMentorL && <AiDavomCard />}
+          
         </QYakun>
       </div>
     </Stage>
@@ -2825,14 +2827,14 @@ export default function PmPricingLesson({ lang: langProp, onFinished, liveToken 
         p.pz-reja-ost { margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${T.ink2}; line-height: 1.6; }
         /* 4-ekran sahnasi: telefon · konvert yo'li · Backend */
         .pz-s4-v { display: flex; flex-direction: column; gap: 6px; }
-        .pz-sahna { display: flex; align-items: center; gap: 14px; max-width: 780px; }
+        .pz-sahna { display: flex; align-items: center; justify-content: center; gap: 14px; max-width: 780px; margin: 0 auto; } /* F-1015-369: telefon — qisqa yo'l — Backend, markazda */
         .pz-sahna-tel { position: relative; flex: none; }
         .pz-belgilar { position: absolute; left: calc(100% + 8px); top: 56px; width: 124px; height: 230px; margin: 0; padding: 0; list-style: none; z-index: 2; }
         .pz-bl { position: absolute; left: 0; font-size: 11px; font-weight: 700; color: ${T.accent}; white-space: nowrap; padding-left: 16px; background: ${T.paper}; border-radius: 6px; animation: pz-kir .35s ease; }
         .pz-bl::before { content: ''; position: absolute; left: 0; top: 50%; width: 12px; border-top: 1.5px solid currentColor; }
         .pz-bl.b0 { top: 10px; } .pz-bl.b1 { top: 102px; } .pz-bl.b2 { top: 180px; } .pz-bl.b3 { top: 208px; }
         .pz-bl.kul { color: ${T.ink2}; }
-        .pz-yol { position: relative; flex: 1; min-width: 80px; align-self: center; height: 56px; }
+        .pz-yol { position: relative; flex: 0 1 210px; min-width: 120px; align-self: center; height: 56px; }
         .pz-yol-ch { position: absolute; left: 0; right: 0; top: 50%; border-top: 2px solid ${T.line}; }
         .pz-konv { position: absolute; top: calc(50% - 13px); left: 0; display: inline-flex; align-items: center; padding: 4px 8px; border-radius: 8px; background: ${T.paper}; border: 1.5px solid ${T.accent}; font-size: 11px; white-space: nowrap; box-shadow: 0 6px 14px -8px rgba(${T.shadowBase},0.4); }
         .pz-konv.o { animation: pz-uch-o .85s cubic-bezier(.4,.1,.3,1) forwards; }
@@ -2843,7 +2845,9 @@ export default function PmPricingLesson({ lang: langProp, onFinished, liveToken 
         .pz-yol-iz em { font-style: normal; font-size: 10.5px; color: ${T.ink2}; }
         .pz-be { flex: none; width: 200px; display: flex; flex-direction: column; gap: 7px; padding: 10px 11px; border-radius: 14px; background: ${T.paper}; border: 1.5px solid ${T.line}; box-shadow: 0 10px 24px -16px rgba(${T.shadowBase},0.35); }
         .pz-be.kichik { width: 170px; }
-        .pz-be-sar { font: 800 13px 'Manrope', sans-serif; color: ${T.ink}; }
+        .pz-be-sar { display: flex; align-items: center; gap: 6px; font: 800 13px 'Manrope', sans-serif; color: ${T.ink}; }
+        .pz-be-sar em { font-style: normal; font-weight: 600; font-size: 11px; color: ${T.ink2}; }
+        .pz-be-ic { width: 18px; height: 14px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 14' fill='none' stroke='%23374151' stroke-width='1.4'%3E%3Crect x='1' y='1' width='16' height='5' rx='1.5'/%3E%3Crect x='1' y='8' width='16' height='5' rx='1.5'/%3E%3Ccircle cx='4.2' cy='3.5' r='0.7' fill='%23374151'/%3E%3Ccircle cx='4.2' cy='10.5' r='0.7' fill='%23374151'/%3E%3C/svg%3E") center / contain no-repeat; }
         .pz-jad { display: flex; flex-direction: column; border: 1px solid ${T.line}; border-radius: 8px; overflow: hidden; background: ${T.bg}; }
         .pz-jad-h code { display: block; font: 700 11px 'JetBrains Mono', monospace; padding: 3px 7px; background: ${T.ink}; color: #fff; }
         .pz-jad-r { display: grid; grid-template-columns: 1fr auto; gap: 6px; padding: 3px 7px; border-top: 1px solid ${T.line}; }
@@ -2871,7 +2875,9 @@ export default function PmPricingLesson({ lang: langProp, onFinished, liveToken 
         .pz-s5 .q-mustaqil { max-width: none; }
         .pz-ms { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 22px; align-items: start; }
         .pz-ms-tel { display: flex; flex-direction: column; align-items: center; gap: 8px; position: sticky; top: 12px; }
-        .pz-ms-o { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+        .pz-ms-o { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 14px 16px; border-radius: 16px; background: ${T.paper}; border: 1px solid ${T.line}; } /* F-1015-370: o'ng ustun bitta kartada — stepper tepada, izoh, joriy savol */
+        .pz-ms-o .q-qadamlar { flex-direction: row; flex-wrap: wrap; gap: 6px 16px; padding-bottom: 10px; border-bottom: 1px solid ${T.line}; }
+        .pz-ms-o .pz-karta { padding: 0; border: 0; box-shadow: none; background: transparent; }
         p.pz-ms-kirish { margin: 0; font-size: 12.5px; color: ${T.ink2}; }
         .pz-qq b { color: ${T.ink}; }
         .pz-qq-t { border: 0; background: none; color: ${T.accent}; cursor: pointer; margin-left: 6px; font-size: 13px; }
@@ -2970,7 +2976,6 @@ export default function PmPricingLesson({ lang: langProp, onFinished, liveToken 
         .pz-hw-keyingi { font-size: 13.5px; color: ${T.ink2}; line-height: 1.5; }
         .pz-ai { display: flex; flex-direction: column; gap: 8px; }
         p.pz-ai-m { margin: 0; font-size: 13px; line-height: 1.45; color: ${T.ink}; }
-        .pz-ai-sorov { margin: 0; white-space: pre-wrap; font: 12px 'JetBrains Mono', monospace; color: ${T.ink}; background: ${T.bg}; border: 1px solid ${T.line}; border-radius: 10px; padding: 10px 12px; }
         .pz-ai-btn { align-self: flex-start; }
         @media (max-width: 640px) {
           .pz-s0-m { justify-content: center; }

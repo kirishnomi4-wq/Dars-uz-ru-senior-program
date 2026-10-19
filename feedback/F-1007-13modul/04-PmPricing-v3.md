@@ -140,10 +140,10 @@ namunalar: 12-Modul `07-PmFiftyUsers-v3.md` + `07-FILTR.md` (PM+PRAKT shakli) ·
   telefon: «E'lon berish» → to'lov ekrani (narx qatori «? so'm») → brauzer «Mashq to'lov» → yana ilova. Yo'l chizig'i chapdan o'ngga chiziladi.
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
-  - 01 · Narxga bir necha tomondan qarashni bilib olasiz
-  - 02 · O'z mahsulotingiz narxini asoslab yozasiz
+  - 01 · Narxga bir necha tomondan qarashni bilib oling
+  - 02 · O'z mahsulotingiz narxini asoslab yozing
   - 03 · Pullik qulaylik bosilganda to'lov ekrani chiqadi
-  - 04 · Mashq to'lovdan keyin qulaylik ochilishini tekshirasiz
+  - 04 · Mashq to'lovdan keyin qulaylik ochilishini tekshiring
 - Pastki qator (mono, kichik): repo `maydon-jamoa` · boshlang'ich holat `m13-dars-04-start` · namuna `m13-dars-04-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: 3-darsdagi Amaliyot 1 va 2 (webhook, mashq sahifasi) tugamagan o'quvchi bugun avval o'shani tugatadi: bu darsning Amaliyot 2 si 3-darsdagi sahifaga tayanadi; ulgurmasa A2 uyga qoladi — yakun shuni aytadi.

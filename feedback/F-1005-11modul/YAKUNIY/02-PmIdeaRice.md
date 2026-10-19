@@ -41,7 +41,7 @@ Asos: `arxiv/F-1015-177-oldin/02-PmIdeaRice-YAKUNIY-v3.md` (v3) — bu yerda «v
 - Eyebrow: Reja · Sarlavha: Bugun beshta g'oyadan *uchtasini* tanlab olasiz.
 - Mentor: User Story darsida hikoyalarga navbat belgilagansiz (prioritet). Bugun beshta g'oyaga navbatni savollar va sonlar bilan belgilaysiz.
 - Chap (yorliq «Dars oxirida»): voronka — to'rt blok: **5** g'oyangiz → **4** uch savoldan o'tdi → **3** RICE da yuqori — shular qoladi → **2** tasi birinchi intervyuga (oxirgisi ajratilgan). Ostida yashil qator (F-1015-194 A): «Qo'lingizda: 3 g'oya, har birining RICE soni va har «chetda» ga bitta sabab.»
-- Reja (3 band): 1. Har g'oyaga uchta «ha / yo'q» savol berasiz · 2. RICE ning to'rt savoli bilan baholaysiz · 3. Bitta son o'zgarsa, tartib nima bo'lishini ko'rasiz
+- Reja (3 band): 1. Har g'oyaga uchta «ha / yo'q» savol bering · 2. RICE ning to'rt savoli bilan baholang · 3. Bitta son o'zgarsa, tartib nima bo'lishini ko'ring
 
 ## 2 · Uch savol (bitta karta)
 - Eyebrow: Tushuncha · saralash · Sarlavha: Mentorning qaysi g'oyalari *uch savoldan* o'tadi?

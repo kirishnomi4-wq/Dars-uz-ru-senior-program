@@ -1,0 +1,3888 @@
+[
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgigacha, jami 168.",
+  "q": {
+   "uz": "Qaysi biri loyiha?",
+   "ru": "Что из этого — проект?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni 4 hafta qurish ishi",
+    "ru": "Работа: сайт за 4 недели"
+   },
+   {
+    "uz": "Sinfdoshlar ishlatadigan bot",
+    "ru": "Бот, которым пользуются одноклассники"
+   },
+   {
+    "uz": "Taksi chaqiradigan ilova",
+    "ru": "Приложение для вызова такси"
+   },
+   {
+    "uz": "Hisob to'ldiradigan ilova",
+    "ru": "Приложение для пополнения баланса"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 148 belgi, variant 34.",
+  "q": {
+   "uz": "Mahsulotni kim ishlatadi?",
+   "ru": "Кто пользуется продуктом?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat uni qurgan odam",
+    "ru": "Только тот, кто его создал"
+   },
+   {
+    "uz": "Egasi ko'rsatgan do'stlar",
+    "ru": "Друзья, которым показал автор"
+   },
+   {
+    "uz": "Odamlar — o'z muammosi uchun",
+    "ru": "Люди — для своей проблемы"
+   },
+   {
+    "uz": "Mentor — tekshirish uchun",
+    "ru": "Ментор — чтобы проверить"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 71 belgi, jami 221.",
+  "q": {
+   "uz": "Saytni faqat siz ochasiz. U nima?",
+   "ru": "Сайт открываете только вы. Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Mahsulot — internetda bor",
+    "ru": "Продукт — он в интернете"
+   },
+   {
+    "uz": "Loyiha — hech kim ishlatmaydi",
+    "ru": "Проект — никто не пользуется"
+   },
+   {
+    "uz": "Mahsulot — hamma ocha oladi",
+    "ru": "Продукт — открыть может каждый"
+   },
+   {
+    "uz": "Loyiha — kodi hali kam",
+    "ru": "Проект — кода пока мало"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 72 belgi, jami 190.",
+  "q": {
+   "uz": "Ilovada odatda avval qaysi qator ko'rinadi?",
+   "ru": "Какая строка обычно видна в приложении первой?"
+  },
+  "opts": [
+   {
+    "uz": "KIM — kim ishlatadi",
+    "ru": "КТО — кто пользуется"
+   },
+   {
+    "uz": "MUAMMO — nimadan qiynalgan",
+    "ru": "ПРОБЛЕМА — от чего страдал"
+   },
+   {
+    "uz": "Hech biri ko'rinmaydi",
+    "ru": "Никакая не видна"
+   },
+   {
+    "uz": "YECHIM — ilova nima qiladi",
+    "ru": "РЕШЕНИЕ — что делает приложение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 42 belgigacha, jami 201.",
+  "q": {
+   "uz": "Google Maps: MUAMMO qatori qaysi?",
+   "ru": "Google Maps: какая строка ПРОБЛЕМА?"
+  },
+  "opts": [
+   {
+    "uz": "Xarita chiroyli bo'lsin derdi",
+    "ru": "Хотел, чтобы карта была красивой"
+   },
+   {
+    "uz": "Ko'chalar juda ko'p edi",
+    "ru": "Улиц было очень много"
+   },
+   {
+    "uz": "Joyni so'rab-so'rab topardi",
+    "ru": "Искал место, расспрашивая людей"
+   },
+   {
+    "uz": "Xarita ko'rishni yoqtirardi",
+    "ru": "Любил смотреть карты"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 164 belgi, variant 34.",
+  "q": {
+   "uz": "Muammoning uch belgisidan biri qaysi?",
+   "ru": "Какой из трёх признаков проблемы?"
+  },
+  "opts": [
+   {
+    "uz": "Odam «muammo bor» deydi",
+    "ru": "Человек говорит «есть проблема»"
+   },
+   {
+    "uz": "Odam o'zicha yo'l topgan",
+    "ru": "Человек сам нашёл обходной путь"
+   },
+   {
+    "uz": "Bu haqda internetda yozilgan",
+    "ru": "Об этом написано в интернете"
+   },
+   {
+    "uz": "Uni yechadigan ilova bor",
+    "ru": "Есть приложение, которое её решает"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 175.",
+  "q": {
+   "uz": "«Oshxona qurish kerak.» Bu nima?",
+   "ru": "«Нужно построить столовую». Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Yechim — kim qiynalgani yo'q",
+    "ru": "Решение — нет, кто страдает"
+   },
+   {
+    "uz": "Muammo — «kerak» so'zi bor",
+    "ru": "Проблема — есть слово «нужно»"
+   },
+   {
+    "uz": "Muammo — maktabda bo'lyapti",
+    "ru": "Проблема — это происходит в школе"
+   },
+   {
+    "uz": "Yechim — chunki qimmat",
+    "ru": "Решение — потому что дорого"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 172.",
+  "q": {
+   "uz": "Dropbox qanday muammodan boshlangan?",
+   "ru": "С какой проблемы начался Dropbox?"
+  },
+  "opts": [
+   {
+    "uz": "Kompyuter juda qimmat edi",
+    "ru": "Компьютеры были очень дорогими"
+   },
+   {
+    "uz": "Internet juda sekin edi",
+    "ru": "Интернет был очень медленным"
+   },
+   {
+    "uz": "Fayl chop etish qiyin edi",
+    "ru": "Файлы было трудно печатать"
+   },
+   {
+    "uz": "Fleshka uyda qolgan edi",
+    "ru": "Флешка осталась дома"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 184.",
+  "q": {
+   "uz": "Dropbox videosi chiqqach nima bo'ldi?",
+   "ru": "Что случилось после видео Dropbox?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat do'stlari ko'rdi",
+    "ru": "Посмотрели только друзья"
+   },
+   {
+    "uz": "Dastur yopib qo'yildi",
+    "ru": "Программу закрыли"
+   },
+   {
+    "uz": "Videoni hech kim ko'rmadi",
+    "ru": "Видео никто не посмотрел"
+   },
+   {
+    "uz": "75 000 kishi ro'yxatga yozildi",
+    "ru": "75 000 человек записались в список"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 86 belgi, jami 240.",
+  "q": {
+   "uz": "Havola sizdan, do'st botni doim ishlatadi. Bot nima?",
+   "ru": "Ссылка от вас, друг постоянно пользуется ботом. Что такое бот?"
+  },
+  "opts": [
+   {
+    "uz": "Loyiha — havola sizdan",
+    "ru": "Проект — ссылка от вас"
+   },
+   {
+    "uz": "Mahsulot — o'z ishi uchun",
+    "ru": "Продукт — для своего дела"
+   },
+   {
+    "uz": "Mahsulot — havola bor",
+    "ru": "Продукт — есть ссылка"
+   },
+   {
+    "uz": "Loyiha — bot kichik",
+    "ru": "Проект — бот маленький"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 44 belgi, jami 213.",
+  "q": {
+   "uz": "Muammo yig'ishda sherikdan nimani so'raysiz?",
+   "ru": "Что спрашиваете у партнёра при сборе проблем?"
+  },
+  "opts": [
+   {
+    "uz": "Nimani kimdandir so'ragani",
+    "ru": "Что он у кого-то спрашивал"
+   },
+   {
+    "uz": "Qanday ilova xohlashini",
+    "ru": "Какое приложение он хочет"
+   },
+   {
+    "uz": "Qaysi ilova chiroyliroq",
+    "ru": "Какое приложение красивее"
+   },
+   {
+    "uz": "G'oyangiz unga yoqadimi",
+    "ru": "Нравится ли ему ваша идея"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmProductProblemLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 43 belgi, jami 198.",
+  "q": {
+   "uz": "Mentor nega maydon muammosini tanladi?",
+   "ru": "Почему ментор выбрал проблему с полем?"
+  },
+  "opts": [
+   {
+    "uz": "Futbolni yaxshi ko'rgani",
+    "ru": "Любит футбол"
+   },
+   {
+    "uz": "Maydon qurish arzonligi",
+    "ru": "Построить поле дёшево"
+   },
+   {
+    "uz": "O'yinchilardan so'ray olgani",
+    "ru": "Можно спросить у игроков"
+   },
+   {
+    "uz": "Ro'yxatda birinchi turgani",
+    "ru": "Стоит первой в списке"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar jami 161 belgi.",
+  "q": {
+   "uz": "«Sayt bo'lsa, ishlatarmidingiz?» Qanday savol?",
+   "ru": "«Если бы был сайт, пользовались бы?» Что это за вопрос?"
+  },
+  "opts": [
+   {
+    "uz": "Voqea savoli — maydon bor",
+    "ru": "Вопрос о событии — есть поле"
+   },
+   {
+    "uz": "Voqea savoli — qisqa",
+    "ru": "Вопрос о событии — короткий"
+   },
+   {
+    "uz": "Bo'sh savol — javobi va'da",
+    "ru": "Пустой вопрос — ответ-обещание"
+   },
+   {
+    "uz": "Bo'sh savol — qisqa",
+    "ru": "Пустой вопрос — короткий"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgi, variant 35, jami 189.",
+  "q": {
+   "uz": "«Oxirgi marta qachon bordingiz?» Qanday savol?",
+   "ru": "«Когда вы ходили в последний раз?» Что это за вопрос?"
+  },
+  "opts": [
+   {
+    "uz": "Bo'sh savol — kelajak",
+    "ru": "Пустой вопрос — о будущем"
+   },
+   {
+    "uz": "Bo'sh savol — javobi «ha»",
+    "ru": "Пустой вопрос — ответ «да»"
+   },
+   {
+    "uz": "Voqea savoli — g'oya",
+    "ru": "Вопрос о событии — об идее"
+   },
+   {
+    "uz": "Voqea savoli — o'tgan kun",
+    "ru": "Вопрос о событии — о прошедшем дне"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 150 belgi.",
+  "q": {
+   "uz": "«Maydon band ekan.» Keyingi savol qaysi?",
+   "ru": "«Поле было занято». Какой следующий вопрос?"
+  },
+  "opts": [
+   {
+    "uz": "O'shanda nima qildingiz?",
+    "ru": "Что вы тогда сделали?"
+   },
+   {
+    "uz": "Sayt bo'lsa, band qilasizmi?",
+    "ru": "Если бы был сайт, бронировали бы?"
+   },
+   {
+    "uz": "Maydon ko'p band bo'ladimi?",
+    "ru": "Поле часто бывает занято?"
+   },
+   {
+    "uz": "Keyin qachon borasiz?",
+    "ru": "Когда пойдёте в следующий раз?"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi, jami 145.",
+  "q": {
+   "uz": "Yozuvga qaysi gap tushadi?",
+   "ru": "Какая фраза попадает в запись?"
+  },
+  "opts": [
+   {
+    "uz": "Siz chiqargan xulosa",
+    "ru": "Ваш вывод"
+   },
+   {
+    "uz": "Odam haqida taxminingiz",
+    "ru": "Ваша догадка о человеке"
+   },
+   {
+    "uz": "Hammaga oid umumiy gap",
+    "ru": "Общая фраза обо всех"
+   },
+   {
+    "uz": "Eshitgan javob, u aytganidek",
+    "ru": "Услышанный ответ, как он сказал"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 148 belgi.",
+  "q": {
+   "uz": "Kitobdagi ona g'oyani nega maqtadi?",
+   "ru": "Почему мама из книги похвалила идею?"
+  },
+  "opts": [
+   {
+    "uz": "Bunday ilova qidirgan edi",
+    "ru": "Искала такое приложение"
+   },
+   {
+    "uz": "Planshetda ko'p o'tirardi",
+    "ru": "Много сидела в планшете"
+   },
+   {
+    "uz": "O'g'lini xafa qilmaslik uchun",
+    "ru": "Чтобы не обидеть сына"
+   },
+   {
+    "uz": "Taomlar kitobi kerak edi",
+    "ru": "Ей была нужна книга рецептов"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 188.",
+  "q": {
+   "uz": "Kitobda qaysi savol voqeani ochdi?",
+   "ru": "Какой вопрос в книге открыл событие?"
+  },
+  "opts": [
+   {
+    "uz": "«Ilova sizga kerakmi?»",
+    "ru": "«Вам нужно приложение?»"
+   },
+   {
+    "uz": "«Odatda nima qilasiz?»",
+    "ru": "«Что вы обычно делаете?»"
+   },
+   {
+    "uz": "«Ilovani sotib olasizmi?»",
+    "ru": "«Купите приложение?»"
+   },
+   {
+    "uz": "«Oxirgi marta nima oldingiz?»",
+    "ru": "«Что вы купили в последний раз?»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 176; to'g'ri javob eng uzuni.",
+  "q": {
+   "uz": "Kitob nomi nimani anglatadi?",
+   "ru": "Что означает название книги?"
+  },
+  "opts": [
+   {
+    "uz": "Ona ham rost aytadigan savol",
+    "ru": "Вопросы, на которые и мама скажет правду"
+   },
+   {
+    "uz": "Faqat onaga beriladigan savol",
+    "ru": "Вопросы только для мамы"
+   },
+   {
+    "uz": "Onaga g'oyani aytish usuli",
+    "ru": "Способ рассказать идею маме"
+   },
+   {
+    "uz": "Ona bilan maslahat qoidasi",
+    "ru": "Правило совета с мамой"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 168.",
+  "q": {
+   "uz": "Maydon muammosida kimdan intervyu olasiz?",
+   "ru": "У кого возьмёте интервью о проблеме поля?"
+  },
+  "opts": [
+   {
+    "uz": "O'ynamaydigan qo'shnidan",
+    "ru": "У соседа, который не играет"
+   },
+   {
+    "uz": "Sayt yasaydigan do'stdan",
+    "ru": "У друга, который делает сайты"
+   },
+   {
+    "uz": "O'yinchi va maydon egasidan",
+    "ru": "У игрока и владельца поля"
+   },
+   {
+    "uz": "Maqtaydigan sinfdoshdan",
+    "ru": "У одноклассника, который хвалит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 161.",
+  "q": {
+   "uz": "Nega bitta intervyu yetmaydi?",
+   "ru": "Почему одного интервью мало?"
+  },
+  "opts": [
+   {
+    "uz": "Bir odam ko'p gapirmaydi",
+    "ru": "Один человек мало говорит"
+   },
+   {
+    "uz": "Yozuv — bitta odam voqeasi",
+    "ru": "Запись — событие одного человека"
+   },
+   {
+    "uz": "Shablonda 4 qator xolos",
+    "ru": "В шаблоне всего 4 строки"
+   },
+   {
+    "uz": "Ko'p maqtov — g'oya to'g'ri",
+    "ru": "Много похвал — идея верна"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 77 belgi, jami 174.",
+  "q": {
+   "uz": "Besh yozuvda qaysi shikoyatdan boshlaysiz?",
+   "ru": "С какой жалобы из пяти записей начнёте?"
+  },
+  "opts": [
+   {
+    "uz": "To'rt yozuvda chiqqanidan",
+    "ru": "С той, что в четырёх записях"
+   },
+   {
+    "uz": "Eng qattiq aytilganidan",
+    "ru": "С самой резкой"
+   },
+   {
+    "uz": "O'zingizga qiziq bo'lganidan",
+    "ru": "С интересной вам"
+   },
+   {
+    "uz": "Oxirgi yozuvdagisidan",
+    "ru": "С той, что в последней записи"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 179.",
+  "q": {
+   "uz": "Qaysi gap muammo gapi bo'la oladi?",
+   "ru": "Какая фраза может быть формулировкой проблемы?"
+  },
+  "opts": [
+   {
+    "uz": "Band qiladigan sayt kerak",
+    "ru": "Нужен сайт для брони"
+   },
+   {
+    "uz": "Futbol o'ynash juda yoqadi",
+    "ru": "Очень нравится играть в футбол"
+   },
+   {
+    "uz": "O'yinchi bo'sh vaqtni bilmaydi",
+    "ru": "Игрок не знает свободное время"
+   },
+   {
+    "uz": "Mahallada futbolchi ko'p",
+    "ru": "В махалле много футболистов"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi, jami 173.",
+  "q": {
+   "uz": "Bir o'yinchi «chat kerak» dedi. Bu nima?",
+   "ru": "Один игрок сказал «нужен чат». Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Chat — MVP'ning asosi",
+    "ru": "Чат — основа MVP"
+   },
+   {
+    "uz": "Bu hozircha bir odam gapi",
+    "ru": "Пока это слова одного человека"
+   },
+   {
+    "uz": "Hamma o'yinchiga chat kerak",
+    "ru": "Чат нужен всем игрокам"
+   },
+   {
+    "uz": "Chatni bugun qurish kerak",
+    "ru": "Чат нужно строить сегодня"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 42 belgigacha, jami 169.",
+  "q": {
+   "uz": "MVP nima?",
+   "ru": "Что такое MVP?"
+  },
+  "opts": [
+   {
+    "uz": "Eng chiroyli to'liq versiya",
+    "ru": "Самая красивая полная версия"
+   },
+   {
+    "uz": "Barcha imkoniyatli versiya",
+    "ru": "Версия со всеми возможностями"
+   },
+   {
+    "uz": "Faqat rasmi chizilgan versiya",
+    "ru": "Версия, где есть только рисунок"
+   },
+   {
+    "uz": "Ishlaydigan eng sodda versiya",
+    "ru": "Самая простая работающая версия"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 154 belgi.",
+  "q": {
+   "uz": "«Keyin» qutisidagi imkoniyat nima bo'ladi?",
+   "ru": "Что будет с возможностью в коробке «Потом»?"
+  },
+  "opts": [
+   {
+    "uz": "Butunlay o'chiriladi",
+    "ru": "Полностью удаляется"
+   },
+   {
+    "uz": "Saqlanadi, navbati suriladi",
+    "ru": "Сохраняется, очередь сдвигается"
+   },
+   {
+    "uz": "Bugunoq MVP'ga qo'shiladi",
+    "ru": "Сегодня же добавляется в MVP"
+   },
+   {
+    "uz": "Boshqa mahsulotga beriladi",
+    "ru": "Отдаётся другому продукту"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 186.",
+  "q": {
+   "uz": "«Jamoa yig'ish» nega «Keyin» qutisida?",
+   "ru": "Почему «Сбор команды» в коробке «Потом»?"
+  },
+  "opts": [
+   {
+    "uz": "Yozuvda bor, lekin shart emas",
+    "ru": "Есть в записях, но не обязателен"
+   },
+   {
+    "uz": "Hech kim uni aytmagan",
+    "ru": "О нём никто не сказал"
+   },
+   {
+    "uz": "Busiz bo'sh vaqt ko'rinmaydi",
+    "ru": "Без него не видно свободное время"
+   },
+   {
+    "uz": "Beshala yozuvda aytilgan",
+    "ru": "О нём сказали во всех пяти записях"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 181.",
+  "q": {
+   "uz": "«Maydonga baho» nega «Qilmaymiz» qutisida?",
+   "ru": "Почему «Оценка поля» в коробке «Не делаем»?"
+  },
+  "opts": [
+   {
+    "uz": "Uni qurish juda qiyin",
+    "ru": "Её очень трудно сделать"
+   },
+   {
+    "uz": "Jamoaning o'ziga yoqmagan",
+    "ru": "Она не нравится команде"
+   },
+   {
+    "uz": "Ko'p o'yinchi so'ragan",
+    "ru": "Её просили многие игроки"
+   },
+   {
+    "uz": "Yozuvlarda sababi yo'q",
+    "ru": "В записях нет для неё причины"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 49 belgigacha, jami 235.",
+  "q": {
+   "uz": "Egasi bandlar ro'yxatini ko'rmasa-chi?",
+   "ru": "А если владелец не видит список броней?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsa — u kerak emas",
+    "ru": "Ничего — он не нужен"
+   },
+   {
+    "uz": "O'yinchi katak ko'rmaydi",
+    "ru": "Игрок не увидит ячейки"
+   },
+   {
+    "uz": "Egasi maydonni boshqaga beradi",
+    "ru": "Владелец отдаст поле другим"
+   },
+   {
+    "uz": "Sayt umuman ochilmaydi",
+    "ru": "Сайт вообще не откроется"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 151 belgi.",
+  "q": {
+   "uz": "Burbn jamoasi nimaga qarab qaror qildi?",
+   "ru": "На что смотрела команда Burbn, принимая решение?"
+  },
+  "opts": [
+   {
+    "uz": "O'z xohishiga",
+    "ru": "На своё желание"
+   },
+   {
+    "uz": "Odamlar nima qilganiga",
+    "ru": "На то, что делали люди"
+   },
+   {
+    "uz": "Eng oson imkoniyatga",
+    "ru": "На самую простую возможность"
+   },
+   {
+    "uz": "Bitta odamning gapiga",
+    "ru": "На слова одного человека"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 151 belgi.",
+  "q": {
+   "uz": "`yozuvlar[j].includes(\"band\")` nimani tekshiradi?",
+   "ru": "Что проверяет `yozuvlar[j].includes(\"band\")`?"
+  },
+  "opts": [
+   {
+    "uz": "Yozuvlar nechtaligini",
+    "ru": "Сколько всего записей"
+   },
+   {
+    "uz": "Birinchi yozuv nimaligini",
+    "ru": "Что в первой записи"
+   },
+   {
+    "uz": "j-yozuvda «band» bormi",
+    "ru": "Есть ли «band» в записи j"
+   },
+   {
+    "uz": "«band» so'zi uzunligini",
+    "ru": "Длину слова «band»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 58 belgi, variant 45, jami 216.",
+  "q": {
+   "uz": "Ikki shikoyat — bir qiyinchilik. Nima qilasiz?",
+   "ru": "Две жалобы — одна трудность. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta gapga birlashtiraman",
+    "ru": "Объединю в одну формулировку"
+   },
+   {
+    "uz": "Birini o'chiraman",
+    "ru": "Одну удалю"
+   },
+   {
+    "uz": "Har biriga sayt qilaman",
+    "ru": "Сделаю сайт для каждой"
+   },
+   {
+    "uz": "Ikkisini «Keyin»ga suraman",
+    "ru": "Отложу обе в «Потом»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 148 belgi.",
+  "q": {
+   "uz": "«Maydon» MVP siga qaysi qismlar yetadi?",
+   "ru": "Каких частей хватает MVP «Maydon»?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt, Backend va Database",
+    "ru": "Сайт, Backend и Database"
+   },
+   {
+    "uz": "Faqat sayt — brauzerda",
+    "ru": "Только сайт — в браузере"
+   },
+   {
+    "uz": "Sayt, Backend, AI va Bot",
+    "ru": "Сайт, Backend, AI и бот"
+   },
+   {
+    "uz": "Faqat Database va jadval",
+    "ru": "Только Database и таблица"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 166.",
+  "q": {
+   "uz": "Kataklarni ekranda qaysi qism chizadi?",
+   "ru": "Какая часть рисует ячейки на экране?"
+  },
+  "opts": [
+   {
+    "uz": "Backend — hisoblaydi",
+    "ru": "Backend — вычисляет"
+   },
+   {
+    "uz": "Sayt — ko'rsatadi",
+    "ru": "Сайт — показывает"
+   },
+   {
+    "uz": "Database — saqlaydi",
+    "ru": "Database — хранит"
+   },
+   {
+    "uz": "Agent — kod yozgan",
+    "ru": "Агент — написал код"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 156.",
+  "q": {
+   "uz": "`baho` ustuni nega jadvalda yo'q?",
+   "ru": "Почему в таблице нет столбца `baho`?"
+  },
+  "opts": [
+   {
+    "uz": "Database baho saqlamaydi",
+    "ru": "Database не хранит оценку"
+   },
+   {
+    "uz": "Bahoni sayt hisoblaydi",
+    "ru": "Оценку вычисляет сайт"
+   },
+   {
+    "uz": "Ustunlar soni cheklangan",
+    "ru": "Число столбцов ограничено"
+   },
+   {
+    "uz": "Baho «qilmaymiz» ro'yxatida",
+    "ru": "Оценка в списке «не делаем»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 161 belgi.",
+  "q": {
+   "uz": "Dushanba uchun qator yo'q. Sayt nima ko'rsatadi?",
+   "ru": "На понедельник строк нет. Что покажет сайт?"
+  },
+  "opts": [
+   {
+    "uz": "Kataklar chiqmaydi",
+    "ru": "Ячейки не появятся"
+   },
+   {
+    "uz": "Olti katak, hammasi bo'sh",
+    "ru": "Шесть ячеек, все свободны"
+   },
+   {
+    "uz": "Olti katak, hammasi band",
+    "ru": "Шесть ячеек, все заняты"
+   },
+   {
+    "uz": "Sayt xato ko'rsatadi",
+    "ru": "Сайт покажет ошибку"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 64 belgi, jami 152.",
+  "q": {
+   "uz": "Tokensiz bandlar so'raldi. Backend nima qiladi?",
+   "ru": "Брони запросили без токена. Что сделает Backend?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatni to'liq qaytaradi",
+    "ru": "Вернёт весь список"
+   },
+   {
+    "uz": "Bo'sh ro'yxat qaytaradi",
+    "ru": "Вернёт пустой список"
+   },
+   {
+    "uz": "401 bilan rad etadi",
+    "ru": "Откажет с кодом 401"
+   },
+   {
+    "uz": "Saytni yopib qo'yadi",
+    "ru": "Закроет сайт"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 156 belgi.",
+  "q": {
+   "uz": "`.env` repo'ga qo'shilmasin. Nima qilasiz?",
+   "ru": "`.env` не должен попасть в репо. Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "`.gitignore` ga yozaman",
+    "ru": "Впишу в `.gitignore`"
+   },
+   {
+    "uz": "Fayl nomini o'zgartiraman",
+    "ru": "Поменяю имя файла"
+   },
+   {
+    "uz": "Faylni `web/` ga ko'chiraman",
+    "ru": "Перенесу файл в `web/`"
+   },
+   {
+    "uz": "Qatorlarini o'chiraman",
+    "ru": "Удалю строки внутри"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi.",
+  "q": {
+   "uz": "Stack nima?",
+   "ru": "Что такое стек?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta katta dastur fayli",
+    "ru": "Один большой файл программы"
+   },
+   {
+    "uz": "Birga ishlovchi texnologiyalar",
+    "ru": "Технологии, работающие вместе"
+   },
+   {
+    "uz": "Saytdagi tugma va sahifalar",
+    "ru": "Кнопки и страницы сайта"
+   },
+   {
+    "uz": "Database'dagi jadvallar",
+    "ru": "Таблицы в Database"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 64 belgi, jami 166.",
+  "q": {
+   "uz": "Sayt internetda, Backend sizda. Do'st nima ko'radi?",
+   "ru": "Сайт в интернете, Backend у вас. Что увидит друг?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma kataklarni",
+    "ru": "Все ячейки"
+   },
+   {
+    "uz": "Hech narsa — ochilmaydi",
+    "ru": "Ничего — не откроется"
+   },
+   {
+    "uz": "Sahifani, lekin kataklarsiz",
+    "ru": "Страницу, но без ячеек"
+   },
+   {
+    "uz": "Faqat band kataklarni",
+    "ru": "Только занятые ячейки"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 42 belgi, jami 195.",
+  "q": {
+   "uz": "Kod yozishdan oldin chizma nega kerak?",
+   "ru": "Зачем схема до написания кода?"
+  },
+  "opts": [
+   {
+    "uz": "Kod tezroq ishlaydi",
+    "ru": "Код работает быстрее"
+   },
+   {
+    "uz": "Dizayn chiroyli chiqadi",
+    "ru": "Дизайн получится красивее"
+   },
+   {
+    "uz": "Deploy shart bo'lmaydi",
+    "ru": "Деплой не понадобится"
+   },
+   {
+    "uz": "Agentga joyni aniq aytasiz",
+    "ru": "Вы точно скажете агенту, где что"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/AnimationLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 180; to'g'ri javob eng uzuni.",
+  "q": {
+   "uz": "Animatsiya o'yinchiga nima deydi?",
+   "ru": "Что анимация говорит игроку?"
+  },
+  "opts": [
+   {
+    "uz": "Bosildi, o'zgardi, tayyor",
+    "ru": "Нажато, изменилось, готово"
+   },
+   {
+    "uz": "Necha odam borligini",
+    "ru": "Сколько людей на сайте"
+   },
+   {
+    "uz": "Sahifa qachondan ochiqligini",
+    "ru": "Как давно открыта страница"
+   },
+   {
+    "uz": "Qaysi rang chiroyli ekanini",
+    "ru": "Какой цвет красивее"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/AnimationLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 162.",
+  "q": {
+   "uz": "transform: scale(1.1) nima qiladi?",
+   "ru": "Что делает transform: scale(1.1)?"
+  },
+  "opts": [
+   {
+    "uz": "10% ga kichraytiradi",
+    "ru": "Уменьшает на 10%"
+   },
+   {
+    "uz": "10% ga kattalashtiradi",
+    "ru": "Увеличивает на 10%"
+   },
+   {
+    "uz": "10 piksel o'ngga suradi",
+    "ru": "Сдвигает на 10 пикселей вправо"
+   },
+   {
+    "uz": "Rangini 10% ochadi",
+    "ru": "Осветляет цвет на 10%"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/AnimationLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi.",
+  "q": {
+   "uz": "Tugma scale(0.9) bilan kichraydi. Ostidagi matn-chi?",
+   "ru": "Кнопка уменьшается через scale(0.9). А текст под ней?"
+  },
+  "opts": [
+   {
+    "uz": "Tepaga ko'tariladi",
+    "ru": "Поднимется вверх"
+   },
+   {
+    "uz": "Pastga tushadi",
+    "ru": "Опустится вниз"
+   },
+   {
+    "uz": "Joyida qoladi",
+    "ru": "Останется на месте"
+   },
+   {
+    "uz": "U ham kichrayadi",
+    "ru": "Тоже уменьшится"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/AnimationLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 168.",
+  "q": {
+   "uz": "transition: transform 0.15s — 0.15s nima?",
+   "ru": "transition: transform 0.15s — что такое 0.15s?"
+  },
+  "opts": [
+   {
+    "uz": "Necha marta kichrayishini",
+    "ru": "Сколько раз уменьшится"
+   },
+   {
+    "uz": "Qancha kichrayishini",
+    "ru": "Насколько уменьшится"
+   },
+   {
+    "uz": "Qachon bosilishini",
+    "ru": "Когда нажмут"
+   },
+   {
+    "uz": "Qancha vaqt davom etishini",
+    "ru": "Сколько длится изменение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/AnimationLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi, jami 155.",
+  "q": {
+   "uz": ".katak.band qaysi elementni topadi?",
+   "ru": "Какой элемент находит .katak.band?"
+  },
+  "opts": [
+   {
+    "uz": "katak ichidagi band ni",
+    "ru": "band внутри katak"
+   },
+   {
+    "uz": "Ikkala klassi bor elementni",
+    "ru": "Элемент с обоими классами"
+   },
+   {
+    "uz": "Faqat band klassi borini",
+    "ru": "Любой элемент с классом band"
+   },
+   {
+    "uz": "Hamma katak klassi borini",
+    "ru": "Все элементы с классом katak"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/AnimationLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 166.",
+  "q": {
+   "uz": "motion.div dagi initial nimani bildiradi?",
+   "ru": "Что означает initial в motion.div?"
+  },
+  "opts": [
+   {
+    "uz": "Chiqishdan oldingi holat",
+    "ru": "Состояние до появления"
+   },
+   {
+    "uz": "To'xtaydigan oxirgi holat",
+    "ru": "Последнее состояние остановки"
+   },
+   {
+    "uz": "Ketayotgandagi holat",
+    "ru": "Состояние при уходе"
+   },
+   {
+    "uz": "Bosilgan paytdagi holat",
+    "ru": "Состояние при нажатии"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/AnimationLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi, jami 148.",
+  "q": {
+   "uz": "O'chirilgan qator silliq ketishi uchun nima kerak?",
+   "ru": "Что нужно, чтобы удалённая строка ушла плавно?"
+  },
+  "opts": [
+   {
+    "uz": "initial da opacity: 0",
+    "ru": "opacity: 0 в initial"
+   },
+   {
+    "uz": "AnimatePresence va exit",
+    "ru": "AnimatePresence и exit"
+   },
+   {
+    "uz": "animate da y: 0",
+    "ru": "y: 0 в animate"
+   },
+   {
+    "uz": "CSS'dagi transition",
+    "ru": "transition в CSS"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/AnimationLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 174.",
+  "q": {
+   "uz": "Do'kon saytida qaysi harakat ortiqcha?",
+   "ru": "Какое движение на сайте магазина лишнее?"
+  },
+  "opts": [
+   {
+    "uz": "Savatdagi son o'zgarishi",
+    "ru": "Смена числа в корзине"
+   },
+   {
+    "uz": "Bosilgan tugma kichrayishi",
+    "ru": "Нажатая кнопка уменьшается"
+   },
+   {
+    "uz": "Doim miltillovchi «Aksiya»",
+    "ru": "Постоянно мигающая «Акция»"
+   },
+   {
+    "uz": "«Qabul qilindi» belgisi",
+    "ru": "Надпись «Принято»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/AnimationLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 160.",
+  "q": {
+   "uz": "prefers-reduced-motion nimani bildiradi?",
+   "ru": "Что означает prefers-reduced-motion?"
+  },
+  "opts": [
+   {
+    "uz": "Internet sekinligini",
+    "ru": "Что интернет медленный"
+   },
+   {
+    "uz": "Quvvat kamligini",
+    "ru": "Что мало заряда"
+   },
+   {
+    "uz": "Ekran xiraligini",
+    "ru": "Что экран тусклый"
+   },
+   {
+    "uz": "Harakat kamaytirilganini",
+    "ru": "Что движение уменьшено"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 154.",
+  "q": {
+   "uz": "Analitika saytda nimani yozib boradi?",
+   "ru": "Что записывает аналитика на сайте?"
+  },
+  "opts": [
+   {
+    "uz": "Odamlar nima qilganini",
+    "ru": "Что делали люди"
+   },
+   {
+    "uz": "Sayt qancha tez ochilishini",
+    "ru": "Как быстро открывается сайт"
+   },
+   {
+    "uz": "Kodda qancha xato qolganini",
+    "ru": "Сколько ошибок в коде"
+   },
+   {
+    "uz": "Saytni kim qurganini",
+    "ru": "Кто сделал сайт"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 34 belgi, jami 162.",
+  "q": {
+   "uz": "Umami 4-kuni ulandi. 1-kundan nima ma'lum?",
+   "ru": "Umami подключили на 4-й день. Что известно о 1-м дне?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma qadam, kechikib",
+    "ru": "Все шаги, но позже"
+   },
+   {
+    "uz": "Faqat Database'dagi bandlar",
+    "ru": "Только брони в Database"
+   },
+   {
+    "uz": "Faqat ochganlar soni",
+    "ru": "Только число открывших"
+   },
+   {
+    "uz": "Hech narsa — bandlar o'chgan",
+    "ru": "Ничего — брони стёрлись"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 42 belgi, jami 207.",
+  "q": {
+   "uz": "Uch qadam qaysi tartibda?",
+   "ru": "В каком порядке три шага?"
+  },
+  "opts": [
+   {
+    "uz": "Band qildi → Tanladi → Ochdi",
+    "ru": "Забронировал → Выбрал → Открыл"
+   },
+   {
+    "uz": "Tanladi → Ochdi → Band qildi",
+    "ru": "Выбрал → Открыл → Забронировал"
+   },
+   {
+    "uz": "Ochdi → Tanladi → Band qildi",
+    "ru": "Открыл → Выбрал → Забронировал"
+   },
+   {
+    "uz": "Ochdi → Band qildi → Tanladi",
+    "ru": "Открыл → Забронировал → Выбрал"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 82 belgi, jami 183.",
+  "q": {
+   "uz": "10 ochdi, 8 tanladi, 1 band qildi. Qayerda keskin kamaydi?",
+   "ru": "10 открыли, 8 выбрали, 1 забронировал. Где резкое падение?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni ochgach",
+    "ru": "После открытия сайта"
+   },
+   {
+    "uz": "Band qilgach",
+    "ru": "После брони"
+   },
+   {
+    "uz": "Ochishdan oldin",
+    "ru": "До открытия"
+   },
+   {
+    "uz": "Vaqtni tanlagach",
+    "ru": "После выбора времени"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 179.",
+  "q": {
+   "uz": "Sayt ochilishini Umami qanday yozadi?",
+   "ru": "Как Umami записывает открытие сайта?"
+  },
+  "opts": [
+   {
+    "uz": "Har sahifaga nom qo'shiladi",
+    "ru": "Каждой странице дают имя"
+   },
+   {
+    "uz": "Skript ulangach, o'zi yozadi",
+    "ru": "После подключения скрипт пишет сам"
+   },
+   {
+    "uz": "Ega qo'lda kiritib boradi",
+    "ru": "Владелец вносит вручную"
+   },
+   {
+    "uz": "Faqat band qilinganda",
+    "ru": "Только при брони"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 161.",
+  "q": {
+   "uz": "Nega bugun bitta hodisa qo'shildi?",
+   "ru": "Почему сегодня добавили одно событие?"
+  },
+  "opts": [
+   {
+    "uz": "Umami bittadan ko'p olmaydi",
+    "ru": "Umami не берёт больше одного"
+   },
+   {
+    "uz": "Ochilish ham nom kutadi",
+    "ru": "Открытию тоже нужно имя"
+   },
+   {
+    "uz": "Band qilish hali qurilmagan",
+    "ru": "Бронь ещё не сделана"
+   },
+   {
+    "uz": "Bitta hodisa hammasini yozadi",
+    "ru": "Одно событие пишет всё"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 190.",
+  "q": {
+   "uz": "Website ID nega web/.env da turadi?",
+   "ru": "Почему Website ID лежит в web/.env?"
+  },
+  "opts": [
+   {
+    "uz": "Uni hech kim ko'rmasin deb",
+    "ru": "Чтобы его никто не увидел"
+   },
+   {
+    "uz": "Har o'quvchida u boshqa",
+    "ru": "У каждого ученика он свой"
+   },
+   {
+    "uz": "Umami faqat .env'dan o'qiydi",
+    "ru": "Umami читает только из .env"
+   },
+   {
+    "uz": "index.html uni o'qiy olmaydi",
+    "ru": "index.html не может его прочитать"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 57 belgi, variant 35, jami 191.",
+  "q": {
+   "uz": "Sayt ochildi, Umami'da 0. Sabab nima?",
+   "ru": "Сайт открыли, в Umami 0. В чём причина?"
+  },
+  "opts": [
+   {
+    "uz": "Katakda hodisa nomi yo'q",
+    "ru": "У ячейки нет имени события"
+   },
+   {
+    "uz": "Band tugmasi qurilmagan",
+    "ru": "Кнопку брони не сделали"
+   },
+   {
+    "uz": "Reklama to'sgichi yoqilgan",
+    "ru": "Включён блокировщик рекламы"
+   },
+   {
+    "uz": "Database'ga ulanish uzilgan",
+    "ru": "Оборвалась связь с Database"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 57 belgigacha, jami 236.",
+  "q": {
+   "uz": "Talab nima?",
+   "ru": "Что такое требование?"
+  },
+  "opts": [
+   {
+    "uz": "Promptdagi uch qismli vazifa",
+    "ru": "Задача из трёх частей в промпте"
+   },
+   {
+    "uz": "Agentning «Tayyor» javobi",
+    "ru": "Ответ агента «Готово»"
+   },
+   {
+    "uz": "Saytdagi tugma va ranglar",
+    "ru": "Кнопки и цвета сайта"
+   },
+   {
+    "uz": "Backend'dagi yo'llar ro'yxati",
+    "ru": "Список путей Backend"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 70 belgi, jami 211.",
+  "q": {
+   "uz": "Kataklar ostida 2-ro'yxat chiqdi. Nima yetmadi?",
+   "ru": "Под ячейками появился второй список. Чего не хватило?"
+  },
+  "opts": [
+   {
+    "uz": "Nima qilsin",
+    "ru": "Что сделать"
+   },
+   {
+    "uz": "Qayerda",
+    "ru": "Где"
+   },
+   {
+    "uz": "Nima buzilmasin",
+    "ru": "Что не сломать"
+   },
+   {
+    "uz": "Texnologiya",
+    "ru": "Технология"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 47 belgigacha, jami 206.",
+  "q": {
+   "uz": "Qaysi biri yaxshi talab?",
+   "ru": "Какое требование хорошее?"
+  },
+  "opts": [
+   {
+    "uz": "Chiroyli, zamonaviy qil",
+    "ru": "Сделай красиво и современно"
+   },
+   {
+    "uz": "O'zing bilganingcha tuzat",
+    "ru": "Исправь, как сам знаешь"
+   },
+   {
+    "uz": "Kataklar Backend'dan kelsin",
+    "ru": "Ячейки пусть идут из Backend"
+   },
+   {
+    "uz": "Kataklar bilan nimadir qil",
+    "ru": "Сделай что-нибудь с ячейками"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 44 belgigacha, jami 205.",
+  "q": {
+   "uz": "Agent «Tayyor» dedi. Nima qilasiz?",
+   "ru": "Агент сказал «Готово». Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Keyingi talabni yuborasiz",
+    "ru": "Отправляете следующее требование"
+   },
+   {
+    "uz": "«Rostdanmi?» deb so'raysiz",
+    "ru": "Спрашиваете: «Правда?»"
+   },
+   {
+    "uz": "Kodni qayta yozdirasiz",
+    "ru": "Просите переписать код"
+   },
+   {
+    "uz": "Har qatorni saytda tekshirasiz",
+    "ru": "Проверяете каждую строку на сайте"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 42 belgi, jami 202.",
+  "q": {
+   "uz": "«Nima buzilmasin» qatoriga nima yoziladi?",
+   "ru": "Что пишут в строке «Что не сломать»?"
+  },
+  "opts": [
+   {
+    "uz": "Ishlab turgan narsalar",
+    "ru": "То, что уже работает"
+   },
+   {
+    "uz": "Qurilmagan funksiyalar",
+    "ru": "Ещё не созданные функции"
+   },
+   {
+    "uz": "Qaysi kutubxona kerakligi",
+    "ru": "Какая библиотека нужна"
+   },
+   {
+    "uz": "Ish necha daqiqa olishi",
+    "ru": "Сколько минут займёт работа"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 177.",
+  "q": {
+   "uz": "`GET /vaqtlar?kun=2026-10-10` nima qaytaradi?",
+   "ru": "Что возвращает `GET /vaqtlar?kun=2026-10-10`?"
+  },
+  "opts": [
+   {
+    "uz": "Band qilganlar ismlari",
+    "ru": "Имена занявших"
+   },
+   {
+    "uz": "Shu kun kataklari va holati",
+    "ru": "Ячейки этого дня и их состояние"
+   },
+   {
+    "uz": "Hafta kunlari nomlari",
+    "ru": "Названия дней недели"
+   },
+   {
+    "uz": "Bosh sahifaning kodi",
+    "ru": "Код главной страницы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 175.",
+  "q": {
+   "uz": "Katak «band» ekanini Backend qayerdan biladi?",
+   "ru": "Откуда Backend знает, что ячейка «занята»?"
+  },
+  "opts": [
+   {
+    "uz": "Almashtirgich `rang`idan",
+    "ru": "Из `rang` переключателя"
+   },
+   {
+    "uz": "Umami `hodisa`sidan",
+    "ru": "Из `hodisa` в Umami"
+   },
+   {
+    "uz": "`bandlar` jadvalidan",
+    "ru": "Из таблицы `bandlar`"
+   },
+   {
+    "uz": "Brauzer `localStorage`idan",
+    "ru": "Из `localStorage` браузера"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 58 belgi, variant 43, jami 214.",
+  "q": {
+   "uz": "Bir qator mos kelmadi. Agentga nima yozasiz?",
+   "ru": "Одна строка не совпала. Что напишете агенту?"
+  },
+  "opts": [
+   {
+    "uz": "«Ishlamayapti, tuzat»",
+    "ru": "«Не работает, исправь»"
+   },
+   {
+    "uz": "Saytni qayta yozdirish",
+    "ru": "Просьбу переписать сайт"
+   },
+   {
+    "uz": "Boshqa agentga o'tish",
+    "ru": "Перейти к другому агенту"
+   },
+   {
+    "uz": "Ko'rganingiz va kutganingiz",
+    "ru": "Что увидели и что ожидали"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 190.",
+  "q": {
+   "uz": "Terminalda xato chiqdi. Agentga nima yuborasiz?",
+   "ru": "В терминале ошибка. Что отправите агенту?"
+  },
+  "opts": [
+   {
+    "uz": "Xato matni va «Tuzat»",
+    "ru": "Текст ошибки и «Исправь»"
+   },
+   {
+    "uz": "Faqat «Ishlamayapti»",
+    "ru": "Только «Не работает»"
+   },
+   {
+    "uz": "Loyihani qayta yozish",
+    "ru": "Переписать проект"
+   },
+   {
+    "uz": "Faqat «Yordam ber»",
+    "ru": "Только «Помоги»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi, jami 196.",
+  "q": {
+   "uz": "Talabda React yoki NestJS ni yozish kerakmi?",
+   "ru": "Нужно ли писать в требовании React или NestJS?"
+  },
+  "opts": [
+   {
+    "uz": "Ha — har talabda kerak",
+    "ru": "Да — нужно в каждом"
+   },
+   {
+    "uz": "Yo'q — stack repo'da bor",
+    "ru": "Нет — стек уже в репо"
+   },
+   {
+    "uz": "Ha — agent usiz bilmaydi",
+    "ru": "Да — без этого агент не знает"
+   },
+   {
+    "uz": "Yo'q — agent o'zi topadi",
+    "ru": "Нет — агент сам найдёт"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 198 belgi.",
+  "q": {
+   "uz": "Backend javob bermasa, sayt nima qiladi?",
+   "ru": "Если Backend не отвечает, что делает сайт?"
+  },
+  "opts": [
+   {
+    "uz": "Oq sahifa ko'rsatadi",
+    "ru": "Показывает белую страницу"
+   },
+   {
+    "uz": "Eski kataklarni ko'rsatadi",
+    "ru": "Показывает старые ячейки"
+   },
+   {
+    "uz": "Yuklab bo'lmadi deydi",
+    "ru": "Говорит, что не загрузилось"
+   },
+   {
+    "uz": "Backend'ni qayta yoqadi",
+    "ru": "Сам перезапускает Backend"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "«Ju 9» qisqartmasi darsda yo'q; jami 153.",
+  "q": {
+   "uz": "9-oktabr tanlandi. So'rov qaysi manzilga ketadi?",
+   "ru": "Выбрано 9 октября. На какой адрес уйдёт запрос?"
+  },
+  "opts": [
+   {
+    "uz": "`/vaqtlar`",
+    "ru": "`/vaqtlar`"
+   },
+   {
+    "uz": "`/bandlar?kun=2026-10-09`",
+    "ru": "`/bandlar?kun=2026-10-09`"
+   },
+   {
+    "uz": "`/kirish?kun=2026-10-09`",
+    "ru": "`/kirish?kun=2026-10-09`"
+   },
+   {
+    "uz": "`/vaqtlar?kun=2026-10-09`",
+    "ru": "`/vaqtlar?kun=2026-10-09`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "darsda-yoq"
+  ],
+  "izoh": "Behance darsda faqat nomi bilan bor, ta'rif Dribbble uchun berilgan; jami 172.",
+  "q": {
+   "uz": "Dribbble'da dizayner nimani ko'rsatadi?",
+   "ru": "Что дизайнер показывает на Dribbble?"
+  },
+  "opts": [
+   {
+    "uz": "O'z ishidan ekranlar",
+    "ru": "Экраны из своих работ"
+   },
+   {
+    "uz": "Faqat o'z rezyumesini",
+    "ru": "Только своё резюме"
+   },
+   {
+    "uz": "Ilovasining tayyor kodini",
+    "ru": "Готовый код приложения"
+   },
+   {
+    "uz": "Ilova yuklanish sonini",
+    "ru": "Число скачиваний"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 182.",
+  "q": {
+   "uz": "Musiqa ilovasida qaysi biri usul?",
+   "ru": "Что в музыкальном приложении — приём?"
+  },
+  "opts": [
+   {
+    "uz": "Fon qora, harflar oq",
+    "ru": "Фон чёрный, буквы белые"
+   },
+   {
+    "uz": "Oxirgi qo'shiq tepada turadi",
+    "ru": "Последняя песня стоит сверху"
+   },
+   {
+    "uz": "Albom rasmlari katta",
+    "ru": "Обложки альбомов большие"
+   },
+   {
+    "uz": "Tugmalar och ko'k rangda",
+    "ru": "Кнопки светло-голубые"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 160.",
+  "q": {
+   "uz": "Maydon misolida qaysi biri bezak?",
+   "ru": "Что в примере Maydon — украшение?"
+  },
+  "opts": [
+   {
+    "uz": "Band katak bosilmasligi",
+    "ru": "Занятую ячейку нельзя нажать"
+   },
+   {
+    "uz": "Butun kun bir ekranda",
+    "ru": "Весь день на одном экране"
+   },
+   {
+    "uz": "Fon rangi va shrift",
+    "ru": "Цвет фона и шрифт"
+   },
+   {
+    "uz": "Kun almashish yo'nalishi",
+    "ru": "Направление смены дня"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 179.",
+  "q": {
+   "uz": "To'p rasmi qo'yilganda nima bo'ldi?",
+   "ru": "Что стало, когда поставили картинку мяча?"
+  },
+  "opts": [
+   {
+    "uz": "Bo'sh vaqt tezroq topildi",
+    "ru": "Свободное время нашли быстрее"
+   },
+   {
+    "uz": "Kataklar uch ustunga o'tdi",
+    "ru": "Ячейки встали в три столбца"
+   },
+   {
+    "uz": "Kun almashtirgich yo'qoldi",
+    "ru": "Пропал переключатель дня"
+   },
+   {
+    "uz": "Kataklar yana pastga tushdi",
+    "ru": "Ячейки опустились ещё ниже"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 34 belgi, jami 165; darsdagi savol «Boshqa kun-chi?» deb olindi.",
+  "q": {
+   "uz": "Kunlar tasmasi qaysi savolga javob beradi?",
+   "ru": "На какой вопрос отвечает лента дней?"
+  },
+  "opts": [
+   {
+    "uz": "«Bugun qaysi vaqt bo'sh?»",
+    "ru": "«Какое время сегодня свободно?»"
+   },
+   {
+    "uz": "«Boshqa kun-chi?»",
+    "ru": "«А другой день?»"
+   },
+   {
+    "uz": "«Egasi telefoni qaysi?»",
+    "ru": "«Какой телефон у хозяина?»"
+   },
+   {
+    "uz": "«Band qilish necha pul?»",
+    "ru": "«Сколько стоит бронь?»"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 181.",
+  "q": {
+   "uz": "Usulni qayerdan boshlab izlaysiz?",
+   "ru": "С чего начинаете искать приём?"
+  },
+  "opts": [
+   {
+    "uz": "Foydalanuvchining savolidan",
+    "ru": "С вопроса пользователя"
+   },
+   {
+    "uz": "Eng ko'p layk olgan ishdan",
+    "ru": "С самой залайканной работы"
+   },
+   {
+    "uz": "Yoqqan rang va shriftdan",
+    "ru": "С понравившихся цвета и шрифта"
+   },
+   {
+    "uz": "Do'st ilovasi ekranidan",
+    "ru": "С экрана приложения друга"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 186.",
+  "q": {
+   "uz": "Tweetie'gacha yangi post qanday ko'rilardi?",
+   "ru": "Как до Tweetie смотрели новые посты?"
+  },
+  "opts": [
+   {
+    "uz": "Telefonni silkitib",
+    "ru": "Встряхнув телефон"
+   },
+   {
+    "uz": "Ilova o'zi yangilardi",
+    "ru": "Приложение обновлялось само"
+   },
+   {
+    "uz": "Xabarnoma chiqardi",
+    "ru": "Приходило уведомление"
+   },
+   {
+    "uz": "Tepadagi tugmani bosib",
+    "ru": "Нажав кнопку наверху"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 189.",
+  "q": {
+   "uz": "Tortib turganingizda belgi nima qiladi?",
+   "ru": "Что делает значок, пока вы тянете?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani tezlashtiradi",
+    "ru": "Ускоряет приложение"
+   },
+   {
+    "uz": "Ekranni chiroyli qiladi",
+    "ru": "Делает экран красивее"
+   },
+   {
+    "uz": "Yangilanishni ko'rsatadi",
+    "ru": "Показывает начало обновления"
+   },
+   {
+    "uz": "Yangi postlarni sanaydi",
+    "ru": "Считает новые посты"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 197; javob darsdagi «agent hamma joyga qo'shmasin» ma'nosiga yaqinlashtirildi.",
+  "q": {
+   "uz": "«Qayerda» qismi nega kerak?",
+   "ru": "Зачем нужна часть «где»?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma joyga qo'shmasligi uchun",
+    "ru": "Чтобы агент не добавил везде"
+   },
+   {
+    "uz": "Kodni tezroq yozishi uchun",
+    "ru": "Чтобы быстрее написал код"
+   },
+   {
+    "uz": "Kod qisqaroq chiqishi uchun",
+    "ru": "Чтобы код был короче"
+   },
+   {
+    "uz": "Talab jiddiy ko'rinishi uchun",
+    "ru": "Чтобы требование выглядело серьёзно"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 177.",
+  "q": {
+   "uz": "«Nima buzilmasin» nega yoziladi?",
+   "ru": "Зачем пишут «что не сломать»?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'proq kod yozilsin deb",
+    "ru": "Чтобы кода было больше"
+   },
+   {
+    "uz": "Ishlagan narsa saqlansin deb",
+    "ru": "Чтобы сохранилось работающее"
+   },
+   {
+    "uz": "Talab rasmiy ko'rinsin deb",
+    "ru": "Чтобы выглядело официально"
+   },
+   {
+    "uz": "Yangi paket o'rnatilsin deb",
+    "ru": "Чтобы поставили новые пакеты"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 47 belgigacha, jami 195.",
+  "q": {
+   "uz": "MVP qachon tayyor deyiladi?",
+   "ru": "Когда MVP называют готовым?"
+  },
+  "opts": [
+   {
+    "uz": "«Qilamiz» qutisi ishlaganda",
+    "ru": "Когда работает коробка «делаем»"
+   },
+   {
+    "uz": "«Keyin» ham qo'shilganda",
+    "ru": "Когда добавлено и «потом»"
+   },
+   {
+    "uz": "Hammasi mukammal bo'lganda",
+    "ru": "Когда всё идеально"
+   },
+   {
+    "uz": "Birinchi to'lov kelganda",
+    "ru": "Когда пришла первая оплата"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 181 belgi.",
+  "q": {
+   "uz": "Agent: «To'lovni qo'shaymi?» Javobingiz?",
+   "ru": "Агент: «Добавить оплату?» Ваш ответ?"
+  },
+  "opts": [
+   {
+    "uz": "Ha — o'yinchiga qulay",
+    "ru": "Да — игроку удобно"
+   },
+   {
+    "uz": "Yo'q — to'lov «keyin»da",
+    "ru": "Нет — оплата в «потом»"
+   },
+   {
+    "uz": "Ha — to'lovsiz bo'lmaydi",
+    "ru": "Да — без оплаты нельзя"
+   },
+   {
+    "uz": "Yo'q — to'lov «qilmaymiz»da",
+    "ru": "Нет — оплата в «не делаем»"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 201.",
+  "q": {
+   "uz": "Katak bo'shligini kim tekshiradi?",
+   "ru": "Кто проверяет, свободна ли ячейка?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt — katak rangiga qarab",
+    "ru": "Сайт — по цвету ячейки"
+   },
+   {
+    "uz": "Umami — hodisa soniga qarab",
+    "ru": "Umami — по числу событий"
+   },
+   {
+    "uz": "Backend — Database'ga qarab",
+    "ru": "Backend — по Database"
+   },
+   {
+    "uz": "Ega — ro'yxatga qarab",
+    "ru": "Владелец — по списку"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 193.",
+  "q": {
+   "uz": "Katak band. `POST /bandlar` nima qiladi?",
+   "ru": "Ячейка занята. Что делает `POST /bandlar`?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkinchisini ham yozadi",
+    "ru": "Пишет и вторую бронь"
+   },
+   {
+    "uz": "Eskisini o'chirib yozadi",
+    "ru": "Удаляет старую и пишет новую"
+   },
+   {
+    "uz": "Ikkalasiga «Band qilindi»",
+    "ru": "Обоим: «Забронировано»"
+   },
+   {
+    "uz": "«Bu vaqt band» deb rad etadi",
+    "ru": "Отказывает: «Это время занято»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi, jami 173.",
+  "q": {
+   "uz": "`band-qildi` hodisasi qachon yoziladi?",
+   "ru": "Когда записывается событие `band-qildi`?"
+  },
+  "opts": [
+   {
+    "uz": "Band saqlangandan keyin",
+    "ru": "После сохранения брони"
+   },
+   {
+    "uz": "Tugma bosilishi bilan",
+    "ru": "Сразу при нажатии кнопки"
+   },
+   {
+    "uz": "Sahifa ochilganda",
+    "ru": "Когда открылась страница"
+   },
+   {
+    "uz": "Ega ro'yxatni ochganda",
+    "ru": "Когда владелец открыл список"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 168.",
+  "q": {
+   "uz": "O'yinchi sahifasida bandlar haqida nima ko'rinadi?",
+   "ru": "Что о бронях видно на странице игрока?"
+  },
+  "opts": [
+   {
+    "uz": "Ism va telefon",
+    "ru": "Имя и телефон"
+   },
+   {
+    "uz": "Soat va holat",
+    "ru": "Час и состояние"
+   },
+   {
+    "uz": "Ega paroli va token",
+    "ru": "Пароль владельца и токен"
+   },
+   {
+    "uz": "Hamma telefon raqami",
+    "ru": "Все номера телефонов"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 161 belgi, variant 31.",
+  "q": {
+   "uz": "Tokensiz `GET /bandlar` nima qaytaradi?",
+   "ru": "Что вернёт `GET /bandlar` без токена?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatni to'liq",
+    "ru": "Весь список"
+   },
+   {
+    "uz": "Faqat ismlarni",
+    "ru": "Только имена"
+   },
+   {
+    "uz": "401, ro'yxat yo'q",
+    "ru": "401, списка нет"
+   },
+   {
+    "uz": "Ega sahifasini",
+    "ru": "Страницу владельца"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 155.",
+  "q": {
+   "uz": "Maydon egasining paroli qayerda turadi?",
+   "ru": "Где хранится пароль владельца поля?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt kodida, tugma yonida",
+    "ru": "В коде сайта, рядом с кнопкой"
+   },
+   {
+    "uz": "GitHub'dagi README'da",
+    "ru": "В README на GitHub"
+   },
+   {
+    "uz": "Agentga berilgan talabda",
+    "ru": "В требовании для агента"
+   },
+   {
+    "uz": "`.env` da va Render'da",
+    "ru": "В `.env` и в Render"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 39 belgi, boshqalardan uzun.",
+  "q": {
+   "uz": "Talabda «qayerda», «nima qilsin» va …?",
+   "ru": "В требовании «где», «что сделать» и …?"
+  },
+  "opts": [
+   {
+    "uz": "«nima buzilmasin»",
+    "ru": "«что не сломать»"
+   },
+   {
+    "uz": "«qancha vaqt»",
+    "ru": "«сколько времени»"
+   },
+   {
+    "uz": "«qaysi rang»",
+    "ru": "«какой цвет»"
+   },
+   {
+    "uz": "«kim tekshiradi»",
+    "ru": "«кто проверит»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 175.",
+  "q": {
+   "uz": "«Nima buzilmasin» qatoriga nima yoziladi?",
+   "ru": "Что пишут в строке «что не сломать»?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi funksiya",
+    "ru": "Новую функцию"
+   },
+   {
+    "uz": "O'zgarmay qoladigan ish",
+    "ru": "То, что должно остаться"
+   },
+   {
+    "uz": "Terminaldagi xato",
+    "ru": "Ошибку из терминала"
+   },
+   {
+    "uz": "Ertangi ishlar rejasi",
+    "ru": "План на завтра"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 156.",
+  "q": {
+   "uz": "MVP nega internetga chiqariladi?",
+   "ru": "Зачем выкладывать MVP в интернет?"
+  },
+  "opts": [
+   {
+    "uz": "Laptopda tez ishlashi uchun",
+    "ru": "Чтобы быстро работал на ноутбуке"
+   },
+   {
+    "uz": "Kodi qisqarishi uchun",
+    "ru": "Чтобы код стал короче"
+   },
+   {
+    "uz": "Telefondan ochilishi uchun",
+    "ru": "Чтобы открывался с телефона"
+   },
+   {
+    "uz": "Umami hodisa yozishi uchun",
+    "ru": "Чтобы Umami писал события"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpCompleteLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 34 belgi, jami 177.",
+  "q": {
+   "uz": "Bepul Render'da birinchi javob nega kechikadi?",
+   "ru": "Почему на бесплатном Render первый ответ запаздывает?"
+  },
+  "opts": [
+   {
+    "uz": "Neon'da joy tugagan",
+    "ru": "В Neon кончилось место"
+   },
+   {
+    "uz": "Sayt kodi juda katta",
+    "ru": "Код сайта слишком большой"
+   },
+   {
+    "uz": "Netlify havolasi eskirgan",
+    "ru": "Ссылка Netlify устарела"
+   },
+   {
+    "uz": "Backend uxlab qolgan",
+    "ru": "Backend уснул"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 45 belgigacha, jami 178.",
+  "q": {
+   "uz": "Sinov nima?",
+   "ru": "Что такое тест?"
+  },
+  "opts": [
+   {
+    "uz": "Odam ishlatadi, siz kuzatasiz",
+    "ru": "Человек пользуется, вы наблюдаете"
+   },
+   {
+    "uz": "Siz ishlatasiz, odam kuzatadi",
+    "ru": "Вы пользуетесь, человек наблюдает"
+   },
+   {
+    "uz": "Odamdan fikrini so'raysiz",
+    "ru": "Спрашиваете мнение человека"
+   },
+   {
+    "uz": "O'zingiz qayta-qayta sinaysiz",
+    "ru": "Сами снова и снова пробуете"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 195.",
+  "q": {
+   "uz": "Sinov intervyudan nimasi bilan farq qiladi?",
+   "ru": "Чем тест отличается от интервью?"
+  },
+  "opts": [
+   {
+    "uz": "Sinovda savol ko'p",
+    "ru": "На тесте больше вопросов"
+   },
+   {
+    "uz": "Intervyuda odam ishlatadi",
+    "ru": "На интервью человек пользуется сам"
+   },
+   {
+    "uz": "Sinovda so'ramay, kuzatasiz",
+    "ru": "На тесте не спрашиваете, а наблюдаете"
+   },
+   {
+    "uz": "Sinovda faqat sinfdoshlar",
+    "ru": "В тесте только одноклассники"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 197.",
+  "q": {
+   "uz": "O'yinchi 25 soniya hech narsa bosmadi. Bu nima?",
+   "ru": "Игрок 25 секунд ничего не нажимал. Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt sekin ochilyapti",
+    "ru": "Сайт медленно открывается"
+   },
+   {
+    "uz": "Bu to'xtash, yozib qo'yiladi",
+    "ru": "Это остановка, её записывают"
+   },
+   {
+    "uz": "Odam saytni yoqtirmadi",
+    "ru": "Сайт не понравился"
+   },
+   {
+    "uz": "Sinov shu yerda tugadi",
+    "ru": "Тест здесь закончился"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 41 belgi, jami 196.",
+  "q": {
+   "uz": "Yordam bersangiz, yozuvda nima bo'ladi?",
+   "ru": "Если помогаете, что будет в записи?"
+  },
+  "opts": [
+   {
+    "uz": "To'xtash ko'payadi",
+    "ru": "Остановок станет больше"
+   },
+   {
+    "uz": "Yozuv o'zgarmaydi",
+    "ru": "Запись не изменится"
+   },
+   {
+    "uz": "To'xtash ikki marta yoziladi",
+    "ru": "Остановка запишется дважды"
+   },
+   {
+    "uz": "To'xtash yozuvdan yo'qoladi",
+    "ru": "Остановка пропадёт из записи"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 167.",
+  "q": {
+   "uz": "Yaxshi sinov vazifasi nimani aytadi?",
+   "ru": "Что говорит хорошее задание для теста?"
+  },
+  "opts": [
+   {
+    "uz": "Qaysi tugmani bosishni",
+    "ru": "Какую кнопку нажать"
+   },
+   {
+    "uz": "Odam nimaga erishishini",
+    "ru": "Чего человек должен добиться"
+   },
+   {
+    "uz": "Sayt qanday qurilganini",
+    "ru": "Как устроен сайт"
+   },
+   {
+    "uz": "Sayt yoqdimi-yo'qmi",
+    "ru": "Понравился ли сайт"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 47 belgigacha, jami 224.",
+  "q": {
+   "uz": "Qaysi biri sinov vazifasi?",
+   "ru": "Что из этого — задание для теста?"
+  },
+  "opts": [
+   {
+    "uz": "«Shanba 18:00 ga band qiling»",
+    "ru": "«Забронируйте субботу на 18:00»"
+   },
+   {
+    "uz": "«18:00 ni bosib, ism yozing»",
+    "ru": "«Нажмите 18:00 и введите имя»"
+   },
+   {
+    "uz": "«Sayt qulaymi? Ayting»",
+    "ru": "«Удобен ли сайт? Скажите»"
+   },
+   {
+    "uz": "«Band qilish tugmasini bosing»",
+    "ru": "«Нажмите кнопку брони»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha, jami 193.",
+  "q": {
+   "uz": "Kuzatuv yozuviga qaysi qator tushadi?",
+   "ru": "Какая строка попадёт в запись наблюдения?"
+  },
+  "opts": [
+   {
+    "uz": "Tugma noqulay joyda ekan",
+    "ru": "Кнопка стоит неудобно"
+   },
+   {
+    "uz": "Hamma formani yomon ko'radi",
+    "ru": "Все не любят формы"
+   },
+   {
+    "uz": "Menga ham chalkash tuyuldi",
+    "ru": "Мне тоже показалось запутанным"
+   },
+   {
+    "uz": "Tugmani 1 daqiqa qidirdi",
+    "ru": "Искал кнопку 1 минуту"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 197.",
+  "q": {
+   "uz": "Internet-magazinda odamlar qayerda to'xtagan?",
+   "ru": "Где застревали люди в интернет-магазине?"
+  },
+  "opts": [
+   {
+    "uz": "Savatga narsa solayotganda",
+    "ru": "Когда клали товар в корзину"
+   },
+   {
+    "uz": "Qidiruvdan izlayotganda",
+    "ru": "Когда искали в поиске"
+   },
+   {
+    "uz": "Email va parol formasida",
+    "ru": "На форме email и пароля"
+   },
+   {
+    "uz": "Manzil yozayotganda",
+    "ru": "Когда писали адрес"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 41 belgi, eng uzuni; jami 200.",
+  "q": {
+   "uz": "Internet-magazinda nima o'zgardi?",
+   "ru": "Что изменилось в интернет-магазине?"
+  },
+  "opts": [
+   {
+    "uz": "Tugma yozuvi: «Davom etish»",
+    "ru": "Надпись кнопки: «Продолжить»"
+   },
+   {
+    "uz": "Formaga qator qo'shildi",
+    "ru": "В форму добавили строку"
+   },
+   {
+    "uz": "Sayt boshidan qayta qurildi",
+    "ru": "Сайт пересобрали с нуля"
+   },
+   {
+    "uz": "Yangilarga chegirma berildi",
+    "ru": "Новым дали скидку"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 166 belgi.",
+  "q": {
+   "uz": "Uch to'xtashdan qaysi biri birinchi tuzatiladi?",
+   "ru": "Какую из трёх остановок исправляют первой?"
+  },
+  "opts": [
+   {
+    "uz": "Eng oxirida bo'lgani",
+    "ru": "Ту, что была в конце"
+   },
+   {
+    "uz": "Eng qisqa vaqt olgani",
+    "ru": "Самую короткую"
+   },
+   {
+    "uz": "O'zingizga qizig'i",
+    "ru": "Ту, что интереснее вам"
+   },
+   {
+    "uz": "Vazifani to'xtatadigani",
+    "ru": "Ту, что останавливает задание"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 178.",
+  "q": {
+   "uz": "Real sinovni kim bilan o'tkazasiz?",
+   "ru": "С кем проводите реальный тест?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni qurgan o'zingiz",
+    "ru": "С собой — автором сайта"
+   },
+   {
+    "uz": "Saytingiz mo'ljallangan odam",
+    "ru": "С человеком, для которого сайт"
+   },
+   {
+    "uz": "Saytni ko'rgan dasturchi",
+    "ru": "С программистом, видевшим сайт"
+   },
+   {
+    "uz": "Sinfdagi a'lochi o'quvchi",
+    "ru": "С лучшим учеником класса"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 45 belgi, jami 219.",
+  "q": {
+   "uz": "Yozuv tayyor. Endi nima qilasiz?",
+   "ru": "Запись готова. Что делаете дальше?"
+  },
+  "opts": [
+   {
+    "uz": "Yozuvni o'chirib tashlayman",
+    "ru": "Удалю запись"
+   },
+   {
+    "uz": "Hammasini darhol tuzataman",
+    "ru": "Сразу исправлю всё"
+   },
+   {
+    "uz": "Birinchi tuzatishni tanlayman",
+    "ru": "Выберу, что исправлять первым"
+   },
+   {
+    "uz": "Odamdan tasdiq so'rayman",
+    "ru": "Попрошу человека подтвердить"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 198.",
+  "q": {
+   "uz": "Uch muammo chiqdi. Avval nima qilinadi?",
+   "ru": "Нашлись три проблемы. Что делают сначала?"
+  },
+  "opts": [
+   {
+    "uz": "Eng muhimi tuzatib sinaladi",
+    "ru": "Исправляют главную и тестируют"
+   },
+   {
+    "uz": "Uchalasi birga tuzatiladi",
+    "ru": "Исправляют все три сразу"
+   },
+   {
+    "uz": "Sayt oldindan tushuntiriladi",
+    "ru": "Заранее объясняют сайт"
+   },
+   {
+    "uz": "Sayt noldan yoziladi",
+    "ru": "Пишут сайт с нуля"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 166 belgi; javob darsdagi «vazifaga to'sqinlik qilgani» iborasiga keltirildi.",
+  "q": {
+   "uz": "Maydon'da qaysi muammo birinchi tuzatildi?",
+   "ru": "Какую проблему в Maydon исправили первой?"
+  },
+  "opts": [
+   {
+    "uz": "Eng oson tuzatiladigani",
+    "ru": "Самую лёгкую"
+   },
+   {
+    "uz": "Vazifaga to'sqinlik qilgani",
+    "ru": "Ту, что мешала заданию"
+   },
+   {
+    "uz": "Eng oxirgi yozilgani",
+    "ru": "Записанную последней"
+   },
+   {
+    "uz": "Eng uzun yozilgani",
+    "ru": "Записанную длиннее всех"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 36 belgi, jami 172.",
+  "q": {
+   "uz": "Nega bir vaqtda bitta muammo tuzatiladi?",
+   "ru": "Почему за раз исправляют одну проблему?"
+  },
+  "opts": [
+   {
+    "uz": "Agent ko'pini tushunmaydi",
+    "ru": "Агент не понимает больше одной"
+   },
+   {
+    "uz": "Ikkinchisi o'zi tuzaladi",
+    "ru": "Вторая исправится сама"
+   },
+   {
+    "uz": "Nima yordam berganini bilasiz",
+    "ru": "Понятно, что помогло"
+   },
+   {
+    "uz": "Qolganlari muhim emas",
+    "ru": "Остальные не важны"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 37 belgi, eng uzuni; jami 161.",
+  "q": {
+   "uz": "Talab: «qayerda», «nima buzilmasin» va …?",
+   "ru": "Требование: «где», «что не сломать» и …?"
+  },
+  "opts": [
+   {
+    "uz": "«nima qilsin»",
+    "ru": "«что сделать»"
+   },
+   {
+    "uz": "«kim, qachon»",
+    "ru": "«кто, когда»"
+   },
+   {
+    "uz": "«kimning aybi»",
+    "ru": "«чья вина»"
+   },
+   {
+    "uz": "«rasm joyi»",
+    "ru": "«место картинки»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 175 belgi.",
+  "q": {
+   "uz": "Tugma ko'rinmasdi. «Chiroyliroq qil» nega yetmaydi?",
+   "ru": "Кнопку не было видно. Почему «сделай красивее» мало?"
+  },
+  "opts": [
+   {
+    "uz": "Agent rangni tushunmaydi",
+    "ru": "Агент не понимает цвет"
+   },
+   {
+    "uz": "Tugma joyi o'zgarmaydi",
+    "ru": "Место кнопки не меняется"
+   },
+   {
+    "uz": "Chiroyli tugma sekin",
+    "ru": "Красивая кнопка медленнее"
+   },
+   {
+    "uz": "Talabga rang yozilmaydi",
+    "ru": "Цвет в требование не пишут"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 165.",
+  "q": {
+   "uz": "«Nima buzilmasin» qatoriga nima yoziladi?",
+   "ru": "Что пишут в строке «что не сломать»?"
+  },
+  "opts": [
+   {
+    "uz": "Tuzatiladigan joy",
+    "ru": "Место для исправления"
+   },
+   {
+    "uz": "Agent qo'shadigan narsa",
+    "ru": "То, что добавит агент"
+   },
+   {
+    "uz": "Ishlab turgan narsalar",
+    "ru": "То, что работает"
+   },
+   {
+    "uz": "O'yinchi ismi, telefoni",
+    "ru": "Имя и телефон игрока"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 152.",
+  "q": {
+   "uz": "Agent tuzatdi. Birinchi nimani o'qiysiz?",
+   "ru": "Агент исправил. Что прочитаете первым?"
+  },
+  "opts": [
+   {
+    "uz": "«Tayyor» degan gapini",
+    "ru": "Его слово «готово»"
+   },
+   {
+    "uz": "Loyihadagi hamma faylni",
+    "ru": "Все файлы проекта"
+   },
+   {
+    "uz": "README'dagi yozuvlarni",
+    "ru": "Записи в README"
+   },
+   {
+    "uz": "O'zgargan fayl va qatorlarni",
+    "ru": "Изменённые файлы и строки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 37 belgi, jami 182.",
+  "q": {
+   "uz": "Telefon muammosini laptopda qanday ko'rasiz?",
+   "ru": "Как увидеть проблему телефона на ноутбуке?"
+  },
+  "opts": [
+   {
+    "uz": "Telefon o'lchamiga o'tkazib",
+    "ru": "Переключив на размер телефона"
+   },
+   {
+    "uz": "Backend'ni qayta yoqib",
+    "ru": "Перезапустив Backend"
+   },
+   {
+    "uz": "Katta ekranda yangilab",
+    "ru": "Обновив на большом экране"
+   },
+   {
+    "uz": "Database jadvalini ochib",
+    "ru": "Открыв таблицу Database"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 169.",
+  "q": {
+   "uz": "Qayta sinovda o'yinchiga qaysi vazifa beriladi?",
+   "ru": "Какое задание дают на повторном тесте?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi, qiyinroq vazifa",
+    "ru": "Новое, более трудное"
+   },
+   {
+    "uz": "O'sha vazifaning o'zi",
+    "ru": "То же самое задание"
+   },
+   {
+    "uz": "Faqat tugmani bosish",
+    "ru": "Только нажать кнопку"
+   },
+   {
+    "uz": "Vazifasiz aylanish",
+    "ru": "Без задания"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/MvpIterationLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 192.",
+  "q": {
+   "uz": "Qayta sinovda o'yinchi qiynalsa, nima qilasiz?",
+   "ru": "Что делаете, если игроку трудно на повторном тесте?"
+  },
+  "opts": [
+   {
+    "uz": "Tugmani ko'rsatasiz",
+    "ru": "Показываете кнопку"
+   },
+   {
+    "uz": "Saytni tushuntirasiz",
+    "ru": "Объясняете сайт"
+   },
+   {
+    "uz": "Tushuntirmay, kuzatasiz",
+    "ru": "Не объясняете, наблюдаете"
+   },
+   {
+    "uz": "Sinovni to'xtatasiz",
+    "ru": "Останавливаете тест"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variant 40 belgi, jami 173; to'g'ri javob eng uzuni.",
+  "q": {
+   "uz": "«5 kishidan 4 tasi» nimani aytadi?",
+   "ru": "Что говорит «4 из 5 человек»?"
+  },
+  "opts": [
+   {
+    "uz": "Necha suhbatda chiqqanini",
+    "ru": "В скольких беседах это было"
+   },
+   {
+    "uz": "Bir odamda qanday kechgani",
+    "ru": "Как это было у одного человека"
+   },
+   {
+    "uz": "Saytni kim qurganini",
+    "ru": "Кто делал сайт"
+   },
+   {
+    "uz": "Suhbat qancha davom etgani",
+    "ru": "Сколько длилась беседа"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 142 belgi.",
+  "q": {
+   "uz": "Slaydda faqat hikoya. Yoniga nima qo'yiladi?",
+   "ru": "На слайде только история. Что ставят рядом?"
+  },
+  "opts": [
+   {
+    "uz": "Yana bitta shunday hikoya",
+    "ru": "Ещё одну такую историю"
+   },
+   {
+    "uz": "Intervyudan olingan raqam",
+    "ru": "Число из интервью"
+   },
+   {
+    "uz": "Saytning rangli rasmi",
+    "ru": "Цветную картинку сайта"
+   },
+   {
+    "uz": "Jamoa a'zolari ro'yxati",
+    "ru": "Список членов команды"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 147 belgi.",
+  "q": {
+   "uz": "Pitchdagi qaysi gap fikr?",
+   "ru": "Какая фраза в питче — мнение?"
+  },
+  "opts": [
+   {
+    "uz": "«Kelganimizda maydon band edi»",
+    "ru": "«Когда пришли, поле было занято»"
+   },
+   {
+    "uz": "«Egasi telefonni ko'tarmadi»",
+    "ru": "«Владелец не взял трубку»"
+   },
+   {
+    "uz": "«Bu sayt juda yaxshi chiqdi»",
+    "ru": "«Этот сайт получился очень хорошим»"
+   },
+   {
+    "uz": "«Tugmani topa olmadim»",
+    "ru": "«Я не нашёл кнопку»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 153 belgi.",
+  "q": {
+   "uz": "«Saytni albatta ishlatadi» — bu nima?",
+   "ru": "«Обязательно будут пользоваться сайтом» — что это?"
+  },
+  "opts": [
+   {
+    "uz": "Intervyudan olingan hikoya",
+    "ru": "История из интервью"
+   },
+   {
+    "uz": "Sinovda yozilgan kuzatuv",
+    "ru": "Наблюдение с теста"
+   },
+   {
+    "uz": "Muammoni sanagan raqam",
+    "ru": "Число, посчитавшее проблему"
+   },
+   {
+    "uz": "Hali bo'lib o'tmagan va'da",
+    "ru": "Обещание, которое ещё не сбылось"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgi, jami 188.",
+  "q": {
+   "uz": "«Egasi telefonni ko'tarmadi» pitchga qanday yoziladi?",
+   "ru": "Как «владелец не взял трубку» пишется в питч?"
+  },
+  "opts": [
+   {
+    "uz": "Xuddi yozuvdagidek",
+    "ru": "Точно как в записи"
+   },
+   {
+    "uz": "Hech bir ega ko'tarmaydi",
+    "ru": "Ни один владелец не берёт"
+   },
+   {
+    "uz": "Ega bizni yoqtirmaydi",
+    "ru": "Владелец нас не любит"
+   },
+   {
+    "uz": "Janjal bo'lib o'tdi",
+    "ru": "Была ссора"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 162.",
+  "q": {
+   "uz": "Slaydlar tartibi qaysi?",
+   "ru": "Какой порядок слайдов?"
+  },
+  "opts": [
+   {
+    "uz": "Yechim, muammo, foydalanuvchi",
+    "ru": "Решение, проблема, пользователь"
+   },
+   {
+    "uz": "Foydalanuvchi, muammo, yechim",
+    "ru": "Пользователь, проблема, решение"
+   },
+   {
+    "uz": "Muammo, yechim, foydalanuvchi",
+    "ru": "Проблема, решение, пользователь"
+   },
+   {
+    "uz": "Muammo, foydalanuvchi, yechim",
+    "ru": "Проблема, пользователь, решение"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 68 belgi, jami 173.",
+  "q": {
+   "uz": "Hikoya bo'lishi uchun gapda nima kerak?",
+   "ru": "Что нужно во фразе, чтобы она стала историей?"
+  },
+  "opts": [
+   {
+    "uz": "Muammoni boshqacha nomlash",
+    "ru": "Назвать проблему иначе"
+   },
+   {
+    "uz": "Gapni uzaytirish",
+    "ru": "Удлинить фразу"
+   },
+   {
+    "uz": "Yoniga katta raqam qo'yish",
+    "ru": "Поставить рядом большое число"
+   },
+   {
+    "uz": "Bitta odam va uning ishi",
+    "ru": "Один человек и то, что с ним было"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "javob-yoq",
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "Darsda tinglovchi yozmaydi va slayd baholamaydi — eslab qolgan odamini aytadi, qatorni so'zlovchi yozadi; asl to'g'ri javob darsda yo'q edi.",
+  "q": {
+   "uz": "Repetitsiyadan keyin qatorga nima yoziladi?",
+   "ru": "Что записывают в строку после репетиции?"
+  },
+  "opts": [
+   {
+    "uz": "Sherik eslab qolgan odam",
+    "ru": "Человека, которого запомнил напарник"
+   },
+   {
+    "uz": "Pitch yoqdimi-yo'qmi",
+    "ru": "Понравился ли питч"
+   },
+   {
+    "uz": "Nechta slayd bo'lgani",
+    "ru": "Сколько было слайдов"
+   },
+   {
+    "uz": "Ovoz baland-pastligi",
+    "ru": "Громкий или тихий голос"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 160.",
+  "q": {
+   "uz": "Sinovdagi odamni pitchda qanday tilga olasiz?",
+   "ru": "Как упомянете человека с теста в питче?"
+  },
+  "opts": [
+   {
+    "uz": "Ism-familiyasi bilan",
+    "ru": "По имени и фамилии"
+   },
+   {
+    "uz": "Kimligi bilan: «o'yinchi»",
+    "ru": "Кто он: «игрок»"
+   },
+   {
+    "uz": "Telefon raqami bilan",
+    "ru": "С номером телефона"
+   },
+   {
+    "uz": "Sinfi va maktabi bilan",
+    "ru": "С классом и школой"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 145 belgi.",
+  "q": {
+   "uz": "Repetitsiyada sinfdoshingiz nima qiladi?",
+   "ru": "Что делает одноклассник на репетиции?"
+  },
+  "opts": [
+   {
+    "uz": "Pitchga ball qo'yadi",
+    "ru": "Ставит оценку питчу"
+   },
+   {
+    "uz": "Pitchni siz uchun aytadi",
+    "ru": "Рассказывает питч за вас"
+   },
+   {
+    "uz": "Eslab qolganini aytadi",
+    "ru": "Говорит, что запомнил"
+   },
+   {
+    "uz": "Slaydlarni qayta yozadi",
+    "ru": "Переписывает слайды"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi, jami 170.",
+  "q": {
+   "uz": "Sinovda tugma topilmadi. Pitchda nima aytiladi?",
+   "ru": "На тесте не нашли кнопку. Что скажете в питче?"
+  },
+  "opts": [
+   {
+    "uz": "Intervyu raqami qayta",
+    "ru": "Снова число из интервью"
+   },
+   {
+    "uz": "Qurish haftalari soni",
+    "ru": "Сколько недель строили"
+   },
+   {
+    "uz": "Keyingi to'lov funksiyasi",
+    "ru": "Будущая функция оплаты"
+   },
+   {
+    "uz": "Tugma qanday tuzatilgani",
+    "ru": "Как исправили кнопку"
+   }
+  ],
+  "correct": 3
+ }
+]

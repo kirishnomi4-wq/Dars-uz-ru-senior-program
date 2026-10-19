@@ -158,6 +158,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -235,8 +260,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? 'Kichraytirish' : 'Kattalashtirish'} title={big ? 'Kichraytirish' : 'Kattalashtirish'}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? 'Kichraytirish' : 'Kattalashtirish'} title={big ? 'Kichraytirish' : 'Kattalashtirish'}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1353,18 +1378,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: "Pipeline nima degani?", ru: 'Что значит «pipeline»?' }, opts: [{ uz: "Ma'lumotning qismdan qismga o'tish oqimi", ru: 'Поток данных от части к части' }, { uz: "Bitta katta kod fayli — hammasi ichida", ru: 'Один большой файл кода — всё внутри него' }, { uz: "Faqat ko'rinadigan frontend qismi", ru: 'Только видимая часть — frontend' }, { uz: "Bir-biriga ulanmagan mustaqil dasturlar", ru: 'Независимые программы, не связанные между собой' }], correct: 0 },
-  { q: { uz: "AI bilan kod yozganda sizning vazifangiz?", ru: 'Какая ваша задача, когда вы пишете код с ИИ?' }, opts: [{ uz: "Hamma kodni qo'lda yozish", ru: 'Пишете весь код руками' }, { uz: "Aniq topshiriq berish, o'qish va sinash", ru: 'Даёте точное задание, читаете и проверяете' }, { uz: "Hech narsa qilmaslik", ru: 'Не делаете ничего' }, { uz: "AI bergan kodni ko'rmasdan ishlatish", ru: 'Используете код ИИ, не глядя на него' }], correct: 1 },
+  { q: { uz: "Pipeline nima degani?", ru: "Что значит pipeline?" }, opts: [{ uz: "Qismdan qismga ma'lumot oqimi", ru: "Поток данных от части к части" }, { uz: "Bitta katta kod fayli", ru: "Один большой файл кода" }, { uz: "Faqat frontend qismi", ru: "Только frontend" }, { uz: "Ulanmagan alohida dasturlar", ru: "Отдельные несвязанные программы" }], correct: 0 },
+  { q: { uz: "AI bilan kod yozganda sizning vazifangiz?", ru: "Ваша задача при коде с AI?" }, opts: [{ uz: "Hamma kodni qo'lda yozish", ru: "Писать весь код вручную" }, { uz: "Aniq topshiriq, o'qish, sinash", ru: "Чёткое задание, чтение, проверка" }, { uz: "Hech narsa qilmaslik", ru: "Ничего не делать" }, { uz: "Kodni o'qimay ishlatish", ru: "Запускать код не читая" }], correct: 1 },
   { q: { uz: "Frontend so'rovni qayerga yuboradi?", ru: 'Куда frontend отправляет запрос?' }, opts: [{ uz: "Brauzer tarixiga", ru: 'В историю браузера' }, { uz: "Foydalanuvchining telefoniga", ru: 'На телефон пользователя' }, { uz: "Backend manziliga", ru: 'На адрес backend' }, { uz: "To'g'ridan-to'g'ri Telegram'ga", ru: 'Прямо в Telegram' }], correct: 2 },
-  { q: { uz: "«Failed to fetch» xatosining ko'p uchraydigan sababi?", ru: 'Частая причина ошибки «Failed to fetch»?' }, opts: [{ uz: "Logotip juda kichik bo'lgani", ru: 'Слишком мелкий логотип' }, { uz: "Pitsa rasmining rangi", ru: 'Цвет картинки пиццы' }, { uz: "Sahifa sarlavhasi noto'g'riligi", ru: 'Неверный заголовок страницы' }, { uz: "Backend manzili noto'g'riligi", ru: 'Неверный адрес backend' }], correct: 3 },
-  { q: { uz: "Aniq prompt qanday bo'ladi?", ru: 'Какой промпт считается точным?' }, opts: [{ uz: "Nima, qayerda va qanday natija aniq aytilgan", ru: 'Где точно сказано: что, где и какой результат' }, { uz: "«saytni yaxshi qilib yozib ber» degan", ru: 'Вроде «напиши сайт получше»' }, { uz: "«hammasini o'zing bilganingcha qil»", ru: 'Вроде «сделай всё как знаешь»' }, { uz: "Umuman aniq topshiriq bermaslik", ru: 'Вообще не давать точного задания' }], correct: 0 },
-  { q: { uz: "AI yozgan kodni nima uchun o'qiysiz?", ru: 'Зачем читать код, написанный ИИ?' }, opts: [{ uz: "Rangini o'zgartirish uchun", ru: 'Чтобы поменять цвет' }, { uz: "Xato va xavfni ko'rib, tuzatish uchun", ru: 'Чтобы увидеть ошибку или риск и исправить' }, { uz: "Faylni kattalashtirish uchun", ru: 'Чтобы файл стал больше' }, { uz: "Kodni chiroyliroq ko'rsatish uchun", ru: 'Чтобы код выглядел красивее' }], correct: 1 },
+  { q: { uz: "«Failed to fetch» ko'pincha nimadan chiqadi?", ru: "Отчего чаще всего бывает «Failed to fetch»?" }, opts: [{ uz: "Logotip kichikligidan", ru: "Из-за маленького логотипа" }, { uz: "Rasm rangi xatosidan", ru: "Из-за цвета картинки" }, { uz: "Sarlavha xatosidan", ru: "Из-за ошибки в заголовке" }, { uz: "Backend manzili xatosidan", ru: "Из-за неверного адреса backend" }], correct: 3 },
+  { q: { uz: "Aniq prompt qanday bo'ladi?", ru: "Каким бывает точный промпт?" }, opts: [{ uz: "Nima, qayerda, qanday natija", ru: "Что, где и какой результат" }, { uz: "«Saytni yaxshi qilib ber»", ru: "«Сделай сайт получше»" }, { uz: "«O'zing bilganingcha qil»", ru: "«Делай как знаешь»" }, { uz: "Topshiriqsiz, umumiy", ru: "Общий, без задания" }], correct: 0 },
+  { q: { uz: "AI yozgan kodni nega o'qiysiz?", ru: "Зачем читать код, написанный AI?" }, opts: [{ uz: "Rangini o'zgartirish uchun", ru: "Чтобы сменить цвет" }, { uz: "Xatoni ko'rib tuzatish uchun", ru: "Чтобы увидеть и исправить ошибку" }, { uz: "Faylni kattalashtirish uchun", ru: "Чтобы увеличить файл" }, { uz: "Chiroyli ko'rsatish uchun", ru: "Чтобы красиво показать" }], correct: 1 },
   { q: { uz: "Ulanish xatosini qanday topamiz?", ru: 'Как найти ошибку связки?' }, opts: [{ uz: "Faqat rangga qaraymiz", ru: 'Смотрим только на цвета' }, { uz: "Umuman sinamaymiz", ru: 'Вообще не проверяем' }, { uz: "Boshidan oxirigacha sinaymiz", ru: 'Проверяем от начала до конца' }, { uz: "AI xato qilmaydi deb ishonamiz", ru: 'Верим, что ИИ не ошибается' }], correct: 2 },
   { q: { uz: "Buyurtma yuborilganda qaysi qism birinchi ishlaydi?", ru: 'Какая часть срабатывает первой при отправке заказа?' }, opts: [{ uz: "PostgreSQL (Database)", ru: 'PostgreSQL (Database)' }, { uz: "Telegram (bot)", ru: 'Telegram (бот)' }, { uz: "AI (yordamchi xizmat)", ru: 'ИИ (вспомогательный сервис)' }, { uz: "React (frontend)", ru: 'React (frontend)' }], correct: 3 },
-  { q: { uz: "Bu loyihada NestJS qanday vazifani bajaradi?", ru: 'Какую задачу выполняет NestJS в этом проекте?' }, opts: [{ uz: "So'rovlarni qabul qilib, boshqaradi", ru: 'Принимает запросы и управляет ими' }, { uz: "Faqat rasm va chizmalar chizadi", ru: 'Только рисует картинки и схемы' }, { uz: "Ma'lumotni ko'rmay o'tkazib yuboradi", ru: 'Пропускает данные, не глядя на них' }, { uz: "Foydalanuvchi parolini ko'rsatadi", ru: 'Показывает пароль пользователя' }], correct: 0 },
-  { q: { uz: "Buyurtma ma'lumoti qayerda saqlanadi?", ru: 'Где хранятся данные заказа?' }, opts: [{ uz: "Adminga borgan Telegram xabarida", ru: 'В сообщении админу в Telegram' }, { uz: "Database'dagi buyurtmalar jadvalida", ru: 'В таблице buyurtmalar в Database' }, { uz: "Mijoz brauzerining tarixida", ru: 'В истории браузера клиента' }, { uz: "Hech qayerda saqlanmaydi", ru: 'Нигде не хранятся' }], correct: 1 },
-  { q: { uz: "AI bilan kod yozish sikli qanday?", ru: 'Как выглядит цикл написания кода с ИИ?' }, opts: [{ uz: "Prompt → kod → darhol ishlatish", ru: 'Промпт → код → сразу использовать' }, { uz: "Kodni ko'rmasdan ishlatish", ru: 'Использовать код, не глядя на него' }, { uz: "Prompt → kod → test → tuzatish → qayta", ru: 'Промпт → код → тест → правка → заново' }, { uz: "Hammasini bitta promptda yozdirish", ru: 'Получить весь код одним промптом' }], correct: 2 },
-  { q: { uz: "«End-to-end test» nimani tekshiradi?", ru: 'Что проверяет «end-to-end тест»?' }, opts: [{ uz: "Faqat bitta tugmaning rangini", ru: 'Только цвет одной кнопки' }, { uz: "Faqat kirish (login) sahifasini", ru: 'Только страницу входа (login)' }, { uz: "Faqat Database'ning nomini", ru: 'Только название Database' }, { uz: "Butun oqimni — buyurtma oxirigacha yetadimi", ru: 'Весь поток — доходит ли заказ до конца' }], correct: 3 },
+  { q: { uz: "Bu loyihada NestJS nima qiladi?", ru: "Что делает NestJS в этом проекте?" }, opts: [{ uz: "So'rovlarni qabul qiladi", ru: "Принимает запросы" }, { uz: "Rasm va chizma chizadi", ru: "Рисует картинки" }, { uz: "Ma'lumotni saqlaydi", ru: "Хранит данные" }, { uz: "Parolni ekranda ko'rsatadi", ru: "Показывает пароль на экране" }], correct: 0 },
+  { q: { uz: "Buyurtma ma'lumoti qayerda saqlanadi?", ru: "Где хранятся данные заказа?" }, opts: [{ uz: "Admin Telegram xabarida", ru: "В Telegram-сообщении админу" }, { uz: "Database'dagi jadvalda", ru: "В таблице Database" }, { uz: "Mijoz brauzeri tarixida", ru: "В истории браузера клиента" }, { uz: "Hech qayerda", ru: "Нигде" }], correct: 1 },
+  { q: { uz: "AI bilan kod yozish sikli qanday?", ru: "Какой цикл кода с AI?" }, opts: [{ uz: "Prompt → kod → ishlatish", ru: "Промпт → код → запуск" }, { uz: "Kodni o'qimay ishlatish", ru: "Запуск кода без чтения" }, { uz: "Prompt → kod → test → tuzatish", ru: "Промпт → код → тест → исправление" }, { uz: "Bitta promptda hammasi", ru: "Всё в одном промпте" }], correct: 2 },
+  { q: { uz: "«End-to-end test» nimani tekshiradi?", ru: "Что проверяет «end-to-end тест»?" }, opts: [{ uz: "Bitta tugmaning rangini", ru: "Цвет одной кнопки" }, { uz: "Faqat login sahifasini", ru: "Только страницу входа" }, { uz: "Database'ning nomini", ru: "Имя Database" }, { uz: "Butun buyurtma oqimini", ru: "Весь поток заказа" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2553,7 +2578,7 @@ export default function PipelineProjectLesson({ lang: langProp, onFinished, live
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

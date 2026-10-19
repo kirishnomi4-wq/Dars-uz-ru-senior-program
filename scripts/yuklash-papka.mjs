@@ -9,7 +9,7 @@
 //    yuklash-<sana>/README.md                    (yuklash yo'riqnomasi + CRM modul-mosligi)
 //  shaklida joylaydi. Manba fayllarga TEGMAYDI; `lms/` papkasi ham o'zgarmaydi.
 //
-//  Ishlatish: node scripts/yuklash-papka.mjs [--out yuklash-2026-09-21] [--moduls 1,2,3,4,4a,4b,4c] [--skip m2-16,m3-17] [--suffix v2] [--uyga-vazifasiz]
+//  Ishlatish: node scripts/yuklash-papka.mjs [--out yuklash-2026-09-21] [--moduls 2,3,4,5,6] (App.jsx/LMS id'lari 2…14; sukut eskirgan — F-1017-226) [--skip m2-16,m3-17] [--suffix v2] [--uyga-vazifasiz]
 //  --suffix: fayl nomiga qo'shimcha (`03-Htmllesson1-v2.jsx`) — LMS ro'yxatida eski/yangi fayl ko'z bilan ajralsin (F-1001-91, Q9)
 //  --uyga-vazifasiz: uyga-vazifa paketlari yig'ilmaydi va ro'yxatga kirmaydi (F-1015: preview relizi — IT scope'ida faqat darslar)
 //  --skip: registrda bor, lekin hali tayyor emas dars kalitlari — paketga kirmaydi, ROYXAT'da «yuklanmaydi» qatori qoladi (F-0929-93)
@@ -38,8 +38,8 @@ const SUFFIX = opt('--suffix', '');
 const NO_HW = args.includes('--uyga-vazifasiz');
 const withSfx = (name) => SUFFIX ? name.replace(/\.jsx$/, `-${SUFFIX}.jsx`) : name;
 
-// CRM'dagi bo'lim nomi (bizdagi modul → CRM): 2026-09 holati
-const CRM = { '1': 'M1 (ildiz)', '2': 'M2 (ildiz)', '3': '4-M', '4': '5-M', '4a': '6-M', '4b': '6-M', '4c': '6-M', '5': '7-M', '6': '8-M' };
+// CRM'dagi bo'lim nomi. F-1017-226: App.jsx id'lari 08.10 dan LMS modul raqami (2…14) — eski '1,2,3,4,4a…' xaritasi o'rniga.
+const CRM = { '2': 'M1 (ildiz)', '3': 'M2 (ildiz)', '4': '4-M', '5': '5-M', '6': '6-M', '7': '7-M', '8': '8-M', '9': '9-M', '10': '10-M', '11': '11-M', '12': '12-M', '13': '13-M', '14': '14-M' };
 
 // ── App.jsx dan tartib ─────────────────────────────────────────────────────
 const app = readFileSync('src/App.jsx', 'utf8');

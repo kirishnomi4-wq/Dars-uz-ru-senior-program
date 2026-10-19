@@ -1,0 +1,4826 @@
+[
+ {
+  "key": "m11-01",
+  "file": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Jalb qilish narxi uchun qaysi pul olinadi?",
+     "ru": "Какие деньги берут для цены привлечения?"
+    },
+    "opts": [
+     {
+      "uz": "Kanallarga sarflangan pul",
+      "ru": "Деньги, потраченные на каналы"
+     },
+     {
+      "uz": "Pro uchun to'lanadigan pul",
+      "ru": "Деньги, которые платят за Pro"
+     },
+     {
+      "uz": "O'yinchi to'laydigan pul",
+      "ru": "Деньги, которые платит игрок"
+     },
+     {
+      "uz": "Post yozishga ketgan vaqt",
+      "ru": "Время на написание поста"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 26,
+     "jami": 142,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Mentor misolida bepul kanallar nimaga tushdi?",
+     "ru": "Во что обошлись бесплатные каналы в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Har bir kishiga 5 000 so'mga",
+      "ru": "По 5 000 сумов на человека"
+     },
+     {
+      "uz": "Pulga emas — sarflangan vaqtga",
+      "ru": "Не в деньги — в потраченное время"
+     },
+     {
+      "uz": "Pro narxiga — 10 000 so'mga",
+      "ru": "В цену Pro — 10 000 сумов"
+     },
+     {
+      "uz": "Hech nimaga — vaqt ham ketmagan",
+      "ru": "Ни во что — и времени не ушло"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 31,
+     "jami": 161,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Mentor misolida ilovaga kim pul to'lashi mumkin?",
+     "ru": "Кто может платить приложению в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Hamma foydalanuvchi har oy",
+      "ru": "Все пользователи каждый месяц"
+     },
+     {
+      "uz": "Sinfdoshlar, boshqalar emas",
+      "ru": "Одноклассники, а не другие"
+     },
+     {
+      "uz": "Pro oladigan tashkilotchi",
+      "ru": "Организатор, который берёт Pro"
+     },
+     {
+      "uz": "Maydon egasi har o'yinda",
+      "ru": "Хозяин площадки за каждую игру"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 27,
+     "jami": 150,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Mentor misolida Pro nima?",
+     "ru": "Что такое Pro в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Bir martalik kirish puli",
+      "ru": "Разовая плата за вход"
+     },
+     {
+      "uz": "Har o'yin uchun to'lov",
+      "ru": "Плата за каждую игру"
+     },
+     {
+      "uz": "Yangi ilova versiyasi",
+      "ru": "Новая версия приложения"
+     },
+     {
+      "uz": "30 kunlik pullik obuna",
+      "ru": "Платная подписка на 30 дней"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 25,
+     "maxVariant": 24,
+     "jami": 114,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Mentorning taxminicha, bitta Pro tashkilotchi qancha keltiradi?",
+     "ru": "Сколько, по предположению Ментора, приносит один организатор с Pro?"
+    },
+    "opts": [
+     {
+      "uz": "30 000 so'm",
+      "ru": "30 000 сумов"
+     },
+     {
+      "uz": "10 000 so'm",
+      "ru": "10 000 сумов"
+     },
+     {
+      "uz": "60 000 so'm",
+      "ru": "60 000 сумов"
+     },
+     {
+      "uz": "20 000 so'm",
+      "ru": "20 000 сумов"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 11,
+     "jami": 107,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Bu darsdagi jalbNarxi yangi foydalanuvchi 0 bo'lsa nima qaytaradi?",
+     "ru": "Что возвращает jalbNarxi из этого урока, если новых пользователей 0?"
+    },
+    "opts": [
+     {
+      "uz": "0 — chunki pul ham nol",
+      "ru": "0 — ведь и денег ноль"
+     },
+     {
+      "uz": "null — bo'lib bo'lmaydi",
+      "ru": "null — нельзя разделить"
+     },
+     {
+      "uz": "Sarflangan pulning o'zini",
+      "ru": "Сами потраченные деньги"
+     },
+     {
+      "uz": "Infinity — cheksiz son",
+      "ru": "Infinity — бесконечность"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 25,
+     "jami": 158,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Qaytganlar foizi nimani sanaydi?",
+     "ru": "Что считает доля вернувшихся?"
+    },
+    "opts": [
+     {
+      "uz": "Pullik obunani uzaytirganlarni",
+      "ru": "Тех, кто продлил платную подписку"
+     },
+     {
+      "uz": "Pro olgan tashkilotchilar sonini",
+      "ru": "Число организаторов с Pro"
+     },
+     {
+      "uz": "Ilovani yana ochgan qurilmalarni",
+      "ru": "Устройства, снова открывшие приложение"
+     },
+     {
+      "uz": "Kanaldan kelgan yangi kishilarni",
+      "ru": "Новых людей из канала"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 32,
+     "jami": 158,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "To'lovchini jalb qilish 25 000 so'm, u 20 000 keltiradi. Xulosa?",
+     "ru": "Привлечь плательщика — 25 000 сумов, он приносит 20 000. Вывод?"
+    },
+    "opts": [
+     {
+      "uz": "Qoplanadi — chunki pul keladi",
+      "ru": "Покрывается — ведь деньги приходят"
+     },
+     {
+      "uz": "Teng — ikkalasi ham so'mda",
+      "ru": "Равно — оба в сумах"
+     },
+     {
+      "uz": "Noma'lum — sonlar juda katta",
+      "ru": "Неизвестно — числа слишком большие"
+     },
+     {
+      "uz": "Zarar — jalb qilish qimmat",
+      "ru": "Убыток — привлечение дороже"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 29,
+     "jami": 173,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Mentor misolida bepul kanallar nega chegarali?",
+     "ru": "Почему бесплатные каналы в примере Ментора ограничены?"
+    },
+    "opts": [
+     {
+      "uz": "Ulardagi a'zolar soni cheklangan",
+      "ru": "В них немного участников"
+     },
+     {
+      "uz": "Ularga keyin pul to'lash kerak",
+      "ru": "Потом им нужно платить"
+     },
+     {
+      "uz": "Ularda post yozish taqiqlangan",
+      "ru": "В них запрещено писать посты"
+     },
+     {
+      "uz": "Ular bir haftadan keyin yopiladi",
+      "ru": "Они закрываются через неделю"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 32,
+     "jami": 170,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Jalb qilish narxida «yangi foydalanuvchi» kim?",
+     "ru": "Кто «новый пользователь» в цене привлечения?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovani bir marta ochgan qurilma",
+      "ru": "Устройство, один раз открывшее приложение"
+     },
+     {
+      "uz": "Shu davrda ro'yxatdan o'tgan kishi",
+      "ru": "Человек, зарегистрировавшийся за период"
+     },
+     {
+      "uz": "Pro uchun pul to'lagan tashkilotchi",
+      "ru": "Организатор, заплативший за Pro"
+     },
+     {
+      "uz": "Postni o'qib chiqqan har bir kishi",
+      "ru": "Каждый, кто прочитал пост"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 35,
+     "jami": 181,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Pullik kanalni baholashda kimni jalb qilish narxi olinadi?",
+     "ru": "Чью цену привлечения берут, оценивая платный канал?"
+    },
+    "opts": [
+     {
+      "uz": "Kanaldan kelgan har bir kishini",
+      "ru": "Каждого, кто пришёл из канала"
+     },
+     {
+      "uz": "Ilovadagi hamma foydalanuvchini",
+      "ru": "Всех пользователей приложения"
+     },
+     {
+      "uz": "Pul to'laydigan foydalanuvchini",
+      "ru": "Пользователя, который платит"
+     },
+     {
+      "uz": "Eng ko'p o'ynaydigan o'yinchini",
+      "ru": "Игрока, который играет больше всех"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 31,
+     "jami": 182,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Keltiradigan pulni qanday hisoblaymiz?",
+     "ru": "Как считаем приносимые деньги?"
+    },
+    "opts": [
+     {
+      "uz": "Narxni kishilar soniga ko'paytiramiz",
+      "ru": "Умножаем цену на число людей"
+     },
+     {
+      "uz": "Narxga kanal pulini ham qo'shamiz",
+      "ru": "Прибавляем к цене деньги на канал"
+     },
+     {
+      "uz": "Oylarni kishilar soniga bo'lamiz",
+      "ru": "Делим месяцы на число людей"
+     },
+     {
+      "uz": "Narxni oylar soniga ko'paytiramiz",
+      "ru": "Умножаем цену на число месяцев"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 36,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-02",
+  "file": "src/11-Modull/PmMonetizationLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Bepul asos va pullik qo'shimchada nima bepul?",
+     "ru": "Что бесплатно в бесплатной основе с платным дополнением?"
+    },
+    "opts": [
+     {
+      "uz": "Hamma uchun asosiy ish",
+      "ru": "Основное для всех"
+     },
+     {
+      "uz": "Faqat birinchi o'ttiz kun",
+      "ru": "Только первые тридцать дней"
+     },
+     {
+      "uz": "Faqat reklamali sahifalar",
+      "ru": "Только страницы с рекламой"
+     },
+     {
+      "uz": "Qo'shimcha qulayliklar",
+      "ru": "Дополнительные удобства"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 25,
+     "jami": 139,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Reklama modelida pulni kim to'laydi?",
+     "ru": "Кто платит в модели рекламы?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovani ishlatadigan har kim",
+      "ru": "Каждый, кто пользуется приложением"
+     },
+     {
+      "uz": "Reklamani ko'rgan foydalanuvchi",
+      "ru": "Пользователь, увидевший рекламу"
+     },
+     {
+      "uz": "Reklama bergan boshqa kompaniya",
+      "ru": "Другая компания-рекламодатель"
+     },
+     {
+      "uz": "Ilova xizmat qiladigan biznes",
+      "ru": "Бизнес, которому служит приложение"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 31,
+     "jami": 155,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Mentor misolida B2B bo'lsa, kim to'lardi?",
+     "ru": "Кто платил бы в примере Ментора при B2B?"
+    },
+    "opts": [
+     {
+      "uz": "O'yinga qo'shiladigan o'yinchilar",
+      "ru": "Игроки, присоединяющиеся к игре"
+     },
+     {
+      "uz": "O'yin bo'ladigan maydonning egasi",
+      "ru": "Владелец поля, где проходит игра"
+     },
+     {
+      "uz": "Ilovada reklama bergan kompaniya",
+      "ru": "Компания, давшая рекламу в приложении"
+     },
+     {
+      "uz": "O'yinni e'lon qiladigan tashkilotchi",
+      "ru": "Организатор, объявляющий игру"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 36,
+     "jami": 175,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Mentor misolida tranzaksiya modeli qaysi ish bo'lardi?",
+     "ru": "Какой работой была бы транзакция в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Har hafta o'yinni e'lon qilish",
+      "ru": "Объявлять игру каждую неделю"
+     },
+     {
+      "uz": "O'yinga qo'shilish va chiqish",
+      "ru": "Присоединение к игре и выход"
+     },
+     {
+      "uz": "O'yinchilarga eslatmalar yuborish",
+      "ru": "Отправка напоминаний игрокам"
+     },
+     {
+      "uz": "Maydon pulini ilovada bo'lishish",
+      "ru": "Делить деньги за поле в приложении"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 33,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Mentor maydon pulini bo'lishishni nega hozir olmadi?",
+     "ru": "Почему Ментор сейчас не взял деление денег за поле?"
+    },
+    "opts": [
+     {
+      "uz": "44 foydalanuvchi buning uchun kam",
+      "ru": "44 пользователей для этого мало"
+     },
+     {
+      "uz": "Maydon egasi ilovani ishlatmaydi",
+      "ru": "Владелец поля не пользуется приложением"
+     },
+     {
+      "uz": "Yuridik shaxs va shartnoma kerak",
+      "ru": "Нужны юрлицо и договор"
+     },
+     {
+      "uz": "Roadmap'da u hozirgi ufqda turadi",
+      "ru": "В roadmap оно на текущем горизонте"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 33,
+     "jami": 182,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mentor rejasida o'yinchi Pro'siz nima qila oladi?",
+     "ru": "Что игрок может без Pro в плане Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "O'yinlarga bepul qo'shila oladi",
+      "ru": "Бесплатно присоединяться к играм"
+     },
+     {
+      "uz": "Faqat o'yin e'lonlarini o'qiydi",
+      "ru": "Только читать объявления игр"
+     },
+     {
+      "uz": "Faqat bitta o'yinga qo'shiladi",
+      "ru": "Присоединиться только к одной игре"
+     },
+     {
+      "uz": "Hech narsa: ilova unga pullik",
+      "ru": "Ничего: приложение для него платное"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 31,
+     "jami": 170,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Telegram pullik obunani qachon ishga tushirgan?",
+     "ru": "Когда Telegram запустил платную подписку?"
+    },
+    "opts": [
+     {
+      "uz": "2020-yil iyunda",
+      "ru": "В июне 2020"
+     },
+     {
+      "uz": "2024-yil mayda",
+      "ru": "В мае 2024"
+     },
+     {
+      "uz": "2019-yil martda",
+      "ru": "В марте 2019"
+     },
+     {
+      "uz": "2022-yil iyunda",
+      "ru": "В июне 2022"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 15,
+     "jami": 106,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "2024-yilda Premium'ga pullik obuna bo'lganlar qanday o'zgardi?",
+     "ru": "Как изменилось число платных подписчиков Premium в 2024?"
+    },
+    "opts": [
+     {
+      "uz": "Deyarli o'zgarmadi",
+      "ru": "Почти не изменилось"
+     },
+     {
+      "uz": "Uch barobar ko'paydi",
+      "ru": "Выросло втрое"
+     },
+     {
+      "uz": "Ikki barobar kamaydi",
+      "ru": "Уменьшилось вдвое"
+     },
+     {
+      "uz": "O'n barobar ko'paydi",
+      "ru": "Выросло в десять раз"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 62,
+     "maxVariant": 20,
+     "jami": 140,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Bu darsdagi pullik obuna modelida bepul qism qanday bo'ladi?",
+     "ru": "Какая бесплатная часть в модели платной подписки на этом уроке?"
+    },
+    "opts": [
+     {
+      "uz": "Asosiy ishi hamma uchun bepul",
+      "ru": "Основное бесплатно для всех"
+     },
+     {
+      "uz": "Pulni boshqa kompaniya to'laydi",
+      "ru": "Платит другая компания"
+     },
+     {
+      "uz": "Bepul qism kattaroq bo'ladi",
+      "ru": "Бесплатная часть больше"
+     },
+     {
+      "uz": "Bepul qism yo'q, hamma to'laydi",
+      "ru": "Бесплатной части нет, платят все"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 31,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Bu darsdagi SQL'da DISTINCT nima uchun yozilgan?",
+     "ru": "Зачем в SQL этого урока написан DISTINCT?"
+    },
+    "opts": [
+     {
+      "uz": "Har tashkilotchi bir marta sanalsin",
+      "ru": "Чтобы каждый организатор считался один раз"
+     },
+     {
+      "uz": "Namuna akkauntlar sanoqqa kirmasin",
+      "ru": "Чтобы образцовые аккаунты не считались"
+     },
+     {
+      "uz": "Ikki jadval o'zaro id orqali bog'lansin",
+      "ru": "Чтобы две таблицы связались через id"
+     },
+     {
+      "uz": "Faqat Pro olganlar sanoqqa kirsin",
+      "ru": "Чтобы считались только купившие Pro"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 39,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "SQL'dagi `namuna = false` sharti nima qiladi?",
+     "ru": "Что делает условие `namuna = false` в SQL?"
+    },
+    "opts": [
+     {
+      "uz": "Pro olmagan akkauntlarni sanamaydi",
+      "ru": "Не считает аккаунты без Pro"
+     },
+     {
+      "uz": "Tekshiruv akkauntlarini sanamaydi",
+      "ru": "Не считает проверочные аккаунты"
+     },
+     {
+      "uz": "O'yin e'lon qilmaganlarni sanaydi",
+      "ru": "Считает не объявлявших игры"
+     },
+     {
+      "uz": "Sinfdoshlarni alohida sanab beradi",
+      "ru": "Отдельно считает одноклассников"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 34,
+     "jami": 179,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Telegram Premium nima?",
+     "ru": "Что такое Telegram Premium?"
+    },
+    "opts": [
+     {
+      "uz": "Telegram'ning yangi versiyasi",
+      "ru": "Новая версия Telegram"
+     },
+     {
+      "uz": "Telegram'ning bepul qismi",
+      "ru": "Бесплатная часть Telegram"
+     },
+     {
+      "uz": "Telegram'ning pullik obunasi",
+      "ru": "Платная подписка Telegram"
+     },
+     {
+      "uz": "Telegram'dagi reklama turi",
+      "ru": "Вид рекламы в Telegram"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 22,
+     "maxVariant": 29,
+     "jami": 130,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-03",
+  "file": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "7-Modulda botingiz yangi xabarni webhook bilan qanday olardi?",
+     "ru": "Как в 7-м модуле ваш бот получал новое сообщение через webhook?"
+    },
+    "opts": [
+     {
+      "uz": "Telegram o'zi manziliga yuborardi",
+      "ru": "Telegram сам отправлял на его адрес"
+     },
+     {
+      "uz": "Bot Telegram'dan qayta so'rardi",
+      "ru": "Бот снова спрашивал Telegram"
+     },
+     {
+      "uz": "Foydalanuvchi qo'lda yuborardi",
+      "ru": "Пользователь отправлял вручную"
+     },
+     {
+      "uz": "Render har daqiqa tekshirib turardi",
+      "ru": "Render проверял каждую минуту"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 35,
+     "jami": 190,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Mentor sxemasida karta ma'lumoti qayerda qoladi?",
+     "ru": "Где остаются данные карты в схеме Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Backend'ning jadvalida",
+      "ru": "В таблице Backend"
+     },
+     {
+      "uz": "Faqat to'lov xizmatida",
+      "ru": "Только у платёжного сервиса"
+     },
+     {
+      "uz": "Ilovaning xotirasida",
+      "ru": "В памяти приложения"
+     },
+     {
+      "uz": "README faylining ichida",
+      "ru": "Внутри файла README"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 23,
+     "jami": 135,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`X-Imzo` sarlavhasida nima keladi?",
+     "ru": "Что приходит в заголовке `X-Imzo`?"
+    },
+    "opts": [
+     {
+      "uz": "`.env` dagi kalitning o'zi",
+      "ru": "Сам ключ из `.env`"
+     },
+     {
+      "uz": "Tashkilotchining paroli",
+      "ru": "Пароль организатора"
+     },
+     {
+      "uz": "Kalit bilan hisoblangan imzo",
+      "ru": "Подпись, вычисленная ключом"
+     },
+     {
+      "uz": "To'lovning summasi va sanasi",
+      "ru": "Сумма и дата платежа"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 28,
+     "jami": 139,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`TOLOV_KALITI` qiymatini qayerga yozasiz?",
+     "ru": "Куда вы запишете значение `TOLOV_KALITI`?"
+    },
+    "opts": [
+     {
+      "uz": "README'ga, hamma ko'rib tursin",
+      "ru": "В README, чтобы все видели"
+     },
+     {
+      "uz": "Kodga, alohida bitta qatorga",
+      "ru": "В код, отдельной строкой"
+     },
+     {
+      "uz": "Agentga, promptning ichiga",
+      "ru": "Агенту, внутрь промпта"
+     },
+     {
+      "uz": "`.env` va Render sozlamasiga",
+      "ru": "В `.env` и настройки Render"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 30,
+     "jami": 153,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Imzo mos keldi. Bu nimani ko'rsatadi?",
+     "ru": "Подпись совпала. Что это показывает?"
+    },
+    "opts": [
+     {
+      "uz": "Kalitni biladigan tomon yuborgan",
+      "ru": "Отправила сторона, знающая ключ"
+     },
+     {
+      "uz": "To'lov muvaffaqiyatli o'tgan",
+      "ru": "Платёж прошёл успешно"
+     },
+     {
+      "uz": "Summa narxga aynan to'g'ri keladi",
+      "ru": "Сумма точно равна цене"
+     },
+     {
+      "uz": "Xabar birinchi marta kelgan",
+      "ru": "Сообщение пришло впервые"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 33,
+     "jami": 157,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Javob yo'qolsa, Payme nima qiladi?",
+     "ru": "Что делает Payme, если ответ потерялся?"
+    },
+    "opts": [
+     {
+      "uz": "Shu xabarni boshqa yubormaydi",
+      "ru": "Больше не отправляет это сообщение"
+     },
+     {
+      "uz": "Xuddi shu so'rovni qayta yuboradi",
+      "ru": "Отправляет тот же запрос снова"
+     },
+     {
+      "uz": "Yangi raqam bilan qayta yuboradi",
+      "ru": "Отправляет снова с новым номером"
+     },
+     {
+      "uz": "Tashkilotchining ilovasiga yozadi",
+      "ru": "Пишет в приложение организатора"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 33,
+     "jami": 161,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Stripe takror xabar haqida nimani maslahat beradi?",
+     "ru": "Что Stripe советует про повторные сообщения?"
+    },
+    "opts": [
+     {
+      "uz": "Har xabarni ikki marta yozib qo'yishni",
+      "ru": "Записывать каждое сообщение дважды"
+     },
+     {
+      "uz": "Xabarlarni tartib bilan kutishni",
+      "ru": "Ждать сообщения по порядку"
+     },
+     {
+      "uz": "Ishlangan xabar raqamlarini yozishni",
+      "ru": "Записывать номера обработанных сообщений"
+     },
+     {
+      "uz": "Takror xabarga `401` qaytarishni",
+      "ru": "Возвращать `401` на повтор"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 38,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Mentor Backend'i takror xabarni nimaga qarab taniydi?",
+     "ru": "По чему Backend Ментора узнаёт повторное сообщение?"
+    },
+    "opts": [
+     {
+      "uz": "Xabardagi summaga qarab",
+      "ru": "По сумме в сообщении"
+     },
+     {
+      "uz": "To'lovchining ismiga qarab",
+      "ru": "По имени плательщика"
+     },
+     {
+      "uz": "Xabar kelgan vaqtga qarab",
+      "ru": "По времени прихода сообщения"
+     },
+     {
+      "uz": "To'lov raqamiga qarab",
+      "ru": "По номеру платежа"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 26,
+     "jami": 148,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Bu darsdagi mashq to'lov sahifasi qayerda turadi?",
+     "ru": "Где находится учебная страница оплаты этого урока?"
+    },
+    "opts": [
+     {
+      "uz": "Backend'ingizning ichida",
+      "ru": "Внутри вашего Backend"
+     },
+     {
+      "uz": "Payme kompaniyasi serverida",
+      "ru": "На сервере компании Payme"
+     },
+     {
+      "uz": "Telefoningiz xotirasida",
+      "ru": "В памяти вашего телефона"
+     },
+     {
+      "uz": "GitHub repo'ngiz sahifasida",
+      "ru": "На странице вашего репозитория GitHub"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 27,
+     "jami": 150,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mashq to'lov sahifasi xabarni qayerda imzolaydi?",
+     "ru": "Где учебная страница оплаты подписывает сообщение?"
+    },
+    "opts": [
+     {
+      "uz": "Brauzerda, sahifaning o'zida",
+      "ru": "В браузере, на самой странице"
+     },
+     {
+      "uz": "Backend'da, kodning o'zida",
+      "ru": "В Backend, в самом коде"
+     },
+     {
+      "uz": "Telefonda, ilovaning ichida",
+      "ru": "В телефоне, внутри приложения"
+     },
+     {
+      "uz": "GitHub'da, push qilingan paytda",
+      "ru": "В GitHub, во время push"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 31,
+     "jami": 160,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Sxemadagi «Kimga» ustuni nimani aytadi?",
+     "ru": "Что говорит столбец «Кому» в схеме?"
+    },
+    "opts": [
+     {
+      "uz": "Kim to'lov qilganini",
+      "ru": "Кто заплатил"
+     },
+     {
+      "uz": "Qancha to'langanini",
+      "ru": "Сколько заплачено"
+     },
+     {
+      "uz": "Ish kimga borishini",
+      "ru": "К кому идёт действие"
+     },
+     {
+      "uz": "Qachon to'langanini",
+      "ru": "Когда заплачено"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 20,
+     "jami": 116,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Mentor sxemasida ilova Pro holatini qayerdan biladi?",
+     "ru": "Откуда приложение в схеме Ментора знает статус Pro?"
+    },
+    "opts": [
+     {
+      "uz": "To'lov xizmatining xabaridan",
+      "ru": "Из сообщения платёжного сервиса"
+     },
+     {
+      "uz": "To'lov sahifasining o'zidan",
+      "ru": "С самой страницы оплаты"
+     },
+     {
+      "uz": "Telefonga kelgan SMS'dan",
+      "ru": "Из SMS на телефон"
+     },
+     {
+      "uz": "Backend'dan qayta so'rab",
+      "ru": "Заново спросив у Backend"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 28,
+     "jami": 155,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-04",
+  "file": "src/11-Modull/PmPricingLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Mentor ilovasida to'lov sahifasi qayerda ochiladi?",
+     "ru": "Где в приложении Ментора открывается страница оплаты?"
+    },
+    "opts": [
+     {
+      "uz": "Telefon brauzerida, sahifa bo'lib",
+      "ru": "В браузере телефона, страницей"
+     },
+     {
+      "uz": "Ilova ichida, alohida to'lov oynasida",
+      "ru": "Внутри приложения, в отдельном окне оплаты"
+     },
+     {
+      "uz": "Telegram botida, chatning ichida",
+      "ru": "В Telegram-боте, внутри чата"
+     },
+     {
+      "uz": "Play do'konida, to'lov oynasida",
+      "ru": "В Play-маркете, в окне оплаты"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 37,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Mentor misolida «Doimiy o'yin» tashkilotchiga nima beradi?",
+     "ru": "Что «Постоянная игра» даёт организатору в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "O'yinni pullik maydonda o'tkazadi",
+      "ru": "Проводит игру на платном поле"
+     },
+     {
+      "uz": "Har haftalik e'lonni o'zi qiladi",
+      "ru": "Сама делает еженедельное объявление"
+     },
+     {
+      "uz": "O'yinchilarni pul evaziga chaqiradi",
+      "ru": "Зовёт игроков за деньги"
+     },
+     {
+      "uz": "Telegram guruhini o'chirib qo'yadi",
+      "ru": "Удаляет Telegram-группу"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 35,
+     "jami": 192,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Mentor misolida Pro muddatini qaysi qism uzaytiradi?",
+     "ru": "Какая часть продлевает срок Pro в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova, tugma bosilganda",
+      "ru": "Приложение, при нажатии кнопки"
+     },
+     {
+      "uz": "Mashq sahifasi, brauzerda",
+      "ru": "Учебная страница, в браузере"
+     },
+     {
+      "uz": "Backend, xabar kelgach",
+      "ru": "Backend, когда пришло сообщение"
+     },
+     {
+      "uz": "Tashkilotchi, sozlamada",
+      "ru": "Организатор, в настройках"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 25,
+     "jami": 145,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Mashq to'lov sahifasida karta raqami qayerga yoziladi?",
+     "ru": "Куда на учебной странице оплаты пишут номер карты?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifadagi maydonga, to'lashdan oldin",
+      "ru": "В поле на странице, перед оплатой"
+     },
+     {
+      "uz": "Ilovaga, to'lov taklifi ekranida",
+      "ru": "В приложение, на экране предложения оплаты"
+     },
+     {
+      "uz": "Backend'ga, `.env` fayli orqali",
+      "ru": "В Backend, через файл `.env`"
+     },
+     {
+      "uz": "Hech qayerga, karta so'ralmaydi",
+      "ru": "Никуда, карта не запрашивается"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 37,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Mashq sahifasi qaysi raqam bilan ochiladi?",
+     "ru": "С каким номером открывается учебная страница?"
+    },
+    "opts": [
+     {
+      "uz": "Backend bergan to'lov raqami bilan",
+      "ru": "С номером платежа от Backend"
+     },
+     {
+      "uz": "Tashkilotchi o'zi yozgan raqam bilan",
+      "ru": "С номером, который ввёл организатор"
+     },
+     {
+      "uz": "Ilova o'ylab topgan raqam bilan",
+      "ru": "С номером, придуманным приложением"
+     },
+     {
+      "uz": "Hisobingizning o'z raqami bilan",
+      "ru": "С номером вашего аккаунта"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 36,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mentor tekshiruv o'yinini bir hafta orqaga surdi. Ro'yxat yangilansa nima bo'ladi?",
+     "ru": "Ментор сдвинул проверочную игру на неделю назад. Что будет, если обновить список?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova o'yinni bekor deb ko'rsatadi",
+      "ru": "Приложение покажет игру отменённой"
+     },
+     {
+      "uz": "Keyingi haftaga yangi o'yin chiqadi",
+      "ru": "Появится новая игра на следующую неделю"
+     },
+     {
+      "uz": "Ilova xato ko'rsatib, ishlamay qoladi",
+      "ru": "Приложение покажет ошибку и перестанет работать"
+     },
+     {
+      "uz": "Ikkita yangi o'yin birdan chiqadi",
+      "ru": "Сразу появятся две новые игры"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 82,
+     "maxVariant": 37,
+     "jami": 221,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Pro muddati tugasa, Mentor ilovasida nima bo'ladi?",
+     "ru": "Что будет в приложении Ментора, когда закончится срок Pro?"
+    },
+    "opts": [
+     {
+      "uz": "Kartadan pul o'zi yechib olinadi",
+      "ru": "С карты сами спишутся деньги"
+     },
+     {
+      "uz": "Pro yana 30 kunga uzayadi",
+      "ru": "Pro снова продлится на 30 дней"
+     },
+     {
+      "uz": "Pro to'xtaydi va pul yechilmaydi",
+      "ru": "Pro выключится, деньги не спишутся"
+     },
+     {
+      "uz": "Hisob butunlay o'chiriladi",
+      "ru": "Аккаунт полностью удалится"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 32,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Mentor misolida xarajat qatoriga nima yozildi?",
+     "ru": "Что записано в строку расходов в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Telegram guruhi bepul ekani",
+      "ru": "Что Telegram-группа бесплатна"
+     },
+     {
+      "uz": "Har haftalik e'lon ishi",
+      "ru": "Работа с еженедельным объявлением"
+     },
+     {
+      "uz": "30 kun uchun 15 000 so'm",
+      "ru": "15 000 сумов за 30 дней"
+     },
+     {
+      "uz": "Uxlamaydigan Backend puli",
+      "ru": "Деньги на Backend без сна"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 27,
+     "jami": 145,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Bu modulda har to'lov ekranida qaysi qator turadi?",
+     "ru": "Какая строка есть на каждом экране оплаты в этом модуле?"
+    },
+    "opts": [
+     {
+      "uz": "Test rejim: pul yechilmaydi",
+      "ru": "Тестовый режим: деньги не списываются"
+     },
+     {
+      "uz": "Chegirma: faqat bugungacha",
+      "ru": "Скидка: только до сегодня"
+     },
+     {
+      "uz": "Karta raqamingizni kiriting",
+      "ru": "Введите номер карты"
+     },
+     {
+      "uz": "Narx tez orada qimmatlashadi",
+      "ru": "Цена скоро вырастет"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 28,
+     "jami": 158,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mentor narxi yonida qaysi yorliq turadi?",
+     "ru": "Какая метка стоит рядом с ценой Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Render sahifasidan",
+      "ru": "Со страницы Render"
+     },
+     {
+      "uz": "Mentorning taxmini",
+      "ru": "Предположение Ментора"
+     },
+     {
+      "uz": "Tashkilotchilar aytgani",
+      "ru": "Со слов организаторов"
+     },
+     {
+      "uz": "Bozordagi o'rtacha narx",
+      "ru": "Средняя цена на рынке"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 23,
+     "jami": 122,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Agent «Pro yoqiladi, tayyor» dedi. Keyin nima qilasiz?",
+     "ru": "Агент сказал «Pro включается, готово». Что дальше?"
+    },
+    "opts": [
+     {
+      "uz": "Yakunga o'tib, darsni tugatib qo'yaman",
+      "ru": "Перейду к итогу и закончу урок"
+     },
+     {
+      "uz": "Agentdan yana bir marta so'rayman",
+      "ru": "Спрошу агента ещё раз"
+     },
+     {
+      "uz": "Mashq to'lov bilan o'zim tekshiraman",
+      "ru": "Сам проверю учебной оплатой"
+     },
+     {
+      "uz": "Kodni o'qimasdan push qilib qo'yaman",
+      "ru": "Сделаю push, не читая код"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 38,
+     "jami": 197,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Mentor misolida tashkilotchi bugun o'yinni nima bilan yig'adi?",
+     "ru": "Чем организатор в примере Ментора собирает игру сегодня?"
+    },
+    "opts": [
+     {
+      "uz": "Pro'dagi «Doimiy o'yin» bilan",
+      "ru": "«Постоянной игрой» в Pro"
+     },
+     {
+      "uz": "Lendingdagi asosiy tugma bilan",
+      "ru": "Главной кнопкой на лендинге"
+     },
+     {
+      "uz": "Maydon egasining ilovasi bilan",
+      "ru": "Приложением владельца поля"
+     },
+     {
+      "uz": "Bepul Telegram guruhi bilan",
+      "ru": "Бесплатной Telegram-группой"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 62,
+     "maxVariant": 30,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-05",
+  "file": "src/11-Modull/PaymentDayLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Agent «to'lov ishlaydi» dedi. Bu nima?",
+     "ru": "Агент сказал «оплата работает». Что это?"
+    },
+    "opts": [
+     {
+      "uz": "Hali tekshirilmagan da'vo",
+      "ru": "Ещё не проверенное заявление"
+     },
+     {
+      "uz": "Kod yozilganining isboti",
+      "ru": "Доказательство, что код написан"
+     },
+     {
+      "uz": "Pro yoqilganining dalili",
+      "ru": "Подтверждение, что Pro включён"
+     },
+     {
+      "uz": "To'rt usuldan o'tgan natija",
+      "ru": "Результат, прошедший четыре способа"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 27,
+     "jami": 138,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "«Kechiktirib yuborish» tugmasi nimaning mashqi?",
+     "ru": "Упражнением чего служит кнопка «Kechiktirib yuborish»?"
+    },
+    "opts": [
+     {
+      "uz": "Ikki marta kelgan xabarning",
+      "ru": "Сообщения, пришедшего дважды"
+     },
+     {
+      "uz": "Uxlab qolgan Backend'ning",
+      "ru": "Уснувшего Backend"
+     },
+     {
+      "uz": "Soxta imzoli begona xabarning",
+      "ru": "Чужого сообщения с поддельной подписью"
+     },
+     {
+      "uz": "Rad etilgan to'lov xabarining",
+      "ru": "Сообщения об отклонённом платеже"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 29,
+     "jami": 157,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "To'lovni qayerda va nima bilan buzib tekshirasiz?",
+     "ru": "Где и чем вы ломаете оплату для проверки?"
+    },
+    "opts": [
+     {
+      "uz": "Sinfdoshingiz saytida, mashq tugmasi bilan",
+      "ru": "На сайте одноклассника, учебной кнопкой"
+     },
+     {
+      "uz": "Haqiqiy to'lov sahifasida, kartangiz bilan",
+      "ru": "На настоящей странице оплаты, своей картой"
+     },
+     {
+      "uz": "O'z mahsulotingizda, mashq tugmasi bilan",
+      "ru": "В своём продукте, учебной кнопкой"
+     },
+     {
+      "uz": "O'z mahsulotingizda, haqiqiy pul bilan",
+      "ru": "В своём продукте, настоящими деньгами"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 42,
+     "jami": 211,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Imzosi noto'g'ri xabar keldi. Backend nima qilishi kerak?",
+     "ru": "Пришло сообщение с неверной подписью. Что должен сделать Backend?"
+    },
+    "opts": [
+     {
+      "uz": "`200` qaytarib, to'lovni yozib qo'yadi",
+      "ru": "Возвращает `200` и записывает платёж"
+     },
+     {
+      "uz": "`200` qaytarib, faqat Pro'ni yoqadi",
+      "ru": "Возвращает `200` и только включает Pro"
+     },
+     {
+      "uz": "`401` qaytarib, lekin Pro'ni yoqadi",
+      "ru": "Возвращает `401`, но включает Pro"
+     },
+     {
+      "uz": "`401` qaytarib, hech narsa yozmaydi",
+      "ru": "Возвращает `401` и ничего не пишет"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 38,
+     "jami": 200,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "To'lov rad etildi. Pro nima bo'lishi kerak?",
+     "ru": "Платёж отклонён. Что должно быть с Pro?"
+    },
+    "opts": [
+     {
+      "uz": "O'zgarmaydi, yoqilmaydi",
+      "ru": "Не меняется, не включается"
+     },
+     {
+      "uz": "30 kunga baribir yoqiladi",
+      "ru": "Всё равно включается на 30 дней"
+     },
+     {
+      "uz": "Faqat bir kunga yoqiladi",
+      "ru": "Включается только на один день"
+     },
+     {
+      "uz": "Yarim muddatga yoqiladi",
+      "ru": "Включается на половину срока"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 25,
+     "jami": 138,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mentor misolida ikki marta kelgan xabar nimani buzdi?",
+     "ru": "Что сломало двойное сообщение в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "`tolovlar` da ikki qator bo'ldi",
+      "ru": "В `tolovlar` стало две строки"
+     },
+     {
+      "uz": "Pro muddati ikki marta uzaydi",
+      "ru": "Срок Pro продлился дважды"
+     },
+     {
+      "uz": "Imzo tekshiruvidan o'tmadi",
+      "ru": "Не прошло проверку подписи"
+     },
+     {
+      "uz": "Ilova Pro'ni ko'rsatmay qo'ydi",
+      "ru": "Приложение перестало показывать Pro"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 31,
+     "jami": 169,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Javob 10 soniyada kelmadi. Sahifa nima deyishi kerak?",
+     "ru": "Ответ не пришёл за 10 секунд. Что должна сказать страница?"
+    },
+    "opts": [
+     {
+      "uz": "«To'lov o'tmadi» deyishi",
+      "ru": "Сказать «Платёж не прошёл»"
+     },
+     {
+      "uz": "«To'landi (mashq)» deyishi",
+      "ru": "Сказать «Оплачено (учебно)»"
+     },
+     {
+      "uz": "«Javob kutilmoqda» deyishi",
+      "ru": "Сказать «Ожидаем ответ»"
+     },
+     {
+      "uz": "Hech narsa demasligi kerak",
+      "ru": "Ничего не говорить"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 26,
+     "jami": 155,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Mentor talabida ilova Pro holatini qachon qayta so'raydi?",
+     "ru": "Когда по требованию Ментора приложение снова запрашивает статус Pro?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat ilova birinchi ochilganda",
+      "ru": "Только при первом открытии приложения"
+     },
+     {
+      "uz": "Har soniyada, to'xtamasdan",
+      "ru": "Каждую секунду, без остановки"
+     },
+     {
+      "uz": "Faqat to'lov rad etilganda",
+      "ru": "Только когда платёж отклонён"
+     },
+     {
+      "uz": "Qaytganda va tugma bosilganda",
+      "ru": "При возврате и по нажатию кнопки"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 31,
+     "jami": 169,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "«Nima kutdim» qatori qachon yoziladi?",
+     "ru": "Когда пишется строка «Что ожидал»?"
+    },
+    "opts": [
+     {
+      "uz": "Tugmani bosishdan oldin",
+      "ru": "До нажатия кнопки"
+     },
+     {
+      "uz": "Natija ko'ringandan keyin",
+      "ru": "После того как виден результат"
+     },
+     {
+      "uz": "Agent tuzatgandan keyin",
+      "ru": "После исправления агентом"
+     },
+     {
+      "uz": "Dars oxirida, birdaniga",
+      "ru": "В конце урока, разом"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 25,
+     "jami": 131,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "«Tuzatish qilindi» belgisi nimani aytadi?",
+     "ru": "О чём говорит метка «Tuzatish qilindi»?"
+    },
+    "opts": [
+     {
+      "uz": "Muammo endi takrorlanmasligini",
+      "ru": "Что проблема больше не повторится"
+     },
+     {
+      "uz": "Kodda o'zgartirish qilinganini",
+      "ru": "Что в коде сделано изменение"
+     },
+     {
+      "uz": "Agent yozuvni o'qib chiqqanini",
+      "ru": "Что агент прочитал запись"
+     },
+     {
+      "uz": "Urinish umuman buzilmaganini",
+      "ru": "Что попытка вообще не сломалась"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 30,
+     "jami": 159,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Pro muddati tugadi. E'lon qilingan o'yinlar nima bo'ladi?",
+     "ru": "Срок Pro закончился. Что будет с объявленными играми?"
+    },
+    "opts": [
+     {
+      "uz": "O'chib ketadi, Pro bilan birga",
+      "ru": "Удалятся вместе с Pro"
+     },
+     {
+      "uz": "Pro qaytguncha yashirinadi",
+      "ru": "Скроются, пока Pro не вернётся"
+     },
+     {
+      "uz": "Ro'yxatda qoladi, o'chmaydi",
+      "ru": "Останутся в списке, не удалятся"
+     },
+     {
+      "uz": "Keyingi haftaga o'zi ko'chadi",
+      "ru": "Сами перенесутся на следующую неделю"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 30,
+     "jami": 169,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Kech urinishda Mentor Pro yoqilganini qayerdan ko'rdi?",
+     "ru": "Где Ментор увидел, что Pro включился, в попытке с задержкой?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovada, ekran o'zi yangilanib",
+      "ru": "В приложении, экран обновился сам"
+     },
+     {
+      "uz": "Sahifada, «To'landi» yozuvidan",
+      "ru": "На странице, по надписи «Оплачено»"
+     },
+     {
+      "uz": "Agentning chatdagi javobidan",
+      "ru": "По ответу агента в чате"
+     },
+     {
+      "uz": "Neon'da, Pro muddati qatoridan",
+      "ru": "В Neon, по строке срока Pro"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 30,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-06",
+  "file": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Bu darsda suhbat nima?",
+     "ru": "Что такое разговор на этом уроке?"
+    },
+    "opts": [
+     {
+      "uz": "Narx haqida real odamga savol berish",
+      "ru": "Вопрос реальному человеку о цене"
+     },
+     {
+      "uz": "Mahsulotni tanishlarga sotish usuli",
+      "ru": "Способ продать продукт знакомым"
+     },
+     {
+      "uz": "Ilovani do'stlarga ko'rsatib chiqish",
+      "ru": "Показать приложение друзьям"
+     },
+     {
+      "uz": "Narxni Mentor bilan kelishib olish",
+      "ru": "Договориться о цене с Ментором"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 22,
+     "maxVariant": 36,
+     "jami": 163,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Mentor misolida narx qaysi savolda aytiladi?",
+     "ru": "В каком вопросе в примере Ментора называют цену?"
+    },
+    "opts": [
+     {
+      "uz": "Birinchi savolda, hammasidan oldin",
+      "ru": "В первом, раньше всего"
+     },
+     {
+      "uz": "Ikkinchi savolda, pul haqida so'rab",
+      "ru": "Во втором, спросив о деньгах"
+     },
+     {
+      "uz": "Uchinchi savolda, ishni so'ragach",
+      "ru": "В третьем, после вопроса о деле"
+     },
+     {
+      "uz": "To'rtinchi savolda, eng oxirida",
+      "ru": "В четвёртом, в самом конце"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 35,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Mentor to'rtinchi savolni qachon beradi?",
+     "ru": "Когда Ментор задаёт четвёртый вопрос?"
+    },
+    "opts": [
+     {
+      "uz": "Suhbat boshida, birinchi bo'lib",
+      "ru": "В начале разговора, первым"
+     },
+     {
+      "uz": "Javob «yo'q» yoki «qimmat» bo'lsa",
+      "ru": "Если ответ «нет» или «дорого»"
+     },
+     {
+      "uz": "Tashkilotchi «ha» deb javob bersa",
+      "ru": "Если организатор ответил «да»"
+     },
+     {
+      "uz": "Tashkilotchi umuman javob bermasa",
+      "ru": "Если организатор совсем не ответил"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 33,
+     "jami": 170,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Qaysi gap sotish gapi?",
+     "ru": "Какая фраза — продающая?"
+    },
+    "opts": [
+     {
+      "uz": "Hozir buni qanday qilyapsiz?",
+      "ru": "Как вы сейчас это делаете?"
+     },
+     {
+      "uz": "Bunga hozir pul sarflaysizmi?",
+      "ru": "Тратите ли на это деньги сейчас?"
+     },
+     {
+      "uz": "Vaqt ajratganingiz uchun rahmat!",
+      "ru": "Спасибо, что уделили время!"
+     },
+     {
+      "uz": "Hamma oldi, siz ham olasizmi?",
+      "ru": "Все взяли, и вы возьмёте?"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 22,
+     "maxVariant": 32,
+     "jami": 140,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Odam: «Qimmat, yarim narxda olardim». Yozuvingizda nima turadi?",
+     "ru": "Человек: «Дорого, за полцены взял бы». Что будет в записи?"
+    },
+    "opts": [
+     {
+      "uz": "«Qimmat» belgisi va uning narxi",
+      "ru": "Отметка «дорого» и его цена"
+     },
+     {
+      "uz": "«Ha» belgisi va savoldagi narx",
+      "ru": "Отметка «да» и цена из вопроса"
+     },
+     {
+      "uz": "«Yo'q» belgisi, narx yozilmaydi",
+      "ru": "Отметка «нет», цена не пишется"
+     },
+     {
+      "uz": "«Javob yo'q» belgisi, gap yo'q",
+      "ru": "Отметка «нет ответа», слов нет"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 31,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mentor misolida uch tashkilotchidan nechtasi «ha» dedi?",
+     "ru": "Сколько из трёх организаторов в примере Ментора сказали «да»?"
+    },
+    "opts": [
+     {
+      "uz": "Uchalasi — hammasi «ha» dedi",
+      "ru": "Все трое — все сказали «да»"
+     },
+     {
+      "uz": "Bittasi — faqat 1-tashkilotchi",
+      "ru": "Один — только организатор 1"
+     },
+     {
+      "uz": "Ikkitasi — 1 va 3-tashkilotchi",
+      "ru": "Двое — организаторы 1 и 3"
+     },
+     {
+      "uz": "Hech biri — hammasi rad etdi",
+      "ru": "Ни один — все отказались"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 30,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Odam xabaringizga javob bermadi. Qaysi belgi qo'yiladi?",
+     "ru": "Человек не ответил на сообщение. Какую отметку ставят?"
+    },
+    "opts": [
+     {
+      "uz": "«Yo'q» — demak, u olmaydi ekan",
+      "ru": "«Нет» — значит, не возьмёт"
+     },
+     {
+      "uz": "«Qimmat» — narx unga yoqmadi",
+      "ru": "«Дорого» — цена не понравилась"
+     },
+     {
+      "uz": "«Javob yo'q» — gapi yozilmagan",
+      "ru": "«Нет ответа» — слов не записано"
+     },
+     {
+      "uz": "Hech narsa — yozuv qilinmaydi",
+      "ru": "Ничего — запись не делают"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 30,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Tanishingiz «ha, olaman» dedi. Endi nima qilasiz?",
+     "ru": "Знакомый сказал «да, возьму». Что теперь сделаете?"
+    },
+    "opts": [
+     {
+      "uz": "Pulni hozir naqd olib qo'yaman",
+      "ru": "Сразу возьму деньги наличными"
+     },
+     {
+      "uz": "Narxni ikki baravar oshiraman",
+      "ru": "Повышу цену вдвое"
+     },
+     {
+      "uz": "Do'stlarini ham olishga undayman",
+      "ru": "Подтолкну купить и его друзей"
+     },
+     {
+      "uz": "Gapini yozaman, pul olmayman",
+      "ru": "Запишу слова, денег не возьму"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 32,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Narx haqidagi suhbat uchun kimni tanlaysiz?",
+     "ru": "Кого выберете для разговора о цене?"
+    },
+    "opts": [
+     {
+      "uz": "Auditoriyamdagi tanish odamni",
+      "ru": "Знакомого из своей аудитории"
+     },
+     {
+      "uz": "Internetdagi notanish odamni",
+      "ru": "Незнакомца из интернета"
+     },
+     {
+      "uz": "Mahsulot kerak bo'lmagan odamni",
+      "ru": "Того, кому продукт не нужен"
+     },
+     {
+      "uz": "O'zimni — javobni o'zim yozaman",
+      "ru": "Себя — ответ напишу сам"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 31,
+     "jami": 162,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mahalla guruhidagi tanishga yozishdan oldin nima qilasiz?",
+     "ru": "Что сделаете, прежде чем написать знакомому из группы махалли?"
+    },
+    "opts": [
+     {
+      "uz": "Ko'p guruhga xabar tashlayman",
+      "ru": "Разошлю сообщение во много групп"
+     },
+     {
+      "uz": "Guruh egasidan ruxsat so'rayman",
+      "ru": "Спрошу разрешения у владельца группы"
+     },
+     {
+      "uz": "Uning telefon raqamini topaman",
+      "ru": "Найду его номер телефона"
+     },
+     {
+      "uz": "Hech narsa qilmayman — u tanish",
+      "ru": "Ничего — он же знакомый"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 31,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Suhbat yozuvida odam qanday ataladi?",
+     "ru": "Как называют человека в записи разговора?"
+    },
+    "opts": [
+     {
+      "uz": "Ismi va familiyasi bilan",
+      "ru": "По имени и фамилии"
+     },
+     {
+      "uz": "Telegram'dagi nomi bilan",
+      "ru": "По имени в Telegram"
+     },
+     {
+      "uz": "Roli bilan: «tashkilotchi»",
+      "ru": "По роли: «организатор»"
+     },
+     {
+      "uz": "Kim ekani umuman yozilmaydi",
+      "ru": "Кто он — не пишут вовсе"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 27,
+     "jami": 137,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Rol o'yinidagi yozuv nega real suhbatga kirmaydi?",
+     "ru": "Почему запись ролевой игры не считается реальным разговором?"
+    },
+    "opts": [
+     {
+      "uz": "Unda narx umuman aytilmagan edi",
+      "ru": "В ней цену вообще не называли"
+     },
+     {
+      "uz": "Uni Mentor o'zi tekshirmagan edi",
+      "ru": "Её не проверил сам Ментор"
+     },
+     {
+      "uz": "Sherik «yo'q» deb javob bergan",
+      "ru": "Партнёр ответил «нет»"
+     },
+     {
+      "uz": "Sherik rolni o'ynab javob bergan",
+      "ru": "Партнёр отвечал, играя роль"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 32,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-07",
+  "file": "src/11-Modull/PmTermsLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Oferta qanday taklif?",
+     "ru": "Какое предложение — оферта?"
+    },
+    "opts": [
+     {
+      "uz": "Hamma uchun ochiq, shartlari yozilgan",
+      "ru": "Открытое для всех, с записанными условиями"
+     },
+     {
+      "uz": "Faqat do'stlarga yashirin yuborilgan",
+      "ru": "Тайно отправленное только друзьям"
+     },
+     {
+      "uz": "Narxsiz, faqat og'zaki aytilgan taklif",
+      "ru": "Без цены, сказанное только устно"
+     },
+     {
+      "uz": "To'lovdan keyingina ko'rsatiladigan",
+      "ru": "Показываемое только после оплаты"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 21,
+     "maxVariant": 38,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Odam to'lasa, ofertaga nisbatan nima bo'ladi?",
+     "ru": "Что происходит с офертой, если человек платит?"
+    },
+    "opts": [
+     {
+      "uz": "Hech narsa — u faqat narxni ko'rdi",
+      "ru": "Ничего — он видел только цену"
+     },
+     {
+      "uz": "Undagi shartlarga rozi bo'ladi",
+      "ru": "Он соглашается с её условиями"
+     },
+     {
+      "uz": "Oferta shu zahoti bekor bo'ladi",
+      "ru": "Оферта сразу отменяется"
+     },
+     {
+      "uz": "Shartlarni o'zi o'zgartira oladi",
+      "ru": "Может сам изменить условия"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 34,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Tashkilotchi: «Bekor qilsam, pulim qaytadimi?» Javob qayerda?",
+     "ru": "Организатор: «Если отменю, деньги вернутся?» Где ответ?"
+    },
+    "opts": [
+     {
+      "uz": "To'lov taklifi ekranidagi narxda",
+      "ru": "В цене на экране предложения оплаты"
+     },
+     {
+      "uz": "Mashq to'lov sahifasi tugmasida",
+      "ru": "В кнопке учебной страницы оплаты"
+     },
+     {
+      "uz": "Ofertaning bekor qilish bandida",
+      "ru": "В пункте оферты об отмене"
+     },
+     {
+      "uz": "Ilovaning e'lon berish qismida",
+      "ru": "В разделе объявлений приложения"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 32,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Mentor ofertasida sotuvchi qatori nega bo'sh?",
+     "ru": "Почему в оферте Ментора строка продавца пустая?"
+    },
+    "opts": [
+     {
+      "uz": "Mentor o'z ismini yozishni unutgan",
+      "ru": "Ментор забыл написать своё имя"
+     },
+     {
+      "uz": "Sotuvchini agent keyin o'zi qo'yadi",
+      "ru": "Продавца потом поставит сам агент"
+     },
+     {
+      "uz": "Qatorni Pro olgan odam to'ldiradi",
+      "ru": "Строку заполнит тот, кто взял Pro"
+     },
+     {
+      "uz": "Bu kursda real ishga tushirish yo'q",
+      "ru": "В этом курсе нет реального запуска"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 35,
+     "jami": 182,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Qaysi gap ofertaga yoziladi?",
+     "ru": "Какая фраза пишется в оферте?"
+    },
+    "opts": [
+     {
+      "uz": "Pro tugasa, e'lon qilingan o'yin qoladi",
+      "ru": "Если Pro закончится, объявленная игра остаётся"
+     },
+     {
+      "uz": "Tez orada Pro'ga yana qulaylik qo'shamiz",
+      "ru": "Скоро добавим в Pro ещё функции"
+     },
+     {
+      "uz": "Boshqa tashkilotchilar ham Pro'ni oldi",
+      "ru": "Другие организаторы тоже взяли Pro"
+     },
+     {
+      "uz": "Pro bilan har o'yiningiz to'lib boradi",
+      "ru": "С Pro каждая ваша игра будет заполняться"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 40,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mentor misolida Pro muddati tugasa, nima bo'ladi?",
+     "ru": "Что будет в примере Ментора, когда срок Pro закончится?"
+    },
+    "opts": [
+     {
+      "uz": "Keyingi 30 kun puli o'zi yechiladi",
+      "ru": "Деньги за следующие 30 дней спишутся сами"
+     },
+     {
+      "uz": "Pro o'zi to'xtaydi, pul so'ralmaydi",
+      "ru": "Pro сам выключится, деньги не запросят"
+     },
+     {
+      "uz": "E'lon qilingan o'yinlar o'chib ketadi",
+      "ru": "Объявленные игры удалятся"
+     },
+     {
+      "uz": "O'yinchilar uchun ilova pullik bo'ladi",
+      "ru": "Приложение станет платным для игроков"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 38,
+     "jami": 193,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Real ishga tushirish uchun nima kerak?",
+     "ru": "Что нужно для реального запуска?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovani do'konga joylashning o'zi",
+      "ru": "Только выложить приложение в магазин"
+     },
+     {
+      "uz": "Sinfdoshlarning og'zaki roziligi",
+      "ru": "Устное согласие одноклассников"
+     },
+     {
+      "uz": "Ota-ona yozma roziligi va sotuvchi",
+      "ru": "Письменное согласие родителей и продавец"
+     },
+     {
+      "uz": "Ofertani lendingga qo'yishning o'zi",
+      "ru": "Только поставить оферту на лендинг"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 35,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Agent ofertada «[savol]» qoldirdi. Bu nimani bildiradi?",
+     "ru": "Агент оставил в оферте «[savol]». Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "Bandni olib tashlash kerakligini",
+      "ru": "Что пункт нужно удалить"
+     },
+     {
+      "uz": "Sahifa internetda ochilmasligini",
+      "ru": "Что страница не откроется в интернете"
+     },
+     {
+      "uz": "Agent uni keyin o'zi to'ldirishini",
+      "ru": "Что агент потом сам его заполнит"
+     },
+     {
+      "uz": "Agent buni koddan bilolmaganini",
+      "ru": "Что агент не смог узнать это из кода"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 34,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Kitob almashish ilovangiz ofertasidagi narxni qanday tekshirasiz?",
+     "ru": "Как проверить цену в оферте вашего приложения обмена книгами?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovada va kodida o'zim ko'raman",
+      "ru": "Сам посмотрю в приложении и в коде"
+     },
+     {
+      "uz": "Agentdan «to'g'rimi?» deb so'rayman",
+      "ru": "Спрошу агента «правильно?»"
+     },
+     {
+      "uz": "Sinfdoshimdan narxni so'rab olaman",
+      "ru": "Спрошу цену у одноклассника"
+     },
+     {
+      "uz": "Tekshirmayman — narx o'zgarmaydi",
+      "ru": "Не проверяю — цена не меняется"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 65,
+     "maxVariant": 35,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Siyosatdagi to'lov bandida qaysi gap rost?",
+     "ru": "Какая фраза в пункте об оплате в политике верна?"
+    },
+    "opts": [
+     {
+      "uz": "Karta raqamini biz xavfsiz saqlaymiz",
+      "ru": "Мы надёжно храним номер карты"
+     },
+     {
+      "uz": "Karta ma'lumotini mahsulot saqlamaydi",
+      "ru": "Продукт не хранит данные карты"
+     },
+     {
+      "uz": "To'lov haqida hech narsa saqlanmaydi",
+      "ru": "Об оплате ничего не хранится"
+     },
+     {
+      "uz": "Karta ma'lumotini Mentor tekshirib turadi",
+      "ru": "Данные карты проверяет Ментор"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 41,
+     "jami": 192,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Mentor misolida to'lov uchun nima saqlanadi?",
+     "ru": "Что хранится об оплате в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Karta raqami va egasining telefoni",
+      "ru": "Номер карты и телефон владельца"
+     },
+     {
+      "uz": "Tashkilotchining ismi va maktab raqami",
+      "ru": "Имя организатора и номер школы"
+     },
+     {
+      "uz": "To'lov raqami, hisob, holat va summa",
+      "ru": "Номер платежа, аккаунт, статус и сумма"
+     },
+     {
+      "uz": "Hech narsa — to'lovdan keyin o'chadi",
+      "ru": "Ничего — после оплаты всё удаляется"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 38,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Tashkilotchi Pro shartlarini qachon o'qiy olishi kerak?",
+     "ru": "Когда организатор должен иметь возможность прочитать условия Pro?"
+    },
+    "opts": [
+     {
+      "uz": "To'lov o'tgandan keyin, chatda",
+      "ru": "После оплаты, в чате"
+     },
+     {
+      "uz": "Pro muddati tugagan kunning o'zida",
+      "ru": "В день окончания срока Pro"
+     },
+     {
+      "uz": "Mentordan so'rab bilgan paytida",
+      "ru": "Когда спросит у Ментора"
+     },
+     {
+      "uz": "To'lov tugmasini bosishdan oldin",
+      "ru": "До нажатия кнопки оплаты"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 34,
+     "jami": 182,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-08",
+  "file": "src/11-Modull/WinBackDayLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Mentor misolida yana ochmagan beshtadan ko'pi nima dedi?",
+     "ru": "Что сказали большинство из пяти, не открывших снова, в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "«Yangi o'yin chiqqanini bilmadim»",
+      "ru": "«Не знал, что вышла новая игра»"
+     },
+     {
+      "uz": "«Ilova menga umuman yoqmadi»",
+      "ru": "«Приложение мне совсем не понравилось»"
+     },
+     {
+      "uz": "«Telefonimda joy qolmay qoldi»",
+      "ru": "«На телефоне закончилось место»"
+     },
+     {
+      "uz": "«O'yinlar menga juda qimmat tuyuldi»",
+      "ru": "«Игры показались мне слишком дорогими»"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 36,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Bot odamga birinchi bo'lib yoza oladimi?",
+     "ru": "Может ли бот написать человеку первым?"
+    },
+    "opts": [
+     {
+      "uz": "Ha — Backend chat raqamini o'zi topadi",
+      "ru": "Да — Backend сам найдёт номер чата"
+     },
+     {
+      "uz": "Yo'q — odam avval botni o'zi boshlaydi",
+      "ru": "Нет — человек сначала сам запускает бота"
+     },
+     {
+      "uz": "Ha — bot istalgan odamga yoza oladi",
+      "ru": "Да — бот может написать любому"
+     },
+     {
+      "uz": "Yo'q — buning uchun telefon raqami kerak",
+      "ru": "Нет — для этого нужен номер телефона"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 40,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Ulanish havolasidagi bir martalik kod nima uchun kerak?",
+     "ru": "Зачем нужен одноразовый код в ссылке подключения?"
+    },
+    "opts": [
+     {
+      "uz": "Botni Telegram qidiruvida tezroq topish uchun",
+      "ru": "Чтобы быстрее найти бота в поиске Telegram"
+     },
+     {
+      "uz": "Xabarni tezroq yetkazib berish uchun",
+      "ru": "Чтобы быстрее доставить сообщение"
+     },
+     {
+      "uz": "Chatni aynan shu hisob bilan bog'lash uchun",
+      "ru": "Чтобы связать чат именно с этим аккаунтом"
+     },
+     {
+      "uz": "Bot tokenini odamga ko'rsatish uchun",
+      "ru": "Чтобы показать человеку токен бота"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 45,
+     "jami": 215,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Telegram so'rovi kelganda Mentor Backend'i avval nimani tekshiradi?",
+     "ru": "Что Backend Ментора проверяет первым, когда приходит запрос Telegram?"
+    },
+    "opts": [
+     {
+      "uz": "Odamning Telegram nomini",
+      "ru": "Имя человека в Telegram"
+     },
+     {
+      "uz": "Xabardagi chat raqamini",
+      "ru": "Номер чата в сообщении"
+     },
+     {
+      "uz": "Botning foydalanuvchi nomini",
+      "ru": "Имя пользователя бота"
+     },
+     {
+      "uz": "Sarlavhadagi maxfiy kalitni",
+      "ru": "Секретный ключ в заголовке"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 67,
+     "maxVariant": 28,
+     "jami": 169,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Bot tokeni qayerda turadi?",
+     "ru": "Где хранится токен бота?"
+    },
+    "opts": [
+     {
+      "uz": "`backend/.env` da va Render sozlamasida",
+      "ru": "В `backend/.env` и в настройках Render"
+     },
+     {
+      "uz": "Ilova kodida, tugma bosiladigan joy yonida",
+      "ru": "В коде приложения, рядом с кнопкой"
+     },
+     {
+      "uz": "`README.md` dagi ro'yxatda, qiymati bilan",
+      "ru": "В списке в `README.md`, со значением"
+     },
+     {
+      "uz": "Bot javobi matnida, eng oxirgi qatorda",
+      "ru": "В тексте ответа бота, в последней строке"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 26,
+     "maxVariant": 42,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Ulanganda Backend Telegram'dan nimani saqlaydi?",
+     "ru": "Что Backend сохраняет из Telegram при подключении?"
+    },
+    "opts": [
+     {
+      "uz": "Odamning ismi va Telegram nomini",
+      "ru": "Имя человека и имя в Telegram"
+     },
+     {
+      "uz": "Faqat chat raqamini, boshqasini emas",
+      "ru": "Только номер чата, больше ничего"
+     },
+     {
+      "uz": "Telefon raqami va chat raqamini birga",
+      "ru": "Номер телефона вместе с номером чата"
+     },
+     {
+      "uz": "Botga yozilgan hamma xabarlarni",
+      "ru": "Все сообщения, написанные боту"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 37,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Shu hafta o'yinchiga ikkita Telegram xabari ketdi. Uchinchisi-chi?",
+     "ru": "На этой неделе игроку ушло два сообщения Telegram. А третье?"
+    },
+    "opts": [
+     {
+      "uz": "Baribir yuboriladi — o'yin yangi",
+      "ru": "Всё равно уйдёт — игра новая"
+     },
+     {
+      "uz": "Ilovada eslatma bo'lib chiqadi",
+      "ru": "Появится в приложении напоминанием"
+     },
+     {
+      "uz": "Bu hafta umuman yuborilmaydi",
+      "ru": "На этой неделе вообще не уйдёт"
+     },
+     {
+      "uz": "Ertasiga ikki marta yuboriladi",
+      "ru": "Назавтра уйдёт дважды"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 32,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Qaysi Telegram xabari darsdagi qoidaga mos?",
+     "ru": "Какое сообщение Telegram подходит под правило урока?"
+    },
+    "opts": [
+     {
+      "uz": "«Pro oling — aks holda o'yiningiz to'lmaydi»",
+      "ru": "«Возьмите Pro — иначе ваша игра не наберётся»"
+     },
+     {
+      "uz": "«Hamma qaytdi, faqat siz yo'qsiz!»",
+      "ru": "«Все вернулись, только вас нет!»"
+     },
+     {
+      "uz": "«Yangi o'yinlar bor, ilovani oching!»",
+      "ru": "«Есть новые игры, откройте приложение!»"
+     },
+     {
+      "uz": "«Shanba, 18:00 o'yini yana e'lon qilindi»",
+      "ru": "«Игра в субботу, 18:00 снова объявлена»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 44,
+     "jami": 199,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "«Telegram xabarlarini o'chirish» bosilsa, nima bo'ladi?",
+     "ru": "Что будет, если нажать «Telegram xabarlarini o'chirish»?"
+    },
+    "opts": [
+     {
+      "uz": "Chat raqami o'chadi, xabar to'xtaydi",
+      "ru": "Номер чата удаляется, сообщения прекращаются"
+     },
+     {
+      "uz": "Hisob butunlay o'chib ketadi",
+      "ru": "Аккаунт удаляется полностью"
+     },
+     {
+      "uz": "Bot Telegram'dan butunlay o'chib ketadi",
+      "ru": "Бот полностью удаляется из Telegram"
+     },
+     {
+      "uz": "Xabarlar faqat kechqurun keladi",
+      "ru": "Сообщения приходят только вечером"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 39,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mentor misolida `telegramdan-ochdi` qachon yoziladi?",
+     "ru": "Когда в примере Ментора пишется `telegramdan-ochdi`?"
+    },
+    "opts": [
+     {
+      "uz": "Telegram xabari yuborilganda",
+      "ru": "Когда отправлено сообщение Telegram"
+     },
+     {
+      "uz": "Xabardagi havola bilan ochilganda",
+      "ru": "Когда открыли по ссылке из сообщения"
+     },
+     {
+      "uz": "Bot «Start»ni qabul qilganda",
+      "ru": "Когда бот принял «Start»"
+     },
+     {
+      "uz": "Ilova telefonga yangidan o'rnatilganda",
+      "ru": "Когда приложение заново установили на телефон"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 38,
+     "jami": 179,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Sinfdagi tekshiruv o'yinlari va yozuvlari nima bo'ladi?",
+     "ru": "Что будет с проверочными играми и записями в классе?"
+    },
+    "opts": [
+     {
+      "uz": "`hodisalar` da shundayicha qoladi",
+      "ru": "Остаются в `hodisalar` как есть"
+     },
+     {
+      "uz": "Bir haftadan keyin o'zi o'chadi",
+      "ru": "Сами удалятся через неделю"
+     },
+     {
+      "uz": "Tekshirgach, `id` bo'yicha o'chiriladi",
+      "ru": "После проверки удаляются по `id`"
+     },
+     {
+      "uz": "Mentor misoliga namuna qilib ko'chiriladi",
+      "ru": "Копируются в пример Ментора как образец"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 41,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Mentor misolida Telegram xabari bilan eslatmaning farqi nima?",
+     "ru": "Чем в примере Ментора сообщение Telegram отличается от напоминания?"
+    },
+    "opts": [
+     {
+      "uz": "Ikkalasini ham ilovaning o'zi oldindan qo'yadi",
+      "ru": "Оба заранее ставит само приложение"
+     },
+     {
+      "uz": "Ikkalasini ham Backend'ning o'zi yuborib turadi",
+      "ru": "Оба отправляет сам Backend"
+     },
+     {
+      "uz": "Eslatmani bot yozadi, Telegram xabarini ilova qo'yadi",
+      "ru": "Напоминание пишет бот, сообщение Telegram ставит приложение"
+     },
+     {
+      "uz": "Xabarni Backend yuboradi, eslatmani ilova qo'yadi",
+      "ru": "Сообщение отправляет Backend, напоминание ставит приложение"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 53,
+     "jami": 256,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-09",
+  "file": "src/11-Modull/PmPayCheckLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Bu darsda yozma tasdiq nima?",
+     "ru": "Что на этом уроке письменное подтверждение?"
+    },
+    "opts": [
+     {
+      "uz": "Siz yozib olgan suhbatdagi gapi",
+      "ru": "Его слова из разговора, записанные вами"
+     },
+     {
+      "uz": "Odamning o'zi yozgan narxli javobi",
+      "ru": "Ответ с ценой, написанный им самим"
+     },
+     {
+      "uz": "Oldindan berib qo'yilgan kichik pul",
+      "ru": "Небольшие деньги, отданные заранее"
+     },
+     {
+      "uz": "«Mashq to'lov»da bosilgan tugmasi",
+      "ru": "Нажатая им кнопка «учебной оплаты»"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 35,
+     "jami": 161,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Mentor misolida nechta tashkilotchidan so'raldi?",
+     "ru": "Скольких организаторов спросили в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Uchtadan — faqat 6-darsdagilardan",
+      "ru": "Троих — только тех, кто был на 6-м уроке"
+     },
+     {
+      "uz": "Bittadan — faqat 1-tashkilotchidan",
+      "ru": "Одного — только 1-го организатора"
+     },
+     {
+      "uz": "44 tadan — hamma foydalanuvchidan",
+      "ru": "44 — всех пользователей"
+     },
+     {
+      "uz": "Oltitadan — 6-darsdagilar ham bor",
+      "ru": "Шестерых — включая тех, кто с 6-го урока"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 34,
+     "jami": 181,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Mentor misolida nechta yozma tasdiq bor?",
+     "ru": "Сколько подтверждений в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta — faqat 1-tashkilotchidan olindi",
+      "ru": "Одно — получено только от 1-го организатора"
+     },
+     {
+      "uz": "Oltita — hamma tashkilotchi yozib berdi",
+      "ru": "Шесть — написали все организаторы"
+     },
+     {
+      "uz": "Uchta — ikkitasi 15 000, biri 10 000",
+      "ru": "Три — два по 15 000, одно по 10 000"
+     },
+     {
+      "uz": "Ikkita — faqat 15 000 so'm yozganlari",
+      "ru": "Два — только те, кто написал 15 000 сумов"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 39,
+     "jami": 190,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "3-tashkilotchi «15 000 qimmat» deb, 10 000 so'mda to'lashini yozdi. Bu nima?",
+     "ru": "3-й организатор написал «15 000 дорого» и что заплатит 10 000 сумов. Что это?"
+    },
+    "opts": [
+     {
+      "uz": "Hozir yo'q — «qimmat» degani uchun",
+      "ru": "Сейчас нет — раз сказал «дорого»"
+     },
+     {
+      "uz": "Javob yo'q — narxi boshqacha chiqdi",
+      "ru": "Нет ответа — цена получилась другой"
+     },
+     {
+      "uz": "Sotish gapi — narxni o'zi tushirdi",
+      "ru": "Продающая фраза — сам снизил цену"
+     },
+     {
+      "uz": "Yozma tasdiq — 10 000 so'm narxda",
+      "ru": "Письменное подтверждение — по цене 10 000 сумов"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 76,
+     "maxVariant": 35,
+     "jami": 212,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«Kim tasdiqladi?» savoli bilan Mentor nimani ko'radi?",
+     "ru": "Что Ментор видит по вопросу «Кто подтвердил?»"
+    },
+    "opts": [
+     {
+      "uz": "Yozgan odam to'lovchi bo'lishini",
+      "ru": "Что написавший — плательщик"
+     },
+     {
+      "uz": "Yozgan odamning ism-familiyasini",
+      "ru": "Имя и фамилию написавшего"
+     },
+     {
+      "uz": "Yozgan odam necha yoshda ekanini",
+      "ru": "Сколько лет написавшему"
+     },
+     {
+      "uz": "Yozgan odam pulni qachon berishini",
+      "ru": "Когда написавший отдаст деньги"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 34,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mentor misolida tekshiruv javobi qanday?",
+     "ru": "Каков ответ проверки в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Tuzatish: oltidan faqat uchtasi bor",
+      "ru": "Исправление: из шести только три"
+     },
+     {
+      "uz": "Tuzatish: bittasi 10 000 so'mda",
+      "ru": "Исправление: одно — по 10 000 сумов"
+     },
+     {
+      "uz": "Qabul: uch savolga ham «ha» bo'ldi",
+      "ru": "Принято: на все три вопроса — «да»"
+     },
+     {
+      "uz": "Tekshirilmadi: sherik topilmadi",
+      "ru": "Не проверено: партнёр не нашёлся"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 35,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "O'zingiz yozib qo'ygan «tasdiq» tekshiruvda nima bo'ladi?",
+     "ru": "Что будет на проверке с «подтверждением», которое вы написали сами?"
+    },
+    "opts": [
+     {
+      "uz": "Qabul: unda narx yozilgan bo'lsa",
+      "ru": "Принято, если в нём есть цена"
+     },
+     {
+      "uz": "Tuzatish: uni odam o'zi yozmagan",
+      "ru": "Исправление: его не писал сам человек"
+     },
+     {
+      "uz": "Tuzatish: uchtaga yetmagani uchun",
+      "ru": "Исправление: потому что меньше трёх"
+     },
+     {
+      "uz": "Qabul: so'zma-so'z yozilgan bo'lsa",
+      "ru": "Принято, если записано дословно"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 34,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Yozma tasdiq «hozir olmasangiz, qimmatlashadi» deb olindi. Nima bo'ladi?",
+     "ru": "Подтверждение получено со словами «не купите сейчас — подорожает». Что будет?"
+    },
+    "opts": [
+     {
+      "uz": "Qabul: uni odamning o'zi yozgan",
+      "ru": "Принято: его написал сам человек"
+     },
+     {
+      "uz": "Qabul: narx va nima uchun bor",
+      "ru": "Принято: есть цена и «за что»"
+     },
+     {
+      "uz": "Tuzatish: narx juda qimmat chiqdi",
+      "ru": "Исправление: цена получилась слишком высокой"
+     },
+     {
+      "uz": "Tuzatish: bosim bilan olingan",
+      "ru": "Исправление: получено под давлением"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 72,
+     "maxVariant": 33,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Mentor misolida yozma tasdiq kimlardan so'raldi?",
+     "ru": "У кого просили подтверждение в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Tashkilotchilardan — Pro ular uchun",
+      "ru": "У организаторов — Pro для них"
+     },
+     {
+      "uz": "O'yinchilardan — ular ko'pchilik",
+      "ru": "У игроков — их большинство"
+     },
+     {
+      "uz": "Sinfdoshlardan — ular hammasi tanish",
+      "ru": "У одноклассников — все они знакомые"
+     },
+     {
+      "uz": "Maydon egasidan — maydon o'ziniki",
+      "ru": "У владельца поля — поле его"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 36,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Yozma tasdiq bergan odamga nima yuboriladi?",
+     "ru": "Что отправляют тому, кто дал подтверждение?"
+    },
+    "opts": [
+     {
+      "uz": "Havola — «mashq to'lov» sahifasiga",
+      "ru": "Ссылку — на страницу «учебной оплаты»"
+     },
+     {
+      "uz": "Iltimos — oldindan pulni o'tkazish",
+      "ru": "Просьбу — заранее перевести деньги"
+     },
+     {
+      "uz": "Hech narsa — pul ham, havola ham yo'q",
+      "ru": "Ничего — ни денег, ни ссылки"
+     },
+     {
+      "uz": "Iltimos — do'stlarini ham chaqirishni",
+      "ru": "Просьбу — позвать и друзей"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 37,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Skrinshotni ko'rsatishdan oldin nimani yopasiz?",
+     "ru": "Что закрываете перед тем, как показать скриншот?"
+    },
+    "opts": [
+     {
+      "uz": "Odam yozib bergan narxni",
+      "ru": "Цену, которую написал человек"
+     },
+     {
+      "uz": "Ism va telefon raqamini",
+      "ru": "Имя и номер телефона"
+     },
+     {
+      "uz": "Nima uchun to'layotganini",
+      "ru": "За что он платит"
+     },
+     {
+      "uz": "Xabar kelgan kun va vaqtni",
+      "ru": "День и время сообщения"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 26,
+     "jami": 145,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Mentor xabarida qaysi gap bor?",
+     "ru": "Какая фраза есть в сообщении Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "«Bu to'lov emas — pul so'ramayman»",
+      "ru": "«Это не оплата — денег не прошу»"
+     },
+     {
+      "uz": "«Hozir olmasangiz — qimmatlashadi»",
+      "ru": "«Не купите сейчас — подорожает»"
+     },
+     {
+      "uz": "«Boshqa tashkilotchilar ham oldi»",
+      "ru": "«Другие организаторы уже взяли»"
+     },
+     {
+      "uz": "«Do'stlaringizga ham yuborib qo'ying»",
+      "ru": "«Перешлите и друзьям»"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 30,
+     "maxVariant": 37,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-10",
+  "file": "src/11-Modull/ReferralDayLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Ikki tashkilotchi 12-Moduldagi bir xil havolani yubordi. Umami nimani ko'radi?",
+     "ru": "Два организатора отправили одинаковую ссылку из 12-го модуля. Что видит Umami?"
+    },
+    "opts": [
+     {
+      "uz": "Tashrif «ilova» kanalidan kelganini",
+      "ru": "Что визит пришёл из канала «ilova»"
+     },
+     {
+      "uz": "Havolani qaysi tashkilotchi yuborganini",
+      "ru": "Какой организатор отправил ссылку"
+     },
+     {
+      "uz": "Tashkilotchining login va ismini",
+      "ru": "Логин и имя организатора"
+     },
+     {
+      "uz": "Kim ro'yxatdan o'tib, o'ynaganini",
+      "ru": "Кто зарегистрировался и играл"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 78,
+     "maxVariant": 39,
+     "jami": 217,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Mentor misolida taklif kodi nimadan iborat?",
+     "ru": "Из чего состоит код приглашения в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Ismdan va oxirida ikki raqamdan",
+      "ru": "Из имени и двух цифр в конце"
+     },
+     {
+      "uz": "Olti belgidan: katta harf va raqam",
+      "ru": "Из шести символов: заглавные буквы и цифры"
+     },
+     {
+      "uz": "Telefon raqamining oxirgi qismidan",
+      "ru": "Из последней части номера телефона"
+     },
+     {
+      "uz": "O'yin raqamidan va e'lon kunidan",
+      "ru": "Из номера игры и дня объявления"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 34,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Taklif havolasi ochilganda Mentor lendingi Umami'ga nima yuboradi?",
+     "ru": "Что лендинг Ментора отправляет в Umami при открытии ссылки-приглашения?"
+    },
+    "opts": [
+     {
+      "uz": "Taklif kodini va kanal belgisini",
+      "ru": "Код приглашения и метку канала"
+     },
+     {
+      "uz": "Taklif qilgan hisobning loginini",
+      "ru": "Логин пригласившего аккаунта"
+     },
+     {
+      "uz": "Faqat kanal belgisini: «taklif»",
+      "ru": "Только метку канала: «taklif»"
+     },
+     {
+      "uz": "Hech narsa — Umami havolani ko'rmaydi",
+      "ru": "Ничего — Umami ссылку не видит"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 37,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Taklif kodisiz kelgan odam Mentor ilovasida ro'yxatdan o'ta oladimi?",
+     "ru": "Может ли человек без кода приглашения зарегистрироваться в приложении Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Yo'q — taklif kodi majburiy maydon",
+      "ru": "Нет — код приглашения обязательное поле"
+     },
+     {
+      "uz": "Yo'q — faqat havola orqali kirsa bo'ladi",
+      "ru": "Нет — можно войти только по ссылке"
+     },
+     {
+      "uz": "Ha — lekin faqat iPhone'dagi brauzerda",
+      "ru": "Да — но только в браузере на iPhone"
+     },
+     {
+      "uz": "Ha — maydon «(bo'lsa)», majburiy emas",
+      "ru": "Да — поле «(если есть)», не обязательное"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 68,
+     "maxVariant": 40,
+     "jami": 217,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Mentor misolida taklif uchun mukofot nima?",
+     "ru": "Что награда за приглашение в примере Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Pro'ning bepul haftasi, test rejimda",
+      "ru": "Бесплатная неделя Pro в тестовом режиме"
+     },
+     {
+      "uz": "Taklif qilgan odamga so'mda pul",
+      "ru": "Деньги в сумах пригласившему"
+     },
+     {
+      "uz": "Keyingi pullik obunaga chegirma",
+      "ru": "Скидка на следующую платную подписку"
+     },
+     {
+      "uz": "Yangi hisobga Pro'ning bir oylik muddati",
+      "ru": "Месяц Pro новому аккаунту"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 40,
+     "jami": 180,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Taklif kodi bilan ochilgan hisob hali hech narsa qilmagan. Mukofot-chi?",
+     "ru": "Аккаунт, открытый с кодом, ещё ничего не сделал. А награда?"
+    },
+    "opts": [
+     {
+      "uz": "Bor — ro'yxatdan o'tgani yetarli",
+      "ru": "Есть — регистрации достаточно"
+     },
+     {
+      "uz": "Hali yo'q — asosiy harakat kutiladi",
+      "ru": "Пока нет — ждём основного действия"
+     },
+     {
+      "uz": "Bor — taklif kodi to'g'ri yozilgan",
+      "ru": "Есть — код приглашения введён верно"
+     },
+     {
+      "uz": "Yo'q — bu hisob endi umuman sanalmaydi",
+      "ru": "Нет — этот аккаунт теперь вообще не считается"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 38,
+     "jami": 210,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Mentor qoidasida bir hisobga haftasiga nechta mukofot?",
+     "ru": "Сколько наград в неделю одному аккаунту по правилу Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "Har taklif uchun — hech cheklovsiz",
+      "ru": "За каждое приглашение — без лимита"
+     },
+     {
+      "uz": "Bitta — oyiga faqat bir marta",
+      "ru": "Одна — только раз в месяц"
+     },
+     {
+      "uz": "Ko'pi bilan ikkita — haftasiga",
+      "ru": "Не больше двух — в неделю"
+     },
+     {
+      "uz": "Faqat birinchi taklif uchun",
+      "ru": "Только за первое приглашение"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 34,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Ikkinchi telefoni bor odam o'zini taklif qildi. «Bir qurilma» qoidasi-chi?",
+     "ru": "Человек со вторым телефоном пригласил сам себя. А правило «одно устройство»?"
+    },
+    "opts": [
+     {
+      "uz": "Ushlaydi — taklif kodi bir xil",
+      "ru": "Поймает — код приглашения тот же"
+     },
+     {
+      "uz": "Ushlaydi — ikki login o'xshash",
+      "ru": "Поймает — два логина похожи"
+     },
+     {
+      "uz": "Ushlamaydi — asosiy harakat yo'q",
+      "ru": "Не поймает — нет основного действия"
+     },
+     {
+      "uz": "Ushlamaydi — qurilmalar har xil",
+      "ru": "Не поймает — устройства разные"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 74,
+     "maxVariant": 32,
+     "jami": 197,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Mentor misolida 18 tashrif va 7 hisob. Ayirsa bo'ladimi?",
+     "ru": "В примере Ментора 18 визитов и 7 аккаунтов. Можно ли вычитать?"
+    },
+    "opts": [
+     {
+      "uz": "Yo'q — biri tashrif, biri hisob",
+      "ru": "Нет — одно визиты, другое аккаунты"
+     },
+     {
+      "uz": "Ha — 11 kishi ro'yxatdan o'tmagan",
+      "ru": "Да — 11 человек не зарегистрировались"
+     },
+     {
+      "uz": "Ha — 11 qurilma ilovani o'chirgan",
+      "ru": "Да — 11 устройств удалили приложение"
+     },
+     {
+      "uz": "Yo'q — Umami sonlari ishonchsiz",
+      "ru": "Нет — цифры Umami ненадёжны"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 33,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mentor misolida jami ro'yxatdan o'tgan — 51. Bu son nima?",
+     "ru": "В примере Ментора всего зарегистрировано — 51. Что это за число?"
+    },
+    "opts": [
+     {
+      "uz": "Har hafta o'yinga keladigan odamlar",
+      "ru": "Люди, приходящие на игру каждую неделю"
+     },
+     {
+      "uz": "Avvalgi 44 va taklif kodi bilan ochilgan 7 hisob",
+      "ru": "Прежние 44 и 7 аккаунтов, открытых с кодом"
+     },
+     {
+      "uz": "Faqat taklif havolasi orqali ochilgan hamma hisob",
+      "ru": "Все аккаунты, открытые только по ссылке-приглашению"
+     },
+     {
+      "uz": "50 maqsadiga yetildi — endi ish tugadi",
+      "ru": "Цель 50 достигнута — работа закончена"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 49,
+     "jami": 227,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Sinfda tekshiruv akkaunti ochdingiz. Keyin nima qilasiz?",
+     "ru": "Вы открыли в классе проверочный аккаунт. Что дальше?"
+    },
+    "opts": [
+     {
+      "uz": "Sanoqda qoldirasiz — u ham hisob",
+      "ru": "Оставите в подсчёте — это тоже аккаунт"
+     },
+     {
+      "uz": "Login va parolini o'zgartirasiz",
+      "ru": "Смените логин и пароль"
+     },
+     {
+      "uz": "«Hisobni o'chirish» bilan o'chirasiz",
+      "ru": "Удалите через «Hisobni o'chirish»"
+     },
+     {
+      "uz": "Sherigingizga berib, ishlatib turasiz",
+      "ru": "Отдадите напарнику пользоваться"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 37,
+     "jami": 192,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Havolangizni qayerga yuborasiz?",
+     "ru": "Куда вы отправите свою ссылку?"
+    },
+    "opts": [
+     {
+      "uz": "Shahar futbol kanaliga — odam ko'p",
+      "ru": "В городской футбольный канал — там много людей"
+     },
+     {
+      "uz": "Mahalla guruhiga — egasidan so'ramay",
+      "ru": "В группу махалли — не спросив владельца"
+     },
+     {
+      "uz": "Tanimagan tashkilotchilarga — shaxsiyga",
+      "ru": "Незнакомым организаторам — в личку"
+     },
+     {
+      "uz": "O'z jamoangizga — siz a'zo guruhga",
+      "ru": "Своей команде — в группу, где вы состоите"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 39,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-11",
+  "file": "src/11-Modull/PmReflectionLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Bu darsda holat nimani aytadi?",
+     "ru": "О чём говорит статус на этом уроке?"
+    },
+    "opts": [
+     {
+      "uz": "Roadmap'dagi ish ufqiga qarab qayerda ekanini",
+      "ru": "Где работа из roadmap относительно горизонта"
+     },
+     {
+      "uz": "Ishga qancha vaqt va qancha kuch sarflanganini",
+      "ru": "Сколько времени и сил ушло на работу"
+     },
+     {
+      "uz": "Ishni kim yoki qaysi agent yozib berganini",
+      "ru": "Кто или какой агент написал работу"
+     },
+     {
+      "uz": "Ishning RICE bahosi hozir necha ball ekanini",
+      "ru": "Сколько баллов сейчас у оценки RICE"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 30,
+     "maxVariant": 46,
+     "jami": 207,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Ish o'z ufqidan keyin tugadi. Holati qanday?",
+     "ru": "Работа закончена после своего горизонта. Какой статус?"
+    },
+    "opts": [
+     {
+      "uz": "Bajarildi: hozir ishlab turibdi",
+      "ru": "Выполнено: сейчас работает"
+     },
+     {
+      "uz": "Olib tashlandi: vaqti o'tib ketdi",
+      "ru": "Убрано: время прошло"
+     },
+     {
+      "uz": "Kechikdi: ufqi ichida tugamagan",
+      "ru": "Опоздало: не закончено в горизонте"
+     },
+     {
+      "uz": "Yangi qo'shildi: keyin qo'shilgan",
+      "ru": "Добавлено новое: добавлено позже"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 33,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Mentor «Maydon pulini bo'lishish»ga qaysi holatni qo'ydi?",
+     "ru": "Какой статус Ментор поставил работе «Делить плату за поле»?"
+    },
+    "opts": [
+     {
+      "uz": "Olib tashlandi: endi kerak emas",
+      "ru": "Убрано: больше не нужно"
+     },
+     {
+      "uz": "Uzoqroqda qoldi: vaqti kelmagan",
+      "ru": "Осталось дальше: время не пришло"
+     },
+     {
+      "uz": "Kechikdi: ufqida qilinmay qoldi",
+      "ru": "Опоздало: не сделано в горизонте"
+     },
+     {
+      "uz": "Bajarildi: 2-darsda ko'rib chiqildi",
+      "ru": "Выполнено: рассмотрено на 2-м уроке"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 35,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Mentor roadmap'ida qaysi ish yo'q edi?",
+     "ru": "Какой работы не было в roadmap Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "O'yin kuni kelishini tasdiqlash",
+      "ru": "Подтверждение прихода в день игры"
+     },
+     {
+      "uz": "O'yindan oldin eslatma chiqarish",
+      "ru": "Напоминание перед игрой"
+     },
+     {
+      "uz": "Maydon pulini o'zaro bo'lishish",
+      "ru": "Делить плату за поле между собой"
+     },
+     {
+      "uz": "Telegram orqali xabar yuborish",
+      "ru": "Отправка сообщения через Telegram"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 32,
+     "jami": 162,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Ishdan voz kechdingiz. Roadmap'da u qanday qoladi?",
+     "ru": "Вы отказались от работы. Как она остаётся в roadmap?"
+    },
+    "opts": [
+     {
+      "uz": "«Olib tashlandi» deb, sababi bilan",
+      "ru": "Как «убрано», с причиной"
+     },
+     {
+      "uz": "Butunlay o'chiriladi, izi qolmaydi",
+      "ru": "Удаляется полностью, без следа"
+     },
+     {
+      "uz": "«Kechikdi» deb, keyinga suriladi",
+      "ru": "Как «опоздало», переносится"
+     },
+     {
+      "uz": "Holatsiz, o'z ustunida turaveradi",
+      "ru": "Без статуса, стоит в своей колонке"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 34,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Holat yonida yana nima yoziladi?",
+     "ru": "Что ещё пишут рядом со статусом?"
+    },
+    "opts": [
+     {
+      "uz": "Ishning RICE bahosi va qaysi ufqi",
+      "ru": "Оценка RICE и горизонт работы"
+     },
+     {
+      "uz": "Nega shu holat ekanining sababi",
+      "ru": "Причина, почему такой статус"
+     },
+     {
+      "uz": "Agentga yozilgan to'liq prompt",
+      "ru": "Полный промпт для агента"
+     },
+     {
+      "uz": "Ishning kodidan olingan bo'lak",
+      "ru": "Фрагмент кода работы"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 33,
+     "jami": 156,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Tesla 2006-yilgi rejasini kimga ko'rsatgan?",
+     "ru": "Кому Tesla показала свой план 2006 года?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat kompaniya ichida, yashirin",
+      "ru": "Только внутри компании, тайно"
+     },
+     {
+      "uz": "Bir necha tanish odamga aytib",
+      "ru": "Рассказав нескольким знакомым"
+     },
+     {
+      "uz": "Hamma ko'ra oladigan qilib, ochiq",
+      "ru": "Открыто, чтобы видели все"
+     },
+     {
+      "uz": "Hech kimga, o'zida saqlab qo'ygan",
+      "ru": "Никому, оставила у себя"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 33,
+     "jami": 170,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Tesla rejasining birinchi bosqichi nima edi?",
+     "ru": "Каким был первый этап плана Tesla?"
+    },
+    "opts": [
+     {
+      "uz": "Ko'pchilik uchun ommaviy mashina",
+      "ru": "Массовый автомобиль для многих"
+     },
+     {
+      "uz": "Narxi arzonroq bo'lgan mashina",
+      "ru": "Более дешёвый автомобиль"
+     },
+     {
+      "uz": "Rejani hammaga ochiq e'lon qilish",
+      "ru": "Открыто объявить план всем"
+     },
+     {
+      "uz": "Qimmat sport mashinasi, oz sonda",
+      "ru": "Дорогой спортивный автомобиль, немного"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 33,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Shaxsiy hisobotning birinchi savoli nima haqida?",
+     "ru": "О чём первый вопрос личного отчёта?"
+    },
+    "opts": [
+     {
+      "uz": "O'z qarorim bilan nima qilganim",
+      "ru": "Что я сделал по своему решению"
+     },
+     {
+      "uz": "Agent men uchun nima qilib bergani",
+      "ru": "Что агент сделал за меня"
+     },
+     {
+      "uz": "Mentor ishimni qanday baholagani",
+      "ru": "Как Ментор оценил мою работу"
+     },
+     {
+      "uz": "Roadmap'dagi qaysi ish kechikkani",
+      "ru": "Какая работа в roadmap опоздала"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 34,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mentor qaysi qarorini qayta ko'rganini aytdi?",
+     "ru": "Какое решение, по словам Ментора, он пересмотрел?"
+    },
+    "opts": [
+     {
+      "uz": "Pro'ni tashkilotchiga qo'yganini",
+      "ru": "Что сделал Pro для организатора"
+     },
+     {
+      "uz": "1-darsda narxni qanday o'ylaganini",
+      "ru": "Какую цену задумал на 1-м уроке"
+     },
+     {
+      "uz": "Telegram xabarini ham qo'shganini",
+      "ru": "Что добавил и сообщение в Telegram"
+     },
+     {
+      "uz": "Maydon pulini uzoqroqqa qo'yganini",
+      "ru": "Что отложил дележ платы за поле"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 34,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Qaysi javob «keyingi 4 hafta» uchun aniq ish?",
+     "ru": "Какой ответ — конкретное дело на «ближайшие 4 недели»?"
+    },
+    "opts": [
+     {
+      "uz": "Mahsulotni yanada yaxshiroq qilaman",
+      "ru": "Сделаю продукт ещё лучше"
+     },
+     {
+      "uz": "Hamma ishni vaqtida bajarib boraman",
+      "ru": "Буду всё делать вовремя"
+     },
+     {
+      "uz": "Uch tanishdan narx haqida so'rayman",
+      "ru": "Спрошу троих знакомых о цене"
+     },
+     {
+      "uz": "Ilovam juda mashhur bo'lib ketadi",
+      "ru": "Моё приложение станет очень популярным"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 35,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Noto'g'ri chiqqan qarorni hisobotda nima qilasiz?",
+     "ru": "Что вы делаете в отчёте с неверным решением?"
+    },
+    "opts": [
+     {
+      "uz": "Yashiraman: hisobotga yozmayman",
+      "ru": "Прячу: не пишу в отчёт"
+     },
+     {
+      "uz": "To'g'ri chiqqan deb yozib qo'yaman",
+      "ru": "Пишу, что оно оказалось верным"
+     },
+     {
+      "uz": "Faqat Mentorga og'zaki aytaman",
+      "ru": "Говорю только Ментору устно"
+     },
+     {
+      "uz": "Uni dalili bilan yozib qo'yaman",
+      "ru": "Записываю его вместе с доводом"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 34,
+     "jami": 175,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m11-12",
+  "file": "src/11-Modull/StabilizeDayLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Mentor besh yo'lni yozuv bilan qayta ko'rdi. Bu qanday ish?",
+     "ru": "Ментор заново просмотрел пять путей с записью. Что это за работа?"
+    },
+    "opts": [
+     {
+      "uz": "Barqarorlik tekshiruvi",
+      "ru": "Проверка стабильности"
+     },
+     {
+      "uz": "Yangi funksiya qo'shish",
+      "ru": "Добавление новой функции"
+     },
+     {
+      "uz": "Pullik obunani yoqish",
+      "ru": "Включение платной подписки"
+     },
+     {
+      "uz": "Taklif havolasi tarqatish",
+      "ru": "Раздача пригласительной ссылки"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 25,
+     "jami": 150,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Mentor taklif kodini qo'shdi. Nega ro'yxatdan o'tish ham tekshirildi?",
+     "ru": "Ментор добавил код приглашения. Почему проверили и регистрацию?"
+    },
+    "opts": [
+     {
+      "uz": "Ro'yxat har hafta o'zi o'zgaradi",
+      "ru": "Список сам меняется каждую неделю"
+     },
+     {
+      "uz": "Kod shu formaga qo'shilgan edi",
+      "ru": "Код был добавлен в эту форму"
+     },
+     {
+      "uz": "Login endi taklif kodi bo'lgan",
+      "ru": "Логин теперь стал кодом приглашения"
+     },
+     {
+      "uz": "Telegram bot formani yangilagan",
+      "ru": "Telegram-бот обновил форму"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 69,
+     "maxVariant": 32,
+     "jami": 192,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Tekshiruv uchun qaysi hisobdan foydalanasiz?",
+     "ru": "Какой аккаунт вы используете для проверки?"
+    },
+    "opts": [
+     {
+      "uz": "Sinfdoshingiz bergan login va paroldan",
+      "ru": "Логин и пароль, которые дал одноклассник"
+     },
+     {
+      "uz": "Ilovadagi eng faol o'yinchi hisobidan",
+      "ru": "Аккаунт самого активного игрока в приложении"
+     },
+     {
+      "uz": "Tekshiruv uchun ochilgan yangi hisobdan",
+      "ru": "Новый аккаунт, открытый для проверки"
+     },
+     {
+      "uz": "Hisobsiz — kirmagan mehmon ko'rinishidan",
+      "ru": "Без аккаунта — вид гостя без входа"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 40,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Nima kutishingizni qachon yozasiz?",
+     "ru": "Когда вы пишете, что ожидаете?"
+    },
+    "opts": [
+     {
+      "uz": "Natijani ko'rganingizdan keyin",
+      "ru": "После того как увидели результат"
+     },
+     {
+      "uz": "Agent «Tayyor!» degan zahoti",
+      "ru": "Как только агент сказал «Готово!»"
+     },
+     {
+      "uz": "Dars oxirida, yakun ekranida",
+      "ru": "В конце урока, на итоговом экране"
+     },
+     {
+      "uz": "Tekshirishni boshlashdan oldin",
+      "ru": "Перед началом проверки"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 30,
+     "jami": 150,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Nega barqarorlik kunida yangi funksiya qo'shilmaydi?",
+     "ru": "Почему в день стабильности не добавляют новую функцию?"
+    },
+    "opts": [
+     {
+      "uz": "U tekshirilmagan yangi yo'l ochadi",
+      "ru": "Она открывает новый непроверенный путь"
+     },
+     {
+      "uz": "Agent bugun yangi kod yoza olmaydi",
+      "ru": "Агент сегодня не может писать новый код"
+     },
+     {
+      "uz": "Yangi funksiya faqat pullik bo'ladi",
+      "ru": "Новая функция будет только платной"
+     },
+     {
+      "uz": "Foydalanuvchilar uni umuman sezmaydi",
+      "ru": "Пользователи её совсем не замечают"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 36,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Uch topilma bor, vaqt ikkitasiga yetdi. Uchinchisi-chi?",
+     "ru": "Есть три находки, времени хватило на две. А третья?"
+    },
+    "opts": [
+     {
+      "uz": "`XATOLAR.md` dan butunlay o'chiriladi",
+      "ru": "Полностью удаляется из `XATOLAR.md`"
+     },
+     {
+      "uz": "`XATOLAR.md` da «qoldi» deb, sababi bilan",
+      "ru": "В `XATOLAR.md` как «осталось», с причиной"
+     },
+     {
+      "uz": "Agentga «Tuzatish qilindi» deb yozdiriladi",
+      "ru": "Агента просят написать «Исправление сделано»"
+     },
+     {
+      "uz": "Hech kimga aytilmay, keyinga qoladi",
+      "ru": "Никому не говоря, откладывается"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 42,
+     "jami": 210,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Mentor misolida «Ikki marta yuborish»dan keyin Pro necha kunga yoqildi?",
+     "ru": "В примере Ментора на сколько дней включился Pro после «Ikki marta yuborish»?"
+    },
+    "opts": [
+     {
+      "uz": "60 kunga — ikki marta",
+      "ru": "На 60 дней — дважды"
+     },
+     {
+      "uz": "7 kunga — mukofot kabi",
+      "ru": "На 7 дней — как награда"
+     },
+     {
+      "uz": "30 kunga — bir marta",
+      "ru": "На 30 дней — один раз"
+     },
+     {
+      "uz": "Umuman yoqilmadi — rad",
+      "ru": "Вообще не включился — отказ"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 22,
+     "jami": 156,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "«Tuzatish qilindi» nimani bildiradi?",
+     "ru": "Что означает «Tuzatish qilindi»?"
+    },
+    "opts": [
+     {
+      "uz": "Qayta tekshiruvda takrorlanmaganini",
+      "ru": "Что при перепроверке не повторилось"
+     },
+     {
+      "uz": "Topilma `XATOLAR.md` dan o'chganini",
+      "ru": "Что находка удалена из `XATOLAR.md`"
+     },
+     {
+      "uz": "Agent ishni endi boshlaganini",
+      "ru": "Что агент только начал работу"
+     },
+     {
+      "uz": "Kodda o'zgartirish qilinganini",
+      "ru": "Что в коде сделано изменение"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 35,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Mentor tuzatishi faqat `backend/` da. APK'ni yangilash kerakmi?",
+     "ru": "Исправление Ментора только в `backend/`. Нужно ли обновлять APK?"
+    },
+    "opts": [
+     {
+      "uz": "Yo'q — ilova o'sha Backend'ga ulanadi",
+      "ru": "Нет — приложение подключается к тому же Backend"
+     },
+     {
+      "uz": "Ha — APK har tuzatishda o'zi yangilanadi",
+      "ru": "Да — APK сам обновляется при каждом исправлении"
+     },
+     {
+      "uz": "Ha — Render APK'ni ham qayta yig'adi",
+      "ru": "Да — Render пересобирает и APK"
+     },
+     {
+      "uz": "Yo'q — APK'ni yangilab bo'lmaydi",
+      "ru": "Нет — APK обновить нельзя"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 40,
+     "jami": 208,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mentor misolida brauzer ko'rinishi push'dan keyin o'zi yangilanadimi?",
+     "ru": "В примере Ментора браузерная версия обновляется сама после push?"
+    },
+    "opts": [
+     {
+      "uz": "Ha — Netlify uni har safar o'zi yig'adi",
+      "ru": "Да — Netlify каждый раз собирает её сам"
+     },
+     {
+      "uz": "Yo'q — qayta eksport va deploy kerak",
+      "ru": "Нет — нужны повторный экспорт и deploy"
+     },
+     {
+      "uz": "Ha — Expo Go uni o'zi yangilaydi",
+      "ru": "Да — Expo Go обновляет её сам"
+     },
+     {
+      "uz": "Yo'q — uni faqat APK almashtiradi",
+      "ru": "Нет — её заменяет только APK"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 69,
+     "maxVariant": 39,
+     "jami": 209,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Mentor misolida ikki telefon bir vaqtda «O'yinlar»ni ochganda nima bo'ldi?",
+     "ru": "Что случилось в примере Ментора, когда два телефона одновременно открыли «O'yinlar»?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta o'yin yaratildi, xabar ham bitta",
+      "ru": "Создана одна игра, сообщение тоже одно"
+     },
+     {
+      "uz": "Ikkala telefonda ilova yopilib qoldi",
+      "ru": "На обоих телефонах приложение закрылось"
+     },
+     {
+      "uz": "Keyingi o'yin ikki marta yaratildi",
+      "ru": "Следующая игра создана дважды"
+     },
+     {
+      "uz": "Hamma o'yinlar ro'yxatdan o'chib ketdi",
+      "ru": "Все игры пропали из списка"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 74,
+     "maxVariant": 38,
+     "jami": 220,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Darsdan keyin tekshiruv akkauntlari nima qilinadi?",
+     "ru": "Что делают с тестовыми аккаунтами после урока?"
+    },
+    "opts": [
+     {
+      "uz": "Haqiqiy sanoqda qolaveradi",
+      "ru": "Остаются в настоящем счёте"
+     },
+     {
+      "uz": "Sinfdoshlarga berib yuboriladi",
+      "ru": "Отдаются одноклассникам"
+     },
+     {
+      "uz": "`namuna` deb belgilanib qoladi",
+      "ru": "Остаются с пометкой `namuna`"
+     },
+     {
+      "uz": "`id` bo'yicha o'chiriladi",
+      "ru": "Удаляются по `id`"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 30,
+     "jami": 161,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ }
+]

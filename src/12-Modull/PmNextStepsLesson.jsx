@@ -27,7 +27,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QXato, QIzoh, QXulosa, QKirish, QReja, QTushuncha, QTest, QTestJavob, QMustaqil, QKartochka, QYakun } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QXato, QIzoh, QXulosa, QKirish, QReja, QTushuncha, QTest, QTestJavob, QMustaqil, QKartochka, QYakun, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
 
 
 
@@ -92,6 +92,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -169,8 +194,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -820,7 +845,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const pick = (v) => { if (picked !== null) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: false }); };
   const qatorlar = reja
     ? oquvchiQatorlar(reja)
-    : YON.map((tur, i) => ({ tur, nom: picked ? tr(YON_NOM[tur]) : null, nomKechik: picked ? i * 0.1 : null, chaqnadi: picked === tur, oylar: [null, null, null, null, null, null] }));
+    : mentorQatorlar().map(q => ({ ...q, chaqnadi: picked === q.tur })); // F-1015-393: bo'sh to'r emas — Mentor rejasi (nuqta = oy maqsadi)
   const op = HOOK_OPTS.find(o => o.id === picked);
   return (
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} navContent={<NavNext optionalLive halqa={picked !== null} disabled={picked === null} label={picked === null ? tr({ uz: 'Bittasini tanlang', ru: 'Выберите один' }) : tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
@@ -828,7 +853,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         <QKirish zoom={Zoomable}
           sarlavha={tr({ uz: <>Keyingi olti oyda <A>nima qilasiz?</A></>, ru: <>Что вы будете делать <A>следующие полгода?</A></> })}
           mentor={<Mentor>{tr({ uz: "Kursning oxirgi moduliga yetdingiz. Vaqtingizning ko'pi nimaga ketishini o'ylab, o'zingizga yaqin javobni belgilang.", ru: 'Вы дошли до последнего модуля курса. Подумайте, на что уйдёт больше всего времени, и отметьте близкий вам ответ.' })}</Mentor>}
-          maket={<OltiOyReja yorliq={reja ? tr({ uz: 'Rejam', ru: 'Мой план' }) : tr({ uz: 'Olti oy', ru: 'Полгода' })} qatorlar={qatorlar} />}
+          maket={<OltiOyReja yorliq={reja ? tr({ uz: 'Rejam', ru: 'Мой план' }) : tr({ uz: 'Mentor rejasi', ru: 'План Ментора' })} belgi={tr({ uz: '● — oy maqsadi', ru: '● — цель месяца' })} qatorlar={qatorlar} />}
           variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.t) }))} tanlov={picked} onTanla={pick}
           javob={op && <p className="hook-ack fade-step">{tr(op.javob)}</p>}
         />
@@ -840,10 +865,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; vizual o'zi chiziladi — DE-200) =====
 const REJA = [
-  { t: { uz: "Mentor rejasidagi uch gapni joyiga qo'yasiz", ru: 'Расставите по местам три фразы из плана Ментора' }, teg: { uz: "yo'nalish", ru: 'направление' } },
-  { t: { uz: 'Birinchi oyga boshlanish kunini tanlaysiz', ru: 'Выберете день начала для первого месяца' }, teg: { uz: 'birinchi qadam', ru: 'первый шаг' } },
-  { t: { uz: "Mahsulot, ko'nikma va ish uchun o'z rejangizni yozasiz", ru: 'Напишете свой план для продукта, навыка и работы' }, teg: { uz: 'olti oylik reja', ru: 'план на полгода' } },
-  { t: { uz: "Rejangizni Mentor bilan yakkama-yakka ko'rasiz", ru: 'Разберёте свой план с Ментором один на один' }, teg: { uz: 'yakkama-yakka', ru: 'один на один' } }
+  { t: { uz: "Mentor rejasidagi uch gapni joyiga qo'ying", ru: 'Расставьте по местам три фразы из плана Ментора' }, teg: { uz: "yo'nalish", ru: 'направление' } },
+  { t: { uz: 'Birinchi oyga boshlanish kunini tanlang', ru: 'Выберите день начала для первого месяца' }, teg: { uz: 'birinchi qadam', ru: 'первый шаг' } },
+  { t: { uz: "Mahsulot, ko'nikma va ish uchun o'z rejangizni yozing", ru: 'Напишите свой план для продукта, навыка и работы' }, teg: { uz: 'olti oylik reja', ru: 'план на полгода' } },
+  { t: { uz: "Rejangizni Mentor bilan yakkama-yakka ko'ring", ru: 'Разберите свой план с Ментором один на один' }, teg: { uz: 'yakkama-yakka', ru: 'один на один' } }
 ];
 const US1 = [
   { uz: "Bu darsda yakkama-yakka — 10 daqiqa, navbat bilan: navbatni siz belgilaysiz (stol tartibi yoki tasodifiy) — tez saqlaganlar ustunlik olmaydi; darsda ulgurmaganlar bilan vaqtni alohida belgilaysiz.", ru: 'Разговор один на один — 10 минут, по очереди: очередь задаёте вы (по партам или случайно) — кто быстрее сохранил, преимущества не получает; с теми, кто не успел, время назначаете отдельно.' },
@@ -914,7 +939,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · yo'nalish", ru: 'Понятие · направление' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Gapni joylang (${q}/3)`, ru: `Расставьте фразы (${q}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tushuncha · yo'nalish", ru: 'Понятие · направление' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Gapni joylang', ru: 'Расставьте фразы' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Mentor rejasidagi uch gap <A>qayerga tushadi?</A></>, ru: <>Куда попадут <A>три фразы из плана Ментора?</A></> })}
         mentor={<Mentor>{tr({ uz: "Har kartani o'qing va tugmalardan mosini bosing: Mahsulot, Ko'nikma yoki Ish.", ru: 'Прочитайте каждую карточку и нажмите подходящую кнопку: Продукт, Навык или Работа.' })}</Mentor>}
@@ -953,7 +978,7 @@ const Screen3 = (props) => (
       3: { uz: 'Qaror sizniki — u qaysi dalilga tayanadi?', ru: 'Решение ваше — на какой довод оно опирается?' },
       default: { uz: 'Sabab — son yoki yozuv. Qaysi variantda bor?', ru: 'Причина — число или запись. В каком варианте она есть?' }
     }}
-    vizual={<MiniTaxta nom={tr({ uz: 'Uy vazifalari ilovasi', ru: 'Приложение для домашних заданий' })} chip={tr(TANLOV_NOM.davom)} sabab={tr({ uz: 'sanoq: qaytganlar soni', ru: 'подсчёт: число вернувшихся' })} />} />
+ />
 );
 
 // ===== SCREEN 4 — BIRINCHI QADAM (QTushuncha; 13-Modul javobi 1-oy katagiga uchadi → 3 karta, to'g'risi bayroqchaga aylanadi) =====
@@ -1052,7 +1077,7 @@ const Screen5 = (props) => (
       2: { uz: "Kutish — harakat emas. O'zingiz nima qilasiz?", ru: 'Ждать — не действие. Что сделаете вы сами?' },
       default: { uz: "Birinchi qadamda nima bo'lishi kerak edi?", ru: 'Что должно быть в первом шаге?' }
     }}
-    vizual={<MiniTaxta nom={tr({ uz: 'Kitob almashish ilovasi', ru: 'Приложение для обмена книгами' })} oy1={tr({ uz: 'Sinfda almashish boshlansin', ru: 'Начать обмен в классе' })} bayroq={tr(KUNLAR[5])} />} />
+ />
 );
 
 // ===== 6-EKRAN TEKSHIRUVI (PM-108 — node sinovi shu bo'lakni o'qiydi; ikki tilli, katta-kichik harf farqsiz) =====
@@ -1075,6 +1100,7 @@ const tekshirYon = (tur, d, bugun, bosh, otkazilgan = []) => {
   const maydon = yonMaydon(tur); const max = yonMax(tur); const v = (f) => String(d[f] || '').trim();
   if (tur !== 'konikma' && !d.tanlov) return { m: 'tanlov', x: 'tanlov', blok: true };
   for (const f of maydon) if (!v(f)) return { m: f, x: 'bosh', blok: true };
+  for (const f of maydon) if (!manoliMatn(v(f))) return { m: f, x: 'manosiz', blok: true }; // F-1015-393: «ㄹㅇㅁㄴ», «342432»
   for (const f of maydon) if (v(f).length > max[f]) return { m: f, x: 'uzun', n: max[f], blok: true };
   if (!d.sana) return { m: 'sana', x: 'sanaYoq', blok: true };
   if (d.sana < bugun) return { m: 'sana', x: 'otgan', blok: true };
@@ -1093,6 +1119,7 @@ const tekshirYon = (tur, d, bugun, bosh, otkazilgan = []) => {
 const tekshirKatak = (matn, otkazilgan = []) => {
   const v = String(matn || '').trim(); const s = normT(v);
   if (v.length > 100) return { x: 'uzun', n: 100, blok: true };
+  if (v && !manoliMatn(v)) return { x: 'manosiz', blok: true };
   if (PII_RE.test(v)) return { x: 'pii', blok: true };
   const yum = [];
   if (VADA_RE.test(s)) yum.push({ x: 'vada' });
@@ -1104,6 +1131,7 @@ const tekshirKatak = (matn, otkazilgan = []) => {
 const S6_XATO = {
   tanlov: { uz: 'Avval bittasini tanlang.', ru: 'Сначала выберите один вариант.' },
   bosh: { uz: "Maydonni bo'sh qoldirmang — qisqa yozing.", ru: 'Не оставляйте поле пустым — напишите коротко.' },
+  manosiz: MANOSIZ_XATO,
   sanaYoq: { uz: "Birinchi qadamga sana qo'ying.", ru: 'Поставьте дату первому шагу.' },
   otgan: { uz: "Bu kun o'tib ketgan — bugun yoki keyingi kunni tanlang.", ru: 'Этот день уже прошёл — выберите сегодня или следующий день.' },
   pii: { uz: 'Telefon va akkaunt nomi yozilmaydi.', ru: 'Телефон и имя аккаунта не пишут.' },
@@ -1354,7 +1382,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
         {karta}
       </div>;
   return (
-    <Stage eyebrow={tr({ uz: 'Mustaqil ish · olti oylik reja', ru: 'Самостоятельная работа · план на полгода' })} screen={screen} scrollSignal={n * 10 + (joriy ? YON.indexOf(joriy) : 9)} navContent={<><NavBack onPrev={onPrev} /><NavNext halqa={yakuniy} disabled={!toliq && !isMentor} label={toliq || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Uch yo'nalishni yozing (${n}/3)`, ru: `Напишите три направления (${n}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Mustaqil ish · olti oylik reja', ru: 'Самостоятельная работа · план на полгода' })} screen={screen} scrollSignal={n * 10 + (joriy ? YON.indexOf(joriy) : 9)} navContent={<><NavBack onPrev={onPrev} /><NavNext halqa={yakuniy} disabled={!toliq && !isMentor} label={toliq || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Uch yo'nalishni yozing", ru: 'Напишите три направления' })} onClick={onNext} /></>}>
       <QMustaqil
         sarlavha={tr({ uz: <>Olti oylik rejangizni <A>uch yo'nalishda yozing.</A></>, ru: <>Напишите свой план на полгода <A>в трёх направлениях.</A></> })}
         mentor={<Mentor>{tr({ uz: "Har kartani yuqoridan pastga to'ldirib, «Saqlash»ni bosing — Mentor misoli «Yordam»da.", ru: 'Заполните каждую карточку сверху вниз и нажмите «Сохранить» — пример Ментора в «Подсказке».' })}</Mentor>}
@@ -1525,7 +1553,7 @@ const Screen8 = (props) => {
         3: { uz: 'Sanasiz qadam qachon boshlanadi?', ru: 'Когда начнётся шаг без даты?' },
         default: { uz: 'Birinchi qadam qanday harakat edi — eslang.', ru: 'Вспомните, каким действием был первый шаг.' }
       }}
-      vizual={<MiniTaxta nom={tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })} oy1={tr(MENTOR_REJA[0].oylar[0])} bayroq={tr(KUNLAR[6]) + ' · ' + kunOy(shanba)} izoh={tr({ uz: 'bir kunlik harakat', ru: 'действие на один день' })} />} />
+ />
   );
 };
 
@@ -1616,18 +1644,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Jonli viktorina — 12 savol (MD), to'g'ri javob: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12
 const QUIZ_BANK = [
-  { q: { uz: "Bu darsdagi olti oylik reja qaysi uch yo'nalishdan iborat?", ru: 'Из каких трёх направлений состоит план на полгода на этом уроке?' }, opts: [{ uz: "Mahsulot, ko'nikma va ish", ru: 'Продукт, навык и работа' }, { uz: 'Muammo, Bozor va Yechim', ru: 'Проблема, Рынок и Решение' }, { uz: 'Pitch, jonli demo va video', ru: 'Питч, живое демо и видео' }, { uz: 'Lending, ilova va Backend', ru: 'Лендинг, приложение и Backend' }], correct: 0 },
-  { q: { uz: "Mentor «Backend testlari»ni qaysi yo'nalishga qo'ydi?", ru: 'В какое направление Ментор поставил «Тесты Backend»?' }, opts: [{ uz: "Mahsulot — ilovaning o'zi uchun", ru: 'Продукт — для самого приложения' }, { uz: "Ko'nikma — o'rganadigan narsa", ru: 'Навык — то, что изучает' }, { uz: 'Ish — buyurtma yoki dastur uchun', ru: 'Работа — для заказа или программы' }, { uz: 'Hech qaysi — rejadan tashqari', ru: 'Никуда — вне плана' }], correct: 1 },
-  { q: { uz: "Mahsulot yo'nalishida qanday qaror yoziladi?", ru: 'Какое решение пишут в направлении «Продукт»?' }, opts: [{ uz: 'Ilova rangini tanlash va nega', ru: 'Выбор цвета приложения и почему' }, { uz: "Investordan qancha pul so'rash", ru: 'Сколько денег просить у инвестора' }, { uz: "Davom ettirish yoki to'xtatish", ru: 'Продолжать или остановить' }, { uz: 'Kimdan va qachon baho olish', ru: 'У кого и когда получить оценку' }], correct: 2 },
-  { q: { uz: "Mahsulotni to'xtatish qarori haqida qaysi gap to'g'ri?", ru: 'Какая фраза о решении остановить продукт верна?' }, opts: [{ uz: "To'xtatish — mag'lubiyat, yashiriladi", ru: 'Остановка — поражение, её скрывают' }, { uz: "To'xtatsangiz, ko'nikma ham to'xtaydi", ru: 'Остановите продукт — остановится и навык' }, { uz: 'Faqat Mentor ruxsat bersagina bo\'ladi', ru: 'Можно, только если разрешит Ментор' }, { uz: 'Sababi bilan yozilsa, u ham qarordir', ru: 'Если записана с причиной — это тоже решение' }], correct: 3 },
-  { q: { uz: 'Mentor mahsulotni davom ettirishiga qaysi sababni yozgan?', ru: 'Какую причину продолжать продукт записал Ментор?' }, opts: [{ uz: "Uch tashkilotchining yozma tasdig'ini", ru: 'Письменное подтверждение трёх организаторов' }, { uz: 'Mahalla guruhida 60 kishi borligini', ru: 'Что в группе махалли 60 человек' }, { uz: "Ilovada funksiyalar juda ko'p ekanini", ru: 'Что в приложении очень много функций' }, { uz: "Kimdir pul berishga va'da qilganini", ru: 'Что кто-то пообещал дать денег' }], correct: 0 },
-  { q: { uz: 'Oylik maqsad nimani aytadi?', ru: 'Что говорит цель месяца?' }, opts: [{ uz: 'Bir kunda qilinadigan aniq bitta harakatni', ru: 'Одно конкретное действие на один день' }, { uz: 'Oy oxirigacha nimaga yetmoqchi ekaningizni', ru: 'Чего вы хотите достичь к концу месяца' }, { uz: "Olti oy o'tgach bo'ladigan katta natijani", ru: 'Большой итог через полгода' }, { uz: "Mentor sizga qo'ygan baho va uning izohini", ru: 'Оценку Ментора и её пояснение' }], correct: 1 },
-  { q: { uz: "Birinchi qadamda qaysi ikki narsa bo'lishi kerak?", ru: 'Какие две вещи должны быть в первом шаге?' }, opts: [{ uz: "Mentorning imzosi va tasdig'i", ru: 'Подпись и одобрение Ментора' }, { uz: 'Katta natija va uning narxi', ru: 'Большой итог и его цена' }, { uz: 'Aniq harakat va uning sanasi', ru: 'Конкретное действие и его дата' }, { uz: 'Do\'stlar ismi va telefonlari', ru: 'Имена и телефоны друзей' }], correct: 2 },
-  { q: { uz: "Mentorning 1-oy maqsadi qayerdan ko'chdi?", ru: 'Откуда перешла цель Ментора на 1-й месяц?' }, opts: [{ uz: "1-darsdagi Bozor bo'lagidan", ru: 'Из части «Рынок» 1-го урока' }, { uz: 'Demo ssenariysining oxiridan', ru: 'Из конца сценария демо' }, { uz: 'Diamond Challenge shartlaridan', ru: 'Из условий Diamond Challenge' }, { uz: '13-Modul shaxsiy hisobotidan', ru: 'Из личного отчёта 13-го модуля' }], correct: 3 },
-  { q: { uz: "Birinchi qadam sanasi o'tdi, qilinmadi. Nima qilasiz?", ru: 'Дата первого шага прошла, шаг не сделан. Что делаете?' }, opts: [{ uz: "Sababini yozib, yangi sana qo'yaman", ru: 'Запишу причину и поставлю новую дату' }, { uz: "Baribir qilindi deb belgilab qo'yaman", ru: 'Всё равно отмечу, что сделано' }, { uz: "Rejaning hammasini o'chirib tashlayman", ru: 'Удалю весь план' }, { uz: "Hech kimga aytmasdan, o'tib ketaman", ru: 'Пропущу, никому не сказав' }], correct: 0 },
-  { q: { uz: 'Yakkama-yakkada rejangiz bilan nima bo\'ladi?', ru: 'Что происходит с вашим планом в разговоре один на один?' }, opts: [{ uz: "Butun sinfga proyektorda o'qib beriladi", ru: 'Его читают всему классу на проекторе' }, { uz: "Mentor bilan ko'riladi, siz o'zgartirasiz", ru: 'Его смотрят с Ментором, меняете вы' }, { uz: "Mentor uni o'zi boshqatdan yozib beradi", ru: 'Ментор сам переписывает его' }, { uz: "Baholanadi va sinfda reyting e'lon qilinadi", ru: 'Его оценивают и объявляют рейтинг' }], correct: 1 },
-  { q: { uz: "Birinchi buyurtmada pul va kelishuv kim orqali bo'ladi?", ru: 'Через кого идут деньги и договорённость в первом заказе?' }, opts: [{ uz: "Buyurtmachining o'zi bilan, yolg'iz", ru: 'Только с самим заказчиком, в одиночку' }, { uz: 'Sinfdoshingiz orqali, yashirin holda', ru: 'Через одноклассника, тайно' }, { uz: 'Ota-onangiz orqali, ular bilan birga', ru: 'Через родителей, вместе с ними' }, { uz: 'Internetdagi notanish odam orqali', ru: 'Через незнакомого посредника в интернете' }], correct: 2 },
-  { q: { uz: "Qaysi gap olti oylik rejaga to'g'ri yozilgan?", ru: 'Какая фраза правильно записана в план на полгода?' }, opts: [{ uz: "6-oy: ilovam hamma joyda mashhur bo'ladi", ru: '6-й месяц: моё приложение станет известным везде' }, { uz: "1-oy: hamma narsani o'rganib bo'laman", ru: '1-й месяц: выучу всё' }, { uz: "2-oy: qachondir bir narsani qilib ko'raman", ru: '2-й месяц: когда-нибудь что-нибудь попробую' }, { uz: '1-oy: sinfda kitob almashishni boshlash', ru: '1-й месяц: начать обмен книгами в классе' }], correct: 3 }
+  { q: { uz: "Olti oylik reja qaysi uch yo'nalishdan iborat?", ru: "Из каких трёх направлений состоит план на шесть месяцев?" }, opts: [{ uz: "Mahsulot, ko'nikma va ish", ru: "Продукт, навык и работа" }, { uz: "Muammo, Bozor va Yechim", ru: "Проблема, Рынок и Решение" }, { uz: "Pitch, demo va video", ru: "Питч, демо и видео" }, { uz: "Lending, ilova, Backend", ru: "Лендинг, приложение, Backend" }], correct: 0 },
+  { q: { uz: "Mentor «Backend testlari»ni qayerga qo'ydi?", ru: "Куда Ментор отнёс «Тесты Backend»?" }, opts: [{ uz: "Mahsulot yo'nalishiga", ru: "В направление «Продукт»" }, { uz: "Ko'nikma yo'nalishiga", ru: "В направление «Навык»" }, { uz: "Ish yo'nalishiga", ru: "В направление «Работа»" }, { uz: "Rejadan tashqariga", ru: "Вне плана" }], correct: 1 },
+  { q: { uz: "Mahsulot yo'nalishida qanday qaror yoziladi?", ru: "Какое решение пишут в направлении «Продукт»?" }, opts: [{ uz: "Ilova rangini tanlash", ru: "Выбор цвета приложения" }, { uz: "Investordan pul so'rash", ru: "Просьба денег у инвестора" }, { uz: "Davom etish yoki to'xtatish", ru: "Продолжать или остановить" }, { uz: "Kimdan baho olish", ru: "У кого получить оценку" }], correct: 2 },
+  { q: { uz: "To'xtatish haqida qaysi gap to'g'ri?", ru: "Что верно о решении остановить?" }, opts: [{ uz: "To'xtatish — mag'lubiyat", ru: "Остановка — поражение" }, { uz: "Ko'nikma ham to'xtaydi", ru: "Навык тоже остановится" }, { uz: "Faqat Mentor ruxsati bilan", ru: "Только с разрешения Ментора" }, { uz: "Sababi bilan yozilsa — qaror", ru: "С причиной — это решение" }], correct: 3 },
+  { q: { uz: "Mentor davom ettirishga qaysi sababni yozgan?", ru: "Какую причину продолжать написал Ментор?" }, opts: [{ uz: "Uch yozma tasdiqni", ru: "Три письменных согласия" }, { uz: "Guruhdagi 60 kishini", ru: "60 человек в группе" }, { uz: "Funksiyalar ko'pligini", ru: "Много функций" }, { uz: "Pul va'da qilinganini", ru: "Обещание денег" }], correct: 0 },
+  { q: { uz: "Oylik maqsad nimani aytadi?", ru: "О чём говорит цель на месяц?" }, opts: [{ uz: "Bir kundagi aniq harakatni", ru: "Об одном действии на день" }, { uz: "Oy oxirida nimaga yetishni", ru: "Чего достичь к концу месяца" }, { uz: "Olti oydagi katta natijani", ru: "О большом итоге за полгода" }, { uz: "Mentor qo'ygan bahoni", ru: "Об оценке Ментора" }], correct: 1 },
+  { q: { uz: "Birinchi qadamda qaysi ikki narsa bo'ladi?", ru: "Какие две вещи есть в первом шаге?" }, opts: [{ uz: "Mentor imzosi va tasdig'i", ru: "Подпись и согласие Ментора" }, { uz: "Katta natija va narxi", ru: "Большой итог и его цена" }, { uz: "Aniq harakat va sanasi", ru: "Конкретное действие и дата" }, { uz: "Do'stlar ismi va telefoni", ru: "Имена и телефоны друзей" }], correct: 2 },
+  { q: { uz: "Mentorning 1-oy maqsadi qayerdan ko'chdi?", ru: "Откуда перенесена цель Ментора на 1-й месяц?" }, opts: [{ uz: "1-darsdagi Bozordan", ru: "Из Рынка на 1-м уроке" }, { uz: "Demo ssenariysidan", ru: "Из сценария демо" }, { uz: "Diamond Challenge'dan", ru: "Из Diamond Challenge" }, { uz: "13-Modul hisobotidan", ru: "Из отчёта 13-го модуля" }], correct: 3 },
+  { q: { uz: "Qadam o'z kunida qilinmadi. Nima qilasiz?", ru: "Шаг не сделан в свой день. Что сделаете?" }, opts: [{ uz: "Sabab va yangi sana yozaman", ru: "Запишу причину и новую дату" }, { uz: "«Qilindi» deb qo'yaman", ru: "Отмечу «сделано»" }, { uz: "Rejani o'chirib tashlayman", ru: "Удалю план" }, { uz: "Indamay o'tib ketaman", ru: "Молча пропущу" }], correct: 0 },
+  { q: { uz: "Yakkama-yakkada reja bilan nima bo'ladi?", ru: "Что происходит с планом один на один?" }, opts: [{ uz: "Sinfga o'qib beriladi", ru: "Его читают классу" }, { uz: "Mentor bilan ko'riladi", ru: "Смотрят вместе с Ментором" }, { uz: "Mentor qayta yozadi", ru: "Ментор переписывает" }, { uz: "Baholanib, reyting chiqadi", ru: "Оценивают и составляют рейтинг" }], correct: 1 },
+  { q: { uz: "Buyurtmada pul va kelishuv kim orqali bo'ladi?", ru: "Через кого деньги и договорённость в заказе?" }, opts: [{ uz: "Buyurtmachi bilan yolg'iz", ru: "Наедине с заказчиком" }, { uz: "Sinfdosh orqali, yashirin", ru: "Тайно через одноклассника" }, { uz: "Ota-onangiz orqali", ru: "Через родителей" }, { uz: "Notanish odam orqali", ru: "Через незнакомца" }], correct: 2 },
+  { q: { uz: "Qaysi reja gapi aniq yozilgan?", ru: "Какая строка плана написана конкретно?" }, opts: [{ uz: "6-oy: ilovam mashhur bo'ladi", ru: "6-й месяц: приложение станет известным" }, { uz: "1-oy: hammasini o'rganaman", ru: "1-й месяц: выучу всё" }, { uz: "2-oy: qachondir boshlayman", ru: "2-й месяц: когда-нибудь начну" }, { uz: "1-oy: sinfda kitob almashuvi", ru: "1-й месяц: обмен книгами в классе" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2455,24 +2483,24 @@ export default function PmNextStepsLesson({ lang: langProp, onFinished, liveToke
         .oor { display: flex; flex-direction: column; gap: 6px; width: 100%; }
         .oor-bosh { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding-right: 40px; }
         .oor-yorliq { font-size: 11px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.ink2}; }
-        .oor-belgi { font-size: 12.5px; font-weight: 700; color: ${T.ok}; background: ${T.okFon}; border-radius: 999px; padding: 3px 10px; }
-        .oor-grid { display: grid; grid-template-columns: minmax(140px, 1.4fr) repeat(6, minmax(0, 1fr)); gap: 4px; align-items: stretch; }
-        .oor-burchak { display: flex; align-items: flex-end; padding-bottom: 4px; }
+        .oor-belgi { font-size: 12.5px; font-weight: 600; color: ${T.ink2}; }
+        .oor-grid { display: grid; grid-template-columns: minmax(140px, 1.4fr) repeat(6, minmax(0, 1fr)); gap: 0; align-items: stretch; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 14px; overflow: hidden; }
+        .oor-burchak { display: flex; align-items: flex-end; padding: 0 10px 6px; }
         .oor-nq { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
         .oor.kichik .oor-grid { grid-template-columns: minmax(104px, 2fr) repeat(6, minmax(30px, 1fr)); }
         .oor.kichik .oor-chip { white-space: normal; font-size: 11.5px; line-height: 1.25; }
-        .zoomable:not(.zoom-on) > .oor.kichik:not(:has(> .oor-bosh)) { padding-top: 30px; }
-        .oor-oy { position: relative; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink2}; text-align: center; padding: 14px 0 2px; white-space: nowrap; }
+        .zoomable:not(.zoom-on):not(.z-yoq) > .oor.kichik:not(:has(> .oor-bosh)) { padding-top: 30px; }
+        .oor-oy { position: relative; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink2}; text-align: center; padding: 20px 0 6px; white-space: nowrap; }
         .oor-oy.bugun { color: ${T.accent}; }
-        .oor-oy em { position: absolute; left: 0; top: 0; font-style: normal; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 800; color: ${T.accent}; }
+        .oor-oy em { position: absolute; left: 6px; top: 4px; font-style: normal; font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 800; color: ${T.accent}; }
         .oor-m-bosh, .oor-m { min-height: 18px; position: relative; }
         .oor-dc { position: absolute; top: 0; left: 0; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: 13px; font-weight: 700; color: ${T.ink2}; animation: nx-kir .5s ease-out both; }
         .oor-dc.ong { left: auto; right: 0; }
         .oor-dc i { width: 2px; height: 16px; background: ${T.ink2}; position: relative; flex: none; }
         .oor-dc i::after { content: ''; position: absolute; left: 2px; top: 0; border-left: 9px solid ${T.ink2}; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-        .oor-qator { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 7px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; position: relative; min-height: 46px; }
+        .oor-qator { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; padding: 8px 10px; background: transparent; border-top: 1px solid ${T.line}; position: relative; min-height: 46px; }
         .oor.kichik .oor-qator { padding: 6px 9px; min-height: 36px; flex-direction: row; align-items: center; flex-wrap: wrap; gap: 6px; }
-        .oor-qator.joriy { box-shadow: inset 0 0 0 2px ${T.accent}; }
+        .oor-qator.joriy { box-shadow: inset 3px 0 0 ${T.accent}; background: ${T.accentSoft}; }
         .oor-qator.yangi { animation: nx-yashil 1.1s ease-out; }
         .oor-qator.chaqnadi { animation: nx-yon 1s ease-out .35s; }
         .oor-nom { font-size: 15px; font-weight: 800; color: ${T.ink}; display: inline-flex; align-items: center; gap: 6px; animation: nx-kir .35s ease-out both; }
@@ -2486,21 +2514,24 @@ export default function PmNextStepsLesson({ lang: langProp, onFinished, liveToke
         .oor.kichik .oor-tahrir { position: static; margin-left: auto; }
         .oor-tahrir:hover { background: ${T.accentSoft}; }
         .oor-tahrir.chorla { animation: nx-chorla 1.8s ease-out .3s 3; }
-        .oor-katak { position: relative; border-radius: 10px; padding: 6px 8px; min-height: 46px; display: flex; flex-direction: column; gap: 3px; font-family: 'Manrope', sans-serif; text-align: left; }
+        .oor-katak { position: relative; padding: 6px 8px; border-top: 1px solid ${T.line}; border-left: 1px solid ${T.line}; min-height: 46px; display: flex; flex-direction: column; gap: 3px; font-family: 'Manrope', sans-serif; text-align: left; }
         .oor.kichik .oor-katak { min-height: 36px; padding: 0; align-items: center; justify-content: center; }
-        .oor-katak.bosh { border: 1.5px solid transparent; background: ${T.paper}; }
-        .oor-katak.tola { background: ${T.paper}; border: 1px solid ${T.line}; }
-        .oor.kichik .oor-katak.tola { background: ${T.okFon}; border-color: ${fon(T.ok, 0.35)}; }
+        .oor-katak.bosh { background: transparent; }
+        .oor-katak.tola { background: transparent; }
+        .oor.matnli .oor-t { display: block; background: ${T.bg}; border-left: 3px solid ${T.ink2}; border-radius: 6px; padding: 5px 7px; }
+        .oor.kichik .oor-katak::before { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 2px; background: ${fon(T.ink2, 0.16)}; }
+        .oor.kichik .oor-tick { position: relative; z-index: 1; font-size: 0; width: 12px; height: 12px; border-radius: 50%; background: ${T.ink}; }
         .oor-katak.k0 { border-left: 2px solid ${T.accent}; }
         .oor-katak.kir { animation: nx-tush .45s ease-out both; }
         .oor-katak.yonadi { animation: nx-yashil 1.1s ease-out; }
-        .oor-katak.halqa { box-shadow: 0 0 0 2px ${T.accent}; }
+        .oor-katak.halqa { box-shadow: inset 0 0 0 2px ${T.accent}; }
         .oor-katak.bayroqli { padding-bottom: 26px; }
-        .oor-katak.bos { cursor: pointer; border-color: ${fon(T.accent, 0.5)}; }
+        button.oor-katak { border-right: 0; border-bottom: 0; background: transparent; font: inherit; color: inherit; }
+        .oor-katak.bos { cursor: pointer; }
         .oor-katak.bos:hover { background: ${T.accentSoft}; }
         .oor-t { font-size: 14px; line-height: 1.25; color: ${T.ink}; overflow-wrap: anywhere; }
         .oor-tick { font-size: 13px; font-weight: 800; color: ${T.ok}; }
-        .oor-plus { font-size: 15px; font-weight: 800; color: ${T.accent}; }
+        .oor-plus { position: relative; z-index: 1; font-size: 15px; font-weight: 800; color: ${T.accent}; background: ${T.paper}; padding: 0 4px; }
         .oor-oyn { display: none; font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: ${T.ink2}; }
         .oor-ust { font-size: 11.5px; font-weight: 700; line-height: 1.3; color: ${T.accent}; }
         .oor-bjoy { position: absolute; left: 6px; bottom: 6px; width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid ${fon(T.accent, 0.6)}; }
@@ -2589,7 +2620,7 @@ export default function PmNextStepsLesson({ lang: langProp, onFinished, liveToke
         .nx-sav-t { display: flex; justify-content: flex-end; }
         .q-chip.nx-yig, .nx-yig { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; width: 100%; padding: 8px 14px; border-radius: 12px; border: 0; background: ${T.okFon}; color: ${T.ok}; font-family: inherit; font-size: 13.5px; font-weight: 600; text-align: left; cursor: pointer; }
         .nx-yig i { font-style: normal; font-weight: 800; } .nx-yig b { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
-        .nx-kul-q { padding: 8px 14px; border-radius: 12px; background: ${T.bg}; color: ${T.ink2}; font-size: 13px; font-weight: 600; }
+        .nx-kul-q { padding: 2px 14px; color: ${T.ink2}; font-size: 13px; font-weight: 600; opacity: .8; }
         .nx-yol.chorla .q-chip, .nx-ikki.chorla .q-chip { border-color: ${fon(T.accent, 0.6)}; animation: nx-chorla 1.8s ease-out .5s 2; }
         .nx-yol.chorla .q-chip:nth-child(2), .nx-ikki.chorla .q-chip:nth-child(2) { animation-delay: .75s; } .nx-yol.chorla .q-chip:nth-child(3) { animation-delay: 1s; } .nx-yol.chorla .q-chip:nth-child(4) { animation-delay: 1.25s; }
         .nx-mq { display: flex; flex-direction: column; gap: 4px; }
@@ -2656,10 +2687,16 @@ export default function PmNextStepsLesson({ lang: langProp, onFinished, liveToke
           .nx-varaq { width: 100%; }
           .nx-s6, .nx-s7 { grid-template-columns: minmax(0, 1fr); }
           .nx-qadamlar { grid-template-columns: minmax(0, 1fr); }
-          .oor.matnli .oor-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+          .oor.matnli .oor-grid { grid-template-columns: minmax(0, 1fr); }
           .oor.matnli .oor-burchak, .oor.matnli .oor-oy, .oor.matnli .oor-m-bosh, .oor.matnli .oor-m { display: none; }
-          .oor.matnli .oor-qator { grid-column: 1 / -1; margin-top: 6px; }
-          .oor.matnli .oor-oyn { display: block; }
+          .oor.matnli .oor-qator { background: ${T.bg}; }
+          .oor.matnli .oor-katak { flex-direction: row; align-items: baseline; gap: 10px; min-height: 0; padding: 8px 10px; border-left: 0; }
+          .oor.matnli .oor-katak.k0 { border-left: 2px solid ${T.accent}; }
+          .oor.matnli .oor-katak.bosh:not(.bos):not(.halqa) { display: none; }
+          .oor.matnli .oor-oyn { display: block; flex: none; min-width: 44px; }
+          .oor.matnli .oor-t { flex: 1; min-width: 0; }
+          .oor.matnli .oor-katak.bayroqli { padding-bottom: 8px; }
+          .oor.matnli .oor-bayroq { position: static; transform: none; flex: none; align-self: center; }
           .nx-hw-karta { grid-template-columns: 1fr; }
         }
         @media (prefers-reduced-motion: reduce) {

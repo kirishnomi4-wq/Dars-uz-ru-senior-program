@@ -108,6 +108,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -185,8 +210,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1324,18 +1349,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Arena savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3). `correct` qiymatlari ⚡ Jonli tomonidan tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Pitsalar ro'yxatini ko'rsatish uchun qaysi komponent?", ru: 'Какой компонент показывает список пицц?' }, opts: [{ uz: "FlatList — har element uchun qator", ru: 'FlatList — строка на каждый элемент' }, { uz: "Text — bitta matn bo'lagi", ru: 'Text — один кусочек текста' }, { uz: "Image — faqat rasm ko'rsatadi", ru: 'Image — только показывает картинку' }, { uz: "TextInput — matn kiritish uchun", ru: 'TextInput — для ввода текста' }], correct: 0 },
-  { q: { uz: "Bir ekrandan boshqasiga o'tish uchun nima chaqiriladi?", ru: 'Что вызывается для перехода с одного экрана на другой?' }, opts: [{ uz: "Sahifani qayta yuklash", ru: 'Перезагрузка страницы' }, { uz: "navigation.navigate('Tafsilot')", ru: "navigation.navigate('Tafsilot')" }, { uz: "window.location.assign('/tafsilot')", ru: "window.location.assign('/tafsilot')" }, { uz: "<a href> tegi", ru: 'тег <a href>' }], correct: 1 },
-  { q: { uz: "Yangi ekran ochilganda dastada nima bo'ladi?", ru: 'Что происходит в колоде, когда открывается новый экран?' }, opts: [{ uz: "Eski ekran butunlay o'chib ketadi", ru: 'Старый экран полностью удаляется' }, { uz: "Ilova qaytadan ishga tushadi (reload)", ru: 'Приложение запускается заново (reload)' }, { uz: "Yangi ekran ustiga qo'yiladi (push)", ru: 'Новый экран кладётся сверху (push)' }, { uz: "Hech narsa o'zgarmaydi", ru: 'Ничего не меняется' }], correct: 2 },
-  { q: { uz: "Backend'dan ma'lumot olish uchun nima ishlatiladi?", ru: 'Что используют, чтобы получить данные с бэкенда?' }, opts: [{ uz: "AsyncStorage — telefon xotirasidan", ru: 'AsyncStorage — из памяти телефона' }, { uz: "localStorage bilan olinadi", ru: 'Берутся через localStorage' }, { uz: "Qo'lda yozilgan massivdan", ru: 'Из вручную прописанного массива' }, { uz: "fetch — API'ga so'rov", ru: 'fetch — запрос к API' }], correct: 3 },
-  { q: { uz: "Ilova ochilganda ma'lumotni bir marta yuklash qayerda yoziladi?", ru: 'Где пишут разовую загрузку данных при открытии приложения?' }, opts: [{ uz: "useEffect(…, []) ichida", ru: 'Внутри useEffect(…, [])' }, { uz: "Har chizilganda, komponent tanasida", ru: 'При каждой отрисовке, в теле компонента' }, { uz: "useState([]) ichida", ru: 'Внутри useState([])' }, { uz: "Hech qayerda kerak emas", ru: 'Нигде, это не нужно' }], correct: 0 },
-  { q: { uz: "Savatni telefonning o'zida saqlash uchun nima?", ru: 'Чем сохранить корзину в самом телефоне?' }, opts: [{ uz: "Backend'dagi Database'da saqlash", ru: 'Сохранить в Database на бэкенде' }, { uz: "AsyncStorage — mahalliy xotira", ru: 'AsyncStorage — локальная память' }, { uz: "fetch — serverga yuborish", ru: 'fetch — отправить на сервер' }, { uz: "FlatList ichida saqlash", ru: 'Сохранить внутри FlatList' }], correct: 1 },
-  { q: { uz: "AvtoPizza sayti va boti bor. Mobil ilova backend'ni nima qiladi?", ru: 'У AvtoPizza есть сайт и бот. Что мобильное приложение делает с бэкендом?' }, opts: [{ uz: "Butunlay yangi backend quradi", ru: 'Строит совершенно новый бэкенд' }, { uz: "Backend'siz, telefonda ishlaydi", ru: 'Работает в телефоне без бэкенда' }, { uz: "O'sha backend'ga ulanadi", ru: 'Подключается к тому же бэкенду' }, { uz: "Ma'lumotni qo'lda ko'chiradi", ru: 'Копирует данные вручную' }], correct: 2 },
-  { q: { uz: "Bosiladigan element (web'dagi tugma) — React Native'da qaysi?", ru: 'Нажимаемый элемент (кнопка в вебе) — какой он в React Native?' }, opts: [{ uz: "FlatList", ru: 'FlatList' }, { uz: "ScrollView", ru: 'ScrollView' }, { uz: "Image", ru: 'Image' }, { uz: "Pressable", ru: 'Pressable' }], correct: 3 },
+  { q: { uz: "Pitsalar ro'yxati uchun qaysi komponent?", ru: "Какой компонент для списка пицц?" }, opts: [{ uz: "FlatList", ru: "FlatList" }, { uz: "Text", ru: "Text" }, { uz: "Image", ru: "Image" }, { uz: "TextInput", ru: "TextInput" }], correct: 0 },
+  { q: { uz: "Boshqa ekranga o'tish uchun nima chaqiriladi?", ru: "Что вызывают для перехода на другой экран?" }, opts: [{ uz: "window.location.reload()", ru: "window.location.reload()" }, { uz: "navigation.navigate()", ru: "navigation.navigate()" }, { uz: "app.open()", ru: "app.open()" }, { uz: "<a href> tegi", ru: "тег <a href>" }], correct: 1 },
+  { q: { uz: "Yangi ekran ochilganda dastada nima bo'ladi?", ru: "Что происходит со стопкой при открытии экрана?" }, opts: [{ uz: "Eski ekran o'chadi (pop)", ru: "Старый экран удаляется (pop)" }, { uz: "Qayta yuklanadi (reload)", ru: "Перезагружается (reload)" }, { uz: "Ustiga qo'yiladi (push)", ru: "Кладётся сверху (push)" }, { uz: "Hech narsa o'zgarmaydi", ru: "Ничего не меняется" }], correct: 2 },
+  { q: { uz: "Backend'dan ma'lumot nima bilan olinadi?", ru: "Чем получают данные с backend?" }, opts: [{ uz: "AsyncStorage", ru: "AsyncStorage" }, { uz: "localStorage", ru: "localStorage" }, { uz: "Qo'lda yozilgan massiv", ru: "Массив, написанный вручную" }, { uz: "fetch", ru: "fetch" }], correct: 3 },
+  { q: { uz: "Ma'lumotni bir marta yuklash qayerda yoziladi?", ru: "Где пишут однократную загрузку данных?" }, opts: [{ uz: "useEffect(…, []) ichida", ru: "Внутри useEffect(…, [])" }, { uz: "Komponent tanasida", ru: "В теле компонента" }, { uz: "useState([]) ichida", ru: "Внутри useState([])" }, { uz: "Hech qayerda", ru: "Нигде" }], correct: 0 },
+  { q: { uz: "Savatni telefonning o'zida nima saqlaydi?", ru: "Что хранит корзину на самом телефоне?" }, opts: [{ uz: "Backend Database'i", ru: "Database на backend" }, { uz: "AsyncStorage", ru: "AsyncStorage" }, { uz: "fetch", ru: "fetch" }, { uz: "FlatList", ru: "FlatList" }], correct: 1 },
+  { q: { uz: "Mobil ilova uchun backend'ni nima qilasiz?", ru: "Что делаете с backend для мобильного приложения?" }, opts: [{ uz: "Yangisi quriladi", ru: "Строится новый" }, { uz: "Backend kerak emas", ru: "Backend не нужен" }, { uz: "O'sha backend'ga ulanadi", ru: "Подключается к тому же backend" }, { uz: "Ma'lumot qo'lda ko'chiriladi", ru: "Данные переносятся вручную" }], correct: 2 },
+  { q: { uz: "Bosiladigan element uchun qaysi komponent?", ru: "Какой компонент для нажимаемого элемента?" }, opts: [{ uz: "FlatList", ru: "FlatList" }, { uz: "ScrollView", ru: "ScrollView" }, { uz: "Image", ru: "Image" }, { uz: "Pressable", ru: "Pressable" }], correct: 3 },
   { q: { uz: "Ko'p ekranni boshqaradigan tizim qanday nomlanadi?", ru: 'Как называется система, управляющая множеством экранов?' }, opts: [{ uz: "Stack Navigator", ru: 'Stack Navigator' }, { uz: "FlatList", ru: 'FlatList' }, { uz: "AsyncStorage", ru: 'AsyncStorage' }, { uz: "useEffect", ru: 'useEffect' }], correct: 0 },
   { q: { uz: "Rasm ko'rsatish uchun qaysi komponent?", ru: 'Какой компонент показывает картинку?' }, opts: [{ uz: "Text", ru: 'Text' }, { uz: "Image", ru: 'Image' }, { uz: "Pressable", ru: 'Pressable' }, { uz: "FlatList", ru: 'FlatList' }], correct: 1 },
   { q: { uz: "Matn kiritish maydoni — qaysi komponent?", ru: 'Поле ввода текста — какой компонент?' }, opts: [{ uz: "ScrollView", ru: 'ScrollView' }, { uz: "Image", ru: 'Image' }, { uz: "TextInput", ru: 'TextInput' }, { uz: "FlatList", ru: 'FlatList' }], correct: 2 },
-  { q: { uz: "Web, bot va mobil bitta serverga ulanadi. Bu nima?", ru: 'Сайт, бот и мобильное подключаются к одному серверу. Что это?' }, opts: [{ uz: "Har biri alohida backend", ru: 'У каждого свой отдельный бэкенд' }, { uz: "Backend umuman kerak emas", ru: 'Бэкенд вообще не нужен' }, { uz: "Faqat web backend'ga ulanadi", ru: 'К бэкенду подключается только веб' }, { uz: "Bitta backend, ko'p kirish yo'li", ru: 'Один бэкенд, много точек входа' }], correct: 3 },
+  { q: { uz: "Web, bot, mobil — bitta serverda. Bu nima?", ru: "Веб, бот, мобильное — на одном сервере. Что это?" }, opts: [{ uz: "Har biriga alohida backend", ru: "Каждому свой backend" }, { uz: "Backend kerak emas", ru: "Backend не нужен" }, { uz: "Faqat web ulanadi", ru: "Подключается только веб" }, { uz: "Ko'p kirish yo'li, bitta tizim", ru: "Много входов, одна система" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2519,7 +2544,7 @@ export default function ReactNativeAppLesson({ lang: langProp, onFinished, liveT
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

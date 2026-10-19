@@ -1,0 +1,9 @@
+s0 boshida: nav=4 ta qismni toping (yopiq) · qism teglari: DIV,DIV,DIV,DIV · karta: true
+  1 sarlavha: qismlar [ask wait wait wait] · xato <li> → «<li> — ro'yxatning bitta qatori. Bu qism esa katta sarlavha.» (tugma yopildi: true) → to'g'ri <h1> → [hit ask wait wait]
+  2 matn: qismlar [hit ask wait wait] · xato <img> → «<img> — rasm. Bu qism esa oddiy matn.» (tugma yopildi: true) → to'g'ri <p> → [hit hit ask wait]
+  3 ro'yxat: qismlar [hit hit ask wait] · xato <a> → «<a> — havola. Ismlar bosilmaydi, ular ro'yxat bo'lib turibdi.» (tugma yopildi: true) → to'g'ri <ul> → [hit hit hit ask]
+  4 havola: qismlar [hit hit hit ask] · xato <p> → «<p> — oddiy matn, u bosilmaydi. Bu qism esa bosiladi.» (tugma yopildi: true) → to'g'ri <a> → [hit hit hit hit]
+s0 oxiri: nav=Davom etish (ochiq) · xulosa: true · ✓ yorliqlar: 4
+  qaytganda: nav=Davom etish (ochiq) · savol kartasi: false · ✓ yorliqlar: 4
+  qayta yuklanganda: ekran=KIRISH · nav=Davom etish (ochiq) · ✓ yorliqlar: 4
+pageerror: 0

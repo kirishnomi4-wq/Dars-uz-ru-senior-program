@@ -50,9 +50,9 @@ Mentor misoli — «Maydon Jamoa» PRD si (dars bo'yi bir xil):
   - Sahifa «Maydon Jamoa»: to'rt qator navbat bilan yoziladi (muammo, kim uchun, yechim va bosh raqam matnlari — Mentor misolidan), oxirida tepaga yashil muhr «Qabul» tushadi
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
-  1. To'rt katakli varaqdan to'liq PRD ga o'tasiz
-  2. Nimani qurmaslikni ham yozishni bilib olasiz
-  3. PRD yozib, uni uch savol bilan tekshirasiz (F-1015-231: Amazon bandi olindi)
+  1. To'rt katakli varaqdan to'liq PRD ga o'ting
+  2. Nimani qurmaslikni ham yozishni bilib oling
+  3. PRD yozib, uni uch savol bilan tekshiring (F-1015-231: Amazon bandi olindi)
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · To'rt katakdan yetti bo'limga

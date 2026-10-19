@@ -25,6 +25,29 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // PM-STUDIA IDENTITET (P0 dan AYNAN)
 // ============================================================
+// F-1015-377: ma'nosiz yozuv tekshiruvi (qolip `manoliMatn` nusxasi - bu dars qolipsiz)
+const MN_HARF = /[a-z\u0430-\u044f\u0451\u0493\u049b\u04b3\u045e]/gi;
+const MN_UNLI = /[aeiou\u0430\u0435\u0451\u0438\u043e\u0443\u044b\u044d\u044e\u044f\u045e]/gi;
+const MN_QISQA = new Set(['html', 'css', 'npm', 'crm', 'mvp', 'pdf', 'sms', 'http', 'https', 'www', 'src', 'cmd', 'pwd', 'jsx', 'dns', 'ssl', 'cdn', 'sql', 'xml', 'png', 'jpg', 'svg', 'gps', 'mln', 'mlrd', 'kpi', 'nps', 'ltv', 'cac']);
+const manoliMatn = (t, yumshoq) => {
+  const s = String(t || '').trim();
+  const harf = (s.match(MN_HARF) || []).length;
+  const tozasi = s.replace(/[\s\u02bb\u02bc'`\u2018\u2019\-.,!?:;\u00ab\u00bb"()]/g, '');
+  if (harf < 3 || !tozasi.length || harf / tozasi.length < 0.5) return false;
+  if (/(.)\1{3,}/i.test(s)) return false;
+  if (!(s.match(MN_UNLI) || []).length) return false;
+  const sozlar = s.split(/\s+/);
+  if (!yumshoq) { // F-1015-392: «fast freak. afs sdfa dfs», «fasted saf s f», «qwe rty», «asd asd asd»
+    const toza = sozlar.map(w => w.replace(/[.,!?:;]+$/, ''));
+    if (toza.some(w => /^[a-z]{3,}$/.test(w) && !/[aeiouy]/.test(w) && !MN_QISQA.has(w))) return false;
+    const yakka = toza.filter(w => /^[b-df-hj-np-tv-xz]$/.test(w)).length;
+    if (yakka >= 2 && yakka / toza.length >= 0.25) return false;
+    if (/qwe|asdf|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|\u0439\u0446\u0443\u043a|\u0444\u044b\u0432\u0430|\u044f\u0447\u0441\u043c/i.test(s)) return false;
+    if (toza.length >= 3 && new Set(toza.map(w => w.toLowerCase())).size * 3 <= toza.length) return false;
+  }
+  return sozlar.every(w => { const h = (w.match(MN_HARF) || []).join(''); if (h.length < 5) return true; return ((h.match(MN_UNLI) || []).length / h.length) >= 0.2; });
+};
+
 const T = {
   bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
@@ -1771,7 +1794,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const yakka = !live || live.mode === 'self';
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
-  const written = text.trim().length >= 8;
+  const written = text.trim().length >= 8 && manoliMatn(text);
   const [pairStage, setPairStage] = useState('idle');
   // A6 (MD v2 s12): 1-qadam taymer tugagach yoki to'xtatilgach «✓ Aytdingiz» qatoriga yig'iladi, keyin 2-qadam chiqadi
   const [aytdi, setAytdi] = useState(() => written);
@@ -2037,18 +2060,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · naqshsiz. darslik-jonli TASDIQLAYDI.
 const QUIZ_BANK = [
-  { q: { uz: "Qaytgan odam kim?", ru: "Кто такой вернувшийся?" }, opts: [{ uz: "Kecha ham, bugun ham kelgan odam", ru: "Тот, кто пришёл и вчера, и сегодня" }, { uz: "Bugun birinchi marta kelgan odam", ru: "Тот, кто сегодня пришёл впервые" }, { uz: "Kecha kelib, bugun kelmagan odam", ru: "Тот, кто пришёл вчера, а сегодня нет" }, { uz: "Bugun ikki marta kelgan odam", ru: "Тот, кто сегодня пришёл дважды" }], correct: 0 },
-  { q: { uz: "Bir kunda qaysi ikki son yoziladi?", ru: "Какие два числа записывают для одного дня?" }, opts: [{ uz: "Kelganlar va e'lonlar soni", ru: 'Число пришедших и объявлений' }, { uz: "Qaytganlar va yozilgan so'zlar soni", ru: 'Число вернувшихся и написанных слов' }, { uz: "Kunlar va soatlar soni", ru: "Число дней и часов" }, { uz: "Kelganlar va qaytganlar soni", ru: "Число пришедших и вернувшихся" }], correct: 3 },
-  { q: { uz: "Hisobning 1-kunida qaytganlar nechta?", ru: "Сколько вернувшихся в 1-й день учёта?" }, opts: [{ uz: "Shu kuni kelganlar soniga teng", ru: "Столько же, сколько пришло в этот день" }, { uz: "Oldingi kundan ko'chirib olinadi", ru: 'Переписывается с предыдущего дня' }, { uz: "0, chunki hisobda oldingi kun yo'q", ru: "0 — в учёте нет дня раньше" }, { uz: "Ertasi kuni kelganlar soniga teng", ru: "Столько же, сколько пришло на следующий день" }], correct: 2 },
-  { q: { uz: "Nega qaytganlar soni o'sha kuni kelganlardan oshmaydi?", ru: "Почему вернувшихся не больше, чем пришедших в тот день?" }, opts: [{ uz: "Chunki bot kuniga bir marta sanaydi", ru: "Потому что бот считает раз в день" }, { uz: "Chunki qaytganlar shu kelganlar ichidan", ru: "Потому что вернувшиеся — из этих же пришедших" }, { uz: "Chunki kechagi ro'yxat o'chib ketadi", ru: "Потому что вчерашний список стирается" }, { uz: "Chunki e'lon faqat kelganlarni ko'taradi", ru: "Потому что объявление поднимает только пришедших" }], correct: 1 },
-  { q: { uz: "Misoldagi e'lon qaysi sonni ko'tardi?", ru: "Какое число подняло объявление в примере?" }, opts: [{ uz: "Faqat qaytganlar sonini", ru: "Только число вернувшихся" }, { uz: "O'sha kuni kelganlar sonini", ru: 'Число пришедших в тот день' }, { uz: "Ikkala sonni bir xil ko'tardi", ru: "Оба числа одинаково" }, { uz: "Hech qaysi sonni ko'tarmadi", ru: "Ни одно число" }], correct: 1 },
-  { q: { uz: "Bugun 10 odam keldi, 3 tasi kecha ham kelgan edi. Qaytganlar nechta?", ru: "Сегодня пришли 10 человек, 3 из них приходили и вчера. Сколько вернувшихся?" }, opts: [{ uz: "3 — ikkala kunda ham kelganlar", ru: "3 — пришедшие в оба дня" }, { uz: "10 — bugun kelganlarning hammasi", ru: '10 — все пришедшие сегодня' }, { uz: "7 — kecha kelmaganlar", ru: "7 — не приходившие вчера" }, { uz: "13 — ikki sonning yig'indisi", ru: "13 — сумма двух чисел" }], correct: 0 },
-  { q: { uz: "Qaytganlarni bilish uchun nega bugun kelganlar soni yetmaydi?", ru: "Почему, чтобы узнать вернувшихся, мало числа пришедших сегодня?" }, opts: [{ uz: "Chunki bir kunda kelgan odam kam bo'ladi", ru: 'Потому что за один день приходит мало людей' }, { uz: "Chunki e'lon ikki kunda bir marta beriladi", ru: 'Потому что объявление дают раз в два дня' }, { uz: "Chunki bu son kechagi kunni ko'rsatmaydi", ru: "Потому что это число не показывает вчерашний день" }, { uz: "Chunki bu son faqat kechqurun sanaladi", ru: "Потому что это число считают только вечером" }], correct: 2 },
-  { q: { uz: "Qaytish nimadan ko'rinadi?", ru: 'По чему видно возвращение?' }, opts: [{ uz: "Bitta kunning yakka katagiga qarashdan", ru: "По одной клетке одного дня" }, { uz: "Ikki kunda kelganlar sonining o'sishidan", ru: 'По росту числа пришедших за два дня' }, { uz: "Botga yozilgan xabarlar sonidan", ru: "По числу сообщений, написанных боту" }, { uz: "Kecha va bugungi ro'yxatni solishtirishdan", ru: 'По сравнению вчерашнего и сегодняшнего списков' }], correct: 3 },
-  { q: { uz: "Duolingo'dagi olov belgili raqam nimani sanaydi?", ru: "Что считает число с иконкой огня в Duolingo?" }, opts: [{ uz: "Ketma-ket dars qilingan kunlarni", ru: "Дни занятий подряд" }, { uz: "Yodlangan so'zlarning umumiy sonini", ru: 'Общее число выученных слов' }, { uz: "Ilovada o'tkazilgan soatlarni", ru: 'Часы, проведённые в приложении' }, { uz: "Do'stlar bilan bo'lishilgan ballarni", ru: 'Баллы, которыми поделились с друзьями' }], correct: 0 },
-  { q: { uz: "«Muzlatish» bo'lmasa, bir kun dars qilinmagach bu raqam nima bo'ladi?", ru: "Что будет с этим числом без «заморозки», если один день не позаниматься?" }, opts: [{ uz: "O'sha joyida turaveradi", ru: 'Останется на месте' }, { uz: "Bir kunga orqaga suriladi", ru: "Сдвинется на день назад" }, { uz: "Yana noldan boshlanadi", ru: "Снова начнётся с нуля" }, { uz: "Sekinroq o'sishda davom etadi", ru: 'Продолжит расти медленнее' }], correct: 2 },
-  { q: { uz: "Odam 1, 3 va 5-kunlari kelgan. Nechta qaytish kuni bor?", ru: "Человек приходил в 1-й, 3-й и 5-й дни. Сколько дней возвращения?" }, opts: [{ uz: "Uchta — uch kunda ham kelgani uchun", ru: "Три — потому что пришёл во все три дня" }, { uz: "Birortasi ham yo'q — oldingi kun har safar bo'sh", ru: "Ни одного — предыдущий день каждый раз пуст" }, { uz: "Ikkita — 3-kun va 5-kun qaytish kuni", ru: "Два — 3-й и 5-й дни возвращения" }, { uz: "Bittasi — 5-kunning oldingi kuni to'lgan", ru: 'Один — день перед 5-м заполнен' }], correct: 1 },
-  { q: { uz: "Darsda o'z botingizning uch kunlik hisobini kim yozdi?", ru: "Кто на уроке записал учёт вашего бота за три дня?" }, opts: [{ uz: "Bot o'zi sanab yozib bordi", ru: "Бот сам считал и записывал" }, { uz: "Mentor siz uchun yozib berdi", ru: "Ментор записал за вас" }, { uz: "Telegram o'zi hisoblab berdi", ru: "Telegram сам посчитал" }, { uz: "O'zingiz sonlarni kiritib yozdingiz", ru: "Вы сами вписали числа" }], correct: 3 },
+  { q: { uz: "Qaytgan odam kim?", ru: "Кто такой вернувшийся?" }, opts: [{ uz: "Kecha ham, bugun ham kelgan", ru: "Пришёл и вчера, и сегодня" }, { uz: "Bugun birinchi kelgan", ru: "Пришёл сегодня впервые" }, { uz: "Kecha kelib, bugun kelmagan", ru: "Был вчера, сегодня нет" }, { uz: "Bugun ikki marta kelgan", ru: "Пришёл сегодня дважды" }], correct: 0 },
+  { q: { uz: "Bir kunda qaysi ikki son yoziladi?", ru: "Какие два числа записывают за день?" }, opts: [{ uz: "Kelganlar va e'lonlar", ru: "Пришедшие и объявления" }, { uz: "Qaytganlar va so'zlar", ru: "Вернувшиеся и слова" }, { uz: "Kunlar va soatlar", ru: "Дни и часы" }, { uz: "Kelganlar va qaytganlar", ru: "Пришедшие и вернувшиеся" }], correct: 3 },
+  { q: { uz: "Hisobning 1-kunida qaytganlar nechta?", ru: "Сколько вернувшихся в 1-й день учёта?" }, opts: [{ uz: "Kelganlar soniga teng", ru: "Столько же, сколько пришло" }, { uz: "Oldingi kundan olinadi", ru: "Берётся из прошлого дня" }, { uz: "0 ta, oldingi kun yo'q", ru: "0, предыдущего дня нет" }, { uz: "Ertasi kungi songa teng", ru: "Как на следующий день" }], correct: 2 },
+  { q: { uz: "Nega qaytganlar kelganlardan oshmaydi?", ru: "Почему вернувшихся не больше пришедших?" }, opts: [{ uz: "Bot bir marta sanaydi", ru: "Бот считает один раз" }, { uz: "Ular shu kelganlar ichidan", ru: "Они — из числа пришедших" }, { uz: "Kechagi ro'yxat o'chadi", ru: "Вчерашний список стирается" }, { uz: "E'lon faqat kelganni oshiradi", ru: "Объявление растит только пришедших" }], correct: 1 },
+  { q: { uz: "Misoldagi e'lon qaysi sonni ko'tardi?", ru: "Какое число подняло объявление в примере?" }, opts: [{ uz: "Faqat qaytganlarni", ru: "Только вернувшихся" }, { uz: "O'sha kuni kelganlarni", ru: "Пришедших в тот день" }, { uz: "Ikkalasini bir xil", ru: "Оба одинаково" }, { uz: "Hech qaysisini", ru: "Ни одно" }], correct: 1 },
+  { q: { uz: "Bugun 10 kishi, 3 tasi kecha ham kelgan. Qaytgan nechta?", ru: "Сегодня 10 человек, 3 были и вчера. Сколько вернулось?" }, opts: [{ uz: "3 — ikkala kunda", ru: "3 — были в оба дня" }, { uz: "10 — bugungi hamma", ru: "10 — все сегодняшние" }, { uz: "7 — kecha kelmaganlar", ru: "7 — не было вчера" }, { uz: "13 — ikki son yig'indisi", ru: "13 — сумма двух чисел" }], correct: 0 },
+  { q: { uz: "Qaytganni bilishga bugungi son nega yetmaydi?", ru: "Почему сегодняшнего числа мало, чтобы узнать вернувшихся?" }, opts: [{ uz: "Odam kam keladi", ru: "Людей приходит мало" }, { uz: "E'lon kunora beriladi", ru: "Объявление через день" }, { uz: "Kechagi kunni ko'rsatmaydi", ru: "Не показывает вчерашний день" }, { uz: "Kechqurun sanaladi", ru: "Считается вечером" }], correct: 2 },
+  { q: { uz: "Qaytish nimadan ko'rinadi?", ru: "Из чего видно возвращение?" }, opts: [{ uz: "Bitta kunning katagidan", ru: "Из клетки одного дня" }, { uz: "Kelganlar sonining o'sishidan", ru: "Из роста числа пришедших" }, { uz: "Botdagi xabarlar sonidan", ru: "Из числа сообщений боту" }, { uz: "Ikki kunni solishtirishdan", ru: "Из сравнения двух дней" }], correct: 3 },
+  { q: { uz: "Duolingo'dagi olov belgili raqam nimani sanaydi?", ru: "Что считает число с огоньком в Duolingo?" }, opts: [{ uz: "Ketma-ket dars kunlarini", ru: "Дни занятий подряд" }, { uz: "Yodlangan so'zlar sonini", ru: "Число выученных слов" }, { uz: "Ilovadagi soatlarni", ru: "Часы в приложении" }, { uz: "Do'stlar bilan ballarni", ru: "Баллы с друзьями" }], correct: 0 },
+  { q: { uz: "Bir kun dars qilinmasa, olov raqami nima bo'ladi?", ru: "Если пропустить день, что станет с числом-огоньком?" }, opts: [{ uz: "Joyida turaveradi", ru: "Останется прежним" }, { uz: "Bir kunga suriladi", ru: "Сдвинется на день" }, { uz: "Noldan boshlanadi", ru: "Начнётся с нуля" }, { uz: "Sekinroq o'sadi", ru: "Будет расти медленнее" }], correct: 2 },
+  { q: { uz: "Odam 1, 3 va 5-kunlari keldi. Nechta qaytish kuni?", ru: "Человек приходил в 1, 3 и 5-й дни. Сколько дней возвращения?" }, opts: [{ uz: "Uchta — uch kun kelgan", ru: "Три — приходил три дня" }, { uz: "Yo'q — oldingi kun bo'sh", ru: "Ни одного — прошлый день пуст" }, { uz: "Ikkita — 3 va 5-kun", ru: "Два — 3-й и 5-й" }, { uz: "Bitta — 5-kun", ru: "Один — 5-й" }], correct: 1 },
+  { q: { uz: "Botingizning uch kunlik hisobini kim yozdi?", ru: "Кто записал трёхдневный учёт вашего бота?" }, opts: [{ uz: "Bot o'zi sanab yozdi", ru: "Бот посчитал сам" }, { uz: "Mentor yozib berdi", ru: "Записал ментор" }, { uz: "Telegram hisobladi", ru: "Посчитал Telegram" }, { uz: "O'zingiz yozdingiz", ru: "Вы сами" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -3244,7 +3267,7 @@ const CSS_LESSON = `
   .fc-fly.out-again { animation: fc-out-again 0.42s ease forwards; }
   @keyframes fc-out-knew { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(70%) rotate(5deg); opacity: 0; } }
   @keyframes fc-out-again { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(-70%) rotate(-5deg); opacity: 0; } }
-  .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+  .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
   .fc-card.flip { transform: rotateY(180deg); }
   .fc-card:not(.flip):hover { transform: translateY(-3px); }
   .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

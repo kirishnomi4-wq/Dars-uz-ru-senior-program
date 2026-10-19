@@ -96,6 +96,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -173,8 +198,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1184,18 +1209,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD v3, aynan), to'g'ri javob o'rni A·B·C·D ×3
 const QUIZ_BANK = [
-  { q: { uz: 'Dashboard (holat paneli) nima?', ru: 'Что такое дашборд (панель состояния)?' }, opts: [{ uz: "Kerakli raqamlarni bir sahifada ko'rsatadigan sahifa", ru: "Одна страница со всеми нужными числами" }, { uz: "O'yinchi bo'sh vaqtni ko'rib, band qiladigan sahifa", ru: 'Страница, где игрок видит свободное время и бронирует' }, { uz: "Har hodisa bitta qator bo'lib yoziladigan jadval", ru: 'Таблица, где каждое событие пишется одной строкой' }, { uz: "Backend'ni laptopda ishga tushiradigan buyruq", ru: 'Команда, которая запускает Backend на ноутбуке' }], correct: 0 },
-  { q: { uz: 'Bu darsda «Oxirgi 5 daqiqada» raqami nimani sanaydi?', ru: 'Что на этом уроке считает число «За последние 5 минут»?' }, opts: [{ uz: "Bugun saytni bir marta bo'lsa ham ochgan brauzerlarni", ru: 'Браузеры, которые сегодня хоть раз открыли сайт' }, { uz: 'Oxirgi 5 daqiqada hodisa yuborgan turli brauzerlarni', ru: 'Разные браузеры, отправившие событие за последние 5 минут' }, { uz: 'Shu daqiqada sahifasi ochiq turgan hamma odamlarni', ru: 'Всех людей, у которых сейчас открыта страница' }, { uz: "Bugun maydonda vaqt band qilgan hamma o'yinchilarni", ru: 'Всех игроков, забронировавших сегодня время на поле' }], correct: 1 },
-  { q: { uz: 'Bitta brauzer uch katakni bosdi. «Vaqtni tanladi» nechtaga oshadi?', ru: "Один браузер нажал три ячейки. На сколько вырастет «выбрал время»?" }, opts: [{ uz: 'Uchtaga — har bosish bittadan sanaladi', ru: "На три — считается каждое нажатие" }, { uz: "Nolga — u hali hech narsa band qilmadi", ru: 'На ноль — он ещё ничего не забронировал' }, { uz: 'Bittaga — uch bosish ham bitta brauzer', ru: "На один — все три нажатия от одного браузера" }, { uz: 'Ikkitaga — birinchi bosish sanalmaydi', ru: 'На два — первое нажатие не считается' }], correct: 2 },
-  { q: { uz: 'Nega dashboard har qadamda turli brauzerlarni sanaydi?', ru: 'Почему дашборд на каждом шаге считает разные браузеры?' }, opts: [{ uz: "Shunda raqamlar kattaroq va ishonchli ko'rinadi", ru: 'Так числа выглядят больше и надёжнее' }, { uz: "Shunda Backend so'rovga tezroq javob beradi", ru: 'Так Backend быстрее отвечает на запрос' }, { uz: "Shunda Database'da kamroq joy egallanadi", ru: 'Так в Database занимается меньше места' }, { uz: 'Shunda qadamlar bir o\'lchovda solishtiriladi', ru: "Так шаги сравниваются одной меркой" }], correct: 3 },
-  { q: { uz: 'Dashboard raqamlarni qanday yangilaydi?', ru: 'Как дашборд обновляет числа?' }, opts: [{ uz: "Sayt har 5 soniyada Backend'dan so'raydi", ru: 'Сайт каждые 5 секунд спрашивает Backend' }, { uz: 'Ega har safar F5 tugmasini bosib turadi', ru: 'Владелец каждый раз нажимает F5' }, { uz: "Database raqamlarni sahifaga o'zi yuboradi", ru: 'Database сама отправляет числа на страницу' }, { uz: "Umami raqamlarni dashboard'ga ko'chirib beradi", ru: 'Umami переносит числа в дашборд' }], correct: 0 },
-  { q: { uz: '`GET /hodisalar/sanoq` ga tokensiz so\'rov kelsa-chi?', ru: 'А если на `GET /hodisalar/sanoq` придёт запрос без токена?' }, opts: [{ uz: "Bugungi raqamlarni to'liq qaytarib beradi", ru: 'Вернёт все сегодняшние числа' }, { uz: '401 qaytaradi va raqamlarni bermaydi', ru: 'Вернёт 401 и не отдаст числа' }, { uz: '«Oxirgi 5 daqiqada» raqamini qaytaradi, xolos', ru: 'Вернёт только число «За последние 5 минут»' }, { uz: "Parol so'raydigan sahifani o'zi ochadi", ru: 'Сам откроет страницу с паролем' }], correct: 1 },
-  { q: { uz: 'Sinfdosh saytni yopdi. Backend uni qachondan sanamaydi?', ru: "Одноклассник закрыл сайт. С какого момента Backend перестанет его считать?" }, opts: [{ uz: "Sahifani yopgan soniyaning o'zidayoq", ru: 'В ту же секунду, как закрыл страницу' }, { uz: 'Ertaga, yangi kun boshlanganda', ru: 'Завтра, когда начнётся новый день' }, { uz: "Oxirgi hodisasidan 5 daqiqa o'tgach", ru: 'Через 5 минут после его последнего события' }, { uz: "Ega dashboard'ni yangilagan paytda", ru: 'Когда владелец обновит дашборд' }], correct: 2 },
-  { q: { uz: "Ega dashboard'ni ochdi. «Oxirgi 5 daqiqada» oshadimi?", ru: 'Владелец открыл дашборд. Вырастет ли «За последние 5 минут»?' }, opts: [{ uz: 'Ha — har ochilgan sahifa sanaladi', ru: 'Да — считается каждая открытая страница' }, { uz: 'Ha — ega ham saytga kirgan odam', ru: 'Да — владелец тоже зашёл на сайт' }, { uz: "Yo'q — ega paroli sanoqni to'xtatadi", ru: 'Нет — пароль владельца останавливает подсчёт' }, { uz: "Yo'q — dashboard hodisa yozmaydi", ru: "Нет — дашборд событий не записывает" }], correct: 3 },
-  { q: { uz: 'Brauzer ID nimani bildiradi?', ru: 'Что обозначает ID браузера?' }, opts: [{ uz: 'Bitta brauzerni, odamning ismini emas', ru: 'Один браузер, а не имя человека' }, { uz: "O'yinchining ismi va telefon raqamini", ru: 'Имя и номер телефона игрока' }, { uz: 'Saytga kirgan odamning yoshi va shahrini', ru: 'Возраст и город человека на сайте' }, { uz: 'Ega paroli bilan berilgan tokenni', ru: 'Токен, выданный по паролю владельца' }], correct: 0 },
-  { q: { uz: "Dashboard'dagi «Yangilandi» vaqti har 5 soniyada o'zgaryapti. Bu nimani bildiradi?", ru: 'Время «Обновлено» на дашборде меняется каждые 5 секунд. Что это значит?' }, opts: [{ uz: "Saytga har 5 soniyada yangi o'yinchi kiryapti", ru: 'Каждые 5 секунд на сайт заходит новый игрок' }, { uz: 'Backend har so\'rovga javob berib turibdi', ru: 'Backend отвечает на каждый запрос' }, { uz: 'Token eskirdi, parolni yana kiritish kerak', ru: 'Токен устарел, нужно снова ввести пароль' }, { uz: 'Raqamlar har yangilanishda bittaga oshyapti', ru: 'Числа растут на один при каждом обновлении' }], correct: 1 },
+  { q: { uz: "Dashboard (holat paneli) nima?", ru: "Что такое дашборд (панель состояния)?" }, opts: [{ uz: "Raqamlar jamlangan sahifa", ru: "Страница со всеми числами" }, { uz: "Vaqt band qilinadigan sahifa", ru: "Страница бронирования" }, { uz: "Hodisalar jadvali", ru: "Таблица событий" }, { uz: "Backend'ni yoqish buyrug'i", ru: "Команда запуска Backend" }], correct: 0 },
+  { q: { uz: "«Oxirgi 5 daqiqada» nimani sanaydi?", ru: "Что считает «За последние 5 минут»?" }, opts: [{ uz: "Bugun ochgan brauzerlarni", ru: "Браузеры, открывшие сегодня" }, { uz: "Hodisa yuborgan brauzerlarni", ru: "Браузеры, отправившие событие" }, { uz: "Sahifasi ochiq odamlarni", ru: "Людей с открытой страницей" }, { uz: "Band qilgan o'yinchilarni", ru: "Забронировавших игроков" }], correct: 1 },
+  { q: { uz: "Brauzer uch katak bosdi. «Vaqtni tanladi» nechaga oshadi?", ru: "Один браузер нажал три слота. На сколько вырастет «Выбрали время»?" }, opts: [{ uz: "Uchtaga", ru: "На три" }, { uz: "Oshmaydi", ru: "Не вырастет" }, { uz: "Bittaga", ru: "На один" }, { uz: "Ikkitaga", ru: "На два" }], correct: 2 },
+  { q: { uz: "Nega turli brauzerlar sanaladi?", ru: "Почему считают разные браузеры?" }, opts: [{ uz: "Raqamlar katta ko'rinadi", ru: "Числа выглядят больше" }, { uz: "Backend tezroq javob beradi", ru: "Backend отвечает быстрее" }, { uz: "Database'da joy tejaladi", ru: "Экономится место в Database" }, { uz: "Qadamlarni solishtirsa bo'ladi", ru: "Шаги можно сравнить" }], correct: 3 },
+  { q: { uz: "Dashboard raqamlarni qanday yangilaydi?", ru: "Как дашборд обновляет числа?" }, opts: [{ uz: "Sayt har 5 soniyada so'raydi", ru: "Сайт спрашивает каждые 5 секунд" }, { uz: "Ega F5 ni bosib turadi", ru: "Владелец жмёт F5" }, { uz: "Database o'zi yuboradi", ru: "Database присылает сама" }, { uz: "Umami ko'chirib beradi", ru: "Umami копирует их" }], correct: 0 },
+  { q: { uz: "Tokensiz `GET /hodisalar/sanoq` nima qaytaradi?", ru: "Что вернёт `GET /hodisalar/sanoq` без токена?" }, opts: [{ uz: "Hamma raqamlarni beradi", ru: "Отдаст все числа" }, { uz: "401 qaytaradi", ru: "Вернёт 401" }, { uz: "Faqat 5 daqiqalikni beradi", ru: "Отдаст только 5-минутное" }, { uz: "Parol sahifasini ochadi", ru: "Откроет страницу пароля" }], correct: 1 },
+  { q: { uz: "Saytni yopgan «Oxirgi 5 daqiqada»dan qachon tushadi?", ru: "Когда закрывший сайт пропадёт из «За последние 5 минут»?" }, opts: [{ uz: "Yopgan soniyadayoq", ru: "В ту же секунду" }, { uz: "Yangi kun boshlanganda", ru: "Когда начнётся новый день" }, { uz: "Hodisadan 5 daqiqa keyin", ru: "Через 5 минут после события" }, { uz: "Ega yangilaganda", ru: "Когда владелец обновит" }], correct: 2 },
+  { q: { uz: "Dashboard ochilsa, «Oxirgi 5 daqiqada» oshadimi?", ru: "Если открыть дашборд, вырастет ли «За последние 5 минут»?" }, opts: [{ uz: "Ha — sahifa sanaladi", ru: "Да — страница считается" }, { uz: "Ha — ega ham odam", ru: "Да — владелец тоже человек" }, { uz: "Yo'q — parol to'xtatadi", ru: "Нет — пароль останавливает" }, { uz: "Yo'q — hodisa yozilmaydi", ru: "Нет — событие не пишется" }], correct: 3 },
+  { q: { uz: "Brauzer ID nimani bildiradi?", ru: "Что обозначает ID браузера?" }, opts: [{ uz: "Brauzerni, odamni emas", ru: "Браузер, а не человека" }, { uz: "O'yinchi ismi va telefonini", ru: "Имя и телефон игрока" }, { uz: "Odamning yoshi va shahrini", ru: "Возраст и город человека" }, { uz: "Ega paroli bilan tokenni", ru: "Токен по паролю владельца" }], correct: 0 },
+  { q: { uz: "«Yangilandi» har 5 soniyada o'zgaradi. Bu nima degani?", ru: "«Обновлено» меняется каждые 5 секунд. Что это значит?" }, opts: [{ uz: "O'yinchilar kiryapti", ru: "Заходят игроки" }, { uz: "Backend javob beryapti", ru: "Backend отвечает" }, { uz: "Token eskirib qoldi", ru: "Токен устарел" }, { uz: "Raqamlar oshyapti", ru: "Числа растут" }], correct: 1 },
   { q: { uz: 'Vaqtni tanladi 9, band qildi 3. Necha foizi band qildi?', ru: "Выбрали время — 9, забронировали — 3. Какой процент забронировал?" }, opts: [{ uz: 'Taxminan 3 foizi', ru: 'Примерно 3 процента' }, { uz: 'Taxminan 6 foizi', ru: 'Примерно 6 процентов' }, { uz: 'Taxminan 33 foizi', ru: 'Примерно 33 процента' }, { uz: 'Taxminan 300 foizi', ru: 'Примерно 300 процентов' }], correct: 2 },
-  { q: { uz: 'Agent «Tayyor» dedi. Sanoq to\'g\'riligini qanday tekshirasiz?', ru: "Агент сказал «Готово». Как вы проверите, что подсчёт верный?" }, opts: [{ uz: "Agentdan «to'g'rimi?» deb yana bir so'raysiz", ru: 'Ещё раз спросите агента: «верно?»' }, { uz: "Raqamlar katta chiqsa, to'g'ri deb olasiz", ru: 'Если числа большие — считаете, что верно' }, { uz: "Kodni o'qimasdan keyingi talabga o'tasiz", ru: 'Не читая код, переходите к следующему требованию' }, { uz: 'Inkognito oynada bosib, raqamni kuzatasiz', ru: 'Нажимаете в окне инкогнито и следите за числом' }], correct: 3 }
+  { q: { uz: "Sanoq to'g'riligini qanday tekshirasiz?", ru: "Как проверите, что подсчёт верный?" }, opts: [{ uz: "Agentdan yana so'raysiz", ru: "Ещё раз спросите агента" }, { uz: "Katta raqamga ishonasiz", ru: "Поверите большому числу" }, { uz: "Keyingi talabga o'tasiz", ru: "Перейдёте к следующему" }, { uz: "Inkognitoda bosib ko'rasiz", ru: "Нажмёте в инкогнито" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1826,7 +1851,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: c.forma ? <>{qadamMatn(c.t)}<GoyaForma qiymat={goya} onYoz={goyaYoz} tola={tola} /></> : qadamMatn(c.t),

@@ -2068,66 +2068,22 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ CodeStrike savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3). darslik-jonli TASDIQLAYDI.
 const QUIZ_BANK = [
-  { q: { uz: "To'g'ri yozilgan User Story qaysi?", ru: 'Какая User Story написана верно?' }, opts: [
-    { uz: "Men tugmani bosganimda yangi sahifa ochilib, ma'lumot chiqadi", ru: 'Когда я нажимаю кнопку, открывается новая страница и выходит информация' },
-    { uz: 'Agar [shart] bo\'lsa, [natija] qil', ru: 'Если [условие], то сделай [результат]' },
-    { uz: 'Men [KIM] sifatida, [NIMA]ni xohlayman, [NATIJA] uchun', ru: 'Я как [КТО], хочу [ЧТО], чтобы [РЕЗУЛЬТАТ]' },
-    { uz: "[Sana] — [vazifa] — [mas'ul]", ru: '[Дата] — [задача] — [ответственный]' }], correct: 2 },
+  { q: { uz: "User Story qaysi uch bo'lakdan iborat?", ru: "Из каких трёх частей состоит User Story?" }, opts: [{ uz: "Sana + vazifa + mas'ul", ru: "Дата + задача + ответственный" }, { uz: "Shart + natija + xato", ru: "Условие + результат + ошибка" }, { uz: "KIM + NIMA + NATIJA", ru: "КТО + ЧТО + РЕЗУЛЬТАТ" }, { uz: "Tugma + rang + sahifa", ru: "Кнопка + цвет + страница" }], correct: 2 },
   { q: { uz: "Hikoyadagi [KIM] bo'lagi nimani bildiradi?", ru: 'Что означает часть [КТО] в истории?' }, opts: [
     { uz: 'Foydalanuvchi turi', ru: 'Тип пользователя' },
     { uz: 'Tugmaning rangi', ru: 'Цвет кнопки' },
     { uz: 'Dasturchi ismi', ru: 'Имя программиста' },
     { uz: "Sahifaning to'liq manzili", ru: 'Полный адрес страницы' }], correct: 0 },
-  { q: { uz: 'User Story qachon yoziladi?', ru: 'Когда пишут User Story?' }, opts: [
-    { uz: 'Loyiha topshirilgandan keyin', ru: 'После сдачи проекта' },
-    { uz: 'Kod yozishdan OLDIN', ru: 'ДО написания кода' },
-    { uz: "Kod yozib bo'lingach, hujjat sifatida", ru: 'После кода, как документ' },
-    { uz: 'Faqat xato chiqqanda', ru: 'Только когда появилась ошибка' }], correct: 1 },
-  { q: { uz: "[NATIJA] qismi qanday bo'lishi kerak?", ru: 'Какой должна быть часть [РЕЗУЛЬТАТ]?' }, opts: [
-    { uz: 'Yozilgan kod qatorlarining umumiy soni', ru: 'Общее число написанных строк кода' },
-    { uz: 'Tugmaning nomi', ru: 'Название кнопки' },
-    { uz: 'Sahifaning fon rangi', ru: 'Цвет фона страницы' },
-    { uz: 'Foydalanuvchi oladigan real foyda', ru: 'Реальная польза для пользователя' }], correct: 3 },
-  { q: { uz: "«Men foydalanuvchi sifatida, qizil tugma xohlayman» — nimasi yetishmayapti?", ru: '«Я как пользователь, хочу красную кнопку» — чего здесь не хватает?' }, opts: [
-    { uz: 'NATIJA (real foyda)', ru: 'РЕЗУЛЬТАТА (реальной пользы)' },
-    { uz: 'KIM', ru: 'КТО' },
-    { uz: 'NIMA', ru: 'ЧТО' },
-    { uz: "Hech nima — hikoya to'liq", ru: 'Ничего — история полная' }], correct: 0 },
-  { q: { uz: "Jobs-to-be-Done (JTBD) g'oyasi nima?", ru: 'В чём идея Jobs-to-be-Done (JTBD)?' }, opts: [
-    { uz: "Ko'proq tugma qo'shish kerak", ru: 'Нужно добавлять больше кнопок' },
-    { uz: 'Kodni tezroq yozish kerak', ru: 'Нужно быстрее писать код' },
-    { uz: 'Har bir foydalanuvchiga alohida ilova yozib chiqish kerak', ru: 'Для каждого пользователя нужно писать отдельное приложение' },
-    { uz: "Odamlar mahsulotning o'zini emas, u beradigan foydali natijani sotib oladi", ru: 'Люди покупают не сам продукт, а полезный результат, который он даёт' }], correct: 3 },
-  { q: { uz: 'Milkshake misolida u xaridorga qanday foydali natija berardi?', ru: 'Какой полезный результат давал коктейль покупателю в том примере?' }, opts: [
-    { uz: "Arzon bo'lgani uchun", ru: 'Он был дешёвым' },
-    { uz: "Uzoq yo'lda zerikmaslik va tushlikkacha to'q qolish uchun", ru: 'Не скучать в долгой дороге и остаться сытым до обеда' },
-    { uz: "Sovg'a bilan berilgani uchun", ru: 'Его давали с подарком' },
-    { uz: "Reklamada juda chiroyli ko'rsatilib, ko'zga tashlangani uchun", ru: 'Его очень красиво показывали в рекламе' }], correct: 1 },
-  { q: { uz: "Haqiqiy sababni bilgach, McDonald's milkshake bilan nima qildi?", ru: "Что McDonald's сделал с коктейлем, когда узнал настоящую причину?" }, opts: [
-    { uz: "Narxini tushirib, reklamada ko'proq ko'rsatdi", ru: 'Снизил цену и стал больше показывать в рекламе' },
-    { uz: 'Sotuvini faqat kechki payt ochiq qoldirdi', ru: 'Оставил продажу только по вечерам' },
-    { uz: 'Yanada quyuq qilib, eshik oldidagi apparatga qo\'ydi', ru: 'Сделал гуще и поставил в аппарат у входа' },
-    { uz: "O'rniga yo'lga qulay banan sota boshladi", ru: 'Вместо него стал продавать удобный в дороге банан' }], correct: 2 },
-  { q: { uz: "«Saytda dark mode bo'lsin» — bu nima?", ru: '«Пусть на сайте будет dark mode» — что это?' }, opts: [
-    { uz: "To'liq va tugallangan User Story hikoyasi", ru: 'Полная, завершённая история User Story' },
-    { uz: 'Foydalanuvchi turi', ru: 'Тип пользователя' },
-    { uz: 'Jobs-to-be-Done (JTBD)', ru: 'Jobs-to-be-Done (JTBD)' },
-    { uz: "Imkoniyat-so'rovi (feature request)", ru: 'Заявка на возможность (feature request)' }], correct: 3 },
-  { q: { uz: 'Agar NATIJA harakatni takrorlasa, nima bo\'ladi?', ru: 'Что будет, если РЕЗУЛЬТАТ повторяет действие?' }, opts: [
-    { uz: "Foyda ko'rinmaydi — hikoya to'liq emas", ru: 'Пользы не видно — история неполная' },
-    { uz: 'Kod tezroq ishlaydi', ru: 'Код будет работать быстрее' },
-    { uz: "Hikoya kuchliroq bo'ladi", ru: 'История станет сильнее' },
-    { uz: "Foydalanuvchi turi o'z-o'zidan aniqlashadi", ru: 'Тип пользователя определится сам собой' }], correct: 0 },
-  { q: { uz: "Hikoyadagi [NIMA] bo'lagi nimani bildiradi?", ru: 'Что означает часть [ЧТО] в истории?' }, opts: [
-    { uz: 'Foydalanuvchi oxir-oqibat oladigan real foyda', ru: 'Реальная польза, которую пользователь получит в итоге' },
-    { uz: 'Foydalanuvchi turi', ru: 'Тип пользователя' },
-    { uz: "Foydalanuvchi bajarmoqchi bo'lgan harakat", ru: 'Действие, которое пользователь хочет сделать' },
-    { uz: 'Loyiha muddati', ru: 'Срок проекта' }], correct: 2 },
-  { q: { uz: 'Nega avval User Story, keyin kod?', ru: 'Почему сначала User Story, а потом код?' }, opts: [
-    { uz: 'Chunki kod yozish qiyin', ru: 'Потому что писать код трудно' },
-    { uz: "Avval «kimga nima kerak»ni bilish, keyin qurish uchun", ru: 'Чтобы сначала узнать, «кому что нужно», и только потом строить' },
-    { uz: 'Chunki mijoz shuni talab qiladi', ru: 'Потому что этого требует клиент' },
-    { uz: "Buning umuman ahamiyati yo'q, tartib mutlaqo farq qilmaydi", ru: 'Это совсем неважно, порядок роли не играет' }], correct: 1 },
+  { q: { uz: "User Story qachon yoziladi?", ru: "Когда пишут User Story?" }, opts: [{ uz: "Loyiha topshirilgach", ru: "После сдачи проекта" }, { uz: "Kod yozishdan oldin", ru: "До написания кода" }, { uz: "Kod yozib bo'lingach", ru: "Когда код уже написан" }, { uz: "Faqat xato chiqqanda", ru: "Только при ошибке" }], correct: 1 },
+  { q: { uz: "[NATIJA] qismi qanday bo'lishi kerak?", ru: "Какой должна быть часть [РЕЗУЛЬТАТ]?" }, opts: [{ uz: "Yozilgan kod qatorlari soni", ru: "Число строк кода" }, { uz: "Tugmaning nomi va rangi", ru: "Название и цвет кнопки" }, { uz: "Sahifaning fon rangi", ru: "Цвет фона страницы" }, { uz: "Foydalanuvchi oladigan foyda", ru: "Польза, которую получит пользователь" }], correct: 3 },
+  { q: { uz: "«Foydalanuvchi sifatida qizil tugma xohlayman» — nima yo'q?", ru: "«Как пользователь, хочу красную кнопку» — чего нет?" }, opts: [{ uz: "NATIJA (real foyda)", ru: "РЕЗУЛЬТАТ (польза)" }, { uz: "KIM", ru: "КТО" }, { uz: "NIMA", ru: "ЧТО" }, { uz: "Hech nima, to'liq", ru: "Ничего, всё есть" }], correct: 0 },
+  { q: { uz: "Jobs-to-be-Done (JTBD) g'oyasi nima?", ru: "В чём идея Jobs-to-be-Done (JTBD)?" }, opts: [{ uz: "Ko'proq tugma qo'shish", ru: "Добавлять больше кнопок" }, { uz: "Kodni tezroq yozish", ru: "Писать код быстрее" }, { uz: "Har kimga alohida ilova", ru: "Каждому отдельное приложение" }, { uz: "Odam natijani sotib oladi", ru: "Человек покупает результат" }], correct: 3 },
+  { q: { uz: "Milkshake xaridorga qanday natija berardi?", ru: "Какой результат давал покупателю коктейль?" }, opts: [{ uz: "Arzonligi bilan yoqardi", ru: "Нравился дешевизной" }, { uz: "Yo'lda zerikmaslik va to'qlik", ru: "Не скучать в пути и сытость" }, { uz: "Sovg'a bilan berilardi", ru: "Давали с подарком" }, { uz: "Reklamasi chiroyli edi", ru: "Красивая реклама" }], correct: 1 },
+  { q: { uz: "McDonald's sababni bilgach nima qildi?", ru: "Что сделал McDonald's, узнав причину?" }, opts: [{ uz: "Narxini tushirdi", ru: "Снизил цену" }, { uz: "Faqat kechqurun sotdi", ru: "Продавал только вечером" }, { uz: "Yanada quyuq qildi", ru: "Сделал гуще" }, { uz: "O'rniga banan sotdi", ru: "Стал продавать банан" }], correct: 2 },
+  { q: { uz: "«Saytda dark mode bo'lsin» — bu nima?", ru: "«Пусть на сайте будет dark mode» — что это?" }, opts: [{ uz: "To'liq User Story", ru: "Полная User Story" }, { uz: "Foydalanuvchi turi", ru: "Тип пользователя" }, { uz: "JTBD natijasi", ru: "Результат JTBD" }, { uz: "Imkoniyat-so'rovi", ru: "Заявка на возможность" }], correct: 3 },
+  { q: { uz: "NATIJA harakatni takrorlasa, nima bo'ladi?", ru: "Что будет, если РЕЗУЛЬТАТ повторяет действие?" }, opts: [{ uz: "Foyda ko'rinmay qoladi", ru: "Пользы не видно" }, { uz: "Kod tezroq ishlaydi", ru: "Код работает быстрее" }, { uz: "Hikoya kuchayadi", ru: "История становится сильнее" }, { uz: "KIM o'zi aniqlashadi", ru: "КТО сам уточнится" }], correct: 0 },
+  { q: { uz: "Hikoyadagi [NIMA] bo'lagi nimani bildiradi?", ru: "Что означает часть [ЧТО] в истории?" }, opts: [{ uz: "Oxirida oladigan foyda", ru: "Польза в конце" }, { uz: "Foydalanuvchi turi", ru: "Тип пользователя" }, { uz: "Bajarmoqchi bo'lgan harakat", ru: "Действие, которое он хочет сделать" }, { uz: "Loyiha muddati", ru: "Срок проекта" }], correct: 2 },
+  { q: { uz: "Nega avval User Story, keyin kod?", ru: "Почему сначала User Story, потом код?" }, opts: [{ uz: "Chunki kod yozish qiyin", ru: "Потому что код писать трудно" }, { uz: "Kimga nima kerakligini bilish", ru: "Узнать, кому что нужно" }, { uz: "Mijoz shuni talab qiladi", ru: "Так требует заказчик" }, { uz: "Tartib farq qilmaydi", ru: "Порядок не важен" }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

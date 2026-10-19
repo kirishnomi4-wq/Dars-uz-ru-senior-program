@@ -21,6 +21,29 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // PM-STUDIA IDENTITET (P0 dan AYNAN)
 // ============================================================
+// F-1015-377: ma'nosiz yozuv tekshiruvi (qolip `manoliMatn` nusxasi - bu dars qolipsiz)
+const MN_HARF = /[a-z\u0430-\u044f\u0451\u0493\u049b\u04b3\u045e]/gi;
+const MN_UNLI = /[aeiou\u0430\u0435\u0451\u0438\u043e\u0443\u044b\u044d\u044e\u044f\u045e]/gi;
+const MN_QISQA = new Set(['html', 'css', 'npm', 'crm', 'mvp', 'pdf', 'sms', 'http', 'https', 'www', 'src', 'cmd', 'pwd', 'jsx', 'dns', 'ssl', 'cdn', 'sql', 'xml', 'png', 'jpg', 'svg', 'gps', 'mln', 'mlrd', 'kpi', 'nps', 'ltv', 'cac']);
+const manoliMatn = (t, yumshoq) => {
+  const s = String(t || '').trim();
+  const harf = (s.match(MN_HARF) || []).length;
+  const tozasi = s.replace(/[\s\u02bb\u02bc'`\u2018\u2019\-.,!?:;\u00ab\u00bb"()]/g, '');
+  if (harf < 3 || !tozasi.length || harf / tozasi.length < 0.5) return false;
+  if (/(.)\1{3,}/i.test(s)) return false;
+  if (!(s.match(MN_UNLI) || []).length) return false;
+  const sozlar = s.split(/\s+/);
+  if (!yumshoq) { // F-1015-392: «fast freak. afs sdfa dfs», «fasted saf s f», «qwe rty», «asd asd asd»
+    const toza = sozlar.map(w => w.replace(/[.,!?:;]+$/, ''));
+    if (toza.some(w => /^[a-z]{3,}$/.test(w) && !/[aeiouy]/.test(w) && !MN_QISQA.has(w))) return false;
+    const yakka = toza.filter(w => /^[b-df-hj-np-tv-xz]$/.test(w)).length;
+    if (yakka >= 2 && yakka / toza.length >= 0.25) return false;
+    if (/qwe|asdf|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|\u0439\u0446\u0443\u043a|\u0444\u044b\u0432\u0430|\u044f\u0447\u0441\u043c/i.test(s)) return false;
+    if (toza.length >= 3 && new Set(toza.map(w => w.toLowerCase())).size * 3 <= toza.length) return false;
+  }
+  return sozlar.every(w => { const h = (w.match(MN_HARF) || []).join(''); if (h.length < 5) return true; return ((h.match(MN_UNLI) || []).length / h.length) >= 0.2; });
+};
+
 const T = {
   bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
@@ -1145,7 +1168,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const savedRef = useRef(false);
   const idx = edit === null ? Math.min(yozilgan, KATAKLAR.length - 1) : edit;
   const cur = KATAKLAR[idx];
-  const uzun = draft.trim().length >= 10;
+  const uzun = draft.trim().length >= 10 && manoliMatn(draft);
   // 106d ikki tomonlama javob-qatorlari (§130: ✅ faqat CHINDAN tekshirilgan narsani aytadi)
   const sonBor = /\d/.test(draft);
   const bosh = cur.k === 'muammo' && uzun && qolganMatn(draft, tr(BOSH_SOZ)).length < 5;
@@ -1679,7 +1702,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const yakka = !live || live.mode === 'self';
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
-  const written = text.trim().length >= 8;
+  const written = text.trim().length >= 8 && manoliMatn(text);
   const [pairStage, setPairStage] = useState('idle');
   const [reflFocus, setReflFocus] = useState(false);
   const inputTurn = useTurnHint(pairStage === 'done' && !written && !reflFocus);
@@ -1942,18 +1965,18 @@ const QZ_BG_SHAPES = [
 // Ketma-ketlik: 0,3,2,1 · 1,0,2,3 · 0,2,1,3 — o'sib boradigan tsikl YO'Q.
 // §138-C: to'g'ri javoblar bitta qolip bilan ajralib turmaydi, uzunlik-narvoni yo'q.
 const QUIZ_BANK = [
-  { q: { uz: "Sinfdoshingizga loyiha g'oyangizni og'zaki aytdingiz. Nima xavfi bor?", ru: 'Вы устно рассказали однокласснику идею своего проекта. Чем это рискованно?' }, opts: [{ uz: "U g'oyani o'zicha tushunib, boshqa narsa qiladi", ru: 'Он поймёт идею по-своему и сделает другое' }, { uz: "U g'oyani eshitib, darrov yoqtirib qoladi", ru: 'Он услышит идею и сразу её полюбит' }, { uz: "U g'oyani eslab qolishga ko'p vaqt sarflaydi", ru: 'Он потратит много времени, чтобы запомнить идею' }, { uz: "U g'oyani qog'ozga yozib berishni so'raydi", ru: 'Он попросит записать идею на бумаге' }], correct: 0 },
-  { q: { uz: "Dasturchi «menga PRD bering» dedi. U nimani so'rayapti?", ru: 'Программист сказал: «дайте мне PRD». Что он просит?' }, opts: [{ uz: 'Ilovaning tayyor kodini', ru: 'Готовый код приложения' }, { uz: "Ishning narxi yozilgan qog'ozni", ru: 'Бумагу, где написана цена работы' }, { uz: 'Ilova ekranlarining rasmini', ru: 'Картинки экранов приложения' }, { uz: 'Nima qurilishi yozilgan hujjatni', ru: 'Документ, где написано, что будет построено' }], correct: 3 },
-  { q: { uz: '«Odam qaysi kuni yozilganini eslay olmaydi» — qaysi katakka tushadi?', ru: '«Человек не может вспомнить, на какой день записался» — в какую ячейку это попадает?' }, opts: [{ uz: 'Kim katagiga', ru: 'В ячейку «Кто»' }, { uz: 'Yechim katagiga', ru: 'В ячейку «Решение»' }, { uz: 'Muammo katagiga', ru: 'В ячейку «Проблема»' }, { uz: "O'lchov katagiga", ru: 'В ячейку «Измерение»' }], correct: 2 },
-  { q: { uz: "«Aynan kim qiynalyapti?» katagida qaysi qator to'g'ri yozilgan?", ru: 'Какая строка правильно заполняет ячейку «Кому именно мешает?»' }, opts: [{ uz: 'Ilovadan foydalanadigan hamma odam', ru: 'Все люди, которые пользуются приложением' }, { uz: "Ertalabki mashg'ulotga qatnaydiganlar", ru: 'Те, кто ходит на утренние занятия' }, { uz: "Ilovani to'lab beradigan tashkilot", ru: 'Организация, которая оплатит приложение' }, { uz: 'Kodni yozadigan dasturchilar guruhi', ru: 'Группа программистов, которые пишут код' }], correct: 1 },
-  { q: { uz: 'Yechim katagiga qaysi qator tushadi?', ru: 'Какая строка попадает в ячейку «Решение»?' }, opts: [{ uz: 'Zamonaviy va tez ishlaydigan ilova', ru: 'Современное и быстрое приложение' }, { uz: 'Qatnash kunlarini belgilaydigan sahifa', ru: 'Страница, где отмечают дни посещения' }, { uz: 'Ikki hafta ichida tugatiladigan ish', ru: 'Работа, которую закончат за две недели' }, { uz: 'JavaScript tilida yoziladigan kod', ru: 'Код, написанный на JavaScript' }], correct: 1 },
-  { q: { uz: "O'lchov katagi nima uchun kerak?", ru: 'Зачем нужна ячейка «Измерение»?' }, opts: [{ uz: "Ish natija berganini sanab ko'rsatadi", ru: 'Показывает в числах, что работа дала результат' }, { uz: 'Ilova narxini oldindan hisoblab beradi', ru: 'Заранее считает цену приложения' }, { uz: 'Dasturchilar sonini aniqlab beradi', ru: 'Определяет, сколько нужно программистов' }, { uz: 'Ish necha kun davom etishini aytadi', ru: 'Говорит, сколько дней продлится работа' }], correct: 0 },
-  { q: { uz: "O'lchov katagi to'ldirilmasa, nima yo'qoladi?", ru: 'Что теряется, если ячейку «Измерение» не заполнить?' }, opts: [{ uz: "Ishni boshlash imkoni yo'qoladi", ru: 'Пропадает возможность начать работу' }, { uz: 'Varaqning boshqa uch katagi', ru: 'Остальные три ячейки листа' }, { uz: 'Ish natija berdimi degan javob', ru: 'Ответ на вопрос, дала ли работа результат' }, { uz: "Dasturchiga to'lanadigan haq", ru: 'Оплата программисту' }], correct: 2 },
-  { q: { uz: 'Varaq to\'ldirilgandan keyin uch dasturchi nima qurdi?', ru: 'Что построили три программиста после того, как лист был заполнен?' }, opts: [{ uz: "Har biri o'zicha boshqa narsa qurdi", ru: 'Каждый построил по-своему что-то другое' }, { uz: 'Uchalasi ham ishni boshlay olmadi', ru: 'Никто из троих не смог начать работу' }, { uz: 'Ikkitasi qurdi, uchinchisi qura olmadi', ru: 'Двое построили, третий не смог' }, { uz: 'Uchalasi ham bir xil ekran qurdi', ru: 'Все трое построили одинаковый экран' }], correct: 3 },
-  { q: { uz: 'Geyts va Allen ishni qanday tartibda qildi?', ru: 'В каком порядке Гейтс и Аллен делали работу?' }, opts: [{ uz: 'Avval nima qurishini aytdi, keyin yozdi', ru: 'Сначала сказали, что построят, потом написали' }, { uz: 'Avval tilni yozdi, keyin murojaat qildi', ru: 'Сначала написали язык, потом обратились в компанию' }, { uz: 'Avval Altairni sotib oldi, keyin yozdi', ru: 'Сначала купили Altair, потом написали' }, { uz: "Avval sinovdan o'tkazdi, keyin va'da berdi", ru: 'Сначала проверили, потом пообещали' }], correct: 0 },
-  { q: { uz: 'Til hali yozilmagan payt ular nima qildi?', ru: 'Что они сделали, когда язык ещё не был написан?' }, opts: [{ uz: 'Altairni sotib olib, uyga olib keldi', ru: 'Купили Altair и принесли домой' }, { uz: 'Kompaniyaga tayyor tilni pochtada yubordi', ru: 'Отправили готовый язык в компанию по почте' }, { uz: "Kompaniyaga «bizda til bor» deb va'da berdi", ru: 'Пообещали компании: «у нас есть язык»' }, { uz: 'Jurnalga maqola yozib chiqardi', ru: 'Написали статью в журнал' }], correct: 2 },
-  { q: { uz: "Varaq qachon tayyor bo'ladi?", ru: 'Когда лист готов?' }, opts: [{ uz: 'Kamida ikkita katagi yozilganda', ru: 'Когда заполнены хотя бы две ячейки' }, { uz: 'Har katakda savolga aniq javob bo\'lganda', ru: 'Когда в каждой ячейке есть точный ответ на вопрос' }, { uz: 'Kod bilan birga topshirilganda', ru: 'Когда его сдают вместе с кодом' }, { uz: "Uzun gaplar bilan to'ldirilganda", ru: 'Когда он заполнен длинными фразами' }], correct: 1 },
-  { q: { uz: "Varaq to'ldirilmasa, qaror kimning qo'liga o'tadi?", ru: 'Если лист не заполнить, в чьи руки перейдёт решение?' }, opts: [{ uz: 'Ilovani ochgan odamning', ru: 'Того, кто откроет приложение' }, { uz: 'Basseyn murabbiysining', ru: 'Тренера бассейна' }, { uz: "Sinov o'tkazadigan odamning", ru: 'Того, кто проводит проверку' }, { uz: 'Kod yozadigan dasturchining', ru: 'Программиста, который пишет код' }], correct: 3 },
+  { q: { uz: "G'oya og'zaki aytilsa, nima xavfi bor?", ru: "Чем опасно рассказать идею устно?" }, opts: [{ uz: "Har kim o'zicha tushunadi", ru: "Каждый поймёт по-своему" }, { uz: "Hamma darrov yoqtirib qoladi", ru: "Всем сразу понравится" }, { uz: "G'oya juda tez tarqaladi", ru: "Идея быстро разойдётся" }, { uz: "Yozib berishni so'rashadi", ru: "Попросят записать" }], correct: 0 },
+  { q: { uz: "«Menga PRD bering» — dasturchi nimani so'rayapti?", ru: "«Дайте мне PRD» — что просит разработчик?" }, opts: [{ uz: "Tayyor kodni", ru: "Готовый код" }, { uz: "Narx qog'ozini", ru: "Бумагу с ценой" }, { uz: "Ekran rasmlarini", ru: "Картинки экранов" }, { uz: "Talablar hujjatini", ru: "Документ требований" }], correct: 3 },
+  { q: { uz: "«Guruh to'lib, odam bekorga qaytadi» — qaysi katak?", ru: "«Группа полна, человек уходит зря» — какая ячейка?" }, opts: [{ uz: "Kim", ru: "Кто" }, { uz: "Yechim", ru: "Решение" }, { uz: "Muammo", ru: "Проблема" }, { uz: "O'lchov", ru: "Измерение" }], correct: 2 },
+  { q: { uz: "«Kim» katagiga qaysi qator to'g'ri?", ru: "Какая строка подходит в ячейку «Кто»?" }, opts: [{ uz: "Hamma foydalanuvchilar", ru: "Все пользователи" }, { uz: "Ertalab suzishga keladiganlar", ru: "Кто ходит плавать по утрам" }, { uz: "Ilovaga pul to'laydiganlar", ru: "Кто платит за приложение" }, { uz: "Kod yozadigan dasturchilar", ru: "Разработчики, пишущие код" }], correct: 1 },
+  { q: { uz: "Yechim katagiga qaysi qator tushadi?", ru: "Какая строка идёт в ячейку «Решение»?" }, opts: [{ uz: "Zamonaviy va tez ilova", ru: "Современное быстрое приложение" }, { uz: "Bo'sh joy ko'rsatuvchi sahifa", ru: "Страница, показывающая места" }, { uz: "Ikki haftada bitadigan ish", ru: "Работа на две недели" }, { uz: "JavaScript'dagi kod", ru: "Код на JavaScript" }], correct: 1 },
+  { q: { uz: "O'lchov katagi nima uchun kerak?", ru: "Зачем нужна ячейка «Измерение»?" }, opts: [{ uz: "Natijani son bilan ko'rsatadi", ru: "Показывает результат числом" }, { uz: "Ilova narxini hisoblaydi", ru: "Считает цену приложения" }, { uz: "Dasturchilar sonini aytadi", ru: "Называет число разработчиков" }, { uz: "Ish muddatini aytadi", ru: "Называет срок работы" }], correct: 0 },
+  { q: { uz: "O'lchov katagi bo'sh qolsa, nima yo'qoladi?", ru: "Что теряется, если ячейка «Измерение» пуста?" }, opts: [{ uz: "Ishni boshlash imkoni", ru: "Возможность начать работу" }, { uz: "Qolgan uch katak", ru: "Остальные три ячейки" }, { uz: "Natija bo'ldimi degan javob", ru: "Ответ, был ли результат" }, { uz: "Dasturchining haqi", ru: "Оплата разработчика" }], correct: 2 },
+  { q: { uz: "Varaq to'ldirilgach uch dasturchi nima qurdi?", ru: "Что построили три разработчика по заполненному листу?" }, opts: [{ uz: "Har biri boshqa narsa", ru: "Каждый — своё" }, { uz: "Hech biri boshlay olmadi", ru: "Никто не смог начать" }, { uz: "Ikkitasi qurdi, biri yo'q", ru: "Двое построили, один нет" }, { uz: "Uchalasi bir xil ekran", ru: "Все трое — одинаковый экран" }], correct: 3 },
+  { q: { uz: "Geyts va Allen ishni qanday tartibda qildi?", ru: "В каком порядке работали Гейтс и Аллен?" }, opts: [{ uz: "Avval aytdi, keyin yozdi", ru: "Сначала сказали, потом написали" }, { uz: "Avval yozdi, keyin aytdi", ru: "Сначала написали, потом сказали" }, { uz: "Avval sinadi, keyin aytdi", ru: "Сначала проверили, потом сказали" }, { uz: "Uzoq sinab, keyin aytdi", ru: "Долго проверяли, потом сказали" }], correct: 0 },
+  { q: { uz: "Til hali yozilmagan payt ular nima qildi?", ru: "Что они сделали, когда язык ещё не был написан?" }, opts: [{ uz: "Altairni sotib oldi", ru: "Купили Altair" }, { uz: "Tayyor tilni yubordi", ru: "Отправили готовый язык" }, { uz: "«Bizda til bor» dedi", ru: "Сказали «у нас есть язык»" }, { uz: "Jurnalga maqola yozdi", ru: "Написали статью в журнал" }], correct: 2 },
+  { q: { uz: "Varaq qachon tayyor bo'ladi?", ru: "Когда лист готов?" }, opts: [{ uz: "Ikkita katagi yozilganda", ru: "Когда заполнены две ячейки" }, { uz: "Har katak savolga javob bersa", ru: "Когда каждая ячейка отвечает" }, { uz: "Kod bilan topshirilganda", ru: "Когда сдан вместе с кодом" }, { uz: "Uzun gaplar yozilganda", ru: "Когда написаны длинные фразы" }], correct: 1 },
+  { q: { uz: "Varaq bo'sh qolsa, kim taxmin qiladi?", ru: "Если лист пуст, кто будет угадывать?" }, opts: [{ uz: "Ilovani ochgan odam", ru: "Тот, кто открыл приложение" }, { uz: "Basseyn murabbiysi", ru: "Тренер бассейна" }, { uz: "Sinov o'tkazuvchi", ru: "Тестировщик" }, { uz: "Kod yozadigan dasturchi", ru: "Разработчик, пишущий код" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -3025,7 +3048,7 @@ const CSS_LESSON = `
   .fc-fly.out-again { animation: fc-out-again 0.42s ease forwards; }
   @keyframes fc-out-knew { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(70%) rotate(5deg); opacity: 0; } }
   @keyframes fc-out-again { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(-70%) rotate(-5deg); opacity: 0; } }
-  .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+  .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
   .fc-card.flip { transform: rotateY(180deg); }
   .fc-card:not(.flip):hover { transform: translateY(-3px); }
   .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

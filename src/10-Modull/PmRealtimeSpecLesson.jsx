@@ -100,6 +100,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -177,8 +202,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -863,8 +888,7 @@ const AgentQuti = ({ matn, darhol }) => {
     <div className="rt-agent">
       <div className="rt-agent-bar"><i /><i /><i /><span>{tr({ uz: 'Agentga talab', ru: 'Требование агенту' })}</span></div>
       <div className="rt-agent-tana">
-        <span className="rt-agent-matn">{yozuv}<span className="rt-kursor" aria-hidden="true" /></span>
-        {matn && yozuv.length >= matn.length && <span className="rt-agent-uyalar fade-step">{[0, 1, 2].map(i => <span key={i} className="rt-uya">?</span>)}</span>}
+        <span className="rt-agent-matn">{yozuv}{matn && yozuv.length < matn.length && <span className="rt-kursor" aria-hidden="true" />}</span>
       </div>
     </div>
   );
@@ -881,7 +905,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           sarlavha={tr({ uz: <>Ekran o'zi yangilanishi uchun <A>nimani yozasiz?</A></>, ru: <>Что написать, чтобы <A>экран обновлялся сам?</A></> })}
           mentor={<Mentor>{tr({ uz: "2-darsda ilovangiz Backend'ga ulandi, sxemangiz ham tayyor — agentga nima yozishingizni tanlang.", ru: 'На 2-м уроке ваше приложение подключилось к Backend, схема тоже готова — выберите, что написать агенту.' })}</Mentor>}
           maket={<div className="rt-s0">
-            <Sahna ixcham t1={{ ekran: 'oyin', son: 8, qoshilYoq: true }} t2={{ ekran: 'oyin', son: 8, qoshilYoq: true }} be={{ db: 8 }} c1="ochiq" c2="yoq" />
+            <Sahna ixcham t1={{ ekran: 'oyin', son: 8, qoshilYoq: true }} t2={{ ekran: 'oyin', son: 8, qoshilYoq: true }} />
             <AgentQuti matn={op ? tr(op.label) : ''} darhol={avval} />
           </div>}
           variantlar={HOOK_OPTS.map(o => ({ id: o.id, t: tr(o.label) }))} tanlov={picked} onTanla={pick}
@@ -896,10 +920,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda kulrang yorliq + telefonda «8 / 10» → «9 / 10» bir marta; bo'sh varaq olindi — u 2-ekranda chiqadi, 208/0 d) =====
 const REJA = [
-  { t: { uz: "Mentor talabini bo'lim-bo'lim ko'rasiz", ru: "Разберёте требование Ментора по разделам" }, teg: { uz: 'talab', ru: 'требование' } },
-  { t: { uz: "Kam uchraydigan vaziyatlarni ko'rasiz", ru: "Разберёте редкие ситуации" }, teg: { uz: 'chekka holatlar', ru: 'крайние случаи' } },
-  { t: { uz: "O'z mahsulotingiz uchun talab yozasiz", ru: 'Напишете требование для своего продукта' }, teg: { uz: 'real vaqt talabi', ru: "требование к реальному времени" } },
-  { t: { uz: 'Agent quradi, siz telefonda tekshirasiz', ru: 'Агент строит, вы проверяете на телефоне' }, teg: { uz: 'tekshirish', ru: 'проверка' } }
+  { t: { uz: "Mentor talabini bo'lim-bo'lim ko'ring", ru: "Разберите требование Ментора по разделам" }, teg: { uz: 'talab', ru: 'требование' } },
+  { t: { uz: "Kam uchraydigan vaziyatlarni ko'ring", ru: "Разберите редкие ситуации" }, teg: { uz: 'chekka holatlar', ru: 'крайние случаи' } },
+  { t: { uz: "O'z mahsulotingiz uchun talab yozing", ru: 'Напишите требование для своего продукта' }, teg: { uz: 'real vaqt talabi', ru: "требование к реальному времени" } },
+  { t: { uz: 'Agent quradi, siz telefonda tekshiring', ru: 'Агент строит, а вы проверьте на телефоне' }, teg: { uz: 'tekshirish', ru: 'проверка' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const [f, setF] = useState(0);
@@ -926,6 +950,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 // ===== SCREEN 2 — MENTOR TALABI (QTushuncha markaziy: bashorat → «Keyingi bo'lim» ×3 → sahna va varaq o'zgaradi → nom → yashil xulosa; tugagach varaq fokusga, DE-199) =====
 const S2_TAXMIN = [{ k: 'hech', t: { uz: 'Hech narsa', ru: 'Ничего' } }, { k: 'bir', t: { uz: 'Bir-ikkitasi', ru: "Одна-две вещи" } }, { k: 'kop', t: { uz: "Ko'p narsa", ru: 'Многое' } }];
 const S2_SAVOL = { uz: "Agentga faqat «ro'yxat o'zi yangilansin» deb yozilsa, nechta narsa uning tanloviga qoladi?", ru: "Если агенту написать только «пусть список обновляется сам», сколько вещей останется на его выбор?" };
+const S2_KEYIN = { uz: 'Bu bo\'lim keyingi ekranda yoziladi.', ru: 'Этот раздел пишется на следующем экране.' };
 const navYorliq = (taxmin, q, jami, qadamY, done) => (done ? { uz: 'Davom etish', ru: 'Продолжить' }
   : !taxmin ? { uz: 'Avval belgilang', ru: 'Сначала отметьте' }
     : { uz: `${qadamY.uz} (${q}/${jami})`, ru: `${qadamY.ru} (${q}/${jami})` });
@@ -966,10 +991,16 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const bolimlar = [
     q >= 1 ? { n: 1, nom: tr(TS.bolim[0]), holat: sh.yangiB === 0 ? 'yangi' : 'bor', qatorlar: [{ t: tx(S2_QATOR) }], izoh: tr({ uz: '+ yana 4 qator — 2-darsdagi sxemadan', ru: '+ ещё 4 строки — из схемы 2-го урока' }) } : { n: 1, holat: 'joy', joriy: !!taxmin },
     q >= 2 || sh.hol > 0 ? { n: 2, nom: tr(TS.bolim[1]), qatorlar: MH.holatlar.slice(0, sh.hol).map((h, i) => ({ t: tr(h.t), on: sh.holOn === i })) } : { n: 2, holat: 'joy', joriy: q === 1 },
-    q >= 3 ? { n: 3, nom: tr(TS.bolim[2]), holat: sh.yangiB === 2 ? 'yangi' : 'bor', bosh: 3 } : { n: 3, holat: 'joy', joriy: q === 2 }
+    q >= 3 ? { n: 3, nom: tr(TS.bolim[2]), holat: sh.yangiB === 2 ? 'yangi' : 'bor', izoh: tr(S2_KEYIN) } : { n: 3, holat: 'joy', joriy: q === 2 }
+  ];
+  // F-1015-352: yakunda varaq ixcham — har bo'lim bitta qator (213.14 «yakunda faqat natija»)
+  const bolimlarIx = [
+    { n: 1, nom: tr(TS.bolim[0]), qatorlar: [{ t: tr({ uz: 'oyin-ozgardi — 5 qator, 2-darsdagi sxemadan', ru: 'oyin-ozgardi — 5 строк, из схемы 2-го урока' }) }] },
+    { n: 2, nom: tr(TS.bolim[1]), qatorlar: [{ t: tr({ uz: 'Ulangan · Ulanmoqda… · Ulanmagan', ru: 'Подключено · Подключается… · Не подключено' }) }] },
+    { n: 3, nom: tr(TS.bolim[2]), izoh: tr(S2_KEYIN) }
   ];
   const varaq = (
-    <TalabVaraq kulrang={!done} qayerda={tx(MH.qayerda)} buzilmasin={tr(MH.buzilmasin)} bolimlar={bolimlar}>
+    <TalabVaraq kulrang={!done} qayerda={tx(MH.qayerda)} buzilmasin={tr(MH.buzilmasin)} bolimlar={tugadi ? bolimlarIx : bolimlar} className={tugadi ? 'ix' : undefined}>
       {!tugadi && taxmin && !band && !done && <div className="rt-v-tug fade-step"><QTugma className={halqa(true)} onClick={keyingi}>{tr({ uz: "Keyingi bo'lim", ru: 'Следующий раздел' })}</QTugma></div>}{/* F-1015-164: bashoratdan keyin, har qadam tugagach chiqadi */}
     </TalabVaraq>
   );
@@ -980,12 +1011,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · talab', ru: 'Понятие · требование' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 3, { uz: "Keyingi bo'lim", ru: 'Следующий раздел' }, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Mentor talabida real vaqt uchun <A>nima yozilgan?</A></>, ru: <>Что в требовании Ментора <A>для реального времени?</A></> })}
+        sarlavha={tr({ uz: <>Real vaqt uchun talabning uch bo'limi — <A>real vaqt talabi</A>.</>, ru: <>Три раздела требования для реального времени — <A>требование к реальному времени</A>.</> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={S2_SAVOL} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={!taxmin ? null : <div className="rt-viz rt-kir">
           {tugadi ? varaq : <TalabSahna sahna={{ t1: { ekran: 'oyinlar', belgi: sh.belgi, son: sh.son, sonYangi: sh.son === 9 && !avval, tort: sh.tort }, be: { db: sh.db, dbYangi: sh.dbYangi }, c1: sh.c1, k1: sh.k1 }} varaq={varaq} />}
-          {done && <p className="rt-nom fade-step">{tr({ uz: <>Talabning real vaqt funksiyasi uchun uch bo'limi — <b>real vaqt talabi</b>.</>, ru: <>Три раздела требования для функции реального времени — <b>требование к реальному времени</b>.</> })}</p>}
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'kop'} haqiqat={{ uz: "Mentor talabida ko'p narsa yozilgan — yozilmasa, ular agentning tanloviga qolardi", ru: "в требовании Ментора написано многое — иначе всё это осталось бы на выбор агента" }} />} matn={tr({ uz: "Bu darsda real vaqt talabi uch bo'limdan iborat va «Nima qilsin» qatorini aniq qiladi.", ru: "В этом уроке требование к реальному времени состоит из трёх разделов и уточняет строку «Что сделать»." })} />}
       >
@@ -1098,12 +1128,12 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · vaziyat', ru: 'Понятие · ситуация' })} screen={screen} scrollSignal={vq} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, vq, 3, { uz: "Vaziyatni ko'ring", ru: 'Посмотрите ситуацию' }, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Ekran qachon kutilganidek <A>yangilanmaydi?</A></>, ru: <>Когда экран <A>не обновляется</A>, как ожидалось?</> })}
+        sarlavha={tr({ uz: <>Kam uchraydigan, lekin bo'ladigan vaziyat — <A>chekka holat</A>.</>, ru: <>Редкая, но реальная ситуация — <A>крайний случай</A>.</> })}
         mentor={<Mentor>{tr(mentor)}</Mentor>}
         bashorat={!tugadi && <Bashorat savol={S4_SAVOL} variantlar={S4_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={!taxmin ? null : <div className="rt-viz rt-kir">
           {tugadi ? bolimV : <TalabSahna yorliq={{ uz: "Shunday bo'lishi mumkin", ru: 'Так может быть' }} sahna={{ t1, t2, be: { db: sh.db, dbYangi: sh.dbYangi }, c1: sh.c1, c2: sh.c2, k1: sh.k1, k2: sh.k2, y1: sh.y1, y1ok: sh.y1ok }} varaq={bolimV} />}
-          {done && <p className="rt-nom fade-step">{tr({ uz: <>Kam uchraydigan, lekin bo'ladigan vaziyat — <b>chekka holat</b>: talabda unda nima bo'lishi yoziladi.</>, ru: <>Редкая, но реальная ситуация — <b>крайний случай</b>: в требовании пишут, что в ней должно быть.</> })}</p>}
+          {done && <p className="rt-nom fade-step">{tr({ uz: <>Talabda <b>chekka holatda</b> nima bo'lishi yoziladi.</>, ru: <>В требовании пишут, что должно быть <b>в крайнем случае</b>.</> })}</p>}
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'tort'} haqYorliq={{ uz: 'bu misolda', ru: 'в этом примере' }} haqiqat={{ uz: 'pastga tortganda — talabda bu vaziyat hali yozilmagan edi', ru: "когда потянете вниз — в требовании эта ситуация ещё не была записана" }} />}
           matn={tr({ uz: "Bu misolda uchta chekka holat yozildi: har qatorda vaziyat va unda nima bo'lishi kerakligi bor.", ru: 'В этом примере записаны три крайних случая: в каждой строке — ситуация и что в ней должно быть.' })}
@@ -1322,7 +1352,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     ]} />
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} scrollSignal={bolak * 10 + qatorlar.length} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!saqlandi && !isMentor} label={saqlandi || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Bo'limlarni to'ldiring", ru: 'Заполните разделы' })} (${Math.min(bolak, 3)}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} scrollSignal={bolak * 10 + qatorlar.length} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!saqlandi && !isMentor} label={saqlandi || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Bo'limlarni to'ldiring", ru: 'Заполните разделы' })}`} onClick={onNext} /></>}>
       <QMustaqil
         sarlavha={tr({ uz: <>Mahsulotingiz uchun <A>real vaqt talabini</A> yozing.</>, ru: <>Напишите своё <A>требование к реальному времени.</A></> })}
         mentor={<Mentor>{sx || isMentor ? tr({ uz: "Bo'limlarni birma-bir to'ldiring — hodisalar 2-darsdagi sxemangizdan olindi.", ru: 'Заполните разделы по одному — события взяты из вашей схемы 2-го урока.' }) : tr({ uz: "Bo'limlarni birma-bir to'ldiring — sxemangiz saqlanmagan, hodisa qatorlarini o'zingiz yozasiz.", ru: 'Заполните разделы по одному — ваша схема не сохранилась, строки событий напишете сами.' })}</Mentor>}
@@ -1346,9 +1376,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 8 — YAKUNIY SAVOL (QuestionScreen; ✔ B, INLINE_KEYS.s8 = 1; scope final; savol ustida kichik talab varag'i — uch bo'lim) =====
 const Screen8 = (props) => (
   <QuestionScreen {...props} scope="final" eyebrow={tr({ uz: 'Yakuniy savol', ru: 'Итоговый вопрос' })}
-    questionText="Agent «talabdagi hammasi tayyor» dedi. Bugungi tekshiruvda nima ko'riladi?"
+    questionText="Agent «hammasi tayyor» dedi. Bugun telefonda nimani o'zingiz ko'rdingiz?"
     question={<><MiniVaraq><span className="rt-mini-b">{[0, 1].map(i => <span key={i}><i>{i + 1}</i>{tr(TS.bolim[i])}</span>)}<span><i>3</i>{tr(TS.chekkaNom)} <em>{tr({ uz: '3 qator', ru: '3 строки' })}</em></span></span></MiniVaraq>
-      <h2 className="title h-ask">{tr({ uz: <>Agent «talabdagi hammasi tayyor» dedi. Bugungi tekshiruvda <A>nima ko'riladi?</A></>, ru: <>Агент сказал: «всё из требования готово». <A>Что видно</A> на сегодняшней проверке?</> })}</h2></>}
+      <h2 className="title h-ask">{tr({ uz: <>Agent «hammasi tayyor» dedi. Bugun telefonda <A>nimani o'zingiz ko'rdingiz?</A></>, ru: <>Агент сказал «всё готово». <A>Что вы сами увидели</A> сегодня на телефоне?</> })}</h2></>}
     options={[
       { uz: 'Internet uzilib qaytgach son yangilanganini', ru: 'Что число обновилось после обрыва интернета' },
       { uz: "Tekshiruv so'rovidan keyin son o'zgarganini", ru: 'Что число изменилось после проверочного запроса' },
@@ -1450,18 +1480,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, ✔ o'rni: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (MD aynan)
 const QUIZ_BANK = [
-  { q: { uz: 'Mentor misolida Backend hodisani qachon yuboradi?', ru: 'Когда в примере Ментора Backend отправляет событие?' }, opts: [{ uz: "Database'dagi o'zgarish tugagach", ru: 'Когда изменение в Database закончено' }, { uz: "Database'dagi o'zgarishdan oldin", ru: 'До изменения в Database' }, { uz: "Ilova ochilib, so'rov kelganda", ru: 'Когда приложение открылось и пришёл запрос' }, { uz: "O'yinchi ro'yxatni tortganda", ru: 'Когда игрок потянул список' }], correct: 0 },
-  { q: { uz: "Mentor misolida «Ulanmoqda…» paytida ro'yxat nima bo'ladi?", ru: "Что происходит со списком в примере Ментора во время «Подключается…»?" }, opts: [{ uz: "Ekrandan o'chadi, bo'sh joy qoladi", ru: 'Исчезает с экрана, остаётся пустое место' }, { uz: 'Ekranda qoladi, eskirishi mumkin', ru: 'Остаётся на экране, может устареть' }, { uz: "O'zi har soniyada yangilanib turadi", ru: 'Сам обновляется каждую секунду' }, { uz: "O'rnida xato oynasi chiqib turadi", ru: 'Вместо него висит окно ошибки' }], correct: 1 },
-  { q: { uz: "Belgi «Ulanmagan». Mentor misolida ro'yxatni qanday yangilaysiz?", ru: "Значок «Не подключено». Как обновить список в примере Ментора?" }, opts: [{ uz: "Ilovani o'chirib qayta o'rnatasiz", ru: 'Удалите и заново установите приложение' }, { uz: "Backend'ni qayta ishga tushirasiz", ru: 'Перезапустите Backend' }, { uz: 'Ekranni pastga tortib yangilaysiz', ru: 'Обновите, потянув экран вниз' }, { uz: "Database'da sonni o'zgartirasiz", ru: 'Измените число в Database' }], correct: 2 },
-  { q: { uz: 'Qaysi biri chekka holat?', ru: 'Что из этого — крайний случай?' }, opts: [{ uz: "O'yinchi «Qo'shilaman» tugmasini bosdi", ru: "Игрок нажал кнопку «Присоединяюсь»" }, { uz: "Tashkilotchi yangi o'yin e'lon qildi", ru: 'Организатор объявил новую игру' }, { uz: "O'yinchi o'yin kuni «Kelaman» ni bosdi", ru: "Игрок в день игры нажал «Kelaman» («Приду»)" }, { uz: "Qo'shilish paytida internet uzildi", ru: 'Во время присоединения пропал интернет' }], correct: 3 },
-  { q: { uz: 'Talabdagi chekka holat qatori nimani aytadi?', ru: 'Что говорит строка крайнего случая в требовании?' }, opts: [{ uz: "Vaziyatni va unda nima bo'lishini", ru: 'Ситуацию и что в ней должно быть' }, { uz: 'Vaziyatni va uni kim yaratganini', ru: 'Ситуацию и кто её создал' }, { uz: 'Vaziyatni va qaysi faylda turishini', ru: 'Ситуацию и в каком файле она' }, { uz: "Vaziyatni va necha marta bo'lganini", ru: 'Ситуацию и сколько раз она была' }], correct: 0 },
-  { q: { uz: "Ulanish yo'q paytda o'yinchi qo'shildi. Bu misolda hodisa keyin keladimi?", ru: 'Игрок присоединился, когда соединения не было. В этом примере событие придёт потом?' }, opts: [{ uz: "Ha, ulanish qaytgach o'zi keladi", ru: 'Да, придёт само, когда соединение вернётся' }, { uz: "Yo'q, qayta ulanganda kelmaydi", ru: 'Нет, при переподключении не придёт' }, { uz: 'Ha, Backend uni saqlab turadi', ru: 'Да, Backend его хранит' }, { uz: "Yo'q, uni ikkinchi telefon oladi", ru: 'Нет, его получит второй телефон' }], correct: 1 },
-  { q: { uz: "Mentor misolida ilova fondan qaytganda nima ko'rinishi kerak?", ru: 'Что должно быть видно в примере Ментора, когда приложение вернулось из фона?' }, opts: [{ uz: "Oxirgi ko'rilgan eski son", ru: 'Последнее увиденное старое число' }, { uz: "Bo'sh ro'yxat, kutish yozuvi", ru: 'Пустой список, надпись ожидания' }, { uz: "O'yinlarning yangi holati", ru: 'Новое состояние игр' }, { uz: "Ulanish belgisi, ro'yxatsiz", ru: 'Значок соединения, без списка' }], correct: 2 },
-  { q: { uz: "Mobil trekda tekshiruv so'rovini kim yuboradi?", ru: 'Кто в мобильном треке отправляет проверочный запрос?' }, opts: [{ uz: "Notanish odam, o'z telefonidan", ru: 'Незнакомый человек, со своего телефона' }, { uz: "Tashkilotchi, o'z akkauntidan", ru: 'Организатор, со своего аккаунта' }, { uz: "Ilovaning o'zi, har daqiqada", ru: 'Само приложение, каждую минуту' }, { uz: 'Agent, tekshiruv akkauntidan', ru: 'Агент, с проверочного аккаунта' }], correct: 3 },
-  { q: { uz: "Tekshiruvdan keyin agent yaratgan yozuvlar qanday o'chiriladi?", ru: 'Как после проверки удаляют записи, созданные агентом?' }, opts: [{ uz: "Faqat agent aytgan id lar bo'yicha", ru: 'Только по id, названным агентом' }, { uz: 'Jadvaldagi hamma yozuvlar bilan birga', ru: 'Вместе со всеми записями таблицы' }, { uz: "Ilova qayta ishga tushganda o'zi", ru: 'Сами, когда приложение перезапустится' }, { uz: 'Oxirgi o\'nta yozuv bilan birdaniga', ru: 'Сразу с последними десятью записями' }], correct: 0 },
-  { q: { uz: "Real vaqt talabi PRD'dan farqli ravishda nimani aytadi?", ru: "Что, в отличие от PRD, говорит требование к реальному времени?" }, opts: [{ uz: 'Mahsulot aynan kim uchun qurilishini', ru: 'Для кого именно строится продукт' }, { uz: "O'zgarish ekranda qanday ko'rinishini", ru: 'Как изменение выглядит на экране' }, { uz: 'Bosh raqam qanday va qachon sanalishini', ru: 'Как и когда считается главное число' }, { uz: 'Mahsulot qaysi muammoni hal qilishini', ru: 'Какую проблему решает продукт' }], correct: 1 },
-  { q: { uz: "Bitta qo'shilish ekranni ikki marta yangiladi. Talabning qaysi qismi bu haqda?", ru: 'Одно присоединение обновило экран дважды. Какая часть требования об этом?' }, opts: [{ uz: "Hodisalar bo'limidagi qator", ru: 'Строка в разделе «События»' }, { uz: 'Ulanish holatlari qatori', ru: 'Строка состояний соединения' }, { uz: 'Chekka holatlardagi qator', ru: 'Строка в крайних случаях' }, { uz: '«Nima buzilmasin» qatori', ru: 'Строка «Что не сломать»' }], correct: 2 },
-  { q: { uz: 'Web-trekda belgi «Ulanmagan». Ro\'yxat nima bilan yangilanadi?', ru: "В веб-треке значок «Не подключено». Чем обновить список?" }, opts: [{ uz: 'Sahifani yopib qo\'yish bilan', ru: 'Закрыв страницу' }, { uz: 'Agentga talab yozish bilan', ru: 'Написав требование агенту' }, { uz: "Backend'ni o'chirish bilan", ru: 'Выключив Backend' }, { uz: '«Yangilash» tugmasi bilan', ru: 'Кнопкой «Yangilash»' }], correct: 3 },
+  { q: { uz: "Backend hodisani qachon yuboradi?", ru: "Когда Backend отправляет событие?" }, opts: [{ uz: "Database'ga yozib bo'lgach", ru: "После записи в Database" }, { uz: "Database'ga yozishdan oldin", ru: "До записи в Database" }, { uz: "Ilova so'rov yuborganda", ru: "Когда приложение шлёт запрос" }, { uz: "Ro'yxat tortilganda", ru: "Когда тянут список" }], correct: 0 },
+  { q: { uz: "«Ulanmoqda…» paytida ro'yxat nima bo'ladi?", ru: "Что со списком во время «Подключение…»?" }, opts: [{ uz: "Ekrandan o'chib ketadi", ru: "Исчезает с экрана" }, { uz: "Ekranda eski holicha qoladi", ru: "Остаётся на экране, как был" }, { uz: "Har soniyada yangilanadi", ru: "Обновляется каждую секунду" }, { uz: "Xato oynasiga almashadi", ru: "Сменяется окном ошибки" }], correct: 1 },
+  { q: { uz: "Belgi «Ulanmagan». Ro'yxatni qanday yangilaysiz?", ru: "Значок «Не подключено». Как обновите список?" }, opts: [{ uz: "Ilovani qayta o'rnatib", ru: "Переустановив приложение" }, { uz: "Backend'ni qayta yoqib", ru: "Перезапустив Backend" }, { uz: "Ekranni pastga tortib", ru: "Потянув экран вниз" }, { uz: "Database'da o'zgartirib", ru: "Изменив в Database" }], correct: 2 },
+  { q: { uz: "Qaysi biri chekka holat?", ru: "Что из этого — крайний случай?" }, opts: [{ uz: "«Qo'shilaman» bosildi", ru: "Нажали «Присоединиться»" }, { uz: "Yangi o'yin e'lon qilindi", ru: "Объявлена новая игра" }, { uz: "O'yin kuni «Kelaman» bosildi", ru: "В день игры нажали «Приду»" }, { uz: "Qo'shilishda internet uzildi", ru: "При записи пропал интернет" }], correct: 3 },
+  { q: { uz: "Chekka holat qatorida vaziyatdan tashqari nima yoziladi?", ru: "Что, кроме ситуации, пишут в строке крайнего случая?" }, opts: [{ uz: "Unda nima bo'lishi", ru: "Что в ней должно быть" }, { uz: "Uni kim yaratgani", ru: "Кто её создал" }, { uz: "Qaysi faylda turishi", ru: "В каком файле она лежит" }, { uz: "Necha marta bo'lgani", ru: "Сколько раз она была" }], correct: 0 },
+  { q: { uz: "Uzilish paytida kimdir qo'shildi. Hodisa keyin keladimi?", ru: "Во время обрыва кто-то записался. Событие придёт потом?" }, opts: [{ uz: "Ha, ulanish qaytgach", ru: "Да, когда связь вернётся" }, { uz: "Yo'q, umuman kelmaydi", ru: "Нет, вообще не придёт" }, { uz: "Ha, Backend saqlaydi", ru: "Да, Backend его хранит" }, { uz: "Yo'q, boshqa telefonga", ru: "Нет, на другой телефон" }], correct: 1 },
+  { q: { uz: "Ilova fondan qaytganda nima ko'rinishi kerak?", ru: "Что должно быть видно, когда приложение вернулось из фона?" }, opts: [{ uz: "Oxirgi ko'rilgan eski son", ru: "Последнее увиденное старое число" }, { uz: "Bo'sh ro'yxat va kutish", ru: "Пустой список и ожидание" }, { uz: "O'yinlarning yangi holati", ru: "Новое состояние игр" }, { uz: "Faqat ulanish belgisi", ru: "Только значок соединения" }], correct: 2 },
+  { q: { uz: "Mobil trekda tekshiruv so'rovini kim yuboradi?", ru: "Кто в мобильном треке отправляет проверочный запрос?" }, opts: [{ uz: "Notanish o'yinchi", ru: "Незнакомый игрок" }, { uz: "Tashkilotchi", ru: "Организатор" }, { uz: "Ilovaning o'zi", ru: "Само приложение" }, { uz: "Agentning o'zi", ru: "Сам агент" }], correct: 3 },
+  { q: { uz: "Agent yaratgan tekshiruv yozuvlarini qanday o'chirasiz?", ru: "Как удалите проверочные записи, созданные агентом?" }, opts: [{ uz: "U aytgan id lar bo'yicha", ru: "По id, которые он назвал" }, { uz: "Jadvalni tozalab", ru: "Очистив таблицу" }, { uz: "Ilovani qayta yoqib", ru: "Перезапустив приложение" }, { uz: "Oxirgi o'ntasini o'chirib", ru: "Удалив последние десять" }], correct: 0 },
+  { q: { uz: "Real vaqt talabi PRD'dan farqli nimani aytadi?", ru: "Что, в отличие от PRD, говорит требование реального времени?" }, opts: [{ uz: "Mahsulot kim uchun ekani", ru: "Для кого продукт" }, { uz: "O'zgarish ekranda ko'rinishi", ru: "Как изменение видно на экране" }, { uz: "Bosh raqam sanog'i", ru: "Подсчёт главной цифры" }, { uz: "Qaysi muammoni yechishi", ru: "Какую проблему решает" }], correct: 1 },
+  { q: { uz: "Qayta ulangach ekran bir marta yangilansin. Qaysi bo'lim?", ru: "После переподключения экран обновится один раз. Какой раздел?" }, opts: [{ uz: "Hodisalar", ru: "События" }, { uz: "Ulanish holatlari", ru: "Состояния соединения" }, { uz: "Chekka holatlar", ru: "Крайние случаи" }, { uz: "Nima buzilmasin", ru: "Что не должно сломаться" }], correct: 2 },
+  { q: { uz: "Web-trekda «Ulanmagan». Ro'yxat nima bilan yangilanadi?", ru: "В веб-треке «Не подключено». Чем обновить список?" }, opts: [{ uz: "Sahifani yopib-ochib", ru: "Закрыв и открыв страницу" }, { uz: "Agentga talab yozib", ru: "Написав агенту требование" }, { uz: "Backend'ni qayta yoqib", ru: "Перезапустив Backend" }, { uz: "«Yangilash»ni bosib", ru: "Нажав «Обновить»" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2091,7 +2121,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi bo'lak — «${stepN + 1} · ${steps[stepN].h.uz}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующая часть — «${stepN + 1} · ${steps[stepN].h.ru}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
-      <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
+      <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{ustida}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="rt-band">{tx(b)}</span>)}{c.oldin}{c.prompt && <RtPrompt satrlar={c.prompt} namuna={c.namuna} toldir={c.toldir} tahrir={c.tahrir} onNusxa={c.onNusxa} />}{c.ichi}</>,
@@ -2632,7 +2662,8 @@ export default function PmRealtimeSpecLesson({ lang: langProp, onFinished, liveT
         /* Backend tuguni */
         .rt-be-ust { display: flex; flex-direction: column; align-items: center; gap: 8px; }
         .rt-sahna.yot .rt-be-joy { height: 272px; display: flex; align-items: center; justify-content: center; }
-        .rt-backend { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 120px; padding: 12px 14px; border-radius: 16px; background: ${T.ink}; color: ${T.paper}; box-shadow: 0 14px 28px -16px rgba(${T.shadowBase},0.6); }
+        .rt-backend { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 120px; padding: 12px 14px; border-radius: 16px; background: ${T.ink}; color: ${T.paper}; box-shadow: none; }
+        .rt-backend::before { content: ''; width: 18px; height: 14px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 14' fill='none' stroke='white' stroke-opacity='0.8' stroke-width='1.4'%3E%3Crect x='1' y='1' width='16' height='5' rx='1.5'/%3E%3Crect x='1' y='8' width='16' height='5' rx='1.5'/%3E%3Ccircle cx='4.2' cy='3.5' r='0.7' fill='white'/%3E%3Ccircle cx='4.2' cy='10.5' r='0.7' fill='white'/%3E%3C/svg%3E") center / contain no-repeat; } /* F-1015-350: server belgisi, soyasiz — tugmaga o'xshamasin */
         .rt-be-nom { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; }
         .rt-db { font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 2px 9px; border-radius: 7px; background: ${fon(T.paper, 0.12)}; }
         .rt-db b { color: ${T.paper}; }
@@ -2697,7 +2728,7 @@ export default function PmRealtimeSpecLesson({ lang: langProp, onFinished, liveT
         .rt-v-qator.kul { opacity: 0.55; }
         .rt-v-kul { font-style: normal; font-size: 12px; font-weight: 700; color: ${T.ink2}; background: ${fon(T.ink, 0.06)}; border-radius: 999px; padding: 1px 8px; }
         .rt-v-nima { display: flex; flex-direction: column; gap: 6px; }
-        .rt-vb { display: flex; flex-direction: column; gap: 4px; padding: 7px 10px; border-radius: 10px; border: 1px solid ${T.line}; background: ${T.bg}; animation: rt-kirdi 0.45s ease-out both; }
+        .rt-vb { display: flex; flex-direction: column; gap: 4px; padding: 7px 10px; border-radius: 10px; border: 1px solid transparent; background: ${T.bg}; /* F-1015-352: ichki karta chegarasiz (213.3) */ animation: rt-kirdi 0.45s ease-out both; }
         @keyframes rt-kirdi { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
         .rt-vb.yangi { animation: rt-kirdi 0.45s ease-out both, rt-yashil-fon 1.1s ease-out; }
         @keyframes rt-yashil-fon { 0%, 40% { background: ${fon(T.ok, 0.18)}; border-color: ${T.ok}; } 100% { background: ${T.bg}; } }
@@ -2717,11 +2748,13 @@ export default function PmRealtimeSpecLesson({ lang: langProp, onFinished, liveT
         .rt-vb-bosh { display: flex; align-items: center; justify-content: center; height: 26px; margin-left: 27px; border: 1.5px solid transparent; background: ${T.paper}; border-radius: 7px; font-size: 12px; font-weight: 800; color: ${fon(T.ink, 0.4)}; }
         .rt-vb-iz { padding-left: 27px; font-size: 11.5px; color: ${T.ink2}; }
         .rt-v-tug { display: flex; justify-content: flex-start; margin-top: 2px; }
+        .rt-varaq.ix { max-width: 760px; gap: 6px; } .rt-varaq.ix .rt-vb { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 10px; padding: 6px 10px; } .rt-varaq.ix .rt-vb-q, .rt-varaq.ix .rt-vb-iz { padding-left: 0; }
         .rt-tahrir { flex: none; margin-left: auto; width: 26px; height: 24px; padding: 0; border: 1px solid ${T.line}; border-radius: 7px; background: ${T.paper}; color: ${T.ink2}; font-size: 13px; cursor: pointer; }
         .rt-tahrir:hover { color: ${T.accent}; border-color: ${T.accent}; }
         .rt-s4-v { align-self: stretch; }
         /* 0-ekran: ikki telefon + agentga bo'sh quti */
-        .rt-s0 { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .rt-s0 { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 14px 16px 16px; border-radius: 16px; background: ${T.paper}; border: 1px solid ${T.line}; } /* F-1015-353: bitta ramka — ikki telefon + agent qutisi; Backend va bo'sh uyalar olindi */
+        .rt-s0 .rt-agent { border: 0; box-shadow: 0 0 0 1px ${fon(T.ink, 0.12)}; }
         .rt-agent { width: 100%; max-width: 380px; border: 1.5px solid ${T.ink}; border-radius: 12px; overflow: hidden; background: ${T.paper}; }
         .rt-agent-bar { display: flex; align-items: center; gap: 5px; padding: 6px 10px; background: ${T.bg}; border-bottom: 1px solid ${T.line}; font-size: 11.5px; font-weight: 700; color: ${T.ink2}; }
         .rt-agent-bar i { width: 8px; height: 8px; border-radius: 50%; background: ${fon(T.ink, 0.18)}; }
@@ -2730,8 +2763,6 @@ export default function PmRealtimeSpecLesson({ lang: langProp, onFinished, liveT
         .rt-agent-matn { font-size: 13.5px; line-height: 1.45; color: ${T.ink}; }
         .rt-kursor { display: inline-block; width: 2px; height: 15px; margin-left: 2px; vertical-align: text-bottom; background: ${T.accent}; animation: rt-kursor 1s steps(1) infinite; }
         @keyframes rt-kursor { 50% { opacity: 0; } }
-        .rt-agent-uyalar { display: flex; flex-direction: column; gap: 5px; }
-        .rt-uya { display: flex; align-items: center; justify-content: center; height: 24px; border: 1.5px solid transparent; background: ${T.bg}; border-radius: 7px; font-size: 12px; font-weight: 800; color: ${fon(T.ink, 0.4)}; }
         /* 1-ekran */
         .rt-reja { display: flex; align-items: flex-start; justify-content: center; gap: 14px; padding-top: 30px; }
         p.rt-reja-past { margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.5; color: ${T.ink2}; }

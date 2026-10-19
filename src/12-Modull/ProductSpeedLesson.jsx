@@ -102,6 +102,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -179,8 +204,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1808,11 +1833,11 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: 'Lighthouse bahosi qaysi oraliqda bo\'ladi?', ru: 'В каком диапазоне оценка Lighthouse?' }, opts: [{ uz: '0 dan 100 gacha', ru: 'от 0 до 100' }, { uz: '10 dan 50 gacha', ru: 'от 10 до 50' }, { uz: '0 dan 5 gacha', ru: 'от 0 до 5' }, { uz: '1 dan 50 gacha', ru: 'от 1 до 50' }], correct: 0 },
   { q: { uz: 'Lighthouse bahosida yashil rang qaysi oraliq?', ru: 'Какой диапазон оценки Lighthouse зелёный?' }, opts: [{ uz: '50 dan 89 gacha', ru: 'от 50 до 89' }, { uz: '90 dan 100 gacha', ru: 'от 90 до 100' }, { uz: '0 dan 49 gacha', ru: 'от 0 до 49' }, { uz: '70 dan 100 gacha', ru: 'от 70 до 100' }], correct: 1 },
-  { q: { uz: 'Lighthouse 100 ball haqida nima deydi?', ru: 'Что Lighthouse говорит о 100 баллах?' }, opts: [{ uz: 'Har sahifa uchun majburiy', ru: 'Обязательно для каждой страницы' }, { uz: 'Faqat Desktop rejimida bor', ru: 'Бывает только в режиме Desktop' }, { uz: 'Juda qiyin va kutilmaydi', ru: 'Очень трудно и не ожидается' }, { uz: "Faqat yangi saytlarda bo'ladi", ru: 'Бывает только у новых сайтов' }], correct: 2 },
+  { q: { uz: "Lighthouse 100 ball haqida nima deydi?", ru: "Что Lighthouse говорит о 100 баллах?" }, opts: [{ uz: "Har sahifaga majburiy", ru: "Обязательно для каждой страницы" }, { uz: "Faqat Desktop rejimida", ru: "Только в режиме Desktop" }, { uz: "Juda qiyin, shart emas", ru: "Очень трудно, не обязательно" }, { uz: "Faqat yangi saytlarda", ru: "Только у новых сайтов" }], correct: 2 },
   { q: { uz: 'LCP uchun rasmiy tavsiya qancha?', ru: 'Какая официальная рекомендация для LCP?' }, opts: [{ uz: '0,1 soniya yoki kamroq', ru: '0,1 секунды или меньше' }, { uz: '200 ms yoki kamroq', ru: '200 мс или меньше' }, { uz: '25 soniya yoki kamroq', ru: '25 секунд или меньше' }, { uz: '2,5 soniya yoki kamroq', ru: '2,5 секунды или меньше' }], correct: 3 },
   { q: { uz: "CLS qanday birlikda o'lchanadi?", ru: 'В каких единицах измеряется CLS?' }, opts: [{ uz: 'Birliksiz son, masalan 0,05', ru: 'Число без единиц, например 0,05' }, { uz: 'Soniyada, masalan 2,5 soniya', ru: 'В секундах, например 2,5 секунды' }, { uz: 'Millisekundda, masalan 200 ms', ru: 'В миллисекундах, например 200 мс' }, { uz: 'Kilobaytda, masalan 300', ru: 'В килобайтах, например 300' }], correct: 0 },
   { q: { uz: 'Lighthouse bahosida qaysi sonning ulushi eng katta?', ru: 'У какого числа самая большая доля в оценке Lighthouse?' }, opts: [{ uz: 'LCP — 25 foiz', ru: 'LCP — 25 процентов' }, { uz: 'TBT — 30 foiz', ru: 'TBT — 30 процентов' }, { uz: 'CLS — 25 foiz', ru: 'CLS — 25 процентов' }, { uz: 'FCP — 10 foiz', ru: 'FCP — 10 процентов' }], correct: 1 },
-  { q: { uz: "Tepadagi rasmga keyin yuklash qo'yilsa, nima bo'lishi mumkin?", ru: 'Что может случиться, если верхней картинке поставить загрузку позже?' }, opts: [{ uz: 'CLS nolga tushadi', ru: 'CLS упадёт до нуля' }, { uz: 'Kod hajmi kamayadi', ru: 'Объём кода уменьшится' }, { uz: 'LCP kechikishi mumkin', ru: 'LCP может задержаться' }, { uz: 'Rasm umuman chiqmaydi', ru: 'Картинка совсем не появится' }], correct: 2 },
+  { q: { uz: "Tepadagi rasmga keyin yuklash qo'yilsa, nima bo'ladi?", ru: "Что будет, если верхней картинке поставить загрузку позже?" }, opts: [{ uz: "CLS nolga tushadi", ru: "CLS упадёт до нуля" }, { uz: "Kod hajmi kamayadi", ru: "Объём кода уменьшится" }, { uz: "LCP kechikishi mumkin", ru: "LCP может задержаться" }, { uz: "Rasm umuman chiqmaydi", ru: "Картинка совсем не появится" }], correct: 2 },
   { q: { uz: "Mobil trekda yuklanadigan kod hajmini nima ko'rsatadi?", ru: 'Что в мобильном треке показывает объём загружаемого кода?' }, opts: [{ uz: 'Lighthouse bahosi', ru: 'Оценка Lighthouse' }, { uz: 'Netlify sahifasi', ru: 'Страница Netlify' }, { uz: 'Render sozlamasi', ru: 'Настройка Render' }, { uz: 'Expo Atlas oynasi', ru: 'Окно Expo Atlas' }], correct: 3 },
   { q: { uz: "Lighthouse'ni qaysi oynada ishga tushirasiz?", ru: 'В каком окне вы запускаете Lighthouse?' }, opts: [{ uz: 'Incognito oynasida', ru: 'В окне Incognito' }, { uz: 'Netlify sahifasida', ru: 'На странице Netlify' }, { uz: 'Antigravity oynasida', ru: 'В окне Antigravity' }, { uz: 'Expo Atlas oynasida', ru: 'В окне Expo Atlas' }], correct: 0 },
   { q: { uz: "Mobile rejimida TBT qachon yashil bo'ladi?", ru: 'Когда TBT в режиме Mobile зелёный?' }, opts: [{ uz: "600 ms dan ko'p bo'lsa", ru: 'Если больше 600 мс' }, { uz: "200 ms gacha bo'lsa", ru: 'Если до 200 мс' }, { uz: "2500 ms gacha bo'lsa", ru: 'Если до 2500 мс' }, { uz: "1000 ms dan ko'p bo'lsa", ru: 'Если больше 1000 мс' }], correct: 1 },
@@ -2385,15 +2410,15 @@ const trekOqi = () => {
   return { trek: t === 'mobil' || t === 'web' ? t : null, platforma: false };
 };
 const bundleTurOl = (trek) => (trek === 'mobil' ? 'atlas-android' : trek === 'web' ? 'build-eng-katta-js' : null);
-const olchovBor = (o) => !!o && typeof o === 'object' && ['baho', 'lcp', 'cls', 'tbt', 'bundleKb'].some(k => o[k] != null);
+const olchovBor = (o) => !!o && typeof o === 'object' && ['baho', 'lcp', 'cls', 'tbt', 'bundleKb'].every(k => o[k] != null); // F-1015-381: beshala son (nishon ham shunga bog'liq)
 const sonP = (v) => (v == null ? null : String(v).replace('.', ','));
 const bugun = () => { const d = new Date(); const p = (n) => String(n).padStart(2, '0'); return `${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()}`; };
 const OLCHOV_MAYDON = [
-  { id: 'baho', n: '1', y: { uz: 'Lighthouse bahosi (0–100)', ru: 'Оценка Lighthouse (0–100)' }, nom: { uz: 'Lighthouse bahosi', ru: 'Оценка Lighthouse' }, birlik: '', butun: true, osishYaxshi: true },
-  { id: 'lcp', n: '2', y: { uz: 'LCP, soniya', ru: 'LCP, секунды' }, nom: { uz: 'LCP, s', ru: 'LCP, с' }, birlik: 's' },
-  { id: 'cls', n: '3', y: { uz: 'CLS', ru: 'CLS' }, nom: { uz: 'CLS', ru: 'CLS' }, birlik: '' },
-  { id: 'tbt', n: '4', y: { uz: 'TBT, ms', ru: 'TBT, мс' }, nom: { uz: 'TBT, ms', ru: 'TBT, мс' }, birlik: 'ms' },
-  { id: 'bundleKb', n: '5', y: { uz: 'Kod hajmi, kB', ru: 'Объём кода, kB' }, nom: { uz: 'Kod hajmi, kB', ru: 'Объём кода, kB' }, birlik: 'kB' }
+  { id: 'baho', n: '1', y: { uz: 'Lighthouse bahosi (0–100)', ru: 'Оценка Lighthouse (0–100)' }, nom: { uz: 'Lighthouse bahosi', ru: 'Оценка Lighthouse' }, birlik: '', butun: true, osishYaxshi: true, min: 0, max: 100 },
+  { id: 'lcp', n: '2', y: { uz: 'LCP, soniya', ru: 'LCP, секунды' }, nom: { uz: 'LCP, s', ru: 'LCP, с' }, birlik: 's', min: 0.1, max: 60 },
+  { id: 'cls', n: '3', y: { uz: 'CLS', ru: 'CLS' }, nom: { uz: 'CLS', ru: 'CLS' }, birlik: '', min: 0, max: 5 },
+  { id: 'tbt', n: '4', y: { uz: 'TBT, ms', ru: 'TBT, мс' }, nom: { uz: 'TBT, ms', ru: 'TBT, мс' }, birlik: 'ms', min: 0, max: 30000 },
+  { id: 'bundleKb', n: '5', y: { uz: 'Kod hajmi, kB', ru: 'Объём кода, kB' }, nom: { uz: 'Kod hajmi, kB', ru: 'Объём кода, kB' }, birlik: 'kB', min: 1, max: 100000 }
 ];
 const NATIJA_YORLIQ = { uz: 'kutilgan natija', ru: 'ожидаемый результат' };
 const YOZASIZ = { uz: 'shu yerga yozasiz', ru: 'запишете сюда' };
@@ -2452,10 +2477,16 @@ const OlchovKarta = ({ tur, trek, eski, onSaqla }) => {
   const [v, setV] = useState(() => { const o = tezOqi()[tur]; return Object.fromEntries(OLCHOV_MAYDON.map(m => [m.id, o && o[m.id] != null ? sonP(o[m.id]) : ''])); });
   const [mb, setMb] = useState(false);
   const [saqlandi, setSaqlandi] = useState(() => olchovBor(tezOqi()[tur]));
-  const yoz = (id, s) => { setSaqlandi(false); setV(o => ({ ...o, [id]: String(s).replace(/[^\d.,]/g, '').slice(0, 9) })); };
+  const [sXato, setSXato] = useState(null); // F-1015-381: beshala son kerak va har biri Lighthouse chegarasida
+  const yoz = (id, s) => { setSaqlandi(false); setSXato(null); setV(o => ({ ...o, [id]: String(s).replace(/[^\d.,]/g, '').slice(0, 9) })); };
   const saqla = () => {
     const r = {};
     OLCHOV_MAYDON.forEach(m => { const n = parseFloat(String(v[m.id]).replace(',', '.')); r[m.id] = Number.isFinite(n) ? (m.id === 'bundleKb' && mb ? Math.round(n * 1000) : m.butun ? Math.round(n) : n) : null; });
+    const bosh = OLCHOV_MAYDON.find(m => r[m.id] == null);
+    if (bosh) { setSXato({ uz: `«${bosh.nom.uz}» yozilmagan — beshala son kerak: to'rttasi Lighthouse'dan, kod hajmi — buyruqdan.`, ru: `Не записано «${bosh.nom.ru}» — нужны все пять чисел: четыре из Lighthouse, объём кода — из команды.` }); return; }
+    const chet = OLCHOV_MAYDON.find(m => r[m.id] < m.min || r[m.id] > m.max);
+    if (chet) { setSXato({ uz: `${chet.nom.uz}: ${sonP(r[chet.id])} — bunday son chiqmaydi (${sonP(chet.min)}–${sonP(chet.max)}). Qayta ko'chiring.`, ru: `${chet.nom.ru}: ${sonP(r[chet.id])} — такого числа не бывает (${sonP(chet.min)}–${sonP(chet.max)}). Перепишите заново.` }); return; }
+    setSXato(null);
     if (mb) { setMb(false); setV(o => ({ ...o, bundleKb: r.bundleKb == null ? '' : sonP(r.bundleKb) })); }
     setSaqlandi(true); onSaqla(r);
   };
@@ -2471,6 +2502,7 @@ const OlchovKarta = ({ tur, trek, eski, onSaqla }) => {
           {eski && <em className="tz-ok-eski">{tr({ uz: 'Oldin', ru: 'До' })}: {sonYoz(eski[m.id], m.birlik)}</em>}
         </label>
       ))}
+      {sXato && <span className="tz-ok-x fade-step" role="alert">{tr(sXato)}</span>}
       <span className="tz-ok-amal"><QTugma ikkinchi className={halqa(!saqlandi)} onClick={saqla}>{tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma>{saqlandi && <span className="tz-ok-ok fade-step">✓ {tr({ uz: 'Saqlandi', ru: 'Сохранено' })}</span>}</span>
     </span>
   );
@@ -2544,7 +2576,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('tz-blok', qulfli && 'qulf', done && 'tugadi')}>
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({ h: tr(c.h), t: c.t, xato: c.xato }))}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={doneText ? tr(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
@@ -3028,7 +3060,7 @@ export default function ProductSpeedLesson({ lang: langProp, onFinished, liveTok
         .tz-chorla .q-chip:not(:disabled) { border-color: ${fon(T.accent, 0.6)}; animation: tz-chorla-c 1.8s ease-out .5s 2; }
         @keyframes tz-chorla-v { 0% { box-shadow: inset 0 0 0 1.5px ${fon(T.accent, 0.55)}, 0 0 0 0 ${fon(T.accent, 0.38)}; } 70%, 100% { box-shadow: inset 0 0 0 1.5px ${fon(T.accent, 0.55)}, 0 0 0 9px ${fon(T.accent, 0)}; } }
         @keyframes tz-chorla-c { 0% { box-shadow: 0 0 0 0 ${fon(T.accent, 0.38)}; } 70%, 100% { box-shadow: 0 0 0 8px ${fon(T.accent, 0)}; } }
-        @media (min-width: 761px) { .tz-k .q-split { grid-template-columns: 300px minmax(0, 460px); gap: 32px; align-items: center; } }
+        @media (min-width: 761px) { .tz-k .q-split { grid-template-columns: 300px minmax(0, 460px); gap: 32px; align-items: start; /* F-1015-382: variantlar tepadan, telefon bilan bir chiziqda */ } }
         .tz-bash-ix { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 7px 12px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 13.5px; color: ${T.ink2}; }
         .tz-bash-ix b { color: ${T.ink}; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: ${T.accentSoft}; }
         .q-xulosa .tz-x-tx { display: block; margin-bottom: 4px; font-size: 12.5px; font-weight: 700; color: ${T.ink2}; }
@@ -3298,6 +3330,7 @@ export default function ProductSpeedLesson({ lang: langProp, onFinished, liveTok
         .tz-ok-m input { flex: 1; min-width: 120px; border: 0; outline: 0; background: transparent; font-family: 'Manrope', sans-serif; font-size: 14px; padding: 9px 0; color: ${T.ink}; }
         .tz-ok-m em { font-style: normal; font-size: 11px; color: ${T.ink2}; white-space: nowrap; }
         .tz-ok-chip { display: inline-flex; gap: 4px; }
+        .tz-ok-x { display: block; padding: 6px 10px; border-radius: 8px; background: ${T.errFon}; color: ${T.err}; font-size: 12.5px; font-weight: 600; }
         .tz-ok-amal { display: flex; align-items: center; gap: 10px; }
         .tz-ok-amal .q-btn { margin-left: 0; }
         .tz-ok-ok { font-size: 12.5px; font-weight: 700; color: ${T.ok}; }

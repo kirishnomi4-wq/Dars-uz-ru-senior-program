@@ -41,9 +41,9 @@ Sanoq doskasi (to'liq holat):
 - Chap: Dars oxirida: takrorlangan javoblar va final g'oya
   - Chizma: bo'sh joy «Final g'oya ?» · ostida bo'sh doska shakli — ikki ustun, to'rt qator uchta kulrang nuqta (ustun va qator nomlari, son YO'Q — atamalar 2 va 4-ekranda ochiladi; F-1015-214)
 - Reja (3 band; YouTube bandi olindi — u voqea, maqsad emas):
-  1. Ikki g'oya bo'yicha takrorlangan javoblarni sanaysiz
-  2. Kim faqat gapirganini, kim ish qilganini ajratasiz
-  3. O'z yozuvlaringizdan bitta g'oyani tanlab, muammo gapini yozasiz
+  1. Ikki g'oya bo'yicha takrorlangan javoblarni sanang
+  2. Kim faqat gapirganini, kim ish qilganini ajrating
+  3. O'z yozuvlaringizdan bitta g'oyani tanlab, muammo gapini yozing
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Takrorlangan javoblar

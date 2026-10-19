@@ -6,7 +6,7 @@ Ustaxona (s9), saralash (s4), uch slayd (s8), repetitsiya (s12) — KODI O'ZGARM
 | № | id | Ekran | O'quvchi | Ball / nishon |
 |---|---|---|---|---|
 | 1 | s0 | Kirish — «Maydon» pitchi, ikki slayd | ikki teng variantdan tanlaydi (ballsiz) | — |
-| 2 | s1 | Reja | 4 qadam: raqam yonida nima · pitchga qaysi gap · **uch slaydga yozasiz** · **ikki marta ovoz chiqarib aytasiz: sinfdoshga, keyin tuzatib yana** | — |
+| 2 | s1 | Reja | 4 qadam: raqam yonida nima · pitchga qaysi gap · **uch slaydga yozing** · **ikki marta ovoz chiqarib ayting: sinfdoshga, keyin tuzatib yana** | — |
 | 3 | s2 | Raqam va hikoya | bashorat → qadamlar → slayd o'zgaradi, zal pufagi | — |
 | 4 | s4 | Yozuvdan olingan gap — saralash | 6 gapni «yozuvda bor / yo'q» tomoniga joylaydi | Story Finder! |
 | 5 | s8 | Uch slayd | 5 bo'lakni slaydlarga joylaydi | Pitch Builder! |

@@ -1,0 +1,4826 @@
+[
+ {
+  "key": "m5-01",
+  "file": "src/5-Modull/BotIntroLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "«Shu hodisa kelsa, shuni qil» deydigan kod qismi nima deyiladi?",
+     "ru": "Как называется часть кода, которая говорит «пришло это событие — сделай это»?"
+    },
+    "opts": [
+     {
+      "uz": "Handler",
+      "ru": "Handler"
+     },
+     {
+      "uz": "Token",
+      "ru": "Токен"
+     },
+     {
+      "uz": "Webhook",
+      "ru": "Webhook"
+     },
+     {
+      "uz": ".env fayli",
+      "ru": "Файл .env"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 10,
+     "jami": 92,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Token nima uchun kerak?",
+     "ru": "Для чего нужен токен?"
+    },
+    "opts": [
+     {
+      "uz": "Botning rangini belgilaydi",
+      "ru": "Задаёт цвет бота"
+     },
+     {
+      "uz": "Xabarlarni boshqa tilga o'giradi",
+      "ru": "Переводит сообщения на другой язык"
+     },
+     {
+      "uz": "Bot aynan sizniki ekanini tasdiqlaydi",
+      "ru": "Подтверждает, что бот именно ваш"
+     },
+     {
+      "uz": "Foydalanuvchi parolini saqlaydi",
+      "ru": "Хранит пароль пользователя"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 23,
+     "maxVariant": 37,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Foydalanuvchi botga /start yubordi. Bu nima?",
+     "ru": "Пользователь отправил боту /start. Что это?"
+    },
+    "opts": [
+     {
+      "uz": "Bu — botning javobi",
+      "ru": "Это ответ бота"
+     },
+     {
+      "uz": "Bu — botga kelgan hodisa",
+      "ru": "Это событие, пришедшее боту"
+     },
+     {
+      "uz": "Bu — botning tokeni",
+      "ru": "Это токен бота"
+     },
+     {
+      "uz": "Bu — handlerlar ro'yxati",
+      "ru": "Это список handler-ов"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 24,
+     "jami": 130,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Mos handler topilmasa (fallback ham yo'q), bot nima qiladi?",
+     "ru": "Что делает бот, если подходящий handler не найден (и fallback тоже нет)?"
+    },
+    "opts": [
+     {
+      "uz": "Xato chiqarib o'chib qoladi",
+      "ru": "Выдаёт ошибку и выключается"
+     },
+     {
+      "uz": "Tasodifiy javob o'ylab topadi",
+      "ru": "Придумывает случайный ответ"
+     },
+     {
+      "uz": "Boshqa botga ulanib qoladi",
+      "ru": "Подключается к другому боту"
+     },
+     {
+      "uz": "Hech narsa yubormay, jim qoladi",
+      "ru": "Ничего не отправляет и молчит"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 31,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Bot tokenini kim beradi?",
+     "ru": "Кто выдаёт токен бота?"
+    },
+    "opts": [
+     {
+      "uz": "Telegram administratori",
+      "ru": "Администратор Telegram"
+     },
+     {
+      "uz": "Foydalanuvchining o'zi o'ylab topadi",
+      "ru": "Пользователь придумывает его сам"
+     },
+     {
+      "uz": "@BotFather",
+      "ru": "@BotFather"
+     },
+     {
+      "uz": "Bot API'ning o'zi yaratadi",
+      "ru": "Bot API создаёт его сам"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 24,
+     "maxVariant": 36,
+     "jami": 119,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Token ochiq kodda qolib ketsa, qanday xavf bor?",
+     "ru": "Если токен остался в открытом коде, чем это опасно?"
+    },
+    "opts": [
+     {
+      "uz": "Boshqa odam bot nomidan xabar yozadi",
+      "ru": "Другой человек пишет от имени бота"
+     },
+     {
+      "uz": "Bot o'zi tezroq ishlay boshlaydi",
+      "ru": "Бот сам начинает работать быстрее"
+     },
+     {
+      "uz": "Hech qanday xavf yo'q, tinch bo'ling",
+      "ru": "Никакой опасности, можно не волноваться"
+     },
+     {
+      "uz": "Telegram botni darhol o'chirib qo'yadi",
+      "ru": "Telegram сразу же отключит бота"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 38,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Token oshkor bo'lsa, birinchi qadam nima?",
+     "ru": "Если токен раскрыт, какой первый шаг?"
+    },
+    "opts": [
+     {
+      "uz": "Botni /deletebot bilan butunlay o'chirish",
+      "ru": "Полностью удалить бота через /deletebot"
+     },
+     {
+      "uz": "Telegram'ni qayta o'rnatish",
+      "ru": "Переустановить Telegram"
+     },
+     {
+      "uz": "Yangi Telegram akkaunt ochish",
+      "ru": "Открыть новый аккаунт Telegram"
+     },
+     {
+      "uz": "Tokenni /revoke bilan bekor qilish",
+      "ru": "Отменить токен через /revoke"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 41,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Token odatda qayerda saqlanadi?",
+     "ru": "Где обычно хранят токен?"
+    },
+    "opts": [
+     {
+      "uz": "bot.js faylining o'zida",
+      "ru": "Прямо в файле bot.js"
+     },
+     {
+      "uz": ".env faylida",
+      "ru": "В файле .env"
+     },
+     {
+      "uz": "Telegram profil sozlamasida",
+      "ru": "В настройках профиля Telegram"
+     },
+     {
+      "uz": "Brauzer qidiruv tarixida",
+      "ru": "В истории поиска браузера"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 27,
+     "jami": 117,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Bot nega 03:00 da ham javob bera oladi?",
+     "ru": "Почему бот может ответить даже в 03:00?"
+    },
+    "opts": [
+     {
+      "uz": "Uni uxlamaydigan odam boshqaradi",
+      "ru": "Им управляет человек, который не спит"
+     },
+     {
+      "uz": "Dasturi ishlab turadi va hodisani kutadi",
+      "ru": "Его программа работает и ждёт событие"
+     },
+     {
+      "uz": "U faqat kunduzi ishlashga sozlangan",
+      "ru": "Он настроен работать только днём"
+     },
+     {
+      "uz": "U tasodifiy vaqtda ishga tushadi",
+      "ru": "Он запускается в случайное время"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 40,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Uch mijoz bir vaqtda yozsa, bot nima qiladi?",
+     "ru": "Что делает бот, если три клиента пишут одновременно?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat birinchi mijozga javob beradi",
+      "ru": "Отвечает только первому клиенту"
+     },
+     {
+      "uz": "Uchala xabarni bitta deb qo'shib yuboradi",
+      "ru": "Считает три сообщения одним и склеивает"
+     },
+     {
+      "uz": "Hammasini ertalabgacha kutdirib qo'yadi",
+      "ru": "Заставляет всех ждать до утра"
+     },
+     {
+      "uz": "Har xabarni alohida ko'rib, javob beradi",
+      "ru": "Рассматривает каждое сообщение отдельно и отвечает"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 41,
+     "jami": 199,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Hech bir handlerga mos kelmagan xabar kelsa, nima yordam beradi?",
+     "ru": "Что поможет, если пришло сообщение, которое не подходит ни к одному handler?"
+    },
+    "opts": [
+     {
+      "uz": "Oxirgi, umumiy fallback handler",
+      "ru": "Последний, общий fallback handler"
+     },
+     {
+      "uz": "Botni o'chirib, qayta yoqish",
+      "ru": "Выключить бота и снова включить"
+     },
+     {
+      "uz": "Bot API'ni vaqtincha yopish",
+      "ru": "Временно закрыть Bot API"
+     },
+     {
+      "uz": "Yangi token olish",
+      "ru": "Получить новый токен"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 31,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Bugun o'rgangan uchta asosiy tushuncha qaysi?",
+     "ru": "Какие три главных понятия вы сегодня изучили?"
+    },
+    "opts": [
+     {
+      "uz": "Rang, shrift va sayt dizayni",
+      "ru": "Цвет, шрифт и дизайн сайта"
+     },
+     {
+      "uz": "Ekran, sichqoncha, klaviatura",
+      "ru": "Экран, мышь, клавиатура"
+     },
+     {
+      "uz": "Token, handler va sikl",
+      "ru": "Токен, handler и цикл"
+     },
+     {
+      "uz": "Rasm, video va ovoz fayli",
+      "ru": "Картинка, видео и аудиофайл"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 29,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-02",
+  "file": "src/5-Modull/PmLesson19.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Birinchi foydalanuvchilar kimlar?",
+     "ru": "Кто такие первые пользователи?"
+    },
+    "opts": [
+     {
+      "uz": "Botni birinchi bo'lib ishlatadigan odamlar",
+      "ru": "Люди, которые первыми пользуются ботом"
+     },
+     {
+      "uz": "Botni yaratishga yordam bergan odamlar",
+      "ru": "Люди, которые помогли создать бота"
+     },
+     {
+      "uz": "Botga faqat bir marta yozgan odamlar",
+      "ru": "Люди, которые написали боту только раз"
+     },
+     {
+      "uz": "Bot haqida faqat eshitgan odamlar",
+      "ru": "Люди, которые только слышали о боте"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 42,
+     "jami": 182,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Botga birinchi odamlarni kim olib keladi?",
+     "ru": "Кто приводит к боту первых людей?"
+    },
+    "opts": [
+     {
+      "uz": "Telegram — u yangi botlarni hammaga aytib turadi",
+      "ru": "Telegram — он всем рассказывает о новых ботах"
+     },
+     {
+      "uz": "Qidiruv — bot qidiruvda o'zi yuqoriga chiqadi",
+      "ru": "Поиск — бот сам поднимается наверх в поиске"
+     },
+     {
+      "uz": "Bot — u yozilgan kuni odamlarni chaqiradi",
+      "ru": "Бот — в день создания он сам зовёт людей"
+     },
+     {
+      "uz": "Siz — birinchi odamlarga o'zingiz aytasiz",
+      "ru": "Вы — первым людям вы рассказываете сами"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 48,
+     "jami": 216,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Tanish guruhda xabar nega tez tarqaladi?",
+     "ru": "Почему в группе знакомых новость расходится быстро?"
+    },
+    "opts": [
+     {
+      "uz": "Chunki u yerda odam soni eng ko'p",
+      "ru": "Потому что там больше всего людей"
+     },
+     {
+      "uz": "Chunki xabarni u yerda bot o'zi aytadi",
+      "ru": "Потому что там новость рассказывает сам бот"
+     },
+     {
+      "uz": "Chunki u yerdagilar bir-birini tez-tez ko'radi",
+      "ru": "Потому что люди там часто видят друг друга"
+     },
+     {
+      "uz": "Chunki u yerdagilar bir-birini izlab yuradi",
+      "ru": "Потому что люди там ищут друг друга"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 46,
+     "jami": 200,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Uch halqadan qaysi biri ko'proq odam berdi?",
+     "ru": "Какой из трёх кругов дал больше людей?"
+    },
+    "opts": [
+     {
+      "uz": "Sizni tanimaydiganlar halqasi",
+      "ru": "Круг тех, кто вас не знает"
+     },
+     {
+      "uz": "Har kuni ko'rishadiganlar halqasi",
+      "ru": "Круг тех, кто видится каждый день"
+     },
+     {
+      "uz": "Ba'zan ko'rishadiganlar halqasi",
+      "ru": "Круг тех, кто видится иногда"
+     },
+     {
+      "uz": "Uchala halqa ham bir xil odam berdi",
+      "ru": "Все три круга дали одинаково людей"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 35,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Katta guruhda odam ko'p — nega ishlatgani kam?",
+     "ru": "В большой группе людей много — почему пользуются мало?"
+    },
+    "opts": [
+     {
+      "uz": "Chunki katta guruhda bot ochilmaydi",
+      "ru": "Потому что в большой группе бот не открывается"
+     },
+     {
+      "uz": "Chunki u yerdagilar sizni tanimaydi",
+      "ru": "Потому что люди там вас не знают"
+     },
+     {
+      "uz": "Chunki xabar u yerga umuman yetmaydi",
+      "ru": "Потому что новость туда вообще не доходит"
+     },
+     {
+      "uz": "Chunki bot u yerda sekin ochiladi",
+      "ru": "Потому что бот там медленно открывается"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 36,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Xabar qaysi guruhdan tez tarqaladi?",
+     "ru": "Из какой группы новость расходится быстрее?"
+    },
+    "opts": [
+     {
+      "uz": "Har kuni ko'rishadigan guruhdan — ular bir-biriga aytadi",
+      "ru": "Из группы, где видятся каждый день, — там рассказывают друг другу"
+     },
+     {
+      "uz": "Har kuni ko'rishadigan guruhdan — odam soni ko'p",
+      "ru": "Из группы, где видятся каждый день, — там много людей"
+     },
+     {
+      "uz": "Bir-birini tanimaydigan guruhdan — odam soni ko'p",
+      "ru": "Из группы, где друг друга не знают, — там много людей"
+     },
+     {
+      "uz": "Bir-birini tanimaydigan guruhdan — ular bir-biriga aytadi",
+      "ru": "Из группы, где друг друга не знают, — там рассказывают друг другу"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 57,
+     "jami": 245,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Odam botga kelguncha qaysi uch qadamdan o'tadi?",
+     "ru": "Какие три шага проходит человек, пока дойдёт до бота?"
+    },
+    "opts": [
+     {
+      "uz": "Qidirdi, topdi, yozdi",
+      "ru": "Искал, нашёл, написал"
+     },
+     {
+      "uz": "Ochdi, ishlatdi, eshitdi",
+      "ru": "Открыл, пользуется, услышал"
+     },
+     {
+      "uz": "Eshitdi, ochdi, ishlatdi",
+      "ru": "Услышал, открыл, пользуется"
+     },
+     {
+      "uz": "Ko'rdi, yozdi, o'chirdi",
+      "ru": "Увидел, написал, удалил"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 24,
+     "jami": 139,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Facebook sayti 2004-yilda qayerda ochilgan?",
+     "ru": "Где открылся сайт Facebook в 2004 году?"
+    },
+    "opts": [
+     {
+      "uz": "Butun dunyoda — istagan odam yozila olardi",
+      "ru": "По всему миру — мог зарегистрироваться кто угодно"
+     },
+     {
+      "uz": "Ikki shaharda — ikkita katta maktabda",
+      "ru": "В двух городах — в двух больших школах"
+     },
+     {
+      "uz": "Uchta shaharda — har birida bitta joyda",
+      "ru": "В трёх городах — в каждом в одном месте"
+     },
+     {
+      "uz": "Bitta universitetda — faqat o'z talabalariga",
+      "ru": "В одном университете — только для своих студентов"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 44,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Facebook butun dunyo uchun qachon ochilgan?",
+     "ru": "Когда Facebook открылся для всего мира?"
+    },
+    "opts": [
+     {
+      "uz": "Oradan ikki yarim yil o'tgach",
+      "ru": "Спустя два с половиной года"
+     },
+     {
+      "uz": "Birinchi kunidan boshlab",
+      "ru": "С первого же дня"
+     },
+     {
+      "uz": "Bir necha oydan keyin",
+      "ru": "Через несколько месяцев"
+     },
+     {
+      "uz": "O'sha yilning oxirida",
+      "ru": "В конце того же года"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 29,
+     "jami": 138,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Facebook voqeasida nima ish bergan?",
+     "ru": "Что сработало в истории Facebook?"
+    },
+    "opts": [
+     {
+      "uz": "Saytning tez ochilishi",
+      "ru": "Быстрая загрузка сайта"
+     },
+     {
+      "uz": "Saytga yozilgan odamlar soni",
+      "ru": "Число зарегистрированных на сайте"
+     },
+     {
+      "uz": "Odamlarning bir-birini tanishi",
+      "ru": "То, что люди знали друг друга"
+     },
+     {
+      "uz": "Saytdagi tugmalarning ko'pligi",
+      "ru": "Много кнопок на сайте"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 30,
+     "jami": 145,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Qaysi biri tanish guruh?",
+     "ru": "Что из этого — группа знакомых?"
+    },
+    "opts": [
+     {
+      "uz": "Bir mahallada yashaydigan, lekin bir-birini tanimaydigan odamlar",
+      "ru": "Люди из одного района, которые не знают друг друга"
+     },
+     {
+      "uz": "Har kuni ko'rishadigan sinfdoshlaringiz",
+      "ru": "Одноклассники, с которыми вы видитесь каждый день"
+     },
+     {
+      "uz": "Siz kuzatadigan kanalning 5000 obunachisi",
+      "ru": "5000 подписчиков канала, который вы читаете"
+     },
+     {
+      "uz": "Bekatda avtobus kutayotgan odamlar",
+      "ru": "Люди, которые ждут автобус на остановке"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 24,
+     "maxVariant": 64,
+     "jami": 202,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Uchta guruh yozganda har guruh haqida nimalarni yozasiz?",
+     "ru": "Когда записываете три группы, что пишете про каждую?"
+    },
+    "opts": [
+     {
+      "uz": "Guruh nomi va undagi odamlarning yoshi",
+      "ru": "Название группы и возраст людей в ней"
+     },
+     {
+      "uz": "Faqat odam soni — qolgani kerak emas",
+      "ru": "Только число людей — остальное не нужно"
+     },
+     {
+      "uz": "Guruh nomi, admini va ochilgan kuni",
+      "ru": "Название группы, её админа и день создания"
+     },
+     {
+      "uz": "Guruh nomi, kimlar borligi va odam soni",
+      "ru": "Название группы, кто в ней есть и сколько людей"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 39,
+     "jami": 204,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-03",
+  "file": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Bot tokeni qayerda saqlanadi?",
+     "ru": "Где хранится токен бота?"
+    },
+    "opts": [
+     {
+      "uz": "Kodning o'zida, new Telegraf(...) qatorida",
+      "ru": "В самом коде, в строке new Telegraf(...)"
+     },
+     {
+      "uz": "README faylida, jamoa ko'rishi uchun",
+      "ru": "В файле README, чтобы видели коллеги"
+     },
+     {
+      "uz": ".env faylida, Git'ga tushmaydigan joyda",
+      "ru": "В файле .env, который не попадает в Git"
+     },
+     {
+      "uz": "Bot tavsifida, @BotFather sozlamasida",
+      "ru": "В описании бота, в настройках @BotFather"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 29,
+     "maxVariant": 42,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Telegraf nima?",
+     "ru": "Что такое Telegraf?"
+    },
+    "opts": [
+     {
+      "uz": "Bot API bilan ishlashni osonlashtiradigan Node.js kutubxonasi",
+      "ru": "Библиотека Node.js, которая упрощает работу с Bot API"
+     },
+     {
+      "uz": "Foydalanuvchi xabarlarini saqlaydigan SQL ma'lumotlar bazasi",
+      "ru": "SQL-база данных, где хранятся сообщения пользователей"
+     },
+     {
+      "uz": "Botga rasm va video yuklab beradigan tashqi xizmat",
+      "ru": "Внешний сервис, который загружает боту фото и видео"
+     },
+     {
+      "uz": "Telegram ilovasining kompyuterda ishlaydigan versiyasi",
+      "ru": "Версия приложения Telegram для компьютера"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 14,
+     "maxVariant": 61,
+     "jami": 239,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`ctx` nima?",
+     "ru": "Что такое `ctx`?"
+    },
+    "opts": [
+     {
+      "uz": "Bot sozlamalari saqlanadigan konfiguratsiya fayli",
+      "ru": "Файл конфигурации, где хранятся настройки бота"
+     },
+     {
+      "uz": "Foydalanuvchining Telegram parolini saqlaydigan obyekt",
+      "ru": "Объект, где хранится пароль пользователя от Telegram"
+     },
+     {
+      "uz": "Serverning joriy vaqtini ko'rsatadigan funksiya",
+      "ru": "Функция, которая показывает текущее время сервера"
+     },
+     {
+      "uz": "Hodisa haqidagi ma'lumot: kim yozdi va qaysi chatdan",
+      "ru": "Данные о событии: кто написал и из какого чата"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 11,
+     "maxVariant": 54,
+     "jami": 213,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Inline tugma bosilganda nima bo'ladi?",
+     "ru": "Что происходит при нажатии inline-кнопки?"
+    },
+    "opts": [
+     {
+      "uz": "Tugma matni chatga oddiy xabar bo'lib qo'shiladi",
+      "ru": "Текст кнопки добавляется в чат обычным сообщением"
+     },
+     {
+      "uz": "Chatga matn yozilmaydi, botga tugma ma'lumoti keladi",
+      "ru": "В чат ничего не пишется, боту приходят данные кнопки"
+     },
+     {
+      "uz": "Serverga avtomatik yangi rasm fayli yuklanadi",
+      "ru": "На сервер автоматически загружается новый файл с картинкой"
+     },
+     {
+      "uz": "Bot o'zini qayta ishga tushirib, suhbatni tozalaydi",
+      "ru": "Бот перезапускает сам себя и очищает переписку"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 52,
+     "jami": 233,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Reply klaviatura tugmasi bosilganda nima bo'ladi?",
+     "ru": "Что происходит при нажатии кнопки reply-клавиатуры?"
+    },
+    "opts": [
+     {
+      "uz": "Hech narsa: tugma faqat bezak bo'lib turadi",
+      "ru": "Ничего: кнопка просто для красоты"
+     },
+     {
+      "uz": "Tugma matni chatga oddiy xabar bo'lib ketadi",
+      "ru": "Текст кнопки уходит в чат обычным сообщением"
+     },
+     {
+      "uz": "Bot suhbatni to'xtatib, chatdan chiqib ketadi",
+      "ru": "Бот прекращает разговор и выходит из чата"
+     },
+     {
+      "uz": "Foydalanuvchi akkaunti vaqtincha bloklanadi",
+      "ru": "Аккаунт пользователя временно блокируется"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 45,
+     "jami": 224,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`bot.action(...)` nimani ushlaydi?",
+     "ru": "Что ловит `bot.action(...)`?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat / bilan boshlanadigan buyruqlarni",
+      "ru": "Только команды, которые начинаются с /"
+     },
+     {
+      "uz": "Reply klaviaturadan kelgan oddiy matnni",
+      "ru": "Обычный текст от reply-клавиатуры"
+     },
+     {
+      "uz": "Inline tugma bosilganda keladigan hodisani",
+      "ru": "Событие, которое приходит при нажатии inline-кнопки"
+     },
+     {
+      "uz": "Foydalanuvchi yuborgan rasm va fayllarni",
+      "ru": "Картинки и файлы, которые отправил пользователь"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 42,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`bot.hears(...)` nimani ushlaydi?",
+     "ru": "Что ловит `bot.hears(...)`?"
+    },
+    "opts": [
+     {
+      "uz": "Aniq matnli xabarni, masalan reply tugma matnini",
+      "ru": "Сообщение с точным текстом, например текст reply-кнопки"
+     },
+     {
+      "uz": "Faqat inline tugma bosilganda keladigan hodisani",
+      "ru": "Только событие от нажатия inline-кнопки"
+     },
+     {
+      "uz": "Botning yoqilgani yoki o'chganini bildiradigan hodisani",
+      "ru": "Событие о том, что бот включился или выключился"
+     },
+     {
+      "uz": "Faqat ovozli xabarlarni, ularni matnga aylantirib",
+      "ru": "Только голосовые сообщения, переводя их в текст"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 55,
+     "jami": 233,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Fallback handler nima uchun kerak?",
+     "ru": "Зачем нужен fallback handler?"
+    },
+    "opts": [
+     {
+      "uz": "Bot dasturi tezroq ishga tushishi uchun",
+      "ru": "Чтобы программа бота запускалась быстрее"
+     },
+     {
+      "uz": "Faqat rasm kelganda xato xabarini chiqarish uchun",
+      "ru": "Чтобы показывать ошибку, только когда пришла картинка"
+     },
+     {
+      "uz": "Tokenni qo'shimcha qatlam bilan himoyalash uchun",
+      "ru": "Чтобы защитить токен дополнительным слоем"
+     },
+     {
+      "uz": "Mos handler topilmagan xabarga ham javob berish uchun",
+      "ru": "Чтобы отвечать и на сообщение, для которого не нашлось handler-а"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 53,
+     "jami": 223,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`ctx.reply(...)` javobni qaysi chatga yuboradi?",
+     "ru": "В какой чат `ctx.reply(...)` отправляет ответ?"
+    },
+    "opts": [
+     {
+      "uz": "Bot egasining shaxsiy chatiga",
+      "ru": "В личный чат владельца бота"
+     },
+     {
+      "uz": "Botga oxirgi yozgan odamning chatiga",
+      "ru": "В чат того, кто последним написал боту"
+     },
+     {
+      "uz": "Hamma foydalanuvchilarning chatiga",
+      "ru": "В чаты всех пользователей"
+     },
+     {
+      "uz": "Xabar kelgan chatning o'ziga",
+      "ru": "В тот же чат, откуда пришло сообщение"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 36,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Polling nimani bildiradi?",
+     "ru": "Что означает polling?"
+    },
+    "opts": [
+     {
+      "uz": "Telegram xabarni o'zi botning internetdagi manziliga yuborishi",
+      "ru": "Telegram сам отправляет сообщение на интернет-адрес бота"
+     },
+     {
+      "uz": "Bot Telegram'dan «yangi xabar bormi?» deb qayta-qayta so'rashi",
+      "ru": "Бот снова и снова спрашивает у Telegram: «Есть новые сообщения?»"
+     },
+     {
+      "uz": "Foydalanuvchi ovozini yozib, matnga aylantirish",
+      "ru": "Запись голоса пользователя и перевод его в текст"
+     },
+     {
+      "uz": "Botning barcha xabarlarini o'chirib tashlash",
+      "ru": "Удаление всех сообщений бота"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 25,
+     "maxVariant": 62,
+     "jami": 240,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "`bot.launch()` nima qiladi?",
+     "ru": "Что делает `bot.launch()`?"
+    },
+    "opts": [
+     {
+      "uz": "Yangi token yaratib, eskisini butunlay bekor qiladi",
+      "ru": "Создаёт новый токен и полностью отменяет старый"
+     },
+     {
+      "uz": "Botni Telegram'dan o'chirib, uning akkauntini yopadi",
+      "ru": "Удаляет бота из Telegram и закрывает его аккаунт"
+     },
+     {
+      "uz": "Botni ishga tushiradi: bot hodisalarni kuta boshlaydi",
+      "ru": "Запускает бота: бот начинает ждать события"
+     },
+     {
+      "uz": "Faqat botning rasmi va nomini yangilab qo'yadi",
+      "ru": "Обновляет только аватар и имя бота"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 53,
+     "jami": 229,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "/start va /help qanday belgi bilan boshlanadi?",
+     "ru": "С какого знака начинаются /start и /help?"
+    },
+    "opts": [
+     {
+      "uz": "Qiyshiq chiziq (/) bilan",
+      "ru": "С косой черты (/)"
+     },
+     {
+      "uz": "Yulduzcha (*) bilan",
+      "ru": "Со звёздочки (*)"
+     },
+     {
+      "uz": "Ikki nuqta (:) bilan",
+      "ru": "С двоеточия (:)"
+     },
+     {
+      "uz": "Hech qanday belgisiz",
+      "ru": "Без всякого знака"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 24,
+     "jami": 129,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-04",
+  "file": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Bot nega bir necha xabardan keyin oldingi javobni unutadi?",
+     "ru": "Почему бот через несколько сообщений забывает предыдущий ответ?"
+    },
+    "opts": [
+     {
+      "uz": "Internet aloqasi beqaror bo'lib, xabar yo'qoladi",
+      "ru": "Интернет нестабилен, и сообщение теряется по пути"
+     },
+     {
+      "uz": "Mijoz xabarlarni juda tez ketma-ket yuborib turadi",
+      "ru": "Клиент шлёт сообщения слишком быстро одно за другим"
+     },
+     {
+      "uz": "Bot holatni saqlamaydi, har xabarni alohida ko'radi",
+      "ru": "Бот не хранит состояние — каждое сообщение отдельно"
+     },
+     {
+      "uz": "Telegram xabarlarni tasodifiy tartibda yetkazadi",
+      "ru": "Telegram доставляет сообщения в случайном порядке"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 51,
+     "jami": 255,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Aziza va Bek bir vaqtda botga yozsa, suhbatlari aralashmasligi uchun nima kerak?",
+     "ru": "Азиза и Бек пишут боту одновременно. Что нужно, чтобы их диалоги не перепутались?"
+    },
+    "opts": [
+     {
+      "uz": "Ikkalasining holatini bitta o'zgaruvchida saqlash",
+      "ru": "Хранить состояние обоих в одной переменной"
+     },
+     {
+      "uz": "Har mijozga alohida bot ochib, alohida token berish",
+      "ru": "Создать каждому клиенту отдельного бота и токен"
+     },
+     {
+      "uz": "Umumiy holatni obyektda emas, PostgreSQL'da saqlash",
+      "ru": "Хранить общее состояние не в объекте, а в PostgreSQL"
+     },
+     {
+      "uz": "Har mijozga alohida sessiya ochib, holatni saqlash",
+      "ru": "Открыть каждому отдельную сессию и хранить состояние"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 80,
+     "maxVariant": 51,
+     "jami": 281,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Bot serveri qayta ishga tushganda qaysi ma'lumot saqlanib qoladi?",
+     "ru": "Какие данные сохранятся, когда сервер бота перезапустится?"
+    },
+    "opts": [
+     {
+      "uz": "PostgreSQL jadvaliga yozilgan ma'lumot",
+      "ru": "Данные, записанные в таблицу PostgreSQL"
+     },
+     {
+      "uz": "Koddagi JavaScript obyektidagi holat ma'lumoti",
+      "ru": "Состояние в JavaScript-объекте в коде"
+     },
+     {
+      "uz": "Hech qaysi, hammasi birdan yo'qoladi",
+      "ru": "Никакие, всё пропадёт сразу"
+     },
+     {
+      "uz": "Handler ichidagi o'zgaruvchidagi ma'lumot",
+      "ru": "Данные в переменной внутри handler-а"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 65,
+     "maxVariant": 46,
+     "jami": 226,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Bot «pitsa o'lchamini kutyapman» degan yozuvni saqladi. Bu yozuv nima deyiladi?",
+     "ru": "Бот сохранил запись «жду размер пиццы». Как называется эта запись?"
+    },
+    "opts": [
+     {
+      "uz": "Webhook — Telegram xabarni botga o'zi yuboradigan usul",
+      "ru": "Webhook — способ, когда Telegram сам отправляет сообщение боту"
+     },
+     {
+      "uz": "Holat — suhbat hozir qaysi bosqichda ekanini bildiradi",
+      "ru": "Состояние — показывает, на каком этапе сейчас диалог"
+     },
+     {
+      "uz": "Token — bot sizniki ekanini tasdiqlaydigan maxfiy qator",
+      "ru": "Токен — секретная строка, подтверждающая, что бот Ваш"
+     },
+     {
+      "uz": "Fallback — hech bir handler mos kelmaganda ishlaydi",
+      "ru": "Fallback — срабатывает, когда не подошёл ни один handler"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 79,
+     "maxVariant": 55,
+     "jami": 293,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "SELECT buyrug'i botga nima uchun kerak?",
+     "ru": "Зачем боту команда SELECT?"
+    },
+    "opts": [
+     {
+      "uz": "Yangi mijozni jadvalga qo'shib qo'yish uchun",
+      "ru": "Чтобы добавить нового клиента в таблицу"
+     },
+     {
+      "uz": "Mavjud ma'lumotni bazadan o'chirish uchun",
+      "ru": "Чтобы удалить существующие данные из базы"
+     },
+     {
+      "uz": "Jadval tuzilishini o'zgartirib qurish uchun",
+      "ru": "Чтобы изменить и перестроить структуру таблицы"
+     },
+     {
+      "uz": "Mijoz va uning holatini bazadan o'qish uchun",
+      "ru": "Чтобы прочитать клиента и его состояние из базы"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 44,
+     "jami": 211,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Yangi mijoz birinchi marta /start bosdi, jadvalda uning qatori hali yo'q. Qaysi buyruq kerak?",
+     "ru": "Новый клиент впервые нажал /start, его строки в таблице ещё нет. Какая команда нужна?"
+    },
+    "opts": [
+     {
+      "uz": "SELECT — mavjud qatorni bazadan o'qiydi",
+      "ru": "SELECT — читает существующую строку из базы"
+     },
+     {
+      "uz": "INSERT — jadvalga yangi qator qo'shadi",
+      "ru": "INSERT — добавляет в таблицу новую строку"
+     },
+     {
+      "uz": "UPDATE — mavjud qatorni o'zgartiradi",
+      "ru": "UPDATE — изменяет существующую строку"
+     },
+     {
+      "uz": "DELETE — mavjud qatorni o'chiradi",
+      "ru": "DELETE — удаляет существующую строку"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 93,
+     "maxVariant": 39,
+     "jami": 239,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Mijoz javob bergach, bot holatni keyingi bosqichga qanday o'tkazadi?",
+     "ru": "Как бот переводит состояние на следующий этап, когда клиент ответил?"
+    },
+    "opts": [
+     {
+      "uz": "UPDATE bilan holatni yangi qiymatga o'zgartiradi",
+      "ru": "Через UPDATE меняет состояние на новое значение"
+     },
+     {
+      "uz": "INSERT bilan har safar yangi qator qo'shib boradi",
+      "ru": "Через INSERT каждый раз добавляет новую строку"
+     },
+     {
+      "uz": "SELECT bilan holatni bazadan qayta o'qib oladi",
+      "ru": "Через SELECT заново читает состояние из базы"
+     },
+     {
+      "uz": "DELETE bilan eski holatni o'chirib tashlaydi",
+      "ru": "Через DELETE удаляет старое состояние"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 68,
+     "maxVariant": 49,
+     "jami": 255,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Koddagi oddiy JavaScript obyektida saqlangan holatning eng katta kamchiligi nima?",
+     "ru": "В чём главный минус состояния, которое хранится в обычном JavaScript-объекте в коде?"
+    },
+    "opts": [
+     {
+      "uz": "Bu usul botni juda sekinlashtirib qo'yadi",
+      "ru": "Этот способ сильно замедляет бота"
+     },
+     {
+      "uz": "Bu usul diskda juda ko'p joy egallaydi",
+      "ru": "Этот способ занимает много места на диске"
+     },
+     {
+      "uz": "Bot qayta ishga tushsa, hammasi yo'qoladi",
+      "ru": "При перезапуске бота всё пропадает"
+     },
+     {
+      "uz": "Uni bir vaqtda faqat bitta mijoz ishlata oladi",
+      "ru": "Им может пользоваться только один клиент за раз"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 81,
+     "maxVariant": 46,
+     "jami": 247,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "users jadvalidagi `holat` ustuni nima uchun kerak?",
+     "ru": "Зачем в таблице users колонка `holat`?"
+    },
+    "opts": [
+     {
+      "uz": "Mijozning ismini saqlab qo'yish uchun",
+      "ru": "Чтобы сохранить имя клиента"
+     },
+     {
+      "uz": "Mijoz tanlagan pitsani saqlab qo'yish uchun",
+      "ru": "Чтобы сохранить пиццу, которую выбрал клиент"
+     },
+     {
+      "uz": "Suhbat qaysi bosqichda ekanini saqlash uchun",
+      "ru": "Чтобы хранить, на каком этапе диалог"
+     },
+     {
+      "uz": "Xabar yuborilgan vaqtni yozib qo'yish uchun",
+      "ru": "Чтобы записать время отправки сообщения"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 44,
+     "jami": 217,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Nega har mijozga alohida sessiya berish muhim?",
+     "ru": "Почему важно давать каждому клиенту отдельную сессию?"
+    },
+    "opts": [
+     {
+      "uz": "Har kimning suhbati o'zida qoladi, aralashmaydi",
+      "ru": "Диалог каждого остаётся своим и не смешивается"
+     },
+     {
+      "uz": "Bot shundan keyin ancha tezroq ishlay boshlaydi",
+      "ru": "После этого бот начинает работать заметно быстрее"
+     },
+     {
+      "uz": "Bot qayta ishga tushsa ham, holat saqlanib qoladi",
+      "ru": "Даже после перезапуска бота состояние сохранится"
+     },
+     {
+      "uz": "Bu faqat juda katta va murakkab botlarga kerak",
+      "ru": "Это нужно только очень большим и сложным ботам"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 49,
+     "jami": 235,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Holatli bot xabar olganda birinchi nima qiladi?",
+     "ru": "Что бот с состоянием делает первым, получив сообщение?"
+    },
+    "opts": [
+     {
+      "uz": "Har safar mijozni jadvalga yangidan INSERT qiladi",
+      "ru": "Каждый раз заново делает INSERT клиента в таблицу"
+     },
+     {
+      "uz": "Mijoz va uning holatini SELECT bilan o'qiydi",
+      "ru": "Читает клиента и его состояние через SELECT"
+     },
+     {
+      "uz": "Avval yangi holatni UPDATE bilan yozib qo'yadi",
+      "ru": "Сначала записывает новое состояние через UPDATE"
+     },
+     {
+      "uz": "Mijozdan ismini har safar qaytadan so'raydi",
+      "ru": "Каждый раз заново спрашивает у клиента имя"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 49,
+     "jami": 229,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Bot qayta ishga tushgandan keyin ham suhbatni davom ettirishi uchun nima kerak?",
+     "ru": "Что нужно, чтобы бот продолжил диалог даже после перезапуска?"
+    },
+    "opts": [
+     {
+      "uz": "Mijoz /start buyrug'ini qaytadan bosishi kerak",
+      "ru": "Клиент должен снова нажать /start"
+     },
+     {
+      "uz": "Bot internetga avvalgidan tezroq ulanishi kerak",
+      "ru": "Бот должен подключаться к интернету быстрее"
+     },
+     {
+      "uz": "Holat koddagi oddiy obyektda saqlanib turishi kerak",
+      "ru": "Состояние должно храниться в обычном объекте в коде"
+     },
+     {
+      "uz": "Holat PostgreSQL bazasida saqlangan bo'lishi kerak",
+      "ru": "Состояние должно храниться в базе PostgreSQL"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 79,
+     "maxVariant": 51,
+     "jami": 273,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-05",
+  "file": "src/5-Modull/BotAiProjectLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Nega «menga bot yasab ber» — noaniq prompt?",
+     "ru": "Почему «сделай мне бота» — неточный промпт?"
+    },
+    "opts": [
+     {
+      "uz": "AI o'zbekcha yozilgan buyruqni tushunmaydi",
+      "ru": "ИИ не понимает команду, написанную по-русски"
+     },
+     {
+      "uz": "Unda texnologiya, tugma turi va token yo'q",
+      "ru": "В нём нет технологии, типа кнопок и токена"
+     },
+     {
+      "uz": "«Iltimos» deyilmagan, buyruq qo'pol yozilgan",
+      "ru": "«Пожалуйста» не сказано, команда написана грубо"
+     },
+     {
+      "uz": "AI Telegram uchun bot kodini yoza olmaydi",
+      "ru": "ИИ не умеет писать код бота для Telegram"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 44,
+     "jami": 212,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "AI'ga prompt yozishdan oldin nima qilinadi?",
+     "ru": "Что делают до того, как писать промпт ИИ?"
+    },
+    "opts": [
+     {
+      "uz": "Boshqa botning tayyor kodi ko'chirib olinadi",
+      "ru": "Копируют готовый код другого бота"
+     },
+     {
+      "uz": "Bot kodi darrov serverga joylab qo'yiladi",
+      "ru": "Сразу размещают код бота на сервере"
+     },
+     {
+      "uz": "Token kodning birinchi qatoriga yoziladi",
+      "ru": "Пишут токен в первую строку кода"
+     },
+     {
+      "uz": "Botning hodisa va javoblari rejaga yoziladi",
+      "ru": "Записывают в план события и ответы бота"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 44,
+     "jami": 211,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Bugungi promptda nima aytiladi?",
+     "ru": "Что говорится в сегодняшнем промпте?"
+    },
+    "opts": [
+     {
+      "uz": "Hodisa va javob juftlari, tugma turi",
+      "ru": "Пары событие и ответ, тип кнопок"
+     },
+     {
+      "uz": "Bot nomi, rangi, rasmi va qisqa tavsifi",
+      "ru": "Имя бота, цвет, картинка и краткое описание"
+     },
+     {
+      "uz": "Token, parol, telefon raqami va login",
+      "ru": "Токен, пароль, номер телефона и логин"
+     },
+     {
+      "uz": "Server manzili, domen, narx va logotip",
+      "ru": "Адрес сервера, домен, цена и логотип"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 39,
+     "jami": 181,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "AI kod bergach, birinchi nima qilasiz?",
+     "ru": "Что вы сделаете первым делом, когда ИИ выдал код?"
+    },
+    "opts": [
+     {
+      "uz": "O'qimasdan, botni darrov mijozlarga beraman",
+      "ru": "Не читая, сразу отдам бота клиентам"
+     },
+     {
+      "uz": "Kodni o'chirib, hammasini o'zim qayta yozaman",
+      "ru": "Удалю код и перепишу всё сам"
+     },
+     {
+      "uz": "Kodni o'qib chiqaman va botni test qilaman",
+      "ru": "Прочитаю код и протестирую бота"
+     },
+     {
+      "uz": "AI'dan xuddi shu kodni yana bir marta so'rayman",
+      "ru": "Попрошу у ИИ тот же код ещё раз"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 47,
+     "jami": 215,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Bot tugmali xabar yubordi, lekin tugma bosilganda jim. Sabab?",
+     "ru": "Бот отправил сообщение с кнопкой, но при нажатии молчит. Причина?"
+    },
+    "opts": [
+     {
+      "uz": "Token noto'g'ri, Bot API so'rovni rad etdi",
+      "ru": "Токен неверный, Bot API отклонил запрос"
+     },
+     {
+      "uz": "Shu tugma uchun bot.action handleri yo'q",
+      "ru": "Для этой кнопки нет handler bot.action"
+     },
+     {
+      "uz": "Inline emas, reply tugma ishlatish kerak edi",
+      "ru": "Нужно было использовать не inline, а reply-кнопку"
+     },
+     {
+      "uz": "Kod oxirida bot.launch() yozilmagan",
+      "ru": "В конце кода не написан bot.launch()"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 44,
+     "jami": 222,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "AI tokenni kodga ochiq yozib qo'ydi. To'g'ri yechim qaysi?",
+     "ru": "ИИ открыто записал токен в код. Какое решение верное?"
+    },
+    "opts": [
+     {
+      "uz": "Tokenni .env fayliga ko'chirish",
+      "ru": "Перенести токен в файл .env"
+     },
+     {
+      "uz": "Tokenni bot.js faylining oxiriga ko'chirish",
+      "ru": "Перенести токен в конец файла bot.js"
+     },
+     {
+      "uz": "Tokenni uzunroq qilib qayta yozish",
+      "ru": "Переписать токен, сделав его длиннее"
+     },
+     {
+      "uz": "Hech narsa qilmay, shundayligicha qoldirish",
+      "ru": "Ничего не делать, оставить как есть"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 43,
+     "jami": 209,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "AI bilan dasturlashda ish qanday bo'linadi?",
+     "ru": "Как делится работа при программировании с ИИ?"
+    },
+    "opts": [
+     {
+      "uz": "AI hamma qarorni o'zi qabul qiladi, siz kutasiz",
+      "ru": "ИИ принимает все решения сам, вы ждёте"
+     },
+     {
+      "uz": "Kodni siz yozasiz, AI esa faqat uni o'qiydi",
+      "ru": "Код пишете вы, а ИИ только читает его"
+     },
+     {
+      "uz": "AI kod yozadi va o'zi tekshiradi, siz ko'rmaysiz",
+      "ru": "ИИ пишет код и сам проверяет, вы не смотрите"
+     },
+     {
+      "uz": "Siz prompt yozasiz, AI kod yozadi, siz tekshirasiz",
+      "ru": "Вы пишете промпт, ИИ пишет код, вы проверяете"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 50,
+     "jami": 231,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "AI kodida qanday xato bo'lishi mumkin?",
+     "ru": "Какая ошибка может быть в коде ИИ?"
+    },
+    "opts": [
+     {
+      "uz": "AI kodida xato bo'lmaydi, u mukammal yozadi",
+      "ru": "В коде ИИ ошибок не бывает, он пишет идеально"
+     },
+     {
+      "uz": "Tugma uchun handler yozilmay qolishi mumkin",
+      "ru": "Для кнопки может быть не написан handler"
+     },
+     {
+      "uz": "Xato faqat token noto'g'ri bo'lsa chiqadi",
+      "ru": "Ошибка бывает, только если токен неверный"
+     },
+     {
+      "uz": "Xato faqat internet sekin bo'lganda chiqadi",
+      "ru": "Ошибка бывает, только если интернет медленный"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 43,
+     "jami": 208,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Test paytida xato topildi. Keyin nima qilinadi?",
+     "ru": "При тесте нашли ошибку. Что делают дальше?"
+    },
+    "opts": [
+     {
+      "uz": "Loyiha tashlanadi, boshqa g'oya olinadi",
+      "ru": "Бросают проект и берут другую идею"
+     },
+     {
+      "uz": "Boshqa bot noldan yozila boshlanadi",
+      "ru": "Начинают писать другого бота с нуля"
+     },
+     {
+      "uz": "AI'ga aniq tuzatish prompti yoziladi",
+      "ru": "Пишут ИИ точный промпт на исправление"
+     },
+     {
+      "uz": "Kod o'chiriladi va AI'dan qayta so'raladi",
+      "ru": "Удаляют код и просят ИИ написать заново"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 41,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "AI bilan bot yozishning to'g'ri tartibi qaysi?",
+     "ru": "Какой порядок написания бота с ИИ верный?"
+    },
+    "opts": [
+     {
+      "uz": "Prompt → AI kodi → nusxalash → ishlatish",
+      "ru": "Промпт → код ИИ → копирование → запуск"
+     },
+     {
+      "uz": "Test → reja → prompt → AI kodi → o'qish",
+      "ru": "Тест → план → промпт → код ИИ → чтение"
+     },
+     {
+      "uz": "AI kodi → ishlatish → buzilsa, tashlab ketish",
+      "ru": "Код ИИ → запуск → сломался — бросить"
+     },
+     {
+      "uz": "Reja → prompt → AI kodi → o'qish → test → tuzatish",
+      "ru": "План → промпт → код ИИ → чтение → тест → исправление"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 50,
+     "jami": 220,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "«Iteratsiya» nima?",
+     "ru": "Что такое «итерация»?"
+    },
+    "opts": [
+     {
+      "uz": "Test, tuzatish va qayta test takrori",
+      "ru": "Повтор: тест, исправление и снова тест"
+     },
+     {
+      "uz": "Botni bir marta yozib, boshqa o'zgartirmaslik",
+      "ru": "Написать бота один раз и больше не менять"
+     },
+     {
+      "uz": "Eski tokenni yangisiga almashtirish",
+      "ru": "Заменить старый токен на новый"
+     },
+     {
+      "uz": "Bot dasturini qayta ishga tushirish",
+      "ru": "Перезапустить программу бота"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 18,
+     "maxVariant": 45,
+     "jami": 169,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "AI kodni yozsa ham, bot ichini bilish nega kerak?",
+     "ru": "Зачем знать, как устроен бот, если код пишет ИИ?"
+    },
+    "opts": [
+     {
+      "uz": "AI faqat bot ichini biladiganlarga kod yozadi",
+      "ru": "ИИ пишет код только тем, кто знает устройство бота"
+     },
+     {
+      "uz": "Bilmasangiz, AI kod yozishdan bosh tortadi",
+      "ru": "Если не знаете, ИИ откажется писать код"
+     },
+     {
+      "uz": "AI yozgan kodni tekshirib, xatosini topish uchun",
+      "ru": "Чтобы проверить код ИИ и найти в нём ошибку"
+     },
+     {
+      "uz": "Bot ichini bilsangiz, kod tezroq ishlaydi",
+      "ru": "Если знаете устройство бота, код работает быстрее"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 48,
+     "jami": 225,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-06",
+  "file": "src/5-Modull/BotAiBrainLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "AI'ga system prompt berilmasa, u mijozga qanday javob beradi?",
+     "ru": "Как ИИ ответит клиенту, если ему не дали system prompt?"
+    },
+    "opts": [
+     {
+      "uz": "Umuman javob bermay, jim qoladi",
+      "ru": "Совсем не ответит, промолчит"
+     },
+     {
+      "uz": "Umumiy, mavzudan chetga chiqqan javob",
+      "ru": "Общим ответом, который уходит от темы"
+     },
+     {
+      "uz": "Faqat «tushunmadim» deb yozadi",
+      "ru": "Напишет только «не понял»"
+     },
+     {
+      "uz": "Bot o'zi o'chib, qayta yonadi",
+      "ru": "Бот сам выключится и включится снова"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 37,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "System prompt nimani belgilaydi?",
+     "ru": "Что задаёт system prompt?"
+    },
+    "opts": [
+     {
+      "uz": "AI'ning javob yozish tezligini",
+      "ru": "Скорость, с которой ИИ пишет ответ"
+     },
+     {
+      "uz": "Botning rangi va shriftini",
+      "ru": "Цвет и шрифт бота"
+     },
+     {
+      "uz": "Server joylashgan shaharni",
+      "ru": "Город, где стоит сервер"
+     },
+     {
+      "uz": "AI'ning xulqi va chegarasini",
+      "ru": "Поведение ИИ и его границы"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 30,
+     "jami": 142,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Prompt nima?",
+     "ru": "Что такое промпт?"
+    },
+    "opts": [
+     {
+      "uz": "AI'ga yuboriladigan so'rov matni",
+      "ru": "Текст запроса, который отправляют ИИ"
+     },
+     {
+      "uz": "Botning xatolar jurnali",
+      "ru": "Журнал ошибок бота"
+     },
+     {
+      "uz": "AI API'ning internet manzili",
+      "ru": "Интернет-адрес AI API"
+     },
+     {
+      "uz": "Telegram kanalining nomi",
+      "ru": "Название Telegram-канала"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 12,
+     "maxVariant": 32,
+     "jami": 119,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Kontekst oynasi nima?",
+     "ru": "Что такое окно контекста?"
+    },
+    "opts": [
+     {
+      "uz": "AI'ning javob yozish tezligi",
+      "ru": "Скорость, с которой ИИ пишет ответ"
+     },
+     {
+      "uz": "Botning Telegram'dagi chat oynasi",
+      "ru": "Окно чата бота в Telegram"
+     },
+     {
+      "uz": "AI bir so'rovda ko'radigan matn hajmi",
+      "ru": "Объём текста, который ИИ видит за один запрос"
+     },
+     {
+      "uz": "Bazadagi jadvallar soni",
+      "ru": "Количество таблиц в базе"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 21,
+     "maxVariant": 37,
+     "jami": 142,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Suhbat tarixi oynaga sig'masa, qaysi xabar birinchi chiqib ketadi?",
+     "ru": "Какое сообщение выйдет первым, если история диалога не поместится в окно?"
+    },
+    "opts": [
+     {
+      "uz": "Eng yangi xabar",
+      "ru": "Самое новое сообщение"
+     },
+     {
+      "uz": "Eng eski xabar",
+      "ru": "Самое старое сообщение"
+     },
+     {
+      "uz": "Eng qisqa xabar",
+      "ru": "Самое короткое сообщение"
+     },
+     {
+      "uz": "Tasodifiy bir xabar",
+      "ru": "Случайное сообщение"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 19,
+     "jami": 129,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mijoz ismi yo'qolmasligi uchun bot nima qiladi?",
+     "ru": "Что делает бот, чтобы имя клиента не потерялось?"
+    },
+    "opts": [
+     {
+      "uz": "Ismni bazaga saqlab, promptga qo'shadi",
+      "ru": "Сохраняет имя в базу и добавляет в промпт"
+     },
+     {
+      "uz": "Kontekst oynasini o'zi kattalashtiradi",
+      "ru": "Сам увеличивает окно контекста"
+     },
+     {
+      "uz": "Temperature'ni pastroq qilib qo'yadi",
+      "ru": "Ставит temperature пониже"
+     },
+     {
+      "uz": "AI'ni har safar qayta ishga tushiradi",
+      "ru": "Каждый раз перезапускает ИИ"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 38,
+     "jami": 196,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Temperature past bo'lsa (masalan, 0.1), javob qanday bo'ladi?",
+     "ru": "Каким будет ответ при низкой temperature (например, 0.1)?"
+    },
+    "opts": [
+     {
+      "uz": "Har safar butunlay boshqacha",
+      "ru": "Каждый раз совсем другим"
+     },
+     {
+      "uz": "Har safar xato chiqadi",
+      "ru": "Каждый раз ошибочным"
+     },
+     {
+      "uz": "Juda uzun va batafsil",
+      "ru": "Очень длинным и подробным"
+     },
+     {
+      "uz": "Qat'iy va deyarli bir xil",
+      "ru": "Строгим и почти одинаковым"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 28,
+     "jami": 157,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Temperature baland bo'lsa (masalan, 1.5), menyu uchun nima noqulay?",
+     "ru": "Что неудобно для меню при высокой temperature (например, 1.5)?"
+    },
+    "opts": [
+     {
+      "uz": "Bot butunlay to'xtab qoladi",
+      "ru": "Бот полностью остановится"
+     },
+     {
+      "uz": "Javob har safar boshqacha chiqadi",
+      "ru": "Ответ каждый раз получается другим"
+     },
+     {
+      "uz": "Internet uzilib qoladi",
+      "ru": "Пропадёт интернет"
+     },
+     {
+      "uz": "API kaliti oshkor bo'ladi",
+      "ru": "Раскроется ключ API"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 67,
+     "maxVariant": 33,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Menyuni har safar bir xil va aniq aytish kerak. Qaysi temperature mos?",
+     "ru": "Меню нужно каждый раз называть одинаково и точно. Какая temperature подходит?"
+    },
+    "opts": [
+     {
+      "uz": "Baland (1.5)",
+      "ru": "Высокая (1.5)"
+     },
+     {
+      "uz": "O'rtacha, xohlagancha",
+      "ru": "Средняя, как получится"
+     },
+     {
+      "uz": "Past (0.1)",
+      "ru": "Низкая (0.1)"
+     },
+     {
+      "uz": "Har so'rovda almashtirib",
+      "ru": "Менять при каждом запросе"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 70,
+     "maxVariant": 24,
+     "jami": 137,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "AI «Bizda ananasli pitsa bor» dedi, menyuda esa bunday pitsa yo'q. Bu nima?",
+     "ru": "ИИ сказал «У нас есть пицца с ананасом», а в меню такой пиццы нет. Что это?"
+    },
+    "opts": [
+     {
+      "uz": "To'g'ri javob, hammasi joyida",
+      "ru": "Верный ответ, всё в порядке"
+     },
+     {
+      "uz": "Telegram Bot API'ning xatosi",
+      "ru": "Ошибка Telegram Bot API"
+     },
+     {
+      "uz": "API kalitining oshkor bo'lishi",
+      "ru": "Раскрытие ключа API"
+     },
+     {
+      "uz": "Hallutsinatsiya, tekshirish kerak",
+      "ru": "Галлюцинация, нужно проверить"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 75,
+     "maxVariant": 33,
+     "jami": 195,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "AI javobidagi narxni qachon tekshirish kerak?",
+     "ru": "Когда нужно проверять цену в ответе ИИ?"
+    },
+    "opts": [
+     {
+      "uz": "Mijozga yuborishdan oldin",
+      "ru": "Перед отправкой клиенту"
+     },
+     {
+      "uz": "Hech qachon, AI adashmaydi",
+      "ru": "Никогда, ИИ не ошибается"
+     },
+     {
+      "uz": "Faqat temperature past bo'lsa",
+      "ru": "Только при низкой temperature"
+     },
+     {
+      "uz": "Faqat mijoz shikoyat qilsa",
+      "ru": "Только если клиент пожалуется"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 29,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "AI API kaliti qayerda saqlanadi?",
+     "ru": "Где хранится ключ AI API?"
+    },
+    "opts": [
+     {
+      "uz": "bot.js kodining ichida, ochiq holda",
+      "ru": "Внутри кода bot.js, открыто"
+     },
+     {
+      "uz": "Mijozga chatda yuboriladi",
+      "ru": "Отправляется клиенту в чат"
+     },
+     {
+      "uz": ".env faylida, kodda emas",
+      "ru": "В файле .env, а не в коде"
+     },
+     {
+      "uz": "Telegram profil sozlamasida",
+      "ru": "В настройках профиля Telegram"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 35,
+     "jami": 143,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-07",
+  "file": "src/5-Modull/BotFullProjectLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "To'liq botning to'rt asosiy qismi qaysilar?",
+     "ru": "Какие четыре основные части у полного бота?"
+    },
+    "opts": [
+     {
+      "uz": "Token, API, dizayn va reklama",
+      "ru": "Токен, API, дизайн и реклама"
+     },
+     {
+      "uz": "Token, handlerlar, baza va AI",
+      "ru": "Токен, handler-ы, база и ИИ"
+     },
+     {
+      "uz": "Handlerlar, rasm, video va musiqa",
+      "ru": "Handler-ы, фото, видео и музыка"
+     },
+     {
+      "uz": "Telegram, telefon, laptop va internet",
+      "ru": "Telegram, телефон, ноутбук и интернет"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 37,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Buyurtmani ertasi kungacha qaysi qism saqlaydi?",
+     "ru": "Какая часть хранит заказ до следующего дня?"
+    },
+    "opts": [
+     {
+      "uz": "Token",
+      "ru": "Токен"
+     },
+     {
+      "uz": "Handler",
+      "ru": "Handler"
+     },
+     {
+      "uz": "AI",
+      "ru": "ИИ"
+     },
+     {
+      "uz": "Baza",
+      "ru": "База"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 7,
+     "jami": 65,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Deploy nima degani?",
+     "ru": "Что значит деплой?"
+    },
+    "opts": [
+     {
+      "uz": "Kodni serverga joylab, u yerda ishga tushirish",
+      "ru": "Разместить код на сервере и запустить его там"
+     },
+     {
+      "uz": "Botni butunlay o'chirib, qaytadan yaratish",
+      "ru": "Полностью удалить бота и создать заново"
+     },
+     {
+      "uz": "Eski tokenni yangisiga almashtirib qo'yish",
+      "ru": "Заменить старый токен на новый"
+     },
+     {
+      "uz": "Botga yangi mijozlarni taklif qilib chiqish",
+      "ru": "Пригласить в бота новых клиентов"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 19,
+     "maxVariant": 46,
+     "jami": 192,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Server — bu nima?",
+     "ru": "Сервер — что это?"
+    },
+    "opts": [
+     {
+      "uz": "Telegram ichidagi maxsus kanal",
+      "ru": "Специальный канал внутри Telegram"
+     },
+     {
+      "uz": "Laptopingizdagi alohida papka",
+      "ru": "Отдельная папка на вашем ноутбуке"
+     },
+     {
+      "uz": "To'xtamay ishlashga mo'ljallangan kompyuter",
+      "ru": "Компьютер, рассчитанный на работу без остановки"
+     },
+     {
+      "uz": "Mijoz telefonidagi Telegram ilovasi",
+      "ru": "Приложение Telegram на телефоне клиента"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 17,
+     "maxVariant": 43,
+     "jami": 154,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Botni serverga joylasak, nima o'zgaradi?",
+     "ru": "Что изменится, если разместить бота на сервере?"
+    },
+    "opts": [
+     {
+      "uz": "Bot ancha sekin javob bera boshlaydi",
+      "ru": "Бот станет отвечать заметно медленнее"
+     },
+     {
+      "uz": "Laptop yopiq bo'lsa ham bot javob beradi",
+      "ru": "Бот отвечает, даже когда ноутбук закрыт"
+     },
+     {
+      "uz": "Bot faqat kunduzi javob beradigan bo'ladi",
+      "ru": "Бот будет отвечать только днём"
+     },
+     {
+      "uz": "Hech narsa, hammasi avvalgidek qoladi",
+      "ru": "Ничего, всё останется как было"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 41,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Serverda BOT_TOKEN qayerga yoziladi?",
+     "ru": "Куда на сервере записывают BOT_TOKEN?"
+    },
+    "opts": [
+     {
+      "uz": "Server sozlamalariga, kod uni process.env dan o'qiydi",
+      "ru": "В настройки сервера, код читает его из process.env"
+     },
+     {
+      "uz": "bot.js ichiga, kod bilan birga yuklanadi",
+      "ru": "В bot.js, он загружается вместе с кодом"
+     },
+     {
+      "uz": "Botning Telegram'dagi tavsifiga yoziladi",
+      "ru": "В описание бота в Telegram"
+     },
+     {
+      "uz": "Hech qayerga, server uni o'zi topadi",
+      "ru": "Никуда, сервер сам его найдёт"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 53,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Polling'da yangi xabarni kim so'raydi?",
+     "ru": "Кто при polling спрашивает о новом сообщении?"
+    },
+    "opts": [
+     {
+      "uz": "Mijoz — u Telegram'dan qayta-qayta so'raydi",
+      "ru": "Клиент — он снова и снова спрашивает у Telegram"
+     },
+     {
+      "uz": "Telegram — u botdan qayta-qayta so'raydi",
+      "ru": "Telegram — он снова и снова спрашивает у бота"
+     },
+     {
+      "uz": "Server — u mijozdan qayta-qayta so'raydi",
+      "ru": "Сервер — он снова и снова спрашивает у клиента"
+     },
+     {
+      "uz": "Bot — u Telegram'dan qayta-qayta so'raydi",
+      "ru": "Бот — он снова и снова спрашивает у Telegram"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 43,
+     "jami": 202,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Webhook'da yangi xabarni botga kim yetkazadi?",
+     "ru": "Кто при webhook доставляет боту новое сообщение?"
+    },
+    "opts": [
+     {
+      "uz": "Bot o'zi — Telegram'dan qayta-qayta so'rab oladi",
+      "ru": "Сам бот — снова и снова спрашивает у Telegram"
+     },
+     {
+      "uz": "Telegram — xabarni botning manziliga o'zi yuboradi",
+      "ru": "Telegram — сам отправляет сообщение на адрес бота"
+     },
+     {
+      "uz": "Mijoz — xabarni to'g'ridan-to'g'ri serverga yozadi",
+      "ru": "Клиент — пишет сообщение прямо на сервер"
+     },
+     {
+      "uz": "Hech kim — xabar botda o'zi paydo bo'ladi",
+      "ru": "Никто — сообщение само появляется в боте"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 50,
+     "jami": 234,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Laptopda bot qaysi usulda ishlaydi?",
+     "ru": "Каким способом бот работает на ноутбуке?"
+    },
+    "opts": [
+     {
+      "uz": "Webhook",
+      "ru": "Webhook"
+     },
+     {
+      "uz": "Ikkalasini birga ishlatish",
+      "ru": "Использовать оба вместе"
+     },
+     {
+      "uz": "Polling",
+      "ru": "Polling"
+     },
+     {
+      "uz": "Hech qaysi, bot o'zi biladi",
+      "ru": "Никакой, бот сам разберётся"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 27,
+     "jami": 102,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Kodni serverga joylashdan oldin nima qilinadi?",
+     "ru": "Что делают перед размещением кода на сервере?"
+    },
+    "opts": [
+     {
+      "uz": "Token kodga ochiq yozib qo'yiladi",
+      "ru": "Записывают токен в код открыто"
+     },
+     {
+      "uz": "Hech narsa, kod to'g'ridan-to'g'ri joylanadi",
+      "ru": "Ничего, код сразу размещают"
+     },
+     {
+      "uz": "Laptopdagi baza o'chirib tashlanadi",
+      "ru": "Удаляют базу на ноутбуке"
+     },
+     {
+      "uz": "Kod laptopda ishga tushirib sinaladi",
+      "ru": "Запускают и тестируют код на ноутбуке"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 44,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "AI javob bermasa ham bot jim qolmasligi uchun nima qilinadi?",
+     "ru": "Что делают, чтобы бот не молчал, даже если ИИ не ответил?"
+    },
+    "opts": [
+     {
+      "uz": "Xato ushlanadi va mijozdan uzr so'raladi",
+      "ru": "Ловят ошибку и извиняются перед клиентом"
+     },
+     {
+      "uz": "Bot har safar qo'lda qayta yoqiladi",
+      "ru": "Каждый раз включают бота вручную"
+     },
+     {
+      "uz": "@BotFather'dan yangi token olinadi",
+      "ru": "Берут новый токен у @BotFather"
+     },
+     {
+      "uz": "Hech narsa, bot o'zi tiklanib ketadi",
+      "ru": "Ничего, бот сам восстановится"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 40,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Laptop yopiq, lekin bot javob beryapti. Sababi?",
+     "ru": "Ноутбук закрыт, а бот отвечает. Почему?"
+    },
+    "opts": [
+     {
+      "uz": "Javoblar oldindan navbatda turgan edi",
+      "ru": "Ответы заранее стояли в очереди"
+     },
+     {
+      "uz": "Telegram bot dasturini o'zi ishlatadi",
+      "ru": "Telegram сам запускает программу бота"
+     },
+     {
+      "uz": "Bot dasturi serverda ishlayapti",
+      "ru": "Программа бота работает на сервере"
+     },
+     {
+      "uz": "Mijoz botni o'zi ishga tushirgan",
+      "ru": "Клиент сам запустил бота"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 37,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-08",
+  "file": "src/5-Modull/PmLesson20.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Suhbat nima?",
+     "ru": "Что такое беседа?"
+    },
+    "opts": [
+     {
+      "uz": "Botni ishlatgan odamdan bo'lib o'tgan ishini so'rash",
+      "ru": "Спросить того, кто пользовался ботом, о том, что уже было"
+     },
+     {
+      "uz": "Bo'lib o'tgan ishni odamsiz, o'zingiz taxmin qilish",
+      "ru": "Самому угадать, что было, без человека"
+     },
+     {
+      "uz": "Kelasi haftada nima qilishini oldindan so'rash",
+      "ru": "Заранее спросить, что он будет делать на следующей неделе"
+     },
+     {
+      "uz": "Botingizni ko'rsatib, u haqdagi fikrini so'rash",
+      "ru": "Показать бота и спросить мнение о нём"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 12,
+     "maxVariant": 52,
+     "jami": 208,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Suhbatda nima so'raladi?",
+     "ru": "О чём спрашивают в беседе?"
+    },
+    "opts": [
+     {
+      "uz": "Bo'lib o'tgan ishga odam qo'ygan baho",
+      "ru": "Оценку, которую человек дал тому, что уже было"
+     },
+     {
+      "uz": "Odamning kelasi haftadagi rejasi",
+      "ru": "Планы человека на следующую неделю"
+     },
+     {
+      "uz": "Odamning bot haqidagi fikri",
+      "ru": "Мнение человека о боте"
+     },
+     {
+      "uz": "Odam o'tgan kunlarda qilgan ish",
+      "ru": "Дело, которое человек сделал в прошлые дни"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 24,
+     "maxVariant": 37,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Voqea savoli nima?",
+     "ru": "Что такое вопрос о событии?"
+    },
+    "opts": [
+     {
+      "uz": "Bo'lib o'tgan ishni emas, kelajakni so'ragan savol",
+      "ru": "Вопрос не о прошлом, а о будущем"
+     },
+     {
+      "uz": "Botga qanday tugma kerakligini so'ragan savol",
+      "ru": "Вопрос о том, какая кнопка нужна боту"
+     },
+     {
+      "uz": "Bo'lib o'tgan ishni so'ragan savol",
+      "ru": "Вопрос о том, что уже произошло"
+     },
+     {
+      "uz": "Javobi «ha» bo'lib qoladigan savol",
+      "ru": "Вопрос, на который ответ — просто «да»"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 18,
+     "maxVariant": 50,
+     "jami": 181,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Bo'sh savol nima?",
+     "ru": "Что такое пустой вопрос?"
+    },
+    "opts": [
+     {
+      "uz": "Javobida bo'lib o'tgan ish juda ko'p aytiladigan savol",
+      "ru": "Вопрос, в ответе на который слишком много событий"
+     },
+     {
+      "uz": "Javobidan bo'lib o'tgan ish bilinmaydigan savol",
+      "ru": "Вопрос, из ответа на который не видно, что произошло"
+     },
+     {
+      "uz": "Suhbatning oxirida beriladigan savol",
+      "ru": "Вопрос, который задают в конце беседы"
+     },
+     {
+      "uz": "Bir kunda ikki marta berilgan savol",
+      "ru": "Вопрос, заданный дважды за день"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 17,
+     "maxVariant": 54,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«Botim yoqdimi?» — bu qanday savol va nega?",
+     "ru": "«Тебе понравился мой бот?» — какой это вопрос и почему?"
+    },
+    "opts": [
+     {
+      "uz": "Voqea savoli — botni tilga oldi",
+      "ru": "Вопрос о событии — в нём назван бот"
+     },
+     {
+      "uz": "Bo'sh savol — qilingan ish so'ralmadi",
+      "ru": "Пустой вопрос — о сделанном деле не спросили"
+     },
+     {
+      "uz": "Bo'sh savol — savol juda qisqa",
+      "ru": "Пустой вопрос — вопрос слишком короткий"
+     },
+     {
+      "uz": "Voqea savoli — javobi bir og'iz",
+      "ru": "Вопрос о событии — ответ в одно слово"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 37,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "«Oxirgi marta qachon unutgansiz?» — bu qanday savol va nega?",
+     "ru": "«Когда ты в последний раз забыл?» — какой это вопрос и почему?"
+    },
+    "opts": [
+     {
+      "uz": "Voqea savoli — bo'lgan kunni so'radi",
+      "ru": "Вопрос о событии — спросили о дне, который был"
+     },
+     {
+      "uz": "Voqea savoli — javobi «ha» bo'lib qoladi",
+      "ru": "Вопрос о событии — ответ будет просто «да»"
+     },
+     {
+      "uz": "Bo'sh savol — kelajakni so'radi",
+      "ru": "Пустой вопрос — спросили о будущем"
+     },
+     {
+      "uz": "Bo'sh savol — botni tilga olmadi",
+      "ru": "Пустой вопрос — бот не упомянут"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 40,
+     "jami": 199,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Suhbatdosh «Ha, ishlataman» dedi — bundan nima bilinadi?",
+     "ru": "Собеседник сказал «Да, буду пользоваться» — что из этого понятно?"
+    },
+    "opts": [
+     {
+      "uz": "U botni har kuni ochib turishi",
+      "ru": "Что он открывает бот каждый день"
+     },
+     {
+      "uz": "U eslatma tugmasini bosgani",
+      "ru": "Что он нажимал кнопку-напоминание"
+     },
+     {
+      "uz": "Faqat uning va'dasi",
+      "ru": "Только его обещание"
+     },
+     {
+      "uz": "U vazifani payshanba unutgani",
+      "ru": "Что он забыл задание в четверг"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 30,
+     "jami": 161,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Varaqqa qaysi gap tushadi?",
+     "ru": "Какая фраза попадает на лист?"
+    },
+    "opts": [
+     {
+      "uz": "Siz chiqargan xulosa",
+      "ru": "Вывод, который сделали вы"
+     },
+     {
+      "uz": "Botga kerak bo'lgan tugmalar ro'yxati",
+      "ru": "Список кнопок, нужных боту"
+     },
+     {
+      "uz": "Hammaga taalluqli umumiy gap",
+      "ru": "Общая фраза, касающаяся всех"
+     },
+     {
+      "uz": "Eshitgan javobning o'zi",
+      "ru": "Сам услышанный ответ"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 26,
+     "maxVariant": 37,
+     "jami": 134,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Saytdagi uylar kam band qilinayotganda Airbnb asoschilari qayerga bordi?",
+     "ru": "Куда поехали основатели Airbnb, когда жильё на сайте стали мало бронировать?"
+    },
+    "opts": [
+     {
+      "uz": "Nyu-Yorkka — uy egalarining oldiga",
+      "ru": "В Нью-Йорк — к хозяевам домов"
+     },
+     {
+      "uz": "San-Frantsiskodagi yig'inga",
+      "ru": "На конференцию в Сан-Франциско"
+     },
+     {
+      "uz": "Mehmonxonalarga — joy so'rashga",
+      "ru": "В гостиницы — просить места"
+     },
+     {
+      "uz": "Hech qayerga — saytni o'zgartirishdi",
+      "ru": "Никуда — они переделали сайт"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 72,
+     "maxVariant": 36,
+     "jami": 200,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Ular uy egalarining oldida nimani bilib oldi?",
+     "ru": "Что они узнали рядом с хозяевами домов?"
+    },
+    "opts": [
+     {
+      "uz": "Uy egalari narxni baland qo'yganini",
+      "ru": "Что хозяева поставили высокую цену"
+     },
+     {
+      "uz": "Uy egalari saytga kam kirishini",
+      "ru": "Что хозяева редко заходят на сайт"
+     },
+     {
+      "uz": "Yomon surat qo'yilgan uy band qilinmasligini",
+      "ru": "Что дом с плохими фотографиями не бронируют"
+     },
+     {
+      "uz": "Mehmonlar band qilgan uyni bekor qilishini",
+      "ru": "Что гости отменяют бронирование"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 44,
+     "jami": 197,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Suhbatni kimdan boshlaysiz?",
+     "ru": "С кого начать беседу?"
+    },
+    "opts": [
+     {
+      "uz": "Bot haqida eshitmagan odamdan",
+      "ru": "С человека, который не слышал о боте"
+     },
+     {
+      "uz": "Botingizni ishlatgan odamdan",
+      "ru": "С человека, который пользовался вашим ботом"
+     },
+     {
+      "uz": "Sinfda eng yaxshi o'qiydigan odamdan",
+      "ru": "С человека, который лучше всех учится в классе"
+     },
+     {
+      "uz": "Botni yozishga yordam bergan odamdan",
+      "ru": "С человека, который помогал писать бота"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 36,
+     "jami": 156,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Eshitgan javobni varaqqa qanday yozasiz?",
+     "ru": "Как записать на лист услышанный ответ?"
+    },
+    "opts": [
+     {
+      "uz": "«Hamma shunday deydi» deb yozib qo'yaman",
+      "ru": "Запишу «Все так говорят»"
+     },
+     {
+      "uz": "Qisqartirib, o'z xulosam bilan yozaman",
+      "ru": "Сокращу и запишу со своим выводом"
+     },
+     {
+      "uz": "Yozmayman — esimda qoladi",
+      "ru": "Не запишу — и так запомню"
+     },
+     {
+      "uz": "U aytganidek yozaman",
+      "ru": "Запишу так, как сказал человек"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 40,
+     "jami": 163,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-09",
+  "file": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Foydalanuvchi: «/start bosdim, menyu tugmasi chiqmadi». Bu qanday fikr?",
+     "ru": "Пользователь: «Нажал /start, кнопка меню не появилась». Что это за отзыв?"
+    },
+    "opts": [
+     {
+      "uz": "Maqtov: mijoz botdan mamnun",
+      "ru": "Похвала: клиент доволен ботом"
+     },
+     {
+      "uz": "Bug: aniq joy va muammo bor",
+      "ru": "Баг: есть конкретное место и проблема"
+     },
+     {
+      "uz": "Taklif: yangi narsa so'ralgan",
+      "ru": "Предложение: просят что-то новое"
+     },
+     {
+      "uz": "Shovqin: e'tibor shart emas",
+      "ru": "Шум: внимание не нужно"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 29,
+     "jami": 181,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "«Yaxshi bot» degan fikr nega kam foydali?",
+     "ru": "Почему отзыв «Хороший бот» мало полезен?"
+    },
+    "opts": [
+     {
+      "uz": "Chunki bu salbiy fikr",
+      "ru": "Потому что это негативный отзыв"
+     },
+     {
+      "uz": "Chunki maqtov kam uchraydi",
+      "ru": "Потому что похвала встречается редко"
+     },
+     {
+      "uz": "Chunki botni yomon ko'rsatadi",
+      "ru": "Потому что он показывает бота плохим"
+     },
+     {
+      "uz": "Chunki aniq joy aytilmagan",
+      "ru": "Потому что не названо конкретное место"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 29,
+     "jami": 143,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "18 kishi bir xil shikoyat qildi, 1 kishi boshqa narsani aytdi. Qaysi birini birinchi ko'rib chiqasiz?",
+     "ru": "18 человек пожаловались на одно, 1 человек сказал другое. Что вы рассмотрите первым?"
+    },
+    "opts": [
+     {
+      "uz": "18 kishinikini: ko'pchilik aytgan",
+      "ru": "Жалобу 18 человек: так сказало большинство"
+     },
+     {
+      "uz": "1 kishinikini: u eng birinchi yozgan",
+      "ru": "Отзыв 1 человека: он написал самым первым"
+     },
+     {
+      "uz": "Ikkalasini ham bir vaqtning o'zida",
+      "ru": "Оба одновременно"
+     },
+     {
+      "uz": "Hech birini: bular shunchaki hissiyot",
+      "ru": "Ничего: это просто эмоции"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 101,
+     "maxVariant": 37,
+     "jami": 241,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Qaysi tuzatishni birinchi qilishni nimaga qarab tanlaysiz?",
+     "ru": "Как вы выбираете, какую правку сделать первой?"
+    },
+    "opts": [
+     {
+      "uz": "Eng jahl bilan yozilgan fikrga qarab",
+      "ru": "По отзыву, написанному злее всех"
+     },
+     {
+      "uz": "Eng birinchi kelgan fikrga qarab",
+      "ru": "По отзыву, пришедшему самым первым"
+     },
+     {
+      "uz": "Ko'p aytilgani va qattiq qiynaganiga",
+      "ru": "По тому, что чаще звучит и сильнее мешает"
+     },
+     {
+      "uz": "O'zimga eng qiziq tuyulganiga qarab",
+      "ru": "По тому, что мне самому интереснее"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 36,
+     "jami": 197,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Voronkada eng katta yo'qotish qayerda ko'rinadi?",
+     "ru": "Где в воронке видна самая большая потеря?"
+    },
+    "opts": [
+     {
+      "uz": "Eng ko'p odam turgan birinchi qadamda",
+      "ru": "На первом шаге, где больше всего людей"
+     },
+     {
+      "uz": "Odam soni eng ko'p kamaygan joyda",
+      "ru": "Там, где число людей упало сильнее всего"
+     },
+     {
+      "uz": "Bot eng sekin javob bergan joyda",
+      "ru": "Там, где бот ответил медленнее всего"
+     },
+     {
+      "uz": "Eng ko'p maqtov kelgan qadamda",
+      "ru": "На шаге, где больше всего похвалы"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 37,
+     "jami": 180,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Menyu tugmasi tuzatilgach, menyuni ochmasdan ketganlar 60 dan 15 ga tushdi. Bu nimani bildiradi?",
+     "ru": "После правки кнопки меню ушедших, не открыв меню, стало не 60, а 15. О чём это говорит?"
+    },
+    "opts": [
+     {
+      "uz": "Tuzatish ishlamadi, hamma ketyapti",
+      "ru": "Правка не сработала, все уходят"
+     },
+     {
+      "uz": "Sonlar tasodifiy, xulosa chiqmaydi",
+      "ru": "Числа случайные, вывода нет"
+     },
+     {
+      "uz": "Botda yana yangi bug paydo bo'ldi",
+      "ru": "В боте снова появился новый баг"
+     },
+     {
+      "uz": "Tuzatish ishladi, muammo kamaydi",
+      "ru": "Правка сработала, проблема уменьшилась"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 96,
+     "maxVariant": 34,
+     "jami": 229,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "«Bot ahmoq» sharhiga javob yozish nega eng ta'sirli tuzatish emas?",
+     "ru": "Почему ответ на отзыв «Бот тупой» — не самая влиятельная правка?"
+    },
+    "opts": [
+     {
+      "uz": "Unda nimani tuzatish kerakligi yo'q",
+      "ru": "В нём не сказано, что нужно чинить"
+     },
+     {
+      "uz": "Bunday sharhga javob yozib bo'lmaydi",
+      "ru": "На такой отзыв нельзя ответить"
+     },
+     {
+      "uz": "Uni yozgan odam botni ishlatmagan",
+      "ru": "Его автор не пользовался ботом"
+     },
+     {
+      "uz": "Javob yozish juda ko'p vaqt oladi",
+      "ru": "Ответ займёт слишком много времени"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 36,
+     "jami": 203,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "100 kishidan bittasi faqat o'ziga kerak narsani so'radi. Nima qilasiz?",
+     "ru": "Один из 100 попросил то, что нужно только ему. Что вы сделаете?"
+    },
+    "opts": [
+     {
+      "uz": "Darrov qo'shaman: har so'rov bajarilsin",
+      "ru": "Добавлю сразу: каждая просьба выполняется"
+     },
+     {
+      "uz": "U foydalanuvchini botdan bloklayman",
+      "ru": "Заблокирую этого пользователя в боте"
+     },
+     {
+      "uz": "Avval ko'pchilikka keraklisini qilaman",
+      "ru": "Сначала сделаю то, что нужно большинству"
+     },
+     {
+      "uz": "Hamma so'rovni navbati bilan qo'shaman",
+      "ru": "Добавлю все просьбы по очереди"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 70,
+     "maxVariant": 39,
+     "jami": 220,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Tuzatishdan keyin nima qilasiz?",
+     "ru": "Что вы делаете после правки?"
+    },
+    "opts": [
+     {
+      "uz": "Hech narsa: tuzatish albatta ishlaydi",
+      "ru": "Ничего: правка точно сработает"
+     },
+     {
+      "uz": "Qayta o'lchayman: shikoyat kamaydimi",
+      "ru": "Измерю заново: стало ли меньше жалоб"
+     },
+     {
+      "uz": "Darhol yana katta o'zgarish qilaman",
+      "ru": "Сразу сделаю ещё одно большое изменение"
+     },
+     {
+      "uz": "Fikr yig'ishni butunlay to'xtataman",
+      "ru": "Совсем перестану собирать отзывы"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 37,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Botingizning birinchi versiyasi chiqdi. Ish tugadimi?",
+     "ru": "Вышла первая версия вашего бота. Работа закончена?"
+    },
+    "opts": [
+     {
+      "uz": "Yo'q: bot fikr bilan yaxshilanib boradi",
+      "ru": "Нет: бот улучшается благодаря отзывам"
+     },
+     {
+      "uz": "Ha: birinchi versiya — tayyor mahsulot",
+      "ru": "Да: первая версия — готовый продукт"
+     },
+     {
+      "uz": "Testlarning hammasi o'tib bo'lsa — tugadi",
+      "ru": "Если все тесты пройдены — закончена"
+     },
+     {
+      "uz": "Bir hafta shikoyat kelmasa — tugadi",
+      "ru": "Если неделю нет жалоб — закончена"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 41,
+     "jami": 206,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Noaniq fikr («menyu chalkash») aniq o'zgarishdan nimasi bilan farq qiladi?",
+     "ru": "Чем неконкретный отзыв («меню запутанное») отличается от конкретного изменения?"
+    },
+    "opts": [
+     {
+      "uz": "Farqi yo'q, ikkalasi bir xil ishlatiladi",
+      "ru": "Ничем, оба применяются одинаково"
+     },
+     {
+      "uz": "Noaniq fikr odatda yolg'on bo'ladi",
+      "ru": "Неконкретный отзыв обычно бывает ложью"
+     },
+     {
+      "uz": "Aniq o'zgarishni faqat dasturchi tushunadi",
+      "ru": "Конкретное изменение понимает только программист"
+     },
+     {
+      "uz": "Fikr shikoyat, aniq o'zgarish esa vazifa",
+      "ru": "Отзыв — это жалоба, а изменение — задача"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 74,
+     "maxVariant": 42,
+     "jami": 230,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Aniq maqtovni («tez va qulay, rahmat!») nega e'tiborsiz qoldirmaysiz?",
+     "ru": "Почему вы не оставляете без внимания конкретную похвалу («быстро и удобно, спасибо!»)?"
+    },
+    "opts": [
+     {
+      "uz": "Chunki maqtovni ham tuzatish kerak",
+      "ru": "Потому что похвалу тоже нужно чинить"
+     },
+     {
+      "uz": "Chunki maqtov yozganga chegirma beriladi",
+      "ru": "Потому что за похвалу дают скидку"
+     },
+     {
+      "uz": "Chunki u nima yaxshi ishlashini aytadi",
+      "ru": "Потому что она говорит, что работает хорошо"
+     },
+     {
+      "uz": "Chunki maqtovda eng ko'p bug bo'ladi",
+      "ru": "Потому что в похвале больше всего багов"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 69,
+     "maxVariant": 40,
+     "jami": 217,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-10",
+  "file": "src/5-Modull/BotAiAgentLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "AI-bot va AI-agentning asosiy farqi nima?",
+     "ru": "В чём главная разница между ИИ-ботом и ИИ-агентом?"
+    },
+    "opts": [
+     {
+      "uz": "Agentning rangi va shrifti boshqacha bo'ladi",
+      "ru": "У агента другой цвет и шрифт"
+     },
+     {
+      "uz": "Agent maqsad sari qadamlarni o'zi tanlaydi",
+      "ru": "Агент сам выбирает шаги к цели"
+     },
+     {
+      "uz": "Ular orasida hech qanday farq yo'q",
+      "ru": "Между ними нет никакой разницы"
+     },
+     {
+      "uz": "Agent botdan ancha sekin ishlaydi",
+      "ru": "Агент работает намного медленнее бота"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 44,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Agent siklidagi «Amal» qadami nima?",
+     "ru": "Что такое шаг «Действие» в цикле агента?"
+    },
+    "opts": [
+     {
+      "uz": "Mijozning keyingi xabarini kutish",
+      "ru": "Ждать следующее сообщение клиента"
+     },
+     {
+      "uz": "Salom berib, menyuni yuborish",
+      "ru": "Поздороваться и отправить меню"
+     },
+     {
+      "uz": "O'zini o'chirib, ishni to'xtatish",
+      "ru": "Выключить себя и остановить работу"
+     },
+     {
+      "uz": "Tanlangan tool'ni chaqirish",
+      "ru": "Вызвать выбранный инструмент"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 33,
+     "jami": 157,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Tool nima?",
+     "ru": "Что такое инструмент (tool)?"
+    },
+    "opts": [
+     {
+      "uz": "Agent chaqira oladigan funksiya",
+      "ru": "Функция, которую агент может вызвать"
+     },
+     {
+      "uz": "Botning rang va shrift sozlamasi",
+      "ru": "Настройка цвета и шрифта бота"
+     },
+     {
+      "uz": "Server joylashgan IP-manzil",
+      "ru": "IP-адрес, где находится сервер"
+     },
+     {
+      "uz": "Internetga ulanish tezligi",
+      "ru": "Скорость подключения к интернету"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 10,
+     "maxVariant": 32,
+     "jami": 126,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Agent qaysi tool'ni chaqirishni qanday tanlaydi?",
+     "ru": "Как агент выбирает, какой инструмент вызвать?"
+    },
+    "opts": [
+     {
+      "uz": "Ro'yxatdagi birinchi tool'ni oladi",
+      "ru": "Берёт первый инструмент в списке"
+     },
+     {
+      "uz": "AI tasodifan, tavakkaliga tanlaydi",
+      "ru": "ИИ выбирает случайно, наугад"
+     },
+     {
+      "uz": "AI maqsad va vaziyatga qarab tanlaydi",
+      "ru": "ИИ выбирает по цели и ситуации"
+     },
+     {
+      "uz": "Har safar odam qo'lda tanlab beradi",
+      "ru": "Каждый раз вручную выбирает человек"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 37,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Agent bitta amalni bajardi. Endi nima qiladi?",
+     "ru": "Агент выполнил одно действие. Что дальше?"
+    },
+    "opts": [
+     {
+      "uz": "Ish tugadi deb, shu zahoti to'xtaydi",
+      "ru": "Решает, что работа закончена, и сразу останавливается"
+     },
+     {
+      "uz": "Natijani ko'rib, keyingi qadamni tanlaydi",
+      "ru": "Смотрит на результат и выбирает следующий шаг"
+     },
+     {
+      "uz": "O'sha amalni yana bir marta bajaradi",
+      "ru": "Выполняет то же действие ещё раз"
+     },
+     {
+      "uz": "Mijoz keyingi buyruq yozishini kutadi",
+      "ru": "Ждёт, пока клиент напишет следующую команду"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 41,
+     "jami": 195,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Agentga siz qaysi uch narsani berasiz?",
+     "ru": "Какие три вещи вы даёте агенту?"
+    },
+    "opts": [
+     {
+      "uz": "Maqsad, tool'lar va chegara",
+      "ru": "Цель, инструменты и ограничение"
+     },
+     {
+      "uz": "Faqat system prompt: qanday javob yozsin",
+      "ru": "Только system prompt: каким писать ответ"
+     },
+     {
+      "uz": "Har hodisa uchun tayyor javob matni",
+      "ru": "Готовый текст ответа на каждое событие"
+     },
+     {
+      "uz": "Bot tokeni va server manzili",
+      "ru": "Токен бота и адрес сервера"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 40,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Chegara (guardrail) nima uchun kerak?",
+     "ru": "Зачем нужно ограничение (guardrail)?"
+    },
+    "opts": [
+     {
+      "uz": "Botni chiroyliroq ko'rsatish uchun",
+      "ru": "Чтобы бот выглядел красивее"
+     },
+     {
+      "uz": "Javob tezligini oshirish uchun",
+      "ru": "Чтобы ускорить ответ"
+     },
+     {
+      "uz": "Mijozga rang tanlab berish uchun",
+      "ru": "Чтобы подобрать клиенту цвет"
+     },
+     {
+      "uz": "Agentni xavfli amaldan to'xtatish uchun",
+      "ru": "Чтобы остановить агента перед опасным действием"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 39,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Agent pul yechishdan oldin nima qilishi kerak?",
+     "ru": "Что агент должен сделать перед списанием денег?"
+    },
+    "opts": [
+     {
+      "uz": "Tasdiqsiz, o'zi yechaverishi",
+      "ru": "Списывать сам, без подтверждения"
+     },
+     {
+      "uz": "Odamdan tasdiq so'rashi",
+      "ru": "Спросить подтверждение у человека"
+     },
+     {
+      "uz": "Botni o'chirib qo'yishi",
+      "ru": "Выключить бота"
+     },
+     {
+      "uz": "Imkon boricha tez yechishi",
+      "ru": "Списать как можно быстрее"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 28,
+     "jami": 146,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Odam nazorati (human-in-the-loop) nimani anglatadi?",
+     "ru": "Что означает контроль человека (human-in-the-loop)?"
+    },
+    "opts": [
+     {
+      "uz": "Agent hamma ishni yolg'iz bajaradi",
+      "ru": "Агент делает всю работу в одиночку"
+     },
+     {
+      "uz": "Odam jarayonga umuman aralashmaydi",
+      "ru": "Человек вообще не вмешивается в процесс"
+     },
+     {
+      "uz": "Muhim holatda qarorni odam qiladi",
+      "ru": "В важной ситуации решение принимает человек"
+     },
+     {
+      "uz": "Mijoz botdan butunlay bloklanadi",
+      "ru": "Клиента полностью блокируют в боте"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 34,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "«Cheklangan tool'lar» chegarasi nimani bildiradi?",
+     "ru": "Что означает ограничение «ограниченный набор инструментов»?"
+    },
+    "opts": [
+     {
+      "uz": "Tool'lar sekinroq ishlay boshlaydi",
+      "ru": "Инструменты начинают работать медленнее"
+     },
+     {
+      "uz": "Hamma tool'lar bepul bo'ladi",
+      "ru": "Все инструменты становятся бесплатными"
+     },
+     {
+      "uz": "Agentga barcha tool'lar beriladi",
+      "ru": "Агенту дают все инструменты"
+     },
+     {
+      "uz": "Agentga faqat kerakli tool'lar beriladi",
+      "ru": "Агенту дают только нужные инструменты"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 39,
+     "jami": 182,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Agent sikli qaysi tartibda ishlaydi?",
+     "ru": "В каком порядке работает цикл агента?"
+    },
+    "opts": [
+     {
+      "uz": "Idrok → Qaror → Amal → yana Idrok",
+      "ru": "Восприятие → Решение → Действие → снова Восприятие"
+     },
+     {
+      "uz": "Amal → Idrok → Qaror → yana Amal",
+      "ru": "Действие → Восприятие → Решение → снова Действие"
+     },
+     {
+      "uz": "Qaror → Amal → Idrok → yana Qaror",
+      "ru": "Решение → Действие → Восприятие → снова Решение"
+     },
+     {
+      "uz": "Idrok → Amal → Qaror → yana Idrok",
+      "ru": "Восприятие → Действие → Решение → снова Восприятие"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 33,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Agent siklida «Qaror» qadamini kim bajaradi?",
+     "ru": "Кто выполняет шаг «Решение» в цикле агента?"
+    },
+    "opts": [
+     {
+      "uz": "Mijoz har safar qo'lda tanlaydi",
+      "ru": "Клиент каждый раз выбирает вручную"
+     },
+     {
+      "uz": "Hech kim — qadam o'z-o'zidan o'tadi",
+      "ru": "Никто — шаг проходит сам собой"
+     },
+     {
+      "uz": "AI — qaysi tool kerakligini tanlaydi",
+      "ru": "ИИ — выбирает, какой инструмент нужен"
+     },
+     {
+      "uz": "Tool o'zi hal qiladi, AI faqat kutadi",
+      "ru": "Инструмент решает сам, а ИИ только ждёт"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 37,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-14",
+  "file": "src/pm/PmMetricsLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Metrika nima?",
+     "ru": "Что такое метрика?"
+    },
+    "opts": [
+     {
+      "uz": "Sanab tekshirib bo'ladigan raqam",
+      "ru": "Цифра, которую можно проверить подсчётом"
+     },
+     {
+      "uz": "Bot haqidagi yaxshi fikr",
+      "ru": "Хорошее мнение о боте"
+     },
+     {
+      "uz": "Botga o'zingiz qo'ygan ball",
+      "ru": "Балл, который вы сами поставили боту"
+     },
+     {
+      "uz": "Botdagi har qanday son",
+      "ru": "Любое число в боте"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 13,
+     "maxVariant": 32,
+     "jami": 118,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Qaysi raqam faqat o'sadi?",
+     "ru": "Какая цифра только растёт?"
+    },
+    "opts": [
+     {
+      "uz": "Bugun /start bosganlar",
+      "ru": "Нажавшие /start сегодня"
+     },
+     {
+      "uz": "Qaytganlar foizi",
+      "ru": "Процент вернувшихся"
+     },
+     {
+      "uz": "Bosh raqam",
+      "ru": "Главная цифра"
+     },
+     {
+      "uz": "Jami /start bosganlar",
+      "ru": "Всего нажавших /start"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 25,
+     "maxVariant": 22,
+     "jami": 94,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Kamola bugun botga 3 marta yozdi. «Bugun kelganlar» soniga nechta qo'shiladi?",
+     "ru": "Kamola сегодня написала боту 3 раза. Сколько добавится к числу «Пришли сегодня»?"
+    },
+    "opts": [
+     {
+      "uz": "3 ta",
+      "ru": "3"
+     },
+     {
+      "uz": "2 ta",
+      "ru": "2"
+     },
+     {
+      "uz": "1 ta",
+      "ru": "1"
+     },
+     {
+      "uz": "0 ta",
+      "ru": "0"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 77,
+     "maxVariant": 4,
+     "jami": 93,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Kecha 10 odam keldi, bugun ulardan 5 tasi qaytdi. Qaytganlar necha foiz?",
+     "ru": "Вчера пришли 10 человек, сегодня 5 из них вернулись. Какой процент вернувшихся?"
+    },
+    "opts": [
+     {
+      "uz": "5 foiz",
+      "ru": "5 процентов"
+     },
+     {
+      "uz": "50 foiz",
+      "ru": "50 процентов"
+     },
+     {
+      "uz": "10 foiz",
+      "ru": "10 процентов"
+     },
+     {
+      "uz": "15 foiz",
+      "ru": "15 процентов"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 72,
+     "maxVariant": 7,
+     "jami": 99,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Bir kunda botga 7 xil odam yozdi. Bu son qaysi raqam?",
+     "ru": "За день боту написали 7 разных людей. Какая это цифра?"
+    },
+    "opts": [
+     {
+      "uz": "Jami /start bosganlar",
+      "ru": "Всего нажавших /start"
+     },
+     {
+      "uz": "Bugun kelganlar",
+      "ru": "Пришли сегодня"
+     },
+     {
+      "uz": "Qaytganlar foizi",
+      "ru": "Процент вернувшихся"
+     },
+     {
+      "uz": "Bosh raqam",
+      "ru": "Главная цифра"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 21,
+     "jami": 115,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Bu darsdagi botda bosh raqam nimani sanaydi?",
+     "ru": "Что считает главная цифра в боте из этого урока?"
+    },
+    "opts": [
+     {
+      "uz": "Keragini olgan odamlarni",
+      "ru": "Людей, получивших нужное"
+     },
+     {
+      "uz": "Botga kelgan hamma odamni",
+      "ru": "Всех, кто пришёл к боту"
+     },
+     {
+      "uz": "Javob olgan hamma odamni",
+      "ru": "Всех, кто получил ответ"
+     },
+     {
+      "uz": "Bot yozgan xabarlar sonini",
+      "ru": "Число сообщений, которые написал бот"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 26,
+     "jami": 143,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Guruhlar har xil kattalikda bo'lsa, nimani solishtirasiz?",
+     "ru": "Если группы разного размера, что вы сравниваете?"
+    },
+    "opts": [
+     {
+      "uz": "Qaytgan odamlar sonini",
+      "ru": "Число вернувшихся людей"
+     },
+     {
+      "uz": "Kelgan odamlar sonini",
+      "ru": "Число пришедших людей"
+     },
+     {
+      "uz": "Qaytganlar foizini",
+      "ru": "Процент вернувшихся"
+     },
+     {
+      "uz": "Jami /start sonini",
+      "ru": "Всего нажавших /start"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 22,
+     "jami": 136,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Bot «Tushunmadim» deb javob berdi. Bu bosh raqamga qo'shiladimi?",
+     "ru": "Бот ответил «Не понял». Это входит в главную цифру?"
+    },
+    "opts": [
+     {
+      "uz": "Ha — bot javob yubordi",
+      "ru": "Да — бот отправил ответ"
+     },
+     {
+      "uz": "Ha — odam botga yozdi",
+      "ru": "Да — человек написал боту"
+     },
+     {
+      "uz": "Yo'q — odam /start bosmagan",
+      "ru": "Нет — человек не нажал /start"
+     },
+     {
+      "uz": "Yo'q — odam keragini olmadi",
+      "ru": "Нет — человек не получил нужное"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 27,
+     "jami": 161,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Booking yangi o'zgarishni avval kimga ko'rsatadi?",
+     "ru": "Кому Booking сначала показывает новое изменение?"
+    },
+    "opts": [
+     {
+      "uz": "Odamlarning bir qismiga",
+      "ru": "Части людей"
+     },
+     {
+      "uz": "Faqat o'z xodimlariga",
+      "ru": "Только своим сотрудникам"
+     },
+     {
+      "uz": "Hamma odamga birdan",
+      "ru": "Сразу всем"
+     },
+     {
+      "uz": "Faqat eski mijozlarga",
+      "ru": "Только старым клиентам"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 23,
+     "jami": 133,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Booking yangi o'zgarishni nega avval bir guruhga ko'rsatadi?",
+     "ru": "Почему Booking сначала показывает новое изменение одной группе?"
+    },
+    "opts": [
+     {
+      "uz": "Rang hali tayyor bo'lmagani uchun",
+      "ru": "Потому что цвет ещё не готов"
+     },
+     {
+      "uz": "Hamma bir vaqtda kirmagani uchun",
+      "ru": "Потому что не все заходят одновременно"
+     },
+     {
+      "uz": "Ikki guruh raqamini solishtirish uchun",
+      "ru": "Чтобы сравнить цифры двух групп"
+     },
+     {
+      "uz": "Server og'irlashmasligi uchun",
+      "ru": "Чтобы не перегружать сервер"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 38,
+     "jami": 192,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Qaytganlar foizi qaysi savolga javob beradi?",
+     "ru": "На какой вопрос отвечает процент вернувшихся?"
+    },
+    "opts": [
+     {
+      "uz": "Bugun nechta odam keldi?",
+      "ru": "Сколько людей пришло сегодня?"
+     },
+     {
+      "uz": "Kechagilar bugun ham keldimi?",
+      "ru": "Пришли ли вчерашние и сегодня?"
+     },
+     {
+      "uz": "Bot odamga keragini berdimi?",
+      "ru": "Дал ли бот человеку нужное?"
+     },
+     {
+      "uz": "Jami nechta odam yig'ildi?",
+      "ru": "Сколько всего людей набралось?"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 29,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "/stat buyrug'ining kodini qayerga yozdingiz?",
+     "ru": "Куда вы написали код команды /stat?"
+    },
+    "opts": [
+     {
+      "uz": "users jadvaliga",
+      "ru": "В таблицу users"
+     },
+     {
+      "uz": "Telegram kanaliga",
+      "ru": "В Telegram-канал"
+     },
+     {
+      "uz": "@BotFather'ga",
+      "ru": "В @BotFather"
+     },
+     {
+      "uz": "bot.js faylingizga",
+      "ru": "В свой файл bot.js"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 18,
+     "jami": 107,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m5-11",
+  "file": "src/5-Modull/PmLesson21.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Qaytgan odam kim?",
+     "ru": "Кто такой вернувшийся?"
+    },
+    "opts": [
+     {
+      "uz": "Kecha ham, bugun ham kelgan odam",
+      "ru": "Тот, кто пришёл и вчера, и сегодня"
+     },
+     {
+      "uz": "Bugun birinchi marta kelgan odam",
+      "ru": "Тот, кто сегодня пришёл впервые"
+     },
+     {
+      "uz": "Kecha kelib, bugun kelmagan odam",
+      "ru": "Тот, кто пришёл вчера, а сегодня нет"
+     },
+     {
+      "uz": "Bugun ikki marta kelgan odam",
+      "ru": "Тот, кто сегодня пришёл дважды"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 17,
+     "maxVariant": 32,
+     "jami": 141,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Bir kunda qaysi ikki son yoziladi?",
+     "ru": "Какие два числа записывают для одного дня?"
+    },
+    "opts": [
+     {
+      "uz": "Kelganlar va e'lonlar soni",
+      "ru": "Число пришедших и объявлений"
+     },
+     {
+      "uz": "Qaytganlar va yozilgan so'zlar soni",
+      "ru": "Число вернувшихся и написанных слов"
+     },
+     {
+      "uz": "Kunlar va soatlar soni",
+      "ru": "Число дней и часов"
+     },
+     {
+      "uz": "Kelganlar va qaytganlar soni",
+      "ru": "Число пришедших и вернувшихся"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 35,
+     "jami": 145,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Hisobning 1-kunida qaytganlar nechta?",
+     "ru": "Сколько вернувшихся в 1-й день учёта?"
+    },
+    "opts": [
+     {
+      "uz": "Shu kuni kelganlar soniga teng",
+      "ru": "Столько же, сколько пришло в этот день"
+     },
+     {
+      "uz": "Oldingi kundan ko'chirib olinadi",
+      "ru": "Переписывается с предыдущего дня"
+     },
+     {
+      "uz": "0, chunki hisobda oldingi kun yo'q",
+      "ru": "0 — в учёте нет дня раньше"
+     },
+     {
+      "uz": "Ertasi kuni kelganlar soniga teng",
+      "ru": "Столько же, сколько пришло на следующий день"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 34,
+     "jami": 166,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Nega qaytganlar soni o'sha kuni kelganlardan oshmaydi?",
+     "ru": "Почему вернувшихся не больше, чем пришедших в тот день?"
+    },
+    "opts": [
+     {
+      "uz": "Chunki bot kuniga bir marta sanaydi",
+      "ru": "Потому что бот считает раз в день"
+     },
+     {
+      "uz": "Chunki qaytganlar shu kelganlar ichidan",
+      "ru": "Потому что вернувшиеся — из этих же пришедших"
+     },
+     {
+      "uz": "Chunki kechagi ro'yxat o'chib ketadi",
+      "ru": "Потому что вчерашний список стирается"
+     },
+     {
+      "uz": "Chunki e'lon faqat kelganlarni ko'taradi",
+      "ru": "Потому что объявление поднимает только пришедших"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 40,
+     "jami": 204,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Misoldagi e'lon qaysi sonni ko'tardi?",
+     "ru": "Какое число подняло объявление в примере?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat qaytganlar sonini",
+      "ru": "Только число вернувшихся"
+     },
+     {
+      "uz": "O'sha kuni kelganlar sonini",
+      "ru": "Число пришедших в тот день"
+     },
+     {
+      "uz": "Ikkala sonni bir xil ko'tardi",
+      "ru": "Оба числа одинаково"
+     },
+     {
+      "uz": "Hech qaysi sonni ko'tarmadi",
+      "ru": "Ни одно число"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 29,
+     "jami": 143,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Bugun 10 odam keldi, 3 tasi kecha ham kelgan edi. Qaytganlar nechta?",
+     "ru": "Сегодня пришли 10 человек, 3 из них приходили и вчера. Сколько вернувшихся?"
+    },
+    "opts": [
+     {
+      "uz": "3 — ikkala kunda ham kelganlar",
+      "ru": "3 — пришедшие в оба дня"
+     },
+     {
+      "uz": "10 — bugun kelganlarning hammasi",
+      "ru": "10 — все пришедшие сегодня"
+     },
+     {
+      "uz": "7 — kecha kelmaganlar",
+      "ru": "7 — не приходившие вчера"
+     },
+     {
+      "uz": "13 — ikki sonning yig'indisi",
+      "ru": "13 — сумма двух чисел"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 68,
+     "maxVariant": 32,
+     "jami": 179,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Qaytganlarni bilish uchun nega bugun kelganlar soni yetmaydi?",
+     "ru": "Почему, чтобы узнать вернувшихся, мало числа пришедших сегодня?"
+    },
+    "opts": [
+     {
+      "uz": "Chunki bir kunda kelgan odam kam bo'ladi",
+      "ru": "Потому что за один день приходит мало людей"
+     },
+     {
+      "uz": "Chunki e'lon ikki kunda bir marta beriladi",
+      "ru": "Потому что объявление дают раз в два дня"
+     },
+     {
+      "uz": "Chunki bu son kechagi kunni ko'rsatmaydi",
+      "ru": "Потому что это число не показывает вчерашний день"
+     },
+     {
+      "uz": "Chunki bu son faqat kechqurun sanaladi",
+      "ru": "Потому что это число считают только вечером"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 42,
+     "jami": 221,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Qaytish nimadan ko'rinadi?",
+     "ru": "По чему видно возвращение?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta kunning yakka katagiga qarashdan",
+      "ru": "По одной клетке одного дня"
+     },
+     {
+      "uz": "Ikki kunda kelganlar sonining o'sishidan",
+      "ru": "По росту числа пришедших за два дня"
+     },
+     {
+      "uz": "Botga yozilgan xabarlar sonidan",
+      "ru": "По числу сообщений, написанных боту"
+     },
+     {
+      "uz": "Kecha va bugungi ro'yxatni solishtirishdan",
+      "ru": "По сравнению вчерашнего и сегодняшнего списков"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 26,
+     "maxVariant": 42,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Duolingo'dagi olov belgili raqam nimani sanaydi?",
+     "ru": "Что считает число с иконкой огня в Duolingo?"
+    },
+    "opts": [
+     {
+      "uz": "Ketma-ket dars qilingan kunlarni",
+      "ru": "Дни занятий подряд"
+     },
+     {
+      "uz": "Yodlangan so'zlarning umumiy sonini",
+      "ru": "Общее число выученных слов"
+     },
+     {
+      "uz": "Ilovada o'tkazilgan soatlarni",
+      "ru": "Часы, проведённые в приложении"
+     },
+     {
+      "uz": "Do'stlar bilan bo'lishilgan ballarni",
+      "ru": "Баллы, которыми поделились с друзьями"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 36,
+     "jami": 180,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "«Muzlatish» bo'lmasa, bir kun dars qilinmagach bu raqam nima bo'ladi?",
+     "ru": "Что будет с этим числом без «заморозки», если один день не позаниматься?"
+    },
+    "opts": [
+     {
+      "uz": "O'sha joyida turaveradi",
+      "ru": "Останется на месте"
+     },
+     {
+      "uz": "Bir kunga orqaga suriladi",
+      "ru": "Сдвинется на день назад"
+     },
+     {
+      "uz": "Yana noldan boshlanadi",
+      "ru": "Снова начнётся с нуля"
+     },
+     {
+      "uz": "Sekinroq o'sishda davom etadi",
+      "ru": "Продолжит расти медленнее"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 69,
+     "maxVariant": 29,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Odam 1, 3 va 5-kunlari kelgan. Nechta qaytish kuni bor?",
+     "ru": "Человек приходил в 1-й, 3-й и 5-й дни. Сколько дней возвращения?"
+    },
+    "opts": [
+     {
+      "uz": "Uchta — uch kunda ham kelgani uchun",
+      "ru": "Три — потому что пришёл во все три дня"
+     },
+     {
+      "uz": "Birortasi ham yo'q — oldingi kun har safar bo'sh",
+      "ru": "Ни одного — предыдущий день каждый раз пуст"
+     },
+     {
+      "uz": "Ikkita — 3-kun va 5-kun qaytish kuni",
+      "ru": "Два — 3-й и 5-й дни возвращения"
+     },
+     {
+      "uz": "Bittasi — 5-kunning oldingi kuni to'lgan",
+      "ru": "Один — день перед 5-м заполнен"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 48,
+     "jami": 214,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Darsda o'z botingizning uch kunlik hisobini kim yozdi?",
+     "ru": "Кто на уроке записал учёт вашего бота за три дня?"
+    },
+    "opts": [
+     {
+      "uz": "Bot o'zi sanab yozib bordi",
+      "ru": "Бот сам считал и записывал"
+     },
+     {
+      "uz": "Mentor siz uchun yozib berdi",
+      "ru": "Ментор записал за вас"
+     },
+     {
+      "uz": "Telegram o'zi hisoblab berdi",
+      "ru": "Telegram сам посчитал"
+     },
+     {
+      "uz": "O'zingiz sonlarni kiritib yozdingiz",
+      "ru": "Вы сами вписали числа"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 35,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ }
+]

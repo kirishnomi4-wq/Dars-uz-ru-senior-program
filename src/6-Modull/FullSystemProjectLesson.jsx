@@ -128,6 +128,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -205,8 +230,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1455,18 +1480,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TAQSIM (12 savol: 3/3/3/3).
 // 🎓 Metodist: savol matni sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Web, mobil va bot «bitta tizim» deyilishining sababi?", ru: 'Почему веб, мобильное приложение и бот называют «одной системой»?' }, opts: [{ uz: "Uchalasi bir xil backend va Database'dan foydalanadi", ru: 'Все три пользуются одним бэкендом и одной Database' }, { uz: "Har birida o'z alohida Database'i bor", ru: 'У каждого своя отдельная Database' }, { uz: "Ular bir-biriga umuman bog'liq emas", ru: 'Они вообще никак не связаны друг с другом' }, { uz: "Faqat ranglari o'xshash", ru: 'Только цвета похожи' }], correct: 0 },
-  { q: { uz: "«Ko'p kirish yo'li, bitta tizim» nimani anglatadi?", ru: 'Что означает «Много точек входа, одна система»?' }, opts: [{ uz: "Web, bot va mobil bitta backend'ga ulanadi", ru: 'Веб, бот и мобильное подключаются к одному бэкенду' }, { uz: 'Bitta kanal hammaga yetarli', ru: 'Одного канала хватит на всех' }, { uz: 'Har kanalga alohida tizim kerak', ru: 'Каждому каналу нужна отдельная система' }, { uz: "Faqat web bo'lishi mumkin", ru: 'Возможен только веб' }], correct: 0 },
-  { q: { uz: 'End-to-end test nimani sinaydi?', ru: 'Что проверяет end-to-end тест?' }, opts: [{ uz: 'Bitta funksiyani alohida', ru: 'Одну функцию по отдельности' }, { uz: 'Ranglar va dizaynni', ru: 'Цвета и дизайн' }, { uz: 'Bitta amalning barcha qadamlarini', ru: 'Все шаги одного действия' }, { uz: "Backend kodini o'qib chiqib", ru: 'Код бэкенда, прочитав его' }], correct: 2 },
+  { q: { uz: "Web, mobil va bot nega «bitta tizim»?", ru: "Почему веб, мобильное и бот — «одна система»?" }, opts: [{ uz: "Bitta backend'dan foydalanadi", ru: "Используют один backend" }, { uz: "Har birida alohida Database", ru: "У каждого своя Database" }, { uz: "Bir-biriga bog'liq emas", ru: "Не связаны между собой" }, { uz: "Faqat ranglari o'xshash", ru: "Похожи только цвета" }], correct: 0 },
+  { q: { uz: "«Ko'p kirish yo'li, bitta tizim» nima degani?", ru: "Что значит «много входов, одна система»?" }, opts: [{ uz: "Hammasi bitta backend'ga", ru: "Все — к одному backend" }, { uz: "Bitta kanal yetarli", ru: "Хватит одного канала" }, { uz: "Har kanalga alohida tizim", ru: "Каждому каналу своя система" }, { uz: "Faqat web bo'ladi", ru: "Бывает только веб" }], correct: 0 },
+  { q: { uz: "End-to-end test nimani sinaydi?", ru: "Что проверяет end-to-end тест?" }, opts: [{ uz: "Bitta funksiyani alohida", ru: "Одну функцию отдельно" }, { uz: "Ranglar va dizaynni", ru: "Цвета и дизайн" }, { uz: "Amalning barcha qadamlarini", ru: "Все шаги одного действия" }, { uz: "Kodni o'qib, ishlatmay", ru: "Код, прочитав без запуска" }], correct: 2 },
   { q: { uz: "Integratsiya xatosi qayerda bo'ladi?", ru: 'Где возникает ошибка интеграции?' }, opts: [{ uz: 'Qismlar ulangan joyda', ru: 'Там, где части соединены' }, { uz: 'Faqat frontend rangida', ru: 'Только в цвете фронтенда' }, { uz: "Hech qachon paydo bo'lmaydi", ru: 'Она никогда не появляется' }, { uz: "Faqat Database'ning ichida", ru: 'Только внутри Database' }], correct: 0 },
-  { q: { uz: 'Test jadvalida bitta qizil katak nimani bildiradi?', ru: 'О чём говорит одна красная клетка в таблице тестов?' }, opts: [{ uz: "Hammasi to'g'ri — xato yo'q", ru: 'Всё верно — ошибок нет' }, { uz: "O'sha kanal × qadamda xato bor", ru: 'В этом канале × шаге есть ошибка' }, { uz: 'Dizayn ishlari tugadi', ru: 'Работа над дизайном закончена' }, { uz: 'Database juda tez ishlayapti', ru: 'Database работает очень быстро' }], correct: 1 },
-  { q: { uz: 'Ulanish joyidagi xatoni qanday tuzatamiz?', ru: 'Как мы исправляем ошибку в месте соединения?' }, opts: [{ uz: 'Butun tizimni noldan qayta yozamiz', ru: 'Переписываем всю систему с нуля' }, { uz: "Umuman e'tibor bermaymiz", ru: 'Вообще не обращаем внимания' }, { uz: 'Sababini topib, kichik tuzatish qilamiz', ru: 'Находим причину и делаем небольшое исправление' }, { uz: "Faqat rang o'zgartiramiz", ru: 'Просто меняем цвет' }], correct: 2 },
-  { q: { uz: 'Tizimni ishga tushirishdan oldin nima SHART?', ru: 'Что ОБЯЗАТЕЛЬНО перед запуском системы?' }, opts: [{ uz: 'Hech narsa — darrov chiqaramiz', ru: 'Ничего — сразу выпускаем' }, { uz: "Butun oqim sinalgan va sozlamalar to'g'ri", ru: 'Весь поток проверен, и настройки верные' }, { uz: "Ko'proq rang va bezak", ru: 'Больше цвета и украшений' }, { uz: 'Logotip va nom tayyor', ru: 'Готовы логотип и название' }], correct: 1 },
-  { q: { uz: '«Deploy» nima demak?', ru: 'Что значит «Deploy»?' }, opts: [{ uz: "Kodni butunlay o'chirish", ru: 'Полностью удалить код' }, { uz: 'Chiroyli dizayn chizish', ru: 'Нарисовать красивый дизайн' }, { uz: 'Tizimni serverga joylashtirish', ru: 'Разместить систему на сервере' }, { uz: "Yangi dasturlash tili o'rganish", ru: 'Выучить новый язык программирования' }], correct: 2 },
-  { q: { uz: "Buyurtma bir kanaldan berilsa, boshqa kanalda ko'rinadimi?", ru: 'Если заказ сделан с одного канала, виден ли он в другом?' }, opts: [{ uz: "Yo'q — har kanal alohida saqlaydi", ru: 'Нет — каждый канал хранит отдельно' }, { uz: "Faqat qo'lda ko'chirsa", ru: 'Только если скопировать вручную' }, { uz: "Buni qilib bo'lmaydi", ru: 'Так сделать нельзя' }, { uz: "Ko'rinadi — ma'lumot bitta Database'da", ru: 'Виден — данные в одной Database' }], correct: 3 },
-  { q: { uz: "Mavjud tizimga yangi kanal (mobil) qo'shishning oson yo'li?", ru: 'Самый простой способ добавить новый канал (мобильное) к готовой системе?' }, opts: [{ uz: 'Butun tizimni noldan yozish', ru: 'Написать всю систему с нуля' }, { uz: "Yangi frontend yozib, o'sha backend'ga ulash", ru: 'Написать новый фронтенд и подключить к тому же бэкенду' }, { uz: 'Mobil uchun alohida Database qurish', ru: 'Построить отдельную Database для мобильного' }, { uz: "Buni qilib bo'lmaydi", ru: 'Так сделать нельзя' }], correct: 1 },
-  { q: { uz: "AI tizimda qanday rol o'ynaydi?", ru: 'Какую роль играет AI в системе?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Barcha qarorni yakka o'zi qabul qiladi", ru: 'Принимает все решения в одиночку' }, { uz: "Buyurtmani Database'ga o'zi yozadi", ru: 'Сам записывает заказ в Database' }, { uz: 'Backend chaqirganda savolga javob, tavsif yozadi', ru: 'По запросу бэкенда отвечает на вопросы, пишет описания' }], correct: 3 },
-  { q: { uz: "To'liq tizimni yetkazish jarayoni qanday?", ru: 'В каком порядке доводят полную систему до запуска?' }, opts: [{ uz: "Ishga tushirish → sinash → yig'ish → tuzatish → xatoni topish", ru: 'Запуск → проверка → сборка → исправление → поиск ошибки' }, { uz: "Sinash → yig'ish → ishga tushirish → xatoni topish → tuzatish", ru: 'Проверка → сборка → запуск → поиск ошибки → исправление' }, { uz: "Tuzatish → xatoni topish → sinash → yig'ish → ishga tushirish", ru: 'Исправление → поиск ошибки → проверка → сборка → запуск' }, { uz: "Yig'ish → sinash → xatoni topish → tuzatish → ishga tushirish", ru: 'Сборка → проверка → поиск ошибки → исправление → запуск' }], correct: 3 },
+  { q: { uz: "Test jadvalida qizil katak nimani bildiradi?", ru: "Что значит красная клетка в таблице тестов?" }, opts: [{ uz: "Hammasi to'g'ri ishladi", ru: "Всё сработало верно" }, { uz: "O'sha kanal × qadamda xato", ru: "Ошибка в этом канале × шаге" }, { uz: "Dizayn ishi tugadi", ru: "Дизайн закончен" }, { uz: "Database tez ishlayapti", ru: "Database работает быстро" }], correct: 1 },
+  { q: { uz: "Ulanish joyidagi xatoni qanday tuzatamiz?", ru: "Как исправить ошибку в месте соединения?" }, opts: [{ uz: "Hammasini qayta yozamiz", ru: "Переписываем всё" }, { uz: "E'tibor bermaymiz", ru: "Не обращаем внимания" }, { uz: "Sababini topib tuzatamiz", ru: "Находим причину и чиним" }, { uz: "Faqat rangni o'zgartiramiz", ru: "Меняем только цвет" }], correct: 2 },
+  { q: { uz: "Ishga tushirishdan oldin nima shart?", ru: "Что обязательно перед запуском?" }, opts: [{ uz: "Hech narsa, darrov chiqaramiz", ru: "Ничего, сразу выпускаем" }, { uz: "Test o'tgan, sozlama to'g'ri", ru: "Тест пройден, настройки верны" }, { uz: "Ko'proq rang va bezak", ru: "Больше цвета и украшений" }, { uz: "Logotip va nom tayyor", ru: "Готовы логотип и имя" }], correct: 1 },
+  { q: { uz: "«Deploy» nima degani?", ru: "Что значит «deploy»?" }, opts: [{ uz: "Kodni o'chirish", ru: "Удалить код" }, { uz: "Dizayn chizish", ru: "Нарисовать дизайн" }, { uz: "Serverga joylashtirish", ru: "Разместить на сервере" }, { uz: "Yangi til o'rganish", ru: "Учить новый язык" }], correct: 2 },
+  { q: { uz: "Bir kanaldagi buyurtma boshqasida ko'rinadimi?", ru: "Виден ли заказ из одного канала в другом?" }, opts: [{ uz: "Yo'q, har kanal alohida", ru: "Нет, каждый канал отдельно" }, { uz: "Faqat qo'lda ko'chirsa", ru: "Только если перенести вручную" }, { uz: "Buni qilib bo'lmaydi", ru: "Это невозможно" }, { uz: "Ha, Database bitta", ru: "Да, Database одна" }], correct: 3 },
+  { q: { uz: "Tizimga mobil kanal qo'shishning oson yo'li?", ru: "Самый простой способ добавить мобильный канал?" }, opts: [{ uz: "Hammasini noldan yozish", ru: "Написать всё с нуля" }, { uz: "Yangi frontend'ni ulash", ru: "Подключить новый frontend" }, { uz: "Alohida Database qurish", ru: "Построить отдельную Database" }, { uz: "Buni qilib bo'lmaydi", ru: "Это невозможно" }], correct: 1 },
+  { q: { uz: "AI tizimda qanday rol o'ynaydi?", ru: "Какую роль играет AI в системе?" }, opts: [{ uz: "Ma'lumotni saqlaydi", ru: "Хранит данные" }, { uz: "Hamma qarorni o'zi qiladi", ru: "Сам принимает все решения" }, { uz: "Buyurtmani o'zi yozadi", ru: "Сам записывает заказ" }, { uz: "Savolga javob yozadi", ru: "Пишет ответ на вопрос" }], correct: 3 },
+  { q: { uz: "To'liq tizimni yetkazishda oxirgi qadam qaysi?", ru: "Какой последний шаг при сдаче полной системы?" }, opts: [{ uz: "Yig'ish", ru: "Сборка" }, { uz: "Sinash", ru: "Проверка" }, { uz: "Xatoni topish", ru: "Поиск ошибки" }, { uz: "Ishga tushirish", ru: "Запуск" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2570,7 +2595,7 @@ const LESSON_CSS = `        /* PRODUCTION: shu @import OLIB TASHLANADI — shrif
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

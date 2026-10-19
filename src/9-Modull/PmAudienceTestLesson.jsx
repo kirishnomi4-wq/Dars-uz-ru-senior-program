@@ -95,6 +95,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -172,8 +197,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -943,10 +968,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda «Dars oxirida» — telefon o'zi o'ynaydi: uch nuqta bir joyga yig'iladi → kartalar o'z joyiga uchadi → «Qayta sinov: vazifa bajarildi») =====
 const REJA = [
-  { t: { uz: 'Har to\'xtash nechta kishida takrorlanganini sanaysiz', ru: 'Посчитаете, у скольких людей повторилась каждая остановка' }, teg: { uz: 'sanoq', ru: "подсчёт" } },
-  { t: { uz: "Kim vazifani bajara olmaganini ko'rib, birinchisini tanlaysiz", ru: "Увидите, кто не выполнил задание, и выберете первую остановку" }, teg: { uz: 'birinchi', ru: "первая" } },
-  { t: { uz: "Tanlangan to'xtashni o'z ilovangizda tuzatasiz", ru: 'Исправите выбранную остановку в своём приложении' }, teg: { uz: 'tuzatish', ru: 'исправление' } },
-  { t: { uz: 'Tuzatishni yangi odam bilan qayta sinaysiz', ru: "Проведёте повторный тест исправления с новым человеком" }, teg: { uz: 'qayta sinov', ru: 'повторный тест' } }
+  { t: { uz: "Har to'xtash nechta kishida takrorlanganini sanang", ru: 'Посчитайте, у скольких людей повторилась каждая остановка' }, teg: { uz: 'sanoq', ru: "подсчёт" } },
+  { t: { uz: "Kim vazifani bajara olmaganini ko'rib, birinchisini tanlang", ru: "Посмотрите, кто не выполнил задание, и выберите первую остановку" }, teg: { uz: 'birinchi', ru: "первая" } },
+  { t: { uz: "Tanlangan to'xtashni o'z ilovangizda tuzating", ru: 'Исправьте выбранную остановку в своём приложении' }, teg: { uz: 'tuzatish', ru: 'исправление' } },
+  { t: { uz: 'Tuzatishni yangi odam bilan qayta sinang', ru: "Проведите повторный тест исправления с новым человеком" }, teg: { uz: 'qayta sinov', ru: 'повторный тест' } }
 ];
 const RejaChizma = () => {
   const [b, setB] = useState(0);
@@ -1562,18 +1587,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (MD; har biri 3 marta)
 const QUIZ_BANK = [
-  { q: { uz: 'Sinovda siz nima qilasiz?', ru: 'Что вы делаете во время теста?' }, opts: [{ uz: 'Vazifa berib, kishini jim kuzatasiz', ru: 'Даёте задание и молча наблюдаете' }, { uz: "Ilovani o'zingiz ochib ko'rsatasiz", ru: 'Сами открываете и показываете приложение' }, { uz: "Kishidan ilova yoqdimi, deb so'raysiz", ru: 'Спрашиваете, понравилось ли приложение' }, { uz: 'Har tugmani bittalab tushuntirasiz', ru: 'Объясняете каждую кнопку по очереди' }], correct: 0 },
-  { q: { uz: 'Sanoqda «3 / 3» turibdi. Bu nimani bildiradi?', ru: "В подсчёте стоит «3 / 3». Что это значит?" }, opts: [{ uz: 'Tugma uch marta qayta bosilganini', ru: 'Что кнопку нажали три раза' }, { uz: "Uchala kishi shu joyda to'xtaganini", ru: 'Что все трое застряли в этом месте' }, { uz: 'Sinovga uch daqiqa vaqt ketganini', ru: 'Что тест занял три минуты' }, { uz: "Uch ekranda bir xil to'xtash borligini", ru: 'Что одна остановка есть на трёх экранах' }], correct: 1 },
-  { q: { uz: 'Kuzatuv yozuviga qaysi qator tushadi?', ru: 'Какая строка попадает в запись наблюдения?' }, opts: [{ uz: "0:40 · Ro'yxat juda noqulay ekan", ru: '0:40 · Список очень неудобный' }, { uz: "0:40 · Hamma kishi buni yoqtirmaydi", ru: '0:40 · Это никому не нравится' }, { uz: "0:40 · Pastga surib, o'yinni topdi", ru: '0:40 · Прокрутил вниз, нашёл игру' }, { uz: "0:40 · Tugma kichikroq bo'lsa kerak", ru: '0:40 · Кнопка, наверное, маловата' }], correct: 2 },
-  { q: { uz: 'Yozuvda «Vazifani bajardi: 2 / 3». Bu nimani bildiradi?', ru: 'В записи «Выполнили задание: 2 / 3». Что это значит?' }, opts: [{ uz: 'Ikki kishi ilovani ikki marta ochgan', ru: 'Двое открыли приложение дважды' }, { uz: "Ilovaning uchdan ikki qismi tayyor", ru: 'Две трети приложения готовы' }, { uz: "Ikki to'xtash uch kishida takrorlangan", ru: 'Две остановки повторились у троих' }, { uz: 'Uch kishidan biri natijaga yetmagan', ru: 'Один из трёх не дошёл до результата' }], correct: 3 },
-  { q: { uz: 'Cyberpunk 2077 o\'yini qanday sotuvga chiqdi?', ru: 'Как игра Cyberpunk 2077 вышла в продажу?' }, opts: [{ uz: "Ko'p xato bilan sotuvga chiqarildi", ru: 'Вышла в продажу с массой ошибок' }, { uz: "Xatosiz, to'liq tayyor holda chiqdi", ru: 'Вышла без ошибок, полностью готовой' }, { uz: 'Faqat kompyuter uchun chiqarildi', ru: 'Вышла только для компьютера' }, { uz: 'Faqat bepul sinov sifatida chiqdi', ru: 'Вышла только как бесплатная проба' }], correct: 0 },
-  { q: { uz: 'Sony Cyberpunk 2077 ni nima qildi?', ru: 'Что Sony сделала с Cyberpunk 2077?' }, opts: [{ uz: 'Narxini tushirib, sotuvda qoldirdi', ru: 'Снизила цену и оставила в продаже' }, { uz: "Do'konidan qariyb yarim yilga oldi", ru: 'Убрала из магазина почти на полгода' }, { uz: 'Uni yangi nom bilan qayta chiqardi', ru: 'Выпустила заново под новым именем' }, { uz: "Xaridorlarga yangi o'yin sovg'a qildi", ru: 'Подарила покупателям новую игру' }], correct: 1 },
-  { q: { uz: "Birinchi tuzatiladigan to'xtash qanday bo'ladi?", ru: 'Какой бывает остановка, которую исправляют первой?' }, opts: [{ uz: 'Eng oson, bir qator bilan tuzatiladigan', ru: 'Самая лёгкая, исправляется одной строкой' }, { uz: 'Vazifa oxirida, sinov tugashida yozilgan', ru: 'Записана в конце задания, когда тест закончился' }, { uz: "Ko'p kishida, vazifaga to'siq bo'lgan", ru: "У многих, и мешала выполнить задание" }, { uz: "Ekranning eng pastida, ko'rinmay turgan", ru: 'В самом низу экрана, её не видно' }], correct: 2 },
-  { q: { uz: "Qayta sinovni kim bilan o'tkazgan ma'qul?", ru: 'С кем лучше провести повторный тест?' }, opts: [{ uz: "O'zingiz — ilovani yaxshi bilasiz", ru: 'Сами — вы хорошо знаете приложение' }, { uz: "O'sha kishi bilan — u yo'lni biladi", ru: 'С тем же человеком — он знает путь' }, { uz: 'Agent bilan — u kodni tekshiradi', ru: 'С агентом — он проверит код' }, { uz: "Ilovani ko'rmagan yangi odam bilan", ru: 'С новым человеком, не видевшим приложение' }], correct: 3 },
-  { q: { uz: 'Agent «tuzatdim» dedi. Avval nimaga qaraysiz?', ru: 'Агент сказал «исправил». Куда посмотрите сначала?' }, opts: [{ uz: "Fayldagi o'zgarishga va telefonga", ru: 'На изменение в файле и на телефон' }, { uz: 'Agent yozgan hisobotning o\'ziga', ru: 'На сам отчёт агента' }, { uz: 'Talabda yozilgan birinchi qatorga', ru: 'На первую строку требования' }, { uz: 'Terminalda chiqqan oxirgi xabarga', ru: 'На последнее сообщение в терминале' }], correct: 0 },
-  { q: { uz: "Uch to'xtashdan nechtasi shu darsda tuzatiladi?", ru: 'Сколько из трёх остановок исправляют на этом уроке?' }, opts: [{ uz: 'Uchalasi — bitta prompt bilan birga', ru: 'Все три — одним промптом' }, { uz: "Bittasi — qolgani «Keyin» ro'yxatida", ru: 'Одну — остальные в списке «Потом»' }, { uz: 'Ikkitasi — eng oson tuzatiladiganlari', ru: 'Две — те, что исправить проще' }, { uz: 'Hech biri — avval yana sinov kerak', ru: 'Ни одной — сначала нужен ещё тест' }], correct: 1 },
-  { q: { uz: "Nega sinov ko'pchilikka berishdan oldin o'tkaziladi?", ru: 'Почему тест проводят до того, как дать продукт многим?' }, opts: [{ uz: "Ilovani tezroq do'konga chiqarish uchun", ru: 'Чтобы быстрее выпустить приложение в магазин' }, { uz: 'Agentga kamroq talab yozib berish uchun', ru: 'Чтобы писать агенту меньше требований' }, { uz: "Xatoni ko'pchilikdan oldin ko'rish uchun", ru: 'Чтобы увидеть ошибку раньше многих' }, { uz: 'Reklama uchun birinchi fikrni olish uchun', ru: 'Чтобы получить первый отзыв для рекламы' }], correct: 2 },
-  { q: { uz: 'Talabning «Nima qilsin» qatoriga nima yoziladi?', ru: 'Что пишут в строку требования «Что сделать»?' }, opts: [{ uz: "Kishi aytgan shikoyatning aynan o'zi", ru: 'Жалобу человека слово в слово' }, { uz: 'Butun ekranni noldan qayta qurish', ru: 'Перестроить весь экран с нуля' }, { uz: "To'xtagan kishilar soni va vaqti", ru: 'Число застрявших и время' }, { uz: 'Ilova qiladigan bitta aniq o\'zgarish', ru: 'Одно точное изменение, которое сделает приложение' }], correct: 3 },
+  { q: { uz: "Sinovda siz nima qilasiz?", ru: "Что вы делаете на тесте?" }, opts: [{ uz: "Vazifa berib, jim kuzatasiz", ru: "Даёте задание и молча наблюдаете" }, { uz: "Ilovani o'zingiz ko'rsatasiz", ru: "Сами показываете приложение" }, { uz: "Ilova yoqdimi, deb so'raysiz", ru: "Спрашиваете, понравилось ли" }, { uz: "Har tugmani tushuntirasiz", ru: "Объясняете каждую кнопку" }], correct: 0 },
+  { q: { uz: "«3 / 3» sanog'i nimani bildiradi?", ru: "Что значит счёт «3 / 3»?" }, opts: [{ uz: "Tugma uch marta bosilgan", ru: "Кнопку нажали три раза" }, { uz: "Uchalasi shu joyda to'xtagan", ru: "Все трое застряли здесь" }, { uz: "Sinov uch daqiqa ketgan", ru: "Тест длился три минуты" }, { uz: "Uch ekranda to'xtash bor", ru: "Застревание на трёх экранах" }], correct: 1 },
+  { q: { uz: "Kuzatuv yozuviga qaysi qator mos?", ru: "Какая строка подходит для записи наблюдения?" }, opts: [{ uz: "0:40 · Ro'yxat noqulay ekan", ru: "0:40 · Список неудобный" }, { uz: "0:40 · Hammaga yoqmaydi", ru: "0:40 · Всем не понравится" }, { uz: "0:40 · Pastga surib, topdi", ru: "0:40 · Пролистал вниз, нашёл" }, { uz: "0:40 · Tugmani kattalash kerak", ru: "0:40 · Кнопку надо увеличить" }], correct: 2 },
+  { q: { uz: "«Vazifani bajardi: 2 / 3» — bu nima?", ru: "«Выполнил задание: 2 / 3» — что это?" }, opts: [{ uz: "Ilova ikki marta ochilgan", ru: "Приложение открыли дважды" }, { uz: "Ilova 2/3 qismi tayyor", ru: "Готово 2/3 приложения" }, { uz: "Ikki to'xtash takrorlangan", ru: "Два застревания повторились" }, { uz: "Bir kishi bajara olmagan", ru: "Один человек не справился" }], correct: 3 },
+  { q: { uz: "Cyberpunk 2077 qanday chiqdi?", ru: "Как вышел Cyberpunk 2077?" }, opts: [{ uz: "Ko'p xato bilan chiqdi", ru: "Вышел с множеством ошибок" }, { uz: "Xatosiz, tayyor holda chiqdi", ru: "Вышел готовым, без ошибок" }, { uz: "Faqat kompyuter uchun chiqdi", ru: "Вышел только для компьютера" }, { uz: "Bepul sinov sifatida chiqdi", ru: "Вышел как бесплатный тест" }], correct: 0 },
+  { q: { uz: "Sony Cyberpunk'ni nima qildi?", ru: "Что Sony сделала с Cyberpunk?" }, opts: [{ uz: "Narxini tushirib qo'ydi", ru: "Снизила цену" }, { uz: "Do'konidan yarim yilga oldi", ru: "Убрала из магазина на полгода" }, { uz: "Yangi nom bilan chiqardi", ru: "Выпустила под новым названием" }, { uz: "Xaridorga o'yin sovg'a qildi", ru: "Подарила покупателям игру" }], correct: 1 },
+  { q: { uz: "Qaysi to'xtash birinchi tuzatiladi?", ru: "Какое застревание исправляют первым?" }, opts: [{ uz: "Eng oson tuzatiladigan", ru: "Самое лёгкое в исправлении" }, { uz: "Sinov oxirida yozilgan", ru: "Записанное в конце теста" }, { uz: "Ko'p kishida, vazifaga to'siq", ru: "У многих и мешает задаче" }, { uz: "Ekran pastida, ko'rinmagan", ru: "Внизу экрана, незаметное" }], correct: 2 },
+  { q: { uz: "Qayta sinovni kim bilan o'tkazasiz?", ru: "С кем проводите повторный тест?" }, opts: [{ uz: "Avval sinagan o'sha kishi", ru: "С тем же, кто уже тестировал" }, { uz: "Ilovani yozgan o'zingiz", ru: "Сами — вы делали приложение" }, { uz: "Kodni tekshiradigan agent", ru: "С агентом, который проверяет код" }, { uz: "Ilovani ko'rmagan yangi odam", ru: "С новым человеком, не видевшим приложение" }], correct: 3 },
+  { q: { uz: "Agent «tuzatdim» desa, nimaga qaraysiz?", ru: "Агент сказал «исправил». Куда смотрите?" }, opts: [{ uz: "Faylga va telefonga", ru: "На файл и на телефон" }, { uz: "Agent hisobotiga", ru: "На отчёт агента" }, { uz: "Talab matniga", ru: "На текст требования" }, { uz: "Prompt matniga", ru: "На текст промпта" }], correct: 0 },
+  { q: { uz: "Bu darsda nechta to'xtash tuzatiladi?", ru: "Сколько застреваний исправляют на уроке?" }, opts: [{ uz: "Uchalasi, bitta promptda", ru: "Все три, одним промптом" }, { uz: "Bittasi, qolgani «Keyin»ga", ru: "Одно, остальные в «Потом»" }, { uz: "Ikkitasi, eng osonlari", ru: "Два, самые лёгкие" }, { uz: "Hech biri, avval sinov", ru: "Ни одного, сначала тест" }], correct: 1 },
+  { q: { uz: "Nega ilova avval kam odamda sinaladi?", ru: "Зачем приложение сначала тестируют на немногих?" }, opts: [{ uz: "Tezroq chiqarish uchun", ru: "Чтобы быстрее выпустить" }, { uz: "Kam talab yozish uchun", ru: "Чтобы писать меньше требований" }, { uz: "Xatoni oldin ko'rish uchun", ru: "Чтобы раньше увидеть ошибки" }, { uz: "Reklama uchun fikr olish", ru: "Чтобы получить отзыв для рекламы" }], correct: 2 },
+  { q: { uz: "«Nima qilsin» qatoriga nima yoziladi?", ru: "Что пишут в строку «Что сделать»?" }, opts: [{ uz: "Kishi aytgan shikoyat", ru: "Жалобу человека дословно" }, { uz: "Butun ekranni qayta qurish", ru: "Переделать весь экран" }, { uz: "To'xtaganlar soni va vaqti", ru: "Число застрявших и время" }, { uz: "Bitta aniq o'zgarish", ru: "Одно конкретное изменение" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2203,7 +2228,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cxx('pa-blok', qulf && 'pa-qulf')}>
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: <>{tx(c.t)}{c.bandlar && c.bandlar.filter(Boolean).map((b, i) => <span key={i} className="pa-band">{React.isValidElement(b) ? b : tx(b)}</span>)}{c.prompt && <PaPrompt satrlar={c.prompt} namuna={c.namuna} />}{c.osti && <span className="pa-band">{tx(c.osti)}</span>}</>,

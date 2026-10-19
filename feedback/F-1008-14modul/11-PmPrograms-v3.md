@@ -144,10 +144,10 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
   + vizual (`ArizaSahna`, tayyor holat, bir marta o'zi yuradi — DE-200): brauzerda nomsiz sahifa qatorlari birma-bir yonadi → varaqqa kulrang chiziqlar tushadi → tasmadagi ikki bo'lak (nomsiz) varaqning pastki qismiga uchadi. Matnsiz — 2, 6-ekran kashfiyotlarini ochmaydi (P-015).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
-  - 01 · Dastur shartini rasmiy sahifadan o'qishni bilib olasiz
-  - 02 · Ikki dasturning shartlari sizga qanday mos kelishini solishtirasiz (11-FILTR 20)
-  - 03 · Pitchdan ariza uchun qisqa qoralama olishni o'rganasiz
-  - 04 · Ariza qoralamasini olti kartaga yozasiz
+  - 01 · Dastur shartini rasmiy sahifadan o'qishni bilib oling
+  - 02 · Ikki dasturning shartlari sizga qanday mos kelishini solishtiring (11-FILTR 20)
+  - 03 · Pitchdan ariza uchun qisqa qoralama olishni o'rganing
+  - 04 · Ariza qoralamasini olti kartaga yozing
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
 - O'qituvchi eslatmasi: Menyu ostidagi «ariza» — bugun boshlanadigan qoralama: dars natijasi — bitta dastur va ariza qoralamasi. Ro'yxatdan o'tish va topshirish — uyda, maslahatchi va ota-ona bilan, xohlasa. Hech kim qabul qilinishga va'da bermaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «konsept», «maslahatchi» faqat kulrang tegda (P-015; 01 pilot naqshi). Chap yorliq App.jsx ostini so'zma-so'z beradi; dastur nomlari menyuda bor — bu yerda nom-yorliq, izoh 2, 4-ekranlarda (S-018).

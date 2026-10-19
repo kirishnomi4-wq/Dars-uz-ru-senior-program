@@ -143,10 +143,10 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `07-PmTerms-v3.md` + 
   Vizual (`DemoSahna`, tayyor holat, bir marta o'zi yuradi — DE-200): ssenariy chizig'ining besh qadami birma-bir ✓ bo'ladi, taymer chizig'i oxirigacha yuradi; o'ngda bo'sh buzish yozuvi kartasi (uch qator yorlig'i, natija yo'q) — qaysi usul nima ko'rsatishi — 4-ekran va amaliyot kashfiyoti (P-015).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
-  - 01 · Hakam demoda nimani ko'rishini bilasiz
-  - 02 · Uch riskda nima kutishingizni yozasiz
-  - 03 · Demongizni buzasiz, agent tuzatadi
-  - 04 · Demoni uch marta to'liq o'tasiz
+  - 01 · Hakam demoda nimani ko'rishini bilib oling
+  - 02 · Uch riskda nima kutishingizni yozing
+  - 03 · Demongizni buzing, agent tuzatadi
+  - 04 · Demoni uch marta to'liq o'ting
 - Pastki qator (mono, kichik): repo — o'z repo'ngiz · Mentor misoli `maydon-jamoa` · namuna `m14-dars-07-done`
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Menyu ostidagi «uch marta to'liq o'tish» — Amaliyot 2: demo boshidan oxirigacha uch marta, ikkinchisida B reja. Bugun yangi funksiya qo'shilmaydi: 6-darsdan beri faqat tuzatish. Buzish — faqat o'quvchining o'z mahsulotida.

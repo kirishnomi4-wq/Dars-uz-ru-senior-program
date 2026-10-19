@@ -564,7 +564,7 @@ const Cm = ({ children }) => <span style={{ color: CODE.comment, fontStyle: 'ita
 
 const Kw = Jx; // kod bo'yog'i: kalit so'z (tag rangi)
 
-// ===== DARSNING BITTA VIZUALI (163, 180) — FinalSahna: telefon (faqat 3-ekran) · Hakam kartasi · olti bo'lak · taymer chizig'i + savol-javob bo'lagi =====
+// ===== DARSNING BITTA VIZUALI (163, 180) — FinalSahna: Hakam kartasi · olti bo'lak · taymer chizig'i + savol-javob bo'lagi =====
 // Hakam — bitta urg'uli rol kartasi (14-Modul SABOQ P1; 1-darsdagi Investor kartasi naqshi): baholash varag'i belgisi, odam figurasi emas; uch hakam — kichik doirachalar qatori.
 // Bitta manba: JAMOA_PITCH · JAMOA_VARAQ · HAKAM_SAVOL · SAVOL_BANK · MENTOR_JAVOB + o'quvchi ma'lumoti (pm-m12d1-pitch, pm-m12d5-varaq, pm-m12d6-demo, pm-m12d8-final).
 // 12-Modul TaymerChiziq va 1-darsdagi OltiBolakSahna dan ko'chirilmagan — dars ichida yozildi (K-020). Rangli yon chiziq yo'q; reduced-motion — CSS da.
@@ -771,32 +771,29 @@ const TaxminQ = ({ togri, aslida }) => (togri
   : <span className="fp-xq-t xato">{tr({ uz: 'Taxminingiz ✕ — aslida:', ru: 'Ваше предположение ✕ — на деле:' })} {aslida}</span>);
 const IPUCHA = (t) => <p className="fp-ipucha fade-step">{t}</p>;
 const ixchamBashorat = (taxmin, el) => <div className={cxx('fp-bash', taxmin && 'ix')}>{el}</div>;
-// Bosqich tugmalari (ixcham, bir qatorda; joriysi accent halqada, bosilgani ✓)
-// F-1015-164: o'tilgani — ✓ yozuv (tugma emas), joriysi — tugma, keyingisi va bashoratdan oldin — ko'rinmaydi
-const Qadamlar3 = ({ nomlar, q, faol, onBos }) => (q === 0 && !faol ? null : (
-  <div className="fp-qadamlar fade-step">
-    {nomlar.map((n, i) => (i < q
-      ? <span key={i} className="fp-qd-ok"><i>✓</i>{tr(n)}</span>
-      : i === q && faol ? <QChip key={i} holat="on" className={'fp-joriy'} onClick={onBos}><i>{i + 1}</i>{tr(n)}</QChip> : null
-    ))}
-  </div>
-));
+// --- F-1019-06 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatoga bir qatorli sabab, o'sha tugma yopiladi ---
+// Har qadam key bilan yangilanadi (tanlovlar tozalanadi). Namuna: m12-04 Qaror (F-1019-03).
+const Qaror = ({ savol, variantlar, onTogri }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const tanla = (j) => {
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="fp-qr fade-step">
+      <p className="fp-qr-s">{tr(savol)}</p>
+      <div className="fp-qr-v">{variantlar.map((v, j) => <QChip key={j} holat={xato.includes(j) ? 'err' : undefined} disabled={xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</QChip>)}</div>
+      {izoh && <QXato key={tr(izoh)}>{tr(izoh)}</QXato>}
+    </div>
+  );
+};
+// F-1019-06 (213.13): qadam izohi kartasiz osilmaydi — sahna kartasining ichida, pastda
+const SahnaIzoh = ({ t }) => <p className="fp-sahna-iz fade-step">{tr(t)}</p>;
+const IPUCHA_QAROR = { uz: "Variantlardan birini tanlang — xato bo'lsa, sababini o'qib, qayta tanlang.", ru: 'Выберите вариант — если ошиблись, прочитайте причину и выберите снова.' };
 
 // --- Telefon: «Maydon Jamoa» — «O'yin» ekrani (≈170×272, o'lchami barqaror; faqat 3-ekranda) ---
-const JamoaTelefon = ({ son = 8 }) => (
-  <div className="fp-tel">
-    <div className="fp-tel-ekran">
-      <span className="fp-tel-nom"><MJ /></span>
-      <span className="fp-tel-y">{tr({ uz: "O'yin", ru: 'Игра' })}</span>
-      <b className="fp-tel-vaqt">{tr({ uz: 'Shanba, 18:00', ru: 'Суббота, 18:00' })}</b>
-      <span className="fp-tel-joy">{tr({ uz: 'Mahalla maydoni', ru: 'Площадка махалли' })}</span>
-      <b key={son} className={cxx('fp-tel-son', son > 8 && 'yangi')}>{son}{NB}/{NB}10</b>
-      <span className="fp-tel-doira">{Array.from({ length: 10 }).map((_, i) => <i key={i} className={i < son ? 'bor' : ''} />)}</span>
-      <span className="fp-tel-tugma">{tr({ uz: "Qo'shilaman", ru: 'Присоединяюсь' })}</span>
-    </div>
-  </div>
-);
-// --- Hakam: bitta urg'uli rol kartasi (SABOQ P1) — baholash varag'i belgisi; uch hakam — doirachalar; savol pufagi yoki ✓ ---
 const VaraqBelgi = () => <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 4.5h7a1.5 1.5 0 0 1 1.5 1.5v13a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 7 19V6a1.5 1.5 0 0 1 1.5-1.5Zm1.5-1.5h4v3h-4zM9.8 11.2l1.4 1.4 2.8-2.8M9.8 16h4.4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 const Hakam = ({ savol, ok, yorliq, javob, sj, k }) => (
   <div className={cxx('fp-hk', sj && 'sj')}>
@@ -829,14 +826,14 @@ const SavolJavobBo = ({ kataklar, katta, refs, hakamBelgi, yonadi = 3 }) => (
   <div className={cxx('fp-sj', katta && 'katta')}>
     <span className="fp-sj-y">{hakamBelgi && <span className="fp-sj-hk"><VaraqBelgi />{tr({ uz: 'Hakam', ru: 'Судья' })}</span>}{tr({ uz: 'savol-javob', ru: 'вопросы-ответы' })}</span>
     <div className="fp-sj-kat">
-      {kataklar.map((c, i) => (
-        <span key={i} ref={refs ? (el => { refs.current[i] = el; }) : undefined} className={cxx('fp-kat', i < yonadi ? (c.holat || 'bosh') : 'bosh', c.yangi && 'yangi')}>
+      {kataklar.map((c, i) => ((i >= yonadi || !c.holat || c.holat === 'bosh') ? null : ( // F-1019-08 (213.23a): bo'sh katak ko'rsatilmaydi — navbati kelganda paydo bo'ladi
+        <span key={i} ref={refs ? (el => { refs.current[i] = el; }) : undefined} className={cxx('fp-kat', c.holat, c.yangi && 'yangi')}>
           <span className="fp-kat-t"><i style={{ transform: 'scaleX(' + (c.holat === 'joriy' ? Math.min(1, c.tol || 0) : (c.holat === 'ok' || c.holat === 'oshgan' ? 1 : 0)) + ')' }} /></span>
           <b>{c.holat === 'ok' ? '✓' : c.holat === 'oshgan' ? '+' + fmtV((c.vaqt || 0) - JAVOB_VAQT) : '1:00'}{c.soat && <i className="fp-soat" aria-hidden="true" />}</b>
           {c.teg && <em>{c.teg}</em>}
           {c.matn && <span className="fp-kat-m">{c.matn}</span>}
         </span>
-      ))}
+      )))}
     </div>
   </div>
 );
@@ -867,9 +864,8 @@ const TaymerChiziq = ({ sek = 0, sj, sjKatta, sjRefs, hakamBelgi, yonadi, joriyK
     </div>
   );
 };
-const FinalSahna = ({ telefon = false, telSon = 8, hakam, bolaklar = [], taymer, yorliq, ostida, className, children }) => (
-  <div className={cxx('fp-sahna', !telefon && 'tel-yoq', className)}>
-    {telefon && <div className="fp-sahna-tel"><JamoaTelefon son={telSon} /></div>}
+const FinalSahna = ({ hakam, bolaklar = [], taymer, yorliq, ostida, className, children }) => (
+  <div className={cxx('fp-sahna', 'tel-yoq', className)}>
     <div className="fp-sahna-ong">
       {yorliq && <span className="fp-sahna-y">{yorliq}</span>}
       {hakam && <Hakam {...hakam} />}
@@ -922,10 +918,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (QReja; vizual o'zi yuradi: chiziq 5:00 gacha, so'ng uch «1:00» katak birma-bir yonadi; tugagach «Boshlaymiz» halqada) =====
 // MD «matnsiz skelet» → SABOQ A4 / 13-Modul P3: matnsiz bo'sh chiziq yo'q — bo'lak nomlari turadi (1-darsda o'tilgan; 2, 3-ekran kashfiyoti ochilmaydi).
 const REJA = [
-  { t: { uz: 'Hakam savoliga qanday javob berishni bilib olasiz', ru: 'Узнаете, как отвечать на вопрос судьи' }, teg: { uz: 'savol-javob', ru: 'вопросы-ответы' } },
-  { t: { uz: "Tuzatishlar ro'yxatingizni pitchga qo'llaysiz", ru: 'Примените список исправлений к питчу' }, teg: { uz: 'tuzatish', ru: 'исправление' } },
-  { t: { uz: 'Pitchingizni taymer bilan 5 daqiqada aytasiz', ru: 'Расскажете питч за 5 минут с таймером' }, teg: { uz: 'taymer', ru: 'таймер' } },
-  { t: { uz: "Uch savolga bir daqiqadan javob berasiz, keyin ilovangizni sahnaga tekshirasiz", ru: 'Ответите на три вопроса по минуте, потом проверите приложение перед сценой' }, teg: { uz: 'hakam savoli · ilova', ru: 'вопрос судьи · приложение' } }
+  { t: { uz: 'Hakam savoliga qanday javob berishni bilib oling', ru: 'Узнайте, как отвечать на вопрос судьи' }, teg: { uz: 'savol-javob', ru: 'вопросы-ответы' } },
+  { t: { uz: "Tuzatishlar ro'yxatingizni pitchga qo'llang", ru: 'Примените список исправлений к питчу' }, teg: { uz: 'tuzatish', ru: 'исправление' } },
+  { t: { uz: 'Pitchingizni taymer bilan 5 daqiqada ayting', ru: 'Расскажите питч за 5 минут с таймером' }, teg: { uz: 'taymer', ru: 'таймер' } },
+  { t: { uz: "Uch savolga bir daqiqadan javob bering, keyin ilovangizni sahnaga tekshiring", ru: 'Ответьте на три вопроса по минуте, потом проверьте приложение перед сценой' }, teg: { uz: 'hakam savoli · ilova', ru: 'вопрос судьи · приложение' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const sek = useYurish(true, 4200, 3000);
@@ -997,7 +993,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   </div>;
   const tx = S2_TAXMIN.find(t => t.k === taxmin);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · savol-javob', ru: 'Понятие · вопросы-ответы' })} screen={screen} scrollSignal={k} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: `Javoblarni tanlang (${k}/3)`, ru: `Выберите ответы (${k}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · savol-javob', ru: 'Понятие · вопросы-ответы' })} screen={screen} scrollSignal={k} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: 'Javoblarni tanlang', ru: 'Выберите ответы' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Hakam savoliga <A>qanday javob berasiz?</A></>, ru: <>Как вы <A>ответите на вопрос судьи?</A></> })}
         mentor={<Mentor>{tr({ uz: "Hakam javobni bir daqiqada eshitadi — har savol ostidagi ikki javobdan mosini bosing.", ru: 'Судья слушает ответ минуту — под каждым вопросом нажмите подходящий из двух ответов.' })}</Mentor>}
@@ -1029,14 +1025,32 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 3 — TUZATISH VA TAYMER (QTushuncha; bashorat → 3 tugma: varaq · tuzatishlar · taymer; telefon faqat shu ekranda) =====
-const S3_TUGMA = [{ uz: 'Varaq', ru: 'Лист' }, { uz: 'Tuzatishlar', ru: 'Исправления' }, { uz: 'Taymer', ru: 'Таймер' }];
+// ===== SCREEN 3 — TUZATISH VA TAYMER (QTushuncha; bashorat → 3 qaror: varaq · tuzatishlar · taymer; F-1019-08: telefon olindi — 213.23d) =====
+// F-1019-06 (DE 213.22): har qadam — qaror; to'g'ri tanlov sahnani o'zgartiradi (varaq ochiladi · tuzatish qo'llanadi · taymer yuradi)
+const S3_QAROR = [
+  { savol: { uz: 'Mentor pitchini tuzatishni nimadan boshlaydi?', ru: 'С чего Ментор начинает исправлять питч?' }, v: [
+    { t: { uz: 'Pitchni boshidan qayta yozishdan', ru: 'С того, что пишет питч заново' }, izoh: { uz: "Pitch qayta yozilmaydi: varaqdagi izohlar tuzatiladi.", ru: 'Питч не пишут заново: исправляют замечания из листа.' } },
+    { t: { uz: 'Pitchni taymer bilan aytishdan', ru: 'С того, что рассказывает с таймером' }, izoh: { uz: "Taymer keyin: avval varaqdagi izohlar tuzatiladi.", ru: 'Таймер потом: сначала исправляют замечания из листа.' } },
+    { ok: true, t: { uz: "Baholash varag'idagi izohlardan", ru: 'С замечаний из листа оценки' } }
+  ] },
+  { savol: { uz: 'Varaqda uch izoh bor. Tuzatish qanday kiritiladi?', ru: 'В листе три замечания. Как вносят исправление?' }, v: [
+    { ok: true, t: { uz: "Eski gap o'rniga yangisi yoziladi", ru: 'Вместо старой фразы пишут новую' } },
+    { t: { uz: 'Butun pitch qaytadan yoziladi', ru: 'Весь питч пишут заново' }, izoh: { uz: "Faqat izoh turgan uch bo'lak o'zgaradi, qolgani joyida.", ru: 'Меняются только три части с замечаниями, остальное на месте.' } },
+    { t: { uz: "Izoh pitch oxiriga qo'shib aytiladi", ru: 'Замечание добавляют в конец питча' }, izoh: { uz: "Hakam tuzatilgan gapni o'sha bo'lakning o'zida eshitadi.", ru: 'Судья слышит исправленную фразу в той же части.' } }
+  ] },
+  { savol: { uz: 'Uch gap uzaydi, reja hali ham 5:00. Pitch sig\'adimi?', ru: 'Три фразы стали длиннее, план всё ещё 5:00. Уложится ли питч?' }, v: [
+    { t: { uz: 'Ha, reja hali ham 5 daqiqalik', ru: 'Да, план всё ещё на 5 минут' }, izoh: { uz: "Reja vaqti o'zgarmaydi: haqiqiy vaqtni taymer ko'rsatadi.", ru: 'Время по плану не меняется: настоящее время покажет таймер.' } },
+    { ok: true, t: { uz: 'Taymer bilan aytganda bilinadi', ru: 'Узнаем, рассказав с таймером' } },
+    { t: { uz: "Yo'q, uch gap ham uzunroq bo'ldi", ru: 'Нет, все три фразы стали длиннее' }, izoh: { uz: "Uzunroq gap hali sig'maydi degani emas: taymer bilan o'lchanadi.", ru: 'Длиннее — ещё не значит, что не уложится: меряют таймером.' } }
+  ] }
+];
 const S3_TAXMIN = [{ k: 'qisqa', t: { uz: 'Qisqaroq', ru: 'Короче' } }, { k: 'teng', t: { uz: 'Taxminan teng', ru: 'Примерно равны' } }, { k: 'uzun', t: { uz: 'Uzunroq', ru: 'Длиннее' } }];
 const S3_IZOH = [
   { uz: "Gap almashtirilgani reja vaqtini o'zgartirmaydi. Haqiqiy vaqtni pitchni aytib, taymer bilan bilasiz.", ru: 'Замена фразы не меняет время по плану. Настоящее время узнаете, рассказав питч с таймером.' },
   { uz: 'Bu darsda tayyorlangan oxirgi pitch versiyangiz — final pitch. Sig\'ishini taymer bilan tekshirasiz.', ru: 'Последняя версия питча, подготовленная на этом уроке, — финальный питч. Укладывается ли он, проверите таймером.' }
 ];
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const tor = useIsMobile(768); // F-1019-07: telefonda savol sahnadan keyin — pastga surilganda keyingi savol ko'rinadi
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
   const [q, setQ] = useState(storedAnswer ? 3 : 0);
   const yur = useYurish(q >= 3 && !storedAnswer, 6000, 200);
@@ -1062,22 +1076,21 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     return b;
   }).map(b => (tugadi && !TUZATILGAN.includes(b.id) ? { id: b.id, nom: b.nom, holat: 'nomi' } : b)).map(b => (q >= 3 && sek > 0 && sek < JAMI_VAQT && joriyBolak(sek) === BOLAK_ID.indexOf(b.id) ? { ...b, holat: cxx(b.holat, 'joriy') } : b));
   const sjBor = q >= 3 && sek >= JAMI_VAQT;
-  const sahna = <FinalSahna telefon telSon={q >= 3 && sek >= 115 ? 9 : 8} className="katta"
+  const sahna = <FinalSahna className="katta"
     yorliq={<>{tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })} · <MJ /></>}
     bolaklar={bolaklar}
     taymer={{ sek: q >= 3 ? sek : 0, sj: sjBor ? [{ holat: 'joriy', tol: 0 }, { holat: 'bosh' }, { holat: 'bosh' }] : null, hakamBelgi: sjBor }}
-    ostida={q === 1 && <span className="fp-kulq">{tr({ uz: "Mentor misoli · 5-darsdagi baholash varag'i", ru: 'Пример Ментора · лист оценки из 5-го урока' })}</span>} />;
+    ostida={q === 1 ? <span className="fp-kulq">{tr({ uz: "Mentor misoli · 5-darsdagi baholash varag'i", ru: 'Пример Ментора · лист оценки из 5-го урока' })}</span> : q === 2 && <SahnaIzoh key="i2" t={S3_IZOH[0]} />} />;
   const tx = S3_TAXMIN.find(t => t.k === taxmin);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · tuzatish va taymer', ru: 'Понятие · исправление и таймер' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: `Tugmalarni bosing (${q}/3)`, ru: `Нажмите кнопки (${q}/3)` })} onClick={onNext} /></>}>
-      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
+    <Stage eyebrow={tr({ uz: 'Tushuncha · tuzatish va taymer', ru: 'Понятие · исправление и таймер' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: `Savollarga javob bering (${q}/3)`, ru: `Ответьте на вопросы (${q}/3)` })} onClick={onNext} /></>}>
+      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval={!tor}
         sarlavha={tr({ uz: <>Tuzatishlar qo'shilsa, pitch <A>5 daqiqaga sig'adimi?</A></>, ru: <>Если добавить исправления, <A>уложится ли питч в 5 минут?</A></> })}
-        mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va Mentor pitchi qanday o'zgarishiga qarang.", ru: 'Нажимайте кнопки по одной и смотрите, как меняется питч Ментора.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Har savolga javob bering — to'g'ri javobdan keyin Mentor pitchi o'zgaradi.", ru: 'Ответьте на каждый вопрос — после верного ответа питч Ментора меняется.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: 'Yangi gaplar eskisidan qanday?', ru: 'Какие новые фразы по сравнению со старыми?' })} variantlar={S3_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
-        harakat={!taxmin ? null : !done && <div className="fp-harakat">
-          <Qadamlar3 nomlar={S3_TUGMA} q={q} faol={!!taxmin && q < 3} onBos={() => setQ(n => Math.min(3, n + 1))} />
-          {q === 2 && <QIzoh>{tr(S3_IZOH[0])}</QIzoh>}
-          {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — Mentor pitchi qanday o'zgarishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как меняется питч Ментора.' }))}
+        harakat={!taxmin || q >= 3 ? null : <div className="fp-harakat">
+          <Qaror key={q} savol={S3_QAROR[q].savol} variantlar={S3_QAROR[q].v} onTogri={() => setQ(n => Math.min(3, n + 1))} />
+          {ipucha && IPUCHA(tr(IPUCHA_QAROR))}
         </div>}
         vizual={!taxmin ? null : sahna}
         xulosa={done && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === 'uzun'} aslida={tr({ uz: 'uzunroq — uchala yangi gap eskisidan uzun', ru: 'длиннее — все три новые фразы длиннее старых' })} />}
@@ -1685,17 +1698,17 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD), to'g'ri javob: A 1·6·11 · B 2·7·9 · C 3·8·10 · D 4·5·12 — har biri 3 marta.
 const QUIZ_BANK = [
   { q: { uz: 'Bu mashqda Raqamlar bo\'lagiga qancha vaqt ajratilgan?', ru: 'Сколько времени в этом упражнении отведено на часть «Цифры»?' }, opts: [{ uz: 'Taxminan bir daqiqa', ru: 'Примерно минута' }, { uz: 'Taxminan yarim daqiqa', ru: 'Примерно полминуты' }, { uz: 'Taxminan ikki daqiqa', ru: 'Примерно две минуты' }, { uz: 'Taxminan uch daqiqa', ru: 'Примерно три минуты' }], correct: 0 },
-  { q: { uz: 'Mentor Bozordagi «60 kishi»ni qanday aniqlashtirdi?', ru: 'Как Ментор уточнил «60 человек» в Рынке?' }, opts: [{ uz: 'Ularni ilovadagi o\'yinchilar deb yozdi', ru: 'Написал, что это игроки в приложении' }, { uz: 'Ularni Telegram guruhi a\'zolari deb yozdi', ru: 'Написал, что это участники Telegram-группы' }, { uz: 'Ularni Toshkentdagi futbolchilar deb yozdi', ru: 'Написал, что это футболисты Ташкента' }, { uz: 'Ularni o\'zining sinfdoshlari deb yozdi', ru: 'Написал, что это его одноклассники' }], correct: 1 },
-  { q: { uz: 'Tuzatish bo\'lakni uzaytirsa, nima qilasiz?', ru: 'Если исправление удлинило часть, что сделаете?' }, opts: [{ uz: 'Pitch vaqtini olti daqiqaga uzaytirasiz', ru: 'Увеличите время питча до шести минут' }, { uz: 'Tuzatishni pitchga umuman kiritmaysiz', ru: 'Вообще не внесёте исправление в питч' }, { uz: 'Eski gapning bir qismini olib tashlaysiz', ru: 'Уберёте часть старой фразы' }, { uz: 'Boshqa bo\'lakni pitchdan olib tashlaysiz', ru: 'Уберёте из питча другую часть' }], correct: 2 },
-  { q: { uz: 'Mentor boshqa mahallalar haqida hakamga nima dedi?', ru: 'Что Ментор сказал судье о других махаллях?' }, opts: [{ uz: '«U yerda ham 60 kishidan bor — biz bilamiz»', ru: '«Там тоже по 60 человек — мы знаем»' }, { uz: '«Ularga ilova kerak emas — o\'yin kam bo\'ladi»', ru: '«Им приложение не нужно — игр мало»' }, { uz: '«Hamma mahallada ham bor — muammo bir xil»', ru: '«Во всех махаллях так — проблема одна»' }, { uz: '«Hali tekshirmaganmiz — tekshirib aytaman»', ru: '«Ещё не проверяли — проверю и скажу»' }], correct: 3 },
-  { q: { uz: 'Pitch 5 daqiqadan oshdi. Nima qilasiz?', ru: 'Питч длится больше 5 минут. Что сделаете?' }, opts: [{ uz: 'Savol-javob vaqtidan qo\'shib olasiz', ru: 'Добавите время из вопросов-ответов' }, { uz: 'Jonli demoni pitchdan olib tashlaysiz', ru: 'Уберёте живое демо из питча' }, { uz: 'Tezroq gapirib, hammasini aytib chiqasiz', ru: 'Будете говорить быстрее и скажете всё' }, { uz: 'Takrorlangan yoki ortiqcha gapni olasiz', ru: 'Уберёте повторы или лишние фразы' }], correct: 3 },
+  { q: { uz: "Mentor «60 kishi»ni qanday aniqlashtirdi?", ru: "Как Ментор уточнил «60 человек»?" }, opts: [{ uz: "Ilovadagi o'yinchilar", ru: "Игроки в приложении" }, { uz: "Telegram guruhi a'zolari", ru: "Участники Telegram-группы" }, { uz: "Telegram kanali obunachilari", ru: "Подписчики Telegram-канала" }, { uz: "O'zining sinfdoshlari", ru: "Его одноклассники" }], correct: 1 },
+  { q: { uz: "Tuzatilgan gap eskisidan uzun. Nima qilasiz?", ru: "Исправленная фраза длиннее старой. Что сделаете?" }, opts: [{ uz: "Pitchni 6 daqiqa qilaman", ru: "Сделаю питч на 6 минут" }, { uz: "Tuzatishni kiritmayman", ru: "Не внесу исправление" }, { uz: "Taymer bilan tekshiraman", ru: "Проверю таймером" }, { uz: "Boshqa bo'lakni olaman", ru: "Уберу другую часть" }], correct: 2 },
+  { q: { uz: "Mentor boshqa mahallalar haqida nima dedi?", ru: "Что Ментор сказал о других махаллях?" }, opts: [{ uz: "«U yerda ham 60 kishi bor»", ru: "«Там тоже по 60 человек»" }, { uz: "«Ularga ilova kerak emas»", ru: "«Им приложение не нужно»" }, { uz: "«Hamma joyda muammo bir»", ru: "«Везде проблема одна»" }, { uz: "«Tekshirib aytaman»", ru: "«Проверю и скажу»" }], correct: 3 },
+  { q: { uz: "Pitch 5 daqiqadan oshdi. Nima qilasiz?", ru: "Питч превысил 5 минут. Что сделаете?" }, opts: [{ uz: "Savol-javobdan vaqt olaman", ru: "Возьму время у вопросов-ответов" }, { uz: "Jonli demoni olib tashlayman", ru: "Уберу живое демо" }, { uz: "Tezroq gapiraman", ru: "Буду говорить быстрее" }, { uz: "Ortiqcha gapni olaman", ru: "Уберу лишнюю фразу" }], correct: 3 },
   { q: { uz: 'Bu mashqda hakam savoliga javob qancha davom etadi?', ru: 'Сколько в этом упражнении длится ответ на вопрос судьи?' }, opts: [{ uz: 'Bir daqiqagacha', ru: 'До одной минуты' }, { uz: 'Uch daqiqagacha', ru: 'До трёх минут' }, { uz: 'Besh daqiqagacha', ru: 'До пяти минут' }, { uz: 'Ikki daqiqagacha', ru: 'До двух минут' }], correct: 0 },
-  { q: { uz: 'Siz sanamagan son so\'raldi. Hakamga nima deysiz?', ru: 'Спросили число, которое вы не считали. Что скажете судье?' }, opts: [{ uz: 'Yaqin sonni taxmin qilib aytib berasiz', ru: 'Назовёте близкое число наугад' }, { uz: '«Tekshirib aytaman» deb javob berasiz', ru: 'Ответите: «Проверю и скажу»' }, { uz: 'Savolni eshitmagandek davom etasiz', ru: 'Продолжите, будто не слышали вопроса' }, { uz: 'Pitchni boshidan qayta aytib berasiz', ru: 'Расскажете питч заново с начала' }], correct: 1 },
-  { q: { uz: 'Mentor javobi: odamlar hozir o\'yinni nima bilan yig\'adi?', ru: 'Ответ Ментора: чем люди сейчас собирают игру?' }, opts: [{ uz: 'Maxsus sport ilovasida jadval tuzib yig\'adi', ru: 'Составляют расписание в спортивном приложении' }, { uz: 'Maktabda tanaffus paytida kelishib yig\'adi', ru: 'Договариваются в школе на перемене' }, { uz: 'Telegram guruhida «kim keladi?» deb yig\'adi', ru: 'Пишут в Telegram-группе «кто придёт?»' }, { uz: 'Ota-onalar orqali telefonda kelishib yig\'adi', ru: 'Договариваются по телефону через родителей' }], correct: 2 },
+  { q: { uz: "Sanamagan son so'raldi. Nima deysiz?", ru: "Спросили число, которое вы не считали. Что скажете?" }, opts: [{ uz: "«Taxminan shuncha» deyman", ru: "Скажу «примерно столько»" }, { uz: "«Tekshirib aytaman» deyman", ru: "Скажу «проверю и скажу»" }, { uz: "Eshitmagandek davom etaman", ru: "Продолжу, будто не слышал" }, { uz: "Pitchni qayta aytaman", ru: "Расскажу питч заново" }], correct: 1 },
+  { q: { uz: "Mentor aytdi: hozir o'yin qanday yig'iladi?", ru: "Ментор сказал: как сейчас собирают игру?" }, opts: [{ uz: "Sport ilovasida jadval bilan", ru: "Таблицей в спортивном приложении" }, { uz: "Maktabda tanaffusda", ru: "В школе на перемене" }, { uz: "Telegram guruhida yozib", ru: "Пишут в Telegram-группе" }, { uz: "Ota-onalar orqali", ru: "Через родителей" }], correct: 2 },
   { q: { uz: 'Mentor varag\'ida qaysi ikki bo\'lak ✗ olgan edi?', ru: 'Какие две части получили ✗ в листе Ментора?' }, opts: [{ uz: 'Muammo va Yechim', ru: 'Проблема и Решение' }, { uz: 'Bozor va Raqamlar', ru: 'Рынок и Цифры' }, { uz: 'Jamoa va Raqamlar', ru: 'Команда и Цифры' }, { uz: 'Yechim va Bozor', ru: 'Решение и Рынок' }], correct: 1 },
-  { q: { uz: 'Pitchdan oldin demo uchun nima qilinadi?', ru: 'Что делают для демо перед питчем?' }, opts: [{ uz: 'Ilovaga yangi funksiya qo\'shib qo\'yiladi', ru: 'В приложение добавляют новую функцию' }, { uz: 'Database oynasi ekranda ochiq qoldiriladi', ru: 'Окно Database оставляют открытым' }, { uz: 'Demo yo\'li ochilib, ro\'yxat chiqqani ko\'riladi', ru: 'Открывают путь демо и смотрят, что список появился' }, { uz: 'Ikkinchi telefon butunlay o\'chirib qo\'yiladi', ru: 'Второй телефон полностью выключают' }], correct: 2 },
-  { q: { uz: 'Pitch paytida sherigingiz nima qiladi?', ru: 'Что делает напарник во время питча?' }, opts: [{ uz: 'Taymerni boshlab, pitchni oxirigacha tinglaydi', ru: 'Запускает таймер и слушает питч до конца' }, { uz: 'Har bo\'lakka ✓ yoki ✗ qo\'yib baholaydi', ru: 'Оценивает каждую часть ✓ или ✗' }, { uz: 'Pitchni siz bilan birga ovoz chiqarib aytadi', ru: 'Рассказывает питч вслух вместе с вами' }, { uz: 'Sizning o\'rningizga jonli demoni ko\'rsatadi', ru: 'Показывает живое демо вместо вас' }], correct: 0 },
-  { q: { uz: 'Hakam «Endi nima qilasiz?» desa, nimani aytasiz?', ru: 'Если судья спросит «Что будете делать дальше?», что скажете?' }, opts: [{ uz: 'Mahsulot uchun kerakli pul summasini', ru: 'Нужную продукту сумму денег' }, { uz: 'Tez orada hamma ishlatib qolishini', ru: 'Что скоро им будут пользоваться все' }, { uz: 'Pitchning hamma bo\'laklarini qaytadan', ru: 'Все части питча заново' }, { uz: 'Keyingi ishni va bitta aniq so\'rovni', ru: 'Следующее дело и одну точную просьбу' }], correct: 3 }
+  { q: { uz: "Pitchdan oldin demo uchun nima qilasiz?", ru: "Что вы делаете для демо перед питчем?" }, opts: [{ uz: "Funksiya qo'shaman", ru: "Добавлю функцию" }, { uz: "Database'ni ochaman", ru: "Открою Database" }, { uz: "Demo yo'lini ochaman", ru: "Открою путь демо" }, { uz: "Telefonni o'chiraman", ru: "Выключу телефон" }], correct: 2 },
+  { q: { uz: "Pitch paytida sherigingiz nima qiladi?", ru: "Что делает партнёр во время питча?" }, opts: [{ uz: "Taymer bilan tinglaydi", ru: "Слушает с таймером" }, { uz: "Bo'laklarga ✓ va ✗ qo'yadi", ru: "Ставит частям ✓ и ✗" }, { uz: "Siz bilan birga aytadi", ru: "Говорит вместе с вами" }, { uz: "Demoni o'zi ko'rsatadi", ru: "Сам показывает демо" }], correct: 0 },
+  { q: { uz: "Hakam «Endi nima qilasiz?» desa, nimani aytasiz?", ru: "Если судья спросит «Что будете делать дальше?», что скажете?" }, opts: [{ uz: "Kerakli pul summasini", ru: "Нужную сумму денег" }, { uz: "Tez orada o'sishini", ru: "Что скоро вырастем" }, { uz: "Hamma bo'laklarni qayta", ru: "Все части заново" }, { uz: "Keyingi ish va so'rovni", ru: "Следующее дело и просьбу" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2497,12 +2510,10 @@ export default function PmFinalPitchLesson({ lang: langProp, onFinished, liveTok
         @media (min-width: 761px) { .fp-k .q-split { grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); gap: 26px; } }
         .fp-k, .fp-yakun { display: flex; flex-direction: column; flex: 1 0 auto; }
         .fp-harakat { display: flex; flex-direction: column; gap: 10px; }
-        .fp-qadamlar { display: flex; flex-wrap: wrap; gap: 8px; }
-        .fp-qadamlar .q-chip i { font-style: normal; font-weight: 800; color: ${T.accent}; margin-right: 7px; }
-        .fp-qadamlar .q-chip.ok i { color: ${T.ok}; }
-        .fp-qd-ok { display: inline-flex; align-items: center; padding: 9px 4px; font-weight: 700; font-size: clamp(13px,1.45vw,14px); color: ${T.ok}; }
-        .fp-qd-ok i { font-style: normal; font-weight: 800; margin-right: 6px; }
-        .fp-qadamlar .q-chip.fp-joriy { animation: fp-puls 2.2s ease-out .3s 3; }
+        .fp-qr { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .fp-qr-s { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.4; color: ${T.ink}; }
+        .fp-qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
+        .fp-sahna-iz { margin: 0; padding-top: 8px; border-top: 1px solid ${T.line}; font-size: 13px; line-height: 1.45; color: ${T.ink2}; }
         p.fp-ipucha { margin: 0; font-size: 13px; font-weight: 700; color: ${T.accent}; }
         p.fp-nishon-q { margin: 0; font-size: 12.5px; color: ${T.ink2}; }
         p.fp-kulrang { margin: 0; font-size: 13px; line-height: 1.45; color: ${T.ink2}; }
@@ -2543,19 +2554,6 @@ export default function PmFinalPitchLesson({ lang: langProp, onFinished, liveTok
         .zoomable:not(.zoom-on) > .fp-sahna { padding-right: 40px; }
         .fp-sahna-ong { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
         .fp-sahna-y { align-self: flex-start; font-size: 12px; font-weight: 700; color: ${T.ink2}; background: ${T.bg}; border-radius: 6px; padding: 3px 9px; }
-        .fp-tel { width: 166px; height: 290px; border-radius: 30px; background: #1E1B26; padding: 7px; box-shadow: 0 14px 30px -14px rgba(${T.shadowBase},0.5); display: flex; flex: none; }
-        .fp-tel-ekran { flex: 1; min-width: 0; background: ${T.paper}; border-radius: 23px; padding: 13px 12px 12px; display: flex; flex-direction: column; gap: 3px; padding-top: 35px; position: relative; }
-        .fp-tel-ekran::before { content: ''; position: absolute; top: 7px; left: 50%; margin-left: -28px; width: 56px; height: 11px; border-radius: 8px; background: #1E1B26; z-index: 2; pointer-events: none; } /* F-1015-124: telefon kesigi (m7-08 namunasi) */
-        .fp-tel-nom { font-size: 13px; }
-        .fp-tel-y { margin-top: 8px; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: ${T.ink2}; }
-        .fp-tel-vaqt { font-size: 14.5px; color: ${T.ink}; }
-        .fp-tel-joy { font-size: 12px; color: ${T.ink2}; }
-        .fp-tel-son { margin-top: 10px; font-family: 'JetBrains Mono', monospace; font-size: 26px; font-weight: 800; color: ${T.ink}; white-space: nowrap; }
-        .fp-tel-son.yangi { color: ${MJ_RANG}; animation: fp-pop .5s cubic-bezier(.3,1.5,.5,1); }
-        .fp-tel-doira { display: flex; gap: 3px; flex-wrap: wrap; }
-        .fp-tel-doira i { width: 9px; height: 9px; border-radius: 50%; background: ${T.line}; }
-        .fp-tel-doira i.bor { background: ${MJ_RANG}; }
-        .fp-tel-tugma { margin-top: auto; text-align: center; font-size: 12px; font-weight: 800; color: #fff; background: ${MJ_RANG}; border-radius: 10px; padding: 8px 6px; }
         /* Hakam — bitta urg'uli rol kartasi (P1) */
         .fp-hk { display: flex; align-items: center; gap: 12px; padding: 8px 14px; border-radius: 16px; background: ${T.paper}; border: 2px solid ${T.accent}; box-shadow: 0 12px 28px -16px ${fon(T.accent, 0.6)}; animation: fp-kir .4s ease-out both; }
         .fp-hk.sj { padding-top: 6px; padding-bottom: 6px; }
@@ -2574,10 +2572,12 @@ export default function PmFinalPitchLesson({ lang: langProp, onFinished, liveTok
         .fp-hk-sj { font-style: normal; font-size: 12px; font-weight: 800; color: ${T.accent}; background: ${T.accentSoft}; border-radius: 999px; padding: 3px 10px; }
         .fp-hk-javob { flex-basis: 100%; align-self: flex-start; font-size: 14px; font-weight: 600; line-height: 1.4; color: ${T.ink}; background: ${T.bg}; border-radius: 12px 12px 4px 12px; padding: 6px 12px; animation: fp-kir .45s ease-out both; }
         /* Bo'lak qatori — nom va matn bir qatorda; matn ≥14px, «…» siz 3 qatorgacha (P5) */
-        .fp-bolaklar { display: flex; flex-direction: row; flex-wrap: wrap; gap: 4px 6px; }
+        /* F-1019-08 (213.23b): olti bo'lak — bitta karta, qatorlar chiziq bilan; joriy/xato — chap chiziq (alohida ramka yo'q) */
+        .fp-bolaklar { display: flex; flex-direction: row; flex-wrap: wrap; gap: 0; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 12px; overflow: hidden; }
+        .fp-bolaklar > .fp-bo + .fp-bo:not(.nomi) { border-top: 1px solid ${T.line}; }
         .fp-bolaklar > .fp-bo { flex-basis: 100%; }
         .fp-bolaklar > .fp-bo.nomi { flex-basis: auto; order: -1; }
-        .fp-bo { display: flex; align-items: flex-start; gap: 12px; padding: 5px 12px; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 11px; min-width: 0; transition: border-color .3s, background .3s; animation: fp-kir .35s ease-out both; }
+        .fp-bo { display: flex; align-items: flex-start; gap: 12px; padding: 7px 12px; background: transparent; border: 0; border-radius: 0; min-width: 0; transition: border-color .3s, background .3s; animation: fp-kir .35s ease-out both; }
         .fp-bo-h { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; flex: none; width: 124px; }
         .fp-bo.nomi .fp-bo-h { width: auto; }
         .fp-k .fp-bo-h { width: 106px; }
@@ -2594,12 +2594,12 @@ export default function PmFinalPitchLesson({ lang: langProp, onFinished, liveTok
         .fp-pufak { align-self: flex-start; font-size: 13px; font-weight: 600; line-height: 1.35; border-radius: 12px 12px 12px 4px; padding: 4px 10px; animation: fp-kir .35s ease-out both; }
         .fp-pufak.xato { color: ${T.err}; background: ${T.errFon}; }
         .fp-pufak.hakam { color: ${T.ink2}; background: ${T.bg}; border: 1px solid ${T.line}; }
-        .fp-bo.joriy { border-color: ${T.accent}; box-shadow: 0 0 0 3px ${fon(T.accent, 0.12)}; }
-        .fp-bo.xato { border-color: ${T.err}; }
+        .fp-bo.joriy { background: ${fon(T.accent, 0.07)}; box-shadow: inset 3px 0 0 ${T.accent}; }
+        .fp-bo.xato { box-shadow: inset 3px 0 0 ${T.err}; }
         .fp-bo.xato .fp-bo-b { color: ${T.err}; }
         .fp-bo.qollandi .fp-bo-y { color: ${T.ok}; background: ${T.okFon}; }
         .fp-bo.qollandi.yangi { animation: fp-pop .5s ease-out; }
-        .fp-bo.nomi { padding: 4px 10px; }
+        .fp-bo.nomi { padding: 6px 10px; }
         .fp-sahna.katta .fp-bo-h b { font-size: 15px; }
         .fp-sahna.katta .fp-bo-t { font-size: 15px; }
         /* Taymer chizig'i (reja) + savol-javob bo'lagi */
@@ -2756,7 +2756,7 @@ export default function PmFinalPitchLesson({ lang: langProp, onFinished, liveTok
         .fp-hw-keyingi { font-size: 13.5px; color: ${T.ink2}; line-height: 1.5; }
         @media (max-width: 560px) { .fp-hw-karta { grid-template-columns: 1fr; } }
         @media (prefers-reduced-motion: reduce) {
-          .fp-halqa, .fp-k.kutish .q-variant, .q-bashorat .q-chip, .q-chip.chorla, .fp-qadamlar .q-chip, .fp-hk, .fp-hk-s, .fp-hk-s > i, .fp-hk-javob, .fp-bo, .fp-bo-y, .fp-bo-b, .fp-bo-t.yangi, .fp-pufak, .fp-tel-son,
+          .fp-halqa, .fp-k.kutish .q-variant, .q-bashorat .q-chip, .q-chip.chorla, .fp-hk, .fp-hk-s, .fp-hk-s > i, .fp-hk-javob, .fp-bo, .fp-bo-y, .fp-bo-b, .fp-bo-t.yangi, .fp-pufak, .fp-tel-son,
           .fp-skelet-b, button.fp-jk, .fp-kat, .fp-soat, .fp-mini, .fp-mini-yangi, .fp-strip .q-chip, .fp-karta, .fp-maydon.chorla .fp-inp, .fp-sj-hk { animation: none !important; transition: none !important; }
           .fp-tm-t > i, .fp-kat-t > i { transition: none !important; }
           .fp-bo-eski { animation: none !important; display: none; }

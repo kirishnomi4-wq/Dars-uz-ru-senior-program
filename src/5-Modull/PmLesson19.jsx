@@ -24,6 +24,29 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // PM-STUDIA IDENTITET (P0 dan AYNAN)
 // ============================================================
+// F-1015-377: ma'nosiz yozuv tekshiruvi (qolip `manoliMatn` nusxasi - bu dars qolipsiz)
+const MN_HARF = /[a-z\u0430-\u044f\u0451\u0493\u049b\u04b3\u045e]/gi;
+const MN_UNLI = /[aeiou\u0430\u0435\u0451\u0438\u043e\u0443\u044b\u044d\u044e\u044f\u045e]/gi;
+const MN_QISQA = new Set(['html', 'css', 'npm', 'crm', 'mvp', 'pdf', 'sms', 'http', 'https', 'www', 'src', 'cmd', 'pwd', 'jsx', 'dns', 'ssl', 'cdn', 'sql', 'xml', 'png', 'jpg', 'svg', 'gps', 'mln', 'mlrd', 'kpi', 'nps', 'ltv', 'cac']);
+const manoliMatn = (t, yumshoq) => {
+  const s = String(t || '').trim();
+  const harf = (s.match(MN_HARF) || []).length;
+  const tozasi = s.replace(/[\s\u02bb\u02bc'`\u2018\u2019\-.,!?:;\u00ab\u00bb"()]/g, '');
+  if (harf < 3 || !tozasi.length || harf / tozasi.length < 0.5) return false;
+  if (/(.)\1{3,}/i.test(s)) return false;
+  if (!(s.match(MN_UNLI) || []).length) return false;
+  const sozlar = s.split(/\s+/);
+  if (!yumshoq) { // F-1015-392: «fast freak. afs sdfa dfs», «fasted saf s f», «qwe rty», «asd asd asd»
+    const toza = sozlar.map(w => w.replace(/[.,!?:;]+$/, ''));
+    if (toza.some(w => /^[a-z]{3,}$/.test(w) && !/[aeiouy]/.test(w) && !MN_QISQA.has(w))) return false;
+    const yakka = toza.filter(w => /^[b-df-hj-np-tv-xz]$/.test(w)).length;
+    if (yakka >= 2 && yakka / toza.length >= 0.25) return false;
+    if (/qwe|asdf|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|\u0439\u0446\u0443\u043a|\u0444\u044b\u0432\u0430|\u044f\u0447\u0441\u043c/i.test(s)) return false;
+    if (toza.length >= 3 && new Set(toza.map(w => w.toLowerCase())).size * 3 <= toza.length) return false;
+  }
+  return sozlar.every(w => { const h = (w.match(MN_HARF) || []).join(''); if (h.length < 5) return true; return ((h.match(MN_UNLI) || []).length / h.length) >= 0.2; });
+};
+
 const T = {
   bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
@@ -1782,7 +1805,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const yakka = !live || live.mode === 'self';
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
-  const written = text.trim().length >= 8;
+  const written = text.trim().length >= 8 && manoliMatn(text);
   const [pairStage, setPairStage] = useState('idle');
   const [said, setSaid] = useState(written);
   const [unlocked, setUnlocked] = useState(written);
@@ -2055,18 +2078,18 @@ const QZ_BG_SHAPES = [
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · to'g'ri indekslar 0,3,2,1 · 1,0,2,3 · 0,2,1,3.
 // darslik-jonli TASDIQLAYDI. Har savol darsda AYTILGAN ekranga bog'langan (65-qonun).
 const QUIZ_BANK = [
-  { q: { uz: 'Birinchi foydalanuvchilar kimlar?', ru: "Кто такие первые пользователи?" }, opts: [{ uz: "Botni birinchi bo'lib ishlatadigan odamlar", ru: "Люди, которые первыми пользуются ботом" }, { uz: "Botni yaratishga yordam bergan odamlar", ru: "Люди, которые помогли создать бота" }, { uz: "Botga faqat bir marta yozgan odamlar", ru: "Люди, которые написали боту только раз" }, { uz: "Bot haqida faqat eshitgan odamlar", ru: "Люди, которые только слышали о боте" }], correct: 0 },
-  { q: { uz: 'Botga birinchi odamlarni kim olib keladi?', ru: 'Кто приводит к боту первых людей?' }, opts: [{ uz: "Telegram — u yangi botlarni hammaga aytib turadi", ru: 'Telegram — он всем рассказывает о новых ботах' }, { uz: "Qidiruv — bot qidiruvda o'zi yuqoriga chiqadi", ru: 'Поиск — бот сам поднимается наверх в поиске' }, { uz: "Bot — u yozilgan kuni odamlarni chaqiradi", ru: 'Бот — в день создания он сам зовёт людей' }, { uz: "Siz — birinchi odamlarga o'zingiz aytasiz", ru: 'Вы — первым людям вы рассказываете сами' }], correct: 3 },
-  { q: { uz: 'Tanish guruhda xabar nega tez tarqaladi?', ru: "Почему в группе знакомых новость расходится быстро?" }, opts: [{ uz: "Chunki u yerda odam soni eng ko'p", ru: 'Потому что там больше всего людей' }, { uz: "Chunki xabarni u yerda bot o'zi aytadi", ru: 'Потому что там новость рассказывает сам бот' }, { uz: "Chunki u yerdagilar bir-birini tez-tez ko'radi", ru: "Потому что люди там часто видят друг друга" }, { uz: "Chunki u yerdagilar bir-birini izlab yuradi", ru: "Потому что люди там ищут друг друга" }], correct: 2 },
-  { q: { uz: "Uch halqadan qaysi biri ko'proq odam berdi?", ru: 'Какой из трёх кругов дал больше людей?' }, opts: [{ uz: 'Sizni tanimaydiganlar halqasi', ru: 'Круг тех, кто вас не знает' }, { uz: "Har kuni ko'rishadiganlar halqasi", ru: 'Круг тех, кто видится каждый день' }, { uz: "Ba'zan ko'rishadiganlar halqasi", ru: 'Круг тех, кто видится иногда' }, { uz: 'Uchala halqa ham bir xil odam berdi', ru: 'Все три круга дали одинаково людей' }], correct: 1 },
-  { q: { uz: "Katta guruhda odam ko'p — nega ishlatgani kam?", ru: 'В большой группе людей много — почему пользуются мало?' }, opts: [{ uz: 'Chunki katta guruhda bot ochilmaydi', ru: 'Потому что в большой группе бот не открывается' }, { uz: 'Chunki u yerdagilar sizni tanimaydi', ru: 'Потому что люди там вас не знают' }, { uz: 'Chunki xabar u yerga umuman yetmaydi', ru: 'Потому что новость туда вообще не доходит' }, { uz: 'Chunki bot u yerda sekin ochiladi', ru: 'Потому что бот там медленно открывается' }], correct: 1 },
-  { q: { uz: 'Xabar qaysi guruhdan tez tarqaladi?', ru: "Из какой группы новость расходится быстрее?" }, opts: [{ uz: "Har kuni ko'rishadigan guruhdan — ular bir-biriga aytadi", ru: "Из группы, где видятся каждый день, — там рассказывают друг другу" }, { uz: "Har kuni ko'rishadigan guruhdan — odam soni ko'p", ru: "Из группы, где видятся каждый день, — там много людей" }, { uz: "Bir-birini tanimaydigan guruhdan — odam soni ko'p", ru: "Из группы, где друг друга не знают, — там много людей" }, { uz: 'Bir-birini tanimaydigan guruhdan — ular bir-biriga aytadi', ru: "Из группы, где друг друга не знают, — там рассказывают друг другу" }], correct: 0 },
+  { q: { uz: "Birinchi foydalanuvchilar kim?", ru: "Кто такие первые пользователи?" }, opts: [{ uz: "Botni birinchi ishlatganlar", ru: "Первыми пользуются ботом" }, { uz: "Bot yozishga yordam berganlar", ru: "Помогали писать бота" }, { uz: "Botga bir marta yozganlar", ru: "Написали боту один раз" }, { uz: "Bot haqida faqat eshitganlar", ru: "Только слышали о боте" }], correct: 0 },
+  { q: { uz: "Botga birinchi odamlarni kim olib keladi?", ru: "Кто приводит к боту первых людей?" }, opts: [{ uz: "Telegram — hammaga aytadi", ru: "Telegram — сообщает всем" }, { uz: "Qidiruv — bot o'zi chiqadi", ru: "Поиск — бот всплывает сам" }, { uz: "Bot — odamlarni chaqiradi", ru: "Бот — сам зовёт людей" }, { uz: "Siz — o'zingiz aytasiz", ru: "Вы — рассказываете сами" }], correct: 3 },
+  { q: { uz: "Tanish guruhda xabar nega tez tarqaladi?", ru: "Почему в знакомой группе весть расходится быстро?" }, opts: [{ uz: "U yerda odam soni ko'p", ru: "Там много людей" }, { uz: "Xabarni bot o'zi aytadi", ru: "Бот сам сообщает" }, { uz: "Bir-birini tez-tez ko'radi", ru: "Часто видят друг друга" }, { uz: "Bir-birini izlab yuradi", ru: "Ищут друг друга" }], correct: 2 },
+  { q: { uz: "Qaysi halqa ko'proq odam berdi?", ru: "Какое кольцо дало больше людей?" }, opts: [{ uz: "Sizni tanimaydiganlar", ru: "Те, кто вас не знает" }, { uz: "Har kuni ko'rishadiganlar", ru: "Видятся каждый день" }, { uz: "Ba'zan ko'rishadiganlar", ru: "Видятся иногда" }, { uz: "Uchalasi bir xil", ru: "Все три одинаково" }], correct: 1 },
+  { q: { uz: "Katta guruhda odam ko'p — nega ishlatgani kam?", ru: "В большой группе людей много — почему пользуются мало?" }, opts: [{ uz: "U yerda bot ochilmaydi", ru: "Там бот не открывается" }, { uz: "Ular sizni tanimaydi", ru: "Они вас не знают" }, { uz: "Xabar u yerga yetmaydi", ru: "Весть туда не доходит" }, { uz: "Bot u yerda sekin ishlaydi", ru: "Там бот работает медленно" }], correct: 1 },
+  { q: { uz: "Xabar qaysi guruhda tez tarqaladi?", ru: "В какой группе весть расходится быстро?" }, opts: [{ uz: "Tanish: bir-biriga aytadi", ru: "Знакомой: рассказывают друг другу" }, { uz: "Tanish: odam soni ko'p", ru: "Знакомой: людей много" }, { uz: "Notanish: odam soni ko'p", ru: "Незнакомой: людей много" }, { uz: "Notanish: bir-biriga aytadi", ru: "Незнакомой: рассказывают друг другу" }], correct: 0 },
   { q: { uz: "Odam botga kelguncha qaysi uch qadamdan o'tadi?", ru: 'Какие три шага проходит человек, пока дойдёт до бота?' }, opts: [{ uz: 'Qidirdi, topdi, yozdi', ru: 'Искал, нашёл, написал' }, { uz: 'Ochdi, ishlatdi, eshitdi', ru: 'Открыл, пользуется, услышал' }, { uz: 'Eshitdi, ochdi, ishlatdi', ru: 'Услышал, открыл, пользуется' }, { uz: "Ko'rdi, yozdi, o'chirdi", ru: 'Увидел, написал, удалил' }], correct: 2 },
-  { q: { uz: 'Facebook sayti 2004-yilda qayerda ochilgan?', ru: 'Где открылся сайт Facebook в 2004 году?' }, opts: [{ uz: "Butun dunyoda — istagan odam yozila olardi", ru: 'По всему миру — мог зарегистрироваться кто угодно' }, { uz: "Ikki shaharda — ikkita katta maktabda", ru: 'В двух городах — в двух больших школах' }, { uz: "Uchta shaharda — har birida bitta joyda", ru: 'В трёх городах — в каждом в одном месте' }, { uz: "Bitta universitetda — faqat o'z talabalariga", ru: "В одном университете — только для своих студентов" }], correct: 3 },
+  { q: { uz: "Facebook 2004-yilda qayerda ochilgan?", ru: "Где открылся Facebook в 2004 году?" }, opts: [{ uz: "Butun dunyoda, hamma uchun", ru: "Во всём мире, для всех" }, { uz: "Ikki shahardagi maktablarda", ru: "В школах двух городов" }, { uz: "Uch shaharda, bittadan joyda", ru: "В трёх городах, по одному месту" }, { uz: "Bitta universitetda", ru: "В одном университете" }], correct: 3 },
   { q: { uz: 'Facebook butun dunyo uchun qachon ochilgan?', ru: "Когда Facebook открылся для всего мира?" }, opts: [{ uz: "Oradan ikki yarim yil o'tgach", ru: "Спустя два с половиной года" }, { uz: "Birinchi kunidan boshlab", ru: 'С первого же дня' }, { uz: "Bir necha oydan keyin", ru: 'Через несколько месяцев' }, { uz: "O'sha yilning oxirida", ru: 'В конце того же года' }], correct: 0 },
-  { q: { uz: 'Facebook voqeasida nima ish bergan?', ru: 'Что сработало в истории Facebook?' }, opts: [{ uz: "Saytning tez ochilishi", ru: 'Быстрая загрузка сайта' }, { uz: "Saytga yozilgan odamlar soni", ru: 'Число зарегистрированных на сайте' }, { uz: "Odamlarning bir-birini tanishi", ru: 'То, что люди знали друг друга' }, { uz: "Saytdagi tugmalarning ko'pligi", ru: 'Много кнопок на сайте' }], correct: 2 },
-  { q: { uz: 'Qaysi biri tanish guruh?', ru: "Что из этого — группа знакомых?" }, opts: [{ uz: "Bir mahallada yashaydigan, lekin bir-birini tanimaydigan odamlar", ru: "Люди из одного района, которые не знают друг друга" }, { uz: "Har kuni ko'rishadigan sinfdoshlaringiz", ru: "Одноклассники, с которыми вы видитесь каждый день" }, { uz: "Siz kuzatadigan kanalning 5000 obunachisi", ru: "5000 подписчиков канала, который вы читаете" }, { uz: "Bekatda avtobus kutayotgan odamlar", ru: "Люди, которые ждут автобус на остановке" }], correct: 1 },
-  { q: { uz: 'Uchta guruh yozganda har guruh haqida nimalarni yozasiz?', ru: "Когда записываете три группы, что пишете про каждую?" }, opts: [{ uz: "Guruh nomi va undagi odamlarning yoshi", ru: "Название группы и возраст людей в ней" }, { uz: "Faqat odam soni — qolgani kerak emas", ru: 'Только число людей — остальное не нужно' }, { uz: "Guruh nomi, admini va ochilgan kuni", ru: "Название группы, её админа и день создания" }, { uz: "Guruh nomi, kimlar borligi va odam soni", ru: "Название группы, кто в ней есть и сколько людей" }], correct: 3 },
+  { q: { uz: "Facebook voqeasida nima ish bergan?", ru: "Что сработало в истории Facebook?" }, opts: [{ uz: "Saytning tez ochilishi", ru: "Сайт быстро открывался" }, { uz: "Yozilgan odamlar soni", ru: "Число записавшихся" }, { uz: "Odamlar bir-birini tanishi", ru: "Люди знали друг друга" }, { uz: "Saytdagi tugmalar ko'pligi", ru: "Много кнопок на сайте" }], correct: 2 },
+  { q: { uz: "Qaysi biri tanish guruh?", ru: "Что из этого — знакомая группа?" }, opts: [{ uz: "Bir mahalladagi notanishlar", ru: "Незнакомые соседи по махалле" }, { uz: "Sinfdoshlar: har kuni birga", ru: "Одноклассники: каждый день вместе" }, { uz: "Kanalning 5000 obunachisi", ru: "5000 подписчиков канала" }, { uz: "Bekatda avtobus kutganlar", ru: "Ждущие автобус на остановке" }], correct: 1 },
+  { q: { uz: "Har guruh haqida nimalarni yozasiz?", ru: "Что вы пишете о каждой группе?" }, opts: [{ uz: "Guruh nomi va odamlar yoshi", ru: "Название и возраст людей" }, { uz: "Faqat odam soni", ru: "Только число людей" }, { uz: "Guruh nomi, admini, sanasi", ru: "Название, админ, дата" }, { uz: "Nomi, kimlar bor, odam soni", ru: "Название, кто там, сколько людей" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -3280,7 +3303,7 @@ const CSS_LESSON = `
   .fc-fly.out-again { animation: fc-out-again 0.42s ease forwards; }
   @keyframes fc-out-knew { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(70%) rotate(5deg); opacity: 0; } }
   @keyframes fc-out-again { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(-70%) rotate(-5deg); opacity: 0; } }
-  .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+  .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
   .fc-card.flip { transform: rotateY(180deg); }
   .fc-card:not(.flip):hover { transform: translateY(-3px); }
   .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

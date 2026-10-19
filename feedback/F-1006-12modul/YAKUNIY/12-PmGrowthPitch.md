@@ -42,8 +42,8 @@ Telefon maketi: «O'yinlar» · Shanba · karta «Shanba, 18:00» · Mahalla may
   - sahna (matnsiz): telefon va beshta nomsiz bo'lak («1-bo'lak» … «5-bo'lak») birma-bir to'q chiziqqa aylanadi, taymer chizig'i 5:00 gacha to'lib, zal ustida ✓
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-  1. Pitchga sonlar qayerda qo'shilishini bilib olasiz
-  2. Sonlarni ustunlarda halol ko'rsatishni o'rganasiz
+  1. Pitchga sonlar qayerda qo'shilishini bilib oling
+  2. Sonlarni ustunlarda halol ko'rsatishni o'rganing
   3. Uzum qanday o'sganini ko'rasiz
   4. Pitchni sherigingizga jonli demo bilan aytasiz
 - Tugmalar: Orqaga · Boshlaymiz

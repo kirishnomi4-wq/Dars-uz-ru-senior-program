@@ -2013,15 +2013,12 @@ const QUIZ_BANK = [
     { uz: '🎯 Darrov qilinadi', ru: '🎯 Делаем сразу' }, { uz: '🏔 Rejaga tushadi', ru: '🏔 Ставим в план' }, { uz: "🌱 Vaqt bo'lsa", ru: '🌱 Когда будет время' }, { uz: '🗑 Kerak emas', ru: '🗑 Не нужно' }], correct: 3 },
   { q: { uz: "Kam odam so'raydi, kam vaqt oladi — qaysi katak?", ru: 'Просят немногие, времени мало — какая клетка?' }, opts: [
     { uz: '🗑 Kerak emas', ru: '🗑 Не нужно' }, { uz: "🌱 Vaqt bo'lsa", ru: '🌱 Когда будет время' }, { uz: '🎯 Darrov qilinadi', ru: '🎯 Делаем сразу' }, { uz: '🏔 Rejaga tushadi', ru: '🏔 Ставим в план' }], correct: 1 },
-  { q: { uz: 'Ikki ish ham bir kunlik. Qaysi biri birinchi qilinadi?', ru: 'Обе задачи — на один день. Какую сделают первой?' }, opts: [
-    { uz: "Ro'yxatda yuqori turgani", ru: 'Ту, что выше в списке' }, { uz: "Qilish qiziqroq bo'lgani", ru: 'Ту, которую интереснее делать' }, { uz: "Ko'proq odam so'ragani", ru: 'Ту, которую просят больше людей' }, { uz: "Kechroq so'ralgani", ru: 'Ту, о которой попросили позже' }], correct: 2 },
-  { q: { uz: "Ish vaqti o'zgarsa, kataklar bilan nima qilinadi?", ru: 'Что делают с клетками, если время задачи изменилось?' }, opts: [
-    { uz: "Kataklar butunlay o'chiriladi", ru: 'Клетки удаляют целиком' }, { uz: "Ish ro'yxatdan olinadi", ru: 'Задачу убирают из списка' }, { uz: "Kataklar o'zgarishsiz qoladi", ru: 'Клетки остаются без изменений' }, { uz: "Karta yangi katakka ko'chiriladi", ru: 'Карточку переносят в новую клетку' }], correct: 3 },
+  { q: { uz: "Ikki ish ham bir kunlik. Qaysi biri birinchi?", ru: "Обе задачи на один день. Какая первой?" }, opts: [{ uz: "Ro'yxatda yuqori turgani", ru: "Та, что выше в списке" }, { uz: "Qiziqroq bo'lgani", ru: "Та, что интереснее" }, { uz: "Ko'proq odam so'ragani", ru: "Та, что просят больше людей" }, { uz: "Kechroq so'ralgani", ru: "Та, что попросили позже" }], correct: 2 },
+  { q: { uz: "Ish vaqti o'zgarsa, nima qilinadi?", ru: "Что делают, если время задачи изменилось?" }, opts: [{ uz: "Kataklar o'chiriladi", ru: "Клетки удаляют" }, { uz: "Ish ro'yxatdan olinadi", ru: "Задачу убирают из списка" }, { uz: "Hech narsa o'zgarmaydi", ru: "Ничего не меняется" }, { uz: "Karta yangi katakka o'tadi", ru: "Карточка переходит в новую клетку" }], correct: 3 },
   { q: { uz: 'Ish qancha vaqt olishini kim aytadi?', ru: 'Кто говорит, сколько времени займёт задача?' }, opts: [
     { uz: 'Sayt buyurtma qilgan odam', ru: 'Тот, кто заказал сайт' }, { uz: 'Kodni yozadigan dasturchi', ru: 'Программист, который пишет код' }, { uz: 'Saytga kiradigan mehmon', ru: 'Гость, который заходит на сайт' }, { uz: "Reklama beradigan do'kon", ru: 'Магазин, который даёт рекламу' }], correct: 1 },
   { q: { uz: "Stories'ni kim birinchi o'ylab topgan?", ru: 'Кто придумал Stories первым?' }, opts: ['Instagram', 'YouTube', 'Snapchat', 'Telegram'], correct: 2 },
-  { q: { uz: "Nega Stories Instagram'da ko'proq ishlatildi?", ru: 'Почему Stories больше пошли в Instagram?' }, opts: [
-    { uz: "Instagram'da odam ko'p edi", ru: 'В Instagram было много людей' }, { uz: 'Instagram uni birinchi chiqargan', ru: 'Instagram выпустил их первым' }, { uz: "Instagram'da rangi chiroyliroq", ru: 'В Instagram они красивее по цвету' }, { uz: 'Instagram uni bepul qilgan', ru: 'Instagram сделал их бесплатными' }], correct: 0 },
+  { q: { uz: "Nega Stories Instagram'da ko'proq ishlatildi?", ru: "Почему Stories больше использовали в Instagram?" }, opts: [{ uz: "Instagram'da odam ko'p edi", ru: "В Instagram было много людей" }, { uz: "Uni birinchi chiqargan", ru: "Он выпустил их первым" }, { uz: "Rangi chiroyliroq edi", ru: "Цвет был красивее" }, { uz: "Uni bepul qilgan", ru: "Сделал их бесплатными" }], correct: 0 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

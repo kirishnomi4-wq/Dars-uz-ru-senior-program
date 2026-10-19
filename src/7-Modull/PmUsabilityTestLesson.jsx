@@ -101,6 +101,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -178,8 +203,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -852,10 +877,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda dars oxiridagi yozuv o'zi yoziladi — javob ochilmaydi, matn kulrang chiziq; o'ngda «01 · matn · teg») =====
 const REJA = [
-  { t: { uz: "Odam qayerda to'xtashini kuzatib, yozasiz", ru: 'Наблюдаете, где человек застревает, и записываете' }, teg: { uz: 'kuzatish', ru: 'наблюдение' } },
-  { t: { uz: "Yordam bersangiz, yozuvda nima qolishini ko'rasiz", ru: 'Увидите, что останется в записи, если помогать' }, teg: { uz: 'yordam', ru: 'помощь' } },
-  { t: { uz: 'Odamga beriladigan vazifani yozasiz', ru: 'Пишете задание для человека' }, teg: { uz: 'vazifa', ru: 'задание' } },
-  { t: { uz: 'Sinfdoshingiz bilan bir-biringizni kuzatasiz', ru: 'С одноклассником наблюдаете друг за другом' }, teg: { uz: 'juftlik', ru: 'пара' } }
+  { t: { uz: "Odam qayerda to'xtashini kuzatib, yozing", ru: 'Понаблюдайте, где человек застревает, и запишите' }, teg: { uz: 'kuzatish', ru: 'наблюдение' } },
+  { t: { uz: "Yordam bersangiz, yozuvda nima qolishini ko'ring", ru: 'Посмотрите, что останется в записи, если помогать' }, teg: { uz: 'yordam', ru: 'помощь' } },
+  { t: { uz: 'Odamga beriladigan vazifani yozing', ru: 'Напишите задание для человека' }, teg: { uz: 'vazifa', ru: 'задание' } },
+  { t: { uz: 'Sinfdoshingiz bilan bir-biringizni kuzating', ru: 'Понаблюдайте с одноклассником друг за другом' }, teg: { uz: 'juftlik', ru: 'пара' } }
 ];
 const REJA_QATOR = [
   { vaqt: '0:00', en: '62%' },
@@ -995,7 +1020,6 @@ const S3_OPTS = [
 ];
 const Screen3 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · kuzatuv yozuvi', ru: 'Проверка · запись наблюдения' })}
-    vizual={(i, ok) => <MiniQator matn={tr(S3_OPTS[i])} ok={ok} />}
     questionText="Sinfdoshingiz 18:00 katagi oldida to'xtadi. Yozuvga nima yoziladi?"
     question={tr({ uz: <h2 className="title h-ask">Sinfdoshingiz 18:00 katagi oldida to'xtadi. <A>Yozuvga nima yoziladi?</A></h2>, ru: <h2 className="title h-ask">Одноклассник застрял перед ячейкой 18:00. <A>Что пишется в запись?</A></h2> })}
     options={S3_OPTS} correctIdx={1}
@@ -1610,7 +1634,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   });
   const qadamN = done ? 3 : qadam;
   return (
-    <Stage eyebrow={tr({ uz: 'Juftlikda sinov', ru: 'Тест в паре' })} screen={screen} scrollSignal={qatorlar.length + qadam} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Sinovni o'tkazing", ru: 'Проведите тест' })} (${Math.min(qadam, 3)}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Juftlikda sinov', ru: 'Тест в паре' })} screen={screen} scrollSignal={qatorlar.length + qadam} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Sinovni o'tkazing", ru: 'Проведите тест' })}`} onClick={onNext} /></>}>
       <QMustaqil
         sarlavha={tr({ uz: <>Sinfdoshingiz saytingizda <A>qayerda to'xtaydi?</A></>, ru: <>Где одноклассник <A>застрянет на вашем сайте?</A></> })}
         mentor={<Mentor>{jonli
@@ -1736,18 +1760,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD «Jonli viktorina»), to'g'ri javoblar 4 pozitsiyaga TENG: A 1·6·9 · B 3·5·11 · C 2·8·12 · D 4·7·10.
 const QUIZ_BANK = [
-  { q: { uz: 'Sinov nima?', ru: 'Что такое тест?' }, opts: [{ uz: 'Real odam saytni ishlatadi, siz kuzatasiz', ru: 'Реальный человек пользуется сайтом, вы наблюдаете' }, { uz: 'Siz saytni ishlatasiz, odam sizni kuzatadi', ru: 'Вы пользуетесь сайтом, человек наблюдает за вами' }, { uz: "Odamdan sayt haqidagi fikrini so'raysiz", ru: 'Спрашиваете у человека мнение о сайте' }, { uz: "Saytni o'zingiz qayta-qayta ishlatib ko'rasiz", ru: 'Сами снова и снова пробуете сайт' }], correct: 0 },
-  { q: { uz: 'Sinov intervyudan nimasi bilan farq qiladi?', ru: 'Чем тест отличается от интервью?' }, opts: [{ uz: "Sinovda odamga ko'proq savol beriladi", ru: 'На тесте человеку задают больше вопросов' }, { uz: "Intervyuda odam saytni o'zi ishlatadi", ru: 'На интервью человек сам пользуется сайтом' }, { uz: "Sinovda so'ramaysiz, odamni kuzatasiz", ru: 'На тесте не спрашиваете, а наблюдаете' }, { uz: 'Sinovda faqat sinfdoshlaringiz qatnashadi', ru: 'В тесте участвуют только одноклассники' }], correct: 2 },
-  { q: { uz: "O'yinchi 25 soniya hech narsa bosmadi. Bu nima?", ru: 'Игрок 25 секунд ничего не нажимал. Что это?' }, opts: [{ uz: 'Sayt juda sekin ochilayotganining belgisi', ru: 'Признак того, что сайт открывается медленно' }, { uz: "To'xtash: yozuvga vaqti bilan tushadi", ru: 'Остановка: попадает в запись со временем' }, { uz: 'Odam saytni yoqtirmaganining belgisi', ru: 'Признак того, что сайт не понравился' }, { uz: 'Sinov shu yerda tugaganining belgisi', ru: 'Признак того, что тест закончился' }], correct: 1 },
-  { q: { uz: 'Sinovda odamga yordam bersangiz, yozuvda nima bo\'ladi?', ru: 'Что будет в записи, если помогать человеку на тесте?' }, opts: [{ uz: "Yozuvga ko'proq to'xtash tushadi", ru: 'В запись попадёт больше остановок' }, { uz: "Yozuv avvalgidek o'zgarmay qoladi", ru: 'Запись останется как была' }, { uz: "Odam to'xtagan joylar ikki marta yoziladi", ru: 'Места остановок запишутся дважды' }, { uz: "To'xtash joyi yozuvga tushmay qoladi", ru: 'Место остановки не попадёт в запись' }], correct: 3 },
-  { q: { uz: 'Yaxshi sinov vazifasi nimani aytadi?', ru: 'Что говорит хорошее задание для теста?' }, opts: [{ uz: 'Qaysi tugmalarni bosish kerakligini', ru: 'Какие кнопки нужно нажать' }, { uz: 'Odam nimaga erishishi kerakligini', ru: 'Чего человек должен добиться' }, { uz: 'Sayt qaysi qismlardan qurilganini', ru: 'Из каких частей собран сайт' }, { uz: 'Odamga sayt yoqqan-yoqmaganini', ru: 'Понравился ли сайт человеку' }], correct: 1 },
-  { q: { uz: "Qaysi biri sinov vazifasi bo'la oladi?", ru: 'Что может быть заданием для теста?' }, opts: [{ uz: '«Shanba kuni soat 18:00 ga maydon band qiling»', ru: '«Забронируйте поле на субботу на 18:00»' }, { uz: '«18:00 katagini bosib, ism va telefonni yozing»', ru: '«Нажмите ячейку 18:00 и введите имя и телефон»' }, { uz: '«Sayt sizga qulaymi? Fikringizni aytib bering»', ru: '«Удобен ли вам сайт? Скажите своё мнение»' }, { uz: '«Pastdagi «Band qilish» tugmasini topib bosing»', ru: '«Найдите внизу кнопку «Забронировать» и нажмите»' }], correct: 0 },
-  { q: { uz: 'Kuzatuv yozuviga qaysi qator tushadi?', ru: 'Какая строка попадёт в запись наблюдения?' }, opts: [{ uz: '«Tugma juda noqulay joyga qo\'yilgan ekan»', ru: '«Кнопка стоит в очень неудобном месте»' }, { uz: "«Hamma odam bunday formani yomon ko'radi»", ru: '«Все люди не любят такие формы»' }, { uz: '«Sayt menga ham chalkash tuyuldi»', ru: '«Мне сайт тоже показался запутанным»' }, { uz: '«Tugmani qidirib, 1 daqiqa ekranni surdi»', ru: '«Искал кнопку, 1 минуту листал экран»' }], correct: 3 },
-  { q: { uz: "Internet-magazinda odamlar qayerda to'xtab qolgan?", ru: 'Где застревали люди в интернет-магазине?' }, opts: [{ uz: 'Savatga narsalarni solayotgan paytda', ru: 'Когда клали товары в корзину' }, { uz: 'Kerakli narsani qidiruvdan izlayotganda', ru: 'Когда искали нужный товар в поиске' }, { uz: "Email va parol so'raydigan formada", ru: 'На форме, которая просит email и пароль' }, { uz: 'Yetkazib berish manzilini yozayotganda', ru: 'Когда писали адрес доставки' }], correct: 2 },
-  { q: { uz: "Internet-magazinda nima o'zgartirildi?", ru: 'Что изменили в интернет-магазине?' }, opts: [{ uz: "«Ro'yxatdan o'tish» o'rniga «Davom etish»", ru: '«Продолжить» вместо «Регистрация»' }, { uz: "Formaga yana bitta qator qo'shib qo'yildi", ru: 'В форму добавили ещё одну строку' }, { uz: 'Sayt boshidan to\'liq qayta qurib chiqildi', ru: 'Сайт полностью пересобрали с нуля' }, { uz: "Ro'yxatdan o'tganlarga chegirma berildi", ru: 'Зарегистрированным дали скидку' }], correct: 0 },
-  { q: { uz: "Uch to'xtashdan qaysi biri birinchi tuzatiladi?", ru: 'Какую из трёх остановок исправляют первой?' }, opts: [{ uz: 'Sinovning eng oxirida bo\'lgani', ru: 'Ту, что была в самом конце теста' }, { uz: "Eng qisqa vaqt olgan to'xtash", ru: 'Самую короткую остановку' }, { uz: "O'zingizga eng qiziq tuyulgani", ru: 'Ту, что вам интереснее всего' }, { uz: "Vazifani to'xtatib qo'yadigani", ru: 'Ту, что останавливает задание' }], correct: 3 },
-  { q: { uz: "Real odam bilan sinovni kim bilan o'tkazasiz?", ru: 'С кем проводить тест с реальным человеком?' }, opts: [{ uz: "Saytni qurgan o'zingiz bilan", ru: 'С самим собой — тем, кто строил сайт' }, { uz: "Saytingiz mo'ljallangan odam bilan", ru: 'С человеком, для которого сайт' }, { uz: "Saytni oldin ko'rgan dasturchi bilan", ru: 'С программистом, который уже видел сайт' }, { uz: "Sinfdagi eng a'lochi o'quvchi bilan", ru: 'С лучшим учеником класса' }], correct: 1 },
-  { q: { uz: 'Sinovdan keyin kuzatuv yozuvi bilan nima qilasiz?', ru: 'Что делать с записью наблюдения после теста?' }, opts: [{ uz: "Uni o'chirib, yangisini boshidan boshlayman", ru: 'Удалю и начну новую с нуля' }, { uz: "Hamma to'xtashni bir kunning o'zida tuzataman", ru: 'Исправлю все остановки за один день' }, { uz: "Birinchi tuzatiladigan to'xtashni tanlayman", ru: 'Выберу остановку, которую исправлять первой' }, { uz: "Odamdan yozuvni tasdiqlashini so'rayman", ru: 'Попрошу человека подтвердить запись' }], correct: 2 },
+  { q: { uz: "Sinov nima?", ru: "Что такое тест?" }, opts: [{ uz: "Odam ishlatadi, siz kuzatasiz", ru: "Человек пользуется, вы наблюдаете" }, { uz: "Siz ishlatasiz, odam kuzatadi", ru: "Вы пользуетесь, человек наблюдает" }, { uz: "Odamdan fikrini so'raysiz", ru: "Спрашиваете мнение человека" }, { uz: "O'zingiz qayta-qayta sinaysiz", ru: "Сами снова и снова пробуете" }], correct: 0 },
+  { q: { uz: "Sinov intervyudan nimasi bilan farq qiladi?", ru: "Чем тест отличается от интервью?" }, opts: [{ uz: "Sinovda savol ko'p", ru: "На тесте больше вопросов" }, { uz: "Intervyuda odam ishlatadi", ru: "На интервью человек пользуется сам" }, { uz: "Sinovda so'ramay, kuzatasiz", ru: "На тесте не спрашиваете, а наблюдаете" }, { uz: "Sinovda faqat sinfdoshlar", ru: "В тесте только одноклассники" }], correct: 2 },
+  { q: { uz: "O'yinchi 25 soniya hech narsa bosmadi. Bu nima?", ru: "Игрок 25 секунд ничего не нажимал. Что это?" }, opts: [{ uz: "Sayt sekin ochilyapti", ru: "Сайт медленно открывается" }, { uz: "Bu to'xtash, yozib qo'yiladi", ru: "Это остановка, её записывают" }, { uz: "Odam saytni yoqtirmadi", ru: "Сайт не понравился" }, { uz: "Sinov shu yerda tugadi", ru: "Тест здесь закончился" }], correct: 1 },
+  { q: { uz: "Yordam bersangiz, yozuvda nima bo'ladi?", ru: "Если помогаете, что будет в записи?" }, opts: [{ uz: "To'xtash ko'payadi", ru: "Остановок станет больше" }, { uz: "Yozuv o'zgarmaydi", ru: "Запись не изменится" }, { uz: "To'xtash ikki marta yoziladi", ru: "Остановка запишется дважды" }, { uz: "To'xtash yozuvdan yo'qoladi", ru: "Остановка пропадёт из записи" }], correct: 3 },
+  { q: { uz: "Yaxshi sinov vazifasi nimani aytadi?", ru: "Что говорит хорошее задание для теста?" }, opts: [{ uz: "Qaysi tugmani bosishni", ru: "Какую кнопку нажать" }, { uz: "Odam nimaga erishishini", ru: "Чего человек должен добиться" }, { uz: "Sayt qanday qurilganini", ru: "Как устроен сайт" }, { uz: "Sayt yoqdimi-yo'qmi", ru: "Понравился ли сайт" }], correct: 1 },
+  { q: { uz: "Qaysi biri sinov vazifasi?", ru: "Что из этого — задание для теста?" }, opts: [{ uz: "«Shanba 18:00 ga band qiling»", ru: "«Забронируйте субботу на 18:00»" }, { uz: "«18:00 ni bosib, ism yozing»", ru: "«Нажмите 18:00 и введите имя»" }, { uz: "«Sayt qulaymi? Ayting»", ru: "«Удобен ли сайт? Скажите»" }, { uz: "«Band qilish tugmasini bosing»", ru: "«Нажмите кнопку брони»" }], correct: 0 },
+  { q: { uz: "Kuzatuv yozuviga qaysi qator tushadi?", ru: "Какая строка попадёт в запись наблюдения?" }, opts: [{ uz: "Tugma noqulay joyda ekan", ru: "Кнопка стоит неудобно" }, { uz: "Hamma formani yomon ko'radi", ru: "Все не любят формы" }, { uz: "Menga ham chalkash tuyuldi", ru: "Мне тоже показалось запутанным" }, { uz: "Tugmani 1 daqiqa qidirdi", ru: "Искал кнопку 1 минуту" }], correct: 3 },
+  { q: { uz: "Internet-magazinda odamlar qayerda to'xtagan?", ru: "Где застревали люди в интернет-магазине?" }, opts: [{ uz: "Savatga narsa solayotganda", ru: "Когда клали товар в корзину" }, { uz: "Qidiruvdan izlayotganda", ru: "Когда искали в поиске" }, { uz: "Email va parol formasida", ru: "На форме email и пароля" }, { uz: "Manzil yozayotganda", ru: "Когда писали адрес" }], correct: 2 },
+  { q: { uz: "Internet-magazinda nima o'zgardi?", ru: "Что изменилось в интернет-магазине?" }, opts: [{ uz: "Tugma yozuvi: «Davom etish»", ru: "Надпись кнопки: «Продолжить»" }, { uz: "Formaga qator qo'shildi", ru: "В форму добавили строку" }, { uz: "Sayt boshidan qayta qurildi", ru: "Сайт пересобрали с нуля" }, { uz: "Yangilarga chegirma berildi", ru: "Новым дали скидку" }], correct: 0 },
+  { q: { uz: "Uch to'xtashdan qaysi biri birinchi tuzatiladi?", ru: "Какую из трёх остановок исправляют первой?" }, opts: [{ uz: "Eng oxirida bo'lgani", ru: "Ту, что была в конце" }, { uz: "Eng qisqa vaqt olgani", ru: "Самую короткую" }, { uz: "O'zingizga qizig'i", ru: "Ту, что интереснее вам" }, { uz: "Vazifani to'xtatadigani", ru: "Ту, что останавливает задание" }], correct: 3 },
+  { q: { uz: "Real sinovni kim bilan o'tkazasiz?", ru: "С кем проводите реальный тест?" }, opts: [{ uz: "Saytni qurgan o'zingiz", ru: "С собой — автором сайта" }, { uz: "Saytingiz mo'ljallangan odam", ru: "С человеком, для которого сайт" }, { uz: "Saytni ko'rgan dasturchi", ru: "С программистом, видевшим сайт" }, { uz: "Sinfdagi a'lochi o'quvchi", ru: "С лучшим учеником класса" }], correct: 1 },
+  { q: { uz: "Yozuv tayyor. Endi nima qilasiz?", ru: "Запись готова. Что делаете дальше?" }, opts: [{ uz: "Yozuvni o'chirib tashlayman", ru: "Удалю запись" }, { uz: "Hammasini darhol tuzataman", ru: "Сразу исправлю всё" }, { uz: "Birinchi tuzatishni tanlayman", ru: "Выберу, что исправлять первым" }, { uz: "Odamdan tasdiq so'rayman", ru: "Попрошу человека подтвердить" }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

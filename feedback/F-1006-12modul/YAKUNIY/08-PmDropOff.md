@@ -30,10 +30,10 @@ Telefon ekranlari: Kirish (Login · Parol · «Kirish» · «Ro'yxatdan o'tish»
   - Vizual bir marta o'zi yuradi: telefon «Maydon Jamoa» ochiladi (Kirish ekrani) → to'rt kulrang ustun sonsiz o'sadi → ikki oraliqda kulrang belgi → telefonda ekran almashadi (O'yinlar, tepada «Kirish») → ✓ yangi versiya
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-  1. Har qadamda nechta qurilma borligini sanaysiz
-  2. Qaysi qadamga kam odam o'tganini foizdan topasiz
-  3. Bittasi uchun gipoteza yozasiz
-  4. Tuzatishni tekshirib, yangi versiyani chiqarasiz
+  1. Har qadamda nechta qurilma borligini sanang
+  2. Qaysi qadamga kam odam o'tganini foizdan toping
+  3. Bittasi uchun gipoteza yozing
+  4. Tuzatishni tekshirib, yangi versiyani chiqaring
 - Pastki qator: repo `maydon-jamoa` · boshlang'ich holat `m12-dars-08-start` · namuna `m12-dars-08-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Pastki qator 2 (7-darsda sanoq o'lchanmagan bo'lsa): Ilovangizda qadamlar hali sanalmasa — Amaliyot 1 ning birinchi bo'limi nima qilishni aytadi.
 - Tugmalar: Orqaga · Boshlaymiz

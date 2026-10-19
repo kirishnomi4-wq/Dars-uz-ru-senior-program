@@ -1,0 +1,199 @@
+== m7-12-v2 s2 uz-390 · eyebrow: TUSHUNCHA · RAQAM YONIDA
+  boshida nav: Savollarga javob bering (yopiq)
+  BO'SH (boshida): 5 yorliqli:ps-slayd-bosh,ps-bosh
+  1. «Muammo slaydiga avval nima qo'yiladi?» [savol top 530]
+     ✗ «Saytdan olingan skrinshot» → «Skrinshot yechimni ko'rsatadi; muammo slaydi odamlar haqida.» (60 b., yopildi: true)
+     ✓ «Suhbatdagi raqam» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 632 / ekran 844 → ko'rinadi
+     BO'SH: 5 yorliqli:ps-slayd-bosh,ps-bosh
+  2. «Zal so'raydi: «Bu qanday bo'lgan?» Raqam o'rniga nima qo'yasiz?» [savol top 632]
+     ✗ «Kattaroq raqam» → «Raqam «qanday bo'lgan?» savoliga javob bermaydi — voqea kerak.» (62 b., yopildi: true)
+     ✓ «Bitta odamning voqeasi» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 597 / ekran 844 → ko'rinadi
+     BO'SH: 5 yorliqli:ps-slayd-bosh,ps-bosh
+  3. «Zal so'raydi: «Bu nechta odamda bo'lgan?» Slaydda nima qoladi?» [savol top 597]
+     ✗ «Faqat voqea, raqamsiz» → «Voqea bitta odamni ko'rsatadi; nechta ekanini raqam aytadi.» (59 b., yopildi: true)
+     ✗ «Faqat raqam, voqeasiz» → «Raqam yolg'iz qolsa, zal yana «qanday bo'lgan?» deydi.» (54 b., yopildi: true)
+     ✓ «Raqam va voqea birga» · nav: Davom etish (ochiq)
+     BO'SH: 5 yorliqli:ps-slayd-bosh,ps-bosh
+  tugadi: qadam 3, xato tanlov 4 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== m7-12-v2 s2 ru · eyebrow: ПОНЯТИЕ · РЯДОМ С ЧИСЛОМ
+  boshida nav: Ответьте на вопросы (yopiq)
+  BO'SH (boshida): 5 yorliqli:ps-slayd-bosh,ps-bosh
+  1. «Что сначала ставят на слайд «Проблема»?» [savol top 403]
+     ✗ «Скриншот с сайта» → «Скриншот показывает решение; слайд проблемы — о людях.» (54 b., yopildi: true)
+     ✓ «Число из бесед» · nav: Ответьте на вопросы (yopiq)
+     BO'SH: 5 yorliqli:ps-slayd-bosh,ps-bosh
+  2. «Зал спрашивает: «Как это было?» Что поставите вместо числа?» [savol top 403]
+     ✗ «Число побольше» → «Число не отвечает на «как это было?» — нужен случай.» (52 b., yopildi: true)
+     ✓ «Случай одного человека» · nav: Ответьте на вопросы (yopiq)
+     BO'SH: 5 yorliqli:ps-slayd-bosh,ps-bosh
+  3. «Зал спрашивает: «У скольких людей так было?» Что останется на слайде?» [savol top 403]
+     ✗ «Только случай, без числа» → «Случай показывает одного человека; сколько их — говорит число.» (62 b., yopildi: true)
+     ✗ «Только число, без случая» → «Если число одно, зал снова спросит «как это было?».» (51 b., yopildi: true)
+     ✓ «Число и случай вместе» · nav: Продолжить (ochiq)
+     BO'SH: 5 yorliqli:ps-slayd-bosh,ps-bosh
+  tugadi: qadam 3, xato tanlov 4 · nav: Продолжить (ochiq) · xulosa: true
+  qaytganda: nav Продолжить (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m8d11-pitch-v2 s2 uz-390 · eyebrow: TUSHUNCHA · BESH SLAYD
+  boshida nav: Avval taxminingizni belgilang (yopiq)
+  BO'SH (boshida): 11 yorliqli:pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+  1. «Zal so'raydi: «Sayt ishga tushgach nima bo'ldi?» Qaysi slayd javob beradi?» [savol top 830]
+     ✗ «Yechim» → «Yechim — sayt nima qilishi; bo'lgan ishni raqam aytadi.» (55 b., yopildi: true)
+     ✓ «Raqamlar» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 584 / ekran 844 → ko'rinadi
+     BO'SH: 11 yorliqli:pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+  2. «Zal so'raydi: «Endi nima qilasiz?» Slaydga nima yoziladi?» [savol top 584]
+     ✗ «Yana bir sanalgan raqam» → «Sanalgan raqam — Raqamlar slaydida; bu slayd oldinga qaraydi.» (61 b., yopildi: true)
+     ✗ «Jamoa a'zolarining ismlari» → «Zal reja so'radi; jamoa haqida savol yo'q edi.» (46 b., yopildi: true)
+     ✓ «Keyingi ish va maqsad» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 630 / ekran 844 → ko'rinadi
+     BO'SH: 11 yorliqli:pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+  3. «Besh slayd — besh daqiqa. Vaqtni qanday bo'lasiz?» [savol top 630]
+     ✓ «Har slaydga 1 daqiqadan» · nav: Savollarga javob bering (yopiq)
+     BO'SH: 12 yorliqli:pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m8d11-pitch-v2 s3 uz-390 · eyebrow: TUSHUNCHA · RAQAMLAR
+  boshida nav: Avval taxminingizni belgilang (yopiq)
+  BO'SH (boshida): 5 yorliqli:pr-rs-bosh,pr-bosh
+  1. «Zal so'raydi: «17 nima?» Raqam yoniga nima qo'shasiz?» [savol top 537]
+     ✗ «17 ni kattaroq shriftda» → «Katta raqam ham «17 nima?» savoliga javob bermaydi.» (51 b., yopildi: true)
+     ✓ «U nimani sanaganini» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 536 / ekran 844 → ko'rinadi
+     BO'SH: 5 yorliqli:pr-rs-bosh,pr-bosh
+  2. «Zal so'raydi: «Bu ko'pmi, kammi?» Nima qo'shasiz?» [savol top 536]
+     ✗ ««Bu juda yaxshi natija!»» → «Baho raqam emas: zal o'zi solishtira olmaydi.» (45 b., yopildi: true)
+     ✗ «Saytga kirganlar soni» → «Bu yana bitta son; «nima bilan solishtirdik?» ochiq qoladi.» (59 b., yopildi: true)
+     ✓ «Boshqa tugma natijasi» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 585 / ekran 844 → ko'rinadi
+     BO'SH: 5 yorliqli:pr-rs-bosh,pr-bosh
+  3. «Zal so'raydi: «Bunga ishonsa bo'ladimi?» Nima deysiz?» [savol top 585]
+     ✓ «Farq bor, brauzer hali kam» · nav: Davom etish (ochiq)
+     BO'SH: 1 yorliqli:pr-rs-bosh
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m9d16-v2 s2 uz-390 · eyebrow: TUSHUNCHA · TO'RT BO'LAK
+  boshida nav: Savollarga javob bering (yopiq)
+  1. «Pitch nimadan boshlanadi?» [savol top 707]
+     ✗ «Ilova tugmalaridan» → «Zal hali nimani hal qilishini bilmaydi — avval muammo.» (54 b., yopildi: true)
+     ✓ «Muammodan» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 648 / ekran 844 → ko'rinadi
+  2. «Muammodan keyin zalga nima aytiladi?» [savol top 648]
+     ✗ «Keyingi oy uchun reja» → «Reja oxirida; zal hali mahsulot nima qilishini bilmaydi.» (56 b., yopildi: true)
+     ✗ «Yana bitta boshqa muammo» → «Bitta muammo yetadi; endi uni nima hal qilishi kerak.» (53 b., yopildi: true)
+     ✓ «Mahsulot nima qilishi» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 606 / ekran 844 → ko'rinadi
+  3. «Zal ilova ishlashini qanday ko'radi?» [savol top 606]
+     ✓ «Ilovani telefonda ishlatib» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 651 / ekran 844 → ko'rinadi
+  4. «Pitch nima bilan tugaydi?» [savol top 651]
+     ✗ ««Rahmat, savollar bormi?»» → «Zal hali «endi nima qilasiz?» deb kutib turibdi.» (48 b., yopildi: true)
+     ✓ «Keyingi qadam bilan» · nav: Savollarga javob bering (yopiq)
+  tugadi: qadam 4, xato tanlov 4 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m9d16-v2 s3 uz-390 · eyebrow: TUSHUNCHA · DALIL
+  boshida nav: Savollarga javob bering (yopiq)
+  BO'SH (boshida): 1 yorliqli:pt-bl.h-bosh
+  1. «Muammo bo'lagiga avval nima yoziladi?» [savol top 490]
+     ✗ «Ilovaning nomi» → «Nom — yechimda; bu bo'lak o'yinchining qiyinchiligi haqida.» (59 b., yopildi: true)
+     ✗ «Jadvaldagi hamma son» → «Avval zal muammoni eshitsin; sonlar uni keyin tasdiqlaydi.» (58 b., yopildi: true)
+     ✓ «Muammo gapi» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 490 / ekran 844 → ko'rinadi
+  2. «Zal so'raydi: «Muammo borligini qayerdan bilasiz?» Qaysi dalil javob beradi?» [savol top 490]
+     ✓ «Necha kishida bo'lgani» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 490 / ekran 844 → ko'rinadi
+  3. «Zal so'raydi: «Ular bu ilovaga qiziqadimi?» Qaysi dalil javob beradi?» [savol top 490]
+     ✗ ««Zo'r g'oya» deyishgani» → «Maqtov — harakat emas; kun belgilash — harakat.» (47 b., yopildi: true)
+     ✓ «Sinovga kun belgilagani» · nav: Davom etish (ochiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m10d12-v2 s3 uz-390 · eyebrow: TUSHUNCHA · GRAFIK
+  boshida nav: Savollarga javob bering (yopiq)
+  BO'SH (boshida): 4 gp-gr-joy
+  1. «Ustunlar 18 dan boshlanadi. Nima qilasiz?» [savol top 579]
+     ✗ «Ustunlarni rangli qilaman» → «Rang farqni to'g'rilamaydi: 18 dan boshlansa, o'sish bo'rtadi.» (62 b., yopildi: true)
+     ✓ «Noldan boshlayman» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 611 / ekran 844 → ko'rinadi
+     BO'SH: 4 gp-gr-joy
+  2. «Bir ustun «3 kun o'tib», qolgani haftama-hafta. Nima qilasiz?» [savol top 611]
+     ✓ «Uni olib tashlayman» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 611 / ekran 844 → ko'rinadi
+     BO'SH: 3 gp-gr-joy
+  3. «Ustunlar ostida ham, ustida ham hech narsa yo'q. Nima qo'shasiz?» [savol top 611]
+     ✗ «Har ustunga rasmcha» → «Rasmcha sonni aytmaydi; zal aniq kun va sonni ko'rishi kerak.» (61 b., yopildi: true)
+     ✗ «Faqat oxirgi son: 44» → «Bitta son o'sishni ko'rsatmaydi — har ustunniki kerak.» (54 b., yopildi: true)
+     ✓ «Sana va son» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 630 / ekran 844 → ko'rinadi
+  4. «Zal so'raydi: «Bu son nimani sanaydi?» Qayerga yozasiz?» [savol top 630]
+     ✓ «Grafik sarlavhasiga» · nav: Davom etish (ochiq)
+  tugadi: qadam 4, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d2-v2 s2 ru · eyebrow: ПОНЯТИЕ · СПИСОК И ИСТОРИЯ
+  boshida nav: Ответьте на вопросы (0/3) (yopiq)
+  1. «О ком начинается история вместо списка?» [savol top 318]
+     ✗ «О функциях приложения» → «Функции — снова список; в истории сначала есть человек.» (55 b., yopildi: true)
+     ✓ «Об одном организаторе» · nav: Ответьте на вопросы (1/3) (yopiq)
+  2. «Какой момент с организатором рассказывается?» [savol top 318]
+     ✗ «Каждую неделю кто-то опаздывает» → «Это общая фраза: в ней нет ни точного дня, ни часа.» (51 b., yopildi: true)
+     ✗ «В приложении 3 вида напоминаний» → «Это снова функция; момент — случай, который был в один день.» (60 b., yopildi: true)
+     ✓ «В субботу 2 человека не пришли» · nav: Ответьте на вопросы (2/3) (yopiq)
+     BO'SH: 1 sp-mdn-joy
+  3. «Что изменилось у организатора с продуктом?» [savol top 318]
+     ✓ «В пятницу видит свободное место» · nav: Продолжить (ochiq)
+     BO'SH: 1 sp-mdn-joy
+  tugadi: qadam 3, xato tanlov 3 · nav: Продолжить (ochiq) · xulosa: true
+  qaytganda: nav Продолжить (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d2-v2 s3 ru-390 · eyebrow: ПОНЯТИЕ · ИСТОРИЯ И ЧАСТИ
+  boshida nav: Ответьте на вопросы (0/3) (yopiq)
+  1. «Какую часть питча открывает момент?» [savol top 880]
+     ✗ «Часть «Решение»» → «В Решении работает продукт; а момент — день до продукта.» (56 b., yopildi: true)
+     ✗ «Часть «Цифры»» → «В Цифрах число многих людей; в моменте — день одного человека.» (62 b., yopildi: true)
+     ✓ «Часть «Проблема»» · nav: Ответьте на вопросы (0/3) (yopiq)
+     telefonda keyingi savol: top 606 / ekran 844 → ko'rinadi
+  2. «Где в питче видно изменение?» [savol top 606]
+     ✓ «В Решении, во время демо» · nav: Ответьте на вопросы (1/3) (yopiq)
+     telefonda keyingi savol: top 606 / ekran 844 → ko'rinadi
+  3. «51 пользователь — это часть истории?» [savol top 606]
+     ✗ «Да, добавляется к моменту в Проблеме» → «Момент — день одного человека; 51 человек в него не помещается.» (63 b., yopildi: true)
+     ✓ «Нет, стоит отдельно в Цифрах» · nav: Ответьте на вопросы (2/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Продолжить (ochiq) · xulosa: true
+  qaytganda: nav Продолжить (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d5-v2 s2 ru · eyebrow: ПОНЯТИЕ · ОЦЕНОЧНЫЙ ЛИСТ
+  boshida nav: Сначала отметьте (yopiq)
+  1. «Когда группа заполняет лист?» [savol top 359]
+     ✗ «Останавливая после каждой части» → «Питч не останавливают: группа слушает его до конца.» (51 b., yopildi: true)
+     ✗ «До питча, заранее» → «До питча оценивать нечего: лист — после того, как услышали.» (59 b., yopildi: true)
+     ✓ «После того как питч закончился» · nav: Ответьте на вопросы (0/3) (yopiq)
+  2. «О чём замечание рядом с ✗ в листе?» [savol top 359]
+     ✓ «Какая часть осталась непонятной» · nav: Ответьте на вопросы (1/3) (yopiq)
+  3. «Что слушатель в роли судьи пишет в лист?» [savol top 359]
+     ✗ «Все фразы из питча» → «Питч в лист не переписывают: вопрос судьи — один вопрос.» (56 b., yopildi: true)
+     ✓ «Один вопрос, который задал бы судья» · nav: Ответьте на вопросы (2/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Продолжить (ochiq) · xulosa: true
+  qaytganda: nav Продолжить (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d8-v2 s3 ru · eyebrow: ПОНЯТИЕ · ИСПРАВЛЕНИЕ И ТАЙМЕР
+  boshida nav: Сначала отметьте (yopiq)
+  1. «С чего Ментор начинает исправлять питч?» [savol top 377]
+     ✗ «С того, что пишет питч заново» → «Питч не пишут заново: исправляют замечания из листа.» (52 b., yopildi: true)
+     ✗ «С того, что рассказывает с таймером» → «Таймер потом: сначала исправляют замечания из листа.» (52 b., yopildi: true)
+     ✓ «С замечаний из листа оценки» · nav: Ответьте на вопросы (1/3) (yopiq)
+  2. «В листе три замечания. Как вносят исправление?» [savol top 377]
+     ✓ «Вместо старой фразы пишут новую» · nav: Ответьте на вопросы (2/3) (yopiq)
+  3. «Три фразы стали длиннее, план всё ещё 5:00. Уложится ли питч?» [savol top 377]
+     ✗ «Да, план всё ещё на 5 минут» → «Время по плану не меняется: настоящее время покажет таймер.» (59 b., yopildi: true)
+     ✓ «Узнаем, рассказав с таймером» · nav: Ответьте на вопросы (3/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Продолжить (ochiq) · xulosa: true
+  qaytganda: nav Продолжить (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0

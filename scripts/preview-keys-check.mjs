@@ -2,7 +2,8 @@
 // Preview'da faqat OWN_KEY_PREFIXES ga mos kalitlar varaq xotirasiga ketadi. Yangi dars yangi prefiks bilan
 // yozsa va ro'yxatga qo'shilmasa — o'qituvchining preview-javoblari haqiqiy saqlovda qolib ketadi.
 //
-// Ishlatish:  node scripts/preview-keys-check.mjs        (chiqish 1 = qoplanmagan kalit bor)
+// Ishlatish:  node scripts/preview-keys-check.mjs        (chiqish 1 = qoplanmagan kalit bor) — butun src/
+//             node scripts/preview-keys-check.mjs <fayl|papka…>   — faqat o'sha (gates 13-darvoza, F-1017-226)
 // Manba: (1) Storage.getItem/setItem/removeItem ning matnli kaliti, (2) kalit-konstantalar
 // (nomi …KEY / …KALIT / SAQLOV / …Key bilan tugaydi) — yordamchi funksiyalar (lsGet(k) …) shular orqali chaqiriladi.
 import { readFileSync, readdirSync, statSync } from 'node:fs';
@@ -17,7 +18,8 @@ const NOT_STORAGE = new Map([
 const RED = '\x1b[31m', GRN = '\x1b[32m', DIM = '\x1b[2m', R = '\x1b[0m';
 const files = [];
 const walk = (d) => { for (const n of readdirSync(d)) { const p = join(d, n); if (statSync(p).isDirectory()) walk(p); else if (/\.(jsx?|mjs)$/.test(n) && !/\.test\./.test(n)) files.push(p); } };
-walk('src');
+const targets = process.argv.slice(2).filter((a) => !a.startsWith('-'));
+if (targets.length) for (const t of targets) { if (statSync(t).isDirectory()) walk(t); else files.push(t); } else walk('src');
 
 const bad = [], unknown = [];
 let seen = 0;

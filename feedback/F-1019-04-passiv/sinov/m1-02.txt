@@ -1,0 +1,23 @@
+s2 boshida: nav=Savollarga javob bering (0/3) (yopiq) · qator: 3 · savol bor: true
+  YouTube: «Bosh sahifaga qarang. YouTube kimlar uchun qilingan?» · xato «Faqat dars o'rganmoqchi» → sabab «Bitta dars videosi bor, lekin yonida sayohat lavhasi ham turibdi.» (tugma yopildi: true) → to'g'ri «Bo'sh vaqtida qiziq video» ✓ · nav=Savollarga javob bering (1/3) (yopiq)
+  YouTube kartasida «nega»: Shuning uchun bosh sahifada tavsiya qilingan videolar turadi.
+  Telegram: «Birinchi ekranga qarang. Telegram kimlar uchun qilingan?» · xato «Saytni yasagan dasturchilar» → sabab «Dasturchi saytni yasaydi, undan esa boshqa odamlar foydalanadi.» (tugma yopildi: true) → to'g'ri «Yaqinlari bilan yozishadiganlar» ✓ · nav=Savollarga javob bering (2/3) (yopiq)
+  Yandex Go: «Eng katta tugmaga qarang. Yandex Go kimlar uchun qilingan?» · xato «Hamma uchun» → sabab «Hamma uchun deyilsa, sayt kimga moslanganini aytib bo'lmaydi.» (tugma yopildi: true) → to'g'ri «Shaharda tez yetib bormoqchi» ✓ · nav=Davom etish (ochiq)
+s2 oxiri: nav=Davom etish (ochiq) · savol qoldimi: false · xulosa: true · saqlandi: true
+  tugagach Telegram bosildi → oldindan ko'rish: ●
+telegram.org
+s2 qaytish (saqlangan): nav=Davom etish (ochiq) · savol: false · xulosa: true
+s8 boshida: nav=Savollarga javob bering (0/3) (yopiq) · joriy odam: 🎒
+O'quvchi (xaridor)
+Nimani xohlaydi? Navbatda turmasdan, tanaffusga ulgurib lavash olib ketish.
+  O'quvchi: «O'quvchi saytda birinchi nimaga qaraydi?» · xato «Menyu va narxlar» → sabab «Menyuni ko'rish navbatdan qutqarmaydi, oldindan buyurtma qutqaradi.» (tugma yopildi: true) → to'g'ri «Oldindan buyurtma berish» ✓ · nav=Savollarga javob bering (1/3) (yopiq)
+  saytda belgilangan qator: 🎒
+📱 Oldindan buyurtma:
+tayyor bo'lganda xabar keladi
+Buyurtma berish · yorliq: 👀 O'QUVCHI BIRINCHI BO'LIB OLDINDAN BUYURTMAGA QARAYDI
+  Sotuvchi: «Sotuvchi saytda birinchi nimaga qaraydi?» · xato «Oxirgi buyurtmani» → sabab «Sotuvchi o'zi buyurtma bermaydi, u kelganini qabul qiladi.» (tugma yopildi: true) → to'g'ri «Bugungi buyurtmalar» ✓ · nav=Savollarga javob bering (2/3) (yopiq)
+  Doimiy xaridor: «Doimiy xaridor saytda birinchi nimaga qaraydi?» · xato «Bugungi buyurtmalar» → sabab «Bu ro'yxat sotuvchiga kerak; ofis xodimi o'zi buyurtma beradi.» (tugma yopildi: true) → to'g'ri «Oxirgi buyurtmani» ✓ · nav=Davom etish (ochiq)
+s8 oxiri: nav=Davom etish (ochiq) · savol: false · belgilangan qatorlar: 3 · xulosa: true
+s8 qaytish (saqlangan): nav=Davom etish (ochiq) · savol: false · belgilangan qatorlar: 3
+qaror xatolari (sabab yo'q / tugma yopilmadi): 0
+pageerror: 0

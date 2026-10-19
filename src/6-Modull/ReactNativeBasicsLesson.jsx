@@ -111,6 +111,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -188,8 +213,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1390,18 +1415,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "React Native nima?", ru: 'Что такое React Native?' }, opts: [{ uz: "React bilimi bilan mobil ilova yasash usuli", ru: 'Способ делать мобильные приложения со знаниями React' }, { uz: "Web-saytlarni chiroyli bezash kutubxonasi", ru: 'Библиотека для красивого оформления веб-сайтов' }, { uz: "Database'ni boshqaruvchi server", ru: 'Сервер, который управляет Database' }, { uz: "Rasmlarni tahrirlaydigan dastur", ru: 'Программа для редактирования картинок' }], correct: 0 },
+  { q: { uz: "React Native nima?", ru: "Что такое React Native?" }, opts: [{ uz: "React bilan mobil ilova", ru: "Мобильное приложение на React" }, { uz: "Saytni bezash kutubxonasi", ru: "Библиотека украшения сайта" }, { uz: "Database boshqaruvchi server", ru: "Сервер управления Database" }, { uz: "Rasm tahrirlash dasturi", ru: "Программа для редактирования фото" }], correct: 0 },
   { q: { uz: "Web'dagi `<div>` React Native'da nimaga mos keladi?", ru: 'Чему в React Native соответствует `<div>` из веба?' }, opts: ["<p>", "<View>", { uz: "<div> — o'zgarmaydi", ru: '<div> — не меняется' }, "<span>"], correct: 1 },
   { q: { uz: "Web'dagi `<p>` React Native'da nimaga mos keladi?", ru: 'Чему в React Native соответствует `<p>` из веба?' }, opts: ["<View>", "<div>", "<Text>", "<label>"], correct: 2 },
   { q: { uz: "React Native'da har qanday matn qayerda bo'lishi shart?", ru: 'Где в React Native обязательно должен быть любой текст?' }, opts: [{ uz: "`<View>` ichida to'g'ridan", ru: 'Прямо внутри `<View>`' }, { uz: "`<div>` ichida", ru: 'Внутри `<div>`' }, { uz: "`<p>` ichida", ru: 'Внутри `<p>`' }, { uz: "`<Text>` ichida", ru: 'Внутри `<Text>`' }], correct: 3 },
   { q: { uz: "StyleSheet nima?", ru: 'Что такое StyleSheet?' }, opts: [{ uz: "Stillar yoziladigan JS obyekt", ru: 'JS-объект, в котором пишут стили' }, { uz: "Loyihaga ulanadigan .css fayl", ru: '.css-файл, подключаемый к проекту' }, { uz: "Ma'lumot saqlaydigan jadval", ru: 'Таблица для хранения данных' }, { uz: "Rasmlar uchun fayl formati", ru: 'Формат файла для картинок' }], correct: 0 },
   { q: { uz: "CSS'dagi background-color StyleSheet'da qanday yoziladi?", ru: 'Как в StyleSheet пишется background-color из CSS?' }, opts: [{ uz: "background-color — o'zgarmaydi", ru: 'background-color — не меняется' }, { uz: "backgroundColor", ru: 'backgroundColor' }, "bg_color", "colorBackground"], correct: 1 },
-  { q: { uz: "Expo nima uchun kerak?", ru: 'Для чего нужен Expo?' }, opts: [{ uz: "Database'ni serverda boshqarish uchun", ru: 'Чтобы управлять Database на сервере' }, { uz: "Tayyor saytni internetga joylash uchun", ru: 'Чтобы выложить готовый сайт в интернет' }, { uz: "Loyihani oson yaratib, telefonda ko'rish uchun", ru: 'Чтобы легко создать проект и посмотреть его на телефоне' }, { uz: "Rasm va grafik chizish uchun", ru: 'Чтобы рисовать картинки и графику' }], correct: 2 },
-  { q: { uz: "Expo Go ilovasi QR kod bilan nima qiladi?", ru: 'Что делает приложение Expo Go с QR-кодом?' }, opts: [{ uz: "Kodni sizning o'rningizga yozadi", ru: 'Пишет код вместо вас' }, { uz: "Ilova ma'lumotini Database'da saqlaydi", ru: 'Сохраняет данные приложения в Database' }, { uz: "Web-saytni brauzerda ochadi", ru: 'Открывает веб-сайт в браузере' }, { uz: "Loyihangizni telefonda ochadi", ru: 'Открывает ваш проект на телефоне' }], correct: 3 },
+  { q: { uz: "Expo nima uchun kerak?", ru: "Зачем нужен Expo?" }, opts: [{ uz: "Database'ni boshqarish uchun", ru: "Чтобы управлять Database" }, { uz: "Saytni joylash uchun", ru: "Чтобы разместить сайт" }, { uz: "Telefonda oson sinash uchun", ru: "Чтобы легко проверять на телефоне" }, { uz: "Rasm chizish uchun", ru: "Чтобы рисовать картинки" }], correct: 2 },
+  { q: { uz: "Expo Go QR kod bilan nima qiladi?", ru: "Что делает Expo Go с QR-кодом?" }, opts: [{ uz: "Kodni o'zi yozib beradi", ru: "Сам пишет код" }, { uz: "Ma'lumotni saqlaydi", ru: "Хранит данные" }, { uz: "Saytni brauzerda ochadi", ru: "Открывает сайт в браузере" }, { uz: "Loyihani telefonda ochadi", ru: "Открывает проект на телефоне" }], correct: 3 },
   { q: { uz: "React Native ilova qaysi platformalarda ishlaydi?", ru: 'На каких платформах работает приложение на React Native?' }, opts: [{ uz: "iOS va Android'da", ru: 'На iOS и Android' }, { uz: "Faqat Apple iOS'da", ru: 'Только на Apple iOS' }, { uz: "Faqat kompyuter brauzerida", ru: 'Только в браузере компьютера' }, { uz: "Faqat Windows kompyuterlarida", ru: 'Только на компьютерах с Windows' }], correct: 0 },
-  { q: { uz: "React'dan React Native'ga o'tganda nima O'ZGARMAYDI?", ru: 'Что НЕ меняется при переходе с React на React Native?' }, opts: [{ uz: "Ekran elementlari (div, p, span)", ru: 'Элементы экрана (div, p, span)' }, { uz: "Komponent, props va state", ru: 'Компонент, props и state' }, { uz: "Alohida CSS fayl ishlatilishi", ru: 'Использование отдельного CSS-файла' }, { uz: "HTML teglari va tugmalari", ru: 'HTML-теги и кнопки' }], correct: 1 },
+  { q: { uz: "React Native'ga o'tganda nima o'zgarmaydi?", ru: "Что не меняется при переходе на React Native?" }, opts: [{ uz: "Ekran elementlari (div, p)", ru: "Элементы экрана (div, p)" }, { uz: "Komponent, props va state", ru: "Компоненты, props и state" }, { uz: "Alohida CSS fayl", ru: "Отдельный CSS-файл" }, { uz: "HTML teglari", ru: "HTML-теги" }], correct: 1 },
   { q: { uz: "React Native — bu web-saytmi?", ru: 'React Native — это веб-сайт?' }, opts: [{ uz: "Ha, u oddiy web-sayt", ru: 'Да, это обычный веб-сайт' }, { uz: "Ha, faqat brauzerda ishlaydi", ru: 'Да, работает только в браузере' }, { uz: "Yo'q — u haqiqiy mobil ilova", ru: 'Нет — это настоящее мобильное приложение' }, { uz: "Yo'q — u faqat rasm", ru: 'Нет — это просто картинка' }], correct: 2 },
-  { q: { uz: "Bugungi mashqning to'g'ri tartibi?", ru: 'Верный порядок сегодняшнего упражнения?' }, opts: [{ uz: "QR skan → Telefonda → Expo loyiha → View/Text → StyleSheet", ru: 'QR-скан → На телефоне → Проект Expo → View/Text → StyleSheet' }, { uz: "Telefonda → StyleSheet → QR skan → View/Text → Expo loyiha", ru: 'На телефоне → StyleSheet → QR-скан → View/Text → Проект Expo' }, { uz: "StyleSheet → View/Text → Expo loyiha → Telefonda → QR skan", ru: 'StyleSheet → View/Text → Проект Expo → На телефоне → QR-скан' }, { uz: "Expo loyiha → View/Text → StyleSheet → QR skan → Telefonda", ru: 'Проект Expo → View/Text → StyleSheet → QR-скан → На телефоне' }], correct: 3 },
+  { q: { uz: "Bugungi mashq qaysi qadamdan boshlanadi?", ru: "С какого шага начинается сегодняшняя практика?" }, opts: [{ uz: "QR skan", ru: "Скан QR" }, { uz: "Telefonda ko'rish", ru: "Просмотр на телефоне" }, { uz: "StyleSheet", ru: "StyleSheet" }, { uz: "Expo loyiha", ru: "Проект Expo" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2574,7 +2599,7 @@ export default function ReactNativeBasicsLesson({ lang: langProp, onFinished, li
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

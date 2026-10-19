@@ -1,0 +1,46 @@
+== pm-m12d1-v2 s3 uz-390 · eyebrow: TUSHUNCHA · UCH YANGI BO'LAK
+  boshida nav: Savollarga javob bering (yopiq)
+  1. «Bu son Bozorga yoziladimi?» [savol top 639]
+     ✓ «Ha — manbasi bor» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 496 / ekran 844 → ko'rinadi
+  2. «60 kishi yozildi. 6 tashkilotchi qanday yoziladi?» [savol top 496]
+     ✗ «60 ga qo'shiladi — 66 kishi» → «60 va 6 qo'shilmaydi: biri guruhdagi odamlar, biri ilovadagi tashkilotchilar.» (77 b., yopildi: true)
+     ✓ «Alohida yoziladi — ilovada» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 542 / ekran 844 → ko'rinadi
+  3. «Boshqa mahallalar sonini bilmaymiz. Nima yoziladi?» [savol top 542]
+     ✗ «Taxminan 1000 kishi» → «Manbasi yo'q son Bozorga yozilmaydi.» (36 b., yopildi: true)
+     ✗ «Hech narsa yozilmaydi» → «Hakam baribir so'raydi — tekshirilmaganini aytish halol.» (56 b., yopildi: true)
+     ✓ «Hali tekshirilmagan» · nav: Keyingi bo'lak: Jamoa (ochiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Keyingi bo'lak: Jamoa (ochiq) · xulosa: true
+  qaytganda: nav Savollarga javob bering (0/3) (yopiq) · savol: false · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d1-v2 s3 uz · eyebrow: TUSHUNCHA · UCH YANGI BO'LAK
+  boshida nav: Savollarga javob bering (yopiq)
+  1. «Bu son Bozorga yoziladimi?» [savol top 340]
+     ✓ «Ha — manbasi bor» · nav: Savollarga javob bering (yopiq)
+  2. «60 kishi yozildi. 6 tashkilotchi qanday yoziladi?» [savol top 340]
+     ✗ «60 ga qo'shiladi — 66 kishi» → «60 va 6 qo'shilmaydi: biri guruhdagi odamlar, biri ilovadagi tashkilotchilar.» (77 b., yopildi: true)
+     ✓ «Alohida yoziladi — ilovada» · nav: Savollarga javob bering (yopiq)
+  3. «Boshqa mahallalar sonini bilmaymiz. Nima yoziladi?» [savol top 340]
+     ✗ «Taxminan 1000 kishi» → «Manbasi yo'q son Bozorga yozilmaydi.» (36 b., yopildi: true)
+     ✗ «Hech narsa yozilmaydi» → «Hakam baribir so'raydi — tekshirilmaganini aytish halol.» (56 b., yopildi: true)
+     ✓ «Hali tekshirilmagan» · nav: Keyingi bo'lak: Jamoa (ochiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Keyingi bo'lak: Jamoa (ochiq) · xulosa: true
+  qaytganda: nav Savollarga javob bering (0/3) (yopiq) · savol: false · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d8-v2 s3 uz-390 · eyebrow: TUSHUNCHA · TUZATISH VA TAYMER
+  boshida nav: Avval belgilang (yopiq)
+  1. «Mentor pitchini tuzatishni nimadan boshlaydi?» [savol top 1346]
+     ✗ «Pitchni boshidan qayta yozishdan» → «Pitch qayta yozilmaydi: varaqdagi izohlar tuzatiladi.» (53 b., yopildi: true)
+     ✗ «Pitchni taymer bilan aytishdan» → «Taymer keyin: avval varaqdagi izohlar tuzatiladi.» (49 b., yopildi: true)
+     ✓ «Baholash varag'idagi izohlardan» · nav: Savollarga javob bering (1/3) (yopiq)
+     telefonda keyingi savol: top 584 / ekran 844 → ko'rinadi
+  2. «Varaqda uch izoh bor. Tuzatish qanday kiritiladi?» [savol top 584]
+     ✓ «Eski gap o'rniga yangisi yoziladi» · nav: Savollarga javob bering (2/3) (yopiq)
+     telefonda keyingi savol: top 584 / ekran 844 → ko'rinadi
+  3. «Uch gap uzaydi, reja hali ham 5:00. Pitch sig'adimi?» [savol top 584]
+     ✗ «Ha, reja hali ham 5 daqiqalik» → «Reja vaqti o'zgarmaydi: haqiqiy vaqtni taymer ko'rsatadi.» (57 b., yopildi: true)
+     ✓ «Taymer bilan aytganda bilinadi» · nav: Savollarga javob bering (3/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0

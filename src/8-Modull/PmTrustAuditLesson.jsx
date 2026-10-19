@@ -99,6 +99,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -176,8 +201,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1015,10 +1040,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja): chapda tayyor holat bir marta o'zi yuradi — havola bosiladi → /maxfiylik ochiladi → AUDIT.md tushadi; o'ngda «01 · matn · teg» =====
 const REJA = [
-  { t: { uz: 'Ism va telefon qayerga borishini topasiz', ru: 'Найдёте, куда уходят имя и телефон' }, teg: { uz: "shaxsiy ma'lumot", ru: 'личные данные' } },
-  { t: { uz: "Begona qo'lga o'tsa, nima ko'rinishini ko'rasiz", ru: "Увидите, что станет видно, если данные попадут в чужие руки" }, teg: { uz: 'sizib chiqish', ru: 'утечка' } },
-  { t: { uz: '«Maydon»ni olti savol bo\'yicha tekshirasiz', ru: 'Проверите «Maydon» по шести вопросам' }, teg: { uz: 'audit', ru: 'аудит' } },
-  { t: { uz: "O'yinchi o'qiydigan sahifani saytga qo'shasiz", ru: 'Добавите на сайт страницу, которую прочитает игрок' }, teg: { uz: 'maxfiylik siyosati', ru: 'политика конфиденциальности' } }
+  { t: { uz: 'Ism va telefon qayerga borishini toping', ru: 'Найдите, куда уходят имя и телефон' }, teg: { uz: "shaxsiy ma'lumot", ru: 'личные данные' } },
+  { t: { uz: "Begona qo'lga o'tsa, nima ko'rinishini ko'ring", ru: "Посмотрите, что станет видно, если данные попадут в чужие руки" }, teg: { uz: 'sizib chiqish', ru: 'утечка' } },
+  { t: { uz: "«Maydon»ni olti savol bo'yicha tekshiring", ru: 'Проверьте «Maydon» по шести вопросам' }, teg: { uz: 'audit', ru: 'аудит' } },
+  { t: { uz: "O'yinchi o'qiydigan sahifani saytga qo'shing", ru: 'Добавьте на сайт страницу, которую прочитает игрок' }, teg: { uz: 'maxfiylik siyosati', ru: 'политика конфиденциальности' } }
 ];
 const RejaSahna = () => {
   const [q, setQ] = useState(() => (kamHarakat() ? 3 : 0)); // 0 telefon · 1 havola bosildi · 2 sahifa ochildi · 3 AUDIT.md
@@ -1355,18 +1380,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol; kalitlar A B C D B A D C A D C B (har harf 3 marta) — MD dan aynan
 const QUIZ_BANK = [
-  { q: { uz: "Shaxsiy ma'lumot nima?", ru: 'Что такое личные данные?' }, opts: [{ uz: "Odamni aniqlashga imkon beradigan ma'lumot", ru: 'Сведения, по которым можно определить человека' }, { uz: 'Parol bilan yopilgan sahifadagi hamma yozuv', ru: 'Все записи на странице под паролем' }, { uz: 'Database jadvaliga yozilgan har bir qator', ru: 'Каждая строка в таблице Database' }, { uz: 'Saytda eng ko\'p bosiladigan tugmaning nomi', ru: 'Название самой нажимаемой кнопки сайта' }], correct: 0 },
-  { q: { uz: "O'yinchi sahifasida band haqida nima ko'rinadi?", ru: 'Что видно о брони на странице игрока?' }, opts: [{ uz: "Band qilgan o'yinchining ismi va soat", ru: 'Имя забронировавшего игрока и время' }, { uz: 'Soat va «band» degan bitta yozuv', ru: 'Время и одна надпись «занято»' }, { uz: "Band qilgan o'yinchining telefoni", ru: 'Телефон забронировавшего игрока' }, { uz: 'Ism, telefon va band qilingan kun', ru: 'Имя, телефон и день брони' }], correct: 1 },
-  { q: { uz: 'GDPR qanday qoida?', ru: 'Что за правило GDPR?' }, opts: [{ uz: "O'zbekiston Respublikasi qonuni, 2019-yildan", ru: 'Закон Республики Узбекистан, с 2019 года' }, { uz: '«Maydon» saytining o\'z ichki qoidasi', ru: 'Внутреннее правило сайта «Maydon»' }, { uz: 'Yevropa Ittifoqi qoidasi, 2018-yildan', ru: 'Правило Европейского союза, с 2018 года' }, { uz: 'Umami analitikasining ichki qoidasi', ru: 'Внутреннее правило аналитики Umami' }], correct: 2 },
-  { q: { uz: "«Shaxsga doir ma'lumotlar to'g'risida»gi Qonunning 17-moddasi nima haqida?", ru: 'О чём статья 17 Закона «О персональных данных»?' }, opts: [{ uz: 'Saytga 6 xonali kod bilan kirish tartibi haqida', ru: 'О порядке входа на сайт с 6-значным кодом' }, { uz: "Telefon raqamini to'g'ri yozish haqida", ru: 'О правильной записи номера телефона' }, { uz: 'Saytga analitika ulash tartibi haqida', ru: 'О порядке подключения аналитики к сайту' }, { uz: "Maqsadga erishilgach yo'q qilish haqida", ru: 'Об уничтожении, когда цель достигнута' }], correct: 3 },
-  { q: { uz: 'Sizib chiqish nima?', ru: 'Что такое утечка?' }, opts: [{ uz: "Ma'lumot Database'dan o'chib ketishi", ru: 'Данные стираются из Database' }, { uz: "Ma'lumot ruxsatsiz begona qo'lga o'tishi", ru: 'Данные без разрешения попадают в чужие руки' }, { uz: "Sayt Backend'dan javob ololmay qolishi", ru: 'Сайт не может получить ответ от Backend' }, { uz: "Band qilgan o'yinchi maydonga kelmasligi", ru: 'Забронировавший игрок не приходит на поле' }], correct: 1 },
-  { q: { uz: "Ega sahifasi begona qo'lida. Eski bandlar o'chirilmasa-chi?", ru: 'Страница владельца в чужих руках. А если старые брони не удаляются?' }, opts: [{ uz: "Begona eng eski bandlarni ham ko'radi", ru: 'Чужой видит даже самые старые брони' }, { uz: "Begona bugungi bandlarnigina ko'radi", ru: 'Чужой видит только сегодняшние брони' }, { uz: "Begona hech qanday bandni ko'rmaydi", ru: 'Чужой не видит ни одной брони' }, { uz: "Sahifa begonadan parolni qayta so'raydi", ru: 'Страница снова спрашивает у чужого пароль' }], correct: 0 },
-  { q: { uz: "Amaliyotdan keyin «Maydon» bandni qancha saqlaydi?", ru: 'Сколько «Maydon» хранит бронь после практики?' }, opts: [{ uz: 'Sayt ishlab turgan butun vaqt davomida', ru: 'Всё время, пока работает сайт' }, { uz: 'Band qilingan kunning oxirigacha', ru: 'До конца дня бронирования' }, { uz: "O'yinchi saytni yopib chiqquncha", ru: 'Пока игрок не закроет сайт' }, { uz: "O'yin kunidan 30 kun o'tguncha", ru: 'Пока не пройдёт 30 дней после дня игры' }], correct: 3 },
-  { q: { uz: 'Kerakli minimum nima degani?', ru: 'Что значит необходимый минимум?' }, opts: [{ uz: 'Formani iloji boricha qisqa bezash', ru: 'Оформить форму как можно короче' }, { uz: "Ma'lumotni imkon qadar qisqa saqlash", ru: "Хранить данные как можно меньше времени" }, { uz: "Ish uchun keraklisinigina so'rash", ru: 'Просить только то, что нужно для дела' }, { uz: 'Parolni eng kam belgidan tuzish', ru: 'Составить пароль из минимума символов' }], correct: 2 },
-  { q: { uz: 'Audit nima?', ru: 'Что такое аудит?' }, opts: [{ uz: "Ro'yxat bo'yicha xavfsizlik va maxfiylik tekshiruvi", ru: 'Проверка безопасности и конфиденциальности по списку' }, { uz: "Saytga yangi sahifa qo'shish uchun agentga talab", ru: 'Требование агенту добавить страницу на сайт' }, { uz: "Database'dagi eski bandlarni o'chirib turadigan kod", ru: 'Код, который удаляет старые брони в Database' }, { uz: 'Saytga kirgan brauzerlarni sanab turadigan sahifa', ru: "Страница, которая считает браузеры, зашедшие на сайт" }], correct: 0 },
-  { q: { uz: 'Qaysi biri maxfiylik siyosatidagi savol?', ru: 'Какой вопрос — из политики конфиденциальности?' }, opts: [{ uz: 'Sayt qaysi dasturlash tilida yozilgan?', ru: 'На каком языке написан сайт?' }, { uz: 'Band qilish tugmasi qaysi rangda?', ru: 'Какого цвета кнопка брони?' }, { uz: 'Futbol maydonchasi qayerda joylashgan?', ru: 'Где находится футбольная площадка?' }, { uz: "Ma'lumot qancha vaqt saqlanadi?", ru: 'Сколько времени хранятся данные?' }], correct: 3 },
-  { q: { uz: 'Forma ostida siyosat havolasi turibdi. Bu qaysi fikr?', ru: 'Под формой есть ссылка на политику. Какая это мысль?' }, opts: [{ uz: "Kerakli minimum — kam narsa so'raladi", ru: 'Необходимый минимум — просят немного' }, { uz: "O'chirish — 30 kundan keyin yo'qoladi", ru: 'Удаление — исчезает через 30 дней' }, { uz: 'Ochiq aytish — nima bo\'lishi yozilgan', ru: 'Открыто сообщить — написано, что будет' }, { uz: "Audit — ro'yxat bo'yicha tekshiriladi", ru: 'Аудит — проверка по списку' }], correct: 2 },
-  { q: { uz: 'Siyosatdagi «30 kun»ni qanday tekshirasiz?', ru: "Как вы проверите «30 дней» из политики?" }, opts: [{ uz: "Agentdan «o'chiryapsanmi?» deb yana so'raysiz", ru: 'Ещё раз спросите агента: «Удаляешь?»' }, { uz: "Neon'da eski bandning o'chganini ko'rasiz", ru: 'Увидите в Neon, что старая бронь удалилась' }, { uz: 'Siyosat matnini boshidan yana bir o\'qiysiz', ru: 'Ещё раз перечитаете текст политики' }, { uz: "Kodni ochmasdan keyingi ishga o'tib ketasiz", ru: 'Перейдёте к следующему делу, не открывая код' }], correct: 1 }
+  { q: { uz: "Shaxsiy ma'lumot nima?", ru: "Что такое персональные данные?" }, opts: [{ uz: "Odamni aniqlaydigan ma'lumot", ru: "Данные, по которым узнают человека" }, { uz: "Parolli sahifadagi yozuv", ru: "Запись на странице с паролем" }, { uz: "Jadvaldagi har bir qator", ru: "Любая строка таблицы" }, { uz: "Eng ko'p bosilgan tugma", ru: "Самая нажимаемая кнопка" }], correct: 0 },
+  { q: { uz: "O'yinchi sahifasida band haqida nima ko'rinadi?", ru: "Что видно о брони на странице игрока?" }, opts: [{ uz: "O'yinchining ismi va soat", ru: "Имя игрока и час" }, { uz: "Soat va «band» yozuvi", ru: "Час и надпись «занято»" }, { uz: "O'yinchining telefoni", ru: "Телефон игрока" }, { uz: "Ism, telefon va kun", ru: "Имя, телефон и день" }], correct: 1 },
+  { q: { uz: "GDPR qanday qoida?", ru: "Что за правило GDPR?" }, opts: [{ uz: "O'zbekiston qonuni, 2019", ru: "Закон Узбекистана, 2019" }, { uz: "«Maydon»ning ichki qoidasi", ru: "Внутреннее правило «Maydon»" }, { uz: "Yevropa Ittifoqi, 2018-yildan", ru: "Евросоюз, с 2018 года" }, { uz: "Umami'ning ichki qoidasi", ru: "Внутреннее правило Umami" }], correct: 2 },
+  { q: { uz: "Qonunga ko'ra, maqsad tugagach ma'lumot nima qilinadi?", ru: "Что по закону делают с данными, когда цель достигнута?" }, opts: [{ uz: "Arxivga o'tkaziladi", ru: "Переносят в архив" }, { uz: "Yana bir yil saqlanadi", ru: "Хранят ещё год" }, { uz: "Ochiq e'lon qilinadi", ru: "Публикуют открыто" }, { uz: "Yo'q qilinadi", ru: "Уничтожают" }], correct: 3 },
+  { q: { uz: "Sizib chiqish nima?", ru: "Что такое утечка?" }, opts: [{ uz: "Ma'lumot o'chib ketishi", ru: "Данные удалились" }, { uz: "Begona qo'lga o'tishi", ru: "Попадание к посторонним" }, { uz: "Backend javob bermasligi", ru: "Backend не отвечает" }, { uz: "O'yinchi kelmay qolishi", ru: "Игрок не пришёл" }], correct: 1 },
+  { q: { uz: "Eski bandlar o'chirilmasa, begona nimani ko'radi?", ru: "Если старые брони не удаляются, что увидит посторонний?" }, opts: [{ uz: "Eng eski bandlarni ham", ru: "Даже самые старые брони" }, { uz: "Faqat bugungi bandlarni", ru: "Только сегодняшние брони" }, { uz: "Hech qanday bandni", ru: "Ни одной брони" }, { uz: "Faqat parol oynasini", ru: "Только окно пароля" }], correct: 0 },
+  { q: { uz: "Amaliyotdan keyin band qancha saqlanadi?", ru: "Сколько хранится бронь после практики?" }, opts: [{ uz: "Sayt ishlagan butun vaqt", ru: "Всё время работы сайта" }, { uz: "Band kunining oxirigacha", ru: "До конца дня брони" }, { uz: "O'yinchi saytni yopguncha", ru: "Пока игрок не закроет сайт" }, { uz: "O'yindan keyin 30 kun", ru: "30 дней после игры" }], correct: 3 },
+  { q: { uz: "Kerakli minimum nima degani?", ru: "Что значит «необходимый минимум»?" }, opts: [{ uz: "Formani qisqa bezash", ru: "Коротко оформить форму" }, { uz: "Ma'lumotni qisqa saqlash", ru: "Коротко хранить данные" }, { uz: "Faqat keraklisini so'rash", ru: "Спрашивать только нужное" }, { uz: "Parolni qisqa tuzish", ru: "Сделать короткий пароль" }], correct: 2 },
+  { q: { uz: "Audit nima?", ru: "Что такое аудит?" }, opts: [{ uz: "Ro'yxatli maxfiylik tekshiruvi", ru: "Проверка приватности по списку" }, { uz: "Agentga yangi sahifa talabi", ru: "Запрос агенту на новую страницу" }, { uz: "Eski bandlarni o'chiruvchi kod", ru: "Код, удаляющий старые брони" }, { uz: "Brauzerlarni sanovchi sahifa", ru: "Страница подсчёта браузеров" }], correct: 0 },
+  { q: { uz: "Qaysi biri maxfiylik siyosatidagi savol?", ru: "Какой вопрос есть в политике конфиденциальности?" }, opts: [{ uz: "Sayt qaysi tilda yozilgan?", ru: "На каком языке написан сайт?" }, { uz: "Tugma qaysi rangda?", ru: "Какого цвета кнопка?" }, { uz: "Maydon qayerda joylashgan?", ru: "Где находится поле?" }, { uz: "Ma'lumot qancha saqlanadi?", ru: "Сколько хранятся данные?" }], correct: 3 },
+  { q: { uz: "Forma ostida siyosat havolasi turibdi. Bu qaysi fikr?", ru: "Под формой ссылка на политику. Какая это идея?" }, opts: [{ uz: "Kerakli minimum", ru: "Необходимый минимум" }, { uz: "O'chirish muddati", ru: "Срок удаления" }, { uz: "Ochiq aytish", ru: "Открыто сообщать" }, { uz: "Audit varag'i", ru: "Лист аудита" }], correct: 2 },
+  { q: { uz: "«30 kun»ni qanday tekshirasiz?", ru: "Как проверите «30 дней»?" }, opts: [{ uz: "Agentdan yana so'raysiz", ru: "Ещё раз спросите агента" }, { uz: "Eski band o'chganini ko'rasiz", ru: "Увидите, что старая бронь удалена" }, { uz: "Siyosatni qayta o'qiysiz", ru: "Перечитаете политику" }, { uz: "Keyingi ishga o'tasiz", ru: "Перейдёте к следующему" }], correct: 1 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2077,7 +2102,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cxx('ta-blok', stepN === formaN && !tola && 'qulf')}>
-        <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: c.forma

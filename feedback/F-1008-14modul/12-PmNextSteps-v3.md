@@ -161,10 +161,10 @@ namunalar (tuzilish va hajm; matn ko'chirilmadi): 13-Modul `11-PmReflection-v3.m
   kataklar bo'sh (uzuq); «Bugun» chizig'i yonida bayroqcha o'rni — uzuq doira (birinchi qadam keyin qo'yiladi). Mentor gaplari va sanalar ko'rinmaydi (2, 4-ekran kashfiyoti; SABOQ 33 — qator nomlari haqiqiy).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
-  - 01 · Mentor rejasidagi uch gapni joyiga qo'yasiz
-  - 02 · Birinchi oyga boshlanish kunini tanlaysiz
-  - 03 · Mahsulot, ko'nikma va ish uchun o'z rejangizni yozasiz
-  - 04 · Rejangizni Mentor bilan yakkama-yakka ko'rasiz
+  - 01 · Mentor rejasidagi uch gapni joyiga qo'ying
+  - 02 · Birinchi oyga boshlanish kunini tanlang
+  - 03 · Mahsulot, ko'nikma va ish uchun o'z rejangizni yozing
+  - 04 · Rejangizni Mentor bilan yakkama-yakka ko'ring
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Bu darsda yakkama-yakka — 10 daqiqa, navbat bilan (A-14): navbatni siz belgilaysiz (stol tartibi yoki tasodifiy) — tez saqlaganlar ustunlik olmaydi; darsda ulgurmaganlar bilan vaqtni alohida belgilaysiz (12-FILTR 4). Farq: 11-Modul 15-darsida — roadmap, risklar va qadamlar; 12-Modul 11-darsida — pitch da'volari; 13-Modul 11-darsida — ortga qarash (shaxsiy hisobot); bugun — oldinga qarash.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011; «olti oylik reja», «yo'nalish», «birinchi qadam» — faqat kulrang teglarda va App.jsx ostida «olti oylik reja» — TAYANCHGA SAVOL 10, GATE M M-q11 A). Sarlavha — natija va'dasi (P-014). Mentorning birinchi gapi — sinf 4 va 13 (reja o'quvchiniki), ikkinchisi — navbat (A-14).

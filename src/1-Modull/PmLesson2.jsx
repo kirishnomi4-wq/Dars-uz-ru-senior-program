@@ -1234,35 +1234,75 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 3 — REAL SAYTLAR TUZILISHI =====
+// F-1019-04 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatosiga bir qatorli sabab, qayta tanlash.
+// Har qadam key bilan yangilanadi (tanlovlar tozalanadi). Savol, variantlar va sabab bitta kartada (213.13).
+const Qaror = ({ savol, variantlar, onTogri }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const tanla = (j) => {
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="sk-info qr">
+      <p className="qr-s">{tr(savol)}</p>
+      <div className="qr-v">{variantlar.map((v, j) => <button key={j} type="button" className={`chip${xato.includes(j) ? ' chip-err' : ''}`} disabled={xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</button>)}</div>
+      {izoh && <p className="small qr-x fade-step" key={tr(izoh)}>{tr(izoh)}</p>}
+    </div>
+  );
+};
+// F-1019-04 (213.22): har sayt uchun qaror; to'g'ri javobdan keyin saytning bo'limlar tartibi ochiladi
+const S3_QAROR = [
+  { savol: { uz: 'OLX sahifasining birinchi blokida nima turadi?', ru: 'Что стоит в первом блоке страницы OLX?' }, v: [
+    { t: { uz: "E'lon berish tugmasi", ru: 'Кнопка подачи объявления' }, izoh: { uz: 'Tugma oxirida turadi: avval odam nega bosishini bilishi kerak.', ru: 'Кнопка стоит в конце: сначала человек должен понять, зачем жать.' } },
+    { ok: true, t: { uz: 'Sayt nima taklif qilishi', ru: 'Что предлагает сайт' } },
+    { t: { uz: "Mahsulotlar ro'yxati", ru: 'Список товаров' }, izoh: { uz: 'Mahsulotlar isbot bo\'ladi, ular taklifdan keyin keladi.', ru: 'Товары — это доказательство, они идут после предложения.' } }
+  ] },
+  { savol: { uz: 'Yangiliklar saytida obuna tugmasi qayerda turadi?', ru: 'Где на новостном сайте стоит кнопка подписки?' }, v: [
+    { t: { uz: 'Eng tepada', ru: 'В самом верху' }, izoh: { uz: "Tepada odam hali nega obuna bo'lishini bilmaydi.", ru: 'Наверху человек ещё не знает, зачем подписываться.' } },
+    { t: { uz: 'Asosiy xabarlar orasida', ru: 'Среди главных новостей' }, izoh: { uz: "Xabarlar orasida tugma ko'zga tashlanmaydi.", ru: 'Среди новостей кнопка теряется.' } },
+    { ok: true, t: { uz: 'Eng oxirida', ru: 'В самом конце' } }
+  ] },
+  { savol: { uz: 'Video saytining birinchi blokida nima turadi?', ru: 'Что стоит в первом блоке видеосайта?' }, v: [
+    { ok: true, t: { uz: 'Tavsiya etilgan video', ru: 'Рекомендованное видео' } },
+    { t: { uz: "Kanallar ro'yxati", ru: 'Список каналов' }, izoh: { uz: 'Kanallar keyinroq: avval odamni bitta video qiziqtiradi.', ru: 'Каналы позже: сначала человека цепляет одно видео.' } },
+    { t: { uz: "Ko'rishni boshlash tugmasi", ru: 'Кнопка начала просмотра' }, izoh: { uz: "Tugma oxirida: avval odam nimani ko'rishini bilishi kerak.", ru: 'Кнопка в конце: сначала человек должен понять, что увидит.' } }
+  ] }
+];
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const SITES = {
     market: { ic: Ico.market(24), name: { uz: 'OLX', ru: 'OLX' }, rows: [{ uz: 'Birinchi blok: nimani sotasiz', ru: 'Первый блок: что вы продаёте' }, { uz: 'Qanday ishlaydi', ru: 'Как это работает' }, { uz: 'Mahsulotlar (isbot)', ru: 'Товары (доказательство)' }, { uz: "E'lon berish (tugma)", ru: 'Подать объявление (кнопка)' }] },
     news: { ic: Ico.book(24), name: { uz: 'Yangiliklar', ru: 'Новости' }, rows: [{ uz: 'Birinchi blok: eng katta xabar', ru: 'Первый блок: главная новость' }, { uz: 'Asosiy yangiliklar', ru: 'Основные новости' }, { uz: 'Boshqa xabarlar', ru: 'Другие сообщения' }, { uz: "Obuna bo'lish (tugma)", ru: 'Подписаться (кнопка)' }] },
     video: { ic: Ico.youtube(24), name: { uz: 'Video', ru: 'Видео' }, rows: [{ uz: 'Birinchi blok: tavsiya etilgan video', ru: 'Первый блок: рекомендованное видео' }, { uz: 'Mashhur videolar', ru: 'Популярные видео' }, { uz: 'Kanallar', ru: 'Каналы' }, { uz: "Ko'rishni boshlash", ru: 'Начать смотреть' }] }
   };
-  const [active, setActive] = useState(null);
-  const [seen, setSeen] = useState(new Set());
-  const isNarrow = useIsMobile(768);
-  const done = seen.size >= 3;
-  // Navbat ko'rilmagan saytlar bo'ylab yuradi — uchalasi birdan emas, birma-bir.
-  const pend3 = Object.keys(SITES).filter(k => !seen.has(k));
-  const lit3 = useTurnWalk(pend3);
-  const tap = (k) => { setActive(k); setSeen(prev => { const n = new Set(prev); n.add(k); return n; }); };
+  const KEYS = Object.keys(SITES);
+  // Qadam = savol raqami; to'g'ri javob saytni ochadi. Qaytganda (storedAnswer) — tugagan holat.
+  const [q, setQ] = useState(storedAnswer ? KEYS.length : 0);
+  const [active, setActive] = useState(storedAnswer ? KEYS[KEYS.length - 1] : null);
+  const done = q >= KEYS.length;
+  const togri = () => { setActive(KEYS[q]); setQ(n => Math.min(KEYS.length, n + 1)); };
+  // Sayt ro'yxati — yagona bosqich ko'rsatkichi (213.21): savol berilayotgan sayt ramkada, ochilgani ✓ va qayta bosiladi
+  const fokus = done ? active : KEYS[q];
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
+  const tor = useIsMobile(768);
+  const natijaK = active ? (<div className="sk-info fade-step" key={active}><div style={{ display: 'flex', flexDirection: 'column', gap: 6, paddingRight: 30 }}><p className="qr-s" style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ display: 'inline-flex' }}>{SITES[active].ic}</span>{tr(SITES[active].name)}</p>{SITES[active].rows.map((r, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9 }}><span className="mono" style={{ fontSize: 11, fontWeight: 700, color: T.accent, minWidth: 14 }}>{i + 1}</span><span className="body" style={{ margin: 0, color: T.ink }}>{tr(r)}</span></div>))}</div></div>) : null;
   return (
-    <Stage eyebrow={tr({ uz: 'Real saytlar', ru: 'Настоящие сайты' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${seen.size}/3 ko'ring`, ru: `Посмотрите ${seen.size}/3` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Real saytlar', ru: 'Настоящие сайты' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uchta mashhur saytni bosib, <span className="italic" style={{ color: T.accent }}>tuzilishini</span> solishtiring</>, ru: <>Нажмите на три известных сайта и сравните их <span className="italic" style={{ color: T.accent }}>структуру</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mashhur saytlar ham shu qoidaga amal qiladi. Uchta saytni <b style={{ color: T.ink }}>birma-bir bosing</b> — har birida bo'limlar qaysi tartibda turgani ochiladi.</>, ru: <>Известные сайты живут по тому же правилу. Нажмите три сайта <b style={{ color: T.ink }}>по очереди</b> — у каждого откроется порядок разделов.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uchta mashhur saytning <span className="italic" style={{ color: T.accent }}>tuzilishini</span> solishtiring</>, ru: <>Сравните <span className="italic" style={{ color: T.accent }}>структуру</span> трёх известных сайтов</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Mashhur saytlar ham shu qoidaga amal qiladi. <b style={{ color: T.ink }}>Har savolga javob bering</b> — to'g'ri javobdan keyin saytdagi bo'limlar tartibi ochiladi.</>, ru: <>Известные сайты живут по тому же правилу. <b style={{ color: T.ink }}>Ответьте на каждый вопрос</b> — после верного ответа откроется порядок разделов сайта.</> })}</Mentor>
         <Zoomable off={!active}>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {Object.keys(SITES).map(k => (<button key={k} className={turnCls(lit3, k, pend3.length > 1).trim()} onClick={() => tap(k)} style={{ display: 'flex', alignItems: 'center', gap: 11, cursor: 'pointer', border: 'none', borderRadius: 12, padding: '13px 15px', background: T.paper, boxShadow: active === k ? `inset 0 0 0 2px ${T.accent}, 0 8px 20px -7px rgba(91,61,230,0.22)` : `0 6px 16px -8px rgba(${T.shadowBase},0.16)`, transition: 'all 0.18s' }}><span style={{ display: 'inline-flex' }}>{SITES[k].ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 15, color: T.ink }}>{tr(SITES[k].name)}</span>{seen.has(k) && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(14)}</span>}</button>))}
+              {KEYS.map((k, i) => { const ochiq = i < q; return (<button key={k} type="button" disabled={!ochiq} onClick={() => setActive(k)} style={{ display: 'flex', alignItems: 'center', gap: 11, cursor: ochiq ? 'pointer' : 'default', border: 'none', borderRadius: 12, padding: '13px 15px', background: T.paper, opacity: ochiq || fokus === k ? 1 : 0.55, boxShadow: fokus === k ? `inset 0 0 0 2px ${T.accent}, 0 8px 20px -7px rgba(91,61,230,0.22)` : `0 6px 16px -8px rgba(${T.shadowBase},0.16)`, transition: 'all 0.18s' }}><span style={{ display: 'inline-flex' }}>{SITES[k].ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 15, color: T.ink }}>{tr(SITES[k].name)}</span>{ochiq && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(14)}</span>}</button>); })}
             </div>
+            {tor && natijaK}{/* F-1019-04: telefonda natija savol ustida — o'ng ustun ostida yashirinmasin */}
+            {!done && <Qaror key={q} savol={S3_QAROR[q].savol} variantlar={S3_QAROR[q].v} onTogri={togri} />}
           </Col>
           <Col>
-            {active ? (<div className="sk-info fade-step" key={active}><div style={{ display: 'flex', flexDirection: 'column', gap: 6, paddingRight: 30 }}>{SITES[active].rows.map((r, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: 9 }}><span className="mono" style={{ fontSize: 11, fontWeight: 700, color: T.accent, minWidth: 14 }}>{i + 1}</span><span className="body" style={{ margin: 0, color: T.ink }}>{tr(r)}</span></div>))}</div></div>) : null}
+            {!tor && natijaK}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi — uchalasida ham <b>eng muhim narsa birinchi blokda</b> turibdi. Tugma esa eng oxirida — foydalanuvchi nega bosish kerakligini tushungandan keyin chiqadi.</>, ru: <>Видите — у всех трёх <b>самое важное стоит в первом блоке</b>. А кнопка — в самом конце: она появляется, когда человек уже понял, зачем на неё жать.</> })}</p></div>}
           </Col>
         </div>
@@ -1283,31 +1323,61 @@ const Screen4 = (props) => (
 );
 
 // ===== SCREEN 5 — HAR BO'LIMNING VAZIFASI =====
+// F-1019-04 (213.22): har bo'lim uchun qaror (ORDER tartibida); to'g'ri javobdan keyin bo'limning vazifasi ochiladi
+const S5_QAROR = [
+  { savol: { uz: 'Birinchi blok nima qiladi?', ru: 'Что делает первый блок?' }, v: [
+    { ok: true, t: { uz: 'Sayt nima taklif qilishini aytadi', ru: 'Говорит, что предлагает сайт' } },
+    { t: { uz: 'Saytni chiroyli qilib bezaydi', ru: 'Красиво украшает сайт' }, izoh: { uz: 'Birinchi blok bezak emas: u bir jumlada taklifni aytadi.', ru: 'Первый блок — не украшение: он одной фразой говорит о предложении.' } },
+    { t: { uz: "Hamma mahsulotlarni birdan ko'rsatadi", ru: 'Сразу показывает все товары' }, izoh: { uz: "Mahsulotlar Isbot bo'limida turadi, bu yerda bitta jumla.", ru: 'Товары стоят в разделе «Доказательство», здесь — одна фраза.' } }
+  ] },
+  { savol: { uz: "Muammo bo'limi nima qiladi?", ru: 'Что делает раздел «Проблема»?' }, v: [
+    { t: { uz: 'Saytning kamchiliklarini aytadi', ru: 'Рассказывает о недостатках сайта' }, izoh: { uz: 'Bu yerda saytning emas, foydalanuvchining qiyinchiligi aytiladi.', ru: 'Здесь говорят о трудности пользователя, а не сайта.' } },
+    { t: { uz: 'Boshqa saytlarni tanqid qiladi', ru: 'Критикует другие сайты' }, izoh: { uz: "Bu bo'lim boshqa saytlar haqida emas, foydalanuvchi haqida.", ru: 'Этот раздел не о других сайтах, а о пользователе.' } },
+    { ok: true, t: { uz: 'Tanish qiyinchilikni eslatadi', ru: 'Напоминает о знакомой трудности' } }
+  ] },
+  { savol: { uz: "«Qanday ishlaydi» bo'limi nima qiladi?", ru: 'Что делает раздел «Как это работает»?' }, v: [
+    { t: { uz: 'Saytning ichki kodini batafsil tushuntiradi', ru: 'Подробно объясняет внутренний код сайта' }, izoh: { uz: 'Foydalanuvchiga kod emas, foydalanish qadamlari kerak.', ru: 'Пользователю нужен не код, а шаги использования.' } },
+    { ok: true, t: { uz: 'Qiyinchilik qanday yengilishini aytadi', ru: 'Показывает, как снимается трудность' } },
+    { t: { uz: "Barcha narxlarni jadvalda ko'rsatadi", ru: 'Показывает все цены в таблице' }, izoh: { uz: "Narx bu yerda asosiy emas: bo'lim qadamlarni ko'rsatadi.", ru: 'Цены здесь не главное: раздел показывает шаги.' } }
+  ] },
+  { savol: { uz: "Isbot bo'limi nima qiladi?", ru: 'Что делает раздел «Доказательство»?' }, v: [
+    { ok: true, t: { uz: "Boshqalar foydalanganini ko'rsatadi", ru: 'Показывает, что другие уже пользуются' } },
+    { t: { uz: "Sayt eng yaxshi ekanini o'zi aytadi", ru: 'Сам говорит, что сайт лучший' }, izoh: { uz: "O'zini maqtash ishonch bermaydi, boshqalarning misoli kerak.", ru: 'Самопохвала не даёт доверия — нужен пример других.' } },
+    { t: { uz: "Ro'yxatdan o'tish yo'lini ko'rsatadi", ru: 'Показывает, как зарегистрироваться' }, izoh: { uz: "Bu «Qanday ishlaydi» bo'limining vazifasi.", ru: 'Это задача раздела «Как это работает».' } }
+  ] },
+  { savol: { uz: 'Harakat tugmasi nima qiladi?', ru: 'Что делает кнопка действия?' }, v: [
+    { t: { uz: "Boshqa saytlarga olib o'tadi", ru: 'Переводит на другие сайты' }, izoh: { uz: 'Tugma odamni boshqa saytga emas, keyingi qadamga olib boradi.', ru: 'Кнопка ведёт не на другой сайт, а к следующему шагу.' } },
+    { t: { uz: 'Sahifa boshiga qaytaradi', ru: 'Возвращает в начало страницы' }, izoh: { uz: "Tugma orqaga emas, oldinga chaqiradi: e'lon berish, obuna.", ru: 'Кнопка зовёт не назад, а вперёд: подать объявление, подписаться.' } },
+    { ok: true, t: { uz: 'Aniq keyingi qadamni beradi', ru: 'Даёт понятный следующий шаг' } }
+  ] }
+];
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const [active, setActive] = useState(null);
-  const [seen, setSeen] = useState(new Set());
-  const isNarrow = useIsMobile(768);
-  const done = seen.size >= 5;
-  // Navbat ochilmagan bo'limlar bo'ylab yuradi; bosilgani navbatdan chiqadi, qolganlari
-  // aylanishda davom etadi (masalan 1,2,5 ochilgan bo'lsa — 3 va 4 navbatlashadi).
-  const pend5 = ORDER.filter(k => !seen.has(k));
-  const lit5 = useTurnWalk(pend5);
-  const tap = (k) => { setActive(k); setSeen(prev => { const n = new Set(prev); n.add(k); return n; }); };
+  // Qadam = savol raqami (ORDER bo'yicha); to'g'ri javob bo'limni ochadi. Qaytganda (storedAnswer) — tugagan holat.
+  const [q, setQ] = useState(storedAnswer ? ORDER.length : 0);
+  const [active, setActive] = useState(storedAnswer ? ORDER[ORDER.length - 1] : null);
+  const done = q >= ORDER.length;
+  const togri = () => { setActive(ORDER[q]); setQ(n => Math.min(ORDER.length, n + 1)); };
+  // Bo'limlar ro'yxati — yagona bosqich ko'rsatkichi (213.21): savol berilayotgan bo'lim ramkada, ochilgani ✓ va qayta bosiladi
+  const fokus = done ? active : ORDER[q];
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
+  const tor = useIsMobile(768);
+  const natijaK = active ? (<div className="sk-info fade-step" key={active}><div style={{ display: 'flex', flexDirection: 'column', gap: 6, paddingRight: 30 }}><p className="qr-s" style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span style={{ color: SECDATA[active].color, display: 'inline-flex' }}>{SECDATA[active].ic}</span>{tr(SECDATA[active].label)}</p><p className="body" style={{ color: T.ink, margin: 0 }}>{tr(SECDATA[active].job)}</p></div></div>) : null;
   return (
-    <Stage eyebrow={tr({ uz: "Bo'lim vazifasi", ru: 'Задача раздела' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: `${seen.size}/5 bo'limni oching`, ru: `Откройте разделы ${seen.size}/5` }} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Bo'lim vazifasi", ru: 'Задача раздела' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sahifadagi beshta bo'lim qanday <span className="italic" style={{ color: T.accent }}>vazifalarni</span> bajaradi?</>, ru: <>Какие <span className="italic" style={{ color: T.accent }}>задачи</span> решают пять разделов страницы?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Yaxshi sahifada ishlamaydigan bo'lim bo'lmaydi — hammasining aniq <b style={{ color: T.ink }}>vazifasi</b> bor. Beshta bo'limni birma-bir bosing: bosganingizda uning vazifasi ochiladi.</>, ru: <>На хорошей странице нет бесполезных разделов — у каждого есть своя <b style={{ color: T.ink }}>задача</b>. Нажимайте пять разделов по очереди: при нажатии откроется его задача.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Yaxshi sahifada ishlamaydigan bo'lim bo'lmaydi — hammasining aniq <b style={{ color: T.ink }}>vazifasi</b> bor. Har savolga javob bering — to'g'ri javobdan keyin bo'limning vazifasi ochiladi.</>, ru: <>На хорошей странице нет бесполезных разделов — у каждого есть своя <b style={{ color: T.ink }}>задача</b>. Ответьте на каждый вопрос — после верного ответа откроется задача раздела.</> })}</Mentor>
         <Zoomable off={!active}>
         <div className="split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {ORDER.map(k => { const s = SECDATA[k]; return (<button key={k} className={turnCls(lit5, k, pend5.length > 1).trim()} onClick={() => tap(k)} style={{ display: 'flex', alignItems: 'center', gap: 11, textAlign: 'left', cursor: 'pointer', border: 'none', borderRadius: 12, padding: '12px 14px', background: T.paper, color: active === k ? s.color : T.ink2, boxShadow: active === k ? `inset 0 0 0 2px ${s.color}, 0 8px 20px -8px ${s.color}44` : `0 6px 16px -8px rgba(${T.shadowBase},0.16)`, transition: 'all 0.18s' }}><span style={{ color: s.color, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 14, color: T.ink }}>{tr(s.label)}</span>{seen.has(k) && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(14)}</span>}</button>); })}
+              {ORDER.map((k, i) => { const s = SECDATA[k]; const ochiq = i < q; return (<button key={k} type="button" disabled={!ochiq} onClick={() => setActive(k)} style={{ display: 'flex', alignItems: 'center', gap: 11, textAlign: 'left', cursor: ochiq ? 'pointer' : 'default', border: 'none', borderRadius: 12, padding: '12px 14px', background: T.paper, opacity: ochiq || fokus === k ? 1 : 0.55, boxShadow: fokus === k ? `inset 0 0 0 2px ${s.color}, 0 8px 20px -8px ${s.color}44` : `0 6px 16px -8px rgba(${T.shadowBase},0.16)`, transition: 'all 0.18s' }}><span style={{ color: s.color, display: 'inline-flex' }}>{s.ic}</span><span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 14, color: T.ink }}>{tr(s.label)}</span>{ochiq && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(14)}</span>}</button>); })}
             </div>
+            {tor && natijaK}{/* F-1019-04: telefonda natija savol ustida — o'ng ustun ostida yashirinmasin */}
+            {!done && <Qaror key={q} savol={S5_QAROR[q].savol} variantlar={S5_QAROR[q].v} onTogri={togri} />}
           </Col>
           <Col>
-            {active ? (<div className="sk-info fade-step" key={active}><p className="body" style={{ color: T.ink, margin: 0, paddingRight: 30 }}>{tr(SECDATA[active].job)}</p></div>) : null}
+            {!tor && natijaK}
           </Col>
         </div>
         </Zoomable>
@@ -2022,18 +2092,18 @@ const QZ_BG_SHAPES = [
   { ch: '{ }',       l: 2,  t: 46, s: 24, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: { uz: "Sayt strukturasi (bo'limlar tartibi) aslida nima?", ru: 'Что такое структура сайта (порядок разделов) на самом деле?' }, opts: [{ uz: 'Foydalanuvchi uchun qilingan qulaylik', ru: 'Удобство, сделанное для пользователя' }, { uz: "Sahifani chiroyli ko'rsatuvchi bezak", ru: 'Украшение, которое красит страницу' }, { uz: "Dizayner o'z didiga qarab tanlagan shakl", ru: 'Форма, выбранная дизайнером по своему вкусу' }, { uz: 'Hamma sayt uchun bir xil tayyor andoza', ru: 'Готовый шаблон, одинаковый для всех сайтов' }], correct: 0 },
-  { q: { uz: "Foydalanuvchi saytni ochganda birinchi nimani ko'radi?", ru: 'Что пользователь видит первым, открыв сайт?' }, opts: [{ uz: 'Sahifa oxiridagi havolalar qismini', ru: 'Блок со ссылками в конце страницы' }, { uz: 'Birinchi blokni — sarlavha va izohni', ru: 'Первый блок — заголовок и пояснение' }, { uz: 'Yon tarafdagi reklama bannerini', ru: 'Рекламный баннер сбоку' }, { uz: 'Menyu va qidiruv qatorini', ru: 'Меню и строку поиска' }], correct: 1 },
-  { q: { uz: 'Harakat tugmasi (CTA) qayerda turishi mantiqiy?', ru: 'Где логично стоять кнопке действия (CTA)?' }, opts: [{ uz: 'Eng tepada, hammadan oldin', ru: 'В самом верху, раньше всего' }, { uz: 'Menyuda, havolalar orasida', ru: 'В меню, среди ссылок' }, { uz: 'Foydalanuvchi ishongandan keyin', ru: 'После того как пользователь поверил' }, { uz: 'Yon tomonda, matndan ajratib', ru: 'Сбоку, отдельно от текста' }], correct: 2 },
-  { q: { uz: "Bo'limlarning eng mantiqiy tartibi qaysi?", ru: 'Какой порядок разделов самый логичный?' }, opts: [{ uz: 'Tugma, isbot, birinchi blok, muammo, yechim', ru: 'Кнопка, доказательство, первый блок, проблема, решение' }, { uz: 'Isbot, tugma, muammo, yechim, birinchi blok', ru: 'Доказательство, кнопка, проблема, решение, первый блок' }, { uz: 'Muammo, tugma, birinchi blok, yechim, isbot', ru: 'Проблема, кнопка, первый блок, решение, доказательство' }, { uz: 'Birinchi blok, muammo, yechim, isbot, tugma', ru: 'Первый блок, проблема, решение, доказательство, кнопка' }], correct: 3 },
-  { q: { uz: 'Birinchi blok (hero) qanday vazifani bajaradi?', ru: 'Какую задачу решает первый блок (hero)?' }, opts: [{ uz: "Foydalanuvchidan ariza va to'lov qabul qiladi", ru: 'Принимает заявку и оплату от пользователя' }, { uz: 'Bir jumlada sayt nima taklif qilishini aytadi', ru: 'Одной фразой говорит, что предлагает сайт' }, { uz: "Boshqa foydalanuvchilarning izohini ko'rsatadi", ru: 'Показывает отзывы других пользователей' }, { uz: "Sahifa oxirida havola va aloqa ma'lumotini beradi", ru: 'Даёт ссылки и контакты в конце страницы' }], correct: 1 },
-  { q: { uz: "«Isbot» bo'limi nima uchun kerak?", ru: 'Зачем нужен раздел «Доказательство»?' }, opts: [{ uz: "Foydalanuvchida ishonch uyg'otish uchun", ru: 'Чтобы вызвать у пользователя доверие' }, { uz: "Mahsulot narxini e'lon qilish uchun", ru: 'Чтобы объявить цену товара' }, { uz: 'Sayt nomini eslatib turish uchun', ru: 'Чтобы напоминать название сайта' }, { uz: "Aloqa ma'lumotini berish uchun", ru: 'Чтобы дать контактные данные' }], correct: 0 },
-  { q: { uz: "Yaxshi tuzilgan sahifa nimaga o'xshaydi?", ru: 'На что похожа хорошо собранная страница?' }, opts: [{ uz: "Alifbo bo'yicha tuzilgan lug'atga", ru: 'На словарь, собранный по алфавиту' }, { uz: "Mahsulotlar ro'yxati — katalogga", ru: 'На каталог — список товаров' }, { uz: 'Har xil xabarlar yig\'ilgan lentaga', ru: 'На ленту из разных сообщений' }, { uz: 'Hikoyaga — qadam-baqadam yetaklaydi', ru: 'На историю — ведёт шаг за шагом' }], correct: 3 },
-  { q: { uz: "Bo'limlar tartibi nega muhim?", ru: 'Почему важен порядок разделов?' }, opts: [{ uz: "Sahifaga chiroyli ko'rinish berish uchun", ru: 'Чтобы страница выглядела красиво' }, { uz: "Sahifani uzunroq va to'liqroq qilish uchun", ru: 'Чтобы страница стала длиннее и полнее' }, { uz: 'Foydalanuvchini muammodan yechimga olib boradi', ru: 'Он ведёт пользователя от проблемы к решению' }, { uz: 'Qidiruvda yuqoriroq chiqib turish uchun', ru: 'Чтобы быть выше в поиске' }], correct: 2 },
-  { q: { uz: "Bo'limlar aralash tartibda bo'lsa nima bo'ladi?", ru: 'Что будет, если разделы стоят вперемешку?' }, opts: [{ uz: 'Foydalanuvchi adashadi va sahifadan ketadi', ru: 'Пользователь теряется и уходит со страницы' }, { uz: "Foydalanuvchi kerakli bo'limni o'zi topib oladi", ru: 'Пользователь сам найдёт нужный раздел' }, { uz: "Sahifa yangicha va qiziqarli ko'rinadi", ru: 'Страница выглядит свежо и интересно' }, { uz: 'Sahifa avvalgidan tezroq ochiladi', ru: 'Страница открывается быстрее прежнего' }], correct: 0 },
+  { q: { uz: "Sayt strukturasi (bo'limlar tartibi) aslida nima?", ru: "Что на самом деле структура сайта (порядок разделов)?" }, opts: [{ uz: "Foydalanuvchi uchun qulaylik", ru: "Удобство для пользователя" }, { uz: "Sahifa uchun bezak", ru: "Украшение страницы" }, { uz: "Dizaynerning didi", ru: "Вкус дизайнера" }, { uz: "Hamma uchun bir xil andoza", ru: "Одинаковый шаблон для всех" }], correct: 0 },
+  { q: { uz: "Saytni ochgan odam avval qaysi bo'limni ko'radi?", ru: "Какой раздел человек видит первым, открыв сайт?" }, opts: [{ uz: "Pastdagi aloqa qismini", ru: "Контакты внизу" }, { uz: "Sarlavha va izohni", ru: "Заголовок и пояснение" }, { uz: "Isbot bo'limini", ru: "Раздел «Доказательство»" }, { uz: "Harakat tugmasini", ru: "Кнопку действия" }], correct: 1 },
+  { q: { uz: "Harakat tugmasi (CTA) qayerda turishi mantiqiy?", ru: "Где логично стоять кнопке действия (CTA)?" }, opts: [{ uz: "Eng tepada, birinchi", ru: "В самом верху, первой" }, { uz: "Menyuda, havolalar bilan", ru: "В меню, среди ссылок" }, { uz: "Odam ishongandan keyin", ru: "После того как человек поверил" }, { uz: "Yon tomonda, alohida", ru: "Сбоку, отдельно" }], correct: 2 },
+  { q: { uz: "Eng mantiqiy tartib qaysi?", ru: "Какой порядок самый логичный?" }, opts: [{ uz: "CTA→isbot→hero→muammo→yechim", ru: "CTA→доказ.→hero→проблема→решение" }, { uz: "Isbot→CTA→muammo→yechim→hero", ru: "Доказ.→CTA→проблема→решение→hero" }, { uz: "Muammo→CTA→hero→yechim→isbot", ru: "Проблема→CTA→hero→решение→доказ." }, { uz: "Hero→muammo→yechim→isbot→CTA", ru: "Hero→проблема→решение→доказ.→CTA" }], correct: 3 },
+  { q: { uz: "Birinchi blok (hero) nima qiladi?", ru: "Что делает первый блок (hero)?" }, opts: [{ uz: "Ariza va to'lov qabul qiladi", ru: "Принимает заявки и оплату" }, { uz: "Taklifni bir jumlada aytadi", ru: "Одной фразой говорит, что предлагают" }, { uz: "Mijozlar izohini ko'rsatadi", ru: "Показывает отзывы клиентов" }, { uz: "Aloqa ma'lumotini beradi", ru: "Даёт контакты" }], correct: 1 },
+  { q: { uz: "«Isbot» bo'limi nima uchun kerak?", ru: "Зачем нужен раздел «Доказательство»?" }, opts: [{ uz: "Ishonch uyg'otish uchun", ru: "Чтобы вызвать доверие" }, { uz: "Narxni e'lon qilish uchun", ru: "Чтобы объявить цену" }, { uz: "Sayt nomini eslatish uchun", ru: "Чтобы напомнить название" }, { uz: "Aloqa ma'lumoti uchun", ru: "Для контактов" }], correct: 0 },
+  { q: { uz: "Yaxshi tuzilgan sahifa nimaga o'xshaydi?", ru: "На что похожа хорошо выстроенная страница?" }, opts: [{ uz: "Alifbodagi lug'atga", ru: "На словарь по алфавиту" }, { uz: "Mahsulot katalogiga", ru: "На каталог товаров" }, { uz: "Xabarlar lentasiga", ru: "На ленту сообщений" }, { uz: "Qadam-baqadam hikoyaga", ru: "На историю шаг за шагом" }], correct: 3 },
+  { q: { uz: "Bo'limlar tartibi nega muhim?", ru: "Почему важен порядок разделов?" }, opts: [{ uz: "Sahifa chiroyli ko'rinadi", ru: "Страница выглядит красиво" }, { uz: "Sahifa uzunroq bo'ladi", ru: "Страница становится длиннее" }, { uz: "Odamni yechimga yetaklaydi", ru: "Ведёт человека к решению" }, { uz: "Qidiruvda yuqori chiqadi", ru: "Выше в поиске" }], correct: 2 },
+  { q: { uz: "Bo'limlar aralashib ketsa nima bo'ladi?", ru: "Что будет, если разделы перемешаны?" }, opts: [{ uz: "Odam adashib, ketib qoladi", ru: "Человек теряется и уходит" }, { uz: "Odam kerakli joyni topadi", ru: "Человек сам найдёт нужное" }, { uz: "Sahifa qiziqroq ko'rinadi", ru: "Страница выглядит интереснее" }, { uz: "Sahifa tezroq ochiladi", ru: "Страница быстрее открывается" }], correct: 0 },
   { q: { uz: "«Muammo» bo'limi qanday his uyg'otishi kerak?", ru: 'Какое чувство должен вызывать раздел «Проблема»?' }, opts: [{ uz: '«Endi darrov sotib olaman»', ru: '«Сейчас же куплю»' }, { uz: '«Bu sayt ishonchli ekan»', ru: '«А сайт-то надёжный»' }, { uz: '«Bu qanday ishlar ekan?»', ru: '«А как это работает?»' }, { uz: '«Bu menga tanish»', ru: '«Это мне знакомо»' }], correct: 3 },
-  { q: { uz: "Chiroyli va ishonchli sayt farqi ko'pincha nimada?", ru: 'Чем чаще всего отличается красивый сайт от надёжного?' }, opts: [{ uz: 'Ishlatilgan ranglarida', ru: 'Использованными цветами' }, { uz: 'Tartibida (strukturasida)', ru: 'Порядком (структурой)' }, { uz: "Shrift o'lchami va turida", ru: 'Размером и видом шрифта' }, { uz: "Qo'shilgan rasmlar sonida", ru: 'Количеством добавленных картинок' }], correct: 1 },
-  { q: { uz: 'Mahsulot taqdim qiluvchi sahifa qanday mantiqqa amal qiladi?', ru: 'Какой логике следует страница, представляющая продукт?' }, opts: [{ uz: 'Avval harakat tugmasi, keyin izoh', ru: 'Сначала кнопка действия, потом пояснение' }, { uz: "Bo'limlar alifbo tartibida joylashadi", ru: 'Разделы идут по алфавиту' }, { uz: 'Avval eng muhimi, oxirida harakat', ru: 'Сначала самое важное, в конце — действие' }, { uz: "Avval aloqa, keyin mahsulot izohi", ru: 'Сначала контакты, потом описание продукта' }], correct: 2 },
+  { q: { uz: "Chiroyli va ishonchli sayt farqi ko'pincha nimada?", ru: "В чём чаще всего разница красивого и надёжного сайта?" }, opts: [{ uz: "Ranglarida", ru: "В цветах" }, { uz: "Tartibida", ru: "В порядке (структуре)" }, { uz: "Shriftida", ru: "В шрифте" }, { uz: "Rasmlarida", ru: "В картинках" }], correct: 1 },
+  { q: { uz: "Sahifa qanday mantiq bilan tuziladi?", ru: "По какой логике строится страница?" }, opts: [{ uz: "Avval tugma, keyin izoh", ru: "Сначала кнопка, потом пояснение" }, { uz: "Bo'limlar alifbo tartibida", ru: "Разделы по алфавиту" }, { uz: "Avval muhimi, oxirida tugma", ru: "Сначала главное, в конце кнопка" }, { uz: "Avval aloqa, keyin mahsulot", ru: "Сначала контакты, потом товар" }], correct: 2 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -2686,6 +2756,13 @@ export default function PmLesson2({ lang: langProp, onFinished, liveToken }) {
         .chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.6vw,15px); display: inline-flex; align-items: center; gap: 7px; padding: 9px 16px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 4px 12px -6px rgba(${T.shadowBase},0.2); }
         .chip:hover:not(:disabled) { transform: translateY(-1px); }
         .chip-on { background: ${T.accent}; color: #fff; box-shadow: 0 6px 16px -5px rgba(91,61,230,0.4); }
+        /* F-1019-04 (DE 213.22): qaror kartasi. Savol, variant-chiplar va xato sababi bitta kartada (213.13) */
+        .qr { display: flex; flex-direction: column; gap: 10px; }
+        .qr-s { margin: 0; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: clamp(14px,1.6vw,15.5px); line-height: 1.4; color: ${T.ink}; }
+        .qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
+        .qr-v .chip { background: ${T.bg}; text-align: left; }
+        .qr-v .chip-err, .qr-v .chip-err:disabled { background: ${T.errSoft}; color: ${T.err}; box-shadow: none; cursor: default; }
+        .qr-x { margin: 0; color: ${T.err}; }
         .gchip { font-family: 'Manrope'; font-weight: 600; font-size: 12.5px; padding: 9px 14px; border-radius: 99px; border: none; background: ${T.paper}; color: ${T.ink}; cursor: pointer; transition: all 0.18s; box-shadow: 0 3px 10px -6px rgba(${T.shadowBase},0.22); display: inline-flex; align-items: center; gap: 6px; } .gchip:hover { transform: translateY(-1px); }
 
         /* === MENTOR === */

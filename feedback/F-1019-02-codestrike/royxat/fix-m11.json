@@ -1,0 +1,5544 @@
+[
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Maktab ilovasi» g'oyasiga yana nima kerak?",
+   "ru": "Что ещё нужно идее «школьное приложение»?"
+  },
+  "opts": [
+   {
+    "uz": "Muammo, kim uchun, yechim",
+    "ru": "Проблема, для кого, решение"
+   },
+   {
+    "uz": "Chiroyli nom va rang",
+    "ru": "Красивое название и цвет"
+   },
+   {
+    "uz": "Narxi va reklamasi",
+    "ru": "Цена и реклама"
+   },
+   {
+    "uz": "Tugmalar soni, rangi",
+    "ru": "Число и цвет кнопок"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qaysi gap yechim qatoriga yoziladi?",
+   "ru": "Какая фраза пишется в строку «Решение»?"
+  },
+  "opts": [
+   {
+    "uz": "Vazifa chatda yo'qoladi",
+    "ru": "Задание теряется в чате"
+   },
+   {
+    "uz": "Maktab o'quvchilari uchun",
+    "ru": "Для учеников школы"
+   },
+   {
+    "uz": "Vazifalar bir joyda turadi",
+    "ru": "Все задания в одном месте"
+   },
+   {
+    "uz": "Chiroyli bo'lsin deyishadi",
+    "ru": "Хотят, чтобы было красиво"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qaysi gap muammo qatoriga yoziladi?",
+   "ru": "Какая фраза пишется в строку «Проблема»?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovada chat bo'lsin",
+    "ru": "Пусть в приложении будет чат"
+   },
+   {
+    "uz": "Vazifa chatda yo'qoladi",
+    "ru": "Задание теряется в чате"
+   },
+   {
+    "uz": "Ilova chiroyli bo'lsin",
+    "ru": "Пусть приложение будет красивым"
+   },
+   {
+    "uz": "Bot tez ishlasin",
+    "ru": "Пусть бот работает быстро"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi, tire olib tashlandi.",
+  "q": {
+   "uz": "Qaysi «Kim uchun» qatori aniq?",
+   "ru": "Какая строка «Для кого» точная?"
+  },
+  "opts": [
+   {
+    "uz": "Shahardagi har xil odamlar",
+    "ru": "Разные люди в городе"
+   },
+   {
+    "uz": "Telefoni bor har bir odam",
+    "ru": "Каждый, у кого есть телефон"
+   },
+   {
+    "uz": "Yoshlar ham, kattalar ham",
+    "ru": "И молодые, и взрослые"
+   },
+   {
+    "uz": "To'garak izlayotgan o'smirlar",
+    "ru": "Подростки, которые ищут кружок"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Qisqartirildi; to'g'ri variant dars ifodasiga («ichida yechim bor») keltirildi, tire olib tashlandi.",
+  "q": {
+   "uz": "«Ilovada to'lov tugmasi yo'q» qaysi qatorga mos?",
+   "ru": "«В приложении нет кнопки оплаты» — к какой строке?"
+  },
+  "opts": [
+   {
+    "uz": "Yechimga: ichida yechim bor",
+    "ru": "К решению: внутри есть решение"
+   },
+   {
+    "uz": "Muammoga: odam qiynalgan",
+    "ru": "К проблеме: человеку трудно"
+   },
+   {
+    "uz": "Kim uchun qatoriga",
+    "ru": "К строке «Для кого»"
+   },
+   {
+    "uz": "Hech qaysi qatorga",
+    "ru": "Ни к какой строке"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Airbnb asoschilari g'oyani qayerdan topgan?",
+   "ru": "Где основатели Airbnb нашли идею?"
+  },
+  "opts": [
+   {
+    "uz": "Investor topshirig'idan",
+    "ru": "Из задания инвестора"
+   },
+   {
+    "uz": "Boshqa ilovadan ko'chirib",
+    "ru": "Скопировали у другого приложения"
+   },
+   {
+    "uz": "Kompyuter o'yinidan",
+    "ru": "Из компьютерной игры"
+   },
+   {
+    "uz": "O'zlari ko'rgan voqeadan",
+    "ru": "Из случая, который увидели сами"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzun edi, qisqartirildi.",
+  "q": {
+   "uz": "2007-yilda San-Fransiskoda nima bo'lgan?",
+   "ru": "Что было в Сан-Франциско в 2007 году?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi aeroport ochilgan",
+    "ru": "Открылся новый аэропорт"
+   },
+   {
+    "uz": "Katta konferensiya bo'lgan",
+    "ru": "Прошла большая конференция"
+   },
+   {
+    "uz": "Transport to'xtab qolgan",
+    "ru": "Остановился транспорт"
+   },
+   {
+    "uz": "Uylar sotuvga chiqqan",
+    "ru": "Дома выставили на продажу"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzun edi, variantlar tenglashtirildi.",
+  "q": {
+   "uz": "Airbnb asoschilari avval nima qilgan?",
+   "ru": "Что основатели Airbnb сделали сначала?"
+  },
+  "opts": [
+   {
+    "uz": "Mehmonxona qurgan",
+    "ru": "Построили гостиницу"
+   },
+   {
+    "uz": "Ilovaga reklama bergan",
+    "ru": "Дали рекламу приложению"
+   },
+   {
+    "uz": "Havo to'shagini ijaraga bergan",
+    "ru": "Сдали надувной матрас"
+   },
+   {
+    "uz": "Konferensiyani ko'chirgan",
+    "ru": "Перенесли конференцию"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Beshta g'oya yozganda nima qilasiz?",
+   "ru": "Что вы делаете, когда пишете пять идей?"
+  },
+  "opts": [
+   {
+    "uz": "Kuchsizini o'chirasiz",
+    "ru": "Удаляете слабую"
+   },
+   {
+    "uz": "Faqat uchtasini yozasiz",
+    "ru": "Пишете только три"
+   },
+   {
+    "uz": "Har biriga nom o'ylaysiz",
+    "ru": "Придумываете каждой название"
+   },
+   {
+    "uz": "Har biriga uch qator yozasiz",
+    "ru": "Пишете каждой три строки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 79 belgi edi; to'g'ri javob dars xulosasiga («bitta yechim ikki muammoga mos») tortildi.",
+  "q": {
+   "uz": "Sherik yechimdan boshqa muammo aytdi. Nega?",
+   "ru": "Партнёр назвал по решению другую проблему. Почему?"
+  },
+  "opts": [
+   {
+    "uz": "Yechim ikki muammoga mos",
+    "ru": "Решение подходит к двум проблемам"
+   },
+   {
+    "uz": "Sherik yaxshi eshitmagan",
+    "ru": "Партнёр плохо слушал"
+   },
+   {
+    "uz": "G'oya yaroqsiz bo'lgan",
+    "ru": "Идея оказалась негодной"
+   },
+   {
+    "uz": "Yechim qatori ortiqcha",
+    "ru": "Строка решения лишняя"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi, vergulli to'g'ri javob tenglashtirildi.",
+  "q": {
+   "uz": "Atrofni kuzatganda nimaga qaraysiz?",
+   "ru": "На что вы смотрите, наблюдая вокруг?"
+  },
+  "opts": [
+   {
+    "uz": "Eng ko'p yuklangan ilovaga",
+    "ru": "На самое скачиваемое приложение"
+   },
+   {
+    "uz": "Do'stlar o'ynaydigan o'yinga",
+    "ru": "На игру, в которую играют друзья"
+   },
+   {
+    "uz": "Kim nimadan qiynalganiga",
+    "ru": "Кому и в чём трудно"
+   },
+   {
+    "uz": "Eng yangi texnologiyaga",
+    "ru": "На самую новую технологию"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi.",
+  "q": {
+   "uz": "Funksiyadan g'oya qilish uchun nima topasiz?",
+   "ru": "Что нужно найти, чтобы из функции сделать идею?"
+  },
+  "opts": [
+   {
+    "uz": "Qisqa va qiziq nom",
+    "ru": "Короткое яркое название"
+   },
+   {
+    "uz": "U hal qiladigan muammo",
+    "ru": "Проблему, которую она решает"
+   },
+   {
+    "uz": "Yana bitta funksiya",
+    "ru": "Ещё одну функцию"
+   },
+   {
+    "uz": "Uni quradigan kod",
+    "ru": "Код, который её строит"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Real auditoriya bormi?» nimani so'raydi?",
+   "ru": "Что спрашивает «Есть ли реальная аудитория?»?"
+  },
+  "opts": [
+   {
+    "uz": "6 haftada qura olasizmi",
+    "ru": "Сможете ли собрать за 6 недель"
+   },
+   {
+    "uz": "Kamida 5 tanishingiz bormi",
+    "ru": "Есть ли хотя бы 5 знакомых"
+   },
+   {
+    "uz": "Bu g'oya sizga qiziqmi",
+    "ru": "Интересна ли вам эта идея"
+   },
+   {
+    "uz": "Necha kishi yuklaydi",
+    "ru": "Сколько людей скачает"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgi edi, qisqartirildi.",
+  "q": {
+   "uz": "Qaysi g'oyani 6 haftada qurish qiyin?",
+   "ru": "Какую идею трудно собрать за 6 недель?"
+  },
+  "opts": [
+   {
+    "uz": "Sinf vazifalari ro'yxati",
+    "ru": "Список заданий класса"
+   },
+   {
+    "uz": "Oshxona menyusi sahifasi",
+    "ru": "Страница меню столовой"
+   },
+   {
+    "uz": "Uyga ovqat yetkazish",
+    "ru": "Доставка еды на дом"
+   },
+   {
+    "uz": "To'garaklar jadvali",
+    "ru": "Расписание кружков"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bu kursda ishonch 50% qachon qo'yiladi?",
+   "ru": "Когда в этом курсе ставят уверенность 50%?"
+  },
+  "opts": [
+   {
+    "uz": "Dalil yo'q, faqat taxmin",
+    "ru": "Довода нет, только догадка"
+   },
+   {
+    "uz": "O'lchangan aniq son bor",
+    "ru": "Есть точное измеренное число"
+   },
+   {
+    "uz": "Ko'p odam shuni aytgan",
+    "ru": "Многие это сказали"
+   },
+   {
+    "uz": "G'oya yarmi qurilgan",
+    "ru": "Половина идеи собрана"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Tireli variantlar soddalashtirildi.",
+  "q": {
+   "uz": "Bu kursda mehnat qanday sanaladi?",
+   "ru": "Как в этом курсе считают усилия?"
+  },
+  "opts": [
+   {
+    "uz": "Odam necha oy ishlaydi",
+    "ru": "Сколько месяцев работает человек"
+   },
+   {
+    "uz": "Odam necha hafta ishlaydi",
+    "ru": "Сколько недель работает человек"
+   },
+   {
+    "uz": "Sinf necha kun ishlaydi",
+    "ru": "Сколько дней работает класс"
+   },
+   {
+    "uz": "Kod necha soat yoziladi",
+    "ru": "Сколько часов пишется код"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi, tirelar olib tashlandi.",
+  "q": {
+   "uz": "Ishonch 50% dan 80% ga oshsa, baho nima bo'ladi?",
+   "ru": "Если уверенность вырастет с 50% до 80%, что будет с оценкой?"
+  },
+  "opts": [
+   {
+    "uz": "Kamayadi",
+    "ru": "Уменьшится"
+   },
+   {
+    "uz": "O'zgarmaydi",
+    "ru": "Не изменится"
+   },
+   {
+    "uz": "Oshadi",
+    "ru": "Вырастет"
+   },
+   {
+    "uz": "Nolga tushadi",
+    "ru": "Упадёт до нуля"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qamrovi katta g'oya nega past baho oladi?",
+   "ru": "Почему идея с большим охватом получает низкую оценку?"
+  },
+  "opts": [
+   {
+    "uz": "Odamlar ko'p bo'lgani",
+    "ru": "Потому что людей много"
+   },
+   {
+    "uz": "Qamrov sanalmagani",
+    "ru": "Охват не учитывается"
+   },
+   {
+    "uz": "Mehnati juda kam bo'lgani",
+    "ru": "Усилий совсем мало"
+   },
+   {
+    "uz": "Ta'siri yoki ishonchi kichik",
+    "ru": "Влияние или уверенность малы"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 31 belgi edi, qisqartirildi.",
+  "q": {
+   "uz": "Stories voqeasidan qaysi xulosa chiqadi?",
+   "ru": "Какой вывод из истории Stories?"
+  },
+  "opts": [
+   {
+    "uz": "Yaxshiroq yetkazgan yutdi",
+    "ru": "Победил тот, кто лучше донёс"
+   },
+   {
+    "uz": "Birinchi o'ylab topgan yutdi",
+    "ru": "Победил тот, кто придумал первым"
+   },
+   {
+    "uz": "Arzonroq ilova yutdi",
+    "ru": "Победило более дешёвое приложение"
+   },
+   {
+    "uz": "Eng keyin chiqqan yutdi",
+    "ru": "Победил тот, кто вышел последним"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi; to'g'ri javob dars yakuniga («sabab bilan tushuntirdingiz») tortildi.",
+  "q": {
+   "uz": "Sherik soningizga «nega?» dedi. Nima qilasiz?",
+   "ru": "Партнёр спросил «почему?» про ваше число. Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Indamay qoldirasiz",
+    "ru": "Молча оставляете"
+   },
+   {
+    "uz": "Sababini tushuntirasiz",
+    "ru": "Объясняете причину"
+   },
+   {
+    "uz": "G'oyani chetga chiqarasiz",
+    "ru": "Убираете идею в сторону"
+   },
+   {
+    "uz": "Sherik sonini yozasiz",
+    "ru": "Пишете число партнёра"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Jamoa yig'ish»da ishonch nega 80%?",
+   "ru": "Почему у «Сбора команды» уверенность 80%?"
+  },
+  "opts": [
+   {
+    "uz": "Mentorga eng qiziq g'oya",
+    "ru": "Самая интересная идея для Ментора"
+   },
+   {
+    "uz": "Ta'siri ikkiga teng",
+    "ru": "Влияние равно двум"
+   },
+   {
+    "uz": "5 kishidan 2 tasi aytgan",
+    "ru": "Об этом сказали 2 из 5"
+   },
+   {
+    "uz": "Mehnati eng ko'p, 4 hafta",
+    "ru": "Больше всего усилий, 4 недели"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "`rice(g)` funksiyasi nimani qaytaradi?",
+   "ru": "Что возвращает функция `rice(g)`?"
+  },
+  "opts": [
+   {
+    "uz": "G'oyaning qisqa nomini",
+    "ru": "Короткое название идеи"
+   },
+   {
+    "uz": "Eng yaxshi uchta nomni",
+    "ru": "Названия трёх лучших"
+   },
+   {
+    "uz": "Ro'yxat uzunligini",
+    "ru": "Длину списка"
+   },
+   {
+    "uz": "Bitta g'oyaning bahosini",
+    "ru": "Оценку одной идеи"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ikki g'oyaga intervyu savollari qanday bo'ladi?",
+   "ru": "Какими будут вопросы интервью для двух идей?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkalasiga bir xil",
+    "ru": "Одинаковыми для обеих"
+   },
+   {
+    "uz": "Har biriga alohida",
+    "ru": "Отдельными для каждой"
+   },
+   {
+    "uz": "Kuchlisiga ko'proq",
+    "ru": "Больше для сильной"
+   },
+   {
+    "uz": "Har biriga bitta-ikkita",
+    "ru": "По одному-два на каждую"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "To'garak g'oyasida savollarning nimasi almashadi?",
+   "ru": "Что меняется в вопросах для идеи о кружках?"
+  },
+  "opts": [
+   {
+    "uz": "Beshala savol birdan",
+    "ru": "Все пять вопросов сразу"
+   },
+   {
+    "uz": "Oxirgi savoldagi so'z",
+    "ru": "Слово в последнем вопросе"
+   },
+   {
+    "uz": "Birinchi savoldagi bo'lak",
+    "ru": "Часть в первом вопросе"
+   },
+   {
+    "uz": "Savollar tartibi",
+    "ru": "Порядок вопросов"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qaysi savol voqeani ochadi?",
+   "ru": "Какой вопрос раскрывает случай?"
+  },
+  "opts": [
+   {
+    "uz": "«Xarita bo'lsa, ochasizmi?»",
+    "ru": "«Если будет карта, откроете?»"
+   },
+   {
+    "uz": "«To'garak topish qiyinmi?»",
+    "ru": "«Найти кружок трудно?»"
+   },
+   {
+    "uz": "«Odatda qanday tanlaysiz?»",
+    "ru": "«Как вы обычно выбираете?»"
+   },
+   {
+    "uz": "«Yozda qanday qidirdingiz?»",
+    "ru": "«Как вы искали летом?»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgi, variantlar uzun edi.",
+  "q": {
+   "uz": "«Hozir nima bilan hal qilyapsiz?» nimani ochadi?",
+   "ru": "Что раскрывает «Чем вы решаете это сейчас?»?"
+  },
+  "opts": [
+   {
+    "uz": "Qachon yuklab olishini",
+    "ru": "Когда человек скачает"
+   },
+   {
+    "uz": "Bugun qanday yo'l tutishini",
+    "ru": "Как он поступает сегодня"
+   },
+   {
+    "uz": "Qaysi g'oya yoqishini",
+    "ru": "Какая идея ему нравится"
+   },
+   {
+    "uz": "Kimdan eshitganini",
+    "ru": "От кого он услышал"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida jamoa qanday yig'iladi?",
+   "ru": "Как собирают команду в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Maktabdagi e'lon taxtasida",
+    "ru": "Через доску объявлений в школе"
+   },
+   {
+    "uz": "Maydon egasiga qo'ng'iroq",
+    "ru": "Звонком владельцу поля"
+   },
+   {
+    "uz": "Telegram guruhiga yozib",
+    "ru": "Пишут в Telegram-группу"
+   },
+   {
+    "uz": "Futbol ilovasi orqali",
+    "ru": "Через футбольное приложение"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Harakat belgisi savoli qachon beriladi?",
+   "ru": "Когда задают вопрос о знаке действия?"
+  },
+  "opts": [
+   {
+    "uz": "Salomlashgandan keyin",
+    "ru": "Сразу после приветствия"
+   },
+   {
+    "uz": "Birinchi savoldan oldin",
+    "ru": "Перед первым вопросом"
+   },
+   {
+    "uz": "Uchinchi savoldan keyin",
+    "ru": "После третьего вопроса"
+   },
+   {
+    "uz": "Muammo savollaridan keyin",
+    "ru": "После вопросов о проблеме"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Yozuvning harakat belgisi qatoriga nima tushadi?",
+   "ru": "Что попадает в строку «знак действия» в записи?"
+  },
+  "opts": [
+   {
+    "uz": "Ism va sinov kuni",
+    "ru": "Имя и день пробы"
+   },
+   {
+    "uz": "Faqat «ha» yoki «yo'q»",
+    "ru": "Только «да» или «нет»"
+   },
+   {
+    "uz": "«Ishlatardim» degan gapi",
+    "ru": "Его слова «пользовался бы»"
+   },
+   {
+    "uz": "G'oya haqidagi fikringiz",
+    "ru": "Ваше мнение об идее"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 72 belgi edi, qisqartirildi.",
+  "q": {
+   "uz": "Airbnb o'smaganda asoschilar nima qilgan?",
+   "ru": "Что сделали основатели, когда Airbnb не рос?"
+  },
+  "opts": [
+   {
+    "uz": "Tugmalarni o'zgartirgan",
+    "ru": "Поменяли кнопки"
+   },
+   {
+    "uz": "Uy egalariga xat yozgan",
+    "ru": "Написали письма хозяевам"
+   },
+   {
+    "uz": "Uylarga o'zlari borgan",
+    "ru": "Сами пошли в квартиры"
+   },
+   {
+    "uz": "Ko'proq reklama bergan",
+    "ru": "Дали больше рекламы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Airbnb asoschilari uylarda nimani bilgan?",
+   "ru": "Что основатели Airbnb узнали в квартирах?"
+  },
+  "opts": [
+   {
+    "uz": "Narxlar balandligini",
+    "ru": "Что цены высокие"
+   },
+   {
+    "uz": "Egalar saytni bilmasligini",
+    "ru": "Что хозяева не знают сайт"
+   },
+   {
+    "uz": "Mehmonlar shovqin qilishini",
+    "ru": "Что гости шумят"
+   },
+   {
+    "uz": "Suratlar yomonligini",
+    "ru": "Что фотографии плохие"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 68 belgi edi; tireli variantlar soddalashtirildi.",
+  "q": {
+   "uz": "Sherik auditoriyadan emas. Yozuvi qanday?",
+   "ru": "Партнёр не из аудитории. Какая это запись?"
+  },
+  "opts": [
+   {
+    "uz": "Mashq yozuvi bo'ladi",
+    "ru": "Тренировочная запись"
+   },
+   {
+    "uz": "Haqiqiy yozuv bo'ladi",
+    "ru": "Настоящая запись"
+   },
+   {
+    "uz": "Yozuv olinmaydi",
+    "ru": "Запись не берётся"
+   },
+   {
+    "uz": "Ikkita yozuv bo'ladi",
+    "ru": "Будет две записи"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi.",
+  "q": {
+   "uz": "Sherik javobini qanday yozasiz?",
+   "ru": "Как вы записываете ответ партнёра?"
+  },
+  "opts": [
+   {
+    "uz": "Uyda, eslab qolganingizcha",
+    "ru": "Дома, как запомнили"
+   },
+   {
+    "uz": "O'sha zahoti, u aytganidek",
+    "ru": "Сразу, как он сказал"
+   },
+   {
+    "uz": "O'z xulosangiz bilan",
+    "ru": "С вашим выводом"
+   },
+   {
+    "uz": "Bitta so'z bilan qisqartirib",
+    "ru": "Сократив до одного слова"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ikki g'oyaga savollar nega bir xil?",
+   "ru": "Почему вопросы для двух идей одинаковые?"
+  },
+  "opts": [
+   {
+    "uz": "Intervyu tez o'tsin",
+    "ru": "Чтобы интервью шло быстро"
+   },
+   {
+    "uz": "Javoblar yonma-yon sanalsin",
+    "ru": "Чтобы считать ответы рядом"
+   },
+   {
+    "uz": "Odamlar yodlab olsin",
+    "ru": "Чтобы люди их выучили"
+   },
+   {
+    "uz": "Savol yozish oson bo'lsin",
+    "ru": "Чтобы проще писать вопросы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Takrorlangan javob qaysi?",
+   "ru": "Какой ответ — повторяющийся?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'p yozuvda bir xil ma'noli",
+    "ru": "Одинаковый по смыслу в разных записях"
+   },
+   {
+    "uz": "Eng qattiq aytilgan javob",
+    "ru": "Ответ, сказанный громче всех"
+   },
+   {
+    "uz": "Eng uzun yozuvdagi javob",
+    "ru": "Ответ из самой длинной записи"
+   },
+   {
+    "uz": "Mentorga yoqqan javob",
+    "ru": "Ответ, понравившийся Ментору"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Tireli variantlar soddalashtirildi.",
+  "q": {
+   "uz": "Odam «Chiqsa, ishlatib ko'raman» dedi. Bu nima?",
+   "ru": "Человек сказал: «Выйдет — попробую». Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Harakat belgisi",
+    "ru": "Знак действия"
+   },
+   {
+    "uz": "Takrorlangan javob",
+    "ru": "Повторяющийся ответ"
+   },
+   {
+    "uz": "Va'da, hali ish emas",
+    "ru": "Обещание, ещё не дело"
+   },
+   {
+    "uz": "Muammo gapi",
+    "ru": "Фраза о проблеме"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "darsda-yoq",
+   "javob-yoq"
+  ],
+  "izoh": "Darsda jamoa yig'ishda 3 o'yinchi yozuvi bor va uchalasi kun belgilagan (belgi 3 / 3); «5 tadan 4 tasi» darsda yo'q.",
+  "q": {
+   "uz": "Mentor misolida nechta o'yinchi sinovga kun belgiladi?",
+   "ru": "Сколько игроков в примере Ментора назначили день пробы?"
+  },
+  "opts": [
+   {
+    "uz": "Hech biri",
+    "ru": "Ни один"
+   },
+   {
+    "uz": "3 tadan 1 tasi",
+    "ru": "1 из 3"
+   },
+   {
+    "uz": "3 tadan 2 tasi",
+    "ru": "2 из 3"
+   },
+   {
+    "uz": "3 tadan 3 tasi",
+    "ru": "3 из 3"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi edi.",
+  "q": {
+   "uz": "Mentor misolida jamoa nima bilan yig'iladi?",
+   "ru": "Чем собирают команду в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Maydon egasi orqali",
+    "ru": "Через владельца поля"
+   },
+   {
+    "uz": "Telegram guruhida",
+    "ru": "В Telegram-группе"
+   },
+   {
+    "uz": "Maktab e'lonlarida",
+    "ru": "Через школьные объявления"
+   },
+   {
+    "uz": "Maxsus ilova orqali",
+    "ru": "Через особое приложение"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Muammo gapida qaysi uch bo'lak bo'ladi?",
+   "ru": "Какие три части во фразе о проблеме?"
+  },
+  "opts": [
+   {
+    "uz": "Kim, qachon, nimadan qiynaladi",
+    "ru": "Кто, когда, от чего страдает"
+   },
+   {
+    "uz": "Kim, qayerda, qaysi ilova",
+    "ru": "Кто, где, какое приложение"
+   },
+   {
+    "uz": "Muammo, yechim va nom",
+    "ru": "Проблема, решение и название"
+   },
+   {
+    "uz": "Tugma, rang va narx",
+    "ru": "Кнопка, цвет и цена"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Final g'oya qaysi g'oya?",
+   "ru": "Какая идея — финальная?"
+  },
+  "opts": [
+   {
+    "uz": "Nomi eng chiroyli bo'lgan",
+    "ru": "С самым красивым названием"
+   },
+   {
+    "uz": "RICE bahosi eng katta",
+    "ru": "С самой большой оценкой RICE"
+   },
+   {
+    "uz": "Ro'yxatda birinchi turgan",
+    "ru": "Первая в списке"
+   },
+   {
+    "uz": "Intervyudan keyin tanlangan",
+    "ru": "Выбранная после интервью"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Qisqartirildi; «» qo'shtirnoq faqat to'g'ri variantda turmasligi uchun chalg'ituvchiga ham qo'yildi.",
+  "q": {
+   "uz": "Final tanlangach, ikkinchi g'oya nima bo'ladi?",
+   "ru": "Что будет со второй идеей после выбора финальной?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatdan o'chiriladi",
+    "ru": "Удаляется из списка"
+   },
+   {
+    "uz": "«Final»ga qo'shiladi",
+    "ru": "Добавляется к «Финалу»"
+   },
+   {
+    "uz": "Sinfdoshga beriladi",
+    "ru": "Отдаётся однокласснику"
+   },
+   {
+    "uz": "«Keyin» qutisiga yoziladi",
+    "ru": "Записывается в коробку «Потом»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Olti intervyudan keyin tanlov qanday?",
+   "ru": "Каков выбор после шести интервью?"
+  },
+  "opts": [
+   {
+    "uz": "Isbotlangan, tekshirilmaydi",
+    "ru": "Доказан, проверка не нужна"
+   },
+   {
+    "uz": "Sanoqqa bog'liq emas",
+    "ru": "Не зависит от подсчёта"
+   },
+   {
+    "uz": "Dalili bor, isboti yo'q",
+    "ru": "Есть довод, но не доказательство"
+   },
+   {
+    "uz": "Faqat fikrga tayanadi",
+    "ru": "Держится только на мнении"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "YouTube asoschilari nimani payqagan?",
+   "ru": "Что заметили основатели YouTube?"
+  },
+  "opts": [
+   {
+    "uz": "Har xil video yuklanganini",
+    "ru": "Что загружают разные видео"
+   },
+   {
+    "uz": "Faqat o'zi haqida videoni",
+    "ru": "Только видео о себе"
+   },
+   {
+    "uz": "Sayt nomi yoqmaganini",
+    "ru": "Что не нравится название"
+   },
+   {
+    "uz": "Yuklash sekin ekanini",
+    "ru": "Что загрузка медленная"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "`y.goya === goya` nimani tekshiradi?",
+   "ru": "Что проверяет `y.goya === goya`?"
+  },
+  "opts": [
+   {
+    "uz": "Yozuvda belgi borligini",
+    "ru": "Есть ли в записи знак"
+   },
+   {
+    "uz": "Yozuv shu g'oyaniki ekanini",
+    "ru": "Что запись от этой идеи"
+   },
+   {
+    "uz": "Yozuvlar soni nechtaligini",
+    "ru": "Сколько всего записей"
+   },
+   {
+    "uz": "Nomning uzunligini",
+    "ru": "Длину названия"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "To'rt katakka PRD da nima qo'shildi?",
+   "ru": "Что добавилось в PRD к четырём ячейкам?"
+  },
+  "opts": [
+   {
+    "uz": "Rang, shrift, ekran rasmi",
+    "ru": "Цвета, шрифты, экраны"
+   },
+   {
+    "uz": "Dalil, funksiya, Qilmaymiz",
+    "ru": "Довод, функции, «Не делаем»"
+   },
+   {
+    "uz": "Narx, muddat, ish jadvali",
+    "ru": "Цена, срок, график"
+   },
+   {
+    "uz": "Jamoa, vazifa, ish soati",
+    "ru": "Команда, задачи, часы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Dalilda «hammaga yoqadi». Nima yetishmaydi?",
+   "ru": "В доводе «всем нравится». Чего не хватает?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovaning nomi va rangi",
+    "ru": "Название и цвет"
+   },
+   {
+    "uz": "Yechimning uzun matni",
+    "ru": "Длинный текст решения"
+   },
+   {
+    "uz": "O'xshash ilovalar ro'yxati",
+    "ru": "Список похожих приложений"
+   },
+   {
+    "uz": "Intervyudan olingan sanoq",
+    "ru": "Подсчёт из интервью"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Asosiy funksiyaga qanday ish kiradi?",
+   "ru": "Какая работа входит в основные функции?"
+  },
+  "opts": [
+   {
+    "uz": "Busiz muammo hal bo'lmaydigan",
+    "ru": "Без которой проблема не решится"
+   },
+   {
+    "uz": "Eng chiroyli ko'rinadigan",
+    "ru": "Самая красивая на вид"
+   },
+   {
+    "uz": "Boshqa ilovada bor bo'lgan",
+    "ru": "Которая есть в других приложениях"
+   },
+   {
+    "uz": "Qurish eng oson bo'lgan",
+    "ru": "Самая лёгкая в постройке"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Yozuvlarda sababi bor, hozir shart emas. Qayerga?",
+   "ru": "Причина в записях есть, но сейчас не обязательно. Куда?"
+  },
+  "opts": [
+   {
+    "uz": "Asosiy funksiyalarga",
+    "ru": "В основные функции"
+   },
+   {
+    "uz": "«Qilmaymiz» qutisiga",
+    "ru": "В коробку «Не делаем»"
+   },
+   {
+    "uz": "«Keyin» qutisiga",
+    "ru": "В коробку «Потом»"
+   },
+   {
+    "uz": "Yechim gapiga",
+    "ru": "Во фразу решения"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Qisqartirildi, tire barcha variantlardan olindi.",
+  "q": {
+   "uz": "«O'yinchilar mamnun» bosh raqam bo'ladimi?",
+   "ru": "«Игроки довольны» может быть главным числом?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, fikr ham muhim",
+    "ru": "Да, мнение тоже важно"
+   },
+   {
+    "uz": "Yo'q, uni sanab bo'lmaydi",
+    "ru": "Нет, это нельзя посчитать"
+   },
+   {
+    "uz": "Ha, intervyuda aytilgan",
+    "ru": "Да, так сказали в интервью"
+   },
+   {
+    "uz": "Yo'q, faqat pul sanaladi",
+    "ru": "Нет, считают только деньги"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Bajariladimi?» savoli nimani tekshiradi?",
+   "ru": "Что проверяет вопрос «Выполнимо?»"
+  },
+  "opts": [
+   {
+    "uz": "Funksiya modulga sig'ishini",
+    "ru": "Влезают ли функции в модуль"
+   },
+   {
+    "uz": "Muammo gapi qisqaligini",
+    "ru": "Краткость фразы проблемы"
+   },
+   {
+    "uz": "Dalildagi odamlar sonini",
+    "ru": "Число людей в доводе"
+   },
+   {
+    "uz": "Bosh raqam nomini",
+    "ru": "Название главного числа"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Qisqartirildi, tirelar olindi.",
+  "q": {
+   "uz": "Uch savolga ham «ha». Mentor javobi qanday?",
+   "ru": "На все три вопроса «да». Какой ответ ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Tuzatish, ehtiyot uchun",
+    "ru": "Исправление, на всякий случай"
+   },
+   {
+    "uz": "Tuzatish, yana intervyu",
+    "ru": "Исправление, ещё интервью"
+   },
+   {
+    "uz": "Avval kod yozish kerak",
+    "ru": "Сначала нужен код"
+   },
+   {
+    "uz": "Qabul, qurish mumkin",
+    "ru": "Принято, можно строить"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Amazon'da press-reliz qanday yoziladi?",
+   "ru": "Как в Amazon пишут пресс-релиз?"
+  },
+  "opts": [
+   {
+    "uz": "Mahsulot chiqqan kuni",
+    "ru": "В день выхода продукта"
+   },
+   {
+    "uz": "Kod tugagach yoziladi",
+    "ru": "Когда код готов"
+   },
+   {
+    "uz": "Go'yo mahsulot chiqqandek",
+    "ru": "Будто продукт уже вышел"
+   },
+   {
+    "uz": "Ichki xat sifatida",
+    "ru": "Как внутреннее письмо"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Press-reliz hech kimni qiziqtirmasa, nima bo'ladi?",
+   "ru": "Что будет, если пресс-релиз никого не заинтересует?"
+  },
+  "opts": [
+   {
+    "uz": "Mahsulot qilinmaydi",
+    "ru": "Продукт не делают"
+   },
+   {
+    "uz": "Kichikroq quriladi",
+    "ru": "Строят поменьше"
+   },
+   {
+    "uz": "Baribir quriladi",
+    "ru": "Всё равно строят"
+   },
+   {
+    "uz": "Boshqa nom bilan chiqadi",
+    "ru": "Выходит под другим именем"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Nega maydon pulini bo'lishish funksiya bo'lmadi?",
+   "ru": "Почему деление платы за поле не стало функцией?"
+  },
+  "opts": [
+   {
+    "uz": "Yozuvlarda sababi yo'q",
+    "ru": "В записях нет причины"
+   },
+   {
+    "uz": "Bosh raqamni sanamaydi",
+    "ru": "Не считает главное число"
+   },
+   {
+    "uz": "Telegram guruhida bor",
+    "ru": "Это есть в Telegram-группе"
+   },
+   {
+    "uz": "Alohida g'oya, sig'maydi",
+    "ru": "Отдельная идея, не влезает"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "PRD.md da «## Dalil» qatori nima?",
+   "ru": "Что такое строка «## Довод» в PRD.md?"
+  },
+  "opts": [
+   {
+    "uz": "JavaScript izohi",
+    "ru": "Комментарий JavaScript"
+   },
+   {
+    "uz": "Fayl nomining qismi",
+    "ru": "Часть имени файла"
+   },
+   {
+    "uz": "Dalil bo'limi sarlavhasi",
+    "ru": "Заголовок раздела «Довод»"
+   },
+   {
+    "uz": "Ro'yxatdagi bitta band",
+    "ru": "Один пункт списка"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Yechim bo'limiga nima yoziladi?",
+   "ru": "Что пишут в разделе «Решение»?"
+  },
+  "opts": [
+   {
+    "uz": "Uch funksiya tavsifi",
+    "ru": "Описание трёх функций"
+   },
+   {
+    "uz": "Mahsulot nima qiladi, bir gap",
+    "ru": "Что делает продукт, одной фразой"
+   },
+   {
+    "uz": "Intervyudagi har bir gap",
+    "ru": "Каждая фраза из интервью"
+   },
+   {
+    "uz": "Ilova yoziladigan kod tili",
+    "ru": "Язык кода приложения"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "RICE hisobida qamrov nimani bildiradi?",
+   "ru": "Что означает охват в RICE?"
+  },
+  "opts": [
+   {
+    "uz": "Oyiga nechta odam ishlatishi",
+    "ru": "Сколько людей пользуются в месяц"
+   },
+   {
+    "uz": "Bir odamga qancha foyda",
+    "ru": "Сколько пользы одному человеку"
+   },
+   {
+    "uz": "Necha hafta quriladi",
+    "ru": "Сколько недель строить"
+   },
+   {
+    "uz": "Taxminga ishonch darajasi",
+    "ru": "Насколько верите предположению"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bu kursda mehnat nima bilan o'lchanadi?",
+   "ru": "Чем в этом курсе измеряют усилия?"
+  },
+  "opts": [
+   {
+    "uz": "Guruh necha oy ishlashi",
+    "ru": "Сколько месяцев работает группа"
+   },
+   {
+    "uz": "Kodda nechta qator borligi",
+    "ru": "Сколько строк в коде"
+   },
+   {
+    "uz": "Bir odam necha hafta ishlashi",
+    "ru": "Сколько недель работает один человек"
+   },
+   {
+    "uz": "Nechta ekran chizilishi",
+    "ru": "Сколько экранов нарисуют"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ikki ishda faqat mehnat farq qiladi. Qaysi biri yuqori?",
+   "ru": "У двух работ отличаются только усилия. Какая выше?"
+  },
+  "opts": [
+   {
+    "uz": "Mehnati ko'prog'i",
+    "ru": "С большими усилиями"
+   },
+   {
+    "uz": "Mehnati kamrog'i",
+    "ru": "С меньшими усилиями"
+   },
+   {
+    "uz": "PRD da birinchi yozilgani",
+    "ru": "Записанная в PRD первой"
+   },
+   {
+    "uz": "Ekranda ko'proq ko'ringani",
+    "ru": "Заметнее на экране"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun",
+   "ikki-javob"
+  ],
+  "izoh": "«12–13-Modulda tugaydi» chalg'ituvchisi ham to'g'ri deb o'qilardi (ufq 12–13-Modul), almashtirildi; qisqartirildi.",
+  "q": {
+   "uz": "Ish «Keyinroq» ufqida. Bu nimani bildiradi?",
+   "ru": "Работа на горизонте «Позже». Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "11-Modulda boshlanadi",
+    "ru": "Начнётся в 11-м модуле"
+   },
+   {
+    "uz": "Roadmap'dan chiqariladi",
+    "ru": "Убирается из roadmap"
+   },
+   {
+    "uz": "Bitiruvdan keyin boshlanadi",
+    "ru": "Начнётся после выпуска"
+   },
+   {
+    "uz": "12–13-Modulda boshlanadi",
+    "ru": "Начнётся в 12–13-м модуле"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Nega poydevor RICE ga kirmaydi?",
+   "ru": "Почему фундамент не входит в RICE?"
+  },
+  "opts": [
+   {
+    "uz": "Busiz hech bir funksiya yo'q",
+    "ru": "Без него не работает ни одна функция"
+   },
+   {
+    "uz": "Uni qurish eng oson",
+    "ru": "Его строить проще всего"
+   },
+   {
+    "uz": "Foydalanuvchi uni ko'rmaydi",
+    "ru": "Пользователь его не видит"
+   },
+   {
+    "uz": "U PRD da birinchi turadi",
+    "ru": "Он первый в PRD"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Tasdiq qo'shilganlarga tayanadi. U qachon quriladi?",
+   "ru": "Подтверждение опирается на присоединившихся. Когда его строят?"
+  },
+  "opts": [
+   {
+    "uz": "Qo'shilishdan oldin",
+    "ru": "До присоединения"
+   },
+   {
+    "uz": "Qo'shilish bilan birga",
+    "ru": "Вместе с присоединением"
+   },
+   {
+    "uz": "Bitiruvdan keyin",
+    "ru": "После выпуска"
+   },
+   {
+    "uz": "Qo'shilishdan keyin",
+    "ru": "После присоединения"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Hozir» ufqiga nechta funksiya sig'adi?",
+   "ru": "Сколько функций вмещает горизонт «Сейчас»?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkita, qolgani keyin",
+    "ru": "Две, остальное потом"
+   },
+   {
+    "uz": "Uchta, har kunga bitta",
+    "ru": "Три, по одной на день"
+   },
+   {
+    "uz": "Oltita, PRD dagi hammasi",
+    "ru": "Шесть, всё из PRD"
+   },
+   {
+    "uz": "To'rtta, poydevor bilan",
+    "ru": "Четыре, с фундаментом"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Uzum'da xaridor ekranda nimani ko'rmaydi?",
+   "ru": "Что покупатель Uzum не видит на экране?"
+  },
+  "opts": [
+   {
+    "uz": "Narsalar va narxi",
+    "ru": "Товары и цены"
+   },
+   {
+    "uz": "Surat va nomlar",
+    "ru": "Фото и названия"
+   },
+   {
+    "uz": "Mashina va punktlar",
+    "ru": "Машины и пункты выдачи"
+   },
+   {
+    "uz": "Qidiruv qatori",
+    "ru": "Строку поиска"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Uzum'dagidek, birinchi ish qanday bo'lishi mumkin?",
+   "ru": "Как у Uzum, какой может быть первая работа?"
+  },
+  "opts": [
+   {
+    "uz": "Eng chiroylisi",
+    "ru": "Самая красивая"
+   },
+   {
+    "uz": "Reklamadagisi",
+    "ru": "Та, что в рекламе"
+   },
+   {
+    "uz": "Eng tez quriladigani",
+    "ru": "Самая быстрая в постройке"
+   },
+   {
+    "uz": "Ko'rinmasa ham keraklisi",
+    "ru": "Нужная, хоть и не видна"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sherigingiz ishga boshqa RICE berdi. Bu nima?",
+   "ru": "Партнёр дал работе другой RICE. Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "RICE taxmin, dalil kerak",
+    "ru": "RICE — оценка, нужен довод"
+   },
+   {
+    "uz": "Sherik RICE ni bilmaydi",
+    "ru": "Партнёр не знает RICE"
+   },
+   {
+    "uz": "Ishni o'chirish kerak",
+    "ru": "Работу надо удалить"
+   },
+   {
+    "uz": "Raqamingiz to'g'ri",
+    "ru": "Ваше число верное"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Roadmap'da har ish haqida nima ko'rinadi?",
+   "ru": "Что видно на роадмапе о каждой работе?"
+  },
+  "opts": [
+   {
+    "uz": "Uni qaysi o'quvchi quradi",
+    "ru": "Какой ученик её строит"
+   },
+   {
+    "uz": "Unga qancha pul ketadi",
+    "ru": "Сколько денег на неё уйдёт"
+   },
+   {
+    "uz": "Qaysi ufq va qaysi o'rinda",
+    "ru": "На каком горизонте и месте"
+   },
+   {
+    "uz": "Unda necha qator kod bor",
+    "ru": "Сколько в ней строк кода"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Uzoqroq»dagi ish bitiruvgacha nima bo'ladi?",
+   "ru": "Что с работой из «Дальше» до выпуска?"
+  },
+  "opts": [
+   {
+    "uz": "«Hozir» bilan quriladi",
+    "ru": "Строится вместе с «Сейчас»"
+   },
+   {
+    "uz": "Bitiruvni kutadi",
+    "ru": "Ждёт выпуска"
+   },
+   {
+    "uz": "Roadmap'dan o'chadi",
+    "ru": "Удаляется из роадмапа"
+   },
+   {
+    "uz": "12-Modulda boshlanadi",
+    "ru": "Начнётся в 12-м модуле"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/LivePrototypeLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Wireframe nimani ko'rsatadi?",
+   "ru": "Что показывает wireframe?"
+  },
+  "opts": [
+   {
+    "uz": "Qayerda nima turishini",
+    "ru": "Что где стоит"
+   },
+   {
+    "uz": "Tugmalar rangini",
+    "ru": "Цвет кнопок"
+   },
+   {
+    "uz": "Sarlavha shriftini",
+    "ru": "Шрифт заголовка"
+   },
+   {
+    "uz": "Ma'lumot qayerda saqlanishini",
+    "ru": "Где хранятся данные"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/LivePrototypeLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi, to'g'ri javob eng uzun emas.",
+  "q": {
+   "uz": "Prototip qanday ekranlar?",
+   "ru": "Какие экраны называют прототипом?"
+  },
+  "opts": [
+   {
+    "uz": "Do'konga chiqqan versiya",
+    "ru": "Версия, вышедшая в магазин"
+   },
+   {
+    "uz": "Qog'ozdagi sodda chizma",
+    "ru": "Простой рисунок на бумаге"
+   },
+   {
+    "uz": "Bosiladi, lekin saqlamaydi",
+    "ru": "Кликабельные, но не сохраняют"
+   },
+   {
+    "uz": "Backend va Database chizmasi",
+    "ru": "Схема Backend и Database"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/LivePrototypeLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Prototipdagi o'yinlar ro'yxati qayerdan keladi?",
+   "ru": "Откуда берётся список игр в прототипе?"
+  },
+  "opts": [
+   {
+    "uz": "`oyinlar` jadvalidan",
+    "ru": "Из таблицы `oyinlar`"
+   },
+   {
+    "uz": "Backend'dagi yo'ldan",
+    "ru": "Из пути в Backend"
+   },
+   {
+    "uz": "Telegram guruhidan",
+    "ru": "Из группы в Telegram"
+   },
+   {
+    "uz": "`namuna.js` faylidan",
+    "ru": "Из файла `namuna.js`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/LivePrototypeLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Wireframe surati nimaga kerak?",
+   "ru": "Зачем нужен снимок wireframe?"
+  },
+  "opts": [
+   {
+    "uz": "Agentga rang tanlab beradi",
+    "ru": "Выбирает агенту цвета"
+   },
+   {
+    "uz": "Ekranlar joyini ko'rsatadi",
+    "ru": "Показывает, где какие экраны"
+   },
+   {
+    "uz": "Agentga Backend'ni ulatadi",
+    "ru": "Подключает агенту Backend"
+   },
+   {
+    "uz": "Talab o'rniga yuboriladi",
+    "ru": "Отправляется вместо требования"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/LivePrototypeLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Agent «Tayyor!» dedi. Keyin nima qilasiz?",
+   "ru": "Агент сказал «Готово!». Что дальше?"
+  },
+  "opts": [
+   {
+    "uz": "Darhol GitHub'ga yuboraman",
+    "ru": "Сразу отправляю на GitHub"
+   },
+   {
+    "uz": "Talabni qayta yozaman",
+    "ru": "Пишу требование заново"
+   },
+   {
+    "uz": "Wireframe bilan solishtiraman",
+    "ru": "Сравниваю с wireframe"
+   },
+   {
+    "uz": "Animatsiya qo'shaman",
+    "ru": "Добавляю анимации"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/LivePrototypeLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Uch farq topildi. Agentga qanday yozasiz?",
+   "ru": "Найдено три отличия. Как написать агенту?"
+  },
+  "opts": [
+   {
+    "uz": "Hammasini qayta yozdiraman",
+    "ru": "Прошу написать всё заново"
+   },
+   {
+    "uz": "Faqat kattasini yozaman",
+    "ru": "Пишу только самое большое"
+   },
+   {
+    "uz": "Hech narsa, o'zi topadi",
+    "ru": "Ничего, сам найдёт"
+   },
+   {
+    "uz": "Uchalasini bitta talabda",
+    "ru": "Все три одним требованием"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/LivePrototypeLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi.",
+  "q": {
+   "uz": "Karta bosilsa kichrayib qaytsin. Nima kerak?",
+   "ru": "Карточка при нажатии сжимается и возвращается. Что нужно?"
+  },
+  "opts": [
+   {
+    "uz": "`transition` va `font-size`",
+    "ru": "`transition` и `font-size`"
+   },
+   {
+    "uz": "`transform` va `transition`",
+    "ru": "`transform` и `transition`"
+   },
+   {
+    "uz": "`initial` va `exit`",
+    "ru": "`initial` и `exit`"
+   },
+   {
+    "uz": "`display` va `width`",
+    "ru": "`display` и `width`"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Yangi e'lonni qaysi qism saqlaydi?",
+   "ru": "Какая часть хранит новое объявление?"
+  },
+  "opts": [
+   {
+    "uz": "Database, jadval qatorida",
+    "ru": "Database, в строке таблицы"
+   },
+   {
+    "uz": "Backend, o'z kodida",
+    "ru": "Backend, в своём коде"
+   },
+   {
+    "uz": "Ilova, telefon xotirasida",
+    "ru": "Приложение, в памяти телефона"
+   },
+   {
+    "uz": "Telegram, guruh xabarida",
+    "ru": "Telegram, в сообщении группы"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bir o'yinchi ko'p o'yinda. Bu qayerda yoziladi?",
+   "ru": "Один игрок во многих играх. Где это записано?"
+  },
+  "opts": [
+   {
+    "uz": "`oyinchilar` dagi ustunda",
+    "ru": "в столбце `oyinchilar`"
+   },
+   {
+    "uz": "`ishtirokchilar` qatorlarida",
+    "ru": "в строках `ishtirokchilar`"
+   },
+   {
+    "uz": "`oyinlar` dagi ustunda",
+    "ru": "в столбце `oyinlar`"
+   },
+   {
+    "uz": "Telefon xotirasida",
+    "ru": "в памяти телефона"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "`tashkilotchi_id` ustuni nimani ko'rsatadi?",
+   "ru": "Что показывает столбец `tashkilotchi_id`?"
+  },
+  "opts": [
+   {
+    "uz": "Qo'shilgan o'yinchini",
+    "ru": "Присоединившегося игрока"
+   },
+   {
+    "uz": "O'yin qaysi maydonda",
+    "ru": "На каком поле игра"
+   },
+   {
+    "uz": "Kim e'lon qilganini",
+    "ru": "Кто объявил игру"
+   },
+   {
+    "uz": "Nechta odam kerakligini",
+    "ru": "Сколько людей нужно"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bu modulda ilova qachon so'raydi?",
+   "ru": "Когда в этом модуле приложение запрашивает?"
+  },
+  "opts": [
+   {
+    "uz": "Ochilganda, pastga tortilganda",
+    "ru": "При открытии и потягивании вниз"
+   },
+   {
+    "uz": "Faqat o'rnatilgan kuni",
+    "ru": "Только в день установки"
+   },
+   {
+    "uz": "Telefon qayta yoqilganda",
+    "ru": "При перезагрузке телефона"
+   },
+   {
+    "uz": "Har daqiqada o'zi",
+    "ru": "Само каждую минуту"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "`korsat()` nega ochilishda chaqiriladi?",
+   "ru": "Зачем `korsat()` вызывают при открытии?"
+  },
+  "opts": [
+   {
+    "uz": "Tugma o'zi bosilmasin deb",
+    "ru": "Чтобы кнопка не нажалась сама"
+   },
+   {
+    "uz": "Son darhol so'ralsin deb",
+    "ru": "Чтобы число запросилось сразу"
+   },
+   {
+    "uz": "`sora` o'chmasin deb",
+    "ru": "Чтобы `sora` не выключилась"
+   },
+   {
+    "uz": "Sahifa tez ochilsin deb",
+    "ru": "Чтобы страница открылась быстрее"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi, to'g'ri javob dars ta'rifiga keltirildi.",
+  "q": {
+   "uz": "Platforma nima?",
+   "ru": "Что такое платформа?"
+  },
+  "opts": [
+   {
+    "uz": "Backend turadigan xizmat",
+    "ru": "Сервис, где стоит Backend"
+   },
+   {
+    "uz": "Ekranlarning qog'oz chizmasi",
+    "ru": "Рисунок экранов на бумаге"
+   },
+   {
+    "uz": "Mahsulot qayerda ishlashi",
+    "ru": "Где работает продукт"
+   },
+   {
+    "uz": "Database jadvallari",
+    "ru": "Таблицы Database"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi.",
+  "q": {
+   "uz": "Yo'lda, telefonda ochiladi. Qaysi tomonga tortadi?",
+   "ru": "Открывают в пути, на телефоне. Куда это тянет?"
+  },
+  "opts": [
+   {
+    "uz": "Web tomoniga",
+    "ru": "К вебу"
+   },
+   {
+    "uz": "Ikkalasiga teng",
+    "ru": "Поровну"
+   },
+   {
+    "uz": "Hech qaysisiga",
+    "ru": "Никуда"
+   },
+   {
+    "uz": "Mobil tomoniga",
+    "ru": "К мобильному"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi.",
+  "q": {
+   "uz": "Havola bilan tez ulashish muhim. Qaysi tomonga tortadi?",
+   "ru": "Важно быстро делиться ссылкой. Куда это тянет?"
+  },
+  "opts": [
+   {
+    "uz": "Web tomoniga",
+    "ru": "К вебу"
+   },
+   {
+    "uz": "Mobil tomoniga",
+    "ru": "К мобильному"
+   },
+   {
+    "uz": "Hech qaysisiga",
+    "ru": "Никуда"
+   },
+   {
+    "uz": "Ikkalasiga teng",
+    "ru": "Поровну"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida nega mobil?",
+   "ru": "Почему в примере Ментора мобильная?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova chiroyliroq ko'rinadi",
+    "ru": "Приложение выглядит красивее"
+   },
+   {
+    "uz": "O'yinchi maydonda, telefonda",
+    "ru": "Игрок на поле, с телефоном"
+   },
+   {
+    "uz": "Faqat React Native tanish",
+    "ru": "Знаком только React Native"
+   },
+   {
+    "uz": "Havola guruhga tashlanadi",
+    "ru": "Ссылку кидают в группу"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Stek nima?",
+   "ru": "Что такое стек?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova ochiladigan platforma",
+    "ru": "Платформа, где открывается продукт"
+   },
+   {
+    "uz": "PRD dagi funksiyalar ro'yxati",
+    "ru": "Список функций в PRD"
+   },
+   {
+    "uz": "Birga ishlovchi texnologiyalar",
+    "ru": "Технологии, работающие вместе"
+   },
+   {
+    "uz": "Ilova ekranlari va tugmalari",
+    "ru": "Экраны и кнопки приложения"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Mobil trekka o'tsangiz, nima o'zgaradi?",
+   "ru": "Что изменится при переходе на мобильный трек?"
+  },
+  "opts": [
+   {
+    "uz": "Backend va Database",
+    "ru": "Backend и Database"
+   },
+   {
+    "uz": "Faqat Database jadvallari",
+    "ru": "Только таблицы Database"
+   },
+   {
+    "uz": "Uchala qism birdan",
+    "ru": "Все три части сразу"
+   },
+   {
+    "uz": "Foydalanuvchi ochadigan qism",
+    "ru": "Часть, которую открывает пользователь"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Jami 141; «qaysi fayl ishlaydi» mentor misoli strukturasiga bog'landi, yo'llar qisqartirildi.",
+  "q": {
+   "uz": "Mentor misolida `/oyin/3` ni qaysi fayl ochadi?",
+   "ru": "Какой файл открывает `/oyin/3` в примере ментора?"
+  },
+  "opts": [
+   {
+    "uz": "`oyin/index.tsx`",
+    "ru": "`oyin/index.tsx`"
+   },
+   {
+    "uz": "`oyin/3.tsx`",
+    "ru": "`oyin/3.tsx`"
+   },
+   {
+    "uz": "`oyin/[id].tsx`",
+    "ru": "`oyin/[id].tsx`"
+   },
+   {
+    "uz": "`oyinlar.tsx`",
+    "ru": "`oyinlar.tsx`"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "`<Stack />` nima qiladi?",
+   "ru": "Что делает `<Stack />`?"
+  },
+  "opts": [
+   {
+    "uz": "Ekranlarni tablarga joylaydi",
+    "ru": "Размещает экраны во вкладках"
+   },
+   {
+    "uz": "Har ekranga shrift beradi",
+    "ru": "Даёт каждому экрану шрифт"
+   },
+   {
+    "uz": "Yangi ekran fayli yaratadi",
+    "ru": "Создаёт новый файл экрана"
+   },
+   {
+    "uz": "Ekranlarni ustma-ust qo'yadi",
+    "ru": "Кладёт экраны друг на друга"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "`router.push('/elon')` nima qiladi?",
+   "ru": "Что делает `router.push('/elon')`?"
+  },
+  "opts": [
+   {
+    "uz": "E'lon berish ekranini ochadi",
+    "ru": "Открывает экран «Дать объявление»"
+   },
+   {
+    "uz": "Ilovani qayta yuklaydi",
+    "ru": "Перезагружает приложение"
+   },
+   {
+    "uz": "`elon.tsx` ni yaratadi",
+    "ru": "Создаёт `elon.tsx`"
+   },
+   {
+    "uz": "Ro'yxatni qayta chizadi",
+    "ru": "Перерисовывает список"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "QR ochilishi uchun odatda nima kerak?",
+   "ru": "Что обычно нужно, чтобы QR открылся?"
+  },
+  "opts": [
+   {
+    "uz": "Telefonda ochiq Chrome",
+    "ru": "Открытый Chrome на телефоне"
+   },
+   {
+    "uz": "Kompyuter bilan bitta Wi-Fi",
+    "ru": "Один Wi-Fi с компьютером"
+   },
+   {
+    "uz": "Kompyuterda ham Expo Go",
+    "ru": "Expo Go и на компьютере"
+   },
+   {
+    "uz": "Telefonda mobil internet",
+    "ru": "Мобильный интернет на телефоне"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "`--tunnel` qanday ulaydi?",
+   "ru": "Как соединяет `--tunnel`?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta Wi-Fi ichida, tezroq",
+    "ru": "В одном Wi-Fi, быстрее"
+   },
+   {
+    "uz": "Faqat iPhone'larda ulanadi",
+    "ru": "Соединяет только на iPhone"
+   },
+   {
+    "uz": "Internet orqali, sekinroq",
+    "ru": "Через интернет, медленнее"
+   },
+   {
+    "uz": "Kompyutersiz, faqat telefonda",
+    "ru": "Без компьютера, только на телефоне"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Expo Go akkaunt so'radi. Nima qilasiz?",
+   "ru": "Expo Go попросил аккаунт. Что вы сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani qayta o'rnataman",
+    "ru": "Переустановлю приложение"
+   },
+   {
+    "uz": "Loyihani qayta yarataman",
+    "ru": "Создам проект заново"
+   },
+   {
+    "uz": "QR'ni qayta skanerlayman",
+    "ru": "Снова отсканирую QR"
+   },
+   {
+    "uz": "Bitta Expo akkauntiga kiraman",
+    "ru": "Войду в один аккаунт Expo"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 32 belgi va eng uzun edi; qisqartirildi.",
+  "q": {
+   "uz": "Expo Go ilova kodini qayerdan oladi?",
+   "ru": "Откуда Expo Go берёт код приложения?"
+  },
+  "opts": [
+   {
+    "uz": "Kompyuterdagi expo start'dan",
+    "ru": "Из expo start на компьютере"
+   },
+   {
+    "uz": "Play Market sahifasidan",
+    "ru": "Со страницы в Play Market"
+   },
+   {
+    "uz": "Netlify'dagi saytdan",
+    "ru": "С сайта на Netlify"
+   },
+   {
+    "uz": "Telefon xotirasidan",
+    "ru": "Из памяти телефона"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 37 belgi va eng uzun edi; qisqartirildi.",
+  "q": {
+   "uz": "Adaptiv sayt nima?",
+   "ru": "Что такое адаптивный сайт?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat telefon uchun sayt",
+    "ru": "Сайт только для телефона"
+   },
+   {
+    "uz": "Ekran eniga moslashadigan sayt",
+    "ru": "Сайт, подстраивающийся под ширину"
+   },
+   {
+    "uz": "Do'kondan o'rnatiladigan ilova",
+    "ru": "Приложение из магазина"
+   },
+   {
+    "uz": "Animatsiyali, bosiladigan sayt",
+    "ru": "Сайт с анимацией и кнопками"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "PWA telefonga qayerdan qo'shiladi?",
+   "ru": "Откуда PWA добавляется на телефон?"
+  },
+  "opts": [
+   {
+    "uz": "Play Market do'konidan",
+    "ru": "Из магазина Play Market"
+   },
+   {
+    "uz": "Expo Go'dagi QR orqali",
+    "ru": "Через QR в Expo Go"
+   },
+   {
+    "uz": "Brauzerda saytning o'zidan",
+    "ru": "В браузере, с самого сайта"
+   },
+   {
+    "uz": "App Store do'konidan",
+    "ru": "Из магазина App Store"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzun edi; savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "PWA uchun qanday manzil kerak?",
+   "ru": "Какой адрес нужен для PWA?"
+  },
+  "opts": [
+   {
+    "uz": "Kompyuterdagi `localhost`",
+    "ru": "`localhost` на компьютере"
+   },
+   {
+    "uz": "Uydagi Wi-Fi manzili",
+    "ru": "Адрес в домашнем Wi-Fi"
+   },
+   {
+    "uz": "`http://` bilan manzil",
+    "ru": "Адрес с `http://`"
+   },
+   {
+    "uz": "Netlify'dagi HTTPS manzil",
+    "ru": "HTTPS-адрес на Netlify"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "O'yinchini ilova emas, Backend taniydi; savol aniqlashtirildi va qisqartirildi.",
+  "q": {
+   "uz": "Backend kirgan o'yinchini qanday taniydi?",
+   "ru": "Как Backend узнаёт вошедшего игрока?"
+  },
+  "opts": [
+   {
+    "uz": "So'rovdagi token orqali",
+    "ru": "По токену в запросе"
+   },
+   {
+    "uz": "Telefon raqamini so'rab",
+    "ru": "Спрашивая номер телефона"
+   },
+   {
+    "uz": "Database'dagi paroldan",
+    "ru": "По паролю в Database"
+   },
+   {
+    "uz": "Expo Go akkaunti orqali",
+    "ru": "По аккаунту Expo Go"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Jadvalda parol qanday saqlanadi?",
+   "ru": "Как пароль хранится в таблице?"
+  },
+  "opts": [
+   {
+    "uz": "Parolning o'zi bo'lib",
+    "ru": "Как сам пароль"
+   },
+   {
+    "uz": "Paroldan yasalgan hash bo'lib",
+    "ru": "Как hash из пароля"
+   },
+   {
+    "uz": "Telefon raqamiga qo'shilib",
+    "ru": "Вместе с номером телефона"
+   },
+   {
+    "uz": "Token ichiga joylanib",
+    "ru": "Внутри токена"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Tokensiz `GET /oyinlar` kelsa, Backend nima qiladi?",
+   "ru": "Что делает Backend, если пришёл `GET /oyinlar` без токена?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatni beradi",
+    "ru": "Отдаёт список"
+   },
+   {
+    "uz": "Birinchi o'yinni beradi",
+    "ru": "Отдаёт первую игру"
+   },
+   {
+    "uz": "401 qaytaradi",
+    "ru": "Возвращает 401"
+   },
+   {
+    "uz": "«Kirish»ni ochadi",
+    "ru": "Открывает «Вход»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Token telefonda qayerda saqlanadi?",
+   "ru": "Где токен хранится на телефоне?"
+  },
+  "opts": [
+   {
+    "uz": "`oyinchilar` jadvalida",
+    "ru": "В таблице `oyinchilar`"
+   },
+   {
+    "uz": "Ilovaning `.env` faylida",
+    "ru": "В файле `.env` приложения"
+   },
+   {
+    "uz": "Repo'dagi `README.md` da",
+    "ru": "В `README.md` в репо"
+   },
+   {
+    "uz": "`expo-secure-store` da",
+    "ru": "В `expo-secure-store`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Backend nega Render'ga chiqadi?",
+   "ru": "Зачем Backend выкладывают на Render?"
+  },
+  "opts": [
+   {
+    "uz": "Laptopda sekin ishlaydi",
+    "ru": "На ноутбуке он медленный"
+   },
+   {
+    "uz": "Telefon unga ulana oladi",
+    "ru": "Телефон сможет к нему подключиться"
+   },
+   {
+    "uz": "Render Database yaratadi",
+    "ru": "Render создаёт Database"
+   },
+   {
+    "uz": "Expo Go Render'ni talab qiladi",
+    "ru": "Expo Go требует Render"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "`EXPO_PUBLIC_API_URL` ga nima yoziladi?",
+   "ru": "Что пишется в `EXPO_PUBLIC_API_URL`?"
+  },
+  "opts": [
+   {
+    "uz": "`http://localhost:3000`",
+    "ru": "`http://localhost:3000`"
+   },
+   {
+    "uz": "`JWT_SECRET` qiymati",
+    "ru": "Значение `JWT_SECRET`"
+   },
+   {
+    "uz": "Render'dagi Backend manzili",
+    "ru": "Адрес Backend на Render"
+   },
+   {
+    "uz": "Neon'dagi `DATABASE_URL`",
+    "ru": "`DATABASE_URL` из Neon"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Maxfiy kalit nega `EXPO_PUBLIC_` ga yozilmaydi?",
+   "ru": "Почему секретный ключ не пишут в `EXPO_PUBLIC_`?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova sekinlashadi",
+    "ru": "Приложение замедлится"
+   },
+   {
+    "uz": "Expo Go uni o'chiradi",
+    "ru": "Expo Go его удалит"
+   },
+   {
+    "uz": "Render uni o'qimaydi",
+    "ru": "Render его не прочитает"
+   },
+   {
+    "uz": "Ilovada ochiq ko'rinadi",
+    "ru": "Он открыто виден в приложении"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzun edi; savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Deploy'dan keyin `JWT_SECRET` qayerda turadi?",
+   "ru": "Где хранится `JWT_SECRET` после деплоя?"
+  },
+  "opts": [
+   {
+    "uz": "Render'da, Environment'da",
+    "ru": "На Render, в Environment"
+   },
+   {
+    "uz": "`mobil/.env` faylida",
+    "ru": "В файле `mobil/.env`"
+   },
+   {
+    "uz": "`README.md` faylida",
+    "ru": "В файле `README.md`"
+   },
+   {
+    "uz": "Agentga talab matnida",
+    "ru": "В тексте требования агенту"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Render manzilida 401 chiqdi. Bu nima degani?",
+   "ru": "По адресу Render — 401. Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Backend ishlamayapti",
+    "ru": "Backend не работает"
+   },
+   {
+    "uz": "Ishlaydi, tokensiz yopiq",
+    "ru": "Работает, без токена закрыт"
+   },
+   {
+    "uz": "Database'da o'yin yo'q",
+    "ru": "В Database нет игр"
+   },
+   {
+    "uz": "Telefonda internet yo'q",
+    "ru": "На телефоне нет интернета"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Push'dan oldin fayllarni qanday qo'shasiz?",
+   "ru": "Как вы добавляете файлы перед push?"
+  },
+  "opts": [
+   {
+    "uz": "`git add .` bilan birdan",
+    "ru": "Сразу через `git add .`"
+   },
+   {
+    "uz": "`.env` ni ham qo'shib",
+    "ru": "Вместе с `.env`"
+   },
+   {
+    "uz": "Agent aytganlarini bittadan",
+    "ru": "Названные агентом — по одному"
+   },
+   {
+    "uz": "Faqat `README.md` ni",
+    "ru": "Только `README.md`"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 35 belgi va eng uzun edi; qisqartirildi.",
+  "q": {
+   "uz": "Ilova `GET /oyinlar` dan `401` oldi. Nima qiladi?",
+   "ru": "Приложение получило `401` от `GET /oyinlar`. Что оно делает?"
+  },
+  "opts": [
+   {
+    "uz": "Namunani ko'rsatadi",
+    "ru": "Показывает образец"
+   },
+   {
+    "uz": "Parolni qayta yuboradi",
+    "ru": "Снова отправляет пароль"
+   },
+   {
+    "uz": "Backend'ni qayta yoqadi",
+    "ru": "Перезапускает Backend"
+   },
+   {
+    "uz": "«Kirish»ni ochadi",
+    "ru": "Открывает «Вход»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Funksiyani agentga qanday berasiz?",
+   "ru": "Как вы передаёте функцию агенту?"
+  },
+  "opts": [
+   {
+    "uz": "Uch qatorli talab yozib",
+    "ru": "Написав требование из трёх строк"
+   },
+   {
+    "uz": "Roadmap qatorini yuborib",
+    "ru": "Отправив строку roadmap"
+   },
+   {
+    "uz": "PRD'ni to'liq yuborib",
+    "ru": "Отправив весь PRD"
+   },
+   {
+    "uz": "Faqat nomini yozib",
+    "ru": "Написав только название"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Talabda ikki marta bosish yo'q. Agent nima qiladi?",
+   "ru": "В требовании нет двойного нажатия. Что сделает агент?"
+  },
+  "opts": [
+   {
+    "uz": "Tugmani olib tashlaydi",
+    "ru": "Уберёт кнопку"
+   },
+   {
+    "uz": "O'zicha taxmin qiladi",
+    "ru": "Додумает сам"
+   },
+   {
+    "uz": "Funksiyani qurmaydi",
+    "ru": "Не построит функцию"
+   },
+   {
+    "uz": "Ilovani qayta yozadi",
+    "ru": "Перепишет приложение"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Formada «kim» yo'q. Egasi qayerdan olinadi?",
+   "ru": "В форме нет «кто». Откуда берётся владелец?"
+  },
+  "opts": [
+   {
+    "uz": "Telefon raqamidan",
+    "ru": "Из номера телефона"
+   },
+   {
+    "uz": "Ilovadagi ism yozuvidan",
+    "ru": "Из имени в приложении"
+   },
+   {
+    "uz": "So'rovdagi tokendan",
+    "ru": "Из токена в запросе"
+   },
+   {
+    "uz": "Jadvalning oxirgi qatoridan",
+    "ru": "Из последней строки таблицы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qayta yuklashda yangi e'lon nega yo'qolmadi?",
+   "ru": "Почему новое объявление не пропало при перезагрузке?"
+  },
+  "opts": [
+   {
+    "uz": "Telefonga yozilgan",
+    "ru": "Записано в телефон"
+   },
+   {
+    "uz": "Agent namunaga qo'shgan",
+    "ru": "Агент добавил в образец"
+   },
+   {
+    "uz": "Expo Go o'zida saqlagan",
+    "ru": "Expo Go сохранил у себя"
+   },
+   {
+    "uz": "Database'ga yozilgan",
+    "ru": "Записано в Database"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "«8 / 10» dagi 8 qayerdan keladi?",
+   "ru": "Откуда берётся 8 в «8 / 10»?"
+  },
+  "opts": [
+   {
+    "uz": "Database'dagi sanoqdan",
+    "ru": "Из подсчёта в Database"
+   },
+   {
+    "uz": "Telefondagi bosishlardan",
+    "ru": "Из нажатий на телефоне"
+   },
+   {
+    "uz": "Namuna faylidagi sondan",
+    "ru": "Из числа в файле-образце"
+   },
+   {
+    "uz": "Tashkilotchi yozgan sondan",
+    "ru": "Из числа, введённого организатором"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ikki marta «Qo'shilaman» bosildi. Nima bo'lishi kerak?",
+   "ru": "«Присоединяюсь» нажали дважды. Что должно произойти?"
+  },
+  "opts": [
+   {
+    "uz": "Son ikkiga oshadi",
+    "ru": "Число растёт на два"
+   },
+   {
+    "uz": "Son bittaga oshadi",
+    "ru": "Число растёт на один"
+   },
+   {
+    "uz": "Son o'zgarmaydi",
+    "ru": "Число не меняется"
+   },
+   {
+    "uz": "O'yin o'chib ketadi",
+    "ru": "Игра удаляется"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ekranda «9 / 10», o'yin to'lgan. Nega?",
+   "ru": "На экране «9 / 10», а игра заполнена. Почему?"
+  },
+  "opts": [
+   {
+    "uz": "Backend noto'g'ri sanagan",
+    "ru": "Backend посчитал неверно"
+   },
+   {
+    "uz": "Qo'shilganlar yozilmagan",
+    "ru": "Участники не записаны"
+   },
+   {
+    "uz": "Ekranda eski son turibdi",
+    "ru": "На экране старое число"
+   },
+   {
+    "uz": "Agent ekranni xato qurgan",
+    "ru": "Агент построил экран с ошибкой"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "To'lgan o'yinni qayerda tekshirish kerak?",
+   "ru": "Где нужно проверять заполненную игру?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovada, tugmani yashirib",
+    "ru": "В приложении, скрыв кнопку"
+   },
+   {
+    "uz": "Talabda, agent bilsin deb",
+    "ru": "В требовании, чтобы агент знал"
+   },
+   {
+    "uz": "Neon'da, qo'lda sanab",
+    "ru": "В Neon, считая вручную"
+   },
+   {
+    "uz": "Backend'da, Database'dan",
+    "ru": "В Backend, по Database"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "To'lgan o'yinda ilova nima ko'rsatadi?",
+   "ru": "Что показывает приложение в заполненной игре?"
+  },
+  "opts": [
+   {
+    "uz": "«O'yin to'ldi» xabarini",
+    "ru": "Сообщение «Игра заполнена»"
+   },
+   {
+    "uz": "«11 / 10» degan sonni",
+    "ru": "Число «11 / 10»"
+   },
+   {
+    "uz": "Yozuvsiz bo'sh ekranni",
+    "ru": "Пустой экран без надписей"
+   },
+   {
+    "uz": "«Kirish» ekranini",
+    "ru": "Экран «Вход»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Boshqa telefonda «8 / 10» qachon yangilanadi?",
+   "ru": "Когда обновляется «8 / 10» на другом телефоне?"
+  },
+  "opts": [
+   {
+    "uz": "Har soniyada o'zi",
+    "ru": "Само каждую секунду"
+   },
+   {
+    "uz": "Ochilganda yoki tortilganda",
+    "ru": "При открытии или потягивании"
+   },
+   {
+    "uz": "Ilova o'rnatilganda",
+    "ru": "При установке приложения"
+   },
+   {
+    "uz": "Tashkilotchi ruxsat berganda",
+    "ru": "Когда разрешит организатор"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Backend o'zgarishi telefonga qachon yetadi?",
+   "ru": "Когда изменение Backend доходит до телефона?"
+  },
+  "opts": [
+   {
+    "uz": "Agent «Tayyor» desa",
+    "ru": "Когда агент скажет «Готово»"
+   },
+   {
+    "uz": "`git commit` qilinganda",
+    "ru": "После `git commit`"
+   },
+   {
+    "uz": "Render deploy'ni tugatgach",
+    "ru": "Когда Render завершит деплой"
+   },
+   {
+    "uz": "Telefon qayta yoqilganda",
+    "ru": "После перезагрузки телефона"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzun edi; qisqartirildi.",
+  "q": {
+   "uz": "Agent «Tayyor» dedi. Nima qilasiz?",
+   "ru": "Агент сказал «Готово». Что вы сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Keyingi blokka o'tasiz",
+    "ru": "Перейдёте к следующему блоку"
+   },
+   {
+    "uz": "Agentdan qayta so'raysiz",
+    "ru": "Переспросите агента"
+   },
+   {
+    "uz": "README'ga «tayyor» yozasiz",
+    "ru": "Напишете «готово» в README"
+   },
+   {
+    "uz": "Talabni gapma-gap tekshirasiz",
+    "ru": "Проверите требование по фразам"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Kelaman» bosildi. Ruxsatni kim beradi?",
+   "ru": "Нажали «Приду». Кто даёт разрешение?"
+  },
+  "opts": [
+   {
+    "uz": "Backend, qoida bo'yicha",
+    "ru": "Backend, по правилу"
+   },
+   {
+    "uz": "Ilova, tugmani ko'rsatib",
+    "ru": "Приложение, показав кнопку"
+   },
+   {
+    "uz": "Database, qatorni ko'rib",
+    "ru": "Database, увидев строку"
+   },
+   {
+    "uz": "Tashkilotchi, qo'lda",
+    "ru": "Организатор, вручную"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Token bor, o'yinchi qo'shilmagan. Qaysi javob?",
+   "ru": "Токен есть, игрок не присоединился. Какой ответ?"
+  },
+  "opts": [
+   {
+    "uz": "`401` — kimligi noma'lum",
+    "ru": "`401` — неизвестно, кто"
+   },
+   {
+    "uz": "`403` — ruxsat yo'q",
+    "ru": "`403` — нет разрешения"
+   },
+   {
+    "uz": "`201` — qator yozildi",
+    "ru": "`201` — строка записана"
+   },
+   {
+    "uz": "`404` — yo'l topilmadi",
+    "ru": "`404` — путь не найден"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Shanbalik o'yinga juma kuni «Kelaman». Nima bo'ladi?",
+   "ru": "«Приду» в пятницу на субботнюю игру. Что будет?"
+  },
+  "opts": [
+   {
+    "uz": "`keladi` yoziladi",
+    "ru": "Запишется `keladi`"
+   },
+   {
+    "uz": "O'yin jumaga ko'chadi",
+    "ru": "Игра переедет на пятницу"
+   },
+   {
+    "uz": "Backend rad etadi",
+    "ru": "Backend отклонит"
+   },
+   {
+    "uz": "Tashkilotchi tasdiqlaydi",
+    "ru": "Организатор подтвердит"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Kelishini tasdiqladi: 7 / 9» da 9 nima?",
+   "ru": "Что значит 9 в «Подтвердили приход: 7 / 9»?"
+  },
+  "opts": [
+   {
+    "uz": "Tasdiqlagan o'yinchilar",
+    "ru": "Подтвердившие игроки"
+   },
+   {
+    "uz": "O'yinga kerak odamlar",
+    "ru": "Нужные для игры люди"
+   },
+   {
+    "uz": "Maydondagi bo'sh o'rinlar",
+    "ru": "Свободные места на поле"
+   },
+   {
+    "uz": "Qo'shilgan o'yinchilar",
+    "ru": "Присоединившиеся игроки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "ikki-javob"
+  ],
+  "izoh": "«Ilovani o'chirib qo'yadi» qayta ochish ma'nosida to'g'ri bo'lib qolardi (ochilganda son keladi); chalg'ituvchi almashtirildi, qisqartirildi.",
+  "q": {
+   "uz": "Tashkilotchi yangi tasdiqni qanday ko'radi?",
+   "ru": "Как организатор видит новое подтверждение?"
+  },
+  "opts": [
+   {
+    "uz": "Ekranni pastga tortadi",
+    "ru": "Потягивает экран вниз"
+   },
+   {
+    "uz": "Backend xabarini kutadi",
+    "ru": "Ждёт сообщения от Backend"
+   },
+   {
+    "uz": "Har o'yinchiga yozadi",
+    "ru": "Пишет каждому игроку"
+   },
+   {
+    "uz": "O'yin boshlanishini kutadi",
+    "ru": "Ждёт начала игры"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Tashkilotchidagi son o'zi yangilanadimi?",
+   "ru": "Обновляется ли число у организатора само?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, Backend o'zi yuboradi",
+    "ru": "Да, Backend сам присылает"
+   },
+   {
+    "uz": "Yo'q, ilova so'raganda",
+    "ru": "Нет, когда приложение запросит"
+   },
+   {
+    "uz": "Ha, bosilgan zahoti",
+    "ru": "Да, сразу после нажатия"
+   },
+   {
+    "uz": "Yo'q, faqat o'yin kuni",
+    "ru": "Нет, только в день игры"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Tugma yashirildi. Backend'dagi qoida-chi?",
+   "ru": "Кнопку скрыли. А правило в Backend?"
+  },
+  "opts": [
+   {
+    "uz": "O'chiriladi, kerak emas",
+    "ru": "Удаляется, не нужно"
+   },
+   {
+    "uz": "Ilovaga ko'chadi",
+    "ru": "Переносится в приложение"
+   },
+   {
+    "uz": "Qoladi, ruxsatni u beradi",
+    "ru": "Остаётся, разрешение даёт оно"
+   },
+   {
+    "uz": "Database'ga ko'chadi",
+    "ru": "Переносится в Database"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Boshqa odam tufayli ekranda nima o'zgaradi?",
+   "ru": "Что меняется на экране из-за другого человека?"
+  },
+  "opts": [
+   {
+    "uz": "«‹ O'yinlar» tugmasi",
+    "ru": "Кнопка «‹ Игры»"
+   },
+   {
+    "uz": "«Maydon Jamoa» nomi",
+    "ru": "Название «Maydon Jamoa»"
+   },
+   {
+    "uz": "Formadagi «Soat»",
+    "ru": "«Время» в форме"
+   },
+   {
+    "uz": "Tasdiqlaganlar soni",
+    "ru": "Число подтвердивших"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Tugmani yashirganda «Nima buzilmasin»ga nima yozasiz?",
+   "ru": "Что вы пишете в «Что не сломать», скрывая кнопку?"
+  },
+  "opts": [
+   {
+    "uz": "Backend qoidasi qolsin",
+    "ru": "Правило Backend остаётся"
+   },
+   {
+    "uz": "Tugma doim tursin",
+    "ru": "Кнопка всегда на месте"
+   },
+   {
+    "uz": "Jadval tozalansin",
+    "ru": "Таблица очищается"
+   },
+   {
+    "uz": "Yo'l tokensiz ochilsin",
+    "ru": "Путь открыт без токена"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bugun o'yin yo'q. Tasdiqni qanday sinaysiz?",
+   "ru": "Сегодня игры нет. Как проверите подтверждение?"
+  },
+  "opts": [
+   {
+    "uz": "Qoidani o'chirib turasiz",
+    "ru": "Временно отключите правило"
+   },
+   {
+    "uz": "Bugunga yangi e'lon berasiz",
+    "ru": "Дадите новое объявление на сегодня"
+   },
+   {
+    "uz": "Telefon soatini surasiz",
+    "ru": "Переведёте часы телефона"
+   },
+   {
+    "uz": "Shanbagacha kutasiz",
+    "ru": "Подождёте до субботы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Backend o'zgarishi Render'ga qanday chiqadi?",
+   "ru": "Как изменение Backend попадает на Render?"
+  },
+  "opts": [
+   {
+    "uz": "Render'da qo'lda yozasiz",
+    "ru": "Пишете вручную на Render"
+   },
+   {
+    "uz": "`npx expo start` qilasiz",
+    "ru": "Запускаете `npx expo start`"
+   },
+   {
+    "uz": "`git push` qilasiz",
+    "ru": "Делаете `git push`"
+   },
+   {
+    "uz": "Neon'da jadval yaratasiz",
+    "ru": "Создаёте таблицу в Neon"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzun edi; savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ikkinchi telefon nima uchun kerak?",
+   "ru": "Зачем нужен второй телефон?"
+  },
+  "opts": [
+   {
+    "uz": "Tezroq ishlashi uchun",
+    "ru": "Чтобы работало быстрее"
+   },
+   {
+    "uz": "Expo Go yangilanishi uchun",
+    "ru": "Чтобы обновился Expo Go"
+   },
+   {
+    "uz": "Dizayn bir xilligi uchun",
+    "ru": "Ради одинакового дизайна"
+   },
+   {
+    "uz": "Boshqa odam ko'rishi uchun",
+    "ru": "Чтобы увидел другой человек"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sinovda siz nima qilasiz?",
+   "ru": "Что вы делаете на тесте?"
+  },
+  "opts": [
+   {
+    "uz": "Vazifa berib, jim kuzatasiz",
+    "ru": "Даёте задание и молча наблюдаете"
+   },
+   {
+    "uz": "Ilovani o'zingiz ko'rsatasiz",
+    "ru": "Сами показываете приложение"
+   },
+   {
+    "uz": "Ilova yoqdimi, deb so'raysiz",
+    "ru": "Спрашиваете, понравилось ли"
+   },
+   {
+    "uz": "Har tugmani tushuntirasiz",
+    "ru": "Объясняете каждую кнопку"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«3 / 3» sanog'i nimani bildiradi?",
+   "ru": "Что значит счёт «3 / 3»?"
+  },
+  "opts": [
+   {
+    "uz": "Tugma uch marta bosilgan",
+    "ru": "Кнопку нажали три раза"
+   },
+   {
+    "uz": "Uchalasi shu joyda to'xtagan",
+    "ru": "Все трое застряли здесь"
+   },
+   {
+    "uz": "Sinov uch daqiqa ketgan",
+    "ru": "Тест длился три минуты"
+   },
+   {
+    "uz": "Uch ekranda to'xtash bor",
+    "ru": "Застревание на трёх экранах"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi; xulosa va taklif chalg'ituvchi bo'lib qoldi.",
+  "q": {
+   "uz": "Kuzatuv yozuviga qaysi qator mos?",
+   "ru": "Какая строка подходит для записи наблюдения?"
+  },
+  "opts": [
+   {
+    "uz": "0:40 · Ro'yxat noqulay ekan",
+    "ru": "0:40 · Список неудобный"
+   },
+   {
+    "uz": "0:40 · Hammaga yoqmaydi",
+    "ru": "0:40 · Всем не понравится"
+   },
+   {
+    "uz": "0:40 · Pastga surib, topdi",
+    "ru": "0:40 · Пролистал вниз, нашёл"
+   },
+   {
+    "uz": "0:40 · Tugmani kattalash kerak",
+    "ru": "0:40 · Кнопку надо увеличить"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Vazifani bajardi: 2 / 3» — bu nima?",
+   "ru": "«Выполнил задание: 2 / 3» — что это?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova ikki marta ochilgan",
+    "ru": "Приложение открыли дважды"
+   },
+   {
+    "uz": "Ilova 2/3 qismi tayyor",
+    "ru": "Готово 2/3 приложения"
+   },
+   {
+    "uz": "Ikki to'xtash takrorlangan",
+    "ru": "Два застревания повторились"
+   },
+   {
+    "uz": "Bir kishi bajara olmagan",
+    "ru": "Один человек не справился"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Qisqartirildi, variantlar bir shaklda.",
+  "q": {
+   "uz": "Cyberpunk 2077 qanday chiqdi?",
+   "ru": "Как вышел Cyberpunk 2077?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'p xato bilan chiqdi",
+    "ru": "Вышел с множеством ошибок"
+   },
+   {
+    "uz": "Xatosiz, tayyor holda chiqdi",
+    "ru": "Вышел готовым, без ошибок"
+   },
+   {
+    "uz": "Faqat kompyuter uchun chiqdi",
+    "ru": "Вышел только для компьютера"
+   },
+   {
+    "uz": "Bepul sinov sifatida chiqdi",
+    "ru": "Вышел как бесплатный тест"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Sony Cyberpunk'ni nima qildi?",
+   "ru": "Что Sony сделала с Cyberpunk?"
+  },
+  "opts": [
+   {
+    "uz": "Narxini tushirib qo'ydi",
+    "ru": "Снизила цену"
+   },
+   {
+    "uz": "Do'konidan yarim yilga oldi",
+    "ru": "Убрала из магазина на полгода"
+   },
+   {
+    "uz": "Yangi nom bilan chiqardi",
+    "ru": "Выпустила под новым названием"
+   },
+   {
+    "uz": "Xaridorga o'yin sovg'a qildi",
+    "ru": "Подарила покупателям игру"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qaysi to'xtash birinchi tuzatiladi?",
+   "ru": "Какое застревание исправляют первым?"
+  },
+  "opts": [
+   {
+    "uz": "Eng oson tuzatiladigan",
+    "ru": "Самое лёгкое в исправлении"
+   },
+   {
+    "uz": "Sinov oxirida yozilgan",
+    "ru": "Записанное в конце теста"
+   },
+   {
+    "uz": "Ko'p kishida, vazifaga to'siq",
+    "ru": "У многих и мешает задаче"
+   },
+   {
+    "uz": "Ekran pastida, ko'rinmagan",
+    "ru": "Внизу экрана, незаметное"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Faqat to'g'ri variantda tire yo'q edi — variantlar bir shaklga keltirildi.",
+  "q": {
+   "uz": "Qayta sinovni kim bilan o'tkazasiz?",
+   "ru": "С кем проводите повторный тест?"
+  },
+  "opts": [
+   {
+    "uz": "Avval sinagan o'sha kishi",
+    "ru": "С тем же, кто уже тестировал"
+   },
+   {
+    "uz": "Ilovani yozgan o'zingiz",
+    "ru": "Сами — вы делали приложение"
+   },
+   {
+    "uz": "Kodni tekshiradigan agent",
+    "ru": "С агентом, который проверяет код"
+   },
+   {
+    "uz": "Ilovani ko'rmagan yangi odam",
+    "ru": "С новым человеком, не видевшим приложение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi; «terminal xabari» git diff bilan chalkashmasin deb almashtirildi.",
+  "q": {
+   "uz": "Agent «tuzatdim» desa, nimaga qaraysiz?",
+   "ru": "Агент сказал «исправил». Куда смотрите?"
+  },
+  "opts": [
+   {
+    "uz": "Faylga va telefonga",
+    "ru": "На файл и на телефон"
+   },
+   {
+    "uz": "Agent hisobotiga",
+    "ru": "На отчёт агента"
+   },
+   {
+    "uz": "Talab matniga",
+    "ru": "На текст требования"
+   },
+   {
+    "uz": "Prompt matniga",
+    "ru": "На текст промпта"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bu darsda nechta to'xtash tuzatiladi?",
+   "ru": "Сколько застреваний исправляют на уроке?"
+  },
+  "opts": [
+   {
+    "uz": "Uchalasi, bitta promptda",
+    "ru": "Все три, одним промптом"
+   },
+   {
+    "uz": "Bittasi, qolgani «Keyin»ga",
+    "ru": "Одно, остальные в «Потом»"
+   },
+   {
+    "uz": "Ikkitasi, eng osonlari",
+    "ru": "Два, самые лёгкие"
+   },
+   {
+    "uz": "Hech biri, avval sinov",
+    "ru": "Ни одного, сначала тест"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Nega ilova avval kam odamda sinaladi?",
+   "ru": "Зачем приложение сначала тестируют на немногих?"
+  },
+  "opts": [
+   {
+    "uz": "Tezroq chiqarish uchun",
+    "ru": "Чтобы быстрее выпустить"
+   },
+   {
+    "uz": "Kam talab yozish uchun",
+    "ru": "Чтобы писать меньше требований"
+   },
+   {
+    "uz": "Xatoni oldin ko'rish uchun",
+    "ru": "Чтобы раньше увидеть ошибки"
+   },
+   {
+    "uz": "Reklama uchun fikr olish",
+    "ru": "Чтобы получить отзыв для рекламы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Nima qilsin» qatoriga nima yoziladi?",
+   "ru": "Что пишут в строку «Что сделать»?"
+  },
+  "opts": [
+   {
+    "uz": "Kishi aytgan shikoyat",
+    "ru": "Жалобу человека дословно"
+   },
+   {
+    "uz": "Butun ekranni qayta qurish",
+    "ru": "Переделать весь экран"
+   },
+   {
+    "uz": "To'xtaganlar soni va vaqti",
+    "ru": "Число застрявших и время"
+   },
+   {
+    "uz": "Bitta aniq o'zgarish",
+    "ru": "Одно конкретное изменение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi; «tashkilotchiga yozadi» hayotda ham to'g'ri bo'lgani uchun almashtirildi.",
+  "q": {
+   "uz": "O'yinchi kela olmaydi. Ilovada nima qiladi?",
+   "ru": "Игрок не сможет прийти. Что он делает в приложении?"
+  },
+  "opts": [
+   {
+    "uz": "«O'yindan chiqish»ni bosadi",
+    "ru": "Нажимает «Выйти из игры»"
+   },
+   {
+    "uz": "«Kelaman»ni bosmaydi",
+    "ru": "Не нажимает «Приду»"
+   },
+   {
+    "uz": "Ilovaga kirmay qo'yadi",
+    "ru": "Перестаёт заходить в приложение"
+   },
+   {
+    "uz": "Ilovani o'chiradi",
+    "ru": "Удаляет приложение"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "To'lgan o'yinda o'ynamoqchisiz. Nimani bosasiz?",
+   "ru": "Хотите сыграть в заполненной игре. Что нажмёте?"
+  },
+  "opts": [
+   {
+    "uz": "«Qo'shilaman»ni qayta",
+    "ru": "Снова «Присоединяюсь»"
+   },
+   {
+    "uz": "«Navbatga yozilish»",
+    "ru": "«Записаться в очередь»"
+   },
+   {
+    "uz": "«Kelaman»ni o'yin kuni",
+    "ru": "«Приду» в день игры"
+   },
+   {
+    "uz": "«E'lon berish»",
+    "ru": "«Объявить игру»"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bo'shagan joyni kim oladi?",
+   "ru": "Кто получает освободившееся место?"
+  },
+  "opts": [
+   {
+    "uz": "Ekranni birinchi yangilagan",
+    "ru": "Первый, кто обновил экран"
+   },
+   {
+    "uz": "Tashkilotchi tanlagan",
+    "ru": "Тот, кого выбрал организатор"
+   },
+   {
+    "uz": "Navbatga birinchi yozilgan",
+    "ru": "Первый записавшийся в очередь"
+   },
+   {
+    "uz": "Navbatga oxirgi yozilgan",
+    "ru": "Последний записавшийся в очередь"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi.",
+  "q": {
+   "uz": "«10 / 10», navbat bo'sh. Biri chiqsa, kartada nima?",
+   "ru": "«10 / 10», очередь пуста. Один вышел — что на карточке?"
+  },
+  "opts": [
+   {
+    "uz": "10 / 10, «O'yin to'ldi»",
+    "ru": "10 / 10, «Игра заполнена»"
+   },
+   {
+    "uz": "9 / 10, «O'yin to'ldi»",
+    "ru": "9 / 10, «Игра заполнена»"
+   },
+   {
+    "uz": "10 / 10, «Qo'shilaman»",
+    "ru": "10 / 10, «Присоединяюсь»"
+   },
+   {
+    "uz": "9 / 10, «Qo'shilaman»",
+    "ru": "9 / 10, «Присоединяюсь»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Navbatdagi kishi joy olganini qachon biladi?",
+   "ru": "Когда игрок из очереди узнаёт, что получил место?"
+  },
+  "opts": [
+   {
+    "uz": "Ekranni yangilaganda",
+    "ru": "Когда обновит экран"
+   },
+   {
+    "uz": "Tashkilotchi aytganda",
+    "ru": "Когда скажет организатор"
+   },
+   {
+    "uz": "Maydonga borganda",
+    "ru": "Когда придёт на поле"
+   },
+   {
+    "uz": "Navbatga yozilgan zahoti",
+    "ru": "Сразу при записи в очередь"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Navbatdagi o'yinchi jadvalda qanday turadi?",
+   "ru": "Как игрок из очереди записан в таблице?"
+  },
+  "opts": [
+   {
+    "uz": "`qoshildi` holatida",
+    "ru": "Со статусом `qoshildi`"
+   },
+   {
+    "uz": "`navbatda` holatida",
+    "ru": "Со статусом `navbatda`"
+   },
+   {
+    "uz": "`chiqdi` holatida",
+    "ru": "Со статусом `chiqdi`"
+   },
+   {
+    "uz": "Alohida `navbat` jadvalida",
+    "ru": "В отдельной таблице `navbat`"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Ilova Backend o'zgarishini qachon ko'radi?",
+   "ru": "Когда приложение увидит изменение Backend?"
+  },
+  "opts": [
+   {
+    "uz": "`start:dev` qilgach",
+    "ru": "После `start:dev`"
+   },
+   {
+    "uz": "Expo Go o'rnatilgach",
+    "ru": "После установки Expo Go"
+   },
+   {
+    "uz": "Push'dan, Render yangilagach",
+    "ru": "После push, когда Render обновит"
+   },
+   {
+    "uz": "Neon'da jadval ochilgach",
+    "ru": "Когда откроете таблицу в Neon"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Bir vaqtda» qatori yo'q. Oxirgi joyni ikki kishi bossa?",
+   "ru": "Строки «одновременно» нет. Двое нажали на последнее место?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkalasi rad etiladi",
+    "ru": "Обоим откажут"
+   },
+   {
+    "uz": "Biri o'zi o'chadi",
+    "ru": "Одно нажатие само пропадёт"
+   },
+   {
+    "uz": "Tashkilotchi tanlaydi",
+    "ru": "Выберет организатор"
+   },
+   {
+    "uz": "Ikkalasi ham yoziladi",
+    "ru": "Запишутся оба"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Oxirgi joy bir kishiga qanday tegadi?",
+   "ru": "Как последнее место достаётся одному?"
+  },
+  "opts": [
+   {
+    "uz": "Tekshiruv va yozuv bitta ish",
+    "ru": "Проверка и запись — одна операция"
+   },
+   {
+    "uz": "Avval yozib, keyin o'chiradi",
+    "ru": "Записывает, потом удаляет"
+   },
+   {
+    "uz": "Yaqin telefonni tanlaydi",
+    "ru": "Выбирает ближайший телефон"
+   },
+   {
+    "uz": "Ikkalasini rad etadi",
+    "ru": "Отклоняет оба запроса"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Bitta ish»da ikkinchi so'rov nima qiladi?",
+   "ru": "Что делает второй запрос во время «одной операции»?"
+  },
+  "opts": [
+   {
+    "uz": "Oldinga o'tib yoziladi",
+    "ru": "Проскакивает и записывается"
+   },
+   {
+    "uz": "Kutib, keyin javob oladi",
+    "ru": "Ждёт, потом получает ответ"
+   },
+   {
+    "uz": "Javobsiz yo'qoladi",
+    "ru": "Пропадает без ответа"
+   },
+   {
+    "uz": "U ham birga yoziladi",
+    "ru": "Записывается вместе"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bir lahzadagi so'rovlarni qanday sinaysiz?",
+   "ru": "Как проверить запросы в один миг?"
+  },
+  "opts": [
+   {
+    "uz": "Ikki telefonda bosib",
+    "ru": "Нажав на двух телефонах"
+   },
+   {
+    "uz": "Bitta telefonda tez bosib",
+    "ru": "Быстро нажав на одном телефоне"
+   },
+   {
+    "uz": "Agent so'rovlari bilan",
+    "ru": "Запросами агента"
+   },
+   {
+    "uz": "Neon'da qo'lda yozib",
+    "ru": "Вписав вручную в Neon"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi; Render/Neon sozlamalari hayotda ham to'g'ri bo'lgani uchun almashtirildi.",
+  "q": {
+   "uz": "Uchinchi funksiyada nima buzilmasin?",
+   "ru": "Что не должно сломаться в третьей функции?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat yangi funksiyangiz",
+    "ru": "Только ваша новая функция"
+   },
+   {
+    "uz": "`README.md` fayli",
+    "ru": "Файл `README.md`"
+   },
+   {
+    "uz": "Kelgusi funksiyalaringiz",
+    "ru": "Ваши будущие функции"
+   },
+   {
+    "uz": "Oldingi ikki funksiyangiz",
+    "ru": "Две ваши прежние функции"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi va bir shaklga keltirildi.",
+  "q": {
+   "uz": "Holat nimani ko'rsatadi?",
+   "ru": "Что показывает статус?"
+  },
+  "opts": [
+   {
+    "uz": "Ish rejaga ko'ra qayerdaligini",
+    "ru": "Где работа относительно плана"
+   },
+   {
+    "uz": "Ishga necha kun ketishini",
+    "ru": "Сколько дней займёт работа"
+   },
+   {
+    "uz": "Ishni kim bajarishini",
+    "ru": "Кто выполнит работу"
+   },
+   {
+    "uz": "Ish necha kishiga kerakligini",
+    "ru": "Скольким людям нужна работа"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol qisqartirildi.",
+  "q": {
+   "uz": "Ish o'z darsida tugadi, telefonda ishlaydi. Holati?",
+   "ru": "Работа закончена на своём уроке и работает на телефоне. Статус?"
+  },
+  "opts": [
+   {
+    "uz": "Kechikdi",
+    "ru": "С опозданием"
+   },
+   {
+    "uz": "Bajarildi",
+    "ru": "Выполнено"
+   },
+   {
+    "uz": "Boshlanmadi",
+    "ru": "Не начато"
+   },
+   {
+    "uz": "Bekor qilindi",
+    "ru": "Отменено"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Keyinroq ufqidagi ish boshlanmagan. Bu nima?",
+   "ru": "Работа на горизонте «позже» не начата. Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Ish kechikkan",
+    "ru": "Работа опоздала"
+   },
+   {
+    "uz": "Roadmap xato tuzilgan",
+    "ru": "Roadmap составлен неверно"
+   },
+   {
+    "uz": "Vaqti hali kelmagan",
+    "ru": "Её время ещё не пришло"
+   },
+   {
+    "uz": "Ishni o'chirish kerak",
+    "ru": "Работу надо удалить"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Risk nima?",
+   "ru": "Что такое риск?"
+  },
+  "opts": [
+   {
+    "uz": "Bo'lib o'tgan kechikish",
+    "ru": "Уже случившаяся задержка"
+   },
+   {
+    "uz": "Kelajakdagi yangi funksiya",
+    "ru": "Будущая новая функция"
+   },
+   {
+    "uz": "Bajarilgan ishlar ro'yxati",
+    "ru": "Список выполненных работ"
+   },
+   {
+    "uz": "Xalaqit berishi mumkin narsa",
+    "ru": "То, что может помешать плану"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Bepul Render'da Backend qachon uxlaydi?",
+   "ru": "Когда Backend засыпает на бесплатном Render?"
+  },
+  "opts": [
+   {
+    "uz": "15 daqiqa so'rov kelmasa",
+    "ru": "Если 15 минут нет запросов"
+   },
+   {
+    "uz": "Har kuni yarim tunda",
+    "ru": "Каждый день в полночь"
+   },
+   {
+    "uz": "Kuniga 100 so'rovdan keyin",
+    "ru": "После 100 запросов в день"
+   },
+   {
+    "uz": "Ilova yopilgan zahoti",
+    "ru": "Сразу, как закрыли приложение"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«3 sinovchi» riskiga qadam qaysi?",
+   "ru": "Какой шаг против риска «3 тестировщика»?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi funksiya qo'shish",
+    "ru": "Добавить новую функцию"
+   },
+   {
+    "uz": "Odamni keyin qidirish",
+    "ru": "Искать людей позже"
+   },
+   {
+    "uz": "10 kishini sinovga chaqirish",
+    "ru": "Позвать 10 человек на тест"
+   },
+   {
+    "uz": "3 kishiga qayta sinatish",
+    "ru": "Дать троим протестировать снова"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Faqat to'g'ri variant boshqa grammatik shaklda edi — bir shaklga keltirildi.",
+  "q": {
+   "uz": "Expo Go nega Mentorga risk bo'ldi?",
+   "ru": "Почему Expo Go стал риском для Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani sekin ochadi",
+    "ru": "Медленно открывает приложение"
+   },
+   {
+    "uz": "Backend'ga ulanmaydi",
+    "ru": "Не подключается к Backend"
+   },
+   {
+    "uz": "Faqat iPhone'da ishlaydi",
+    "ru": "Работает только на iPhone"
+   },
+   {
+    "uz": "Sinash ilovasi, hammada yo'q",
+    "ru": "Тестовое приложение, есть не у всех"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "APK nima?",
+   "ru": "Что такое APK?"
+  },
+  "opts": [
+   {
+    "uz": "Android'ga o'rnatiladigan fayl",
+    "ru": "Файл приложения для Android"
+   },
+   {
+    "uz": "iPhone ilovalar do'koni",
+    "ru": "Магазин приложений iPhone"
+   },
+   {
+    "uz": "Expo Go'dagi sinov rejimi",
+    "ru": "Тестовый режим в Expo Go"
+   },
+   {
+    "uz": "Render sozlamalari fayli",
+    "ru": "Файл настроек Render"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar darsdagi ufq yorliqlariga keltirildi. Variantlardan modul raqami olindi — javob ko'rinib qolmasin.",
+  "q": {
+   "uz": "Qadam 12-Modulda bajariladi. Qaysi ufqqa qo'yasiz?",
+   "ru": "Шаг выполняется в 12-м модуле. На какой горизонт поставите?"
+  },
+  "opts": [
+   {
+    "uz": "Hozir",
+    "ru": "Сейчас"
+   },
+   {
+    "uz": "Keyinroq",
+    "ru": "Позже"
+   },
+   {
+    "uz": "Uzoqroq",
+    "ru": "Дальше"
+   },
+   {
+    "uz": "Ufqsiz",
+    "ru": "Без горизонта"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Qaysi biri riskka qarshi aniq qadam?",
+   "ru": "Что из этого — конкретный шаг против риска?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'proq e'tibor berish",
+    "ru": "Уделять больше внимания"
+   },
+   {
+    "uz": "Tezroq harakat qilish",
+    "ru": "Действовать быстрее"
+   },
+   {
+    "uz": "Shanba 10 kishini chaqirish",
+    "ru": "Позвать 10 человек в субботу"
+   },
+   {
+    "uz": "Keyinroq o'ylab ko'rish",
+    "ru": "Подумать об этом позже"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Yakkama-yakkada nimani ko'rasiz?",
+   "ru": "Что смотрите на встрече один на один?"
+  },
+  "opts": [
+   {
+    "uz": "Arena natijasi va ballingizni",
+    "ru": "Результат арены и баллы"
+   },
+   {
+    "uz": "Kodingizning har qatorini",
+    "ru": "Каждую строку кода"
+   },
+   {
+    "uz": "O'nta yangi g'oyangizni",
+    "ru": "Десять новых идей"
+   },
+   {
+    "uz": "Holat, risk va qadamlarni",
+    "ru": "Статусы, риски и шаги"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Zal ilova ishlashini ko'rmoqchi. Nima qilasiz?",
+   "ru": "Зал хочет увидеть, что приложение работает. Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Telefonda ko'rsatasiz",
+    "ru": "Показываете на телефоне"
+   },
+   {
+    "uz": "Bir gapda tushuntirasiz",
+    "ru": "Объясняете одной фразой"
+   },
+   {
+    "uz": "Sanoqni aytasiz",
+    "ru": "Называете подсчёт"
+   },
+   {
+    "uz": "Rejani aytasiz",
+    "ru": "Рассказываете план"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Muammoni qayerdan bilasiz?» Nima deysiz?",
+   "ru": "«Откуда вы знаете о проблеме?» Что ответите?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova texnologiyalari",
+    "ru": "Технологии приложения"
+   },
+   {
+    "uz": "Necha kishidan nechtasida",
+    "ru": "У скольких из скольких"
+   },
+   {
+    "uz": "Ekran va tugmalar soni",
+    "ru": "Число экранов и кнопок"
+   },
+   {
+    "uz": "Keyingi oy rejalari",
+    "ru": "Планы на следующий месяц"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Qisqartirildi; «do'stlariga aytadi» ham harakat bo'lib ko'rinishi mumkin edi — almashtirildi, to'g'ri javob darsdagi misolga (sinovga kun belgilash) bog'landi.",
+  "q": {
+   "uz": "Harakat belgisi nimani ko'rsatadi?",
+   "ru": "Что показывает сигнал действия?"
+  },
+  "opts": [
+   {
+    "uz": "Intervyuda uzoq gapirganini",
+    "ru": "Что долго говорил на интервью"
+   },
+   {
+    "uz": "G'oyani maqtaganini",
+    "ru": "Что хвалил идею"
+   },
+   {
+    "uz": "Sinovga kun belgilaganini",
+    "ru": "Что назначил день для теста"
+   },
+   {
+    "uz": "Tez javob berganini",
+    "ru": "Что быстро отвечал"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Olti intervyu — kichik son» nimani aytadi?",
+   "ru": "Что значит «Шесть интервью — малое число»?"
+  },
+  "opts": [
+   {
+    "uz": "Intervyular foydasiz",
+    "ru": "Интервью бесполезны"
+   },
+   {
+    "uz": "Yuzta intervyu shart",
+    "ru": "Нужно сто интервью"
+   },
+   {
+    "uz": "To'garaklar yaxshiroq",
+    "ru": "Кружки лучше"
+   },
+   {
+    "uz": "Dalil bor, isbot yo'q",
+    "ru": "Довод есть, доказательства нет"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Faqat to'g'ri variant boshqa grammatik shaklda edi — bir shaklga keltirildi.",
+  "q": {
+   "uz": "Bo'lak nega darhol qayta aytiladi?",
+   "ru": "Зачем часть сразу рассказывают снова?"
+  },
+  "opts": [
+   {
+    "uz": "Vaqt ortib qolgani uchun",
+    "ru": "Осталось лишнее время"
+   },
+   {
+    "uz": "Sherik so'ragani uchun",
+    "ru": "Попросил партнёр"
+   },
+   {
+    "uz": "Javob bo'ldimi, bilish uchun",
+    "ru": "Проверить, есть ли теперь ответ"
+   },
+   {
+    "uz": "Taymer talab qilgani uchun",
+    "ru": "Так требует таймер"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Demo Day oldidan nimani tekshirasiz?",
+   "ru": "Что проверяете перед Demo Day?"
+  },
+  "opts": [
+   {
+    "uz": "Ochilishi va asosiy harakatni",
+    "ru": "Открытие и главное действие"
+   },
+   {
+    "uz": "Koddagi fayllar sonini",
+    "ru": "Число файлов в коде"
+   },
+   {
+    "uz": "Ranglar sherikka yoqishini",
+    "ru": "Нравятся ли цвета партнёру"
+   },
+   {
+    "uz": "Ilova nomi uzunligini",
+    "ru": "Длину названия приложения"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "Yechim bo'lagida nima aytiladi?",
+   "ru": "Что говорят в части «Решение»?"
+  },
+  "opts": [
+   {
+    "uz": "Ishlatilgan texnologiyalar",
+    "ru": "Использованные технологии"
+   },
+   {
+    "uz": "Odamga nima qilishi, bir gapda",
+    "ru": "Что продукт делает человеку, одной фразой"
+   },
+   {
+    "uz": "Hamma ekranlarning nomi",
+    "ru": "Названия всех экранов"
+   },
+   {
+    "uz": "Qurishga ketgan haftalar",
+    "ru": "Сколько недель строили"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Qisqartirildi; «yangi versiyani yuklaydi» Expo'da hayotda ham bo'lishi mumkin edi — almashtirildi.",
+  "q": {
+   "uz": "Ilovani nega pitchdan oldin ochasiz?",
+   "ru": "Зачем открывать приложение до питча?"
+  },
+  "opts": [
+   {
+    "uz": "Ekran yorishishi uchun",
+    "ru": "Чтобы экран стал ярче"
+   },
+   {
+    "uz": "Zal ko'rib turishi uchun",
+    "ru": "Чтобы зал видел заранее"
+   },
+   {
+    "uz": "Zaryad to'lishi uchun",
+    "ru": "Чтобы зарядился телефон"
+   },
+   {
+    "uz": "Backend uyg'onishi uchun",
+    "ru": "Чтобы проснулся Backend"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Jonli demoda qaysi harakatni ko'rsatasiz?",
+   "ru": "Какое действие показываете в живом демо?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma tugmalarni",
+    "ru": "Все кнопки"
+   },
+   {
+    "uz": "Kod fayllarini",
+    "ru": "Файлы кода"
+   },
+   {
+    "uz": "Sozlamalar sahifasini",
+    "ru": "Страницу настроек"
+   },
+   {
+    "uz": "Sinov vazifasidagi ishni",
+    "ru": "Главное действие из теста"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Keyingi qadam bo'lagiga nima yoziladi?",
+   "ru": "Что пишут в часть «Следующий шаг»?"
+  },
+  "opts": [
+   {
+    "uz": "Kelajakdagi hamma ishlar",
+    "ru": "Все будущие дела"
+   },
+   {
+    "uz": "Rejangizdagi birinchi ish",
+    "ru": "Первое дело из вашего плана"
+   },
+   {
+    "uz": "Hamma to'xtashlar",
+    "ru": "Все застревания"
+   },
+   {
+    "uz": "Ilova qanday qurilgani",
+    "ru": "Как построено приложение"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar qisqartirildi.",
+  "q": {
+   "uz": "«Jonli demo»: ✗, «uzoq kutdik». Nima qilasiz?",
+   "ru": "«Живое демо»: ✗, «долго ждали». Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovani oldindan ochasiz",
+    "ru": "Откроете приложение заранее"
+   },
+   {
+    "uz": "Demo bo'lagini olasiz",
+    "ru": "Уберёте часть демо"
+   },
+   {
+    "uz": "Zalga hazil aytasiz",
+    "ru": "Пошутите для зала"
+   },
+   {
+    "uz": "Sherikdan ✓ so'raysiz",
+    "ru": "Попросите партнёра поставить ✓"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar qisqartirildi.",
+  "q": {
+   "uz": "Pitch 3:40 davom etdi. Nima qilasiz?",
+   "ru": "Питч длился 3:40. Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Taymerni o'chirib qo'yasiz",
+    "ru": "Выключите таймер"
+   },
+   {
+    "uz": "Muammo bo'lagini olasiz",
+    "ru": "Уберёте часть «Проблема»"
+   },
+   {
+    "uz": "Ortiqcha gapni olasiz",
+    "ru": "Уберёте лишние слова"
+   },
+   {
+    "uz": "Oxirini tezroq aytasiz",
+    "ru": "Скажете конец быстрее"
+   }
+  ],
+  "correct": 2
+ }
+]

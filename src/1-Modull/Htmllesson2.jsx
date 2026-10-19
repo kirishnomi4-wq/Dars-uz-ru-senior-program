@@ -1015,51 +1015,99 @@ const Screen4 = (props) => (
     explainWrong={{ 0: tr({ uz: "alt — rasm chiqmasa ko'rinadigan matn, manzil emas.", ru: 'alt — текст на случай, если картинки нет, а не адрес.' }), 1: tr({ uz: "Inglizcha «manba» so'zidan qisqargan atributni eslang.", ru: 'Вспомните атрибут, сокращённый от английского «источник».' }), 2: tr({ uz: '`href` — havola manzili, u `a` tegida ishlatiladi.', ru: '`href` — адрес ссылки, он используется в теге `a`.' }), 3: tr({ uz: "`file` degan atribut HTML'da yo'q.", ru: 'Атрибута `file` в HTML нет.' }), default: tr({ uz: 'Inglizcha «manba» so\'zidan qisqargan atributni eslang.', ru: 'Вспомните атрибут, сокращённый от английского «источник».' }) }} />
 );
 
-// ===== SCREEN 5 — STRUKTURA (header/main/footer) =====
+// --- F-1019-04 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatosiga bir qatorli sabab, qayta tanlash.
+// Har qadam key bilan yangilanadi (tanlovlar tozalanadi). mono — variantlar teg bo'lsa. Namuna: m12 PmInvestorPitchLesson Qaror.
+const Qaror = ({ savol, variantlar, onTogri, mono }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const tanla = (j) => {
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="qr fade-step">
+      <p className="qr-s">{tr(savol)}</p>
+      <div className="qr-v">{variantlar.map((v, j) => <button key={j} type="button" className={'qr-chip' + (mono ? ' mono' : '') + (xato.includes(j) ? ' err' : '')} disabled={xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</button>)}</div>
+      {izoh && <p className="qr-xato" role="status" key={tr(izoh)}>{tr(izoh)}</p>}
+    </div>
+  );
+};
+
+// ===== SCREEN 5 — STRUKTURA (header/main/footer) · F-1019-04 (213.22): har bo'lim uchun qaror — qaysi teg bilan yoziladi =====
+const S5_TARTIB = ['header', 'main', 'footer'];
+const S5_SAVOL = {
+  header: { savol: { uz: 'Sahifaning tepa qismi qaysi teg bilan yoziladi?', ru: 'Каким тегом пишется верхняя часть страницы?' }, v: [
+    { t: '<head>', izoh: { uz: "head — sahifa sozlamalari, u ekranda ko'rinmaydi.", ru: 'head — настройки страницы, на экране его не видно.' } },
+    { ok: true, t: '<header>' },
+    { t: '<footer>', izoh: { uz: 'footer — sahifaning pastki qismi, tepasi emas.', ru: 'footer — нижняя часть страницы, а не верх.' } }
+  ] },
+  main: { savol: { uz: 'Matn va rasmlar turadigan asosiy qism qaysi teg bilan yoziladi?', ru: 'Каким тегом пишется основная часть, где текст и картинки?' }, v: [
+    { ok: true, t: '<main>' },
+    { t: '<body>', izoh: { uz: "body — ko'rinadigan butun sahifa; asosiy qism uning ichida turadi.", ru: 'body — вся видимая страница; основная часть стоит внутри него.' } },
+    { t: '<p>', izoh: { uz: "p — bitta paragraf; u bo'lim emas, bo'lim ichida turadi.", ru: 'p — один абзац; это не раздел, он стоит внутри раздела.' } }
+  ] },
+  footer: { savol: { uz: "Aloqa ma'lumotlari qaysi teg ichiga yoziladi?", ru: 'В какой тег пишутся контакты?' }, v: [
+    { t: '<header>', izoh: { uz: 'header — sahifa tepasi; aloqa odatda sahifaning eng pastida turadi.', ru: 'header — верх страницы; контакты обычно в самом низу.' } },
+    { t: '<main>', izoh: { uz: 'main — eng muhim mazmun; aloqa undan keyin, pastda turadi.', ru: 'main — самое важное содержание; контакты после него, внизу.' } },
+    { ok: true, t: '<footer>' }
+  ] }
+};
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's5', text: `Uyni tasavvur qiling: tepada shift, o'rtada xonalar, pastda pol. Sahifa ham xuddi shunday bo'limlarga bo'linadi: header — shift kabi tepada, main — xonalar kabi o'rtada, footer — pol kabi pastda. Har bir bo'limni bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's5', text: `Uyni tasavvur qiling: tepada shift, o'rtada xonalar, pastda pol. Sahifa ham xuddi shunday bo'limlarga bo'linadi: header — shift kabi tepada, main — xonalar kabi o'rtada, footer — pol kabi pastda. Har savolga javob bering.`, trigger: 'on_mount', waits_for: null }]);
   const PARTS = {
     header: { tag: '<header>', word: { uz: 'Tepa', ru: 'Верх' }, role: { uz: 'Sahifaning tepasi: logotip, sayt nomi va menyu shu yerda turadi.', ru: 'Верх страницы: здесь логотип, название сайта и меню.' } },
     main:   { tag: '<main>', word: { uz: 'Asosiy qism', ru: 'Основная часть' }, role: { uz: 'Sahifaning asosiy qismi — matn, rasmlar, eng muhim narsalar shu yerda.', ru: 'Основная часть страницы — текст, картинки, всё самое важное здесь.' } },
     footer: { tag: '<footer>', word: { uz: 'Pastki qism', ru: 'Нижняя часть' }, role: { uz: "Sahifaning eng pasti: aloqa, © belgisi (sayt kimniki ekani), qo'shimcha havolalar.", ru: 'Самый низ страницы: контакты, знак © (чей это сайт), дополнительные ссылки.' } }
   };
-  const [active, setActive] = useState(null);
-  const [clicked, setClicked] = useState(new Set());
+  // q — javob topilgan bo'limlar soni; qaytganda (storedAnswer) ekran tugagan holatda ochiladi
+  const [q, setQ] = useState(storedAnswer ? S5_TARTIB.length : 0);
+  const [view, setView] = useState(null); // tugagach ko'rsatiladigan bo'lim: oxirgi topilgani yoki bosilgani
   const isNarrow = useIsMobile(768);
-  const done = clicked.size === 3;
-  const tap = (k) => { setActive(k); setClicked(prev => { const n = new Set(prev); n.add(k); return n; }); };
-  const zc = (k) => `szone szone-${k} ${active === k ? 'active' : ''} ${clicked.has(k) ? 'seen' : ''}`;
+  const done = q >= S5_TARTIB.length;
+  const seen = (k) => S5_TARTIB.indexOf(k) < q;
+  const zoneOn = done ? view : S5_TARTIB[q];                      // savol shu bo'lim haqida (yoki tugagach bosilgani)
+  const info = done ? view : (q > 0 ? S5_TARTIB[q - 1] : null);   // oxirgi topilgan bo'limning vazifasi
+  const tap = (k) => { if (done) setView(k); };
+  const zc = (k) => `szone szone-${k} ${zoneOn === k ? 'active' : ''} ${seen(k) ? 'seen' : ''}`;
+  const tagOf = (k) => (seen(k) ? PARTS[k].tag : '<?>');
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Struktura', ru: 'Структура' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${clicked.size}/3 bo'lim ko'rilgan`, ru: `Просмотрено разделов: ${clicked.size}/3` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Struktura', ru: 'Структура' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Savollarga javob bering (${q}/3)`, ru: `Ответьте на вопросы (${q}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sahifa qanday <span className="italic" style={{ color: T.accent }}>bo'limlarga</span> bo'linadi?</>, ru: <>На какие <span className="italic" style={{ color: T.accent }}>разделы</span> делится страница?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Uyni tasavvur qiling: tepada shift, o'rtada xonalar, pastda pol. Sahifa ham xuddi shunday: <b style={{ color: T.ink }}>header</b> — shift kabi tepada, <b style={{ color: T.ink }}>main</b> — xonalar kabi o'rtada, <b style={{ color: T.ink }}>footer</b> — pol kabi pastda. Har bir bo'limni bosing.</>, ru: <>Представьте дом: сверху потолок, посередине комнаты, внизу пол. Страница точно такая же: <b style={{ color: T.ink }}>header</b> — сверху, как потолок, <b style={{ color: T.ink }}>main</b> — посередине, как комнаты, <b style={{ color: T.ink }}>footer</b> — внизу, как пол. Нажмите на каждый раздел.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Uyni tasavvur qiling: tepada shift, o'rtada xonalar, pastda pol. Sahifa ham xuddi shunday: <b style={{ color: T.ink }}>header</b> — shift kabi tepada, <b style={{ color: T.ink }}>main</b> — xonalar kabi o'rtada, <b style={{ color: T.ink }}>footer</b> — pol kabi pastda. Har savolga javob bering — har bo'lim qaysi teg bilan yozilishini topasiz.</>, ru: <>Представьте дом: сверху потолок, посередине комнаты, внизу пол. Страница точно такая же: <b style={{ color: T.ink }}>header</b> — сверху, как потолок, <b style={{ color: T.ink }}>main</b> — посередине, как комнаты, <b style={{ color: T.ink }}>footer</b> — внизу, как пол. Ответьте на каждый вопрос — найдёте, каким тегом пишется каждый раздел.</> })}</Mentor>
         <div className="split">
           <div className="col">
-            {/* F-0926-06: «3 ta bo'limni birma-bir bosing 0/3» yo'rig'i olindi — mentor aynan shuni aytadi, sanoqni tugma ko'rsatadi (159/7) */}
-            <div className="strukt fade-up delay-2">
-              <div className={zc('header')} onClick={() => tap('header')}><p className="szone-h">{tr({ uz: 'Logo · Menyu', ru: 'Лого · Меню' })}</p><p className="szone-d">{tr({ uz: 'sayt nomi va menyu', ru: 'название сайта и меню' })}</p><span className="szone-tag">&lt;header&gt;</span></div>
-              <div className={zc('main') + ' szone-main'} onClick={() => tap('main')}><p className="szone-h">{tr({ uz: 'Asosiy qism', ru: 'Основная часть' })}</p><p className="szone-d">{tr({ uz: 'matn, rasmlar, eng muhim narsa', ru: 'текст, картинки, самое важное' })}</p><span className="szone-tag">&lt;main&gt;</span></div>
-              <div className={zc('footer')} onClick={() => tap('footer')}><p className="szone-h">{tr({ uz: 'Aloqa · © 2026', ru: 'Контакты · © 2026' })}</p><p className="szone-d">{tr({ uz: "pastki ma'lumotlar", ru: 'нижняя информация' })}</p><span className="szone-tag">&lt;footer&gt;</span></div>
+            {/* F-1019-04: bo'limlar endi bosilmaydi (213.22) — savol shu bo'lim haqida; teg javob topilgach ochiladi, tugagach bo'limni bosib vazifasini ko'rish mumkin */}
+            <div className={'strukt qaror fade-up delay-2' + (done ? ' tugadi' : '')}>
+              <div className={zc('header')} onClick={() => tap('header')}><p className="szone-h">{tr({ uz: 'Logo · Menyu', ru: 'Лого · Меню' })}</p><p className="szone-d">{tr({ uz: 'sayt nomi va menyu', ru: 'название сайта и меню' })}</p><span className="szone-tag">{tagOf('header')}</span></div>
+              <div className={zc('main') + ' szone-main'} onClick={() => tap('main')}><p className="szone-h">{tr({ uz: 'Asosiy qism', ru: 'Основная часть' })}</p><p className="szone-d">{tr({ uz: 'matn, rasmlar, eng muhim narsa', ru: 'текст, картинки, самое важное' })}</p><span className="szone-tag">{tagOf('main')}</span></div>
+              <div className={zc('footer')} onClick={() => tap('footer')}><p className="szone-h">{tr({ uz: 'Aloqa · © 2026', ru: 'Контакты · © 2026' })}</p><p className="szone-d">{tr({ uz: "pastki ma'lumotlar", ru: 'нижняя информация' })}</p><span className="szone-tag">{tagOf('footer')}</span></div>
             </div>
+            {!done && <Qaror key={q} mono savol={S5_SAVOL[S5_TARTIB[q]].savol} variantlar={S5_SAVOL[S5_TARTIB[q]].v} onTogri={() => { setView(S5_TARTIB[q]); setQ(n => Math.min(S5_TARTIB.length, n + 1)); }} />}
           </div>
           <div className="col" style={{ gap: 8 }}>
             {!isNarrow && (<>
               {/* F-0926-06: «HTML kodi · 0 / 3» qatori olindi — takror sanoq (159/7) va ustun tepasi chizmadan pastga surilardi (159/9) */}
               <pre className="code-box fade-up delay-2">
-                <span className={`ck ${active === 'header' ? 'active' : ''}`} onClick={() => tap('header')}><span className="t-tag">&lt;header&gt;</span>...&lt;/header&gt;</span>{'\n'}
-                <span className={`ck ${active === 'main' ? 'active' : ''}`} onClick={() => tap('main')}><span className="t-tag">&lt;main&gt;</span>...&lt;/main&gt;</span>{'\n'}
-                <span className={`ck ${active === 'footer' ? 'active' : ''}`} onClick={() => tap('footer')}><span className="t-tag">&lt;footer&gt;</span>...&lt;/footer&gt;</span>
+                {S5_TARTIB.map((k, i) => (
+                  <React.Fragment key={k}>
+                    {seen(k)
+                      ? <span className={`ck ${info === k ? 'active' : ''}`} onClick={() => tap(k)}><span className="t-tag">{PARTS[k].tag}</span>...{'</' + k + '>'}</span>
+                      : <span className="ck-kut">{'<?>...</?>'}</span>}
+                    {i < S5_TARTIB.length - 1 ? '\n' : null}
+                  </React.Fragment>
+                ))}
               </pre>
             </>)}
-            {active ? (
-              <div className="sk-info fade-step" key={active}><span className="sk-tagbig"><span className="sk-chip">{PARTS[active].tag}</span><span className="sk-wordbadge">{tr(PARTS[active].word)}</span></span><p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{tr(PARTS[active].role)}</p></div>
+            {info ? (
+              <div className="sk-info fade-step" key={info}><span className="sk-tagbig"><span className="sk-chip">{PARTS[info].tag}</span><span className="sk-wordbadge">{tr(PARTS[info].word)}</span></span><p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{tr(PARTS[info].role)}</p></div>
             ) : (
-              null /* F-0926-06: bo'sh-holat ramkasi olindi (159/3) — chorlov mentor gapida: «Har bir bo'limni bosing» */
+              null /* F-0926-06: bo'sh-holat ramkasi olindi (159/3) */
             )}
             {done && (
-              <div className="frame-success fade-step" style={{ marginTop: active ? 'clamp(8px,1.2vw,12px)' : 0 }}><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: "Strukturani o'rgandingiz", ru: 'Вы изучили структуру' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sahifa odatda shu tartibda: <b>header (tepa) → main (asosiy) → footer (past)</b>.</>, ru: <>Страница обычно в таком порядке: <b>header (верх) → main (основное) → footer (низ)</b>.</> })}</p></div>
+              <div className="frame-success fade-step" style={{ marginTop: info ? 'clamp(8px,1.2vw,12px)' : 0 }}><p className="small mono" style={{ margin: '0 0 4px', fontWeight: 600, color: T.success, textTransform: 'uppercase', letterSpacing: '0.08em' }}>✓ {tr({ uz: "Strukturani o'rgandingiz", ru: 'Вы изучили структуру' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Sahifa odatda shu tartibda: <b>header (tepa) → main (asosiy) → footer (past)</b>.</>, ru: <>Страница обычно в таком порядке: <b>header (верх) → main (основное) → footer (низ)</b>.</> })}</p></div>
             )}
           </div>
         </div>
@@ -1653,16 +1701,16 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: "Sahifaga rasm qo'shish uchun qaysi teg ishlatiladi?", ru: 'Какой тег используется, чтобы добавить картинку на страницу?' }, opts: ["`<img>`", "`<image>`", "`<src>`", "`<pic>`"], correct: 0 },
   { q: { uz: "Rasmning manzili (qayerdaligi) qaysi atributga yoziladi?", ru: 'В какой атрибут пишется адрес картинки (где она лежит)?' }, opts: ["`href`", "`alt`", "`src`", "`link`"], correct: 2 },
-  { q: { uz: "Rasm yuklanmasa ko'rinadigan (va ko'zi ojizlarga o'qiladigan) matn qaysi atribut?", ru: 'Какой атрибут — текст, видимый при незагрузке картинки (и читаемый незрячим)?' }, opts: ["`title`", "`alt`", "`name`", "`text`"], correct: 1 },
+  { q: { uz: "Rasm yuklanmasa o'rniga chiqadigan matn qaysi atribut?", ru: "Какой атрибут — текст вместо незагрузившейся картинки?" }, opts: ["`title`", "`alt`", "`name`", "`text`"], correct: 1 },
   { q: { uz: "Logo va asosiy menyu odatda qaysi bo'limga joylanadi?", ru: 'В какой раздел обычно помещаются лого и главное меню?' }, opts: ["`<main>`", "`<footer>`", "`<aside>`", "`<header>`"], correct: 3 },
   { q: { uz: "Sahifaning ASOSIY mazmuni qaysi teg ichiga yoziladi?", ru: 'Внутрь какого тега пишется ОСНОВНОЕ содержимое страницы?' }, opts: ["`<header>`", "`<main>`", "`<footer>`", "`<body2>`"], correct: 1 },
-  { q: { uz: "Sahifaning eng pastki qismi (aloqa, © belgisi) uchun qaysi teg?", ru: 'Какой тег для самой нижней части страницы (контакты, знак ©)?' }, opts: ["`<end>`", "`<bottom>`", "`<header>`", "`<footer>`"], correct: 3 },
+  { q: { uz: "Sahifaning eng pastki qismi (aloqa, ©) uchun qaysi teg?", ru: "Какой тег для самой нижней части страницы (контакты, ©)?" }, opts: ["`<end>`", "`<bottom>`", "`<header>`", "`<footer>`"], correct: 3 },
   { q: { uz: "Butun formani o'rab turuvchi teg qaysi?", ru: 'Какой тег оборачивает всю форму?' }, opts: ["`<form>`", "`<input>`", "`<fieldset>`", "`<div>`"], correct: 0 },
   { q: { uz: "Foydalanuvchi matn kiritadigan maydonni qaysi teg yasaydi?", ru: 'Какой тег создаёт поле, куда пользователь вводит текст?' }, opts: ["`<label>`", "`<button>`", "`<input>`", "`<text>`"], correct: 2 },
-  { q: { uz: "Maydon oldidagi yozuv (masalan «Ismingiz:») qaysi teg bilan beriladi?", ru: 'Каким тегом задаётся подпись перед полем (например «Ваше имя:»)?' }, opts: ["`<label>`", "`<title>`", "`<span>`", "`<p>`"], correct: 0 },
+  { q: { uz: "Maydon oldidagi «Ismingiz:» yozuvi qaysi teg?", ru: "Какой тег — подпись «Ваше имя:» перед полем?" }, opts: ["`<label>`", "`<title>`", "`<span>`", "`<p>`"], correct: 0 },
   { q: { uz: "Email uchun to'g'ri `input` turi qaysi?", ru: 'Какой тип `input` правильный для email?' }, opts: ['`type="text"`', '`type="mail"`', '`type="email"`', '`type="@"`'], correct: 2 },
-  { q: { uz: "Parolni nuqta/yulduzcha bilan yashiradigan `input` turi qaysi?", ru: 'Какой тип `input` прячет пароль точками/звёздочками?' }, opts: ['`type="hidden"`', '`type="password"`', '`type="secret"`', '`type="lock"`'], correct: 1 },
-  { q: { uz: "Brauzerda DevTools (kodni ko'rish) odatda qaysi tugma bilan ochiladi?", ru: 'Какой клавишей обычно открывается DevTools (просмотр кода) в браузере?' }, opts: ["`Ctrl+P`", "`Esc`", "`Caps Lock`", "`F12`"], correct: 3 },
+  { q: { uz: "Parolni nuqta bilan yashiradigan `input` turi qaysi?", ru: "Какой тип `input` прячет пароль точками?" }, opts: ["`type=\"hidden\"`", "`type=\"password\"`", "`type=\"secret\"`", "`type=\"lock\"`"], correct: 1 },
+  { q: { uz: "DevTools qaysi tugma bilan ochiladi?", ru: "Какой клавишей открываются DevTools?" }, opts: ["`Ctrl+P`", "`Esc`", "`Caps Lock`", "`F12`"], correct: 3 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -2968,6 +3016,22 @@ export default function HtmlLesson({ lang: langProp, onFinished, onPractice, liv
         @keyframes tap-hint { 0%, 100% { box-shadow: inset 0 0 0 0 rgba(255,79,40,0); } 50% { box-shadow: inset 0 0 0 2px rgba(255,79,40,0.45); } }
         .szone:not(.seen) { animation: tap-hint 1.8s ease-in-out infinite; }
         .szone.seen .szone-tag::after { content: ' ✓'; color: ${T.success}; font-weight: 700; }
+        /* F-1019-04 (DE 213.22): s5 qaror rejimi — bo'limlar savol paytida bosilmaydi, tugagach bosiladi; teg javobgacha yashirin */
+        .strukt.qaror .szone { cursor: default; animation: none; }
+        .strukt.qaror .szone:hover { box-shadow: 0 5px 14px -6px rgba(${T.shadowBase},0.14); }
+        .strukt.qaror.tugadi .szone { cursor: pointer; }
+        .ck-kut { color: ${CODE.comment}; padding: 0 2px; }
+        .qr { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .qr-s { margin: 0; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 800; line-height: 1.4; color: ${T.ink}; }
+        .qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
+        .qr-chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.45vw,14px); line-height: 1.35; text-align: left; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 11px; padding: 9px 13px; cursor: pointer; min-width: 0; overflow-wrap: anywhere; transition: border-color 0.15s, background 0.15s; }
+        .qr-chip.mono { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; }
+        .qr-chip:hover:not(:disabled) { border-color: ${T.accent}; }
+        .qr-chip:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .qr-chip.err { border-color: ${T.accent}; background: ${T.accentSoft}; color: ${T.accent}; cursor: default; animation: qr-silk 0.32s ease-in-out; }
+        @keyframes qr-silk { 0%, 100% { transform: none; } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+        .qr-xato { margin: 0; color: ${T.accent}; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; line-height: 1.4; animation: fade-step 0.25s ease-out; }
+        @media (prefers-reduced-motion: reduce) { .qr-chip.err, .qr-xato { animation: none; } }
         .miniform { background: ${T.paper}; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 8px 20px -6px rgba(${T.shadowBase},0.14); }
         .mf-label { font-family: 'Manrope'; font-weight: 600; font-size: 13px; color: ${T.ink2}; }
         .mf-input { font-family: 'Manrope', sans-serif; font-size: 15px; padding: 11px 13px; border: none; border-radius: 10px; background: ${T.bg}; color: ${T.ink}; outline: none; box-shadow: inset 0 0 0 1.5px ${T.ink3}40; transition: box-shadow 0.18s; width: 100%; }

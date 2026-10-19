@@ -1,0 +1,8 @@
+mentor: Mentor Bo'sh yo'lakka 6 bekatni sudrab joylashtiring, keyin pastdagi mijozlardan birini (▶) bosing. Tartib xato bo'lsa — buyurtma aynan o'sha bekatda to'xtaydi.
+boshida: nav=Yo'lakni yig'ing (0/6) (yopiq) · yorliq=Mijozlar — yo'lak to'lgach bosiladi · Mijoz katagi tugmami: DIV
+to'lgach: nav=3 mijozni kiriting (0/3) (yopiq) · yorliq=Mijozni kiriting ▶ · halqa=3 · pool=✓ Yo'l to'g'ri terildi
+  To'g'ri mijoz: ✓ 201 — buyurtma yetkazildi
+  Bo'sh username: ✓ 400 — Nazoratchi + anketa bekatida to'xtadi
+  Tokensiz mijoz: ✓ 401 — Eshik qo'riqchisi bekatida to'xtadi
+uchala: nav=Davom etish · nishon qatori: 0 · klapan qatori: 0
+pageerror: 0

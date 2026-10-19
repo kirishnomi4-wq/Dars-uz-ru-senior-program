@@ -18,7 +18,7 @@
 | 11 | 2 | CSS Praktika — Portfolioni bezaymiz | CSS практика — стилизуем портфолио | `css-practice-portfolio-v3` |
 | 12 | 2 | Git va GitHub — kodni internetga chiqaramiz | Git и GitHub — выкладываем код в интернет | `git-github-v19` |
 | 13 | 2 | Netlify va deploy | Netlify и деплой | `netlify-deploy-v19` |
-| 14 | 2 | Demo Day — 3 daqiqalik nutq | Демо-день — трёхминутная речь | `pm-pitch-03-v19` |
+| 14 | 2 | Demo Day — 3 daqiqalik nutq | Демо-день — трёхминутная речь | `pm-pitch-03-v20` |
 | 15 | 3 | Sistema va Algoritm | Система и алгоритм | `js-intro-01-v18` |
 | 16 | 3 | Muammodan yechimga | От проблемы к решению | `pm-m2d2-v1` |
 | 17 | 3 | JavaScript — O'zgaruvchilar | JavaScript — Переменные | `js-vars-01-v18` |
@@ -31,7 +31,7 @@
 | 24 | 3 | PERN Stack — 4 texnologiya, bitta jamoa | PERN Stack — 4 технологии, одна команда | `pean-stack-01-v18` |
 | 25 | 3 | Praktika 3 — Dekompozitsiya (mini-do'kon) | Практика 3 — Декомпозиция (мини-магазин) | `practice-03-decompose-v18` |
 | 26 | 3 | Praktika 4 — MVP tayyor (deploy) | Практика 4 — MVP готов (деплой) | `practice-04-mvp-deploy-v18` |
-| 27 | 3 | Sistemani qanday pitch qilish | Как рассказать о системе | `pm-m2d13-v1` |
+| 27 | 3 | Sistemani qanday pitch qilish | Как рассказать о системе | `pm-m2d13-v2` |
 | 28 | 4 | React nima va nima uchun? | Что такое React и зачем | `react-intro-01-v18` |
 | 29 | 4 | User Story: kim va nima uchun? | User Story | `pm-m3d2-v3` |
 | 30 | 4 | Birinchi komponent: Vite, JSX, props | Первый компонент: Vite, JSX, props | `react-first-component-02-v18` |

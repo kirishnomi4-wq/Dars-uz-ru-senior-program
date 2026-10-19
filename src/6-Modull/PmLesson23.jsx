@@ -23,6 +23,29 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // PM-STUDIA IDENTITET (P0 dan AYNAN)
 // ============================================================
+// F-1015-377: ma'nosiz yozuv tekshiruvi (qolip `manoliMatn` nusxasi - bu dars qolipsiz)
+const MN_HARF = /[a-z\u0430-\u044f\u0451\u0493\u049b\u04b3\u045e]/gi;
+const MN_UNLI = /[aeiou\u0430\u0435\u0451\u0438\u043e\u0443\u044b\u044d\u044e\u044f\u045e]/gi;
+const MN_QISQA = new Set(['html', 'css', 'npm', 'crm', 'mvp', 'pdf', 'sms', 'http', 'https', 'www', 'src', 'cmd', 'pwd', 'jsx', 'dns', 'ssl', 'cdn', 'sql', 'xml', 'png', 'jpg', 'svg', 'gps', 'mln', 'mlrd', 'kpi', 'nps', 'ltv', 'cac']);
+const manoliMatn = (t, yumshoq) => {
+  const s = String(t || '').trim();
+  const harf = (s.match(MN_HARF) || []).length;
+  const tozasi = s.replace(/[\s\u02bb\u02bc'`\u2018\u2019\-.,!?:;\u00ab\u00bb"()]/g, '');
+  if (harf < 3 || !tozasi.length || harf / tozasi.length < 0.5) return false;
+  if (/(.)\1{3,}/i.test(s)) return false;
+  if (!(s.match(MN_UNLI) || []).length) return false;
+  const sozlar = s.split(/\s+/);
+  if (!yumshoq) { // F-1015-392: «fast freak. afs sdfa dfs», «fasted saf s f», «qwe rty», «asd asd asd»
+    const toza = sozlar.map(w => w.replace(/[.,!?:;]+$/, ''));
+    if (toza.some(w => /^[a-z]{3,}$/.test(w) && !/[aeiouy]/.test(w) && !MN_QISQA.has(w))) return false;
+    const yakka = toza.filter(w => /^[b-df-hj-np-tv-xz]$/.test(w)).length;
+    if (yakka >= 2 && yakka / toza.length >= 0.25) return false;
+    if (/qwe|asdf|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|\u0439\u0446\u0443\u043a|\u0444\u044b\u0432\u0430|\u044f\u0447\u0441\u043c/i.test(s)) return false;
+    if (toza.length >= 3 && new Set(toza.map(w => w.toLowerCase())).size * 3 <= toza.length) return false;
+  }
+  return sozlar.every(w => { const h = (w.match(MN_HARF) || []).join(''); if (h.length < 5) return true; return ((h.match(MN_UNLI) || []).length / h.length) >= 0.2; });
+};
+
 const T = {
   bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
@@ -1142,7 +1165,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const edRef = useRef(null);
   const done = list.length >= 3;
   const savedRef = useRef(false);
-  const uzunQ = dQaror.trim().length >= 8;
+  const uzunQ = dQaror.trim().length >= 8 && manoliMatn(dQaror);
   const jabrBor = dJabr.trim().length >= 4;
   const inkorBor = uzunQ && tr(INKOR).test(normSoz(dQaror));
   const guruhOnly = jabrBor && faqatGuruh(dJabr);
@@ -1640,7 +1663,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const yakka = !live || live.mode === 'self';
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
-  const written = text.trim().length >= 8;
+  const written = text.trim().length >= 8 && manoliMatn(text);
   const [pairStage, setPairStage] = useState('idle');
   const [reflFocus, setReflFocus] = useState(false);
   const inputTurn = useTurnHint(pairStage === 'done' && !written && !reflFocus);
@@ -1894,18 +1917,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · kalit-tsikli 0,3,2,1 · 1,0,2,3 · 0,2,1,3.
 const QUIZ_BANK = [
-  { q: { uz: 'Chegara nima?', ru: 'Что такое граница?' }, opts: [{ uz: "Ilova qaysi ishni o'zi qilmasligi haqidagi qaror", ru: 'Решение о том, какую работу приложение не делает само' }, { uz: "Ilova qaysi ishni birinchi bo'lib o'zi qilishi haqidagi qaror", ru: 'Решение о том, какую работу приложение первым делает само' }, { uz: "Ilova qaysi mijozga xabar yuborishi haqidagi qaror", ru: 'Решение о том, какому клиенту приложение отправит сообщение' }, { uz: "Ilova qaysi sahifani o'zi ochmasligi haqidagi qaror", ru: 'Решение о том, какую страницу приложение не открывает само' }], correct: 0 },
-  { q: { uz: "Ilova so'raydigan ish bilan o'zi qiladigan ishning farqi nimada?", ru: 'Чем работа, о которой приложение спрашивает, отличается от работы, которую оно делает само?' }, opts: [{ uz: "So'ralgan ish odamga tezroq yetib boradi", ru: 'Работа со спросом быстрее доходит до человека' }, { uz: "O'zi qiladigan ishda odam kamroq xato qiladi", ru: 'В работе, которую приложение делает само, человек меньше ошибается' }, { uz: "So'ralgan ishni ilova ikki marta bajaradi", ru: 'Работу со спросом приложение выполняет дважды' }, { uz: "So'ralgan ishni odam to'xtata oladi", ru: 'Работу со спросом человек может остановить' }], correct: 3 },
-  { q: { uz: "Do'kon egasi kuniga faqat bitta ishni o'zi o'qib chiqa oladi. Qaysi ishni tanlagani to'g'ri?", ru: 'Владелец магазина может сам прочитать только одну работу в день. Какую правильно выбрать?' }, opts: [{ uz: "Mijozga o'zi qo'ng'iroq qiladigan ishni", ru: 'Работу, где он сам звонит клиенту' }, { uz: "Ilova mijozdan so'rab bajaradigan ishni", ru: 'Работу, которую приложение делает, спросив клиента' }, { uz: "Ilova hech kimdan so'ramay bajaradigan ishni", ru: 'Работу, которую приложение делает, ни у кого не спросив' }, { uz: "Ilova hech qachon bajarmaydigan ishni", ru: 'Работу, которую приложение никогда не делает' }], correct: 2 },
-  { q: { uz: "Ilova mijozning savatidan mahsulotni o'zi olib tashlasa, kimga tegadi?", ru: 'Если приложение само уберёт товар из корзины клиента, кого это коснётся?' }, opts: [{ uz: "Do'konga tovar keltirib beradigan sotuvchi", ru: 'Продавец, который привозит товар в магазин' }, { uz: "Savatni to'ldirib, to'lovga o'tayotgan mijoz", ru: 'Клиент, который наполнил корзину и переходит к оплате' }, { uz: "Do'kon saytini yasab bergan dasturchi", ru: 'Программист, который сделал сайт магазина' }, { uz: "Mijozlar buyurtmasini omborda yig'adigan xodim", ru: 'Сотрудник, который собирает заказы на складе' }], correct: 1 },
-  { q: { uz: "Tavsif hech kim o'qimay saytga chiqsa, nima bo'ladi?", ru: 'Что будет, если описание попадёт на сайт, никем не прочитанное?' }, opts: [{ uz: "Mijoz tavsifni saytda umuman ko'rmay qoladi", ru: 'Клиент вообще не увидит описание на сайте' }, { uz: "Xato tavsifni mijoz o'qib, ishonib qoladi", ru: 'Клиент прочитает ошибочное описание и поверит ему' }, { uz: "Sayt tavsifni o'zi qayta yozib chiqadi", ru: 'Сайт сам перепишет описание' }, { uz: "Mijozning buyurtmasi o'z-o'zidan bekor bo'ladi", ru: 'Заказ клиента сам собой отменится' }], correct: 1 },
-  { q: { uz: "Buyurtmani ilova o'zi bekor qilsa, kimga tegadi?", ru: 'Если приложение само отменит заказ, кого это коснётся?' }, opts: [{ uz: "Manzilini qisqa yozib yuborgan mijoz", ru: 'Клиент, коротко написавший адрес' }, { uz: "Buyurtmani mijozga yetkazadigan haydovchi", ru: 'Водитель, который доставляет заказ клиенту' }, { uz: "Do'konga tovar keltiradigan sotuvchi", ru: 'Продавец, который привозит товар в магазин' }, { uz: "Mijozlar to'lovini hisoblab boradigan xodim", ru: 'Сотрудник, который считает оплаты клиентов' }], correct: 0 },
-  { q: { uz: "Ilova kech qolgan buyurtmaning yetkazish vaqtini o'zi o'zgartirib qo'ydi. Bu ishga nega chegara kerak?", ru: 'Приложение само изменило время доставки опаздывающего заказа. Зачем этой работе граница?' }, opts: [{ uz: "Ilova vaqtni tez-tez o'zgartirsa, sayt sekinlashadi", ru: 'Если приложение часто меняет время, сайт тормозит' }, { uz: "Yangi vaqt do'kon ro'yxatida ikki marta yoziladi", ru: 'Новое время дважды записывается в список магазина' }, { uz: "Yangi vaqtga ishonib kutgan mijoz aldanib qoladi", ru: 'Клиент, который поверил новому времени и ждал, окажется обманут' }, { uz: "Vaqt o'zgargani do'kon hisobotiga tushmay qoladi", ru: 'Изменение времени не попадёт в отчёт магазина' }], correct: 2 },
-  { q: { uz: "Bot tasdiq xabarini kechasi soat ikkida yuborsa, kimga tegadi?", ru: 'Если бот отправит подтверждение в два часа ночи, кого это коснётся?' }, opts: [{ uz: "Ertalab ishga shoshib chiqadigan mijoz", ru: 'Клиент, который утром торопится на работу' }, { uz: "Kechasi do'konni yopib ketgan do'kon egasi", ru: 'Владелец, который ночью закрыл магазин' }, { uz: "Buyurtmani ertalab mijozga olib chiqadigan haydovchi", ru: 'Водитель, который утром везёт заказ клиенту' }, { uz: 'Telefonini yostiq yonida qoldiradigan mijoz', ru: 'Клиент, который оставляет телефон у подушки' }], correct: 3 },
-  { q: { uz: "Bir hafta telefoniga qaray olmagan mijozga botning qaysi qarori tegdi?", ru: 'Клиент неделю не мог посмотреть в телефон. Какое решение бота его задело?' }, opts: [{ uz: "Bot buyurtmani o'zi bekor qilib yubordi", ru: 'Бот сам отменил заказ' }, { uz: "Bot tasdiq xabarini o'zi kechasi yubordi", ru: 'Бот сам отправил подтверждение ночью' }, { uz: "Bot mahsulot tavsifini o'zi qayta yozdi", ru: 'Бот сам переписал описание товара' }, { uz: "Bot chegirmani ko'p buyurtma berganlarga yubordi", ru: 'Бот отправил скидку тем, кто много заказывает' }], correct: 0 },
-  { q: { uz: "Birinchi marta buyurtma bergan mijoz chegirmadan bexabar qoldi. Botning qaysi qarori shunga olib keldi?", ru: 'Клиент, сделавший первый заказ, не узнал о скидке. Какое решение бота к этому привело?' }, opts: [{ uz: "Tasdiq xabarini kechasi soat ikkida yuborishi", ru: 'Отправлять подтверждение в два часа ночи' }, { uz: "Javob kelmagan buyurtmani o'zi bekor qilishi", ru: 'Самому отменять заказ, если нет ответа' }, { uz: "Chegirmani faqat ko'p buyurtma berganlarga yuborishi", ru: 'Отправлять скидку только тем, кто много заказывает' }, { uz: "Javob kelmaguncha har o'n daqiqada yozib turishi", ru: 'Писать каждые десять минут, пока нет ответа' }], correct: 2 },
-  { q: { uz: "Do'kon egasi endi har bir buyurtmani o'zi o'qib chiqishga majbur. Sabab nima?", ru: 'Владелец магазина теперь вынужден сам читать каждый заказ. В чём причина?' }, opts: [{ uz: "AI javoblari mijozlarga to'g'ridan-to'g'ri ketgan", ru: 'Ответы AI уходили прямо клиентам' }, { uz: "Do'kondagi hamma ishga chegara qo'yib chiqilgan", ru: 'На все работы в магазине поставили границы' }, { uz: "Bot kechalari umuman ishlamay qo'ygan", ru: 'Бот совсем перестал работать по ночам' }, { uz: "Chegirma xabari hamma mijozlarga yuborilgan", ru: 'Сообщение о скидке отправили всем клиентам' }], correct: 1 },
-  { q: { uz: "Ilovaga yangi ish qo'shilmoqchi: mijozga tabrikni o'zi yuborish. Chegara kerakmi — buni kim hal qiladi?", ru: 'В приложение хотят добавить новую работу: самому отправлять клиенту поздравление. Нужна ли граница — кто это решает?' }, opts: [{ uz: "Ilovaning o'zi sinab hal qiladi", ru: 'Приложение само проверит и решит' }, { uz: "Tabrik keladigan mijozning o'zi", ru: 'Сам клиент, которому придёт поздравление' }, { uz: "Ilovaga kod yozgan dasturchi", ru: 'Программист, написавший код приложения' }, { uz: 'Ilovani yaratayotgan odam', ru: 'Тот, кто создаёт приложение' }], correct: 3 },
+  { q: { uz: "Chegara nima haqidagi qaror?", ru: "Чего касается решение-граница?" }, opts: [{ uz: "Ilova o'zi nima qilmasligi", ru: "Что приложение не делает само" }, { uz: "Ilova avval nima qilishi", ru: "Что приложение делает первым" }, { uz: "Ilova kimga yozishi", ru: "Кому пишет приложение" }, { uz: "Ilova qaysi rangda bo'lishi", ru: "Какого цвета приложение" }], correct: 0 },
+  { q: { uz: "Ilova so'rab qiladigan ishning afzalligi nima?", ru: "В чём плюс дела, которое приложение делает со спросом?" }, opts: [{ uz: "Tezroq bajariladi", ru: "Выполняется быстрее" }, { uz: "Ikki marta bajariladi", ru: "Выполняется дважды" }, { uz: "Odamga ko'rinmaydi", ru: "Не видно человеку" }, { uz: "Odam to'xtata oladi", ru: "Человек может остановить" }], correct: 3 },
+  { q: { uz: "Chegara avvalo qaysi ishga kerak?", ru: "Для какого дела граница нужна в первую очередь?" }, opts: [{ uz: "Qo'lda qilinadigan ishga", ru: "Для дела, сделанного вручную" }, { uz: "So'rab qilinadigan ishga", ru: "Для дела со спросом" }, { uz: "So'ramay qilinadigan ishga", ru: "Для дела без спроса" }, { uz: "Hech qilinmaydigan ishga", ru: "Для дела, которое не делают" }], correct: 2 },
+  { q: { uz: "Ilova savatdan mahsulotni o'zi olsa, kimga tegadi?", ru: "Если приложение само уберёт товар из корзины — кого заденет?" }, opts: [{ uz: "Tovar keltiruvchi sotuvchi", ru: "Поставщик товара" }, { uz: "To'lovga o'tayotgan mijoz", ru: "Клиент, идущий к оплате" }, { uz: "Saytni yasagan dasturchi", ru: "Разработчик сайта" }, { uz: "Ombordagi xodim", ru: "Работник склада" }], correct: 1 },
+  { q: { uz: "Tavsifni hech kim o'qimasa, nima bo'ladi?", ru: "Что будет, если описание никто не прочитает?" }, opts: [{ uz: "Mijoz tavsifni ko'rmaydi", ru: "Клиент не увидит описание" }, { uz: "Mijoz xato tavsifga ishonadi", ru: "Клиент поверит ошибочному описанию" }, { uz: "Sayt uni qayta yozadi", ru: "Сайт перепишет его" }, { uz: "Buyurtma bekor bo'ladi", ru: "Заказ отменится" }], correct: 1 },
+  { q: { uz: "Ilova buyurtmani o'zi bekor qilsa, kimga tegadi?", ru: "Если приложение само отменит заказ — кого заденет?" }, opts: [{ uz: "Manzilni qisqa yozgan mijoz", ru: "Клиент с коротким адресом" }, { uz: "Yetkazuvchi haydovchi", ru: "Водитель-курьер" }, { uz: "Tovar keltiruvchi", ru: "Поставщик" }, { uz: "To'lov hisobchisi", ru: "Бухгалтер оплат" }], correct: 0 },
+  { q: { uz: "Ilova yetkazish vaqtini o'zi surdi. Nega chegara kerak?", ru: "Приложение само перенесло доставку. Зачем граница?" }, opts: [{ uz: "Sayt sekinlashadi", ru: "Сайт замедлится" }, { uz: "Vaqt ikki marta yoziladi", ru: "Время запишется дважды" }, { uz: "Kutgan mijoz aldanadi", ru: "Ждущий клиент будет обманут" }, { uz: "Hisobotga tushmaydi", ru: "Не попадёт в отчёт" }], correct: 2 },
+  { q: { uz: "Bot tasdiqni kechasi ikkida yuborsa, kimga tegadi?", ru: "Если бот пришлёт подтверждение в два ночи — кого заденет?" }, opts: [{ uz: "Ertalab shoshadigan mijoz", ru: "Клиент, спешащий утром" }, { uz: "Do'kon egasi", ru: "Владелец магазина" }, { uz: "Ertalabki haydovchi", ru: "Утренний водитель" }, { uz: "Telefoni yostiq yonidagi mijoz", ru: "Клиент с телефоном у подушки" }], correct: 3 },
+  { q: { uz: "Kasal yotgan mijozga botning qaysi qarori tegdi?", ru: "Какое решение бота задело заболевшего клиента?" }, opts: [{ uz: "Buyurtmani bekor qilish", ru: "Отмена заказа" }, { uz: "Kechasi tasdiq yuborish", ru: "Подтверждение ночью" }, { uz: "Tavsifni qayta yozish", ru: "Переписать описание" }, { uz: "Har o'n daqiqada yozish", ru: "Писать каждые десять минут" }], correct: 0 },
+  { q: { uz: "Yangi mijoz chegirmani bilmadi. Nega?", ru: "Новый клиент не узнал о скидке. Почему?" }, opts: [{ uz: "Kechasi tasdiq yuborish", ru: "Подтверждение ночью" }, { uz: "Buyurtmani bekor qilish", ru: "Отмена заказа" }, { uz: "Chegirma faqat doimiy mijozga", ru: "Скидка только постоянным" }, { uz: "Har o'n daqiqada yozish", ru: "Писать каждые десять минут" }], correct: 2 },
+  { q: { uz: "Egasi har buyurtmani o'qishga majbur. Nega?", ru: "Владелец вынужден читать каждый заказ. Почему?" }, opts: [{ uz: "AI o'zi javob yozgan", ru: "AI сам написал ответ" }, { uz: "Hamma ishga chegara qo'yilgan", ru: "Граница стоит на всех делах" }, { uz: "Bot kechasi ishlamaydi", ru: "Бот не работает ночью" }, { uz: "Chegirma hammaga ketgan", ru: "Скидка ушла всем" }], correct: 1 },
+  { q: { uz: "Tabrikni bot o'zi yuborsinmi — buni kim hal qiladi?", ru: "Слать ли боту поздравление самому — кто решает?" }, opts: [{ uz: "Ilovaning o'zi", ru: "Само приложение" }, { uz: "Tabrik olgan mijoz", ru: "Клиент, получивший поздравление" }, { uz: "Yetkazuvchi haydovchi", ru: "Водитель-курьер" }, { uz: "Ilovani yaratayotgan odam", ru: "Человек, создающий приложение" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -3022,7 +3045,7 @@ const CSS_LESSON = `
   .fc-fly.out-again { animation: fc-out-again 0.42s ease forwards; }
   @keyframes fc-out-knew { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(70%) rotate(5deg); opacity: 0; } }
   @keyframes fc-out-again { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(-70%) rotate(-5deg); opacity: 0; } }
-  .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+  .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
   .fc-card.flip { transform: rotateY(180deg); }
   .fc-card:not(.flip):hover { transform: translateY(-3px); }
   .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

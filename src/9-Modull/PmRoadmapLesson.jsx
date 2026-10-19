@@ -100,6 +100,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -177,8 +202,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1115,9 +1140,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda «Dars oxirida: RICE bo'yicha roadmap» + uch ustun, kartalar 3 · 2 · 1 tushadi; o'ngda 01 · matn · teg) =====
 const REJA = [
-  { t: { uz: "PRD dagi ishlarni RICE bilan tartiblaysiz", ru: 'Упорядочите работы из PRD с помощью RICE' }, teg: { uz: 'RICE', ru: 'RICE' } },
-  { t: { uz: 'Har ishni uch ufqdan biriga joylaysiz', ru: 'Поставите каждую работу в один из трёх горизонтов' }, teg: { uz: 'ufq', ru: 'горизонт' } },
-  { t: { uz: "O'z ishlaringizdan bitiruvgacha reja tuzasiz", ru: 'Из своих работ составите план до выпуска' }, teg: { uz: 'roadmap', ru: 'roadmap' } }
+  { t: { uz: "PRD dagi ishlarni RICE bilan tartiblang", ru: 'Упорядочите работы из PRD с помощью RICE' }, teg: { uz: 'RICE', ru: 'RICE' } },
+  { t: { uz: 'Har ishni uch ufqdan biriga joylang', ru: 'Поставьте каждую работу в один из трёх горизонтов' }, teg: { uz: 'ufq', ru: 'горизонт' } },
+  { t: { uz: "O'z ishlaringizdan bitiruvgacha reja tuzing", ru: 'Из своих работ составьте план до выпуска' }, teg: { uz: 'roadmap', ru: 'roadmap' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
@@ -1212,7 +1237,7 @@ const Screen3 = (props) => (
       3: { uz: "Qiziqish RICE ga kirmaydi — to'rt bo'lakka qarang.", ru: 'Интерес не входит в RICE — посмотрите на четыре части.' },
       default: { uz: "Formula kartasida qaysi sonlar har xil — shuni ko'ring.", ru: 'Посмотрите, какие числа в карточке формулы разные.' }
     }}
-    vizual={<S3Viz />} />
+ />
 );
 
 // ===== SCREEN 4 — UCH UFQ (QTushuncha, 8-Modul ko'prigi; ketma-ket 6 qadam — P-055): tartib ro'yxati chapda · uch ufqli doska o'ngda =====
@@ -1289,7 +1314,7 @@ const Screen5 = (props) => (
       3: { uz: "Kutadigan ish o'chirilmaydi — u keyingi ufqda turadi.", ru: 'Ждущую работу не удаляют — она стоит в следующем горизонте.' },
       default: { uz: 'Ish nimani kutayotganiga qarang.', ru: 'Посмотрите, чего ждёт работа.' }
     }}
-    vizual={<S5Viz />} />
+ />
 );
 
 // ===== SCREEN 6 — UZUM (QVoqea, PM keys K1 — bank matni aynan; nom o'z binafsha rangida, logotipsiz; bosqich gapi Mentorda — SABOQ 8) =====
@@ -1360,7 +1385,7 @@ const Screen7 = (props) => (
       2: { uz: 'Mehnat RICE bo\'lagi, poydevor esa RICE ga kirmaydi.', ru: 'Усилия — часть RICE, а фундамент в RICE не входит.' },
       default: { uz: "Uzum ham ko'rinmaydigan qismdan boshlagan.", ru: 'Uzum тоже начал с невидимой части.' }
     }}
-    vizual={<S7Viz />} />
+ />
 );
 
 // ===== O'quvchi ishlari: o'qiydi pm-m9d5-prd (funksiyalar [3], keyin [1–3]) · yozadi pm-m9d6-roadmap (tayanch 8; ishlar tartibi o'zgarmaydi — yangi ish oxiriga) =====
@@ -1964,7 +1989,7 @@ const Screen12 = (props) => (
       3: { uz: "Surish mumkin, lekin avval PRD qayta ko'riladi.", ru: 'Сдвинуть можно, но сначала пересматривают PRD.' },
       default: { uz: "Roadmap'dagi uchta funksiya qaysi hujjatdan keladi?", ru: 'Из какого документа приходят три функции в roadmap?' }
     }}
-    vizual={<S12Viz />} />
+ />
 );
 
 // ===== 🏅 NISHONLAR — ish qilingan ekranlarda, tekin bonus yo'q (S-034); medal belgisi — o'yin qatlami =====
@@ -2052,18 +2077,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Jonli viktorina — 12 savol (MD aynan), ✔ o'rni: A 1·5·10 · B 3·7·12 · C 2·8·11 · D 4·6·9 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'RICE hisobida qamrov nimani bildiradi?', ru: 'Что означает охват в расчёте RICE?' }, opts: [{ uz: 'Oyiga nechta odamga yetib borishini', ru: 'Скольких людей достигает за месяц' }, { uz: 'Bitta odamga qancha foyda berishini', ru: 'Сколько пользы даёт одному человеку' }, { uz: 'Qurishga necha hafta vaqt ketishini', ru: 'Сколько недель уйдёт на постройку' }, { uz: 'Taxminga qanchalik ishonishingizni', ru: 'Насколько вы верите предположению' }], correct: 0 },
-  { q: { uz: 'Bu kursda RICE ning mehnati nima bilan o\'lchanadi?', ru: 'Чем в этом курсе измеряются усилия в RICE?' }, opts: [{ uz: 'Butun guruh necha oy ishlashi bilan', ru: 'Сколько месяцев работает вся группа' }, { uz: 'Kodda nechta qator yozilishi bilan', ru: 'Сколько строк кода написано' }, { uz: 'Bitta odam necha hafta ishlashi bilan', ru: 'Сколько недель работает один человек' }, { uz: 'Nechta ekran chizilishi kerakligi bilan', ru: 'Сколько экранов нужно нарисовать' }], correct: 2 },
-  { q: { uz: 'Ikki funksiyada faqat mehnat farq qiladi. Qaysi biri tartibda yuqori?', ru: 'У двух функций различаются только усилия. Какая выше в порядке?' }, opts: [{ uz: "Mehnati ko'proq bo'lgan funksiya", ru: 'Функция с большими усилиями' }, { uz: "Mehnati kamroq bo'lgan funksiya", ru: 'Функция с меньшими усилиями' }, { uz: 'PRD da birinchi yozilgan funksiya', ru: 'Функция, записанная в PRD первой' }, { uz: "Ko'proq ko'rinadigan funksiya", ru: 'Функция, которую больше видно' }], correct: 1 },
-  { q: { uz: 'Ish «Keyinroq» ufqida turibdi. Bu nimani bildiradi?', ru: 'Работа стоит в горизонте «Позже». Что это значит?' }, opts: [{ uz: '12–13-Modul bo\'yi qilinishini', ru: "Что её делают на протяжении 12–13-го модуля" }, { uz: '12–13-Modulda tugab bo\'lishini', ru: 'Что она закончится в 12–13-м модуле' }, { uz: 'Bitiruvdan keyin boshlanishini', ru: 'Что она начнётся после выпуска' }, { uz: '12–13-Modulda boshlanishini', ru: 'Что она начнётся в 12–13-м модуле' }], correct: 3 },
-  { q: { uz: 'Nega poydevor RICE ga kirmaydi?', ru: 'Почему фундамент не входит в RICE?' }, opts: [{ uz: 'Busiz hech bir funksiya ishlamaydi', ru: 'Без него ни одна функция не работает' }, { uz: 'Uni qurish hammadan tez va oson', ru: 'Его строить быстрее и проще всего' }, { uz: "Uni foydalanuvchi ekranda ko'rmaydi", ru: 'Пользователь не видит его на экране' }, { uz: 'U PRD dagi birinchi bo\'limda turadi', ru: 'Он стоит в первом разделе PRD' }], correct: 0 },
-  { q: { uz: "O'yin kuni tasdiq qo'shilganlarga tayanadi. U qachon quriladi?", ru: 'Подтверждение в день игры опирается на присоединившихся. Когда его строят?' }, opts: [{ uz: "Qo'shilish funksiyasidan oldin", ru: 'До функции присоединения' }, { uz: "Qo'shilish bilan bir vaqtda", ru: 'Одновременно с присоединением' }, { uz: 'Bitiruvdan keyin, oxirgi bo\'lib', ru: 'После выпуска, последним' }, { uz: "Qo'shilish funksiyasidan keyin", ru: 'После функции присоединения' }], correct: 3 },
-  { q: { uz: "«Hozir» ufqiga 11-Modulda nechta funksiya sig'adi?", ru: 'Сколько функций помещается в горизонт «Сейчас» в 11-м модуле?' }, opts: [{ uz: 'Ikkita: qolgani keyingi modulda', ru: 'Две: остальные в следующем модуле' }, { uz: 'Uchta: har loyiha kuniga bitta', ru: 'Три: по одной на каждый проектный день' }, { uz: 'Oltita: PRD dagi hamma ishlar', ru: 'Шесть: все работы из PRD' }, { uz: "To'rtta: poydevor bilan birga", ru: 'Четыре: вместе с фундаментом' }], correct: 1 },
-  { q: { uz: "Uzum'da xaridor telefon ekranida nimani ko'rmaydi?", ru: 'Чего покупатель Uzum не видит на экране телефона?' }, opts: [{ uz: "Narsalar ro'yxati va narxini", ru: 'Список вещей и их цену' }, { uz: 'Narsalarning surati va nomini', ru: 'Фото и названия вещей' }, { uz: 'Mashina va topshirish punktini', ru: 'Машину и пункт выдачи' }, { uz: 'Do\'kon nomi va qidiruv qatorini', ru: 'Название магазина и строку поиска' }], correct: 2 },
-  { q: { uz: "Uzum'dagidek, rejaning birinchi ishi qanday bo'lishi mumkin?", ru: "Какой может быть первая работа плана, как у Uzum?" }, opts: [{ uz: "Ekranda eng chiroyli ko'rinadigan qism", ru: 'Часть, которая красивее всего на экране' }, { uz: "Reklamada eng ko'p ko'rsatiladigan qism", ru: 'Часть, которую чаще всего показывают в рекламе' }, { uz: 'Eng tez va eng oson quriladigan qism', ru: 'Часть, которую быстрее и проще всего построить' }, { uz: "Ekranda ko'rinmasa ham kerakli qism", ru: 'Нужная часть, даже если её не видно на экране' }], correct: 3 },
-  { q: { uz: 'Sherigingiz bir ishga boshqacha RICE berdi. Bu nimani bildiradi?', ru: 'Партнёр дал одной работе другой RICE. Что это значит?' }, opts: [{ uz: 'RICE taxmin ekanini va dalil kerakligini', ru: 'Что RICE — предположение и нужны доказательства' }, { uz: 'Sherigingiz RICE formulasini bilmasligini', ru: 'Что партнёр не знает формулу RICE' }, { uz: "Ishni roadmap'dan o'chirish kerakligini", ru: 'Что работу нужно удалить из roadmap' }, { uz: "Sizning raqamingiz baribir to'g'ri ekanini", ru: 'Что ваше число всё равно верное' }], correct: 0 },
-  { q: { uz: "Roadmap'da har ish haqida nima ko'rinadi?", ru: 'Что видно в roadmap о каждой работе?' }, opts: [{ uz: 'Uni sinfdagi qaysi o\'quvchi qurishi', ru: 'Какой ученик класса её построит' }, { uz: 'Unga qancha pul sarflanishi kerakligi', ru: 'Сколько денег на неё нужно потратить' }, { uz: "U qaysi ufqda va qaysi o'rinda turishi", ru: 'В каком горизонте и на каком месте она стоит' }, { uz: 'Unda necha qator kod yozilishi kerakligi', ru: 'Сколько строк кода в ней нужно написать' }], correct: 2 },
-  { q: { uz: '«Uzoqroq» ufqidagi ish bilan bitiruvgacha nima bo\'ladi?', ru: 'Что до выпуска будет с работой в горизонте «Дальше»?' }, opts: [{ uz: '«Hozir»dagi ishlar bilan birga quriladi', ru: 'Её построят вместе с работами из «Сейчас»' }, { uz: 'Bitiruvdan keyin boshlanishini kutadi', ru: "Она ждёт старта после выпуска" }, { uz: "Roadmap'dan butunlay o'chirib tashlanadi", ru: 'Её полностью удаляют из roadmap' }, { uz: '12-Modulda birinchi bo\'lib boshlanadi', ru: 'Она начнётся первой в 12-м модуле' }], correct: 1 }
+  { q: { uz: "RICE hisobida qamrov nimani bildiradi?", ru: "Что означает охват в RICE?" }, opts: [{ uz: "Oyiga nechta odam ishlatishi", ru: "Сколько людей пользуются в месяц" }, { uz: "Bir odamga qancha foyda", ru: "Сколько пользы одному человеку" }, { uz: "Necha hafta quriladi", ru: "Сколько недель строить" }, { uz: "Taxminga ishonch darajasi", ru: "Насколько верите предположению" }], correct: 0 },
+  { q: { uz: "Bu kursda mehnat nima bilan o'lchanadi?", ru: "Чем в этом курсе измеряют усилия?" }, opts: [{ uz: "Guruh necha oy ishlashi", ru: "Сколько месяцев работает группа" }, { uz: "Kodda nechta qator borligi", ru: "Сколько строк в коде" }, { uz: "Bir odam necha hafta ishlashi", ru: "Сколько недель работает один человек" }, { uz: "Nechta ekran chizilishi", ru: "Сколько экранов нарисуют" }], correct: 2 },
+  { q: { uz: "Ikki ishda faqat mehnat farq qiladi. Qaysi biri yuqori?", ru: "У двух работ отличаются только усилия. Какая выше?" }, opts: [{ uz: "Mehnati ko'prog'i", ru: "С большими усилиями" }, { uz: "Mehnati kamrog'i", ru: "С меньшими усилиями" }, { uz: "PRD da birinchi yozilgani", ru: "Записанная в PRD первой" }, { uz: "Ekranda ko'proq ko'ringani", ru: "Заметнее на экране" }], correct: 1 },
+  { q: { uz: "Ish «Keyinroq» ufqida. Bu nimani bildiradi?", ru: "Работа на горизонте «Позже». Что это значит?" }, opts: [{ uz: "11-Modulda boshlanadi", ru: "Начнётся в 11-м модуле" }, { uz: "Roadmap'dan chiqariladi", ru: "Убирается из roadmap" }, { uz: "Bitiruvdan keyin boshlanadi", ru: "Начнётся после выпуска" }, { uz: "12–13-Modulda boshlanadi", ru: "Начнётся в 12–13-м модуле" }], correct: 3 },
+  { q: { uz: "Nega poydevor RICE ga kirmaydi?", ru: "Почему фундамент не входит в RICE?" }, opts: [{ uz: "Busiz hech bir funksiya yo'q", ru: "Без него не работает ни одна функция" }, { uz: "Uni qurish eng oson", ru: "Его строить проще всего" }, { uz: "Foydalanuvchi uni ko'rmaydi", ru: "Пользователь его не видит" }, { uz: "U PRD da birinchi turadi", ru: "Он первый в PRD" }], correct: 0 },
+  { q: { uz: "Tasdiq qo'shilganlarga tayanadi. U qachon quriladi?", ru: "Подтверждение опирается на присоединившихся. Когда его строят?" }, opts: [{ uz: "Qo'shilishdan oldin", ru: "До присоединения" }, { uz: "Qo'shilish bilan birga", ru: "Вместе с присоединением" }, { uz: "Bitiruvdan keyin", ru: "После выпуска" }, { uz: "Qo'shilishdan keyin", ru: "После присоединения" }], correct: 3 },
+  { q: { uz: "«Hozir» ufqiga nechta funksiya sig'adi?", ru: "Сколько функций вмещает горизонт «Сейчас»?" }, opts: [{ uz: "Ikkita, qolgani keyin", ru: "Две, остальное потом" }, { uz: "Uchta, har kunga bitta", ru: "Три, по одной на день" }, { uz: "Oltita, PRD dagi hammasi", ru: "Шесть, всё из PRD" }, { uz: "To'rtta, poydevor bilan", ru: "Четыре, с фундаментом" }], correct: 1 },
+  { q: { uz: "Uzum'da xaridor ekranda nimani ko'rmaydi?", ru: "Что покупатель Uzum не видит на экране?" }, opts: [{ uz: "Narsalar va narxi", ru: "Товары и цены" }, { uz: "Surat va nomlar", ru: "Фото и названия" }, { uz: "Mashina va punktlar", ru: "Машины и пункты выдачи" }, { uz: "Qidiruv qatori", ru: "Строку поиска" }], correct: 2 },
+  { q: { uz: "Uzum'dagidek, birinchi ish qanday bo'lishi mumkin?", ru: "Как у Uzum, какой может быть первая работа?" }, opts: [{ uz: "Eng chiroylisi", ru: "Самая красивая" }, { uz: "Reklamadagisi", ru: "Та, что в рекламе" }, { uz: "Eng tez quriladigani", ru: "Самая быстрая в постройке" }, { uz: "Ko'rinmasa ham keraklisi", ru: "Нужная, хоть и не видна" }], correct: 3 },
+  { q: { uz: "Sherigingiz ishga boshqa RICE berdi. Bu nima?", ru: "Партнёр дал работе другой RICE. Что это значит?" }, opts: [{ uz: "RICE taxmin, dalil kerak", ru: "RICE — оценка, нужен довод" }, { uz: "Sherik RICE ni bilmaydi", ru: "Партнёр не знает RICE" }, { uz: "Ishni o'chirish kerak", ru: "Работу надо удалить" }, { uz: "Raqamingiz to'g'ri", ru: "Ваше число верное" }], correct: 0 },
+  { q: { uz: "Roadmap'da har ish haqida nima ko'rinadi?", ru: "Что видно на роадмапе о каждой работе?" }, opts: [{ uz: "Uni qaysi o'quvchi quradi", ru: "Какой ученик её строит" }, { uz: "Unga qancha pul ketadi", ru: "Сколько денег на неё уйдёт" }, { uz: "Qaysi ufq va qaysi o'rinda", ru: "На каком горизонте и месте" }, { uz: "Unda necha qator kod bor", ru: "Сколько в ней строк кода" }], correct: 2 },
+  { q: { uz: "«Uzoqroq»dagi ish bitiruvgacha nima bo'ladi?", ru: "Что с работой из «Дальше» до выпуска?" }, opts: [{ uz: "«Hozir» bilan quriladi", ru: "Строится вместе с «Сейчас»" }, { uz: "Bitiruvni kutadi", ru: "Ждёт выпуска" }, { uz: "Roadmap'dan o'chadi", ru: "Удаляется из роадмапа" }, { uz: "12-Modulda boshlanadi", ru: "Начнётся в 12-м модуле" }], correct: 1 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2710,7 +2735,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           ? tr({ uz: <>Roadmap'ingiz <A>tayyor</A>.</>, ru: <>Ваш roadmap <A>готов</A>.</> })
           : tr({ uz: <>Roadmap boshlandi — <A>qolgani uyda</A>.</>, ru: <>Roadmap начат — <A>остальное дома</A>.</> })}
         cta={<>
-          {!isMentorL && <RoadmapStrip />}
           <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
             <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
           </div>

@@ -1548,12 +1548,8 @@ const QZ_BG_SHAPES = [
   { ch: '📋',     l: 2,  t: 45, s: 30, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: { uz: "Kasbiy so'z (jargon) nima?", ru: 'Что такое профессиональное слово (жаргон)?' }, opts: [
-    { uz: 'Faqat shu ishni qiladigan odamlar biladigan so\'z', ru: 'Слово, которое знают только люди этой профессии' },
-    { uz: "Uzun so'z", ru: 'Длинное слово' }, { uz: "Xato yozilgan so'z", ru: 'Слово с ошибкой' }, { uz: "Chet el so'zi", ru: 'Иностранное слово' }], correct: 0 },
-  { q: { uz: 'Pitch nima?', ru: 'Что такое питч?' }, opts: [
-    { uz: 'Kod yozish tartibi', ru: 'Порядок написания кода' }, { uz: "Sayt bo'limlari", ru: 'Разделы сайта' },
-    { uz: 'Qisqa qilib tushuntirib berish', ru: 'Короткий рассказ о продукте' }, { uz: 'Sayt manzili', ru: 'Адрес сайта' }], correct: 2 },
+  { q: { uz: "Kasbiy so'z (jargon) nima?", ru: "Что такое профессиональное слово (жаргон)?" }, opts: [{ uz: "Kasb egalari biladigan so'z", ru: "Слово, которое знают люди профессии" }, { uz: "Juda uzun va qiyin so'z", ru: "Очень длинное и трудное слово" }, { uz: "Xato yozilgan so'z", ru: "Слово с ошибкой" }, { uz: "Chet tilidan kirgan so'z", ru: "Слово из иностранного языка" }], correct: 0 },
+  { q: { uz: "Pitch nima?", ru: "Что такое питч?" }, opts: [{ uz: "Kod yozishning tartibi", ru: "Порядок написания кода" }, { uz: "Saytning bo'limlari", ru: "Разделы сайта" }, { uz: "Qisqa tushuntirib berish", ru: "Коротко объяснить" }, { uz: "Saytning manzili", ru: "Адрес сайта" }], correct: 2 },
   { q: { uz: 'Tushuntirishni nimadan boshlaysiz?', ru: 'С чего начинаете объяснение?' }, opts: [
     { uz: 'Sayt nechta sahifadan iborat', ru: 'Из скольких страниц состоит сайт' },
     { uz: 'Tinglovchi oladigan foyda', ru: 'С выгоды слушателя' },
@@ -1564,11 +1560,9 @@ const QUIZ_BANK = [
     { uz: 'Javon', ru: 'Полка' }, { uz: 'Oshxona', ru: 'Кухня' }, { uz: 'Peshtaxta', ru: 'Прилавок' }, { uz: 'Ombor', ru: 'Склад' }], correct: 2 },
   { q: { uz: "Ma'lumot saqlanadigan joy — do'konda nima?", ru: 'Место хранения данных — что это в магазине?' }, opts: [
     { uz: 'Javon', ru: 'Полка' }, { uz: 'Peshtaxta', ru: 'Прилавок' }, { uz: 'Kassa', ru: 'Касса' }, { uz: 'Eshik', ru: 'Дверь' }], correct: 0 },
-  { q: { uz: "Yaxshi o'xshatish qayerdan olinadi?", ru: 'Откуда берут хорошее сравнение?' }, opts: [
-    { uz: 'Kitobdan', ru: 'Из книги' }, { uz: 'Kod hujjatidan', ru: 'Из документации кода' }, { uz: 'Internetdan', ru: 'Из интернета' },
-    { uz: "Tinglovchining o'z hayotidan", ru: 'Из жизни самого слушателя' }], correct: 3 },
-  { q: { uz: 'Sherigingiz «Yarim tushundim» dedi. Nima qilasiz?', ru: 'Напарник сказал «понял наполовину». Что вы сделаете?' }, opts: [{ uz: 'Balandroq va sekinroq gapiraman', ru: 'Скажу громче и медленнее' }, { uz: 'Tushunarsiz bo\'lakni soddalashtirib aytaman', ru: 'Упрощу непонятную часть и скажу снова' }, { uz: 'Boshqa sherik topib, qaytadan aytaman', ru: 'Найду другого напарника и скажу заново' }, { uz: 'Pitchni ikki barobar uzaytiraman', ru: 'Удлиню питч в два раза' }], correct: 1 },
-  { q: { uz: 'Demo Day\'dan oldin saytni nega telefonda ham ochib ko\'rasiz?', ru: 'Зачем перед Демо-днём открыть сайт и на телефоне?' }, opts: [{ uz: 'Zaldagi odam saytni telefonda ochadi', ru: 'Человек в зале откроет сайт на телефоне' }, { uz: 'Telefonda sayt tezroq ochiladi', ru: 'На телефоне сайт открывается быстрее' }, { uz: 'Netlify sozlamasi shuni talab qiladi', ru: 'Так требует настройка Netlify' }, { uz: 'Kompyuterda saytni ochib bo\'lmaydi', ru: 'На компьютере сайт открыть нельзя' }], correct: 0 },
+  { q: { uz: "Yaxshi o'xshatish qayerdan olinadi?", ru: "Откуда берут хорошее сравнение?" }, opts: [{ uz: "Eski kitoblardan", ru: "Из старых книг" }, { uz: "Kod hujjatlaridan", ru: "Из документации к коду" }, { uz: "Internet saytlaridan", ru: "С сайтов в интернете" }, { uz: "Tinglovchi hayotidan", ru: "Из жизни слушателя" }], correct: 3 },
+  { q: { uz: "Sherik «Yarim tushundim» dedi. Nima qilasiz?", ru: "Напарник сказал «понял наполовину». Что делаете?" }, opts: [{ uz: "Balandroq ovozda gapiraman", ru: "Говорю громче" }, { uz: "Qiyin joyni soddalashtiraman", ru: "Упрощаю трудное место" }, { uz: "Boshqa sherik topaman", ru: "Ищу другого напарника" }, { uz: "Pitchni uzaytiraman", ru: "Удлиняю питч" }], correct: 1 },
+  { q: { uz: "Saytni nega telefonda ham tekshirasiz?", ru: "Зачем проверять сайт и на телефоне?" }, opts: [{ uz: "Zaldagilar telefondan ochadi", ru: "В зале откроют с телефона" }, { uz: "Telefonda tezroq ochiladi", ru: "На телефоне открывается быстрее" }, { uz: "Netlify shuni talab qiladi", ru: "Этого требует Netlify" }, { uz: "Kompyuterda ochilmaydi", ru: "На компьютере не открывается" }], correct: 0 },
   { q: { uz: 'Pitch nima bilan tugaydi?', ru: 'Чем заканчивается питч?' }, opts: [
     { uz: 'Rahmat aytish bilan', ru: 'Словами благодарности' }, { uz: 'Sayt manzili bilan', ru: 'Адресом сайта' },
     { uz: "Kod ko'rsatish bilan", ru: 'Показом кода' }, { uz: "Aniq so'rov bilan", ru: 'Конкретной просьбой' }], correct: 3 },

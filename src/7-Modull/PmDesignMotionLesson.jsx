@@ -30,7 +30,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKarta, QChip, QBashorat, QTaxmin, QQadamlar, QXulosa, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QVoqea, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKarta, QChip, QBashorat, QTaxmin, QQadamlar, QXulosa, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QVoqea, QBlok, QKartochka, QYakun, manoliMatn } from '../qolip/index.jsx';
 
 
 
@@ -96,6 +96,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -173,8 +198,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -748,10 +773,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda Maydon jonli holatda bir marta o'zi yuradi — kataklar birin-ketin kiradi → › → Yakshanba o'ngdan; o'ngda 4 qadam, pastda repo teglari) =====
 const REJA = [
-  { t: { uz: 'Dizayner ekranidan nimani olish kerakligini ajratasiz', ru: 'Отличите, что брать с экрана дизайнера' }, teg: { uz: 'tanlash', ru: 'выбор' } },
-  { t: { uz: "Bitta usul ilovadan ilovaga qanday o'tganini ko'rasiz", ru: 'Увидите, как один приём перешёл из приложения в приложение' }, teg: { uz: 'voqea', ru: 'история' } },
-  { t: { uz: "O'z g'oyangiz uchun Dribbble'dan usul topasiz", ru: 'Найдёте на Dribbble приём для своей идеи' }, teg: { uz: 'izlash', ru: 'поиск' } },
-  { t: { uz: "Maydon'ga usul va animatsiyalarni agent orqali qo'shasiz", ru: 'Добавите в Maydon приём и анимации через агента' }, teg: { uz: 'amaliyot', ru: 'практика' } }
+  { t: { uz: 'Dizayner ekranidan nimani olish kerakligini ajrating', ru: 'Отличите, что брать с экрана дизайнера' }, teg: { uz: 'tanlash', ru: 'выбор' } },
+  { t: { uz: "Bitta usul ilovadan ilovaga qanday o'tganini ko'ring", ru: 'Посмотрите, как один приём перешёл из приложения в приложение' }, teg: { uz: 'voqea', ru: 'история' } },
+  { t: { uz: "O'z g'oyangiz uchun Dribbble'dan usul toping", ru: 'Найдите на Dribbble приём для своей идеи' }, teg: { uz: 'izlash', ru: 'поиск' } },
+  { t: { uz: "Maydon'ga usul va animatsiyalarni agent orqali qo'shing", ru: 'Добавьте в Maydon приём и анимации через агента' }, teg: { uz: 'amaliyot', ru: 'практика' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const [kun, setKun] = useState(0);
@@ -1095,7 +1120,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     );
   });
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · animatsiya talabi', ru: 'Понятие · требование к анимации' })} screen={screen} scrollSignal={joriy + (oxirgi ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Uch qismni tanlang (${joriy}/3)`, ru: `Выберите три части (${joriy}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · animatsiya talabi', ru: 'Понятие · требование к анимации' })} screen={screen} scrollSignal={joriy + (oxirgi ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Uch qismni tanlang`, ru: `Выберите три части` })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi}
         sarlavha={tr({ uz: <>Animatsiya talabida <A>nima aytiladi?</A></>, ru: <>Что говорится <A>в требовании к анимации?</A></> })}
         mentor={<Mentor>{tr({ uz: '5-darsda animatsiyani qo\'lda yozgansiz, bugun uni agent yozadi — har qismdan bittasini tanlang.', ru: 'На 5-м уроке вы писали анимацию вручную, сегодня её пишет агент — выберите по одному варианту в каждой части.' })}</Mentor>}
@@ -1224,18 +1249,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, kalitlar A B C D B A D C A D C B (har harf 3 marta; MD jadvali)
 const QUIZ_BANK = [
-  { q: { uz: "Behance'da dizayner nimani ko'rsatadi?", ru: 'Что дизайнер показывает на Behance?' }, opts: [{ uz: 'Loyihasini rasmlar va izoh bilan', ru: 'Свой проект с картинками и описанием' }, { uz: "Faqat o'z rezyumesini matn bilan", ru: 'Только своё резюме текстом' }, { uz: 'Ilovasining tayyor kodini fayl bilan', ru: 'Готовый код приложения файлом' }, { uz: 'Ilovalarning yuklab olinish sonini', ru: 'Число скачиваний приложений' }], correct: 0 },
-  { q: { uz: 'Musiqa ilovasida qaysi biri usul?', ru: 'Что в музыкальном приложении — приём?' }, opts: [{ uz: 'Ilova foni qora, harflari esa oppoq', ru: 'Фон приложения чёрный, а буквы белые' }, { uz: "Oxirgi tinglangan qo'shiq tepada turadi", ru: 'Последняя прослушанная песня стоит сверху' }, { uz: 'Albom rasmlari katta va yumaloq chizilgan', ru: 'Обложки альбомов большие и круглые' }, { uz: "Tugmalar och ko'k rangga bo'yalgan", ru: 'Кнопки окрашены в светло-голубой' }], correct: 1 },
-  { q: { uz: 'Maydon misolida qaysi biri bezak?', ru: 'Что в примере Maydon — украшение?' }, opts: [{ uz: 'Band katakni bosib bo\'lmasligi', ru: 'Занятую ячейку нельзя нажать' }, { uz: 'Butun kun bitta ekranga sig\'ishi', ru: 'Весь день помещается на одном экране' }, { uz: 'Fon rangi va sarlavha shrifti', ru: 'Цвет фона и шрифт заголовка' }, { uz: "Kun almashganda yo'nalish ko'rinishi", ru: 'Видно направление при смене дня' }], correct: 2 },
-  { q: { uz: "To'p rasmi Maydon'ga qo'yilganda nima bo'ldi?", ru: 'Что стало, когда в Maydon поставили картинку мяча?' }, opts: [{ uz: "O'yinchi bo'sh vaqtni tezroq topib oldi", ru: 'Игрок быстрее нашёл свободное время' }, { uz: "Kataklar uch ustunga yig'ildi", ru: 'Ячейки собрались в три столбца' }, { uz: "Kun almashtirgich yo'qolib qoldi", ru: 'Пропал переключатель дня' }, { uz: 'Kataklar yana pastga surilib ketdi', ru: 'Ячейки съехали ещё ниже' }], correct: 3 },
-  { q: { uz: 'Kunlar tasmasi qaysi savolga javob beradi?', ru: 'На какой вопрос отвечает лента дней?' }, opts: [{ uz: "«Bugun qaysi vaqt bo'sh?»", ru: '«Какое время сегодня свободно?»' }, { uz: "«Boshqa kunda bo'sh vaqt bormi?»", ru: '«Есть ли свободное время в другой день?»' }, { uz: '«Maydon egasining telefoni qaysi?»', ru: '«Какой телефон у хозяина поля?»' }, { uz: '«Band qilish qancha pul turadi?»', ru: '«Сколько стоит бронь?»' }], correct: 1 },
-  { q: { uz: 'Usulni qayerdan boshlab izlaysiz?', ru: 'С чего начинаете искать приём?' }, opts: [{ uz: 'Foydalanuvchining eng muhim savolidan', ru: 'С самого важного вопроса пользователя' }, { uz: "Dribbble'da eng ko'p yoqtirilgan ishdan", ru: 'С самой залайканной работы на Dribbble' }, { uz: "O'zingizga yoqqan rang va shrift turidan", ru: 'С понравившегося вам цвета и шрифта' }, { uz: "Do'stingiz ilovasining ekranidan", ru: 'С экрана приложения друга' }], correct: 0 },
-  { q: { uz: "Tweetie'gacha yangi postni qanday ko'rardingiz?", ru: 'Как до Tweetie вы видели новый пост?' }, opts: [{ uz: 'Telefonni silkitib yangilardingiz', ru: 'Обновляли, встряхнув телефон' }, { uz: "Ilova har daqiqada o'zi yangilab turardi", ru: 'Приложение само обновлялось каждую минуту' }, { uz: 'Yangi post kelsa, xabar chiqardi', ru: 'Когда приходил пост, появлялось уведомление' }, { uz: 'Tepaga chiqib, tugmani bosardingiz', ru: 'Поднимались наверх и нажимали кнопку' }], correct: 3 },
-  { q: { uz: 'Tortib turganingizda belgi nima qiladi?', ru: 'Что делает значок, пока вы тянете?' }, opts: [{ uz: "Ilovaning o'zini tezroq ishlatib yuboradi", ru: 'Заставляет само приложение работать быстрее' }, { uz: "Ekranni chiroyliroq qilib ko'rsatadi", ru: 'Делает экран красивее' }, { uz: "Yangilanish boshlanishini ko'rsatadi", ru: 'Показывает, что обновление начинается' }, { uz: "Yangi postlar sonini sanab ko'rsatadi", ru: 'Считает и показывает число новых постов' }], correct: 2 },
-  { q: { uz: 'Talabdagi «qayerda» qismi nima uchun kerak?', ru: 'Зачем в требовании часть «где»?' }, opts: [{ uz: 'Agent boshqa joyga tegmasligi uchun', ru: 'Чтобы агент не трогал другие места' }, { uz: 'Agent kodni tezroq yozib berishi uchun', ru: 'Чтобы агент быстрее написал код' }, { uz: 'Kod chiroyliroq va qisqa yozilishi uchun', ru: 'Чтобы код был красивее и короче' }, { uz: "Talab uzunroq va jiddiyroq bo'lishi uchun", ru: 'Чтобы требование было длиннее и серьёзнее' }], correct: 0 },
+  { q: { uz: "Dribbble'da dizayner nimani ko'rsatadi?", ru: "Что дизайнер показывает на Dribbble?" }, opts: [{ uz: "O'z ishidan ekranlar", ru: "Экраны из своих работ" }, { uz: "Faqat o'z rezyumesini", ru: "Только своё резюме" }, { uz: "Ilovasining tayyor kodini", ru: "Готовый код приложения" }, { uz: "Ilova yuklanish sonini", ru: "Число скачиваний" }], correct: 0 },
+  { q: { uz: "Musiqa ilovasida qaysi biri usul?", ru: "Что в музыкальном приложении — приём?" }, opts: [{ uz: "Fon qora, harflar oq", ru: "Фон чёрный, буквы белые" }, { uz: "Oxirgi qo'shiq tepada turadi", ru: "Последняя песня стоит сверху" }, { uz: "Albom rasmlari katta", ru: "Обложки альбомов большие" }, { uz: "Tugmalar och ko'k rangda", ru: "Кнопки светло-голубые" }], correct: 1 },
+  { q: { uz: "Maydon misolida qaysi biri bezak?", ru: "Что в примере Maydon — украшение?" }, opts: [{ uz: "Band katak bosilmasligi", ru: "Занятую ячейку нельзя нажать" }, { uz: "Butun kun bir ekranda", ru: "Весь день на одном экране" }, { uz: "Fon rangi va shrift", ru: "Цвет фона и шрифт" }, { uz: "Kun almashish yo'nalishi", ru: "Направление смены дня" }], correct: 2 },
+  { q: { uz: "To'p rasmi qo'yilganda nima bo'ldi?", ru: "Что стало, когда поставили картинку мяча?" }, opts: [{ uz: "Bo'sh vaqt tezroq topildi", ru: "Свободное время нашли быстрее" }, { uz: "Kataklar uch ustunga o'tdi", ru: "Ячейки встали в три столбца" }, { uz: "Kun almashtirgich yo'qoldi", ru: "Пропал переключатель дня" }, { uz: "Kataklar yana pastga tushdi", ru: "Ячейки опустились ещё ниже" }], correct: 3 },
+  { q: { uz: "Kunlar tasmasi qaysi savolga javob beradi?", ru: "На какой вопрос отвечает лента дней?" }, opts: [{ uz: "«Bugun qaysi vaqt bo'sh?»", ru: "«Какое время сегодня свободно?»" }, { uz: "«Boshqa kun-chi?»", ru: "«А другой день?»" }, { uz: "«Egasi telefoni qaysi?»", ru: "«Какой телефон у хозяина?»" }, { uz: "«Band qilish necha pul?»", ru: "«Сколько стоит бронь?»" }], correct: 1 },
+  { q: { uz: "Usulni qayerdan boshlab izlaysiz?", ru: "С чего начинаете искать приём?" }, opts: [{ uz: "Foydalanuvchining savolidan", ru: "С вопроса пользователя" }, { uz: "Eng ko'p layk olgan ishdan", ru: "С самой залайканной работы" }, { uz: "Yoqqan rang va shriftdan", ru: "С понравившихся цвета и шрифта" }, { uz: "Do'st ilovasi ekranidan", ru: "С экрана приложения друга" }], correct: 0 },
+  { q: { uz: "Tweetie'gacha yangi post qanday ko'rilardi?", ru: "Как до Tweetie смотрели новые посты?" }, opts: [{ uz: "Telefonni silkitib", ru: "Встряхнув телефон" }, { uz: "Ilova o'zi yangilardi", ru: "Приложение обновлялось само" }, { uz: "Xabarnoma chiqardi", ru: "Приходило уведомление" }, { uz: "Tepadagi tugmani bosib", ru: "Нажав кнопку наверху" }], correct: 3 },
+  { q: { uz: "Tortib turganingizda belgi nima qiladi?", ru: "Что делает значок, пока вы тянете?" }, opts: [{ uz: "Ilovani tezlashtiradi", ru: "Ускоряет приложение" }, { uz: "Ekranni chiroyli qiladi", ru: "Делает экран красивее" }, { uz: "Yangilanishni ko'rsatadi", ru: "Показывает начало обновления" }, { uz: "Yangi postlarni sanaydi", ru: "Считает новые посты" }], correct: 2 },
+  { q: { uz: "«Qayerda» qismi nega kerak?", ru: "Зачем нужна часть «где»?" }, opts: [{ uz: "Hamma joyga qo'shmasligi uchun", ru: "Чтобы агент не добавил везде" }, { uz: "Kodni tezroq yozishi uchun", ru: "Чтобы быстрее написал код" }, { uz: "Kod qisqaroq chiqishi uchun", ru: "Чтобы код был короче" }, { uz: "Talab jiddiy ko'rinishi uchun", ru: "Чтобы требование выглядело серьёзно" }], correct: 0 },
   { q: { uz: "Maydon'dagi ro'yxat animatsiyasiga qaysi vaqt tanlandi?", ru: 'Какое время выбрали для анимации списка в Maydon?' }, opts: [{ uz: '2 soniyadan ham uzunroq', ru: 'Даже дольше 2 секунд' }, { uz: 'Roppa-rosa bir soniya', ru: 'Ровно одна секунда' }, { uz: "3–5 soniya oralig'ida", ru: 'От 3 до 5 секунд' }, { uz: 'Hammasi 0,4 soniyada', ru: 'Всё за 0,4 секунды' }], correct: 3 },
   { q: { uz: "O'yinchi › ni bosdi. Yangi kun qayerdan kiradi?", ru: 'Игрок нажал ›. Откуда входит новый день?' }, opts: [{ uz: 'Chap tomondan', ru: 'Слева' }, { uz: 'Tepadan pastga', ru: 'Сверху вниз' }, { uz: "O'ng tomondan", ru: 'Справа' }, { uz: 'Pastdan tepaga', ru: 'Снизу вверх' }], correct: 2 },
-  { q: { uz: 'Talabga «nima buzilmasin» nega yoziladi?', ru: 'Зачем в требование пишут «что не сломать»?' }, opts: [{ uz: "Agent ko'proq kod yozib bersin deb", ru: 'Чтобы агент написал больше кода' }, { uz: 'Ishlab turgan narsa saqlansin deb', ru: 'Чтобы сохранилось то, что работает' }, { uz: "Talab rasmiyroq bo'lib ko'rinsin deb", ru: 'Чтобы требование выглядело официальнее' }, { uz: "Agent yangi paketlar o'rnatsin deb", ru: 'Чтобы агент установил новые пакеты' }], correct: 1 }
+  { q: { uz: "«Nima buzilmasin» nega yoziladi?", ru: "Зачем пишут «что не сломать»?" }, opts: [{ uz: "Ko'proq kod yozilsin deb", ru: "Чтобы кода было больше" }, { uz: "Ishlagan narsa saqlansin deb", ru: "Чтобы сохранилось работающее" }, { uz: "Talab rasmiy ko'rinsin deb", ru: "Чтобы выглядело официально" }, { uz: "Yangi paket o'rnatilsin deb", ru: "Чтобы поставили новые пакеты" }], correct: 1 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1805,7 +1830,7 @@ const USUL_SAVOLLAR = [
   { id: 'joy', l: { uz: "uni qayerga qo'yasiz?", ru: 'куда вы его поставите?' } }
 ];
 const BEZAK_SOZ = { uz: /(rang|shrift|fon\b|rasm|chiroyli|bezak|gradient)/i, ru: /(цвет|шрифт|фон|картинк|красив)/i };
-const usulTola = (g) => String(g.savol || '').trim().length >= 8 && String(g.usul || '').trim().length > 0 && String(g.joy || '').trim().length > 0;
+const usulTola = (g) => String(g.savol || '').trim().length >= 8 && manoliMatn(g.savol) && String(g.usul || '').trim().length > 0 && String(g.joy || '').trim().length > 0;
 const usulBor = (g) => !!(g && usulTola(g));
 const qavs = (v, ph) => (String(v || '').trim() || ph);
 // A1 5-qadam prompti — uch javob qavslarga o'zi qo'yiladi; «nima buzilmasin» — o'quvchi Antigravity'da yozadi (MD)
@@ -1872,7 +1897,7 @@ function ScreenBlok({ screen, storedAnswer, answers, onAnswer, onNext, onPrev, l
   }, [stepN]);
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => {
           const pr = typeof c.prompt === 'function' ? c.prompt(goya) : c.prompt;
           return {
@@ -2271,11 +2296,10 @@ export default function PmDesignMotionLesson({ lang: langProp, onFinished, liveT
         .dm-oyinchi { width: 14px; height: 14px; flex-shrink: 0; border-radius: 50%; background: ${T.accentSoft}; border: 2px solid ${T.accent}; }
         .dm-pufak.ok .dm-oyinchi { display: none; }
         .dm-hook { display: flex; justify-content: center; min-width: 0; }
-        .q-kirish:has(.dm-hook.tanla) .q-variantlar-kol { border-radius: 14px; box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}; animation: dm-navbat-g 1.6s ease-out infinite; }
-        @keyframes dm-navbat-g { 0% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 9px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 19px ${fon(T.accent, 0)}; } }
+        .q-kirish:has(.dm-hook.tanla) .q-variant:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: dm-navbat 1.6s ease-out infinite; }
         .dm-navbat { box-shadow: 0 0 0 2px ${T.accent}; animation: dm-navbat 1.6s ease-out infinite; }
-        @keyframes dm-navbat { 0% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 2px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 12px ${fon(T.accent, 0)}; } }
-        .dm-navbat-k > .q-bashorat { box-shadow: 0 0 0 2px ${T.accent}; animation: dm-navbat 1.6s ease-out infinite; }
+        @keyframes dm-navbat { 0% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 1.5px ${fon(T.accent, 0.35)}; } 100% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 8px ${fon(T.accent, 0)}; } }
+        .dm-navbat-k .q-chip:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: dm-navbat 1.6s ease-out infinite; }
         .dm-taxmin { display: flex; align-items: center; gap: 6px 12px; flex-wrap: wrap; padding: 9px 14px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 12px; animation: q-kir 0.3s ease-out; }
         .dm-taxmin .q-yorliq { margin: 0; }
         .dm-taxmin-s { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13.5px; line-height: 1.4; color: ${T.ink2}; }
@@ -2420,7 +2444,7 @@ export default function PmDesignMotionLesson({ lang: langProp, onFinished, liveT
         @media (max-width: 640px) { .dm-ikki .dm-ustun { zoom: 0.8; } .dm-tw-uch { zoom: 0.78; } .dm-ikki-k { gap: 8px; } }
         @media (prefers-reduced-motion: reduce) {
           .dm-kataklar .dm-katak, .dm-sakra, .dm-kun-n, .dm-kataklar, .dm-pufak, .dm-tur, .qatlam, .dm-barmoq, .dm-qq, .dm-bk-w, .dm-voqea, .dm-taxmin { animation: none !important; }
-          .dm-navbat, .dm-navbat-k > .q-bashorat, .dm-qism-v, .q-kirish:has(.dm-hook.tanla) .q-variantlar-kol, .dm-dq.aj, .dm-ekran.aj-fon::before, .dm-flash.yangi .fc-card:not(.flip) .fc-front, .dm-fc-ipucha i { animation: none !important; }
+          .dm-navbat, .dm-navbat-k .q-chip:not(:disabled), .dm-qism-v, .q-kirish:has(.dm-hook.tanla) .q-variant:not(:disabled), .dm-dq.aj, .dm-ekran.aj-fon::before, .dm-flash.yangi .fc-card:not(.flip) .fc-front, .dm-fc-ipucha i { animation: none !important; }
           .dm-ekran.yonadi::after { animation: none; opacity: 1; }
           .dm-tw *, .dm-tw-royxat { animation: none !important; }
           .dm-katak, .dm-bolak-m, .dm-strelka, .dm-ekran { transition: none; }

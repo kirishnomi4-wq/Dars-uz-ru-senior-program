@@ -99,6 +99,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -176,8 +201,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1266,18 +1291,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD), to'g'ri javob o'rni A·B·C·D ×3 (3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: "Roadmap'dagi funksiyani agentga qanday berasiz?", ru: "Как вы передаёте агенту функцию из roadmap?" }, opts: [{ uz: "Uch qatorli talab qilib, o'zingiz yozib", ru: "Трёхстрочным требованием, написав его сами" }, { uz: "Roadmap qatorini o'zgartirmay, o'zini", ru: "Саму строку roadmap, не меняя" }, { uz: 'PRD ning hamma bo\'limini birdaniga yuborib', ru: "Отправив сразу все разделы PRD" }, { uz: 'Faqat funksiya nomini, qisqa qilib yozib', ru: "Только название функции, коротко" }], correct: 0 },
-  { q: { uz: 'Talabda ikki marta bosish aytilmagan. Agent nima qilishi mumkin?', ru: "В требовании не сказано о двойном нажатии. Что может сделать агент?" }, opts: [{ uz: 'Tugmani ekrandan butunlay olib tashlaydi', ru: "Полностью уберёт кнопку с экрана" }, { uz: "Bu holatni o'zicha taxmin qilib quradi", ru: "Сделает этот случай по своей догадке" }, { uz: 'Funksiyani umuman qurmasdan qoldiradi', ru: "Вообще не станет делать функцию" }, { uz: "Ilovani boshidan to'liq qayta yozadi", ru: "Полностью перепишет приложение с нуля" }], correct: 1 },
-  { q: { uz: "Formada «kim» yo'q. E'lon egasi qayerdan olinadi?", ru: "В форме нет «кто». Откуда берётся владелец объявления?" }, opts: [{ uz: "Telefon raqamidan, so'rovdagi", ru: "Из номера телефона в запросе" }, { uz: 'Ilova ustidagi ism yozuvidan', ru: "Из надписи с именем над приложением" }, { uz: "So'rov bilan kelgan tokendan", ru: "Из токена, пришедшего с запросом" }, { uz: "Database'dagi oxirgi qatordan", ru: "Из последней строки в Database" }], correct: 2 },
-  { q: { uz: "Ilova qayta yuklandi. Yangi e'lon nega yo'qolmadi?", ru: "Приложение перезагрузилось. Почему новое объявление не пропало?" }, opts: [{ uz: 'Telefon xotirasiga yozilgani uchun', ru: "Потому что записано в память телефона" }, { uz: "Agent uni namunaga qo'shgani uchun", ru: "Потому что агент добавил его в образцы" }, { uz: "Expo Go uni o'zida saqlagani uchun", ru: "Потому что Expo Go хранит его у себя" }, { uz: "U Database'ga yozilgani uchun", ru: "Потому что оно записано в Database" }], correct: 3 },
-  { q: { uz: '«8 / 10» dagi 8 qayerdan keladi?', ru: "Откуда берётся 8 в «8 / 10»?" }, opts: [{ uz: "Database'dagi qo'shilganlar sonidan", ru: "Из числа присоединившихся в Database" }, { uz: "Telefonda bosilgan tugmalar sanog'idan", ru: "Из счёта нажатий на телефоне" }, { uz: 'Prototipdagi namuna fayl raqamidan', ru: "Из числа в файле-образце прототипа" }, { uz: 'Tashkilotchi formaga yozgan sondan', ru: "Из числа, которое организатор вписал в форму" }], correct: 0 },
-  { q: { uz: "Bir o'yinchi «Qo'shilaman»ni ikki marta bosdi. Nima bo'lishi kerak?", ru: "Игрок дважды нажал «Присоединяюсь». Что должно быть?" }, opts: [{ uz: 'Son ikkiga oshadi, ikkala joy ham olinadi', ru: "Число вырастет на два, заняты оба места" }, { uz: 'Son bittaga oshadi, ikkinchisi yozilmaydi', ru: "Число вырастет на один, второе не запишется" }, { uz: "Son o'zgarmaydi, ikkala bosish ham bekor", ru: "Число не изменится, оба нажатия отменены" }, { uz: "O'yin o'chadi, qayta e'lon kerak bo'ladi", ru: "Игра удалится, нужно объявлять заново" }], correct: 1 },
-  { q: { uz: "Ekranda «9 / 10», o'yin esa to'lgan. Nega shunday?", ru: "На экране «9 / 10», а игра уже заполнена. Почему так?" }, opts: [{ uz: "Backend sonni noto'g'ri sanab qo'ygan", ru: "Backend неправильно посчитал число" }, { uz: "Database'ga qo'shilganlar yozilmagan", ru: "В Database не записаны присоединившиеся" }, { uz: "Ekranda oxirgi so'ralgan son turibdi", ru: "На экране число из последнего запроса" }, { uz: "Agent ekranni noto'g'ri qurib qo'ygan", ru: "Агент неправильно сделал экран" }], correct: 2 },
-  { q: { uz: "To'lgan o'yinga qo'shmaslikni qayerda tekshirish kerak?", ru: "Где нужно проверять, чтобы не добавлять в заполненную игру?" }, opts: [{ uz: 'Ilovada, tugmani ekrandan yashirib', ru: "В приложении, спрятав кнопку" }, { uz: "Talabda, agent o'zi bilsin deb", ru: "В требовании — пусть агент сам знает" }, { uz: "Neon'da, har kuni qo'lda sanab", ru: "В Neon, каждый день считая вручную" }, { uz: "Backend'da, Database'ga qarab", ru: "В Backend, глядя в Database" }], correct: 3 },
-  { q: { uz: "Backend to'lgan o'yinga qo'shmadi. Ilova nima ko'rsatadi?", ru: "Backend не добавил в заполненную игру. Что покажет приложение?" }, opts: [{ uz: "«O'yin to'ldi» degan xabarni", ru: "Сообщение «Игра заполнена»" }, { uz: '«11 / 10» degan yangi sonni', ru: "Новое число «11 / 10»" }, { uz: 'Yozuvsiz, bo\'sh qolgan ekranni', ru: "Пустой экран без надписей" }, { uz: '«Kirish» ekranini qayta ochib', ru: "Снова откроет экран «Вход»" }], correct: 0 },
-  { q: { uz: "Boshqa telefondagi «8 / 10» qachon yangilanadi?", ru: "Когда обновится «8 / 10» на другом телефоне?" }, opts: [{ uz: "Har soniyada o'zi, hech narsa so'ramasdan", ru: "Каждую секунду само, ничего не запрашивая" }, { uz: 'Ekran ochilganda yoki pastga tortilganda', ru: "Когда экран открыли или потянули вниз" }, { uz: "Faqat ilova qayta o'rnatilgandan keyin", ru: "Только после переустановки приложения" }, { uz: "Tashkilotchi o'yinga ruxsat berganda", ru: "Когда организатор разрешит игру" }], correct: 1 },
-  { q: { uz: "Backend o'zgardi. Telefonda u qachon ishlaydi?", ru: "Backend изменился. Когда это заработает на телефоне?" }, opts: [{ uz: 'Agent «Tayyor» deb javob berishi bilan', ru: "Как только агент ответит «Готово»" }, { uz: "`git commit` qilinishi bilan, push'siz", ru: "Сразу после `git commit`, без push" }, { uz: "Push'dan keyin Render yangilangach", ru: "После push, когда Render обновится" }, { uz: "Telefon o'chib, qayta yoqilgandan keyin", ru: "После выключения и включения телефона" }], correct: 2 },
-  { q: { uz: 'Agent «Tayyor» dedi. Keyin nima qilasiz?', ru: "Агент сказал «Готово». Что вы делаете дальше?" }, opts: [{ uz: "Shu zahoti keyingi blokka o'tasiz", ru: "Сразу переходите к следующему блоку" }, { uz: "Agentdan yana bir bor so'rab ko'rasiz", ru: "Ещё раз спрашиваете агента" }, { uz: "README'ga «tayyor» deb yozib qo'yasiz", ru: "Пишете в README «готово»" }, { uz: 'Talabning har gapini tekshirasiz', ru: "Проверяете каждую фразу требования" }], correct: 3 }
+  { q: { uz: "Funksiyani agentga qanday berasiz?", ru: "Как вы передаёте функцию агенту?" }, opts: [{ uz: "Uch qatorli talab yozib", ru: "Написав требование из трёх строк" }, { uz: "Roadmap qatorini yuborib", ru: "Отправив строку roadmap" }, { uz: "PRD'ni to'liq yuborib", ru: "Отправив весь PRD" }, { uz: "Faqat nomini yozib", ru: "Написав только название" }], correct: 0 },
+  { q: { uz: "Talabda ikki marta bosish yo'q. Agent nima qiladi?", ru: "В требовании нет двойного нажатия. Что сделает агент?" }, opts: [{ uz: "Tugmani olib tashlaydi", ru: "Уберёт кнопку" }, { uz: "O'zicha taxmin qiladi", ru: "Додумает сам" }, { uz: "Funksiyani qurmaydi", ru: "Не построит функцию" }, { uz: "Ilovani qayta yozadi", ru: "Перепишет приложение" }], correct: 1 },
+  { q: { uz: "Formada «kim» yo'q. Egasi qayerdan olinadi?", ru: "В форме нет «кто». Откуда берётся владелец?" }, opts: [{ uz: "Telefon raqamidan", ru: "Из номера телефона" }, { uz: "Ilovadagi ism yozuvidan", ru: "Из имени в приложении" }, { uz: "So'rovdagi tokendan", ru: "Из токена в запросе" }, { uz: "Jadvalning oxirgi qatoridan", ru: "Из последней строки таблицы" }], correct: 2 },
+  { q: { uz: "Qayta yuklashda yangi e'lon nega yo'qolmadi?", ru: "Почему новое объявление не пропало при перезагрузке?" }, opts: [{ uz: "Telefonga yozilgan", ru: "Записано в телефон" }, { uz: "Agent namunaga qo'shgan", ru: "Агент добавил в образец" }, { uz: "Expo Go o'zida saqlagan", ru: "Expo Go сохранил у себя" }, { uz: "Database'ga yozilgan", ru: "Записано в Database" }], correct: 3 },
+  { q: { uz: "«8 / 10» dagi 8 qayerdan keladi?", ru: "Откуда берётся 8 в «8 / 10»?" }, opts: [{ uz: "Database'dagi sanoqdan", ru: "Из подсчёта в Database" }, { uz: "Telefondagi bosishlardan", ru: "Из нажатий на телефоне" }, { uz: "Namuna faylidagi sondan", ru: "Из числа в файле-образце" }, { uz: "Tashkilotchi yozgan sondan", ru: "Из числа, введённого организатором" }], correct: 0 },
+  { q: { uz: "Ikki marta «Qo'shilaman» bosildi. Nima bo'lishi kerak?", ru: "«Присоединяюсь» нажали дважды. Что должно произойти?" }, opts: [{ uz: "Son ikkiga oshadi", ru: "Число растёт на два" }, { uz: "Son bittaga oshadi", ru: "Число растёт на один" }, { uz: "Son o'zgarmaydi", ru: "Число не меняется" }, { uz: "O'yin o'chib ketadi", ru: "Игра удаляется" }], correct: 1 },
+  { q: { uz: "Ekranda «9 / 10», o'yin to'lgan. Nega?", ru: "На экране «9 / 10», а игра заполнена. Почему?" }, opts: [{ uz: "Backend noto'g'ri sanagan", ru: "Backend посчитал неверно" }, { uz: "Qo'shilganlar yozilmagan", ru: "Участники не записаны" }, { uz: "Ekranda eski son turibdi", ru: "На экране старое число" }, { uz: "Agent ekranni xato qurgan", ru: "Агент построил экран с ошибкой" }], correct: 2 },
+  { q: { uz: "To'lgan o'yinni qayerda tekshirish kerak?", ru: "Где нужно проверять заполненную игру?" }, opts: [{ uz: "Ilovada, tugmani yashirib", ru: "В приложении, скрыв кнопку" }, { uz: "Talabda, agent bilsin deb", ru: "В требовании, чтобы агент знал" }, { uz: "Neon'da, qo'lda sanab", ru: "В Neon, считая вручную" }, { uz: "Backend'da, Database'dan", ru: "В Backend, по Database" }], correct: 3 },
+  { q: { uz: "To'lgan o'yinda ilova nima ko'rsatadi?", ru: "Что показывает приложение в заполненной игре?" }, opts: [{ uz: "«O'yin to'ldi» xabarini", ru: "Сообщение «Игра заполнена»" }, { uz: "«11 / 10» degan sonni", ru: "Число «11 / 10»" }, { uz: "Yozuvsiz bo'sh ekranni", ru: "Пустой экран без надписей" }, { uz: "«Kirish» ekranini", ru: "Экран «Вход»" }], correct: 0 },
+  { q: { uz: "Boshqa telefonda «8 / 10» qachon yangilanadi?", ru: "Когда обновляется «8 / 10» на другом телефоне?" }, opts: [{ uz: "Har soniyada o'zi", ru: "Само каждую секунду" }, { uz: "Ochilganda yoki tortilganda", ru: "При открытии или потягивании" }, { uz: "Ilova o'rnatilganda", ru: "При установке приложения" }, { uz: "Tashkilotchi ruxsat berganda", ru: "Когда разрешит организатор" }], correct: 1 },
+  { q: { uz: "Backend o'zgarishi telefonga qachon yetadi?", ru: "Когда изменение Backend доходит до телефона?" }, opts: [{ uz: "Agent «Tayyor» desa", ru: "Когда агент скажет «Готово»" }, { uz: "`git commit` qilinganda", ru: "После `git commit`" }, { uz: "Render deploy'ni tugatgach", ru: "Когда Render завершит деплой" }, { uz: "Telefon qayta yoqilganda", ru: "После перезагрузки телефона" }], correct: 2 },
+  { q: { uz: "Agent «Tayyor» dedi. Nima qilasiz?", ru: "Агент сказал «Готово». Что вы сделаете?" }, opts: [{ uz: "Keyingi blokka o'tasiz", ru: "Перейдёте к следующему блоку" }, { uz: "Agentdan qayta so'raysiz", ru: "Переспросите агента" }, { uz: "README'ga «tayyor» yozasiz", ru: "Напишете «готово» в README" }, { uz: "Talabni gapma-gap tekshirasiz", ru: "Проверите требование по фразам" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1949,7 +1974,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.ichi}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="fo-band">{tx(b)}</span>)}{c.prompt}</>,
@@ -2450,10 +2475,10 @@ export default function FeatureOneLesson({ lang: langProp, onFinished, liveToken
         .fo-be.xato { border-color: ${T.err}; box-shadow: 0 0 0 4px ${fon(T.err, 0.14)}; }
         .fo-be-h { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: ${T.ink}; }
         .fo-be-joy { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink2}; overflow-wrap: anywhere; }
-        .fo-yol { display: flex; align-items: center; gap: 8px; padding: 5px 9px; border-radius: 8px; background: ${T.bg}; border: 1px solid ${T.line}; transition: border-color 0.3s, background 0.3s; }
+        .fo-yol { display: flex; align-items: center; gap: 8px; padding: 5px 9px; border-radius: 8px; background: ${T.bg}; border: 1px solid transparent; /* F-1015-333: ichki karta chegarasiz */ transition: border-color 0.3s, background 0.3s; }
         .fo-yol code { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink}; overflow-wrap: anywhere; }
         .fo-yol.on { border-color: ${T.accent}; background: ${T.accentSoft}; }
-        .fo-yol.ok { border-color: ${fon(T.ok, 0.5)}; background: ${T.okFon}; }
+        .fo-yol.ok { background: ${T.okFon}; }
         .fo-yol.xato { border-color: ${fon(T.err, 0.5)}; background: ${T.errFon}; }
         .fo-be-token { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: ${T.ok}; animation: fo-kot 0.35s ease-out both; }
         .fo-be-token code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; padding: 1px 7px; border-radius: 6px; background: ${T.okFon}; color: ${T.ok}; }
@@ -2464,7 +2489,7 @@ export default function FeatureOneLesson({ lang: langProp, onFinished, liveToken
         .fo-be-qarash i { width: 9px; height: 9px; border-radius: 50%; border: 2px solid ${T.err}; flex: none; }
         .fo-db { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px; border-radius: 14px; border: 1.5px solid ${T.line}; background: ${fon(T.ink, 0.025)}; min-width: 0; transition: border-color 0.3s, box-shadow 0.3s; }
         .fo-db-h { font-size: 13.5px; font-weight: 700; color: ${T.ink}; }
-        .fo-jad { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 7px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; min-width: 0; }
+        .fo-jad { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 7px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid transparent; min-width: 0; }
         .fo-jad-n { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink}; }
         .fo-jt { width: 100%; border-collapse: collapse; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
         .fo-jt th { text-align: left; font-weight: 600; color: ${T.ink2}; padding: 2px 8px 3px 0; border-bottom: 1px solid ${T.line}; white-space: nowrap; }
@@ -2482,7 +2507,7 @@ export default function FeatureOneLesson({ lang: langProp, onFinished, liveToken
         .fo-sanoq { align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: clamp(30px,4vw,40px); font-weight: 800; color: ${T.ink}; transform-origin: left center; }
         .fo-sanoq.yangi { color: ${T.ok}; animation: fo-pop 0.55s cubic-bezier(.3,1.5,.5,1); }
         .fo-sanoq.qizil { color: ${T.err}; animation: fo-pop 0.55s cubic-bezier(.3,1.5,.5,1); }
-        .fo-sanoq-j { align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink2}; padding: 1px 7px; border-radius: 6px; background: ${T.paper}; border: 1px solid ${T.line}; }
+        .fo-sanoq-j { align-self: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: ${T.ink2}; padding: 1px 7px; border-radius: 6px; background: ${T.bg}; }
         .fo-db-kartalar { display: flex; flex-wrap: wrap; gap: 6px; }
         .fo-db-k { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 8px; background: ${T.paper}; border: 1px solid ${T.line}; color: ${T.ink}; transition: border-color 0.3s, background 0.3s, color 0.3s; }
         .fo-db-k.yon { border-color: ${T.ok}; background: ${T.okFon}; color: ${T.ok}; }

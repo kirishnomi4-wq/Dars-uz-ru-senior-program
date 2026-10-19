@@ -122,10 +122,10 @@ namunalar: 12-Modul `10-PmUsersCheck-v3.md` + `10-FILTR.md` · `12-PmGrowthPitch
   Vizual ostida bitta kulrang qator: Bu modulda haqiqiy pul to'lanmaydi va so'ralmaydi. (50)
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
-  - 01 · Bitta foydalanuvchini olib kelish qanchaga tushishini sanaysiz
-  - 02 · Foydalanuvchi qancha pul keltirishini hisoblab, solishtirasiz
-  - 03 · Ikki sonni o'z mahsulotingiz uchun yozasiz
-  - 04 · Ikki sonni hisoblaydigan kod yozasiz
+  - 01 · Bitta foydalanuvchini olib kelish qanchaga tushishini sanang
+  - 02 · Foydalanuvchi qancha pul keltirishini hisoblab, solishtiring
+  - 03 · Ikki sonni o'z mahsulotingiz uchun yozing
+  - 04 · Ikki sonni hisoblaydigan kod yozing
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: Modul boshida bir gap ayting: bu modulda pul haqida gaplashamiz, lekin hech kim haqiqiy pul to'lamaydi — to'lovlar test rejimda, narxlar taxmin. Kanallar va metrika hisoboti 12-Moduldan; topilmasa dars to'xtamaydi — o'quvchi o'zi yozadi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011) — «ikki son»; atamalar kulrang yorliqda va teglarda. «sonlar … metrika hisobotingizdan» — o'quvchida 12-Modul hisoboti bor (T-039); yo'q bo'lsa ham yo'l bor (Mentorning ikkinchi gapi). Reja 02 qatori «solishtirasiz» deydi, natijani («zarar») ochmaydi (P-015).

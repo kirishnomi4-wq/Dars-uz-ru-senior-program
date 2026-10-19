@@ -109,6 +109,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -186,8 +211,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -850,7 +875,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         maket={<div className={cxx('ep-s0', picked === null && 'kutish')}>
           <KompOyna kichik className="ep-s0-komp" />
           <JamoaTelefon holat="brauzer" yorliq={null} className="ep-s0-tel"
-            bosh={<div className={cxx('ep-bosh-sahifa', bosq === 2 && 'kul')} />}
+            bosh={<div className={cxx('ep-bosh-sahifa', bosq === 2 && 'kul')}>{bosq < 2 && <span className="ep-bosh-kut">{tr({ uz: 'hali ochilmagan', ru: 'ещё не открыт' })}</span>}</div>}
             past={bosq < 2
               ? (picked !== null && !bosq ? <QTugma className="ep-halqa fade-step" onClick={och}>{tr({ uz: "Ochib ko'rish", ru: 'Открыть' })}</QTugma> : null) /* F-1015-164: javob tanlangach chiqadi */
               : <p className="ep-tel-izoh fade-step">{tx({ uz: "`localhost` — telefonning o'zi: bu yerda prototip yo'q", ru: '`localhost` — это сам телефон: прототипа здесь нет' })}</p>}>
@@ -1745,16 +1770,16 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: "React Native'da ekrandagi matn qayerga yoziladi?", ru: 'Куда в React Native пишется текст на экране?' }, opts: [{ uz: '`<Text>` ichiga', ru: 'внутрь `<Text>`' }, { uz: '`<View>` ichiga', ru: 'внутрь `<View>`' }, { uz: '`<div>` ichiga', ru: 'внутрь `<div>`' }, { uz: '`<span>` ichiga', ru: 'внутрь `<span>`' }], correct: 0 },
   { q: { uz: "Prototipdagi `onClick` React Native'da nimaga almashadi?", ru: 'На что в React Native меняется `onClick` из прототипа?' }, opts: [{ uz: '`onChange`', ru: '`onChange`' }, { uz: '`onPress`', ru: '`onPress`' }, { uz: '`onSubmit`', ru: '`onSubmit`' }, { uz: '`onInput`', ru: '`onInput`' }], correct: 1 },
-  { q: { uz: 'Ilova `/oyin/3` manzilini ochdi. Qaysi fayl ishlaydi?', ru: 'Приложение открыло адрес `/oyin/3`. Какой файл работает?' }, opts: [{ uz: '`src/app/oyin/index.tsx`', ru: '`src/app/oyin/index.tsx`' }, { uz: '`src/app/oyin/3.tsx`', ru: '`src/app/oyin/3.tsx`' }, { uz: '`src/app/oyin/[id].tsx`', ru: '`src/app/oyin/[id].tsx`' }, { uz: '`src/app/oyinlar.tsx`', ru: '`src/app/oyinlar.tsx`' }], correct: 2 },
-  { q: { uz: '`_layout.tsx` dagi `<Stack />` nima qiladi?', ru: 'Что делает `<Stack />` в `_layout.tsx`?' }, opts: [{ uz: 'Ekranlarni pastdagi tablarga joylaydi', ru: 'Раскладывает экраны по нижним вкладкам' }, { uz: 'Har ekranga o\'z rangi va shriftini beradi', ru: 'Даёт каждому экрану свой цвет и шрифт' }, { uz: '`src/app/` da yangi fayllar yaratadi', ru: 'Создаёт новые файлы в `src/app/`' }, { uz: "Ekranlarni ustma-ust qo'yib boshqaradi", ru: 'Складывает экраны стопкой и управляет ими' }], correct: 3 },
-  { q: { uz: "`router.push('/elon')` ishlaganda nima bo'ladi?", ru: "Что произойдёт, когда сработает `router.push('/elon')`?" }, opts: [{ uz: "E'lon berish ekrani ustiga ochiladi", ru: 'Сверху откроется экран «Объявить игру»' }, { uz: 'Ilova butunlay boshidan qayta yuklanadi', ru: 'Приложение полностью перезагрузится' }, { uz: '`elon.tsx` fayli yangidan yaratiladi', ru: 'Файл `elon.tsx` создастся заново' }, { uz: "O'yinlar ro'yxati qaytadan chiziladi", ru: 'Список игр нарисуется заново' }], correct: 0 },
-  { q: { uz: 'Telefonda QR ochilishi uchun odatda nima kerak?', ru: 'Что обычно нужно, чтобы QR открылся на телефоне?' }, opts: [{ uz: 'Telefonda Chrome brauzeri ochiq tursin', ru: 'Пусть на телефоне будет открыт Chrome' }, { uz: "Telefon va kompyuter bitta Wi-Fi'da tursin", ru: "Пусть телефон и компьютер будут в одной Wi-Fi" }, { uz: "Kompyuterga ham Expo Go o'rnatilsin", ru: 'Пусть Expo Go установят и на компьютер' }, { uz: "Telefonda mobil internet ham yoqilgan bo'lsin", ru: 'Пусть на телефоне ещё включат мобильный интернет' }], correct: 1 },
-  { q: { uz: '`--tunnel` bilan ulanish qanday ishlaydi?', ru: 'Как работает подключение через `--tunnel`?' }, opts: [{ uz: 'Faqat bitta Wi-Fi ichida, tezroq ulanadi', ru: 'Только внутри одной Wi-Fi, быстрее' }, { uz: 'Faqat iPhone telefonlarida ulanadi', ru: 'Подключается только на iPhone' }, { uz: 'Internet orqali ulanadi, lekin sekinroq', ru: 'Через интернет, но медленнее' }, { uz: "Kompyutersiz, to'g'ridan telefonda ishlaydi", ru: 'Без компьютера, прямо на телефоне' }], correct: 2 },
-  { q: { uz: "iPhone'da Expo Go akkaunt so'radi. Nima qilasiz?", ru: 'Expo Go на iPhone просит аккаунт. Что сделаете?' }, opts: [{ uz: "Expo Go ilovasini o'chirib, qayta o'rnataman", ru: 'Удалю Expo Go и установлю заново' }, { uz: 'Loyihani boshqa nom bilan yarataman', ru: 'Создам проект под другим именем' }, { uz: "QR'ni boshqa telefon bilan ochaman", ru: 'Открою QR другим телефоном' }, { uz: 'Ikkalasida bitta Expo akkauntiga kiraman', ru: 'Войду в один аккаунт Expo на обоих' }], correct: 3 },
-  { q: { uz: "Expo Go'dagi ilova kodi qayerdan keladi?", ru: 'Откуда приходит код приложения в Expo Go?' }, opts: [{ uz: 'Kompyuterdagi npx expo start dan', ru: 'Из npx expo start на компьютере' }, { uz: "Play Market'dagi ilova sahifasidan", ru: 'Со страницы приложения в Play Market' }, { uz: "Netlify'dagi sayt manzilidan", ru: 'С адреса сайта на Netlify' }, { uz: 'Telefon xotirasidagi papkadan', ru: 'Из папки в памяти телефона' }], correct: 0 },
-  { q: { uz: 'Adaptiv sayt nima?', ru: 'Что такое адаптивный сайт?' }, opts: [{ uz: 'Faqat telefonda ochiladigan sayt', ru: 'Сайт, который открывается только на телефоне' }, { uz: 'Telefon kengligiga moslashadigan sayt', ru: 'Сайт, который подстраивается под ширину телефона' }, { uz: "Telefonga o'rnatiladigan do'kon ilovasi", ru: 'Приложение из магазина для телефона' }, { uz: 'Animatsiyalari bor, bosiladigan sayt', ru: 'Сайт с анимациями, который можно нажимать' }], correct: 1 },
-  { q: { uz: "PWA telefonga qayerdan qo'shiladi?", ru: 'Откуда PWA добавляется на телефон?' }, opts: [{ uz: "Play Market do'konidan yuklab", ru: "Скачав из магазина Play Market" }, { uz: 'Expo Go ilovasidagi QR orqali', ru: 'Через QR в приложении Expo Go' }, { uz: "Brauzerdan, saytning o'zidan", ru: 'Из браузера, с самого сайта' }, { uz: "App Store do'konidan yuklab", ru: "Скачав из магазина App Store" }], correct: 2 },
-  { q: { uz: "Telefon saytni o'rnatishi uchun manzil qanday bo'ladi?", ru: 'Каким должен быть адрес, чтобы телефон установил сайт?' }, opts: [{ uz: "Kompyuterdagi `localhost` manzil", ru: 'Адрес `localhost` на компьютере' }, { uz: "Uydagi Wi-Fi tarmog'idagi manzil", ru: 'Адрес в домашней сети Wi-Fi' }, { uz: '`http://` bilan boshlanadigan manzil', ru: 'Адрес, начинающийся с `http://`' }, { uz: "HTTPS manzil, masalan Netlify'da", ru: "HTTPS-адрес, например на Netlify" }], correct: 3 }
+  { q: { uz: "Mentor misolida `/oyin/3` ni qaysi fayl ochadi?", ru: "Какой файл открывает `/oyin/3` в примере ментора?" }, opts: [{ uz: "`oyin/index.tsx`", ru: "`oyin/index.tsx`" }, { uz: "`oyin/3.tsx`", ru: "`oyin/3.tsx`" }, { uz: "`oyin/[id].tsx`", ru: "`oyin/[id].tsx`" }, { uz: "`oyinlar.tsx`", ru: "`oyinlar.tsx`" }], correct: 2 },
+  { q: { uz: "`<Stack />` nima qiladi?", ru: "Что делает `<Stack />`?" }, opts: [{ uz: "Ekranlarni tablarga joylaydi", ru: "Размещает экраны во вкладках" }, { uz: "Har ekranga shrift beradi", ru: "Даёт каждому экрану шрифт" }, { uz: "Yangi ekran fayli yaratadi", ru: "Создаёт новый файл экрана" }, { uz: "Ekranlarni ustma-ust qo'yadi", ru: "Кладёт экраны друг на друга" }], correct: 3 },
+  { q: { uz: "`router.push('/elon')` nima qiladi?", ru: "Что делает `router.push('/elon')`?" }, opts: [{ uz: "E'lon berish ekranini ochadi", ru: "Открывает экран «Дать объявление»" }, { uz: "Ilovani qayta yuklaydi", ru: "Перезагружает приложение" }, { uz: "`elon.tsx` ni yaratadi", ru: "Создаёт `elon.tsx`" }, { uz: "Ro'yxatni qayta chizadi", ru: "Перерисовывает список" }], correct: 0 },
+  { q: { uz: "QR ochilishi uchun odatda nima kerak?", ru: "Что обычно нужно, чтобы QR открылся?" }, opts: [{ uz: "Telefonda ochiq Chrome", ru: "Открытый Chrome на телефоне" }, { uz: "Kompyuter bilan bitta Wi-Fi", ru: "Один Wi-Fi с компьютером" }, { uz: "Kompyuterda ham Expo Go", ru: "Expo Go и на компьютере" }, { uz: "Telefonda mobil internet", ru: "Мобильный интернет на телефоне" }], correct: 1 },
+  { q: { uz: "`--tunnel` qanday ulaydi?", ru: "Как соединяет `--tunnel`?" }, opts: [{ uz: "Bitta Wi-Fi ichida, tezroq", ru: "В одном Wi-Fi, быстрее" }, { uz: "Faqat iPhone'larda ulanadi", ru: "Соединяет только на iPhone" }, { uz: "Internet orqali, sekinroq", ru: "Через интернет, медленнее" }, { uz: "Kompyutersiz, faqat telefonda", ru: "Без компьютера, только на телефоне" }], correct: 2 },
+  { q: { uz: "Expo Go akkaunt so'radi. Nima qilasiz?", ru: "Expo Go попросил аккаунт. Что вы сделаете?" }, opts: [{ uz: "Ilovani qayta o'rnataman", ru: "Переустановлю приложение" }, { uz: "Loyihani qayta yarataman", ru: "Создам проект заново" }, { uz: "QR'ni qayta skanerlayman", ru: "Снова отсканирую QR" }, { uz: "Bitta Expo akkauntiga kiraman", ru: "Войду в один аккаунт Expo" }], correct: 3 },
+  { q: { uz: "Expo Go ilova kodini qayerdan oladi?", ru: "Откуда Expo Go берёт код приложения?" }, opts: [{ uz: "Kompyuterdagi expo start'dan", ru: "Из expo start на компьютере" }, { uz: "Play Market sahifasidan", ru: "Со страницы в Play Market" }, { uz: "Netlify'dagi saytdan", ru: "С сайта на Netlify" }, { uz: "Telefon xotirasidan", ru: "Из памяти телефона" }], correct: 0 },
+  { q: { uz: "Adaptiv sayt nima?", ru: "Что такое адаптивный сайт?" }, opts: [{ uz: "Faqat telefon uchun sayt", ru: "Сайт только для телефона" }, { uz: "Ekran eniga moslashadigan sayt", ru: "Сайт, подстраивающийся под ширину" }, { uz: "Do'kondan o'rnatiladigan ilova", ru: "Приложение из магазина" }, { uz: "Animatsiyali, bosiladigan sayt", ru: "Сайт с анимацией и кнопками" }], correct: 1 },
+  { q: { uz: "PWA telefonga qayerdan qo'shiladi?", ru: "Откуда PWA добавляется на телефон?" }, opts: [{ uz: "Play Market do'konidan", ru: "Из магазина Play Market" }, { uz: "Expo Go'dagi QR orqali", ru: "Через QR в Expo Go" }, { uz: "Brauzerda saytning o'zidan", ru: "В браузере, с самого сайта" }, { uz: "App Store do'konidan", ru: "Из магазина App Store" }], correct: 2 },
+  { q: { uz: "PWA uchun qanday manzil kerak?", ru: "Какой адрес нужен для PWA?" }, opts: [{ uz: "Kompyuterdagi `localhost`", ru: "`localhost` на компьютере" }, { uz: "Uydagi Wi-Fi manzili", ru: "Адрес в домашнем Wi-Fi" }, { uz: "`http://` bilan manzil", ru: "Адрес с `http://`" }, { uz: "Netlify'dagi HTTPS manzil", ru: "HTTPS-адрес на Netlify" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2410,7 +2435,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cxx('ep-blok', !trek && !isMentorLive && 'qulf')}>
-        <QBlok til={__lang} sarlavha={tr(title[T_])} mentor={<div className="ep-mentor-q"><Mentor>{tr(mGap)}</Mentor><TrekTanlov trek={trek} onTanla={tanla} qulf={done || isMentorLive} /></div>} zoom={Zoomable}
+        <QBlok ajratSarlavha til={__lang} sarlavha={tr(title[T_])} mentor={<div className="ep-mentor-q"><Mentor>{tr(mGap)}</Mentor><TrekTanlov trek={trek} onTanla={tanla} qulf={done || isMentorLive} /></div>} zoom={Zoomable}
           qadamlar={qadamlar.map(c => ({
             h: tr(c.h),
             t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="ep-band">{tx(b)}</span>)}{c.prompt && <EpPrompt key={T_ + screen} satrlar={c.prompt} joylar={typeof c.joylar === 'function' ? c.joylar() : c.joylar} />}</>,
@@ -2513,7 +2538,7 @@ const A1Natija = ({ trek }) => {
   const [b, setB] = useState(kam ? 2 : 0);
   useEffect(() => { if (kam || trek !== 'mobil') return; keyin(() => setB(1), 1500); keyin(() => setB(2), 3300); }, [trek]); // eslint-disable-line
   if (trek === 'web') return (
-    <div className="ep-nat">
+    <div className="ep-nat yon">
       <JamoaTelefon holat="brauzer" yorliqsiz stack={[{ k: 'oyinlar' }]} className="ep-kir" />
       <KompOyna ixcham className="ep-kir" />
     </div>
@@ -2941,7 +2966,7 @@ export default function ExpoPrototypeLesson({ lang: langProp, onFinished, liveTo
         .ep-doiralar i.bor { border: 0; background: ${fon(T.ink, 0.38)}; }
         .ep-doiralar i.yangi { background: #2E9E4F; animation: ep-pop 0.5s cubic-bezier(.3,1.5,.5,1); }
         .ep-elon-m { padding: 4px 8px; border: 1px solid ${T.line}; border-radius: 8px; font-size: 11px; color: ${T.ink2}; background: ${T.bg}; }
-        .ep-bosh-sahifa { flex: 1; border-radius: 10px; background: ${T.paper}; transition: background 0.5s; }
+        .ep-bosh-sahifa { flex: 1; display: grid; place-items: center; border-radius: 10px; background: ${T.paper}; transition: background 0.5s; }
         .ep-bosh-sahifa.kul { background: ${fon(T.ink, 0.08)}; }
         p.ep-tel-izoh { margin: 0; max-width: 210px; text-align: center; font-size: 12.5px; line-height: 1.4; color: ${T.ink2}; }
         /* Konvert — so'rov */
@@ -2952,14 +2977,14 @@ export default function ExpoPrototypeLesson({ lang: langProp, onFinished, liveTo
         .ep-konvert.javob { border-color: ${T.ok}; }
         .ep-konvert.javob::before { border-color: ${T.ok}; }
         /* 0-ekran: telefon oldinda, kompyuter brauzeri orqaroqda */
-        .ep-s0 { position: relative; display: flex; align-items: flex-end; min-height: 340px; padding-top: 10px; }
+        .ep-s0 { display: flex; align-items: flex-start; justify-content: center; gap: 22px; flex-wrap: wrap; } /* F-1015-334: kompyuter va telefon yonma-yon, ustma-ust emas */
         .ep-s0-tel { position: relative; z-index: 2; align-items: flex-start; }
-        .ep-s0-tel > .q-btn { align-self: flex-start; margin-left: 22px; }
-        .ep-s0-tel p.ep-tel-izoh { text-align: left; }
-        .ep-s0-komp { position: absolute; left: 132px; top: 0; z-index: 1; }
+        .ep-s0-tel > .q-btn { align-self: center; }
+        .ep-s0-komp { flex: 0 1 250px; margin-top: 18px; }
+        .ep-bosh-kut { font-size: 12px; color: ${T.ink2}; opacity: 0.75; }
         .q-kirish:has(.ep-s0) .q-variant:disabled:not(.on) { display: none; }
         .q-kirish:has(.ep-s0) .q-variant.on { animation: ep-yig 0.45s cubic-bezier(.2,.9,.3,1) both; transform-origin: top; }
-        .q-kirish:has(.ep-s0.kutish) .q-variantlar-kol { border-radius: 14px; outline: 2px solid ${T.accent}; outline-offset: 5px; animation: ep-puls 2.4s ease-in-out 0.9s infinite; }
+        .q-kirish:has(.ep-s0.kutish) .q-variant:not(:disabled) { outline: 1.5px solid ${T.accent}; outline-offset: 2px; animation: ep-puls 2.4s ease-in-out 0.9s infinite; }
         .ep-komp { display: flex; flex-direction: column; width: 100%; border-radius: 12px; background: ${T.paper}; border: 1.5px solid ${T.line}; box-shadow: 0 10px 24px -14px rgba(${T.shadowBase},0.45); overflow: hidden; }
         .ep-komp.kichik { width: 250px; }
         .ep-komp-bar { display: flex; align-items: center; gap: 5px; padding: 6px 9px; background: ${T.bg}; border-bottom: 1px solid ${T.line}; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${T.ink2}; white-space: nowrap; overflow: hidden; }
@@ -3025,7 +3050,8 @@ export default function ExpoPrototypeLesson({ lang: langProp, onFinished, liveTo
         .ep-ulash-ch path { fill: none; stroke: ${T.accent}; stroke-width: 1.5; stroke-dasharray: 90; stroke-dashoffset: 90; animation: ep-chiz 0.7s ease-out 0.15s forwards; }
         code.ep-fayl-yorliq { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.paper}; background: ${T.ink}; padding: 5px 10px; border-radius: 8px; }
         /* Bashorat: halqada karta → ixcham qator; natija bloki */
-        .ep-navbat-k .q-bashorat { outline: 2px solid ${T.accent}; outline-offset: 2px; animation: ep-kir 0.5s cubic-bezier(.2,.9,.3,1.1) both, ep-puls 2.4s ease-in-out 0.7s infinite; }
+        .ep-navbat-k .q-bashorat { animation: ep-kir 0.5s cubic-bezier(.2,.9,.3,1.1) both; }
+        .ep-navbat-k .q-chip:not(:disabled) { outline: 1.5px solid ${T.accent}; outline-offset: 2px; animation: ep-puls 2.4s ease-in-out 0.7s infinite; }
         .ep-navbat-k .q-chip { animation: ep-kir 0.4s ease-out 0.15s both; }
         .ep-navbat-k .q-chip:nth-child(2) { animation-delay: 0.25s; } .ep-navbat-k .q-chip:nth-child(3) { animation-delay: 0.35s; }
         .ep-taxmin { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 8px 14px; border-radius: 12px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 13.5px; transform-origin: top; animation: ep-yig 0.45s cubic-bezier(.2,.9,.3,1) both; }
@@ -3142,10 +3168,10 @@ export default function ExpoPrototypeLesson({ lang: langProp, onFinished, liveTo
         .ep-manifest { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: 14px; background: ${T.paper}; border: 1px solid ${T.line}; }
         .ep-manifest .ep-kod-f { color: ${T.ink}; font-size: 12px; }
         .ep-manifest-i { margin-top: -4px; font-size: 12px; color: ${T.ink2}; }
-        .ep-mf { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; padding: 5px 8px 5px 10px; border-radius: 9px; border: 1px solid ${T.line}; background: ${T.bg}; transition: opacity 0.3s, background 0.3s; }
+        .ep-mf { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 40px; padding: 5px 8px 5px 10px; border-radius: 9px; border: 1px solid transparent; /* F-1015-333 */ background: ${T.bg}; transition: opacity 0.3s, background 0.3s; }
         .ep-mf code { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${T.ink}; overflow-wrap: anywhere; }
         .ep-mf.xira { opacity: 0.45; }
-        .ep-mf.ok { background: ${T.okFon}; border-color: ${fon(T.ok, 0.35)}; animation: ep-kir 0.35s ease-out both; }
+        .ep-mf.ok { background: ${T.okFon}; animation: ep-kir 0.35s ease-out both; }
         .ep-mf.netlify { justify-content: flex-start; }
         .ep-mf .q-btn { align-self: center; padding: 6px 12px; font-size: 12.5px; }
         .ep-mf-ok { margin-left: auto; color: ${T.ok}; font-size: 14px; }
@@ -3157,9 +3183,8 @@ export default function ExpoPrototypeLesson({ lang: langProp, onFinished, liveTo
         /* Amaliyot bloklari */
         .ep-blok { display: flex; flex-direction: column; flex: 1 0 auto; }
         @media (min-width: 861px) { .ep-blok .q-split { grid-template-columns: minmax(0,1.6fr) minmax(0,0.66fr); } }
-        .ep-mentor-q { display: flex; align-items: flex-end; gap: 14px; }
-        .ep-mentor-q > .mentor { flex: 1; min-width: 0; }
-        .ep-mentor-q > .ep-treklar { flex: none; align-self: flex-end; }
+        .ep-mentor-q { display: flex; flex-direction: column; align-items: stretch; gap: 10px; } /* F-1015-335: Mentor to'liq kenglikda, trek tanlovi ostida */
+        .ep-mentor-q > .ep-treklar { align-self: flex-start; margin-left: 52px; }
         .ep-blok .q-blok-q.joriy p.q-blok-t { font-size: 13.5px; line-height: 1.45; }
         .ep-treklar .q-chip { padding: 6px 14px; }
         .ep-blok .q-blok-q.joriy .q-blok-tana { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 8px 12px; }
@@ -3183,7 +3208,7 @@ export default function ExpoPrototypeLesson({ lang: langProp, onFinished, liveTo
         p.ep-ortda { margin: 0; font-size: 11.5px; line-height: 1.5; color: ${T.ink2}; }
         p.ep-ortda .qcode { font-size: 11px; padding: 0 3px; background: transparent; color: ${T.ink}; white-space: normal; overflow-wrap: anywhere; }
         .ep-nat { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-        .ep-nat.yon { flex-direction: row; align-items: flex-start; justify-content: center; flex-wrap: wrap; }
+        .ep-nat.yon { flex-direction: row; align-items: flex-start; justify-content: center; flex-wrap: wrap; gap: 12px; }
         .ep-kir { animation: ep-kir 0.45s ease-out var(--d, 0s) both; }
         p.ep-mini-daraxt { margin: 0; font-size: 11.5px; line-height: 1.6; text-align: center; color: ${T.ink2}; }
         p.ep-mini-daraxt code { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${T.ink}; }
@@ -3203,8 +3228,7 @@ export default function ExpoPrototypeLesson({ lang: langProp, onFinished, liveTo
         p.ep-fikr { margin: 0; max-width: 780px; font-size: 13.5px; line-height: 1.55; color: ${T.ink2}; }
         @media (max-width: 640px) {
           .ep-yonma { flex-direction: column; align-items: center; }
-          .ep-mentor-q { flex-direction: column; align-items: stretch; }
-          .ep-mentor-q > .ep-treklar { align-self: flex-start; }
+          .ep-mentor-q > .ep-treklar { margin-left: 0; }
           .ep-ong { width: 100%; }
           .ep-s9-chap { width: 100%; }
           .ep-s7-qator { flex-direction: column; gap: 6px; }
@@ -3214,12 +3238,11 @@ export default function ExpoPrototypeLesson({ lang: langProp, onFinished, liveTo
           .ep-bulut-q { top: 50%; left: auto; right: 8px; transform: translateY(-50%); }
           .ep-s11-chap { flex-direction: column; align-items: center; }
           .ep-pwa-yon { padding-top: 0; flex-direction: row; width: auto; align-items: center; }
-          .ep-s0 { min-height: 360px; }
-          .ep-s0-komp { left: auto; right: 0; }
+          .ep-s0-komp { flex-basis: 100%; max-width: 250px; margin-top: 0; }
           .ep-komp.kichik { width: 200px; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .ep-halqa, .ep-navbat-k .q-bashorat, .ep-flash.yangi .fc-card, .q-kirish:has(.ep-s0.kutish) .q-variantlar-kol { animation: none !important; }
+          .ep-halqa, .ep-navbat-k .q-bashorat, .ep-navbat-k .q-chip:not(:disabled), .ep-flash.yangi .fc-card, .q-kirish:has(.ep-s0.kutish) .q-variant:not(:disabled) { animation: none !important; }
           .ep-qatlam.sur, .ep-qatlam.chiq, .ep-qatlamlar.qiya .ep-qatlam, .ep-konvert, .ep-kir, .ep-karta, .ep-karta-btn, .ep-son.yangi, .ep-doiralar i.yangi, .ep-rn-q, .ep-css-yangi, .ep-ikonka, .ep-ik-nom, .ep-mf.ok, .ep-tel-yorliq, .ep-qr.yangi, .ep-kamera, .ep-ulash-ch path, .ep-taxmin, .ep-sanoq b, .ep-term-q.buyruq, .ep-qiymat, code.ep-yol-yorliq.bor, .ep-vazifa li.ok i, .ep-yon, .ep-br-tana.ustun .ep-br-k, .q-kirish:has(.ep-s0) .q-variant.on { animation: none !important; }
           .ep-ulash-ch path { stroke-dashoffset: 0; }
         }

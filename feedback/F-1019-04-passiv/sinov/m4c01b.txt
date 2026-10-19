@@ -1,0 +1,39 @@
+s5 «CI — uch chamadon»
+  boshida: nav=Savollarga javob bering (yopiq) · bosiladigan karta: 0
+  1. «Ali push qildi. Lenta uning kodini qachon tekshiradi?» xato «Hafta oxirida» → «CI kutmaydi: har yuborilgan kod darhol tekshiriladi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Kod yuborilishi bilan darhol» → keyingi qadam
+  2. «Valining kodi uyida ishlagan, lentada esa Skaner qizil berdi. Nega?» xato «Lentaning o'zi buzilgan» → «Alining kodi shu lentada yashil o'tdi, demak lenta soz.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Hamma bir xil sharoitda sinaladi» → keyingi qadam
+  3. «Sora ham push qildi. CI nomidagi «birlashtirish» nimani bildiradi?» xato «Uchala dasturchi bitta» → «Har kim o'z kompyuterida yozadi, kod esa umumiy joyga boradi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Har kimning kodi umumiy loyihaga» → keyingi qadam
+  oxiri: nav=Davom etish (ochiq) · ✓: 3 · xulosa: true · savol qoldi: false
+  saqlangan javob [5]: {"correct":true,"picked":true}
+  qaytganda: nav=Davom etish (ochiq) · savol bor: false · xulosa: true · ✓: 3
+  390 px: gorizontal aylantirish: yo'q
+s6 «CD — kim uchiradi»
+  boshida: nav=Savollarga javob bering (yopiq) · bosiladigan karta: 0
+  1. «Yetkazish rejimida lenta oxiriga yetdi. Endi nima bo'ladi?» xato «O'zi darhol internetga» → «Bu Deployment rejimi. Yetkazish sizdan tasdiq kutadi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Siz tasdiqlaguningizcha» → keyingi qadam
+  2. «Deployment rejimida skaner yashil bo'ldi. Uchirishni kim bosadi?» xato «Jamoa rahbari» → «Tasdiq Yetkazish rejimida kerak. Bu yerda hech kim bosmaydi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Hech kim, lenta o'zi» → keyingi qadam
+  3. «Pul o'tkazish ilovasida har yangilanishni mas'ul xodim ko'rib chiqadi. Qaysi rejim mos?» xato «Deployment: tasdiqsiz» → «Tasdiqsiz uchsa, xodim ko'rib chiqishga ulgurmaydi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Yetkazish: tasdiqdan keyin» → keyingi qadam
+  oxiri: nav=Davom etish (ochiq) · ✓: 2 · xulosa: true · savol qoldi: false
+  saqlangan javob [6]: {"correct":true,"picked":true}
+  qaytganda: nav=Davom etish (ochiq) · savol bor: false · xulosa: true · ✓: 2
+  390 px: gorizontal aylantirish: yo'q
+s7 «Lenta nuqtalari»
+  boshida: nav=Savollarga javob bering (yopiq) · bosiladigan karta: 0
+  1. «Yig'ish nuqtasi qaysi buyruqni ishga tushiradi?» xato «npm run build» → «Bu O'rash buyrug'i. Yig'ish paketlarni o'rnatadi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «npm install» → keyingi qadam
+  2. «Skaner nuqtasi qaysi buyruq bilan ishlaydi?» xato «eslint .» → «eslint yozilish qoidasini tekshiradi, bu O'lcham ramkasi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «npm test» → keyingi qadam
+  3. «O'lcham ramkasi qaysi buyruqni ishlatadi?» xato «npm start» → «npm start saytni kompyuterda ochadi, hech narsa tekshirmaydi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «eslint .» → keyingi qadam
+  4. «O'rash nuqtasi qaysi buyruqni ishga tushiradi?» xato «npm run preview» → «preview tayyor saytni faqat kompyuteringizda ko'rsatadi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «npm run build» → keyingi qadam
+  5. «Uchirish nega eng oxirida turadi?» xato «Tartibning hech qanday» → «Avval uchsa, tekshirilmagan sayt foydalanuvchiga yetadi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Faqat tekshirilgan yuk» → keyingi qadam
+  oxiri: nav=Davom etish (ochiq) · ✓: 5 · xulosa: true · savol qoldi: false
+  saqlangan javob [7]: {"correct":true,"picked":true}
+  qaytganda: nav=Davom etish (ochiq) · savol bor: false · xulosa: true · ✓: 5
+  390 px: gorizontal aylantirish: yo'q
+s11 «Nega avtomatlashtiramiz»
+  boshida: nav=Savollarga javob bering (yopiq) · bosiladigan karta: 0
+  1. «Qo'lda 5 nuqta 20 daqiqa olardi. Lenta bu vaqtni qanday tejaydi?» xato «Ba'zi nuqtalarni» → «Lenta birorta nuqtani tashlamaydi, faqat tez bajaradi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Hamma nuqtani o'zi» → keyingi qadam
+  2. «Kechqurun push qildingiz, Skanerda bitta test yiqildi. Foydalanuvchi nimani ko'radi?» xato «Xatosi bilan chiqqan» → «Qizil nuqtadan keyin lenta to'xtaydi, buzuq yuk uchmaydi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Avvalgi ishlab turgan» → keyingi qadam
+  3. «Jamoada o'n kishi kuniga bir necha marta push qiladi. Ularni kim tekshiradi?» xato «Har kim o'z kodini» → «O'zicha tekshirsa, har kimning qoidasi boshqacha bo'ladi.» (tugma yopildi: true, nav: Savollarga javob bering (yopiq)) → to'g'ri «Lenta hammasini bir xil» → keyingi qadam
+  oxiri: nav=Davom etish (ochiq) · ✓: 3 · xulosa: true · savol qoldi: false
+  saqlangan javob [11]: {"correct":true,"picked":true}
+  qaytganda: nav=Davom etish (ochiq) · savol bor: false · xulosa: true · ✓: 3
+  390 px: gorizontal aylantirish: yo'q
+pageerror: 0

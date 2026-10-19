@@ -33,7 +33,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKod, QVoqea, QMustaqil, QXato, QXulosa, QKartochka, QYakun } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKod, QVoqea, QMustaqil, QXato, QXulosa, QKartochka, QYakun, manoliMatn } from '../qolip/index.jsx';
 
 
 
@@ -102,6 +102,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -179,8 +204,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1018,10 +1043,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; chap: App.jsx osti so'zma-so'z + sahna o'zi yuradi — uch xil tanga oqimi, yo'l nomi va muhr yo'q) =====
 const REJA = [
-  { t: { uz: "Mentor misolida pulni kim to'lashi mumkinligini ko'rasiz", ru: 'В примере Ментора увидите, кто может платить' }, teg: { uz: "to'lovchi", ru: 'плательщик' } },
-  { t: { uz: "Pul topish yo'llarini «Maydon Jamoa»ga qo'yib solishtirasiz", ru: 'Сравните пути заработка, примерив их к «Maydon Jamoa»' }, teg: { uz: 'model', ru: 'модель' } },
-  { t: { uz: "O'z mahsulotingiz uchun bittasini tanlab, sababini yozasiz", ru: 'Для своего продукта выберете один и напишете причину' }, teg: { uz: 'tanlov', ru: 'выбор' } },
-  { t: { uz: "To'lashi mumkin bo'lganlarni Neon'da sanaysiz", ru: 'Посчитаете в Neon тех, кто может платить' }, teg: { uz: 'SQL', ru: 'SQL' } }
+  { t: { uz: "Mentor misolida pulni kim to'lashi mumkinligini ko'ring", ru: 'В примере Ментора посмотрите, кто может платить' }, teg: { uz: "to'lovchi", ru: 'плательщик' } },
+  { t: { uz: "Pul topish yo'llarini «Maydon Jamoa»ga qo'yib solishtiring", ru: 'Сравните пути заработка, примерив их к «Maydon Jamoa»' }, teg: { uz: 'model', ru: 'модель' } },
+  { t: { uz: "O'z mahsulotingiz uchun bittasini tanlab, sababini yozing", ru: 'Для своего продукта выберите один и напишите причину' }, teg: { uz: 'tanlov', ru: 'выбор' } },
+  { t: { uz: "To'lashi mumkin bo'lganlarni Neon'da sanang", ru: 'Посчитайте в Neon тех, кто может платить' }, teg: { uz: 'SQL', ru: 'SQL' } }
 ];
 const REJA_AYLANISH = [{ oqim: 'hamma' }, { oqim: 'bitta' }, { oqim: 'tashqi', tashqi: 'bino' }];
 const RejaSahna = () => {
@@ -1097,7 +1122,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S2_SAVOL)} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !tugadi && <BashoratQ savol={tr(S2_SAVOL)} javob={tx && tr(tx.t)} />}
-        harakat={!tugadi && (
+        harakat={!taxmin && !tugadi ? null : (!tugadi && (
           <div className="ms-harakat">
             {/* F-1015-164: rol tugmalari bashoratdan keyin chiqadi (o'chiq turmaydi) */}
             {!!taxmin && <div className="ms-tugmalar fade-step">
@@ -1109,11 +1134,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>}
             {ipucha && <p className="ms-ipucha fade-step">{tr({ uz: "Yoqilgan rol tugmasini bosing — telefonda nima o'zgarishini ko'ring.", ru: 'Нажмите активную кнопку роли — посмотрите, что изменится в телефоне.' })}</p>}
           </div>
-        )}
-        vizual={<div className={cxx('ms-ikki', !rol && 'yakka', tugadi && 'yakun')}>
+        ))}
+        vizual={!taxmin && !tugadi ? null : <div className="q-kir">{<div className={cxx('ms-ikki', !rol && 'yakka', tugadi && 'yakun')}>
           <ModelSahna rejim="mentor" {...sahna} />
           {rol && <RolKarta rol={rol} izoh={rol.id === 'oyinchi' && !tugadi ? S2_IZOH : null} />}
-        </div>}
+        </div>}</div>}
         xulosa={done && tugadi && <XulosaQ natija={<TaxminQ togri={taxmin === 'hafta'} haqiqat={tr({ uz: 'har hafta', ru: 'каждую неделю' })} />}
           matn={tr({ uz: "Mentor rejasida tashkilotchi to'laydi: Pro uning har haftalik e'lonini o'zi qiladi. O'yinchilar bepul qoladi.", ru: 'В плане Ментора платит организатор: Pro сам делает его еженедельное объявление. Игроки остаются бесплатными.' })}
           izoh={tr(S2_IZOH)} />}
@@ -1142,7 +1167,7 @@ const Screen3 = (props) => (
       3: { uz: "E'lon berish bepul qoladi — unda Pro nimani oladi?", ru: 'Объявлять игру бесплатно — что тогда берёт Pro?' },
       default: { uz: 'Tashkilotchi har hafta nima qilishini eslang.', ru: 'Вспомните, что организатор делает каждую неделю.' }
     }}
-    vizual={<ModelSahna kichik rejim="mentor" tel="tashkilotchi" oqim="bitta" ustida="bepul" />} />
+ />
 );
 
 // ===== SCREEN 4 — BESH YO'L (QTushuncha keng: bashorat → 5 karta ketma-ket, bittadan — E 53; har kartada hodisa → «qo'yish» → sahna → nom → sabab → muhr) =====
@@ -1155,6 +1180,9 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [idx, setIdx] = useState(avval ? 4 : 0);
   const [qoyildi, setQoyildi] = useState(avval);
   const [kech, setKech] = useState(avval);
+  const [qaror, setQaror] = useState(null); // F-1015-365 (pilot): o'quvchi o'zi qaror qiladi — «mos keladi / mos emas»
+  const [mosSoni, setMosSoni] = useState(0);
+  const [yangiOtish] = useState(!storedAnswer); // javob saqlangach ham shu o'tishda natija qatori qoladi
   const done = idx === 4 && qoyildi;
   const tugadi = useTugadi(done, 1400, avval);
   const ipucha = useIpucha(!!taxmin && !done, idx * 2 + (qoyildi ? 1 : 0));
@@ -1165,41 +1193,44 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     return () => clearTimeout(t);
   }, [qoyildi, kech, idx]);
   const y = YOLLAR[idx];
-  const qoy = () => setQoyildi(true);
-  const keyingi = () => { setIdx(i => Math.min(4, i + 1)); setQoyildi(false); setKech(false); };
+  const qoy = (q) => { setQaror(q); if ((q === 'ha') === !!YOLLAR[idx].tanlandi) setMosSoni(n => n + 1); setQoyildi(true); };
+  const keyingi = () => { setIdx(i => Math.min(4, i + 1)); setQoyildi(false); setKech(false); setQaror(null); };
   const sahna = tugadi ? YOLLAR[4].sahna : qoyildi ? (kech && y.kech ? y.kech : y.sahna) : {};
   const nOch = idx + (qoyildi ? 1 : 0);
   const tx = S4_TAXMIN.find(t => t.k === taxmin);
   const karta = !taxmin
     ? null
     : tugadi
-    ? <div className="ms-yolk tugadi">{YOLLAR.map((v, i) => <div key={v.id} className={cxx('ms-yol-q', v.tanlandi && 'ok')} style={{ animationDelay: `${i * 0.08}s` }}><b>{tr(v.nom)}</b><Muhr ok={v.tanlandi} kichik /></div>)}</div>
+    ? <div className="ms-yolk tugadi">{YOLLAR.map((v, i) => <div key={v.id} className={cxx('ms-yol-q', v.tanlandi && 'ok')} style={{ animationDelay: `${i * 0.08}s` }}><b>{tr(v.nom)}</b><Muhr ok={v.tanlandi} kichik /></div>)}{yangiOtish && <p className="ms-qaror-j">{tr({ uz: 'Mentor bilan bir xil qaror', ru: 'Совпало с Ментором' })}: <b>{mosSoni} / 5</b></p>}</div>
     : (
       <div className="ms-yolk">
         {idx > 0 && <div className="ms-yol-otgan">{YOLLAR.slice(0, idx).map(v => <div key={v.id} className="ms-yol-q"><b>{tr(v.nom)}</b><Muhr ok={v.tanlandi} kichik /></div>)}</div>}
         <div key={y.id} className="ms-yol-karta">
           <p className="ms-hodisa">{tr(y.hodisa)}</p>
           {!qoyildi
-            ? <button type="button" className="ms-qoy ms-halqa" onClick={qoy}>{tr({ uz: "Maydon Jamoa'ga qo'yish", ru: 'Примерить к Maydon Jamoa' })}</button>
+            ? <div className="ms-qaror-t"><span className="ms-qaror-s">{tr({ uz: "Maydon Jamoa'ga hozir mos keladimi?", ru: 'Подходит ли Maydon Jamoa сейчас?' })}</span>
+              <button type="button" className="ms-qoy ms-halqa" onClick={() => qoy('ha')}>{tr({ uz: 'Mos keladi', ru: 'Подходит' })}</button>
+              <button type="button" className="ms-qoy ms-halqa ikkinchi" onClick={() => qoy('yoq')}>{tr({ uz: 'Hozir mos emas', ru: 'Сейчас не подходит' })}</button></div>
             : <>
+              {qaror && <span className={cxx('ms-qaror', (qaror === 'ha') === !!y.tanlandi ? 'ok' : 'yoq')}>{(qaror === 'ha') === !!y.tanlandi ? tr({ uz: 'Mentor ham shunday hal qildi.', ru: 'Ментор решил так же.' }) : tr({ uz: "Mentor boshqacha hal qildi — sababini o'qing.", ru: 'Ментор решил иначе — прочитайте причину.' })}</span>}
               <span className="ms-bu">{tr({ uz: 'Bu —', ru: 'Это —' })} <b>{tr(y.nom)}</b></span>
               <span className="ms-tax-y">{tr({ uz: 'Mentorning taxmini', ru: 'Предположение Ментора' })}</span>
               <p className="ms-sabab">{tr(y.sabab)}</p>
               <div className="ms-yol-past"><Muhr ok={y.tanlandi} />{idx < 4 && <button type="button" className="ms-keyingi ms-halqa" onClick={keyingi}>{tr({ uz: "Keyingi yo'l", ru: 'Следующий путь' })} →</button>}</div>
             </>}
         </div>
-        {ipucha && <p className="ms-ipucha fade-step">{tr({ uz: "Kartadagi «Maydon Jamoa'ga qo'yish»ni bosing — telefon o'zgaradi.", ru: 'Нажмите на карточке «Примерить к Maydon Jamoa» — телефон изменится.' })}</p>}
+        {ipucha && <p className="ms-ipucha fade-step">{tr({ uz: "Kartadagi yo'l Maydon Jamoa'ga mos keladimi — o'zingiz hal qiling.", ru: 'Нажмите на карточке «Примерить к Maydon Jamoa» — телефон изменится.' })}</p>}
       </div>
     );
   return (
     <Stage eyebrow={tr({ uz: "Tushuncha · pul topish yo'llari", ru: 'Понятие · пути заработка' })} screen={screen} scrollSignal={nOch + (taxmin ? 10 : 0) + (tugadi ? 100 : 0)} natija={taxmin && !avval ? `${idx}-${qoyildi ? 1 : 0}-${kech ? 1 : 0}-${tugadi ? 1 : 0}` : null} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: `Kartalarni oching (${nOch}/5)`, ru: `Откройте карточки (${nOch}/5)` })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Maydon Jamoa'ga qaysi yo'l <A>mos keladi?</A></>, ru: <>Какой путь <A>подходит</A> Maydon Jamoa?</> })}
-        mentor={<Mentor>{tr({ uz: "Har kartada «Maydon Jamoa'ga qo'yish»ni bosing — telefonda nima o'zgarishini kuzating.", ru: 'На каждой карточке нажмите «Примерить к Maydon Jamoa» — следите, что меняется в телефоне.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Har yo'lga o'zingiz qaror qiling: Maydon Jamoa'ga hozir mos keladimi? Keyin telefonda nima o'zgarishini kuzating.", ru: 'На каждой карточке нажмите «Примерить к Maydon Jamoa» — следите, что меняется в телефоне.' })}</Mentor>}
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
           : !tugadi && <BashoratQ savol={tr(S4_SAVOL)} javob={tx && tr(tx.t)} />}
-        vizual={<div className={cxx('ms-ikki keng', tugadi && 'yakun')}><ModelSahna rejim="mentor" {...sahna} />{karta}</div>}
+        vizual={!taxmin && !tugadi ? null : <div className="q-kir">{<div className={cxx('ms-ikki keng', tugadi && 'yakun')}><ModelSahna rejim="mentor" {...sahna} />{karta}</div>}</div>}
         xulosa={done && tugadi && <XulosaQ natija={<TaxminQ togri={taxmin === 'bitta'} haqiqat={tr({ uz: 'bittasi', ru: 'один' })} />}
           matn={tr({ uz: <>Mahsulot qanday pul topishi — <b>monetizatsiya modeli</b> deyiladi. Mentor yo'llarni solishtirib, bittasini tanladi.</>, ru: <>То, как продукт зарабатывает, называется <b>моделью монетизации</b>. Ментор сравнил пути и выбрал один.</> })} />}
       >
@@ -1227,7 +1258,7 @@ const Screen5 = (props) => (
       3: { uz: "Mentor rejasida o'yinchilar Pro oladimi?", ru: 'В плане Ментора игроки берут Pro?' },
       default: { uz: "Pullik obuna modelida kim to'lashini eslang.", ru: 'Вспомните, кто платит в модели платной подписки.' }
     }}
-    vizual={<div className="ms-qviz-q"><ModelSahna kichik rejim="mentor" oqim="bitta" ustida="bepul" pro="ochiq" /><Muhr ok /></div>} />
+ />
 );
 
 // ===== SCREEN 6 — TELEGRAM PREMIUM (QVoqea, PM keys K2: 3 kadr; Mentor bosqich gapini aytadi; bashorat 1/3 da, natija 2/3 da; bankda yo'q narsa chizilmaydi) =====
@@ -1325,7 +1356,7 @@ const Screen7 = (props) => (
       2: { uz: 'Bu voqeada bepul Telegram qisqartirildimi?', ru: 'В этой истории бесплатный Telegram урезали?' },
       default: { uz: "Bepul qism bilan nima bo'lganini eslang.", ru: 'Вспомните, что стало с бесплатной частью.' }
     }}
-    vizual={<div className="ms-qviz-ikki"><TgTelefon k={1} kichik /><ModelSahna kichik rejim="mentor" oqim="bitta" ustida="bepul" pro="ochiq" /></div>} />
+ />
 );
 
 // ===== SCREEN 8 — MODELINGIZ (QMustaqil, USTAXONA: 3 karta ketma-ket, bittadan — E 53; yorliq input ichida — E 43; yozadi pm-m11d2-model) =====
@@ -1561,7 +1592,7 @@ const SHERIK_SAVOL = [
 const YOMON_RE = new RegExp('(yomon|zerikarli|yoqmadi|\u043f\u043b\u043e\u0445|\u0441\u043a\u0443\u0447\u043d|\u043d\u0435 \u043f\u043e\u043d\u0440\u0430\u0432)');
 const s9Tekshir = (belgi, izoh, otdi) => {
   if (belgi.some(b => !b)) return { k: 'belgi' };
-  const i = belgi.findIndex((b, j) => b === 'x' && String(izoh[j] || '').trim().length < 8);
+  const i = belgi.findIndex((b, j) => b === 'x' && (String(izoh[j] || '').trim().length < 8 || !manoliMatn(izoh[j])));
   if (i >= 0) return { k: 'izoh' };
   if (!otdi && izoh.some((z, j) => belgi[j] === 'x' && YOMON_RE.test(normS(z)))) return { k: 'odam', yumshoq: true };
   return null;
@@ -1766,7 +1797,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     let natija;
     if (bilmayman) natija = { soni: null, soniManba: null, soniAsos: null };
     else if (rejim === 'son') { const n = Number(son); if (!son || !Number.isFinite(n)) { setXato('son'); return; } natija = { soni: n, soniManba: 'database', soniAsos: null }; }
-    else { const n = Number(taxmin); if (!taxmin || !Number.isFinite(n)) { setXato('taxmin'); return; } if (String(asos).trim().length < 8) { setXato('asos'); return; } natija = { soni: n, soniManba: 'taxmin', soniAsos: String(asos).trim() }; }
+    else { const n = Number(taxmin); if (!taxmin || !Number.isFinite(n)) { setXato('taxmin'); return; } if (String(asos).trim().length < 8 || !manoliMatn(asos)) { setXato('asos'); return; } natija = { soni: n, soniManba: 'taxmin', soniAsos: String(asos).trim() }; }
     setXato(null); setBajardi(true);
     const m = modelOl();
     if (m) lsY(MODEL_KEY, { ...m, ...natija, savedAt: Date.now() }); // model saqlanmagan bo'lsa — son dars progressida (8-ekran saqlaganda birga yoziladi)
@@ -1864,7 +1895,7 @@ const Screen11 = (props) => (
       3: { uz: "Mentor misoli — namuna. Sizda kim to'laydi?", ru: 'Пример Ментора — образец. Кто платит у вас?' },
       default: { uz: "O'z modelingizning birinchi ikki kartasini eslang.", ru: 'Вспомните первые две карточки своей модели.' }
     }}
-    vizual={<S11Viz />} />
+ />
 );
 
 // ===== 🏅 BADGES (nishonlar) — 4 ta (MD): 3, 7-ekran — birinchi urinishda; 8 — bonus (ish qilingan); 10 — darvoza birinchi urinishda + son yoki taxmin =====
@@ -1955,16 +1986,16 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang — 12 savol (MD «Jonli viktorina» aynan; ✔ A 1·6·10 · B 3·8·11 · C 2·5·12 · D 4·7·9)
 const QUIZ_BANK = [
   { q: { uz: "Bepul asos va pullik qo'shimchada nima bepul?", ru: 'Что бесплатно в бесплатной основе с платным дополнением?' }, opts: [{ uz: 'Hamma uchun asosiy ish', ru: 'Основное для всех' }, { uz: "Faqat birinchi o'ttiz kun", ru: 'Только первые тридцать дней' }, { uz: 'Faqat reklamali sahifalar', ru: 'Только страницы с рекламой' }, { uz: "Qo'shimcha qulayliklar", ru: 'Дополнительные удобства' }], correct: 0 },
-  { q: { uz: "Reklama modelida pulni kim to'laydi?", ru: 'Кто платит в модели рекламы?' }, opts: [{ uz: 'Ilovani ishlatadigan har kim', ru: 'Каждый, кто пользуется приложением' }, { uz: "Reklamani ko'rgan foydalanuvchi", ru: 'Пользователь, увидевший рекламу' }, { uz: 'Reklama bergan boshqa kompaniya', ru: 'Другая компания-рекламодатель' }, { uz: 'Ilova xizmat qiladigan biznes', ru: 'Бизнес, которому служит приложение' }], correct: 2 },
-  { q: { uz: "Mentor misolida B2B bo'lsa, kim to'lardi?", ru: 'Кто платил бы в примере Ментора при B2B?' }, opts: [{ uz: "O'yinga qo'shiladigan o'yinchilar", ru: 'Игроки, присоединяющиеся к игре' }, { uz: "O'yin bo'ladigan maydonning egasi", ru: 'Владелец поля, где проходит игра' }, { uz: 'Ilovada reklama bergan kompaniya', ru: 'Компания, давшая рекламу в приложении' }, { uz: "O'yinni e'lon qiladigan tashkilotchi", ru: 'Организатор, объявляющий игру' }], correct: 1 },
-  { q: { uz: "Mentor misolida tranzaksiya modeli qaysi ish bo'lardi?", ru: 'Какой работой была бы транзакция в примере Ментора?' }, opts: [{ uz: "Har hafta o'yinni e'lon qilish", ru: 'Объявлять игру каждую неделю' }, { uz: "O'yinga qo'shilish va chiqish", ru: 'Присоединение к игре и выход' }, { uz: "O'yinchilarga eslatmalar yuborish", ru: 'Отправка напоминаний игрокам' }, { uz: "Maydon pulini ilovada bo'lishish", ru: 'Делить деньги за поле в приложении' }], correct: 3 },
-  { q: { uz: "Mentor maydon pulini bo'lishishni nega hozir olmadi?", ru: 'Почему Ментор сейчас не взял деление денег за поле?' }, opts: [{ uz: '44 foydalanuvchi buning uchun kam', ru: '44 пользователей для этого мало' }, { uz: 'Maydon egasi ilovani ishlatmaydi', ru: 'Владелец поля не пользуется приложением' }, { uz: 'Yuridik shaxs va shartnoma kerak', ru: 'Нужны юрлицо и договор' }, { uz: "Roadmap'da u hozirgi ufqda turadi", ru: 'В roadmap оно на текущем горизонте' }], correct: 2 },
-  { q: { uz: "Mentor rejasida o'yinchi Pro'siz nima qila oladi?", ru: 'Что игрок может без Pro в плане Ментора?' }, opts: [{ uz: "O'yinlarga bepul qo'shila oladi", ru: 'Бесплатно присоединяться к играм' }, { uz: "Faqat o'yin e'lonlarini o'qiydi", ru: 'Только читать объявления игр' }, { uz: "Faqat bitta o'yinga qo'shiladi", ru: 'Присоединиться только к одной игре' }, { uz: 'Hech narsa: ilova unga pullik', ru: 'Ничего: приложение для него платное' }], correct: 0 },
+  { q: { uz: "Reklama modelida pulni kim to'laydi?", ru: "Кто платит в рекламной модели?" }, opts: [{ uz: "Ilovani ishlatgan har kim", ru: "Каждый, кто пользуется" }, { uz: "Reklamani ko'rgan odam", ru: "Кто увидел рекламу" }, { uz: "Reklama bergan kompaniya", ru: "Компания, давшая рекламу" }, { uz: "Ilova xizmat qilgan biznes", ru: "Бизнес, которому служит" }], correct: 2 },
+  { q: { uz: "Mentor misolida B2B bo'lsa, kim to'lardi?", ru: "Кто платил бы в примере Ментора при B2B?" }, opts: [{ uz: "Qo'shiladigan o'yinchilar", ru: "Присоединяющиеся игроки" }, { uz: "Maydonning egasi", ru: "Владелец поля" }, { uz: "Reklama bergan kompaniya", ru: "Компания, давшая рекламу" }, { uz: "E'lon beruvchi tashkilotchi", ru: "Организатор, дающий объявление" }], correct: 1 },
+  { q: { uz: "Mentor misolida tranzaksiya qaysi ish bo'lardi?", ru: "Что было бы транзакцией в примере Ментора?" }, opts: [{ uz: "Har hafta o'yin e'loni", ru: "Объявление игры каждую неделю" }, { uz: "O'yinga qo'shilish", ru: "Присоединение к игре" }, { uz: "Eslatma yuborish", ru: "Отправка напоминаний" }, { uz: "Maydon pulini bo'lishish", ru: "Деление денег за поле" }], correct: 3 },
+  { q: { uz: "Maydon pulini bo'lishish nega hozir emas?", ru: "Почему деление денег за поле не сейчас?" }, opts: [{ uz: "Foydalanuvchi hali kam", ru: "Пользователей пока мало" }, { uz: "Maydon egasi ishlatmaydi", ru: "Владелец поля не пользуется" }, { uz: "Yuridik shaxs va shartnoma", ru: "Юрлицо и договор" }, { uz: "Roadmap'da hozirgi ufqda", ru: "В roadmap на текущем горизонте" }], correct: 2 },
+  { q: { uz: "Pro'siz o'yinchi ilovada nima qila oladi?", ru: "Что игрок может делать в приложении без Pro?" }, opts: [{ uz: "Bepul o'yinga qo'shiladi", ru: "Бесплатно присоединяется к игре" }, { uz: "Faqat e'lonlarni o'qiydi", ru: "Только читает объявления" }, { uz: "Faqat bitta o'yinga kiradi", ru: "Входит только в одну игру" }, { uz: "Hech narsa, ilova pullik", ru: "Ничего, приложение платное" }], correct: 0 },
   { q: { uz: 'Telegram pullik obunani qachon ishga tushirgan?', ru: 'Когда Telegram запустил платную подписку?' }, opts: [{ uz: '2020-yil iyunda', ru: 'В июне 2020' }, { uz: '2024-yil mayda', ru: 'В мае 2024' }, { uz: '2019-yil martda', ru: 'В марте 2019' }, { uz: '2022-yil iyunda', ru: 'В июне 2022' }], correct: 3 },
-  { q: { uz: "2024-yilda Premium'ga pullik obuna bo'lganlar qanday o'zgardi?", ru: 'Как изменилось число платных подписчиков Premium в 2024?' }, opts: [{ uz: "Deyarli o'zgarmadi", ru: 'Почти не изменилось' }, { uz: "Uch barobar ko'paydi", ru: 'Выросло втрое' }, { uz: 'Ikki barobar kamaydi', ru: 'Уменьшилось вдвое' }, { uz: "O'n barobar ko'paydi", ru: 'Выросло в десять раз' }], correct: 1 },
-  { q: { uz: 'Bu darsdagi pullik obuna modelida bepul qism qanday bo\'ladi?', ru: 'Какая бесплатная часть в модели платной подписки на этом уроке?' }, opts: [{ uz: 'Asosiy ishi hamma uchun bepul', ru: 'Основное бесплатно для всех' }, { uz: "Pulni boshqa kompaniya to'laydi", ru: 'Платит другая компания' }, { uz: "Bepul qism kattaroq bo'ladi", ru: 'Бесплатная часть больше' }, { uz: "Bepul qism yo'q, hamma to'laydi", ru: 'Бесплатной части нет, платят все' }], correct: 3 },
-  { q: { uz: "Bu darsdagi SQL'da DISTINCT nima uchun yozilgan?", ru: 'Зачем в SQL этого урока написан DISTINCT?' }, opts: [{ uz: 'Har tashkilotchi bir marta sanalsin', ru: 'Чтобы каждый организатор считался один раз' }, { uz: 'Namuna akkauntlar sanoqqa kirmasin', ru: 'Чтобы образцовые аккаунты не считались' }, { uz: "Ikki jadval o'zaro id orqali bog'lansin", ru: 'Чтобы две таблицы связались через id' }, { uz: 'Faqat Pro olganlar sanoqqa kirsin', ru: 'Чтобы считались только купившие Pro' }], correct: 0 },
-  { q: { uz: "SQL'dagi `namuna = false` sharti nima qiladi?", ru: 'Что делает условие `namuna = false` в SQL?' }, opts: [{ uz: 'Pro olmagan akkauntlarni sanamaydi', ru: 'Не считает аккаунты без Pro' }, { uz: 'Tekshiruv akkauntlarini sanamaydi', ru: 'Не считает проверочные аккаунты' }, { uz: "O'yin e'lon qilmaganlarni sanaydi", ru: 'Считает не объявлявших игры' }, { uz: 'Sinfdoshlarni alohida sanab beradi', ru: 'Отдельно считает одноклассников' }], correct: 1 },
+  { q: { uz: "2024-yilda Premium'ga obunalar qanday o'zgardi?", ru: "Как изменились подписки на Premium в 2024 году?" }, opts: [{ uz: "Deyarli o'zgarmadi", ru: "Почти не изменились" }, { uz: "Uch barobar ko'paydi", ru: "Выросли в три раза" }, { uz: "Ikki barobar kamaydi", ru: "Упали в два раза" }, { uz: "O'n barobar ko'paydi", ru: "Выросли в десять раз" }], correct: 1 },
+  { q: { uz: "Pullik obuna modelida bepul qism bormi?", ru: "Есть ли бесплатная часть в модели платной подписки?" }, opts: [{ uz: "Asosiy ish bepul", ru: "Основное бесплатно" }, { uz: "Faqat reklamali qism", ru: "Только часть с рекламой" }, { uz: "Bepul qism kattaroq", ru: "Бесплатная часть больше" }, { uz: "Yo'q, hamma to'laydi", ru: "Нет, платят все" }], correct: 3 },
+  { q: { uz: "SQL'da DISTINCT nima uchun kerak?", ru: "Зачем в SQL нужен DISTINCT?" }, opts: [{ uz: "Tashkilotchi bir marta kirsin", ru: "Чтобы организатор вошёл один раз" }, { uz: "Namuna hisoblar kirmasin", ru: "Чтобы не вошли образцовые аккаунты" }, { uz: "Jadvallar id bilan bog'lansin", ru: "Чтобы таблицы связались по id" }, { uz: "Faqat Pro olganlar kirsin", ru: "Чтобы вошли только с Pro" }], correct: 0 },
+  { q: { uz: "`namuna = false` sharti nima qiladi?", ru: "Что делает условие `namuna = false`?" }, opts: [{ uz: "Pro'siz akkauntni sanamaydi", ru: "Не считает аккаунты без Pro" }, { uz: "Namuna akkauntni sanamaydi", ru: "Не считает образцовые аккаунты" }, { uz: "E'lonsizni ham sanaydi", ru: "Считает и тех, кто без объявлений" }, { uz: "Sinfdoshni alohida sanaydi", ru: "Считает одноклассников отдельно" }], correct: 1 },
   { q: { uz: 'Telegram Premium nima?', ru: 'Что такое Telegram Premium?' }, opts: [{ uz: "Telegram'ning yangi versiyasi", ru: 'Новая версия Telegram' }, { uz: "Telegram'ning bepul qismi", ru: 'Бесплатная часть Telegram' }, { uz: "Telegram'ning pullik obunasi", ru: 'Платная подписка Telegram' }, { uz: "Telegram'dagi reklama turi", ru: 'Вид рекламы в Telegram' }], correct: 2 }
 ];
 
@@ -2576,26 +2607,6 @@ const HwCard = ({ qolgan, keyingi }) => (
     {keyingi && <span className="ms-hw-keyingi">{keyingi}</span>}
   </div>
 );
-// SABOQ P4 (PM-109): erta tugatgan o'quvchi — AI sherik rolida (9-ekrandagi ikki savol), o'quvchi modelini o'zi tushuntiradi; matn MD da yo'q — «MD ga taklif»
-const AI_SOROV = { uz: "Sen mening sherigimsan. Men senga mahsulotim uchun tanlagan pul topish modelimni tushuntiraman. Faqat ikki savolga qarab belgi qo'y: 1) kim to'laydi va nima uchun to'laydi — aniq aytildimi? 2) nega aynan shu model — sabab mahsulotdagi faktdanmi? Har biriga ✓ yoki ✕ qo'yib, bir gap izoh yoz. Model tanlab berma, narx aytma, pul so'rashni maslahat berma. Mening modelim: ", ru: 'Ты мой партнёр. Я объясню тебе модель заработка, которую выбрал для своего продукта. Отметь только два вопроса: 1) ясно ли сказано, кто платит и за что? 2) почему именно эта модель — причина из факта о продукте? На каждый поставь ✓ или ✕ и напиши одно предложение. Не выбирай модель за меня, не называй цену, не советуй просить деньги. Моя модель: ' };
-const aiSorov = (m) => {
-  const q = m ? `${tr(MODEL_NOM[m.model])}. ${tr({ uz: "To'laydi", ru: 'Платит' })}: ${m.kim}. ${tr({ uz: 'Nima uchun', ru: 'За что' })}: ${m.nima}. ${tr({ uz: 'Sabab', ru: 'Причина' })}: ${m.sabab}.` : '';
-  return tr(AI_SOROV) + q;
-};
-const AiDavomCard = () => {
-  const [nusxa, setNusxa] = useState(false);
-  const [m] = useState(modelOl);
-  const matn = aiSorov(m);
-  const kochir = () => { try { navigator.clipboard.writeText(matn); setNusxa(true); setTimeout(() => setNusxa(false), 1800); } catch { /* qo'lda belgilab oladi */ } };
-  return (
-    <div className="card ms-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <p className="ms-ai-m">{tr({ uz: "gemini.google.com'ni oching va pastdagi so'rovni yuboring — AI sherigingiz bo'lib, modelingizni ikki savol bilan tekshiradi. ✕ olgan qatorni «Orqaga» bilan qaytib, 9-ekrandagi kartada o'zingiz tuzating.", ru: 'Откройте gemini.google.com и отправьте запрос ниже — AI станет партнёром и проверит модель двумя вопросами. Строку с ✕ исправьте сами в карточке 9-го экрана, вернувшись через «Назад».' })}</p>
-      <pre className="ms-ai-sorov">{matn}</pre>
-      <button type="button" className="q-chip ms-ai-btn" onClick={kochir}>{nusxa ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 
 // ===== YAKUN — qolip QYakun (DE-204) + holatga qarab sarlavha (to'rt holat, E 54). Standart (E 50): chip · ball · sarlavha · CODE STRIKE · «Endi siz bilasiz» · uyga vazifa · nishonlar =====
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
@@ -2659,7 +2670,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           hwTokens={HW_TOKENS.map(t => ({ ...t, t: tr(t.t) }))}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
         >
-          {!isMentorL && <AiDavomCard />}
+          
         </QYakun>
       </div>
     </Stage>
@@ -2882,7 +2893,12 @@ export default function PmMonetizationLesson({ lang: langProp, onFinished, liveT
         .ms-yol-q b { font-weight: 700; color: ${T.ink}; } .ms-yol-q.ok { background: ${T.okFon}; }
         .ms-yol-karta { background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 14px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 8px 20px -10px rgba(${T.shadowBase},0.25); animation: ms-karta 0.35s ease-out both; }
         p.ms-hodisa { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.4; color: ${T.ink}; }
+        .ms-qaror-t { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } /* F-1015-365 pilot */
+        .ms-qaror-s { flex-basis: 100%; font-size: 13.5px; font-weight: 700; color: ${T.ink}; }
+        .ms-qaror { align-self: flex-start; padding: 3px 10px; border-radius: 999px; font-size: 12.5px; font-weight: 700; } .ms-qaror.ok { background: ${T.okFon}; color: ${T.ok}; } .ms-qaror.yoq { background: ${T.errFon}; color: ${T.err}; }
+        p.ms-qaror-j { margin: 6px 0 0; font-size: 13px; color: ${T.ink2}; } p.ms-qaror-j b { color: ${T.ink}; }
         .ms-qoy, .ms-keyingi { font-family: 'Manrope', sans-serif; font-size: 14px; font-weight: 700; padding: 9px 14px; border-radius: 10px; border: none; background: ${T.accent}; color: #fff; cursor: pointer; align-self: flex-start; }
+        .ms-qoy.ikkinchi { background: ${T.paper}; color: ${T.ink}; box-shadow: inset 0 0 0 1.5px ${fon(T.accent, 0.45)}; }
         .ms-keyingi { background: ${T.paper}; color: ${T.accent}; border: 1.5px solid ${T.accent}; }
         .ms-bu { font-size: 14px; color: ${T.ink}; animation: ms-kir 0.35s ease-out both; } .ms-bu b { color: ${T.accent}; }
         .ms-tax-y { font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: ${T.ink2}; animation: ms-kir 0.35s ease-out 0.15s both; }
@@ -3061,7 +3077,6 @@ export default function PmMonetizationLesson({ lang: langProp, onFinished, liveT
         .ms-hw-keyingi { font-size: 13.5px; color: ${T.ink2}; line-height: 1.5; }
         .ms-ai { display: flex; flex-direction: column; }
         p.ms-ai-m { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: ${T.ink}; }
-        .ms-ai-sorov { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.45; color: ${T.ink}; white-space: pre-wrap; }
         .ms-ai-btn { margin: 0; align-self: flex-start; }
         .card-lbl.acc { color: ${T.accent}; }
         .ms-yakun { display: contents; }

@@ -109,6 +109,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -186,8 +211,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1719,72 +1744,17 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: 'Bot tokeni qayerda saqlanadi?', ru: "Где хранится токен бота?" }, opts: [
-      { uz: "Kodning o'zida, new Telegraf(...) qatorida", ru: "В самом коде, в строке new Telegraf(...)" },
-      { uz: "README faylida, jamoa ko'rishi uchun", ru: "В файле README, чтобы видели коллеги" },
-      { uz: ".env faylida, Git'ga tushmaydigan joyda", ru: "В файле .env, который не попадает в Git" },
-      { uz: 'Bot tavsifida, @BotFather sozlamasida', ru: "В описании бота, в настройках @BotFather" }
-    ], correct: 2 },
-  { q: { uz: 'Telegraf nima?', ru: 'Что такое Telegraf?' }, opts: [
-      { uz: 'Bot API bilan ishlashni osonlashtiradigan Node.js kutubxonasi', ru: "Библиотека Node.js, которая упрощает работу с Bot API" },
-      { uz: "Foydalanuvchi xabarlarini saqlaydigan SQL ma'lumotlar bazasi", ru: "SQL-база данных, где хранятся сообщения пользователей" },
-      { uz: 'Botga rasm va video yuklab beradigan tashqi xizmat', ru: "Внешний сервис, который загружает боту фото и видео" },
-      { uz: 'Telegram ilovasining kompyuterda ishlaydigan versiyasi', ru: "Версия приложения Telegram для компьютера" }
-    ], correct: 0 },
-  { q: { uz: '`ctx` nima?', ru: "Что такое `ctx`?" }, opts: [
-      { uz: 'Bot sozlamalari saqlanadigan konfiguratsiya fayli', ru: "Файл конфигурации, где хранятся настройки бота" },
-      { uz: 'Foydalanuvchining Telegram parolini saqlaydigan obyekt', ru: "Объект, где хранится пароль пользователя от Telegram" },
-      { uz: "Serverning joriy vaqtini ko'rsatadigan funksiya", ru: "Функция, которая показывает текущее время сервера" },
-      { uz: "Hodisa haqidagi ma'lumot: kim yozdi va qaysi chatdan", ru: "Данные о событии: кто написал и из какого чата" }
-    ], correct: 3 },
-  { q: { uz: "Inline tugma bosilganda nima bo'ladi?", ru: "Что происходит при нажатии inline-кнопки?" }, opts: [
-      { uz: "Tugma matni chatga oddiy xabar bo'lib qo'shiladi", ru: "Текст кнопки добавляется в чат обычным сообщением" },
-      { uz: "Chatga matn yozilmaydi, botga tugma ma'lumoti keladi", ru: "В чат ничего не пишется, боту приходят данные кнопки" },
-      { uz: 'Serverga avtomatik yangi rasm fayli yuklanadi', ru: "На сервер автоматически загружается новый файл с картинкой" },
-      { uz: "Bot o'zini qayta ishga tushirib, suhbatni tozalaydi", ru: "Бот перезапускает сам себя и очищает переписку" }
-    ], correct: 1 },
-  { q: { uz: "Reply klaviatura tugmasi bosilganda nima bo'ladi?", ru: "Что происходит при нажатии кнопки reply-клавиатуры?" }, opts: [
-      { uz: "Hech narsa: tugma faqat bezak bo'lib turadi", ru: "Ничего: кнопка просто для красоты" },
-      { uz: "Tugma matni chatga oddiy xabar bo'lib ketadi", ru: "Текст кнопки уходит в чат обычным сообщением" },
-      { uz: "Bot suhbatni to'xtatib, chatdan chiqib ketadi", ru: "Бот прекращает разговор и выходит из чата" },
-      { uz: 'Foydalanuvchi akkaunti vaqtincha bloklanadi', ru: "Аккаунт пользователя временно блокируется" }
-    ], correct: 1 },
-  { q: { uz: '`bot.action(...)` nimani ushlaydi?', ru: "Что ловит `bot.action(...)`?" }, opts: [
-      { uz: 'Faqat / bilan boshlanadigan buyruqlarni', ru: "Только команды, которые начинаются с /" },
-      { uz: 'Reply klaviaturadan kelgan oddiy matnni', ru: "Обычный текст от reply-клавиатуры" },
-      { uz: 'Inline tugma bosilganda keladigan hodisani', ru: "Событие, которое приходит при нажатии inline-кнопки" },
-      { uz: 'Foydalanuvchi yuborgan rasm va fayllarni', ru: "Картинки и файлы, которые отправил пользователь" }
-    ], correct: 2 },
-  { q: { uz: '`bot.hears(...)` nimani ushlaydi?', ru: "Что ловит `bot.hears(...)`?" }, opts: [
-      { uz: 'Aniq matnli xabarni, masalan reply tugma matnini', ru: "Сообщение с точным текстом, например текст reply-кнопки" },
-      { uz: 'Faqat inline tugma bosilganda keladigan hodisani', ru: "Только событие от нажатия inline-кнопки" },
-      { uz: "Botning yoqilgani yoki o'chganini bildiradigan hodisani", ru: "Событие о том, что бот включился или выключился" },
-      { uz: 'Faqat ovozli xabarlarni, ularni matnga aylantirib', ru: "Только голосовые сообщения, переводя их в текст" }
-    ], correct: 0 },
-  { q: { uz: 'Fallback handler nima uchun kerak?', ru: "Зачем нужен fallback handler?" }, opts: [
-      { uz: 'Bot dasturi tezroq ishga tushishi uchun', ru: "Чтобы программа бота запускалась быстрее" },
-      { uz: 'Faqat rasm kelganda xato xabarini chiqarish uchun', ru: "Чтобы показывать ошибку, только когда пришла картинка" },
-      { uz: "Tokenni qo'shimcha qatlam bilan himoyalash uchun", ru: "Чтобы защитить токен дополнительным слоем" },
-      { uz: 'Mos handler topilmagan xabarga ham javob berish uchun', ru: "Чтобы отвечать и на сообщение, для которого не нашлось handler-а" }
-    ], correct: 3 },
-  { q: { uz: '`ctx.reply(...)` javobni qaysi chatga yuboradi?', ru: "В какой чат `ctx.reply(...)` отправляет ответ?" }, opts: [
-      { uz: 'Bot egasining shaxsiy chatiga', ru: "В личный чат владельца бота" },
-      { uz: 'Botga oxirgi yozgan odamning chatiga', ru: "В чат того, кто последним написал боту" },
-      { uz: 'Hamma foydalanuvchilarning chatiga', ru: "В чаты всех пользователей" },
-      { uz: "Xabar kelgan chatning o'ziga", ru: "В тот же чат, откуда пришло сообщение" }
-    ], correct: 3 },
-  { q: { uz: 'Polling nimani bildiradi?', ru: 'Что означает polling?' }, opts: [
-      { uz: "Telegram xabarni o'zi botning internetdagi manziliga yuborishi", ru: "Telegram сам отправляет сообщение на интернет-адрес бота" },
-      { uz: "Bot Telegram'dan «yangi xabar bormi?» deb qayta-qayta so'rashi", ru: "Бот снова и снова спрашивает у Telegram: «Есть новые сообщения?»" },
-      { uz: 'Foydalanuvchi ovozini yozib, matnga aylantirish', ru: "Запись голоса пользователя и перевод его в текст" },
-      { uz: "Botning barcha xabarlarini o'chirib tashlash", ru: "Удаление всех сообщений бота" }
-    ], correct: 1 },
-  { q: { uz: '`bot.launch()` nima qiladi?', ru: 'Что делает `bot.launch()`?' }, opts: [
-      { uz: 'Yangi token yaratib, eskisini butunlay bekor qiladi', ru: "Создаёт новый токен и полностью отменяет старый" },
-      { uz: "Botni Telegram'dan o'chirib, uning akkauntini yopadi", ru: "Удаляет бота из Telegram и закрывает его аккаунт" },
-      { uz: 'Botni ishga tushiradi: bot hodisalarni kuta boshlaydi', ru: "Запускает бота: бот начинает ждать события" },
-      { uz: "Faqat botning rasmi va nomini yangilab qo'yadi", ru: "Обновляет только аватар и имя бота" }
-    ], correct: 2 },
+  { q: { uz: "Bot tokeni qayerda saqlanadi?", ru: "Где хранится токен бота?" }, opts: [{ uz: "new Telegraf(...) qatorida", ru: "В строке new Telegraf(...)" }, { uz: "README.md faylida", ru: "В файле README.md" }, { uz: ".env faylida", ru: "В файле .env" }, { uz: "@BotFather tavsifida", ru: "В описании у @BotFather" }], correct: 2 },
+  { q: { uz: "Telegraf nima?", ru: "Что такое Telegraf?" }, opts: [{ uz: "Bot uchun Node.js kutubxonasi", ru: "Библиотека Node.js для ботов" }, { uz: "Node.js'dagi xabarlar bazasi", ru: "База сообщений в Node.js" }, { uz: "Rasm yuklaydigan xizmat", ru: "Сервис загрузки картинок" }, { uz: "Kompyuterdagi Telegram ilovasi", ru: "Приложение Telegram на компьютере" }], correct: 0 },
+  { q: { uz: "`ctx` nima?", ru: "Что такое `ctx`?" }, opts: [{ uz: "Bot sozlamalari fayli", ru: "Файл настроек бота" }, { uz: "Parol saqlanadigan obyekt", ru: "Объект для хранения пароля" }, { uz: "Server soati funksiyasi", ru: "Функция часов сервера" }, { uz: "Hodisa haqidagi ma'lumot", ru: "Данные о событии" }], correct: 3 },
+  { q: { uz: "Inline tugma bosilganda nima bo'ladi?", ru: "Что происходит при нажатии inline-кнопки?" }, opts: [{ uz: "Matni chatga xabar bo'ladi", ru: "Текст уходит в чат" }, { uz: "Botga tugma ma'lumoti keladi", ru: "Боту приходят данные кнопки" }, { uz: "Serverga rasm yuklanadi", ru: "На сервер грузится картинка" }, { uz: "Bot suhbatni tozalaydi", ru: "Бот очищает переписку" }], correct: 1 },
+  { q: { uz: "Reply klaviatura bosilsa nima bo'ladi?", ru: "Что происходит при нажатии reply-клавиатуры?" }, opts: [{ uz: "Hech narsa, u faqat bezak", ru: "Ничего, это украшение" }, { uz: "Matni chatga xabar bo'ladi", ru: "Текст уходит в чат" }, { uz: "Bot chatdan chiqib ketadi", ru: "Бот выходит из чата" }, { uz: "Akkaunt bloklanadi", ru: "Аккаунт блокируется" }], correct: 1 },
+  { q: { uz: "`bot.action(...)` nimani ushlaydi?", ru: "Что ловит `bot.action(...)`?" }, opts: [{ uz: "Faqat / bilan buyruqlarni", ru: "Только команды с /" }, { uz: "Reply tugmadagi matnni", ru: "Текст reply-кнопки" }, { uz: "Inline tugma bosilishini", ru: "Нажатие inline-кнопки" }, { uz: "Yuborilgan rasm va fayllarni", ru: "Присланные фото и файлы" }], correct: 2 },
+  { q: { uz: "`bot.hears(...)` nimani ushlaydi?", ru: "Что ловит `bot.hears(...)`?" }, opts: [{ uz: "Aniq matnli xabarni", ru: "Сообщение с точным текстом" }, { uz: "Inline tugma bosilishini", ru: "Нажатие inline-кнопки" }, { uz: "Bot yoqilgan-o'chganini", ru: "Включение и выключение бота" }, { uz: "Faqat ovozli xabarlarni", ru: "Только голосовые" }], correct: 0 },
+  { q: { uz: "Fallback handler nima uchun kerak?", ru: "Зачем нужен fallback handler?" }, opts: [{ uz: "Bot tezroq ishlashi uchun", ru: "Чтобы бот работал быстрее" }, { uz: "Rasmga xato yozish uchun", ru: "Чтобы писать ошибку на фото" }, { uz: "Tokenni himoyalash uchun", ru: "Чтобы защитить токен" }, { uz: "Har xabarga javob berish uchun", ru: "Чтобы ответить на любое сообщение" }], correct: 3 },
+  { q: { uz: "`ctx.reply(...)` javobni qaysi chatga yuboradi?", ru: "В какой чат `ctx.reply(...)` шлёт ответ?" }, opts: [{ uz: "Bot egasining chatiga", ru: "В чат владельца бота" }, { uz: "Oxirgi yozgan odamga", ru: "Последнему написавшему" }, { uz: "Hamma foydalanuvchiga", ru: "Всем пользователям" }, { uz: "Xabar kelgan chatga", ru: "В чат, откуда пришло сообщение" }], correct: 3 },
+  { q: { uz: "Polling nimani bildiradi?", ru: "Что означает polling?" }, opts: [{ uz: "Telegram xabarni o'zi yuboradi", ru: "Telegram сам шлёт сообщение" }, { uz: "Bot qayta-qayta xabar so'raydi", ru: "Бот снова и снова спрашивает" }, { uz: "Ovozni matnga aylantirish", ru: "Перевод голоса в текст" }, { uz: "Xabarlarni o'chirish", ru: "Удаление сообщений" }], correct: 1 },
+  { q: { uz: "`bot.launch()` nima qiladi?", ru: "Что делает `bot.launch()`?" }, opts: [{ uz: "Yangi token yaratadi", ru: "Создаёт новый токен" }, { uz: "Botni Telegram'dan o'chiradi", ru: "Удаляет бота из Telegram" }, { uz: "Botni ishga tushiradi", ru: "Запускает бота" }, { uz: "Bot rasmini yangilaydi", ru: "Обновляет фото бота" }], correct: 2 },
   { q: { uz: '/start va /help qanday belgi bilan boshlanadi?', ru: "С какого знака начинаются /start и /help?" }, opts: [
       { uz: 'Qiyshiq chiziq (/) bilan', ru: "С косой черты (/)" },
       { uz: 'Yulduzcha (*) bilan', ru: "Со звёздочки (*)" },
@@ -2946,7 +2916,7 @@ export default function BotApiButtonsLesson({ lang: langProp, onFinished, liveTo
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

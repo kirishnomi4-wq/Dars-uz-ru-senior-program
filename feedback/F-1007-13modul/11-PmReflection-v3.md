@@ -140,9 +140,9 @@ namunalar: 12-Modul `11-PmPitchReview-v3.md` + `11-FILTR.md` (12 ekranli qisqa P
   har kartada kulrang «?»; pastda «Yangi qo'shildi» qatori uzuq chiziq bilan chiziladi; yonida kichik varaq «Shaxsiy hisobot» — uch raqamli bo'sh uzuq qator (o'quvchi 7-ekranda to'ldiradi — U-041). Holat nomlari va savollar matni ko'rinmaydi (2, 7-ekran kashfiyoti).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-118, 208-qonun 0-band: takror olindi)*
-  - 01 · Roadmap'dagi har ish bugun qayerda ekanini belgilaysiz
-  - 02 · Roadmap'da yo'q, lekin qilingan ishlarni qo'shasiz
-  - 03 · O'z qarorlaringiz haqida savollarga javob yozasiz
+  - 01 · Roadmap'dagi har ish bugun qayerda ekanini belgilang
+  - 02 · Roadmap'da yo'q, lekin qilingan ishlarni qo'shing
+  - 03 · O'z qarorlaringiz haqida savollarga javob yozing
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - O'qituvchi eslatmasi: 12-Modul 11-darsida pitchdagi da'volar va dalillar, 11-Modul 15-darsida Demo Day oldidan reja va risklar ko'rilgan; bugun — ortga qarash: mahsulot va o'zingiz (tayanch 1.11). Yakkama-yakka bu darsda yo'q.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011: «solishtirasiz» — fe'l; «holat», «shaxsiy hisobot» — kulrang teglarda va App.jsx ostida, P-015). Mentorning birinchi gapi — tayanch 1.11 dagi farq (11-Modul 15-dars — reja va risklar, 12-Modul 11-dars — pitch da'volari va dalillari) bir gapda; ikkinchisi — bugungi ortga qarash. 03 qatorida savollar soni yo'q — u 7-ekran sarlavhasida (P-062).

@@ -1,0 +1,2660 @@
+[
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 54 belgigacha cho'zilgan edi.",
+  "q": {
+   "uz": "Sistema — bu nima?",
+   "ru": "Что такое система?"
+  },
+  "opts": [
+   {
+    "uz": "Tasodifiy narsalar to'plami",
+    "ru": "Набор случайных вещей"
+   },
+   {
+    "uz": "Birga ishlaydigan qismlar",
+    "ru": "Части, работающие вместе"
+   },
+   {
+    "uz": "Faqat kompyuter dasturi",
+    "ru": "Только компьютерная программа"
+   },
+   {
+    "uz": "Bo'linmaydigan bitta qism",
+    "ru": "Одна неделимая часть"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun, to'g'ri javobda izoh bor edi.",
+  "q": {
+   "uz": "Qaysi biri sistema?",
+   "ru": "Что из этого — система?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'ldagi bitta tosh",
+    "ru": "Один камень на дороге"
+   },
+   {
+    "uz": "Bo'sh yopiq quti",
+    "ru": "Пустая закрытая коробка"
+   },
+   {
+    "uz": "Futbol jamoasi",
+    "ru": "Футбольная команда"
+   },
+   {
+    "uz": "Alohida bitta harf",
+    "ru": "Одна отдельная буква"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 172 belgi edi.",
+  "q": {
+   "uz": "Sistemada «komponent» nima?",
+   "ru": "Что такое «компонент» в системе?"
+  },
+  "opts": [
+   {
+    "uz": "Sistemaning bir qismi",
+    "ru": "Одна часть системы"
+   },
+   {
+    "uz": "Sistemaning umumiy nomi",
+    "ru": "Общее название системы"
+   },
+   {
+    "uz": "Sistemadan tashqari narsa",
+    "ru": "Вещь вне системы"
+   },
+   {
+    "uz": "Sistemadagi kichik xato",
+    "ru": "Мелкая ошибка в системе"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 182 belgi edi.",
+  "q": {
+   "uz": "Sistemada «bog'lanish» nima?",
+   "ru": "Что такое «связь» в системе?"
+  },
+  "opts": [
+   {
+    "uz": "Qismlar orasidagi aloqa",
+    "ru": "Путь влияния между частями"
+   },
+   {
+    "uz": "Eng katta va og'ir qism",
+    "ru": "Самая большая и тяжёлая часть"
+   },
+   {
+    "uz": "Sistemaning umumiy nomi",
+    "ru": "Общее название системы"
+   },
+   {
+    "uz": "Keraksiz ortiqcha qism",
+    "ru": "Лишняя ненужная часть"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 163 belgi edi.",
+  "q": {
+   "uz": "Algoritm — bu nima?",
+   "ru": "Что такое алгоритм?"
+  },
+  "opts": [
+   {
+    "uz": "Tartibsiz fikrlar to'plami",
+    "ru": "Набор беспорядочных мыслей"
+   },
+   {
+    "uz": "Aniq qadamlar ketma-ketligi",
+    "ru": "Чёткая последовательность шагов"
+   },
+   {
+    "uz": "Murakkab matematik formula",
+    "ru": "Сложная математическая формула"
+   },
+   {
+    "uz": "Kompyuterning boshqa nomi",
+    "ru": "Другое название компьютера"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 181 belgi edi.",
+  "q": {
+   "uz": "Algoritmda qadamlar tartibi muhimmi?",
+   "ru": "Важен ли в алгоритме порядок шагов?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, farqi yo'q",
+    "ru": "Нет, разницы нет"
+   },
+   {
+    "uz": "Faqat kompyuterda muhim",
+    "ru": "Важен только в компьютере"
+   },
+   {
+    "uz": "Ha, natija buziladi",
+    "ru": "Да, иначе сломается результат"
+   },
+   {
+    "uz": "Faqat oxirgi qadam muhim",
+    "ru": "Важен только последний шаг"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 65 belgi edi.",
+  "q": {
+   "uz": "«Yomg'ir yog'sa — soyabon ol» — bu nima?",
+   "ru": "«Если идёт дождь — возьми зонт» — что это?"
+  },
+  "opts": [
+   {
+    "uz": "Ketma-ketlik",
+    "ru": "Последовательность"
+   },
+   {
+    "uz": "Sikl",
+    "ru": "Цикл"
+   },
+   {
+    "uz": "Komponent",
+    "ru": "Компонент"
+   },
+   {
+    "uz": "Shart",
+    "ru": "Условие"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 67 belgi edi.",
+  "q": {
+   "uz": "Amalni ko'p marta takrorlash nima deyiladi?",
+   "ru": "Как называется многократное повторение действия?"
+  },
+  "opts": [
+   {
+    "uz": "Shart",
+    "ru": "Условие"
+   },
+   {
+    "uz": "Sikl",
+    "ru": "Цикл"
+   },
+   {
+    "uz": "Bog'lanish",
+    "ru": "Связь"
+   },
+   {
+    "uz": "Komponent",
+    "ru": "Компонент"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 235 belgi edi.",
+  "q": {
+   "uz": "Futbol jamoasi nega sistema?",
+   "ru": "Почему футбольная команда — система?"
+  },
+  "opts": [
+   {
+    "uz": "O'yinchi ko'p bo'lgani uchun",
+    "ru": "Потому что игроков много"
+   },
+   {
+    "uz": "Maydon katta bo'lgani uchun",
+    "ru": "Потому что поле большое"
+   },
+   {
+    "uz": "To'p dumaloq bo'lgani uchun",
+    "ru": "Потому что мяч круглый"
+   },
+   {
+    "uz": "Hammasi birga ishlagani uchun",
+    "ru": "Потому что все работают вместе"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsIntroLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 71 belgi edi.",
+  "q": {
+   "uz": "«Yashil bo'lsa — yur, qizil bo'lsa — to'xta» — bu nima?",
+   "ru": "«Зелёный — иди, красный — стой» — что это?"
+  },
+  "opts": [
+   {
+    "uz": "Sikl",
+    "ru": "Цикл"
+   },
+   {
+    "uz": "Ketma-ketlik",
+    "ru": "Последовательность"
+   },
+   {
+    "uz": "Bog'lanish",
+    "ru": "Связь"
+   },
+   {
+    "uz": "Shart",
+    "ru": "Условие"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant 35 belgi edi (chegara 30).",
+  "q": {
+   "uz": "Yechim (feature) nima?",
+   "ru": "Что такое решение (feature)?"
+  },
+  "opts": [
+   {
+    "uz": "Saytning rangi va shrifti",
+    "ru": "Цвет и шрифт сайта"
+   },
+   {
+    "uz": "Saytning bitta aniq foydasi",
+    "ru": "Одна конкретная польза сайта"
+   },
+   {
+    "uz": "Saytning internet manzili",
+    "ru": "Адрес сайта в интернете"
+   },
+   {
+    "uz": "Saytni ochadigan dastur",
+    "ru": "Программа, открывающая сайт"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant 37 belgi edi.",
+  "q": {
+   "uz": "Har yechim qaysi savolga javob beradi?",
+   "ru": "На какой вопрос отвечает каждое решение?"
+  },
+  "opts": [
+   {
+    "uz": "Necha kunda yasaladi?",
+    "ru": "За сколько дней сделаем?"
+   },
+   {
+    "uz": "Sahifaning qayerida turadi?",
+    "ru": "Где стоит на странице?"
+   },
+   {
+    "uz": "Qaysi muammoni yo'qotadi?",
+    "ru": "Какую проблему убирает?"
+   },
+   {
+    "uz": "Qancha pul turadi?",
+    "ru": "Сколько стоит?"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 54 belgi, jami 141 edi.",
+  "q": {
+   "uz": "Muammoga bog'lanmagan yechim nima bo'ladi?",
+   "ru": "Что делают с решением, не связанным с проблемой?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatdan chiqariladi",
+    "ru": "Убирают из списка"
+   },
+   {
+    "uz": "Eng oxirida qilinadi",
+    "ru": "Делают в самом конце"
+   },
+   {
+    "uz": "Ikki marta tekshiriladi",
+    "ru": "Проверяют дважды"
+   },
+   {
+    "uz": "Boshqa saytga beriladi",
+    "ru": "Отдают другому сайту"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Savol «nimaning javobi» deb chalkash, to'g'ri javob grammatik mos emas edi.",
+  "q": {
+   "uz": "«Sayt chiroyli bo'lsin» qaysi muammoni yo'qotadi?",
+   "ru": "Какую проблему убирает «пусть сайт будет красивым»?"
+  },
+  "opts": [
+   {
+    "uz": "Seans vaqti noma'lumligini",
+    "ru": "Неизвестное время сеанса"
+   },
+   {
+    "uz": "Hech qaysi muammoni",
+    "ru": "Никакую"
+   },
+   {
+    "uz": "Chipta olish qiyinligini",
+    "ru": "Трудность покупки билета"
+   },
+   {
+    "uz": "Joy bor-yo'qligini",
+    "ru": "Есть ли места в зале"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 5,
+  "sabab": [
+   "togri-uzun",
+   "uzun"
+  ],
+  "izoh": "To'g'ri javob 43 belgi, qolganlari 9–17 belgi — uzunligidan topilardi.",
+  "q": {
+   "uz": "Yechim qanday yoziladi?",
+   "ru": "Как записывают решение?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt nima qilishi bilan",
+    "ru": "Тем, что делает сайт"
+   },
+   {
+    "uz": "Bitta sifat bilan",
+    "ru": "Одним прилагательным"
+   },
+   {
+    "uz": "Kinoteatr nomi bilan",
+    "ru": "Названием кинотеатра"
+   },
+   {
+    "uz": "Sana va vaqt bilan",
+    "ru": "Датой и временем"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 6,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob boshqalaridan ancha uzun edi.",
+  "q": {
+   "uz": "Uzum ishni nimadan boshlagan?",
+   "ru": "С чего начал Uzum?"
+  },
+  "opts": [
+   {
+    "uz": "Reklama roliklaridan",
+    "ru": "С рекламных роликов"
+   },
+   {
+    "uz": "Chiroyli bosh sahifadan",
+    "ru": "С красивой главной страницы"
+   },
+   {
+    "uz": "O'z yetkazib berishidan",
+    "ru": "Со своей доставки"
+   },
+   {
+    "uz": "Katta chegirmalardan",
+    "ru": "С больших скидок"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 7,
+  "sabab": [
+   "togri-uzun",
+   "uzun"
+  ],
+  "izoh": "To'g'ri javob 34 belgi, qolganlari 13–19 edi.",
+  "q": {
+   "uz": "Uzumgacha odamlar qayerdan xarid qilardi?",
+   "ru": "Где покупали люди до Uzum?"
+  },
+  "opts": [
+   {
+    "uz": "Telegram va Instagram'dan",
+    "ru": "В Telegram и Instagram"
+   },
+   {
+    "uz": "Faqat katta bozordan",
+    "ru": "Только на большом базаре"
+   },
+   {
+    "uz": "Chet el saytlaridan",
+    "ru": "На зарубежных сайтах"
+   },
+   {
+    "uz": "Gazeta e'lonlaridan",
+    "ru": "По газетным объявлениям"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 48 belgi, eng uzuni edi.",
+  "q": {
+   "uz": "«Unicorn» degani nima?",
+   "ru": "Что означает «единорог»?"
+  },
+  "opts": [
+   {
+    "uz": "Ishchisi eng ko'p kompaniya",
+    "ru": "Компания с наибольшим штатом"
+   },
+   {
+    "uz": "Bahosi 1 mlrd dollardan yuqori",
+    "ru": "Оценка выше 1 млрд долларов"
+   },
+   {
+    "uz": "Eng eski, birinchi kompaniya",
+    "ru": "Самая старая, первая компания"
+   },
+   {
+    "uz": "Faqat onlayn kompaniya",
+    "ru": "Компания только онлайн"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 61 belgi, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "Ega yangi yechim so'radi. Birinchi nima qilinadi?",
+   "ru": "Владелец просит новое решение. Что делают сначала?"
+  },
+  "opts": [
+   {
+    "uz": "Darhol qo'shiladi",
+    "ru": "Сразу добавляют"
+   },
+   {
+    "uz": "Narxi hisoblanadi",
+    "ru": "Считают цену"
+   },
+   {
+    "uz": "Qaysi muammo uchun — so'raladi",
+    "ru": "Спрашивают: для какой проблемы"
+   },
+   {
+    "uz": "Boshqa saytlar ko'riladi",
+    "ru": "Смотрят другие сайты"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PmLesson4.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 51 belgi, eng uzuni edi.",
+  "q": {
+   "uz": "Muammo va yechim ro'yxatda qanday yoziladi?",
+   "ru": "Как записывают проблему и решение в списке?"
+  },
+  "opts": [
+   {
+    "uz": "Sarlavha tegida, bitta so'z",
+    "ru": "В теге заголовка, одним словом"
+   },
+   {
+    "uz": "Rasm tegi ichida",
+    "ru": "В теге картинки"
+   },
+   {
+    "uz": "Havola tegi ichida",
+    "ru": "В теге ссылки"
+   },
+   {
+    "uz": "Qalin yechim — tire — muammo",
+    "ru": "Жирное решение — тире — проблема"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsVarsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob qo'shtirnoqlari bilan boshqalaridan 2,5 baravar uzun edi.",
+  "q": {
+   "uz": "Qaysi qiymat string (matn) hisoblanadi?",
+   "ru": "Какое значение считается string (текстом)?"
+  },
+  "opts": [
+   "42",
+   "true",
+   "\"Toshkent\"",
+   "3.141592"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/JsVarsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 157 belgi edi.",
+  "q": {
+   "uz": "const PI = 3.14 dan keyin PI = 3 desak nima bo'ladi?",
+   "ru": "Что будет, если после const PI = 3.14 написать PI = 3?"
+  },
+  "opts": [
+   {
+    "uz": "Xato beradi",
+    "ru": "Будет ошибка"
+   },
+   {
+    "uz": "PI 3 ga o'zgaradi",
+    "ru": "PI станет 3"
+   },
+   {
+    "uz": "Ikkalasi saqlanadi",
+    "ru": "Сохранятся оба"
+   },
+   {
+    "uz": "PI o'chib ketadi",
+    "ru": "PI удалится"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/JsVarsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 150 belgi edi.",
+  "q": {
+   "uz": "Kodda = belgisi nimani bildiradi?",
+   "ru": "Что означает знак = в коде?"
+  },
+  "opts": [
+   {
+    "uz": "Ikki qiymat teng",
+    "ru": "Два значения равны"
+   },
+   {
+    "uz": "Qutiga qiymat sol",
+    "ru": "Положи значение в коробку"
+   },
+   {
+    "uz": "Ikki qiymatni taqqosla",
+    "ru": "Сравни два значения"
+   },
+   {
+    "uz": "Qiymatni o'chir",
+    "ru": "Удали значение"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsVarsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi edi.",
+  "q": {
+   "uz": "let score = 10; score = 25. Endi score qancha?",
+   "ru": "let score = 10; score = 25. Сколько теперь в score?"
+  },
+  "opts": [
+   "10",
+   "25",
+   "35",
+   "1025"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsVarsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 185 belgi edi.",
+  "q": {
+   "uz": "let va const farqi nima?",
+   "ru": "Чем отличаются let и const?"
+  },
+  "opts": [
+   {
+    "uz": "let son, const matn uchun",
+    "ru": "let для чисел, const для текста"
+   },
+   {
+    "uz": "const tezroq ishlaydi",
+    "ru": "const работает быстрее"
+   },
+   {
+    "uz": "let o'zgaradi, const yo'q",
+    "ru": "let меняется, const — нет"
+   },
+   {
+    "uz": "Farqi yo'q, bir xil",
+    "ru": "Разницы нет, одно и то же"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/JsVarsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar har xil shaklda, to'g'ri javob izohli edi.",
+  "q": {
+   "uz": "\"14\" (qo'shtirnoqda) qanday tur?",
+   "ru": "\"14\" (в кавычках) — какой это тип?"
+  },
+  "opts": [
+   {
+    "uz": "number — son",
+    "ru": "number — число"
+   },
+   {
+    "uz": "boolean — ha/yo'q",
+    "ru": "boolean — да/нет"
+   },
+   {
+    "uz": "const — o'zgarmas",
+    "ru": "const — константа"
+   },
+   {
+    "uz": "string — matn",
+    "ru": "string — текст"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsVarsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 34 belgigacha edi.",
+  "q": {
+   "uz": "var haqida to'g'ri gap qaysi?",
+   "ru": "Какое утверждение о var верно?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi usul, doim ishlating",
+    "ru": "Новый способ, используйте всегда"
+   },
+   {
+    "uz": "const bilan bir xil",
+    "ru": "То же самое, что const"
+   },
+   {
+    "uz": "Faqat sonlar uchun",
+    "ru": "Только для чисел"
+   },
+   {
+    "uz": "Eski usul, let/const afzal",
+    "ru": "Старый способ, лучше let/const"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob boshqalaridan ancha uzun edi.",
+  "q": {
+   "uz": "`if (age >= 16)` — age 14 bo'lsa, ichidagi kod ishlaydimi?",
+   "ru": "`if (age >= 16)` — если age равен 14, код внутри сработает?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, ishlaydi",
+    "ru": "Да, работает"
+   },
+   {
+    "uz": "Xato beradi",
+    "ru": "Будет ошибка"
+   },
+   {
+    "uz": "Yo'q, `false`",
+    "ru": "Нет, `false`"
+   },
+   {
+    "uz": "Ba'zan",
+    "ru": "Иногда"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 34 belgigacha edi.",
+  "q": {
+   "uz": "`=` va `==` farqi nima?",
+   "ru": "Чем отличаются `=` и `==`?"
+  },
+  "opts": [
+   {
+    "uz": "Farqi yo'q",
+    "ru": "Разницы нет"
+   },
+   {
+    "uz": "`=` beradi, `==` tekshiradi",
+    "ru": "`=` присваивает, `==` сравнивает"
+   },
+   {
+    "uz": "`=` tekshiradi, `==` beradi",
+    "ru": "`=` сравнивает, `==` присваивает"
+   },
+   {
+    "uz": "`==` faqat sonlar uchun",
+    "ru": "`==` только для чисел"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "`if` bloki ishlamasa, o'rniga qaysi blok ishlaydi?",
+   "ru": "Если блок `if` не сработал, какой блок работает вместо него?"
+  },
+  "opts": [
+   {
+    "uz": "Yana `if`",
+    "ru": "Снова `if`"
+   },
+   {
+    "uz": "Hech biri",
+    "ru": "Никакой"
+   },
+   {
+    "uz": "Sikl",
+    "ru": "Цикл"
+   },
+   {
+    "uz": "`else`",
+    "ru": "`else`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi edi.",
+  "q": {
+   "uz": "Ketma-ket bir nechta shart uchun nima yoziladi?",
+   "ru": "Что пишут для нескольких условий подряд?"
+  },
+  "opts": [
+   "`else`",
+   "`let`",
+   "`const`",
+   "`else if`"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 71 belgi, jami 151 edi.",
+  "q": {
+   "uz": "`let battery = 30`. `if (battery < 20)` ishlaydimi?",
+   "ru": "`let battery = 30`. Сработает ли `if (battery < 20)`?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, chunki 30 katta son",
+    "ru": "Да, ведь 30 — большое число"
+   },
+   {
+    "uz": "Yo'q, `30 < 20` — `false`",
+    "ru": "Нет, `30 < 20` — `false`"
+   },
+   {
+    "uz": "Faqat 20 bo'lganda",
+    "ru": "Только при 20"
+   },
+   {
+    "uz": "Xato beradi",
+    "ru": "Будет ошибка"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 62 belgi, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "score 90 bo'lsa, `score >= 90` `true` bo'ladimi?",
+   "ru": "Если score 90, будет ли `score >= 90` равно `true`?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, faqat 91 dan boshlab",
+    "ru": "Нет, только с 91"
+   },
+   {
+    "uz": "Xato beradi",
+    "ru": "Будет ошибка"
+   },
+   {
+    "uz": "Ha, `>=` tenglikni ham oladi",
+    "ru": "Да, `>=` включает равенство"
+   },
+   {
+    "uz": "Faqat score 100 bo'lsa",
+    "ru": "Только при score 100"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/JsConditionsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob yagona ikki belgili variant edi.",
+  "q": {
+   "uz": "Shartda tenglikni qaysi belgi bilan tekshiramiz?",
+   "ru": "Каким знаком проверяем равенство в условии?"
+  },
+  "opts": [
+   "`=`",
+   "`!=`",
+   "`==`",
+   "`+`"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/JsLoopsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob boshqalaridan ikki baravar uzun edi.",
+  "q": {
+   "uz": "`let i = 1` — siklning qaysi qismi?",
+   "ru": "`let i = 1` — какая часть цикла?"
+  },
+  "opts": [
+   {
+    "uz": "Boshlanish",
+    "ru": "Начало"
+   },
+   {
+    "uz": "Shart (i < 5)",
+    "ru": "Условие (i < 5)"
+   },
+   {
+    "uz": "Qadam (i++)",
+    "ru": "Шаг (i++)"
+   },
+   {
+    "uz": "Tana",
+    "ru": "Тело"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/JsLoopsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzuni, jami 123 dan ko'p edi.",
+  "q": {
+   "uz": "Sikl qachon to'xtaydi?",
+   "ru": "Когда цикл останавливается?"
+  },
+  "opts": [
+   {
+    "uz": "`i = 0` bo'lganda",
+    "ru": "Когда `i = 0`"
+   },
+   {
+    "uz": "Shart `false` bo'lganda",
+    "ru": "Когда условие станет `false`"
+   },
+   {
+    "uz": "Hech qachon to'xtamaydi",
+    "ru": "Никогда не остановится"
+   },
+   {
+    "uz": "Birinchi aylanishdan keyin",
+    "ru": "После первого круга"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsLoopsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "«Shart true bo'lguncha» teskari ma'no berardi (while shart true EKAN ishlaydi); to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "`while` sikli qachongacha ishlaydi?",
+   "ru": "До каких пор работает цикл `while`?"
+  },
+  "opts": [
+   {
+    "uz": "Massiv bor bo'lsa",
+    "ru": "Пока есть массив"
+   },
+   {
+    "uz": "Faqat bir marta",
+    "ru": "Только один раз"
+   },
+   {
+    "uz": "Doim aniq 10 marta",
+    "ru": "Всегда ровно 10 раз"
+   },
+   {
+    "uz": "Shart `true` ekan",
+    "ru": "Пока условие `true`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha edi.",
+  "q": {
+   "uz": "Funksiya nima?",
+   "ru": "Что такое функция?"
+  },
+  "opts": [
+   {
+    "uz": "Bir marta ishlaydigan buyruq",
+    "ru": "Команда, работающая один раз"
+   },
+   {
+    "uz": "Qayta ishlatiladigan kod bloki",
+    "ru": "Повторно используемый блок кода"
+   },
+   {
+    "uz": "Qiymat saqlaydigan quti",
+    "ru": "Коробка для значения"
+   },
+   {
+    "uz": "Ma'lumotlar ro'yxati",
+    "ru": "Список данных"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzuni, jami 120 belgi edi.",
+  "q": {
+   "uz": "Parametr nima vazifani bajaradi?",
+   "ru": "Какую работу выполняет параметр?"
+  },
+  "opts": [
+   {
+    "uz": "Natijani qaytaradi",
+    "ru": "Возвращает результат"
+   },
+   {
+    "uz": "Funksiyani o'chiradi",
+    "ru": "Удаляет функцию"
+   },
+   {
+    "uz": "Funksiyaga qiymat beradi",
+    "ru": "Передаёт значение в функцию"
+   },
+   {
+    "uz": "Konsolga chiqaradi",
+    "ru": "Выводит в консоль"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 153 belgi edi.",
+  "q": {
+   "uz": "`return` nima qiladi?",
+   "ru": "Что делает `return`?"
+  },
+  "opts": [
+   {
+    "uz": "Konsolga chiqaradi",
+    "ru": "Выводит в консоль"
+   },
+   {
+    "uz": "Funksiyaga nom beradi",
+    "ru": "Даёт функции имя"
+   },
+   {
+    "uz": "Parametr qo'shadi",
+    "ru": "Добавляет параметр"
+   },
+   {
+    "uz": "Natijani qaytaradi",
+    "ru": "Возвращает результат"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 51 belgi, eng uzuni edi.",
+  "q": {
+   "uz": "`console.log` va `return`: qaysi biri qiymat qaytaradi?",
+   "ru": "`console.log` и `return`: кто возвращает значение?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat `console.log`",
+    "ru": "Только `console.log`"
+   },
+   {
+    "uz": "Faqat `return`",
+    "ru": "Только `return`"
+   },
+   {
+    "uz": "Ikkalasi ham",
+    "ru": "Оба"
+   },
+   {
+    "uz": "Hech biri",
+    "ru": "Никто"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "javob-yoq",
+   "uzun"
+  ],
+  "izoh": "zarar(5) = 5 * 3 = 15, lekin variantlarda 15 yo'q, kalit 25 ga qo'yilgan edi.",
+  "q": {
+   "uz": "`return kuch * 3` bo'lsa, `zarar(5)` nima qaytaradi?",
+   "ru": "Если `return kuch * 3`, что вернёт `zarar(5)`?"
+  },
+  "opts": [
+   "8",
+   "5",
+   "15",
+   "53"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 87 belgi edi.",
+  "q": {
+   "uz": "`zarar(kuch, bonus)` → `kuch * 3 + bonus`. `zarar(3, 10)`?",
+   "ru": "`zarar(kuch, bonus)` → `kuch * 3 + bonus`. `zarar(3, 10)` = ?"
+  },
+  "opts": [
+   "13",
+   "33",
+   "30",
+   "19"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/JsFunctionsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "javob-yoq",
+   "uzun"
+  ],
+  "izoh": "zarar(4) = 4 * 3 = 12, lekin to'g'ri variantda «16» yozilgan edi.",
+  "q": {
+   "uz": "`let x = zarar(4)`. `x` ga nima tushadi?",
+   "ru": "`let x = zarar(4)`. Что попадёт в `x`?"
+  },
+  "opts": [
+   {
+    "uz": "Funksiya nomi — `zarar`",
+    "ru": "Имя функции — `zarar`"
+   },
+   {
+    "uz": "Argument — `4` soni",
+    "ru": "Аргумент — число `4`"
+   },
+   {
+    "uz": "Hech narsa — `undefined`",
+    "ru": "Ничего — `undefined`"
+   },
+   {
+    "uz": "Funksiya qaytargan qiymat",
+    "ru": "Значение, которое вернула функция"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 150 belgi edi.",
+  "q": {
+   "uz": "Qaysi biri tugatib bo'ladigan bo'lak?",
+   "ru": "Что из этого — завершаемая часть?"
+  },
+  "opts": [
+   {
+    "uz": "Butun saytni tayyorlash",
+    "ru": "Подготовить весь сайт"
+   },
+   {
+    "uz": "Kinoteatrni mashhur qilish",
+    "ru": "Сделать кинотеатр известным"
+   },
+   {
+    "uz": "Seanslar ro'yxatini qo'shish",
+    "ru": "Добавить список сеансов"
+   },
+   {
+    "uz": "Saytni chiroyli qilish",
+    "ru": "Сделать сайт красивым"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 34 belgigacha edi.",
+  "q": {
+   "uz": "MVP — bu nima?",
+   "ru": "MVP — это что?"
+  },
+  "opts": [
+   {
+    "uz": "Eng qimmat to'liq versiya",
+    "ru": "Самая дорогая полная версия"
+   },
+   {
+    "uz": "Eng sodda birinchi versiya",
+    "ru": "Самая простая первая версия"
+   },
+   {
+    "uz": "Reklama uchun reja",
+    "ru": "План для рекламы"
+   },
+   {
+    "uz": "Saytning internet manzili",
+    "ru": "Адрес сайта в интернете"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 143 belgi edi.",
+  "q": {
+   "uz": "Kerak, lekin bir necha kun oladigan ish qayerga?",
+   "ru": "Куда идёт нужное дело, которое займёт несколько дней?"
+  },
+  "opts": [
+   {
+    "uz": "Ochilish ro'yxatiga",
+    "ru": "В список к открытию"
+   },
+   {
+    "uz": "Keyinga qoldirilganlarga",
+    "ru": "В список отложенных"
+   },
+   {
+    "uz": "Hech qaysi ro'yxatga",
+    "ru": "Ни в один список"
+   },
+   {
+    "uz": "Keyingi versiyaga",
+    "ru": "В следующую версию"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 77 belgi edi.",
+  "q": {
+   "uz": "Busiz ham ishlaydi, bir kunda bo'ladi. Qayerga?",
+   "ru": "Сайт работает и без этого, делается за день. Куда?"
+  },
+  "opts": [
+   {
+    "uz": "Ochilish ro'yxatiga",
+    "ru": "В список к открытию"
+   },
+   {
+    "uz": "Keyingi versiyaga",
+    "ru": "В следующую версию"
+   },
+   {
+    "uz": "Keyinga qoldirilganlarga",
+    "ru": "В список отложенных"
+   },
+   {
+    "uz": "Butunlay o'chiriladi",
+    "ru": "Удаляется совсем"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 169 belgi edi.",
+  "q": {
+   "uz": "Burbn ilovasi bilan nima qilindi?",
+   "ru": "Что сделали с приложением Burbn?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi imkoniyat qo'shildi",
+    "ru": "Добавили новые возможности"
+   },
+   {
+    "uz": "Narxi ikki baravar oshdi",
+    "ru": "Цену подняли вдвое"
+   },
+   {
+    "uz": "Boshqa firmaga sotildi",
+    "ru": "Продали другой фирме"
+   },
+   {
+    "uz": "Uchta imkoniyat qoldirildi",
+    "ru": "Оставили три возможности"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi, jami 173 edi.",
+  "q": {
+   "uz": "Instagram chiqqan birinchi kuni nima bo'ldi?",
+   "ru": "Что было в первый день выхода Instagram?"
+  },
+  "opts": [
+   {
+    "uz": "25 000 odam yozildi",
+    "ru": "Зарегистрировались 25 000"
+   },
+   {
+    "uz": "Hech kim yozilmadi",
+    "ru": "Никто не зарегистрировался"
+   },
+   {
+    "uz": "Do'kondan olib tashlandi",
+    "ru": "Убрали из магазина"
+   },
+   {
+    "uz": "Ilova nomi o'zgardi",
+    "ru": "Сменили название"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PmLesson5.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 191 belgi edi.",
+  "q": {
+   "uz": "Ochilish ro'yxatiga nechta ish sig'adi?",
+   "ru": "Сколько дел влезает в список к открытию?"
+  },
+  "opts": [
+   {
+    "uz": "Oltita — hammasi kerak",
+    "ru": "Шесть — нужно всё"
+   },
+   {
+    "uz": "Uchta — bir haftaga sig'adi",
+    "ru": "Три — столько влезает в неделю"
+   },
+   {
+    "uz": "Bitta — ko'pi shart emas",
+    "ru": "Одно — больше не нужно"
+   },
+   {
+    "uz": "Cheksiz — vaqt muhim emas",
+    "ru": "Сколько угодно — время неважно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson1.jsx",
+  "i": 1,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob «JavaScript» boshqalaridan 2,5 baravar uzun edi.",
+  "q": {
+   "uz": "Saytga jon (interaktivlik) kiritadigan til qaysi?",
+   "ru": "Какой язык вдыхает в сайт жизнь (интерактивность)?"
+  },
+  "opts": [
+   "HTML",
+   "CSS",
+   "JavaScript",
+   "Microsoft Word"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson1.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 147 belgi edi.",
+  "q": {
+   "uz": "Saytni jonlantirish tartibi?",
+   "ru": "Порядок оживления сайта?"
+  },
+  "opts": [
+   {
+    "uz": "O'zgarish → Hodisa → Reaksiya",
+    "ru": "Изменение → Событие → Реакция"
+   },
+   {
+    "uz": "Hodisa → Reaksiya → O'zgarish",
+    "ru": "Событие → Реакция → Изменение"
+   },
+   {
+    "uz": "Reaksiya → Hodisa → O'zgarish",
+    "ru": "Реакция → Событие → Изменение"
+   },
+   {
+    "uz": "Faqat o'zgarish",
+    "ru": "Только изменение"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson1.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi edi.",
+  "q": {
+   "uz": "son = 0. 3 marta son = son + 1 bajarildi. Natija?",
+   "ru": "son = 0. Три раза выполнили son = son + 1. Итог?"
+  },
+  "opts": [
+   "0",
+   "1",
+   "3",
+   "33"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson1.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 69 belgi edi.",
+  "q": {
+   "uz": "«Jonli salom»da ism yozilganda qaysi hodisa ishlaydi?",
+   "ru": "Какое событие срабатывает в «Живом приветствии» при вводе имени?"
+  },
+  "opts": [
+   "click",
+   "load",
+   "hover",
+   "input"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "i": 0,
+  "sabab": [
+   "darsda-yoq",
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "«Vibecoding» so'zi darsda umuman yo'q; to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "AI bilan ishlashda asosiy qoida?",
+   "ru": "Главное правило работы с AI?"
+  },
+  "opts": [
+   {
+    "uz": "AI hammasini o'zi hal qiladi",
+    "ru": "AI сам всё решает"
+   },
+   {
+    "uz": "Kod yozish umuman shart emas",
+    "ru": "Писать код вообще не нужно"
+   },
+   {
+    "uz": "AI tezlik, sifat esa sizdan",
+    "ru": "AI даёт скорость, качество — вы"
+   },
+   {
+    "uz": "Faqat ingliz tili kerak",
+    "ru": "Нужен только английский"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 34 belgi, qolganlari 14–17 edi.",
+  "q": {
+   "uz": "«Prompt» nima?",
+   "ru": "Что такое «промпт»?"
+  },
+  "opts": [
+   {
+    "uz": "Saytning asosiy rangi",
+    "ru": "Основной цвет сайта"
+   },
+   {
+    "uz": "Internet brauzeri",
+    "ru": "Интернет-браузер"
+   },
+   {
+    "uz": "Faylning kengaytmasi",
+    "ru": "Расширение файла"
+   },
+   {
+    "uz": "AI'ga beriladigan buyruq",
+    "ru": "Команда для AI"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 59 belgi, to'g'ri javob eng uzuni edi.",
+  "q": {
+   "uz": "AI natijasi yoqmadi. To'g'ri yo'l qaysi?",
+   "ru": "Результат AI не понравился. Как правильно?"
+  },
+  "opts": [
+   {
+    "uz": "Tashlab ketish",
+    "ru": "Бросить"
+   },
+   {
+    "uz": "Xafa bo'lib to'xtash",
+    "ru": "Расстроиться и остановиться"
+   },
+   {
+    "uz": "Qo'lda qayta yozish",
+    "ru": "Переписать вручную"
+   },
+   {
+    "uz": "Aniqroq qayta so'rash",
+    "ru": "Попросить снова, точнее"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 37 belgi, qolganlari 13–17 edi.",
+  "q": {
+   "uz": "«Iteratsiya» nima?",
+   "ru": "Что такое «итерация»?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni butunlay o'chirish",
+    "ru": "Полностью удалить сайт"
+   },
+   {
+    "uz": "Qayta so'rab yaxshilash",
+    "ru": "Улучшать, прося снова"
+   },
+   {
+    "uz": "Rasmni kesib olish",
+    "ru": "Обрезать картинку"
+   },
+   {
+    "uz": "Domen sotib olish",
+    "ru": "Купить домен"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 43 belgi, eng uzuni edi.",
+  "q": {
+   "uz": "Promptdagi «uslub» qismi nimani belgilaydi?",
+   "ru": "Что задаёт часть «стиль» в промпте?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifa mavzusini",
+    "ru": "Тему страницы"
+   },
+   {
+    "uz": "Asosiy rangni",
+    "ru": "Основной цвет"
+   },
+   {
+    "uz": "Ko'rinish: zamonaviy/sodda",
+    "ru": "Вид: современный/простой"
+   },
+   {
+    "uz": "Bo'limlar ro'yxatini",
+    "ru": "Список разделов"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 37 belgi, eng uzuni edi.",
+  "q": {
+   "uz": "AI sayt yasadi. Eng muhim keyingi qadam?",
+   "ru": "AI сделал сайт. Самый важный следующий шаг?"
+  },
+  "opts": [
+   {
+    "uz": "Darhol nashr qilish",
+    "ru": "Сразу опубликовать"
+   },
+   {
+    "uz": "Faylni o'chirish",
+    "ru": "Удалить файл"
+   },
+   {
+    "uz": "Hech nima qilmaslik",
+    "ru": "Ничего не делать"
+   },
+   {
+    "uz": "Natijani tekshirish",
+    "ru": "Проверить результат"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "i": 9,
+  "sabab": [
+   "togri-uzun",
+   "uzun"
+  ],
+  "izoh": "To'g'ri javob 39 belgi, qolganlari 11–17 edi.",
+  "q": {
+   "uz": "Promo sahifada odatda nima bo'ladi?",
+   "ru": "Что обычно есть на промо-странице?"
+  },
+  "opts": [
+   {
+    "uz": "Sarlavha, tugma, kartalar",
+    "ru": "Заголовок, кнопка, карточки"
+   },
+   {
+    "uz": "Faqat bo'sh oq ekran",
+    "ru": "Только пустой белый экран"
+   },
+   {
+    "uz": "Faqat matn fayli",
+    "ru": "Только текстовый файл"
+   },
+   {
+    "uz": "Excel jadvali",
+    "ru": "Таблица Excel"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 83 belgi edi.",
+  "q": {
+   "uz": "«Ko'k, zamonaviy o'yin promo, 3 karta» — qanaqa prompt?",
+   "ru": "«Синий, современный промо игры, 3 карточки» — какой промпт?"
+  },
+  "opts": [
+   {
+    "uz": "Noaniq",
+    "ru": "Неточный"
+   },
+   {
+    "uz": "Aniq, 4 qismli",
+    "ru": "Точный, из 4 частей"
+   },
+   {
+    "uz": "Juda qisqa, foydasiz",
+    "ru": "Слишком короткий, бесполезный"
+   },
+   {
+    "uz": "Faqat rang haqida",
+    "ru": "Только про цвет"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson2.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 52 belgi, eng uzuni edi.",
+  "q": {
+   "uz": "Nega AI'ga aniq buyruq berish muhim?",
+   "ru": "Почему важно давать AI точную команду?"
+  },
+  "opts": [
+   {
+    "uz": "AI fikringizni o'qiy olmaydi",
+    "ru": "AI не умеет читать мысли"
+   },
+   {
+    "uz": "Aniqlik ta'sir qilmaydi",
+    "ru": "Точность ни на что не влияет"
+   },
+   {
+    "uz": "AI faqat rasm chiza oladi",
+    "ru": "AI умеет только рисовать"
+   },
+   {
+    "uz": "Qisqa buyruq doim yaxshiroq",
+    "ru": "Короткая команда всегда лучше"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri javob 36 belgi edi.",
+  "q": {
+   "uz": "Backend nima?",
+   "ru": "Что такое backend?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'rinmas qism — saqlaydi",
+    "ru": "Невидимая часть — хранит"
+   },
+   {
+    "uz": "Ko'rinadigan qism — tugmalar",
+    "ru": "Видимая часть — кнопки"
+   },
+   {
+    "uz": "Faqat ranglar va shriftlar",
+    "ru": "Только цвета и шрифты"
+   },
+   {
+    "uz": "Faqat rasmlar va videolar",
+    "ru": "Только картинки и видео"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob eng uzuni, jami 138 belgi edi.",
+  "q": {
+   "uz": "`React` nima qiladi?",
+   "ru": "Что делает `React`?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumotni saqlaydi",
+    "ru": "Хранит данные"
+   },
+   {
+    "uz": "So'rovni yo'naltiradi",
+    "ru": "Направляет запросы"
+   },
+   {
+    "uz": "Sahifani bloklardan yig'adi",
+    "ru": "Собирает страницу из блоков"
+   },
+   {
+    "uz": "Serverni ishga tushiradi",
+    "ru": "Запускает сервер"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri javob 33 belgi, jami 151 edi.",
+  "q": {
+   "uz": "`Node.js` nima qiladi?",
+   "ru": "Что делает `Node.js`?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifani bezaydi",
+    "ru": "Украшает страницу"
+   },
+   {
+    "uz": "Rasmlarni tahrirlaydi",
+    "ru": "Редактирует картинки"
+   },
+   {
+    "uz": "Internetni tezlatadi",
+    "ru": "Ускоряет интернет"
+   },
+   {
+    "uz": "JS'ni serverda ishlatadi",
+    "ru": "Запускает JS на сервере"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 149 belgi edi.",
+  "q": {
+   "uz": "`Express` restoranda kimga o'xshaydi?",
+   "ru": "На кого в ресторане похож `Express`?"
+  },
+  "opts": [
+   {
+    "uz": "Oshpaz — pishiradi",
+    "ru": "Повар — готовит"
+   },
+   {
+    "uz": "Ofitsiant — yetkazadi",
+    "ru": "Официант — относит"
+   },
+   {
+    "uz": "Ombor — saqlaydi",
+    "ru": "Склад — хранит"
+   },
+   {
+    "uz": "Mehmon — buyuradi",
+    "ru": "Гость — заказывает"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "tushunarsiz"
+  ],
+  "izoh": "«Hook» — darsning ichki atamasi, o'quvchi uni bilmaydi.",
+  "q": {
+   "uz": "Sahifa yangilangach izoh nega yo'qoldi?",
+   "ru": "Почему после обновления страницы комментарий исчез?"
+  },
+  "opts": [
+   {
+    "uz": "Hech qayerda saqlanmagan",
+    "ru": "Нигде не был сохранён"
+   },
+   {
+    "uz": "Internet uzilib qoldi",
+    "ru": "Пропал интернет"
+   },
+   {
+    "uz": "Sayt kodi buzildi",
+    "ru": "Сломался код сайта"
+   },
+   {
+    "uz": "Parol noto'g'ri edi",
+    "ru": "Пароль был неверный"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha, jami 166 edi.",
+  "q": {
+   "uz": "`PERN` qaysi 4 texnologiya?",
+   "ru": "Какие 4 технологии — это `PERN`?"
+  },
+  "opts": [
+   "Python, Express, Redux, Node",
+   "Postgres, Ember, Ruby, Nest",
+   "Postgres, Elm, React, Deno",
+   "Postgres, Express, React, Node"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 34 belgi, jami 181 edi.",
+  "q": {
+   "uz": "So'rov qaysi yo'ldan boradi?",
+   "ru": "Каким путём идёт запрос?"
+  },
+  "opts": [
+   "Postgres → React → Express",
+   "React → Express → Postgres",
+   "Express → React → Postgres",
+   "React → Postgres → Express"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 33 belgi, eng uzuni edi.",
+  "q": {
+   "uz": "`stack` so'zi nimani anglatadi?",
+   "ru": "Что означает слово `stack`?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta dastur nomi",
+    "ru": "Название одной программы"
+   },
+   {
+    "uz": "Dasturdagi xato turi",
+    "ru": "Вид ошибки в программе"
+   },
+   {
+    "uz": "Texnologiyalar to'plami",
+    "ru": "Набор технологий"
+   },
+   {
+    "uz": "Saytni chiqarish usuli",
+    "ru": "Способ выложить сайт"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PeanStackLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 198 belgi edi.",
+  "q": {
+   "uz": "JavaScript bilgan odam backend'ga tayyormi?",
+   "ru": "Готов ли к backend тот, кто знает JavaScript?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, CSS ham bilsa",
+    "ru": "Да, если знает и CSS"
+   },
+   {
+    "uz": "Yo'q, Python shart",
+    "ru": "Нет, нужен Python"
+   },
+   {
+    "uz": "Ha, brauzer server bo'ladi",
+    "ru": "Да, браузер станет сервером"
+   },
+   {
+    "uz": "Ha, `Node.js` bilan",
+    "ru": "Да, с `Node.js`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 34 belgigacha, jami 147 edi.",
+  "q": {
+   "uz": "Dekompozitsiya nima?",
+   "ru": "Что такое декомпозиция?"
+  },
+  "opts": [
+   {
+    "uz": "Vazifani qadamlarga bo'lish",
+    "ru": "Разбить задачу на шаги"
+   },
+   {
+    "uz": "Kodni butunlay o'chirish",
+    "ru": "Полностью удалить код"
+   },
+   {
+    "uz": "Rang va shrift tanlash",
+    "ru": "Выбрать цвет и шрифт"
+   },
+   {
+    "uz": "Saytni serverga joylash",
+    "ru": "Выложить сайт на сервер"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 141 belgi edi.",
+  "q": {
+   "uz": "AI'ni ochishdan oldin nima qilinadi?",
+   "ru": "Что делают до того, как открыть AI?"
+  },
+  "opts": [
+   {
+    "uz": "Reja tuziladi",
+    "ru": "Составляют план"
+   },
+   {
+    "uz": "«Do'kon yasab ber» deyiladi",
+    "ru": "Пишут «сделай магазин»"
+   },
+   {
+    "uz": "Kompyuter yangilanadi",
+    "ru": "Обновляют компьютер"
+   },
+   {
+    "uz": "Rang tanlanadi",
+    "ru": "Выбирают цвет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 144 belgi edi.",
+  "q": {
+   "uz": "Qaysi biri mini-do'kon MVP'siga kiradi?",
+   "ru": "Что входит в MVP мини-магазина?"
+  },
+  "opts": [
+   {
+    "uz": "Login va parol",
+    "ru": "Логин и пароль"
+   },
+   {
+    "uz": "AI chat-bot",
+    "ru": "AI чат-бот"
+   },
+   {
+    "uz": "Reklama bannerlari",
+    "ru": "Рекламные баннеры"
+   },
+   {
+    "uz": "Mahsulotlar ro'yxati",
+    "ru": "Список товаров"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 41 belgi, eng uzuni edi.",
+  "q": {
+   "uz": "Qaysi buyruq eng aniq?",
+   "ru": "Какая команда самая точная?"
+  },
+  "opts": [
+   {
+    "uz": "Menga bir ro'yxat qil",
+    "ru": "Сделай мне список"
+   },
+   {
+    "uz": "Yaxshi narsa qilib ber",
+    "ru": "Сделай что-нибудь хорошее"
+   },
+   {
+    "uz": "4 mahsulotli do'kon ro'yxati",
+    "ru": "Список магазина из 4 товаров"
+   },
+   {
+    "uz": "Chiroyliroq qilib yasab ber",
+    "ru": "Сделай покрасивее"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "i": 9,
+  "sabab": [
+   "darsda-yoq"
+  ],
+  "izoh": "«Ro'yxat → narx → ko'rinish» tartibi darsda yo'q; darsda reja: ro'yxat → kartochkalar → toifa/qidiruv.",
+  "q": {
+   "uz": "To'g'ri qurish tartibi?",
+   "ru": "Правильный порядок сборки?"
+  },
+  "opts": [
+   {
+    "uz": "Qidiruv → ro'yxat → kartochka",
+    "ru": "Поиск → список → карточки"
+   },
+   {
+    "uz": "Kartochka → qidiruv → ro'yxat",
+    "ru": "Карточки → поиск → список"
+   },
+   {
+    "uz": "Qidiruv → kartochka → ro'yxat",
+    "ru": "Поиск → карточки → список"
+   },
+   {
+    "uz": "Ro'yxat → kartochka → qidiruv",
+    "ru": "Список → карточки → поиск"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 148 belgi edi.",
+  "q": {
+   "uz": "Gemini'ga bir so'rovda nimani berasiz?",
+   "ru": "Что Вы даёте Gemini в одном запросе?"
+  },
+  "opts": [
+   {
+    "uz": "Butun do'konni birdan",
+    "ru": "Весь магазин сразу"
+   },
+   {
+    "uz": "Rejadagi bitta qadamni",
+    "ru": "Один шаг из плана"
+   },
+   {
+    "uz": "Eng chiroyli qadamni",
+    "ru": "Самый красивый шаг"
+   },
+   {
+    "uz": "«Keyin» qadamini",
+    "ru": "Шаг «потом»"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson3.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi edi (chegara 30).",
+  "q": {
+   "uz": "«Keyin» qadamlar qachon quriladi?",
+   "ru": "Когда строятся шаги «потом»?"
+  },
+  "opts": [
+   {
+    "uz": "MVP'dan oldin",
+    "ru": "До MVP"
+   },
+   {
+    "uz": "Hech qachon",
+    "ru": "Никогда"
+   },
+   {
+    "uz": "Dizayn tayyor bo'lgach",
+    "ru": "Когда готов дизайн"
+   },
+   {
+    "uz": "MVP ishlagandan keyin",
+    "ru": "После того как MVP заработал"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson4.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 162 belgi edi.",
+  "q": {
+   "uz": "AI'ga bug'ni qanday aytish to'g'ri?",
+   "ru": "Как правильно рассказать ИИ о баге?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat «tuzat» deb yozish",
+    "ru": "Написать только «исправь»"
+   },
+   {
+    "uz": "Xato va to'g'risini aytish",
+    "ru": "Сказать, что не так и как надо"
+   },
+   {
+    "uz": "«Ishlamayapti!» deb baqirish",
+    "ru": "Кричать «не работает!»"
+   },
+   {
+    "uz": "Hech narsa demaslik",
+    "ru": "Ничего не говорить"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson4.jsx",
+  "i": 8,
+  "sabab": [
+   "darsda-yoq",
+   "togri-uzun",
+   "uzun"
+  ],
+  "izoh": "«Oxirgi yaxshilanish» atamasi darsda yo'q; «Buyurtma berish» tugmasi uyga vazifada bor.",
+  "q": {
+   "uz": "Uyga vazifada do'konga qaysi tugma qo'shiladi?",
+   "ru": "Какую кнопку добавляют в магазин в домашнем задании?"
+  },
+  "opts": [
+   {
+    "uz": "«Kodni o'chirish»",
+    "ru": "«Удалить код»"
+   },
+   {
+    "uz": "«Saytni yopish»",
+    "ru": "«Закрыть сайт»"
+   },
+   {
+    "uz": "«Buyurtma berish»",
+    "ru": "«Оформить заказ»"
+   },
+   {
+    "uz": "«Internetni uzish»",
+    "ru": "«Отключить интернет»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson4.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgi, jami 202 edi.",
+  "q": {
+   "uz": "Universal yo'l: Reja → MVP → qurish → ? → deploy",
+   "ru": "Универсальный путь: план → MVP → сборка → ? → деплой"
+  },
+  "opts": [
+   {
+    "uz": "Reklama qilish",
+    "ru": "Реклама"
+   },
+   {
+    "uz": "Tekshirish",
+    "ru": "Проверка"
+   },
+   {
+    "uz": "Qayta reja",
+    "ru": "Новый план"
+   },
+   {
+    "uz": "Kodni o'chirish",
+    "ru": "Удаление кода"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PracticeLesson4.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 54 belgi, jami 165 edi.",
+  "q": {
+   "uz": "«Savatga» bosilganda savat massiviga nima bo'ladi?",
+   "ru": "Что происходит с массивом корзины при нажатии «В корзину»?"
+  },
+  "opts": [
+   {
+    "uz": "Butunlay o'chiriladi",
+    "ru": "Полностью удаляется"
+   },
+   {
+    "uz": "push bilan qo'shiladi",
+    "ru": "Товар добавляется через push"
+   },
+   {
+    "uz": "Alifbo bo'yicha saralanadi",
+    "ru": "Сортируется по алфавиту"
+   },
+   {
+    "uz": "Hech narsa o'zgarmaydi",
+    "ru": "Ничего не меняется"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 48 belgi, qolganlari 9–14 edi.",
+  "q": {
+   "uz": "Kasbiy so'z (jargon) nima?",
+   "ru": "Что такое профессиональное слово (жаргон)?"
+  },
+  "opts": [
+   {
+    "uz": "Kasb egalari biladigan so'z",
+    "ru": "Слово, которое знают люди профессии"
+   },
+   {
+    "uz": "Juda uzun va qiyin so'z",
+    "ru": "Очень длинное и трудное слово"
+   },
+   {
+    "uz": "Xato yozilgan so'z",
+    "ru": "Слово с ошибкой"
+   },
+   {
+    "uz": "Chet tilidan kirgan so'z",
+    "ru": "Слово из иностранного языка"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "i": 1,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 30 belgi, qolganlari 12–18 edi.",
+  "q": {
+   "uz": "Pitch nima?",
+   "ru": "Что такое питч?"
+  },
+  "opts": [
+   {
+    "uz": "Kod yozishning tartibi",
+    "ru": "Порядок написания кода"
+   },
+   {
+    "uz": "Saytning bo'limlari",
+    "ru": "Разделы сайта"
+   },
+   {
+    "uz": "Qisqa tushuntirib berish",
+    "ru": "Коротко объяснить"
+   },
+   {
+    "uz": "Saytning manzili",
+    "ru": "Адрес сайта"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "i": 6,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 28 belgi, qolganlari 8–14 edi.",
+  "q": {
+   "uz": "Yaxshi o'xshatish qayerdan olinadi?",
+   "ru": "Откуда берут хорошее сравнение?"
+  },
+  "opts": [
+   {
+    "uz": "Eski kitoblardan",
+    "ru": "Из старых книг"
+   },
+   {
+    "uz": "Kod hujjatlaridan",
+    "ru": "Из документации к коду"
+   },
+   {
+    "uz": "Internet saytlaridan",
+    "ru": "С сайтов в интернете"
+   },
+   {
+    "uz": "Tinglovchi hayotidan",
+    "ru": "Из жизни слушателя"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami matn 192 belgi edi.",
+  "q": {
+   "uz": "Sherik «Yarim tushundim» dedi. Nima qilasiz?",
+   "ru": "Напарник сказал «понял наполовину». Что делаете?"
+  },
+  "opts": [
+   {
+    "uz": "Balandroq ovozda gapiraman",
+    "ru": "Говорю громче"
+   },
+   {
+    "uz": "Qiyin joyni soddalashtiraman",
+    "ru": "Упрощаю трудное место"
+   },
+   {
+    "uz": "Boshqa sherik topaman",
+    "ru": "Ищу другого напарника"
+   },
+   {
+    "uz": "Pitchni uzaytiraman",
+    "ru": "Удлиняю питч"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/2-Modull/PmLesson6.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgi, jami 196 edi.",
+  "q": {
+   "uz": "Saytni nega telefonda ham tekshirasiz?",
+   "ru": "Зачем проверять сайт и на телефоне?"
+  },
+  "opts": [
+   {
+    "uz": "Zaldagilar telefondan ochadi",
+    "ru": "В зале откроют с телефона"
+   },
+   {
+    "uz": "Telefonda tezroq ochiladi",
+    "ru": "На телефоне открывается быстрее"
+   },
+   {
+    "uz": "Netlify shuni talab qiladi",
+    "ru": "Этого требует Netlify"
+   },
+   {
+    "uz": "Kompyuterda ochilmaydi",
+    "ru": "На компьютере не открывается"
+   }
+  ],
+  "correct": 0
+ }
+]

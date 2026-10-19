@@ -1,0 +1,6434 @@
+[
+ {
+  "key": "m9-01",
+  "file": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Sinfdoshingiz «maktab ilovasi qilaman» dedi. G'oyaga yana nima kerak?",
+     "ru": "Одноклассник сказал: «сделаю школьное приложение». Что ещё нужно идее?"
+    },
+    "opts": [
+     {
+      "uz": "Muammo, kim uchun va yechim",
+      "ru": "Проблема, для кого и решение"
+     },
+     {
+      "uz": "Ilovaning chiroyli nomi, rangi",
+      "ru": "Красивое название и цвет приложения"
+     },
+     {
+      "uz": "Ilovaning narxi va reklamasi",
+      "ru": "Цена и реклама приложения"
+     },
+     {
+      "uz": "Tugmalar soni va ekran rangi",
+      "ru": "Число кнопок и цвет экрана"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 69,
+     "maxVariant": 30,
+     "jami": 182,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Qaysi gap g'oyaning yechim qatoriga yoziladi?",
+     "ru": "Какая фраза пишется в строку «Решение»?"
+    },
+    "opts": [
+     {
+      "uz": "Sinfdoshlar vazifani chatda yo'qotadi",
+      "ru": "Одноклассники теряют задание в чате"
+     },
+     {
+      "uz": "Maktabdagi barcha sinf o'quvchilari uchun",
+      "ru": "Для учеников всех классов школы"
+     },
+     {
+      "uz": "Har fan vazifasini bir joyda ko'rsatadi",
+      "ru": "Показывает задания по каждому предмету в одном месте"
+     },
+     {
+      "uz": "Vazifalar chiroyli turishini xohlaydi",
+      "ru": "Хочет, чтобы задания красиво выглядели"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 41,
+     "jami": 199,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Qaysi gap g'oyaning muammo qatoriga yoziladi?",
+     "ru": "Какая фраза пишется в строку «Проблема»?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovada chat bo'lishini xohlaydi",
+      "ru": "Хочет, чтобы в приложении был чат"
+     },
+     {
+      "uz": "Uy vazifasi chatlarda yo'qoladi",
+      "ru": "Домашнее задание теряется в чатах"
+     },
+     {
+      "uz": "Ilova chiroyli bo'lsa yaxshi edi",
+      "ru": "Хорошо бы приложение было красивым"
+     },
+     {
+      "uz": "Bot tez ishlashini juda xohlaydi",
+      "ru": "Очень хочет, чтобы бот работал быстро"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 32,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "«Kim uchun» qatoriga qaysi biri aniq yozilgan?",
+     "ru": "Что в строке «Для кого» записано точно?"
+    },
+    "opts": [
+     {
+      "uz": "Shahardagi har xil yoshdagi odamlar",
+      "ru": "Люди разного возраста в городе"
+     },
+     {
+      "uz": "Telefoni va interneti bor har bir odam",
+      "ru": "Каждый, у кого есть телефон и интернет"
+     },
+     {
+      "uz": "Yoshlar ham, kattalar ham — hamma odam",
+      "ru": "И молодые, и взрослые — все люди"
+     },
+     {
+      "uz": "To'garak izlayotgan maktab o'smirlari",
+      "ru": "Школьники-подростки, которые ищут кружок"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 38,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«Ilovada to'lov tugmasi yo'q» — bu qaysi qatorga o'xshaydi?",
+     "ru": "«В приложении нет кнопки оплаты» — на какую строку это похоже?"
+    },
+    "opts": [
+     {
+      "uz": "Yechimga — unda yechim tayyor",
+      "ru": "На решение — в ней готовое решение"
+     },
+     {
+      "uz": "Muammoga — odam qiynalyapti",
+      "ru": "На проблему — человек мучается"
+     },
+     {
+      "uz": "Kim uchun qatoriga mos keladi",
+      "ru": "Подходит к строке «Для кого»"
+     },
+     {
+      "uz": "Hech qaysi qatorga mos emas",
+      "ru": "Не подходит ни к одной строке"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 29,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Airbnb asoschilari g'oyani qayerdan topgan?",
+     "ru": "Где основатели Airbnb нашли идею?"
+    },
+    "opts": [
+     {
+      "uz": "Investorlar bergan topshiriqdan",
+      "ru": "В задании от инвесторов"
+     },
+     {
+      "uz": "Boshqa ilovani ko'chirib olib",
+      "ru": "Скопировав другое приложение"
+     },
+     {
+      "uz": "Kompyuter o'yinini o'ynab",
+      "ru": "Играя в компьютерную игру"
+     },
+     {
+      "uz": "O'zlari ko'rgan voqeadan",
+      "ru": "В случае, который видели сами"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 31,
+     "jami": 152,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "2007-yilda San-Fransiskoda nima bo'lgan?",
+     "ru": "Что было в Сан-Франциско в 2007 году?"
+    },
+    "opts": [
+     {
+      "uz": "Shaharda yangi aeroport ochilgan",
+      "ru": "В городе открыли новый аэропорт"
+     },
+     {
+      "uz": "Konferensiya, mehmonxonalar to'la",
+      "ru": "Конференция, гостиницы заполнены"
+     },
+     {
+      "uz": "Shaharda transport to'xtab qolgan",
+      "ru": "В городе остановился транспорт"
+     },
+     {
+      "uz": "Hamma uylar sotuvga chiqarilgan",
+      "ru": "Все дома выставили на продажу"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 33,
+     "jami": 169,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Airbnb asoschilari birinchi bo'lib nima qilgan?",
+     "ru": "Что основатели Airbnb сделали первым?"
+    },
+    "opts": [
+     {
+      "uz": "Katta mehmonxona qurishgan",
+      "ru": "Построили большую гостиницу"
+     },
+     {
+      "uz": "Ilova uchun reklama berishgan",
+      "ru": "Дали рекламу приложения"
+     },
+     {
+      "uz": "Uyidagi havo to'shagini ijaraga berishgan",
+      "ru": "Сдали надувной матрас у себя дома"
+     },
+     {
+      "uz": "Konferensiyani boshqa shaharga ko'chirishgan",
+      "ru": "Перенесли конференцию в другой город"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 44,
+     "jami": 187,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Beshta g'oyani yozayotganda har biri bilan nima qilasiz?",
+     "ru": "Что вы делаете с каждой идеей, когда пишете пять?"
+    },
+    "opts": [
+     {
+      "uz": "Yozgan zahoti kuchsizini o'chirasiz",
+      "ru": "Сразу удаляете слабую"
+     },
+     {
+      "uz": "Faqat eng qiziq uchtasini yozib olasiz",
+      "ru": "Записываете только три самые интересные"
+     },
+     {
+      "uz": "Har biriga chiroyli nom o'ylab topasiz",
+      "ru": "Придумываете каждой красивое название"
+     },
+     {
+      "uz": "Uch qatorini yozib, keyingisiga o'tasiz",
+      "ru": "Пишете три части и переходите к следующей"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 39,
+     "jami": 206,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Sherigingiz faqat yechimni eshitib, boshqa muammoni aytdi. Bu nimani bildiradi?",
+     "ru": "Партнёр услышал только решение и назвал другую проблему. Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat yechimdan muammo bilinmasligi mumkin",
+      "ru": "По одному решению проблема может быть непонятна"
+     },
+     {
+      "uz": "Sherigingiz g'oyani yaxshi tinglamay qolgan",
+      "ru": "Партнёр плохо слушал идею"
+     },
+     {
+      "uz": "G'oyani o'chirib, yangisini yozish kerak",
+      "ru": "Нужно удалить идею и написать новую"
+     },
+     {
+      "uz": "Yechim qatorini butunlay olib tashlash kerak",
+      "ru": "Нужно совсем убрать строку «Решение»"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 79,
+     "maxVariant": 44,
+     "jami": 248,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Atrofni kuzatganda nimaga qaraysiz?",
+     "ru": "На что вы смотрите, наблюдая вокруг?"
+    },
+    "opts": [
+     {
+      "uz": "Qaysi ilova eng ko'p yuklanganiga",
+      "ru": "Какое приложение скачивают больше всего"
+     },
+     {
+      "uz": "Do'stlar qaysi o'yinni o'ynashiga",
+      "ru": "В какую игру играют друзья"
+     },
+     {
+      "uz": "Kim, qayerda, nimadan qiynalganiga",
+      "ru": "Кто, где и с чем мучился"
+     },
+     {
+      "uz": "Qaysi texnologiya eng yangi ekaniga",
+      "ru": "Какая технология самая новая"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 35,
+     "jami": 170,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "«Keyin» qutisidagi funksiyadan g'oya qilish uchun nima qo'shasiz?",
+     "ru": "Что добавить, чтобы из функции в коробке «Потом» сделать идею?"
+    },
+    "opts": [
+     {
+      "uz": "Funksiyaga qisqa va qiziq nom",
+      "ru": "Короткое интересное название функции"
+     },
+     {
+      "uz": "Funksiya hal qiladigan muammo",
+      "ru": "Проблему, которую решает функция"
+     },
+     {
+      "uz": "Yana bitta yangi funksiya",
+      "ru": "Ещё одну новую функцию"
+     },
+     {
+      "uz": "Funksiyani qurish uchun kod",
+      "ru": "Код, чтобы построить функцию"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 65,
+     "maxVariant": 29,
+     "jami": 175,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-02",
+  "file": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "G'oya uch savoldan qachon o'tadi?",
+     "ru": "Когда идея проходит три вопроса?"
+    },
+    "opts": [
+     {
+      "uz": "Uchala savolga «ha» olsa",
+      "ru": "Если получит «да» на все три"
+     },
+     {
+      "uz": "Ikkita savolga «ha» olsa",
+      "ru": "Если получит «да» на два"
+     },
+     {
+      "uz": "Birinchi savolga «ha» olsa",
+      "ru": "Если получит «да» на первый"
+     },
+     {
+      "uz": "Bitta savolga «yo'q» olsa",
+      "ru": "Если получит «нет» на один"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 26,
+     "jami": 132,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "«Real auditoriya bormi?» savoli nimani so'raydi?",
+     "ru": "О чём спрашивает вопрос «Есть реальная аудитория?»"
+    },
+    "opts": [
+     {
+      "uz": "6 hafta ichida qura olasizmi",
+      "ru": "Сможете ли построить за 6 недель"
+     },
+     {
+      "uz": "Kamida 5 tanishingiz bormi",
+      "ru": "Есть ли хотя бы 5 знакомых"
+     },
+     {
+      "uz": "Shu g'oya o'zingizga qiziqmi",
+      "ru": "Интересна ли вам эта идея"
+     },
+     {
+      "uz": "Ilovani necha kishi yuklaydi",
+      "ru": "Сколько человек скачает приложение"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 28,
+     "jami": 158,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Qaysi g'oyaning birinchi versiyasini 6 haftada qurish qiyin?",
+     "ru": "Первую версию какой идеи трудно построить за 6 недель?"
+    },
+    "opts": [
+     {
+      "uz": "Sinf vazifalari ro'yxati",
+      "ru": "Список заданий класса"
+     },
+     {
+      "uz": "Oshxona menyusi sahifasi",
+      "ru": "Страница меню столовой"
+     },
+     {
+      "uz": "Uyga ovqat yetkazish xizmati",
+      "ru": "Служба доставки еды на дом"
+     },
+     {
+      "uz": "To'garaklar jadvali sahifasi",
+      "ru": "Страница расписания кружков"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 28,
+     "jami": 164,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Ta'sir 3 nimani bildiradi?",
+     "ru": "Что означает влияние 3?"
+    },
+    "opts": [
+     {
+      "uz": "Uch kishiga foyda yetkazadi",
+      "ru": "Приносит пользу трём людям"
+     },
+     {
+      "uz": "Uch hafta mehnat talab qiladi",
+      "ru": "Требует трёх недель усилий"
+     },
+     {
+      "uz": "Ro'yxatda uchinchi o'rinda",
+      "ru": "На третьем месте в списке"
+     },
+     {
+      "uz": "Har odamga juda katta foyda",
+      "ru": "Очень большая польза каждому"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 26,
+     "maxVariant": 29,
+     "jami": 135,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Bu kursda ishonch 50% qachon qo'yiladi?",
+     "ru": "Когда в этом курсе ставят уверенность 50%?"
+    },
+    "opts": [
+     {
+      "uz": "Dalil yo'q, faqat taxmin bo'lsa",
+      "ru": "Если доводов нет, только предположение"
+     },
+     {
+      "uz": "O'lchangan aniq son bor bo'lsa",
+      "ru": "Если есть точное измеренное число"
+     },
+     {
+      "uz": "Ko'p odamlar shuni aytgan bo'lsa",
+      "ru": "Если об этом сказали многие"
+     },
+     {
+      "uz": "G'oyaning yarmi qurilgan bo'lsa",
+      "ru": "Если идея построена наполовину"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 32,
+     "jami": 163,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Bu kursda mehnat qanday sanaladi?",
+     "ru": "Как в этом курсе считают усилия?"
+    },
+    "opts": [
+     {
+      "uz": "Odam-oyda — bitta odam bir oyda",
+      "ru": "В человеко-месяцах — один человек за месяц"
+     },
+     {
+      "uz": "Haftada — bir odam necha hafta",
+      "ru": "В неделях — сколько недель один человек"
+     },
+     {
+      "uz": "Kunda — butun sinf necha kun",
+      "ru": "В днях — сколько дней весь класс"
+     },
+     {
+      "uz": "Soatda — kod necha soat oladi",
+      "ru": "В часах — сколько часов займёт код"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 31,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Ishonch 50% dan 80% ga ko'tarilsa, RICE nima bo'ladi?",
+     "ru": "Что будет с RICE, если уверенность вырастет с 50% до 80%?"
+    },
+    "opts": [
+     {
+      "uz": "Kamayadi — chunki mehnat ko'payadi",
+      "ru": "Уменьшится — ведь усилия растут"
+     },
+     {
+      "uz": "O'zgarmaydi — qamrov bir xil qoladi",
+      "ru": "Не изменится — охват остаётся тем же"
+     },
+     {
+      "uz": "Oshadi — g'oya ko'tarilishi mumkin",
+      "ru": "Вырастет — идея может подняться"
+     },
+     {
+      "uz": "Nolga tushadi — chunki dalil yo'q",
+      "ru": "Упадёт до нуля — ведь довода нет"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 35,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Qamrovi katta g'oyaning bahosi nega past chiqishi mumkin?",
+     "ru": "Почему у идеи с большим охватом оценка может выйти низкой?"
+    },
+    "opts": [
+     {
+      "uz": "Odam ko'p bo'lsa, baho o'zi pasayadi",
+      "ru": "Когда людей много, оценка сама падает"
+     },
+     {
+      "uz": "Qamrov bahoda umuman sanalmaydi",
+      "ru": "Охват в оценке вообще не считается"
+     },
+     {
+      "uz": "Mehnati juda kam bo'lgani uchun",
+      "ru": "Потому что усилия очень малы"
+     },
+     {
+      "uz": "Ta'sir yoki ishonch kichik bo'lsa",
+      "ru": "Если влияние или уверенность малы"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 36,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Stories voqeasidan qaysi xulosa chiqadi?",
+     "ru": "Какой вывод следует из истории Stories?"
+    },
+    "opts": [
+     {
+      "uz": "Yaxshiroq yetkazgan ilova yutdi",
+      "ru": "Выиграло приложение, лучше донёсшее формат"
+     },
+     {
+      "uz": "Uni birinchi o'ylab topgan yutdi",
+      "ru": "Выиграл тот, кто придумал первым"
+     },
+     {
+      "uz": "Arzonroq bo'lgan ilova yutdi",
+      "ru": "Выиграло более дешёвое приложение"
+     },
+     {
+      "uz": "Eng keyin chiqqan ilova yutdi",
+      "ru": "Выиграло приложение, вышедшее последним"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 32,
+     "jami": 160,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Sherigingiz bitta soningizga «nega?» dedi. Nima qilasiz?",
+     "ru": "Партнёр спросил «почему?» про одно ваше число. Что сделаете?"
+    },
+    "opts": [
+     {
+      "uz": "Hech narsa demay, sonni o'zgartirmaysiz",
+      "ru": "Ничего не говорите и не меняете число"
+     },
+     {
+      "uz": "Sababini aytib, kerak bo'lsa tuzatasiz",
+      "ru": "Называете причину и при необходимости исправляете"
+     },
+     {
+      "uz": "G'oyani butunlay chetga chiqarasiz",
+      "ru": "Полностью отводите идею в сторону"
+     },
+     {
+      "uz": "Sherigingiz aytgan sonni yozib qo'yasiz",
+      "ru": "Записываете число, которое назвал партнёр"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 39,
+     "jami": 206,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Mentorning jamoa yig'ish g'oyasida ishonch nega 80%?",
+     "ru": "Почему в идее Ментора о сборе команды уверенность 80%?"
+    },
+    "opts": [
+     {
+      "uz": "Mentorga bu g'oya hammasidan qiziq",
+      "ru": "Ментору эта идея интереснее всех"
+     },
+     {
+      "uz": "Bu g'oyaning ta'siri ikkiga teng",
+      "ru": "Влияние этой идеи равно двум"
+     },
+     {
+      "uz": "9-Modulda 5 kishidan 2 tasi aytgan",
+      "ru": "В 9-м модуле так сказали 2 из 5 человек"
+     },
+     {
+      "uz": "Uning mehnati 4 hafta — eng ko'p",
+      "ru": "Её усилия — 4 недели, больше всех"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 34,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "`rice(g)` funksiyasi nimani qaytaradi?",
+     "ru": "Что возвращает функция `rice(g)`?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta g'oyaning qisqa nomini",
+      "ru": "Короткое название одной идеи"
+     },
+     {
+      "uz": "Eng yuqori uchta g'oya nomini",
+      "ru": "Названия трёх верхних идей"
+     },
+     {
+      "uz": "Ro'yxatdagi g'oyalar sonini",
+      "ru": "Число идей в списке"
+     },
+     {
+      "uz": "Bitta g'oyaning bahosini",
+      "ru": "Оценку одной идеи"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 29,
+     "jami": 146,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-03",
+  "file": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Ikki g'oyani intervyuda qanday savollar bilan tekshirasiz?",
+     "ru": "Какими вопросами вы проверите две идеи на интервью?"
+    },
+    "opts": [
+     {
+      "uz": "Ikkalasiga bir xil savollar bilan",
+      "ru": "Одинаковыми вопросами для обеих"
+     },
+     {
+      "uz": "Har biriga alohida savollar bilan",
+      "ru": "Отдельными вопросами для каждой"
+     },
+     {
+      "uz": "Kuchlirog'iga ko'proq savollar bilan",
+      "ru": "Более сильной — больше вопросов"
+     },
+     {
+      "uz": "Har biriga bitta-ikkita savol bilan",
+      "ru": "По одному-два вопроса каждой"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 36,
+     "jami": 195,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "To'garak g'oyasida savollarning nimasi almashadi?",
+     "ru": "Что меняется в вопросах для идеи кружков?"
+    },
+    "opts": [
+     {
+      "uz": "Beshala savolning hammasi birdan",
+      "ru": "Все пять вопросов сразу"
+     },
+     {
+      "uz": "Faqat oxirgi savoldagi bitta so'z",
+      "ru": "Только одно слово в последнем вопросе"
+     },
+     {
+      "uz": "Faqat birinchi savoldagi bo'lak",
+      "ru": "Только часть в первом вопросе"
+     },
+     {
+      "uz": "Savollar qaysi tartibda kelishi",
+      "ru": "Порядок вопросов"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 33,
+     "jami": 176,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "To'garak izlagan odamga qaysi savol voqeani ochadi?",
+     "ru": "Какой вопрос откроет историю человека, искавшего кружок?"
+    },
+    "opts": [
+     {
+      "uz": "«Xaritasi bo'lsa, ochib ko'rardingizmi?»",
+      "ru": "«Была бы карта — открыли бы?»"
+     },
+     {
+      "uz": "«Yozda to'garak topish qiyin edimi?»",
+      "ru": "«Летом было трудно найти кружок?»"
+     },
+     {
+      "uz": "«Odatda to'garakni qanday tanlaysiz?»",
+      "ru": "«Как вы обычно выбираете кружок?»"
+     },
+     {
+      "uz": "«Yozda to'garakni qanday qidirdingiz?»",
+      "ru": "«Как вы искали кружок летом?»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 40,
+     "jami": 202,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "«Hozir buni nima bilan hal qilyapsiz?» savoli nimani ochadi?",
+     "ru": "Что открывает вопрос «Чем вы сейчас это решаете?»"
+    },
+    "opts": [
+     {
+      "uz": "Odam ilovani qaysi kuni yuklab olishini",
+      "ru": "В какой день человек скачает приложение"
+     },
+     {
+      "uz": "Muammo chiqqanda odam bugun qanday yo'l tutishini",
+      "ru": "Как человек сегодня поступает, когда возникает проблема"
+     },
+     {
+      "uz": "Odamga ikki g'oyadan qaysi biri yoqishini",
+      "ru": "Какая из двух идей нравится человеку"
+     },
+     {
+      "uz": "Odam bu muammoni kimdan eshitib qolganini",
+      "ru": "От кого человек услышал об этой проблеме"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 49,
+     "jami": 230,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Mentor misolida o'yinchilar jamoani hozir qanday yig'adi?",
+     "ru": "Как в примере Ментора игроки сейчас собирают команду?"
+    },
+    "opts": [
+     {
+      "uz": "Maktabdagi e'lon taxtasi orqali",
+      "ru": "Через доску объявлений в школе"
+     },
+     {
+      "uz": "Maydon egasiga qo'ng'iroq qilib",
+      "ru": "Звонят хозяину поля"
+     },
+     {
+      "uz": "Telegram guruhiga yozib, so'rab",
+      "ru": "Пишут и спрашивают в Telegram-группе"
+     },
+     {
+      "uz": "Maxsus futbol ilovasi orqali yozib",
+      "ru": "Через специальное футбольное приложение"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 34,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mentor misolida qaysi biri harakat belgisi?",
+     "ru": "Что в примере Ментора — знак действия?"
+    },
+    "opts": [
+     {
+      "uz": "Sinovga kun belgiladi",
+      "ru": "Назначил день пробы"
+     },
+     {
+      "uz": "«Ajoyib g'oya» deb maqtadi",
+      "ru": "Похвалил: «Отличная идея»"
+     },
+     {
+      "uz": "«Ishlatardim» deb aytdi",
+      "ru": "Сказал «пользовался бы»"
+     },
+     {
+      "uz": "Intervyuda uzoq gapirdi",
+      "ru": "Долго говорил на интервью"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 26,
+     "jami": 136,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Harakat belgisi savoli intervyuning qayerida beriladi?",
+     "ru": "Где в интервью задают вопрос о знаке действия?"
+    },
+    "opts": [
+     {
+      "uz": "Eng boshida, salomlashgandan keyin",
+      "ru": "В самом начале, после приветствия"
+     },
+     {
+      "uz": "Birinchi savolni berishdan oldin",
+      "ru": "Перед первым вопросом"
+     },
+     {
+      "uz": "Uchinchi savoldan keyin, o'rtada",
+      "ru": "После третьего вопроса, в середине"
+     },
+     {
+      "uz": "Oxirida, muammo haqida so'ragach",
+      "ru": "В конце, после вопросов о проблеме"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 34,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Yozuvning harakat belgisi qatoriga nima tushadi?",
+     "ru": "Что попадает в строку «Знак действия» записи?"
+    },
+    "opts": [
+     {
+      "uz": "Odamning ismi va sinov kuni",
+      "ru": "Имя человека и день пробы"
+     },
+     {
+      "uz": "Faqat «ha» yoki «yo'q» belgisi",
+      "ru": "Только знак «да» или «нет»"
+     },
+     {
+      "uz": "Odamning «ishlatardim» degan gapi",
+      "ru": "Его слова «пользовался бы»"
+     },
+     {
+      "uz": "Sizning g'oya haqidagi fikringiz",
+      "ru": "Ваше мнение об идее"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 33,
+     "jami": 170,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Saytga yangi odamlar qo'shilmay qolganda Airbnb asoschilari nima qilgan?",
+     "ru": "Что сделали основатели Airbnb, когда новые люди перестали приходить на сайт?"
+    },
+    "opts": [
+     {
+      "uz": "Saytdagi tugmalarni o'zgartirgan",
+      "ru": "Поменяли кнопки на сайте"
+     },
+     {
+      "uz": "Uy egalariga uzun xatlar yozgan",
+      "ru": "Писали хозяевам длинные письма"
+     },
+     {
+      "uz": "Kvartiralarni o'zlari aylangan",
+      "ru": "Сами обошли квартиры"
+     },
+     {
+      "uz": "Saytga ko'proq reklama bergan",
+      "ru": "Дали больше рекламы сайту"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 72,
+     "maxVariant": 32,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Airbnb asoschilari kvartiralarda nimani bilgan?",
+     "ru": "Что основатели Airbnb узнали в квартирах?"
+    },
+    "opts": [
+     {
+      "uz": "Uylarning narxi juda balandligini",
+      "ru": "Что цены на жильё слишком высокие"
+     },
+     {
+      "uz": "Uy egalari saytni bilmasligini",
+      "ru": "Что хозяева не знают сайт"
+     },
+     {
+      "uz": "Mehmonlar uyda shovqin qilishini",
+      "ru": "Что гости шумят дома"
+     },
+     {
+      "uz": "Yomon suratlar xalaqit berishini",
+      "ru": "Что мешают плохие фото"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 33,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Sherigingiz g'oya auditoriyasidan emas. Uning yozuvi qanday bo'ladi?",
+     "ru": "Партнёр не из аудитории идеи. Какой будет его запись?"
+    },
+    "opts": [
+     {
+      "uz": "Mashq yozuvi — o'ntaga kirmaydi",
+      "ru": "Тренировочная — не входит в десятку"
+     },
+     {
+      "uz": "Haqiqiy yozuv — o'ntaga qo'shiladi",
+      "ru": "Настоящая — добавится в десятку"
+     },
+     {
+      "uz": "Yozuv olinmaydi — vaqt bekor ketadi",
+      "ru": "Запись не берут — время потеряно"
+     },
+     {
+      "uz": "Ikki yozuv — har g'oyaga bittadan",
+      "ru": "Две записи — по одной на идею"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 68,
+     "maxVariant": 35,
+     "jami": 201,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Sinfdoshingiz javobini yozuvga qanday yozasiz?",
+     "ru": "Как вы запишете ответ одноклассника?"
+    },
+    "opts": [
+     {
+      "uz": "Uyda, eslab qolganingizcha",
+      "ru": "Дома, как запомнили"
+     },
+     {
+      "uz": "O'sha zahoti, u aytganidek",
+      "ru": "Сразу и так, как он сказал"
+     },
+     {
+      "uz": "O'z xulosangiz bilan qo'shib",
+      "ru": "Добавив свой вывод"
+     },
+     {
+      "uz": "Bitta so'z bilan, qisqartirib",
+      "ru": "Одним словом, сократив"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 29,
+     "jami": 155,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-04",
+  "file": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Ikki g'oya intervyusida savollar nega bir xil bo'ladi?",
+     "ru": "Почему в интервью по двум идеям вопросы одинаковые?"
+    },
+    "opts": [
+     {
+      "uz": "Intervyu qisqaroq va tezroq o'tishi uchun",
+      "ru": "Чтобы интервью было короче и быстрее"
+     },
+     {
+      "uz": "Javoblarni yonma-yon sanay olish uchun",
+      "ru": "Чтобы ответы можно было считать рядом"
+     },
+     {
+      "uz": "Odamlar savollarni oldindan bilishi uchun",
+      "ru": "Чтобы люди знали вопросы заранее"
+     },
+     {
+      "uz": "Ikkinchi g'oyani tezroq unutish uchun",
+      "ru": "Чтобы быстрее забыть вторую идею"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 41,
+     "jami": 211,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Qaysi javob takrorlangan javob bo'ladi?",
+     "ru": "Какой ответ будет повторяющимся?"
+    },
+    "opts": [
+     {
+      "uz": "To'rt yozuvda bir xil ma'noli javob",
+      "ru": "Ответ с одинаковым смыслом в четырёх записях"
+     },
+     {
+      "uz": "Bitta yozuvda eng qattiq aytilgan javob",
+      "ru": "Самый громкий ответ в одной записи"
+     },
+     {
+      "uz": "Eng uzun yozuvdagi eng oxirgi javob",
+      "ru": "Последний ответ в самой длинной записи"
+     },
+     {
+      "uz": "Mentorga eng ko'p yoqqan bitta javob",
+      "ru": "Один ответ, который больше всего понравился Ментору"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 39,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Odam «Chiqsa, ishlatib ko'raman» dedi. Bu nima?",
+     "ru": "Человек сказал: «Когда выйдет, попробую». Что это?"
+    },
+    "opts": [
+     {
+      "uz": "Harakat belgisi — kun belgilagan",
+      "ru": "Знак действия — назначил день"
+     },
+     {
+      "uz": "Takrorlangan javob — ko'pchilik degan",
+      "ru": "Повторяющийся ответ — так сказали многие"
+     },
+     {
+      "uz": "Va'da — hali bo'lmagan ish haqida",
+      "ru": "Обещание — о деле, которого ещё не было"
+     },
+     {
+      "uz": "Muammo gapi — kim nimadan qiynaladi",
+      "ru": "Формулировка проблемы — кому и с чем трудно"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 37,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Mentor misolida nechta o'yinchi sinovga kun belgiladi?",
+     "ru": "Сколько игроков в примере Ментора назначили день пробы?"
+    },
+    "opts": [
+     {
+      "uz": "5 tadan 1 tasi",
+      "ru": "1 из 5"
+     },
+     {
+      "uz": "5 tadan 2 tasi",
+      "ru": "2 из 5"
+     },
+     {
+      "uz": "5 tadan 3 tasi",
+      "ru": "3 из 5"
+     },
+     {
+      "uz": "5 tadan 4 tasi",
+      "ru": "4 из 5"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 14,
+     "jami": 110,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Mentor misolida ikki o'smirning to'garagini kim topadi?",
+     "ru": "Кто в примере Ментора находит кружок двум подросткам?"
+    },
+    "opts": [
+     {
+      "uz": "O'smirning o'zi",
+      "ru": "Сам подросток"
+     },
+     {
+      "uz": "Uning sinfdoshi",
+      "ru": "Его одноклассник"
+     },
+     {
+      "uz": "Uning ota-onasi",
+      "ru": "Его родители"
+     },
+     {
+      "uz": "Uning murabbiyi",
+      "ru": "Его тренер"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 15,
+     "jami": 115,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mentor misolida o'yinchilar hozir jamoani nima bilan yig'adi?",
+     "ru": "Чем игроки в примере Ментора сейчас собирают команду?"
+    },
+    "opts": [
+     {
+      "uz": "Maydon egasi orqali",
+      "ru": "Через владельца поля"
+     },
+     {
+      "uz": "Telegram guruhida",
+      "ru": "В Telegram-группе"
+     },
+     {
+      "uz": "Maktab e'lonlarida",
+      "ru": "Через объявления в школе"
+     },
+     {
+      "uz": "Maxsus ilova orqali",
+      "ru": "Через специальное приложение"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 19,
+     "jami": 134,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Muammo gapida qaysi uch bo'lak bo'ladi?",
+     "ru": "Какие три части есть в формулировке проблемы?"
+    },
+    "opts": [
+     {
+      "uz": "Kim, qachon va nimadan qiynaladi",
+      "ru": "Кому, когда и с чем трудно"
+     },
+     {
+      "uz": "Kim, qayerda va qaysi ilova kerak",
+      "ru": "Кто, где и какое приложение нужно"
+     },
+     {
+      "uz": "Muammo, yechim va ilovaning nomi",
+      "ru": "Проблема, решение и название приложения"
+     },
+     {
+      "uz": "Tugma, rang va ilovaning narxi",
+      "ru": "Кнопка, цвет и цена приложения"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 33,
+     "jami": 166,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Final g'oya qaysi g'oya?",
+     "ru": "Какая идея — финальная?"
+    },
+    "opts": [
+     {
+      "uz": "Nomi eng chiroyli bo'lgan g'oya",
+      "ru": "Идея с самым красивым названием"
+     },
+     {
+      "uz": "RICE bahosi eng katta bo'lgan g'oya",
+      "ru": "Идея с самой большой оценкой RICE"
+     },
+     {
+      "uz": "Ro'yxatda birinchi yozilgan g'oya",
+      "ru": "Идея, записанная в списке первой"
+     },
+     {
+      "uz": "Intervyudan keyin tanlangan g'oya",
+      "ru": "Идея, выбранная после интервью"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 24,
+     "maxVariant": 35,
+     "jami": 156,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Final g'oya tanlangach, ikkinchi g'oya bilan nima qilinadi?",
+     "ru": "Что делают со второй идеей, когда выбрана финальная?"
+    },
+    "opts": [
+     {
+      "uz": "Ro'yxatdan butunlay o'chiriladi",
+      "ru": "Полностью удаляют из списка"
+     },
+     {
+      "uz": "Final g'oyaga qo'shib yuboriladi",
+      "ru": "Добавляют к финальной идее"
+     },
+     {
+      "uz": "Sinfdoshlardan biriga beriladi",
+      "ru": "Отдают одному из одноклассников"
+     },
+     {
+      "uz": "«Keyin» qutisiga yozib qo'yiladi",
+      "ru": "Записывают в коробку «Потом»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 32,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Olti intervyudan keyingi tanlov haqida qaysi gap to'g'ri?",
+     "ru": "Какое утверждение о выборе после шести интервью верно?"
+    },
+    "opts": [
+     {
+      "uz": "G'oya endi isbotlandi, tekshirish shart emas",
+      "ru": "Идея теперь доказана, проверять не нужно"
+     },
+     {
+      "uz": "Intervyu soni tanlovga hech ta'sir qilmaydi",
+      "ru": "Число интервью никак не влияет на выбор"
+     },
+     {
+      "uz": "Tanlov uchun dalil bor, lekin isbot emas",
+      "ru": "Для выбора есть довод, но это не доказательство"
+     },
+     {
+      "uz": "Sanoqdan ko'ra o'zimning fikrim muhimroq",
+      "ru": "Моё мнение важнее подсчёта"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 44,
+     "jami": 224,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "YouTube asoschilari nimani payqagan?",
+     "ru": "Что заметили основатели YouTube?"
+    },
+    "opts": [
+     {
+      "uz": "Odamlar har xil video yuklayotganini",
+      "ru": "Что люди загружают самые разные видео"
+     },
+     {
+      "uz": "Faqat o'zi haqidagi videolar qo'yilganini",
+      "ru": "Что выкладывают только видео о себе"
+     },
+     {
+      "uz": "Sayt nomi odamlarga yoqmay qolganini",
+      "ru": "Что название сайта разонравилось людям"
+     },
+     {
+      "uz": "Saytga video yuklash juda sekinligini",
+      "ru": "Что видео на сайт загружается очень медленно"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 41,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Kodda `y.goya === goya` nimani tekshiradi?",
+     "ru": "Что проверяет в коде `y.goya === goya`?"
+    },
+    "opts": [
+     {
+      "uz": "Yozuvda belgi bor-yo'qligini",
+      "ru": "Есть ли в записи знак"
+     },
+     {
+      "uz": "Yozuv shu g'oyaniki ekanini",
+      "ru": "Что запись относится к этой идее"
+     },
+     {
+      "uz": "Yozuvlar soni nechtaligini",
+      "ru": "Сколько всего записей"
+     },
+     {
+      "uz": "G'oya nomining uzunligini",
+      "ru": "Длину названия идеи"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 28,
+     "jami": 148,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-05",
+  "file": "src/9-Modull/PmPrdLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "8-Moduldagi to'rt katakka PRD da yana nima qo'shildi?",
+     "ru": "Что ещё добавилось в PRD к четырём ячейкам из 8-го модуля?"
+    },
+    "opts": [
+     {
+      "uz": "Ekranlar rasmi, ranglar va shriftlar",
+      "ru": "Картинки экранов, цвета и шрифты"
+     },
+     {
+      "uz": "Dalil, funksiyalar va qurilmaydiganlar",
+      "ru": "Довод, функции и то, что не строим"
+     },
+     {
+      "uz": "Ishning narxi, muddati va ish jadvali",
+      "ru": "Цена работы, срок и график"
+     },
+     {
+      "uz": "Dasturchilar ro'yxati va ularning ishi",
+      "ru": "Список программистов и их работа"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 38,
+     "jami": 202,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Sinfdoshingiz dalilga «hammaga yoqadi» deb yozdi. Nima yetishmaydi?",
+     "ru": "Одноклассник написал в доводе «всем нравится». Чего не хватает?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovaning chiroyli nomi va rangi",
+      "ru": "Красивое название и цвет приложения"
+     },
+     {
+      "uz": "Yechimning uzun va batafsil matni",
+      "ru": "Длинный подробный текст решения"
+     },
+     {
+      "uz": "O'xshash ilovalarning ro'yxati",
+      "ru": "Список похожих приложений"
+     },
+     {
+      "uz": "Intervyuda buni aytganlar soni",
+      "ru": "Число сказавших это в интервью"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 67,
+     "maxVariant": 33,
+     "jami": 192,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Qaysi ish uchta asosiy funksiya qatoriga kiradi?",
+     "ru": "Какая работа входит в три основные функции?"
+    },
+    "opts": [
+     {
+      "uz": "Busiz muammo hal bo'lmaydigan ish",
+      "ru": "Работа, без которой проблема не решится"
+     },
+     {
+      "uz": "Eng chiroyli ko'rinadigan ish",
+      "ru": "Самая красивая на вид работа"
+     },
+     {
+      "uz": "Boshqa ilovalarda bor bo'lgan ish",
+      "ru": "Работа, которая есть в других приложениях"
+     },
+     {
+      "uz": "Qurish uchun eng oson bo'lgan ish",
+      "ru": "Самая лёгкая для постройки работа"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 33,
+     "jami": 176,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Yozuvlarda sababi bor, lekin hozir shart emas. Qayerga yozasiz?",
+     "ru": "Причина в записях есть, но сейчас не обязательно. Куда запишете?"
+    },
+    "opts": [
+     {
+      "uz": "Uchta asosiy funksiya qatoriga",
+      "ru": "В три основные функции"
+     },
+     {
+      "uz": "Qilmaymiz qutisiga, o'chirib",
+      "ru": "В коробку «Не делаем», удалив"
+     },
+     {
+      "uz": "Keyin qutisiga, saqlab qo'yib",
+      "ru": "В коробку «Потом», сохранив"
+     },
+     {
+      "uz": "Yechim gapiga qo'shib yozib",
+      "ru": "Дописав во фразу решения"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 30,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«O'yinchilar ilovadan mamnun» — bosh raqam bo'la oladimi?",
+     "ru": "«Игроки довольны приложением» — может ли это быть главным числом?"
+    },
+    "opts": [
+     {
+      "uz": "Ha — o'yinchilarning fikri muhim",
+      "ru": "Да — мнение игроков важно"
+     },
+     {
+      "uz": "Yo'q — mamnunlikni sanab bo'lmaydi",
+      "ru": "Нет — довольство нельзя посчитать"
+     },
+     {
+      "uz": "Ha — intervyuda shunday deyishgan",
+      "ru": "Да — так сказали в интервью"
+     },
+     {
+      "uz": "Yo'q — bosh raqam faqat pul bo'ladi",
+      "ru": "Нет — главным числом бывают только деньги"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 35,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "«Bajariladimi?» savoli nimani tekshiradi?",
+     "ru": "Что проверяет вопрос «Выполнимо ли?»"
+    },
+    "opts": [
+     {
+      "uz": "Funksiyalar modulga sig'ishini",
+      "ru": "Помещаются ли функции в модуль"
+     },
+     {
+      "uz": "Muammo gapi qanchalik qisqaligini",
+      "ru": "Насколько коротка формулировка проблемы"
+     },
+     {
+      "uz": "Dalilda nechta odam yozilganini",
+      "ru": "Сколько людей записано в доводе"
+     },
+     {
+      "uz": "Bosh raqam qanday nomlanganini",
+      "ru": "Как названо главное число"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 33,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Mentor tekshiruvida uch savolga ham «ha». Javob qanday?",
+     "ru": "В проверке Ментора на все три вопроса «да». Какой ответ?"
+    },
+    "opts": [
+     {
+      "uz": "Tuzatish — har ehtimolga qarshi",
+      "ru": "Исправить — на всякий случай"
+     },
+     {
+      "uz": "Tuzatish — yana intervyular kerak",
+      "ru": "Исправить — нужны ещё интервью"
+     },
+     {
+      "uz": "Javob yo'q — PRD dan oldin kod kutiladi",
+      "ru": "Ответа нет — до PRD ждут код"
+     },
+     {
+      "uz": "Qabul — PRD bilan qursa bo'ladi",
+      "ru": "Принять — можно строить по PRD"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 39,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Amazon'da press-reliz qanday yoziladi?",
+     "ru": "Как в Amazon пишут пресс-релиз?"
+    },
+    "opts": [
+     {
+      "uz": "Mahsulot sotuvga chiqqan kunida",
+      "ru": "В день выхода продукта в продажу"
+     },
+     {
+      "uz": "Kod tugagach, xatolar bilan birga",
+      "ru": "Когда код готов, вместе с ошибками"
+     },
+     {
+      "uz": "Mahsulot go'yo chiqib bo'lgandek",
+      "ru": "Как будто продукт уже вышел"
+     },
+     {
+      "uz": "Dasturchilar uchun ichki xat qilib",
+      "ru": "Как внутреннее письмо программистам"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 34,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Amazon'da press-reliz hech kimni qiziqtirmasa, nima bo'ladi?",
+     "ru": "Что будет в Amazon, если пресс-релиз никого не заинтересует?"
+    },
+    "opts": [
+     {
+      "uz": "Mahsulot umuman qilinmaydi",
+      "ru": "Продукт вообще не делают"
+     },
+     {
+      "uz": "Kichikroq hajmda quriladi",
+      "ru": "Строят в меньшем объёме"
+     },
+     {
+      "uz": "Baribir oxirigacha quriladi",
+      "ru": "Всё равно строят до конца"
+     },
+     {
+      "uz": "Boshqa nom bilan chiqadi",
+      "ru": "Выходит под другим названием"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 27,
+     "jami": 162,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mentor misolida maydon pulini bo'lishish nega funksiyalardan chiqdi?",
+     "ru": "Почему в примере Ментора деление платы за поле вышло из функций?"
+    },
+    "opts": [
+     {
+      "uz": "Yozuvlarda unga hech qanday sabab yo'q",
+      "ru": "В записях для неё нет никакой причины"
+     },
+     {
+      "uz": "Bosh raqamni u hech sanab bera olmadi",
+      "ru": "Она никак не могла посчитать главное число"
+     },
+     {
+      "uz": "Telegram guruhida bu ish allaqachon bor",
+      "ru": "В группе Telegram эта работа уже есть"
+     },
+     {
+      "uz": "U alohida g'oya, shu modulga sig'madi",
+      "ru": "Это отдельная идея, не поместилась в модуль"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 68,
+     "maxVariant": 39,
+     "jami": 219,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "PRD.md faylida «## Dalil» qatori nima?",
+     "ru": "Что такое строка «## Довод» в файле PRD.md?"
+    },
+    "opts": [
+     {
+      "uz": "JavaScript'dagi izoh qatori",
+      "ru": "Строка комментария в JavaScript"
+     },
+     {
+      "uz": "Fayl nomining bitta bo'lagi",
+      "ru": "Одна часть имени файла"
+     },
+     {
+      "uz": "Dalil bo'limining sarlavhasi",
+      "ru": "Заголовок раздела «Довод»"
+     },
+     {
+      "uz": "Ro'yxatdagi bitta band qatori",
+      "ru": "Строка одного пункта списка"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 29,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "PRD dagi yechim bo'limiga nima yoziladi?",
+     "ru": "Что пишется в разделе «Решение» в PRD?"
+    },
+    "opts": [
+     {
+      "uz": "Uchta funksiyaning to'liq tavsifi",
+      "ru": "Полное описание трёх функций"
+     },
+     {
+      "uz": "Mahsulot nima qilishi, bir gapda",
+      "ru": "Что делает продукт, одной фразой"
+     },
+     {
+      "uz": "Intervyudagi har bir odamning gapi",
+      "ru": "Слова каждого человека из интервью"
+     },
+     {
+      "uz": "Ilova qaysi kod tilida yozilishi",
+      "ru": "На каком языке кода пишется приложение"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 34,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-06",
+  "file": "src/9-Modull/PmRoadmapLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "RICE hisobida qamrov nimani bildiradi?",
+     "ru": "Что означает охват в расчёте RICE?"
+    },
+    "opts": [
+     {
+      "uz": "Oyiga nechta odamga yetib borishini",
+      "ru": "Скольких людей достигает за месяц"
+     },
+     {
+      "uz": "Bitta odamga qancha foyda berishini",
+      "ru": "Сколько пользы даёт одному человеку"
+     },
+     {
+      "uz": "Qurishga necha hafta vaqt ketishini",
+      "ru": "Сколько недель уйдёт на постройку"
+     },
+     {
+      "uz": "Taxminga qanchalik ishonishingizni",
+      "ru": "Насколько вы верите предположению"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 35,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Bu kursda RICE ning mehnati nima bilan o'lchanadi?",
+     "ru": "Чем в этом курсе измеряются усилия в RICE?"
+    },
+    "opts": [
+     {
+      "uz": "Butun guruh necha oy ishlashi bilan",
+      "ru": "Сколько месяцев работает вся группа"
+     },
+     {
+      "uz": "Kodda nechta qator yozilishi bilan",
+      "ru": "Сколько строк кода написано"
+     },
+     {
+      "uz": "Bitta odam necha hafta ishlashi bilan",
+      "ru": "Сколько недель работает один человек"
+     },
+     {
+      "uz": "Nechta ekran chizilishi kerakligi bilan",
+      "ru": "Сколько экранов нужно нарисовать"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 39,
+     "jami": 195,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Ikki funksiyada faqat mehnat farq qiladi. Qaysi biri tartibda yuqori?",
+     "ru": "У двух функций различаются только усилия. Какая выше в порядке?"
+    },
+    "opts": [
+     {
+      "uz": "Mehnati ko'proq bo'lgan funksiya",
+      "ru": "Функция с большими усилиями"
+     },
+     {
+      "uz": "Mehnati kamroq bo'lgan funksiya",
+      "ru": "Функция с меньшими усилиями"
+     },
+     {
+      "uz": "PRD da birinchi yozilgan funksiya",
+      "ru": "Функция, записанная в PRD первой"
+     },
+     {
+      "uz": "Ko'proq ko'rinadigan funksiya",
+      "ru": "Функция, которую больше видно"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 69,
+     "maxVariant": 33,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Ish «Keyinroq» ufqida turibdi. Bu nimani bildiradi?",
+     "ru": "Работа стоит в горизонте «Позже». Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "12–13-Modul bo'yi qilinishini",
+      "ru": "Что её делают на протяжении 12–13-го модуля"
+     },
+     {
+      "uz": "12–13-Modulda tugab bo'lishini",
+      "ru": "Что она закончится в 12–13-м модуле"
+     },
+     {
+      "uz": "Bitiruvdan keyin boshlanishini",
+      "ru": "Что она начнётся после выпуска"
+     },
+     {
+      "uz": "12–13-Modulda boshlanishini",
+      "ru": "Что она начнётся в 12–13-м модуле"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 30,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Nega poydevor RICE ga kirmaydi?",
+     "ru": "Почему фундамент не входит в RICE?"
+    },
+    "opts": [
+     {
+      "uz": "Busiz hech bir funksiya ishlamaydi",
+      "ru": "Без него ни одна функция не работает"
+     },
+     {
+      "uz": "Uni qurish hammadan tez va oson",
+      "ru": "Его строить быстрее и проще всего"
+     },
+     {
+      "uz": "Uni foydalanuvchi ekranda ko'rmaydi",
+      "ru": "Пользователь не видит его на экране"
+     },
+     {
+      "uz": "U PRD dagi birinchi bo'limda turadi",
+      "ru": "Он стоит в первом разделе PRD"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 35,
+     "jami": 166,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "O'yin kuni tasdiq qo'shilganlarga tayanadi. U qachon quriladi?",
+     "ru": "Подтверждение в день игры опирается на присоединившихся. Когда его строят?"
+    },
+    "opts": [
+     {
+      "uz": "Qo'shilish funksiyasidan oldin",
+      "ru": "До функции присоединения"
+     },
+     {
+      "uz": "Qo'shilish bilan bir vaqtda",
+      "ru": "Одновременно с присоединением"
+     },
+     {
+      "uz": "Bitiruvdan keyin, oxirgi bo'lib",
+      "ru": "После выпуска, последним"
+     },
+     {
+      "uz": "Qo'shilish funksiyasidan keyin",
+      "ru": "После функции присоединения"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 62,
+     "maxVariant": 31,
+     "jami": 180,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "«Hozir» ufqiga 11-Modulda nechta funksiya sig'adi?",
+     "ru": "Сколько функций помещается в горизонт «Сейчас» в 11-м модуле?"
+    },
+    "opts": [
+     {
+      "uz": "Ikkita: qolgani keyingi modulda",
+      "ru": "Две: остальные в следующем модуле"
+     },
+     {
+      "uz": "Uchta: har loyiha kuniga bitta",
+      "ru": "Три: по одной на каждый проектный день"
+     },
+     {
+      "uz": "Oltita: PRD dagi hamma ishlar",
+      "ru": "Шесть: все работы из PRD"
+     },
+     {
+      "uz": "To'rtta: poydevor bilan birga",
+      "ru": "Четыре: вместе с фундаментом"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 31,
+     "jami": 169,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Uzum'da xaridor telefon ekranida nimani ko'rmaydi?",
+     "ru": "Чего покупатель Uzum не видит на экране телефона?"
+    },
+    "opts": [
+     {
+      "uz": "Narsalar ro'yxati va narxini",
+      "ru": "Список вещей и их цену"
+     },
+     {
+      "uz": "Narsalarning surati va nomini",
+      "ru": "Фото и названия вещей"
+     },
+     {
+      "uz": "Mashina va topshirish punktini",
+      "ru": "Машину и пункт выдачи"
+     },
+     {
+      "uz": "Do'kon nomi va qidiruv qatorini",
+      "ru": "Название магазина и строку поиска"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 31,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Uzum'dagidek, rejaning birinchi ishi qanday bo'lishi mumkin?",
+     "ru": "Какой может быть первая работа плана, как у Uzum?"
+    },
+    "opts": [
+     {
+      "uz": "Ekranda eng chiroyli ko'rinadigan qism",
+      "ru": "Часть, которая красивее всего на экране"
+     },
+     {
+      "uz": "Reklamada eng ko'p ko'rsatiladigan qism",
+      "ru": "Часть, которую чаще всего показывают в рекламе"
+     },
+     {
+      "uz": "Eng tez va eng oson quriladigan qism",
+      "ru": "Часть, которую быстрее и проще всего построить"
+     },
+     {
+      "uz": "Ekranda ko'rinmasa ham kerakli qism",
+      "ru": "Нужная часть, даже если её не видно на экране"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 39,
+     "jami": 208,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Sherigingiz bir ishga boshqacha RICE berdi. Bu nimani bildiradi?",
+     "ru": "Партнёр дал одной работе другой RICE. Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "RICE taxmin ekanini va dalil kerakligini",
+      "ru": "Что RICE — предположение и нужны доказательства"
+     },
+     {
+      "uz": "Sherigingiz RICE formulasini bilmasligini",
+      "ru": "Что партнёр не знает формулу RICE"
+     },
+     {
+      "uz": "Ishni roadmap'dan o'chirish kerakligini",
+      "ru": "Что работу нужно удалить из roadmap"
+     },
+     {
+      "uz": "Sizning raqamingiz baribir to'g'ri ekanini",
+      "ru": "Что ваше число всё равно верное"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 42,
+     "jami": 226,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Roadmap'da har ish haqida nima ko'rinadi?",
+     "ru": "Что видно в roadmap о каждой работе?"
+    },
+    "opts": [
+     {
+      "uz": "Uni sinfdagi qaysi o'quvchi qurishi",
+      "ru": "Какой ученик класса её построит"
+     },
+     {
+      "uz": "Unga qancha pul sarflanishi kerakligi",
+      "ru": "Сколько денег на неё нужно потратить"
+     },
+     {
+      "uz": "U qaysi ufqda va qaysi o'rinda turishi",
+      "ru": "В каком горизонте и на каком месте она стоит"
+     },
+     {
+      "uz": "Unda necha qator kod yozilishi kerakligi",
+      "ru": "Сколько строк кода в ней нужно написать"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 40,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "«Uzoqroq» ufqidagi ish bilan bitiruvgacha nima bo'ladi?",
+     "ru": "Что до выпуска будет с работой в горизонте «Дальше»?"
+    },
+    "opts": [
+     {
+      "uz": "«Hozir»dagi ishlar bilan birga quriladi",
+      "ru": "Её построят вместе с работами из «Сейчас»"
+     },
+     {
+      "uz": "Bitiruvdan keyin boshlanishini kutadi",
+      "ru": "Она ждёт старта после выпуска"
+     },
+     {
+      "uz": "Roadmap'dan butunlay o'chirib tashlanadi",
+      "ru": "Её полностью удаляют из roadmap"
+     },
+     {
+      "uz": "12-Modulda birinchi bo'lib boshlanadi",
+      "ru": "Она начнётся первой в 12-м модуле"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 40,
+     "jami": 208,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-07",
+  "file": "src/9-Modull/LivePrototypeLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Wireframe nimani ko'rsatadi?",
+     "ru": "Что показывает wireframe?"
+    },
+    "opts": [
+     {
+      "uz": "Ekranda qayerda nima turishini",
+      "ru": "Что где стоит на экране"
+     },
+     {
+      "uz": "Tugmalar qaysi rangda bo'lishini",
+      "ru": "Какого цвета будут кнопки"
+     },
+     {
+      "uz": "Sarlavha qaysi shriftda yozilishini",
+      "ru": "Каким шрифтом написан заголовок"
+     },
+     {
+      "uz": "Ma'lumot qayerda saqlanishini",
+      "ru": "Где хранятся данные"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 35,
+     "jami": 154,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Tashkilotchi kun va soatni qaysi ekranda yozadi?",
+     "ru": "На каком экране организатор пишет день и время?"
+    },
+    "opts": [
+     {
+      "uz": "O'yinlar ekranida",
+      "ru": "На экране «Игры»"
+     },
+     {
+      "uz": "E'lon berish ekranida",
+      "ru": "На экране «Объявить игру»"
+     },
+     {
+      "uz": "O'yin ekranida",
+      "ru": "На экране «Игра»"
+     },
+     {
+      "uz": "Kirish ekranida",
+      "ru": "На экране «Вход»"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 21,
+     "jami": 115,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Prototip qanday ekranlar?",
+     "ru": "Какие экраны называют прототипом?"
+    },
+    "opts": [
+     {
+      "uz": "Do'konga chiqqan birinchi versiya",
+      "ru": "Первая версия, вышедшая в магазин"
+     },
+     {
+      "uz": "Qog'ozdagi rangsiz, sodda chizma",
+      "ru": "Бесцветный простой рисунок на бумаге"
+     },
+     {
+      "uz": "Bosiladigan, lekin haqiqiy ma'lumotsiz",
+      "ru": "Кликабельные, но без настоящих данных"
+     },
+     {
+      "uz": "Backend va Database'ning to'liq chizmasi",
+      "ru": "Полная схема Backend и Database"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 25,
+     "maxVariant": 40,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Prototipdagi o'yinlar ro'yxati qayerdan keladi?",
+     "ru": "Откуда берётся список игр в прототипе?"
+    },
+    "opts": [
+     {
+      "uz": "Database'dagi `oyinlar` jadvalidan",
+      "ru": "Из таблицы `oyinlar` в Database"
+     },
+     {
+      "uz": "Backend'dagi yo'ldan",
+      "ru": "Из пути в Backend"
+     },
+     {
+      "uz": "Telegram guruhidan",
+      "ru": "Из группы в Telegram"
+     },
+     {
+      "uz": "`namuna.js` faylidan",
+      "ru": "Из файла `namuna.js`"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 34,
+     "jami": 139,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Bu darsda talabning «qayerda» qatoriga nima yoziladi?",
+     "ru": "Что на этом уроке пишут в строку требования «где»?"
+    },
+    "opts": [
+     {
+      "uz": "`prototip/` papkasi",
+      "ru": "Папка `prototip/`"
+     },
+     {
+      "uz": "Telefon ekrani",
+      "ru": "Экран телефона"
+     },
+     {
+      "uz": "GitHub sahifasi",
+      "ru": "Страница GitHub"
+     },
+     {
+      "uz": "`backend/` papkasi",
+      "ru": "Папка `backend/`"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 19,
+     "jami": 119,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Wireframe surati talabda nimaga kerak?",
+     "ru": "Зачем в требовании снимок wireframe?"
+    },
+    "opts": [
+     {
+      "uz": "Agentga ekran ranglarini tanlab beradi",
+      "ru": "Выбирает агенту цвета экрана"
+     },
+     {
+      "uz": "Ekranlar qanday joylashganini ko'rsatadi",
+      "ru": "Показывает, как расположены экраны"
+     },
+     {
+      "uz": "Agentga Backend'ni ulashga yordam beradi",
+      "ru": "Помогает агенту подключить Backend"
+     },
+     {
+      "uz": "Talabning uch qatori o'rniga yuboriladi",
+      "ru": "Отправляется вместо трёх строк требования"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 40,
+     "jami": 195,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Agent «Tayyor!» dedi. Keyin nima qilasiz?",
+     "ru": "Агент сказал «Готово!». Что дальше?"
+    },
+    "opts": [
+     {
+      "uz": "Tekshirmasdan, uni GitHub'ga yuboraman",
+      "ru": "Не проверяя, отправляю на GitHub"
+     },
+     {
+      "uz": "Talabni boshidan qayta yozaman",
+      "ru": "Пишу требование заново"
+     },
+     {
+      "uz": "Bosib, wireframe bilan solishtiraman",
+      "ru": "Нажимаю и сравниваю с wireframe"
+     },
+     {
+      "uz": "Avval uch animatsiyani qo'shaman",
+      "ru": "Сначала добавляю три анимации"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 38,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Uchta farq topdingiz. Agentga qanday yozasiz?",
+     "ru": "Вы нашли три отличия. Как написать агенту?"
+    },
+    "opts": [
+     {
+      "uz": "Loyihani o'chirib, boshidan yozdiraman",
+      "ru": "Удаляю проект и прошу написать заново"
+     },
+     {
+      "uz": "Faqat eng kattasini yozaman",
+      "ru": "Пишу только самое большое"
+     },
+     {
+      "uz": "Hech narsa — agent o'zi topadi",
+      "ru": "Ничего — агент найдёт сам"
+     },
+     {
+      "uz": "Uchalasini bitta tuzatish talabida",
+      "ru": "Все три одним требованием на исправление"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 38,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Jonli prototip qanday prototip?",
+     "ru": "Какой прототип называют живым?"
+    },
+    "opts": [
+     {
+      "uz": "Animatsiyasi bor prototip",
+      "ru": "Прототип с анимацией"
+     },
+     {
+      "uz": "Telefonga o'rnatilgan prototip",
+      "ru": "Прототип, установленный на телефон"
+     },
+     {
+      "uz": "Backend'ga ulangan prototip",
+      "ru": "Прототип, подключённый к Backend"
+     },
+     {
+      "uz": "Rangli chizilgan prototip",
+      "ru": "Прототип, нарисованный в цвете"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 30,
+     "jami": 138,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Karta bosilganda kichrayib qaytishi uchun nima kerak?",
+     "ru": "Что нужно, чтобы карточка при нажатии сжималась и возвращалась?"
+    },
+    "opts": [
+     {
+      "uz": "`transition` va `font-size`",
+      "ru": "`transition` и `font-size`"
+     },
+     {
+      "uz": "`transform` va `transition`",
+      "ru": "`transform` и `transition`"
+     },
+     {
+      "uz": "`initial` va `exit`",
+      "ru": "`initial` и `exit`"
+     },
+     {
+      "uz": "`display` va `width`",
+      "ru": "`display` и `width`"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 27,
+     "jami": 146,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Bu prototipda ekrandan ekranga silliq o'tishni nima qiladi?",
+     "ru": "Что в этом прототипе делает плавный переход между экранами?"
+    },
+    "opts": [
+     {
+      "uz": "`:active` holati",
+      "ru": "Состояние `:active`"
+     },
+     {
+      "uz": "`scale(1.3)` qiymati",
+      "ru": "Значение `scale(1.3)`"
+     },
+     {
+      "uz": "Motion kutubxonasi",
+      "ru": "Библиотека Motion"
+     },
+     {
+      "uz": "`setTimeout` funksiyasi",
+      "ru": "Функция `setTimeout`"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 23,
+     "jami": 136,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "GitHub'dagi repo'ni kompyuterga qaysi buyruq ko'chiradi?",
+     "ru": "Какая команда копирует репо с GitHub на компьютер?"
+    },
+    "opts": [
+     {
+      "uz": "`git push`",
+      "ru": "`git push`"
+     },
+     {
+      "uz": "`git commit`",
+      "ru": "`git commit`"
+     },
+     {
+      "uz": "`git status`",
+      "ru": "`git status`"
+     },
+     {
+      "uz": "`git clone`",
+      "ru": "`git clone`"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 12,
+     "jami": 101,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-08",
+  "file": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Maydon Jamoa'da yangi e'lonni qaysi qism saqlaydi?",
+     "ru": "Какая часть Maydon Jamoa хранит новое объявление?"
+    },
+    "opts": [
+     {
+      "uz": "Database — jadval qatorida",
+      "ru": "Database — в строке таблицы"
+     },
+     {
+      "uz": "Backend — o'z kodi ichida",
+      "ru": "Backend — внутри своего кода"
+     },
+     {
+      "uz": "Ilova — telefon xotirasida",
+      "ru": "Приложение — в памяти телефона"
+     },
+     {
+      "uz": "Telegram — guruh xabarida",
+      "ru": "Telegram — в сообщении группы"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 26,
+     "jami": 152,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Bitta o'yinchi ko'p o'yinga qo'shiladi. Bu qayerda yoziladi?",
+     "ru": "Один игрок присоединяется ко многим играм. Где это записывается?"
+    },
+    "opts": [
+     {
+      "uz": "`oyinchilar` dagi bitta ustunda",
+      "ru": "в одном столбце `oyinchilar`"
+     },
+     {
+      "uz": "`ishtirokchilar` dagi qatorlarda",
+      "ru": "в строках `ishtirokchilar`"
+     },
+     {
+      "uz": "`oyinlar` dagi bitta ustunda",
+      "ru": "в одном столбце `oyinlar`"
+     },
+     {
+      "uz": "Telefondagi o'yinlar ro'yxatida",
+      "ru": "в списке игр на телефоне"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 32,
+     "jami": 182,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`tashkilotchi_id` ustuni nimani ko'rsatadi?",
+     "ru": "Что показывает столбец `tashkilotchi_id`?"
+    },
+    "opts": [
+     {
+      "uz": "O'yinga qo'shilgan o'yinchini",
+      "ru": "Игрока, присоединившегося к игре"
+     },
+     {
+      "uz": "O'yin qaysi maydonda ekanini",
+      "ru": "На каком поле игра"
+     },
+     {
+      "uz": "O'yinni kim e'lon qilganini",
+      "ru": "Кто объявил игру"
+     },
+     {
+      "uz": "Nechta o'yinchi kerakligini",
+      "ru": "Сколько игроков нужно"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 29,
+     "jami": 154,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Qaysi biri real vaqt nuqtasi?",
+     "ru": "Что из этого — точка реального времени?"
+    },
+    "opts": [
+     {
+      "uz": "O'yinning kuni va soati",
+      "ru": "День и время игры"
+     },
+     {
+      "uz": "O'yin maydonining nomi",
+      "ru": "Название поля"
+     },
+     {
+      "uz": "E'lon berish formasi",
+      "ru": "Форма объявления"
+     },
+     {
+      "uz": "Qo'shilganlar ro'yxati",
+      "ru": "Список присоединившихся"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 29,
+     "maxVariant": 23,
+     "jami": 116,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Bu modulda ilova qachon Backend'dan so'raydi?",
+     "ru": "Когда в этом модуле приложение запрашивает Backend?"
+    },
+    "opts": [
+     {
+      "uz": "Ochilganda va pastga tortilganda",
+      "ru": "При открытии и при потягивании вниз"
+     },
+     {
+      "uz": "Faqat ilova birinchi o'rnatilgan kuni",
+      "ru": "Только в день первой установки"
+     },
+     {
+      "uz": "Faqat telefon qayta yoqilganda",
+      "ru": "Только при перезагрузке телефона"
+     },
+     {
+      "uz": "Har daqiqada o'zi, so'ramasdan",
+      "ru": "Каждую минуту само, без запроса"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 37,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Kodda `korsat()` nega sahifa ochilganda chaqiriladi?",
+     "ru": "Зачем в коде `korsat()` вызывается при открытии страницы?"
+    },
+    "opts": [
+     {
+      "uz": "Tugma o'zi bosilib qolmasligi uchun",
+      "ru": "Чтобы кнопка не нажималась сама"
+     },
+     {
+      "uz": "Son birinchi marta so'ralishi uchun",
+      "ru": "Чтобы число запросилось в первый раз"
+     },
+     {
+      "uz": "`sora` funksiyasi o'chib qolmasligi uchun",
+      "ru": "Чтобы функция `sora` не выключилась"
+     },
+     {
+      "uz": "Sahifa tezroq ochilib ketishi uchun",
+      "ru": "Чтобы страница открылась быстрее"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 41,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Platforma nima?",
+     "ru": "Что такое платформа?"
+    },
+    "opts": [
+     {
+      "uz": "Backend turadigan internet xizmati",
+      "ru": "Интернет-сервис, где стоит Backend"
+     },
+     {
+      "uz": "Ekranlarning qog'ozdagi chizmasi",
+      "ru": "Рисунок экранов на бумаге"
+     },
+     {
+      "uz": "Mahsulot web yoki mobilda ishlashi",
+      "ru": "Работает ли продукт в вебе или на мобильном"
+     },
+     {
+      "uz": "Database'dagi jadvallar to'plami",
+      "ru": "Набор таблиц в Database"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 15,
+     "maxVariant": 34,
+     "jami": 147,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Foydalanuvchi mahsulotni yo'lda, telefonda ochadi. Bu javob qaysi tomonga tortadi?",
+     "ru": "Пользователь открывает продукт в пути, на телефоне. Куда тянет этот ответ?"
+    },
+    "opts": [
+     {
+      "uz": "Web tomoniga",
+      "ru": "К вебу"
+     },
+     {
+      "uz": "Ikkalasiga teng",
+      "ru": "Поровну"
+     },
+     {
+      "uz": "Hech qaysisiga",
+      "ru": "Никуда"
+     },
+     {
+      "uz": "Mobil tomoniga",
+      "ru": "К мобильному"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 82,
+     "maxVariant": 15,
+     "jami": 137,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Havola bilan tez ulashish muhim. Bu javob qaysi tomonga tortadi?",
+     "ru": "Важно быстро делиться ссылкой. Куда тянет этот ответ?"
+    },
+    "opts": [
+     {
+      "uz": "Web tomoniga",
+      "ru": "К вебу"
+     },
+     {
+      "uz": "Mobil tomoniga",
+      "ru": "К мобильному"
+     },
+     {
+      "uz": "Hech qaysisiga",
+      "ru": "Никуда"
+     },
+     {
+      "uz": "Ikkalasiga teng",
+      "ru": "Поровну"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 15,
+     "jami": 119,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mentor misolida platforma nega mobil?",
+     "ru": "Почему в примере Ментора платформа мобильная?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova saytdan chiroyliroq ko'rinadi",
+      "ru": "Приложение выглядит красивее сайта"
+     },
+     {
+      "uz": "O'yinchi maydonda, qo'lida telefon",
+      "ru": "Игрок на поле, в руке телефон"
+     },
+     {
+      "uz": "Faqat React Native tanish bo'lgan",
+      "ru": "Знаком был только React Native"
+     },
+     {
+      "uz": "Telegram guruhiga havola tashlanadi",
+      "ru": "Ссылку кидают в Telegram-группу"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 35,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Stek nima?",
+     "ru": "Что такое стек?"
+    },
+    "opts": [
+     {
+      "uz": "Mahsulot ochiladigan platforma",
+      "ru": "Платформа, где открывается продукт"
+     },
+     {
+      "uz": "PRD dagi funksiyalar ro'yxati",
+      "ru": "Список функций в PRD"
+     },
+     {
+      "uz": "Birga ishlaydigan texnologiyalar",
+      "ru": "Технологии, работающие вместе"
+     },
+     {
+      "uz": "Ilova ekranlari va tugmalari",
+      "ru": "Экраны и кнопки приложения"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 10,
+     "maxVariant": 32,
+     "jami": 129,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Web-trekdan mobil trekka o'tsangiz, nima o'zgaradi?",
+     "ru": "Что изменится, если перейти с веб-трека на мобильный?"
+    },
+    "opts": [
+     {
+      "uz": "Backend va Database ikkalasi",
+      "ru": "И Backend, и Database"
+     },
+     {
+      "uz": "Faqat Database jadvallari",
+      "ru": "Только таблицы Database"
+     },
+     {
+      "uz": "Uchala qism birdaniga almashadi",
+      "ru": "Все три части сразу"
+     },
+     {
+      "uz": "Foydalanuvchi ochadigan qism",
+      "ru": "Часть, которую открывает пользователь"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 31,
+     "jami": 163,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-09",
+  "file": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "React Native'da ekrandagi matn qayerga yoziladi?",
+     "ru": "Куда в React Native пишется текст на экране?"
+    },
+    "opts": [
+     {
+      "uz": "`<Text>` ichiga",
+      "ru": "внутрь `<Text>`"
+     },
+     {
+      "uz": "`<View>` ichiga",
+      "ru": "внутрь `<View>`"
+     },
+     {
+      "uz": "`<div>` ichiga",
+      "ru": "внутрь `<div>`"
+     },
+     {
+      "uz": "`<span>` ichiga",
+      "ru": "внутрь `<span>`"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 15,
+     "jami": 107,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Prototipdagi `onClick` React Native'da nimaga almashadi?",
+     "ru": "На что в React Native меняется `onClick` из прототипа?"
+    },
+    "opts": [
+     {
+      "uz": "`onChange`",
+      "ru": "`onChange`"
+     },
+     {
+      "uz": "`onPress`",
+      "ru": "`onPress`"
+     },
+     {
+      "uz": "`onSubmit`",
+      "ru": "`onSubmit`"
+     },
+     {
+      "uz": "`onInput`",
+      "ru": "`onInput`"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 10,
+     "jami": 94,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Ilova `/oyin/3` manzilini ochdi. Qaysi fayl ishlaydi?",
+     "ru": "Приложение открыло адрес `/oyin/3`. Какой файл работает?"
+    },
+    "opts": [
+     {
+      "uz": "`src/app/oyin/index.tsx`",
+      "ru": "`src/app/oyin/index.tsx`"
+     },
+     {
+      "uz": "`src/app/oyin/3.tsx`",
+      "ru": "`src/app/oyin/3.tsx`"
+     },
+     {
+      "uz": "`src/app/oyin/[id].tsx`",
+      "ru": "`src/app/oyin/[id].tsx`"
+     },
+     {
+      "uz": "`src/app/oyinlar.tsx`",
+      "ru": "`src/app/oyinlar.tsx`"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 24,
+     "jami": 141,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`_layout.tsx` dagi `<Stack />` nima qiladi?",
+     "ru": "Что делает `<Stack />` в `_layout.tsx`?"
+    },
+    "opts": [
+     {
+      "uz": "Ekranlarni pastdagi tablarga joylaydi",
+      "ru": "Раскладывает экраны по нижним вкладкам"
+     },
+     {
+      "uz": "Har ekranga o'z rangi va shriftini beradi",
+      "ru": "Даёт каждому экрану свой цвет и шрифт"
+     },
+     {
+      "uz": "`src/app/` da yangi fayllar yaratadi",
+      "ru": "Создаёт новые файлы в `src/app/`"
+     },
+     {
+      "uz": "Ekranlarni ustma-ust qo'yib boshqaradi",
+      "ru": "Складывает экраны стопкой и управляет ими"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 41,
+     "jami": 195,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "`router.push('/elon')` ishlaganda nima bo'ladi?",
+     "ru": "Что произойдёт, когда сработает `router.push('/elon')`?"
+    },
+    "opts": [
+     {
+      "uz": "E'lon berish ekrani ustiga ochiladi",
+      "ru": "Сверху откроется экран «Объявить игру»"
+     },
+     {
+      "uz": "Ilova butunlay boshidan qayta yuklanadi",
+      "ru": "Приложение полностью перезагрузится"
+     },
+     {
+      "uz": "`elon.tsx` fayli yangidan yaratiladi",
+      "ru": "Файл `elon.tsx` создастся заново"
+     },
+     {
+      "uz": "O'yinlar ro'yxati qaytadan chiziladi",
+      "ru": "Список игр нарисуется заново"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 39,
+     "jami": 193,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Telefonda QR ochilishi uchun odatda nima kerak?",
+     "ru": "Что обычно нужно, чтобы QR открылся на телефоне?"
+    },
+    "opts": [
+     {
+      "uz": "Telefonda Chrome brauzeri ochiq tursin",
+      "ru": "Пусть на телефоне будет открыт Chrome"
+     },
+     {
+      "uz": "Telefon va kompyuter bitta Wi-Fi'da tursin",
+      "ru": "Пусть телефон и компьютер будут в одной Wi-Fi"
+     },
+     {
+      "uz": "Kompyuterga ham Expo Go o'rnatilsin",
+      "ru": "Пусть Expo Go установят и на компьютер"
+     },
+     {
+      "uz": "Telefonda mobil internet ham yoqilgan bo'lsin",
+      "ru": "Пусть на телефоне ещё включат мобильный интернет"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 45,
+     "jami": 207,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`--tunnel` bilan ulanish qanday ishlaydi?",
+     "ru": "Как работает подключение через `--tunnel`?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat bitta Wi-Fi ichida, tezroq ulanadi",
+      "ru": "Только внутри одной Wi-Fi, быстрее"
+     },
+     {
+      "uz": "Faqat iPhone telefonlarida ulanadi",
+      "ru": "Подключается только на iPhone"
+     },
+     {
+      "uz": "Internet orqali ulanadi, lekin sekinroq",
+      "ru": "Через интернет, но медленнее"
+     },
+     {
+      "uz": "Kompyutersiz, to'g'ridan telefonda ishlaydi",
+      "ru": "Без компьютера, прямо на телефоне"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 43,
+     "jami": 197,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "iPhone'da Expo Go akkaunt so'radi. Nima qilasiz?",
+     "ru": "Expo Go на iPhone просит аккаунт. Что сделаете?"
+    },
+    "opts": [
+     {
+      "uz": "Expo Go ilovasini o'chirib, qayta o'rnataman",
+      "ru": "Удалю Expo Go и установлю заново"
+     },
+     {
+      "uz": "Loyihani boshqa nom bilan yarataman",
+      "ru": "Создам проект под другим именем"
+     },
+     {
+      "uz": "QR'ni boshqa telefon bilan ochaman",
+      "ru": "Открою QR другим телефоном"
+     },
+     {
+      "uz": "Ikkalasida bitta Expo akkauntiga kiraman",
+      "ru": "Войду в один аккаунт Expo на обоих"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 44,
+     "jami": 201,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Expo Go'dagi ilova kodi qayerdan keladi?",
+     "ru": "Откуда приходит код приложения в Expo Go?"
+    },
+    "opts": [
+     {
+      "uz": "Kompyuterdagi npx expo start dan",
+      "ru": "Из npx expo start на компьютере"
+     },
+     {
+      "uz": "Play Market'dagi ilova sahifasidan",
+      "ru": "Со страницы приложения в Play Market"
+     },
+     {
+      "uz": "Netlify'dagi sayt manzilidan",
+      "ru": "С адреса сайта на Netlify"
+     },
+     {
+      "uz": "Telefon xotirasidagi papkadan",
+      "ru": "Из папки в памяти телефона"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 34,
+     "jami": 163,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Adaptiv sayt nima?",
+     "ru": "Что такое адаптивный сайт?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat telefonda ochiladigan sayt",
+      "ru": "Сайт, который открывается только на телефоне"
+     },
+     {
+      "uz": "Telefon kengligiga moslashadigan sayt",
+      "ru": "Сайт, который подстраивается под ширину телефона"
+     },
+     {
+      "uz": "Telefonga o'rnatiladigan do'kon ilovasi",
+      "ru": "Приложение из магазина для телефона"
+     },
+     {
+      "uz": "Animatsiyalari bor, bosiladigan sayt",
+      "ru": "Сайт с анимациями, который можно нажимать"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 18,
+     "maxVariant": 39,
+     "jami": 162,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "PWA telefonga qayerdan qo'shiladi?",
+     "ru": "Откуда PWA добавляется на телефон?"
+    },
+    "opts": [
+     {
+      "uz": "Play Market do'konidan yuklab",
+      "ru": "Скачав из магазина Play Market"
+     },
+     {
+      "uz": "Expo Go ilovasidagi QR orqali",
+      "ru": "Через QR в приложении Expo Go"
+     },
+     {
+      "uz": "Brauzerdan, saytning o'zidan",
+      "ru": "Из браузера, с самого сайта"
+     },
+     {
+      "uz": "App Store do'konidan yuklab",
+      "ru": "Скачав из магазина App Store"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 29,
+     "jami": 147,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Telefon saytni o'rnatishi uchun manzil qanday bo'ladi?",
+     "ru": "Каким должен быть адрес, чтобы телефон установил сайт?"
+    },
+    "opts": [
+     {
+      "uz": "Kompyuterdagi `localhost` manzil",
+      "ru": "Адрес `localhost` на компьютере"
+     },
+     {
+      "uz": "Uydagi Wi-Fi tarmog'idagi manzil",
+      "ru": "Адрес в домашней сети Wi-Fi"
+     },
+     {
+      "uz": "`http://` bilan boshlanadigan manzil",
+      "ru": "Адрес, начинающийся с `http://`"
+     },
+     {
+      "uz": "HTTPS manzil, masalan Netlify'da",
+      "ru": "HTTPS-адрес, например на Netlify"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 36,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-10",
+  "file": "src/9-Modull/FoundationDayLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Ilova kirgan o'yinchini keyingi so'rovlarda qanday taniydi?",
+     "ru": "Как приложение узнаёт вошедшего игрока в следующих запросах?"
+    },
+    "opts": [
+     {
+      "uz": "Telefonda saqlangan token orqali",
+      "ru": "По токену, сохранённому на телефоне"
+     },
+     {
+      "uz": "Har safar telefon raqamini so'rab",
+      "ru": "Каждый раз спрашивая номер телефона"
+     },
+     {
+      "uz": "Database'dagi parolni o'qib chiqib",
+      "ru": "Прочитав пароль из Database"
+     },
+     {
+      "uz": "Expo Go akkauntining nomi orqali",
+      "ru": "По имени аккаунта Expo Go"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 34,
+     "jami": 190,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`oyinchilar` jadvalida parol qanday turadi?",
+     "ru": "Как хранится пароль в таблице `oyinchilar`?"
+    },
+    "opts": [
+     {
+      "uz": "Parolning o'zi, ochiq matn bo'lib",
+      "ru": "Сам пароль, открытым текстом"
+     },
+     {
+      "uz": "Paroldan yasalgan hash bo'lib",
+      "ru": "Хешем, сделанным из пароля"
+     },
+     {
+      "uz": "Telefon raqamiga qo'shib yozilib",
+      "ru": "Дописанным к номеру телефона"
+     },
+     {
+      "uz": "Token ichiga joylab qo'yilib",
+      "ru": "Вложенным внутрь токена"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 33,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Tokensiz `GET /oyinlar` so'rovi kelsa, Backend nima qiladi?",
+     "ru": "Что делает Backend, если пришёл `GET /oyinlar` без токена?"
+    },
+    "opts": [
+     {
+      "uz": "O'yinlarning to'liq ro'yxatini beradi",
+      "ru": "Отдаёт полный список игр"
+     },
+     {
+      "uz": "Faqat birinchi o'yinni qaytaradi",
+      "ru": "Возвращает только первую игру"
+     },
+     {
+      "uz": "401 qaytaradi, ro'yxatni bermaydi",
+      "ru": "Возвращает 401, список не отдаёт"
+     },
+     {
+      "uz": "«Kirish» ekranini o'zi ochib beradi",
+      "ru": "Сам открывает экран «Вход»"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 37,
+     "jami": 196,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Token telefonda qayerda saqlanadi?",
+     "ru": "Где на телефоне хранится токен?"
+    },
+    "opts": [
+     {
+      "uz": "Database'dagi `oyinchilar` jadvalida",
+      "ru": "В таблице `oyinchilar` в Database"
+     },
+     {
+      "uz": "Ilovaning `.env` faylidagi qatorda",
+      "ru": "В строке файла `.env` приложения"
+     },
+     {
+      "uz": "Repo'dagi `README.md` bo'limida",
+      "ru": "В разделе `README.md` в репо"
+     },
+     {
+      "uz": "`expo-secure-store` da, shifrlab",
+      "ru": "В `expo-secure-store`, зашифрованным"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 36,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Telefondagi ilova uchun `localhost` nimani bildiradi?",
+     "ru": "Что означает `localhost` для приложения на телефоне?"
+    },
+    "opts": [
+     {
+      "uz": "Telefonning o'zini",
+      "ru": "Сам телефон"
+     },
+     {
+      "uz": "Laptopdagi Backend'ni",
+      "ru": "Backend на ноутбуке"
+     },
+     {
+      "uz": "Render'dagi Backend'ni",
+      "ru": "Backend на Render"
+     },
+     {
+      "uz": "Neon'dagi Database'ni",
+      "ru": "Database на Neon"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 22,
+     "jami": 135,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Nega Backend shu darsda Render'ga chiqadi?",
+     "ru": "Почему на этом уроке Backend выходит на Render?"
+    },
+    "opts": [
+     {
+      "uz": "Laptopda u sekin ishlagani uchun",
+      "ru": "Потому что на ноутбуке он медленный"
+     },
+     {
+      "uz": "Telefon Internet orqali ulanishi uchun",
+      "ru": "Чтобы телефон подключался через Интернет"
+     },
+     {
+      "uz": "Render Database'ni o'zi yaratgani uchun",
+      "ru": "Потому что Render сам создаёт Database"
+     },
+     {
+      "uz": "Expo Go faqat Render bilan ishlagani uchun",
+      "ru": "Потому что Expo Go работает только с Render"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 42,
+     "jami": 193,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Ilovaning `EXPO_PUBLIC_API_URL` qatoriga nima yoziladi?",
+     "ru": "Что пишется в строку `EXPO_PUBLIC_API_URL` приложения?"
+    },
+    "opts": [
+     {
+      "uz": "`http://localhost:3000` manzili",
+      "ru": "Адрес `http://localhost:3000`"
+     },
+     {
+      "uz": "`JWT_SECRET` kalitining qiymati",
+      "ru": "Значение ключа `JWT_SECRET`"
+     },
+     {
+      "uz": "Render'dagi Backend manzili",
+      "ru": "Адрес Backend на Render"
+     },
+     {
+      "uz": "Neon'dagi `DATABASE_URL` satri",
+      "ru": "Строка `DATABASE_URL` из Neon"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 31,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Nega `EXPO_PUBLIC_` qatoriga maxfiy kalit yozilmaydi?",
+     "ru": "Почему в строку `EXPO_PUBLIC_` не пишут секретный ключ?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova ochilishi sekinlashib qoladi",
+      "ru": "Приложение станет медленнее открываться"
+     },
+     {
+      "uz": "Expo Go bunday qatorni o'chirib tashlaydi",
+      "ru": "Expo Go удалит такую строку"
+     },
+     {
+      "uz": "Render bu qatorni o'qiy olmay qoladi",
+      "ru": "Render не сможет прочитать эту строку"
+     },
+     {
+      "uz": "U ilova ichida ochiq matn bo'lib turadi",
+      "ru": "Оно лежит внутри приложения открытым текстом"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 41,
+     "jami": 203,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Internetdagi Backend uchun `JWT_SECRET` qayerda turadi?",
+     "ru": "Где хранится `JWT_SECRET` для Backend в интернете?"
+    },
+    "opts": [
+     {
+      "uz": "Render'dagi Environment bo'limida",
+      "ru": "В разделе Environment на Render"
+     },
+     {
+      "uz": "Ilovaning `mobil/.env` faylidagi qatorda",
+      "ru": "В строке файла `mobil/.env` приложения"
+     },
+     {
+      "uz": "GitHub'dagi `README.md` faylida",
+      "ru": "В файле `README.md` на GitHub"
+     },
+     {
+      "uz": "Agentga yozilgan talab matnida",
+      "ru": "В тексте требования для агента"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 40,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Telefon brauzerida Render manzili `/oyinlar` — 401 chiqdi. Bu nimani bildiradi?",
+     "ru": "В браузере телефона по адресу Render `/oyinlar` — ответ 401. Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "Backend ishlamayapti — Render xato berdi",
+      "ru": "Backend не работает — Render выдал ошибку"
+     },
+     {
+      "uz": "Backend internetda va tokensiz yopiq",
+      "ru": "Backend в интернете и без токена закрыт"
+     },
+     {
+      "uz": "Database'da o'yinlar hali yozilmagan",
+      "ru": "В Database ещё нет игр"
+     },
+     {
+      "uz": "Telefonning o'zi Internetga ulanmagan",
+      "ru": "Сам телефон не подключён к Интернету"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 79,
+     "maxVariant": 40,
+     "jami": 228,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Push'dan oldin fayllarni qanday qo'shasiz?",
+     "ru": "Как добавить файлы перед push?"
+    },
+    "opts": [
+     {
+      "uz": "`git add .` bilan hammasini birdan",
+      "ru": "Все сразу через `git add .`"
+     },
+     {
+      "uz": "`.env` ni ham qo'shib, hammasini",
+      "ru": "Все, вместе с `.env`"
+     },
+     {
+      "uz": "Agent aytgan fayllarni bittadan",
+      "ru": "По одному — файлы, которые назвал агент"
+     },
+     {
+      "uz": "Faqat `README.md` faylini qo'shib",
+      "ru": "Только файл `README.md`"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 34,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Ilova `GET /oyinlar` dan `401` oldi. Ilova nima qiladi?",
+     "ru": "Приложение получило `401` от `GET /oyinlar`. Что оно делает?"
+    },
+    "opts": [
+     {
+      "uz": "O'yinlarni namunadan ko'rsataveradi",
+      "ru": "Продолжает показывать игры из образца"
+     },
+     {
+      "uz": "Parolni o'zi qayta yuborib turadi",
+      "ru": "Само снова отправляет пароль"
+     },
+     {
+      "uz": "Render'dagi Backend'ni qayta yoqadi",
+      "ru": "Перезапускает Backend на Render"
+     },
+     {
+      "uz": "Tokenni o'chirib, «Kirish»ni ochadi",
+      "ru": "Удаляет токен и открывает «Вход»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 35,
+     "jami": 193,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-11",
+  "file": "src/9-Modull/FeatureOneLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Roadmap'dagi funksiyani agentga qanday berasiz?",
+     "ru": "Как вы передаёте агенту функцию из roadmap?"
+    },
+    "opts": [
+     {
+      "uz": "Uch qatorli talab qilib, o'zingiz yozib",
+      "ru": "Трёхстрочным требованием, написав его сами"
+     },
+     {
+      "uz": "Roadmap qatorini o'zgartirmay, o'zini",
+      "ru": "Саму строку roadmap, не меняя"
+     },
+     {
+      "uz": "PRD ning hamma bo'limini birdaniga yuborib",
+      "ru": "Отправив сразу все разделы PRD"
+     },
+     {
+      "uz": "Faqat funksiya nomini, qisqa qilib yozib",
+      "ru": "Только название функции, коротко"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 42,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Talabda ikki marta bosish aytilmagan. Agent nima qilishi mumkin?",
+     "ru": "В требовании не сказано о двойном нажатии. Что может сделать агент?"
+    },
+    "opts": [
+     {
+      "uz": "Tugmani ekrandan butunlay olib tashlaydi",
+      "ru": "Полностью уберёт кнопку с экрана"
+     },
+     {
+      "uz": "Bu holatni o'zicha taxmin qilib quradi",
+      "ru": "Сделает этот случай по своей догадке"
+     },
+     {
+      "uz": "Funksiyani umuman qurmasdan qoldiradi",
+      "ru": "Вообще не станет делать функцию"
+     },
+     {
+      "uz": "Ilovani boshidan to'liq qayta yozadi",
+      "ru": "Полностью перепишет приложение с нуля"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 40,
+     "jami": 215,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Formada «kim» yo'q. E'lon egasi qayerdan olinadi?",
+     "ru": "В форме нет «кто». Откуда берётся владелец объявления?"
+    },
+    "opts": [
+     {
+      "uz": "Telefon raqamidan, so'rovdagi",
+      "ru": "Из номера телефона в запросе"
+     },
+     {
+      "uz": "Ilova ustidagi ism yozuvidan",
+      "ru": "Из надписи с именем над приложением"
+     },
+     {
+      "uz": "So'rov bilan kelgan tokendan",
+      "ru": "Из токена, пришедшего с запросом"
+     },
+     {
+      "uz": "Database'dagi oxirgi qatordan",
+      "ru": "Из последней строки в Database"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 29,
+     "jami": 163,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Ilova qayta yuklandi. Yangi e'lon nega yo'qolmadi?",
+     "ru": "Приложение перезагрузилось. Почему новое объявление не пропало?"
+    },
+    "opts": [
+     {
+      "uz": "Telefon xotirasiga yozilgani uchun",
+      "ru": "Потому что записано в память телефона"
+     },
+     {
+      "uz": "Agent uni namunaga qo'shgani uchun",
+      "ru": "Потому что агент добавил его в образцы"
+     },
+     {
+      "uz": "Expo Go uni o'zida saqlagani uchun",
+      "ru": "Потому что Expo Go хранит его у себя"
+     },
+     {
+      "uz": "U Database'ga yozilgani uchun",
+      "ru": "Потому что оно записано в Database"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 34,
+     "jami": 181,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«8 / 10» dagi 8 qayerdan keladi?",
+     "ru": "Откуда берётся 8 в «8 / 10»?"
+    },
+    "opts": [
+     {
+      "uz": "Database'dagi qo'shilganlar sonidan",
+      "ru": "Из числа присоединившихся в Database"
+     },
+     {
+      "uz": "Telefonda bosilgan tugmalar sanog'idan",
+      "ru": "Из счёта нажатий на телефоне"
+     },
+     {
+      "uz": "Prototipdagi namuna fayl raqamidan",
+      "ru": "Из числа в файле-образце прототипа"
+     },
+     {
+      "uz": "Tashkilotchi formaga yozgan sondan",
+      "ru": "Из числа, которое организатор вписал в форму"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 38,
+     "jami": 173,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Bir o'yinchi «Qo'shilaman»ni ikki marta bosdi. Nima bo'lishi kerak?",
+     "ru": "Игрок дважды нажал «Присоединяюсь». Что должно быть?"
+    },
+    "opts": [
+     {
+      "uz": "Son ikkiga oshadi, ikkala joy ham olinadi",
+      "ru": "Число вырастет на два, заняты оба места"
+     },
+     {
+      "uz": "Son bittaga oshadi, ikkinchisi yozilmaydi",
+      "ru": "Число вырастет на один, второе не запишется"
+     },
+     {
+      "uz": "Son o'zgarmaydi, ikkala bosish ham bekor",
+      "ru": "Число не изменится, оба нажатия отменены"
+     },
+     {
+      "uz": "O'yin o'chadi, qayta e'lon kerak bo'ladi",
+      "ru": "Игра удалится, нужно объявлять заново"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 67,
+     "maxVariant": 41,
+     "jami": 229,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Ekranda «9 / 10», o'yin esa to'lgan. Nega shunday?",
+     "ru": "На экране «9 / 10», а игра уже заполнена. Почему так?"
+    },
+    "opts": [
+     {
+      "uz": "Backend sonni noto'g'ri sanab qo'ygan",
+      "ru": "Backend неправильно посчитал число"
+     },
+     {
+      "uz": "Database'ga qo'shilganlar yozilmagan",
+      "ru": "В Database не записаны присоединившиеся"
+     },
+     {
+      "uz": "Ekranda oxirgi so'ralgan son turibdi",
+      "ru": "На экране число из последнего запроса"
+     },
+     {
+      "uz": "Agent ekranni noto'g'ri qurib qo'ygan",
+      "ru": "Агент неправильно сделал экран"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 37,
+     "jami": 196,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "To'lgan o'yinga qo'shmaslikni qayerda tekshirish kerak?",
+     "ru": "Где нужно проверять, чтобы не добавлять в заполненную игру?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovada, tugmani ekrandan yashirib",
+      "ru": "В приложении, спрятав кнопку"
+     },
+     {
+      "uz": "Talabda, agent o'zi bilsin deb",
+      "ru": "В требовании — пусть агент сам знает"
+     },
+     {
+      "uz": "Neon'da, har kuni qo'lda sanab",
+      "ru": "В Neon, каждый день считая вручную"
+     },
+     {
+      "uz": "Backend'da, Database'ga qarab",
+      "ru": "В Backend, глядя в Database"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 34,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Backend to'lgan o'yinga qo'shmadi. Ilova nima ko'rsatadi?",
+     "ru": "Backend не добавил в заполненную игру. Что покажет приложение?"
+    },
+    "opts": [
+     {
+      "uz": "«O'yin to'ldi» degan xabarni",
+      "ru": "Сообщение «Игра заполнена»"
+     },
+     {
+      "uz": "«11 / 10» degan yangi sonni",
+      "ru": "Новое число «11 / 10»"
+     },
+     {
+      "uz": "Yozuvsiz, bo'sh qolgan ekranni",
+      "ru": "Пустой экран без надписей"
+     },
+     {
+      "uz": "«Kirish» ekranini qayta ochib",
+      "ru": "Снова откроет экран «Вход»"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 30,
+     "jami": 171,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Boshqa telefondagi «8 / 10» qachon yangilanadi?",
+     "ru": "Когда обновится «8 / 10» на другом телефоне?"
+    },
+    "opts": [
+     {
+      "uz": "Har soniyada o'zi, hech narsa so'ramasdan",
+      "ru": "Каждую секунду само, ничего не запрашивая"
+     },
+     {
+      "uz": "Ekran ochilganda yoki pastga tortilganda",
+      "ru": "Когда экран открыли или потянули вниз"
+     },
+     {
+      "uz": "Faqat ilova qayta o'rnatilgandan keyin",
+      "ru": "Только после переустановки приложения"
+     },
+     {
+      "uz": "Tashkilotchi o'yinga ruxsat berganda",
+      "ru": "Когда организатор разрешит игру"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 41,
+     "jami": 202,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Backend o'zgardi. Telefonda u qachon ishlaydi?",
+     "ru": "Backend изменился. Когда это заработает на телефоне?"
+    },
+    "opts": [
+     {
+      "uz": "Agent «Tayyor» deb javob berishi bilan",
+      "ru": "Как только агент ответит «Готово»"
+     },
+     {
+      "uz": "`git commit` qilinishi bilan, push'siz",
+      "ru": "Сразу после `git commit`, без push"
+     },
+     {
+      "uz": "Push'dan keyin Render yangilangach",
+      "ru": "После push, когда Render обновится"
+     },
+     {
+      "uz": "Telefon o'chib, qayta yoqilgandan keyin",
+      "ru": "После выключения и включения телефона"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 39,
+     "jami": 195,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Agent «Tayyor» dedi. Keyin nima qilasiz?",
+     "ru": "Агент сказал «Готово». Что вы делаете дальше?"
+    },
+    "opts": [
+     {
+      "uz": "Shu zahoti keyingi blokka o'tasiz",
+      "ru": "Сразу переходите к следующему блоку"
+     },
+     {
+      "uz": "Agentdan yana bir bor so'rab ko'rasiz",
+      "ru": "Ещё раз спрашиваете агента"
+     },
+     {
+      "uz": "README'ga «tayyor» deb yozib qo'yasiz",
+      "ru": "Пишете в README «готово»"
+     },
+     {
+      "uz": "Talabning har gapini tekshirasiz",
+      "ru": "Проверяете каждую фразу требования"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 37,
+     "jami": 179,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-12",
+  "file": "src/9-Modull/FeatureTwoLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "O'yinchi «Kelaman»ni bosdi. Ruxsatni kim beradi?",
+     "ru": "Игрок нажал «Приду». Кто даёт разрешение?"
+    },
+    "opts": [
+     {
+      "uz": "Backend — har so'rovni qoida bilan ko'rib",
+      "ru": "Backend — проверяя каждый запрос правилом"
+     },
+     {
+      "uz": "Ilova — tugmani ko'rsatib yoki yashirib",
+      "ru": "Приложение — показывая или скрывая кнопку"
+     },
+     {
+      "uz": "Database — yangi qatorni o'zi ko'rib",
+      "ru": "Database — сама просматривая новую строку"
+     },
+     {
+      "uz": "Tashkilotchi — har tasdiqni qo'lda ko'rib",
+      "ru": "Организатор — вручную просматривая каждое подтверждение"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 41,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Token bor, lekin o'yinchi o'yinga qo'shilmagan. Backend nima qaytaradi?",
+     "ru": "Токен есть, но игрок не присоединился к игре. Что вернёт Backend?"
+    },
+    "opts": [
+     {
+      "uz": "`401` — kimligi noma'lum deb",
+      "ru": "`401` — потому что неизвестно, кто это"
+     },
+     {
+      "uz": "`403` — bu ishga ruxsat yo'q deb",
+      "ru": "`403` — потому что на это нет разрешения"
+     },
+     {
+      "uz": "`201` — yangi qatorni yozib qo'yib",
+      "ru": "`201` — записав новую строку"
+     },
+     {
+      "uz": "`404` — bunday yo'l topilmadi deb",
+      "ru": "`404` — потому что такой путь не найден"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 34,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Shanbadagi o'yinga juma kuni «Kelaman» so'rovi keldi. Nima bo'ladi?",
+     "ru": "Запрос «Приду» на субботнюю игру пришёл в пятницу. Что будет?"
+    },
+    "opts": [
+     {
+      "uz": "Database'ga baribir `keladi` yozib qo'yiladi",
+      "ru": "В Database всё равно запишут `keladi`"
+     },
+     {
+      "uz": "O'yin o'zi juma kuniga ko'chadi",
+      "ru": "Игра сама перенесётся на пятницу"
+     },
+     {
+      "uz": "Backend rad etadi, holat o'zgarmaydi",
+      "ru": "Backend откажет, статус не изменится"
+     },
+     {
+      "uz": "Tashkilotchi uni qo'lda tasdiqlaydi",
+      "ru": "Организатор подтвердит его вручную"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 67,
+     "maxVariant": 44,
+     "jami": 213,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "«Kelishini tasdiqladi: 7 / 9» da 9 nimani bildiradi?",
+     "ru": "Что означает 9 в «Подтвердили: 7 / 9»?"
+    },
+    "opts": [
+     {
+      "uz": "Kelishini tasdiqlagan o'yinchilar",
+      "ru": "Игроков, подтвердивших приход"
+     },
+     {
+      "uz": "O'yinga kerak bo'lgan odamlar",
+      "ru": "Людей, нужных для игры"
+     },
+     {
+      "uz": "Maydondagi bo'sh o'rinlar soni",
+      "ru": "Число свободных мест на поле"
+     },
+     {
+      "uz": "O'yinga qo'shilgan o'yinchilar",
+      "ru": "Игроков, присоединившихся к игре"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 33,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Tashkilotchi ekrani ochiq. Yangi tasdiqni qanday ko'radi?",
+     "ru": "Экран организатора открыт. Как он увидит новое подтверждение?"
+    },
+    "opts": [
+     {
+      "uz": "Ekranni pastga tortib yangilaydi",
+      "ru": "Обновит экран, потянув вниз"
+     },
+     {
+      "uz": "Ilovani telefondan o'chirib qo'yadi",
+      "ru": "Удалит приложение с телефона"
+     },
+     {
+      "uz": "Har o'yinchiga qo'ng'iroq qiladi",
+      "ru": "Позвонит каждому игроку"
+     },
+     {
+      "uz": "O'yin boshlanishini kutib turadi",
+      "ru": "Будет ждать начала игры"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 35,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Bu modulda tashkilotchidagi son o'zi yangilanadimi?",
+     "ru": "В этом модуле число у организатора обновляется само?"
+    },
+    "opts": [
+     {
+      "uz": "Ha — Backend uni har soniyada yuboradi",
+      "ru": "Да — Backend присылает его каждую секунду"
+     },
+     {
+      "uz": "Yo'q — ilova so'ragandagina yangilanadi",
+      "ru": "Нет — обновляется, только когда спросит приложение"
+     },
+     {
+      "uz": "Ha — o'yinchi bosgan zahoti o'zgaradi",
+      "ru": "Да — меняется сразу после нажатия игрока"
+     },
+     {
+      "uz": "Yo'q — son faqat o'yin kuni yangilanadi",
+      "ru": "Нет — число обновляется только в день игры"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 39,
+     "jami": 204,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "«Kelaman» endi faqat o'yin kuni chiqadi. Backend'dagi qoida-chi?",
+     "ru": "«Приду» теперь появляется только в день игры. А правило в Backend?"
+    },
+    "opts": [
+     {
+      "uz": "O'chiriladi — endi u kerak emas",
+      "ru": "Удаляется — теперь оно не нужно"
+     },
+     {
+      "uz": "Ilovaga ko'chadi — endi u ruxsat beradi",
+      "ru": "Переходит в приложение — теперь оно даёт разрешение"
+     },
+     {
+      "uz": "Qoladi — har so'rovga ruxsatni u beradi",
+      "ru": "Остаётся — оно даёт разрешение на каждый запрос"
+     },
+     {
+      "uz": "Database'ga ko'chadi — u eslab qoladi",
+      "ru": "Переходит в Database — она запомнит"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 39,
+     "jami": 210,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Ekran ochiq turganda boshqa odam tufayli nima o'zgaradi?",
+     "ru": "Что меняется из-за другого человека, пока экран открыт?"
+    },
+    "opts": [
+     {
+      "uz": "«‹ O'yinlar» tugmasining joyi",
+      "ru": "Место кнопки «‹ Игры»"
+     },
+     {
+      "uz": "Ilova nomi «Maydon Jamoa»",
+      "ru": "Название приложения «Maydon Jamoa»"
+     },
+     {
+      "uz": "E'lon formasidagi «Soat» qatori",
+      "ru": "Строка «Время» в форме объявления"
+     },
+     {
+      "uz": "«Kelishini tasdiqladi» dagi son",
+      "ru": "Число в строке «Подтвердили»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 31,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Tugmani yashirganda «Nima buzilmasin»ga nima yozasiz?",
+     "ru": "Что вы напишете в «Что не сломать», когда скрываете кнопку?"
+    },
+    "opts": [
+     {
+      "uz": "Backend'dagi qoida o'chirilmasin",
+      "ru": "Правило в Backend не удалять"
+     },
+     {
+      "uz": "Tugma har o'yinda turaversin",
+      "ru": "Кнопка пусть остаётся в каждой игре"
+     },
+     {
+      "uz": "Database jadvali tozalab qo'yilsin",
+      "ru": "Таблицу Database очистить"
+     },
+     {
+      "uz": "Yo'l tokensiz ham ochilsin",
+      "ru": "Путь пусть открывается и без токена"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 34,
+     "jami": 173,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Tasdiqni tekshirish kerak, lekin bugun o'yin yo'q. Nima qilasiz?",
+     "ru": "Нужно проверить подтверждение, но сегодня игры нет. Что сделаете?"
+    },
+    "opts": [
+     {
+      "uz": "Backend qoidasini vaqtincha o'chirasiz",
+      "ru": "Временно отключите правило Backend"
+     },
+     {
+      "uz": "Bugungi sana bilan yangi e'lon berasiz",
+      "ru": "Дадите новое объявление с сегодняшней датой"
+     },
+     {
+      "uz": "Telefon soatini shanbaga o'tkazasiz",
+      "ru": "Переведёте часы телефона на субботу"
+     },
+     {
+      "uz": "Shanba kelguncha kutib turasiz",
+      "ru": "Подождёте до субботы"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 38,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Backend o'zgarishi Render'ga qanday chiqadi?",
+     "ru": "Как изменение Backend попадает на Render?"
+    },
+    "opts": [
+     {
+      "uz": "Render sahifasida kodni qo'lda yozasiz",
+      "ru": "Пишете код вручную на странице Render"
+     },
+     {
+      "uz": "`npx expo start` — ilovani qayta yoqasiz",
+      "ru": "`npx expo start` — заново запускаете приложение"
+     },
+     {
+      "uz": "`git push` — Render o'zi qayta chiqaradi",
+      "ru": "`git push` — Render сам выложит заново"
+     },
+     {
+      "uz": "Neon'da jadvalni qaytadan yaratasiz",
+      "ru": "Заново создаёте таблицу в Neon"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 40,
+     "jami": 197,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Ikkinchi telefonda tekshirish nima uchun kerak?",
+     "ru": "Зачем нужна проверка на втором телефоне?"
+    },
+    "opts": [
+     {
+      "uz": "Sizning telefoningiz tezroq ishlashi uchun",
+      "ru": "Чтобы ваш телефон работал быстрее"
+     },
+     {
+      "uz": "Expo Go yangilanib olishi uchun",
+      "ru": "Чтобы Expo Go обновился"
+     },
+     {
+      "uz": "Ikkala telefonda ekran bir xil ko'rinishi uchun",
+      "ru": "Чтобы экран выглядел одинаково на обоих телефонах"
+     },
+     {
+      "uz": "Natijani boshqa odam ko'rishini bilish uchun",
+      "ru": "Чтобы знать, что результат видит другой человек"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 47,
+     "jami": 211,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-13",
+  "file": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Sinovda siz nima qilasiz?",
+     "ru": "Что вы делаете во время теста?"
+    },
+    "opts": [
+     {
+      "uz": "Vazifa berib, kishini jim kuzatasiz",
+      "ru": "Даёте задание и молча наблюдаете"
+     },
+     {
+      "uz": "Ilovani o'zingiz ochib ko'rsatasiz",
+      "ru": "Сами открываете и показываете приложение"
+     },
+     {
+      "uz": "Kishidan ilova yoqdimi, deb so'raysiz",
+      "ru": "Спрашиваете, понравилось ли приложение"
+     },
+     {
+      "uz": "Har tugmani bittalab tushuntirasiz",
+      "ru": "Объясняете каждую кнопку по очереди"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 25,
+     "maxVariant": 37,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Sanoqda «3 / 3» turibdi. Bu nimani bildiradi?",
+     "ru": "В подсчёте стоит «3 / 3». Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "Tugma uch marta qayta bosilganini",
+      "ru": "Что кнопку нажали три раза"
+     },
+     {
+      "uz": "Uchala kishi shu joyda to'xtaganini",
+      "ru": "Что все трое застряли в этом месте"
+     },
+     {
+      "uz": "Sinovga uch daqiqa vaqt ketganini",
+      "ru": "Что тест занял три минуты"
+     },
+     {
+      "uz": "Uch ekranda bir xil to'xtash borligini",
+      "ru": "Что одна остановка есть на трёх экранах"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 38,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Kuzatuv yozuviga qaysi qator tushadi?",
+     "ru": "Какая строка попадает в запись наблюдения?"
+    },
+    "opts": [
+     {
+      "uz": "0:40 · Ro'yxat juda noqulay ekan",
+      "ru": "0:40 · Список очень неудобный"
+     },
+     {
+      "uz": "0:40 · Hamma kishi buni yoqtirmaydi",
+      "ru": "0:40 · Это никому не нравится"
+     },
+     {
+      "uz": "0:40 · Pastga surib, o'yinni topdi",
+      "ru": "0:40 · Прокрутил вниз, нашёл игру"
+     },
+     {
+      "uz": "0:40 · Tugma kichikroq bo'lsa kerak",
+      "ru": "0:40 · Кнопка, наверное, маловата"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 35,
+     "jami": 173,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Yozuvda «Vazifani bajardi: 2 / 3». Bu nimani bildiradi?",
+     "ru": "В записи «Выполнили задание: 2 / 3». Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "Ikki kishi ilovani ikki marta ochgan",
+      "ru": "Двое открыли приложение дважды"
+     },
+     {
+      "uz": "Ilovaning uchdan ikki qismi tayyor",
+      "ru": "Две трети приложения готовы"
+     },
+     {
+      "uz": "Ikki to'xtash uch kishida takrorlangan",
+      "ru": "Две остановки повторились у троих"
+     },
+     {
+      "uz": "Uch kishidan biri natijaga yetmagan",
+      "ru": "Один из трёх не дошёл до результата"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 38,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Cyberpunk 2077 o'yini qanday sotuvga chiqdi?",
+     "ru": "Как игра Cyberpunk 2077 вышла в продажу?"
+    },
+    "opts": [
+     {
+      "uz": "Ko'p xato bilan sotuvga chiqarildi",
+      "ru": "Вышла в продажу с массой ошибок"
+     },
+     {
+      "uz": "Xatosiz, to'liq tayyor holda chiqdi",
+      "ru": "Вышла без ошибок, полностью готовой"
+     },
+     {
+      "uz": "Faqat kompyuter uchun chiqarildi",
+      "ru": "Вышла только для компьютера"
+     },
+     {
+      "uz": "Faqat bepul sinov sifatida chiqdi",
+      "ru": "Вышла только как бесплатная проба"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 35,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Sony Cyberpunk 2077 ni nima qildi?",
+     "ru": "Что Sony сделала с Cyberpunk 2077?"
+    },
+    "opts": [
+     {
+      "uz": "Narxini tushirib, sotuvda qoldirdi",
+      "ru": "Снизила цену и оставила в продаже"
+     },
+     {
+      "uz": "Do'konidan qariyb yarim yilga oldi",
+      "ru": "Убрала из магазина почти на полгода"
+     },
+     {
+      "uz": "Uni yangi nom bilan qayta chiqardi",
+      "ru": "Выпустила заново под новым именем"
+     },
+     {
+      "uz": "Xaridorlarga yangi o'yin sovg'a qildi",
+      "ru": "Подарила покупателям новую игру"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 37,
+     "jami": 173,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Birinchi tuzatiladigan to'xtash qanday bo'ladi?",
+     "ru": "Какой бывает остановка, которую исправляют первой?"
+    },
+    "opts": [
+     {
+      "uz": "Eng oson, bir qator bilan tuzatiladigan",
+      "ru": "Самая лёгкая, исправляется одной строкой"
+     },
+     {
+      "uz": "Vazifa oxirida, sinov tugashida yozilgan",
+      "ru": "Записана в конце задания, когда тест закончился"
+     },
+     {
+      "uz": "Ko'p kishida, vazifaga to'siq bo'lgan",
+      "ru": "У многих, и мешала выполнить задание"
+     },
+     {
+      "uz": "Ekranning eng pastida, ko'rinmay turgan",
+      "ru": "В самом низу экрана, её не видно"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 40,
+     "jami": 202,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Qayta sinovni kim bilan o'tkazgan ma'qul?",
+     "ru": "С кем лучше провести повторный тест?"
+    },
+    "opts": [
+     {
+      "uz": "O'zingiz — ilovani yaxshi bilasiz",
+      "ru": "Сами — вы хорошо знаете приложение"
+     },
+     {
+      "uz": "O'sha kishi bilan — u yo'lni biladi",
+      "ru": "С тем же человеком — он знает путь"
+     },
+     {
+      "uz": "Agent bilan — u kodni tekshiradi",
+      "ru": "С агентом — он проверит код"
+     },
+     {
+      "uz": "Ilovani ko'rmagan yangi odam bilan",
+      "ru": "С новым человеком, не видевшим приложение"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 35,
+     "jami": 175,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Agent «tuzatdim» dedi. Avval nimaga qaraysiz?",
+     "ru": "Агент сказал «исправил». Куда посмотрите сначала?"
+    },
+    "opts": [
+     {
+      "uz": "Fayldagi o'zgarishga va telefonga",
+      "ru": "На изменение в файле и на телефон"
+     },
+     {
+      "uz": "Agent yozgan hisobotning o'ziga",
+      "ru": "На сам отчёт агента"
+     },
+     {
+      "uz": "Talabda yozilgan birinchi qatorga",
+      "ru": "На первую строку требования"
+     },
+     {
+      "uz": "Terminalda chiqqan oxirgi xabarga",
+      "ru": "На последнее сообщение в терминале"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 33,
+     "jami": 175,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Uch to'xtashdan nechtasi shu darsda tuzatiladi?",
+     "ru": "Сколько из трёх остановок исправляют на этом уроке?"
+    },
+    "opts": [
+     {
+      "uz": "Uchalasi — bitta prompt bilan birga",
+      "ru": "Все три — одним промптом"
+     },
+     {
+      "uz": "Bittasi — qolgani «Keyin» ro'yxatida",
+      "ru": "Одну — остальные в списке «Потом»"
+     },
+     {
+      "uz": "Ikkitasi — eng oson tuzatiladiganlari",
+      "ru": "Две — те, что исправить проще"
+     },
+     {
+      "uz": "Hech biri — avval yana sinov kerak",
+      "ru": "Ни одной — сначала нужен ещё тест"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 37,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Nega sinov ko'pchilikka berishdan oldin o'tkaziladi?",
+     "ru": "Почему тест проводят до того, как дать продукт многим?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovani tezroq do'konga chiqarish uchun",
+      "ru": "Чтобы быстрее выпустить приложение в магазин"
+     },
+     {
+      "uz": "Agentga kamroq talab yozib berish uchun",
+      "ru": "Чтобы писать агенту меньше требований"
+     },
+     {
+      "uz": "Xatoni ko'pchilikdan oldin ko'rish uchun",
+      "ru": "Чтобы увидеть ошибку раньше многих"
+     },
+     {
+      "uz": "Reklama uchun birinchi fikrni olish uchun",
+      "ru": "Чтобы получить первый отзыв для рекламы"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 41,
+     "jami": 211,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Talabning «Nima qilsin» qatoriga nima yoziladi?",
+     "ru": "Что пишут в строку требования «Что сделать»?"
+    },
+    "opts": [
+     {
+      "uz": "Kishi aytgan shikoyatning aynan o'zi",
+      "ru": "Жалобу человека слово в слово"
+     },
+     {
+      "uz": "Butun ekranni noldan qayta qurish",
+      "ru": "Перестроить весь экран с нуля"
+     },
+     {
+      "uz": "To'xtagan kishilar soni va vaqti",
+      "ru": "Число застрявших и время"
+     },
+     {
+      "uz": "Ilova qiladigan bitta aniq o'zgarish",
+      "ru": "Одно точное изменение, которое сделает приложение"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 36,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-14",
+  "file": "src/9-Modull/FeatureThreeLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Qo'shilgan o'yinchi kela olmaydi. Ilovada nima qiladi?",
+     "ru": "Присоединившийся игрок не сможет прийти. Что он делает в приложении?"
+    },
+    "opts": [
+     {
+      "uz": "«O'yindan chiqish»ni bosadi",
+      "ru": "Нажимает «Выйти из игры»"
+     },
+     {
+      "uz": "«Kelaman»ni bosmay kutadi",
+      "ru": "Ждёт, не нажимая «Приду»"
+     },
+     {
+      "uz": "Tashkilotchiga xabar yozadi",
+      "ru": "Пишет сообщение организатору"
+     },
+     {
+      "uz": "Ilovani telefondan o'chiradi",
+      "ru": "Удаляет приложение с телефона"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 28,
+     "jami": 161,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "To'lgan o'yinda o'ynamoqchisiz. Nimani bosasiz?",
+     "ru": "Хотите сыграть в заполненной игре. Что нажмёте?"
+    },
+    "opts": [
+     {
+      "uz": "«Qo'shilaman»ni qayta bosaman",
+      "ru": "Снова нажму «Присоединяюсь»"
+     },
+     {
+      "uz": "«Navbatga yozilish»ni bosaman",
+      "ru": "Нажму «Записаться в очередь»"
+     },
+     {
+      "uz": "«Kelaman»ni o'yin kuni bosaman",
+      "ru": "Нажму «Приду» в день игры"
+     },
+     {
+      "uz": "«E'lon berish»ni yangidan bosaman",
+      "ru": "Заново нажму «Объявить игру»"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 33,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Bo'shagan joyni kim oladi?",
+     "ru": "Кто получает освободившееся место?"
+    },
+    "opts": [
+     {
+      "uz": "Ekranni birinchi yangilagan o'yinchi",
+      "ru": "Игрок, первым обновивший экран"
+     },
+     {
+      "uz": "Tashkilotchi o'zi tanlagan o'yinchi",
+      "ru": "Игрок, которого выбрал организатор"
+     },
+     {
+      "uz": "Navbatga birinchi yozilgan o'yinchi",
+      "ru": "Игрок, первым записавшийся в очередь"
+     },
+     {
+      "uz": "Navbatga oxirgi yozilgan o'yinchi",
+      "ru": "Игрок, последним записавшийся в очередь"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 26,
+     "maxVariant": 36,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Navbat bo'sh, «10 / 10». Bir o'yinchi chiqdi — kartada nima?",
+     "ru": "Очередь пуста, «10 / 10». Один игрок вышел — что на карточке?"
+    },
+    "opts": [
+     {
+      "uz": "10 / 10 va «O'yin to'ldi»",
+      "ru": "10 / 10 и «Игра заполнена»"
+     },
+     {
+      "uz": "9 / 10 va «O'yin to'ldi»",
+      "ru": "9 / 10 и «Игра заполнена»"
+     },
+     {
+      "uz": "10 / 10 va «Qo'shilaman»",
+      "ru": "10 / 10 и «Присоединяюсь»"
+     },
+     {
+      "uz": "9 / 10 va «Qo'shilaman»",
+      "ru": "9 / 10 и «Присоединяюсь»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 25,
+     "jami": 156,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Navbatdagi o'yinchi qo'shilganini qachon ko'radi?",
+     "ru": "Когда игрок из очереди видит, что он присоединился?"
+    },
+    "opts": [
+     {
+      "uz": "Ekranni ochganda yoki yangilaganda",
+      "ru": "Когда открывает или обновляет экран"
+     },
+     {
+      "uz": "Tashkilotchi unga qo'ng'iroq qilganda",
+      "ru": "Когда ему позвонит организатор"
+     },
+     {
+      "uz": "O'yin kuni maydonga borgan paytda",
+      "ru": "Когда придёт на поле в день игры"
+     },
+     {
+      "uz": "Navbatga yozilgan paytning o'zida",
+      "ru": "В тот же момент, когда записался в очередь"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 37,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Jadvalda navbatdagi o'yinchi qanday turadi?",
+     "ru": "Как в таблице записан игрок из очереди?"
+    },
+    "opts": [
+     {
+      "uz": "`qoshildi` holatida, ro'yxatning oxirida",
+      "ru": "В статусе `qoshildi`, в конце списка"
+     },
+     {
+      "uz": "`navbatda` holatida, yozilgan vaqti bilan",
+      "ru": "В статусе `navbatda`, со временем записи"
+     },
+     {
+      "uz": "`chiqdi` holatida, joy bo'shashini kutib",
+      "ru": "В статусе `chiqdi`, ожидая места"
+     },
+     {
+      "uz": "Alohida `navbat` jadvalida, o'z raqami bilan",
+      "ru": "В отдельной таблице `navbat`, со своим номером"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 44,
+     "jami": 208,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Backend o'zgardi. Telefondagi ilova uni qachon ko'radi?",
+     "ru": "Backend изменился. Когда приложение на телефоне это увидит?"
+    },
+    "opts": [
+     {
+      "uz": "Laptopda `npm run start:dev` qilgach",
+      "ru": "После `npm run start:dev` на ноутбуке"
+     },
+     {
+      "uz": "Telefonda Expo Go'ni qayta o'rnatgach",
+      "ru": "После переустановки Expo Go на телефоне"
+     },
+     {
+      "uz": "Push'dan keyin Render yangilagach",
+      "ru": "После push, когда Render обновит"
+     },
+     {
+      "uz": "Neon'da jadvalni qayta ochib ko'rgach",
+      "ru": "Когда заново откроете таблицу в Neon"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 37,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Talabda «bir vaqtda» yo'q. Ikki kishi oxirgi joyni bosdi — nima bo'lishi mumkin?",
+     "ru": "В требовании нет «одновременно». Двое нажали на последнее место — что может случиться?"
+    },
+    "opts": [
+     {
+      "uz": "Ikkalasi ham rad etiladi, joy qoladi",
+      "ru": "Обоим откажут, место останется"
+     },
+     {
+      "uz": "Ilova ikkinchi bosishni o'zi o'chiradi",
+      "ru": "Приложение само отключит второе нажатие"
+     },
+     {
+      "uz": "Tashkilotchiga ikkalasidan xabar boradi",
+      "ru": "Организатору придут сообщения от обоих"
+     },
+     {
+      "uz": "Ikkalasi yoziladi, «11 / 10» bo'ladi",
+      "ru": "Запишутся оба, станет «11 / 10»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 80,
+     "maxVariant": 39,
+     "jami": 229,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Backend oxirgi joyni bitta odamga qanday beradi?",
+     "ru": "Как Backend отдаёт последнее место одному человеку?"
+    },
+    "opts": [
+     {
+      "uz": "Tekshirish va yozishni bitta ish qiladi",
+      "ru": "Делает проверку и запись одной операцией"
+     },
+     {
+      "uz": "Ikkalasini yozib, keyin birini o'chiradi",
+      "ru": "Записывает обоих, потом одного удаляет"
+     },
+     {
+      "uz": "Yaqinroq telefonning so'rovini tanlaydi",
+      "ru": "Выбирает запрос с ближайшего телефона"
+     },
+     {
+      "uz": "Ikkala so'rovni ham rad etib qaytaradi",
+      "ru": "Отклоняет оба запроса"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 40,
+     "jami": 204,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "«Bitta ish» paytida ikkinchi so'rov nima qiladi?",
+     "ru": "Что делает второй запрос во время «одной операции»?"
+    },
+    "opts": [
+     {
+      "uz": "Birinchisidan oldin o'zi yoziladi",
+      "ru": "Записывается раньше первого"
+     },
+     {
+      "uz": "Kutib turadi, keyin javob oladi",
+      "ru": "Ждёт, потом получает ответ"
+     },
+     {
+      "uz": "Yo'qolib ketadi, javob kelmaydi",
+      "ru": "Теряется, ответа нет"
+     },
+     {
+      "uz": "Birinchisi bilan birga yoziladi",
+      "ru": "Записывается вместе с первым"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 33,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Bir lahzadagi ikki so'rovni qanday tekshirasiz?",
+     "ru": "Как проверить два запроса в один миг?"
+    },
+    "opts": [
+     {
+      "uz": "Ikki telefondan qo'lda bir vaqtda bosib",
+      "ru": "Нажав вручную с двух телефонов одновременно"
+     },
+     {
+      "uz": "Bitta telefondan ikki marta tez bosib",
+      "ru": "Быстро нажав дважды с одного телефона"
+     },
+     {
+      "uz": "Agentga bir vaqtda so'rov yubortirib",
+      "ru": "Попросив агента отправить запросы одновременно"
+     },
+     {
+      "uz": "Neon'da jadvalni qo'lda o'zgartirib",
+      "ru": "Изменив таблицу в Neon вручную"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 39,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Uchinchi funksiyada «Nima buzilmasin»ga nima yoziladi?",
+     "ru": "Что пишут в «Что не сломать» для третьей функции?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat yangi funksiyaning o'z tugmalari",
+      "ru": "Только кнопки самой новой функции"
+     },
+     {
+      "uz": "`README.md` va `.gitignore` fayllari",
+      "ru": "Файлы `README.md` и `.gitignore`"
+     },
+     {
+      "uz": "Render va Neon xizmatlaridagi sozlamalar",
+      "ru": "Настройки в сервисах Render и Neon"
+     },
+     {
+      "uz": "Oldingi ikki funksiyangiz va yo'llari",
+      "ru": "Две ваши прежние функции и их пути"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 40,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-15",
+  "file": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Holat nimani ko'rsatadi?",
+     "ru": "Что показывает статус?"
+    },
+    "opts": [
+     {
+      "uz": "Ish rejadagi vaqtiga nisbatan qayerda",
+      "ru": "Где работа относительно планового времени"
+     },
+     {
+      "uz": "Ishga necha kun ketishini oldindan aniq",
+      "ru": "Сколько дней займёт работа — заранее и точно"
+     },
+     {
+      "uz": "Ishni aynan qaysi odam bajarishini",
+      "ru": "Какой именно человек сделает работу"
+     },
+     {
+      "uz": "Ish nechta foydalanuvchiga kerakligini",
+      "ru": "Скольким пользователям нужна работа"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 24,
+     "maxVariant": 39,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Ish o'z darsida ishladi, telefonda tekshirildi. Holati qanday?",
+     "ru": "Работа заработала на своём уроке, проверена на телефоне. Какой статус?"
+    },
+    "opts": [
+     {
+      "uz": "Kechikdi",
+      "ru": "С опозданием"
+     },
+     {
+      "uz": "Bajarildi",
+      "ru": "Выполнено"
+     },
+     {
+      "uz": "Boshlanmadi",
+      "ru": "Не начато"
+     },
+     {
+      "uz": "Bekor qilindi",
+      "ru": "Отменено"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 62,
+     "maxVariant": 13,
+     "jami": 103,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Keyinroq ufqidagi ish hali boshlanmagan. Bu nimani bildiradi?",
+     "ru": "Работа горизонта «позже» ещё не начата. Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "Ish kechikdi, uni tezroq qilish kerak",
+      "ru": "Работа опоздала, её надо сделать быстрее"
+     },
+     {
+      "uz": "Roadmap noto'g'ri, qayta yozish kerak",
+      "ru": "Roadmap неверный, его надо переписать"
+     },
+     {
+      "uz": "Vaqti hali kelmagan, bu odatiy hol",
+      "ru": "Её время ещё не пришло, это обычное дело"
+     },
+     {
+      "uz": "Ishni roadmap'dan olib tashlash kerak",
+      "ru": "Работу надо убрать из roadmap"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 37,
+     "jami": 206,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Risk nima?",
+     "ru": "Что такое риск?"
+    },
+    "opts": [
+     {
+      "uz": "Darsda allaqachon bo'lib o'tgan kechikish",
+      "ru": "Опоздание, которое уже случилось на уроке"
+     },
+     {
+      "uz": "Kelajakda qo'shilishi mumkin bo'lgan funksiya",
+      "ru": "Функция, которую могут добавить в будущем"
+     },
+     {
+      "uz": "Roadmap'dagi bajarilgan ishlar ro'yxati",
+      "ru": "Список выполненных работ в roadmap"
+     },
+     {
+      "uz": "Rejaga xalaqit berishi mumkin bo'lgan narsa",
+      "ru": "То, что может помешать плану"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 10,
+     "maxVariant": 45,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Render bepul xizmatida Backend qachon uxlaydi?",
+     "ru": "Когда засыпает Backend на бесплатном сервисе Render?"
+    },
+    "opts": [
+     {
+      "uz": "15 daqiqa davomida so'rov kelmasa",
+      "ru": "Если 15 минут нет запросов"
+     },
+     {
+      "uz": "Har kuni yarim tunda, o'z-o'zidan",
+      "ru": "Каждый день в полночь, сам по себе"
+     },
+     {
+      "uz": "Kuniga 100 ta so'rovdan keyin",
+      "ru": "После 100 запросов в день"
+     },
+     {
+      "uz": "Ilova telefonda yopilgan zahoti",
+      "ru": "Сразу, как закрыли приложение на телефоне"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 33,
+     "jami": 172,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Backend uxlab qolsa, birinchi ochilish qancha kutadi?",
+     "ru": "Если Backend уснул, сколько ждать первого открытия?"
+    },
+    "opts": [
+     {
+      "uz": "Bir necha soniya",
+      "ru": "Несколько секунд"
+     },
+     {
+      "uz": "Bir daqiqagacha",
+      "ru": "До минуты"
+     },
+     {
+      "uz": "Besh daqiqagacha",
+      "ru": "До пяти минут"
+     },
+     {
+      "uz": "Bir soatdan ko'p",
+      "ru": "Больше часа"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 16,
+     "jami": 116,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Mentor misolida «3 sinovchi» riskiga qaysi qadam yozildi?",
+     "ru": "Какой шаг в примере Ментора записан к риску «3 тестировщика»?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovaga yana bitta yangi funksiya qo'shish",
+      "ru": "Добавить в приложение ещё одну функцию"
+     },
+     {
+      "uz": "12-Modul boshlanganda odamlarni qidirish",
+      "ru": "Искать людей, когда начнётся 12-й модуль"
+     },
+     {
+      "uz": "Mahalla futbol guruhidan 10 kishini chaqirish",
+      "ru": "Позвать 10 человек из футбольной группы махалли"
+     },
+     {
+      "uz": "Uch sinovchidan ilovani qayta sinashni so'rash",
+      "ru": "Попросить трёх тестировщиков проверить ещё раз"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 46,
+     "jami": 230,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Nega Expo Go Mentor roadmap'iga risk bo'ldi?",
+     "ru": "Почему Expo Go стал риском для roadmap Ментора?"
+    },
+    "opts": [
+     {
+      "uz": "U ilovani juda sekin ochgani uchun",
+      "ru": "Потому что он слишком медленно открывает приложение"
+     },
+     {
+      "uz": "Unda Backend'ga ulanmagani uchun",
+      "ru": "Потому что в нём нет связи с Backend"
+     },
+     {
+      "uz": "U faqat iPhone'da ishlagani uchun",
+      "ru": "Потому что он работает только на iPhone"
+     },
+     {
+      "uz": "U sinash ilovasi, hammada yo'q",
+      "ru": "Потому что это инструмент для проверки — он есть не у всех"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 34,
+     "jami": 173,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "APK nima?",
+     "ru": "Что такое APK?"
+    },
+    "opts": [
+     {
+      "uz": "Android'ga o'rnatiladigan ilova fayli",
+      "ru": "Файл приложения для установки на Android"
+     },
+     {
+      "uz": "iPhone'dagi ilovalar do'konining nomi",
+      "ru": "Название магазина приложений на iPhone"
+     },
+     {
+      "uz": "Expo Go ichidagi maxsus sinov rejimi",
+      "ru": "Особый тестовый режим внутри Expo Go"
+     },
+     {
+      "uz": "Render'dagi Backend sozlamalari fayli",
+      "ru": "Файл настроек Backend на Render"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 9,
+     "maxVariant": 37,
+     "jami": 156,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Qadam 12-Modulda bajariladi. Qaysi ufqqa qo'yasiz?",
+     "ru": "Шаг выполнят в 12-м модуле. В какой горизонт его поставить?"
+    },
+    "opts": [
+     {
+      "uz": "Hozir — shu 11-Modulda",
+      "ru": "Сейчас — в этом 11-м модуле"
+     },
+     {
+      "uz": "Keyinroq — 12–13-Modul",
+      "ru": "Позже — 12–13-й модуль"
+     },
+     {
+      "uz": "Uzoqroq — bitiruvdan keyin",
+      "ru": "Дальше — после выпуска"
+     },
+     {
+      "uz": "Ufqsiz — alohida ro'yxatda",
+      "ru": "Без горизонта — в отдельном списке"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 26,
+     "jami": 146,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Qaysi biri riskka qarshi aniq qadam?",
+     "ru": "Что из этого — конкретный шаг против риска?"
+    },
+    "opts": [
+     {
+      "uz": "Roadmap'ga ko'proq e'tibor berib ishlash",
+      "ru": "Работать, уделяя roadmap больше внимания"
+     },
+     {
+      "uz": "Imkon qadar tezroq va ko'proq harakat qilish",
+      "ru": "Стараться как можно быстрее и больше"
+     },
+     {
+      "uz": "Shanba kuni 10 kishini sinovga chaqirish",
+      "ru": "В субботу позвать на тест 10 человек"
+     },
+     {
+      "uz": "Risk haqida keyinroq yana o'ylab ko'rish",
+      "ru": "Подумать о риске ещё раз позже"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 44,
+     "jami": 200,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Yakkama-yakkada Mentor bilan nimani ko'rasiz?",
+     "ru": "Что вы смотрите с Ментором на встрече один на один?"
+    },
+    "opts": [
+     {
+      "uz": "Arena natijangiz va ballingizni",
+      "ru": "Свой результат и баллы в арене"
+     },
+     {
+      "uz": "Kodingizning har bir qatorini",
+      "ru": "Каждую строку своего кода"
+     },
+     {
+      "uz": "O'nta yangi g'oyangizni birma-bir",
+      "ru": "Десять новых идей по одной"
+     },
+     {
+      "uz": "Holatlar, risklar va qadamlarni",
+      "ru": "Статусы, риски и шаги"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 33,
+     "jami": 169,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m9-16",
+  "file": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Zal «Ishlayotganini ko'rsata olasizmi?» deb so'radi. Nima qilasiz?",
+     "ru": "Зал спросил: «Можете показать, что это работает?» Что сделаете?"
+    },
+    "opts": [
+     {
+      "uz": "Telefonda asosiy harakatni ko'rsatasiz",
+      "ru": "Покажете главное действие на телефоне"
+     },
+     {
+      "uz": "Mahsulot nima qilishini bir gapda aytasiz",
+      "ru": "Одной фразой скажете, что делает продукт"
+     },
+     {
+      "uz": "Intervyudagi sanoqni tartib bilan aytasiz",
+      "ru": "По порядку назовёте подсчёт из интервью"
+     },
+     {
+      "uz": "Rejangizdagi birinchi ishni aytib berasiz",
+      "ru": "Расскажете первое дело из плана"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 41,
+     "jami": 227,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Muammo gapidan keyin zal «Qayerdan bilasiz?» dedi. Nima aytasiz?",
+     "ru": "После формулировки проблемы зал спросил: «Откуда знаете?» Что скажете?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova qaysi texnologiyalarda qurilganini",
+      "ru": "На каких технологиях построено приложение"
+     },
+     {
+      "uz": "Necha kishidan nechtasida muammo bo'lganini",
+      "ru": "У скольких из скольких была проблема"
+     },
+     {
+      "uz": "Ilovada nechta ekran va nechta tugma borligini",
+      "ru": "Сколько в приложении экранов и кнопок"
+     },
+     {
+      "uz": "Keyingi oyda qaysi ishni qilmoqchi ekaningizni",
+      "ru": "Что собираетесь делать в следующем месяце"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 46,
+     "jami": 239,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Harakat belgisi nimani ko'rsatadi?",
+     "ru": "Что показывает знак действия?"
+    },
+    "opts": [
+     {
+      "uz": "Odam intervyuda uzoq va qiziqib gapirganini",
+      "ru": "Что человек долго и увлечённо говорил на интервью"
+     },
+     {
+      "uz": "Odam g'oyani juda maqtab, yaxshi baho berganini",
+      "ru": "Что человек очень хвалил идею и хорошо её оценил"
+     },
+     {
+      "uz": "Odam qiziqishni ish bilan ko'rsatganini",
+      "ru": "Что человек показал интерес делом"
+     },
+     {
+      "uz": "Odam ilovani do'stlariga aytib berishini",
+      "ru": "Что человек расскажет о приложении друзьям"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 47,
+     "jami": 203,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "«Olti intervyu — kichik son» degan gap nimani aytadi?",
+     "ru": "О чём говорит фраза «Шесть интервью — маленькое число»?"
+    },
+    "opts": [
+     {
+      "uz": "Intervyular foydasiz, ularni tashlash kerak",
+      "ru": "Интервью бесполезны, от них надо отказаться"
+     },
+     {
+      "uz": "Yuzta intervyusiz g'oyani tanlab bo'lmaydi",
+      "ru": "Без ста интервью идею не выбрать"
+     },
+     {
+      "uz": "To'garaklar g'oyasi yaxshiroq ekanini",
+      "ru": "Что идея с кружками лучше"
+     },
+     {
+      "uz": "Bu tanlov uchun dalil, isbot emasligini",
+      "ru": "Что это довод для выбора, а не доказательство"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 43,
+     "jami": 214,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Tuzatilgan bo'lakni nima uchun darhol 1 daqiqada qayta aytasiz?",
+     "ru": "Зачем сразу рассказывать исправленную часть ещё раз за 1 минуту?"
+    },
+    "opts": [
+     {
+      "uz": "Dars vaqti ortib qolgani uchun",
+      "ru": "Потому что осталось время урока"
+     },
+     {
+      "uz": "Sherik yana tinglashni xohlagani uchun",
+      "ru": "Потому что партнёр хочет послушать ещё"
+     },
+     {
+      "uz": "Zal savoliga javob bo'ldimi, ko'rinadi",
+      "ru": "Видно, стала ли она ответом залу"
+     },
+     {
+      "uz": "Taymer shunday sozlangani uchun",
+      "ru": "Потому что так настроен таймер"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 38,
+     "jami": 200,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Ilovangizni Demo Day oldidan tekshirganda nimani ko'rasiz?",
+     "ru": "Что проверяете в приложении перед Демо-днём?"
+    },
+    "opts": [
+     {
+      "uz": "Ochiladi va asosiy harakat ishlaydi",
+      "ru": "Открывается и главное действие работает"
+     },
+     {
+      "uz": "Kodda nechta fayl borligini",
+      "ru": "Сколько файлов в коде"
+     },
+     {
+      "uz": "Ranglari sherikka yoqadimi",
+      "ru": "Нравятся ли цвета партнёру"
+     },
+     {
+      "uz": "Ilova nomi qancha uzunligini",
+      "ru": "Какой длины название приложения"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 35,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Yechim bo'lagida zalga nima aytiladi?",
+     "ru": "Что говорят залу в части «Решение»?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova qurilgan texnologiyalarning ro'yxati",
+      "ru": "Список технологий, на которых построено приложение"
+     },
+     {
+      "uz": "Mahsulot odamga nima qilishi, bir gapda",
+      "ru": "Что продукт делает для человека, одной фразой"
+     },
+     {
+      "uz": "Ilovadagi hamma ekranlarning to'liq nomlari",
+      "ru": "Полные названия всех экранов приложения"
+     },
+     {
+      "uz": "Mahsulotni qurishga ketgan haftalar soni",
+      "ru": "Сколько недель ушло на создание продукта"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 43,
+     "jami": 201,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Nega ilovani pitchdan 2–3 daqiqa oldin ochasiz?",
+     "ru": "Зачем открывать приложение за 2–3 минуты до питча?"
+    },
+    "opts": [
+     {
+      "uz": "Telefon ekrani yorqinroq bo'lishi uchun",
+      "ru": "Чтобы экран телефона был ярче"
+     },
+     {
+      "uz": "Zal ilovani oldindan ko'rib turishi uchun",
+      "ru": "Чтобы зал заранее видел приложение"
+     },
+     {
+      "uz": "Ilova yangi versiyani yuklab olishi uchun",
+      "ru": "Чтобы приложение скачало новую версию"
+     },
+     {
+      "uz": "Uxlab qolgan Backend uyg'onishi uchun",
+      "ru": "Чтобы уснувший Backend проснулся"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 41,
+     "jami": 205,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Jonli demoda qaysi harakatni ko'rsatasiz?",
+     "ru": "Какое действие покажете в живом демо?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovadagi hamma tugmalarni birma-bir",
+      "ru": "Все кнопки приложения по очереди"
+     },
+     {
+      "uz": "Kod yozilgan fayllarni birma-bir",
+      "ru": "Файлы с кодом по очереди"
+     },
+     {
+      "uz": "Ilovaning sozlamalar sahifasini",
+      "ru": "Страницу настроек приложения"
+     },
+     {
+      "uz": "Sinov vazifasidagi asosiy harakatni",
+      "ru": "Главное действие из задания теста"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 36,
+     "jami": 175,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Keyingi qadam bo'lagiga nima yoziladi?",
+     "ru": "Что пишут в часть «Следующий шаг»?"
+    },
+    "opts": [
+     {
+      "uz": "Keyinroq qilinadigan hamma ishlar ro'yxati",
+      "ru": "Список всех дел на потом"
+     },
+     {
+      "uz": "Tuzatilgan rejangizdagi birinchi ish",
+      "ru": "Первое дело из исправленного плана"
+     },
+     {
+      "uz": "Sinovda topilgan hamma to'xtashlar",
+      "ru": "Все места, где застревали на тесте"
+     },
+     {
+      "uz": "Ilova qanday qurilgani haqida hikoya",
+      "ru": "Рассказ о том, как построено приложение"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 42,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Varaqda «Jonli demo» qatoriga ✗ va «uzoq kutdik» yozildi. Nima qilasiz?",
+     "ru": "В листе в строке «Живое демо» стоит ✗ и «долго ждали». Что сделаете?"
+    },
+    "opts": [
+     {
+      "uz": "Keyingi safar ilovani oldindan ochasiz",
+      "ru": "В следующий раз откроете приложение заранее"
+     },
+     {
+      "uz": "Jonli demo bo'lagini pitchdan olasiz",
+      "ru": "Уберёте живое демо из питча"
+     },
+     {
+      "uz": "Kutish paytida zalga hazil aytib berasiz",
+      "ru": "Пока ждёте, расскажете залу шутку"
+     },
+     {
+      "uz": "Sherigingizdan ✓ qo'yishini so'raysiz",
+      "ru": "Попросите партнёра поставить ✓"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 71,
+     "maxVariant": 40,
+     "jami": 222,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Pitch 3:40 davom etdi. Nima qilasiz?",
+     "ru": "Питч длился 3:40. Что сделаете?"
+    },
+    "opts": [
+     {
+      "uz": "Taymerni o'chirib, vaqtni umuman sanamaysiz",
+      "ru": "Выключите таймер и вообще не будете считать время"
+     },
+     {
+      "uz": "Muammo bo'lagini pitchdan butunlay olib tashlaysiz",
+      "ru": "Полностью уберёте из питча часть «Проблема»"
+     },
+     {
+      "uz": "Ortiqcha gapni olib, bitta harakat qoldirasiz",
+      "ru": "Уберёте лишнее и оставите одно действие"
+     },
+     {
+      "uz": "Oxirgi bo'lakni ancha tezroq gapirib berasiz",
+      "ru": "Последнюю часть проговорите гораздо быстрее"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 50,
+     "jami": 218,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ }
+]

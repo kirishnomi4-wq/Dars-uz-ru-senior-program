@@ -1,0 +1,3064 @@
+[
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlardagi «kompaniyasi» takrori jami uzunlikni 148 ga chiqargan edi.",
+  "q": {
+   "uz": "React'ni kim va qachon yaratgan?",
+   "ru": "Кто и когда создал React?"
+  },
+  "opts": [
+   {
+    "uz": "Google, 2020-yil",
+    "ru": "Google, 2020 год"
+   },
+   {
+    "uz": "Apple, 2010-yil",
+    "ru": "Apple, 2010 год"
+   },
+   {
+    "uz": "Microsoft, 2015-yil",
+    "ru": "Microsoft, 2015 год"
+   },
+   {
+    "uz": "Facebook, 2013-yil",
+    "ru": "Facebook, 2013 год"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "«JavaScript» qolgan qisqa variantlardan ancha uzun edi — ko'zga tashlanib qolardi.",
+  "q": {
+   "uz": "React qaysi tilda yozilgan?",
+   "ru": "На каком языке написан React?"
+  },
+  "opts": [
+   "Python",
+   "JavaScript",
+   "HTML va CSS",
+   "C++"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 143 belgi edi; savol qisqartirildi.",
+  "q": {
+   "uz": "Eski saytda like bosilsa nima bo'ladi?",
+   "ru": "Что происходит на старом сайте при лайке?"
+  },
+  "opts": [
+   {
+    "uz": "Butun sahifa qayta yuklanadi",
+    "ru": "Перезагружается вся страница"
+   },
+   {
+    "uz": "Umuman javob qaytarmaydi",
+    "ru": "Вообще не отвечает"
+   },
+   {
+    "uz": "Sayt butunlay o'chib qoladi",
+    "ru": "Сайт полностью выключается"
+   },
+   {
+    "uz": "Faqat rangi o'zgaradi",
+    "ru": "Меняется только цвет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactIntroLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "darsda-yoq"
+  ],
+  "izoh": "Darsda oddiy DOM ta'riflanmaydi, faqat Virtual DOM («sahifaning xotiradagi yengil nusxasi») o'rgatiladi.",
+  "q": {
+   "uz": "Virtual DOM nima?",
+   "ru": "Что такое Virtual DOM?"
+  },
+  "opts": [
+   {
+    "uz": "Kod yozadigan dastur",
+    "ru": "Программа для кода"
+   },
+   {
+    "uz": "Sahifaning yengil nusxasi",
+    "ru": "Лёгкая копия страницы"
+   },
+   {
+    "uz": "Ranglar palitrasi",
+    "ru": "Палитра цветов"
+   },
+   {
+    "uz": "Internet provayderi",
+    "ru": "Интернет-провайдер"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 61 belgi, qolganlaridan ancha uzun edi — endi hikoya bo'laklari so'raladi.",
+  "q": {
+   "uz": "User Story qaysi uch bo'lakdan iborat?",
+   "ru": "Из каких трёх частей состоит User Story?"
+  },
+  "opts": [
+   {
+    "uz": "Sana + vazifa + mas'ul",
+    "ru": "Дата + задача + ответственный"
+   },
+   {
+    "uz": "Shart + natija + xato",
+    "ru": "Условие + результат + ошибка"
+   },
+   {
+    "uz": "KIM + NIMA + NATIJA",
+    "ru": "КТО + ЧТО + РЕЗУЛЬТАТ"
+   },
+   {
+    "uz": "Tugma + rang + sahifa",
+    "ru": "Кнопка + цвет + страница"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 37 belgigacha edi.",
+  "q": {
+   "uz": "User Story qachon yoziladi?",
+   "ru": "Когда пишут User Story?"
+  },
+  "opts": [
+   {
+    "uz": "Loyiha topshirilgach",
+    "ru": "После сдачи проекта"
+   },
+   {
+    "uz": "Kod yozishdan oldin",
+    "ru": "До написания кода"
+   },
+   {
+    "uz": "Kod yozib bo'lingach",
+    "ru": "Когда код уже написан"
+   },
+   {
+    "uz": "Faqat xato chiqqanda",
+    "ru": "Только при ошибке"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar uzunligi juda farqli edi, jami 142.",
+  "q": {
+   "uz": "[NATIJA] qismi qanday bo'lishi kerak?",
+   "ru": "Какой должна быть часть [РЕЗУЛЬТАТ]?"
+  },
+  "opts": [
+   {
+    "uz": "Yozilgan kod qatorlari soni",
+    "ru": "Число строк кода"
+   },
+   {
+    "uz": "Tugmaning nomi va rangi",
+    "ru": "Название и цвет кнопки"
+   },
+   {
+    "uz": "Sahifaning fon rangi",
+    "ru": "Цвет фона страницы"
+   },
+   {
+    "uz": "Foydalanuvchi oladigan foyda",
+    "ru": "Польза, которую получит пользователь"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 75 belgi edi.",
+  "q": {
+   "uz": "«Foydalanuvchi sifatida qizil tugma xohlayman» — nima yo'q?",
+   "ru": "«Как пользователь, хочу красную кнопку» — чего нет?"
+  },
+  "opts": [
+   {
+    "uz": "NATIJA (real foyda)",
+    "ru": "РЕЗУЛЬТАТ (польза)"
+   },
+   {
+    "uz": "KIM",
+    "ru": "КТО"
+   },
+   {
+    "uz": "NIMA",
+    "ru": "ЧТО"
+   },
+   {
+    "uz": "Hech nima, to'liq",
+    "ru": "Ничего, всё есть"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 74 belgi edi, ko'zga tashlanib qolardi.",
+  "q": {
+   "uz": "Jobs-to-be-Done (JTBD) g'oyasi nima?",
+   "ru": "В чём идея Jobs-to-be-Done (JTBD)?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'proq tugma qo'shish",
+    "ru": "Добавлять больше кнопок"
+   },
+   {
+    "uz": "Kodni tezroq yozish",
+    "ru": "Писать код быстрее"
+   },
+   {
+    "uz": "Har kimga alohida ilova",
+    "ru": "Каждому отдельное приложение"
+   },
+   {
+    "uz": "Odam natijani sotib oladi",
+    "ru": "Человек покупает результат"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61, variantlar 61 belgigacha edi.",
+  "q": {
+   "uz": "Milkshake xaridorga qanday natija berardi?",
+   "ru": "Какой результат давал покупателю коктейль?"
+  },
+  "opts": [
+   {
+    "uz": "Arzonligi bilan yoqardi",
+    "ru": "Нравился дешевизной"
+   },
+   {
+    "uz": "Yo'lda zerikmaslik va to'qlik",
+    "ru": "Не скучать в пути и сытость"
+   },
+   {
+    "uz": "Sovg'a bilan berilardi",
+    "ru": "Давали с подарком"
+   },
+   {
+    "uz": "Reklamasi chiroyli edi",
+    "ru": "Красивая реклама"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 240 belgi edi.",
+  "q": {
+   "uz": "McDonald's sababni bilgach nima qildi?",
+   "ru": "Что сделал McDonald's, узнав причину?"
+  },
+  "opts": [
+   {
+    "uz": "Narxini tushirdi",
+    "ru": "Снизил цену"
+   },
+   {
+    "uz": "Faqat kechqurun sotdi",
+    "ru": "Продавал только вечером"
+   },
+   {
+    "uz": "Yanada quyuq qildi",
+    "ru": "Сделал гуще"
+   },
+   {
+    "uz": "O'rniga banan sotdi",
+    "ru": "Стал продавать банан"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha edi.",
+  "q": {
+   "uz": "«Saytda dark mode bo'lsin» — bu nima?",
+   "ru": "«Пусть на сайте будет dark mode» — что это?"
+  },
+  "opts": [
+   {
+    "uz": "To'liq User Story",
+    "ru": "Полная User Story"
+   },
+   {
+    "uz": "Foydalanuvchi turi",
+    "ru": "Тип пользователя"
+   },
+   {
+    "uz": "JTBD natijasi",
+    "ru": "Результат JTBD"
+   },
+   {
+    "uz": "Imkoniyat-so'rovi",
+    "ru": "Заявка на возможность"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 170 belgi edi.",
+  "q": {
+   "uz": "NATIJA harakatni takrorlasa, nima bo'ladi?",
+   "ru": "Что будет, если РЕЗУЛЬТАТ повторяет действие?"
+  },
+  "opts": [
+   {
+    "uz": "Foyda ko'rinmay qoladi",
+    "ru": "Пользы не видно"
+   },
+   {
+    "uz": "Kod tezroq ishlaydi",
+    "ru": "Код работает быстрее"
+   },
+   {
+    "uz": "Hikoya kuchayadi",
+    "ru": "История становится сильнее"
+   },
+   {
+    "uz": "KIM o'zi aniqlashadi",
+    "ru": "КТО сам уточнится"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 45 belgigacha edi.",
+  "q": {
+   "uz": "Hikoyadagi [NIMA] bo'lagi nimani bildiradi?",
+   "ru": "Что означает часть [ЧТО] в истории?"
+  },
+  "opts": [
+   {
+    "uz": "Oxirida oladigan foyda",
+    "ru": "Польза в конце"
+   },
+   {
+    "uz": "Foydalanuvchi turi",
+    "ru": "Тип пользователя"
+   },
+   {
+    "uz": "Bajarmoqchi bo'lgan harakat",
+    "ru": "Действие, которое он хочет сделать"
+   },
+   {
+    "uz": "Loyiha muddati",
+    "ru": "Срок проекта"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/pm/PmUserStoryLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar 58 belgigacha, jami 198 edi.",
+  "q": {
+   "uz": "Nega avval User Story, keyin kod?",
+   "ru": "Почему сначала User Story, потом код?"
+  },
+  "opts": [
+   {
+    "uz": "Chunki kod yozish qiyin",
+    "ru": "Потому что код писать трудно"
+   },
+   {
+    "uz": "Kimga nima kerakligini bilish",
+    "ru": "Узнать, кому что нужно"
+   },
+   {
+    "uz": "Mijoz shuni talab qiladi",
+    "ru": "Так требует заказчик"
+   },
+   {
+    "uz": "Tartib farq qilmaydi",
+    "ru": "Порядок не важен"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/pm/PmJtbdLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "«vazifasi» qolgan 4–5 harfli variantlardan ancha uzun edi.",
+  "q": {
+   "uz": "Mahsulot odam uchun bajaradigan narsa nima deyiladi?",
+   "ru": "Как называется то, что продукт делает для человека?"
+  },
+  "opts": [
+   {
+    "uz": "reklamasi",
+    "ru": "реклама"
+   },
+   {
+    "uz": "qadog'i",
+    "ru": "упаковка"
+   },
+   {
+    "uz": "vazifasi",
+    "ru": "задача"
+   },
+   {
+    "uz": "brendi",
+    "ru": "бренд"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/pm/PmJtbdLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi edi.",
+  "q": {
+   "uz": "Saytda faqat jadval va narx. Qaysi tur bajarilmaydi?",
+   "ru": "На сайте только расписание и цены. Какой тип не выполнен?"
+  },
+  "opts": [
+   {
+    "uz": "funksional",
+    "ru": "функциональная"
+   },
+   {
+    "uz": "hech qaysi",
+    "ru": "никакая"
+   },
+   {
+    "uz": "emotsional",
+    "ru": "эмоциональная"
+   },
+   {
+    "uz": "hammasi bajariladi",
+    "ru": "все выполнены"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/pm/PmJtbdLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 75 belgi edi.",
+  "q": {
+   "uz": "Kodda «qo'rqmaslik» turi 'funksional'. Nima qilinadi?",
+   "ru": "В коде у «не бояться» тип «функциональная». Что делать?"
+  },
+  "opts": [
+   {
+    "uz": "qator o'chiriladi",
+    "ru": "удалить строку"
+   },
+   {
+    "uz": "tur 'emotsional' qilinadi",
+    "ru": "тип меняют на 'emotsional'"
+   },
+   {
+    "uz": "vazifa o'chiriladi",
+    "ru": "удалить задачу"
+   },
+   {
+    "uz": "hech narsa qilinmaydi",
+    "ru": "ничего не делать"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 42 belgigacha, jami 163 edi.",
+  "q": {
+   "uz": "Vite nima?",
+   "ru": "Что такое Vite?"
+  },
+  "opts": [
+   {
+    "uz": "Loyiha quruvchi tez dastur",
+    "ru": "Быстрая программа-сборщик проекта"
+   },
+   {
+    "uz": "Yangi dasturlash tili",
+    "ru": "Новый язык программирования"
+   },
+   {
+    "uz": "Brauzer qo'shimchasi",
+    "ru": "Дополнение для браузера"
+   },
+   {
+    "uz": "Ma'lumotlar bazasi",
+    "ru": "База данных"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 59 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "`npm create vite@latest` nima qiladi?",
+   "ru": "Что делает `npm create vite@latest`?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni e'lon qiladi",
+    "ru": "Публикует сайт"
+   },
+   {
+    "uz": "Loyiha fayllarini yaratadi",
+    "ru": "Создаёт файлы проекта"
+   },
+   {
+    "uz": "Xatolarni o'zi tuzatadi",
+    "ru": "Сам исправляет ошибки"
+   },
+   {
+    "uz": "Rasmlarni yuklab oladi",
+    "ru": "Скачивает картинки"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Ikki variant bir xil ma'noda («o'chiradi») edi, jami 158.",
+  "q": {
+   "uz": "`npm run dev` nima qiladi?",
+   "ru": "Что делает `npm run dev`?"
+  },
+  "opts": [
+   {
+    "uz": "Loyihani butunlay o'chiradi",
+    "ru": "Полностью удаляет проект"
+   },
+   {
+    "uz": "Saytni internetga chiqaradi",
+    "ru": "Выкладывает сайт в интернет"
+   },
+   {
+    "uz": "Yangi papka yaratadi",
+    "ru": "Создаёт новую папку"
+   },
+   {
+    "uz": "localhost'da ishga tushiradi",
+    "ru": "Запускает на localhost"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 42 belgi, boshqalardan uzun edi.",
+  "q": {
+   "uz": "JSX nima?",
+   "ru": "Что такое JSX?"
+  },
+  "opts": [
+   {
+    "uz": "HTMLga o'xshash JS yozuvi",
+    "ru": "Похожая на HTML запись в JS"
+   },
+   {
+    "uz": "Ranglar saqlash formati",
+    "ru": "Формат хранения цветов"
+   },
+   {
+    "uz": "Fayl kengaytmasi turi",
+    "ru": "Вид расширения файла"
+   },
+   {
+    "uz": "Brauzer dasturi nomi",
+    "ru": "Название браузера"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 62 belgi edi.",
+  "q": {
+   "uz": "JSX ichida JavaScript qiymati qaysi qavsda yoziladi?",
+   "ru": "В каких скобках пишут JS-значение внутри JSX?"
+  },
+  "opts": [
+   {
+    "uz": "( ) doira qavs",
+    "ru": "( ) круглые скобки"
+   },
+   {
+    "uz": "[ ] kvadrat qavs",
+    "ru": "[ ] квадратные скобки"
+   },
+   {
+    "uz": "{ } jingalak qavs",
+    "ru": "{ } фигурные скобки"
+   },
+   {
+    "uz": "\" \" qo'shtirnoq",
+    "ru": "\" \" кавычки"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha edi.",
+  "q": {
+   "uz": "Komponent nima?",
+   "ru": "Что такое компонент?"
+  },
+  "opts": [
+   {
+    "uz": "Rasm fayllarining turi",
+    "ru": "Вид файлов картинок"
+   },
+   {
+    "uz": "Internet tezligini oshiradi",
+    "ru": "Ускоряет интернет"
+   },
+   {
+    "uz": "Brauzerning ichki sozlamasi",
+    "ru": "Внутренняя настройка браузера"
+   },
+   {
+    "uz": "Qayta ishlatiladigan bo'lak",
+    "ru": "Переиспользуемая часть"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Komponent `return` orqali nimani qaytaradi?",
+   "ru": "Что компонент возвращает через `return`?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta rasm faylini",
+    "ru": "Один файл картинки"
+   },
+   {
+    "uz": "JSX — ko'rinishni",
+    "ru": "JSX — внешний вид"
+   },
+   {
+    "uz": "Faqat bitta sonni",
+    "ru": "Только одно число"
+   },
+   {
+    "uz": "Boshqa faylning nomini",
+    "ru": "Имя другого файла"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha edi.",
+  "q": {
+   "uz": "Props nima?",
+   "ru": "Что такое props?"
+  },
+  "opts": [
+   {
+    "uz": "Komponentning tashqi rangi",
+    "ru": "Внешний цвет компонента"
+   },
+   {
+    "uz": "Kodni tezlatuvchi sozlama",
+    "ru": "Настройка, ускоряющая код"
+   },
+   {
+    "uz": "Brauzer qo'shimcha dasturi",
+    "ru": "Дополнение для браузера"
+   },
+   {
+    "uz": "Komponentga uzatilgan ma'lumot",
+    "ru": "Данные, переданные компоненту"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha, jami 160 edi.",
+  "q": {
+   "uz": "useState nimani qaytaradi?",
+   "ru": "Что возвращает useState?"
+  },
+  "opts": [
+   {
+    "uz": "Qiymat va yangilovchi funksiya",
+    "ru": "Значение и функцию обновления"
+   },
+   {
+    "uz": "Faqat boshlang'ich sonni",
+    "ru": "Только начальное число"
+   },
+   {
+    "uz": "Butunlay yangi HTML sahifa",
+    "ru": "Совсем новую HTML-страницу"
+   },
+   {
+    "uz": "CSS uslublar to'plamini",
+    "ru": "Набор CSS-стилей"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 144 belgi edi.",
+  "q": {
+   "uz": "Oddiy `let likes` o'zgarsa, React nima qiladi?",
+   "ru": "Что делает React, если меняется обычный `let likes`?"
+  },
+  "opts": [
+   {
+    "uz": "Ekranni darhol yangilaydi",
+    "ru": "Сразу обновляет экран"
+   },
+   {
+    "uz": "Hech narsa — sezmaydi",
+    "ru": "Ничего — не замечает"
+   },
+   {
+    "uz": "Xatolik chiqaradi",
+    "ru": "Выдаёт ошибку"
+   },
+   {
+    "uz": "Sahifani qayta yuklaydi",
+    "ru": "Перезагружает страницу"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 156 belgi edi.",
+  "q": {
+   "uz": "set funksiyasi chaqirilsa, React nima qiladi?",
+   "ru": "Что делает React при вызове set-функции?"
+  },
+  "opts": [
+   {
+    "uz": "Komponentni qayta chizadi",
+    "ru": "Перерисовывает компонент"
+   },
+   {
+    "uz": "Konsolga xabar yozadi",
+    "ru": "Пишет сообщение в консоль"
+   },
+   {
+    "uz": "Serverga so'rov yuboradi",
+    "ru": "Отправляет запрос на сервер"
+   },
+   {
+    "uz": "Hech narsa qilmaydi",
+    "ru": "Ничего не делает"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant boshqalardan ancha uzun edi, jami 146.",
+  "q": {
+   "uz": "`useEffect(() => {...}, [])` qachon ishlaydi?",
+   "ru": "Когда срабатывает `useEffect(() => {...}, [])`?"
+  },
+  "opts": [
+   {
+    "uz": "Har qayta chizishda",
+    "ru": "При каждой перерисовке"
+   },
+   {
+    "uz": "Ekranga chiqqanda bir marta",
+    "ru": "Один раз при появлении"
+   },
+   {
+    "uz": "Hech qachon ishlamaydi",
+    "ru": "Никогда не срабатывает"
+   },
+   {
+    "uz": "Komponent o'chirilganda",
+    "ru": "Когда компонент удаляют"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 164 belgi edi.",
+  "q": {
+   "uz": "`[likes]` bo'lsa, effect qachon ishlaydi?",
+   "ru": "Когда срабатывает эффект с `[likes]`?"
+  },
+  "opts": [
+   {
+    "uz": "Hech qachon ishlamaydi",
+    "ru": "Никогда не срабатывает"
+   },
+   {
+    "uz": "Har soniyada bir marta",
+    "ru": "Раз в секунду"
+   },
+   {
+    "uz": "Har safar `likes` o'zgarsa",
+    "ru": "Каждый раз, когда меняется `likes`"
+   },
+   {
+    "uz": "Faqat bir marta, boshida",
+    "ru": "Только один раз, в начале"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 144 belgi edi; savol qisqartirildi.",
+  "q": {
+   "uz": "Hayot yo'lining to'g'ri tartibi qaysi?",
+   "ru": "Какой порядок жизненного пути верный?"
+  },
+  "opts": [
+   "Unmount → Update → Mount",
+   "Update → Mount → Unmount",
+   "Mount → Unmount → Update",
+   "Mount → Update → Unmount"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant 46 belgi, jami 185 edi.",
+  "q": {
+   "uz": "State va props farqi nima?",
+   "ru": "Чем state отличается от props?"
+  },
+  "opts": [
+   {
+    "uz": "State ichki, props tashqaridan",
+    "ru": "State свой, props приходят извне"
+   },
+   {
+    "uz": "Ular aynan bir xil narsa",
+    "ru": "Это одно и то же"
+   },
+   {
+    "uz": "Props o'zgaradi, state yo'q",
+    "ru": "Props меняются, state нет"
+   },
+   {
+    "uz": "State faqat sonlar uchun",
+    "ru": "State только для чисел"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 150 belgi edi.",
+  "q": {
+   "uz": "Effect ichidagi `return () => {}` nima uchun?",
+   "ru": "Зачем `return () => {}` внутри эффекта?"
+  },
+  "opts": [
+   {
+    "uz": "State yaratish uchun",
+    "ru": "Чтобы создать state"
+   },
+   {
+    "uz": "Qiymat qaytarish uchun",
+    "ru": "Чтобы вернуть значение"
+   },
+   {
+    "uz": "Tozalash uchun (unmount)",
+    "ru": "Для уборки (unmount)"
+   },
+   {
+    "uz": "Rang berish uchun",
+    "ru": "Чтобы задать цвет"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Variant «Faqat funksiyadan tashqarida» savolga mos emas edi, to'g'ri javob ham eng uzun edi.",
+  "q": {
+   "uz": "Bitta komponentda nechta useState bo'lishi mumkin?",
+   "ru": "Сколько useState может быть в одном компоненте?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat bitta",
+    "ru": "Только один"
+   },
+   {
+    "uz": "Ko'pi bilan ikkita",
+    "ru": "Не больше двух"
+   },
+   {
+    "uz": "Ko'pi bilan uchta",
+    "ru": "Не больше трёх"
+   },
+   {
+    "uz": "Istagancha ko'p",
+    "ru": "Сколько угодно"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 142 belgi edi.",
+  "q": {
+   "uz": "Ikki ish ham bir kunlik. Qaysi biri birinchi?",
+   "ru": "Обе задачи на один день. Какая первой?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatda yuqori turgani",
+    "ru": "Та, что выше в списке"
+   },
+   {
+    "uz": "Qiziqroq bo'lgani",
+    "ru": "Та, что интереснее"
+   },
+   {
+    "uz": "Ko'proq odam so'ragani",
+    "ru": "Та, что просят больше людей"
+   },
+   {
+    "uz": "Kechroq so'ralgani",
+    "ru": "Та, что попросили позже"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 32 belgigacha, jami 160 edi.",
+  "q": {
+   "uz": "Ish vaqti o'zgarsa, nima qilinadi?",
+   "ru": "Что делают, если время задачи изменилось?"
+  },
+  "opts": [
+   {
+    "uz": "Kataklar o'chiriladi",
+    "ru": "Клетки удаляют"
+   },
+   {
+    "uz": "Ish ro'yxatdan olinadi",
+    "ru": "Задачу убирают из списка"
+   },
+   {
+    "uz": "Hech narsa o'zgarmaydi",
+    "ru": "Ничего не меняется"
+   },
+   {
+    "uz": "Karta yangi katakka o'tadi",
+    "ru": "Карточка переходит в новую клетку"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/PmLesson8.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 32 belgigacha, jami 159 edi.",
+  "q": {
+   "uz": "Nega Stories Instagram'da ko'proq ishlatildi?",
+   "ru": "Почему Stories больше использовали в Instagram?"
+  },
+  "opts": [
+   {
+    "uz": "Instagram'da odam ko'p edi",
+    "ru": "В Instagram было много людей"
+   },
+   {
+    "uz": "Uni birinchi chiqargan",
+    "ru": "Он выпустил их первым"
+   },
+   {
+    "uz": "Rangi chiroyliroq edi",
+    "ru": "Цвет был красивее"
+   },
+   {
+    "uz": "Uni bepul qilgan",
+    "ru": "Сделал их бесплатными"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 34 belgigacha edi.",
+  "q": {
+   "uz": "Props nima?",
+   "ru": "Что такое props?"
+  },
+  "opts": [
+   {
+    "uz": "Komponentga uzatilgan ma'lumot",
+    "ru": "Данные, переданные компоненту"
+   },
+   {
+    "uz": "Komponentning ichki rangi",
+    "ru": "Внутренний цвет компонента"
+   },
+   {
+    "uz": "Internetni tezlatuvchi sozlama",
+    "ru": "Настройка, ускоряющая интернет"
+   },
+   {
+    "uz": "Brauzer qo'shimcha dasturi",
+    "ru": "Дополнение для браузера"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 33 belgigacha, jami 144 edi.",
+  "q": {
+   "uz": "App ma'lumotni GameCard'ga qanday uzatadi?",
+   "ru": "Как App передаёт данные в GameCard?"
+  },
+  "opts": [
+   {
+    "uz": "Faylga saqlab qo'yib",
+    "ru": "Сохранив в файл"
+   },
+   {
+    "uz": "Atribut orqali: name=\"...\"",
+    "ru": "Через атрибут: name=\"...\""
+   },
+   {
+    "uz": "Internet orqali yuborib",
+    "ru": "Отправив через интернет"
+   },
+   {
+    "uz": "GameCard o'zi olib ketadi",
+    "ru": "GameCard сам забирает"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 43 belgigacha, jami 182 edi.",
+  "q": {
+   "uz": "Props qaysi yo'nalishda oqadi?",
+   "ru": "В каком направлении текут props?"
+  },
+  "opts": [
+   {
+    "uz": "Boladan otaga",
+    "ru": "От ребёнка к родителю"
+   },
+   {
+    "uz": "Ikki tomonga ham",
+    "ru": "В обе стороны"
+   },
+   {
+    "uz": "Otadan bolaga",
+    "ru": "От родителя к ребёнку"
+   },
+   {
+    "uz": "Umuman oqmaydi",
+    "ru": "Вообще не текут"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 168 belgi edi.",
+  "q": {
+   "uz": "Komponent o'z props'ini o'zgartira oladimi?",
+   "ru": "Может ли компонент менять свои props?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, xohlagancha",
+    "ru": "Да, сколько угодно"
+   },
+   {
+    "uz": "Faqat bir marta",
+    "ru": "Только один раз"
+   },
+   {
+    "uz": "Faqat kichik props'ni",
+    "ru": "Только маленькие props"
+   },
+   {
+    "uz": "Yo'q, faqat o'qiladi",
+    "ru": "Нет, они только читаются"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 62 belgi edi.",
+  "q": {
+   "uz": "O'zgarib turadigan ma'lumot uchun nima kerak?",
+   "ru": "Что нужно для меняющихся данных?"
+  },
+  "opts": [
+   {
+    "uz": "props",
+    "ru": "props"
+   },
+   {
+    "uz": "State",
+    "ru": "State"
+   },
+   {
+    "uz": "Atribut",
+    "ru": "Атрибут"
+   },
+   {
+    "uz": "map",
+    "ru": "map"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha, jami 170 edi.",
+  "q": {
+   "uz": "name={g} dagi { } qavs nima uchun?",
+   "ru": "Зачем скобки { } в name={g}?"
+  },
+  "opts": [
+   {
+    "uz": "Oddiy matn yozish uchun",
+    "ru": "Чтобы написать простой текст"
+   },
+   {
+    "uz": "Izoh qoldirish uchun",
+    "ru": "Чтобы оставить комментарий"
+   },
+   {
+    "uz": "O'zgaruvchini uzatish uchun",
+    "ru": "Чтобы передать переменную"
+   },
+   {
+    "uz": "Tegni yopish uchun",
+    "ru": "Чтобы закрыть тег"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 67 belgi edi.",
+  "q": {
+   "uz": "Bitta GameCard bir nechta props ola oladimi?",
+   "ru": "Может ли один GameCard получать несколько props?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, faqat bittasini",
+    "ru": "Нет, только один"
+   },
+   {
+    "uz": "Faqat name'ni",
+    "ru": "Только name"
+   },
+   {
+    "uz": "Faqat ikkitasini",
+    "ru": "Только два"
+   },
+   {
+    "uz": "Ha, xohlagancha",
+    "ru": "Да, сколько угодно"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 37 belgigacha, jami 191 edi.",
+  "q": {
+   "uz": "Massivga yangi o'yin qo'shilsa nima bo'ladi?",
+   "ru": "Что будет, если добавить игру в массив?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi kartochka o'zi chiqadi",
+    "ru": "Новая карточка появится сама"
+   },
+   {
+    "uz": "Katalog buzilib qoladi",
+    "ru": "Каталог сломается"
+   },
+   {
+    "uz": "Sayt eski holatda qoladi",
+    "ru": "Сайт останется прежним"
+   },
+   {
+    "uz": "Kodni qayta yozasiz",
+    "ru": "Код придётся переписать"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 74 belgi, jami 178 edi.",
+  "q": {
+   "uz": "Bir komponentni ko'p marta ishlatish nima deyiladi?",
+   "ru": "Как называется многократное использование компонента?"
+  },
+  "opts": [
+   {
+    "uz": "Qayta yuklash (reload)",
+    "ru": "Перезагрузка (reload)"
+   },
+   {
+    "uz": "Qayta ishlatish (reuse)",
+    "ru": "Переиспользование (reuse)"
+   },
+   {
+    "uz": "O'chirish (delete)",
+    "ru": "Удаление (delete)"
+   },
+   {
+    "uz": "Tarjima (translate)",
+    "ru": "Перевод (translate)"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactPropsReuseLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 73 belgi edi.",
+  "q": {
+   "uz": "<GameCard name=\"Doors\" /> da \"Doors\" nima orqali boradi?",
+   "ru": "Через что \"Doors\" попадает в <GameCard name=\"Doors\" />?"
+  },
+  "opts": [
+   {
+    "uz": "State orqali",
+    "ru": "Через state"
+   },
+   {
+    "uz": "Internet orqali",
+    "ru": "Через интернет"
+   },
+   {
+    "uz": "props orqali",
+    "ru": "Через props"
+   },
+   {
+    "uz": "Alohida fayl orqali",
+    "ru": "Через отдельный файл"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 66 belgi; to'g'ri kod boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Yangi o'yin qo'shish (Create) uchun to'g'ri kod?",
+   "ru": "Верный код для добавления игры (Create)?"
+  },
+  "opts": [
+   "games.push(yangi)",
+   "setGames([...games, yangi])",
+   "games = [...games, yangi]",
+   "setGames(yangi)"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 65 belgi edi.",
+  "q": {
+   "uz": "O'yinni o'zgartirish (Update) uchun qaysi amal?",
+   "ru": "Какой метод для изменения игры (Update)?"
+  },
+  "opts": [
+   "push",
+   "filter",
+   "pop",
+   "map"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri kod boshqalardan ancha uzun edi — uzunligidan topilardi.",
+  "q": {
+   "uz": "O'chirish (Delete) kodi qaysi?",
+   "ru": "Какой код удаляет (Delete)?"
+  },
+  "opts": [
+   "games.filter(g => g.id !== id)",
+   "games.map(g => g.id !== id)",
+   "games.filter(g => g.id === id)",
+   "games.push(id)"
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 37 belgigacha, jami 183 edi.",
+  "q": {
+   "uz": "`...games` (spread) nima qiladi?",
+   "ru": "Что делает `...games` (spread)?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatni o'chiradi",
+    "ru": "Удаляет список"
+   },
+   {
+    "uz": "Eski elementlarni ko'chiradi",
+    "ru": "Копирует старые элементы"
+   },
+   {
+    "uz": "Oxirgisini ajratib oladi",
+    "ru": "Вынимает последний"
+   },
+   {
+    "uz": "Tartibni teskari qiladi",
+    "ru": "Переворачивает порядок"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 61 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Nega React'da `push` ishlamaydi?",
+   "ru": "Почему в React не работает `push`?"
+  },
+  "opts": [
+   {
+    "uz": "push sahifani qotiradi",
+    "ru": "push вешает страницу"
+   },
+   {
+    "uz": "push faqat serverda ishlaydi",
+    "ru": "push работает только на сервере"
+   },
+   {
+    "uz": "React yangi ro'yxat ko'rmaydi",
+    "ru": "React не видит нового списка"
+   },
+   {
+    "uz": "push sonlarni qo'sha olmaydi",
+    "ru": "push не умеет с числами"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 66 belgi, jami 221 edi.",
+  "q": {
+   "uz": "`map` bilan `{...g, top: true}` nima qiladi?",
+   "ru": "Что делает `map` с `{...g, top: true}`?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma o'yinni o'chiradi",
+    "ru": "Удаляет все игры"
+   },
+   {
+    "uz": "Yangi o'yin qo'shadi",
+    "ru": "Добавляет новую игру"
+   },
+   {
+    "uz": "Ro'yxatni bo'shatadi",
+    "ru": "Очищает список"
+   },
+   {
+    "uz": "Bitta o'yinni o'zgartiradi",
+    "ru": "Меняет одну игру"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant 43 belgi, jami 171 edi.",
+  "q": {
+   "uz": "`filter` qanday ishlaydi?",
+   "ru": "Как работает `filter`?"
+  },
+  "opts": [
+   {
+    "uz": "Moslarini qoldiradi",
+    "ru": "Оставляет подходящие"
+   },
+   {
+    "uz": "Hammasini o'zgartiradi",
+    "ru": "Меняет все"
+   },
+   {
+    "uz": "Oxiriga element qo'shadi",
+    "ru": "Добавляет в конец"
+   },
+   {
+    "uz": "Sonlarni qo'shib chiqadi",
+    "ru": "Складывает числа"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 172 edi.",
+  "q": {
+   "uz": "Bu darsda ma'lumot qayerda saqlanadi?",
+   "ru": "Где хранятся данные в этом уроке?"
+  },
+  "opts": [
+   {
+    "uz": "Serverda — abadiy turadi",
+    "ru": "На сервере — навсегда"
+   },
+   {
+    "uz": "Diskda — hech o'chmaydi",
+    "ru": "На диске — не стираются"
+   },
+   {
+    "uz": "State'da — yangilansa ketadi",
+    "ru": "В state — пропадут при обновлении"
+   },
+   {
+    "uz": "Bulutda — hamma ko'radi",
+    "ru": "В облаке — видят все"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgigacha, jami 188 edi.",
+  "q": {
+   "uz": "Nega o'chirishdan oldin `confirm` so'raladi?",
+   "ru": "Зачем перед удалением спрашивают `confirm`?"
+  },
+  "opts": [
+   {
+    "uz": "Kod tezroq ishlashi uchun",
+    "ru": "Чтобы код работал быстрее"
+   },
+   {
+    "uz": "React buni talab qiladi",
+    "ru": "Этого требует React"
+   },
+   {
+    "uz": "Kartaga rang berish uchun",
+    "ru": "Чтобы покрасить карточку"
+   },
+   {
+    "uz": "O'chirilgan qaytmaydi",
+    "ru": "Удалённое не вернуть"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactApiGetLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha, jami 140 dan oshgan edi.",
+  "q": {
+   "uz": "`fetch` nima qiladi?",
+   "ru": "Что делает `fetch`?"
+  },
+  "opts": [
+   {
+    "uz": "Ma'lumot olib keladi",
+    "ru": "Приносит данные"
+   },
+   {
+    "uz": "Saytni qayta yuklaydi",
+    "ru": "Перезагружает сайт"
+   },
+   {
+    "uz": "Faylni diskka saqlaydi",
+    "ru": "Сохраняет файл на диск"
+   },
+   {
+    "uz": "Yangi bo'sh oyna ochadi",
+    "ru": "Открывает новое пустое окно"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactApiGetLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 147 belgi edi.",
+  "q": {
+   "uz": "`GET` so'rovi serverda nimani o'zgartiradi?",
+   "ru": "Что меняет на сервере запрос `GET`?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsani",
+    "ru": "Ничего"
+   },
+   {
+    "uz": "Ma'lumotni o'chiradi",
+    "ru": "Удаляет данные"
+   },
+   {
+    "uz": "Yangi yozuv yaratadi",
+    "ru": "Создаёт новую запись"
+   },
+   {
+    "uz": "Serverni o'chiradi",
+    "ru": "Выключает сервер"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactApiGetLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 198 edi.",
+  "q": {
+   "uz": "`useEffect`da bo'sh `[]` nima uchun?",
+   "ru": "Зачем пустой `[]` в `useEffect`?"
+  },
+  "opts": [
+   {
+    "uz": "Har soniyada ishlashi uchun",
+    "ru": "Чтобы работал каждую секунду"
+   },
+   {
+    "uz": "Bir marta ishlashi uchun",
+    "ru": "Чтобы сработал один раз"
+   },
+   {
+    "uz": "Har bosishda ishlashi uchun",
+    "ru": "Чтобы работал при каждом клике"
+   },
+   {
+    "uz": "Hech ishlamasligi uchun",
+    "ru": "Чтобы не работал вовсе"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactApiGetLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "tushunarsiz"
+  ],
+  "izoh": "Darsda ikkala yo'l (bo'sh oq ekran va skeleton) ko'rsatiladi — «nima ko'rsatiladi» ikki ma'noli edi.",
+  "q": {
+   "uz": "Javob kelguncha nima ko'rsatgan ma'qul?",
+   "ru": "Что лучше показывать, пока нет ответа?"
+  },
+  "opts": [
+   {
+    "uz": "Xatolik oynasi chiqadi",
+    "ru": "Окно с ошибкой"
+   },
+   {
+    "uz": "Bo'sh oq ekran turadi",
+    "ru": "Пустой белый экран"
+   },
+   {
+    "uz": "Skeleton — kulrang sharpa",
+    "ru": "Skeleton — серый силуэт"
+   },
+   {
+    "uz": "Reklama ko'rsatiladi",
+    "ru": "Показывают рекламу"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactApiGetLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 34 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Serverdan kelgan ro'yxatni ekranga kim chizadi?",
+   "ru": "Кто рисует на экране список с сервера?"
+  },
+  "opts": [
+   {
+    "uz": "`fetch` o'zi chizadi",
+    "ru": "`fetch` рисует сам"
+   },
+   {
+    "uz": "`useEffect` o'zi chizadi",
+    "ru": "`useEffect` рисует сам"
+   },
+   {
+    "uz": "`setGames` → React chizadi",
+    "ru": "`setGames` → рисует React"
+   },
+   {
+    "uz": "Qo'lda yoziladi",
+    "ru": "Пишется вручную"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactApiGetLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha, jami 186 edi.",
+  "q": {
+   "uz": "Nega `fetch → .json() → set` tartibi muhim?",
+   "ru": "Почему важен порядок `fetch → .json() → set`?"
+  },
+  "opts": [
+   {
+    "uz": "Kod chiroyli ko'rinadi",
+    "ru": "Код выглядит красиво"
+   },
+   {
+    "uz": "Tartib muhim emas",
+    "ru": "Порядок не важен"
+   },
+   {
+    "uz": "Tasodifan shunday yozilgan",
+    "ru": "Так написано случайно"
+   },
+   {
+    "uz": "Har qadam oldingisini kutadi",
+    "ru": "Каждый шаг ждёт предыдущий"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "`PUT` nima qiladi?",
+   "ru": "Что делает `PUT`?"
+  },
+  "opts": [
+   {
+    "uz": "Yozuvni faqat o'qiydi",
+    "ru": "Только читает запись"
+   },
+   {
+    "uz": "Mavjud yozuvni almashtiradi",
+    "ru": "Заменяет существующую запись"
+   },
+   {
+    "uz": "Yangi yozuv qo'shib qo'yadi",
+    "ru": "Добавляет новую запись"
+   },
+   {
+    "uz": "Yozuvni butunlay o'chiradi",
+    "ru": "Полностью удаляет запись"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 32 belgigacha edi.",
+  "q": {
+   "uz": "`JSON.stringify(yangi)` nima qiladi?",
+   "ru": "Что делает `JSON.stringify(yangi)`?"
+  },
+  "opts": [
+   {
+    "uz": "Obyektni ekranga chizadi",
+    "ru": "Рисует объект на экране"
+   },
+   {
+    "uz": "Xatolarni tekshirib chiqadi",
+    "ru": "Проверяет ошибки"
+   },
+   {
+    "uz": "Obyektni JSON matn qiladi",
+    "ru": "Делает из объекта JSON-текст"
+   },
+   {
+    "uz": "Serverdan javob oladi",
+    "ru": "Получает ответ сервера"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "`PUT` va `DELETE` da nima majburiy?",
+   "ru": "Что обязательно в `PUT` и `DELETE`?"
+  },
+  "opts": [
+   {
+    "uz": "Rang nomi",
+    "ru": "Название цвета"
+   },
+   {
+    "uz": "body qismi",
+    "ru": "Часть body"
+   },
+   {
+    "uz": "ID raqami",
+    "ru": "Номер ID"
+   },
+   {
+    "uz": "headers qismi",
+    "ru": "Часть headers"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "`fetch(url, {…})` — ikkinchi qism nima?",
+   "ru": "Что такое вторая часть `fetch(url, {…})`?"
+  },
+  "opts": [
+   {
+    "uz": "Manzilning davomi",
+    "ru": "Продолжение адреса"
+   },
+   {
+    "uz": "Kelgan javob",
+    "ru": "Пришедший ответ"
+   },
+   {
+    "uz": "Sozlamalar qutisi",
+    "ru": "Коробка настроек"
+   },
+   {
+    "uz": "Xato matni",
+    "ru": "Текст ошибки"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 37 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "`DELETE` bilan o'chirilgan yozuv qaytadimi?",
+   "ru": "Возвращается ли запись, удалённая `DELETE`?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, oson qaytariladi",
+    "ru": "Да, легко вернуть"
+   },
+   {
+    "uz": "Bir daqiqada tiklanadi",
+    "ru": "Восстановится через минуту"
+   },
+   {
+    "uz": "Serverda saqlanib qoladi",
+    "ru": "Остаётся на сервере"
+   },
+   {
+    "uz": "Yo'q, butunlay ketadi",
+    "ru": "Нет, исчезает навсегда"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactApiPostLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant 31 belgi edi.",
+  "q": {
+   "uz": "CRUD nima?",
+   "ru": "Что такое CRUD?"
+  },
+  "opts": [
+   "Copy, Run, Undo, Done",
+   "Create, Read, Undo, Done",
+   "Code, Read, Use, Debug",
+   "Create, Read, Update, Delete"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgigacha, jami 147 edi.",
+  "q": {
+   "uz": "«Tayyor» nimani anglatadi?",
+   "ru": "Что значит «готово»?"
+  },
+  "opts": [
+   {
+    "uz": "Kod xatosiz ishlayapti",
+    "ru": "Код работает без ошибок"
+   },
+   {
+    "uz": "Hamma shart bajarilgan",
+    "ru": "Все условия выполнены"
+   },
+   {
+    "uz": "Dasturchi topshirdi",
+    "ru": "Программист сдал"
+   },
+   {
+    "uz": "Sayt chiroyli ko'rinadi",
+    "ru": "Сайт выглядит красиво"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 42 belgigacha, jami 202 edi.",
+  "q": {
+   "uz": "Bo'sh buyurtma ham ketdi. Shart bajarildimi?",
+   "ru": "Ушёл и пустой заказ. Условие выполнено?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, tugma ishladi",
+    "ru": "Да, кнопка сработала"
+   },
+   {
+    "uz": "Yo'q, bo'sh o'tmasligi kerak",
+    "ru": "Нет, пустой не должен проходить"
+   },
+   {
+    "uz": "Ha, shart to'lasi haqida",
+    "ru": "Да, условие — про полный"
+   },
+   {
+    "uz": "Yo'q, buyurtma ketmagan",
+    "ru": "Нет, заказ не ушёл"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 194 belgi edi.",
+  "q": {
+   "uz": "4 shartdan faqat 1 tasi bajarildi. Ish qabul qilinadimi?",
+   "ru": "Из 4 условий выполнено только 1. Работу примут?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, muhimi bajarildi",
+    "ru": "Да, главное выполнено"
+   },
+   {
+    "uz": "Ha, qolgani keyin",
+    "ru": "Да, остальное потом"
+   },
+   {
+    "uz": "Yo'q, hammasi bajarilsin",
+    "ru": "Нет, нужно выполнить все"
+   },
+   {
+    "uz": "Yo'q, shart yozilmagan",
+    "ru": "Нет, условия не написаны"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 181 edi.",
+  "q": {
+   "uz": "«Sayt chiroyli bo'lsin» — yaxshi shartmi?",
+   "ru": "«Пусть сайт будет красивым» — хорошее условие?"
+  },
+  "opts": [
+   {
+    "uz": "Ha, qisqa va aniq",
+    "ru": "Да, коротко и ясно"
+   },
+   {
+    "uz": "Yo'q, har kim har xil ko'radi",
+    "ru": "Нет, каждый видит по-своему"
+   },
+   {
+    "uz": "Ha, bosib tekshirsa bo'ladi",
+    "ru": "Да, можно проверить нажатием"
+   },
+   {
+    "uz": "Yo'q, juda uzun yozilgan",
+    "ru": "Нет, слишком длинно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 35 belgigacha, jami 153 edi.",
+  "q": {
+   "uz": "Cyberpunk 2077 o'yini bilan nima bo'ldi?",
+   "ru": "Что случилось с игрой Cyberpunk 2077?"
+  },
+  "opts": [
+   {
+    "uz": "Kompaniyasi yopildi",
+    "ru": "Компания закрылась"
+   },
+   {
+    "uz": "Qaytadan chiqarildi",
+    "ru": "Её выпустили заново"
+   },
+   {
+    "uz": "Do'kondan olib tashlandi",
+    "ru": "Её убрали из магазина"
+   },
+   {
+    "uz": "Nomi o'zgartirildi",
+    "ru": "Её переименовали"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 142 belgi edi.",
+  "q": {
+   "uz": "Tutilmagan nosozlik eng ko'p nimani yo'qotdi?",
+   "ru": "Что больше всего потеряла непойманная неполадка?"
+  },
+  "opts": [
+   {
+    "uz": "Boshqa o'yinlar sotuvini",
+    "ru": "Продажи других игр"
+   },
+   {
+    "uz": "Reklama pulini",
+    "ru": "Деньги на рекламу"
+   },
+   {
+    "uz": "Xaridorlar pulini",
+    "ru": "Деньги покупателей"
+   },
+   {
+    "uz": "Odamlar ishonchini",
+    "ru": "Доверие людей"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/PmLesson9.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 148 belgi edi.",
+  "q": {
+   "uz": "Yozilgan shartlarni kimga berasiz?",
+   "ru": "Кому вы отдаёте написанные условия?"
+  },
+  "opts": [
+   {
+    "uz": "Ishni bajaradigan dasturchiga",
+    "ru": "Программисту, который делает работу"
+   },
+   {
+    "uz": "Bufetdagi xodimga",
+    "ru": "Работнику буфета"
+   },
+   {
+    "uz": "Sinfdoshingizga",
+    "ru": "Однокласснику"
+   },
+   {
+    "uz": "Hech kimga, o'zimda qoladi",
+    "ru": "Никому, оставлю у себя"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 33 belgigacha, jami 160 edi.",
+  "q": {
+   "uz": "`<Link>` va `<a>` farqi nima?",
+   "ru": "Чем отличаются `<Link>` и `<a>`?"
+  },
+  "opts": [
+   {
+    "uz": "<Link> qayta yuklamaydi",
+    "ru": "<Link> не перезагружает"
+   },
+   {
+    "uz": "<Link> doim sekinroq",
+    "ru": "<Link> всегда медленнее"
+   },
+   {
+    "uz": "<a> — Router havolasi",
+    "ru": "<a> — ссылка Router"
+   },
+   {
+    "uz": "Ular aynan bir xil",
+    "ru": "Они одинаковые"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 145 belgi edi.",
+  "q": {
+   "uz": "Oddiy `<a href>` bosilsa nima bo'ladi?",
+   "ru": "Что будет при клике на обычный `<a href>`?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat rang o'zgaradi",
+    "ru": "Меняется только цвет"
+   },
+   {
+    "uz": "Butun sahifa qayta yuklanadi",
+    "ru": "Перезагружается вся страница"
+   },
+   {
+    "uz": "Hech narsa o'zgarmaydi",
+    "ru": "Ничего не меняется"
+   },
+   {
+    "uz": "Ilova butunlay o'chadi",
+    "ru": "Приложение выключается"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 145 belgi edi.",
+  "q": {
+   "uz": "`/game/:id` dagi `:id` nima?",
+   "ru": "Что такое `:id` в `/game/:id`?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifadagi rasm o'lchami",
+    "ru": "Размер картинки"
+   },
+   {
+    "uz": "Har doim 7-o'yin raqami",
+    "ru": "Всегда номер 7-й игры"
+   },
+   {
+    "uz": "O'zgaruvchan o'yin raqami",
+    "ru": "Меняющийся номер игры"
+   },
+   {
+    "uz": "7 soniya kutish",
+    "ru": "Ожидание 7 секунд"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 143 belgi edi.",
+  "q": {
+   "uz": "SPA nimasi bilan ajralib turadi?",
+   "ru": "Чем отличается SPA?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta rasmdan iborat",
+    "ru": "Состоит из одной картинки"
+   },
+   {
+    "uz": "Internetsiz ishlaydi",
+    "ru": "Работает без интернета"
+   },
+   {
+    "uz": "Sahifa qayta yuklanmaydi",
+    "ru": "Страница не перезагружается"
+   },
+   {
+    "uz": "Bitta tugmasi bor",
+    "ru": "Есть одна кнопка"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 64 belgi; «<BrowserRouter>» boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "main.jsx'da ilova nima bilan o'raladi?",
+   "ru": "Чем оборачивают приложение в main.jsx?"
+  },
+  "opts": [
+   "<Routes>",
+   "<Link>",
+   "useNavigate()",
+   "<BrowserRouter>"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactProjectDayLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 37 belgi, boshqalardan ancha uzun edi; darsdagi «har qadamdan keyin brauzerda tekshirish» so'raladi.",
+  "q": {
+   "uz": "AI bilan qurishda har qismdan keyin nima qilinadi?",
+   "ru": "Что делают после каждой части при сборке с AI?"
+  },
+  "opts": [
+   {
+    "uz": "Loyiha boshidan yoziladi",
+    "ru": "Проект пишут заново"
+   },
+   {
+    "uz": "Hech narsa qilinmaydi",
+    "ru": "Ничего не делают"
+   },
+   {
+    "uz": "AI javobi kutiladi",
+    "ru": "Ждут ответа AI"
+   },
+   {
+    "uz": "Brauzerda tekshiriladi",
+    "ru": "Проверяют в браузере"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactProjectDayLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 161 belgi edi.",
+  "q": {
+   "uz": "AI javobi chala chiqsa, nima qilasiz?",
+   "ru": "Что делать, если ответ AI неполный?"
+  },
+  "opts": [
+   {
+    "uz": "Loyihani tashlayman",
+    "ru": "Брошу проект"
+   },
+   {
+    "uz": "Aniqlashtiruvchi prompt",
+    "ru": "Уточняющий промпт"
+   },
+   {
+    "uz": "Hammasini qo'lda yozaman",
+    "ru": "Напишу всё вручную"
+   },
+   {
+    "uz": "Shundayicha qabul qilaman",
+    "ru": "Приму как есть"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactProjectDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Mashinalar katalogi ekranga nima bilan chiqadi?",
+   "ru": "Чем каталог машин выводится на экран?"
+  },
+  "opts": [
+   {
+    "uz": "`Router` + `Link`",
+    "ru": "`Router` + `Link`"
+   },
+   {
+    "uz": "`confirm` + CSS",
+    "ru": "`confirm` + CSS"
+   },
+   {
+    "uz": "`GET` + `map`",
+    "ru": "`GET` + `map`"
+   },
+   {
+    "uz": "Faqat CSS",
+    "ru": "Только CSS"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactProjectDayLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Sahifadan sahifaga o'tish nima bilan?",
+   "ru": "Чем делается переход между страницами?"
+  },
+  "opts": [
+   "`useState` bilan",
+   "Router (`<Route>`)",
+   "`fetch` bilan",
+   "`map` bilan"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactProjectDayLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant 33 belgi edi.",
+  "q": {
+   "uz": "Debugging nima?",
+   "ru": "Что такое дебаггинг?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni chiroyli bezash",
+    "ru": "Красиво оформить сайт"
+   },
+   {
+    "uz": "Serverni qayta yoqish",
+    "ru": "Перезапустить сервер"
+   },
+   {
+    "uz": "Yangi shrift qo'shish",
+    "ru": "Добавить новый шрифт"
+   },
+   {
+    "uz": "Xatoni topib tuzatish",
+    "ru": "Найти и исправить ошибку"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/ReactProjectDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 40 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Loyihada birinchi qadam nima?",
+   "ru": "Какой первый шаг в проекте?"
+  },
+  "opts": [
+   {
+    "uz": "Darrov kod yozish",
+    "ru": "Сразу писать код"
+   },
+   {
+    "uz": "Sahifalarga bo'laklash",
+    "ru": "Разбить на страницы"
+   },
+   {
+    "uz": "AI'ni kutib turish",
+    "ru": "Ждать AI"
+   },
+   {
+    "uz": "Sayt rangini tanlash",
+    "ru": "Выбрать цвет сайта"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "To'g'ri variant 35 belgi, jami 159 edi.",
+  "q": {
+   "uz": "Katta saytni AI bilan qanday qurasiz?",
+   "ru": "Как собрать большой сайт с AI?"
+  },
+  "opts": [
+   {
+    "uz": "Bo'laklab, har biriga prompt",
+    "ru": "По частям, на каждую промпт"
+   },
+   {
+    "uz": "Bir jumlada hammasini so'rash",
+    "ru": "Попросить всё одной фразой"
+   },
+   {
+    "uz": "Hammasini qo'lda yozish",
+    "ru": "Написать всё вручную"
+   },
+   {
+    "uz": "Avval rangni tanlash",
+    "ru": "Сначала выбрать цвет"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Saytni sahifalarga qanday bo'lamiz?",
+   "ru": "Как делим сайт на страницы?"
+  },
+  "opts": [
+   "useState bilan",
+   "Router (<Route>)",
+   "props bilan",
+   "map bilan"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 60 belgi, boshqalar 7–17 belgi edi.",
+  "q": {
+   "uz": "Qaysi prompt eng aniq?",
+   "ru": "Какой промпт самый точный?"
+  },
+  "opts": [
+   {
+    "uz": "Chiroyli ovqat sayti qur",
+    "ru": "Сделай красивый сайт еды"
+   },
+   {
+    "uz": "Hero, 8 TaomCard (nom, narx)",
+    "ru": "Hero, 8 TaomCard (название, цена)"
+   },
+   {
+    "uz": "Sayt qur, tez bo'lsin",
+    "ru": "Сделай сайт, побыстрее"
+   },
+   {
+    "uz": "Menga yaxshi kod yoz",
+    "ru": "Напиши мне хороший код"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 41 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Aniq prompt nimalardan iborat?",
+   "ru": "Из чего состоит точный промпт?"
+  },
+  "opts": [
+   {
+    "uz": "Rang + shrift + logotip",
+    "ru": "Цвет + шрифт + логотип"
+   },
+   {
+    "uz": "Faqat bo'limlar nomi",
+    "ru": "Только названия секций"
+   },
+   {
+    "uz": "Bo'limlar + mazmun + ma'lumot",
+    "ru": "Секции + содержание + данные"
+   },
+   {
+    "uz": "Faqat sayt mavzusi",
+    "ru": "Только тема сайта"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "AI hamma kodni bitta komponentga yozdi. Nima qilasiz?",
+   "ru": "AI написал весь код в один компонент. Что делать?"
+  },
+  "opts": [
+   {
+    "uz": "Bo'limlarga bo'ldiraman",
+    "ru": "Попрошу разбить на секции"
+   },
+   {
+    "uz": "Shundayicha qoldiraman",
+    "ru": "Оставлю как есть"
+   },
+   {
+    "uz": "Hammasini o'chiraman",
+    "ru": "Удалю всё"
+   },
+   {
+    "uz": "Yana kod qo'shtiraman",
+    "ru": "Попрошу добавить код"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "kalit-xato",
+   "darsda-yoq",
+   "togri-uzun"
+  ],
+  "izoh": "Darsda fetch/API yo'q: taomlar App.jsx dagi massivdan keladi, kalit «API (fetch)» noto'g'ri edi.",
+  "q": {
+   "uz": "«Yetkaz»da taomlar ro'yxati qayerda turadi?",
+   "ru": "Где в «Yetkaz» хранится список блюд?"
+  },
+  "opts": [
+   "Router (<Route>)",
+   "App.jsx'dagi massiv",
+   "Gemini prompti",
+   "index.css fayli"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri variant 35 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "map() nima qiladi?",
+   "ru": "Что делает map()?"
+  },
+  "opts": [
+   {
+    "uz": "Yangi sahifa ochadi",
+    "ru": "Открывает новую страницу"
+   },
+   {
+    "uz": "AI uchun prompt yozadi",
+    "ru": "Пишет промпт для AI"
+   },
+   {
+    "uz": "Har elementga karta chizadi",
+    "ru": "Рисует карточку для каждого элемента"
+   },
+   {
+    "uz": "Kartaga rang beradi",
+    "ru": "Красит карточку"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 33 belgigacha, jami 144 edi.",
+  "q": {
+   "uz": "Ishlaydigan sayt o'zi nimani aytmaydi?",
+   "ru": "Чего не говорит сам работающий сайт?"
+  },
+  "opts": [
+   {
+    "uz": "Nima uchun kerakligini",
+    "ru": "Зачем он нужен"
+   },
+   {
+    "uz": "Qanday tugmalar borligini",
+    "ru": "Какие есть кнопки"
+   },
+   {
+    "uz": "Qanday ro'yxat borligini",
+    "ru": "Какой есть список"
+   },
+   {
+    "uz": "Qanday ko'rinishini",
+    "ru": "Как он выглядит"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 157 belgi edi.",
+  "q": {
+   "uz": "Ekranni takrorlagan gap nima qo'shadi?",
+   "ru": "Что добавляет фраза, повторяющая экран?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'rinmagan narsani",
+    "ru": "То, чего не видно"
+   },
+   {
+    "uz": "Hech narsa qo'shmaydi",
+    "ru": "Ничего не добавляет"
+   },
+   {
+    "uz": "Ilgari og'ir bo'lganini",
+    "ru": "Как раньше было тяжело"
+   },
+   {
+    "uz": "Tugma natijasini",
+    "ru": "Результат кнопки"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 194 edi.",
+  "q": {
+   "uz": "«Bu — bosh sahifa» degan gap nima qiladi?",
+   "ru": "Что делает фраза «Это — главная страница»?"
+  },
+  "opts": [
+   {
+    "uz": "Ilgarisini aytadi",
+    "ru": "Рассказывает, как было"
+   },
+   {
+    "uz": "Natijani ko'rsatadi",
+    "ru": "Показывает результат"
+   },
+   {
+    "uz": "Nega kerakligini aytadi",
+    "ru": "Говорит, зачем нужен"
+   },
+   {
+    "uz": "Ekrandagini takrorlaydi",
+    "ru": "Повторяет то, что на экране"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 33 belgigacha, jami 149 edi.",
+  "q": {
+   "uz": "Birinchi kadrda nima aytiladi?",
+   "ru": "Что говорят в первом кадре?"
+  },
+  "opts": [
+   {
+    "uz": "Endi nima osonlashgani",
+    "ru": "Что теперь стало легче"
+   },
+   {
+    "uz": "Ilgari ish qanday qilinardi",
+    "ru": "Как дело делали раньше"
+   },
+   {
+    "uz": "Hozir qaysi tugma bosilyapti",
+    "ru": "Какую кнопку нажимают"
+   },
+   {
+    "uz": "Sayt qaysi dasturda yozilgan",
+    "ru": "В какой программе сделан сайт"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 39 belgigacha, jami 177 edi.",
+  "q": {
+   "uz": "Ikkinchi kadrda nima bo'ladi?",
+   "ru": "Что происходит во втором кадре?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma sahifa ochiladi",
+    "ru": "Открывают все страницы"
+   },
+   {
+    "uz": "Ilgari og'irligi aytiladi",
+    "ru": "Говорят, как было тяжело"
+   },
+   {
+    "uz": "Kimlar uchun ekani aytiladi",
+    "ru": "Говорят, для кого сайт"
+   },
+   {
+    "uz": "Bitta bosish va uning natijasi",
+    "ru": "Одно нажатие и его результат"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgigacha, jami 179 edi.",
+  "q": {
+   "uz": "Ko'rsatuvda qanday joy bosiladi?",
+   "ru": "Какое место нажимают в показе?"
+  },
+  "opts": [
+   {
+    "uz": "Eng chiroyli joy",
+    "ru": "Самое красивое место"
+   },
+   {
+    "uz": "Birinchi ko'ringan joy",
+    "ru": "Первое попавшееся место"
+   },
+   {
+    "uz": "Ish chindan bajariladigan joy",
+    "ru": "Место, где дело правда делается"
+   },
+   {
+    "uz": "Menyudagi birinchi bo'lim",
+    "ru": "Первый пункт меню"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 145 belgi edi.",
+  "q": {
+   "uz": "Airbnb o'z ishini nima bilan tushuntirgan?",
+   "ru": "Чем Airbnb объяснял свою идею?"
+  },
+  "opts": [
+   {
+    "uz": "Uzun yozma hisobot bilan",
+    "ru": "Длинным письменным отчётом"
+   },
+   {
+    "uz": "O'ntacha oddiy varaq bilan",
+    "ru": "Примерно десятью простыми слайдами"
+   },
+   {
+    "uz": "Ko'chadagi reklama bilan",
+    "ru": "Уличной рекламой"
+   },
+   {
+    "uz": "Bir soatlik video bilan",
+    "ru": "Часовым видео"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/3-Modull/PmLesson10.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 59, jami 193 belgi edi.",
+  "q": {
+   "uz": "Odam natijani ko'rishi uchun kodda nima kerak?",
+   "ru": "Что нужно в коде, чтобы человек увидел результат?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat dasturchiga yozuv",
+    "ru": "Запись только для программиста"
+   },
+   {
+    "uz": "Kod ichidagi izoh qatori",
+    "ru": "Строка-комментарий в коде"
+   },
+   {
+    "uz": "Boshqa sahifaga tugma",
+    "ru": "Кнопка на другую страницу"
+   },
+   {
+    "uz": "Ekranda tasdiq qatori",
+    "ru": "Строка-подтверждение на экране"
+   }
+  ],
+  "correct": 3
+ }
+]

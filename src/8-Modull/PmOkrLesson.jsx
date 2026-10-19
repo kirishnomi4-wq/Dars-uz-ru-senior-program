@@ -117,6 +117,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -194,8 +219,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -973,10 +998,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda OKR doskasining skeleti o'zi yoziladi — matnsiz; o'ngda «01 · matn · teg») =====
 const REJA = [
-  { t: { uz: "Qaysi raqamni o'stirishni tanlaysiz", ru: 'Выберете, какое число увеличивать' }, teg: { uz: 'bosh raqam', ru: 'главное число' } },
-  { t: { uz: "Oy oxirida yetganingizni sanashni o'rganasiz", ru: 'Научитесь считать, чего достигли к концу месяца' }, teg: { uz: 'asosiy natija', ru: 'ключевой результат' } },
-  { t: { uz: "Oyning birinchi o'zgarishini tanlaysiz", ru: 'Выберете первое изменение месяца' }, teg: { uz: 'tajriba', ru: 'эксперимент' } },
-  { t: { uz: 'Loyihangizga keyingi oy uchun yozasiz', ru: 'Напишете для своего проекта на следующий месяц' }, teg: { uz: 'OKR', ru: 'OKR' } }
+  { t: { uz: "Qaysi raqamni o'stirishni tanlang", ru: 'Выберите, какое число увеличивать' }, teg: { uz: 'bosh raqam', ru: 'главное число' } },
+  { t: { uz: "Oy oxirida yetganingizni sanashni o'rganing", ru: 'Научитесь считать, чего достигли к концу месяца' }, teg: { uz: 'asosiy natija', ru: 'ключевой результат' } },
+  { t: { uz: "Oyning birinchi o'zgarishini tanlang", ru: 'Выберите первое изменение месяца' }, teg: { uz: 'tajriba', ru: 'эксперимент' } },
+  { t: { uz: 'Loyihangizga keyingi oy uchun yozing', ru: 'Напишите для своего проекта на следующий месяц' }, teg: { uz: 'OKR', ru: 'OKR' } }
 ];
 // Skelet: kulrang chiziqlar 0.9 s oraliqda birma-bir to'q chiziqqa aylanadi, oxirida tajriba chizig'i bitta qatorga ulanadi
 const OkrSkelet = () => {
@@ -1757,18 +1782,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol, to'g'ri javob: A — 1, 5, 9 · B — 2, 6, 10 · C — 3, 7, 11 · D — 4, 8, 12 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: '«Maydon»da bosh raqam qaysi?', ru: 'Какое главное число у «Maydon»?' }, opts: [{ uz: 'Haftada band qilingan vaqtlar', ru: "Брони за неделю" }, { uz: 'Haftada saytni ochganlar soni', ru: 'Число открывших сайт за неделю' }, { uz: 'Haftada vaqt tanlaganlar soni', ru: 'Число выбравших время за неделю' }, { uz: "Haftada chatga yozilgan e'lonlar", ru: 'Объявления в чате за неделю' }], correct: 0 },
-  { q: { uz: "Qaysi gap maqsad bo'la oladi?", ru: 'Какая фраза может быть целью?' }, opts: [{ uz: 'Har haftada 20 ta vaqt band qilinsin', ru: "Пусть каждую неделю будет 20 броней" }, { uz: "O'yinchilar maydonni oson band qilsin", ru: "Пусть игроки легко бронируют поле" }, { uz: "Tugmaga tanlangan soatni yozib qo'yish", ru: 'Написать на кнопке выбранный час' }, { uz: 'Band qilganlar foizi 40 ga yetib borsin', ru: 'Процент забронировавших пусть дойдёт до 40' }], correct: 1 },
-  { q: { uz: '«Haftada band qilingan vaqtlar: hozir 6, oy oxirida 20» — bu nima?', ru: "«Брони за неделю: сейчас 6, к концу месяца 20» — что это?" }, opts: [{ uz: 'Maqsad qatori', ru: 'Строка цели' }, { uz: 'Tajriba qatori', ru: 'Строка эксперимента' }, { uz: 'Asosiy natija', ru: 'Ключевой результат' }, { uz: 'Mehnat raqami', ru: "Число труда" }], correct: 2 },
+  { q: { uz: "«Maydon»da haftalik bosh raqam qaysi?", ru: "Какое главное число «Maydon» за неделю?" }, opts: [{ uz: "Band qilingan vaqtlar", ru: "Забронированные слоты" }, { uz: "Saytni ochganlar", ru: "Открывшие сайт" }, { uz: "Vaqt tanlaganlar", ru: "Выбравшие время" }, { uz: "Chatdagi e'lonlar", ru: "Объявления в чате" }], correct: 0 },
+  { q: { uz: "Qaysi gap maqsad bo'la oladi?", ru: "Какая фраза может быть целью?" }, opts: [{ uz: "Haftada 20 band bo'lsin", ru: "20 броней в неделю" }, { uz: "O'yinchilar oson band qilsin", ru: "Игроки бронируют легко" }, { uz: "Tugmaga soatni yozish", ru: "Написать час на кнопке" }, { uz: "Foiz 40 ga yetsin", ru: "Процент дойдёт до 40" }], correct: 1 },
+  { q: { uz: "«Bandlar: hozir 6, oy oxirida 20» — bu qaysi qator?", ru: "«Брони: сейчас 6, к концу месяца 20» — что это за строка?" }, opts: [{ uz: "Maqsad qatori", ru: "Строка цели" }, { uz: "Tajriba qatori", ru: "Строка эксперимента" }, { uz: "Asosiy natija", ru: "Ключевой результат" }, { uz: "Mehnat raqami", ru: "Число труда" }], correct: 2 },
   { q: { uz: 'Hozirgi raqamni bilmasangiz, nima yozasiz?', ru: 'Что напишете, если не знаете текущее число?' }, opts: [{ uz: 'Oy oxiridagi raqamni', ru: 'Число к концу месяца' }, { uz: "O'ylab topilgan raqamni", ru: 'Придуманное число' }, { uz: 'Hozircha 0 raqamini', ru: "Пока что 0" }, { uz: "So'roq belgisini", ru: 'Вопросительный знак' }], correct: 3 },
   { q: { uz: 'Vaqtni 50 kishi tanladi, 20 tasi band qildi. Foiz qancha?', ru: 'Время выбрали 50 человек, 20 забронировали. Какой процент?' }, opts: [{ uz: '40 foiz', ru: '40 процентов' }, { uz: '20 foiz', ru: '20 процентов' }, { uz: '30 foiz', ru: '30 процентов' }, { uz: '250 foiz', ru: '250 процентов' }], correct: 0 },
-  { q: { uz: '«Sayt uchun yozilgan yangi matnlar: 0 dan 5 ga» — qanday raqam?', ru: '«Новые тексты для сайта: с 0 до 5» — какое это число?' }, opts: [{ uz: 'Bosh raqam', ru: 'Главное число' }, { uz: 'Mehnat raqami', ru: "Число труда" }, { uz: 'Asosiy natija', ru: 'Ключевой результат' }, { uz: 'Qadam foizi', ru: 'Процент шага' }], correct: 1 },
+  { q: { uz: "«Yozilgan yangi matnlar: 0 dan 5 ga» — qanday raqam?", ru: "«Новые написанные тексты: с 0 до 5» — что это за число?" }, opts: [{ uz: "Bosh raqam", ru: "Главное число" }, { uz: "Mehnat raqami", ru: "Число труда" }, { uz: "Asosiy natija", ru: "Ключевой результат" }, { uz: "Qadam foizi", ru: "Процент шага" }], correct: 1 },
   { q: { uz: "«Maydon» tajribasida nima o'zgaradi?", ru: 'Что меняется в эксперименте «Maydon»?' }, opts: [{ uz: 'Saytning ranglari va shrifti', ru: 'Цвета и шрифт сайта' }, { uz: 'Vaqt kataklarining soni', ru: 'Число ячеек времени' }, { uz: 'Band qilish tugmasi matni', ru: 'Текст кнопки бронирования' }, { uz: 'Ega sahifasidagi parol', ru: 'Пароль на странице владельца' }], correct: 2 },
-  { q: { uz: "Tajriba nega bitta o'zgarish bo'ladi?", ru: 'Почему эксперимент — одно изменение?' }, opts: [{ uz: "Bitta o'zgarishni tezroq qilsa bo'ladi", ru: 'Одно изменение можно сделать быстрее' }, { uz: "Bitta o'zgarishni yozish qisqaroq", ru: 'Одно изменение короче записать' }, { uz: 'Doskada tajriba uchun bitta qator bor', ru: 'На доске одна строка для эксперимента' }, { uz: 'Yordam bergan narsa osonroq ajraladi', ru: 'Легче понять, что помогло' }], correct: 3 },
-  { q: { uz: 'OKR qisqartmasi qaysi qismlarni bildiradi?', ru: 'Какие части означает сокращение OKR?' }, opts: [{ uz: 'Maqsad va asosiy natijalar', ru: 'Цель и ключевые результаты' }, { uz: 'Bosh raqam va qadam foizlari', ru: 'Главное число и проценты шагов' }, { uz: 'Muammo gapi va yechimlar', ru: "Формулировка проблемы и решения" }, { uz: 'Tajriba va qilinadigan ishlar', ru: 'Эксперимент и список дел' }], correct: 0 },
-  { q: { uz: 'Sinfdosh maqsadiga «haftada 30 buyurtma» deb yozdi. Nima qilasiz?', ru: 'Одноклассник написал в цель «30 заказов в неделю». Что сделаете?' }, opts: [{ uz: "Shunday qoldirasiz, maqsad tayyor bo'ldi", ru: 'Оставите так, цель готова' }, { uz: "Raqamni asosiy natijaga o'tkazasiz", ru: 'Перенесёте число в ключевой результат' }, { uz: "Raqamni tajriba qatoriga ko'chirasiz", ru: 'Перенесёте число в строку эксперимента' }, { uz: "Yoniga yana bitta raqam qo'shasiz", ru: 'Добавите рядом ещё одно число' }], correct: 1 },
-  { q: { uz: '«Ikkinchi marta band qilganlar» nimani ko\'rsatadi?', ru: 'Что показывают «забронировавшие второй раз»?' }, opts: [{ uz: 'Saytni nechta odam ochganini', ru: 'Сколько людей открыли сайт' }, { uz: 'Vaqt tanlaganlar foizini', ru: 'Процент выбравших время' }, { uz: "O'yinchilar qaytib kelganini", ru: 'Что игроки вернулись' }, { uz: 'Ega nechta vaqt ochganini', ru: "Сколько ячеек времени открыл владелец" }], correct: 2 },
-  { q: { uz: 'Sinfdosh tajribasi bitta, lekin hech bir qatorga ulanmagan. Nima qilasiz?', ru: "У одноклассника один эксперимент, но он не привязан ни к одной строке. Что сделаете?" }, opts: [{ uz: "Yana ikkita tajriba yozib qo'yasiz", ru: 'Допишете ещё два эксперимента' }, { uz: "Tajribani maqsad qatoriga ko'chirasiz", ru: 'Перенесёте эксперимент в строку цели' }, { uz: "Tajribani doskadan o'chirib tashlaysiz", ru: 'Удалите эксперимент с доски' }, { uz: 'U tegadigan asosiy natijaga ulaysiz', ru: "Привяжете к ключевому результату, которого он касается" }], correct: 3 }
+  { q: { uz: "Tajriba nega bitta o'zgarish?", ru: "Почему эксперимент — одно изменение?" }, opts: [{ uz: "Uni tezroq qilsa bo'ladi", ru: "Его можно сделать быстрее" }, { uz: "Uni yozish qisqaroq bo'ladi", ru: "Его короче записать" }, { uz: "Doskada bitta qator bor", ru: "На доске одна строка" }, { uz: "Nima yordam bergani ajraladi", ru: "Видно, что именно помогло" }], correct: 3 },
+  { q: { uz: "OKR qaysi qismlardan iborat?", ru: "Из каких частей состоит OKR?" }, opts: [{ uz: "Maqsad va asosiy natijalar", ru: "Цель и ключевые результаты" }, { uz: "Bosh raqam va foizlar", ru: "Главное число и проценты" }, { uz: "Muammo va yechimlar", ru: "Проблема и решения" }, { uz: "Tajriba va ishlar", ru: "Эксперимент и задачи" }], correct: 0 },
+  { q: { uz: "Maqsad qatoriga raqam yozilgan. Nima qilasiz?", ru: "В строке цели написано число. Что делаете?" }, opts: [{ uz: "Shunday qoldirasiz", ru: "Оставляете так" }, { uz: "Asosiy natijaga o'tkazasiz", ru: "Переносите в ключевой результат" }, { uz: "Tajriba qatoriga o'tkazasiz", ru: "Переносите в эксперимент" }, { uz: "Yana bir raqam qo'shasiz", ru: "Добавляете ещё число" }], correct: 1 },
+  { q: { uz: "«Ikkinchi marta band qilganlar» nimani sanaydi?", ru: "Что считает «забронировавшие второй раз»?" }, opts: [{ uz: "Saytni ochganlarni", ru: "Открывших сайт" }, { uz: "Vaqt tanlaganlarni", ru: "Выбравших время" }, { uz: "Qaytib kelganlarni", ru: "Вернувшихся" }, { uz: "Ega ochgan vaqtlarni", ru: "Слоты, открытые владельцем" }], correct: 2 },
+  { q: { uz: "Tajriba hech qatorga ulanmagan. Nima qilasiz?", ru: "Эксперимент не привязан ни к одной строке. Что делаете?" }, opts: [{ uz: "Yana tajriba qo'shasiz", ru: "Добавляете ещё эксперимент" }, { uz: "Maqsad qatoriga ko'chirasiz", ru: "Переносите в цель" }, { uz: "Doskadan o'chirasiz", ru: "Удаляете с доски" }, { uz: "Asosiy natijaga ulaysiz", ru: "Привязываете к ключевому результату" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2413,7 +2438,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
         togri={correct} jami={total}
         sarlavha={tr({ uz: <>Loyihangizda endi <A>OKR va birinchi tajriba</A> bor.</>, ru: <>Теперь у проекта <A>OKR и первый эксперимент</A>.</> })}
         cta={<>
-          <OkrStrip />
           <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
             <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
           </div>

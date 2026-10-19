@@ -1,0 +1,5651 @@
+[
+ {
+  "key": "m4-01",
+  "file": "src/4-Modull/DataIntroLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "JSON nima?",
+     "ru": "Что такое JSON?"
+    },
+    "opts": [
+     {
+      "uz": "Rasmlarni siqadigan fayl formati",
+      "ru": "Формат файла для сжатия картинок"
+     },
+     {
+      "uz": "Tartibli kalit: qiymat juftliklari",
+      "ru": "Упорядоченные пары ключ: значение"
+     },
+     {
+      "uz": "Internet tezligini o'lchaydigan usul",
+      "ru": "Способ измерять скорость интернета"
+     },
+     {
+      "uz": "Brauzer turi yoki versiyasi",
+      "ru": "Тип или версия браузера"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 10,
+     "maxVariant": 36,
+     "jami": 139,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Jadvalda `id` ustuni nima uchun kerak?",
+     "ru": "Зачем таблице столбец `id`?"
+    },
+    "opts": [
+     {
+      "uz": "Har yozuvni yagona raqam bilan belgilash",
+      "ru": "Помечать каждую запись уникальным номером"
+     },
+     {
+      "uz": "Yozuvning rangini xotirada saqlab qo'yish",
+      "ru": "Хранить в памяти цвет записи"
+     },
+     {
+      "uz": "Sahifani ekranga chizib berish uchun",
+      "ru": "Чтобы рисовать страницу на экране"
+     },
+     {
+      "uz": "Hech narsaga — ortiqcha ustun",
+      "ru": "Ни за чем — лишний столбец"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 41,
+     "jami": 184,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Server o'chsa, postlar qayerda saqlanib qoladi?",
+     "ru": "Если сервер выключится, где сохранятся посты?"
+    },
+    "opts": [
+     {
+      "uz": "Hech qayerda — butunlay yo'qoladi",
+      "ru": "Нигде — пропадут насовсем"
+     },
+     {
+      "uz": "Serverning vaqtinchalik xotirasida",
+      "ru": "Во временной памяти сервера"
+     },
+     {
+      "uz": "Brauzer keshida — vaqtincha",
+      "ru": "В кеше браузера — временно"
+     },
+     {
+      "uz": "Ma'lumotlar bazasida (diskda)",
+      "ru": "В базе данных (на диске)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 34,
+     "jami": 170,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Jadvaldagi bitta `qator` (row) nima?",
+     "ru": "Что такое одна `строка` (row) в таблице?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta ustunning nomi",
+      "ru": "Название одного столбца"
+     },
+     {
+      "uz": "Butun jadvalning o'zi",
+      "ru": "Вся таблица целиком"
+     },
+     {
+      "uz": "Bitta to'liq yozuv — bitta post",
+      "ru": "Одна целая запись — один пост"
+     },
+     {
+      "uz": "Faqat eng yuqoridagi ustun nomlari qatori",
+      "ru": "Только верхняя строка с названиями столбцов"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 41,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "`posts.user_id` ustuni nimaga kerak?",
+     "ru": "Зачем нужен столбец `posts.user_id`?"
+    },
+    "opts": [
+     {
+      "uz": "Postning rangini saqlab qo'yish uchun",
+      "ru": "Чтобы хранить цвет поста"
+     },
+     {
+      "uz": "Ortiqcha ustun — hech narsaga",
+      "ru": "Лишний столбец — ни за чем"
+     },
+     {
+      "uz": "Postni butunlay o'chirish uchun",
+      "ru": "Чтобы полностью удалить пост"
+     },
+     {
+      "uz": "Post qaysi foydalanuvchiga tegishli",
+      "ru": "Какому пользователю принадлежит пост"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 37,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`Sxema` nima?",
+     "ru": "Что такое `схема`?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta jadvalning nomi",
+      "ru": "Название одной таблицы"
+     },
+     {
+      "uz": "Ilovaning butun ma'lumot xaritasi",
+      "ru": "Карта всех данных приложения"
+     },
+     {
+      "uz": "Ilovaning rang palitrasi",
+      "ru": "Цветовая палитра приложения"
+     },
+     {
+      "uz": "Serverning internetdagi to'liq manzili",
+      "ru": "Полный интернет-адрес сервера"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 13,
+     "maxVariant": 38,
+     "jami": 129,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`comments.post_id` qaysi ustunga ulanadi?",
+     "ru": "`comments.post_id` — к какому столбцу подключается?"
+    },
+    "opts": [
+     "`users.id`",
+     "`comments.id`",
+     "`posts.id`",
+     "`users.username`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 16,
+     "jami": 90,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Jadvaldagi bitta `ustun` (column) nima?",
+     "ru": "Что такое один `столбец` (column) в таблице?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta maydon — hamma sarlavhalar",
+      "ru": "Одно поле — например, все заголовки"
+     },
+     {
+      "uz": "Butun jadvalning o'zi",
+      "ru": "Вся таблица целиком"
+     },
+     {
+      "uz": "Bitta to'liq yozuv (bitta post)",
+      "ru": "Одна целая запись (один пост)"
+     },
+     {
+      "uz": "Faqat ustun nomlari qatori",
+      "ru": "Только строка с названиями столбцов"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 32,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Bitta foydalanuvchi va uning postlari orasidagi bog'lanish qanday?",
+     "ru": "Какая связь между пользователем и его постами?"
+    },
+    "opts": [
+     {
+      "uz": "Bitta — bitta (one-to-one)",
+      "ru": "Один — один (one-to-one)"
+     },
+     {
+      "uz": "Bog'lanish umuman yo'q",
+      "ru": "Связи вообще нет"
+     },
+     {
+      "uz": "Bitta → ko'p (one-to-many)",
+      "ru": "Один → много (one-to-many)"
+     },
+     {
+      "uz": "Har post — hamma foydalanuvchiniki",
+      "ru": "Каждый пост принадлежит всем"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 66,
+     "maxVariant": 34,
+     "jami": 174,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Quyidagilardan qaysi biri PK (birlamchi kalit)?",
+     "ru": "Что из этого — PK (первичный ключ)?"
+    },
+    "opts": [
+     "`username`",
+     "`user_id`",
+     "`post_id`",
+     "`id`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 10,
+     "jami": 79,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "RAM (vaqtinchalik xotira) va ma'lumotlar bazasi farqi nimada?",
+     "ru": "В чём разница между RAM (временной памятью) и базой данных?"
+    },
+    "opts": [
+     {
+      "uz": "Server o'chsa RAM o'chadi, baza qoladi",
+      "ru": "Сервер выключился — RAM очистилась, база осталась"
+     },
+     {
+      "uz": "RAM bazadan ko'proq saqlaydi",
+      "ru": "RAM хранит больше, чем база"
+     },
+     {
+      "uz": "Baza RAM'dan tezroq ishlaydi",
+      "ru": "База работает быстрее RAM"
+     },
+     {
+      "uz": "Ikkalasi ham aynan bir xil, farqlari yo'q",
+      "ru": "Они совершенно одинаковые, разницы нет"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 41,
+     "jami": 196,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "FK ustun qayerga ulanishini qanday bilamiz?",
+     "ru": "Как узнать, куда подключается FK-столбец?"
+    },
+    "opts": [
+     {
+      "uz": "Ustunning rangidan",
+      "ru": "По цвету столбца"
+     },
+     {
+      "uz": "Nomidan: `post_id` → `posts.id`",
+      "ru": "По имени: `post_id` → `posts.id`"
+     },
+     {
+      "uz": "Tasodifiy — hech qachon bilib bo'lmaydi",
+      "ru": "Случайно — узнать невозможно"
+     },
+     {
+      "uz": "Ustun nomining uzunligidan",
+      "ru": "По длине имени столбца"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 39,
+     "jami": 157,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-02",
+  "file": "src/4-Modull/PmLesson11.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Ilova ertaga nimani qaytadan ko'rsata oladi?",
+     "ru": "Что приложение сможет показать завтра снова?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat o'zi yozib qo'ygan narsani",
+      "ru": "Только то, что само записало"
+     },
+     {
+      "uz": "Ekranda bir marta ko'ringanini",
+      "ru": "То, что один раз мелькнуло на экране"
+     },
+     {
+      "uz": "Foydalanuvchi so'ragan hamma narsani",
+      "ru": "Всё, что попросит пользователь"
+     },
+     {
+      "uz": "Boshqa ilovalarda tinglaganingizni",
+      "ru": "То, что вы слушали в других приложениях"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 36,
+     "jami": 176,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Maydon nima?",
+     "ru": "Что такое поле?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova ekranidagi bitta bo'lim nomi",
+      "ru": "Название одного раздела на экране"
+     },
+     {
+      "uz": "Foydalanuvchi bosadigan bitta tugma",
+      "ru": "Одна кнопка, которую нажимает пользователь"
+     },
+     {
+      "uz": "Ilova yozib qo'yadigan bitta narsa",
+      "ru": "Одна вещь, которую записывает приложение"
+     },
+     {
+      "uz": "Bir marta ko'rinadigan bitta xabar",
+      "ru": "Одно сообщение, которое показывают один раз"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 12,
+     "maxVariant": 35,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "«Qaysi qo'shiq tinglandi» maydonidan qaysi bo'lim quriladi?",
+     "ru": "Какой раздел строится из поля «Какая песня прослушана»?"
+    },
+    "opts": [
+     {
+      "uz": "«Sizga yoqadi»",
+      "ru": "«Вам нравится»"
+     },
+     {
+      "uz": "«Yaqinda tinglaganlaringiz»",
+      "ru": "«Недавно слушали»"
+     },
+     {
+      "uz": "«Kechqurun tinglaganlaringiz»",
+      "ru": "«Слушали вечером»"
+     },
+     {
+      "uz": "«Albomdagi qo'shiqlar»",
+      "ru": "«Песни из альбома»"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 29,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "«Sizga yoqadi» qaysi maydondan quriladi?",
+     "ru": "Из какого поля строится «Вам нравится»?"
+    },
+    "opts": [
+     {
+      "uz": "Qo'shiq qayerda tinglanganidan",
+      "ru": "Из места, где прослушана песня"
+     },
+     {
+      "uz": "Qo'shiq nomlaridan",
+      "ru": "Из названий песен"
+     },
+     {
+      "uz": "Tinglash vaqtidan",
+      "ru": "Из времени прослушивания"
+     },
+     {
+      "uz": "Oxirigacha tinglanganidan",
+      "ru": "Из «дослушана до конца»"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 30,
+     "jami": 130,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«Kechqurun tinglaganlaringiz» qaysi maydondan quriladi?",
+     "ru": "Из какого поля строится «Слушали вечером»?"
+    },
+    "opts": [
+     {
+      "uz": "Tinglash vaqtidan",
+      "ru": "Из времени прослушивания"
+     },
+     {
+      "uz": "Qo'shiq nomlaridan",
+      "ru": "Из названий песен"
+     },
+     {
+      "uz": "Oxirigacha tinglanganidan",
+      "ru": "Из «дослушана до конца»"
+     },
+     {
+      "uz": "Telefondagi kontaktlardan",
+      "ru": "Из контактов в телефоне"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 25,
+     "jami": 140,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Maydon saqlandi, lekin bo'lim ochilmadi. Bu nimani bildiradi?",
+     "ru": "Поле сохранили, а раздел не открылся. Что это значит?"
+    },
+    "opts": [
+     {
+      "uz": "Bo'lim keyinroq o'zi paydo bo'ladi",
+      "ru": "Раздел появится позже сам"
+     },
+     {
+      "uz": "Bu maydon hech narsaga kerak emas",
+      "ru": "Это поле ни для чего не нужно"
+     },
+     {
+      "uz": "Ilova bu maydonni umuman o'qiy olmayapti",
+      "ru": "Приложение вообще не может прочитать это поле"
+     },
+     {
+      "uz": "Bo'lim boshqa ilovada ochilgan",
+      "ru": "Раздел открылся в другом приложении"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 40,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Yaxshi maydonning belgisi nima?",
+     "ru": "Признак хорошего поля?"
+    },
+    "opts": [
+     {
+      "uz": "Nomi qisqa yozilgan",
+      "ru": "У него короткое название"
+     },
+     {
+      "uz": "Ilovada ko'p joy egallamaydi",
+      "ru": "Занимает мало места в приложении"
+     },
+     {
+      "uz": "Foydalanuvchiga darhol ko'rinadi",
+      "ru": "Сразу видно пользователю"
+     },
+     {
+      "uz": "Ortida bitta bo'lim turadi",
+      "ru": "За ним стоит один раздел"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 32,
+     "jami": 136,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "«Umumiy ma'lumot» nega yomon maydon?",
+     "ru": "Почему «общая информация» — плохое поле?"
+    },
+    "opts": [
+     {
+      "uz": "Uni yozish juda uzoq davom etadi",
+      "ru": "Её слишком долго записывать"
+     },
+     {
+      "uz": "Uni ilova saqlay olmaydi",
+      "ru": "Приложение не может её сохранить"
+     },
+     {
+      "uz": "Undan bitta ham bo'lim qurilmaydi",
+      "ru": "Из неё не строится ни один раздел"
+     },
+     {
+      "uz": "U boshqa maydonlarni o'chirib yuboradi",
+      "ru": "Она стирает другие поля"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 38,
+     "jami": 163,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Netflix bosh sahifasi nimadan yig'iladi?",
+     "ru": "Из чего собирается главная Netflix?"
+    },
+    "opts": [
+     {
+      "uz": "Har kim ilgari ko'rgan kinolardan",
+      "ru": "Из фильмов, которые каждый смотрел раньше"
+     },
+     {
+      "uz": "Eng ko'p pul ishlagan kinolardan",
+      "ru": "Из фильмов, заработавших больше всего денег"
+     },
+     {
+      "uz": "Hamma uchun tuzilgan bitta ro'yxatdan",
+      "ru": "Из одного списка для всех"
+     },
+     {
+      "uz": "Kinolarning uzunligi bo'yicha tartibdan",
+      "ru": "Из фильмов, отсортированных по длине"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 39,
+     "jami": 181,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Netflix ko'rishlarining qanchasi tavsiyadan keladi?",
+     "ru": "Какая часть просмотров Netflix приходит из рекомендаций?"
+    },
+    "opts": [
+     {
+      "uz": "Har to'rttadan bittasi",
+      "ru": "Один из каждых четырёх"
+     },
+     {
+      "uz": "Har ikkitadan bittasi",
+      "ru": "Один из каждых двух"
+     },
+     {
+      "uz": "Deyarli hech biri — hammasi qidiruvdan",
+      "ru": "Почти ничего — всё из поиска"
+     },
+     {
+      "uz": "Har beshtadan to'rttasi",
+      "ru": "Четыре из каждых пяти"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 38,
+     "jami": 155,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Bo'lim ilovada nimadan yig'iladi?",
+     "ru": "Из чего собирается раздел в приложении?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova bezagidan",
+      "ru": "Из оформления приложения"
+     },
+     {
+      "uz": "Foydalanuvchi qidiruvidan",
+      "ru": "Из поиска пользователя"
+     },
+     {
+      "uz": "Saqlangan yozuvlardan",
+      "ru": "Из сохранённых записей"
+     },
+     {
+      "uz": "Boshqa ilovalar ro'yxatidan",
+      "ru": "Из списка других приложений"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 27,
+     "jami": 121,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Nimani saqlashni kim hal qiladi?",
+     "ru": "Кто решает, что хранить?"
+    },
+    "opts": [
+     {
+      "uz": "Kod o'zi hal qiladi",
+      "ru": "Код решает сам"
+     },
+     {
+      "uz": "Mahsulotni o'ylaydigan odam",
+      "ru": "Человек, который думает о продукте"
+     },
+     {
+      "uz": "Telefon ishlab chiqargan zavod",
+      "ru": "Завод, который сделал телефон"
+     },
+     {
+      "uz": "Qo'shiq kuylagan xonanda",
+      "ru": "Певец, который спел песню"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 30,
+     "jami": 132,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-03",
+  "file": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "G'alati «musiqa» maydonini qayerga qo'shish oson?",
+     "ru": "Куда легко добавить странное поле «музыка»?"
+    },
+    "opts": [
+     {
+      "uz": "Ikkalasiga ham qo'shib bo'lmaydi",
+      "ru": "Ни в одну не добавить"
+     },
+     {
+      "uz": "SQL — jadval o'zi ustun qo'shadi",
+      "ru": "SQL — таблица сама добавит столбец"
+     },
+     {
+      "uz": "NoSQL — { } hujjatga yangi maydon qo'shiladi",
+      "ru": "NoSQL — в документ { } добавится новое поле"
+     },
+     {
+      "uz": "Faqat qo'lda, birma-bir yoziladi",
+      "ru": "Только вручную, по одной"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 44,
+     "jami": 189,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "SQL jadvaliga yangi ustun qo'shsa nima bo'ladi?",
+     "ru": "Что будет, если добавить новый столбец в SQL-таблицу?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat NoSQL'da mumkin",
+      "ru": "Это возможно только в NoSQL"
+     },
+     {
+      "uz": "Hech narsa — avtomatik qo'shiladi",
+      "ru": "Ничего — добавится автоматически"
+     },
+     {
+      "uz": "Baza o'chib qoladi",
+      "ru": "База удалится"
+     },
+     {
+      "uz": "Jadval tuzilishini o'zgartirish kerak",
+      "ru": "Придётся изменить структуру таблицы"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 37,
+     "jami": 156,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "«Har yozuv har xil maydonga ega» — bu qaysi tur?",
+     "ru": "«У каждой записи свои поля» — какой это тип?"
+    },
+    "opts": [
+     {
+      "uz": "SQL (qat'iy jadval)",
+      "ru": "SQL (строгая таблица)"
+     },
+     {
+      "uz": "NoSQL (erkin { } hujjat)",
+      "ru": "NoSQL (свободный { } документ)"
+     },
+     {
+      "uz": "Ikkalasi bir xil",
+      "ru": "Оба одинаковы"
+     },
+     {
+      "uz": "Hech biri",
+      "ru": "Ни одно"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 24,
+     "jami": 116,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`JOIN` nima qiladi?",
+     "ru": "Что делает `JOIN`?"
+    },
+    "opts": [
+     {
+      "uz": "Ikki jadvalni id orqali ulaydi",
+      "ru": "Связывает две таблицы через id"
+     },
+     {
+      "uz": "Barcha fayllarni o'chirib tashlaydi",
+      "ru": "Удаляет все файлы"
+     },
+     {
+      "uz": "Noldan yangi bo'sh baza yaratadi",
+      "ru": "Создаёт новую пустую базу с нуля"
+     },
+     {
+      "uz": "Sahifani qaytadan yuklab beradi",
+      "ru": "Перезагружает страницу"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 19,
+     "maxVariant": 35,
+     "jami": 147,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Bank ilovasi (pul, hisoblar) uchun qaysi to'g'riroq?",
+     "ru": "Что правильнее для банковского приложения (деньги, счета)?"
+    },
+    "opts": [
+     {
+      "uz": "SQL — bog'langan va ishonchli",
+      "ru": "SQL — связанно и надёжно"
+     },
+     {
+      "uz": "NoSQL — javob tezroq keladi",
+      "ru": "NoSQL — ответ приходит быстрее"
+     },
+     {
+      "uz": "Ikkalasining ham farqi yo'q",
+      "ru": "Разницы никакой"
+     },
+     {
+      "uz": "Bunga baza umuman kerak emas",
+      "ru": "База тут вообще не нужна"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 29,
+     "jami": 163,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "users↔posts bog'langan ma'lumot uchun qaysi qulay?",
+     "ru": "Что удобнее для связанных данных users↔posts?"
+    },
+    "opts": [
+     {
+      "uz": "NoSQL — takrorlab yozamiz",
+      "ru": "NoSQL — будем дублировать"
+     },
+     {
+      "uz": "Ikkalasi ham qiyin",
+      "ru": "Оба сложны"
+     },
+     {
+      "uz": "SQL — JOIN bilan ulaydi",
+      "ru": "SQL — свяжет через JOIN"
+     },
+     {
+      "uz": "Faqat qo'lda",
+      "ru": "Только вручную"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 25,
+     "jami": 128,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Millionlab oddiy chat xabari uchun qaysi ideal?",
+     "ru": "Что идеально для миллионов простых чат-сообщений?"
+    },
+    "opts": [
+     {
+      "uz": "SQL — har xabar JOIN bilan",
+      "ru": "SQL — каждое сообщение через JOIN"
+     },
+     {
+      "uz": "NoSQL — ulkan, oddiy, tez",
+      "ru": "NoSQL — огромно, просто, быстро"
+     },
+     {
+      "uz": "Faqat qog'ozda",
+      "ru": "Только на бумаге"
+     },
+     {
+      "uz": "Hech qanday",
+      "ru": "Никакое"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 26,
+     "jami": 123,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "«Katta hajm, oddiy tuzilish, tezlik» — qaysi tur?",
+     "ru": "«Большой объём, простая структура, скорость» — какой тип?"
+    },
+    "opts": [
+     "SQL",
+     {
+      "uz": "Ikkalasi teng",
+      "ru": "Оба поровну"
+     },
+     {
+      "uz": "Hech biri",
+      "ru": "Ни одно"
+     },
+     "NoSQL"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 13,
+     "jami": 79,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Server loglari (ulkan, bog'lanishsiz) uchun qaysi?",
+     "ru": "Что подходит для логов сервера (огромные, без связей)?"
+    },
+    "opts": [
+     {
+      "uz": "SQL — tranzaksiya kerak",
+      "ru": "SQL — нужны транзакции"
+     },
+     {
+      "uz": "Faqat Excel",
+      "ru": "Только Excel"
+     },
+     {
+      "uz": "Baza kerak emas",
+      "ru": "База не нужна"
+     },
+     {
+      "uz": "NoSQL — katta hajm va tezlik",
+      "ru": "NoSQL — большой объём и скорость"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 28,
+     "jami": 127,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Nega bizning loyihalar uchun PostgreSQL?",
+     "ru": "Почему для наших проектов PostgreSQL?"
+    },
+    "opts": [
+     {
+      "uz": "Bog'langan, ishonchli, bepul, JSON ham",
+      "ru": "Связи, надёжность, бесплатно, плюс JSON"
+     },
+     {
+      "uz": "Boshqa hech qanday baza yo'qligidan",
+      "ru": "Потому что других баз не существует"
+     },
+     {
+      "uz": "Faqat kichik loyihalarga mosligidan",
+      "ru": "Потому что годится лишь для мелких проектов"
+     },
+     {
+      "uz": "Eng modaviy va yangi bo'lgani uchun",
+      "ru": "Потому что самая модная и новая"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 38,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Baza modaga qarab («zamonaviyroq») tanlanadimi?",
+     "ru": "Базу выбирают по моде («посовременнее»)?"
+    },
+    "opts": [
+     {
+      "uz": "Ha, doim yangisi yaxshi",
+      "ru": "Да, новое всегда лучше"
+     },
+     {
+      "uz": "Ha, NoSQL har doim ustun",
+      "ru": "Да, NoSQL всегда впереди"
+     },
+     {
+      "uz": "Yo'q — vazifaga qarab tanlanadi",
+      "ru": "Нет — выбирают по задаче"
+     },
+     {
+      "uz": "Faqat narxga qarab",
+      "ru": "Только по цене"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 31,
+     "jami": 143,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "PostgreSQL JSON ham saqlay oladimi?",
+     "ru": "PostgreSQL умеет хранить и JSON?"
+    },
+    "opts": [
+     {
+      "uz": "Yo'q, faqat jadval",
+      "ru": "Нет, только таблицы"
+     },
+     {
+      "uz": "Ha — kerak bo'lsa JSON ham",
+      "ru": "Да — при необходимости и JSON"
+     },
+     {
+      "uz": "Yo'q, umuman imkonsiz",
+      "ru": "Нет, это вообще невозможно"
+     },
+     {
+      "uz": "Faqat MongoDB saqlaydi",
+      "ru": "Только MongoDB хранит"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 26,
+     "jami": 122,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-04",
+  "file": "src/4-Modull/NodeServerLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Server nima?",
+     "ru": "Что такое сервер?"
+    },
+    "opts": [
+     {
+      "uz": "Internetni tezlashtiradigan qurilma",
+      "ru": "Устройство, ускоряющее интернет"
+     },
+     {
+      "uz": "Rasmlarni saqlab turadigan oddiy papka",
+      "ru": "Обычная папка для хранения картинок"
+     },
+     {
+      "uz": "Brauzerda ochiladigan bitta oyna",
+      "ru": "Одно окно, открытое в браузере"
+     },
+     {
+      "uz": "So'rovga javob beradigan doimiy dastur",
+      "ru": "Постоянная программа, отвечающая на запросы"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 12,
+     "maxVariant": 38,
+     "jami": 155,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`Node.js` nima imkon beradi?",
+     "ru": "Что даёт `Node.js`?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat HTML sahifalarni yasaydi",
+      "ru": "Делает только HTML-страницы"
+     },
+     {
+      "uz": "Rasmlarni tahrirlab beradi",
+      "ru": "Редактирует картинки"
+     },
+     {
+      "uz": "JavaScript'ni serverda ishlatadi",
+      "ru": "Запускает JavaScript на сервере"
+     },
+     {
+      "uz": "Internetni kompyuterga ulab beradi",
+      "ru": "Подключает компьютер к интернету"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 34,
+     "jami": 150,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`npm` nima qiladi?",
+     "ru": "Что делает `npm`?"
+    },
+    "opts": [
+     {
+      "uz": "Tayyor paketlarni o'rnatib beradi",
+      "ru": "Устанавливает готовые пакеты"
+     },
+     {
+      "uz": "Kodni o'zi o'chirib tashlaydi",
+      "ru": "Сам удаляет код"
+     },
+     {
+      "uz": "Serverni butunlay o'chirib tashlaydi",
+      "ru": "Полностью выключает сервер"
+     },
+     {
+      "uz": "Brauzer oynasini ochib beradi",
+      "ru": "Открывает окно браузера"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 18,
+     "maxVariant": 36,
+     "jami": 145,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`Express` nima?",
+     "ru": "Что такое `Express`?"
+    },
+    "opts": [
+     {
+      "uz": "Ma'lumotni saqlovchi katta baza",
+      "ru": "Большая база для хранения данных"
+     },
+     {
+      "uz": "Serverni osonlashtiruvchi paket",
+      "ru": "Пакет, упрощающий сервер"
+     },
+     {
+      "uz": "Rasm uchun maxsus format",
+      "ru": "Особый формат для картинок"
+     },
+     {
+      "uz": "Brauzerning yangi bir turi",
+      "ru": "Новый вид браузера"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 15,
+     "maxVariant": 31,
+     "jami": 127,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "`Endpoint` nima?",
+     "ru": "Что такое `endpoint`?"
+    },
+    "opts": [
+     {
+      "uz": "Serverni o'chiradigan tugmacha",
+      "ru": "Кнопка выключения сервера"
+     },
+     {
+      "uz": "Serverning aniq manzil-eshigi",
+      "ru": "Точный адрес-дверь сервера"
+     },
+     {
+      "uz": "Internet ulanish tezligi",
+      "ru": "Скорость интернет-соединения"
+     },
+     {
+      "uz": "Saqlangan faylning nomi",
+      "ru": "Имя сохранённого файла"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 16,
+     "maxVariant": 30,
+     "jami": 122,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`res.send` nima qiladi?",
+     "ru": "Что делает `res.send`?"
+    },
+    "opts": [
+     {
+      "uz": "Serverni ishga tushiradi",
+      "ru": "Запускает сервер"
+     },
+     {
+      "uz": "Yangi paket o'rnatadi",
+      "ru": "Устанавливает новый пакет"
+     },
+     {
+      "uz": "Yangi bitta endpoint yaratadi",
+      "ru": "Создаёт один новый endpoint"
+     },
+     {
+      "uz": "So'rovga javob (tovar) beradi",
+      "ru": "Отдаёт ответ (товар) на запрос"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 23,
+     "maxVariant": 29,
+     "jami": 126,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`app.listen(3000)` nima qiladi?",
+     "ru": "Что делает `app.listen(3000)`?"
+    },
+    "opts": [
+     {
+      "uz": "Serverni yoqib, so'rov kutadi",
+      "ru": "Включает сервер и ждёт запросы"
+     },
+     {
+      "uz": "Yangi bo'sh fayl yaratadi",
+      "ru": "Создаёт новый пустой файл"
+     },
+     {
+      "uz": "Barcha ma'lumotni o'chiradi",
+      "ru": "Удаляет все данные"
+     },
+     {
+      "uz": "Brauzer oynasini yopib qo'yadi",
+      "ru": "Закрывает окно браузера"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 30,
+     "jami": 142,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "`localhost:3000` nima?",
+     "ru": "Что такое `localhost:3000`?"
+    },
+    "opts": [
+     {
+      "uz": "Uzoq serverdagi tashqi bir sayt",
+      "ru": "Внешний сайт на далёком сервере"
+     },
+     {
+      "uz": "Ma'lumot saqlovchi baza",
+      "ru": "База для хранения данных"
+     },
+     {
+      "uz": "O'z kompyuteringizdagi server",
+      "ru": "Сервер на Вашем собственном компьютере"
+     },
+     {
+      "uz": "Internetdagi tashqi manzil",
+      "ru": "Внешний адрес в интернете"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 22,
+     "maxVariant": 31,
+     "jami": 131,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`ECONNREFUSED` xatosi nega chiqadi?",
+     "ru": "Почему появляется ошибка `ECONNREFUSED`?"
+    },
+    "opts": [
+     {
+      "uz": "Server o'chiq (do'kon yopiq)",
+      "ru": "Сервер выключен (магазин закрыт)"
+     },
+     {
+      "uz": "Kod juda uzun yozilgan",
+      "ru": "Код написан слишком длинно"
+     },
+     {
+      "uz": "Rasm hajmi juda katta",
+      "ru": "Картинка слишком большая"
+     },
+     {
+      "uz": "Internet juda sekin ishlaydi",
+      "ru": "Интернет работает слишком медленно"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 28,
+     "jami": 134,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "`NestJS` Express'dan nimasi bilan farq qiladi?",
+     "ru": "Чем `NestJS` отличается от Express?"
+    },
+    "opts": [
+     {
+      "uz": "U umuman ishlamay qoladi",
+      "ru": "Он вообще не работает"
+     },
+     {
+      "uz": "Tartibli — katta loyihalarga",
+      "ru": "Организованный — для больших проектов"
+     },
+     {
+      "uz": "Faqat HTML kod yozadi",
+      "ru": "Пишет только HTML-код"
+     },
+     {
+      "uz": "Serverni ancha sekinlashtiradi",
+      "ru": "Сильно замедляет сервер"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 30,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Server kodi tartibi qanday?",
+     "ru": "Каков порядок кода сервера?"
+    },
+    "opts": [
+     {
+      "uz": "Yoqish → endpoint → yaratish → chaqirish",
+      "ru": "Включение → endpoint → создание → подключение"
+     },
+     {
+      "uz": "Endpoint → yoqish → chaqirish → yaratish",
+      "ru": "Endpoint → включение → подключение → создание"
+     },
+     {
+      "uz": "Yaratish → yoqish → chaqirish → endpoint",
+      "ru": "Создание → включение → подключение → endpoint"
+     },
+     {
+      "uz": "Chaqirish → yaratish → endpoint → yoqish",
+      "ru": "Подключение → создание → endpoint → включение"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 40,
+     "jami": 187,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "`package.json` nima?",
+     "ru": "Что такое `package.json`?"
+    },
+    "opts": [
+     {
+      "uz": "Serverni yoqadigan kod qatori",
+      "ru": "Строка кода, включающая сервер"
+     },
+     {
+      "uz": "Endpoint ning manzili",
+      "ru": "Адрес endpoint"
+     },
+     {
+      "uz": "O'rnatilgan paketlar ro'yxati",
+      "ru": "Список установленных пакетов"
+     },
+     {
+      "uz": "Brauzer sozlama fayli",
+      "ru": "Файл настроек браузера"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 20,
+     "maxVariant": 29,
+     "jami": 120,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-05",
+  "file": "src/4-Modull/RoutingLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Route nimadan iborat?",
+     "ru": "Из чего состоит route?"
+    },
+    "opts": [
+     {
+      "uz": "faqat path — manzil (masalan /games)",
+      "ru": "только path — адрес (например /games)"
+     },
+     {
+      "uz": "method + path (shtamp + manzil)",
+      "ru": "method + path (штамп + адрес)"
+     },
+     {
+      "uz": "faqat method — shtamp (masalan GET)",
+      "ru": "только method — штамп (например GET)"
+     },
+     {
+      "uz": "brauzer turi (Chrome, Firefox)",
+      "ru": "тип браузера (Chrome, Firefox)"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 21,
+     "maxVariant": 36,
+     "jami": 153,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`GET /games` va `POST /games` farqi nimada?",
+     "ru": "`GET /games` и `POST /games` — в чём разница?"
+    },
+    "opts": [
+     {
+      "uz": "farqi yo'q — ikkisi bir xil ishlaydi",
+      "ru": "разницы нет — работают одинаково"
+     },
+     {
+      "uz": "so'rov yuborilgan server nomi",
+      "ru": "имя сервера, куда шлём запрос"
+     },
+     {
+      "uz": "method — biri oladi, biri qo'shadi",
+      "ru": "method — один получает, другой добавляет"
+     },
+     {
+      "uz": "javob qaytadigan til",
+      "ru": "язык, на котором придёт ответ"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 36,
+     "jami": 162,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Server qaysi kodni ishlatishni qayerdan biladi?",
+     "ru": "Откуда сервер знает, какой код запустить?"
+    },
+    "opts": [
+     {
+      "uz": "so'rovni tasodifan tanlaydi",
+      "ru": "выбирает запрос наугад"
+     },
+     {
+      "uz": "har doim birinchi kodni ishlatadi",
+      "ru": "всегда запускает первый код"
+     },
+     {
+      "uz": "brauzerdan qaysi kodligini so'raydi",
+      "ru": "спрашивает у браузера, какой код"
+     },
+     {
+      "uz": "method + path bo'yicha mos eshikni topadi",
+      "ru": "находит подходящую дверь по method + path"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 41,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Yangi o'yin qo'shish uchun qaysi method?",
+     "ru": "Какой method нужен, чтобы добавить новую игру?"
+    },
+    "opts": [
+     "POST",
+     "PUT",
+     "DELETE",
+     "GET"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 6,
+     "jami": 56,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Ro'yxatni olish (o'qish) uchun qaysi method?",
+     "ru": "Какой method нужен, чтобы получить список (чтение)?"
+    },
+    "opts": [
+     "DELETE",
+     "POST",
+     "PUT",
+     "GET"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 6,
+     "jami": 60,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Ma'lumotni o'chirish uchun qaysi method?",
+     "ru": "Какой method удаляет данные?"
+    },
+    "opts": [
+     "GET",
+     "DELETE",
+     "POST",
+     "PUT"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 6,
+     "jami": 56,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "`@Get(':id')` ga `/games/7` kelsa, id nimaga teng?",
+     "ru": "Пришёл `/games/7` на `@Get(':id')` — чему равен id?"
+    },
+    "opts": [
+     "7",
+     "games",
+     "':id'",
+     "/games/7"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 8,
+     "jami": 69,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "`:id` nima?",
+     "ru": "Что такое `:id`?"
+    },
+    "opts": [
+     {
+      "uz": "har doim 1 ga teng bo'ladi",
+      "ru": "всегда равен 1"
+     },
+     {
+      "uz": "path nomining bir qismi",
+      "ru": "просто часть имени path"
+     },
+     {
+      "uz": "shablon — qiymat so'rovdan keladi",
+      "ru": "шаблон — значение приходит из запроса"
+     },
+     {
+      "uz": "controller klassining nomi",
+      "ru": "имя класса контроллера"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 11,
+     "maxVariant": 33,
+     "jami": 119,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "So'rovdagi `:id` qiymatini nima ushlaydi?",
+     "ru": "Что ловит значение `:id` из запроса?"
+    },
+    "opts": [
+     "@Controller",
+     "@Get",
+     "@Param",
+     "@Post"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 11,
+     "jami": 67,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mos route topilmasa, server nima qaytaradi?",
+     "ru": "Не нашлось подходящего route — что вернёт сервер?"
+    },
+    "opts": [
+     "200 OK",
+     {
+      "uz": "birinchi eshikni",
+      "ru": "первую дверь"
+     },
+     {
+      "uz": "serverni o'chiradi",
+      "ru": "выключит сервер"
+     },
+     "404 Not Found"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 18,
+     "jami": 96,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Metodni so'rovga nima bog'laydi?",
+     "ru": "Что привязывает метод к запросу?"
+    },
+    "opts": [
+     "path",
+     {
+      "uz": "dekorator (@Get/@Post)",
+      "ru": "декоратор (@Get/@Post)"
+     },
+     {
+      "uz": "method nomi",
+      "ru": "имя метода"
+     },
+     {
+      "uz": "controller nomi",
+      "ru": "имя контроллера"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 22,
+     "jami": 84,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Xat `POST`, eshik `@Get()` — natija?",
+     "ru": "Письмо `POST`, дверь `@Get()` — результат?"
+    },
+    "opts": [
+     {
+      "uz": "404 — mos eshik yo'q",
+      "ru": "404 — подходящей двери нет"
+     },
+     {
+      "uz": "200 OK — hammasi joyida",
+      "ru": "200 OK — всё в порядке"
+     },
+     {
+      "uz": "server butunlay o'chadi",
+      "ru": "сервер полностью выключится"
+     },
+     {
+      "uz": "yangi o'yin qo'shiladi",
+      "ru": "добавится новая игра"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 23,
+     "jami": 124,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-06",
+  "file": "src/4-Modull/PostgresCrudLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Do'konga yangi mahsulot keldi. Qaysi buyruq jadvalga yangi qator qo'shadi?",
+     "ru": "В магазин привезли новый товар. Какая команда добавит в таблицу новую строку?"
+    },
+    "opts": [
+     "`INSERT INTO`",
+     "`SELECT`",
+     "`UPDATE`",
+     "`DELETE`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 74,
+     "maxVariant": 13,
+     "jami": 111,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`INSERT` so'rovida qiymatlar (`VALUES`) nimadan keyin yoziladi?",
+     "ru": "После чего в запросе `INSERT` пишутся значения (`VALUES`)?"
+    },
+    "opts": [
+     {
+      "uz": "`WHERE` shartidan keyin",
+      "ru": "После условия `WHERE`"
+     },
+     {
+      "uz": "Ustunlar ro'yxatidan keyin",
+      "ru": "После списка столбцов"
+     },
+     {
+      "uz": "`SET` dan keyin",
+      "ru": "После `SET`"
+     },
+     {
+      "uz": "`FROM` dan keyin",
+      "ru": "После `FROM`"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 63,
+     "maxVariant": 26,
+     "jami": 143,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Bo'p-bo'sh jadvalga birinchi mahsulotni nima qo'shadi?",
+     "ru": "Что добавит первый товар в совершенно пустую таблицу?"
+    },
+    "opts": [
+     "`SELECT`",
+     "`UPDATE`",
+     "`INSERT INTO ... VALUES`",
+     "`WHERE`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 54,
+     "maxVariant": 24,
+     "jami": 101,
+     "oshdi": false,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`SELECT * FROM products` nima qiladi?",
+     "ru": "Что делает `SELECT * FROM products`?"
+    },
+    "opts": [
+     {
+      "uz": "Jadvalni butunlay o'chiradi",
+      "ru": "Полностью удаляет таблицу"
+     },
+     {
+      "uz": "Barcha narxni yangilaydi",
+      "ru": "Обновляет все цены"
+     },
+     {
+      "uz": "Yangi bo'sh jadval yasaydi",
+      "ru": "Создаёт новую пустую таблицу"
+     },
+     {
+      "uz": "Barcha ustunni ko'rsatadi",
+      "ru": "Показывает все столбцы"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 27,
+     "jami": 139,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Arzon mahsulotlarni (narx < 100000) ko'rish uchun qaysi kalit so'z qo'shiladi?",
+     "ru": "Какое ключевое слово добавить, чтобы увидеть дешёвые товары (narx < 100000)?"
+    },
+    "opts": [
+     "`VALUES`",
+     "`SET`",
+     "`WHERE`",
+     "`INTO`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 78,
+     "maxVariant": 8,
+     "jami": 104,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`SELECT` buyrug'i ma'lumotni o'zgartiradimi?",
+     "ru": "Изменяет ли команда `SELECT` данные?"
+    },
+    "opts": [
+     {
+      "uz": "Yo'q — faqat o'qib ko'rsatadi",
+      "ru": "Нет — только читает и показывает"
+     },
+     {
+      "uz": "Ha, qatorlarni o'chiradi",
+      "ru": "Да, удаляет строки"
+     },
+     {
+      "uz": "Ha, narxni yangilaydi",
+      "ru": "Да, обновляет цену"
+     },
+     {
+      "uz": "Ha, jadval yaratadi",
+      "ru": "Да, создаёт таблицу"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 29,
+     "jami": 137,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Klaviatura narxi tushdi — mavjud qatorni qaysi buyruq o'zgartiradi?",
+     "ru": "Klaviatura подешевела — какая команда изменит существующую строку?"
+    },
+    "opts": [
+     "`INSERT`",
+     "`SELECT`",
+     "`DELETE`",
+     "`UPDATE`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 67,
+     "maxVariant": 8,
+     "jami": 99,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "`UPDATE` so'rovida `WHERE` yozilmasa nima bo'ladi?",
+     "ru": "Что будет, если в запросе `UPDATE` не написать `WHERE`?"
+    },
+    "opts": [
+     {
+      "uz": "Xato beradi, hech narsa o'zgarmaydi",
+      "ru": "Выдаст ошибку, ничего не изменится"
+     },
+     {
+      "uz": "BARCHA qator o'zgaradi",
+      "ru": "Изменятся ВСЕ строки"
+     },
+     {
+      "uz": "Hech narsa bo'lmaydi",
+      "ru": "Ничего не произойдёт"
+     },
+     {
+      "uz": "Faqat birinchi qator o'zgaradi",
+      "ru": "Изменится только первая строка"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 35,
+     "jami": 157,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Mahsulotni jadvaldan butunlay olib tashlaydigan buyruq qaysi?",
+     "ru": "Какая команда полностью убирает товар из таблицы?"
+    },
+    "opts": [
+     "`SELECT`",
+     "`DELETE FROM`",
+     "`UPDATE`",
+     "`INSERT`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 13,
+     "jami": 98,
+     "oshdi": true,
+     "togriEngUzun": true
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "AI sizga SQL so'rov yozib berdi. Eng to'g'ri yo'l qaysi?",
+     "ru": "ИИ написал вам SQL-запрос. Какой путь самый верный?"
+    },
+    "opts": [
+     {
+      "uz": "Ko'rmasdan darrov ishga tushiraman",
+      "ru": "Запущу сразу, не глядя"
+     },
+     {
+      "uz": "AI doim to'g'ri — tekshirmayman",
+      "ru": "ИИ всегда прав — не проверяю"
+     },
+     {
+      "uz": "O'qib, tekshirib, keyin ishlataman",
+      "ru": "Прочитаю, проверю, потом применю"
+     },
+     {
+      "uz": "O'chirib, qo'lda qaytadan yozaman",
+      "ru": "Удалю и перепишу вручную"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 56,
+     "maxVariant": 34,
+     "jami": 188,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Do'kon mahsulotlari asosan qayerda saqlanadi?",
+     "ru": "Где в основном хранятся товары магазина?"
+    },
+    "opts": [
+     {
+      "uz": "Saytning HTML kodida",
+      "ru": "В HTML-коде сайта"
+     },
+     {
+      "uz": "Brauzer xotirasida",
+      "ru": "В памяти браузера"
+     },
+     {
+      "uz": "Rasm papkasida",
+      "ru": "В папке с картинками"
+     },
+     {
+      "uz": "Ma'lumotlar bazasida",
+      "ru": "В базе данных"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 20,
+     "jami": 117,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "CRUD qaysi 4 amalni bildiradi?",
+     "ru": "Какие 4 действия означает CRUD?"
+    },
+    "opts": [
+     "Create · Read · Update · Delete",
+     {
+      "uz": "Faqat qo'shish va o'chirish",
+      "ru": "Только добавление и удаление"
+     },
+     "Create · Read · Undo · Delete",
+     {
+      "uz": "Faqat SELECT va UPDATE",
+      "ru": "Только SELECT и UPDATE"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 30,
+     "maxVariant": 31,
+     "jami": 139,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-07",
+  "file": "src/4-Modull/PmLesson12.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Ochiq ma'lumot nima?",
+     "ru": "Что такое открытые данные?"
+    },
+    "opts": [
+     {
+      "uz": "Begona odam ko'rsa ham hech kim zarar ko'rmaydi",
+      "ru": "Даже если увидит чужой — никому не будет вреда"
+     },
+     {
+      "uz": "Ilovada ko'p odam o'qiydigan ma'lumot bo'ladi",
+      "ru": "Данные, которые в приложении читают многие"
+     },
+     {
+      "uz": "Uni yozishga kam vaqt ketgan bo'ladi",
+      "ru": "На их запись ушло мало времени"
+     },
+     {
+      "uz": "Ilova uni boshqa qatorlardan oldin saqlaydi",
+      "ru": "Приложение сохраняет их раньше других строк"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 20,
+     "maxVariant": 47,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Yopiq ma'lumot nima?",
+     "ru": "Что такое закрытые данные?"
+    },
+    "opts": [
+     {
+      "uz": "Uni ilova boshqalardan uzunroq yozadi",
+      "ru": "Приложение записывает их дольше других"
+     },
+     {
+      "uz": "Uni ilova alohida joyda saqlaydi",
+      "ru": "Приложение хранит их в отдельном месте"
+     },
+     {
+      "uz": "Uni ilova bir necha kundan keyin yopadi",
+      "ru": "Приложение закрывает их через несколько дней"
+     },
+     {
+      "uz": "Begona odam ko'rsa, egasi zarar ko'radi",
+      "ru": "Если увидит чужой — пострадает владелец"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 20,
+     "maxVariant": 39,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Ma'lumotni yopiq qiladigan narsa nima?",
+     "ru": "Что делает данные закрытыми?"
+    },
+    "opts": [
+     {
+      "uz": "Ma'lumotning uzunligi va turi",
+      "ru": "Длина и тип данных"
+     },
+     {
+      "uz": "Uni yozgan odamning ismi",
+      "ru": "Имя того, кто их записал"
+     },
+     {
+      "uz": "Begona ko'rsa yetadigan zarar",
+      "ru": "Вред, если их увидит чужой"
+     },
+     {
+      "uz": "Uni ilovaga qo'shilgan sana",
+      "ru": "Дата, когда их добавили в приложение"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 29,
+     "jami": 147,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Sinfdoshingiz ochganda qaysi qator turmasligi kerak?",
+     "ru": "Какой строки не должно быть, когда открывает одноклассник?"
+    },
+    "opts": [
+     {
+      "uz": "Ism qatori",
+      "ru": "Строка с именем"
+     },
+     {
+      "uz": "Kirish paroli",
+      "ru": "Пароль для входа"
+     },
+     {
+      "uz": "Sinf qatori",
+      "ru": "Строка с классом"
+     },
+     {
+      "uz": "Maktab nomi",
+      "ru": "Название школы"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 13,
+     "jami": 97,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Ism va sinf nega ochiq qoladi?",
+     "ru": "Почему имя и класс остаются открытыми?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova ularni har kuni yangilab turadi",
+      "ru": "Приложение обновляет их каждый день"
+     },
+     {
+      "uz": "Ularni ko'rgan odam zarar bermaydi",
+      "ru": "Тот, кто их увидит, не навредит"
+     },
+     {
+      "uz": "Ularni yopish ilovaga qiyin bo'ladi",
+      "ru": "Приложению трудно их закрыть"
+     },
+     {
+      "uz": "Ular ilovaga keyinroq qo'shilgan",
+      "ru": "Их добавили в приложение позже"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 30,
+     "maxVariant": 37,
+     "jami": 168,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Hamma qatorni yopib qo'ysangiz nima bo'ladi?",
+     "ru": "Что будет, если закрыть все строки?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovadan foyda qolmaydi",
+      "ru": "От приложения не останется пользы"
+     },
+     {
+      "uz": "Ilova tezroq ishlaydigan bo'ladi",
+      "ru": "Приложение станет работать быстрее"
+     },
+     {
+      "uz": "Sinfdoshingiz baribir ko'radi",
+      "ru": "Одноклассник всё равно увидит"
+     },
+     {
+      "uz": "Ilova qatorlarni o'zi ochadi",
+      "ru": "Приложение само откроет строки"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 32,
+     "jami": 156,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Ota-onaning telefon raqami kimniki?",
+     "ru": "Кому принадлежит номер телефона родителей?"
+    },
+    "opts": [
+     {
+      "uz": "Jurnal ilovasiniki",
+      "ru": "Приложению-журналу"
+     },
+     {
+      "uz": "Sinf rahbariniki",
+      "ru": "Классному руководителю"
+     },
+     {
+      "uz": "Boshqa odamniki",
+      "ru": "Другому человеку"
+     },
+     {
+      "uz": "Sizning o'zingizniki",
+      "ru": "Лично вам"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 20,
+     "jami": 104,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Parolni bilgan odam nima qila oladi?",
+     "ru": "Что может сделать тот, кто знает пароль?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifangiz rangini almashtiradi",
+      "ru": "Поменять цвет вашей страницы"
+     },
+     {
+      "uz": "Baholaringizni to'g'rilaydi",
+      "ru": "Исправить ваши оценки"
+     },
+     {
+      "uz": "Yangi ilova yuklab oladi",
+      "ru": "Установить новое приложение"
+     },
+     {
+      "uz": "Sizning nomingizdan kiradi",
+      "ru": "Войти от вашего имени"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 31,
+     "jami": 144,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Ilova nimani yig'ishini odam eng erta qachon o'qiy oladi?",
+     "ru": "Когда раньше всего можно прочитать, что собирает приложение?"
+    },
+    "opts": [
+     {
+      "uz": "Ilovani yuklashdan oldin ham",
+      "ru": "Ещё до установки приложения"
+     },
+     {
+      "uz": "Bir oy foydalangandan keyin",
+      "ru": "Через месяц использования"
+     },
+     {
+      "uz": "Ilovani yuklab bo'lgandan keyin",
+      "ru": "После установки приложения"
+     },
+     {
+      "uz": "Ilova birinchi xabarini yuborganda",
+      "ru": "Когда приложение пришлёт первое сообщение"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 34,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Ota-onaga ketadigan xabarga nima yozilmaydi?",
+     "ru": "Что не пишут в сообщении родителям?"
+    },
+    "opts": [
+     {
+      "uz": "Bu hafta olgan baholaringiz",
+      "ru": "Ваши оценки за эту неделю"
+     },
+     {
+      "uz": "Ertangi dars jadvali",
+      "ru": "Расписание на завтра"
+     },
+     {
+      "uz": "Ilovaga kirish paroli",
+      "ru": "Пароль для входа в приложение"
+     },
+     {
+      "uz": "Maktab manzili va telefoni",
+      "ru": "Адрес и телефон школы"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 27,
+     "jami": 138,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Yuborilmagan ma'lumot haqida qoida nima?",
+     "ru": "Какое правило про неотправленные данные?"
+    },
+    "opts": [
+     {
+      "uz": "Yuborilmagan ma'lumotni ilova o'zi yuboradi",
+      "ru": "Неотправленные данные приложение отправит само"
+     },
+     {
+      "uz": "Yuborilmagan ma'lumot sizib ham ketmaydi",
+      "ru": "Неотправленные данные не могут утечь"
+     },
+     {
+      "uz": "Yuborilmagan ma'lumot yopiq hisoblanmaydi",
+      "ru": "Неотправленные данные не считаются закрытыми"
+     },
+     {
+      "uz": "Yuborilmagan ma'lumot xabarga qaytadi",
+      "ru": "Неотправленные данные возвращаются в сообщение"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 40,
+     "maxVariant": 43,
+     "jami": 201,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "`SELECT *` nimani qaytaradi?",
+     "ru": "Что возвращает `SELECT *`?"
+    },
+    "opts": [
+     {
+      "uz": "Jadvaldagi birinchi ustunni",
+      "ru": "Первый столбец таблицы"
+     },
+     {
+      "uz": "Jadvaldagi birinchi qatorni",
+      "ru": "Первую строку таблицы"
+     },
+     {
+      "uz": "Ustunlarning nomlarini",
+      "ru": "Имена столбцов"
+     },
+     {
+      "uz": "Jadvaldagi hamma ustunni",
+      "ru": "Все столбцы таблицы"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 27,
+     "jami": 128,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-08",
+  "file": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Har mashinaga takrorlanmas raqam beradigan ustun qaysi?",
+     "ru": "Какой столбец даёт каждой машине уникальный номер?"
+    },
+    "opts": [
+     "nom TEXT",
+     "id SERIAL PRIMARY KEY",
+     "narx INTEGER NOT NULL",
+     "bandmi BOOLEAN"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 21,
+     "jami": 119,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "cars jadvalini yaratish uchun qaysi SQL to'g'ri?",
+     "ru": "Какой SQL правильный для создания таблицы cars?"
+    },
+    "opts": [
+     "SELECT * FROM cars ORDER BY id",
+     "DELETE FROM cars",
+     "INSERT INTO cars",
+     "CREATE TABLE cars (...)"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 30,
+     "jami": 133,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "narx ustuni uchun qaysi tur mos (butun son)?",
+     "ru": "Какой тип подходит столбцу narx (целое число)?"
+    },
+    "opts": [
+     "INTEGER",
+     "BOOLEAN",
+     "TEXT",
+     "SERIAL LIST"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 11,
+     "jami": 73,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Bazaga yangi mashina qo'shish uchun qaysi juftlik?",
+     "ru": "Какая пара нужна, чтобы добавить в базу новую машину?"
+    },
+    "opts": [
+     "GET → SELECT",
+     "PUT → UPDATE",
+     "POST → INSERT",
+     "DELETE → DELETE"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 15,
+     "jami": 102,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Barcha mashinalarni o'qish uchun qaysi juftlik?",
+     "ru": "Какая пара нужна, чтобы прочитать все машины?"
+    },
+    "opts": [
+     "GET → SELECT",
+     "POST → INSERT",
+     "PUT → UPDATE",
+     "DELETE → DELETE"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 15,
+     "jami": 99,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Bitta mashina narxini o'zgartirish uchun?",
+     "ru": "Что нужно, чтобы изменить цену одной машины?"
+    },
+    "opts": [
+     "POST → INSERT INTO cars (nom, narx)",
+     "PUT → UPDATE ... WHERE id = $1",
+     "GET → SELECT * FROM cars",
+     "DELETE → DELETE FROM cars"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 35,
+     "jami": 155,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Express ichida bazaga SQL yuborish uchun nima ishlatiladi?",
+     "ru": "Что используется в Express, чтобы отправить SQL в базу?"
+    },
+    "opts": [
+     "res.send(...)",
+     "app.listen(3000, callback)",
+     "console.log(...)",
+     "pool.query('...')"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 26,
+     "jami": 130,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "AI'ga eng aniq buyruq qaysi?",
+     "ru": "Какая команда для AI самая точная?"
+    },
+    "opts": [
+     {
+      "uz": "Menga mashinalar kerak, ularni chiqaradigan biror narsa qilib bergin",
+      "ru": "Мне нужны машины, сделай что-нибудь, что их выводит"
+     },
+     {
+      "uz": "Bazadan biror narsa olib chiqadigan kod yozib ber",
+      "ru": "Напиши код, который что-то достаёт из базы"
+     },
+     {
+      "uz": "GET /api/cars — pool.query bilan SELECT * FROM cars, JSON qaytar",
+      "ru": "GET /api/cars — через pool.query сделай SELECT * FROM cars, верни JSON"
+     },
+     {
+      "uz": "Mashinalar uchun yaxshi backend kodi yozib ber",
+      "ru": "Напиши хороший backend-код для машин"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 68,
+     "jami": 255,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "res.json(...) nima qiladi?",
+     "ru": "Что делает res.json(...)?"
+    },
+    "opts": [
+     {
+      "uz": "Yangi jadval yaratadi",
+      "ru": "Создаёт новую таблицу"
+     },
+     {
+      "uz": "Serverni yoqadi va portni tinglashni boshlaydi",
+      "ru": "Включает сервер и начинает слушать порт"
+     },
+     {
+      "uz": "Natijani frontga JSON qilib qaytaradi",
+      "ru": "Возвращает результат фронту в виде JSON"
+     },
+     {
+      "uz": "Faylni diskka yozadi",
+      "ru": "Записывает файл на диск"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 26,
+     "maxVariant": 46,
+     "jami": 150,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Nega SQL'da $1, $2 ishlatiladi (to'g'ridan yopishtirmaymiz)?",
+     "ru": "Зачем в SQL используют $1, $2 (а не вклеивают напрямую)?"
+    },
+    "opts": [
+     {
+      "uz": "Xavfsizlik — foydalanuvchi matni kod bo'lmaydi",
+      "ru": "Безопасность — текст пользователя не станет кодом"
+     },
+     {
+      "uz": "Kod tezroq ishlashi va so'rov sekin bo'lmasligi uchun",
+      "ru": "Чтобы код работал быстрее и запрос не тормозил"
+     },
+     {
+      "uz": "PostgreSQL buni majburiy talab qiladi",
+      "ru": "PostgreSQL требует это в обязательном порядке"
+     },
+     {
+      "uz": "Ustun nomlarini qisqartirish uchun",
+      "ru": "Чтобы сократить названия столбцов"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 60,
+     "maxVariant": 53,
+     "jami": 230,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Server 500 qaytardi: column \"price\" does not exist. Sabab?",
+     "ru": "Сервер вернул 500: column \"price\" does not exist. Причина?"
+    },
+    "opts": [
+     {
+      "uz": "Baza o'chib qolgan — server ulana olmadi",
+      "ru": "База выключилась — сервер не смог подключиться"
+     },
+     {
+      "uz": "Kodda price, lekin sxemada ustun nomi narx",
+      "ru": "В коде price, а в схеме столбец называется narx"
+     },
+     {
+      "uz": "Internet uzilgan — so'rov yetib bormadi",
+      "ru": "Пропал интернет — запрос не дошёл"
+     },
+     {
+      "uz": "Postman noto'g'ri sozlangan — manzil xato",
+      "ru": "Postman настроен неверно — адрес ошибочный"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 42,
+     "jami": 220,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Muvaffaqiyatli POST (qo'shildi) qaysi status kodni qaytaradi?",
+     "ru": "Какой статус-код возвращает успешный POST (добавлено)?"
+    },
+    "opts": [
+     "404 Not Found",
+     "500 Server Error",
+     "200 OK",
+     "201 Created"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 61,
+     "maxVariant": 16,
+     "jami": 107,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-09",
+  "file": "src/4-Modull/ApiPostmanLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "`GET` so'rovi nima qiladi?",
+     "ru": "Что делает запрос `GET`?"
+    },
+    "opts": [
+     {
+      "uz": "Ma'lumotni bazadan butunlay o'chiradi",
+      "ru": "Полностью удаляет данные из базы"
+     },
+     {
+      "uz": "Serverga butunlay yangi ma'lumot qo'shib yozadi",
+      "ru": "Записывает на сервер совершенно новые данные"
+     },
+     {
+      "uz": "Serverni butunlay o'chirib qo'yadi",
+      "ru": "Полностью выключает сервер"
+     },
+     {
+      "uz": "Ma'lumotni o'qib oladi (o'zgartirmaydi)",
+      "ru": "Читает данные (не меняет их)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 26,
+     "maxVariant": 47,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "API nima?",
+     "ru": "Что такое API?"
+    },
+    "opts": [
+     {
+      "uz": "Ikki dastur gaplashadigan til va qoidalar",
+      "ru": "Язык и правила, на которых общаются две программы"
+     },
+     {
+      "uz": "Server rasmlari saqlanadigan katta papka",
+      "ru": "Большая папка, где хранятся картинки сервера"
+     },
+     {
+      "uz": "Sayt sahifasini bezaydigan chizish dasturi",
+      "ru": "Инструмент для рисования дизайна сайта"
+     },
+     {
+      "uz": "Internet tezligini oshiradigan maxsus qurilma",
+      "ru": "Специальный прибор для ускорения интернета"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 9,
+     "maxVariant": 45,
+     "jami": 177,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`201 Created` statusi nimani bildiradi?",
+     "ru": "Что означает статус `201 Created`?"
+    },
+    "opts": [
+     {
+      "uz": "Server javob bermay o'chib qoldi",
+      "ru": "Сервер выключился, не ответив"
+     },
+     {
+      "uz": "Yangi ma'lumot muvaffaqiyatli yaratildi",
+      "ru": "Новые данные успешно созданы"
+     },
+     {
+      "uz": "So'rovda tuzatib bo'lmaydigan xatolik bor",
+      "ru": "В запросе неисправимая ошибка"
+     },
+     {
+      "uz": "So'ralgan manzil serverda topilmadi",
+      "ru": "Запрошенный адрес не найден на сервере"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 41,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`POST` so'rovida BODY nima uchun kerak?",
+     "ru": "Зачем нужен BODY в запросе `POST`?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifani chiroyli ko'rsatib turishi uchun",
+      "ru": "Чтобы страница красиво выглядела"
+     },
+     {
+      "uz": "Server javobini tezlashtirish uchun",
+      "ru": "Чтобы ускорить ответ сервера"
+     },
+     {
+      "uz": "Qo'shiladigan yangi ma'lumotni tashish uchun",
+      "ru": "Чтобы передать добавляемые новые данные"
+     },
+     {
+      "uz": "So'rov manzilini yashirib qo'yish uchun",
+      "ru": "Чтобы спрятать адрес запроса"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 44,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Postman qanday dastur?",
+     "ru": "Что за инструмент Postman?"
+    },
+    "opts": [
+     {
+      "uz": "Sayt dizaynini chizadigan grafik dastur",
+      "ru": "Графическая программа для рисования дизайна"
+     },
+     {
+      "uz": "Serverga faqat rasm yuklab beradi",
+      "ru": "Только загружает картинки на сервер"
+     },
+     {
+      "uz": "Frontend yozmasdan API'ni sinaydi",
+      "ru": "Тестирует API без написания фронтенда"
+     },
+     {
+      "uz": "Bazadagi ma'lumotni o'chirib tashlaydi",
+      "ru": "Стирает данные из базы"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 22,
+     "maxVariant": 39,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`404 Not Found` nima demoqchi?",
+     "ru": "О чём говорит `404 Not Found`?"
+    },
+    "opts": [
+     {
+      "uz": "Ma'lumot muvaffaqiyatli qaytib keldi",
+      "ru": "Данные успешно вернулись"
+     },
+     {
+      "uz": "So'ralgan manzil topilmadi",
+      "ru": "Запрошенный адрес не найден"
+     },
+     {
+      "uz": "Yangi yozuv muvaffaqiyatli yaratildi",
+      "ru": "Новая запись успешно создана"
+     },
+     {
+      "uz": "Serverga kirish taqiqlab qo'yilgan",
+      "ru": "Доступ к серверу запрещён"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 30,
+     "maxVariant": 36,
+     "jami": 162,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Mahsulot narxini yangilash uchun qaysi method?",
+     "ru": "Каким методом обновить цену товара?"
+    },
+    "opts": [
+     "POST",
+     "DELETE",
+     "GET",
+     "PUT"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 6,
+     "jami": 62,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "So'rov (request) qismlari qaysilar?",
+     "ru": "Из чего состоит запрос (request)?"
+    },
+    "opts": [
+     "METHOD + URL (+ BODY)",
+     {
+      "uz": "Faqat rang, shrift va bezaklar",
+      "ru": "Только цвета, шрифты и украшения"
+     },
+     {
+      "uz": "Faqat rasm va videolar",
+      "ru": "Только картинки и видео"
+     },
+     {
+      "uz": "Faqat login va parol",
+      "ru": "Только логин и пароль"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 30,
+     "jami": 128,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`DELETE /api/products/3` nima qiladi?",
+     "ru": "Что сделает `DELETE /api/products/3`?"
+    },
+    "opts": [
+     {
+      "uz": "3-mahsulotni o'chiradi",
+      "ru": "Удалит товар с id 3"
+     },
+     {
+      "uz": "Yangi mahsulot qo'shadi",
+      "ru": "Добавит новый товар"
+     },
+     {
+      "uz": "Ro'yxatni o'qib beradi",
+      "ru": "Прочитает и вернёт список"
+     },
+     {
+      "uz": "Narxni oshirib qo'yadi",
+      "ru": "Поднимет цену"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 23,
+     "jami": 126,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "`GET` bazadagi qaysi SQL amaliga to'g'ri keladi?",
+     "ru": "Какой SQL-операции соответствует `GET`?"
+    },
+    "opts": [
+     "INSERT",
+     "UPDATE",
+     "SELECT",
+     "DELETE"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 6,
+     "jami": 72,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Sayt ma'lumot kerak bo'lganda nima qiladi?",
+     "ru": "Что делает сайт, когда ему нужны данные?"
+    },
+    "opts": [
+     {
+      "uz": "Bazaga to'g'ridan-to'g'ri o'zi kiradi",
+      "ru": "Сам напрямую заходит в базу"
+     },
+     {
+      "uz": "Hech kim bilan bog'lanmay o'zi ishlaydi",
+      "ru": "Работает сам, ни с кем не связываясь"
+     },
+     {
+      "uz": "Boshqa saytdan tayyor nusxa oladi",
+      "ru": "Берёт готовую копию с другого сайта"
+     },
+     {
+      "uz": "API'ga so'rov yuboradi, javob oladi",
+      "ru": "Отправляет запрос в API и получает ответ"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 42,
+     "maxVariant": 39,
+     "jami": 186,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Javob konverti (response) nimalardan iborat?",
+     "ru": "Из чего состоит конверт-ответ (response)?"
+    },
+    "opts": [
+     {
+      "uz": "Faqat ichiga solingan bitta rasm fayli",
+      "ru": "Только один вложенный файл-картинка"
+     },
+     {
+      "uz": "STATUS (shtamp) + DATA (JSON)",
+      "ru": "STATUS (штамп) + DATA (JSON)"
+     },
+     {
+      "uz": "Faqat foydalanuvchi paroli",
+      "ru": "Только пароль пользователя"
+     },
+     {
+      "uz": "Faqat so'rov manzili (URL)",
+      "ru": "Только адрес запроса (URL)"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 38,
+     "jami": 163,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-10",
+  "file": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "`fetch` nima qiladi?",
+     "ru": "Что делает `fetch`?"
+    },
+    "opts": [
+     {
+      "uz": "Faylni kompyuterga yuklab, papkaga saqlaydi",
+      "ru": "Скачивает файл на компьютер и кладёт в папку"
+     },
+     {
+      "uz": "Sahifa dizaynini bezaydi",
+      "ru": "Украшает дизайн страницы"
+     },
+     {
+      "uz": "Serverga so'rov yuborib, ma'lumot oladi",
+      "ru": "Отправляет запрос серверу и получает данные"
+     },
+     {
+      "uz": "Bazani o'chirib tashlaydi",
+      "ru": "Удаляет базу данных"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 20,
+     "maxVariant": 43,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "`useEffect([])` nega bo'sh massiv bilan yoziladi?",
+     "ru": "Почему `useEffect([])` пишется с пустым массивом?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifa ochilganda faqat bir marta ishlashi uchun",
+      "ru": "Чтобы сработал только один раз при открытии страницы"
+     },
+     {
+      "uz": "Har soniyada uzluksiz qayta-qayta ishlab turishi uchun",
+      "ru": "Чтобы работал без остановки каждую секунду"
+     },
+     {
+      "uz": "Umuman ishlamasligi uchun",
+      "ru": "Чтобы вообще не работал"
+     },
+     {
+      "uz": "Xatoni yashirish uchun",
+      "ru": "Чтобы спрятать ошибку"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 54,
+     "jami": 198,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`app.use(cors())` qayerga yoziladi?",
+     "ru": "Куда пишется `app.use(cors())`?"
+    },
+    "opts": [
+     {
+      "uz": "Front (sayt) kodiga",
+      "ru": "В код фронта (сайта)"
+     },
+     {
+      "uz": "CSS fayliga",
+      "ru": "В CSS-файл"
+     },
+     {
+      "uz": "Bazaga to'g'ridan-to'g'ri",
+      "ru": "Прямо в базу данных"
+     },
+     {
+      "uz": "Server (back) kodiga",
+      "ru": "В код сервера (бэка)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 25,
+     "jami": 110,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Konsolda CORS to'sig'ini ko'rsangiz, birinchi nima qilasiz?",
+     "ru": "Увидели в консоли блок CORS — что сделаете первым?"
+    },
+    "opts": [
+     {
+      "uz": "Butun saytni o'chirib, boshidan yozasiz",
+      "ru": "Удалите весь сайт и напишете заново"
+     },
+     {
+      "uz": "Serverga app.use(cors()) qo'shasiz",
+      "ru": "Добавите на сервер app.use(cors())"
+     },
+     {
+      "uz": "Internet aloqasini tekshirib ko'rasiz",
+      "ru": "Проверите интернет-соединение"
+     },
+     {
+      "uz": "Front kodini butunlay qayta yozasiz",
+      "ru": "Полностью перепишете код фронта"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 59,
+     "maxVariant": 39,
+     "jami": 204,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "CORS xatosi nega chiqadi?",
+     "ru": "Почему появляется ошибка CORS?"
+    },
+    "opts": [
+     {
+      "uz": "Baza to'lib qolgan",
+      "ru": "База переполнилась"
+     },
+     {
+      "uz": "Internet aloqasi umuman yo'qligini bildiradi",
+      "ru": "Она означает, что интернета совсем нет"
+     },
+     {
+      "uz": "Kod xato yozilgan",
+      "ru": "Код написан с ошибкой"
+     },
+     {
+      "uz": "Brauzer boshqa portga so'rovni to'sib qo'yadi",
+      "ru": "Браузер блокирует запрос на другой порт"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 25,
+     "maxVariant": 45,
+     "jami": 149,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "`res.json()` nima qiladi?",
+     "ru": "Что делает `res.json()`?"
+    },
+    "opts": [
+     {
+      "uz": "Yuborilgan so'rovni butunlay bekor qiladi",
+      "ru": "Полностью отменяет отправленный запрос"
+     },
+     {
+      "uz": "Yangi server ochadi",
+      "ru": "Открывает новый сервер"
+     },
+     {
+      "uz": "Javobni ro'yxatga (massiv) aylantiradi",
+      "ru": "Превращает ответ в список (массив)"
+     },
+     {
+      "uz": "CSS faylini o'qiydi",
+      "ru": "Читает CSS-файл"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 25,
+     "maxVariant": 41,
+     "jami": 142,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Javob kelguncha foydalanuvchi nimani ko'radi?",
+     "ru": "Что видит пользователь, пока ответ не пришёл?"
+    },
+    "opts": [
+     {
+      "uz": "«Yuklanmoqda» holatini (loading)",
+      "ru": "Состояние «загрузка» (loading)"
+     },
+     {
+      "uz": "Bo'sh oq ekranni",
+      "ru": "Пустой белый экран"
+     },
+     {
+      "uz": "Katta qizil xato xabari va ogohlantirishni",
+      "ru": "Большое красное сообщение об ошибке"
+     },
+     {
+      "uz": "Boshqa saytni",
+      "ru": "Другой сайт"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 42,
+     "jami": 148,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Sahifani yangilaganda yangi mashina nega yo'qolmaydi?",
+     "ru": "Почему новая машина не пропадает при обновлении страницы?"
+    },
+    "opts": [
+     {
+      "uz": "Brauzer eslab qoladi",
+      "ru": "Браузер её запоминает"
+     },
+     {
+      "uz": "U bazada saqlangan",
+      "ru": "Она сохранена в базе"
+     },
+     {
+      "uz": "Tasodifan qoladi",
+      "ru": "Остаётся случайно"
+     },
+     {
+      "uz": "CSS saqlab qoladi",
+      "ru": "Её сохраняет CSS"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 20,
+     "jami": 124,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "`GET` so'rovi bazada nimani o'zgartiradi?",
+     "ru": "Что меняет в базе запрос `GET`?"
+    },
+    "opts": [
+     {
+      "uz": "Hamma qatorni o'chiradi",
+      "ru": "Удаляет все строки"
+     },
+     {
+      "uz": "Hech narsani — faqat o'qiydi",
+      "ru": "Ничего — только читает"
+     },
+     {
+      "uz": "Jadvalga butunlay yangi qator qo'shadi",
+      "ru": "Добавляет в таблицу новую строку"
+     },
+     {
+      "uz": "Jadval nomini yangilaydi",
+      "ru": "Обновляет название таблицы"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 38,
+     "jami": 154,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Front va back qanday gaplashadi?",
+     "ru": "Как общаются фронт и бэк?"
+    },
+    "opts": [
+     {
+      "uz": "Bir xil fayl ichida",
+      "ru": "Внутри одного файла"
+     },
+     {
+      "uz": "Hech qanday — har biri mustaqil ishlaydi",
+      "ru": "Никак — каждый работает сам по себе"
+     },
+     {
+      "uz": "Faqat CSS orqali",
+      "ru": "Только через CSS"
+     },
+     {
+      "uz": "HTTP so'rov (fetch) orqali",
+      "ru": "Через HTTP-запрос (fetch)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 40,
+     "jami": 133,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Bazaga yangi mashina qo'shish uchun qaysi metod?",
+     "ru": "Какой метод добавляет в базу новую машину?"
+    },
+    "opts": [
+     {
+      "uz": "POST",
+      "ru": "POST"
+     },
+     {
+      "uz": "DELETE",
+      "ru": "DELETE"
+     },
+     {
+      "uz": "GET",
+      "ru": "GET"
+     },
+     {
+      "uz": "PUT",
+      "ru": "PUT"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 6,
+     "jami": 64,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "`fetch` → `json` → `setCars` tartibi nega shunday?",
+     "ru": "Почему порядок именно `fetch` → `json` → `setCars`?"
+    },
+    "opts": [
+     {
+      "uz": "Tartib umuman muhim emas",
+      "ru": "Порядок вообще не важен"
+     },
+     {
+      "uz": "Avval setCars chaqirib, keyin fetch qilish kerak",
+      "ru": "Сначала надо вызвать setCars, потом fetch"
+     },
+     {
+      "uz": "Avval olamiz, keyin o'qiymiz, so'ng saqlaymiz",
+      "ru": "Сначала получаем, потом читаем, затем сохраняем"
+     },
+     {
+      "uz": "Faqat json yetarli",
+      "ru": "Достаточно одного json"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 48,
+     "jami": 185,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-11",
+  "file": "src/4-Modull/AuthEnvLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Login (email+parol) to'g'ri bo'lsa, server nima qaytaradi?",
+     "ru": "Логин (email+пароль) верный — что вернёт сервер?"
+    },
+    "opts": [
+     {
+      "uz": "token (bilaguzuk)",
+      "ru": "токен (браслет)"
+     },
+     {
+      "uz": "yangi parol",
+      "ru": "новый пароль"
+     },
+     {
+      "uz": "faqat xato xabari",
+      "ru": "только сообщение об ошибке"
+     },
+     {
+      "uz": "sahifani qayta yuklaydi",
+      "ru": "перезагрузит страницу"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 58,
+     "maxVariant": 23,
+     "jami": 126,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Token har so'rovda qayerda yuboriladi?",
+     "ru": "Где токен отправляется в каждом запросе?"
+    },
+    "opts": [
+     {
+      "uz": "URL manzil ichida — brauzer tarixiga yozilib qoladi",
+      "ru": "внутри URL — останется в истории браузера"
+     },
+     {
+      "uz": "Authorization: Bearer sarlavhasida",
+      "ru": "в заголовке Authorization: Bearer"
+     },
+     {
+      "uz": "parol maydonida",
+      "ru": "в поле пароля"
+     },
+     {
+      "uz": "cookie nomida",
+      "ru": "в имени cookie"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 51,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "`jwt.sign` token yasashda nimalardan foydalanadi?",
+     "ru": "Что использует `jwt.sign` при создании токена?"
+    },
+    "opts": [
+     {
+      "uz": "brauzer nomi va operatsion tizim versiyasi",
+      "ru": "имя браузера и версию ОС"
+     },
+     {
+      "uz": "IP manzil",
+      "ru": "IP-адрес"
+     },
+     {
+      "uz": "faqat parol",
+      "ru": "только пароль"
+     },
+     {
+      "uz": "userId va maxfiy kalit (`JWT_SECRET`)",
+      "ru": "userId и секретный ключ (`JWT_SECRET`)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 42,
+     "jami": 148,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Himoyalangan route'ga tokensiz so'rov kelsa?",
+     "ru": "Запрос на защищённый route без токена — что будет?"
+    },
+    "opts": [
+     "200 OK",
+     {
+      "uz": "yangi token beradi",
+      "ru": "выдаст новый токен"
+     },
+     "401 Unauthorized",
+     {
+      "uz": "parolni so'raydi",
+      "ru": "спросит пароль"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 18,
+     "jami": 100,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Guard tokenni qanday tekshiradi?",
+     "ru": "Как guard проверяет токен?"
+    },
+    "opts": [
+     {
+      "uz": "har so'rovda bazadan qidirib solishtiradi",
+      "ru": "ищет в базе и сверяет при каждом запросе"
+     },
+     {
+      "uz": "`jwt.verify(token, SECRET)` bilan",
+      "ru": "через `jwt.verify(token, SECRET)`"
+     },
+     {
+      "uz": "parolni so'raydi",
+      "ru": "спрашивает пароль"
+     },
+     {
+      "uz": "tekshirmaydi",
+      "ru": "никак не проверяет"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 41,
+     "jami": 134,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Nega soxta imzoli token rad etiladi?",
+     "ru": "Почему токен с поддельной подписью отклоняется?"
+    },
+    "opts": [
+     {
+      "uz": "token juda uzun",
+      "ru": "токен слишком длинный"
+     },
+     {
+      "uz": "internet sekin",
+      "ru": "интернет медленный"
+     },
+     {
+      "uz": "brauzer soxta tokenlarni avtomatik bloklaydi",
+      "ru": "браузер сам блокирует поддельные токены"
+     },
+     {
+      "uz": "SECRET faqat serverda — imzo mos kelmaydi",
+      "ru": "SECRET только на сервере — подпись не совпадёт"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 44,
+     "jami": 150,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "JWT token necha qismdan iborat?",
+     "ru": "Из скольких частей состоит JWT-токен?"
+    },
+    "opts": [
+     {
+      "uz": "1 ta",
+      "ru": "1"
+     },
+     {
+      "uz": "2 ta",
+      "ru": "2"
+     },
+     {
+      "uz": "3 ta (header.payload.signature)",
+      "ru": "3 (header.payload.signature)"
+     },
+     {
+      "uz": "4 ta (header, payload, signature, maxfiy kalit)",
+      "ru": "4 (header, payload, signature, секретный ключ)"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 47,
+     "jami": 117,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Nega JWT'ni soxta yasab bo'lmaydi?",
+     "ru": "Почему JWT нельзя подделать?"
+    },
+    "opts": [
+     {
+      "uz": "signature SECRET bilan yasaladi",
+      "ru": "signature создаётся с SECRET"
+     },
+     {
+      "uz": "juda qisqa",
+      "ru": "слишком короткий"
+     },
+     {
+      "uz": "har kuni avtomatik ravishda o'zgarib turadi",
+      "ru": "каждый день меняется автоматически"
+     },
+     {
+      "uz": "u ko'rinmaydi",
+      "ru": "он невидим"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 43,
+     "jami": 131,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Payload ichida nima saqlanadi?",
+     "ru": "Что хранится в payload?"
+    },
+    "opts": [
+     {
+      "uz": "server paroli",
+      "ru": "пароль сервера"
+     },
+     {
+      "uz": "parol",
+      "ru": "пароль"
+     },
+     {
+      "uz": "maxfiy kalit va server sozlamalari",
+      "ru": "секретный ключ и настройки сервера"
+     },
+     {
+      "uz": "userId (kim ekaningiz)",
+      "ru": "userId (кто вы)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 30,
+     "maxVariant": 34,
+     "jami": 104,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "`JWT_SECRET` qayerda saqlanishi kerak?",
+     "ru": "Где должен храниться `JWT_SECRET`?"
+    },
+    "opts": [
+     {
+      "uz": "kod ichida ochiq",
+      "ru": "открыто в коде"
+     },
+     {
+      "uz": ".env faylida",
+      "ru": "в файле .env"
+     },
+     {
+      "uz": "HTML sahifada",
+      "ru": "на HTML-странице"
+     },
+     {
+      "uz": "URL manzilida",
+      "ru": "в URL-адресе"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 16,
+     "jami": 92,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Kod `.env` qiymatini qanday o'qiydi?",
+     "ru": "Как код читает значение из `.env`?"
+    },
+    "opts": [
+     {
+      "uz": "fetch bilan",
+      "ru": "через fetch"
+     },
+     {
+      "uz": "import qilib",
+      "ru": "через import"
+     },
+     {
+      "uz": "`process.env.JWT_SECRET` orqali",
+      "ru": "через `process.env.JWT_SECRET`"
+     },
+     {
+      "uz": "console.log bilan faylni chop etib",
+      "ru": "печатая файл через console.log"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 34,
+     "jami": 124,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "`.env`ni `.gitignore`ga qo'shmasa nima xavf?",
+     "ru": "Чем опасно не добавить `.env` в `.gitignore`?"
+    },
+    "opts": [
+     {
+      "uz": "maxfiy kalit GitHub'ga chiqib, soxta token yasaladi",
+      "ru": "секретный ключ утечёт на GitHub — сделают поддельные токены"
+     },
+     {
+      "uz": "kod ishlamaydi",
+      "ru": "код не заработает"
+     },
+     {
+      "uz": "hech qanday xavf yo'q, hammasi joyida ishlayveradi",
+      "ru": "никакой опасности, всё продолжит работать"
+     },
+     {
+      "uz": "sayt sekinlashadi",
+      "ru": "сайт станет медленнее"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 44,
+     "maxVariant": 51,
+     "jami": 176,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-12",
+  "file": "src/4-Modull/PmLesson13.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Sxema nima?",
+     "ru": "Что такое схема?"
+    },
+    "opts": [
+     {
+      "uz": "Ilova nimani yozib qolishini ko'rsatadigan ustunlar ro'yxati",
+      "ru": "Список столбцов, который показывает, что приложение записывает"
+     },
+     {
+      "uz": "Odam ilovada bosadigan tugmalar ro'yxati",
+      "ru": "Список кнопок, которые человек нажимает в приложении"
+     },
+     {
+      "uz": "Ilova ekranida qaysi bo'limlar ochilishini ko'rsatadigan ro'yxat",
+      "ru": "Список разделов, которые открываются на экране приложения"
+     },
+     {
+      "uz": "Dasturchi yozgan kod qatorlari ro'yxati",
+      "ru": "Список строк кода, которые написал разработчик"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 11,
+     "maxVariant": 64,
+     "jami": 214,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Sxemaga yozilmagan narsani ilova ko'rsata oladimi?",
+     "ru": "Может ли приложение показать то, чего нет в схеме?"
+    },
+    "opts": [
+     {
+      "uz": "Ha — ekranda bir marta ko'ringan bo'lsa",
+      "ru": "Да — если это хоть раз было на экране"
+     },
+     {
+      "uz": "Ha — odam so'rab qidirsa topib beradi",
+      "ru": "Да — если человек поищет, оно найдёт"
+     },
+     {
+      "uz": "Yo'q — buni faqat dasturchi kompyuterdan ko'radi",
+      "ru": "Нет — это видит только разработчик со своего компьютера"
+     },
+     {
+      "uz": "Yo'q — ilova faqat yozib qolganini biladi",
+      "ru": "Нет — приложение знает только то, что записало"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 48,
+     "jami": 215,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "To'rtinchi gapga ustun topilmadi. Endi nima bo'ladi?",
+     "ru": "Для четвёртой фразы столбца не нашлось. Что дальше?"
+    },
+    "opts": [
+     {
+      "uz": "Gap e'londan olib tashlanadi",
+      "ru": "Фразу убирают из анонса"
+     },
+     {
+      "uz": "Gap boshqa ustunga yoziladi",
+      "ru": "Фразу записывают в другой столбец"
+     },
+     {
+      "uz": "Sxemaga yangi ustun ochiladi",
+      "ru": "В схеме открывают новый столбец"
+     },
+     {
+      "uz": "Ustunlarning nomi qayta yoziladi",
+      "ru": "Названия столбцов переписывают"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 52,
+     "maxVariant": 32,
+     "jami": 167,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Ustunning 👁 yoki 🔒 belgisini nima aytadi?",
+     "ru": "Что определяет метку столбца 👁 или 🔒?"
+    },
+    "opts": [
+     {
+      "uz": "Ustunning sxemadagi tartib raqami",
+      "ru": "Порядковый номер столбца в схеме"
+     },
+     {
+      "uz": "Ma'lumotni kim ko'rishi — e'londagi gap",
+      "ru": "Кто видит данные — фраза анонса"
+     },
+     {
+      "uz": "Ustunga yoziladigan qiymat uzunligi",
+      "ru": "Длина значения, которое пишут в столбец"
+     },
+     {
+      "uz": "Ilova ekranidagi rang va bezaklar",
+      "ru": "Цвета и украшения на экране приложения"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 39,
+     "jami": 183,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Kitob qachon bo'shashini ko'rsatish uchun qaysi ustun kerak edi?",
+     "ru": "Какой столбец был нужен, чтобы показать, когда книга освободится?"
+    },
+    "opts": [
+     {
+      "uz": "🚩 Holati",
+      "ru": "🚩 Статус"
+     },
+     {
+      "uz": "📅 Qaytarish sanasi",
+      "ru": "📅 Дата возврата"
+     },
+     {
+      "uz": "🧑 Band qilgan o'quvchi",
+      "ru": "🧑 Кто забронировал"
+     },
+     {
+      "uz": "📕 Kitob nomi",
+      "ru": "📕 Название книги"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 64,
+     "maxVariant": 23,
+     "jami": 128,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Hech qaysi gapga ulanmagan ustun nima qilinadi?",
+     "ru": "Что делают со столбцом, не связанным ни с одной фразой?"
+    },
+    "opts": [
+     {
+      "uz": "Sxemadan olib tashlanadi",
+      "ru": "Убирают из схемы"
+     },
+     {
+      "uz": "Zaxira uchun saqlab turiladi",
+      "ru": "Держат про запас"
+     },
+     {
+      "uz": "Bo'sh holida qoldiriladi",
+      "ru": "Оставляют пустым"
+     },
+     {
+      "uz": "Boshqa gapga majburan ulanadi",
+      "ru": "Насильно привязывают к другой фразе"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 29,
+     "jami": 152,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "«Faqat kutubxonachi ko'radi» degan gap ustunga qaysi belgini beradi?",
+     "ru": "Какую метку даёт столбцу фраза «видит только библиотекарь»?"
+    },
+    "opts": [
+     {
+      "uz": "👁 ochiq",
+      "ru": "👁 открытый"
+     },
+     {
+      "uz": "Hech qanday belgi bermaydi",
+      "ru": "Никакой метки не даёт"
+     },
+     {
+      "uz": "🔒 yopiq",
+      "ru": "🔒 закрытый"
+     },
+     {
+      "uz": "Ikkala belgini birga",
+      "ru": "Обе метки сразу"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 68,
+     "maxVariant": 26,
+     "jami": 130,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "E'lon qachon yoziladi?",
+     "ru": "Когда пишут анонс?"
+    },
+    "opts": [
+     {
+      "uz": "Sxema tuzilgandan keyin",
+      "ru": "После того, как составлена схема"
+     },
+     {
+      "uz": "Kod yozilib bo'lgandan keyin",
+      "ru": "После того, как дописан код"
+     },
+     {
+      "uz": "Mahsulot sotuvga chiqqanda",
+      "ru": "Когда продукт поступает в продажу"
+     },
+     {
+      "uz": "Kod yozilishidan oldin",
+      "ru": "До того, как написан код"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 22,
+     "maxVariant": 28,
+     "jami": 121,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "E'lon hech kimni qiziqtirmasa nima bo'ladi?",
+     "ru": "Что будет, если анонс никого не заинтересует?"
+    },
+    "opts": [
+     {
+      "uz": "Mahsulot qurilmaydi",
+      "ru": "Продукт не строят"
+     },
+     {
+      "uz": "Mahsulot kichikroq quriladi",
+      "ru": "Продукт строят поменьше"
+     },
+     {
+      "uz": "Mahsulot baribir quriladi",
+      "ru": "Продукт всё равно строят"
+     },
+     {
+      "uz": "E'lon boshqa tilda yoziladi",
+      "ru": "Анонс пишут на другом языке"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 43,
+     "maxVariant": 27,
+     "jami": 141,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Amazon 1995-yilda nima sotardi?",
+     "ru": "Что продавал Amazon в 1995 году?"
+    },
+    "opts": [
+     {
+      "uz": "Telefon va noutbuk",
+      "ru": "Телефоны и ноутбуки"
+     },
+     {
+      "uz": "Oziq-ovqat mahsulotlari",
+      "ru": "Продукты питания"
+     },
+     {
+      "uz": "Faqat kitob",
+      "ru": "Только книги"
+     },
+     {
+      "uz": "Kiyim va poyabzal",
+      "ru": "Одежду и обувь"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 23,
+     "jami": 100,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Ustun savoli nimani aytadi?",
+     "ru": "О чём говорит вопрос столбца?"
+    },
+    "opts": [
+     {
+      "uz": "Ustunga qancha ma'lumot sig'ishini",
+      "ru": "Сколько данных помещается в столбец"
+     },
+     {
+      "uz": "Odam bu ustundan nimani bilib olishini",
+      "ru": "Что человек узнаёт из этого столбца"
+     },
+     {
+      "uz": "Ustunni qaysi dasturchi yozganini",
+      "ru": "Какой разработчик написал столбец"
+     },
+     {
+      "uz": "Ustun sxemada nechanchi turishini",
+      "ru": "Каким по счёту столбец стоит в схеме"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 27,
+     "maxVariant": 38,
+     "jami": 165,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Sxemadagi ustun yozuvda yozilmasa nima chiqadi?",
+     "ru": "Что выйдет, если столбец схемы не записан в записи?"
+    },
+    "opts": [
+     {
+      "uz": "Yozuv butunlay o'chib ketadi",
+      "ru": "Запись полностью исчезнет"
+     },
+     {
+      "uz": "Ilova ogohlantirish chiqaradi",
+      "ru": "Приложение покажет предупреждение"
+     },
+     {
+      "uz": "Ilova o'zi to'ldirib qo'yadi",
+      "ru": "Приложение само заполнит"
+     },
+     {
+      "uz": "Savol javobsiz qoladi",
+      "ru": "Вопрос останется без ответа"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 29,
+     "jami": 153,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-13",
+  "file": "src/4-Modull/FullstackProjectDayLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Baza (2 jadval) nima uchun kerak?",
+     "ru": "Зачем нужна база (2 таблицы)?"
+    },
+    "opts": [
+     {
+      "uz": "Ma'lumotni saqlash va bog'lash uchun",
+      "ru": "Чтобы хранить и связывать данные"
+     },
+     {
+      "uz": "Faqat rang berish uchun",
+      "ru": "Только чтобы задавать цвета"
+     },
+     {
+      "uz": "Sahifani bezash uchun",
+      "ru": "Чтобы украшать страницу"
+     },
+     {
+      "uz": "Internet tezligini oshirib berish uchun",
+      "ru": "Чтобы ускорять интернет"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 39,
+     "jami": 152,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Joy bandligi qaysi turda saqlanadi?",
+     "ru": "В каком типе хранится занятость места?"
+    },
+    "opts": [
+     {
+      "uz": "`TEXT` (matn)",
+      "ru": "`TEXT` (текст)"
+     },
+     {
+      "uz": "`SERIAL` (raqam)",
+      "ru": "`SERIAL` (число)"
+     },
+     "`BOOLEAN` (true/false)",
+     {
+      "uz": "`TIMESTAMP` (sana va vaqt)",
+      "ru": "`TIMESTAMP` (дата и время)"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 26,
+     "jami": 112,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Sessiyani joyga qaysi ustun bog'laydi?",
+     "ru": "Какой столбец привязывает сеанс к месту?"
+    },
+    "opts": [
+     "`mashina`",
+     "`joy_id`",
+     "`tolov`",
+     "`kirgan`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 9,
+     "jami": 70,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "`REFERENCES joylar(id)` nima beradi?",
+     "ru": "Что даёт `REFERENCES joylar(id)`?"
+    },
+    "opts": [
+     {
+      "uz": "Yangi jadval yaratib beradi",
+      "ru": "Создаёт новую таблицу"
+     },
+     {
+      "uz": "Ustunga rang qo'shib beradi",
+      "ru": "Добавляет столбцу цвет"
+     },
+     {
+      "uz": "So'rov tezligini oshiradi",
+      "ru": "Ускоряет запросы"
+     },
+     {
+      "uz": "Foreign key bog'lanishi beradi",
+      "ru": "Даёт связь foreign key"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 30,
+     "jami": 145,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Mashina kirganda qaysi amal ishlaydi?",
+     "ru": "Какая операция срабатывает при въезде машины?"
+    },
+    "opts": [
+     "`DELETE`",
+     "`GET`",
+     "`POST`",
+     "`CSS`"
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 37,
+     "maxVariant": 8,
+     "jami": 61,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Mashina chiqqanida qaysi amal ishlaydi?",
+     "ru": "Какая операция срабатывает при выезде машины?"
+    },
+    "opts": [
+     "`GET`",
+     "`DELETE`",
+     "`POST`",
+     "`PUT`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 8,
+     "jami": 63,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Ikki jadvalni birga o'qish uchun?",
+     "ru": "Чем читать две таблицы вместе?"
+    },
+    "opts": [
+     "`JOIN`",
+     "`DELETE`",
+     "`INSERT`",
+     "`DROP`"
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 8,
+     "jami": 61,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "JOIN `ON` sharti qanday yoziladi?",
+     "ru": "Как пишется условие `ON` у JOIN?"
+    },
+    "opts": [
+     "`id = mashina`",
+     "`joy_id = id`",
+     "`raqam = joy`",
+     "`tolov = id`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 33,
+     "maxVariant": 14,
+     "jami": 85,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Joylarni panelga qanday olamiz?",
+     "ru": "Как получить места на панель?"
+    },
+    "opts": [
+     "`DROP`",
+     "`PUT`",
+     "`DELETE`",
+     "`GET`"
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 31,
+     "maxVariant": 8,
+     "jami": 55,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Panel rangi nimaga qarab o'zgaradi?",
+     "ru": "От чего зависит цвет панели?"
+    },
+    "opts": [
+     "`mashina`",
+     "`bandmi`",
+     "`tolov`",
+     "`id`"
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 9,
+     "jami": 63,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Qorovulga eng yaxshi panel qanday?",
+     "ru": "Какая панель лучше всего для охранника?"
+    },
+    "opts": [
+     {
+      "uz": "Ko'p matn va mayda tugmalar",
+      "ru": "Много текста и мелкие кнопки"
+     },
+     {
+      "uz": "Faqat raqamli quruq jadval",
+      "ru": "Сухая таблица из одних цифр"
+     },
+     {
+      "uz": "Rang + katta tugma + kam matn",
+      "ru": "Цвет + крупные кнопки + мало текста"
+     },
+     {
+      "uz": "Uzun ko'rsatma matni bilan",
+      "ru": "С длинной инструкцией"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 34,
+     "maxVariant": 29,
+     "jami": 142,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Fullstack loyiha nimalardan iborat?",
+     "ru": "Из чего состоит fullstack-проект?"
+    },
+    "opts": [
+     {
+      "uz": "Front + server + baza",
+      "ru": "Фронт + сервер + база"
+     },
+     {
+      "uz": "Faqat ma'lumotlar bazasi",
+      "ru": "Только база данных"
+     },
+     {
+      "uz": "Faqat frontend qismi",
+      "ru": "Только фронтенд"
+     },
+     {
+      "uz": "Faqat rang va bezaklar",
+      "ru": "Только цвета и украшения"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 24,
+     "jami": 122,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-14",
+  "file": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Qaysi fikr eng foydali?",
+     "ru": "Какой отзыв самый полезный?"
+    },
+    "opts": [
+     {
+      "uz": "«Rangi chiroyli, ko'zga yoqadi» — bezak",
+      "ru": "«Цвет красивый, радует глаз» — оформление"
+     },
+     {
+      "uz": "«Umuman zo'r ekan, juda yoqdi!» — maqtov",
+      "ru": "«Вообще круто, очень понравилось!» — похвала"
+     },
+     {
+      "uz": "«Bilmadim, normalga o'xshaydi» — noaniq",
+      "ru": "«Не знаю, вроде нормально» — расплывчато"
+     },
+     {
+      "uz": "«Chiqishda tasdiq yo'q» — aniq muammo",
+      "ru": "«Нет подтверждения при выезде» — конкретная проблема"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 23,
+     "maxVariant": 40,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "«Zo'r ekan!» nega yetarli fikr emas?",
+     "ru": "Почему «Круто!» — недостаточный отзыв?"
+    },
+    "opts": [
+     {
+      "uz": "Uzoq yozilgani uchun yaxshi fikr",
+      "ru": "Длинный отзыв — значит хороший"
+     },
+     {
+      "uz": "Nimani yaxshilashni aytmaydi",
+      "ru": "Не говорит, что улучшать"
+     },
+     {
+      "uz": "Har doim yolg'on bo'lib chiqadi",
+      "ru": "Всегда оказывается неправдой"
+     },
+     {
+      "uz": "Faqat mentor aytishi mumkin",
+      "ru": "Так может говорить только ментор"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 36,
+     "maxVariant": 32,
+     "jami": 154,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "«Yoqmadi» ni foydali fikrga qanday aylantiramiz?",
+     "ru": "Как превратить «не понравилось» в полезный отзыв?"
+    },
+    "opts": [
+     {
+      "uz": "E'tibor bermay, o'zimizcha davom etamiz",
+      "ru": "Не обращаем внимания и продолжаем по-своему"
+     },
+     {
+      "uz": "«Ko'proq yoqsin» deb qayta so'raymiz",
+      "ru": "Переспрашиваем: «пусть понравится больше»"
+     },
+     {
+      "uz": "Aniq muammoni so'raymiz: nima chalkash edi?",
+      "ru": "Спрашиваем конкретную проблему: что было непонятно?"
+     },
+     {
+      "uz": "Xafa bo'lib loyihani butunlay o'chiramiz",
+      "ru": "Обижаемся и удаляем проект совсем"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 48,
+     "maxVariant": 43,
+     "jami": 206,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Doskaning qaysi katagidagi ishni avval qilamiz?",
+     "ru": "Из какой клетки доски делаем работу первой?"
+    },
+    "opts": [
+     {
+      "uz": "Ko'p foyda + kam mehnat",
+      "ru": "Много пользы + мало усилий"
+     },
+     {
+      "uz": "Ko'p foyda + ko'p mehnat",
+      "ru": "Много пользы + много усилий"
+     },
+     {
+      "uz": "Kam foyda + kam mehnat",
+      "ru": "Мало пользы + мало усилий"
+     },
+     {
+      "uz": "Kam foyda + ko'p mehnat",
+      "ru": "Мало пользы + много усилий"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 24,
+     "jami": 139,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "«Eng qiyinini avval qilamiz» nega xato?",
+     "ru": "Почему «сначала самое сложное» — ошибка?"
+    },
+    "opts": [
+     {
+      "uz": "Qiyin ish har doim mutlaqo befoyda",
+      "ru": "Сложная работа всегда совсем бесполезна"
+     },
+     {
+      "uz": "Ko'p vaqt oladi, natija kech ko'rinadi",
+      "ru": "Занимает много времени, результат виден поздно"
+     },
+     {
+      "uz": "Oson ishlar umuman qilinmay qoladi",
+      "ru": "Лёгкие дела вообще останутся несделанными"
+     },
+     {
+      "uz": "Foyda hech qachon muhim bo'lmaydi",
+      "ru": "Польза никогда не бывает важна"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 39,
+     "maxVariant": 38,
+     "jami": 178,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Ko'p foyda beradigan, lekin katta ish qayerga?",
+     "ru": "Куда идёт работа с большой пользой, но большим трудом?"
+    },
+    "opts": [
+     {
+      "uz": "«Rejaga ol» — keyin bajaramiz",
+      "ru": "«Запланируй» — сделаем позже"
+     },
+     {
+      "uz": "«⭐ Avval shu» — hoziroq qilamiz",
+      "ru": "«⭐ Сначала это» — делаем прямо сейчас"
+     },
+     {
+      "uz": "«Shart emas» — tashlab ketamiz",
+      "ru": "«Не нужно» — бросаем"
+     },
+     {
+      "uz": "«Oson, keyin» — bo'sh vaqtda",
+      "ru": "«Легко, потом» — в свободное время"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 46,
+     "maxVariant": 31,
+     "jami": 164,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Band joyni tasodifan chiqarishni nima to'xtatadi?",
+     "ru": "Что остановит случайный выезд с занятого места?"
+    },
+    "opts": [
+     {
+      "uz": "Dashboard panelini qo'shish",
+      "ru": "Добавить панель дашборда"
+     },
+     {
+      "uz": "Soatlik narxni oshirish",
+      "ru": "Поднять цену за час"
+     },
+     {
+      "uz": "Joylar sonini ko'paytirish",
+      "ru": "Увеличить число мест"
+     },
+     {
+      "uz": "Chiqishda tasdiq (confirm)",
+      "ru": "Подтверждение при выезде (confirm)"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 27,
+     "jami": 151,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Bo'sh/band/tushumni bir qarashda ko'rsatadigan upgrade?",
+     "ru": "Какой апгрейд показывает свободно/занято/выручку с одного взгляда?"
+    },
+    "opts": [
+     {
+      "uz": "Chiqishda tasdiq (confirm)",
+      "ru": "Подтверждение при выезде (confirm)"
+     },
+     {
+      "uz": "Joylar sonini kamaytirish",
+      "ru": "Уменьшение числа мест"
+     },
+     {
+      "uz": "Dashboard (holat paneli)",
+      "ru": "Дашборд (панель состояния)"
+     },
+     {
+      "uz": "Soatlik narxni yashirish",
+      "ru": "Скрытие цены за час"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 55,
+     "maxVariant": 26,
+     "jami": 154,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Narx va joylar sonini qorovul o'zi sozlashi uchun?",
+     "ru": "Что нужно, чтобы охранник сам настраивал цену и число мест?"
+    },
+    "opts": [
+     {
+      "uz": "Sozlamalar (Settings) paneli",
+      "ru": "Панель настроек (Settings)"
+     },
+     {
+      "uz": "Kodni har safar qayta yozish",
+      "ru": "Каждый раз переписывать код"
+     },
+     {
+      "uz": "Har safar yangi sayt ochish",
+      "ru": "Каждый раз открывать новый сайт"
+     },
+     {
+      "uz": "Hech narsa — bu imkonsiz ish",
+      "ru": "Ничего — это невозможно"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 50,
+     "maxVariant": 28,
+     "jami": 161,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Mavjud narxni o'zgartirish uchun qaysi SQL amali?",
+     "ru": "Какая SQL-команда изменяет существующую цену?"
+    },
+    "opts": [
+     {
+      "uz": "INSERT — jadvalga yangi qator qo'shadi",
+      "ru": "INSERT — добавляет новую строку в таблицу"
+     },
+     {
+      "uz": "DELETE — jadvaldan qatorni o'chiradi",
+      "ru": "DELETE — удаляет строку из таблицы"
+     },
+     {
+      "uz": "UPDATE — mavjud qatorni o'zgartiradi",
+      "ru": "UPDATE — изменяет существующую строку"
+     },
+     {
+      "uz": "SELECT — jadvaldan ma'lumot o'qiydi",
+      "ru": "SELECT — читает данные из таблицы"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 49,
+     "maxVariant": 38,
+     "jami": 194,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "UPDATE va INSERT farqi nimada?",
+     "ru": "В чём разница между UPDATE и INSERT?"
+    },
+    "opts": [
+     {
+      "uz": "Ikkalasi ham bir xil ishlaydi, farqi yo'q",
+      "ru": "Оба работают одинаково, разницы нет"
+     },
+     {
+      "uz": "UPDATE mavjudni o'zgartiradi, INSERT yangi qo'shadi",
+      "ru": "UPDATE изменяет существующее, INSERT добавляет новое"
+     },
+     {
+      "uz": "INSERT mavjudni o'zgartiradi, UPDATE yangi qo'shadi",
+      "ru": "INSERT изменяет существующее, UPDATE добавляет новое"
+     },
+     {
+      "uz": "Faqat nomi bilan farq qiladi, ishi bir xil",
+      "ru": "Отличаются только названием, работа одна"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 30,
+     "maxVariant": 51,
+     "jami": 215,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Mahsulotni yaxshilash sikli qanday?",
+     "ru": "Как выглядит цикл улучшения продукта?"
+    },
+    "opts": [
+     {
+      "uz": "Qurish → e'lon qilish → boshqa qaytib tegmaslik",
+      "ru": "Сборка → объявление → больше не трогать"
+     },
+     {
+      "uz": "Qurish → fikr so'ramaslik → o'zi bilgancha tuzatish",
+      "ru": "Сборка → без вопросов об отзывах → исправление по-своему"
+     },
+     {
+      "uz": "Qurish → hamma yaxshilanishni birdan qilish",
+      "ru": "Сборка → все улучшения разом"
+     },
+     {
+      "uz": "Qurish → ko'rsatish → fikr olish → saralash → upgrade",
+      "ru": "Сборка → показ → сбор отзывов → приоритизация → апгрейд"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 35,
+     "maxVariant": 53,
+     "jami": 229,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ },
+ {
+  "key": "m4-15",
+  "file": "src/4-Modull/PmLesson14.jsx",
+  "qs": [
+   {
+    "i": 0,
+    "q": {
+     "uz": "Texnik so'z bilan javob bersangiz, odam nimani oladi?",
+     "ru": "Если ответить техническим словом, что получит человек?"
+    },
+    "opts": [
+     {
+      "uz": "Javob o'rniga notanish so'z",
+      "ru": "Вместо ответа — незнакомое слово"
+     },
+     {
+      "uz": "Ikkinchi savoliga ham javob",
+      "ru": "Ответ и на второй вопрос тоже"
+     },
+     {
+      "uz": "O'ziga tanish bitta misol",
+      "ru": "Один знакомый ему пример"
+     },
+     {
+      "uz": "Xuddi shu javobning qisqasi",
+      "ru": "Тот же ответ, только короче"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 53,
+     "maxVariant": 27,
+     "jami": 159,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 1,
+    "q": {
+     "uz": "Rost javob qachon odamga yetib boradi?",
+     "ru": "Когда правдивый ответ доходит до человека?"
+    },
+    "opts": [
+     {
+      "uz": "Javob ikki marta takrorlanganda",
+      "ru": "Когда ответ повторили дважды"
+     },
+     {
+      "uz": "Javob uzunroq aytilganda",
+      "ru": "Когда ответ сказали подлиннее"
+     },
+     {
+      "uz": "Javobda kasb-so'zi bo'lganda",
+      "ru": "Когда в ответе есть слово из профессии"
+     },
+     {
+      "uz": "Ishni oddiy so'z bilan aytganda",
+      "ru": "Когда дело сказано простыми словами"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 38,
+     "maxVariant": 31,
+     "jami": 152,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 2,
+    "q": {
+     "uz": "Sayt nechta qavatdan turadi?",
+     "ru": "Из скольких этажей состоит сайт?"
+    },
+    "opts": [
+     {
+      "uz": "Bir qavatdan",
+      "ru": "Из одного"
+     },
+     {
+      "uz": "Ikki qavatdan",
+      "ru": "Из двух"
+     },
+     {
+      "uz": "Uch qavatdan",
+      "ru": "Из трёх"
+     },
+     {
+      "uz": "To'rt qavatdan",
+      "ru": "Из четырёх"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 28,
+     "maxVariant": 14,
+     "jami": 79,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 3,
+    "q": {
+     "uz": "Ko'rinadigan sahifa nima qiladi?",
+     "ru": "Что делает видимая страница?"
+    },
+    "opts": [
+     {
+      "uz": "Band qilingan joylarni har kecha tozalab chiqadi",
+      "ru": "Каждую ночь очищает занятые места"
+     },
+     {
+      "uz": "Bo'sh joylarni ko'rsatadi va bosishni oladi",
+      "ru": "Показывает свободные места и принимает нажатие"
+     },
+     {
+      "uz": "Joy narxini o'zi hisoblab qo'yadi",
+      "ru": "Сама считает цену места"
+     },
+     {
+      "uz": "Ro'yxatni har kuni o'zi yangilaydi",
+      "ru": "Сама обновляет список каждый день"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 32,
+     "maxVariant": 48,
+     "jami": 190,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 4,
+    "q": {
+     "uz": "Server nima qiladi?",
+     "ru": "Что делает сервер?"
+    },
+    "opts": [
+     {
+      "uz": "Sahifa ranglarini tanlaydi",
+      "ru": "Выбирает цвета страницы"
+     },
+     {
+      "uz": "Joy chindan bo'shligini tekshiradi",
+      "ru": "Проверяет, правда ли место свободно"
+     },
+     {
+      "uz": "Joy raqamlarini yangidan beradi",
+      "ru": "Заново раздаёт номера мест"
+     },
+     {
+      "uz": "Tugma yozuvini kattalashtiradi",
+      "ru": "Увеличивает надпись на кнопке"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 19,
+     "maxVariant": 34,
+     "jami": 140,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 5,
+    "q": {
+     "uz": "Baza nima qiladi?",
+     "ru": "Что делает база?"
+    },
+    "opts": [
+     {
+      "uz": "Kim qaysi joyni olganini eslab qoladi",
+      "ru": "Запоминает, кто какое место занял"
+     },
+     {
+      "uz": "Odamga savol berib turadi",
+      "ru": "Задаёт человеку вопросы"
+     },
+     {
+      "uz": "Bo'sh joylarni ekranda chizib turadi",
+      "ru": "Рисует свободные места на экране"
+     },
+     {
+      "uz": "Sahifa rangini almashtiradi",
+      "ru": "Меняет цвет страницы"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 17,
+     "maxVariant": 37,
+     "jami": 142,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 6,
+    "q": {
+     "uz": "Bitta bosish qavatlardan qaysi tartibda o'tadi?",
+     "ru": "В каком порядке одно нажатие проходит через этажи?"
+    },
+    "opts": [
+     {
+      "uz": "Bazadan serverga, serverdan sahifaga",
+      "ru": "Из базы на сервер, с сервера на страницу"
+     },
+     {
+      "uz": "Serverdan sahifaga, sahifadan bazaga",
+      "ru": "С сервера на страницу, со страницы в базу"
+     },
+     {
+      "uz": "Sahifadan serverga, serverdan bazaga",
+      "ru": "Со страницы на сервер, с сервера в базу"
+     },
+     {
+      "uz": "Bazadan sahifaga, sahifadan serverga",
+      "ru": "Из базы на страницу, со страницы на сервер"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 47,
+     "maxVariant": 36,
+     "jami": 191,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 7,
+    "q": {
+     "uz": "Telefon o'chsa ham band joylar turishi — qaysi qavatning ishi?",
+     "ru": "Занятые места остаются, даже если телефон выключить, — чьё это дело?"
+    },
+    "opts": [
+     {
+      "uz": "Yuqori qavat — sahifa",
+      "ru": "Верхний этаж — страница"
+     },
+     {
+      "uz": "O'rta qavat — server",
+      "ru": "Средний этаж — сервер"
+     },
+     {
+      "uz": "Har uch qavat — navbat bilan",
+      "ru": "Все три этажа — по очереди"
+     },
+     {
+      "uz": "Pastki qavat — baza",
+      "ru": "Нижний этаж — база"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 62,
+     "maxVariant": 28,
+     "jami": 150,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 8,
+    "q": {
+     "uz": "Airbnb besh qadamida qaysi biri yo'q edi?",
+     "ru": "Чего не было в пяти шагах Airbnb?"
+    },
+    "opts": [
+     {
+      "uz": "Sayt qanday qurilgani",
+      "ru": "Как устроен сайт"
+     },
+     {
+      "uz": "Odamlarning qiyinchiligi",
+      "ru": "Трудность людей"
+     },
+     {
+      "uz": "Yechimni qancha odam kutayotgani",
+      "ru": "Сколько людей ждут решения"
+     },
+     {
+      "uz": "Ishni kim qilayotgani",
+      "ru": "Кто делает дело"
+     }
+    ],
+    "correct": 0,
+    "olchov": {
+     "savol": 41,
+     "maxVariant": 32,
+     "jami": 139,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 9,
+    "q": {
+     "uz": "Airbnb o'z ishini birinchi marta nima bilan tushuntirgan?",
+     "ru": "Чем Airbnb впервые объяснил своё дело?"
+    },
+    "opts": [
+     {
+      "uz": "Tayyor sayt bilan",
+      "ru": "Готовым сайтом"
+     },
+     {
+      "uz": "Uzun video bilan",
+      "ru": "Длинным видео"
+     },
+     {
+      "uz": "O'nga yaqin oddiy varaq bilan",
+      "ru": "Примерно десятью простыми листами"
+     },
+     {
+      "uz": "Bir necha uzun maktub bilan",
+      "ru": "Несколькими длинными письмами"
+     }
+    ],
+    "correct": 2,
+    "olchov": {
+     "savol": 57,
+     "maxVariant": 29,
+     "jami": 146,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 10,
+    "q": {
+     "uz": "Ko'rsatuvda texnik qarorni nima tushuntiradi?",
+     "ru": "Что в показе объясняет техническое решение?"
+    },
+    "opts": [
+     {
+      "uz": "Qavat nomlari ro'yxati",
+      "ru": "Список названий этажей"
+     },
+     {
+      "uz": "Uning odamga foydasi",
+      "ru": "Его польза для человека"
+     },
+     {
+      "uz": "Kod qatorlarining o'zi",
+      "ru": "Сами строки кода"
+     },
+     {
+      "uz": "Server javobining o'zi",
+      "ru": "Сам ответ сервера"
+     }
+    ],
+    "correct": 1,
+    "olchov": {
+     "savol": 45,
+     "maxVariant": 22,
+     "jami": 131,
+     "oshdi": false,
+     "togriEngUzun": false
+    }
+   },
+   {
+    "i": 11,
+    "q": {
+     "uz": "Ko'rinmas qavat ishlayotganini odam qanday ko'radi?",
+     "ru": "Как человек видит, что невидимый этаж работает?"
+    },
+    "opts": [
+     {
+      "uz": "Server javobining o'zini o'qib",
+      "ru": "Прочитав сам ответ сервера"
+     },
+     {
+      "uz": "Baza jadvalini ochib",
+      "ru": "Открыв таблицу базы"
+     },
+     {
+      "uz": "Kodni ochib ko'rib",
+      "ru": "Открыв и посмотрев код"
+     },
+     {
+      "uz": "Sahifadagi holat-qatorini o'qib",
+      "ru": "Прочитав строку состояния на странице"
+     }
+    ],
+    "correct": 3,
+    "olchov": {
+     "savol": 51,
+     "maxVariant": 31,
+     "jami": 150,
+     "oshdi": true,
+     "togriEngUzun": false
+    }
+   }
+  ]
+ }
+]

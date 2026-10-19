@@ -965,7 +965,44 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 2 — HAR SAYT KIMGA ISHLAYDI (tap-reveal, 46-qonun: toggle) =====
+// --- F-1019-04 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatosiga bir qatorli sabab, qayta tanlash.
+// Har qadam key bilan yangilanadi (tanlovlar tozalanadi). Namuna: m12 PmInvestorPitchLesson Qaror.
+const Qaror = ({ savol, variantlar, onTogri, ichida }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const tanla = (j) => {
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="qr fade-step">
+      <p className="qr-s">{tr(savol)}</p>
+      {ichida}
+      <div className="qr-v">{variantlar.map((v, j) => <button key={j} type="button" className={'qr-chip' + (xato.includes(j) ? ' err' : '')} disabled={xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</button>)}</div>
+      {izoh && <p className="qr-xato" role="status" key={tr(izoh)}>{tr(izoh)}</p>}
+    </div>
+  );
+};
+
+// ===== SCREEN 2 — HAR SAYT KIMGA ISHLAYDI (F-1019-04, 213.22: har sayt uchun qaror — kimlar uchun qilingan; to'g'ri javobdan keyin «nega» qatori ochiladi) =====
+const S2_SAVOL = {
+  video: { savol: { uz: 'Bosh sahifaga qarang. YouTube kimlar uchun qilingan?', ru: 'Посмотрите на главную страницу. Для кого сделан YouTube?' }, v: [
+    { t: { uz: "Faqat dars o'rganmoqchi bo'lgan o'quvchilar", ru: 'Только школьники, которые хотят учиться' }, izoh: { uz: 'Bitta dars videosi bor, lekin yonida sayohat lavhasi ham turibdi.', ru: 'Урок есть, но рядом стоит и ролик о путешествии.' } },
+    { ok: true, t: { uz: "Bo'sh vaqtida qiziq video izlaydiganlar", ru: 'Те, кто ищет интересное видео на досуге' } },
+    { t: { uz: 'Video yuklab pul topadigan kompaniyalar', ru: 'Компании, которые зарабатывают на видео' }, izoh: { uz: "Bosh sahifa ko'ruvchiga qaragan: unda tavsiya qilingan videolar.", ru: 'Главная обращена к зрителю: на ней рекомендованные видео.' } }
+  ] },
+  xabar: { savol: { uz: 'Birinchi ekranga qarang. Telegram kimlar uchun qilingan?', ru: 'Посмотрите на первый экран. Для кого сделан Telegram?' }, v: [
+    { t: { uz: "Faqat yangiliklar o'qiydigan odamlar", ru: 'Только те, кто читает новости' }, izoh: { uz: 'Birinchi ekranda kanallar emas, onadan va sinfdoshdan xabarlar.', ru: 'На первом экране не каналы, а сообщения от мамы и одноклассника.' } },
+    { t: { uz: 'Saytni yasagan dasturchilar uchun', ru: 'Программисты, которые сделали сайт' }, izoh: { uz: 'Dasturchi saytni yasaydi, undan esa boshqa odamlar foydalanadi.', ru: 'Программист делает сайт, а пользуются им другие люди.' } },
+    { ok: true, t: { uz: 'Yaqinlari bilan yozishadiganlar', ru: 'Те, кто переписывается с близкими' } }
+  ] },
+  taksi: { savol: { uz: 'Eng katta tugmaga qarang. Yandex Go kimlar uchun qilingan?', ru: 'Посмотрите на самую большую кнопку. Для кого сделан Yandex Go?' }, v: [
+    { ok: true, t: { uz: "Shaharda tez yetib bormoqchi bo'lganlar", ru: 'Те, кому нужно быстро доехать по городу' } },
+    { t: { uz: 'Hamma uchun, chunki taksi hammaga kerak', ru: 'Для всех, ведь такси нужно каждому человеку' }, izoh: { uz: "Hamma uchun deyilsa, sayt kimga moslanganini aytib bo'lmaydi.", ru: 'Если сказать «для всех», не понять, под кого сделан сайт.' } },
+    { t: { uz: "Mashinasi bor, o'zi haydaydigan odamlar", ru: 'Те, у кого есть машина и кто водит сам' }, izoh: { uz: "Asosiy tugma mashina chaqiradi: bu yo'lovchiga kerak.", ru: 'Главная кнопка вызывает машину: это нужно пассажиру.' } }
+  ] }
+};
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const SITES = {
     video: { ic: '🎬', name: { uz: 'YouTube', ru: 'YouTube' }, url: 'youtube.com', mock: { logo: 'Y', color: '#FF0000', name: { uz: 'YouTube', ru: 'YouTube' }, headline: { uz: "Bugun nima ko'ramiz?", ru: 'Что посмотрим сегодня?' }, rows: [{ uz: 'Dasturlash darsi · 12 daq', ru: 'Урок программирования · 12 мин' }, { uz: 'Sayohat lavhasi · 8 daq', ru: 'Ролик о путешествии · 8 мин' }], cta: { uz: "Ko'rish", ru: 'Смотреть' } }, kim: { uz: "Bo'sh vaqtida qiziqarli narsa izlaydigan odamlar", ru: 'Люди, которые ищут интересное в свободное время' }, nega: { uz: 'Shuning uchun bosh sahifada tavsiya qilingan videolar turadi.', ru: 'Поэтому на главной странице стоят рекомендованные видео.' } },
@@ -973,49 +1010,43 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     taksi: { ic: '🚕', name: { uz: 'Yandex Go', ru: 'Yandex Go' }, url: 'taxi.yandex.uz', mock: { logo: 'Y', color: '#FFB300', name: { uz: 'Yandex Go', ru: 'Yandex Go' }, headline: { uz: 'Mashina chaqiring', ru: 'Вызовите машину' }, sub: { uz: "Narx oldindan ma'lum: 18 000 so'm.", ru: 'Цена известна заранее: 18 000 сум.' }, cta: { uz: 'Chaqirish', ru: 'Вызвать' } }, kim: { uz: "Shahar ichida tez borishi kerak bo'lgan odamlar", ru: 'Люди, которым нужно быстро добраться по городу' }, nega: { uz: 'Shuning uchun eng katta tugma — «Chaqirish».', ru: 'Поэтому самая большая кнопка — «Вызвать».' } }
   };
   const KEYS = ['video', 'xabar', 'taksi'];
-  const [active, setActive] = useState(null);
-  const [seen, setSeen] = useState(new Set());
-  const done = seen.size >= KEYS.length;
-  // 46-qonun: qayta bosilsa yopiladi; darvoza esa «kamida bir marta ochildi» (seen) bilan ALOHIDA.
-  const tap = (k) => {
-    setActive(a => (a === k ? null : k));
-    setSeen(prev => { const n = new Set(prev); n.add(k); return n; });
-  };
+  // q — javob berilgan saytlar soni; qaytganda (storedAnswer) ekran tugagan holatda ochiladi
+  const [q, setQ] = useState(storedAnswer ? KEYS.length : 0);
+  const [view, setView] = useState(null); // tugagach bosilgan sayt (oldindan ko'rish uchun)
+  const done = q >= KEYS.length;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
-  // Navbat (1-C): zanjir = uchala saytni ochish → o'tish. Yurish faqat ochilmaganlar bo'ylab.
-  const pend2 = KEYS.filter(k => !seen.has(k));
-  const lit2 = useTurnWalk(pend2);
-  const cur = active ? SITES[active] : null;
+  const curK = done ? (view || KEYS[KEYS.length - 1]) : KEYS[q];
+  const negaK = done ? curK : (q > 0 ? KEYS[q - 1] : null); // «nega» qatori — oxirgi javob berilgan saytning kartasida
+  const cur = SITES[curK];
   return (
-    <Stage eyebrow={{ uz: "Har sayt — o'z odamlari", ru: 'У каждого сайта — свои люди' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: seen.size + '/' + KEYS.length + ' saytni oching', ru: 'Откройте сайты: ' + seen.size + '/' + KEYS.length }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: "Har sayt — o'z odamlari", ru: 'У каждого сайта — свои люди' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Savollarga javob bering (' + q + '/' + KEYS.length + ')', ru: 'Ответьте на вопросы (' + q + '/' + KEYS.length + ')' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Har bir sayt aniq <span className="italic" style={{ color: T.accent }}>kimlar uchun</span> qilingan?</>, ru: <>А каждый сайт сделан <span className="italic" style={{ color: T.accent }}>для кого именно</span>?</> })}</h2></div>
-        <Mentor>{{ uz: <>Uchta saytni <b style={{ color: T.ink }}>birma-bir bosing</b> — har biri kimlar uchun qilinganini ko'rasiz.</>, ru: <>Нажмите на три сайта <b style={{ color: T.ink }}>по очереди</b> — увидите, для кого сделан каждый.</> }}</Mentor>
-        <Zoomable off={!cur}>
-        <div className="split">
+        <Mentor>{{ uz: <><b style={{ color: T.ink }}>Har savolga javob bering</b> — sayt ko'rinishidan u kimlar uchun qilinganini topasiz.</>, ru: <><b style={{ color: T.ink }}>Ответьте на каждый вопрос</b> — по виду сайта найдёте, для кого он сделан.</> }}</Mentor>
+        <Zoomable>
+        <div className="split qr-split">
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {KEYS.map(k => (
-                <button key={k} className={turnCls(lit2, k, pend2.length > 1).trim()} onClick={() => tap(k)} style={{ display: 'flex', alignItems: 'center', gap: 11, textAlign: 'left', cursor: 'pointer', border: 'none', borderRadius: 13, padding: '13px 15px', background: T.paper, boxShadow: active === k ? 'inset 0 0 0 2px ' + T.accent + ', 0 8px 20px -7px rgba(91,61,230,0.22)' : '0 6px 16px -8px rgba(' + T.shadowBase + ',0.16)', transition: 'all 0.18s' }}>
-                  <span style={{ fontSize: 22, lineHeight: 1 }}>{SITES[k].ic}</span>
-                  <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 14, color: T.ink }}>{tr(SITES[k].name)}</span>
-                  {seen.has(k) && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(14)}</span>}
-                </button>
-              ))}
+              {KEYS.map((k, i) => {
+                const ok = i < q; const on = curK === k;
+                return (
+                  <button key={k} type="button" className={'qr-row' + (on ? ' on' : '') + (i > q ? ' kut' : '') + (done ? ' bos' : '')} disabled={!done} onClick={() => setView(k)}>
+                    <span className="qr-row-h">
+                      <span style={{ fontSize: 22, lineHeight: 1 }}>{SITES[k].ic}</span>
+                      <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 14, color: T.ink }}>{tr(SITES[k].name)}</span>
+                      {ok && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(14)}</span>}
+                    </span>
+                    {ok && <span className="qr-row-kim fade-step">{tr(SITES[k].kim)}</span>}
+                    {ok && negaK === k && <span className="qr-row-nega fade-step" key={'n' + k}>{tr(SITES[k].nega)}</span>}
+                  </button>
+                );
+              })}
             </div>
-            {cur ? (
-              <div className="sk-info fade-step" key={active}>
-                <p className="flow-label" style={{ margin: '0 0 4px' }}>{tr({ uz: 'Bu sayt kimlar uchun', ru: 'Для кого этот сайт' })}</p>
-                <p className="body" style={{ color: T.ink, margin: 0 }}>{tr(cur.kim)}</p>
-                <p className="small" style={{ color: T.ink2, margin: '6px 0 0' }}>{tr(cur.nega)}</p>
-              </div>
-            ) : null}
+            {!done && <Qaror key={q} savol={S2_SAVOL[KEYS[q]].savol} variantlar={S2_SAVOL[KEYS[q]].v} onTogri={() => setQ(n => Math.min(KEYS.length, n + 1))} />}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Uchchalasida ham javob aniq: sayt <b>aniq odamlar guruhi</b> uchun qilingan. Bu guruh — saytning <b>auditoriyasi</b>.</>, ru: <>Во всех трёх ответ ясен: сайт сделан для <b>конкретной группы людей</b>. Эта группа — <b>аудитория</b> сайта.</> })}</p></div>}
           </Col>
           <Col>
-            {cur
-              ? <Preview url={cur.url} minH={188}><SiteMock {...cur.mock} /></Preview>
-              : null}
+            <div className="fade-step" key={curK}><Preview url={cur.url} minH={188}><SiteMock {...cur.mock} /></Preview></div>
           </Col>
         </div>
         </Zoomable>
@@ -1333,6 +1364,30 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 };
 
 // ===== SCREEN 8 — «FOYDALANUVCHI KO'ZI»: bitta sayt — uch xil qarash (46-qonun: toggle) =====
+// F-1019-04 (DE 213.22): har odam uchun qaror — saytda birinchi nimaga qaraydi; variantlar — saytning qismlari
+const S8_QISM = {
+  oldindan: { uz: 'Oldindan buyurtma berish', ru: 'Кнопка заказа заранее' },
+  bugungi: { uz: "Bugungi buyurtmalar ro'yxati", ru: 'Заказы на сегодня' },
+  oxirgi: { uz: 'Oxirgi buyurtmani takrorlash', ru: 'Повторить прошлый заказ' },
+  menyu: { uz: "Menyu va narxlar ro'yxati", ru: 'Меню и цены всех лавашей' }
+};
+const S8_SAVOL = {
+  oquvchi: { savol: { uz: "O'quvchi saytda birinchi nimaga qaraydi?", ru: 'Куда школьник на сайте смотрит первым?' }, v: [
+    { t: S8_QISM.bugungi, izoh: { uz: "Bu ro'yxat sotuvchiga kerak: o'quvchi buyurtma qabul qilmaydi.", ru: 'Этот список нужен продавцу: школьник заказы не принимает.' } },
+    { t: S8_QISM.menyu, izoh: { uz: 'Menyuni ko\'rish navbatdan qutqarmaydi, oldindan buyurtma qutqaradi.', ru: 'Меню не спасает от очереди, спасает заказ заранее.' } },
+    { ok: true, t: S8_QISM.oldindan }
+  ] },
+  sotuvchi: { savol: { uz: 'Sotuvchi saytda birinchi nimaga qaraydi?', ru: 'Куда продавец на сайте смотрит первым?' }, v: [
+    { ok: true, t: S8_QISM.bugungi },
+    { t: S8_QISM.oxirgi, izoh: { uz: "Sotuvchi o'zi buyurtma bermaydi, u kelganini qabul qiladi.", ru: 'Продавец сам не заказывает, он принимает пришедшие заказы.' } },
+    { t: S8_QISM.oldindan, izoh: { uz: 'Bu tugma xaridorga kerak; sotuvchiga kelgan buyurtmalar muhim.', ru: 'Эта кнопка нужна покупателю; продавцу важны пришедшие заказы.' } }
+  ] },
+  ofis: { savol: { uz: 'Doimiy xaridor saytda birinchi nimaga qaraydi?', ru: 'Куда постоянный покупатель на сайте смотрит первым?' }, v: [
+    { t: S8_QISM.bugungi, izoh: { uz: "Bu ro'yxat sotuvchiga kerak; ofis xodimi o'zi buyurtma beradi.", ru: 'Этот список нужен продавцу; офисный работник сам делает заказ.' } },
+    { ok: true, t: S8_QISM.oxirgi },
+    { t: S8_QISM.menyu, izoh: { uz: "U har kuni bir xil narsa oladi: menyuni qayta ko'rishi shart emas.", ru: 'Он каждый день берёт одно и то же: меню заново смотреть не нужно.' } }
+  ] }
+};
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const USERS = {
     sotuvchi: { ic: '🧑‍🍳', name: { uz: 'Sotuvchi (lavash ustasi)', ru: 'Продавец (мастер лаваша)' }, want: { uz: "Kelgan buyurtmalarni adashtirmasdan qabul qilish va nechta lavash tayyorlashni oldindan bilish.", ru: 'Принимать заказы ничего не перепутав и заранее знать, сколько лавашей готовить.' }, look: { uz: 'Sotuvchi birinchi bo\'lib BUYURTMALAR ro\'yxatiga qaraydi', ru: 'Продавец первым делом смотрит на список ЗАКАЗОВ' } },
@@ -1340,51 +1395,48 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     ofis: { ic: '🧑‍💼', name: { uz: 'Doimiy xaridor (ofis xodimi)', ru: 'Постоянный покупатель (офисный работник)' }, want: { uz: 'Har kuni bir xil buyurtmani bir bosishda berish.', ru: 'Каждый день делать один и тот же заказ в одно нажатие.' }, look: { uz: 'Doimiy xaridor birinchi bo\'lib OXIRGI BUYURTMAGA qaraydi', ru: 'Постоянный покупатель первым делом смотрит на ПОСЛЕДНИЙ ЗАКАЗ' } }
   };
   const ORDER = ['oquvchi', 'sotuvchi', 'ofis'];
-  const [active, setActive] = useState(null);
-  const [seen, setSeen] = useState(new Set());
-  const done = seen.size >= ORDER.length;
-  // 46-qonun: qayta bosilsa yopiladi, `seen` alohida sanaladi
-  const tap = (k) => { setActive(a => (a === k ? null : k)); setSeen(prev => { const n = new Set(prev); n.add(k); return n; }); };
+  // q — javob berilgan odamlar soni; qaytganda (storedAnswer) ekran tugagan holatda ochiladi
+  const [q, setQ] = useState(storedAnswer ? ORDER.length : 0);
+  const done = q >= ORDER.length;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]); // eslint-disable-line
-  const pend8 = ORDER.filter(k => !seen.has(k));
-  const lit8 = useTurnWalk(pend8);
+  const got = (k) => ORDER.indexOf(k) < q;               // shu odam javob topdi — sayt qismi belgilanadi
+  const last = q > 0 ? ORDER[q - 1] : null;              // oxirgi topilgan odam — uning qismi pulslanadi
+  const rowCls = (k) => 'eye-row ' + (k === last && !done ? 'hot' : got(k) ? 'got' : '');
+  const who = (k) => (got(k) ? <span className="eye-who fade-step" aria-hidden="true">{USERS[k].ic}</span> : null);
   return (
-    <Stage eyebrow={{ uz: 'Har xil odam — har xil ehtiyoj', ru: 'Разные люди — разные потребности' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: seen.size + '/' + ORDER.length + " odamni ko'ring", ru: 'Посмотрите людей: ' + seen.size + '/' + ORDER.length }} onClick={onNext} /></>}>
+    <Stage eyebrow={{ uz: 'Har xil odam — har xil ehtiyoj', ru: 'Разные люди — разные потребности' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Savollarga javob bering (' + q + '/' + ORDER.length + ')', ru: 'Ответьте на вопросы (' + q + '/' + ORDER.length + ')' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta saytga kirgan hamma <span className="italic" style={{ color: T.accent }}>bir xil</span> narsani qidiradimi?</>, ru: <>Все, кто зашёл на один сайт, ищут <span className="italic" style={{ color: T.accent }}>одно и то же</span>?</> })}</h2></div>
-        <Mentor>{{ uz: <>Lavash do'koni saytiga uch xil odam kiradi. Ularni <b style={{ color: T.ink }}>birma-bir bosing</b> va saytni ularning o'rnida ko'ring.</>, ru: <>На сайт лавашной заходят три разных человека. Нажмите на них <b style={{ color: T.ink }}>по очереди</b> и посмотрите на сайт их глазами.</> }}</Mentor>
+        <Mentor>{{ uz: <>Lavash do'koni saytiga uch xil odam kiradi. <b style={{ color: T.ink }}>Har savolga javob bering</b> — saytni har birining o'rnida ko'rasiz.</>, ru: <>На сайт лавашной заходят три разных человека. <b style={{ color: T.ink }}>Ответьте на каждый вопрос</b> — посмотрите на сайт глазами каждого.</> }}</Mentor>
         <Zoomable>
-        <div className="split">
+        <div className="split qr-split">
           <Col>
-            <p className="flow-label cc-ghost" aria-hidden="true">·</p>
             <div className="fade-up delay-1" style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {ORDER.map(k => (
-                <button key={k} className={turnCls(lit8, k, pend8.length > 1).trim()} onClick={() => tap(k)} style={{ display: 'flex', alignItems: 'center', gap: 12, textAlign: 'left', cursor: 'pointer', border: 'none', borderRadius: 12, padding: '13px 15px', background: T.paper, boxShadow: active === k ? 'inset 0 0 0 2px ' + T.accent + ', 0 8px 20px -6px rgba(91,61,230,0.22)' : '0 6px 16px -7px rgba(' + T.shadowBase + ',0.16)', transition: 'all 0.18s' }}>
-                  <span style={{ fontSize: 24, lineHeight: 1 }}>{USERS[k].ic}</span>
-                  <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 15, color: T.ink }}>{tr(USERS[k].name)}</span>
-                  {seen.has(k) && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(14)}</span>}
-                </button>
+              {ORDER.map((k, i) => (
+                <div key={k} className={'qr-row' + (!done && i === q ? ' on' : '') + (i > q ? ' kut' : '')}>
+                  <span className="qr-row-h">
+                    <span style={{ fontSize: 24, lineHeight: 1 }}>{USERS[k].ic}</span>
+                    <span style={{ fontFamily: "'Manrope',sans-serif", fontWeight: 600, fontSize: 15, color: T.ink }}>{tr(USERS[k].name)}</span>
+                    {got(k) && <span style={{ marginLeft: 'auto', color: T.success, display: 'inline-flex' }}>{Ico.check(14)}</span>}
+                  </span>
+                  {!done && i === q && <span className="qr-row-nega fade-step"><b style={{ color: T.ink2 }}>{tr({ uz: 'Nimani xohlaydi?', ru: 'Чего хочет?' })}</b> <span style={{ color: T.ink }}>{tr(USERS[k].want)}</span></span>}
+                </div>
               ))}
             </div>
-            {active && (
-              <div className="sk-info fade-step" key={active + 'w'}>
-                <p className="flow-label" style={{ margin: '0 0 4px' }}>{tr({ uz: 'Nimani xohlaydi?', ru: 'Чего хочет?' })}</p>
-                <p className="body" style={{ color: T.ink, margin: 0 }}>{tr(USERS[active].want)}</p>
-              </div>
-            )}
+            {!done && <Qaror key={q} savol={S8_SAVOL[ORDER[q]].savol} variantlar={S8_SAVOL[ORDER[q]].v} onTogri={() => setQ(n => Math.min(ORDER.length, n + 1))} />}
             {done && <div className="frame-soft fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bir saytga turli odamlar kirishi mumkin. Ammo auditoriya kartasida <b>eng muhim guruh</b> tanlanadi.</>, ru: <>На один сайт могут заходить разные люди. Но в карточке аудитории выбирают <b>самую важную группу</b>.</> })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{active ? '👀 ' + tr(USERS[active].look) : tr({ uz: "Sayt — hozircha oddiy ko'rinishda", ru: 'Сайт — пока в обычном виде' })}</p>
+            <p className="flow-label">{last ? '👀 ' + tr(USERS[last].look) : tr({ uz: "Sayt — hozircha oddiy ko'rinishda", ru: 'Сайт — пока в обычном виде' })}</p>
             <div className="bp-window fade-up delay-1">
               <div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-url"><span className="lock">●</span>lavash.uz</span></div>
               <div className="bp-body" style={{ minHeight: 168 }}>
-                <div className="pg-in" key={active || 'none'}>
+                <div className="pg-in">
                   <div className="site-header"><span className="site-brand"><span className="site-logo" style={{ background: '#C97B2D' }}>L</span><span className="site-name">{tr({ uz: "Lavash do'koni", ru: 'Лавашная' })}</span></span><span className="site-nav"><span>{tr({ uz: 'Menyu', ru: 'Меню' })}</span><span>{tr({ uz: 'Aloqa', ru: 'Контакты' })}</span></span></div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                    <div className={'eye-row ' + (active === 'oquvchi' ? 'hot' : '')}>{tr({ uz: <>📱 Oldindan buyurtma: <b>tayyor bo'lganda xabar keladi</b></>, ru: <>📱 Заказ заранее: <b>придёт сообщение, когда будет готово</b></> })}<span className="eye-cta" style={{ background: active === 'oquvchi' ? T.accent : T.ink3 }}>{tr({ uz: 'Buyurtma berish', ru: 'Заказать' })}</span></div>
-                    <div className={'eye-row ' + (active === 'sotuvchi' ? 'hot' : '')}>{tr({ uz: <>📋 Bugungi buyurtmalar: <b>7 ta</b> — 3 tasi yangi</>, ru: <>📋 Заказы на сегодня: <b>7</b> — из них 3 новых</> })}</div>
-                    <div className={'eye-row ' + (active === 'ofis' ? 'hot' : '')}>{tr({ uz: <>🔁 Oxirgi buyurtma: <b>bir bosishda takrorlash</b></>, ru: <>🔁 Последний заказ: <b>повторить одним нажатием</b></> })}</div>
+                    <div className={rowCls('oquvchi')}>{who('oquvchi')}{tr({ uz: <>📱 Oldindan buyurtma: <b>tayyor bo'lganda xabar keladi</b></>, ru: <>📱 Заказ заранее: <b>придёт сообщение, когда будет готово</b></> })}<span className="eye-cta" style={{ background: got('oquvchi') ? T.accent : T.ink3 }}>{tr({ uz: 'Buyurtma berish', ru: 'Заказать' })}</span></div>
+                    <div className={rowCls('sotuvchi')}>{who('sotuvchi')}{tr({ uz: <>📋 Bugungi buyurtmalar: <b>7 ta</b> — 3 tasi yangi</>, ru: <>📋 Заказы на сегодня: <b>7</b> — из них 3 новых</> })}</div>
+                    <div className={rowCls('ofis')}>{who('ofis')}{tr({ uz: <>🔁 Oxirgi buyurtma: <b>bir bosishda takrorlash</b></>, ru: <>🔁 Последний заказ: <b>повторить одним нажатием</b></> })}</div>
                   </div>
                 </div>
               </div>
@@ -2024,18 +2076,18 @@ const QZ_BG_SHAPES = [
 // Server-baholash javob kaliti (dars ichidagi testlar; s6/s15 = -1 ishtirok). quiz-N QUIZ_BANK'dan avto-qo'shiladi.
 const INLINE_KEYS = { s4: 2, s5b: 1, s9: 2, s12: 2, s15: -1 }; // o'lik mashq-kalitlar olib tashlandi (jsx-lint, 2026-09-07): s6
 const QUIZ_BANK = [
-  { q: { uz: 'Sayt ENG AVVAL nima uchun yaratiladi?', ru: 'Ради чего сайт создают В ПЕРВУЮ ОЧЕРЕДЬ?' }, opts: [{ uz: 'Ko\'proq odam kirib mashhur bo\'lishi uchun', ru: 'Чтобы заходило больше людей и он стал популярным' }, { uz: 'Egasiga ko\'proq pul topib berishi uchun', ru: 'Чтобы приносить владельцу больше денег' }, { uz: 'Aniq odamning muammosini yechish uchun', ru: 'Чтобы решить проблему конкретного человека' }, { uz: 'Zamonaviy va chiroyli ko\'rinishi uchun', ru: 'Чтобы выглядеть современно и красиво' }], correct: 2 },
-  { q: { uz: '«Hamma uchun» qilingan sayt aslida…', ru: 'Сайт, сделанный «для всех», на деле…' }, opts: [{ uz: 'hech kim uchun bo\'lib qoladi', ru: 'оказывается ни для кого' }, { uz: 'eng ko\'p odamni o\'ziga yig\'adi', ru: 'собирает больше всего людей' }, { uz: 'eng tez va ravon ishlaydi', ru: 'работает быстрее и глаже всех' }, { uz: 'eng ko\'p pul ishlab topadi', ru: 'зарабатывает больше всех денег' }], correct: 0 },
-  { q: { uz: 'Mahsulot menejeri birinchi bo\'lib nimani aniqlaydi?', ru: 'Что продакт-менеджер выясняет первым?' }, opts: [{ uz: 'Sayt dizayni qanday bo\'lishi kerakligini', ru: 'Каким должен быть дизайн сайта' }, { uz: 'KIM va uning qanday MUAMMOSI borligini', ru: 'КТО он и какая у него ПРОБЛЕМА' }, { uz: 'Saytga qanday zo\'r nom topish kerakligini', ru: 'Какое классное имя придумать сайту' }, { uz: 'Saytga qancha pul va vaqt ketishini', ru: 'Сколько денег и времени уйдёт на сайт' }], correct: 1 },
-  { q: { uz: 'Sayt hech kimning muammosini yechmasa, nima bo\'ladi?', ru: 'Что будет, если сайт не решает ничьей проблемы?' }, opts: [{ uz: 'Sayt tezroq ochiladigan bo\'ladi', ru: 'Сайт станет открываться быстрее' }, { uz: 'Sayt xuddi shunday ishlayveradi', ru: 'Сайт будет работать как ни в чём не бывало' }, { uz: 'Saytga reklama ko\'proq keladi', ru: 'На сайт придёт больше рекламы' }, { uz: 'Unga hech kim kirmay qo\'yadi', ru: 'На него перестанут заходить' }], correct: 3 },
+  { q: { uz: "Sayt ENG AVVAL nima uchun yaratiladi?", ru: "Ради чего сайт создают В ПЕРВУЮ ОЧЕРЕДЬ?" }, opts: [{ uz: "Ko'p odam kirishi uchun", ru: "Чтобы заходило много людей" }, { uz: "Egasiga pul topish uchun", ru: "Чтобы приносить деньги владельцу" }, { uz: "Odam muammosini yechish uchun", ru: "Чтобы решить проблему человека" }, { uz: "Chiroyli ko'rinish uchun", ru: "Чтобы красиво выглядеть" }], correct: 2 },
+  { q: { uz: "«Hamma uchun» qilingan sayt aslida…", ru: "Сайт, сделанный «для всех», на деле…" }, opts: [{ uz: "hech kim uchun bo'ladi", ru: "оказывается ни для кого" }, { uz: "eng ko'p odam yig'adi", ru: "собирает больше всего людей" }, { uz: "eng tez ishlaydi", ru: "работает быстрее всех" }, { uz: "eng ko'p pul topadi", ru: "зарабатывает больше всех" }], correct: 0 },
+  { q: { uz: "Mahsulot menejeri avval nimani aniqlaydi?", ru: "Что продакт-менеджер выясняет первым?" }, opts: [{ uz: "Saytning dizayni va rangini", ru: "Дизайн и цвета сайта" }, { uz: "KIM va uning MUAMMOSINI", ru: "КТО и какая у него ПРОБЛЕМА" }, { uz: "Saytning nomi va logosini", ru: "Название и логотип сайта" }, { uz: "Saytga ketadigan pulni", ru: "Сколько денег уйдёт на сайт" }], correct: 1 },
+  { q: { uz: "Sayt hech kimning muammosini yechmasa, nima bo'ladi?", ru: "Что будет, если сайт ничью проблему не решает?" }, opts: [{ uz: "Tezroq ochiladi", ru: "Будет быстрее открываться" }, { uz: "Ko'proq odam kiradi", ru: "Зайдёт больше людей" }, { uz: "Reklama ko'payadi", ru: "Станет больше рекламы" }, { uz: "Unga hech kim kirmaydi", ru: "На него никто не заходит" }], correct: 3 },
   { q: { uz: 'To\'liq g\'oyada qaysi uch javob bo\'ladi?', ru: 'Какие три ответа есть в полной идее?' }, opts: [{ uz: 'KIM + MUAMMO + YECHIM', ru: 'КТО + ПРОБЛЕМА + РЕШЕНИЕ' }, { uz: 'NOM + RANG + TUGMA', ru: 'ИМЯ + ЦВЕТ + КНОПКА' }, { uz: 'DIZAYN + REKLAMA + PUL', ru: 'ДИЗАЙН + РЕКЛАМА + ДЕНЬГИ' }, { uz: 'SAYT + ILOVA + O\'YIN', ru: 'САЙТ + ПРИЛОЖЕНИЕ + ИГРА' }], correct: 0 },
-  { q: { uz: 'Lavash do\'koni saytiga kirgan O\'QUVCHI birinchi nimaga qaraydi?', ru: 'На что первым делом смотрит ШКОЛЬНИК на сайте лавашной?' }, opts: [{ uz: 'Kelgan buyurtmalar ro\'yxatiga', ru: 'На список поступивших заказов' }, { uz: 'Doimiy buyurtma shartlariga', ru: 'На условия постоянного заказа' }, { uz: 'Oldindan buyurtma tugmasiga', ru: 'На кнопку заказа заранее' }, { uz: 'Saytning rangi va bezagiga', ru: 'На цвет и оформление сайта' }], correct: 2 },
-  { q: { uz: 'Mashhurlik va pul — bu…', ru: 'Популярность и деньги — это…' }, opts: [{ uz: 'muammo yechilganidan keyingi NATIJA', ru: 'РЕЗУЛЬТАТ после решённой проблемы' }, { uz: 'saytning eng birinchi maqsadi', ru: 'самая первая цель сайта' }, { uz: 'faqat reklamaga bog\'liq bo\'lgan narsa', ru: 'то, что зависит только от рекламы' }, { uz: 'faqat omad va tasodifga bog\'liq narsa', ru: 'то, что зависит только от удачи и случая' }], correct: 0 },
-  { q: { uz: 'Qaysi biri ishlashga arziydigan REAL muammo?', ru: 'Что из этого — НАСТОЯЩАЯ проблема, над которой стоит работать?' }, opts: [{ uz: '«Saytni chiroyli ko\'k rangga bo\'yash kerak»', ru: '«Надо покрасить сайт в красивый синий»' }, { uz: '«Saytga zo\'r va yodda qoladigan nom kerak»', ru: '«Сайту нужно классное запоминающееся имя»' }, { uz: '«Saytga yana ko\'proq tugma qo\'shish kerak»', ru: '«Надо добавить на сайт ещё больше кнопок»' }, { uz: '«Bekatda avtobusni qancha kutish noma\'lum»', ru: '«На остановке неизвестно, сколько ждать автобус»' }], correct: 3 },
-  { q: { uz: 'Do\'stingiz g\'oyasida MUAMMO katagi bo\'sh. Bu nimani bildiradi?', ru: 'В идее друга клетка ПРОБЛЕМА пустая. О чём это говорит?' }, opts: [{ uz: 'G\'oya baribir to\'liq va tayyor', ru: 'Идея всё равно полная и готовая' }, { uz: 'Sayt nima uchun kerakligi noma\'lum', ru: 'Непонятно, зачем нужен сайт' }, { uz: 'Faqat dizayn qismi yetishmayapti', ru: 'Не хватает только части с дизайном' }, { uz: 'Faqat yaxshi nom yetishmayapti', ru: 'Не хватает только хорошего имени' }], correct: 1 },
-  { q: { uz: 'Bitta saytga kiradigan har xil odamlar (o\'quvchi, sotuvchi, ofis xodimi)…', ru: 'Разные люди на одном сайте (школьник, продавец, офисный работник)…' }, opts: [{ uz: 'hammasi bir xil narsani izlaydi', ru: 'все ищут одно и то же' }, { uz: 'faqat dizaynga qaraydi', ru: 'смотрят только на дизайн' }, { uz: 'har biri O\'ZINIKINI izlaydi', ru: 'каждый ищет СВОЁ' }, { uz: 'faqat narxga qaraydi', ru: 'смотрят только на цену' }], correct: 2 },
+  { q: { uz: "Lavash saytiga kirgan O'QUVCHI avval nimaga qaraydi?", ru: "На что первым смотрит ШКОЛЬНИК на сайте лавашной?" }, opts: [{ uz: "Buyurtmalar ro'yxatiga", ru: "На список заказов" }, { uz: "Oxirgi buyurtmasiga", ru: "На свой последний заказ" }, { uz: "Oldindan buyurtmaga", ru: "На заказ заранее" }, { uz: "Saytning bezagiga", ru: "На оформление сайта" }], correct: 2 },
+  { q: { uz: "Mashhurlik va pul — bu…", ru: "Популярность и деньги — это…" }, opts: [{ uz: "yechimdan keyingi NATIJA", ru: "РЕЗУЛЬТАТ после решения" }, { uz: "saytning birinchi maqsadi", ru: "первая цель сайта" }, { uz: "faqat reklama samarasi", ru: "только эффект рекламы" }, { uz: "faqat omad va tasodif", ru: "только удача и случай" }], correct: 0 },
+  { q: { uz: "Qaysi biri REAL muammo?", ru: "Что из этого — НАСТОЯЩАЯ проблема?" }, opts: [{ uz: "Sayt rangi ko'k emas", ru: "Сайт не синего цвета" }, { uz: "Saytning nomi zo'r emas", ru: "Название сайта не крутое" }, { uz: "Saytda tugma kam", ru: "На сайте мало кнопок" }, { uz: "Avtobus qachon kelishi noaniq", ru: "Неизвестно, когда придёт автобус" }], correct: 3 },
+  { q: { uz: "G'oyada MUAMMO katagi bo'sh. Bu nima degani?", ru: "В идее пуста клетка ПРОБЛЕМА. Что это значит?" }, opts: [{ uz: "G'oya to'liq va tayyor", ru: "Идея полная и готова" }, { uz: "Sayt nega kerak — noma'lum", ru: "Непонятно, зачем нужен сайт" }, { uz: "Faqat dizayn yetmaydi", ru: "Не хватает только дизайна" }, { uz: "Faqat nom yetmaydi", ru: "Не хватает только названия" }], correct: 1 },
+  { q: { uz: "O'quvchi, sotuvchi va ofis xodimi bitta saytda…", ru: "Школьник, продавец и офисный работник на одном сайте…" }, opts: [{ uz: "bir xil narsani izlaydi", ru: "ищут одно и то же" }, { uz: "faqat dizaynga qaraydi", ru: "смотрят только на дизайн" }, { uz: "har biri o'zinikini izlaydi", ru: "каждый ищет своё" }, { uz: "faqat narxga qaraydi", ru: "смотрят только на цену" }], correct: 2 },
   { q: { uz: 'Yechim qanday bo\'lishi SHART?', ru: 'Каким РЕШЕНИЕ обязано быть?' }, opts: [{ uz: 'Iloji boricha kattaroq', ru: 'Как можно более крупным' }, { uz: 'Aynan o\'sha muammoga mos', ru: 'Подходящим именно к той проблеме' }, { uz: 'Hammaga birdek yoqadigan', ru: 'Нравящимся всем одинаково' }, { uz: 'Eng zamonaviy uslubda', ru: 'В самом современном стиле' }], correct: 1 },
-  { q: { uz: '«Tanaffusda shoshgan o\'quvchilar uchun lavashni oldindan buyurtma qilish» — bu g\'oyada nima aniq?', ru: '«Заказ лаваша заранее для школьников, которые спешат на перемене» — что в этой идее ясно?' }, opts: [{ uz: 'Faqat YECHIM qismi aniq', ru: 'Ясна только часть РЕШЕНИЕ' }, { uz: 'Faqat KIM aniq, qolgani yo\'q', ru: 'Ясно только КТО, остальное нет' }, { uz: 'Hech narsa umuman aniq emas', ru: 'Вообще ничего не ясно' }, { uz: 'KIM ham, MUAMMO ham, YECHIM ham', ru: 'И КТО, и ПРОБЛЕМА, и РЕШЕНИЕ' }], correct: 3 },
+  { q: { uz: "«Shoshgan o'quvchiga oldindan buyurtma» — nima aniq?", ru: "«Предзаказ для спешащего школьника» — что ясно?" }, opts: [{ uz: "Faqat YECHIM", ru: "Только РЕШЕНИЕ" }, { uz: "Faqat KIM va YECHIM", ru: "Только КТО и РЕШЕНИЕ" }, { uz: "Hech narsa aniq emas", ru: "Ничего не ясно" }, { uz: "KIM, MUAMMO va YECHIM", ru: "КТО, ПРОБЛЕМА и РЕШЕНИЕ" }], correct: 3 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -3505,6 +3557,28 @@ export default function PmLesson1({ lang: langProp, onFinished, liveToken }) {
 
         /* === SK-INFO === */
         .sk-info { background: ${T.paper}; border-radius: 12px; padding: 16px 18px; box-shadow: 0 8px 20px -8px rgba(${T.shadowBase},0.16); animation: fade-step 0.34s; }
+        /* F-1019-04 (DE 213.22): qaror bloki — savol, variant-chiplar, xato sababi (s2, s8) */
+        .qr { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .qr-s { margin: 0; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 800; line-height: 1.4; color: ${T.ink}; }
+        .qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
+        .qr-chip { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(13px,1.45vw,14px); line-height: 1.35; text-align: left; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 11px; padding: 9px 13px; cursor: pointer; min-width: 0; overflow-wrap: anywhere; transition: border-color 0.15s, background 0.15s; }
+        .qr-chip:hover:not(:disabled) { border-color: ${T.accent}; }
+        .qr-chip:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .qr-chip.err { border-color: ${T.err}; background: ${T.errSoft}; color: ${T.err}; cursor: default; animation: qr-silk 0.32s ease-in-out; }
+        @keyframes qr-silk { 0%, 100% { transform: none; } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+        .qr-xato { margin: 0; color: ${T.err}; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; line-height: 1.4; animation: fade-step 0.25s ease-out; }
+        .qr-row { display: flex; flex-direction: column; gap: 5px; width: 100%; text-align: left; font: inherit; color: inherit; border: none; border-radius: 13px; padding: 13px 15px; background: ${T.paper}; box-shadow: 0 6px 16px -8px rgba(${T.shadowBase},0.16); transition: box-shadow 0.18s, opacity 0.18s; }
+        .qr-row:disabled { cursor: default; }
+        .qr-row.bos { cursor: pointer; }
+        .qr-row.on { box-shadow: inset 0 0 0 2px ${T.accent}, 0 8px 20px -7px rgba(91,61,230,0.22); }
+        .qr-row.kut { opacity: 0.55; }
+        .qr-row-h { display: flex; align-items: center; gap: 11px; }
+        .qr-row-kim { font-family: 'Manrope', sans-serif; font-size: 13.5px; line-height: 1.4; color: ${T.ink}; }
+        .qr-row-nega { font-family: 'Manrope', sans-serif; font-size: 12.5px; line-height: 1.45; color: ${T.ink2}; padding-top: 6px; border-top: 1px solid ${T.line}; }
+        .eye-row.got { background: ${T.accentSoft}; box-shadow: inset 0 0 0 2px ${T.accent}; }
+        .eye-who { font-size: 15px; line-height: 1; }
+        @media (max-width: 760px) { .qr-split > .col:last-child { order: -1; } }
+        @media (prefers-reduced-motion: reduce) { .qr-chip.err, .qr-xato { animation: none; } }
         .hint { background: ${T.bg}; border: 1.5px dashed ${T.ink3}; border-radius: 12px; padding: 14px 16px; font-size: clamp(13px,1.5vw,14px); color: ${T.ink2}; }
 
         /* === CONN === */

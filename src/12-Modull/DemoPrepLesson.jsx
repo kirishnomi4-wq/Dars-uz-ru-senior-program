@@ -33,7 +33,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
 
 
 
@@ -99,6 +99,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -176,8 +201,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -639,7 +664,7 @@ const Natija = ({ togri, haqiqat }) => (togri
 const XulosaQ = ({ natija, matn, izoh }) => <>{natija}<span className="dp-x-m">{matn}</span>{izoh && <span className="dp-x-iz">{izoh}</span>}</>;
 const navYorliq = (taxmin, q, jami, done) => (done ? { uz: 'Davom etish', ru: 'Продолжить' }
   : !taxmin ? { uz: 'Avval belgilang', ru: 'Сначала отметьте' }
-    : { uz: `Tugmalarni navbat bilan bosing (${q}/${jami})`, ru: `Нажимайте кнопки по очереди (${q}/${jami})` });
+    : { uz: 'Tugmani bosing', ru: 'Нажмите кнопку' }); // F-1015-387: son yo'q — bosqich sahnada ko'rinadi (213.21)
 const Ustoz = ({ satrlar }) => (useMentorLive() ? <div className="dp-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b>{satrlar.map((s, i) => <span key={i}>{tx(s)}</span>)}</div> : null);
 const Ipucha = ({ on, matn }) => (on ? <p className="dp-ipucha fade-step">{tr(matn)}</p> : null);
 
@@ -857,10 +882,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             ? tr({ uz: "Endi laptopda «O'yinlar»ni bosing va nima bo'lishiga qarang.", ru: 'Теперь нажмите на ноутбуке «Игры» и посмотрите, что будет.' })
             : tr({ uz: 'Mentor misolida boshqalar pitch aytguncha ilovani hech kim ochmadi — avval javobni tanlang.', ru: 'В примере Ментора, пока другие выступали с питчем, приложение никто не открывал, — сначала выберите ответ.' })}</Mentor>}
           maket={<div className="dp-sahna dp-k-sahna">
-            <span className="dp-misol-y">{tr(MISOL_Y)}</span>
-            <SsenariyChiziq nomsiz holat={tamom ? [undefined, 'joriy'] : []} yorliq={tamom ? { 1: { t: { uz: 'Backend uxlagan edi', ru: 'Backend спал' }, tur: 'kul' } } : {}} />
-            <div className="dp-qurilma">
-              <Telefon kulrang />
+            {/* F-1015-387: kirishda faqat laptop — harakat shu yerda; qadam chiplari, telefon, «Mentor misoli» chipi olindi (QA: chizilgan elementlar keraksiz) */}
+            <div className="dp-qurilma bir">
               <Laptop ekran={b === -1 ? 'bosh' : b <= 1 ? 'yuklanmoqda' : 'oyinlar'} chiroq={chiroq} chiroqYozuvsiz={!javob} soat={b === 1} xira={!javob}
                 onOyinlar={javob && b === -1 ? oyinlar : undefined} oyinlarHalqa={javob && b === -1} />
             </div>
@@ -893,7 +916,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         mentor={<Mentor>{tr({ uz: "Har blokni avval Mentor misolida ko'rasiz, keyin o'z mahsulotingizda qilasiz. Bugun mahsulotga yangi narsa qo'shilmaydi.", ru: 'Каждый блок вы сначала увидите на примере Ментора, потом сделаете в своём продукте. Сегодня в продукт ничего нового не добавляется.' })}</Mentor>}
         chapYorliq={tr({ uz: 'Dars oxirida', ru: 'В конце урока' })}
         chap={<div className="dp-reja-chap">
-          <DemoMd bosh teg />
+          <span className="dp-mono-q">{tr(MISOL_Y)}</span>
+          <DemoMd teg ss={MENTOR_SSENARIY.slice(0, 2)} rs={RISKLAR.slice(0, 1).map(r => ({ risk: r.nom, bYol: r.mentorBYol }))} br={B_REJA_QATOR.slice(0, 1)} /> {/* F-1015-398: bo'sh punktir qatorlar emas — Mentor DEMO.md dan bittadan */}
           <Taymer tol={tol} yorliqsiz dur={kamHarakat() ? 1 : 3200} />
         </div>}
         qadamlar={REJA.map(r => ({ t: tr(r) }))}
@@ -978,18 +1002,18 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         bashorat={!tugadi && <Bashorat savol={{ uz: "Mentor demoni ikkinchi marta ko'rsatsa, nima bo'ladi?", ru: 'Что будет, если Ментор покажет демо второй раз?' }} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={!taxmin ? null : <div className="dp-sahna">
           <SsenariyChiziq holat={yakun ? [] : chip} yorliq={yakun ? {} : yorl} />
+          {!tugadi && <div className="dp-amal dp-s2-amal">
+            {S2_HARAKAT.map((h, i) => i !== q ? null : <Bo key={h.id} on={taxmin && q === i && !band ? fn[i] : undefined} className={cx('dp-sb', ['dp-korsat', 'dp-yana', 'dp-qaytar'][i], q > i && 'ok', halqa(!!taxmin && q === i && !band))}>{q > i && <b>✓</b>}{tr(h.t)}</Bo>)}
+            <Ipucha on={ip} matn={{ uz: 'Yoqilgan tugmani bosing — laptop va telefonga qarang.', ru: 'Нажмите активную кнопку — посмотрите на ноутбук и телефон.' }} />
+          </div>}
           <Taymer tol={yakun ? 0 : tol} reja max={120} dur={q === 0 && band ? 9800 : 900} />
           {qatorlar && <span className="dp-tk-qator">
             <span className="dp-sirg">{tr({ uz: "Tayyorlov: o'yin «8 / 10», «Qo'shilaman» ko'rinadi", ru: 'Подготовка: игра «8 / 10», видно «Qo\'shilaman»' })}</span>
             <span className="dp-sirg" style={{ animationDelay: '.18s' }}>{tr({ uz: "Keyin: o'yindan chiqaman — yana «8 / 10»", ru: 'Keyin: выхожу из игры — снова «8 / 10»' })}</span>
           </span>}
           <div className="dp-qurilma">
-            <Telefon son={telH.son} sonYangi={telH.yangi} korayapti={yakun ? null : kor} yorliq={{ uz: '2-qurilma · telefon brauzeri · 2-namuna akkaunt', ru: '2-е устройство · браузер телефона · 2-й образцовый аккаунт' }} />
+            <Telefon son={telH.son} sonYangi={telH.yangi} korayapti={yakun ? null : kor} yorliq={{ uz: 'telefon · 2-akkaunt', ru: 'телефон · 2-й аккаунт' }} />
             <Laptop ekran={lapH.ekran} son={lapH.son} qoshildi={lapH.qoshildi} sonYangi={lapH.yangi} korayapti={yakun ? null : kor} akkaunt={{ uz: '1-namuna akkaunt', ru: '1-й образцовый аккаунт' }} />
-          {!tugadi && <div className="dp-amal ustun">
-            {S2_HARAKAT.map((h, i) => <Bo key={h.id} on={taxmin && q === i && !band ? fn[i] : undefined} className={cx('dp-sb', ['dp-korsat', 'dp-yana', 'dp-qaytar'][i], q > i && 'ok', halqa(!!taxmin && q === i && !band))}>{q > i && <b>✓</b>}{tr(h.t)}</Bo>)}
-            <Ipucha on={ip} matn={{ uz: 'Yoqilgan tugmani bosing — laptop va telefonga qarang.', ru: 'Нажмите активную кнопку — посмотрите на ноутбук и телефон.' }} />
-          </div>}
           </div>
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'ortada'} haqiqat={{ uz: "o'rtasida to'xtaydi", ru: 'остановится посередине' }} />}
@@ -1039,7 +1063,7 @@ const Screen4 = (props) => (
       2: { uz: 'Demodan oldin yangi funksiya — yangi risk. Tayyor ish bormi?', ru: 'Новая функция перед демо — новый риск. Есть готовое действие?' },
       default: { uz: "Mentor 2-ekranda ikkinchi o'tishdan oldin nima qildi?", ru: 'Что Ментор сделал на 2-м экране перед вторым прогоном?' }
     }}
-    vizual={<KitobVizual />} />
+ />
 );
 
 // ===== SCREEN 5 — TUSHUNCHA (QTushuncha): internet uzildi — kutish · havola · laptopdagi fayl =====
@@ -1143,7 +1167,7 @@ const Screen7 = (props) => (
       3: { uz: "Agentning gapi — da'vo. Backend 15 daqiqada nima qiladi?", ru: 'Слова агента — утверждение. Что Backend делает за 15 минут?' },
       default: { uz: 'Bepul Backend necha daqiqa so\'rovsiz qolsa uxlaydi?', ru: 'Через сколько минут без запросов засыпает бесплатный Backend?' }
     }}
-    vizual={<UygotishVizual />} />
+ />
 );
 
 const ACHIEVEMENTS = {
@@ -1228,18 +1252,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (MD aynan: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12)
 const QUIZ_BANK = [
-  { q: { uz: 'Demoda nimani oldindan yozib qo\'yasiz?', ru: 'Что вы заранее записываете для демо?' }, opts: [{ uz: "Bosiladigan qadamlar ro'yxatini", ru: 'Список шагов, которые нажимают' }, { uz: 'Hakamlar beradigan savollarni', ru: 'Вопросы, которые зададут судьи' }, { uz: 'Ilovadagi hamma funksiyalarni', ru: 'Все функции приложения' }, { uz: "Sinfdoshlar fikrlari ro'yxatini", ru: 'Список мнений одноклассников' }], correct: 0 },
-  { q: { uz: "Demoning besh qadami bir marta ko'rsatildi. Bu nima?", ru: 'Пять шагов демо показали один раз. Что это?' }, opts: [{ uz: "Demo ssenariysining yangi ko'rinishi", ru: 'Новый вид сценария демо' }, { uz: "Boshidan oxirigacha bitta demo o'tishi", ru: 'Один прогон демо от начала до конца' }, { uz: "Demoga yangi qadam qo'shilgan holati", ru: 'Демо с добавленным новым шагом' }, { uz: "Hakamlarning demo haqida qo'ygan bahosi", ru: 'Оценка демо от судей' }], correct: 1 },
-  { q: { uz: "Mentor «O'yindan chiqish»ni qachon bosadi?", ru: 'Когда Ментор нажимает «Выйти из игры»?' }, opts: [{ uz: 'Demoning eng birinchi qadamida', ru: 'На самом первом шаге демо' }, { uz: 'Hakamlar savol bera boshlaganda', ru: 'Когда судьи начинают задавать вопросы' }, { uz: "Har demo o'tishi tugagandan keyin", ru: 'После окончания каждого прогона демо' }, { uz: 'Faqat internet uzilib qolgan paytda', ru: 'Только когда пропал интернет' }], correct: 2 },
-  { q: { uz: "«Backend uxlagan» riskiga qaysi biri B yo'l?", ru: 'Что из этого — путь Б для риска «Backend уснул»?' }, opts: [{ uz: 'Agentga uxlamaydigan kod yozdirib qo\'yish', ru: 'Попросить агента написать код, чтобы не засыпал' }, { uz: "Hakamdan bir daqiqa kutib turishni so'rash", ru: 'Попросить судью подождать минуту' }, { uz: 'Demoni tashlab, Raqamlar bo\'lagini aytish', ru: 'Бросить демо и рассказать часть «Цифры»' }, { uz: "Navbatdan oldin demo yo'lini ochish", ru: 'Открыть путь демо перед очередью' }], correct: 3 },
-  { q: { uz: 'B reja videosini nega havolada emas, faylda saqlaysiz?', ru: 'Почему видео плана Б хранят в файле, а не по ссылке?' }, opts: [{ uz: 'Internet uzilsa ham u ochiladi', ru: 'Оно откроется даже без интернета' }, { uz: 'Faylni hakamlar o\'zlari yuklab oladi', ru: 'Судьи сами скачают файл' }, { uz: "Havolani agent o'chirib yuborishi mumkin", ru: 'Агент может удалить ссылку' }, { uz: "Fayl repo'ga o'zi qo'shilib boradi", ru: 'Файл сам добавляется в репо' }], correct: 0 },
-  { q: { uz: "Demoni qaysi akkaunt bilan ko'rsatasiz?", ru: 'С какого аккаунта показываете демо?' }, opts: [{ uz: "Eng faol o'yinchining akkaunti bilan", ru: 'С аккаунта самого активного игрока' }, { uz: 'Sanoqqa kirmaydigan namuna akkaunt bilan', ru: 'С образцового аккаунта, который не входит в подсчёт' }, { uz: 'Sinfdoshingizning shaxsiy akkaunti bilan', ru: 'С личного аккаунта одноклассника' }, { uz: 'Demo kuni ochilgan yangi akkaunt bilan', ru: 'С нового аккаунта, открытого в день демо' }], correct: 1 },
-  { q: { uz: 'B reja videosini yozishdan oldin ekrandan nimani yopasiz?', ru: 'Что вы закрываете на экране перед записью видео плана Б?' }, opts: [{ uz: "Demo yo'lidagi «O'yinlar» ro'yxatini", ru: 'Список «Игры» на пути демо' }, { uz: 'Taymer va `DEMO.md` ssenariysini', ru: 'Таймер и сценарий `DEMO.md`' }, { uz: 'Parol, `.env` va chat oynalarini', ru: 'Окна с паролем, `.env` и чатом' }, { uz: 'Mahsulot nomi yozilgan sarlavhani', ru: 'Заголовок с названием продукта' }], correct: 2 },
-  { q: { uz: 'Bepul Backend qachon uxlab qoladi?', ru: 'Когда засыпает бесплатный Backend?' }, opts: [{ uz: 'Demo ssenariysi tugashi bilan', ru: 'Сразу после конца сценария демо' }, { uz: "Teg GitHub'ga chiqqanidan keyin", ru: 'После того как тег ушёл на GitHub' }, { uz: 'Laptop proyektorga ulanganda', ru: 'Когда ноутбук подключили к проектору' }, { uz: "15 daqiqa so'rovsiz qolganda", ru: 'Когда 15 минут нет запросов' }], correct: 3 },
-  { q: { uz: '`m14-demo` tegidan keyin mahsulotda nima qilinadi?', ru: 'Что делают в продукте после тега `m14-demo`?' }, opts: [{ uz: "Faqat tuzatish, yangi funksiya yo'q", ru: 'Только исправления, без новых функций' }, { uz: "Faqat yangi funksiyalar qo'shiladi", ru: 'Добавляют только новые функции' }, { uz: "Repo o'chirilib, qaytadan ochiladi", ru: 'Репо удаляют и открывают заново' }, { uz: "Demo videosi repo'ga yuklab qo'yiladi", ru: 'Видео демо загружают в репо' }], correct: 0 },
-  { q: { uz: "Tegni GitHub'ga qaysi buyruq chiqaradi?", ru: 'Какая команда отправляет тег на GitHub?' }, opts: [{ uz: "Oddiy `git push`, teg o'zi ketadi", ru: 'Обычный `git push`, тег уйдёт сам' }, { uz: "`git push origin m14-demo` buyrug'i", ru: 'Команда `git push origin m14-demo`' }, { uz: "Faqat `git tag m14-demo` o'zi yetadi", ru: 'Хватит одного `git tag m14-demo`' }, { uz: '`git add m14-demo`, keyin commit', ru: '`git add m14-demo`, потом commit' }], correct: 1 },
-  { q: { uz: 'Ikkinchi qurilma — telefon. Demo unda qayerda ochiladi?', ru: 'Второе устройство — телефон. Где на нём открывают демо?' }, opts: [{ uz: "Telefonga o'rnatilgan APK ilovada", ru: 'В установленном APK-приложении' }, { uz: 'Hakamning telefonida, havola bilan', ru: 'На телефоне судьи, по ссылке' }, { uz: "Telefon brauzerida, o'sha manzilda", ru: 'В браузере телефона, по тому же адресу' }, { uz: 'Sinfdosh telefonida, uning akkauntida', ru: 'На телефоне одноклассника, в его аккаунте' }], correct: 2 },
-  { q: { uz: "Demo o'tishida bir qadam rejadagidek bo'lmadi. Nima qilasiz?", ru: 'В прогоне один шаг прошёл не по плану. Что вы сделаете?' }, opts: [{ uz: 'Yashiraman, hakam baribir bilmaydi', ru: 'Скрою, судья всё равно не узнает' }, { uz: "O'rniga yangi funksiya qo'shaman", ru: 'Вместо этого добавлю новую функцию' }, { uz: "Hech narsa, keyingi safar o'tadi", ru: 'Ничего, в следующий раз пройдёт' }, { uz: "Uni risklar ro'yxatiga yozaman", ru: 'Запишу его в список рисков' }], correct: 3 }
+  { q: { uz: "Demo uchun nimani oldindan yozib qo'yasiz?", ru: "Что вы заранее записываете для демо?" }, opts: [{ uz: "Bosiladigan qadamlarni", ru: "Шаги, которые нажимают" }, { uz: "Hakamlar savollarini", ru: "Вопросы судей" }, { uz: "Hamma funksiyalarni", ru: "Все функции" }, { uz: "Sinfdoshlar fikrlarini", ru: "Мнения одноклассников" }], correct: 0 },
+  { q: { uz: "Demoning besh qadami bir marta ko'rsatildi. Bu nima?", ru: "Пять шагов демо показали один раз. Что это?" }, opts: [{ uz: "Demo ssenariysi", ru: "Сценарий демо" }, { uz: "Demo o'tishi", ru: "Прогон демо" }, { uz: "B yo'l", ru: "Путь Б" }, { uz: "Risklar ro'yxati", ru: "Список рисков" }], correct: 1 },
+  { q: { uz: "Mentor «O'yindan chiqish»ni qachon bosadi?", ru: "Когда Ментор нажимает «Выйти из игры»?" }, opts: [{ uz: "Demoning birinchi qadamida", ru: "На первом шаге демо" }, { uz: "Hakamlar savol berganda", ru: "Когда судьи задают вопросы" }, { uz: "Keyingi o'tishdan oldin", ru: "Перед следующим прогоном" }, { uz: "Internet uzilganda", ru: "Когда пропал интернет" }], correct: 2 },
+  { q: { uz: "«Backend uxlagan» riskiga qaysi biri B yo'l?", ru: "Что из этого — путь Б для риска «Backend уснул»?" }, opts: [{ uz: "Agentga kod yozdirish", ru: "Попросить агента написать код" }, { uz: "Hakamdan kutishni so'rash", ru: "Попросить судью подождать" }, { uz: "Demoni tashlab ketish", ru: "Бросить демо" }, { uz: "Navbatdan oldin uyg'otish", ru: "Разбудить перед очередью" }], correct: 3 },
+  { q: { uz: "B reja videosi nega havolada emas, faylda?", ru: "Почему видео плана Б в файле, а не по ссылке?" }, opts: [{ uz: "Internetsiz ham ochiladi", ru: "Откроется и без интернета" }, { uz: "Hakam o'zi yuklab oladi", ru: "Судья сам скачает" }, { uz: "Havolani agent o'chiradi", ru: "Агент удалит ссылку" }, { uz: "Fayl repo'ga o'zi tushadi", ru: "Файл сам попадёт в репо" }], correct: 0 },
+  { q: { uz: "Demoni qaysi akkaunt bilan ko'rsatasiz?", ru: "С каким аккаунтом вы показываете демо?" }, opts: [{ uz: "Faol o'yinchi akkaunti", ru: "Аккаунт активного игрока" }, { uz: "Namuna akkaunt", ru: "Образцовый аккаунт" }, { uz: "Sinfdosh akkaunti", ru: "Аккаунт одноклассника" }, { uz: "Demo kuni ochilgan akkaunt", ru: "Аккаунт, созданный в день демо" }], correct: 1 },
+  { q: { uz: "Video yozishdan oldin ekranda nimani yopasiz?", ru: "Что вы закрываете на экране перед записью видео?" }, opts: [{ uz: "«O'yinlar» ro'yxatini", ru: "Список «O'yinlar»" }, { uz: "`DEMO.md` va taymerni", ru: "`DEMO.md` и таймер" }, { uz: "Parol, `.env`, chatlarni", ru: "Пароль, `.env`, чаты" }, { uz: "Mahsulot sarlavhasini", ru: "Заголовок продукта" }], correct: 2 },
+  { q: { uz: "Bepul Backend qachon uxlab qoladi?", ru: "Когда бесплатный Backend засыпает?" }, opts: [{ uz: "Har kuni soat 00:00 da", ru: "Каждый день в 00:00" }, { uz: "Ssenariydan 1 daqiqa keyin", ru: "Через 1 минуту после сценария" }, { uz: "Proyektorga ulangan zahoti", ru: "Сразу при подключении к проектору" }, { uz: "15 daqiqa so'rovsiz qolsa", ru: "После 15 минут без запросов" }], correct: 3 },
+  { q: { uz: "`m14-demo` tegidan keyin nima qilinadi?", ru: "Что делают после тега `m14-demo`?" }, opts: [{ uz: "Faqat tuzatish", ru: "Только исправления" }, { uz: "Faqat yangi funksiya", ru: "Только новые функции" }, { uz: "Repo qayta ochiladi", ru: "Репо создают заново" }, { uz: "Video repo'ga yuklanadi", ru: "Видео загружают в репо" }], correct: 0 },
+  { q: { uz: "Tegni GitHub'ga qaysi buyruq chiqaradi?", ru: "Какая команда отправляет тег на GitHub?" }, opts: [{ uz: "Oddiy `git push`", ru: "Обычный `git push`" }, { uz: "`git push origin m14-demo`", ru: "`git push origin m14-demo`" }, { uz: "Faqat `git tag m14-demo`", ru: "Только `git tag m14-demo`" }, { uz: "`git add m14-demo`", ru: "`git add m14-demo`" }], correct: 1 },
+  { q: { uz: "Telefonda demo qayerda ochiladi?", ru: "Где открывается демо на телефоне?" }, opts: [{ uz: "O'rnatilgan APK ilovada", ru: "В установленном APK" }, { uz: "Hakam telefonida", ru: "На телефоне судьи" }, { uz: "Brauzerda, o'sha manzilda", ru: "В браузере, по тому же адресу" }, { uz: "Sinfdosh akkauntida", ru: "В аккаунте одноклассника" }], correct: 2 },
+  { q: { uz: "Bir qadam rejadagidek bo'lmadi. Nima qilasiz?", ru: "Один шаг демо прошёл не по плану. Что сделаете?" }, opts: [{ uz: "Hakamdan yashiraman", ru: "Скрою от судьи" }, { uz: "Yangi funksiya qo'shaman", ru: "Добавлю новую функцию" }, { uz: "Hech narsa qilmayman", ru: "Ничего не сделаю" }, { uz: "Risklar ro'yxatiga yozaman", ru: "Запишу в список рисков" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1826,6 +1850,7 @@ const UMID_RE = /(umid|omad|yaxshi ishlaydi|hammasi joyida|надеюсь|над
 const bYolTekshir = (s) => {
   const n = normT(s);
   if (!n) return { x: 'bosh', blok: true };
+  if (!manoliMatn(s)) return { x: 'manosiz', blok: true };
   if (PII_RE.test(n)) return { x: 'pii', blok: true };
   if (YANGI_RE.test(n) && NARSA_RE.test(n)) return { x: 'yangi' };
   if (UMID_RE.test(n)) return { x: 'umid' };
@@ -1847,6 +1872,7 @@ const XATO = {
   rsBosh: { uz: "B yo'lni yozing: demodan oldin nima qilasiz?", ru: 'Напишите путь Б: что вы сделаете до демо?' },
   rsYangi: { uz: 'Bu — yangi funksiya. Demodan oldin tayyor ishni yozing.', ru: 'Это новая функция. Напишите готовое действие до демо.' },
   rsUmid: { uz: 'Buni demodan oldin qanday qilasiz? Bitta ishni yozing.', ru: 'Как вы сделаете это до демо? Напишите одно действие.' },
+  manosiz: MANOSIZ_XATO,
   pii: { uz: 'Bu yerga login, telefon va havola yozilmaydi.', ru: 'Сюда не пишут логин, телефон и ссылку.' },
   yana: { uz: 'Shunday qoldirsangiz — yana bosing.', ru: 'Если оставляете так — нажмите ещё раз.' },
   nimaBoldi: { uz: "Qaysi qadamda nima bo'lganini bir qatorda yozing.", ru: 'Напишите в одну строку, на каком шаге что случилось.' }
@@ -1945,7 +1971,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('dp-blok', qulfli && 'qulf', done && 'tugadi')}>
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tx(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tx(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({ h: tx(c.h), t: c.t }))}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={doneText ? tr(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
@@ -2669,12 +2695,12 @@ export default function DemoPrepLesson({ lang: langProp, onFinished, liveToken }
         .dp-soat-ic { animation: dp-ayl 2s linear infinite; }
         /* Ssenariy chizig'i */
         .dp-ss { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; padding-top: 18px; }
-        .dp-ss-i { position: relative; display: flex; align-items: center; gap: 6px; min-width: 0; padding: 7px 8px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 13px; font-weight: 700; color: ${T.ink2}; transition: background .3s, border-color .3s, color .3s; }
+        .dp-ss-i { position: relative; display: flex; align-items: center; gap: 6px; min-width: 0; padding: 4px 6px 4px 0; border-radius: 8px; background: transparent; border: 1px solid transparent; /* F-1015-388 */ font-size: 13px; font-weight: 700; color: ${T.ink2}; transition: background .3s, border-color .3s, color .3s; }
         .dp-ss-i > i { flex: none; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-style: normal; font-size: 11px; font-weight: 800; background: ${T.line}; color: ${T.ink2}; }
         .dp-ss-i > span { min-width: 0; line-height: 1.2; }
-        .dp-ss-i.joriy { border-color: ${T.accent}; background: ${T.accentSoft}; color: ${T.ink}; } .dp-ss-i.joriy > i { background: ${T.accent}; color: #fff; }
-        .dp-ss-i.ok { background: ${T.okFon}; border-color: ${fon(T.ok, 0.3)}; color: ${T.ok}; } .dp-ss-i.ok > i { background: ${T.ok}; color: #fff; }
-        .dp-ss-i.err { background: ${T.errFon}; border-color: ${fon(T.err, 0.35)}; color: ${T.err}; } .dp-ss-i.err > i { background: ${T.err}; color: #fff; }
+        .dp-ss-i.joriy { background: ${T.accentSoft}; padding-left: 6px; color: ${T.ink}; } .dp-ss-i.joriy > i { background: ${T.accent}; color: #fff; }
+        .dp-ss-i.ok {  color: ${T.ok}; } .dp-ss-i.ok > i { background: ${T.ok}; color: #fff; }
+        .dp-ss-i.err { background: ${T.errFon}; padding-left: 6px; color: ${T.err}; } .dp-ss-i.err > i { background: ${T.err}; color: #fff; }
         .dp-ss-y { position: absolute; left: 0; bottom: calc(100% + 3px); white-space: nowrap; font-style: normal; font-size: 11.5px; font-weight: 700; color: ${T.ink2}; }
         .dp-ss-y.qizil { color: ${T.err}; }
         /* Taymer chizig'i */
@@ -2706,6 +2732,7 @@ export default function DemoPrepLesson({ lang: langProp, onFinished, liveToken }
         .dp-sirg { font-size: 14px; color: ${T.ink2}; padding: 5px 10px; border-radius: 8px; background: ${T.paper}; animation: dp-sirg .45s ease-out both; }
         @keyframes dp-sirg { from { opacity: 0; transform: translateX(-14px); } }
         .dp-amal { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+        .dp-s2-amal { margin: 4px 0 2px; } /* F-1015-387: joriy harakat ssenariy qatori ostida, qurilmalardan oldin */
         .dp-amal.ustun { flex-direction: column; align-items: stretch; flex: 0 1 220px; align-self: center; }
         .dp-sb { font: inherit; display: inline-flex; align-items: center; gap: 6px; padding: 10px 15px; border-radius: 12px; border: 1.5px solid ${T.line}; background: ${T.paper}; color: ${T.ink2}; font-size: 14px; font-weight: 700; }
         button.dp-sb { cursor: pointer; color: ${T.ink}; border-color: ${fon(T.accent, 0.55)}; }

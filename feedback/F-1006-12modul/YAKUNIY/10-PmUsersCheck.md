@@ -42,10 +42,10 @@ Telefon «Maydon Jamoa»: O'yinlar ekrani (O'yinlar · Shanba · «Shanba, 18:00
   - Vizual o'zi yoziladi: varaq «Maydon Jamoa» — to'rt qator nomi navbat bilan (Ro'yxatdan o'tgan · Asosiy harakatni qilgan · Bosh raqam · Qaytganlar foizi), pastda ingichka qator «Qadamlar · Lending», tepada bo'sh muhr joyi
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-  1. Hisobotga sonni qanday yozishni bilib olasiz
-  2. Sonlarni uch savol bilan tekshirasiz
-  3. Duolingo odamlarni nima bilan qaytarishini ko'rasiz
-  4. O'z sonlaringizni Database'dan olib, reja yozasiz
+  1. Hisobotga sonni qanday yozishni bilib oling
+  2. Sonlarni uch savol bilan tekshiring
+  3. Duolingo odamlarni nima bilan qaytarishini ko'ring
+  4. O'z sonlaringizni Database'dan olib, reja yozing
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Metrika hisoboti

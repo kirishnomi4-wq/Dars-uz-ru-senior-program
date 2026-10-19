@@ -95,6 +95,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -172,8 +197,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -766,22 +791,22 @@ const Hisob = ({ items }) => (
     {items.map((h, i) => <span key={i} className={cxx('tv-h', h.ok && 'ok', h.yon && 'yon')}>{h.t} · <b key={h.n}>{h.n}</b></span>)}
   </div>
 );
-const Katak = ({ zona, z, children, className, kRef }) => (zona && zona.onBos
-  ? <button type="button" ref={kRef} className={cxx('tv-katak', className, zona.yon.has(z) && 'yon', zona.chorla.has(z) && 'chorla', zona.silk === z && 'silk')} disabled={zona.yopiq} onClick={(e) => zona.onBos(z, e.currentTarget)}>{children}</button>
-  : <span ref={kRef} className={cxx('tv-katak', className, zona && zona.yon.has(z) && 'yon', zona && zona.chorla.has(z) && 'chorla')}>{children}</span>);
+const Katak = ({ zona, z, children, className, kRef, l }) => (zona && zona.onBos
+  ? <button type="button" data-l={l} ref={kRef} className={cxx('tv-katak', className, zona.yon.has(z) && 'yon', zona.chorla.has(z) && 'chorla', zona.silk === z && 'silk')} disabled={zona.yopiq} onClick={(e) => zona.onBos(z, e.currentTarget)}>{children}</button>
+  : <span data-l={l} ref={kRef} className={cxx('tv-katak', className, zona && zona.yon.has(z) && 'yon', zona && zona.chorla.has(z) && 'chorla')}>{children}</span>);
 const USTUN_KENG = { kim: 'minmax(132px,0.9fr)', holat: 'minmax(92px,1fr)', narx: '60px', nima: 'minmax(78px,0.9fr)', gap: 'minmax(110px,2.4fr)', qayer: '76px' };
 const Jadval = ({ ustunlar, qatorlar, zona, rRef }) => (
   <div className="tv-jw">
     <div className="tv-jadval" style={{ '--cols': ustunlar.map(u => USTUN_KENG[u]).join(' ') }}>
       <div className="tv-jq sar">{ustunlar.map(u => <span key={u} className="tv-ustun">{tr(USTUN_T[u])}</span>)}</div>
       {qatorlar.map((q, i) => (
-        <div key={q.k} ref={rRef ? (el) => { rRef.current[i] = el; } : undefined} className={cxx('tv-jq', q.yangi && 'yangi', q.joriy && 'joriy', q.kul && 'kul', q.err && 'err')} style={{ '--i': i }}>
+        <div key={q.k} ref={rRef ? (el) => { rRef.current[i] = el; } : undefined} className={cxx('tv-jq', q.yangi && 'yangi', q.joriy && 'joriy', q.kul && 'kul', q.err && 'err', q.uzuq && 'uzuq')} style={{ '--i': i }}>
           {ustunlar.map(u => {
             const v = q[u];
             const bosh = q.uzuq && u !== 'kim';
-            if (u === 'holat') return <Katak key={u} zona={zona} z="holat" className="h">{bosh || !q.holat ? <i className="tv-uzuq" /> : <b key={q.holatT} className={cxx('tv-hb', q.holat === 'tasdiq' ? 'ok' : 'kul')}>{q.holatT}</b>}</Katak>;
-            if (u === 'gap') return <Katak key={u} zona={zona} z="gap" className="g">{bosh ? <i className="tv-uzuq" /> : v ? <>«{nb(v)}»</> : '—'}</Katak>;
-            return <Katak key={u} zona={zona} z={u} className={u === 'kim' ? cxx('k', String(v || '').length <= 16 && 'nw') : u === 'narx' ? 'n' : ''}>{bosh ? <i className="tv-uzuq" /> : (v === null || v === undefined || v === '' ? '—' : <span className="tv-kt">{nb(v)}</span>)}{u === 'kim' && q.tahrir}</Katak>;
+            if (u === 'holat') return <Katak key={u} l={tr(USTUN_T[u])} zona={zona} z="holat" className="h">{bosh || !q.holat ? <i className="tv-uzuq" /> : <b key={q.holatT} className={cxx('tv-hb', q.holat === 'tasdiq' ? 'ok' : 'kul')}>{q.holatT}</b>}</Katak>;
+            if (u === 'gap') return <Katak key={u} l={tr(USTUN_T[u])} zona={zona} z="gap" className="g">{bosh ? <i className="tv-uzuq" /> : v ? <>«{nb(v)}»</> : '—'}</Katak>;
+            return <Katak key={u} l={u === 'kim' ? undefined : tr(USTUN_T[u])} zona={zona} z={u} className={u === 'kim' ? cxx('k', String(v || '').length <= 16 && 'nw') : u === 'narx' ? 'n' : ''}>{bosh ? <i className="tv-uzuq" /> : (v === null || v === undefined || v === '' ? '—' : <span className="tv-kt">{nb(v)}</span>)}{u === 'kim' && q.tahrir}</Katak>;
           })}
         </div>
       ))}
@@ -899,10 +924,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; chap: menyu osti + varaq o'zi yuradi — ustun va qator nomlari haqiqiy mazmun, javoblar va sonlar yo'q — P-036, SABOQ 33) =====
 const REJA = [
-  { t: { uz: "Odamning o'zi yozgan javobini suhbatdagi gapdan ajratasiz", ru: 'Отличите ответ, который человек написал сам, от слов в разговоре' }, teg: { uz: 'yozma tasdiq', ru: 'письменное подтверждение' } },
-  { t: { uz: 'Yozuvlarni uch savol bilan tekshirasiz', ru: 'Проверите записи тремя вопросами' }, teg: { uz: 'Mentor tekshiruvi', ru: 'проверка Ментора' } },
-  { t: { uz: 'Tanishlaringizga bosimsiz xabar yozasiz', ru: 'Напишете знакомым сообщение без давления' }, teg: { uz: 'xabar', ru: 'сообщение' } },
-  { t: { uz: 'Sherigingiz bilan yozuvlaringizni tekshirasiz', ru: 'Проверите свои записи с партнёром' }, teg: { uz: 'qabul · tuzatish', ru: 'принято · исправление' } }
+  { t: { uz: "Odamning o'zi yozgan javobini suhbatdagi gapdan ajrating", ru: 'Отличите ответ, который человек написал сам, от слов в разговоре' }, teg: { uz: 'yozma tasdiq', ru: 'письменное подтверждение' } },
+  { t: { uz: 'Yozuvlarni uch savol bilan tekshiring', ru: 'Проверьте записи тремя вопросами' }, teg: { uz: 'Mentor tekshiruvi', ru: 'проверка Ментора' } },
+  { t: { uz: 'Tanishlaringizga bosimsiz xabar yozing', ru: 'Напишите знакомым сообщение без давления' }, teg: { uz: 'xabar', ru: 'сообщение' } },
+  { t: { uz: 'Sherigingiz bilan yozuvlaringizni tekshiring', ru: 'Проверьте свои записи с партнёром' }, teg: { uz: 'qabul · tuzatish', ru: 'принято · исправление' } }
 ];
 const RejaVaraq = () => {
   const f = useYurish([250, 500, 700, 900, 1100, 1300, 1500, 1700]);
@@ -1043,10 +1068,7 @@ const Screen3 = (props) => (
       3: { uz: "Gapni kim yozdi — u odammi yoki sizmi?", ru: 'Кто написал слова — этот человек или вы?' },
       default: { uz: "Yozma tasdiqda nima bo'lishi kerak edi?", ru: 'Что должно быть в письменном подтверждении?' }
     }}
-    vizual={<MiniVaraq>
-      <span className="tv-mini-q"><b className="tv-mini-k ok">{tr(USTUN_T.narx)}</b><b className="tv-mini-k ok">{tr(USTUN_T.nima)}</b></span>
-      <span className="tv-mini-y">{tr({ uz: "kim yozgan: o'zi", ru: 'кто написал: сам' })}</span>
-    </MiniVaraq>} />
+ />
 );
 
 // ===== SCREEN 4 — MENTOR TEKSHIRUVI (QTushuncha; ketma-ket 3 savol, dalil varaqdan bosib topiladi — 12-Modul 10-dars 4-ekran shakli) =====
@@ -1156,10 +1178,7 @@ const Screen5 = (props) => (
       2: { uz: "Narxni kim yozishi kerak edi — sherikmi?", ru: 'Кто должен был написать цену — партнёр?' },
       default: { uz: 'Ikkinchi savolni eslang: yozuvda nima bo\'lishi kerak?', ru: 'Вспомните второй вопрос: что должно быть в записи?' }
     }}
-    vizual={<MiniVaraq>
-      <span className="tv-mini-muhr">{tr({ uz: 'Tuzatish: narx va nima uchun', ru: 'Исправление: цена и «за что»' })}</span>
-      <span className="tv-mini-q"><b>{tr({ uz: 'sherik yozuvi', ru: 'запись партнёра' })}</b><span>«{tr({ uz: 'Ha, olaman', ru: 'Да, возьму' })}»</span><span>{tr(USTUN_T.narx)} —</span><span>{tr(USTUN_T.nima)} —</span></span>
-    </MiniVaraq>} />
+ />
 );
 
 // ===== SCREEN 8 — YAKUNIY SAVOL (QuestionScreen → QTest; ✔ A, INLINE_KEYS.s8 = 0; scope final) =====
@@ -1180,10 +1199,7 @@ const Screen8 = (props) => (
       3: { uz: "Yozma tasdiq — to'lov emas: havola berilmaydi.", ru: 'Письменное подтверждение — не оплата: ссылку не дают.' },
       default: { uz: 'Uchtaga yetmasa nima yoziladi — eslang.', ru: 'Вспомните, что пишут, если не набралось трёх.' }
     }}
-    vizual={<MiniVaraq>
-      <span className="tv-mini-q"><span className="tv-h ok">{tr(HOLAT_T.tasdiq)} · <b>2</b></span><span className="tv-h">{tr(HOLAT_T.hozir)} · <b>1</b></span></span>
-      <span className="tv-mini-kq">{tr({ uz: 'Keyingi qadam', ru: 'Следующий шаг' })}</span>
-    </MiniVaraq>} />
+ />
 );
 
 // ===== 6–7-EKRAN TEKSHIRUVLARI (MD 6, 7-ekran jadvallari; PM-108 — node bilan sinaladi: scratchpad 09-qurish/t108.mjs) =====
@@ -2058,18 +2074,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — MD «Jonli viktorina» aynan; ✔ o'rni: A 5·9·12 · B 1·7·11 · C 3·6·10 · D 2·4·8 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Bu darsda yozma tasdiq nima?', ru: 'Что на этом уроке письменное подтверждение?' }, opts: [{ uz: 'Siz yozib olgan suhbatdagi gapi', ru: 'Его слова из разговора, записанные вами' }, { uz: "Odamning o'zi yozgan narxli javobi", ru: 'Ответ с ценой, написанный им самим' }, { uz: "Oldindan berib qo'yilgan kichik pul", ru: 'Небольшие деньги, отданные заранее' }, { uz: "«Mashq to'lov»da bosilgan tugmasi", ru: 'Нажатая им кнопка «учебной оплаты»' }], correct: 1 },
-  { q: { uz: "Mentor misolida nechta tashkilotchidan so'raldi?", ru: 'Скольких организаторов спросили в примере Ментора?' }, opts: [{ uz: 'Uchtadan — faqat 6-darsdagilardan', ru: 'Троих — только тех, кто был на 6-м уроке' }, { uz: 'Bittadan — faqat 1-tashkilotchidan', ru: 'Одного — только 1-го организатора' }, { uz: '44 tadan — hamma foydalanuvchidan', ru: '44 — всех пользователей' }, { uz: 'Oltitadan — 6-darsdagilar ham bor', ru: 'Шестерых — включая тех, кто с 6-го урока' }], correct: 3 },
-  { q: { uz: 'Mentor misolida nechta yozma tasdiq bor?', ru: 'Сколько подтверждений в примере Ментора?' }, opts: [{ uz: 'Bitta — faqat 1-tashkilotchidan olindi', ru: 'Одно — получено только от 1-го организатора' }, { uz: 'Oltita — hamma tashkilotchi yozib berdi', ru: 'Шесть — написали все организаторы' }, { uz: 'Uchta — ikkitasi 15 000, biri 10 000', ru: 'Три — два по 15 000, одно по 10 000' }, { uz: "Ikkita — faqat 15 000 so'm yozganlari", ru: 'Два — только те, кто написал 15 000 сумов' }], correct: 2 },
-  { q: { uz: "3-tashkilotchi «15 000 qimmat» deb, 10 000 so'mda to'lashini yozdi. Bu nima?", ru: '3-й организатор написал «15 000 дорого» и что заплатит 10 000 сумов. Что это?' }, opts: [{ uz: "Hozir yo'q — «qimmat» degani uchun", ru: 'Сейчас нет — раз сказал «дорого»' }, { uz: "Javob yo'q — narxi boshqacha chiqdi", ru: 'Нет ответа — цена получилась другой' }, { uz: 'Sotish gapi — narxni o\'zi tushirdi', ru: 'Продающая фраза — сам снизил цену' }, { uz: "Yozma tasdiq — 10 000 so'm narxda", ru: 'Письменное подтверждение — по цене 10 000 сумов' }], correct: 3 },
-  { q: { uz: '«Kim tasdiqladi?» savoli bilan Mentor nimani ko\'radi?', ru: 'Что Ментор видит по вопросу «Кто подтвердил?»' }, opts: [{ uz: "Yozgan odam to'lovchi bo'lishini", ru: 'Что написавший — плательщик' }, { uz: 'Yozgan odamning ism-familiyasini', ru: 'Имя и фамилию написавшего' }, { uz: 'Yozgan odam necha yoshda ekanini', ru: 'Сколько лет написавшему' }, { uz: 'Yozgan odam pulni qachon berishini', ru: 'Когда написавший отдаст деньги' }], correct: 0 },
-  { q: { uz: 'Mentor misolida tekshiruv javobi qanday?', ru: 'Каков ответ проверки в примере Ментора?' }, opts: [{ uz: 'Tuzatish: oltidan faqat uchtasi bor', ru: 'Исправление: из шести только три' }, { uz: "Tuzatish: bittasi 10 000 so'mda", ru: 'Исправление: одно — по 10 000 сумов' }, { uz: "Qabul: uch savolga ham «ha» bo'ldi", ru: 'Принято: на все три вопроса — «да»' }, { uz: 'Tekshirilmadi: sherik topilmadi', ru: 'Не проверено: партнёр не нашёлся' }], correct: 2 },
-  { q: { uz: "O'zingiz yozib qo'ygan «tasdiq» tekshiruvda nima bo'ladi?", ru: 'Что будет на проверке с «подтверждением», которое вы написали сами?' }, opts: [{ uz: 'Qabul: unda narx yozilgan bo\'lsa', ru: 'Принято, если в нём есть цена' }, { uz: 'Tuzatish: uni odam o\'zi yozmagan', ru: 'Исправление: его не писал сам человек' }, { uz: 'Tuzatish: uchtaga yetmagani uchun', ru: 'Исправление: потому что меньше трёх' }, { uz: "Qabul: so'zma-so'z yozilgan bo'lsa", ru: 'Принято, если записано дословно' }], correct: 1 },
-  { q: { uz: "Yozma tasdiq «hozir olmasangiz, qimmatlashadi» deb olindi. Nima bo'ladi?", ru: 'Подтверждение получено со словами «не купите сейчас — подорожает». Что будет?' }, opts: [{ uz: "Qabul: uni odamning o'zi yozgan", ru: 'Принято: его написал сам человек' }, { uz: 'Qabul: narx va nima uchun bor', ru: 'Принято: есть цена и «за что»' }, { uz: 'Tuzatish: narx juda qimmat chiqdi', ru: 'Исправление: цена получилась слишком высокой' }, { uz: 'Tuzatish: bosim bilan olingan', ru: 'Исправление: получено под давлением' }], correct: 3 },
-  { q: { uz: "Mentor misolida yozma tasdiq kimlardan so'raldi?", ru: 'У кого просили подтверждение в примере Ментора?' }, opts: [{ uz: 'Tashkilotchilardan — Pro ular uchun', ru: 'У организаторов — Pro для них' }, { uz: "O'yinchilardan — ular ko'pchilik", ru: 'У игроков — их большинство' }, { uz: 'Sinfdoshlardan — ular hammasi tanish', ru: 'У одноклассников — все они знакомые' }, { uz: "Maydon egasidan — maydon o'ziniki", ru: 'У владельца поля — поле его' }], correct: 0 },
-  { q: { uz: 'Yozma tasdiq bergan odamga nima yuboriladi?', ru: 'Что отправляют тому, кто дал подтверждение?' }, opts: [{ uz: "Havola — «mashq to'lov» sahifasiga", ru: 'Ссылку — на страницу «учебной оплаты»' }, { uz: "Iltimos — oldindan pulni o'tkazish", ru: 'Просьбу — заранее перевести деньги' }, { uz: "Hech narsa — pul ham, havola ham yo'q", ru: 'Ничего — ни денег, ни ссылки' }, { uz: 'Iltimos — do\'stlarini ham chaqirishni', ru: 'Просьбу — позвать и друзей' }], correct: 2 },
-  { q: { uz: "Skrinshotni ko'rsatishdan oldin nimani yopasiz?", ru: 'Что закрываете перед тем, как показать скриншот?' }, opts: [{ uz: 'Odam yozib bergan narxni', ru: 'Цену, которую написал человек' }, { uz: 'Ism va telefon raqamini', ru: 'Имя и номер телефона' }, { uz: "Nima uchun to'layotganini", ru: 'За что он платит' }, { uz: 'Xabar kelgan kun va vaqtni', ru: 'День и время сообщения' }], correct: 1 },
-  { q: { uz: 'Mentor xabarida qaysi gap bor?', ru: 'Какая фраза есть в сообщении Ментора?' }, opts: [{ uz: "«Bu to'lov emas — pul so'ramayman»", ru: '«Это не оплата — денег не прошу»' }, { uz: '«Hozir olmasangiz — qimmatlashadi»', ru: '«Не купите сейчас — подорожает»' }, { uz: '«Boshqa tashkilotchilar ham oldi»', ru: '«Другие организаторы уже взяли»' }, { uz: "«Do'stlaringizga ham yuborib qo'ying»", ru: '«Перешлите и друзьям»' }], correct: 0 },
+  { q: { uz: "Bu darsda yozma tasdiq nima?", ru: "Что такое письменное подтверждение в этом уроке?" }, opts: [{ uz: "Siz yozib olgan gapi", ru: "Его слова, записанные вами" }, { uz: "Odam yozgan narxli javob", ru: "Ответ с ценой, написанный человеком" }, { uz: "Oldindan berilgan pul", ru: "Деньги, отданные заранее" }, { uz: "Mashq to'lovdagi tugma", ru: "Кнопка в учебной оплате" }], correct: 1 },
+  { q: { uz: "Mentor misolida nechta tashkilotchidan so'raldi?", ru: "У скольких организаторов спросили в примере Ментора?" }, opts: [{ uz: "Uchtadan", ru: "У трёх" }, { uz: "Bittadan", ru: "У одного" }, { uz: "44 tadan", ru: "У 44" }, { uz: "Oltitadan", ru: "У шести" }], correct: 3 },
+  { q: { uz: "Mentor misolida nechta yozma tasdiq bor?", ru: "Сколько письменных подтверждений в примере Ментора?" }, opts: [{ uz: "Bitta", ru: "Одно" }, { uz: "Oltita", ru: "Шесть" }, { uz: "Uchta", ru: "Три" }, { uz: "Ikkita", ru: "Два" }], correct: 2 },
+  { q: { uz: "«15 000 qimmat. 10 000 bo'lsa, to'layman». Bu nima?", ru: "«15 000 дорого. За 10 000 заплачу». Что это?" }, opts: [{ uz: "Hozir yo'q", ru: "Пока нет" }, { uz: "Javob yo'q", ru: "Нет ответа" }, { uz: "Sotish gapi", ru: "Фраза продажи" }, { uz: "Yozma tasdiq", ru: "Письменное подтверждение" }], correct: 3 },
+  { q: { uz: "«Kim tasdiqladi?» savoli nimani tekshiradi?", ru: "Что проверяет вопрос «Кто подтвердил?»?" }, opts: [{ uz: "Yozgan to'lovchi ekanini", ru: "Что писавший — плательщик" }, { uz: "Uning ism-familiyasini", ru: "Его имя и фамилию" }, { uz: "Necha yoshda ekanini", ru: "Сколько ему лет" }, { uz: "Pulni qachon berishini", ru: "Когда он отдаст деньги" }], correct: 0 },
+  { q: { uz: "Mentor misolida tekshiruv javobi qanday?", ru: "Каков ответ проверки в примере Ментора?" }, opts: [{ uz: "Tuzatish: uchtasi yetmaydi", ru: "Исправить: трёх не хватает" }, { uz: "Tuzatish: biri 10 000 da", ru: "Исправить: одно за 10 000" }, { uz: "Qabul: uch savolga «ha»", ru: "Принято: «да» на три вопроса" }, { uz: "Tekshirilmadi: sherik yo'q", ru: "Не проверено: нет партнёра" }], correct: 2 },
+  { q: { uz: "O'zingiz yozgan «tasdiq» nima bo'ladi?", ru: "Что будет с «подтверждением», которое вы написали сами?" }, opts: [{ uz: "Qabul: narx bo'lsa", ru: "Принято, если есть цена" }, { uz: "Tuzatish: odam yozmagan", ru: "Исправить: писал не человек" }, { uz: "Tuzatish: uchta emas", ru: "Исправить: их не три" }, { uz: "Qabul: so'zma-so'z bo'lsa", ru: "Принято, если дословно" }], correct: 1 },
+  { q: { uz: "Tasdiq «hozir olmasangiz, qimmatlashadi» deb olindi. Natija?", ru: "Подтверждение получено словами «не возьмёте сейчас — подорожает». Итог?" }, opts: [{ uz: "Qabul: odam o'zi yozgan", ru: "Принято: человек написал сам" }, { uz: "Qabul: narxi bor", ru: "Принято: цена есть" }, { uz: "Tuzatish: narx qimmat", ru: "Исправить: цена дорогая" }, { uz: "Tuzatish: bosim bor", ru: "Исправить: было давление" }], correct: 3 },
+  { q: { uz: "Mentor misolida yozma tasdiq kimlardan so'raldi?", ru: "У кого просили письменное подтверждение в примере Ментора?" }, opts: [{ uz: "Tashkilotchilardan", ru: "У организаторов" }, { uz: "O'yinchilardan", ru: "У игроков" }, { uz: "Sinfdoshlardan", ru: "У одноклассников" }, { uz: "Maydon egasidan", ru: "У владельца поля" }], correct: 0 },
+  { q: { uz: "Yozma tasdiq bergan odamga nima yuboriladi?", ru: "Что отправляют человеку, давшему письменное подтверждение?" }, opts: [{ uz: "Mashq to'lov havolasi", ru: "Ссылку на учебную оплату" }, { uz: "Pul o'tkazish iltimosi", ru: "Просьбу перевести деньги" }, { uz: "Hech narsa", ru: "Ничего" }, { uz: "Do'stlarni chaqirish", ru: "Просьбу позвать друзей" }], correct: 2 },
+  { q: { uz: "Skrinshot ko'rsatsangiz, nimani yopasiz?", ru: "Что закрываете, если показываете скриншот?" }, opts: [{ uz: "Odam yozib bergan narxni", ru: "Цену, которую написал человек" }, { uz: "Ism va telefon raqamini", ru: "Имя и номер телефона" }, { uz: "Nima uchun to'layotganini", ru: "За что он платит" }, { uz: "Xabar kelgan kun va vaqtni", ru: "День и время сообщения" }], correct: 1 },
+  { q: { uz: "Mentor xabarida qaysi gap bor?", ru: "Какая фраза есть в сообщении Ментора?" }, opts: [{ uz: "«Bu to'lov emas»", ru: "«Это не оплата»" }, { uz: "«Olmasangiz, qimmatlashadi»", ru: "«Не возьмёте — подорожает»" }, { uz: "«Boshqalar ham oldi»", ru: "«Другие тоже взяли»" }, { uz: "«Do'stlarga ham yuboring»", ru: "«Отправьте и друзьям»" }], correct: 0 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2634,21 +2650,6 @@ const HW_TUZATISH = {
   narx: { uz: "narx — aniqlashtirish kerak bo'lsa, faqat yetishmagan narsani bir marta so'rang", ru: 'цена — если нужно уточнить, один раз спросите только то, чего не хватает' },
   gap: { uz: "gap — xabardan aynan ko'chiring, bosim bilan olingan bo'lsa hisobga olmang va qayta yozmang", ru: 'слова — перепишите точно из сообщения; если получено под давлением — не считайте и не пишите повторно' }
 };
-// PM-109 (SABOQ P4): erta tugatgan o'quvchi — AI tanish to'lovchi rolida javob beradi, o'quvchi o'zi yozadi va uch savol bilan tekshiradi (sinfda gemini.google.com)
-const AI_SOROV = { uz: "Sen «Maydon Jamoa»ga o'xshash ilovada har hafta o'yin e'lon qiladigan tashkilotchisan. Men senga bitta xabar yuboraman: narx va nima uchun to'lashing haqida so'rayman. Javobni o'zing tanla: narx va nima uchun bilan yozma javob, «hozir yo'q» yoki narxsiz qisqa javob. Pul o'tkazma, havola so'rama, mendan sotishni kutma. Mening xabarim: ",
-  ru: 'Ты организатор, который каждую неделю объявляет игры в приложении вроде «Maydon Jamoa». Я пришлю тебе одно сообщение: спрошу о цене и за что ты заплатишь. Ответ выбери сам: письменный ответ с ценой и «за что», «сейчас нет» или короткий ответ без цены. Денег не переводи, ссылку не проси, продажи от меня не жди. Моё сообщение: ' };
-const AiDavomCard = () => {
-  const [nusxa, setNusxa] = useState(false);
-  const kochir = () => { try { navigator.clipboard.writeText(tr(AI_SOROV)); setNusxa(true); setTimeout(() => setNusxa(false), 1800); } catch { /* qo'lda belgilab oladi */ } };
-  return (
-    <div className="card tv-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <p className="tv-ai-m">{tr({ uz: "gemini.google.com'ni oching, pastdagi so'rovni o'z xabaringiz bilan yuboring — AI tanish to'lovchi bo'lib javob beradi. Javobini so'zma-so'z yozib, uch savol bilan o'zingiz tekshiring; bu mashq — yozma tasdiqlaringiz soniga kirmaydi.", ru: 'Откройте gemini.google.com, отправьте запрос ниже со своим сообщением — AI ответит как знакомый плательщик. Запишите ответ дословно и сами проверьте его тремя вопросами; это упражнение — в число ваших подтверждений не входит.' })}</p>
-      <pre className="tv-ai-sorov">{tr(AI_SOROV)}</pre>
-      <button type="button" className="q-chip tv-ai-btn" onClick={kochir}>{nusxa ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 const HwCard = ({ qolgan, keyingi }) => (
   <div className="card tv-hw fade-up">
     <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
@@ -2734,7 +2735,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           hwTokens={HW_TOKENS.map(t => ({ ...t, t: tr(t.t) }))}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
         >
-          {!isMentorL && <AiDavomCard />}
+          
         </QYakun>
       </div>
     </Stage>
@@ -3065,8 +3066,6 @@ export default function PmPayCheckLesson({ lang: langProp, onFinished, liveToken
         .card.tv-ai { display: block; }
         .tv-varaq.tv-reja { gap: 10px; }
         .q-chip.tv-tugma { font-weight: 700; }
-        .tv-ai-m { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: ${T.ink}; }
-        .tv-ai-sorov { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.45; color: ${T.ink}; white-space: pre-wrap; }
         .tv-ai-btn { margin: 0; }
         .tv-hw { display: flex; flex-direction: column; gap: 12px; }
         .tv-hw-karta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
@@ -3450,6 +3449,14 @@ export default function PmPayCheckLesson({ lang: langProp, onFinished, liveToken
         .rc-btn.done { background: ${T.ok}; color: #fff; }
         .rc-btn.done:hover { background: #17603C; }
         @media (max-width: 640px) {
+          /* F-1015-396: 390 px da jadval kesilardi — qator bitta blok: nom tepada, qolgan ustunlar yorlig'i bilan (bitta ramka, qator chizig'i) */
+          .tv-jadval { min-width: 0; }
+          .tv-jq.sar { display: none; }
+          .tv-jq { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+          .tv-jq > .tv-katak.k, .tv-jq > .tv-katak.g { grid-column: 1 / -1; }
+          .tv-jq > .tv-katak[data-l]::before { content: attr(data-l); flex: none; margin-right: 6px; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: ${T.ink2}; }
+          .tv-jq > .tv-katak.g[data-l] { flex-wrap: wrap; }
+          .tv-jq.uzuq:not(.joriy) > .tv-katak:not(.k) { display: none; }
           .rc-nav { flex-wrap: wrap; justify-content: center; row-gap: 10px; }
           .rc-dots { width: 100%; order: -1; }
           .rc-btn { font-size: 13px; padding: 11px 16px; }

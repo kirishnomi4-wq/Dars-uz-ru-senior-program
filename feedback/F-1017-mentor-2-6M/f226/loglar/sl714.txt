@@ -1,0 +1,209 @@
+LMS fayllari brauzerda tekshirilmoqda (102 ta)
+
+  ✓ 01-PmOkrLesson.jsx         dars: ha (356 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/01-PmOkrLesson.jsx.png
+  ✗ 02-EventTrackingLesson.jsx dars: ha (260 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✗ 03-LiveDashboardLesson.jsx dars: ha (540 belgi) · kompilyator: kutilmaydi
+     YUKLANMADI: page.screenshot: Timeout 30000ms exceeded.
+  ✓ 04-PmAbTestLesson.jsx      dars: ha (446 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/04-PmAbTestLesson.jsx.png
+  ✗ 05-SecurityBasicsLesson.jsx dars: ha (585 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 06-PmTrustAuditLesson.jsx  dars: ha (557 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/06-PmTrustAuditLesson.jsx.png
+  ✓ 07-ProductionDeployLesson.jsx dars: ha (425 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/07-ProductionDeployLesson.jsx.png
+  ✓ 08-ProdUpgradeLesson.jsx   dars: ha (468 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/08-ProdUpgradeLesson.jsx.png
+  ✓ 09-ProdReviewLesson.jsx    dars: ha (680 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/09-ProdReviewLesson.jsx.png
+  ✗ 10-PmYearPathLesson.jsx    dars: ha (519 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 11-PmPitchRehearsalLesson.jsx dars: ha (836 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/11-PmPitchRehearsalLesson.jsx.png
+  ✗ 01-PmTenIdeasLesson.jsx    dars: ha (361 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 02-PmIdeaRiceLesson.jsx    dars: ha (506 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/02-PmIdeaRiceLesson.jsx.png
+  ✗ 03-PmInterviewsOneLesson.jsx dars: ha (475 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 04-PmFinalIdeaLesson.jsx   dars: ha (442 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/04-PmFinalIdeaLesson.jsx.png
+  ✓ 05-PmPrdLesson.jsx         dars: ha (425 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/05-PmPrdLesson.jsx.png
+  ✗ 06-PmRoadmapLesson.jsx     dars: ha (535 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✗ 07-LivePrototypeLesson.jsx dars: ha (546 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✗ 08-PlatformChoiceLesson.jsx dars: ha (378 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✗ 09-ExpoPrototypeLesson.jsx dars: ha (582 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 10-FoundationDayLesson.jsx dars: ha (632 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/10-FoundationDayLesson.jsx.png
+  ✓ 11-FeatureOneLesson.jsx    dars: ha (650 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/11-FeatureOneLesson.jsx.png
+  ✓ 12-FeatureTwoLesson.jsx    dars: ha (492 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/12-FeatureTwoLesson.jsx.png
+  ✓ 13-PmAudienceTestLesson.jsx dars: ha (569 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/13-PmAudienceTestLesson.jsx.png
+  ✓ 14-FeatureThreeLesson.jsx  dars: ha (649 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/14-FeatureThreeLesson.jsx.png
+  ✓ 15-PmOneOnOneLesson.jsx    dars: ha (588 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/15-PmOneOnOneLesson.jsx.png
+  ✓ 16-PmPrototypePitchLesson.jsx dars: ha (501 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/16-PmPrototypePitchLesson.jsx.png
+  ✓ 01-PmLandingLesson.jsx     dars: ha (451 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/01-PmLandingLesson.jsx.png
+  ✗ 02-WebSocketBasicsLesson.jsx dars: ha (397 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 03-PmRealtimeSpecLesson.jsx dars: ha (521 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/03-PmRealtimeSpecLesson.jsx.png
+  ✓ 04-LiveNotifyDayLesson.jsx dars: ha (422 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/04-LiveNotifyDayLesson.jsx.png
+  ✗ 05-BreakAndFixLesson.jsx   dars: ha (549 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✗ 06-PmChannelsLesson.jsx    dars: ha (509 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 07-PmFiftyUsersLesson.jsx  dars: ha (558 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/07-PmFiftyUsersLesson.jsx.png
+  ✓ 08-PmDropOffLesson.jsx     dars: ha (534 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/08-PmDropOffLesson.jsx.png
+  ✓ 09-RetentionDayLesson.jsx  dars: ha (429 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/09-RetentionDayLesson.jsx.png
+  ✓ 10-PmUsersCheckLesson.jsx  dars: ha (419 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/10-PmUsersCheckLesson.jsx.png
+  ✓ 11-PmPitchReviewLesson.jsx dars: ha (656 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/11-PmPitchReviewLesson.jsx.png
+  ✗ 12-PmGrowthPitchLesson.jsx dars: ha (315 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✗ 01-PmUnitEconomicsLesson.jsx dars: ha (512 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 02-PmMonetizationLesson.jsx dars: ha (476 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/02-PmMonetizationLesson.jsx.png
+  ✗ 03-PaymentWebhookLesson.jsx dars: ha (464 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 04-PmPricingLesson.jsx     dars: ha (552 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/04-PmPricingLesson.jsx.png
+  ✓ 05-PaymentDayLesson.jsx    dars: ha (531 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/05-PaymentDayLesson.jsx.png
+  ✓ 06-PmMoneyTalkLesson.jsx   dars: ha (445 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/06-PmMoneyTalkLesson.jsx.png
+  ✓ 07-PmTermsLesson.jsx       dars: ha (535 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/07-PmTermsLesson.jsx.png
+  ✓ 08-WinBackDayLesson.jsx    dars: ha (498 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/08-WinBackDayLesson.jsx.png
+  ✓ 09-PmPayCheckLesson.jsx    dars: ha (433 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/09-PmPayCheckLesson.jsx.png
+  ✓ 10-ReferralDayLesson.jsx   dars: ha (603 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/10-ReferralDayLesson.jsx.png
+  ✓ 11-PmReflectionLesson.jsx  dars: ha (600 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/11-PmReflectionLesson.jsx.png
+  ✓ 12-StabilizeDayLesson.jsx  dars: ha (400 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/12-StabilizeDayLesson.jsx.png
+  ✓ 01-PmInvestorPitchLesson.jsx dars: ha (740 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/01-PmInvestorPitchLesson.jsx.png
+  ✓ 02-PmStoryPitchLesson.jsx  dars: ha (503 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/02-PmStoryPitchLesson.jsx.png
+  ✓ 03-ProductSpeedLesson.jsx  dars: ha (200 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/03-ProductSpeedLesson.jsx.png
+  ✓ 04-PolishDayLesson.jsx     dars: ha (353 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/04-PolishDayLesson.jsx.png
+  ✓ 05-PmPitchTrainingLesson.jsx dars: ha (384 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/05-PmPitchTrainingLesson.jsx.png
+  ✓ 06-DemoPrepLesson.jsx      dars: ha (632 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/06-DemoPrepLesson.jsx.png
+  ✓ 07-PmDemoTestLesson.jsx    dars: ha (522 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/07-PmDemoTestLesson.jsx.png
+  ✓ 08-PmFinalPitchLesson.jsx  dars: ha (862 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/08-PmFinalPitchLesson.jsx.png
+  ✓ 09-VideoPortfolioLesson.jsx dars: ha (463 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/09-VideoPortfolioLesson.jsx.png
+  ✓ 10-PmFreelanceLesson.jsx   dars: ha (367 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/10-PmFreelanceLesson.jsx.png
+  ✓ 11-PmProgramsLesson.jsx    dars: ha (808 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/11-PmProgramsLesson.jsx.png
+  ✓ 12-PmNextStepsLesson.jsx   dars: ha (332 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/12-PmNextStepsLesson.jsx.png
+  ✓ 13-PmDressRehearsalLesson.jsx dars: ha (411 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/13-PmDressRehearsalLesson.jsx.png
+  ✓ 01-BotIntroLesson.jsx      dars: ha (288 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/01-BotIntroLesson.jsx.png
+  ✓ 02-PmLesson19.jsx          dars: ha (266 belgi) · kompilyator: ha
+     skrinshot: /tmp/lms-smoke-Ma9dqU/02-PmLesson19.jsx.png
+  ✓ 03-BotApiButtonsLesson.jsx dars: ha (400 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/03-BotApiButtonsLesson.jsx.png
+  ✓ 04-BotStatefulMemoryLesson.jsx dars: ha (341 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/04-BotStatefulMemoryLesson.jsx.png
+  ✓ 05-BotAiProjectLesson.jsx  dars: ha (447 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/05-BotAiProjectLesson.jsx.png
+  ✓ 06-BotAiBrainLesson.jsx    dars: ha (407 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/06-BotAiBrainLesson.jsx.png
+  ✓ 07-BotFullProjectLesson.jsx dars: ha (289 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/07-BotFullProjectLesson.jsx.png
+  ✓ 08-PmLesson20.jsx          dars: ha (255 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/08-PmLesson20.jsx.png
+  ✓ 09-BotFeedbackIterationLesson.jsx dars: ha (284 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/09-BotFeedbackIterationLesson.jsx.png
+  ✓ 10-BotAiAgentLesson.jsx    dars: ha (485 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/10-BotAiAgentLesson.jsx.png
+  ✓ 11-PmMetricsLesson.jsx     dars: ha (307 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/11-PmMetricsLesson.jsx.png
+  ✓ 12-PmLesson21.jsx          dars: ha (273 belgi) · kompilyator: ha
+     skrinshot: /tmp/lms-smoke-Ma9dqU/12-PmLesson21.jsx.png
+  ✓ 01-SystemArchitectureLesson.jsx dars: ha (294 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/01-SystemArchitectureLesson.jsx.png
+  ✓ 02-PmLesson22.jsx          dars: ha (322 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/02-PmLesson22.jsx.png
+  ✓ 03-ArchPatternsLesson.jsx  dars: ha (315 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/03-ArchPatternsLesson.jsx.png
+  ✓ 04-AgentArchitectureLesson.jsx dars: ha (483 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/04-AgentArchitectureLesson.jsx.png
+  ✓ 05-ClaudeSkillsLesson.jsx  dars: ha (380 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/05-ClaudeSkillsLesson.jsx.png
+  ✓ 06-PmLesson23.jsx          dars: ha (268 belgi) · kompilyator: ha
+     skrinshot: /tmp/lms-smoke-Ma9dqU/06-PmLesson23.jsx.png
+  ✓ 07-WriteSkillLesson.jsx    dars: ha (411 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/07-WriteSkillLesson.jsx.png
+  ✓ 08-PipelineProjectLesson.jsx dars: ha (548 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/08-PipelineProjectLesson.jsx.png
+  ✓ 09-ReactNativeBasicsLesson.jsx dars: ha (359 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/09-ReactNativeBasicsLesson.jsx.png
+  ✓ 10-ReactNativeAppLesson.jsx dars: ha (355 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/10-ReactNativeAppLesson.jsx.png
+  ✓ 11-MobileAppPracticeLesson.jsx dars: ha (556 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/11-MobileAppPracticeLesson.jsx.png
+  ✓ 12-PmLesson24.jsx          dars: ha (269 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/12-PmLesson24.jsx.png
+  ✓ 13-FullSystemProjectLesson.jsx dars: ha (568 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/13-FullSystemProjectLesson.jsx.png
+  ✓ 14-PmLesson25.jsx          dars: ha (350 belgi) · kompilyator: ha
+     skrinshot: /tmp/lms-smoke-Ma9dqU/14-PmLesson25.jsx.png
+  ✗ 01-PmProductProblemLesson.jsx dars: ha (300 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✗ 02-PmFiveInterviewsLesson.jsx dars: ha (376 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 03-PmInterviewMvpLesson.jsx dars: ha (972 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/03-PmInterviewMvpLesson.jsx.png
+  ✓ 04-MvpArchitectureLesson.jsx dars: ha (489 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/04-MvpArchitectureLesson.jsx.png
+  ✗ 05-AnimationLesson.jsx     dars: ha (311 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 06-PmAnalyticsDayOneLesson.jsx dars: ha (340 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/06-PmAnalyticsDayOneLesson.jsx.png
+  ✓ 07-MvpFirstScreenLesson.jsx dars: ha (363 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/07-MvpFirstScreenLesson.jsx.png
+  ✓ 08-PmDesignMotionLesson.jsx dars: ha (500 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/08-PmDesignMotionLesson.jsx.png
+  ✓ 09-MvpCompleteLesson.jsx   dars: ha (582 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/09-MvpCompleteLesson.jsx.png
+  ✗ 10-PmUsabilityTestLesson.jsx dars: ha (382 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+  ✓ 11-MvpIterationLesson.jsx  dars: ha (423 belgi) · kompilyator: kutilmaydi
+     skrinshot: /tmp/lms-smoke-Ma9dqU/11-MvpIterationLesson.jsx.png
+  ✗ 12-PmUserStoryPitchLesson.jsx dars: ha (513 belgi) · kompilyator: yo'q
+     KOMPILYATOR OCHILMADI: page.waitForSelector: Timeout 15000ms exceeded.
+
+21 ta fayl sindi
+EXIT=1

@@ -105,6 +105,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -182,8 +207,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1431,18 +1456,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (aylanma, MD v3)
 const QUIZ_BANK = [
-  { q: { uz: 'Hodisa nima?', ru: 'Что такое событие?' }, opts: [{ uz: 'Analitikaga yoziladigan bitta harakat', ru: "Одно действие, которое пишется в аналитику" }, { uz: "Database'dagi bitta yangi jadval ustuni", ru: 'Один новый столбец таблицы в Database' }, { uz: 'Saytdagi bitta bosiladigan katta tugma', ru: 'Одна большая кнопка на сайте' }, { uz: "Backend'dagi bitta yangi so'rov yo'li", ru: 'Один новый маршрут запроса в Backend' }], correct: 0 },
+  { q: { uz: "Hodisa nima?", ru: "Что такое событие?" }, opts: [{ uz: "Jadvalga yoziladigan harakat", ru: "Действие, записываемое в таблицу" }, { uz: "Jadvaldagi yangi ustun", ru: "Новый столбец таблицы" }, { uz: "Saytdagi katta tugma", ru: "Большая кнопка на сайте" }, { uz: "Backend'dagi so'rov yo'li", ru: "Маршрут запроса в Backend" }], correct: 0 },
   { q: { uz: '`hodisalar` jadvalidagi bitta qator nimani bildiradi?', ru: 'Что означает одна строка в таблице `hodisalar`?' }, opts: [{ uz: 'Bitta brauzerni', ru: 'Один браузер' }, { uz: 'Bitta hodisani', ru: 'Одно событие' }, { uz: "Bitta o'yinchini", ru: 'Одного игрока' }, { uz: 'Bitta kunni', ru: 'Один день' }], correct: 1 },
-  { q: { uz: "Sahifa ochilishini o'z jadvalimizga kim yuboradi?", ru: 'Кто отправляет открытие страницы в нашу таблицу?' }, opts: [{ uz: "Umami skripti uni o'zi yozib beradi", ru: 'Скрипт Umami сам его записывает' }, { uz: "Database uni o'zi qo'shib qo'yadi", ru: 'Database сама его добавляет' }, { uz: 'Sayt ochdi nomi bilan yuboradi', ru: 'Сайт отправляет с названием ochdi' }, { uz: "Backend har daqiqada o'zi qo'shadi", ru: 'Backend сам добавляет каждую минуту' }], correct: 2 },
-  { q: { uz: 'Hodisaga nega telefon raqami yozilmaydi?', ru: 'Почему в событие не пишется номер телефона?' }, opts: [{ uz: "Telefon raqami jadvalga sig'maydi", ru: 'Номер не помещается в таблицу' }, { uz: "Backend raqamni o'qiy olmaydi", ru: 'Backend не может прочитать номер' }, { uz: "Umami raqamni o'zi yashiradi", ru: 'Umami сам скрывает номер' }, { uz: 'Ochganlar hali raqam bermagan', ru: 'Открывшие ещё не дали номер' }], correct: 3 },
-  { q: { uz: 'Brauzer ID qayerda saqlanadi?', ru: 'Где хранится ID браузера?' }, opts: [{ uz: "Brauzer xotirasida, localStorage'da", ru: 'В памяти браузера, в localStorage' }, { uz: '`bandlar` jadvalining alohida ustunida', ru: 'В отдельном столбце таблицы `bandlar`' }, { uz: 'Umami hisobidagi sayt sozlamalarida', ru: 'В настройках сайта в аккаунте Umami' }, { uz: "Backend'dagi `.env` faylining ichida", ru: 'Внутри файла `.env` в Backend' }], correct: 0 },
-  { q: { uz: "O'yinchi sahifani yangiladi. Brauzer ID nima bo'ladi?", ru: 'Игрок обновил страницу. Что будет с ID браузера?' }, opts: [{ uz: 'Har safar yangi ID olinadi', ru: 'Каждый раз берётся новый ID' }, { uz: "O'sha ID o'zgarmay qoladi", ru: 'Тот же ID остаётся без изменений' }, { uz: 'Telefon raqamiga almashadi', ru: 'Заменяется номером телефона' }, { uz: "Backend uni o'chirib yuboradi", ru: 'Backend его удаляет' }], correct: 1 },
+  { q: { uz: "Sahifa ochilishini jadvalga kim yuboradi?", ru: "Кто отправляет открытие страницы в таблицу?" }, opts: [{ uz: "Umami `ochdi`ni yozadi", ru: "Umami пишет `ochdi`" }, { uz: "Database `ochdi` qo'shadi", ru: "Database сама добавит `ochdi`" }, { uz: "Sayt `ochdi` deb yuboradi", ru: "Сайт отправляет `ochdi`" }, { uz: "Backend `ochdi` qo'shadi", ru: "Backend сам добавит `ochdi`" }], correct: 2 },
+  { q: { uz: "Hodisaga nega telefon yozilmaydi?", ru: "Почему в событие не пишут телефон?" }, opts: [{ uz: "Raqam jadvalga sig'maydi", ru: "Номер не помещается" }, { uz: "Backend raqamni o'qimaydi", ru: "Backend не читает номер" }, { uz: "Umami raqamni yashiradi", ru: "Umami скрывает номер" }, { uz: "Ochgan odam hali bermagan", ru: "Открывший его ещё не дал" }], correct: 3 },
+  { q: { uz: "Brauzer ID qayerda saqlanadi?", ru: "Где хранится ID браузера?" }, opts: [{ uz: "Brauzer xotirasida", ru: "В памяти браузера" }, { uz: "`bandlar` jadvalida", ru: "В таблице `bandlar`" }, { uz: "Umami sozlamalarida", ru: "В настройках Umami" }, { uz: "Backend'ning `.env` faylida", ru: "В файле `.env` Backend" }], correct: 0 },
+  { q: { uz: "Sahifa yangilandi. Brauzer ID nima bo'ladi?", ru: "Страницу обновили. Что будет с ID браузера?" }, opts: [{ uz: "Yangi ID olinadi", ru: "Берётся новый ID" }, { uz: "O'zgarmay qoladi", ru: "Остаётся прежним" }, { uz: "Telefonga almashadi", ru: "Заменяется телефоном" }, { uz: "Backend uni o'chiradi", ru: "Backend его удаляет" }], correct: 1 },
   { q: { uz: '`band-qildi` qachon yuboriladi?', ru: 'Когда отправляется `band-qildi`?' }, opts: [{ uz: '«Band qilish» bosilishi bilan', ru: 'Сразу при нажатии «Забронировать»' }, { uz: 'Forma ochilgan zahoti', ru: 'Как только открылась форма' }, { uz: 'Band saqlangandan keyin', ru: 'После сохранения брони' }, { uz: "Ega ro'yxatni ochganda", ru: 'Когда владелец открыл список' }], correct: 2 },
-  { q: { uz: '`COUNT(DISTINCT brauzer_id)` nimani sanaydi?', ru: 'Что считает `COUNT(DISTINCT brauzer_id)`?' }, opts: [{ uz: 'Jadvaldagi hamma qatorlar sonini', ru: 'Число всех строк в таблице' }, { uz: 'Turli hodisa nomlari sonini', ru: 'Число разных названий событий' }, { uz: "Bo'sh vaqt kataklari sonini", ru: "Число свободных ячеек" }, { uz: 'Har xil brauzerlar sonini', ru: 'Число разных браузеров' }], correct: 3 },
-  { q: { uz: 'Qatorlarni sanasak, qanday xato chiqadi?', ru: 'Какая ошибка будет, если считать строки?' }, opts: [{ uz: 'Bir brauzer bir necha marta sanaladi', ru: 'Один браузер считается несколько раз' }, { uz: 'Band qilganlar umuman sanalmaydi', ru: 'Забронировавшие вообще не считаются' }, { uz: 'Umami sonlari ikki baravar bo\'ladi', ru: 'Числа Umami удвоятся' }, { uz: "Bo'sh kataklar ham qator bo'lib qoladi", ru: "Пустые ячейки тоже станут строками" }], correct: 0 },
-  { q: { uz: 'Umami 31, jadval 36. Bu nimani bildiradi?', ru: 'Umami 31, таблица 36. Что это значит?' }, opts: [{ uz: 'Jadval xato — uni tuzatish kerak', ru: 'Таблица ошибается — её надо исправить' }, { uz: 'Ikki tizim har xil usulda sanaydi', ru: 'Две системы считают разными способами' }, { uz: 'Umami xato — uni olib tashlaymiz', ru: 'Umami ошибается — уберём его' }, { uz: 'Besh kishi saytni ikki marta ochgan', ru: 'Пять человек открыли сайт дважды' }], correct: 1 },
+  { q: { uz: "`COUNT(DISTINCT brauzer_id)` nimani sanaydi?", ru: "Что считает `COUNT(DISTINCT brauzer_id)`?" }, opts: [{ uz: "Hamma qatorlar sonini", ru: "Число всех строк" }, { uz: "Hodisa nomlari sonini", ru: "Число названий событий" }, { uz: "Bo'sh kataklar sonini", ru: "Число пустых слотов" }, { uz: "Har xil brauzerlar sonini", ru: "Число разных браузеров" }], correct: 3 },
+  { q: { uz: "Qatorlarni sanasak, qanday xato chiqadi?", ru: "Какая ошибка, если считать строки?" }, opts: [{ uz: "Bir brauzer ko'p sanaladi", ru: "Один браузер считается много раз" }, { uz: "Band qilganlar sanalmaydi", ru: "Забронировавшие не считаются" }, { uz: "Umami soni ikkilanadi", ru: "Число Umami удваивается" }, { uz: "Bo'sh kataklar sanaladi", ru: "Считаются пустые слоты" }], correct: 0 },
+  { q: { uz: "Umami 31, jadval 36. Bu nima degani?", ru: "Umami 31, таблица 36. Что это значит?" }, opts: [{ uz: "Jadval xato, tuzatamiz", ru: "Таблица ошибается, исправим" }, { uz: "Ikki tizim har xil sanaydi", ru: "Две системы считают по-разному" }, { uz: "Umami xato, o'chiramiz", ru: "Umami ошибается, уберём" }, { uz: "Besh kishi ikki marta ochgan", ru: "Пятеро открыли дважды" }], correct: 1 },
   { q: { uz: "Mentor misolida reklama to'sgichi nimani to'sdi?", ru: 'Что заблокировал блокировщик рекламы в примере Ментора?' }, opts: [{ uz: '`POST /bandlar` so\'rovini', ru: 'Запрос `POST /bandlar`' }, { uz: 'Saytdagi vaqt kataklarini', ru: "Ячейки времени на сайте" }, { uz: 'Umami skriptini', ru: 'Скрипт Umami' }, { uz: 'Brauzer xotirasini', ru: 'Память браузера' }], correct: 2 },
-  { q: { uz: "Hodisalarni nega o'z Database'imizga ham yozamiz?", ru: 'Зачем писать события и в нашу Database?' }, opts: [{ uz: 'Umami endi umuman kerak emas', ru: 'Umami больше вообще не нужен' }, { uz: 'Sayt shunda tezroq ochiladi', ru: 'Так сайт открывается быстрее' }, { uz: 'Backend shunda hech uxlamaydi', ru: 'Так Backend никогда не засыпает' }, { uz: "Sonlarni o'zimiz sanay olamiz", ru: 'Мы сами можем считать числа' }], correct: 3 }
+  { q: { uz: "Hodisalarni nega o'z jadvalimizga ham yozamiz?", ru: "Зачем пишем события ещё и в свою таблицу?" }, opts: [{ uz: "Umami endi kerak emas", ru: "Umami больше не нужен" }, { uz: "Sayt tezroq ochiladi", ru: "Сайт открывается быстрее" }, { uz: "Backend shunda uxlamaydi", ru: "Тогда Backend не засыпает" }, { uz: "Sonlarni o'zimiz sanaymiz", ru: "Считаем числа сами" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2323,7 +2348,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   const promptSatr = (l) => { const s = tr(l); return uchNom ? s.replace(/\{uch hodisa nomi\}|\{названия трёх событий\}/, uchNom[0] + ', ' + uchNom[1] + tr({ uz: ' yoki ', ru: ' или ' }) + uchNom[2]) : s; };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: c.forma ? <>{fmtCode(tr(c.t))}<HodisaForma qiymat={nomlar} onYoz={yoz} /></> : (typeof c.t === 'function' ? c.t() : fmtCode(tr(c.t))),

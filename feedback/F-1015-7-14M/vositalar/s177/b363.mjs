@@ -1,0 +1,18 @@
+import { chromium } from '/home/kali/Desktop/internetLesson/node_modules/playwright-core/index.mjs';
+const D = '/home/kali/Desktop/internetLesson/feedback/F-1015-7-14M/suratlar/F-1015-363-pilot-';
+const forma = { tur: 'oz', kanallar: [{ nom: 'mahalla futbol guruhi', sarf: '0', yangi: '' }, { nom: 'sinf chati', sarf: '0', yangi: '' }, { nom: 'Instagram sahifasi', sarf: '0', yangi: '' }], kanalBilan: false, yangi: '44', yangiBilmayman: false, davr: 'ishga tushgandan keyingi ikki hafta', kim: 'tashkilotchi', kimTur: null, nima: "o'yin e'lon qilish", narx: '15000', oy: '2', narxBilmayman: false };
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome' });
+const ctx = await b.newContext({ viewport: { width: 1280, height: 860 }, reducedMotion: 'reduce' }); const p = await ctx.newPage();
+const err = []; p.on('pageerror', e => err.push(e.message));
+await p.addInitScript((forma) => { localStorage.setItem('cc_lang', 'uz'); localStorage.setItem('ccProgress:pm-m11d1-v1', JSON.stringify({ screen: 7, answers: { 0: { stage: 'hook', picked: 'a' }, 7: { stage: 'practice', forma, toldi: [true, true, true], saqlandi: true, solved: true, correct: true, picked: true } }, earned: [], total: 14, savedAt: Date.now() })); }, forma);
+await p.goto('http://localhost:5300/#/lesson/m11-01', { waitUntil: 'domcontentloaded' }); await p.waitForSelector('.lesson-root', { timeout: 15000 }).catch(() => {});
+await p.locator('[data-live=self]').first().click({ timeout: 6000 }).catch(() => {});
+await p.waitForTimeout(1500);
+await p.screenshot({ path: D + '1.jpg', type: 'jpeg', quality: 72 });
+const v = p.locator('.bs-xv'); console.log('variantlar:', await v.allInnerTexts());
+await p.getByText('Pul topyapmiz — foyda aniq.').click(); await p.waitForTimeout(500);
+await p.screenshot({ path: D + '2-xato.jpg', type: 'jpeg', quality: 72 });
+await p.getByText('Hozir yangi foydalanuvchi bepul keldi', { exact: false }).click(); await p.waitForTimeout(900);
+await p.screenshot({ path: D + '3-togri.jpg', type: 'jpeg', quality: 72 });
+console.log('nav:', await p.locator('.stage-nav').innerText(), 'xato', err);
+await b.close();

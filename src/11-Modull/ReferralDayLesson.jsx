@@ -89,6 +89,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -166,8 +191,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -906,14 +931,14 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>O'rnatilgan ilova <span className="italic" style={{ color: T.accent }}>kim taklif qilganini</span> biladimi?</>, ru: <>Знает ли установленное приложение, <span className="italic" style={{ color: T.accent }}>кто пригласил</span>?</> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={<Bashorat savol={S2_SAVOL} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        harakat={harakat}
-        vizual={<div className={cx('rf-viz', tugadi && 'tugadi')}>
+        harakat={!taxmin && !tugadi ? null : (harakat)}
+        vizual={!taxmin && !tugadi ? null : <div className="q-kir">{<div className={cx('rf-viz', tugadi && 'tugadi')}>
           <TaklifSahna
             t1={{ ...t1, dars: true, onUlash: faol('ulash') ? ulash : null, joriy: faol('ulash') ? 'ulash' : null }}
             br={{ ...br, dars: true, apkOk: q >= 3 || (q === 2 && band), onApk: faol('apk') ? apk : null, joriy: faol('apk') ? 'apk' : null }}
             be={be} t2={t2} k={k} sinf={tugadi ? 'fokus-be' : null} />
           {done && <JoriyQator matn={{ uz: 'Umami faqat kanalni sanaydi; kim taklif qilganini Database biladi.', ru: 'Umami считает только канал; кто пригласил, знает Database.' }} />}
-        </div>}
+        </div>}</div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'yoq'} haqiqat={{ uz: "yo'q, o'yinchi taklif kodini o'zi yozadi", ru: 'нет, игрок вводит код приглашения сам' }} />}
           matn={tr({ uz: "Mentor ilovasida havoladagi taklif kodi o'rnatilgan APK'ga o'tmaydi — shuning uchun formada maydon bor.", ru: 'В приложении Ментора код приглашения из ссылки не переходит в установленный APK — поэтому в форме есть поле.' })} />}
       >
@@ -1011,12 +1036,12 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Qaysi hisob uchun <span className="italic" style={{ color: T.accent }}>mukofot beriladi?</span></>, ru: <>За какой аккаунт <span className="italic" style={{ color: T.accent }}>дают награду?</span></> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={<Bashorat savol={S5_SAVOL} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        harakat={!tugadi && <div className="rf-harakat">
+        harakat={!taxmin && !tugadi ? null : (!tugadi && <div className="rf-harakat">
           {/* F-1015-164: «Sanoqni ochish» — bashoratdan keyin, «Qoidadan o'tkazish» — sanoq ochilgach chiqadi; animatsiya paytida ko'rinmaydi (o'chiq turmaydi) */}
           {sanoqFaol && <button type="button" className={cx('rf-sanoq q-chip fade-step', halqa(true))} onClick={sanoqOch}>{tr({ uz: 'Sanoqni ochish', ru: 'Открыть подсчёт' })}</button>}
           {qoidaFaol && <button type="button" className={cx('rf-qoida q-chip fade-step', halqa(true))} onClick={otkaz}>{tr({ uz: "Qoidadan o'tkazish", ru: 'Провести через правило' })}</button>}
-        </div>}
-        vizual={<div className={cx('rf-s5', tugadi && 'tugadi')}>
+        </div>)}
+        vizual={!taxmin && !tugadi ? null : <div className="q-kir">{<div className={cx('rf-s5', tugadi && 'tugadi')}>
           <div className="rf-s5-chap">
             <span className="rf-s5-y">{tr({ uz: 'Mentor misolida · bir hafta', ru: 'В примере Ментора · одна неделя' })}</span>
             <div className="rf-quti-q">{SANOQ_QUTI.map((s, i) => (
@@ -1039,7 +1064,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <span className="rf-cheklov">{tr(CHEKLOV_QATORI)}{done && <em className="fade-step"> ✓ {tr({ uz: 'cheklovdan oshmadi', ru: 'лимит не превышен' })}</em>}</span>
           </div>
           {done && <JoriyQator matn={{ uz: "Bir qurilma — o'zini taklif qilish ham, oiladagi bitta telefon ham bo'lishi mumkin: qoida ajratmaydi.", ru: 'Одно устройство — это может быть и самоприглашение, и один телефон на семью: правило их не различает.' }} />}
-        </div>}
+        </div>}</div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'kop'} haqiqat={{ uz: "ko'pi (to'rttadan uchtasi)", ru: 'большинство (три из четырёх)' }} />}
           matn={tr({ uz: 'Bu misolda mukofot yangi hisob asosiy harakat qilgach beriladi; bir qurilmadagi va namuna hisob sanalmaydi.', ru: 'В этом примере награду дают после основного действия нового аккаунта; аккаунт с того же устройства и образцовый не считаются.' })}
           izoh={tr({ uz: "Bir hafta va 7 hisob — kichik son: taklif yo'li ishlaganini ko'rsatadi, o'sishni isbotlamaydi.", ru: 'Неделя и 7 аккаунтов — маленькое число: показывает, что путь приглашения работает, но рост не доказывает.' })} />}
@@ -1161,18 +1186,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob A·B·C·D ×3 (aylanma, MD aynan); ekran savollarining nusxasi emas (§144).
 const QUIZ_BANK = [
-  { q: { uz: "Ikki tashkilotchi 12-Moduldagi bir xil havolani yubordi. Umami nimani ko'radi?", ru: 'Два организатора отправили одинаковую ссылку из 12-го модуля. Что видит Umami?' }, opts: [{ uz: 'Tashrif «ilova» kanalidan kelganini', ru: 'Что визит пришёл из канала «ilova»' }, { uz: 'Havolani qaysi tashkilotchi yuborganini', ru: 'Какой организатор отправил ссылку' }, { uz: 'Tashkilotchining login va ismini', ru: 'Логин и имя организатора' }, { uz: "Kim ro'yxatdan o'tib, o'ynaganini", ru: 'Кто зарегистрировался и играл' }], correct: 0 },
-  { q: { uz: 'Mentor misolida taklif kodi nimadan iborat?', ru: 'Из чего состоит код приглашения в примере Ментора?' }, opts: [{ uz: 'Ismdan va oxirida ikki raqamdan', ru: 'Из имени и двух цифр в конце' }, { uz: 'Olti belgidan: katta harf va raqam', ru: 'Из шести символов: заглавные буквы и цифры' }, { uz: 'Telefon raqamining oxirgi qismidan', ru: 'Из последней части номера телефона' }, { uz: "O'yin raqamidan va e'lon kunidan", ru: 'Из номера игры и дня объявления' }], correct: 1 },
-  { q: { uz: "Taklif havolasi ochilganda Mentor lendingi Umami'ga nima yuboradi?", ru: 'Что лендинг Ментора отправляет в Umami при открытии ссылки-приглашения?' }, opts: [{ uz: 'Taklif kodini va kanal belgisini', ru: 'Код приглашения и метку канала' }, { uz: 'Taklif qilgan hisobning loginini', ru: 'Логин пригласившего аккаунта' }, { uz: 'Faqat kanal belgisini: «taklif»', ru: 'Только метку канала: «taklif»' }, { uz: "Hech narsa — Umami havolani ko'rmaydi", ru: 'Ничего — Umami ссылку не видит' }], correct: 2 },
-  { q: { uz: "Taklif kodisiz kelgan odam Mentor ilovasida ro'yxatdan o'ta oladimi?", ru: 'Может ли человек без кода приглашения зарегистрироваться в приложении Ментора?' }, opts: [{ uz: "Yo'q — taklif kodi majburiy maydon", ru: 'Нет — код приглашения обязательное поле' }, { uz: "Yo'q — faqat havola orqali kirsa bo'ladi", ru: 'Нет — можно войти только по ссылке' }, { uz: "Ha — lekin faqat iPhone'dagi brauzerda", ru: 'Да — но только в браузере на iPhone' }, { uz: "Ha — maydon «(bo'lsa)», majburiy emas", ru: 'Да — поле «(если есть)», не обязательное' }], correct: 3 },
-  { q: { uz: 'Mentor misolida taklif uchun mukofot nima?', ru: 'Что награда за приглашение в примере Ментора?' }, opts: [{ uz: "Pro'ning bepul haftasi, test rejimda", ru: 'Бесплатная неделя Pro в тестовом режиме' }, { uz: "Taklif qilgan odamga so'mda pul", ru: 'Деньги в сумах пригласившему' }, { uz: 'Keyingi pullik obunaga chegirma', ru: 'Скидка на следующую платную подписку' }, { uz: "Yangi hisobga Pro'ning bir oylik muddati", ru: 'Месяц Pro новому аккаунту' }], correct: 0 },
-  { q: { uz: 'Taklif kodi bilan ochilgan hisob hali hech narsa qilmagan. Mukofot-chi?', ru: 'Аккаунт, открытый с кодом, ещё ничего не сделал. А награда?' }, opts: [{ uz: "Bor — ro'yxatdan o'tgani yetarli", ru: 'Есть — регистрации достаточно' }, { uz: 'Hali yo\'q — asosiy harakat kutiladi', ru: 'Пока нет — ждём основного действия' }, { uz: "Bor — taklif kodi to'g'ri yozilgan", ru: 'Есть — код приглашения введён верно' }, { uz: "Yo'q — bu hisob endi umuman sanalmaydi", ru: 'Нет — этот аккаунт теперь вообще не считается' }], correct: 1 },
-  { q: { uz: 'Mentor qoidasida bir hisobga haftasiga nechta mukofot?', ru: 'Сколько наград в неделю одному аккаунту по правилу Ментора?' }, opts: [{ uz: 'Har taklif uchun — hech cheklovsiz', ru: 'За каждое приглашение — без лимита' }, { uz: 'Bitta — oyiga faqat bir marta', ru: 'Одна — только раз в месяц' }, { uz: "Ko'pi bilan ikkita — haftasiga", ru: 'Не больше двух — в неделю' }, { uz: 'Faqat birinchi taklif uchun', ru: 'Только за первое приглашение' }], correct: 2 },
-  { q: { uz: "Ikkinchi telefoni bor odam o'zini taklif qildi. «Bir qurilma» qoidasi-chi?", ru: 'Человек со вторым телефоном пригласил сам себя. А правило «одно устройство»?' }, opts: [{ uz: 'Ushlaydi — taklif kodi bir xil', ru: 'Поймает — код приглашения тот же' }, { uz: "Ushlaydi — ikki login o'xshash", ru: 'Поймает — два логина похожи' }, { uz: "Ushlamaydi — asosiy harakat yo'q", ru: 'Не поймает — нет основного действия' }, { uz: 'Ushlamaydi — qurilmalar har xil', ru: 'Не поймает — устройства разные' }], correct: 3 },
-  { q: { uz: "Mentor misolida 18 tashrif va 7 hisob. Ayirsa bo'ladimi?", ru: 'В примере Ментора 18 визитов и 7 аккаунтов. Можно ли вычитать?' }, opts: [{ uz: "Yo'q — biri tashrif, biri hisob", ru: 'Нет — одно визиты, другое аккаунты' }, { uz: "Ha — 11 kishi ro'yxatdan o'tmagan", ru: 'Да — 11 человек не зарегистрировались' }, { uz: "Ha — 11 qurilma ilovani o'chirgan", ru: 'Да — 11 устройств удалили приложение' }, { uz: "Yo'q — Umami sonlari ishonchsiz", ru: 'Нет — цифры Umami ненадёжны' }], correct: 0 },
-  { q: { uz: "Mentor misolida jami ro'yxatdan o'tgan — 51. Bu son nima?", ru: 'В примере Ментора всего зарегистрировано — 51. Что это за число?' }, opts: [{ uz: "Har hafta o'yinga keladigan odamlar", ru: 'Люди, приходящие на игру каждую неделю' }, { uz: 'Avvalgi 44 va taklif kodi bilan ochilgan 7 hisob', ru: 'Прежние 44 и 7 аккаунтов, открытых с кодом' }, { uz: 'Faqat taklif havolasi orqali ochilgan hamma hisob', ru: 'Все аккаунты, открытые только по ссылке-приглашению' }, { uz: '50 maqsadiga yetildi — endi ish tugadi', ru: 'Цель 50 достигнута — работа закончена' }], correct: 1 },
-  { q: { uz: 'Sinfda tekshiruv akkaunti ochdingiz. Keyin nima qilasiz?', ru: 'Вы открыли в классе проверочный аккаунт. Что дальше?' }, opts: [{ uz: 'Sanoqda qoldirasiz — u ham hisob', ru: 'Оставите в подсчёте — это тоже аккаунт' }, { uz: "Login va parolini o'zgartirasiz", ru: 'Смените логин и пароль' }, { uz: "«Hisobni o'chirish» bilan o'chirasiz", ru: 'Удалите через «Hisobni o\'chirish»' }, { uz: 'Sherigingizga berib, ishlatib turasiz', ru: 'Отдадите напарнику пользоваться' }], correct: 2 },
-  { q: { uz: 'Havolangizni qayerga yuborasiz?', ru: 'Куда вы отправите свою ссылку?' }, opts: [{ uz: "Shahar futbol kanaliga — odam ko'p", ru: 'В городской футбольный канал — там много людей' }, { uz: "Mahalla guruhiga — egasidan so'ramay", ru: 'В группу махалли — не спросив владельца' }, { uz: 'Tanimagan tashkilotchilarga — shaxsiyga', ru: 'Незнакомым организаторам — в личку' }, { uz: "O'z jamoangizga — siz a'zo guruhga", ru: 'Своей команде — в группу, где вы состоите' }], correct: 3 },
+  { q: { uz: "Ikki kishi bir xil havola yubordi. Umami nimani ko'radi?", ru: "Двое отправили одинаковую ссылку. Что видит Umami?" }, opts: [{ uz: "Faqat kanalni", ru: "Только канал" }, { uz: "Kim yuborganini", ru: "Кто отправил" }, { uz: "Login va ismini", ru: "Логин и имя" }, { uz: "Kim o'ynaganini", ru: "Кто играл" }], correct: 0 },
+  { q: { uz: "Mentor misolida taklif kodi nimadan iborat?", ru: "Из чего состоит код приглашения в примере Ментора?" }, opts: [{ uz: "Ism va ikki raqam", ru: "Имя и две цифры" }, { uz: "Olti belgili harf-raqam", ru: "Шесть знаков: буквы и цифры" }, { uz: "Telefon raqami oxiri", ru: "Конец номера телефона" }, { uz: "O'yin raqami va kuni", ru: "Номер игры и день" }], correct: 1 },
+  { q: { uz: "Taklif havolasi ochilganda lending Umami'ga nima yuboradi?", ru: "Что лендинг отправляет в Umami при открытии ссылки-приглашения?" }, opts: [{ uz: "Kod va kanal belgisini", ru: "Код и метку канала" }, { uz: "Taklif qilgan loginini", ru: "Логин пригласившего" }, { uz: "Faqat «taklif» kanalini", ru: "Только канал «taklif»" }, { uz: "Hech narsa", ru: "Ничего" }], correct: 2 },
+  { q: { uz: "Taklif kodisiz ro'yxatdan o'tsa bo'ladimi?", ru: "Можно ли зарегистрироваться без кода приглашения?" }, opts: [{ uz: "Yo'q, kod majburiy", ru: "Нет, код обязателен" }, { uz: "Yo'q, faqat havola orqali", ru: "Нет, только по ссылке" }, { uz: "Ha, faqat iPhone'da", ru: "Да, только на iPhone" }, { uz: "Ha, maydon majburiy emas", ru: "Да, поле не обязательно" }], correct: 3 },
+  { q: { uz: "Mentor misolida taklif uchun mukofot nima?", ru: "Какая награда за приглашение в примере Ментора?" }, opts: [{ uz: "Pro'ga 7 kun qo'shiladi", ru: "К Pro добавляется 7 дней" }, { uz: "So'mda pul beriladi", ru: "Даются деньги в сумах" }, { uz: "Obunaga chegirma beriladi", ru: "Даётся скидка на подписку" }, { uz: "Pro'ga bir oy qo'shiladi", ru: "К Pro добавляется месяц" }], correct: 0 },
+  { q: { uz: "Yangi hisob hech narsa qilmadi. Mukofot bormi?", ru: "Новый аккаунт ничего не сделал. Награда есть?" }, opts: [{ uz: "Bor, ro'yxat yetarli", ru: "Есть, регистрации достаточно" }, { uz: "Hali yo'q, harakat kutiladi", ru: "Пока нет, ждём действия" }, { uz: "Bor, kod to'g'ri yozilgan", ru: "Есть, код введён верно" }, { uz: "Yo'q, hisob sanalmaydi", ru: "Нет, аккаунт не считается" }], correct: 1 },
+  { q: { uz: "Bir hisobga haftasiga nechta mukofot beriladi?", ru: "Сколько наград в неделю даётся одному аккаунту?" }, opts: [{ uz: "Cheklovsiz", ru: "Без ограничений" }, { uz: "Oyiga bitta", ru: "Одна в месяц" }, { uz: "Ko'pi bilan ikkita", ru: "Не больше двух" }, { uz: "Faqat birinchisiga", ru: "Только за первое" }], correct: 2 },
+  { q: { uz: "O'zini boshqa telefondan taklif qildi. Ushlanadimi?", ru: "Пригласил себя с другого телефона. Это поймают?" }, opts: [{ uz: "Ha, kod bir xil", ru: "Да, код одинаковый" }, { uz: "Ha, loginlar o'xshash", ru: "Да, логины похожи" }, { uz: "Yo'q, harakat yo'q", ru: "Нет, действия нет" }, { uz: "Yo'q, qurilmalar har xil", ru: "Нет, устройства разные" }], correct: 3 },
+  { q: { uz: "18 tashrif va 7 hisob. Ayirsa bo'ladimi?", ru: "18 посещений и 7 аккаунтов. Можно ли вычесть?" }, opts: [{ uz: "Yo'q, o'lchovlar har xil", ru: "Нет, это разные измерения" }, { uz: "Ha, 11 kishi o'tmagan", ru: "Да, 11 не зарегистрировались" }, { uz: "Ha, 11 tasi o'chirgan", ru: "Да, 11 удалили" }, { uz: "Yo'q, Umami ishonchsiz", ru: "Нет, Umami ненадёжен" }], correct: 0 },
+  { q: { uz: "Jami ro'yxatdan o'tgan 51. Bu qanday son?", ru: "Всего зарегистрировано 51. Что это за число?" }, opts: [{ uz: "Har hafta keladiganlar", ru: "Кто приходит каждую неделю" }, { uz: "44 eski va 7 yangi hisob", ru: "44 старых и 7 новых аккаунтов" }, { uz: "Faqat havola orqali kelgan", ru: "Только пришедшие по ссылке" }, { uz: "50 maqsadi, ish tugadi", ru: "Цель 50, работа окончена" }], correct: 1 },
+  { q: { uz: "Sinfda tekshiruv akkaunti ochdingiz. Keyin nima qilasiz?", ru: "Вы открыли в классе проверочный аккаунт. Что дальше?" }, opts: [{ uz: "Sanoqda qoldiraman", ru: "Оставлю в подсчёте" }, { uz: "Parolini o'zgartiraman", ru: "Сменю пароль" }, { uz: "Hisobni o'chiraman", ru: "Удалю аккаунт" }, { uz: "Sherigimga beraman", ru: "Отдам партнёру" }], correct: 2 },
+  { q: { uz: "Havolangizni qayerga yuborasiz?", ru: "Куда вы отправите свою ссылку?" }, opts: [{ uz: "Shahar futbol kanaliga", ru: "В городской футбольный канал" }, { uz: "Egasidan so'ramay guruhga", ru: "В группу, не спросив владельца" }, { uz: "Notanish tashkilotchilarga", ru: "Незнакомым организаторам" }, { uz: "Faqat tanishlaringizga", ru: "Только знакомым" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1849,7 +1874,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} deskSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('rf-blok', qulfli && 'qulf')}>
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={qadamlar}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={holat && holat.yashil ? tx(holat.matn) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
@@ -2203,21 +2228,6 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== YAKUN — QYakun (texnik darslar standarti; E 50 — «Bugungi asosiy fikr» yo'q). Uyga vazifa yo'q (loyiha kuni). Sarlavha — yetti holat, har biri rost (E 54) =====
-// PM-109 (SABOQ P4): erta tugatgan o'quvchi yo'li — AI tekshiruvchi rolida taklif holatlarini beradi, o'quvchi natijani o'zi yozadi (MD yakunida matn yo'q — «MD ga taklif»)
-const AI_SOROV = { uz: "Sen tekshiruvchisan. Mahsulot: Maydon Jamoa — mini-futbol o'yini uchun jamoa yig'adigan ilova. Taklif mukofoti qoidasi: taklif kodi bilan ochilgan yangi hisob asosiy harakat qilgach (o'yinga qo'shilsa yoki o'yin e'lon qilsa) taklif qilganga Pro'ning 7 kuni qo'shiladi; taklif qilgan bilan bir xil qurilma ID dagi hisob va namuna hisob sanalmaydi; taklif qilganning qurilmasi noma'lum bo'lsa — mukofot yo'q; bitta hisobga haftasiga ko'pi bilan 2 mukofot. Menga navbat bilan 5 ta taklif holatini ber. Har biriga men natijani yozaman: berildi, bir-qurilma, namuna, nomalum yoki cheklov — va sababini bir gap bilan. Sen javobim qoidaga mosligini bir gap bilan ayt. Haqiqiy ism, telefon va karta ma'lumotini so'rama. Birinchi holatni ber.",
-  ru: 'Ты проверяющий. Продукт: Maydon Jamoa — приложение для сбора команды на мини-футбол. Правило награды за приглашение: после основного действия нового аккаунта, открытого с кодом приглашения (присоединился к игре или объявил игру), пригласившему добавляется 7 дней Pro; аккаунт с тем же ID устройства, что у пригласившего, и образцовый аккаунт не считаются; если устройство пригласившего неизвестно — награды нет; одному аккаунту — не больше 2 наград в неделю. Дай мне по очереди 5 случаев приглашения. Для каждого я пишу результат: berildi, bir-qurilma, namuna, nomalum или cheklov — и причину одной фразой. Скажи одной фразой, соответствует ли мой ответ правилу. Не спрашивай настоящие имена, телефоны и данные карты. Дай первый случай.' };
-const AiDavomCard = () => {
-  const [ok, setOk] = useState(false);
-  const kochir = async () => { if (await nusxala(tr(AI_SOROV))) { setOk(true); setTimeout(() => setOk(false), 1800); } };
-  return (
-    <div className="card rf-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <p className="rf-ai-m">{tr({ uz: "gemini.google.com'ni oching, pastdagi so'rovni yuboring — AI tekshiruvchi bo'lib beshta taklif holatini beradi. Har biriga natijani o'zingiz yozing; adashgan joyingizni «Orqaga» bilan 6-ekranda qayta ko'ring.", ru: 'Откройте gemini.google.com, отправьте запрос ниже — AI как проверяющий даст пять случаев приглашения. Результат для каждого пишите сами; где ошиблись — посмотрите снова на 6-м экране через «Назад».' })}</p>
-      <pre className="rf-ai-sorov">{tr(AI_SOROV)}</pre>
-      <button type="button" className="q-chip rf-ai-btn" onClick={kochir}>{ok ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 const YAKUN_SARLAVHA = {
   toliq: { uz: 'Havola, sanoq va mukofotning ikki holati tekshirildi.', ru: 'Ссылка, подсчёт и два случая награды проверены.' },
   tuzatish: { uz: "Taklif yo'li qurildi — bitta joyni tuzatish qoldi.", ru: 'Путь приглашения построен — осталось исправить одно место.' },
@@ -2282,7 +2292,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           </>}
           recap={RECAP.map(tr)}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}>
-          {!isMentorL && <AiDavomCard />}
+          
           <p className="rf-keyingi fade-up" style={{ animationDelay: '0.35s' }}>{tr({ uz: <>Keyingi dars — <b>«Mahsulotingiz hozir qayerda?»</b>: roadmap bilan solishtirish va shaxsiy hisobot.</>, ru: <>Следующий урок — <b>«Где сейчас ваш продукт?»</b>: сравнение с роадмапом и личный отчёт.</> })}</p>
         </QYakun>
       </div>
@@ -2503,7 +2513,8 @@ export default function ReferralDayLesson({ lang: langProp, onFinished, liveToke
         .rf-sayt-q { font-size: 12px; font-weight: 800; color: ${T.ink}; }
         .rf-sayt-btn { align-self: flex-start; font-size: 11px; font-weight: 700; border-radius: 8px; padding: 3px 9px; background: ${T.ink}; color: #fff; }
         /* Backend tuguni — mini-jadval oyinchilar */
-        .rf-backend { display: flex; flex-direction: column; gap: 5px; padding: 8px 10px; border-radius: 14px; background: ${T.ink}; color: #fff; box-shadow: 0 14px 28px -16px rgba(${T.shadowBase},0.6); transition: box-shadow .4s; }
+        .rf-backend { display: flex; flex-direction: column; gap: 5px; padding: 8px 10px; border-radius: 14px; background: ${T.ink}; color: #fff; box-shadow: none; transition: box-shadow .4s; }
+        .rf-backend::before { content: ''; width: 18px; height: 14px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 14' fill='none' stroke='white' stroke-opacity='0.8' stroke-width='1.4'%3E%3Crect x='1' y='1' width='16' height='5' rx='1.5'/%3E%3Crect x='1' y='8' width='16' height='5' rx='1.5'/%3E%3Ccircle cx='4.2' cy='3.5' r='0.7' fill='white'/%3E%3Ccircle cx='4.2' cy='10.5' r='0.7' fill='white'/%3E%3C/svg%3E") center / contain no-repeat; } /* F-1015-350: server belgisi, soyasiz — tugmaga o'xshamasin */
         .rf-backend.yondi { box-shadow: 0 0 0 3px ${fon(T.ok, 0.55)}; }
         .rf-be-sar { font-size: 13px; }
         .rf-jadval { display: flex; flex-direction: column; border-radius: 8px; overflow: hidden; background: ${T.paper}; color: ${T.ink}; }
@@ -2664,7 +2675,6 @@ export default function ReferralDayLesson({ lang: langProp, onFinished, liveToke
         p.rf-fc-ipucha { margin: 0; display: inline-flex; align-items: center; gap: 8px; align-self: center; font-size: 13.5px; font-weight: 700; color: ${T.accent}; }
         p.rf-fc-ipucha i { width: 8px; height: 8px; border-radius: 50%; background: ${T.accent}; }
         p.rf-ai-m { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: ${T.ink}; }
-        .rf-ai-sorov { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.45; color: ${T.ink}; white-space: pre-wrap; }
         .rf-ai-btn { margin: 0; }
         .rf-ai { display: flex; flex-direction: column; }
         .rf-yakun { display: contents; }

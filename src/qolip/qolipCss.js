@@ -40,12 +40,14 @@ export const qolipCss = (Q) => `
   .q-variant.on .q-radio { box-shadow: inset 0 0 0 2px ${Q.accent}; }
   .q-radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${Q.accent}; }
   /* --- Reja standarti (DE-201): «01 · matn · teg» qadam-kartalari --- */
-  .q-reja-ro { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-  .q-reja-k { display: flex; align-items: center; gap: 14px; background: ${Q.paper}; border-radius: 12px; padding: 13px 16px; box-shadow: 0 5px 14px -6px rgba(${Q.shadowBase || '58, 53, 48'},0.12); }
+  /* F-1015-388 (QA: «har elementga o'z cardi — bittada jamlansin»): qadamlar bitta kartada, qatorlar oraliq va ingichka chiziq bilan ajraladi */
+  .q-reja-ro { list-style: none; margin: 0; padding: 4px 18px; display: flex; flex-direction: column; background: ${Q.paper}; border-radius: 16px; box-shadow: 0 6px 18px -10px rgba(${Q.shadowBase || '58, 53, 48'},0.18); }
+  .q-reja-k { display: flex; align-items: baseline; gap: 14px; padding: 14px 0; }
+  .q-reja-k + .q-reja-k { border-top: 1px solid ${Q.line}; }
   .q-reja-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; color: ${Q.accent}; flex-shrink: 0; }
-  .q-reja-b { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .q-reja-b { display: flex; flex-direction: column; gap: 2px; }
   .q-reja-t { font-family: 'Manrope', sans-serif; font-weight: 600; font-size: clamp(14px,1.6vw,15.5px); color: ${Q.ink}; }
-  .q-reja-teg { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: ${Q.ink2}; background: ${Q.bg}; padding: 3px 8px; border-radius: 6px; }
+  .q-reja-teg { font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 500; color: ${Q.ink2}; }
   /* --- DE-199: ish tugadi — natija butun enga chiqadi va bir lahza kattalashib e'tiborni tortadi --- */
   .q-fokus { animation: q-fokus 0.62s cubic-bezier(.2,.9,.3,1.15) both; }
   .q-fokus > * { border-radius: 14px; }
@@ -157,18 +159,33 @@ export const qolipCss = (Q) => `
   .q-blok-qaytar:hover { background: ${Q.paper}; }
   .q-blok-tana { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
   p.q-blok-t { margin: 0; line-height: 1.5; overflow-wrap: break-word; }
+  /* F-1015-384: darslardagi .qcode nowrap — uzun buyruq kartadan chiqib ketardi; matn ichida bo'linadi (telefonda — hamma joyda) */
+  .q-blok-tana .qcode, .q-xulosa .qcode, .q-izoh .qcode, .q-blok-xato .qcode { white-space: normal; overflow-wrap: anywhere; }
+  @media (max-width: 640px) { .screen .qcode { white-space: normal; overflow-wrap: anywhere; } }
   p.q-blok-xato { margin: 0; font-size: 12.5px; line-height: 1.45; color: ${Q.ink2}; }
+  p.q-blok-bosh { margin: 0; padding: 6px 10px; border-radius: 8px; background: ${Q.errFon}; font-size: 13px; font-weight: 600; color: ${Q.err}; } /* F-1015-354: bo'sh maydon bilan «Bajardim» */
   .q-blok-ulgur { font-size: 12.5px; line-height: 1.5; color: ${Q.ink2}; border-top: 1px solid ${Q.line}; padding-top: 8px; }
   .q-blok-ulgur summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; align-items: center; gap: 6px; }
   .q-blok-ulgur summary::-webkit-details-marker { display: none; }
   .q-blok-ulgur summary::after { content: '▾'; font-size: 11px; opacity: .7; }
   .q-blok-ulgur[open] summary::after { content: '▴'; }
   .q-blok-ulgur p { margin: 6px 0 0; }
+  /* F-1015-387: QA maketi — qadam sarlavhasi alohida qator, karta kengroq nafas, natija yorlig'i — karta sarlavhasi (faqat 7–14-M: ajratSarlavha) */
+  .q-blok-v2 .q-blok-q.joriy { padding: 16px 18px; border-color: ${Q.line}; box-shadow: 0 8px 22px -14px rgba(20,20,40,0.18); }
+  .q-blok-v2 .q-blok-tana { gap: 12px; }
+  .q-blok-v2 .q-blok-sar { display: flex; align-items: center; gap: 10px; }
+  .q-blok-v2 .q-blok-sar .q-blok-n { width: 28px; height: 28px; font-size: 13px; background: ${Q.accent}; border-color: ${Q.accent}; color: #fff; }
+  .q-blok-v2 .q-blok-sar b { font-family: 'Manrope', sans-serif; font-size: clamp(16px,1.9vw,18px); font-weight: 800; color: ${Q.ink}; }
+  .q-blok-v2 p.q-blok-t { font-size: clamp(14px,1.6vw,15.5px); line-height: 1.55; color: ${Q.ink}; }
+  .q-blok-v2 p.q-blok-t::first-letter { text-transform: uppercase; }
+  .q-blok-v2 .q-blok-natija-k > .q-blok-izoh { display: block; font-size: 15px; font-weight: 800; letter-spacing: 0; text-transform: none; color: ${Q.ink}; }
+  .q-blok-v2 .q-blok-natija-k > .q-blok-izoh::first-letter { text-transform: uppercase; }
   .q-blok-tugadi { background: ${Q.okFon}; border-radius: 12px; padding: clamp(12px,2vw,16px); }
   .q-blok-tugadi p { margin: 0; color: ${Q.ink}; line-height: 1.5; }
   .q-blok-natija { display: flex; flex-direction: column; min-width: 0; }
-  .q-blok-ong > .q-blok-izoh { display: flex; align-items: center; min-height: 30px; } /* F-1015-166: natija ostidagi izoh (F-1015-176: joy topolmagan ⛶ ko'rsatilmaydi) */
-  .q-blok-ong > .zoomable.zb-qator:not(.zoom-on) { padding-top: 0 !important; }
+  .q-blok-natija-k { display: flex; flex-direction: column; gap: 10px; min-width: 0; background: ${Q.paper}; border: 1px solid ${Q.line}; border-radius: 16px; padding: 14px 16px; } /* F-1015-331: natija ramkada, yorliq tepada */
+  .q-blok-natija-k > .q-blok-izoh { display: flex; align-items: center; min-height: 24px; } /* F-1015-166: natija ostidagi izoh (F-1015-176: joy topolmagan ⛶ ko'rsatilmaydi) */
+  .q-blok-natija-k > .zoomable.zb-qator:not(.zoom-on) { padding-top: 0 !important; }
   /* F-1015-176: amaliyot natijasidagi telefon/oyna maketining o'z yorlig'i maket OSTIGA (qadamlar kartasi bilan bir chiziqdan boshlansin) */
   .q-blok-natija [class*="-tel-ust"] > [class*="-tel-yorliq"], .q-blok-natija [class*="-tel-ust"] > [class*="-tel-tex"], .q-blok-natija [class*="-tel-ust"] > [class*="-rol"],
   .q-blok-natija [class*="-telj"] > [class*="-tel-yorliq"], .q-blok-natija [class*="-tel-w"] > [class*="-tel-y"] { order: 9; margin-top: 6px; }
@@ -210,7 +227,7 @@ export const qolipCss = (Q) => `
   .fc-fly.out-knew::after { content: '✓'; background: ${Q.ok}; box-shadow: 0 10px 26px -8px ${Q.ok}; }
   .fc-fly.out-again::after { content: '✗'; background: ${Q.accent}; box-shadow: 0 10px 26px -8px ${Q.accent}; }
   @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-  .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+  .fc-card { position: relative; height: 240px; /* F-1015-337: doimiy balandlik — hamma darsda bir xil */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
   .fc-card.flip { transform: rotateY(180deg); }
   .fc-card:not(.flip):hover { transform: translateY(-3px); }
   .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

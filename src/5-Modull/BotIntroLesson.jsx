@@ -109,6 +109,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -186,8 +211,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1812,18 +1837,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "«Shu hodisa kelsa, shuni qil» deydigan kod qismi nima deyiladi?", ru: "Как называется часть кода, которая говорит «пришло это событие — сделай это»?" }, opts: [{ uz: "Handler", ru: "Handler" }, { uz: "Token", ru: "Токен" }, { uz: "Webhook", ru: "Webhook" }, { uz: ".env fayli", ru: "Файл .env" }], correct: 0 },
-  { q: { uz: "Token nima uchun kerak?", ru: "Для чего нужен токен?" }, opts: [{ uz: "Botning rangini belgilaydi", ru: 'Задаёт цвет бота' }, { uz: "Xabarlarni boshqa tilga o'giradi", ru: 'Переводит сообщения на другой язык' }, { uz: "Bot aynan sizniki ekanini tasdiqlaydi", ru: "Подтверждает, что бот именно ваш" }, { uz: "Foydalanuvchi parolini saqlaydi", ru: 'Хранит пароль пользователя' }], correct: 2 },
+  { q: { uz: "«Shu hodisa kelsa, shuni qil» deydigan kod qismi?", ru: "Часть кода «пришло событие — сделай это»?" }, opts: [{ uz: "Handler", ru: "Handler" }, { uz: "Token", ru: "Токен" }, { uz: "Webhook", ru: "Webhook" }, { uz: ".env fayli", ru: "Файл .env" }], correct: 0 },
+  { q: { uz: "Token nima uchun kerak?", ru: "Зачем нужен токен?" }, opts: [{ uz: "Botning rangini belgilaydi", ru: "Задаёт цвет бота" }, { uz: "Xabarni boshqa tilga o'giradi", ru: "Переводит сообщения" }, { uz: "Botni sizniki deb tasdiqlaydi", ru: "Подтверждает, что бот ваш" }, { uz: "Mijoz parolini saqlaydi", ru: "Хранит пароль клиента" }], correct: 2 },
   { q: { uz: "Foydalanuvchi botga /start yubordi. Bu nima?", ru: "Пользователь отправил боту /start. Что это?" }, opts: [{ uz: "Bu — botning javobi", ru: "Это ответ бота" }, { uz: "Bu — botga kelgan hodisa", ru: "Это событие, пришедшее боту" }, { uz: "Bu — botning tokeni", ru: "Это токен бота" }, { uz: "Bu — handlerlar ro'yxati", ru: "Это список handler-ов" }], correct: 1 },
-  { q: { uz: "Mos handler topilmasa (fallback ham yo'q), bot nima qiladi?", ru: "Что делает бот, если подходящий handler не найден (и fallback тоже нет)?" }, opts: [{ uz: "Xato chiqarib o'chib qoladi", ru: "Выдаёт ошибку и выключается" }, { uz: "Tasodifiy javob o'ylab topadi", ru: 'Придумывает случайный ответ' }, { uz: "Boshqa botga ulanib qoladi", ru: 'Подключается к другому боту' }, { uz: "Hech narsa yubormay, jim qoladi", ru: "Ничего не отправляет и молчит" }], correct: 3 },
-  { q: { uz: "Bot tokenini kim beradi?", ru: "Кто выдаёт токен бота?" }, opts: [{ uz: "Telegram administratori", ru: "Администратор Telegram" }, { uz: "Foydalanuvchining o'zi o'ylab topadi", ru: "Пользователь придумывает его сам" }, { uz: "@BotFather", ru: "@BotFather" }, { uz: "Bot API'ning o'zi yaratadi", ru: "Bot API создаёт его сам" }], correct: 2 },
-  { q: { uz: "Token ochiq kodda qolib ketsa, qanday xavf bor?", ru: "Если токен остался в открытом коде, чем это опасно?" }, opts: [{ uz: "Boshqa odam bot nomidan xabar yozadi", ru: "Другой человек пишет от имени бота" }, { uz: "Bot o'zi tezroq ishlay boshlaydi", ru: "Бот сам начинает работать быстрее" }, { uz: "Hech qanday xavf yo'q, tinch bo'ling", ru: "Никакой опасности, можно не волноваться" }, { uz: "Telegram botni darhol o'chirib qo'yadi", ru: "Telegram сразу же отключит бота" }], correct: 0 },
-  { q: { uz: "Token oshkor bo'lsa, birinchi qadam nima?", ru: "Если токен раскрыт, какой первый шаг?" }, opts: [{ uz: "Botni /deletebot bilan butunlay o'chirish", ru: "Полностью удалить бота через /deletebot" }, { uz: "Telegram'ni qayta o'rnatish", ru: "Переустановить Telegram" }, { uz: "Yangi Telegram akkaunt ochish", ru: "Открыть новый аккаунт Telegram" }, { uz: "Tokenni /revoke bilan bekor qilish", ru: "Отменить токен через /revoke" }], correct: 3 },
+  { q: { uz: "Mos handler va fallback yo'q. Bot nima qiladi?", ru: "Нет ни подходящего handler, ни fallback. Что сделает бот?" }, opts: [{ uz: "Xato chiqarib o'chadi", ru: "Выдаст ошибку и выключится" }, { uz: "Tasodifiy javob yozadi", ru: "Напишет случайный ответ" }, { uz: "Boshqa botga ulanadi", ru: "Подключится к другому боту" }, { uz: "Jim qoladi, javob bermaydi", ru: "Промолчит, не ответит" }], correct: 3 },
+  { q: { uz: "Bot tokenini kim beradi?", ru: "Кто выдаёт токен бота?" }, opts: [{ uz: "Telegram administratori", ru: "Администратор Telegram" }, { uz: "Foydalanuvchi o'ylab topadi", ru: "Пользователь придумывает сам" }, { uz: "@BotFather", ru: "@BotFather" }, { uz: "Bot API o'zi yaratadi", ru: "Bot API создаёт сам" }], correct: 2 },
+  { q: { uz: "Token ochiq kodda qolsa, xavfi nima?", ru: "Токен остался в открытом коде — в чём опасность?" }, opts: [{ uz: "Begona odam bot nomidan yozadi", ru: "Чужой пишет от имени бота" }, { uz: "Bot tezroq ishlay boshlaydi", ru: "Бот начнёт работать быстрее" }, { uz: "Hech qanday xavf yo'q", ru: "Никакой опасности" }, { uz: "Telegram botni o'chiradi", ru: "Telegram удалит бота" }], correct: 0 },
+  { q: { uz: "Token oshkor bo'lsa, birinchi qadam nima?", ru: "Токен раскрыт — каков первый шаг?" }, opts: [{ uz: "/start bilan o'chirish", ru: "Удалить через /start" }, { uz: "Telegram'ni qayta o'rnatish", ru: "Переустановить Telegram" }, { uz: "/newbot bilan yangi bot", ru: "Новый бот через /newbot" }, { uz: "/revoke bilan bekor qilish", ru: "Отменить через /revoke" }], correct: 3 },
   { q: { uz: "Token odatda qayerda saqlanadi?", ru: "Где обычно хранят токен?" }, opts: [{ uz: "bot.js faylining o'zida", ru: "Прямо в файле bot.js" }, { uz: ".env faylida", ru: "В файле .env" }, { uz: "Telegram profil sozlamasida", ru: 'В настройках профиля Telegram' }, { uz: "Brauzer qidiruv tarixida", ru: 'В истории поиска браузера' }], correct: 1 },
-  { q: { uz: "Bot nega 03:00 da ham javob bera oladi?", ru: "Почему бот может ответить даже в 03:00?" }, opts: [{ uz: "Uni uxlamaydigan odam boshqaradi", ru: "Им управляет человек, который не спит" }, { uz: "Dasturi ishlab turadi va hodisani kutadi", ru: "Его программа работает и ждёт событие" }, { uz: "U faqat kunduzi ishlashga sozlangan", ru: 'Он настроен работать только днём' }, { uz: "U tasodifiy vaqtda ishga tushadi", ru: "Он запускается в случайное время" }], correct: 1 },
-  { q: { uz: "Uch mijoz bir vaqtda yozsa, bot nima qiladi?", ru: "Что делает бот, если три клиента пишут одновременно?" }, opts: [{ uz: "Faqat birinchi mijozga javob beradi", ru: 'Отвечает только первому клиенту' }, { uz: "Uchala xabarni bitta deb qo'shib yuboradi", ru: "Считает три сообщения одним и склеивает" }, { uz: "Hammasini ertalabgacha kutdirib qo'yadi", ru: "Заставляет всех ждать до утра" }, { uz: "Har xabarni alohida ko'rib, javob beradi", ru: "Рассматривает каждое сообщение отдельно и отвечает" }], correct: 3 },
-  { q: { uz: "Hech bir handlerga mos kelmagan xabar kelsa, nima yordam beradi?", ru: "Что поможет, если пришло сообщение, которое не подходит ни к одному handler?" }, opts: [{ uz: "Oxirgi, umumiy fallback handler", ru: "Последний, общий fallback handler" }, { uz: "Botni o'chirib, qayta yoqish", ru: "Выключить бота и снова включить" }, { uz: "Bot API'ni vaqtincha yopish", ru: "Временно закрыть Bot API" }, { uz: "Yangi token olish", ru: "Получить новый токен" }], correct: 0 },
-  { q: { uz: "Bugun o'rgangan uchta asosiy tushuncha qaysi?", ru: "Какие три главных понятия вы сегодня изучили?" }, opts: [{ uz: "Rang, shrift va sayt dizayni", ru: "Цвет, шрифт и дизайн сайта" }, { uz: "Ekran, sichqoncha, klaviatura", ru: 'Экран, мышь, клавиатура' }, { uz: "Token, handler va sikl", ru: "Токен, handler и цикл" }, { uz: "Rasm, video va ovoz fayli", ru: "Картинка, видео и аудиофайл" }], correct: 2 },
+  { q: { uz: "Bot nega 03:00 da ham javob beradi?", ru: "Почему бот отвечает даже в 03:00?" }, opts: [{ uz: "Kechasi odam javob yozadi", ru: "Ночью отвечает человек" }, { uz: "Dasturi hodisani kutib turadi", ru: "Программа ждёт событие" }, { uz: "Telegram o'zi javob beradi", ru: "Telegram отвечает сам" }, { uz: "Tasodifiy vaqtda yonadi", ru: "Включается в случайное время" }], correct: 1 },
+  { q: { uz: "Uch mijoz birdan yozsa, bot nima qiladi?", ru: "Трое клиентов пишут сразу. Что сделает бот?" }, opts: [{ uz: "Faqat birinchisiga javob", ru: "Ответит только первому" }, { uz: "Xabarlarni qo'shib yuboradi", ru: "Склеит сообщения в одно" }, { uz: "Ertalabgacha kutdiradi", ru: "Заставит ждать до утра" }, { uz: "Har biriga alohida javob", ru: "Ответит каждому отдельно" }], correct: 3 },
+  { q: { uz: "Hech bir handler mos kelmasa, nima yordam beradi?", ru: "Ни один handler не подошёл. Что поможет?" }, opts: [{ uz: "Fallback handler", ru: "Fallback handler" }, { uz: "Botni qayta yoqish", ru: "Перезапустить бота" }, { uz: "Bot API'ni yopish", ru: "Закрыть Bot API" }, { uz: "Yangi token olish", ru: "Получить новый токен" }], correct: 0 },
+  { q: { uz: "Bugun o'rgangan uchta asosiy tushuncha?", ru: "Три главных понятия сегодняшнего урока?" }, opts: [{ uz: "Rang, shrift va dizayn", ru: "Цвет, шрифт и дизайн" }, { uz: "Ekran, sichqoncha, klaviatura", ru: "Экран, мышь, клавиатура" }, { uz: "Token, handler va sikl", ru: "Токен, handler и цикл" }, { uz: "Rasm, video va ovoz", ru: "Фото, видео и звук" }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -3010,7 +3035,7 @@ export default function BotIntroLesson({ lang: langProp, onFinished, liveToken }
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

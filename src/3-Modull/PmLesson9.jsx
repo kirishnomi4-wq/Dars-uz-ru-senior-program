@@ -1967,53 +1967,25 @@ const QUIZ_BANK = [
     { uz: 'Hamma shart bajarilgan', ru: 'Выполнены все условия' },
     { uz: 'Ish qabul qilindi', ru: 'Работа принята' },
     { uz: 'Kodda birorta xato qolmagan', ru: 'В коде не осталось ни одной ошибки' }], correct: 0 },
-  { q: { uz: '«Tayyor» nimani anglatadi?', ru: 'Что значит «готово»?' }, opts: [
-    { uz: 'Kod xatosiz ishlab turibdi', ru: 'Код работает без ошибок' },
-    { uz: 'Kelishilgan hamma shart bajarilgan', ru: 'Выполнены все условия, о которых договорились' },
-    { uz: 'Dasturchi ishni topshirdi', ru: 'Программист сдал работу' },
-    { uz: "Sayt chiroyli va zamonaviy ko'rinadi", ru: 'Сайт выглядит красиво и современно' }], correct: 1 },
+  { q: { uz: "«Tayyor» nimani anglatadi?", ru: "Что значит «готово»?" }, opts: [{ uz: "Kod xatosiz ishlayapti", ru: "Код работает без ошибок" }, { uz: "Hamma shart bajarilgan", ru: "Все условия выполнены" }, { uz: "Dasturchi topshirdi", ru: "Программист сдал" }, { uz: "Sayt chiroyli ko'rinadi", ru: "Сайт выглядит красиво" }], correct: 1 },
   { q: { uz: 'Qabul shartlari qachon yoziladi?', ru: 'Когда пишут условия приёмки?' }, opts: [
     { uz: 'Ish tugagandan keyin', ru: 'После окончания работы' },
     { uz: 'Sayt ochilgandan keyin', ru: 'После запуска сайта' },
     { uz: 'Ish boshlanishidan oldin', ru: 'До начала работы' },
     { uz: "Dasturchi so'rab qolgan paytda", ru: 'Когда программист спросит' }], correct: 2 },
-  { q: { uz: "Bo'sh buyurtma ham ketaverdi. Shart bajarilganmi?", ru: 'Пустой заказ тоже ушёл. Условие выполнено?' }, opts: [
-    { uz: "Ha — tugma to'g'ri ishlab turibdi", ru: 'Да — кнопка работает правильно' },
-    { uz: "Yo'q — bo'sh buyurtma o'tmasligi kerak", ru: 'Нет — пустой заказ проходить не должен' },
-    { uz: "Ha — shart faqat to'la buyurtma haqida edi", ru: 'Да — условие было только про полный заказ' },
-    { uz: "Yo'q — bo'sh buyurtma umuman yuborilmadi", ru: 'Нет — пустой заказ вообще не отправился' }], correct: 1 },
+  { q: { uz: "Bo'sh buyurtma ham ketdi. Shart bajarildimi?", ru: "Ушёл и пустой заказ. Условие выполнено?" }, opts: [{ uz: "Ha, tugma ishladi", ru: "Да, кнопка сработала" }, { uz: "Yo'q, bo'sh o'tmasligi kerak", ru: "Нет, пустой не должен проходить" }, { uz: "Ha, shart to'lasi haqida", ru: "Да, условие — про полный" }, { uz: "Yo'q, buyurtma ketmagan", ru: "Нет, заказ не ушёл" }], correct: 1 },
   { q: { uz: 'Tugma tez ikki marta bosilsa, nechta buyurtma ketishi kerak?', ru: 'Если кнопку быстро нажали дважды, сколько заказов должно уйти?' }, opts: [
     { uz: 'Bitta', ru: 'Один' }, { uz: 'Ikkita', ru: 'Два' }, { uz: 'Uchta', ru: 'Три' }, { uz: 'Hech biri', ru: 'Ни одного' }], correct: 0 },
-  { q: { uz: "To'rt shartdan uchtasi bajarilmasa, ish qabul qilinadimi?", ru: 'Если из четырёх условий три не выполнены — работу принимают?' }, opts: [
-    { uz: 'Ha — eng muhim shart bajarilgan', ru: 'Да — самое важное условие выполнено' },
-    { uz: "Ha — qolganini keyin tuzatib qo'yishadi", ru: 'Да — остальное потом поправят' },
-    { uz: "Yo'q — hamma shart bajarilishi kerak", ru: 'Нет — должны быть выполнены все условия' },
-    { uz: "Yo'q — shartlar hali yozilmagan", ru: 'Нет — условия ещё не написаны' }], correct: 2 },
-  { q: { uz: "«Sayt chiroyli bo'lsin» — bu yaxshi shartmi?", ru: '«Пусть сайт будет красивым» — это хорошее условие?' }, opts: [
-    { uz: 'Ha — qisqa va tushunarli qilib yozilgan', ru: 'Да — написано коротко и понятно' },
-    { uz: "Yo'q — har kim boshqacha baholaydi", ru: 'Нет — каждый оценит по-своему' },
-    { uz: "Ha — buni bosib tekshirib bo'ladi", ru: 'Да — это можно проверить нажатием' },
-    { uz: "Yo'q — shart juda uzun yozilgan", ru: 'Нет — условие написано слишком длинно' }], correct: 1 },
+  { q: { uz: "4 shartdan faqat 1 tasi bajarildi. Ish qabul qilinadimi?", ru: "Из 4 условий выполнено только 1. Работу примут?" }, opts: [{ uz: "Ha, muhimi bajarildi", ru: "Да, главное выполнено" }, { uz: "Ha, qolgani keyin", ru: "Да, остальное потом" }, { uz: "Yo'q, hammasi bajarilsin", ru: "Нет, нужно выполнить все" }, { uz: "Yo'q, shart yozilmagan", ru: "Нет, условия не написаны" }], correct: 2 },
+  { q: { uz: "«Sayt chiroyli bo'lsin» — yaxshi shartmi?", ru: "«Пусть сайт будет красивым» — хорошее условие?" }, opts: [{ uz: "Ha, qisqa va aniq", ru: "Да, коротко и ясно" }, { uz: "Yo'q, har kim har xil ko'radi", ru: "Нет, каждый видит по-своему" }, { uz: "Ha, bosib tekshirsa bo'ladi", ru: "Да, можно проверить нажатием" }, { uz: "Yo'q, juda uzun yozilgan", ru: "Нет, слишком длинно" }], correct: 1 },
   { q: { uz: "Tekshirib bo'ladigan shartda nima bo'ladi?", ru: 'Что есть в условии, которое можно проверить?' }, opts: [
     { uz: "Chiroyli va yoqimli so'zlar", ru: 'Красивые и приятные слова' },
     { uz: 'Uzun va batafsil izoh', ru: 'Длинное подробное пояснение' },
     { uz: 'Dasturchining ismi va sanasi', ru: 'Имя программиста и дата' },
     { uz: 'Aniq harakat yoki son', ru: 'Конкретное действие или число' }], correct: 3 },
-  { q: { uz: 'Cyberpunk 2077 bilan nima sodir bo\'ldi?', ru: 'Что случилось с Cyberpunk 2077?' }, opts: [
-    { uz: "O'yinni chiqargan kompaniya yopildi", ru: 'Компанию, выпустившую игру, закрыли' },
-    { uz: "O'yin qaytadan chiqarildi", ru: 'Игру выпустили заново' },
-    { uz: "O'yin do'kondan olib tashlandi", ru: 'Игру убрали из магазина' },
-    { uz: "O'yin nomi o'zgartirildi", ru: 'Игре сменили название' }], correct: 2 },
-  { q: { uz: 'Tutilmagan nosozlik eng ko\'p nimani yo\'qotdi?', ru: 'Что больше всего потеряли из-за незамеченной неполадки?' }, opts: [
-    { uz: "Boshqa o'yinlar sotuvini", ru: 'Продажи других игр' },
-    { uz: 'Reklamaga sarflangan pulni', ru: 'Деньги, потраченные на рекламу' },
-    { uz: "Sotib olganlarning pulini", ru: 'Деньги покупателей' },
-    { uz: 'Odamlarning ishonchini', ru: 'Доверие людей' }], correct: 3 },
-  { q: { uz: 'Yozilgan shartlarni kimga berasiz?', ru: 'Кому вы отдаёте написанные условия?' }, opts: [
-    { uz: 'Ishni bajaradigan dasturchiga', ru: 'Программисту, который делает работу' },
-    { uz: 'Bufetda ishlaydigan xodimga', ru: 'Сотруднику буфета' },
-    { uz: "Yoningizdagi sinfdoshingizga", ru: 'Однокласснику рядом' },
-    { uz: "Hech kimga — o'zingizda qoladi", ru: 'Никому — оставляете себе' }], correct: 0 },
+  { q: { uz: "Cyberpunk 2077 o'yini bilan nima bo'ldi?", ru: "Что случилось с игрой Cyberpunk 2077?" }, opts: [{ uz: "Kompaniyasi yopildi", ru: "Компания закрылась" }, { uz: "Qaytadan chiqarildi", ru: "Её выпустили заново" }, { uz: "Do'kondan olib tashlandi", ru: "Её убрали из магазина" }, { uz: "Nomi o'zgartirildi", ru: "Её переименовали" }], correct: 2 },
+  { q: { uz: "Tutilmagan nosozlik eng ko'p nimani yo'qotdi?", ru: "Что больше всего потеряла непойманная неполадка?" }, opts: [{ uz: "Boshqa o'yinlar sotuvini", ru: "Продажи других игр" }, { uz: "Reklama pulini", ru: "Деньги на рекламу" }, { uz: "Xaridorlar pulini", ru: "Деньги покупателей" }, { uz: "Odamlar ishonchini", ru: "Доверие людей" }], correct: 3 },
+  { q: { uz: "Yozilgan shartlarni kimga berasiz?", ru: "Кому вы отдаёте написанные условия?" }, opts: [{ uz: "Ishni bajaradigan dasturchiga", ru: "Программисту, который делает работу" }, { uz: "Bufetdagi xodimga", ru: "Работнику буфета" }, { uz: "Sinfdoshingizga", ru: "Однокласснику" }, { uz: "Hech kimga, o'zimda qoladi", ru: "Никому, оставлю у себя" }], correct: 0 },
   { q: { uz: 'Kod shart bajarilganini qanday aytadi?', ru: 'Как код сообщает, что условие выполнено?' }, opts: [
     { uz: 'Ekranga rasm chizib beradi', ru: 'Рисует картинку на экране' },
     { uz: "Sahifani yopib qo'yadi", ru: 'Закрывает страницу' },

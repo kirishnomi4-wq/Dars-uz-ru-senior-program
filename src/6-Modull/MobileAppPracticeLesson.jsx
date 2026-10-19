@@ -204,6 +204,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -281,8 +306,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1442,18 +1467,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Mobil ilova menyuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' }, opts: [{ uz: "Tayyor backend'dan (`GET /menyu`)", ru: 'С готового бэкенда (`GET /menyu`)' }, { uz: "Ilova ichiga qo'lda yozilgan ro'yxatdan", ru: 'Из списка, вписанного в приложение вручную' }, { uz: "Faqat mobil uchun yozilgan yangi API serverdan", ru: 'С нового API-сервера только для мобильного' }, { uz: "Hech qayerdan — Database bo'lmaydi", ru: 'Ниоткуда — Database нет' }], correct: 0 },
-  { q: { uz: "Loyiha kunida sizning vazifangiz nima?", ru: 'Какая у вас задача в день проекта?' }, opts: [{ uz: "Kodni o'qimasdan shundoq ishlatish", ru: 'Просто использовать код, не читая его' }, { uz: "Topshiriq berish, kodni o'qish, sinash", ru: 'Давать задание, читать код, проверять' }, { uz: "Hamma kodni o'zingiz qo'lda yozish", ru: 'Писать весь код самому вручную' }, { uz: "Faqat ranglar va dizaynni tanlash", ru: 'Выбирать только цвета и дизайн' }], correct: 1 },
+  { q: { uz: "Mobil ilova menyuni qayerdan oladi?", ru: "Откуда мобильное приложение берёт меню?" }, opts: [{ uz: "Tayyor backend'dan", ru: "С готового backend" }, { uz: "Qo'lda yozilgan ro'yxatdan", ru: "Из списка, написанного вручную" }, { uz: "Yangi mobil serverdan", ru: "С нового мобильного сервера" }, { uz: "Hech qayerdan", ru: "Ниоткуда" }], correct: 0 },
+  { q: { uz: "Loyiha kunida sizning vazifangiz nima?", ru: "Ваша задача в день проекта?" }, opts: [{ uz: "Kodni o'qimay ishlatish", ru: "Запускать код не читая" }, { uz: "Topshiriq, o'qish va sinash", ru: "Задание, чтение и проверка" }, { uz: "Hamma kodni qo'lda yozish", ru: "Писать весь код вручную" }, { uz: "Faqat dizaynni tanlash", ru: "Только выбирать дизайн" }], correct: 1 },
   { q: { uz: "React Native'da ro'yxatni ko'rsatish uchun qaysi komponent?", ru: 'Каким компонентом в React Native показывают список?' }, opts: ["<div>", "<table>", "<FlatList>", "<ScrollView>"], correct: 2 },
-  { q: { uz: "Buyurtma ekranida «Yuborish» bosilsa nima bo'ladi?", ru: 'Что происходит при нажатии «Отправить» на экране Заказ?' }, opts: [{ uz: "Buyurtma faqat telefonda saqlanadi", ru: 'Заказ сохраняется только в телефоне' }, { uz: "Umuman hech narsa bo'lmaydi", ru: 'Вообще ничего не происходит' }, { uz: "Yangi mobil API ishga tushadi", ru: 'Запускается новый мобильный API' }, { uz: "Backend'ga `POST /buyurtma` ketadi", ru: 'На бэкенд уходит `POST /buyurtma`' }], correct: 3 },
-  { q: { uz: "Yuqoridagi savat soni belgisi nima bilan bog'lanadi?", ru: 'С чем связан счётчик корзины сверху?' }, opts: [{ uz: "Backend fayl nomi bilan", ru: 'С именем файла на бэкенде' }, { uz: "`savat.length` (holat) bilan", ru: 'С `savat.length` (состояние)' }, { uz: "Rasm o'lchami (`width`) bilan", ru: 'С размером картинки (`width`)' }, { uz: "Sahifa sarlavhasi bilan", ru: 'С заголовком страницы' }], correct: 1 },
+  { q: { uz: "«Yuborish» bosilsa nima bo'ladi?", ru: "Что будет при нажатии «Отправить»?" }, opts: [{ uz: "Faqat telefonda saqlanadi", ru: "Хранится только в телефоне" }, { uz: "Hech narsa bo'lmaydi", ru: "Ничего не произойдёт" }, { uz: "Yangi mobil API ishlaydi", ru: "Запустится новый мобильный API" }, { uz: "Backend'ga POST /buyurtma", ru: "POST /buyurtma на backend" }], correct: 3 },
+  { q: { uz: "Savat soni belgisi nima bilan bog'lanadi?", ru: "С чем связан значок количества в корзине?" }, opts: [{ uz: "Backend `fayl` nomi bilan", ru: "С именем `fayl` в Backend" }, { uz: "`savat.length` bilan", ru: "С `savat.length`" }, { uz: "`rasm.width` bilan", ru: "С `rasm.width`" }, { uz: "Sahifa `title` bilan", ru: "С `title` страницы" }], correct: 1 },
   { q: { uz: "Jami narxni hisoblash uchun qaysi usul qulay?", ru: 'Каким методом удобно посчитать итоговую цену?' }, opts: ["reduce", "map", "filter", "sort"], correct: 0 },
-  { q: { uz: "Expo Go asosan nima uchun kerak?", ru: 'Для чего в основном нужен Expo Go?' }, opts: [{ uz: "Kodni boshqa tilga tarjima qilish uchun", ru: 'Чтобы перевести код на другой язык' }, { uz: "Yangi backend qurish uchun", ru: 'Чтобы построить новый бэкенд' }, { uz: "Ilovaga rasm chizish uchun", ru: 'Чтобы рисовать картинки для приложения' }, { uz: "Ilovani telefonda sinash va ulashish uchun", ru: 'Чтобы проверить приложение на телефоне и поделиться им' }], correct: 3 },
-  { q: { uz: "Mobil ilovani qanday sinaymiz?", ru: 'Как мы проверяем мобильное приложение?' }, opts: [{ uz: "Umuman sinamaymiz", ru: 'Вообще не проверяем' }, { uz: "Faqat kompyuterda kodga qarab", ru: 'Только глядя в код на компьютере' }, { uz: "Kodni o'qib, telefonda oqimni bosib", ru: 'Прочитав код и пройдя путь на телефоне' }, { uz: "Faqat ranglarni tekshirib", ru: 'Проверив только цвета' }], correct: 2 },
-  { q: { uz: "Web, bot va mobil bir xil buyurtmalarni qanday ko'radi?", ru: 'Как веб, бот и мобильное видят одни и те же заказы?' }, opts: [{ uz: "Bitta backend va Database'ga ulanadi", ru: 'Подключаются к одному бэкенду и одной Database' }, { uz: "Har biriga alohida Database quriladi", ru: 'Для каждого строят отдельную Database' }, { uz: "Ma'lumot qo'lda nusxalanadi", ru: 'Данные копируют вручную' }, { uz: "Buni umuman qilib bo'lmaydi", ru: 'Так вообще сделать нельзя' }], correct: 0 },
-  { q: { uz: "Ilova «ishlaydi» bo'lgandan keyin yana nima kerak?", ru: 'Что нужно ещё после того, как приложение «работает»?' }, opts: [{ uz: "Boshqa hech narsa kerak emas", ru: 'Больше ничего не нужно' }, { uz: "Backend'ni o'chirish — API endi kerak emas", ru: 'Выключить бэкенд — API больше не нужен' }, { uz: "Hamma kodni boshidan qayta yozish", ru: 'Переписать весь код с нуля' }, { uz: "Sayqal — StyleSheet bilan", ru: 'Полировка — через StyleSheet' }], correct: 3 },
+  { q: { uz: "Expo Go asosan nima uchun kerak?", ru: "Для чего в основном нужен Expo Go?" }, opts: [{ uz: "Kodni tarjima qilish uchun", ru: "Чтобы переводить код" }, { uz: "Backend qurish uchun", ru: "Чтобы строить backend" }, { uz: "Rasm chizish uchun", ru: "Чтобы рисовать" }, { uz: "Sinash va ulashish uchun", ru: "Чтобы проверять и делиться" }], correct: 3 },
+  { q: { uz: "Mobil ilovani qanday sinaymiz?", ru: "Как проверяем мобильное приложение?" }, opts: [{ uz: "Umuman sinamaymiz", ru: "Вообще не проверяем" }, { uz: "Faqat kodga qarab", ru: "Только глядя на код" }, { uz: "Kodni o'qib, telefonda bosib", ru: "Читаем код, жмём на телефоне" }, { uz: "Faqat ranglarni ko'rib", ru: "Только смотрим цвета" }], correct: 2 },
+  { q: { uz: "Web, bot va mobil bir xil buyurtmani qanday ko'radi?", ru: "Как веб, бот и мобильное видят одни заказы?" }, opts: [{ uz: "Bitta backend'ga ulanadi", ru: "Подключены к одному backend" }, { uz: "Alohida Database quriladi", ru: "Строят отдельные Database" }, { uz: "Qo'lda nusxalanadi", ru: "Копируются вручную" }, { uz: "Buning iloji yo'q", ru: "Это невозможно" }], correct: 0 },
+  { q: { uz: "Ilova ishlagach, yana nima kerak?", ru: "Что ещё нужно, когда приложение работает?" }, opts: [{ uz: "Boshqa hech narsa", ru: "Больше ничего" }, { uz: "StyleSheet'ni o'chirish", ru: "Удалить StyleSheet" }, { uz: "Hammasini qayta yozish", ru: "Переписать всё" }, { uz: "StyleSheet bilan sayqal", ru: "Довести через StyleSheet" }], correct: 3 },
   { q: { uz: "Tafsilot ekraniga o'tish uchun nima ishlatiladi?", ru: 'Что используют для перехода на экран Детали?' }, opts: ["reduce", "fetch", "navigation.navigate", "StyleSheet.create"], correct: 2 },
-  { q: { uz: "Nega telefonda ham sinash kerak?", ru: 'Зачем проверять ещё и на телефоне?' }, opts: [{ uz: "Kodni ancha tezroq yuklaydi", ru: 'Он гораздо быстрее грузит код' }, { uz: "Qurilmaga xos xatolar ko'rinadi", ru: 'Видны ошибки конкретного устройства' }, { uz: "Kod yozish umuman kerak emas", ru: 'Код тогда вообще писать не нужно' }, { uz: "Ulanish uchun internet kerak emas", ru: 'Для подключения не нужен интернет' }], correct: 1 },
+  { q: { uz: "Nega telefonda ham sinash kerak?", ru: "Зачем проверять и на телефоне?" }, opts: [{ uz: "Kod tezroq yuklanadi", ru: "Код грузится быстрее" }, { uz: "Qurilma xatolari ko'rinadi", ru: "Видны ошибки устройства" }, { uz: "Kod yozish kerak emas", ru: "Код писать не нужно" }, { uz: "Internet kerak emas", ru: "Интернет не нужен" }], correct: 1 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2582,7 +2607,7 @@ export default function MobileAppPracticeLesson({ lang: langProp, onFinished, li
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

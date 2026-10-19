@@ -106,6 +106,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -183,8 +208,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -861,7 +886,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const edges = { [ek('user', 'front')]: holat('user', 'front'), [ek('front', 'back')]: holat('front', 'back'), [ek('back', 'db')]: holat('back', 'db') };
   const nodes = { user: 'ochiq', front: 'ochiq', back: 'ochiq', db: 'ochiq', [konvert]: done ? 'ok' : 'joriy' };
   return (
-    <Stage eyebrow={tr({ uz: "Tajriba · so'rov yo'li", ru: 'Опыт · путь запроса' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Yo'lni yuring", ru: 'Пройдите путь' })} (${n}/${YOL3.length})`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tajriba · so'rov yo'li", ru: 'Опыт · путь запроса' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${tr({ uz: "Yo'lni yuring", ru: 'Пройдите путь' })}`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi}
         sarlavha={tr({ uz: <>«Savatga» bosilgach so'rov <span className="italic" style={{ color: T.accent }}>qayerga boradi?</span></>, ru: <>Куда <span className="italic" style={{ color: T.accent }}>идёт запрос</span> после «В корзину»?</> })}
         mentor={<Mentor>{tr({ uz: "So'rovni o'zingiz yo'naltiring: har qadamda keyingi qismni bosing.", ru: 'Направьте запрос сами: на каждом шаге нажимайте следующую часть.' })}</Mentor>}
@@ -1305,7 +1330,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const pufak = !done && n > 0 && CASE12[n - 1].pufak ? Object.fromEntries(Object.entries(CASE12[n - 1].pufak).map(([k, v]) => [k, tr(v)])) : {};
   const TAXMIN = [{ k: 'bitta', t: tr({ uz: 'Bitta', ru: 'В одну' }) }, { k: 'ikkita', t: tr({ uz: 'Ikkita', ru: 'В две' }) }];
   return (
-    <Stage eyebrow={tr({ uz: "Hayotiy · to'liq tizim", ru: 'Жизненный пример · полная система' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' }) : `${tr({ uz: 'Tizimni kuzating', ru: 'Следите за системой' })} (${n}/${CASE12.length})`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Hayotiy · to'liq tizim", ru: 'Жизненный пример · полная система' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' }) : `${tr({ uz: 'Tizimni kuzating', ru: 'Следите за системой' })}`} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi}
         sarlavha={tr({ uz: <>Ikki foydalanuvchi — bitta tizim. <span className="italic" style={{ color: T.accent }}>Nima bo'ladi?</span></>, ru: <>Два пользователя — одна система. <span className="italic" style={{ color: T.accent }}>Что будет?</span></> })}
         mentor={<Mentor>{tr({ uz: 'Bir xaridor saytdan, ikkinchisi botdan buyurtma beradi. Qadamlarni kuzating.', ru: 'Один покупатель заказывает с сайта, второй — из бота. Следите за шагами.' })}</Mentor>}
@@ -1482,18 +1507,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Mahsulot, buyurtma va foydalanuvchilar qayerda doimiy saqlanadi?", ru: 'Где постоянно хранятся товары, заказы и пользователи?' }, opts: [{ uz: "Database'da", ru: 'В Database' }, { uz: "Frontend'da", ru: 'В Frontend' }, { uz: "Backend'da", ru: 'В Backend' }, { uz: "AI'da", ru: 'В AI' }], correct: 0 },
-  { q: { uz: "Frontend asosan nima qiladi?", ru: 'Чем в основном занимается Frontend?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Narx va to'lovni hisoblaydi", ru: 'Считает цену и оплату' }, { uz: "Foydalanuvchiga ma'lumotni ko'rsatadi", ru: 'Показывает данные пользователю' }, { uz: "Database'ga to'g'ridan yozadi", ru: 'Пишет прямо в Database' }], correct: 2 },
-  { q: { uz: "«Savatga» bosilganda so'rov qaysi yo'l bilan boradi?", ru: 'Каким путём идёт запрос при нажатии «В корзину»?' }, opts: [{ uz: "Frontend → Database, Backend'siz", ru: 'Frontend → Database, без Backend' }, { uz: "Frontend ichida qoladi", ru: 'Остаётся внутри Frontend' }, { uz: "Frontend → Backend → Database, javob orqaga", ru: 'Frontend → Backend → Database, ответ обратно' }, { uz: "Database → Backend → Frontend", ru: 'Database → Backend → Frontend' }], correct: 2 },
-  { q: { uz: "Bizning tizimda Frontend nega Database'ga to'g'ridan ulanmaydi?", ru: 'Почему в нашей системе Frontend не подключается к Database напрямую?' }, opts: [{ uz: "Database juda sekin ishlaydi", ru: 'Database работает слишком медленно' }, { uz: "Xavfsizlik uchun: Backend orqali o'tadi", ru: 'Ради безопасности: путь идёт через Backend' }, { uz: "Ular boshqa tilda yozilgan", ru: 'Они написаны на разных языках' }, { uz: "Buni texnik jihatdan qilib bo'lmaydi", ru: 'Технически так сделать нельзя' }], correct: 1 },
-  { q: { uz: "Backend'ning asosiy vazifasi nima?", ru: 'В чём главная задача Backend?' }, opts: [{ uz: "Sahifa dizaynini chizadi", ru: 'Рисует дизайн страницы' }, { uz: "Foydalanuvchiga to'g'ridan ko'rinadi", ru: 'Видна пользователю напрямую' }, { uz: "Faqat matnni tarjima qiladi", ru: 'Только переводит текст' }, { uz: "Qoidalarni bajaradi, Database'ga yozadi", ru: 'Выполняет правила, пишет в Database' }], correct: 3 },
-  { q: { uz: "Web sayt va Telegram bot bir xil buyurtmalarni qanday ko'radi?", ru: 'Как веб-сайт и Telegram-бот видят одни и те же заказы?' }, opts: [{ uz: "Bitta Backend va Database'ga ulanadi", ru: 'Подключены к одному Backend и Database' }, { uz: "Har biriga alohida Database quriladi", ru: 'Для каждого строят отдельную Database' }, { uz: "Ma'lumot qo'lda ko'chiriladi", ru: 'Данные копируют вручную' }, { uz: "Buning umuman iloji yo'q", ru: 'Это вообще невозможно' }], correct: 0 },
-  { q: { uz: "«Ko'p kirish yo'li, bitta tizim» nimani anglatadi?", ru: 'Что означает «много точек входа, одна система»?' }, opts: [{ uz: "Har kirish yo'liga alohida tizim kerak", ru: 'Каждой точке входа нужна своя система' }, { uz: "Bitta kirish yo'li hamma uchun yetadi", ru: 'Одной точки входа хватит всем' }, { uz: "Faqat web sayt bo'lishi mumkin", ru: 'Может быть только веб-сайт' }, { uz: "Web, bot va mobil bitta Backend'ga ulanadi", ru: 'Веб, бот и мобильное подключены к одному Backend' }], correct: 3 },
-  { q: { uz: "Database o'chirilsa nima bo'ladi?", ru: 'Что будет, если отключить Database?' }, opts: [{ uz: "Hech narsa o'zgarmaydi", ru: 'Ничего не изменится' }, { uz: "Ma'lumot saqlanmaydi, yo'qoladi", ru: 'Данные не сохраняются и пропадают' }, { uz: "Faqat sahifa ranglari o'chadi", ru: 'Погаснут только цвета страницы' }, { uz: "Tizim tezroq ishlay boshlaydi", ru: 'Система начнёт работать быстрее' }], correct: 1 },
-  { q: { uz: "Mavjud tizimga mobil ilova qo'shishning eng oson yo'li?", ru: 'Самый простой способ добавить мобильное приложение к готовой системе?' }, opts: [{ uz: "Hammasini noldan qayta yozish", ru: 'Переписать всё с нуля' }, { uz: "Yangi Frontend yozib, Backend'ga ulash", ru: 'Написать новый Frontend и подключить к Backend' }, { uz: "Mobil uchun alohida Database qurish", ru: 'Построить для мобильного отдельную Database' }, { uz: "Buning umuman iloji yo'q", ru: 'Это вообще невозможно' }], correct: 1 },
-  { q: { uz: "AI tizimda qanday rol o'ynaydi?", ru: 'Какую роль играет AI в системе?' }, opts: [{ uz: "Ma'lumotni doimiy saqlaydi", ru: 'Постоянно хранит данные' }, { uz: "Barcha qarorlarni yolg'iz qiladi", ru: 'Принимает все решения в одиночку' }, { uz: "Maslahat va tavsiya beradi", ru: 'Даёт советы и рекомендации' }, { uz: "Sahifani foydalanuvchiga ko'rsatadi", ru: 'Показывает страницу пользователю' }], correct: 2 },
-  { q: { uz: "Ma'lumot qaysi tartibda yuradi?", ru: 'В каком порядке идут данные?' }, opts: [{ uz: "Database → Backend → Frontend → ekran → foydalanuvchi", ru: 'Database → Backend → Frontend → экран → пользователь' }, { uz: "Backend → Database → Frontend → foydalanuvchi → ekran", ru: 'Backend → Database → Frontend → пользователь → экран' }, { uz: "Frontend → Database → Backend → foydalanuvchi → ekran", ru: 'Frontend → Database → Backend → пользователь → экран' }, { uz: "Foydalanuvchi → Frontend → Backend → Database → ekran", ru: 'Пользователь → Frontend → Backend → Database → экран' }], correct: 3 },
-  { q: { uz: "Kod yozishdan oldin arxitekturani chizish nega foydali?", ru: 'Чем полезно нарисовать архитектуру до написания кода?' }, opts: [{ uz: "Qaysi qism nima qilishini aniqlaydi", ru: 'Проясняет, какая часть что делает' }, { uz: "Kodni o'zi avtomatik yozib beradi", ru: 'Само автоматически напишет код' }, { uz: "Serverni ancha tezlashtiradi", ru: 'Заметно ускорит сервер' }, { uz: "Sahifa dizaynini chiroyli qiladi", ru: 'Делает дизайн страницы красивее' }], correct: 0 },
+  { q: { uz: "Mahsulot va buyurtmalar qayerda doimiy saqlanadi?", ru: "Где постоянно хранятся товары и заказы?" }, opts: [{ uz: "Database'da", ru: "В Database" }, { uz: "Frontend'da", ru: "В Frontend" }, { uz: "Backend'da", ru: "В Backend" }, { uz: "AI'da", ru: "В AI" }], correct: 0 },
+  { q: { uz: "Frontend asosan nima qiladi?", ru: "Чем в основном занимается Frontend?" }, opts: [{ uz: "Ma'lumotni saqlaydi", ru: "Хранит данные" }, { uz: "Narxni hisoblaydi", ru: "Считает цену" }, { uz: "Ekranda ko'rsatadi", ru: "Показывает на экране" }, { uz: "Parolni tekshiradi", ru: "Проверяет пароль" }], correct: 2 },
+  { q: { uz: "«Savatga» so'rovi qaysi yo'ldan boradi?", ru: "Каким путём идёт запрос «В корзину»?" }, opts: [{ uz: "Frontend → Database", ru: "Frontend → Database" }, { uz: "Database → Frontend", ru: "Database → Frontend" }, { uz: "Frontend → Backend → Database", ru: "Frontend → Backend → Database" }, { uz: "Database → Backend → Frontend", ru: "Database → Backend → Frontend" }], correct: 2 },
+  { q: { uz: "Nega Frontend Database'ga to'g'ridan bormaydi?", ru: "Почему Frontend не идёт в Database напрямую?" }, opts: [{ uz: "Database juda sekin", ru: "Database слишком медленная" }, { uz: "Xavfsizlik uchun", ru: "Ради безопасности" }, { uz: "Ular boshqa tilda", ru: "Они на разных языках" }, { uz: "Texnik iloji yo'q", ru: "Технически невозможно" }], correct: 1 },
+  { q: { uz: "Backend'ning asosiy vazifasi nima?", ru: "В чём главная задача Backend?" }, opts: [{ uz: "Sahifa dizaynini chizadi", ru: "Рисует дизайн страницы" }, { uz: "Foydalanuvchiga ko'rinadi", ru: "Виден пользователю" }, { uz: "Matnni tarjima qiladi", ru: "Переводит текст" }, { uz: "Tekshiradi, Database'ga yozadi", ru: "Проверяет, пишет в Database" }], correct: 3 },
+  { q: { uz: "Web sayt va bot bir xil buyurtmani qanday ko'radi?", ru: "Как сайт и бот видят одни и те же заказы?" }, opts: [{ uz: "Bitta Backend'ga ulanadi", ru: "Подключены к одному Backend" }, { uz: "Alohida Database quriladi", ru: "Строят отдельные Database" }, { uz: "Qo'lda ko'chiriladi", ru: "Переносят вручную" }, { uz: "Buning iloji yo'q", ru: "Это невозможно" }], correct: 0 },
+  { q: { uz: "«Ko'p kirish yo'li, bitta tizim» — bu nima?", ru: "Что значит «много точек входа, одна система»?" }, opts: [{ uz: "Har yo'lga alohida tizim", ru: "Каждому входу своя система" }, { uz: "Bitta yo'l yetarli", ru: "Хватит одного входа" }, { uz: "Faqat web sayt bo'ladi", ru: "Бывает только веб-сайт" }, { uz: "Hamma yo'l bitta Backend'ga", ru: "Все входы — в один Backend" }], correct: 3 },
+  { q: { uz: "Database o'chirilsa nima bo'ladi?", ru: "Что будет, если отключить Database?" }, opts: [{ uz: "Hech narsa o'zgarmaydi", ru: "Ничего не изменится" }, { uz: "Ma'lumot saqlanmaydi", ru: "Данные не сохранятся" }, { uz: "Sahifa ranglari o'chadi", ru: "Погаснут цвета страницы" }, { uz: "Tizim tezlashadi", ru: "Система ускорится" }], correct: 1 },
+  { q: { uz: "Tayyor tizimga mobil ilova qanday qo'shiladi?", ru: "Как добавить мобильное приложение к готовой системе?" }, opts: [{ uz: "Hammasi noldan yoziladi", ru: "Всё пишут с нуля" }, { uz: "Yangi Frontend ulanadi", ru: "Подключают новый Frontend" }, { uz: "Alohida Database quriladi", ru: "Строят отдельную Database" }, { uz: "Buning iloji yo'q", ru: "Это невозможно" }], correct: 1 },
+  { q: { uz: "AI tizimda nima qiladi?", ru: "Что делает AI в системе?" }, opts: [{ uz: "Ma'lumotni saqlaydi", ru: "Хранит данные" }, { uz: "Hamma qarorni o'zi qiladi", ru: "Сам принимает все решения" }, { uz: "Maslahat beradi", ru: "Даёт советы" }, { uz: "Sahifani ko'rsatadi", ru: "Показывает страницу" }], correct: 2 },
+  { q: { uz: "Ma'lumot yo'lida foydalanuvchidan keyin nima turadi?", ru: "Что идёт в пути данных после пользователя?" }, opts: [{ uz: "Database", ru: "Database" }, { uz: "Backend", ru: "Backend" }, { uz: "AI", ru: "AI" }, { uz: "Frontend", ru: "Frontend" }], correct: 3 },
+  { q: { uz: "Kod yozishdan oldin chizma nega kerak?", ru: "Зачем схема до написания кода?" }, opts: [{ uz: "Qism vazifasi aniq bo'ladi", ru: "Ясно, что делает каждая часть" }, { uz: "Kodni o'zi yozib beradi", ru: "Сама пишет код" }, { uz: "Serverni tezlashtiradi", ru: "Ускоряет сервер" }, { uz: "Dizaynni chiroyli qiladi", ru: "Делает дизайн красивым" }], correct: 0 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

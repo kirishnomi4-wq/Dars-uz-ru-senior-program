@@ -872,3 +872,5 @@ Foydalanuvchi: «seansni yopamiz, 1–2 soatdan keyin yozaman; holatni to'liq sa
 - **4.** DE-218 «Mustaqil ish» m4-13 ga QO'SHILMAYDI — vaqt to'la (75–90 daq), qonun 1-bandida yozilgan; 218 faqat m4-10 pilotida. Yopildi.
 - **5.** 10 oq sudraladigan element: 4/4a — 3-seans qilgan (2 chip gradient, 2 karta oq qoladi — foydalanuvchi qarori). Qolgan 6 (5, 7, 8, 12-M) → `NAZORAT-TOPSHIRIQ-oq-sudraladigan-element.md` (chip → gradient, karta → oq). Bu seans tegmadi.
 - Keyingi F-ID: F-1015-419. Commit — foydalanuvchi buyrug'i bilan.
+- **COMMIT 2b58653** (18.10, foydalanuvchi buyrug'i, push YO'Q): 7 566 fayl — praktika + mentor 2–6-M + QA 7–14-M + arxiv zaxiralari; vite build toza. Chetda: .shot*.tmp.mjs, dist-m7/8/9/12 (.gitignore), taqdimot/prezentatsiya (14.10 «kerak emas»). Parallel seans (11-M g'oya, F-1015-275) shu daqiqada yozmoqda — uning yangi fayllari commitga kirmadi.
+- Chala ro'yxati BO'SH. Keyingi: foydalanuvchi YANGI TOPSHIRIQ. Keyingi F-ID: F-1015-419.

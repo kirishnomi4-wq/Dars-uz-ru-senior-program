@@ -23,6 +23,29 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // PM-STUDIA IDENTITET (P0 dan AYNAN)
 // ============================================================
+// F-1015-377: ma'nosiz yozuv tekshiruvi (qolip `manoliMatn` nusxasi - bu dars qolipsiz)
+const MN_HARF = /[a-z\u0430-\u044f\u0451\u0493\u049b\u04b3\u045e]/gi;
+const MN_UNLI = /[aeiou\u0430\u0435\u0451\u0438\u043e\u0443\u044b\u044d\u044e\u044f\u045e]/gi;
+const MN_QISQA = new Set(['html', 'css', 'npm', 'crm', 'mvp', 'pdf', 'sms', 'http', 'https', 'www', 'src', 'cmd', 'pwd', 'jsx', 'dns', 'ssl', 'cdn', 'sql', 'xml', 'png', 'jpg', 'svg', 'gps', 'mln', 'mlrd', 'kpi', 'nps', 'ltv', 'cac']);
+const manoliMatn = (t, yumshoq) => {
+  const s = String(t || '').trim();
+  const harf = (s.match(MN_HARF) || []).length;
+  const tozasi = s.replace(/[\s\u02bb\u02bc'`\u2018\u2019\-.,!?:;\u00ab\u00bb"()]/g, '');
+  if (harf < 3 || !tozasi.length || harf / tozasi.length < 0.5) return false;
+  if (/(.)\1{3,}/i.test(s)) return false;
+  if (!(s.match(MN_UNLI) || []).length) return false;
+  const sozlar = s.split(/\s+/);
+  if (!yumshoq) { // F-1015-392: «fast freak. afs sdfa dfs», «fasted saf s f», «qwe rty», «asd asd asd»
+    const toza = sozlar.map(w => w.replace(/[.,!?:;]+$/, ''));
+    if (toza.some(w => /^[a-z]{3,}$/.test(w) && !/[aeiouy]/.test(w) && !MN_QISQA.has(w))) return false;
+    const yakka = toza.filter(w => /^[b-df-hj-np-tv-xz]$/.test(w)).length;
+    if (yakka >= 2 && yakka / toza.length >= 0.25) return false;
+    if (/qwe|asdf|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|\u0439\u0446\u0443\u043a|\u0444\u044b\u0432\u0430|\u044f\u0447\u0441\u043c/i.test(s)) return false;
+    if (toza.length >= 3 && new Set(toza.map(w => w.toLowerCase())).size * 3 <= toza.length) return false;
+  }
+  return sozlar.every(w => { const h = (w.match(MN_HARF) || []).join(''); if (h.length < 5) return true; return ((h.match(MN_UNLI) || []).length / h.length) >= 0.2; });
+};
+
 const T = {
   bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
@@ -1712,7 +1735,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const yakka = !live || live.mode === 'self';
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
-  const written = text.trim().length >= 8;
+  const written = text.trim().length >= 8 && manoliMatn(text);
   // A6: avval faqat 1-qadam (taymer); taymer tugagach yoki to'xtatilgach u «✓ Aytildi» qatoriga yig'iladi va 2-qadam chiqadi.
   const [aytildi, setAytildi] = useState(() => text.trim().length > 0);
   const onStage = (st) => { if (st === 'done') setAytildi(true); };
@@ -1975,19 +1998,19 @@ const QZ_BG_SHAPES = [
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · to'g'ri indekslar 0,3,2,1 · 1,0,2,3 · 0,2,1,3.
 // darslik-jonli TASDIQLAYDI. Har savol darsda AYTILGAN ekranga bog'langan (65-qonun).
 const QUIZ_BANK = [
-  { q: { uz: 'Suhbat nima?', ru: 'Что такое беседа?' }, opts: [{ uz: "Botni ishlatgan odamdan bo'lib o'tgan ishini so'rash", ru: "Спросить того, кто пользовался ботом, о том, что уже было" }, { uz: "Bo'lib o'tgan ishni odamsiz, o'zingiz taxmin qilish", ru: 'Самому угадать, что было, без человека' }, { uz: "Kelasi haftada nima qilishini oldindan so'rash", ru: 'Заранее спросить, что он будет делать на следующей неделе' }, { uz: "Botingizni ko'rsatib, u haqdagi fikrini so'rash", ru: 'Показать бота и спросить мнение о нём' }], correct: 0 },
-  { q: { uz: "Suhbatda nima so'raladi?", ru: 'О чём спрашивают в беседе?' }, opts: [{ uz: "Bo'lib o'tgan ishga odam qo'ygan baho", ru: "Оценку, которую человек дал тому, что уже было" }, { uz: 'Odamning kelasi haftadagi rejasi', ru: "Планы человека на следующую неделю" }, { uz: 'Odamning bot haqidagi fikri', ru: 'Мнение человека о боте' }, { uz: "Odam o'tgan kunlarda qilgan ish", ru: "Дело, которое человек сделал в прошлые дни" }], correct: 3 },
-  { q: { uz: 'Voqea savoli nima?', ru: 'Что такое вопрос о событии?' }, opts: [{ uz: "Bo'lib o'tgan ishni emas, kelajakni so'ragan savol", ru: 'Вопрос не о прошлом, а о будущем' }, { uz: "Botga qanday tugma kerakligini so'ragan savol", ru: 'Вопрос о том, какая кнопка нужна боту' }, { uz: "Bo'lib o'tgan ishni so'ragan savol", ru: 'Вопрос о том, что уже произошло' }, { uz: "Javobi «ha» bo'lib qoladigan savol", ru: 'Вопрос, на который ответ — просто «да»' }], correct: 2 },
-  { q: { uz: "Bo'sh savol nima?", ru: 'Что такое пустой вопрос?' }, opts: [{ uz: "Javobida bo'lib o'tgan ish juda ko'p aytiladigan savol", ru: 'Вопрос, в ответе на который слишком много событий' }, { uz: "Javobidan bo'lib o'tgan ish bilinmaydigan savol", ru: 'Вопрос, из ответа на который не видно, что произошло' }, { uz: 'Suhbatning oxirida beriladigan savol', ru: 'Вопрос, который задают в конце беседы' }, { uz: 'Bir kunda ikki marta berilgan savol', ru: 'Вопрос, заданный дважды за день' }], correct: 1 },
+  { q: { uz: "Suhbat nima?", ru: "Что такое беседа (интервью)?" }, opts: [{ uz: "Odamdan o'tgan ishini so'rash", ru: "Спросить человека о прошлом деле" }, { uz: "O'zingiz taxmin qilish", ru: "Догадаться самому" }, { uz: "Kelasi haftasini so'rash", ru: "Спросить о следующей неделе" }, { uz: "Bot haqidagi fikrini so'rash", ru: "Спросить мнение о боте" }], correct: 0 },
+  { q: { uz: "Suhbatda nima so'raladi?", ru: "О чём спрашивают в беседе?" }, opts: [{ uz: "O'tgan ishga qo'ygan bahosi", ru: "Его оценку прошлого дела" }, { uz: "Kelasi haftadagi rejasi", ru: "Его план на неделю" }, { uz: "Bot haqidagi fikri", ru: "Его мнение о боте" }, { uz: "O'tgan kunlarda qilgan ishi", ru: "Что он делал в прошлые дни" }], correct: 3 },
+  { q: { uz: "Voqea savoli nima?", ru: "Что такое вопрос о случае?" }, opts: [{ uz: "Kelajakni so'ragan savol", ru: "Вопрос о будущем" }, { uz: "Kerakli tugmani so'ragan savol", ru: "Вопрос о нужной кнопке" }, { uz: "Bo'lgan ishni so'ragan savol", ru: "Вопрос о том, что уже было" }, { uz: "Javobi «ha» bo'ladigan savol", ru: "Вопрос с ответом «да»" }], correct: 2 },
+  { q: { uz: "Bo'sh savol nima?", ru: "Что такое пустой вопрос?" }, opts: [{ uz: "Javobida ish ko'p aytilgan", ru: "В ответе много дел" }, { uz: "Javobidan ish bilinmaydigan", ru: "Из ответа не видно дела" }, { uz: "Suhbat oxiridagi savol", ru: "Вопрос в конце беседы" }, { uz: "Ikki marta berilgan savol", ru: "Вопрос, заданный дважды" }], correct: 1 },
   // §107: ikki qiymatli olam — 2/2 yoziladi, farq SABABda qoladi.
-  { q: { uz: '«Botim yoqdimi?» — bu qanday savol va nega?', ru: "«Тебе понравился мой бот?» — какой это вопрос и почему?" }, opts: [{ uz: 'Voqea savoli — botni tilga oldi', ru: "Вопрос о событии — в нём назван бот" }, { uz: "Bo'sh savol — qilingan ish so'ralmadi", ru: "Пустой вопрос — о сделанном деле не спросили" }, { uz: "Bo'sh savol — savol juda qisqa", ru: 'Пустой вопрос — вопрос слишком короткий' }, { uz: "Voqea savoli — javobi bir og'iz", ru: 'Вопрос о событии — ответ в одно слово' }], correct: 1 },
-  { q: { uz: '«Oxirgi marta qachon unutgansiz?» — bu qanday savol va nega?', ru: "«Когда ты в последний раз забыл?» — какой это вопрос и почему?" }, opts: [{ uz: "Voqea savoli — bo'lgan kunni so'radi", ru: 'Вопрос о событии — спросили о дне, который был' }, { uz: "Voqea savoli — javobi «ha» bo'lib qoladi", ru: 'Вопрос о событии — ответ будет просто «да»' }, { uz: "Bo'sh savol — kelajakni so'radi", ru: 'Пустой вопрос — спросили о будущем' }, { uz: "Bo'sh savol — botni tilga olmadi", ru: 'Пустой вопрос — бот не упомянут' }], correct: 0 },
-  { q: { uz: 'Suhbatdosh «Ha, ishlataman» dedi — bundan nima bilinadi?', ru: 'Собеседник сказал «Да, буду пользоваться» — что из этого понятно?' }, opts: [{ uz: 'U botni har kuni ochib turishi', ru: "Что он открывает бот каждый день" }, { uz: 'U eslatma tugmasini bosgani', ru: 'Что он нажимал кнопку-напоминание' }, { uz: "Faqat uning va'dasi", ru: "Только его обещание" }, { uz: 'U vazifani payshanba unutgani', ru: 'Что он забыл задание в четверг' }], correct: 2 },
-  { q: { uz: 'Varaqqa qaysi gap tushadi?', ru: 'Какая фраза попадает на лист?' }, opts: [{ uz: 'Siz chiqargan xulosa', ru: 'Вывод, который сделали вы' }, { uz: "Botga kerak bo'lgan tugmalar ro'yxati", ru: 'Список кнопок, нужных боту' }, { uz: 'Hammaga taalluqli umumiy gap', ru: 'Общая фраза, касающаяся всех' }, { uz: "Eshitgan javobning o'zi", ru: "Сам услышанный ответ" }], correct: 3 },
-  { q: { uz: 'Saytdagi uylar kam band qilinayotganda Airbnb asoschilari qayerga bordi?', ru: "Куда поехали основатели Airbnb, когда жильё на сайте стали мало бронировать?" }, opts: [{ uz: 'Nyu-Yorkka — uy egalarining oldiga', ru: 'В Нью-Йорк — к хозяевам домов' }, { uz: "San-Frantsiskodagi yig'inga", ru: 'На конференцию в Сан-Франциско' }, { uz: "Mehmonxonalarga — joy so'rashga", ru: 'В гостиницы — просить места' }, { uz: "Hech qayerga — saytni o'zgartirishdi", ru: 'Никуда — они переделали сайт' }], correct: 0 },
-  { q: { uz: 'Ular uy egalarining oldida nimani bilib oldi?', ru: 'Что они узнали рядом с хозяевами домов?' }, opts: [{ uz: "Uy egalari narxni baland qo'yganini", ru: 'Что хозяева поставили высокую цену' }, { uz: 'Uy egalari saytga kam kirishini', ru: 'Что хозяева редко заходят на сайт' }, { uz: "Yomon surat qo'yilgan uy band qilinmasligini", ru: 'Что дом с плохими фотографиями не бронируют' }, { uz: 'Mehmonlar band qilgan uyni bekor qilishini', ru: "Что гости отменяют бронирование" }], correct: 2 },
-  { q: { uz: 'Suhbatni kimdan boshlaysiz?', ru: 'С кого начать беседу?' }, opts: [{ uz: 'Bot haqida eshitmagan odamdan', ru: 'С человека, который не слышал о боте' }, { uz: 'Botingizni ishlatgan odamdan', ru: 'С человека, который пользовался вашим ботом' }, { uz: "Sinfda eng yaxshi o'qiydigan odamdan", ru: "С человека, который лучше всех учится в классе" }, { uz: 'Botni yozishga yordam bergan odamdan', ru: 'С человека, который помогал писать бота' }], correct: 1 },
-  { q: { uz: 'Eshitgan javobni varaqqa qanday yozasiz?', ru: "Как записать на лист услышанный ответ?" }, opts: [{ uz: "«Hamma shunday deydi» deb yozib qo'yaman", ru: 'Запишу «Все так говорят»' }, { uz: "Qisqartirib, o'z xulosam bilan yozaman", ru: 'Сокращу и запишу со своим выводом' }, { uz: 'Yozmayman — esimda qoladi', ru: 'Не запишу — и так запомню' }, { uz: 'U aytganidek yozaman', ru: "Запишу так, как сказал человек" }], correct: 3 },
+  { q: { uz: "«Botim yoqdimi?» — qanday savol va nega?", ru: "«Понравился мой бот?» — какой это вопрос и почему?" }, opts: [{ uz: "Voqea: botni tilga oldi", ru: "О случае: упомянут бот" }, { uz: "Bo'sh: ish so'ralmadi", ru: "Пустой: дело не спросили" }, { uz: "Bo'sh: savol juda qisqa", ru: "Пустой: слишком короткий" }, { uz: "Voqea: javobi bir og'iz", ru: "О случае: ответ в одно слово" }], correct: 1 },
+  { q: { uz: "«Oxirgi marta qachon unutgansiz?» — qanday savol?", ru: "«Когда вы в последний раз забыли?» — какой это вопрос?" }, opts: [{ uz: "Voqea: kunni so'radi", ru: "О случае: спросил день" }, { uz: "Voqea: javobi «ha»", ru: "О случае: ответ «да»" }, { uz: "Bo'sh: kelajakni so'radi", ru: "Пустой: спросил о будущем" }, { uz: "Bo'sh: botni so'ramadi", ru: "Пустой: не спросил о боте" }], correct: 0 },
+  { q: { uz: "Suhbatdosh «Ha, ishlataman» dedi. Nima bilinadi?", ru: "Собеседник сказал «Да, буду пользоваться». Что это даёт?" }, opts: [{ uz: "Botni har kuni ochishi", ru: "Что он открывает бота ежедневно" }, { uz: "Eslatmani bosgani", ru: "Что он нажал напоминание" }, { uz: "Faqat uning va'dasi", ru: "Только его обещание" }, { uz: "Vazifani unutgani", ru: "Что он забыл задание" }], correct: 2 },
+  { q: { uz: "Varaqqa qaysi gap tushadi?", ru: "Какая фраза попадает на лист?" }, opts: [{ uz: "Siz chiqargan xulosa", ru: "Ваш вывод" }, { uz: "Kerakli tugmalar ro'yxati", ru: "Список нужных кнопок" }, { uz: "Hammaga oid umumiy gap", ru: "Общая фраза обо всех" }, { uz: "Eshitgan javobning o'zi", ru: "Сам услышанный ответ" }], correct: 3 },
+  { q: { uz: "Uylar band qilinmagach, Airbnb asoschilari qayerga bordi?", ru: "Когда жильё не бронировали, куда поехали основатели Airbnb?" }, opts: [{ uz: "Nyu-Yorkka, uy egalariga", ru: "В Нью-Йорк, к хозяевам" }, { uz: "San-Frantsiskodagi yig'inga", ru: "На встречу в Сан-Франциско" }, { uz: "Mehmonxonalarga", ru: "В гостиницы" }, { uz: "Hech qayerga", ru: "Никуда" }], correct: 0 },
+  { q: { uz: "Airbnb asoschilari Nyu-Yorkda nimani bildi?", ru: "Что основатели Airbnb узнали в Нью-Йорке?" }, opts: [{ uz: "Narx juda baland ekanini", ru: "Что цена слишком высокая" }, { uz: "Saytga kam kirishini", ru: "Что редко заходят на сайт" }, { uz: "Suratlar yomon chiqqanini", ru: "Что фото получились плохими" }, { uz: "Mehmonlar bekor qilishini", ru: "Что гости отменяют бронь" }], correct: 2 },
+  { q: { uz: "Suhbatni kimdan boshlaysiz?", ru: "С кого вы начнёте беседу?" }, opts: [{ uz: "Bot haqida eshitmagan odamdan", ru: "С того, кто не слышал о боте" }, { uz: "Botingizni ishlatgan odamdan", ru: "С того, кто пользовался ботом" }, { uz: "Sinfdagi a'lochi odamdan", ru: "С отличника класса" }, { uz: "Bot yozishga yordamlashgandan", ru: "С того, кто помогал писать бота" }], correct: 1 },
+  { q: { uz: "Eshitgan javobni varaqqa qanday yozasiz?", ru: "Как вы запишете услышанный ответ?" }, opts: [{ uz: "«Hamma shunday deydi» deb", ru: "«Все так говорят»" }, { uz: "Qisqartirib, xulosam bilan", ru: "Кратко, со своим выводом" }, { uz: "Yozmayman, esimda qoladi", ru: "Не пишу, запомню" }, { uz: "U aytganidek yozaman", ru: "Пишу так, как он сказал" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -3079,7 +3102,7 @@ const CSS_LESSON = `
   .fc-fly.out-again { animation: fc-out-again 0.42s ease forwards; }
   @keyframes fc-out-knew { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(70%) rotate(5deg); opacity: 0; } }
   @keyframes fc-out-again { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(-70%) rotate(-5deg); opacity: 0; } }
-  .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+  .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
   .fc-card.flip { transform: rotateY(180deg); }
   .fc-card:not(.flip):hover { transform: translateY(-3px); }
   .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

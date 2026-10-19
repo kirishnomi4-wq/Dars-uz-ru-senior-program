@@ -48,10 +48,10 @@ Mentorning uch riski va qadami:
   - Doska «Mentor misoli · Maydon Jamoa» (kichik): kartalardagi «?» kulrang to'lqin bilan o'tadi; hozir ustuniga ikkita, keyinroq ustuniga bitta bo'sh kichik karta (yorliq «qadam») sirg'alib kiradi.
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-116, 208-qonun 0-band: takror olindi)*
-  1. Roadmap'dagi har ish o'z vaqtida tugaganini belgilaysiz
-  2. Oldinda rejaga nima xalaqit berishi mumkinligini topasiz
-  3. Har biriga bitta aniq qadam yozasiz
-  4. Qadamlarni roadmap'ga qo'yib, Mentor bilan ko'rasiz
+  1. Roadmap'dagi har ish o'z vaqtida tugaganini belgilang
+  2. Oldinda rejaga nima xalaqit berishi mumkinligini toping
+  3. Har biriga bitta aniq qadam yozing
+  4. Qadamlarni roadmap'ga qo'yib, Mentor bilan ko'ring
 - Tugmalar: Orqaga · Boshlaymiz
 
 ## 2 · Holatlar

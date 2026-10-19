@@ -23,10 +23,10 @@ Holat: 06.10.2026 — kodga mos
 - Chap yorliq: Dars oxirida — yillik yo'l: loyihalar vaqt chizig'ida va keyingi qadam
 - Chap vizual: vaqt chizig'i — 1 … 10 raqamli nuqtalarga matnsiz kartalar navbat bilan tushadi, oxirida «Keyin» nuqtasi yonadi
 - Bugungi 4 qadam:
-  1. Loyihalaringizni qurilgan tartibida bitta chiziqqa qo'yasiz
-  2. Har loyihada nimani o'rganganingizni yozasiz
-  3. Uzum'ning ikki sanasini chiziqda ko'rasiz
-  4. Bitta keyingi qadamni tanlaysiz
+  1. Loyihalaringizni qurilgan tartibida bitta chiziqqa qo'ying
+  2. Har loyihada nimani o'rganganingizni yozing
+  3. Uzum'ning ikki sanasini chiziqda ko'ring
+  4. Bitta keyingi qadamni tanlang
   (teg yo'q — keyingi ekranlar eyebrow'ini takrorlardi) *(✎ F-1015-115, 208-qonun 0-band: takror olindi)*
 - Tugmalar: Orqaga · Boshlaymiz
 

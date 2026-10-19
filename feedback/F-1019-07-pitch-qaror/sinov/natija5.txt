@@ -1,0 +1,51 @@
+== html-01-v17 s5 uz · eyebrow: STRUKTURA
+  boshida nav: 0/4 qismi ko'rilgan (yopiq)
+  1. «Mehmon ko'rmaydigan «oshxona» qaysi qism?» [savol top 480]
+     ✗ «<body>» → «body — zal: mehmon ko'radigan hamma narsa shu yerda.» (52 b., yopildi: true)
+     ✓ «<head>» · nav: 1/4 qismi ko'rilgan (yopiq)
+  2. «Mehmon ko'radigan «zal» qaysi qism?» [savol top 480]
+     ✗ «<head>» → «head — oshxona: u ekranda ko'rinmaydi.» (38 b., yopildi: true)
+     ✗ «<!DOCTYPE html>» → «DOCTYPE faqat sahifa turini e'lon qiladi, ekranda yo'q.» (55 b., yopildi: true)
+     ✓ «<body>» · nav: 2/4 qismi ko'rilgan (yopiq)
+  3. «Oshxona va zalni birga o'rab turgan qism qaysi?» [savol top 480]
+     ✓ «<html>» · nav: 3/4 qismi ko'rilgan (yopiq)
+  4. «Hammasidan oldin «bu HTML sahifa» deb aytadigan qator qaysi?» [savol top 480]
+     ✗ «<html>» → «html — butun hujjat qobig'i; undan oldin yana bitta qator bor.» (62 b., yopildi: true)
+     ✓ «<!DOCTYPE html>» · nav: Skeletni yig'ing (yopiq)
+  tugadi: qadam 4, xato tanlov 4 · nav: Skeletni yig'ing (yopiq) · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== html-01-v17 s5 uz-390 · eyebrow: STRUKTURA
+  boshida nav: 0/4 qismi ko'rilgan (yopiq)
+  1. «Mehmon ko'rmaydigan «oshxona» qaysi qism?» [savol top 570]
+     ✗ «<body>» → «body — zal: mehmon ko'radigan hamma narsa shu yerda.» (52 b., yopildi: true)
+     ✓ «<head>» · nav: 1/4 qismi ko'rilgan (yopiq)
+     telefonda keyingi savol: top 354 / ekran 844 → ko'rinadi
+  2. «Mehmon ko'radigan «zal» qaysi qism?» [savol top 354]
+     ✗ «<head>» → «head — oshxona: u ekranda ko'rinmaydi.» (38 b., yopildi: true)
+     ✗ «<!DOCTYPE html>» → «DOCTYPE faqat sahifa turini e'lon qiladi, ekranda yo'q.» (55 b., yopildi: true)
+     ✓ «<body>» · nav: 2/4 qismi ko'rilgan (yopiq)
+     telefonda keyingi savol: top 354 / ekran 844 → ko'rinadi
+  3. «Oshxona va zalni birga o'rab turgan qism qaysi?» [savol top 354]
+     ✓ «<html>» · nav: 3/4 qismi ko'rilgan (yopiq)
+     telefonda keyingi savol: top 354 / ekran 844 → ko'rinadi
+  4. «Hammasidan oldin «bu HTML sahifa» deb aytadigan qator qaysi?» [savol top 354]
+     ✗ «<html>» → «html — butun hujjat qobig'i; undan oldin yana bitta qator bor.» (62 b., yopildi: true)
+     ✓ «<!DOCTYPE html>» · nav: Skeletni yig'ing (yopiq)
+  tugadi: qadam 4, xato tanlov 4 · nav: Skeletni yig'ing (yopiq) · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== html-01-v17 s5 ru · eyebrow: СТРУКТУРА
+  boshida nav: Просмотрено частей: 0/4 (yopiq)
+  1. «Какая часть — «кухня», которую гость не видит?» [savol top 504]
+     ✗ «<body>» → «body — зал: всё, что видит гость, здесь.» (40 b., yopildi: true)
+     ✓ «<head>» · nav: Просмотрено частей: 1/4 (yopiq)
+  2. «Какая часть — «зал», который видит гость?» [savol top 504]
+     ✗ «<head>» → «head — кухня: на экране её не видно.» (36 b., yopildi: true)
+     ✗ «<!DOCTYPE html>» → «DOCTYPE только объявляет тип страницы, на экране его нет.» (57 b., yopildi: true)
+     ✓ «<body>» · nav: Просмотрено частей: 2/4 (yopiq)
+  3. «Какая часть оборачивает и кухню, и зал?» [savol top 504]
+     ✓ «<html>» · nav: Просмотрено частей: 3/4 (yopiq)
+  4. «Какая строка раньше всего говорит: «это HTML-страница»?» [savol top 504]
+     ✗ «<html>» → «html — оболочка документа; перед ней есть ещё одна строка.» (58 b., yopildi: true)
+     ✓ «<!DOCTYPE html>» · nav: Соберите скелет (yopiq)
+  tugadi: qadam 4, xato tanlov 4 · nav: Соберите скелет (yopiq) · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0

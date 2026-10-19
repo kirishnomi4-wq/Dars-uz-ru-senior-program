@@ -93,6 +93,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -170,8 +195,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1134,18 +1159,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Nega «menga bot yasab ber» — noaniq prompt?", ru: "Почему «сделай мне бота» — неточный промпт?" }, opts: [{ uz: "AI o'zbekcha yozilgan buyruqni tushunmaydi", ru: "ИИ не понимает команду, написанную по-русски" }, { uz: "Unda texnologiya, tugma turi va token yo'q", ru: "В нём нет технологии, типа кнопок и токена" }, { uz: "«Iltimos» deyilmagan, buyruq qo'pol yozilgan", ru: "«Пожалуйста» не сказано, команда написана грубо" }, { uz: 'AI Telegram uchun bot kodini yoza olmaydi', ru: "ИИ не умеет писать код бота для Telegram" }], correct: 1 },
-  { q: { uz: "AI'ga prompt yozishdan oldin nima qilinadi?", ru: "Что делают до того, как писать промпт ИИ?" }, opts: [{ uz: "Boshqa botning tayyor kodi ko'chirib olinadi", ru: "Копируют готовый код другого бота" }, { uz: 'Bot kodi darrov serverga joylab qo\'yiladi', ru: "Сразу размещают код бота на сервере" }, { uz: "Token kodning birinchi qatoriga yoziladi", ru: "Пишут токен в первую строку кода" }, { uz: 'Botning hodisa va javoblari rejaga yoziladi', ru: "Записывают в план события и ответы бота" }], correct: 3 },
-  { q: { uz: 'Bugungi promptda nima aytiladi?', ru: "Что говорится в сегодняшнем промпте?" }, opts: [{ uz: 'Hodisa va javob juftlari, tugma turi', ru: "Пары событие и ответ, тип кнопок" }, { uz: 'Bot nomi, rangi, rasmi va qisqa tavsifi', ru: "Имя бота, цвет, картинка и краткое описание" }, { uz: 'Token, parol, telefon raqami va login', ru: "Токен, пароль, номер телефона и логин" }, { uz: 'Server manzili, domen, narx va logotip', ru: "Адрес сервера, домен, цена и логотип" }], correct: 0 },
-  { q: { uz: 'AI kod bergach, birinchi nima qilasiz?', ru: "Что вы сделаете первым делом, когда ИИ выдал код?" }, opts: [{ uz: "O'qimasdan, botni darrov mijozlarga beraman", ru: "Не читая, сразу отдам бота клиентам" }, { uz: "Kodni o'chirib, hammasini o'zim qayta yozaman", ru: "Удалю код и перепишу всё сам" }, { uz: "Kodni o'qib chiqaman va botni test qilaman", ru: "Прочитаю код и протестирую бота" }, { uz: "AI'dan xuddi shu kodni yana bir marta so'rayman", ru: "Попрошу у ИИ тот же код ещё раз" }], correct: 2 },
-  { q: { uz: 'Bot tugmali xabar yubordi, lekin tugma bosilganda jim. Sabab?', ru: "Бот отправил сообщение с кнопкой, но при нажатии молчит. Причина?" }, opts: [{ uz: "Token noto'g'ri, Bot API so'rovni rad etdi", ru: "Токен неверный, Bot API отклонил запрос" }, { uz: "Shu tugma uchun bot.action handleri yo'q", ru: "Для этой кнопки нет handler bot.action" }, { uz: 'Inline emas, reply tugma ishlatish kerak edi', ru: "Нужно было использовать не inline, а reply-кнопку" }, { uz: 'Kod oxirida bot.launch() yozilmagan', ru: "В конце кода не написан bot.launch()" }], correct: 1 },
-  { q: { uz: "AI tokenni kodga ochiq yozib qo'ydi. To'g'ri yechim qaysi?", ru: "ИИ открыто записал токен в код. Какое решение верное?" }, opts: [{ uz: "Tokenni .env fayliga ko'chirish", ru: "Перенести токен в файл .env" }, { uz: "Tokenni bot.js faylining oxiriga ko'chirish", ru: "Перенести токен в конец файла bot.js" }, { uz: 'Tokenni uzunroq qilib qayta yozish', ru: "Переписать токен, сделав его длиннее" }, { uz: 'Hech narsa qilmay, shundayligicha qoldirish', ru: "Ничего не делать, оставить как есть" }], correct: 0 },
-  { q: { uz: 'AI bilan dasturlashda ish qanday bo\'linadi?', ru: "Как делится работа при программировании с ИИ?" }, opts: [{ uz: "AI hamma qarorni o'zi qabul qiladi, siz kutasiz", ru: "ИИ принимает все решения сам, вы ждёте" }, { uz: 'Kodni siz yozasiz, AI esa faqat uni o\'qiydi', ru: "Код пишете вы, а ИИ только читает его" }, { uz: "AI kod yozadi va o'zi tekshiradi, siz ko'rmaysiz", ru: "ИИ пишет код и сам проверяет, вы не смотрите" }, { uz: 'Siz prompt yozasiz, AI kod yozadi, siz tekshirasiz', ru: "Вы пишете промпт, ИИ пишет код, вы проверяете" }], correct: 3 },
-  { q: { uz: "AI kodida qanday xato bo'lishi mumkin?", ru: "Какая ошибка может быть в коде ИИ?" }, opts: [{ uz: "AI kodida xato bo'lmaydi, u mukammal yozadi", ru: "В коде ИИ ошибок не бывает, он пишет идеально" }, { uz: 'Tugma uchun handler yozilmay qolishi mumkin', ru: "Для кнопки может быть не написан handler" }, { uz: 'Xato faqat token noto\'g\'ri bo\'lsa chiqadi', ru: "Ошибка бывает, только если токен неверный" }, { uz: "Xato faqat internet sekin bo'lganda chiqadi", ru: "Ошибка бывает, только если интернет медленный" }], correct: 1 },
-  { q: { uz: 'Test paytida xato topildi. Keyin nima qilinadi?', ru: "При тесте нашли ошибку. Что делают дальше?" }, opts: [{ uz: "Loyiha tashlanadi, boshqa g'oya olinadi", ru: "Бросают проект и берут другую идею" }, { uz: 'Boshqa bot noldan yozila boshlanadi', ru: "Начинают писать другого бота с нуля" }, { uz: "AI'ga aniq tuzatish prompti yoziladi", ru: "Пишут ИИ точный промпт на исправление" }, { uz: "Kod o'chiriladi va AI'dan qayta so'raladi", ru: "Удаляют код и просят ИИ написать заново" }], correct: 2 },
-  { q: { uz: "AI bilan bot yozishning to'g'ri tartibi qaysi?", ru: "Какой порядок написания бота с ИИ верный?" }, opts: [{ uz: 'Prompt → AI kodi → nusxalash → ishlatish', ru: "Промпт → код ИИ → копирование → запуск" }, { uz: "Test → reja → prompt → AI kodi → o'qish", ru: "Тест → план → промпт → код ИИ → чтение" }, { uz: 'AI kodi → ishlatish → buzilsa, tashlab ketish', ru: "Код ИИ → запуск → сломался — бросить" }, { uz: "Reja → prompt → AI kodi → o'qish → test → tuzatish", ru: 'План → промпт → код ИИ → чтение → тест → исправление' }], correct: 3 },
-  { q: { uz: '«Iteratsiya» nima?', ru: 'Что такое «итерация»?' }, opts: [{ uz: 'Test, tuzatish va qayta test takrori', ru: "Повтор: тест, исправление и снова тест" }, { uz: "Botni bir marta yozib, boshqa o'zgartirmaslik", ru: "Написать бота один раз и больше не менять" }, { uz: 'Eski tokenni yangisiga almashtirish', ru: "Заменить старый токен на новый" }, { uz: 'Bot dasturini qayta ishga tushirish', ru: "Перезапустить программу бота" }], correct: 0 },
-  { q: { uz: 'AI kodni yozsa ham, bot ichini bilish nega kerak?', ru: "Зачем знать, как устроен бот, если код пишет ИИ?" }, opts: [{ uz: 'AI faqat bot ichini biladiganlarga kod yozadi', ru: "ИИ пишет код только тем, кто знает устройство бота" }, { uz: 'Bilmasangiz, AI kod yozishdan bosh tortadi', ru: "Если не знаете, ИИ откажется писать код" }, { uz: 'AI yozgan kodni tekshirib, xatosini topish uchun', ru: "Чтобы проверить код ИИ и найти в нём ошибку" }, { uz: 'Bot ichini bilsangiz, kod tezroq ishlaydi', ru: "Если знаете устройство бота, код работает быстрее" }], correct: 2 },
+  { q: { uz: "«Bot yasab ber» nega noaniq prompt?", ru: "Почему «сделай бота» — нечёткий промпт?" }, opts: [{ uz: "AI o'zbekchani tushunmaydi", ru: "AI не понимает узбекский" }, { uz: "Juftlar va tugma turi yo'q", ru: "Нет пар и типа кнопок" }, { uz: "«Iltimos» deyilmagan", ru: "Не сказано «пожалуйста»" }, { uz: "AI bot kodini yoza olmaydi", ru: "AI не умеет писать ботов" }], correct: 1 },
+  { q: { uz: "Prompt yozishdan oldin nima qilinadi?", ru: "Что делают до того, как писать промпт?" }, opts: [{ uz: "Tayyor kod olinadi", ru: "Берётся готовый код" }, { uz: "Kod → serverga joylanadi", ru: "Код → выкладывается на сервер" }, { uz: "Token → kodga yoziladi", ru: "Токен → пишется в код" }, { uz: "Hodisa → javob rejasi tuziladi", ru: "Составляется план событие → ответ" }], correct: 3 },
+  { q: { uz: "Bugungi promptda nima aytiladi?", ru: "Что говорится в сегодняшнем промпте?" }, opts: [{ uz: "Hodisa → javob, tugma turi", ru: "Событие → ответ, тип кнопки" }, { uz: "Bot nomi → rangi, rasmi", ru: "Имя бота → цвет, картинка" }, { uz: "Token → parol va login", ru: "Токен → пароль и логин" }, { uz: "Server → domen va narx", ru: "Сервер → домен и цена" }], correct: 0 },
+  { q: { uz: "AI kod bergach, birinchi nima qilasiz?", ru: "AI дал код. Что вы делаете сначала?" }, opts: [{ uz: "Darrov mijozlarga beraman", ru: "Сразу отдаю клиентам" }, { uz: "O'chirib, o'zim yozaman", ru: "Удаляю и пишу сам" }, { uz: "O'qiyman va test qilaman", ru: "Читаю и тестирую" }, { uz: "Yana o'sha kodni so'rayman", ru: "Прошу тот же код ещё раз" }], correct: 2 },
+  { q: { uz: "Tugmali xabar keldi, bosilsa jim. Sabab?", ru: "Сообщение с кнопкой пришло, но нажатие — тишина. Причина?" }, opts: [{ uz: "Token noto'g'ri", ru: "Неверный токен" }, { uz: "bot.action handleri yo'q", ru: "Нет handler bot.action" }, { uz: "Reply tugma kerak edi", ru: "Нужна была reply-кнопка" }, { uz: "bot.launch() yozilmagan", ru: "Не написан bot.launch()" }], correct: 1 },
+  { q: { uz: "AI tokenni kodga ochiq yozdi. Nima qilasiz?", ru: "AI записал токен прямо в код. Что делать?" }, opts: [{ uz: ".env fayliga ko'chiraman", ru: "Перенесу в файл .env" }, { uz: "bot.js oxiriga ko'chiraman", ru: "Перенесу в конец bot.js" }, { uz: "Uzunroq qilib yozaman", ru: "Сделаю его длиннее" }, { uz: "Shundayligicha qoldiraman", ru: "Оставлю как есть" }], correct: 0 },
+  { q: { uz: "AI bilan ishda kim nima qiladi?", ru: "Кто что делает при работе с AI?" }, opts: [{ uz: "AI hal qiladi, siz kutasiz", ru: "AI решает, вы ждёте" }, { uz: "Siz yozasiz, AI o'qiydi", ru: "Вы пишете, AI читает" }, { uz: "AI yozadi va o'zi tekshiradi", ru: "AI пишет и сам проверяет" }, { uz: "AI kod yozadi, siz tekshirasiz", ru: "AI пишет код, вы проверяете" }], correct: 3 },
+  { q: { uz: "AI kodida qanday xato uchraydi?", ru: "Какая ошибка бывает в коде от AI?" }, opts: [{ uz: "Xato bo'lmaydi, u mukammal", ru: "Ошибок нет, он идеален" }, { uz: "Tugma handleri yozilmay qoladi", ru: "Не написан handler кнопки" }, { uz: "Faqat token xato bo'ladi", ru: "Ошибается только токен" }, { uz: "Faqat sekin internetda", ru: "Только при медленном интернете" }], correct: 1 },
+  { q: { uz: "Test paytida xato topildi. Keyin nima qilinadi?", ru: "В тесте нашли ошибку. Что дальше?" }, opts: [{ uz: "Boshqa g'oya olinadi", ru: "Берут другую идею" }, { uz: "Bot noldan yoziladi", ru: "Пишут бота с нуля" }, { uz: "Tuzatish prompti yoziladi", ru: "Пишут промпт на исправление" }, { uz: "Kod o'chirib tashlanadi", ru: "Удаляют код" }], correct: 2 },
+  { q: { uz: "Bot yozishning to'g'ri tartibi?", ru: "Правильный порядок создания бота?" }, opts: [{ uz: "Prompt → kod → ishlatish", ru: "Промпт → код → запуск" }, { uz: "Test → reja → prompt → kod", ru: "Тест → план → промпт → код" }, { uz: "Kod → ishlatish → tashlash", ru: "Код → запуск → бросить" }, { uz: "Reja → prompt → kod → test", ru: "План → промпт → код → тест" }], correct: 3 },
+  { q: { uz: "«Iteratsiya» nima?", ru: "Что такое «итерация»?" }, opts: [{ uz: "Test → tuzatish → qayta test", ru: "Тест → исправление → снова тест" }, { uz: "Yozish → tegmaslik", ru: "Написать → не трогать" }, { uz: "Token → yangi token", ru: "Токен → новый токен" }, { uz: "Bot → qayta ishga tushirish", ru: "Бот → перезапуск" }], correct: 0 },
+  { q: { uz: "AI yozsa ham, kodni tushunish nega kerak?", ru: "Зачем понимать код, если его пишет AI?" }, opts: [{ uz: "AI faqat bilganga yozadi", ru: "AI пишет только знающим" }, { uz: "Aks holda AI yozmaydi", ru: "Иначе AI не станет писать" }, { uz: "Xatoni topib tuzatish uchun", ru: "Чтобы найти и исправить ошибку" }, { uz: "Kod tezroq ishlashi uchun", ru: "Чтобы код работал быстрее" }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2264,7 +2289,7 @@ export default function BotAiProjectLesson({ lang: langProp, onFinished, liveTok
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

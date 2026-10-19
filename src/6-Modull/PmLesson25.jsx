@@ -30,6 +30,29 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // ============================================================
 // PM-STUDIA IDENTITET (P0 dan AYNAN)
 // ============================================================
+// F-1015-377: ma'nosiz yozuv tekshiruvi (qolip `manoliMatn` nusxasi - bu dars qolipsiz)
+const MN_HARF = /[a-z\u0430-\u044f\u0451\u0493\u049b\u04b3\u045e]/gi;
+const MN_UNLI = /[aeiou\u0430\u0435\u0451\u0438\u043e\u0443\u044b\u044d\u044e\u044f\u045e]/gi;
+const MN_QISQA = new Set(['html', 'css', 'npm', 'crm', 'mvp', 'pdf', 'sms', 'http', 'https', 'www', 'src', 'cmd', 'pwd', 'jsx', 'dns', 'ssl', 'cdn', 'sql', 'xml', 'png', 'jpg', 'svg', 'gps', 'mln', 'mlrd', 'kpi', 'nps', 'ltv', 'cac']);
+const manoliMatn = (t, yumshoq) => {
+  const s = String(t || '').trim();
+  const harf = (s.match(MN_HARF) || []).length;
+  const tozasi = s.replace(/[\s\u02bb\u02bc'`\u2018\u2019\-.,!?:;\u00ab\u00bb"()]/g, '');
+  if (harf < 3 || !tozasi.length || harf / tozasi.length < 0.5) return false;
+  if (/(.)\1{3,}/i.test(s)) return false;
+  if (!(s.match(MN_UNLI) || []).length) return false;
+  const sozlar = s.split(/\s+/);
+  if (!yumshoq) { // F-1015-392: «fast freak. afs sdfa dfs», «fasted saf s f», «qwe rty», «asd asd asd»
+    const toza = sozlar.map(w => w.replace(/[.,!?:;]+$/, ''));
+    if (toza.some(w => /^[a-z]{3,}$/.test(w) && !/[aeiouy]/.test(w) && !MN_QISQA.has(w))) return false;
+    const yakka = toza.filter(w => /^[b-df-hj-np-tv-xz]$/.test(w)).length;
+    if (yakka >= 2 && yakka / toza.length >= 0.25) return false;
+    if (/qwe|asdf|sdf|dfg|fgh|ghj|hjk|jkl|zxc|xcv|cvb|vbn|bnm|\u0439\u0446\u0443\u043a|\u0444\u044b\u0432\u0430|\u044f\u0447\u0441\u043c/i.test(s)) return false;
+    if (toza.length >= 3 && new Set(toza.map(w => w.toLowerCase())).size * 3 <= toza.length) return false;
+  }
+  return sozlar.every(w => { const h = (w.match(MN_HARF) || []).join(''); if (h.length < 5) return true; return ((h.match(MN_UNLI) || []).length / h.length) >= 0.2; });
+};
+
 const T = {
   bg: '#F2F0FA', ink: '#1B1630', ink2: '#565073', ink3: '#9C97B4',
   paper: '#FFFFFF', accent: '#5B3DE6', accentSoft: '#EBE5FD', accentVivid: '#6E4BFF',
@@ -1694,7 +1717,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
   const yakka = !live || live.mode === 'self';
   const [text, setText] = useState(() => { try { return localStorage.getItem(REFLECT_KEY) || ''; } catch { return ''; } });
   const save = (v) => { setText(v); try { localStorage.setItem(REFLECT_KEY, v); } catch {} };
-  const written = text.trim().length >= 8;
+  const written = text.trim().length >= 8 && manoliMatn(text);
   const [pairStage, setPairStage] = useState('idle');
   const [reflFocus, setReflFocus] = useState(false);
   const inputTurn = useTurnHint(pairStage === 'done' && !written && !reflFocus);
@@ -1956,18 +1979,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · naqshsiz. darslik-jonli TASDIQLAYDI.
 const QUIZ_BANK = [
-  { q: { uz: "Sahnaga raqam tanlayapsiz. Kuchli dalil bo'lishi uchun u nimani sanasin?", ru: 'Вы выбираете число для сцены. Что оно должно считать, чтобы стать сильным доводом?' }, opts: [{ uz: 'Tizim foydalanuvchi uchun bajargan ishni', ru: 'Работу системы для пользователя' }, { uz: 'Tizimni qurishda odam sarflagan vaqtni', ru: 'Время, которое человек потратил на постройку системы' }, { uz: 'Tizim kodida yozilgan satrlarni', ru: 'Строки, написанные в коде системы' }, { uz: 'Tizim ustida ishlagan odamlar sonini', ru: 'Число людей, которые работали над системой' }], correct: 0 },
-  { q: { uz: '«28 ta rasm chizildi» qatori nimani sanaydi?', ru: 'Что считает строка «нарисовано 28 картинок»?' }, opts: [{ uz: "Siz qurgan tizimni ochib ko'rgan odamlarni", ru: 'Людей, которые открыли вашу систему' }, { uz: 'Arizasiga javob olgan odamlarni', ru: 'Людей, которые получили ответ на заявку' }, { uz: 'Tizimni telefondan ochgan odamlarni', ru: 'Людей, которые открыли систему с телефона' }, { uz: 'Sizning mehnatingizni va ish jarayonini', ru: 'Ваш труд и процесс работы' }], correct: 3 },
-  { q: { uz: 'Ekranga faqat «150» yozilgan slayd chiqdi. Bu raqam nima qiladi?', ru: 'На экран вышел слайд, где написано только «150». Что делает это число?' }, opts: [{ uz: 'Tizim haqida hammasini aytib beradi', ru: 'Рассказывает о системе всё' }, { uz: 'Sahnadagi odamlarni sanab turadi', ru: 'Считает людей в зале' }, { uz: 'Odamda savol qoldiradi, javob bermaydi', ru: 'Оставляет у человека вопрос и не отвечает' }, { uz: "Slaydning qolgan qatorlarini o'zi to'ldiradi", ru: 'Само заполняет остальные строки слайда' }], correct: 2 },
-  { q: { uz: "Sahnaga slayd tayyorlayapsiz. Unda nechta qator bo'ladi?", ru: 'Вы готовите слайд для сцены. Сколько в нём строк?' }, opts: [{ uz: 'Ikkita — raqam va uning nomi', ru: 'Две — число и его название' }, { uz: "Uchta — raqam, sanagani, ko'rsatgani", ru: 'Три — число, что посчитало, что показывает' }, { uz: "To'rtta — raqam, nom, sana va xulosa", ru: 'Четыре — число, название, дата и вывод' }, { uz: "Bitta — faqat katta raqamning o'zi", ru: 'Одна — только само большое число' }], correct: 1 },
-  { q: { uz: 'Slaydda «120» va «odam saytdan foydalandi» bor. Endi yana nimani yozish kerak?', ru: 'На слайде есть «120» и «человек воспользовались сайтом». Что ещё нужно написать?' }, opts: [{ uz: 'Raqamni qaysi kuni sanab olganini', ru: 'В какой день посчитали число' }, { uz: "Bu raqam sayt haqida nimani ko'rsatishini", ru: 'Что это число показывает о сайте' }, { uz: 'Saytning qaysi sahifasi sanoqni yuritganini', ru: 'Какая страница сайта вела подсчёт' }, { uz: 'Faqat 120 raqamini yana bir marta', ru: 'Ещё раз только число 120' }], correct: 1 },
-  { q: { uz: 'Ikki raqam ham natijani sanadi. Sahnadagi bitta joyni qaysi biri oladi?', ru: 'Оба числа считают результат. Какое займёт единственное место на сцене?' }, opts: [{ uz: "Ish oxirigacha yetganini ko'rsatgani", ru: 'То, которое показывает, что дело дошло до конца' }, { uz: "Foydalanish endi boshlanganini ko'rsatgani", ru: 'То, которое показывает, что пользоваться только начали' }, { uz: "Soni kattaroq bo'lgani", ru: 'То, у которого число больше' }, { uz: 'Slaydga birinchi yozilgani', ru: 'То, которое первым записали на слайд' }], correct: 0 },
-  { q: { uz: "«41 odam tizimni ochdi» nimani ko'rsatadi?", ru: 'Что показывает «41 человек открыли систему»?' }, opts: [{ uz: 'Tizim necha hafta qurilganini', ru: 'Сколько недель строили систему' }, { uz: 'Tizimda nechta sahifa borligini', ru: 'Сколько в системе страниц' }, { uz: 'Tizimdan foydalanish boshlanganini', ru: 'Что системой начали пользоваться' }, { uz: 'Arizalarga javob berilganini', ru: 'Что на заявки ответили' }], correct: 2 },
-  { q: { uz: "Airbnb besh qadamining qaysi o'rnida raqam turgan?", ru: 'На каком месте из пяти шагов Airbnb стояло число?' }, opts: [{ uz: 'Jamoa tanishtirilgandan keyin, oxirida', ru: 'В конце, после рассказа о команде' }, { uz: 'Mahsulot aytilgandan keyingi qadamda', ru: 'На шаге после рассказа о продукте' }, { uz: 'Qiyinchilik aytilishidan oldin', ru: 'До того, как назвали проблему' }, { uz: 'Yechim aytilgandan keyingi qadamda', ru: 'На шаге после того, как назвали решение' }], correct: 3 },
-  { q: { uz: "Airbnb varag'ida raqam qiyinchilik qadamiga nima qo'shgan?", ru: 'Что число на листе Airbnb добавило к шагу о проблеме?' }, opts: [{ uz: 'Uni sezgan odamlar qancha ekanini', ru: 'Сколько людей её ощущают' }, { uz: 'Yechim qancha vaqtda topilganini', ru: 'За сколько времени нашли решение' }, { uz: "Saytga uy qo'ygan odamlar sonini", ru: 'Сколько людей разместили жильё на сайте' }, { uz: 'Jamoada ishlaganlarning ismlarini', ru: 'Имена тех, кто работал в команде' }], correct: 0 },
-  { q: { uz: 'Sahnada «5 hafta ishlandi» yozilgan. Nega bu natija raqami emas?', ru: 'На сцене написано «5 недель работы». Почему это не число результата?' }, opts: [{ uz: 'Chunki 5 — sahna uchun juda kichik son', ru: 'Потому что 5 — слишком маленькое число для сцены' }, { uz: "Chunki hafta soni doim o'zgarib turadi", ru: 'Потому что число недель всё время меняется' }, { uz: 'Chunki u mehnat va jarayonni sanaydi', ru: 'Потому что оно считает труд и процесс' }, { uz: "Chunki bu raqamni sahnadan hech kim ko'rmaydi", ru: 'Потому что это число со сцены никто не увидит' }], correct: 2 },
-  { q: { uz: 'Tizimingizni hali hech kim sinamagan. Endi nima qilinadi?', ru: 'Вашу систему ещё никто не пробовал. Что делать?' }, opts: [{ uz: "Tizimga taxminiy raqam o'ylab topiladi", ru: 'Для системы выдумывают примерное число' }, { uz: 'Tizim bajarib bergan ishlar sanaladi', ru: 'Считают дела, которые выполнила система' }, { uz: 'Tizim haqidagi slayd raqamsiz chiqadi', ru: 'Слайд о системе выходит без числа' }, { uz: "Tizimga ketgan soatlar raqam o'rniga yoziladi", ru: 'Вместо числа пишут часы, потраченные на систему' }], correct: 1 },
-  { q: { uz: 'Sahnaga qaysi raqam chiqishini kim hal qiladi?', ru: 'Кто решает, какое число выйдет на сцену?' }, opts: [{ uz: 'Siz uchun kodni yozgan dasturchi', ru: 'Программист, который написал для вас код' }, { uz: "Sahnadagi katta ekranning o'zi", ru: 'Сам большой экран на сцене' }, { uz: "Tizim raqamni siz uchun o'zi tanlaydi", ru: 'Система сама выбирает число за вас' }, { uz: "Ilovani yaratayotgan odam, ya'ni siz", ru: 'Тот, кто создаёт приложение, — то есть вы' }], correct: 3 },
+  { q: { uz: "Kuchli dalil raqami nimani sanaydi?", ru: "Что считает число-доказательство?" }, opts: [{ uz: "Foydalanuvchi olgan natijani", ru: "Результат, полученный пользователем" }, { uz: "Qurishga ketgan vaqtni", ru: "Время на постройку" }, { uz: "Kod satrlari sonini", ru: "Число строк кода" }, { uz: "Ishlagan odamlar sonini", ru: "Число работавших людей" }], correct: 0 },
+  { q: { uz: "«28 ta rasm chizildi» nimani sanaydi?", ru: "Что считает «нарисовано 28 картинок»?" }, opts: [{ uz: "Tizimni ochgan odamlarni", ru: "Людей, открывших систему" }, { uz: "Javob olgan odamlarni", ru: "Людей, получивших ответ" }, { uz: "Telefondan ochganlarni", ru: "Открывших с телефона" }, { uz: "Sizning mehnatingizni", ru: "Ваш труд" }], correct: 3 },
+  { q: { uz: "Slaydda faqat «150». Bu raqam nima qiladi?", ru: "На слайде только «150». Что делает это число?" }, opts: [{ uz: "Hammasini aytib beradi", ru: "Рассказывает всё" }, { uz: "Odamlarni sanab turadi", ru: "Считает людей" }, { uz: "Savol tug'diradi, xolos", ru: "Только вызывает вопрос" }, { uz: "Qatorlarni o'zi to'ldiradi", ru: "Сам заполняет строки" }], correct: 2 },
+  { q: { uz: "Gapiradigan slaydda nechta qator bo'ladi?", ru: "Сколько строк в «говорящем» слайде?" }, opts: [{ uz: "Ikkita", ru: "Две" }, { uz: "Uchta", ru: "Три" }, { uz: "To'rtta", ru: "Четыре" }, { uz: "Bitta", ru: "Одна" }], correct: 1 },
+  { q: { uz: "Slaydda «120 · odam saytdan foydalandi». Yana nima kerak?", ru: "На слайде «120 · человек пользовались сайтом». Что ещё нужно?" }, opts: [{ uz: "Qaysi kuni sanalgani", ru: "В какой день посчитано" }, { uz: "U nimani ko'rsatishi", ru: "Что это число показывает" }, { uz: "Qaysi sahifa sanagani", ru: "Какая страница считала" }, { uz: "120 ni yana bir bor", ru: "Ещё раз число 120" }], correct: 1 },
+  { q: { uz: "Ikki natija raqamidan qaysi biri sahnaga chiqadi?", ru: "Какое из двух чисел-результатов выходит на сцену?" }, opts: [{ uz: "Ish oxirigacha yetgani", ru: "То, где дело дошло до конца" }, { uz: "Foydalanish boshlangani", ru: "То, где использование началось" }, { uz: "Soni kattarog'i", ru: "То, что больше" }, { uz: "Birinchi yozilgani", ru: "То, что записано первым" }], correct: 0 },
+  { q: { uz: "«41 odam tizimni ochdi» nimani ko'rsatadi?", ru: "Что показывает «41 человек открыл систему»?" }, opts: [{ uz: "Necha hafta qurilganini", ru: "Сколько недель строили" }, { uz: "Nechta sahifa borligini", ru: "Сколько в ней страниц" }, { uz: "Foydalanish boshlanganini", ru: "Что использование началось" }, { uz: "Arizaga javob berilganini", ru: "Что на заявки ответили" }], correct: 2 },
+  { q: { uz: "Airbnb varaqlarida raqam qayerda turgan?", ru: "Где стояло число на листах Airbnb?" }, opts: [{ uz: "Oxirida, jamoadan keyin", ru: "В конце, после команды" }, { uz: "Mahsulotdan keyin", ru: "После продукта" }, { uz: "Qiyinchilikdan oldin", ru: "Перед проблемой" }, { uz: "Yechimdan keyin", ru: "После решения" }], correct: 3 },
+  { q: { uz: "Airbnb raqami qiyinchilik haqida nimani aytgan?", ru: "Что число Airbnb говорило о проблеме?" }, opts: [{ uz: "Qancha odamda borligini", ru: "У скольких людей она есть" }, { uz: "Qancha vaqtda yechilganini", ru: "За сколько её решили" }, { uz: "Nechta uy qo'yilganini", ru: "Сколько домов выставлено" }, { uz: "Jamoa a'zolari ismini", ru: "Имена членов команды" }], correct: 0 },
+  { q: { uz: "«5 hafta ishlandi» nega natija raqami emas?", ru: "Почему «работали 5 недель» — не число-результат?" }, opts: [{ uz: "5 juda kichik son", ru: "5 — слишком маленькое число" }, { uz: "Hafta soni o'zgaradi", ru: "Число недель меняется" }, { uz: "U mehnatni sanaydi", ru: "Оно считает труд" }, { uz: "Uni hech kim ko'rmaydi", ru: "Его никто не видит" }], correct: 2 },
+  { q: { uz: "Tizimni hech kim sinamagan. Nima qilinadi?", ru: "Систему никто не пробовал. Что делать?" }, opts: [{ uz: "Taxminiy raqam o'ylanadi", ru: "Придумывают примерное число" }, { uz: "Tizim qilgan ishlar sanaladi", ru: "Считают дела, сделанные системой" }, { uz: "Slayd raqamsiz chiqadi", ru: "Слайд выходит без числа" }, { uz: "Ketgan soatlar yoziladi", ru: "Пишут потраченные часы" }], correct: 1 },
+  { q: { uz: "Sahnaga qaysi raqam chiqishini kim hal qiladi?", ru: "Кто решает, какое число выйдет на сцену?" }, opts: [{ uz: "Sahnadagi katta ekran", ru: "Большой экран на сцене" }, { uz: "Tizimning o'zi tanlaydi", ru: "Система выбирает сама" }, { uz: "Zaldagi mehmonlar", ru: "Гости в зале" }, { uz: "Ilovani yaratayotgan siz", ru: "Вы, создающий приложение" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -3072,7 +3095,7 @@ const CSS_LESSON = `
   .fc-fly.out-again { animation: fc-out-again 0.42s ease forwards; }
   @keyframes fc-out-knew { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(70%) rotate(5deg); opacity: 0; } }
   @keyframes fc-out-again { 30% { transform: translateX(0) rotate(0); opacity: 1; } 100% { transform: translateX(-70%) rotate(-5deg); opacity: 0; } }
-  .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+  .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
   .fc-card.flip { transform: rotateY(180deg); }
   .fc-card:not(.flip):hover { transform: translateY(-3px); }
   .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

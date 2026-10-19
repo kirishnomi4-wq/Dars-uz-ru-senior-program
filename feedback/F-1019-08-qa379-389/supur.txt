@@ -1,0 +1,134 @@
+== pm-pitch-03-v20 s0 uz · eyebrow: KIRISH
+== pm-pitch-03-v20 s1 uz · eyebrow: REJA
+== pm-pitch-03-v20 s2 uz · eyebrow: MUAMMO-QIDIRUV
+== pm-pitch-03-v20 s3 uz · eyebrow: YECHIM VA JONLI DEMO
+== pm-pitch-03-v20 s4 uz · eyebrow: MASHQ · 2-SAVOL
+== pm-pitch-03-v20 s5 uz · eyebrow: REPETITSIYA
+== pm-pitch-03-v20 s6 uz · eyebrow: REPETITSIYA · JUFTLIKDA
+== pm-pitch-03-v20 s7 uz · eyebrow: AMALIYOT · SAYT
+== pm-m2d13-v2 s0 uz · eyebrow: BIR SUHBAT
+== pm-m2d13-v2 s1 uz · eyebrow: BUGUNGI NATIJA
+== pm-m2d13-v2 s2 uz · eyebrow: KASBIY SO'ZLAR
+== pm-m2d13-v2 s3 uz · eyebrow: O'XSHATISH
+== pm-m2d13-v2 s4 uz · eyebrow: PITCH MATNI
+== pm-m2d13-v2 s5 uz · eyebrow: YAKUNIY SAVOL
+== pm-m2d13-v2 s6 uz · eyebrow: BITTA GAP
+== pm-m2d13-v2 s7 uz · eyebrow: YODDAN AYTING
+== pm-m2d13-v2 s8 uz · eyebrow: AMALIYOT · SAYT
+== m7-12-v2 s0 uz · eyebrow: KIRISH · «MAYDON» PITCHI
+  BO'SH (boshida): 6 ps-slayd-bosh,ps-bosh
+== m7-12-v2 s1 uz · eyebrow: MAQSAD
+== m7-12-v2 s2 uz · eyebrow: TUSHUNCHA · RAQAM YONIDA
+  BO'SH (boshida): 7 yorliqli:ps-slayd-bosh,ps-q.bosh,ps-bosh
+== m7-12-v2 s3 uz · eyebrow: TUSHUNCHA · YOZUVDAN OLINGAN GAP
+  BO'SH (boshida): 1 ps-fikr-joy
+== m7-12-v2 s4 uz · eyebrow: TUSHUNCHA · UCH SLAYD
+  BO'SH (boshida): 12 yorliqli:ps-slayd-bosh,ps-q.bosh,ps-bosh
+== m7-12-v2 s5 uz · eyebrow: MUSTAQIL ISH
+  BO'SH (boshida): 10 yorliqli:ps-slayd-bosh,yorliqli:ps-q.bosh,ps-bosh
+== m7-12-v2 s6 uz · eyebrow: YAKUNIY TEKSHIRUV
+== m7-12-v2 s7 uz · eyebrow: MASHQ · SINFDOSH OLDIDA
+  BO'SH (boshida): 8 yorliqli:ps-s12-bosh,yorliqli:ps-slayd-bosh,ps-bosh
+== pm-m8d11-pitch-v2 s0 uz · eyebrow: KIRISH · «MAYDON» PITCHI
+  BO'SH (boshida): 11 yorliqli:pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+== pm-m8d11-pitch-v2 s1 uz · eyebrow: REJA
+== pm-m8d11-pitch-v2 s2 uz · eyebrow: TUSHUNCHA · BESH SLAYD
+  BO'SH (boshida): 15 yorliqli:pr-sl-bosh,pr-sl.h-joy,pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+     BO'SH: 13 yorliqli:pr-sl-bosh,pr-sl.h-joy,pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+     BO'SH: 11 yorliqli:pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+     BO'SH: 12 yorliqli:pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+== pm-m8d11-pitch-v2 s3 uz · eyebrow: TUSHUNCHA · RAQAMLAR
+  BO'SH (boshida): 8 yorliqli:pr-rs-bosh,pr-rs-q.bosh,pr-bosh
+     BO'SH: 7 yorliqli:pr-rs-bosh,pr-rs-q.bosh,pr-bosh
+     BO'SH: 6 yorliqli:pr-rs-bosh,pr-rs-q.bosh,pr-bosh
+     BO'SH: 1 yorliqli:pr-rs-bosh
+== pm-m8d11-pitch-v2 s4 uz · eyebrow: TUSHUNCHA · FIDBEK
+  BO'SH (boshida): 5 yorliqli:pr-sl-bosh
+== pm-m8d11-pitch-v2 s5 uz · eyebrow: YAKUNIY TEKSHIRUV
+== pm-m8d11-pitch-v2 s6 uz · eyebrow: MUSTAQIL ISH
+  BO'SH (boshida): 5 yorliqli:pr-sl-bosh,pr-bosh
+== pm-m8d11-pitch-v2 s7 uz · eyebrow: MASHQ · SINFDOSH OLDIDA
+  BO'SH (boshida): 14 yorliqli:pr-sl-bosh,pr-tm-k.h-uzuq,pr-bosh
+== pm-m8d11-pitch-v2 s8 uz · eyebrow: MASHQ · TUZATISH
+== pm-m9d16-v2 s0 uz · eyebrow: KIRISH · «MAYDON JAMOA» PITCHI
+== pm-m9d16-v2 s1 uz · eyebrow: REJA
+== pm-m9d16-v2 s2 uz · eyebrow: TUSHUNCHA · TO'RT BO'LAK
+  BO'SH (boshida): 4 pt-bl.h-bosh
+     BO'SH: 3 pt-bl.h-bosh
+     BO'SH: 2 pt-bl.h-bosh
+     BO'SH: 1 pt-bl.h-bosh
+== pm-m9d16-v2 s3 uz · eyebrow: TUSHUNCHA · DALIL
+  BO'SH (boshida): 1 yorliqli:pt-bl.h-bosh
+== pm-m9d16-v2 s4 uz · eyebrow: TUSHUNCHA · JONLI DEMO
+  BO'SH (boshida): 1 yorliqli:pt-bl.h-bosh
+     BO'SH: 1 yorliqli:pt-bl.h-bosh
+     BO'SH: 1 yorliqli:pt-bl.h-bosh
+     BO'SH: 1 yorliqli:pt-bl.h-bosh
+== pm-m9d16-v2 s5 uz · eyebrow: MUSTAQIL ISH
+== pm-m9d16-v2 s6 uz · eyebrow: YAKUNIY TEKSHIRUV
+== pm-m9d16-v2 s7 uz · eyebrow: MUSTAQIL ISH
+== pm-m9d16-v2 s8 uz · eyebrow: AMALIYOT · ILOVA
+== pm-m10d11-v2 s0 uz · eyebrow: KIRISH
+== pm-m10d11-v2 s1 uz · eyebrow: REJA
+== pm-m10d11-v2 s2 uz · eyebrow: TUSHUNCHA · DA'VO VA DALIL
+== pm-m10d11-v2 s3 uz · eyebrow: TUSHUNCHA · DALIL
+  BO'SH (boshida): 1 pd-katak.bosh
+== pm-m10d11-v2 s4 uz · eyebrow: MUSTAQIL ISH · DA'VO
+== pm-m10d11-v2 s5 uz · eyebrow: MUSTAQIL ISH · DALIL
+== pm-m10d11-v2 s6 uz · eyebrow: MUSTAQIL ISH · TUZATILGAN PITCH
+== pm-m10d11-v2 s7 uz · eyebrow: YAKUNIY TEKSHIRUV
+== pm-m10d11-v2 s8 uz · eyebrow: MUSTAQIL ISH · TUZATILGAN PITCH
+== pm-m10d12-v2 s0 uz · eyebrow: KIRISH · «MAYDON JAMOA» PITCHI
+== pm-m10d12-v2 s1 uz · eyebrow: REJA
+== pm-m10d12-v2 s2 uz · eyebrow: TUSHUNCHA · BESH BO'LAK
+== pm-m10d12-v2 s3 uz · eyebrow: TUSHUNCHA · GRAFIK
+  BO'SH (boshida): 5 gp-gr-sar.bosh,gp-gr-joy
+     BO'SH: 5 gp-gr-sar.bosh,gp-gr-joy
+     BO'SH: 4 gp-gr-sar.bosh,gp-gr-joy
+     BO'SH: 1 gp-gr-sar.bosh
+== pm-m10d12-v2 s4 uz · eyebrow: TUSHUNCHA · JONLI DEMO
+  BO'SH (boshida): 1 gp-demo-joy.bosh
+     BO'SH: 1 gp-demo-joy.bosh
+== pm-m10d12-v2 s5 uz · eyebrow: KOD YOZISH · GRAFIK
+== pm-m10d12-v2 s6 uz · eyebrow: MUSTAQIL ISH
+== pm-m10d12-v2 s7 uz · eyebrow: MUSTAQIL ISH
+== pm-m10d12-v2 s8 uz · eyebrow: YAKUNIY TEKSHIRUV
+== pm-m12d1-v2 s0 uz · eyebrow: KIRISH
+== pm-m12d1-v2 s1 uz · eyebrow: REJA
+== pm-m12d1-v2 s2 uz · eyebrow: TUSHUNCHA · OLTI BO'LAK
+== pm-m12d1-v2 s3 uz · eyebrow: TUSHUNCHA · UCH YANGI BO'LAK
+== pm-m12d1-v2 s4 uz · eyebrow: MASHQ · MENTOR QORALAMASI
+== pm-m12d1-v2 s5 uz · eyebrow: MUSTAQIL ISH
+== pm-m12d1-v2 s6 uz · eyebrow: MUSTAQIL ISH · QORALAMA
+  BO'SH (boshida): 6 yorliqli:ip-bolak.bosh
+== pm-m12d1-v2 s7 uz · eyebrow: YAKUNIY TEKSHIRUV
+== pm-m12d2-v2 s0 uz · eyebrow: KIRISH
+== pm-m12d2-v2 s1 uz · eyebrow: REJA
+== pm-m12d2-v2 s2 uz · eyebrow: TUSHUNCHA · RO'YXAT VA HIKOYA
+     BO'SH: 1 sp-mdn-joy
+     BO'SH: 1 sp-mdn-joy
+== pm-m12d2-v2 s3 uz · eyebrow: TUSHUNCHA · HIKOYA VA BO'LAKLAR
+== pm-m12d2-v2 s4 uz · eyebrow: MUSTAQIL ISH · HIKOYA
+== pm-m12d2-v2 s5 uz · eyebrow: MUSTAQIL ISH · VIDEO
+== pm-m12d2-v2 s6 uz · eyebrow: MUSTAQIL ISH · 2-RAUND
+== pm-m12d2-v2 s7 uz · eyebrow: YAKUNIY TEKSHIRUV
+== pm-m12d5-v2 s0 uz · eyebrow: KIRISH
+== pm-m12d5-v2 s1 uz · eyebrow: REJA
+== pm-m12d5-v2 s2 uz · eyebrow: TUSHUNCHA · BAHOLASH VARAG'I
+== pm-m12d5-v2 s3 uz · eyebrow: TUSHUNCHA · TUZATISHLAR RO'YXATI
+== pm-m12d5-v2 s4 uz · eyebrow: MUSTAQIL ISH
+== pm-m12d5-v2 s5 uz · eyebrow: MUSTAQIL ISH · TUZATISHLAR RO'YXATI
+== pm-m12d5-v2 s6 uz · eyebrow: YAKUNIY TEKSHIRUV
+== pm-m12d8-v2 s0 uz · eyebrow: KIRISH
+  BO'SH (boshida): 1 yorliqli:fp-hk-bosh
+== pm-m12d8-v2 s1 uz · eyebrow: REJA
+== pm-m12d8-v2 s2 uz · eyebrow: TUSHUNCHA · SAVOL-JAVOB
+  BO'SH (boshida): 1 yorliqli:fp-hk-bosh
+== pm-m12d8-v2 s3 uz · eyebrow: TUSHUNCHA · TUZATISH VA TAYMER
+== pm-m12d8-v2 s4 uz · eyebrow: MUSTAQIL ISH · TUZATISHLAR
+== pm-m12d8-v2 s5 uz · eyebrow: JUFTLIKDA ISH · TAYMER
+== pm-m12d8-v2 s6 uz · eyebrow: JUFTLIKDA ISH · SAVOL-JAVOB
+  BO'SH (boshida): 1 yorliqli:fp-hk-bosh
+== pm-m12d8-v2 s7 uz · eyebrow: YAKUNIY TEKSHIRUV
+== pm-m12d8-v2 s8 uz · eyebrow: AMALIYOT · ILOVA TEKSHIRUVI
+TAYYOR

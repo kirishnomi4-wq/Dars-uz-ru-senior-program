@@ -93,6 +93,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -170,8 +195,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -965,10 +990,10 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>Ilova yopiq bo'lsa, yangi o'yin haqida <span className="italic" style={{ color: T.accent }}>kim yozadi?</span></>, ru: <>Если приложение закрыто, кто напишет <span className="italic" style={{ color: T.accent }}>о новой игре?</span></> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={<Bashorat savol={S2_SAVOL} variantlar={S2_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={tugadi
+        vizual={!taxmin && !tugadi ? null : <div className="q-kir">{tugadi
           ? <div className="wb-s2-tug"><TgSahna sinf="s2 tugadi" tel={telOn} be={be} k={k} v={v} /><div className="wb-s2-yon">{nom && <NomQator matn={nom} />}<NomQator matn={S2_JORIY} joriy /></div></div>
           : <TgSahna sinf="s2" tel={telOn} be={be} k={k} v={v}
-            beOsti={shanbaFaol && <button type="button" className="wb-sahna-btn tg-shanba wb-halqa fade-step" onClick={shanba}>{tr(S2_SHANBA)}</button>} />}
+            beOsti={shanbaFaol && <button type="button" className="wb-sahna-btn tg-shanba wb-halqa fade-step" onClick={shanba}>{tr(S2_SHANBA)}</button>} />}</div>}
         natija={!tugadi && <>{nom && <NomQator matn={nom} />}{done && <NomQator matn={S2_JORIY} joriy />}</>}
         xulosa={done && <XulosaQ natija={<Natija togri={togri} haqiqat={{ uz: "yo'q, o'yinchi botni o'zi boshlashi kerak", ru: 'нет, игрок должен сам запустить бота' }} />}
           matn={tr({ uz: "Bu misolda yangi o'yinni Backend biladi; bot esa faqat «Start»ni bosgan odamga yoza oladi.", ru: 'В этом примере о новой игре знает Backend; а бот может написать только тому, кто нажал «Start».' })}
@@ -1057,7 +1082,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const chiqdi = i < 4 && kat >= 3;
   const p1Puf = (ok) => <div className={cx('wb-puf xabar kichik', !ok && 'sondi')}><span>{tr(TG_XABAR.matn('18:00'))}</span></div>;
   const mGap = done ? S5_MENTOR[3] : !taxmin ? S5_MENTOR[0] : i < 4 ? S5_MENTOR[1] : S5_MENTOR[2];
-  const navQ = i < 4 ? { uz: `Kartalarni tekshiring (${i}/4)`, ru: `Проверьте карточки (${i}/4)` } : { uz: "O'chirishni bosing", ru: 'Нажмите отключение' };
+  const navQ = i < 4 ? { uz: `Kartalarni tekshiring`, ru: `Проверьте карточки` } : { uz: "O'chirishni bosing", ru: 'Нажмите отключение' };
   const vizual = (
     <div className={cx('wb-s5', tugadi && 'tugadi')}>
       <div className="wb-s5-chap">
@@ -1094,7 +1119,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         sarlavha={tr({ uz: <>O'yin yana e'lon qilindi — Backend <span className="italic" style={{ color: T.accent }}>kimga yozadi?</span></>, ru: <>Игру снова объявили — <span className="italic" style={{ color: T.accent }}>кому напишет</span> Backend?</> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={<Bashorat savol={S5_SAVOL} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
-        vizual={vizual}
+        vizual={!taxmin && !tugadi ? null : <div className="q-kir">{vizual}</div>}
         natija={ochirildi && <NomQator matn={S5_JORIY} joriy />}
         xulosa={done && <XulosaQ natija={<Natija togri={taxmin === 'bitta'} haqiqat={{ uz: 'bittasiga', ru: 'одному' }} />}
           matn={tr({ uz: "Bu kursda xabar o'z o'yini qayta e'lon qilingan, botni ulagan odamga ketadi — haftasiga ko'pi bilan ikkita.", ru: 'В этом курсе сообщение уходит тому, чью игру снова объявили и кто подключил бота, — не больше двух в неделю.' })}
@@ -1208,18 +1233,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (MD aylanma tartibi)
 const QUIZ_BANK = [
-  { q: { uz: "Mentor misolida yana ochmagan beshtadan ko'pi nima dedi?", ru: 'Что сказали большинство из пяти, не открывших снова, в примере Ментора?' }, opts: [{ uz: "«Yangi o'yin chiqqanini bilmadim»", ru: '«Не знал, что вышла новая игра»' }, { uz: '«Ilova menga umuman yoqmadi»', ru: '«Приложение мне совсем не понравилось»' }, { uz: '«Telefonimda joy qolmay qoldi»', ru: '«На телефоне закончилось место»' }, { uz: "«O'yinlar menga juda qimmat tuyuldi»", ru: '«Игры показались мне слишком дорогими»' }], correct: 0 },
-  { q: { uz: "Bot odamga birinchi bo'lib yoza oladimi?", ru: 'Может ли бот написать человеку первым?' }, opts: [{ uz: "Ha — Backend chat raqamini o'zi topadi", ru: 'Да — Backend сам найдёт номер чата' }, { uz: "Yo'q — odam avval botni o'zi boshlaydi", ru: 'Нет — человек сначала сам запускает бота' }, { uz: 'Ha — bot istalgan odamga yoza oladi', ru: 'Да — бот может написать любому' }, { uz: "Yo'q — buning uchun telefon raqami kerak", ru: 'Нет — для этого нужен номер телефона' }], correct: 1 },
-  { q: { uz: 'Ulanish havolasidagi bir martalik kod nima uchun kerak?', ru: 'Зачем нужен одноразовый код в ссылке подключения?' }, opts: [{ uz: 'Botni Telegram qidiruvida tezroq topish uchun', ru: 'Чтобы быстрее найти бота в поиске Telegram' }, { uz: 'Xabarni tezroq yetkazib berish uchun', ru: 'Чтобы быстрее доставить сообщение' }, { uz: "Chatni aynan shu hisob bilan bog'lash uchun", ru: 'Чтобы связать чат именно с этим аккаунтом' }, { uz: "Bot tokenini odamga ko'rsatish uchun", ru: 'Чтобы показать человеку токен бота' }], correct: 2 },
-  { q: { uz: "Telegram so'rovi kelganda Mentor Backend'i avval nimani tekshiradi?", ru: 'Что Backend Ментора проверяет первым, когда приходит запрос Telegram?' }, opts: [{ uz: 'Odamning Telegram nomini', ru: 'Имя человека в Telegram' }, { uz: 'Xabardagi chat raqamini', ru: 'Номер чата в сообщении' }, { uz: 'Botning foydalanuvchi nomini', ru: 'Имя пользователя бота' }, { uz: 'Sarlavhadagi maxfiy kalitni', ru: 'Секретный ключ в заголовке' }], correct: 3 },
-  { q: { uz: 'Bot tokeni qayerda turadi?', ru: 'Где хранится токен бота?' }, opts: [{ uz: '`backend/.env` da va Render sozlamasida', ru: 'В `backend/.env` и в настройках Render' }, { uz: 'Ilova kodida, tugma bosiladigan joy yonida', ru: 'В коде приложения, рядом с кнопкой' }, { uz: "`README.md` dagi ro'yxatda, qiymati bilan", ru: 'В списке в `README.md`, со значением' }, { uz: 'Bot javobi matnida, eng oxirgi qatorda', ru: 'В тексте ответа бота, в последней строке' }], correct: 0 },
-  { q: { uz: "Ulanganda Backend Telegram'dan nimani saqlaydi?", ru: 'Что Backend сохраняет из Telegram при подключении?' }, opts: [{ uz: 'Odamning ismi va Telegram nomini', ru: 'Имя человека и имя в Telegram' }, { uz: 'Faqat chat raqamini, boshqasini emas', ru: 'Только номер чата, больше ничего' }, { uz: 'Telefon raqami va chat raqamini birga', ru: 'Номер телефона вместе с номером чата' }, { uz: 'Botga yozilgan hamma xabarlarni', ru: 'Все сообщения, написанные боту' }], correct: 1 },
-  { q: { uz: "Shu hafta o'yinchiga ikkita Telegram xabari ketdi. Uchinchisi-chi?", ru: 'На этой неделе игроку ушло два сообщения Telegram. А третье?' }, opts: [{ uz: "Baribir yuboriladi — o'yin yangi", ru: 'Всё равно уйдёт — игра новая' }, { uz: "Ilovada eslatma bo'lib chiqadi", ru: 'Появится в приложении напоминанием' }, { uz: 'Bu hafta umuman yuborilmaydi', ru: 'На этой неделе вообще не уйдёт' }, { uz: 'Ertasiga ikki marta yuboriladi', ru: 'Назавтра уйдёт дважды' }], correct: 2 },
-  { q: { uz: 'Qaysi Telegram xabari darsdagi qoidaga mos?', ru: 'Какое сообщение Telegram подходит под правило урока?' }, opts: [{ uz: "«Pro oling — aks holda o'yiningiz to'lmaydi»", ru: '«Возьмите Pro — иначе ваша игра не наберётся»' }, { uz: '«Hamma qaytdi, faqat siz yo\'qsiz!»', ru: '«Все вернулись, только вас нет!»' }, { uz: '«Yangi o\'yinlar bor, ilovani oching!»', ru: '«Есть новые игры, откройте приложение!»' }, { uz: "«Shanba, 18:00 o'yini yana e'lon qilindi»", ru: '«Игра в субботу, 18:00 снова объявлена»' }], correct: 3 },
-  { q: { uz: "«Telegram xabarlarini o'chirish» bosilsa, nima bo'ladi?", ru: "Что будет, если нажать «Telegram xabarlarini o'chirish»?" }, opts: [{ uz: "Chat raqami o'chadi, xabar to'xtaydi", ru: 'Номер чата удаляется, сообщения прекращаются' }, { uz: "Hisob butunlay o'chib ketadi", ru: 'Аккаунт удаляется полностью' }, { uz: "Bot Telegram'dan butunlay o'chib ketadi", ru: 'Бот полностью удаляется из Telegram' }, { uz: 'Xabarlar faqat kechqurun keladi', ru: 'Сообщения приходят только вечером' }], correct: 0 },
-  { q: { uz: 'Mentor misolida `telegramdan-ochdi` qachon yoziladi?', ru: 'Когда в примере Ментора пишется `telegramdan-ochdi`?' }, opts: [{ uz: 'Telegram xabari yuborilganda', ru: 'Когда отправлено сообщение Telegram' }, { uz: 'Xabardagi havola bilan ochilganda', ru: 'Когда открыли по ссылке из сообщения' }, { uz: "Bot «Start»ni qabul qilganda", ru: 'Когда бот принял «Start»' }, { uz: "Ilova telefonga yangidan o'rnatilganda", ru: 'Когда приложение заново установили на телефон' }], correct: 1 },
-  { q: { uz: "Sinfdagi tekshiruv o'yinlari va yozuvlari nima bo'ladi?", ru: 'Что будет с проверочными играми и записями в классе?' }, opts: [{ uz: '`hodisalar` da shundayicha qoladi', ru: 'Остаются в `hodisalar` как есть' }, { uz: "Bir haftadan keyin o'zi o'chadi", ru: 'Сами удалятся через неделю' }, { uz: "Tekshirgach, `id` bo'yicha o'chiriladi", ru: 'После проверки удаляются по `id`' }, { uz: "Mentor misoliga namuna qilib ko'chiriladi", ru: 'Копируются в пример Ментора как образец' }], correct: 2 },
-  { q: { uz: 'Mentor misolida Telegram xabari bilan eslatmaning farqi nima?', ru: 'Чем в примере Ментора сообщение Telegram отличается от напоминания?' }, opts: [{ uz: "Ikkalasini ham ilovaning o'zi oldindan qo'yadi", ru: 'Оба заранее ставит само приложение' }, { uz: "Ikkalasini ham Backend'ning o'zi yuborib turadi", ru: 'Оба отправляет сам Backend' }, { uz: "Eslatmani bot yozadi, Telegram xabarini ilova qo'yadi", ru: 'Напоминание пишет бот, сообщение Telegram ставит приложение' }, { uz: "Xabarni Backend yuboradi, eslatmani ilova qo'yadi", ru: 'Сообщение отправляет Backend, напоминание ставит приложение' }], correct: 3 },
+  { q: { uz: "Ilovani yana ochmagan beshtadan ko'pi nima dedi?", ru: "Что сказали большинство из пяти, кто не открыл снова?" }, opts: [{ uz: "«Yangi o'yinni bilmadim»", ru: "«Не знал о новой игре»" }, { uz: "«Ilova yoqmadi»", ru: "«Приложение не понравилось»" }, { uz: "«Telefonda joy qolmadi»", ru: "«На телефоне нет места»" }, { uz: "«O'yinlar qimmat»", ru: "«Игры дорогие»" }], correct: 0 },
+  { q: { uz: "Bot odamga birinchi yoza oladimi?", ru: "Может ли бот написать человеку первым?" }, opts: [{ uz: "Ha, Backend chatni topadi", ru: "Да, Backend найдёт чат" }, { uz: "Yo'q, odam botni boshlaydi", ru: "Нет, человек сам запускает бота" }, { uz: "Ha, istalgan odamga yozadi", ru: "Да, пишет любому" }, { uz: "Yo'q, telefon raqami kerak", ru: "Нет, нужен номер телефона" }], correct: 1 },
+  { q: { uz: "Bir martalik kod nima uchun kerak?", ru: "Зачем нужен одноразовый код?" }, opts: [{ uz: "Botni tezroq topish uchun", ru: "Чтобы быстрее найти бота" }, { uz: "Xabarni tezroq yetkazish", ru: "Быстрее доставить сообщение" }, { uz: "Chatni hisob bilan bog'lash", ru: "Связать чат с аккаунтом" }, { uz: "Tokenni odamga ko'rsatish", ru: "Показать токен человеку" }], correct: 2 },
+  { q: { uz: "Telegram so'rovida Backend avval nimani tekshiradi?", ru: "Что Backend проверяет первым в запросе Telegram?" }, opts: [{ uz: "Odamning Telegram nomini", ru: "Имя человека в Telegram" }, { uz: "Xabardagi chat raqamini", ru: "Номер чата в сообщении" }, { uz: "Botning nomini", ru: "Имя бота" }, { uz: "Sarlavhadagi maxfiy kalitni", ru: "Секретный ключ в заголовке" }], correct: 3 },
+  { q: { uz: "Bot tokeni qayerda turadi?", ru: "Где хранится токен бота?" }, opts: [{ uz: ".env va Render'da", ru: "В .env и в Render" }, { uz: "Ilova kodida", ru: "В коде приложения" }, { uz: "README.md faylida", ru: "В файле README.md" }, { uz: "Bot javobi matnida", ru: "В тексте ответа бота" }], correct: 0 },
+  { q: { uz: "Ulanganda Backend Telegram'dan nimani saqlaydi?", ru: "Что Backend сохраняет из Telegram при подключении?" }, opts: [{ uz: "Ism va Telegram nomini", ru: "Имя и ник в Telegram" }, { uz: "Faqat chat raqamini", ru: "Только номер чата" }, { uz: "Telefon va chat raqamini", ru: "Телефон и номер чата" }, { uz: "Hamma xabarlarni", ru: "Все сообщения" }], correct: 1 },
+  { q: { uz: "Bu hafta ikki xabar ketdi. Uchinchisi nima bo'ladi?", ru: "На этой неделе ушло два сообщения. Что будет с третьим?" }, opts: [{ uz: "Baribir yuboriladi", ru: "Всё равно отправится" }, { uz: "Ilovada eslatma bo'ladi", ru: "Станет напоминанием в приложении" }, { uz: "Bu hafta yuborilmaydi", ru: "На этой неделе не отправится" }, { uz: "Ertaga yuboriladi", ru: "Отправится завтра" }], correct: 2 },
+  { q: { uz: "Qaysi Telegram xabari qoidaga mos?", ru: "Какое сообщение Telegram соответствует правилу?" }, opts: [{ uz: "Pro oling, o'yin to'lsin!", ru: "Возьмите Pro, игра заполнится!" }, { uz: "Hamma qaytdi, siz yo'qsiz!", ru: "Все вернулись, нет только вас!" }, { uz: "Tezroq ilovani oching!", ru: "Скорее откройте приложение!" }, { uz: "O'yiningiz yana e'lon qilindi", ru: "Ваша игра снова объявлена" }], correct: 3 },
+  { q: { uz: "«Telegram xabarlarini o'chirish» nima qiladi?", ru: "Что делает «Отключить сообщения Telegram»?" }, opts: [{ uz: "Chat raqamini o'chiradi", ru: "Удаляет номер чата" }, { uz: "Hisobni o'chiradi", ru: "Удаляет аккаунт" }, { uz: "Botni Telegram'dan o'chiradi", ru: "Удаляет бота из Telegram" }, { uz: "Xabarni kechga suradi", ru: "Переносит сообщения на вечер" }], correct: 0 },
+  { q: { uz: "`telegramdan-ochdi` qachon yoziladi?", ru: "Когда записывается `telegramdan-ochdi`?" }, opts: [{ uz: "Xabar yuborilganda", ru: "Когда сообщение отправлено" }, { uz: "Havola bilan ochilganda", ru: "Когда открыли по ссылке" }, { uz: "Bot «Start»ni olganda", ru: "Когда бот получил «Start»" }, { uz: "Ilova o'rnatilganda", ru: "Когда установили приложение" }], correct: 1 },
+  { q: { uz: "Sinfdagi tekshiruv yozuvlari nima bo'ladi?", ru: "Что будет с проверочными записями в классе?" }, opts: [{ uz: "Shundayicha qoladi", ru: "Остаются как есть" }, { uz: "Bir haftada o'zi o'chadi", ru: "Сами удалятся через неделю" }, { uz: "Tekshirgach o'chiriladi", ru: "Удаляются после проверки" }, { uz: "Namunaga ko'chiriladi", ru: "Копируются в образец" }], correct: 2 },
+  { q: { uz: "Telegram xabarini Backend yuboradi. Eslatmani kim qo'yadi?", ru: "Сообщение Telegram шлёт Backend. Кто ставит напоминание?" }, opts: [{ uz: "Yana Backend", ru: "Тоже Backend" }, { uz: "Telegram bot", ru: "Telegram-бот" }, { uz: "Tashkilotchi", ru: "Организатор" }, { uz: "Ilovaning o'zi", ru: "Само приложение" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1912,7 +1937,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={tor ? 0 : stepN} deskSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('wb-blok', qulfli && 'qulf')}>
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={qadamlar}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={done && tk === 'ok' && doneText ? tx(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
@@ -2254,21 +2279,6 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== YAKUN — QYakun (DE-204, texnik darslar standarti; E 50 — «Bugungi asosiy fikr» yo'q). Uyga vazifa yo'q (loyiha kuni). Sarlavha — besh holat, har biri rost (E 54) =====
-// PM-109 (SABOQ P4): erta tugatgan o'quvchi yo'li — AI tekshiruvchi rolida tekshiruv holatlarini beradi, o'quvchi natijani o'zi yozadi (MD yakunida matn yo'q — «MD ga taklif»)
-const AI_SOROV = { uz: "Sen tekshiruvchisan. Mahsulot: Maydon Jamoa — o'yinchi ilovada «Telegram'da xabar olish»ni bosib, botda «Start» orqali Telegram'ni ulaydi; «Doimiy o'yin» yana e'lon qilinganda Backend unga Telegram xabari yuboradi (haftasiga ko'pi bilan ikkita, bitta o'yin haqida bir marta); «Telegram xabarlarini o'chirish» bir bosishda chat raqamini o'chiradi. Menga navbat bilan 4 ta tekshiruv holatini ber: eskirgan havola, botga oddiy xabar, bir haftada uchinchi xabar, o'chirishdan keyin yangi o'yin. Har holat uchun men nima kutishimni va nima bo'lishi kerakligini yozaman. Sen javobim talabga mosligini bir gap bilan ayt. Token, maxfiy kalit, chat raqami va Telegram nomini so'rama. Birinchi holatni ber.",
-  ru: "Ты проверяющий. Продукт: Maydon Jamoa — игрок нажимает в приложении «Telegram'da xabar olish» и подключает Telegram через «Start» в боте; когда «Doimiy o'yin» снова объявлена, Backend отправляет ему сообщение Telegram (не больше двух в неделю, об одной игре один раз); «Telegram xabarlarini o'chirish» в одно нажатие удаляет номер чата. Дай мне по очереди 4 случая проверки: устаревшая ссылка, обычное сообщение боту, третье сообщение за неделю, новая игра после отключения. Для каждого я напишу, что ожидаю и что должно произойти. Скажи одной фразой, соответствует ли мой ответ требованию. Не спрашивай токен, секретный ключ, номер чата и имя в Telegram. Дай первый случай." };
-const AiDavomCard = () => {
-  const [ok, setOk] = useState(false);
-  const kochir = async () => { if (await nusxala(tr(AI_SOROV))) { setOk(true); setTimeout(() => setOk(false), 1800); } };
-  return (
-    <div className="card wb-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <p className="wb-ai-m">{tr({ uz: "gemini.google.com'ni oching, pastdagi so'rovni yuboring — AI tekshiruvchi bo'lib to'rt tekshiruv holatini beradi. Har biriga javobni o'zingiz yozing; adashgan joyingizni «Orqaga» bilan amaliyot ekranlarida qayta ko'ring.", ru: 'Откройте gemini.google.com, отправьте запрос ниже — AI как проверяющий даст четыре случая проверки. Ответ на каждый пишите сами; где ошиблись — посмотрите снова на экранах практик через «Назад».' })}</p>
-      <pre className="wb-ai-sorov">{tr(AI_SOROV)}</pre>
-      <button type="button" className="q-chip wb-ai-btn" onClick={kochir}>{ok ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 const YAKUN_SARLAVHA = {
   toliq: { uz: 'Telegram xabari ishlaydi, o\'chiriladi va sanaladi.', ru: 'Сообщение Telegram работает, отключается и считается.' },
   boshqacha: { uz: 'Telegram xabari qurildi — bitta joyni tuzatish qoldi.', ru: 'Сообщение Telegram построено — осталось исправить одно место.' },
@@ -2327,7 +2337,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           </>}
           recap={RECAP.map(tr)}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}>
-          {!isMentorL && <AiDavomCard />}
+          
           <p className="wb-keyingi fade-up" style={{ animationDelay: '0.35s' }}>{tr({ uz: <>Keyingi dars — <b>«Kim haqiqatan to'lashga tayyor?»</b>: Mentor tekshiruvi: uchta yozma tasdiq.</>, ru: <>Следующий урок — <b>«Кто действительно готов платить?»</b>: проверка Ментора: три письменных подтверждения.</> })}</p>
         </QYakun>
       </div>
@@ -2565,7 +2575,8 @@ export default function WinBackDayLesson({ lang: langProp, onFinished, liveToken
         .wb-hisob-q:last-child .wb-hisob-u i { background: ${T.accent}; }
         @keyframes wb-ustun { from { transform: scaleX(0); } to { transform: scaleX(1); } }
         /* Backend va Telegram tugunlari */
-        .wb-backend { display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 12px; background: ${CODE.bg}; color: ${CODE.text}; box-shadow: 0 12px 26px -16px rgba(${T.shadowBase},0.6); }
+        .wb-backend { display: flex; flex-direction: column; gap: 4px; padding: 8px 10px; border-radius: 12px; background: ${CODE.bg}; color: ${CODE.text}; box-shadow: none; }
+        .wb-backend::before { content: ''; width: 18px; height: 14px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 14' fill='none' stroke='white' stroke-opacity='0.8' stroke-width='1.4'%3E%3Crect x='1' y='1' width='16' height='5' rx='1.5'/%3E%3Crect x='1' y='8' width='16' height='5' rx='1.5'/%3E%3Ccircle cx='4.2' cy='3.5' r='0.7' fill='white'/%3E%3Ccircle cx='4.2' cy='10.5' r='0.7' fill='white'/%3E%3C/svg%3E") center / contain no-repeat; } /* F-1015-350: server belgisi, soyasiz — tugmaga o'xshamasin */
         .wb-be-bosh { font-size: 12.5px; color: #fff; }
         .wb-be-q { font-size: 11px; line-height: 1.35; color: ${CODE.text}; padding: 2px 6px; border-radius: 6px; }
         .wb-be-q.kul { color: ${CODE.punct}; }
@@ -2709,7 +2720,6 @@ export default function WinBackDayLesson({ lang: langProp, onFinished, liveToken
         p.wb-fc-ipucha { margin: 0; display: inline-flex; align-items: center; gap: 8px; align-self: center; font-size: 13.5px; font-weight: 700; color: ${T.accent}; }
         p.wb-fc-ipucha i { width: 8px; height: 8px; border-radius: 50%; background: ${T.accent}; }
         p.wb-ai-m { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: ${T.ink}; }
-        .wb-ai-sorov { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.45; color: ${T.ink}; white-space: pre-wrap; }
         .wb-ai-btn { margin: 0; }
         .wb-ai { display: flex; flex-direction: column; }
         .wb-yakun { display: contents; }

@@ -1,0 +1,54 @@
+== vscode-start-01-v1 s3 uz · eyebrow: 2-QADAM · TANISHUV
+  boshida nav: Savollarga javob bering (yopiq)
+  1. «Loyihadagi fayllar ro'yxati qaysi panelda?» [savol top 267]
+     ✗ «Editor» → «Editor — kod yoziladigan katta panel; ro'yxat unda emas.» (56 b., yopildi: true)
+     ✓ «Explorer» · nav: Savollarga javob bering (yopiq)
+  2. «Kod qaysi panelga yoziladi?» [savol top 266]
+     ✓ «Editor» · nav: Savollarga javob bering (yopiq)
+  3. «VS Code'ga yangi imkoniyat qo'shadigan dastur qayerdan o'rnatiladi?» [savol top 266]
+     ✗ «Explorer» → «Explorer — loyiha fayllari; dastur u yerdan o'rnatilmaydi.» (58 b., yopildi: true)
+     ✗ «Editor» → «Editor'da kod yoziladi; qo'shimcha dastur u yerda yo'q.» (55 b., yopildi: true)
+     ✓ «Extensions» · nav: Savollarga javob bering (yopiq)
+  4. «Kompyuterga yozma buyruq qaysi panelda beriladi?» [savol top 266]
+     ✗ «Extensions» → «Extensions — qo'shimcha dasturlar; buyruq u yerda yozilmaydi.» (61 b., yopildi: true)
+     ✓ «Terminal» · nav: Davom etish (ochiq)
+  tugadi: qadam 4, xato tanlov 4 · nav: Davom etish (ochiq) · xulosa: false
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== vscode-start-01-v1 s3 uz-390 · eyebrow: 2-QADAM · TANISHUV
+  boshida nav: Savollarga javob bering (yopiq)
+  1. «Loyihadagi fayllar ro'yxati qaysi panelda?» [savol top 474]
+     ✗ «Editor» → «Editor — kod yoziladigan katta panel; ro'yxat unda emas.» (56 b., yopildi: true)
+     ✓ «Explorer» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 384 / ekran 844 → ko'rinadi
+  2. «Kod qaysi panelga yoziladi?» [savol top 384]
+     ✓ «Editor» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 384 / ekran 844 → ko'rinadi
+  3. «VS Code'ga yangi imkoniyat qo'shadigan dastur qayerdan o'rnatiladi?» [savol top 384]
+     ✗ «Explorer» → «Explorer — loyiha fayllari; dastur u yerdan o'rnatilmaydi.» (58 b., yopildi: true)
+     ✗ «Editor» → «Editor'da kod yoziladi; qo'shimcha dastur u yerda yo'q.» (55 b., yopildi: true)
+     ✓ «Extensions» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 384 / ekran 844 → ko'rinadi
+  4. «Kompyuterga yozma buyruq qaysi panelda beriladi?» [savol top 384]
+     ✗ «Extensions» → «Extensions — qo'shimcha dasturlar; buyruq u yerda yozilmaydi.» (61 b., yopildi: true)
+     ✓ «Terminal» · nav: Davom etish (ochiq)
+  tugadi: qadam 4, xato tanlov 4 · nav: Davom etish (ochiq) · xulosa: false
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== vscode-start-01-v1 s3 ru · eyebrow: 2-Й ШАГ · ЗНАКОМСТВО
+  boshida nav: Ответьте на вопросы (yopiq)
+  1. «В какой панели список файлов проекта?» [savol top 266]
+     ✗ «Editor» → «Editor — большая панель для кода; списка там нет.» (49 b., yopildi: true)
+     ✓ «Explorer» · nav: Ответьте на вопросы (yopiq)
+  2. «В какую панель пишется код?» [savol top 266]
+     ✓ «Editor» · nav: Ответьте на вопросы (yopiq)
+  3. «Откуда ставят программу, которая добавляет VS Code новые возможности?» [savol top 266]
+     ✗ «Explorer» → «Explorer — файлы проекта; программы оттуда не ставят.» (53 b., yopildi: true)
+     ✗ «Editor» → «В Editor пишут код; дополнений там нет.» (39 b., yopildi: true)
+     ✓ «Extensions» · nav: Ответьте на вопросы (yopiq)
+  4. «В какой панели компьютеру дают письменные команды?» [savol top 266]
+     ✗ «Extensions» → «Extensions — дополнения; команды там не пишут.» (46 b., yopildi: true)
+     ✓ «Terminal» · nav: Продолжить (ochiq)
+  tugadi: qadam 4, xato tanlov 4 · nav: Продолжить (ochiq) · xulosa: false
+  qaytganda: nav Продолжить (ochiq) · savol: false · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0

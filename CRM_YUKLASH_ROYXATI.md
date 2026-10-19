@@ -3,6 +3,10 @@
 **Qoida (S-6):** bitta darsning UZ va RU materiali CRM'da BIR XIL faylga (bir xil `lesson_id`) ishora qilsin — til `lang` prop bilan keladi.
 **2026-09-08 (cutover-mashqi):** `PmLesson9.shared.jsx` va `PmUserStoryLesson.shared.jsx` manbasi 3-Modul/pm — `build-lms` ularni `lms/4-M/` ga yig'adi (OUT_MAP). Ro'yxat shunga to'g'rilandi; `lms/` ildizidagi eski nusxalari 2026-09-08 da O'CHIRILDI (endi faqat `4-M/` da). Yig'ish+tekshiruv: `node scripts/cutover-mashq.mjs --url <manzil> --out lms --smoke`.
 
+**⚠ 2026-10-18 (F-1017-226, DE 221-qonun):** `.shared.jsx` yo'li YOPILDI — LMS'da artefakt almashtirilsa URL o'zgaradi, eski URL 404 (01.10 tajribasi), 
+shu sabab 01.10 dan beri HAMMA dars kompilyatorni o'z ichida olib yuradi (yakka, `-v2/-v3` paketlar). Quyidagi «shared» qatorlar — tarix; 
+fayllar `arxiv/lms-shared-2026-10-18/` da. Reliz zanjiri (`scripts/preview-reliz.mjs`) shared'ni sukutda yig'maydi (`--shared` bilan yoqiladi).
+
 **Cutover kuni:** `DARS_API_URL=<Kristina manzili> node scripts/build-lms.mjs <src fayl>` → `lms/` → CRM Media → material. `.shared.jsx` = umumiy kompilyator moduli bilan; `yakka` = kompilyatorsiz.
 
 ## 4-M — 16 fayl

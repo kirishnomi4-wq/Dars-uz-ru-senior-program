@@ -90,6 +90,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -167,8 +192,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1139,18 +1164,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol MD dan, ✔ o'rni: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (3/3/3/3, q23)
 const QUIZ_BANK = [
-  { q: { uz: 'MVP qachon tayyor deyiladi?', ru: 'Когда MVP называют готовым?' }, opts: [{ uz: '«Qilamiz» qutisidagi funksiyalar ishlaganda', ru: 'Когда работают функции из коробки «делаем»' }, { uz: '«Keyin» qutisidagi funksiyalar ham qo\'shilganda', ru: 'Когда добавлены и функции из коробки «потом»' }, { uz: "Har bir tugma va rang mukammal bo'lganda", ru: 'Когда каждая кнопка и цвет идеальны' }, { uz: "Birinchi o'yinchi pul to'lab bo'lganda", ru: 'Когда первый игрок уже заплатил' }], correct: 0 },
-  { q: { uz: "Agent «To'lovni ham qo'shaymi?» desa, nima deysiz?", ru: 'Агент спрашивает «Добавить ещё и оплату?». Что ответите?' }, opts: [{ uz: "Ha — o'yinchiga qulayroq bo'ladi", ru: 'Да — игроку будет удобнее' }, { uz: "Yo'q — to'lov «keyin» qutisida", ru: 'Нет — оплата в коробке «потом»' }, { uz: "Ha — to'lovsiz band qilib bo'lmaydi", ru: 'Да — без оплаты не забронировать' }, { uz: "Yo'q — to'lov «qilmaymiz» qutisida", ru: 'Нет — оплата в коробке «не делаем»' }], correct: 1 },
-  { q: { uz: "Bo'sh katakni band qilishdan oldin kim tekshiradi?", ru: 'Кто проверяет свободную ячейку перед бронью?' }, opts: [{ uz: 'Sayt — telefondagi katak rangiga qarab', ru: 'Сайт — по цвету ячейки на телефоне' }, { uz: 'Umami — `vaqt-tanladi` soniga qarab', ru: 'Umami — по числу `vaqt-tanladi`' }, { uz: "Backend — Database'dagi bandlarga qarab", ru: 'Backend — по броням в Database' }, { uz: "Maydon egasi — bandlar ro'yxatiga qarab", ru: 'Владелец поля — по списку броней' }], correct: 2 },
-  { q: { uz: 'Katak band bo\'lsa, `POST /bandlar` nima qiladi?', ru: 'Что делает `POST /bandlar`, если ячейка занята?' }, opts: [{ uz: 'Ikkinchi bandni ham jadvalga yozadi', ru: 'Записывает в таблицу и вторую бронь' }, { uz: "Eski bandni o'chirib, yangisini yozadi", ru: 'Удаляет старую бронь и пишет новую' }, { uz: "Ikkala o'yinchiga «Band qilindi» deydi", ru: 'Говорит обоим игрокам «Забронировано»' }, { uz: '«Bu vaqt band» deb, bandni yozmaydi', ru: 'Отвечает «Это время занято» и не пишет бронь' }], correct: 3 },
-  { q: { uz: '`band-qildi` hodisasi qachon yoziladi?', ru: 'Когда записывается событие `band-qildi`?' }, opts: [{ uz: "Band Database'ga saqlangandan keyin", ru: 'После сохранения брони в Database' }, { uz: '«Band qilish» tugmasi bosilishi bilan', ru: 'Как только нажата кнопка «Band qilish»' }, { uz: 'Sahifa birinchi marta ochilganda', ru: 'Когда страница открылась в первый раз' }, { uz: "Maydon egasi ro'yxatni ochganda", ru: 'Когда владелец поля открыл список' }], correct: 0 },
-  { q: { uz: "O'yinchi sahifasida bandlar haqida nima ko'rinadi?", ru: 'Что о бронях видно на странице игрока?' }, opts: [{ uz: 'Har bandning ismi va telefoni', ru: 'Имя и телефон каждой брони' }, { uz: 'Har katakning soati va holati', ru: 'Час и состояние каждой ячейки' }, { uz: 'Ega paroli va kirish tokeni', ru: 'Пароль владельца и токен входа' }, { uz: "Hamma o'yinchining telefon raqami", ru: 'Номера телефонов всех игроков' }], correct: 1 },
-  { q: { uz: "`GET /bandlar` ga tokensiz so'rov kelsa, nima bo'ladi?", ru: 'Что будет, если в `GET /bandlar` придёт запрос без токена?' }, opts: [{ uz: "Ro'yxatni to'liq qaytaradi", ru: 'Вернёт весь список' }, { uz: 'Faqat ismlarni qaytaradi', ru: 'Вернёт только имена' }, { uz: "401 qaytaradi, ro'yxat bermaydi", ru: 'Вернёт 401, список не отдаст' }, { uz: "Ega sahifasini o'zi ochadi", ru: 'Сам откроет страницу владельца' }], correct: 2 },
-  { q: { uz: 'Maydon egasining paroli qayerda turadi?', ru: 'Где хранится пароль владельца поля?' }, opts: [{ uz: 'Saytning kodida, tugma yonida', ru: 'В коде сайта, рядом с кнопкой' }, { uz: "GitHub'dagi README faylida", ru: 'В файле README на GitHub' }, { uz: 'Talab matnida, agentga berilib', ru: 'В тексте требования, переданном агенту' }, { uz: '`.env` da va Render sozlamasida', ru: 'В `.env` и в настройках Render' }], correct: 3 },
-  { q: { uz: 'Talab qaysi uch qismdan iborat?', ru: 'Из каких трёх частей состоит требование?' }, opts: [{ uz: 'Qayerda · nima qilsin · nima buzilmasin', ru: 'Где · что сделать · что не сломать' }, { uz: 'Kim · qachon · qancha vaqt oladi', ru: 'Кто · когда · сколько времени займёт' }, { uz: 'Muammo · yechim · foydalanuvchi', ru: 'Проблема · решение · пользователь' }, { uz: 'Rang · shrift · animatsiya turi', ru: 'Цвет · шрифт · тип анимации' }], correct: 0 },
-  { q: { uz: "Talabdagi «nima buzilmasin» qatoriga nima yoziladi?", ru: 'Что пишут в строке «что не сломать»?' }, opts: [{ uz: "Yangi qo'shiladigan funksiya", ru: 'Новую добавляемую функцию' }, { uz: "O'zgarmay qolishi kerak bo'lgan ish", ru: 'Работу, которая должна остаться прежней' }, { uz: 'Terminalda chiqqan xato matni', ru: 'Текст ошибки из терминала' }, { uz: 'Ertaga qilinadigan ishlar rejasi', ru: 'План дел на завтра' }], correct: 1 },
-  { q: { uz: 'MVP nega internetga chiqariladi?', ru: 'Зачем выкладывать MVP в интернет?' }, opts: [{ uz: 'Laptopda tezroq ishlashi uchun', ru: 'Чтобы быстрее работал на ноутбуке' }, { uz: "Kodi qisqaroq bo'lishi uchun", ru: 'Чтобы код стал короче' }, { uz: 'Boshqa odam telefonda ochishi uchun', ru: 'Чтобы другой человек открыл его на телефоне' }, { uz: 'Umami hodisalarni yozishi uchun', ru: 'Чтобы Umami записывал события' }], correct: 2 },
-  { q: { uz: "Bepul Render'da birinchi javob nega kechikadi?", ru: 'Почему на бесплатном Render первый ответ запаздывает?' }, opts: [{ uz: "Neon Database'da joy tugab qolgan", ru: 'В Neon Database кончилось место' }, { uz: "Sayt kodi juda katta bo'lib ketgan", ru: 'Код сайта стал слишком большим' }, { uz: 'Netlify havolasi eskirib qolgan', ru: 'Ссылка Netlify устарела' }, { uz: "Jimlikdan keyin Backend uyg'onadi", ru: 'После простоя Backend просыпается' }], correct: 3 }
+  { q: { uz: "MVP qachon tayyor deyiladi?", ru: "Когда MVP называют готовым?" }, opts: [{ uz: "«Qilamiz» qutisi ishlaganda", ru: "Когда работает коробка «делаем»" }, { uz: "«Keyin» ham qo'shilganda", ru: "Когда добавлено и «потом»" }, { uz: "Hammasi mukammal bo'lganda", ru: "Когда всё идеально" }, { uz: "Birinchi to'lov kelganda", ru: "Когда пришла первая оплата" }], correct: 0 },
+  { q: { uz: "Agent: «To'lovni qo'shaymi?» Javobingiz?", ru: "Агент: «Добавить оплату?» Ваш ответ?" }, opts: [{ uz: "Ha — o'yinchiga qulay", ru: "Да — игроку удобно" }, { uz: "Yo'q — to'lov «keyin»da", ru: "Нет — оплата в «потом»" }, { uz: "Ha — to'lovsiz bo'lmaydi", ru: "Да — без оплаты нельзя" }, { uz: "Yo'q — to'lov «qilmaymiz»da", ru: "Нет — оплата в «не делаем»" }], correct: 1 },
+  { q: { uz: "Katak bo'shligini kim tekshiradi?", ru: "Кто проверяет, свободна ли ячейка?" }, opts: [{ uz: "Sayt — katak rangiga qarab", ru: "Сайт — по цвету ячейки" }, { uz: "Umami — hodisa soniga qarab", ru: "Umami — по числу событий" }, { uz: "Backend — Database'ga qarab", ru: "Backend — по Database" }, { uz: "Ega — ro'yxatga qarab", ru: "Владелец — по списку" }], correct: 2 },
+  { q: { uz: "Katak band. `POST /bandlar` nima qiladi?", ru: "Ячейка занята. Что делает `POST /bandlar`?" }, opts: [{ uz: "Ikkinchisini ham yozadi", ru: "Пишет и вторую бронь" }, { uz: "Eskisini o'chirib yozadi", ru: "Удаляет старую и пишет новую" }, { uz: "Ikkalasiga «Band qilindi»", ru: "Обоим: «Забронировано»" }, { uz: "«Bu vaqt band» deb rad etadi", ru: "Отказывает: «Это время занято»" }], correct: 3 },
+  { q: { uz: "`band-qildi` hodisasi qachon yoziladi?", ru: "Когда записывается событие `band-qildi`?" }, opts: [{ uz: "Band saqlangandan keyin", ru: "После сохранения брони" }, { uz: "Tugma bosilishi bilan", ru: "Сразу при нажатии кнопки" }, { uz: "Sahifa ochilganda", ru: "Когда открылась страница" }, { uz: "Ega ro'yxatni ochganda", ru: "Когда владелец открыл список" }], correct: 0 },
+  { q: { uz: "O'yinchi sahifasida bandlar haqida nima ko'rinadi?", ru: "Что о бронях видно на странице игрока?" }, opts: [{ uz: "Ism va telefon", ru: "Имя и телефон" }, { uz: "Soat va holat", ru: "Час и состояние" }, { uz: "Ega paroli va token", ru: "Пароль владельца и токен" }, { uz: "Hamma telefon raqami", ru: "Все номера телефонов" }], correct: 1 },
+  { q: { uz: "Tokensiz `GET /bandlar` nima qaytaradi?", ru: "Что вернёт `GET /bandlar` без токена?" }, opts: [{ uz: "Ro'yxatni to'liq", ru: "Весь список" }, { uz: "Faqat ismlarni", ru: "Только имена" }, { uz: "401, ro'yxat yo'q", ru: "401, списка нет" }, { uz: "Ega sahifasini", ru: "Страницу владельца" }], correct: 2 },
+  { q: { uz: "Maydon egasining paroli qayerda turadi?", ru: "Где хранится пароль владельца поля?" }, opts: [{ uz: "Sayt kodida, tugma yonida", ru: "В коде сайта, рядом с кнопкой" }, { uz: "GitHub'dagi README'da", ru: "В README на GitHub" }, { uz: "Agentga berilgan talabda", ru: "В требовании для агента" }, { uz: "`.env` da va Render'da", ru: "В `.env` и в Render" }], correct: 3 },
+  { q: { uz: "Talabda «qayerda», «nima qilsin» va …?", ru: "В требовании «где», «что сделать» и …?" }, opts: [{ uz: "«nima buzilmasin»", ru: "«что не сломать»" }, { uz: "«qancha vaqt»", ru: "«сколько времени»" }, { uz: "«qaysi rang»", ru: "«какой цвет»" }, { uz: "«kim tekshiradi»", ru: "«кто проверит»" }], correct: 0 },
+  { q: { uz: "«Nima buzilmasin» qatoriga nima yoziladi?", ru: "Что пишут в строке «что не сломать»?" }, opts: [{ uz: "Yangi funksiya", ru: "Новую функцию" }, { uz: "O'zgarmay qoladigan ish", ru: "То, что должно остаться" }, { uz: "Terminaldagi xato", ru: "Ошибку из терминала" }, { uz: "Ertangi ishlar rejasi", ru: "План на завтра" }], correct: 1 },
+  { q: { uz: "MVP nega internetga chiqariladi?", ru: "Зачем выкладывать MVP в интернет?" }, opts: [{ uz: "Laptopda tez ishlashi uchun", ru: "Чтобы быстро работал на ноутбуке" }, { uz: "Kodi qisqarishi uchun", ru: "Чтобы код стал короче" }, { uz: "Telefondan ochilishi uchun", ru: "Чтобы открывался с телефона" }, { uz: "Umami hodisa yozishi uchun", ru: "Чтобы Umami писал события" }], correct: 2 },
+  { q: { uz: "Bepul Render'da birinchi javob nega kechikadi?", ru: "Почему на бесплатном Render первый ответ запаздывает?" }, opts: [{ uz: "Neon'da joy tugagan", ru: "В Neon кончилось место" }, { uz: "Sayt kodi juda katta", ru: "Код сайта слишком большой" }, { uz: "Netlify havolasi eskirgan", ru: "Ссылка Netlify устарела" }, { uz: "Backend uxlab qolgan", ru: "Backend уснул" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1768,7 +1793,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: c.forma ? <>{fmtCode(tr(c.t))}<GoyaForma qiymat={goya} onYoz={goyaYoz} tola={tola} ixtiyoriy={!!c.ixtiyoriy} /></> : fmtCode(tr(c.t)),
@@ -2248,11 +2273,10 @@ export default function MvpCompleteLesson({ lang: langProp, onFinished, liveToke
         .mc-taxmin-j { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13.5px; color: ${T.accent}; background: ${T.accentSoft}; border: 1.5px solid ${T.accent}; border-radius: 9px; padding: 3px 11px; }
         .mc-navbat, .mc-tel-btn.navbat { box-shadow: 0 0 0 2px ${T.accent}; animation: mc-navbat 1.6s ease-out infinite; }
         .mc-tel-btn.navbat { box-shadow: 0 0 0 2px ${T.paper}, 0 0 0 4px ${T.accent}; animation-name: mc-navbat-t; }
-        @keyframes mc-navbat { 0% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 2px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 12px ${fon(T.accent, 0)}; } }
+        @keyframes mc-navbat { 0% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 1.5px ${fon(T.accent, 0.35)}; } 100% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 8px ${fon(T.accent, 0)}; } }
         @keyframes mc-navbat-t { 0% { box-shadow: 0 0 0 2px ${T.paper}, 0 0 0 4px ${T.accent}, 0 0 0 4px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 2px ${T.paper}, 0 0 0 4px ${T.accent}, 0 0 0 13px ${fon(T.accent, 0)}; } }
-        .mc-navbat-k > .q-bashorat { box-shadow: 0 0 0 2px ${T.accent}; animation: mc-navbat 1.6s ease-out infinite; }
-        .q-kirish:has(.mc-hook.tanla) .q-variantlar-kol { border-radius: 14px; box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}; animation: mc-navbat-g 1.6s ease-out infinite; }
-        @keyframes mc-navbat-g { 0% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 9px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 19px ${fon(T.accent, 0)}; } }
+        .mc-navbat-k .q-chip:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: mc-navbat 1.6s ease-out infinite; }
+        .q-kirish:has(.mc-hook.tanla) .q-variant:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: mc-navbat 1.6s ease-out infinite; }
         .mc-flash.yangi .fc-card:not(.flip) .fc-front { border-color: ${T.accent}; animation: mc-navbat-fc 1.6s ease-out infinite; }
         @keyframes mc-navbat-fc { 0% { box-shadow: 0 0 0 0 ${fon(T.accent, 0.4)}; } 100% { box-shadow: 0 0 0 12px ${fon(T.accent, 0)}; } }
         .mc-fc-ipucha { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0 0; font-size: 13px; font-weight: 700; color: ${T.accent}; }
@@ -2286,7 +2310,7 @@ export default function MvpCompleteLesson({ lang: langProp, onFinished, liveToke
           .mc-konvert { animation-duration: 0.01s; }
           .mc-katak, .mc-mvp-f, .mc-yol-q, .mc-be { transition: none; }
           table.mc-jadval tr.yangi td, ul.mc-ega-ro li.yangi, .mc-oyinchi-q.yondi, .mc-umami-k.yondi b, .mc-umami.navbat .mc-umami-k { animation: none; }
-          .mc-navbat, .mc-tel-btn.navbat, .mc-navbat-k > .q-bashorat, .q-kirish:has(.mc-hook.tanla) .q-variantlar-kol, .mc-flash.yangi .fc-card:not(.flip) .fc-front, .mc-fc-ipucha i { animation: none; }
+          .mc-navbat, .mc-tel-btn.navbat, .mc-navbat-k .q-chip:not(:disabled), .q-kirish:has(.mc-hook.tanla) .q-variant:not(:disabled), .mc-flash.yangi .fc-card:not(.flip) .fc-front, .mc-fc-ipucha i { animation: none; }
           .mc-taxmin, .mc-konvert-t, .mc-tekshir, p.mc-belgi, .mc-katak small.mc-eski { animation: none; }
         }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px rgba(255,79,40,0.35), 0 0 0 1px rgba(255,79,40,0.12); }

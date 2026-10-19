@@ -94,6 +94,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -171,8 +196,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -795,34 +820,22 @@ const REJA = [
   { uz: "Natijani boshqa odam o'z telefonida ko'radi", ru: "Результат другой человек видит на своём телефоне" },
   { uz: 'Tugma faqat ruxsat bor joyda chiqadi', ru: "Кнопка появляется только там, где есть разрешение" }
 ];
+const REJA_ZANJIR = [
+  { t: { uz: "O'yinchi «Kelaman»ni bosadi", ru: 'Игрок нажимает «Приду»' } },
+  { t: { uz: "Backend o'yin kuni va qo'shilganini tekshiradi", ru: 'Backend проверяет день игры и участие' } },
+  { t: { uz: "Database'ga «keladi» yoziladi — tashkilotchi ko'radi", ru: 'В Database пишется «придёт» — организатор видит' } }
+];
+// F-1015-339: bitta natija — zanjir (3 qadam navbat bilan yonadi) + tashkilotchi telefoni «7 / 9»; ikki telefon + Backend + Database qutilari olib tashlandi (UI to'lib ketgan edi)
 const RejaSahna = () => {
-  const { box, parvoz, uchir, kam, keyin } = useParvoz();
-  const [b, setB] = useState(kam ? 9 : 0);
-  useEffect(() => {
-    if (kam) return;
-    const D = PARVOZ_MS;
-    const t1 = 700, t2 = t1 + 120 + D, t3 = t2 + 300, t4 = t3 + 300, t5 = t4 + D, t6 = t5 + 250, t7 = t6 + D, t8 = t7 + 600, t9 = t8 + 250 + D, t10 = t9 + D;
-    keyin(() => setB(1), t1);
-    keyin(() => uchir('[data-rol="oyinchi"] .ft-tel-btn.kel', '[data-yol="tasdiq"]', 'POST /oyinlar/1/tasdiq'), t1 + 120);
-    keyin(() => setB(2), t2);
-    keyin(() => setB(3), t3);
-    keyin(() => uchir('[data-be]', '[data-q="r1"]', ''), t4);
-    keyin(() => setB(4), t5);
-    keyin(() => uchir('[data-be]', '[data-rol="oyinchi"] .ft-telefon', '', 'javob'), t6);
-    keyin(() => setB(5), t7);
-    keyin(() => setB(6), t8);
-    keyin(() => uchir('[data-rol="tashkilotchi"] .ft-telefon', '[data-yol="tasdiq"]', 'GET /oyinlar'), t8 + 250);
-    keyin(() => uchir('[data-be]', '[data-rol="tashkilotchi"] .ft-telefon', '', 'javob'), t9);
-    keyin(() => setB(7), t10);
-  }, []); // eslint-disable-line
+  const { kam, keyin } = useParvoz();
+  const [b, setB] = useState(kam ? 3 : 0);
+  useEffect(() => { if (kam) return; keyin(() => setB(1), 500); keyin(() => setB(2), 1100); keyin(() => setB(3), 1900); }, []); // eslint-disable-line
   return (
-    <Sahna tur="reja" boxRef={box} parvoz={parvoz}>
-      <Tel rol="oyinchi" bugun={BUGUN.shanba} oyin={1} son={false} kel={b >= 5 ? 'tasdiq' : b === 1 ? 'bos' : 'bor'} />
-      <div className="ft-sahna-ong">
-        <BeQuti holat={b >= 1 && b < 5 ? 'on' : ''} joriy={b >= 1 && b < 5 ? 'tasdiq' : ''} kat={{ kun: b >= 2 ? 'ok' : '', qosh: b >= 3 ? 'ok' : '' }} />
-        <IshJadval qatorlar={[{ k: 'r1', c: ['1', '2', b >= 4 ? 'keladi' : 'qoshildi'], yangi: b >= 4 && b < 7 }]} />
-      </div>
-      <Tel rol="tashkilotchi" bugun={BUGUN.shanba} oyin={1} tort={b === 6 ? 'yur' : 'tayyor'} tasdiq={b >= 7 ? 7 : 6} yashil={b >= 7 ? 7 : 6} yangi={b >= 7} />
+    <Sahna tur="reja">
+      <ol className="ft-reja-zanjir">
+        {REJA_ZANJIR.map((z, i) => <li key={i} className={cxx(b > i && 'bor', b === i + 1 && 'joriy')}><i>{i + 1}</i><span>{tr(z.t)}</span></li>)}
+      </ol>
+      <Tel rol="tashkilotchi" bugun={BUGUN.shanba} oyin={1} tasdiq={b >= 3 ? 7 : 6} yashil={b >= 3 ? 7 : 6} yangi={b >= 3} />
     </Sahna>
   );
 };
@@ -832,14 +845,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
       sarlavha={tr({ uz: <>Dars oxirida roadmap'dagi <span className="italic" style={{ color: T.accent }}>ikkinchi funksiya</span> ishlaydi.</>, ru: <>К концу урока заработает <span className="italic" style={{ color: T.accent }}>вторая функция</span> из roadmap.</> })}
       mentor={<Mentor>{tr({ uz: "Bugun roadmap'dagi ikkinchi funksiyani qurasiz. Mentor misolida bu — o'yin kuni tasdiq: o'yinchi «Kelaman»ni bosadi, tashkilotchi kim aniq kelishini ko'radi.", ru: "Сегодня вы строите вторую функцию из roadmap. В примере Ментора это подтверждение в день игры: игрок нажимает «Приду», организатор видит, кто точно придёт." })}</Mentor>}
       chapYorliq={tr({ uz: 'Dars oxirida', ru: "К концу урока" })}
-      chap={<RejaSahna />}
-      ongYorliq={tr({ uz: 'Bugungi 3 qadam', ru: '3 шага на сегодня' })}
-      qadamlar={REJA.map(t => ({ t: tr(t) }))}>
-      <div className="ft-reja-past fade-up">
+      chap={<div className="ft-reja-karta"><RejaSahna /><div className="ft-reja-past">
         <p className="ft-reja-repo">repo <code>maydon-jamoa</code> · {tr({ uz: "boshlang'ich holat", ru: "начальное состояние" })} <code>m11-dars-12-start</code> · {tr({ uz: 'namuna', ru: "образец" })} <code>m11-dars-12-done</code></p>
         <p className="ft-reja-izoh">{tr({ uz: "«Maydon Jamoa» — namuna; amaliyotlarni roadmap'ingizdagi 2-funksiya bilan, o'z mahsulotingizda bajarasiz.", ru: "«Maydon Jamoa» — образец; практику вы делаете со 2-й функцией из своего roadmap, на своём продукте." })}</p>
-      </div>
-    </QReja>
+      </div></div>}
+      ongYorliq={tr({ uz: 'Bugungi 3 qadam', ru: '3 шага на сегодня' })}
+      qadamlar={REJA.map(t => ({ t: tr(t) }))} />
   </Stage>
 );
 
@@ -1118,42 +1129,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javoblar 4 pozitsiyaga TENG (MD: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12)
 const QUIZ_BANK = [
-  { q: { uz: "O'yinchi «Kelaman»ni bosdi. Ruxsatni kim beradi?", ru: "Игрок нажал «Приду». Кто даёт разрешение?" }, opts: [
-    { uz: "Backend — har so'rovni qoida bilan ko'rib", ru: "Backend — проверяя каждый запрос правилом" }, { uz: "Ilova — tugmani ko'rsatib yoki yashirib", ru: "Приложение — показывая или скрывая кнопку" },
-    { uz: "Database — yangi qatorni o'zi ko'rib", ru: "Database — сама просматривая новую строку" }, { uz: "Tashkilotchi — har tasdiqni qo'lda ko'rib", ru: "Организатор — вручную просматривая каждое подтверждение" }], correct: 0 },
-  { q: { uz: "Token bor, lekin o'yinchi o'yinga qo'shilmagan. Backend nima qaytaradi?", ru: "Токен есть, но игрок не присоединился к игре. Что вернёт Backend?" }, opts: [
-    { uz: "`401` — kimligi noma'lum deb", ru: "`401` — потому что неизвестно, кто это" }, { uz: "`403` — bu ishga ruxsat yo'q deb", ru: "`403` — потому что на это нет разрешения" },
-    { uz: "`201` — yangi qatorni yozib qo'yib", ru: "`201` — записав новую строку" }, { uz: '`404` — bunday yo\'l topilmadi deb', ru: "`404` — потому что такой путь не найден" }], correct: 1 },
-  { q: { uz: "Shanbadagi o'yinga juma kuni «Kelaman» so'rovi keldi. Nima bo'ladi?", ru: "Запрос «Приду» на субботнюю игру пришёл в пятницу. Что будет?" }, opts: [
-    { uz: "Database'ga baribir `keladi` yozib qo'yiladi", ru: "В Database всё равно запишут `keladi`" }, { uz: "O'yin o'zi juma kuniga ko'chadi", ru: "Игра сама перенесётся на пятницу" },
-    { uz: "Backend rad etadi, holat o'zgarmaydi", ru: "Backend откажет, статус не изменится" }, { uz: "Tashkilotchi uni qo'lda tasdiqlaydi", ru: "Организатор подтвердит его вручную" }], correct: 2 },
-  { q: { uz: "«Kelishini tasdiqladi: 7 / 9» da 9 nimani bildiradi?", ru: "Что означает 9 в «Подтвердили: 7 / 9»?" }, opts: [
-    { uz: "Kelishini tasdiqlagan o'yinchilar", ru: "Игроков, подтвердивших приход" }, { uz: "O'yinga kerak bo'lgan odamlar", ru: "Людей, нужных для игры" },
-    { uz: "Maydondagi bo'sh o'rinlar soni", ru: "Число свободных мест на поле" }, { uz: "O'yinga qo'shilgan o'yinchilar", ru: "Игроков, присоединившихся к игре" }], correct: 3 },
-  { q: { uz: "Tashkilotchi ekrani ochiq. Yangi tasdiqni qanday ko'radi?", ru: "Экран организатора открыт. Как он увидит новое подтверждение?" }, opts: [
-    { uz: 'Ekranni pastga tortib yangilaydi', ru: "Обновит экран, потянув вниз" }, { uz: "Ilovani telefondan o'chirib qo'yadi", ru: "Удалит приложение с телефона" },
-    { uz: "Har o'yinchiga qo'ng'iroq qiladi", ru: "Позвонит каждому игроку" }, { uz: "O'yin boshlanishini kutib turadi", ru: "Будет ждать начала игры" }], correct: 0 },
-  { q: { uz: 'Bu modulda tashkilotchidagi son o\'zi yangilanadimi?', ru: "В этом модуле число у организатора обновляется само?" }, opts: [
-    { uz: 'Ha — Backend uni har soniyada yuboradi', ru: "Да — Backend присылает его каждую секунду" }, { uz: "Yo'q — ilova so'ragandagina yangilanadi", ru: "Нет — обновляется, только когда спросит приложение" },
-    { uz: "Ha — o'yinchi bosgan zahoti o'zgaradi", ru: "Да — меняется сразу после нажатия игрока" }, { uz: "Yo'q — son faqat o'yin kuni yangilanadi", ru: "Нет — число обновляется только в день игры" }], correct: 1 },
-  { q: { uz: "«Kelaman» endi faqat o'yin kuni chiqadi. Backend'dagi qoida-chi?", ru: "«Приду» теперь появляется только в день игры. А правило в Backend?" }, opts: [
-    { uz: "O'chiriladi — endi u kerak emas", ru: "Удаляется — теперь оно не нужно" }, { uz: 'Ilovaga ko\'chadi — endi u ruxsat beradi', ru: "Переходит в приложение — теперь оно даёт разрешение" },
-    { uz: "Qoladi — har so'rovga ruxsatni u beradi", ru: "Остаётся — оно даёт разрешение на каждый запрос" }, { uz: "Database'ga ko'chadi — u eslab qoladi", ru: "Переходит в Database — она запомнит" }], correct: 2 },
-  { q: { uz: "Ekran ochiq turganda boshqa odam tufayli nima o'zgaradi?", ru: "Что меняется из-за другого человека, пока экран открыт?" }, opts: [
-    { uz: "«‹ O'yinlar» tugmasining joyi", ru: "Место кнопки «‹ Игры»" }, { uz: 'Ilova nomi «Maydon Jamoa»', ru: "Название приложения «Maydon Jamoa»" },
-    { uz: "E'lon formasidagi «Soat» qatori", ru: "Строка «Время» в форме объявления" }, { uz: "«Kelishini tasdiqladi» dagi son", ru: "Число в строке «Подтвердили»" }], correct: 3 },
-  { q: { uz: "Tugmani yashirganda «Nima buzilmasin»ga nima yozasiz?", ru: "Что вы напишете в «Что не сломать», когда скрываете кнопку?" }, opts: [
-    { uz: "Backend'dagi qoida o'chirilmasin", ru: "Правило в Backend не удалять" }, { uz: "Tugma har o'yinda turaversin", ru: "Кнопка пусть остаётся в каждой игре" },
-    { uz: "Database jadvali tozalab qo'yilsin", ru: "Таблицу Database очистить" }, { uz: "Yo'l tokensiz ham ochilsin", ru: "Путь пусть открывается и без токена" }], correct: 0 },
-  { q: { uz: "Tasdiqni tekshirish kerak, lekin bugun o'yin yo'q. Nima qilasiz?", ru: "Нужно проверить подтверждение, но сегодня игры нет. Что сделаете?" }, opts: [
-    { uz: 'Backend qoidasini vaqtincha o\'chirasiz', ru: "Временно отключите правило Backend" }, { uz: "Bugungi sana bilan yangi e'lon berasiz", ru: "Дадите новое объявление с сегодняшней датой" },
-    { uz: "Telefon soatini shanbaga o'tkazasiz", ru: "Переведёте часы телефона на субботу" }, { uz: 'Shanba kelguncha kutib turasiz', ru: "Подождёте до субботы" }], correct: 1 },
-  { q: { uz: "Backend o'zgarishi Render'ga qanday chiqadi?", ru: "Как изменение Backend попадает на Render?" }, opts: [
-    { uz: "Render sahifasida kodni qo'lda yozasiz", ru: "Пишете код вручную на странице Render" }, { uz: '`npx expo start` — ilovani qayta yoqasiz', ru: "`npx expo start` — заново запускаете приложение" },
-    { uz: "`git push` — Render o'zi qayta chiqaradi", ru: "`git push` — Render сам выложит заново" }, { uz: "Neon'da jadvalni qaytadan yaratasiz", ru: "Заново создаёте таблицу в Neon" }], correct: 2 },
-  { q: { uz: 'Ikkinchi telefonda tekshirish nima uchun kerak?', ru: "Зачем нужна проверка на втором телефоне?" }, opts: [
-    { uz: 'Sizning telefoningiz tezroq ishlashi uchun', ru: "Чтобы ваш телефон работал быстрее" }, { uz: 'Expo Go yangilanib olishi uchun', ru: "Чтобы Expo Go обновился" },
-    { uz: "Ikkala telefonda ekran bir xil ko'rinishi uchun", ru: "Чтобы экран выглядел одинаково на обоих телефонах" }, { uz: "Natijani boshqa odam ko'rishini bilish uchun", ru: "Чтобы знать, что результат видит другой человек" }], correct: 3 }
+  { q: { uz: "«Kelaman» bosildi. Ruxsatni kim beradi?", ru: "Нажали «Приду». Кто даёт разрешение?" }, opts: [{ uz: "Backend, qoida bo'yicha", ru: "Backend, по правилу" }, { uz: "Ilova, tugmani ko'rsatib", ru: "Приложение, показав кнопку" }, { uz: "Database, qatorni ko'rib", ru: "Database, увидев строку" }, { uz: "Tashkilotchi, qo'lda", ru: "Организатор, вручную" }], correct: 0 },
+  { q: { uz: "Token bor, o'yinchi qo'shilmagan. Qaysi javob?", ru: "Токен есть, игрок не присоединился. Какой ответ?" }, opts: [{ uz: "`401` — kimligi noma'lum", ru: "`401` — неизвестно, кто" }, { uz: "`403` — ruxsat yo'q", ru: "`403` — нет разрешения" }, { uz: "`201` — qator yozildi", ru: "`201` — строка записана" }, { uz: "`404` — yo'l topilmadi", ru: "`404` — путь не найден" }], correct: 1 },
+  { q: { uz: "Shanbalik o'yinga juma kuni «Kelaman». Nima bo'ladi?", ru: "«Приду» в пятницу на субботнюю игру. Что будет?" }, opts: [{ uz: "`keladi` yoziladi", ru: "Запишется `keladi`" }, { uz: "O'yin jumaga ko'chadi", ru: "Игра переедет на пятницу" }, { uz: "Backend rad etadi", ru: "Backend отклонит" }, { uz: "Tashkilotchi tasdiqlaydi", ru: "Организатор подтвердит" }], correct: 2 },
+  { q: { uz: "«Kelishini tasdiqladi: 7 / 9» da 9 nima?", ru: "Что значит 9 в «Подтвердили приход: 7 / 9»?" }, opts: [{ uz: "Tasdiqlagan o'yinchilar", ru: "Подтвердившие игроки" }, { uz: "O'yinga kerak odamlar", ru: "Нужные для игры люди" }, { uz: "Maydondagi bo'sh o'rinlar", ru: "Свободные места на поле" }, { uz: "Qo'shilgan o'yinchilar", ru: "Присоединившиеся игроки" }], correct: 3 },
+  { q: { uz: "Tashkilotchi yangi tasdiqni qanday ko'radi?", ru: "Как организатор видит новое подтверждение?" }, opts: [{ uz: "Ekranni pastga tortadi", ru: "Потягивает экран вниз" }, { uz: "Backend xabarini kutadi", ru: "Ждёт сообщения от Backend" }, { uz: "Har o'yinchiga yozadi", ru: "Пишет каждому игроку" }, { uz: "O'yin boshlanishini kutadi", ru: "Ждёт начала игры" }], correct: 0 },
+  { q: { uz: "Tashkilotchidagi son o'zi yangilanadimi?", ru: "Обновляется ли число у организатора само?" }, opts: [{ uz: "Ha, Backend o'zi yuboradi", ru: "Да, Backend сам присылает" }, { uz: "Yo'q, ilova so'raganda", ru: "Нет, когда приложение запросит" }, { uz: "Ha, bosilgan zahoti", ru: "Да, сразу после нажатия" }, { uz: "Yo'q, faqat o'yin kuni", ru: "Нет, только в день игры" }], correct: 1 },
+  { q: { uz: "Tugma yashirildi. Backend'dagi qoida-chi?", ru: "Кнопку скрыли. А правило в Backend?" }, opts: [{ uz: "O'chiriladi, kerak emas", ru: "Удаляется, не нужно" }, { uz: "Ilovaga ko'chadi", ru: "Переносится в приложение" }, { uz: "Qoladi, ruxsatni u beradi", ru: "Остаётся, разрешение даёт оно" }, { uz: "Database'ga ko'chadi", ru: "Переносится в Database" }], correct: 2 },
+  { q: { uz: "Boshqa odam tufayli ekranda nima o'zgaradi?", ru: "Что меняется на экране из-за другого человека?" }, opts: [{ uz: "«‹ O'yinlar» tugmasi", ru: "Кнопка «‹ Игры»" }, { uz: "«Maydon Jamoa» nomi", ru: "Название «Maydon Jamoa»" }, { uz: "Formadagi «Soat»", ru: "«Время» в форме" }, { uz: "Tasdiqlaganlar soni", ru: "Число подтвердивших" }], correct: 3 },
+  { q: { uz: "Tugmani yashirganda «Nima buzilmasin»ga nima yozasiz?", ru: "Что вы пишете в «Что не сломать», скрывая кнопку?" }, opts: [{ uz: "Backend qoidasi qolsin", ru: "Правило Backend остаётся" }, { uz: "Tugma doim tursin", ru: "Кнопка всегда на месте" }, { uz: "Jadval tozalansin", ru: "Таблица очищается" }, { uz: "Yo'l tokensiz ochilsin", ru: "Путь открыт без токена" }], correct: 0 },
+  { q: { uz: "Bugun o'yin yo'q. Tasdiqni qanday sinaysiz?", ru: "Сегодня игры нет. Как проверите подтверждение?" }, opts: [{ uz: "Qoidani o'chirib turasiz", ru: "Временно отключите правило" }, { uz: "Bugunga yangi e'lon berasiz", ru: "Дадите новое объявление на сегодня" }, { uz: "Telefon soatini surasiz", ru: "Переведёте часы телефона" }, { uz: "Shanbagacha kutasiz", ru: "Подождёте до субботы" }], correct: 1 },
+  { q: { uz: "Backend o'zgarishi Render'ga qanday chiqadi?", ru: "Как изменение Backend попадает на Render?" }, opts: [{ uz: "Render'da qo'lda yozasiz", ru: "Пишете вручную на Render" }, { uz: "`npx expo start` qilasiz", ru: "Запускаете `npx expo start`" }, { uz: "`git push` qilasiz", ru: "Делаете `git push`" }, { uz: "Neon'da jadval yaratasiz", ru: "Создаёте таблицу в Neon" }], correct: 2 },
+  { q: { uz: "Ikkinchi telefon nima uchun kerak?", ru: "Зачем нужен второй телефон?" }, opts: [{ uz: "Tezroq ishlashi uchun", ru: "Чтобы работало быстрее" }, { uz: "Expo Go yangilanishi uchun", ru: "Чтобы обновился Expo Go" }, { uz: "Dizayn bir xilligi uchun", ru: "Ради одинакового дизайна" }, { uz: "Boshqa odam ko'rishi uchun", ru: "Чтобы увидел другой человек" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1798,7 +1785,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{tepa}</>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<><Mentor>{tr(mGap)}</Mentor>{tepa}</>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="ft-band">{tx(b)}</span>)}{c.kirish}{c.vazifa && <span className="ft-vazifa"><b>{tr({ uz: 'Vazifa:', ru: "Задача:" })}</b> {tx(c.vazifa)}</span>}{c.prompt && <FtPrompt satrlar={c.prompt} />}</>,
@@ -2254,12 +2241,13 @@ export default function FeatureTwoLesson({ lang: langProp, onFinished, liveToken
         @keyframes ft-yig { from { opacity: 0.3; transform: scaleY(1.6); } to { opacity: 1; transform: none; } }
         @keyframes ft-yon { 0% { background: ${fon(T.ok, 0.32)}; } 100% { background: transparent; } }
         @keyframes ft-ayl { to { transform: rotate(360deg); } }
-        .ft-navbat-k .q-bashorat { outline: 2px solid ${T.accent}; outline-offset: 2px; animation: ft-kot 0.5s cubic-bezier(.2,.9,.3,1.1) both, ft-puls 2.2s ease-out 0.7s infinite; }
+        .ft-navbat-k .q-bashorat { animation: ft-kot 0.5s cubic-bezier(.2,.9,.3,1.1) both; }
+        .ft-navbat-k .q-chip:not(:disabled) { outline: 1.5px solid ${T.accent}; outline-offset: 2px; animation: ft-puls 2.2s ease-out 0.7s infinite; }
         .ft-navbat-k .q-chip { animation: ft-kot 0.4s ease-out 0.15s both; }
         .ft-navbat-k .q-chip:nth-child(2) { animation-delay: 0.25s; } .ft-navbat-k .q-chip:nth-child(3) { animation-delay: 0.35s; }
-        .q-kirish:has(.ft-s0.kutish) .q-variantlar-kol { border-radius: 14px; outline: 2px solid ${T.accent}; outline-offset: 5px; animation: ft-puls 2.2s ease-out 0.9s infinite; }
+        .q-kirish:has(.ft-s0.kutish) .q-variant:not(:disabled) { outline: 1.5px solid ${T.accent}; outline-offset: 2px; animation: ft-puls 2.2s ease-out 0.9s infinite; }
         .q-kirish:has(.ft-s0) .q-split { grid-template-columns: auto minmax(0,1fr); gap: clamp(20px,3.4vw,40px); align-items: start; }
-        .q-reja:has(.ft-sahna.reja) .q-split { grid-template-columns: minmax(0,1.42fr) minmax(0,0.58fr); }
+        .q-reja:has(.ft-sahna.reja) .q-split { grid-template-columns: minmax(0,1.15fr) minmax(0,0.85fr); }
         .ft-taxmin { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 10px 14px; border-radius: 12px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 13.5px; transform-origin: top; animation: ft-yig 0.45s cubic-bezier(.2,.9,.3,1) both; }
         .ft-taxmin-y { font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: ${T.accent}; }
         .ft-taxmin-s { color: ${T.ink2}; } .ft-taxmin b { color: ${T.ink}; }
@@ -2345,7 +2333,15 @@ export default function FeatureTwoLesson({ lang: langProp, onFinished, liveToken
         .ft-sahna { position: relative; display: flex; align-items: center; justify-content: center; min-width: 0; }
         .ft-sahna.qator > .ft-be, .ft-sahna.qator > .ft-db { flex: 0 1 270px; min-width: 228px; }
         .ft-sahna-ong { display: flex; flex-direction: column; gap: 10px; min-width: 0; flex: 0 1 280px; }
-        .ft-sahna.reja { display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: 14px; align-items: center; }
+        .ft-sahna.reja { display: flex; gap: 22px; align-items: center; justify-content: center; }
+        .ft-reja-karta { display: flex; flex-direction: column; gap: 12px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 16px; padding: 16px 18px 12px; }
+        .ft-reja-zanjir { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; flex: 0 1 270px; min-width: 0; }
+        .ft-reja-zanjir li { position: relative; display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; opacity: 0.35; transition: opacity 0.35s; font-size: 13.5px; line-height: 1.4; color: ${T.ink}; }
+        .ft-reja-zanjir li.bor { opacity: 1; }
+        .ft-reja-zanjir li + li::before { content: ''; position: absolute; left: 11px; top: -7px; height: 14px; width: 2px; background: ${T.line}; }
+        .ft-reja-zanjir li i { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; color: ${T.ink2}; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; transition: all 0.3s; }
+        .ft-reja-zanjir li.bor i { color: #fff; background: ${T.accent}; box-shadow: none; }
+        .ft-reja-zanjir li.joriy i { box-shadow: 0 0 0 4px ${fon(T.accent, 0.18)}; }
         .ft-ikki-tel { display: flex; gap: 12px; align-items: flex-start; }
         .ft-yolak { position: relative; flex: 0 0 clamp(26px,4vw,56px); height: 2px; background: ${T.line}; }
         .ft-yolak.uzuq { background: transparent; border-top: 2px dashed ${fon(T.ink, 0.3)}; height: 0; flex-basis: clamp(70px,8vw,96px); }
@@ -2357,7 +2353,7 @@ export default function FeatureTwoLesson({ lang: langProp, onFinished, liveToken
         .ft-konvert.javob.nuqta { background: ${T.ok}; }
         @keyframes ft-uch { from { transform: translate(-50%,-50%); } to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))); } }
         /* Reja pastki qatorlari */
-        .ft-reja-past { display: flex; flex-direction: column; gap: 4px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 12px; padding: 8px 12px; }
+        .ft-reja-past { display: flex; flex-direction: column; gap: 4px; border-top: 1px dashed ${T.line}; padding: 10px 0 0; }
         p.ft-reja-repo { margin: 0; font-size: 12.5px; color: ${T.ink2}; }
         p.ft-reja-repo code { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: ${T.ink}; background: ${fon(T.ink, 0.06)}; padding: 1px 6px; border-radius: 5px; }
         p.ft-reja-izoh { margin: 0; font-size: 13px; color: ${T.ink2}; }
@@ -2415,8 +2411,8 @@ export default function FeatureTwoLesson({ lang: langProp, onFinished, liveToken
           .ft-yolak, .ft-yolak.uzuq { flex: none; width: 2px; height: 22px; border-top: 0; }
           .ft-yolak.uzuq { width: 0; height: 40px; border-left: 2px dashed ${fon(T.ink, 0.3)}; background: transparent; }
           .ft-yolak-y { left: 10px; right: auto; top: 12px; text-align: left; }
-          .ft-sahna.reja { grid-template-columns: auto auto; justify-content: center; gap: 10px; }
-          .ft-sahna.reja > .ft-sahna-ong { grid-column: 1 / -1; grid-row: 2; max-width: none; }
+          .ft-sahna.reja { flex-direction: column; gap: 12px; }
+          .ft-reja-zanjir { flex: none; width: 100%; max-width: 300px; }
           .ft-ikki-tel { gap: 8px; }
           .ft-tel-yorliq { max-width: 176px; gap: 4px; }
           .ft-rol, .ft-bugun, .ft-oyin-y { height: 20px; padding: 0 7px; font-size: 10.5px; }
@@ -2426,7 +2422,7 @@ export default function FeatureTwoLesson({ lang: langProp, onFinished, liveToken
           .ft-nat > .ft-sql, .ft-nat > .ft-javob { margin-top: 0; max-width: none; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .ft-navbat, .ft-navbat-k .q-bashorat, .q-kirish:has(.ft-s0.kutish) .q-variantlar-kol, .ft-flash.yangi .fc-card:not(.flip) .fc-front { animation: none !important; }
+          .ft-navbat, .ft-navbat-k .q-bashorat, .ft-navbat-k .q-chip:not(:disabled), .q-kirish:has(.ft-s0.kutish) .q-variant:not(:disabled), .ft-flash.yangi .fc-card:not(.flip) .fc-front { animation: none !important; }
           .ft-navbat-k .q-chip, .ft-taxmin, .ft-hali, .ft-tel-ekran, .ft-doiralar i, .ft-tq b, .ft-tel-btn, .ft-tel-xato, .ft-katak i, table.ft-jt tr.kir td, .ft-hisob-b b, .ft-yolak-y, .ft-kir, .ft-aylan i { animation: none !important; transition: none !important; }
         }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px ${fon(T.accent, 0.35)}, 0 0 0 1px ${fon(T.accent, 0.12)}; }

@@ -106,6 +106,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -183,8 +208,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })} title={tr(big ? { uz: 'Kichraytirish', ru: 'Уменьшить' } : { uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1381,18 +1406,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3).
 // 🎓 Metodist: savol matni sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Oddiy AI va agent o'rtasidagi asosiy farq nima?", ru: 'В чём главное отличие обычного ИИ от агента?' }, opts: [{ uz: "Oddiy AI javob beradi; agent qadamlar bilan ishlaydi", ru: 'Обычный ИИ отвечает; агент работает шагами' }, { uz: "Agent chiroyliroq va odob bilan gapiradi", ru: 'Агент говорит красивее и вежливее' }, { uz: "Oddiy AI har doim agentdan tezroq ishlaydi", ru: 'Обычный ИИ всегда работает быстрее агента' }, { uz: "Ular o'rtasida hech qanday farq yo'q", ru: 'Между ними нет никакой разницы' }], correct: 0 },
+  { q: { uz: "Oddiy AI va agentning asosiy farqi nima?", ru: "В чём главное отличие обычного AI от агента?" }, opts: [{ uz: "Agent ishni bajaradi", ru: "Агент выполняет работу" }, { uz: "Agent chiroyliroq gapiradi", ru: "Агент говорит красивее" }, { uz: "Oddiy AI doim tezroq", ru: "Обычный AI всегда быстрее" }, { uz: "Hech qanday farqi yo'q", ru: "Разницы нет" }], correct: 0 },
   { q: { uz: "Agent sikli qanday nomlanadi?", ru: 'Как называется цикл агента?' }, opts: [{ uz: "Kirish → ishlov → chiqish", ru: 'Ввод → обработка → вывод' }, { uz: "Boshlash → kutish → tugatish", ru: 'Старт → ожидание → финиш' }, { uz: "Idrok → qaror → amal", ru: 'Восприятие → решение → действие' }, { uz: "Savol → javob → to'xtash", ru: 'Вопрос → ответ → остановка' }], correct: 2 },
-  { q: { uz: "Tool nima?", ru: 'Что такое tool?' }, opts: [{ uz: "Agentning dasturdagi laqabi", ru: 'Прозвище агента в программе' }, { uz: "Agent chaqira oladigan funksiya", ru: 'Функция, которую может вызвать агент' }, { uz: "Do'kondagi mahsulotlar xaritasi", ru: 'Карта товаров в магазине' }, { uz: "AI'ning telefon raqami", ru: 'Номер телефона ИИ' }], correct: 1 },
-  { q: { uz: "Agent Database'dan buyurtmalarni o'qishi — bu qaysi tool?", ru: 'Агент читает заказы из Database — какой это инструмент?' }, opts: [{ uz: "Database'ga so'rov", ru: 'Запрос к Database' }, { uz: "Foydalanuvchining kirish paroli", ru: 'Пароль пользователя для входа' }, { uz: "Ekran rasmini olish", ru: 'Снимок экрана' }, { uz: "Video faylni ijro etish", ru: 'Воспроизведение видеофайла' }], correct: 0 },
-  { q: { uz: "Bir martalik, aniq ish (masalan, tarjima) uchun nima yetadi?", ru: 'Чего хватит для разовой, чёткой задачи (например, перевода)?' }, opts: [{ uz: "Bunga ham albatta agent kerak", ru: 'Сюда тоже обязательно нужен агент' }, { uz: "Hech qaysi biri to'g'ri emas", ru: 'Ни один вариант не подходит' }, { uz: "AI va agentni birga ishlatish", ru: 'Запустить ИИ и агента вместе' }, { uz: "Oddiy AI yetadi", ru: 'Хватит обычного ИИ' }], correct: 3 },
-  { q: { uz: "Bir necha qadam va tool kerak bo'lgan ish uchun nima foydali?", ru: 'Что полезно для задачи, где нужны несколько шагов и инструменты?' }, opts: [{ uz: "Bitta javobli oddiy AI", ru: 'Обычный ИИ с одним ответом' }, { uz: "Oddiy chiziqli skript", ru: 'Обычный линейный скрипт' }, { uz: "Faqat frontend qismi", ru: 'Только фронтенд-часть' }, { uz: "AI-agent", ru: 'AI-агент' }], correct: 3 },
-  { q: { uz: "Bizning tizimda agent qayerda ishlaydi?", ru: 'Где работает агент в нашей системе?' }, opts: [{ uz: "Frontendda, foydalanuvchi ko'radigan joyda", ru: 'На фронтенде, там, где его видит пользователь' }, { uz: "Backend ichida", ru: 'Внутри бэкенда' }, { uz: "Database ichida", ru: 'Внутри Database' }, { uz: "Tizimdan butunlay tashqarida", ru: 'Полностью вне системы' }], correct: 1 },
-  { q: { uz: "Agent tizimga qanday amal qiladi?", ru: 'Как агент действует в системе?' }, opts: [{ uz: "O'z-o'zidan, hech qanday kod va API'siz", ru: 'Сам собой, без всякого кода и API' }, { uz: "Tool'lar orqali: Database, API, xabar", ru: 'Через инструменты: Database, API, сообщение' }, { uz: "Faqat javob yozib, amalsiz", ru: 'Только пишет ответы, без действий' }, { uz: "Ekranni o'zi chizib qo'yib", ru: 'Сам рисуя экран' }], correct: 1 },
-  { q: { uz: "Nega agentga chegara kerak?", ru: 'Зачем агенту ограничение?' }, opts: [{ uz: "U real amal qiladi, xavflisini cheklash kerak", ru: 'Он совершает реальные действия — опасные надо ограничить' }, { uz: "U juda sekin ishlaydi va kuttiradi", ru: 'Он работает очень медленно и заставляет ждать' }, { uz: "U juda ko'p xotira egallaydi", ru: 'Он занимает слишком много памяти' }, { uz: "Aslida bunday chegara kerak emas", ru: 'На самом деле такое ограничение не нужно' }], correct: 0 },
-  { q: { uz: "Agentga bir necha qadamni ketma-ket bajarish imkonini nima beradi?", ru: 'Что позволяет агенту выполнять несколько шагов подряд?' }, opts: [{ uz: "Juda katta xotira hajmi", ru: 'Очень большой объём памяти' }, { uz: "Chiroyli va zamonaviy interfeys", ru: 'Красивый и современный интерфейс' }, { uz: "Maqsadga yetguncha aylanadigan sikl", ru: 'Цикл, который крутится до достижения цели' }, { uz: "Juda tez internet aloqasi", ru: 'Очень быстрый интернет' }], correct: 2 },
-  { q: { uz: "Har bir vazifaga agent ishlatish nima deyiladi?", ru: 'Как называется использование агента для каждой задачи?' }, opts: [{ uz: "Bu doim eng to'g'ri yechim", ru: 'Это всегда самое правильное решение' }, { uz: "Vaqtni to'g'ri tejash usuli", ru: 'Способ правильно экономить время' }, { uz: "Tizimni tezlashtirish usuli", ru: 'Способ ускорить систему' }, { uz: "Ortiqcha murakkablik", ru: 'Переусложнение (лишняя сложность)' }], correct: 3 },
-  { q: { uz: "Agent siklining to'g'ri tartibi qanday?", ru: 'Каков правильный порядок цикла агента?' }, opts: [{ uz: "Amal → idrok → qaror → maqsad → natija", ru: 'Действие → восприятие → решение → цель → результат' }, { uz: "Qaror → amal → natija → idrok → maqsad", ru: 'Решение → действие → результат → восприятие → цель' }, { uz: "Maqsad → idrok → qaror → amal → natija", ru: 'Цель → восприятие → решение → действие → результат' }, { uz: "Natija → maqsad → amal → qaror → idrok", ru: 'Результат → цель → действие → решение → восприятие' }], correct: 2 },
+  { q: { uz: "Tool nima?", ru: "Что такое tool?" }, opts: [{ uz: "AI modelining nomi", ru: "Название AI-модели" }, { uz: "Agent chaqiradigan funksiya", ru: "Функция, которую вызывает агент" }, { uz: "Database'ning bir turi", ru: "Вид Database" }, { uz: "Frontend sahifasi", ru: "Страница Frontend" }], correct: 1 },
+  { q: { uz: "Agent buyurtma holatini o'qishi — qaysi tool?", ru: "Агент читает статус заказа — какой это tool?" }, opts: [{ uz: "Database tool'i", ru: "Tool Database" }, { uz: "API tool'i", ru: "Tool API" }, { uz: "Xabar tool'i", ru: "Tool сообщений" }, { uz: "Tool kerak emas", ru: "Tool не нужен" }], correct: 0 },
+  { q: { uz: "Bir martalik ish (masalan, tarjima) uchun nima yetadi?", ru: "Чего хватит для разовой задачи (например, перевода)?" }, opts: [{ uz: "Albatta agent kerak", ru: "Обязательно нужен агент" }, { uz: "Hech qaysi to'g'ri emas", ru: "Ничего не подходит" }, { uz: "AI va agent birga", ru: "AI и агент вместе" }, { uz: "Oddiy AI", ru: "Обычный AI" }], correct: 3 },
+  { q: { uz: "Bir necha qadamli, tool kerak ishga nima mos?", ru: "Что подходит для многошаговой задачи с tool?" }, opts: [{ uz: "Bitta javobli oddiy AI", ru: "Обычный AI с одним ответом" }, { uz: "Faqat Database", ru: "Только Database" }, { uz: "Faqat frontend qismi", ru: "Только frontend" }, { uz: "AI-agent", ru: "AI-агент" }], correct: 3 },
+  { q: { uz: "Bizning tizimda agent qayerda ishlaydi?", ru: "Где работает агент в нашей системе?" }, opts: [{ uz: "Frontendda", ru: "Во frontend" }, { uz: "Backend ichida", ru: "Внутри backend" }, { uz: "Database ichida", ru: "Внутри Database" }, { uz: "Tizimdan tashqarida", ru: "Вне системы" }], correct: 1 },
+  { q: { uz: "Agent tizimga qanday amal qiladi?", ru: "Как агент действует в системе?" }, opts: [{ uz: "O'z-o'zidan, tool'siz", ru: "Сам по себе, без tool" }, { uz: "Siz bergan tool'lar orqali", ru: "Через выданные вами tool" }, { uz: "Faqat javob yozib", ru: "Только пишет ответ" }, { uz: "Ekranni o'zi chizib", ru: "Сам рисует экран" }], correct: 1 },
+  { q: { uz: "Nega agentga chegara kerak?", ru: "Зачем агенту ограничения?" }, opts: [{ uz: "U real amal qiladi", ru: "Он совершает реальные действия" }, { uz: "U juda sekin ishlaydi", ru: "Он работает очень медленно" }, { uz: "U ko'p xotira egallaydi", ru: "Он занимает много памяти" }, { uz: "Chegara kerak emas", ru: "Ограничения не нужны" }], correct: 0 },
+  { q: { uz: "Agentga ketma-ket qadamlar imkonini nima beradi?", ru: "Что позволяет агенту делать шаги подряд?" }, opts: [{ uz: "Katta xotira", ru: "Большая память" }, { uz: "Chiroyli interfeys", ru: "Красивый интерфейс" }, { uz: "Agent sikli", ru: "Цикл агента" }, { uz: "Tez internet", ru: "Быстрый интернет" }], correct: 2 },
+  { q: { uz: "Har vazifaga agent ishlatish — bu nima?", ru: "Агент для каждой задачи — это что?" }, opts: [{ uz: "Doim eng to'g'ri yechim", ru: "Всегда лучшее решение" }, { uz: "Vaqtni tejash usuli", ru: "Способ сэкономить время" }, { uz: "Tizimni tezlashtirish", ru: "Ускорение системы" }, { uz: "Ortiqcha murakkablik", ru: "Лишняя сложность" }], correct: 3 },
+  { q: { uz: "Agent har amaldan keyin nima qiladi?", ru: "Что делает агент после каждого действия?" }, opts: [{ uz: "Darhol to'xtaydi", ru: "Сразу останавливается" }, { uz: "Foydalanuvchini kutadi", ru: "Ждёт пользователя" }, { uz: "Natijani tekshiradi", ru: "Проверяет результат" }, { uz: "Siklni o'chiradi", ru: "Выключает цикл" }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2561,7 +2586,7 @@ export default function AgentArchitectureLesson({ lang: langProp, onFinished, li
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }

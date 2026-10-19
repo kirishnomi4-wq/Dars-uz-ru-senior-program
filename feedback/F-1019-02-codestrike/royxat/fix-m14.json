@@ -1,0 +1,3636 @@
+[
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor Raqamlar bo'lagida nechta foydalanuvchi aytgan?",
+   "ru": "Сколько пользователей Ментор назвал в Цифрах?"
+  },
+  "opts": [
+   {
+    "uz": "44 foydalanuvchi",
+    "ru": "44 пользователя"
+   },
+   {
+    "uz": "51 foydalanuvchi",
+    "ru": "51 пользователь"
+   },
+   {
+    "uz": "60 foydalanuvchi",
+    "ru": "60 пользователей"
+   },
+   {
+    "uz": "6 foydalanuvchi",
+    "ru": "6 пользователей"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Bozor bo'lagi qaysi savolga javob beradi?",
+   "ru": "На какой вопрос отвечает часть «Рынок»?"
+  },
+  "opts": [
+   {
+    "uz": "«Buni kim qilyapti?»",
+    "ru": "«Кто это делает?»"
+   },
+   {
+    "uz": "«Endi nima qilasiz?»",
+    "ru": "«Что будете делать дальше?»"
+   },
+   {
+    "uz": "«Yana qancha odamga kerak?»",
+    "ru": "«Скольким ещё людям нужно?»"
+   },
+   {
+    "uz": "«Mahsulot nima qiladi?»",
+    "ru": "«Что делает продукт?»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "5 daqiqalik pitchdan keyin nima bo'ladi?",
+   "ru": "Что происходит после 5-минутного питча?"
+  },
+  "opts": [
+   {
+    "uz": "Hakam darhol ball qo'yadi",
+    "ru": "Судья сразу ставит балл"
+   },
+   {
+    "uz": "Keyingi o'quvchi chiqadi",
+    "ru": "Выходит следующий ученик"
+   },
+   {
+    "uz": "Pitch qayta boshlanadi",
+    "ru": "Питч начинается заново"
+   },
+   {
+    "uz": "Savol-javob boshlanadi",
+    "ru": "Начинаются вопросы-ответы"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 30 belgidan, jami 140 dan oshgan edi.",
+  "q": {
+   "uz": "Mentor boshqa mahallalar haqida nima degan?",
+   "ru": "Что Ментор сказал о других махаллях?"
+  },
+  "opts": [
+   {
+    "uz": "Ularda ham 60 kishi bor",
+    "ru": "Там тоже по 60 человек"
+   },
+   {
+    "uz": "Ularga ilova kerak emas",
+    "ru": "Им приложение не нужно"
+   },
+   {
+    "uz": "Hali tekshirilmagan",
+    "ru": "Ещё не проверены"
+   },
+   {
+    "uz": "Ularda o'yin o'tmaydi",
+    "ru": "Там игр не бывает"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor Jamoa bo'lagida agentni qanday aytgan?",
+   "ru": "Как Ментор назвал агента в Команде?"
+  },
+  "opts": [
+   {
+    "uz": "Jamoa a'zosi deb aytgan",
+    "ru": "Назвал членом команды"
+   },
+   {
+    "uz": "Bosh dasturchi deb aytgan",
+    "ru": "Назвал главным программистом"
+   },
+   {
+    "uz": "Agentni tilga olmagan",
+    "ru": "Не упомянул агента"
+   },
+   {
+    "uz": "Kodni agent bilan yozgan",
+    "ru": "Писал код с агентом"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Mentor misolida sinab ko'rganlar kimlar?",
+   "ru": "Кто тестировал в примере Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat sinfdoshlari",
+    "ru": "Только одноклассники"
+   },
+   {
+    "uz": "6 tashkilotchi va o'yinchilar",
+    "ru": "6 организаторов и игроки"
+   },
+   {
+    "uz": "Investor va tadbirkorlar",
+    "ru": "Инвесторы и предприниматели"
+   },
+   {
+    "uz": "Agent va Mentorning o'zi",
+    "ru": "Агент и сам Ментор"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor hakamdan nima so'raydi?",
+   "ru": "О чём Ментор просит судью?"
+  },
+  "opts": [
+   {
+    "uz": "Pro uchun yozma tasdiq",
+    "ru": "Письменное согласие на Pro"
+   },
+   {
+    "uz": "Ilovani guruhga ulashish",
+    "ru": "Поделиться приложением в группе"
+   },
+   {
+    "uz": "Ilova uchun pul summasi",
+    "ru": "Сумму денег на приложение"
+   },
+   {
+    "uz": "Maydon egalarini tanishtirish",
+    "ru": "Познакомить с владельцами полей"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "12-Moduldagi «maqsad 50» nega yangilandi?",
+   "ru": "Почему обновили «цель 50» из 12-го модуля?"
+  },
+  "opts": [
+   {
+    "uz": "Foydalanuvchi 51 taga yetdi",
+    "ru": "Пользователей стало 51"
+   },
+   {
+    "uz": "Maqsad juda katta bo'ldi",
+    "ru": "Цель оказалась слишком большой"
+   },
+   {
+    "uz": "Ro'yxatdagi son xato edi",
+    "ru": "Число в списке было ошибочным"
+   },
+   {
+    "uz": "Taklif havolasi buzildi",
+    "ru": "Пригласительная ссылка сломалась"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor 3 yozma tasdiqni qanday aytgan?",
+   "ru": "Как Ментор назвал 3 письменных согласия?"
+  },
+  "opts": [
+   {
+    "uz": "Uchtasi Pro'ni sotib oldi",
+    "ru": "Трое купили Pro"
+   },
+   {
+    "uz": "Tasdiq bor, to'lov hali yo'q",
+    "ru": "Согласие есть, оплаты ещё нет"
+   },
+   {
+    "uz": "Hamma tashkilotchi yozildi",
+    "ru": "Все организаторы записались"
+   },
+   {
+    "uz": "Pitchda umuman aytmagan",
+    "ru": "В питче не упомянул"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 30 belgidan, jami 140 dan oshgan edi.",
+  "q": {
+   "uz": "Mentor Muammo dalilini qayerdan olgan?",
+   "ru": "Откуда Ментор взял довод для Проблемы?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovadagi 51 kishidan",
+    "ru": "От 51 человека в приложении"
+   },
+   {
+    "uz": "Guruhdagi 60 kishidan",
+    "ru": "От 60 человек в группе"
+   },
+   {
+    "uz": "So'ralgan 3 o'yinchidan",
+    "ru": "От 3 опрошенных игроков"
+   },
+   {
+    "uz": "3 tashkilotchi tasdig'idan",
+    "ru": "Из согласия 3 организаторов"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmStoryPitchLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Mahsulot hikoyasi qaysi uch qismdan iborat?",
+   "ru": "Из каких трёх частей состоит история продукта?"
+  },
+  "opts": [
+   {
+    "uz": "Kim, lahza va o'zgarish",
+    "ru": "Кто, момент и изменение"
+   },
+   {
+    "uz": "Muammo, Bozor va Jamoa",
+    "ru": "Проблема, Рынок и Команда"
+   },
+   {
+    "uz": "Funksiya, ekran, tugma",
+    "ru": "Функция, экран, кнопка"
+   },
+   {
+    "uz": "Logotip, rang, shrift",
+    "ru": "Логотип, цвет, шрифт"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmStoryPitchLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "O'zgarishdan keyin Mentor ekranida nima chiqadi?",
+   "ru": "Что видно на экране Ментора после изменения?"
+  },
+  "opts": [
+   {
+    "uz": "8 / 10, ikki joy bo'sh",
+    "ru": "8 / 10, два места свободны"
+   },
+   {
+    "uz": "10 / 10, hamma joy band",
+    "ru": "10 / 10, все места заняты"
+   },
+   {
+    "uz": "0 / 10, hech kim yo'q",
+    "ru": "0 / 10, никого нет"
+   },
+   {
+    "uz": "9 / 10, bitta joy bo'sh",
+    "ru": "9 / 10, одно место свободно"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmStoryPitchLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Funksiyalar ro'yxati zalga nimani aytadi?",
+   "ru": "Что список функций говорит залу?"
+  },
+  "opts": [
+   {
+    "uz": "Mahsulotda nima borligini",
+    "ru": "Что есть в продукте"
+   },
+   {
+    "uz": "Kimda nima bo'lganini",
+    "ru": "Что случилось и с кем"
+   },
+   {
+    "uz": "Qaysi kuni nima bo'lganini",
+    "ru": "Что было в какой день"
+   },
+   {
+    "uz": "Mahsulot nima o'zgartirgani",
+    "ru": "Что изменил продукт"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmStoryPitchLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Savol 60 belgidan uzun va chalkash edi: sherik savoli o'rniga holat so'raladi.",
+  "q": {
+   "uz": "Hikoyada ro'yxat chiqsa, nima qilasiz?",
+   "ru": "Если в истории появился список, что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatni tezroq aytaman",
+    "ru": "Скажу список быстрее"
+   },
+   {
+    "uz": "Ro'yxatga funksiya qo'shaman",
+    "ru": "Добавлю функцию в список"
+   },
+   {
+    "uz": "Bitta o'zgarishni aytaman",
+    "ru": "Назову одно изменение"
+   },
+   {
+    "uz": "Hikoyani olib tashlayman",
+    "ru": "Уберу историю"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmStoryPitchLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Raqamlar bo'lagi nimani aytadi?",
+   "ru": "Что говорит часть «Цифры»?"
+  },
+  "opts": [
+   {
+    "uz": "Foydalanuvchilar sonini",
+    "ru": "Число пользователей"
+   },
+   {
+    "uz": "Lahza qachon bo'lganini",
+    "ru": "Когда был момент"
+   },
+   {
+    "uz": "Mahsulotni kim qilganini",
+    "ru": "Кто делает продукт"
+   },
+   {
+    "uz": "Hakamdan nima so'ralishini",
+    "ru": "О чём просят судью"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmStoryPitchLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Videodan keyin qaysi savolni berasiz?",
+   "ru": "Какой вопрос зададите после видео?"
+  },
+  "opts": [
+   {
+    "uz": "Video nechta layk oldi?",
+    "ru": "Сколько лайков у видео?"
+   },
+   {
+    "uz": "Qaysi chatga tashlayman?",
+    "ru": "В какой чат отправлю?"
+   },
+   {
+    "uz": "Yuzim yaxshi chiqdimi?",
+    "ru": "Хорошо ли вышло лицо?"
+   },
+   {
+    "uz": "Hikoya lahzadan boshlandimi?",
+    "ru": "Началась ли история с момента?"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmStoryPitchLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Hikoya videosi qayerda qoladi?",
+   "ru": "Где остаётся видео с историей?"
+  },
+  "opts": [
+   {
+    "uz": "Sinf chatida",
+    "ru": "В чате класса"
+   },
+   {
+    "uz": "Faqat telefoningizda",
+    "ru": "Только на вашем телефоне"
+   },
+   {
+    "uz": "Maktab saytida",
+    "ru": "На сайте школы"
+   },
+   {
+    "uz": "Mentorning telefonida",
+    "ru": "На телефоне Ментора"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/ProductSpeedLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Lighthouse 100 ball haqida nima deydi?",
+   "ru": "Что Lighthouse говорит о 100 баллах?"
+  },
+  "opts": [
+   {
+    "uz": "Har sahifaga majburiy",
+    "ru": "Обязательно для каждой страницы"
+   },
+   {
+    "uz": "Faqat Desktop rejimida",
+    "ru": "Только в режиме Desktop"
+   },
+   {
+    "uz": "Juda qiyin, shart emas",
+    "ru": "Очень трудно, не обязательно"
+   },
+   {
+    "uz": "Faqat yangi saytlarda",
+    "ru": "Только у новых сайтов"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/ProductSpeedLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Tepadagi rasmga keyin yuklash qo'yilsa, nima bo'ladi?",
+   "ru": "Что будет, если верхней картинке поставить загрузку позже?"
+  },
+  "opts": [
+   {
+    "uz": "CLS nolga tushadi",
+    "ru": "CLS упадёт до нуля"
+   },
+   {
+    "uz": "Kod hajmi kamayadi",
+    "ru": "Объём кода уменьшится"
+   },
+   {
+    "uz": "LCP kechikishi mumkin",
+    "ru": "LCP может задержаться"
+   },
+   {
+    "uz": "Rasm umuman chiqmaydi",
+    "ru": "Картинка совсем не появится"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Demo yo'lida qaysi uch joy o'zgaradi?",
+   "ru": "Какие три места меняются на пути демо?"
+  },
+  "opts": [
+   {
+    "uz": "Bosish, yuklanish, natija",
+    "ru": "Нажатие, загрузка, результат"
+   },
+   {
+    "uz": "Kirish, ro'yxat, chiqish",
+    "ru": "Вход, регистрация, выход"
+   },
+   {
+    "uz": "Rasm, kutubxona, kod hajmi",
+    "ru": "Картинки, библиотека, объём кода"
+   },
+   {
+    "uz": "Lending, maxfiylik, oferta",
+    "ru": "Лендинг, конфиденциальность, оферта"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Sayqaldan keyin demo yo'lida nima o'zgaradi?",
+   "ru": "Что меняется на пути демо после шлифовки?"
+  },
+  "opts": [
+   {
+    "uz": "Ekranlar soni va tartibi",
+    "ru": "Число экранов и порядок"
+   },
+   {
+    "uz": "Uch joyning ko'rinishi",
+    "ru": "Вид трёх мест"
+   },
+   {
+    "uz": "Backend va Database",
+    "ru": "Backend и Database"
+   },
+   {
+    "uz": "Ilova nomi va rangi",
+    "ru": "Название и цвет приложения"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Javob sekin kelsa, bosilgan tugma qanday turadi?",
+   "ru": "Как выглядит нажатая кнопка, если ответ медленный?"
+  },
+  "opts": [
+   {
+    "uz": "Avvalgidek turadi",
+    "ru": "Как прежде"
+   },
+   {
+    "uz": "Yo'qolib qoladi",
+    "ru": "Исчезает"
+   },
+   {
+    "uz": "«Qo'shilmoqda…», o'chiq",
+    "ru": "«Qo'shilmoqda…», неактивна"
+   },
+   {
+    "uz": "«Qo'shildingiz» bo'ladi",
+    "ru": "Становится «Qo'shildingiz»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Joy egallovchi qayerda turadi?",
+   "ru": "Где стоит заполнитель?"
+  },
+  "opts": [
+   {
+    "uz": "Ekranning eng tepasida",
+    "ru": "В самом верху экрана"
+   },
+   {
+    "uz": "Ro'yxatdan oldingi ekranda",
+    "ru": "На экране перед списком"
+   },
+   {
+    "uz": "Tugma yozuvi o'rnida",
+    "ru": "Вместо надписи кнопки"
+   },
+   {
+    "uz": "Ma'lumot o'rnida",
+    "ru": "На месте данных"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Kulrang karta nega haqiqiy karta o'lchamida?",
+   "ru": "Почему серая карточка размером с настоящую?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxat kelganda sakramasin",
+    "ru": "Чтобы не было скачка при загрузке списка"
+   },
+   {
+    "uz": "Chiroyli ko'rinsin",
+    "ru": "Чтобы выглядела красиво"
+   },
+   {
+    "uz": "Backend tez javob bersin",
+    "ru": "Чтобы Backend ответил быстрее"
+   },
+   {
+    "uz": "Kutish yozuvi kerak emas",
+    "ru": "Надпись ожидания не нужна"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Kutish yozuvi bor bo'lsa, kulrang kartalar nima beradi?",
+   "ru": "Что дают серые карточки, если есть надпись ожидания?"
+  },
+  "opts": [
+   {
+    "uz": "Ro'yxatni tezlatadi",
+    "ru": "Ускоряют список"
+   },
+   {
+    "uz": "Nima kelishini ko'rsatadi",
+    "ru": "Показывают, что придёт"
+   },
+   {
+    "uz": "Backend'ni uyg'otadi",
+    "ru": "Будят Backend"
+   },
+   {
+    "uz": "Yozuvni almashtiradi",
+    "ru": "Заменяют надпись"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Harakat kamaytirilsa, sayqaldan nima qoladi?",
+   "ru": "Что остаётся от шлифовки при уменьшенном движении?"
+  },
+  "opts": [
+   {
+    "uz": "Hech narsa qolmaydi",
+    "ru": "Ничего не остаётся"
+   },
+   {
+    "uz": "Faqat animatsiyalar",
+    "ru": "Только анимации"
+   },
+   {
+    "uz": "Yozuv, kartalar va son",
+    "ru": "Надпись, карточки и число"
+   },
+   {
+    "uz": "Faqat kutish belgisi",
+    "ru": "Только значок ожидания"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Harakat kamaytirilganini DevTools'da qayerda tanlaysiz?",
+   "ru": "Где в DevTools выбрать уменьшение движения?"
+  },
+  "opts": [
+   {
+    "uz": "Network bo'limida",
+    "ru": "В разделе Network"
+   },
+   {
+    "uz": "Lighthouse bo'limida",
+    "ru": "В разделе Lighthouse"
+   },
+   {
+    "uz": "Console bo'limida",
+    "ru": "В разделе Console"
+   },
+   {
+    "uz": "Rendering bo'limida",
+    "ru": "В разделе Rendering"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Ro'yxat sekin kelishini DevTools'da qanday ko'rasiz?",
+   "ru": "Как в DevTools увидеть медленную загрузку списка?"
+  },
+  "opts": [
+   {
+    "uz": "Network'da «Slow 4G»",
+    "ru": "«Slow 4G» в Network"
+   },
+   {
+    "uz": "Lighthouse'da «Mobile»",
+    "ru": "«Mobile» в Lighthouse"
+   },
+   {
+    "uz": "Rendering'da «reduce»",
+    "ru": "«reduce» в Rendering"
+   },
+   {
+    "uz": "Console'da xato qatori",
+    "ru": "Строка ошибки в Console"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Muvaffaqiyat animatsiyasi qanday bo'ladi?",
+   "ru": "Какой бывает анимация успеха?"
+  },
+  "opts": [
+   {
+    "uz": "Uzun, butun ekran bo'ylab",
+    "ru": "Долгой, на весь экран"
+   },
+   {
+    "uz": "Qisqa va bir marta",
+    "ru": "Короткой и один раз"
+   },
+   {
+    "uz": "To'xtamay miltillaydi",
+    "ru": "Мигает без остановки"
+   },
+   {
+    "uz": "Har soniyada takrorlanadi",
+    "ru": "Повторяется каждую секунду"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Animatsiyaga nega yangi kutubxona qo'shilmaydi?",
+   "ru": "Почему для анимации не добавляют новую библиотеку?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat web'da ishlaydi",
+    "ru": "Работает только в вебе"
+   },
+   {
+    "uz": "Agent o'rnata olmaydi",
+    "ru": "Агент не может установить"
+   },
+   {
+    "uz": "Kod hajmi oshishi mumkin",
+    "ru": "Может вырасти объём кода"
+   },
+   {
+    "uz": "Backend'ni sekinlatadi",
+    "ru": "Замедляет Backend"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PolishDayLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Sayqal ishlashini qanday bilasiz?",
+   "ru": "Как узнать, что шлифовка работает?"
+  },
+  "opts": [
+   {
+    "uz": "Agent «tayyor» deydi",
+    "ru": "Агент говорит «готово»"
+   },
+   {
+    "uz": "Kodda animatsiya bor",
+    "ru": "В коде есть анимация"
+   },
+   {
+    "uz": "Sinfdosh «chiroyli» deydi",
+    "ru": "Одноклассник говорит «красиво»"
+   },
+   {
+    "uz": "Sekin tarmoqda ko'rasiz",
+    "ru": "Видите сами на медленной сети"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Varaq qachon to'ldiriladi?",
+   "ru": "Когда заполняют лист?"
+  },
+  "opts": [
+   {
+    "uz": "Pitch tugagandan keyin",
+    "ru": "После окончания питча"
+   },
+   {
+    "uz": "Har bo'lak aytilayotganda",
+    "ru": "Пока рассказывают каждую часть"
+   },
+   {
+    "uz": "Pitch boshlanishidan oldin",
+    "ru": "До начала питча"
+   },
+   {
+    "uz": "Faqat uyda, darsdan keyin",
+    "ru": "Только дома, после урока"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor tuzatishida «60 kishi» kimlar?",
+   "ru": "Кто такие «60 человек» в исправлении Ментора?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovadagi tashkilotchilar",
+    "ru": "Организаторы в приложении"
+   },
+   {
+    "uz": "Mahalladagi maydon egalari",
+    "ru": "Владельцы площадок в махалле"
+   },
+   {
+    "uz": "Futbol guruhi a'zolari",
+    "ru": "Участники футбольной группы"
+   },
+   {
+    "uz": "Mentorning sinfdoshlari",
+    "ru": "Одноклассники Ментора"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Guruh rejimida hakam savolini kim yozadi?",
+   "ru": "Кто в групповом режиме пишет вопрос судьи?"
+  },
+  "opts": [
+   {
+    "uz": "Pitchni aytgan o'quvchi",
+    "ru": "Ученик, рассказавший питч"
+   },
+   {
+    "uz": "Mentor, dars boshida",
+    "ru": "Ментор, в начале урока"
+   },
+   {
+    "uz": "Agent, matnni o'qib",
+    "ru": "Агент, прочитав текст"
+   },
+   {
+    "uz": "Pitchni tinglaganlar",
+    "ru": "Те, кто слушал питч"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Fikrlar har xil bo'lsa, varaqqa nima qo'yiladi?",
+   "ru": "Что ставят в лист, если мнения разные?"
+  },
+  "opts": [
+   {
+    "uz": "Kelishilgan bitta belgi",
+    "ru": "Один согласованный знак"
+   },
+   {
+    "uz": "Ko'pchilikning ✓ belgisi",
+    "ru": "Знак ✓ большинства"
+   },
+   {
+    "uz": "Qator belgisiz qoladi",
+    "ru": "Строка остаётся без знака"
+   },
+   {
+    "uz": "Ikkala belgi yonma-yon",
+    "ru": "Оба знака рядом"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor varag'ida ikkita ✗. Uchinchi tuzatish qayerdan?",
+   "ru": "В листе Ментора два ✗. Откуда третье исправление?"
+  },
+  "opts": [
+   {
+    "uz": "Sinf ovozlaridan",
+    "ru": "Из голосов класса"
+   },
+   {
+    "uz": "Hakam savolidan",
+    "ru": "Из вопроса судьи"
+   },
+   {
+    "uz": "Mentor taxminidan",
+    "ru": "Из догадки Ментора"
+   },
+   {
+    "uz": "Pitch vaqtidan",
+    "ru": "Из времени питча"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Tuzatish qanday yoziladi?",
+   "ru": "Как пишут исправление?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat bo'lak nomi bilan",
+    "ru": "Только названием части"
+   },
+   {
+    "uz": "Pitchdagi hamma gaplar bilan",
+    "ru": "Всеми фразами питча"
+   },
+   {
+    "uz": "Bo'lak va unda nima o'zgarishi",
+    "ru": "Часть и что в ней изменится"
+   },
+   {
+    "uz": "Tinglovchi ismi bilan",
+    "ru": "С именем слушателя"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol va variantlar uzun edi.",
+  "q": {
+   "uz": "Mentor tasdiq haqidagi izohga nima yozdi?",
+   "ru": "Что Ментор написал к замечанию о подтверждении?"
+  },
+  "opts": [
+   {
+    "uz": "Tasdiqni olib tashlash",
+    "ru": "Убрать подтверждения"
+   },
+   {
+    "uz": "«Pro'ni sotib oldi» deyish",
+    "ru": "Сказать «купили Pro»"
+   },
+   {
+    "uz": "Tasdiqlar sonini oshirish",
+    "ru": "Назвать подтверждений больше"
+   },
+   {
+    "uz": "Tasdiq nimaligini aytish",
+    "ru": "Объяснить, что такое подтверждение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Qaysi izoh bo'lak haqida?",
+   "ru": "Какое замечание о части?"
+  },
+  "opts": [
+   {
+    "uz": "«Yechim tushunarsiz qoldi»",
+    "ru": "«Решение осталось непонятным»"
+   },
+   {
+    "uz": "«Juda hayajonlandingiz»",
+    "ru": "«Вы очень волновались»"
+   },
+   {
+    "uz": "«Menga umuman yoqmadi»",
+    "ru": "«Мне совсем не понравилось»"
+   },
+   {
+    "uz": "«Meniki yaxshiroq chiqdi»",
+    "ru": "«Мой получился лучше»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Guruh bo'lmasa, varaqni kim to'ldiradi?",
+   "ru": "Кто заполняет лист, если группы нет?"
+  },
+  "opts": [
+   {
+    "uz": "Mentor, darsdan keyin",
+    "ru": "Ментор, после урока"
+   },
+   {
+    "uz": "O'zingiz, yozuvni ko'rib",
+    "ru": "Вы сами, посмотрев запись"
+   },
+   {
+    "uz": "Hech kim, varaq kerak emas",
+    "ru": "Никто, лист не нужен"
+   },
+   {
+    "uz": "Agent, matnni o'qib",
+    "ru": "Агент, прочитав текст"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Yakka rejimda pitch yozuvi qayerda qoladi?",
+   "ru": "Где остаётся запись питча в одиночном режиме?"
+  },
+  "opts": [
+   {
+    "uz": "Sinf chatida",
+    "ru": "В чате класса"
+   },
+   {
+    "uz": "Mentorning telefonida",
+    "ru": "На телефоне Ментора"
+   },
+   {
+    "uz": "Faqat telefoningizda",
+    "ru": "Только на вашем телефоне"
+   },
+   {
+    "uz": "Guruh kanalida",
+    "ru": "В канале группы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Nega maydon egalari to'lamaydi? Mentor nima deydi?",
+   "ru": "Почему владельцы площадок не платят? Что скажет Ментор?"
+  },
+  "opts": [
+   {
+    "uz": "«Keyin to'lab beradi»",
+    "ru": "«Потом заплатят»"
+   },
+   {
+    "uz": "«Pitchga aloqasi yo'q»",
+    "ru": "«К питчу не относится»"
+   },
+   {
+    "uz": "«Ular bizga kerak emas»",
+    "ru": "«Они нам не нужны»"
+   },
+   {
+    "uz": "«Bugun to'lovchi emas»",
+    "ru": "«Сегодня не плательщики»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Demo uchun nimani oldindan yozib qo'yasiz?",
+   "ru": "Что вы заранее записываете для демо?"
+  },
+  "opts": [
+   {
+    "uz": "Bosiladigan qadamlarni",
+    "ru": "Шаги, которые нажимают"
+   },
+   {
+    "uz": "Hakamlar savollarini",
+    "ru": "Вопросы судей"
+   },
+   {
+    "uz": "Hamma funksiyalarni",
+    "ru": "Все функции"
+   },
+   {
+    "uz": "Sinfdoshlar fikrlarini",
+    "ru": "Мнения одноклассников"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi; darsdagi atamalar bilan almashtirildi.",
+  "q": {
+   "uz": "Demoning besh qadami bir marta ko'rsatildi. Bu nima?",
+   "ru": "Пять шагов демо показали один раз. Что это?"
+  },
+  "opts": [
+   {
+    "uz": "Demo ssenariysi",
+    "ru": "Сценарий демо"
+   },
+   {
+    "uz": "Demo o'tishi",
+    "ru": "Прогон демо"
+   },
+   {
+    "uz": "B yo'l",
+    "ru": "Путь Б"
+   },
+   {
+    "uz": "Risklar ro'yxati",
+    "ru": "Список рисков"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor «O'yindan chiqish»ni qachon bosadi?",
+   "ru": "Когда Ментор нажимает «Выйти из игры»?"
+  },
+  "opts": [
+   {
+    "uz": "Demoning birinchi qadamida",
+    "ru": "На первом шаге демо"
+   },
+   {
+    "uz": "Hakamlar savol berganda",
+    "ru": "Когда судьи задают вопросы"
+   },
+   {
+    "uz": "Keyingi o'tishdan oldin",
+    "ru": "Перед следующим прогоном"
+   },
+   {
+    "uz": "Internet uzilganda",
+    "ru": "Когда пропал интернет"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "«Backend uxlagan» riskiga qaysi biri B yo'l?",
+   "ru": "Что из этого — путь Б для риска «Backend уснул»?"
+  },
+  "opts": [
+   {
+    "uz": "Agentga kod yozdirish",
+    "ru": "Попросить агента написать код"
+   },
+   {
+    "uz": "Hakamdan kutishni so'rash",
+    "ru": "Попросить судью подождать"
+   },
+   {
+    "uz": "Demoni tashlab ketish",
+    "ru": "Бросить демо"
+   },
+   {
+    "uz": "Navbatdan oldin uyg'otish",
+    "ru": "Разбудить перед очередью"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "B reja videosi nega havolada emas, faylda?",
+   "ru": "Почему видео плана Б в файле, а не по ссылке?"
+  },
+  "opts": [
+   {
+    "uz": "Internetsiz ham ochiladi",
+    "ru": "Откроется и без интернета"
+   },
+   {
+    "uz": "Hakam o'zi yuklab oladi",
+    "ru": "Судья сам скачает"
+   },
+   {
+    "uz": "Havolani agent o'chiradi",
+    "ru": "Агент удалит ссылку"
+   },
+   {
+    "uz": "Fayl repo'ga o'zi tushadi",
+    "ru": "Файл сам попадёт в репо"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Demoni qaysi akkaunt bilan ko'rsatasiz?",
+   "ru": "С каким аккаунтом вы показываете демо?"
+  },
+  "opts": [
+   {
+    "uz": "Faol o'yinchi akkaunti",
+    "ru": "Аккаунт активного игрока"
+   },
+   {
+    "uz": "Namuna akkaunt",
+    "ru": "Образцовый аккаунт"
+   },
+   {
+    "uz": "Sinfdosh akkaunti",
+    "ru": "Аккаунт одноклассника"
+   },
+   {
+    "uz": "Demo kuni ochilgan akkaunt",
+    "ru": "Аккаунт, созданный в день демо"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Video yozishdan oldin ekranda nimani yopasiz?",
+   "ru": "Что вы закрываете на экране перед записью видео?"
+  },
+  "opts": [
+   {
+    "uz": "«O'yinlar» ro'yxatini",
+    "ru": "Список «O'yinlar»"
+   },
+   {
+    "uz": "`DEMO.md` va taymerni",
+    "ru": "`DEMO.md` и таймер"
+   },
+   {
+    "uz": "Parol, `.env`, chatlarni",
+    "ru": "Пароль, `.env`, чаты"
+   },
+   {
+    "uz": "Mahsulot sarlavhasini",
+    "ru": "Заголовок продукта"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Bepul Backend qachon uxlab qoladi?",
+   "ru": "Когда бесплатный Backend засыпает?"
+  },
+  "opts": [
+   {
+    "uz": "Har kuni soat 00:00 da",
+    "ru": "Каждый день в 00:00"
+   },
+   {
+    "uz": "Ssenariydan 1 daqiqa keyin",
+    "ru": "Через 1 минуту после сценария"
+   },
+   {
+    "uz": "Proyektorga ulangan zahoti",
+    "ru": "Сразу при подключении к проектору"
+   },
+   {
+    "uz": "15 daqiqa so'rovsiz qolsa",
+    "ru": "После 15 минут без запросов"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "`m14-demo` tegidan keyin nima qilinadi?",
+   "ru": "Что делают после тега `m14-demo`?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat tuzatish",
+    "ru": "Только исправления"
+   },
+   {
+    "uz": "Faqat yangi funksiya",
+    "ru": "Только новые функции"
+   },
+   {
+    "uz": "Repo qayta ochiladi",
+    "ru": "Репо создают заново"
+   },
+   {
+    "uz": "Video repo'ga yuklanadi",
+    "ru": "Видео загружают в репо"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Tegni GitHub'ga qaysi buyruq chiqaradi?",
+   "ru": "Какая команда отправляет тег на GitHub?"
+  },
+  "opts": [
+   {
+    "uz": "Oddiy `git push`",
+    "ru": "Обычный `git push`"
+   },
+   {
+    "uz": "`git push origin m14-demo`",
+    "ru": "`git push origin m14-demo`"
+   },
+   {
+    "uz": "Faqat `git tag m14-demo`",
+    "ru": "Только `git tag m14-demo`"
+   },
+   {
+    "uz": "`git add m14-demo`",
+    "ru": "`git add m14-demo`"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Telefonda demo qayerda ochiladi?",
+   "ru": "Где открывается демо на телефоне?"
+  },
+  "opts": [
+   {
+    "uz": "O'rnatilgan APK ilovada",
+    "ru": "В установленном APK"
+   },
+   {
+    "uz": "Hakam telefonida",
+    "ru": "На телефоне судьи"
+   },
+   {
+    "uz": "Brauzerda, o'sha manzilda",
+    "ru": "В браузере, по тому же адресу"
+   },
+   {
+    "uz": "Sinfdosh akkauntida",
+    "ru": "В аккаунте одноклассника"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/DemoPrepLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan, variantlar 30 dan uzun edi.",
+  "q": {
+   "uz": "Bir qadam rejadagidek bo'lmadi. Nima qilasiz?",
+   "ru": "Один шаг демо прошёл не по плану. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Hakamdan yashiraman",
+    "ru": "Скрою от судьи"
+   },
+   {
+    "uz": "Yangi funksiya qo'shaman",
+    "ru": "Добавлю новую функцию"
+   },
+   {
+    "uz": "Hech narsa qilmayman",
+    "ru": "Ничего не сделаю"
+   },
+   {
+    "uz": "Risklar ro'yxatiga yozaman",
+    "ru": "Запишу в список рисков"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Demo tekshiruvida demoni kim buzadi?",
+   "ru": "Кто ломает демо при проверке?"
+  },
+  "opts": [
+   {
+    "uz": "O'quvchi, o'z mahsulotida",
+    "ru": "Ученик, в своём продукте"
+   },
+   {
+    "uz": "Agent, o'z bilganicha",
+    "ru": "Агент, по своему усмотрению"
+   },
+   {
+    "uz": "Sinfdosh, sizning hisobda",
+    "ru": "Одноклассник, в вашем аккаунте"
+   },
+   {
+    "uz": "Hakam, chiqish kuni",
+    "ru": "Судья, в день выступления"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Demo xatosiz o'tdi. Bu nimani ko'rsatadi?",
+   "ru": "Демо прошло без ошибок. Что это показывает?"
+  },
+  "opts": [
+   {
+    "uz": "Har sharoitda ishlashini",
+    "ru": "Что работает в любых условиях"
+   },
+   {
+    "uz": "Oddiy sharoitda ishlashini",
+    "ru": "Что работает в обычных условиях"
+   },
+   {
+    "uz": "Agent to'g'ri tuzatganini",
+    "ru": "Что агент исправил верно"
+   },
+   {
+    "uz": "Hakamga yoqishini",
+    "ru": "Что понравится судье"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Ikki marta bosish demoning qayerida tekshiriladi?",
+   "ru": "Где в демо проверяют двойное нажатие?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifa sarlavhasida",
+    "ru": "В заголовке страницы"
+   },
+   {
+    "uz": "B reja videosida",
+    "ru": "В видео плана Б"
+   },
+   {
+    "uz": "Asosiy tugmada",
+    "ru": "На главной кнопке"
+   },
+   {
+    "uz": "Taymer tugmasida",
+    "ru": "На кнопке таймера"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "«Telefonda 9 / 10 ko'rinadi» qatori nima?",
+   "ru": "Что такое строка «На телефоне видно 9 / 10»?"
+  },
+  "opts": [
+   {
+    "uz": "Buzishdan keyingi natija",
+    "ru": "Результат после поломки"
+   },
+   {
+    "uz": "Riskning oldini olish",
+    "ru": "Предотвращение риска"
+   },
+   {
+    "uz": "Ssenariyning bir qadami",
+    "ru": "Один шаг сценария"
+   },
+   {
+    "uz": "Buzishdan oldingi kutish",
+    "ru": "Ожидание до поломки"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Bo'sh ma'lumotni qaysi hisobda yaratasiz?",
+   "ru": "В каком аккаунте создаёте пустые данные?"
+  },
+  "opts": [
+   {
+    "uz": "Tekshiruv akkauntida",
+    "ru": "В проверочном аккаунте"
+   },
+   {
+    "uz": "Faol foydalanuvchi hisobida",
+    "ru": "В аккаунте активного пользователя"
+   },
+   {
+    "uz": "Sinfdoshingiz hisobida",
+    "ru": "В аккаунте одноклассника"
+   },
+   {
+    "uz": "O'z demo hisobingizda",
+    "ru": "В своём демо-аккаунте"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Qaysi kutishni ekranda tekshirsa bo'ladi?",
+   "ru": "Какое ожидание можно проверить на экране?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifa chiroyli ochiladi",
+    "ru": "Страница красиво открывается"
+   },
+   {
+    "uz": "«0 / 10» va tugma ko'rinadi",
+    "ru": "Видно «0 / 10» и кнопку"
+   },
+   {
+    "uz": "Hammasi «to'g'ri» ishlaydi",
+    "ru": "Всё работает «правильно»"
+   },
+   {
+    "uz": "Demo hakamga yoqadi",
+    "ru": "Демо понравится судье"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Agent tuzatgan fayl `git status` da. Nima belgilaysiz?",
+   "ru": "Исправленный агентом файл в `git status`. Что отметите?"
+  },
+  "opts": [
+   {
+    "uz": "«Takrorlanmadi»",
+    "ru": "«Не повторилось»"
+   },
+   {
+    "uz": "«Buzilmadi»",
+    "ru": "«Не сломалось»"
+   },
+   {
+    "uz": "«Tuzatish qilindi»",
+    "ru": "«Исправление сделано»"
+   },
+   {
+    "uz": "«Demo tayyor»",
+    "ru": "«Демо готово»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Qayta tekshiruvda yana buzildi. Nima qilasiz?",
+   "ru": "При повторной проверке снова сломалось. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Yozuvni o'chiraman",
+    "ru": "Удалю запись"
+   },
+   {
+    "uz": "Bu qadamni yashiraman",
+    "ru": "Скрою этот шаг"
+   },
+   {
+    "uz": "Yangi funksiya so'rayman",
+    "ru": "Попрошу новую функцию"
+   },
+   {
+    "uz": "Agentga yana bir bor beraman",
+    "ru": "Ещё раз отдам агенту"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Uch demo o'tishining birida nima mashq qilinadi?",
+   "ru": "Что тренируют в одном из трёх прогонов?"
+  },
+  "opts": [
+   {
+    "uz": "B rejaga o'tish",
+    "ru": "Переход на план Б"
+   },
+   {
+    "uz": "Yangi funksiyani ko'rsatish",
+    "ru": "Показ новой функции"
+   },
+   {
+    "uz": "Hakam savollariga javob",
+    "ru": "Ответы на вопросы судьи"
+   },
+   {
+    "uz": "Backend'ni qayta yozish",
+    "ru": "Переписывание Backend"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Demo o'tishida B reja videosi qayerda ochiladi?",
+   "ru": "Где в прогоне открывается видео плана Б?"
+  },
+  "opts": [
+   {
+    "uz": "Hakam telefonida",
+    "ru": "На телефоне судьи"
+   },
+   {
+    "uz": "Laptopning o'zida",
+    "ru": "На самом ноутбуке"
+   },
+   {
+    "uz": "Sinf chatida",
+    "ru": "В чате класса"
+   },
+   {
+    "uz": "Ikkinchi telefonda",
+    "ru": "На втором телефоне"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Variantlar uzun edi; texnik «id» faqat to'g'ri javobda turardi.",
+  "q": {
+   "uz": "Tekshiruvdan keyin tekshiruv akkaunti nima bo'ladi?",
+   "ru": "Что после проверки делают с проверочным аккаунтом?"
+  },
+  "opts": [
+   {
+    "uz": "Hakamlar uchun saqlanadi",
+    "ru": "Сохраняют для судей"
+   },
+   {
+    "uz": "Haqiqiy hisobga aylanadi",
+    "ru": "Становится настоящим"
+   },
+   {
+    "uz": "Agent uni o'chiradi",
+    "ru": "Агент его удаляет"
+   },
+   {
+    "uz": "Sinfdoshga beriladi",
+    "ru": "Отдают однокласснику"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmDemoTestLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "`XATOLAR.md` ga nima yoziladi?",
+   "ru": "Что записывают в `XATOLAR.md`?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat agent tuzatishlari",
+    "ru": "Только исправления агента"
+   },
+   {
+    "uz": "Hech narsa yozilmaydi",
+    "ru": "Ничего не записывают"
+   },
+   {
+    "uz": "Faqat buzilgan usullar",
+    "ru": "Только сломанные способы"
+   },
+   {
+    "uz": "Har usul, natija va holat",
+    "ru": "Каждый способ, итог и статус"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Mentor «60 kishi»ni qanday aniqlashtirdi?",
+   "ru": "Как Ментор уточнил «60 человек»?"
+  },
+  "opts": [
+   {
+    "uz": "Ilovadagi o'yinchilar",
+    "ru": "Игроки в приложении"
+   },
+   {
+    "uz": "Telegram guruhi a'zolari",
+    "ru": "Участники Telegram-группы"
+   },
+   {
+    "uz": "Telegram kanali obunachilari",
+    "ru": "Подписчики Telegram-канала"
+   },
+   {
+    "uz": "O'zining sinfdoshlari",
+    "ru": "Его одноклассники"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "«Eski gapning bir qismini olib tashlash» qisqartirilgan darsda yo'q; darsda uzaygan gap vaqti taymer bilan tekshiriladi.",
+  "q": {
+   "uz": "Tuzatilgan gap eskisidan uzun. Nima qilasiz?",
+   "ru": "Исправленная фраза длиннее старой. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Pitchni 6 daqiqa qilaman",
+    "ru": "Сделаю питч на 6 минут"
+   },
+   {
+    "uz": "Tuzatishni kiritmayman",
+    "ru": "Не внесу исправление"
+   },
+   {
+    "uz": "Taymer bilan tekshiraman",
+    "ru": "Проверю таймером"
+   },
+   {
+    "uz": "Boshqa bo'lakni olaman",
+    "ru": "Уберу другую часть"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor boshqa mahallalar haqida nima dedi?",
+   "ru": "Что Ментор сказал о других махаллях?"
+  },
+  "opts": [
+   {
+    "uz": "«U yerda ham 60 kishi bor»",
+    "ru": "«Там тоже по 60 человек»"
+   },
+   {
+    "uz": "«Ularga ilova kerak emas»",
+    "ru": "«Им приложение не нужно»"
+   },
+   {
+    "uz": "«Hamma joyda muammo bir»",
+    "ru": "«Везде проблема одна»"
+   },
+   {
+    "uz": "«Tekshirib aytaman»",
+    "ru": "«Проверю и скажу»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Pitch 5 daqiqadan oshdi. Nima qilasiz?",
+   "ru": "Питч превысил 5 минут. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Savol-javobdan vaqt olaman",
+    "ru": "Возьму время у вопросов-ответов"
+   },
+   {
+    "uz": "Jonli demoni olib tashlayman",
+    "ru": "Уберу живое демо"
+   },
+   {
+    "uz": "Tezroq gapiraman",
+    "ru": "Буду говорить быстрее"
+   },
+   {
+    "uz": "Ortiqcha gapni olaman",
+    "ru": "Уберу лишнюю фразу"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Sanamagan son so'raldi. Nima deysiz?",
+   "ru": "Спросили число, которое вы не считали. Что скажете?"
+  },
+  "opts": [
+   {
+    "uz": "«Taxminan shuncha» deyman",
+    "ru": "Скажу «примерно столько»"
+   },
+   {
+    "uz": "«Tekshirib aytaman» deyman",
+    "ru": "Скажу «проверю и скажу»"
+   },
+   {
+    "uz": "Eshitmagandek davom etaman",
+    "ru": "Продолжу, будто не слышал"
+   },
+   {
+    "uz": "Pitchni qayta aytaman",
+    "ru": "Расскажу питч заново"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor aytdi: hozir o'yin qanday yig'iladi?",
+   "ru": "Ментор сказал: как сейчас собирают игру?"
+  },
+  "opts": [
+   {
+    "uz": "Sport ilovasida jadval bilan",
+    "ru": "Таблицей в спортивном приложении"
+   },
+   {
+    "uz": "Maktabda tanaffusda",
+    "ru": "В школе на перемене"
+   },
+   {
+    "uz": "Telegram guruhida yozib",
+    "ru": "Пишут в Telegram-группе"
+   },
+   {
+    "uz": "Ota-onalar orqali",
+    "ru": "Через родителей"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Pitchdan oldin demo uchun nima qilasiz?",
+   "ru": "Что вы делаете для демо перед питчем?"
+  },
+  "opts": [
+   {
+    "uz": "Funksiya qo'shaman",
+    "ru": "Добавлю функцию"
+   },
+   {
+    "uz": "Database'ni ochaman",
+    "ru": "Открою Database"
+   },
+   {
+    "uz": "Demo yo'lini ochaman",
+    "ru": "Открою путь демо"
+   },
+   {
+    "uz": "Telefonni o'chiraman",
+    "ru": "Выключу телефон"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Pitch paytida sherigingiz nima qiladi?",
+   "ru": "Что делает партнёр во время питча?"
+  },
+  "opts": [
+   {
+    "uz": "Taymer bilan tinglaydi",
+    "ru": "Слушает с таймером"
+   },
+   {
+    "uz": "Bo'laklarga ✓ va ✗ qo'yadi",
+    "ru": "Ставит частям ✓ и ✗"
+   },
+   {
+    "uz": "Siz bilan birga aytadi",
+    "ru": "Говорит вместе с вами"
+   },
+   {
+    "uz": "Demoni o'zi ko'rsatadi",
+    "ru": "Сам показывает демо"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Hakam «Endi nima qilasiz?» desa, nimani aytasiz?",
+   "ru": "Если судья спросит «Что будете делать дальше?», что скажете?"
+  },
+  "opts": [
+   {
+    "uz": "Kerakli pul summasini",
+    "ru": "Нужную сумму денег"
+   },
+   {
+    "uz": "Tez orada o'sishini",
+    "ru": "Что скоро вырастем"
+   },
+   {
+    "uz": "Hamma bo'laklarni qayta",
+    "ru": "Все части заново"
+   },
+   {
+    "uz": "Keyingi ish va so'rovni",
+    "ru": "Следующее дело и просьбу"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Bu kursda video-portfolio nima?",
+   "ru": "Что такое видео-портфолио в этом курсе?"
+  },
+  "opts": [
+   {
+    "uz": "Siz va mahsulot haqida video",
+    "ru": "Видео о вас и продукте"
+   },
+   {
+    "uz": "Funksiyalar sanalgan video",
+    "ru": "Видео с перечнем функций"
+   },
+   {
+    "uz": "Sinf kanali uchun reklama",
+    "ru": "Реклама для канала класса"
+   },
+   {
+    "uz": "Kodni tushuntiruvchi video",
+    "ru": "Видео с разбором кода"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "«Kimman» bo'lagida nima aytiladi?",
+   "ru": "Что говорят в части «Кто я»?"
+  },
+  "opts": [
+   {
+    "uz": "Maktab va sinfim",
+    "ru": "Школа и класс"
+   },
+   {
+    "uz": "Kim ekanim va nima qilishim",
+    "ru": "Кто я и что делаю"
+   },
+   {
+    "uz": "Ilovadagi o'nta funksiya",
+    "ru": "Десять функций приложения"
+   },
+   {
+    "uz": "Keyingi oydagi rejam",
+    "ru": "План на следующий месяц"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Videoda yuz va ism qanday bo'ladi?",
+   "ru": "Как в видео с лицом и именем?"
+  },
+  "opts": [
+   {
+    "uz": "Ikkalasi ham shart",
+    "ru": "Оба обязательны"
+   },
+   {
+    "uz": "Yuz shart, ism emas",
+    "ru": "Лицо обязательно, имя нет"
+   },
+   {
+    "uz": "Ikkalasi ham ixtiyoriy",
+    "ru": "Оба по желанию"
+   },
+   {
+    "uz": "Ism shart, yuz emas",
+    "ru": "Имя обязательно, лицо нет"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "darsda-yoq",
+   "uzun"
+  ],
+  "izoh": "Backend'ni uyg'otish bu darsda yo'q; o'rniga darsdagi ssenariy qoidasi so'raldi.",
+  "q": {
+   "uz": "Yozish paytida ssenariy qayerda turadi?",
+   "ru": "Где находится сценарий во время записи?"
+  },
+  "opts": [
+   {
+    "uz": "Ekranda, demo yonida",
+    "ru": "На экране, рядом с демо"
+   },
+   {
+    "uz": "Dars oynasida",
+    "ru": "В окне урока"
+   },
+   {
+    "uz": "Kod oynasida",
+    "ru": "В окне кода"
+   },
+   {
+    "uz": "Qog'ozda yoki telefonda",
+    "ru": "На бумаге или в телефоне"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Yozishdan oldin qaysi oynalarni yopasiz?",
+   "ru": "Какие окна закрываете перед записью?"
+  },
+  "opts": [
+   {
+    "uz": "Chat va pochta oynalarini",
+    "ru": "Окна чата и почты"
+   },
+   {
+    "uz": "Demo ochiq turgan oynani",
+    "ru": "Окно с открытым демо"
+   },
+   {
+    "uz": "Yozish dasturi oynasini",
+    "ru": "Окно программы записи"
+   },
+   {
+    "uz": "Lending ochiq oynasini",
+    "ru": "Окно с лендингом"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi; darsda namuna akkaunt login ko'rinmasligi uchun.",
+  "q": {
+   "uz": "Login ko'rinmasligi uchun nima qilasiz?",
+   "ru": "Что делаете, чтобы не было видно логина?"
+  },
+  "opts": [
+   {
+    "uz": "Login joyidan tez o'taman",
+    "ru": "Быстро пролистну логин"
+   },
+   {
+    "uz": "Namuna akkaunt bilan kiraman",
+    "ru": "Войду с образцовым аккаунтом"
+   },
+   {
+    "uz": "O'z akkauntim bilan kiraman",
+    "ru": "Войду со своим аккаунтом"
+   },
+   {
+    "uz": "Videoni qisqa yozaman",
+    "ru": "Запишу видео короче"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "`git status` da video ko'rindi. Bu nima degani?",
+   "ru": "В `git status` видно видео. Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "Video GitHub'ga ketdi",
+    "ru": "Видео ушло на GitHub"
+   },
+   {
+    "uz": "Video buzilib qoldi",
+    "ru": "Видео испортилось"
+   },
+   {
+    "uz": "Video 3 daqiqadan uzun",
+    "ru": "Видео длиннее 3 минут"
+   },
+   {
+    "uz": "Fayl repo ichida turibdi",
+    "ru": "Файл лежит внутри репо"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Video 3 daqiqaga sig'ganini qanday bilasiz?",
+   "ru": "Как узнать, что видео уложилось в 3 минуты?"
+  },
+  "opts": [
+   {
+    "uz": "Video oynasidagi vaqtdan",
+    "ru": "По времени в окне видео"
+   },
+   {
+    "uz": "Agentdan so'rab",
+    "ru": "Спросив агента"
+   },
+   {
+    "uz": "Ssenariy qisqaligidan",
+    "ru": "По краткости сценария"
+   },
+   {
+    "uz": "Fayl hajmidan",
+    "ru": "По размеру файла"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Videoda login ko'rindi. Nima qilasiz?",
+   "ru": "В видео виден логин. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Shundayligicha qoldiraman",
+    "ru": "Оставлю как есть"
+   },
+   {
+    "uz": "O'chirib, qayta yozaman",
+    "ru": "Удалю и перезапишу"
+   },
+   {
+    "uz": "Faqat sinfdoshga yuboraman",
+    "ru": "Отправлю только однокласснику"
+   },
+   {
+    "uz": "Login ko'rinsa bo'laveradi",
+    "ru": "Логин виден — не страшно"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Mahsulot ochilmasa, «Nima qurdim»da nima qilasiz?",
+   "ru": "Если продукт не открылся, что делаете в «Что я построил»?"
+  },
+  "opts": [
+   {
+    "uz": "Mentor misolini olaman",
+    "ru": "Возьму пример Ментора"
+   },
+   {
+    "uz": "Sahifani kutib turaman",
+    "ru": "Буду ждать страницу"
+   },
+   {
+    "uz": "B reja videosini ochaman",
+    "ru": "Открою видео плана Б"
+   },
+   {
+    "uz": "Bu bo'lakni tashlayman",
+    "ru": "Уберу эту часть"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Ota-ona rozi. Videoni qayerga joylaysiz?",
+   "ru": "Родители согласны. Куда выложите видео?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma ko'radigan sahifaga",
+    "ru": "На страницу, видную всем"
+   },
+   {
+    "uz": "Sinfning ochiq kanaliga",
+    "ru": "В открытый канал класса"
+   },
+   {
+    "uz": "Repo'ga, README bilan",
+    "ru": "В репо, с README"
+   },
+   {
+    "uz": "Havola bilan ochiladigan joyga",
+    "ru": "Туда, где открывается по ссылке"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmFreelanceLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Upwork kabi saytning yosh shartini qayerdan bilasiz?",
+   "ru": "Где узнать возрастное условие сайта вроде Upwork?"
+  },
+  "opts": [
+   {
+    "uz": "Sinfdoshlar gapidan",
+    "ru": "Со слов одноклассников"
+   },
+   {
+    "uz": "Saytdan, ota-ona bilan",
+    "ru": "На сайте, с родителями"
+   },
+   {
+    "uz": "Yoshni katta yozib ko'rib",
+    "ru": "Указав возраст побольше"
+   },
+   {
+    "uz": "Kanaldagi reklamadan",
+    "ru": "Из рекламы в канале"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmFreelanceLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun",
+   "tushunarsiz"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi; darsdagi qoida «javob kelmasa» holati uchun.",
+  "q": {
+   "uz": "Kompaniyadan javob kelmadi. Nima qilasiz?",
+   "ru": "Компания не ответила. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Har hafta yana so'rayman",
+    "ru": "Буду спрашивать каждую неделю"
+   },
+   {
+    "uz": "Xodim telefonini so'rayman",
+    "ru": "Попрошу телефон сотрудника"
+   },
+   {
+    "uz": "Ofisiga borib so'rayman",
+    "ru": "Пойду в офис и спрошу"
+   },
+   {
+    "uz": "Boshqa kompaniyaga yozaman",
+    "ru": "Напишу другой компании"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmFreelanceLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Birinchi buyurtmaga qanday ish olasiz?",
+   "ru": "Какую работу берёте первым заказом?"
+  },
+  "opts": [
+   {
+    "uz": "Kursdagiga o'xshash ish",
+    "ru": "Похожую на сделанное в курсе"
+   },
+   {
+    "uz": "Hali qilmagan katta ish",
+    "ru": "Большую, какую ещё не делал"
+   },
+   {
+    "uz": "Aytilgan har qanday ish",
+    "ru": "Любую, какую скажут"
+   },
+   {
+    "uz": "Do'st maslahat bergan ish",
+    "ru": "Ту, что посоветовал друг"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmFreelanceLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Mentor buyurtmachi bilan qachon gaplashadi?",
+   "ru": "Когда Ментор поговорит с заказчиком?"
+  },
+  "opts": [
+   {
+    "uz": "Lending tayyor bo'lgach",
+    "ru": "Когда лендинг будет готов"
+   },
+   {
+    "uz": "Keyingi mashg'ulotdan keyin",
+    "ru": "После следующей тренировки"
+   },
+   {
+    "uz": "Kompaniya javob bergach",
+    "ru": "Когда ответит компания"
+   },
+   {
+    "uz": "Upwork profili ochilgach",
+    "ru": "Когда откроет профиль на Upwork"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmFreelanceLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Xatning «Nima qurdim» qismiga nima yoziladi?",
+   "ru": "Что пишут в части письма «Что я построил»?"
+  },
+  "opts": [
+   {
+    "uz": "Hamma funksiyalar",
+    "ru": "Все функции"
+   },
+   {
+    "uz": "Telefon va uy manzili",
+    "ru": "Телефон и домашний адрес"
+   },
+   {
+    "uz": "Mahsulot va u nima qiladi",
+    "ru": "Продукт и что он делает"
+   },
+   {
+    "uz": "Kompaniyaga maqtov",
+    "ru": "Похвала компании"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmProgramsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Topshirish kuni jamoa a'zolari necha yoshda bo'ladi?",
+   "ru": "Сколько лет участникам команды в день подачи?"
+  },
+  "opts": [
+   {
+    "uz": "12 dan 16 yoshgacha",
+    "ru": "От 12 до 16 лет"
+   },
+   {
+    "uz": "14 dan 18 yoshgacha",
+    "ru": "От 14 до 18 лет"
+   },
+   {
+    "uz": "16 dan 21 yoshgacha",
+    "ru": "От 16 до 21 года"
+   },
+   {
+    "uz": "18 dan 25 yoshgacha",
+    "ru": "От 18 до 25 лет"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmProgramsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Ariza bergan har jamoa finalga chiqadimi?",
+   "ru": "Каждая подавшая команда выходит в финал?"
+  },
+  "opts": [
+   {
+    "uz": "Yo'q, finalistlar tanlanadi",
+    "ru": "Нет, финалистов отбирают"
+   },
+   {
+    "uz": "Ha, ariza bergan hamma",
+    "ru": "Да, все подавшие"
+   },
+   {
+    "uz": "Ha, onlayn qatnashganlar",
+    "ru": "Да, участвовавшие онлайн"
+   },
+   {
+    "uz": "Yo'q, faqat Amerikadan",
+    "ru": "Нет, только из Америки"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmProgramsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Early Decision kim uchun?",
+   "ru": "Для кого Early Decision?"
+  },
+  "opts": [
+   {
+    "uz": "O'qishni tugatmoqchi talabalar",
+    "ru": "Студенты, желающие доучиться"
+   },
+   {
+    "uz": "14–18 yoshli o'quvchilar",
+    "ru": "Школьники 14–18 лет"
+   },
+   {
+    "uz": "Diamond Challenge finalistlari",
+    "ru": "Финалисты Diamond Challenge"
+   },
+   {
+    "uz": "Ishlayotgan kattalar",
+    "ru": "Работающие взрослые"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmProgramsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Konseptdagi «Kim uchun» qatoriga nima yoziladi?",
+   "ru": "Что пишут в строке «Для кого» в концепте?"
+  },
+  "opts": [
+   {
+    "uz": "Guruhdagi odamlar soni",
+    "ru": "Число людей в группе"
+   },
+   {
+    "uz": "Mahsulot texnologiyasi",
+    "ru": "Технология продукта"
+   },
+   {
+    "uz": "Mahsulotga muhtoj odamlar",
+    "ru": "Люди, которым нужен продукт"
+   },
+   {
+    "uz": "Jamoa a'zolari ismlari",
+    "ru": "Имена участников команды"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi.",
+  "q": {
+   "uz": "Olti oylik reja qaysi uch yo'nalishdan iborat?",
+   "ru": "Из каких трёх направлений состоит план на шесть месяцев?"
+  },
+  "opts": [
+   {
+    "uz": "Mahsulot, ko'nikma va ish",
+    "ru": "Продукт, навык и работа"
+   },
+   {
+    "uz": "Muammo, Bozor va Yechim",
+    "ru": "Проблема, Рынок и Решение"
+   },
+   {
+    "uz": "Pitch, demo va video",
+    "ru": "Питч, демо и видео"
+   },
+   {
+    "uz": "Lending, ilova, Backend",
+    "ru": "Лендинг, приложение, Backend"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor «Backend testlari»ni qayerga qo'ydi?",
+   "ru": "Куда Ментор отнёс «Тесты Backend»?"
+  },
+  "opts": [
+   {
+    "uz": "Mahsulot yo'nalishiga",
+    "ru": "В направление «Продукт»"
+   },
+   {
+    "uz": "Ko'nikma yo'nalishiga",
+    "ru": "В направление «Навык»"
+   },
+   {
+    "uz": "Ish yo'nalishiga",
+    "ru": "В направление «Работа»"
+   },
+   {
+    "uz": "Rejadan tashqariga",
+    "ru": "Вне плана"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mahsulot yo'nalishida qanday qaror yoziladi?",
+   "ru": "Какое решение пишут в направлении «Продукт»?"
+  },
+  "opts": [
+   {
+    "uz": "Ilova rangini tanlash",
+    "ru": "Выбор цвета приложения"
+   },
+   {
+    "uz": "Investordan pul so'rash",
+    "ru": "Просьба денег у инвестора"
+   },
+   {
+    "uz": "Davom etish yoki to'xtatish",
+    "ru": "Продолжать или остановить"
+   },
+   {
+    "uz": "Kimdan baho olish",
+    "ru": "У кого получить оценку"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "To'xtatish haqida qaysi gap to'g'ri?",
+   "ru": "Что верно о решении остановить?"
+  },
+  "opts": [
+   {
+    "uz": "To'xtatish — mag'lubiyat",
+    "ru": "Остановка — поражение"
+   },
+   {
+    "uz": "Ko'nikma ham to'xtaydi",
+    "ru": "Навык тоже остановится"
+   },
+   {
+    "uz": "Faqat Mentor ruxsati bilan",
+    "ru": "Только с разрешения Ментора"
+   },
+   {
+    "uz": "Sababi bilan yozilsa — qaror",
+    "ru": "С причиной — это решение"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor davom ettirishga qaysi sababni yozgan?",
+   "ru": "Какую причину продолжать написал Ментор?"
+  },
+  "opts": [
+   {
+    "uz": "Uch yozma tasdiqni",
+    "ru": "Три письменных согласия"
+   },
+   {
+    "uz": "Guruhdagi 60 kishini",
+    "ru": "60 человек в группе"
+   },
+   {
+    "uz": "Funksiyalar ko'pligini",
+    "ru": "Много функций"
+   },
+   {
+    "uz": "Pul va'da qilinganini",
+    "ru": "Обещание денег"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Oylik maqsad nimani aytadi?",
+   "ru": "О чём говорит цель на месяц?"
+  },
+  "opts": [
+   {
+    "uz": "Bir kundagi aniq harakatni",
+    "ru": "Об одном действии на день"
+   },
+   {
+    "uz": "Oy oxirida nimaga yetishni",
+    "ru": "Чего достичь к концу месяца"
+   },
+   {
+    "uz": "Olti oydagi katta natijani",
+    "ru": "О большом итоге за полгода"
+   },
+   {
+    "uz": "Mentor qo'ygan bahoni",
+    "ru": "Об оценке Ментора"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Birinchi qadamda qaysi ikki narsa bo'ladi?",
+   "ru": "Какие две вещи есть в первом шаге?"
+  },
+  "opts": [
+   {
+    "uz": "Mentor imzosi va tasdig'i",
+    "ru": "Подпись и согласие Ментора"
+   },
+   {
+    "uz": "Katta natija va narxi",
+    "ru": "Большой итог и его цена"
+   },
+   {
+    "uz": "Aniq harakat va sanasi",
+    "ru": "Конкретное действие и дата"
+   },
+   {
+    "uz": "Do'stlar ismi va telefoni",
+    "ru": "Имена и телефоны друзей"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Mentorning 1-oy maqsadi qayerdan ko'chdi?",
+   "ru": "Откуда перенесена цель Ментора на 1-й месяц?"
+  },
+  "opts": [
+   {
+    "uz": "1-darsdagi Bozordan",
+    "ru": "Из Рынка на 1-м уроке"
+   },
+   {
+    "uz": "Demo ssenariysidan",
+    "ru": "Из сценария демо"
+   },
+   {
+    "uz": "Diamond Challenge'dan",
+    "ru": "Из Diamond Challenge"
+   },
+   {
+    "uz": "13-Modul hisobotidan",
+    "ru": "Из отчёта 13-го модуля"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Qadam o'z kunida qilinmadi. Nima qilasiz?",
+   "ru": "Шаг не сделан в свой день. Что сделаете?"
+  },
+  "opts": [
+   {
+    "uz": "Sabab va yangi sana yozaman",
+    "ru": "Запишу причину и новую дату"
+   },
+   {
+    "uz": "«Qilindi» deb qo'yaman",
+    "ru": "Отмечу «сделано»"
+   },
+   {
+    "uz": "Rejani o'chirib tashlayman",
+    "ru": "Удалю план"
+   },
+   {
+    "uz": "Indamay o'tib ketaman",
+    "ru": "Молча пропущу"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Yakkama-yakkada reja bilan nima bo'ladi?",
+   "ru": "Что происходит с планом один на один?"
+  },
+  "opts": [
+   {
+    "uz": "Sinfga o'qib beriladi",
+    "ru": "Его читают классу"
+   },
+   {
+    "uz": "Mentor bilan ko'riladi",
+    "ru": "Смотрят вместе с Ментором"
+   },
+   {
+    "uz": "Mentor qayta yozadi",
+    "ru": "Ментор переписывает"
+   },
+   {
+    "uz": "Baholanib, reyting chiqadi",
+    "ru": "Оценивают и составляют рейтинг"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Buyurtmada pul va kelishuv kim orqali bo'ladi?",
+   "ru": "Через кого деньги и договорённость в заказе?"
+  },
+  "opts": [
+   {
+    "uz": "Buyurtmachi bilan yolg'iz",
+    "ru": "Наедине с заказчиком"
+   },
+   {
+    "uz": "Sinfdosh orqali, yashirin",
+    "ru": "Тайно через одноклассника"
+   },
+   {
+    "uz": "Ota-onangiz orqali",
+    "ru": "Через родителей"
+   },
+   {
+    "uz": "Notanish odam orqali",
+    "ru": "Через незнакомца"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmNextStepsLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Qaysi reja gapi aniq yozilgan?",
+   "ru": "Какая строка плана написана конкретно?"
+  },
+  "opts": [
+   {
+    "uz": "6-oy: ilovam mashhur bo'ladi",
+    "ru": "6-й месяц: приложение станет известным"
+   },
+   {
+    "uz": "1-oy: hammasini o'rganaman",
+    "ru": "1-й месяц: выучу всё"
+   },
+   {
+    "uz": "2-oy: qachondir boshlayman",
+    "ru": "2-й месяц: когда-нибудь начну"
+   },
+   {
+    "uz": "1-oy: sinfda kitob almashuvi",
+    "ru": "1-й месяц: обмен книгами в классе"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Repetitsiyada demo ochilmadi. Taymer nima bo'ladi?",
+   "ru": "На репетиции демо не открылось. Что с таймером?"
+  },
+  "opts": [
+   {
+    "uz": "To'xtamaydi, yuraveradi",
+    "ru": "Не останавливается, идёт"
+   },
+   {
+    "uz": "Pauza qilinadi",
+    "ru": "Ставится на паузу"
+   },
+   {
+    "uz": "Nolga qaytadi",
+    "ru": "Сбрасывается на ноль"
+   },
+   {
+    "uz": "Demoni kutib turadi",
+    "ru": "Ждёт демо"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Hakam varag'i nimaga belgi qo'yadi?",
+   "ru": "Что отмечает лист судьи?"
+  },
+  "opts": [
+   {
+    "uz": "Har bo'lakdagi gapga",
+    "ru": "Фразы в каждой части"
+   },
+   {
+    "uz": "Slaydlar ko'rinishiga",
+    "ru": "Вид слайдов"
+   },
+   {
+    "uz": "Vaqt, demo va javoblarga",
+    "ru": "Время, демо и ответы"
+   },
+   {
+    "uz": "Kod hajmi va tezligiga",
+    "ru": "Объём и скорость кода"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 60 belgidan uzun edi; qo'shtirnoq faqat to'g'ri javobda turardi.",
+  "q": {
+   "uz": "Javob: «Bu sonni keyin aniqlab beraman». Qaysi belgi?",
+   "ru": "Ответ: «Это число уточню позже». Какой знак?"
+  },
+  "opts": [
+   {
+    "uz": "Son yoki fakt bilan",
+    "ru": "С числом или фактом"
+   },
+   {
+    "uz": "Javob savolga tegmadi",
+    "ru": "Ответ не по вопросу"
+   },
+   {
+    "uz": "Belgisiz qoldiriladi",
+    "ru": "Без знака"
+   },
+   {
+    "uz": "Tekshirib aytaman",
+    "ru": "Проверю и скажу"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Chiqishdan oldin Backend nega uyg'otiladi?",
+   "ru": "Зачем будить Backend перед выступлением?"
+  },
+  "opts": [
+   {
+    "uz": "Demo sekin ochilmasin",
+    "ru": "Чтобы демо не открывалось медленно"
+   },
+   {
+    "uz": "Hakam kodni ko'rsin",
+    "ru": "Чтобы судья увидел код"
+   },
+   {
+    "uz": "Video tez ochilsin",
+    "ru": "Чтобы видео открылось быстрее"
+   },
+   {
+    "uz": "Telefon zaryadi tejalsin",
+    "ru": "Чтобы сэкономить заряд"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi; varaqdagi belgilar bilan almashtirildi.",
+  "q": {
+   "uz": "Pitch 5:20 da tugadi. Varaqda vaqt qatori qanday?",
+   "ru": "Питч закончился на 5:20. Что в строке времени?"
+  },
+  "opts": [
+   {
+    "uz": "Sig'di",
+    "ru": "Уложился"
+   },
+   {
+    "uz": "Belgisiz",
+    "ru": "Без знака"
+   },
+   {
+    "uz": "Oshdi",
+    "ru": "Превысил"
+   },
+   {
+    "uz": "B reja",
+    "ru": "План Б"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Mentor misolida B reja video qayerda turadi?",
+   "ru": "Где в примере Ментора видео плана Б?"
+  },
+  "opts": [
+   {
+    "uz": "Hakam telefonida",
+    "ru": "На телефоне судьи"
+   },
+   {
+    "uz": "Sinf chatida",
+    "ru": "В чате класса"
+   },
+   {
+    "uz": "Ochiq video saytida",
+    "ru": "На открытом видеосайте"
+   },
+   {
+    "uz": "Demo turgan laptopda",
+    "ru": "На ноутбуке с демо"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 60 belgidan, variantlar 30 dan uzun edi.",
+  "q": {
+   "uz": "«Odamlar hozir bu ishni nima bilan qiladi?» Nima aytasiz?",
+   "ru": "«Чем люди сейчас это делают?» Что скажете?"
+  },
+  "opts": [
+   {
+    "uz": "Hozirgi yo'lni",
+    "ru": "Нынешний способ"
+   },
+   {
+    "uz": "Ilova imkoniyatlarini",
+    "ru": "Возможности приложения"
+   },
+   {
+    "uz": "Kelgusi yangiliklarni",
+    "ru": "Будущие новинки"
+   },
+   {
+    "uz": "Pitchdagi gapimni",
+    "ru": "Фразу из питча"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Hakam varag'ida hakamning ismi qayerda?",
+   "ru": "Где имя судьи в листе судьи?"
+  },
+  "opts": [
+   {
+    "uz": "Varaq tepasida",
+    "ru": "Вверху листа"
+   },
+   {
+    "uz": "Hech qayerda",
+    "ru": "Нигде"
+   },
+   {
+    "uz": "Har belgi yonida",
+    "ru": "Рядом с каждым знаком"
+   },
+   {
+    "uz": "Mentor statistikasida",
+    "ru": "В статистике Ментора"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 140 belgidan oshgan edi.",
+  "q": {
+   "uz": "Chiqishdan keyin demo holati nima qilinadi?",
+   "ru": "Что делают с состоянием демо после выступления?"
+  },
+  "opts": [
+   {
+    "uz": "O'sha holatda qoladi",
+    "ru": "Оставляют как есть"
+   },
+   {
+    "uz": "Hakamga topshiriladi",
+    "ru": "Передают судье"
+   },
+   {
+    "uz": "Boshiga qaytariladi",
+    "ru": "Возвращают в начало"
+   },
+   {
+    "uz": "Hammasi o'chiriladi",
+    "ru": "Всё удаляют"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 30 belgidan uzun edi.",
+  "q": {
+   "uz": "Guruhda taymerni kim boshqaradi?",
+   "ru": "Кто в группе управляет таймером?"
+  },
+  "opts": [
+   {
+    "uz": "Gapirayotgan o'quvchi",
+    "ru": "Выступающий ученик"
+   },
+   {
+    "uz": "Mentor, proyektorda",
+    "ru": "Ментор, на проекторе"
+   },
+   {
+    "uz": "Hech kim, taymer yo'q",
+    "ru": "Никто, таймера нет"
+   },
+   {
+    "uz": "Hakam bo'lgan tinglovchi",
+    "ru": "Слушатель-судья"
+   }
+  ],
+  "correct": 3
+ }
+]

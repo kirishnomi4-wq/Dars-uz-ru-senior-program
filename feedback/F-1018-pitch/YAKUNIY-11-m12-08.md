@@ -6,7 +6,7 @@ Artefakt `pm-m12d8-final` — yangi maydon `tekshiruv: { holat, link }` (finalOl
 | № | id | Ekran | Ball / nishon |
 |---|---|---|---|
 | 1 | s0 | Kirish | — |
-| 2 | s1 | Reja (4-qadam: «… keyin ilovangizni sahnaga tekshirasiz») | — |
+| 2 | s1 | Reja (4-qadam: «… keyin ilovangizni sahnaga tekshiring») | — |
 | 3 | s2 | Savol-javob | Sharp Answer! |
 | 4 | s3 | Tuzatish va taymer | — |
 | 5 | s5 | Tuzatishlaringiz | Fix Applied! |

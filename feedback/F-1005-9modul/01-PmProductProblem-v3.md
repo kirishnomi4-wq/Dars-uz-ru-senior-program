@@ -84,10 +84,10 @@ Oldingi dars: 8-Modul «Raqamingiz nimani isbotlaydi?» (`m6-14`, 1-bosqich yaku
 - Chap: «Dars oxirida — atrofingizdan muammolar ro'yxati» + vizual: beshta qator-karta skeleti (bitta ustunda) (matnsiz kulrang chiziqlar) 0.4 s oraliqda yashil ✓ oladi.
   Bo'sh auditoriya-karta yo'q — karta 13-ekranda o'z o'rnida chiqadi. *(✎ F-1015-113, 208-qonun 0-band: takror olindi)*
 - O'ng (01 · matn; teg-chip yo'q — matnni takrorlardi):
-  - 01 · Mahsulot va loyiha farqini ajratasiz
-  - 02 · Uchta ishlaydigan mahsulotni tahlil qilasiz
-  - 03 · Dropbox boshqalarga kerakligi qanday bilinganini ko'rasiz
-  - 04 · Sinfdoshingiz bilan atrofdan muammo yig'asiz
+  - 01 · Mahsulot va loyiha farqini ajrating
+  - 02 · Uchta ishlaydigan mahsulotni tahlil qiling
+  - 03 · Dropbox boshqalarga kerakligi qanday bilinganini ko'ring
+  - 04 · Sinfdoshingiz bilan atrofdan muammo yig'ing
 - Harakat yo'q (reja ekrani) — vizual o'zi yoziladi. Skelet matnsiz: 9-ekran kashfiyoti (maydon) va 4-ekran javoblari ochilmaydi (P-015).
 
 ## 2 · Qurish tugasa  ← QTushuncha

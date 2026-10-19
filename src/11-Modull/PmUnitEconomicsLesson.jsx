@@ -29,7 +29,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKod, QMustaqil, QXato, QIzoh, QXulosa, QKartochka, QYakun } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QKirish, QReja, QTushuncha, QTest, QTestJavob, QKod, QMustaqil, QXato, QIzoh, QXulosa, QKartochka, QYakun, manoliMatn } from '../qolip/index.jsx';
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
 
 
@@ -97,6 +97,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -174,8 +199,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -919,10 +944,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chap — menyu osti + sahna o'zi yuradi, ustun nomlari haqiqiy, son o'rnida «?» — P-036, SABOQ D 33) =====
 const REJA = [
-  { t: { uz: "Bitta foydalanuvchini olib kelish qanchaga tushishini sanaysiz", ru: 'Посчитаете, во сколько обходится привести одного пользователя' }, teg: { uz: 'jalb qilish narxi', ru: 'цена привлечения' } },
-  { t: { uz: 'Foydalanuvchi qancha pul keltirishini hisoblab, solishtirasiz', ru: 'Посчитаете, сколько денег приносит пользователь, и сравните' }, teg: { uz: 'keltiradigan pul', ru: 'приносимые деньги' } },
-  { t: { uz: "Ikki sonni o'z mahsulotingiz uchun yozasiz", ru: 'Запишете два числа для своего продукта' }, teg: { uz: 'taxmin', ru: 'предположение' } },
-  { t: { uz: 'Ikki sonni hisoblaydigan kod yozasiz', ru: 'Напишете код, который считает два числа' }, teg: { uz: 'kod oynasi', ru: 'окно кода' } }
+  { t: { uz: "Bitta foydalanuvchini olib kelish qanchaga tushishini sanang", ru: 'Посчитайте, во сколько обходится привести одного пользователя' }, teg: { uz: 'jalb qilish narxi', ru: 'цена привлечения' } },
+  { t: { uz: 'Foydalanuvchi qancha pul keltirishini hisoblab, solishtiring', ru: 'Посчитайте, сколько денег приносит пользователь, и сравните' }, teg: { uz: 'keltiradigan pul', ru: 'приносимые деньги' } },
+  { t: { uz: "Ikki sonni o'z mahsulotingiz uchun yozing", ru: 'Запишите два числа для своего продукта' }, teg: { uz: 'taxmin', ru: 'предположение' } },
+  { t: { uz: 'Ikki sonni hisoblaydigan kod yozing', ru: 'Напишите код, который считает два числа' }, teg: { uz: 'kod oynasi', ru: 'окно кода' } }
 ];
 const RejaSahna = () => {
   const [f, setF] = useState(() => (kamHarakat() ? 5 : 0));
@@ -1048,8 +1073,8 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {taxmin && !done && <BashoratQ savol={tr(S2_SAVOL)} javob={tx ? tr(tx.t) : ''} />}
           {ochiq && !tugadi && <QadamChiziq joriy={qadam} qadamlar={[tr({ uz: 'Bepul kanallar', ru: 'Бесплатные каналы' }), tr({ uz: 'Pullik kanal', ru: 'Платный канал' })]} />}
         </>}
-        harakat={kanalQism}
-        vizual={ustunKarta}
+        harakat={!taxmin && !tugadi && !isMentor ? null : (kanalQism)}
+        vizual={!taxmin && !tugadi && !isMentor ? null : <div className="q-kir">{ustunKarta}</div>}
         xulosa={done && <XulosaQ natija={tx && <TaxminQ togri={taxmin === '0'} haqiqat={'0' + NB + somY} />}
           matn={tr({ uz: "Bir davrda kanallarga sarflangan pulni shu davrda kelgan yangi foydalanuvchilarga bo'lsak — jalb qilish narxi.", ru: 'Если деньги, потраченные на каналы за период, разделить на новых пользователей за этот период, — это цена привлечения.' })} />}
       >
@@ -1088,7 +1113,7 @@ const Screen3 = (props) => (
       3: { uz: 'Bu — butun pul. Bitta foydalanuvchiga qanchadan tushadi?', ru: 'Это все деньги. Сколько приходится на одного пользователя?' },
       default: { uz: "Pul qaysi foydalanuvchilarga bo'linishini eslang.", ru: 'Вспомните, на каких пользователей делят деньги.' }
     }}
-    vizual={<div className="bs-tviz"><span className="bs-tv-q"><b className="pul">24{NB}000{NB}{tr({ uz: "so'm", ru: 'сум' })}</b><i className="bs-tv-ch" /><b className="yangi">8{NB}{tr({ uz: 'kishi', ru: 'чел.' })}</b><i className="bs-tv-ch" /><b className="nat">3{NB}000{NB}{tr({ uz: "so'm", ru: 'сум' })}</b></span></div>} />
+ />
 );
 
 // ===== SCREEN 4 — KELTIRADIGAN PUL (QTushuncha, 3 tugma: O'yinchi · Tashkilotchi · Uch oy; telefon chapda) =====
@@ -1162,7 +1187,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {!taxmin && !isMentor && <QBashorat yorliq={tr(BASHORAT_YORLIQ)} savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={(k) => { setTaxmin(k); if (live && live.mode === 'student') live.submitAnswer(screen, 'keltir', 0, true, 0); }} />}
           {taxmin && !done && <BashoratQ savol={tr(S4_SAVOL)} javob={tx ? tr(tx.t) : ''} />}
         </>}
-        vizual={<div className={cxx('bs-ikki', tugadi && 'toliq')}><Telefon rejim={rejim} /><div className="bs-ong">{karta}{!tugadi && <TugmaQator tugmalar={S4_TUGMA} n={n} ochiq={ochiq} onBos={bos} />}</div></div>}
+        vizual={!taxmin && !tugadi && !isMentor ? null : <div className="q-kir">{<div className={cxx('bs-ikki', tugadi && 'toliq')}><Telefon rejim={rejim} /><div className="bs-ong">{karta}{!tugadi && <TugmaQator tugmalar={S4_TUGMA} n={n} ochiq={ochiq} onBos={bos} />}</div></div>}</div>}
         xulosa={done && <XulosaQ natija={tx && <TaxminQ togri={taxmin === 'oz'} haqiqat={tr({ uz: 'ozchiligi — 44 kishidan 6 tasi', ru: 'меньшинство — 6 из 44' })} />}
           matn={tr({ uz: 'Bitta foydalanuvchidan butun foydalanish davomida keladigan pul — foydalanuvchi keltiradigan pul.', ru: 'Деньги, которые приходят от одного пользователя за всё время использования, — это деньги, которые приносит пользователь.' })}
           izoh={tr(PRO_IZ)} />}
@@ -1226,8 +1251,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {!taxmin && !isMentor && <QBashorat yorliq={tr(BASHORAT_YORLIQ)} savol={tr(S5_SAVOL)} variantlar={S5_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={(k) => { setTaxmin(k); if (live && live.mode === 'student') live.submitAnswer(screen, 'solishtir', 0, true, 0); }} />}
           {taxmin && !done && <BashoratQ savol={tr(S5_SAVOL)} javob={tx ? tr(tx.t) : ''} />}
         </>}
-        vizual={<div className={cxx('bs-ikki', 'sol', tugadi && 'toliq')}>{chap}{ustun}</div>}
-        harakat={!tugadi && <TugmaQator tugmalar={S5_TUGMA} n={n} ochiq={ochiq} onBos={(i) => { if (i === n) setN(i + 1); }} />}
+        vizual={!taxmin && !tugadi && !isMentor ? null : <div className="q-kir">{<div className={cxx('bs-ikki', 'sol', tugadi && 'toliq')}>{chap}{ustun}</div>}</div>}
+        harakat={!taxmin && !tugadi && !isMentor ? null : (!tugadi && <TugmaQator tugmalar={S5_TUGMA} n={n} ochiq={ochiq} onBos={(i) => { if (i === n) setN(i + 1); }} />)}
         xulosa={done && <XulosaQ natija={tx && <TaxminQ togri={taxmin === '60000'} haqiqat={sonFmt(AGAR.sarf) + NB + somY} />}
           matn={tr({ uz: "Keltiradigan pul to'lovchini jalb qilish narxini qoplashi kerak; bu misolda qoplamaydi — zarar.", ru: 'Деньги, которые приносит плательщик, должны покрывать цену его привлечения; в этом примере не покрывают — убыток.' })}
           izoh={tr(ZARAR_BAHO)} />}
@@ -1257,7 +1282,7 @@ const Screen6 = (props) => (
       2: { uz: "Tashkilotchi bir oy emas, bir necha oy to'laydi.", ru: 'Организатор платит не один месяц, а несколько.' },
       default: { uz: "Ikki son bitta to'lovchi haqidami — tekshiring.", ru: 'Проверьте: оба числа об одном плательщике?' }
     }}
-    vizual={<Ustunlar ixcham jalb={AGAR.sarf} keltir={MENTOR_SONLAR.keltiradi} muhr="zarar" chegara={false} />} />
+ />
 );
 
 // ===== IKKI SONIM — hisoblash qoidasi (MD KOD 8; bitta funksiya, PM-108: node da 10+ namuna) va kalit pm-m11d1-birlik (tayanch 8 aynan) =====
@@ -1435,6 +1460,22 @@ const IkkiSonim = ({ f, ixcham, onTahrir, uRef, taxminYon }) => {
   );
 };
 
+// F-1015-363 (pilot): ikki son saqlangach — «Ikki soningiz nima deydi?»: to'g'ri xulosa o'quvchi sonlaridan, ikki tipik xato sababi bilan
+const S7_XATO = {
+  foyda: { t: { uz: 'Pul topyapmiz — foyda aniq.', ru: 'Мы зарабатываем — прибыль точно есть.' }, iz: { uz: "Keltiradigan pul — taxmin: hali hech kim to'lamagan.", ru: 'Приносимые деньги — предположение: ещё никто не заплатил.' } },
+  xohlagan: { t: { uz: "Pullik kanalga xohlagancha pul sarflash mumkin.", ru: 'На платный канал можно тратить сколько угодно.' }, iz: { uz: "Chegara bor: bitta foydalanuvchiga keltiradigan puldan ko'p sarflasangiz — zarar.", ru: 'Есть предел: если тратить на одного больше, чем он приносит, — убыток.' } },
+  hech: { t: { uz: 'Bu ikki sondan hech narsa bilinmaydi.', ru: 'Из этих двух чисел ничего не понять.' }, iz: { uz: "Ikki son birga kanalga qancha sarflash mumkinligini ko'rsatadi.", ru: 'Вместе два числа показывают, сколько можно тратить на канал.' } }
+};
+const s7Xulosa = (h, somY) => {
+  const L = (n) => `${sonFmt(n)}${NB}${somY}`;
+  if (h.jalbNarxi === null) return { uz: h.yangiJami === 0 ? "Yangi foydalanuvchi hali yo'q — avval odam kelsin, keyin jalb qilish narxi hisoblanadi." : "Yangi foydalanuvchilar soni noma'lum — jalb qilish narxini hisoblab bo'lmaydi.", ru: h.yangiJami === 0 ? 'Новых пользователей пока нет — сначала пусть придут люди, потом считают цену привлечения.' : 'Число новых пользователей неизвестно — цену привлечения не посчитать.', bilinmaydi: true };
+  if (h.keltiradi === null) return { uz: "Keltiradigan pul noma'lum — kanalga qancha sarflash mumkinligi hali bilinmaydi.", ru: 'Приносимые деньги неизвестны — сколько можно тратить на канал, пока непонятно.', bilinmaydi: true };
+  if (h.sabab === 'sarfsiz') return { uz: `Hozir yangi foydalanuvchi bepul keldi. Pullik kanalga o'tsangiz, bitta to'lovchi keltiradigan puldan (${L(h.keltiradi)}, taxmin) ko'p sarflab bo'lmaydi.`, ru: `Сейчас новые пользователи пришли бесплатно. На платном канале нельзя тратить больше, чем приносит один плательщик (${L(h.keltiradi)}, предположение).` };
+  if (h.sabab === 'tolovchisiz') return { uz: "Hamma ham to'lamaydi — keltiradigan pulni to'lovchilar ulushi bilan hisoblamaguncha solishtirib bo'lmaydi.", ru: 'Платят не все — пока не учтена доля плательщиков, сравнивать нельзя.', bilinmaydi: true };
+  if (h.sabab === 'qoplanadi') return { uz: `Jalb qilish (${L(h.jalbNarxi)}) keltiradigan puldan (${L(h.keltiradi)}) arzon — taxminga ko'ra o'zini qoplaydi.`, ru: `Привлечение (${L(h.jalbNarxi)}) дешевле приносимых денег (${L(h.keltiradi)}) — по предположению окупается.` };
+  if (h.sabab === 'zarar') return { uz: `Jalb qilish (${L(h.jalbNarxi)}) keltiradigan puldan (${L(h.keltiradi)}) qimmat — har yangi foydalanuvchi zarar.`, ru: `Привлечение (${L(h.jalbNarxi)}) дороже приносимых денег (${L(h.keltiradi)}) — каждый новый пользователь в убыток.` };
+  return { uz: "Jalb qilish keltiradigan pulga teng — foyda ham, zarar ham yo'q.", ru: 'Привлечение равно приносимым деньгам — ни прибыли, ни убытка.' };
+};
 // ===== SCREEN 7 — O'Z SONLARINGIZ (QMustaqil, USTAXONA — 3 karta ketma-ket; E 43, E 53) · yozadi pm-m11d1-birlik · nishon twoNumbers (bonus) =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { live, isMentor } = useJonli();
@@ -1448,7 +1489,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [yordam, setYordam] = useState(false);
   const [yozildi, setYozildi] = useState(false);
   const [yashil, setYashil] = useState(false);
-  const yozF = (nf) => { setF(nf); setXato(null); if (saqlandi) setOzgardi(true); };
+  const [xulOk, setXulOk] = useState(!!st.xulOk);
+  const [xulX, setXulX] = useState(null);
+  const yozF = (nf) => { setF(nf); setXato(null); if (saqlandi) setOzgardi(true); setXulOk(false); setXulX(null); };
   const n = toldi.filter(Boolean).length;
   const saqla = () => {
     const rec = birlikYozuv(f);
@@ -1470,6 +1513,22 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tahrir = (i) => { setKarta(i); setXato(null); };
   const h = birlikHisob(f);
   const somY = tr({ uz: "so'm", ru: 'сум' });
+  const xulT = s7Xulosa(h, somY);
+  const xulVar = [{ k: 'ok', t: tr(xulT), ok: true }, { k: 'foyda', t: tr(S7_XATO.foyda.t) }, { k: xulT.bilinmaydi ? 'xohlagan' : 'hech', t: tr(S7_XATO[xulT.bilinmaydi ? 'xohlagan' : 'hech'].t) }];
+  const xulOrder = h.sabab === 'zarar' || h.sabab === 'teng' ? [1, 0, 2] : h.sabab === 'qoplanadi' ? [2, 1, 0] : [1, 2, 0];
+  const xulTanla = (v) => {
+    if (xulOk) return;
+    if (!v.ok) { setXulX(v.k); return; }
+    setXulOk(true); setXulX(null);
+    onAnswer(screen, { stage: 'practice', screenIdx: screen, practice: 'ikki-son', forma: f, toldi, saqlandi: true, solved: true, correct: true, picked: true, xulOk: true });
+  };
+  const xulPanel = saqlandi && karta === 3 && !isMentor && (
+    <div className="bs-s7-xul fade-step">
+      <b className="bs-xv-s">{tr({ uz: 'Ikki soningiz nima deydi?', ru: 'Что говорят ваши два числа?' })}</b>
+      {xulOrder.map(i => xulVar[i]).map(v => <button key={v.k} type="button" className={cxx('bs-xv', xulOk && v.ok && 'ok', xulX === v.k && 'xato')} disabled={xulOk || xulX === v.k} onClick={() => xulTanla(v)}>{v.t}</button>)}
+      {xulX && <p className="bs-xv-x fade-step" role="alert">{tr(S7_XATO[xulX].iz)}</p>}
+    </div>
+  );
   const jalbM = h.jalbNarxi !== null ? `${sonFmt(h.jalbNarxi)}${NB}${somY}` : tr(h.yangiJami === 0 ? { uz: "bo'lib bo'lmaydi", ru: 'нельзя разделить' } : { uz: "noma'lum", ru: 'неизвестно' });
   const xulosaM = h.keltiradi !== null
     ? tr({ uz: `Jalb qilish narxi — ${jalbM}, keltiradigan pul — ${sonFmt(h.keltiradi)}${NB}so'm (taxmin).`, ru: `Цена привлечения — ${jalbM}, приносимые деньги — ${sonFmt(h.keltiradi)}${NB}сум (предположение).` })
@@ -1500,20 +1559,20 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {!isMentor && <div className="bs-katta-tug"><QTugma className={cxx(ozgardi && 'bs-halqa')} ikkinchi={!ozgardi} onClick={saqla}>{saqlandi ? tr({ uz: 'Yangilash', ru: 'Обновить' }) : tr({ uz: 'Saqlash', ru: 'Сохранить' })}</QTugma></div>}
     </div>
   );
-  const navL = saqlandi ? { uz: 'Davom etish', ru: 'Продолжить' } : n >= 3 ? { uz: 'Saqlang', ru: 'Сохраните' } : { uz: `Kartalarni to'ldiring (${n}/3)`, ru: `Заполните карточки (${n}/3)` };
+  const navL = saqlandi ? (xulOk || isMentor ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Xulosani tanlang', ru: 'Выберите вывод' }) : n >= 3 ? { uz: 'Saqlang', ru: 'Сохраните' } : { uz: "Kartalarni to'ldiring", ru: 'Заполните карточки' };
   return (
     <Stage eyebrow={tr({ uz: 'Mustaqil ish · ikki son', ru: 'Самостоятельная работа · два числа' })} screen={screen} scrollSignal={karta + (saqlandi ? 4 : 0)} deskSignal={saqlandi && karta === 3 ? 1 : 0} deskDelay={500} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!saqlandi && !isMentor} label={tr(isMentor ? { uz: 'Davom etish', ru: 'Продолжить' } : navL)} onClick={onNext} /></>}>
       <QMustaqil
         sarlavha={tr({ uz: <>Mahsulotingiz uchun <A>ikki sonni yozing.</A></>, ru: <>Запишите <A>два числа</A> для своего продукта.</> })}
         mentor={<Mentor>{tr({ uz: "Har kartani to'ldirib, «Keyingi»ni bosing — bilmagan soningiz uchun «Hozircha bilmayman» bor.", ru: 'Заполните каждую карточку и нажмите «Далее» — для неизвестного числа есть «Пока не знаю».' })}</Mentor>}
         qadamlar={!isMentor && chiziq}
-        forma={<>{kartaQism}{yakuniy}</>}
+        forma={<div className={cxx('bs-s7', saqlandi && karta === 3 && !isMentor && 'ikki')}>{kartaQism}{yakuniy}{xulPanel}</div>}
         yordam={yordam && karta < 3 && <div className="bs-yordam fade-step">
           <span>{tr({ uz: "Mentor misolida: mahalla futbol guruhi, sinf chati va Instagram sahifasi — 0 so'm; ishga tushgandan keyingi ikki haftada 44 kishi (11 tasi — sinfdosh). Kim to'laydi: tashkilotchi (44 kishidan 6 tasi). Narx taxmini: 30 kunga 10 000 so'm, 3 oy.", ru: 'В примере Ментора: футбольная группа махалли, чат класса и страница в Instagram — 0 сумов; за две недели после запуска 44 человека (11 — одноклассники). Кто платит: организатор (6 из 44). Предположение цены: 10 000 сумов за 30 дней, 3 месяца.' })}</span>
           <span>{tr({ uz: "Sonni o'ylab topmang: bilmasangiz — «Hozircha bilmayman». Qaytganlar foizi oylar sonini aytmaydi. Pul to'lagan kanalingiz bo'lmasa — hammasiga 0 yozing: pullik kanalga pul to'lash shart emas. Web-trekda ham shunday.", ru: 'Не придумывайте числа: если не знаете — «Пока не знаю». Доля вернувшихся не говорит о числе месяцев. Если вы не платили ни одному каналу — пишите везде 0: платить каналу не нужно. В веб-треке так же.' })}</span>
         </div>}
       >
-        {saqlandi && karta === 3 && <QXulosa>{xulosaM}</QXulosa>}
+        {saqlandi && karta === 3 && (xulOk || isMentor) && <QXulosa>{isMentor ? xulosaM : tr(xulT)}</QXulosa>}
         {isMentor && <MentorPracticeStats live={live} screen={screen} yorliq={{ uz: 'Ikki sonni saqlaganlar', ru: 'Сохранили два числа' }} />}
         <Ustoz satrlar={USTOZ.s7} />
       </QMustaqil>
@@ -1527,6 +1586,8 @@ const SHERIK_SAVOL = [
   { savol: { uz: 'To\'lovchi mahsulotingizdan nima oladi?', ru: 'Что получает плательщик от вашего продукта?' }, karta: 1 },
   { savol: { uz: 'Narx va oy — kimdir aytganmi yoki taxminmi?', ru: 'Цена и месяцы — кто-то назвал или это предположение?' }, karta: 2 }
 ];
+// F-1015-364: ✕ qo'yilganda sherik sababni bir bosishda tanlaydi (o'zi yozishi ham mumkin)
+const S8_SABAB = [{ uz: 'Manba aytilmadi', ru: 'Не назван источник' }, { uz: 'Taxmin deb aytilmadi', ru: 'Не сказано, что это предположение' }, { uz: 'Son noaniq', ru: 'Число неточное' }];
 const S8_TAB = [{ uz: 'Ayting', ru: 'Скажите' }, { uz: 'Belgilang', ru: 'Отметьте' }, { uz: 'Tuzating', ru: 'Исправьте' }];
 const YOMON_RE = /(yomon|zerikarli|yoqmadi|плох|скучн|не понрав)/i;
 const vaqtM = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
@@ -1559,7 +1620,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const xBor = belgi.some(b => b === 'x');
   const varaqXato = () => {
     if (belgi.some(b => b === null)) return { uz: "Har savolga ✓ yoki ✕ qo'ying.", ru: 'Поставьте ✓ или ✕ на каждый вопрос.' };
-    if (belgi.some((b, i) => b === 'x' && String(izoh[i]).trim().length < 8)) return { uz: "✕ qo'ydingiz — nima yetishmaganini bir qatorda yozing.", ru: 'Вы поставили ✕ — напишите в одной строке, чего не хватило.' };
+    if (belgi.some((b, i) => b === 'x' && (String(izoh[i]).trim().length < 8 || !manoliMatn(izoh[i])))) return { uz: "✕ qo'ydingiz — nima yetishmaganini bir qatorda yozing.", ru: 'Вы поставили ✕ — напишите в одной строке, чего не хватило.' };
     return null;
   };
   const varaqOk = !varaqXato();
@@ -1622,6 +1683,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button type="button" className={cxx('q-chip', 'bs-belgi-b', belgi[i] === 'ok' && 'on ok')} disabled={tab !== 1} onClick={() => belgila(i, 'ok')}>✓</button>
             <button type="button" className={cxx('q-chip', 'bs-belgi-b', belgi[i] === 'x' && 'on x')} disabled={tab !== 1} onClick={() => belgila(i, 'x')}>✕</button>
           </div>}
+          {belgi[i] === 'x' && tab === 1 && !isMentor && <div className="bs-sabab">{S8_SABAB.map((sb, k) => <button key={k} type="button" className={cxx('q-chip', 'bs-sabab-b', izoh[i] === tr(sb) && 'on')} onClick={() => { const z = izoh.map((x, j) => (j === i ? tr(sb) : x)); setIzoh(z); setXato(null); saqlaHolat({ izoh: z }); }}>{tr(sb)}</button>)}</div>}
           {belgi[i] === 'x' && <div className="bs-vq-iz"><Maydon value={izoh[i]} disabled={tab !== 1} onChange={(v) => { const z = izoh.map((x, j) => (j === i ? v : x)); setIzoh(z); setXato(null); }} ph={tr({ uz: 'Nima yetishmadi?', ru: 'Чего не хватило?' })} max={80} halqa={tab === 1 && String(izoh[i]).trim().length < 8} /></div>}
           {ochiq === i && tf && <div className="bs-tuzat fade-step">
             <KartaForma karta={q.karta} f={tf} setF={(nf) => { setTf(nf); setXato(null); }} xato={null} />
@@ -1925,9 +1987,7 @@ const Screen10 = (props) => {
         3: { uz: 'Qaytganlar foizi ilovani ochishni sanaydi — oylarni emas.', ru: 'Доля вернувшихся считает открытия приложения, а не месяцы.' },
         default: { uz: "Taxmin bo'lgan son qanday yozilishini eslang.", ru: 'Вспомните, как записывают число-предположение.' }
       }}
-      vizual={f
-        ? <IkkiSonim f={f} ixcham taxminYon />
-        : <div className="bs-tviz"><span className="bs-tv-q">{tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })}: <b className="nat">{sonFmt(MENTOR_SONLAR.keltiradi)}{NB}{tr({ uz: "so'm", ru: 'сум' })}</b> <span className="bs-tx-y yon">{tr({ uz: 'taxmin', ru: 'предположение' })}</span></span></div>} />
+ />
   );
 };
 
@@ -2016,18 +2076,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD «Jonli viktorina»), to'g'ri javob o'rni A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12
 const QUIZ_BANK = [
-  { q: { uz: 'Jalb qilish narxi uchun qaysi pul olinadi?', ru: 'Какие деньги берут для цены привлечения?' }, opts: [{ uz: 'Kanallarga sarflangan pul', ru: 'Деньги, потраченные на каналы' }, { uz: "Pro uchun to'lanadigan pul", ru: 'Деньги, которые платят за Pro' }, { uz: "O'yinchi to'laydigan pul", ru: 'Деньги, которые платит игрок' }, { uz: 'Post yozishga ketgan vaqt', ru: 'Время на написание поста' }], correct: 0 },
-  { q: { uz: 'Mentor misolida bepul kanallar nimaga tushdi?', ru: 'Во что обошлись бесплатные каналы в примере Ментора?' }, opts: [{ uz: "Har bir kishiga 5 000 so'mga", ru: 'По 5 000 сумов на человека' }, { uz: 'Pulga emas — sarflangan vaqtga', ru: 'Не в деньги — в потраченное время' }, { uz: "Pro narxiga — 10 000 so'mga", ru: 'В цену Pro — 10 000 сумов' }, { uz: 'Hech nimaga — vaqt ham ketmagan', ru: 'Ни во что — и времени не ушло' }], correct: 1 },
-  { q: { uz: "Mentor misolida ilovaga kim pul to'lashi mumkin?", ru: 'Кто может платить приложению в примере Ментора?' }, opts: [{ uz: 'Hamma foydalanuvchi har oy', ru: 'Все пользователи каждый месяц' }, { uz: 'Sinfdoshlar, boshqalar emas', ru: 'Одноклассники, а не другие' }, { uz: 'Pro oladigan tashkilotchi', ru: 'Организатор, который берёт Pro' }, { uz: "Maydon egasi har o'yinda", ru: 'Хозяин площадки за каждую игру' }], correct: 2 },
+  { q: { uz: "Jalb qilish narxida qaysi pul olinadi?", ru: "Какие деньги берут для цены привлечения?" }, opts: [{ uz: "Kanallarga ketgan pul", ru: "Деньги на каналы" }, { uz: "Pro uchun to'langan pul", ru: "Деньги за Pro" }, { uz: "O'yinchi bergan pul", ru: "Деньги от игрока" }, { uz: "Postga ketgan vaqt", ru: "Время на пост" }], correct: 0 },
+  { q: { uz: "Mentor misolida bepul kanallar nimaga tushdi?", ru: "Во что обошлись бесплатные каналы в примере Ментора?" }, opts: [{ uz: "Har kishiga 5 000 so'm", ru: "5 000 сумов на человека" }, { uz: "Pulga emas, vaqtga", ru: "Не в деньги, а во время" }, { uz: "Pro narxiga, 10 000 so'm", ru: "В цену Pro, 10 000 сумов" }, { uz: "Hech narsaga, vaqt ham yo'q", ru: "Ни во что, даже времени нет" }], correct: 1 },
+  { q: { uz: "Mentor misolida ilovaga kim pul to'lashi mumkin?", ru: "Кто может платить за приложение в примере Ментора?" }, opts: [{ uz: "Har bir foydalanuvchi", ru: "Каждый пользователь" }, { uz: "Faqat sinfdoshlar", ru: "Только одноклассники" }, { uz: "Pro oladigan tashkilotchi", ru: "Организатор, берущий Pro" }, { uz: "Maydon egasi har o'yinda", ru: "Владелец поля за каждую игру" }], correct: 2 },
   { q: { uz: 'Mentor misolida Pro nima?', ru: 'Что такое Pro в примере Ментора?' }, opts: [{ uz: 'Bir martalik kirish puli', ru: 'Разовая плата за вход' }, { uz: "Har o'yin uchun to'lov", ru: 'Плата за каждую игру' }, { uz: 'Yangi ilova versiyasi', ru: 'Новая версия приложения' }, { uz: '30 kunlik pullik obuna', ru: 'Платная подписка на 30 дней' }], correct: 3 },
-  { q: { uz: 'Mentorning taxminicha, bitta Pro tashkilotchi qancha keltiradi?', ru: 'Сколько, по предположению Ментора, приносит один организатор с Pro?' }, opts: [{ uz: "30 000 so'm", ru: '30 000 сумов' }, { uz: "10 000 so'm", ru: '10 000 сумов' }, { uz: "60 000 so'm", ru: '60 000 сумов' }, { uz: "20 000 so'm", ru: '20 000 сумов' }], correct: 0 },
-  { q: { uz: "Bu darsdagi jalbNarxi yangi foydalanuvchi 0 bo'lsa nima qaytaradi?", ru: 'Что возвращает jalbNarxi из этого урока, если новых пользователей 0?' }, opts: [{ uz: '0 — chunki pul ham nol', ru: '0 — ведь и денег ноль' }, { uz: "null — bo'lib bo'lmaydi", ru: 'null — нельзя разделить' }, { uz: "Sarflangan pulning o'zini", ru: 'Сами потраченные деньги' }, { uz: 'Infinity — cheksiz son', ru: 'Infinity — бесконечность' }], correct: 1 },
-  { q: { uz: 'Qaytganlar foizi nimani sanaydi?', ru: 'Что считает доля вернувшихся?' }, opts: [{ uz: 'Pullik obunani uzaytirganlarni', ru: 'Тех, кто продлил платную подписку' }, { uz: 'Pro olgan tashkilotchilar sonini', ru: 'Число организаторов с Pro' }, { uz: 'Ilovani yana ochgan qurilmalarni', ru: 'Устройства, снова открывшие приложение' }, { uz: 'Kanaldan kelgan yangi kishilarni', ru: 'Новых людей из канала' }], correct: 2 },
-  { q: { uz: "To'lovchini jalb qilish 25 000 so'm, u 20 000 keltiradi. Xulosa?", ru: 'Привлечь плательщика — 25 000 сумов, он приносит 20 000. Вывод?' }, opts: [{ uz: 'Qoplanadi — chunki pul keladi', ru: 'Покрывается — ведь деньги приходят' }, { uz: "Teng — ikkalasi ham so'mda", ru: 'Равно — оба в сумах' }, { uz: "Noma'lum — sonlar juda katta", ru: 'Неизвестно — числа слишком большие' }, { uz: 'Zarar — jalb qilish qimmat', ru: 'Убыток — привлечение дороже' }], correct: 3 },
-  { q: { uz: 'Mentor misolida bepul kanallar nega chegarali?', ru: 'Почему бесплатные каналы в примере Ментора ограничены?' }, opts: [{ uz: "Ulardagi a'zolar soni cheklangan", ru: 'В них немного участников' }, { uz: "Ularga keyin pul to'lash kerak", ru: 'Потом им нужно платить' }, { uz: 'Ularda post yozish taqiqlangan', ru: 'В них запрещено писать посты' }, { uz: 'Ular bir haftadan keyin yopiladi', ru: 'Они закрываются через неделю' }], correct: 0 },
-  { q: { uz: 'Jalb qilish narxida «yangi foydalanuvchi» kim?', ru: 'Кто «новый пользователь» в цене привлечения?' }, opts: [{ uz: 'Ilovani bir marta ochgan qurilma', ru: 'Устройство, один раз открывшее приложение' }, { uz: "Shu davrda ro'yxatdan o'tgan kishi", ru: 'Человек, зарегистрировавшийся за период' }, { uz: "Pro uchun pul to'lagan tashkilotchi", ru: 'Организатор, заплативший за Pro' }, { uz: "Postni o'qib chiqqan har bir kishi", ru: 'Каждый, кто прочитал пост' }], correct: 1 },
-  { q: { uz: 'Pullik kanalni baholashda kimni jalb qilish narxi olinadi?', ru: 'Чью цену привлечения берут, оценивая платный канал?' }, opts: [{ uz: 'Kanaldan kelgan har bir kishini', ru: 'Каждого, кто пришёл из канала' }, { uz: 'Ilovadagi hamma foydalanuvchini', ru: 'Всех пользователей приложения' }, { uz: "Pul to'laydigan foydalanuvchini", ru: 'Пользователя, который платит' }, { uz: "Eng ko'p o'ynaydigan o'yinchini", ru: 'Игрока, который играет больше всех' }], correct: 2 },
-  { q: { uz: 'Keltiradigan pulni qanday hisoblaymiz?', ru: 'Как считаем приносимые деньги?' }, opts: [{ uz: "Narxni kishilar soniga ko'paytiramiz", ru: 'Умножаем цену на число людей' }, { uz: "Narxga kanal pulini ham qo'shamiz", ru: 'Прибавляем к цене деньги на канал' }, { uz: "Oylarni kishilar soniga bo'lamiz", ru: 'Делим месяцы на число людей' }, { uz: "Narxni oylar soniga ko'paytiramiz", ru: 'Умножаем цену на число месяцев' }], correct: 3 }
+  { q: { uz: "Mentor taxmini: Pro tashkilotchi qancha keltiradi?", ru: "Предположение Ментора: сколько принесёт организатор с Pro?" }, opts: [{ uz: "30 000 so'm", ru: "30 000 сумов" }, { uz: "10 000 so'm", ru: "10 000 сумов" }, { uz: "60 000 so'm", ru: "60 000 сумов" }, { uz: "20 000 so'm", ru: "20 000 сумов" }], correct: 0 },
+  { q: { uz: "Yangi kelganlar 0 bo'lsa, jalbNarxi nima qaytaradi?", ru: "Что вернёт jalbNarxi, если новых пользователей 0?" }, opts: [{ uz: "0", ru: "0" }, { uz: "null", ru: "null" }, { uz: "Sarflangan pulni", ru: "Потраченные деньги" }, { uz: "Infinity", ru: "Infinity" }], correct: 1 },
+  { q: { uz: "Qaytganlar foizi nimani sanaydi?", ru: "Что считает процент вернувшихся?" }, opts: [{ uz: "Obunani uzaytirganlarni", ru: "Тех, кто продлил подписку" }, { uz: "Pro olgan tashkilotchilarni", ru: "Организаторов, взявших Pro" }, { uz: "Yana ochgan qurilmalarni", ru: "Устройства, открывшие снова" }, { uz: "Kanaldan kelgan yangilarni", ru: "Новых людей из каналов" }], correct: 2 },
+  { q: { uz: "Jalb qilish narxi 25 000, keltiradi 20 000. Natija?", ru: "Цена привлечения 25 000, приносит 20 000. Итог?" }, opts: [{ uz: "Qoplanadi", ru: "Окупается" }, { uz: "Teng", ru: "Равно" }, { uz: "Noma'lum", ru: "Неизвестно" }, { uz: "Zarar", ru: "Убыток" }], correct: 3 },
+  { q: { uz: "Mentor misolida bepul kanallar nega chegarali?", ru: "Почему бесплатные каналы в примере Ментора ограничены?" }, opts: [{ uz: "A'zolar soni cheklangan", ru: "Число участников ограничено" }, { uz: "Keyin pul to'lash kerak", ru: "Потом нужно платить" }, { uz: "Post yozish taqiqlangan", ru: "Посты писать запрещено" }, { uz: "Bir haftada yopiladi", ru: "Закрываются через неделю" }], correct: 0 },
+  { q: { uz: "Jalb qilish narxida kim yangi sanaladi?", ru: "Кто считается новым в цене привлечения?" }, opts: [{ uz: "Ilovani bir marta ochgan", ru: "Кто раз открыл приложение" }, { uz: "Shu davrda ro'yxatdan o'tgan", ru: "Кто зарегистрировался за период" }, { uz: "Pro uchun pul to'lagan", ru: "Кто заплатил за Pro" }, { uz: "Postni o'qigan har kim", ru: "Каждый, кто прочитал пост" }], correct: 1 },
+  { q: { uz: "Pullik kanalda kimni jalb qilish narxi olinadi?", ru: "Чью цену привлечения берут для платного канала?" }, opts: [{ uz: "Kanaldan kelgan har kishini", ru: "Каждого пришедшего из канала" }, { uz: "Ilovadagi hammani", ru: "Всех в приложении" }, { uz: "To'lovchini", ru: "Плательщика" }, { uz: "Eng ko'p o'ynaganni", ru: "Кто больше всех играет" }], correct: 2 },
+  { q: { uz: "Keltiradigan pulni qanday hisoblaymiz?", ru: "Как считаем приносимые деньги?" }, opts: [{ uz: "Narx × kishilar soni", ru: "Цена × число людей" }, { uz: "Narx + kanal puli", ru: "Цена + деньги на канал" }, { uz: "Oylar ÷ kishilar soni", ru: "Месяцы ÷ число людей" }, { uz: "Narx × oylar soni", ru: "Цена × число месяцев" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2626,23 +2686,6 @@ const HW_BANDLAR = [
   { uz: "Keltiradigan pulingizga qarab yozing: pullik kanal o'z pulini qoplashi uchun bitta to'lovchini jalb qilish narxi necha so'mdan oshmasligi kerak?", ru: 'Глядя на свои приносимые деньги, напишите: сколько сумов не должна превышать цена привлечения одного плательщика, чтобы платный канал окупил свои деньги?' }
 ];
 const HW_RAQAM = ['1', '2', '3'];
-// PM-109 (SABOQ P4): erta tugatgan o'quvchi yo'li — AI sherik (tekshiruvchi) rolida, o'quvchi o'z sonlarini o'zi aytadi; sinfda gemini.google.com
-const AI_SOROV = {
-  uz: "Sen mening sinfdoshimsan va ikki sonimni tekshirasan: jalb qilish narxi va foydalanuvchi keltiradigan pul. Menga bittadan uchta savol ber: yangi foydalanuvchilar soni qayerdan olingan, to'lovchi mahsulotimdan nima oladi, narx va oy — kimdir aytganmi yoki taxminmi. Har javobimdan keyin ✓ yoki ✕ qo'y va nima yetishmaganini bir gapda ayt. Sonni o'zing o'ylab topma. Mening sonlarim: ",
-  ru: 'Ты мой одноклассник и проверяешь два моих числа: цену привлечения и деньги, которые приносит пользователь. Задай мне по одному три вопроса: откуда взято число новых пользователей, что плательщик получает от моего продукта, цена и месяцы — кто-то назвал или это предположение. После каждого моего ответа ставь ✓ или ✕ и одной фразой скажи, чего не хватило. Сам числа не придумывай. Мои числа: '
-};
-const AiDavomCard = () => {
-  const [nusxa, setNusxa] = useState(false);
-  const kochir = () => { try { navigator.clipboard.writeText(tr(AI_SOROV)); setNusxa(true); setTimeout(() => setNusxa(false), 1800); } catch { /* qo'lda belgilab oladi */ } };
-  return (
-    <div className="card bs-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <span className="bs-ai-m">{tr({ uz: "gemini.google.com'ni oching, pastdagi so'rovni yuboring va oxiriga ikki soningizni yozing — AI sherigingiz bo'lib, uchta savol beradi. ✕ olgan joyni «Orqaga» bilan qaytib, «Ikki sonim» kartasida aniqlashtiring.", ru: 'Откройте gemini.google.com, отправьте запрос ниже и допишите в конце свои два числа — AI станет вашим партнёром и задаст три вопроса. Место с ✕ уточните в карточке «Два моих числа», вернувшись через «Назад».' })}</span>
-      <pre className="bs-ai-sorov">{tr(AI_SOROV)}</pre>
-      <button type="button" className="q-chip bs-ai-btn" onClick={kochir}>{nusxa ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 const HwCard = ({ qolgan, keyingi }) => (
   <div className="card bs-hw fade-up">
     <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
@@ -2719,7 +2762,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           hwTokens={HW_TOKENS.map(t => ({ ...t, t: tr(t.t) }))}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
         >
-          {!isMentorL && <AiDavomCard />}
+          
         </QYakun>
       </div>
     </Stage>
@@ -3035,6 +3078,21 @@ export default function PmUnitEconomicsLesson({ lang: langProp, onFinished, live
         .bs-kartatab i { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 11.5px; font-weight: 800; background: ${T.bg}; }
         .bs-kartatab.joriy { color: ${T.accent}; border-color: ${fon(T.accent, 0.5)}; } .bs-kartatab.joriy i { background: ${T.accent}; color: #fff; }
         .bs-kartatab.ok { color: ${T.ok}; } .bs-kartatab.ok i { background: ${T.okFon}; color: ${T.ok}; }
+        .q-mustaqil:has(.bs-s8.ikki) { max-width: none; } /* F-1015-364: juftlik varag'i to'liq kenglikda */
+        .bs-sabab { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+        .bs-sabab-b { font-size: 12.5px; padding: 5px 10px; }
+        .bs-s7 { display: flex; flex-direction: column; gap: 12px; }
+        .q-mustaqil:has(.bs-s7.ikki), .q-mustaqil:has(.bs-s7.ikki) .q-forma { max-width: none; }
+        .bs-s7.ikki { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; align-items: start; } /* F-1015-363: bo'sh o'ng joyda xulosa paneli */
+        .bs-s7-xul { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 18px; background: ${T.paper}; box-shadow: 0 10px 26px -12px rgba(${T.shadowBase},0.25); }
+        .bs-xv-s { font-size: 14px; color: ${T.ink}; }
+        .bs-xv { padding: 9px 12px; border-radius: 10px; border: 0; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${fon(T.accent, 0.45)}; font: inherit; font-size: 13px; line-height: 1.4; color: ${T.ink}; text-align: left; cursor: pointer; }
+        .bs-xv:hover:not(:disabled) { box-shadow: inset 0 0 0 2px ${T.accent}; }
+        .bs-xv.ok { background: ${T.okFon}; box-shadow: inset 0 0 0 1.5px ${T.ok}; color: ${T.ink}; cursor: default; }
+        .bs-xv.xato { opacity: .45; text-decoration: line-through; box-shadow: inset 0 0 0 1px ${fon(T.err, 0.5)}; cursor: default; }
+        .bs-xv:disabled:not(.ok):not(.xato) { opacity: .5; cursor: default; }
+        p.bs-xv-x { margin: 0; padding: 6px 10px; border-radius: 8px; background: ${T.errFon}; color: ${T.err}; font-size: 12.5px; font-weight: 600; }
+        @media (max-width: 760px) { .bs-s7.ikki { grid-template-columns: 1fr; } }
         .bs-katta { display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; border-radius: 18px; background: ${T.paper}; box-shadow: 0 10px 26px -12px rgba(${T.shadowBase},0.25); transition: background 0.4s; }
         .bs-katta.yashil { background: ${T.okFon}; }
         .bs-katta-h { display: flex; align-items: center; gap: 10px; font-size: 15px; color: ${T.ink}; }
@@ -3123,8 +3181,6 @@ export default function PmUnitEconomicsLesson({ lang: langProp, onFinished, live
         .bs-flash.yangi .fc-card:not(.flip) .fc-front { border-color: ${T.accent}; animation: bs-puls 1.8s ease-out .4s 3; }
         p.bs-fc-ipucha { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0 0; font-size: 13px; font-weight: 700; color: ${T.accent}; }
         p.bs-fc-ipucha i { width: 8px; height: 8px; border-radius: 50%; background: ${T.accent}; animation: bs-nuqta 2.4s ease-in-out 3; }
-        .bs-ai-m { display: block; margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: ${T.ink}; }
-        .bs-ai-sorov { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.45; color: ${T.ink}; white-space: pre-wrap; }
         .bs-hw { display: flex; flex-direction: column; gap: 12px; }
         .bs-hw-karta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
         .bs-hw-q { display: flex; flex-direction: column; gap: 2px; padding: 9px 11px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; }

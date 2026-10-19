@@ -1442,8 +1442,49 @@ const ScreenInstall = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ============================================================
 //  EKRAN 3 — QADAM 2: interfeys-ekskursiya (interaktiv hotspot)
 // ============================================================
+// --- F-1019-07 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatosiga bir qatorli sabab, xato tugma yopiladi.
+// Har qadam key bilan yangilanadi. Namuna: Htmllesson2 Qaror (F-1019-04).
+const Qaror = ({ savol, variantlar, onTogri }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const tanla = (j) => {
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="qr fade-step">
+      <p className="qr-s">{tr(savol)}</p>
+      <div className="qr-v">{variantlar.map((v, j) => <button key={j} type="button" className={'qr-chip' + (xato.includes(j) ? ' err' : '')} disabled={xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</button>)}</div>
+      {izoh && <p className="qr-xato" role="status" key={tr(izoh)}>{tr(izoh)}</p>}
+    </div>
+  );
+};
+const TOUR_TARTIB = ['explorer', 'editor', 'ext', 'term'];
+const TOUR_QAROR = [
+  { savol: { uz: "Loyihadagi fayllar ro'yxati qaysi panelda?", ru: 'В какой панели список файлов проекта?' }, v: [
+    { t: 'Editor', izoh: { uz: "Editor — kod yoziladigan katta panel; ro'yxat unda emas.", ru: 'Editor — большая панель для кода; списка там нет.' } },
+    { ok: true, t: 'Explorer' },
+    { t: 'Terminal', izoh: { uz: "Terminal — buyruq yoziladigan joy, fayllar ro'yxati emas.", ru: 'Terminal — место для команд, а не список файлов.' } }
+  ] },
+  { savol: { uz: 'Kod qaysi panelga yoziladi?', ru: 'В какую панель пишется код?' }, v: [
+    { ok: true, t: 'Editor' },
+    { t: 'Explorer', izoh: { uz: "Explorer faqat fayllarni ko'rsatadi; fayl boshqa panelda ochiladi.", ru: 'Explorer только показывает файлы; файл открывается в другой панели.' } },
+    { t: 'Extensions', izoh: { uz: "Extensions — qo'shimcha dasturlar; kod u yerga yozilmaydi.", ru: 'Extensions — дополнения; код туда не пишут.' } }
+  ] },
+  { savol: { uz: "VS Code'ga yangi imkoniyat qo'shadigan dastur qayerdan o'rnatiladi?", ru: 'Откуда ставят программу, которая добавляет VS Code новые возможности?' }, v: [
+    { t: 'Explorer', izoh: { uz: "Explorer — loyiha fayllari; dastur u yerdan o'rnatilmaydi.", ru: 'Explorer — файлы проекта; программы оттуда не ставят.' } },
+    { t: 'Editor', izoh: { uz: "Editor'da kod yoziladi; qo'shimcha dastur u yerda yo'q.", ru: 'В Editor пишут код; дополнений там нет.' } },
+    { ok: true, t: 'Extensions' }
+  ] },
+  { savol: { uz: 'Kompyuterga yozma buyruq qaysi panelda beriladi?', ru: 'В какой панели компьютеру дают письменные команды?' }, v: [
+    { t: 'Extensions', izoh: { uz: "Extensions — qo'shimcha dasturlar; buyruq u yerda yozilmaydi.", ru: 'Extensions — дополнения; команды там не пишут.' } },
+    { ok: true, t: 'Terminal' },
+    { t: 'Editor', izoh: { uz: "Editor'ga kod yoziladi, lekin u buyruq sifatida bajarilmaydi.", ru: 'В Editor пишут код, но он не выполняется как команда.' } }
+  ] }
+];
 const ScreenTour = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's3', text: "Bu — sizning yangi ish stolingiz. Oynaning 4 panelini birma-bir bosib chiqing: Explorer, Editor, Extensions va Terminal. Har birini bossangiz, nima ekanini tushuntiraman.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's3', text: "Bu — sizning yangi ish stolingiz. Oynada 4 ta panel bor: Explorer, Editor, Extensions va Terminal. Har savolga javob bering — to'g'ri panel yonadi va uning vazifasini tushuntiraman.", trigger: 'on_mount', waits_for: null }]);
   const HOTS = {
     explorer: { name: { uz: 'Explorer — fayllar paneli', ru: 'Explorer — панель файлов' }, ic: '🗂️',
       body: { uz: <>Loyihangizdagi <b>barcha fayllar ro'yxati</b>. Xuddi papka oynasi kabi: faylni bossangiz — <b>Editor</b> panelida ochiladi. Tepadagi birinchi ikonka shu panelni ochib-yopadi.</>, ru: <>Список <b>всех файлов</b> вашего проекта. Как окно папки: нажмёте на файл — он откроется в панели <b>Editor</b>. Первая иконка сверху открывает и закрывает эту панель.</> } },
@@ -1457,47 +1498,46 @@ const ScreenTour = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _isMentorLive = !!(_gate.live && _gate.live.mode === 'mentor');
   const [active, setActive] = useState(null);
-  const [seen, setSeen] = useState(() => new Set(storedAnswer?.seenIds || (storedAnswer?.correct ? Object.keys(HOTS) : [])));
-  const sentRef = useRef(!!(storedAnswer && storedAnswer.correct));
-  const allSeen = seen.size >= 4;
-  const tap = (k) => {
-    setActive(k);
-    const n = new Set(seen); n.add(k); setSeen(n);
-    const all = n.size >= 4;
-    onAnswer(screen, { correct: all, seenIds: [...n], picked: n.size, stage: 'exploration', screenIdx: screen });
-    if (all && !sentRef.current) sentRef.current = true;
+  // F-1019-07 (DE 213.22): panellar bosib ochilmaydi — har biri qaror; to'g'ri tanlov panelni yoqadi va izohni ochadi
+  const [qi, setQi] = useState(() => (storedAnswer?.correct ? 4 : TOUR_TARTIB.filter(k => (storedAnswer?.seenIds || []).includes(k)).length));
+  const seen = new Set(TOUR_TARTIB.slice(0, qi));
+  const allSeen = qi >= 4;
+  const togri = () => {
+    const k = TOUR_TARTIB[qi]; setActive(k);
+    const n = TOUR_TARTIB.slice(0, qi + 1); setQi(qi + 1);
+    onAnswer(screen, { correct: n.length >= 4, seenIds: n, picked: n.length, stage: 'exploration', screenIdx: screen });
   };
   return (
-    <Stage eyebrow={tr({ uz: '2-qadam · Tanishuv', ru: '2-й шаг · Знакомство' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={_isMentorLive ? false : !allSeen} label={_isMentorLive || allSeen ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: '4 panelni bosib chiqing', ru: 'Нажмите на 4 панели' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: '2-qadam · Tanishuv', ru: '2-й шаг · Знакомство' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={_isMentorLive ? false : !allSeen} label={_isMentorLive || allSeen ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>VS Code oynasida <span className="italic" style={{ color: T.accent }}>nimalar bor</span>?</>, ru: <>Что <span className="italic" style={{ color: T.accent }}>есть</span> в окне VS Code?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bu — sizning yangi ish stolingiz. Oynaning <b style={{ color: T.ink }}>4 panelini</b> birma-bir bosib chiqing — har birining vazifasini aytib beraman.</>, ru: <>Это ваш новый рабочий стол. Нажмите по очереди на <b style={{ color: T.ink }}>4 панели</b> окна — расскажу, для чего каждая.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bu — sizning yangi ish stolingiz. Oynada <b style={{ color: T.ink }}>4 ta panel</b> bor. Har savolga javob bering — to'g'ri panel yonadi va uning vazifasini aytib beraman.</>, ru: <>Это ваш новый рабочий стол. В окне <b style={{ color: T.ink }}>4 панели</b>. Ответьте на каждый вопрос — верная панель загорится, и я расскажу, зачем она.</> })}</Mentor>
         {/* F-0926-06: «… bosing N/4» yo'riq-qatori olindi — mentor aynan shuni aytadi, sanoqni tugma ko'rsatadi (159/7) */}
         <Split>
           <Col>
-            <div className="vsc fade-up delay-1">
+            <div className="vsc qaror fade-up delay-1">
               <div className="vsc-tbar"><span className="bb-dots"><i /><i /><i /></span><span className="vsc-title">my-site — Visual Studio Code</span></div>
               <div className="vsc-body">
                 <div className="vsc-act">
-                  <span className={`vsc-actic on vsc-hot ${seen.has('explorer') ? 'seen' : ''}`} onClick={() => tap('explorer')} role="button"><VscIc k="files" /></span>
+                  <span className={`vsc-actic on vsc-hot ${seen.has('explorer') ? 'seen' : ''}`}><VscIc k="files" /></span>
                   <span className="vsc-actic"><VscIc k="search" /></span>
                   <span className="vsc-actic"><VscIc k="git" /></span>
-                  <span className={`vsc-actic vsc-hot ${seen.has('ext') ? 'seen' : ''} ${active === 'ext' ? 'hoton' : ''}`} onClick={() => tap('ext')} role="button"><VscIc k="ext" />{seen.has('ext') && <b className="vsc-seenmark">✓</b>}</span>
+                  <span className={`vsc-actic vsc-hot ${seen.has('ext') ? 'seen' : ''} ${active === 'ext' ? 'hoton' : ''}`}><VscIc k="ext" />{seen.has('ext') && <b className="vsc-seenmark">✓</b>}</span>
                 </div>
-                <div className={`vsc-side vsc-hot ${seen.has('explorer') ? 'seen' : ''} ${active === 'explorer' ? 'hoton' : ''}`} onClick={() => tap('explorer')} role="button">
+                <div className={`vsc-side vsc-hot ${seen.has('explorer') ? 'seen' : ''} ${active === 'explorer' ? 'hoton' : ''}`}>
                   <div className="vsc-sidehead">MY-SITE {seen.has('explorer') && <b className="vsc-seenmark">✓</b>}</div>
                   <VscFile name="index.html" on />
                   <VscFile name="style.css" css />
                 </div>
                 <div className="vsc-mainwrap">
-                  <div className={`vsc-main vsc-hot ${seen.has('editor') ? 'seen' : ''} ${active === 'editor' ? 'hoton' : ''}`} onClick={() => tap('editor')} role="button">
+                  <div className={`vsc-main vsc-hot ${seen.has('editor') ? 'seen' : ''} ${active === 'editor' ? 'hoton' : ''}`}>
                     <div className="vsc-tabs"><span className="vsc-tab on"><span style={{ color: '#E37933' }}>{'<>'}</span> index.html</span><span className="vsc-tab"><span style={{ color: '#519ABA' }}>#</span> style.css</span>{seen.has('editor') && <b className="vsc-seenmark" style={{ marginLeft: 'auto' }}>✓</b>}</div>
                     <div className="vsc-code">
                       <VL n={1}><Vt>&lt;h1&gt;</Vt><span style={{ color: VSC.text }}>Salom!</span><Vt>&lt;/h1&gt;</Vt></VL>
                       <VL n={2}><span className="vsc-caret" /></VL>
                     </div>
                   </div>
-                  <div className={`vsc-panel vsc-hot ${seen.has('term') ? 'seen' : ''} ${active === 'term' ? 'hoton' : ''}`} onClick={() => tap('term')} role="button">
+                  <div className={`vsc-panel vsc-hot ${seen.has('term') ? 'seen' : ''} ${active === 'term' ? 'hoton' : ''}`}>
                     <span className="vsc-panelh">TERMINAL {seen.has('term') && <b className="vsc-seenmark">✓</b>}</span>
                     <span className="vsc-prompt">PS C:\my-site&gt; <span className="vsc-caret" /></span>
                   </div>
@@ -1507,13 +1547,14 @@ const ScreenTour = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           </Col>
           <Col>
+            {!allSeen && <Qaror key={qi} savol={TOUR_QAROR[qi].savol} variantlar={TOUR_QAROR[qi].v} onTogri={togri} />}
             {active ? (
               <div className="sk-info fade-step" key={active}>
                 <div className="sk-tagbig"><span style={{ fontSize: 22 }}>{HOTS[active].ic}</span><span className="sk-wordbadge">{tr(HOTS[active].name)}</span></div>
                 <p className="body" style={{ marginTop: 8 }}>{tr(HOTS[active].body)}</p>
               </div>
             ) : (
-              null /* F-0926-06: bo'sh-holat ramkasi olindi (159/3) — chorlov mentor gapida: «4 panelini birma-bir bosib chiqing» */
+              null /* F-0926-06: bo'sh-holat ramkasi olindi (159/3); F-1019-07: chorlov — qaror savoli */
             )}
             {allSeen && (
               <div className="frame-success fade-step">
@@ -2551,17 +2592,17 @@ const QZ_BG_SHAPES = [
   { ch: '.html',   l: 2,  t: 46, s: 24, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
 const QUIZ_BANK = [
-  { q: { uz: "Dunyodagi dasturchilar eng ko'p ishlatadigan kod redaktori qaysi?", ru: 'Каким редактором кода пользуется больше всего разработчиков в мире?' }, opts: ['Word', 'VS Code', 'Excel', 'PowerPoint'], correct: 1 },
+  { q: { uz: "Dasturchilar eng ko'p ishlatadigan kod redaktori qaysi?", ru: "Каким редактором кода пользуется больше всего разработчиков?" }, opts: ["Word", "VS Code", "Excel", "PowerPoint"], correct: 1 },
   { q: { uz: 'VS Code qaysi saytdan yuklab olinadi?', ru: 'С какого сайта скачивается VS Code?' }, opts: ['`code.visualstudio.com`', '`vscode-download.net`', '`microsoft-code.uz`', '`get-vscode.org`'], correct: 0 },
-  { q: { uz: "Loyihadagi fayllar ro'yxati ko'rinadigan chap panel qanday ataladi?", ru: 'Как называется левая панель со списком файлов проекта?' }, opts: [{ uz: 'Terminal', ru: 'Terminal' }, { uz: 'Extensions', ru: 'Extensions' }, { uz: 'Explorer', ru: 'Explorer' }, { uz: 'Status bar', ru: 'Status bar' }], correct: 2 },
-  { q: { uz: 'Live Server nima?', ru: 'Что такое Live Server?' }, opts: [{ uz: 'Rasm tahrirlaydigan kichik dastur', ru: 'Небольшой редактор картинок' }, { uz: 'Kodni saqlaydigan xotira turi', ru: 'Вид памяти для хранения кода' }, { uz: "Shriftlarni o'rnatadigan dastur", ru: 'Программа для установки шрифтов' }, { uz: 'Sahifani jonli ochadigan dastur', ru: 'Программа, открывающая страницу вживую' }], correct: 3 },
-  { q: { uz: '«Go Live» tugmasi VS Code oynasining qayerida turadi?', ru: 'Где в окне VS Code находится кнопка «Go Live»?' }, opts: [{ uz: 'Yuqoridagi menyu qatorida', ru: 'В строке меню сверху' }, { uz: "Pastdagi ko'k status bar chizig'ida", ru: 'На нижней синей полосе status bar' }, { uz: 'Explorer panelining ichida', ru: 'Внутри панели Explorer' }, { uz: "Sichqoncha o'ng tugma menyusida", ru: 'В меню правой кнопки мыши' }], correct: 1 },
+  { q: { uz: "Fayllar ro'yxati turadigan chap panel nomi nima?", ru: "Как называется левая панель со списком файлов?" }, opts: [{ uz: "Terminal", ru: "Terminal" }, { uz: "Extensions", ru: "Extensions" }, { uz: "Explorer", ru: "Explorer" }, { uz: "Status bar", ru: "Status bar" }], correct: 2 },
+  { q: { uz: "Live Server nima?", ru: "Что такое Live Server?" }, opts: [{ uz: "Rasm tahrirlovchi dastur", ru: "Редактор картинок" }, { uz: "Kod saqlanadigan xotira", ru: "Память для хранения кода" }, { uz: "Shrift o'rnatuvchi dastur", ru: "Программа для установки шрифтов" }, { uz: "Sahifani jonli ochuvchi dastur", ru: "Программа, открывающая страницу вживую" }], correct: 3 },
+  { q: { uz: "«Go Live» tugmasi qayerda turadi?", ru: "Где находится кнопка «Go Live»?" }, opts: [{ uz: "Yuqoridagi menyu qatorida", ru: "В строке меню сверху" }, { uz: "Pastdagi ko'k status barda", ru: "На нижней синей полосе status bar" }, { uz: "Explorer paneli ichida", ru: "Внутри панели Explorer" }, { uz: "O'ng tugma menyusida", ru: "В меню правой кнопки мыши" }], correct: 1 },
   { q: { uz: '`127.0.0.1` manzili nimani bildiradi?', ru: 'Что означает адрес `127.0.0.1`?' }, opts: [{ uz: 'Internetdagi katta serverni', ru: 'Большой сервер в интернете' }, { uz: "Google'ning bosh sahifasini", ru: 'Главную страницу Google' }, { uz: "O'z kompyuteringizni", ru: 'Ваш собственный компьютер' }, { uz: 'Uydagi Wi-Fi routerni', ru: 'Домашний Wi-Fi роутер' }], correct: 2 },
   { q: { uz: '`127.0.0.1:5500` dagi 5500 raqami nima?', ru: 'Что за число 5500 в `127.0.0.1:5500`?' }, opts: [{ uz: "Port, ya'ni eshik raqami", ru: 'Порт, то есть номер двери' }, { uz: 'Sahifadagi belgilar soni', ru: 'Число символов на странице' }, { uz: 'Koddagi qatorlar soni', ru: 'Число строк в коде' }, { uz: 'Kirish uchun parol raqami', ru: 'Числовой пароль для входа' }], correct: 0 },
   { q: { uz: "Bo'sh index.html'da tayyor HTML shablonni nima chiqaradi?", ru: 'Что выдаёт готовый HTML-шаблон в пустом index.html?' }, opts: ['`?` + Enter', '`#` + Space', '`*` + Shift', '`!` + Tab'], correct: 3 },
   { q: { uz: '`Ctrl + S` birikmasi nima qiladi?', ru: 'Что делает сочетание `Ctrl + S`?' }, opts: [{ uz: 'Faylni saqlaydi', ru: 'Сохраняет файл' }, { uz: "Faylni o'chiradi", ru: 'Удаляет файл' }, { uz: 'Yangi fayl ochadi', ru: 'Открывает новый файл' }, { uz: 'Kodni nusxalaydi', ru: 'Копирует код' }], correct: 0 },
   { q: { uz: "Yangi qo'shimcha dastur (extension) qayerdan o'rnatiladi?", ru: 'Откуда устанавливается новое дополнение (extension)?' }, opts: [{ uz: 'Explorer panelidan', ru: 'Из панели Explorer' }, { uz: 'Terminal panelidan', ru: 'Из панели Terminal' }, { uz: "Status bar'dagi tugmadan", ru: 'С кнопки на status bar' }, { uz: 'Extensions panelidan', ru: 'Из панели Extensions' }], correct: 3 },
-  { q: { uz: 'style.css sahifaga qaysi teg bilan ulanadi?', ru: 'Каким тегом style.css подключается к странице?' }, opts: ['`<style src="style.css">`', '`<link rel="stylesheet">`', '`<css href="style.css">`', '`<script src="style.css">`'], correct: 1 },
+  { q: { uz: "style.css qaysi teg bilan ulanadi?", ru: "Каким тегом подключается style.css?" }, opts: ["`<style src=\"style.css\">`", "`<link rel=\"stylesheet\">`", "`<css href=\"style.css\">`", "`<script src=\"style.css\">`"], correct: 1 },
   { q: { uz: "Loyiha papkasi VS Code'da qanday ochiladi?", ru: 'Как открыть папку проекта в VS Code?' }, opts: ['Edit → Copy Folder', 'View → Show Folder', 'File → Open Folder', 'Help → Load Folder'], correct: 2 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
@@ -4586,6 +4627,18 @@ export default function VsCodeLesson({ lang: langProp, onFinished, onPractice, l
         /* hotspot rejimi (s3) */
         .vsc-hot { cursor: pointer; transition: box-shadow 0.2s, background 0.2s; }
         .vsc-hot:not(.seen) { animation: tap-hint 1.8s ease-in-out infinite; }
+        /* F-1019-07 (DE 213.22): sayohat ekrani — panellar bosilmaydi (qaror bilan yonadi), chorlov animatsiyasi yo'q */
+        .vsc.qaror .vsc-hot { cursor: default; animation: none; }
+        .qr { display: flex; flex-direction: column; gap: 10px; width: 100%; margin-bottom: 12px; }
+        .qr-s { margin: 0; font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 800; line-height: 1.4; color: ${T.ink}; }
+        .qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
+        .qr-chip { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 600; font-size: clamp(13px,1.45vw,14px); line-height: 1.35; text-align: left; color: ${T.ink}; background: ${T.paper}; border: 1.5px solid ${T.line}; border-radius: 10px; padding: 8px 12px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+        .qr-chip:hover:not(:disabled) { border-color: ${T.accent}; }
+        .qr-chip:focus-visible { outline: 2px solid ${T.accent}; outline-offset: 2px; }
+        .qr-chip.err { border-color: ${T.accent}; background: ${T.accentSoft}; color: ${T.accent}; cursor: default; animation: qr-silk 0.32s ease-in-out; }
+        @keyframes qr-silk { 0%, 100% { transform: none; } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+        .qr-xato { margin: 0; color: ${T.accent}; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; line-height: 1.4; animation: fade-step 0.25s ease-out; }
+        @media (prefers-reduced-motion: reduce) { .qr-chip.err, .qr-xato { animation: none; } }
         .vsc-hot.hoton { box-shadow: inset 0 0 0 2px ${T.accent}; }
         .vsc-seenmark { color: #3CE88E; font-weight: 800; margin-left: 4px; }
         /* Extensions paneli */

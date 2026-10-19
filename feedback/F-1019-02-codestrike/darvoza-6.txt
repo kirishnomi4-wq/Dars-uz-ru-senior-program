@@ -1,0 +1,18 @@
+src/4a-Modull/NestArchAliveLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 3 error→1 error | emoji 7 error→7 error
+src/4a-Modull/NestArchPracticeLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 2 error→2 error | emoji 4 error→4 error
+src/4a-Modull/NestArchResourceLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 4 error→4 error | emoji 4 error→4 error
+src/4a-Modull/PmLesson15.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 7 error→7 error
+src/4b-Modull/EdgeCasesTestLesson.jsx | 1/13 darvoza yiqildi: tell | tell 3 error→2 error | emoji 0 error→0 error
+src/4b-Modull/JestUnitTestLesson.jsx | 1/13 darvoza yiqildi: tell | tell 5 error→2 error | emoji 0 error→0 error
+src/4b-Modull/PmLesson16.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 1 error→1 error | emoji 7 error→7 error
+src/4c-Modull/AiPipelineProjectLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 1 error→1 error | emoji 5 error→5 error
+src/4c-Modull/CiCdIntroLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 1 error→0 error | emoji 9 error→9 error
+src/4c-Modull/FullPipelineProjectLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 4 error→0 error | emoji 5 error→4 error
+src/4c-Modull/FullProPipelineLesson.jsx | 1/13 darvoza yiqildi: emoji | tell 1 error→0 error | emoji 1 error→1 error
+src/4c-Modull/GithubActionsLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 3 error→1 error | emoji 7 error→7 error
+src/4c-Modull/PmLesson17.jsx | 2/13 darvoza yiqildi: til, emoji | tell 0 error→0 error | emoji 8 error→8 error
+src/4c-Modull/PmLesson18.jsx | 1/13 darvoza yiqildi: emoji | tell 0 error→0 error | emoji 8 error→8 error
+src/1-Modull/PmLesson1.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 3 error→3 error | emoji 11 error→11 error
+src/3-Modull/ReactIntroLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 2 error→1 error | emoji 4 error→4 error
+src/3-Modull/ReactProjectDayLesson.jsx | 2/13 darvoza yiqildi: tell, emoji | tell 8 error→3 error | emoji 1 error→1 error
+src/4-Modull/RoutingLesson.jsx | 1/13 darvoza yiqildi: tell | tell 4 error→2 error | emoji 0 error→0 error

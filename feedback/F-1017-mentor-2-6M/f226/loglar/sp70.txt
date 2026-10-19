@@ -1,0 +1,1193 @@
+✓ InternetLesson.jsx (internet-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson1.jsx (pm-m1d2-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ Htmllesson1.jsx (html-01-v17)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ Htmllesson2.jsx (html-02-v16)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ HtmlTakrorlashLesson.jsx (html-takrorlash-01-05-v2)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson2.jsx (pm-m1d6-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ CssLesson1.jsx (css-01-v17)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ CssLesson2.jsx (css-02-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ VsCodeLesson.jsx (vscode-start-01-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ HtmlPractice.jsx (html-practice-portfolio-v2)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ CssPractice.jsx (css-practice-portfolio-v3)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ GitLesson.jsx (git-github-v19)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ DeployLesson.jsx (netlify-deploy-v19)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson3.jsx (pm-pitch-03-v19)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ JsIntroLesson.jsx (js-intro-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson4.jsx (pm-m2d2-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ JsVarsLesson.jsx (js-vars-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ JsConditionsLesson.jsx (js-cond-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ JsLoopsLesson.jsx (js-loops-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ JsFunctionsLesson.jsx (js-functions-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson5.jsx (pm-m2d7-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PracticeLesson1.jsx (practice-01-jonlantirish-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PracticeLesson2.jsx (practice-02-ai-promo-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PeanStackLesson.jsx (pean-stack-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PracticeLesson3.jsx (practice-03-decompose-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PracticeLesson4.jsx (practice-04-mvp-deploy-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson6.jsx (pm-m2d13-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactIntroLesson.jsx (react-intro-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmUserStoryLesson.jsx (pm-m3d2-v3)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactFirstComponentLesson.jsx (react-first-component-02-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactStateEffectLesson.jsx (react-state-effect-03-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson8.jsx (pm-m3d5-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactPropsReuseLesson.jsx (react-props-reuse-04-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactCrudPracticeLesson.jsx (react-crud-practice-p1-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactApiGetLesson.jsx (react-api-get-05-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactApiPostLesson.jsx (react-api-post-06-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson9.jsx (pm-m3d10-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactRouterPracticeLesson.jsx (react-router-practice-p2-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactProjectDayLesson.jsx (react-project-day-p3-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ ReactBuildSiteLesson.jsx (react-build-site-final-p4-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson10.jsx (pm-m3d14-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ DataIntroLesson.jsx (data-intro-04-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson11.jsx (pm-m4d2-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ DbSqlNosqlLesson.jsx (db-sql-nosql-04-02-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ NodeServerLesson.jsx (node-server-04-03-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ RoutingLesson.jsx (nest-routing-04-04-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PostgresCrudLesson.jsx (pg-crud-04-05-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson12.jsx (pm-m4d7-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ BackendCrudPracticeLesson.jsx (backend-crud-practice-p1-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ ApiPostmanLesson.jsx (api-postman-04-06-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ FullstackConnectPracticeLesson.jsx (fullstack-connect-practice-p2-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ AuthEnvLesson.jsx (auth-env-04-07-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson13.jsx (pm-m4d12-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ FullstackProjectDayLesson.jsx (fullstack-projectday-p3-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ FullstackFeedbackLesson.jsx (fullstack-feedback-p4-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson14.jsx (pm-m4d15-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ NestArchAliveLesson.jsx (nest-arch-alive-4a-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson15.jsx (pm-m4a2-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ NestArchResourceLesson.jsx (nest-arch-resource-4a-02-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ NestArchPracticeLesson.jsx (nest-arch-practice-4a-03-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ JestUnitTestLesson.jsx (jest-unit-04b-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson16.jsx (pm-m4b2-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ EdgeCasesTestLesson.jsx (edge-cases-04b-02-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ CiCdIntroLesson.jsx (cicd-intro-4c-01-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson17.jsx (pm-m4c2-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ GithubActionsLesson.jsx (github-actions-4c-02-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ FullPipelineProjectLesson.jsx (cicd-full-pipeline-4c-03-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ AiPipelineProjectLesson.jsx (cicd-ai-pipeline-4c-05-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+✓ PmLesson18.jsx (pm-m4c6-v1)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/answers/123456?screen=0, GET /api/v1/live/players/123456, GET /api/v1/live/session/123456 …
+    preview belgisi: «Oldindan ko'rish»
+✓ FullProPipelineLesson.jsx (full-pro-pipeline-4c-04-v18)
+    ✓ nazorat: dars-api so'rovlari bor (hisoblagich ishlaydi)
+    ✓ preview: dars-api so'rovi 0
+    ✓ preview: «Oldindan ko'rish» belgisi
+    ✓ preview: PIN-oyna yo'q
+    ✓ nazorat: mentor paneli bor (tekshiruv ishlaydi)
+    ✓ preview: mentor paneli yo'q
+    ✓ preview: localStorage + sessionStorage o'zgarmagan (to'liq surat)
+    ✓ preview: haqiqiy liveSession o'zgarmagan
+    ✓ preview: LMS kaliti joyida
+    ✓ preview: xato yo'q
+    ✓ nazorat: xato yo'q
+    nazorat belgisi: «Kod:
+123 456
+📺 Ko'rsatish
+🔓 Erkin qilish» · so'rovlar: GET /api/v1/live/players/123456, GET /api/v1/live/session/123456, POST /api/v1/live/rpc/session_heartbeat …
+    preview belgisi: «Oldindan ko'rish»
+
+Skrinshotlar: /tmp/lms-preview-jCaA3d
+EXIT=0

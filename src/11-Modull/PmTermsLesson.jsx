@@ -99,6 +99,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -176,8 +201,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -876,10 +901,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; chap — natija, vizual bir marta o'zi yuradi) =====
 const REJA = [
-  { t: { uz: "To'lovchi nimaga rozi bo'lishini bilasiz", ru: 'Узнаете, на что соглашается плательщик' }, teg: { uz: 'oferta', ru: 'оферта' } },
-  { t: { uz: 'Qaysi shart bugun yozilishini ajratasiz', ru: 'Отделите, какое условие пишется сегодня' }, teg: { uz: 'real ishga tushirish', ru: 'реальный запуск' } },
-  { t: { uz: "O'z shartlaringizni sahifaga yozasiz", ru: 'Запишете свои условия на страницу' }, teg: { uz: 'oferta.html', ru: 'oferta.html' } },
-  { t: { uz: "Siyosatga to'lov haqida gap qo'shib, havola qo'yasiz", ru: 'Добавите в политику фразу об оплате и поставите ссылку' }, teg: { uz: 'maxfiylik siyosati', ru: 'политика конфиденциальности' } }
+  { t: { uz: "To'lovchi nimaga rozi bo'lishini bilib oling", ru: 'Узнайте, на что соглашается плательщик' }, teg: { uz: 'oferta', ru: 'оферта' } },
+  { t: { uz: 'Qaysi shart bugun yozilishini ajrating', ru: 'Отделите, какое условие пишется сегодня' }, teg: { uz: 'real ishga tushirish', ru: 'реальный запуск' } },
+  { t: { uz: "O'z shartlaringizni sahifaga yozing", ru: 'Запишите свои условия на страницу' }, teg: { uz: 'oferta.html', ru: 'oferta.html' } },
+  { t: { uz: "Siyosatga to'lov haqida gap qo'shib, havola qo'ying", ru: 'Добавьте в политику фразу об оплате и поставьте ссылку' }, teg: { uz: 'maxfiylik siyosati', ru: 'политика конфиденциальности' } }
 ];
 const RejaSahna = () => {
   const [k, setK] = useState(() => (kamHarakat() ? 3 : 0));
@@ -1019,7 +1044,7 @@ const Screen3 = (props) => (
       3: { uz: "Bu to'lovchiga nima berilishini aytadimi?", ru: 'Говорит ли это плательщику, что он получит?' },
       default: { uz: "To'lovchi to'lashdan oldin qaysi savolga javob kutadi?", ru: 'На какой вопрос плательщик ждёт ответа до оплаты?' }
     }}
-    vizual={<UyVaraq />} />
+ />
 );
 
 // ===== SCREEN 4 — MENTOR OFERTASI (QTushuncha, ketma-ket 6 karta — SABOQ 9/13, E 53; taxmin yo'q — 208/0 e) =====
@@ -1092,7 +1117,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · oferta bandlari', ru: 'Понятие · пункты оферты' })} screen={screen} scrollSignal={n + (tugadi ? 10 : 0)} natijaSignal={done && tugadi && !avval}
-      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Bandlarni ajrating (${n}/6)`, ru: `Разберите пункты (${n}/6)` })} onClick={onNext} /></>}>
+      navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Bandlarni ajrating`, ru: `Разберите пункты` })} onClick={onNext} /></>}>
       <div className="st-s4">
         <QTushuncha zoom={Zoomable} tugadi={tugadi} vizualAvval={false}
           sarlavha={tr({ uz: <>Mentor ofertaga qaysi shartlarni <span className="italic" style={{ color: T.accent }}>bugun yoza oladi?</span></>, ru: <>Какие условия Ментор может <span className="italic" style={{ color: T.accent }}>написать в оферте сегодня?</span></> })}
@@ -1336,7 +1361,7 @@ const Screen8 = (props) => (
       3: { uz: "Boshqa ilova sizning mahsulotingiz nima qilishini biladimi?", ru: 'Знает ли другое приложение, что делает ваш продукт?' },
       default: { uz: "«[savol]» qayerda va nima uchun paydo bo'lgan edi?", ru: 'Где и почему появился «[savol]»?' }
     }}
-    vizual={<SavolBand />} />
+ />
 );
 
 // ===== 🏅 NISHONLAR (4) — qilingan ishni aytadi; medal belgisi — o'yin qatlami =====
@@ -1423,18 +1448,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD jadvali), to'g'ri javob o'rni A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12
 const QUIZ_BANK = [
-  { q: { uz: 'Oferta qanday taklif?', ru: 'Какое предложение — оферта?' }, opts: [{ uz: 'Hamma uchun ochiq, shartlari yozilgan', ru: 'Открытое для всех, с записанными условиями' }, { uz: "Faqat do'stlarga yashirin yuborilgan", ru: 'Тайно отправленное только друзьям' }, { uz: "Narxsiz, faqat og'zaki aytilgan taklif", ru: 'Без цены, сказанное только устно' }, { uz: "To'lovdan keyingina ko'rsatiladigan", ru: 'Показываемое только после оплаты' }], correct: 0 },
-  { q: { uz: "Odam to'lasa, ofertaga nisbatan nima bo'ladi?", ru: 'Что происходит с офертой, если человек платит?' }, opts: [{ uz: "Hech narsa — u faqat narxni ko'rdi", ru: 'Ничего — он видел только цену' }, { uz: "Undagi shartlarga rozi bo'ladi", ru: 'Он соглашается с её условиями' }, { uz: "Oferta shu zahoti bekor bo'ladi", ru: 'Оферта сразу отменяется' }, { uz: "Shartlarni o'zi o'zgartira oladi", ru: 'Может сам изменить условия' }], correct: 1 },
-  { q: { uz: 'Tashkilotchi: «Bekor qilsam, pulim qaytadimi?» Javob qayerda?', ru: 'Организатор: «Если отменю, деньги вернутся?» Где ответ?' }, opts: [{ uz: "To'lov taklifi ekranidagi narxda", ru: 'В цене на экране предложения оплаты' }, { uz: "Mashq to'lov sahifasi tugmasida", ru: 'В кнопке учебной страницы оплаты' }, { uz: 'Ofertaning bekor qilish bandida', ru: 'В пункте оферты об отмене' }, { uz: "Ilovaning e'lon berish qismida", ru: 'В разделе объявлений приложения' }], correct: 2 },
-  { q: { uz: "Mentor ofertasida sotuvchi qatori nega bo'sh?", ru: 'Почему в оферте Ментора строка продавца пустая?' }, opts: [{ uz: "Mentor o'z ismini yozishni unutgan", ru: 'Ментор забыл написать своё имя' }, { uz: "Sotuvchini agent keyin o'zi qo'yadi", ru: 'Продавца потом поставит сам агент' }, { uz: "Qatorni Pro olgan odam to'ldiradi", ru: 'Строку заполнит тот, кто взял Pro' }, { uz: "Bu kursda real ishga tushirish yo'q", ru: 'В этом курсе нет реального запуска' }], correct: 3 },
-  { q: { uz: 'Qaysi gap ofertaga yoziladi?', ru: 'Какая фраза пишется в оферте?' }, opts: [{ uz: "Pro tugasa, e'lon qilingan o'yin qoladi", ru: 'Если Pro закончится, объявленная игра остаётся' }, { uz: "Tez orada Pro'ga yana qulaylik qo'shamiz", ru: 'Скоро добавим в Pro ещё функции' }, { uz: "Boshqa tashkilotchilar ham Pro'ni oldi", ru: 'Другие организаторы тоже взяли Pro' }, { uz: "Pro bilan har o'yiningiz to'lib boradi", ru: 'С Pro каждая ваша игра будет заполняться' }], correct: 0 },
-  { q: { uz: "Mentor misolida Pro muddati tugasa, nima bo'ladi?", ru: 'Что будет в примере Ментора, когда срок Pro закончится?' }, opts: [{ uz: "Keyingi 30 kun puli o'zi yechiladi", ru: 'Деньги за следующие 30 дней спишутся сами' }, { uz: "Pro o'zi to'xtaydi, pul so'ralmaydi", ru: 'Pro сам выключится, деньги не запросят' }, { uz: "E'lon qilingan o'yinlar o'chib ketadi", ru: 'Объявленные игры удалятся' }, { uz: "O'yinchilar uchun ilova pullik bo'ladi", ru: 'Приложение станет платным для игроков' }], correct: 1 },
-  { q: { uz: 'Real ishga tushirish uchun nima kerak?', ru: 'Что нужно для реального запуска?' }, opts: [{ uz: "Ilovani do'konga joylashning o'zi", ru: 'Только выложить приложение в магазин' }, { uz: "Sinfdoshlarning og'zaki roziligi", ru: 'Устное согласие одноклассников' }, { uz: 'Ota-ona yozma roziligi va sotuvchi', ru: 'Письменное согласие родителей и продавец' }, { uz: "Ofertani lendingga qo'yishning o'zi", ru: 'Только поставить оферту на лендинг' }], correct: 2 },
-  { q: { uz: 'Agent ofertada «[savol]» qoldirdi. Bu nimani bildiradi?', ru: 'Агент оставил в оферте «[savol]». Что это значит?' }, opts: [{ uz: 'Bandni olib tashlash kerakligini', ru: 'Что пункт нужно удалить' }, { uz: 'Sahifa internetda ochilmasligini', ru: 'Что страница не откроется в интернете' }, { uz: "Agent uni keyin o'zi to'ldirishini", ru: 'Что агент потом сам его заполнит' }, { uz: 'Agent buni koddan bilolmaganini', ru: 'Что агент не смог узнать это из кода' }], correct: 3 },
-  { q: { uz: 'Kitob almashish ilovangiz ofertasidagi narxni qanday tekshirasiz?', ru: 'Как проверить цену в оферте вашего приложения обмена книгами?' }, opts: [{ uz: "Ilovada va kodida o'zim ko'raman", ru: 'Сам посмотрю в приложении и в коде' }, { uz: "Agentdan «to'g'rimi?» deb so'rayman", ru: 'Спрошу агента «правильно?»' }, { uz: "Sinfdoshimdan narxni so'rab olaman", ru: 'Спрошу цену у одноклассника' }, { uz: "Tekshirmayman — narx o'zgarmaydi", ru: 'Не проверяю — цена не меняется' }], correct: 0 },
-  { q: { uz: "Siyosatdagi to'lov bandida qaysi gap rost?", ru: 'Какая фраза в пункте об оплате в политике верна?' }, opts: [{ uz: 'Karta raqamini biz xavfsiz saqlaymiz', ru: 'Мы надёжно храним номер карты' }, { uz: "Karta ma'lumotini mahsulot saqlamaydi", ru: 'Продукт не хранит данные карты' }, { uz: "To'lov haqida hech narsa saqlanmaydi", ru: 'Об оплате ничего не хранится' }, { uz: "Karta ma'lumotini Mentor tekshirib turadi", ru: 'Данные карты проверяет Ментор' }], correct: 1 },
-  { q: { uz: "Mentor misolida to'lov uchun nima saqlanadi?", ru: 'Что хранится об оплате в примере Ментора?' }, opts: [{ uz: 'Karta raqami va egasining telefoni', ru: 'Номер карты и телефон владельца' }, { uz: 'Tashkilotchining ismi va maktab raqami', ru: 'Имя организатора и номер школы' }, { uz: "To'lov raqami, hisob, holat va summa", ru: 'Номер платежа, аккаунт, статус и сумма' }, { uz: "Hech narsa — to'lovdan keyin o'chadi", ru: 'Ничего — после оплаты всё удаляется' }], correct: 2 },
-  { q: { uz: "Tashkilotchi Pro shartlarini qachon o'qiy olishi kerak?", ru: 'Когда организатор должен иметь возможность прочитать условия Pro?' }, opts: [{ uz: "To'lov o'tgandan keyin, chatda", ru: 'После оплаты, в чате' }, { uz: "Pro muddati tugagan kunning o'zida", ru: 'В день окончания срока Pro' }, { uz: "Mentordan so'rab bilgan paytida", ru: 'Когда спросит у Ментора' }, { uz: "To'lov tugmasini bosishdan oldin", ru: 'До нажатия кнопки оплаты' }], correct: 3 }
+  { q: { uz: "Oferta qanday taklif?", ru: "Что за предложение — оферта?" }, opts: [{ uz: "Ochiq, shartlari yozilgan", ru: "Открытое, условия записаны" }, { uz: "Yashirin, faqat do'stlarga", ru: "Скрытое, только друзьям" }, { uz: "Og'zaki, narxsiz aytilgan", ru: "Устное, без цены" }, { uz: "To'lovdan keyin ko'rinadigan", ru: "Видно только после оплаты" }], correct: 0 },
+  { q: { uz: "Odam to'lasa, ofertaga nisbatan nima bo'ladi?", ru: "Что происходит с офертой, если человек платит?" }, opts: [{ uz: "Hech narsa, narxni ko'rdi", ru: "Ничего, он видел цену" }, { uz: "Shartlarga rozi bo'ladi", ru: "Соглашается с условиями" }, { uz: "Oferta bekor bo'ladi", ru: "Оферта отменяется" }, { uz: "Shartni o'zi o'zgartiradi", ru: "Сам меняет условия" }], correct: 1 },
+  { q: { uz: "«Bekor qilsam, pulim qaytadimi?» Javob qayerda?", ru: "«Если отменю, деньги вернутся?» Где ответ?" }, opts: [{ uz: "To'lov ekranidagi narxda", ru: "В цене на экране оплаты" }, { uz: "Mashq sahifasi tugmasida", ru: "В кнопке учебной страницы" }, { uz: "Ofertaning tegishli bandida", ru: "В нужном пункте оферты" }, { uz: "E'lon qismida", ru: "В разделе объявлений" }], correct: 2 },
+  { q: { uz: "Mentor ofertasida sotuvchi qatori nega bo'sh?", ru: "Почему в оферте Ментора пуста строка продавца?" }, opts: [{ uz: "Mentor ismini unutgan", ru: "Ментор забыл своё имя" }, { uz: "Agent keyin o'zi qo'yadi", ru: "Агент потом впишет сам" }, { uz: "Pro olgan odam to'ldiradi", ru: "Заполнит тот, кто взял Pro" }, { uz: "Real ishga tushirish yo'q", ru: "Реального запуска нет" }], correct: 3 },
+  { q: { uz: "Qaysi gap ofertaga yoziladi?", ru: "Какая фраза пишется в оферту?" }, opts: [{ uz: "Pro tugasa, o'yinlar qoladi", ru: "Когда Pro кончится, игры останутся" }, { uz: "Tez orada yangi qulaylik", ru: "Скоро новая возможность" }, { uz: "Boshqalar ham Pro'ni oldi", ru: "Другие тоже взяли Pro" }, { uz: "Har o'yiningiz to'lib boradi", ru: "Каждая ваша игра заполнится" }], correct: 0 },
+  { q: { uz: "Pro muddati tugasa, nima bo'ladi?", ru: "Что будет, когда закончится срок Pro?" }, opts: [{ uz: "Keyingi oy puli yechiladi", ru: "Спишутся деньги за след. месяц" }, { uz: "Pro o'zi to'xtaydi", ru: "Pro сам остановится" }, { uz: "O'yinlar o'chib ketadi", ru: "Игры удалятся" }, { uz: "Ilova o'yinchiga pullik", ru: "Приложение платное для игрока" }], correct: 1 },
+  { q: { uz: "Real ishga tushirishga nima kerak?", ru: "Что нужно для реального запуска?" }, opts: [{ uz: "Ilovani do'konga joylash", ru: "Выложить приложение в магазин" }, { uz: "Sinfdoshlar og'zaki roziligi", ru: "Устное согласие одноклассников" }, { uz: "Ota-ona roziligi va sotuvchi", ru: "Согласие родителей и продавец" }, { uz: "Ofertani lendingga qo'yish", ru: "Разместить оферту на лендинге" }], correct: 2 },
+  { q: { uz: "Agent ofertada «[savol]» qoldirdi. Bu nimani bildiradi?", ru: "Агент оставил в оферте «[savol]». Что это значит?" }, opts: [{ uz: "Bandni o'chirish kerak", ru: "Пункт надо удалить" }, { uz: "Sahifa ochilmaydi", ru: "Страница не откроется" }, { uz: "Agent keyin to'ldiradi", ru: "Агент заполнит потом" }, { uz: "Agent koddan bilolmagan", ru: "Агент не узнал это из кода" }], correct: 3 },
+  { q: { uz: "Ofertadagi narxni qanday tekshirasiz?", ru: "Как вы проверите цену в оферте?" }, opts: [{ uz: "Ilova va kodda ko'raman", ru: "Смотрю в приложении и коде" }, { uz: "Agentdan so'rayman", ru: "Спрашиваю агента" }, { uz: "Sinfdoshdan so'rayman", ru: "Спрашиваю одноклассника" }, { uz: "Tekshirmayman", ru: "Не проверяю" }], correct: 0 },
+  { q: { uz: "To'lov bandida qaysi gap rost?", ru: "Какая фраза в пункте об оплате верна?" }, opts: [{ uz: "Kartani biz xavfsiz saqlaymiz", ru: "Мы надёжно храним карту" }, { uz: "Kartani mahsulot saqlamaydi", ru: "Продукт не хранит карту" }, { uz: "Hech narsa saqlanmaydi", ru: "Ничего не хранится" }, { uz: "Kartani Mentor tekshiradi", ru: "Карту проверяет Ментор" }], correct: 1 },
+  { q: { uz: "Mentor misolida to'lov uchun nima saqlanadi?", ru: "Что хранится об оплате в примере Ментора?" }, opts: [{ uz: "Karta raqami va telefon", ru: "Номер карты и телефон" }, { uz: "Ism va maktab raqami", ru: "Имя и номер школы" }, { uz: "To'lov raqami va holati", ru: "Номер оплаты и её статус" }, { uz: "Hech narsa saqlanmaydi", ru: "Ничего не хранится" }], correct: 2 },
+  { q: { uz: "Tashkilotchi Pro shartlarini qachon o'qiy olishi kerak?", ru: "Когда организатор должен иметь возможность прочитать условия Pro?" }, opts: [{ uz: "To'lovdan keyin, chatda", ru: "После оплаты, в чате" }, { uz: "Pro tugagan kuni", ru: "В день окончания Pro" }, { uz: "Mentordan so'raganda", ru: "Когда спросит Ментора" }, { uz: "To'lashdan oldin", ru: "До оплаты" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2080,7 +2105,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, answ
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={tor ? 0 : stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="st-blok">
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={<>{tr(title)}<Artefakt answers={answers} /></>} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={<>{tr(title)}<Artefakt answers={answers} /></>} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({
             h: tr(c.h),
             t: <>{tx(c.t)}{c.bandlar && c.bandlar.filter(Boolean).map((b, i) => (b && (b.accent !== undefined || b.kul) ? <Band key={i} accent={b.accent} kul={b.kul}>{tx(b.t || b)}</Band> : <Band key={i}>{tx(b)}</Band>))}{c.prompt && <StPrompt satrlar={c.prompt} namuna={c.namuna} toldir={c.toldir} tahrir={c.tahrir !== false} tekshir={c.tekshir} />}{c.ichi}</>,
@@ -2428,24 +2453,6 @@ const HwCard = ({ qolgan, keyingi }) => (
   </div>
 );
 // Erta tugatgan o'quvchi yo'li (PM-109, SABOQ P4): AI to'lovchi (tashkilotchi) rolida ofertani o'qiydi va savol beradi; o'quvchi tushunarsiz bandni o'zi qayta yozadi (sinfda gemini.google.com)
-const aiSorov = (nom) => {
-  const h = hujjatOl();
-  const bandlar = h ? bandQatorlar(h, nom).join('\n') : MENTOR_QATORLAR().map(tr).join('\n');
-  return tr({ uz: "Sen mening mahsulotimga pul to'lamoqchi bo'lgan odamsan. Pastda mahsulotim shartlari (oferta) — bu mashq hujjati, real to'lov qabul qilinmaydi. Avval har bandni o'qib, o'z so'zing bilan ayt: to'lasang, nimaga rozi bo'lasan. Keyin to'lashdan oldin javobini topa olmagan uchta savolingni ber. Bandlarni o'zing qayta yozma — qaysi biri tushunarsizligini ayt, xolos.\n\n", ru: 'Ты — человек, который хочет заплатить за мой продукт. Ниже условия моего продукта (оферта) — это учебный документ, реальная оплата не принимается. Сначала прочитай каждый пункт и своими словами скажи, на что ты соглашаешься, если заплатишь. Потом задай три вопроса, ответы на которые ты не нашёл до оплаты. Сам пункты не переписывай — только скажи, какой непонятен.\n\n' }) + bandlar;
-};
-const AiDavomCard = ({ nom }) => {
-  const [nusxa, setNusxa] = useState(false);
-  const sorov = useMemo(() => aiSorov(nom), [nom]);
-  const kochir = () => { try { navigator.clipboard.writeText(sorov); setNusxa(true); setTimeout(() => setNusxa(false), 1800); } catch { /* qo'lda belgilab oladi */ } };
-  return (
-    <div className="card st-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <p className="st-ai-m">{tr({ uz: "gemini.google.com'ni oching va pastdagi so'rovni yuboring — AI to'lovchi bo'lib ofertangizni o'qiydi va savol beradi. Javobi topilmagan bandni «Orqaga» bilan qaytib, o'zingiz qayta yozing.", ru: 'Откройте gemini.google.com и отправьте запрос ниже — AI в роли плательщика прочитает вашу оферту и задаст вопросы. Пункт, на который не нашёлся ответ, вернувшись «Назад», перепишите сами.' })}</p>
-      <pre className="st-ai-sorov">{sorov}</pre>
-      <button type="button" className="q-chip st-ai-btn" onClick={kochir}>{nusxa ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
@@ -2496,7 +2503,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
         >
-          {!isMentorL && <AiDavomCard nom={nom} />}
+          
         </QYakun>
       </div>
     </Stage>

@@ -109,6 +109,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -186,8 +211,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -925,7 +950,7 @@ const HookChizma = () => {
   useEffect(() => { if (kam) return undefined; const t = setTimeout(() => setOq(true), 650); return () => clearTimeout(t); }, [kam]);
   return (
     <div className={cxx('pc-hook-chz', oq && 'oq')}>
-      <svg className="pc-hook-chiz" viewBox="0 0 424 34" preserveAspectRatio="none" aria-hidden="true"><path d="M 86 0 C 86 22, 212 12, 212 34" /><path d="M 330 0 C 330 22, 212 12, 212 34" /></svg>
+      <svg className="pc-hook-chiz" viewBox="0 0 520 34" preserveAspectRatio="none" aria-hidden="true"><path d="M 130 0 C 130 22, 260 12, 260 34" /><path d="M 390 0 C 390 22, 260 12, 260 34" /></svg>
       <div className="pc-hook-tg"><span className="pc-be mini"><b>Backend</b></span><i className="pc-yolak" aria-hidden="true" /><span className="pc-db mini"><b>Database</b></span></div>
     </div>
   );
@@ -1849,18 +1874,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (MD, ekran savollarining nusxasi emas — §144)
 const QUIZ_BANK = [
-  { q: { uz: "Maydon Jamoa'da yangi e'lonni qaysi qism saqlaydi?", ru: 'Какая часть Maydon Jamoa хранит новое объявление?' }, opts: [{ uz: 'Database — jadval qatorida', ru: 'Database — в строке таблицы' }, { uz: 'Backend — o\'z kodi ichida', ru: 'Backend — внутри своего кода' }, { uz: 'Ilova — telefon xotirasida', ru: 'Приложение — в памяти телефона' }, { uz: 'Telegram — guruh xabarida', ru: 'Telegram — в сообщении группы' }], correct: 0 },
-  { q: { uz: "Bitta o'yinchi ko'p o'yinga qo'shiladi. Bu qayerda yoziladi?", ru: 'Один игрок присоединяется ко многим играм. Где это записывается?' }, opts: [{ uz: '`oyinchilar` dagi bitta ustunda', ru: 'в одном столбце `oyinchilar`' }, { uz: '`ishtirokchilar` dagi qatorlarda', ru: 'в строках `ishtirokchilar`' }, { uz: '`oyinlar` dagi bitta ustunda', ru: 'в одном столбце `oyinlar`' }, { uz: "Telefondagi o'yinlar ro'yxatida", ru: 'в списке игр на телефоне' }], correct: 1 },
-  { q: { uz: '`tashkilotchi_id` ustuni nimani ko\'rsatadi?', ru: 'Что показывает столбец `tashkilotchi_id`?' }, opts: [{ uz: "O'yinga qo'shilgan o'yinchini", ru: 'Игрока, присоединившегося к игре' }, { uz: "O'yin qaysi maydonda ekanini", ru: 'На каком поле игра' }, { uz: "O'yinni kim e'lon qilganini", ru: 'Кто объявил игру' }, { uz: "Nechta o'yinchi kerakligini", ru: 'Сколько игроков нужно' }], correct: 2 },
+  { q: { uz: "Yangi e'lonni qaysi qism saqlaydi?", ru: "Какая часть хранит новое объявление?" }, opts: [{ uz: "Database, jadval qatorida", ru: "Database, в строке таблицы" }, { uz: "Backend, o'z kodida", ru: "Backend, в своём коде" }, { uz: "Ilova, telefon xotirasida", ru: "Приложение, в памяти телефона" }, { uz: "Telegram, guruh xabarida", ru: "Telegram, в сообщении группы" }], correct: 0 },
+  { q: { uz: "Bir o'yinchi ko'p o'yinda. Bu qayerda yoziladi?", ru: "Один игрок во многих играх. Где это записано?" }, opts: [{ uz: "`oyinchilar` dagi ustunda", ru: "в столбце `oyinchilar`" }, { uz: "`ishtirokchilar` qatorlarida", ru: "в строках `ishtirokchilar`" }, { uz: "`oyinlar` dagi ustunda", ru: "в столбце `oyinlar`" }, { uz: "Telefon xotirasida", ru: "в памяти телефона" }], correct: 1 },
+  { q: { uz: "`tashkilotchi_id` ustuni nimani ko'rsatadi?", ru: "Что показывает столбец `tashkilotchi_id`?" }, opts: [{ uz: "Qo'shilgan o'yinchini", ru: "Присоединившегося игрока" }, { uz: "O'yin qaysi maydonda", ru: "На каком поле игра" }, { uz: "Kim e'lon qilganini", ru: "Кто объявил игру" }, { uz: "Nechta odam kerakligini", ru: "Сколько людей нужно" }], correct: 2 },
   { q: { uz: 'Qaysi biri real vaqt nuqtasi?', ru: 'Что из этого — точка реального времени?' }, opts: [{ uz: "O'yinning kuni va soati", ru: 'День и время игры' }, { uz: "O'yin maydonining nomi", ru: 'Название поля' }, { uz: "E'lon berish formasi", ru: 'Форма объявления' }, { uz: "Qo'shilganlar ro'yxati", ru: 'Список присоединившихся' }], correct: 3 },
-  { q: { uz: "Bu modulda ilova qachon Backend'dan so'raydi?", ru: 'Когда в этом модуле приложение запрашивает Backend?' }, opts: [{ uz: 'Ochilganda va pastga tortilganda', ru: 'При открытии и при потягивании вниз' }, { uz: "Faqat ilova birinchi o'rnatilgan kuni", ru: 'Только в день первой установки' }, { uz: 'Faqat telefon qayta yoqilganda', ru: 'Только при перезагрузке телефона' }, { uz: "Har daqiqada o'zi, so'ramasdan", ru: 'Каждую минуту само, без запроса' }], correct: 0 },
-  { q: { uz: 'Kodda `korsat()` nega sahifa ochilganda chaqiriladi?', ru: 'Зачем в коде `korsat()` вызывается при открытии страницы?' }, opts: [{ uz: "Tugma o'zi bosilib qolmasligi uchun", ru: 'Чтобы кнопка не нажималась сама' }, { uz: "Son birinchi marta so'ralishi uchun", ru: 'Чтобы число запросилось в первый раз' }, { uz: "`sora` funksiyasi o'chib qolmasligi uchun", ru: 'Чтобы функция `sora` не выключилась' }, { uz: 'Sahifa tezroq ochilib ketishi uchun', ru: 'Чтобы страница открылась быстрее' }], correct: 1 },
-  { q: { uz: 'Platforma nima?', ru: 'Что такое платформа?' }, opts: [{ uz: 'Backend turadigan internet xizmati', ru: 'Интернет-сервис, где стоит Backend' }, { uz: "Ekranlarning qog'ozdagi chizmasi", ru: 'Рисунок экранов на бумаге' }, { uz: 'Mahsulot web yoki mobilda ishlashi', ru: 'Работает ли продукт в вебе или на мобильном' }, { uz: "Database'dagi jadvallar to'plami", ru: 'Набор таблиц в Database' }], correct: 2 },
-  { q: { uz: 'Foydalanuvchi mahsulotni yo\'lda, telefonda ochadi. Bu javob qaysi tomonga tortadi?', ru: 'Пользователь открывает продукт в пути, на телефоне. Куда тянет этот ответ?' }, opts: [{ uz: 'Web tomoniga', ru: 'К вебу' }, { uz: 'Ikkalasiga teng', ru: 'Поровну' }, { uz: 'Hech qaysisiga', ru: 'Никуда' }, { uz: 'Mobil tomoniga', ru: 'К мобильному' }], correct: 3 },
-  { q: { uz: 'Havola bilan tez ulashish muhim. Bu javob qaysi tomonga tortadi?', ru: 'Важно быстро делиться ссылкой. Куда тянет этот ответ?' }, opts: [{ uz: 'Web tomoniga', ru: 'К вебу' }, { uz: 'Mobil tomoniga', ru: 'К мобильному' }, { uz: 'Hech qaysisiga', ru: 'Никуда' }, { uz: 'Ikkalasiga teng', ru: 'Поровну' }], correct: 0 },
-  { q: { uz: 'Mentor misolida platforma nega mobil?', ru: 'Почему в примере Ментора платформа мобильная?' }, opts: [{ uz: "Ilova saytdan chiroyliroq ko'rinadi", ru: 'Приложение выглядит красивее сайта' }, { uz: "O'yinchi maydonda, qo'lida telefon", ru: 'Игрок на поле, в руке телефон' }, { uz: "Faqat React Native tanish bo'lgan", ru: 'Знаком был только React Native' }, { uz: 'Telegram guruhiga havola tashlanadi', ru: 'Ссылку кидают в Telegram-группу' }], correct: 1 },
-  { q: { uz: 'Stek nima?', ru: 'Что такое стек?' }, opts: [{ uz: 'Mahsulot ochiladigan platforma', ru: 'Платформа, где открывается продукт' }, { uz: "PRD dagi funksiyalar ro'yxati", ru: 'Список функций в PRD' }, { uz: 'Birga ishlaydigan texnologiyalar', ru: 'Технологии, работающие вместе' }, { uz: 'Ilova ekranlari va tugmalari', ru: 'Экраны и кнопки приложения' }], correct: 2 },
-  { q: { uz: "Web-trekdan mobil trekka o'tsangiz, nima o'zgaradi?", ru: 'Что изменится, если перейти с веб-трека на мобильный?' }, opts: [{ uz: 'Backend va Database ikkalasi', ru: 'И Backend, и Database' }, { uz: 'Faqat Database jadvallari', ru: 'Только таблицы Database' }, { uz: 'Uchala qism birdaniga almashadi', ru: 'Все три части сразу' }, { uz: 'Foydalanuvchi ochadigan qism', ru: 'Часть, которую открывает пользователь' }], correct: 3 }
+  { q: { uz: "Bu modulda ilova qachon so'raydi?", ru: "Когда в этом модуле приложение запрашивает?" }, opts: [{ uz: "Ochilganda, pastga tortilganda", ru: "При открытии и потягивании вниз" }, { uz: "Faqat o'rnatilgan kuni", ru: "Только в день установки" }, { uz: "Telefon qayta yoqilganda", ru: "При перезагрузке телефона" }, { uz: "Har daqiqada o'zi", ru: "Само каждую минуту" }], correct: 0 },
+  { q: { uz: "`korsat()` nega ochilishda chaqiriladi?", ru: "Зачем `korsat()` вызывают при открытии?" }, opts: [{ uz: "Tugma o'zi bosilmasin deb", ru: "Чтобы кнопка не нажалась сама" }, { uz: "Son darhol so'ralsin deb", ru: "Чтобы число запросилось сразу" }, { uz: "`sora` o'chmasin deb", ru: "Чтобы `sora` не выключилась" }, { uz: "Sahifa tez ochilsin deb", ru: "Чтобы страница открылась быстрее" }], correct: 1 },
+  { q: { uz: "Platforma nima?", ru: "Что такое платформа?" }, opts: [{ uz: "Backend turadigan xizmat", ru: "Сервис, где стоит Backend" }, { uz: "Ekranlarning qog'oz chizmasi", ru: "Рисунок экранов на бумаге" }, { uz: "Mahsulot qayerda ishlashi", ru: "Где работает продукт" }, { uz: "Database jadvallari", ru: "Таблицы Database" }], correct: 2 },
+  { q: { uz: "Yo'lda, telefonda ochiladi. Qaysi tomonga tortadi?", ru: "Открывают в пути, на телефоне. Куда это тянет?" }, opts: [{ uz: "Web tomoniga", ru: "К вебу" }, { uz: "Ikkalasiga teng", ru: "Поровну" }, { uz: "Hech qaysisiga", ru: "Никуда" }, { uz: "Mobil tomoniga", ru: "К мобильному" }], correct: 3 },
+  { q: { uz: "Havola bilan tez ulashish muhim. Qaysi tomonga tortadi?", ru: "Важно быстро делиться ссылкой. Куда это тянет?" }, opts: [{ uz: "Web tomoniga", ru: "К вебу" }, { uz: "Mobil tomoniga", ru: "К мобильному" }, { uz: "Hech qaysisiga", ru: "Никуда" }, { uz: "Ikkalasiga teng", ru: "Поровну" }], correct: 0 },
+  { q: { uz: "Mentor misolida nega mobil?", ru: "Почему в примере Ментора мобильная?" }, opts: [{ uz: "Ilova chiroyliroq ko'rinadi", ru: "Приложение выглядит красивее" }, { uz: "O'yinchi maydonda, telefonda", ru: "Игрок на поле, с телефоном" }, { uz: "Faqat React Native tanish", ru: "Знаком только React Native" }, { uz: "Havola guruhga tashlanadi", ru: "Ссылку кидают в группу" }], correct: 1 },
+  { q: { uz: "Stek nima?", ru: "Что такое стек?" }, opts: [{ uz: "Ilova ochiladigan platforma", ru: "Платформа, где открывается продукт" }, { uz: "PRD dagi funksiyalar ro'yxati", ru: "Список функций в PRD" }, { uz: "Birga ishlovchi texnologiyalar", ru: "Технологии, работающие вместе" }, { uz: "Ilova ekranlari va tugmalari", ru: "Экраны и кнопки приложения" }], correct: 2 },
+  { q: { uz: "Mobil trekka o'tsangiz, nima o'zgaradi?", ru: "Что изменится при переходе на мобильный трек?" }, opts: [{ uz: "Backend va Database", ru: "Backend и Database" }, { uz: "Faqat Database jadvallari", ru: "Только таблицы Database" }, { uz: "Uchala qism birdan", ru: "Все три части сразу" }, { uz: "Foydalanuvchi ochadigan qism", ru: "Часть, которую открывает пользователь" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2481,7 +2506,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
     : { uz: `Keyingi qadam — «${stepN + 1} · ${tr(steps[stepN].h)}»: bajarib, «Bajardim»ni bosing.`, ru: `Следующий шаг — «${stepN + 1} · ${tr(steps[stepN].h)}»: выполните и нажмите «Готово».` };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: <>{tx(c.t)}{c.bandlar && c.bandlar.map((b, i) => <span key={i} className="pc-band">{tx(b)}</span>)}{c.prompt}</>,
@@ -2945,7 +2970,7 @@ export default function PlatformChoiceLesson({ lang: langProp, onFinished, liveT
         .pc-s3-tel { position: sticky; top: 0; }
         .pc-db.ustunli { position: relative; width: 100%; padding-right: 42px; }
         .pc-oz-iz { display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: ${T.ink2}; }
-        .pc-jadval { display: flex; flex-direction: column; gap: 5px; width: 100%; text-align: left; padding: 8px 10px; border-radius: 10px; border: 1.5px solid ${T.line}; background: ${T.paper}; font-family: inherit; color: ${T.ink}; transition: border-color 0.2s, box-shadow 0.2s; }
+        .pc-jadval { display: flex; flex-direction: column; gap: 5px; width: 100%; text-align: left; padding: 8px 10px; border-radius: 10px; border: 1.5px solid transparent; background: ${T.bg}; /* F-1015-333 */ font-family: inherit; color: ${T.ink}; transition: border-color 0.2s, box-shadow 0.2s; }
         button.pc-jadval { cursor: pointer; }
         button.pc-jadval:hover { border-color: ${T.accent}; box-shadow: 0 0 0 3px ${fon(T.accent, 0.12)}; }
         .pc-jd-n { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 800; color: ${T.ink}; }
@@ -3004,8 +3029,11 @@ export default function PlatformChoiceLesson({ lang: langProp, onFinished, liveT
         .pc-mnote-c { align-self: flex-start; }
         /* 0 · kirish: ilova va sayt yonma-yon, javobdan keyin chizma tug'iladi */
         .pc-hook { display: flex; flex-direction: column; align-items: center; }
-        .pc-hook-q { display: flex; gap: 16px; align-items: flex-end; justify-content: center; }
-        .pc-hook-chz { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 424px; animation: pc-kot 0.45s ease-out both; }
+        .pc-hook-q { display: flex; align-items: stretch; justify-content: center; width: 100%; max-width: 520px; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 16px; padding: 14px 6px; } /* F-1015-332: ikki maket bitta ramkada — ILOVA | SAYT */
+        .pc-hook-q > .pc-ramka { flex: 1 1 0; min-width: 0; align-items: center; padding: 0 12px; }
+        .pc-hook-q > .pc-ramka + .pc-ramka { border-left: 1px solid ${T.line}; }
+        .pc-hook-q .pc-tex { align-self: flex-start; text-transform: uppercase; letter-spacing: 0.08em; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 10.5px; border-color: transparent; background: ${fon(T.ink, 0.06)}; color: ${T.ink2}; }
+        .pc-hook-chz { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 520px; animation: pc-kot 0.45s ease-out both; }
         .pc-hook-chiz { display: block; width: 100%; height: 34px; overflow: visible; }
         .pc-hook-chiz path { fill: none; stroke: ${T.line}; stroke-width: 2; stroke-dasharray: 420; animation: pc-chiz 0.8s ease-out both; transition: stroke 0.4s; }
         .pc-hook-chz.oq .pc-hook-chiz path { stroke: ${fon(T.ink, 0.4)}; }
@@ -3129,7 +3157,7 @@ export default function PlatformChoiceLesson({ lang: langProp, onFinished, liveT
           .pc-chz-q { flex-direction: column; gap: 6px; }
           .pc-chz-q > .pc-yolak { width: 2px; height: 16px; }
           .pc-chz-q > .pc-yolak::after { right: -4px; top: auto; bottom: -1px; transform: rotate(135deg); }
-          .pc-hook-q { gap: 10px; }
+          .pc-hook-q { padding: 10px 2px; }
           .pc-brauzer { width: 172px; }
           .pc-ikki { gap: 10px; }
           .pc-s3, .pc-s5, .pc-s10 { grid-template-columns: minmax(0,1fr); justify-items: center; }

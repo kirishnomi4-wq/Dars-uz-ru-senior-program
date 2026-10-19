@@ -1,0 +1,2251 @@
+[
+ {
+  "file": "src/1-Modull/InternetLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "ikki-javob"
+  ],
+  "izoh": "Savol 78 belgi; «Wi-Fi routerga» varianti ham bahsli (so'rov texnik jihatdan routerdan o'tadi, router darsda o'tilmagan).",
+  "q": {
+   "uz": "youtube.com yozildi. Brauzer AVVAL kimga murojaat qiladi?",
+   "ru": "Набрали youtube.com. К кому браузер обращается ПЕРВЫМ?"
+  },
+  "opts": [
+   {
+    "uz": "Serverga",
+    "ru": "К серверу"
+   },
+   {
+    "uz": "DNS'ga",
+    "ru": "К DNS"
+   },
+   {
+    "uz": "Ekranga",
+    "ru": "К экрану"
+   },
+   {
+    "uz": "Domenga",
+    "ru": "К домену"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/InternetLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 153 belgi — strelkalar atrofidagi bo'shliqlar olindi.",
+  "q": {
+   "uz": "So'rovning to'g'ri tartibi qaysi?",
+   "ru": "Какой порядок запроса верный?"
+  },
+  "opts": [
+   {
+    "uz": "Brauzer→DNS→Server→Ekran",
+    "ru": "Браузер→DNS→Сервер→Экран"
+   },
+   {
+    "uz": "DNS→Brauzer→Ekran→Server",
+    "ru": "DNS→Браузер→Экран→Сервер"
+   },
+   {
+    "uz": "Server→Brauzer→DNS→Ekran",
+    "ru": "Сервер→Браузер→DNS→Экран"
+   },
+   {
+    "uz": "Brauzer→Server→DNS→Ekran",
+    "ru": "Браузер→Сервер→DNS→Экран"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/InternetLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 142 belgi.",
+  "q": {
+   "uz": "DNS — telefon kitobi. Undagi ism va raqam nima?",
+   "ru": "DNS — телефонная книга. Что в ней имя и номер?"
+  },
+  "opts": [
+   {
+    "uz": "Ism=IP, raqam=domen",
+    "ru": "Имя=IP, номер=домен"
+   },
+   {
+    "uz": "Ism=brauzer, raqam=server",
+    "ru": "Имя=браузер, номер=сервер"
+   },
+   {
+    "uz": "Ism=domen, raqam=IP",
+    "ru": "Имя=домен, номер=IP"
+   },
+   {
+    "uz": "Ism=sayt, raqam=parol",
+    "ru": "Имя=сайт, номер=пароль"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha, jami 193.",
+  "q": {
+   "uz": "Sayt ENG AVVAL nima uchun yaratiladi?",
+   "ru": "Ради чего сайт создают В ПЕРВУЮ ОЧЕРЕДЬ?"
+  },
+  "opts": [
+   {
+    "uz": "Ko'p odam kirishi uchun",
+    "ru": "Чтобы заходило много людей"
+   },
+   {
+    "uz": "Egasiga pul topish uchun",
+    "ru": "Чтобы приносить деньги владельцу"
+   },
+   {
+    "uz": "Odam muammosini yechish uchun",
+    "ru": "Чтобы решить проблему человека"
+   },
+   {
+    "uz": "Chiroyli ko'rinish uchun",
+    "ru": "Чтобы красиво выглядеть"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 144 belgi.",
+  "q": {
+   "uz": "«Hamma uchun» qilingan sayt aslida…",
+   "ru": "Сайт, сделанный «для всех», на деле…"
+  },
+  "opts": [
+   {
+    "uz": "hech kim uchun bo'ladi",
+    "ru": "оказывается ни для кого"
+   },
+   {
+    "uz": "eng ko'p odam yig'adi",
+    "ru": "собирает больше всего людей"
+   },
+   {
+    "uz": "eng tez ishlaydi",
+    "ru": "работает быстрее всех"
+   },
+   {
+    "uz": "eng ko'p pul topadi",
+    "ru": "зарабатывает больше всех"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 41 belgigacha, jami 205.",
+  "q": {
+   "uz": "Mahsulot menejeri avval nimani aniqlaydi?",
+   "ru": "Что продакт-менеджер выясняет первым?"
+  },
+  "opts": [
+   {
+    "uz": "Saytning dizayni va rangini",
+    "ru": "Дизайн и цвета сайта"
+   },
+   {
+    "uz": "KIM va uning MUAMMOSINI",
+    "ru": "КТО и какая у него ПРОБЛЕМА"
+   },
+   {
+    "uz": "Saytning nomi va logosini",
+    "ru": "Название и логотип сайта"
+   },
+   {
+    "uz": "Saytga ketadigan pulni",
+    "ru": "Сколько денег уйдёт на сайт"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun",
+   "ikki-javob"
+  ],
+  "izoh": "Jami 171; «Sayt xuddi shunday ishlayveradi» texnik jihatdan ham to'g'ri — almashtirildi.",
+  "q": {
+   "uz": "Sayt hech kimning muammosini yechmasa, nima bo'ladi?",
+   "ru": "Что будет, если сайт ничью проблему не решает?"
+  },
+  "opts": [
+   {
+    "uz": "Tezroq ochiladi",
+    "ru": "Будет быстрее открываться"
+   },
+   {
+    "uz": "Ko'proq odam kiradi",
+    "ru": "Зайдёт больше людей"
+   },
+   {
+    "uz": "Reklama ko'payadi",
+    "ru": "Станет больше рекламы"
+   },
+   {
+    "uz": "Unga hech kim kirmaydi",
+    "ru": "На него никто не заходит"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi, jami 172; variantlar darsdagi uch qarashga (buyurtmalar ro'yxati, oxirgi buyurtma, oldindan buyurtma) moslandi.",
+  "q": {
+   "uz": "Lavash saytiga kirgan O'QUVCHI avval nimaga qaraydi?",
+   "ru": "На что первым смотрит ШКОЛЬНИК на сайте лавашной?"
+  },
+  "opts": [
+   {
+    "uz": "Buyurtmalar ro'yxatiga",
+    "ru": "На список заказов"
+   },
+   {
+    "uz": "Oxirgi buyurtmasiga",
+    "ru": "На свой последний заказ"
+   },
+   {
+    "uz": "Oldindan buyurtmaga",
+    "ru": "На заказ заранее"
+   },
+   {
+    "uz": "Saytning bezagiga",
+    "ru": "На оформление сайта"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 37 belgigacha, jami 161.",
+  "q": {
+   "uz": "Mashhurlik va pul — bu…",
+   "ru": "Популярность и деньги — это…"
+  },
+  "opts": [
+   {
+    "uz": "yechimdan keyingi NATIJA",
+    "ru": "РЕЗУЛЬТАТ после решения"
+   },
+   {
+    "uz": "saytning birinchi maqsadi",
+    "ru": "первая цель сайта"
+   },
+   {
+    "uz": "faqat reklama samarasi",
+    "ru": "только эффект рекламы"
+   },
+   {
+    "uz": "faqat omad va tasodif",
+    "ru": "только удача и случай"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 213; chalg'ituvchilar ham «muammo» shakliga keltirildi.",
+  "q": {
+   "uz": "Qaysi biri REAL muammo?",
+   "ru": "Что из этого — НАСТОЯЩАЯ проблема?"
+  },
+  "opts": [
+   {
+    "uz": "Sayt rangi ko'k emas",
+    "ru": "Сайт не синего цвета"
+   },
+   {
+    "uz": "Saytning nomi zo'r emas",
+    "ru": "Название сайта не крутое"
+   },
+   {
+    "uz": "Saytda tugma kam",
+    "ru": "На сайте мало кнопок"
+   },
+   {
+    "uz": "Avtobus qachon kelishi noaniq",
+    "ru": "Неизвестно, когда придёт автобус"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 62 belgi, jami 188.",
+  "q": {
+   "uz": "G'oyada MUAMMO katagi bo'sh. Bu nima degani?",
+   "ru": "В идее пуста клетка ПРОБЛЕМА. Что это значит?"
+  },
+  "opts": [
+   {
+    "uz": "G'oya to'liq va tayyor",
+    "ru": "Идея полная и готова"
+   },
+   {
+    "uz": "Sayt nega kerak — noma'lum",
+    "ru": "Непонятно, зачем нужен сайт"
+   },
+   {
+    "uz": "Faqat dizayn yetmaydi",
+    "ru": "Не хватает только дизайна"
+   },
+   {
+    "uz": "Faqat nom yetmaydi",
+    "ru": "Не хватает только названия"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 73 belgi, jami 173.",
+  "q": {
+   "uz": "O'quvchi, sotuvchi va ofis xodimi bitta saytda…",
+   "ru": "Школьник, продавец и офисный работник на одном сайте…"
+  },
+  "opts": [
+   {
+    "uz": "bir xil narsani izlaydi",
+    "ru": "ищут одно и то же"
+   },
+   {
+    "uz": "faqat dizaynga qaraydi",
+    "ru": "смотрят только на дизайн"
+   },
+   {
+    "uz": "har biri o'zinikini izlaydi",
+    "ru": "каждый ищет своё"
+   },
+   {
+    "uz": "faqat narxga qaraydi",
+    "ru": "смотрят только на цену"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/PmLesson1.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 97 belgi, jami 206.",
+  "q": {
+   "uz": "«Shoshgan o'quvchiga oldindan buyurtma» — nima aniq?",
+   "ru": "«Предзаказ для спешащего школьника» — что ясно?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat YECHIM",
+    "ru": "Только РЕШЕНИЕ"
+   },
+   {
+    "uz": "Faqat KIM va YECHIM",
+    "ru": "Только КТО и РЕШЕНИЕ"
+   },
+   {
+    "uz": "Hech narsa aniq emas",
+    "ru": "Ничего не ясно"
+   },
+   {
+    "uz": "KIM, MUAMMO va YECHIM",
+    "ru": "КТО, ПРОБЛЕМА и РЕШЕНИЕ"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "i": 5,
+  "sabab": [
+   "tushunarsiz"
+  ],
+  "izoh": "Darsda «brauzer tabchasi» deyiladi, savolda «yorliq» — atama darsdagiga keltirildi.",
+  "q": {
+   "uz": "`title` tegidagi matn qayerda ko'rinadi?",
+   "ru": "Где виден текст из тега `title`?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifaning o'rtasida",
+    "ru": "В центре страницы"
+   },
+   {
+    "uz": "Brauzer tabchasida",
+    "ru": "На вкладке браузера"
+   },
+   {
+    "uz": "Tugmaning ustida",
+    "ru": "На кнопке"
+   },
+   {
+    "uz": "Hech qayerda ko'rinmaydi",
+    "ru": "Нигде не виден"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "darsda-yoq"
+  ],
+  "izoh": "Savol 66 belgi; `meta` darsda o'tilmagan.",
+  "q": {
+   "uz": "`title` kabi ko'rinmas sozlamalar qayerga yoziladi?",
+   "ru": "Куда пишутся невидимые настройки, такие как `title`?"
+  },
+  "opts": [
+   "`body`",
+   "`p`",
+   "`head`",
+   "`h1`"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "i": 7,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "`strong` boshqa variantlardan ikki baravar uzun edi — `i` o'rniga darsdagi `title`.",
+  "q": {
+   "uz": "Matnni QALIN (bold) qilish uchun qaysi teg?",
+   "ru": "Какой тег делает текст ЖИРНЫМ (bold)?"
+  },
+  "opts": [
+   "`strong`",
+   "`em`",
+   "`title`",
+   "`p`"
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/Htmllesson1.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 167 belgi.",
+  "q": {
+   "uz": "Skeletning to'g'ri tartibi qaysi?",
+   "ru": "Какой порядок скелета верный?"
+  },
+  "opts": [
+   {
+    "uz": "`head` ichida `html`, `body`",
+    "ru": "`html` и `body` внутри `head`"
+   },
+   {
+    "uz": "`body` ichida `head`, `html`",
+    "ru": "`head` и `html` внутри `body`"
+   },
+   {
+    "uz": "`title` ichida `head`",
+    "ru": "`head` внутри `title`"
+   },
+   {
+    "uz": "`html` ichida `head`, `body`",
+    "ru": "`head` и `body` внутри `html`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/Htmllesson2.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 81 belgi.",
+  "q": {
+   "uz": "Rasm yuklanmasa o'rniga chiqadigan matn qaysi atribut?",
+   "ru": "Какой атрибут — текст вместо незагрузившейся картинки?"
+  },
+  "opts": [
+   "`title`",
+   "`alt`",
+   "`name`",
+   "`text`"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/Htmllesson2.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi.",
+  "q": {
+   "uz": "Sahifaning eng pastki qismi (aloqa, ©) uchun qaysi teg?",
+   "ru": "Какой тег для самой нижней части страницы (контакты, ©)?"
+  },
+  "opts": [
+   "`<end>`",
+   "`<bottom>`",
+   "`<header>`",
+   "`<footer>`"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/Htmllesson2.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 69 belgi.",
+  "q": {
+   "uz": "Maydon oldidagi «Ismingiz:» yozuvi qaysi teg?",
+   "ru": "Какой тег — подпись «Ваше имя:» перед полем?"
+  },
+  "opts": [
+   "`<label>`",
+   "`<title>`",
+   "`<span>`",
+   "`<p>`"
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/Htmllesson2.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 62 belgi.",
+  "q": {
+   "uz": "Parolni nuqta bilan yashiradigan `input` turi qaysi?",
+   "ru": "Какой тип `input` прячет пароль точками?"
+  },
+  "opts": [
+   "`type=\"hidden\"`",
+   "`type=\"password\"`",
+   "`type=\"secret\"`",
+   "`type=\"lock\"`"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/Htmllesson2.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 69 belgi.",
+  "q": {
+   "uz": "DevTools qaysi tugma bilan ochiladi?",
+   "ru": "Какой клавишей открываются DevTools?"
+  },
+  "opts": [
+   "`Ctrl+P`",
+   "`Esc`",
+   "`Caps Lock`",
+   "`F12`"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi, jami 177.",
+  "q": {
+   "uz": "`<p>Biz <strong>g'olibmiz</strong></p>` — nima ko'rinadi?",
+   "ru": "`<p>Biz <strong>g'olibmiz</strong></p>` — что будет видно?"
+  },
+  "opts": [
+   {
+    "uz": "Butun gap qalin",
+    "ru": "Вся фраза жирная"
+   },
+   {
+    "uz": "Teglar ham ko'rinadi",
+    "ru": "Видны и сами теги"
+   },
+   {
+    "uz": "Faqat «g'olibmiz» qalin",
+    "ru": "Жирное только «g'olibmiz»"
+   },
+   {
+    "uz": "Faqat «Biz» ko'rinadi",
+    "ru": "Видно только «Biz»"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 36 belgi, jami 191 — `alt` qismi olindi, xato faqat teg/atributda.",
+  "q": {
+   "uz": "Suratni qo'yish uchun qaysi yozuv TO'G'RI?",
+   "ru": "Какая запись для картинки ПРАВИЛЬНАЯ?"
+  },
+  "opts": [
+   "`<img scr=\"jamoa.jpg\">`",
+   "`<img src=\"jamoa.jpg\">`",
+   "`<imag src=\"jamoa.jpg\">`",
+   "`<img href=\"jamoa.jpg\">`"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 152 belgi.",
+  "q": {
+   "uz": "`<ul>` ichida 3 ta `<li>`. Ekranda nima chiqadi?",
+   "ru": "`<ul>` с тремя `<li>`. Что будет на экране?"
+  },
+  "opts": [
+   {
+    "uz": "1·2·3 raqamli ro'yxat",
+    "ru": "Нумерованный список 1·2·3"
+   },
+   {
+    "uz": "Bir qatorda yonma-yon",
+    "ru": "Всё в одну строку"
+   },
+   {
+    "uz": "Uchta jadval katagi",
+    "ru": "Три ячейки таблицы"
+   },
+   {
+    "uz": "Uchta nuqtali band",
+    "ru": "Три пункта с точками"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 175.",
+  "q": {
+   "uz": "`<a herf=\"...\">Kanal</a>` — nima bo'ladi?",
+   "ru": "`<a herf=\"...\">Kanal</a>` — что будет?"
+  },
+  "opts": [
+   {
+    "uz": "«Kanal» chiqadi, bosilmaydi",
+    "ru": "«Kanal» виден, но не нажимается"
+   },
+   {
+    "uz": "Havola odatdagidek ishlaydi",
+    "ru": "Ссылка работает как обычно"
+   },
+   {
+    "uz": "Sahifa ochilmaydi",
+    "ru": "Страница не откроется"
+   },
+   {
+    "uz": "Manzil ko'rinib qoladi",
+    "ru": "Вместо текста виден адрес"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi.",
+  "q": {
+   "uz": "«Chempionlar» hammadan katta chiqsin. Qaysi teg?",
+   "ru": "Пусть «Chempionlar» будет крупнее всего. Какой тег?"
+  },
+  "opts": [
+   "`p`",
+   "`h1`",
+   "`li`",
+   "`strong`"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 158 belgi.",
+  "q": {
+   "uz": "`alt=\"Jamoa surati\"` nima uchun kerak?",
+   "ru": "Зачем нужен `alt=\"Jamoa surati\"`?"
+  },
+  "opts": [
+   {
+    "uz": "Rasm ochilmasa matn chiqadi",
+    "ru": "Текст виден, если фото не открылось"
+   },
+   {
+    "uz": "Rasm o'lchamini belgilaydi",
+    "ru": "Задаёт размер фото"
+   },
+   {
+    "uz": "Rasmga ramka chizadi",
+    "ru": "Рисует рамку вокруг фото"
+   },
+   {
+    "uz": "Rasmni havolaga aylantiradi",
+    "ru": "Превращает фото в ссылку"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 65 belgi.",
+  "q": {
+   "uz": "Ko'rinadigan mazmun (sarlavha, rasm) qayerga yoziladi?",
+   "ru": "Куда пишется видимое содержимое (заголовок, картинка)?"
+  },
+  "opts": [
+   "`head`",
+   "`body`",
+   "`title`",
+   "`html`"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 76 belgi, jami 184 — uzun URL «...» bilan almashtirildi.",
+  "q": {
+   "uz": "`<a href=\"...\">Kanalimiz</a>` — ekranda nima ko'rinadi?",
+   "ru": "`<a href=\"...\">Kanalimiz</a>` — что видно на экране?"
+  },
+  "opts": [
+   {
+    "uz": "Bosiladigan «Kanalimiz»",
+    "ru": "Кликабельная надпись «Kanalimiz»"
+   },
+   {
+    "uz": "Havola manzilining o'zi",
+    "ru": "Сам адрес ссылки"
+   },
+   {
+    "uz": "Telegram belgisi (rasm)",
+    "ru": "Значок Telegram (картинка)"
+   },
+   {
+    "uz": "«href» so'zi",
+    "ru": "Слово «href»"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "i": 11,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "`strong` boshqalardan ikki-uch baravar uzun edi — `ul` o'rniga `title`.",
+  "q": {
+   "uz": "Sardor ismini QALIN qilish uchun qaysi teg?",
+   "ru": "Какой тег сделает имя Сардора ЖИРНЫМ?"
+  },
+  "opts": [
+   "`p`",
+   "`li`",
+   "`strong`",
+   "`title`"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 40 belgigacha, jami 200.",
+  "q": {
+   "uz": "Sayt strukturasi (bo'limlar tartibi) aslida nima?",
+   "ru": "Что на самом деле структура сайта (порядок разделов)?"
+  },
+  "opts": [
+   {
+    "uz": "Foydalanuvchi uchun qulaylik",
+    "ru": "Удобство для пользователя"
+   },
+   {
+    "uz": "Sahifa uchun bezak",
+    "ru": "Украшение страницы"
+   },
+   {
+    "uz": "Dizaynerning didi",
+    "ru": "Вкус дизайнера"
+   },
+   {
+    "uz": "Hamma uchun bir xil andoza",
+    "ru": "Одинаковый шаблон для всех"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "ikki-javob"
+  ],
+  "izoh": "Jami 180; «Menyu va qidiruv qatori» ham tepada turadi — bahsli, darsdagi bo'limlarga almashtirildi.",
+  "q": {
+   "uz": "Saytni ochgan odam avval qaysi bo'limni ko'radi?",
+   "ru": "Какой раздел человек видит первым, открыв сайт?"
+  },
+  "opts": [
+   {
+    "uz": "Pastdagi aloqa qismini",
+    "ru": "Контакты внизу"
+   },
+   {
+    "uz": "Sarlavha va izohni",
+    "ru": "Заголовок и пояснение"
+   },
+   {
+    "uz": "Isbot bo'limini",
+    "ru": "Раздел «Доказательство»"
+   },
+   {
+    "uz": "Harakat tugmasini",
+    "ru": "Кнопку действия"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 158 belgi.",
+  "q": {
+   "uz": "Harakat tugmasi (CTA) qayerda turishi mantiqiy?",
+   "ru": "Где логично стоять кнопке действия (CTA)?"
+  },
+  "opts": [
+   {
+    "uz": "Eng tepada, birinchi",
+    "ru": "В самом верху, первой"
+   },
+   {
+    "uz": "Menyuda, havolalar bilan",
+    "ru": "В меню, среди ссылок"
+   },
+   {
+    "uz": "Odam ishongandan keyin",
+    "ru": "После того как человек поверил"
+   },
+   {
+    "uz": "Yon tomonda, alohida",
+    "ru": "Сбоку, отдельно"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 43 belgi, jami 213 — bo'lim nomlari darsdagi hero/CTA atamalari bilan qisqartirildi.",
+  "q": {
+   "uz": "Eng mantiqiy tartib qaysi?",
+   "ru": "Какой порядок самый логичный?"
+  },
+  "opts": [
+   {
+    "uz": "CTA→isbot→hero→muammo→yechim",
+    "ru": "CTA→доказ.→hero→проблема→решение"
+   },
+   {
+    "uz": "Isbot→CTA→muammo→yechim→hero",
+    "ru": "Доказ.→CTA→проблема→решение→hero"
+   },
+   {
+    "uz": "Muammo→CTA→hero→yechim→isbot",
+    "ru": "Проблема→CTA→hero→решение→доказ."
+   },
+   {
+    "uz": "Hero→muammo→yechim→isbot→CTA",
+    "ru": "Hero→проблема→решение→доказ.→CTA"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 49 belgigacha, jami 231.",
+  "q": {
+   "uz": "Birinchi blok (hero) nima qiladi?",
+   "ru": "Что делает первый блок (hero)?"
+  },
+  "opts": [
+   {
+    "uz": "Ariza va to'lov qabul qiladi",
+    "ru": "Принимает заявки и оплату"
+   },
+   {
+    "uz": "Taklifni bir jumlada aytadi",
+    "ru": "Одной фразой говорит, что предлагают"
+   },
+   {
+    "uz": "Mijozlar izohini ko'rsatadi",
+    "ru": "Показывает отзывы клиентов"
+   },
+   {
+    "uz": "Aloqa ma'lumotini beradi",
+    "ru": "Даёт контакты"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 169 belgi.",
+  "q": {
+   "uz": "«Isbot» bo'limi nima uchun kerak?",
+   "ru": "Зачем нужен раздел «Доказательство»?"
+  },
+  "opts": [
+   {
+    "uz": "Ishonch uyg'otish uchun",
+    "ru": "Чтобы вызвать доверие"
+   },
+   {
+    "uz": "Narxni e'lon qilish uchun",
+    "ru": "Чтобы объявить цену"
+   },
+   {
+    "uz": "Sayt nomini eslatish uchun",
+    "ru": "Чтобы напомнить название"
+   },
+   {
+    "uz": "Aloqa ma'lumoti uchun",
+    "ru": "Для контактов"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 174 belgi.",
+  "q": {
+   "uz": "Yaxshi tuzilgan sahifa nimaga o'xshaydi?",
+   "ru": "На что похожа хорошо выстроенная страница?"
+  },
+  "opts": [
+   {
+    "uz": "Alifbodagi lug'atga",
+    "ru": "На словарь по алфавиту"
+   },
+   {
+    "uz": "Mahsulot katalogiga",
+    "ru": "На каталог товаров"
+   },
+   {
+    "uz": "Xabarlar lentasiga",
+    "ru": "На ленту сообщений"
+   },
+   {
+    "uz": "Qadam-baqadam hikoyaga",
+    "ru": "На историю шаг за шагом"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variantlar 46 belgigacha, jami 196.",
+  "q": {
+   "uz": "Bo'limlar tartibi nega muhim?",
+   "ru": "Почему важен порядок разделов?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifa chiroyli ko'rinadi",
+    "ru": "Страница выглядит красиво"
+   },
+   {
+    "uz": "Sahifa uzunroq bo'ladi",
+    "ru": "Страница становится длиннее"
+   },
+   {
+    "uz": "Odamni yechimga yetaklaydi",
+    "ru": "Ведёт человека к решению"
+   },
+   {
+    "uz": "Qidiruvda yuqori chiqadi",
+    "ru": "Выше в поиске"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 207 belgi.",
+  "q": {
+   "uz": "Bo'limlar aralashib ketsa nima bo'ladi?",
+   "ru": "Что будет, если разделы перемешаны?"
+  },
+  "opts": [
+   {
+    "uz": "Odam adashib, ketib qoladi",
+    "ru": "Человек теряется и уходит"
+   },
+   {
+    "uz": "Odam kerakli joyni topadi",
+    "ru": "Человек сам найдёт нужное"
+   },
+   {
+    "uz": "Sahifa qiziqroq ko'rinadi",
+    "ru": "Страница выглядит интереснее"
+   },
+   {
+    "uz": "Sahifa tezroq ochiladi",
+    "ru": "Страница быстрее открывается"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Jami 147; to'g'ri javob «(strukturasida)» qo'shimchasi bilan ancha uzun edi.",
+  "q": {
+   "uz": "Chiroyli va ishonchli sayt farqi ko'pincha nimada?",
+   "ru": "В чём чаще всего разница красивого и надёжного сайта?"
+  },
+  "opts": [
+   {
+    "uz": "Ranglarida",
+    "ru": "В цветах"
+   },
+   {
+    "uz": "Tartibida",
+    "ru": "В порядке (структуре)"
+   },
+   {
+    "uz": "Shriftida",
+    "ru": "В шрифте"
+   },
+   {
+    "uz": "Rasmlarida",
+    "ru": "В картинках"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/PmLesson2.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 196 belgi.",
+  "q": {
+   "uz": "Sahifa qanday mantiq bilan tuziladi?",
+   "ru": "По какой логике строится страница?"
+  },
+  "opts": [
+   {
+    "uz": "Avval tugma, keyin izoh",
+    "ru": "Сначала кнопка, потом пояснение"
+   },
+   {
+    "uz": "Bo'limlar alifbo tartibida",
+    "ru": "Разделы по алфавиту"
+   },
+   {
+    "uz": "Avval muhimi, oxirida tugma",
+    "ru": "Сначала главное, в конце кнопка"
+   },
+   {
+    "uz": "Avval aloqa, keyin mahsulot",
+    "ru": "Сначала контакты, потом товар"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 40 belgi, boshqalardan ikki baravar uzun edi; variantlar bir shaklga keltirildi.",
+  "q": {
+   "uz": "CSS nima uchun ishlatiladi?",
+   "ru": "Для чего используется CSS?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifani bezash uchun",
+    "ru": "Чтобы оформлять страницу"
+   },
+   {
+    "uz": "Tuzilma yaratish uchun",
+    "ru": "Чтобы создавать структуру"
+   },
+   {
+    "uz": "Ma'lumot saqlash uchun",
+    "ru": "Чтобы хранить данные"
+   },
+   {
+    "uz": "So'rov yuborish uchun",
+    "ru": "Чтобы отправлять запросы"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "i": 1,
+  "sabab": [
+   "ikki-javob"
+  ],
+  "izoh": "«Teg» varianti ham to'g'ri deb olinishi mumkin edi (`h1` — teg nomi); «Izoh» bilan almashtirildi.",
+  "q": {
+   "uz": "`h1 { color: red; }` da `h1` nima deb ataladi?",
+   "ru": "Как называется `h1` в `h1 { color: red; }`?"
+  },
+  "opts": [
+   {
+    "uz": "Xususiyat",
+    "ru": "Свойство"
+   },
+   {
+    "uz": "Selektor",
+    "ru": "Селектор"
+   },
+   {
+    "uz": "Qiymat",
+    "ru": "Значение"
+   },
+   {
+    "uz": "Izoh",
+    "ru": "Комментарий"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "i": 4,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "`background-color` boshqalardan ikki baravar uzun edi; `border` o'rniga `border-color`, `padding` o'rniga `font-family`.",
+  "q": {
+   "uz": "Fon rangini qaysi xususiyat belgilaydi?",
+   "ru": "Какое свойство задаёт цвет фона?"
+  },
+  "opts": [
+   "`background-color`",
+   "`color`",
+   "`border-color`",
+   "`font-family`"
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/CssLesson1.jsx",
+  "i": 10,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "Faqat to'g'ri javobda belgi ko'rsatilgan edi — hamma variantga belgi qo'shildi.",
+  "q": {
+   "uz": "Har CSS satri oxiriga nima qo'yiladi?",
+   "ru": "Что ставится в конце каждой строки CSS?"
+  },
+  "opts": [
+   {
+    "uz": "Nuqta (`.`)",
+    "ru": "Точка (`.`)"
+   },
+   {
+    "uz": "Vergul (`,`)",
+    "ru": "Запятая (`,`)"
+   },
+   {
+    "uz": "Nuqta-vergul (`;`)",
+    "ru": "Точка с запятой (`;`)"
+   },
+   {
+    "uz": "Ikki nuqta (`:`)",
+    "ru": "Двоеточие (`:`)"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "i": 1,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "`span` eng uzun variant edi — `p` o'rniga 4 harfli block-teg `main`.",
+  "q": {
+   "uz": "Qaysi biri 'inline' element?",
+   "ru": "Какой из них — 'inline'-элемент?"
+  },
+  "opts": [
+   "div",
+   "h1",
+   "span",
+   "main"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 31 belgi.",
+  "q": {
+   "uz": "'display: flex' qayerga yoziladi?",
+   "ru": "Куда пишется 'display: flex'?"
+  },
+  "opts": [
+   {
+    "uz": "O'rab turgan konteynerga",
+    "ru": "Обёртывающему контейнеру"
+   },
+   {
+    "uz": "Har bir ichki elementga",
+    "ru": "Каждому внутреннему элементу"
+   },
+   {
+    "uz": "Faqat body tegiga",
+    "ru": "Только тегу body"
+   },
+   {
+    "uz": "Matnning o'ziga",
+    "ru": "Самому тексту"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "i": 6,
+  "sabab": [
+   "ikki-javob"
+  ],
+  "izoh": "«margin: auto» ham elementni gorizontal markazga qo'yadi (o'quvchi «margin: 0 auto»ni ko'rgan) — almashtirildi.",
+  "q": {
+   "uz": "Flex'ni gorizontal markazga qo'yish uchun?",
+   "ru": "Как поставить flex по центру по горизонтали?"
+  },
+  "opts": [
+   "align-items: center",
+   "text-align: center",
+   "flex-direction: row",
+   "justify-content: center"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/CssLesson2.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 146 belgi.",
+  "q": {
+   "uz": "'justify-content: space-between' nima qiladi?",
+   "ru": "Что делает 'justify-content: space-between'?"
+  },
+  "opts": [
+   {
+    "uz": "Markazga to'playdi",
+    "ru": "Собирает по центру"
+   },
+   {
+    "uz": "Chetlarga teng yoyadi",
+    "ru": "Разводит по краям поровну"
+   },
+   {
+    "uz": "Ustma-ust taxlaydi",
+    "ru": "Складывает друг на друга"
+   },
+   {
+    "uz": "Elementlarni yashiradi",
+    "ru": "Прячет элементы"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/VsCodeLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 65 belgi.",
+  "q": {
+   "uz": "Dasturchilar eng ko'p ishlatadigan kod redaktori qaysi?",
+   "ru": "Каким редактором кода пользуется больше всего разработчиков?"
+  },
+  "opts": [
+   "Word",
+   "VS Code",
+   "Excel",
+   "PowerPoint"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/VsCodeLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 67 belgi.",
+  "q": {
+   "uz": "Fayllar ro'yxati turadigan chap panel nomi nima?",
+   "ru": "Как называется левая панель со списком файлов?"
+  },
+  "opts": [
+   {
+    "uz": "Terminal",
+    "ru": "Terminal"
+   },
+   {
+    "uz": "Extensions",
+    "ru": "Extensions"
+   },
+   {
+    "uz": "Explorer",
+    "ru": "Explorer"
+   },
+   {
+    "uz": "Status bar",
+    "ru": "Status bar"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/VsCodeLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 33 belgi, jami 141.",
+  "q": {
+   "uz": "Live Server nima?",
+   "ru": "Что такое Live Server?"
+  },
+  "opts": [
+   {
+    "uz": "Rasm tahrirlovchi dastur",
+    "ru": "Редактор картинок"
+   },
+   {
+    "uz": "Kod saqlanadigan xotira",
+    "ru": "Память для хранения кода"
+   },
+   {
+    "uz": "Shrift o'rnatuvchi dastur",
+    "ru": "Программа для установки шрифтов"
+   },
+   {
+    "uz": "Sahifani jonli ochuvchi dastur",
+    "ru": "Программа, открывающая страницу вживую"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/VsCodeLesson.jsx",
+  "i": 4,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 35 belgi, jami 170.",
+  "q": {
+   "uz": "«Go Live» tugmasi qayerda turadi?",
+   "ru": "Где находится кнопка «Go Live»?"
+  },
+  "opts": [
+   {
+    "uz": "Yuqoridagi menyu qatorida",
+    "ru": "В строке меню сверху"
+   },
+   {
+    "uz": "Pastdagi ko'k status barda",
+    "ru": "На нижней синей полосе status bar"
+   },
+   {
+    "uz": "Explorer paneli ichida",
+    "ru": "Внутри панели Explorer"
+   },
+   {
+    "uz": "O'ng tugma menyusida",
+    "ru": "В меню правой кнопки мыши"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/VsCodeLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 143 belgi.",
+  "q": {
+   "uz": "style.css qaysi teg bilan ulanadi?",
+   "ru": "Каким тегом подключается style.css?"
+  },
+  "opts": [
+   "`<style src=\"style.css\">`",
+   "`<link rel=\"stylesheet\">`",
+   "`<css href=\"style.css\">`",
+   "`<script src=\"style.css\">`"
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/HtmlPractice.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 71 belgi; savoldagi `</footer>` javobni ochib qo'yardi.",
+  "q": {
+   "uz": "Yopuvchi teg nomidan oldin qaysi belgi turadi?",
+   "ru": "Какой символ стоит перед именем закрывающего тега?"
+  },
+  "opts": [
+   "`\\`",
+   "`!`",
+   "`#`",
+   "`/`"
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/HtmlPractice.jsx",
+  "i": 5,
+  "sabab": [
+   "tushunarsiz"
+  ],
+  "izoh": "Darsda «brauzer tabchasi» deyiladi, savolda «yorliq» — atama darsdagiga keltirildi.",
+  "q": {
+   "uz": "Sahifa `title` ichidagi matn qayerda ko'rinadi?",
+   "ru": "Где виден текст из `title` страницы?"
+  },
+  "opts": [
+   {
+    "uz": "Sahifaning o'rtasida",
+    "ru": "В центре страницы"
+   },
+   {
+    "uz": "Brauzer tabchasida",
+    "ru": "На вкладке браузера"
+   },
+   {
+    "uz": "Tugmaning ustida",
+    "ru": "На кнопке"
+   },
+   {
+    "uz": "Hech qayerda ko'rinmaydi",
+    "ru": "Нигде не виден"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/HtmlPractice.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "darsda-yoq"
+  ],
+  "izoh": "Savol 66 belgi; `meta` hech qaysi darsda o'tilmagan.",
+  "q": {
+   "uz": "`title` kabi ko'rinmas sozlamalar qayerga yoziladi?",
+   "ru": "Куда пишутся невидимые настройки, такие как `title`?"
+  },
+  "opts": [
+   "`body`",
+   "`p`",
+   "`head`",
+   "`h1`"
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/HtmlPractice.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Jami 167 belgi.",
+  "q": {
+   "uz": "Skeletning to'g'ri tartibi qaysi?",
+   "ru": "Какой порядок скелета верный?"
+  },
+  "opts": [
+   {
+    "uz": "`head` ichida `html`, `body`",
+    "ru": "`html` и `body` внутри `head`"
+   },
+   {
+    "uz": "`body` ichida `head`, `html`",
+    "ru": "`head` и `html` внутри `body`"
+   },
+   {
+    "uz": "`title` ichida `head`",
+    "ru": "`head` внутри `title`"
+   },
+   {
+    "uz": "`html` ichida `head`, `body`",
+    "ru": "`head` и `body` внутри `html`"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/GitLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 39 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Git kompyuterda qanday ish qiladi?",
+   "ru": "Какую работу Git делает на компьютере?"
+  },
+  "opts": [
+   {
+    "uz": "Kod versiyalarini saqlaydi",
+    "ru": "Хранит версии кода"
+   },
+   {
+    "uz": "Kodni ranglab beradi",
+    "ru": "Раскрашивает код"
+   },
+   {
+    "uz": "Internetni tezlashtiradi",
+    "ru": "Ускоряет интернет"
+   },
+   {
+    "uz": "Rasmlarni tahrirlaydi",
+    "ru": "Редактирует картинки"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/GitLesson.jsx",
+  "i": 2,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "Faqat to'g'ri javobda `--` bor edi va u eng uzun edi — chalg'ituvchilar bir shaklga keltirildi.",
+  "q": {
+   "uz": "Git o'rnatilganini qaysi buyruq tekshiradi?",
+   "ru": "Какая команда проверяет, что Git установлен?"
+  },
+  "opts": [
+   {
+    "uz": "git --start",
+    "ru": "git --start"
+   },
+   {
+    "uz": "git --open",
+    "ru": "git --open"
+   },
+   {
+    "uz": "git --version",
+    "ru": "git --version"
+   },
+   {
+    "uz": "git --check",
+    "ru": "git --check"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/GitLesson.jsx",
+  "i": 3,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "«Repo (repository)» boshqalardan ikki baravar uzun edi; darsda «repo» deyiladi.",
+  "q": {
+   "uz": "GitHub'da bitta loyiha uchun ochilgan joy nima deyiladi?",
+   "ru": "Как называется место на GitHub для одного проекта?"
+  },
+  "opts": [
+   {
+    "uz": "Parol",
+    "ru": "Пароль"
+   },
+   {
+    "uz": "Brauzer",
+    "ru": "Браузер"
+   },
+   {
+    "uz": "Domen",
+    "ru": "Домен"
+   },
+   {
+    "uz": "Repo",
+    "ru": "Репо"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/GitLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 32 belgi, jami 141.",
+  "q": {
+   "uz": "Git bilan GitHub farqi nimada?",
+   "ru": "В чём разница Git и GitHub?"
+  },
+  "opts": [
+   {
+    "uz": "Git — dastur, GitHub — sayt",
+    "ru": "Git — программа, GitHub — сайт"
+   },
+   {
+    "uz": "Git — sayt, GitHub — dastur",
+    "ru": "Git — сайт, GitHub — программа"
+   },
+   {
+    "uz": "Ikkalasi bir xil",
+    "ru": "Они одинаковые"
+   },
+   {
+    "uz": "Ikkalasi ham sayt",
+    "ru": "Оба — сайты"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/DeployLesson.jsx",
+  "i": 0,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 47 belgi, boshqalardan ikki baravar uzun edi.",
+  "q": {
+   "uz": "Netlify nima qiladi?",
+   "ru": "Что делает Netlify?"
+  },
+  "opts": [
+   {
+    "uz": "Saytni internetga chiqaradi",
+    "ru": "Выкладывает сайт в интернет"
+   },
+   {
+    "uz": "Kodni ranglarga bo'yaydi",
+    "ru": "Раскрашивает код"
+   },
+   {
+    "uz": "Internetni tezlashtiradi",
+    "ru": "Ускоряет интернет"
+   },
+   {
+    "uz": "Telefonni zaryadlaydi",
+    "ru": "Заряжает телефон"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/DeployLesson.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 64, variant 42 belgi, jami 198.",
+  "q": {
+   "uz": "O'zgargan sayt Netlify'da qanday yangilanadi?",
+   "ru": "Как обновить изменённый сайт на Netlify?"
+  },
+  "opts": [
+   {
+    "uz": "Papkani qayta sudrab tashlab",
+    "ru": "Снова перетащить папку"
+   },
+   {
+    "uz": "Havolani qayta yozib",
+    "ru": "Заново написать ссылку"
+   },
+   {
+    "uz": "Kompyuterni qayta yoqib",
+    "ru": "Перезагрузить компьютер"
+   },
+   {
+    "uz": "O'z-o'zidan yangilanadi",
+    "ru": "Обновится сам"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/DeployLesson.jsx",
+  "i": 7,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 63 belgi.",
+  "q": {
+   "uz": "Do'stingiz saytni telefonda ochishi uchun nima yuborasiz?",
+   "ru": "Что отправить другу, чтобы он открыл сайт на телефоне?"
+  },
+  "opts": [
+   {
+    "uz": "index.html faylini",
+    "ru": "Файл index.html"
+   },
+   {
+    "uz": "GitHub parolimni",
+    "ru": "Свой пароль от GitHub"
+   },
+   {
+    "uz": "Sayt papkasini arxiv qilib",
+    "ru": "Папку сайта архивом"
+   },
+   {
+    "uz": "Sayt havolasini",
+    "ru": "Ссылку на сайт"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/DeployLesson.jsx",
+  "i": 8,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 26 belgi, boshqalari 9–15 edi.",
+  "q": {
+   "uz": "Sayt sahifalari bir-biriga nima orqali ulanadi?",
+   "ru": "Через что страницы сайта связаны между собой?"
+  },
+  "opts": [
+   {
+    "uz": "Havolalar orqali",
+    "ru": "Через ссылки"
+   },
+   {
+    "uz": "Rasmlar orqali",
+    "ru": "Через картинки"
+   },
+   {
+    "uz": "Parol orqali",
+    "ru": "Через пароль"
+   },
+   {
+    "uz": "Fayl nomi orqali",
+    "ru": "Через имя файла"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/DeployLesson.jsx",
+  "i": 9,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 30 belgi, boshqalari 9–18 edi.",
+  "q": {
+   "uz": "AI'ga sayt topshirig'ini yozganda nima ko'rsatiladi?",
+   "ru": "Что указывают, когда пишут AI задание на сайт?"
+  },
+  "opts": [
+   {
+    "uz": "Faqat sevimli rangingiz",
+    "ru": "Только любимый цвет"
+   },
+   {
+    "uz": "Faqat ismingiz",
+    "ru": "Только ваше имя"
+   },
+   {
+    "uz": "Sahifalar va shartlar",
+    "ru": "Страницы и условия"
+   },
+   {
+    "uz": "Faqat sayt nomi",
+    "ru": "Только название сайта"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/DeployLesson.jsx",
+  "i": 10,
+  "sabab": [
+   "darsda-yoq",
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Darsdagi promptda telefon/kompyuterga moslash yo'q; savol darsdagi «har sahifada menyu bir xil tursin» shartiga almashtirildi.",
+  "q": {
+   "uz": "Promptda menyu haqida nima yoziladi?",
+   "ru": "Что пишут в промпте про меню?"
+  },
+  "opts": [
+   {
+    "uz": "Menyu faqat bosh sahifada",
+    "ru": "Меню только на главной"
+   },
+   {
+    "uz": "Menyu umuman kerak emas",
+    "ru": "Меню вообще не нужно"
+   },
+   {
+    "uz": "Har sahifada boshqa menyu",
+    "ru": "На каждой странице своё меню"
+   },
+   {
+    "uz": "Har sahifada bir xil menyu",
+    "ru": "На всех страницах одно меню"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 1,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 36 belgi edi; variantlar darsdagi nutq bo'laklari nomlariga keltirildi.",
+  "q": {
+   "uz": "Nutqning eng katta bo'lagi qaysi?",
+   "ru": "Какая часть речи самая большая?"
+  },
+  "opts": [
+   {
+    "uz": "Birinchi savol",
+    "ru": "Первый вопрос"
+   },
+   {
+    "uz": "Jonli demo",
+    "ru": "Живое демо"
+   },
+   {
+    "uz": "Qanday qildim",
+    "ru": "Как я это сделал"
+   },
+   {
+    "uz": "Keyingi qadam",
+    "ru": "Следующий шаг"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 2,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 39 belgi, jami 145.",
+  "q": {
+   "uz": "Nutq nima bilan boshlanadi?",
+   "ru": "С чего начинается речь?"
+  },
+  "opts": [
+   {
+    "uz": "Saytning nomi bilan",
+    "ru": "С названия сайта"
+   },
+   {
+    "uz": "Uzun salomlashuv bilan",
+    "ru": "С длинного приветствия"
+   },
+   {
+    "uz": "Zalga savol bilan",
+    "ru": "С вопроса залу"
+   },
+   {
+    "uz": "Dastur nomi bilan",
+    "ru": "С названия программы"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 3,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 45 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Sayt nega kerakligi qanday aytiladi?",
+   "ru": "Как объяснить, зачем нужен сайт?"
+  },
+  "opts": [
+   {
+    "uz": "Bo'limlar soni bilan",
+    "ru": "Через число разделов"
+   },
+   {
+    "uz": "Qaysi rangdaligi bilan",
+    "ru": "Через цвет сайта"
+   },
+   {
+    "uz": "Ish kunlari soni bilan",
+    "ru": "Через число дней работы"
+   },
+   {
+    "uz": "Kimga nima qiyinligi bilan",
+    "ru": "Через то, кому и что было трудно"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 4,
+  "sabab": [
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 26 belgi, boshqalari 14–19 edi.",
+  "q": {
+   "uz": "Jonli demoda nima ochiladi?",
+   "ru": "Что открывают в живом демо?"
+  },
+  "opts": [
+   {
+    "uz": "Saytning o'zi",
+    "ru": "Сам сайт"
+   },
+   {
+    "uz": "VS Code oynasi",
+    "ru": "Окно VS Code"
+   },
+   {
+    "uz": "GitHub papkasi",
+    "ru": "Папка на GitHub"
+   },
+   {
+    "uz": "Netlify sozlamasi",
+    "ru": "Настройки Netlify"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 5,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 49 belgi, boshqalardan ancha uzun edi.",
+  "q": {
+   "uz": "Ota-onangizga qaysi gap tushunarli?",
+   "ru": "Какая фраза понятна вашим родителям?"
+  },
+  "opts": [
+   {
+    "uz": "«Semantik struktura yasadim»",
+    "ru": "«Я создал семантическую структуру»"
+   },
+   {
+    "uz": "«Bo'limlarni o'zim tuzdim»",
+    "ru": "«Разделы я выстроил сам»"
+   },
+   {
+    "uz": "«Kaskad stillar qo'lladim»",
+    "ru": "«Я применил стили каскадом»"
+   },
+   {
+    "uz": "«Repo'ni deploy qildim»",
+    "ru": "«Я задеплоил репо»"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 6,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "Savol 55, to'g'ri javob 44 belgi — boshqalardan uzun edi.",
+  "q": {
+   "uz": "«Bu kimga kerak?» — qaysi javob kuchli?",
+   "ru": "«А кому это нужно?» — какой ответ сильный?"
+  },
+  "opts": [
+   {
+    "uz": "«Hammaga kerak»",
+    "ru": "«Всем нужно»"
+   },
+   {
+    "uz": "«Bilmadim, shunchaki qildim»",
+    "ru": "«Не знаю, просто так сделал»"
+   },
+   {
+    "uz": "«Mentor shunday degan edi»",
+    "ru": "«Так сказал ментор»"
+   },
+   {
+    "uz": "«Kitob izlagan sinfdoshlarga»",
+    "ru": "«Одноклассникам, которые ищут книги»"
+   }
+  ],
+  "correct": 3
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 8,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 53 belgi, jami 208.",
+  "q": {
+   "uz": "«HTML va CSS ishlatdim» nega yetarli emas?",
+   "ru": "Почему мало сказать «я использовал HTML и CSS»?"
+  },
+  "opts": [
+   {
+    "uz": "Ota-onaga bu so'z tushunarsiz",
+    "ru": "Родителям эти слова непонятны"
+   },
+   {
+    "uz": "Bunday deyish taqiqlangan",
+    "ru": "Так говорить запрещено"
+   },
+   {
+    "uz": "Juda uzun, vaqt yetmaydi",
+    "ru": "Слишком длинно, не хватит времени"
+   },
+   {
+    "uz": "Netlify aytilmagan",
+    "ru": "Не назван Netlify"
+   }
+  ],
+  "correct": 0
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 9,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Savol 61 belgi, jami 186.",
+  "q": {
+   "uz": "«O'zing qildingmi?» — qaysi javob halol?",
+   "ru": "«Ты сам это сделал?» — какой ответ честный?"
+  },
+  "opts": [
+   {
+    "uz": "«Bilmadim, chiqib qoldi»",
+    "ru": "«Не знаю, само получилось»"
+   },
+   {
+    "uz": "«Mentor o'rgatdi, men qildim»",
+    "ru": "«Ментор научил, а сделал я»"
+   },
+   {
+    "uz": "«Hech kim yordam bermadi»",
+    "ru": "«Мне никто не помогал»"
+   },
+   {
+    "uz": "«Javob bermayman»",
+    "ru": "«Не буду отвечать»"
+   }
+  ],
+  "correct": 1
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 10,
+  "sabab": [
+   "uzun"
+  ],
+  "izoh": "Variant 38 belgi, jami 166.",
+  "q": {
+   "uz": "Jonli demo necha qadamdan iborat?",
+   "ru": "Из скольких шагов состоит живое демо?"
+  },
+  "opts": [
+   {
+    "uz": "Bitta qadam",
+    "ru": "Из одного"
+   },
+   {
+    "uz": "Ikki qadam",
+    "ru": "Из двух"
+   },
+   {
+    "uz": "Uch qadam",
+    "ru": "Из трёх"
+   },
+   {
+    "uz": "To'rt qadam",
+    "ru": "Из четырёх"
+   }
+  ],
+  "correct": 2
+ },
+ {
+  "file": "src/1-Modull/PmLesson3.jsx",
+  "i": 11,
+  "sabab": [
+   "uzun",
+   "togri-uzun"
+  ],
+  "izoh": "To'g'ri javob 48 belgi, boshqalardan ikki baravar uzun edi.",
+  "q": {
+   "uz": "Nutqni yozib bo'lgach nima qilinadi?",
+   "ru": "Что делают, когда речь написана?"
+  },
+  "opts": [
+   {
+    "uz": "Yodlamasdan qoldiriladi",
+    "ru": "Оставляют, не заучивая"
+   },
+   {
+    "uz": "Ikki barobar uzaytiriladi",
+    "ru": "Удлиняют вдвое"
+   },
+   {
+    "uz": "Qog'ozga ko'chirib qo'yiladi",
+    "ru": "Переписывают на бумагу"
+   },
+   {
+    "uz": "Taymer bilan aytib ko'riladi",
+    "ru": "Проговаривают вслух с таймером"
+   }
+  ],
+  "correct": 3
+ }
+]

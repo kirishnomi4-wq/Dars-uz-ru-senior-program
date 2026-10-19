@@ -1,0 +1,142 @@
+#!/usr/bin/env node
+// ============================================================
+//  yuklash-papka — LMS'ga qo'lda yuklash uchun TAYYOR papka yig'adi (F-0921, foydalanuvchi talabi 21.09).
+//
+//  Nima qiladi: `src/App.jsx` dagi MODULES registri (dars tartibi — yagona haqiqat manbai) bo'yicha
+//  har modulning darslarini va uyga-vazifa paketlarini prod manzili bilan yig'adi va
+//    yuklash-<sana>/<modul>/NN-<Dars>.jsx        (NN — kursdagi tartib raqami)
+//    yuklash-<sana>/<modul>/ROYXAT.md            (tartib · tur · sarlavha · lesson_id · md5)
+//    yuklash-<sana>/README.md                    (yuklash yo'riqnomasi + CRM modul-mosligi)
+//  shaklida joylaydi. Manba fayllarga TEGMAYDI; `lms/` papkasi ham o'zgarmaydi.
+//
+//  Ishlatish: node scripts/yuklash-papka.mjs [--out yuklash-2026-09-21] [--moduls 1,2,3,4,4a,4b,4c] [--skip m2-16,m3-17] [--suffix v2] [--uyga-vazifasiz]
+//  --suffix: fayl nomiga qo'shimcha (`03-Htmllesson1-v2.jsx`) — LMS ro'yxatida eski/yangi fayl ko'z bilan ajralsin (F-1001-91, Q9)
+//  --uyga-vazifasiz: uyga-vazifa paketlari yig'ilmaydi va ro'yxatga kirmaydi (F-1015: preview relizi — IT scope'ida faqat darslar)
+//  --skip: registrda bor, lekin hali tayyor emas dars kalitlari — paketga kirmaydi, ROYXAT'da «yuklanmaydi» qatori qoladi (F-0929-93)
+// ============================================================
+import { readFileSync, writeFileSync, mkdirSync, rmSync, mkdtempSync, copyFileSync, existsSync, readdirSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, basename, dirname } from 'node:path';
+import { execFileSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
+
+// Katalog (server) — dars ICHIDAGI sarlavha: LMS materialiga aynan shu nom qo'yiladi
+const CAT = (() => {
+  try {
+    const c = JSON.parse(readFileSync('server/data/lesson-catalog.json', 'utf8'));
+    const list = Array.isArray(c) ? c : (c.lessons || []);
+    return new Map(list.map((l) => [l.lesson_id, l]));
+  } catch { return new Map(); }
+})();
+
+const args = process.argv.slice(2);
+const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] ? args[i + 1] : d; };
+const OUT = opt('--out', `yuklash-${new Date().toISOString().slice(0, 10)}`);
+const MODS = opt('--moduls', '1,2,3,4,4a,4b,4c').split(',');
+const SKIP = opt('--skip', '').split(',').filter(Boolean);
+const SUFFIX = opt('--suffix', '');
+const NO_HW = args.includes('--uyga-vazifasiz');
+const withSfx = (name) => SUFFIX ? name.replace(/\.jsx$/, `-${SUFFIX}.jsx`) : name;
+
+// CRM'dagi bo'lim nomi (bizdagi modul → CRM): 2026-09 holati
+const CRM = { '1': 'M1 (ildiz)', '2': 'M2 (ildiz)', '3': '4-M', '4': '5-M', '4a': '6-M', '4b': '6-M', '4c': '6-M', '5': '7-M', '6': '8-M' };
+
+// ── App.jsx dan tartib ─────────────────────────────────────────────────────
+const app = readFileSync('src/App.jsx', 'utf8');
+const imports = Object.fromEntries([...app.matchAll(/const (\w+) = L\(\(\) => import\('\.\/([^']+)'\)\)/g)].map((m) => [m[1], 'src/' + m[2]]));
+const modules = [...app.matchAll(/\{\s*id: '([^']+)', slug: '[^']*', title: '((?:[^'\\]|\\.)*)'[\s\S]*?lessons: \[([\s\S]*?)\n {4}\],/g)].map(([, id, title, body]) => ({
+  id, title: title.replace(/\\'/g, "'"),
+  lessons: [...body.matchAll(/\{ key: '([^']+)', n: (\d+),\s*type: '([^']*)',\s*emoji: '[^']*', title: '((?:[^'\\]|\\.)*)'[^}]*?(?:comp: (\w+))?\s*\},/g)]
+    .map(([, key, n, type, t, comp]) => ({ key, n: Number(n), type, title: t.replace(/\\'/g, "'"), src: comp && imports[comp] })),
+}));
+
+const jobs = [], skipped = [];
+for (const m of modules.filter((x) => MODS.includes(x.id))) {
+  for (const l of m.lessons) {
+    if (!l.src) continue;                                    // Demo Day / rezerv — fayl yo'q
+    if (SKIP.includes(l.key)) { skipped.push({ mod: m.id, ...l }); continue; }
+    jobs.push({ mod: m.id, modTitle: m.title, ...l, hw: null });
+    const hw = l.src.replace(/\.jsx$/, '.homework.jsx');     // uyga-vazifa paketi (bo'lsa)
+    if (!NO_HW && existsSync(hw)) jobs[jobs.length - 1].hw = hw;
+  }
+}
+console.log(`Registr: ${jobs.length} dars · uyga-vazifa ${jobs.filter((j) => j.hw).length}${skipped.length ? ` · chiqarildi ${skipped.map((x) => x.key).join(', ')}` : ''}`);
+const unknown = SKIP.filter((k) => !skipped.some((x) => x.key === k));
+if (unknown.length) { console.error(`✗ --skip: registrda yo'q kalit — ${unknown.join(', ')}`); process.exit(1); }
+
+// ── Yig'ish (prod manzili) ─────────────────────────────────────────────────
+const TMP = mkdtempSync(join(tmpdir(), 'yuklash-'));
+const srcs = [...jobs.map((j) => j.src), ...jobs.filter((j) => j.hw).map((j) => j.hw)];
+console.log(`Yig'ilmoqda: ${srcs.length} fayl → ${TMP}`);
+execFileSync('node', ['scripts/build-lms.mjs', ...srcs], { env: { ...process.env, LMS_OUT_DIR: TMP }, stdio: ['ignore', 'pipe', 'inherit'] });
+
+// build-lms OUT_MAP bo'yicha kichik papkalarga ham yozishi mumkin — fayllarni nom bo'yicha topamiz
+const built = new Map();
+const walk = (dir) => { for (const n of readdirSync(dir, { withFileTypes: true })) { const p = join(dir, n.name); if (n.isDirectory()) walk(p); else if (n.name.endsWith('.jsx')) built.set(n.name, p); } };
+walk(TMP);
+
+// ── Joylash + ro'yxat ──────────────────────────────────────────────────────
+rmSync(OUT, { recursive: true, force: true });
+const md5 = (p) => createHash('md5').update(readFileSync(p)).digest('hex');
+const lessonId = (p) => (/lessonId:\s*['"]([^'"]+)['"]/.exec(readFileSync(p, 'utf8')) || [])[1] || (/HW_ID\s*=\s*['"]([^'"]+)['"]/.exec(readFileSync(p, 'utf8')) || [])[1] || '';
+let total = 0;
+const rootRows = [];
+for (const m of modules.filter((x) => MODS.includes(x.id))) {
+  const mine = jobs.filter((j) => j.mod === m.id);
+  if (!mine.length) continue;
+  const dir = join(OUT, `${m.id}-Modul`);
+  mkdirSync(dir, { recursive: true });
+  const rows = [`# ${m.id}-Modul — ${m.title}`, '', `CRM'da: **${CRM[m.id] || '?'}** bo'limi · ${mine.length} dars`, '',
+    '| ☐ | № | Tur | Nom — uz (LMS materiali) | Nom — ru | Fayl | lesson_id | md5 |', '|---|---|---|---|---|---|---|---|'];
+  const rowsOf = [];
+  for (const x of skipped.filter((y) => y.mod === m.id)) {
+    rowsOf.push([x.n, `| — | ${String(x.n).padStart(2, '0')} | ${x.type} | ~~${x.title}~~ — **bu safar yuklanmaydi** (tayyor emas) | — | — | — | — |`]);
+  }
+  for (const j of mine) {
+    const b = built.get(basename(j.src));
+    if (!b) { console.log(`✗ yig'ilmagan: ${j.src}`); continue; }
+    while (rowsOf.length && rowsOf[0][0] < j.n) rows.push(rowsOf.shift()[1]);
+    const nn = String(j.n).padStart(2, '0');
+    const out = join(dir, withSfx(`${nn}-${basename(j.src)}`));
+    copyFileSync(b, out); total++;
+    const lid = lessonId(out);
+    const nomi = (CAT.get(lid) || {}).title_uz || j.title;
+    const nomiRu = (CAT.get(lid) || {}).title_ru || '—';
+    rows.push(`| ☐ | ${nn} | ${j.type} | **${nomi}** | ${nomiRu} | \`${basename(out)}\` | \`${lid}\` | \`${md5(out)}\` |`);
+    if (j.hw) {
+      const hb = built.get(basename(j.hw));
+      if (hb) {
+        const ho = join(dir, withSfx(`${nn}-${basename(j.hw, '.jsx')}.jsx`.replace('.homework', '-uyga-vazifa')));
+        copyFileSync(hb, ho); total++;
+        rows.push(`| ☐ | ${nn}. | Uyga vazifa | **${nomi} — uyga vazifa** | ${nomiRu === '—' ? '—' : nomiRu + ' — домашнее задание'} | \`${basename(ho)}\` | \`${lessonId(ho)}\` | \`${md5(ho)}\` |`);
+      }
+    }
+  }
+  rows.push(...rowsOf.map((r) => r[1]));
+  writeFileSync(join(dir, 'ROYXAT.md'), rows.join('\n') + '\n');
+  rootRows.push(`| ${m.id}-Modul | ${m.title} | ${CRM[m.id] || '?'} | ${mine.length} |`);
+}
+
+writeFileSync(join(OUT, 'README.md'), [
+  `# LMS'ga yuklash — ${OUT}`, '',
+  `Yig'ilgan: ${new Date().toISOString().slice(0, 16).replace('T', ' ')} UTC · jami **${total} fayl**.`,
+  'Har fayl o\'zi-yetarli (`.jsx`): ichida dars, kompilyator va jonli-qatlam bor, qo\'shimcha modul kerak emas.',
+  'Server manzili: **prod** (`dars-api.coddycamp.uz`).', '',
+  '| Papka | Modul | CRM bo\'limi | Dars |', '|---|---|---|---|', ...rootRows, '',
+  '## Yuklash tartibi', '',
+  '1. CRM → Media → material sifatida `.jsx` faylni yuklaysiz.',
+  '2. Fayl nomidagi **NN** — kursdagi tartib raqami (dars ketma-ketligi shunga qarab qo\'yiladi).',
+  '   Material nomini `ROYXAT.md` dagi **«Dars ichidagi nom»** ustunidan oling — o\'quvchi darsda aynan shuni ko\'radi.',
+  NO_HW ? '3. Uyga vazifalar bu paketda YO\'Q (`--uyga-vazifasiz`) — CRM\'dagilari o\'zgarmaydi.' : '3. `NN-…-uyga-vazifa.jsx` — o\'sha darsning uyga vazifasi (alohida material).',
+  ...(SUFFIX ? [`5. Fayl nomidagi **-${SUFFIX}** — shu yuklash belgisi: LMS ro\'yxatida \`-${SUFFIX}\` siz qator qolmasa, hammasi almashtirilgan.`] : []),
+  '4. Har modulning `ROYXAT.md` faylida uz/ru sarlavha, `lesson_id` va `md5` bor — yuklagandan keyin tekshirish uchun.',
+  '   Birinchi ustundagi ☐ — yuklaganingizni belgilab borish uchun.', '',
+  '## Muhim', '',
+  '- `lesson_id` serverdagi katalog bilan bir xil bo\'lishi shart — u fayl ichida, o\'zgartirilmaydi.',
+  '- Dars tugaganda natija avtomat CRM\'ga ketadi; uyga vazifa topshirilganda ham (21.09 dan).',
+  '- Bir o\'quvchi bir darsdan bitta natija oladi (takror o\'tish tanga bermaydi).',
+  ...(skipped.length ? ['', '## Bu safar yuklanmaydi', '', ...skipped.map((x) => `- ${x.mod}-Modul · ${String(x.n).padStart(2, '0')} · ${x.title} — tayyor emas; shu raqam bo\'sh qoladi`)] : []),
+].join('\n') + '\n');
+
+rmSync(TMP, { recursive: true, force: true });
+console.log(`\nTayyor: ${OUT}/ — ${total} fayl · ${rootRows.length} modul`);

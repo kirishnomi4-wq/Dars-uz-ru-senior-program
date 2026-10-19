@@ -106,6 +106,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -183,8 +208,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1450,7 +1475,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · ortiqcha harakat', ru: 'Понятие · лишнее движение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr(DAVOM) : tr({ uz: `2 qadamni bajaring (${Math.min(qadam, 2)}/2)`, ru: `Выполните 2 шага (${Math.min(qadam, 2)}/2)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · ortiqcha harakat', ru: 'Понятие · лишнее движение' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr(DAVOM) : tr({ uz: `2 qadamni bajaring`, ru: `Выполните 2 шага` })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi}
         sarlavha={tr({ uz: <>Qaysi harakat o'yinchiga <span className="italic" style={{ color: T.accent }}>hech narsa demaydi?</span></>, ru: <>Какое движение <span className="italic" style={{ color: T.accent }}>ничего не говорит игроку?</span></> })}
         mentor={<Mentor>{tr({ uz: "Harakat «bosildi», «o'zgardi» yoki «tayyor» deb javob bermasa — u ortiqcha. Shundaylarini bosib o'chiring.", ru: 'Если движение не отвечает «нажато», «изменилось» или «готово» — оно лишнее. Нажмите на такие и отключите их.' })}</Mentor>}
@@ -1533,7 +1558,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const kod = <KodBlok fayl="App.css" qatorlar={q.qatorlar.map((t, i) => ({ t, b: t.trim() !== '}', tuz: i === q.xato ? q.tuz : undefined }))} onQator={done ? undefined : qator} holat={done ? {} : holat} silk={silk} navbat={!done && !topildi} />;
   const maket = <MaydonMaket band={band} bosilgan={bos} onKatak={(s, b) => { if (qadam === 2 && !b) setBand(bb => [...bb, s]); }} scale={0.95} td={td} tq={tq} cd={0.3} bandRangsiz={qadam === 2 && !tuz} />;
   return (
-    <Stage eyebrow={tr({ uz: 'Xatoni topish', ru: 'Найдите ошибку' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr(DAVOM) : tr({ uz: `3 xatoni toping (${qadam}/3)`, ru: `Найдите 3 ошибки (${qadam}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Xatoni topish', ru: 'Найдите ошибку' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr(DAVOM) : tr({ uz: `3 xatoni toping`, ru: `Найдите 3 ошибки` })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi}
         sarlavha={tr({ uz: <>Kod yozildi, lekin katak sakrayapti. <span className="italic" style={{ color: T.accent }}>Xato qayerda?</span></>, ru: <>Код написан, но ячейка скачет. <span className="italic" style={{ color: T.accent }}>Где ошибка?</span></> })}
         mentor={<Mentor>{tr({ uz: "Ko'pincha xato bitta harfda yoki bo'sh joyda bo'ladi. Natijaga qarang va xato qatorni bosing.", ru: 'Чаще всего ошибка в одной букве или пробеле. Посмотрите на результат и нажмите на строку с ошибкой.' })}</Mentor>}
@@ -1676,18 +1701,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Jonli viktorina — 12 savol, ✔ o'rni A·B·C·D ×3 (aylanma, MD), ekran savollarining nusxasi emas (§144)
 const QUIZ_BANK = [
-  { q: { uz: 'Animatsiya o\'yinchiga nimani aytadi?', ru: 'Что анимация говорит игроку?' }, opts: [{ uz: '«Bosildi», «o\'zgardi» yoki «tayyor»', ru: '«Нажато», «изменилось» или «готово»' }, { uz: 'Saytda hozir nechta odam borligini', ru: 'Сколько людей сейчас на сайте' }, { uz: 'Sahifa qancha vaqtdan beri ochiqligini', ru: 'Сколько времени открыта страница' }, { uz: 'Katak qaysi rangda chiroyli turishini', ru: 'В каком цвете ячейка красивее' }], correct: 0 },
-  { q: { uz: 'transform: scale(1.1) nima qiladi?', ru: 'Что делает transform: scale(1.1)?' }, opts: [{ uz: 'Elementni 10% ga kichraytiradi', ru: 'Уменьшает элемент на 10%' }, { uz: 'Elementni 10% ga kattalashtiradi', ru: 'Увеличивает элемент на 10%' }, { uz: 'Elementni 10 piksel o\'ngga suradi', ru: 'Сдвигает элемент на 10 пикселей вправо' }, { uz: 'Element rangini 10% ochroq qiladi', ru: 'Делает цвет элемента светлее на 10%' }], correct: 1 },
-  { q: { uz: 'Tugma scale(0.9) bilan kichraydi. Ostidagi matn nima bo\'ladi?', ru: 'Кнопка уменьшается через scale(0.9). Что будет с текстом под ней?' }, opts: [{ uz: 'Tepaga ko\'tariladi', ru: 'Поднимется вверх' }, { uz: 'Pastga tushadi', ru: 'Опустится вниз' }, { uz: 'Joyida qoladi', ru: 'Останется на месте' }, { uz: 'U ham kichrayadi', ru: 'Тоже уменьшится' }], correct: 2 },
-  { q: { uz: 'transition: transform 0.15s dagi 0.15s nimani bildiradi?', ru: 'Что значит 0.15s в transition: transform 0.15s?' }, opts: [{ uz: 'Katak necha marta kichrayishini', ru: 'Сколько раз уменьшится ячейка' }, { uz: 'Katak qancha kichrayishini', ru: 'Насколько уменьшится ячейка' }, { uz: 'Katak qachon bosilishini', ru: 'Когда нажмут на ячейку' }, { uz: 'O\'zgarish qancha davom etishini', ru: 'Сколько длится изменение' }], correct: 3 },
+  { q: { uz: "Animatsiya o'yinchiga nima deydi?", ru: "Что анимация говорит игроку?" }, opts: [{ uz: "Bosildi, o'zgardi, tayyor", ru: "Нажато, изменилось, готово" }, { uz: "Necha odam borligini", ru: "Сколько людей на сайте" }, { uz: "Sahifa qachondan ochiqligini", ru: "Как давно открыта страница" }, { uz: "Qaysi rang chiroyli ekanini", ru: "Какой цвет красивее" }], correct: 0 },
+  { q: { uz: "transform: scale(1.1) nima qiladi?", ru: "Что делает transform: scale(1.1)?" }, opts: [{ uz: "10% ga kichraytiradi", ru: "Уменьшает на 10%" }, { uz: "10% ga kattalashtiradi", ru: "Увеличивает на 10%" }, { uz: "10 piksel o'ngga suradi", ru: "Сдвигает на 10 пикселей вправо" }, { uz: "Rangini 10% ochadi", ru: "Осветляет цвет на 10%" }], correct: 1 },
+  { q: { uz: "Tugma scale(0.9) bilan kichraydi. Ostidagi matn-chi?", ru: "Кнопка уменьшается через scale(0.9). А текст под ней?" }, opts: [{ uz: "Tepaga ko'tariladi", ru: "Поднимется вверх" }, { uz: "Pastga tushadi", ru: "Опустится вниз" }, { uz: "Joyida qoladi", ru: "Останется на месте" }, { uz: "U ham kichrayadi", ru: "Тоже уменьшится" }], correct: 2 },
+  { q: { uz: "transition: transform 0.15s — 0.15s nima?", ru: "transition: transform 0.15s — что такое 0.15s?" }, opts: [{ uz: "Necha marta kichrayishini", ru: "Сколько раз уменьшится" }, { uz: "Qancha kichrayishini", ru: "Насколько уменьшится" }, { uz: "Qachon bosilishini", ru: "Когда нажмут" }, { uz: "Qancha vaqt davom etishini", ru: "Сколько длится изменение" }], correct: 3 },
   { q: { uz: 'Bir transition da ikki xususiyat qanday ajratiladi?', ru: 'Как разделяют два свойства в одном transition?' }, opts: [{ uz: 'Vergul bilan', ru: 'Запятой' }, { uz: 'Nuqta-vergul bilan', ru: 'Точкой с запятой' }, { uz: 'Bo\'sh joy bilan', ru: 'Пробелом' }, { uz: 'Ikki nuqta bilan', ru: 'Двоеточием' }], correct: 0 },
-  { q: { uz: '.katak.band selektori qaysi elementni topadi?', ru: 'Какой элемент находит селектор .katak.band?' }, opts: [{ uz: 'katak ichidagi band ni', ru: 'band внутри katak' }, { uz: 'Ikkala klassi bor elementni', ru: 'Элемент с обоими классами' }, { uz: 'Faqat band klassli har elementni', ru: 'Любой элемент только с классом band' }, { uz: 'Hamma katak klassli elementni', ru: 'Все элементы с классом katak' }], correct: 1 },
+  { q: { uz: ".katak.band qaysi elementni topadi?", ru: "Какой элемент находит .katak.band?" }, opts: [{ uz: "katak ichidagi band ni", ru: "band внутри katak" }, { uz: "Ikkala klassi bor elementni", ru: "Элемент с обоими классами" }, { uz: "Faqat band klassi borini", ru: "Любой элемент с классом band" }, { uz: "Hamma katak klassi borini", ru: "Все элементы с классом katak" }], correct: 1 },
   { q: { uz: 'Tugma bosib turilgan payt CSS\'da qanday yoziladi?', ru: 'Как в CSS записать момент, когда кнопку зажали?' }, opts: [{ uz: '.tugma:hover', ru: '.tugma:hover' }, { uz: '.tugma.band', ru: '.tugma.band' }, { uz: '.tugma:active', ru: '.tugma:active' }, { uz: '.tugma .active', ru: '.tugma .active' }], correct: 2 },
   { q: { uz: 'Motion\'ni loyihaga qaysi buyruq qo\'shadi?', ru: 'Какая команда добавляет Motion в проект?' }, opts: [{ uz: 'npm run motion', ru: 'npm run motion' }, { uz: 'npm motion install', ru: 'npm motion install' }, { uz: 'npx motion', ru: 'npx motion' }, { uz: 'npm install motion', ru: 'npm install motion' }], correct: 3 },
-  { q: { uz: 'motion.div dagi initial nimani bildiradi?', ru: 'Что означает initial в motion.div?' }, opts: [{ uz: 'Element chiqishidan oldingi holat', ru: 'Состояние до появления элемента' }, { uz: 'Element to\'xtaydigan oxirgi holat', ru: 'Последнее состояние, где элемент остановится' }, { uz: 'Element ketayotgandagi holat', ru: 'Состояние при уходе элемента' }, { uz: 'Element bosilgan paytdagi holat', ru: 'Состояние при нажатии на элемент' }], correct: 0 },
-  { q: { uz: 'Ro\'yxatdan qator o\'chirilsa, u silliq ketishi uchun nima kerak?', ru: 'Что нужно, чтобы удалённая строка списка ушла плавно?' }, opts: [{ uz: 'initial da opacity: 0', ru: 'opacity: 0 в initial' }, { uz: 'AnimatePresence va exit', ru: 'AnimatePresence и exit' }, { uz: 'animate da y: 0', ru: 'y: 0 в animate' }, { uz: 'CSS\'dagi transition qatori', ru: 'Строка transition в CSS' }], correct: 1 },
-  { q: { uz: 'Do\'kon saytida qaysi harakat ortiqcha?', ru: 'Какое движение на сайте магазина лишнее?' }, opts: [{ uz: 'Savatga qo\'shilganda son o\'zgarishi', ru: 'Смена числа при добавлении в корзину' }, { uz: 'Bosilgan tugma kichrayib qaytishi', ru: 'Нажатая кнопка уменьшается и возвращается' }, { uz: 'Doim miltillaydigan «Aksiya» yozuvi', ru: 'Постоянно мигающая надпись «Акция»' }, { uz: '«Buyurtma qabul qilindi» chiqishi', ru: 'Появление «Заказ принят»' }], correct: 2 },
-  { q: { uz: 'prefers-reduced-motion nimani bildiradi?', ru: 'Что означает prefers-reduced-motion?' }, opts: [{ uz: 'Internet sekin ishlayotganini', ru: 'Что интернет работает медленно' }, { uz: 'Telefon quvvati kam qolganini', ru: 'Что у телефона мало заряда' }, { uz: 'Ekran yorqinligi pasaytirilganini', ru: 'Что яркость экрана снижена' }, { uz: 'Odam harakatni kamaytirganini', ru: 'Что человек уменьшил движение' }], correct: 3 }
+  { q: { uz: "motion.div dagi initial nimani bildiradi?", ru: "Что означает initial в motion.div?" }, opts: [{ uz: "Chiqishdan oldingi holat", ru: "Состояние до появления" }, { uz: "To'xtaydigan oxirgi holat", ru: "Последнее состояние остановки" }, { uz: "Ketayotgandagi holat", ru: "Состояние при уходе" }, { uz: "Bosilgan paytdagi holat", ru: "Состояние при нажатии" }], correct: 0 },
+  { q: { uz: "O'chirilgan qator silliq ketishi uchun nima kerak?", ru: "Что нужно, чтобы удалённая строка ушла плавно?" }, opts: [{ uz: "initial da opacity: 0", ru: "opacity: 0 в initial" }, { uz: "AnimatePresence va exit", ru: "AnimatePresence и exit" }, { uz: "animate da y: 0", ru: "y: 0 в animate" }, { uz: "CSS'dagi transition", ru: "transition в CSS" }], correct: 1 },
+  { q: { uz: "Do'kon saytida qaysi harakat ortiqcha?", ru: "Какое движение на сайте магазина лишнее?" }, opts: [{ uz: "Savatdagi son o'zgarishi", ru: "Смена числа в корзине" }, { uz: "Bosilgan tugma kichrayishi", ru: "Нажатая кнопка уменьшается" }, { uz: "Doim miltillovchi «Aksiya»", ru: "Постоянно мигающая «Акция»" }, { uz: "«Qabul qilindi» belgisi", ru: "Надпись «Принято»" }], correct: 2 },
+  { q: { uz: "prefers-reduced-motion nimani bildiradi?", ru: "Что означает prefers-reduced-motion?" }, opts: [{ uz: "Internet sekinligini", ru: "Что интернет медленный" }, { uz: "Quvvat kamligini", ru: "Что мало заряда" }, { uz: "Ekran xiraligini", ru: "Что экран тусклый" }, { uz: "Harakat kamaytirilganini", ru: "Что движение уменьшено" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2264,7 +2289,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   const qaytar = (i) => { if (done || isMentorLive) return; setStepN(i); };
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({ h: tr(c.h), t: fmtCode(tr(c.t)), prompt: c.prompt && c.prompt.map(l => tr(l)), kimga: c.prompt && tr(c.kimga || { uz: 'Siz → Antigravity', ru: 'Вы → Antigravity' }), xato: c.err && fmtCode(tr(c.err)) }))}
         joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
         tugadi={done} tugadiMatn={tr(doneText)} natija={natija} natijaYorliq={natijaYorliq && tr(natijaYorliq)} ortda={ortda}
@@ -2589,10 +2614,9 @@ export default function AnimationLesson({ lang: langProp, onFinished, liveToken 
         /* SABOQ 11 (F-1005-85/87): navbatdagi bosiladigan element — halqa doim, yengil puls; kam harakat rejimida puls o'chadi, halqa qoladi */
         .an-navbat { box-shadow: 0 0 0 2px ${T.accent}; animation: an-navbat 1.6s ease-out infinite; }
         .an-katak.an-navbat { border-color: ${T.accent}; }
-        @keyframes an-navbat { 0% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 2px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 12px ${fon(T.accent, 0)}; } }
-        .an-navbat-k > .q-bashorat { box-shadow: 0 0 0 2px ${T.accent}; animation: an-navbat 1.6s ease-out infinite; }
-        .q-kirish:has(.an-hook.tanla) .q-variantlar-kol { border-radius: 14px; box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}; animation: an-navbat-g 1.6s ease-out infinite; }
-        @keyframes an-navbat-g { 0% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 9px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 19px ${fon(T.accent, 0)}; } }
+        @keyframes an-navbat { 0% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 1.5px ${fon(T.accent, 0.35)}; } 100% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 8px ${fon(T.accent, 0)}; } }
+        .an-navbat-k .q-chip:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: an-navbat 1.6s ease-out infinite; }
+        .q-kirish:has(.an-hook.tanla) .q-variant:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: an-navbat 1.6s ease-out infinite; }
         .an-qiymatlar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
         .an-chip-kod { font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 13px; }
         .an-chip-l { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 700; color: ${T.ink2}; }
@@ -2648,7 +2672,7 @@ export default function AnimationLesson({ lang: langProp, onFinished, liveToken 
         /* DE-200: kam harakat rejimida maketning o'z harakati to'xtaydi (navbat halqasi qoladi, puls yo'q) */
         @media (prefers-reduced-motion: reduce) {
           .an-katak, .an-katak.bos, .an-kq, .an-yol li, .an-yorl { transition: none !important; }
-          .an-belgi, .an-iz, .an-top.aylan svg, .an-sarlavha.miltilla, .an-katak.yon, .an-silk, .an-navbat, .an-navbat-k > .q-bashorat, .q-kirish:has(.an-hook.tanla) .q-variantlar-kol, .an-flash.yangi .fc-card:not(.flip) .fc-front, .an-fc-ipucha i, p.an-ichki, p.an-nomqator, .an-taxmin, .an-natija-q { animation: none !important; }
+          .an-belgi, .an-iz, .an-top.aylan svg, .an-sarlavha.miltilla, .an-katak.yon, .an-silk, .an-navbat, .an-navbat-k .q-chip:not(:disabled), .q-kirish:has(.an-hook.tanla) .q-variant:not(:disabled), .an-flash.yangi .fc-card:not(.flip) .fc-front, .an-fc-ipucha i, p.an-ichki, p.an-nomqator, .an-taxmin, .an-natija-q { animation: none !important; }
           .an-iz { opacity: 0.55; }
         }
         .btn-white-accent { font-family: 'Manrope', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.2s; background: ${T.paper}; color: ${T.accent}; border: none; border-radius: 12px; letter-spacing: 0.01em; box-shadow: 0 8px 22px -4px ${fon(T.accent, 0.35)}, 0 0 0 1px ${fon(T.accent, 0.12)}; }

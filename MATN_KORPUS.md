@@ -4575,3 +4575,37 @@ Sinf-supurish (17.10): LMS 2–6 — 31 dars tuzatildi (`qurish/f393.py`, `f394.
 ❌ «Yoningizda odam bo'lmasa, uydagilardan biriga qo'ng'iroq qilib so'rang yoki bu qadamni uyda bajaring.»
 ✅ (olinadi — gap yo'q)
 **Sabab:** dars sinfda, sherik bilan o'tiladi; «bo'lmasa»ga mo'ljallangan zaxira-yo'riq ekranga ishonchsizlik qo'shadi va o'quvchi o'qimaydi. Yakka rejimda forma shunchaki ishlaydi, qadamni uyda bajarish uyga vazifada aytiladi. Qidirildi: 7–14-M 102 dars, bitta joy (m9-03 s10) — olindi.
+
+## §SARLAVHA-TA'RIF — ta'rif sarlavhada, pastki qatorda emas (F-1015-348, 19.10, foydalanuvchi: «aniq ma'lumotlarni title'ga yozib qo'yaylik, chalg'itadigan title'lardan ko'ra»)
+- ❌ Sarlavha: «Ulanish ochiq tursa, nima o'zgaradi?» + pastda kichik qator: «Doimiy ulanishni beradigan texnologiya — WebSocket.»
+  ✅ Sarlavha: «Ilova bilan Backend orasidagi doimiy ulanish — WebSocket.» (pastki qator olinadi)
+- ❌ «Backend kim ulanayotganini qayerdan biladi?» + pastda «socket.io — doimiy ulanish bilan ishlashni osonlashtiradigan kutubxona…»
+  ✅ «socket.io — doimiy ulanish bilan ishlashni osonlashtiradigan kutubxona.» + pastda faqat qo'shimcha fakt («imkon bo'lsa WebSocket orqali ulanadi…»)
+- ❌ «Internet qaytgach, ekranda qaysi son turadi?» (bashorat savolining aynan takrori)
+  ✅ «Chekka holatni ataylab yuzaga keltirib tekshirish — buzish.»
+**Qoida:** ekranda yangi atama (ta'rif-qatori «… — atama») bo'lsa, sarlavha shu ta'rif bo'ladi: «[sodda ta'rif] — [atama].» Pastdagi ta'rif-qatori olinadi yoki faqat yangi faktni qoldiradi (takror yo'q, 208). Sarlavha bashorat savolining javobini aytmaydi: javob qismi («nomi va ma'lumoti bor», «tokenni yuboradi», «ulanmoqda») sarlavhaga chiqmaydi — u xulosada qoladi. Sarlavha ≤ 55 belgi tavsiya (lint-olchov).
+Sinf-supurish (19.10): ta'rif-qatori faqat 12-M da topildi (13 qator, 5 dars) — m10-02 (5 ekran), m10-04 (2), m10-05 (2), m10-03 (2) o'zgardi; m10-09 dagi qator ta'rif emas (foiz), tegilmadi; boshqa modullarda 0.
+
+## §BOSILADIGAN-NOM — ko'rsatma ekrandagi aynan bosiladigan narsani nomlaydi (F-1019-01, 19.10, QA: «mijoz kartasini bosing deyilgan, u bosilmayapti»)
+- ❌ «…keyin **mijoz kartasini** (▶) bosing.» — ekranda ikki «mijoz» bor: yo'lak oxiridagi «Mijoz» katagi (bosilmaydi) va pastdagi uch mijoz tugmasi
+  ✅ «…keyin **pastdagi mijozlardan birini** (▶) bosing.» + tugmalar ustida qisqa yorliq «Mijozni kiriting ▶»
+- ❌ «Tartib xato bo'lsa — buyurtma aynan o'sha bekatda **yiqiladi**.» (o'quvchi «yig'iladi» deb o'qidi; natija qatorida boshqa fe'l)
+  ✅ «…aynan o'sha bekatda **to'xtaydi**.» — natija qatori ham «… bekatida to'xtadi»
+**Qoida:** ko'rsatmadagi «… ni bosing» ekranda bitta elementga mos kelsin; shu nomli bosilmaydigan element bo'lsa — joyi bilan aytiladi («pastdagi», «o'ngdagi») yoki bosilmaydigani karta ko'rinishidan chiqariladi. Ko'rsatma va natija bir fe'lni ishlatadi (sinonim taqiq).
+
+## §REJA-BUYRUQ — reja qadamlari buyruq shaklida, sarlavha o'zgarmaydi (F-1015-397, 19.10; QA: «olasiz, qilasiz, ko'rasiz — ba'zi joylar -ing bilan tugagani yaxshi»; foydalanuvchi: «taklifing maqul»)
+
+✅ Reja qadami: «Varaqdan tuzatishni o'qishni **bilib oling**» · «Pitchingizni guruhga 5 daqiqada **ayting**» · «Demongizni **buzing**, agent tuzatadi»
+❌ «Varaqdan tuzatishni o'qishni bilib olasiz» · «Pitchingizni guruhga 5 daqiqada aytasiz» — to'rt qadam ketma-ket «-asiz» bilan tugaydi: ro'yxat va'da kabi o'qiladi, o'quvchiga nima qilishni aytmaydi.
+✅ Sarlavha (o'zgarmaydi): «Bugun pitchingizga guruh varag'idan tuzatish **yozasiz**.» — sarlavha dars natijasini aytadi, qadamlar esa harakatni.
+🔧 Qolip: o'quvchiga qaratilgan «-(a)siz / -ysiz» fe'li → buyruq «-(i)ng» (yozasiz → yozing, sanaysiz → sanang, o'qiysiz → o'qing); «bilasiz» → «bilib oling». Boshqa shaxs fe'li («agent tuzatadi», «hakam to'ldiradi») va ot qadami («Ega sahifasi») o'zgarmaydi. Ruschasi ham buyruq: «Найдёте» → «Найдите», «Научитесь» → «Научитесь» (shakli bir xil). §40 dagi «Dars oxirida … bilib olasiz» — sarlavha qoidasi, kuchda qoladi.
+
+## §QAROR-CHORLOV — «birma-bir bosing» emas, «har savolga javob bering» (F-1019-07, 19.10; DE 213.22 — mashq qaror bo'ladi)
+
+- ❌ «Oynaning 4 panelini **birma-bir bosib chiqing** — har birining vazifasini aytib beraman.» (VsCodeLesson) — o'quvchi hech narsani hal qilmaydi, faqat ochadi
+  ✅ «Oynada 4 ta panel bor. **Har savolga javob bering** — to'g'ri panel yonadi va uning vazifasini aytib beraman.»
+- ❌ «Bo'laklarni birma-bir qo'shib, zal savoliga qarang.» (m8-11) · «tugmalarni birma-bir bosib, ustunlarga qarang» (m10-12)
+  ✅ «Zalning har savoliga javob bering — slaydga nima qo'shilishini ko'rasiz.» · «Har savolga javob bering — ustunlar qanday o'zgarishini ko'rasiz.»
+- ❌ Nav: «Tugmalarni bosing» · «Bo'laklarni qo'shing (2/4)» · «4 panelni bosib chiqing»  ✅ Nav: «Savollarga javob bering» (sanoq — bitta joyda, 213.21)
+**Qoida:** chorlov qaror qadamiga chaqiradi va natijani va'da qiladi («… — X yonadi / o'zgaradi»). §22 va §46 dagi ✅ namunalarning NEGA-qismi va «o'rnida ko'ring» iborasi kuchda; ulardagi «birma-bir bosing» chorlovi shu bo'lim bilan almashadi.
+🔧 Tekshiruv: `grep -nE "birma-bir (bos|qo'sh|och)|Tugmalarni bosing|Yoqilgan (qadam|tugma)ni bosing"` — mentor/nav matnida topilsa, ekran passiv: qaror qadamiga aylantiriladi (o'z doirasida) yoki KATTA'ga yoziladi.

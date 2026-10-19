@@ -98,6 +98,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -175,8 +200,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -862,7 +887,7 @@ const ChiqishSahna = ({ yorliq, hakam, taymer, laptop, telefon = 8, telKor = fal
   <div className={cxx('cs-sahna', telYoq && 'tel-yoq', className)}>
     {!telYoq && <div className="cs-sahna-tel"><JamoaTelefon son={telefon} kor={telKor} /><span className="cs-qur-y">{tr({ uz: '2-qurilma · telefon brauzeri', ru: '2-е устройство · браузер телефона' })}</span></div>}
     <div className="cs-sahna-ong">
-      {yorliq && !telYoq && <span className="cs-sahna-y">{yorliq}</span>}
+      {yorliq && <span className="cs-sahna-y">{yorliq}</span>}
       {hakam && <HakamKarta {...hakam} />}
       {taymer && <TaymerQator {...taymer} />}
       {laptop && <Laptop {...laptop} />}
@@ -960,10 +985,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (QReja; vizual bir marta o'zi yuradi, tugagach «Boshlaymiz» halqada) =====
 // MD «matnsiz skelet» → SABOQ A4/33: bo'sh chiziq o'rnida bo'lak va bo'lim nomlari (2, 3-ekran kashfiyoti ochilmaydi — belgilar yo'q).
 const REJA = [
-  { t: { uz: "Butun chiqish qaysi tartibda o'tishini bilib olasiz", ru: 'Узнаете, в каком порядке идёт всё выступление' }, teg: { uz: "to'liq repetitsiya", ru: 'полная репетиция' } },
-  { t: { uz: "Hakam chiqishga qanday belgi qo'yishini bilasiz", ru: 'Узнаете, какие отметки судья ставит выступлению' }, teg: { uz: "hakam varag'i", ru: 'лист судьи' } },
-  { t: { uz: 'Chiqishdan oldin demo qurilmalarini tekshirasiz', ru: 'Перед выступлением проверите устройства для демо' }, teg: { uz: 'B reja', ru: 'план Б' } },
-  { t: { uz: "Chiqishingizni o'tasiz, hakam varaqni to'ldiradi", ru: 'Пройдёте своё выступление, судья заполнит лист' }, teg: { uz: 'savol-javob', ru: 'вопросы-ответы' } }
+  { t: { uz: "Butun chiqish qaysi tartibda o'tishini bilib oling", ru: 'Узнайте, в каком порядке идёт всё выступление' }, teg: { uz: "to'liq repetitsiya", ru: 'полная репетиция' } },
+  { t: { uz: "Hakam chiqishga qanday belgi qo'yishini bilib oling", ru: 'Узнайте, какие отметки судья ставит выступлению' }, teg: { uz: "hakam varag'i", ru: 'лист судьи' } },
+  { t: { uz: 'Chiqishdan oldin demo qurilmalarini tekshiring', ru: 'Перед выступлением проверьте устройства для демо' }, teg: { uz: 'B reja', ru: 'план Б' } },
+  { t: { uz: "Chiqishingizni o'ting, hakam varaqni to'ldiradi", ru: 'Пройдите своё выступление, судья заполнит лист' }, teg: { uz: 'savol-javob', ru: 'вопросы-ответы' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const [tayyor, setTayyor] = useState(false);
@@ -976,7 +1001,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         chapYorliq={tr({ uz: "hakamlar oldidan to'liq repetitsiya", ru: 'полная репетиция перед судьями' })}
         chap={<div className="cs-reja">
           <TaymerQator rejim="yur" kechik={0.3} dav={3.6} nomlar={false} sj={[{ holat: 'anim', d: 4.1 }, { holat: 'anim', d: 4.4 }, { holat: 'anim', d: 4.7 }]} />
-          <Varaq className="cs-reja-v" qatorlar={[{ band: 'vaqt' }, { band: 'demo' }, { band: 'savol:1' }]} />
+          <Varaq className="cs-reja-v" sarlavha={tr({ uz: "Hakam varag'i · Mentor misoli", ru: 'Лист судьи · пример Ментора' })} qatorlar={[{ band: 'vaqt', belgi: 'sigdi' }, { band: 'demo', belgi: 'b-reja' }, { band: 'savol:bozor', nom: tr(HAKAM_SAVOL.bozor), belgi: 'fakt' }]} /> {/* F-1015-394: bo'sh katak emas — to'ldirilgan namuna */}
         </div>}
         qadamlar={REJA.map(r => ({ t: tr(r.t) }))}
       />
@@ -1010,16 +1035,17 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       rejim: q === 1 ? 'yur' : q === 3 && f < 6 ? 'b' : 'toliq', dav: 2.4, vaqtlar: true,
       sj: q >= 2 ? [0, 1, 2].map(i => (q === 2 ? { holat: 'anim', d: 0.3 + i * 0.45 } : { holat: 'tugadi' })) : null,
       oxir: q >= 2 && (q > 2 || f >= 4) ? '8:00' : null,
-      ostida: <YechimQadam qadamlar={MENTOR_SSENARIY.map(s => tr(s))} n={demoN} />
+      ostida: q === 1 && !tugadi ? <YechimQadam qadamlar={MENTOR_SSENARIY.map(s => tr(s))} n={demoN} /> : null
     };
   const yorliq = tr({ uz: 'Mentor misoli · reja', ru: 'Пример Ментора · план' });
   const laptop = q === 3
-    ? { yon: true, ulanish: f < 2, video: f >= 2, qaytadan: f >= 1, pufak: f >= 2 ? tr(B_REJA_GAPI) : null, son: 9, bosildi: true, ixcham: tugadi, yonQosh: tugadi && <span className="cs-sahna-y">{yorliq}</span> }
+    ? { yon: true, ulanish: f < 2, video: f >= 2, qaytadan: f >= 1, pufak: f >= 2 ? tr(B_REJA_GAPI) : null, son: 9, bosildi: true }
     : { yon: true, son, bosildi: q >= 2 || (q === 1 && f >= 3) };
-  const sahna = <ChiqishSahna telYoq={tugadi} className="katta" yorliq={yorliq} hakam={{ savollar }} taymer={taymer} laptop={laptop} telefon={son} telKor={q >= 2 || (q === 1 && f >= 5)} />;
+  // F-1015-394: bitta diqqat — chiziq doim, ostida faqat shu qadamning elementi (1: laptop · 2: hakam · 3: B reja); telefon yo'q
+  const sahna = <ChiqishSahna telYoq className="katta" yorliq={yorliq} hakam={q === 2 ? { savollar } : null} taymer={taymer} laptop={q === 1 || q === 3 ? laptop : null} />;
   const tx = S2_TAXMIN.find(t => t.k === taxmin);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · butun chiqish', ru: 'Понятие · всё выступление' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: `Tugmalarni bosing (${q}/3)`, ru: `Нажмите кнопки (${q}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · butun chiqish', ru: 'Понятие · всё выступление' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: `Tugmalarni bosing`, ru: `Нажмите кнопки` })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
         sarlavha={tr({ uz: <>Pitch, demo va savollar <A>birga qanday o'tadi?</A></>, ru: <>Как питч, демо и вопросы <A>проходят вместе?</A></> })}
         mentor={<Mentor>{tr({ uz: "Tugmalarni birma-bir bosing va Mentor chiqishi chiziqda qanday yig'ilishiga qarang.", ru: 'Нажимайте кнопки по одной и смотрите, как выступление Ментора собирается на линии.' })}</Mentor>}
@@ -1029,7 +1055,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {q > 0 && <QIzoh key={q}>{tr(S2_IZOH[q - 1])}</QIzoh>}
           {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — chiziqqa nima qo'shiladi?", ru: 'Нажмите активную кнопку — что добавится на линию?' }))}
         </div>}
-        vizual={!taxmin ? null : sahna}
+        vizual={!taxmin && !done ? null : sahna}
         xulosa={done && f >= 6 && <XulosaQ taxmin={tx && <TaxminQ togri={taxmin === '8'} aslida={tr({ uz: '8 daqiqagacha', ru: 'до 8 минут' })} />}
           matn={tr({ uz: "Chiqish 8 daqiqagacha; demo ochilmasa taymer to'xtamaydi — video bo'lsa B reja, bo'lmasa og'zaki.", ru: 'Выступление — до 8 минут; если демо не откроется, таймер не останавливается: есть видео — план Б, нет — устно.' })}
           izoh={tr(S2_IZOH[2])} />}
@@ -1076,9 +1102,9 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const qatorlar = [
     { band: 'vaqt', kulrang: tr({ uz: 'm:ss — taymer yozadi', ru: 'м:сс — пишет таймер' }) },
     qator(0, 'demo', null),
-    qator(1, 'savol:bozor', n >= 1 ? tr(HAKAM_SAVOL.bozor) : tr({ uz: '1-savol', ru: '1-й вопрос' })),
-    qator(2, 'savol:jamoa', n >= 2 ? tr(HAKAM_SAVOL.jamoa) : tr({ uz: '2-savol', ru: '2-й вопрос' }))
-  ];
+    qator(1, 'savol:bozor', tr(HAKAM_SAVOL.bozor)),
+    qator(2, 'savol:jamoa', tr(HAKAM_SAVOL.jamoa))
+  ].filter((r, i) => i < 2 || i - 1 <= n); // F-1015-394: kelmagan savol qatori — bo'sh katak bilan ko'rinmaydi
   const varaq = <Varaq qatorlar={qatorlar} yonadi={tugadi} sarlavha={tugadi && <Yoziladi matn={tr({ uz: "Hakam varag'i", ru: 'Лист судьи' })} />} className={tugadi ? 'toliq' : ''} />;
   const vaziyat = !done && <div className="cs-vz" ref={kartaRef} key={'v' + n}>
     <span className="cs-sahna-y">{tr({ uz: 'mashq vaziyati', ru: 'учебная ситуация' })}</span>
@@ -1090,7 +1116,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       </div>}
   </div>;
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · hakam belgilari', ru: 'Понятие · отметки судьи' })} screen={screen} scrollSignal={n} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Belgilarni qo'ying (${n}/3)`, ru: `Поставьте отметки (${n}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · hakam belgilari', ru: 'Понятие · отметки судьи' })} screen={screen} scrollSignal={n} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Belgilarni qo'ying", ru: 'Поставьте отметки' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi}
         sarlavha={tr({ uz: <>Hakam butun chiqishga <A>qanday belgi qo'yadi?</A></>, ru: <>Какие отметки судья <A>ставит всему выступлению?</A></> })}
         mentor={<Mentor>{tr({ uz: "Har vaziyatni o'qing va varaqdagi mos belgini bosing.", ru: 'Прочитайте каждую ситуацию и нажмите подходящую отметку в листе.' })}</Mentor>}
@@ -1131,7 +1157,7 @@ const Screen4 = (props) => (
       3: { uz: "Video tayyor — hakam Yechimni ko'rmay qoladimi?", ru: 'Видео готово — неужели судья не увидит Решение?' },
       default: { uz: "Demo ochilmasa, to'liq repetitsiyada nima qilinadi?", ru: 'Что делают на полной репетиции, если демо не открылось?' }
     }}
-    vizual={<KitobVideo />} />
+ />
 );
 
 // ===== SCREEN 5 — CHIQISHDAN OLDIN (QMustaqil; ketma-ket karta, 4 qism; tanlov — kuzatilgan holat → pm-m12d13-repetitsiya.tayyorlov) =====
@@ -1217,7 +1243,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
     <MentorPracticeStats live={_live} screen={screen} yorliq={{ uz: 'Chiqishga tayyorlanganlar', ru: 'Подготовились к выступлению' }} son />
   </div>;
   return (
-    <Stage eyebrow={tr({ uz: 'Mustaqil ish · chiqishdan oldin', ru: 'Самостоятельная работа · перед выступлением' })} screen={screen} scrollSignal={(joriy ?? 9) * 10 + belgilangan} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={saqlandi} disabled={!saqlandi && !isMentor} label={saqlandi || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Kartalarni belgilang (${belgilangan}/4)`, ru: `Отметьте карточки (${belgilangan}/4)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Mustaqil ish · chiqishdan oldin', ru: 'Самостоятельная работа · перед выступлением' })} screen={screen} scrollSignal={(joriy ?? 9) * 10 + belgilangan} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={saqlandi} disabled={!saqlandi && !isMentor} label={saqlandi || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Kartalarni belgilang`, ru: `Отметьте карточки` })} onClick={onNext} /></>}>
       <QMustaqil
         sarlavha={tr({ uz: <>Chiqishdan oldin <A>to'rt narsani tekshiring.</A></>, ru: <>Перед выступлением <A>проверьте четыре вещи.</A></> })}
         mentor={<Mentor>{tr({ uz: "Har kartadagi ishni laptop va telefoningizda qiling, keyin nima ko'rganingizni belgilang.", ru: 'Сделайте дело из каждой карточки на ноутбуке и телефоне, потом отметьте, что увидели.' })}</Mentor>}
@@ -1527,7 +1553,7 @@ const Screen8 = (props) => (
       3: { uz: "O'zgarmagan pitch yana o'sha vaqtni olmaydimi?", ru: 'Разве неизменённый питч не займёт столько же времени?' },
       default: { uz: 'Vaqt oshsa, pitchdan nimani olasiz?', ru: 'Если время превышено, что вы уберёте из питча?' }
     }}
-    vizual={<VaqtQator />} />
+ />
 );
 
 // ===== 🏅 BADGES (nishonlar, 4 — PM: «!» bilan, 9.23) — ish qilingan ekranlarda; Full Rehearsal! — bitta tekin bonus (P-048) =====
@@ -1614,18 +1640,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD), to'g'ri javob o'rni: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: "To'liq repetitsiyada demo ochilmadi. Taymer nima bo'ladi?", ru: 'На полной репетиции демо не открылось. Что будет с таймером?' }, opts: [{ uz: "To'xtamaydi, chiqish davom etadi", ru: 'Не останавливается, выступление продолжается' }, { uz: 'Pauza qilinib, keyin davom etadi', ru: 'Ставится на паузу, потом продолжается' }, { uz: 'Nolga qaytib, boshidan boshlanadi', ru: 'Сбрасывается на ноль, начинается сначала' }, { uz: 'Demo ochilguncha kutib turadi', ru: 'Ждёт, пока откроется демо' }], correct: 0 },
+  { q: { uz: "Repetitsiyada demo ochilmadi. Taymer nima bo'ladi?", ru: "На репетиции демо не открылось. Что с таймером?" }, opts: [{ uz: "To'xtamaydi, yuraveradi", ru: "Не останавливается, идёт" }, { uz: "Pauza qilinadi", ru: "Ставится на паузу" }, { uz: "Nolga qaytadi", ru: "Сбрасывается на ноль" }, { uz: "Demoni kutib turadi", ru: "Ждёт демо" }], correct: 0 },
   { q: { uz: 'Bu mashqda pitchdan keyin hakam nechta savol beradi?', ru: 'Сколько вопросов задаёт судья после питча в этом упражнении?' }, opts: [{ uz: 'Bitta savol', ru: 'Один вопрос' }, { uz: 'Uchta savol', ru: 'Три вопроса' }, { uz: 'Oltita savol', ru: 'Шесть вопросов' }, { uz: 'Beshta savol', ru: 'Пять вопросов' }], correct: 1 },
-  { q: { uz: "Hakam varag'i nimaga belgi qo'yadi?", ru: 'Чему ставит отметки лист судьи?' }, opts: [{ uz: "Har bo'lakdagi gapga alohida-alohida", ru: 'Каждой фразе в каждой части отдельно' }, { uz: "Slaydlarning ko'rinishi va rangiga", ru: 'Виду и цвету слайдов' }, { uz: 'Vaqt, demo va savollarga javobga', ru: 'Времени, демо и ответам на вопросы' }, { uz: 'Ilova kodining hajmi va tezligiga', ru: 'Объёму и скорости кода приложения' }], correct: 2 },
-  { q: { uz: 'Javob: «Bilmayman, bu sonni keyin aniqlab beraman». Varaqda qaysi belgi?', ru: 'Ответ: «Не знаю, это число уточню позже». Какая отметка в листе?' }, opts: [{ uz: 'Son yoki fakt bilan', ru: 'С числом или фактом' }, { uz: 'Javob savolga tegmadi', ru: 'Ответ не по вопросу' }, { uz: 'Belgisiz qoldiriladi', ru: 'Остаётся без отметки' }, { uz: '«Tekshirib aytaman»', ru: '«Проверю и скажу»' }], correct: 3 },
-  { q: { uz: "Chiqishdan oldin Backend nega uyg'otiladi?", ru: 'Зачем перед выступлением будят Backend?' }, opts: [{ uz: 'Demo sekin ochilmasligi uchun', ru: 'Чтобы демо не открывалось медленно' }, { uz: "Hakam kodni ko'ra olishi uchun", ru: 'Чтобы судья мог увидеть код' }, { uz: 'Video tezroq ochilishi uchun', ru: 'Чтобы видео открылось быстрее' }, { uz: 'Telefon zaryadi tejalishi uchun', ru: 'Чтобы сэкономить заряд телефона' }], correct: 0 },
+  { q: { uz: "Hakam varag'i nimaga belgi qo'yadi?", ru: "Что отмечает лист судьи?" }, opts: [{ uz: "Har bo'lakdagi gapga", ru: "Фразы в каждой части" }, { uz: "Slaydlar ko'rinishiga", ru: "Вид слайдов" }, { uz: "Vaqt, demo va javoblarga", ru: "Время, демо и ответы" }, { uz: "Kod hajmi va tezligiga", ru: "Объём и скорость кода" }], correct: 2 },
+  { q: { uz: "Javob: «Bu sonni keyin aniqlab beraman». Qaysi belgi?", ru: "Ответ: «Это число уточню позже». Какой знак?" }, opts: [{ uz: "Son yoki fakt bilan", ru: "С числом или фактом" }, { uz: "Javob savolga tegmadi", ru: "Ответ не по вопросу" }, { uz: "Belgisiz qoldiriladi", ru: "Без знака" }, { uz: "Tekshirib aytaman", ru: "Проверю и скажу" }], correct: 3 },
+  { q: { uz: "Chiqishdan oldin Backend nega uyg'otiladi?", ru: "Зачем будить Backend перед выступлением?" }, opts: [{ uz: "Demo sekin ochilmasin", ru: "Чтобы демо не открывалось медленно" }, { uz: "Hakam kodni ko'rsin", ru: "Чтобы судья увидел код" }, { uz: "Video tez ochilsin", ru: "Чтобы видео открылось быстрее" }, { uz: "Telefon zaryadi tejalsin", ru: "Чтобы сэкономить заряд" }], correct: 0 },
   { q: { uz: "Demo yo'liga qaysi hisob bilan kirasiz?", ru: 'С каким аккаунтом вы входите в путь демо?' }, opts: [{ uz: 'Shaxsiy hisobingiz bilan', ru: 'Со своим личным аккаунтом' }, { uz: 'Namuna akkauntingiz bilan', ru: 'С демо-аккаунтом' }, { uz: 'Sinfdoshning hisobi bilan', ru: 'С аккаунтом одноклассника' }, { uz: 'Hakam bergan hisob bilan', ru: 'С аккаунтом, который дал судья' }], correct: 1 },
-  { q: { uz: 'Pitch 5:20 da tugadi. Varaqda vaqt qatori qanday?', ru: 'Питч закончился на 5:20. Что в строке времени в листе?' }, opts: [{ uz: "Sig'di — chunki to'xtatildi", ru: 'Уложились — ведь остановили' }, { uz: 'Belgisiz — hakam bilmaydi', ru: 'Без отметки — судья не знает' }, { uz: "Oshdi — taymer qizil bo'ldi", ru: 'Превысили — таймер стал красным' }, { uz: 'B reja — vaqt yetmay qoldi', ru: 'План Б — не хватило времени' }], correct: 2 },
-  { q: { uz: 'Mentor misolida B reja video qayerda turadi?', ru: 'Где в примере Ментора хранится видео плана Б?' }, opts: [{ uz: 'Hakamning telefonida turadi', ru: 'На телефоне судьи' }, { uz: 'Sinf chatida, havola bilan', ru: 'В чате класса, ссылкой' }, { uz: 'Ochiq video saytida turadi', ru: 'На открытом видеосайте' }, { uz: 'Demo ochiq turgan laptopda', ru: 'На ноутбуке, где открыто демо' }], correct: 3 },
-  { q: { uz: '«Odamlar hozir bu ishni nima bilan qiladi?» Javobda nima aytasiz?', ru: '«С помощью чего люди делают это сейчас?» Что скажете в ответе?' }, opts: [{ uz: "Ular hozir qaysi yo'l bilan qilishini", ru: 'Каким способом они делают это сейчас' }, { uz: 'Ilovangizdagi barcha imkoniyatlarni', ru: 'Все возможности вашего приложения' }, { uz: 'Kelgusi oyda chiqadigan yangiliklarni', ru: 'Новинки, которые выйдут в следующем месяце' }, { uz: 'Savolga emas, pitchdagi gapingizni', ru: 'Не ответ на вопрос, а фразу из питча' }], correct: 0 },
-  { q: { uz: "Hakam varag'ida hakamning ismi qayerda turadi?", ru: 'Где в листе судьи стоит имя судьи?' }, opts: [{ uz: 'Varaq tepasida, sarlavhada', ru: 'Вверху листа, в заголовке' }, { uz: 'Hech qayerda, hakam ismsiz', ru: 'Нигде, судья без имени' }, { uz: 'Har belgining yonida yozilib', ru: 'Рядом с каждой отметкой' }, { uz: 'Mentor statistikasida, ochiq', ru: 'В статистике Ментора, открыто' }], correct: 1 },
-  { q: { uz: 'Chiqishdan keyin demo holati nima qilinadi?', ru: 'Что делают с состоянием демо после выступления?' }, opts: [{ uz: "O'sha holatda qoldiriladi", ru: 'Оставляют как есть' }, { uz: 'Hakamga topshirib qo\'yiladi', ru: 'Передают судье' }, { uz: 'Boshiga qaytarib qo\'yiladi', ru: 'Возвращают в исходное состояние' }, { uz: "Hammasi o'chirib tashlanadi", ru: 'Всё удаляют' }], correct: 2 },
-  { q: { uz: 'Guruhda taymerni kim boshqaradi?', ru: 'Кто в группе управляет таймером?' }, opts: [{ uz: "Gapirayotgan o'quvchining o'zi", ru: 'Сам выступающий ученик' }, { uz: 'Mentor, proyektordagi taymerda', ru: 'Ментор, на таймере проектора' }, { uz: 'Hech kim — chiqish taymersiz', ru: 'Никто — выступление без таймера' }, { uz: "Hakam bo'lib turgan tinglovchi", ru: 'Слушатель, который сейчас судья' }], correct: 3 }
+  { q: { uz: "Pitch 5:20 da tugadi. Varaqda vaqt qatori qanday?", ru: "Питч закончился на 5:20. Что в строке времени?" }, opts: [{ uz: "Sig'di", ru: "Уложился" }, { uz: "Belgisiz", ru: "Без знака" }, { uz: "Oshdi", ru: "Превысил" }, { uz: "B reja", ru: "План Б" }], correct: 2 },
+  { q: { uz: "Mentor misolida B reja video qayerda turadi?", ru: "Где в примере Ментора видео плана Б?" }, opts: [{ uz: "Hakam telefonida", ru: "На телефоне судьи" }, { uz: "Sinf chatida", ru: "В чате класса" }, { uz: "Ochiq video saytida", ru: "На открытом видеосайте" }, { uz: "Demo turgan laptopda", ru: "На ноутбуке с демо" }], correct: 3 },
+  { q: { uz: "«Odamlar hozir bu ishni nima bilan qiladi?» Nima aytasiz?", ru: "«Чем люди сейчас это делают?» Что скажете?" }, opts: [{ uz: "Hozirgi yo'lni", ru: "Нынешний способ" }, { uz: "Ilova imkoniyatlarini", ru: "Возможности приложения" }, { uz: "Kelgusi yangiliklarni", ru: "Будущие новинки" }, { uz: "Pitchdagi gapimni", ru: "Фразу из питча" }], correct: 0 },
+  { q: { uz: "Hakam varag'ida hakamning ismi qayerda?", ru: "Где имя судьи в листе судьи?" }, opts: [{ uz: "Varaq tepasida", ru: "Вверху листа" }, { uz: "Hech qayerda", ru: "Нигде" }, { uz: "Har belgi yonida", ru: "Рядом с каждым знаком" }, { uz: "Mentor statistikasida", ru: "В статистике Ментора" }], correct: 1 },
+  { q: { uz: "Chiqishdan keyin demo holati nima qilinadi?", ru: "Что делают с состоянием демо после выступления?" }, opts: [{ uz: "O'sha holatda qoladi", ru: "Оставляют как есть" }, { uz: "Hakamga topshiriladi", ru: "Передают судье" }, { uz: "Boshiga qaytariladi", ru: "Возвращают в начало" }, { uz: "Hammasi o'chiriladi", ru: "Всё удаляют" }], correct: 2 },
+  { q: { uz: "Guruhda taymerni kim boshqaradi?", ru: "Кто в группе управляет таймером?" }, opts: [{ uz: "Gapirayotgan o'quvchi", ru: "Выступающий ученик" }, { uz: "Mentor, proyektorda", ru: "Ментор, на проекторе" }, { uz: "Hech kim, taymer yo'q", ru: "Никто, таймера нет" }, { uz: "Hakam bo'lgan tinglovchi", ru: "Слушатель-судья" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2603,9 +2629,9 @@ export default function PmDressRehearsalLesson({ lang: langProp, onFinished, liv
         .cs-tm.katta .cs-tm-sj { flex-basis: 168px; }
         .cs-yq { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
         .cs-yq-y { font-size: 12.5px; font-weight: 800; color: ${T.ink}; margin-right: 2px; }
-        .cs-yq-q { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: ${T.ink2}; background: ${T.paper}; border: 1px solid ${T.line}; border-radius: 8px; padding: 3px 9px; transition: all .3s; }
+        .cs-yq-q { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: ${T.ink2}; padding: 3px 4px; transition: all .3s; }
         .cs-yq-q > i { font-style: normal; font-weight: 800; font-size: 11px; color: ${T.ink2}; }
-        .cs-yq-q.on { color: ${T.ink}; border-color: ${T.accent}; background: ${T.accentSoft}; animation: cs-pop .35s ease-out; }
+        .cs-yq-q.on { color: ${T.ink}; animation: cs-pop .35s ease-out; }
         .cs-yq-q.on > i { color: ${T.accent}; }
         .cs-yq-q.kul { background: ${T.bg}; }
         /* Kirish maketi: uch alohida karta + bo'sh uzuq chiziq («?») */
@@ -2638,7 +2664,7 @@ export default function PmDressRehearsalLesson({ lang: langProp, onFinished, liv
         .cs-vq-tug { display: flex; flex-wrap: wrap; gap: 6px; }
         .cs-vq-b { display: inline-flex; flex-wrap: wrap; gap: 6px; }
         .cs-vq-k { font-size: 13.5px; color: ${T.ink2}; font-family: 'JetBrains Mono', monospace; }
-        .cs-vq-bosh { display: inline-block; width: 120px; height: 24px; border-radius: 7px; border: 1.5px solid transparent; background: ${T.bg}; }
+        .cs-vq-bosh { display: inline-block; width: 0; height: 24px; }
         .cs-belgi-c { display: inline-flex; align-items: center; font-size: 13.5px; font-weight: 800; border-radius: 999px; padding: 3px 11px; white-space: nowrap; animation: cs-pop .35s ease-out; }
         .cs-belgi-c.ok { color: ${T.ok}; background: ${T.okFon}; } .cs-belgi-c.acc { color: ${T.accent}; background: ${T.accentSoft}; } .cs-belgi-c.err { color: ${T.err}; background: ${T.errFon}; }
         .q-chip.cs-belgi:not(:disabled):not(.err) { border-color: ${fon(T.accent, 0.5)}; animation: cs-chorla 1.8s ease-out .4s 2; }

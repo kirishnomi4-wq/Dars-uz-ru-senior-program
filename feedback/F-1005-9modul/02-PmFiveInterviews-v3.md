@@ -73,10 +73,10 @@ Tashqi audit (ChatGPT) Filtri: `02-FILTR.md` — 05.10.2026 qo'llandi.
   - Nima qiyin bo'ldi? — «Kim birinchi qo'ng'iroq qilganini eslay olmadim»
   oxirida karta chetida yashil chiziq.
 - O'ng (01 · matn; bosilmaydi — P-015; teg yo'q — matnni takrorlardi) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*:
-  - 01 · Qaysi savol bo'lib o'tgan ishni so'rashini ajratasiz
-  - 02 · O'yinchi bilan suhbatni to'rt qatorga yozasiz
-  - 03 · Kitobdagi ona qaysi savolga voqeani aytganini ko'rasiz
-  - 04 · O'z muammongiz bo'yicha sinfdoshingiz bilan suhbatlashasiz
+  - 01 · Qaysi savol bo'lib o'tgan ishni so'rashini ajrating
+  - 02 · O'yinchi bilan suhbatni to'rt qatorga yozing
+  - 03 · Kitobdagi ona qaysi savolga voqeani aytganini ko'ring
+  - 04 · O'z muammongiz bo'yicha sinfdoshingiz bilan suhbatlashing
 - Harakat yo'q (reja ekrani) — vizual o'zi yoziladi.
 - Tugmalar: Orqaga · Boshlaymiz →
 

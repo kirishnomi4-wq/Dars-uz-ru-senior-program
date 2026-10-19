@@ -33,7 +33,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QTaxmin, QXato, QXulosa, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QTaxmin, QXato, QXulosa, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
 
 
 
@@ -106,6 +106,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -183,8 +208,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -809,9 +834,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chap — tayyor holat, bir marta o'zi yuradi; o'ng — uch ish, teg yo'q — 172) =====
 const REJA = [
-  { uz: 'Video ssenariysini yozasiz', ru: 'Напишете сценарий видео' },
-  { uz: 'Ekran yozuvi bilan videoni yozasiz', ru: 'Запишете видео записью экрана' },
-  { uz: "Videoni tekshirib, kim ko'rishini hal qilasiz", ru: 'Проверите видео и решите, кто его увидит' }
+  { uz: 'Video ssenariysini yozing', ru: 'Напишите сценарий видео' },
+  { uz: 'Ekran yozuvi bilan videoni yozing', ru: 'Запишите видео записью экрана' },
+  { uz: "Videoni tekshirib, kim ko'rishini hal qiling", ru: 'Проверьте видео и решите, кто его увидит' }
 ];
 const RejaSahna = () => {
   const [n, setN] = useState(0);
@@ -956,7 +981,7 @@ const Screen4 = (props) => (
       3: { uz: 'Bu — ilovani kim ishlatishi. Qaror qayerda?', ru: 'Это о том, кто пользуется. Где решение?' },
       default: { uz: 'Qaror va uning sababi qayerda?', ru: 'Где решение и его причина?' }
     }}
-    vizual={<Chiziq holat={['bosh', 'bosh', 'joriy']} matn={[null, null, tr({ uz: "Xaritani qo'shmadim…", ru: 'Карту не добавил…' })]} nom={[null, null, tr(VIDEO_BOLAKLAR[2].nom)]} />} />
+ />
 );
 
 // ===== SCREEN 5 — TUSHUNCHA (bosib toping: 4 mashq kadri bittadan — P-040, E 53; har kadrda yopiladigan joy va ko'rsatsa bo'ladigan joy) =====
@@ -1065,7 +1090,7 @@ const Screen7 = (props) => (
       3: { uz: "Sinfdoshga ham kalit ko'rinadi. Yozishdan oldin-chi?", ru: 'Однокласснику тоже виден ключ. А до записи?' },
       default: { uz: 'Yozishdan oldin nima qilinadi?', ru: 'Что делают до записи?' }
     }}
-    vizual={<YopilishSahna />} />
+ />
 );
 const YopilishSahna = () => {
   const [yopildi, setYopildi] = useState(false);
@@ -1166,18 +1191,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Video-portfolio nima?', ru: 'Что такое видео-портфолио?' }, opts: [{ uz: 'Siz va mahsulot haqida 3 daqiqagacha video', ru: 'Видео о вас и продукте до 3 минут' }, { uz: 'Ilovaning hamma funksiyasi sanalgan uzun video', ru: 'Длинное видео со списком всех функций' }, { uz: 'Sinf kanali uchun 3 daqiqalik reklama videosi', ru: '3-минутный рекламный ролик для канала класса' }, { uz: 'Kodni qatorma-qator tushuntiradigan uzun video', ru: 'Длинное видео, объясняющее код построчно' }], correct: 0 },
-  { q: { uz: '«Kimman» bo\'lagida nima aytiladi?', ru: 'Что говорится в части «Кто я»?' }, opts: [{ uz: 'Maktabim va sinfimni to\'liq aytib beraman', ru: 'Полностью называю школу и класс' }, { uz: 'Kim ekanim va nima qilishimni bir gapda', ru: 'Кто я и чем занимаюсь — одной фразой' }, { uz: 'Ilovadagi o\'nta funksiyani sanab beraman', ru: 'Перечисляю десять функций приложения' }, { uz: 'Bir gapda keyingi oydagi rejamni aytaman', ru: 'Одной фразой — план на следующий месяц' }], correct: 1 },
-  { q: { uz: 'Bu videoda yuz va ism qanday bo\'ladi?', ru: 'Как в этом видео с лицом и именем?' }, opts: [{ uz: 'Ikkalasi ham videoda bo\'lishi shart', ru: 'Оба обязательно должны быть' }, { uz: 'Yuz shart, ismni aytish kerak emas', ru: 'Лицо обязательно, имя не нужно' }, { uz: 'Ikkalasi ham shart emas, ixtiyoriy', ru: 'Оба не обязательны, по желанию' }, { uz: 'Ism shart, yuzni ko\'rsatish kerak emas', ru: 'Имя обязательно, лицо не нужно' }], correct: 2 },
-  { q: { uz: 'Yozishdan oldin Backend\'ni nega uyg\'otasiz?', ru: 'Зачем перед записью будить Backend?' }, opts: [{ uz: 'Video sifati yaxshiroq chiqishi uchun', ru: 'Чтобы видео было качественнее' }, { uz: 'Ovoz balandroq va tiniq yozilishi uchun', ru: 'Чтобы голос записался громче и чище' }, { uz: 'Demo oynasi chiroyliroq ko\'rinishi uchun', ru: 'Чтобы окно демо выглядело красивее' }, { uz: 'Demo boshida uzoq kutib qolmaslik uchun', ru: 'Чтобы не ждать долго в начале демо' }], correct: 3 },
-  { q: { uz: 'Yozishdan oldin qaysi oynalarni yopasiz?', ru: 'Какие окна закрыть перед записью?' }, opts: [{ uz: 'Chat va pochta oynalarini', ru: 'Окна чата и почты' }, { uz: 'Demo ochiq turgan oynasini', ru: 'Окно, где открыто демо' }, { uz: 'Yozish dasturining oynasini', ru: 'Окно средства записи' }, { uz: 'Lending ochiq turgan oynani', ru: 'Окно с открытым лендингом' }], correct: 0 },
-  { q: { uz: 'Demoda haqiqiy foydalanuvchilar ko\'rinmasligi uchun nima qilasiz?', ru: 'Что сделать, чтобы в демо не было видно реальных пользователей?' }, opts: [{ uz: 'Ular ko\'ringan joydan tez o\'taman', ru: 'Быстро пройду места, где они видны' }, { uz: 'Namuna akkaunt bilan ko\'rsataman', ru: 'Покажу с демо-аккаунтом' }, { uz: 'Haqiqiy akkauntim bilan ko\'rsataman', ru: 'Покажу со своим настоящим аккаунтом' }, { uz: 'Videoni qisqaroq qilib yozib olaman', ru: 'Запишу видео покороче' }], correct: 1 },
+  { q: { uz: "Bu kursda video-portfolio nima?", ru: "Что такое видео-портфолио в этом курсе?" }, opts: [{ uz: "Siz va mahsulot haqida video", ru: "Видео о вас и продукте" }, { uz: "Funksiyalar sanalgan video", ru: "Видео с перечнем функций" }, { uz: "Sinf kanali uchun reklama", ru: "Реклама для канала класса" }, { uz: "Kodni tushuntiruvchi video", ru: "Видео с разбором кода" }], correct: 0 },
+  { q: { uz: "«Kimman» bo'lagida nima aytiladi?", ru: "Что говорят в части «Кто я»?" }, opts: [{ uz: "Maktab va sinfim", ru: "Школа и класс" }, { uz: "Kim ekanim va nima qilishim", ru: "Кто я и что делаю" }, { uz: "Ilovadagi o'nta funksiya", ru: "Десять функций приложения" }, { uz: "Keyingi oydagi rejam", ru: "План на следующий месяц" }], correct: 1 },
+  { q: { uz: "Videoda yuz va ism qanday bo'ladi?", ru: "Как в видео с лицом и именем?" }, opts: [{ uz: "Ikkalasi ham shart", ru: "Оба обязательны" }, { uz: "Yuz shart, ism emas", ru: "Лицо обязательно, имя нет" }, { uz: "Ikkalasi ham ixtiyoriy", ru: "Оба по желанию" }, { uz: "Ism shart, yuz emas", ru: "Имя обязательно, лицо нет" }], correct: 2 },
+  { q: { uz: "Yozish paytida ssenariy qayerda turadi?", ru: "Где находится сценарий во время записи?" }, opts: [{ uz: "Ekranda, demo yonida", ru: "На экране, рядом с демо" }, { uz: "Dars oynasida", ru: "В окне урока" }, { uz: "Kod oynasida", ru: "В окне кода" }, { uz: "Qog'ozda yoki telefonda", ru: "На бумаге или в телефоне" }], correct: 3 },
+  { q: { uz: "Yozishdan oldin qaysi oynalarni yopasiz?", ru: "Какие окна закрываете перед записью?" }, opts: [{ uz: "Chat va pochta oynalarini", ru: "Окна чата и почты" }, { uz: "Demo ochiq turgan oynani", ru: "Окно с открытым демо" }, { uz: "Yozish dasturi oynasini", ru: "Окно программы записи" }, { uz: "Lending ochiq oynasini", ru: "Окно с лендингом" }], correct: 0 },
+  { q: { uz: "Login ko'rinmasligi uchun nima qilasiz?", ru: "Что делаете, чтобы не было видно логина?" }, opts: [{ uz: "Login joyidan tez o'taman", ru: "Быстро пролистну логин" }, { uz: "Namuna akkaunt bilan kiraman", ru: "Войду с образцовым аккаунтом" }, { uz: "O'z akkauntim bilan kiraman", ru: "Войду со своим аккаунтом" }, { uz: "Videoni qisqa yozaman", ru: "Запишу видео короче" }], correct: 1 },
   { q: { uz: 'Video faylni qayerda saqlaysiz?', ru: 'Где вы храните видеофайл?' }, opts: [{ uz: 'Repo papkasida, kod yonida', ru: 'В папке репозитория, рядом с кодом' }, { uz: 'Sinf chatida, yo\'qolmasin deb', ru: 'В чате класса, чтобы не потерялся' }, { uz: 'Repo papkasidan tashqarida', ru: 'Вне папки репозитория' }, { uz: 'README fayli yonida, repo\'da', ru: 'Рядом с README, в репозитории' }], correct: 2 },
-  { q: { uz: '`git status` da video fayl ko\'rindi. Bu nimani bildiradi?', ru: 'В `git status` виден видеофайл. Что это значит?' }, opts: [{ uz: 'Video GitHub\'ga ham yuklanib ketdi', ru: 'Видео уже загрузилось и на GitHub' }, { uz: 'Video fayl ochilmaydigan bo\'ldi', ru: 'Видеофайл перестал открываться' }, { uz: 'Video 3 daqiqaga sig\'may qoldi', ru: 'Видео не уложилось в 3 минуты' }, { uz: 'Fayl repo papkasi ichida turibdi', ru: 'Файл лежит внутри папки репозитория' }], correct: 3 },
-  { q: { uz: 'Video 3 daqiqaga sig\'ganini qanday bilasiz?', ru: 'Как узнать, что видео уложилось в 3 минуты?' }, opts: [{ uz: 'Video oynasidagi vaqtni ko\'raman', ru: 'Посмотрю время в окне видео' }, { uz: 'Agentdan so\'rab, shundan bilaman', ru: 'Спрошу у агента' }, { uz: 'Ssenariy qisqa bo\'lsa, sig\'adi', ru: 'Если сценарий короткий, уложится' }, { uz: 'Fayl hajmiga qarab bilib olaman', ru: 'Пойму по размеру файла' }], correct: 0 },
-  { q: { uz: 'Tekshiruvda login ko\'rinib qoldi. Nima qilasiz?', ru: 'При проверке виден логин. Что сделаете?' }, opts: [{ uz: 'Videoni shundayligicha qoldirib yuboraman', ru: 'Оставлю видео как есть и отправлю' }, { uz: 'O\'chirib, ekranni tayyorlab, qayta yozaman', ru: 'Удалю, подготовлю экран, перезапишу' }, { uz: 'Faqat bitta tanish sinfdoshimga yuboraman', ru: 'Отправлю только одному знакомому однокласснику' }, { uz: 'Parol ko\'rinmadi, login ko\'rinsa bo\'laveradi', ru: 'Пароль не виден, логин можно' }], correct: 1 },
-  { q: { uz: 'Mahsulotingiz bugun ochilmadi. «Nima qurdim»da nima qilasiz?', ru: 'Продукт сегодня не открылся. Что сделаете в «Что я построил»?' }, opts: [{ uz: 'Mentor misolini o\'zimniki deb ko\'rsataman', ru: 'Покажу пример наставника как свой' }, { uz: 'Ochilmagan sahifani uzoq kutib turaman', ru: 'Буду долго ждать неоткрывшуюся страницу' }, { uz: '6-darsdagi B reja videosini ko\'rsataman', ru: 'Покажу видео плана B с 6-го урока' }, { uz: 'B rejasiz, bu bo\'lakni olib tashlayman', ru: 'Без плана B уберу эту часть' }], correct: 2 },
-  { q: { uz: 'Ota-onangiz rozi. Videoni qayerga joylaysiz?', ru: 'Родители согласны. Куда выложите видео?' }, opts: [{ uz: 'Ijtimoiy tarmoqdagi ochiq sahifamga', ru: 'На свою открытую страницу в соцсети' }, { uz: 'Sinf kanaliga, hamma ko\'rib tursin deb', ru: 'В канал класса, чтобы все видели' }, { uz: 'Repo\'ga, havolasini README\'ga yozib', ru: 'В репозиторий, ссылку — в README' }, { uz: 'Faqat havola bilan ko\'rinadigan joyga', ru: 'В место, видимое только по ссылке' }], correct: 3 },
+  { q: { uz: "`git status` da video ko'rindi. Bu nima degani?", ru: "В `git status` видно видео. Что это значит?" }, opts: [{ uz: "Video GitHub'ga ketdi", ru: "Видео ушло на GitHub" }, { uz: "Video buzilib qoldi", ru: "Видео испортилось" }, { uz: "Video 3 daqiqadan uzun", ru: "Видео длиннее 3 минут" }, { uz: "Fayl repo ichida turibdi", ru: "Файл лежит внутри репо" }], correct: 3 },
+  { q: { uz: "Video 3 daqiqaga sig'ganini qanday bilasiz?", ru: "Как узнать, что видео уложилось в 3 минуты?" }, opts: [{ uz: "Video oynasidagi vaqtdan", ru: "По времени в окне видео" }, { uz: "Agentdan so'rab", ru: "Спросив агента" }, { uz: "Ssenariy qisqaligidan", ru: "По краткости сценария" }, { uz: "Fayl hajmidan", ru: "По размеру файла" }], correct: 0 },
+  { q: { uz: "Videoda login ko'rindi. Nima qilasiz?", ru: "В видео виден логин. Что сделаете?" }, opts: [{ uz: "Shundayligicha qoldiraman", ru: "Оставлю как есть" }, { uz: "O'chirib, qayta yozaman", ru: "Удалю и перезапишу" }, { uz: "Faqat sinfdoshga yuboraman", ru: "Отправлю только однокласснику" }, { uz: "Login ko'rinsa bo'laveradi", ru: "Логин виден — не страшно" }], correct: 1 },
+  { q: { uz: "Mahsulot ochilmasa, «Nima qurdim»da nima qilasiz?", ru: "Если продукт не открылся, что делаете в «Что я построил»?" }, opts: [{ uz: "Mentor misolini olaman", ru: "Возьму пример Ментора" }, { uz: "Sahifani kutib turaman", ru: "Буду ждать страницу" }, { uz: "B reja videosini ochaman", ru: "Открою видео плана Б" }, { uz: "Bu bo'lakni tashlayman", ru: "Уберу эту часть" }], correct: 2 },
+  { q: { uz: "Ota-ona rozi. Videoni qayerga joylaysiz?", ru: "Родители согласны. Куда выложите видео?" }, opts: [{ uz: "Hamma ko'radigan sahifaga", ru: "На страницу, видную всем" }, { uz: "Sinfning ochiq kanaliga", ru: "В открытый канал класса" }, { uz: "Repo'ga, README bilan", ru: "В репо, с README" }, { uz: "Havola bilan ochiladigan joyga", ru: "Туда, где открывается по ссылке" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1768,7 +1793,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('vp-blok', qulfli && 'qulf', done && 'tugadi')}>
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({ h: tr(c.h), t: c.t }))}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={doneText ? tr(doneText) : null} natija={natija} natijaYorliq={tr(natijaYorliq || NATIJA_YORLIQ)}
@@ -1830,6 +1855,7 @@ const BOLAK_MAX = { kimman: 160, nimaQurdim: 300, qandayIshlayman: 200 };
 const bolakTekshir = (id, s, yumshoqOtdi) => {
   const t = String(s || '').trim();
   if (!t) return { tur: 'blok', m: { uz: "Bu bo'lakni bir gap bilan yozing.", ru: 'Напишите эту часть одним предложением.' } };
+  if (!manoliMatn(t)) return { tur: 'blok', m: MANOSIZ_XATO }; // F-1015-377/390
   if (id === 'kimman' && ALOQA_RE.test(t)) return { tur: 'blok', m: { uz: "Ssenariyga telefon, akkaunt va havola yozilmaydi.", ru: 'В сценарий не пишут телефон, аккаунт и ссылку.' } };
   if (yumshoqOtdi) return null;
   if (id === 'kimman' && RAQAM7_RE.test(t.replace(/[\s()-]/g, ''))) return { tur: 'yumshoq', m: { uz: "Maktabingizning nomi yoki aloqa ma'lumoti bo'lmasin.", ru: 'Пусть не будет названия школы или контактов.' } };
@@ -2315,6 +2341,7 @@ export default function VideoPortfolioLesson({ lang: langProp, onFinished, liveT
         .vp-lap-y b { font-weight: 700; color: ${T.ink2}; }
         .vp-lap-ek { position: relative; padding: 26px 10px 10px; border-radius: 14px 14px 4px 4px; background: ${T.ink}; min-height: 230px; }
         .vp-lap-asos { display: block; height: 10px; margin: 0 -18px; border-radius: 0 0 14px 14px; background: ${T.line}; }
+        @media (max-width: 640px) { .vp-lap-asos { margin: 0 -8px; } } /* F-1015-396: 390 px da 6 px chetga chiqardi */
         .vp-lap.vp-lap-chorla .vp-lap-ek { animation: vp-puls 2.2s ease-out .4s 2; }
         .vp-lap.vp-lap-kichik { max-width: 400px; }
         .vp-lap.vp-lap-kichik .vp-lap-ek { min-height: 170px; }

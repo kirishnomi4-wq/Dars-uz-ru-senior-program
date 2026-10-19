@@ -34,7 +34,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QXulosa, QXato, QKirish, QReja, QTushuncha, QTest, QTestJavob, QVoqea, QMustaqil, QKartochka, QYakun } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QXulosa, QXato, QKirish, QReja, QTushuncha, QTest, QTestJavob, QVoqea, QMustaqil, QKartochka, QYakun, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
 
 
 
@@ -99,6 +99,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -176,8 +201,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -965,9 +990,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; chap: menyu osti + doska o'zi yuradi — ish nomlari haqiqiy, holat nomlari va savollar yo'q — SABOQ 33, P-036) =====
 const REJA = [
-  { t: { uz: "Roadmap'dagi har ish bugun qayerda ekanini belgilaysiz", ru: 'Отметите, где сегодня каждая работа из roadmap' }, teg: { uz: 'holat', ru: 'статус' } },
-  { t: { uz: "Roadmap'da yo'q, lekin qilingan ishlarni qo'shasiz", ru: 'Добавите работы, которых не было в roadmap, но они сделаны' }, teg: { uz: "yangi qo'shildi", ru: 'добавлено новое' } },
-  { t: { uz: "O'z qarorlaringiz haqida savollarga javob yozasiz", ru: 'Напишете ответы на вопросы о своих решениях' }, teg: { uz: 'shaxsiy hisobot', ru: 'личный отчёт' } }
+  { t: { uz: "Roadmap'dagi har ish bugun qayerda ekanini belgilang", ru: 'Отметьте, где сегодня каждая работа из roadmap' }, teg: { uz: 'holat', ru: 'статус' } },
+  { t: { uz: "Roadmap'da yo'q, lekin qilingan ishlarni qo'shing", ru: 'Добавьте работы, которых не было в roadmap, но они сделаны' }, teg: { uz: "yangi qo'shildi", ru: 'добавлено новое' } },
+  { t: { uz: "O'z qarorlaringiz haqida savollarga javob yozing", ru: 'Напишите ответы на вопросы о своих решениях' }, teg: { uz: 'shaxsiy hisobot', ru: 'личный отчёт' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const [rm] = useState(() => roadmapOl());
@@ -1111,9 +1136,7 @@ const Screen3 = (props) => (
       3: { uz: 'Eslatma allaqachon ilovada bor — keyin emas.', ru: 'Напоминание уже есть в приложении — не потом.' },
       default: { uz: "Bu ish roadmap'da bormidi — shundan boshlang.", ru: 'Была ли эта работа в roadmap — начните с этого.' }
     }}
-    vizual={<MiniDoska sarlavha={tr({ uz: 'Uy vazifalari ilovasi', ru: 'Приложение для домашних заданий' })}>
-      <div className="hd-yangi hd-mini-y"><span className="hd-ustun-h">{tr(HOLATLAR.yangi.t)}</span><div className="hd-yangi-q"><div className="hd-karta h-yangi tush"><span className="hd-nom">{tr({ uz: 'Eslatma', ru: 'Напоминание' })}</span><span className="hd-holat">{tr(HOLATLAR.yangi.ch)}</span></div></div></div>
-    </MiniDoska>} />
+ />
 );
 
 // ===== SCREEN 4 — TESLA (QVoqea, keys; brauzer oynasi, uch mashina, tanga, vaqt chizig'i; bankda yo'q narsa chizilmaydi) =====
@@ -1212,9 +1235,7 @@ const Screen5 = (props) => (
       2: { uz: "Sinfdoshlaringiz mahsuloti boshqa — o'zingiznikiga qarang.", ru: 'У одноклассников другой продукт — смотрите на свой.' },
       default: { uz: 'Tesla voqeasining oxirgi gapini eslang.', ru: 'Вспомните последнюю фразу истории Tesla.' }
     }}
-    vizual={<MiniDoska sarlavha={tr({ uz: "roadmap · bugungi mahsulot", ru: 'roadmap · сегодняшний продукт' })}>
-      <HolatDoska rejim="kichik" yonish ishlar={mentorIshlar(HAMMA_ID, new Set())} yangi={mentorYangi().map(x => ({ ...x, sabab: null }))} yorliq={<>{tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })} · <MJ /></>} />
-    </MiniDoska>} />
+ />
 );
 
 // ===== SCREEN 8 — YAKUNIY SAVOL (QuestionScreen → QTest; ✔ A, INLINE_KEYS.s8 = 0; scope final; ikkinchi misol — kitob almashish ilovasi) =====
@@ -1235,11 +1256,7 @@ const Screen8 = (props) => (
       3: { uz: 'Savol shu qaror haqida — uning dalili qayerda?', ru: 'Вопрос об этом решении — где его довод?' },
       default: { uz: 'Dalil — son yoki yozuv. Qaysi variantda bor?', ru: 'Довод — число или запись. В каком варианте он есть?' }
     }}
-    vizual={<Varaq kichik sarlavha={tr({ uz: 'Kitob almashish ilovasi', ru: 'Приложение для обмена книгами' })} qatorlar={[
-      { s: null, j: null },
-      { s: null, j: <>{tr({ uz: "To'lovni sinfdoshlardan kutdim", ru: 'Ждал оплату от одноклассников' })}<span className="hd-dalil-q">{tr({ uz: "uch suhbat: uchalasi to'lamasligini aytdi", ru: 'три разговора: все трое сказали, что не заплатят' })}</span></> },
-      { s: null, j: null }
-    ]} />} />
+ />
 );
 
 // ===== 6–7-EKRAN TEKSHIRUVLARI (MD 6, 7-ekran jadvallari; PM-108 — node bilan sinaladi: scratchpad 11-qurish/t108.mjs) =====
@@ -1272,6 +1289,7 @@ function s6Tekshir({ holat, sabab, yangiNom, roadmapNomlar = [], yangi = false }
 function s7Tekshir({ k, matn, dalilBosildi = false, mentorJavob = [] }) {
   const s = norm(matn);
   if (!s) return { t: 'bosh', blok: true };
+  if (!manoliMatn(matn)) return { t: 'manosiz', blok: true };
   if (AKKAUNT_RE.test(s) || TELEFON_RE.test(s)) return { t: 'tel', blok: true };
   if (RAQAM7_RE.test(s)) return { t: 'raqam', blok: false };
   if (mentorJavob.some(m => norm(m) === s)) return { t: 'mentor', blok: false };
@@ -1294,6 +1312,7 @@ const TX6 = {
   ufq: { uz: 'Ufqni tanlang: Hozir, Keyinroq yoki Uzoqroq.', ru: 'Выберите горизонт: Сейчас, Позже или Дальше.' }
 };
 const TX7 = {
+  manosiz: MANOSIZ_XATO,
   bosh: { uz: 'Javobingizni bir-ikki gapda yozing.', ru: 'Напишите ответ в одно-два предложения.' },
   tel: TX6.tel, raqam: TX6.raqam,
   mentor: { uz: "Bu Mentorning javobi — o'z mahsulotingiz haqida yozing.", ru: 'Это ответ Ментора — напишите о своём продукте.' },
@@ -1752,18 +1771,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang — 12 savol (MD jadvali), to'g'ri javoblar A·B·C·D ×3: 0·2·1·3·0·1·2·3·0·1·2·3
 const QUIZ_BANK = [
-  { q: { uz: 'Bu darsda holat nimani aytadi?', ru: 'О чём говорит статус на этом уроке?' }, opts: [{ uz: "Roadmap'dagi ish ufqiga qarab qayerda ekanini", ru: 'Где работа из roadmap относительно горизонта' }, { uz: 'Ishga qancha vaqt va qancha kuch sarflanganini', ru: 'Сколько времени и сил ушло на работу' }, { uz: 'Ishni kim yoki qaysi agent yozib berganini', ru: 'Кто или какой агент написал работу' }, { uz: 'Ishning RICE bahosi hozir necha ball ekanini', ru: 'Сколько баллов сейчас у оценки RICE' }], correct: 0 },
-  { q: { uz: "Ish o'z ufqidan keyin tugadi. Holati qanday?", ru: 'Работа закончена после своего горизонта. Какой статус?' }, opts: [{ uz: 'Bajarildi: hozir ishlab turibdi', ru: 'Выполнено: сейчас работает' }, { uz: "Olib tashlandi: vaqti o'tib ketdi", ru: 'Убрано: время прошло' }, { uz: 'Kechikdi: ufqi ichida tugamagan', ru: 'Опоздало: не закончено в горизонте' }, { uz: "Yangi qo'shildi: keyin qo'shilgan", ru: 'Добавлено новое: добавлено позже' }], correct: 2 },
-  { q: { uz: "Mentor «Maydon pulini bo'lishish»ga qaysi holatni qo'ydi?", ru: 'Какой статус Ментор поставил работе «Делить плату за поле»?' }, opts: [{ uz: 'Olib tashlandi: endi kerak emas', ru: 'Убрано: больше не нужно' }, { uz: 'Uzoqroqda qoldi: vaqti kelmagan', ru: 'Осталось дальше: время не пришло' }, { uz: 'Kechikdi: ufqida qilinmay qoldi', ru: 'Опоздало: не сделано в горизонте' }, { uz: "Bajarildi: 2-darsda ko'rib chiqildi", ru: 'Выполнено: рассмотрено на 2-м уроке' }], correct: 1 },
-  { q: { uz: "Mentor roadmap'ida qaysi ish yo'q edi?", ru: 'Какой работы не было в roadmap Ментора?' }, opts: [{ uz: "O'yin kuni kelishini tasdiqlash", ru: 'Подтверждение прихода в день игры' }, { uz: "O'yindan oldin eslatma chiqarish", ru: 'Напоминание перед игрой' }, { uz: "Maydon pulini o'zaro bo'lishish", ru: 'Делить плату за поле между собой' }, { uz: 'Telegram orqali xabar yuborish', ru: 'Отправка сообщения через Telegram' }], correct: 3 },
-  { q: { uz: "Ishdan voz kechdingiz. Roadmap'da u qanday qoladi?", ru: 'Вы отказались от работы. Как она остаётся в roadmap?' }, opts: [{ uz: '«Olib tashlandi» deb, sababi bilan', ru: 'Как «убрано», с причиной' }, { uz: "Butunlay o'chiriladi, izi qolmaydi", ru: 'Удаляется полностью, без следа' }, { uz: '«Kechikdi» deb, keyinga suriladi', ru: 'Как «опоздало», переносится' }, { uz: "Holatsiz, o'z ustunida turaveradi", ru: 'Без статуса, стоит в своей колонке' }], correct: 0 },
-  { q: { uz: 'Holat yonida yana nima yoziladi?', ru: 'Что ещё пишут рядом со статусом?' }, opts: [{ uz: 'Ishning RICE bahosi va qaysi ufqi', ru: 'Оценка RICE и горизонт работы' }, { uz: 'Nega shu holat ekanining sababi', ru: 'Причина, почему такой статус' }, { uz: "Agentga yozilgan to'liq prompt", ru: 'Полный промпт для агента' }, { uz: 'Ishning kodidan olingan bo\'lak', ru: 'Фрагмент кода работы' }], correct: 1 },
-  { q: { uz: "Tesla 2006-yilgi rejasini kimga ko'rsatgan?", ru: 'Кому Tesla показала свой план 2006 года?' }, opts: [{ uz: 'Faqat kompaniya ichida, yashirin', ru: 'Только внутри компании, тайно' }, { uz: 'Bir necha tanish odamga aytib', ru: 'Рассказав нескольким знакомым' }, { uz: "Hamma ko'ra oladigan qilib, ochiq", ru: 'Открыто, чтобы видели все' }, { uz: "Hech kimga, o'zida saqlab qo'ygan", ru: 'Никому, оставила у себя' }], correct: 2 },
-  { q: { uz: 'Tesla rejasining birinchi bosqichi nima edi?', ru: 'Каким был первый этап плана Tesla?' }, opts: [{ uz: "Ko'pchilik uchun ommaviy mashina", ru: 'Массовый автомобиль для многих' }, { uz: "Narxi arzonroq bo'lgan mashina", ru: 'Более дешёвый автомобиль' }, { uz: "Rejani hammaga ochiq e'lon qilish", ru: 'Открыто объявить план всем' }, { uz: 'Qimmat sport mashinasi, oz sonda', ru: 'Дорогой спортивный автомобиль, немного' }], correct: 3 },
-  { q: { uz: 'Shaxsiy hisobotning birinchi savoli nima haqida?', ru: 'О чём первый вопрос личного отчёта?' }, opts: [{ uz: "O'z qarorim bilan nima qilganim", ru: 'Что я сделал по своему решению' }, { uz: 'Agent men uchun nima qilib bergani', ru: 'Что агент сделал за меня' }, { uz: 'Mentor ishimni qanday baholagani', ru: 'Как Ментор оценил мою работу' }, { uz: "Roadmap'dagi qaysi ish kechikkani", ru: 'Какая работа в roadmap опоздала' }], correct: 0 },
-  { q: { uz: "Mentor qaysi qarorini qayta ko'rganini aytdi?", ru: 'Какое решение, по словам Ментора, он пересмотрел?' }, opts: [{ uz: "Pro'ni tashkilotchiga qo'yganini", ru: 'Что сделал Pro для организатора' }, { uz: "1-darsda narxni qanday o'ylaganini", ru: 'Какую цену задумал на 1-м уроке' }, { uz: "Telegram xabarini ham qo'shganini", ru: 'Что добавил и сообщение в Telegram' }, { uz: "Maydon pulini uzoqroqqa qo'yganini", ru: 'Что отложил дележ платы за поле' }], correct: 1 },
-  { q: { uz: "Qaysi javob «keyingi 4 hafta» uchun aniq ish?", ru: 'Какой ответ — конкретное дело на «ближайшие 4 недели»?' }, opts: [{ uz: 'Mahsulotni yanada yaxshiroq qilaman', ru: 'Сделаю продукт ещё лучше' }, { uz: 'Hamma ishni vaqtida bajarib boraman', ru: 'Буду всё делать вовремя' }, { uz: "Uch tanishdan narx haqida so'rayman", ru: 'Спрошу троих знакомых о цене' }, { uz: "Ilovam juda mashhur bo'lib ketadi", ru: 'Моё приложение станет очень популярным' }], correct: 2 },
-  { q: { uz: "Noto'g'ri chiqqan qarorni hisobotda nima qilasiz?", ru: 'Что вы делаете в отчёте с неверным решением?' }, opts: [{ uz: 'Yashiraman: hisobotga yozmayman', ru: 'Прячу: не пишу в отчёт' }, { uz: "To'g'ri chiqqan deb yozib qo'yaman", ru: 'Пишу, что оно оказалось верным' }, { uz: 'Faqat Mentorga og\'zaki aytaman', ru: 'Говорю только Ментору устно' }, { uz: "Uni dalili bilan yozib qo'yaman", ru: 'Записываю его вместе с доводом' }], correct: 3 }
+  { q: { uz: "Bu darsda holat nimani aytadi?", ru: "О чём говорит статус в этом уроке?" }, opts: [{ uz: "Ish ufqiga qarab qayerda", ru: "Где работа относительно горизонта" }, { uz: "Qancha vaqt sarflangani", ru: "Сколько времени потрачено" }, { uz: "Ishni kim yozib bergani", ru: "Кто написал работу" }, { uz: "Ishning RICE bahosi", ru: "Оценка RICE работы" }], correct: 0 },
+  { q: { uz: "Ish o'z ufqidan keyin tugadi. Holati qanday?", ru: "Работа закончилась после своего горизонта. Какой статус?" }, opts: [{ uz: "Bajarildi", ru: "Выполнено" }, { uz: "Olib tashlandi", ru: "Убрано" }, { uz: "Kechikdi", ru: "Задержано" }, { uz: "Yangi qo'shildi", ru: "Добавлено новое" }], correct: 2 },
+  { q: { uz: "Mentor «Maydon pulini bo'lishish»ga qaysi holatni qo'ydi?", ru: "Какой статус Ментор поставил «Делению денег за поле»?" }, opts: [{ uz: "Olib tashlandi", ru: "Убрано" }, { uz: "Uzoqroqda qoldi", ru: "Осталось на дальнем горизонте" }, { uz: "Kechikdi", ru: "Задержано" }, { uz: "Bajarildi", ru: "Выполнено" }], correct: 1 },
+  { q: { uz: "Mentor roadmap'ida qaysi ish yo'q edi?", ru: "Какой работы не было в roadmap Ментора?" }, opts: [{ uz: "O'yin kuni tasdiq", ru: "Подтверждение в день игры" }, { uz: "O'yindan oldin eslatma", ru: "Напоминание перед игрой" }, { uz: "Maydon pulini bo'lishish", ru: "Деление денег за поле" }, { uz: "Telegram xabari", ru: "Сообщение Telegram" }], correct: 3 },
+  { q: { uz: "Voz kechilgan ish roadmap'da qanday qoladi?", ru: "Как в roadmap остаётся работа, от которой отказались?" }, opts: [{ uz: "«Olib tashlandi» va sabab", ru: "«Убрано» и причина" }, { uz: "Izi qolmay o'chiriladi", ru: "Удаляется без следа" }, { uz: "«Kechikdi» deb suriladi", ru: "Переносится как «Задержано»" }, { uz: "Holatsiz, o'z ustunida", ru: "Без статуса, в своей колонке" }], correct: 0 },
+  { q: { uz: "Holat yonida yana nima yoziladi?", ru: "Что ещё пишется рядом со статусом?" }, opts: [{ uz: "RICE bahosi va ufqi", ru: "Оценка RICE и горизонт" }, { uz: "Holatning sababi", ru: "Причина статуса" }, { uz: "Agentga yozilgan prompt", ru: "Промпт для агента" }, { uz: "Koddan olingan bo'lak", ru: "Кусок из кода" }], correct: 1 },
+  { q: { uz: "Tesla 2006-yilgi rejasini kimga ko'rsatgan?", ru: "Кому Tesla показала свой план 2006 года?" }, opts: [{ uz: "Faqat kompaniya ichida", ru: "Только внутри компании" }, { uz: "Bir necha tanishga", ru: "Нескольким знакомым" }, { uz: "Hammaga ochiq qilib", ru: "Всем, открыто" }, { uz: "Hech kimga ko'rsatmagan", ru: "Никому не показала" }], correct: 2 },
+  { q: { uz: "Tesla rejasining birinchi bosqichi nima edi?", ru: "Каким был первый этап плана Tesla?" }, opts: [{ uz: "Ommaviy mashina", ru: "Массовая машина" }, { uz: "Arzonroq mashina", ru: "Более дешёвая машина" }, { uz: "Rejani e'lon qilish", ru: "Объявить план" }, { uz: "Qimmat sport mashinasi", ru: "Дорогая спортивная машина" }], correct: 3 },
+  { q: { uz: "Shaxsiy hisobotning birinchi savoli nima haqida?", ru: "О чём первый вопрос личного отчёта?" }, opts: [{ uz: "O'z qarorim haqida", ru: "О моём собственном решении" }, { uz: "Agent qilgan ish haqida", ru: "О том, что сделал агент" }, { uz: "Mentor bahosi haqida", ru: "Об оценке Ментора" }, { uz: "Kechikkan ish haqida", ru: "О задержанной работе" }], correct: 0 },
+  { q: { uz: "Mentor qaysi qarorini qayta ko'rdi?", ru: "Какое своё решение Ментор пересмотрел?" }, opts: [{ uz: "Pro'ni tashkilotchiga qo'yish", ru: "Дать Pro организатору" }, { uz: "1-darsdagi narx taxmini", ru: "Оценку цены из 1-го урока" }, { uz: "Telegram xabarini qo'shish", ru: "Добавить сообщение Telegram" }, { uz: "Maydon pulini surish", ru: "Отложить деление денег за поле" }], correct: 1 },
+  { q: { uz: "Qaysi biri keyingi 4 haftaga aniq ish?", ru: "Что из этого — конкретная работа на следующие 4 недели?" }, opts: [{ uz: "Mahsulotni yaxshilayman", ru: "Улучшу продукт" }, { uz: "Hammasini vaqtida qilaman", ru: "Всё сделаю вовремя" }, { uz: "Uch tanishdan narx so'rayman", ru: "Спрошу цену у трёх знакомых" }, { uz: "Ilovam mashhur bo'ladi", ru: "Приложение станет популярным" }], correct: 2 },
+  { q: { uz: "Noto'g'ri chiqqan qarorni hisobotda nima qilasiz?", ru: "Что вы делаете в отчёте с решением, оказавшимся неверным?" }, opts: [{ uz: "Yashiraman", ru: "Скрываю" }, { uz: "To'g'ri deb yozaman", ru: "Пишу, что оно верное" }, { uz: "Faqat og'zaki aytaman", ru: "Говорю только устно" }, { uz: "Dalili bilan yozaman", ru: "Пишу с доказательством" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (

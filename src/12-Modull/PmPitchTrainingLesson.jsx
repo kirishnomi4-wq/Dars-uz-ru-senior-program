@@ -780,29 +780,39 @@ const TaymerChiziq = ({ sek = null, tolgan = null, joriy = null, xato = [], ok =
 };
 // --- Baholash varag'i (jadval — «ma'lumot» ko'rinishi, E 45): olti qator + hakam savoli + vaqt ---
 // qatorlar: [{ id, belgi, izoh, holat: 'xira' | 'ajrat' | 'yangi', royxatda }] · hakam: { matn, yorliq, holat, royxatda }
-const Varaq = ({ qatorlar, hakam, vaqt, ixcham = false, refQ, refHk }) => (
+// F-1019-08 (213.23a/b): to'lmagan qator ko'rsatilmaydi (joriy — 'ajrat' — qoladi); bo'sh varaqda bitta kulrang gap; sarlavha oddiy, qora panel yo'q
+const Varaq = ({ qatorlar, hakam, vaqt, ixcham = false, refQ, refHk }) => {
+  const kor = qatorlar.filter(q => q.belgi || q.holat === 'ajrat');
+  return (
   <div className={cxx('gv-varaq', ixcham && 'ixcham')}>
-    <div className="gv-v-h">{tr({ uz: "Baholash varag'i", ru: 'Оценочный лист' })} · {qatorlar.filter(q => q.belgi).length}{NB}/{NB}6</div>
-    {qatorlar.map(q => (
+    <div className="gv-v-h">{tr({ uz: "Baholash varag'i", ru: 'Оценочный лист' })}</div>
+    {kor.length === 0 && <p className="gv-v-bosh">{tr({ uz: "Guruh har bo'lakka ✓ yoki ✗ qo'yadi.", ru: 'Группа ставит каждой части ✓ или ✗.' })}</p>}
+    {kor.map(q => (
       <div key={q.id} ref={refQ ? (el => { refQ.current[q.id] = el; }) : undefined} className={cxx('gv-v-q', q.holat)}>
         <span className="gv-v-nom"><b>{tr(BOLAK_NOM[q.id])}</b>{!ixcham && <small>{tr(HAKAM_SAVOL[q.id])}</small>}</span>
         <span key={q.belgi || 'bo'} className={cxx('gv-v-b', q.belgi === '✓' && 'ok', q.belgi === '✗' && 'x')}>{q.belgi || ''}</span>
         <span className="gv-v-iz">{q.izoh && <span key={q.izoh} className="gv-v-izm">{q.izoh}</span>}{q.royxatda && <em className="gv-v-r">{tr({ uz: "ro'yxatda", ru: 'в списке' })}</em>}</span>
       </div>
     ))}
-    {hakam && <div ref={refHk} className={cxx('gv-v-hk', !hakam.matn && 'bosh', hakam.holat)}>
+    {hakam && (hakam.matn || hakam.holat === 'ajrat') && <div ref={refHk} className={cxx('gv-v-hk', !hakam.matn && 'bosh', hakam.holat)}>
       <span className="gv-v-hk-y">{hakam.yorliq}</span>
       <span className="gv-v-hk-m">{hakam.matn || ''}</span>
       {hakam.royxatda && <em className="gv-v-r">{tr({ uz: "ro'yxatda", ru: 'в списке' })}</em>}
     </div>}
     {vaqt && <div className="gv-v-vaqt">{vaqt}</div>}
+    {hakam && !(hakam.matn || hakam.holat === 'ajrat') && <span ref={refHk} className="gv-v-oxir" aria-hidden="true" />}
   </div>
-);
+  );
+};
 // --- Tuzatishlar ro'yxati (4, 7-ekran): uch raqamli qator «bo'lak · nima o'zgaradi» ---
-const Royxat = ({ bandlar, refR, yangi = null, onTahrir }) => (
+// F-1019-08 (213.23a): bo'sh «1 2 3» uyasi yo'q — band to'g'ri tanlangach paydo bo'ladi; uchish nishoni — ro'yxat oxiridagi ko'rinmas langar
+const Royxat = ({ bandlar, refR, yangi = null, onTahrir }) => {
+  const soni = [0, 1, 2].filter(i => bandlar[i]).length;
+  return (
   <div className="gv-royxat">
     <div className="gv-r-h">{tr({ uz: "Tuzatishlar ro'yxati", ru: 'Список исправлений' })}</div>
-    {[0, 1, 2].map(i => {
+    {soni === 0 && <p className="gv-v-bosh">{tr({ uz: "Har to'g'ri tuzatish ro'yxatga bitta qator qo'shadi.", ru: 'Каждое верное исправление добавляет в список одну строку.' })}</p>}
+    {[0, 1, 2].filter(i => bandlar[i]).map(i => {
       const b = bandlar[i];
       return (
         <div key={i} ref={refR ? (el => { refR.current[i] = el; }) : undefined} className={cxx('gv-r-q', !b && 'bosh', yangi === i && 'yangi')}>
@@ -812,8 +822,10 @@ const Royxat = ({ bandlar, refR, yangi = null, onTahrir }) => (
         </div>
       );
     })}
+    {soni < 3 && <span ref={refR ? (el => { refR.current[soni] = el; }) : undefined} className="gv-v-oxir" aria-hidden="true" />}
   </div>
-);
+  );
+};
 const GuruhVaraqSahna = ({ yorliq, guruh, taymer, varaq, royxat, past, chapOstida, className }) => (
   <div className={cxx('gv-sahna-w', className)}>
     <div className={cxx('gv-sahna', !(guruh || taymer) && 'faqat-ong', !(varaq || royxat) && 'faqat-chap')}>
@@ -824,16 +836,29 @@ const GuruhVaraqSahna = ({ yorliq, guruh, taymer, varaq, royxat, past, chapOstid
   </div>
 );
 const mentorQatorlar = (fn) => MENTOR_VARAQ.map(q => ({ id: q.bolak, belgi: q.belgi, izoh: q.izoh ? tr(q.izoh) : null, ...(fn ? fn(q) : {}) }));
-// Bosqich tugmalari (ixcham, bir qatorda; joriysi accent halqada, bosilgani ✓)
-// F-1015-164: o'tilgani — ✓ yozuv (tugma emas), joriysi — tugma, keyingisi va bashoratdan oldin — ko'rinmaydi
-const Qadamlar3 = ({ nomlar, q, faol, onBos }) => (q === 0 && !faol ? null : (
-  <div className="gv-qadamlar fade-step">
-    {nomlar.map((n, i) => (i < q
-      ? <span key={i} className="gv-qd-ok"><i>✓</i>{tr(n)}</span>
-      : i === q && faol ? <QChip key={i} holat="on" className={'gv-joriy'} onClick={onBos}><i>{i + 1}</i>{tr(n)}</QChip> : null
-    ))}
-  </div>
-));
+// F-1019-06 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatosiga bir qatorli sabab, qayta tanlash.
+// Namuna — PmInvestorPitchLesson Qaror. To'g'ri tanlovdan keyin variantlar yopiladi (animatsiya tugaguncha qayta bosilmaydi); har qadam key bilan yangilanadi.
+const Qaror = ({ savol, variantlar, onTogri }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const [togri, setTogri] = useState(null);
+  const tanla = (j) => {
+    if (togri !== null) return;
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); setTogri(j); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="gv-qr fade-step">
+      <p className="gv-qr-s">{tr(savol)}</p>
+      <div className="gv-qr-v">{variantlar.map((v, j) => <QChip key={j} holat={togri === j ? 'ok' : xato.includes(j) ? 'err' : undefined} disabled={togri !== null || xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</QChip>)}</div>
+      {izoh && <QXato key={tr(izoh)}>{tr(izoh)}</QXato>}
+    </div>
+  );
+};
+// F-1019-06 (213.13): qadam izohi kartasiz osilmaydi — vizual kartaning (sahna) ichida, pastda
+const SahnaIzoh = ({ t }) => <p className="gv-sahna-iz fade-step">{tr(t)}</p>;
+const IPUCHA_QAROR = { uz: "Variantlardan birini tanlang — xato bo'lsa, sababini o'qib, qayta tanlang.", ru: 'Выберите вариант — если ошиблись, прочитайте причину и выберите снова.' };
 const ixchamBashorat = (taxmin, el) => <div className={cxx('gv-bash', taxmin && 'ix')}>{el}</div>;
 
 // ===== SCREEN 0 — KIRISH (QKirish; sof so'rovnoma — J-026: correct false hammaga; «Aynan!» / «Qiziq fikr!» — T-028, T-067) =====
@@ -872,10 +897,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (QReja; vizual — skelet, bir marta o'zi yuradi; tugagach «Boshlaymiz» halqada) =====
 // MD «matnsiz skelet» → SABOQ P11 / 1-dars pilot: bo'sh chiziqlar o'rnida bo'lak nomlari va raqamli bo'sh qatorlar (2, 4-ekran kashfiyoti ochilmaydi).
 const REJA = [
-  { t: { uz: "Varaqdan nimani tuzatishni o'qishni bilib olasiz", ru: 'Научитесь читать по листу, что исправлять' }, teg: { uz: "baholash varag'i", ru: 'оценочный лист' } },
-  { t: { uz: "Izohdan aniq tuzatish yozishni o'rganasiz", ru: 'Научитесь писать по замечанию точное исправление' }, teg: { uz: 'tuzatish', ru: 'исправление' } },
-  { t: { uz: 'Pitchingizni guruhga 5 daqiqada aytasiz', ru: 'Расскажете питч группе за 5 минут' }, teg: { uz: 'taymer', ru: 'таймер' } },
-  { t: { uz: 'Varaqingizdan uchta tuzatish yozasiz', ru: 'Напишете три исправления по своему листу' }, teg: { uz: "tuzatishlar ro'yxati", ru: 'список исправлений' } }
+  { t: { uz: "Varaqdan nimani tuzatishni o'qishni bilib oling", ru: 'Научитесь читать по листу, что исправлять' }, teg: { uz: "baholash varag'i", ru: 'оценочный лист' } },
+  { t: { uz: "Izohdan aniq tuzatish yozishni o'rganing", ru: 'Научитесь писать по замечанию точное исправление' }, teg: { uz: 'tuzatish', ru: 'исправление' } },
+  { t: { uz: 'Pitchingizni guruhga 5 daqiqada ayting', ru: 'Расскажите питч группе за 5 минут' }, teg: { uz: 'taymer', ru: 'таймер' } },
+  { t: { uz: 'Varaqingizdan uchta tuzatish yozing', ru: 'Напишите три исправления по своему листу' }, teg: { uz: "tuzatishlar ro'yxati", ru: 'список исправлений' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const [bi, setBi] = useState(kamHarakat() ? 6 : 0);
@@ -904,8 +929,25 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 2 — MENTOR VARAG'I (QTushuncha keng; bashorat → 3 tugma ketma-ket: Pitch · Varaq · Hakam savoli; markaziy) =====
-const S2_TUGMA = [{ uz: 'Pitch', ru: 'Питч' }, { uz: 'Varaq', ru: 'Лист' }, { uz: 'Hakam savoli', ru: 'Вопрос судьи' }];
+// ===== SCREEN 2 — MENTOR VARAG'I (QTushuncha keng; bashorat → 3 qaror: varaq qachon · izoh nima haqida · hakam savoli; to'g'ri javobdan keyin Pitch · Varaq · Hakam savoli animatsiyasi; markaziy) =====
+// F-1019-06 (213.22): har qadam — qaror; to'g'ri tanlov keyingi bosqichni (pitch, varaq, hakam savoli) ochadi
+const S2_QAROR = [
+  { savol: { uz: "Guruh varaqni qachon to'ldiradi?", ru: 'Когда группа заполняет лист?' }, v: [
+    { t: { uz: "Har bo'lakdan keyin to'xtatib", ru: 'Останавливая после каждой части' }, izoh: { uz: "Pitch to'xtatilmaydi: guruh uni oxirigacha tinglaydi.", ru: 'Питч не останавливают: группа слушает его до конца.' } },
+    { t: { uz: 'Pitchdan oldin, tayyorlanib', ru: 'До питча, заранее' }, izoh: { uz: "Pitchdan oldin baholanadigan narsa yo'q: varaq eshitgandan keyin.", ru: 'До питча оценивать нечего: лист — после того, как услышали.' } },
+    { ok: true, t: { uz: 'Pitch tugagandan keyin', ru: 'После того как питч закончился' } }
+  ] },
+  { savol: { uz: "Varaqda ✗ yonidagi izoh nima haqida bo'ladi?", ru: 'О чём замечание рядом с ✗ в листе?' }, v: [
+    { ok: true, t: { uz: "Qaysi bo'lak tushunarsiz qoldi", ru: 'Какая часть осталась непонятной' } },
+    { t: { uz: "Pitch ularga yoqdimi, yo'qmi", ru: 'Понравился им питч или нет' }, izoh: { uz: "Yoqdi yoki yoqmadi — nimani tuzatishni aytmaydi.", ru: '«Понравилось или нет» не говорит, что исправлять.' } },
+    { t: { uz: 'Kimning pitchi yaxshiroq chiqdi', ru: 'Чей питч получился лучше' }, izoh: { uz: "Pitchlar solishtirilmaydi: izoh shu pitchning bo'lagi haqida.", ru: 'Питчи не сравнивают: замечание — о части этого питча.' } }
+  ] },
+  { savol: { uz: "Tinglovchi hakam o'rnida varaqqa nima yozadi?", ru: 'Что слушатель в роли судьи пишет в лист?' }, v: [
+    { t: { uz: 'Pitchdagi hamma gaplarni', ru: 'Все фразы из питча' }, izoh: { uz: "Varaqqa pitch ko'chirilmaydi: hakam savoli — bitta savol.", ru: 'Питч в лист не переписывают: вопрос судьи — один вопрос.' } },
+    { ok: true, t: { uz: 'Hakam beradigan bitta savol', ru: 'Один вопрос, который задал бы судья' } },
+    { t: { uz: "Har bo'lakka 10 balldan baho", ru: 'Оценку до 10 баллов каждой части' }, izoh: { uz: "Varaqda ball yo'q: ✓ yoki ✗, izoh va bitta savol.", ru: 'В листе нет баллов: ✓ или ✗, замечание и один вопрос.' } }
+  ] }
+];
 const S2_IZOH = [
   { uz: 'Guruh pitchni oxirigacha tinglaydi — varaq pitchdan keyin to\'ldiriladi.', ru: 'Группа слушает питч до конца — лист заполняют после питча.' },
   { uz: 'Ikkala izoh ham bo\'lak haqida: unda nima tushunarsiz qolgani yozilgan.', ru: 'Оба замечания — о части: в них написано, что осталось непонятным.' },
@@ -915,6 +957,7 @@ const S2_TAXMIN = [{ k: '1', t: { uz: 'Bitta', ru: 'Одну' } }, { k: '2', t: 
 // Pitch tezlashtirilgan: 7 pufak (avval lahza, keyin olti bo'lak), har biri ≈ 0,85 s
 const S2_PUFAK = [{ b: 0, lahza: true }, { b: 0 }, { b: 1 }, { b: 2 }, { b: 3 }, { b: 4 }, { b: 5 }];
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
+  const tor = useIsMobile(768); // F-1019-07: telefonda savol sahnadan keyin — pastga surilganda keyingi savol ko'rinadi
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
   const [q, setQ] = useState(storedAnswer ? 3 : 0);
   const [band, setBand] = useState(false);
@@ -959,28 +1002,27 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const sahna = <GuruhVaraqSahna className={done ? 'tayyor' : null}
     yorliq={<>{tr({ uz: 'Mentor misoli', ru: 'Пример Ментора' })} · <MJ /></>}
     guruh={<>
-      {!done && <Gapiruvchi yorliq={tr({ uz: 'gapiradi', ru: 'говорит' })} pufak={pufak || (pi < 0 ? null : undefined)} pufakKey={(qayt || '') + pi}
+      {!done && q < 2 && <Gapiruvchi yorliq={tr({ uz: 'gapiradi', ru: 'говорит' })} pufak={pufak || undefined} pufakKey={(qayt || '') + pi}
         telefon={pBo && pBo.b === 2 ? <JamoaTelefon son={telSon} /> : null} />}
-      <Tinglovchilar yorliq={q >= 2 ? tr({ uz: "hakam o'rnida", ru: 'в роли судьи' }) : null} refS={pufRef}
-        pufaklar={hk === 1 ? [{ k: 'hk', q: true, ref: true, matn: tr(MENTOR_HAKAM_SAVOL) }] : []} />
+      {(q >= 2 || done) && <Tinglovchilar yorliq={tr({ uz: "hakam o'rnida", ru: 'в роли судьи' })} refS={pufRef}
+        pufaklar={hk === 1 ? [{ k: 'hk', q: true, ref: true, matn: tr(MENTOR_HAKAM_SAVOL) }] : []} />}
     </>}
     taymer={<TaymerChiziq tolgan={pi < 0 ? 0 : Math.min(6, pi === 7 ? 6 : (pBo ? pBo.b + 1 : 0))} joriy={band && q === 0 ? joriy : null} xato={xatoBo} ok={okBo} silliq
       yorliq={band && q === 0 ? tr({ uz: 'tezlashtirilgan', ru: 'ускорено' }) : null} />}
-    varaq={<Varaq qatorlar={qatorlar} refHk={hkRef}
+    varaq={q >= 1 && <Varaq qatorlar={qatorlar} refHk={hkRef}
       hakam={{ yorliq: tr({ uz: 'Hakam savoli', ru: 'Вопрос судьи' }), matn: hk === 2 ? tr(MENTOR_HAKAM_SAVOL) : null, holat: hk === 2 && !storedAnswer ? 'yangi' : null }} />}
-    chapOstida={done && <QXulosa><XulosaQ taxmin={tx && <TaxminQ togri={taxmin === '2'} aslida={tr({ uz: 'ikkita', ru: 'две' })} />}
+    chapOstida={!done ? q > 0 && <SahnaIzoh key={'i' + q} t={S2_IZOH[q - 1]} /> : <QXulosa><XulosaQ taxmin={tx && <TaxminQ togri={taxmin === '2'} aslida={tr({ uz: 'ikkita', ru: 'две' })} />}
       matn={tr({ uz: "Bu darsda varaqda har bo'lakka ✓ yoki ✗, ✗ yonida izoh va oxirida bitta hakam savoli turadi.", ru: 'На этом уроке в листе у каждой части ✓ или ✗, рядом с ✗ — замечание, а в конце — один вопрос судьи.' })}
       izoh={tr(S2_IZOH[2])} /></QXulosa>} />;
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · baholash varag'i", ru: 'Понятие · оценочный лист' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: `Tugmalarni bosing (${q}/3)`, ru: `Нажмите кнопки (${q}/3)` })} onClick={onNext} /></>}>
-      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval
+    <Stage eyebrow={tr({ uz: "Tushuncha · baholash varag'i", ru: 'Понятие · оценочный лист' })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval belgilang', ru: 'Сначала отметьте' }) : tr({ uz: `Savollarga javob bering (${q}/3)`, ru: `Ответьте на вопросы (${q}/3)` })} onClick={onNext} /></>}>
+      <QTushuncha zoom={Zoomable} tugadi={tugadi} keng harakatAvval={!tor}
         sarlavha={tr({ uz: <>Mentor pitchini eshitgan guruh <A>varaqqa nima yozdi?</A></>, ru: <>Что группа, услышав питч Ментора, <A>записала в лист?</A></> })}
-        mentor={<Mentor>{tr({ uz: 'Tugmalarni birma-bir bosing va har bosishdan keyin varaqqa qarang.', ru: 'Нажимайте кнопки по одной и после каждого нажатия смотрите на лист.' })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Har savolga javob bering — har javobdan keyin varaqqa qarang.", ru: 'Ответьте на каждый вопрос — после каждого ответа смотрите на лист.' })}</Mentor>}
         bashorat={!done && ixchamBashorat(taxmin, <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr({ uz: "Guruh Mentor pitchining nechta bo'lagiga ✗ qo'ydi?", ru: 'Скольким частям питча Ментора группа поставила ✗?' })} variantlar={S2_TAXMIN.map(v => ({ k: v.k, t: tr(v.t) }))} tanlov={taxmin} onTanla={setTaxmin} />)}
         harakat={!taxmin ? null : !done && <div className="gv-harakat">
-          <Qadamlar3 nomlar={S2_TUGMA} q={q} faol={!!taxmin} onBos={bos} />
-          {q > 0 && <QIzoh key={q}>{tr(S2_IZOH[q - 1])}</QIzoh>}
-          {ipucha && IPUCHA(tr({ uz: "Yoqilgan tugmani bosing — varaq qanday to'lishini ko'ring.", ru: 'Нажмите активную кнопку — посмотрите, как заполняется лист.' }))}
+          <Qaror key={q} savol={S2_QAROR[q].savol} variantlar={S2_QAROR[q].v} onTogri={bos} />
+          {ipucha && IPUCHA(tr(IPUCHA_QAROR))}
         </div>}
         vizual={!taxmin ? null : sahna}
       />
@@ -1021,6 +1063,7 @@ const TUZATISH_KARTA = [
 const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [n, setN] = useState(storedAnswer ? 3 : 0);
   const [xato, setXato] = useState(null); // { i, k }
+  const [xl, setXl] = useState([]); // F-1019-08 (213.22): shu kartada tanlangan xato variantlar — yopiladi
   const [band, setBand] = useState(false);
   const [yangi, setYangi] = useState(null);
   const xatoSoni = useRef(0);
@@ -1032,8 +1075,8 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const bos = async (i) => {
     if (done || band) return;
     const k = TUZATISH_KARTA[n];
-    if (i !== k.togri) { xatoSoni.current += 1; setXato({ i, k: Date.now() }); return; }
-    setXato(null); setBand(true);
+    if (i !== k.togri) { xatoSoni.current += 1; setXato({ i, k: Date.now() }); setXl(x => (x.includes(i) ? x : [...x, i])); return; }
+    setXato(null); setXl([]); setBand(true);
     await uch(varRef.current[i], rRef.current[n], tr(k.variantlar[i]), 'ok');
     const yn = n + 1;
     setN(yn); setYangi(n); setBand(false);
@@ -1052,14 +1095,14 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {k.kulrang && <p className="gv-kulrang">{tr(k.kulrang)}</p>}
       <div className="gv-varlar">
         {k.variantlar.map((v, i) => (
-          <button key={i} ref={el => { varRef.current[i] = el; }} type="button" disabled={band} className={cxx('gv-var', xato && xato.i === i && 'err')} onClick={() => bos(i)}>{tr(v)}</button>
+          <button key={i} ref={el => { varRef.current[i] = el; }} type="button" disabled={band || xl.includes(i)} className={cxx('gv-var', xl.includes(i) && 'err')} onClick={() => bos(i)}>{tr(v)}</button>
         ))}
       </div>
       {xato && k.xato[xato.i] && <QXato key={xato.k}>{tr(k.xato[xato.i])}</QXato>}
     </div>
   );
   return (
-    <Stage eyebrow={tr({ uz: "Tushuncha · tuzatishlar ro'yxati", ru: 'Понятие · список исправлений' })} screen={screen} scrollSignal={n} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Kartalarni yeching (${n}/3)`, ru: `Решите карточки (${n}/3)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Tushuncha · tuzatishlar ro'yxati", ru: 'Понятие · список исправлений' })} screen={screen} scrollSignal={n} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive halqa={done} disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
         sarlavha={tr({ uz: <>Mentor varag'idan <A>qanday tuzatish chiqadi?</A></>, ru: <>Какое исправление <A>получается из листа Ментора?</A></> })}
         mentor={<Mentor>{tr({ uz: "Har kartada izohga javob beradigan tuzatishni tanlang — u ro'yxatga tushadi.", ru: 'На каждой карточке выберите исправление, которое отвечает на замечание, — оно попадёт в список.' })}</Mentor>}
@@ -1527,18 +1570,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD), ✔ o'rni: A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12.
 const QUIZ_BANK = [
-  { q: { uz: 'Bu darsda varaq qachon to\'ldiriladi?', ru: 'Когда на этом уроке заполняют лист?' }, opts: [{ uz: 'Pitch oxirigacha aytilgandan keyin', ru: 'После того как питч рассказан до конца' }, { uz: "Har bo'lak aytilayotgan paytda", ru: 'Пока рассказывают каждую часть' }, { uz: 'Pitch boshlanishidan ancha oldin', ru: 'Задолго до начала питча' }, { uz: 'Faqat uyda, dars tugaganidan keyin', ru: 'Только дома, после урока' }], correct: 0 },
+  { q: { uz: "Varaq qachon to'ldiriladi?", ru: "Когда заполняют лист?" }, opts: [{ uz: "Pitch tugagandan keyin", ru: "После окончания питча" }, { uz: "Har bo'lak aytilayotganda", ru: "Пока рассказывают каждую часть" }, { uz: "Pitch boshlanishidan oldin", ru: "До начала питча" }, { uz: "Faqat uyda, darsdan keyin", ru: "Только дома, после урока" }], correct: 0 },
   { q: { uz: "Mentor misolida guruh qaysi bo'laklarga ✗ qo'ydi?", ru: 'Каким частям в примере Ментора группа поставила ✗?' }, opts: [{ uz: 'Muammo va Yechim', ru: 'Проблема и Решение' }, { uz: 'Bozor va Raqamlar', ru: 'Рынок и Цифры' }, { uz: 'Jamoa va Raqamlar', ru: 'Команда и Цифры' }, { uz: 'Muammo va Bozor', ru: 'Проблема и Рынок' }], correct: 1 },
-  { q: { uz: 'Mentor tuzatishida «60 kishi» kimlar?', ru: 'Кто такие «60 человек» в исправлении Ментора?' }, opts: [{ uz: 'Ilovadagi hamma tashkilotchilar', ru: 'Все организаторы в приложении' }, { uz: 'Mahalladagi hamma maydon egalari', ru: 'Все владельцы площадок в махалле' }, { uz: "Mahalla futbol guruhi a'zolari", ru: 'Участники футбольной группы махалли' }, { uz: 'Mentorning hamma sinfdoshlari', ru: 'Все одноклассники Ментора' }], correct: 2 },
-  { q: { uz: 'Guruh rejimida hakam savolini kim yozadi?', ru: 'Кто в групповом режиме пишет вопрос судьи?' }, opts: [{ uz: "Pitch aytgan o'quvchining o'zi", ru: 'Сам ученик, рассказавший питч' }, { uz: 'Mentor, dars boshlanishidan oldin', ru: 'Ментор, до начала урока' }, { uz: "Agent, pitch matnini o'qib chiqib", ru: 'Агент, прочитав текст питча' }, { uz: 'Tinglovchilar, pitchdan keyin', ru: 'Слушатели, после питча' }], correct: 3 },
-  { q: { uz: "Guruhda fikrlar har xil bo'lsa, varaqda nima bo'ladi?", ru: 'Что будет в листе, если мнения в группе разные?' }, opts: [{ uz: 'Muhokamadan keyin bitta belgi', ru: 'После обсуждения — один знак' }, { uz: "Ko'pchilik qo'yadigan ✓ belgisi", ru: 'Знак ✓, который ставит большинство' }, { uz: 'Qator hech qanday belgisiz qoladi', ru: 'Строка остаётся без знака' }, { uz: 'Ikkala belgi ham yonma-yon turadi', ru: 'Оба знака стоят рядом' }], correct: 0 },
-  { q: { uz: 'Mentor varag\'ida ikkita ✗. Uchinchi tuzatish qayerdan olindi?', ru: 'В листе Ментора два ✗. Откуда взято третье исправление?' }, opts: [{ uz: 'Sinfdagi ovozlar sonidan', ru: 'Из числа голосов в классе' }, { uz: 'Guruhning hakam savolidan', ru: 'Из вопроса судьи от группы' }, { uz: "Mentorning o'z taxminidan", ru: 'Из догадки самого Ментора' }, { uz: 'Pitchning umumiy vaqtidan', ru: 'Из общего времени питча' }], correct: 1 },
-  { q: { uz: 'Bu darsda tuzatish qanday yoziladi?', ru: 'Как на этом уроке пишут исправление?' }, opts: [{ uz: "Faqat bo'lakning nomi bilan", ru: 'Только названием части' }, { uz: 'Pitchdagi hamma gaplar bilan', ru: 'Всеми фразами питча' }, { uz: "Bo'lak va unda nima o'zgarishi", ru: 'Часть и что в ней изменится' }, { uz: 'Tinglovchining ismi bilan birga', ru: 'Вместе с именем слушателя' }], correct: 2 },
-  { q: { uz: 'Mentor «tasdiq — to\'lovmi?» izohiga qanday tuzatish yozdi?', ru: 'Какое исправление Ментор написал к замечанию «подтверждение — это оплата?»?' }, opts: [{ uz: 'Tasdiqlarni pitchdan olib tashlash', ru: 'Убрать подтверждения из питча' }, { uz: '"Pro\'ni sotib oldi" deb aytish', ru: 'Сказать «купили Pro»' }, { uz: 'Tasdiqlar sonini oshirib aytish', ru: 'Назвать подтверждений больше' }, { uz: 'Tasdiq nima ekanini tushuntirish', ru: 'Объяснить, что такое подтверждение' }], correct: 3 },
-  { q: { uz: "Qaysi izoh bo'lak haqida yozilgan?", ru: 'Какое замечание написано о части?' }, opts: [{ uz: '«Yechimda nima qilishi aytilmadi»', ru: '«В Решении не сказано, что он делает»' }, { uz: '«Siz juda hayajonlanib gapirdingiz»', ru: '«Вы говорили очень взволнованно»' }, { uz: '«Umuman olganda menga yoqmadi»', ru: '«В целом мне не понравилось»' }, { uz: '«Mening pitchim yaxshiroq chiqdi»', ru: '«Мой питч получился лучше»' }], correct: 0 },
-  { q: { uz: "Guruh bo'lmasa, varaqni kim to'ldiradi?", ru: 'Кто заполняет лист, если группы нет?' }, opts: [{ uz: "Mentor, darsdan keyin o'zi", ru: 'Ментор, сам после урока' }, { uz: "O'zingiz, yozuvni ko'rib", ru: 'Вы сами, посмотрев запись' }, { uz: 'Varaqsiz qoladi — kerak emas', ru: 'Без листа — он не нужен' }, { uz: "Agent, pitch matnini o'qib", ru: 'Агент, прочитав текст питча' }], correct: 1 },
-  { q: { uz: 'Yakka rejimda pitch yozuvi qayerda qoladi?', ru: 'Где остаётся запись питча в одиночном режиме?' }, opts: [{ uz: 'Sinfning chatiga yuboriladi', ru: 'Отправляется в чат класса' }, { uz: 'Mentorga havolasi yuboriladi', ru: 'Ментору отправляют ссылку' }, { uz: 'Faqat telefoningizda qoladi', ru: 'Остаётся только в вашем телефоне' }, { uz: 'Guruh kanaliga joylanadi', ru: 'Выкладывается в канал группы' }], correct: 2 },
-  { q: { uz: 'Hakam «Nega maydon egalari pul to\'lamaydi?» desa, Mentor nima deydi?', ru: 'Если судья спросит «Почему владельцы площадок не платят?», что ответит Ментор?' }, opts: [{ uz: "«Ular ham keyin to'lab beradi»", ru: '«Они тоже потом заплатят»' }, { uz: "«Bu savolning pitchga aloqasi yo'q»", ru: '«Этот вопрос не связан с питчем»' }, { uz: '«Maydon egalari bizga kerak emas»', ru: '«Владельцы площадок нам не нужны»' }, { uz: "«Ular bugun to'lovchi emas»", ru: '«Сегодня они не плательщики»' }], correct: 3 }
+  { q: { uz: "Mentor tuzatishida «60 kishi» kimlar?", ru: "Кто такие «60 человек» в исправлении Ментора?" }, opts: [{ uz: "Ilovadagi tashkilotchilar", ru: "Организаторы в приложении" }, { uz: "Mahalladagi maydon egalari", ru: "Владельцы площадок в махалле" }, { uz: "Futbol guruhi a'zolari", ru: "Участники футбольной группы" }, { uz: "Mentorning sinfdoshlari", ru: "Одноклассники Ментора" }], correct: 2 },
+  { q: { uz: "Guruh rejimida hakam savolini kim yozadi?", ru: "Кто в групповом режиме пишет вопрос судьи?" }, opts: [{ uz: "Pitchni aytgan o'quvchi", ru: "Ученик, рассказавший питч" }, { uz: "Mentor, dars boshida", ru: "Ментор, в начале урока" }, { uz: "Agent, matnni o'qib", ru: "Агент, прочитав текст" }, { uz: "Pitchni tinglaganlar", ru: "Те, кто слушал питч" }], correct: 3 },
+  { q: { uz: "Fikrlar har xil bo'lsa, varaqqa nima qo'yiladi?", ru: "Что ставят в лист, если мнения разные?" }, opts: [{ uz: "Kelishilgan bitta belgi", ru: "Один согласованный знак" }, { uz: "Ko'pchilikning ✓ belgisi", ru: "Знак ✓ большинства" }, { uz: "Qator belgisiz qoladi", ru: "Строка остаётся без знака" }, { uz: "Ikkala belgi yonma-yon", ru: "Оба знака рядом" }], correct: 0 },
+  { q: { uz: "Mentor varag'ida ikkita ✗. Uchinchi tuzatish qayerdan?", ru: "В листе Ментора два ✗. Откуда третье исправление?" }, opts: [{ uz: "Sinf ovozlaridan", ru: "Из голосов класса" }, { uz: "Hakam savolidan", ru: "Из вопроса судьи" }, { uz: "Mentor taxminidan", ru: "Из догадки Ментора" }, { uz: "Pitch vaqtidan", ru: "Из времени питча" }], correct: 1 },
+  { q: { uz: "Tuzatish qanday yoziladi?", ru: "Как пишут исправление?" }, opts: [{ uz: "Faqat bo'lak nomi bilan", ru: "Только названием части" }, { uz: "Pitchdagi hamma gaplar bilan", ru: "Всеми фразами питча" }, { uz: "Bo'lak va unda nima o'zgarishi", ru: "Часть и что в ней изменится" }, { uz: "Tinglovchi ismi bilan", ru: "С именем слушателя" }], correct: 2 },
+  { q: { uz: "Mentor tasdiq haqidagi izohga nima yozdi?", ru: "Что Ментор написал к замечанию о подтверждении?" }, opts: [{ uz: "Tasdiqni olib tashlash", ru: "Убрать подтверждения" }, { uz: "«Pro'ni sotib oldi» deyish", ru: "Сказать «купили Pro»" }, { uz: "Tasdiqlar sonini oshirish", ru: "Назвать подтверждений больше" }, { uz: "Tasdiq nimaligini aytish", ru: "Объяснить, что такое подтверждение" }], correct: 3 },
+  { q: { uz: "Qaysi izoh bo'lak haqida?", ru: "Какое замечание о части?" }, opts: [{ uz: "«Yechim tushunarsiz qoldi»", ru: "«Решение осталось непонятным»" }, { uz: "«Juda hayajonlandingiz»", ru: "«Вы очень волновались»" }, { uz: "«Menga umuman yoqmadi»", ru: "«Мне совсем не понравилось»" }, { uz: "«Meniki yaxshiroq chiqdi»", ru: "«Мой получился лучше»" }], correct: 0 },
+  { q: { uz: "Guruh bo'lmasa, varaqni kim to'ldiradi?", ru: "Кто заполняет лист, если группы нет?" }, opts: [{ uz: "Mentor, darsdan keyin", ru: "Ментор, после урока" }, { uz: "O'zingiz, yozuvni ko'rib", ru: "Вы сами, посмотрев запись" }, { uz: "Hech kim, varaq kerak emas", ru: "Никто, лист не нужен" }, { uz: "Agent, matnni o'qib", ru: "Агент, прочитав текст" }], correct: 1 },
+  { q: { uz: "Yakka rejimda pitch yozuvi qayerda qoladi?", ru: "Где остаётся запись питча в одиночном режиме?" }, opts: [{ uz: "Sinf chatida", ru: "В чате класса" }, { uz: "Mentorning telefonida", ru: "На телефоне Ментора" }, { uz: "Faqat telefoningizda", ru: "Только на вашем телефоне" }, { uz: "Guruh kanalida", ru: "В канале группы" }], correct: 2 },
+  { q: { uz: "Nega maydon egalari to'lamaydi? Mentor nima deydi?", ru: "Почему владельцы площадок не платят? Что скажет Ментор?" }, opts: [{ uz: "«Keyin to'lab beradi»", ru: "«Потом заплатят»" }, { uz: "«Pitchga aloqasi yo'q»", ru: "«К питчу не относится»" }, { uz: "«Ular bizga kerak emas»", ru: "«Они нам не нужны»" }, { uz: "«Bugun to'lovchi emas»", ru: "«Сегодня не плательщики»" }], correct: 3 }
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2331,12 +2374,11 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         @media (min-width: 761px) { .gv-k .zoomable:not(.zoom-on) > .zoom-btn { right: auto; left: calc(55.5% - 52px); } } /* ⛶ maket burchagida, variant ustida emas (SABOQ P7) */
         .gv-k, .gv-yakun { display: flex; flex-direction: column; flex: 1 0 auto; }
         .gv-harakat { display: flex; flex-direction: column; gap: 8px; }
-        .gv-qadamlar { display: flex; flex-wrap: wrap; gap: 8px; }
-        .gv-qadamlar .q-chip i { font-style: normal; font-weight: 800; color: ${T.accent}; margin-right: 7px; }
-        .gv-qadamlar .q-chip.ok i { color: ${T.ok}; }
-        .gv-qd-ok { display: inline-flex; align-items: center; padding: 9px 4px; font-weight: 700; font-size: clamp(13px,1.45vw,14px); color: ${T.ok}; }
-        .gv-qd-ok i { font-style: normal; font-weight: 800; margin-right: 6px; }
-        .gv-qadamlar .q-chip.gv-joriy { animation: gv-puls 2.2s ease-out .3s 3; }
+        /* F-1019-06 (213.22): qaror qadami — savol, variantlar, sabab; qadam izohi sahna kartasining ichida (213.13) */
+        .gv-qr { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .gv-qr-s { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.4; color: ${T.ink}; }
+        .gv-qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
+        .gv-sahna-iz { margin: 0; padding-top: 8px; border-top: 1px solid ${T.line}; font-size: 13px; line-height: 1.45; color: ${T.ink2}; }
         p.gv-ipucha { margin: 0; font-size: 13px; font-weight: 700; color: ${T.accent}; }
         p.gv-kulrang { margin: 0; font-size: 13px; line-height: 1.45; color: ${T.ink2}; }
         p.gv-yana { margin: 0; font-size: 12.5px; font-weight: 600; color: ${T.ink2}; }
@@ -2405,7 +2447,10 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
         .gv-tm.katta .gv-tm-t { height: 22px; border-radius: 7px; } .gv-tm.katta .gv-tm-bo em { font-size: 15px; }
         /* Baholash varag'i — jadval («ma'lumot» ko'rinishi, E 45: to'q sarlavha, katak chiziqlari, kulrang fon, soyasiz) */
         .gv-varaq { border: 1px solid ${T.line}; border-radius: 12px; overflow: hidden; background: ${T.bg}; }
-        .gv-v-h { background: ${T.ink}; color: #fff; font-size: 13.5px; font-weight: 800; padding: 8px 12px; letter-spacing: .01em; }
+        .gv-v-h { color: ${T.ink}; font-size: 13.5px; font-weight: 800; padding: 9px 12px; border-bottom: 1px solid ${T.line}; background: ${T.paper}; } /* 213.23b: qora panel o'rniga oddiy sarlavha + chiziq */
+        p.gv-v-bosh { margin: 0; padding: 10px 12px; font-size: 13px; color: ${T.ink2}; }
+        .gv-royxat > p.gv-v-bosh { padding: 0; }
+        .gv-v-oxir { display: block; height: 0; }
         .gv-v-q { display: grid; grid-template-columns: minmax(0,1.15fr) 34px minmax(0,1.6fr); align-items: center; gap: 10px; padding: 6px 12px; border-top: 1px solid ${T.line}; transition: opacity .3s; }
         .gv-v-nom { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
         .gv-v-nom b { font-size: 14px; color: ${T.ink}; }
@@ -2558,7 +2603,7 @@ export default function PmPitchTrainingLesson({ lang: langProp, onFinished, live
           .gv-tel { width: 84px; height: 136px; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .gv-halqa, .gv-k.kutish .q-variant, .q-bashorat .q-chip, .gv-qadamlar .q-chip, .gv-pufak, .gv-tel, .gv-tel-son, .gv-tng, .gv-tng-s, .gv-tng-s > i, .gv-tm-bo.halqa .gv-tm-t, .gv-v-b, .gv-v-izm, .gv-v-q, .gv-v-hk, .gv-r-q,
+          .gv-halqa, .gv-k.kutish .q-variant, .q-bashorat .q-chip, .gv-pufak, .gv-tel, .gv-tel-son, .gv-tng, .gv-tng-s, .gv-tng-s > i, .gv-tm-bo.halqa .gv-tm-t, .gv-v-b, .gv-v-izm, .gv-v-q, .gv-v-hk, .gv-r-q,
           .gv-karta, .gv-var, .gv-bt, textarea.gv-inp, .gv-bolak-t, .gv-mini-fly { animation: none !important; transition: none !important; }
           .gv-tm-t > i, .gv-uchar { transition: none !important; }
         }

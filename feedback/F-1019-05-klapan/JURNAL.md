@@ -1,0 +1,6 @@
+# F-1019-05 · Klapan qatori «Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq» olindi (KATTA F-1019-01) · LMS 2–6, 16 dars · 2026-10-19
+Foydalanuvchi: «qolgan ishlarni tugataylik, chalalarni yopaylik». Doira: LMS 2–6 (src/4, 4a, 4b, 4c); src/6-Modull/PmLesson23 (LMS 8) — QA seansi doirasi, tegilmadi. NestArchAlive s9 — F-1019-01 da qilingan edi.
+Vosita: `klapan.py` (qator regex bilan olinadi; `<NavNext … disabled={!X && !_resc|rescue}>` yorlig'i → `_resc && !X ? «Davom etish» : (eski)`); mentor-shartli 2 shakl alohida. Zaxira `arxiv/F-1019-05-oldin/`.
+Natija: qator −92 (16 fayl); tugma yorlig'i 97 o'ralgan, shundan 4 tasi qaytarildi — eski yorliq klapanni o'zi ko'rsatardi (test ekranlari «Javobni birga ko'ramiz →»; GithubActions 507-satrdagi xatoni o'zim tutdim). `grep "Qolganini keyinroq"` 16 faylda 0.
+Tekshiruv: 16 fayl `npm run gates` — yangi darvoza xatosi yo'q, tell/emoji soni zaxira bilan teng; `lint:jsx` toza; `sinov.mjs` (soat 125 s oldinga): tushuncha-ekranlar (NestArchResource s2/s6, ApiPostman s2, JestUnit s2/s5) «… (0/N)» → «Davom etish», eski qator yo'q; test ekranlari yopiq qoldi (o'zgarmagan xatti-harakat); pageerror 0.
+Tuzoq: zsh `FL="a b"` so'zlarga bo'linmaydi — massiv `FL=(…)` va `"${FL[@]}"`; sinovda progress `total` dars ekranlar soniga teng bo'lmasa dars 0-ekrandan ochiladi.

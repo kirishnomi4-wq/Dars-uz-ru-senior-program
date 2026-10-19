@@ -691,6 +691,7 @@ const maydonQatorlar = () => [
 const Slayd = ({ s, i }) => {
   const El = s.onBos ? 'button' : 'div';
   const ok = s.holat === 'toliq' || s.holat === 'tuzatildi';
+  if (s.holat === 'joy' && !s.onBos) return null; // F-1019-08 (213.23a): hali qo'shilmagan slayd uyasi chizilmaydi
   return (
     <El {...(s.onBos ? { type: 'button', onClick: s.onBos } : {})} className={cxx('pr-sl', s.onBos && 'pr-sl-bos', s.holat && `h-${s.holat}`, s.yangi && 'yangi', s.yon && `yon-${s.yon}`, s.kutadi && 'kutadi')} style={{ '--i': i }} data-uch={s.uch}>
       <span className="pr-sl-bosh">
@@ -705,7 +706,7 @@ const Slayd = ({ s, i }) => {
           {(s.qatorlar || []).map(q => (
             <span key={q.k} className={cxx('pr-q', `q-${q.holat || 'matn'}`, q.katta && 'katta')} data-uch={q.uch}>
               {q.yorliq && <em className="pr-q-y">{q.yorliq}</em>}
-              {q.t ? <span className="pr-q-t">{q.t}</span> : <i className="pr-q-bo" />}
+              {q.t ? <span className="pr-q-t">{q.t}</span> : q.holat === 'toq' ? <i className="pr-q-bo" /> : null /* F-1019-08 (213.23a): bo'sh qator chizig'i yo'q */}
             </span>
           ))}
         </span>
@@ -764,7 +765,7 @@ const Varaq = ({ sarlavha, qatorlar, vaqt, className, children }) => (
           <span className="pr-vq-nom"><b>{tr(SLAYDLAR[q.i].nom)}</b><em>{tr(ZAL_SAVOL[q.i])}</em></span>
           {q.belgiEl || <span key={q.belgi || 'b'} className={cxx('pr-vq-bel', q.belgi === '✓' && 'ok', q.belgi === '✗' && 'err')}>{q.belgi || ''}</span>}
           <span className="pr-vq-iz">
-            {q.izohEl || (q.izoh ? <span className="pr-vq-izt" data-uch={q.uch}>{q.izoh}</span> : <i className="pr-q-bo" />)}
+            {q.izohEl || (q.izoh ? <span className="pr-vq-izt" data-uch={q.uch}>{q.izoh}</span> : null /* F-1019-08 (213.23a) */)}
             {q.tuzatildi && <em className="pr-tuz">{tr(TUZATILDI)}</em>}
             {q.yorliq && <em className="pr-vq-yor">{q.yorliq}</em>}
           </span>
@@ -792,6 +793,27 @@ const QadamQator = ({ jami, joriy, children }) => (
     {children}
   </div>
 );
+// F-1019-07 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatoga bir qatorli sabab, qayta tanlash.
+// Namuna — PmStoryPitchLesson Qaror. To'g'ri tanlovdan keyin variantlar yopiladi; har qadam key bilan yangilanadi.
+const Qaror = ({ savol, variantlar, onTogri }) => {
+  const [xato, setXato] = useState([]);
+  const [izoh, setIzoh] = useState(null);
+  const [togri, setTogri] = useState(null);
+  const tanla = (j) => {
+    if (togri !== null) return;
+    const v = variantlar[j];
+    if (v.ok) { setIzoh(null); setTogri(j); onTogri(); return; }
+    setXato(x => (x.includes(j) ? x : [...x, j])); setIzoh(v.izoh);
+  };
+  return (
+    <div className="pr-qr fade-step">
+      <p className="pr-qr-s">{tr(savol)}</p>
+      <div className="pr-qr-v">{variantlar.map((v, j) => <QChip key={j} holat={togri === j ? 'ok' : xato.includes(j) ? 'err' : undefined} disabled={togri !== null || xato.includes(j)} onClick={() => tanla(j)}>{tr(v.t)}</QChip>)}</div>
+      {izoh && <QXato key={tr(izoh)}>{tr(izoh)}</QXato>}
+    </div>
+  );
+};
+const IPUCHA_QAROR = { uz: "Variantlardan birini tanlang — xato bo'lsa, sababini o'qib, qayta tanlang.", ru: 'Выберите вариант — если ошиблись, прочитайте причину и выберите снова.' };
 // O'qituvchi eslatmasi — faqat mentor (proyektor) rejimida, bosilganda ochiladi
 const MentorNote = ({ children }) => {
   const { isMentor } = useJonli();
@@ -902,16 +924,16 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda beshta nomsiz slayd skeleti va taymer — kulrang chiziqlar 0.9 s oraliqda to'q bo'ladi, oxirida zal ustida ✓; o'ngda «01 · matn · teg») =====
 const REJA = [
-  { t: { uz: "Pitchga qaysi slaydlar qo'shilishini bilib olasiz", ru: "Узнаете, какие слайды добавятся в питч" }, teg: { uz: '5 daqiqa', ru: "5 минут" } },
-  { t: { uz: 'Raqamni zal ishonadigan qilib yozasiz', ru: "Запишете число так, чтобы зал поверил" }, teg: { uz: 'raqamlar', ru: "цифры" } },
-  { t: { uz: 'Besh slaydli pitchni sinfdoshga 5 daqiqada aytib, baholatasiz', ru: "Расскажете питч из пяти слайдов однокласснику за 5 минут и получите оценку" }, teg: { uz: "baholash varag'i", ru: "лист оценки" } },
-  { t: { uz: 'Eng zaif slaydni tuzatib, 1 daqiqada qayta aytasiz', ru: "Исправите самый слабый слайд и расскажете его ещё раз за 1 минуту" }, teg: { uz: '2-raund', ru: "раунд 2" } }
+  { t: { uz: "Pitchga qaysi slaydlar qo'shilishini bilib oling", ru: "Узнайте, какие слайды добавятся в питч" }, teg: { uz: '5 daqiqa', ru: "5 минут" } },
+  { t: { uz: 'Raqamni zal ishonadigan qilib yozing', ru: "Запишите число так, чтобы зал поверил" }, teg: { uz: 'raqamlar', ru: "цифры" } },
+  { t: { uz: 'Besh slaydli pitchni sinfdoshga 5 daqiqada aytib, baholating', ru: "Расскажите питч из пяти слайдов однокласснику за 5 минут и получите оценку" }, teg: { uz: "baholash varag'i", ru: "лист оценки" } },
+  { t: { uz: 'Eng zaif slaydni tuzatib, 1 daqiqada qayta ayting', ru: "Исправьте самый слабый слайд и расскажите его ещё раз за 1 минуту" }, teg: { uz: '2-raund', ru: "раунд 2" } }
 ];
 const RejaSahna = () => {
   const n = useNavbat(6, 900);
   return (
     <PitchSahna className="pr-s1"
-      slaydlar={SLAYDLAR.map((s, i) => ({ id: s.id, holat: 'skelet', yangi: i === n - 1, qatorlar: [{ k: 'a', holat: i < n ? 'toq' : 'bosh' }, { k: 'b', holat: i < n ? 'toq' : 'bosh' }] }))}
+      slaydlar={SLAYDLAR.map((s, i) => ({ id: s.id, holat: i < n ? 'skelet' : 'joy', yangi: i === n - 1, nom: tr(s.nom), qatorlar: [] }))} // F-1019-08 (213.23a): bo'sh skelet o'rniga slayd nomi navbat bilan yonadi
       taymer={{ kat: [0, 1, 2, 3, 4].map(i => ({ h: i < n ? 'toq' : 'uzuq' })) }}
       zal={{ pufak: n > 5 ? 'ok' : null, jim: n <= 5 }} />
   );
@@ -931,10 +953,23 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 // ===== SCREEN 2 — BESH SLAYD (QTushuncha markaziy, keng: bashorat → 3 qadam → slayd 4, 5 qo'shiladi, taymer beshga bo'linadi, pufak slaydlar ustidan o'tadi) =====
 const S2_SAVOL = { uz: "Besh daqiqaning qanchasi yangi slaydlarga ketadi?", ru: "Сколько из пяти минут уйдёт на новые слайды?" };
 const S2_TAXMIN = [{ k: '1', t: { uz: '1 daqiqa', ru: "1 минута" } }, { k: '2', t: { uz: '2 daqiqa', ru: "2 минуты" } }, { k: '3', t: { uz: '3 daqiqa', ru: "3 минуты" } }];
-const S2_QADAM = [
-  { uz: "Raqamlar slaydini qo'shing", ru: "Добавьте слайд «Цифры»" },
-  { uz: "Keyingi qadam slaydini qo'shing", ru: "Добавьте слайд «Следующий шаг»" },
-  { uz: "Vaqtni slaydlarga bo'ling", ru: "Разделите время по слайдам" }
+// F-1019-07 (213.22): har qadam — qaror; to'g'ri tanlov slaydni qo'shadi
+const S2_QAROR = [
+  { savol: { uz: "Zal so'raydi: «Sayt ishga tushgach nima bo'ldi?» Qaysi slayd javob beradi?", ru: 'Зал спрашивает: «Что стало после запуска сайта?» Какой слайд отвечает?' }, v: [
+    { t: { uz: 'Yechim', ru: 'Решение' }, izoh: { uz: "Yechim — sayt nima qilishi; bo'lgan ishni raqam aytadi.", ru: 'Решение — что делает сайт; о случившемся говорит число.' } },
+    { ok: true, t: { uz: 'Raqamlar', ru: 'Цифры' } },
+    { t: { uz: 'Foydalanuvchi', ru: 'Пользователь' }, izoh: { uz: "Bu slayd — kim ishlatgani; zal endi natijani so'rayapti.", ru: 'Этот слайд — кто пользовался; зал теперь спрашивает о результате.' } }
+  ] },
+  { savol: { uz: "Zal so'raydi: «Endi nima qilasiz?» Slaydga nima yoziladi?", ru: 'Зал спрашивает: «Что будете делать дальше?» Что пишется на слайд?' }, v: [
+    { t: { uz: 'Yana bir sanalgan raqam', ru: 'Ещё одно посчитанное число' }, izoh: { uz: "Sanalgan raqam — Raqamlar slaydida; bu slayd oldinga qaraydi.", ru: 'Посчитанное число — на слайде «Цифры»; этот слайд смотрит вперёд.' } },
+    { t: { uz: "Jamoa a'zolarining ismlari", ru: 'Имена участников команды' }, izoh: { uz: "Zal reja so'radi; jamoa haqida savol yo'q edi.", ru: 'Зал спросил о плане; о команде вопроса не было.' } },
+    { ok: true, t: { uz: 'Keyingi ish va maqsad', ru: 'Следующее дело и цель' } }
+  ] },
+  { savol: { uz: "Besh slayd — besh daqiqa. Vaqtni qanday bo'lasiz?", ru: 'Пять слайдов — пять минут. Как разделите время?' }, v: [
+    { ok: true, t: { uz: 'Har slaydga 1 daqiqadan', ru: 'По 1 минуте на слайд' } },
+    { t: { uz: 'Raqamlarga 3 daqiqa', ru: '«Цифрам» 3 минуты' }, izoh: { uz: "Bir slaydga 3 daqiqa — qolgan to'rttasiga 2 daqiqa qoladi.", ru: '3 минуты одному слайду — на остальные четыре останется 2.' } },
+    { t: { uz: "Muammoga ko'proq, oxiriga kam", ru: 'Проблеме больше, концу меньше' }, izoh: { uz: "Oxirgi slayd shoshib o'tadi — zal rejani eshitmay qoladi.", ru: 'Последний слайд пройдёт впопыхах — зал не услышит план.' } }
+  ] }
 ];
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { live, isMentor } = useJonli();
@@ -975,18 +1010,18 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tx = S2_TAXMIN.find(v => v.k === taxmin);
   const bos = () => { if (!taxmin || q >= 3) return; setQ(v => v + 1); };
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · besh slayd', ru: "Понятие · пять слайдов" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : `${tr({ uz: 'Qadamlarni bajaring', ru: "Выполните шаги" })} (${q}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · besh slayd', ru: "Понятие · пять слайдов" })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} keng tugadi={tugadi}
         sarlavha={tr({ uz: <>Qolgan to'rt daqiqada <A>zal nimani so'raydi?</A></>, ru: <>О чём <A>спросит зал</A> в оставшиеся четыре минуты?</> })}
-        mentor={<Mentor>{tr({ uz: "«Maydon» pitchining uch slaydi o'tgan modulda tayyor bo'lgan. Ikki slayd qo'shing va har slayd ustida zal nimani so'rashiga qarang.", ru: "Три слайда питча «Maydon» были готовы в прошлом модуле. Добавьте два слайда и посмотрите, о чём зал спрашивает над каждым." })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "«Maydon» pitchining uch slaydi o'tgan modulda tayyor bo'lgan. Har savolga javob bering — zal har slayd ustida nimani so'rashini ko'rasiz.", ru: "Три слайда питча «Maydon» были готовы в прошлом модуле. Ответьте на каждый вопрос — увидите, о чём зал спрашивает над каждым слайдом." })}</Mentor>}
         bashorat={!done && <Bashorat savol={tr(S2_SAVOL)} variantlar={variantlar} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={!taxmin ? null : <div className="q-kir">{<PitchSahna className={cxx('pr-s2', `q${q}`)} slaydlar={slaydlar} taymer={{ kat, uchlar: q < 3 }} zal={{ pufak }} />}</div>}
         harakat={!taxmin ? null : !done && taxmin && (
           <QadamQator jami={3} joriy={q}>
             {q < 3
-              ? <QTugma className="pr-bos" onClick={bos}>{q + 1} · {tr(S2_QADAM[q])}</QTugma>
+              ? <Qaror key={q} savol={S2_QAROR[q].savol} variantlar={S2_QAROR[q].v} onTogri={bos} />
               : <span className="pr-qadam-t">{tr({ uz: "Zal savollari slaydlar ustidan o'tmoqda…", ru: "Вопросы зала проходят над слайдами…" })}</span>}
-            {ipucha && <QIzoh>{tr({ uz: "Slaydlar ostidagi tugmani bosing — zal qaysi slaydda nimani so'rashini ko'ring.", ru: "Нажмите кнопку под слайдами — посмотрите, о чём зал спрашивает на каждом слайде." })}</QIzoh>}
+            {ipucha && q < 3 && <QIzoh>{tr(IPUCHA_QAROR)}</QIzoh>}
           </QadamQator>
         )}
         xulosa={done && <>
@@ -1005,10 +1040,23 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 6 — RAQAMLAR SLAYDI (QTushuncha keng: bitta katta slayd — «17» → 3 bo'lak; «17» o'z ustuniga uchadi, zal pufagi har bo'lakda o'zgaradi; A/B bloki) =====
 const S6_SAVOL = { uz: "«17» yonida yana nechta bo'lak kerak?", ru: "Сколько ещё частей нужно рядом с «17»?" };
 const S6_TAXMIN = [{ k: '1', t: '1' }, { k: '2', t: '2' }, { k: '3', t: '3' }];
-const S6_QADAM = [
-  { uz: "U nimani sanashini qo'shing", ru: "Добавьте, что оно считает" },
-  { uz: "Solishtirishni qo'shing", ru: "Добавьте сравнение" },
-  { uz: "Halol gapni qo'shing", ru: "Добавьте честную фразу" }
+// F-1019-07 (213.22): har qadam — zal savoliga qaror; to'g'ri tanlov slaydga qatorni qo'shadi
+const S6_QAROR = [
+  { savol: { uz: "Zal so'raydi: «17 nima?» Raqam yoniga nima qo'shasiz?", ru: 'Зал спрашивает: «Что значит 17?» Что добавите рядом с числом?' }, v: [
+    { t: { uz: '17 ni kattaroq shriftda', ru: '17 крупным шрифтом' }, izoh: { uz: "Katta raqam ham «17 nima?» savoliga javob bermaydi.", ru: 'Крупное число тоже не отвечает на «Что значит 17?».' } },
+    { ok: true, t: { uz: 'U nimani sanaganini', ru: 'Что оно посчитало' } },
+    { t: { uz: 'Foizini: 42,5%', ru: 'Процент: 42,5%' }, izoh: { uz: "Foiz ham yolg'iz raqam: nimani sanagani noma'lum.", ru: 'Процент — тоже одинокое число: неясно, что посчитано.' } }
+  ] },
+  { savol: { uz: "Zal so'raydi: «Bu ko'pmi, kammi?» Nima qo'shasiz?", ru: 'Зал спрашивает: «Это много или мало?» Что добавите?' }, v: [
+    { t: { uz: '«Bu juda yaxshi natija!»', ru: '«Это отличный результат!»' }, izoh: { uz: "Baho raqam emas: zal o'zi solishtira olmaydi.", ru: 'Оценка — не число: зал сам не может сравнить.' } },
+    { t: { uz: 'Saytga kirganlar soni', ru: 'Сколько зашли на сайт' }, izoh: { uz: "Bu yana bitta son; «nima bilan solishtirdik?» ochiq qoladi.", ru: 'Это ещё одно число; «с чем сравнили?» остаётся открытым.' } },
+    { ok: true, t: { uz: 'Boshqa tugma natijasi', ru: 'Результат другой кнопки' } }
+  ] },
+  { savol: { uz: "Zal so'raydi: «Bunga ishonsa bo'ladimi?» Nima deysiz?", ru: 'Зал спрашивает: «Этому можно верить?» Что ответите?' }, v: [
+    { ok: true, t: { uz: 'Farq bor, brauzer hali kam', ru: 'Разница есть, браузеров мало' } },
+    { t: { uz: 'B aniq yaxshi, tamom', ru: 'B точно лучше, и всё' }, izoh: { uz: "82 brauzerda «aniq» deyish — zalni chalg'itish.", ru: 'Сказать «точно» при 82 браузерах — ввести зал в заблуждение.' } },
+    { t: { uz: 'Raqamni slayddan olib tashlayman', ru: 'Уберу число со слайда совсем' }, izoh: { uz: "Raqamsiz zal hech narsani tekshira olmaydi.", ru: 'Без числа зал ничего не сможет проверить.' } }
+  ] }
 ];
 const S6_QATOR = [
   { t: { uz: "«18:00 ni band qilish» tugmasi bilan vaqtni tanlagan 40 brauzerdan 17 tasi band qildi", ru: "С кнопкой «Забронировать 18:00» из 40 браузеров, выбравших время, забронировали 17" }, son: '17', y: { uz: 'nimani sanadi', ru: "что посчитано" } },
@@ -1021,8 +1069,8 @@ const RaqamSlayd = ({ q }) => (
     <div className="pr-rs-bosh"><i className={cxx('pr-sl-n', q >= 3 && 'ok')}>{q >= 3 ? '✓' : 4}</i><b className="pr-sl-nom">{tr(SLAYDLAR[3].nom)}</b><em className="pr-rs-blok">A/B</em></div>
     {q === 0 && <b className="pr-rs-17" data-uch="rs-17">17</b>}
     <div className="pr-rs-ro">
-      {S6_QATOR.map((r, i) => (
-        <div key={i} className={cxx('pr-rs-q', i < q ? (i === q - 1 && q < 3 ? 'yozildi' : 'matn') : 'bosh')}>
+      {S6_QATOR.slice(0, q).map((r, i) => ( // F-1019-08 (213.23a): qo'shilmagan qator ko'rsatilmaydi
+        <div key={i} className={cxx('pr-rs-q', i === q - 1 && q < 3 ? 'yozildi' : 'matn')}>
           {q >= 3 && <em className="pr-rs-y" style={{ '--j': i }}>{tr(r.y)}</em>}
           {i < q ? <span className="pr-rs-t">{tr(r.t)}</span> : <i className="pr-q-bo" />}
           {r.son && i < q && <b className="pr-rs-son" data-uch={i === 0 ? 'rs-17' : undefined}>{r.son}</b>}
@@ -1052,10 +1100,10 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const tx = S6_TAXMIN.find(v => v.k === taxmin);
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · raqamlar', ru: "Понятие · цифры" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : `${tr({ uz: "Bo'laklarni qo'shing", ru: "Добавьте части" })} (${q}/3)`} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · raqamlar', ru: "Понятие · цифры" })} screen={screen} scrollSignal={q} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !taxmin ? tr({ uz: 'Avval taxminingizni belgilang', ru: 'Сначала отметьте предположение' }) : tr({ uz: 'Savollarga javob bering', ru: 'Ответьте на вопросы' })} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} keng tugadi={tugadi}
         sarlavha={tr({ uz: <>A/B raqami <A>qachon tushunarli</A> bo'ladi?</>, ru: <>Когда число A/B <A>становится понятным</A>?</> })}
-        mentor={<Mentor>{tr({ uz: "Raqamlar slaydiga «Maydon» A/B testidan bitta raqam qo'yildi. Bo'laklarni birma-bir qo'shib, zal savoliga qarang.", ru: "На слайд «Цифры» поставили одно число из A/B-теста «Maydon». Добавляйте части по одной и смотрите на вопрос зала." })}</Mentor>}
+        mentor={<Mentor>{tr({ uz: "Raqamlar slaydiga «Maydon» A/B testidan bitta raqam qo'yildi. Zalning har savoliga javob bering — slaydga nima qo'shilishini ko'rasiz.", ru: "На слайд «Цифры» поставили одно число из A/B-теста «Maydon». Ответьте на каждый вопрос зала — увидите, что добавится на слайд." })}</Mentor>}
         bashorat={!done && <Bashorat savol={tr(S6_SAVOL)} variantlar={S6_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={!taxmin ? null : <div className="q-kir">{<div className="pr-s6">
           <RaqamSlayd q={q} />
@@ -1063,8 +1111,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>}</div>}
         harakat={!taxmin ? null : !done && taxmin && (
           <QadamQator jami={3} joriy={q}>
-            <QTugma className="pr-bos" onClick={bos}>{q + 1} · {tr(S6_QADAM[q])}</QTugma>
-            {ipucha && <QIzoh>{tr({ uz: "Keyingi bo'lakni qo'shing — zal savoli qanday o'zgarishini ko'ring.", ru: "Добавьте следующую часть — посмотрите, как меняется вопрос зала." })}</QIzoh>}
+            <Qaror key={q} savol={S6_QAROR[q].savol} variantlar={S6_QAROR[q].v} onTogri={bos} />
+            {ipucha && <QIzoh>{tr(IPUCHA_QAROR)}</QIzoh>}
           </QadamQator>
         )}
         xulosa={done && <>
@@ -1669,17 +1717,17 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (MD; har biri 3 marta)
 const QUIZ_BANK = [
   { q: { uz: '5 daqiqalik pitchda birinchi qaysi slayd turadi?', ru: "Какой слайд стоит первым в пятиминутном питче?" }, opts: [{ uz: 'Muammo slaydi', ru: "Слайд «Проблема»" }, { uz: 'Raqamlar slaydi', ru: "Слайд «Цифры»" }, { uz: 'Yechim slaydi', ru: "Слайд «Решение»" }, { uz: 'Foydalanuvchi slaydi', ru: "Слайд «Пользователь»" }], correct: 0 },
-  { q: { uz: 'Zal «Endi nima qilasiz?» deb so\'radi. Qaysi slayd javob beradi?', ru: "Зал спросил «Что будете делать дальше?». Какой слайд отвечает?" }, opts: [{ uz: 'Foydalanuvchi slaydi', ru: "Слайд «Пользователь»" }, { uz: 'Keyingi qadam slaydi', ru: "Слайд «Следующий шаг»" }, { uz: 'Raqamlar slaydi', ru: "Слайд «Цифры»" }, { uz: 'Muammo slaydi', ru: "Слайд «Проблема»" }], correct: 1 },
-  { q: { uz: '«B — 40 tadan 17» da 40 nimani sanaydi?', ru: "Что считает 40 в «B — 17 из 40»?" }, opts: [{ uz: 'Saytni ochgan hamma brauzerlarni', ru: "Все браузеры, открывшие сайт" }, { uz: 'Oxirida band qilgan brauzerlarni', ru: "Браузеры, которые в итоге забронировали" }, { uz: 'Vaqtni tanlagan brauzerlarni', ru: "Браузеры, выбравшие время" }, { uz: 'Sayt ishlagan kunlar sonini', ru: "Число дней работы сайта" }], correct: 2 },
-  { q: { uz: 'Slaydni tuzatgandan keyin nima uchun darhol qayta aytasiz?', ru: "Зачем сразу рассказывать слайд ещё раз после исправления?" }, opts: [{ uz: 'Dars vaqti ortib qolgani uchun', ru: "Потому что осталось время урока" }, { uz: 'Sherik zerikib ketmasligi uchun', ru: "Чтобы напарник не заскучал" }, { uz: "Slaydlar soni o'zgargani uchun", ru: "Потому что изменилось число слайдов" }, { uz: "Zal savoliga javob bo'ldimi, ko'rasiz", ru: "Видно, стал ли он ответом залу" }], correct: 3 },
-  { q: { uz: '«82 ta brauzer hali kam» degan gap nimani aytadi?', ru: "О чём говорит фраза «82 браузера пока мало»?" }, opts: [{ uz: 'Xulosaga brauzer kamligini', ru: "Что для вывода мало браузеров" }, { uz: 'Backend sekin ishlayotganini', ru: "Что Backend работает медленно" }, { uz: 'Reklamaga kam pul ketganini', ru: "Что на рекламу ушло мало денег" }, { uz: 'B varianti yomon chiqqanini', ru: "Что вариант B оказался плохим" }], correct: 0 },
-  { q: { uz: 'Repetitsiyada juftlik qanday ishlaydi?', ru: "Как работает пара на репетиции?" }, opts: [{ uz: 'Ikkalasi bir vaqtda gapiradi', ru: "Оба говорят одновременно" }, { uz: 'Avval A gapiradi, B tinglaydi; keyin almashasiz', ru: "Сначала говорит A, B слушает; потом меняетесь" }, { uz: "Faqat bittasi gapiradi, ikkinchisi baho qo'ymaydi", ru: "Говорит только один, второй не оценивает" }, { uz: "Har biri o'ziga o'zi aytadi", ru: "Каждый рассказывает сам себе" }], correct: 1 },
-  { q: { uz: "Varaqda hamma slaydga ✓ turibdi. Tuzatish ekranida nimani tuzatasiz?", ru: "В листе у всех слайдов ✓. Что исправите на экране исправления?" }, opts: [{ uz: 'Hech narsani — pitch tayyor', ru: "Ничего — питч готов" }, { uz: 'Birinchi slaydni', ru: "Первый слайд" }, { uz: 'Izoh yozilgan eng zaif slaydni', ru: "Самый слабый слайд, у которого есть пояснение" }, { uz: 'Hamma slaydni qaytadan', ru: "Все слайды заново" }], correct: 2 },
-  { q: { uz: 'Qaysi fidbek qattiq, lekin hurmatli?', ru: "Какой фидбек жёсткий, но уважительный?" }, opts: [{ uz: '«Muammo slaydi yaxshi, hammasi yoqdi»', ru: "«Слайд „Проблема“ хороший, всё понравилось»" }, { uz: '«Raqamlarni aytganda siz qo\'rqdingiz»', ru: "«Вы испугались, когда говорили цифры»" }, { uz: '«Keyingi qadam slaydi umuman kerak emas»', ru: "«Слайд „Следующий шаг“ вообще не нужен»" }, { uz: '«Yechimda sayt nima qilishi aytilmadi»', ru: "«В решении не сказано, что делает сайт»" }], correct: 3 },
-  { q: { uz: "Baholash varag'ida har slayd uchun nima yozilgan?", ru: "Что записано в листе оценки для каждого слайда?" }, opts: [{ uz: 'Zalning bitta savoli', ru: "Один вопрос зала" }, { uz: 'Slaydning rangi va shrifti', ru: "Цвет и шрифт слайда" }, { uz: "Gapiruvchining to'liq ismi", ru: "Полное имя выступающего" }, { uz: "Slayddagi so'zlar soni", ru: "Число слов на слайде" }], correct: 0 },
-  { q: { uz: "Sinfdosh Yechim slaydiga ✗ qo'ydi. Keyin nima qilasiz?", ru: "Одноклассник поставил слайду «Решение» ✗. Что сделаете дальше?" }, opts: [{ uz: 'Yechim slaydini butunlay olib tashlaysiz', ru: "Полностью уберёте слайд «Решение»" }, { uz: 'Yechim slaydini izohga qarab yozasiz', ru: "Перепишете слайд «Решение» по пояснению" }, { uz: "Yechimdagi ✗ belgisini o'chirib qo'yasiz", ru: "Сотрёте знак ✗ у решения" }, { uz: "Yechim uchun sinfdoshdan ✓ so'raysiz", ru: "Попросите у одноклассника ✓ для решения" }], correct: 1 },
-  { q: { uz: 'Yechim slaydiga nima yoziladi?', ru: "Что пишется на слайде «Решение»?" }, opts: [{ uz: "Saytdagi texnologiyalar ro'yxati", ru: "Список технологий сайта" }, { uz: 'Saytga ketgan haftalar soni', ru: "Сколько недель ушло на сайт" }, { uz: 'Sayt muammoni qanday hal qilishi', ru: "Как сайт решает проблему" }, { uz: 'A/B testidagi ikki variant foizi', ru: "Проценты двух вариантов A/B-теста" }], correct: 2 },
-  { q: { uz: "Pitch 5 daqiqadan oshib ketdi. Nima qilasiz?", ru: "Питч длился больше 5 минут. Что сделаете?" }, opts: [{ uz: 'Oxirgi slaydlarni tezroq gapirib berasiz', ru: "Быстрее расскажете последние слайды" }, { uz: 'Bitta slaydni butunlay olib tashlaysiz', ru: "Полностью уберёте один слайд" }, { uz: "Taymerni o'chirib, vaqtni sanamaysiz", ru: "Выключите таймер и перестанете считать время" }, { uz: 'Har slayddan ortiqcha gapni olasiz', ru: "Уберёте лишнюю фразу из каждого слайда" }], correct: 3 }
+  { q: { uz: "«Endi nima qilasiz?» — qaysi slayd javob beradi?", ru: "«Что будете делать дальше?» — какой слайд отвечает?" }, opts: [{ uz: "Foydalanuvchi slaydi", ru: "Слайд пользователя" }, { uz: "Keyingi qadam slaydi", ru: "Слайд следующего шага" }, { uz: "Raqamlar slaydi", ru: "Слайд с цифрами" }, { uz: "Muammo slaydi", ru: "Слайд проблемы" }], correct: 1 },
+  { q: { uz: "«B — 40 tadan 17» da 40 nimani sanaydi?", ru: "Что считает 40 в «B — 17 из 40»?" }, opts: [{ uz: "Saytni ochgan brauzerlarni", ru: "Браузеры, открывшие сайт" }, { uz: "Band qilgan brauzerlarni", ru: "Забронировавшие браузеры" }, { uz: "Vaqt tanlagan brauzerlarni", ru: "Браузеры, выбравшие время" }, { uz: "Sayt ishlagan kunlarni", ru: "Дни работы сайта" }], correct: 2 },
+  { q: { uz: "Tuzatilgan slayd nega darhol qayta aytiladi?", ru: "Зачем исправленный слайд сразу рассказывают снова?" }, opts: [{ uz: "Dars vaqti ortib qoldi", ru: "Осталось время урока" }, { uz: "Sherik zerikib qolmasin", ru: "Чтобы партнёр не скучал" }, { uz: "Slaydlar soni o'zgardi", ru: "Изменилось число слайдов" }, { uz: "Javob bo'lganini bilish uchun", ru: "Чтобы понять, стал ли он ответом" }], correct: 3 },
+  { q: { uz: "«82 ta brauzer hali kam» nimani aytadi?", ru: "О чём говорит «82 браузера пока мало»?" }, opts: [{ uz: "Xulosaga brauzer kamligini", ru: "Для вывода мало браузеров" }, { uz: "Backend sekinligini", ru: "Backend медленный" }, { uz: "Reklamaga kam pul ketganini", ru: "На рекламу ушло мало денег" }, { uz: "B varianti yomon chiqqanini", ru: "Вариант B оказался плохим" }], correct: 0 },
+  { q: { uz: "Repetitsiyada juftlik qanday ishlaydi?", ru: "Как работает пара на репетиции?" }, opts: [{ uz: "Ikkalasi birga gapiradi", ru: "Оба говорят одновременно" }, { uz: "A gapiradi, keyin almashasiz", ru: "Говорит A, потом меняетесь" }, { uz: "Faqat bittasi gapiradi", ru: "Говорит только один" }, { uz: "Har kim o'ziga aytadi", ru: "Каждый рассказывает себе" }], correct: 1 },
+  { q: { uz: "Hamma slaydga ✓ qo'yildi. Nimani tuzatasiz?", ru: "На всех слайдах ✓. Что исправляете?" }, opts: [{ uz: "Hech narsani — tayyor", ru: "Ничего — готово" }, { uz: "Birinchi slaydni", ru: "Первый слайд" }, { uz: "Eng zaif slaydni", ru: "Самый слабый слайд" }, { uz: "Hamma slaydni qaytadan", ru: "Все слайды заново" }], correct: 2 },
+  { q: { uz: "Qaysi fidbek qattiq, lekin hurmatli?", ru: "Какой фидбек жёсткий, но уважительный?" }, opts: [{ uz: "«Hammasi yoqdi, zo'r»", ru: "«Всё понравилось, супер»" }, { uz: "«Raqamlarda qo'rqdingiz»", ru: "«На цифрах вы испугались»" }, { uz: "«Keyingi qadam kerak emas»", ru: "«Следующий шаг не нужен»" }, { uz: "«Yechimda sayt ishi aytilmadi»", ru: "«В решении не сказано, что делает сайт»" }], correct: 3 },
+  { q: { uz: "Baholash varag'ida har slayd uchun nima yozilgan?", ru: "Что написано в листе оценки для каждого слайда?" }, opts: [{ uz: "Zalning bitta savoli", ru: "Один вопрос зала" }, { uz: "Slayd rangi va shrifti", ru: "Цвет и шрифт слайда" }, { uz: "Gapiruvchi ismi", ru: "Имя выступающего" }, { uz: "Slayddagi so'zlar soni", ru: "Число слов на слайде" }], correct: 0 },
+  { q: { uz: "Yechim slaydiga ✗ qo'yildi. Nima qilasiz?", ru: "На слайде решения ✗. Что делаете?" }, opts: [{ uz: "Slaydni olib tashlaysiz", ru: "Убираете слайд" }, { uz: "Izohga qarab qayta yozasiz", ru: "Переписываете по комментарию" }, { uz: "✗ belgisini o'chirasiz", ru: "Стираете знак ✗" }, { uz: "Sinfdoshdan ✓ so'raysiz", ru: "Просите у одноклассника ✓" }], correct: 1 },
+  { q: { uz: "Yechim slaydiga nima yoziladi?", ru: "Что пишут на слайде решения?" }, opts: [{ uz: "Texnologiyalar ro'yxati", ru: "Список технологий" }, { uz: "Ketgan haftalar soni", ru: "Сколько ушло недель" }, { uz: "Muammoni qanday hal qilishi", ru: "Как сайт решает проблему" }, { uz: "A/B testi foizlari", ru: "Проценты A/B-теста" }], correct: 2 },
+  { q: { uz: "Pitch 5 daqiqadan oshdi. Nima qilasiz?", ru: "Питч вышел за 5 минут. Что делаете?" }, opts: [{ uz: "Oxirini tezroq gapirasiz", ru: "Говорите конец быстрее" }, { uz: "Bitta slaydni olib tashlaysiz", ru: "Убираете один слайд" }, { uz: "Taymerni o'chirasiz", ru: "Выключаете таймер" }, { uz: "Har slayddan bir gap olasiz", ru: "Убираете по фразе с каждого слайда" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2547,6 +2595,15 @@ export default function PmPitchRehearsalLesson({ lang: langProp, onFinished, liv
         .pr-qadam { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px 14px; }
         .pr-qadam .q-izoh { flex-basis: 100%; text-align: center; }
         .pr-qadam-d { display: flex; gap: 6px; }
+        /* F-1019-07 (213.22): qaror qadami — nuqtalar ostida to'liq kenglikda: savol, variantlar, sabab */
+        .pr-qadam .pr-qr { flex-basis: 100%; }
+        .pr-qadam:has(.pr-qr) { justify-content: flex-start; }
+        .pr-s1 .pr-sl-nom { font-size: 11.5px; line-height: 1.25; overflow-wrap: anywhere; white-space: normal; } /* F-1019-08: reja kartasida nom kesilmaydi */
+        /* F-1019-07: telefonda slaydlar ustma-ust — pufak slayd ustiga emas, zal markaziga (uzun savol o'ng chetdan chiqmaydi) */
+        @media (max-width: 640px) { .pr-pf { left: 50%; } }
+        .pr-qr { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+        .pr-qr-s { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.4; color: ${T.ink}; }
+        .pr-qr-v { display: flex; flex-wrap: wrap; gap: 8px; }
         .pr-qadam-d i { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 99px; font-style: normal; font-size: 11.5px; font-weight: 800; color: ${T.ink2}; box-shadow: inset 0 0 0 1.5px ${T.line}; background: ${T.paper}; transition: background .3s, color .3s; }
         .pr-qadam-d i.ok { background: ${T.okFon}; color: ${T.ok}; box-shadow: inset 0 0 0 1.5px ${T.ok}; }
         .pr-qadam-d i.on { background: ${T.accent}; color: ${T.paper}; box-shadow: none; }

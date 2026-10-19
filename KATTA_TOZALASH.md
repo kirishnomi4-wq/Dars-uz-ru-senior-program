@@ -1946,3 +1946,29 @@ A qaytganda qulf — 42 dars / 122 ekran · K klapan saqlamaydi — 14 · M ment
 
 ## F-1015-322 (18.10) — QBlok «Ulgurmasangiz» qatori kartasiz (1–6-M, 44 fayl)
 Qolip QBlok endi `ulgur` propini karta ichida yig'iq qator qilib chiqaradi (213.13). 7–14-M darslari (19 fayl) ulandi. **Qoldi:** 1–6-M + pm/ darslaridagi `ScreenBlok` nusxalari hali `<p className="XX-ulgur">` ni QBlok tashqarisida chiqaradi — `src/1-Modull`, `2-Modull`, `3-Modull`, `4-Modull`, `4a/4b/4c-Modull`, `src/pm/PmMetricsLesson.jsx` (7–10-M darslarida bu qolip yo'q — tekshirildi): ro'yxat `grep -l 'ulgur && !done' src/*/*.jsx`. Tuzatish: `{ulgur && !done && <p …>}` olinadi, `<QBlok ulgur={ulgur && !done ? tx(ulgur) : null}` — skript `scratchpad/e14`dagi kabi (jurnal F-1015-322). Darvozalar har faylda.
+
+## F-1019-01 — Klapan qatori «Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq» + zid nav-yorliq (1–6-M, 17 fayl, 94 joy) — 19.10.2026
+- **Topildi (NestArchAlive s9 QA fidbekida sinf-supurish):** `useStuckValve` rescue holatida ekran ostida alohida kulrang qator chiqadi, nav-tugma esa ochiq turib eski yorliqni («Tartibni tuzating», «Yo'lakni yig'ing») ko'rsatadi — o'quvchiga zid ikki signal. QA: «ortiqcha textlarni olib tashlang». Shu ekranda `AchRule` ning «Nishon birinchi urinish uchun edi — endi bemalol…» qatori ham ortiqcha deb belgilandi (umumiy komponent, ko'p dars).
+- **Andoza (NestArchAlive s9 da qilingan):** qator olinadi, `navLabel = done || _resc ? «Davom etish» : …`; `<AchRule … oldin />` — nishon yo'qotilgach qator yashiriladi.
+- **Grep:** `grep -rc "Qolganini keyinroq birga ko'rib chiqamiz" src` → 17 fayl, 94 joy (1 joy tuzatildi).
+- **Holat:** ✅ 19.10 — LMS 2–6 16 dars (92 qator, 97−4 yorliq) — `feedback/F-1019-05-klapan/JURNAL.md`; src/6-Modull/PmLesson23 (LMS 8) — QA seansi doirasi, qoldi.
+
+### F-1015-378 — «Qaror va javob» (DE 213.22) passiv tushuncha-ekranlarga yoyish (19.10; foydalanuvchi: «xop maqul»)
+Pilotlar tasdiqlandi: m10-01 s2 (sarlavhani yig'ish), m11-01 s7 («Ikki soningiz nima deydi?»), m11-02 s4 («mos keladi / mos emas»), m11-05 s2/s5 (har usulga «buzadimi?», «yopaman / qayta tekshiraman», «qaysi usul bilan»).
+O'lchov (statik, taxminiy): 7–14-M 237 tushuncha/voqea ekranidan ~33 tasida faqat bosish matni («birma-bir bosing», «Tugmalarni bosing (n/N)»), xato-tanlov yo'li yo'q — ro'yxat `scratchpad/passiv-ekranlar.json`:
+m8-07 (s2, s4, s10) · m12-10 (s2, s4, s6) · m9-08 (s2, s6) · m9-09 (s4, s5) · m10-10 (s2, s6) · m11-01 (s4, s5) · m11-02 (s6) · m7-04 s11 · m8-05 s9 · m9-01 s2 · m9-05 s2 · m9-10 s2 · m9-12 s4 · m10-01 s7 · m10-06 s7 · m10-07 s4 · m11-04 s4 · m11-10 s2 · m11-11 s4 · m12-02 s2 · m12-04 s2 · m12-08 s3 · m12-11 s4 · m12-13 s2.
+Eslatma: o'lchov taxminiy (matn naqshi) — har dars ochilganda ko'z bilan tasdiqlanadi. Pitch-seans darslari (m7-12, m8-11, m9-16, m12-01/02/05/08) — u seans doirasida.
+Tartib: to'lqin bilan, dars-dars (har darsda bitta–ikki ekran → qaror + sabab; surat; gates). Holat: to'lqin 1 — pilotlar ✅; navbat — m8-07, m12-10.
+
+## F-1019-03 — Passiv tugma-qadam «Tugmalarni birma-bir bosing» (DE 213.22) — 25 fayl — 19.10.2026
+- **Topildi (m12-01 QA F-1015-372…377 da sinf-supurish):** tushuncha-ekranda o'quvchi faqat «1 · 2 · 3» tugmasini ketma-ket bosadi, qaror qilmaydi. `grep -rc "birma-bir bosing" src`: bridge 6 fayl, 1-M (PmLesson1, PmLesson2, Htmllesson2, HtmlTakrorlash), 3-M ReactApiGet, 4-M PmLesson12, 4c CiCdIntro/GithubActions, 9-M (ExpoPrototype, PmTenIdeas, PmPrd), 12-M (PmStoryPitch, PmFreelance, PmPrograms), pm/PmMetrics…
+- **Andoza (m12-01 da qilingan):** `Qaror` komponenti (savol + 3 variant, xatoga sabab, xato tugma yopiladi) — `src/12-Modull/PmInvestorPitchLesson.jsx`; har qadamga 2 tipik xato yoziladi (darsdagi faktdan).
+- **Holat:** 🔄 19.10 — LMS 2–6 dagi 8 dars (10 joy) ✅ (`feedback/F-1019-04-passiv/JURNAL.md`); kutadi: 9–10-M 5 dars, m5-14, LMS 14 6 dars, bridge 5 dars; o'xshash «oching/ko'ring» passiv ekranlar ro'yxati jurnalda.
+- **19.10 07:38 (F-1019-06/07):** pitch darslari HAMMASI ✅ — m12-01·02·05·08 (F-1019-06), m8-11 s2/s6, m9-16 s2/s4/s8, m10-12 s2/s4/s8; LMS 2–6 qo'shimcha: m4-07 s2, m4c-01 s5/s6/s7/s11, m4c-03 s5, Htmllesson1 s5, VsCodeLesson tur-ekrani ✅. Telefonda savol sahnadan keyin (11 pitch ekrani). Jurnal: `feedback/F-1019-07-pitch-qaror/JURNAL.md`.
+  **Qolgani (boshqa doira):** 7–14-M pitch bo'lmagan darslar — PmUsersCheck, PmMonetization, PmUnitEconomics, DemoPrep, PmDressRehearsal, PmFreelance, PmPrograms, BotStatefulMemory, PmInterviewMvp, PmOkr, ExpoPrototype, PmFinalIdea, PmPrd, PmTenIdeas (QA seansi, F-1015-378) · bridge 5 dars · `src/pm` PmMetrics/PmUserStory (eski PM etalon, LMS dan tashqari) — har biri avval passivligi ko'rilsin (grep moslik ≠ passiv: NestArch*/PmLesson9 dagi mosliklar qaror ichidagi maslahat yoki tushuncha matni chiqdi).
+
+## F-1015-397 — Reja qadamlari «bilib olasiz / o'rganasiz» → «-ing» buyruq shakli? — ~90 dars (7–14-M) — 19.10.2026 · QAROR KUTADI
+- **Topildi (QA, m12-05 s1 surati `feedback/F-1015-7-14M/F-1015-386-m12-05-s1-reja.png`):** QA reja qadamlaridagi «bilib olasiz», «o'rganasiz», «to'ldirasiz» ostiga chizdi: «so'zlar olasiz, qilasiz, ko'rasiz — ba'zi joylar -ing bilan tugagani yaxshi».
+- **Ziddiyat:** MATN_KORPUS (457–475-qatorlar) maqsad-ekranda «bilib olasiz» shaklini namuna qilgan. O'zgartirish — korpus qoidasini almashtirish.
+- **Taklif:** reja qadamlari buyruq shaklida («Varaqdan tuzatishni o'qing», «Pitchingizni guruhga 5 daqiqada ayting»); sarlavha «Bugun … yozasiz» o'zgarmaydi. Foydalanuvchi qaroridan keyin: korpusga juftlik + `REJA = [` massivlari supurilsin (7–14-M, pitch darslari — pitch-seans).
+- **Holat:** ✅ 19.10 — foydalanuvchi: «taklifing maqul». 7–14-M: 40 dars, 150 qadam (145 matn + 5 JSX) «-ing» ga; ruschasi buyruq; 40 yakuniy MD da 147 joy; korpus §REJA-BUYRUQ. Pitch darslari (7 ta) — pitch-seansda; tarixiy MD versiyalari tegilmadi. Jurnal: `feedback/F-1015-7-14M/JURNAL.md` «F-1015-397».

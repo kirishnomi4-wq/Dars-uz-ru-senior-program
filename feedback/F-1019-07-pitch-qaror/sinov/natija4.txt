@@ -1,0 +1,68 @@
+== pm-m8d11-pitch-v2 s2 uz-390 · eyebrow: TUSHUNCHA · BESH SLAYD
+  boshida nav: Avval taxminingizni belgilang (yopiq)
+  1. «Zal so'raydi: «Sayt ishga tushgach nima bo'ldi?» Qaysi slayd javob beradi?» [savol top 928]
+     ✗ «Yechim» → «Yechim — sayt nima qilishi; bo'lgan ishni raqam aytadi.» (55 b., yopildi: true)
+     ✓ «Raqamlar» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 584 / ekran 844 → ko'rinadi
+  2. «Zal so'raydi: «Endi nima qilasiz?» Slaydga nima yoziladi?» [savol top 584]
+     ✗ «Yana bir sanalgan raqam» → «Sanalgan raqam — Raqamlar slaydida; bu slayd oldinga qaraydi.» (61 b., yopildi: true)
+     ✗ «Jamoa a'zolarining ismlari» → «Zal reja so'radi; jamoa haqida savol yo'q edi.» (46 b., yopildi: true)
+     ✓ «Keyingi ish va maqsad» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 630 / ekran 844 → ko'rinadi
+  3. «Besh slayd — besh daqiqa. Vaqtni qanday bo'lasiz?» [savol top 630]
+     ✓ «Har slaydga 1 daqiqadan» · nav: Savollarga javob bering (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m8d11-pitch-v2 s3 uz-390 · eyebrow: TUSHUNCHA · RAQAMLAR
+  boshida nav: Avval taxminingizni belgilang (yopiq)
+  1. «Zal so'raydi: «17 nima?» Raqam yoniga nima qo'shasiz?» [savol top 653]
+     ✗ «17 ni kattaroq shriftda» → «Katta raqam ham «17 nima?» savoliga javob bermaydi.» (51 b., yopildi: true)
+     ✓ «U nimani sanaganini» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 620 / ekran 844 → ko'rinadi
+  2. «Zal so'raydi: «Bu ko'pmi, kammi?» Nima qo'shasiz?» [savol top 620]
+     ✗ ««Bu juda yaxshi natija!»» → «Baho raqam emas: zal o'zi solishtira olmaydi.» (45 b., yopildi: true)
+     ✗ «Saytga kirganlar soni» → «Bu yana bitta son; «nima bilan solishtirdik?» ochiq qoladi.» (59 b., yopildi: true)
+     ✓ «Boshqa tugma natijasi» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 627 / ekran 844 → ko'rinadi
+  3. «Zal so'raydi: «Bunga ishonsa bo'ladimi?» Nima deysiz?» [savol top 627]
+     ✓ «Farq bor, brauzer hali kam» · nav: Davom etish (ochiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m9d16-v2 s2 uz-390 · eyebrow: TUSHUNCHA · TO'RT BO'LAK
+  boshida nav: Savollarga javob bering (yopiq)
+  1. «Pitch nimadan boshlanadi?» [savol top 793]
+     ✗ «Ilova tugmalaridan» → «Zal hali nimani hal qilishini bilmaydi — avval muammo.» (54 b., yopildi: true)
+     ✓ «Muammodan» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 648 / ekran 844 → ko'rinadi
+  2. «Muammodan keyin zalga nima aytiladi?» [savol top 648]
+     ✗ «Keyingi oy uchun reja» → «Reja oxirida; zal hali mahsulot nima qilishini bilmaydi.» (56 b., yopildi: true)
+     ✗ «Yana bitta boshqa muammo» → «Bitta muammo yetadi; endi uni nima hal qilishi kerak.» (53 b., yopildi: true)
+     ✓ «Mahsulot nima qilishi» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 606 / ekran 844 → ko'rinadi
+  3. «Zal ilova ishlashini qanday ko'radi?» [savol top 606]
+     ✓ «Ilovani telefonda ishlatib» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 651 / ekran 844 → ko'rinadi
+  4. «Pitch nima bilan tugaydi?» [savol top 651]
+     ✗ ««Rahmat, savollar bormi?»» → «Zal hali «endi nima qilasiz?» deb kutib turibdi.» (48 b., yopildi: true)
+     ✓ «Keyingi qadam bilan» · nav: Savollarga javob bering (yopiq)
+  tugadi: qadam 4, xato tanlov 4 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m9d16-v2 s4 uz-390 · eyebrow: TUSHUNCHA · JONLI DEMO
+  boshida nav: Savollarga javob bering (yopiq)
+  1. «Bepul Backend uxlab qolishi mumkin. Pitchdan oldin nima qilasiz?» [savol top 810]
+     ✗ «Zal oldida birinchi ochaman» → «Backend uyg'onguncha zal ham kutib qoladi.» (42 b., yopildi: true)
+     ✓ «Ilovani oldindan ochaman» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 651 / ekran 844 → ko'rinadi
+  2. «Demoda zalga nimani ko'rsatasiz?» [savol top 651]
+     ✓ «Bitta asosiy harakatni» · nav: Savollarga javob bering (yopiq)
+     telefonda keyingi savol: top 650 / ekran 844 → ko'rinadi
+  3. «Demo oxirida qaysi gap qo'shiladi?» [savol top 650]
+     ✗ ««Ilova hali xom, uzr»» → «Uzr zalga hech narsa bermaydi; nima o'zgarganini ayting.» (56 b., yopildi: true)
+     ✗ «Keyingi oy uchun katta reja» → «Reja — Keyingi qadam bo'lagida; demo sinovga tayanadi.» (54 b., yopildi: true)
+     ✓ «Sinovdan keyingi tuzatish» · nav: Savollarga javob bering (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0

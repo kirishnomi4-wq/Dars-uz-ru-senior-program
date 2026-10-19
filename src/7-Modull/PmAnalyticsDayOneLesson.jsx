@@ -95,6 +95,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -172,8 +197,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -785,10 +810,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda panel bir marta o'zi o'ynaydi — odam saytni ochadi, 18:00 ni tanlaydi; o'ngda 4 qadam «01 · matn · teg»; pastda repo teglari) =====
 const REJA = [
-  { t: { uz: 'Qaysi qadamdan keyin son keskin kamayishini topasiz', ru: 'Найдёте, после какого шага число резко падает' }, teg: { uz: 'uch qadam', ru: 'три шага' } },
-  { t: { uz: "Kech ulansa nima yo'qolishini ko'rasiz", ru: 'Увидите, что теряется при позднем подключении' }, teg: { uz: 'birinchi kun', ru: 'первый день' } },
-  { t: { uz: "«Maydon»ga Umami'ni ulaysiz", ru: 'Подключите Umami к «Maydon»' }, teg: 'Umami' },
-  { t: { uz: 'Vaqt tanlashni ham yozdirasiz', ru: 'Запишете и выбор времени' }, teg: { uz: 'hodisa', ru: 'событие' } }
+  { t: { uz: 'Qaysi qadamdan keyin son keskin kamayishini toping', ru: 'Найдите, после какого шага число резко падает' }, teg: { uz: 'uch qadam', ru: 'три шага' } },
+  { t: { uz: "Kech ulansa nima yo'qolishini ko'ring", ru: 'Посмотрите, что теряется при позднем подключении' }, teg: { uz: 'birinchi kun', ru: 'первый день' } },
+  { t: { uz: "«Maydon»ga Umami'ni ulang", ru: 'Подключите Umami к «Maydon»' }, teg: 'Umami' },
+  { t: { uz: 'Vaqt tanlashni ham yozdiring', ru: 'Запишите и выбор времени' }, teg: { uz: 'hodisa', ru: 'событие' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const [bosq, setBosq] = useState(0); // 0 — hali hech kim · 1 — odam saytni ochdi · 2 — 18:00 tanlandi
@@ -1123,17 +1148,17 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A·B·C·D ×3 (1A 2B 3C 4D 5A 6B 7C 8D 9A 10B 11C 12D)
 const QUIZ_BANK = [
-  { q: { uz: 'Analitika saytda nimani yozib boradi?', ru: 'Что записывает аналитика на сайте?' }, opts: [{ uz: 'Odamlar saytda nima qilganini', ru: 'Что люди делали на сайте' }, { uz: 'Sayt necha soniyada ochilishini', ru: 'За сколько секунд открывается сайт' }, { uz: 'Kodda qancha xato qolganini', ru: 'Сколько ошибок осталось в коде' }, { uz: 'Saytni kim va qachon qurganini', ru: 'Кто и когда сделал сайт' }], correct: 0 },
-  { q: { uz: 'Umami 4-kuni ulandi. 1-kundan nima ma\'lum?', ru: 'Umami подключили на 4-й день. Что известно о 1-м дне?' }, opts: [{ uz: 'Hamma qadam, faqat kechikib keladi', ru: 'Все шаги, просто придут позже' }, { uz: "Faqat Database'dagi bandlar", ru: 'Только брони в Database' }, { uz: 'Faqat saytni ochganlar soni', ru: 'Только число открывших сайт' }, { uz: "Hech narsa — bandlar ham o'chgan", ru: 'Ничего — брони тоже стёрлись' }], correct: 1 },
-  { q: { uz: '«Maydon»ning uch qadami qaysi tartibda?', ru: 'В каком порядке три шага «Maydon»?' }, opts: [{ uz: 'Band qildi → Vaqtni tanladi → Saytni ochdi', ru: 'Забронировал → Выбрал время → Открыл сайт' }, { uz: 'Vaqtni tanladi → Saytni ochdi → Band qildi', ru: 'Выбрал время → Открыл сайт → Забронировал' }, { uz: 'Saytni ochdi → Vaqtni tanladi → Band qildi', ru: 'Открыл сайт → Выбрал время → Забронировал' }, { uz: 'Saytni ochdi → Band qildi → Vaqtni tanladi', ru: 'Открыл сайт → Забронировал → Выбрал время' }], correct: 2 },
-  { q: { uz: '10 odam ochdi, 8 tasi vaqt tanladi, 1 tasi band qildi. Son qayerda keskin kamaydi?', ru: '10 открыли, 8 выбрали время, 1 забронировал. Где число резко упало?' }, opts: [{ uz: 'Sahifa ochilgandan keyin', ru: 'После открытия страницы' }, { uz: "Band qilib bo'lgandan keyin", ru: 'После того как забронировали' }, { uz: 'Saytni ochishdan ham oldin', ru: 'Ещё до открытия сайта' }, { uz: 'Vaqtni tanlagandan keyin', ru: 'После выбора времени' }], correct: 3 },
+  { q: { uz: "Analitika saytda nimani yozib boradi?", ru: "Что записывает аналитика на сайте?" }, opts: [{ uz: "Odamlar nima qilganini", ru: "Что делали люди" }, { uz: "Sayt qancha tez ochilishini", ru: "Как быстро открывается сайт" }, { uz: "Kodda qancha xato qolganini", ru: "Сколько ошибок в коде" }, { uz: "Saytni kim qurganini", ru: "Кто сделал сайт" }], correct: 0 },
+  { q: { uz: "Umami 4-kuni ulandi. 1-kundan nima ma'lum?", ru: "Umami подключили на 4-й день. Что известно о 1-м дне?" }, opts: [{ uz: "Hamma qadam, kechikib", ru: "Все шаги, но позже" }, { uz: "Faqat Database'dagi bandlar", ru: "Только брони в Database" }, { uz: "Faqat ochganlar soni", ru: "Только число открывших" }, { uz: "Hech narsa — bandlar o'chgan", ru: "Ничего — брони стёрлись" }], correct: 1 },
+  { q: { uz: "Uch qadam qaysi tartibda?", ru: "В каком порядке три шага?" }, opts: [{ uz: "Band qildi → Tanladi → Ochdi", ru: "Забронировал → Выбрал → Открыл" }, { uz: "Tanladi → Ochdi → Band qildi", ru: "Выбрал → Открыл → Забронировал" }, { uz: "Ochdi → Tanladi → Band qildi", ru: "Открыл → Выбрал → Забронировал" }, { uz: "Ochdi → Band qildi → Tanladi", ru: "Открыл → Забронировал → Выбрал" }], correct: 2 },
+  { q: { uz: "10 ochdi, 8 tanladi, 1 band qildi. Qayerda keskin kamaydi?", ru: "10 открыли, 8 выбрали, 1 забронировал. Где резкое падение?" }, opts: [{ uz: "Saytni ochgach", ru: "После открытия сайта" }, { uz: "Band qilgach", ru: "После брони" }, { uz: "Ochishdan oldin", ru: "До открытия" }, { uz: "Vaqtni tanlagach", ru: "После выбора времени" }], correct: 3 },
   { q: { uz: 'Analitikaga yoziladigan bitta harakat nima deyiladi?', ru: 'Как называется одно действие, записанное в аналитику?' }, opts: [{ uz: 'Hodisa', ru: 'Событие' }, { uz: 'Metrika', ru: 'Метрика' }, { uz: 'Bosh raqam', ru: 'Главное число' }, { uz: 'Sinov', ru: 'Испытание' }], correct: 0 },
-  { q: { uz: 'Saytning ochilishini Umami qanday yozadi?', ru: 'Как Umami записывает открытие сайта?' }, opts: [{ uz: "Har sahifaga hodisa nomi qo'shiladi", ru: 'На каждую страницу добавляют имя события' }, { uz: "Skript ulangach, o'zi yozib boradi", ru: 'После подключения скрипт пишет сам' }, { uz: "Maydon egasi qo'lda kiritib boradi", ru: 'Владелец поля вносит вручную' }, { uz: "Faqat band qilinganda yozib qo'yadi", ru: 'Пишет только при брони' }], correct: 1 },
-  { q: { uz: "Bugun nega faqat bitta hodisa qo'shildi?", ru: 'Почему сегодня добавили только одно событие?' }, opts: [{ uz: "Umami bittadan ortig'ini olmaydi", ru: 'Umami не принимает больше одного' }, { uz: 'Ochilish ham nom kutib turadi', ru: 'Открытию тоже нужно имя' }, { uz: 'Band qilish hali qurilmagan', ru: 'Бронь ещё не сделана' }, { uz: 'Bitta hodisa hamma qadamni yozadi', ru: 'Одно событие пишет все шаги' }], correct: 2 },
+  { q: { uz: "Sayt ochilishini Umami qanday yozadi?", ru: "Как Umami записывает открытие сайта?" }, opts: [{ uz: "Har sahifaga nom qo'shiladi", ru: "Каждой странице дают имя" }, { uz: "Skript ulangach, o'zi yozadi", ru: "После подключения скрипт пишет сам" }, { uz: "Ega qo'lda kiritib boradi", ru: "Владелец вносит вручную" }, { uz: "Faqat band qilinganda", ru: "Только при брони" }], correct: 1 },
+  { q: { uz: "Nega bugun bitta hodisa qo'shildi?", ru: "Почему сегодня добавили одно событие?" }, opts: [{ uz: "Umami bittadan ko'p olmaydi", ru: "Umami не берёт больше одного" }, { uz: "Ochilish ham nom kutadi", ru: "Открытию тоже нужно имя" }, { uz: "Band qilish hali qurilmagan", ru: "Бронь ещё не сделана" }, { uz: "Bitta hodisa hammasini yozadi", ru: "Одно событие пишет всё" }], correct: 2 },
   { q: { uz: '«Kun almashtirish» hodisasiga qaysi nom darsdagidek?', ru: 'Какое имя для события «смена дня» — как на уроке?' }, opts: ['Kun Almashtirdi', 'kun almashtirdi', 'KUN_ALMASHTIRDI', 'kun-almashtirdi'], correct: 3 },
   { q: { uz: "Katak bosilishini Umami'ga qaysi yozuv aytadi?", ru: 'Какая запись сообщает Umami о нажатии ячейки?' }, opts: ['data-umami-event', 'data-website-id', 'VITE_UMAMI_ID', 'cloud.umami.is/script.js'], correct: 0 },
-  { q: { uz: 'Website ID nega web/.env faylida turadi?', ru: 'Почему Website ID лежит в файле web/.env?' }, opts: [{ uz: "Uni boshqa odam ko'rib qolmasligi uchun", ru: 'Чтобы его не увидел другой человек' }, { uz: "Har o'quvchining Umami sayti boshqa", ru: 'У каждого ученика свой сайт в Umami' }, { uz: "Umami uni faqat .env fayldan o'qiydi", ru: 'Umami читает его только из .env' }, { uz: "index.html uni o'zi o'qiy olmagani uchun", ru: 'Потому что index.html не может его прочитать' }], correct: 1 },
-  { q: { uz: "Sayt ochildi, Umami'da esa 0. Sabab nima bo'lishi mumkin?", ru: 'Сайт открыли, а в Umami 0. В чём может быть причина?' }, opts: [{ uz: "Katakka hodisa nomi qo'shilmagan", ru: 'На ячейку не добавили имя события' }, { uz: 'Band qilish tugmasi hali qurilmagan', ru: 'Кнопку брони ещё не сделали' }, { uz: 'Reklama to\'sgichi skriptni yopgan', ru: 'Блокировщик рекламы закрыл скрипт' }, { uz: "Database'ga ulanish uzilib qolgani", ru: 'Оборвалась связь с Database' }], correct: 2 },
+  { q: { uz: "Website ID nega web/.env da turadi?", ru: "Почему Website ID лежит в web/.env?" }, opts: [{ uz: "Uni hech kim ko'rmasin deb", ru: "Чтобы его никто не увидел" }, { uz: "Har o'quvchida u boshqa", ru: "У каждого ученика он свой" }, { uz: "Umami faqat .env'dan o'qiydi", ru: "Umami читает только из .env" }, { uz: "index.html uni o'qiy olmaydi", ru: "index.html не может его прочитать" }], correct: 1 },
+  { q: { uz: "Sayt ochildi, Umami'da 0. Sabab nima?", ru: "Сайт открыли, в Umami 0. В чём причина?" }, opts: [{ uz: "Katakda hodisa nomi yo'q", ru: "У ячейки нет имени события" }, { uz: "Band tugmasi qurilmagan", ru: "Кнопку брони не сделали" }, { uz: "Reklama to'sgichi yoqilgan", ru: "Включён блокировщик рекламы" }, { uz: "Database'ga ulanish uzilgan", ru: "Оборвалась связь с Database" }], correct: 2 },
   { q: { uz: '«Maydon»ning bosh raqami nimani sanaydi?', ru: 'Что считает главное число «Maydon»?' }, opts: [{ uz: 'Saytni ochgan odamlarni', ru: 'Людей, открывших сайт' }, { uz: 'Vaqtni tanlagan odamlarni', ru: 'Людей, выбравших время' }, { uz: 'Kunni almashtirgan odamlarni', ru: 'Людей, сменивших день' }, { uz: 'Band qilgan odamlarni', ru: 'Людей, которые забронировали' }], correct: 3 }
 ];
 
@@ -1772,7 +1797,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? NAV_DAVOM : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: c.forma ? <>{fmtCode(tr(c.t))}<QadamForma qiymat={qadam} onYoz={qadamYoz1} tola={tek.ok} /></> : fmtCode(tr(c.t)),
@@ -2194,10 +2219,9 @@ export default function PmAnalyticsDayOneLesson({ lang: langProp, onFinished, li
         .ad-taxmin-j { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13.5px; color: ${T.accent}; background: ${T.accentSoft}; border: 1.5px solid ${T.accent}; border-radius: 9px; padding: 3px 11px; }
         /* SABOQ 11 (F-1005-85/87): navbatdagi bosiladigan element — halqa + yengil puls */
         .ad-navbat { box-shadow: 0 0 0 2px ${T.accent}; animation: ad-navbat 1.6s ease-out infinite; }
-        @keyframes ad-navbat { 0% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 2px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 2px ${T.accent}, 0 0 0 12px ${fon(T.accent, 0)}; } }
-        .ad-navbat-k > .q-bashorat { box-shadow: 0 0 0 2px ${T.accent}; animation: ad-navbat 1.6s ease-out infinite; }
-        .q-kirish:has(.ad-hook.tanla) .q-variantlar-kol { border-radius: 14px; box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}; animation: ad-navbat-g 1.6s ease-out infinite; }
-        @keyframes ad-navbat-g { 0% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 9px ${fon(T.accent, 0.42)}; } 100% { box-shadow: 0 0 0 7px ${T.bg}, 0 0 0 9px ${T.accent}, 0 0 0 19px ${fon(T.accent, 0)}; } }
+        @keyframes ad-navbat { 0% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 1.5px ${fon(T.accent, 0.35)}; } 100% { box-shadow: 0 0 0 1.5px ${T.accent}, 0 0 0 8px ${fon(T.accent, 0)}; } }
+        .ad-navbat-k .q-chip:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: ad-navbat 1.6s ease-out infinite; }
+        .q-kirish:has(.ad-hook.tanla) .q-variant:not(:disabled) { box-shadow: 0 0 0 1.5px ${T.accent}; animation: ad-navbat 1.6s ease-out infinite; }
         .ad-saralash { display: flex; flex-direction: column; gap: 8px; }
         .ad-sar-q { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr) minmax(0,1fr); gap: 12px; align-items: stretch; }
         .ad-tomon { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-height: 92px; padding: 12px 14px; border-radius: 14px; border: 1.5px dashed ${T.ink2}; background: ${T.bg}; color: ${T.ink}; font-family: 'Manrope', sans-serif; text-align: left; cursor: pointer; }
@@ -2273,7 +2297,7 @@ export default function PmAnalyticsDayOneLesson({ lang: langProp, onFinished, li
           .ad-qf-q { grid-template-columns: minmax(0,1fr); gap: 3px; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .ad-navbat, .ad-navbat-k > .q-bashorat, .q-kirish:has(.ad-hook.tanla) .q-variantlar-kol, .ad-flash.yangi .fc-card:not(.flip) .fc-front, .ad-fc-ipucha i { animation: none; }
+          .ad-navbat, .ad-navbat-k .q-chip:not(:disabled), .q-kirish:has(.ad-hook.tanla) .q-variant:not(:disabled), .ad-flash.yangi .fc-card:not(.flip) .fc-front, .ad-fc-ipucha i { animation: none; }
           .ad-odam, .ad-odam.yon, .ad-tel-odam, .ad-son.yangi, .ad-ustun.milt, .ad-oraliq.silk, .ad-kq, .ad-kq.silk, .ad-taxmin { animation: none !important; }
           .ad-odam.ochadi { animation: none !important; opacity: 0; }
           .ad-katak, .ad-tel { transition: none; }

@@ -1,0 +1,128 @@
+== pm-m12d2-v2 s2 uz · eyebrow: TUSHUNCHA · RO'YXAT VA HIKOYA
+  boshida nav: Savollarga javob bering (0/3) (yopiq)
+  1. «Ro'yxat o'rniga hikoya kim haqida boshlanadi?» [savol top 318]
+     ✗ «Ilovaning funksiyalari haqida» → «Funksiyalar — yana ro'yxat; hikoyada avval odam bo'ladi.» (56 b., yopildi: true)
+     ✓ «Bitta tashkilotchi haqida» · nav: Savollarga javob bering (1/3) (yopiq)
+  2. «Tashkilotchi bilan qanday lahza aytiladi?» [savol top 318]
+     ✗ «Har hafta kimdir kech qoladi» → «Bu umumiy gap: unda aniq kun ham, soat ham yo'q.» (48 b., yopildi: true)
+     ✗ «Ilovada 3 xil eslatma bor» → «Bu yana funksiya; lahza — bitta kunda bo'lib o'tgan ish.» (56 b., yopildi: true)
+     ✓ «Shanba kuni 2 kishi kelmadi» · nav: Savollarga javob bering (2/3) (yopiq)
+  3. «Mahsulot kelgach, tashkilotchida nima o'zgardi?» [savol top 318]
+     ✓ «Juma kuni bo'sh joyni ko'radi» · nav: Davom etish (ochiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d2-v2 s2 uz-390 · eyebrow: TUSHUNCHA · RO'YXAT VA HIKOYA
+  boshida nav: Savollarga javob bering (0/3) (yopiq)
+  1. «Ro'yxat o'rniga hikoya kim haqida boshlanadi?» [savol top 1011]
+     ✗ «Ilovaning funksiyalari haqida» → «Funksiyalar — yana ro'yxat; hikoyada avval odam bo'ladi.» (56 b., yopildi: true)
+     ✓ «Bitta tashkilotchi haqida» · nav: Savollarga javob bering (1/3) (yopiq)
+     telefonda keyingi savol: top 606 / ekran 844 → ko'rinadi
+  2. «Tashkilotchi bilan qanday lahza aytiladi?» [savol top 606]
+     ✗ «Har hafta kimdir kech qoladi» → «Bu umumiy gap: unda aniq kun ham, soat ham yo'q.» (48 b., yopildi: true)
+     ✗ «Ilovada 3 xil eslatma bor» → «Bu yana funksiya; lahza — bitta kunda bo'lib o'tgan ish.» (56 b., yopildi: true)
+     ✓ «Shanba kuni 2 kishi kelmadi» · nav: Savollarga javob bering (2/3) (yopiq)
+     telefonda keyingi savol: top 584 / ekran 844 → ko'rinadi
+  3. «Mahsulot kelgach, tashkilotchida nima o'zgardi?» [savol top 584]
+     ✓ «Juma kuni bo'sh joyni ko'radi» · nav: Davom etish (ochiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d2-v2 s3 uz · eyebrow: TUSHUNCHA · HIKOYA VA BO'LAKLAR
+  boshida nav: Savollarga javob bering (0/3) (yopiq)
+  1. «Lahza pitchning qaysi bo'lagini ochadi?» [savol top 318]
+     ✗ «Yechim bo'lagini» → «Yechimda mahsulot ishlaydi; lahza esa mahsulotdan oldingi kun.» (62 b., yopildi: true)
+     ✗ «Raqamlar bo'lagini» → «Raqamlarda ko'p odam soni bor; lahzada bitta odamning kuni.» (59 b., yopildi: true)
+     ✓ «Muammo bo'lagini» · nav: Savollarga javob bering (0/3) (yopiq)
+  2. «O'zgarish pitchning qayerida ko'rinadi?» [savol top 318]
+     ✓ «Yechimda, demo paytida» · nav: Savollarga javob bering (1/3) (yopiq)
+  3. «51 foydalanuvchi soni hikoyaning qismimi?» [savol top 318]
+     ✗ «Ha, Muammodagi lahzaga qo'shiladi» → «Lahza — bitta odamning kuni; 51 kishi unga sig'maydi.» (53 b., yopildi: true)
+     ✓ «Yo'q, Raqamlarda alohida turadi» · nav: Savollarga javob bering (2/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d2-v2 s3 uz-390 · eyebrow: TUSHUNCHA · HIKOYA VA BO'LAKLAR
+  boshida nav: Savollarga javob bering (0/3) (yopiq)
+  1. «Lahza pitchning qaysi bo'lagini ochadi?» [savol top 998]
+     ✗ «Yechim bo'lagini» → «Yechimda mahsulot ishlaydi; lahza esa mahsulotdan oldingi kun.» (62 b., yopildi: true)
+     ✗ «Raqamlar bo'lagini» → «Raqamlarda ko'p odam soni bor; lahzada bitta odamning kuni.» (59 b., yopildi: true)
+     ✓ «Muammo bo'lagini» · nav: Savollarga javob bering (0/3) (yopiq)
+     telefonda keyingi savol: top 606 / ekran 844 → ko'rinadi
+  2. «O'zgarish pitchning qayerida ko'rinadi?» [savol top 606]
+     ✓ «Yechimda, demo paytida» · nav: Savollarga javob bering (1/3) (yopiq)
+     telefonda keyingi savol: top 606 / ekran 844 → ko'rinadi
+  3. «51 foydalanuvchi soni hikoyaning qismimi?» [savol top 606]
+     ✗ «Ha, Muammodagi lahzaga qo'shiladi» → «Lahza — bitta odamning kuni; 51 kishi unga sig'maydi.» (53 b., yopildi: true)
+     ✓ «Yo'q, Raqamlarda alohida turadi» · nav: Savollarga javob bering (2/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d5-v2 s2 uz · eyebrow: TUSHUNCHA · BAHOLASH VARAG'I
+  boshida nav: Avval belgilang (yopiq)
+  1. «Guruh varaqni qachon to'ldiradi?» [savol top 359]
+     ✗ «Har bo'lakdan keyin to'xtatib» → «Pitch to'xtatilmaydi: guruh uni oxirigacha tinglaydi.» (53 b., yopildi: true)
+     ✗ «Pitchdan oldin, tayyorlanib» → «Pitchdan oldin baholanadigan narsa yo'q: varaq eshitgandan keyin.» (65 b., yopildi: true)
+     ✓ «Pitch tugagandan keyin» · nav: Savollarga javob bering (0/3) (yopiq)
+  2. «Varaqda ✗ yonidagi izoh nima haqida bo'ladi?» [savol top 359]
+     ✓ «Qaysi bo'lak tushunarsiz qoldi» · nav: Savollarga javob bering (1/3) (yopiq)
+  3. «Tinglovchi hakam o'rnida varaqqa nima yozadi?» [savol top 359]
+     ✗ «Pitchdagi hamma gaplarni» → «Varaqqa pitch ko'chirilmaydi: hakam savoli — bitta savol.» (57 b., yopildi: true)
+     ✓ «Hakam beradigan bitta savol» · nav: Savollarga javob bering (2/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d5-v2 s2 uz-390 · eyebrow: TUSHUNCHA · BAHOLASH VARAG'I
+  boshida nav: Avval belgilang (yopiq)
+  1. «Guruh varaqni qachon to'ldiradi?» [savol top 995]
+     ✗ «Har bo'lakdan keyin to'xtatib» → «Pitch to'xtatilmaydi: guruh uni oxirigacha tinglaydi.» (53 b., yopildi: true)
+     ✗ «Pitchdan oldin, tayyorlanib» → «Pitchdan oldin baholanadigan narsa yo'q: varaq eshitgandan keyin.» (65 b., yopildi: true)
+     ✓ «Pitch tugagandan keyin» · nav: Savollarga javob bering (0/3) (yopiq)
+     telefonda keyingi savol: top 584 / ekran 844 → ko'rinadi
+  2. «Varaqda ✗ yonidagi izoh nima haqida bo'ladi?» [savol top 584]
+     ✓ «Qaysi bo'lak tushunarsiz qoldi» · nav: Savollarga javob bering (1/3) (yopiq)
+     telefonda keyingi savol: top 584 / ekran 844 → ko'rinadi
+  3. «Tinglovchi hakam o'rnida varaqqa nima yozadi?» [savol top 584]
+     ✗ «Pitchdagi hamma gaplarni» → «Varaqqa pitch ko'chirilmaydi: hakam savoli — bitta savol.» (57 b., yopildi: true)
+     ✓ «Hakam beradigan bitta savol» · nav: Savollarga javob bering (2/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d5-v2 s3 uz · eyebrow: TUSHUNCHA · TUZATISHLAR RO'YXATI
+  boshida nav: Kartalarni yeching (0/3) (yopiq)
+  tugadi: qadam 0, xato tanlov 0 · nav: Kartalarni yeching (0/3) (yopiq) · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d5-v2 s3 uz-390 · eyebrow: TUSHUNCHA · TUZATISHLAR RO'YXATI
+  boshida nav: Kartalarni yeching (0/3) (yopiq)
+  tugadi: qadam 0, xato tanlov 0 · nav: Kartalarni yeching (0/3) (yopiq) · xulosa: false
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d8-v2 s3 uz · eyebrow: TUSHUNCHA · TUZATISH VA TAYMER
+  boshida nav: Avval belgilang (yopiq)
+  1. «Mentor pitchini tuzatishni nimadan boshlaydi?» [savol top 336]
+     ✗ «Pitchni boshidan qayta yozishdan» → «Pitch qayta yozilmaydi: varaqdagi izohlar tuzatiladi.» (53 b., yopildi: true)
+     ✗ «Pitchni taymer bilan aytishdan» → «Taymer keyin: avval varaqdagi izohlar tuzatiladi.» (49 b., yopildi: true)
+     ✓ «Baholash varag'idagi izohlardan» · nav: Savollarga javob bering (1/3) (yopiq)
+  2. «Varaqda uch izoh bor. Tuzatish qanday kiritiladi?» [savol top 336]
+     ✓ «Eski gap o'rniga yangisi yoziladi» · nav: Savollarga javob bering (2/3) (yopiq)
+  3. «Uch gap uzaydi, reja hali ham 5:00. Pitch sig'adimi?» [savol top 336]
+     ✗ «Ha, reja hali ham 5 daqiqalik» → «Reja vaqti o'zgarmaydi: haqiqiy vaqtni taymer ko'rsatadi.» (57 b., yopildi: true)
+     ✓ «Taymer bilan aytganda bilinadi» · nav: Savollarga javob bering (3/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0
+== pm-m12d8-v2 s3 uz-390 · eyebrow: TUSHUNCHA · TUZATISH VA TAYMER
+  boshida nav: Avval belgilang (yopiq)
+  1. «Mentor pitchini tuzatishni nimadan boshlaydi?» [savol top 1346]
+     ✗ «Pitchni boshidan qayta yozishdan» → «Pitch qayta yozilmaydi: varaqdagi izohlar tuzatiladi.» (53 b., yopildi: true)
+     ✗ «Pitchni taymer bilan aytishdan» → «Taymer keyin: avval varaqdagi izohlar tuzatiladi.» (49 b., yopildi: true)
+     ✓ «Baholash varag'idagi izohlardan» · nav: Savollarga javob bering (1/3) (yopiq)
+     telefonda keyingi savol: top 584 / ekran 844 → ko'rinadi
+  2. «Varaqda uch izoh bor. Tuzatish qanday kiritiladi?» [savol top 584]
+     ✓ «Eski gap o'rniga yangisi yoziladi» · nav: Savollarga javob bering (2/3) (yopiq)
+     telefonda keyingi savol: top 585 / ekran 844 → ko'rinadi
+  3. «Uch gap uzaydi, reja hali ham 5:00. Pitch sig'adimi?» [savol top 584]
+     ✗ «Ha, reja hali ham 5 daqiqalik» → «Reja vaqti o'zgarmaydi: haqiqiy vaqtni taymer ko'rsatadi.» (57 b., yopildi: true)
+     ✓ «Taymer bilan aytganda bilinadi» · nav: Savollarga javob bering (3/3) (yopiq)
+  tugadi: qadam 3, xato tanlov 3 · nav: Davom etish (ochiq) · xulosa: true
+  qaytganda: nav Davom etish (ochiq) · savol: false · xulosa: true
+  gorizontal aylantirish: false · telefonda ko'rinmagan savol: 0 · pageerror: 0

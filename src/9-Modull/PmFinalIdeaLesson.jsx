@@ -100,6 +100,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -177,8 +202,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -911,9 +936,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (QReja: chapda doska shakli — ustun va qator nomlari bilan, nuqtalar navbat bilan; kashfiyot ochilmaydi) =====
 const YouTube = () => <span className="fi-yt">YouTube</span>;
 const REJA = [
-  { t: { uz: "Ikki g'oya bo'yicha takrorlangan javoblarni sanaysiz", ru: 'Посчитаете повторяющиеся ответы по двум идеям' }, teg: { uz: 'sanoq', ru: 'подсчёт' } },
-  { t: { uz: 'Kim faqat gapirganini, kim ish qilganini ajratasiz', ru: 'Отделите тех, кто только говорил, от тех, кто сделал дело' }, teg: { uz: 'harakat belgisi', ru: 'знак действия' } },
-  { t: { uz: "O'z yozuvlaringizdan bitta g'oyani tanlab, muammo gapini yozasiz", ru: "Выберете одну идею по своим записям и напишете формулировку проблемы" }, teg: { uz: "final g'oya", ru: 'финальная идея' } }
+  { t: { uz: "Ikki g'oya bo'yicha takrorlangan javoblarni sanang", ru: 'Посчитайте повторяющиеся ответы по двум идеям' }, teg: { uz: 'sanoq', ru: 'подсчёт' } },
+  { t: { uz: 'Kim faqat gapirganini, kim ish qilganini ajrating', ru: 'Отделите тех, кто только говорил, от тех, кто сделал дело' }, teg: { uz: 'harakat belgisi', ru: 'знак действия' } },
+  { t: { uz: "O'z yozuvlaringizdan bitta g'oyani tanlab, muammo gapini yozing", ru: "Выберите одну идею по своим записям и напишите формулировку проблемы" }, teg: { uz: "final g'oya", ru: 'финальная идея' } }
 ];
 const RejaChizma = () => (
   <div className="fi-rj">
@@ -1008,7 +1033,7 @@ const Screen3 = (props) => (
       2: { uz: "Sanoq ikki g'oyani yonma-yon ko'rsatadi.", ru: 'Подсчёт показывает две идеи рядом.' },
       default: { uz: 'Doskadagi birinchi qatorni eslang: sonlar qanday?', ru: 'Вспомните первую строку доски: какие там числа?' }
     }}
-    vizual={<SanoqDoska kichik className="fi-sd-1" ustunlar={mUstun()} qatorlar={[mQator('muammo', 'toldi')]} />} />
+ />
 );
 
 // ===== SCREEN 4 — HARAKAT BELGISI (QTushuncha, 2 qadam): belgilar yozuv yorliqlariga tushadi → to'garak yozuvlari Kim bo'yicha ikki guruhga suriladi =====
@@ -1088,7 +1113,7 @@ const Screen5 = (props) => (
       3: { uz: 'Bu boshqalar haqida taxmin, ish emas.', ru: 'Это догадка о других, а не дело.' },
       default: { uz: 'Odam nima qildi — shuni qidiring.', ru: 'Ищите, что человек сделал.' }
     }}
-    vizual={<div className="fi-s5v"><YozuvChip y={MENTOR_YOZUVLAR[4]} ok className="fi-yc-b ha"><span className="fi-yc-t">{tr({ uz: 'Belgi: ha · kun belgiladi', ru: 'Знак: да · назначил день' })}</span></YozuvChip></div>} />
+ />
 );
 
 // ===== SCREEN 6 — YOUTUBE (QVoqea, PM keys K15 — bank matni: video-tanishuv sayti → har xil video → «hamma narsa uchun video»; raqamsiz) =====
@@ -1824,7 +1849,7 @@ const Screen12 = (props) => (
       3: { uz: 'Uzoq suhbat — muammo ham, belgi ham emas.', ru: 'Долгий разговор — ни проблема, ни знак.' },
       default: { uz: "Doskaning to'rtinchi qatorini eslang.", ru: 'Вспомните четвёртую строку доски.' }
     }}
-    vizual={<SanoqDoska kichik className="fi-sd-1" ustunlar={mUstun()} qatorlar={[mQator('belgi', 'toldi')]} />} />
+ />
 );
 
 // ===== 🏅 NISHONLAR (4) — faqat ish qilingan ekranlarda (tekin bonus yo'q, S-034); nom inglizcha, tavsif — qilingan ish (§184) =====
@@ -1912,18 +1937,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob o'rni A 2·7·11 · B 1·6·12 · C 3·5·10 · D 4·8·9 (MD; har biri 3 marta)
 const QUIZ_BANK = [
-  { q: { uz: "Ikki g'oya intervyusida savollar nega bir xil bo'ladi?", ru: 'Почему в интервью по двум идеям вопросы одинаковые?' }, opts: [{ uz: "Intervyu qisqaroq va tezroq o'tishi uchun", ru: 'Чтобы интервью было короче и быстрее' }, { uz: 'Javoblarni yonma-yon sanay olish uchun', ru: 'Чтобы ответы можно было считать рядом' }, { uz: 'Odamlar savollarni oldindan bilishi uchun', ru: 'Чтобы люди знали вопросы заранее' }, { uz: "Ikkinchi g'oyani tezroq unutish uchun", ru: 'Чтобы быстрее забыть вторую идею' }], correct: 1 },
-  { q: { uz: 'Qaysi javob takrorlangan javob bo\'ladi?', ru: 'Какой ответ будет повторяющимся?' }, opts: [{ uz: "To'rt yozuvda bir xil ma'noli javob", ru: "Ответ с одинаковым смыслом в четырёх записях" }, { uz: 'Bitta yozuvda eng qattiq aytilgan javob', ru: 'Самый громкий ответ в одной записи' }, { uz: 'Eng uzun yozuvdagi eng oxirgi javob', ru: 'Последний ответ в самой длинной записи' }, { uz: "Mentorga eng ko'p yoqqan bitta javob", ru: 'Один ответ, который больше всего понравился Ментору' }], correct: 0 },
-  { q: { uz: "Odam «Chiqsa, ishlatib ko'raman» dedi. Bu nima?", ru: 'Человек сказал: «Когда выйдет, попробую». Что это?' }, opts: [{ uz: 'Harakat belgisi — kun belgilagan', ru: 'Знак действия — назначил день' }, { uz: "Takrorlangan javob — ko'pchilik degan", ru: 'Повторяющийся ответ — так сказали многие' }, { uz: "Va'da — hali bo'lmagan ish haqida", ru: 'Обещание — о деле, которого ещё не было' }, { uz: 'Muammo gapi — kim nimadan qiynaladi', ru: "Формулировка проблемы — кому и с чем трудно" }], correct: 2 },
-  { q: { uz: "Mentor misolida nechta o'yinchi sinovga kun belgiladi?", ru: 'Сколько игроков в примере Ментора назначили день пробы?' }, opts: [{ uz: '5 tadan 1 tasi', ru: '1 из 5' }, { uz: '5 tadan 2 tasi', ru: '2 из 5' }, { uz: '5 tadan 3 tasi', ru: '3 из 5' }, { uz: '5 tadan 4 tasi', ru: '4 из 5' }], correct: 3 },
+  { q: { uz: "Ikki g'oyaga savollar nega bir xil?", ru: "Почему вопросы для двух идей одинаковые?" }, opts: [{ uz: "Intervyu tez o'tsin", ru: "Чтобы интервью шло быстро" }, { uz: "Javoblar yonma-yon sanalsin", ru: "Чтобы считать ответы рядом" }, { uz: "Odamlar yodlab olsin", ru: "Чтобы люди их выучили" }, { uz: "Savol yozish oson bo'lsin", ru: "Чтобы проще писать вопросы" }], correct: 1 },
+  { q: { uz: "Takrorlangan javob qaysi?", ru: "Какой ответ — повторяющийся?" }, opts: [{ uz: "Ko'p yozuvda bir xil ma'noli", ru: "Одинаковый по смыслу в разных записях" }, { uz: "Eng qattiq aytilgan javob", ru: "Ответ, сказанный громче всех" }, { uz: "Eng uzun yozuvdagi javob", ru: "Ответ из самой длинной записи" }, { uz: "Mentorga yoqqan javob", ru: "Ответ, понравившийся Ментору" }], correct: 0 },
+  { q: { uz: "Odam «Chiqsa, ishlatib ko'raman» dedi. Bu nima?", ru: "Человек сказал: «Выйдет — попробую». Что это?" }, opts: [{ uz: "Harakat belgisi", ru: "Знак действия" }, { uz: "Takrorlangan javob", ru: "Повторяющийся ответ" }, { uz: "Va'da, hali ish emas", ru: "Обещание, ещё не дело" }, { uz: "Muammo gapi", ru: "Фраза о проблеме" }], correct: 2 },
+  { q: { uz: "Mentor misolida nechta o'yinchi sinovga kun belgiladi?", ru: "Сколько игроков в примере Ментора назначили день пробы?" }, opts: [{ uz: "Hech biri", ru: "Ни один" }, { uz: "3 tadan 1 tasi", ru: "1 из 3" }, { uz: "3 tadan 2 tasi", ru: "2 из 3" }, { uz: "3 tadan 3 tasi", ru: "3 из 3" }], correct: 3 },
   { q: { uz: "Mentor misolida ikki o'smirning to'garagini kim topadi?", ru: 'Кто в примере Ментора находит кружок двум подросткам?' }, opts: [{ uz: "O'smirning o'zi", ru: 'Сам подросток' }, { uz: 'Uning sinfdoshi', ru: 'Его одноклассник' }, { uz: 'Uning ota-onasi', ru: 'Его родители' }, { uz: 'Uning murabbiyi', ru: 'Его тренер' }], correct: 2 },
-  { q: { uz: "Mentor misolida o'yinchilar hozir jamoani nima bilan yig'adi?", ru: 'Чем игроки в примере Ментора сейчас собирают команду?' }, opts: [{ uz: 'Maydon egasi orqali', ru: 'Через владельца поля' }, { uz: 'Telegram guruhida', ru: 'В Telegram-группе' }, { uz: "Maktab e'lonlarida", ru: "Через объявления в школе" }, { uz: 'Maxsus ilova orqali', ru: "Через специальное приложение" }], correct: 1 },
-  { q: { uz: "Muammo gapida qaysi uch bo'lak bo'ladi?", ru: "Какие три части есть в формулировке проблемы?" }, opts: [{ uz: 'Kim, qachon va nimadan qiynaladi', ru: "Кому, когда и с чем трудно" }, { uz: 'Kim, qayerda va qaysi ilova kerak', ru: 'Кто, где и какое приложение нужно' }, { uz: 'Muammo, yechim va ilovaning nomi', ru: 'Проблема, решение и название приложения' }, { uz: 'Tugma, rang va ilovaning narxi', ru: 'Кнопка, цвет и цена приложения' }], correct: 0 },
-  { q: { uz: "Final g'oya qaysi g'oya?", ru: 'Какая идея — финальная?' }, opts: [{ uz: "Nomi eng chiroyli bo'lgan g'oya", ru: 'Идея с самым красивым названием' }, { uz: "RICE bahosi eng katta bo'lgan g'oya", ru: 'Идея с самой большой оценкой RICE' }, { uz: "Ro'yxatda birinchi yozilgan g'oya", ru: 'Идея, записанная в списке первой' }, { uz: "Intervyudan keyin tanlangan g'oya", ru: 'Идея, выбранная после интервью' }], correct: 3 },
-  { q: { uz: "Final g'oya tanlangach, ikkinchi g'oya bilan nima qilinadi?", ru: 'Что делают со второй идеей, когда выбрана финальная?' }, opts: [{ uz: "Ro'yxatdan butunlay o'chiriladi", ru: 'Полностью удаляют из списка' }, { uz: "Final g'oyaga qo'shib yuboriladi", ru: 'Добавляют к финальной идее' }, { uz: 'Sinfdoshlardan biriga beriladi', ru: 'Отдают одному из одноклассников' }, { uz: '«Keyin» qutisiga yozib qo\'yiladi', ru: 'Записывают в коробку «Потом»' }], correct: 3 },
-  { q: { uz: "Olti intervyudan keyingi tanlov haqida qaysi gap to'g'ri?", ru: "Какое утверждение о выборе после шести интервью верно?" }, opts: [{ uz: "G'oya endi isbotlandi, tekshirish shart emas", ru: 'Идея теперь доказана, проверять не нужно' }, { uz: "Intervyu soni tanlovga hech ta'sir qilmaydi", ru: 'Число интервью никак не влияет на выбор' }, { uz: 'Tanlov uchun dalil bor, lekin isbot emas', ru: 'Для выбора есть довод, но это не доказательство' }, { uz: "Sanoqdan ko'ra o'zimning fikrim muhimroq", ru: 'Моё мнение важнее подсчёта' }], correct: 2 },
-  { q: { uz: 'YouTube asoschilari nimani payqagan?', ru: 'Что заметили основатели YouTube?' }, opts: [{ uz: 'Odamlar har xil video yuklayotganini', ru: 'Что люди загружают самые разные видео' }, { uz: "Faqat o'zi haqidagi videolar qo'yilganini", ru: 'Что выкладывают только видео о себе' }, { uz: 'Sayt nomi odamlarga yoqmay qolganini', ru: 'Что название сайта разонравилось людям' }, { uz: 'Saytga video yuklash juda sekinligini', ru: 'Что видео на сайт загружается очень медленно' }], correct: 0 },
-  { q: { uz: 'Kodda `y.goya === goya` nimani tekshiradi?', ru: 'Что проверяет в коде `y.goya === goya`?' }, opts: [{ uz: "Yozuvda belgi bor-yo'qligini", ru: 'Есть ли в записи знак' }, { uz: "Yozuv shu g'oyaniki ekanini", ru: 'Что запись относится к этой идее' }, { uz: 'Yozuvlar soni nechtaligini', ru: 'Сколько всего записей' }, { uz: "G'oya nomining uzunligini", ru: 'Длину названия идеи' }], correct: 1 },
+  { q: { uz: "Mentor misolida jamoa nima bilan yig'iladi?", ru: "Чем собирают команду в примере Ментора?" }, opts: [{ uz: "Maydon egasi orqali", ru: "Через владельца поля" }, { uz: "Telegram guruhida", ru: "В Telegram-группе" }, { uz: "Maktab e'lonlarida", ru: "Через школьные объявления" }, { uz: "Maxsus ilova orqali", ru: "Через особое приложение" }], correct: 1 },
+  { q: { uz: "Muammo gapida qaysi uch bo'lak bo'ladi?", ru: "Какие три части во фразе о проблеме?" }, opts: [{ uz: "Kim, qachon, nimadan qiynaladi", ru: "Кто, когда, от чего страдает" }, { uz: "Kim, qayerda, qaysi ilova", ru: "Кто, где, какое приложение" }, { uz: "Muammo, yechim va nom", ru: "Проблема, решение и название" }, { uz: "Tugma, rang va narx", ru: "Кнопка, цвет и цена" }], correct: 0 },
+  { q: { uz: "Final g'oya qaysi g'oya?", ru: "Какая идея — финальная?" }, opts: [{ uz: "Nomi eng chiroyli bo'lgan", ru: "С самым красивым названием" }, { uz: "RICE bahosi eng katta", ru: "С самой большой оценкой RICE" }, { uz: "Ro'yxatda birinchi turgan", ru: "Первая в списке" }, { uz: "Intervyudan keyin tanlangan", ru: "Выбранная после интервью" }], correct: 3 },
+  { q: { uz: "Final tanlangach, ikkinchi g'oya nima bo'ladi?", ru: "Что будет со второй идеей после выбора финальной?" }, opts: [{ uz: "Ro'yxatdan o'chiriladi", ru: "Удаляется из списка" }, { uz: "«Final»ga qo'shiladi", ru: "Добавляется к «Финалу»" }, { uz: "Sinfdoshga beriladi", ru: "Отдаётся однокласснику" }, { uz: "«Keyin» qutisiga yoziladi", ru: "Записывается в коробку «Потом»" }], correct: 3 },
+  { q: { uz: "Olti intervyudan keyin tanlov qanday?", ru: "Каков выбор после шести интервью?" }, opts: [{ uz: "Isbotlangan, tekshirilmaydi", ru: "Доказан, проверка не нужна" }, { uz: "Sanoqqa bog'liq emas", ru: "Не зависит от подсчёта" }, { uz: "Dalili bor, isboti yo'q", ru: "Есть довод, но не доказательство" }, { uz: "Faqat fikrga tayanadi", ru: "Держится только на мнении" }], correct: 2 },
+  { q: { uz: "YouTube asoschilari nimani payqagan?", ru: "Что заметили основатели YouTube?" }, opts: [{ uz: "Har xil video yuklanganini", ru: "Что загружают разные видео" }, { uz: "Faqat o'zi haqida videoni", ru: "Только видео о себе" }, { uz: "Sayt nomi yoqmaganini", ru: "Что не нравится название" }, { uz: "Yuklash sekin ekanini", ru: "Что загрузка медленная" }], correct: 0 },
+  { q: { uz: "`y.goya === goya` nimani tekshiradi?", ru: "Что проверяет `y.goya === goya`?" }, opts: [{ uz: "Yozuvda belgi borligini", ru: "Есть ли в записи знак" }, { uz: "Yozuv shu g'oyaniki ekanini", ru: "Что запись от этой идеи" }, { uz: "Yozuvlar soni nechtaligini", ru: "Сколько всего записей" }, { uz: "Nomning uzunligini", ru: "Длину названия" }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2796,10 +2821,10 @@ export default function PmFinalIdeaLesson({ lang: langProp, onFinished, liveToke
         .fi-yk-ok { position: absolute; top: 6px; right: 8px; font-style: normal; font-weight: 800; font-size: 13px; color: ${T.accent}; animation: fi-tush 0.35s ease-out both; animation-delay: calc(var(--i) * 0.1s + 0.15s); }
         .fi-yk.kul { opacity: 0.6; }
         .fi-yk.ajrat { box-shadow: 0 0 0 2px ${T.accent}; }
-        .fi-yc { display: inline-flex; align-items: center; gap: 5px; min-height: 22px; padding: 2px 7px; border-radius: 8px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 12px; color: ${T.ink2}; transition: background 0.3s, box-shadow 0.3s, transform 0.3s; animation: fi-kir 0.3s ease-out both; animation-delay: calc(var(--i) * 0.05s); }
+        .fi-yc { display: inline-flex; align-items: center; gap: 5px; min-height: 22px; padding: 2px 7px; border-radius: 8px; background: ${T.bg}; border: 1px solid transparent; /* F-1015-333 */ font-size: 12px; color: ${T.ink2}; transition: background 0.3s, box-shadow 0.3s, transform 0.3s; animation: fi-kir 0.3s ease-out both; animation-delay: calc(var(--i) * 0.05s); }
         .fi-yc b { font-family: 'JetBrains Mono', monospace; font-weight: 800; color: ${T.ink}; }
         .fi-yc i { font-style: normal; font-weight: 800; color: ${T.accent}; }
-        .fi-yc.ok { background: ${T.accentSoft}; border-color: ${fon(T.accent, 0.4)}; }
+        .fi-yc.ok { background: ${T.accentSoft}; }
         .fi-yc.yon { background: ${T.accentSoft}; box-shadow: 0 0 0 2px ${T.accent}; transform: scale(1.06); }
         .fi-yc-ro { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px; }
         .fi-yc-ro .fi-yc { padding: 1px 5px; min-height: 20px; font-size: 11px; }
@@ -2890,7 +2915,7 @@ export default function PmFinalIdeaLesson({ lang: langProp, onFinished, liveToke
         .fi-s4-k { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 16px; background: ${T.paper}; border: 1px solid ${T.line}; box-shadow: 0 14px 30px -22px rgba(${T.shadowBase},0.55); }
         .fi-s4-k .fi-sd { border: 0; box-shadow: none; padding: 0; border-radius: 0; }
         .fi-s4-ro { flex-direction: column; align-items: stretch; gap: 4px; margin: 6px 0 4px; }
-        .fi-s4-sd .fi-yc-b { width: 100%; border: 1px solid ${T.line}; border-radius: 8px; padding: 5px 9px; background: ${T.paper}; }
+        .fi-s4-sd .fi-yc-b { width: 100%; border: 1px solid transparent; border-radius: 8px; padding: 5px 9px; background: ${T.bg}; }
         .fi-s4-sd .fi-yc-b.ha { border-color: ${fon(T.ok, 0.45)}; background: ${T.okFon}; }
         .fi-s4-kim { display: flex; flex-direction: column; gap: 6px; padding-top: 10px; border-top: 1px solid ${T.line}; }
         .fi-s8-gk { display: flex; flex-direction: column; gap: 8px; }

@@ -854,7 +854,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (id) => { setSeen(prev => { const s = new Set(prev); s.add(id); return s; }); setSc(n => n + 1); };
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   return (
-    <Stage eyebrow={tr({ uz: 'Reja · mashina shakli', ru: 'План · форма машины' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Ustunlarni belgilang (${seen.size}/${FIELDS.length})`, ru: `Отметьте столбцы (${seen.size}/${FIELDS.length})` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Reja · mashina shakli', ru: 'План · форма машины' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Ustunlarni belgilang (${seen.size}/${FIELDS.length})`, ru: `Отметьте столбцы (${seen.size}/${FIELDS.length})` }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kod yozishdan oldin: bitta mashina haqida <span className="italic" style={{ color: T.accent }}>nimani saqlaymiz</span>?</>, ru: <>Прежде чем писать код: <span className="italic" style={{ color: T.accent }}>что мы храним</span> об одной машине?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Tajribali dasturchi avval <b style={{ color: T.ink }}>rejalashtiradi</b>: qanday ma'lumot kerak? Mashina uchun to'rtta ustun yetadi. Har birini bosib belgilang. Har tugagan qadam <b style={{ color: T.ink }}>ochilish taxtasi</b>ga tushib boradi.</>, ru: <>Опытный разработчик сначала <b style={{ color: T.ink }}>планирует</b>: какие данные нужны? Для машины хватит четырёх столбцов. Нажмите на каждый и отметьте. Каждый завершённый шаг ложится на <b style={{ color: T.ink }}>доску открытия</b>.</> })}</Mentor>
@@ -885,7 +885,6 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har ustunni bosib belgilang — mashina haqida nimani saqlash kerakligini o'ylang.", ru: '💡 Отмечайте каждый столбец нажатием — подумайте, что нужно хранить о машине.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -906,7 +905,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'username', correct: false, label: 'username: string;', why: tr({ uz: "Bu admin'ga tegishli. Mashinada username yo'q — bu qator boshqa resursdan.", ru: 'Это из admin. У машины нет username — эта строка из другого ресурса.' }) }
   ];
   return (
-    <Stage eyebrow={tr({ uz: '1-qadam · Entity', ru: 'Шаг 1 · Entity' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Faylni yig'ing", ru: 'Соберите файл' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: '1-qadam · Entity', ru: 'Шаг 1 · Entity' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Faylni yig'ing", ru: 'Соберите файл' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mashina haqida nimani saqlaymiz — jadval <span className="italic" style={{ color: T.accent }}>qanday ko'rinadi</span>?</>, ru: <>Что храним о машине — <span className="italic" style={{ color: T.accent }}>как выглядит</span> таблица?</> })}</h2></div>
         <Mentor>{tr({ uz: <><span className="mono">Entity</span> bazadagi jadval ko'rinishini belgilaydi. <span className="mono">BaseEntity</span>'dan meros olamiz — <b style={{ color: T.ink }}>id, created_at, updated_at tekin</b>. Faqat o'z ustunlarimizni qo'shamiz. Diqqat: ba'zi qatorlar <b style={{ color: T.ink }}>boshqa qatlamga</b> tegishli — faqat to'g'rilarini tanlang.</>, ru: <><span className="mono">Entity</span> задаёт, как выглядит таблица в базе. Наследуемся от <span className="mono">BaseEntity</span> — <b style={{ color: T.ink }}>id, created_at, updated_at бесплатно</b>. Добавляем только свои столбцы. Внимание: некоторые строки <b style={{ color: T.ink }}>из другого слоя</b> — выбирайте только правильные.</> })}</Mentor>
@@ -923,7 +922,6 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           doneText={tr({ uz: <>1-fayl tayyor! Lekin <span className="mono">/car</span> hali yo'q — bitta fayl yetmaydi. Keyingi qadam: ma'lumot qoidalari (DTO).</>, ru: <>Первый файл готов! Но <span className="mono">/car</span> ещё нет — одного файла мало. Следующий шаг: правила данных (DTO).</> })}
         />
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har qatorni o'qing: u mashinaning ustunimi? Ustun bo'lmasa — bu fayl uniki emas.", ru: '💡 Прочитайте каждую строку: это столбец машины? Если нет — строка не из этого файла.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -956,7 +954,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer) fill('dto'); }, []); // eslint-disable-line
   useEffect(() => { if (done) { fill('dto'); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); } }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: '2-qadam · DTO', ru: 'Шаг 2 · DTO' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "To'g'ri va xato so'rovni sinang", ru: 'Попробуйте верный и неверный запрос' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: '2-qadam · DTO', ru: 'Шаг 2 · DTO' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "To'g'ri va xato so'rovni sinang", ru: 'Попробуйте верный и неверный запрос' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Noto'g'ri mashina ma'lumoti kelsa — <span className="italic" style={{ color: T.accent }}>kim to'xtatadi</span>?</>, ru: <>Пришли неверные данные о машине — <span className="italic" style={{ color: T.accent }}>кто их остановит</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <><span className="mono">DTO</span> — buyurtma anketasi: <span className="mono">brand</span> matn va majburiy, <span className="mono">price</span> raqam bo'lishi shart. Qoidalarni <span className="mono">@IsString</span>, <span className="mono">@IsNotEmpty</span>, <span className="mono">@IsNumber</span> belgilaydi. Nazoratchi (ValidationPipe) tekshiradi. To'g'ri va xato so'rovni yuboring.</>, ru: <><span className="mono">DTO</span> — анкета заказа: <span className="mono">brand</span> обязан быть текстом и заполнен, <span className="mono">price</span> — числом. Правила задают <span className="mono">@IsString</span>, <span className="mono">@IsNotEmpty</span>, <span className="mono">@IsNumber</span>. Проверяет контролёр (ValidationPipe). Отправьте верный и неверный запрос.</> })}</Mentor>
@@ -987,7 +985,6 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikkala tugmani ham bosing: avval to'g'ri so'rov, keyin xato — farqni o'zingiz ko'rasiz.", ru: '💡 Нажмите обе кнопки: сначала верный запрос, потом ошибочный — разницу увидите сами.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1007,7 +1004,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const doneMsg = tr({ uz: 'Bitta qator — tahrirlash anketasi tayyor. Bir xil kodni ikki marta yozmaslik — tajribali dasturchilarning odati (DRY).', ru: 'Одна строка — и анкета редактирования готова. Не дублировать код — привычка опытных разработчиков (DRY).' });
   useEffect(() => { if (done) { plusOn(); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); } }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: '2-qadam · Update DTO', ru: 'Шаг 2 · Update DTO' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Ikkala variantni sinang (${seen.size}/2)`, ru: `Попробуйте оба варианта (${seen.size}/2)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: '2-qadam · Update DTO', ru: 'Шаг 2 · Update DTO' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Ikkala variantni sinang (${seen.size}/2)`, ru: `Попробуйте оба варианта (${seen.size}/2)` }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mijoz faqat narxni o'zgartiradi — <span className="italic" style={{ color: T.accent }}>qaysi anketa</span> kerak?</>, ru: <>Клиент меняет только цену — <span className="italic" style={{ color: T.accent }}>какая анкета</span> нужна?</> })}</h2></div>{/* F-0926-06: sarlavha bir qatorga — natija jadvali tugmalar orqasiga tushardi (159/12) */}
         <Mentor>{tr({ uz: <>Ikkala tugmani ham bosib ko'ring — <b style={{ color: T.ink }}>oqibatini o'zingiz ko'rasiz</b>. Tahrirlashda mijoz faqat o'zgargan katakchani to'ldiradi: <span className="mono">{"{ price: 12000 }"}</span>.</>, ru: <>Нажмите обе кнопки — <b style={{ color: T.ink }}>сами увидите последствия</b>. При редактировании клиент заполняет только изменившееся поле: <span className="mono">{"{ price: 12000 }"}</span>.</> })}</Mentor>
@@ -1058,7 +1055,6 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikkala variantni sinang: to'liq so'rov va faqat bitta maydonli so'rov.", ru: '💡 Попробуйте оба варианта: полный запрос и запрос с одним полем.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1096,7 +1092,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const freeChips = <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, marginTop: 10 }}>{FREE_METHODS.map(m => <span key={m} className="gchip" style={{ boxShadow: `inset 0 0 0 1.5px ${T.success}`, color: T.success }}>✓ {m}()</span>)}</div>;
   useEffect(() => { if (done) { fill('service'); if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); } }, [done]); // eslint-disable-line
   return (
-    <Stage eyebrow={tr({ uz: '3-qadam · Service', ru: 'Шаг 3 · Service' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Ikkala yo'lni ko'ring (${seen.size}/2)`, ru: `Посмотрите оба пути (${seen.size}/2)` })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: '3-qadam · Service', ru: 'Шаг 3 · Service' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Ikkala yo'lni ko'ring (${seen.size}/2)`, ru: `Посмотрите оба пути (${seen.size}/2)` }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yangi oshpaz keldi — unga <span className="italic" style={{ color: T.accent }}>nima berasiz</span>?</>, ru: <>Пришёл новый повар — <span className="italic" style={{ color: T.accent }}>что вы ему дадите</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Mashina CRUD'ini (qo'shish/o'qish/o'zgartirish/o'chirish) ikki yo'l bilan olish mumkin. Ikkalasini ham bosib, <b style={{ color: T.ink }}>kod hajmini solishtiring</b>.</>, ru: <>CRUD машин (добавить/читать/изменить/удалить) можно получить двумя путями. Нажмите оба и <b style={{ color: T.ink }}>сравните объём кода</b>.</> })}</Mentor>
@@ -1154,7 +1150,6 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikkala yo'lni oching: qo'lda yozilgani va tayyor asosdan olingani.", ru: '💡 Откройте оба пути: написанный вручную и взятый из готовой основы.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1191,7 +1186,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'super', correct: false, label: 'super(carRepo);', why: tr({ uz: "Bu Service'ga tegishli (BaseService chaqiruvi). Controller'da bunday qator bo'lmaydi.", ru: 'Это из Service (вызов BaseService). В controller такой строки не бывает.' }) }
   ];
   return (
-    <Stage eyebrow={tr({ uz: '4-qadam · Controller', ru: 'Шаг 4 · Controller' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Eshiklarni yig'ing", ru: 'Соберите двери' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: '4-qadam · Controller', ru: 'Шаг 4 · Controller' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Eshiklarni yig'ing", ru: 'Соберите двери' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Admin mashina qo'shmoqchi — so'rov <span className="italic" style={{ color: T.accent }}>qaysi eshikdan</span> kiradi?</>, ru: <>Админ добавляет машину — <span className="italic" style={{ color: T.accent }}>в какую дверь</span> войдёт запрос?</> })}</h2></div>
         <Mentor>{tr({ uz: <><span className="mono">Controller</span> — ofitsiant: so'rovni qabul qiladi va service'ning mos metodini chaqiradi. Har amal — bir eshik: <span className="mono">@Post</span> (qo'shish), <span className="mono">@Get</span> (o'qish), <span className="mono">@Patch</span> (o'zgartirish), <span className="mono">@Delete</span> (o'chirish). Faqat <b style={{ color: T.ink }}>controller'ga tegishlilarini</b> tanlang.</>, ru: <><span className="mono">Controller</span> — официант: принимает запрос и вызывает нужный метод service. Каждое действие — своя дверь: <span className="mono">@Post</span> (добавить), <span className="mono">@Get</span> (читать), <span className="mono">@Patch</span> (изменить), <span className="mono">@Delete</span> (удалить). Выберите только строки, <b style={{ color: T.ink }}>относящиеся к controller</b>.</> })}</Mentor>
@@ -1208,7 +1203,6 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           doneText={tr({ uz: <>5 ta eshik tayyor. Controller faqat <b>qabul qilib chaqiradi</b> — asosiy ishni service/BaseService bajaradi. Oxirgi qadam: Module.</>, ru: <>5 дверей готовы. Controller только <b>принимает и вызывает</b> — основную работу делает service/BaseService. Последний шаг: Module.</> })}
         />
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Har qatorga qarang: u tashqaridan keladigan so'rovni qabul qiladimi?", ru: '💡 Посмотрите на каждую строку: принимает ли она запрос извне?' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1243,7 +1237,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'col', correct: false, label: '@Column()  price: number;', why: tr({ uz: "Bu Entity'ga tegishli (jadval ustuni). Module bo'limni ulaydi, ustun yozmaydi.", ru: 'Это из Entity (столбец таблицы). Module подключает отдел, а не пишет столбцы.' }) }
   ];
   return (
-    <Stage eyebrow={tr({ uz: '5-qadam · Module', ru: 'Шаг 5 · Module' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Module'ni yig'ing", ru: 'Соберите Module' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: '5-qadam · Module', ru: 'Шаг 5 · Module' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Module'ni yig'ing", ru: 'Соберите Module' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>5 fayl alohida turibdi — ularni <span className="italic" style={{ color: T.accent }}>kim bir-biriga ulaydi</span>?</>, ru: <>5 файлов лежат по отдельности — <span className="italic" style={{ color: T.accent }}>кто соединит их друг с другом</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <><span className="mono">Module</span> bir bo'limning qismlarini ro'yxatga oladi: jadval (<span className="mono">forFeature</span>), eshik (controller), ish (service). Keyin NestJS ularni <b style={{ color: T.ink }}>avtomatik ulaydi</b> (DI). Faqat <b style={{ color: T.ink }}>module'ga tegishli</b> ro'yxatlarni tanlang.</>, ru: <><span className="mono">Module</span> вносит части одного отдела в список: таблица (<span className="mono">forFeature</span>), дверь (controller), работа (service). Дальше NestJS <b style={{ color: T.ink }}>соединяет их автоматически</b> (DI). Выберите только списки, <b style={{ color: T.ink }}>относящиеся к module</b>.</> })}</Mentor>
@@ -1260,7 +1254,6 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           doneText={tr({ uz: <>5 fayl tayyor: Entity, DTO, Service, Controller, Module. Lekin bitta oxirgi ulanish qoldi — usiz <span className="mono">/car</span> baribir ishlamaydi!</>, ru: <>5 файлов готовы: Entity, DTO, Service, Controller, Module. Но осталось одно последнее соединение — без него <span className="mono">/car</span> всё равно не работает!</> })}
         />
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Module — ro'yxatlar joyi: nimani ulash kerakligini sanaydi, kod yozmaydi.", ru: '💡 Module — место списков: он перечисляет, что подключить, а не пишет код.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1307,7 +1300,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const canHang = phase === 1;
   return (
-    <Stage eyebrow={tr({ uz: 'Ochilish kuni · AppModule', ru: 'День открытия · AppModule' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (phase === 0 ? tr({ uz: 'Mijozni kiriting', ru: 'Впустите посетителя' }) : phase === 1 ? tr({ uz: 'Taxtachani osing', ru: 'Повесьте табличку' }) : tr({ uz: 'Mijozni qayta kiriting', ru: 'Впустите посетителя снова' }))} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Ochilish kuni · AppModule', ru: 'День открытия · AppModule' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (phase === 0 ? tr({ uz: 'Mijozni kiriting', ru: 'Впустите посетителя' }) : phase === 1 ? tr({ uz: 'Taxtachani osing', ru: 'Повесьте табличку' }) : tr({ uz: 'Mijozni qayta kiriting', ru: 'Впустите посетителя снова' })))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>5 fayl tayyor — nega <span className="mono" style={{ color: T.accent }}>/car</span> hali ham <span className="italic" style={{ color: T.accent }}>404</span> qaytaradi?</>, ru: <>5 файлов готовы — почему <span className="mono" style={{ color: T.accent }}>/car</span> всё ещё возвращает <span className="italic" style={{ color: T.accent }}>404</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Xodimlar joyida, lekin mijoz bo'limni <b style={{ color: T.ink }}>topa olmaydi</b>: kirish taxtasida «Mashinalar» yozilmagan. NestJS ham shunday — <span className="mono">AppModule</span> imports'ida yo'q modul ko'rinmaydi. Avval mijozni kiriting, keyin taxtachani osing.</>, ru: <>Сотрудники на местах, но посетитель <b style={{ color: T.ink }}>не может найти</b> отдел: на вывеске у входа не написано «Машины». NestJS такой же — модуль, которого нет в imports у <span className="mono">AppModule</span>, невидим. Сначала впустите посетителя, потом повесьте табличку.</> })}</Mentor>
@@ -1373,7 +1366,6 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 O'ylang: mijoz bo'limni topishi uchun undan oldin nima bajarilgan bo'lishi kerak?", ru: '💡 Подумайте: что должно быть сделано раньше, чтобы посетитель нашёл отдел?' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1404,7 +1396,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const adv = () => { setStep(s => Math.min(s + 1, FLOW.length - 1)); setSc(n => n + 1); };
   const cur = step >= 0 ? FLOW[Math.min(step, FLOW.length - 1)] : null;
   return (
-    <Stage eyebrow={tr({ uz: "Markaziy · so'rov yo'li", ru: 'Главное · путь запроса' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni oxirigacha kuzating", ru: 'Проследите запрос до конца' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: "Markaziy · so'rov yo'li", ru: 'Главное · путь запроса' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni oxirigacha kuzating", ru: 'Проследите запрос до конца' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Admin <span className="mono" style={{ color: T.accent }}>POST /car</span> bosdi — so'rov qanday <span className="italic" style={{ color: T.accent }}>sayohat</span> qiladi?</>, ru: <>Админ нажал <span className="mono" style={{ color: T.accent }}>POST /car</span> — какое <span className="italic" style={{ color: T.accent }}>путешествие</span> совершит запрос?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Siz qurgan resurs orqali bitta so'rovni kuzatamiz. Har bekat — siz yozgan fayllardan biri. Tugmani bosib, oxirigacha boring.</>, ru: <>Проследим один запрос через ресурс, который вы построили. Каждая остановка — один из ваших файлов. Нажимайте кнопку и дойдите до конца.</> })}</Mentor>
@@ -1432,7 +1424,6 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 So'rov yo'lini oxirigacha bosib boring — har bosishda u bitta bekatga siljiydi.", ru: '💡 Ведите запрос до конца нажатиями — с каждым он сдвигается на одну остановку.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1463,7 +1454,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const run = () => { if (running || done) return; setN(0); setRunning(true); };
   return (
-    <Stage eyebrow={tr({ uz: 'Agent · yaratish', ru: 'Агент · создание' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={(done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Playbookni yuboring', ru: 'Отправьте playbook' })} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Agent · yaratish', ru: 'Агент · создание' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Playbookni yuboring', ru: 'Отправьте playbook' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sekin qo'lda qildik — agent buni necha <span className="italic" style={{ color: T.accent }}>soniyada</span> quradi?</>, ru: <>Вручную было медленно — за сколько <span className="italic" style={{ color: T.accent }}>секунд</span> это построит агент?</> })}</h2></div>
         <Mentor>{tr({ uz: <>Endi 5 qadamni tushunasiz — demak agentga ham aniq buyruq bera olasiz. Mana sizning <b style={{ color: T.ink }}>playbook</b>ingiz. Uni agentga yuboring — u fayllarni o'zi yozib beradi.</>, ru: <>Теперь вы понимаете 5 шагов — значит, можете дать агенту точную команду. Вот ваш <b style={{ color: T.ink }}>playbook</b>. Отправьте его агенту — файлы он напишет сам.</> })}</Mentor>
@@ -1498,7 +1489,6 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>
         </Zoomable>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Yuborish tugmasini bosing — agent fayllarni ketma-ket yozadi, biroz kuting.", ru: '💡 Нажмите кнопку отправки — агент напишет файлы один за другим, немного подождите.' })}</p>}
-        {_resc && !done && <p className="bhint calm fade-step">{tr({ uz: "Qolganini keyinroq birga ko'rib chiqamiz — «Davom etish» ochiq.", ru: 'Остальное разберём вместе позже — «Продолжить» открыто.' })}</p>}
       </div>
     </Stage>
   );
@@ -1650,18 +1640,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ 12 savol — to'g'ri javoblar 4 pozitsiyaga TENG (3/3/3/3). ⚡ Jonli: correct qiymatlarini tasdiqlaydi.
 const QUIZ_BANK = [
-  { q: { uz: "`Entity` nimani belgilaydi?", ru: 'Что определяет `Entity`?' }, opts: [{ uz: "So'rov qaysi eshikdan kirishini bildiradi", ru: 'Через какую дверь входит запрос' }, { uz: 'Loyihani qaysi tartibda ishga tushishini', ru: 'В каком порядке запускается проект' }, { uz: 'Foydalanuvchi ekranidagi ranglarni', ru: 'Цвета на экране пользователя' }, { uz: "Bazadagi jadval qanday ko'rinishini", ru: 'Как выглядит таблица в базе' }], correct: 3 },
-  { q: { uz: "`BaseEntity` qaysi ustunlarni tekin beradi?", ru: 'Какие столбцы `BaseEntity` даёт бесплатно?' }, opts: [{ uz: 'brand, model hamda price ustunlarini', ru: 'Столбцы brand, model и price' }, { uz: 'id, created_at va updated_at ustunlarini', ru: 'Столбцы id, created_at и updated_at' }, { uz: 'username hamda password ustunlarini', ru: 'Столбцы username и password' }, { uz: "imports va controllers ro'yxatlarini", ru: 'Списки imports и controllers' }], correct: 1 },
-  { q: { uz: "`DTO` nima uchun kerak?", ru: 'Зачем нужен `DTO`?' }, opts: [{ uz: "Kelgan ma'lumot qoidalarini tekshirish uchun", ru: 'Чтобы проверять правила входящих данных' }, { uz: 'Bazadagi jadval ustunlarini yaratish uchun', ru: 'Чтобы создавать столбцы таблицы в базе' }, { uz: "CarModule'ni AppModule'ga ulab qo'yish uchun", ru: 'Чтобы подключить CarModule к AppModule' }, { uz: 'NestJS serverini ishga tushirish uchun', ru: 'Чтобы запустить сервер NestJS' }], correct: 0 },
-  { q: { uz: "Bo'sh `brand` bilan POST /car yuborilsa?", ru: 'Отправили POST /car с пустым `brand` — что будет?' }, opts: [{ uz: 'Mashina baribir bazaga saqlanadi', ru: 'Машина всё равно сохранится в базу' }, { uz: 'Server butunlay ishdan chiqadi', ru: 'Сервер полностью упадёт' }, { uz: '400 qaytadi — bazaga bormaydi', ru: 'Вернётся 400 — до базы не дойдёт' }, { uz: "brand qiymati avtomatik to'ldiriladi", ru: 'Значение brand заполнится автоматически' }], correct: 2 },
-  { q: { uz: "`PartialType(CreateCarDto)` nima qiladi?", ru: 'Что делает `PartialType(CreateCarDto)`?' }, opts: [{ uz: 'Barcha maydonni majburiy qiladi', ru: 'Делает все поля обязательными' }, { uz: 'Barcha maydonni ixtiyoriy qiladi', ru: 'Делает все поля необязательными' }, { uz: 'Bazada butunlay yangi jadval yaratadi', ru: 'Создаёт в базе совершенно новую таблицу' }, { uz: "Mavjud endpointlarni o'chirib qo'yadi", ru: 'Удаляет существующие эндпоинты' }], correct: 1 },
-  { q: { uz: 'CRUD metodlarini (create, findAll, remove) kim beradi?', ru: 'Кто даёт CRUD-методы (create, findAll, remove)?' }, opts: [{ uz: "Controller o'zi to'liq yozib chiqadi", ru: 'Controller сам всё напишет' }, { uz: "PostgreSQL o'zi avtomatik yozadi", ru: 'PostgreSQL напишет их автоматически' }, { uz: "Har resursda qaytadan qo'lda yoziladi", ru: 'В каждом ресурсе пишутся заново вручную' }, { uz: '`BaseService` — meros bo\'lib keladi', ru: '`BaseService` — приходят по наследству' }], correct: 3 },
-  { q: { uz: "Yangi mashina qo'shish uchun qaysi dekorator?", ru: 'Какой декоратор — добавить новую машину?' }, opts: [{ uz: "`@Post()` — yangisini qo'shish uchun", ru: '`@Post()` — добавить новое' }, { uz: "`@Get()` — mavjudini o'qish uchun", ru: '`@Get()` — прочитать существующее' }, { uz: '`@Column()` — ustunni belgilash uchun', ru: '`@Column()` — задать столбец' }, { uz: "`@Module()` — bo'limni ulash uchun", ru: '`@Module()` — подключить отдел' }], correct: 0 },
-  { q: { uz: "`Controller` nima qiladi?", ru: 'Что делает `Controller`?' }, opts: [{ uz: 'Jadval ustunlarini aniq belgilab beradi', ru: 'Точно задаёт столбцы таблицы' }, { uz: "Ma'lumotni to'g'ridan-to'g'ri diskka yozadi", ru: 'Пишет данные напрямую на диск' }, { uz: "So'rovni qabul qilib, service'ni chaqiradi", ru: 'Принимает запрос и вызывает service' }, { uz: 'Loyihani noldan build qilib ishga tushiradi', ru: 'Собирает проект с нуля и запускает' }], correct: 2 },
-  { q: { uz: "`CarModule` `AppModule` imports'iga qo'shilmasa?", ru: '`CarModule` не добавлен в imports `AppModule` — что будет?' }, opts: [{ uz: 'Hammasi baribir avvalgidek ishlaydi', ru: 'Всё продолжит работать как раньше' }, { uz: '/car endpointlari ishlamaydi — 404', ru: 'Эндпоинты /car не работают — 404' }, { uz: "Faqat GET so'rovlari ishlayveradi", ru: 'Работать будут только GET-запросы' }, { uz: 'Butun loyiha ishga tushmay qoladi', ru: 'Весь проект не запустится' }], correct: 1 },
-  { q: { uz: "`super(carRepo)` nima uchun chaqiriladi?", ru: 'Зачем вызывается `super(carRepo)`?' }, opts: [{ uz: 'Bazada yangi jadval yaratish uchun', ru: 'Чтобы создать в базе новую таблицу' }, { uz: 'Serverni qaytadan ishga tushirish uchun', ru: 'Чтобы перезапустить сервер' }, { uz: "Endpointni ro'yxatdan o'tkazish uchun", ru: 'Чтобы зарегистрировать эндпоинт' }, { uz: "BaseService'ga repozitoriyni berish uchun", ru: 'Чтобы дать BaseService репозиторий' }], correct: 3 },
-  { q: { uz: "`car.module.ts` ichida nima bo'ladi?", ru: 'Что находится внутри `car.module.ts`?' }, opts: [{ uz: "@Column'dagi ustunlar ro'yxati", ru: 'Список столбцов из @Column' }, { uz: '@IsString kabi qoidalar ro\'yxati', ru: 'Список правил вроде @IsString' }, { uz: 'imports, controllers, providers', ru: 'imports, controllers, providers' }, { uz: 'main.ts faylining sozlamalari', ru: 'Настройки файла main.ts' }], correct: 2 },
-  { q: { uz: "Yangi resurs qo'shishning to'g'ri tartibi?", ru: 'Правильный порядок добавления нового ресурса?' }, opts: ["Entity → DTO → Service → Controller → Module", "Controller → Module → Entity → DTO → Service", "Module → Controller → Service → DTO → Entity", "DTO → Entity → Controller → Module → Service"], correct: 0 }
+  { q: { uz: "`Entity` nimani belgilaydi?", ru: "Что задаёт `Entity`?" }, opts: [{ uz: "So'rov kiradigan eshikni", ru: "Дверь для запроса" }, { uz: "Ishga tushish tartibini", ru: "Порядок запуска" }, { uz: "Ekrandagi ranglarni", ru: "Цвета на экране" }, { uz: "Bazadagi jadval ko'rinishini", ru: "Вид таблицы в базе" }], correct: 3 },
+  { q: { uz: "`BaseEntity` qaysi ustunlarni tekin beradi?", ru: "Какие столбцы бесплатно даёт `BaseEntity`?" }, opts: [{ uz: "brand, model va price", ru: "brand, model и price" }, { uz: "id, created_at, updated_at", ru: "id, created_at, updated_at" }, { uz: "username, password", ru: "username, password" }, { uz: "imports, controllers", ru: "imports, controllers" }], correct: 1 },
+  { q: { uz: "`DTO` nima uchun kerak?", ru: "Зачем нужен `DTO`?" }, opts: [{ uz: "Kelgan ma'lumotni tekshirish", ru: "Проверять пришедшие данные" }, { uz: "Jadval ustunlarini yaratish", ru: "Создавать столбцы таблицы" }, { uz: "Bo'limni AppModule'ga ulash", ru: "Подключать раздел к AppModule" }, { uz: "Serverni ishga tushirish", ru: "Запускать сервер" }], correct: 0 },
+  { q: { uz: "Bo'sh `brand` bilan POST /car yuborilsa?", ru: "Что будет, если отправить POST /car с пустым `brand`?" }, opts: [{ uz: "Mashina baribir saqlanadi", ru: "Машина всё равно сохранится" }, { uz: "Server ishdan chiqadi", ru: "Сервер упадёт" }, { uz: "400 — bazaga bormaydi", ru: "400 — до базы не дойдёт" }, { uz: "brand o'zi to'ldiriladi", ru: "brand заполнится сам" }], correct: 2 },
+  { q: { uz: "`PartialType` nima qiladi?", ru: "Что делает `PartialType`?" }, opts: [{ uz: "Maydonlarni majburiy qiladi", ru: "Делает поля обязательными" }, { uz: "Maydonlarni ixtiyoriy qiladi", ru: "Делает поля необязательными" }, { uz: "Bazada yangi jadval yaratadi", ru: "Создаёт новую таблицу в базе" }, { uz: "Endpointlarni o'chiradi", ru: "Удаляет эндпоинты" }], correct: 1 },
+  { q: { uz: "Tayyor CRUD metodlarini kim beradi?", ru: "Кто даёт готовые CRUD-методы?" }, opts: [{ uz: "Controller o'zi yozadi", ru: "Controller пишет сам" }, { uz: "PostgreSQL o'zi yozadi", ru: "PostgreSQL пишет сам" }, { uz: "Har resursda qo'lda yoziladi", ru: "Пишутся вручную в каждом ресурсе" }, { uz: "`BaseService` — meros bilan", ru: "`BaseService` — по наследству" }], correct: 3 },
+  { q: { uz: "Yangi mashina qo'shish uchun qaysi dekorator?", ru: "Какой декоратор нужен, чтобы добавить машину?" }, opts: [{ uz: "`@Post()`", ru: "`@Post()`" }, { uz: "`@Get()`", ru: "`@Get()`" }, { uz: "`@Column()`", ru: "`@Column()`" }, { uz: "`@Module()`", ru: "`@Module()`" }], correct: 0 },
+  { q: { uz: "`Controller` nima qiladi?", ru: "Что делает `Controller`?" }, opts: [{ uz: "Jadval ustunlarini belgilaydi", ru: "Задаёт столбцы таблицы" }, { uz: "Ma'lumotni diskka yozadi", ru: "Пишет данные на диск" }, { uz: "So'rov olib, service chaqiradi", ru: "Принимает запрос, вызывает service" }, { uz: "Loyihani build qilib yoqadi", ru: "Собирает и запускает проект" }], correct: 2 },
+  { q: { uz: "`CarModule` AppModule'ga ulanmasa?", ru: "Что будет, если не подключить `CarModule` к AppModule?" }, opts: [{ uz: "Hammasi avvalgidek ishlaydi", ru: "Всё работает как раньше" }, { uz: "/car topilmaydi — 404", ru: "/car не найден — 404" }, { uz: "Faqat GET ishlaydi", ru: "Работает только GET" }, { uz: "Loyiha umuman yoqilmaydi", ru: "Проект вообще не запустится" }], correct: 1 },
+  { q: { uz: "`super(carRepo)` nima qiladi?", ru: "Что делает `super(carRepo)`?" }, opts: [{ uz: "Yangi jadval yaratadi", ru: "Создаёт новую таблицу" }, { uz: "Serverni qayta yoqadi", ru: "Перезапускает сервер" }, { uz: "Eshikni ro'yxatga oladi", ru: "Регистрирует дверь" }, { uz: "Omborni BaseService'ga beradi", ru: "Передаёт склад в BaseService" }], correct: 3 },
+  { q: { uz: "`car.module.ts` ichida nima bo'ladi?", ru: "Что находится в `car.module.ts`?" }, opts: [{ uz: "@Column ustunlari ro'yxati", ru: "Список столбцов @Column" }, { uz: "@IsString qoidalari ro'yxati", ru: "Список правил @IsString" }, { uz: "controllers va providers", ru: "controllers и providers" }, { uz: "main.ts port sozlamalari", ru: "Настройки порта main.ts" }], correct: 2 },
+  { q: { uz: "Yangi resurs: birinchi uch qadam?", ru: "Новый ресурс: первые три шага?" }, opts: ["Entity → DTO → Service", "Controller → Module → Entity", "Module → Controller → Service", "DTO → Entity → Controller"], correct: 0 }
 ];
 
 const CsNeonBolt = ({ flip }) => (

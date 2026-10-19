@@ -130,9 +130,9 @@ Ekran yozish dasturi — umumiy so'z («kompyuteringizdagi ekran yozish dasturi�
 - Mentor: Avval nima aytishingizni yozasiz, keyin ekran yozuvi bilan aytasiz; Mentor misoli «Yordam»da turadi. (100)
 - Chap — kulrang yorliq «ssenariy, ekran yozuvi va havola» (App.jsx osti so'zma-so'z, P-015) + vizual (`VideoSahna`, tayyor holat, bir marta o'zi yuradi — DE-200): vaqt chizig'idagi uch bo'lak joyi navbat bilan chiziladi (nomsiz — nomlari 2-ekranda), yozuv belgisidagi vaqt 3:00 gacha yuradi, oxirida o'ngda fayl kartasi «video · fayl» paydo bo'ladi.
 - O'ng — bugungi uch ish (tex-karta «01 · matn», bosilmaydi; teg yo'q — 172):
-  - 01 · Video ssenariysini yozasiz
-  - 02 · Ekran yozuvi bilan videoni yozasiz
-  - 03 · Videoni tekshirib, kim ko'rishini hal qilasiz
+  - 01 · Video ssenariysini yozing
+  - 02 · Ekran yozuvi bilan videoni yozing
+  - 03 · Videoni tekshirib, kim ko'rishini hal qiling
 - Pastki qator (mono, kichik): Bugun kod o'zgarmaydi: video repo'ga qo'shilmaydi · Mentor misoli `maydon-jamoa` · namuna `m14-dars-09-done`
 - Pastki qator 2 (kichik): «Maydon Jamoa» — namuna; videoni o'z mahsulotingiz haqida yozasiz.
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz

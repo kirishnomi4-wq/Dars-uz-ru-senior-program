@@ -85,10 +85,10 @@ Tashqi audit (ChatGPT) Filtri: `08-FILTR.md` — 05.10.2026 (atama «namuna» �
 - Mentor: Kodni agent — Antigravity — yozadi, siz unga talab berasiz. Talab o'tgan darsdagidek: qayerda, nima qilsin, nima buzilmasin.
 - Chap — «Dars oxirida»: Maydon *jonli* holatda, bir marta o'zi yuradi (DE-200): kataklar uch ustunda birin-ketin kiradi → › bosiladi → Yakshanba o'ngdan kiradi.
 - O'ng (01 · matn; bosilmaydi, P-015; teg yo'q) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*:
-  - 01 · Dizayner ekranidan nimani olish kerakligini ajratasiz
-  - 02 · Bitta usul ilovadan ilovaga qanday o'tganini ko'rasiz
-  - 03 · O'z g'oyangiz uchun Dribbble'dan usul topasiz
-  - 04 · Maydon'ga usul va animatsiyalarni agent orqali qo'shasiz
+  - 01 · Dizayner ekranidan nimani olish kerakligini ajrating
+  - 02 · Bitta usul ilovadan ilovaga qanday o'tganini ko'ring
+  - 03 · O'z g'oyangiz uchun Dribbble'dan usul toping
+  - 04 · Maydon'ga usul va animatsiyalarni agent orqali qo'shing
 - Pastki qator (mono, kichik): repo `maydon` · boshlanish `dars-07-done` · tayyor `dars-08-done`
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz
 - Izoh (MD): 02–04 dagi «usul» — menyu ostidagi yozuv bilan bir xil («bitta usul va animatsiyalar», P-015); atama ta'rifi 2-ekranda.

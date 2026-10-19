@@ -25,10 +25,10 @@ Holat: 06.10.2026 — kodga mos
 - Chap yorliq: ma'lumot sizib chiqsa — audit va maxfiylik siyosati
 - Chap maket (o'zi bir marta yuradi): o'yinchi telefoni tayyor holatda — forma ostida havola «Maxfiylik siyosati» → havola bosiladi → yonida ikkinchi telefon `/maxfiylik` (to'rtta sarlavha chizig'i, matnsiz) → pastda fayl belgisi `AUDIT.md`
 - Reja (o'ng; teg yo'q — keyingi ekranlar eyebrow'ini takrorlardi) *(✎ F-1015-115, 208-qonun 0-band)*:
-  - 01 · Ism va telefon qayerga borishini topasiz
-  - 02 · Begona qo'lga o'tsa, nima ko'rinishini ko'rasiz
-  - 03 · «Maydon»ni olti savol bo'yicha tekshirasiz
-  - 04 · O'yinchi o'qiydigan sahifani saytga qo'shasiz
+  - 01 · Ism va telefon qayerga borishini toping
+  - 02 · Begona qo'lga o'tsa, nima ko'rinishini ko'ring
+  - 03 · «Maydon»ni olti savol bo'yicha tekshiring
+  - 04 · O'yinchi o'qiydigan sahifani saytga qo'shing
 - Pastki qator: repo `maydon` · boshlang'ich holat `m10-dars-06-start` · namuna `m10-dars-06-done`
 - Tugmalar: Orqaga · Boshlaymiz
 

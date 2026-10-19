@@ -30,7 +30,7 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
-import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKirish, QReja, QTushuncha, QTest, QTestJavob, QChip, QXato, QIzoh, QXulosa, QMustaqil, QKartochka, QYakun } from '../qolip/index.jsx';
+import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKirish, QReja, QTushuncha, QTest, QTestJavob, QChip, QXato, QIzoh, QXulosa, QMustaqil, QKartochka, QYakun, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
 
 
 
@@ -95,6 +95,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -172,8 +197,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -903,10 +928,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja; chap: menyu osti + kulrang qator; bo'sh varaq olindi — 208/0 d) =====
 const REJA = [
-  { t: { uz: "Narxni suhbatning qayerida aytishni bilasiz", ru: 'Узнаете, в какой момент разговора называть цену' }, teg: { uz: 'suhbat', ru: 'разговор' } },
-  { t: { uz: "Odamning javobini so'zma-so'z yozasiz", ru: 'Запишете ответ человека слово в слово' }, teg: { uz: "ha · qimmat · yo'q", ru: 'да · дорого · нет' } },
-  { t: { uz: "O'z narxingiz uchun savollar yozasiz", ru: 'Напишете вопросы для своей цены' }, teg: { uz: 'suhbat savollari', ru: 'вопросы разговора' } },
-  { t: { uz: "Sherigingiz bilan rol o'yinida mashq qilasiz", ru: 'Потренируетесь с партнёром в ролевой игре' }, teg: { uz: "rol o'yini", ru: 'ролевая игра' } }
+  { t: { uz: "Narxni suhbatning qayerida aytishni bilib oling", ru: 'Узнайте, в какой момент разговора называть цену' }, teg: { uz: 'suhbat', ru: 'разговор' } },
+  { t: { uz: "Odamning javobini so'zma-so'z yozing", ru: 'Запишите ответ человека слово в слово' }, teg: { uz: "ha · qimmat · yo'q", ru: 'да · дорого · нет' } },
+  { t: { uz: "O'z narxingiz uchun savollar yozing", ru: 'Напишите вопросы для своей цены' }, teg: { uz: 'suhbat savollari', ru: 'вопросы разговора' } },
+  { t: { uz: "Sherigingiz bilan rol o'yinida mashq qiling", ru: 'Потренируйтесь с партнёром в ролевой игре' }, teg: { uz: "rol o'yini", ru: 'ролевая игра' } }
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (
   <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz', ru: 'Начинаем' })} onClick={onNext} /></>}>
@@ -1039,7 +1064,7 @@ const Screen3 = (props) => (
       3: { uz: 'Bu sotish gapi — suhbatda odam o\'zi gapiradi.', ru: 'Это продающая фраза — в разговоре говорит сам человек.' },
       default: { uz: 'Mentorning birinchi savoli nima haqida edi?', ru: 'О чём был первый вопрос Ментора?' }
     }}
-    vizual={<MiniVaraq><Uya n="1" matn={tr({ uz: 'hozirgi ish', ru: 'текущее дело' })} faol ixcham /><Uya n="3" matn={tr({ uz: 'narx', ru: 'цена' })} ixcham /></MiniVaraq>} />
+ />
 );
 
 // ===== SCREEN 4 — UCH SUHBAT (QTushuncha; 3 yozuv bittadan, to'rt belgi tugmasi (taxmin yo'q — 208/0 e); natija — bitta yashil blok) =====
@@ -1138,7 +1163,7 @@ const Screen5 = (props) => (
       3: { uz: "Mentor misolida «yo'q» javobi yozilmay qolganmidi?", ru: 'В примере Ментора ответ «нет» остался незаписанным?' },
       default: { uz: 'Mentor 2-tashkilotchining gapini qanday yozgan edi?', ru: 'Как Ментор записал слова организатора 2?' }
     }}
-    vizual={<MiniVaraq><Jadval qatorlar={[{ k: 't', kim: tr({ uz: 'tanish', ru: 'знакомый' }), gap: tr({ uz: "«Kitobni do'stimdan so'rab olaman, pul bermayman»", ru: '«Возьму книгу у друга, платить не буду»' }), javob: 'yoq', narx: '—' }]} /></MiniVaraq>} />
+ />
 );
 
 // ===== 6, 7-EKRAN TEKSHIRUVLARI — sof funksiyalar (React va tr siz; PM-108 — node da namunalar bilan sinaladi) =====
@@ -1171,6 +1196,7 @@ function s6Tekshir(maydon, qiymat) {
   const v = normS(qiymat);
   if (maydon === 'narx') return narxSonT(qiymat) ? null : { k: 'narx' };
   if (!v) return { k: 'bosh' };
+  if (!manoliMatn(qiymat)) return { k: 'manosiz' };
   if (maydon === 'kim') return (telBormi(v) || /\d{7,}/.test(v.replace(/[\s-]/g, ''))) ? { k: 'rol' } : null;
   if (telBormi(v)) return { k: 'telSavol' };
   if (maydon === 'hozir') {
@@ -1204,6 +1230,7 @@ function s7Hozir(hozir) {
 }
 // TEKSHIRUV-OXIRI
 const TX = {
+  manosiz: MANOSIZ_XATO,
   bosh: { uz: "Bu joy bo'sh — savol to'liq chiqmaydi.", ru: 'Это поле пустое — вопрос получится неполным.' },
   rol: { uz: 'Rol yozing — ism, telefon va akkaunt nomi emas.', ru: 'Напишите роль — не имя, телефон или имя аккаунта.' },
   narxQator: { uz: "Narx uchinchi savolda — bu yerda hozirgi ishni so'rang.", ru: 'Цена — в третьем вопросе, здесь спросите о текущем деле.' },
@@ -1684,7 +1711,7 @@ const Screen8 = (props) => (
       2: { uz: "Suhbatda pul olinmaydi — odam «ha» desa ham.", ru: 'В разговоре денег не берут — даже если человек сказал «да».' },
       default: { uz: 'Mentor uch suhbatdan keyin qanday xulosa qildi?', ru: 'Какой вывод сделал Ментор после трёх разговоров?' }
     }}
-    vizual={<MiniVaraq><Jadval qatorlar={[0, 1, 2].map(i => ({ k: 'h' + i, kim: tr({ uz: 'tanish', ru: 'знакомый' }), gap: '', javob: 'ha', narx: '' }))} /><p className="mt-kulrang">{tr({ uz: "so'z — hali to'lov emas", ru: 'слова — ещё не оплата' })}</p></MiniVaraq>} />
+ />
 );
 
 // ===== NISHONLAR (4) — faqat qilingan ish uchun; Recorded! — tekin bonus, ish qilingan ekranda (P-048) =====
@@ -1774,18 +1801,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Jonli viktorina — 12 savol (MD jadvali aynan; ✔ o'rni: A 1·5·9 · B 3·6·10 · C 2·7·11 · D 4·8·12 — 3/3/3/3)
 const QUIZ_BANK = [
-  { q: { uz: 'Bu darsda suhbat nima?', ru: 'Что такое разговор на этом уроке?' }, opts: [{ uz: 'Narx haqida real odamga savol berish', ru: 'Вопрос реальному человеку о цене' }, { uz: 'Mahsulotni tanishlarga sotish usuli', ru: 'Способ продать продукт знакомым' }, { uz: "Ilovani do'stlarga ko'rsatib chiqish", ru: 'Показать приложение друзьям' }, { uz: 'Narxni Mentor bilan kelishib olish', ru: 'Договориться о цене с Ментором' }], correct: 0 },
-  { q: { uz: 'Mentor misolida narx qaysi savolda aytiladi?', ru: 'В каком вопросе в примере Ментора называют цену?' }, opts: [{ uz: 'Birinchi savolda, hammasidan oldin', ru: 'В первом, раньше всего' }, { uz: "Ikkinchi savolda, pul haqida so'rab", ru: 'Во втором, спросив о деньгах' }, { uz: "Uchinchi savolda, ishni so'ragach", ru: 'В третьем, после вопроса о деле' }, { uz: "To'rtinchi savolda, eng oxirida", ru: 'В четвёртом, в самом конце' }], correct: 2 },
-  { q: { uz: "Mentor to'rtinchi savolni qachon beradi?", ru: 'Когда Ментор задаёт четвёртый вопрос?' }, opts: [{ uz: 'Suhbat boshida, birinchi bo\'lib', ru: 'В начале разговора, первым' }, { uz: "Javob «yo'q» yoki «qimmat» bo'lsa", ru: 'Если ответ «нет» или «дорого»' }, { uz: "Tashkilotchi «ha» deb javob bersa", ru: 'Если организатор ответил «да»' }, { uz: 'Tashkilotchi umuman javob bermasa', ru: 'Если организатор совсем не ответил' }], correct: 1 },
-  { q: { uz: 'Qaysi gap sotish gapi?', ru: 'Какая фраза — продающая?' }, opts: [{ uz: 'Hozir buni qanday qilyapsiz?', ru: 'Как вы сейчас это делаете?' }, { uz: 'Bunga hozir pul sarflaysizmi?', ru: 'Тратите ли на это деньги сейчас?' }, { uz: 'Vaqt ajratganingiz uchun rahmat!', ru: 'Спасибо, что уделили время!' }, { uz: 'Hamma oldi, siz ham olasizmi?', ru: 'Все взяли, и вы возьмёте?' }], correct: 3 },
-  { q: { uz: 'Odam: «Qimmat, yarim narxda olardim». Yozuvingizda nima turadi?', ru: 'Человек: «Дорого, за полцены взял бы». Что будет в записи?' }, opts: [{ uz: '«Qimmat» belgisi va uning narxi', ru: 'Отметка «дорого» и его цена' }, { uz: '«Ha» belgisi va savoldagi narx', ru: 'Отметка «да» и цена из вопроса' }, { uz: "«Yo'q» belgisi, narx yozilmaydi", ru: 'Отметка «нет», цена не пишется' }, { uz: "«Javob yo'q» belgisi, gap yo'q", ru: 'Отметка «нет ответа», слов нет' }], correct: 0 },
-  { q: { uz: 'Mentor misolida uch tashkilotchidan nechtasi «ha» dedi?', ru: 'Сколько из трёх организаторов в примере Ментора сказали «да»?' }, opts: [{ uz: 'Uchalasi — hammasi «ha» dedi', ru: 'Все трое — все сказали «да»' }, { uz: 'Bittasi — faqat 1-tashkilotchi', ru: 'Один — только организатор 1' }, { uz: 'Ikkitasi — 1 va 3-tashkilotchi', ru: 'Двое — организаторы 1 и 3' }, { uz: 'Hech biri — hammasi rad etdi', ru: 'Ни один — все отказались' }], correct: 1 },
-  { q: { uz: 'Odam xabaringizga javob bermadi. Qaysi belgi qo\'yiladi?', ru: 'Человек не ответил на сообщение. Какую отметку ставят?' }, opts: [{ uz: "«Yo'q» — demak, u olmaydi ekan", ru: '«Нет» — значит, не возьмёт' }, { uz: '«Qimmat» — narx unga yoqmadi', ru: '«Дорого» — цена не понравилась' }, { uz: "«Javob yo'q» — gapi yozilmagan", ru: '«Нет ответа» — слов не записано' }, { uz: 'Hech narsa — yozuv qilinmaydi', ru: 'Ничего — запись не делают' }], correct: 2 },
-  { q: { uz: 'Tanishingiz «ha, olaman» dedi. Endi nima qilasiz?', ru: 'Знакомый сказал «да, возьму». Что теперь сделаете?' }, opts: [{ uz: 'Pulni hozir naqd olib qo\'yaman', ru: 'Сразу возьму деньги наличными' }, { uz: 'Narxni ikki baravar oshiraman', ru: 'Повышу цену вдвое' }, { uz: 'Do\'stlarini ham olishga undayman', ru: 'Подтолкну купить и его друзей' }, { uz: 'Gapini yozaman, pul olmayman', ru: 'Запишу слова, денег не возьму' }], correct: 3 },
-  { q: { uz: 'Narx haqidagi suhbat uchun kimni tanlaysiz?', ru: 'Кого выберете для разговора о цене?' }, opts: [{ uz: 'Auditoriyamdagi tanish odamni', ru: 'Знакомого из своей аудитории' }, { uz: 'Internetdagi notanish odamni', ru: 'Незнакомца из интернета' }, { uz: "Mahsulot kerak bo'lmagan odamni", ru: 'Того, кому продукт не нужен' }, { uz: "O'zimni — javobni o'zim yozaman", ru: 'Себя — ответ напишу сам' }], correct: 0 },
-  { q: { uz: 'Mahalla guruhidagi tanishga yozishdan oldin nima qilasiz?', ru: 'Что сделаете, прежде чем написать знакомому из группы махалли?' }, opts: [{ uz: "Ko'p guruhga xabar tashlayman", ru: 'Разошлю сообщение во много групп' }, { uz: "Guruh egasidan ruxsat so'rayman", ru: 'Спрошу разрешения у владельца группы' }, { uz: 'Uning telefon raqamini topaman', ru: 'Найду его номер телефона' }, { uz: 'Hech narsa qilmayman — u tanish', ru: 'Ничего — он же знакомый' }], correct: 1 },
-  { q: { uz: 'Suhbat yozuvida odam qanday ataladi?', ru: 'Как называют человека в записи разговора?' }, opts: [{ uz: 'Ismi va familiyasi bilan', ru: 'По имени и фамилии' }, { uz: "Telegram'dagi nomi bilan", ru: 'По имени в Telegram' }, { uz: 'Roli bilan: «tashkilotchi»', ru: 'По роли: «организатор»' }, { uz: 'Kim ekani umuman yozilmaydi', ru: 'Кто он — не пишут вовсе' }], correct: 2 },
-  { q: { uz: "Rol o'yinidagi yozuv nega real suhbatga kirmaydi?", ru: 'Почему запись ролевой игры не считается реальным разговором?' }, opts: [{ uz: 'Unda narx umuman aytilmagan edi', ru: 'В ней цену вообще не называли' }, { uz: 'Uni Mentor o\'zi tekshirmagan edi', ru: 'Её не проверил сам Ментор' }, { uz: "Sherik «yo'q» deb javob bergan", ru: 'Партнёр ответил «нет»' }, { uz: "Sherik rolni o'ynab javob bergan", ru: 'Партнёр отвечал, играя роль' }], correct: 3 }
+  { q: { uz: "Bu darsda suhbat nima?", ru: "Что такое беседа в этом уроке?" }, opts: [{ uz: "Narx haqida odamdan so'rash", ru: "Спросить человека о цене" }, { uz: "Tanishlarga sotish usuli", ru: "Способ продать знакомым" }, { uz: "Ilovani do'stlarga ko'rsatish", ru: "Показать приложение друзьям" }, { uz: "Narxni Mentor bilan kelishish", ru: "Согласовать цену с Ментором" }], correct: 0 },
+  { q: { uz: "Mentor misolida narx qaysi savolda aytiladi?", ru: "В каком вопросе в примере Ментора называется цена?" }, opts: [{ uz: "Birinchi savolda", ru: "В первом вопросе" }, { uz: "Ikkinchi savolda", ru: "Во втором вопросе" }, { uz: "Uchinchi savolda", ru: "В третьем вопросе" }, { uz: "To'rtinchi savolda", ru: "В четвёртом вопросе" }], correct: 2 },
+  { q: { uz: "Mentor to'rtinchi savolni qachon beradi?", ru: "Когда Ментор задаёт четвёртый вопрос?" }, opts: [{ uz: "Suhbat boshlanishi bilan", ru: "Сразу в начале беседы" }, { uz: "«Yo'q» yoki «qimmat» desa", ru: "Если сказали «нет» или «дорого»" }, { uz: "Tashkilotchi «ha» desa", ru: "Если организатор сказал «да»" }, { uz: "Umuman javob bermasa", ru: "Если вообще не ответил" }], correct: 1 },
+  { q: { uz: "Qaysi gap sotish gapi?", ru: "Какая фраза — фраза продажи?" }, opts: [{ uz: "Hozir buni qanday qilyapsiz?", ru: "Как вы делаете это сейчас?" }, { uz: "Bunga hozir pul sarflaysizmi?", ru: "Тратите ли вы на это деньги сейчас?" }, { uz: "Vaqtingiz uchun rahmat!", ru: "Спасибо за ваше время!" }, { uz: "Hamma oldi, siz ham olasizmi?", ru: "Все взяли, возьмёте и вы?" }], correct: 3 },
+  { q: { uz: "«Qimmat, yarim narxda olardim». Nima yoziladi?", ru: "«Дорого, за полцены взял бы». Что записывается?" }, opts: [{ uz: "«Qimmat» va uning narxi", ru: "«Дорого» и его цена" }, { uz: "«Ha» va savoldagi narx", ru: "«Да» и цена из вопроса" }, { uz: "«Yo'q», narx yozilmaydi", ru: "«Нет», цена не пишется" }, { uz: "«Javob yo'q», gap yo'q", ru: "«Нет ответа», слов нет" }], correct: 0 },
+  { q: { uz: "Uch tashkilotchidan nechtasi «ha» dedi?", ru: "Сколько из трёх организаторов сказали «да»?" }, opts: [{ uz: "Uchalasi", ru: "Все трое" }, { uz: "Bittasi", ru: "Один" }, { uz: "Ikkitasi", ru: "Двое" }, { uz: "Hech biri", ru: "Ни один" }], correct: 1 },
+  { q: { uz: "Odam xabaringizga javob bermadi. Qaysi belgi qo'yiladi?", ru: "Человек не ответил на сообщение. Какая отметка ставится?" }, opts: [{ uz: "«Yo'q»", ru: "«Нет»" }, { uz: "«Qimmat»", ru: "«Дорого»" }, { uz: "«Javob yo'q»", ru: "«Нет ответа»" }, { uz: "Hech qanday", ru: "Никакая" }], correct: 2 },
+  { q: { uz: "Odam «ha, olaman» dedi. Nima qilasiz?", ru: "Человек сказал «да, возьму». Что вы делаете?" }, opts: [{ uz: "Pulni naqd olib qo'yaman", ru: "Сразу беру деньги наличными" }, { uz: "Narxni oshiraman", ru: "Повышаю цену" }, { uz: "Do'stini ham olishga undayman", ru: "Уговариваю и его друзей" }, { uz: "Gapini yozaman, pul olmayman", ru: "Записываю слова, денег не беру" }], correct: 3 },
+  { q: { uz: "Narx suhbati uchun kimni tanlaysiz?", ru: "Кого вы выберете для беседы о цене?" }, opts: [{ uz: "To'laydigan roldagi tanishni", ru: "Знакомого в роли плательщика" }, { uz: "Internetdagi notanishni", ru: "Незнакомца из интернета" }, { uz: "Mahsulotga aloqasiz odamni", ru: "Человека, не связанного с продуктом" }, { uz: "O'zimni o'zim so'rayman", ru: "Спрошу сам себя" }], correct: 0 },
+  { q: { uz: "Guruhdagi tanishga yozishdan oldin nima qilasiz?", ru: "Что вы сделаете, прежде чем написать знакомому из группы?" }, opts: [{ uz: "Hammaga yozaman", ru: "Пишу всем" }, { uz: "Guruh egasidan ruxsat olaman", ru: "Беру разрешение у владельца группы" }, { uz: "Telefon raqamini topaman", ru: "Нахожу его номер телефона" }, { uz: "Hech narsa, u tanish", ru: "Ничего, он знакомый" }], correct: 1 },
+  { q: { uz: "Suhbat yozuvida odam qanday ataladi?", ru: "Как называют человека в записи разговора?" }, opts: [{ uz: "Ism: «Akmal Karimov»", ru: "Имя: «Акмал Каримов»" }, { uz: "Telegram: «@akmal_07»", ru: "Telegram: «@akmal_07»" }, { uz: "Rol: «tashkilotchi»", ru: "Роль: «организатор»" }, { uz: "Hech qanday nom yozilmaydi", ru: "Никакое имя не пишут" }], correct: 2 },
+  { q: { uz: "Rol o'yinidagi yozuv nega real suhbatga kirmaydi?", ru: "Почему запись ролевой игры не входит в реальные беседы?" }, opts: [{ uz: "Narx aytilmagan", ru: "Цена не названа" }, { uz: "Mentor tekshirmagan", ru: "Ментор не проверил" }, { uz: "Sherik «yo'q» degan", ru: "Партнёр сказал «нет»" }, { uz: "Sherik rol o'ynagan", ru: "Партнёр играл роль" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2385,21 +2412,6 @@ const HW_BANDLAR = [
   { uz: "Javobni o'sha zahoti qog'ozga yozing, ismsiz: rol · hozir nima qiladi (qisqa) · narx haqidagi gapi (so'zma-so'z) · belgi · aytgan narxi.", ru: 'Сразу запишите ответ на бумаге, без имени: роль · что делает сейчас (коротко) · его слова о цене (дословно) · отметка · названная цена.' }
 ];
 const HW_RAQAM = ['1', '2', '3', '4'];
-// F-1007-475: erta tugatgan o'quvchi yo'li — AI tashkilotchi rolida, o'quvchi o'z suhbat savollarini beradi (sinfda gemini.google.com)
-const AI_SOROV = { uz: "Sen «Maydon Jamoa»ga o'xshash ilovada har hafta o'yin tashkil qiladigan tashkilotchisan: o'yinchilarni qo'lda yig'asan, bunga vaqt ketadi. Men senga narx haqida 4 ta savol beraman. Har biriga qisqa, hayotiy javob ber; narx aytilganda avval ikkilan, keyin o'z fikringni ayt. O'zing savol berma, sotishga undama. Birinchi savolim: ",
-  ru: 'Ты организатор еженедельных игр в приложении вроде «Maydon Jamoa»: собираешь игроков вручную, на это уходит время. Я задам тебе 4 вопроса о цене. Отвечай коротко и жизненно; когда назову цену, сначала засомневайся, потом скажи своё мнение. Сам вопросы не задавай, покупать не уговаривай. Мой первый вопрос: ' };
-const AiDavomCard = () => {
-  const [nusxa, setNusxa] = useState(false);
-  const kochir = () => { try { navigator.clipboard.writeText(tr(AI_SOROV)); setNusxa(true); setTimeout(() => setNusxa(false), 1800); } catch { /* qo'lda belgilab oladi */ } };
-  return (
-    <div className="card mt-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <p className="mt-ai-m">{tr({ uz: "gemini.google.com'ni oching, pastdagi so'rovni yuboring va suhbat savollaringizni bittadan bering — AI tashkilotchi bo'lib javob beradi. Javoblarini «Orqaga» bilan qaytib, rol o'yini yozuviga kiriting.", ru: 'Откройте gemini.google.com, отправьте запрос ниже и задавайте свои вопросы разговора по одному — AI ответит как организатор. Ответы впишите в запись ролевой игры, вернувшись через «Orqaga».' })}</p>
-      <pre className="mt-ai-sorov">{tr(AI_SOROV)}</pre>
-      <button type="button" className="q-chip mt-ai-btn" onClick={kochir}>{nusxa ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 const HwCard = ({ qolgan, keyingi }) => (
   <div className="card mt-hw fade-up">
     <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
@@ -2482,7 +2494,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           hwTokens={HW_TOKENS.map(t => ({ ...t, t: tr(t.t) }))}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
         >
-          {!isMentorL && <AiDavomCard />}
+          
         </QYakun>
       </div>
     </Stage>
@@ -2655,8 +2667,6 @@ export default function PmMoneyTalkLesson({ lang: langProp, onFinished, liveToke
         /* Sahna — ikki odam yuzma-yuz, pufaklar tepada */
         .mt-sahna { display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; min-width: 0; padding: 14px 14px 10px; border-radius: 16px; background: linear-gradient(180deg, ${T.paper} 0%, ${T.bg} 100%); border: 1px solid ${T.line}; min-height: 214px; }
         .mt-sahna.ixcham { min-height: 200px; }
-        .mt-ai-m { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: ${T.ink}; }
-        .mt-ai-sorov { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.45; color: ${T.ink}; white-space: pre-wrap; }
         .mt-ai-btn { margin: 0; }
         .mt-sahna-k { display: flex; flex-direction: column; min-width: 0; }
         .mt-pufaklar { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 10px; align-items: end; min-height: 84px; }

@@ -96,6 +96,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -173,8 +198,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -866,7 +891,7 @@ const Natija = ({ togri, haqiqat }) => (togri
 const XulosaQ = ({ natija, matn, izoh }) => <>{natija}<span className="pd-x-m">{matn}</span>{izoh && <span className="pd-x-iz">{izoh}</span>}</>;
 const QADAMLAR_Y = { uz: 'Qadamlarni bajaring', ru: 'Выполните шаги' };
 const navYorliq = (taxmin, q, jami, done) => (done ? { uz: 'Davom etish', ru: 'Продолжить' }
-  : !taxmin ? BASH_YORLIQ : { uz: `${QADAMLAR_Y.uz} (${q}/${jami})`, ru: `${QADAMLAR_Y.ru} (${q}/${jami})` });
+  : !taxmin ? BASH_YORLIQ : (jami ? { uz: `${QADAMLAR_Y.uz} (${q}/${jami})`, ru: `${QADAMLAR_Y.ru} (${q}/${jami})` } : QADAMLAR_Y));
 const NomQator = ({ matn }) => (matn ? <p className="pd-nom fade-step" key={ou(matn).slice(0, 14)}>{tx(matn)}</p> : null);
 const Ustoz = ({ satrlar }) => (useMentorLive() ? <div className="pd-ustoz"><b>{tr({ uz: "O'qituvchi eslatmasi", ru: 'Заметка для учителя' })}</b>{satrlar.map((s, i) => <span key={i}>{tx(s)}</span>)}</div> : null);
 // Sahna boshlang'ich holati: Pro yo'q, jadval bo'sh, tekshiruv qatorlari o'chiq
@@ -985,6 +1010,9 @@ const S2_NATIJA = [
 ];
 const S2_RAQAM = ['m-9b07…', 'm-5d2a…', 'm-e813…', 'm-07fb…'];
 const S2_TEL_BOSH = { ekran: 'brauzer', javob: null };
+// F-1015-371: har usuldan oldin o'quvchi qaror qiladi — «buzadimi?» (Mentor misolida 1, 2 — buzildi; 3, 4 — buzilmadi)
+const S2_BUZADI = [true, true, false, false];
+const S2_QV = [{ k: 'ha', t: { uz: 'Buzadi', ru: 'Сломает' } }, { k: 'yoq', t: { uz: 'Buzmaydi', ru: 'Не сломает' } }];
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const avval = !!storedAnswer;
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
@@ -992,6 +1020,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [band, setBand] = useState(false);
   const [tel, setTel] = useState(S2_TEL_BOSH);
   const [be, setBe] = useState(avval ? { ...BE_BOSH, qatorlar: { imzo: 'err' }, xabar: { raqam: S2_RAQAM[3], holat: 'tolandi', imzoXato: true } } : { ...BE_BOSH, yangiRaqam: 1 });
+  const [qar, setQar] = useState({}); // q → 'ha' | 'yoq'
+  const [yangiOtish] = useState(!storedAnswer); // javob saqlangach ham shu o'tishda «taxminlaringiz» qatori qoladi
+  const mosN = Object.keys(qar).filter(k => +k < q && (qar[k] === 'ha') === S2_BUZADI[+k]).length;
   const ketma = useKetma();
   const done = q >= 4;
   const tugadi = useTugadi(done, 1100, avval);
@@ -1039,10 +1070,11 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       [450, () => setTel(o => ({ ...o, javob: '401' }))], tugat(4, 600)]);
   };
   const tugmalar = { ikki, kech, rad, imzo };
-  const joriy = !taxmin || band || done ? null : ['ikki', 'kech', 'rad', 'imzo'][q];
+  const joriy = !taxmin || band || done || !qar[q] ? null : ['ikki', 'kech', 'rad', 'imzo'][q];
   const telOn = tel.ekran === 'brauzer' && joriy ? { ...tel, on: { [joriy]: tugmalar[joriy] }, joriy } : tel;
   const nom = q >= 1 ? { uz: "12-Modulda ilovani uch usul bilan buzgansiz — bugun to'lov xabarini to'rt usul bilan.", ru: 'В 12-м модуле вы ломали приложение тремя способами — сегодня сообщение о платеже четырьмя.' } : null;
   const mGap = done ? { uz: 'Natijani taxminingiz bilan solishtiring.', ru: 'Сравните результат со своим предположением.' }
+    : taxmin && !band && !qar[q] ? { uz: `«${USULLAR[q].nom.uz}» to'lovni buzadimi — avval o'zingiz hal qiling.`, ru: `«${USULLAR[q].nom.ru}» сломает оплату? Сначала решите сами.` }
     : q === 0 ? { uz: "Mentor misolida agent «to'lov ishlaydi» degan — avval taxminingizni belgilang, keyin «Ikki marta yuborish» ni bosing.", ru: 'В примере Ментора агент сказал «оплата работает» — сначала отметьте предположение, потом нажмите «Ikki marta yuborish».' }
       : q === 1 ? { uz: "Endi «Kechiktirib yuborish» ni bosing va ilovaga qarang.", ru: 'Теперь нажмите «Kechiktirib yuborish» и смотрите на приложение.' }
         : q === 2 ? { uz: "Endi «Rad etish (mashq)» ni bosing.", ru: 'Теперь нажмите «Отклонить (учебно)».' }
@@ -1059,12 +1091,14 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <TolovSahna tel={telOn} be={{ ...be, ixcham: true }} />
             <div className="pd-yp">
               <div className="pd-yix-l">{USULLAR.map((u, i) => <YozuvIx key={u.usul} no={i + 1} usul={u.usul} belgi={MENTOR_YOZUV[i].belgi} />)}</div>
+              {yangiOtish && Object.keys(qar).length > 0 && <p className="pd-qar-j">{tr({ uz: 'Usullar bo\'yicha taxminlaringiz', ru: 'Ваши догадки по способам' })}: <b>{mosN} / 4</b></p>}
               <NomQator matn={nom} />
               <p className="pd-ost">{tr(ost)}</p>
             </div>
           </div>
           : <div className="pd-viz pd-sahna-kir">
-            {q > 0 && <span key={q} className={cx('pd-chip-n fade-step', q <= 2 ? 'err' : 'kul')}>{q} · {tr(S2_NATIJA[q - 1])}</span>}
+            {q > 0 && <span key={q} className={cx('pd-chip-n fade-step', q <= 2 ? 'err' : 'kul')}>{q} · {tr(S2_NATIJA[q - 1])}{qar[q - 1] && <b className={cx('pd-chip-t', (qar[q - 1] === 'ha') === S2_BUZADI[q - 1] ? 'ok' : 'yoq')}>{(qar[q - 1] === 'ha') === S2_BUZADI[q - 1] ? tr({ uz: '· taxminingiz to\'g\'ri', ru: '· вы угадали' }) : tr({ uz: '· taxminingiz boshqacha edi', ru: '· вы думали иначе' })}</b>}</span>}
+            {!band && !qar[q] && q < 4 && <QarorK savol={tr({ uz: `«${USULLAR[q].nom.uz}» to'lovni buzadimi?`, ru: `«${USULLAR[q].nom.ru}» сломает оплату?` })} variantlar={S2_QV} xato={null} onTanla={(v) => setQar(o => ({ ...o, [q]: v.k }))} />}
             <TolovSahna tel={telOn} be={be} />
             <NomQator matn={nom} />
             <p className="pd-ost">{tr(ost)}</p>
@@ -1101,18 +1135,39 @@ const Screen4 = (props) => (
 
 // ===== SCREEN 5 — TUSHUNCHA · buzish yozuvi (bashorat + 4 qadam): solishtirish → agentga → qayta: kechiktirib → qayta: ikki marta =====
 const S5_TAXMIN = [{ k: 'yoq', t: { uz: "Yo'q — Pro oxiri yoqildi, demak to'lov ishladi", ru: 'Нет — Pro в итоге включился, значит оплата сработала' } }, { k: 'ha', t: { uz: "Ha — foydalanuvchiga noto'g'ri holat ko'rsatildi", ru: 'Да — пользователю показали неверное состояние' } }];
-// «Nima kutdim» / «Nima bo'ldi» matnidagi mos kelmagan bo'laklar navbat bilan qizil ostiga chiziladi (MENTOR_YOZUV[1].farq)
-const chizilgan = (matn, bolaklar, n) => {
+// F-1015-371: o'quvchi «Nima bo'ldi» qatoridagi mos kelmagan joyni o'zi topadi (topilgan — qizil; «Nima kutdim» dagi juftligi ham yonadi)
+const farqQism = (matn, bolaklar, topilgan, bosiladi) => {
   let qism = [matn];
   bolaklar.forEach((b, i) => {
     qism = qism.flatMap(p => {
       if (typeof p !== 'string' || !p.includes(b)) return [p];
       const [a, ...rest] = p.split(b);
-      return [a, <span key={'f' + i} className={cx('pd-farq', i < n && 'on')}>{fmtCode(b)}</span>, rest.join(b)];
+      return [a, <span key={'f' + i} data-farq={i} className={cx('pd-farq', topilgan.includes(i) && 'on', bosiladi && !topilgan.includes(i) && 'izla')}>{fmtCode(b)}</span>, rest.join(b)];
     });
   });
   return qism.map((p, i) => (typeof p === 'string' ? <React.Fragment key={i}>{fmtCode(p)}</React.Fragment> : p));
 };
+// Qaror kartasi: savol + variantlar; xatosiga bir qatorli sabab, qayta tanlanadi (213.22)
+const QarorK = ({ savol, variantlar, xato, onTanla }) => (
+  <div className="pd-qk fade-step">
+    <b className="pd-qk-s">{savol}</b>
+    <div className="pd-qk-v">{variantlar.map(v => <button key={v.k} type="button" className={cx('pd-qkb', xato && xato.k === v.k && 'xato')} disabled={!!(xato && xato.k === v.k)} onClick={() => onTanla(v)}>{tr(v.t)}</button>)}</div>
+    {xato && <p className="pd-qk-x fade-step" role="alert">{tr(xato.iz)}</p>}
+  </div>
+);
+const S5_Q1 = [
+  { k: 'yop', t: { uz: 'Yopaman — agent tuzatdi', ru: 'Закрываю — агент исправил' }, iz: { uz: "Agent gapi — da'vo: kod o'zgardi, lekin buzilish qaytmasligini hali hech kim ko'rmadi.", ru: 'Слова агента — утверждение: код изменился, но что поломка не повторится, ещё никто не видел.' } },
+  { k: 'tek', ok: true, t: { uz: "Avval o'sha usul bilan qayta tekshiraman", ru: 'Сначала проверю снова тем же способом' } }
+];
+const S5_Q2 = [
+  { k: 'oddiy', t: { uz: "Oddiy to'lov bilan", ru: 'Обычной оплатой' }, iz: { uz: "Oddiy to'lov avval ham ishlagan — buzilgan holat tekshirilmaydi.", ru: 'Обычная оплата работала и раньше — сломанный случай не проверяется.' } },
+  { k: 'kech', ok: true, t: { uz: 'Kechiktirib yuborish bilan', ru: 'Отправкой с задержкой' } },
+  { k: 'sora', t: { uz: "Agentdan «ishlayaptimi?» deb so'rab", ru: 'Спрошу агента «работает?»' }, iz: { uz: "Agent javobi yana da'vo bo'ladi — natijani o'zingiz ko'rasiz.", ru: 'Ответ агента снова будет утверждением — результат вы видите сами.' } }
+];
+const S5_Q3 = [
+  { k: 'yetadi', t: { uz: "Bittasi o'tdi — yetadi, yopaman", ru: 'Одна прошла — хватит, закрываю' }, iz: { uz: "Har tuzatilgan urinish o'z usuli bilan tekshiriladi: ikki marta yuborish hali ko'rilmagan.", ru: 'Каждая исправленная попытка проверяется своим способом: двойная отправка ещё не проверена.' } },
+  { k: 'ikki', ok: true, t: { uz: 'Uni ham ikki marta yuborib tekshiraman', ru: 'Проверю и её двойной отправкой' } }
+];
 const AgentChat = ({ n }) => (
   <div className="pd-chat">
     {n >= 1 && <span className="pd-puf siz fade-step"><b>{tr(TOLOV_SAHNA.siz)}</b><span>{tr({ uz: 'Yozuvim pastda: ikki urinish kutganimdek emas. Tuzat, har muammoning sababini bir gap bilan ayt.', ru: 'Моя запись ниже: две попытки не как я ожидал. Исправь, причину каждой проблемы скажи одной фразой.' })}</span></span>}
@@ -1126,6 +1181,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [band, setBand] = useState(false);
   const [kut, setKut] = useState(false); // 3-qadam: ilovada «Qayta tekshirish» bosilishi kutilmoqda
   const [chiz, setChiz] = useState(avval ? 2 : 0);
+  const [topilgan, setTopilgan] = useState(avval ? [0, 1] : []);
+  const [izlaX, setIzlaX] = useState(false);
+  const [qx, setQx] = useState(null); // joriy qarordagi xato variant
+  const [yubordi, setYubordi] = useState(avval);
   const [belgi2, setBelgi2] = useState(avval ? 'buzildi' : null);
   const [chat, setChat] = useState(0);
   const [tuz, setTuz] = useState(avval);
@@ -1139,16 +1198,27 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && !avval) onAnswer(screen, { correct: true, picked: true, taxmin }); }, [done]); // eslint-disable-line
   const upBe = (p) => setBe(o => ({ ...o, ...p }));
   const upQ = (kalit, h) => setBe(o => ({ ...o, qatorlar: { ...o.qatorlar, [kalit]: h } }));
-  const solishtir = () => {
+  const farqSoni = MENTOR_YOZUV[1].farq.length;
+  const izla = (e) => {
     if (!taxmin || q !== 0 || band) return;
-    setBand(true);
-    ketma([[250, () => setChiz(1)], [800, () => setChiz(2)], [700, () => setBelgi2('buzildi')], [900, () => { setQ(1); setBand(false); }]]);
+    const el = e.target.closest && e.target.closest('[data-farq]');
+    if (!el) { setIzlaX(true); return; }
+    const i = +el.getAttribute('data-farq'); if (topilgan.includes(i)) return;
+    const t = [...topilgan, i]; setTopilgan(t); setChiz(t.length); setIzlaX(false);
+    if (t.length >= farqSoni) { setBand(true); ketma([[600, () => setBelgi2('buzildi')], [900, () => { setQ(1); setBand(false); }]]); }
   };
   const agent = () => {
-    if (q !== 1 || band) return;
+    if (q !== 1 || band || yubordi) return;
     setBand(true);
-    ketma([[200, () => setChat(1)], [900, () => setChat(2)], [700, () => setTuz(true)], [600, () => upBe({ proKeyin: true, kochdi: true })], [700, () => { setQ(2); setBand(false); }]]);
+    ketma([[200, () => setChat(1)], [900, () => setChat(2)], [500, () => { setYubordi(true); setBand(false); }]]);
   };
+  const qaror1 = (v) => {
+    if (!v.ok) { setQx(v); return; }
+    setQx(null); setBand(true);
+    ketma([[200, () => setTuz(true)], [600, () => upBe({ proKeyin: true, kochdi: true })], [600, () => { setQ(2); setBand(false); }]]);
+  };
+  const qaror2 = (v) => { if (!v.ok) { setQx(v); return; } setQx(null); qaytaKech(); };
+  const qaror3 = (v) => { if (!v.ok) { setQx(v); return; } setQx(null); qaytaIkki(); };
   const qaytaKech = () => {
     if (q !== 2 || band) return;
     setBand(true);
@@ -1184,21 +1254,22 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const nom = q >= 2 ? { uz: "«Tuzatish qilindi» — kod o'zgardi: bu ish fakti, natija emas.", ru: '«Tuzatish qilindi» (исправление сделано) — код изменился: это факт работы, а не результат.' }
     : q >= 1 ? { uz: "Har urinishga uch qator — 12-Moduldagi buzish yozuvi: nima qildim, nima kutdim, nima bo'ldi.", ru: 'На каждую попытку три строки — запись поломки из 12-го модуля: что сделал, что ожидал, что получилось.' } : null;
   const mGap = done ? { uz: 'Natijani taxminingiz bilan solishtiring.', ru: 'Сравните результат со своим предположением.' }
-    : q === 0 ? { uz: "Avval taxminingizni belgilang, keyin «Solishtirish» ni bosing.", ru: 'Сначала отметьте предположение, потом нажмите «Сравнить».' }
-      : q === 1 ? { uz: "Endi yozuvni agentga bering — «Agentga yuborish» ni bosing.", ru: 'Теперь отдайте запись агенту — нажмите «Отправить агенту».' }
-        : q === 2 ? (kut ? { uz: "Ilovadagi «Qayta tekshirish» ni bosing.", ru: 'Нажмите «Проверить снова» в приложении.' } : { uz: "Kod o'zgardi — endi «Qayta: kechiktirib yuborish» ni bosing.", ru: 'Код изменился — теперь нажмите «Снова: с задержкой».' })
-          : { uz: "Oxirgisi — «Qayta: ikki marta yuborish» ni bosing.", ru: 'Последнее — нажмите «Снова: дважды».' };
+    : q === 0 ? (!taxmin ? { uz: 'Avval taxminingizni belgilang.', ru: 'Сначала отметьте предположение.' } : { uz: "«Nima bo'ldi» qatorida kutganingizdan farq qilgan ikki joyni bosing.", ru: 'В строке «Что получилось» нажмите два места, которые отличаются от ожидаемого.' })
+      : q === 1 ? (yubordi ? { uz: "Agent «tuzatdim» dedi — urinishni yopasizmi?", ru: 'Агент сказал «исправил» — закрываете попытку?' } : { uz: "Endi yozuvni agentga bering — «Agentga yuborish» ni bosing.", ru: 'Теперь отдайте запись агенту — нажмите «Отправить агенту».' })
+        : q === 2 ? (kut ? { uz: "Ilovadagi «Qayta tekshirish» ni bosing.", ru: 'Нажмите «Проверить снова» в приложении.' } : band ? { uz: 'Kechiktirib yuborilmoqda — ilovaga qarang.', ru: 'Идёт отправка с задержкой — смотрите на приложение.' } : { uz: "Kod o'zgardi — qaysi usul bilan qayta tekshirasiz?", ru: 'Код изменился — теперь нажмите «Снова: с задержкой».' })
+          : band ? { uz: 'Ikki marta yuborilmoqda — Backend\'ga qarang.', ru: 'Идёт двойная отправка — смотрите на Backend.' } : { uz: 'Birinchi urinish ham tuzatildi — u bilan nima qilasiz?', ru: 'Первая попытка тоже исправлена — что с ней делаете?' };
   const y2 = MENTOR_YOZUV[1];
   const farqN = (kalit) => y2.farq.map(f => tr(f[kalit]));
   const qatorlar = USULLAR.map((u, i) => ({ no: i + 1, usul: u.usul, belgi: i === 1 ? belgi2 : MENTOR_YOZUV[i].belgi, tuz: tuz && i < 2, qayta: qayta[i + 1] || null }));
   const harakat = !taxmin || done ? null
-    : q === 1 ? <button type="button" className={cx('pd-agent', halqa(!band))} disabled={band} onClick={agent}>{tr({ uz: 'Agentga yuborish', ru: 'Отправить агенту' })}</button>
-      : q === 2 && !kut ? <button type="button" className={cx('pd-qayta', halqa(!band))} disabled={band} onClick={qaytaKech}>{tr({ uz: 'Qayta: kechiktirib yuborish', ru: 'Снова: с задержкой' })}</button>
-        : q === 3 ? <button type="button" className={cx('pd-qayta', halqa(!band))} disabled={band} onClick={qaytaIkki}>{tr({ uz: 'Qayta: ikki marta yuborish', ru: 'Снова: дважды' })}</button> : null;
+    : q === 1 ? (!yubordi ? <button type="button" className={cx('pd-agent', halqa(!band))} disabled={band} onClick={agent}>{tr({ uz: 'Agentga yuborish', ru: 'Отправить агенту' })}</button>
+      : !band && <QarorK savol={tr({ uz: 'Agent «tuzatdim» dedi. Urinishni yopasizmi?', ru: 'Агент сказал «исправил». Закрываете попытку?' })} variantlar={S5_Q1} xato={qx} onTanla={qaror1} />)
+      : q === 2 && !kut && !band ? <QarorK savol={tr({ uz: 'Qaysi usul bilan qayta tekshirasiz?', ru: 'Каким способом проверите снова?' })} variantlar={S5_Q2} xato={qx} onTanla={qaror2} />
+        : q === 3 && !band ? <QarorK savol={tr({ uz: '«Ikki marta yuborish» ham tuzatildi. Endi?', ru: '«Двойная отправка» тоже исправлена. Теперь?' })} variantlar={S5_Q3} xato={qx} onTanla={qaror3} /> : null;
   return (
-    <Stage eyebrow={tr({ uz: 'Tushuncha · buzish yozuvi', ru: 'Понятие · запись поломки' })} screen={screen} scrollSignal={q + (kut ? 20 : 0) + (tugadi ? 10 : 0)} deskSignal={tugadi ? 2 : q === 3 && !done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 4, done))} onClick={onNext} /></>}>
+    <Stage eyebrow={tr({ uz: 'Tushuncha · buzish yozuvi', ru: 'Понятие · запись поломки' })} screen={screen} scrollSignal={q + (kut ? 20 : 0) + (tugadi ? 10 : 0)} deskSignal={tugadi ? 2 : q === 3 && !done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navYorliq(taxmin, q, 0, done))} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>«Buzildi» yonida <span className="italic" style={{ color: T.accent }}>yashil belgi</span> qachon chiqadi?</>, ru: <>Когда рядом с «сломалось» <span className="italic" style={{ color: T.accent }}>появится зелёная метка</span>?</> })}
+        sarlavha={tr({ uz: <>Agent «tuzatdim» desa — <span className="italic" style={{ color: T.accent }}>qachon yopasiz?</span></>, ru: <>Агент сказал «исправил» — <span className="italic" style={{ color: T.accent }}>когда закрываете?</span></> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={<Bashorat savol={{ uz: 'Kech kelgan xabarda Pro oxiri yoqildi. Bu urinish buzildimi?', ru: 'При опоздавшем сообщении Pro в итоге включился. Эта попытка сломалась?' }} variantlar={S5_TAXMIN} tanlov={taxmin} onTanla={setTaxmin} />}
         vizual={!taxmin ? null : <div className={cx('pd-viz', 'pd-s5', 'pd-sahna-kir', tugadi && 'tugadi')}>
@@ -1209,11 +1280,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 ? <>
                   <div className="pd-yix-l">{[0, 2, 3].map(i => <YozuvIx key={i} {...qatorlar[i]} />)}</div>
                   <div className="pd-yk fade-step">
-                    <span className="pd-yk-bosh"><i>2</i><b>{tr(usulNom('kech'))}</b><span className="pd-yk-belgi"><Belgi b={belgi2} /></span></span>
+                    <span className="pd-yk-bosh"><i>2</i><b>{tr(usulNom('kech'))}</b>{belgi2 && <span className="pd-yk-belgi"><Belgi b={belgi2} /></span>}</span>
                     <span className="pd-yk-q"><em>{tr({ uz: 'Nima qildim', ru: 'Что сделал' })}</em><span>{tx(y2.qildim)}</span></span>
-                    <span className="pd-yk-q"><em>{tr({ uz: 'Nima kutdim', ru: 'Что ожидал' })}</em><span>{chizilgan(tr(y2.kutdim), farqN('kutdim'), chiz)}</span></span>
-                    <span className="pd-yk-q"><em>{tr({ uz: "Nima bo'ldi", ru: 'Что получилось' })}</em><span>{chizilgan(tr(y2.boldi), farqN('boldi'), chiz)}</span></span>
-                    <button type="button" className={cx('pd-solishtir', halqa(!!taxmin && !band))} disabled={!taxmin || band} onClick={solishtir}>{tr({ uz: 'Solishtirish', ru: 'Сравнить' })}</button>
+                    <span className="pd-yk-q"><em>{tr({ uz: 'Nima kutdim', ru: 'Что ожидал' })}</em><span>{farqQism(tr(y2.kutdim), farqN('kutdim'), topilgan, false)}</span></span>
+                    <span className="pd-yk-q pd-yk-izla" onClick={izla} role="group"><em>{tr({ uz: "Nima bo'ldi — farqni bosing", ru: 'Что получилось — нажмите отличие' })} <b>{topilgan.length} / {farqSoni}</b></em><span>{farqQism(tr(y2.boldi), farqN('boldi'), topilgan, !!taxmin && !band)}</span></span>
+                    {izlaX && <p className="pd-qk-x fade-step" role="alert">{tr({ uz: "Bu qismi kutganingizga mos — farq qilgan joyni toping.", ru: 'Эта часть совпадает с ожидаемым — найдите отличие.' })}</p>}
                   </div>
                 </>
                 : <div className="pd-yix-l">{qatorlar.map(r => <YozuvIx key={r.no} {...r} yangi={r.no === 2 && q === 1} />)}</div>}
@@ -1224,7 +1295,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'ha'} haqiqat={{ uz: "ha, buzildi — kutilgani bo'lmadi", ru: 'да, сломалось — ожидаемого не было' }} />}
-          matn={tr({ uz: "Bu misolda yashil belgi agentning javobidan keyin emas, o'sha tugma bilan qayta buzilmagandan keyin qo'yildi.", ru: 'В этом примере зелёную метку поставили не после ответа агента, а когда та же кнопка снова не сломала.' })}
+          matn={tr({ uz: "Bu misolda urinish agent javobidan keyin emas, o'sha usul bilan qayta tekshirilib, buzilish takrorlanmagach yopildi.", ru: 'В этом примере попытку закрыли не после ответа агента, а когда при повторной проверке тем же способом поломка не повторилась.' })}
           izoh={tr({ uz: "Qayta tekshiruvda yana buzilsa, belgi «qayta tekshiruvda yana buzildi» bo'ladi — yozuv agentga qayta beriladi.", ru: 'Если при повторной проверке снова сломается, метка будет «при повторной проверке снова сломалось» — запись отдаётся агенту снова.' })} />}
       />
     </Stage>
@@ -1340,17 +1411,17 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob A·B·C·D ×3 (aylanma; MD ✔ o'rni)
 const QUIZ_BANK = [
   { q: { uz: 'Agent «to\'lov ishlaydi» dedi. Bu nima?', ru: 'Агент сказал «оплата работает». Что это?' }, opts: [{ uz: 'Hali tekshirilmagan da\'vo', ru: 'Ещё не проверенное заявление' }, { uz: 'Kod yozilganining isboti', ru: 'Доказательство, что код написан' }, { uz: 'Pro yoqilganining dalili', ru: 'Подтверждение, что Pro включён' }, { uz: "To'rt usuldan o'tgan natija", ru: 'Результат, прошедший четыре способа' }], correct: 0 },
-  { q: { uz: '«Kechiktirib yuborish» tugmasi nimaning mashqi?', ru: 'Упражнением чего служит кнопка «Kechiktirib yuborish»?' }, opts: [{ uz: 'Ikki marta kelgan xabarning', ru: 'Сообщения, пришедшего дважды' }, { uz: "Uxlab qolgan Backend'ning", ru: 'Уснувшего Backend' }, { uz: 'Soxta imzoli begona xabarning', ru: 'Чужого сообщения с поддельной подписью' }, { uz: "Rad etilgan to'lov xabarining", ru: 'Сообщения об отклонённом платеже' }], correct: 1 },
-  { q: { uz: "To'lovni qayerda va nima bilan buzib tekshirasiz?", ru: 'Где и чем вы ломаете оплату для проверки?' }, opts: [{ uz: 'Sinfdoshingiz saytida, mashq tugmasi bilan', ru: 'На сайте одноклассника, учебной кнопкой' }, { uz: "Haqiqiy to'lov sahifasida, kartangiz bilan", ru: 'На настоящей странице оплаты, своей картой' }, { uz: "O'z mahsulotingizda, mashq tugmasi bilan", ru: 'В своём продукте, учебной кнопкой' }, { uz: "O'z mahsulotingizda, haqiqiy pul bilan", ru: 'В своём продукте, настоящими деньгами' }], correct: 2 },
-  { q: { uz: "Imzosi noto'g'ri xabar keldi. Backend nima qilishi kerak?", ru: 'Пришло сообщение с неверной подписью. Что должен сделать Backend?' }, opts: [{ uz: "`200` qaytarib, to'lovni yozib qo'yadi", ru: 'Возвращает `200` и записывает платёж' }, { uz: "`200` qaytarib, faqat Pro'ni yoqadi", ru: 'Возвращает `200` и только включает Pro' }, { uz: "`401` qaytarib, lekin Pro'ni yoqadi", ru: 'Возвращает `401`, но включает Pro' }, { uz: '`401` qaytarib, hech narsa yozmaydi', ru: 'Возвращает `401` и ничего не пишет' }], correct: 3 },
+  { q: { uz: "«Kechiktirib yuborish» nimaning mashqi?", ru: "Упражнением на что является «Kechiktirib yuborish»?" }, opts: [{ uz: "Ikki marta kelgan xabar", ru: "Сообщение, пришедшее дважды" }, { uz: "Uxlab qolgan Backend", ru: "Уснувший Backend" }, { uz: "Soxta imzoli xabar", ru: "Сообщение с поддельной подписью" }, { uz: "Rad etilgan to'lov", ru: "Отклонённая оплата" }], correct: 1 },
+  { q: { uz: "To'lovni qayerda, qanday buzasiz?", ru: "Где и как вы ломаете оплату?" }, opts: [{ uz: "Sinfdosh saytida, mashq bilan", ru: "На сайте одноклассника, учебной кнопкой" }, { uz: "Payme'da, kartam bilan", ru: "В Payme, своей картой" }, { uz: "O'z mahsulotimda, mashq bilan", ru: "В своём продукте, учебной кнопкой" }, { uz: "O'z mahsulotimda, pul bilan", ru: "В своём продукте, деньгами" }], correct: 2 },
+  { q: { uz: "Imzo noto'g'ri. Backend nima qilishi kerak?", ru: "Подпись неверна. Что должен сделать Backend?" }, opts: [{ uz: "200, to'lovni yozadi", ru: "200, записывает оплату" }, { uz: "200, faqat Pro'ni yoqadi", ru: "200, только включает Pro" }, { uz: "401, lekin Pro'ni yoqadi", ru: "401, но включает Pro" }, { uz: "401, hech narsa yozmaydi", ru: "401, ничего не записывает" }], correct: 3 },
   { q: { uz: "To'lov rad etildi. Pro nima bo'lishi kerak?", ru: 'Платёж отклонён. Что должно быть с Pro?' }, opts: [{ uz: "O'zgarmaydi, yoqilmaydi", ru: 'Не меняется, не включается' }, { uz: '30 kunga baribir yoqiladi', ru: 'Всё равно включается на 30 дней' }, { uz: 'Faqat bir kunga yoqiladi', ru: 'Включается только на один день' }, { uz: 'Yarim muddatga yoqiladi', ru: 'Включается на половину срока' }], correct: 0 },
-  { q: { uz: 'Mentor misolida ikki marta kelgan xabar nimani buzdi?', ru: 'Что сломало двойное сообщение в примере Ментора?' }, opts: [{ uz: "`tolovlar` da ikki qator bo'ldi", ru: 'В `tolovlar` стало две строки' }, { uz: 'Pro muddati ikki marta uzaydi', ru: 'Срок Pro продлился дважды' }, { uz: "Imzo tekshiruvidan o'tmadi", ru: 'Не прошло проверку подписи' }, { uz: "Ilova Pro'ni ko'rsatmay qo'ydi", ru: 'Приложение перестало показывать Pro' }], correct: 1 },
-  { q: { uz: 'Javob 10 soniyada kelmadi. Sahifa nima deyishi kerak?', ru: 'Ответ не пришёл за 10 секунд. Что должна сказать страница?' }, opts: [{ uz: "«To'lov o'tmadi» deyishi", ru: 'Сказать «Платёж не прошёл»' }, { uz: "«To'landi (mashq)» deyishi", ru: 'Сказать «Оплачено (учебно)»' }, { uz: '«Javob kutilmoqda» deyishi', ru: 'Сказать «Ожидаем ответ»' }, { uz: 'Hech narsa demasligi kerak', ru: 'Ничего не говорить' }], correct: 2 },
-  { q: { uz: "Mentor talabida ilova Pro holatini qachon qayta so'raydi?", ru: 'Когда по требованию Ментора приложение снова запрашивает статус Pro?' }, opts: [{ uz: 'Faqat ilova birinchi ochilganda', ru: 'Только при первом открытии приложения' }, { uz: "Har soniyada, to'xtamasdan", ru: 'Каждую секунду, без остановки' }, { uz: "Faqat to'lov rad etilganda", ru: 'Только когда платёж отклонён' }, { uz: 'Qaytganda va tugma bosilganda', ru: 'При возврате и по нажатию кнопки' }], correct: 3 },
+  { q: { uz: "Ikki marta kelgan xabar nimani buzdi?", ru: "Что сломало сообщение, пришедшее дважды?" }, opts: [{ uz: "Jadvalda ikki qator bo'ldi", ru: "В таблице стало две строки" }, { uz: "Pro ikki marta uzaydi", ru: "Pro продлился дважды" }, { uz: "Imzodan o'tmadi", ru: "Не прошло подпись" }, { uz: "Ilova Pro'ni ko'rsatmadi", ru: "Приложение не показало Pro" }], correct: 1 },
+  { q: { uz: "Javob 10 soniyada kelmadi. Sahifa nima deyishi kerak?", ru: "Ответ не пришёл за 10 секунд. Что должна сказать страница?" }, opts: [{ uz: "«To'lov o'tmadi»", ru: "«Оплата не прошла»" }, { uz: "«To'landi (mashq)»", ru: "«Оплачено (учебно)»" }, { uz: "«Javob kutilmoqda»", ru: "«Ожидается ответ»" }, { uz: "Hech narsa demaydi", ru: "Ничего не говорит" }], correct: 2 },
+  { q: { uz: "Ilova Pro holatini qachon qayta so'raydi?", ru: "Когда приложение снова запрашивает статус Pro?" }, opts: [{ uz: "Faqat ilk ochilganda", ru: "Только при первом открытии" }, { uz: "Har soniyada, to'xtamasdan", ru: "Каждую секунду, без остановки" }, { uz: "Faqat to'lov rad etilganda", ru: "Только при отказе в оплате" }, { uz: "Qaytganda, tugma bosilganda", ru: "При возврате и нажатии кнопки" }], correct: 3 },
   { q: { uz: '«Nima kutdim» qatori qachon yoziladi?', ru: 'Когда пишется строка «Что ожидал»?' }, opts: [{ uz: 'Tugmani bosishdan oldin', ru: 'До нажатия кнопки' }, { uz: "Natija ko'ringandan keyin", ru: 'После того как виден результат' }, { uz: 'Agent tuzatgandan keyin', ru: 'После исправления агентом' }, { uz: 'Dars oxirida, birdaniga', ru: 'В конце урока, разом' }], correct: 0 },
-  { q: { uz: '«Tuzatish qilindi» belgisi nimani aytadi?', ru: 'О чём говорит метка «Tuzatish qilindi»?' }, opts: [{ uz: 'Muammo endi takrorlanmasligini', ru: 'Что проблема больше не повторится' }, { uz: 'Kodda o\'zgartirish qilinganini', ru: 'Что в коде сделано изменение' }, { uz: "Agent yozuvni o'qib chiqqanini", ru: 'Что агент прочитал запись' }, { uz: 'Urinish umuman buzilmaganini', ru: 'Что попытка вообще не сломалась' }], correct: 1 },
-  { q: { uz: "Pro muddati tugadi. E'lon qilingan o'yinlar nima bo'ladi?", ru: 'Срок Pro закончился. Что будет с объявленными играми?' }, opts: [{ uz: "O'chib ketadi, Pro bilan birga", ru: 'Удалятся вместе с Pro' }, { uz: 'Pro qaytguncha yashirinadi', ru: 'Скроются, пока Pro не вернётся' }, { uz: "Ro'yxatda qoladi, o'chmaydi", ru: 'Останутся в списке, не удалятся' }, { uz: "Keyingi haftaga o'zi ko'chadi", ru: 'Сами перенесутся на следующую неделю' }], correct: 2 },
-  { q: { uz: "Kech urinishda Mentor Pro yoqilganini qayerdan ko'rdi?", ru: 'Где Ментор увидел, что Pro включился, в попытке с задержкой?' }, opts: [{ uz: 'Ilovada, ekran o\'zi yangilanib', ru: 'В приложении, экран обновился сам' }, { uz: "Sahifada, «To'landi» yozuvidan", ru: 'На странице, по надписи «Оплачено»' }, { uz: 'Agentning chatdagi javobidan', ru: 'По ответу агента в чате' }, { uz: "Neon'da, Pro muddati qatoridan", ru: 'В Neon, по строке срока Pro' }], correct: 3 }
+  { q: { uz: "«Tuzatish qilindi» belgisi nimani aytadi?", ru: "О чём говорит отметка «Исправление сделано»?" }, opts: [{ uz: "Muammo qaytmasligini", ru: "Что проблема не вернётся" }, { uz: "Kod o'zgarganini", ru: "Что код изменён" }, { uz: "Agent yozuvni o'qiganini", ru: "Что агент прочитал запись" }, { uz: "Urinish buzilmaganini", ru: "Что попытка не сломалась" }], correct: 1 },
+  { q: { uz: "Pro tugadi. E'lon qilingan o'yinlar nima bo'ladi?", ru: "Pro закончился. Что будет с объявленными играми?" }, opts: [{ uz: "Pro bilan o'chib ketadi", ru: "Удалятся вместе с Pro" }, { uz: "Pro qaytguncha yashirinadi", ru: "Скроются, пока Pro не вернётся" }, { uz: "Ro'yxatda qoladi", ru: "Останутся в списке" }, { uz: "Keyingi haftaga ko'chadi", ru: "Перенесутся на неделю" }], correct: 2 },
+  { q: { uz: "Kech urinishda Pro yoqilgani qayerda ko'rindi?", ru: "Где в поздней попытке было видно, что Pro включён?" }, opts: [{ uz: "Ilovada, ekran yangilanib", ru: "В приложении, экран обновился" }, { uz: "Sahifadagi «To'landi»dan", ru: "По «Оплачено» на странице" }, { uz: "Agentning javobidan", ru: "По ответу агента" }, { uz: "Neon'dagi muddat qatoridan", ru: "По строке срока в Neon" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2027,7 +2098,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={tor ? 0 : stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!ochiq} label={ochiq ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
       <div className={cx('pd-blok', qulfli && 'qulf')}>
-        <QBlok ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
+        <QBlok ajratSarlavha ulgur={ulgur && !done ? tx(ulgur) : null} til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mGap)}</Mentor>} zoom={Zoomable}
           qadamlar={steps.map(c => ({ h: tr(c.h), t: c.t, xato: c.xato }))}
           joriy={stepN} onBajardim={bajardim} onQaytar={qaytar} mentorRejim={isMentorLive}
           tugadi={done} tugadiMatn={doneText ? tx(doneText) : null} natija={natija} natijaYorliq={tr(NATIJA_YORLIQ)}
@@ -2408,21 +2479,6 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== YAKUN — QYakun (DE-204, texnik darslar standarti; E 50 — «Bugungi asosiy fikr» yo'q). Uyga vazifa yo'q (loyiha kuni). Sarlavha — yetti holat, har biri rost (E 54) =====
-// PM-109 (SABOQ P4): erta tugatgan o'quvchi yo'li — AI tekshiruvchi rolida buzish holatlarini beradi, o'quvchi yozuvni o'zi yozadi (MD da matn yo'q — «MD ga taklif»)
-const AI_SOROV = { uz: "Sen tekshiruvchisan. Mahsulot: Maydon Jamoa — tashkilotchi Pro'ni (30 kun, 15 000 so'm, test rejim) oladi; to'lov xabari POST /tolov/webhook ga keladi. Menga navbat bilan 4 ta buzish holatini ber: ikki marta yuborish, kechiktirib yuborish, rad etish, noto'g'ri imzo. Har holat uchun men buzish yozuvini yozaman: nima qildim, nima kutdim, nima bo'ldi va belgi — buzildi yoki buzilmadi. Sen yozuvim talabga mosligini bir gap bilan ayt: «Nima kutdim» to'g'rimi, belgi to'g'ri qo'yilganmi. Karta ma'lumoti va kalit so'rama. Birinchi holatni ber.",
-  ru: 'Ты проверяющий. Продукт: Maydon Jamoa — организатор берёт Pro (30 дней, 15 000 сумов, тестовый режим); сообщение о платеже приходит на POST /tolov/webhook. Дай мне по очереди 4 случая поломки: отправить дважды, с задержкой, отклонить, неверная подпись. Для каждого я пишу запись поломки: что сделал, что ожидал, что получилось и метку — сломалось или не сломалось. Скажи одной фразой, соответствует ли запись требованию: верно ли «Что ожидал», правильно ли поставлена метка. Данные карты и ключи не спрашивай. Дай первый случай.' };
-const AiDavomCard = () => {
-  const [ok, setOk] = useState(false);
-  const kochir = async () => { if (await nusxala(tr(AI_SOROV))) { setOk(true); setTimeout(() => setOk(false), 1800); } };
-  return (
-    <div className="card pd-ai fade-up">
-      <div className="card-lbl acc">{tr({ uz: 'Erta tugatdingizmi? AI bilan davom eting', ru: 'Закончили раньше? Продолжите с AI' })}</div>
-      <p className="pd-ai-m">{tr({ uz: "gemini.google.com'ni oching, pastdagi so'rovni yuboring — AI tekshiruvchi bo'lib to'rt buzish holatini beradi. Har biriga yozuvni o'zingiz yozing; adashgan joyingizni «Orqaga» bilan 3, 6-ekranlarda qayta ko'ring.", ru: 'Откройте gemini.google.com, отправьте запрос ниже — AI как проверяющий даст четыре случая поломки. Запись для каждого пишите сами; где ошиблись — посмотрите снова на экранах 3 и 6 через «Назад».' })}</p>
-      <pre className="pd-ai-sorov">{tr(AI_SOROV)}</pre>
-      <button type="button" className="q-chip pd-ai-btn" onClick={kochir}>{ok ? tr({ uz: 'Nusxalandi ✓', ru: 'Скопировано ✓' }) : tr({ uz: "So'rovni nusxalash", ru: 'Скопировать запрос' })}</button>
-    </div>
-  );
-};
 const YAKUN_SARLAVHA = {
   takrorlanmadi: { uz: 'Tuzatish qilindi va qayta tekshiruvda takrorlanmadi.', ru: 'Исправление сделано, при перепроверке не повторилось.' },
   buzilmadi: { uz: "To'rt usul bajarildi — to'lov yo'lingiz buzilmadi.", ru: 'Четыре способа выполнены — путь оплаты не сломался.' },
@@ -2486,7 +2542,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           </>}
           recap={RECAP.map(tr)}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}>
-          {!isMentorL && <AiDavomCard />}
+          
           <p className="pd-keyingi fade-up" style={{ animationDelay: '0.35s' }}>{tr({ uz: <>Keyingi dars — <b>«Pul haqida qanday gaplashasiz?»</b></>, ru: <>Следующий урок — <b>«Как говорить о деньгах?»</b></> })}</p>
         </QYakun>
       </div>
@@ -2698,7 +2754,8 @@ export default function PaymentDayLesson({ lang: langProp, onFinished, liveToken
         .pd-m-javob.ok { color: ${T.ok}; background: ${T.okFon}; } .pd-m-javob.err { color: ${T.err}; background: ${T.errFon}; } .pd-m-javob.kul { color: ${T.ink2}; background: ${T.bg}; }
         .pd-m-test { margin-top: auto; font-size: 10px; line-height: 1.15; color: ${T.ink2}; }
         /* Backend tuguni: «Mashq to'lov» → ichki konvert → POST /tolov/webhook (to'rt qator) · tolovlar · Pro muddati */
-        .pd-backend { width: 100%; display: flex; flex-direction: column; gap: 5px; padding: 9px 10px; border-radius: 14px; background: ${T.ink}; color: #fff; box-shadow: 0 14px 28px -16px rgba(${T.shadowBase},0.6); }
+        .pd-backend { width: 100%; display: flex; flex-direction: column; gap: 5px; padding: 9px 10px; border-radius: 14px; background: ${T.ink}; color: #fff; box-shadow: none; }
+        .pd-backend::before { content: ''; width: 18px; height: 14px; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 14' fill='none' stroke='white' stroke-opacity='0.8' stroke-width='1.4'%3E%3Crect x='1' y='1' width='16' height='5' rx='1.5'/%3E%3Crect x='1' y='8' width='16' height='5' rx='1.5'/%3E%3Ccircle cx='4.2' cy='3.5' r='0.7' fill='white'/%3E%3Ccircle cx='4.2' cy='10.5' r='0.7' fill='white'/%3E%3C/svg%3E") center / contain no-repeat; } /* F-1015-350: server belgisi, soyasiz — tugmaga o'xshamasin */
         .pd-be-bosh { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 8px; }
         .pd-be-bosh b { font-size: 13px; }
         .pd-be-yangi { font-size: 10px; color: ${fon(T.paper, 0.7)}; animation: pd-kir .4s ease both; }
@@ -2769,6 +2826,8 @@ export default function PaymentDayLesson({ lang: langProp, onFinished, liveToken
         .pd-ustoz b { color: ${T.ink}; }
         .pd-chip-n { align-self: center; font-size: 12.5px; font-weight: 700; padding: 3px 10px; border-radius: 8px; }
         .pd-chip-n.err { color: ${T.err}; background: ${T.errFon}; } .pd-chip-n.kul { color: ${T.ink2}; background: ${T.bg}; }
+        .pd-chip-t { margin-left: 6px; font-weight: 700; } .pd-chip-t.ok { color: ${T.ok}; } .pd-chip-t.yoq { color: ${T.ink2}; }
+        p.pd-qar-j { margin: 0; font-size: 13px; color: ${T.ink2}; } p.pd-qar-j b { color: ${T.ink}; }
         /* Buzish yozuvi: ixcham qator, belgi, karta (5-ekran) */
         .pd-yix-l { display: flex; flex-direction: column; gap: 5px; }
         .pd-yix { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 6px 10px; border-radius: 10px; background: ${T.paper}; border: 1px solid ${T.line}; font-size: 13px; color: ${T.ink}; }
@@ -2790,7 +2849,15 @@ export default function PaymentDayLesson({ lang: langProp, onFinished, liveToken
         .pd-yk-q em { font-style: normal; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: ${T.ink2}; }
         .pd-farq { border-radius: 3px; transition: background .3s, color .3s; }
         .pd-farq.on { color: ${T.err}; background: ${T.errFon}; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; }
-        .pd-solishtir, .pd-agent, .pd-qayta { align-self: flex-start; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700; padding: 7px 14px; border-radius: 10px; border: 0; background: ${T.ink}; color: #fff; cursor: pointer; }
+        .pd-yk-izla { cursor: pointer; } .pd-yk-izla em b { color: ${T.accent}; margin-left: 4px; } .pd-yk-izla .pd-farq.izla:hover, .pd-yk-izla span:hover > .pd-farq.izla { background: ${fon(T.accent, 0.08)}; }
+        .pd-qk { display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 14px; background: ${T.paper}; box-shadow: inset 0 0 0 1.5px ${fon(T.accent, 0.4)}; } /* F-1015-371: qaror kartasi */
+        .pd-qk-s { font-size: 13.5px; color: ${T.ink}; }
+        .pd-qk-v { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pd-qkb { padding: 8px 12px; border-radius: 10px; border: 0; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${fon(T.accent, 0.5)}; font: inherit; font-size: 13px; font-weight: 600; color: ${T.ink}; cursor: pointer; text-align: left; }
+        .pd-qkb:hover:not(:disabled) { box-shadow: inset 0 0 0 2px ${T.accent}; }
+        .pd-qkb.xato { opacity: .45; text-decoration: line-through; box-shadow: inset 0 0 0 1px ${fon(T.err, 0.5)}; cursor: default; }
+        p.pd-qk-x { margin: 0; padding: 6px 10px; border-radius: 8px; background: ${T.errFon}; color: ${T.err}; font-size: 12.5px; font-weight: 600; }
+        .pd-solishtir, .pd-agent, .pd-qayta { align-self: flex-start; font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 700; padding: 7px 14px; border-radius: 10px; border: 0; background: ${T.accent}; color: #fff; cursor: pointer; }
         .pd-solishtir:disabled, .pd-agent:disabled, .pd-qayta:disabled { opacity: .45; cursor: default; }
         /* Reja: telefon + BUZISH.md kartasi */
         .pd-reja-chap { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; }
@@ -2892,7 +2959,6 @@ export default function PaymentDayLesson({ lang: langProp, onFinished, liveToken
         p.pd-fc-ipucha { margin: 0; display: inline-flex; align-items: center; gap: 8px; align-self: center; font-size: 13.5px; font-weight: 700; color: ${T.accent}; }
         p.pd-fc-ipucha i { width: 8px; height: 8px; border-radius: 50%; background: ${T.accent}; }
         p.pd-ai-m { margin: 0 0 10px; font-size: 14px; line-height: 1.5; color: ${T.ink}; }
-        .pd-ai-sorov { margin: 0 0 10px; padding: 10px 12px; border-radius: 10px; background: ${T.bg}; border: 1px solid ${T.line}; font-family: 'Manrope', sans-serif; font-size: 13px; line-height: 1.45; color: ${T.ink}; white-space: pre-wrap; }
         .pd-ai-btn { margin: 0; }
         .pd-ai { display: flex; flex-direction: column; }
         .pd-yordam-btn { margin: 0; }

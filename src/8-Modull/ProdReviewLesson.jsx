@@ -97,6 +97,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -174,8 +199,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -800,7 +825,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (QReja): chapda PR tayyor holatda, bir marta o'zi yuradi (javoblar → «Tuzatildi» → «Merged»); o'ngda 3 qadam (tegsiz) =====
 const REJA = [
   { uz: "O'tgan darsdagi o'zgarishlar sinfdoshga ko'rsatiladi", ru: "Изменения прошлого урока показываются однокласснику" },
-  { uz: 'Code review: har qarorni tushuntirasiz', ru: "Code review: объясняете каждое решение" },
+  { uz: 'Code review: har qarorni tushuntiring', ru: "Code review: объясните каждое решение" },
   { uz: 'Topilgan kamchilik tuzatilib, kod birlashtiriladi', ru: "Найденный недостаток исправляется, и код объединяется" }
 ];
 // Izoh-suhbat ixcham kartasi: fayl · sinfdosh izohi (qisqa — Joy; toliq — uch qator) · muallif javobi (Qaror)
@@ -1180,18 +1205,18 @@ const QZ_BG_SHAPES = [
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol (MD v3, aynan), to'g'ri javob o'rni A·B·C·D ×3
 const QUIZ_BANK = [
-  { q: { uz: 'Pull Request (PR) nima?', ru: "Что такое Pull Request (PR)?" }, opts: [{ uz: "O'zgarishni birlashtirishdan oldin ko'rsatish so'rovi", ru: "Запрос показать изменение до объединения" }, { uz: 'Kodni internetga chiqaradigan, terminaldagi buyruq', ru: "Команда в терминале, которая выводит код в интернет" }, { uz: "Asosiy repo'dan o'zingizga nusxa oladigan GitHub tugmasi", ru: "Кнопка GitHub, которая копирует основной репо себе" }, { uz: 'Sinfdosh kodning bir qatoriga yozgan bitta izohi', ru: "Один комментарий одноклассника к строке кода" }], correct: 0 },
-  { q: { uz: 'Code review nima?', ru: "Что такое code review?" }, opts: [{ uz: "O'zgarishni main'ga birlashtirish tugmasi", ru: "Кнопка, которая объединяет изменение с main" }, { uz: "Boshqa odam kodni o'qib izoh yozishi", ru: "Другой человек читает код и пишет комментарий" }, { uz: "Agent kodni o'zi o'qib tuzatib qo'yishi", ru: "Агент сам читает и исправляет код" }, { uz: "Saytni telefonda ochib tekshirib ko'rish", ru: "Открыть сайт на телефоне и проверить" }], correct: 1 },
-  { q: { uz: "Bu repo'da Netlify qaysi tarmoqdan (branch) yangilanadi?", ru: "Из какой ветки (branch) обновляется Netlify в этом репо?" }, opts: [{ uz: "prod'dan, har push qilinganda", ru: "Из prod, при каждом push" }, { uz: "Ochiq PR'ning o'zidan, har safar", ru: "Из самого открытого PR, каждый раз" }, { uz: "main'dan, PR birlashtirilgach", ru: "Из main, после объединения PR" }, { uz: 'Laptopdagi web/ papkasidan', ru: "Из папки web/ на ноутбуке" }], correct: 2 },
-  { q: { uz: "PR ochiq. prod'ga yana push qildingiz. Nima bo'ladi?", ru: "PR открыт. Вы снова сделали push в prod. Что будет?" }, opts: [{ uz: 'Internetdagi sayt shu zahoti yangilanadi', ru: "Сайт в интернете сразу обновится" }, { uz: 'PR yopilib, o\'rniga yangisi ochiladi', ru: "PR закроется, вместо него откроется новый" }, { uz: 'Push rad etiladi, chunki PR ochiq', ru: "Push отклонят, потому что PR открыт" }, { uz: "Yangi commit PR'ning o'ziga qo'shiladi", ru: "Новый commit добавится в сам PR" }], correct: 3 },
-  { q: { uz: 'Yaxshi izoh qaysi uch qismdan iborat?', ru: "Из каких трёх частей состоит хороший комментарий?" }, opts: [{ uz: 'Joy, nega muhim, taklif', ru: "Место, почему важно, предложение" }, { uz: "Ism, sana va qo'yilgan baho", ru: "Имя, дата и поставленная оценка" }, { uz: 'Fayl, tarmoq va commit nomi', ru: "Файл, ветка и название commit" }, { uz: 'Savol, javob va olingan ball', ru: "Вопрос, ответ и полученный балл" }], correct: 0 },
-  { q: { uz: 'Qaysi izoh kodga qaratilgan?', ru: "Какой комментарий — про код?" }, opts: [{ uz: '«Siz bu yerni umuman o\'ylamasdan yozgansiz»', ru: "«Вы написали это совсем не подумав»" }, { uz: "«Ro'yxat yuklanguncha xabar yo'q, qo'shing»", ru: "«Пока список грузится, сообщения нет — добавьте»" }, { uz: "«Keyingi safar ancha e'tiborliroq bo'ling»", ru: "«В следующий раз будьте гораздо внимательнее»" }, { uz: '«Sizga bu mavzuni qaytadan o\'qish kerak»', ru: "«Вам нужно заново изучить эту тему»" }], correct: 1 },
-  { q: { uz: 'Sinfdosh taklifiga rozi emassiz. Nima yozasiz?', ru: "Вы не согласны с предложением одноклассника. Что напишете?" }, opts: [{ uz: "«Yo'q» deb yozib, suhbatni yopib qo'yasiz", ru: "Напишете «нет» и закроете обсуждение" }, { uz: "Javobsiz qoldirib, PR'ni birlashtirasiz", ru: "Оставите без ответа и объедините PR" }, { uz: 'Sababni yozib, «qoldi» deb javob berasiz', ru: "Напишете причину и ответите «оставлено»" }, { uz: "Taklifni o'ylab ko'rmasdan qabul qilasiz", ru: "Примете предложение, не подумав" }], correct: 2 },
-  { q: { uz: 'Kodni agent yozgan. Sinfdosh «Nega?» dedi. Nima qilasiz?', ru: "Код написал агент. Одноклассник спросил «Почему?». Что сделаете?" }, opts: [{ uz: '«Agent shunday yozgan» deb yozasiz', ru: "Напишете «так написал агент»" }, { uz: "Agent gapini tekshirmasdan qo'yasiz", ru: "Вставите слова агента без проверки" }, { uz: "Izohni javobsiz yopib qo'yasiz", ru: "Закроете комментарий без ответа" }, { uz: 'Kodni tekshirib, sababni yozasiz', ru: "Проверите код и напишете причину" }], correct: 3 },
+  { q: { uz: "Pull Request (PR) nima?", ru: "Что такое Pull Request (PR)?" }, opts: [{ uz: "O'zgarishni ko'rsatish so'rovi", ru: "Запрос на показ изменений" }, { uz: "Kodni internetga chiqarish", ru: "Выкладка кода в интернет" }, { uz: "Repo'dan nusxa olish tugmasi", ru: "Кнопка копии репо" }, { uz: "Kod qatoriga yozilgan izoh", ru: "Комментарий к строке кода" }], correct: 0 },
+  { q: { uz: "Code review nima?", ru: "Что такое code review?" }, opts: [{ uz: "Kodni main'ga birlashtirish", ru: "Слияние кода в main" }, { uz: "Boshqa odam kodni o'qishi", ru: "Другой человек читает код" }, { uz: "Agent kodni o'zi tuzatishi", ru: "Агент сам правит код" }, { uz: "Saytni telefonda sinash", ru: "Проверка сайта на телефоне" }], correct: 1 },
+  { q: { uz: "Netlify qaysi tarmoqdan (branch) yangilanadi?", ru: "Из какой ветки (branch) обновляется Netlify?" }, opts: [{ uz: "prod'dan, har push'da", ru: "Из prod, при каждом push" }, { uz: "Ochiq PR'ning o'zidan", ru: "Из открытого PR" }, { uz: "main'dan, PR birlashgach", ru: "Из main, после слияния PR" }, { uz: "Laptopdagi web/ dan", ru: "Из web/ на ноутбуке" }], correct: 2 },
+  { q: { uz: "Ochiq PR bor. prod'ga push qilsangiz-chi?", ru: "Есть открытый PR. Что если запушить в prod?" }, opts: [{ uz: "Sayt darhol yangilanadi", ru: "Сайт сразу обновится" }, { uz: "PR yopilib, yangisi ochiladi", ru: "PR закроется, откроется новый" }, { uz: "Push rad etiladi", ru: "Push отклонят" }, { uz: "Commit PR'ga qo'shiladi", ru: "Коммит добавится в PR" }], correct: 3 },
+  { q: { uz: "Yaxshi izoh qaysi uch qismdan iborat?", ru: "Из каких трёх частей состоит хороший комментарий?" }, opts: [{ uz: "Joy, nega muhim, taklif", ru: "Место, почему важно, предложение" }, { uz: "Ism, sana va baho", ru: "Имя, дата и оценка" }, { uz: "Fayl, tarmoq, commit", ru: "Файл, ветка, коммит" }, { uz: "Savol, javob, ball", ru: "Вопрос, ответ, балл" }], correct: 0 },
+  { q: { uz: "Qaysi izoh kodga qaratilgan?", ru: "Какой комментарий направлен на код?" }, opts: [{ uz: "«Siz o'ylamasdan yozgansiz»", ru: "«Вы писали не думая»" }, { uz: "«Yuklanish holatini qo'shing»", ru: "«Добавьте состояние загрузки»" }, { uz: "«E'tiborliroq bo'ling»", ru: "«Будьте внимательнее»" }, { uz: "«Mavzuni qayta o'qing»", ru: "«Перечитайте тему»" }], correct: 1 },
+  { q: { uz: "Sinfdosh taklifiga rozi emassiz. Nima yozasiz?", ru: "Вы не согласны с предложением одноклассника. Что пишете?" }, opts: [{ uz: "«Yo'q» deb yopasiz", ru: "Пишете «нет» и закрываете" }, { uz: "Javobsiz birlashtirasiz", ru: "Сливаете без ответа" }, { uz: "Sabab va «qoldi» yozasiz", ru: "Пишете причину и «оставил»" }, { uz: "O'ylamay qabul qilasiz", ru: "Принимаете не думая" }], correct: 2 },
+  { q: { uz: "Agent yozgan kodga «Nega?» deyildi. Nima qilasiz?", ru: "К коду агента спросили «Почему?». Что делаете?" }, opts: [{ uz: "«Agent yozgan» deysiz", ru: "Говорите «написал агент»" }, { uz: "Agent gapini qo'yasiz", ru: "Вставляете слова агента" }, { uz: "Javobsiz yopasiz", ru: "Закрываете без ответа" }, { uz: "Tekshirib, sabab yozasiz", ru: "Проверяете и пишете причину" }], correct: 3 },
   { q: { uz: 'PR tavsifidagi «Sabab» bo\'limini kim yozadi?', ru: "Кто пишет раздел «Причина» в описании PR?" }, opts: [{ uz: "Kod muallifi, o'zingiz", ru: "Автор кода, вы сами" }, { uz: 'Agent, kod farqiga qarab', ru: "Агент, по разнице кода" }, { uz: 'Izoh yozadigan sinfdosh', ru: "Одноклассник, который пишет комментарий" }, { uz: "GitHub o'zi, avtomatik", ru: "Сам GitHub, автоматически" }], correct: 0 },
-  { q: { uz: 'Izohlar «Submit review»dan oldin kimga ko\'rinadi?', ru: "Кому видны комментарии до «Submit review»?" }, opts: [{ uz: "Faqat PR'ni ochgan muallifga", ru: "Только автору, открывшему PR" }, { uz: 'Faqat izohni yozgan odamga', ru: "Только тому, кто написал комментарий" }, { uz: "Repo'ni ochgan har qanday odamga", ru: "Любому, кто открыл репо" }, { uz: 'Mentor va PR muallifiga', ru: "Ментору и автору PR" }], correct: 1 },
-  { q: { uz: "Maydon PR'ida nega B varianti qoldi?", ru: "Почему в PR «Maydon» остался вариант B?" }, opts: [{ uz: "B tugmasining matni chiroyliroq ko'rindi", ru: "Текст кнопки B выглядел красивее" }, { uz: 'Sinfdoshlar B ni ko\'proq maqtab yozdi', ru: "Одноклассники больше хвалили B" }, { uz: 'Hozircha B foizi yuqoriroq chiqdi', ru: "Пока у B процент вышел выше" }, { uz: "A ni Netlify ko'rsatmay qo'ygan edi", ru: "Netlify перестал показывать A" }], correct: 2 },
-  { q: { uz: 'Kamchilik tuzatildi, sinfdosh «Approve» berdi. Keyin-chi?', ru: "Недочёт исправлен, одноклассник поставил «Approve». Дальше?" }, opts: [{ uz: "PR'ni yopib, o'rniga yangisini ochasiz", ru: "Закроете PR и откроете новый" }, { uz: "main'ga kodni qo'lda ko'chirib qo'yasiz", ru: "Скопируете код в main вручную" }, { uz: "prod'ni o'chirib, kodni qaytadan yozasiz", ru: "Удалите prod и напишете код заново" }, { uz: "PR'ni birlashtirib, saytni tekshirasiz", ru: "Объедините PR и проверите сайт" }], correct: 3 }
+  { q: { uz: "Izohlar «Submit review»dan oldin kimga ko'rinadi?", ru: "Кому видны комментарии до «Submit review»?" }, opts: [{ uz: "Faqat PR muallifiga", ru: "Только автору PR" }, { uz: "Faqat izoh yozganga", ru: "Только написавшему комментарий" }, { uz: "Repo'ni ochgan hammaga", ru: "Всем, кто открыл репо" }, { uz: "Mentor va muallifga", ru: "Ментору и автору" }], correct: 1 },
+  { q: { uz: "Maydon PR'ida nega B varianti qoldi?", ru: "Почему в PR «Maydon» остался вариант B?" }, opts: [{ uz: "B matni chiroyliroq", ru: "Текст B красивее" }, { uz: "Sinfdoshlar B ni maqtadi", ru: "Одноклассники хвалили B" }, { uz: "Hozircha B foizi yuqori", ru: "Пока процент B выше" }, { uz: "A ni Netlify ko'rsatmadi", ru: "Netlify не показывал A" }], correct: 2 },
+  { q: { uz: "Sinfdosh «Approve» berdi. Keyin nima qilasiz?", ru: "Одноклассник поставил «Approve». Что дальше?" }, opts: [{ uz: "Yangi PR ochasiz", ru: "Открываете новый PR" }, { uz: "main'ga qo'lda ko'chirasiz", ru: "Копируете в main вручную" }, { uz: "prod'ni o'chirasiz", ru: "Удаляете prod" }, { uz: "PR'ni birlashtirasiz", ru: "Сливаете PR" }], correct: 3 }
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1843,7 +1868,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
   }, [stepN]);
   return (
     <Stage eyebrow={tr(eyebrow)} screen={screen} scrollSignal={stepN} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval bajaring', ru: 'Сначала выполните' }} onClick={onNext} /></>}>
-      <QBlok til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
+      <QBlok ajratSarlavha til={__lang} sarlavha={tr(title)} mentor={<Mentor>{tr(mentor)}</Mentor>} zoom={Zoomable}
         qadamlar={steps.map(c => ({
           h: tr(c.h),
           t: c.forma ? <>{qadamMatn(c.t)}<GoyaForma qismlar={goya} qiymat={qiymat} onYoz={goyaYoz} tola={tola} nusxa={!nusxasiz} /></> : qadamMatn(c.t),

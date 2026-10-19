@@ -42,7 +42,9 @@ const browser = await chromium.launch({ executablePath: CHROME, headless: true }
 let bad = 0;
 
 const SHARED_SPEC = process.env.SHARED_SPEC || null;
-for (const arg of targets) {
+// F-1017-226: bitta darsdagi brauzer/yig'ish istisnosi butun yurishni o'ldirardi (reliz 46/70, 35/70 — qolgan darslar sinalmay qolgan).
+// Endi har dars o'z himoyasida: 1-urinish istisno bersa qayta urinish, 2-sida ✗ + sabab (stack stderr'ga), keyingi dars davom etadi.
+async function oneLesson(arg) {
   const [src, asPath] = arg.split('=');
   const outDir = join(TMP, 'lms');
   // MUTATSIYA: BAZA_LIVE=<o'zgarishsiz src/live nusxasi> — o'ramsiz, baza kod bilan (src/live joyida qoladi)
@@ -123,6 +125,19 @@ for (const arg of targets) {
   for (const [t, ok] of checks) console.log(`    ${ok ? GRN + '✓' : RED + '✗'}${R} ${t}`);
   console.log(`    ${DIM}nazorat belgisi: «${ctl.badge}» · so'rovlar: ${ctl.reqs.slice(0, 3).join(', ')}${ctl.reqs.length > 3 ? ' …' : ''}${R}`);
   console.log(`    ${DIM}preview belgisi: «${pre.badge}»${pre.errs.length ? ' · xato: ' + pre.errs.join(' | ') : ''}${ctl.errs.length ? ' · nazorat xato: ' + ctl.errs.join(' | ') : ''}${R}`);
+}
+for (const arg of targets) {
+  const nom = basename(arg.split('=')[0]);
+  for (let urinish = 1; urinish <= 2; urinish++) {
+    try { await oneLesson(arg); break; }
+    catch (e) {
+      const msg = String((e && e.message) || e).split('\n')[0].slice(0, 200);
+      if (urinish === 1) { console.log(`${DIM}  ↻ ${nom}: istisno (${msg}) — qayta urinish${R}`); continue; }
+      bad++;
+      console.log(`${RED}✗${R} ${nom} ${DIM}— ISTISNO (2 urinish): ${msg}${R}`);
+      console.error(`[smoke-preview] ${nom}:`, (e && e.stack) || e);
+    }
+  }
 }
 await browser.close();
 console.log(`\n${DIM}Skrinshotlar: ${TMP}${R}`);

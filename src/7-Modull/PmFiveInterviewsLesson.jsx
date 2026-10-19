@@ -104,6 +104,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -181,8 +206,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -824,10 +849,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 
 // ===== SCREEN 1 — REJA (QReja: chapda shablon qatorlari 0.9 s oraliqda o'zi yoziladi — maydon egasi namunasi; o'ngda «01 · matn · teg», bosilmaydi — P-015) =====
 const REJA = [
-  { t: { uz: "Qaysi savol bo'lib o'tgan ishni so'rashini ajratasiz", ru: 'Отличите, какой вопрос спрашивает о том, что уже было' }, teg: { uz: 'savol', ru: 'вопрос' } },
-  { t: { uz: "O'yinchi bilan suhbatni to'rt qatorga yozasiz", ru: 'Запишете разговор с игроком в четыре строки' }, teg: { uz: 'shablon', ru: 'шаблон' } },
-  { t: { uz: "Kitobdagi ona qaysi savolga voqeani aytganini ko'rasiz", ru: 'Увидите, на какой вопрос мама из книги рассказала случай' }, teg: { uz: 'voqea', ru: 'событие' } },
-  { t: { uz: "O'z muammongiz bo'yicha sinfdoshingiz bilan suhbatlashasiz", ru: 'Поговорите с одноклассником о своей проблеме' }, teg: { uz: 'juftlik', ru: 'в паре' } }
+  { t: { uz: "Qaysi savol bo'lib o'tgan ishni so'rashini ajrating", ru: 'Отличите, какой вопрос спрашивает о том, что уже было' }, teg: { uz: 'savol', ru: 'вопрос' } },
+  { t: { uz: "O'yinchi bilan suhbatni to'rt qatorga yozing", ru: 'Запишите разговор с игроком в четыре строки' }, teg: { uz: 'shablon', ru: 'шаблон' } },
+  { t: { uz: "Kitobdagi ona qaysi savolga voqeani aytganini ko'ring", ru: 'Посмотрите, на какой вопрос мама из книги рассказала случай' }, teg: { uz: 'voqea', ru: 'событие' } },
+  { t: { uz: "O'z muammongiz bo'yicha sinfdoshingiz bilan suhbatlashing", ru: 'Поговорите с одноклассником о своей проблеме' }, teg: { uz: 'juftlik', ru: 'в паре' } }
 ];
 const EGA_NAMUNA = {
   kim: ROL.ega,
@@ -1699,16 +1724,16 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: 'Intervyu nima?', ru: 'Что такое интервью?' }, opts: [{ uz: 'Bitta odam bilan suhbat', ru: 'Разговор с одним человеком' }, { uz: "Ko'p odamga bitta e'lon", ru: 'Одно объявление для многих' }, { uz: "Sinfga g'oyani aytish", ru: 'Рассказать идею классу' }, { uz: 'Odamni jim kuzatib turish', ru: 'Молча наблюдать за человеком' }], correct: 0 },
   { q: { uz: 'Yozuv nima?', ru: 'Что такое запись?' }, opts: [{ uz: "Intervyu savollari ro'yxati", ru: 'Список вопросов интервью' }, { uz: "To'ldirilgan shablon", ru: 'Заполненный шаблон' }, { uz: 'Intervyudan chiqqan xulosa', ru: 'Вывод из интервью' }, { uz: "G'oyangiz haqidagi matn", ru: 'Текст о вашей идее' }], correct: 1 },
-  { q: { uz: "«Sayt bo'lsa, ishlatarmidingiz?» — bu qanday savol?", ru: '«Если бы был сайт, пользовались бы?» — что это за вопрос?' }, opts: [{ uz: "Voqea savoli — maydonni so'radi", ru: 'Вопрос о событии — спросил о поле' }, { uz: 'Voqea savoli — javobi qisqa', ru: 'Вопрос о событии — ответ короткий' }, { uz: "Bo'sh savol — javobi va'da", ru: 'Пустой вопрос — ответ-обещание' }, { uz: "Bo'sh savol — savoli qisqa", ru: 'Пустой вопрос — сам вопрос короткий' }], correct: 2 },
-  { q: { uz: '«Oxirgi marta maydonga qachon bordingiz?» — bu qanday savol?', ru: '«Когда вы в последний раз ходили на поле?» — что это за вопрос?' }, opts: [{ uz: "Bo'sh savol — kelajakni so'radi", ru: 'Пустой вопрос — спросил о будущем' }, { uz: "Bo'sh savol — javobi «ha» bo'ladi", ru: 'Пустой вопрос — ответ будет «да»' }, { uz: "Voqea savoli — g'oyani so'radi", ru: 'Вопрос о событии — спросил об идее' }, { uz: "Voqea savoli — o'tgan kunni so'radi", ru: 'Вопрос о событии — спросил о прошедшем дне' }], correct: 3 },
+  { q: { uz: "«Sayt bo'lsa, ishlatarmidingiz?» Qanday savol?", ru: "«Если бы был сайт, пользовались бы?» Что это за вопрос?" }, opts: [{ uz: "Voqea savoli — maydon bor", ru: "Вопрос о событии — есть поле" }, { uz: "Voqea savoli — qisqa", ru: "Вопрос о событии — короткий" }, { uz: "Bo'sh savol — javobi va'da", ru: "Пустой вопрос — ответ-обещание" }, { uz: "Bo'sh savol — qisqa", ru: "Пустой вопрос — короткий" }], correct: 2 },
+  { q: { uz: "«Oxirgi marta qachon bordingiz?» Qanday savol?", ru: "«Когда вы ходили в последний раз?» Что это за вопрос?" }, opts: [{ uz: "Bo'sh savol — kelajak", ru: "Пустой вопрос — о будущем" }, { uz: "Bo'sh savol — javobi «ha»", ru: "Пустой вопрос — ответ «да»" }, { uz: "Voqea savoli — g'oya", ru: "Вопрос о событии — об идее" }, { uz: "Voqea savoli — o'tgan kun", ru: "Вопрос о событии — о прошедшем дне" }], correct: 3 },
   { q: { uz: "Shablondagi to'rt qatordan biri qaysi?", ru: 'Какая из этих — одна из четырёх строк шаблона?' }, opts: [{ uz: 'Sayt sizga yoqdimi?', ru: 'Вам понравился сайт?' }, { uz: "Nima qiyin bo'ldi?", ru: 'Что было трудно?' }, { uz: 'Kelasi safar nima qilasiz?', ru: 'Что сделаете в следующий раз?' }, { uz: "Narxi qancha bo'lsin?", ru: 'Какой должна быть цена?' }], correct: 1 },
-  { q: { uz: "O'yinchi: «Maydon band ekan». Keyingi savol qaysi?", ru: 'Игрок: «Поле было занято». Какой следующий вопрос?' }, opts: [{ uz: "O'shanda nima qildingiz?", ru: 'Что вы тогда сделали?' }, { uz: "Sayt bo'lsa, band qilasizmi?", ru: 'Если бы был сайт, бронировали бы?' }, { uz: "Maydon ko'p band bo'ladimi?", ru: 'Поле часто бывает занято?' }, { uz: 'Keyin qachon borasiz?', ru: 'Когда пойдёте в следующий раз?' }], correct: 0 },
-  { q: { uz: 'Yozuvga qaysi gap tushadi?', ru: 'Какая фраза попадает в запись?' }, opts: [{ uz: 'Intervyudan siz chiqargan xulosa', ru: 'Вывод, который вы сделали из интервью' }, { uz: 'Odam haqida sizning taxminingiz', ru: 'Ваша догадка о человеке' }, { uz: 'Hammaga taalluqli umumiy gap', ru: 'Общая фраза обо всех' }, { uz: 'Eshitgan javob, u aytganidek', ru: 'Услышанный ответ, так, как он сказал' }], correct: 3 },
-  { q: { uz: "Kitobdagi ona g'oyani nega maqtadi?", ru: 'Почему мама из книги похвалила идею?' }, opts: [{ uz: 'U shunday ilovani qidirgan edi', ru: 'Она искала такое приложение' }, { uz: "Planshetda ko'p o'tirardi", ru: 'Она много сидела в планшете' }, { uz: "O'g'lini xafa qilmaslik uchun", ru: 'Чтобы не обидеть сына' }, { uz: 'Taomlar kitobi unga kerak edi', ru: 'Ей была нужна книга рецептов' }], correct: 2 },
-  { q: { uz: "Kitobda qaysi savol ko'proq narsa ochdi?", ru: 'Какой вопрос в книге открыл больше?' }, opts: [{ uz: "«Taomlar ilovasi sizga kerak bo'ladimi?»", ru: '«Вам понадобится приложение с рецептами?»' }, { uz: '«Planshetda odatda nima qilasiz?»', ru: '«Что вы обычно делаете на планшете?»' }, { uz: '«Shunday ilovani sotib olarmidingiz?»', ru: '«Вы бы купили такое приложение?»' }, { uz: '«Oxirgi marta qaysi kitobni oldingiz?»', ru: '«Какую книгу вы купили в последний раз?»' }], correct: 3 },
-  { q: { uz: 'Kitob nomi nimani anglatadi?', ru: 'Что означает название книги?' }, opts: [{ uz: 'Onangiz ham rostini aytadigan savollar', ru: 'Вопросы, на которые даже мама скажет правду' }, { uz: 'Faqat onangizga beriladigan savollar', ru: 'Вопросы, которые задают только маме' }, { uz: "Onangizga g'oyani aytib ko'rish usuli", ru: 'Способ рассказать идею маме' }, { uz: 'Onangiz bilan maslahatlashish qoidasi', ru: 'Правило совета с мамой' }], correct: 0 },
-  { q: { uz: "Maydon muammosi bo'yicha kimdan intervyu olasiz?", ru: 'У кого возьмёте интервью о проблеме поля?' }, opts: [{ uz: "Futbol o'ynamaydigan qo'shnidan", ru: 'У соседа, который не играет в футбол' }, { uz: 'Sayt yasay oladigan do\'stdan', ru: 'У друга, который умеет делать сайты' }, { uz: "O'yinchidan va maydon egasidan", ru: 'У игрока и владельца поля' }, { uz: "G'oyani maqtaydigan sinfdoshdan", ru: 'У одноклассника, который хвалит идею' }], correct: 2 },
-  { q: { uz: 'Nega bitta intervyu yetmaydi?', ru: 'Почему одного интервью мало?' }, opts: [{ uz: "Bitta odam ko'p gapira olmaydi", ru: 'Один человек не может много говорить' }, { uz: 'Bitta yozuv — bitta odamning voqeasi', ru: 'Одна запись — событие одного человека' }, { uz: "Shablonda to'rtta qator bor xolos", ru: 'В шаблоне всего четыре строки' }, { uz: "Ko'p odam maqtasa — g'oya to'g'ri", ru: 'Хвалят многие — идея верная' }], correct: 1 },
+  { q: { uz: "«Maydon band ekan.» Keyingi savol qaysi?", ru: "«Поле было занято». Какой следующий вопрос?" }, opts: [{ uz: "O'shanda nima qildingiz?", ru: "Что вы тогда сделали?" }, { uz: "Sayt bo'lsa, band qilasizmi?", ru: "Если бы был сайт, бронировали бы?" }, { uz: "Maydon ko'p band bo'ladimi?", ru: "Поле часто бывает занято?" }, { uz: "Keyin qachon borasiz?", ru: "Когда пойдёте в следующий раз?" }], correct: 0 },
+  { q: { uz: "Yozuvga qaysi gap tushadi?", ru: "Какая фраза попадает в запись?" }, opts: [{ uz: "Siz chiqargan xulosa", ru: "Ваш вывод" }, { uz: "Odam haqida taxminingiz", ru: "Ваша догадка о человеке" }, { uz: "Hammaga oid umumiy gap", ru: "Общая фраза обо всех" }, { uz: "Eshitgan javob, u aytganidek", ru: "Услышанный ответ, как он сказал" }], correct: 3 },
+  { q: { uz: "Kitobdagi ona g'oyani nega maqtadi?", ru: "Почему мама из книги похвалила идею?" }, opts: [{ uz: "Bunday ilova qidirgan edi", ru: "Искала такое приложение" }, { uz: "Planshetda ko'p o'tirardi", ru: "Много сидела в планшете" }, { uz: "O'g'lini xafa qilmaslik uchun", ru: "Чтобы не обидеть сына" }, { uz: "Taomlar kitobi kerak edi", ru: "Ей была нужна книга рецептов" }], correct: 2 },
+  { q: { uz: "Kitobda qaysi savol voqeani ochdi?", ru: "Какой вопрос в книге открыл событие?" }, opts: [{ uz: "«Ilova sizga kerakmi?»", ru: "«Вам нужно приложение?»" }, { uz: "«Odatda nima qilasiz?»", ru: "«Что вы обычно делаете?»" }, { uz: "«Ilovani sotib olasizmi?»", ru: "«Купите приложение?»" }, { uz: "«Oxirgi marta nima oldingiz?»", ru: "«Что вы купили в последний раз?»" }], correct: 3 },
+  { q: { uz: "Kitob nomi nimani anglatadi?", ru: "Что означает название книги?" }, opts: [{ uz: "Ona ham rost aytadigan savol", ru: "Вопросы, на которые и мама скажет правду" }, { uz: "Faqat onaga beriladigan savol", ru: "Вопросы только для мамы" }, { uz: "Onaga g'oyani aytish usuli", ru: "Способ рассказать идею маме" }, { uz: "Ona bilan maslahat qoidasi", ru: "Правило совета с мамой" }], correct: 0 },
+  { q: { uz: "Maydon muammosida kimdan intervyu olasiz?", ru: "У кого возьмёте интервью о проблеме поля?" }, opts: [{ uz: "O'ynamaydigan qo'shnidan", ru: "У соседа, который не играет" }, { uz: "Sayt yasaydigan do'stdan", ru: "У друга, который делает сайты" }, { uz: "O'yinchi va maydon egasidan", ru: "У игрока и владельца поля" }, { uz: "Maqtaydigan sinfdoshdan", ru: "У одноклассника, который хвалит" }], correct: 2 },
+  { q: { uz: "Nega bitta intervyu yetmaydi?", ru: "Почему одного интервью мало?" }, opts: [{ uz: "Bir odam ko'p gapirmaydi", ru: "Один человек мало говорит" }, { uz: "Yozuv — bitta odam voqeasi", ru: "Запись — событие одного человека" }, { uz: "Shablonda 4 qator xolos", ru: "В шаблоне всего 4 строки" }, { uz: "Ko'p maqtov — g'oya to'g'ri", ru: "Много похвал — идея верна" }], correct: 1 },
 ];
 
 const CsNeonBolt = ({ flip }) => (

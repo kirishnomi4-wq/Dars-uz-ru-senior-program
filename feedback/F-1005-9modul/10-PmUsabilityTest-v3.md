@@ -90,10 +90,10 @@ Tashqi audit (ChatGPT) Filtri: `10-FILTR.md` — 05.10.2026 qo'llandi.
 - Chap: «Dars oxirida — shunday yozuv: odam nima qildi va qayerda to'xtadi» + yozuv qatorlari 0.9 s oraliqda o'zi yoziladi (javob ochilmaydi — matn kulrang chiziq):
   `0:00 · ━━━━━━` · `0:14 · ━━━━━━━━  to'xtadi` · `0:31 · ━━━━━` · `0:58 · ━━━━━━━  to'xtadi`; oxirida bitta qator yonida «Birinchi».
 - O'ng (01 · matn; teg yo'q — keyingi ekranlar eyebrow'ini takrorlardi) *(✎ F-1015-114, 208-qonun 0-band: takror olindi)*:
-  - 01 · Odam qayerda to'xtashini kuzatib, yozasiz
-  - 02 · Yordam bersangiz, yozuvda nima qolishini ko'rasiz
-  - 03 · Odamga beriladigan vazifani yozasiz
-  - 04 · Sinfdoshingiz bilan bir-biringizni kuzatasiz
+  - 01 · Odam qayerda to'xtashini kuzatib, yozing
+  - 02 · Yordam bersangiz, yozuvda nima qolishini ko'ring
+  - 03 · Odamga beriladigan vazifani yozing
+  - 04 · Sinfdoshingiz bilan bir-biringizni kuzating
 - Harakat yo'q (reja ekrani) — vizual o'zi yoziladi.
 - Reja = dars ta'rifi (App.jsx `sub` «sinov: tushuntirmang, kuzating») — «sinov» so'zi reja yuzasida yo'q, u 2-ekranda misoldan keyin tug'iladi (T-011, P-014).
 

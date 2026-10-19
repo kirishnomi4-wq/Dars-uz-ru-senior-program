@@ -49,10 +49,10 @@ Mentor talabi (dars bo'yi bir xil):
   - vizual bir marta o'zi yuradi: telefonda («O'yinlar», belgi «Ulangan») «8 / 10» → «9 / 10»; bo'sh talab varag'i yo'q — u 2-ekranda chiqadi (208/0 d) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-  1. Mentor talabini bo'lim-bo'lim ko'rasiz
-  2. Kam uchraydigan vaziyatlarni ko'rasiz
-  3. O'z mahsulotingiz uchun talab yozasiz
-  4. Agent quradi, siz telefonda tekshirasiz
+  1. Mentor talabini bo'lim-bo'lim ko'ring
+  2. Kam uchraydigan vaziyatlarni ko'ring
+  3. O'z mahsulotingiz uchun talab yozing
+  4. Agent quradi, siz telefonda tekshiring
 - Pastki qator: repo `maydon-jamoa` · boshlang'ich holat `m12-dars-03-start` · namuna `m12-dars-03-done` — amaliyotlarni o'z mahsulotingizda bajarasiz.
 - Tugmalar: Orqaga · Boshlaymiz
 

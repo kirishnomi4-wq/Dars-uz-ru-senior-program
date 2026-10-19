@@ -139,10 +139,10 @@ pilotlar (tuzilish va saboqlar; matn ko'chirilmadi): `01-PmInvestorPitch-v3.md` 
   Vizual (`ChiqishSahna` skeleti, bir marta o'zi yuradi — DE-200): taymer chizig'ining olti kulrang bo'lagi birma-bir to'q bo'ladi, keyin uzuq savol-javob bo'lagi yonadi; ostida bo'sh varaq — uch kulrang qator. Matnsiz — 2, 3-ekran kashfiyotini ochmaydi (P-015).
 - O'ng (01 · matn · teg; tex-karta, bosilmaydi — P-015; teglar kulrang):
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-119, 208-qonun 0-band: takror olindi)*
-  - 01 · Butun chiqish qaysi tartibda o'tishini bilib olasiz
-  - 02 · Hakam chiqishga qanday belgi qo'yishini bilasiz
-  - 03 · Chiqishdan oldin demo qurilmalarini tekshirasiz
-  - 04 · Chiqishingizni o'tasiz, hakam varaqni to'ldiradi
+  - 01 · Butun chiqish qaysi tartibda o'tishini bilib oling
+  - 02 · Hakam chiqishga qanday belgi qo'yishini bilib oling
+  - 03 · Chiqishdan oldin demo qurilmalarini tekshiring
+  - 04 · Chiqishingizni o'ting, hakam varaqni to'ldiradi
 - Harakat yo'q (reja ekrani) — vizual o'zi yuradi. Tugmalar: Orqaga · Boshlaymiz · Keyingi bosiladigan joy: «Boshlaymiz» (vizual tugagach halqada).
 - O'qituvchi eslatmasi: Guruhlar 3–4 kishidan (5-darsdagidek). Mehmon bo'lsa — uni sinfga tanishtiring, ismini doskaga yozmang. Bugun repo'ga tegilmaydi, kod o'zgarmaydi.
 - Izoh (MD): sarlavhada yangi atama yo'q (T-011; «to'liq repetitsiya», «hakam varag'i» — faqat kulrang teg va App.jsx ostida). Sarlavha — natija va'dasi (P-014). «chiqishingizni» — pitch o'quvchida bor (1, 8-darslar; T-039).

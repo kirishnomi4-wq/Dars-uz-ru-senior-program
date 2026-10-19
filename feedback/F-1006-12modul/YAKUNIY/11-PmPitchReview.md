@@ -34,9 +34,9 @@ Mentor manbalari (yorliq «Mentor misolida»): intervyu yozuvlari — «jamoa yi
   - Vizual o'zi yuradi: «Maydon Jamoa» varag'ida to'rt bo'lak navbat bilan kiradi (har birida bitta kulrang gap), gap ostiga uch katakli bo'sh teg chiziladi, oxirida sarlavha yonida «?».
 - Reja:
   (teg yo'q — eyebrow/matnni takrorlardi) *(✎ F-1015-117, 208-qonun 0-band: takror olindi)*
-  1. Pitchingizdan tekshirsa bo'ladigan gaplarni topasiz
-  2. Har biriga sonlaringizdan dalil qo'yasiz
-  3. Dalilsiz gapni qayta yozasiz yoki olib tashlaysiz
+  1. Pitchingizdan tekshirsa bo'ladigan gaplarni toping
+  2. Har biriga sonlaringizdan dalil qo'ying
+  3. Dalilsiz gapni qayta yozing yoki olib tashlang
   4. Pitchingizni Mentor bilan yakkama-yakka ko'rasiz
 - Tugmalar: Orqaga · Boshlaymiz
 

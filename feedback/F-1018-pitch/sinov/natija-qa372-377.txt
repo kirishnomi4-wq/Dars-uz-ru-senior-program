@@ -1,0 +1,24 @@
+s1: chap kartadagi chegarali bo'lak qatori: 0 / 6 · karta chegarasi: 1px
+s2 boshida: nav=Savollarga javob bering (0/3) (yopiq) · telefon: false · stepper chip: false · savol: Besh bo'lak investorning qaysi savollariga javob bermaydi?
+  1: xato → «Bularga Yechim va Raqamlar bo'laklari javob beradi.» (tugma yopildi: true) → to'g'ri ✓
+  2: xato → «Ko'rinish odamlar sonini ham, kim qilayotganini ham aytmaydi» (tugma yopildi: true) → to'g'ri ✓
+  3: xato → «Pitch bir marta aytiladi — keyin savollar.» (tugma yopildi: true) → to'g'ri ✓
+s2 oxiri: nav=Davom etish · chegarali bo'lak: 0
+s3 boshida: nav=Savollarga javob bering (yopiq) · tepadagi strip: false · chiplar: ["·Muammo","+Bozor","·Yechim","·Raqamlar","-Jamoa","-Keyingi qadam"] · bo'sh uya: false
+  Bozor 1: xato → «Bozorga bilgan sonimiz yoziladi — kattaligi shart emas.» (tugma yopildi: true) → to'g'ri ✓
+  qatorlar: 1
+  Bozor 2: xato → «60 va 6 qo'shilmaydi: biri guruhdagi odamlar, biri ilovadagi» (tugma yopildi: true) → to'g'ri ✓
+  Bozor 3: xato → «Manbasi yo'q son Bozorga yozilmaydi.» (tugma yopildi: true) → to'g'ri ✓
+  Bozor tugadi: nav=Keyingi bo'lak: Jamoa · qatorlar: 3 · chiplar: ["·Muammo","+✓Bozor","·Yechim","·Raqamlar","-Jamoa","-Keyingi qadam"]
+  Jamoa 1: xato → «Mentor g'oyani topdi, mahsulotni o'ylab, kodni yozdi.» (tugma yopildi: true) → to'g'ri ✓
+  Jamoa 2: xato → «Agent — dastur: u talab bo'yicha ishlaydi, jamoa a'zosi emas» (tugma yopildi: true) → to'g'ri ✓
+  Jamoa 3: xato → «Ular pul tikmagan — ilovani sinab ko'rgan.» (tugma yopildi: true) → to'g'ri ✓
+  Keyingi 1: xato → «Kattaroq son emas — keyingi aniq ish kerak.» (tugma yopildi: true) → to'g'ri ✓
+  Keyingi 2: xato → «Keyingi qadam shu mahsulotni davom ettiradi.» (tugma yopildi: true) → to'g'ri ✓
+  Keyingi 3: xato → «Bu kursda pul so'ralmaydi — bitta aniq so'rov aytiladi.» (tugma yopildi: true) → to'g'ri ✓
+s3 oxiri: nav=Davom etish · chiplar: ["·Muammo","+✓Bozor","·Yechim","·Raqamlar","+✓Jamoa","+✓Keyingi qadam"]
+  Bozor chipi bosildi → xulosa: true
+s5: nav=Olti bo'lakni yozing (yopiq)
+  «mmm» → xato: Bu javob o'qilmaydi — so'z bilan yozing. · nishon: false · saqlandi: false
+  to'g'ri gap → saqlandi: true · nav=Olti bo'lakni yozing (yopiq)
+pageerror: 0

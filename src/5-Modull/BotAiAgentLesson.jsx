@@ -122,6 +122,31 @@ const Zoomable = ({ children }) => {
   // children ko'pincha doim mavjud <div> (ichi bo'sh), shuning uchun React.Children yetmaydi.
   const zref = useRef(null);
   const [hasContent, setHasContent] = useState(true);
+  // F-1015-395: ⛶ faqat oynada vizual haqiqatan kattaroq ko'rinsa (toshgan, kichraytirilgan yoki kengayadigan) — aks holda xuddi shu narsani ochadi (QA)
+  const [zFoyda, setZFoyda] = useState(true);
+  useEffect(() => {
+    const el = zref.current; if (!el || typeof window === 'undefined') return undefined;
+    const olch = () => {
+      if (el.classList.contains('zoom-on')) return;
+      const ich = [...el.querySelectorAll('*')].filter(n => !n.closest('.zoom-btn'));
+      if (!ich.length) return;
+      const kenglik = () => { let L = 1e9, R = -1e9; for (const n of ich) { const b = n.getBoundingClientRect(); if (b.width < 1 || b.height < 1) continue; L = Math.min(L, b.left); R = Math.max(R, b.right); } return R > L ? R - L : 0; };
+      const toshgan = el.scrollWidth > el.clientWidth + 4 || ich.some(n => n.scrollWidth > n.clientWidth + 4 && /auto|scroll|hidden/.test(getComputedStyle(n).overflowX));
+      const kichik = ich.some(n => { const cs = getComputedStyle(n); const z = parseFloat(cs.zoom || '1'); return z > 0 && z < 0.95; });
+      if (toshgan || kichik) { setZFoyda(true); return; }
+      const maqsad = Math.min(1040, window.innerWidth * 0.96) - 48;
+      if (maqsad - el.getBoundingClientRect().width < 80) { setZFoyda(false); return; }
+      const w0 = kenglik(); const eski = el.getAttribute('style') || '';
+      el.style.width = maqsad + 'px'; el.style.maxWidth = 'none'; el.style.flex = 'none';
+      const w1 = kenglik(); el.setAttribute('style', eski);
+      setZFoyda(w1 - w0 > 80);
+    };
+    let raf = 0; const sch = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(olch); };
+    sch(); const t = setTimeout(sch, 800); const t2 = setTimeout(sch, 1800);
+    const mo = typeof MutationObserver !== 'undefined' ? new MutationObserver(sch) : null; if (mo) mo.observe(el, { childList: true, subtree: true });
+    window.addEventListener('resize', sch);
+    return () => { cancelAnimationFrame(raf); clearTimeout(t); clearTimeout(t2); if (mo) mo.disconnect(); window.removeEventListener('resize', sch); };
+  }, []);
   // ⛶ bo'sh joy ustida osilmasin (ZBTN, 159-qonun): tugma ostidagi ustunda ko'rinadigan narsa yo'q bo'lsa — yashirin.
   const [zFloat, setZFloat] = useState(false);
   const [zJoy, setZJoy] = useState(false); // F-1015-125: ⛶ joyi JS bilan topildi
@@ -199,8 +224,8 @@ const Zoomable = ({ children }) => {
   return (
     <>
       {big && <div className="zoom-backdrop" onClick={() => setBig(false)} />}
-      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}`}>
-        {hasContent && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
+      <div ref={zref} className={`zoomable ${big ? 'zoom-on' : ''}${hasContent ? '' : ' z-empty'}${zFloat ? ' z-float' : ''}${zJoy ? ' zb-joy' : ''}${zQator ? ' zb-qator' : ''}${!zFoyda && !big ? ' z-yoq' : ''}`} style={!zFoyda && !big ? { paddingTop: 0 } : undefined}>
+        {hasContent && (zFoyda || big) && <button type="button" className="zoom-btn" onClick={() => setBig(b => !b)} aria-label={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })} title={big ? tr({ uz: 'Kichraytirish', ru: 'Уменьшить' }) : tr({ uz: 'Kattalashtirish', ru: 'Увеличить' })}>{big ? '✕' : '⛶'}</button>}
         {children}
       </div>
     </>
@@ -1585,18 +1610,18 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "AI-bot va AI-agentning asosiy farqi nima?", ru: "В чём главная разница между ИИ-ботом и ИИ-агентом?" }, opts: [{ uz: "Agentning rangi va shrifti boshqacha bo'ladi", ru: "У агента другой цвет и шрифт" }, { uz: "Agent maqsad sari qadamlarni o'zi tanlaydi", ru: "Агент сам выбирает шаги к цели" }, { uz: "Ular orasida hech qanday farq yo'q", ru: "Между ними нет никакой разницы" }, { uz: "Agent botdan ancha sekin ishlaydi", ru: "Агент работает намного медленнее бота" }], correct: 1 },
-  { q: { uz: "Agent siklidagi «Amal» qadami nima?", ru: "Что такое шаг «Действие» в цикле агента?" }, opts: [{ uz: "Mijozning keyingi xabarini kutish", ru: "Ждать следующее сообщение клиента" }, { uz: "Salom berib, menyuni yuborish", ru: "Поздороваться и отправить меню" }, { uz: "O'zini o'chirib, ishni to'xtatish", ru: "Выключить себя и остановить работу" }, { uz: "Tanlangan tool'ni chaqirish", ru: "Вызвать выбранный инструмент" }], correct: 3 },
-  { q: { uz: "Tool nima?", ru: "Что такое инструмент (tool)?" }, opts: [{ uz: "Agent chaqira oladigan funksiya", ru: "Функция, которую агент может вызвать" }, { uz: "Botning rang va shrift sozlamasi", ru: 'Настройка цвета и шрифта бота' }, { uz: "Server joylashgan IP-manzil", ru: "IP-адрес, где находится сервер" }, { uz: "Internetga ulanish tezligi", ru: 'Скорость подключения к интернету' }], correct: 0 },
-  { q: { uz: "Agent qaysi tool'ni chaqirishni qanday tanlaydi?", ru: "Как агент выбирает, какой инструмент вызвать?" }, opts: [{ uz: "Ro'yxatdagi birinchi tool'ni oladi", ru: "Берёт первый инструмент в списке" }, { uz: "AI tasodifan, tavakkaliga tanlaydi", ru: "ИИ выбирает случайно, наугад" }, { uz: "AI maqsad va vaziyatga qarab tanlaydi", ru: "ИИ выбирает по цели и ситуации" }, { uz: "Har safar odam qo'lda tanlab beradi", ru: "Каждый раз вручную выбирает человек" }], correct: 2 },
-  { q: { uz: "Agent bitta amalni bajardi. Endi nima qiladi?", ru: 'Агент выполнил одно действие. Что дальше?' }, opts: [{ uz: "Ish tugadi deb, shu zahoti to'xtaydi", ru: "Решает, что работа закончена, и сразу останавливается" }, { uz: "Natijani ko'rib, keyingi qadamni tanlaydi", ru: "Смотрит на результат и выбирает следующий шаг" }, { uz: "O'sha amalni yana bir marta bajaradi", ru: "Выполняет то же действие ещё раз" }, { uz: "Mijoz keyingi buyruq yozishini kutadi", ru: "Ждёт, пока клиент напишет следующую команду" }], correct: 1 },
-  { q: { uz: "Agentga siz qaysi uch narsani berasiz?", ru: "Какие три вещи вы даёте агенту?" }, opts: [{ uz: "Maqsad, tool'lar va chegara", ru: "Цель, инструменты и ограничение" }, { uz: "Faqat system prompt: qanday javob yozsin", ru: "Только system prompt: каким писать ответ" }, { uz: "Har hodisa uchun tayyor javob matni", ru: "Готовый текст ответа на каждое событие" }, { uz: "Bot tokeni va server manzili", ru: "Токен бота и адрес сервера" }], correct: 0 },
-  { q: { uz: "Chegara (guardrail) nima uchun kerak?", ru: "Зачем нужно ограничение (guardrail)?" }, opts: [{ uz: "Botni chiroyliroq ko'rsatish uchun", ru: "Чтобы бот выглядел красивее" }, { uz: "Javob tezligini oshirish uchun", ru: "Чтобы ускорить ответ" }, { uz: "Mijozga rang tanlab berish uchun", ru: "Чтобы подобрать клиенту цвет" }, { uz: "Agentni xavfli amaldan to'xtatish uchun", ru: "Чтобы остановить агента перед опасным действием" }], correct: 3 },
-  { q: { uz: "Agent pul yechishdan oldin nima qilishi kerak?", ru: "Что агент должен сделать перед списанием денег?" }, opts: [{ uz: "Tasdiqsiz, o'zi yechaverishi", ru: "Списывать сам, без подтверждения" }, { uz: "Odamdan tasdiq so'rashi", ru: "Спросить подтверждение у человека" }, { uz: "Botni o'chirib qo'yishi", ru: "Выключить бота" }, { uz: "Imkon boricha tez yechishi", ru: "Списать как можно быстрее" }], correct: 1 },
-  { q: { uz: "Odam nazorati (human-in-the-loop) nimani anglatadi?", ru: "Что означает контроль человека (human-in-the-loop)?" }, opts: [{ uz: "Agent hamma ishni yolg'iz bajaradi", ru: "Агент делает всю работу в одиночку" }, { uz: "Odam jarayonga umuman aralashmaydi", ru: 'Человек вообще не вмешивается в процесс' }, { uz: "Muhim holatda qarorni odam qiladi", ru: "В важной ситуации решение принимает человек" }, { uz: "Mijoz botdan butunlay bloklanadi", ru: "Клиента полностью блокируют в боте" }], correct: 2 },
-  { q: { uz: "«Cheklangan tool'lar» chegarasi nimani bildiradi?", ru: 'Что означает ограничение «ограниченный набор инструментов»?' }, opts: [{ uz: "Tool'lar sekinroq ishlay boshlaydi", ru: "Инструменты начинают работать медленнее" }, { uz: "Hamma tool'lar bepul bo'ladi", ru: "Все инструменты становятся бесплатными" }, { uz: "Agentga barcha tool'lar beriladi", ru: "Агенту дают все инструменты" }, { uz: "Agentga faqat kerakli tool'lar beriladi", ru: "Агенту дают только нужные инструменты" }], correct: 3 },
-  { q: { uz: "Agent sikli qaysi tartibda ishlaydi?", ru: "В каком порядке работает цикл агента?" }, opts: [{ uz: "Idrok → Qaror → Amal → yana Idrok", ru: "Восприятие → Решение → Действие → снова Восприятие" }, { uz: "Amal → Idrok → Qaror → yana Amal", ru: "Действие → Восприятие → Решение → снова Действие" }, { uz: "Qaror → Amal → Idrok → yana Qaror", ru: "Решение → Действие → Восприятие → снова Решение" }, { uz: "Idrok → Amal → Qaror → yana Idrok", ru: "Восприятие → Действие → Решение → снова Восприятие" }], correct: 0 },
-  { q: { uz: "Agent siklida «Qaror» qadamini kim bajaradi?", ru: "Кто выполняет шаг «Решение» в цикле агента?" }, opts: [{ uz: "Mijoz har safar qo'lda tanlaydi", ru: "Клиент каждый раз выбирает вручную" }, { uz: "Hech kim — qadam o'z-o'zidan o'tadi", ru: "Никто — шаг проходит сам собой" }, { uz: "AI — qaysi tool kerakligini tanlaydi", ru: "ИИ — выбирает, какой инструмент нужен" }, { uz: "Tool o'zi hal qiladi, AI faqat kutadi", ru: "Инструмент решает сам, а ИИ только ждёт" }], correct: 2 },
+  { q: { uz: "AI-bot va AI-agentning asosiy farqi?", ru: "Главное отличие AI-бота от AI-агента?" }, opts: [{ uz: "Agentning rangi boshqacha", ru: "У агента другой цвет" }, { uz: "Agent qadamni o'zi tanlaydi", ru: "Агент сам выбирает шаг" }, { uz: "Hech qanday farq yo'q", ru: "Разницы нет" }, { uz: "Agent ancha sekin ishlaydi", ru: "Агент намного медленнее" }], correct: 1 },
+  { q: { uz: "Agent siklidagi «Amal» qadami nima?", ru: "Что такое шаг «Действие» в цикле агента?" }, opts: [{ uz: "Keyingi xabarni kutish", ru: "Ждать следующее сообщение" }, { uz: "Salom va menyu yuborish", ru: "Отправить привет и меню" }, { uz: "O'zini o'chirib qo'yish", ru: "Выключить себя" }, { uz: "Tanlangan tool'ni chaqirish", ru: "Вызвать выбранный tool" }], correct: 3 },
+  { q: { uz: "Tool nima?", ru: "Что такое tool?" }, opts: [{ uz: "Agent chaqiradigan funksiya", ru: "Функция, которую вызывает агент" }, { uz: "Botning shrift sozlamasi", ru: "Настройка шрифта бота" }, { uz: "Serverning IP-manzili", ru: "IP-адрес сервера" }, { uz: "Internet tezligi", ru: "Скорость интернета" }], correct: 0 },
+  { q: { uz: "Agent tool'ni qanday tanlaydi?", ru: "Как агент выбирает tool?" }, opts: [{ uz: "Ro'yxatda birinchisini oladi", ru: "Берёт первый в списке" }, { uz: "Tavakkaliga tanlaydi", ru: "Наугад" }, { uz: "Maqsad va vaziyatga qarab", ru: "По цели и ситуации" }, { uz: "Odam qo'lda tanlab beradi", ru: "Выбирает человек вручную" }], correct: 2 },
+  { q: { uz: "Agent bitta amalni bajardi. Endi nima qiladi?", ru: "Агент выполнил одно действие. Что дальше?" }, opts: [{ uz: "Shu zahoti to'xtaydi", ru: "Сразу останавливается" }, { uz: "Natijaga qarab davom etadi", ru: "Смотрит на результат и продолжает" }, { uz: "O'sha amalni takrorlaydi", ru: "Повторяет то же действие" }, { uz: "Mijoz buyrug'ini kutadi", ru: "Ждёт команды клиента" }], correct: 1 },
+  { q: { uz: "Agentga siz qaysi uch narsani berasiz?", ru: "Какие три вещи вы даёте агенту?" }, opts: [{ uz: "Maqsad, tool'lar va chegara", ru: "Цель, tools и границы" }, { uz: "Faqat system prompt", ru: "Только system prompt" }, { uz: "Har hodisaga tayyor javob", ru: "Готовый ответ на каждое событие" }, { uz: "Token va server manzili", ru: "Токен и адрес сервера" }], correct: 0 },
+  { q: { uz: "Chegara (guardrail) nima uchun kerak?", ru: "Зачем нужна граница (guardrail)?" }, opts: [{ uz: "Botni chiroyli ko'rsatish", ru: "Чтобы бот выглядел красиво" }, { uz: "Javobni tezlashtirish", ru: "Чтобы ускорить ответ" }, { uz: "Mijozga rang tanlash", ru: "Чтобы выбрать клиенту цвет" }, { uz: "Xavfli amalni to'xtatish", ru: "Чтобы остановить опасное действие" }], correct: 3 },
+  { q: { uz: "Agent pul yechishdan oldin nima qilishi kerak?", ru: "Что агент должен сделать перед списанием денег?" }, opts: [{ uz: "Tasdiqsiz yechaverishi", ru: "Списать без подтверждения" }, { uz: "Odamdan tasdiq so'rashi", ru: "Спросить подтверждение у человека" }, { uz: "Botni o'chirib qo'yishi", ru: "Выключить бота" }, { uz: "Tezroq yechishi", ru: "Списать побыстрее" }], correct: 1 },
+  { q: { uz: "Odam nazorati (human-in-the-loop) nima?", ru: "Что такое человеческий контроль (human-in-the-loop)?" }, opts: [{ uz: "Agent hammasini o'zi qiladi", ru: "Агент делает всё сам" }, { uz: "Odam umuman aralashmaydi", ru: "Человек не вмешивается" }, { uz: "Muhim qarorni odam qiladi", ru: "Важное решение принимает человек" }, { uz: "Mijoz bloklanadi", ru: "Клиента блокируют" }], correct: 2 },
+  { q: { uz: "«Cheklangan tool'lar» nimani bildiradi?", ru: "Что означает «ограниченные tools»?" }, opts: [{ uz: "Tool'lar sekin ishlaydi", ru: "Tools работают медленно" }, { uz: "Tool'lar bepul bo'ladi", ru: "Tools бесплатны" }, { uz: "Agentga hamma tool beriladi", ru: "Агенту дают все tools" }, { uz: "Faqat kerakli tool beriladi", ru: "Дают только нужные tools" }], correct: 3 },
+  { q: { uz: "Agent sikli qaysi tartibda ishlaydi?", ru: "В каком порядке идёт цикл агента?" }, opts: [{ uz: "Idrok → Qaror → Amal", ru: "Восприятие → Решение → Действие" }, { uz: "Amal → Idrok → Qaror", ru: "Действие → Восприятие → Решение" }, { uz: "Qaror → Amal → Idrok", ru: "Решение → Действие → Восприятие" }, { uz: "Idrok → Amal → Qaror", ru: "Восприятие → Действие → Решение" }], correct: 0 },
+  { q: { uz: "Agent siklida «Qaror» qadamini kim bajaradi?", ru: "Кто выполняет шаг «Решение» в цикле агента?" }, opts: [{ uz: "Foydalanuvchi qo'lda tanlaydi", ru: "Пользователь выбирает вручную" }, { uz: "Server tasodifiy tanlaydi", ru: "Сервер выбирает случайно" }, { uz: "AI tool'ni tanlaydi", ru: "AI выбирает tool" }, { uz: "Tool AI'siz hal qiladi", ru: "Tool решает без AI" }], correct: 2 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -2841,7 +2866,7 @@ export default function BotAiAgentLesson({ lang: langProp, onFinished, liveToken
         .fc-fly.out-knew::after { content: '✓'; background: ${T.success}; box-shadow: 0 10px 26px -8px ${T.success}; }
         .fc-fly.out-again::after { content: '✗'; background: ${T.accent}; box-shadow: 0 10px 26px -8px ${T.accent}; }
         @keyframes fc-stamp { from { transform: translate(-50%, -50%) scale(0); } }
-        .fc-card { position: relative; height: clamp(188px,27vh,268px); cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
+        .fc-card { position: relative; height: 240px; /* F-1015-337 */ cursor: pointer; transform-style: preserve-3d; transition: transform .55s cubic-bezier(.4,0,.2,1); }
         .fc-card.flip { transform: rotateY(180deg); }
         .fc-card:not(.flip):hover { transform: translateY(-3px); }
         .fc-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; padding: 22px; text-align: center; }
