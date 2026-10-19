@@ -1,0 +1,84 @@
+fayl	qator	holat	oldin	keyin
+src/1-Modull/DeployLesson.jsx	3186	KOD:css	; } /* === Telefon maketi (havolani sinash) === */ .phone { display: flex; justify-content: center; } .phone-scr { width: min(260px, 100%); background: 	; } /* === Telefon maketi (linkni sinash) === */ .phone { display: flex; justify-content: center; } .phone-scr { width: min(260px, 100%); background: 
+src/1-Modull/HtmlPractice.jsx	1742	KOD:css	; } /* Modifikator .xom — CSS'siz sahifa (A1–A3 natijasi): brauzerning o'z shrifti va havola rangi */ .pf-win.xom .pf-qism, .pf-win.xom .pf-qism + .pf-qism { bo	; } /* Modifikator .xom — CSS'siz sahifa (A1–A3 natijasi): brauzerning o'z shrifti va link rangi */ .pf-win.xom .pf-qism, .pf-win.xom .pf-qism + .pf-qism { bord
+src/1-Modull/HtmlTakrorlashLesson.jsx	3128	KOD:css	; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; } .dbg-txt { flex: 1; min-width: 0; overflow-wrap: anywhere; } /* F-0926-06 (159/12): uzu	; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; } .dbg-txt { flex: 1; min-width: 0; overflow-wrap: anywhere; } /* F-0926-06 (159/12): uzu
+src/1-Modull/HtmlTakrorlashLesson.jsx	3318	KOD:css	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menyusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0 
+src/1-Modull/Htmllesson1.jsx	3836	KOD:css	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menyusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0 
+src/1-Modull/VsCodeLesson.jsx	3882	KOD:css	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menyusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0 
+src/10-Modull/PmFiftyUsersLesson.jsx	754	KOD:taqqos	havola	link
+src/10-Modull/PmFiftyUsersLesson.jsx	1071	QOLDA:id	havola	link
+src/10-Modull/PmFiftyUsersLesson.jsx	2174	QOLDA:id	havola	link
+src/11-Modull/PmPayCheckLesson.jsx	1235	QOLDA:id	havola	link
+src/11-Modull/PmPayCheckLesson.jsx	1630	KOD:taqqos	havola	link
+src/11-Modull/ReferralDayLesson.jsx	854	QOLDA:id	havola	link
+src/11-Modull/ReferralDayLesson.jsx	891	QOLDA:id	havola	link
+src/11-Modull/StabilizeDayLesson.jsx	2271	QOLDA:id	havola	link
+src/12-Modull/DemoPrepLesson.jsx	708	QOLDA:id	havola	link
+src/12-Modull/DemoPrepLesson.jsx	761	KOD:taqqos	havola	link
+src/12-Modull/DemoPrepLesson.jsx	761	KOD:taqqos	havola	link
+src/12-Modull/DemoPrepLesson.jsx	763	KOD:taqqos	havola	link
+src/12-Modull/DemoPrepLesson.jsx	772	KOD:taqqos	havola	link
+src/12-Modull/DemoPrepLesson.jsx	1097	QOLDA:id	havola	link
+src/12-Modull/PmFreelanceLesson.jsx	710	QOLDA:id	havola	link
+src/12-Modull/VideoPortfolioLesson.jsx	772	KOD:taqqos	havola	link
+src/12-Modull/VideoPortfolioLesson.jsx	2087	QOLDA:id	havola	link
+src/2-Modull/PeanStackLesson.jsx	1077	QOLDA:ovqat	 ko'radi: stol, menyu, taom. Lekin taom 	 ko'radi: stol, menu, taom. Lekin taom 
+src/2-Modull/PeanStackLesson.jsx	1084	QOLDA:ovqat	stol · menyu · taom	stol · menu · taom
+src/2-Modull/PeanStackLesson.jsx	2038	QOLDA:ovqat	Menyu — taomlar ro'yxati	Menu — taomlar ro'yxati
+src/2-Modull/PeanStackLesson.jsx	2646	QOLDA:ovqat	Baza — saqlangan ro'yxat. `let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]` yozing va `for` sikli bilan har birini konsolga chiqaring — frontend menyun	Baza — saqlangan ro'yxat. `let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]` yozing va `for` sikli bilan har birini konsolga chiqaring — frontend menuni
+src/2-Modull/PmLesson6.jsx	719	QOLDA:id	menyu	menu
+src/2-Modull/PracticeLesson1.jsx	959	KOD:taqqos	menyu	menu
+src/2-Modull/PracticeLesson1.jsx	964	KOD:taqqos	menyu	menu
+src/2-Modull/PracticeLesson1.jsx	1088	QOLDA:id	menyu	menu
+src/3-Modull/PmLesson8.jsx	2933	KOD:css	; } /* Yordamchi havolalar: quti EMAS — kataklar ostidagi ixcham qator. Ular yordamchi, asosiy harakat emas (F-0819-57). */ .wsxrow { display: flex; gap: 18px; 	; } /* Yordamchi linklar: quti EMAS — kataklar ostidagi ixcham qator. Ular yordamchi, asosiy harakat emas (F-0819-57). */ .wsxrow { display: flex; gap: 18px; fl
+src/3-Modull/PmLesson9.jsx	770	QOLDA:ovqat	Menyu bosilsa, bugungi taomlar chiqadi	Menu bosilsa, bugungi taomlar chiqadi
+src/3-Modull/ReactIntroLesson.jsx	2975	KOD:css	; animation: zone-pop 0.4s ease; } @keyframes zone-pop { 0% { transform: scale(1); } 35% { transform: scale(1.04); } 100% { transform: scale(1); } } /* ichma-ic	; animation: zone-pop 0.4s ease; } @keyframes zone-pop { 0% { transform: scale(1); } 35% { transform: scale(1.04); } 100% { transform: scale(1); } } /* ichma-ic
+src/3-Modull/ReactRouterPracticeLesson.jsx	2341	KOD:css	; font-weight: 600; } /* Brauzer URL paneli + navigatsiya menyusi */ .url-bar { display: flex; align-items: center; gap: 6px; background: #fff; border: 1px soli	; font-weight: 600; } /* Brauzer URL paneli + navigatsiya menusi */ .url-bar { display: flex; align-items: center; gap: 6px; background: #fff; border: 1px solid
+src/4a-Modull/NestArchAliveLesson.jsx	2615	QOLDA:ovqat	Swagger — restoran menyusi: barcha eshiklar ro'yxati	Swagger — restoran menusi: barcha eshiklar ro'yxati
+src/4a-Modull/NestArchAliveLesson.jsx	3433	KOD:css	; word-break: break-word; } /* SWAGGER — menyu */ .swg { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 8px 22px -6px rgba(	; word-break: break-word; } /* SWAGGER — menu */ .swg { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 8px 22px -6px rgba(
+src/5-Modull/BotAiAgentLesson.jsx	848	QOLDA:ovqat	Taom menyuda bormi — tekshiradi, narxini qaytaradi.	Taom menuda bormi — tekshiradi, narxini qaytaradi.
+src/5-Modull/BotAiAgentLesson.jsx	848	KOD:css	async function checkOrder(taom, soni) {\n const narx = narxi(taom); // menyudan\n return { bor: narx > 0, jami: narx * soni };\n}	async function checkOrder(taom, soni) {\n const narx = narxi(taom); // menudan\n return { bor: narx > 0, jami: narx * soni };\n}
+src/5-Modull/BotAiAgentLesson.jsx	2372	QOLDA:ovqat	Shaurma menyuda yo'q — buyurtma yozilmadi. Pitsa tanlaysizmi?	Shaurma menuda yo'q — buyurtma yozilmadi. Pitsa tanlaysizmi?
+src/5-Modull/BotAiBrainLesson.jsx	369	QOLDA:ovqat	«Ananasli pitsa» kabi menyuda yo'q narsani ham aytishi mumkin; bu hallutsinatsiya.	«Ananasli pitsa» kabi menuda yo'q narsani ham aytishi mumkin; bu hallutsinatsiya.
+src/5-Modull/BotAiBrainLesson.jsx	370	QOLDA:ovqat	Narx va taom nomi bazadagi menyu bilan solishtiriladi.	Narx va taom nomi bazadagi menu bilan solishtiriladi.
+src/5-Modull/BotAiBrainLesson.jsx	811	QOLDA:ovqat	AI modeli juda ko'p matn asosida o'qitilgan, shuning uchun turli mavzularda gapira oladi. Lekin AvtoPizza menyusini u bilmaydi — buni unga aytish kerak.	AI modeli juda ko'p matn asosida o'qitilgan, shuning uchun turli mavzularda gapira oladi. Lekin AvtoPizza menusini u bilmaydi — buni unga aytish kerak.
+src/5-Modull/BotAiBrainLesson.jsx	954	QOLDA:ovqat	1) Xush kelibsiz! AvtoPizza'da bugun qaysi pitsani tanlaysiz? 2) Assalomu alaykum! Menyuni ko'rish uchun «Menyu» tugmasini bosing. 3) Salom! Buyurtma berishga y	1) Xush kelibsiz! AvtoPizza'da bugun qaysi pitsani tanlaysiz? 2) Assalomu alaykum! Menuni ko'rish uchun «Menu» tugmasini bosing. 3) Salom! Buyurtma berishga yor
+src/5-Modull/BotAiBrainLesson.jsx	1380	QOLDA:ovqat	«Ananasli pitsa» menyuda yo'q — AI to'qib chiqardi. Bu hallutsinatsiya: ishonch bilan aytilgan yolg'on.	«Ananasli pitsa» menuda yo'q — AI to'qib chiqardi. Bu hallutsinatsiya: ishonch bilan aytilgan yolg'on.
+src/5-Modull/BotAiBrainLesson.jsx	1381	QOLDA:ovqat	«Ananasli pitsa» menyuda yo'q — AI uni to'qib chiqardi.	«Ananasli pitsa» menuda yo'q — AI uni to'qib chiqardi.
+src/5-Modull/BotAiBrainLesson.jsx	1405	QOLDA:ovqat	«Sen AvtoPizza do'konining yordamchisisan. Qisqa, samimiy, aniq gapir. Faqat menyu va buyurtma haqida gaplash.»	«Sen AvtoPizza do'konining yordamchisisan. Qisqa, samimiy, aniq gapir. Faqat menu va buyurtma haqida gaplash.»
+src/5-Modull/BotAiBrainLesson.jsx	1490	QOLDA:ovqat	Tekshirmasdan yuborish xavfli: mijoz menyuda yo'q pitsani buyurtma qiladi.	Tekshirmasdan yuborish xavfli: mijoz menuda yo'q pitsani buyurtma qiladi.
+src/5-Modull/BotAiBrainLesson.jsx	1493	QOLDA:ovqat	AI javobidagi narx va taomni menyu bilan solishtiring.	AI javobidagi narx va taomni menu bilan solishtiring.
+src/5-Modull/BotAiBrainLesson.jsx	1540	QOLDA:ovqat	To'qib chiqarilgan pitsani menyu bilan tutdingiz	To'qib chiqarilgan pitsani menu bilan tutdingiz
+src/5-Modull/BotAiBrainLesson.jsx	1648	QOLDA:ovqat	AI menyuda yo'q «ananasli pitsa»ni aytdi. Bu nima?	AI menuda yo'q «ananasli pitsa»ni aytdi. Bu nima?
+src/5-Modull/BotAiBrainLesson.jsx	2393	QOLDA:ovqat	Masalan, menyuda yo'q «ananasli pitsa»	Masalan, menuda yo'q «ananasli pitsa»
+src/5-Modull/BotAiProjectLesson.jsx	719	QOLDA:ovqat	AvtoPizza boti: /start → salom va «Menyu» tugmasi; «Menyu» → 3 ta pitsa tugmasi; pitsa tanlandi → «Buyurtma qabul qilindi». Tugmalar inline.	AvtoPizza boti: /start → salom va «Menu» tugmasi; «Menu» → 3 ta pitsa tugmasi; pitsa tanlandi → «Buyurtma qabul qilindi». Tugmalar inline.
+src/6-Modull/FullSystemProjectLesson.jsx	749	QOLDA:ovqat	Brauzerda AvtoPizza menyusi va «Buyurtma» tugmasi.	Brauzerda AvtoPizza menusi va «Buyurtma» tugmasi.
+src/6-Modull/MobileAppPracticeLesson.jsx	168	KOD:qora	Menyu ekrani	Menu ekrani
+src/6-Modull/MobileAppPracticeLesson.jsx	168	KOD:qora	Menyuni backend'dan fetch qilib FlatList'da ko'rsat	Menuni backend'dan fetch qilib FlatList'da ko'rsat
+src/6-Modull/MobileAppPracticeLesson.jsx	168	KOD:qora	fetch(BACKEND + '/menyu') → <FlatList data={menyu} />	fetch(BACKEND + '/menu') → <FlatList data={menu} />
+src/6-Modull/MobileAppPracticeLesson.jsx	872	QOLDA:ovqat	Menyu va Tafsilot ekranlari (pitsalar, fetch)	Menu va Tafsilot ekranlari (pitsalar, fetch)
+src/6-Modull/PipelineProjectLesson.jsx	115	QOLDA:ovqat	Mijoz ko'radigan AvtoPizza sayti: pitsalar menyusi va «Buyurtma» tugmasi.	Mijoz ko'radigan AvtoPizza sayti: pitsalar menusi va «Buyurtma» tugmasi.
+src/6-Modull/PipelineProjectLesson.jsx	2089	QOLDA:ovqat	Frontend: pitsalar menyusi va «Buyurtma» tugmasi	Frontend: pitsalar menusi va «Buyurtma» tugmasi
+src/6-Modull/PmLesson25.jsx	3162	KOD:css	; } /* 🔴 YAKUN-EKRANI 58-QONUN BO'YICHA YIG'ILDI (1440×900 · 1280×800 da skrollsiz): matn, so'z kattaligi va tartib TEGILMAGAN — faqat ichki oraliq/padding qis	; } /* 🔴 YAKUN-EKRANI 58-QONUN BO'YICHA YIG'ILDI (1440×900 · 1280×800 da skrollsiz): matn, so'z kattaligi va tartib TEGILMAGAN — faqat ichki oraliq/padding qis
+src/6-Modull/ReactNativeAppLesson.jsx	719	QOLDA:ovqat	Qiziq fikr! Kichik misolda ishlaydi, lekin AvtoPizza menyusini kodga qo'lda yozib borish noqulay: narx o'zgarsa, kodni tuzatish kerak bo'ladi. Bugun ma'lumotni 	Qiziq fikr! Kichik misolda ishlaydi, lekin AvtoPizza menusini kodga qo'lda yozib borish noqulay: narx o'zgarsa, kodni tuzatish kerak bo'ladi. Bugun ma'lumotni b
+src/6-Modull/ReactNativeAppLesson.jsx	728	QOLDA:ovqat	O'tgan darsda bitta ekran qildingiz. Haqiqiy pitsa ilovasida har pitsaning tafsilot ekrani bor, menyu esa serverdan keladi. Tugmani bosing — qanday ko'rinishini	O'tgan darsda bitta ekran qildingiz. Haqiqiy pitsa ilovasida har pitsaning tafsilot ekrani bor, menu esa serverdan keladi. Tugmani bosing — qanday ko'rinishini 
+src/6-Modull/ReactNativeAppLesson.jsx	834	KOD:attr	Menyu.js	Menu.js
+src/6-Modull/ReactNativeAppLesson.jsx	889	QOLDA:ovqat	Menyu ekrani pastda. Pitsani bossangiz, Tafsilot ekrani 	Menu ekrani pastda. Pitsani bossangiz, Tafsilot ekrani 
+src/6-Modull/ReactNativeAppLesson.jsx	930	QOLDA:ovqat	Telefonda biror pitsani bosing → Tafsilot ekrani ochiladi. «‹ Orqaga» → Menyu ekraniga qaytadi.	Telefonda biror pitsani bosing → Tafsilot ekrani ochiladi. «‹ Orqaga» → Menu ekraniga qaytadi.
+src/6-Modull/ReactNativeAppLesson.jsx	952	KOD:attr	Menyu.js	Menu.js
+src/6-Modull/ReactNativeAppLesson.jsx	1012	KOD:attr	Menyu.js	Menu.js
+src/6-Modull/ReactNativeAppLesson.jsx	1054	QOLDA:ovqat	Ma'lumot serverda turadi: ilova backend'ga so'rov yuborib, undagi ma'lumotni oladi. Shu sabab menyuni kodning ichida qo'lda yozib yurish shart emas — backend'da	Ma'lumot serverda turadi: ilova backend'ga so'rov yuborib, undagi ma'lumotni oladi. Shu sabab menuni kodning ichida qo'lda yozib yurish shart emas — backend'dag
+src/6-Modull/ReactNativeAppLesson.jsx	1961	QOLDA:ovqat	Ikki ekranli AvtoPizza: Menyu + Tafsilot	Ikki ekranli AvtoPizza: Menu + Tafsilot
+src/6-Modull/ReactNativeAppLesson.jsx	1962	QOLDA:ovqat	Expo loyihangizda (`mobile/`) ikki ekran yig'ing: `Menyu` — FlatList bilan pitsalar ro'yxati; pitsani bossangiz, `navigation.navigate` bilan `Tafsilot` ekrani o	Expo loyihangizda (`mobile/`) ikki ekran yig'ing: `Menu` — FlatList bilan pitsalar ro'yxati; pitsani bossangiz, `navigation.navigate` bilan `Tafsilot` ekrani oc
+src/6-Modull/ReactNativeAppLesson.jsx	1962	QOLDA:ovqat	Соберите в своём проекте Expo (`mobile/`) два экрана: `Menyu` — список пицц через FlatList; по нажатию на пиццу через `navigation.navigate` открывается экран `T	Соберите в своём проекте Expo (`mobile/`) два экрана: `Menu` — список пицц через FlatList; по нажатию на пиццу через `navigation.navigate` открывается экран `Ta
+src/6-Modull/ReactNativeAppLesson.jsx	1966	QOLDA:ovqat	`Menyu` ekranda `useEffect` + `fetch` bilan `/menyu`dan pitsalarni oling — backend ishlayotganini avval brauzerda tekshiring	`Menu` ekranda `useEffect` + `fetch` bilan `/menu`dan pitsalarni oling — backend ishlayotganini avval brauzerda tekshiring
+src/6-Modull/ReactNativeAppLesson.jsx	1968	QOLDA:ovqat	`Tafsilot` ekranda pitsani `route.params.pitsa` dan oling, nomi va narxini ko'rsating; «Menyuga qaytish» tugmasi `navigation.goBack()` bilan Menyu ekraniga qayt	`Tafsilot` ekranda pitsani `route.params.pitsa` dan oling, nomi va narxini ko'rsating; «Menuga qaytish» tugmasi `navigation.goBack()` bilan Menu ekraniga qaytar
+src/6-Modull/ReactNativeAppLesson.jsx	1968	QOLDA:ovqat	На экране `Tafsilot` возьмите пиццу из `route.params.pitsa`, покажите название и цену; кнопка «Menyuga qaytish» через `navigation.goBack()` пусть вернёт к меню	На экране `Tafsilot` возьмите пиццу из `route.params.pitsa`, покажите название и цену; кнопка «Menuga qaytish» через `navigation.goBack()` пусть вернёт к меню
+src/6-Modull/ReactNativeAppLesson.jsx	2099	QOLDA:ovqat	Backend'dan ma'lumot: `useEffect` + `fetch` — AvtoPizza'ning o'sha API'si (`GET /menyu`)	Backend'dan ma'lumot: `useEffect` + `fetch` — AvtoPizza'ning o'sha API'si (`GET /menu`)
+src/6-Modull/ReactNativeAppLesson.jsx	2099	QOLDA:ovqat	Данные с бэкенда: `useEffect` + `fetch` — тот же API AvtoPizza (`GET /menyu`)	Данные с бэкенда: `useEffect` + `fetch` — тот же API AvtoPizza (`GET /menu`)
+src/6-Modull/ReactNativeBasicsLesson.jsx	820	QOLDA:ovqat	Mijozlar AvtoPizza menyusini 	Mijozlar AvtoPizza menusini 
+src/9-Modull/PmIdeaRiceLesson.jsx	2160	QOLDA:ovqat	Oshxona menyusi sahifasi	Oshxona menusi sahifasi
+src/9-Modull/PmTenIdeasLesson.jsx	1035	QOLDA:ovqat	«O'quvchilar uchun oshxona menyusini ko'rsatadigan bot» — nima yetishmaydi?	«O'quvchilar uchun oshxona menusini ko'rsatadigan bot» — nima yetishmaydi?
+src/9-Modull/PmTenIdeasLesson.jsx	1036	QOLDA:ovqat	«O'quvchilar uchun oshxona menyusini ko'rsatadigan bot» — 	«O'quvchilar uchun oshxona menusini ko'rsatadigan bot» — 
+src/bridge/lessons/BridgeKimUchunMuammo.jsx	1999	QOLDA:ovqat	Oshxona menyusini boshidan o'qib chiqishga	Oshxona menusini boshidan o'qib chiqishga
+src/pm/PmJtbdLesson.jsx	2687	KOD:css	; } /* Yordamchi havolalar: quti EMAS — mashq ostidagi ixcham qator. Ular yordamchi, asosiy harakat emas (F-0819-57). */ .wsxrow { display: flex; gap: 18px; fle	; } /* Yordamchi linklar: quti EMAS — mashq ostidagi ixcham qator. Ular yordamchi, asosiy harakat emas (F-0819-57). */ .wsxrow { display: flex; gap: 18px; flex-

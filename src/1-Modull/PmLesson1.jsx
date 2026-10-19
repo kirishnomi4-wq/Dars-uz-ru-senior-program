@@ -343,7 +343,7 @@ const RECAPS = {
         vis: { uz: <RcFlow items={['🎒 o\'quvchiga — oldindan buyurtma', '🧑‍💼 ofisga — doimiy tushlik']} sep="·" />, ru: <RcFlow items={['🎒 школьнику — заказ заранее', '🧑‍💼 офису — постоянный обед']} sep="·" /> },
         ask: { uz: 'Hamma sinfdoshingizga birdek yoqadigan bitta o\'yin bormi?', ru: 'Есть игра, которая нравится всем вашим одноклассникам одинаково?' } },
       { ic: '🔍', h: { uz: 'Tor auditoriya — kamchilik emas, kuch', ru: 'Узкая аудитория — не слабость, а сила' },
-        body: { uz: <>Auditoriya tor bo'lsa, saytda nima yozishni <b>aniq bilasiz</b>: menyu, narx, buyurtma.</>, ru: <>Когда аудитория узкая, вы <b>точно знаете</b>, что писать на сайте: меню, цену, заказ.</> },
+        body: { uz: <>Auditoriya tor bo'lsa, saytda nima yozishni <b>aniq bilasiz</b>: menu, narx, buyurtma.</>, ru: <>Когда аудитория узкая, вы <b>точно знаете</b>, что писать на сайте: меню, цену, заказ.</> },
         vis: { uz: <RcFlow items={['KIM aniq', 'MUAMMO aniq', 'YECHIM ham aniq']} />, ru: <RcFlow items={['КТО ясно', 'ПРОБЛЕМА ясна', 'РЕШЕНИЕ тоже ясно']} /> },
         ask: { uz: "O'zingiz izlagan narsani «hamma uchun» saytdan topish osonmi?", ru: 'Легко ли найти нужное вам на сайте «для всех»?' } },
       { ic: '🌍', h: { uz: 'Eng katta sayt ham tor auditoriyadan boshlangan', ru: 'Даже самый большой сайт начинался с узкой аудитории' },
@@ -1369,12 +1369,12 @@ const S8_QISM = {
   oldindan: { uz: 'Oldindan buyurtma berish', ru: 'Кнопка заказа заранее' },
   bugungi: { uz: "Bugungi buyurtmalar ro'yxati", ru: 'Заказы на сегодня' },
   oxirgi: { uz: 'Oxirgi buyurtmani takrorlash', ru: 'Повторить прошлый заказ' },
-  menyu: { uz: "Menyu va narxlar ro'yxati", ru: 'Меню и цены всех лавашей' }
+  menyu: { uz: "Menu va narxlar ro'yxati", ru: 'Меню и цены всех лавашей' }
 };
 const S8_SAVOL = {
   oquvchi: { savol: { uz: "O'quvchi saytda birinchi nimaga qaraydi?", ru: 'Куда школьник на сайте смотрит первым?' }, v: [
     { t: S8_QISM.bugungi, izoh: { uz: "Bu ro'yxat sotuvchiga kerak: o'quvchi buyurtma qabul qilmaydi.", ru: 'Этот список нужен продавцу: школьник заказы не принимает.' } },
-    { t: S8_QISM.menyu, izoh: { uz: 'Menyuni ko\'rish navbatdan qutqarmaydi, oldindan buyurtma qutqaradi.', ru: 'Меню не спасает от очереди, спасает заказ заранее.' } },
+    { t: S8_QISM.menyu, izoh: { uz: 'Menuni ko\'rish navbatdan qutqarmaydi, oldindan buyurtma qutqaradi.', ru: 'Меню не спасает от очереди, спасает заказ заранее.' } },
     { ok: true, t: S8_QISM.oldindan }
   ] },
   sotuvchi: { savol: { uz: 'Sotuvchi saytda birinchi nimaga qaraydi?', ru: 'Куда продавец на сайте смотрит первым?' }, v: [
@@ -1385,7 +1385,7 @@ const S8_SAVOL = {
   ofis: { savol: { uz: 'Doimiy xaridor saytda birinchi nimaga qaraydi?', ru: 'Куда постоянный покупатель на сайте смотрит первым?' }, v: [
     { t: S8_QISM.bugungi, izoh: { uz: "Bu ro'yxat sotuvchiga kerak; ofis xodimi o'zi buyurtma beradi.", ru: 'Этот список нужен продавцу; офисный работник сам делает заказ.' } },
     { ok: true, t: S8_QISM.oxirgi },
-    { t: S8_QISM.menyu, izoh: { uz: "U har kuni bir xil narsa oladi: menyuni qayta ko'rishi shart emas.", ru: 'Он каждый день берёт одно и то же: меню заново смотреть не нужно.' } }
+    { t: S8_QISM.menyu, izoh: { uz: "U har kuni bir xil narsa oladi: menuni qayta ko'rishi shart emas.", ru: 'Он каждый день берёт одно и то же: меню заново смотреть не нужно.' } }
   ] }
 };
 const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1432,7 +1432,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="bp-bar"><span className="bb-dots"><i /><i /><i /></span><span className="bp-url"><span className="lock">●</span>lavash.uz</span></div>
               <div className="bp-body" style={{ minHeight: 168 }}>
                 <div className="pg-in">
-                  <div className="site-header"><span className="site-brand"><span className="site-logo" style={{ background: '#C97B2D' }}>L</span><span className="site-name">{tr({ uz: "Lavash do'koni", ru: 'Лавашная' })}</span></span><span className="site-nav"><span>{tr({ uz: 'Menyu', ru: 'Меню' })}</span><span>{tr({ uz: 'Aloqa', ru: 'Контакты' })}</span></span></div>
+                  <div className="site-header"><span className="site-brand"><span className="site-logo" style={{ background: '#C97B2D' }}>L</span><span className="site-name">{tr({ uz: "Lavash do'koni", ru: 'Лавашная' })}</span></span><span className="site-nav"><span>{tr({ uz: 'Menu', ru: 'Меню' })}</span><span>{tr({ uz: 'Aloqa', ru: 'Контакты' })}</span></span></div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                     <div className={rowCls('oquvchi')}>{who('oquvchi')}{tr({ uz: <>📱 Oldindan buyurtma: <b>tayyor bo'lganda xabar keladi</b></>, ru: <>📱 Заказ заранее: <b>придёт сообщение, когда будет готово</b></> })}<span className="eye-cta" style={{ background: got('oquvchi') ? T.accent : T.ink3 }}>{tr({ uz: 'Buyurtma berish', ru: 'Заказать' })}</span></div>
                     <div className={rowCls('sotuvchi')}>{who('sotuvchi')}{tr({ uz: <>📋 Bugungi buyurtmalar: <b>7 ta</b> — 3 tasi yangi</>, ru: <>📋 Заказы на сегодня: <b>7</b> — из них 3 новых</> })}</div>
@@ -1473,7 +1473,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // har bir g'oya — bitta butun (guruh). To'g'ri g'oya = uchala bo'lak bir guruhdan.
   // Uchala auditoriya BITTA olamdan — maktab yonidagi lavash do'koni (91-qonun: bitta misol-ip)
   const GROUPS = {
-    mijoz: { kim: { uz: 'Birinchi marta kelgan yangi mijoz', ru: 'Новый клиент, пришедший впервые' }, muammo: { uz: 'Menyuda nima borligini va narxini bilmaydi', ru: 'Не знает, что в меню и сколько это стоит' }, yechim: { uz: 'Menyu va narxlarni rasm bilan ko\'rsatadigan sahifa', ru: 'Страница с меню и ценами в картинках' } },
+    mijoz: { kim: { uz: 'Birinchi marta kelgan yangi mijoz', ru: 'Новый клиент, пришедший впервые' }, muammo: { uz: 'Menuda nima borligini va narxini bilmaydi', ru: 'Не знает, что в меню и сколько это стоит' }, yechim: { uz: 'Menu va narxlarni rasm bilan ko\'rsatadigan sahifa', ru: 'Страница с меню и ценами в картинках' } },
     oquvchi: { kim: { uz: 'Tanaffusda shoshgan maktab o\'quvchisi', ru: 'Школьник, который спешит на перемене' }, muammo: { uz: 'Navbat uzun — tanaffusga ulgurmaydi', ru: 'Очередь длинная — не успевает за перемену' }, yechim: { uz: 'Oldindan buyurtma qilib, kelib olib ketish sahifasi', ru: 'Страница: заказать заранее и забрать' } },
     ofis: { kim: { uz: 'Har kuni tushlik oladigan ofis xodimi', ru: 'Офисный работник, который каждый день берёт обед' }, muammo: { uz: 'Har safar telefon qilib buyurtma berishga to\'g\'ri keladi', ru: 'Каждый раз приходится звонить, чтобы заказать' }, yechim: { uz: 'Doimiy tushlik-buyurtmani bir marta yozib qo\'yadigan sahifa', ru: 'Страница, где постоянный обед-заказ записывают один раз' } }
   };
@@ -1551,8 +1551,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const BUBBLE = {
     mijoz: {
       showing: { uz: '…', ru: '…' },
-      recognize: { uz: 'Ha, aynan! Menyuda nima bor, narxi qancha — bilmayman.', ru: 'Да, точно! Я не знаю, что в меню и сколько стоит.' },
-      convert: { uz: "Ajoyib! Endi kelishdan oldin menyu va narxni ko'rib olaman!", ru: 'Отлично! Теперь я посмотрю меню и цены ещё до прихода!' },
+      recognize: { uz: 'Ha, aynan! Menuda nima bor, narxi qancha — bilmayman.', ru: 'Да, точно! Я не знаю, что в меню и сколько стоит.' },
+      convert: { uz: "Ajoyib! Endi kelishdan oldin menu va narxni ko'rib olaman!", ru: 'Отлично! Теперь я посмотрю меню и цены ещё до прихода!' },
       'reject-p': { uz: "Menda bunday qiyinchilik yo'q — mening tashvishim boshqa…", ru: 'У меня нет такой трудности — меня беспокоит другое…' },
       'reject-s': { uz: "Qiyinchiligim shu, ammo bu sahifa menga yordam bermaydi…", ru: 'Трудность моя, но эта страница мне не помогает…' },
     },
@@ -2556,7 +2556,7 @@ const HW_TOKENS = [
 // Bank g'oyalari — 95-qonun olami (o'quvchi O'ZI boradigan joylar).
 const IDEA_BANK = [
   { id: 'togarak', ic: '🏫', muammo: { uz: "To'garak jadvali faqat devorda — uydan ko'rib bo'lmaydi", ru: 'Расписание кружка только на стене — из дома не посмотришь' }, yechim: { uz: 'Jadval va manzil sayti', ru: 'Сайт с расписанием и адресом' } },
-  { id: 'dokon', ic: '🛒', muammo: { uz: "Mahalla do'konida nima bor-yo'qligini borib ko'rmaguncha bilib bo'lmaydi", ru: 'Что есть в магазине у дома — не узнаешь, пока не сходишь' }, yechim: { uz: 'Menyu va narxlar sayti', ru: 'Сайт с меню и ценами' } },
+  { id: 'dokon', ic: '🛒', muammo: { uz: "Mahalla do'konida nima bor-yo'qligini borib ko'rmaguncha bilib bo'lmaydi", ru: 'Что есть в магазине у дома — не узнаешь, пока не сходишь' }, yechim: { uz: 'Menu va narxlar sayti', ru: 'Сайт с меню и ценами' } },
   { id: 'seksiya', ic: '⚽', muammo: { uz: "Sport seksiyasining vaqti va narxini telefon qilib so'rashga to'g'ri keladi", ru: 'Время и цену секции приходится узнавать по телефону' }, yechim: { uz: "Mashg'ulot vaqtlari sayti", ru: 'Сайт с расписанием тренировок' } },
   { id: 'kitob', ic: '📚', muammo: { uz: "Sinfda kimda qaysi kitob borligini hech kim bilmaydi", ru: 'Никто не знает, у кого в классе какая книга' }, yechim: { uz: "Kitob almashinuv ro'yxati sayti", ru: 'Сайт со списком обмена книгами' } },
 ];

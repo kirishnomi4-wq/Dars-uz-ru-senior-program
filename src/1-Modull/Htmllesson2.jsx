@@ -362,8 +362,8 @@ const RECAPS = {
         body: { uz: <>Sahifa ham uy kabi <b>uch bo'limga</b> bo'linadi: shift, xonalar va pol.</>, ru: <>Страница, как дом, делится на <b>три раздела</b>: потолок, комнаты и пол.</> },
         vis: <RcFlow items={['🔝 header', '🏠 main', '🔻 footer']} /> },
       { ic: '🏷️', h: { uz: 'header — sahifaning tepasi', ru: 'header — верх страницы' },
-        body: { uz: <><b className="mono">&lt;header&gt;</b> — shift kabi eng tepada: logotip, sayt nomi va menyu.</>, ru: <><b className="mono">&lt;header&gt;</b> — на самом верху, как потолок: логотип, название и меню.</> },
-        vis: <RcFlow items={[{ uz: 'Logo', ru: 'Лого' }, { uz: 'Menyu', ru: 'Меню' }]} sep="·" />,
+        body: { uz: <><b className="mono">&lt;header&gt;</b> — shift kabi eng tepada: logotip, sayt nomi va menu.</>, ru: <><b className="mono">&lt;header&gt;</b> — на самом верху, как потолок: логотип, название и меню.</> },
+        vis: <RcFlow items={[{ uz: 'Logo', ru: 'Лого' }, { uz: 'Menu', ru: 'Меню' }]} sep="·" />,
         ask: { uz: "Sevimli saytingizning header'ida nimalar bor?", ru: 'Что есть в header вашего любимого сайта?' } },
       { ic: '📮', h: { uz: 'main — asosiy, footer — past', ru: 'main — основное, footer — низ' },
         body: { uz: <><b className="mono">&lt;main&gt;</b> — o'rtada asosiy narsalar, <b className="mono">&lt;footer&gt;</b> — pastda aloqa va ©.</>, ru: <><b className="mono">&lt;main&gt;</b> — посередине самое важное, <b className="mono">&lt;footer&gt;</b> — внизу контакты и ©.</> },
@@ -1012,7 +1012,7 @@ const Screen4 = (props) => (
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri atributni tanlang", ru: 'Выберите верный атрибут' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: "Rasm faylining manzilini qaysi atribut ko'rsatadi?", ru: 'Какой атрибут указывает адрес файла картинки?' })}</h2></>}
     options={['`alt`', '`src`', '`href`', '`file`']} correctIdx={1}
     explainCorrect={tr({ uz: "`src` — rasm faylining manzili, brauzer rasmni shundan oladi.", ru: "`src` — адрес файла картинки, по нему браузер её загружает." })}
-    explainWrong={{ 0: tr({ uz: "alt — rasm chiqmasa ko'rinadigan matn, manzil emas.", ru: 'alt — текст на случай, если картинки нет, а не адрес.' }), 1: tr({ uz: "Inglizcha «manba» so'zidan qisqargan atributni eslang.", ru: 'Вспомните атрибут, сокращённый от английского «источник».' }), 2: tr({ uz: '`href` — havola manzili, u `a` tegida ishlatiladi.', ru: '`href` — адрес ссылки, он используется в теге `a`.' }), 3: tr({ uz: "`file` degan atribut HTML'da yo'q.", ru: 'Атрибута `file` в HTML нет.' }), default: tr({ uz: 'Inglizcha «manba» so\'zidan qisqargan atributni eslang.', ru: 'Вспомните атрибут, сокращённый от английского «источник».' }) }} />
+    explainWrong={{ 0: tr({ uz: "alt — rasm chiqmasa ko'rinadigan matn, manzil emas.", ru: 'alt — текст на случай, если картинки нет, а не адрес.' }), 1: tr({ uz: "Inglizcha «manba» so'zidan qisqargan atributni eslang.", ru: 'Вспомните атрибут, сокращённый от английского «источник».' }), 2: tr({ uz: '`href` — link manzili, u `a` tegida ishlatiladi.', ru: '`href` — адрес ссылки, он используется в теге `a`.' }), 3: tr({ uz: "`file` degan atribut HTML'da yo'q.", ru: 'Атрибута `file` в HTML нет.' }), default: tr({ uz: 'Inglizcha «manba» so\'zidan qisqargan atributni eslang.', ru: 'Вспомните атрибут, сокращённый от английского «источник».' }) }} />
 );
 
 // --- F-1019-04 (DE 213.22): qaror qadami — savol, 3 variant (biri to'g'ri, qolgani tipik xato), xatosiga bir qatorli sabab, qayta tanlash.
@@ -1056,9 +1056,9 @@ const S5_SAVOL = {
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's5', text: `Uyni tasavvur qiling: tepada shift, o'rtada xonalar, pastda pol. Sahifa ham xuddi shunday bo'limlarga bo'linadi: header — shift kabi tepada, main — xonalar kabi o'rtada, footer — pol kabi pastda. Har savolga javob bering.`, trigger: 'on_mount', waits_for: null }]);
   const PARTS = {
-    header: { tag: '<header>', word: { uz: 'Tepa', ru: 'Верх' }, role: { uz: 'Sahifaning tepasi: logotip, sayt nomi va menyu shu yerda turadi.', ru: 'Верх страницы: здесь логотип, название сайта и меню.' } },
+    header: { tag: '<header>', word: { uz: 'Tepa', ru: 'Верх' }, role: { uz: 'Sahifaning tepasi: logotip, sayt nomi va menu shu yerda turadi.', ru: 'Верх страницы: здесь логотип, название сайта и меню.' } },
     main:   { tag: '<main>', word: { uz: 'Asosiy qism', ru: 'Основная часть' }, role: { uz: 'Sahifaning asosiy qismi — matn, rasmlar, eng muhim narsalar shu yerda.', ru: 'Основная часть страницы — текст, картинки, всё самое важное здесь.' } },
-    footer: { tag: '<footer>', word: { uz: 'Pastki qism', ru: 'Нижняя часть' }, role: { uz: "Sahifaning eng pasti: aloqa, © belgisi (sayt kimniki ekani), qo'shimcha havolalar.", ru: 'Самый низ страницы: контакты, знак © (чей это сайт), дополнительные ссылки.' } }
+    footer: { tag: '<footer>', word: { uz: 'Pastki qism', ru: 'Нижняя часть' }, role: { uz: "Sahifaning eng pasti: aloqa, © belgisi (sayt kimniki ekani), qo'shimcha linklar.", ru: 'Самый низ страницы: контакты, знак © (чей это сайт), дополнительные ссылки.' } }
   };
   // q — javob topilgan bo'limlar soni; qaytganda (storedAnswer) ekran tugagan holatda ochiladi
   const [q, setQ] = useState(storedAnswer ? S5_TARTIB.length : 0);
@@ -1081,7 +1081,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <div className="col">
             {/* F-1019-04: bo'limlar endi bosilmaydi (213.22) — savol shu bo'lim haqida; teg javob topilgach ochiladi, tugagach bo'limni bosib vazifasini ko'rish mumkin */}
             <div className={'strukt qaror fade-up delay-2' + (done ? ' tugadi' : '')}>
-              <div className={zc('header')} onClick={() => tap('header')}><p className="szone-h">{tr({ uz: 'Logo · Menyu', ru: 'Лого · Меню' })}</p><p className="szone-d">{tr({ uz: 'sayt nomi va menyu', ru: 'название сайта и меню' })}</p><span className="szone-tag">{tagOf('header')}</span></div>
+              <div className={zc('header')} onClick={() => tap('header')}><p className="szone-h">{tr({ uz: 'Logo · Menu', ru: 'Лого · Меню' })}</p><p className="szone-d">{tr({ uz: 'sayt nomi va menu', ru: 'название сайта и меню' })}</p><span className="szone-tag">{tagOf('header')}</span></div>
               <div className={zc('main') + ' szone-main'} onClick={() => tap('main')}><p className="szone-h">{tr({ uz: 'Asosiy qism', ru: 'Основная часть' })}</p><p className="szone-d">{tr({ uz: 'matn, rasmlar, eng muhim narsa', ru: 'текст, картинки, самое важное' })}</p><span className="szone-tag">{tagOf('main')}</span></div>
               <div className={zc('footer')} onClick={() => tap('footer')}><p className="szone-h">{tr({ uz: 'Aloqa · © 2026', ru: 'Контакты · © 2026' })}</p><p className="szone-d">{tr({ uz: "pastki ma'lumotlar", ru: 'нижняя информация' })}</p><span className="szone-tag">{tagOf('footer')}</span></div>
             </div>
@@ -1119,11 +1119,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 5b — TEST (struktura) =====
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
-    audioText="Sahifaning eng tepasidagi logotip va menyu qaysi bo'limga joylanadi?"
-    questionText="Logotip va menyu qaysi bo'limga joylanadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sahifaning tepasidagi <span className="italic" style={{ color: T.accent }}>logotip va menyu</span> qaysi bo'limga joylanadi?</>, ru: <>В какой раздел помещаются <span className="italic" style={{ color: T.accent }}>логотип и меню</span> наверху страницы?</> })}</h2></>}
+    audioText="Sahifaning eng tepasidagi logotip va menu qaysi bo'limga joylanadi?"
+    questionText="Logotip va menu qaysi bo'limga joylanadi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Sahifaning tepasidagi <span className="italic" style={{ color: T.accent }}>logotip va menu</span> qaysi bo'limga joylanadi?</>, ru: <>В какой раздел помещаются <span className="italic" style={{ color: T.accent }}>логотип и меню</span> наверху страницы?</> })}</h2></>}
     options={['`<footer>`', '`<main>`', '`<header>`', '`<img>`']} correctIdx={2}
-    explainCorrect={tr({ uz: "`header` — sahifa tepasi: logotip va menyu shu yerda.", ru: '`header` — верх страницы: здесь логотип и меню.' })}
+    explainCorrect={tr({ uz: "`header` — sahifa tepasi: logotip va menu shu yerda.", ru: '`header` — верх страницы: здесь логотип и меню.' })}
     explainWrong={{ 0: tr({ uz: "`footer` — sahifaning pastki qismi, tepasi emas.", ru: '`footer` — нижняя часть страницы, а не верх.' }), 1: tr({ uz: "`main` — o'rtadagi asosiy qism, sahifa tepasi emas.", ru: '`main` — основная часть посередине, а не верх страницы.' }), 2: tr({ uz: "Uy misolini eslang: shift tepada, pol pastda.", ru: 'Вспомните пример с домом: потолок сверху, пол внизу.' }), 3: tr({ uz: "`<img>` — rasm tegi, sahifa bo'limi emas.", ru: '`<img>` — тег картинки, а не раздел страницы.' }), default: tr({ uz: "Uy misolini eslang: shift tepada, pol pastda.", ru: 'Вспомните пример с домом: потолок сверху, пол внизу.' }) }} />
 );
 
@@ -1354,7 +1354,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const MAX = 6;
   const CHIPS = [{ key: 'h1', label: { uz: 'Sarlavha', ru: 'Заголовок' }, tag: 'h1' }, { key: 'img', label: { uz: 'Rasm', ru: 'Картинка' }, tag: 'img' }, { key: 'header', label: { uz: "Bo'lim", ru: 'Раздел' }, tag: 'header' }, { key: 'form', label: { uz: 'Forma', ru: 'Форма' }, tag: 'form' }, { key: 'p', label: { uz: 'Matn', ru: 'Текст' }, tag: 'p' }];
   // UZ-RU: matn-buyruq tekshiruvi — ruscha kalit so'zlar ham qo'shildi (chip-buyruqlar ikkala tilda ishlaydi)
-  const detect = (txt) => { const t = (txt || '').toLowerCase(); if (/sarlavha|ism|title|bosh|заголовок|имя/.test(t)) return 'h1'; if (/rasm|surat|img|foto|картин|фото|изображ/.test(t)) return 'img'; if (/bo.?lim|header|menyu|struktura|footer|раздел|меню|структур/.test(t)) return 'header'; if (/forma|form|anketa|input|aloqa|форм|анкет|контакт/.test(t)) return 'form'; if (/matn|paragraf|haqim|tavsif|yoz|текст|абзац|параграф|опис|напиш/.test(t)) return 'p'; return null; };
+  const detect = (txt) => { const t = (txt || '').toLowerCase(); if (/sarlavha|ism|title|bosh|заголовок|имя/.test(t)) return 'h1'; if (/rasm|surat|img|foto|картин|фото|изображ/.test(t)) return 'img'; if (/bo.?lim|header|menyu|menu|struktura|footer|раздел|меню|структур/.test(t)) return 'header'; if (/forma|form|anketa|input|aloqa|форм|анкет|контакт/.test(t)) return 'form'; if (/matn|paragraf|haqim|tavsif|yoz|текст|абзац|параграф|опис|напиш/.test(t)) return 'p'; return null; };
   const elCode = (type) => { switch (type) { case 'h1': return <><Tg>{'<h1>'}</Tg>{tr({ uz: 'Mening sahifam', ru: 'Моя страница' })}<Tg>{'</h1>'}</Tg></>; case 'p': return <><Tg>{'<p>'}</Tg>{tr({ uz: "Men HTML o'rganyapman.", ru: 'Я учу HTML.' })}<Tg>{'</p>'}</Tg></>; case 'img': return <><Tg>{'<img '}</Tg><At>src</At>=<Sr>"tog.jpg"</Sr> <At>alt</At>=<Sr>"{tr({ uz: "Tog' rasmi", ru: 'Фото горы' })}"</Sr><Tg>{'>'}</Tg></>; case 'header': return <><Tg>{'<header>'}</Tg>{'\n    '}<Tg>{'<h1>'}</Tg>Logo<Tg>{'</h1>'}</Tg>{'\n  '}<Tg>{'</header>'}</Tg></>; case 'form': return <><Tg>{'<form>'}</Tg>{'\n    '}<Tg>{'<input>'}</Tg>{'\n    '}<Tg>{'<button>'}</Tg>{tr({ uz: 'Yuborish', ru: 'Отправить' })}<Tg>{'</button>'}</Tg>{'\n  '}<Tg>{'</form>'}</Tg></>; default: return null; } };
   const elView = (type, i) => { switch (type) { case 'h1': return <h1 key={i} style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(18px,2.8vw,24px)', margin: '0 0 6px', color: T.ink }}>{tr({ uz: 'Mening sahifam', ru: 'Моя страница' })}</h1>; case 'p': return <p key={i} style={{ fontFamily: 'Georgia, serif', margin: '0 0 6px', color: T.ink, fontSize: 'clamp(13px,1.8vw,15px)' }}>{tr({ uz: "Men HTML o'rganyapman.", ru: 'Я учу HTML.' })}</p>; case 'img': return <span key={i} style={{ display: 'block', marginBottom: 6 }}><Photo kind="tog" w={150} h={96} alt={tr({ uz: "Tog' rasmi", ru: 'Фото горы' })} /></span>; case 'header': return <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: T.bg, borderRadius: 8, padding: '8px 12px', marginBottom: 6 }}><b style={{ fontFamily: "'Manrope', sans-serif", color: T.ink, fontSize: 14 }}>Logo</b><span style={{ fontFamily: "'Manrope', sans-serif", fontSize: 12, color: T.ink2 }}>{tr({ uz: 'Asosiy · Aloqa', ru: 'Главная · Контакты' })}</span></div>; case 'form': return <div key={i} style={{ display: 'flex', gap: 6, marginBottom: 6, flexWrap: 'wrap' }}><span style={{ background: T.bg, border: `1px solid ${T.ink3}55`, borderRadius: 8, padding: '6px 12px', fontFamily: "'Manrope', sans-serif", fontSize: 12, color: T.ink3 }}>{tr({ uz: 'Ismingiz…', ru: 'Ваше имя…' })}</span><span style={{ background: T.accent, color: '#fff', borderRadius: 8, padding: '6px 12px', fontFamily: "'Manrope', sans-serif", fontWeight: 700, fontSize: 12 }}>{tr({ uz: 'Yuborish', ru: 'Отправить' })}</span></div>; default: return null; } };
   const [items, setItems] = useState([]);
@@ -1702,7 +1702,7 @@ const QUIZ_BANK = [
   { q: { uz: "Sahifaga rasm qo'shish uchun qaysi teg ishlatiladi?", ru: 'Какой тег используется, чтобы добавить картинку на страницу?' }, opts: ["`<img>`", "`<image>`", "`<src>`", "`<pic>`"], correct: 0 },
   { q: { uz: "Rasmning manzili (qayerdaligi) qaysi atributga yoziladi?", ru: 'В какой атрибут пишется адрес картинки (где она лежит)?' }, opts: ["`href`", "`alt`", "`src`", "`link`"], correct: 2 },
   { q: { uz: "Rasm yuklanmasa o'rniga chiqadigan matn qaysi atribut?", ru: "Какой атрибут — текст вместо незагрузившейся картинки?" }, opts: ["`title`", "`alt`", "`name`", "`text`"], correct: 1 },
-  { q: { uz: "Logo va asosiy menyu odatda qaysi bo'limga joylanadi?", ru: 'В какой раздел обычно помещаются лого и главное меню?' }, opts: ["`<main>`", "`<footer>`", "`<aside>`", "`<header>`"], correct: 3 },
+  { q: { uz: "Logo va asosiy menu odatda qaysi bo'limga joylanadi?", ru: 'В какой раздел обычно помещаются лого и главное меню?' }, opts: ["`<main>`", "`<footer>`", "`<aside>`", "`<header>`"], correct: 3 },
   { q: { uz: "Sahifaning ASOSIY mazmuni qaysi teg ichiga yoziladi?", ru: 'Внутрь какого тега пишется ОСНОВНОЕ содержимое страницы?' }, opts: ["`<header>`", "`<main>`", "`<footer>`", "`<body2>`"], correct: 1 },
   { q: { uz: "Sahifaning eng pastki qismi (aloqa, ©) uchun qaysi teg?", ru: "Какой тег для самой нижней части страницы (контакты, ©)?" }, opts: ["`<end>`", "`<bottom>`", "`<header>`", "`<footer>`"], correct: 3 },
   { q: { uz: "Butun formani o'rab turuvchi teg qaysi?", ru: 'Какой тег оборачивает всю форму?' }, opts: ["`<form>`", "`<input>`", "`<fieldset>`", "`<div>`"], correct: 0 },
@@ -2166,7 +2166,7 @@ const HTML2_FLASHCARDS = [
   { front: { uz: "Sahifaga rasm qo'yish uchun qaysi teg kerak?", ru: 'Какой тег нужен, чтобы вставить картинку на страницу?' }, back: '<img>', note: { uz: "yopuvchi tegi yo'q — yolg'iz yoziladi", ru: 'закрывающего тега нет — пишется один' } },
   { front: { uz: 'Rasm faylining manzili qaysi atributga yoziladi?', ru: 'В какой атрибут пишется адрес файла картинки?' }, back: 'src', note: '<img src="mushuk.jpg">' },
   { front: { uz: 'Rasm yuklanmasa, uning joyida qaysi atribut matni chiqadi?', ru: 'Текст какого атрибута появится, если картинка не загрузилась?' }, back: 'alt', note: { uz: "shu matnni ko'zi ojiz odamlarning dasturi ham o'qib beradi", ru: 'этот текст читает и программа незрячих людей' } },
-  { front: { uz: 'Logotip va menyu sahifaning qaysi bo\'limida turadi?', ru: 'В каком разделе страницы стоят логотип и меню?' }, back: '<header>', note: { uz: 'uy shifti kabi — eng tepada', ru: 'как потолок в доме — на самом верху' } },
+  { front: { uz: 'Logotip va menu sahifaning qaysi bo\'limida turadi?', ru: 'В каком разделе страницы стоят логотип и меню?' }, back: '<header>', note: { uz: 'uy shifti kabi — eng tepada', ru: 'как потолок в доме — на самом верху' } },
   { front: { uz: "Sahifaning eng muhim mazmuni qaysi bo'limga yoziladi?", ru: 'В какой раздел пишется самое важное содержимое страницы?' }, back: '<main>', note: { uz: 'uy xonalari kabi — o\'rtada: matn va rasmlar', ru: 'как комнаты в доме — посередине: текст и картинки' } },
   { front: { uz: "Aloqa va © belgisi qaysi bo'limda bo'ladi?", ru: 'В каком разделе находятся контакты и знак ©?' }, back: '<footer>', note: { uz: 'uy poli kabi — eng pastda', ru: 'как пол в доме — в самом низу' } },
   { front: { uz: 'Bir nechta elementni bitta qutiga yig\'ish uchun qaysi teg kerak?', ru: 'Какой тег нужен, чтобы собрать несколько элементов в одну коробку?' }, back: '<div>', note: { uz: 'ichidagilarni birga saqlaydigan quti', ru: 'коробка, которая держит содержимое вместе' } },
@@ -2352,7 +2352,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
 
 // ===== 🏅 ACHIEVEMENTS (nishonlar) — dars davomidagi real bosqichlar uchun =====
 const ACHIEVEMENTS = {
-  struktura: { icon: '🧱', name: 'Room by Room!', desc: { uz: "Logotip va menyu joyini to'g'ri topdingiz", ru: "Вы верно нашли место логотипа и меню" } },
+  struktura: { icon: '🧱', name: 'Room by Room!', desc: { uz: "Logotip va menu joyini to'g'ri topdingiz", ru: "Вы верно нашли место логотипа и меню" } },
   forma:     { icon: '📮', name: 'Sent It!',      desc: { uz: "Formani to'ldirib yubordingiz", ru: 'Вы заполнили и отправили форму' } },
   debugger:  { icon: '🐞', name: 'Nice Catch!',   desc: { uz: 'DevTools bilan buzuq kodni topib tuzatdingiz', ru: 'Вы нашли и починили сломанный код через DevTools' } },
   graduate:  { icon: '🏆', name: 'Level Up!',     desc: { uz: "Ikkinchi HTML darsini to'liq yakunladingiz", ru: 'Вы полностью прошли второй урок HTML' } },

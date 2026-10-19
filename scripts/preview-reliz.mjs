@@ -8,6 +8,7 @@
 //      --api   staging → https://staging-dars-api.coddycamp.uz · prod → sukut (dars-api.coddycamp.uz)
 //      --moduls  LMS modul id'lari: `2-6` (sukut) · `7-14` · `2-14` · `2,3,9`. 2–6 → IT-ROYXAT-70 bilan solishtiriladi;
 //                hamma modul → lessonId takrorsiz + server/data/lesson-catalog.json da bor (F-1017-226: 7–14 uchun LMS ro'yxati hali yo'q).
+//      --suffix v3  fayl nomiga qo'shimcha (yuklash-papka --suffix) — CRM ro'yxatida eski/yangi ajralsin (F-1019-10)
 //      --tez   preview-sinovi tanlanma bilan (har moduldan 1 dars + 1 shared); sukut — hamma darslar
 //      --shared  tashqi-modulli (.shared) variantlarni ham yig'ish/sinash. SUKUTDA YO'Q (F-1017-226, DE 221-qonun):
 //                kompilyator doim dars ichida; LMS artefakt URL'i almashtirishda o'zgaradi, eski 404 — shared yo'li yopilgan.
@@ -31,6 +32,7 @@ const OUT = opt('--out') ? resolve(opt('--out')) : null;
 const API = opt('--api');
 const TEZ = args.includes('--tez');
 const MODS = (opt('--moduls') || '2-6').split(',').flatMap((p) => { const m = /^(\d+)-(\d+)$/.exec(p.trim()); return m ? Array.from({ length: +m[2] - +m[1] + 1 }, (_, i) => String(+m[1] + i)) : [p.trim()]; });
+const SUFFIX = opt('--suffix'); // F-1019-10: fayl nomiga qo'shimcha (`01-InternetLesson-v3.jsx`) — CRM'da eski/yangi ajralsin
 const SHARED = args.includes('--shared'); // F-1017-226 / DE 221: sukutda shared qadamlar o'tkaziladi
 const SPEC = 'https://go.coddycamp.uz/uploads/course_artifacts/81a985c6a19b3e7f7d39be9fda07af4e.jsx'; // LMS'dagi kompilyator-modul
 const API_URL = API === 'staging' ? 'https://staging-dars-api.coddycamp.uz' : API === 'prod' ? '' : null;
@@ -108,7 +110,7 @@ step(`ro'yxat: ${lessons.length} dars (${perMod})${l26.length ? ` · 2–6 kutil
 const env = { DARS_API_URL: API_URL };
 const yakkaDir = join(OUT, 'yakka'), sharedDir = join(OUT, 'shared');
 {
-  const y = run(process.execPath, ['scripts/yuklash-papka.mjs', '--out', yakkaDir, '--moduls', MODS.join(','), ...(skipHit.size ? ['--skip', [...skipHit].join(',')] : []), '--uyga-vazifasiz'], env);
+  const y = run(process.execPath, ['scripts/yuklash-papka.mjs', '--out', yakkaDir, '--moduls', MODS.join(','), ...(skipHit.size ? ['--skip', [...skipHit].join(',')] : []), ...(SUFFIX ? ['--suffix', SUFFIX] : []), '--uyga-vazifasiz'], env);
   const files = existsSync(yakkaDir) ? walk(yakkaDir).filter((f) => f.endsWith('.jsx')) : [];
   step(`yakka yig'ish (yuklash-papka): ${files.length} fayl`, y.status === 0 && files.length === lessons.length, strip(y.stderr).trim().slice(0, 300));
 }

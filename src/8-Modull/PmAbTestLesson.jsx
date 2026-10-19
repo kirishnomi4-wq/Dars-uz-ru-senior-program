@@ -2351,7 +2351,7 @@ const HW_KARTA = [
   { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
 ];
 const HW_QADAM = [
-  { uz: "Netlify havolangizni 3–5 kishiga yuboring (oila, do'stlar): «Bo'sh vaqtni tanlab ko'ring». Ism va telefon o'rniga namuna yozishlarini ayting.", ru: "Отправьте ссылку Netlify 3–5 людям (семья, друзья): «Попробуйте выбрать свободное время». Попросите вместо имени и телефона вписать что-нибудь для примера." },
+  { uz: "Netlify linkingizni 3–5 kishiga yuboring (oila, do'stlar): «Bo'sh vaqtni tanlab ko'ring». Ism va telefon o'rniga namuna yozishlarini ayting.", ru: "Отправьте ссылку Netlify 3–5 людям (семья, друзья): «Попробуйте выбрать свободное время». Попросите вместо имени и телефона вписать что-нибудь для примера." },
   { uz: "Ular kirgan kuni `/dashboard` ni oching va A, B qatorini yozib qo'ying: vaqtni tanladi, band qildi, foiz.", ru: 'В день, когда они зайдут, откройте `/dashboard` и запишите строки A и B: выбрали время, забронировали, процент.' },
   { uz: "Amaliyot 1 da saqlagan promptni o'z loyihangizga yuboring; hodisalar hali bo'lmasa — saqlab qo'ying.", ru: 'Отправьте промпт, сохранённый в Практике 1, в свой проект; если событий ещё нет — сохраните его.' }
 ];

@@ -630,23 +630,23 @@ const ISHGA_TUSHIRISH = {
   reja: [
     { id: 'b1', kanal: { uz: 'sinf chati va mahalla futbol guruhi', ru: 'чат класса и футбольная группа махалли' }, nima: { uz: "ikkinchi post («ilova chiqdi»)", ru: 'второй пост («приложение вышло»)' }, kutilgan: 20, qachon: { uz: 'ishga tushirish kuni', ru: 'день запуска' } },
     { id: 'b2', kanal: { uz: 'maktab chati (parallel sinflar; chat egasidan ruxsat)', ru: 'школьный чат (параллельные классы; разрешение владельца чата)' }, nima: { uz: 'post — birinchi qatori parallel sinflarga moslab', ru: 'пост — первая строка под параллельные классы' }, kutilgan: 35, qachon: { uz: 'birinchi hafta', ru: 'первая неделя' } },
-    { id: 'b3', kanal: { uz: "har o'yin e'loni bilan birga havola: tashkilotchilar xohlasa o'z jamoasiga yuboradi", ru: 'ссылка вместе с каждым объявлением игры: организаторы по желанию отправляют своей команде' }, nima: { uz: 'lending havolasi', ru: 'ссылка на лендинг' }, kutilgan: 50, qachon: { uz: "har yangi e'londa", ru: 'при каждом новом объявлении' } }
+    { id: 'b3', kanal: { uz: "har o'yin e'loni bilan birga link: tashkilotchilar xohlasa o'z jamoasiga yuboradi", ru: 'ссылка вместе с каждым объявлением игры: организаторы по желанию отправляют своей команде' }, nima: { uz: 'lending linki', ru: 'ссылка на лендинг' }, kutilgan: 50, qachon: { uz: "har yangi e'londa", ru: 'при каждом новом объявлении' } }
   ],
   sanoq: { royxat: 20, sinfdosh: 11, guruh: 9, asosiy: 8 },
-  yol: [{ uz: 'post', ru: 'пост' }, { uz: 'lending', ru: 'лендинг' }, { uz: 'havola', ru: 'ссылка' }, { uz: 'ilova', ru: 'приложение' }, { uz: "ro'yxatdan o'tdi", ru: 'зарегистрировался' }, { uz: "qo'shildi", ru: 'присоединился' }],
+  yol: [{ uz: 'post', ru: 'пост' }, { uz: 'lending', ru: 'лендинг' }, { uz: 'link', ru: 'ссылка' }, { uz: 'ilova', ru: 'приложение' }, { uz: "ro'yxatdan o'tdi", ru: 'зарегистрировался' }, { uz: "qo'shildi", ru: 'присоединился' }],
   lending: {
     sarlavha: { uz: "Mahalla futboliga jamoani bir joyda yig'ing", ru: 'Соберите команду для футбола в махалле в одном месте' },
     tugma: { uz: "Qo'shilmoqchiman", ru: 'Хочу присоединиться' },
     bolimH: { uz: "Qanday qo'shilaman", ru: 'Как присоединиться' },
-    bolim: { uz: "Hozircha o'rnatish havolasi yo'q.", ru: 'Пока ссылки для установки нет.' },
+    bolim: { uz: "Hozircha o'rnatish linki yo'q.", ru: 'Пока ссылки для установки нет.' },
     android: { uz: 'Android: ilovani o\'rnatish', ru: 'Android: установить приложение' },
     iphone: { uz: 'iPhone: brauzerda ochish', ru: 'iPhone: открыть в браузере' },
     ogoh: [{ uz: "Android o'rnatishda ogohlantirish ko'rsatadi — ilova do'kondan emas, to'g'ridan-to'g'ri o'rnatiladi.", ru: 'Android при установке показывает предупреждение — приложение ставится не из магазина, а напрямую.' }, { uz: "iPhone'da eslatma hozircha yo'q.", ru: 'На iPhone напоминаний пока нет.' }],
     siyosat: { uz: 'Maxfiylik siyosati', ru: 'Политика конфиденциальности' }
   },
   // 6-darsdagi birinchi post (tayanch 1.6, so'zma-so'z) — chatda eski post bo'lib turadi (SABOQ 33: bo'sh chat o'rnida haqiqiy mazmun)
-  post1: { uz: "Mahalla futbolchilari, Shanba o'yiniga kim kelishini bitta joyda ko'rish uchun «Maydon Jamoa» ilovasini qurdim: o'yin e'lon qilinadi, «Qo'shilaman» bosiladi, nechta odam yig'ilgani ko'rinib turadi. Ilova ishlayapti, o'rnatish havolasi hozircha yo'q — sahifasini ko'ring: maydon-jamoa-….netlify.app", ru: 'Футболисты махалли, чтобы видеть в одном месте, кто придёт на субботнюю игру, я построил приложение «Maydon Jamoa»: объявляется игра, нажимают «Присоединяюсь», видно, сколько людей собралось. Приложение работает, ссылки для установки пока нет — посмотрите страницу: maydon-jamoa-….netlify.app' },
-  post2: { uz: "Maydon Jamoa chiqdi. Shanba, 18:00 o'yini ilovada turibdi — «Qo'shilaman» ni bosing, nechta odam yig'ilgani ko'rinadi. Android va iPhone uchun havola: {lending manzili}", ru: "Вышло приложение «Maydon Jamoa». Игра в субботу, 18:00, уже в нём — нажмите «Присоединяюсь», видно, сколько людей собралось. Ссылка для Android и iPhone: {lending manzili}" },
+  post1: { uz: "Mahalla futbolchilari, Shanba o'yiniga kim kelishini bitta joyda ko'rish uchun «Maydon Jamoa» ilovasini qurdim: o'yin e'lon qilinadi, «Qo'shilaman» bosiladi, nechta odam yig'ilgani ko'rinib turadi. Ilova ishlayapti, o'rnatish linki hozircha yo'q — sahifasini ko'ring: maydon-jamoa-….netlify.app", ru: 'Футболисты махалли, чтобы видеть в одном месте, кто придёт на субботнюю игру, я построил приложение «Maydon Jamoa»: объявляется игра, нажимают «Присоединяюсь», видно, сколько людей собралось. Приложение работает, ссылки для установки пока нет — посмотрите страницу: maydon-jamoa-….netlify.app' },
+  post2: { uz: "Maydon Jamoa chiqdi. Shanba, 18:00 o'yini ilovada turibdi — «Qo'shilaman» ni bosing, nechta odam yig'ilgani ko'rinadi. Android va iPhone uchun link: {lending manzili}", ru: "Вышло приложение «Maydon Jamoa». Игра в субботу, 18:00, уже в нём — нажмите «Присоединяюсь», видно, сколько людей собралось. Ссылка для Android и iPhone: {lending manzili}" },
   qadamlar: [{ nom: 'ochdi', y: { uz: 'ochdi', ru: 'открыл' } }, { nom: 'royxatdan-otdi', y: { uz: "ro'yxatdan o'tdi", ru: 'зарегистрировался' } }, { nom: 'qoshildi', y: { uz: "qo'shildi", ru: 'присоединился' } }, { nom: 'tasdiqladi', y: { uz: 'kelishini tasdiqladi', ru: 'подтвердил приход' } }],
   maxfiylik: {
     sarlavha: { uz: 'Maydon Jamoa · maxfiylik siyosati', ru: 'Maydon Jamoa · политика конфиденциальности' },
@@ -807,7 +807,7 @@ const ItTelefon = ({ ekran = 'oyinlar', login, telHalqa, onTel, silk, gap, siyos
         <span className="it-ekran" key="e">
           <b className="it-tel-sar">{tr({ uz: "E'lon berish", ru: 'Объявить игру' })}</b>
           <span className="it-karta"><b>{tr(o.kun)}, {o.soat}</b><span>{tr(o.joy)}</span><b className="it-son">0 / {o.kerak}</b></span>
-          <span className={cxx('it-hv-chip', havolaUch && 'uch')}>{tr({ uz: 'havola', ru: 'ссылка' })} ›</span>
+          <span className={cxx('it-hv-chip', havolaUch && 'uch')}>{tr({ uz: 'link', ru: 'ссылка' })} ›</span>
         </span>
       )}
       {ekran === 'hisob' && (
@@ -876,7 +876,7 @@ const SanoqKartalar = ({ royxat, asosiy, osti1, osti2, kichik, sanab = true, dar
 const YUBORISH = [
   { nom: { uz: "Ma'lumot", ru: 'Данные' }, savol: { uz: "faqat kerakli minimum so'raladimi?", ru: "запрашивается ли только необходимый минимум?" }, hozir: { uz: "hozir: telefon so'raladi ✗", ru: "сейчас: запрашивается телефон ✗" }, blok: { uz: 'Amaliyot 1', ru: 'Практика 1' } },
   { nom: { uz: "O'lchov", ru: 'Измерение' }, savol: { uz: 'qadamlar sanaladimi?', ru: 'считаются ли шаги?' }, hozir: { uz: 'hozir: sanalmaydi ✗', ru: 'сейчас: не считаются ✗' }, blok: { uz: 'Amaliyot 1', ru: 'Практика 1' } },
-  { nom: { uz: 'Havola', ru: 'Ссылка' }, savol: { uz: 'odam ilovani qanday ochadi?', ru: 'как человек откроет приложение?' }, hozir: { uz: "hozir: havola yo'q ✗", ru: 'сейчас: ссылки нет ✗' }, blok: { uz: 'Amaliyot 2', ru: 'Практика 2' } }
+  { nom: { uz: 'Link', ru: 'Ссылка' }, savol: { uz: 'odam ilovani qanday ochadi?', ru: 'как человек откроет приложение?' }, hozir: { uz: "hozir: link yo'q ✗", ru: 'сейчас: ссылки нет ✗' }, blok: { uz: 'Amaliyot 2', ru: 'Практика 2' } }
 ];
 const YuborishJadval = ({ n, yangi }) => (
   <div className="it-jadval it-yub">
@@ -891,7 +891,7 @@ const YuborishJadval = ({ n, yangi }) => (
 
 // ===== SCREEN 0 — KIRISH (QKirish; ballsiz — J-026; «Aynan!» / «Qiziq fikr!»; ikkala tanlovda vizual bir xil) =====
 const HOOK_OPTS = [
-  { id: 'a', label: { uz: 'Havolani hoziroq hamma tanishlarimga yuboraman', ru: 'Прямо сейчас отправлю ссылку всем знакомым' } },
+  { id: 'a', label: { uz: 'Linkni hoziroq hamma tanishlarimga yuboraman', ru: 'Прямо сейчас отправлю ссылку всем знакомым' } },
   { id: 'b', label: { uz: 'Avval reja tuzaman: kimga, nimani va qachon', ru: 'Сначала составлю план: кому, что и когда' } }
 ];
 const HOOK_JAVOB = {
@@ -922,7 +922,7 @@ const REJA = [
   { t: { uz: '50 foydalanuvchiga uch bosqichli reja tuzing', ru: 'Составьте план из трёх этапов на 50 пользователей' }, teg: { uz: 'reja', ru: 'план' } },
   { t: { uz: "Ro'yxatdan o'tishda faqat keraklisini so'rang", ru: 'При регистрации спрашивайте только нужное' }, teg: { uz: "ma'lumot", ru: 'данные' } },
   { t: { uz: 'Ilovada qadamlar sanashini yoqing', ru: 'Включите подсчёт шагов в приложении' }, teg: { uz: "o'lchov", ru: 'измерение' } },
-  { t: { uz: "Havolani lendingga qo'yib, post yuboring", ru: "Поставьте ссылку на лендинге и отправьте пост" }, teg: { uz: 'havola', ru: 'ссылка' } }
+  { t: { uz: "Linkni lendingga qo'yib, post yuboring", ru: "Поставьте ссылку на лендинге и отправьте пост" }, teg: { uz: 'link', ru: 'ссылка' } }
 ];
 const RejaChizma = () => (
   <div className="fu-rj">
@@ -1084,7 +1084,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tushuncha · yuborishdan oldin', ru: 'Понятие · перед отправкой' })} screen={screen} scrollSignal={n + (yur >= 0 ? 1 : 0)} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={tr(navL)} onClick={onNext} /></>}>
       <QTushuncha zoom={Zoomable} tugadi={tugadi} keng
-        sarlavha={tr({ uz: <>Havolani yuborishdan oldin <A>nimani tekshirasiz?</A></>, ru: <>Что вы проверите <A>перед отправкой ссылки?</A></> })}
+        sarlavha={tr({ uz: <>Linkni yuborishdan oldin <A>nimani tekshirasiz?</A></>, ru: <>Что вы проверите <A>перед отправкой ссылки?</A></> })}
         mentor={<Mentor>{tr(mGap)}</Mentor>}
         bashorat={!taxmin
           ? <QBashorat yorliq={tr({ uz: "Avval o'zingiz belgilab ko'ring", ru: 'Сначала отметьте сами' })} savol={tr(S4_SAVOL)} variantlar={S4_TAXMIN.map(x => ({ k: x.k, t: tr(x.t) }))} tanlov={taxmin} onTanla={setTaxmin} />
@@ -1092,7 +1092,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         vizual={!taxmin ? null : tugadi
           ? <div className="fu-fokus"><YuborishJadval n={3} /></div>
           : <div className="fu-split fu-karta-kir">{maket}<div className="fu-ong"><YuborishJadval n={n} yangi={yangi} />{joriy}</div></div>}
-        xulosa={done && <>{tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: "uchta narsa — ma'lumot, o'lchov, havola", ru: 'три вещи — данные, измерение, ссылка' })} />}{tr({ uz: "Bu misolda uchalasi ham tayyor emas edi: telefon so'ralardi, qadamlar sanalmasdi, havola yo'q edi.", ru: "В этом примере ни одна из трёх не была готова: спрашивали телефон, шаги не считались, ссылки не было." })}</>}
+        xulosa={done && <>{tx && <TaxminQ togri={!!tx.ok} haqiqat={tr({ uz: "uchta narsa — ma'lumot, o'lchov, link", ru: 'три вещи — данные, измерение, ссылка' })} />}{tr({ uz: "Bu misolda uchalasi ham tayyor emas edi: telefon so'ralardi, qadamlar sanalmasdi, link yo'q edi.", ru: "В этом примере ни одна из трёх не была готова: спрашивали телефон, шаги не считались, ссылки не было." })}</>}
       />
     </Stage>
   );
@@ -1130,7 +1130,7 @@ const s5Maslahat = (i, k, kartalar) => {
   if (i === 2 && /^\d+$/.test(k.kutilgan) && n < 50) return 'ellik';
   return null;
 };
-const S5_YORDAM = { uz: "Mentor rejasi: 1-bosqich — sinf chati va mahalla futbol guruhi, ikkinchi post, jami 20 · 2-bosqich — maktab chati (chat egasidan ruxsat bilan), jami 35 · 3-bosqich — tashkilotchilar xohlasa o'z jamoasiga havola yuboradi, jami 50. Sonlar — Mentorning taxmini; sizning mahsulotingizda boshqa bo'ladi. Yangi kanal bo'lmasa — 3-bosqich oldingi kanallarda davom etishi mumkin.", ru: 'План Ментора: 1-й этап — чат класса и футбольная группа махалли, второй пост, всего 20 · 2-й этап — школьный чат (с разрешения владельца чата), всего 35 · 3-й этап — организаторы по желанию отправляют ссылку своей команде, всего 50. Числа — предположение Ментора; в вашем продукте будут другие. Если нового канала нет — 3-й этап может продолжиться в прежних каналах.' };
+const S5_YORDAM = { uz: "Mentor rejasi: 1-bosqich — sinf chati va mahalla futbol guruhi, ikkinchi post, jami 20 · 2-bosqich — maktab chati (chat egasidan ruxsat bilan), jami 35 · 3-bosqich — tashkilotchilar xohlasa o'z jamoasiga link yuboradi, jami 50. Sonlar — Mentorning taxmini; sizning mahsulotingizda boshqa bo'ladi. Yangi kanal bo'lmasa — 3-bosqich oldingi kanallarda davom etishi mumkin.", ru: 'План Ментора: 1-й этап — чат класса и футбольная группа махалли, второй пост, всего 20 · 2-й этап — школьный чат (с разрешения владельца чата), всего 35 · 3-й этап — организаторы по желанию отправляют ссылку своей команде, всего 50. Числа — предположение Ментора; в вашем продукте будут другие. Если нового канала нет — 3-й этап может продолжиться в прежних каналах.' };
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const { live, isMentor } = useJonli();
   const [kl] = useState(kanallarOl);
@@ -1189,7 +1189,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       {kanalSoraladi(k.kanal) && <span className="fu-kulrang fade-step">{tr({ uz: "avval ruxsat so'rang", ru: 'сначала спросите разрешение' })}</span>}
       <label className={cxx('fu-mz', xato === 'nima' && 'err', k.kanal.trim() && !k.nima.trim() && 'fu-halqa-i')}>
         <span className="fu-mz-n">{tr({ uz: 'Nima yuboriladi', ru: 'Что отправляется' })}</span>
-        <input className="fu-inp" value={k.nima} maxLength={60} placeholder={tr({ uz: 'Post, havola yoki boshqa narsa', ru: 'Пост, ссылка или что-то другое' })} onChange={(e) => setK(ochiq, { nima: e.target.value })} />
+        <input className="fu-inp" value={k.nima} maxLength={60} placeholder={tr({ uz: 'Post, link yoki boshqa narsa', ru: 'Пост, ссылка или что-то другое' })} onChange={(e) => setK(ochiq, { nima: e.target.value })} />
       </label>
       <label className={cxx('fu-mz', 'son', xato === 'son' && 'err', k.nima.trim() && !String(k.kutilgan) && 'fu-halqa-i')}>
         <span className="fu-mz-n">{tr({ uz: 'Kutilgan son — jami', ru: 'Ожидаемое число — всего' })}</span>
@@ -2031,7 +2031,7 @@ const WebQator = ({ children }) => <p className="fu-web"><b>{tr({ uz: 'Web-trek'
 const A1_PROMPT = [
   { uz: "Qayerda: ro'yxatdan o'tish va kirish — ilova ekranlari, Backend yo'llari va foydalanuvchilar jadvali; Backend'da yangi `hodisalar` jadvali va `POST /hodisalar`; ilovada yangi `hodisaYoz(nom)` funksiyasi.", ru: 'Где: регистрация и вход — экраны приложения, пути Backend и таблица пользователей; в Backend новая таблица `hodisalar` и `POST /hodisalar`; в приложении новая функция `hodisaYoz(nom)`.' },
   { uz: "Nima qilsin: 1) ro'yxatdan o'tishda mahsulotga kerak bo'lmagan shu ma'lumot so'ralmasin: {ortiqcha ma'lumot}. Kirish uchun alohida nom kerak bo'lsa — login: odam o'zi tanlagan nom (3–20 belgi, harf va raqam, takrorlanmaydi); login band bo'lsa — «Bu login band»; kirish — login va parol bilan.", ru: "Что сделать: 1) при регистрации не спрашивать эти данные, ненужные продукту: {ortiqcha ma'lumot}. Если для входа нужно отдельное имя — логин: имя, которое человек выбирает сам (3–20 символов, буквы и цифры, не повторяется); если логин занят — «Bu login band»; вход — по логину и паролю." },
-  { uz: "Forma ostiga gap: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» va «Maxfiylik siyosati» havolasi — {lending manzili}/maxfiylik.html (sahifani keyin qo'shaman).", ru: "Под формой фраза: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» и ссылка «Maxfiylik siyosati» («Политика конфиденциальности») — {lending manzili}/maxfiylik.html (страницу добавлю позже)." },
+  { uz: "Forma ostiga gap: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» va «Maxfiylik siyosati» linki — {lending manzili}/maxfiylik.html (sahifani keyin qo'shaman).", ru: "Под формой фраза: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» и ссылка «Maxfiylik siyosati» («Политика конфиденциальности») — {lending manzili}/maxfiylik.html (страницу добавлю позже)." },
   { uz: "2) Foydalanuvchilar jadvaliga `namuna` (rost yoki yolg'on) va `yaratilgan` (ro'yxatdan o'tgan vaqt) ustunlarini qo'sh. Mavjud akkauntlar o'chmasin. Avval menga ro'yxat ko'rsat: har akkaunt, unga beriladigan login va olib tashlanadigan ustunlar — qaysilari namuna ekanini men aytaman va «Davom et» deyman; shundan keyingina namunalarga `namuna = true`, `yaratilgan` — hozirgi vaqt, keraksiz ustunni olib tashla; parollar o'zgarmasin. Forma orqali ro'yxatdan o'tgan har yangi akkaunt — `namuna = false`.", ru: "2) Добавь в таблицу пользователей столбцы `namuna` (истина или ложь) и `yaratilgan` (время регистрации). Существующие аккаунты не удалять. Сначала покажи мне список: каждый аккаунт, логин, который ему дадут, и удаляемые столбцы — какие аккаунты образцы, скажу я и напишу «Продолжай»; только после этого образцам `namuna = true`, `yaratilgan` — текущее время, ненужный столбец удали; пароли не менять. Каждый новый аккаунт, зарегистрированный через форму, — `namuna = false`." },
   { uz: "3) «Hisobdan chiqish» yoniga «Hisobni o'chirish»: avval «Rostdan o'chirasizmi?» deb so'rasin; tasdiqlansa shu akkaunt o'chsin — `DELETE` faqat `WHERE` bilan, shu akkaunt `id` si bo'yicha. Unga tegishli qaysi yozuvlar o'chishi va qaysilari qolishini avval menga ro'yxat qilib ko'rsat — men tasdiqlagach bajar.", ru: "3) Рядом с «Hisobdan chiqish» («Выйти из аккаунта») — «Hisobni o'chirish» («Удалить аккаунт»): сначала спросить «Rostdan o'chirasizmi?» («Точно удалить?»); при подтверждении удалить этот аккаунт — `DELETE` только с `WHERE`, по `id` этого аккаунта. Какие связанные записи удалятся, а какие останутся, сначала покажи мне списком — выполни после моего подтверждения." },
   { uz: "4) Qadamlar sanog'i: `hodisalar` jadvali (`id`, `nom`, `qurilma_id`, `yaratilgan`); `POST /hodisalar { nom, qurilma_id }` — `nom` faqat «Qadamlar» qatoridagi nomlardan biri, aks holda `400`. Ilovada `hodisaYoz(nom)`: qurilma ID — birinchi ochilishda yaratiladigan tasodifiy harf va raqamlar, qurilmada saqlanadi. Qadamlar: {qadamlar}. Har hodisa ish muvaffaqiyatli tugagandan keyin yozilsin; ilovaning bitta ochilishiga bitta hodisa. 60 kundan eski hodisalar o'chirilsin — Backend ishga tushganda va keyin har 24 soatda, `WHERE` bilan.", ru: '4) Подсчёт шагов: таблица `hodisalar` (`id`, `nom`, `qurilma_id`, `yaratilgan`); `POST /hodisalar { nom, qurilma_id }` — `nom` только одно из имён в строке «Шаги», иначе `400`. В приложении `hodisaYoz(nom)`: ID устройства — случайные буквы и цифры, создаются при первом открытии, хранятся на устройстве. Шаги: {qadamlar}. Каждое событие пишется после успешного завершения действия; на одно открытие приложения — одно событие. События старше 60 дней удалять — при запуске Backend и потом каждые 24 часа, с `WHERE`.' },
@@ -2044,7 +2044,7 @@ const A1_NAMUNA = {
 const A1_YORDAM = [
   { uz: "Qayerda: `mobil/` — «Ro'yxatdan o'tish» va «Kirish» ekranlari, «Hisobdan chiqish» turgan joy; `backend/` — `POST /royxat`, `POST /kirish`, `oyinchilar` jadvali; yangi `hodisalar` jadvali va `POST /hodisalar`; `mobil/` da yangi `hodisaYoz(nom)`.", ru: "Где: `mobil/` — экраны «Ro'yxatdan o'tish» («Регистрация») и «Kirish», место кнопки «Hisobdan chiqish» («Выйти из аккаунта»); `backend/` — `POST /royxat`, `POST /kirish`, таблица `oyinchilar`; новая таблица `hodisalar` и `POST /hodisalar`; в `mobil/` новая `hodisaYoz(nom)`." },
   { uz: "Nima qilsin: 1) telefon raqami so'ralmasin. `oyinchilar` da `telefon` o'rniga `login`: 3–20 belgi, harf va raqam, noyob. `POST /royxat { ism, login, parol }`, `POST /kirish { login, parol }`; login band bo'lsa — `409` «Bu login band».", ru: 'Что сделать: 1) номер телефона не спрашивать. В `oyinchilar` вместо `telefon` — `login`: 3–20 символов, буквы и цифры, уникальный. `POST /royxat { ism, login, parol }`, `POST /kirish { login, parol }`; если логин занят — `409` «Bu login band».' },
-  { uz: "Forma ostiga: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» va «Maxfiylik siyosati» havolasi — {lending manzili}/maxfiylik.html.", ru: "Под формой: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» и ссылка «Maxfiylik siyosati» («Политика конфиденциальности») — {lending manzili}/maxfiylik.html." },
+  { uz: "Forma ostiga: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» va «Maxfiylik siyosati» linki — {lending manzili}/maxfiylik.html.", ru: "Под формой: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» и ссылка «Maxfiylik siyosati» («Политика конфиденциальности») — {lending manzili}/maxfiylik.html." },
   { uz: "2) `oyinchilar` ga `namuna` (rost yoki yolg'on) va `yaratilgan` ustunlari. Mavjud akkauntlar o'chmasin. Avval ro'yxatni ko'rsat: har akkaunt va unga ismidan beriladigan login (`ali` kabi, kichik harf; takrorlansa oxiriga raqam); men «Davom et» deganimdan keyin hammasiga `namuna = true`, `yaratilgan` — hozirgi vaqt, `telefon` ustunini qiymatlari bilan olib tashla; parollar o'zgarmasin. `POST /royxat` har doim `namuna = false` yozsin.", ru: "2) В `oyinchilar` столбцы `namuna` (истина или ложь) и `yaratilgan`. Существующие аккаунты не удалять. Сначала покажи список: каждый аккаунт и логин из его имени (как `ali`, строчными; при повторе — цифра в конце); после моего «Продолжай» всем `namuna = true`, `yaratilgan` — текущее время, столбец `telefon` удали вместе со значениями; пароли не менять. `POST /royxat` всегда пишет `namuna = false`." },
   { uz: "3) «Hisobdan chiqish» yoniga «Hisobni o'chirish»: «Rostdan o'chirasizmi?» deb so'rasin; tasdiqlansa shu akkaunt va uning `ishtirokchilar` dagi yozuvlari o'chsin — `DELETE` faqat `WHERE oyinchi_id = …` bilan; o'yindan chiqqandagi kabi son yangilansin. U e'lon qilgan o'yinlar o'chmasin — tashkilotchisi bo'sh qolsin; bunday o'yinlar ro'yxatda va «O'yin» ekranida xatosiz ko'rinsin. «Hisobdan chiqish» va «Hisobni o'chirish» da shu telefondagi rejalashtirilgan eslatmalar bekor bo'lsin.", ru: "3) Рядом с «Hisobdan chiqish» — «Hisobni o'chirish» («Удалить аккаунт»): спросить «Rostdan o'chirasizmi?» («Точно удалить?»); при подтверждении удалить аккаунт и его записи в `ishtirokchilar` — `DELETE` только с `WHERE oyinchi_id = …`; число обновить, как при выходе из игры. Объявленные им игры не удалять — организатор остаётся пустым; такие игры показывать в списке и на экране «O'yin» без ошибок. При «Hisobdan chiqish» и «Hisobni o'chirish» отменить запланированные напоминания на этом телефоне." },
   { uz: "4) `hodisalar` jadvali — `id`, `nom` (matn), `qurilma_id` (matn), `yaratilgan`. `POST /hodisalar { nom, qurilma_id }`: `nom` faqat `ochdi`, `royxatdan-otdi`, `qoshildi` yoki `tasdiqladi`, aks holda `400`. Ilovada `hodisaYoz(nom)`: qurilma ID — birinchi ochilishda yaratiladigan tasodifiy harf va raqamlar, qurilmada saqlanadi.", ru: '4) Таблица `hodisalar` — `id`, `nom` (текст), `qurilma_id` (текст), `yaratilgan`. `POST /hodisalar { nom, qurilma_id }`: `nom` только `ochdi`, `royxatdan-otdi`, `qoshildi` или `tasdiqladi`, иначе `400`. В приложении `hodisaYoz(nom)`: ID устройства — случайные буквы и цифры, создаются при первом открытии, хранятся на устройстве.' },
@@ -2074,7 +2074,7 @@ const NatijaA1 = ({ trek }) => {
           <span className="fu-neon-r">ochdi 1 · royxatdan-otdi 1 · qoshildi 1</span>
         </div>
       </div>
-      {trek !== 'web' && <div className="fu-term"><code>eas build -p android --profile preview</code><span className="fu-term-k">{tr({ uz: 'navbatda · sahifa havolasi', ru: 'в очереди · ссылка на страницу' })}</span></div>}
+      {trek !== 'web' && <div className="fu-term"><code>eas build -p android --profile preview</code><span className="fu-term-k">{tr({ uz: 'navbatda · sahifa linki', ru: 'в очереди · ссылка на страницу' })}</span></div>}
     </div>
   );
 };
@@ -2104,7 +2104,7 @@ const ScreenA1 = (props) => {
     </> },
     { h: { uz: 'Tekshirish', ru: 'Проверка' }, qulf: !tk.malumot, t: <>
       <Bq k="bir">{tr({ uz: 'agent nima desa ham, o\'zingiz tekshiring:', ru: 'что бы ни сказал агент, проверьте сами:' })}</Bq>
-      <Bq>{tr({ uz: "(1) «Hisobdan chiqish» → «Ro'yxatdan o'tish»: telefon so'ralmaydi, forma ostida gap va «Maxfiylik siyosati» havolasi bor (sahifaning o'zi Amaliyot 2 da qo'shiladi). Ism `tekshiruv`, login `tekshiruv1` bilan ro'yxatdan o'ting — bu tekshiruv akkaunti, haqiqiy odamniki emas.", ru: "(1) «Выйти из аккаунта» → «Регистрация»: телефон не запрашивается, под формой есть фраза и ссылка «Политика конфиденциальности» (сама страница добавится в Практике 2). Зарегистрируйтесь с именем `tekshiruv` и логином `tekshiruv1` — это проверочный аккаунт, не настоящего человека." })}</Bq>
+      <Bq>{tr({ uz: "(1) «Hisobdan chiqish» → «Ro'yxatdan o'tish»: telefon so'ralmaydi, forma ostida gap va «Maxfiylik siyosati» linki bor (sahifaning o'zi Amaliyot 2 da qo'shiladi). Ism `tekshiruv`, login `tekshiruv1` bilan ro'yxatdan o'ting — bu tekshiruv akkaunti, haqiqiy odamniki emas.", ru: "(1) «Выйти из аккаунта» → «Регистрация»: телефон не запрашивается, под формой есть фраза и ссылка «Политика конфиденциальности» (сама страница добавится в Практике 2). Зарегистрируйтесь с именем `tekshiruv` и логином `tekshiruv1` — это проверочный аккаунт, не настоящего человека." })}</Bq>
       <Bq k="ich">{tr({ uz: "O'sha login bilan yana urinib ko'ring: «Bu login band» chiqishi kerak. Keyin asosiy harakatni qiling (Mentor misolida — «Qo'shilaman»).", ru: 'Попробуйте ещё раз с тем же логином: должно появиться «Bu login band». Потом сделайте основное действие (в примере Ментора — «Присоединяюсь»).' })}</Bq>
       <Bq>{tr({ uz: "(2) Neon SQL Editor'da: `SELECT login, namuna FROM oyinchilar;` → «Run»: siz namuna degan akkauntlar yonida `true`, `tekshiruv1` yonida `false` bo'lishi kerak. So'ng `SELECT nom, COUNT(DISTINCT qurilma_id) FROM hodisalar GROUP BY nom;` — bosib o'tgan har qadam yonida 1.", ru: "(2) В Neon SQL Editor: `SELECT login, namuna FROM oyinchilar;` → «Run»: рядом с аккаунтами, которые вы назвали образцами, — `true`, рядом с `tekshiruv1` — `false`. Затем `SELECT nom, COUNT(DISTINCT qurilma_id) FROM hodisalar GROUP BY nom;` — рядом с каждым пройденным шагом 1." })}</Bq>
       <Bq>{tr({ uz: "(3) «Hisobni o'chirish» → «Rostdan o'chirasizmi?» → tasdiqlang. `SELECT * FROM oyinchilar WHERE login = 'tekshiruv1';` — javob bo'sh bo'lishi kerak; tekshiruv akkaunti o'zini o'chirdi, qo'lda `DELETE` yozmaysiz.", ru: "(3) «Удалить аккаунт» → «Точно удалить?» → подтвердите. `SELECT * FROM oyinchilar WHERE login = 'tekshiruv1';` — ответ должен быть пустым; проверочный аккаунт удалил себя сам, `DELETE` вручную не пишете." })}</Bq>
@@ -2118,7 +2118,7 @@ const ScreenA1 = (props) => {
       </span>
       {mobil && <>
         <Bq>{tr({ uz: "Mobil trekda — o'rnatish faylini tayyorlash (oxirgi ish; faqat (1) o'tgandan keyin): `eas.json` dagi `preview` profilida `env` → `EXPO_PUBLIC_API_URL` bormi? Bo'lmasa agentga: «`eas.json` dagi `preview` profiliga `env` qo'sh: `EXPO_PUBLIC_API_URL` — qiymati `mobil/.env` dagidek (u maxfiy emas). Boshqa qiymat qo'shma.»", ru: "В мобильном треке — подготовка файла установки (последнее дело; только после того, как (1) прошло): в профиле `preview` в `eas.json` есть `env` → `EXPO_PUBLIC_API_URL`? Если нет, агенту: «В профиль `preview` в `eas.json` добавь `env`: `EXPO_PUBLIC_API_URL` — значение как в `mobil/.env` (оно не секретное). Других значений не добавляй.»" })}</Bq>
-        <Bq>{tr({ uz: "Keyin `cd mobil` → `eas build -p android --profile preview`. Terminal fayl tayyor bo'lishini kutib turadi — kutish shart emas: u bergan sahifa havolasini saqlab qo'ying va Amaliyot 2 ga o'ting (Mentor misolida navbat ≈25 daqiqa bo'lgan; sizda boshqacha bo'lishi mumkin).", ru: 'Потом `cd mobil` → `eas build -p android --profile preview`. Терминал ждёт, пока файл будет готов, — ждать не обязательно: сохраните ссылку на страницу, которую он дал, и переходите к Практике 2 (в примере Ментора очередь ≈25 минут; у вас может быть иначе).' })}</Bq>
+        <Bq>{tr({ uz: "Keyin `cd mobil` → `eas build -p android --profile preview`. Terminal fayl tayyor bo'lishini kutib turadi — kutish shart emas: u bergan sahifa linkini saqlab qo'ying va Amaliyot 2 ga o'ting (Mentor misolida navbat ≈25 daqiqa bo'lgan; sizda boshqacha bo'lishi mumkin).", ru: 'Потом `cd mobil` → `eas build -p android --profile preview`. Терминал ждёт, пока файл будет готов, — ждать не обязательно: сохраните ссылку на страницу, которую он дал, и переходите к Практике 2 (в примере Ментора очередь ≈25 минут; у вас может быть иначе).' })}</Bq>
         <Bq>{tr({ uz: "Keyin ilovada xato topilib tuzatilsa — fayl qayta tayyorlanadi: tayyor fayl o'zi yangilanmaydi.", ru: 'Если потом в приложении найдут и исправят ошибку — файл готовят заново: готовый файл сам не обновляется.' })}</Bq>
       </>}
     </> }
@@ -2131,7 +2131,7 @@ const ScreenA1 = (props) => {
       ustida={<TrekTanlov trek={trek} onTanla={tanla} />}
       natija={<NatijaA1 trek={trek} />}
       doneText={trek === 'web' ? { uz: 'Saytingiz faqat keraklisini so\'raydi va qadamlarni sanaydi.', ru: 'Ваш сайт спрашивает только нужное и считает шаги.' } : { uz: "Ilovangiz faqat keraklisini so'raydi va qadamlarni sanaydi; o'rnatish fayli navbatda.", ru: 'Ваше приложение спрашивает только нужное и считает шаги; файл установки в очереди.' }}
-      ulgur={{ uz: "Vaqt tugayaptimi — push'dan keyin avval (1) ni tekshiring (ro'yxatdan o'tish, «Bu login band», asosiy harakat); o'tsa — o'rnatish faylini boshlang, (2)–(3) — navbat paytida. Xato topilsa — fayl qayta tayyorlanadi. Agent ishi tugamagan bo'lsa — fayl, havola va post uyga qoladi (yakun shuni aytadi).", ru: "Время на исходе? После push сначала проверьте (1) (регистрация, «Bu login band», основное действие); если прошло — начинайте готовить файл установки, (2)–(3) — во время очереди. Если найдётся ошибка — файл готовят заново. Если агент не закончил — файл, ссылка и пост остаются на дом (итог это скажет)." }}
+      ulgur={{ uz: "Vaqt tugayaptimi — push'dan keyin avval (1) ni tekshiring (ro'yxatdan o'tish, «Bu login band», asosiy harakat); o'tsa — o'rnatish faylini boshlang, (2)–(3) — navbat paytida. Xato topilsa — fayl qayta tayyorlanadi. Agent ishi tugamagan bo'lsa — fayl, link va post uyga qoladi (yakun shuni aytadi).", ru: "Время на исходе? После push сначала проверьте (1) (регистрация, «Bu login band», основное действие); если прошло — начинайте готовить файл установки, (2)–(3) — во время очереди. Если найдётся ошибка — файл готовят заново. Если агент не закончил — файл, ссылка и пост остаются на дом (итог это скажет)." }}
       pastQator={web && <WebQator>{tr({ uz: "o'sha talab — «ilova» o'rnida saytingiz, qurilma ID o'rnida brauzer ID; ishga tushirish `npm run dev`, tekshirish — brauzerda; o'rnatish fayli yo'q — 4-bo'lim (3) dan keyin «Bajardim».", ru: 'то же требование — вместо «приложения» ваш сайт, вместо ID устройства браузерный ID; запуск `npm run dev`, проверка — в браузере; файла установки нет — после (3) раздела 4 «Готово».' })}</WebQator>} />
   );
 };
@@ -2142,14 +2142,14 @@ const A2_PROMPT = [
   { uz: "Nima qilsin: 1) `lending/maxfiylik.html` — maxfiylik siyosati, to'rt savol: qaysi ma'lumot · nima uchun · kim ko'radi · qancha saqlanadi. «Qaysi ma'lumot», «kim ko'radi» va «qancha saqlanadi» javoblarini koddan top va qaysi faylga qarab yozganingni ayt; kodda yo'q narsani yozma — koddan bilib bo'lmaydigan joyni (masalan, Database'ni kim ko'radi) «[savol]» deb qoldir, uni men yozaman.", ru: "Что сделать: 1) `lending/maxfiylik.html` — политика конфиденциальности, четыре вопроса: какие данные · зачем · кто видит · сколько хранится. Ответы «какие данные», «кто видит» и «сколько хранится» найди в коде и скажи, по какому файлу писал; чего нет в коде, не пиши — место, которое из кода не узнать (например, кто видит Database), пометь «[вопрос]», его напишу я." },
   { uz: 'Nima uchun: {nima uchun}', ru: "Зачем: {nima uchun}" },
   { uz: "2) Ilova brauzerda ham ochilsin (`npx expo export -p web`, natija `dist` papkasida): brauzerda token `localStorage` da saqlansin, eslatma brauzerda rejalashtirilmasin; `public/_redirects` fayliga `/*    /index.html   200`. Brauzer uchun paket yetishmasa — `npx expo install` bilan qo'sh va qaysi paket ekanini ayt.", ru: '2) Пусть приложение открывается и в браузере (`npx expo export -p web`, результат в папке `dist`): в браузере токен хранится в `localStorage`, напоминание в браузере не планируется; в файл `public/_redirects` — `/*    /index.html   200`. Если для браузера не хватает пакета — добавь через `npx expo install` и скажи, какой пакет.' },
-  { uz: "3) «Qanday qo'shilaman» bo'limiga ikki havola tayyorla: «Android: ilovani o'rnatish» va «iPhone: brauzerda ochish» — manzillarni keyin aytaman. Ostiga ikki qator: «Android o'rnatishda ogohlantirish ko'rsatadi — ilova do'kondan emas, to'g'ridan-to'g'ri o'rnatiladi.» va «iPhone'da eslatma hozircha yo'q.» Manzili hali yo'q havola o'rnida eski qator qolsin.", ru: "3) В раздел «Qanday qo'shilaman» подготовь две ссылки: «Android: ilovani o'rnatish» («Android: установить приложение») и «iPhone: brauzerda ochish» («iPhone: открыть в браузере») — адреса скажу позже. Под ними две строки: «Android o'rnatishda ogohlantirish ko'rsatadi — ilova do'kondan emas, to'g'ridan-to'g'ri o'rnatiladi.» и «iPhone'da eslatma hozircha yo'q.» На месте ссылки без адреса пусть остаётся старая строка." },
+  { uz: "3) «Qanday qo'shilaman» bo'limiga ikki link tayyorla: «Android: ilovani o'rnatish» va «iPhone: brauzerda ochish» — manzillarni keyin aytaman. Ostiga ikki qator: «Android o'rnatishda ogohlantirish ko'rsatadi — ilova do'kondan emas, to'g'ridan-to'g'ri o'rnatiladi.» va «iPhone'da eslatma hozircha yo'q.» Manzili hali yo'q link o'rnida eski qator qolsin.", ru: "3) В раздел «Qanday qo'shilaman» подготовь две ссылки: «Android: ilovani o'rnatish» («Android: установить приложение») и «iPhone: brauzerda ochish» («iPhone: открыть в браузере») — адреса скажу позже. Под ними две строки: «Android o'rnatishda ogohlantirish ko'rsatadi — ilova do'kondan emas, to'g'ridan-to'g'ri o'rnatiladi.» и «iPhone'da eslatma hozircha yo'q.» На месте ссылки без адреса пусть остаётся старая строка." },
   { uz: "Nima buzilmasin: telefondagi ilova avvalgidek ishlasin — token telefonda oldingi joyida, eslatma telefonda ishlayversin; lending sarlavhasi, foydalar, «Qo'shilmoqchiman» tugmasi va Umami o'zgarmasin. `.env` ga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "Что не сломать: приложение на телефоне работает как раньше — токен на телефоне на прежнем месте, напоминание на телефоне работает; заголовок лендинга, пользы, кнопка «Qo'shilmoqchiman» («Хочу присоединиться») и Umami не меняются. `.env` не трогай. Больше ничего не трогай, назови изменённые файлы." }
 ];
 const A2_YORDAM = [
   { uz: "Nima uchun: Ism — o'yindagi o'yinchilar bir-birini tanishi uchun. Login va parol — hisobga kirish uchun. Qadamlar sanog'i — ilovaning qaysi joyi tushunarsizligini bilish uchun.", ru: "Зачем: Имя — чтобы игроки в игре узнавали друг друга. Логин и пароль — чтобы входить в аккаунт. Подсчёт шагов — чтобы понять, какое место в приложении непонятно." },
   { uz: "Web-trek: 2 va 3-bandlarni o'chiring — lendingdagi asosiy tugma saytingizga olib boradi (1-darsdan shunday).", ru: 'Веб-трек: удалите пункты 2 и 3 — главная кнопка лендинга ведёт на ваш сайт (так с 1-го урока).' }
 ];
-const A2_POST_YORDAM = [{ uz: "Maydon Jamoa chiqdi. Shanba, 18:00 o'yini ilovada turibdi — «Qo'shilaman» ni bosing, nechta odam yig'ilgani ko'rinadi. Android va iPhone uchun havola: {lending manzili}", ru: "Вышло приложение «Maydon Jamoa». Игра в субботу, 18:00, уже в нём — нажмите «Присоединяюсь», видно, сколько людей собралось. Ссылка для Android и iPhone: {lending manzili}" }];
+const A2_POST_YORDAM = [{ uz: "Maydon Jamoa chiqdi. Shanba, 18:00 o'yini ilovada turibdi — «Qo'shilaman» ni bosing, nechta odam yig'ilgani ko'rinadi. Android va iPhone uchun link: {lending manzili}", ru: "Вышло приложение «Maydon Jamoa». Игра в субботу, 18:00, уже в нём — нажмите «Присоединяюсь», видно, сколько людей собралось. Ссылка для Android и iPhone: {lending manzili}" }];
 // Xavfsizlik ro'yxati — 6-dars bilan bitta matn (tayanch 1.6, 9.12 — so'zma-so'z)
 const XAVFSIZLIK = [
   { uz: 'Faqat o\'zim a\'zo bo\'lgan joyga yuboraman.', ru: "Отправляю только туда, где состою сам." },
@@ -2205,9 +2205,9 @@ const ScreenA2 = (props) => {
   };
   const postNusxa = async () => { try { await navigator.clipboard.writeText(post); setPostOk(true); setTimeout(() => setPostOk(false), 1600); } catch { /* clipboard yopiq */ } };
   const doneText = tk.havola && yub === 'ha'
-    ? { uz: 'Siyosat saytda, havola lendingda, post yuborildi.', ru: 'Политика на сайте, ссылка на лендинге, пост отправлен.' }
-    : tk.havola ? { uz: 'Siyosat saytda, havola lendingda. Postni ota-onangizga ko\'rsatib yuborasiz.', ru: 'Политика на сайте, ссылка на лендинге. Пост отправите, показав родителям.' }
-    : { uz: "Siyosat saytda. Android havolasi va post — fayl tayyor bo'lgach, uyda.", ru: 'Политика на сайте. Ссылка для Android и пост — дома, когда файл будет готов.' };
+    ? { uz: 'Siyosat saytda, link lendingda, post yuborildi.', ru: 'Политика на сайте, ссылка на лендинге, пост отправлен.' }
+    : tk.havola ? { uz: 'Siyosat saytda, link lendingda. Postni ota-onangizga ko\'rsatib yuborasiz.', ru: 'Политика на сайте, ссылка на лендинге. Пост отправите, показав родителям.' }
+    : { uz: "Siyosat saytda. Android linki va post — fayl tayyor bo'lgach, uyda.", ru: 'Политика на сайте. Ссылка для Android и пост — дома, когда файл будет готов.' };
   const steps = [
     { h: { uz: 'Ochish', ru: 'Открыть' }, t: <>
       <Bq k="bir">{tr({ uz: "Amaliyot 1 push qilingan, mobil trekda o'rnatish fayli navbatda. Ilovangiz so'raydigan har ma'lumot uchun bitta gap tayyorlang: u nima uchun kerak. Siyosatning qolgan uch javobini agent koddan topadi, siz tekshirasiz.", ru: "Практика 1 отправлена (push), в мобильном треке файл установки в очереди. Для каждого пункта, который запрашивает ваше приложение, подготовьте одну фразу: зачем он нужен. Остальные три ответа политики агент найдёт в коде, вы проверите." })}</Bq>
@@ -2226,30 +2226,30 @@ const ScreenA2 = (props) => {
       <Bq k="kulrang">{tr({ uz: 'Bu sahifa yuridik hujjat emas — u ilovangiz haqiqatda nima qilishini aytadi.', ru: 'Эта страница — не юридический документ: она говорит, что ваше приложение делает на самом деле.' })}</Bq>
       <Bq>{tr({ uz: "Xato bo'lsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas): «Shu xato chiqdi: {xato}. Tuzat.»", ru: "Если ошибка — отправьте агенту строку ошибки (не значения `.env`, не токены и не ключи): «Вышла такая ошибка: {ошибка}. Исправь.»" })}</Bq>
     </> },
-    { h: { uz: 'Havola va post', ru: 'Ссылка и пост' }, t: <>
+    { h: { uz: 'Link va post', ru: 'Ссылка и пост' }, t: <>
       <Bq k="bir">{tr({ uz: "tartib bilan; ulgurmaganingiz uyga qoladi:", ru: 'по порядку; что не успеете — останется на дом:' })}</Bq>
       <span className="fu-qism">
         <b className="fu-qism-h">{tr({ uz: "(1) O'rnatish fayli", ru: '(1) Файл установки' })}</b>
         {mobil && <>
-          <Bq>{tr({ uz: "terminal bergan sahifani oching. Fayl tayyor bo'lsa, havolasini agentga: «Android havolasi: {APK havolasi}. Lendingdagi «Android: ilovani o'rnatish» shu manzilga olib borsin.» → `git push`.", ru: "откройте страницу, которую дал терминал. Если файл готов, ссылку — агенту: «Ссылка для Android: {ссылка на APK}. Пусть «Android: ilovani o'rnatish» на лендинге ведёт на этот адрес.» → `git push`." })}</Bq>
-          <Bq>{tr({ uz: "Telefonda lendingni oching: «Qo'shilmoqchiman» → «Android: ilovani o'rnatish» — fayl yuklanadi, o'rnatishda ogohlantirish chiqishi kerak. Havolani boshqa telefonda yoki brauzerning yashirin oynasida ham oching — fayl Expo akkauntisiz yuklanishi kerak; yuklanmasa, havolani lendingda qoldirmang va xato qatorini agentga yuboring.", ru: "Откройте лендинг на телефоне: «Хочу присоединиться» → «Android: установить приложение» — файл скачивается, при установке должно появиться предупреждение. Откройте ссылку и на другом телефоне или в скрытом окне браузера — файл должен скачиваться без аккаунта Expo; если не скачивается — не оставляйте ссылку на лендинге и отправьте агенту строку ошибки." })}</Bq>
+          <Bq>{tr({ uz: "terminal bergan sahifani oching. Fayl tayyor bo'lsa, linkini agentga: «Android linki: {APK linki}. Lendingdagi «Android: ilovani o'rnatish» shu manzilga olib borsin.» → `git push`.", ru: "откройте страницу, которую дал терминал. Если файл готов, ссылку — агенту: «Ссылка для Android: {ссылка на APK}. Пусть «Android: ilovani o'rnatish» на лендинге ведёт на этот адрес.» → `git push`." })}</Bq>
+          <Bq>{tr({ uz: "Telefonda lendingni oching: «Qo'shilmoqchiman» → «Android: ilovani o'rnatish» — fayl yuklanadi, o'rnatishda ogohlantirish chiqishi kerak. Linkni boshqa telefonda yoki brauzerning yashirin oynasida ham oching — fayl Expo akkauntisiz yuklanishi kerak; yuklanmasa, linkni lendingda qoldirmang va xato qatorini agentga yuboring.", ru: "Откройте лендинг на телефоне: «Хочу присоединиться» → «Android: установить приложение» — файл скачивается, при установке должно появиться предупреждение. Откройте ссылку и на другом телефоне или в скрытом окне браузера — файл должен скачиваться без аккаунта Expo; если не скачивается — не оставляйте ссылку на лендинге и отправьте агенту строку ошибки." })}</Bq>
           <span className="fu-tanlov">
             <span className="fu-belgi-y">{tr({ uz: 'Tanlang:', ru: 'Выберите:' })}</span>
             <span className={cxx('fu-belgi-g', !hv && 'fu-chorla')}>
-              <QChip holat={hv === 'bor' ? 'on' : undefined} disabled={!tk.malumot} onClick={() => havolaTanla('bor')}>{tr({ uz: 'Android havolasi lendingda', ru: 'Ссылка Android на лендинге' })}</QChip>
+              <QChip holat={hv === 'bor' ? 'on' : undefined} disabled={!tk.malumot} onClick={() => havolaTanla('bor')}>{tr({ uz: 'Android linki lendingda', ru: 'Ссылка Android на лендинге' })}</QChip>
               <QChip holat={hv === 'navbat' ? 'on' : undefined} onClick={() => havolaTanla('navbat')}>{tr({ uz: 'Fayl hali navbatda', ru: 'Файл ещё в очереди' })}</QChip>
             </span>
-            <Bq k="kulrang">{tr({ uz: "(ikkinchisida havola va post uyga qoladi). Havola faqat Amaliyot 1 dagi «Ma'lumot» belgisi qo'yilgan ilova uchun qo'yiladi.", ru: '(во втором случае ссылка и пост остаются на дом). Ссылку ставят только для приложения, у которого в Практике 1 отмечено «Данные».' })}</Bq>
+            <Bq k="kulrang">{tr({ uz: "(ikkinchisida link va post uyga qoladi). Link faqat Amaliyot 1 dagi «Ma'lumot» belgisi qo'yilgan ilova uchun qo'yiladi.", ru: '(во втором случае ссылка и пост остаются на дом). Ссылку ставят только для приложения, у которого в Практике 1 отмечено «Данные».' })}</Bq>
           </span>
         </>}
         {!mobil && <span className="fu-tanlov">
-          <Bq>{tr({ uz: "lendingdagi asosiy tugma saytingiz manziliga olib borishini tekshirib, «havola lendingda» deb belgilaysiz.", ru: 'проверив, что главная кнопка лендинга ведёт на адрес вашего сайта, отмечаете «ссылка на лендинге».' })}</Bq>
-          <span className={cxx('fu-belgi-g', !tk.havola && 'fu-chorla')}><QChip holat={tk.havola ? 'ok' : undefined} disabled={!tk.malumot} onClick={webHavola}>{tk.havola ? '✓ ' : ''}{tr({ uz: 'Havola lendingda', ru: 'Ссылка на лендинге' })}</QChip></span>
+          <Bq>{tr({ uz: "lendingdagi asosiy tugma saytingiz manziliga olib borishini tekshirib, «link lendingda» deb belgilaysiz.", ru: 'проверив, что главная кнопка лендинга ведёт на адрес вашего сайта, отмечаете «ссылка на лендинге».' })}</Bq>
+          <span className={cxx('fu-belgi-g', !tk.havola && 'fu-chorla')}><QChip holat={tk.havola ? 'ok' : undefined} disabled={!tk.malumot} onClick={webHavola}>{tk.havola ? '✓ ' : ''}{tr({ uz: 'Link lendingda', ru: 'Ссылка на лендинге' })}</QChip></span>
         </span>}
       </span>
       <span className="fu-qism">
         <b className="fu-qism-h">{tr({ uz: '(2) Post', ru: '(2) Пост' })}</b>
-        <Bq>{tr({ uz: "(havola lendingda bo'lsa) — 6-darsdagi postingiz shu yerda (to'rt qator: kim uchun · nima foyda · bitta harakat · halol holat); «bitta harakat» va «halol holat» qatorlarini bugungi holatga moslang: nima tayyor — shuni yozing. Havola oxiriga kanal belgisi (`?kanal=sinf`).", ru: '(если ссылка на лендинге) — ваш пост с 6-го урока здесь (четыре строки: для кого · какая польза · одно действие · честное состояние); строки «одно действие» и «честное состояние» подстройте под сегодняшнее: что готово — то и пишите. В конце ссылки — метка канала (`?kanal=sinf`).' })}</Bq>
+        <Bq>{tr({ uz: "(link lendingda bo'lsa) — 6-darsdagi postingiz shu yerda (to'rt qator: kim uchun · nima foyda · bitta harakat · halol holat); «bitta harakat» va «halol holat» qatorlarini bugungi holatga moslang: nima tayyor — shuni yozing. Link oxiriga kanal belgisi (`?kanal=sinf`).", ru: '(если ссылка на лендинге) — ваш пост с 6-го урока здесь (четыре строки: для кого · какая польза · одно действие · честное состояние); строки «одно действие» и «честное состояние» подстройте под сегодняшнее: что готово — то и пишите. В конце ссылки — метка канала (`?kanal=sinf`).' })}</Bq>
         <span className="fu-post">
           <span className="fu-post-h"><span className="q-prompt-kim">{tr({ uz: 'post', ru: 'пост' })}</span><button type="button" className="q-prompt-nusxa" onClick={postNusxa}>{postOk ? tr({ uz: '✓ Nusxalandi', ru: '✓ Скопировано' }) : tr({ uz: 'Nusxalash', ru: 'Скопировать' })}</button></span>
           <textarea className="fu-post-ta" value={post} rows={4} placeholder={tr({ uz: 'kim uchun · nima foyda · bitta harakat · halol holat', ru: 'для кого · какая польза · одно действие · честное состояние' })} aria-label={tr({ uz: 'Post', ru: 'Пост' })} onChange={(e) => setPost(e.target.value)} />
@@ -2293,14 +2293,14 @@ const ScreenA2 = (props) => {
   ];
   return (
     <ScreenBlok {...props} steps={steps}
-      eyebrow={{ uz: 'Amaliyot 2 · siyosat va havola', ru: 'Практика 2 · политика и ссылка' }}
-      title={{ uz: <>Siyosat saytda, <A>havola lendingda tursin.</A></>, ru: <>Политика — на сайте, <A>ссылка — на лендинге.</A></> }}
+      eyebrow={{ uz: 'Amaliyot 2 · siyosat va link', ru: 'Практика 2 · политика и ссылка' }}
+      title={{ uz: <>Siyosat saytda, <A>link lendingda tursin.</A></>, ru: <>Политика — на сайте, <A>ссылка — на лендинге.</A></> }}
       mentor={{ uz: "Endi «Nima uchun» qatorini o'zingiz yozasiz — har ma'lumot nega kerakligini siz bilasiz; «1 · Ochish»dan boshlang.", ru: "Теперь строку «Зачем» пишете сами — для чего нужны ваши данные, знаете вы; начните с «1 · Открыть»." }}
       ustida={<TrekTanlov trek={trek} onTanla={tanla} />}
       natija={<NatijaA2 />}
       doneText={doneText}
-      ulgur={{ uz: "Siyosat sahifasi push qilinsa yetadi — brauzer ko'rinishi, havola va post uyga qoladi; yakun sarlavhasi nima qolganini aytadi.", ru: 'Достаточно отправить (push) страницу политики — браузерная версия, ссылка и пост остаются на дом; заголовок итога скажет, что осталось.' }}
-      pastQator={web && <WebQator>{tr({ uz: "brauzer ko'rinishi va o'rnatish fayli yo'q — 3-bo'limda faqat siyosat; 4-bo'lim (1) da lendingdagi asosiy tugma saytingiz manziliga olib borishini tekshirib, «havola lendingda» deb belgilaysiz; `hodisaYoz` — Amaliyot 1 da.", ru: 'браузерной версии и файла установки нет — в разделе 3 только политика; в (1) раздела 4 проверяете, что главная кнопка лендинга ведёт на адрес сайта, и отмечаете «ссылка на лендинге»; `hodisaYoz` — в Практике 1.' })}</WebQator>} />
+      ulgur={{ uz: "Siyosat sahifasi push qilinsa yetadi — brauzer ko'rinishi, link va post uyga qoladi; yakun sarlavhasi nima qolganini aytadi.", ru: 'Достаточно отправить (push) страницу политики — браузерная версия, ссылка и пост остаются на дом; заголовок итога скажет, что осталось.' }}
+      pastQator={web && <WebQator>{tr({ uz: "brauzer ko'rinishi va o'rnatish fayli yo'q — 3-bo'limda faqat siyosat; 4-bo'lim (1) da lendingdagi asosiy tugma saytingiz manziliga olib borishini tekshirib, «link lendingda» deb belgilaysiz; `hodisaYoz` — Amaliyot 1 da.", ru: 'браузерной версии и файла установки нет — в разделе 3 только политика; в (1) раздела 4 проверяете, что главная кнопка лендинга ведёт на адрес сайта, и отмечаете «ссылка на лендинге»; `hodisaYoz` — в Практике 1.' })}</WebQator>} />
   );
 };
 
@@ -2311,7 +2311,7 @@ const KARTOCHKALAR = [
   { front: { uz: 'Qaysi ikki son yonma-yon aytiladi?', ru: 'Какие два числа называют рядом?' }, back: { uz: "Ro'yxatdan o'tgan va asosiy harakatni qilgan", ru: 'Зарегистрировавшиеся и сделавшие основное действие' }, note: { uz: 'Mentor misolida ishga tushirish kuni: 20 va 8', ru: 'В примере Ментора в день запуска: 20 и 8' } },
   { front: { uz: 'Sinfdoshlar sanoqqa kiradimi?', ru: 'Считаются ли одноклассники?' }, back: { uz: 'Ha, lekin alohida aytiladi', ru: "Да, но их называют отдельно" }, note: { uz: 'Mentor misolida: 20 kishi, 11 tasi — sinfdosh', ru: 'В примере Ментора: 20 человек, 11 из них — одноклассники' } },
   { front: { uz: 'Namuna va tekshiruv akkauntlari sanaladimi?', ru: "Считаются ли аккаунты-образцы и проверочные?" }, back: { uz: "Yo'q", ru: 'Нет' }, note: { uz: "Mentor misolida ular `namuna` belgisi bilan ajratiladi; soxta akkaunt ham yo'q", ru: 'В примере Ментора их отделяет отметка `namuna`; фейковых аккаунтов тоже нет' } },
-  { front: { uz: 'Havola yuborishdan oldin bu darsda qaysi uch narsa tekshiriladi?', ru: 'Какие три вещи на этом уроке проверяют перед отправкой ссылки?' }, back: { uz: "Ma'lumot, o'lchov va havola", ru: 'Данные, измерение и ссылка' }, note: { uz: "Faqat kerakli minimum so'raladimi, qadamlar sanaladimi, odam ilovani qanday ochadi", ru: "Запрашивается ли только необходимый минимум, считаются ли шаги, как человек откроет приложение" } },
+  { front: { uz: 'Link yuborishdan oldin bu darsda qaysi uch narsa tekshiriladi?', ru: 'Какие три вещи на этом уроке проверяют перед отправкой ссылки?' }, back: { uz: "Ma'lumot, o'lchov va link", ru: 'Данные, измерение и ссылка' }, note: { uz: "Faqat kerakli minimum so'raladimi, qadamlar sanaladimi, odam ilovani qanday ochadi", ru: "Запрашивается ли только необходимый минимум, считаются ли шаги, как человек откроет приложение" } },
   { front: { uz: 'Login nima?', ru: 'Что такое логин?' }, back: { uz: "Ro'yxatdan o'tishda o'zingiz tanlagan nom", ru: 'Имя, которое вы сами выбираете при регистрации' }, note: { uz: "Mentor misolida telefon raqami so'ralmaydi — SMS yuborilmaydi", ru: "В примере Ментора номер телефона не запрашивается — SMS не отправляются" } },
   { front: { uz: 'Qurilma ID nima?', ru: 'Что такое ID устройства?' }, back: { uz: 'Tasodifiy harf va raqamlar: bitta qurilmadagi ilovani ajratadi', ru: 'Случайные буквы и цифры: отличают приложение на одном устройстве' }, note: { uz: 'Odamning ismini ham, loginini ham bildirmaydi', ru: 'Не выдаёт ни имени, ни логина человека' } },
   { front: { uz: 'Mentor misolida ilova qaysi to\'rt qadamni sanaydi?', ru: 'Какие четыре шага считает приложение в примере Ментора?' }, back: { uz: "Ochdi, ro'yxatdan o'tdi, qo'shildi, kelishini tasdiqladi", ru: 'Открыл, зарегистрировался, присоединился, подтвердил приход' }, note: { uz: 'Har qadamda turli qurilmalar soni', ru: 'На каждом шаге — число разных устройств' } },
@@ -2346,14 +2346,14 @@ const HW_QOLGAN = {
   olchov: { uz: "qadamlar sanog'ini tekshiring", ru: 'проверьте подсчёт шагов' },
   siyosat: { uz: 'siyosat sahifasini kod bilan solishtiring', ru: 'сравните страницу политики с кодом' },
   brauzer: { uz: "brauzer ko'rinishini chiqaring", ru: 'выложите браузерную версию' },
-  android: { uz: "o'rnatish fayli tayyor bo'lgach, Android havolasini lendingga qo'ying", ru: "когда файл установки будет готов, поставьте ссылку Android на лендинге" }
+  android: { uz: "o'rnatish fayli tayyor bo'lgach, Android linkini lendingga qo'ying", ru: "когда файл установки будет готов, поставьте ссылку Android на лендинге" }
 };
 const HwCard = ({ keyingi, qolgan }) => (
   <div className="card fu-hw fade-up">
     <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
     <div className="fu-hw-karta">{HW_KARTA.map((r, i) => <div key={i} className="fu-hw-q"><span className="fu-hw-k">{tr(r.k)}</span><span className="fu-hw-v">{tr(r.v)}</span></div>)}</div>
     <ol className="fu-hw-qadam">
-      <li><i>1</i><span>{tr({ uz: "Havola lendingda bo'lgach, postni olti bandli ro'yxat bo'yicha tekshiring, ota-onangizga ko'rsating va 1-bosqichdagi kanallarga yuboring (guruhga — egasidan ruxsat so'rab). Uchrashuv taklifi kelsa — faqat kattalar bilan.", ru: "Когда ссылка будет на лендинге, проверьте пост по списку из шести пунктов, покажите родителям и отправьте в каналы 1-го этапа (в группу — спросив разрешения владельца). Если предложат встретиться — только со взрослыми." })}</span></li>
+      <li><i>1</i><span>{tr({ uz: "Link lendingda bo'lgach, postni olti bandli ro'yxat bo'yicha tekshiring, ota-onangizga ko'rsating va 1-bosqichdagi kanallarga yuboring (guruhga — egasidan ruxsat so'rab). Uchrashuv taklifi kelsa — faqat kattalar bilan.", ru: "Когда ссылка будет на лендинге, проверьте пост по списку из шести пунктов, покажите родителям и отправьте в каналы 1-го этапа (в группу — спросив разрешения владельца). Если предложат встретиться — только со взрослыми." })}</span></li>
       <li><i>2</i><span>{fmtCode(tr({ uz: "Kechqurun Neon'da ikki sonni qayta sanang — hozirgacha ro'yxatdan o'tgan (`namuna = false`; sinfdoshlarni bilsangiz — alohida) va asosiy harakatni qilgan — va sanasi bilan yozib oling.", ru: 'Вечером пересчитайте в Neon два числа — зарегистрировавшихся на сегодня (`namuna = false`; одноклассников, если знаете, — отдельно) и сделавших основное действие — и запишите с датой.' }))}</span></li>
       {qolgan.length > 0 && <li><i>3</i><span>{tr({ uz: 'Darsda qolgan qismni tugating', ru: 'Закончите то, что осталось с урока' })}: {qolgan.map(k => tr(HW_QOLGAN[k])).join(' · ')}.</span></li>}
     </ol>
@@ -2397,8 +2397,8 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     : rejaSaqlangan(r) ? 'reja' : 'yoq';
   const SARLAVHA = {
     yuborildi: { uz: <>Ilovangiz <A>odamlarga yuborildi.</A></>, ru: <>Ваше приложение <A>отправлено людям.</A></> },
-    uyda: { uz: <>Havola tayyor — <A>post yuborish qoldi.</A></>, ru: <>Ссылка готова — <A>осталось отправить пост.</A></> },
-    ilova: { uz: <>Ilova tayyor — <A>havola va post qoldi.</A></>, ru: <>Приложение готово — <A>остались ссылка и пост.</A></> },
+    uyda: { uz: <>Link tayyor — <A>post yuborish qoldi.</A></>, ru: <>Ссылка готова — <A>осталось отправить пост.</A></> },
+    ilova: { uz: <>Ilova tayyor — <A>link va post qoldi.</A></>, ru: <>Приложение готово — <A>остались ссылка и пост.</A></> },
     reja: { uz: <>Reja tayyor — <A>uch tekshiruv qoldi.</A></>, ru: <>План готов — <A>остались три проверки.</A></> },
     yoq: { uz: <>Reja hali yozilmagan — <A>uch bosqichni yozing.</A></>, ru: <>План ещё не написан — <A>напишите три этапа.</A></> }
   };

@@ -689,7 +689,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
 
 // ===== MVC ROLLARI (s3) =====
 const MVC = [
-  { id: 'view', label: 'View', sub: { uz: "ko'rinish", ru: 'Представление' }, color: T.blue, rest: { uz: "mijoz ko'radigan zal va menyu", ru: 'зал и меню, которые видит клиент' }, role: { uz: "Foydalanuvchi ko'radigan qism: sahifa, tugmalar, rasmlar. Ma'lumotni ko'rsatadi. Bizning loyihada bu vazifani asosan React bajaradi.", ru: 'Часть, которую видит пользователь: страница, кнопки, картинки. Показывает данные. В нашем проекте эту работу в основном выполняет React.' } },
+  { id: 'view', label: 'View', sub: { uz: "ko'rinish", ru: 'Представление' }, color: T.blue, rest: { uz: "mijoz ko'radigan zal va menu", ru: 'зал и меню, которые видит клиент' }, role: { uz: "Foydalanuvchi ko'radigan qism: sahifa, tugmalar, rasmlar. Ma'lumotni ko'rsatadi. Bizning loyihada bu vazifani asosan React bajaradi.", ru: 'Часть, которую видит пользователь: страница, кнопки, картинки. Показывает данные. В нашем проекте эту работу в основном выполняет React.' } },
   { id: 'controller', label: 'Controller', sub: { uz: "yo'naltiruvchi", ru: 'направляющий' }, color: T.accent, rest: { uz: 'ofitsiant', ru: 'официант' }, role: { uz: "So'rovni qabul qiladi va ishni yo'naltiradi: Model'dan ma'lumot so'raydi, natijani View'ga beradi. Nest'dagi controllerlar aynan shu ishni qiladi.", ru: 'Принимает запрос и направляет работу: запрашивает данные у Model, передаёт результат во View. Контроллеры в Nest делают именно это.' } },
   { id: 'model', label: 'Model', sub: { uz: "ma'lumot va qoidalar", ru: 'данные и правила' }, color: T.success, rest: { uz: 'oshpaz va retseptlar', ru: 'повар и рецепты' }, role: { uz: "Ma'lumot qanday bo'lishini va u bilan qanday ishlashni belgilaydi: masalan, mahsulotda nomi va narxi bo'lishi, narx manfiy bo'lmasligi.", ru: 'Определяет, какими должны быть данные и как с ними работать: например, что у товара есть название и цена, а цена не может быть отрицательной.' } }
 ];
@@ -698,7 +698,7 @@ const MVC = [
 const MVC_ROLES = [{ id: 'view', label: 'View' }, { id: 'controller', label: 'Controller' }, { id: 'model', label: 'Model' }];
 const MAP_ITEMS = [
   { id: 'front', comp: { uz: "Mahsulotlar ro'yxatini chiqaradigan React sahifa", ru: 'React-страница, которая выводит список товаров' }, role: 'view' },
-  { id: 'back', comp: { uz: "Nest'dagi controller — `/menyu` so'rovini qabul qiladigan kod", ru: 'Контроллер в Nest — код, который принимает запрос `/menyu`' }, role: 'controller' },
+  { id: 'back', comp: { uz: "Nest'dagi controller — `/menu` so'rovini qabul qiladigan kod", ru: 'Контроллер в Nest — код, который принимает запрос `/menu`' }, role: 'controller' },
   { id: 'db', comp: { uz: "Mahsulotda nomi va narxi bo'lishini belgilaydigan va uni Database'dan o'qiydigan kod", ru: 'Код, который задаёт, что у товара есть название и цена, и читает товар из Database' }, role: 'model' }
 ];
 

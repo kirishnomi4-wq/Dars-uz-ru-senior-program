@@ -43,3 +43,6 @@ Qoldirildi: m7-12 «Fikr yoki va'da» — saralash mashqining nomli nishon ustun
 - Suratlar ko'rildi: m12-02 s2/s3 (1280, 390), m12-05 s2/s4, m12-08 s0/s2/s3, m8-11 s1/s2, m9-16 s2 (390), m7-12 s2/s3, m10-11 s3, m10-12 s3, m12-01 s6.
 - Safari: tekshirilmadi (WebKit o'rnatilmagan) — QA qayta ko'radi.
 Commit yo'q.
+
+## 5. Reliz (F-1019-09)
+Foydalanuvchi: «uje QA seans ishini qilib boldi … havotir olmasdan» → prod yig'ma (o'zi yurgizdi) → «ozing avtopilotda ishla». Katalog qayta yig'ildi, commit `be0b14bd`. Yo'riqnoma: `feedback/F-1019-09-reliz/RELIZ.md`.

@@ -777,7 +777,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
       <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun «tayyor» so'zini <span className="italic" style={{ color: T.accent }}>uchta aniq shartga</span> aylantirasiz</>, ru: <>Сегодня вы превратите слово «готово» в <span className="italic" style={{ color: T.accent }}>три конкретных условия</span></> })}</h2></div>
       <Mentor>{tr({ uz: "Bufetning boshqa tugmasini olamiz — pastdagi ro'yxatni kuzating.", ru: 'Возьмём другую кнопку буфета — следите за списком внизу.' })}</Mentor>
       <div className="s1demo">
-        <span className="s1demo-lbl">🧾 {tr({ uz: "«Menyuni ko'rish» tugmasi — uchta shart", ru: 'Кнопка «Посмотреть меню» — три условия' })}</span>
+        <span className="s1demo-lbl">🧾 {tr({ uz: "«Menuni ko'rish» tugmasi — uchta shart", ru: 'Кнопка «Посмотреть меню» — три условия' })}</span>
         <div className="s1demo-list">
           {DEMO_SHART.map((s, i) => (
             <span key={i} className="s1row" style={{ '--dd': `${0.5 + i * 0.75}s` }}>

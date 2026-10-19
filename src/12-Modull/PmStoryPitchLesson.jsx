@@ -605,14 +605,14 @@ const MENTOR_HIKOYA = {
   lahza: { uz: "Shanba, 18:00. Maydonda 8 kishi, yana 2 kishi kelmadi — o'yin bo'lmadi.", ru: 'Суббота, 18:00. На площадке 8 человек, ещё 2 не пришли — игра не состоялась.' },
   ozgarish: { uz: `Endi tashkilotchi juma kuni ko'radi: 9${NB}/${NB}10, bitta joy bo'sh.`, ru: `Теперь организатор в пятницу видит: 9${NB}/${NB}10, одно место свободно.` }
 };
-const FUNKSIYA_ROYXAT = [{ uz: "O'yin e'loni", ru: 'Объявление игры' }, { uz: "Qo'shilish", ru: 'Присоединение' }, { uz: 'Eslatmalar', ru: 'Напоминания' }, { uz: 'Telegram xabari', ru: 'Сообщение в Telegram' }, { uz: 'Taklif havolasi', ru: 'Ссылка-приглашение' }, { uz: 'Pro', ru: 'Pro' }];
+const FUNKSIYA_ROYXAT = [{ uz: "O'yin e'loni", ru: 'Объявление игры' }, { uz: "Qo'shilish", ru: 'Присоединение' }, { uz: 'Eslatmalar', ru: 'Напоминания' }, { uz: 'Telegram xabari', ru: 'Сообщение в Telegram' }, { uz: 'Taklif linki', ru: 'Ссылка-приглашение' }, { uz: 'Pro', ru: 'Pro' }];
 const BOLAK_ID = ['muammo', 'bozor', 'yechim', 'raqamlar', 'jamoa', 'keyingi'];
 const BOLAK_NOM = { muammo: { uz: 'Muammo', ru: 'Проблема' }, bozor: { uz: 'Bozor', ru: 'Рынок' }, yechim: { uz: 'Yechim', ru: 'Решение' }, raqamlar: { uz: 'Raqamlar', ru: 'Цифры' }, jamoa: { uz: 'Jamoa', ru: 'Команда' }, keyingi: { uz: 'Keyingi qadam', ru: 'Следующий шаг' } };
 const JAMOA_PITCH = {
   muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 3 из 3 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' },
   bozor: { uz: "Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.", ru: 'В футбольной группе махалли — 60 человек; в приложении — 6 организаторов. Другие махалли мы ещё не проверяли.' },
   yechim: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут.' },
-  raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора письменно подтвердили Pro — это ещё не оплата.' },
+  raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора письменно подтвердили Pro — это ещё не оплата.' },
   jamoa: { uz: "Men — g'oya, mahsulot va kod (agent bilan). Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.", ru: 'Я — идея, продукт и код (с агентом). Пробовали — 6 организаторов и игроки.' },
   keyingi: { uz: "Uch tashkilotchi bilan \"Doimiy o'yin\"ni test rejimda sinayman. Sizdan bitta so'rov: mahalladagi maydon egalari bilan tanishtiring.", ru: 'С тремя организаторами проверю «Постоянную игру» в тестовом режиме. Одна просьба к вам: познакомьте с владельцами площадок в махалле.' }
 };
@@ -1049,7 +1049,7 @@ const S8_XATO = {
   bosh: { uz: 'Bu kartaga bitta gap yozing.', ru: 'Напишите в эту карточку одну фразу.' },
   kimUzun: { uz: 'Faqat rolini yozing — 60 belgigacha.', ru: 'Напишите только роль — до 60 знаков.' },
   uzun: { uz: '160 belgidan oshdi — gapni qisqartiring.', ru: 'Больше 160 знаков — сократите фразу.' },
-  pii: { uz: 'Hikoyaga telefon, akkaunt va havola yozilmaydi.', ru: 'В историю не пишут телефон, аккаунт и ссылку.' },
+  pii: { uz: 'Hikoyaga telefon, akkaunt va link yozilmaydi.', ru: 'В историю не пишут телефон, аккаунт и ссылку.' },
   vaqtYoq: { uz: "Bu bitta voqeami? Qachon yoki qayerda bo'lganini qo'shing.", ru: 'Это один случай? Добавьте, когда или где это было.' },
   umumiy: { uz: 'Bu umumiy gap — bitta voqeani yozing.', ru: 'Это общая фраза — напишите один случай.' },
   vada: { uz: "Bu va'da — mahsulot bugun nima ko'rsatadi?", ru: 'Это обещание — что продукт показывает сегодня?' },

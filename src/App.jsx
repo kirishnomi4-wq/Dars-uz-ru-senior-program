@@ -225,7 +225,7 @@ const MODULES = [
     lessons: [
       { key: 'm1-01', n: 1,  type: 'Kod',     emoji: '🌐', title: 'Internet qanday ishlaydi',        sub: 'brauzer, server, domen, DNS — so\'rov yo\'li', comp: InternetLesson },
       { key: 'm1-02', n: 2,  type: 'PM',      emoji: '🎯', title: 'Kim mening foydalanuvchim?',      sub: 'auditoriya va saytning maqsadi', comp: PmLesson1 },
-      { key: 'm1-03', n: 3,  type: 'Kod',     emoji: '📄', title: 'HTML asoslari',                sub: 'teg, sarlavha, ro\'yxat, havola', comp: Htmllesson1 },
+      { key: 'm1-03', n: 3,  type: 'Kod',     emoji: '📄', title: 'HTML asoslari',                sub: 'teg, sarlavha, ro\'yxat, link', comp: Htmllesson1 },
       { key: 'm1-04', n: 4,  type: 'Kod',     emoji: '🖼️', title: 'HTML: rasm, struktura, forma, DevTools',                sub: 'rasm, forma, struktura, DevTools', comp: Htmllesson2 },
       { key: 'm1-14', n: 5,  type: 'Kod',     emoji: '🛠️', title: 'Takrorlash: HTML ustaxonasi',     sub: 'birinchi mijozlar — 5 buyurtma, debug, imtihon', comp: HtmlTakrorlashLesson },
       { key: 'm1-05', n: 6,  type: 'PM',      emoji: '🗺️', title: 'Struktura — foydalanuvchi uchun qilingan qulaylik',     sub: 'bo\'limlar tartibi kimga qarab tuziladi', comp: PmLesson2 },
@@ -454,7 +454,7 @@ const MODULES = [
   },
   {
     id: '13', slug: 'm11', title: 'O\'sish va monetizatsiya', period: 'oy 14.5–15.5', stage: 2,
-    idea: 'Mahsulot pul topa boshlaydi: narx, test rejimdagi to\'lov, taklif havolasi — va birinchi odamlar to\'lashga tayyorligini tasdiqlaydi.',
+    idea: 'Mahsulot pul topa boshlaydi: narx, test rejimdagi to\'lov, taklif linki — va birinchi odamlar to\'lashga tayyorligini tasdiqlaydi.',
     lessons: [
       { key: 'm11-01', n: 1, type: 'PM', emoji: '🧮', title: 'Bitta foydalanuvchi sizga qanchaga tushadi?', sub: 'jalb qilish narxi va foydalanuvchi keltiradigan pul', comp: PmUnitEconomicsLesson },
       { key: 'm11-02', n: 2, type: 'PM', emoji: '🧭', title: 'Mahsulotingiz qanday pul topadi?', sub: 'besh model: bepul asos, pullik obuna, reklama, B2B, tranzaksiya', comp: PmMonetizationLesson },
@@ -465,7 +465,7 @@ const MODULES = [
       { key: 'm11-07', n: 7, type: 'PM', emoji: '📄', title: 'Foydalanuvchiga shartlarni qanday ochiq aytasiz?', sub: 'oferta va maxfiylik siyosati saytda', comp: PmTermsLesson },
       { key: 'm11-08', n: 8, type: 'Proyekt', emoji: '📬', title: 'Loyiha kuni: ketayotgan foydalanuvchini qaytarish', sub: 'nega ketishadi va bitta qaytarish mexanikasi', comp: WinBackDayLesson },
       { key: 'm11-09', n: 9, type: 'PM', emoji: '✅', title: 'Kim haqiqatan to\'lashga tayyor?', sub: 'Mentor tekshiruvi: uchta yozma tasdiq', comp: PmPayCheckLesson },
-      { key: 'm11-10', n: 10, type: 'Proyekt', emoji: '🔗', title: 'Loyiha kuni: taklif havolasi va mukofot', sub: 'unikal havola, sanoq va mukofot', comp: ReferralDayLesson },
+      { key: 'm11-10', n: 10, type: 'Proyekt', emoji: '🔗', title: 'Loyiha kuni: taklif linki va mukofot', sub: 'unikal link, sanoq va mukofot', comp: ReferralDayLesson },
       { key: 'm11-11', n: 11, type: 'PM', emoji: '🪞', title: 'Mahsulotingiz hozir qayerda?', sub: 'roadmap bilan solishtirish va shaxsiy hisobot', comp: PmReflectionLesson },
       { key: 'm11-12', n: 12, type: 'Proyekt', emoji: '🛠️', title: 'Loyiha kuni: barqarorlashtirish', sub: 'asosiy yo\'llarni tekshiramiz va tuzatamiz', comp: StabilizeDayLesson },
       { key: 'm11-13', n: 13, type: 'Rezerv', emoji: '📅', title: 'Zaxira dars', sub: 'yetib olish / sayqallash' },
@@ -483,7 +483,7 @@ const MODULES = [
       { key: 'm12-06', n: 6, type: 'Kod', emoji: '🧰', title: 'Demoga tayyorgarlik: risklar va B reja', sub: 'demo ssenariysi, B reja va yangi funksiyani to\'xtatish', comp: DemoPrepLesson },
       { key: 'm12-07', n: 7, type: 'PM', emoji: '🔍', title: 'Investor ko\'zi bilan: demo buzilmaydimi?', sub: 'demo tekshiruvi: buzamiz, agent tuzatadi, uch marta to\'liq o\'tish', comp: PmDemoTestLesson },
       { key: 'm12-08', n: 8, type: 'PM', emoji: '⏱️', title: 'Final pitchingiz 5 daqiqaga tayyormi?', sub: 'pitch mashqi 2: taymer va savol-javob', comp: PmFinalPitchLesson },
-      { key: 'm12-09', n: 9, type: 'Kod', emoji: '🎬', title: 'Video-portfolio: 3 daqiqada o\'zingiz va mahsulot', sub: 'ssenariy, ekran yozuvi va havola', comp: VideoPortfolioLesson },
+      { key: 'm12-09', n: 9, type: 'Kod', emoji: '🎬', title: 'Video-portfolio: 3 daqiqada o\'zingiz va mahsulot', sub: 'ssenariy, ekran yozuvi va link', comp: VideoPortfolioLesson },
       { key: 'm12-10', n: 10, type: 'PM', emoji: '🧾', title: 'Birinchi buyurtmani qayerdan topasiz?', sub: 'frilans va stajirovka: reja va ikki xat', comp: PmFreelanceLesson },
       { key: 'm12-11', n: 11, type: 'PM', emoji: '🌍', title: 'Qaysi xalqaro dasturga ariza berasiz?', sub: 'Diamond Challenge, Y Combinator: shartlar va ariza', comp: PmProgramsLesson },
       { key: 'm12-12', n: 12, type: 'PM', emoji: '🗓️', title: 'Keyingi olti oyda nima qilasiz?', sub: 'Mentor bilan yakkama-yakka: olti oylik reja', comp: PmNextStepsLesson },

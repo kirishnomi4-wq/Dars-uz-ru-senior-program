@@ -1562,7 +1562,7 @@ const ScreenTest3 = (props) => (
 const MATCH_SOLS = [
   { t: { uz: 'Turgan joyni xaritada belgilash', ru: 'Отметить на карте, где стоишь' }, to: 0 },
   { t: { uz: "Yo'l haqini do'stlar orasida bo'lish", ru: 'Разделить оплату поездки между друзьями' }, to: 1 },
-  { t: { uz: 'Safarni ota-onaga havola bilan yuborish', ru: 'Отправить поездку родителям ссылкой' }, to: 2 },
+  { t: { uz: 'Safarni ota-onaga link bilan yuborish', ru: 'Отправить поездку родителям ссылкой' }, to: 2 },
   { t: { uz: "Ilova ochilganda foydalanuvchiga kunning motivatsion xabarini ko'rsatish", ru: 'Показывать пользователю мотивирующую фразу дня при открытии приложения' }, to: 'none' },
 ];
 const MATCH_PROBS = [
@@ -2057,7 +2057,7 @@ const QUIZ_BANK = [
     { uz: 'Eski logotipi menga ko\'proq yoqardi', ru: 'Старый логотип мне нравился больше' },
     { uz: "O'yin o'rtasida meni uch marta chiqarib yubordi", ru: 'Посреди игры меня три раза выкинуло' },
     { uz: "Boshqa o'yin menga bundan ancha qiziqroq tuyuladi", ru: 'Другая игра кажется мне гораздо интереснее этой' },
-    { uz: 'Menyusining rangi juda zerikarli', ru: 'Цвет меню очень скучный' }], correct: 1 },
+    { uz: 'Menusining rangi juda zerikarli', ru: 'Цвет меню очень скучный' }], correct: 1 },
   { q: { uz: "Maktab oshxonasiga ilova qilmoqchisiz. Airbnb asoschilari kabi nima qilasiz?", ru: 'Хотите сделать приложение для школьной столовой. Что сделаете, как основатели Airbnb?' }, opts: [
     { uz: "Uyda o'tirib, ilovaga chiroyli nom o'ylaysiz", ru: 'Сидя дома, придумаете красивое название' },
     { uz: 'Internetdan tayyor dizayn qidirasiz', ru: 'Поищете в интернете готовый дизайн' },

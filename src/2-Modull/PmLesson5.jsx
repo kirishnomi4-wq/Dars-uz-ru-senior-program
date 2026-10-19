@@ -152,7 +152,7 @@ const FALLBACK_FEATURES = [
   { id: 'f2', ic: '🕒', model: 'v1', uz: 'Ish vaqti va manzil', ru: 'Часы работы и адрес' },
   { id: 'f3', ic: '🎫', model: 'v1', uz: 'Chipta band qilish tugmasi', ru: 'Кнопка бронирования билета' },
   { id: 'f4', ic: '🎟', model: 'backlog', why: { uz: "chegirma kodisiz ham chipta sotiladi, hisob-kitobiga bir necha kun ketadi", ru: 'без кода скидки билеты тоже продаются, а расчёты займут несколько дней' }, uz: 'Chegirma kodi', ru: 'Код скидки' },
-  { id: 'f5', ic: '🍿', model: 'v2', why: { uz: "bufet menyusiz ham chipta sotiladi", ru: 'без меню буфета билеты тоже продаются' }, uz: 'Bufet menyusi', ru: 'Меню буфета' },
+  { id: 'f5', ic: '🍿', model: 'v2', why: { uz: "bufet menusiz ham chipta sotiladi", ru: 'без меню буфета билеты тоже продаются' }, uz: 'Bufet menusi', ru: 'Меню буфета' },
   { id: 'f6', ic: '⭐', model: 'backlog', why: { uz: "sharhlarsiz ham sayt ishlaydi, sharh tizimiga bir necha kun ketadi", ru: 'без отзывов сайт тоже работает, а система отзывов займёт несколько дней' }, uz: 'Tomoshabin sharhlari', ru: 'Отзывы зрителей' },
 ];
 // M2-D2 kalitini o'qish (96-qonun modul-ipi: o'quvchi 2-darsda YOZGAN imkoniyatlar shu yerga keladi).
@@ -350,7 +350,7 @@ const RECAPS = {
         body: { uz: <>Busiz sayt ish bermaydigan ishlar ro'yxati — eng sodda birinchi versiya, <b>MVP</b>.</>, ru: <>Список дел, без которых сайт не работает, — самая простая первая версия, <b>MVP</b>.</> },
         vis: { uz: <RcFlow items={['Busiz ish bermaydi', 'Bir kunda bo\'ladi', 'Ochilish ro\'yxati']} />, ru: <RcFlow items={['Без него не работает', 'Делается за день', 'Список к открытию']} /> } },
       { ic: '⚖️', h: { uz: 'Osonligi qaror qilmaydi', ru: 'Лёгкость не решает' },
-        body: { uz: <>Bufet menyusi oson, lekin busiz ham sayt ish beradi — <b>osonlik</b> yetarli emas.</>, ru: <>Меню буфета сделать легко, но сайт работает и без него — <b>лёгкость</b> не аргумент.</> } },
+        body: { uz: <>Bufet menusi oson, lekin busiz ham sayt ish beradi — <b>osonlik</b> yetarli emas.</>, ru: <>Меню буфета сделать легко, но сайт работает и без него — <b>лёгкость</b> не аргумент.</> } },
       { ic: '🙂', h: { uz: 'Yoqish-yoqmaslik ham qaror qilmaydi', ru: 'Нравится или нет — тоже не решает' },
         body: { uz: <>Egasiga yoqishi emas, <b>ikki savol</b> hal qiladi: busiz ish beradimi va qancha vaqt oladi.</>, ru: <>Решает не то, что нравится владельцу, а <b>два вопроса</b>: работает ли сайт без этого и сколько времени займёт.</> },
         ask: { uz: 'Ochilish kuni odam saytga kirsa, nima qila olishi shart?', ru: 'Что человек обязан суметь сделать на сайте в день открытия?' } },
@@ -1036,7 +1036,7 @@ const TESTS = {
     ok: { uz: "To'g'ri. Birinchi versiyaga faqat busiz sayt ish bermaydigan ishlar kiradi — Instagram uchun bu foto, filtr va izoh edi.", ru: 'Верно. В первую версию входят только дела, без которых сайт не работает, — для Instagram это были фото, фильтр и комментарий.' },
     wrong: {
       0: { uz: "Hammasi kirsa, ochilish kuni kelganda ishlarning yarmi tugamagan bo'ladi.", ru: 'Если войдут все, то ко дню открытия половина дел останется незавершённой.' },
-      1: { uz: "Osonligi yetarli emas: bufet menyusi oson, lekin busiz ham sayt ish beradi.", ru: 'Лёгкости недостаточно: меню буфета делается легко, но и без него сайт работает.' },
+      1: { uz: "Osonligi yetarli emas: bufet menusi oson, lekin busiz ham sayt ish beradi.", ru: 'Лёгкости недостаточно: меню буфета делается легко, но и без него сайт работает.' },
       3: { uz: "Yoqish-yoqmaslik qaror qilmaydi. Savol boshqa: busiz sayt ish beradimi?", ru: 'Нравится или нет — не решает. Вопрос другой: работает ли сайт без этого?' },
       default: { uz: 'Savol bitta: busiz sayt ish beradimi?', ru: 'Вопрос один: работает ли сайт без этого?' },
     },
@@ -1415,7 +1415,7 @@ const FE_CARDS = [
   { id: 'soat', ic: '🕒', b: 'v1', uz: 'Ish vaqti va manzil', ru: 'Часы работы и адрес', neutralUz: "Bu karta o'z joyida: busiz sayt ish bermaydi. Yana qarang.", neutralRu: 'Эта карточка на месте: без неё сайт не работает. Посмотрите ещё.' },
   { id: 'chipta', ic: '🎫', b: 'v1', uz: 'Chipta band qilish tugmasi', ru: 'Кнопка бронирования билета', neutralUz: "Bu karta o'z joyida: busiz sayt ish bermaydi. Yana qarang.", neutralRu: 'Эта карточка на месте: без неё сайт не работает. Посмотрите ещё.' },
   { id: 'review', ic: '⭐', b: 'v1', uz: 'Tomoshabin sharhlari', ru: 'Отзывы зрителей', bad: true },
-  { id: 'bufet', ic: '🍿', b: 'v2', uz: 'Bufet menyusi', ru: 'Меню буфета', neutralUz: "Bu karta o'z joyida — keyingi versiyada.", neutralRu: 'Эта карточка на месте — в следующей версии.' },
+  { id: 'bufet', ic: '🍿', b: 'v2', uz: 'Bufet menusi', ru: 'Меню буфета', neutralUz: "Bu karta o'z joyida — keyingi versiyada.", neutralRu: 'Эта карточка на месте — в следующей версии.' },
   { id: 'promo', ic: '🎟', b: 'backlog', uz: 'Chegirma kodi', ru: 'Код скидки', neutralUz: "Bu karta o'z joyida — keyinga qoldirilgan.", neutralRu: 'Эта карточка на месте — отложена.' },
 ];
 const ScrFindError = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1480,7 +1480,7 @@ const ScrFindError = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const KODING_STARTER = `// Kinoteatr sayti — imkoniyatlar va ularning darajasi.
 // Ikkala massivda ham bir xil o'rindagi element bir imkoniyatga tegishli.
 const nomlar = ["Seanslar va narxlar", "Ish vaqti va manzil", "Chipta band qilish tugmasi",
-                "Chegirma kodi", "Bufet menyusi", "Tomoshabin sharhlari"];
+                "Chegirma kodi", "Bufet menusi", "Tomoshabin sharhlari"];
 const darajalar = ["v1", "v1", "v1", "backlog", "v2", "backlog"];
 
 function ochilishRoyxati(nomlar, darajalar) {
@@ -1507,7 +1507,7 @@ const writeKodingOpen = (open) => { try { const p = readKoding() || {}; localSto
 // Saqlov-moslik: eski `pm-m2d7-code`.code (o'quvchi kodi) → fayl-starter sifatida; yangi kod `pm-m2d7-code:code` da (HtmlCompiler formati);
 // `open/done` avvalgidek `pm-m2d7-code` da.
 const KOD_FILE = 'ochilishRoyxati.js';
-const KOD_EVAL_C3 = "(function(){try{var r=String(ochilishRoyxati(nomlar,darajalar));var A=[\"Seanslar va narxlar\",\"Ish vaqti va manzil\",\"Chipta band qilish tugmasi\"],B=[\"Chegirma kodi\",\"Bufet menyusi\",\"Tomoshabin sharhlari\"];for(var i=0;i<A.length;i++)if(r.indexOf(A[i])===-1)return false;for(var j=0;j<B.length;j++)if(r.indexOf(B[j])!==-1)return false;return true;}catch(e){return false;}})()";
+const KOD_EVAL_C3 = "(function(){try{var r=String(ochilishRoyxati(nomlar,darajalar));var A=[\"Seanslar va narxlar\",\"Ish vaqti va manzil\",\"Chipta band qilish tugmasi\"],B=[\"Chegirma kodi\",\"Bufet menusi\",\"Tomoshabin sharhlari\"];for(var i=0;i<A.length;i++)if(r.indexOf(A[i])===-1)return false;for(var j=0;j<B.length;j++)if(r.indexOf(B[j])!==-1)return false;return true;}catch(e){return false;}})()";
 const mkKodTask = (starter) => ({
   eyebrow: { uz: 'Koding · praktika', ru: 'Кодинг · практика' },
   title: { uz: "ochilishRoyxati.js — siklga bitta shart qo'shing", ru: 'ochilishRoyxati.js — добавьте в цикл одно условие' },

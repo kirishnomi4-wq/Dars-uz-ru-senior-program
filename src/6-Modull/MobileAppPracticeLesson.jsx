@@ -110,8 +110,8 @@ const RECAPS = {
     title: { uz: "Tayyor backend — bitta tizim", ru: 'Готовый бэкенд — одна система' },
     cards: [
       { ic: "🔌", h: { uz: "Yangi server yo'q", ru: 'Нового сервера нет' }, body: { uz: <>Mobil ilova yangi server yozmaydi — backend darslaridagi <b>NestJS + PostgreSQL</b>'ga ulanadi.</>, ru: <>Мобильное приложение не пишет новый сервер — оно подключается к <b>NestJS + PostgreSQL</b> с уроков по бэкенду.</> } },
-      { ic: "📥", h: { uz: "Menyu fetch bilan keladi", ru: 'Меню приходит через fetch' }, body: { uz: <>Menyu <b>GET /menyu</b> orqali keladi, qo'lda yozilmaydi.</>, ru: <>Меню приходит через <b>GET /menyu</b>, его не вписывают вручную.</> } },
-      { ic: "🔗", h: { uz: "Bitta Database", ru: 'Одна Database' }, body: { uz: <>Web, bot, mobil — bitta Database'dan foydalanadi.</>, ru: <>Веб, бот, мобильное — все пользуются одной Database.</> }, ask: { uz: "Mobil ilova menyuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' } },
+      { ic: "📥", h: { uz: "Menu fetch bilan keladi", ru: 'Меню приходит через fetch' }, body: { uz: <>Menu <b>GET /menu</b> orqali keladi, qo'lda yozilmaydi.</>, ru: <>Меню приходит через <b>GET /menu</b>, его не вписывают вручную.</> } },
+      { ic: "🔗", h: { uz: "Bitta Database", ru: 'Одна Database' }, body: { uz: <>Web, bot, mobil — bitta Database'dan foydalanadi.</>, ru: <>Веб, бот, мобильное — все пользуются одной Database.</> }, ask: { uz: "Mobil ilova menuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' } },
     ]
   },
   6: {
@@ -190,7 +190,7 @@ const BUG_STEPS = [
 
 // To'liq hikoya (s13 takeaway)
 const CASE_AC = [
-  { tag: { uz: 'QURDI', ru: 'СОБРАЛ' }, color: T.accent, text: { uz: 'Menyu → Tafsilot → Savat → Buyurtma, har birini AI yordamida', ru: 'Меню → Детали → Корзина → Заказ, каждый — с помощью ИИ' }, why: { uz: 'T6/T7 bilimini ishga soldi, AI kod yozdi, u o\'qib bordi.', ru: 'Пустил в дело знания из T6/T7: ИИ писал код, он его читал.' } },
+  { tag: { uz: 'QURDI', ru: 'СОБРАЛ' }, color: T.accent, text: { uz: 'Menu → Tafsilot → Savat → Buyurtma, har birini AI yordamida', ru: 'Меню → Детали → Корзина → Заказ, каждый — с помощью ИИ' }, why: { uz: 'T6/T7 bilimini ishga soldi, AI kod yozdi, u o\'qib bordi.', ru: 'Пустил в дело знания из T6/T7: ИИ писал код, он его читал.' } },
   { tag: { uz: 'SAYQALLADI', ru: 'ОТПОЛИРОВАЛ' }, color: T.honey, text: { uz: 'StyleSheet bilan', ru: 'Через StyleSheet' }, why: { uz: '«Ishlaydi» yetarli emas — mijoz ko\'radigan narsa chiroyli bo\'lsin.', ru: '«Работает» — мало: то, что видит клиент, должно быть красивым.' } },
   { tag: { uz: 'SINADI', ru: 'ПРОВЕРИЛ' }, color: T.blue, text: { uz: "Expo Go'da telefonda xarid qilib ko'rdi, xato topib tuzatdi", ru: 'В Expo Go на телефоне сделал покупку, нашёл ошибку и исправил её' }, why: { uz: 'Telefonda sinab, savat bug\'ini tutdi va tuzatdi.', ru: 'Проверил на телефоне, поймал баг корзины и починил его.' } },
   { tag: { uz: 'ULASHDI', ru: 'ПОДЕЛИЛСЯ' }, color: T.success, text: { uz: "Expo Go QR bilan, do'sti telefonida ochildi", ru: 'По QR в Expo Go — открылось на телефоне друга' }, why: { uz: 'Tayyor ilova boshqalarning qo\'lida. Bitta backend, ko\'p telefon.', ru: 'Готовое приложение уже в руках у других. Один бэкенд — много телефонов.' } }
@@ -936,9 +936,9 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="backend-hub fade-up delay-1">
               <span style={{ fontSize: 30 }}>🟢</span>
               <p style={{ fontFamily: "'Manrope'", fontWeight: 800, fontSize: 15, color: '#fff', margin: '6px 0 2px' }}>{tr({ uz: 'Bitta backend', ru: 'Один бэкенд' })}</p>
-              <p style={{ fontFamily: G, fontSize: 12, color: '#9FB4D8', margin: 0, textAlign: 'center' }}>NestJS + PostgreSQL<br />(GET /menyu · POST /buyurtma)</p>
+              <p style={{ fontFamily: G, fontSize: 12, color: '#9FB4D8', margin: 0, textAlign: 'center' }}>NestJS + PostgreSQL<br />(GET /menu · POST /buyurtma)</p>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>1-darsdagi g'oya: <b>ko'p kirish yo'li — bitta tizim</b>. Web, bot, mobil — uchalasi menyuni bitta backend'dan oladi va buyurtmani bitta Database'ga yozadi.</>, ru: <>Идея с 1-го урока: <b>много точек входа — одна система</b>. Веб, бот, мобильное — все три берут меню с одного бэкенда и записывают заказы в одну Database.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>1-darsdagi g'oya: <b>ko'p kirish yo'li — bitta tizim</b>. Web, bot, mobil — uchalasi menuni bitta backend'dan oladi va buyurtmani bitta Database'ga yozadi.</>, ru: <>Идея с 1-го урока: <b>много точек входа — одна система</b>. Веб, бот, мобильное — все три берут меню с одного бэкенда и записывают заказы в одну Database.</> })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -949,7 +949,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 3 — ILOVA XARITASI (telefon preview) =====
 const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TABS = [
-    { id: 'list', label: { uz: 'Menyu', ru: 'Меню (Menyu)' } },
+    { id: 'list', label: { uz: 'Menu', ru: 'Меню (Menu)' } },
     { id: 'detail', label: { uz: 'Tafsilot', ru: 'Детали (Tafsilot)' } },
     { id: 'cart', label: { uz: 'Savat', ru: 'Корзина (Savat)' } },
     { id: 'checkout', label: { uz: 'Buyurtma', ru: 'Заказ (Buyurtma)' } }
@@ -961,7 +961,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const total = PRODUCTS[0].price + PRODUCTS[1].price;
   const renderPhone = () => {
-    if (tab === 'detail') return (<Phone><AppBar title={{ uz: '‹ Margarita', ru: '‹ Margarita' }} /><div className="rn-body" style={{ alignItems: 'center', gap: 10 }}><div style={{ fontSize: 64 }}>🍕</div><p className="rn-name" style={{ fontSize: 16 }}>{tr(PRODUCTS[0].name)}</p><p className="rn-price" style={{ fontSize: 14 }}>{fmt(PRODUCTS[0].price)}</p><p style={{ fontFamily: G, fontSize: 11, color: T.accent, textAlign: 'center' }}>{tr({ uz: 'Menyuga qaytish', ru: 'Вернуться в меню' })}</p></div><button className="rn-cta">{tr({ uz: "Savatga qo'shish", ru: 'В корзину' })}</button></Phone>);
+    if (tab === 'detail') return (<Phone><AppBar title={{ uz: '‹ Margarita', ru: '‹ Margarita' }} /><div className="rn-body" style={{ alignItems: 'center', gap: 10 }}><div style={{ fontSize: 64 }}>🍕</div><p className="rn-name" style={{ fontSize: 16 }}>{tr(PRODUCTS[0].name)}</p><p className="rn-price" style={{ fontSize: 14 }}>{fmt(PRODUCTS[0].price)}</p><p style={{ fontFamily: G, fontSize: 11, color: T.accent, textAlign: 'center' }}>{tr({ uz: 'Menuga qaytish', ru: 'Вернуться в меню' })}</p></div><button className="rn-cta">{tr({ uz: "Savatga qo'shish", ru: 'В корзину' })}</button></Phone>);
     if (tab === 'cart') return (<Phone><AppBar title={{ uz: 'Savat', ru: 'Корзина' }} badge={2} /><div className="rn-body"><ProductRow p={PRODUCTS[0]} /><ProductRow p={PRODUCTS[1]} /><div style={{ marginTop: 'auto', paddingTop: 8, borderTop: `1px dashed ${T.ink3}`, display: 'flex', justifyContent: 'space-between', fontFamily: 'Manrope', fontWeight: 800, fontSize: 13 }}><span>{tr({ uz: 'Jami:', ru: 'Итого:' })}</span><span style={{ color: T.accent }}>{fmt(total)}</span></div></div><button className="rn-cta">{tr({ uz: 'Buyurtma berish', ru: 'Оформить заказ' })}</button></Phone>);
     if (tab === 'checkout') return (<Phone><AppBar title={{ uz: 'Buyurtma', ru: 'Заказ' }} /><div className="rn-body" style={{ alignItems: 'center', justifyContent: 'center', gap: 10 }}><div style={{ fontSize: 48 }}>✅</div><p className="rn-name" style={{ fontSize: 14, textAlign: 'center' }}>{tr({ uz: 'Qabul qilindi', ru: 'Принято' })}</p><p className="rn-price">{tr({ uz: 'Sergeli, 7-uy', ru: 'Сергели, дом 7' })} · {fmt(total)}</p></div></Phone>);
     return (<Phone><AppBar title={{ uz: 'AvtoPizza', ru: 'AvtoPizza' }} badge={0} /><div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} chevron />)}</div></Phone>);
@@ -991,11 +991,11 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' }}
-    questionText={{ uz: "Mobil ilova menyuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' }}
-    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilova menyuni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Откуда</span> мобильное приложение берёт меню?</h2></> })}
-    options={[{ uz: "Tayyor backend'dan — `GET /menyu` bilan", ru: 'С готового бэкенда — через `GET /menyu`' }, { uz: "Faqat mobil uchun yozilgan yangi backend'dan", ru: 'С нового бэкенда, написанного только для мобильного' }, { uz: "Ilova ichiga qo'lda yozilgan ro'yxatdan", ru: 'Из списка, вписанного в приложение вручную' }, { uz: 'Hech qayerdan — mobil ilovada Database bo\'lmaydi', ru: 'Ниоткуда — у мобильного приложения Database не бывает' }]} correctIdx={0}
-    explainCorrect={{ uz: "To'g'ri! Mobil ilova backend darslaridagi NestJS + PostgreSQL serverga ulanadi (`GET /menyu`). Web, bot, mobil — bitta tizimning kirish yo'llari.", ru: 'Верно! Мобильное приложение подключается к серверу NestJS + PostgreSQL с уроков по бэкенду (`GET /menyu`). Веб, бот, мобильное — входы в одну систему.' }}
-    explainWrong={{ 1: { uz: "Yangi backend shart emas — bittasi hamma kirish yo'liga xizmat qiladi.", ru: 'Новый бэкенд не нужен — один обслуживает все точки входа.' }, 2: { uz: "Qo'lda yozsangiz — yangilanmaydi. Backend'dan fetch qiling.", ru: 'Впишете вручную — данные не будут обновляться. Получайте их с бэкенда через fetch.' }, 3: { uz: "Ma'lumot backend'da — ilova undan fetch qiladi.", ru: 'Данные лежат на бэкенде — приложение получает их через fetch.' }, default: { uz: 'Tayyor backend, `GET /menyu` — bitta tizim.', ru: 'Готовый бэкенд, `GET /menyu` — одна система.' } }} />
+    questionText={{ uz: "Mobil ilova menuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' }}
+    question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilova menuni <span className="italic" style={{ color: T.accent }}>qayerdan</span> oladi?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Откуда</span> мобильное приложение берёт меню?</h2></> })}
+    options={[{ uz: "Tayyor backend'dan — `GET /menu` bilan", ru: 'С готового бэкенда — через `GET /menu`' }, { uz: "Faqat mobil uchun yozilgan yangi backend'dan", ru: 'С нового бэкенда, написанного только для мобильного' }, { uz: "Ilova ichiga qo'lda yozilgan ro'yxatdan", ru: 'Из списка, вписанного в приложение вручную' }, { uz: 'Hech qayerdan — mobil ilovada Database bo\'lmaydi', ru: 'Ниоткуда — у мобильного приложения Database не бывает' }]} correctIdx={0}
+    explainCorrect={{ uz: "To'g'ri! Mobil ilova backend darslaridagi NestJS + PostgreSQL serverga ulanadi (`GET /menu`). Web, bot, mobil — bitta tizimning kirish yo'llari.", ru: 'Верно! Мобильное приложение подключается к серверу NestJS + PostgreSQL с уроков по бэкенду (`GET /menu`). Веб, бот, мобильное — входы в одну систему.' }}
+    explainWrong={{ 1: { uz: "Yangi backend shart emas — bittasi hamma kirish yo'liga xizmat qiladi.", ru: 'Новый бэкенд не нужен — один обслуживает все точки входа.' }, 2: { uz: "Qo'lda yozsangiz — yangilanmaydi. Backend'dan fetch qiling.", ru: 'Впишете вручную — данные не будут обновляться. Получайте их с бэкенда через fetch.' }, 3: { uz: "Ma'lumot backend'da — ilova undan fetch qiladi.", ru: 'Данные лежат на бэкенде — приложение получает их через fetch.' }, default: { uz: 'Tayyor backend, `GET /menu` — bitta tizim.', ru: 'Готовый бэкенд, `GET /menu` — одна система.' } }} />
 );
 
 // ===== SCREEN 5 — VIBECODING LOYIHA KUNI RITMI =====
@@ -1078,7 +1078,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     <div className="rn-body">{PRODUCTS.map(p => <ProductRow key={p.id} p={p} chevron={has('detail')} onAdd={has('cart') ? () => {} : undefined} />)}</div>
                   )
                 ) : (
-                  <RnEmpty>{tr({ uz: <>Ilova bo'sh.<br />Menyu ekranini qo'shing →</>, ru: <>Приложение пустое.<br />Добавьте экран Меню →</> })}</RnEmpty>
+                  <RnEmpty>{tr({ uz: <>Ilova bo'sh.<br />Menu ekranini qo'shing →</>, ru: <>Приложение пустое.<br />Добавьте экран Меню →</> })}</RnEmpty>
                 )}
                 {has('checkout') && !ran && <button className="rn-cta">{tr({ uz: 'Buyurtma berish', ru: 'Оформить заказ' })}</button>}
               </Phone>
@@ -1097,7 +1097,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {cur && !ran && (<div className="sk-info fade-step" key={active}><p className="flow-label" style={{ margin: 0 }}>{tr(cur.label)} — {tr({ uz: "topshirig'ingiz", ru: 'ваше задание' })}</p><p style={{ fontFamily: G, fontSize: 13.5, color: T.ink, margin: '8px 0 10px', fontStyle: 'italic' }}>«{tr(cur.prompt)}»</p><div className="codepill">{cur.code}</div></div>)}
             {!cur && !ran && <div className="hint"><p className="body" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Qadamni bosing — topshiriqni va AI taklif qilgan kodni ko'rasiz.", ru: 'Нажмите на шаг — увидите задание и код, который предложил ИИ.' })}</p></div>}
-            {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Menyu → savat → buyurtma → backend: asosiy oqim ishladi.', ru: 'Меню → корзина → заказ → бэкенд: основной путь заработал.' })}</p></div>}
+            {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Menu → savat → buyurtma → backend: asosiy oqim ishladi.', ru: 'Меню → корзина → заказ → бэкенд: основной путь заработал.' })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1263,7 +1263,7 @@ const Screen12 = (props) => (
     questionText={{ uz: "Mobil ilovani qanday sinaymiz?", ru: 'Как мы проверяем мобильное приложение?' }}
     question={tr({ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Mobil ilovani qanday <span className="italic" style={{ color: T.accent }}>sinaymiz</span>?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите правильный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Как мы <span className="italic" style={{ color: T.accent }}>проверяем</span> мобильное приложение?</h2></> })}
     options={[{ uz: "Sinamaymiz — AI to'g'ri yozib beradi", ru: 'Не проверяем — ИИ напишет правильно' }, { uz: 'Faqat ranglar to\'g\'ri chiqqanini tekshirib', ru: 'Проверив только, верно ли вышли цвета' }, { uz: 'Faqat kompyuterda kodga qarab, ochmasdan', ru: 'Только глядя в код на компьютере, не открывая приложение' }, { uz: "Kodni tekshirib, telefonda oqimni bosib ko'rib", ru: 'Проверив код и пройдя весь путь на телефоне' }]} correctIdx={3}
-    explainCorrect={{ uz: "To'g'ri! Avval kodni o'qiysiz, keyin Expo Go bilan telefonda har ekran va oqimni (menyu → savat → buyurtma) bosib sinaysiz. Qurilmada ba'zi xatolar (sekinlik, tugma joyi) shunda ko'rinadi.", ru: 'Верно! Сначала вы читаете код, потом через Expo Go проходите на телефоне каждый экран и весь путь (меню → корзина → заказ). Именно так видны некоторые ошибки на устройстве (тормоза, место кнопки).' }}
+    explainCorrect={{ uz: "To'g'ri! Avval kodni o'qiysiz, keyin Expo Go bilan telefonda har ekran va oqimni (menu → savat → buyurtma) bosib sinaysiz. Qurilmada ba'zi xatolar (sekinlik, tugma joyi) shunda ko'rinadi.", ru: 'Верно! Сначала вы читаете код, потом через Expo Go проходите на телефоне каждый экран и весь путь (меню → корзина → заказ). Именно так видны некоторые ошибки на устройстве (тормоза, место кнопки).' }}
     explainWrong={{ 0: { uz: 'AI xato qiladi — sinov shart.', ru: 'ИИ ошибается — проверка обязательна.' }, 1: { uz: 'Rang — bir qismi xolos. Butun oqimni sinang.', ru: 'Цвета — лишь часть дела. Проверяйте весь путь.' }, 2: { uz: "Kod to'g'ri ko'rinishi mumkin, lekin telefonda boshqacha ishlaydi.", ru: 'Код может выглядеть верным, но на телефоне поведёт себя иначе.' }, default: { uz: "Kodni o'qing, telefonda butun oqimni sinang.", ru: 'Читайте код и проверяйте весь путь на телефоне.' } }} />
 );
 
@@ -1344,7 +1344,7 @@ const Screen14 = ({ screen, onNext, onPrev }) => (
 );
 // ===== SCREEN FINAL — 4 EKRANNI XARID OQIMI TARTIBIDA YIG'ISH (DragDropOrder) =====
 const FINAL_SCENES = [
-  { id: 'katalog',  label: { uz: 'Menyu', ru: 'Меню (Menyu)' } },
+  { id: 'katalog',  label: { uz: 'Menu', ru: 'Меню (Menu)' } },
   { id: 'detail',   label: { uz: 'Tafsilot', ru: 'Детали (Tafsilot)' } },
   { id: 'savat',    label: { uz: 'Savat', ru: 'Корзина (Savat)' } },
   { id: 'buyurtma', label: { uz: 'Buyurtma', ru: 'Заказ (Buyurtma)' } },
@@ -1371,7 +1371,7 @@ const ScreenFinalDD = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>4 ekranni xarid oqimi tartibida</span> yig'ing.</>, ru: <>Последний шаг: соберите <span className="italic" style={{ color: T.accent }}>4 экрана по пути покупки</span>.</> })}</h2></div>
         <Mentor>{tr({ uz: "Mijoz ilovada xarid qiladi. 4 ekranni u bosib o'tadigan tartibda joylang.", ru: 'Клиент делает покупку в приложении. Расставьте 4 экрана в том порядке, в котором он их проходит.' })}</Mentor>
         <Zoomable>
-          <DragDropOrder onWrong={onWrong} items={items} hints={hints} onSolved={solve} doneText={{ uz: <>Xarid oqimi tayyor: <b>Menyu → Tafsilot → Savat → Buyurtma</b>. AvtoPizza ilovasining asosiy oqimi shu.</>, ru: <>Путь покупки готов: <b>Меню → Детали → Корзина → Заказ</b>. Это и есть основной путь приложения AvtoPizza.</> }} />
+          <DragDropOrder onWrong={onWrong} items={items} hints={hints} onSolved={solve} doneText={{ uz: <>Xarid oqimi tayyor: <b>Menu → Tafsilot → Savat → Buyurtma</b>. AvtoPizza ilovasining asosiy oqimi shu.</>, ru: <>Путь покупки готов: <b>Меню → Детали → Корзина → Заказ</b>. Это и есть основной путь приложения AvtoPizza.</> }} />
         </Zoomable>
       </div>
     </Stage>
@@ -1455,7 +1455,7 @@ const QZ_BG_SHAPES = [
   { ch: 'Expo Go',     l: 76, t: 68, s: 24, d: 21, dl: 2.2 },
   { ch: 'POST /buyurtma',l: 45, t: 86, s: 26, d: 25, dl: 1.1 },
   { ch: 'reduce',      l: 66, t: 26, s: 24, d: 17, dl: 0.4 },
-  { ch: 'GET /menyu',  l: 26, t: 34, s: 24, d: 20, dl: 1.9 },
+  { ch: 'GET /menu',  l: 26, t: 34, s: 24, d: 20, dl: 1.9 },
   { ch: 'navigate',    l: 55, t: 5,  s: 22, d: 22, dl: 0.6 },
   { ch: '🛒',          l: 91, t: 42, s: 26, d: 24, dl: 1.3 },
   { ch: '✅',          l: 16, t: 52, s: 26, d: 26, dl: 2.6 },
@@ -1467,7 +1467,7 @@ const QZ_BG_SHAPES = [
 // ⚡ Mustahkamlash-jang savollari — to'g'ri javoblar 4 pozitsiyaga TENG (12 savol: 3/3/3/3, mexanik ketma-ketlik yo'q).
 // 🎓 Metodist: savol matni va variant uzunliklari sayqallanadi · ⚡ Jonli: `correct` qiymatlari INLINE_KEYS bilan sinxron tekshiriladi.
 const QUIZ_BANK = [
-  { q: { uz: "Mobil ilova menyuni qayerdan oladi?", ru: "Откуда мобильное приложение берёт меню?" }, opts: [{ uz: "Tayyor backend'dan", ru: "С готового backend" }, { uz: "Qo'lda yozilgan ro'yxatdan", ru: "Из списка, написанного вручную" }, { uz: "Yangi mobil serverdan", ru: "С нового мобильного сервера" }, { uz: "Hech qayerdan", ru: "Ниоткуда" }], correct: 0 },
+  { q: { uz: "Mobil ilova menuni qayerdan oladi?", ru: "Откуда мобильное приложение берёт меню?" }, opts: [{ uz: "Tayyor backend'dan", ru: "С готового backend" }, { uz: "Qo'lda yozilgan ro'yxatdan", ru: "Из списка, написанного вручную" }, { uz: "Yangi mobil serverdan", ru: "С нового мобильного сервера" }, { uz: "Hech qayerdan", ru: "Ниоткуда" }], correct: 0 },
   { q: { uz: "Loyiha kunida sizning vazifangiz nima?", ru: "Ваша задача в день проекта?" }, opts: [{ uz: "Kodni o'qimay ishlatish", ru: "Запускать код не читая" }, { uz: "Topshiriq, o'qish va sinash", ru: "Задание, чтение и проверка" }, { uz: "Hamma kodni qo'lda yozish", ru: "Писать весь код вручную" }, { uz: "Faqat dizaynni tanlash", ru: "Только выбирать дизайн" }], correct: 1 },
   { q: { uz: "React Native'da ro'yxatni ko'rsatish uchun qaysi komponent?", ru: 'Каким компонентом в React Native показывают список?' }, opts: ["<div>", "<table>", "<FlatList>", "<ScrollView>"], correct: 2 },
   { q: { uz: "«Yuborish» bosilsa nima bo'ladi?", ru: "Что будет при нажатии «Отправить»?" }, opts: [{ uz: "Faqat telefonda saqlanadi", ru: "Хранится только в телефоне" }, { uz: "Hech narsa bo'lmaydi", ru: "Ничего не произойдёт" }, { uz: "Yangi mobil API ishlaydi", ru: "Запустится новый мобильный API" }, { uz: "Backend'ga POST /buyurtma", ru: "POST /buyurtma на backend" }], correct: 3 },
@@ -2064,7 +2064,7 @@ function Flashcards({ cards }) {
 }
 // 🃏 FLASHCARD KARTALARI — mobil ilova atamalari
 const MOBILE_FLASHCARDS = [
-  { front: { uz: "Mobil ilova menyuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' }, back: { uz: "Tayyor backend'dan", ru: 'С готового бэкенда' }, note: { uz: "GET /menyu so'rovi bilan, qo'lda yozilmaydi", ru: 'Запросом GET /menyu, а не вручную' } },
+  { front: { uz: "Mobil ilova menuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' }, back: { uz: "Tayyor backend'dan", ru: 'С готового бэкенда' }, note: { uz: "GET /menu so'rovi bilan, qo'lda yozilmaydi", ru: 'Запросом GET /menu, а не вручную' } },
   { front: { uz: "Loyiha kunida sizning vazifangiz?", ru: 'Ваша задача в день проекта?' }, back: { uz: "Topshiriq berish, kodni o'qish, sinash", ru: 'Давать задание, читать код, проверять' }, note: { uz: "AI kod taklif qiladi — siz tekshirasiz", ru: 'ИИ предлагает код — вы проверяете' } },
   { front: { uz: "Kod haqiqatan ishlaganini qanday bilasiz?", ru: 'Как вы узнаете, что код и правда работает?' }, back: { uz: "Telefonda sinab ko'rsangiz", ru: 'Проверив на телефоне' }, note: { uz: "Expo Go'da oqimni o'zingiz bosib ko'rasiz", ru: 'Вы сами проходите путь в Expo Go' } },
   { front: { uz: "Savatdagi pitsalar qayerda turadi?", ru: 'Где хранятся пиццы из корзины?' }, back: { uz: 'Holatda (state)', ru: 'В состоянии (state)' }, note: { uz: "Holat o'zgarsa, ekran o'zi yangilanadi", ru: 'Когда состояние меняется, экран обновляется сам' } },
@@ -2111,7 +2111,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   };
   const RECAP = [
     { uz: "Mobil ilova tayyor backend'ga ulanadi — bitta tizim, ko'p kirish yo'li", ru: 'Мобильное приложение подключается к готовому бэкенду — одна система, много точек входа' },
-    { uz: 'Menyu → Tafsilot → Savat → Buyurtma — har ekran AI yordamida quriladi, siz tekshirasiz', ru: 'Меню → Детали → Корзина → Заказ — каждый экран строится с помощью ИИ, а вы проверяете' },
+    { uz: 'Menu → Tafsilot → Savat → Buyurtma — har ekran AI yordamida quriladi, siz tekshirasiz', ru: 'Меню → Детали → Корзина → Заказ — каждый экран строится с помощью ИИ, а вы проверяете' },
     { uz: "Savat — holat (state), jami — reduce; holat o'zgarsa ekran yangilanadi", ru: 'Корзина — состояние (state), итог — reduce; меняется состояние — экран обновляется' },
     { uz: "Telefonda sinov xatoni topadi → aniq tuzatish topshirig'i bilan tuzatiladi", ru: 'Проверка на телефоне находит ошибку → её исправляют точным заданием на исправление' },
     { uz: "Expo Go va QR — ilovani boshqa telefonda ochib ko'rish (App Store'ga joylash emas)", ru: 'Expo Go и QR — открыть приложение на другом телефоне (это не выкладка в App Store)' }

@@ -1094,7 +1094,7 @@ const Screen4 = (props) => (
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's5', text: `Minecraft'dagi kabi, React'da ham sahifa kichik bo'laklardan yig'iladi. Bu bo'laklar komponentlar deb ataladi. Sahifadagi har bir qismni bosib, qaysi komponent ekanini bilib oling.`, trigger: 'on_mount', waits_for: null }]);
   const PARTS = {
-    nav: { jx: '<Navbar />', word: tr({ uz: 'Yuqori menyu', ru: 'Верхнее меню' }), role: tr({ uz: "Sayt nomi va qidiruvni ko'rsatadi.", ru: 'Показывает название сайта и поиск.' }), reuse: tr({ uz: "Bir marta yoziladi — saytning har sahifasida ishlatiladi.", ru: 'Пишется один раз — используется на каждой странице сайта.' }) },
+    nav: { jx: '<Navbar />', word: tr({ uz: 'Yuqori menu', ru: 'Верхнее меню' }), role: tr({ uz: "Sayt nomi va qidiruvni ko'rsatadi.", ru: 'Показывает название сайта и поиск.' }), reuse: tr({ uz: "Bir marta yoziladi — saytning har sahifasida ishlatiladi.", ru: 'Пишется один раз — используется на каждой странице сайта.' }) },
     search: { jx: '<SearchBar />', word: tr({ uz: 'Qidiruv katagi', ru: 'Строка поиска' }), role: tr({ uz: "Skin nomi bo'yicha qidiradi.", ru: 'Ищет по названию скина.' }), reuse: tr({ uz: "Boshqa loyihaga ham o'zgarishsiz olib o'tiladi.", ru: 'Переносится в другой проект без изменений.' }) },
     card: { jx: '<SkinCard />', word: tr({ uz: 'Skin kartochka', ru: 'Карточка скина' }), role: tr({ uz: "Skin rasmi, nomi va like sonini chiqaradi.", ru: 'Выводит картинку скина, название и число лайков.' }), reuse: tr({ uz: "Sahifada ikkita kartochka bor, lekin kod BITTA. Yangi skin qo'shilsa — shu komponent yana ishlatiladi.", ru: 'На странице две карточки, а код ОДИН. Добавится новый скин — этот же компонент используется снова.' }) },
     like: { jx: '<LikeButton />', word: tr({ uz: 'Like tugmasi', ru: 'Кнопка лайка' }), role: tr({ uz: "Like bosilganini saqlaydi va sonini yangilaydi.", ru: 'Запоминает нажатие лайка и обновляет счётчик.' }), reuse: tr({ uz: "Kartochka ichida yashaydi — komponent ichida komponent.", ru: 'Живёт внутри карточки — компонент внутри компонента.' }) }
@@ -1173,7 +1173,7 @@ const Screen5b = (props) => (
     explainWrong={{
       0: tr({ uz: "Komponent brauzer sozlamasi emas — u sahifada ko'rinadi.", ru: 'Компонент — не настройка браузера: его видно на странице.' }),
       1: tr({ uz: "Komponent internet tezligiga aloqador emas.", ru: 'Компонент не связан со скоростью интернета.' }),
-      3: tr({ uz: "Komponent fayl turi emas — u kartochka, tugma, menyu kabi.", ru: 'Компонент — не тип файла, а что-то вроде карточки, кнопки, меню.' }),
+      3: tr({ uz: "Komponent fayl turi emas — u kartochka, tugma, menu kabi.", ru: 'Компонент — не тип файла, а что-то вроде карточки, кнопки, меню.' }),
       default: tr({ uz: "Minecraft bloklarini eslang: sahifa nimalardan yig'iladi?", ru: 'Вспомните блоки Minecraft: из чего собирается страница?' })
     }} />
 );
@@ -1600,7 +1600,7 @@ const Screen12 = (props) => (
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's13', text: `Endi o'zingiz quring. Tugmalarni bosib, Minecraft saytingizni bloklardan yig'ing. Xohlagan blokni qayta-qayta qo'yish mumkin.`, trigger: 'on_mount', waits_for: null }]);
   const COMP = {
-    nav: { l: '<Navbar />', name: tr({ uz: 'Menyu', ru: 'Меню' }) },
+    nav: { l: '<Navbar />', name: tr({ uz: 'Menu', ru: 'Меню' }) },
     search: { l: '<SearchBar />', name: tr({ uz: 'Qidiruv', ru: 'Поиск' }) },
     card: { l: '<SkinCard />', name: tr({ uz: 'Skin kartochka', ru: 'Карточка скина' }) },
     footer: { l: '<Footer />', name: tr({ uz: 'Pastki qism', ru: 'Нижняя часть' }) }
@@ -1658,7 +1658,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Amaliyot · sahifa yig'amiz", ru: 'Практика · собираем страницу' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Do'konni namunadek yig'ing", ru: 'Соберите магазин как в образце' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'z saytingizni <span className="italic" style={{ color: T.accent }}>bloklardan</span> quring.</>, ru: <>Постройте свой сайт из <span className="italic" style={{ color: T.accent }}>блоков</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Endi o'zingiz quring: namunadagi do'konni <b style={{ color: T.ink }}>tugmalarni bosib</b> yig'ing — menyu, qidiruv, <b style={{ color: T.ink }}>3 ta skin</b> va pastki qism. Bitta blok necha marta kerak bo'lsa, shuncha bosing.</>, ru: <>Теперь сами: соберите магазин как в образце, <b style={{ color: T.ink }}>нажимая кнопки</b> — меню, поиск, <b style={{ color: T.ink }}>3 скина</b> и подвал. Один блок можно нажать столько раз, сколько нужно.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Endi o'zingiz quring: namunadagi do'konni <b style={{ color: T.ink }}>tugmalarni bosib</b> yig'ing — menu, qidiruv, <b style={{ color: T.ink }}>3 ta skin</b> va pastki qism. Bitta blok necha marta kerak bo'lsa, shuncha bosing.</>, ru: <>Теперь сами: соберите магазин как в образце, <b style={{ color: T.ink }}>нажимая кнопки</b> — меню, поиск, <b style={{ color: T.ink }}>3 скина</b> и подвал. Один блок можно нажать столько раз, сколько нужно.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1704,7 +1704,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [done, setDone] = useState(!!storedAnswer);
   const achMiss = useContext(AchMissCtx); // 🏅 151-qonun: xato qator — nishon birinchi urinishga
   const LINES = [
-    { text: tr({ uz: "<Navbar />        // yuqori menyu", ru: '<Navbar />        // верхнее меню' }) },
+    { text: tr({ uz: "<Navbar />        // yuqori menu", ru: '<Navbar />        // верхнее меню' }) },
     { text: tr({ uz: "<ButunSahifa />   // sahifa", ru: '<ВсяСтраница />   // страница' }), bug: true },
     { text: tr({ uz: "<Footer />        // pastki qism", ru: '<Footer />        // нижняя часть' }) },
   ];
@@ -1776,10 +1776,10 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // 🃏 REACT-1 FLASHCARD KARTALARI (front=savol, back=qisqa javob, note=misol)
 const REACT_FLASHCARDS = [
   { front: { uz: "React qaysi dasturlash tilida yozilgan?", ru: 'На каком языке программирования написан React?' }, back: "JavaScript", note: { uz: "React yangi til emas — kutubxona", ru: 'React — не новый язык, а библиотека' } },
-  { front: { uz: "React nima qurish uchun ishlatiladi?", ru: 'Для чего используют React?' }, back: { uz: "Interfeys (interface)", ru: 'Интерфейс (interface)' }, note: { uz: "sahifaning ko'rinadigan qismi: menyu, kartochka, tugma", ru: 'видимая часть страницы: меню, карточки, кнопки' } },
+  { front: { uz: "React nima qurish uchun ishlatiladi?", ru: 'Для чего используют React?' }, back: { uz: "Interfeys (interface)", ru: 'Интерфейс (interface)' }, note: { uz: "sahifaning ko'rinadigan qismi: menu, kartochka, tugma", ru: 'видимая часть страницы: меню, карточки, кнопки' } },
   { front: { uz: "React kabi tayyor bo'laklar to'plami qanday ataladi?", ru: 'Как называется набор готовых блоков, такой как React?' }, back: { uz: "Kutubxona (library)", ru: 'Библиотека (library)' }, note: { uz: "har safar noldan yozmaysiz — tayyorini olasiz", ru: 'не пишете каждый раз с нуля — берёте готовое' } },
   { front: { uz: "React'ni kim va qaysi yilda yaratgan?", ru: 'Кто и в каком году создал React?' }, back: "Facebook, 2013", note: { uz: "Instagram, WhatsApp shu kutubxonada ishlaydi", ru: 'Instagram и WhatsApp работают на этой библиотеке' } },
-  { front: { uz: "Sahifaning qayta ishlatiladigan bo'lagi qanday ataladi?", ru: 'Как называется переиспользуемая часть страницы?' }, back: { uz: "Komponent (component)", ru: 'Компонент (component)' }, note: { uz: "menyu, qidiruv katagi, kartochka, tugma", ru: 'меню, строка поиска, карточка, кнопка' } },
+  { front: { uz: "Sahifaning qayta ishlatiladigan bo'lagi qanday ataladi?", ru: 'Как называется переиспользуемая часть страницы?' }, back: { uz: "Komponent (component)", ru: 'Компонент (component)' }, note: { uz: "menu, qidiruv katagi, kartochka, tugma", ru: 'меню, строка поиска, карточка, кнопка' } },
   { front: { uz: "Bitta komponentni necha marta ishlatish mumkin?", ru: 'Сколько раз можно использовать один компонент?' }, back: { uz: "Istalgancha", ru: 'Сколько угодно' }, note: { uz: "kartochka ko'payadi, kod bitta qoladi", ru: 'карточек больше, а код остаётся один' } },
   { front: { uz: "Komponent ichida boshqa komponent tura oladimi?", ru: 'Может ли внутри компонента быть другой компонент?' }, back: { uz: "Ha", ru: 'Да' }, note: { uz: "kartochka ichida like tugmasi yashaydi", ru: 'внутри карточки живёт кнопка лайка' } },
   { front: { uz: "React sahifaning yengil nusxasini xotirada saqlaydi — u qanday ataladi?", ru: 'React хранит в памяти лёгкую копию страницы — как она называется?' }, back: "Virtual DOM", note: { uz: "ko'rinmas nusxa", ru: 'невидимая копия' } },

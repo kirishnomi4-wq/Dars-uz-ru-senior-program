@@ -1182,7 +1182,7 @@ const S6_IZOH = [
 const S6_TAXMIN = [{ k: '1', t: { uz: 'Bittaga', ru: 'Одну' } }, { k: '5', t: { uz: 'Beshtaga', ru: 'Пять' } }, { k: '10', t: { uz: "O'ntaga", ru: 'Десять' } }];
 const S6_OSTI = [
   [{ uz: 'Ism — ixtiyoriy; telefon, manzil va maktab raqami yozilmaydi.', ru: 'Имя — по желанию; телефон, адрес и номер школы не пишут.' }],
-  [{ uz: 'Video-portfolio bo\'lsa — havolasini uyda qo\'shasiz.', ru: 'Если есть видео-портфолио — ссылку добавите дома.' }, { uz: "Mentor misolida son bor; sizda manbali son bo'lsa yoziladi, bo'lmasa — yo'q.", ru: 'В примере Ментора есть число; у вас — пишется, если у числа есть источник, иначе — нет.' }]
+  [{ uz: 'Video-portfolio bo\'lsa — linkini uyda qo\'shasiz.', ru: 'Если есть видео-портфолио — ссылку добавите дома.' }, { uz: "Mentor misolida son bor; sizda manbali son bo'lsa yoziladi, bo'lmasa — yo'q.", ru: 'В примере Ментора есть число; у вас — пишется, если у числа есть источник, иначе — нет.' }]
 ];
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [taxmin, setTaxmin] = useState(storedAnswer?.taxmin ?? null);
@@ -1263,7 +1263,7 @@ const S7_XAT_XATO = {
   uchQism: { uz: "Xatning uch qismini to'ldiring.", ru: 'Заполните три части письма.' },
   akk: { uz: 'Xatga telefon va akkaunt nomi yozilmaydi.', ru: 'В письмо не пишут телефон и аккаунт.' },
   raqam: { uz: 'Bu son telefon emasmi? Tekshirib, yana bosing.', ru: 'Это число не телефон? Проверьте и нажмите ещё раз.' },
-  havola: { uz: "Havolani uyda, yuborishdan oldin qo'shasiz.", ru: 'Ссылку добавите дома, перед отправкой.' },
+  havola: { uz: "Linkni uyda, yuborishdan oldin qo'shasiz.", ru: 'Ссылку добавите дома, перед отправкой.' },
   uzun: { uz: "Xat uzun — har qism bitta-ikkita gap bo'lsin.", ru: 'Письмо длинное — по одной-две фразы в каждой части.' },
   pul: { uz: "Bu xatda pul so'ralmaydi — stajirovka yoki maslahat so'rang.", ru: 'В этом письме не просят денег — попросите стажировку или совет.' },
   shoshil: { uz: "Xatda shoshiltirish yo'q — so'rov bir marta, hurmat bilan.", ru: 'В письме не торопят — просьба один раз, с уважением.' },
@@ -1445,7 +1445,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
           <span className="fr-xat-o">{tr(MENTOR_XAT.oxiri)} <em>{tr(ISM_UYDA)}</em></span>
         </div>
         {i === 1 && <p className="fr-kulrang">{tr({ uz: "«Kimman» va «Nima qurdim» o'sha bo'lishi mumkin; kompaniya turi va so'rovni moslang — har kompaniya uchun alohida nusxa.", ru: '«Кто я» и «Что я построил» могут быть теми же; тип компании и просьбу подберите — отдельная копия для каждой компании.' })}</p>}
-        {i === 0 && video.otdi && <p className="fr-kulrang">{tr({ uz: "Ota-onangiz rozi bo'lsa, video havolasini uyda qo'shasiz.", ru: 'Если родители согласны, ссылку на видео добавите дома.' })}</p>}
+        {i === 0 && video.otdi && <p className="fr-kulrang">{tr({ uz: "Ota-onangiz rozi bo'lsa, video linkini uyda qo'shasiz.", ru: 'Если родители согласны, ссылку на видео добавите дома.' })}</p>}
         {xato && <QXato key={xato.x}>{tr(S7_XAT_XATO[xato.x])}</QXato>}
         {xato && !xato.blok && <p className="fr-yana">{tr(S7_YANA)}</p>}
         {yordam && <div className="fr-yordam fade-step"><p>{tr(S7_XAT_YORDAM[i])}</p><p>{tr(S7_XAT_YORDAM_OXIR)}</p></div>}

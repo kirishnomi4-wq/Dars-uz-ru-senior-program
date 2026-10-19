@@ -2407,7 +2407,7 @@ const ScreenDbPractice = (props) => (
       { from: 'user', t: 'Aziz' },
       { from: 'bot', t: 'Xush kelibsiz, Aziz! Endi sizni eslab qolaman.' },
       { from: 'user', t: '/start' },
-      { from: 'bot', t: 'Yana salom, Aziz! Menyu uchun /menu ni bosing.' }
+      { from: 'bot', t: 'Yana salom, Aziz! Menu uchun /menu ni bosing.' }
     ]}
     doneText={{ uz: 'Holat endi bazada. Bot qayta ishga tushsa ham, ismingizni biladi.', ru: "Состояние теперь в базе. Бот перезапустится — имя помнит." }} />
 );

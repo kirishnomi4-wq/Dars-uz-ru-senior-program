@@ -4609,3 +4609,12 @@ Sinf-supurish (19.10): ta'rif-qatori faqat 12-M da topildi (13 qator, 5 dars) �
 - ❌ Nav: «Tugmalarni bosing» · «Bo'laklarni qo'shing (2/4)» · «4 panelni bosib chiqing»  ✅ Nav: «Savollarga javob bering» (sanoq — bitta joyda, 213.21)
 **Qoida:** chorlov qaror qadamiga chaqiradi va natijani va'da qiladi («… — X yonadi / o'zgaradi»). §22 va §46 dagi ✅ namunalarning NEGA-qismi va «o'rnida ko'ring» iborasi kuchda; ulardagi «birma-bir bosing» chorlovi shu bo'lim bilan almashadi.
 🔧 Tekshiruv: `grep -nE "birma-bir (bos|qo'sh|och)|Tugmalarni bosing|Yoqilgan (qadam|tugma)ni bosing"` — mentor/nav matnida topilsa, ekran passiv: qaror qadamiga aylantiriladi (o'z doirasida) yoki KATTA'ga yoziladi.
+
+
+## §LINK-MENU — dasturlash atamasi inglizcha: «link», «menu» (F-1019-10, 19.10; fidbek: «programmingdagi nomlarni ingliz tilida qilaylik — link, menu…»)
+
+- ❌ «Header ichiga **menyu** qo'shamiz — bosilsa bo'limga o'tadigan **havolalar**.»  ✅ «Header ichiga **menu** qo'shamiz — bosilsa bo'limga o'tadigan **linklar**.»
+- ❌ «`<a>` — havola tegi» · «Sayt havolasini yuboring»  ✅ «`<a>` — link tegi» · «Sayt linkini yuboring»
+- ✅ Qoladi: «AvtoPizza **menyusi**», «oshxona menyusi» — ovqat ro'yxati, dasturlash atamasi emas.
+**Qoida:** web/ilova ma'nosidagi so'z dasturchi nutqidagidek — inglizcha, o'zbekcha qo'shimcha bilan (link → linki, linkka, linkingiz; menu → menuni, menudagi). Bir ma'noga bitta so'z: kursda «havola» va «link» aralashmaydi.
+🔧 Almashtirish vositasi (JS parser — faqat matn, kod nomlari/className/CSS/regex tegilmaydi): `feedback/F-1019-10-link-menu/almash.mjs`; til-lint `havola-link` (warn).

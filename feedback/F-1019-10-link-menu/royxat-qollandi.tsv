@@ -1,0 +1,1012 @@
+fayl	qator	holat	oldin	keyin
+src/1-Modull/CssLesson1.jsx	1253	ALMASH	Kompyuterdagi shriftlar sanoqli. Google Fonts — bepul shriftlar ombori. Ikki qadam kerak: avval havola bilan shriftni sahifaga olib kelasiz, keyin CSS da ishlat	Kompyuterdagi shriftlar sanoqli. Google Fonts — bepul shriftlar ombori. Ikki qadam kerak: avval link bilan shriftni sahifaga olib kelasiz, keyin CSS da ishlatas
+src/1-Modull/CssLesson1.jsx	1263	ALMASH	Havolani uzib ko'ring	Linkni uzib ko'ring
+src/1-Modull/CssLesson1.jsx	1268	ALMASH	. Shriftni tanlang, so'ng havolani uzib ko'ring.	. Shriftni tanlang, so'ng linkni uzib ko'ring.
+src/1-Modull/CssLesson1.jsx	1273	ALMASH	🔗 Havola ulangan	🔗 Link ulangan
+src/1-Modull/CssLesson1.jsx	1273	ALMASH	✂️ Havola uzilgan	✂️ Link uzilgan
+src/1-Modull/CssLesson1.jsx	1280	ALMASH	✂️ Havola yo\'q — brauzer shriftni topolmadi va oddiy shriftga qaytdi.	✂️ Link yo\'q — brauzer shriftni topolmadi va oddiy shriftga qaytdi.
+src/1-Modull/CssLesson1.jsx	1281	ALMASH	🔗 Havola bor — shrift yuklandi va ishladi.	🔗 Link bor — shrift yuklandi va ishladi.
+src/1-Modull/CssLesson1.jsx	1707	ALMASH	Google Fonts — havola bilan olib kelinadi, keyin ishlatiladi	Google Fonts — link bilan olib kelinadi, keyin ishlatiladi
+src/1-Modull/CssLesson2.jsx	335	ALMASH	Menyu tugmalari qatorga tizilishi uchun display: flex ni qaysi elementga beramiz?	Menu tugmalari qatorga tizilishi uchun display: flex ni qaysi elementga beramiz?
+src/1-Modull/CssLesson2.jsx	817	ALMASH	Mana saytning menyusi. Lekin tugmalar ustma-ust tushib qolgan — chiroyli emas. Aslida menyu yonma-yon qatorda turishi kerak. Sizningcha, elementlarni yonma-yon 	Mana saytning menusi. Lekin tugmalar ustma-ust tushib qolgan — chiroyli emas. Aslida menu yonma-yon qatorda turishi kerak. Sizningcha, elementlarni yonma-yon qa
+src/1-Modull/CssLesson2.jsx	826	ALMASH	Mana saytning menyusi — lekin tugmalar 	Mana saytning menusi — lekin tugmalar 
+src/1-Modull/CssLesson2.jsx	826	ALMASH	 tushib qolgan. Aslida menyu yonma-yon qatorda turishi kerak. Tugmani bosib, farqni ko'ring.	 tushib qolgan. Aslida menu yonma-yon qatorda turishi kerak. Tugmani bosib, farqni ko'ring.
+src/1-Modull/CssLesson2.jsx	836	ALMASH	✨ Menyu bir qatorda	✨ Menu bir qatorda
+src/1-Modull/CssLesson2.jsx	836	ALMASH	✨ display: flex — menyu bir qatorda	✨ display: flex — menu bir qatorda
+src/1-Modull/CssLesson2.jsx	855	ALMASH	Ishonasizmi — dars oxirida mana shu sayt menyusini — logo, havolalar va Kirish tugmasi — o'zingiz yonma-yon, tartibli joylashtirasiz. Xuddi haqiqiy saytlardagid	Ishonasizmi — dars oxirida mana shu sayt menusini — logo, linklar va Kirish tugmasi — o'zingiz yonma-yon, tartibli joylashtirasiz. Xuddi haqiqiy saytlardagidek.
+src/1-Modull/CssLesson2.jsx	893	ALMASH	Bugun chinakam sayt menyusini yasaymiz!	Bugun chinakam sayt menusini yasaymiz!
+src/1-Modull/CssLesson2.jsx	894	ALMASH	sayt menyusini	sayt menusini
+src/1-Modull/CssLesson2.jsx	894	ALMASH	 — logo, havolalar, Kirish tugmasi — o'zingiz yonma-yon, tartibli joylashtirasiz. Kaliti — 	 — logo, linklar, Kirish tugmasi — o'zingiz yonma-yon, tartibli joylashtirasiz. Kaliti — 
+src/1-Modull/CssLesson2.jsx	905	ALMASH	Avval bir narsani tushunaylik — nega menyu ustma-ust tushdi? Sababi: ba'zi elementlar block, ya'ni har biri butun qatorni egallaydi, xuddi bino qavatlari kabi —	Avval bir narsani tushunaylik — nega menu ustma-ust tushdi? Sababi: ba'zi elementlar block, ya'ni har biri butun qatorni egallaydi, xuddi bino qavatlari kabi — 
+src/1-Modull/CssLesson2.jsx	913	ALMASH	Nega menyu 	Nega menu 
+src/1-Modull/CssLesson2.jsx	927	ALMASH	 menyu bo'laklari (div) block bo'lgani uchun ustma-ust tushdi. Ularni yonma-yon qilish uchun — 	 menu bo'laklari (div) block bo'lgani uchun ustma-ust tushdi. Ularni yonma-yon qilish uchun — 
+src/1-Modull/CssLesson2.jsx	1079	ALMASH	Endi qoidani o'zingiz yig'ing. Bo'laklarni to'g'ri tartibda kataklarga sudrang: avval selektor, so'ng ochuvchi qavs, xususiyat, qiymat, nuqta-vergul va yopuvchi	Endi qoidani o'zingiz yig'ing. Bo'laklarni to'g'ri tartibda kataklarga sudrang: avval selektor, so'ng ochuvchi qavs, xususiyat, qiymat, nuqta-vergul va yopuvchi
+src/1-Modull/CssLesson2.jsx	1088	ALMASH	 kataklarga sudrang. To'g'ri yig'ilsa, yonidagi menyu qatorga tiziladi.	 kataklarga sudrang. To'g'ri yig'ilsa, yonidagi menu qatorga tiziladi.
+src/1-Modull/CssLesson2.jsx	1097	ALMASH	Natija — menyu preview	Natija — menu preview
+src/1-Modull/CssLesson2.jsx	1098	ALMASH	menyu.html	menu.html
+src/1-Modull/CssLesson2.jsx	1099	ALMASH	 menyuni bir qatorga tizdi.	 menuni bir qatorga tizdi.
+src/1-Modull/CssLesson2.jsx	1195	ALMASH	Endi maqsadli mashq. Yuqorida xira namuna menyu bor — logo bir chetda, Kirish tugmasi ikkinchi chetda. Sizning vazifangiz: justify-content ning to'g'ri qiymatin	Endi maqsadli mashq. Yuqorida xira namuna menu bor — logo bir chetda, Kirish tugmasi ikkinchi chetda. Sizning vazifangiz: justify-content ning to'g'ri qiymatini
+src/1-Modull/CssLesson2.jsx	1214	ALMASH	Menyuni 	Menuni 
+src/1-Modull/CssLesson2.jsx	1227	ALMASH	Sizning menyungiz	Sizning menungiz
+src/1-Modull/CssLesson2.jsx	1229	ALMASH	menyu.html	menu.html
+src/1-Modull/CssLesson2.jsx	1239	ALMASH	 menyuni chetdan chetga tarqatdi.	 menuni chetdan chetga tarqatdi.
+src/1-Modull/CssLesson2.jsx	1291	ALMASH	1-darsda DevTools'da HTML'ni ko'rdik. Endi CSS'ni ko'ramiz. Istalgan elementni Inspect qilsangiz, o'ngdagi Styles panelida uning barcha CSS qoidalari chiqadi. T	1-darsda DevTools'da HTML'ni ko'rdik. Endi CSS'ni ko'ramiz. Istalgan elementni Inspect qilsangiz, o'ngdagi Styles panelida uning barcha CSS qoidalari chiqadi. T
+src/1-Modull/CssLesson2.jsx	1307	ALMASH	Menyuni Inspect qilish	Menuni Inspect qilish
+src/1-Modull/CssLesson2.jsx	1317	ALMASH	Mana menyuning butun CSS'i! Styles paneli har bir elementning qoidalarini ko'rsatadi — saytlar qanday yasalganini shu yerdan o'rganasiz.	Mana menuning butun CSS'i! Styles paneli har bir elementning qoidalarini ko'rsatadi — saytlar qanday yasalganini shu yerdan o'rganasiz.
+src/1-Modull/CssLesson2.jsx	1330	ALMASH	Eng yaxshi tomoni — Styles panelida qiymatni o'zgartirsangiz, sahifa darhol yangilanadi. justify-content qiymatini almashtirib, menyu qanday siljishini ko'ring.	Eng yaxshi tomoni — Styles panelida qiymatni o'zgartirsangiz, sahifa darhol yangilanadi. justify-content qiymatini almashtirib, menu qanday siljishini ko'ring. 
+src/1-Modull/CssLesson2.jsx	1417	ALMASH	AI menyuni yonma-yon qilmoqchi bo'ldi: justify-content center yozdi, lekin menyu hali ham ustma-ust. Nega? Chunki display flex yo'q — display block yozilgan. ju	AI menuni yonma-yon qilmoqchi bo'ldi: justify-content center yozdi, lekin menu hali ham ustma-ust. Nega? Chunki display flex yo'q — display block yozilgan. just
+src/1-Modull/CssLesson2.jsx	1433	ALMASH	Tuzatildi! display flex bo'ldi va endi menyu yonma-yon, markazda turibdi.	Tuzatildi! display flex bo'ldi va endi menu yonma-yon, markazda turibdi.
+src/1-Modull/CssLesson2.jsx	1437	ALMASH	Menyu yonma-yon bo'lmadi — 	Menu yonma-yon bo'lmadi — 
+src/1-Modull/CssLesson2.jsx	1438	ALMASH	 yozdi, lekin menyu 	 yozdi, lekin menu 
+src/1-Modull/CssLesson2.jsx	1442	ALMASH	Menyuni markazga qo'ydim! (lekin ustma-ust 🤔)	Menuni markazga qo'ydim! (lekin ustma-ust 🤔)
+src/1-Modull/CssLesson2.jsx	1457	ALMASH	menyu.html	menu.html
+src/1-Modull/CssLesson2.jsx	1477	ALMASH	menyu uchun qulay	menu uchun qulay
+src/1-Modull/CssLesson2.jsx	1595	ALMASH	Menyu	Menu
+src/1-Modull/CssLesson2.jsx	1629	ALMASH	Saytingiz menyusini Flexbox bilan yasang:	Saytingiz menusini Flexbox bilan yasang:
+src/1-Modull/CssLesson2.jsx	2439	ALMASH	Menyuni ustunga tizing	Menuni ustunga tizing
+src/1-Modull/CssLesson2.jsx	2458	ALMASH	Saytingiz menyusini Flexbox bilan yasang	Saytingiz menusini Flexbox bilan yasang
+src/1-Modull/CssLesson2.jsx	2460	ALMASH	Har saytning tepasida menyu bor — endi o'zingiznikini yasaysiz. index.html da menyu bandlarini o'z sahifangizga moslab o'zgartiring, style.css da esa ularni qat	Har saytning tepasida menu bor — endi o'zingiznikini yasaysiz. index.html da menu bandlarini o'z sahifangizga moslab o'zgartiring, style.css da esa ularni qator
+src/1-Modull/CssLesson2.jsx	2469	ALMASH	`.menu { justify-content: center; }` — menyu markazga	`.menu { justify-content: center; }` — menu markazga
+src/1-Modull/CssPractice.jsx	789	ALMASH	fon #fff8ef, matn #16181d, menyu foni ko'k #1d4ed8 (oq yozuv), urg'u rang #c2410c	fon #fff8ef, matn #16181d, menu foni ko'k #1d4ed8 (oq yozuv), urg'u rang #c2410c
+src/1-Modull/CssPractice.jsx	802	ALMASH	Live Server'da qarang: menyu, sarlavha, tugmalar, 3 karta, footer — hammasi bormi? Yo'q bo'lsa, Gemini'ga aniq yozing: «… qo'shilmagan, qo'sh».	Live Server'da qarang: menu, sarlavha, tugmalar, 3 karta, footer — hammasi bormi? Yo'q bo'lsa, Gemini'ga aniq yozing: «… qo'shilmagan, qo'sh».
+src/1-Modull/CssPractice.jsx	804	ALMASH	.\nTuzilishi:\n– tepada: chapda sayt nomi, o'ngda menyu (Bosh sahifa, Aloqa) va bitta tugma;\n– bosh qism: kichik yozuv, katta sarlavha (saytim nima qilishini a	.\nTuzilishi:\n– tepada: chapda sayt nomi, o'ngda menu (Bosh sahifa, Aloqa) va bitta tugma;\n– bosh qism: kichik yozuv, katta sarlavha (saytim nima qilishini ay
+src/1-Modull/CssPractice.jsx	819	ALMASH	» (style.css boshida @import bilan); sarlavhalar qalin.\nMenyu: chapda sayt nomi, o'ngda havolalar; 	» (style.css boshida @import bilan); sarlavhalar qalin.\nMenyu: chapda sayt nomi, o'ngda linklar; 
+src/1-Modull/CssPractice.jsx	915	ALMASH	Menyudagi havolalar bosiladimi?	Menudagi linklar bosiladimi?
+src/1-Modull/CssPractice.jsx	1093	ALMASH	Havolalarni bir qatorga tizadigan qoida?	Linklarni bir qatorga tizadigan qoida?
+src/1-Modull/CssPractice.jsx	1100	ALMASH	Flex menyuni gorizontal markazga qaysi xususiyat qo'yadi?	Flex menuni gorizontal markazga qaysi xususiyat qo'yadi?
+src/1-Modull/DeployLesson.jsx	142	ALMASH	Saytingizni tugatib, havolasini yuboring	Saytingizni tugatib, linkini yuboring
+src/1-Modull/DeployLesson.jsx	144	ALMASH	Uyda saytni tugatasiz va jonli havolangizni (https://...netlify.app) platformadagi vazifa-savoliga yozib yuborasiz.	Uyda saytni tugatasiz va jonli linkingizni (https://...netlify.app) platformadagi vazifa-savoliga yozib yuborasiz.
+src/1-Modull/DeployLesson.jsx	149	ALMASH	Jonli havolani tekshiring — telefonda ham ochilsin	Jonli linkni tekshiring — telefonda ham ochilsin
+src/1-Modull/DeployLesson.jsx	150	ALMASH	Havolani platformadagi vazifa-savoliga yozib yuboring	Linkni platformadagi vazifa-savoliga yozib yuboring
+src/1-Modull/DeployLesson.jsx	325	ALMASH	havola	link
+src/1-Modull/DeployLesson.jsx	326	ALMASH	Havola	Link
+src/1-Modull/DeployLesson.jsx	332	ALMASH	 va tezlashtirmaydi — u faqat fayllarni saqlab, havola beradi.	 va tezlashtirmaydi — u faqat fayllarni saqlab, link beradi.
+src/1-Modull/DeployLesson.jsx	819	ALMASH	Saytni internetga chiqarib, havolasini yuboraman	Saytni internetga chiqarib, linkini yuboraman
+src/1-Modull/DeployLesson.jsx	865	ALMASH	Bugun saytni internetga chiqarib, havola olasiz.	Bugun saytni internetga chiqarib, link olasiz.
+src/1-Modull/DeployLesson.jsx	878	ALMASH	Havola	Link
+src/1-Modull/DeployLesson.jsx	895	ALMASH	da turadi: u papkani oladi va sizga havola beradi. Tugmani bosing.	da turadi: u papkani oladi va sizga link beradi. Tugmani bosing.
+src/1-Modull/DeployLesson.jsx	926	ALMASH	Sayt papkangizni internetda saqlaydi va havola beradi	Sayt papkangizni internetda saqlaydi va link beradi
+src/1-Modull/DeployLesson.jsx	944	ALMASH	havolasini do'stlaringizga yuborasiz	linkini do'stlaringizga yuborasiz
+src/1-Modull/DeployLesson.jsx	990	ALMASH	Dars oxirida saytingiz internetda turadi — havolasini istagan odamga yubora olasiz.	Dars oxirida saytingiz internetda turadi — linkini istagan odamga yubora olasiz.
+src/1-Modull/DeployLesson.jsx	1133	ALMASH	Live Server'da menyudagi har havolani bosing: sahifa ochiladimi, dizayni bir xilmi? Ochilmasa, Gemini'ga yozing: «… sahifasi ochilmayapti, menyudagi havolani tu	Live Server'da menudagi har linkni bosing: sahifa ochiladimi, dizayni bir xilmi? Ochilmasa, Gemini'ga yozing: «… sahifasi ochilmayapti, menudagi linkni tuzat».
+src/1-Modull/DeployLesson.jsx	1137	ALMASH	\nFayl nomlari lotin harflarida, kichik harf, bo'sh joysiz bo'lsin (masalan: jadval.html).\nHar sahifada bosh sahifadagi menyu va footer bir xil tursin; menyuda	\nFayl nomlari lotin harflarida, kichik harf, bo'sh joysiz bo'lsin (masalan: jadval.html).\nHar sahifada bosh sahifadagi menu va footer bir xil tursin; menuda h
+src/1-Modull/DeployLesson.jsx	1389	ALMASH	havola	link
+src/1-Modull/DeployLesson.jsx	1390	ALMASH	Havola chiqadi — uni nusxalang va bosib, saytingiz ochilishini tekshiring	Link chiqadi — uni nusxalang va bosib, saytingiz ochilishini tekshiring
+src/1-Modull/DeployLesson.jsx	1391	ALMASH	Havola oxiri `.netlify.app` bo'ladi, boshidagi nomni Netlify o'zi tanlaydi.	Link oxiri `.netlify.app` bo'ladi, boshidagi nomni Netlify o'zi tanlaydi.
+src/1-Modull/DeployLesson.jsx	1422	ALMASH	Netlify bergan havolani shu yerga qo'ying	Netlify bergan linkni shu yerga qo'ying
+src/1-Modull/DeployLesson.jsx	1422	ALMASH	Netlify bergan havola: https://….netlify.app	Netlify bergan link: https://….netlify.app
+src/1-Modull/DeployLesson.jsx	1424	ALMASH	Bu havola Demo Day darsida kerak bo\'ladi.	Bu link Demo Day darsida kerak bo\'ladi.
+src/1-Modull/DeployLesson.jsx	1451	ALMASH	Netlify bergan havolani	Netlify bergan linkni
+src/1-Modull/DeployLesson.jsx	1453	ALMASH	Sayt internetda — do'stingizga havolaning o'zi yetadi.	Sayt internetda — do'stingizga linkning o'zi yetadi.
+src/1-Modull/DeployLesson.jsx	1464	ALMASH	— hamma sahifa ochilsin, menyu ishlasin	— hamma sahifa ochilsin, menu ishlasin
+src/1-Modull/DeployLesson.jsx	1467	ALMASH	Havolani yuboring	Linkni yuboring
+src/1-Modull/DeployLesson.jsx	1492	ALMASH	Netlify sayt papkasini internetda saqlaydi va havola beradi	Netlify sayt papkasini internetda saqlaydi va link beradi
+src/1-Modull/DeployLesson.jsx	1493	ALMASH	Saytga Gemini bilan qolgan sahifalarni qo'shish va menyuni ulash	Saytga Gemini bilan qolgan sahifalarni qo'shish va menuni ulash
+src/1-Modull/DeployLesson.jsx	1496	ALMASH	Papkani sudrab tashlab deploy qilish va havolani olish	Papkani sudrab tashlab deploy qilish va linkni olish
+src/1-Modull/DeployLesson.jsx	1527	ALMASH	Sizning havolangiz	Sizning linkingiz
+src/1-Modull/DeployLesson.jsx	1528	ALMASH	havola hali saqlanmagan	link hali saqlanmagan
+src/1-Modull/DeployLesson.jsx	1530	ALMASH	Bu havola 	Bu link 
+src/1-Modull/DeployLesson.jsx	1551	ALMASH	Havola (yakuniy)	Link (yakuniy)
+src/1-Modull/DeployLesson.jsx	1690	ALMASH	Havolani qayta yozib	Linkni qayta yozib
+src/1-Modull/DeployLesson.jsx	1691	ALMASH	Sayt havolasini	Sayt linkini
+src/1-Modull/DeployLesson.jsx	1692	ALMASH	Sayt havolasini	Sayt linkini
+src/1-Modull/DeployLesson.jsx	1693	ALMASH	Havolalar orqali	Linklar orqali
+src/1-Modull/DeployLesson.jsx	1695	ALMASH	Promptda menyu haqida nima yoziladi?	Promptda menu haqida nima yoziladi?
+src/1-Modull/DeployLesson.jsx	1695	ALMASH	Menyu faqat bosh sahifada	Menu faqat bosh sahifada
+src/1-Modull/DeployLesson.jsx	1695	ALMASH	Menyu umuman kerak emas	Menu umuman kerak emas
+src/1-Modull/DeployLesson.jsx	1695	ALMASH	Har sahifada boshqa menyu	Har sahifada boshqa menu
+src/1-Modull/DeployLesson.jsx	1695	ALMASH	Har sahifada bir xil menyu	Har sahifada bir xil menu
+src/1-Modull/DeployLesson.jsx	1696	ALMASH	Havolani bilgan har kim	Linkni bilgan har kim
+src/1-Modull/DeployLesson.jsx	3186	KOD:css	; } /* === Telefon maketi (havolani sinash) === */ .phone { display: flex; justify-content: center; } .phone-scr { width: min(260px, 100%); background: 	; } /* === Telefon maketi (linkni sinash) === */ .phone { display: flex; justify-content: center; } .phone-scr { width: min(260px, 100%); background: 
+src/1-Modull/GitLesson.jsx	148	ALMASH	Uyda repo'ga yangi sahifa qo'shib, GitHub havolangizni platformadagi vazifa-savoliga yozib yuborasiz.	Uyda repo'ga yangi sahifa qo'shib, GitHub linkingizni platformadagi vazifa-savoliga yozib yuborasiz.
+src/1-Modull/GitLesson.jsx	361	ALMASH	Havolasi bor	Linki bor
+src/1-Modull/GitLesson.jsx	362	ALMASH	: havolani ochgan odam kodni ko'radi.	: linkni ochgan odam kodni ko'radi.
+src/1-Modull/GitLesson.jsx	363	ALMASH	Havolangizni birinchi kimga yuborardingiz?	Linkingizni birinchi kimga yuborardingiz?
+src/1-Modull/GitLesson.jsx	893	ALMASH	havolasi	linki
+src/1-Modull/GitLesson.jsx	949	ALMASH	Terminal: yuqoridagi menyudan Terminal → New Terminal.	Terminal: yuqoridagi menudan Terminal → New Terminal.
+src/1-Modull/GitLesson.jsx	973	ALMASH	. Natija bir xil — saytingiz internetda va havolasi bo'ladi. Bu yo'l amaliyot ekranida ham eslatiladi.	. Natija bir xil — saytingiz internetda va linki bo'ladi. Bu yo'l amaliyot ekranida ham eslatiladi.
+src/1-Modull/GitLesson.jsx	1012	ALMASH	Foydalanuvchi nomi (username) lotin harflarida bo'lsin: masalan ali-karimov. Shu nom havolangizda turadi.	Foydalanuvchi nomi (username) lotin harflarida bo'lsin: masalan ali-karimov. Shu nom linkingizda turadi.
+src/1-Modull/GitLesson.jsx	1249	ALMASH	havolani nusxalang	linkni nusxalang
+src/1-Modull/GitLesson.jsx	1250	ALMASH	Repo sahifasidagi yashil «Code» tugmasini bosing va havolani nusxalang	Repo sahifasidagi yashil «Code» tugmasini bosing va linkni nusxalang
+src/1-Modull/GitLesson.jsx	1251	ALMASH	Havola shunday tugaydi: .git	Link shunday tugaydi: .git
+src/1-Modull/GitLesson.jsx	1254	ALMASH	VS Code'da Ctrl+Shift+P bosing, `Git: Clone` yozing va havolani qo'ying	VS Code'da Ctrl+Shift+P bosing, `Git: Clone` yozing va linkni qo'ying
+src/1-Modull/GitLesson.jsx	1316	ALMASH	Brauzerda ochiladi, havolasi bo'ladi	Brauzerda ochiladi, linki bo'ladi
+src/1-Modull/GitLesson.jsx	1551	ALMASH	Bugun Git dasturini o'rnatdingiz, GitHub'da ro'yxatdan o'tdingiz, loyiha uchun repo yaratdingiz va kodni internetga yubordingiz. Endi kodingizning havolasi bor.	Bugun Git dasturini o'rnatdingiz, GitHub'da ro'yxatdan o'tdingiz, loyiha uchun repo yaratdingiz va kodni internetga yubordingiz. Endi kodingizning linki bor.
+src/1-Modull/GitLesson.jsx	1558	ALMASH	Kod havolasini boshqalarga ulasha olasiz	Kod linkini boshqalarga ulasha olasiz
+src/1-Modull/GitLesson.jsx	1593	ALMASH	Repo havolangizni platformadagi vazifa-savoliga yozib yuboring. Sinfdoshingizga ham yuboring — u brauzerda ochib sahifangizni ko'radi.	Repo linkingizni platformadagi vazifa-savoliga yozib yuboring. Sinfdoshingizga ham yuboring — u brauzerda ochib sahifangizni ko'radi.
+src/1-Modull/HtmlPractice.jsx	255	ALMASH	Bo'limga havola	Bo'limga link
+src/1-Modull/HtmlPractice.jsx	257	ALMASH	Menyudagi havola	Menudagi link
+src/1-Modull/HtmlPractice.jsx	258	ALMASH	Havoladagi nom bilan bir xil bo'lishi kerak.	Linkdagi nom bilan bir xil bo'lishi kerak.
+src/1-Modull/HtmlPractice.jsx	259	ALMASH	Pochta havolasi	Pochta linki
+src/1-Modull/HtmlPractice.jsx	259	ALMASH	id ni yozish esdan chiqsa, havola bosilganda nima bo'ladi?	id ni yozish esdan chiqsa, link bosilganda nima bo'ladi?
+src/1-Modull/HtmlPractice.jsx	633	ALMASH	Menyu, loyihalar va aloqa	Menu, loyihalar va aloqa
+src/1-Modull/HtmlPractice.jsx	700	ALMASH	Menyudagi «Aloqa» bosildi, sahifa qimirlamadi. Nima yetishmaydi?	Menudagi «Aloqa» bosildi, sahifa qimirlamadi. Nima yetishmaydi?
+src/1-Modull/HtmlPractice.jsx	701	ALMASH	Menyudagi «Aloqa» bosildi, sahifa qimirlamadi. 	Menudagi «Aloqa» bosildi, sahifa qimirlamadi. 
+src/1-Modull/HtmlPractice.jsx	703	ALMASH	Menyu atrofida `<nav>` tegi yo\'q	Menu atrofida `<nav>` tegi yo\'q
+src/1-Modull/HtmlPractice.jsx	710	ALMASH	Havola `<nav>` ichida bo'lmasa ham ishlaydi.	Link `<nav>` ichida bo'lmasa ham ishlaydi.
+src/1-Modull/HtmlPractice.jsx	711	ALMASH	Sarlavha o'lchami havolaga ta'sir qilmaydi.	Sarlavha o'lchami linkka ta'sir qilmaydi.
+src/1-Modull/HtmlPractice.jsx	712	ALMASH	Footer yo\'qligi menyuga tegmaydi.	Footer yo\'qligi menuga tegmaydi.
+src/1-Modull/HtmlPractice.jsx	720	ALMASH	Menyu havolalarini bo'limlarga uladingiz	Menu linklarini bo'limlarga uladingiz
+src/1-Modull/HtmlPractice.jsx	784	ALMASH	Bo'limga havola	Bo'limga link
+src/1-Modull/HtmlPractice.jsx	804	ALMASH	Aloqa havolasida manzil qaysi atributga yoziladi?	Aloqa linkida manzil qaysi atributga yoziladi?
+src/1-Modull/HtmlPractice.jsx	1329	ALMASH	Gemini'ga bitta aniq dizayn so'rovi yozing (masalan: «Menyu havolasi ustiga sichqoncha borganda rangi o'zgarsin»), natijani tekshiring	Gemini'ga bitta aniq dizayn so'rovi yozing (masalan: «Menu linki ustiga sichqoncha borganda rangi o'zgarsin»), natijani tekshiring
+src/1-Modull/HtmlPractice.jsx	1371	ALMASH	Amaliyot 2 · menyu, havola	Amaliyot 2 · menu, link
+src/1-Modull/HtmlPractice.jsx	1372	ALMASH	Menyu, loyihalar va aloqa bo'limini qo'shing.	Menu, loyihalar va aloqa bo'limini qo'shing.
+src/1-Modull/HtmlPractice.jsx	1380	ALMASH	Menyudagi har havolani bosing: o'z bo'limiga tushadimi? Tushmasa, Gemini'ga yozing: «Aloqa bosilsa, sahifa qimirlamayapti. href va id ni tekshirib tuzat.»	Menudagi har linkni bosing: o'z bo'limiga tushadimi? Tushmasa, Gemini'ga yozing: «Aloqa bosilsa, sahifa qimirlamayapti. href va id ni tekshirib tuzat.»
+src/1-Modull/HtmlPractice.jsx	1382	ALMASH	Sahifamga menyu va qolgan bo'limlarni qo'sh.\n<header> ichida, yo'nalishimdan keyin <nav>: «Men haqimda» (#men), «Loyihalarim» (#loyihalar), «Aloqa» (#aloqa).\n	Sahifamga menu va qolgan bo'limlarni qo'sh.\n<header> ichida, yo'nalishimdan keyin <nav>: «Men haqimda» (#men), «Loyihalarim» (#loyihalar), «Aloqa» (#aloqa).\n«
+src/1-Modull/HtmlPractice.jsx	1382	ALMASH	.\nKeyin <section id="aloqa">: sarlavha «Aloqa» (<h2>) va pochta havolasi: 	.\nKeyin <section id="aloqa">: sarlavha «Aloqa» (<h2>) va pochta linki: 
+src/1-Modull/HtmlPractice.jsx	1394	ALMASH	Live Server'da qarang: rang, kartochkalar, menyu — siz yozgandekmi? Mos kelmasa, Gemini'ga aniq yozing.	Live Server'da qarang: rang, kartochkalar, menu — siz yozgandekmi? Mos kelmasa, Gemini'ga aniq yozing.
+src/1-Modull/HtmlPractice.jsx	1396	ALMASH	: sarlavhalar va havolalar shu rangda.\nFon och kulrang, sahifa markazda, eni 800px dan oshmasin.\nHeader qorong'i, ism oq; har bo'lim oq kartochka, burchaklari	: sarlavhalar va linklar shu rangda.\nFon och kulrang, sahifa markazda, eni 800px dan oshmasin.\nHeader qorong'i, ism oq; har bo'lim oq kartochka, burchaklari y
+src/1-Modull/HtmlPractice.jsx	1466	ALMASH	Menyudagi uchala havola o'z bo'limiga tushadimi?	Menudagi uchala link o'z bo'limiga tushadimi?
+src/1-Modull/HtmlPractice.jsx	1481	ALMASH	masalan: menyu havolalari bir-biriga yopishib turibdi	masalan: menu linklari bir-biriga yopishib turibdi
+src/1-Modull/HtmlPractice.jsx	1482	ALMASH	masalan: havolalar orasida bo'sh joy bo'lsin	masalan: linklar orasida bo'sh joy bo'lsin
+src/1-Modull/HtmlPractice.jsx	1535	ALMASH	Menyu havolasini `id` orqali bo'limga ulaysiz	Menu linkini `id` orqali bo'limga ulaysiz
+src/1-Modull/HtmlPractice.jsx	1542	ALMASH	Gemini'ga bitta aniq dizayn so'rovi yozing (masalan: «Menyu havolasi ustiga sichqoncha borganda rangi o'zgarsin»), natijani tekshiring	Gemini'ga bitta aniq dizayn so'rovi yozing (masalan: «Menu linki ustiga sichqoncha borganda rangi o'zgarsin»), natijani tekshiring
+src/1-Modull/HtmlPractice.jsx	1742	KOD:css	; } /* Modifikator .xom — CSS'siz sahifa (A1–A3 natijasi): brauzerning o'z shrifti va havola rangi */ .pf-win.xom .pf-qism, .pf-win.xom .pf-qism + .pf-qism { bo	; } /* Modifikator .xom — CSS'siz sahifa (A1–A3 natijasi): brauzerning o'z shrifti va link rangi */ .pf-win.xom .pf-qism, .pf-win.xom .pf-qism + .pf-qism { bord
+src/1-Modull/HtmlTakrorlashLesson.jsx	353	ALMASH	Havola qanday yoziladi	Link qanday yoziladi
+src/1-Modull/HtmlTakrorlashLesson.jsx	356	ALMASH	Havola 	Link 
+src/1-Modull/HtmlTakrorlashLesson.jsx	363	ALMASH	Havolani ikki narsa buzadi: 	Linkni ikki narsa buzadi: 
+src/1-Modull/HtmlTakrorlashLesson.jsx	370	ALMASH	 bilan havola ishlamaydi.	 bilan link ishlamaydi.
+src/1-Modull/HtmlTakrorlashLesson.jsx	374	ALMASH	Havola ko'rinyapti, lekin bosilmayapti. Avval nimani tekshirasiz?	Link ko'rinyapti, lekin bosilmayapti. Avval nimani tekshirasiz?
+src/1-Modull/HtmlTakrorlashLesson.jsx	874	ALMASH	3-bosqich · Telegram havola	3-bosqich · Telegram link
+src/1-Modull/HtmlTakrorlashLesson.jsx	910	ALMASH	<a> — havola, u bosiladi. Bu qism esa sahifa sarlavhasi.	<a> — link, u bosiladi. Bu qism esa sahifa sarlavhasi.
+src/1-Modull/HtmlTakrorlashLesson.jsx	912	ALMASH	<a> — havola. Ismlar bosilmaydi, ular ro'yxat bo'lib turibdi.	<a> — link. Ismlar bosilmaydi, ular ro'yxat bo'lib turibdi.
+src/1-Modull/HtmlTakrorlashLesson.jsx	994	ALMASH	Telegram havola	Telegram link
+src/1-Modull/HtmlTakrorlashLesson.jsx	1033	ALMASH	Bosiladigan havola	Bosiladigan link
+src/1-Modull/HtmlTakrorlashLesson.jsx	1036	ALMASH	Bosiladigan havola	Bosiladigan link
+src/1-Modull/HtmlTakrorlashLesson.jsx	1286	ALMASH	Atribut nomi `herf` emas, `href` — brauzer notanish so'zni tushunmay, havolani oddiy matn qilib qo'ygan edi.	Atribut nomi `herf` emas, `href` — brauzer notanish so'zni tushunmay, linkni oddiy matn qilib qo'ygan edi.
+src/1-Modull/HtmlTakrorlashLesson.jsx	1299	ALMASH	Mana bir sahifa kodi — ichida ikkita xato yashiringan: havola bosilmayapti, ro'yxatda esa ortiqcha nuqta bor. Shubhali qatorni bosing, keyin to'g'ri variantni t	Mana bir sahifa kodi — ichida ikkita xato yashiringan: link bosilmayapti, ro'yxatda esa ortiqcha nuqta bor. Shubhali qatorni bosing, keyin to'g'ri variantni tan
+src/1-Modull/HtmlTakrorlashLesson.jsx	1330	ALMASH	Sahifada havola bosilmayapti, ro'yxatda esa ortiqcha nuqta chiqyapti — demak kodda 	Sahifada link bosilmayapti, ro'yxatda esa ortiqcha nuqta chiqyapti — demak kodda 
+src/1-Modull/HtmlTakrorlashLesson.jsx	1352	ALMASH	Bu qator to'g'ri — belgilariga qarang: havola bosilmayapti va ro'yxatda ortiqcha nuqta bor.	Bu qator to'g'ri — belgilariga qarang: link bosilmayapti va ro'yxatda ortiqcha nuqta bor.
+src/1-Modull/HtmlTakrorlashLesson.jsx	1389	ALMASH	Ro'yxat ham yondi! Endi jamoa kanaliga havola. Havolani a tegi yasaydi: href ichiga manzil, teglar orasiga bosiladigan matn. Hozirgina herf xatosini tuzatdingiz	Ro'yxat ham yondi! Endi jamoa kanaliga link. Linkni a tegi yasaydi: href ichiga manzil, teglar orasiga bosiladigan matn. Hozirgina herf xatosini tuzatdingiz — e
+src/1-Modull/HtmlTakrorlashLesson.jsx	1390	ALMASH	havola	link
+src/1-Modull/HtmlTakrorlashLesson.jsx	1391	ALMASH	Havolani 	Linkni 
+src/1-Modull/HtmlTakrorlashLesson.jsx	1394	ALMASH	havola tegi — bosiladigan matn bilan	link tegi — bosiladigan matn bilan
+src/1-Modull/HtmlTakrorlashLesson.jsx	1404	ALMASH	Havola to'rt xil yozilgan, lekin faqat bittasi to'g'ri. Har bir yozuvni diqqat bilan o'qing: qo'shtirnoq, atribut nomi, yopuvchi teg. Qaysi biri to'g'ri?	Link to'rt xil yozilgan, lekin faqat bittasi to'g'ri. Har bir yozuvni diqqat bilan o'qing: qo'shtirnoq, atribut nomi, yopuvchi teg. Qaysi biri to'g'ri?
+src/1-Modull/HtmlTakrorlashLesson.jsx	1405	ALMASH	To'rt yozuvdan qaysi havola to'g'ri yozilgan?	To'rt yozuvdan qaysi link to'g'ri yozilgan?
+src/1-Modull/HtmlTakrorlashLesson.jsx	1408	ALMASH	Havola to'rt xil yozilgan. Qaysi biri 	Link to'rt xil yozilgan. Qaysi biri 
+src/1-Modull/HtmlTakrorlashLesson.jsx	1419	ALMASH	Yopuvchi teg yo'q, keyingi matn ham havolaga yopishadi.	Yopuvchi teg yo'q, keyingi matn ham linkka yopishadi.
+src/1-Modull/HtmlTakrorlashLesson.jsx	1428	ALMASH	Havola ham yondi! Endi jamoa surati. Rasmni img tegi qo'yadi: src ichiga rasm manzili, alt ichiga rasm ochilmasa chiqadigan matn. img yopuvchi tegsiz yoziladi. 	Link ham yondi! Endi jamoa surati. Rasmni img tegi qo'yadi: src ichiga rasm manzili, alt ichiga rasm ochilmasa chiqadigan matn. img yopuvchi tegsiz yoziladi. Ra
+src/1-Modull/HtmlTakrorlashLesson.jsx	1615	ALMASH	Yakuniy bosqich — hammasi birga! Bo'sh sahifadan Chempionlar sahifasining to'liq mini-versiyasini yig'asiz: sarlavha, matn, ro'yxat, havola va rasm. Beshta shar	Yakuniy bosqich — hammasi birga! Bo'sh sahifadan Chempionlar sahifasining to'liq mini-versiyasini yig'asiz: sarlavha, matn, ro'yxat, link va rasm. Beshta shartn
+src/1-Modull/HtmlTakrorlashLesson.jsx	1618	ALMASH	nom, tanishuv gapi, o'yinchilar ro'yxati, kanal havolasi va surat	nom, tanishuv gapi, o'yinchilar ro'yxati, kanal linki va surat
+src/1-Modull/HtmlTakrorlashLesson.jsx	1622	ALMASH	kanal havolasi	kanal linki
+src/1-Modull/HtmlTakrorlashLesson.jsx	1731	ALMASH	Bosiladigan havolani qaysi teg yasaydi?	Bosiladigan linkni qaysi teg yasaydi?
+src/1-Modull/HtmlTakrorlashLesson.jsx	1732	ALMASH	Havola qaysi manzilga olib borishi qayerga yoziladi?	Link qaysi manzilga olib borishi qayerga yoziladi?
+src/1-Modull/HtmlTakrorlashLesson.jsx	1779	ALMASH	Havola ulash (a, href)	Link ulash (a, href)
+src/1-Modull/HtmlTakrorlashLesson.jsx	1786	ALMASH	Ro'yxat + havola	Ro'yxat + link
+src/1-Modull/HtmlTakrorlashLesson.jsx	1846	ALMASH	To'g'ri havola yozuvi	To'g'ri link yozuvi
+src/1-Modull/HtmlTakrorlashLesson.jsx	2006	ALMASH	Havola odatdagidek ishlaydi	Link odatdagidek ishlaydi
+src/1-Modull/HtmlTakrorlashLesson.jsx	2008	ALMASH	Rasmni havolaga aylantiradi	Rasmni linkka aylantiradi
+src/1-Modull/HtmlTakrorlashLesson.jsx	2012	ALMASH	Havola manzilining o'zi	Link manzilining o'zi
+src/1-Modull/HtmlTakrorlashLesson.jsx	2506	ALMASH	3-bosqich · havola	3-bosqich · link
+src/1-Modull/HtmlTakrorlashLesson.jsx	2507	ALMASH	Kanal havolasini ulang	Kanal linkini ulang
+src/1-Modull/HtmlTakrorlashLesson.jsx	2539	ALMASH	Eng qiziq joyi: bugungi 4 bosqichning hammasini bitta sahifada yig'asiz — sarlavha, tanishuv, o'yinchilar ro'yxati, kanal havolasi va jamoa surati. Rasm manzili	Eng qiziq joyi: bugungi 4 bosqichning hammasini bitta sahifada yig'asiz — sarlavha, tanishuv, o'yinchilar ro'yxati, kanal linki va jamoa surati. Rasm manzili: h
+src/1-Modull/HtmlTakrorlashLesson.jsx	2546	ALMASH	<a> — kanal havolasi	<a> — kanal linki
+src/1-Modull/HtmlTakrorlashLesson.jsx	2566	ALMASH	<a> — bitta sayt havolasi	<a> — bitta sayt linki
+src/1-Modull/HtmlTakrorlashLesson.jsx	2566	ALMASH	Mavzuga oid saytga `<a href=\"https://...\">nomi</a>` havola qo'shing	Mavzuga oid saytga `<a href=\"https://...\">nomi</a>` link qo'shing
+src/1-Modull/HtmlTakrorlashLesson.jsx	3128	KOD:css	; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; } .dbg-txt { flex: 1; min-width: 0; overflow-wrap: anywhere; } /* F-0926-06 (159/12): uzu	; font-size: 12px; min-width: 16px; text-align: right; flex-shrink: 0; } .dbg-txt { flex: 1; min-width: 0; overflow-wrap: anywhere; } /* F-0926-06 (159/12): uzu
+src/1-Modull/HtmlTakrorlashLesson.jsx	3318	KOD:css	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menyusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0 
+src/1-Modull/Htmllesson1.jsx	928	ALMASH	Havola ulaymiz	Link ulaymiz
+src/1-Modull/Htmllesson1.jsx	1437	ALMASH	Boshqa sahifaga havolani qaysi teg yasaydi?	Boshqa sahifaga linkni qaysi teg yasaydi?
+src/1-Modull/Htmllesson1.jsx	1438	ALMASH	Havolaning manzili qayerga yoziladi?	Linkning manzili qayerga yoziladi?
+src/1-Modull/Htmllesson1.jsx	1565	ALMASH	Ekranda ko\u2019rinadigan hamma narsa shu yerda: sarlavha, matn, rasm, havola. Xuddi restoran zali kabi — mehmon shuni ko\u2019radi.	Ekranda ko\u2019rinadigan hamma narsa shu yerda: sarlavha, matn, rasm, link. Xuddi restoran zali kabi — mehmon shuni ko\u2019radi.
+src/1-Modull/Htmllesson1.jsx	2043	ALMASH	`<a>` — havola tegi, ro\'yxatga aloqasi yo\'q.	`<a>` — link tegi, ro\'yxatga aloqasi yo\'q.
+src/1-Modull/Htmllesson1.jsx	2048	ALMASH	YouTube'da bitta videoni ko'rib bo'lgach, yonidagi videoga bosib o'tasiz. O'sha bosish — havola. HTML'da havola a tegi bilan yasaladi: href ichiga manzil yozila	YouTube'da bitta videoni ko'rib bo'lgach, yonidagi videoga bosib o'tasiz. O'sha bosish — link. HTML'da link a tegi bilan yasaladi: href ichiga manzil yoziladi, 
+src/1-Modull/Htmllesson1.jsx	2086	ALMASH	Havolalar	Linklar
+src/1-Modull/Htmllesson1.jsx	2086	ALMASH	Havolani bosing	Linkni bosing
+src/1-Modull/Htmllesson1.jsx	2089	ALMASH	havola	link
+src/1-Modull/Htmllesson1.jsx	2089	ALMASH	. HTML'da havola 	. HTML'da link 
+src/1-Modull/Htmllesson1.jsx	2089	ALMASH	. Menyuni bosib, sahifalar orasida yuring.	. Menuni bosib, sahifalar orasida yuring.
+src/1-Modull/Htmllesson1.jsx	2091	ALMASH	havola	link
+src/1-Modull/Htmllesson1.jsx	2093	ALMASH	 saytingizga sevimli sayt yoki Telegram kanalingizga havola qo'shasiz.	 saytingizga sevimli sayt yoki Telegram kanalingizga link qo'shasiz.
+src/1-Modull/Htmllesson1.jsx	2097	ALMASH	havolalar kodi	linklar kodi
+src/1-Modull/Htmllesson1.jsx	2097	ALMASH	Har bir havola = bitta 	Har bir link = bitta 
+src/1-Modull/Htmllesson1.jsx	2112	ALMASH	Havola	Link
+src/1-Modull/Htmllesson1.jsx	2125	ALMASH	Tushunmadim 🙂 Mana shulardan yozing: sarlavha, matn, ro\u2019yxat, havola, rasm.	Tushunmadim 🙂 Mana shulardan yozing: sarlavha, matn, ro\u2019yxat, link, rasm.
+src/1-Modull/Htmllesson1.jsx	2188	ALMASH	Ro'yxat (ul/ol) va havola (a) qo'shish	Ro'yxat (ul/ol) va link (a) qo'shish
+src/1-Modull/Htmllesson1.jsx	2189	ALMASH	Havola	Link
+src/1-Modull/Htmllesson1.jsx	2402	ALMASH	Havolada (link) manzil qaysi atributga yoziladi?	Linkda (link) manzil qaysi atributga yoziladi?
+src/1-Modull/Htmllesson1.jsx	2895	ALMASH	Praktika · havola	Praktika · link
+src/1-Modull/Htmllesson1.jsx	2896	ALMASH	Havola yasang	Link yasang
+src/1-Modull/Htmllesson1.jsx	2898	ALMASH	Boshqa saytga olib boradigan bosiladigan havola qo'shing: href ichida manzil, teg ichida ko'rinadigan matn.	Boshqa saytga olib boradigan bosiladigan link qo'shing: href ichida manzil, teg ichida ko'rinadigan matn.
+src/1-Modull/Htmllesson1.jsx	2918	ALMASH	Bugun o'rgangan hamma narsa: sarlavha + matn (paragraf) + ro'yxat + havola. Sahifani noldan o'zingiz yig'asiz.	Bugun o'rgangan hamma narsa: sarlavha + matn (paragraf) + ro'yxat + link. Sahifani noldan o'zingiz yig'asiz.
+src/1-Modull/Htmllesson1.jsx	2925	ALMASH	<a> havola — href bilan	<a> link — href bilan
+src/1-Modull/Htmllesson1.jsx	2925	ALMASH	`<a href=\"...\">matn</a>` havola qo'shing	`<a href=\"...\">matn</a>` link qo'shing
+src/1-Modull/Htmllesson1.jsx	2949	ALMASH	<a> — sevimli saytingizga havola	<a> — sevimli saytingizga link
+src/1-Modull/Htmllesson1.jsx	2949	ALMASH	Sevimli saytingizga `<a href=\"https://...\">nomi</a>` havola qo'shing	Sevimli saytingizga `<a href=\"https://...\">nomi</a>` link qo'shing
+src/1-Modull/Htmllesson1.jsx	3836	KOD:css	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menyusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0 
+src/1-Modull/Htmllesson2.jsx	365	ALMASH	 — shift kabi eng tepada: logotip, sayt nomi va menyu.	 — shift kabi eng tepada: logotip, sayt nomi va menu.
+src/1-Modull/Htmllesson2.jsx	366	ALMASH	Menyu	Menu
+src/1-Modull/Htmllesson2.jsx	1015	ALMASH	`href` — havola manzili, u `a` tegida ishlatiladi.	`href` — link manzili, u `a` tegida ishlatiladi.
+src/1-Modull/Htmllesson2.jsx	1059	ALMASH	Sahifaning tepasi: logotip, sayt nomi va menyu shu yerda turadi.	Sahifaning tepasi: logotip, sayt nomi va menu shu yerda turadi.
+src/1-Modull/Htmllesson2.jsx	1061	ALMASH	Sahifaning eng pasti: aloqa, © belgisi (sayt kimniki ekani), qo'shimcha havolalar.	Sahifaning eng pasti: aloqa, © belgisi (sayt kimniki ekani), qo'shimcha linklar.
+src/1-Modull/Htmllesson2.jsx	1084	ALMASH	Logo · Menyu	Logo · Menu
+src/1-Modull/Htmllesson2.jsx	1084	ALMASH	sayt nomi va menyu	sayt nomi va menu
+src/1-Modull/Htmllesson2.jsx	1122	ALMASH	Sahifaning eng tepasidagi logotip va menyu qaysi bo'limga joylanadi?	Sahifaning eng tepasidagi logotip va menu qaysi bo'limga joylanadi?
+src/1-Modull/Htmllesson2.jsx	1123	ALMASH	Logotip va menyu qaysi bo'limga joylanadi?	Logotip va menu qaysi bo'limga joylanadi?
+src/1-Modull/Htmllesson2.jsx	1124	ALMASH	logotip va menyu	logotip va menu
+src/1-Modull/Htmllesson2.jsx	1126	ALMASH	`header` — sahifa tepasi: logotip va menyu shu yerda.	`header` — sahifa tepasi: logotip va menu shu yerda.
+src/1-Modull/Htmllesson2.jsx	1705	ALMASH	Logo va asosiy menyu odatda qaysi bo'limga joylanadi?	Logo va asosiy menu odatda qaysi bo'limga joylanadi?
+src/1-Modull/Htmllesson2.jsx	2169	ALMASH	Logotip va menyu sahifaning qaysi bo\'limida turadi?	Logotip va menu sahifaning qaysi bo\'limida turadi?
+src/1-Modull/Htmllesson2.jsx	2355	ALMASH	Logotip va menyu joyini to'g'ri topdingiz	Logotip va menu joyini to'g'ri topdingiz
+src/1-Modull/PmLesson1.jsx	346	ALMASH	: menyu, narx, buyurtma.	: menu, narx, buyurtma.
+src/1-Modull/PmLesson1.jsx	1372	ALMASH	Menyu va narxlar ro'yxati	Menu va narxlar ro'yxati
+src/1-Modull/PmLesson1.jsx	1377	ALMASH	Menyuni ko\'rish navbatdan qutqarmaydi, oldindan buyurtma qutqaradi.	Menuni ko\'rish navbatdan qutqarmaydi, oldindan buyurtma qutqaradi.
+src/1-Modull/PmLesson1.jsx	1388	ALMASH	U har kuni bir xil narsa oladi: menyuni qayta ko'rishi shart emas.	U har kuni bir xil narsa oladi: menuni qayta ko'rishi shart emas.
+src/1-Modull/PmLesson1.jsx	1435	ALMASH	Menyu	Menu
+src/1-Modull/PmLesson1.jsx	1476	ALMASH	Menyuda nima borligini va narxini bilmaydi	Menuda nima borligini va narxini bilmaydi
+src/1-Modull/PmLesson1.jsx	1476	ALMASH	Menyu va narxlarni rasm bilan ko\'rsatadigan sahifa	Menu va narxlarni rasm bilan ko\'rsatadigan sahifa
+src/1-Modull/PmLesson1.jsx	1554	ALMASH	Ha, aynan! Menyuda nima bor, narxi qancha — bilmayman.	Ha, aynan! Menuda nima bor, narxi qancha — bilmayman.
+src/1-Modull/PmLesson1.jsx	1555	ALMASH	Ajoyib! Endi kelishdan oldin menyu va narxni ko'rib olaman!	Ajoyib! Endi kelishdan oldin menu va narxni ko'rib olaman!
+src/1-Modull/PmLesson1.jsx	2559	ALMASH	Menyu va narxlar sayti	Menu va narxlar sayti
+src/1-Modull/PmLesson2.homework.jsx	104	ALMASH	Masalan: Menyudan tanlang va buyurtma bering	Masalan: Menudan tanlang va buyurtma bering
+src/1-Modull/PmLesson2.jsx	1320	ALMASH	Eng pastdagi `footer`ni — havolalar va aloqani	Eng pastdagi `footer`ni — linklar va aloqani
+src/1-Modull/PmLesson2.jsx	1394	ALMASH	Menyuda, boshqa havolalar orasida	Menuda, boshqa linklar orasida
+src/1-Modull/PmLesson2.jsx	1396	ALMASH	Havolalar orasida tugma ko'zga tashlanmaydi.	Linklar orasida tugma ko'zga tashlanmaydi.
+src/1-Modull/PmLesson2.jsx	1613	ALMASH	 ichi bo'sh — tepaga sayt nomini, pastga havola yoki aloqa ma'lumotini yozing.	 ichi bo'sh — tepaga sayt nomini, pastga link yoki aloqa ma'lumotini yozing.
+src/1-Modull/PmLesson2.jsx	1811	ALMASH	havolalar, aloqa	linklar, aloqa
+src/1-Modull/PmLesson2.jsx	2097	ALMASH	Menyuda, havolalar bilan	Menuda, linklar bilan
+src/1-Modull/PmLesson3.jsx	813	ALMASH	telefon qilib, menyuni so\'rab o\'tirardi	telefon qilib, menuni so\'rab o\'tirardi
+src/1-Modull/PmLesson3.jsx	814	ALMASH	menyuni rasmi va narxi bilan ko\'rsatadi	menuni rasmi va narxi bilan ko\'rsatadi
+src/1-Modull/PmLesson3.jsx	815	ALMASH	Menyuni ko\'rmasdan buyurtma berish qulaymi?	Menuni ko\'rmasdan buyurtma berish qulaymi?
+src/1-Modull/PmLesson3.jsx	816	ALMASH	masalan: Saytim — menyuni ko\'rib, buyurtmani bir necha bosishda berasiz.	masalan: Saytim — menuni ko\'rib, buyurtmani bir necha bosishda berasiz.
+src/1-Modull/VsCodeLesson.jsx	174	ALMASH	Havola — Telegram yoki sevimli saytingizga a href	Link — Telegram yoki sevimli saytingizga a href
+src/1-Modull/VsCodeLesson.jsx	189	ALMASH	Menyu va narxlar sayti	Menu va narxlar sayti
+src/1-Modull/VsCodeLesson.jsx	2303	ALMASH	— Gemini'ga card uchun bitta aniq so'rov yozing (masalan: «Card ostiga Telegram havolasini qo'sh»), natijani Live Server'da tekshiring	— Gemini'ga card uchun bitta aniq so'rov yozing (masalan: «Card ostiga Telegram linkini qo'sh»), natijani Live Server'da tekshiring
+src/1-Modull/VsCodeLesson.jsx	2304	ALMASH	Havola	Link
+src/1-Modull/VsCodeLesson.jsx	2599	ALMASH	Yuqoridagi menyu qatorida	Yuqoridagi menu qatorida
+src/1-Modull/VsCodeLesson.jsx	2599	ALMASH	O'ng tugma menyusida	O'ng tugma menusida
+src/1-Modull/VsCodeLesson.jsx	3882	KOD:css	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menyusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0	; text-align: center; margin: 0; } /* belgilanadigan so'z + format menusi */ .tgm-word { position: relative; display: inline-block; cursor: pointer; padding: 0 
+src/10-Modull/BreakAndFixLesson.jsx	2530	ALMASH	Sherik bo'lsa — uning telefonida ham shu ekran ochiq tursin (web havola yoki Android'dagi Expo Go; Expo akkauntingiz ma'lumoti berilmaydi).	Sherik bo'lsa — uning telefonida ham shu ekran ochiq tursin (web link yoki Android'dagi Expo Go; Expo akkauntingiz ma'lumoti berilmaydi).
+src/10-Modull/PmChannelsLesson.jsx	332	ALMASH	Bitta harakat — havola; halol holat — hozir nima tayyor.	Bitta harakat — link; halol holat — hozir nima tayyor.
+src/10-Modull/PmChannelsLesson.jsx	332	ALMASH	Mentor postida «Ilova ishlayapti, o'rnatish havolasi hozircha yo'q» qaysi qator?	Mentor postida «Ilova ishlayapti, o'rnatish linki hozircha yo'q» qaysi qator?
+src/10-Modull/PmChannelsLesson.jsx	684	ALMASH	Ilova ishlayapti, o'rnatish havolasi hozircha yo'q —	Ilova ishlayapti, o'rnatish linki hozircha yo'q —
+src/10-Modull/PmChannelsLesson.jsx	879	ALMASH	Tanish guruhdagi havolani bosib	Tanish guruhdagi linkni bosib
+src/10-Modull/PmChannelsLesson.jsx	883	ALMASH	 Mentor misolida odamlar tanish guruhda allaqachon yig'ilgan — havolani o'sha yerda ko'radi.	 Mentor misolida odamlar tanish guruhda allaqachon yig'ilgan — linkni o'sha yerda ko'radi.
+src/10-Modull/PmChannelsLesson.jsx	885	ALMASH	 Tasodif ham bo'ladi, lekin uni kutib bo'lmaydi — havolani odamlarga o'zingiz ko'rsatasiz.	 Tasodif ham bo'ladi, lekin uni kutib bo'lmaydi — linkni odamlarga o'zingiz ko'rsatasiz.
+src/10-Modull/PmChannelsLesson.jsx	1391	ALMASH	Guruh nomi va havolasi yozilmaydi — faqat turini yozing.	Guruh nomi va linki yozilmaydi — faqat turini yozing.
+src/10-Modull/PmChannelsLesson.jsx	1554	ALMASH	Mentor misolida: «sahifasini ko'ring» — bitta ish, bitta havola.	Mentor misolida: «sahifasini ko'ring» — bitta ish, bitta link.
+src/10-Modull/PmChannelsLesson.jsx	1556	ALMASH	Mentor misolida: «Ilova ishlayapti, o'rnatish havolasi hozircha yo'q». Web-trekda sayt allaqachon ishlasa — shuni yozing.	Mentor misolida: «Ilova ishlayapti, o'rnatish linki hozircha yo'q». Web-trekda sayt allaqachon ishlasa — shuni yozing.
+src/10-Modull/PmChannelsLesson.jsx	1685	ALMASH	Lending manzili hali yo'q — Netlify'ga chiqargach havola shu yerga qo'shiladi.	Lending manzili hali yo'q — Netlify'ga chiqargach link shu yerga qo'shiladi.
+src/10-Modull/PmChannelsLesson.jsx	1784	ALMASH	// Namuna havolalar: lending manzili va oxiridagi kanal belgisi.	// Namuna linklar: lending manzili va oxiridagi kanal belgisi.
+src/10-Modull/PmChannelsLesson.jsx	1790	ALMASH	// har havola — sahifada bitta qator (bu qism tayyor)	// har link — sahifada bitta qator (bu qism tayyor)
+src/10-Modull/PmChannelsLesson.jsx	1792	ALMASH	const havolalar = [	const linklar = [
+src/10-Modull/PmChannelsLesson.jsx	1794	ALMASH	function kanalniOl(havola) {	function kanalniOl(link) {
+src/10-Modull/PmChannelsLesson.jsx	1794	ALMASH	 const belgilar = new URL(havola).search;	 const belgilar = new URL(link).search;
+src/10-Modull/PmChannelsLesson.jsx	1795	ALMASH	havolalar.forEach(function (havola) {	linklar.forEach(function (link) {
+src/10-Modull/PmChannelsLesson.jsx	1796	ALMASH	 qator.textContent = "kanal: " + kanalniOl(havola) + " · " + havola;	 qator.textContent = "kanal: " + kanalniOl(link) + " · " + link;
+src/10-Modull/PmChannelsLesson.jsx	1798	ALMASH	<h1>Havola qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n	<h1>Link qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n
+src/10-Modull/PmChannelsLesson.jsx	1798	ALMASH	<h1>Havola qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n	<h1>Link qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n
+src/10-Modull/PmChannelsLesson.jsx	1805	ALMASH	`kanalniOl` havoladan `kanal` qiymatini qaytaradi	`kanalniOl` linkdan `kanal` qiymatini qaytaradi
+src/10-Modull/PmChannelsLesson.jsx	1807	ALMASH	Namuna sahifada to'rt havola, har birining kanali bilan	Namuna sahifada to'rt link, har birining kanali bilan
+src/10-Modull/PmChannelsLesson.jsx	1812	ALMASH	1 — «guruh» belgili havoladan «guruh» chiqsin.	1 — «guruh» belgili linkdan «guruh» chiqsin.
+src/10-Modull/PmChannelsLesson.jsx	1813	ALMASH	2 — Belgisiz havoladan «belgisiz» chiqsin.	2 — Belgisiz linkdan «belgisiz» chiqsin.
+src/10-Modull/PmChannelsLesson.jsx	1832	ALMASH	Havolani bosgan odam kimligini	Linkni bosgan odam kimligini
+src/10-Modull/PmChannelsLesson.jsx	1892	ALMASH	Havoladan kanalni topadigan 	Linkdan kanalni topadigan 
+src/10-Modull/PmChannelsLesson.jsx	1893	ALMASH	Har kanalga havola oxiriga belgi qo\'shiladi — kod shu belgini o\'qiydi.	Har kanalga link oxiriga belgi qo\'shiladi — kod shu belgini o\'qiydi.
+src/10-Modull/PmChannelsLesson.jsx	1897	ALMASH	Havola oxiridagi `?kanal=sinf` nimani bildiradi?	Link oxiridagi `?kanal=sinf` nimani bildiradi?
+src/10-Modull/PmChannelsLesson.jsx	1907	ALMASH	Havola oxiridagi belgi — kanal belgisi. Tashrif — sahifaning bir marta ochilishi.	Link oxiridagi belgi — kanal belgisi. Tashrif — sahifaning bir marta ochilishi.
+src/10-Modull/PmChannelsLesson.jsx	1911	ALMASH	Kod to'rt havolaning kanalini topdi; belgisi yo'q havola — «belgisiz».	Kod to'rt linkning kanalini topdi; belgisi yo'q link — «belgisiz».
+src/10-Modull/PmChannelsLesson.jsx	1926	ALMASH	Lendingning o\'zida belgi sahifa ochilgan havoladan olinadi (`location.search`) — bu oynada esa namuna havolalardan.	Lendingning o\'zida belgi sahifa ochilgan linkdan olinadi (`location.search`) — bu oynada esa namuna linklardan.
+src/10-Modull/PmChannelsLesson.jsx	1966	ALMASH	Havoladan kanal belgisini o'qiydigan kod yozdingiz	Linkdan kanal belgisini o'qiydigan kod yozdingiz
+src/10-Modull/PmChannelsLesson.jsx	2048	ALMASH	Havola qo'yilmadi	Link qo'yilmadi
+src/10-Modull/PmChannelsLesson.jsx	2051	ALMASH	Lendingning havolasi	Lendingning linki
+src/10-Modull/PmChannelsLesson.jsx	2056	ALMASH	Havoladagi «?kanal=sinf» nimani ko'rsatadi?	Linkdagi «?kanal=sinf» nimani ko'rsatadi?
+src/10-Modull/PmChannelsLesson.jsx	2663	ALMASH	Kanal belgisi havolaning qayeriga qo'shiladi?	Kanal belgisi linkning qayeriga qo'shiladi?
+src/10-Modull/PmChannelsLesson.jsx	2692	ALMASH	Nima qilsin: sahifa ochilganda havoladagi kanal belgisini o'qisin (masalan, ?kanal=sinf) va Umami'ga tashrif hodisasini yozsin, ma'lumotida kanal bo'lsin. Belgi	Nima qilsin: sahifa ochilganda linkdagi kanal belgisini o'qisin (masalan, ?kanal=sinf) va Umami'ga tashrif hodisasini yozsin, ma'lumotida kanal bo'lsin. Belgi b
+src/10-Modull/PmChannelsLesson.jsx	2707	ALMASH	Keyin: `git status` — faqat `lending/index.html` → `git add lending/index.html` → commit → `git push`; Netlify odatda o'zi yangilanadi. Lending havolasini oxiri	Keyin: `git status` — faqat `lending/index.html` → `git add lending/index.html` → commit → `git push`; Netlify odatda o'zi yangilanadi. Lending linkini oxiriga 
+src/10-Modull/PmChannelsLesson.jsx	2712	ALMASH	Postni ota-onangizga ko'rsating (4-band). Guruh egasidan ruxsat so'rang («ruxsat kutilmoqda» bo'lgan joylar); ruxsat bo'lsa — yuboring, havola oxirida o'sha kan	Postni ota-onangizga ko'rsating (4-band). Guruh egasidan ruxsat so'rang («ruxsat kutilmoqda» bo'lgan joylar); ruxsat bo'lsa — yuboring, link oxirida o'sha kanal
+src/10-Modull/PmChannelsLesson.jsx	2720	ALMASH	→ `eas build -p android --profile preview` — kalit (keystore) so'ralsa, EAS o'zi yaratadi va saqlaydi. Tayyor bo'lgach havola chiqadi: telefoningizda oching va 	→ `eas build -p android --profile preview` — kalit (keystore) so'ralsa, EAS o'zi yaratadi va saqlaydi. Tayyor bo'lgach link chiqadi: telefoningizda oching va o'
+src/10-Modull/PmChannelsLesson.jsx	2752	ALMASH	Havoladagi kanal belgisi tashrif qaysi kanaldan kelganini ko'rsatadi, odamni emas.	Linkdagi kanal belgisi tashrif qaysi kanaldan kelganini ko'rsatadi, odamni emas.
+src/10-Modull/PmDropOffLesson.jsx	1478	ALMASH	Do'stlar havolasidan	Do'stlar linkidan
+src/10-Modull/PmDropOffLesson.jsx	1483	ALMASH	Lendingga havola qo'yasiz	Lendingga link qo'yasiz
+src/10-Modull/PmDropOffLesson.jsx	2150	ALMASH	Nima buzilmasin: ilova va uning ulanishi, `POST /hodisalar` va boshqa yo'llar avvalgidek ishlasin. `sanoq.html` ga lendingdan havola qo'yma, unda Umami bo'lmasi	Nima buzilmasin: ilova va uning ulanishi, `POST /hodisalar` va boshqa yo'llar avvalgidek ishlasin. `sanoq.html` ga lendingdan link qo'yma, unda Umami bo'lmasin;
+src/10-Modull/PmDropOffLesson.jsx	2164	ALMASH	Nima buzilmasin: ilova, real vaqt ulanishi, eslatma, `POST /hodisalar` va boshqa yo'llar avvalgidek ishlasin. `sanoq.html` ga lendingdan havola qo'yma, unda Uma	Nima buzilmasin: ilova, real vaqt ulanishi, eslatma, `POST /hodisalar` va boshqa yo'llar avvalgidek ishlasin. `sanoq.html` ga lendingdan link qo'yma, unda Umami
+src/10-Modull/PmDropOffLesson.jsx	2209	ALMASH	(3) Ilovangizni hali ochilmagan qurilmada oching — sherigingiz telefonida lendingdagi havoladan yoki laptopda brauzer ko'rinishida. Sanoq sahifasini yangilamang	(3) Ilovangizni hali ochilmagan qurilmada oching — sherigingiz telefonida lendingdagi linkdan yoki laptopda brauzer ko'rinishida. Sanoq sahifasini yangilamang: 
+src/10-Modull/PmDropOffLesson.jsx	2241	ALMASH	Ilova tokeni yo'q odamga birinchi ekranda «O'yinlar»ni ko'rsatsin, tepada «Kirish» havolasi bilan; «Qo'shilaman» bosilsa — «Ro'yxatdan o'tish» ochilsin. Kirmaga	Ilova tokeni yo'q odamga birinchi ekranda «O'yinlar»ni ko'rsatsin, tepada «Kirish» linki bilan; «Qo'shilaman» bosilsa — «Ro'yxatdan o'tish» ochilsin. Kirmagan o
+src/10-Modull/PmDropOffLesson.jsx	2245	ALMASH	`lending/index.html` dagi «Android: ilovani o'rnatish» havolasini shu manzilga almashtir: {yangi havola}. Boshqa joyga tegma.	`lending/index.html` dagi «Android: ilovani o'rnatish» linkini shu manzilga almashtir: {yangi link}. Boshqa joyga tegma.
+src/10-Modull/PmDropOffLesson.jsx	2245	ALMASH	Замени в `lending/index.html` ссылку «Android: ilovani o'rnatish» («Android: установить приложение») на этот адрес: {yangi havola}. Больше ничего не трогай.	Замени в `lending/index.html` ссылку «Android: ilovani o'rnatish» («Android: установить приложение») на этот адрес: {yangi link}. Больше ничего не трогай.
+src/10-Modull/PmDropOffLesson.jsx	2255	ALMASH	yangi havola	yangi link
+src/10-Modull/PmDropOffLesson.jsx	2307	ALMASH	Tuzatish tekshirildi va odamlarga chiqdi: yangi kelganlar uni lendingdagi havoladan oladi.	Tuzatish tekshirildi va odamlarga chiqdi: yangi kelganlar uni lendingdagi linkdan oladi.
+src/10-Modull/PmDropOffLesson.jsx	2308	ALMASH	Tuzatish tekshirildi, Backend yangilandi. Fayl tayyor bo'lgach, lendingdagi havolani almashtirasiz.	Tuzatish tekshirildi, Backend yangilandi. Fayl tayyor bo'lgach, lendingdagi linkni almashtirasiz.
+src/10-Modull/PmDropOffLesson.jsx	2316	ALMASH	→ `git push`. Eski faylni o'rnatgan odamda tuzatish yo'q — u yangisini o'rnatgandagina chiqadi; yangi keladiganlar lendingdagi yangi havoladan o'rnatadi.	→ `git push`. Eski faylni o'rnatgan odamda tuzatish yo'q — u yangisini o'rnatgandagina chiqadi; yangi keladiganlar lendingdagi yangi linkdan o'rnatadi.
+src/10-Modull/PmDropOffLesson.jsx	2336	ALMASH	Vaqt tugayaptimi — (1)–(3) ni tekshirib, push qiling; yangi o'rnatish fayli va lending havolasi uyda. Tekshirilmagan tuzatishdan o'rnatish fayli tayyorlamang.	Vaqt tugayaptimi — (1)–(3) ni tekshirib, push qiling; yangi o'rnatish fayli va lending linki uyda. Tekshirilmagan tuzatishdan o'rnatish fayli tayyorlamang.
+src/10-Modull/PmDropOffLesson.jsx	2352	ALMASH	Yo'q: yangi fayl tayyorlanadi va havola almashtiriladi	Yo'q: yangi fayl tayyorlanadi va link almashtiriladi
+src/10-Modull/PmDropOffLesson.jsx	2387	ALMASH	Mobil trekda: yangi o'rnatish fayli tayyor bo'lgach, lendingdagi «Android» havolasini almashtiring va telefonda havoladan o'rnatib ko'ring.	Mobil trekda: yangi o'rnatish fayli tayyor bo'lgach, lendingdagi «Android» linkini almashtiring va telefonda linkdan o'rnatib ko'ring.
+src/10-Modull/PmDropOffLesson.jsx	2424	ALMASH	APK o'zi yangilanmaydi: tuzatishdan keyin yangi fayl tayyorlanadi va havola almashtiriladi.	APK o'zi yangilanmaydi: tuzatishdan keyin yangi fayl tayyorlanadi va link almashtiriladi.
+src/10-Modull/PmFiftyUsersLesson.jsx	633	ALMASH	har o'yin e'loni bilan birga havola: tashkilotchilar xohlasa o'z jamoasiga yuboradi	har o'yin e'loni bilan birga link: tashkilotchilar xohlasa o'z jamoasiga yuboradi
+src/10-Modull/PmFiftyUsersLesson.jsx	633	ALMASH	lending havolasi	lending linki
+src/10-Modull/PmFiftyUsersLesson.jsx	636	ALMASH	havola	link
+src/10-Modull/PmFiftyUsersLesson.jsx	641	ALMASH	Hozircha o'rnatish havolasi yo'q.	Hozircha o'rnatish linki yo'q.
+src/10-Modull/PmFiftyUsersLesson.jsx	648	ALMASH	Mahalla futbolchilari, Shanba o'yiniga kim kelishini bitta joyda ko'rish uchun «Maydon Jamoa» ilovasini qurdim: o'yin e'lon qilinadi, «Qo'shilaman» bosiladi, ne	Mahalla futbolchilari, Shanba o'yiniga kim kelishini bitta joyda ko'rish uchun «Maydon Jamoa» ilovasini qurdim: o'yin e'lon qilinadi, «Qo'shilaman» bosiladi, ne
+src/10-Modull/PmFiftyUsersLesson.jsx	649	ALMASH	Maydon Jamoa chiqdi. Shanba, 18:00 o'yini ilovada turibdi — «Qo'shilaman» ni bosing, nechta odam yig'ilgani ko'rinadi. Android va iPhone uchun havola: {lending 	Maydon Jamoa chiqdi. Shanba, 18:00 o'yini ilovada turibdi — «Qo'shilaman» ni bosing, nechta odam yig'ilgani ko'rinadi. Android va iPhone uchun link: {lending ma
+src/10-Modull/PmFiftyUsersLesson.jsx	754	KOD:taqqos	havola	link
+src/10-Modull/PmFiftyUsersLesson.jsx	810	ALMASH	havola	link
+src/10-Modull/PmFiftyUsersLesson.jsx	879	ALMASH	Havola	Link
+src/10-Modull/PmFiftyUsersLesson.jsx	879	ALMASH	hozir: havola yo'q ✗	hozir: link yo'q ✗
+src/10-Modull/PmFiftyUsersLesson.jsx	894	ALMASH	Havolani hoziroq hamma tanishlarimga yuboraman	Linkni hoziroq hamma tanishlarimga yuboraman
+src/10-Modull/PmFiftyUsersLesson.jsx	925	ALMASH	Havolani lendingga qo'yib, post yuboring	Linkni lendingga qo'yib, post yuboring
+src/10-Modull/PmFiftyUsersLesson.jsx	925	ALMASH	havola	link
+src/10-Modull/PmFiftyUsersLesson.jsx	1071	QOLDA:id	havola	link
+src/10-Modull/PmFiftyUsersLesson.jsx	1087	ALMASH	Havolani yuborishdan oldin 	Linkni yuborishdan oldin 
+src/10-Modull/PmFiftyUsersLesson.jsx	1095	ALMASH	uchta narsa — ma'lumot, o'lchov, havola	uchta narsa — ma'lumot, o'lchov, link
+src/10-Modull/PmFiftyUsersLesson.jsx	1095	ALMASH	Bu misolda uchalasi ham tayyor emas edi: telefon so'ralardi, qadamlar sanalmasdi, havola yo'q edi.	Bu misolda uchalasi ham tayyor emas edi: telefon so'ralardi, qadamlar sanalmasdi, link yo'q edi.
+src/10-Modull/PmFiftyUsersLesson.jsx	1133	ALMASH	Mentor rejasi: 1-bosqich — sinf chati va mahalla futbol guruhi, ikkinchi post, jami 20 · 2-bosqich — maktab chati (chat egasidan ruxsat bilan), jami 35 · 3-bosq	Mentor rejasi: 1-bosqich — sinf chati va mahalla futbol guruhi, ikkinchi post, jami 20 · 2-bosqich — maktab chati (chat egasidan ruxsat bilan), jami 35 · 3-bosq
+src/10-Modull/PmFiftyUsersLesson.jsx	1192	ALMASH	Post, havola yoki boshqa narsa	Post, link yoki boshqa narsa
+src/10-Modull/PmFiftyUsersLesson.jsx	2034	ALMASH	Forma ostiga gap: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» va «Maxfiylik siyosati» havolasi — {lending man	Forma ostiga gap: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» va «Maxfiylik siyosati» linki — {lending manzil
+src/10-Modull/PmFiftyUsersLesson.jsx	2047	ALMASH	Forma ostiga: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» va «Maxfiylik siyosati» havolasi — {lending manzili	Forma ostiga: «Ism — o'yinchilar ko'radigan nom, familiya shart emas. Loginni boshqa o'yinchilar ko'rmaydi.» va «Maxfiylik siyosati» linki — {lending manzili}/m
+src/10-Modull/PmFiftyUsersLesson.jsx	2077	ALMASH	navbatda · sahifa havolasi	navbatda · sahifa linki
+src/10-Modull/PmFiftyUsersLesson.jsx	2107	ALMASH	(1) «Hisobdan chiqish» → «Ro'yxatdan o'tish»: telefon so'ralmaydi, forma ostida gap va «Maxfiylik siyosati» havolasi bor (sahifaning o'zi Amaliyot 2 da qo'shila	(1) «Hisobdan chiqish» → «Ro'yxatdan o'tish»: telefon so'ralmaydi, forma ostida gap va «Maxfiylik siyosati» linki bor (sahifaning o'zi Amaliyot 2 da qo'shiladi)
+src/10-Modull/PmFiftyUsersLesson.jsx	2121	ALMASH	Keyin `cd mobil` → `eas build -p android --profile preview`. Terminal fayl tayyor bo'lishini kutib turadi — kutish shart emas: u bergan sahifa havolasini saqlab	Keyin `cd mobil` → `eas build -p android --profile preview`. Terminal fayl tayyor bo'lishini kutib turadi — kutish shart emas: u bergan sahifa linkini saqlab qo
+src/10-Modull/PmFiftyUsersLesson.jsx	2134	ALMASH	Vaqt tugayaptimi — push'dan keyin avval (1) ni tekshiring (ro'yxatdan o'tish, «Bu login band», asosiy harakat); o'tsa — o'rnatish faylini boshlang, (2)–(3) — na	Vaqt tugayaptimi — push'dan keyin avval (1) ni tekshiring (ro'yxatdan o'tish, «Bu login band», asosiy harakat); o'tsa — o'rnatish faylini boshlang, (2)–(3) — na
+src/10-Modull/PmFiftyUsersLesson.jsx	2145	ALMASH	3) «Qanday qo'shilaman» bo'limiga ikki havola tayyorla: «Android: ilovani o'rnatish» va «iPhone: brauzerda ochish» — manzillarni keyin aytaman. Ostiga ikki qato	3) «Qanday qo'shilaman» bo'limiga ikki link tayyorla: «Android: ilovani o'rnatish» va «iPhone: brauzerda ochish» — manzillarni keyin aytaman. Ostiga ikki qator:
+src/10-Modull/PmFiftyUsersLesson.jsx	2152	ALMASH	Maydon Jamoa chiqdi. Shanba, 18:00 o'yini ilovada turibdi — «Qo'shilaman» ni bosing, nechta odam yig'ilgani ko'rinadi. Android va iPhone uchun havola: {lending 	Maydon Jamoa chiqdi. Shanba, 18:00 o'yini ilovada turibdi — «Qo'shilaman» ni bosing, nechta odam yig'ilgani ko'rinadi. Android va iPhone uchun link: {lending ma
+src/10-Modull/PmFiftyUsersLesson.jsx	2174	QOLDA:id	havola	link
+src/10-Modull/PmFiftyUsersLesson.jsx	2208	ALMASH	Siyosat saytda, havola lendingda, post yuborildi.	Siyosat saytda, link lendingda, post yuborildi.
+src/10-Modull/PmFiftyUsersLesson.jsx	2209	ALMASH	Siyosat saytda, havola lendingda. Postni ota-onangizga ko\'rsatib yuborasiz.	Siyosat saytda, link lendingda. Postni ota-onangizga ko\'rsatib yuborasiz.
+src/10-Modull/PmFiftyUsersLesson.jsx	2210	ALMASH	Siyosat saytda. Android havolasi va post — fayl tayyor bo'lgach, uyda.	Siyosat saytda. Android linki va post — fayl tayyor bo'lgach, uyda.
+src/10-Modull/PmFiftyUsersLesson.jsx	2229	ALMASH	Havola va post	Link va post
+src/10-Modull/PmFiftyUsersLesson.jsx	2234	ALMASH	terminal bergan sahifani oching. Fayl tayyor bo'lsa, havolasini agentga: «Android havolasi: {APK havolasi}. Lendingdagi «Android: ilovani o'rnatish» shu manzilg	terminal bergan sahifani oching. Fayl tayyor bo'lsa, linkini agentga: «Android linki: {APK linki}. Lendingdagi «Android: ilovani o'rnatish» shu manzilga olib bo
+src/10-Modull/PmFiftyUsersLesson.jsx	2235	ALMASH	Telefonda lendingni oching: «Qo'shilmoqchiman» → «Android: ilovani o'rnatish» — fayl yuklanadi, o'rnatishda ogohlantirish chiqishi kerak. Havolani boshqa telefo	Telefonda lendingni oching: «Qo'shilmoqchiman» → «Android: ilovani o'rnatish» — fayl yuklanadi, o'rnatishda ogohlantirish chiqishi kerak. Linkni boshqa telefond
+src/10-Modull/PmFiftyUsersLesson.jsx	2239	ALMASH	Android havolasi lendingda	Android linki lendingda
+src/10-Modull/PmFiftyUsersLesson.jsx	2242	ALMASH	(ikkinchisida havola va post uyga qoladi). Havola faqat Amaliyot 1 dagi «Ma'lumot» belgisi qo'yilgan ilova uchun qo'yiladi.	(ikkinchisida link va post uyga qoladi). Link faqat Amaliyot 1 dagi «Ma'lumot» belgisi qo'yilgan ilova uchun qo'yiladi.
+src/10-Modull/PmFiftyUsersLesson.jsx	2246	ALMASH	lendingdagi asosiy tugma saytingiz manziliga olib borishini tekshirib, «havola lendingda» deb belgilaysiz.	lendingdagi asosiy tugma saytingiz manziliga olib borishini tekshirib, «link lendingda» deb belgilaysiz.
+src/10-Modull/PmFiftyUsersLesson.jsx	2247	ALMASH	Havola lendingda	Link lendingda
+src/10-Modull/PmFiftyUsersLesson.jsx	2252	ALMASH	(havola lendingda bo'lsa) — 6-darsdagi postingiz shu yerda (to'rt qator: kim uchun · nima foyda · bitta harakat · halol holat); «bitta harakat» va «halol holat»	(link lendingda bo'lsa) — 6-darsdagi postingiz shu yerda (to'rt qator: kim uchun · nima foyda · bitta harakat · halol holat); «bitta harakat» va «halol holat» q
+src/10-Modull/PmFiftyUsersLesson.jsx	2296	ALMASH	Amaliyot 2 · siyosat va havola	Amaliyot 2 · siyosat va link
+src/10-Modull/PmFiftyUsersLesson.jsx	2297	ALMASH	havola lendingda tursin.	link lendingda tursin.
+src/10-Modull/PmFiftyUsersLesson.jsx	2302	ALMASH	Siyosat sahifasi push qilinsa yetadi — brauzer ko'rinishi, havola va post uyga qoladi; yakun sarlavhasi nima qolganini aytadi.	Siyosat sahifasi push qilinsa yetadi — brauzer ko'rinishi, link va post uyga qoladi; yakun sarlavhasi nima qolganini aytadi.
+src/10-Modull/PmFiftyUsersLesson.jsx	2303	ALMASH	brauzer ko'rinishi va o'rnatish fayli yo'q — 3-bo'limda faqat siyosat; 4-bo'lim (1) da lendingdagi asosiy tugma saytingiz manziliga olib borishini tekshirib, «h	brauzer ko'rinishi va o'rnatish fayli yo'q — 3-bo'limda faqat siyosat; 4-bo'lim (1) da lendingdagi asosiy tugma saytingiz manziliga olib borishini tekshirib, «l
+src/10-Modull/PmFiftyUsersLesson.jsx	2314	ALMASH	Havola yuborishdan oldin bu darsda qaysi uch narsa tekshiriladi?	Link yuborishdan oldin bu darsda qaysi uch narsa tekshiriladi?
+src/10-Modull/PmFiftyUsersLesson.jsx	2314	ALMASH	Ma'lumot, o'lchov va havola	Ma'lumot, o'lchov va link
+src/10-Modull/PmFiftyUsersLesson.jsx	2349	ALMASH	o'rnatish fayli tayyor bo'lgach, Android havolasini lendingga qo'ying	o'rnatish fayli tayyor bo'lgach, Android linkini lendingga qo'ying
+src/10-Modull/PmFiftyUsersLesson.jsx	2356	ALMASH	Havola lendingda bo'lgach, postni olti bandli ro'yxat bo'yicha tekshiring, ota-onangizga ko'rsating va 1-bosqichdagi kanallarga yuboring (guruhga — egasidan rux	Link lendingda bo'lgach, postni olti bandli ro'yxat bo'yicha tekshiring, ota-onangizga ko'rsating va 1-bosqichdagi kanallarga yuboring (guruhga — egasidan ruxsa
+src/10-Modull/PmFiftyUsersLesson.jsx	2400	ALMASH	Havola tayyor — 	Link tayyor — 
+src/10-Modull/PmFiftyUsersLesson.jsx	2401	ALMASH	havola va post qoldi.	link va post qoldi.
+src/10-Modull/PmGrowthPitchLesson.jsx	652	ALMASH	E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi — maqsad 50.	E'lon berilgach «Linkni ulashish» tugmasi bilan tashkilotchi linkni o'z jamoasiga yuboradi — maqsad 50.
+src/10-Modull/PmGrowthPitchLesson.jsx	1610	ALMASH	Mentor misolida: «E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi — maqsad 50.»	Mentor misolida: «E'lon berilgach «Linkni ulashish» tugmasi bilan tashkilotchi linkni o'z jamoasiga yuboradi — maqsad 50.»
+src/10-Modull/PmLandingLesson.jsx	647	ALMASH	Hozircha o'rnatish havolasi yo'q.	Hozircha o'rnatish linki yo'q.
+src/10-Modull/PmLandingLesson.jsx	1192	ALMASH	Ilovani o'rnatish havolasi hali yo'q, sahifada esa tugma bor: uni bosib ko'ring.	Ilovani o'rnatish linki hali yo'q, sahifada esa tugma bor: uni bosib ko'ring.
+src/10-Modull/PmLandingLesson.jsx	1809	ALMASH	Yuklab olish havolasi	Yuklab olish linki
+src/10-Modull/PmLandingLesson.jsx	1809	ALMASH	Havola hozircha yo'qligi	Link hozircha yo'qligi
+src/10-Modull/PmLandingLesson.jsx	2428	ALMASH	Tugma bosilganda sahifa pastdagi «Qanday qo'shilaman» bo'limiga o'tsin; bo'lim matni: «Hozircha o'rnatish havolasi yo'q.»	Tugma bosilganda sahifa pastdagi «Qanday qo'shilaman» bo'limiga o'tsin; bo'lim matni: «Hozircha o'rnatish linki yo'q.»
+src/10-Modull/PmLandingLesson.jsx	2439	ALMASH	При нажатии на кнопку страница пусть перейдёт к разделу «Qanday qo'shilaman» внизу; текст раздела: «Hozircha o'rnatish havolasi yo'q.»	При нажатии на кнопку страница пусть перейдёт к разделу «Qanday qo'shilaman» внизу; текст раздела: «Hozircha o'rnatish linki yo'q.»
+src/10-Modull/PmLandingLesson.jsx	2445	ALMASH	masalan: sahifa pastidagi «Qanday qo'shilaman» bo'limi; bo'lim matni: «Hozircha o'rnatish havolasi yo'q.»	masalan: sahifa pastidagi «Qanday qo'shilaman» bo'limi; bo'lim matni: «Hozircha o'rnatish linki yo'q.»
+src/10-Modull/PmLandingLesson.jsx	2508	ALMASH	Havola chiqadi: `….netlify.app`. Netlify sahifani chiqarguncha kutish paytida telefoningizda brauzerni ochib qo'ying. Sahifa ochilmasa — avval Netlify sozlamasi	Link chiqadi: `….netlify.app`. Netlify sahifani chiqarguncha kutish paytida telefoningizda brauzerni ochib qo'ying. Sahifa ochilmasa — avval Netlify sozlamasida
+src/10-Modull/PmLandingLesson.jsx	2512	ALMASH	telefonda `….netlify.app` havolasini oching va talabning har qatorini tekshiring: (1) sahifa bir ustunda, matn mustaqil ishdagi bilan bir xil; (2) asosiy tugman	telefonda `….netlify.app` linkini oching va talabning har qatorini tekshiring: (1) sahifa bir ustunda, matn mustaqil ishdagi bilan bir xil; (2) asosiy tugmani b
+src/10-Modull/PmLandingLesson.jsx	2513	ALMASH	Mos kelmagan qatorni agentga yozing. Oxirida havolani shu yerga yozing:	Mos kelmagan qatorni agentga yozing. Oxirida linkni shu yerga yozing:
+src/10-Modull/PmLandingLesson.jsx	2572	ALMASH	Sahifa hali internetga chiqmagan bo'lsa — push qiling va Netlify'ga chiqaring; havolani darsdagi «Sahifa manzili» maydoniga yozing.	Sahifa hali internetga chiqmagan bo'lsa — push qiling va Netlify'ga chiqaring; linkni darsdagi «Sahifa manzili» maydoniga yozing.
+src/10-Modull/PmLandingLesson.jsx	2575	ALMASH	Sahifani o'z telefoningizda har biriga 5 soniya ko'rsating va uch savolni bering: «Bu nima?» · «Kim uchun?» · «Bu yerda nima qilish mumkin?». Javoblarni qog'ozg	Sahifani o'z telefoningizda har biriga 5 soniya ko'rsating va uch savolni bering: «Bu nima?» · «Kim uchun?» · «Bu yerda nima qilish mumkin?». Javoblarni qog'ozg
+src/10-Modull/PmPitchReviewLesson.jsx	715	ALMASH	E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi.	E'lon berilgach «Linkni ulashish» tugmasi bilan tashkilotchi linkni o'z jamoasiga yuboradi.
+src/10-Modull/PmPitchReviewLesson.jsx	725	ALMASH	ilovada e'lon berilgach «Havolani ulashish» tugmasi	ilovada e'lon berilgach «Linkni ulashish» tugmasi
+src/10-Modull/PmRealtimeSpecLesson.jsx	2239	ALMASH	Telefon Render'dagi Backend'ga ulangan — tekshiruv so'rovi ham o'sha yerga borishi kerak (laptopdagi Backend yuborgan hodisa telefonga yetmaydi). Database bitta	Telefon Render'dagi Backend'ga ulangan — tekshiruv so'rovi ham o'sha yerga borishi kerak (laptopdagi Backend yuborgan hodisa telefonga yetmaydi). Database bitta
+src/10-Modull/PmUsersCheckLesson.jsx	693	ALMASH	Agar har o'yin e'loni bilan birga havola yuborilsa, yangi odamlar keladi, chunki tashkilotchi o'z jamoasini o'zi chaqiradi.	Agar har o'yin e'loni bilan birga link yuborilsa, yangi odamlar keladi, chunki tashkilotchi o'z jamoasini o'zi chaqiradi.
+src/10-Modull/PmUsersCheckLesson.jsx	694	ALMASH	E'lon berilgach ilovada «Havolani ulashish» tugmasi — rejaning 3-bosqichi oldinga suriladi.	E'lon berilgach ilovada «Linkni ulashish» tugmasi — rejaning 3-bosqichi oldinga suriladi.
+src/10-Modull/PmUsersCheckLesson.jsx	797	ALMASH	Havolani ulashish	Linkni ulashish
+src/10-Modull/PmUsersCheckLesson.jsx	2114	ALMASH	E'lon berilgach ilovada «Havolani ulashish» tugmasi.	E'lon berilgach ilovada «Linkni ulashish» tugmasi.
+src/10-Modull/PmUsersCheckLesson.jsx	2903	ALMASH	Zaxira rejangizdagi ishni bajaring. Ilovada o'zgarish bo'lsa — agentga talab yozing (qayerda · nima qilsin · nima buzilmasin): nima o'zgarishi va foydalanuvchin	Zaxira rejangizdagi ishni bajaring. Ilovada o'zgarish bo'lsa — agentga talab yozing (qayerda · nima qilsin · nima buzilmasin): nima o'zgarishi va foydalanuvchin
+src/10-Modull/PmUsersCheckLesson.jsx	2905	ALMASH	Mentor misolini ko'rmoqchi bo'lsangiz (majburiy emas): «Havolani ulashish» tugmasi — `git checkout -f m12-dars-10-done` (Mentor repo'si, alohida yangi papkada —	Mentor misolini ko'rmoqchi bo'lsangiz (majburiy emas): «Linkni ulashish» tugmasi — `git checkout -f m12-dars-10-done` (Mentor repo'si, alohida yangi papkada — b
+src/10-Modull/RetentionDayLesson.jsx	868	ALMASH	Uyga vazifa yo'q: o'rnatish fayli navbatda qolsa, havola keyingi dars boshida almashtiriladi. Sinfdagi tekshiruv yozuvlari (`eslatmadan-ochdi`) 3-amaliyot oxiri	Uyga vazifa yo'q: o'rnatish fayli navbatda qolsa, link keyingi dars boshida almashtiriladi. Sinfdagi tekshiruv yozuvlari (`eslatmadan-ochdi`) 3-amaliyot oxirida
+src/10-Modull/RetentionDayLesson.jsx	2074	ALMASH	Havola almashtirildi	Link almashtirildi
+src/10-Modull/RetentionDayLesson.jsx	2111	ALMASH	Fayl dars oxirigacha tayyor bo'lsa — lendingdagi «Android: ilovani o'rnatish» havolasini almashtiring; bo'lmasa — keyingi dars boshida.	Fayl dars oxirigacha tayyor bo'lsa — lendingdagi «Android: ilovani o'rnatish» linkini almashtiring; bo'lmasa — keyingi dars boshida.
+src/10-Modull/RetentionDayLesson.jsx	2205	ALMASH	Fayl tayyor bo'lgach, lendingdagi havolani keyingi dars boshida almashtirasiz.	Fayl tayyor bo'lgach, lendingdagi linkni keyingi dars boshida almashtirasiz.
+src/11-Modull/PmMoneyTalkLesson.jsx	624	ALMASH	Menyu ostidagi «uchta real suhbat» — dastur natijasi: darsda — suhbat savollari, rol o'yini va imkon bo'lsa bitta real suhbat; qolgani uyda. Darsda hech kim pul	Menu ostidagi «uchta real suhbat» — dastur natijasi: darsda — suhbat savollari, rol o'yini va imkon bo'lsa bitta real suhbat; qolgani uyda. Darsda hech kim pul 
+src/11-Modull/PmMoneyTalkLesson.jsx	644	ALMASH	Sherik «ha» desa ham pul olinmaydi, to'lov sahifasi yoki «mashq to'lov» havolasi berilmaydi.	Sherik «ha» desa ham pul olinmaydi, to'lov sahifasi yoki «mashq to'lov» linki berilmaydi.
+src/11-Modull/PmPayCheckLesson.jsx	633	ALMASH	Menyu ostidagi «uchta yozma tasdiq» — dastur natijasi. Darsda — xabar va kelgan javoblar; ko'p o'quvchida darsda yozma tasdiq 0–1 bo'ladi, qolgani uyda. Uchtaga	Menu ostidagi «uchta yozma tasdiq» — dastur natijasi. Darsda — xabar va kelgan javoblar; ko'p o'quvchida darsda yozma tasdiq 0–1 bo'ladi, qolgani uyda. Uchtaga 
+src/11-Modull/PmPayCheckLesson.jsx	1193	ALMASH	Ikkalasiga «mashq to'lov» havolasini beraman	Ikkalasiga «mashq to'lov» linkini beraman
+src/11-Modull/PmPayCheckLesson.jsx	1199	ALMASH	Yozma tasdiq — to'lov emas: havola berilmaydi.	Yozma tasdiq — to'lov emas: link berilmaydi.
+src/11-Modull/PmPayCheckLesson.jsx	1235	QOLDA:id	havola	link
+src/11-Modull/PmPayCheckLesson.jsx	1272	ALMASH	Xabarga havola qo'yilmaydi — pul so'ralmaydi.	Xabarga link qo'yilmaydi — pul so'ralmaydi.
+src/11-Modull/PmPayCheckLesson.jsx	1630	KOD:taqqos	havola	link
+src/11-Modull/PmPayCheckLesson.jsx	2086	ALMASH	Mashq to'lov havolasi	Mashq to'lov linki
+src/11-Modull/PmPayCheckLesson.jsx	2608	ALMASH	«Mashq to'lov» va to'lov sahifasi havolasi ham berilmaydi	«Mashq to'lov» va to'lov sahifasi linki ham berilmaydi
+src/11-Modull/PmPayCheckLesson.jsx	2661	ALMASH	Pul olmang va to'lov havolasini bermang — yozma tasdiq to'lov emas. Notanishga yozmang.	Pul olmang va to'lov linkini bermang — yozma tasdiq to'lov emas. Notanishga yozmang.
+src/11-Modull/PmPayCheckLesson.jsx	2687	ALMASH	Yozma tasdiq — to'lov emas: pul olinmaydi, to'lov havolasi berilmaydi.	Yozma tasdiq — to'lov emas: pul olinmaydi, to'lov linki berilmaydi.
+src/11-Modull/PmPayCheckLesson.jsx	2716	ALMASH	«Loyiha kuni: taklif havolasi va mukofot»	«Loyiha kuni: taklif linki va mukofot»
+src/11-Modull/PmPricingLesson.jsx	2283	ALMASH	masalan: alohida mashq ekrani, menyuda yo'q	masalan: alohida mashq ekrani, menuda yo'q
+src/11-Modull/PmPricingLesson.jsx	2295	ALMASH	Modelingiz reklama, B2B (boshqa biznes to'laydi) yoki tranzaksiya (har to'lovdan ulush) bo'lsa — bu amaliyotni alohida mashq ekranida qiling: menyuda ko'rinmayd	Modelingiz reklama, B2B (boshqa biznes to'laydi) yoki tranzaksiya (har to'lovdan ulush) bo'lsa — bu amaliyotni alohida mashq ekranida qiling: menuda ko'rinmaydi
+src/11-Modull/PmPricingLesson.jsx	2349	ALMASH	Nima qilsin: 1) `POST /tolov/boshlash` (token bilan): taxmin qilib bo'lmaydigan yangi to'lov raqamini yaratsin (`m-` va tasodifiy harf-raqamlar, ketma-ket raqam	Nima qilsin: 1) `POST /tolov/boshlash` (token bilan): taxmin qilib bo'lmaydigan yangi to'lov raqamini yaratsin (`m-` va tasodifiy harf-raqamlar, ketma-ket raqam
+src/11-Modull/PmPricingLesson.jsx	2349	ALMASH	Что сделать: 1) `POST /tolov/boshlash` (с токеном): создаёт новый номер платежа, который нельзя угадать (`m-` и случайные буквы-цифры, не по порядку), и записыв	Что сделать: 1) `POST /tolov/boshlash` (с токеном): создаёт новый номер платежа, который нельзя угадать (`m-` и случайные буквы-цифры, не по порядку), и записыв
+src/11-Modull/PmPricingLesson.jsx	2352	ALMASH	4) Ilovada «{tugma}» bosilganda — `POST /tolov/boshlash`, keyin havolani telefon brauzerida ochsin. Ilovaga qaytganda `GET /men` ni qayta so'rab, {Pro qatori jo	4) Ilovada «{tugma}» bosilganda — `POST /tolov/boshlash`, keyin linkni telefon brauzerida ochsin. Ilovaga qaytganda `GET /men` ni qayta so'rab, {Pro qatori joyi
+src/11-Modull/PmPricingLesson.jsx	2358	ALMASH	Nima qilsin: 1) `POST /tolov/boshlash` (token bilan): yangi to'lov raqami — `m-` va tasodifiy 12 ta harf-raqam (ketma-ket emas: raqam manzilda turadi); `boshlan	Nima qilsin: 1) `POST /tolov/boshlash` (token bilan): yangi to'lov raqami — `m-` va tasodifiy 12 ta harf-raqam (ketma-ket emas: raqam manzilda turadi); `boshlan
+src/11-Modull/PmPricingLesson.jsx	2358	ALMASH	Что сделать: 1) `POST /tolov/boshlash` (с токеном): новый номер платежа — `m-` и 12 случайных букв-цифр (не по порядку: номер стоит в адресе); запись в `boshlan	Что сделать: 1) `POST /tolov/boshlash` (с токеном): новый номер платежа — `m-` и 12 случайных букв-цифр (не по порядку: номер стоит в адресе); запись в `boshlan
+src/11-Modull/PmPricingLesson.jsx	2361	ALMASH	4) «To'lovga o'tish» bosilganda — `POST /tolov/boshlash`, keyin `havola` ni telefon brauzerida ochsin. Ilovaga qaytganda `GET /men` ni qayta so'rab, «Pro: {sana	4) «To'lovga o'tish» bosilganda — `POST /tolov/boshlash`, keyin `link` ni telefon brauzerida ochsin. Ilovaga qaytganda `GET /men` ni qayta so'rab, «Pro: {sana}g
+src/11-Modull/PmPricingLesson.jsx	2361	ALMASH	4) При нажатии «Перейти к оплате» — `POST /tolov/boshlash`, затем `havola` открывается в браузере телефона. При возврате в приложение заново запрашивается `GET 	4) При нажатии «Перейти к оплате» — `POST /tolov/boshlash`, затем `link` открывается в браузере телефона. При возврате в приложение заново запрашивается `GET /m
+src/11-Modull/PmReflectionLesson.jsx	688	ALMASH	Taklif havolasi	Taklif linki
+src/11-Modull/PmReflectionLesson.jsx	2347	ALMASH	Mentor misolida: lending, Pro va test to'lov, Telegram xabari, taklif havolasi	Mentor misolida: lending, Pro va test to'lov, Telegram xabari, taklif linki
+src/11-Modull/PmTermsLesson.jsx	74	ALMASH	havola	link
+src/11-Modull/PmTermsLesson.jsx	815	ALMASH	Menyu ostidagi «saytda» — dars natijasi: oferta va siyosat lending sahifalari bo'lib internetda turadi. Darsda hech kim pul olmaydi va hech narsa sotmaydi; ofer	Menu ostidagi «saytda» — dars natijasi: oferta va siyosat lending sahifalari bo'lib internetda turadi. Darsda hech kim pul olmaydi va hech narsa sotmaydi; ofert
+src/11-Modull/PmTermsLesson.jsx	835	ALMASH	Pro'siz hisob uchun yangi akkaunt ochilmaydi: o'quvchi o'z hisobida Pro'ni Neon'da bo'sh qiladi (5-darsdagidek); `UPDATE` bitta qatorga tegishi kerak (Neon «1 r	Pro'siz hisob uchun yangi akkaunt ochilmaydi: o'quvchi o'z hisobida Pro'ni Neon'da bo'sh qiladi (5-darsdagidek); `UPDATE` bitta qatorga tegishi kerak (Neon «1 r
+src/11-Modull/PmTermsLesson.jsx	907	ALMASH	Siyosatga to'lov haqida gap qo'shib, havola qo'ying	Siyosatga to'lov haqida gap qo'shib, link qo'ying
+src/11-Modull/PmTermsLesson.jsx	1196	ALMASH	Bandda faqat mahsulotingiz bugun qiladigan narsani yozing. 4-darsda narx yozmagan bo'lsangiz — bugungi taxminingizni yozing, u ham taxmin. Modelingiz reklama, B	Bandda faqat mahsulotingiz bugun qiladigan narsani yozing. 4-darsda narx yozmagan bo'lsangiz — bugungi taxminingizni yozing, u ham taxmin. Modelingiz reklama, B
+src/11-Modull/PmTermsLesson.jsx	1444	ALMASH	havola	link
+src/11-Modull/PmTermsLesson.jsx	2263	ALMASH	2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «{nom} shartlari» havolasi, `oferta.html` ga.	2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «{nom} shartlari» linki, `oferta.html` ga.
+src/11-Modull/PmTermsLesson.jsx	2264	ALMASH	3) To'lov taklifi ekranida «{to'lov tugmasi}» ostida ikki kichik havola: «{nom} shartlari» va «Maxfiylik siyosati». Ular brauzerda {lending manzili}/oferta.html	3) To'lov taklifi ekranida «{to'lov tugmasi}» ostida ikki kichik link: «{nom} shartlari» va «Maxfiylik siyosati». Ular brauzerda {lending manzili}/oferta.html v
+src/11-Modull/PmTermsLesson.jsx	2272	ALMASH	2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «Pro shartlari» havolasi, `oferta.html` ga.	2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «Pro shartlari» linki, `oferta.html` ga.
+src/11-Modull/PmTermsLesson.jsx	2273	ALMASH	3) To'lov taklifi ekranida «To'lovga o'tish» ostida ikki kichik havola: «Pro shartlari» va «Maxfiylik siyosati». Ular brauzerda maydon-jamoa-….netlify.app/ofert	3) To'lov taklifi ekranida «To'lovga o'tish» ostida ikki kichik link: «Pro shartlari» va «Maxfiylik siyosati». Ular brauzerda maydon-jamoa-….netlify.app/oferta.
+src/11-Modull/PmTermsLesson.jsx	2291	ALMASH	(3) To'lov taklifi ekranini oching — Pro'siz hisob kerak (mobil — Expo Go'da, web — saytingizda). Hisobingizda Pro yoqilgan bo'lsa — Neon SQL Editor'da 5-darsda	(3) To'lov taklifi ekranini oching — Pro'siz hisob kerak (mobil — Expo Go'da, web — saytingizda). Hisobingizda Pro yoqilgan bo'lsa — Neon SQL Editor'da 5-darsda
+src/11-Modull/PmTermsLesson.jsx	2350	ALMASH	O'rnatish fayli va brauzer ko'rinishi o'zi yangilanmaydi: odamlardagi ilovada havolalar faqat yangi versiyada ko'rinadi.	O'rnatish fayli va brauzer ko'rinishi o'zi yangilanmaydi: odamlardagi ilovada linklar faqat yangi versiyada ko'rinadi.
+src/11-Modull/PmTermsLesson.jsx	2364	ALMASH	To'lov taklifi ekrani hali yo'q bo'lsa — promptdagi 3-bandni o'chiring: havolalar faqat lendingda turadi.	To'lov taklifi ekrani hali yo'q bo'lsa — promptdagi 3-bandni o'chiring: linklar faqat lendingda turadi.
+src/11-Modull/PmTermsLesson.jsx	2365	ALMASH	Modelingiz reklama, B2B yoki tranzaksiya bo'lsa (4-darsdagi alohida mashq ekrani) — promptdagi 2-band o'zi tushib qoladi: shartlar havolasi faqat mashq ekranida	Modelingiz reklama, B2B yoki tranzaksiya bo'lsa (4-darsdagi alohida mashq ekrani) — promptdagi 2-band o'zi tushib qoladi: shartlar linki faqat mashq ekranida bo
+src/11-Modull/PmTermsLesson.jsx	2403	ALMASH	To'lov taklifi ekranidagi va lendingdagi havoladan	To'lov taklifi ekranidagi va lendingdagi linkdan
+src/11-Modull/PmTermsLesson.jsx	2431	ALMASH	Oferta va siyosat saytda — havolalar ishlaydi.	Oferta va siyosat saytda — linklar ishlaydi.
+src/11-Modull/PmTermsLesson.jsx	2433	ALMASH	Oferta yozildi — siyosat va havolalar qoldi.	Oferta yozildi — siyosat va linklar qoldi.
+src/11-Modull/PmTermsLesson.jsx	2483	ALMASH	siyosatga to'lov bandi va havolalarni qo'shing	siyosatga to'lov bandi va linklarni qo'shing
+src/11-Modull/ReferralDayLesson.jsx	65	ALMASH	Loyiha kuni: taklif havolasi va mukofot	Loyiha kuni: taklif linki va mukofot
+src/11-Modull/ReferralDayLesson.jsx	322	ALMASH	Taklif kodi APK'ga havoladan o'tmaydi	Taklif kodi APK'ga linkdan o'tmaydi
+src/11-Modull/ReferralDayLesson.jsx	324	ALMASH	Havola lendingni ochadi: «Taklif kodi: AB12CD».	Link lendingni ochadi: «Taklif kodi: AB12CD».
+src/11-Modull/ReferralDayLesson.jsx	640	ALMASH	Havolani ulashish	Linkni ulashish
+src/11-Modull/ReferralDayLesson.jsx	640	ALMASH	Havolani ulashish (поделиться ссылкой)	Linkni ulashish (поделиться ссылкой)
+src/11-Modull/ReferralDayLesson.jsx	641	ALMASH	Havolani ochish	Linkni ochish
+src/11-Modull/ReferralDayLesson.jsx	784	ALMASH	Havolada — unda kim yuborgani yozilgan	Linkda — unda kim yuborgani yozilgan
+src/11-Modull/ReferralDayLesson.jsx	785	ALMASH	Hech qayerda — havola hammada bir xil	Hech qayerda — link hammada bir xil
+src/11-Modull/ReferralDayLesson.jsx	789	ALMASH	 Mentor ilovasida hamma tashkilotchi bir xil havolani ulashadi — kim yuborgani hech qayerda yozilmaydi.	 Mentor ilovasida hamma tashkilotchi bir xil linkni ulashadi — kim yuborgani hech qayerda yozilmaydi.
+src/11-Modull/ReferralDayLesson.jsx	790	ALMASH	 Hozirgi havolada faqat 	 Hozirgi linkda faqat 
+src/11-Modull/ReferralDayLesson.jsx	808	ALMASH	Bugun har hisobga o'z havolasi beriladi — «Davom etish»ni bosing.	Bugun har hisobga o'z linki beriladi — «Davom etish»ni bosing.
+src/11-Modull/ReferralDayLesson.jsx	809	ALMASH	12-Modulda Mentor ilovasiga «Havolani ulashish» qo'shildi — tashkilotchilar havolani o'z jamoasiga yuboradi; javobni tanlang.	12-Modulda Mentor ilovasiga «Linkni ulashish» qo'shildi — tashkilotchilar linkni o'z jamoasiga yuboradi; javobni tanlang.
+src/11-Modull/ReferralDayLesson.jsx	809	ALMASH	В 12-м модуле в приложение Ментора добавили «Havolani ulashish» — организаторы отправляют ссылку своей команде; выберите ответ.	В 12-м модуле в приложение Ментора добавили «Linkni ulashish» — организаторы отправляют ссылку своей команде; выберите ответ.
+src/11-Modull/ReferralDayLesson.jsx	837	ALMASH	Har hisobning o'z havolasi	Har hisobning o'z linki
+src/11-Modull/ReferralDayLesson.jsx	838	ALMASH	Havola bilan kelganlar sanaladi	Link bilan kelganlar sanaladi
+src/11-Modull/ReferralDayLesson.jsx	849	ALMASH	Havola, sanoq va mukofotni uch blokda qurasiz — talab tayyor, qavslarini o'z mahsulotingiz bilan to'ldirasiz.	Link, sanoq va mukofotni uch blokda qurasiz — talab tayyor, qavslarini o'z mahsulotingiz bilan to'ldirasiz.
+src/11-Modull/ReferralDayLesson.jsx	850	ALMASH	unikal havola, sanoq va mukofot	unikal link, sanoq va mukofot
+src/11-Modull/ReferralDayLesson.jsx	854	QOLDA:id	havola	link
+src/11-Modull/ReferralDayLesson.jsx	860	ALMASH	Eng og'ir qism — 3-amaliyot (ikki tekshiruv akkaunti, brauzer ko'rinishini yangilash, tozalash). Sinfda havolalarni bir-biriga yubortirmang va kim nechta odam t	Eng og'ir qism — 3-amaliyot (ikki tekshiruv akkaunti, brauzer ko'rinishini yangilash, tozalash). Sinfda linklarni bir-biriga yubortirmang va kim nechta odam tak
+src/11-Modull/ReferralDayLesson.jsx	870	ALMASH	Ha — havoladan biladi	Ha — linkdan biladi
+src/11-Modull/ReferralDayLesson.jsx	871	ALMASH	Yangi o'yinchi havola orqali APK o'rnatdi. Ilova kim taklif qilganini biladimi?	Yangi o'yinchi link orqali APK o'rnatdi. Ilova kim taklif qilganini biladimi?
+src/11-Modull/ReferralDayLesson.jsx	891	QOLDA:id	havola	link
+src/11-Modull/ReferralDayLesson.jsx	916	ALMASH	Avval taxminingizni belgilang, keyin chap telefonda «Havolani ulashish»ni bosing.	Avval taxminingizni belgilang, keyin chap telefonda «Linkni ulashish»ni bosing.
+src/11-Modull/ReferralDayLesson.jsx	916	ALMASH	Сначала отметьте предположение, потом на левом телефоне нажмите «Havolani ulashish».	Сначала отметьте предположение, потом на левом телефоне нажмите «Linkni ulashish».
+src/11-Modull/ReferralDayLesson.jsx	917	ALMASH	Endi har tashkilotchining o'z havolasi bor — u taklif havolasi deyiladi; brauzerda «Havolani ochish»ni bosing.	Endi har tashkilotchining o'z linki bor — u taklif linki deyiladi; brauzerda «Linkni ochish»ni bosing.
+src/11-Modull/ReferralDayLesson.jsx	918	ALMASH	Havoladagi olti belgi — taklif kodi; endi lendingdagi «Android: ilovani o'rnatish»ni bosing.	Linkdagi olti belgi — taklif kodi; endi lendingdagi «Android: ilovani o'rnatish»ni bosing.
+src/11-Modull/ReferralDayLesson.jsx	929	ALMASH	Tushuncha · havola yo'li	Tushuncha · link yo'li
+src/11-Modull/ReferralDayLesson.jsx	943	ALMASH	Mentor ilovasida havoladagi taklif kodi o'rnatilgan APK'ga o'tmaydi — shuning uchun formada maydon bor.	Mentor ilovasida linkdagi taklif kodi o'rnatilgan APK'ga o'tmaydi — shuning uchun formada maydon bor.
+src/11-Modull/ReferralDayLesson.jsx	945	ALMASH	iPhone'dagi brauzer ko'rinishida ham Mentor ilovasi taklif kodini qo'lda so'raydi — bitta qoida. Web-trekda havola va forma bitta brauzerda ochilsa, sayt taklif	iPhone'dagi brauzer ko'rinishida ham Mentor ilovasi taklif kodini qo'lda so'raydi — bitta qoida. Web-trekda link va forma bitta brauzerda ochilsa, sayt taklif k
+src/11-Modull/ReferralDayLesson.jsx	959	ALMASH	APK'ga havoladagi taklif kodi o'tmagani uchun	APK'ga linkdagi taklif kodi o'tmagani uchun
+src/11-Modull/ReferralDayLesson.jsx	1183	ALMASH	taklif havolasi	taklif linki
+src/11-Modull/ReferralDayLesson.jsx	1184	ALMASH	Havolani ulashish	Linkni ulashish
+src/11-Modull/ReferralDayLesson.jsx	1184	ALMASH	Havolani ulashish	Linkni ulashish
+src/11-Modull/ReferralDayLesson.jsx	1189	ALMASH	Ikki kishi bir xil havola yubordi. Umami nimani ko'radi?	Ikki kishi bir xil link yubordi. Umami nimani ko'radi?
+src/11-Modull/ReferralDayLesson.jsx	1191	ALMASH	Taklif havolasi ochilganda lending Umami'ga nima yuboradi?	Taklif linki ochilganda lending Umami'ga nima yuboradi?
+src/11-Modull/ReferralDayLesson.jsx	1192	ALMASH	Yo'q, faqat havola orqali	Yo'q, faqat link orqali
+src/11-Modull/ReferralDayLesson.jsx	1198	ALMASH	Faqat havola orqali kelgan	Faqat link orqali kelgan
+src/11-Modull/ReferralDayLesson.jsx	1200	ALMASH	Havolangizni qayerga yuborasiz?	Linkingizni qayerga yuborasiz?
+src/11-Modull/ReferralDayLesson.jsx	1908	ALMASH	Har hisobga taklif kodi beriladi; ulashiladigan havolada shu taklif kodi turadi va havola ochgan sahifa uni ko'rsatadi.	Har hisobga taklif kodi beriladi; ulashiladigan linkda shu taklif kodi turadi va link ochgan sahifa uni ko'rsatadi.
+src/11-Modull/ReferralDayLesson.jsx	1910	ALMASH	Nima buzilmasin: ro'yxatdan o'tish, kirish, Pro va boshqa `?kanal=` havolalar avvalgidek ishlasin; mavjud hisoblar o'chmasin va o'zgarmasin (faqat taklif kodi q	Nima buzilmasin: ro'yxatdan o'tish, kirish, Pro va boshqa `?kanal=` linklar avvalgidek ishlasin; mavjud hisoblar o'chmasin va o'zgarmasin (faqat taklif kodi qo'
+src/11-Modull/ReferralDayLesson.jsx	1912	ALMASH	Qayerda: `backend/` — foydalanuvchilar jadvali va `GET /men`; {ulashish joyi}; {havola ochadigan sahifa}.	Qayerda: `backend/` — foydalanuvchilar jadvali va `GET /men`; {ulashish joyi}; {link ochadigan sahifa}.
+src/11-Modull/ReferralDayLesson.jsx	1914	ALMASH	{ulashish joyi} shu havolani ulashsin: {havola manzili}`?taklif=`taklif kodi`&kanal=taklif`. Tugma nomi va joyi o'zgarmasin.	{ulashish joyi} shu linkni ulashsin: {link manzili}`?taklif=`taklif kodi`&kanal=taklif`. Tugma nomi va joyi o'zgarmasin.
+src/11-Modull/ReferralDayLesson.jsx	1915	ALMASH	{havola ochadigan sahifa} manzilda `taklif` bo'lsa, qator ko'rsatsin: «Taklif kodi: …» va ostida «Ro'yxatdan o'tishda shu taklif kodini yozing.» `kanal` belgisi	{link ochadigan sahifa} manzilda `taklif` bo'lsa, qator ko'rsatsin: «Taklif kodi: …» va ostida «Ro'yxatdan o'tishda shu taklif kodini yozing.» `kanal` belgisi a
+src/11-Modull/ReferralDayLesson.jsx	1919	ALMASH	masalan: `mobil/` — «O'yin» ekranidagi «Havolani ulashish» tugmasi	masalan: `mobil/` — «O'yin» ekranidagi «Linkni ulashish» tugmasi
+src/11-Modull/ReferralDayLesson.jsx	1919	ALMASH	например: `mobil/` — кнопка «Havolani ulashish» на экране «O\'yin»	например: `mobil/` — кнопка «Linkni ulashish» на экране «O\'yin»
+src/11-Modull/ReferralDayLesson.jsx	1920	ALMASH	{havola ochadigan sahifa}	{link ochadigan sahifa}
+src/11-Modull/ReferralDayLesson.jsx	1921	ALMASH	{havola manzili}	{link manzili}
+src/11-Modull/ReferralDayLesson.jsx	1924	ALMASH	Qayerda: `backend/` — `oyinchilar` jadvali va `GET /men`; `mobil/` — «O'yin» ekranidagi «Havolani ulashish» tugmasi; `lending/` — bosh sahifadagi «Qanday qo'shi	Qayerda: `backend/` — `oyinchilar` jadvali va `GET /men`; `mobil/` — «O'yin» ekranidagi «Linkni ulashish» tugmasi; `lending/` — bosh sahifadagi «Qanday qo'shila
+src/11-Modull/ReferralDayLesson.jsx	1924	ALMASH	Где: `backend/` — таблица `oyinchilar` и `GET /men`; `mobil/` — кнопка «Havolani ulashish» на экране «O\'yin»; `lending/` — раздел «Qanday qo\'shilaman» на глав	Где: `backend/` — таблица `oyinchilar` и `GET /men`; `mobil/` — кнопка «Linkni ulashish» на экране «O\'yin»; `lending/` — раздел «Qanday qo\'shilaman» на главно
+src/11-Modull/ReferralDayLesson.jsx	1926	ALMASH	«Havolani ulashish» shu havolani ulashsin: lending manzili + `?taklif=`taklif kodi`&kanal=taklif`. Tugma nomi va joyi o'zgarmasin.	«Linkni ulashish» shu linkni ulashsin: lending manzili + `?taklif=`taklif kodi`&kanal=taklif`. Tugma nomi va joyi o'zgarmasin.
+src/11-Modull/ReferralDayLesson.jsx	1926	ALMASH	«Havolani ulashish» пусть делится этой ссылкой: адрес лендинга + `?taklif=`код приглашения`&kanal=taklif`. Название и место кнопки не меняются.	«Linkni ulashish» пусть делится этой ссылкой: адрес лендинга + `?taklif=`код приглашения`&kanal=taklif`. Название и место кнопки не меняются.
+src/11-Modull/ReferralDayLesson.jsx	1930	ALMASH	Web-trekda: «Qayerda» qatorida «O'yin» ekrani o'rniga saytingizdagi ulashish yoki «Nusxalash» joyi turadi; havola saytingizga olib borsa — taklif kodini sayt ko	Web-trekda: «Qayerda» qatorida «O'yin» ekrani o'rniga saytingizdagi ulashish yoki «Nusxalash» joyi turadi; link saytingizga olib borsa — taklif kodini sayt ko'r
+src/11-Modull/ReferralDayLesson.jsx	1931	ALMASH	Yozgan kodingda uch joyni fayl nomi va qator raqami bilan ko'rsat: taklif kodi yasaladigan qator, mavjud hisoblarga taklif kodi beriladigan joy va havola yig'il	Yozgan kodingda uch joyni fayl nomi va qator raqami bilan ko'rsat: taklif kodi yasaladigan qator, mavjud hisoblarga taklif kodi beriladigan joy va link yig'ilad
+src/11-Modull/ReferralDayLesson.jsx	1955	ALMASH	va havolasi	va linki
+src/11-Modull/ReferralDayLesson.jsx	1960	ALMASH	Ikki savolga javob toping: mahsulotingizda havola qayerdan ulashiladi? Havola kimni qayerga olib boradi — lendingga yoki to'g'ri saytingizga? (Mentor misolida: 	Ikki savolga javob toping: mahsulotingizda link qayerdan ulashiladi? Link kimni qayerga olib boradi — lendingga yoki to'g'ri saytingizga? (Mentor misolida: «O'y
+src/11-Modull/ReferralDayLesson.jsx	1960	ALMASH	Найдите ответы на два вопроса: откуда в вашем продукте отправляется ссылка? Куда она ведёт — на лендинг или прямо на сайт? (В примере Ментора: «Havolani ulashis	Найдите ответы на два вопроса: откуда в вашем продукте отправляется ссылка? Куда она ведёт — на лендинг или прямо на сайт? (В примере Ментора: «Linkni ulashish»
+src/11-Modull/ReferralDayLesson.jsx	1961	ALMASH	Mahsulotingizda ulashish tugmasi bo'lmasa — havola hisob sahifasida «Nusxalash» bilan tursin: qayerda turishini qavsga o'zingiz yozasiz.	Mahsulotingizda ulashish tugmasi bo'lmasa — link hisob sahifasida «Nusxalash» bilan tursin: qayerda turishini qavsga o'zingiz yozasiz.
+src/11-Modull/ReferralDayLesson.jsx	1962	ALMASH	Bugun havolani faqat o'zingizda tekshirasiz. Keyin ulashsangiz — faqat tanishlaringizga: 12-Moduldagi olti bandli ro'yxat kuchda (bitta xabarni ko'p guruhga tas	Bugun linkni faqat o'zingizda tekshirasiz. Keyin ulashsangiz — faqat tanishlaringizga: 12-Moduldagi olti bandli ro'yxat kuchda (bitta xabarni ko'p guruhga tashl
+src/11-Modull/ReferralDayLesson.jsx	1963	ALMASH	Web-trekda: «Havolani ulashish» o'rnida — saytingizdagi ulashish yoki «Nusxalash» joyi; havola lendingga yoki saytingizga olib borishi mumkin — tanlov sizda.	Web-trekda: «Linkni ulashish» o'rnida — saytingizdagi ulashish yoki «Nusxalash» joyi; link lendingga yoki saytingizga olib borishi mumkin — tanlov sizda.
+src/11-Modull/ReferralDayLesson.jsx	1963	ALMASH	В веб-треке: вместо «Havolani ulashish» — место отправки или «Скопировать» на сайте; ссылка может вести на лендинг или на сайт — выбор за вами.	В веб-треке: вместо «Linkni ulashish» — место отправки или «Скопировать» на сайте; ссылка может вести на лендинг или на сайт — выбор за вами.
+src/11-Modull/ReferralDayLesson.jsx	1968	ALMASH	agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m	agent tugatgach: `git status` — o'zgargan fayllar agent aytgani bilan bir xil, `.env` ro'yxatda yo'q; har faylni `git add <fayl>` bilan qo'shing, `git commit -m
+src/11-Modull/ReferralDayLesson.jsx	1968	ALMASH	когда агент закончит: `git status` — изменённые файлы совпадают со списком агента, `.env` в списке нет; каждый файл добавьте `git add <файл>`, `git commit -m "t	когда агент закончит: `git status` — изменённые файлы совпадают со списком агента, `.env` в списке нет; каждый файл добавьте `git add <файл>`, `git commit -m "t
+src/11-Modull/ReferralDayLesson.jsx	1980	ALMASH	Ilovada «Havolani ulashish»ni bosing va havolani faqat o'zingizga yuboring yoki nusxalang. Havolada `?taklif=` va olti belgi bo'lishi kerak — (2) dagi taklif ko	Ilovada «Linkni ulashish»ni bosing va linkni faqat o'zingizga yuboring yoki nusxalang. Linkda `?taklif=` va olti belgi bo'lishi kerak — (2) dagi taklif kodingiz
+src/11-Modull/ReferralDayLesson.jsx	1980	ALMASH	В приложении нажмите «Havolani ulashish» и отправьте ссылку только себе или скопируйте. В ссылке должны быть `?taklif=` и шесть символов — те же, что ваш код в 	В приложении нажмите «Linkni ulashish» и отправьте ссылку только себе или скопируйте. В ссылке должны быть `?taklif=` и шесть символов — те же, что ваш код в (2
+src/11-Modull/ReferralDayLesson.jsx	1981	ALMASH	Havolani telefon brauzerida oching: «Qanday qo'shilaman» bo'limida «Taklif kodi: …» — o'sha olti belgi turishi kerak.	Linkni telefon brauzerida oching: «Qanday qo'shilaman» bo'limida «Taklif kodi: …» — o'sha olti belgi turishi kerak.
+src/11-Modull/ReferralDayLesson.jsx	1985	ALMASH	Har hisobda taklif kodi bor; havola uni olib boradi va sahifa uni ko'rsatadi.	Har hisobda taklif kodi bor; link uni olib boradi va sahifa uni ko'rsatadi.
+src/11-Modull/ReferralDayLesson.jsx	2038	ALMASH	Havoladagi taklif kodi ilovaga o'tmaydi — formaga maydon qo'shasiz; «1 · Ochish»dan boshlang.	Linkdagi taklif kodi ilovaga o'tmaydi — formaga maydon qo'shasiz; «1 · Ochish»dan boshlang.
+src/11-Modull/ReferralDayLesson.jsx	2042	ALMASH	Web-trekda: havola va forma bitta brauzerda ochilsa, saytingiz taklif kodini havoladan maydonga o'zi qo'yishi mumkin — xohlasangiz, buni qavsga yozing; maydon b	Web-trekda: link va forma bitta brauzerda ochilsa, saytingiz taklif kodini linkdan maydonga o'zi qo'yishi mumkin — xohlasangiz, buni qavsga yozing; maydon barib
+src/11-Modull/ReferralDayLesson.jsx	2059	ALMASH	Umami'da `tashrif` yozuvlarini kanal bo'yicha oching — «taklif» kanalida 1-amaliyotda ochgan havolangiz ko'rinishi kerak (ko'rinmasa — biroz kutib, sahifani yan	Umami'da `tashrif` yozuvlarini kanal bo'yicha oching — «taklif» kanalida 1-amaliyotda ochgan linkingiz ko'rinishi kerak (ko'rinmasa — biroz kutib, sahifani yang
+src/11-Modull/ReferralDayLesson.jsx	2075	ALMASH	Nima qilsin: ilova ro'yxatdan o'tishda, hisobga kirishda va havola ulashilganda shu qurilma ID sini Backend'ga yuborsin; Backend uni hisobning qurilmalari ro'yx	Nima qilsin: ilova ro'yxatdan o'tishda, hisobga kirishda va link ulashilganda shu qurilma ID sini Backend'ga yuborsin; Backend uni hisobning qurilmalari ro'yxat
+src/11-Modull/ReferralDayLesson.jsx	2077	ALMASH	Natijani yangi jadvalga yoz: taklif natijalari — kim taklif qilgan, kim taklif qilingan (bitta hisobga bitta yozuv, noyob), natija — `berildi`, `bir-qurilma`, `	Natijani yangi jadvalga yoz: taklif natijalari — kim taklif qilgan, kim taklif qilingan (bitta hisobga bitta yozuv, noyob), natija — `berildi`, `bir-qurilma`, `
+src/11-Modull/ReferralDayLesson.jsx	2083	ALMASH	masalan: `mobil/` — «O'yin» ekranidagi «Havolani ulashish» tugmasi	masalan: `mobil/` — «O'yin» ekranidagi «Linkni ulashish» tugmasi
+src/11-Modull/ReferralDayLesson.jsx	2083	ALMASH	например: `mobil/` — кнопка «Havolani ulashish» на экране «O\'yin»	например: `mobil/` — кнопка «Linkni ulashish» на экране «O\'yin»
+src/11-Modull/ReferralDayLesson.jsx	2090	ALMASH	Qayerda: `backend/` — `oyinchilar` jadvali, `POST /royxat`, `POST /oyinlar` va `POST /oyinlar/:id/qoshilish`; `mobil/` — «Ro'yxatdan o'tish» ekrani va «O'yin» e	Qayerda: `backend/` — `oyinchilar` jadvali, `POST /royxat`, `POST /oyinlar` va `POST /oyinlar/:id/qoshilish`; `mobil/` — «Ro'yxatdan o'tish» ekrani va «O'yin» e
+src/11-Modull/ReferralDayLesson.jsx	2090	ALMASH	Где: `backend/` — таблица `oyinchilar`, `POST /royxat`, `POST /oyinlar` и `POST /oyinlar/:id/qoshilish`; `mobil/` — экран «Ro\'yxatdan o\'tish» и кнопка «Havola	Где: `backend/` — таблица `oyinchilar`, `POST /royxat`, `POST /oyinlar` и `POST /oyinlar/:id/qoshilish`; `mobil/` — экран «Ro\'yxatdan o\'tish» и кнопка «Linkni
+src/11-Modull/ReferralDayLesson.jsx	2091	ALMASH	Nima qilsin: ilova ro'yxatdan o'tishda, hisobga kirishda va «Havolani ulashish» bosilganda shu qurilma ID sini Backend'ga yuborsin; Backend uni `oyinchi_qurilma	Nima qilsin: ilova ro'yxatdan o'tishda, hisobga kirishda va «Linkni ulashish» bosilganda shu qurilma ID sini Backend'ga yuborsin; Backend uni `oyinchi_qurilmala
+src/11-Modull/ReferralDayLesson.jsx	2091	ALMASH	Что сделать: при регистрации, входе в аккаунт и нажатии «Havolani ulashish» приложение отправляет ID этого устройства в Backend; Backend записывает его в `oyinc	Что сделать: при регистрации, входе в аккаунт и нажатии «Linkni ulashish» приложение отправляет ID этого устройства в Backend; Backend записывает его в `oyinchi
+src/11-Modull/ReferralDayLesson.jsx	2094	ALMASH	«Havolani ulashish» ostida bitta kulrang qator: «	«Linkni ulashish» ostida bitta kulrang qator: «
+src/11-Modull/ReferralDayLesson.jsx	2094	ALMASH	Под «Havolani ulashish» одна серая строка: «	Под «Linkni ulashish» одна серая строка: «
+src/11-Modull/ReferralDayLesson.jsx	2098	ALMASH	Web-trekda: qurilma ID o'rnida — brauzer ID (10-Modulda yasagansiz); «Havolani ulashish» o'rnida — 1-amaliyotdagi ulashish joyingiz; qolgani o'sha.	Web-trekda: qurilma ID o'rnida — brauzer ID (10-Modulda yasagansiz); «Linkni ulashish» o'rnida — 1-amaliyotdagi ulashish joyingiz; qolgani o'sha.
+src/11-Modull/ReferralDayLesson.jsx	2098	ALMASH	В веб-треке: вместо ID устройства — ID браузера (делали в 10-м модуле); вместо «Havolani ulashish» — ваше место отправки из практики 1; остальное то же.	В веб-треке: вместо ID устройства — ID браузера (делали в 10-м модуле); вместо «Linkni ulashish» — ваше место отправки из практики 1; остальное то же.
+src/11-Modull/ReferralDayLesson.jsx	2135	ALMASH	Havola almashtirildi	Link almashtirildi
+src/11-Modull/ReferralDayLesson.jsx	2151	ALMASH	Qoida qurilmani taniydi: ilova hisob ochilgan va havola ulashilgan qurilmaning ID sini Backend'ga yuboradi.	Qoida qurilmani taniydi: ilova hisob ochilgan va link ulashilgan qurilmaning ID sini Backend'ga yuboradi.
+src/11-Modull/ReferralDayLesson.jsx	2180	ALMASH	Oxirida (mobil trek): odamlardagi ilova uchun yangi o'rnatish fayli kerak — `eas build -p android --profile preview`. Navbatni kutmang: «Bajardim»ni bosing va d	Oxirida (mobil trek): odamlardagi ilova uchun yangi o'rnatish fayli kerak — `eas build -p android --profile preview`. Navbatni kutmang: «Bajardim»ni bosing va d
+src/11-Modull/ReferralDayLesson.jsx	2200	ALMASH	Taklif havolasi nima?	Taklif linki nima?
+src/11-Modull/ReferralDayLesson.jsx	2200	ALMASH	Har foydalanuvchining o'z havolasi: unda uning taklif kodi bor	Har foydalanuvchining o'z linki: unda uning taklif kodi bor
+src/11-Modull/ReferralDayLesson.jsx	2201	ALMASH	Taklif havolasi ochilsa, lendingda nima ko'rinadi?	Taklif linki ochilsa, lendingda nima ko'rinadi?
+src/11-Modull/ReferralDayLesson.jsx	2202	ALMASH	12-Modulda «Havolani ulashish» bilan nima ulashilardi?	12-Modulda «Linkni ulashish» bilan nima ulashilardi?
+src/11-Modull/ReferralDayLesson.jsx	2202	ALMASH	Чем делились через «Havolani ulashish» в 12-м модуле?	Чем делились через «Linkni ulashish» в 12-м модуле?
+src/11-Modull/ReferralDayLesson.jsx	2202	ALMASH	Hammada bir xil lending havolasi — `?kanal=ilova` bilan	Hammada bir xil lending linki — `?kanal=ilova` bilan
+src/11-Modull/ReferralDayLesson.jsx	2203	ALMASH	Mentor ilovasida havoladagi taklif kodi APK'ga o'tadimi?	Mentor ilovasida linkdagi taklif kodi APK'ga o'tadimi?
+src/11-Modull/ReferralDayLesson.jsx	2232	ALMASH	Havola, sanoq va mukofotning ikki holati tekshirildi.	Link, sanoq va mukofotning ikki holati tekshirildi.
+src/11-Modull/ReferralDayLesson.jsx	2234	ALMASH	Havola va sanoq tayyor — mukofot tekshiruvi tugamagan.	Link va sanoq tayyor — mukofot tekshiruvi tugamagan.
+src/11-Modull/ReferralDayLesson.jsx	2235	ALMASH	Havola va sanoq tayyor — mukofot qoidasi qoldi.	Link va sanoq tayyor — mukofot qoidasi qoldi.
+src/11-Modull/ReferralDayLesson.jsx	2236	ALMASH	Havola tayyor — formadagi taklif kodi va mukofot qoldi.	Link tayyor — formadagi taklif kodi va mukofot qoldi.
+src/11-Modull/ReferralDayLesson.jsx	2238	ALMASH	Taklif havolasi hali qurilmagan — bloklarni tugating.	Taklif linki hali qurilmagan — bloklarni tugating.
+src/11-Modull/ReferralDayLesson.jsx	2268	ALMASH	havolaTayyor	linkTayyor
+src/11-Modull/ReferralDayLesson.jsx	2271	ALMASH	Taklif havolasi — hisobning o'z taklif kodi yozilgan havola.	Taklif linki — hisobning o'z taklif kodi yozilgan link.
+src/11-Modull/ReferralDayLesson.jsx	2272	ALMASH	Mentor ilovasida havoladagi taklif kodi APK'ga o'tmaydi — shuning uchun formada maydon bor.	Mentor ilovasida linkdagi taklif kodi APK'ga o'tmaydi — shuning uchun formada maydon bor.
+src/11-Modull/ReferralDayLesson.jsx	2287	ALMASH	Fayl tayyor bo'lgach, lendingdagi havolani keyingi dars boshida almashtirasiz.	Fayl tayyor bo'lgach, lendingdagi linkni keyingi dars boshida almashtirasiz.
+src/11-Modull/StabilizeDayLesson.jsx	646	ALMASH	Taklif havolasi	Taklif linki
+src/11-Modull/StabilizeDayLesson.jsx	648	ALMASH	Taklif havolamni ochaman; ikki yangi tekshiruv akkaunti bilan ro'yxatdan o'tib, kodni qo'lda yozaman: birida katta, birida kichik harf bilan.	Taklif linkimni ochaman; ikki yangi tekshiruv akkaunti bilan ro'yxatdan o'tib, kodni qo'lda yozaman: birida katta, birida kichik harf bilan.
+src/11-Modull/StabilizeDayLesson.jsx	664	ALMASH	Taklif havolamni ikkinchi telefonda ochdim — lendingda «Taklif kodi: AB12CD». Ikki yangi tekshiruv akkaunti bilan ro'yxatdan o'tdim: birida kodni «AB12CD», ikki	Taklif linkimni ikkinchi telefonda ochdim — lendingda «Taklif kodi: AB12CD». Ikki yangi tekshiruv akkaunti bilan ro'yxatdan o'tdim: birida kodni «AB12CD», ikkin
+src/11-Modull/StabilizeDayLesson.jsx	697	ALMASH	Buzilmagan yo'llar: kirish va ro'yxat · asosiy harakat · to'lov oqimi · taklif havolasi.	Buzilmagan yo'llar: kirish va ro'yxat · asosiy harakat · to'lov oqimi · taklif linki.
+src/11-Modull/StabilizeDayLesson.jsx	1252	ALMASH	Havolani tarqatish	Linkni tarqatish
+src/11-Modull/StabilizeDayLesson.jsx	1944	ALMASH	Nima qilsin: bugun men mahsulotimning besh yo'lini tekshiraman: kirish va ro'yxat · {asosiy harakat} · to'lov oqimi · taklif havolasi · eslatma yoki Telegram xa	Nima qilsin: bugun men mahsulotimning besh yo'lini tekshiraman: kirish va ro'yxat · {asosiy harakat} · to'lov oqimi · taklif linki · eslatma yoki Telegram xabar
+src/11-Modull/StabilizeDayLesson.jsx	2077	ALMASH	Besh yo'l — sizning mahsulotingizda: 1 kirish va ro'yxat · 2 asosiy harakat (mahsulotingizdagi asosiy ish) · 3 to'lov oqimi — mashq to'lovda to'landi, rad va ik	Besh yo'l — sizning mahsulotingizda: 1 kirish va ro'yxat · 2 asosiy harakat (mahsulotingizdagi asosiy ish) · 3 to'lov oqimi — mashq to'lovda to'landi, rad va ik
+src/11-Modull/StabilizeDayLesson.jsx	2117	ALMASH	Nima buzilmasin: yangi funksiya, yangi tugma yoki yangi ekran qo'shma — faqat topilmani tuzat. Kirish va ro'yxat, o'yin e'loni va qo'shilish, to'lov oqimi, takl	Nima buzilmasin: yangi funksiya, yangi tugma yoki yangi ekran qo'shma — faqat topilmani tuzat. Kirish va ro'yxat, o'yin e'loni va qo'shilish, to'lov oqimi, takl
+src/11-Modull/StabilizeDayLesson.jsx	2219	ALMASH	`lending/index.html` dagi «Android: ilovani o'rnatish» havolasini shu manzilga almashtir: {yangi havola}. Boshqa joyga tegma.	`lending/index.html` dagi «Android: ilovani o'rnatish» linkini shu manzilga almashtir: {yangi link}. Boshqa joyga tegma.
+src/11-Modull/StabilizeDayLesson.jsx	2271	QOLDA:id	havola	link
+src/11-Modull/StabilizeDayLesson.jsx	2271	ALMASH	{yangi havola}	{yangi link}
+src/11-Modull/StabilizeDayLesson.jsx	2271	ALMASH	masalan: expo.dev havolasi	masalan: expo.dev linki
+src/11-Modull/StabilizeDayLesson.jsx	2293	ALMASH	Ulgurmasangiz: `XATOLAR.md` birinchi, yangi versiya keyin; o'rnatish fayli havolasi — keyingi dars boshida. Tozalashni o'tkazib yubormang. «Davom etish» 3-band 	Ulgurmasangiz: `XATOLAR.md` birinchi, yangi versiya keyin; o'rnatish fayli linki — keyingi dars boshida. Tozalashni o'tkazib yubormang. «Davom etish» 3-band «Ba
+src/11-Modull/StabilizeDayLesson.jsx	2296	ALMASH	Havola almashtirildi	Link almashtirildi
+src/11-Modull/StabilizeDayLesson.jsx	2306	ALMASH	Bu darsda besh yo'l: kirish va ro'yxat, asosiy harakat, to'lov oqimi, taklif havolasi, eslatma yoki Telegram xabari	Bu darsda besh yo'l: kirish va ro'yxat, asosiy harakat, to'lov oqimi, taklif linki, eslatma yoki Telegram xabari
+src/11-Modull/StabilizeDayLesson.jsx	2311	ALMASH	Kirish, asosiy harakat, to'lov oqimi va taklif havolasi — buzilmadi	Kirish, asosiy harakat, to'lov oqimi va taklif linki — buzilmadi
+src/11-Modull/StabilizeDayLesson.jsx	2317	ALMASH	Yangi o\'rnatish fayli va lendingdagi yangi havola orqali	Yangi o\'rnatish fayli va lendingdagi yangi link orqali
+src/11-Modull/StabilizeDayLesson.jsx	2401	ALMASH	Fayl tayyor bo'lgach, lendingdagi havolani keyingi dars boshida almashtirasiz.	Fayl tayyor bo'lgach, lendingdagi linkni keyingi dars boshida almashtirasiz.
+src/11-Modull/WinBackDayLesson.jsx	330	ALMASH	Ilovada «Telegram'da xabar olish» — havolada bir martalik kod.	Ilovada «Telegram'da xabar olish» — linkda bir martalik kod.
+src/11-Modull/WinBackDayLesson.jsx	692	ALMASH	Havola eskirgan. Ilovada «Telegram'da xabar olish»ni qayta bosing.	Link eskirgan. Ilovada «Telegram'da xabar olish»ni qayta bosing.
+src/11-Modull/WinBackDayLesson.jsx	928	ALMASH	Havoladagi qisqa qator — bir martalik kod: u Telegram chatini aynan shu hisob bilan bog'laydi.	Linkdagi qisqa qator — bir martalik kod: u Telegram chatini aynan shu hisob bilan bog'laydi.
+src/11-Modull/WinBackDayLesson.jsx	1014	ALMASH	O'yinchi kodli havolada «Start»ni bosganda	O'yinchi kodli linkda «Start»ni bosganda
+src/11-Modull/WinBackDayLesson.jsx	1245	ALMASH	Havola bilan ochilganda	Link bilan ochilganda
+src/11-Modull/WinBackDayLesson.jsx	1979	ALMASH	3) `POST /telegram/kod` — faqat hisobga kirgan foydalanuvchi uchun: yangi bir martalik kod (16 belgi, faqat harf va raqam, `crypto` bilan tasodifiy — `Math.rand	3) `POST /telegram/kod` — faqat hisobga kirgan foydalanuvchi uchun: yangi bir martalik kod (16 belgi, faqat harf va raqam, `crypto` bilan tasodifiy — `Math.rand
+src/11-Modull/WinBackDayLesson.jsx	1981	ALMASH	Kod yo'q, eskirgan yoki ishlatilgan bo'lsa — bot javobi: «Havola eskirgan. Ilovada «Telegram'da xabar olish»ni qayta bosing.» Boshqa har qanday xabarga — «Bu bo	Kod yo'q, eskirgan yoki ishlatilgan bo'lsa — bot javobi: «Link eskirgan. Ilovada «Telegram'da xabar olish»ni qayta bosing.» Boshqa har qanday xabarga — «Bu bot 
+src/11-Modull/WinBackDayLesson.jsx	1981	ALMASH	Если кода нет, он истёк или использован — ответ бота: «Havola eskirgan. Ilovada «Telegram'da xabar olish»ni qayta bosing.» На любое другое сообщение — «Bu bot i	Если кода нет, он истёк или использован — ответ бота: «Link eskirgan. Ilovada «Telegram'da xabar olish»ni qayta bosing.» На любое другое сообщение — «Bu bot ilo
+src/11-Modull/WinBackDayLesson.jsx	1984	ALMASH	6) {tugma turadigan joy}da tugma «Telegram'da xabar olish», ostida kichik matn: «{xabar sababi} — Telegram'da xabar; haftasiga ko'pi bilan ikkita». Bosilganda `	6) {tugma turadigan joy}da tugma «Telegram'da xabar olish», ostida kichik matn: «{xabar sababi} — Telegram'da xabar; haftasiga ko'pi bilan ikkita». Bosilganda `
+src/11-Modull/WinBackDayLesson.jsx	1997	ALMASH	3) `POST /telegram/kod` — faqat hisobga kirgan o'yinchi uchun: yangi bir martalik kod (16 belgi, faqat harf va raqam, `crypto` bilan tasodifiy — `Math.random` e	3) `POST /telegram/kod` — faqat hisobga kirgan o'yinchi uchun: yangi bir martalik kod (16 belgi, faqat harf va raqam, `crypto` bilan tasodifiy — `Math.random` e
+src/11-Modull/WinBackDayLesson.jsx	2002	ALMASH	6) `mobil/` — «Hisobdan chiqish» yonidagi sozlamalar qatorida tugma «Telegram'da xabar olish», ostida kichik matn: «Siz qatnashgan «Doimiy o'yin» yana e'lon qil	6) `mobil/` — «Hisobdan chiqish» yonidagi sozlamalar qatorida tugma «Telegram'da xabar olish», ostida kichik matn: «Siz qatnashgan «Doimiy o'yin» yana e'lon qil
+src/11-Modull/WinBackDayLesson.jsx	2005	ALMASH	Web-trekda: «Qayerda» qatorida `mobil/` o'rnida sayt papkangiz (`prototip/`) va undagi sozlamalar joyi turadi; havola yangi oynada ochiladi, qolgani o'sha.	Web-trekda: «Qayerda» qatorida `mobil/` o'rnida sayt papkangiz (`prototip/`) va undagi sozlamalar joyi turadi; link yangi oynada ochiladi, qolgani o'sha.
+src/11-Modull/WinBackDayLesson.jsx	2015	ALMASH	Bir martalik kod 10 daqiqa va bir marta ishlaydi: havolani boshqa odamga yubormang — kim «Start»ni bossa, shu chat ulanadi; adashib ulansa — 3-amaliyotdagi «Tel	Bir martalik kod 10 daqiqa va bir marta ishlaydi: linkni boshqa odamga yubormang — kim «Start»ni bossa, shu chat ulanadi; adashib ulansa — 3-amaliyotdagi «Teleg
+src/11-Modull/WinBackDayLesson.jsx	2039	ALMASH	kodli havola	kodli link
+src/11-Modull/WinBackDayLesson.jsx	2080	ALMASH	Nima qilsin: {qaysi o'zgarishda} — {kimga} bot orqali Telegram xabari yuborsin (faqat Telegram'ni ulaganlarga): «{xabar matni}», ostida havola `{mahsulot manzil	Nima qilsin: {qaysi o'zgarishda} — {kimga} bot orqali Telegram xabari yuborsin (faqat Telegram'ni ulaganlarga): «{xabar matni}», ostida link `{mahsulot manzili}
+src/11-Modull/WinBackDayLesson.jsx	2093	ALMASH	Nima qilsin: «Doimiy o'yin»ning keyingi haftadagi o'yini yaratilganda — o'tgan haftadagi o'yinida qatnashgan (`qoshildi` yoki `keladi`) va Telegram'ni ulagan o'	Nima qilsin: «Doimiy o'yin»ning keyingi haftadagi o'yini yaratilganda — o'tgan haftadagi o'yinida qatnashgan (`qoshildi` yoki `keladi`) va Telegram'ni ulagan o'
+src/11-Modull/WinBackDayLesson.jsx	2098	ALMASH	Web-trekda: havola — saytingiz manzili `?kanal=telegram` bilan; qolgani o'sha (Backend ikkala trekda bir).	Web-trekda: link — saytingiz manzili `?kanal=telegram` bilan; qolgani o'sha (Backend ikkala trekda bir).
+src/11-Modull/WinBackDayLesson.jsx	2108	ALMASH	Telegram · sayt havolasi	Telegram · sayt linki
+src/11-Modull/WinBackDayLesson.jsx	2130	ALMASH	Xabar matni — bu kursda faqat o'zgarish: kun, soat, joy; tez o'zgaradigan son (masalan, qo'shilganlar) yozilmaydi — u havolada ko'rinadi; bosim, qo'rqitish va t	Xabar matni — bu kursda faqat o'zgarish: kun, soat, joy; tez o'zgaradigan son (masalan, qo'shilganlar) yozilmaydi — u linkda ko'rinadi; bosim, qo'rqitish va to'
+src/11-Modull/WinBackDayLesson.jsx	2142	ALMASH	 Telegram xabari kelishi kerak, uchinchisi — yo'q: haftalik chegara. Matn va havolani o'qing — talabingizdagidek bo'lsin.	 Telegram xabari kelishi kerak, uchinchisi — yo'q: haftalik chegara. Matn va linkni o'qing — talabingizdagidek bo'lsin.
+src/11-Modull/WinBackDayLesson.jsx	2147	ALMASH	Ro'yxatni o'qing: faqat bugungi tekshiruv yozuvlari bo'lsa — «Davom et». Shunda haftalik chegarangiz tekshiruv xabarlari bilan to'lib qolmaydi. Telegram chatida	Ro'yxatni o'qing: faqat bugungi tekshiruv yozuvlari bo'lsa — «Davom et». Shunda haftalik chegarangiz tekshiruv xabarlari bilan to'lib qolmaydi. Telegram chatida
+src/11-Modull/WinBackDayLesson.jsx	2150	ALMASH	Ulgurmasangiz: 4-qadamni dars oxirida bajaring — «Davom etish» 3-qadamdan keyin ochiladi; 3-amaliyotdagi sanoq tekshiruvini havolani brauzerda o'zingiz ochib qi	Ulgurmasangiz: 4-qadamni dars oxirida bajaring — «Davom etish» 3-qadamdan keyin ochiladi; 3-amaliyotdagi sanoq tekshiruvini linkni brauzerda o'zingiz ochib qila
+src/11-Modull/WinBackDayLesson.jsx	2160	ALMASH	Qayerda: `backend/` — Telegram bo'limi, `POST /hodisalar` va `GET /hodisalar/sanoq`; {o'chirish tugmasi joyi}; {havolani ochadigan qism}; `lending/sanoq.html` v	Qayerda: `backend/` — Telegram bo'limi, `POST /hodisalar` va `GET /hodisalar/sanoq`; {o'chirish tugmasi joyi}; {linkni ochadigan qism}; `lending/sanoq.html` va 
+src/11-Modull/WinBackDayLesson.jsx	2160	ALMASH	Где: `backend/` — раздел Telegram, `POST /hodisalar` и `GET /hodisalar/sanoq`; {o'chirish tugmasi joyi}; {havolani ochadigan qism}; `lending/sanoq.html` и `lend	Где: `backend/` — раздел Telegram, `POST /hodisalar` и `GET /hodisalar/sanoq`; {o'chirish tugmasi joyi}; {linkni ochadigan qism}; `lending/sanoq.html` и `lendin
+src/11-Modull/WinBackDayLesson.jsx	2163	ALMASH	3) {havolani ochadigan qism} manzilida `kanal=telegram` bo'lsa — `hodisaYoz('telegramdan-ochdi')`, bitta ochilishga bitta yozuv — sahifa yuklanganda bir marta, 	3) {linkni ochadigan qism} manzilida `kanal=telegram` bo'lsa — `hodisaYoz('telegramdan-ochdi')`, bitta ochilishga bitta yozuv — sahifa yuklanganda bir marta, qa
+src/11-Modull/WinBackDayLesson.jsx	2163	ALMASH	3) Если в адресе {havolani ochadigan qism} есть `kanal=telegram` — `hodisaYoz('telegramdan-ochdi')`, одна запись на одно открытие — один раз при загрузке страни	3) Если в адресе {linkni ochadigan qism} есть `kanal=telegram` — `hodisaYoz('telegramdan-ochdi')`, одна запись на одно открытие — один раз при загрузке страницы
+src/11-Modull/WinBackDayLesson.jsx	2169	ALMASH	{havolani ochadigan qism}	{linkni ochadigan qism}
+src/11-Modull/WinBackDayLesson.jsx	2169	ALMASH	{havolani ochadigan qism}	{linkni ochadigan qism}
+src/11-Modull/WinBackDayLesson.jsx	2184	ALMASH	Telefonda Telegram xabaridagi havola brauzerda ochiladi — o'rnatilgan APK'ni havoladan ochish uchun alohida sozlash kerak (Android App Links: ilova sozlamasi va	Telefonda Telegram xabaridagi link brauzerda ochiladi — o'rnatilgan APK'ni linkdan ochish uchun alohida sozlash kerak (Android App Links: ilova sozlamasi va say
+src/11-Modull/WinBackDayLesson.jsx	2185	ALMASH	Shuning uchun Mentor misolida havola brauzer ko'rinishiga olib boradi; u yerda hisobga kirmagan odam o'yinlarni mehmon sifatida ko'radi (12-Modul 8-darsi). Ilov	Shuning uchun Mentor misolida link brauzer ko'rinishiga olib boradi; u yerda hisobga kirmagan odam o'yinlarni mehmon sifatida ko'radi (12-Modul 8-darsi). Ilovan
+src/11-Modull/WinBackDayLesson.jsx	2217	ALMASH	sanoq sahifangizni oching (12-Modul 8-darsi, kalit bilan): qadamlar va «eslatmadan ochdi» qatorlari turibdi. Bugun ularning ostiga yangi qator qo'shiladi — Tele	sanoq sahifangizni oching (12-Modul 8-darsi, kalit bilan): qadamlar va «eslatmadan ochdi» qatorlari turibdi. Bugun ularning ostiga yangi qator qo'shiladi — Tele
+src/11-Modull/WinBackDayLesson.jsx	2218	ALMASH	Bu son havola bosilganini aytadi; xabar odamni qaytardimi — buni aytmaydi.	Bu son link bosilganini aytadi; xabar odamni qaytardimi — buni aytmaydi.
+src/11-Modull/WinBackDayLesson.jsx	2220	ALMASH	Web-trekda: havola saytingizni ochadi, sanoq yozuvi o\'sha nom bilan.	Web-trekda: link saytingizni ochadi, sanoq yozuvi o\'sha nom bilan.
+src/11-Modull/WinBackDayLesson.jsx	2222	ALMASH	Foydalanuvchi Telegram xabarlarini bir bosishda o'chiradi; xabardagi havola bilan ochilganlar sanaladi; maxfiylik siyosatida chat raqami haqida qator bor.	Foydalanuvchi Telegram xabarlarini bir bosishda o'chiradi; xabardagi link bilan ochilganlar sanaladi; maxfiylik siyosatida chat raqami haqida qator bor.
+src/11-Modull/WinBackDayLesson.jsx	2233	ALMASH	Telegram'da 2-amaliyotdagi xabarning havolasini bosing (xabar bo'lmasa — brauzerda `{mahsulot manzili}?kanal=telegram` ni o'zingiz oching). Telefonda brauzer ko	Telegram'da 2-amaliyotdagi xabarning linkini bosing (xabar bo'lmasa — brauzerda `{mahsulot manzili}?kanal=telegram` ni o'zingiz oching). Telefonda brauzer ko'ri
+src/11-Modull/WinBackDayLesson.jsx	2260	ALMASH	Xabardagi havola bilan ochilgan qurilmalarni	Xabardagi link bilan ochilgan qurilmalarni
+src/11-Modull/WinBackDayLesson.jsx	2319	ALMASH	O'chirish bir bosishda; sanoq havola bilan ochilganini ko'rsatadi, xabar qaytardimi — buni emas.	O'chirish bir bosishda; sanoq link bilan ochilganini ko'rsatadi, xabar qaytardimi — buni emas.
+src/12-Modull/DemoPrepLesson.jsx	708	QOLDA:id	havola	link
+src/12-Modull/DemoPrepLesson.jsx	708	ALMASH	Havoladagi video	Linkdagi video
+src/12-Modull/DemoPrepLesson.jsx	761	KOD:taqqos	havola	link
+src/12-Modull/DemoPrepLesson.jsx	761	KOD:taqqos	havola	link
+src/12-Modull/DemoPrepLesson.jsx	761	ALMASH	video havolasi	video linki
+src/12-Modull/DemoPrepLesson.jsx	763	KOD:taqqos	havola	link
+src/12-Modull/DemoPrepLesson.jsx	772	KOD:taqqos	havola	link
+src/12-Modull/DemoPrepLesson.jsx	1097	QOLDA:id	havola	link
+src/12-Modull/DemoPrepLesson.jsx	1108	ALMASH	Endi «Havoladagi video»ni bosing.	Endi «Linkdagi video»ni bosing.
+src/12-Modull/DemoPrepLesson.jsx	1129	ALMASH	Bu misolda internet uzilganda faqat laptopdagi video fayl ochildi — havolaga ham internet kerak.	Bu misolda internet uzilganda faqat laptopdagi video fayl ochildi — linkka ham internet kerak.
+src/12-Modull/DemoPrepLesson.jsx	1133	ALMASH	«Kutish» va «havola» — hayotda tez-tez tanlanadigan yo'l; bu misolda internet qaytmadi. Telefon internetini laptopga ulash ham yo'l bo'lishi mumkin, lekin telef	«Kutish» va «link» — hayotda tez-tez tanlanadigan yo'l; bu misolda internet qaytmadi. Telefon internetini laptopga ulash ham yo'l bo'lishi mumkin, lekin telefon
+src/12-Modull/DemoPrepLesson.jsx	1259	ALMASH	B reja videosi nega havolada emas, faylda?	B reja videosi nega linkda emas, faylda?
+src/12-Modull/DemoPrepLesson.jsx	1259	ALMASH	Havolani agent o'chiradi	Linkni agent o'chiradi
+src/12-Modull/DemoPrepLesson.jsx	1876	ALMASH	Bu yerga login, telefon va havola yozilmaydi.	Bu yerga login, telefon va link yozilmaydi.
+src/12-Modull/DemoPrepLesson.jsx	2164	ALMASH	fayl laptopda, havola emas	fayl laptopda, link emas
+src/12-Modull/DemoPrepLesson.jsx	2387	ALMASH	Havola internetsiz ochilmaydi; repo'ga qo'shilmaydi	Link internetsiz ochilmaydi; repo'ga qo'shilmaydi
+src/12-Modull/PmDemoTestLesson.jsx	701	ALMASH	Yozuvga telefon, akkaunt va havola yozilmaydi.	Yozuvga telefon, akkaunt va link yozilmaydi.
+src/12-Modull/PmDemoTestLesson.jsx	901	ALMASH	Menyu ostidagi «uch marta to'liq o'tish» — Amaliyot 2: demo boshidan oxirigacha uch marta, ikkinchisida B reja. Bugun yangi funksiya qo'shilmaydi: 6-darsdan ber	Menu ostidagi «uch marta to'liq o'tish» — Amaliyot 2: demo boshidan oxirigacha uch marta, ikkinchisida B reja. Bugun yangi funksiya qo'shilmaydi: 6-darsdan beri
+src/12-Modull/PmFinalPitchLesson.jsx	606	ALMASH	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.
+src/12-Modull/PmFinalPitchLesson.jsx	607	ALMASH	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro uchun to'lashga tayyorligini yozdi — real to'lov hali yo'q.	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro uchun to'lashga tayyorligini yozdi — real to'lov hali yo'q.
+src/12-Modull/PmFinalPitchLesson.jsx	1108	ALMASH	Pitchga telefon, akkaunt va havola yozilmaydi.	Pitchga telefon, akkaunt va link yozilmaydi.
+src/12-Modull/PmFinalPitchLesson.jsx	1343	ALMASH	Pitchga telefon, akkaunt va havola yozilmaydi.	Pitchga telefon, akkaunt va link yozilmaydi.
+src/12-Modull/PmFreelanceLesson.jsx	710	QOLDA:id	havola	link
+src/12-Modull/PmFreelanceLesson.jsx	1185	ALMASH	Video-portfolio bo\'lsa — havolasini uyda qo\'shasiz.	Video-portfolio bo\'lsa — linkini uyda qo\'shasiz.
+src/12-Modull/PmFreelanceLesson.jsx	1266	ALMASH	Havolani uyda, yuborishdan oldin qo'shasiz.	Linkni uyda, yuborishdan oldin qo'shasiz.
+src/12-Modull/PmFreelanceLesson.jsx	1448	ALMASH	Ota-onangiz rozi bo'lsa, video havolasini uyda qo'shasiz.	Ota-onangiz rozi bo'lsa, video linkini uyda qo'shasiz.
+src/12-Modull/PmInvestorPitchLesson.jsx	596	ALMASH	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.
+src/12-Modull/PmInvestorPitchLesson.jsx	603	ALMASH	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi.	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi.
+src/12-Modull/PmInvestorPitchLesson.jsx	615	ALMASH	E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi — maqsad 50.	E'lon berilgach «Linkni ulashish» tugmasi bilan tashkilotchi linkni o'z jamoasiga yuboradi — maqsad 50.
+src/12-Modull/PmInvestorPitchLesson.jsx	1313	ALMASH	Pitchga telefon, akkaunt va havola yozilmaydi.	Pitchga telefon, akkaunt va link yozilmaydi.
+src/12-Modull/PmInvestorPitchLesson.jsx	1631	ALMASH	Taklif havolasi buzildi	Taklif linki buzildi
+src/12-Modull/PmPitchTrainingLesson.jsx	600	ALMASH	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.
+src/12-Modull/PmProgramsLesson.jsx	689	ALMASH	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.
+src/12-Modull/PmStoryPitchLesson.jsx	608	ALMASH	Taklif havolasi	Taklif linki
+src/12-Modull/PmStoryPitchLesson.jsx	615	ALMASH	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.	51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.
+src/12-Modull/PmStoryPitchLesson.jsx	1052	ALMASH	Hikoyaga telefon, akkaunt va havola yozilmaydi.	Hikoyaga telefon, akkaunt va link yozilmaydi.
+src/12-Modull/PolishDayLesson.jsx	2095	ALMASH	Rendering bo'limi topilmasa — DevTools'ning «More tools» menyusida ham bor; Chrome versiyasiga qarab joyi o'zgarishi mumkin. Emulyatsiya faqat shu oynada ishlay	Rendering bo'limi topilmasa — DevTools'ning «More tools» menusida ham bor; Chrome versiyasiga qarab joyi o'zgarishi mumkin. Emulyatsiya faqat shu oynada ishlayd
+src/12-Modull/ProductSpeedLesson.jsx	2862	ALMASH	— darsda ulgurmagan qismni bajaring: «Keyin» sonlari `TEZLIK.md` da bo'lsin. Ilova o'zgargan bo'lsa (2-tuzatish) — yangi versiyasini chiqaring: mobil trek — `mo	— darsda ulgurmagan qismni bajaring: «Keyin» sonlari `TEZLIK.md` da bo'lsin. Ilova o'zgargan bo'lsa (2-tuzatish) — yangi versiyasini chiqaring: mobil trek — `mo
+src/12-Modull/VideoPortfolioLesson.jsx	772	KOD:taqqos	havola	link
+src/12-Modull/VideoPortfolioLesson.jsx	773	ALMASH	faqat havola bilan	faqat link bilan
+src/12-Modull/VideoPortfolioLesson.jsx	859	ALMASH	ssenariy, ekran yozuvi va havola	ssenariy, ekran yozuvi va link
+src/12-Modull/VideoPortfolioLesson.jsx	866	ALMASH	Video — o'quvchining shaxsiy ma'lumoti: yuz, ism, ovoz. Yuz va ism — ixtiyoriy; video hamma ko'radigan joyga joylanmaydi; havola — faqat ota-ona roziligi bilan 	Video — o'quvchining shaxsiy ma'lumoti: yuz, ism, ovoz. Yuz va ism — ixtiyoriy; video hamma ko'radigan joyga joylanmaydi; link — faqat ota-ona roziligi bilan va
+src/12-Modull/VideoPortfolioLesson.jsx	1189	ALMASH	havola	link
+src/12-Modull/VideoPortfolioLesson.jsx	1205	ALMASH	Havola bilan ochiladigan joyga	Link bilan ochiladigan joyga
+src/12-Modull/VideoPortfolioLesson.jsx	1859	ALMASH	Ssenariyga telefon, akkaunt va havola yozilmaydi.	Ssenariyga telefon, akkaunt va link yozilmaydi.
+src/12-Modull/VideoPortfolioLesson.jsx	2078	ALMASH	Videoni ota-onangiz bilan tanlagan, faqat havola bilan ko'rinadigan joyga yuklang — hamma ko'radigan joyga emas.	Videoni ota-onangiz bilan tanlagan, faqat link bilan ko'rinadigan joyga yuklang — hamma ko'radigan joyga emas.
+src/12-Modull/VideoPortfolioLesson.jsx	2078	ALMASH	Havolani dars formasiga, sinf chatiga va repo'ga yozmang; kimga yuborishni ota-onangiz bilan hal qilasiz.	Linkni dars formasiga, sinf chatiga va repo'ga yozmang; kimga yuborishni ota-onangiz bilan hal qilasiz.
+src/12-Modull/VideoPortfolioLesson.jsx	2087	QOLDA:id	havola	link
+src/12-Modull/VideoPortfolioLesson.jsx	2100	ALMASH	Ulgurmasangiz: 2-qadam — eng muhimi: «Davom etish» shundan keyin ochiladi. Vaqt va havola — dars oxirida. Maxfiy narsa ko'ringan video darsdan keyin qolmaydi: o	Ulgurmasangiz: 2-qadam — eng muhimi: «Davom etish» shundan keyin ochiladi. Vaqt va link — dars oxirida. Maxfiy narsa ko'ringan video darsdan keyin qolmaydi: o'c
+src/12-Modull/VideoPortfolioLesson.jsx	2104	ALMASH	Havola masalasida o'quvchini shoshirmang: «Hali gaplashmadim» — to'g'ri javob. Kim havola qilganini so'ramang va sanamang.	Link masalasida o'quvchini shoshirmang: «Hali gaplashmadim» — to'g'ri javob. Kim link qilganini so'ramang va sanamang.
+src/12-Modull/VideoPortfolioLesson.jsx	2121	ALMASH	Joy — faqat havola bilan ko'rinadigan	Joy — faqat link bilan ko'rinadigan
+src/12-Modull/VideoPortfolioLesson.jsx	2122	ALMASH	Video havolasi qayerga yoziladi?	Video linki qayerga yoziladi?
+src/2-Modull/PeanStackLesson.jsx	1077	QOLDA:ovqat	 ko'radi: stol, menyu, taom. Lekin taom 	 ko'radi: stol, menu, taom. Lekin taom 
+src/2-Modull/PeanStackLesson.jsx	1084	QOLDA:ovqat	stol · menyu · taom	stol · menu · taom
+src/2-Modull/PeanStackLesson.jsx	1265	ALMASH	Menyu — buyurtma bering	Menu — buyurtma bering
+src/2-Modull/PeanStackLesson.jsx	2038	QOLDA:ovqat	Menyu — taomlar ro'yxati	Menu — taomlar ro'yxati
+src/2-Modull/PeanStackLesson.jsx	2646	QOLDA:ovqat	Baza — saqlangan ro'yxat. `let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]` yozing va `for` sikli bilan har birini konsolga chiqaring — frontend menyun	Baza — saqlangan ro'yxat. `let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]` yozing va `for` sikli bilan har birini konsolga chiqaring — frontend menuni
+src/2-Modull/PmLesson4.jsx	1850	ALMASH	Havola tegi ichida	Link tegi ichida
+src/2-Modull/PmLesson5.jsx	155	ALMASH	bufet menyusiz ham chipta sotiladi	bufet menusiz ham chipta sotiladi
+src/2-Modull/PmLesson5.jsx	155	ALMASH	Bufet menyusi	Bufet menusi
+src/2-Modull/PmLesson5.jsx	353	ALMASH	Bufet menyusi oson, lekin busiz ham sayt ish beradi — 	Bufet menusi oson, lekin busiz ham sayt ish beradi — 
+src/2-Modull/PmLesson5.jsx	1039	ALMASH	Osonligi yetarli emas: bufet menyusi oson, lekin busiz ham sayt ish beradi.	Osonligi yetarli emas: bufet menusi oson, lekin busiz ham sayt ish beradi.
+src/2-Modull/PmLesson5.jsx	1418	ALMASH	Bufet menyusi	Bufet menusi
+src/2-Modull/PmLesson5.jsx	1480	ALMASH	// Kinoteatr sayti — imkoniyatlar va ularning darajasi. // Ikkala massivda ham bir xil o'rindagi element bir imkoniyatga tegishli. const nomlar = ["Seanslar va 	// Kinoteatr sayti — imkoniyatlar va ularning darajasi. // Ikkala massivda ham bir xil o'rindagi element bir imkoniyatga tegishli. const nomlar = ["Seanslar va 
+src/2-Modull/PmLesson5.jsx	1510	ALMASH	(function(){try{var r=String(ochilishRoyxati(nomlar,darajalar));var A=[\"Seanslar va narxlar\",\"Ish vaqti va manzil\",\"Chipta band qilish tugmasi\"],B=[\"Cheg	(function(){try{var r=String(ochilishRoyxati(nomlar,darajalar));var A=[\"Seanslar va narxlar\",\"Ish vaqti va manzil\",\"Chipta band qilish tugmasi\"],B=[\"Cheg
+src/2-Modull/PmLesson6.homework.jsx	96	ALMASH	Masalan: bugungi menyu va narxlarni telefon ekranida ko'rsatadi	Masalan: bugungi menu va narxlarni telefon ekranida ko'rsatadi
+src/2-Modull/PmLesson6.homework.jsx	102	ALMASH	Masalan: menyu rasmlarini juma kunigacha yuborishni so'rayman	Masalan: menu rasmlarini juma kunigacha yuborishni so'rayman
+src/2-Modull/PmLesson6.jsx	711	ALMASH	Menyu	Menu
+src/2-Modull/PmLesson6.jsx	719	QOLDA:id	menyu	menu
+src/2-Modull/PmLesson6.jsx	719	ALMASH	menyu	menu
+src/2-Modull/PmLesson6.jsx	819	ALMASH	Menyu	Menu
+src/2-Modull/PmLesson6.jsx	946	ALMASH	Narx va bugungi menyuni bilish uchun har safar do\'konga kirish kerak	Narx va bugungi menuni bilish uchun har safar do\'konga kirish kerak
+src/2-Modull/PmLesson6.jsx	948	ALMASH	Sayt bugungi menyuni va narxlarni telefon ekranida ko\'rsatadi	Sayt bugungi menuni va narxlarni telefon ekranida ko\'rsatadi
+src/2-Modull/PmLesson6.jsx	952	ALMASH	Menyu rasmlarini juma kunigacha yuborishingizni so\'rayman	Menu rasmlarini juma kunigacha yuborishingizni so\'rayman
+src/2-Modull/PmLesson6.jsx	1080	ALMASH	menyu rasmlari kerak	menu rasmlari kerak
+src/2-Modull/PracticeLesson1.jsx	959	KOD:taqqos	menyu	menu
+src/2-Modull/PracticeLesson1.jsx	960	ALMASH	Menyu	Menu
+src/2-Modull/PracticeLesson1.jsx	964	KOD:taqqos	menyu	menu
+src/2-Modull/PracticeLesson1.jsx	1010	ALMASH	Saytimga tungi rejim tugmasini qo'sh: menyu yonida «Tungi rejim» tugmasi bo'lsin.\nBosilsa sahifa qorong'i bo'lsin (to'q fon, och matn), yana bosilsa yorug'ga q	Saytimga tungi rejim tugmasini qo'sh: menu yonida «Tungi rejim» tugmasi bo'lsin.\nBosilsa sahifa qorong'i bo'lsin (to'q fon, och matn), yana bosilsa yorug'ga qa
+src/2-Modull/PracticeLesson1.jsx	1088	QOLDA:id	menyu	menu
+src/2-Modull/PracticeLesson1.jsx	1088	ALMASH	Ochiladigan menyu	Ochiladigan menu
+src/2-Modull/PracticeLesson1.jsx	1089	ALMASH	Saytimga ochiladigan menyu qo'sh: tepada «Menyu» tugmasi bo'lsin; bosilsa sahifalar ro'yxati ochilsin, yana bosilsa yopilsin, tugma yozuvi «Yopish» ga almashsin	Saytimga ochiladigan menu qo'sh: tepada «Menu» tugmasi bo'lsin; bosilsa sahifalar ro'yxati ochilsin, yana bosilsa yopilsin, tugma yozuvi «Yopish» ga almashsin.
+src/2-Modull/PracticeLesson1.jsx	1238	ALMASH	Havolani yuboring	Linkni yuboring
+src/2-Modull/PracticeLesson2.jsx	1465	ALMASH	— papkani tashlang va havolani platformadagi vazifa-savoliga yuboring	— papkani tashlang va linkni platformadagi vazifa-savoliga yuboring
+src/2-Modull/PracticeLesson4.jsx	996	ALMASH	 qo'shasiz, xatoni topib tuzatasiz va do'konni internetga chiqarasiz — dars oxirida havolani do'stingizga yuborasiz.	 qo'shasiz, xatoni topib tuzatasiz va do'konni internetga chiqarasiz — dars oxirida linkni do'stingizga yuborasiz.
+src/2-Modull/PracticeLesson4.jsx	1211	ALMASH	Havola chiqadi (oxiri .netlify.app) — nusxalang va shu yerga qo'ying.	Link chiqadi (oxiri .netlify.app) — nusxalang va shu yerga qo'ying.
+src/2-Modull/PracticeLesson4.jsx	1212	ALMASH	Havolani telefoningizda oching: savat va jami ishlayaptimi?	Linkni telefoningizda oching: savat va jami ishlayaptimi?
+src/2-Modull/PracticeLesson4.jsx	1229	ALMASH	 — havola tayyor. Havolani shu yerga qo'ying: do'konni ulashadigan karta chiqadi.	 — link tayyor. Linkni shu yerga qo'ying: do'konni ulashadigan karta chiqadi.
+src/2-Modull/PracticeLesson4.jsx	1237	ALMASH	Netlify bergan havola	Netlify bergan link
+src/2-Modull/PracticeLesson4.jsx	1238	ALMASH	Netlify havolasi odatda .netlify.app bilan tugaydi — tekshirib ko'ring.	Netlify linki odatda .netlify.app bilan tugaydi — tekshirib ko'ring.
+src/2-Modull/PracticeLesson4.jsx	1239	ALMASH	Havolani qo\'ying	Linkni qo\'ying
+src/2-Modull/PracticeLesson4.jsx	1246	ALMASH	Havolani nusxalash	Linkni nusxalash
+src/2-Modull/PracticeLesson4.jsx	1319	ALMASH	Deploy — papkani Netlify'ga tashlab, havolani ulashish	Deploy — papkani Netlify'ga tashlab, linkni ulashish
+src/2-Modull/PracticeLesson4.jsx	1320	ALMASH	Havolani yuboring	Linkni yuboring
+src/2-Modull/PracticeLesson4.jsx	1586	ALMASH	Sayt havolasini	Sayt linkini
+src/2-Modull/PracticeLesson4.jsx	1586	ALMASH	butun kodni emas — bitta havola	butun kodni emas — bitta link
+src/2-Modull/PracticeLesson4.jsx	1777	ALMASH	Sayt havolasini	Sayt linkini
+src/3-Modull/PmLesson10.homework.jsx	144	ALMASH	Menyudagi barcha bandlar	Menudagi barcha bandlar
+src/3-Modull/PmLesson10.homework.jsx	149	ALMASH	Adashdingiz — menyu va bezak ishni isbotlamaydi: ish chindan bajariladigan joy bosiladi.	Adashdingiz — menu va bezak ishni isbotlamaydi: ish chindan bajariladigan joy bosiladi.
+src/3-Modull/PmLesson10.jsx	847	ALMASH	«Bu — bosh sahifa, tepasida menyu bor.»	«Bu — bosh sahifa, tepasida menu bor.»
+src/3-Modull/PmLesson10.jsx	1309	ALMASH	menyu	menu
+src/3-Modull/PmLesson10.jsx	1309	ALMASH	menyu	menu
+src/3-Modull/PmLesson10.jsx	1309	ALMASH	menyu	menu
+src/3-Modull/PmLesson10.jsx	1309	ALMASH	Menyu: Bosh sahifa · Aloqa	Menu: Bosh sahifa · Aloqa
+src/3-Modull/PmLesson10.jsx	1344	ALMASH	Eng ko'p bosiladigan noto'g'ri joy — menyu. Aynan shu yerda so'rang: menyuni ochsak, qarab turgan odam nimani bilib oladi? Sinf ish-tartibi: kadrlarni juftlikda	Eng ko'p bosiladigan noto'g'ri joy — menu. Aynan shu yerda so'rang: menuni ochsak, qarab turgan odam nimani bilib oladi? Sinf ish-tartibi: kadrlarni juftlikda o
+src/3-Modull/PmLesson10.jsx	1669	ALMASH	Ko'pincha birinchi menyu ko'rinadi — unda ish bajarilmaydi.	Ko'pincha birinchi menu ko'rinadi — unda ish bajarilmaydi.
+src/3-Modull/PmLesson10.jsx	1834	ALMASH	Ikkita: menyu va tugma	Ikkita: menu va tugma
+src/3-Modull/PmLesson10.jsx	1835	ALMASH	Menyudagi birinchi bo'lim	Menudagi birinchi bo'lim
+src/3-Modull/PmLesson8.jsx	2933	KOD:css	; } /* Yordamchi havolalar: quti EMAS — kataklar ostidagi ixcham qator. Ular yordamchi, asosiy harakat emas (F-0819-57). */ .wsxrow { display: flex; gap: 18px; 	; } /* Yordamchi linklar: quti EMAS — kataklar ostidagi ixcham qator. Ular yordamchi, asosiy harakat emas (F-0819-57). */ .wsxrow { display: flex; gap: 18px; fl
+src/3-Modull/PmLesson9.jsx	770	QOLDA:ovqat	Menyu bosilsa, bugungi taomlar chiqadi	Menu bosilsa, bugungi taomlar chiqadi
+src/3-Modull/PmLesson9.jsx	780	ALMASH	«Menyuni ko'rish» tugmasi — uchta shart	«Menuni ko'rish» tugmasi — uchta shart
+src/3-Modull/ReactBuildSiteLesson.jsx	1325	ALMASH	Mana tayyor sayt — «Yetkaz», ovqat yetkazish sayti. Unda ko'p narsa bor: tepa menyu, banner, taomlar. AI'ga «shuni qur» desangiz, u qayerdan boshlashni bilmaydi	Mana tayyor sayt — «Yetkaz», ovqat yetkazish sayti. Unda ko'p narsa bor: tepa menu, banner, taomlar. AI'ga «shuni qur» desangiz, u qayerdan boshlashni bilmaydi.
+src/3-Modull/ReactBuildSiteLesson.jsx	1340	ALMASH	Mana tayyor sayt — "Yetkaz" ovqat yetkazib berish. Ko'p narsa bor: tepa menyu, banner, taomlar... AI'dan "shuni qur" desangiz — u qayerdan boshlashni bilmaydi. 	Mana tayyor sayt — "Yetkaz" ovqat yetkazib berish. Ko'p narsa bor: tepa menu, banner, taomlar... AI'dan "shuni qur" desangiz — u qayerdan boshlashni bilmaydi. Y
+src/3-Modull/ReactBuildSiteLesson.jsx	1542	ALMASH	 grid, Footer — har biri alohida komponent (src/components).\nHar bo'lim: Navbar — logo va menyu; Hero — sarlavha va bitta tugma; grid — har element 	 grid, Footer — har biri alohida komponent (src/components).\nHar bo'lim: Navbar — logo va menu; Hero — sarlavha va bitta tugma; grid — har element 
+src/3-Modull/ReactBuildSiteLesson.jsx	1600	ALMASH	Pastki qism — aloqa, havolalar.	Pastki qism — aloqa, linklar.
+src/3-Modull/ReactIntroLesson.jsx	1097	ALMASH	Yuqori menyu	Yuqori menu
+src/3-Modull/ReactIntroLesson.jsx	1176	ALMASH	Komponent fayl turi emas — u kartochka, tugma, menyu kabi.	Komponent fayl turi emas — u kartochka, tugma, menu kabi.
+src/3-Modull/ReactIntroLesson.jsx	1603	ALMASH	Menyu	Menu
+src/3-Modull/ReactIntroLesson.jsx	1661	ALMASH	 yig'ing — menyu, qidiruv, 	 yig'ing — menu, qidiruv, 
+src/3-Modull/ReactIntroLesson.jsx	1707	ALMASH	<Navbar /> // yuqori menyu	<Navbar /> // yuqori menu
+src/3-Modull/ReactIntroLesson.jsx	1779	ALMASH	sahifaning ko'rinadigan qismi: menyu, kartochka, tugma	sahifaning ko'rinadigan qismi: menu, kartochka, tugma
+src/3-Modull/ReactIntroLesson.jsx	1782	ALMASH	menyu, qidiruv katagi, kartochka, tugma	menu, qidiruv katagi, kartochka, tugma
+src/3-Modull/ReactIntroLesson.jsx	2975	KOD:css	; animation: zone-pop 0.4s ease; } @keyframes zone-pop { 0% { transform: scale(1); } 35% { transform: scale(1.04); } 100% { transform: scale(1); } } /* ichma-ic	; animation: zone-pop 0.4s ease; } @keyframes zone-pop { 0% { transform: scale(1); } 35% { transform: scale(1.04); } 100% { transform: scale(1); } } /* ichma-ic
+src/3-Modull/ReactProjectDayLesson.jsx	785	ALMASH	AvtoIjara saytimga ijaralarni qo'sh (kodim pastda):\n1. Mashina sahifasidagi «Ijaraga olish» bosilganda ijara bookings ro'yxatiga qo'shilsin: setBookings([...bo	AvtoIjara saytimga ijaralarni qo'sh (kodim pastda):\n1. Mashina sahifasidagi «Ijaraga olish» bosilganda ijara bookings ro'yxatiga qo'shilsin: setBookings([...bo
+src/3-Modull/ReactRouterPracticeLesson.jsx	247	ALMASH	Ikkalasi ham havola — farqi tezlikda	Ikkalasi ham link — farqi tezlikda
+src/3-Modull/ReactRouterPracticeLesson.jsx	261	ALMASH	Hech kim havolani bosmaganda warpni 	Hech kim linkni bosmaganda warpni 
+src/3-Modull/ReactRouterPracticeLesson.jsx	753	ALMASH	. Lekin haqiqiy ilovada "Bosh", "O'yin", "Qo'shish" sahifalari bor. Menyudagi havolani 	. Lekin haqiqiy ilovada "Bosh", "O'yin", "Qo'shish" sahifalari bor. Menudagi linkni 
+src/3-Modull/ReactRouterPracticeLesson.jsx	982	ALMASH	Tepaga menyu: `<Link to=\"/\">` va `<Link to=\"/add\">` — `<a>` emas.	Tepaga menu: `<Link to=\"/\">` va `<Link to=\"/add\">` — `<a>` emas.
+src/3-Modull/ReactRouterPracticeLesson.jsx	983	ALMASH	Saqlang — menyuni bosing: manzil o'zgaradimi, ekran oqarmaydimi?	Saqlang — menuni bosing: manzil o'zgaradimi, ekran oqarmaydimi?
+src/3-Modull/ReactRouterPracticeLesson.jsx	1013	ALMASH	). Menyu va kartochkalarni bosing: kod oynasida qaysi qator mos kelganini ko'rasiz. Keyin VS Code'da o'zingiz yozasiz.	). Menu va kartochkalarni bosing: kod oynasida qaysi qator mos kelganini ko'rasiz. Keyin VS Code'da o'zingiz yozasiz.
+src/3-Modull/ReactRouterPracticeLesson.jsx	1072	ALMASH	'ni beradi. Formadan keyin esa havola bosilmaydi — kodning o'zi 	'ni beradi. Formadan keyin esa link bosilmaydi — kodning o'zi 
+src/3-Modull/ReactRouterPracticeLesson.jsx	1116	ALMASH	AI menyuni bir zumda yozib berdi — lekin menyudagi havolalardan birini bosganda ilova 	AI menuni bir zumda yozib berdi — lekin menudagi linklardan birini bosganda ilova 
+src/3-Modull/ReactRouterPracticeLesson.jsx	1120	ALMASH	Menyu havolalarini yozdim:	Menu linklarini yozdim:
+src/3-Modull/ReactRouterPracticeLesson.jsx	1353	ALMASH	Faqat menyuni chizadi	Faqat menuni chizadi
+src/3-Modull/ReactRouterPracticeLesson.jsx	1355	ALMASH	Havolaning rang kodini	Linkning rang kodini
+src/3-Modull/ReactRouterPracticeLesson.jsx	1356	ALMASH	<a> — Router havolasi	<a> — Router linki
+src/3-Modull/ReactRouterPracticeLesson.jsx	1985	ALMASH	— hamma havola <Link>mi, /game/:id parametri bormi — o'zingiz nazorat qiling	— hamma link <Link>mi, /game/:id parametri bormi — o'zingiz nazorat qiling
+src/3-Modull/ReactRouterPracticeLesson.jsx	2341	KOD:css	; font-weight: 600; } /* Brauzer URL paneli + navigatsiya menyusi */ .url-bar { display: flex; align-items: center; gap: 6px; background: #fff; border: 1px soli	; font-weight: 600; } /* Brauzer URL paneli + navigatsiya menusi */ .url-bar { display: flex; align-items: center; gap: 6px; background: #fff; border: 1px solid
+src/4a-Modull/NestArchAliveLesson.jsx	865	ALMASH	menyu	menu
+src/4a-Modull/NestArchAliveLesson.jsx	972	ALMASH	Swagger — menyu (API eshiklari ro'yxati), sozlama joyi emas.	Swagger — menu (API eshiklari ro'yxati), sozlama joyi emas.
+src/4a-Modull/NestArchAliveLesson.jsx	992	ALMASH	menyusi	menusi
+src/4a-Modull/NestArchAliveLesson.jsx	999	ALMASH	 ni oching — aynan shu menyuni ko'rasiz.	 ni oching — aynan shu menuni ko'rasiz.
+src/4a-Modull/NestArchAliveLesson.jsx	1850	ALMASH	Menyu — eshiklar ro'yxati	Menu — eshiklar ro'yxati
+src/4a-Modull/NestArchAliveLesson.jsx	2437	ALMASH	Endi navbat sizda — bu topshiriqni o'z kompyuteringizda, VS Code'da bajarasiz. Loyihani clone qiling, serverni yoqing va Swagger menyusida bitta eshikni sinab k	Endi navbat sizda — bu topshiriqni o'z kompyuteringizda, VS Code'da bajarasiz. Loyihani clone qiling, serverni yoqing va Swagger menusida bitta eshikni sinab ko
+src/4a-Modull/NestArchAliveLesson.jsx	2555	ALMASH	Loyihani clone qilib ishga tushiring, Swagger menyusida bitta eshikni sinang va bitta so'rovning yo'lini ekranga qaramasdan, yoddan aytib bering: mijoz qaysi be	Loyihani clone qilib ishga tushiring, Swagger menusida bitta eshikni sinang va bitta so'rovning yo'lini ekranga qaramasdan, yoddan aytib bering: mijoz qaysi bek
+src/4a-Modull/NestArchAliveLesson.jsx	2559	ALMASH	Brauzerda `localhost:3000/api/v1` — Swagger menyusini oching	Brauzerda `localhost:3000/api/v1` — Swagger menusini oching
+src/4a-Modull/NestArchAliveLesson.jsx	2615	QOLDA:ovqat	Swagger — restoran menyusi: barcha eshiklar ro'yxati	Swagger — restoran menusi: barcha eshiklar ro'yxati
+src/4a-Modull/NestArchAliveLesson.jsx	3433	KOD:css	; word-break: break-word; } /* SWAGGER — menyu */ .swg { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 8px 22px -6px rgba(	; word-break: break-word; } /* SWAGGER — menu */ .swg { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 8px 22px -6px rgba(
+src/4c-Modull/FullPipelineProjectLesson.jsx	1832	ALMASH	— TABLONI README.md ga qo'yib, mentorga repo havolasini yuboring	— TABLONI README.md ga qo'yib, mentorga repo linkini yuboring
+src/4c-Modull/PmLesson17.homework.jsx	218	ALMASH	Masalan: e'lonni ulashish havolasi — bossa, havola nusxalanadi	Masalan: e'lonni ulashish linki — bossa, link nusxalanadi
+src/4c-Modull/PmLesson17.jsx	769	ALMASH	E'lonni ulashish havolasi — bossa, havola nusxalanadi	E'lonni ulashish linki — bossa, link nusxalanadi
+src/4c-Modull/PmLesson18.jsx	724	ALMASH	Saytingizni Netlify'ga chiqarib qo'ygansiz — havolasi 	Saytingizni Netlify'ga chiqarib qo'ygansiz — linki 
+src/4c-Modull/PmLesson18.jsx	1534	ALMASH	'; // ← o'z saytingiz havolasi async function olchagich() { const boshlandi = Date.now(); // hozirgi vaqt, millisekundda const javob = await fetch(MANZIL); // s	'; // ← o'z saytingiz linki async function olchagich() { const boshlandi = Date.now(); // hozirgi vaqt, millisekundda const javob = await fetch(MANZIL); // sayt
+src/4c-Modull/PmLesson18.jsx	2002	ALMASH	Havolalarni saqlab qo'yadi	Linklarni saqlab qo'yadi
+src/4c-Modull/PmLesson18.jsx	2012	ALMASH	Havola va ochilgan soat	Link va ochilgan soat
+src/5-Modull/BotAiAgentLesson.jsx	848	QOLDA:ovqat	Taom menyuda bormi — tekshiradi, narxini qaytaradi.	Taom menuda bormi — tekshiradi, narxini qaytaradi.
+src/5-Modull/BotAiAgentLesson.jsx	848	KOD:css	async function checkOrder(taom, soni) {\n const narx = narxi(taom); // menyudan\n return { bor: narx > 0, jami: narx * soni };\n}	async function checkOrder(taom, soni) {\n const narx = narxi(taom); // menudan\n return { bor: narx > 0, jami: narx * soni };\n}
+src/5-Modull/BotAiAgentLesson.jsx	1614	ALMASH	Salom va menyu yuborish	Salom va menu yuborish
+src/5-Modull/BotAiAgentLesson.jsx	2372	QOLDA:ovqat	Shaurma menyuda yo'q — buyurtma yozilmadi. Pitsa tanlaysizmi?	Shaurma menuda yo'q — buyurtma yozilmadi. Pitsa tanlaysizmi?
+src/5-Modull/BotAiBrainLesson.jsx	362	ALMASH	Past qiymatda ham javob menyu bilan tekshiriladi.	Past qiymatda ham javob menu bilan tekshiriladi.
+src/5-Modull/BotAiBrainLesson.jsx	362	ALMASH	Menyuni bir xil aytish uchun qaysi temperature tanlanadi?	Menuni bir xil aytish uchun qaysi temperature tanlanadi?
+src/5-Modull/BotAiBrainLesson.jsx	369	QOLDA:ovqat	«Ananasli pitsa» kabi menyuda yo'q narsani ham aytishi mumkin; bu hallutsinatsiya.	«Ananasli pitsa» kabi menuda yo'q narsani ham aytishi mumkin; bu hallutsinatsiya.
+src/5-Modull/BotAiBrainLesson.jsx	370	QOLDA:ovqat	Narx va taom nomi bazadagi menyu bilan solishtiriladi.	Narx va taom nomi bazadagi menu bilan solishtiriladi.
+src/5-Modull/BotAiBrainLesson.jsx	378	ALMASH	Javob menyu bilan tekshiriladi, keyin mijozga ketadi va tarixga yoziladi.	Javob menu bilan tekshiriladi, keyin mijozga ketadi va tarixga yoziladi.
+src/5-Modull/BotAiBrainLesson.jsx	811	QOLDA:ovqat	AI modeli juda ko'p matn asosida o'qitilgan, shuning uchun turli mavzularda gapira oladi. Lekin AvtoPizza menyusini u bilmaydi — buni unga aytish kerak.	AI modeli juda ko'p matn asosida o'qitilgan, shuning uchun turli mavzularda gapira oladi. Lekin AvtoPizza menusini u bilmaydi — buni unga aytish kerak.
+src/5-Modull/BotAiBrainLesson.jsx	954	QOLDA:ovqat	1) Xush kelibsiz! AvtoPizza'da bugun qaysi pitsani tanlaysiz? 2) Assalomu alaykum! Menyuni ko'rish uchun «Menyu» tugmasini bosing. 3) Salom! Buyurtma berishga y	1) Xush kelibsiz! AvtoPizza'da bugun qaysi pitsani tanlaysiz? 2) Assalomu alaykum! Menuni ko'rish uchun «Menu» tugmasini bosing. 3) Salom! Buyurtma berishga yor
+src/5-Modull/BotAiBrainLesson.jsx	993	ALMASH	Faqat menyu va buyurtma haqida gaplash	Faqat menu va buyurtma haqida gaplash
+src/5-Modull/BotAiBrainLesson.jsx	1222	ALMASH	Menyuda Pepperoni va To'rt pishloq — ikkalasi ham mazali!	Menuda Pepperoni va To'rt pishloq — ikkalasi ham mazali!
+src/5-Modull/BotAiBrainLesson.jsx	1257	ALMASH	Menyuni har safar bir xil va aniq aytish kerak. Qaysi temperature mos?	Menuni har safar bir xil va aniq aytish kerak. Qaysi temperature mos?
+src/5-Modull/BotAiBrainLesson.jsx	1263	ALMASH	Past temperature'da javob deyarli bir xil chiqadi — menyu uchun shu mos.	Past temperature'da javob deyarli bir xil chiqadi — menu uchun shu mos.
+src/5-Modull/BotAiBrainLesson.jsx	1339	ALMASH	AI menyu haqida uchta gap aytdi. Har birini haqiqiy menyu bilan solishtiring — buni inglizcha fact-checking deyishadi.	AI menu haqida uchta gap aytdi. Har birini haqiqiy menu bilan solishtiring — buni inglizcha fact-checking deyishadi.
+src/5-Modull/BotAiBrainLesson.jsx	1369	ALMASH	menyu · PostgreSQL	menu · PostgreSQL
+src/5-Modull/BotAiBrainLesson.jsx	1380	QOLDA:ovqat	«Ananasli pitsa» menyuda yo'q — AI to'qib chiqardi. Bu hallutsinatsiya: ishonch bilan aytilgan yolg'on.	«Ananasli pitsa» menuda yo'q — AI to'qib chiqardi. Bu hallutsinatsiya: ishonch bilan aytilgan yolg'on.
+src/5-Modull/BotAiBrainLesson.jsx	1381	QOLDA:ovqat	«Ananasli pitsa» menyuda yo'q — AI uni to'qib chiqardi.	«Ananasli pitsa» menuda yo'q — AI uni to'qib chiqardi.
+src/5-Modull/BotAiBrainLesson.jsx	1390	ALMASH	Salom! Menyudan Pepperoni'ni tavsiya qilaman — go'shtli va to'yimli. Yoki klassik Margarita?	Salom! Menudan Pepperoni'ni tavsiya qilaman — go'shtli va to'yimli. Yoki klassik Margarita?
+src/5-Modull/BotAiBrainLesson.jsx	1405	QOLDA:ovqat	«Sen AvtoPizza do'konining yordamchisisan. Qisqa, samimiy, aniq gapir. Faqat menyu va buyurtma haqida gaplash.»	«Sen AvtoPizza do'konining yordamchisisan. Qisqa, samimiy, aniq gapir. Faqat menu va buyurtma haqida gaplash.»
+src/5-Modull/BotAiBrainLesson.jsx	1406	ALMASH	Menyu (bazadan)	Menu (bazadan)
+src/5-Modull/BotAiBrainLesson.jsx	1432	ALMASH	«Bittasini» Margarita ekanini AI suhbat tarixidan bildi. Narx esa AI'dan emas, bazadagi menyudan olindi.	«Bittasini» Margarita ekanini AI suhbat tarixidan bildi. Narx esa AI'dan emas, bazadagi menudan olindi.
+src/5-Modull/BotAiBrainLesson.jsx	1442	ALMASH	// /start va «Menyu» — oddiy handlerlar. Qolgan erkin savol — AI'ga:	// /start va «Menu» — oddiy handlerlar. Qolgan erkin savol — AI'ga:
+src/5-Modull/BotAiBrainLesson.jsx	1446	ALMASH	// kim · qanday · nima haqida + menyu	// kim · qanday · nima haqida + menu
+src/5-Modull/BotAiBrainLesson.jsx	1487	ALMASH	Menyu bilan solishtirib, tekshirib ko'rish	Menu bilan solishtirib, tekshirib ko'rish
+src/5-Modull/BotAiBrainLesson.jsx	1488	ALMASH	AI menyuda yo'q narsani ham aytishi mumkin — narx va nomni menyu bilan solishtiring.	AI menuda yo'q narsani ham aytishi mumkin — narx va nomni menu bilan solishtiring.
+src/5-Modull/BotAiBrainLesson.jsx	1490	QOLDA:ovqat	Tekshirmasdan yuborish xavfli: mijoz menyuda yo'q pitsani buyurtma qiladi.	Tekshirmasdan yuborish xavfli: mijoz menuda yo'q pitsani buyurtma qiladi.
+src/5-Modull/BotAiBrainLesson.jsx	1491	ALMASH	Muammo mijozning savolida emas, AI javobida. Javob menyu bilan tekshiriladi.	Muammo mijozning savolida emas, AI javobida. Javob menu bilan tekshiriladi.
+src/5-Modull/BotAiBrainLesson.jsx	1493	QOLDA:ovqat	AI javobidagi narx va taomni menyu bilan solishtiring.	AI javobidagi narx va taomni menu bilan solishtiring.
+src/5-Modull/BotAiBrainLesson.jsx	1502	ALMASH	Javob menyu bilan tekshiriladi	Javob menu bilan tekshiriladi
+src/5-Modull/BotAiBrainLesson.jsx	1539	ALMASH	Menyu uchun to'g'ri temperature tanladingiz	Menu uchun to'g'ri temperature tanladingiz
+src/5-Modull/BotAiBrainLesson.jsx	1540	QOLDA:ovqat	To'qib chiqarilgan pitsani menyu bilan tutdingiz	To'qib chiqarilgan pitsani menu bilan tutdingiz
+src/5-Modull/BotAiBrainLesson.jsx	1646	ALMASH	Temperature baland (1.5): menyu uchun nima yomon?	Temperature baland (1.5): menu uchun nima yomon?
+src/5-Modull/BotAiBrainLesson.jsx	1647	ALMASH	Menyuni har safar bir xil aytish uchun qaysi temperature?	Menuni har safar bir xil aytish uchun qaysi temperature?
+src/5-Modull/BotAiBrainLesson.jsx	1648	QOLDA:ovqat	AI menyuda yo'q «ananasli pitsa»ni aytdi. Bu nima?	AI menuda yo'q «ananasli pitsa»ni aytdi. Bu nima?
+src/5-Modull/BotAiBrainLesson.jsx	2366	ALMASH	src/api/ai/system-prompt.ts yarat: SYSTEM_PROMPT = «{sen kimsan, qanday gapirasan, faqat nima haqida}» + menyu/ma'lumotlaring.	src/api/ai/system-prompt.ts yarat: SYSTEM_PROMPT = «{sen kimsan, qanday gapirasan, faqat nima haqida}» + menu/ma'lumotlaring.
+src/5-Modull/BotAiBrainLesson.jsx	2368	ALMASH	bot.on('text') da holat tayyor bo'lsa — AI javobi; null bo'lsa eski «Bu buyruqni bilmayman». Ism so'rash va menyu o'zgarmasin.	bot.on('text') da holat tayyor bo'lsa — AI javobi; null bo'lsa eski «Bu buyruqni bilmayman». Ism so'rash va menu o'zgarmasin.
+src/5-Modull/BotAiBrainLesson.jsx	2371	ALMASH	mavzuga oid savol → javob system prompt'ga mos; mavzudan tashqari («Ertaga ob-havo?») → chegarada qoladi; narx so'rang → o'z menyungiz bilan solishtiring (mos k	mavzuga oid savol → javob system prompt'ga mos; mavzudan tashqari («Ertaga ob-havo?») → chegarada qoladi; narx so'rang → o'z menungiz bilan solishtiring (mos ke
+src/5-Modull/BotAiBrainLesson.jsx	2391	ALMASH	Menyu, narx kabi aniq ma'lumot uchun	Menu, narx kabi aniq ma'lumot uchun
+src/5-Modull/BotAiBrainLesson.jsx	2393	QOLDA:ovqat	Masalan, menyuda yo'q «ananasli pitsa»	Masalan, menuda yo'q «ananasli pitsa»
+src/5-Modull/BotAiBrainLesson.jsx	2394	ALMASH	Menyu bilan solishtiraman	Menu bilan solishtiraman
+src/5-Modull/BotAiBrainLesson.jsx	2394	ALMASH	Narx bazadagi menyudan olinadi	Narx bazadagi menudan olinadi
+src/5-Modull/BotAiBrainLesson.jsx	2435	ALMASH	AI hallutsinatsiya qilishi mumkin — narx va faktni menyu bilan solishtiring	AI hallutsinatsiya qilishi mumkin — narx va faktni menu bilan solishtiring
+src/5-Modull/BotAiProjectLesson.jsx	331	ALMASH	Markup.button.callback('🍕 Menyu', 'menu')	Markup.button.callback('🍕 Menu', 'menu')
+src/5-Modull/BotAiProjectLesson.jsx	694	ALMASH	salom va «Menyu» tugmasi	salom va «Menu» tugmasi
+src/5-Modull/BotAiProjectLesson.jsx	694	ALMASH	«Menyu» tugmasi	«Menu» tugmasi
+src/5-Modull/BotAiProjectLesson.jsx	719	QOLDA:ovqat	AvtoPizza boti: /start → salom va «Menyu» tugmasi; «Menyu» → 3 ta pitsa tugmasi; pitsa tanlandi → «Buyurtma qabul qilindi». Tugmalar inline.	AvtoPizza boti: /start → salom va «Menu» tugmasi; «Menu» → 3 ta pitsa tugmasi; pitsa tanlandi → «Buyurtma qabul qilindi». Tugmalar inline.
+src/5-Modull/BotAiProjectLesson.jsx	756	ALMASH	🍕 Menyu	🍕 Menu
+src/5-Modull/BotAiProjectLesson.jsx	757	ALMASH	«🍕 Menyu» bosildi	«🍕 Menu» bosildi
+src/5-Modull/BotAiProjectLesson.jsx	757	ALMASH	нажата «🍕 Menyu»	нажата «🍕 Menu»
+src/5-Modull/BotAiProjectLesson.jsx	877	ALMASH	'🍕 Menyu'	'🍕 Menu'
+src/5-Modull/BotAiProjectLesson.jsx	1005	ALMASH	🍕 Menyu	🍕 Menu
+src/5-Modull/BotAiProjectLesson.jsx	1006	ALMASH	«🍕 Menyu» bosildi	«🍕 Menu» bosildi
+src/5-Modull/BotAiProjectLesson.jsx	1006	ALMASH	нажата «🍕 Menyu»	нажата «🍕 Menu»
+src/5-Modull/BotAiProjectLesson.jsx	1028	ALMASH	«🍕 Menyu» bosildi	«🍕 Menu» bosildi
+src/5-Modull/BotAiProjectLesson.jsx	1028	ALMASH	нажата «🍕 Menyu»	нажата «🍕 Menu»
+src/5-Modull/BotApiButtonsLesson.jsx	930	ALMASH	Dars oxirida bu menyuning har qismini tushuntirib bera olasiz	Dars oxirida bu menuning har qismini tushuntirib bera olasiz
+src/5-Modull/BotApiButtonsLesson.jsx	948	ALMASH	 modelini ko'rdingiz. Bugun uni Telegraf kodida yozasiz. Chapdagi menyuda uch xil hodisa bor: buyruq, inline tugma va reply klaviatura — har biriga o'z handleri	 modelini ko'rdingiz. Bugun uni Telegraf kodida yozasiz. Chapdagi menuda uch xil hodisa bor: buyruq, inline tugma va reply klaviatura — har biriga o'z handleri 
+src/5-Modull/BotApiButtonsLesson.jsx	951	ALMASH	↩ Menyuni ko'rish	↩ Menuni ko'rish
+src/5-Modull/BotApiButtonsLesson.jsx	1163	ALMASH	Menyuni tanlang:	Menuni tanlang:
+src/5-Modull/BotApiButtonsLesson.jsx	1221	ALMASH	Inline tugma — shu xabarga tegishli tanlov. Reply klaviatura — doim kerak tugmalar: Menyu, Savat, Yordam.	Inline tugma — shu xabarga tegishli tanlov. Reply klaviatura — doim kerak tugmalar: Menu, Savat, Yordam.
+src/5-Modull/BotApiButtonsLesson.jsx	1252	ALMASH	Menyu. Tanlang:	Menu. Tanlang:
+src/5-Modull/BotApiButtonsLesson.jsx	1367	ALMASH	bot.start(...) — tugma /start javobidagi menyuda turgani uchun	bot.start(...) — tugma /start javobidagi menuda turgani uchun
+src/5-Modull/BotApiButtonsLesson.jsx	1460	ALMASH	Tushunmadim. Menyu uchun /menu ni bosing.	Tushunmadim. Menu uchun /menu ni bosing.
+src/5-Modull/BotApiButtonsLesson.jsx	1471	ALMASH	Salom! Menyu uchun /menu ni bosing.	Salom! Menu uchun /menu ni bosing.
+src/5-Modull/BotApiButtonsLesson.jsx	1479	ALMASH	'Tushunmadim. Menyu uchun /menu ni bosing.'	'Tushunmadim. Menu uchun /menu ni bosing.'
+src/5-Modull/BotApiButtonsLesson.jsx	1495	ALMASH	Suhbatni boshlaydi: salom va menyu yuboradi	Suhbatni boshlaydi: salom va menu yuboradi
+src/5-Modull/BotApiButtonsLesson.jsx	1497	ALMASH	/start botni o'chirmaydi — u suhbatni boshlaydi: bot salom va menyu yuboradi.	/start botni o'chirmaydi — u suhbatni boshlaydi: bot salom va menu yuboradi.
+src/5-Modull/BotApiButtonsLesson.jsx	1505	ALMASH	Menyuni qayta ochadi	Menuni qayta ochadi
+src/5-Modull/BotApiButtonsLesson.jsx	1507	ALMASH	/menu hech kimni chiqarib yubormaydi — u menyuni ko'rsatadi.	/menu hech kimni chiqarib yubormaydi — u menuni ko'rsatadi.
+src/5-Modull/BotApiButtonsLesson.jsx	2389	ALMASH	menyu	menu
+src/5-Modull/BotApiButtonsLesson.jsx	2402	ALMASH	Salom! Bot ishlayapti. Menyu uchun /menu ni bosing.	Salom! Bot ishlayapti. Menu uchun /menu ni bosing.
+src/5-Modull/BotApiButtonsLesson.jsx	2402	ALMASH	Salom! Bot ishlayapti. Menyu uchun /menu ni bosing.	Salom! Bot ishlayapti. Menu uchun /menu ni bosing.
+src/5-Modull/BotFeedbackIterationLesson.jsx	955	ALMASH	avval tuzatilgan joy; keyin eski uch narsa: `/start`, menyu tugmalari, bitta buyurtma oxirigacha. Hammasi ishlasa — v2 tayyor.	avval tuzatilgan joy; keyin eski uch narsa: `/start`, menu tugmalari, bitta buyurtma oxirigacha. Hammasi ishlasa — v2 tayyor.
+src/5-Modull/BotFeedbackIterationLesson.jsx	1154	ALMASH	«/start bosdim, menyu chiqmadi» — qaysi tur?	«/start bosdim, menu chiqmadi» — qaysi tur?
+src/5-Modull/BotFeedbackIterationLesson.jsx	1806	ALMASH	/start, menyu, buyurtma — uchalasi	/start, menu, buyurtma — uchalasi
+src/5-Modull/BotFullProjectLesson.jsx	747	ALMASH	🍕 Menyu	🍕 Menu
+src/5-Modull/BotFullProjectLesson.jsx	748	ALMASH	«🍕 Menyu» bosildi	«🍕 Menu» bosildi
+src/5-Modull/BotFullProjectLesson.jsx	748	ALMASH	нажата «🍕 Menyu»	нажата «🍕 Menu»
+src/5-Modull/BotFullProjectLesson.jsx	954	ALMASH	🍕 Menyu	🍕 Menu
+src/5-Modull/BotIntroLesson.jsx	790	ALMASH	«Shu hodisa kelsa, shuni qil» deydigan kod qismi. Masalan: /start kelsa — salom va menyu yuborilsin. Botda odatda bir nechta handler bo'ladi.	«Shu hodisa kelsa, shuni qil» deydigan kod qismi. Masalan: /start kelsa — salom va menu yuborilsin. Botda odatda bir nechta handler bo'ladi.
+src/5-Modull/BotIntroLesson.jsx	824	ALMASH	Salom! Ha, buyurtma qabul qilyapmiz. Menyuni ko'rasizmi?	Salom! Ha, buyurtma qabul qilyapmiz. Menuni ko'rasizmi?
+src/5-Modull/BotIntroLesson.jsx	825	ALMASH	Menyu	Menu
+src/5-Modull/BotIntroLesson.jsx	1148	ALMASH	«Menyu» tugmasi	«Menu» tugmasi
+src/5-Modull/BotIntroLesson.jsx	1155	ALMASH	Salom va menyu yuboradi	Salom va menu yuboradi
+src/5-Modull/BotIntroLesson.jsx	1165	ALMASH	«Menyu» tugmasi	«Menu» tugmasi
+src/5-Modull/BotIntroLesson.jsx	1383	ALMASH	Salom! Buyurtma uchun «Menyu» ni bosing.	Salom! Buyurtma uchun «Menu» ni bosing.
+src/5-Modull/BotIntroLesson.jsx	1384	ALMASH	«Menyu» tugmasi	«Menu» tugmasi
+src/5-Modull/BotIntroLesson.jsx	1384	ALMASH	Menyu	Menu
+src/5-Modull/BotIntroLesson.jsx	1530	ALMASH	Menyu	Menu
+src/5-Modull/BotIntroLesson.jsx	1531	ALMASH	Menyu	Menu
+src/5-Modull/BotIntroLesson.jsx	1531	ALMASH	«Menyu» tugmasi	«Menu» tugmasi
+src/5-Modull/BotIntroLesson.jsx	1589	ALMASH	start — faqat /start buyrug'i uchun; bu yerda «Menyu» matni keladi.	start — faqat /start buyrug'i uchun; bu yerda «Menu» matni keladi.
+src/5-Modull/BotIntroLesson.jsx	2615	ALMASH	— har g'oya uchun kamida bitta «hodisa → javob» juftini yozing (masalan: /start → salom va menyu)	— har g'oya uchun kamida bitta «hodisa → javob» juftini yozing (masalan: /start → salom va menu)
+src/5-Modull/BotStatefulMemoryLesson.jsx	2410	ALMASH	Yana salom, Aziz! Menyu uchun /menu ni bosing.	Yana salom, Aziz! Menu uchun /menu ni bosing.
+src/5-Modull/PmLesson19.jsx	134	ALMASH	Bola katta notanish guruhga yuborilgan havola ertasiga nima berishini tanlaydi	Bola katta notanish guruhga yuborilgan link ertasiga nima berishini tanlaydi
+src/5-Modull/PmLesson19.jsx	1077	ALMASH	Bot havolasini 15 tanishingizga va 500 notanishga yubordingiz. Ertasiga botga ko'proq odam qaysi tomondan keladi?	Bot linkini 15 tanishingizga va 500 notanishga yubordingiz. Ertasiga botga ko'proq odam qaysi tomondan keladi?
+src/5-Modull/PmLesson19.jsx	1078	ALMASH	Bot havolasi 15 tanish va 500 notanishga yuborilsa, botga ko'proq odam qaysi tomondan keladi	Bot linki 15 tanish va 500 notanishga yuborilsa, botga ko'proq odam qaysi tomondan keladi
+src/5-Modull/PmLesson19.jsx	1079	ALMASH	O'n beshtasidan — ular havolani yonidagilarga ko'rsatadi	O'n beshtasidan — ular linkni yonidagilarga ko'rsatadi
+src/5-Modull/PmLesson19.jsx	1079	ALMASH	Besh yuztasidan — havolani ko'rgan odam ko'proq bo'ladi	Besh yuztasidan — linkni ko'rgan odam ko'proq bo'ladi
+src/5-Modull/PmLesson19.jsx	1079	ALMASH	Ikkalasidan teng — havola ikkalasiga ham yetib bordi	Ikkalasidan teng — link ikkalasiga ham yetib bordi
+src/5-Modull/PmLesson19.jsx	1081	ALMASH	Tanishlar havolani ochib, yonidagilarga ko'rsatadi; notanishlarda u odatda qolib ketadi.	Tanishlar linkni ochib, yonidagilarga ko'rsatadi; notanishlarda u odatda qolib ketadi.
+src/5-Modull/PmLesson19.jsx	1083	ALMASH	Havolani ko'rgan odam ko'p, lekin ular sizni tanimaydi — ko'pchiligi uni ochmaydi ham.	Linkni ko'rgan odam ko'p, lekin ular sizni tanimaydi — ko'pchiligi uni ochmaydi ham.
+src/5-Modull/PmLesson19.jsx	1084	ALMASH	Havola ikkalasiga ham yetdi. Farqi shunda: tanishlar uni yonidagilarga ko'rsatadi, notanishlar esa odatda ko'rsatmaydi.	Link ikkalasiga ham yetdi. Farqi shunda: tanishlar uni yonidagilarga ko'rsatadi, notanishlar esa odatda ko'rsatmaydi.
+src/5-Modull/PmLesson19.jsx	1925	ALMASH	Bot havolasi 900 notanish odamga yuborildi. Ertasiga nechta odam botni ishlatadi?	Bot linki 900 notanish odamga yuborildi. Ertasiga nechta odam botni ishlatadi?
+src/5-Modull/PmLesson19.jsx	1926	ALMASH	900 notanish odamga yuborilgan havoladan ertasiga nechta odam botni ishlatadi	900 notanish odamga yuborilgan linkdan ertasiga nechta odam botni ishlatadi
+src/5-Modull/PmLesson19.jsx	1927	ALMASH	Yigirmatadan ko'p — havolani ochadigan odam ko'p chiqadi	Yigirmatadan ko'p — linkni ochadigan odam ko'p chiqadi
+src/5-Modull/PmLesson19.jsx	1927	ALMASH	Hech kim — bunday havolani odamlar ochmaydi	Hech kim — bunday linkni odamlar ochmaydi
+src/5-Modull/PmLesson19.jsx	1932	ALMASH	Havola yetib bordi, ochganlar ham bo'ldi — gap ochgandan keyin nima bo'lishida.	Link yetib bordi, ochganlar ham bo'ldi — gap ochgandan keyin nima bo'lishida.
+src/5-Modull/PmLesson19.jsx	2673	ALMASH	. 1-darsda ochgan botingizga birinchi kodni yozasiz: /start buyrug'i va menyu tugmalari.	. 1-darsda ochgan botingizga birinchi kodni yozasiz: /start buyrug'i va menu tugmalari.
+src/6-Modull/ArchPatternsLesson.jsx	692	ALMASH	mijoz ko'radigan zal va menyu	mijoz ko'radigan zal va menu
+src/6-Modull/ArchPatternsLesson.jsx	701	ALMASH	Nest'dagi controller — `/menyu` so'rovini qabul qiladigan kod	Nest'dagi controller — `/menu` so'rovini qabul qiladigan kod
+src/6-Modull/ArchPatternsLesson.jsx	701	ALMASH	Контроллер в Nest — код, который принимает запрос `/menyu`	Контроллер в Nest — код, который принимает запрос `/menu`
+src/6-Modull/FullSystemProjectLesson.jsx	749	QOLDA:ovqat	Brauzerda AvtoPizza menyusi va «Buyurtma» tugmasi.	Brauzerda AvtoPizza menusi va «Buyurtma» tugmasi.
+src/6-Modull/FullSystemProjectLesson.jsx	750	ALMASH	Telefonda o'sha menyu, Expo Go bilan.	Telefonda o'sha menu, Expo Go bilan.
+src/6-Modull/MobileAppPracticeLesson.jsx	113	ALMASH	Menyu fetch bilan keladi	Menu fetch bilan keladi
+src/6-Modull/MobileAppPracticeLesson.jsx	113	ALMASH	Menyu 	Menu 
+src/6-Modull/MobileAppPracticeLesson.jsx	113	ALMASH	GET /menyu	GET /menu
+src/6-Modull/MobileAppPracticeLesson.jsx	113	ALMASH	GET /menyu	GET /menu
+src/6-Modull/MobileAppPracticeLesson.jsx	114	ALMASH	Mobil ilova menyuni qayerdan oladi?	Mobil ilova menuni qayerdan oladi?
+src/6-Modull/MobileAppPracticeLesson.jsx	168	KOD:qora	Menyu ekrani	Menu ekrani
+src/6-Modull/MobileAppPracticeLesson.jsx	168	KOD:qora	Menyuni backend'dan fetch qilib FlatList'da ko'rsat	Menuni backend'dan fetch qilib FlatList'da ko'rsat
+src/6-Modull/MobileAppPracticeLesson.jsx	168	KOD:qora	fetch(BACKEND + '/menyu') → <FlatList data={menyu} />	fetch(BACKEND + '/menu') → <FlatList data={menu} />
+src/6-Modull/MobileAppPracticeLesson.jsx	193	ALMASH	Menyu → Tafsilot → Savat → Buyurtma, har birini AI yordamida	Menu → Tafsilot → Savat → Buyurtma, har birini AI yordamida
+src/6-Modull/MobileAppPracticeLesson.jsx	872	QOLDA:ovqat	Menyu va Tafsilot ekranlari (pitsalar, fetch)	Menu va Tafsilot ekranlari (pitsalar, fetch)
+src/6-Modull/MobileAppPracticeLesson.jsx	939	ALMASH	(GET /menyu · POST /buyurtma)	(GET /menu · POST /buyurtma)
+src/6-Modull/MobileAppPracticeLesson.jsx	941	ALMASH	. Web, bot, mobil — uchalasi menyuni bitta backend'dan oladi va buyurtmani bitta Database'ga yozadi.	. Web, bot, mobil — uchalasi menuni bitta backend'dan oladi va buyurtmani bitta Database'ga yozadi.
+src/6-Modull/MobileAppPracticeLesson.jsx	952	ALMASH	Menyu	Menu
+src/6-Modull/MobileAppPracticeLesson.jsx	952	ALMASH	Меню (Menyu)	Меню (Menu)
+src/6-Modull/MobileAppPracticeLesson.jsx	964	ALMASH	Menyuga qaytish	Menuga qaytish
+src/6-Modull/MobileAppPracticeLesson.jsx	994	ALMASH	Mobil ilova menyuni qayerdan oladi?	Mobil ilova menuni qayerdan oladi?
+src/6-Modull/MobileAppPracticeLesson.jsx	995	ALMASH	Mobil ilova menyuni 	Mobil ilova menuni 
+src/6-Modull/MobileAppPracticeLesson.jsx	996	ALMASH	Tayyor backend'dan — `GET /menyu` bilan	Tayyor backend'dan — `GET /menu` bilan
+src/6-Modull/MobileAppPracticeLesson.jsx	996	ALMASH	С готового бэкенда — через `GET /menyu`	С готового бэкенда — через `GET /menu`
+src/6-Modull/MobileAppPracticeLesson.jsx	997	ALMASH	To'g'ri! Mobil ilova backend darslaridagi NestJS + PostgreSQL serverga ulanadi (`GET /menyu`). Web, bot, mobil — bitta tizimning kirish yo'llari.	To'g'ri! Mobil ilova backend darslaridagi NestJS + PostgreSQL serverga ulanadi (`GET /menu`). Web, bot, mobil — bitta tizimning kirish yo'llari.
+src/6-Modull/MobileAppPracticeLesson.jsx	997	ALMASH	Верно! Мобильное приложение подключается к серверу NestJS + PostgreSQL с уроков по бэкенду (`GET /menyu`). Веб, бот, мобильное — входы в одну систему.	Верно! Мобильное приложение подключается к серверу NestJS + PostgreSQL с уроков по бэкенду (`GET /menu`). Веб, бот, мобильное — входы в одну систему.
+src/6-Modull/MobileAppPracticeLesson.jsx	998	ALMASH	Tayyor backend, `GET /menyu` — bitta tizim.	Tayyor backend, `GET /menu` — bitta tizim.
+src/6-Modull/MobileAppPracticeLesson.jsx	998	ALMASH	Готовый бэкенд, `GET /menyu` — одна система.	Готовый бэкенд, `GET /menu` — одна система.
+src/6-Modull/MobileAppPracticeLesson.jsx	1081	ALMASH	Menyu ekranini qo'shing →	Menu ekranini qo'shing →
+src/6-Modull/MobileAppPracticeLesson.jsx	1100	ALMASH	Menyu → savat → buyurtma → backend: asosiy oqim ishladi.	Menu → savat → buyurtma → backend: asosiy oqim ishladi.
+src/6-Modull/MobileAppPracticeLesson.jsx	1266	ALMASH	To'g'ri! Avval kodni o'qiysiz, keyin Expo Go bilan telefonda har ekran va oqimni (menyu → savat → buyurtma) bosib sinaysiz. Qurilmada ba'zi xatolar (sekinlik, t	To'g'ri! Avval kodni o'qiysiz, keyin Expo Go bilan telefonda har ekran va oqimni (menu → savat → buyurtma) bosib sinaysiz. Qurilmada ba'zi xatolar (sekinlik, tu
+src/6-Modull/MobileAppPracticeLesson.jsx	1347	ALMASH	Menyu	Menu
+src/6-Modull/MobileAppPracticeLesson.jsx	1347	ALMASH	Меню (Menyu)	Меню (Menu)
+src/6-Modull/MobileAppPracticeLesson.jsx	1374	ALMASH	Menyu → Tafsilot → Savat → Buyurtma	Menu → Tafsilot → Savat → Buyurtma
+src/6-Modull/MobileAppPracticeLesson.jsx	1458	ALMASH	GET /menyu	GET /menu
+src/6-Modull/MobileAppPracticeLesson.jsx	1470	ALMASH	Mobil ilova menyuni qayerdan oladi?	Mobil ilova menuni qayerdan oladi?
+src/6-Modull/MobileAppPracticeLesson.jsx	2067	ALMASH	Mobil ilova menyuni qayerdan oladi?	Mobil ilova menuni qayerdan oladi?
+src/6-Modull/MobileAppPracticeLesson.jsx	2067	ALMASH	GET /menyu so'rovi bilan, qo'lda yozilmaydi	GET /menu so'rovi bilan, qo'lda yozilmaydi
+src/6-Modull/MobileAppPracticeLesson.jsx	2067	ALMASH	Запросом GET /menyu, а не вручную	Запросом GET /menu, а не вручную
+src/6-Modull/MobileAppPracticeLesson.jsx	2114	ALMASH	Menyu → Tafsilot → Savat → Buyurtma — har ekran AI yordamida quriladi, siz tekshirasiz	Menu → Tafsilot → Savat → Buyurtma — har ekran AI yordamida quriladi, siz tekshirasiz
+src/6-Modull/PipelineProjectLesson.jsx	115	QOLDA:ovqat	Mijoz ko'radigan AvtoPizza sayti: pitsalar menyusi va «Buyurtma» tugmasi.	Mijoz ko'radigan AvtoPizza sayti: pitsalar menusi va «Buyurtma» tugmasi.
+src/6-Modull/PipelineProjectLesson.jsx	116	ALMASH	So'rovlarni qabul qiladi va boshqaradi: `GET /menyu`, `POST /buyurtma`.	So'rovlarni qabul qiladi va boshqaradi: `GET /menu`, `POST /buyurtma`.
+src/6-Modull/PipelineProjectLesson.jsx	116	ALMASH	Принимает запросы и управляет ими: `GET /menyu`, `POST /buyurtma`.	Принимает запросы и управляет ими: `GET /menu`, `POST /buyurtma`.
+src/6-Modull/PipelineProjectLesson.jsx	2089	QOLDA:ovqat	Frontend: pitsalar menyusi va «Buyurtma» tugmasi	Frontend: pitsalar menusi va «Buyurtma» tugmasi
+src/6-Modull/PmLesson25.jsx	3162	KOD:css	; } /* 🔴 YAKUN-EKRANI 58-QONUN BO'YICHA YIG'ILDI (1440×900 · 1280×800 da skrollsiz): matn, so'z kattaligi va tartib TEGILMAGAN — faqat ichki oraliq/padding qis	; } /* 🔴 YAKUN-EKRANI 58-QONUN BO'YICHA YIG'ILDI (1440×900 · 1280×800 da skrollsiz): matn, so'z kattaligi va tartib TEGILMAGAN — faqat ichki oraliq/padding qis
+src/6-Modull/ReactNativeAppLesson.jsx	361	ALMASH	Mobil ilova menyuni qayerdan oladi?	Mobil ilova menuni qayerdan oladi?
+src/6-Modull/ReactNativeAppLesson.jsx	669	ALMASH	Menyu	Menu
+src/6-Modull/ReactNativeAppLesson.jsx	683	ALMASH	Menyuga qaytish	Menuga qaytish
+src/6-Modull/ReactNativeAppLesson.jsx	699	ALMASH	GET /menyu — menyuni oladi.	GET /menu — menuni oladi.
+src/6-Modull/ReactNativeAppLesson.jsx	699	ALMASH	GET /menyu — берёт меню.	GET /menu — берёт меню.
+src/6-Modull/ReactNativeAppLesson.jsx	719	QOLDA:ovqat	Qiziq fikr! Kichik misolda ishlaydi, lekin AvtoPizza menyusini kodga qo'lda yozib borish noqulay: narx o'zgarsa, kodni tuzatish kerak bo'ladi. Bugun ma'lumotni 	Qiziq fikr! Kichik misolda ishlaydi, lekin AvtoPizza menusini kodga qo'lda yozib borish noqulay: narx o'zgarsa, kodni tuzatish kerak bo'ladi. Bugun ma'lumotni b
+src/6-Modull/ReactNativeAppLesson.jsx	728	QOLDA:ovqat	O'tgan darsda bitta ekran qildingiz. Haqiqiy pitsa ilovasida har pitsaning tafsilot ekrani bor, menyu esa serverdan keladi. Tugmani bosing — qanday ko'rinishini	O'tgan darsda bitta ekran qildingiz. Haqiqiy pitsa ilovasida har pitsaning tafsilot ekrani bor, menu esa serverdan keladi. Tugmani bosing — qanday ko'rinishini 
+src/6-Modull/ReactNativeAppLesson.jsx	834	KOD:attr	Menyu.js	Menu.js
+src/6-Modull/ReactNativeAppLesson.jsx	836	ALMASH	={menyu}	={menu}
+src/6-Modull/ReactNativeAppLesson.jsx	889	QOLDA:ovqat	Menyu ekrani pastda. Pitsani bossangiz, Tafsilot ekrani 	Menu ekrani pastda. Pitsani bossangiz, Tafsilot ekrani 
+src/6-Modull/ReactNativeAppLesson.jsx	889	ALMASH	. «Orqaga» — Tafsilot ekrani olib tashlanadi, Menyu ekraniga qaytasiz.	. «Orqaga» — Tafsilot ekrani olib tashlanadi, Menu ekraniga qaytasiz.
+src/6-Modull/ReactNativeAppLesson.jsx	925	ALMASH	Menyu ekrani	Menu ekrani
+src/6-Modull/ReactNativeAppLesson.jsx	930	QOLDA:ovqat	Telefonda biror pitsani bosing → Tafsilot ekrani ochiladi. «‹ Orqaga» → Menyu ekraniga qaytadi.	Telefonda biror pitsani bosing → Tafsilot ekrani ochiladi. «‹ Orqaga» → Menu ekraniga qaytadi.
+src/6-Modull/ReactNativeAppLesson.jsx	952	KOD:attr	Menyu.js	Menu.js
+src/6-Modull/ReactNativeAppLesson.jsx	968	ALMASH	 — oldingi ekranga qaytadi (pop). Tafsilot'dagi «Menyuga qaytish» tugmasi shuni chaqiradi; tepadagi «Orqaga» buni o'zi qiladi.	 — oldingi ekranga qaytadi (pop). Tafsilot'dagi «Menuga qaytish» tugmasi shuni chaqiradi; tepadagi «Orqaga» buni o'zi qiladi.
+src/6-Modull/ReactNativeAppLesson.jsx	1009	ALMASH	Menyuni kodga qo'lda yozmaysiz. 	Menuni kodga qo'lda yozmaysiz. 
+src/6-Modull/ReactNativeAppLesson.jsx	1012	KOD:attr	Menyu.js	Menu.js
+src/6-Modull/ReactNativeAppLesson.jsx	1013	ALMASH	 [menyu, setMenyu] = 	 [menu, setMenyu] = 
+src/6-Modull/ReactNativeAppLesson.jsx	1015	ALMASH	'/menyu'	'/menu'
+src/6-Modull/ReactNativeAppLesson.jsx	1024	ALMASH	GET /menyu	GET /menu
+src/6-Modull/ReactNativeAppLesson.jsx	1024	ALMASH	 menyuni beradi. Web-sayt ham, mobil ilova ham 	 menuni beradi. Web-sayt ham, mobil ilova ham 
+src/6-Modull/ReactNativeAppLesson.jsx	1024	ALMASH	GET /menyu	GET /menu
+src/6-Modull/ReactNativeAppLesson.jsx	1049	ALMASH	Mana fetch harakatda: ilova avval bo'sh (yuklanmoqda), keyin backend'dan menyu kelib, ro'yxat to'ladi. Tugmani bosing.	Mana fetch harakatda: ilova avval bo'sh (yuklanmoqda), keyin backend'dan menu kelib, ro'yxat to'ladi. Tugmani bosing.
+src/6-Modull/ReactNativeAppLesson.jsx	1054	QOLDA:ovqat	Ma'lumot serverda turadi: ilova backend'ga so'rov yuborib, undagi ma'lumotni oladi. Shu sabab menyuni kodning ichida qo'lda yozib yurish shart emas — backend'da	Ma'lumot serverda turadi: ilova backend'ga so'rov yuborib, undagi ma'lumotni oladi. Shu sabab menuni kodning ichida qo'lda yozib yurish shart emas — backend'dag
+src/6-Modull/ReactNativeAppLesson.jsx	1097	ALMASH	Ilova ochildi — birinchi ekran (Menyu).	Ilova ochildi — birinchi ekran (Menu).
+src/6-Modull/ReactNativeAppLesson.jsx	1098	ALMASH	Backend'dan fetch — menyu yuklanmoqda…	Backend'dan fetch — menu yuklanmoqda…
+src/6-Modull/ReactNativeAppLesson.jsx	1101	ALMASH	Tafsilot ekrani: nom, narx, «Menyuga qaytish». Asosiy oqim ishladi!	Tafsilot ekrani: nom, narx, «Menuga qaytish». Asosiy oqim ishladi!
+src/6-Modull/ReactNativeAppLesson.jsx	1119	ALMASH	Menyu ekrani	Menu ekrani
+src/6-Modull/ReactNativeAppLesson.jsx	1961	QOLDA:ovqat	Ikki ekranli AvtoPizza: Menyu + Tafsilot	Ikki ekranli AvtoPizza: Menu + Tafsilot
+src/6-Modull/ReactNativeAppLesson.jsx	1962	QOLDA:ovqat	Expo loyihangizda (`mobile/`) ikki ekran yig'ing: `Menyu` — FlatList bilan pitsalar ro'yxati; pitsani bossangiz, `navigation.navigate` bilan `Tafsilot` ekrani o	Expo loyihangizda (`mobile/`) ikki ekran yig'ing: `Menu` — FlatList bilan pitsalar ro'yxati; pitsani bossangiz, `navigation.navigate` bilan `Tafsilot` ekrani oc
+src/6-Modull/ReactNativeAppLesson.jsx	1962	QOLDA:ovqat	Соберите в своём проекте Expo (`mobile/`) два экрана: `Menyu` — список пицц через FlatList; по нажатию на пиццу через `navigation.navigate` открывается экран `T	Соберите в своём проекте Expo (`mobile/`) два экрана: `Menu` — список пицц через FlatList; по нажатию на пиццу через `navigation.navigate` открывается экран `Ta
+src/6-Modull/ReactNativeAppLesson.jsx	1965	ALMASH	`App.js` dagi `Stack.Navigator`da ikki ekran e'lon qiling: `Menyu` va `Tafsilot`	`App.js` dagi `Stack.Navigator`da ikki ekran e'lon qiling: `Menu` va `Tafsilot`
+src/6-Modull/ReactNativeAppLesson.jsx	1965	ALMASH	Объявите в `Stack.Navigator` в `App.js` два экрана: `Menyu` и `Tafsilot`	Объявите в `Stack.Navigator` в `App.js` два экрана: `Menu` и `Tafsilot`
+src/6-Modull/ReactNativeAppLesson.jsx	1966	QOLDA:ovqat	`Menyu` ekranda `useEffect` + `fetch` bilan `/menyu`dan pitsalarni oling — backend ishlayotganini avval brauzerda tekshiring	`Menu` ekranda `useEffect` + `fetch` bilan `/menu`dan pitsalarni oling — backend ishlayotganini avval brauzerda tekshiring
+src/6-Modull/ReactNativeAppLesson.jsx	1966	ALMASH	На экране `Menyu` получите пиццы из `/menyu` через `useEffect` + `fetch` — сначала проверьте в браузере, что бэкенд работает	На экране `Menu` получите пиццы из `/menu` через `useEffect` + `fetch` — сначала проверьте в браузере, что бэкенд работает
+src/6-Modull/ReactNativeAppLesson.jsx	1968	QOLDA:ovqat	`Tafsilot` ekranda pitsani `route.params.pitsa` dan oling, nomi va narxini ko'rsating; «Menyuga qaytish» tugmasi `navigation.goBack()` bilan Menyu ekraniga qayt	`Tafsilot` ekranda pitsani `route.params.pitsa` dan oling, nomi va narxini ko'rsating; «Menuga qaytish» tugmasi `navigation.goBack()` bilan Menu ekraniga qaytar
+src/6-Modull/ReactNativeAppLesson.jsx	1968	QOLDA:ovqat	На экране `Tafsilot` возьмите пиццу из `route.params.pitsa`, покажите название и цену; кнопка «Menyuga qaytish» через `navigation.goBack()` пусть вернёт к меню	На экране `Tafsilot` возьмите пиццу из `route.params.pitsa`, покажите название и цену; кнопка «Menuga qaytish» через `navigation.goBack()` пусть вернёт к меню
+src/6-Modull/ReactNativeAppLesson.jsx	2099	QOLDA:ovqat	Backend'dan ma'lumot: `useEffect` + `fetch` — AvtoPizza'ning o'sha API'si (`GET /menyu`)	Backend'dan ma'lumot: `useEffect` + `fetch` — AvtoPizza'ning o'sha API'si (`GET /menu`)
+src/6-Modull/ReactNativeAppLesson.jsx	2099	QOLDA:ovqat	Данные с бэкенда: `useEffect` + `fetch` — тот же API AvtoPizza (`GET /menyu`)	Данные с бэкенда: `useEffect` + `fetch` — тот же API AvtoPizza (`GET /menu`)
+src/6-Modull/ReactNativeBasicsLesson.jsx	820	QOLDA:ovqat	Mijozlar AvtoPizza menyusini 	Mijozlar AvtoPizza menusini 
+src/7-Modull/MvpCompleteLesson.jsx	1178	ALMASH	Netlify havolasi eskirgan	Netlify linki eskirgan
+src/7-Modull/MvpCompleteLesson.jsx	1905	ALMASH	app.netlify.com → yangi loyiha → GitHub'dan import → o'z `maydon` repo'ngiz. Base directory `web`, build `npm run build`, publish `dist` (base'ga nisbatan); soz	app.netlify.com → yangi loyiha → GitHub'dan import → o'z `maydon` repo'ngiz. Base directory `web`, build `npm run build`, publish `dist` (base'ga nisbatan); soz
+src/7-Modull/PmProductProblemLesson.jsx	329	ALMASH	So'rang: odamlar uni o'z ishi uchun ishlatyaptimi? Havola qayerdan kelgani muhim emas.	So'rang: odamlar uni o'z ishi uchun ishlatyaptimi? Link qayerdan kelgani muhim emas.
+src/7-Modull/PmProductProblemLesson.jsx	329	ALMASH	Do'stingiz siz yuborgan havolani bir marta ochib ko'rdi. Bu mahsulotmi?	Do'stingiz siz yuborgan linkni bir marta ochib ko'rdi. Bu mahsulotmi?
+src/7-Modull/PmProductProblemLesson.jsx	905	ALMASH	Do'stim — havolasini o'zim yuborgandim	Do'stim — linkini o'zim yuborgandim
+src/7-Modull/PmProductProblemLesson.jsx	2083	ALMASH	Havola sizdan, do'st botni doim ishlatadi. Bot nima?	Link sizdan, do'st botni doim ishlatadi. Bot nima?
+src/7-Modull/PmProductProblemLesson.jsx	2083	ALMASH	Loyiha — havola sizdan	Loyiha — link sizdan
+src/7-Modull/PmProductProblemLesson.jsx	2083	ALMASH	Mahsulot — havola bor	Mahsulot — link bor
+src/7-Modull/PmProductProblemLesson.jsx	2646	ALMASH	Do'stingiz siz yuborgan havola orqali kelib, botdan har kuni jadvalini ko'radi. Bu mahsulotmi?	Do'stingiz siz yuborgan link orqali kelib, botdan har kuni jadvalini ko'radi. Bu mahsulotmi?
+src/7-Modull/PmProductProblemLesson.jsx	2646	ALMASH	Ha: u botni o'z ishi uchun ishlatyapti — havola qayerdan kelgani muhim emas	Ha: u botni o'z ishi uchun ishlatyapti — link qayerdan kelgani muhim emas
+src/8-Modull/PmAbTestLesson.jsx	2354	ALMASH	Netlify havolangizni 3–5 kishiga yuboring (oila, do'stlar): «Bo'sh vaqtni tanlab ko'ring». Ism va telefon o'rniga namuna yozishlarini ayting.	Netlify linkingizni 3–5 kishiga yuboring (oila, do'stlar): «Bo'sh vaqtni tanlab ko'ring». Ism va telefon o'rniga namuna yozishlarini ayting.
+src/8-Modull/PmOkrLesson.jsx	1205	ALMASH	Do'stlarga yuborilgan havolalar 0 dan 15 taga	Do'stlarga yuborilgan linklar 0 dan 15 taga
+src/8-Modull/PmOkrLesson.jsx	1211	ALMASH	Havolani siz yuborasiz — xaridor hali hech narsa qilmadi.	Linkni siz yuborasiz — xaridor hali hech narsa qilmadi.
+src/8-Modull/PmTrustAuditLesson.jsx	1393	ALMASH	Forma ostida siyosat havolasi turibdi. Bu qaysi fikr?	Forma ostida siyosat linki turibdi. Bu qaysi fikr?
+src/8-Modull/PmTrustAuditLesson.jsx	2015	ALMASH	Qayerda: saytda yangi «Maxfiylik siyosati» sahifasi va ma'lumot so'raladigan forma ostida havola.	Qayerda: saytda yangi «Maxfiylik siyosati» sahifasi va ma'lumot so'raladigan forma ostida link.
+src/8-Modull/PmTrustAuditLesson.jsx	2017	ALMASH	Forma ostiga shu sahifaga havola qo'y — bosilganda forma to'ldirilganicha qolsin.	Forma ostiga shu sahifaga link qo'y — bosilganda forma to'ldirilganicha qolsin.
+src/8-Modull/PmTrustAuditLesson.jsx	2209	ALMASH	«Nima qilsin: `/maxfiylik` to'rt savolga javob bersin — qaysi ma'lumot (ism va telefon; saytdagi harakatlar — ism va telefonsiz, brauzer ID bilan; Umami'ga ham 	«Nima qilsin: `/maxfiylik` to'rt savolga javob bersin — qaysi ma'lumot (ism va telefon; saytdagi harakatlar — ism va telefonsiz, brauzer ID bilan; Umami'ga ham 
+src/8-Modull/PmTrustAuditLesson.jsx	2213	ALMASH	Manzilga `/maxfiylik` qo'shib ham oching — sahifa to'g'ridan ochilsin. Sinfdoshingiz telefonida havolani ochib, «qancha saqlanadi?» javobini topsin.	Manzilga `/maxfiylik` qo'shib ham oching — sahifa to'g'ridan ochilsin. Sinfdoshingiz telefonida linkni ochib, «qancha saqlanadi?» javobini topsin.
+src/8-Modull/ProdReviewLesson.jsx	1974	ALMASH	PR havolasini sinfdoshingizga Telegram'da yuboring. PR ostida Netlify'ning «Deploy Preview» qatori chiqishi mumkin — bu alohida manzil, bugun kerak emas.	PR linkini sinfdoshingizga Telegram'da yuboring. PR ostida Netlify'ning «Deploy Preview» qatori chiqishi mumkin — bu alohida manzil, bugun kerak emas.
+src/8-Modull/ProdReviewLesson.jsx	1979	ALMASH	PR ochildi: har o\'zgarish yonida sababi bor, havola sinfdoshingizda.	PR ochildi: har o\'zgarish yonida sababi bor, link sinfdoshingizda.
+src/8-Modull/ProdReviewLesson.jsx	1988	ALMASH	sinfdoshingiz yuborgan PR havolasini oching → «Files changed». Har faylni oxirigacha o'qing, o'qib bo'lgan faylga «Viewed» belgisini qo'ying.	sinfdoshingiz yuborgan PR linkini oching → «Files changed». Har faylni oxirigacha o'qing, o'qib bo'lgan faylga «Viewed» belgisini qo'ying.
+src/8-Modull/ProductionDeployLesson.jsx	2219	ALMASH	Eski havolani kimgadir yuborgan bo'lsangiz, yangisini qayta yuboring.	Eski linkni kimgadir yuborgan bo'lsangiz, yangisini qayta yuboring.
+src/9-Modull/ExpoPrototypeLesson.jsx	2586	ALMASH	`prototip/` — `public/manifest.webmanifest`, ikonkalar `public/` da, `index.html` da manifestga havola.	`prototip/` — `public/manifest.webmanifest`, ikonkalar `public/` da, `index.html` da manifestga link.
+src/9-Modull/ExpoPrototypeLesson.jsx	2615	ALMASH	Keyin app.netlify.com → yangi loyiha → GitHub'dan import → o'z repo'ngiz. Base directory `prototip`, build `npm run build`, publish `dist`. Havola chiqadi: `….n	Keyin app.netlify.com → yangi loyiha → GitHub'dan import → o'z repo'ngiz. Base directory `prototip`, build `npm run build`, publish `dist`. Link chiqadi: `….net
+src/9-Modull/ExpoPrototypeLesson.jsx	2749	ALMASH	— o\'zgarishlar GitHub\'da tursin: mobil trekda `mobil/`, web-trekda `prototip/` va `README.md` da Netlify havolasi.	— o\'zgarishlar GitHub\'da tursin: mobil trekda `mobil/`, web-trekda `prototip/` va `README.md` da Netlify linki.
+src/9-Modull/FeatureTwoLesson.jsx	1935	ALMASH	Ikkinchi foydalanuvchi — o'z telefoningizda «Hisobdan chiqish» bilan ikkinchi akkaunt; sinfdoshingiz telefoni ham bo'ladi (web-trekda — havola, mobil trekda — A	Ikkinchi foydalanuvchi — o'z telefoningizda «Hisobdan chiqish» bilan ikkinchi akkaunt; sinfdoshingiz telefoni ham bo'ladi (web-trekda — link, mobil trekda — And
+src/9-Modull/FeatureTwoLesson.jsx	1943	ALMASH	Sinfdosh telefoni bilan: web-trekda — Netlify havolangiz; mobil trekda — Android'dagi Expo Go QR'ni ochadi (bitta Wi-Fi). Expo akkauntingiz ma'lumotlarini boshq	Sinfdosh telefoni bilan: web-trekda — Netlify linkingiz; mobil trekda — Android'dagi Expo Go QR'ni ochadi (bitta Wi-Fi). Expo akkauntingiz ma'lumotlarini boshqa
+src/9-Modull/PlatformChoiceLesson.jsx	356	ALMASH	2 · Telefon imkoniyati kerakmi · 3 · Havola bilan ulashish muhimmi.	2 · Telefon imkoniyati kerakmi · 3 · Link bilan ulashish muhimmi.
+src/9-Modull/PlatformChoiceLesson.jsx	1486	ALMASH	havola bilan ulashish	link bilan ulashish
+src/9-Modull/PlatformChoiceLesson.jsx	1487	ALMASH	Odamlar uni hech narsa o'rnatmasdan havoladan darhol ochishi muhimmi?	Odamlar uni hech narsa o'rnatmasdan linkdan darhol ochishi muhimmi?
+src/9-Modull/PlatformChoiceLesson.jsx	1487	ALMASH	Odamlar uni hech narsa o'rnatmasdan havoladan ochishi muhimmi?	Odamlar uni hech narsa o'rnatmasdan linkdan ochishi muhimmi?
+src/9-Modull/PlatformChoiceLesson.jsx	1559	ALMASH	Bu misolda hal qiluvchi signal — o'yinchi maydonda, qo'lida telefon; havoladan ochish web tomonda qoldi.	Bu misolda hal qiluvchi signal — o'yinchi maydonda, qo'lida telefon; linkdan ochish web tomonda qoldi.
+src/9-Modull/PlatformChoiceLesson.jsx	1569	ALMASH	Foydalanuvchilar mahsulotni kompyuterda ochadi, havola ulashadi. Qaysi platforma?	Foydalanuvchilar mahsulotni kompyuterda ochadi, link ulashadi. Qaysi platforma?
+src/9-Modull/PlatformChoiceLesson.jsx	1570	ALMASH	Foydalanuvchilar mahsulotni kompyuterda ochadi, havola ulashadi. 	Foydalanuvchilar mahsulotni kompyuterda ochadi, link ulashadi. 
+src/9-Modull/PlatformChoiceLesson.jsx	1573	ALMASH	Web — kompyuterda ochiladi, havola ulashiladi	Web — kompyuterda ochiladi, link ulashiladi
+src/9-Modull/PlatformChoiceLesson.jsx	1577	ALMASH	Kompyuterda ochiladi va havola bilan ulashiladi — ikkala javob web tomonga tortadi.	Kompyuterda ochiladi va link bilan ulashiladi — ikkala javob web tomonga tortadi.
+src/9-Modull/PlatformChoiceLesson.jsx	1885	ALMASH	Havola bilan tez ulashish muhim. Qaysi tomonga tortadi?	Link bilan tez ulashish muhim. Qaysi tomonga tortadi?
+src/9-Modull/PlatformChoiceLesson.jsx	1886	ALMASH	Havola guruhga tashlanadi	Link guruhga tashlanadi
+src/9-Modull/PmIdeaRiceLesson.jsx	2160	QOLDA:ovqat	Oshxona menyusi sahifasi	Oshxona menusi sahifasi
+src/9-Modull/PmTenIdeasLesson.jsx	1035	QOLDA:ovqat	«O'quvchilar uchun oshxona menyusini ko'rsatadigan bot» — nima yetishmaydi?	«O'quvchilar uchun oshxona menusini ko'rsatadigan bot» — nima yetishmaydi?
+src/9-Modull/PmTenIdeasLesson.jsx	1036	QOLDA:ovqat	«O'quvchilar uchun oshxona menyusini ko'rsatadigan bot» — 	«O'quvchilar uchun oshxona menusini ko'rsatadigan bot» — 
+src/9-Modull/PmTenIdeasLesson.jsx	1046	ALMASH	Yechim yozilgan: bot menyuni ko'rsatadi.	Yechim yozilgan: bot menuni ko'rsatadi.
+src/App.jsx	228	ALMASH	teg, sarlavha, ro\'yxat, havola	teg, sarlavha, ro\'yxat, link
+src/App.jsx	457	ALMASH	Mahsulot pul topa boshlaydi: narx, test rejimdagi to\'lov, taklif havolasi — va birinchi odamlar to\'lashga tayyorligini tasdiqlaydi.	Mahsulot pul topa boshlaydi: narx, test rejimdagi to\'lov, taklif linki — va birinchi odamlar to\'lashga tayyorligini tasdiqlaydi.
+src/App.jsx	468	ALMASH	Loyiha kuni: taklif havolasi va mukofot	Loyiha kuni: taklif linki va mukofot
+src/App.jsx	468	ALMASH	unikal havola, sanoq va mukofot	unikal link, sanoq va mukofot
+src/App.jsx	486	ALMASH	ssenariy, ekran yozuvi va havola	ssenariy, ekran yozuvi va link
+src/bridge/lessons/BridgeKimUchun.jsx	1456	ALMASH	Faqat menyuning ichida, alohida sahifada	Faqat menuning ichida, alohida sahifada
+src/bridge/lessons/BridgeKimUchun.jsx	1464	ALMASH	Menyuning ichiga yashirilgan tugmani odam topmaydi va izlamaydi ham. Yechimni tushungan zahoti tugma qayerda tursin?	Menuning ichiga yashirilgan tugmani odam topmaydi va izlamaydi ham. Yechimni tushungan zahoti tugma qayerda tursin?
+src/bridge/lessons/BridgeKimUchun.jsx	2161	ALMASH	Do\'stlariga havolani yuboradi	Do\'stlariga linkni yuboradi
+src/bridge/lessons/BridgeKimUchunMuammo.jsx	1999	QOLDA:ovqat	Oshxona menyusini boshidan o'qib chiqishga	Oshxona menusini boshidan o'qib chiqishga
+src/bridge/lessons/BridgeMuammoniTopamiz.jsx	1565	ALMASH	Safarni ota-onaga havola bilan yuborish	Safarni ota-onaga link bilan yuborish
+src/bridge/lessons/BridgeMuammoniTopamiz.jsx	2060	ALMASH	Menyusining rangi juda zerikarli	Menusining rangi juda zerikarli
+src/compilator/HtmlCompiler.jsx	320	ALMASH	havola	link
+src/compilator/HtmlCompiler.jsx	336	ALMASH	menyu	menu
+src/hw-demo/main.jsx	125	ALMASH	E'lonni ulashish havolasi — bossa, havola nusxalanadi	E'lonni ulashish linki — bossa, link nusxalanadi
+src/kompilyator-demo/OddiyKompilyator.jsx	10	ALMASH	Sarlavha, matn va havola qo'shing — natijani o'ngda ko'rasiz.	Sarlavha, matn va link qo'shing — natijani o'ngda ko'rasiz.
+src/kompilyator-demo/OddiyKompilyator.jsx	16	ALMASH	<a> — havola (href bilan)	<a> — link (href bilan)
+src/kompilyator-demo/OddiyKompilyator.jsx	16	ALMASH	`<a href=\"https://...\">matn</a>` havola qo'shing	`<a href=\"https://...\">matn</a>` link qo'shing
+src/m1-demo/M1DemoApp.jsx	47	ALMASH	teg, sarlavha, ro'yxat, havola	teg, sarlavha, ro'yxat, link
+src/m11-demo/M11DemoApp.jsx	49	ALMASH	Loyiha kuni: taklif havolasi va mukofot	Loyiha kuni: taklif linki va mukofot
+src/m11-demo/M11DemoApp.jsx	50	ALMASH	Unikal havola, taklif sanog'i va mukofot — tarqalish kod sifatida	Unikal link, taklif sanog'i va mukofot — tarqalish kod sifatida
+src/m11-demo/M11DemoApp.jsx	69	ALMASH	Maqsad: jalb qilish narxi va keltiradigan pul, to'lov tizimi va o'sish mexanikalari; to'lashga tayyorlikning birinchi tasdig'i. Texnik cho'qqi: webhook + taklif	Maqsad: jalb qilish narxi va keltiradigan pul, to'lov tizimi va o'sish mexanikalari; to'lashga tayyorlikning birinchi tasdig'i. Texnik cho'qqi: webhook + taklif
+src/mentor/MentorApp.jsx	64	ALMASH	Havolani guruhga tashlang	Linkni guruhga tashlang
+src/mentor/MentorApp.jsx	65	ALMASH	Dars ichidagi nusxalash tugmasi havolani oladi.	Dars ichidagi nusxalash tugmasi linkni oladi.
+src/mentor/MentorApp.jsx	67	ALMASH	Shu havoladan kirib, PIN bilan darsda qatnashadi.	Shu linkdan kirib, PIN bilan darsda qatnashadi.
+src/mentor/MentorApp.jsx	68	ALMASH	Dars havolasini nusxalash	Dars linkini nusxalash
+src/mentor/lessons.jsx	92	ALMASH	teg, sarlavha, ro'yxat, havola	teg, sarlavha, ro'yxat, link
+src/pm/PmJtbdLesson.jsx	2687	KOD:css	; } /* Yordamchi havolalar: quti EMAS — mashq ostidagi ixcham qator. Ular yordamchi, asosiy harakat emas (F-0819-57). */ .wsxrow { display: flex; gap: 18px; fle	; } /* Yordamchi linklar: quti EMAS — mashq ostidagi ixcham qator. Ular yordamchi, asosiy harakat emas (F-0819-57). */ .wsxrow { display: flex; gap: 18px; flex-
+src/pm/PmMetricsLesson.jsx	1385	ALMASH	Masalan: Menyu bosganlar	Masalan: Menu bosganlar
+src/pm/PmMetricsLesson.jsx	1388	ALMASH	Masalan: «Menyu» tugmasini bosgan odamlar	Masalan: «Menu» tugmasini bosgan odamlar
+src/texnik-demo/TexnikDemoApp.jsx	105	ALMASH	teg, sarlavha, ro\'yxat, havola	teg, sarlavha, ro\'yxat, link

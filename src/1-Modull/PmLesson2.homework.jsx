@@ -101,7 +101,7 @@ const PLACES = [
     ex: {
       hero:    { uz: 'Masalan: Sevimli taomlaringizni onlayn buyurtma qiling', ru: 'Например: Закажите любимые блюда онлайн' },
       muammo:  { uz: "Masalan: Navbat kutishga hojat yo'q", ru: 'Например: Не нужно стоять в очереди' },
-      yechim:  { uz: 'Masalan: Menyudan tanlang va buyurtma bering', ru: 'Например: Выберите из меню и закажите' },
+      yechim:  { uz: 'Masalan: Menudan tanlang va buyurtma bering', ru: 'Например: Выберите из меню и закажите' },
       isbot:   { uz: 'Masalan: 100 000+ buyurtma', ru: 'Например: 100 000+ заказов' },
       harakat: { uz: 'Masalan: Buyurtma berish', ru: 'Например: Заказать' },
     },

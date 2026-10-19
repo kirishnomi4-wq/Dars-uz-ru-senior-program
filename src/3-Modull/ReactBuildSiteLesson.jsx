@@ -1322,7 +1322,7 @@ function QuizArena({ live, onClose, startSolo }) {
 
 // ===== SCREEN 0 — HOOK (sayt qurmoqchisiz — AI'ga nima deysiz?) =====
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
-  const audio = useAudio([{ id: 's0', text: `Mana tayyor sayt — «Yetkaz», ovqat yetkazish sayti. Unda ko'p narsa bor: tepa menyu, banner, taomlar. AI'ga «shuni qur» desangiz, u qayerdan boshlashni bilmaydi. «Bo'laklarga ajrating» tugmasini bosing — sayt qanday qismlarga bo'linishini ko'rasiz.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's0', text: `Mana tayyor sayt — «Yetkaz», ovqat yetkazish sayti. Unda ko'p narsa bor: tepa menu, banner, taomlar. AI'ga «shuni qur» desangiz, u qayerdan boshlashni bilmaydi. «Bo'laklarga ajrating» tugmasini bosing — sayt qanday qismlarga bo'linishini ko'rasiz.`, trigger: 'on_mount', waits_for: null }]);
   const [split, setSplit] = useState(false);
   const [used, setUsed] = useState(!!storedAnswer);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
@@ -1337,7 +1337,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish · bitiruv', ru: 'Вступление · выпуск' })} screen={screen} audioState={audio} scrollSignal={picked !== null} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Endi o'zingiz sayt qurasiz — AI'ga <span className="italic" style={{ color: T.accent }}>nima</span> deysiz?</>, ru: <>Теперь вы строите сайт сами — <span className="italic" style={{ color: T.accent }}>что</span> скажете ИИ?</> })}</h1>
-        <Mentor>{tr({ uz: <>Mana tayyor sayt — "Yetkaz" ovqat yetkazib berish. Ko'p narsa bor: tepa menyu, banner, taomlar... AI'dan "shuni qur" desangiz — u qayerdan boshlashni bilmaydi. Yechim bitta: <b style={{ color: T.ink }}>🔍 Bo'laklarga ajrating</b> tugmasini bosing — nima ko'rasiz?</>, ru: <>Вот готовый сайт — доставка еды «Yetkaz». Тут много всего: верхнее меню, баннер, блюда... Скажете ИИ «построй вот это» — он не поймёт, с чего начать. Решение одно: нажмите <b style={{ color: T.ink }}>🔍 Разбить на блоки</b> — что увидите?</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana tayyor sayt — "Yetkaz" ovqat yetkazib berish. Ko'p narsa bor: tepa menu, banner, taomlar... AI'dan "shuni qur" desangiz — u qayerdan boshlashni bilmaydi. Yechim bitta: <b style={{ color: T.ink }}>🔍 Bo'laklarga ajrating</b> tugmasini bosing — nima ko'rasiz?</>, ru: <>Вот готовый сайт — доставка еды «Yetkaz». Тут много всего: верхнее меню, баннер, блюда... Скажете ИИ «построй вот это» — он не поймёт, с чего начать. Решение одно: нажмите <b style={{ color: T.ink }}>🔍 Разбить на блоки</b> — что увидите?</> })}</Mentor>
         <Split>
           <Col>
             <div className="fade-up delay-1" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -1539,7 +1539,7 @@ const OZ_IDEAS = [
   { id: 'sport', nom: { uz: 'Sport klub', ru: 'Спортклуб' }, papka: 'sport-klub', card: 'MashgulotCard', grid: { uz: "mashg'ulotlar", ru: 'тренировок' }, maydon: { uz: "nomi, kuni va murabbiyi", ru: 'название, день и тренер' }, sahifa: { uz: "Bosh · mashg'ulot · a'zolik", ru: 'Главная · тренировка · членство' } }
 ];
 const ozPrompt = (g) => tr({
-  uz: `Vite + React loyiham (${g.papka}) uchun «${tr(g.nom)}» saytining Bosh sahifasini qur.\nBo'limlar: Navbar, Hero, ${tr(g.grid)} grid, Footer — har biri alohida komponent (src/components).\nHar bo'lim: Navbar — logo va menyu; Hero — sarlavha va bitta tugma; grid — har element ${g.card}: ${tr(g.maydon)}; Footer — aloqa ma'lumoti.\nMa'lumot: elementlar App.jsx da massiv, grid ularni map bilan ${g.card}'ga props orqali chizsin. Kamida 4 ta element yoz.\nHar faylni to'liq yoz.`,
+  uz: `Vite + React loyiham (${g.papka}) uchun «${tr(g.nom)}» saytining Bosh sahifasini qur.\nBo'limlar: Navbar, Hero, ${tr(g.grid)} grid, Footer — har biri alohida komponent (src/components).\nHar bo'lim: Navbar — logo va menu; Hero — sarlavha va bitta tugma; grid — har element ${g.card}: ${tr(g.maydon)}; Footer — aloqa ma'lumoti.\nMa'lumot: elementlar App.jsx da massiv, grid ularni map bilan ${g.card}'ga props orqali chizsin. Kamida 4 ta element yoz.\nHar faylni to'liq yoz.`,
   ru: `Сделай главную страницу сайта «${tr(g.nom)}» для моего проекта Vite + React (${g.papka}).\nСекции: Navbar, Hero, сетка ${tr(g.grid)}, Footer — каждая отдельным компонентом (src/components).\nКаждая секция: Navbar — логотип и меню; Hero — заголовок и одна кнопка; сетка — каждый элемент в ${g.card}: ${tr(g.maydon)}; Footer — контакты.\nДанные: элементы — массив в App.jsx, сетка рисует их через map, передавая в ${g.card} через props. Напиши минимум 4 элемента.\nКаждый файл напиши целиком.`
 });
 // F-1015-352 (foydalanuvchi): «O'z g'oyam» — o'quvchi sayt nomi va kartada nima turishini o'zi yozadi
@@ -1597,7 +1597,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     hero: { lbl: '<Hero />', desc: tr({ uz: 'Tepa banner — aksiya va asosiy tugma.', ru: 'Верхний баннер — акция и главная кнопка.' }) },
     cats: { lbl: '<Categories />', desc: tr({ uz: 'Kategoriyalar qatori — Pitsa, Burger...', ru: 'Ряд категорий — Пицца, Бургеры...' }) },
     list: { lbl: '<TaomList />', desc: tr({ uz: 'Taomlar grid — ichida TaomCard takrorlanadi.', ru: 'Сетка блюд — внутри повторяется TaomCard.' }) },
-    footer: { lbl: '<Footer />', desc: tr({ uz: 'Pastki qism — aloqa, havolalar.', ru: 'Нижняя часть — контакты, ссылки.' }) }
+    footer: { lbl: '<Footer />', desc: tr({ uz: 'Pastki qism — aloqa, linklar.', ru: 'Нижняя часть — контакты, ссылки.' }) }
   };
   const KEYS = ['hero', 'cats', 'list', 'footer'];
   const [active, setActive] = useState(null);

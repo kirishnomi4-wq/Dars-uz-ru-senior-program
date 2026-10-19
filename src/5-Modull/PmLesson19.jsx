@@ -131,7 +131,7 @@ export const SCREEN_INTENTS = {
   s8: "Bola o'zining uchta guruhini bittalab yozadi: guruh nomi, unda kimlar borligi va odam soni",
   s9: "Bola to'rt guruhni uch qadamdan o'tkazib, yigirmata odamni iloji boricha kam guruhdan yig'adi",
   s10: "Bola kod oynasida uchta guruhni sanaydigan va yigirmaga yetganini aytadigan kod yozadi",
-  s11: "Bola katta notanish guruhga yuborilgan havola ertasiga nima berishini tanlaydi",
+  s11: "Bola katta notanish guruhga yuborilgan link ertasiga nima berishini tanlaydi",
   s12: "Bola tanish guruhlaridan birini yoddan aytadi va bir qatorda yozib qoldiradi",
   s13: "Bola o'z natijasini (jonlida — sinf reytingini) ko'radi",
   s14: "Bola o'nta takrorlash kartasi bilan o'zini o'zi tekshiradi",
@@ -1074,14 +1074,14 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen5 = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: 'Tekshiruv · tanish va notanish', ru: 'Проверка · знакомые и незнакомые' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "Bot havolasini 15 tanishingizga va 500 notanishga yubordingiz. Ertasiga botga ko'proq odam qaysi tomondan keladi?", ru: "Вы отправили ссылку на бота 15 знакомым и 500 незнакомым. С какой стороны назавтра к боту придёт больше людей?" })} />}
-    questionText={tr({ uz: "Bot havolasi 15 tanish va 500 notanishga yuborilsa, botga ko'proq odam qaysi tomondan keladi", ru: "Ссылку на бота отправили 15 знакомым и 500 незнакомым — с какой стороны к боту придёт больше людей" })}
-    options={[tr({ uz: "O'n beshtasidan — ular havolani yonidagilarga ko'rsatadi", ru: "От пятнадцати — они покажут ссылку тем, кто рядом" }), tr({ uz: "Besh yuztasidan — havolani ko'rgan odam ko'proq bo'ladi", ru: "От пятисот — ссылку увидит больше людей" }), tr({ uz: 'Ikkalasidan teng — havola ikkalasiga ham yetib bordi', ru: "Поровну — ссылка дошла до обеих сторон" })]}
+    question={<TestQ ask={tr({ uz: "Bot linkini 15 tanishingizga va 500 notanishga yubordingiz. Ertasiga botga ko'proq odam qaysi tomondan keladi?", ru: "Вы отправили ссылку на бота 15 знакомым и 500 незнакомым. С какой стороны назавтра к боту придёт больше людей?" })} />}
+    questionText={tr({ uz: "Bot linki 15 tanish va 500 notanishga yuborilsa, botga ko'proq odam qaysi tomondan keladi", ru: "Ссылку на бота отправили 15 знакомым и 500 незнакомым — с какой стороны к боту придёт больше людей" })}
+    options={[tr({ uz: "O'n beshtasidan — ular linkni yonidagilarga ko'rsatadi", ru: "От пятнадцати — они покажут ссылку тем, кто рядом" }), tr({ uz: "Besh yuztasidan — linkni ko'rgan odam ko'proq bo'ladi", ru: "От пятисот — ссылку увидит больше людей" }), tr({ uz: 'Ikkalasidan teng — link ikkalasiga ham yetib bordi', ru: "Поровну — ссылка дошла до обеих сторон" })]}
     correctIdx={0}
-    explainCorrect={tr({ uz: "Tanishlar havolani ochib, yonidagilarga ko'rsatadi; notanishlarda u odatda qolib ketadi.", ru: "Знакомые откроют ссылку и покажут тем, кто рядом; у незнакомых она обычно застревает." })}
+    explainCorrect={tr({ uz: "Tanishlar linkni ochib, yonidagilarga ko'rsatadi; notanishlarda u odatda qolib ketadi.", ru: "Знакомые откроют ссылку и покажут тем, кто рядом; у незнакомых она обычно застревает." })}
     explainWrong={{
-      1: tr({ uz: "Havolani ko'rgan odam ko'p, lekin ular sizni tanimaydi — ko'pchiligi uni ochmaydi ham.", ru: "Ссылку увидят многие, но они вас не знают — большинство её даже не откроет." }),
-      2: tr({ uz: "Havola ikkalasiga ham yetdi. Farqi shunda: tanishlar uni yonidagilarga ko'rsatadi, notanishlar esa odatda ko'rsatmaydi.", ru: "Ссылка дошла до обеих сторон. Разница в том, что знакомые покажут её тем, кто рядом, а незнакомые обычно не покажут." }),
+      1: tr({ uz: "Linkni ko'rgan odam ko'p, lekin ular sizni tanimaydi — ko'pchiligi uni ochmaydi ham.", ru: "Ссылку увидят многие, но они вас не знают — большинство её даже не откроет." }),
+      2: tr({ uz: "Link ikkalasiga ham yetdi. Farqi shunda: tanishlar uni yonidagilarga ko'rsatadi, notanishlar esa odatda ko'rsatmaydi.", ru: "Ссылка дошла до обеих сторон. Разница в том, что знакомые покажут её тем, кто рядом, а незнакомые обычно не покажут." }),
       default: tr({ uz: "Odatda tanishlardan ko'proq odam keladi: ular bir-birini ko'rib turadi.", ru: "Обычно от знакомых приходит больше людей: они видят друг друга." })
     }}
   />
@@ -1922,14 +1922,14 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 const ScreenFinalTest = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: 'Yakuniy tekshiruv', ru: 'Итоговая проверка' })} scope="final"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "Bot havolasi 900 notanish odamga yuborildi. Ertasiga nechta odam botni ishlatadi?", ru: 'Ссылку на бота отправили 900 незнакомым людям. Сколько человек будут пользоваться ботом на следующий день?' })} />}
-    questionText={tr({ uz: "900 notanish odamga yuborilgan havoladan ertasiga nechta odam botni ishlatadi", ru: 'Сколько человек на следующий день будут пользоваться ботом по ссылке, отправленной 900 незнакомым' })}
-    options={[tr({ uz: "Yigirmatadan ko'p — havolani ochadigan odam ko'p chiqadi", ru: 'Больше двадцати — открывших ссылку будет много' }), tr({ uz: "Bir-ikki odam — ochganlar ham ishlatmay qo'yadi", ru: "Один-два человека — даже открывшие перестанут пользоваться" }), tr({ uz: "Hech kim — bunday havolani odamlar ochmaydi", ru: 'Никто — такие ссылки люди не открывают' })]}
+    question={<TestQ ask={tr({ uz: "Bot linki 900 notanish odamga yuborildi. Ertasiga nechta odam botni ishlatadi?", ru: 'Ссылку на бота отправили 900 незнакомым людям. Сколько человек будут пользоваться ботом на следующий день?' })} />}
+    questionText={tr({ uz: "900 notanish odamga yuborilgan linkdan ertasiga nechta odam botni ishlatadi", ru: 'Сколько человек на следующий день будут пользоваться ботом по ссылке, отправленной 900 незнакомым' })}
+    options={[tr({ uz: "Yigirmatadan ko'p — linkni ochadigan odam ko'p chiqadi", ru: 'Больше двадцати — открывших ссылку будет много' }), tr({ uz: "Bir-ikki odam — ochganlar ham ishlatmay qo'yadi", ru: "Один-два человека — даже открывшие перестанут пользоваться" }), tr({ uz: "Hech kim — bunday linkni odamlar ochmaydi", ru: 'Никто — такие ссылки люди не открывают' })]}
     correctIdx={1}
     explainCorrect={tr({ uz: "Notanish odam botni odatda ochib ko'radi va yopib qo'yadi.", ru: "Незнакомый человек обычно откроет бота, посмотрит и закроет." })}
     explainWrong={{
       0: tr({ uz: "Ochganlar bo'ladi, lekin ishlatmay qo'yadi: notanish odam botni odatda ochib ko'radi va yopadi.", ru: "Открывшие будут, но перестанут пользоваться: незнакомый человек обычно откроет бота, посмотрит и закроет." }),
-      2: tr({ uz: "Havola yetib bordi, ochganlar ham bo'ldi — gap ochgandan keyin nima bo'lishida.", ru: 'Ссылка дошла, открывшие тоже нашлись — вопрос в том, что будет после открытия.' }),
+      2: tr({ uz: "Link yetib bordi, ochganlar ham bo'ldi — gap ochgandan keyin nima bo'lishida.", ru: 'Ссылка дошла, открывшие тоже нашлись — вопрос в том, что будет после открытия.' }),
       default: tr({ uz: "Katta notanish guruhdan bir-ikki odam qoladi — qolganlari ochsa ham ishlatmaydi.", ru: "Из большой незнакомой группы останутся один-два человека — остальные, даже если откроют, пользоваться не будут." })
     }}
   />
@@ -2670,7 +2670,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div ref={xulRef}><HwCard variant={hwVariant} onPick={pickHw} keyingi={tr({ uz: <>Keyingi dars — <b>«Telegram Bot API + tugmalar»</b>. 1-darsda ochgan botingizga birinchi kodni yozasiz: /start buyrug'i va menyu tugmalari.</>, ru: <>Следующий урок — <b>«Telegram Bot API + кнопки»</b>. Для бота, которого вы открыли на 1-м уроке, вы напишете первый код: команду /start и кнопки меню.</> })} /></div>}
+        {hwOpen && <div ref={xulRef}><HwCard variant={hwVariant} onPick={pickHw} keyingi={tr({ uz: <>Keyingi dars — <b>«Telegram Bot API + tugmalar»</b>. 1-darsda ochgan botingizga birinchi kodni yozasiz: /start buyrug'i va menu tugmalari.</>, ru: <>Следующий урок — <b>«Telegram Bot API + кнопки»</b>. Для бота, которого вы открыли на 1-м уроке, вы напишете первый код: команду /start и кнопки меню.</> })} /></div>}
         {!isMentorL && (
           <div className="card ach-coll fade-up d4">
             <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Nishonlaringiz', ru: "Ваши значки" })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>

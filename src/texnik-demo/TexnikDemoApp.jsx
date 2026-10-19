@@ -102,7 +102,7 @@ const MODULES = [
     id: '1', slug: 'm1', title: 'Men internetdaman',
     lessons: [
       { key: 'm1-01', n: 1,  type: 'Kod',     emoji: '🌐', title: 'Internet qanday ishlaydi',        sub: 'brauzer, server, domen, DNS — so\'rov yo\'li', comp: InternetLesson },
-      { key: 'm1-03', n: 3,  type: 'Kod',     emoji: '📄', title: 'HTML asoslari',                sub: 'teg, sarlavha, ro\'yxat, havola', comp: Htmllesson1 },
+      { key: 'm1-03', n: 3,  type: 'Kod',     emoji: '📄', title: 'HTML asoslari',                sub: 'teg, sarlavha, ro\'yxat, link', comp: Htmllesson1 },
       { key: 'm1-04', n: 4,  type: 'Kod',     emoji: '🖼️', title: 'HTML: rasm, struktura, forma, DevTools',                sub: 'rasm, forma, struktura, DevTools', comp: Htmllesson2 },
       { key: 'm1-14', n: 5,  type: 'Kod',     emoji: '🛠️', title: 'Takrorlash: HTML ustaxonasi',     sub: 'birinchi mijozlar — 5 buyurtma, debug, imtihon', comp: HtmlTakrorlashLesson },
       { key: 'm1-06', n: 7,  type: 'Kod',     emoji: '🎨', title: 'CSS asoslari: ranglar, shriftlar, bo\'shliqlar',                 sub: 'rang, shrift, bo\'shliqlar', comp: CssLesson1 },

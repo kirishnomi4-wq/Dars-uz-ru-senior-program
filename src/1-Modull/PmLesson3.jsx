@@ -810,10 +810,10 @@ const SITE_KINDS = [
   {
     key: 'ovqat', ic: '🍕', name: { uz: 'Ovqat buyurtma sayti', ru: 'Сайт заказа еды' },
     who: [{ uz: 'sinfdoshlarim', ru: 'мои одноклассники' }, { uz: 'kechqurun ovqat buyurtma qiladigan oilalar', ru: 'семьи, которые заказывают еду по вечерам' }],
-    pain: [{ uz: 'telefon qilib, menyuni so\'rab o\'tirardi', ru: 'звонили по телефону и выспрашивали меню' }, { uz: 'taomning narxini oldindan bilmasdi', ru: 'заранее не знали цену блюда' }],
-    help: [{ uz: 'menyuni rasmi va narxi bilan ko\'rsatadi', ru: 'показывает меню с фото и ценой' }, { uz: 'buyurtmani bir necha bosishda beradi', ru: 'даёт оформить заказ в пару нажатий' }],
-    hooks: [{ uz: 'Pitsa buyurtma qilish uchun telefon qilganmisiz?', ru: 'Вы звонили по телефону, чтобы заказать пиццу?' }, { uz: 'Menyuni ko\'rmasdan buyurtma berish qulaymi?', ru: 'Удобно ли заказывать, не видя меню?' }],
-    yechimPh: { uz: 'masalan: Saytim — menyuni ko\'rib, buyurtmani bir necha bosishda berasiz.', ru: 'например: Мой сайт — смотрите меню и оформляете заказ в пару нажатий.' },
+    pain: [{ uz: 'telefon qilib, menuni so\'rab o\'tirardi', ru: 'звонили по телефону и выспрашивали меню' }, { uz: 'taomning narxini oldindan bilmasdi', ru: 'заранее не знали цену блюда' }],
+    help: [{ uz: 'menuni rasmi va narxi bilan ko\'rsatadi', ru: 'показывает меню с фото и ценой' }, { uz: 'buyurtmani bir necha bosishda beradi', ru: 'даёт оформить заказ в пару нажатий' }],
+    hooks: [{ uz: 'Pitsa buyurtma qilish uchun telefon qilganmisiz?', ru: 'Вы звонили по телефону, чтобы заказать пиццу?' }, { uz: 'Menuni ko\'rmasdan buyurtma berish qulaymi?', ru: 'Удобно ли заказывать, не видя меню?' }],
+    yechimPh: { uz: 'masalan: Saytim — menuni ko\'rib, buyurtmani bir necha bosishda berasiz.', ru: 'например: Мой сайт — смотрите меню и оформляете заказ в пару нажатий.' },
     js: [{ uz: 'savatga qo\'shish tugmasi', ru: 'кнопка «в корзину»' }, { uz: 'umumiy summani hisoblash', ru: 'подсчёт общей суммы' }, { uz: 'buyurtma yuborish formasi', ru: 'форма отправки заказа' }, { uz: 'yetkazish vaqtini tanlash', ru: 'выбор времени доставки' }]
   },
   {

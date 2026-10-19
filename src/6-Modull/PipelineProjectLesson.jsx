@@ -113,7 +113,7 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 // 5 komponent (s2)
 const COMPONENTS = [
   { id: 'react', label: 'React', color: T.blue, role: { uz: 'Frontend', ru: 'Frontend' }, does: { uz: "Mijoz ko'radigan AvtoPizza sayti: pitsalar menyusi va «Buyurtma» tugmasi.", ru: 'Сайт AvtoPizza, который видит клиент: меню пицц и кнопка «Заказать».' } },
-  { id: 'node', label: 'NestJS', color: T.success, role: { uz: 'Backend', ru: 'Backend' }, does: { uz: "So'rovlarni qabul qiladi va boshqaradi: `GET /menyu`, `POST /buyurtma`.", ru: 'Принимает запросы и управляет ими: `GET /menyu`, `POST /buyurtma`.' } },
+  { id: 'node', label: 'NestJS', color: T.success, role: { uz: 'Backend', ru: 'Backend' }, does: { uz: "So'rovlarni qabul qiladi va boshqaradi: `GET /menu`, `POST /buyurtma`.", ru: 'Принимает запросы и управляет ими: `GET /menu`, `POST /buyurtma`.' } },
   { id: 'pg', label: 'PostgreSQL', color: T.grape, role: { uz: 'Database', ru: 'Database' }, does: { uz: "Ma'lumotni saqlaydi: buyurtmalar `buyurtmalar` jadvaliga yoziladi.", ru: 'Хранит данные: заказы записываются в таблицу `buyurtmalar`.' } },
   { id: 'tg', label: 'Telegram', color: T.blue, role: { uz: 'Bot', ru: 'Бот' }, does: { uz: 'Yangi buyurtma kelganda adminga xabar yuboradi.', ru: 'При новом заказе отправляет сообщение админу.' } },
   { id: 'ai', label: 'AI (Gemini)', color: T.honey, role: { uz: 'Yordamchi xizmat', ru: 'Вспомогательный сервис' }, does: { uz: "NestJS uni kerak bo'lganda chaqiradi: saytdagi savolga (`POST /savol`) javob yozadi.", ru: 'NestJS вызывает его, когда нужно: отвечает на вопрос с сайта (`POST /savol`).' } }

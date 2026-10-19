@@ -358,7 +358,7 @@ const RECAPS = {
     cards: [
       { ic: "🔌", h: { uz: "fetch bilan olinadi", ru: 'Берётся через fetch' }, body: { uz: <>Ma'lumot <b>fetch</b> bilan backend'dan olinadi.</>, ru: <>Данные берутся с бэкенда через <b>fetch</b>.</> } },
       { ic: "🗄️", h: { uz: "O'sha NestJS backend", ru: 'Тот же NestJS-бэкенд' }, body: { uz: <>Web-sayt ham, mobil ilova ham o'sha <b>NestJS backend</b>ga ulanadi.</>, ru: <>И сайт, и мобильное приложение подключаются к тому же <b>NestJS-бэкенду</b>.</> } },
-      { ic: "↻", h: { uz: "So'rov yuborib oladi", ru: 'Получает по запросу' }, body: { uz: <>Ma'lumot serverda turadi — ilova so'rov yuborib oladi.</>, ru: <>Данные лежат на сервере — приложение получает их, отправив запрос.</> }, ask: { uz: "Mobil ilova menyuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' } },
+      { ic: "↻", h: { uz: "So'rov yuborib oladi", ru: 'Получает по запросу' }, body: { uz: <>Ma'lumot serverda turadi — ilova so'rov yuborib oladi.</>, ru: <>Данные лежат на сервере — приложение получает их, отправив запрос.</> }, ask: { uz: "Mobil ilova menuni qayerdan oladi?", ru: 'Откуда мобильное приложение берёт меню?' } },
     ]
   },
   14: {
@@ -666,7 +666,7 @@ const SOM = { uz: "so'm", ru: 'сум' };
 
 const MenyuMock = ({ onTap }) => (
   <div className="rn-page">
-    <div className="rn-topbar">{tr({ uz: 'Menyu', ru: 'Меню' })}</div>
+    <div className="rn-topbar">{tr({ uz: 'Menu', ru: 'Меню' })}</div>
     {MENYU.map(p => (
       <div key={p.id} className="rn-item" onClick={onTap ? () => onTap(p) : undefined}>
         <span className="ri-name">{tr(p.name)}</span><span className="ri-price">{p.price}</span>
@@ -680,7 +680,7 @@ const TafsilotMock = ({ p, onBack }) => (
     <div style={{ textAlign: 'center', fontSize: 40 }}></div>
     <div className="rn-text title" style={{ textAlign: 'center' }}>{tr(p.name)}</div>
     <div className="rn-text price" style={{ textAlign: 'center' }}>{p.price} {tr(SOM)}</div>
-    <div className="rn-text btn" onClick={onBack} style={onBack ? { cursor: 'pointer' } : undefined}>{tr({ uz: 'Menyuga qaytish', ru: 'Вернуться в меню' })}</div>
+    <div className="rn-text btn" onClick={onBack} style={onBack ? { cursor: 'pointer' } : undefined}>{tr({ uz: 'Menuga qaytish', ru: 'Вернуться в меню' })}</div>
   </div>
 );
 
@@ -696,7 +696,7 @@ const COMPONENTS = [
 // ===== ILOVA OQIMI (final s15) =====
 const FLOW = [
   { id: 'open', label: { uz: 'Ilova ochildi', ru: 'Приложение открылось' }, d: { uz: "birinchi ekran ochiladi.", ru: 'открывается первый экран.' } },
-  { id: 'fetch', label: { uz: "Backend'dan fetch", ru: 'fetch с бэкенда' }, d: { uz: "GET /menyu — menyuni oladi.", ru: 'GET /menyu — берёт меню.' } },
+  { id: 'fetch', label: { uz: "Backend'dan fetch", ru: 'fetch с бэкенда' }, d: { uz: "GET /menu — menuni oladi.", ru: 'GET /menu — берёт меню.' } },
   { id: 'list', label: { uz: 'FlatList', ru: 'FlatList' }, d: { uz: "ro'yxatni ko'rsatadi.", ru: 'показывает список.' } },
   { id: 'tap', label: { uz: 'Pitsani bosish', ru: 'Нажатие на пиццу' }, d: { uz: "navigation.navigate.", ru: 'navigation.navigate.' } },
   { id: 'detail', label: { uz: 'Tafsilot ekrani', ru: 'Экран подробностей' }, d: { uz: "tafsilot ochiladi (push).", ru: 'открываются подробности (push).' } }
@@ -833,7 +833,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <CodeFile name="Menyu.js" minH={110}>
               <Kw>{'<FlatList'}</Kw>{'\n'}
-              {'  '}<At>data</At>{'={menyu}'}{'\n'}
+              {'  '}<At>data</At>{'={menu}'}{'\n'}
               {'  '}<At>renderItem</At>{'={({item}) => ('}{'\n'}
               {'    '}<Kw>{'<Text>'}</Kw>{'{item.nom}'}<Kw>{'</Text>'}</Kw>{'\n'}
               {'  )}'}{'\n'}
@@ -886,7 +886,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>Ilovadagi ekranlarni <b style={{ color: T.ink }}>kartalar dastasi</b>ga o'xshatish mumkin: yangi ekran ustiga qo'yiladi, «Orqaga» bosilganda olib tashlanadi. Tugmani bosing.</>, ru: <>Экраны в приложении можно сравнить с <b style={{ color: T.ink }}>колодой карт</b>: новый экран кладётся сверху, а при нажатии «Назад» убирается. Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Stack — kartalar dastasi', ru: 'Stack — колода карт' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Menyu ekrani pastda. Pitsani bossangiz, Tafsilot ekrani <b>ustiga qo'yiladi</b>. «Orqaga» — Tafsilot ekrani olib tashlanadi, Menyu ekraniga qaytasiz.</>, ru: <>Экран меню — внизу. Нажмёте на пиццу — экран подробностей <b>кладётся сверху</b>. «Назад» — экран подробностей убирается, и вы возвращаетесь к меню.</> })}</p></div>
+            <div className="frame" style={{ }}><p className="note-h" style={{ color: T.accent }}>{tr({ uz: 'Stack — kartalar dastasi', ru: 'Stack — колода карт' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Menyu ekrani pastda. Pitsani bossangiz, Tafsilot ekrani <b>ustiga qo'yiladi</b>. «Orqaga» — Tafsilot ekrani olib tashlanadi, Menu ekraniga qaytasiz.</>, ru: <>Экран меню — внизу. Нажмёте на пиццу — экран подробностей <b>кладётся сверху</b>. «Назад» — экран подробностей убирается, и вы возвращаетесь к меню.</> })}</p></div>
             <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={show} onClick={() => { setShow(true); setSc(n => n + 1); }}>{show ? tr({ uz: "✓ Ko'rdingiz", ru: '✓ Посмотрели' }) : tr({ uz: "push va pop nima?", ru: 'Что такое push и pop?' })}</button>
           </Col>
           <Col>
@@ -922,7 +922,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: "Mana navigatsiya harakatda. Telefon ichida pitsani bosing — yangi ekran o'ngdan suriladi (push). «‹ Orqaga» bilan qaytasiz (pop). Sinab ko'ring!", ru: 'Вот навигация в действии. Нажмите на пиццу внутри телефона — новый экран выедет справа (push). Кнопкой «‹ Назад» вернётесь (pop). Попробуйте!' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
-            <Phone label={view === 'list' ? { uz: 'Menyu ekrani', ru: 'экран меню' } : { uz: 'Tafsilot ekrani', ru: 'экран подробностей' }}>
+            <Phone label={view === 'list' ? { uz: 'Menu ekrani', ru: 'экран меню' } : { uz: 'Tafsilot ekrani', ru: 'экран подробностей' }}>
               {view === 'list' ? <MenyuMock onTap={open} /> : <TafsilotMock p={sel} onBack={back} />}
             </Phone>
           </Col>
@@ -965,7 +965,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>onPress:</b> bosilganda ishlaydi (web'dagi onClick).</>, ru: <><b>onPress:</b> срабатывает по нажатию (как onClick в вебе).</> })}</p></div>
                   <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>navigate('Tafsilot'):</b> Tafsilot ekraniga o'tadi — kodda ham bu ekranning nomi <span className="mono">Tafsilot</span>. Ostida yangi ekran dastaga qo'yiladi (push).</>, ru: <><b>navigate('Tafsilot'):</b> переходит на экран подробностей — в коде этот экран называется <span className="mono">Tafsilot</span>. Под капотом новый экран кладётся в колоду (push).</> })}</p></div>
                   <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>{'{ pitsa: item }'}:</b> Tafsilot ekraniga qaysi pitsa ekanini uzatadi.</>, ru: <><b>{'{ pitsa: item }'}:</b> передаёт экрану подробностей, какая это пицца.</> })}</p></div>
-                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>↩️ <b>Orqaga:</b> <span className="mono">navigation.goBack()</span> — oldingi ekranga qaytadi (pop). Tafsilot'dagi «Menyuga qaytish» tugmasi shuni chaqiradi; tepadagi «Orqaga» buni o'zi qiladi.</>, ru: <>↩️ <b>Назад:</b> <span className="mono">navigation.goBack()</span> — возвращает на предыдущий экран (pop). Кнопка «Вернуться в меню» на экране подробностей вызывает именно его; верхняя «Назад» делает это сама.</> })}</p></div>
+                  <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>↩️ <b>Orqaga:</b> <span className="mono">navigation.goBack()</span> — oldingi ekranga qaytadi (pop). Tafsilot'dagi «Menuga qaytish» tugmasi shuni chaqiradi; tepadagi «Orqaga» buni o'zi qiladi.</>, ru: <>↩️ <b>Назад:</b> <span className="mono">navigation.goBack()</span> — возвращает на предыдущий экран (pop). Кнопка «Вернуться в меню» на экране подробностей вызывает именно его; верхняя «Назад» делает это сама.</> })}</p></div>
                 </div>
               : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Tafsilot ekrani pitsani <span className="mono">route.params</span> dan olib, nomi va narxini ko'rsatadi. <span className="mono">navigate</span> — o'tish, <span className="mono">goBack</span> — qaytish.</>, ru: <>Экран подробностей берёт пиццу из <span className="mono">route.params</span> и показывает её название и цену. <span className="mono">navigate</span> — переход, <span className="mono">goBack</span> — возврат.</> })}</p></div>}
@@ -1006,13 +1006,13 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'API · fetch', ru: 'API · fetch' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Kodni o'qing", ru: 'Прочитайте код' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ma'lumot — <span className="mono" style={{ color: T.accent }}>fetch</span> bilan backend'dan.</>, ru: <>Данные — с бэкенда через <span className="mono" style={{ color: T.accent }}>fetch</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Menyuni kodga qo'lda yozmaysiz. <span className="mono">useEffect</span> ichida <span className="mono">fetch</span> bilan uni <b style={{ color: T.ink }}>AvtoPizza'ning o'sha NestJS backend'i</b>dan olasiz — web-saytdagi bilan bir xil API. Tugmani bosing.</>, ru: <>Меню не прописываете в коде вручную. Внутри <span className="mono">useEffect</span> берёте его через <span className="mono">fetch</span> с <b style={{ color: T.ink }}>того же NestJS-бэкенда AvtoPizza</b> — тот же API, что и у сайта. Нажмите кнопку.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Menuni kodga qo'lda yozmaysiz. <span className="mono">useEffect</span> ichida <span className="mono">fetch</span> bilan uni <b style={{ color: T.ink }}>AvtoPizza'ning o'sha NestJS backend'i</b>dan olasiz — web-saytdagi bilan bir xil API. Tugmani bosing.</>, ru: <>Меню не прописываете в коде вручную. Внутри <span className="mono">useEffect</span> берёте его через <span className="mono">fetch</span> с <b style={{ color: T.ink }}>того же NestJS-бэкенда AvtoPizza</b> — тот же API, что и у сайта. Нажмите кнопку.</> })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <CodeFile name="Menyu.js" minH={120}>
-              <Kw>const</Kw>{' [menyu, setMenyu] = '}<At>useState</At>{'([])'}{'\n\n'}
+              <Kw>const</Kw>{' [menu, setMenyu] = '}<At>useState</At>{'([])'}{'\n\n'}
               <At>useEffect</At>{'(() => {'}{'\n'}
-              {'  '}<At>fetch</At>{'(BACKEND + '}<St>'/menyu'</St>{')'}{'   '}<Cm>{tr({ uz: '// BACKEND — backend manzili (config.js)', ru: '// BACKEND — адрес бэкенда (config.js)' })}</Cm>{'\n'}
+              {'  '}<At>fetch</At>{'(BACKEND + '}<St>'/menu'</St>{')'}{'   '}<Cm>{tr({ uz: '// BACKEND — backend manzili (config.js)', ru: '// BACKEND — адрес бэкенда (config.js)' })}</Cm>{'\n'}
               {'    .then(r => r.json())'}{'\n'}
               {'    .then(setMenyu)'}{'\n'}
               {'}, [])'}
@@ -1021,7 +1021,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             {show
-              ? <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: "O'SHA BACKEND", ru: 'ТОТ ЖЕ БЭКЕНД' })}</span><p className="agent-msg">{tr({ uz: <>Bu — botingizning NestJS backend'i: <span className="mono">GET /menyu</span> menyuni beradi. Web-sayt ham, mobil ilova ham <b>bitta backend</b>dan ma'lumot oladi. 1-darsdagi «ko'p kirish yo'li, bitta tizim»ni eslang.</>, ru: <>Это NestJS-бэкенд вашего бота: <span className="mono">GET /menyu</span> отдаёт меню. И сайт, и мобильное приложение берут данные с <b>одного бэкенда</b>. Вспомните «много точек входа, одна система» из 1-го урока.</> })}</p></div>
+              ? <div className="agent-card fade-step"><span className="agent-lbl">{tr({ uz: "O'SHA BACKEND", ru: 'ТОТ ЖЕ БЭКЕНД' })}</span><p className="agent-msg">{tr({ uz: <>Bu — botingizning NestJS backend'i: <span className="mono">GET /menu</span> menuni beradi. Web-sayt ham, mobil ilova ham <b>bitta backend</b>dan ma'lumot oladi. 1-darsdagi «ko'p kirish yo'li, bitta tizim»ni eslang.</>, ru: <>Это NestJS-бэкенд вашего бота: <span className="mono">GET /menu</span> отдаёт меню. И сайт, и мобильное приложение берут данные с <b>одного бэкенда</b>. Вспомните «много точек входа, одна система» из 1-го урока.</> })}</p></div>
               : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">useEffect</span> + <span className="mono">fetch</span> — aynan web React'dagidek. Backend'ni qayta qurmaysiz — mobil ilovani unga ulaysiz.</>, ru: <><span className="mono">useEffect</span> + <span className="mono">fetch</span> — ровно как в веб-React. Бэкенд заново не строите — подключаете к нему мобильное приложение.</> })}</p></div>}
           </Col>
@@ -1046,7 +1046,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Sinov · fetch', ru: 'Пробуем · fetch' }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Ma'lumotni yuklang", ru: 'Загрузите данные' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ilova ochildi → backend'dan ma'lumot <span className="italic" style={{ color: T.accent }}>keladi</span>.</>, ru: <>Приложение открылось → данные <span className="italic" style={{ color: T.accent }}>приходят</span> с бэкенда.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Mana fetch harakatda: ilova avval bo'sh (yuklanmoqda), keyin backend'dan menyu kelib, ro'yxat to'ladi. Tugmani bosing.", ru: 'Вот fetch в действии: сначала приложение пустое (идёт загрузка), потом с бэкенда приходит меню и заполняет список. Нажмите кнопку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Mana fetch harakatda: ilova avval bo'sh (yuklanmoqda), keyin backend'dan menu kelib, ro'yxat to'ladi. Tugmani bosing.", ru: 'Вот fetch в действии: сначала приложение пустое (идёт загрузка), потом с бэкенда приходит меню и заполняет список. Нажмите кнопку.' })}</Mentor>
         <Zoomable><div className="split">
           <Col>
             <div className="fetch-flow"><span className="ff-node">📱</span><span className={`ff-arrow ${phase === 'loading' ? 'on' : ''}`}>→</span><span className="ff-node">🔌</span><span className={`ff-arrow ${phase === 'loading' ? 'on' : ''}`}>→</span><span className="ff-node">🗄️</span></div>
@@ -1094,11 +1094,11 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = step >= 4;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const NOTES = [
-    { uz: "Ilova ochildi — birinchi ekran (Menyu).", ru: 'Приложение открылось — первый экран (меню).' },
-    { uz: "Backend'dan fetch — menyu yuklanmoqda…", ru: 'fetch на бэкенд — меню загружается…' },
+    { uz: "Ilova ochildi — birinchi ekran (Menu).", ru: 'Приложение открылось — первый экран (меню).' },
+    { uz: "Backend'dan fetch — menu yuklanmoqda…", ru: 'fetch на бэкенд — меню загружается…' },
     { uz: "FlatList — 3 ta pitsa ro'yxati ko'rindi.", ru: 'FlatList — появился список из 3 пицц.' },
     { uz: "«Margarita»ni bosish — `navigation.navigate('Tafsilot')` → Tafsilot ekrani ochiladi.", ru: "Нажатие на «Margarita» — `navigation.navigate('Tafsilot')` → открывается экран подробностей." },
-    { uz: "Tafsilot ekrani: nom, narx, «Menyuga qaytish». Asosiy oqim ishladi!", ru: 'Экран подробностей: название, цена, «Вернуться в меню». Основной поток заработал!' }
+    { uz: "Tafsilot ekrani: nom, narx, «Menuga qaytish». Asosiy oqim ishladi!", ru: 'Экран подробностей: название, цена, «Вернуться в меню». Основной поток заработал!' }
   ];
   const advance = () => { if (!done) { setStep(n => n + 1); setSc(n => n + 1); } };
   return (
@@ -1116,7 +1116,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <button className="btn" style={{ alignSelf: 'flex-end' }} disabled={done} onClick={advance}>{done ? tr({ uz: '✓ Asosiy oqim ishladi', ru: '✓ Основной поток заработал' }) : step === 0 ? tr({ uz: '▶ Boshlash', ru: '▶ Начать' }) : tr({ uz: 'Keyingi qadam →', ru: 'Следующий шаг →' })}</button>
           </Col>
           <Col>
-            <Phone label={step <= 1 ? { uz: 'ilova', ru: 'приложение' } : step === 3 || step === 4 ? { uz: 'Tafsilot ekrani', ru: 'экран подробностей' } : { uz: 'Menyu ekrani', ru: 'экран меню' }}>
+            <Phone label={step <= 1 ? { uz: 'ilova', ru: 'приложение' } : step === 3 || step === 4 ? { uz: 'Tafsilot ekrani', ru: 'экран подробностей' } : { uz: 'Menu ekrani', ru: 'экран меню' }}>
               {step === 1 && <div className="rn-spin" />}
               {step === 2 && <MenyuMock />}
               {(step === 3 || step === 4) && <TafsilotMock p={MENYU[0]} />}
@@ -1962,8 +1962,8 @@ const ScreenRnPractice = (props) => (
     task={{ uz: "Expo loyihangizda (`mobile/`) ikki ekran yig'ing: `Menyu` — FlatList bilan pitsalar ro'yxati; pitsani bossangiz, `navigation.navigate` bilan `Tafsilot` ekrani ochilsin. Menyuni AvtoPizza backend'idan `fetch` bilan oling (`GET /menyu`). Backend ishlab turgan bo'lishi kerak.", ru: 'Соберите в своём проекте Expo (`mobile/`) два экрана: `Menyu` — список пицц через FlatList; по нажатию на пиццу через `navigation.navigate` открывается экран `Tafsilot`. Меню берите с бэкенда AvtoPizza через `fetch` (`GET /menyu`). Бэкенд должен быть запущен.' }}
     checklist={[
       { uz: "Loyihani tayyorlang: navigatsiya kutubxonasini o'rnating — buyruqlar ustoz bergan yo'riqnomada (yoki ustoz bergan tayyor loyihani oching)", ru: 'Подготовьте проект: установите библиотеку навигации — команды есть в инструкции от наставника (или откройте готовый проект от наставника)' },
-      { uz: "`App.js` dagi `Stack.Navigator`da ikki ekran e'lon qiling: `Menyu` va `Tafsilot`", ru: 'Объявите в `Stack.Navigator` в `App.js` два экрана: `Menyu` и `Tafsilot`' },
-      { uz: "`Menyu` ekranda `useEffect` + `fetch` bilan `/menyu`dan pitsalarni oling — backend ishlayotganini avval brauzerda tekshiring", ru: 'На экране `Menyu` получите пиццы из `/menyu` через `useEffect` + `fetch` — сначала проверьте в браузере, что бэкенд работает' },
+      { uz: "`App.js` dagi `Stack.Navigator`da ikki ekran e'lon qiling: `Menu` va `Tafsilot`", ru: 'Объявите в `Stack.Navigator` в `App.js` два экрана: `Menu` и `Tafsilot`' },
+      { uz: "`Menyu` ekranda `useEffect` + `fetch` bilan `/menyu`dan pitsalarni oling — backend ishlayotganini avval brauzerda tekshiring", ru: 'На экране `Menu` получите пиццы из `/menu` через `useEffect` + `fetch` — сначала проверьте в браузере, что бэкенд работает' },
       { uz: "Pitsalarni `FlatList` bilan chizing; har qatorni `Pressable` qiling: `onPress={() => navigation.navigate('Tafsilot', { pitsa: item })}`", ru: "Нарисуйте пиццы списком через `FlatList`; сделайте каждую строку `Pressable`: `onPress={() => navigation.navigate('Tafsilot', { pitsa: item })}`" },
       { uz: "`Tafsilot` ekranda pitsani `route.params.pitsa` dan oling, nomi va narxini ko'rsating; «Menyuga qaytish» tugmasi `navigation.goBack()` bilan Menyu ekraniga qaytarsin", ru: 'На экране `Tafsilot` возьмите пиццу из `route.params.pitsa`, покажите название и цену; кнопка «Menyuga qaytish» через `navigation.goBack()` пусть вернёт к меню' },
     ]}

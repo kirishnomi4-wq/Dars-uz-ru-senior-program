@@ -329,7 +329,7 @@ const RECAPS = {
     cards: [
       { ic: '1', h: { uz: 'Kim uchun — postning birinchi qatori.', ru: 'Для кого — первая строка поста.' } },
       { ic: '2', h: { uz: 'Nima foyda — odam nima oladi, bir gap.', ru: 'Какая польза — что получит человек, одна фраза.' } },
-      { ic: '3', h: { uz: 'Bitta harakat — havola; halol holat — hozir nima tayyor.', ru: 'Одно действие — ссылка; честное состояние — что готово сейчас.' }, ask: { uz: "Mentor postida «Ilova ishlayapti, o'rnatish havolasi hozircha yo'q» qaysi qator?", ru: 'Какая строка в посте Ментора — «Приложение работает, ссылки для установки пока нет»?' } }
+      { ic: '3', h: { uz: 'Bitta harakat — link; halol holat — hozir nima tayyor.', ru: 'Одно действие — ссылка; честное состояние — что готово сейчас.' }, ask: { uz: "Mentor postida «Ilova ishlayapti, o'rnatish linki hozircha yo'q» qaysi qator?", ru: 'Какая строка в посте Ментора — «Приложение работает, ссылки для установки пока нет»?' } }
     ]
   },
   8: {
@@ -681,7 +681,7 @@ const MENTOR_POST = {
   bolaklar: [
     { qator: 'kim', matn: { uz: "Mahalla futbolchilari, Shanba o'yiniga kim kelishini bitta joyda ko'rish uchun «Maydon Jamoa» ilovasini qurdim:", ru: 'Футболисты махалли, чтобы видеть в одном месте, кто придёт на субботнюю игру, я построил приложение «Maydon Jamoa»:' } },
     { qator: 'foyda', matn: { uz: "o'yin e'lon qilinadi, «Qo'shilaman» bosiladi, nechta odam yig'ilgani ko'rinib turadi.", ru: 'объявляется игра, нажимают «Присоединяюсь», видно, сколько людей собралось.' } },
-    { qator: 'holat', matn: { uz: "Ilova ishlayapti, o'rnatish havolasi hozircha yo'q —", ru: 'Приложение работает, ссылки для установки пока нет —' } },
+    { qator: 'holat', matn: { uz: "Ilova ishlayapti, o'rnatish linki hozircha yo'q —", ru: 'Приложение работает, ссылки для установки пока нет —' } },
     { qator: 'harakat', matn: { uz: "sahifasini ko'ring: " + MANZIL_NAMUNA, ru: 'посмотрите страницу: ' + MANZIL_NAMUNA } }
   ]
 };
@@ -876,13 +876,13 @@ const Atama = ({ y, children }) => <div className="kn-atama fade-step"><span cla
 // ===== SCREEN 0 — KIRISH (QKirish; ballsiz — J-026: correct false hammaga; «Aynan!» / «Qiziq fikr!») =====
 const HOOK_OPTS = [
   { id: 'qidiruv', label: { uz: 'Qidiruvga mahsulot nomini yozib', ru: 'Набрав название продукта в поиске' } },
-  { id: 'guruh', label: { uz: 'Tanish guruhdagi havolani bosib', ru: 'Нажав на ссылку в знакомой группе' } },
+  { id: 'guruh', label: { uz: 'Tanish guruhdagi linkni bosib', ru: 'Нажав на ссылку в знакомой группе' } },
   { id: 'tasodif', label: { uz: 'Tasodifan sahifaga kirib qolib', ru: 'Случайно попав на страницу' } }
 ];
 const HOOK_JAVOB = {
-  guruh: { uz: <><b>Aynan!</b> Mentor misolida odamlar tanish guruhda allaqachon yig'ilgan — havolani o'sha yerda ko'radi.</>, ru: <><b>Именно!</b> В примере Ментора люди уже собрались в знакомой группе — там они и увидят ссылку.</> },
+  guruh: { uz: <><b>Aynan!</b> Mentor misolida odamlar tanish guruhda allaqachon yig'ilgan — linkni o'sha yerda ko'radi.</>, ru: <><b>Именно!</b> В примере Ментора люди уже собрались в знакомой группе — там они и увидят ссылку.</> },
   qidiruv: { uz: <><b>Qiziq fikr!</b> Qidiruvga odam nom yozadi — «Maydon Jamoa» nomini esa hali kam odam biladi.</>, ru: <><b>Интересная мысль!</b> В поиск человек пишет название — а название «Maydon Jamoa» пока знают немногие.</> },
-  tasodif: { uz: <><b>Qiziq fikr!</b> Tasodif ham bo'ladi, lekin uni kutib bo'lmaydi — havolani odamlarga o'zingiz ko'rsatasiz.</>, ru: <><b>Интересная мысль!</b> Случайность тоже бывает, но на неё нельзя рассчитывать — ссылку людям показываете вы сами.</> }
+  tasodif: { uz: <><b>Qiziq fikr!</b> Tasodif ham bo'ladi, lekin uni kutib bo'lmaydi — linkni odamlarga o'zingiz ko'rsatasiz.</>, ru: <><b>Интересная мысль!</b> Случайность тоже бывает, но на неё нельзя рассчитывать — ссылку людям показываете вы сами.</> }
 };
 // Yo'l belgisi: qidiruv qatori · chat pufagi · «?»
 const YolBelgi = ({ id }) => (
@@ -1388,7 +1388,7 @@ const kanallarYoz = (patch) => { const d = { ...kanallarOl(), ...patch, savedAt:
 const BOSHQA_RE = /@|t\.me\/|http|\d{7,}/i;
 const S9_XATO = {
   tur: { uz: 'Avval joy turini tanlang.', ru: 'Сначала выберите тип места.' },
-  boshqa: { uz: 'Guruh nomi va havolasi yozilmaydi — faqat turini yozing.', ru: "Название и ссылку группы не пишут — укажите только тип." },
+  boshqa: { uz: 'Guruh nomi va linki yozilmaydi — faqat turini yozing.', ru: "Название и ссылку группы не пишут — укажите только тип." },
   takror: { uz: "Bu tur ro'yxatda bor — boshqa joyni tanlang.", ru: 'Этот тип уже в списке — выберите другое место.' }
 };
 const ruxsatQator = (turId) => (turId === 'sinf'
@@ -1551,9 +1551,9 @@ const POST_MAYDON = [
   { id: 'foyda', h: { uz: 'Nima foyda', ru: 'Какая польза' }, savol: { uz: 'Odam nima oladi?', ru: 'Что получит человек?' }, ph: { uz: 'Bir gap', ru: "Одна фраза" }, max: 120,
     yordam: { uz: "Mentor misolida: «o'yin e'lon qilinadi, «Qo'shilaman» bosiladi, nechta odam yig'ilgani ko'rinib turadi» — lending foydalaridan.", ru: 'В примере Ментора: «объявляется игра, нажимают «Присоединяюсь», видно, сколько людей собралось» — из польз лендинга.' } },
   { id: 'harakat', h: { uz: 'Bitta harakat', ru: 'Одно действие' }, savol: { uz: 'Odam nima qiladi?', ru: 'Что сделает человек?' }, ph: { uz: 'Bir qisqa gap', ru: 'Одна короткая фраза' }, max: 60,
-    yordam: { uz: "Mentor misolida: «sahifasini ko'ring» — bitta ish, bitta havola.", ru: 'В примере Ментора: «посмотрите страницу» — одно дело, одна ссылка.' } },
+    yordam: { uz: "Mentor misolida: «sahifasini ko'ring» — bitta ish, bitta link.", ru: 'В примере Ментора: «посмотрите страницу» — одно дело, одна ссылка.' } },
   { id: 'holat', h: { uz: 'Halol holat', ru: 'Честное состояние' }, savol: { uz: 'Hozir nima tayyor?', ru: 'Что готово сейчас?' }, ph: { uz: 'Bir gap', ru: "Одна фраза" }, max: 80,
-    yordam: { uz: "Mentor misolida: «Ilova ishlayapti, o'rnatish havolasi hozircha yo'q». Web-trekda sayt allaqachon ishlasa — shuni yozing.", ru: 'В примере Ментора: «Приложение работает, ссылки для установки пока нет». В веб-треке, если сайт уже работает, — так и напишите.' } }
+    yordam: { uz: "Mentor misolida: «Ilova ishlayapti, o'rnatish linki hozircha yo'q». Web-trekda sayt allaqachon ishlasa — shuni yozing.", ru: 'В примере Ментора: «Приложение работает, ссылки для установки пока нет». В веб-треке, если сайт уже работает, — так и напишите.' } }
 ];
 // Tekshiruv (PM-032: bo'sh, telefon/akkaunt, maktab raqami — bloklaydi; va'da va bo'sh sifat — yumshoq, ikkinchi «Saqlash» bilan o'tadi). Namuna sinovi: scratchpad 06-qurish/sinov.mjs
 const S10_SHAXSIY_RE = /\d{7,}|\+\s*998|@|t\.me\//i;
@@ -1682,7 +1682,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </label>
         {joriyK === 'harakat' && (havola
           ? <code className="kn-havola">{havola}</code>
-          : <span className="kn-kulrang">{tr({ uz: "Lending manzili hali yo'q — Netlify'ga chiqargach havola shu yerga qo'shiladi.", ru: "Адреса лендинга ещё нет — ссылка появится здесь, когда выложите его на Netlify." })}</span>)}
+          : <span className="kn-kulrang">{tr({ uz: "Lending manzili hali yo'q — Netlify'ga chiqargach link shu yerga qo'shiladi.", ru: "Адреса лендинга ещё нет — ссылка появится здесь, когда выложите его на Netlify." })}</span>)}
         {joriyK === 'holat' && <span className="kn-kulrang">{tr({ uz: "Hali yo'q narsa va'da qilinmaydi.", ru: 'То, чего ещё нет, не обещают.' })}</span>}
       </div>
       {xato && <QXato>{tr(S10_XABAR[xato.x])}</QXato>}
@@ -1781,36 +1781,36 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // Starter oddiy satrlardan yig'iladi (backtick yo'q). Qatorlar ≤ 70 belgi (SABOQ 37): MD dagi ikki uzun qator izohi alohida satrga olindi.
 // Tekshiruv ma'lumotdan mustaqil (SABOQ 37): kanalniOl o'z namuna havolasi bilan chaqiriladi; sahifa sharti — #kanallar li soni va «kanal: <qiymat> · ».
 const KOD_IZ = {
-  bosh1: { uz: '// Namuna havolalar: lending manzili va oxiridagi kanal belgisi.', ru: '// Примеры ссылок: адрес лендинга и метка канала в конце.' },
+  bosh1: { uz: '// Namuna linklar: lending manzili va oxiridagi kanal belgisi.', ru: '// Примеры ссылок: адрес лендинга и метка канала в конце.' },
   bosh2: { uz: '// Manzil — namuna (haqiqiy sayt emas); sizda — o\'z lendingingiz manzili.', ru: '// Адрес — пример (не настоящий сайт); у вас — адрес вашего лендинга.' },
   masalan: { uz: '  // masalan: "?kanal=sinf" yoki ""', ru: '  // например: "?kanal=sinf" или ""' },
   fn: { uz: '  // belgilar ichidan kanal qiymatini oling;', ru: '  // возьмите из меток значение канала;' },
   fn2: { uz: '  // belgi bo\'lmasa — "belgisiz"', ru: '  // если метки нет — "belgisiz"' },
   siz: { uz: '   // shu joyni siz yozasiz', ru: '   // это место пишете вы' },
-  tayyor: { uz: '// har havola — sahifada bitta qator (bu qism tayyor)', ru: '// каждая ссылка — одна строка на странице (эта часть готова)' }
+  tayyor: { uz: '// har link — sahifada bitta qator (bu qism tayyor)', ru: '// каждая ссылка — одна строка на странице (эта часть готова)' }
 };
-const KOD_HAVOLALAR = ['const havolalar = [', '  "https://maydon-jamoa.example/?kanal=guruh",', '  "https://maydon-jamoa.example/?kanal=sinf",', '  "https://maydon-jamoa.example/?kanal=instagram",', '  "https://maydon-jamoa.example/"', '];', ''];
+const KOD_HAVOLALAR = ['const linklar = [', '  "https://maydon-jamoa.example/?kanal=guruh",', '  "https://maydon-jamoa.example/?kanal=sinf",', '  "https://maydon-jamoa.example/?kanal=instagram",', '  "https://maydon-jamoa.example/"', '];', ''];
 const kodStarter = (t) => [KOD_IZ.bosh1[t], KOD_IZ.bosh2[t], ...KOD_HAVOLALAR,
-  'function kanalniOl(havola) {', KOD_IZ.masalan[t], '  const belgilar = new URL(havola).search;', KOD_IZ.fn[t], KOD_IZ.fn2[t], '  return "";' + KOD_IZ.siz[t], '}', '',
-  KOD_IZ.tayyor[t], 'const joy = document.getElementById("kanallar");', 'havolalar.forEach(function (havola) {', '  const qator = document.createElement("li");',
-  '  qator.textContent = "kanal: " + kanalniOl(havola) + " · " + havola;', '  joy.appendChild(qator);', '});', ''].join('\n');
+  'function kanalniOl(link) {', KOD_IZ.masalan[t], '  const belgilar = new URL(link).search;', KOD_IZ.fn[t], KOD_IZ.fn2[t], '  return "";' + KOD_IZ.siz[t], '}', '',
+  KOD_IZ.tayyor[t], 'const joy = document.getElementById("kanallar");', 'linklar.forEach(function (link) {', '  const qator = document.createElement("li");',
+  '  qator.textContent = "kanal: " + kanalniOl(link) + " · " + link;', '  joy.appendChild(qator);', '});', ''].join('\n');
 const KOD_STARTER = { uz: kodStarter('uz'), ru: kodStarter('ru') };
-const KOD_INDEX = { uz: '<h1>Havola qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n', ru: '<h1>Havola qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n' };
+const KOD_INDEX = { uz: '<h1>Link qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n', ru: '<h1>Link qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n' };
 const KOD_SHART_IFODA = [
   ['kanalniOl("https://maydon-jamoa.example/?kanal=guruh")', 'guruh'],
   ['kanalniOl("https://maydon-jamoa.example/")', 'belgisiz'],
   ['(function(){var l=document.querySelectorAll("#kanallar li");if(l.length!==4)return "yoq";for(var i=0;i<l.length;i++){if(!/^kanal: [^ ]+ · /.test(l[i].textContent))return "yoq";}return "ha";})()', 'ha']
 ];
 const KOD_VAZIFA = [
-  { uz: '`kanalniOl` havoladan `kanal` qiymatini qaytaradi', ru: '`kanalniOl` возвращает из ссылки значение `kanal`' },
+  { uz: '`kanalniOl` linkdan `kanal` qiymatini qaytaradi', ru: '`kanalniOl` возвращает из ссылки значение `kanal`' },
   { uz: 'Belgi bo\'lmasa — `"belgisiz"`', ru: 'Если метки нет — `"belgisiz"`' },
-  { uz: "Namuna sahifada to'rt havola, har birining kanali bilan", ru: 'На странице-примере четыре ссылки, у каждой — свой канал' }
+  { uz: "Namuna sahifada to'rt link, har birining kanali bilan", ru: 'На странице-примере четыре ссылки, у каждой — свой канал' }
 ];
 // Kod oynasi shart yorliqlarida kod-chip yo'q — belgisiz matn
 const kodYorliq = (v) => ({ uz: v.uz.split(String.fromCharCode(96)).join(''), ru: v.ru.split(String.fromCharCode(96)).join('') });
 const KOD_SHART = [
-  { uz: "1 — «guruh» belgili havoladan «guruh» chiqsin.", ru: "1 — Из ссылки с меткой «guruh» должно выйти «guruh»." },
-  { uz: '2 — Belgisiz havoladan «belgisiz» chiqsin.', ru: "2 — Из ссылки без метки должно выйти «belgisiz»." },
+  { uz: "1 — «guruh» belgili linkdan «guruh» chiqsin.", ru: "1 — Из ссылки с меткой «guruh» должно выйти «guruh»." },
+  { uz: '2 — Belgisiz linkdan «belgisiz» chiqsin.', ru: "2 — Из ссылки без метки должно выйти «belgisiz»." },
   { uz: "3 — Namuna sahifada to'rt qator, har birida kanal bo'lsin.", ru: "3 — На странице-примере четыре строки, в каждой — канал." }
 ];
 const KOD_TASK = {
@@ -1829,7 +1829,7 @@ const KOD_TASK = {
 };
 const KOD_DARVOZA = [
   { id: 'kanal', t: { uz: 'Tashrif qaysi kanaldan kelganini', ru: 'Из какого канала пришло посещение' }, ok: true },
-  { id: 'odam', t: { uz: 'Havolani bosgan odam kimligini', ru: 'Кто нажал на ссылку' }, x: { uz: 'Belgi odamni emas — kanalni bildiradi: ism yozilmaydi.', ru: 'Метка обозначает не человека, а канал: имя не пишут.' } },
+  { id: 'odam', t: { uz: 'Linkni bosgan odam kimligini', ru: 'Кто нажал на ссылку' }, x: { uz: 'Belgi odamni emas — kanalni bildiradi: ism yozilmaydi.', ru: 'Метка обозначает не человека, а канал: имя не пишут.' } },
   { id: 'til', t: { uz: 'Sahifa qaysi tilda ochilishini', ru: 'На каком языке откроется страница' }, x: { uz: 'Til boshqa narsa: belgi kanal nomini olib keladi.', ru: 'Язык — другое: метка приносит название канала.' } }
 ];
 // Kod namunasi (o'qish uchun; nusxalanmaydi — PM-082 d): darvozadan keyin ?kanal=guruh va kanalniOl bir lahza ajraladi
@@ -1889,12 +1889,12 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Kod yozish', ru: 'Пишем код' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: '① Kod-savolini yeching', ru: "① Ответьте на вопрос по коду" }) : tr({ uz: '② Kodni yozing', ru: '② Напишите код' })} onClick={onNext} /></>}>
       <QKod
-        sarlavha={tr({ uz: <>Havoladan kanalni topadigan <A>kod yozamiz.</A></>, ru: <>Пишем код, который <A>находит канал по ссылке.</A></> })}
-        mentor={<Mentor>{tr({ uz: 'Har kanalga havola oxiriga belgi qo\'shiladi — kod shu belgini o\'qiydi.', ru: 'К ссылке для каждого канала в конце добавляют метку — код читает эту метку.' })}</Mentor>}
+        sarlavha={tr({ uz: <>Linkdan kanalni topadigan <A>kod yozamiz.</A></>, ru: <>Пишем код, который <A>находит канал по ссылке.</A></> })}
+        mentor={<Mentor>{tr({ uz: 'Har kanalga link oxiriga belgi qo\'shiladi — kod shu belgini o\'qiydi.', ru: 'К ссылке для каждого канала в конце добавляют метку — код читает эту метку.' })}</Mentor>}
         vazifa={<>
           {!gpick && !isMentor && !done ? (
             <div className="kn-darvoza-q">
-              <span className="kn-darvoza-s">{fmtCode(tr({ uz: 'Havola oxiridagi `?kanal=sinf` nimani bildiradi?', ru: 'Что означает `?kanal=sinf` в конце ссылки?' }))}</span>
+              <span className="kn-darvoza-s">{fmtCode(tr({ uz: 'Link oxiridagi `?kanal=sinf` nimani bildiradi?', ru: 'Что означает `?kanal=sinf` в конце ссылки?' }))}</span>
               <div className="kn-darvoza-ro kn-chorla">
                 {KOD_DARVOZA.map(g => {
                   const silk = miss && miss.id === g.id;
@@ -1904,11 +1904,11 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {miss && <QXato>{tr(KOD_DARVOZA.find(g => g.id === miss.id).x)}</QXato>}
             </div>
           ) : <>
-            <QIzoh>{tr({ uz: 'Havola oxiridagi belgi — kanal belgisi. Tashrif — sahifaning bir marta ochilishi.', ru: 'Метка в конце ссылки — метка канала. Посещение — одно открытие страницы.' })}</QIzoh>
+            <QIzoh>{tr({ uz: 'Link oxiridagi belgi — kanal belgisi. Tashrif — sahifaning bir marta ochilishi.', ru: 'Метка в конце ссылки — метка канала. Посещение — одно открытие страницы.' })}</QIzoh>
             <MentorSanoq />
           </>}
           <ol className={cxx('kn-vazifa', !stage2 && 'xira')}>{KOD_VAZIFA.map((v, i) => <li key={i} className={cxx(done && 'ok')}><i>{done ? '✓' : i + 1}</i><span>{fmtCode(tr(v))}</span></li>)}</ol>
-          {done && <QXulosa>{tr({ uz: "Kod to'rt havolaning kanalini topdi; belgisi yo'q havola — «belgisiz».", ru: 'Код нашёл канал у четырёх ссылок; ссылка без метки — «belgisiz».' })}</QXulosa>}
+          {done && <QXulosa>{tr({ uz: "Kod to'rt linkning kanalini topdi; belgisi yo'q link — «belgisiz».", ru: 'Код нашёл канал у четырёх ссылок; ссылка без метки — «belgisiz».' })}</QXulosa>}
         </>}
         yordam={stage2 && <div className="kn-kyordam">
           <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
@@ -1923,7 +1923,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {done
             ? <ul className="kn-kod-natija fade-step">{['guruh', 'sinf', 'instagram', 'belgisiz'].map((k, i) => <li key={k} style={{ '--i': i }}><b>kanal: {k}</b> · https://maydon-jamoa.example/{k === 'belgisiz' ? '' : '?kanal=' + k}</li>)}</ul>
             : <KodNamuna ajrat={ajrat} />}
-          <span className="kn-kulrang">{fmtCode(tr({ uz: 'Lendingning o\'zida belgi sahifa ochilgan havoladan olinadi (`location.search`) — bu oynada esa namuna havolalardan.', ru: 'На самом лендинге метку берут из ссылки, по которой открыли страницу (`location.search`), — а в этом окне из ссылок-примеров.' }))}</span>
+          <span className="kn-kulrang">{fmtCode(tr({ uz: 'Lendingning o\'zida belgi sahifa ochilgan linkdan olinadi (`location.search`) — bu oynada esa namuna linklardan.', ru: 'На самом лендинге метку берут из ссылки, по которой открыли страницу (`location.search`), — а в этом окне из ссылок-примеров.' }))}</span>
           {isMentor && <MentorPracticeStats live={live} screen={screen} />}
         </div> }}
       />
@@ -1963,7 +1963,7 @@ const ACHIEVEMENTS = {
   safeCheck: { icon: '🛡️', name: 'Safe Check!', desc: { uz: "Olti vaziyatni birinchi urinishda to'g'ri ajratdingiz", ru: 'С первой попытки верно разобрали шесть ситуаций' } },
   myChannels: { icon: '📣', name: 'My Channels!', desc: { uz: 'Mahsulotingiz uchun kanalni uch savol bilan tanladingiz', ru: 'Выбрали канал для своего продукта по трём вопросам' } },
   postReady: { icon: '✍️', name: 'Post Ready!', desc: { uz: "Birinchi postingizni to'rt qator bilan yozib, ro'yxat bo'yicha tekshirdingiz", ru: 'Написали первый пост из четырёх строк и проверили его по списку' } },
-  linkReader: { icon: '🔗', name: 'Link Reader!', desc: { uz: "Havoladan kanal belgisini o'qiydigan kod yozdingiz", ru: 'Написали код, который читает метку канала из ссылки' } },
+  linkReader: { icon: '🔗', name: 'Link Reader!', desc: { uz: "Linkdan kanal belgisini o'qiydigan kod yozdingiz", ru: 'Написали код, который читает метку канала из ссылки' } },
 };
 // Ekran id → nishon: s6 — olti vaziyat birinchi urinishda (to'g'ri/xato bor) · s9, s10, s11 — qilingan ish
 const ACH_TRIGGERS = { s6: 'safeCheck', s9: 'myChannels', s10: 'postReady', s11: 'linkReader' };
@@ -2045,15 +2045,15 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: "Intervyu javobi qaysi savolga dalil bo'ladi?", ru: "На какой вопрос ответ из интервью — доказательство?" }, opts: [{ uz: "Siz u yerda a'zomisiz?", ru: "Вы там участник?" }, { uz: "U yerda ruxsat bormi?", ru: "Там есть разрешение?" }, { uz: "Auditoriyangiz shu yerdami?", ru: "Ваша аудитория здесь?" }, { uz: "U yerda necha kishi bor?", ru: "Сколько там человек?" }], correct: 2 },
   { q: { uz: "Mentor misolida shahar futbol kanali nega tanlanmadi?", ru: "Почему в примере Ментора не выбран городской футбольный канал?" }, opts: [{ uz: "A'zo emas, ruxsat yo'q", ru: "Не участник, нет разрешения" }, { uz: "Futbol haqida emas", ru: "Он не про футбол" }, { uz: "Kanalda odam kam", ru: "В канале мало людей" }, { uz: "Kanal yangi ochilgan", ru: "Канал только открылся" }], correct: 0 },
-  { q: { uz: "Guruhga qo'shilgan kuniyoq post yozildi. Nima qilinmadi?", ru: "Пост написали в день вступления в группу. Что не сделали?" }, opts: [{ uz: "Rasm qo'yilmadi", ru: "Не добавили фото" }, { uz: "Ruxsat so'ralmadi", ru: "Не спросили разрешения" }, { uz: "Post qisqartirilmadi", ru: "Не сократили пост" }, { uz: "Havola qo'yilmadi", ru: "Не поставили ссылку" }], correct: 1 },
+  { q: { uz: "Guruhga qo'shilgan kuniyoq post yozildi. Nima qilinmadi?", ru: "Пост написали в день вступления в группу. Что не сделали?" }, opts: [{ uz: "Rasm qo'yilmadi", ru: "Не добавили фото" }, { uz: "Ruxsat so'ralmadi", ru: "Не спросили разрешения" }, { uz: "Post qisqartirilmadi", ru: "Не сократили пост" }, { uz: "Link qo'yilmadi", ru: "Не поставили ссылку" }], correct: 1 },
   { q: { uz: "Postning qaysi qatori odamni sahifaga olib boradi?", ru: "Какая строка поста ведёт человека на страницу?" }, opts: [{ uz: "Kim uchun", ru: "Для кого" }, { uz: "Nima foyda", ru: "Какая польза" }, { uz: "Halol holat", ru: "Честное состояние" }, { uz: "Bitta harakat", ru: "Одно действие" }], correct: 3 },
   { q: { uz: "Postda «Tez orada hammasi bo'ladi». Nima qilasiz?", ru: "В посте «Скоро будет всё». Что сделаете?" }, opts: [{ uz: "Tayyor narsani yozasiz", ru: "Напишете, что готово сейчас" }, { uz: "Gapni oxiriga surasiz", ru: "Перенесёте фразу в конец" }, { uz: "Undov belgisi qo'yasiz", ru: "Поставите восклицательный знак" }, { uz: "Qalin harfda yozasiz", ru: "Напишете жирным" }], correct: 0 },
-  { q: { uz: "Postga qaysi ma'lumot yozilmaydi?", ru: 'Какие данные не пишут в пост?' }, opts: [{ uz: 'Mahsulotning nomi', ru: 'Название продукта' }, { uz: 'Lendingning havolasi', ru: "Ссылка на лендинг" }, { uz: 'Maktabingiz raqami', ru: 'Номер вашей школы' }, { uz: 'Mahsulotning foydasi', ru: "Польза продукта" }], correct: 2 },
+  { q: { uz: "Postga qaysi ma'lumot yozilmaydi?", ru: 'Какие данные не пишут в пост?' }, opts: [{ uz: 'Mahsulotning nomi', ru: 'Название продукта' }, { uz: 'Lendingning linki', ru: "Ссылка на лендинг" }, { uz: 'Maktabingiz raqami', ru: 'Номер вашей школы' }, { uz: 'Mahsulotning foydasi', ru: "Польза продукта" }], correct: 2 },
   { q: { uz: "Notanish odam uchrashuvga chaqirdi. Nima qilasiz?", ru: "Незнакомец зовёт на встречу. Что сделаете?" }, opts: [{ uz: "Yolg'iz borasiz", ru: "Пойдёте один" }, { uz: "Kattalar bilan hal qilasiz", ru: "Решите только со взрослыми" }, { uz: "Sinfdosh bilan borasiz", ru: "Пойдёте с одноклассником" }, { uz: "Manzilingizni yozasiz", ru: "Напишете свой адрес" }], correct: 1 },
   { q: { uz: 'Facebook voqeasida nima hajmdan muhimroq?', ru: 'Что в истории Facebook важнее размера?' }, opts: [{ uz: "Saytdagi rasmlar ko'pligi", ru: 'Много картинок на сайте' }, { uz: "Funksiyalarning ko'pligi", ru: 'Много функций' }, { uz: 'Auditoriyaning zichligi', ru: 'Плотность аудитории' }, { uz: 'Asoschilarning tajribasi', ru: 'Опыт основателей' }], correct: 2 },
   { q: { uz: 'Facebook hamma uchun qachon ochilgan?', ru: 'Когда Facebook открылся для всех?' }, opts: [{ uz: 'Birinchi kuniyoq', ru: 'В первый же день' }, { uz: 'Bir oydan keyin', ru: 'Через месяц' }, { uz: 'Besh yildan keyin', ru: 'Через пять лет' }, { uz: 'Ikki yildan keyin', ru: 'Через два года' }], correct: 3 },
   { q: { uz: "Guruh egasi javob bermadi. Nima qilasiz?", ru: "Владелец группы не ответил. Что сделаете?" }, opts: [{ uz: "Boshqa kanaldan boshlaysiz", ru: "Начнёте с другого канала" }, { uz: "Kutmasdan yuborasiz", ru: "Отправите, не дожидаясь" }, { uz: "A'zolarga alohida yozasiz", ru: "Напишете участникам лично" }, { uz: "Boshqa akkauntdan yozasiz", ru: "Напишете с другого аккаунта" }], correct: 0 },
-  { q: { uz: "Havoladagi «?kanal=sinf» nimani ko'rsatadi?", ru: "Что показывает «?kanal=sinf» в ссылке?" }, opts: [{ uz: "Bosgan odamning ismini", ru: "Имя того, кто нажал" }, { uz: "Sinf chatidan kelganini", ru: "Что пришли из чата класса" }, { uz: "Sinfdagi o'quvchilar sonini", ru: "Число учеников в классе" }, { uz: "Chatdagi postlar sonini", ru: "Число постов в чате" }], correct: 1 },
+  { q: { uz: "Linkdagi «?kanal=sinf» nimani ko'rsatadi?", ru: "Что показывает «?kanal=sinf» в ссылке?" }, opts: [{ uz: "Bosgan odamning ismini", ru: "Имя того, кто нажал" }, { uz: "Sinf chatidan kelganini", ru: "Что пришли из чата класса" }, { uz: "Sinfdagi o'quvchilar sonini", ru: "Число учеников в классе" }, { uz: "Chatdagi postlar sonini", ru: "Число постов в чате" }], correct: 1 },
   { q: { uz: "Postdan keyin tashriflar 31 ta. Bu nima?", ru: "После поста 31 посещение. Что это?" }, opts: [{ uz: "Ro'yxatdan o'tganlar soni", ru: "Число регистраций" }, { uz: "Ilovani o'rnatganlar soni", ru: "Число установок приложения" }, { uz: "Postni o'qiganlar soni", ru: "Число прочитавших пост" }, { uz: "Sahifa ochilishlari soni", ru: "Сколько раз открыли страницу" }], correct: 3 },
 ];
 
@@ -2660,7 +2660,7 @@ const KARTOCHKALAR = [
   { front: { uz: "Guruhga post yuborishdan oldin kimdan ruxsat so'raladi?", ru: 'У кого спрашивают разрешения перед отправкой поста в группу?' }, back: { uz: 'Guruh egasidan', ru: 'У владельца группы' } },
   { front: { uz: 'Sinf chatiga yuborishdan oldin nima qilinadi?', ru: 'Что делают перед отправкой в чат класса?' }, back: { uz: "Post Mentorga ko'rsatiladi; ota-ona bandi — boshqa kanallardan oldin", ru: 'Пост показывают Ментору; пункт о родителях — перед другими каналами' } },
   { front: { uz: 'Facebook avval qanday auditoriyada ochilgan?', ru: 'В какой аудитории сначала открылся Facebook?' }, back: { uz: 'Kichik, yopiq auditoriyada: faqat Garvard talabalari uchun', ru: 'В маленькой закрытой аудитории: только для студентов Гарварда' } },
-  { front: { uz: "Kanal belgisi havolaning qayeriga qo'shiladi?", ru: 'Куда в ссылке добавляют метку канала?' }, back: { uz: 'Oxiriga, masalan: ?kanal=sinf', ru: 'В конец, например: ?kanal=sinf' } },
+  { front: { uz: "Kanal belgisi linkning qayeriga qo'shiladi?", ru: 'Куда в ссылке добавляют метку канала?' }, back: { uz: 'Oxiriga, masalan: ?kanal=sinf', ru: 'В конец, например: ?kanal=sinf' } },
   { front: { uz: "Mentor misolida postdan keyingi kun eng ko'p tashrif qaysi kanaldan bo'lgan?", ru: 'Из какого канала в примере Ментора было больше всего посещений на следующий день после поста?' }, back: { uz: 'Mahalla futbol guruhidan (guruh)', ru: 'Из футбольной группы махалли (guruh)' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -2689,7 +2689,7 @@ const HW_KARTA = [
 // Agentga talab — MD aynan (agentga matn buyruq shaklida, T-002; lint:til ogohlantirishi kutilgan)
 const HW_PROMPT1 = [
   { uz: 'Qayerda: lending/index.html. Boshqa fayl va papkalarga tegma.', ru: 'Где: lending/index.html. Другие файлы и папки не трогай.' },
-  { uz: "Nima qilsin: sahifa ochilganda havoladagi kanal belgisini o'qisin (masalan, ?kanal=sinf) va Umami'ga tashrif hodisasini yozsin, ma'lumotida kanal bo'lsin. Belgi bo'lmasa — kanal qiymati \"belgisiz\".", ru: "Что сделать: при открытии страницы прочитай метку канала из ссылки (например, ?kanal=sinf) и запиши в Umami событие tashrif, в его данных — kanal. Если метки нет — значение kanal \"belgisiz\"." },
+  { uz: "Nima qilsin: sahifa ochilganda linkdagi kanal belgisini o'qisin (masalan, ?kanal=sinf) va Umami'ga tashrif hodisasini yozsin, ma'lumotida kanal bo'lsin. Belgi bo'lmasa — kanal qiymati \"belgisiz\".", ru: "Что сделать: при открытии страницы прочитай метку канала из ссылки (например, ?kanal=sinf) и запиши в Umami событие tashrif, в его данных — kanal. Если метки нет — значение kanal \"belgisiz\"." },
   { uz: "Nima buzilmasin: sahifa matni, asosiy tugma va uning Umami hodisasi o'zgarmasin. Sahifa hech qanday shaxsiy ma'lumot yig'masin. Umami yuklanmasa ham sahifa ishlasin. O'zgargan fayllarni ayt.", ru: 'Что не сломать: текст страницы, главная кнопка и её событие Umami не должны меняться. Страница не должна собирать никаких личных данных. Страница должна работать, даже если Umami не загрузился. Назови изменённые файлы.' }
 ];
 const HW_PROMPT3 = [
@@ -2704,12 +2704,12 @@ const HwCard = ({ keyingi, trek }) => (
         <b>{tr({ uz: 'Lendingga kanal belgisini qo\'shing', ru: 'Добавьте метку канала на лендинг' })}</b> <span className="kn-hw-iz">({tr({ uz: 'ikkala trek', ru: 'оба трека' })})</span>
         <p>{fmtCode(tr({ uz: "Antigravity'da o'z repo'ngizni oching; `git status` — `.env` ko'rinmasin. Agentga talab:", ru: 'Откройте свой репозиторий в Antigravity; `git status` — `.env` не должен быть виден. Требование агенту:' }))}</p>
         <QPrompt til={__lang} satrlar={HW_PROMPT1.map(tr)} />
-        <p>{fmtCode(tr({ uz: "Keyin: `git status` — faqat `lending/index.html` → `git add lending/index.html` → commit → `git push`; Netlify odatda o'zi yangilanadi. Lending havolasini oxiriga `?kanal=sinf` qo'shib oching — Umami'da `tashrif` hodisasi ko'rinishi kerak (bir daqiqa kutib yangilang; ba'zi brauzer sozlamalarida Umami yozmasligi mumkin). Umami sahifa ochilishini o'zi ham sanaydi — `tashrif` o'sha ochilishni kanal belgisi bilan yozadi. Agentning hisobotiga emas — Umami'ga qarang.", ru: 'Затем: `git status` — только `lending/index.html` → `git add lending/index.html` → commit → `git push`; Netlify обычно обновляется сам. Откройте ссылку лендинга, добавив в конец `?kanal=sinf`, — в Umami должно появиться событие `tashrif` (подождите минуту и обновите; при некоторых настройках браузера Umami может не записать). Umami и сам считает открытия страницы — `tashrif` записывает это открытие с меткой канала. Смотрите не на отчёт агента, а в Umami.' }))}</p>
+        <p>{fmtCode(tr({ uz: "Keyin: `git status` — faqat `lending/index.html` → `git add lending/index.html` → commit → `git push`; Netlify odatda o'zi yangilanadi. Lending linkini oxiriga `?kanal=sinf` qo'shib oching — Umami'da `tashrif` hodisasi ko'rinishi kerak (bir daqiqa kutib yangilang; ba'zi brauzer sozlamalarida Umami yozmasligi mumkin). Umami sahifa ochilishini o'zi ham sanaydi — `tashrif` o'sha ochilishni kanal belgisi bilan yozadi. Agentning hisobotiga emas — Umami'ga qarang.", ru: 'Затем: `git status` — только `lending/index.html` → `git add lending/index.html` → commit → `git push`; Netlify обычно обновляется сам. Откройте ссылку лендинга, добавив в конец `?kanal=sinf`, — в Umami должно появиться событие `tashrif` (подождите минуту и обновите; при некоторых настройках браузера Umami может не записать). Umami и сам считает открытия страницы — `tashrif` записывает это открытие с меткой канала. Смотрите не на отчёт агента, а в Umami.' }))}</p>
         <p>{fmtCode(tr({ uz: "Ishlamasa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas). Lending hali internetda bo'lmasa — avval uni Netlify'ga chiqaring (1-dars uyga vazifasi).", ru: "Если не работает — отправьте агенту строку ошибки (не значения `.env`, не токены и ключи). Если лендинга ещё нет в интернете — сначала выложите его на Netlify (домашнее задание 1-го урока)." }))}</p>
       </div></li>
       <li><i>2</i><div>
         <b>{tr({ uz: 'Haqiqiy kanalingizga post.', ru: 'Пост в ваш настоящий канал.' })}</b>
-        <p>{fmtCode(tr({ uz: "Postni ota-onangizga ko'rsating (4-band). Guruh egasidan ruxsat so'rang («ruxsat kutilmoqda» bo'lgan joylar); ruxsat bo'lsa — yuboring, havola oxirida o'sha kanal belgisi bilan (kanallaringiz ro'yxatidagi kulrang qator, masalan `?kanal=guruh`).", ru: 'Покажите пост родителям (4-й пункт). Спросите разрешения у владельца группы (места с пометкой «ждёт разрешения»); если разрешили — отправьте, в конце ссылки метка этого канала (серая строка в списке ваших каналов, например `?kanal=guruh`).' }))}</p>
+        <p>{fmtCode(tr({ uz: "Postni ota-onangizga ko'rsating (4-band). Guruh egasidan ruxsat so'rang («ruxsat kutilmoqda» bo'lgan joylar); ruxsat bo'lsa — yuboring, link oxirida o'sha kanal belgisi bilan (kanallaringiz ro'yxatidagi kulrang qator, masalan `?kanal=guruh`).", ru: 'Покажите пост родителям (4-й пункт). Спросите разрешения у владельца группы (места с пометкой «ждёт разрешения»); если разрешили — отправьте, в конце ссылки метка этого канала (серая строка в списке ваших каналов, например `?kanal=guruh`).' }))}</p>
         <p>{tr({ uz: 'Har joyga bir marta; notanish odamga shaxsiy xabar yozmang; uchrashuv taklifi kelsa — faqat kattalar bilan.', ru: 'В каждое место — один раз; не пишите личных сообщений незнакомым; если предложат встретиться — только со взрослыми.' })}</p>
       </div></li>
       {trek !== 'web' && <li><i>3</i><div>
@@ -2717,7 +2717,7 @@ const HwCard = ({ keyingi, trek }) => (
         <p>{tr({ uz: <>O'rnatish faylini tayyorlab, faqat <b>o'z telefoningizga</b> o'rnating — odamlarga yubormang: unda hali telefon so'raydigan eski ro'yxatdan o'tish bor.</>, ru: <>Подготовьте установочный файл и установите его только <b>на свой телефон</b> — людям не отправляйте: в нём ещё старая регистрация, которая спрашивает телефон.</> })}</p>
         <p>{fmtCode(tr({ uz: "Terminalda, ilova papkasida (Mentor misolida `mobil/`): `npm install --global eas-cli` → `eas login` (Expo akkauntingiz bilan; akkaunt ma'lumotini hech kimga bermang) → `eas build:configure` → agentga talab:", ru: 'В терминале, в папке приложения (в примере Ментора `mobil/`): `npm install --global eas-cli` → `eas login` (со своим аккаунтом Expo; данные аккаунта никому не давайте) → `eas build:configure` → требование агенту:' }))}</p>
         <QPrompt til={__lang} satrlar={HW_PROMPT3.map(tr)} />
-        <p>{fmtCode(tr({ uz: "→ `eas build -p android --profile preview` — kalit (keystore) so'ralsa, EAS o'zi yaratadi va saqlaydi. Tayyor bo'lgach havola chiqadi: telefoningizda oching va o'rnating — Android ogohlantirish ko'rsatadi: ilova do'kondan emas, to'g'ridan-to'g'ri o'rnatiladi.", ru: '→ `eas build -p android --profile preview` — если спросят ключ (keystore), EAS создаст и сохранит его сам. Когда будет готово, появится ссылка: откройте на телефоне и установите — Android покажет предупреждение: приложение ставится не из магазина, а напрямую.' }))}</p>
+        <p>{fmtCode(tr({ uz: "→ `eas build -p android --profile preview` — kalit (keystore) so'ralsa, EAS o'zi yaratadi va saqlaydi. Tayyor bo'lgach link chiqadi: telefoningizda oching va o'rnating — Android ogohlantirish ko'rsatadi: ilova do'kondan emas, to'g'ridan-to'g'ri o'rnatiladi.", ru: '→ `eas build -p android --profile preview` — если спросят ключ (keystore), EAS создаст и сохранит его сам. Когда будет готово, появится ссылка: откройте на телефоне и установите — Android покажет предупреждение: приложение ставится не из магазина, а напрямую.' }))}</p>
         <p>{fmtCode(tr({ uz: "Bepul navbat sekin bo'lishi mumkin; bepul hisobda oyiga 15 tagacha Android o'rnatish fayli tayyorlash mumkin. Xato chiqsa — xato qatorini agentga yuboring (`.env` qiymatlari, token va kalitlarni emas).", ru: "Бесплатная очередь может быть медленной; на бесплатном аккаунте можно готовить до 15 установочных файлов Android в месяц. Если появится ошибка — отправьте агенту строку ошибки (не значения `.env`, не токены и ключи)." }))}</p>
       </div></li>}
     </ol>
@@ -2749,7 +2749,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { uz: "Bizda kanal uch savol bilan tanlanadi: auditoriya shu yerdami, siz a'zomisiz, post yozishga ruxsat bormi.", ru: 'У нас канал выбирают по трём вопросам: здесь ли аудитория, состоите ли вы, есть ли разрешение писать пост.' },
     { uz: "Bizda post to'rt qatordan iborat: kim uchun, nima foyda, bitta harakat va halol holat.", ru: 'У нас пост состоит из четырёх строк: для кого, какая польза, одно действие и честное состояние.' },
     { uz: 'Facebook voqeasida xizmat avval kichik, yopiq auditoriyada ochilgan.', ru: 'В истории Facebook сервис сначала открылся в маленькой закрытой аудитории.' },
-    { uz: "Havoladagi kanal belgisi tashrif qaysi kanaldan kelganini ko'rsatadi, odamni emas.", ru: 'Метка канала в ссылке показывает, из какого канала пришло посещение, а не человека.' }
+    { uz: "Linkdagi kanal belgisi tashrif qaysi kanaldan kelganini ko'rsatadi, odamni emas.", ru: 'Метка канала в ссылке показывает, из какого канала пришло посещение, а не человека.' }
   ];
   const k = kanallarOl();
   const post = k.post || {};

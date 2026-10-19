@@ -317,7 +317,7 @@ const TAG_MENU_ALL = [
   { t: "ul", dars: "m1-03", d: {"uz":"ro'yxat","ru":"список"} },
   { t: "ol", dars: "m1-03", d: {"uz":"raqamli ro'yxat","ru":"нумерованный список"} },
   { t: "li", dars: "m1-03", matn: true, d: {"uz":"ro'yxat bandi","ru":"пункт списка"} },
-  { t: "a", dars: "m1-03", matn: true, d: {"uz":"havola","ru":"ссылка"} },
+  { t: "a", dars: "m1-03", matn: true, d: {"uz":"link","ru":"ссылка"} },
   { t: "html", dars: "m1-03", d: {"uz":"butun sahifa","ru":"вся страница"} },
   { t: "head", dars: "m1-03", d: {"uz":"sahifa sozlamalari (ko'rinmaydi)","ru":"настройки страницы (не видно)"} },
   { t: "title", dars: "m1-03", matn: true, d: {"uz":"varaq nomi","ru":"название вкладки"} },
@@ -333,7 +333,7 @@ const TAG_MENU_ALL = [
   { t: "button", dars: "m1-04", matn: true, d: {"uz":"tugma","ru":"кнопка"} },
   { t: "style", dars: "m1-06", d: {"uz":"CSS shu yerda","ru":"CSS здесь"} },
   { t: "link", dars: "m1-06", void: true, d: {"uz":"CSS faylini ulash","ru":"подключить CSS"} },
-  { t: "nav", dars: "m1-08", d: {"uz":"menyu","ru":"меню"} },
+  { t: "nav", dars: "m1-08", d: {"uz":"menu","ru":"меню"} },
   { t: "section", dars: "m1-08", d: {"uz":"bo'lim","ru":"раздел"} },
   { t: "span", dars: "m2-08", matn: true, d: {"uz":"matn ichidagi bo'lak","ru":"кусочек внутри текста"} },
 ];

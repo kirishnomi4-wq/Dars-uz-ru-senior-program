@@ -712,7 +712,7 @@ const MENTOR_PITCH = {
       yangiGap: { uz: 'Birinchi uch kunda ilovani ochgan 46 qurilmadan 17 tasi keyingi ikki kunda yana ochdi.', ru: 'Из 46 устройств, открывших приложение в первые три дня, 17 снова открыли его в следующие два дня.' },
       dalil: { son: { uz: '46 qurilmadan 17 tasi', ru: '17 из 46 устройств' }, manba: 'database', qachon: { uz: 'ishga tushirilganidan besh kun keyin', ru: 'через пять дней после запуска' } } },
     { id: 'd4', bolak: 'keyingi', k: 'k1', kalit: 'yoq', qaror: 'olib-tashlandi',
-      yangiGap: { uz: "E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi.", ru: "После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде." }, dalil: null }
+      yangiGap: { uz: "E'lon berilgach «Linkni ulashish» tugmasi bilan tashkilotchi linkni o'z jamoasiga yuboradi.", ru: "После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде." }, dalil: null }
   ]
 };
 const MENTOR_MANBA = {
@@ -722,7 +722,7 @@ const MENTOR_MANBA = {
   sanoq: [{ k: 's1', n: { uz: 'ochdi', ru: 'открыли' }, v: '61' }, { k: 's2', n: { uz: "ro'yxatdan o'tdi", ru: 'зарегистрировались' }, v: '38' }, { k: 's3', n: { uz: "qo'shildi", ru: 'присоединились' }, v: '18' }, { k: 's4', n: { uz: 'kelishini tasdiqladi', ru: 'подтвердили приход' }, v: '14' }],
   umami: [{ k: 'u1', n: { uz: 'tashriflar', ru: "посещения" }, v: '74' }, { k: 'u2', n: { uz: "Qo'shilmoqchiman", ru: "Хочу присоединиться" }, v: '41' }],
   vaqt: [{ k: 'v1', n: { uz: 'ishga tushirish kuni', ru: 'день запуска' }, v: '20' }, { k: 'v2', n: { uz: '3 kun keyin', ru: 'через 3 дня' }, v: '27' }, { k: 'v3', n: { uz: 'bir hafta keyin', ru: 'через неделю' }, v: '38' }],
-  zaxira: { uz: "ilovada e'lon berilgach «Havolani ulashish» tugmasi", ru: "кнопка «Поделиться ссылкой» после объявления в приложении" }
+  zaxira: { uz: "ilovada e'lon berilgach «Linkni ulashish» tugmasi", ru: "кнопка «Поделиться ссылкой» после объявления в приложении" }
 };
 const mDalil = (d) => (d ? [tr(d.son || d.yozuv), tr(MANBA[d.manba]), tr(d.qachon)] : null);
 

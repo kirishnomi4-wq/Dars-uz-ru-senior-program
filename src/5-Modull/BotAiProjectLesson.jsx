@@ -328,7 +328,7 @@ const RECAPS = {
   7: {
     title: { uz: "Handler yo'q — javob yo'q", ru: "Нет handler — нет ответа" },
     cards: [
-      { ic: "Markup.button.callback('🍕 Menyu', 'menu')", h: { uz: 'Tugma bosilishi — hodisa', ru: "Нажатие кнопки — событие" }, body: { uz: 'Inline tugma bosilganda botga callback keladi.', ru: "При нажатии inline-кнопки боту приходит callback." } },
+      { ic: "Markup.button.callback('🍕 Menu', 'menu')", h: { uz: 'Tugma bosilishi — hodisa', ru: "Нажатие кнопки — событие" }, body: { uz: 'Inline tugma bosilganda botga callback keladi.', ru: "При нажатии inline-кнопки боту приходит callback." } },
       { ic: "this.bot.action('menu', …)", h: { uz: 'Uni `bot.action` ushlaydi', ru: "Его ловит `bot.action`" }, body: { uz: "Yozilmagan bo'lsa, bot jim qoladi.", ru: "Если он не написан, бот молчит." } },
       { ic: '3', h: { uz: "Yechim — handler qo'shish", ru: 'Решение — добавить handler' }, body: { uz: 'Tuzatish promptida qaysi tugma uchun handler kerakligini aniq yozing.', ru: "В промпте на исправление точно укажите, для какой кнопки нужен handler." }, ask: { uz: 'Inline tugma bosildi, bot javob bermadi — sabab?', ru: 'Нажали inline-кнопку, бот не ответил — причина?' } },
     ]
@@ -691,7 +691,7 @@ const PromptCard = ({ children, who = { uz: 'Siz → AI', ru: "Вы → ИИ" },
   <div className={`prompt-card ${tone || ''}`}><span className="prompt-who">{tr(who)}</span><p className="prompt-text">{tr(children)}</p>{answer && <p className="prompt-ans fade-step"><b>{tr({ uz: 'AI javobi:', ru: "Ответ ИИ:" })}</b> {tr(answer)}</p>}</div>
 );
 const BOT_IDEAS = [
-  { id: 'order', name: { uz: 'AvtoPizza', ru: "AvtoPizza" }, pairs: [[{ uz: '/start', ru: '/start' }, { uz: 'salom va «Menyu» tugmasi', ru: "приветствие и кнопка «Меню»" }], [{ uz: '«Menyu» tugmasi', ru: "Кнопка «Меню»" }, { uz: 'pitsalar', ru: 'пиццы' }], [{ uz: 'Pitsa tanlandi', ru: 'Выбрана пицца' }, { uz: "manzil so'raydi", ru: 'спрашивает адрес' }], [{ uz: 'Manzil keldi', ru: "Пришёл адрес" }, { uz: 'tasdiqlaydi', ru: 'подтверждает' }]] },
+  { id: 'order', name: { uz: 'AvtoPizza', ru: "AvtoPizza" }, pairs: [[{ uz: '/start', ru: '/start' }, { uz: 'salom va «Menu» tugmasi', ru: "приветствие и кнопка «Меню»" }], [{ uz: '«Menu» tugmasi', ru: "Кнопка «Меню»" }, { uz: 'pitsalar', ru: 'пиццы' }], [{ uz: 'Pitsa tanlandi', ru: 'Выбрана пицца' }, { uz: "manzil so'raydi", ru: 'спрашивает адрес' }], [{ uz: 'Manzil keldi', ru: "Пришёл адрес" }, { uz: 'tasdiqlaydi', ru: 'подтверждает' }]] },
   { id: 'remind', name: { uz: 'Eslatma boti', ru: 'Бот-напоминалка' }, pairs: [[{ uz: '/start', ru: '/start' }, { uz: "qisqa qo'llanma", ru: 'краткая инструкция' }], [{ uz: 'Matn keldi', ru: 'Пришёл текст' }, { uz: 'saqlaydi', ru: 'сохраняет' }], [{ uz: '/royxat', ru: '/royxat' }, { uz: "ro'yxat", ru: 'список' }]] },
   { id: 'quiz', name: { uz: 'Viktorina boti', ru: 'Бот-викторина' }, pairs: [[{ uz: '/start', ru: '/start' }, { uz: '«Boshlash» tugmasi', ru: "кнопка «Начать»" }], [{ uz: '«Boshlash»', ru: "«Начать»" }, { uz: 'savol va A, B, C', ru: "вопрос и A, B, C" }], [{ uz: 'A, B, C', ru: "A, B, C" }, { uz: "to'g'ri yoki xato", ru: "верно или ошибка" }]] }
 ];
@@ -753,8 +753,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <p className="flow-label">{tr({ uz: 'dars oxirida — namuna: AvtoPizza', ru: "в конце урока — пример: AvtoPizza" })}</p>
       <TgChat title="AvtoPizza" ava="A" input={false} minH={0} fit>
         <Bubble from="user">/start</Bubble>
-        <Bubble from="bot" inline={[[{ label: '🍕 Menyu' }, { label: { uz: 'Buyurtma', ru: 'Заказ' } }]]}>{tr({ uz: "AvtoPizza'ga xush kelibsiz!", ru: "Добро пожаловать в AvtoPizza!" })}</Bubble>
-        <Bubble from="user" muted>{tr({ uz: '«🍕 Menyu» bosildi', ru: 'нажата «🍕 Menyu»' })}</Bubble>
+        <Bubble from="bot" inline={[[{ label: '🍕 Menu' }, { label: { uz: 'Buyurtma', ru: 'Заказ' } }]]}>{tr({ uz: "AvtoPizza'ga xush kelibsiz!", ru: "Добро пожаловать в AvtoPizza!" })}</Bubble>
+        <Bubble from="user" muted>{tr({ uz: '«🍕 Menu» bosildi', ru: 'нажата «🍕 Menu»' })}</Bubble>
         <Bubble from="bot" inline={[[{ label: 'Margarita' }, { label: 'Pepperoni' }, { label: { uz: 'Pishloqli', ru: 'С сыром' } }]]}>{tr({ uz: 'Tanlang:', ru: 'Выберите:' })}</Bubble>
         <Bubble from="bot">{tr({ uz: 'Pepperoni qabul qilindi. Manzilingizni yozing.', ru: "Pepperoni принята. Напишите ваш адрес." })}</Bubble>
       </TgChat>
@@ -874,7 +874,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <L hit={['handler']}><Kw>this</Kw>{'.bot.'}<At>start</At>{'(('}<Kw>ctx</Kw>{') =>'}</L>
               <L>{'  '}<Kw>ctx</Kw>{'.'}<At>reply</At>{'('}<St>{tr({ uz: "'AvtoPizza\'ga xush kelibsiz!'", ru: "'Добро пожаловать в AvtoPizza!'" })}</St>{','}</L>
               <L hit={['inline']}>{'    '}<At>Markup</At>{'.'}<At>inlineKeyboard</At>{'(['}</L>
-              <L hit={['inline', 'handler']}>{'      '}<At>Markup</At>{'.'}<At>button</At>{'.'}<At>callback</At>{'('}<St>'🍕 Menyu'</St>{', '}<St>'menu'</St>{'),'}</L>
+              <L hit={['inline', 'handler']}>{'      '}<At>Markup</At>{'.'}<At>button</At>{'.'}<At>callback</At>{'('}<St>'🍕 Menu'</St>{', '}<St>'menu'</St>{'),'}</L>
               <L hit={['inline', 'handler']}>{'      '}<At>Markup</At>{'.'}<At>button</At>{'.'}<At>callback</At>{'('}<St>{tr({ uz: "'📦 Buyurtma'", ru: "'📦 Заказ'" })}</St>{', '}<St>'order'</St>{'),'}</L>
               <L>{'    ])));'}</L>
               <L>{''}</L>
@@ -1002,8 +1002,8 @@ const ScreenA1 = (props) => (
     ]}
     chat={[
       { from: 'user', t: '/start' },
-      { from: 'bot', t: { uz: "AvtoPizza'ga xush kelibsiz!", ru: "Добро пожаловать в AvtoPizza!" }, inline: [[{ label: '🍕 Menyu' }, { label: { uz: 'Buyurtma', ru: 'Заказ' } }]] },
-      { from: 'user', muted: true, t: { uz: '«🍕 Menyu» bosildi', ru: 'нажата «🍕 Menyu»' } },
+      { from: 'bot', t: { uz: "AvtoPizza'ga xush kelibsiz!", ru: "Добро пожаловать в AvtoPizza!" }, inline: [[{ label: '🍕 Menu' }, { label: { uz: 'Buyurtma', ru: 'Заказ' } }]] },
+      { from: 'user', muted: true, t: { uz: '«🍕 Menu» bosildi', ru: 'нажата «🍕 Menu»' } },
       { from: 'bot', t: { uz: 'Tez orada', ru: 'Скоро' } }
     ]}
     doneText={{ uz: '/start sizniki. Endi tugmalar haqiqiy javob beradi.', ru: "/start — ваш. Теперь кнопки будут отвечать по-настоящему." }} />
@@ -1025,7 +1025,7 @@ const ScreenA2 = (props) => (
       { h: { uz: 'Telegramda tekshirish', ru: 'Проверить в Telegram' }, t: { uz: "`/start` → har tugmani bosing → har biri o'z javobini bersin; matn yuboring → bot kutgan javobni bersin.", ru: "`/start` → нажмите каждую кнопку → каждая даёт свой ответ; отправьте текст → бот отвечает так, как ждали." } }
     ]}
     chat={[
-      { from: 'user', muted: true, t: { uz: '«🍕 Menyu» bosildi', ru: 'нажата «🍕 Menyu»' } },
+      { from: 'user', muted: true, t: { uz: '«🍕 Menu» bosildi', ru: 'нажата «🍕 Menu»' } },
       { from: 'bot', t: { uz: 'Tanlang:', ru: 'Выберите:' }, inline: [[{ label: 'Margarita' }, { label: 'Pepperoni' }, { label: { uz: 'Pishloqli', ru: 'С сыром' } }]] },
       { from: 'user', muted: true, t: { uz: '«Pepperoni» bosildi', ru: 'нажата «Pepperoni»' } },
       { from: 'bot', t: { uz: 'Pepperoni — buyurtma qabul qilindi. Manzilingizni yozing.', ru: "Pepperoni — заказ принят. Напишите ваш адрес." } },

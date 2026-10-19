@@ -1453,7 +1453,7 @@ const ScreenT4 = (props) => (
       tr({ uz: "Muammo va yechim ko'rsatilgandan keyin, oxirroqda", ru: 'После того как показаны проблема и решение, ближе к концу' }),
       tr({ uz: 'Eng tepada, hatto birinchi blokdan ham oldinda', ru: 'В самом верху, даже раньше первого блока' }),
       tr({ uz: "Muammo bo'limidan oldin, sahifa o'rtasida", ru: 'Перед разделом «Проблема», в середине страницы' }),
-      tr({ uz: 'Faqat menyuning ichida, alohida sahifada', ru: 'Только внутри меню, на отдельной странице' }),
+      tr({ uz: 'Faqat menuning ichida, alohida sahifada', ru: 'Только внутри меню, на отдельной странице' }),
     ]}
     correctIdx={INLINE_KEYS.s14}
     explainCorrect={tr({ uz: "To'g'ri — OLX'ni hamma taniydi, shuning uchun uning tugmasi darhol ko'rinadi. Yangi saytda esa odam avval muammosini ko'radi, keyin yechimni tushunadi — shundan keyingina tugmani nega bosishini biladi.", ru: 'Верно — OLX знают все, поэтому его кнопку видно сразу. А на новом сайте человек сначала видит свою проблему, потом понимает решение — и только после этого знает, зачем нажимать кнопку.' })}
@@ -1461,7 +1461,7 @@ const ScreenT4 = (props) => (
       // Har noto'g'ri variantga alohida izoh (F-0924-06, spec 9.4): avval variantning to'g'ri jihati, keyin yo'naltirish.
       1: tr({ uz: "Tugma ko'zga tashlansin degan fikr to'g'ri. Lekin sahifa endi ochilganda odam sayt nima ekanini ham bilmaydi — tugmani nega bosadi?", ru: 'Мысль, что кнопка должна быть заметной, верная. Но когда страница только открылась, человек ещё не знает даже, что это за сайт, — зачем ему нажимать?' }),
       2: tr({ uz: "Tugma birinchi blokdan keyin turgani yaxshi. Lekin odam hali muammosini ham, yechimni ham ko'rmagan — uni nega bosadi?", ru: 'Хорошо, что кнопка стоит после первого блока. Но человек ещё не видел ни своей проблемы, ни решения — зачем ему её нажимать?' }),
-      3: tr({ uz: "Menyuning ichiga yashirilgan tugmani odam topmaydi va izlamaydi ham. Yechimni tushungan zahoti tugma qayerda tursin?", ru: 'Кнопку, спрятанную внутри меню, человек не найдёт и искать не станет. Где она должна стоять, когда он понял решение?' }),
+      3: tr({ uz: "Menuning ichiga yashirilgan tugmani odam topmaydi va izlamaydi ham. Yechimni tushungan zahoti tugma qayerda tursin?", ru: 'Кнопку, спрятанную внутри меню, человек не найдёт и искать не станет. Где она должна стоять, когда он понял решение?' }),
       default: tr({ uz: "Muammo va yechimni ko'rmagan odam tugmani nega bosishini hali bilmaydi.", ru: 'Человек, не увидевший проблему и решение, ещё не знает, зачем нажимать кнопку.' }),
     }}
   />
@@ -2158,7 +2158,7 @@ const QUIZ_BANK = [
   { q: { uz: 'Yangi sayt tepasida faqat qidiruv tursa, birinchi kirgan odam nima qiladi?', ru: 'Если вверху нового сайта только поиск, что сделает впервые зашедший?' }, opts: [
     { uz: 'Darhol ro\'yxatdan o\'tadi', ru: 'Сразу зарегистрируется' },
     { uz: 'Hamma bo\'limni ko\'rib chiqadi', ru: 'Просмотрит все разделы' },
-    { uz: 'Do\'stlariga havolani yuboradi', ru: 'Отправит ссылку друзьям' },
+    { uz: 'Do\'stlariga linkni yuboradi', ru: 'Отправит ссылку друзьям' },
     { uz: '«Bu nima?» deb chiqib ketadi', ru: 'Спросит «что это?» и уйдёт' }], correct: 3 },
   { q: { uz: 'Yangi sahifa bo\'limlarining to\'g\'ri tartibi qaysi?', ru: 'Какой порядок разделов новой страницы правильный?' }, opts: [
     { uz: 'Tugma · Muammo · Birinchi blok · Isbot · Qanday ishlaydi', ru: 'Кнопка · Проблема · Первый блок · Доказательство · Как это работает' },

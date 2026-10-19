@@ -708,7 +708,7 @@ const Uline = ({ level, note }) => {
 
 // ===== SCREEN 0 — HOOK: bir suhbat =====
 const HOOK_WORDS = [
-  { t: { uz: 'Menyu', ru: 'Меню' } },
+  { t: { uz: 'Menu', ru: 'Меню' } },
   { t: { uz: 'massivda', ru: 'в массиве' }, j: true },
   { t: { uz: 'saqlanadi,', ru: 'хранится,' } },
   { t: { uz: 'sahifa', ru: 'страница' } },
@@ -716,7 +716,7 @@ const HOOK_WORDS = [
   { t: { uz: "ko'rsatadi.", ru: 'показывает.' } }
 ];
 const HOOK_OPTS = [
-  { id: 'menyu', t: { uz: 'menyu', ru: 'меню' } },
+  { id: 'menyu', t: { uz: 'menu', ru: 'меню' } },
   { id: 'massiv', t: { uz: 'massiv', ru: 'массив' } },
   { id: 'sahifa', t: { uz: 'sahifa', ru: 'страница' } },
   { id: 'korsatadi', t: { uz: "ko'rsatadi", ru: 'показывает' } }
@@ -816,7 +816,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 
 // ===== SCREEN 2 — 🔎 SO'Z-ELAGI =====
 const SIEVE = [
-  { t: { uz: 'Menyu', ru: 'Меню' } },
+  { t: { uz: 'Menu', ru: 'Меню' } },
   { t: { uz: 'massivda', ru: 'в массиве' }, j: true, s: { uz: "ro'yxatda", ru: 'в списке' } },
   { t: { uz: 'saqlanadi,', ru: 'хранится,' } },
   { t: { uz: 'sikl', ru: 'цикл' }, j: true, s: { uz: 'har birini navbat bilan', ru: 'каждый по очереди' } },
@@ -943,13 +943,13 @@ const PITCH_FIELDS = [
   { key: 'kim', short: { uz: 'Kim uchun', ru: 'Для кого' }, ask: { uz: 'Bu sayt kim uchun?', ru: 'Для кого этот сайт?' }, ph: { uz: 'Kim foydalanadi?..', ru: 'Кто пользуется?..' }, min: 3,
     sample: { uz: 'Maktab yonidan o\'tib ketadigan o\'quvchilar uchun', ru: 'Для учеников, которые проходят мимо школы' } },
   { key: 'muammo', short: { uz: 'Qanday muammo', ru: 'Какая трудность' }, ask: { uz: 'Ular qanday qiyinchilikka duch keladi?', ru: 'С какой трудностью они сталкиваются?' }, ph: { uz: 'Nima qiyin?..', ru: 'Что сложно?..' }, min: 8,
-    sample: { uz: 'Narx va bugungi menyuni bilish uchun har safar do\'konga kirish kerak', ru: 'Чтобы узнать цену и меню дня, каждый раз нужно заходить в магазин' } },
+    sample: { uz: 'Narx va bugungi menuni bilish uchun har safar do\'konga kirish kerak', ru: 'Чтобы узнать цену и меню дня, каждый раз нужно заходить в магазин' } },
   { key: 'qiladi', short: { uz: 'Nima qiladi', ru: 'Что делает' }, ask: { uz: 'Sayt buni qanday hal qiladi?', ru: 'Как сайт это решает?' }, ph: { uz: 'Sayt nima qiladi?..', ru: 'Что делает сайт?..' }, min: 8,
-    sample: { uz: 'Sayt bugungi menyuni va narxlarni telefon ekranida ko\'rsatadi', ru: 'Сайт показывает меню дня и цены на экране телефона' } },
+    sample: { uz: 'Sayt bugungi menuni va narxlarni telefon ekranida ko\'rsatadi', ru: 'Сайт показывает меню дня и цены на экране телефона' } },
   { key: 'ishlaydi', short: { uz: 'Nega ishlaydi', ru: 'Почему работает' }, ask: { uz: 'Sayt buni qanday uddalaydi? Bitta o\'xshatish bilan ayting', ru: 'Как сайт справляется? Скажите одним сравнением' }, ph: { uz: 'Nimaga o\'xshaydi?..', ru: 'На что похоже?..' }, min: 8,
     sample: { uz: 'Bosh sahifa peshtaxtaga o\'xshaydi: hamma narsa bir ko\'rinishda turadi', ru: 'Главная страница похожа на прилавок: всё видно с одного взгляда' } },
   { key: 'soraym', short: { uz: 'Nima so\'rayman', ru: 'О чём прошу' }, ask: { uz: 'Do\'kon egasidan aynan nima kerak?', ru: 'Что именно нужно от хозяина?' }, ph: { uz: 'Nima kerak?..', ru: 'Что нужно?..' }, min: 6,
-    sample: { uz: 'Menyu rasmlarini juma kunigacha yuborishingizni so\'rayman', ru: 'Прошу прислать фото меню до пятницы' } }
+    sample: { uz: 'Menu rasmlarini juma kunigacha yuborishingizni so\'rayman', ru: 'Прошу прислать фото меню до пятницы' } }
 ];
 // O'zaklar: UZ da qo'shimchalar oxiriga yopishadi (peshtaxta+ga), RU da o'zak qisqaradi
 // (прилавок → на прилавке, полка → как полку) — shuning uchun RU tomonda kesilgan o'zak.
@@ -1077,7 +1077,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const build = () => {
     const g = (k, d) => (p[k] && String(p[k]).trim()) || d;
     return tr({
-      uz: `${g('kim', "Do'kon mijozlari")} uchun sayt qildim — ilgari ${g('muammo', 'narxni bilish qiyin edi')}, endi ${g('qiladi', 'hammasi ekranda ko\'rinadi')}; u ${g('ishlaydi', 'peshtaxta kabi ishlaydi')}, va sizdan ${g('soraym', 'menyu rasmlari kerak')}.`,
+      uz: `${g('kim', "Do'kon mijozlari")} uchun sayt qildim — ilgari ${g('muammo', 'narxni bilish qiyin edi')}, endi ${g('qiladi', 'hammasi ekranda ko\'rinadi')}; u ${g('ishlaydi', 'peshtaxta kabi ishlaydi')}, va sizdan ${g('soraym', 'menu rasmlari kerak')}.`,
       ru: `Я сделал сайт для: ${g('kim', 'клиенты магазина')} — раньше ${g('muammo', 'узнать цену было трудно')}, теперь ${g('qiladi', 'всё видно на экране')}; он ${g('ishlaydi', 'работает как прилавок')}, и от вас ${g('soraym', 'нужны фото меню')}.`
     });
   };

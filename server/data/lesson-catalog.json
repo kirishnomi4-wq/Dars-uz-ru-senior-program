@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T04:30:35.033Z",
+  "generated_at": "2026-10-19T06:45:37.182Z",
   "count": 183,
   "lessons": [
     {
@@ -222,7 +222,7 @@
         {
           "id": "dialmaster",
           "name": "Temperature Tuner",
-          "title_uz": "Menyu uchun to'g'ri temperature tanladingiz",
+          "title_uz": "Menu uchun to'g'ri temperature tanladingiz",
           "title_ru": "Вы выбрали верную temperature для меню"
         },
         {
@@ -1242,7 +1242,7 @@
         {
           "id": "struktura",
           "name": "Room by Room!",
-          "title_uz": "Logotip va menyu joyini to'g'ri topdingiz",
+          "title_uz": "Logotip va menu joyini to'g'ri topdingiz",
           "title_ru": "Вы верно нашли место логотипа и меню"
         },
         {
@@ -1281,7 +1281,7 @@
         {
           "id": "coder",
           "name": "Tag It!",
-          "title_uz": "Menyu havolalarini bo'limlarga uladingiz",
+          "title_uz": "Menu linklarini bo'limlarga uladingiz",
           "title_ru": "Вы связали ссылки меню с разделами"
         },
         {
@@ -1795,7 +1795,7 @@
     },
     {
       "lesson_id": "m11-10-v1",
-      "title_uz": "Loyiha kuni: taklif havolasi va mukofot",
+      "title_uz": "Loyiha kuni: taklif linki va mukofot",
       "title_ru": "День проекта: ссылка-приглашение и награда",
       "version": "v1",
       "source": "src/11-Modull/ReferralDayLesson.jsx",
@@ -3330,7 +3330,7 @@
         {
           "id": "linkreader",
           "name": "Link Reader!",
-          "title_uz": "Havoladan kanal belgisini o'qiydigan kod yozdingiz",
+          "title_uz": "Linkdan kanal belgisini o'qiydigan kod yozdingiz",
           "title_ru": "Написали код, который читает метку канала из ссылки"
         }
       ]

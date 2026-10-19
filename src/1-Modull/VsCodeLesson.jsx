@@ -171,7 +171,7 @@ export const HOMEWORK = {
   },
   items: [
     { uz: "O'zgartirish so'rovi — Gemini'ga card uchun bitta aniq so'rov, natija Live Server'da", ru: 'Запрос на изменение — один точный запрос Gemini для карточки, результат в Live Server' },
-    { uz: 'Havola — Telegram yoki sevimli saytingizga a href', ru: 'Ссылка — a href на Telegram или любимый сайт' },
+    { uz: 'Link — Telegram yoki sevimli saytingizga a href', ru: 'Ссылка — a href на Telegram или любимый сайт' },
     { uz: "Rang tajribasi — fonni boshqa rangga o'zgartirish", ru: 'Эксперимент с цветом — другой цвет фона' },
     { uz: 'Sahifa nomi — title ichiga ismingiz', ru: 'Имя страницы — ваше имя в title' },
   ],
@@ -186,7 +186,7 @@ const demoWrite = (patch) => { try { localStorage.setItem(DEMO_KEY, JSON.stringi
 // G'oya-bank — PmLesson1 dagi bilan BIR XIL (95-qonun olami); g'oyasiz kelgan bola shu yerdan oladi.
 const IDEA_BANK = [
   { id: 'togarak', ic: '🏫', muammo: { uz: "To'garak jadvali faqat devorda — uydan ko'rib bo'lmaydi", ru: 'Расписание кружка только на стене — из дома не посмотришь' }, yechim: { uz: 'Jadval va manzil sayti', ru: 'Сайт с расписанием и адресом' } },
-  { id: 'dokon', ic: '🛒', muammo: { uz: "Mahalla do'konida nima bor-yo'qligini borib ko'rmaguncha bilib bo'lmaydi", ru: 'Что есть в магазине у дома — не узнаешь, пока не сходишь' }, yechim: { uz: 'Menyu va narxlar sayti', ru: 'Сайт с меню и ценами' } },
+  { id: 'dokon', ic: '🛒', muammo: { uz: "Mahalla do'konida nima bor-yo'qligini borib ko'rmaguncha bilib bo'lmaydi", ru: 'Что есть в магазине у дома — не узнаешь, пока не сходишь' }, yechim: { uz: 'Menu va narxlar sayti', ru: 'Сайт с меню и ценами' } },
   { id: 'seksiya', ic: '⚽', muammo: { uz: "Sport seksiyasining vaqti va narxini telefon qilib so'rashga to'g'ri keladi", ru: 'Время и цену секции приходится узнавать по телефону' }, yechim: { uz: "Mashg'ulot vaqtlari sayti", ru: 'Сайт с расписанием тренировок' } },
   { id: 'kitob', ic: '📚', muammo: { uz: "Sinfda kimda qaysi kitob borligini hech kim bilmaydi", ru: 'Никто не знает, у кого в классе какая книга' }, yechim: { uz: "Kitob almashinuv ro'yxati sayti", ru: 'Сайт со списком обмена книгами' } },
 ];
@@ -2300,8 +2300,8 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
     tr({ uz: "AI'ga aniq prompt yozib, kodini o'qib faylga qo'yish", ru: 'Писать ИИ точный промпт, читать код и вставлять его в файл' }),
   ];
   const HOMEWORK = [
-    { b: tr({ uz: "O'zgartirish so'rovi", ru: 'Запрос на изменение' }), t: tr({ uz: "— Gemini'ga card uchun bitta aniq so'rov yozing (masalan: «Card ostiga Telegram havolasini qo'sh»), natijani Live Server'da tekshiring", ru: '— напишите Gemini один точный запрос для карточки (например: «Добавь под карточкой ссылку на Telegram»), проверьте результат в Live Server' }) },
-    { b: tr({ uz: 'Havola', ru: 'Ссылка' }), t: tr({ uz: "— Telegram yoki sevimli saytingizga `a href`", ru: '— `a href` на Telegram или любимый сайт' }) },
+    { b: tr({ uz: "O'zgartirish so'rovi", ru: 'Запрос на изменение' }), t: tr({ uz: "— Gemini'ga card uchun bitta aniq so'rov yozing (masalan: «Card ostiga Telegram linkini qo'sh»), natijani Live Server'da tekshiring", ru: '— напишите Gemini один точный запрос для карточки (например: «Добавь под карточкой ссылку на Telegram»), проверьте результат в Live Server' }) },
+    { b: tr({ uz: 'Link', ru: 'Ссылка' }), t: tr({ uz: "— Telegram yoki sevimli saytingizga `a href`", ru: '— `a href` на Telegram или любимый сайт' }) },
     { b: tr({ uz: 'Rang tajribasi', ru: 'Эксперимент с цветом' }), t: tr({ uz: "— fonni boshqa rangga o'zgartirib ko'ring", ru: '— попробуйте другой цвет фона' }) },
     { b: tr({ uz: 'Sahifa nomi', ru: 'Имя страницы' }), t: tr({ uz: "— `title` ichiga ismingizni yozing", ru: '— напишите своё имя в `title`' }) },
   ];
@@ -2596,7 +2596,7 @@ const QUIZ_BANK = [
   { q: { uz: 'VS Code qaysi saytdan yuklab olinadi?', ru: 'С какого сайта скачивается VS Code?' }, opts: ['`code.visualstudio.com`', '`vscode-download.net`', '`microsoft-code.uz`', '`get-vscode.org`'], correct: 0 },
   { q: { uz: "Fayllar ro'yxati turadigan chap panel nomi nima?", ru: "Как называется левая панель со списком файлов?" }, opts: [{ uz: "Terminal", ru: "Terminal" }, { uz: "Extensions", ru: "Extensions" }, { uz: "Explorer", ru: "Explorer" }, { uz: "Status bar", ru: "Status bar" }], correct: 2 },
   { q: { uz: "Live Server nima?", ru: "Что такое Live Server?" }, opts: [{ uz: "Rasm tahrirlovchi dastur", ru: "Редактор картинок" }, { uz: "Kod saqlanadigan xotira", ru: "Память для хранения кода" }, { uz: "Shrift o'rnatuvchi dastur", ru: "Программа для установки шрифтов" }, { uz: "Sahifani jonli ochuvchi dastur", ru: "Программа, открывающая страницу вживую" }], correct: 3 },
-  { q: { uz: "«Go Live» tugmasi qayerda turadi?", ru: "Где находится кнопка «Go Live»?" }, opts: [{ uz: "Yuqoridagi menyu qatorida", ru: "В строке меню сверху" }, { uz: "Pastdagi ko'k status barda", ru: "На нижней синей полосе status bar" }, { uz: "Explorer paneli ichida", ru: "Внутри панели Explorer" }, { uz: "O'ng tugma menyusida", ru: "В меню правой кнопки мыши" }], correct: 1 },
+  { q: { uz: "«Go Live» tugmasi qayerda turadi?", ru: "Где находится кнопка «Go Live»?" }, opts: [{ uz: "Yuqoridagi menu qatorida", ru: "В строке меню сверху" }, { uz: "Pastdagi ko'k status barda", ru: "На нижней синей полосе status bar" }, { uz: "Explorer paneli ichida", ru: "Внутри панели Explorer" }, { uz: "O'ng tugma menusida", ru: "В меню правой кнопки мыши" }], correct: 1 },
   { q: { uz: '`127.0.0.1` manzili nimani bildiradi?', ru: 'Что означает адрес `127.0.0.1`?' }, opts: [{ uz: 'Internetdagi katta serverni', ru: 'Большой сервер в интернете' }, { uz: "Google'ning bosh sahifasini", ru: 'Главную страницу Google' }, { uz: "O'z kompyuteringizni", ru: 'Ваш собственный компьютер' }, { uz: 'Uydagi Wi-Fi routerni', ru: 'Домашний Wi-Fi роутер' }], correct: 2 },
   { q: { uz: '`127.0.0.1:5500` dagi 5500 raqami nima?', ru: 'Что за число 5500 в `127.0.0.1:5500`?' }, opts: [{ uz: "Port, ya'ni eshik raqami", ru: 'Порт, то есть номер двери' }, { uz: 'Sahifadagi belgilar soni', ru: 'Число символов на странице' }, { uz: 'Koddagi qatorlar soni', ru: 'Число строк в коде' }, { uz: 'Kirish uchun parol raqami', ru: 'Числовой пароль для входа' }], correct: 0 },
   { q: { uz: "Bo'sh index.html'da tayyor HTML shablonni nima chiqaradi?", ru: 'Что выдаёт готовый HTML-шаблон в пустом index.html?' }, opts: ['`?` + Enter', '`#` + Space', '`*` + Shift', '`!` + Tab'], correct: 3 },

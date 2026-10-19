@@ -865,7 +865,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         <p className="qs-reja-past2">{tr({ uz: "«Maydon Jamoa» — namuna; amaliyotlarni o'z mahsulotingizda bajarasiz. Web-trekda 2-amaliyotda «Siz yo'q paytingizda» qatori quriladi.", ru: "«Maydon Jamoa» — образец; практики вы выполняете в своём продукте. В веб-треке на 2-й практике строится строка «Пока вас не было»." })}</p>
         <Ustoz satrlar={[
           { uz: "Eng og'ir qism — 2 va 3-amaliyot (ruxsat, test holati, eslatmani bosib ochish). Test holati har blok oxirida qaytarilganini kuzating: aks holda o'rnatish faylida eslatma bir daqiqada chiqib qoladi.", ru: 'Самая тяжёлая часть — 2-я и 3-я практики (разрешение, тестовый режим, открытие по напоминанию). Следите, чтобы тестовый режим возвращали в конце каждого блока: иначе в установочном файле напоминание будет появляться через минуту.' },
-          { uz: "Uyga vazifa yo'q: o'rnatish fayli navbatda qolsa, havola keyingi dars boshida almashtiriladi. Sinfdagi tekshiruv yozuvlari (`eslatmadan-ochdi`) 3-amaliyot oxirida `id` bo'yicha o'chiriladi — haqiqiy sanoqqa qo'shilmasin.", ru: 'Домашнего задания нет: если установочный файл остался в очереди, ссылку заменяют в начале следующего урока. Проверочные записи в классе (`eslatmadan-ochdi`) в конце 3-й практики удаляют по `id` — чтобы не попали в настоящий подсчёт.' },
+          { uz: "Uyga vazifa yo'q: o'rnatish fayli navbatda qolsa, link keyingi dars boshida almashtiriladi. Sinfdagi tekshiruv yozuvlari (`eslatmadan-ochdi`) 3-amaliyot oxirida `id` bo'yicha o'chiriladi — haqiqiy sanoqqa qo'shilmasin.", ru: 'Домашнего задания нет: если установочный файл остался в очереди, ссылку заменяют в начале следующего урока. Проверочные записи в классе (`eslatmadan-ochdi`) в конце 3-й практики удаляют по `id` — чтобы не попали в настоящий подсчёт.' },
           { uz: "`eslatmadan-ochdi` ilovaning istalgan eslatmasi bosilganini sanaydi: «uch kunlik eslatma shuncha odamni qaytardi» deyilmaydi. Haftalik chegara bugun telefonda tekshirilmaydi (bir hafta kerak) — «kodda bor, telefonda tekshirilmagan».", ru: '`eslatmadan-ochdi` считает нажатие на любое напоминание приложения: не говорим «трёхдневное напоминание вернуло столько-то людей». Недельный предел сегодня на телефоне не проверяется (нужна неделя) — «в коде есть, на телефоне не проверено».' },
           { uz: "13-Modulda qaytarish mexanikalari yana bor — o'quvchiga aytmang, bugun bitta mexanika.", ru: 'В 13-м модуле механики возврата будут ещё — ученикам не говорите, сегодня одна механика.' }
         ]} />
@@ -2071,7 +2071,7 @@ const ScreenA3 = (props) => {
   const apkTanla = (v) => { if (props.storedAnswer && props.storedAnswer.solved) props.onAnswer(props.screen, { ...props.storedAnswer, apk: v }); };
   const osti = !web && <div className="qs-apk">
     <div className={cx(!apk && 'qs-chorla', 'qs-apk-g')}>
-      <QChip holat={apk === 'almashtirildi' ? 'on' : undefined} onClick={() => apkTanla('almashtirildi')}>{tr({ uz: 'Havola almashtirildi', ru: 'Ссылка заменена' })}</QChip>
+      <QChip holat={apk === 'almashtirildi' ? 'on' : undefined} onClick={() => apkTanla('almashtirildi')}>{tr({ uz: 'Link almashtirildi', ru: 'Ссылка заменена' })}</QChip>
       <QChip holat={apk === 'navbatda' ? 'on' : undefined} onClick={() => apkTanla('navbatda')}>{tr({ uz: 'Fayl navbatda', ru: 'Файл в очереди' })}</QChip>
     </div>
   </div>;
@@ -2108,7 +2108,7 @@ const ScreenA3 = (props) => {
             { uz: "(5) Agentga: «Test holatini olib tashla: vaqt va haftalik chegara avvalgidek bo'lsin.» `git status` va `git diff` da test holatidan o'zgarish qolmaganini ko'ring; tekshiruvda tuzatilgan joy bo'lsa — `git add <fayl>` → commit → `git push`.", ru: '(5) Агенту: «Убери тестовый режим: время и недельный предел — как раньше.» Посмотрите в `git status` и `git diff`, что от тестового режима изменений не осталось; если при проверке что-то исправляли — `git add <fayl>` → commit → `git push`.' },
             { uz: "Web-trekda: «Siz yo'q paytingizda» qatorini bosing — sanoq sahifasida «xabardan ochdi» qatorida 1 qurilma chiqishi kerak; «Xabarlar»ni o'chirib, saytni qayta oching — qator chiqmasligi kerak; tekshiruv yozuvlarini xuddi shunday o'chiring (nom — `xabardan-ochdi`).", ru: "В веб-треке: нажмите строку «Пока вас не было» — на странице подсчёта в строке «xabardan ochdi» должно быть 1 устройство; выключите «Xabarlar» и откройте сайт снова — строки быть не должно; проверочные записи удалите так же (имя — `xabardan-ochdi`)." },
             { uz: "Oxirida (mobil trek): odamlardagi ilova uchun yangi o'rnatish fayli kerak — `eas build -p android --profile preview`. Navbatni kutmang: «Bajardim»ni bosing va davom eting.", ru: 'В конце (мобильный трек): для приложения у людей нужен новый установочный файл — `eas build -p android --profile preview`. Очередь не ждите: нажмите «Готово» и продолжайте.' },
-            { uz: "Fayl dars oxirigacha tayyor bo'lsa — lendingdagi «Android: ilovani o'rnatish» havolasini almashtiring; bo'lmasa — keyingi dars boshida.", ru: "Если файл будет готов до конца урока — замените на лендинге ссылку «Android: ilovani o'rnatish» («Android: установить приложение»); если нет — в начале следующего урока." }
+            { uz: "Fayl dars oxirigacha tayyor bo'lsa — lendingdagi «Android: ilovani o'rnatish» linkini almashtiring; bo'lmasa — keyingi dars boshida.", ru: "Если файл будет готов до конца урока — замените на лендинге ссылку «Android: ilovani o'rnatish» («Android: установить приложение»); если нет — в начале следующего урока." }
           ] }
       ]}
       natija={<NatijaA3 trek={trek} />}
@@ -2202,7 +2202,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}
           cta={<>
-            {navbatda && <p className="qs-apk-y fade-up"><span className="qs-apk-chip">{tr({ uz: "O'rnatish fayli navbatda", ru: 'Установочный файл в очереди' })}</span><span>{tr({ uz: "Fayl tayyor bo'lgach, lendingdagi havolani keyingi dars boshida almashtirasiz.", ru: 'Когда файл будет готов, замените ссылку на лендинге в начале следующего урока.' })}</span></p>}
+            {navbatda && <p className="qs-apk-y fade-up"><span className="qs-apk-chip">{tr({ uz: "O'rnatish fayli navbatda", ru: 'Установочный файл в очереди' })}</span><span>{tr({ uz: "Fayl tayyor bo'lgach, lendingdagi linkni keyingi dars boshida almashtirasiz.", ru: 'Когда файл будет готов, замените ссылку на лендинге в начале следующего урока.' })}</span></p>}
             <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
               <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: 'Mentorni kuting', ru: 'Дождитесь наставника' }) : undefined} />
             </div>

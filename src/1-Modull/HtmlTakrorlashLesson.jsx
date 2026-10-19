@@ -350,28 +350,28 @@ const RECAPS = {
   },
   // idx 8 — s8: xato-topish (to'g'ri yozilgan havola)
   8: {
-    title: { uz: 'Havola qanday yoziladi', ru: 'Как пишется ссылка' }, cards: [
+    title: { uz: 'Link qanday yoziladi', ru: 'Как пишется ссылка' }, cards: [
       { ic: '🔗', h: { uz: 'a + href — juftlik', ru: 'a + href — пара' },
         body: {
-          uz: <>Havola <b className="mono">&lt;a&gt;</b> bilan yoziladi: <b className="mono">href</b> ichiga manzil, teglar orasiga matn.</>,
+          uz: <>Link <b className="mono">&lt;a&gt;</b> bilan yoziladi: <b className="mono">href</b> ichiga manzil, teglar orasiga matn.</>,
           ru: <>Ссылку пишут тегом <b className="mono">&lt;a&gt;</b>: в <b className="mono">href</b> — адрес, между тегами — текст.</>,
         },
         vis: <RcFlow items={[{ uz: 'href = manzil', ru: 'href = адрес' }, { uz: 'matn = bosiladigan joy', ru: 'текст = куда нажимают' }]} sep="+" />,
         ask: { uz: 'Manzil qayerga yoziladi — teg ichigami yoki teglar orasigami?', ru: 'Куда пишется адрес — внутрь тега или между тегами?' } },
       { ic: '🧷', h: { uz: "Qo'shtirnoq va yopuvchi teg", ru: 'Кавычки и закрывающий тег' },
         body: {
-          uz: <>Havolani ikki narsa buzadi: <b>qo'shtirnoqsiz manzil</b> va yopilmagan teg.</>,
+          uz: <>Linkni ikki narsa buzadi: <b>qo'shtirnoqsiz manzil</b> va yopilmagan teg.</>,
           ru: <>Ссылку ломают две вещи: <b>адрес без кавычек</b> и незакрытый тег.</>,
         },
         vis: <RcFlow items={['href="..."', '</a>']} sep="✓" />,
         ask: { uz: "`<a href=\"...\">Kanalimiz` yozuvida nima yetishmayapti?", ru: 'Чего не хватает в записи `<a href="...">Kanalimiz`?' } },
       { ic: '🐞', h: { uz: 'Harf xatosi — teg ishlamaydi', ru: 'Опечатка — тег не работает' },
         body: {
-          uz: <>Brauzer faqat <b className="mono">href</b> nomini taniydi, <b className="mono">herf</b> yoki <b className="mono">link</b> bilan havola ishlamaydi.</>,
+          uz: <>Brauzer faqat <b className="mono">href</b> nomini taniydi, <b className="mono">herf</b> yoki <b className="mono">link</b> bilan link ishlamaydi.</>,
           ru: <>Браузер знает только имя <b className="mono">href</b> — с <b className="mono">herf</b> или <b className="mono">link</b> ссылка не работает.</>,
         },
         vis: <RcFlow items={['herf ✗', 'link ✗', 'href ✓']} sep="·" />,
-        ask: { uz: "Havola ko'rinyapti, lekin bosilmayapti. Avval nimani tekshirasiz?", ru: 'Ссылка видна, но не нажимается. Что проверите первым?' } },
+        ask: { uz: "Link ko'rinyapti, lekin bosilmayapti. Avval nimani tekshirasiz?", ru: 'Ссылка видна, но не нажимается. Что проверите первым?' } },
     ]
   },
   // idx 12 — s11: usta-imtihoni (sahifa skeleti tartibi)
@@ -871,7 +871,7 @@ const PB_IMG = 'https://go.coddycamp.uz/uploads/media_library/cf55a3f1c3e9436d5f
 const PB_GHOSTS = [
   { ic: '🏷️', lbl: { uz: '1-bosqich · sarlavha va tanishuv', ru: '1-й этап · заголовок и знакомство' } },
   { ic: '📋', lbl: { uz: "2-bosqich · o'yinchilar ro'yxati", ru: '2-й этап · список игроков' } },
-  { ic: '🔗', lbl: { uz: '3-bosqich · Telegram havola', ru: '3-й этап · ссылка на Telegram' } },
+  { ic: '🔗', lbl: { uz: '3-bosqich · Telegram link', ru: '3-й этап · ссылка на Telegram' } },
   { ic: '🖼️', lbl: { uz: '4-bosqich · jamoa surati', ru: '4-й этап · фото команды' } },
 ];
 function PageBuild({ built = 0, glow = -1, intro = false, big = false }) {
@@ -907,9 +907,9 @@ const ScreenHook = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const G = 'Georgia, serif';
   // F-1019-04 (DE 213.22): qismlar ketma-ket so'raladi (bosish shart emas) — har biri qaror: 3 teg, xato tegga bir qatorli sabab, xato tugma yopiladi
   const ANAT = [
-    { id: 'h1', tag: '<h1>', opts: ['<h1>', '<a>', '<li>'], why: { '<a>': { uz: "<a> — havola, u bosiladi. Bu qism esa sahifa sarlavhasi.", ru: '<a> — ссылка, на неё нажимают. А это заголовок страницы.' }, '<li>': { uz: "<li> — ro'yxatning bitta qatori. Bu qism esa katta sarlavha.", ru: '<li> — одна строка списка. А это крупный заголовок.' } } },
+    { id: 'h1', tag: '<h1>', opts: ['<h1>', '<a>', '<li>'], why: { '<a>': { uz: "<a> — link, u bosiladi. Bu qism esa sahifa sarlavhasi.", ru: '<a> — ссылка, на неё нажимают. А это заголовок страницы.' }, '<li>': { uz: "<li> — ro'yxatning bitta qatori. Bu qism esa katta sarlavha.", ru: '<li> — одна строка списка. А это крупный заголовок.' } } },
     { id: 'p', tag: '<p>', opts: ['<img>', '<p>', '<ul>'], why: { '<img>': { uz: '<img> — rasm. Bu qism esa oddiy matn.', ru: '<img> — картинка. А это обычный текст.' }, '<ul>': { uz: "<ul> — bir necha qatorli ro'yxat. Bu yerda bitta jumla.", ru: '<ul> — список из нескольких строк. А здесь одна фраза.' } } },
-    { id: 'ul', tag: '<ul>', opts: ['<h1>', '<a>', '<ul>'], why: { '<h1>': { uz: '<h1> — bitta katta sarlavha. Bu yerda esa uchta ism qatori.', ru: '<h1> — один крупный заголовок. А здесь три строки с именами.' }, '<a>': { uz: "<a> — havola. Ismlar bosilmaydi, ular ro'yxat bo'lib turibdi.", ru: '<a> — ссылка. Имена не нажимаются, они стоят списком.' } } },
+    { id: 'ul', tag: '<ul>', opts: ['<h1>', '<a>', '<ul>'], why: { '<h1>': { uz: '<h1> — bitta katta sarlavha. Bu yerda esa uchta ism qatori.', ru: '<h1> — один крупный заголовок. А здесь три строки с именами.' }, '<a>': { uz: "<a> — link. Ismlar bosilmaydi, ular ro'yxat bo'lib turibdi.", ru: '<a> — ссылка. Имена не нажимаются, они стоят списком.' } } },
     { id: 'a', tag: '<a>', opts: ['<p>', '<a>', '<img>'], why: { '<p>': { uz: "<p> — oddiy matn, u bosilmaydi. Bu qism esa bosiladi.", ru: '<p> — обычный текст, он не нажимается. А эту часть нажимают.' }, '<img>': { uz: "<img> — rasm. Bu yerda tagiga chizilgan bosiladigan so'z.", ru: '<img> — картинка. А здесь подчёркнутое слово, которое нажимают.' } } },
   ];
   const [found, setFound] = useState(() => (storedAnswer ? new Set(ANAT.map(x => x.id)) : new Set()));
@@ -991,7 +991,7 @@ const ScreenPlan = ({ screen, onNext, onPrev }) => {
   const STEPS = [
     { t: { uz: 'Sarlavha va tanishuv', ru: 'Заголовок и знакомство' }, tag: 'h1 · p' },
     { t: { uz: "O'yinchilar ro'yxati", ru: 'Список игроков' }, tag: 'ul · li · strong' },
-    { t: { uz: 'Telegram havola', ru: 'Ссылка на Telegram' }, tag: 'a · href' },
+    { t: { uz: 'Telegram link', ru: 'Ссылка на Telegram' }, tag: 'a · href' },
     { t: { uz: 'Jamoa surati', ru: 'Фото команды' }, tag: 'img · src · alt' },
     { t: { uz: "Hammasi birga — to\'liq sahifa", ru: 'Всё вместе — целая страница' }, tag: '⭐ final' },
   ];
@@ -1030,10 +1030,10 @@ const ScreenPlan = ({ screen, onNext, onPrev }) => {
 
 // ===== SCREEN 2 (s2) — ESLAB OLISH: teg-blits (6 tez savol, ballsiz, streak 🔥) =====
 const BLITZ_QS = [
-  { tag: '<h1>', opts: [{ uz: 'Katta sarlavha', ru: 'Большой заголовок' }, { uz: 'Bosiladigan havola', ru: 'Кликабельная ссылка' }, { uz: "Ro'yxat bandi", ru: 'Пункт списка' }], c: 0 },
+  { tag: '<h1>', opts: [{ uz: 'Katta sarlavha', ru: 'Большой заголовок' }, { uz: 'Bosiladigan link', ru: 'Кликабельная ссылка' }, { uz: "Ro'yxat bandi", ru: 'Пункт списка' }], c: 0 },
   { tag: '<p>', opts: [{ uz: 'Rasm joyi', ru: 'Место картинки' }, { uz: 'Matn (paragraf)', ru: 'Текст (абзац)' }, { uz: 'Sahifa nomi', ru: 'Имя страницы' }], c: 1 },
   { tag: '<li>', opts: [{ uz: "Qalin so'z", ru: 'Жирное слово' }, { uz: 'Katta sarlavha', ru: 'Большой заголовок' }, { uz: "Ro'yxat bandi", ru: 'Пункт списка' }], c: 2 },
-  { tag: '<a>', opts: [{ uz: 'Rasm joyi', ru: 'Место картинки' }, { uz: 'Bosiladigan havola', ru: 'Кликабельная ссылка' }, { uz: 'Matn (paragraf)', ru: 'Текст (абзац)' }], c: 1 },
+  { tag: '<a>', opts: [{ uz: 'Rasm joyi', ru: 'Место картинки' }, { uz: 'Bosiladigan link', ru: 'Кликабельная ссылка' }, { uz: 'Matn (paragraf)', ru: 'Текст (абзац)' }], c: 1 },
   { tag: '<img>', opts: [{ uz: 'Rasm joyi', ru: 'Место картинки' }, { uz: "Tartiblanmagan ro'yxat", ru: 'Неупорядоченный список' }, { uz: 'Qiya matn', ru: 'Наклонный текст' }], c: 0 },
   { tag: '<ul>', opts: [{ uz: 'Sahifa nomi', ru: 'Имя страницы' }, { uz: "Qalin so'z", ru: 'Жирное слово' }, { uz: "Tartiblanmagan ro'yxat", ru: 'Неупорядоченный список' }], c: 2 },
 ];
@@ -1283,7 +1283,7 @@ const DBG_LINES = [
       { code: '<a url="https://t.me/chempionlar">Kanalimiz</a>' },
       { code: '<a>herf="https://t.me/chempionlar" Kanalimiz</a>' },
     ],
-    why: { uz: "Atribut nomi `herf` emas, `href` — brauzer notanish so'zni tushunmay, havolani oddiy matn qilib qo'ygan edi.", ru: 'Имя атрибута — `href`, а не `herf`: браузер не понял незнакомое слово и превратил ссылку в обычный текст.' } },
+    why: { uz: "Atribut nomi `herf` emas, `href` — brauzer notanish so'zni tushunmay, linkni oddiy matn qilib qo'ygan edi.", ru: 'Имя атрибута — `href`, а не `herf`: браузер не понял незнакомое слово и превратил ссылку в обычный текст.' } },
   { code: '<ul>' },
   { code: '  <li>Aziz<li>', bug: true,
     fixed: '  <li>Aziz</li>',
@@ -1296,7 +1296,7 @@ const DBG_LINES = [
   { code: '</ul>' },
 ];
 const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's6', text: "Mana bir sahifa kodi — ichida ikkita xato yashiringan: havola bosilmayapti, ro'yxatda esa ortiqcha nuqta bor. Shubhali qatorni bosing, keyin to'g'ri variantni tanlab tuzating.", trigger: 'on_mount', waits_for: { type: 'error_found' } }]);
+  const audio = useAudio([{ id: 's6', text: "Mana bir sahifa kodi — ichida ikkita xato yashiringan: link bosilmayapti, ro'yxatda esa ortiqcha nuqta bor. Shubhali qatorni bosing, keyin to'g'ri variantni tanlab tuzating.", trigger: 'on_mount', waits_for: { type: 'error_found' } }]);
   const G = 'Georgia, serif';
   const bugIdxs = DBG_LINES.map((l, i) => (l.bug ? i : null)).filter(i => i !== null);
   const [fixed, setFixed] = useState(() => (storedAnswer ? new Set(bugIdxs) : new Set()));
@@ -1327,7 +1327,7 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sahifa kodida <span className="italic" style={{ color: T.accent }}>ikkita xato</span> bor</>, ru: <>В коде страницы <span className="italic" style={{ color: T.accent }}>две ошибки</span></> })}</h2></div>
         {/* F-0926-06 (159/11): mentor gapidan «O'ngdagi» / «справа» olindi */}
-        <Mentor>{tr({ uz: <>Sahifada havola bosilmayapti, ro'yxatda esa ortiqcha nuqta chiqyapti — demak kodda <b style={{ color: T.ink }}>2 ta xato</b> bor. Shubhali qatorni bosing — keyin uchta variantdan <b style={{ color: T.ink }}>to'g'risini tanlab</b> tuzatasiz. Jonli sahifa har tuzatishdan keyin o'zgaradi.</>, ru: <>На странице не нажимается ссылка, а в списке видна лишняя точка — значит, в коде <b style={{ color: T.ink }}>2 ошибки</b>. Нажмите подозрительную строку — затем <b style={{ color: T.ink }}>выберите верный</b> из трёх вариантов и почините. Живая страница меняется после каждого исправления.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Sahifada link bosilmayapti, ro'yxatda esa ortiqcha nuqta chiqyapti — demak kodda <b style={{ color: T.ink }}>2 ta xato</b> bor. Shubhali qatorni bosing — keyin uchta variantdan <b style={{ color: T.ink }}>to'g'risini tanlab</b> tuzatasiz. Jonli sahifa har tuzatishdan keyin o'zgaradi.</>, ru: <>На странице не нажимается ссылка, а в списке видна лишняя точка — значит, в коде <b style={{ color: T.ink }}>2 ошибки</b>. Нажмите подозрительную строку — затем <b style={{ color: T.ink }}>выберите верный</b> из трёх вариантов и почините. Живая страница меняется после каждого исправления.</> })}</Mentor>
         <div className="split">
           <div className="col">
             <div className="dbg-code nocopy fade-up delay-1" {...noCopy}>
@@ -1349,7 +1349,7 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </React.Fragment>
               ))}
             </div>
-            {wrongLine >= 0 && <p className="small fade-step" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Bu qator to'g'ri — belgilariga qarang: havola bosilmayapti va ro'yxatda ortiqcha nuqta bor.", ru: 'Эта строка верная — смотрите на признаки: не нажимается ссылка и лишняя точка в списке.' })}</p>}
+            {wrongLine >= 0 && <p className="small fade-step" style={{ margin: 0, color: T.ink2 }}>{tr({ uz: "Bu qator to'g'ri — belgilariga qarang: link bosilmayapti va ro'yxatda ortiqcha nuqta bor.", ru: 'Эта строка верная — смотрите на признаки: не нажимается ссылка и лишняя точка в списке.' })}</p>}
             {/* F-0926-06 (159/7): «Xato bor qatorni toping» yo'rig'i olindi — mentor aytadi */}
             {done && (
               <div className="frame-success fade-step">
@@ -1386,12 +1386,12 @@ const ScreenDebug = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 7 (s7) — 3-BOSQICH: Telegram havola (a href) =====
 const ScreenStage3 = ({ screen, onNext, onPrev }) => (
   <StageShell screen={screen} n={3} built={2}
-    audioText="Ro'yxat ham yondi! Endi jamoa kanaliga havola. Havolani a tegi yasaydi: href ichiga manzil, teglar orasiga bosiladigan matn. Hozirgina herf xatosini tuzatdingiz — endi to'g'risini o'zingiz yozasiz."
-    title={tr({ uz: <>Kanalga <span className="italic" style={{ color: T.accent }}>havola</span> ulaymiz.</>, ru: <>Подключаем <span className="italic" style={{ color: T.accent }}>ссылку</span> на канал.</> })}
-    mentor={tr({ uz: <>Havolani <b className="mono">&lt;a&gt;</b> tegi yasaydi: <b className="mono">href</b> ichiga <b style={{ color: T.ink }}>manzil</b>, teglar orasiga <b style={{ color: T.ink }}>bosiladigan matn</b>. Hozirgina <b className="mono">herf</b> xatosini tuzatdingiz — endi to'g'risini noldan o'zingiz yozasiz.</>, ru: <>Ссылку делает тег <b className="mono">&lt;a&gt;</b>: в <b className="mono">href</b> — <b style={{ color: T.ink }}>адрес</b>, между тегами — <b style={{ color: T.ink }}>кликабельный текст</b>. Вы только что починили ошибку <b className="mono">herf</b> — теперь напишете верную ссылку с нуля сами.</> })}
+    audioText="Ro'yxat ham yondi! Endi jamoa kanaliga link. Linkni a tegi yasaydi: href ichiga manzil, teglar orasiga bosiladigan matn. Hozirgina herf xatosini tuzatdingiz — endi to'g'risini o'zingiz yozasiz."
+    title={tr({ uz: <>Kanalga <span className="italic" style={{ color: T.accent }}>link</span> ulaymiz.</>, ru: <>Подключаем <span className="italic" style={{ color: T.accent }}>ссылку</span> на канал.</> })}
+    mentor={tr({ uz: <>Linkni <b className="mono">&lt;a&gt;</b> tegi yasaydi: <b className="mono">href</b> ichiga <b style={{ color: T.ink }}>manzil</b>, teglar orasiga <b style={{ color: T.ink }}>bosiladigan matn</b>. Hozirgina <b className="mono">herf</b> xatosini tuzatdingiz — endi to'g'risini noldan o'zingiz yozasiz.</>, ru: <>Ссылку делает тег <b className="mono">&lt;a&gt;</b>: в <b className="mono">href</b> — <b style={{ color: T.ink }}>адрес</b>, между тегами — <b style={{ color: T.ink }}>кликабельный текст</b>. Вы только что починили ошибку <b className="mono">herf</b> — теперь напишете верную ссылку с нуля сами.</> })}
     task={tr({ uz: <>Jamoa kanali: <b className="mono">https://t.me/chempionlar</b>. Sahifada <b>«Kanalimiz»</b> degan bosiladigan yozuv tursin.</>, ru: <>Канал команды: <b className="mono">https://t.me/chempionlar</b>. На странице должна быть кликабельная надпись <b>«Kanalimiz»</b>.</> })}
     need={[
-      { tag: '<a>', t: { uz: 'havola tegi — bosiladigan matn bilan', ru: 'тег ссылки — с кликабельным текстом' } },
+      { tag: '<a>', t: { uz: 'link tegi — bosiladigan matn bilan', ru: 'тег ссылки — с кликабельным текстом' } },
       { tag: 'href', t: { uz: "ichida kanal manzili, qo\'shtirnoq bilan", ru: 'внутри адрес канала, в кавычках' } },
     ]}
     nextLabel={tr({ uz: 'Kompilyatorni ochish →', ru: 'Открыть компилятор →' })}
@@ -1401,11 +1401,11 @@ const ScreenStage3 = ({ screen, onNext, onPrev }) => (
 // ===== SCREEN 8 (s8) — TEST-2 (scored): XATO-TOPISH =====
 const ScreenTest2 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv · 2-savol', ru: 'Проверка · вопрос 2' })}
-    audioText="Havola to'rt xil yozilgan, lekin faqat bittasi to'g'ri. Har bir yozuvni diqqat bilan o'qing: qo'shtirnoq, atribut nomi, yopuvchi teg. Qaysi biri to'g'ri?"
-    questionText="To'rt yozuvdan qaysi havola to'g'ri yozilgan?"
+    audioText="Link to'rt xil yozilgan, lekin faqat bittasi to'g'ri. Har bir yozuvni diqqat bilan o'qing: qo'shtirnoq, atribut nomi, yopuvchi teg. Qaysi biri to'g'ri?"
+    questionText="To'rt yozuvdan qaysi link to'g'ri yozilgan?"
     question={<>
       <p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Xato-topish', ru: 'Поиск ошибки' })}</p>
-      <h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Havola to'rt xil yozilgan. Qaysi biri <span className="italic" style={{ color: T.accent }}>TO'G'RI</span>?</>, ru: <>Ссылка написана четырьмя способами. Какой из них <span className="italic" style={{ color: T.accent }}>ВЕРНЫЙ</span>?</> })}</h2>
+      <h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>Link to'rt xil yozilgan. Qaysi biri <span className="italic" style={{ color: T.accent }}>TO'G'RI</span>?</>, ru: <>Ссылка написана четырьмя способами. Какой из них <span className="italic" style={{ color: T.accent }}>ВЕРНЫЙ</span>?</> })}</h2>
     </>}
     options={[
       '`<a href=https://t.me/chempionlar>Kanalimiz</a>`',
@@ -1416,7 +1416,7 @@ const ScreenTest2 = (props) => (
     explainCorrect={tr({ uz: "`href`, qo'shtirnoq va yopuvchi `</a>` — hammasi joyida.", ru: '`href`, кавычки и закрывающий `</a>` — всё на месте.' })}
     explainWrong={{
       0: tr({ uz: "Manzil qo'shtirnoqsiz qolgan, uning chegarasi noaniq.", ru: 'Адрес остался без кавычек, его границы неясны.' }),
-      1: tr({ uz: "Yopuvchi teg yo'q, keyingi matn ham havolaga yopishadi.", ru: 'Закрывающего тега нет — следующий текст прилипнет к ссылке.' }),
+      1: tr({ uz: "Yopuvchi teg yo'q, keyingi matn ham linkka yopishadi.", ru: 'Закрывающего тега нет — следующий текст прилипнет к ссылке.' }),
       3: tr({ uz: "`<a>` tegida `link` degan atribut yo'q.", ru: 'У тега `<a>` нет атрибута `link`.' }),
       default: tr({ uz: "Atribut nomi, qo'shtirnoq va yopuvchi tegni tekshiring.", ru: 'Проверьте имя атрибута, кавычки и закрывающий тег.' }),
     }} />
@@ -1425,7 +1425,7 @@ const ScreenTest2 = (props) => (
 // ===== SCREEN 9 (s9) — 4-BOSQICH: jamoa surati (img src alt) =====
 const IMG_URL = 'https://go.coddycamp.uz/uploads/media_library/cf55a3f1c3e9436d5febcd736ed7fc43.jpg';
 const ScreenStage4 = ({ screen, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's9', text: "Havola ham yondi! Endi jamoa surati. Rasmni img tegi qo'yadi: src ichiga rasm manzili, alt ichiga rasm ochilmasa chiqadigan matn. img yopuvchi tegsiz yoziladi. Rasm manzilini nusxalab oling.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's9', text: "Link ham yondi! Endi jamoa surati. Rasmni img tegi qo'yadi: src ichiga rasm manzili, alt ichiga rasm ochilmasa chiqadigan matn. img yopuvchi tegsiz yoziladi. Rasm manzilini nusxalab oling.", trigger: 'on_mount', waits_for: null }]);
   const [copied, setCopied] = useState(false);
   const copy = () => {
     try { navigator.clipboard && navigator.clipboard.writeText(IMG_URL); } catch {}
@@ -1612,14 +1612,14 @@ const ScreenExam = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 13 (s12) — 5-BOSQICH FINAL: hammasi birga =====
 const ScreenStage5 = ({ screen, onNext, onPrev }) => (
   <StageShell screen={screen} n={5} built={4} optional={false}
-    audioText="Yakuniy bosqich — hammasi birga! Bo'sh sahifadan Chempionlar sahifasining to'liq mini-versiyasini yig'asiz: sarlavha, matn, ro'yxat, havola va rasm. Beshta shartning hammasi bajarilganda sahifa tayyor bo'ladi."
+    audioText="Yakuniy bosqich — hammasi birga! Bo'sh sahifadan Chempionlar sahifasining to'liq mini-versiyasini yig'asiz: sarlavha, matn, ro'yxat, link va rasm. Beshta shartning hammasi bajarilganda sahifa tayyor bo'ladi."
     title={tr({ uz: <>Yakuniy bosqich: <span className="italic" style={{ color: T.accent }}>hammasi birga</span>!</>, ru: <>Финальный этап: <span className="italic" style={{ color: T.accent }}>всё вместе</span>!</> })}
     mentor={tr({ uz: <>Eng qiziq joyi keldi! Bo'sh sahifadan «Chempionlar»ning <b style={{ color: T.ink }}>to'liq mini-versiyasini</b> yig'asiz — bugungi 4 bosqichning hammasi bitta joyda. Shartlar ro'yxati kompilyatorda yordam beradi.</>, ru: <>Большой момент! Из пустой страницы вы соберёте <b style={{ color: T.ink }}>полную мини-версию</b> «Чемпионов» — все 4 сегодняшних этапа в одном месте. Список условий в компиляторе поможет.</> })}
-    task={tr({ uz: <>Hammasini bitta sahifaga yig'ing: <b>nom, tanishuv gapi, o'yinchilar ro'yxati, kanal havolasi va surat</b> — hammasi birga!</>, ru: <>Соберите всё на одной странице: <b>имя, знакомство, список игроков, ссылку на канал и фото</b> — всё вместе!</> })}
+    task={tr({ uz: <>Hammasini bitta sahifaga yig'ing: <b>nom, tanishuv gapi, o'yinchilar ro'yxati, kanal linki va surat</b> — hammasi birga!</>, ru: <>Соберите всё на одной странице: <b>имя, знакомство, список игроков, ссылку на канал и фото</b> — всё вместе!</> })}
     need={[
       { tag: '<h1> <p>', t: { uz: 'nom va tanishuv', ru: 'имя и знакомство' } },
       { tag: '<ul> <li>', t: { uz: "3 o'yinchi ro'yxati", ru: 'список из 3 игроков' } },
-      { tag: '<a href>', t: { uz: 'kanal havolasi', ru: 'ссылка на канал' } },
+      { tag: '<a href>', t: { uz: 'kanal linki', ru: 'ссылка на канал' } },
       { tag: '<img src>', t: { uz: 'jamoa surati', ru: 'фото команды' } },
     ]}
     nextLabel={tr({ uz: 'Yakuniy kompilyator →', ru: 'Финальный компилятор →' })}
@@ -1728,8 +1728,8 @@ const TAKROR_FLASHCARDS = [
   { front: { uz: "Tartiblanmagan ro'yxatni qaysi teg boshlaydi?", ru: 'Какой тег начинает неупорядоченный список?' }, back: '<ul>', note: { uz: "o'yinchilar ro'yxati shunday yasaldi", ru: 'так сделан список игроков' } },
   { front: { uz: "Ro'yxatning har bir bandi qaysi teg ichida yoziladi?", ru: 'Внутри какого тега пишется каждый пункт списка?' }, back: '<li>', note: { uz: "ul ichida, har o'yinchiga bittadan", ru: 'внутри ul, по одному на игрока' } },
   { front: { uz: "So'zni qalin qilish uchun qaysi teg kerak?", ru: 'Какой тег нужен, чтобы сделать слово жирным?' }, back: '<strong>', note: { uz: 'sardor ismi shunday qalin bo\'ldi', ru: 'так имя капитана стало жирным' } },
-  { front: { uz: 'Bosiladigan havolani qaysi teg yasaydi?', ru: 'Какой тег делает кликабельную ссылку?' }, back: '<a>', note: { uz: "«Kanalimiz» yozuvi shu teg edi", ru: 'надпись «Kanalimiz» была этим тегом' } },
-  { front: { uz: 'Havola qaysi manzilga olib borishi qayerga yoziladi?', ru: 'Куда пишется адрес, куда ведёт ссылка?' }, back: 'href', note: '<a href="https://...">' },
+  { front: { uz: 'Bosiladigan linkni qaysi teg yasaydi?', ru: 'Какой тег делает кликабельную ссылку?' }, back: '<a>', note: { uz: "«Kanalimiz» yozuvi shu teg edi", ru: 'надпись «Kanalimiz» была этим тегом' } },
+  { front: { uz: 'Link qaysi manzilga olib borishi qayerga yoziladi?', ru: 'Куда пишется адрес, куда ведёт ссылка?' }, back: 'href', note: '<a href="https://...">' },
   { front: { uz: 'Rasmni sahifaga qaysi teg qo\'yadi?', ru: 'Каким тегом ставится картинка на страницу?' }, back: '<img>', note: { uz: "yopuvchi tegi yo'q", ru: 'без закрывающего тега' } },
   { front: { uz: 'Rasm faylining manzili qayerga yoziladi?', ru: 'Куда пишется адрес файла картинки?' }, back: 'src', note: '<img src="jamoa.jpg">' },
   { front: { uz: 'Rasm ochilmasa chiqadigan matn qayerga yoziladi?', ru: 'Куда пишется текст, который выйдет, если картинка не открылась?' }, back: 'alt', note: '<img alt="Jamoa surati">' },
@@ -1776,14 +1776,14 @@ const ScreenFinal = ({ screen, answers, achievements, onReset, onPrev, onFinish,
   const RECAP = [
     tr({ uz: 'Sarlavha va matn yozish (h1, p, strong)', ru: 'Писать заголовок и текст (h1, p, strong)' }),
     tr({ uz: "Ro'yxat yig'ish (ul, li)", ru: 'Собирать список (ul, li)' }),
-    tr({ uz: 'Havola ulash (a, href)', ru: 'Подключать ссылку (a, href)' }),
+    tr({ uz: 'Link ulash (a, href)', ru: 'Подключать ссылку (a, href)' }),
     tr({ uz: "Rasm qo'yish (img, src, alt)", ru: 'Ставить картинку (img, src, alt)' }),
     tr({ uz: "Xatoni topib tuzatish va to'liq qobiq yig'ish", ru: 'Находить и чинить ошибки, собирать полную оболочку' }),
   ];
   const HOMEWORK = [
     { b: tr({ uz: 'Mavzu tanlang', ru: 'Выберите тему' }), t: tr({ uz: "— sevimli o'yin, musiqa yoki kitob", ru: '— любимая игра, музыка или книга' }) },
     { b: 'h1 + p', t: tr({ uz: '— nom va 2-3 gap tanishuv', ru: '— название и 2–3 фразы о теме' }) },
-    { b: tr({ uz: "Ro'yxat + havola", ru: 'Список + ссылка' }), t: tr({ uz: "— kamida 3 band va bitta sayt", ru: '— минимум 3 пункта и один сайт' }) },
+    { b: tr({ uz: "Ro'yxat + link", ru: 'Список + ссылка' }), t: tr({ uz: "— kamida 3 band va bitta sayt", ru: '— минимум 3 пункта и один сайт' }) },
     { b: tr({ uz: 'Rasm', ru: 'Картинка' }), t: tr({ uz: '— src va alt bilan', ru: '— со src и alt' }) },
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
@@ -1843,7 +1843,7 @@ const ScreenFinal = ({ screen, answers, achievements, onReset, onPrev, onFinish,
 // Podium yorliqlari (scored indeks -> qisqa nom)
 const Q_LABELS = {
   4: { uz: "Kod-o'qish (strong)", ru: 'Чтение кода (strong)' },
-  8: { uz: "To'g'ri havola yozuvi", ru: 'Верная запись ссылки' },
+  8: { uz: "To'g'ri link yozuvi", ru: 'Верная запись ссылки' },
   12: { uz: "Sahifa qobig'i tartibi", ru: 'Порядок оболочки страницы' },
 };
 
@@ -2003,13 +2003,13 @@ const QUIZ_BANK = [
   { q: { uz: "Ro'yxatdagi har bir o'yinchi ismi qaysi tegga o'raladi?", ru: 'В какой тег оборачивается имя каждого игрока в списке?' },
     opts: ["`ul`", "`ol`", "`li`", "`a`"], correct: 2 },
   { q: { uz: "`<ul>` ichida 3 ta `<li>`. Ekranda nima chiqadi?", ru: "`<ul>` с тремя `<li>`. Что будет на экране?" }, opts: [{ uz: "1·2·3 raqamli ro'yxat", ru: "Нумерованный список 1·2·3" }, { uz: "Bir qatorda yonma-yon", ru: "Всё в одну строку" }, { uz: "Uchta jadval katagi", ru: "Три ячейки таблицы" }, { uz: "Uchta nuqtali band", ru: "Три пункта с точками" }], correct: 3 },
-  { q: { uz: "`<a herf=\"...\">Kanal</a>` — nima bo'ladi?", ru: "`<a herf=\"...\">Kanal</a>` — что будет?" }, opts: [{ uz: "«Kanal» chiqadi, bosilmaydi", ru: "«Kanal» виден, но не нажимается" }, { uz: "Havola odatdagidek ishlaydi", ru: "Ссылка работает как обычно" }, { uz: "Sahifa ochilmaydi", ru: "Страница не откроется" }, { uz: "Manzil ko'rinib qoladi", ru: "Вместо текста виден адрес" }], correct: 0 },
+  { q: { uz: "`<a herf=\"...\">Kanal</a>` — nima bo'ladi?", ru: "`<a herf=\"...\">Kanal</a>` — что будет?" }, opts: [{ uz: "«Kanal» chiqadi, bosilmaydi", ru: "«Kanal» виден, но не нажимается" }, { uz: "Link odatdagidek ishlaydi", ru: "Ссылка работает как обычно" }, { uz: "Sahifa ochilmaydi", ru: "Страница не откроется" }, { uz: "Manzil ko'rinib qoladi", ru: "Вместо текста виден адрес" }], correct: 0 },
   { q: { uz: "«Chempionlar» hammadan katta chiqsin. Qaysi teg?", ru: "Пусть «Chempionlar» будет крупнее всего. Какой тег?" }, opts: ["`p`", "`h1`", "`li`", "`strong`"], correct: 1 },
-  { q: { uz: "`alt=\"Jamoa surati\"` nima uchun kerak?", ru: "Зачем нужен `alt=\"Jamoa surati\"`?" }, opts: [{ uz: "Rasm ochilmasa matn chiqadi", ru: "Текст виден, если фото не открылось" }, { uz: "Rasm o'lchamini belgilaydi", ru: "Задаёт размер фото" }, { uz: "Rasmga ramka chizadi", ru: "Рисует рамку вокруг фото" }, { uz: "Rasmni havolaga aylantiradi", ru: "Превращает фото в ссылку" }], correct: 0 },
+  { q: { uz: "`alt=\"Jamoa surati\"` nima uchun kerak?", ru: "Зачем нужен `alt=\"Jamoa surati\"`?" }, opts: [{ uz: "Rasm ochilmasa matn chiqadi", ru: "Текст виден, если фото не открылось" }, { uz: "Rasm o'lchamini belgilaydi", ru: "Задаёт размер фото" }, { uz: "Rasmga ramka chizadi", ru: "Рисует рамку вокруг фото" }, { uz: "Rasmni linkka aylantiradi", ru: "Превращает фото в ссылку" }], correct: 0 },
   { q: { uz: 'Formada foydalanuvchi ism YOZADIGAN katak qaysi teg?', ru: 'Каким тегом делается поле, куда пользователь ПИШЕТ имя?' },
     opts: ["`button`", "`label`", "`p`", "`input`"], correct: 3 },
   { q: { uz: "Ko'rinadigan mazmun (sarlavha, rasm) qayerga yoziladi?", ru: "Куда пишется видимое содержимое (заголовок, картинка)?" }, opts: ["`head`", "`body`", "`title`", "`html`"], correct: 1 },
-  { q: { uz: "`<a href=\"...\">Kanalimiz</a>` — ekranda nima ko'rinadi?", ru: "`<a href=\"...\">Kanalimiz</a>` — что видно на экране?" }, opts: [{ uz: "Bosiladigan «Kanalimiz»", ru: "Кликабельная надпись «Kanalimiz»" }, { uz: "Havola manzilining o'zi", ru: "Сам адрес ссылки" }, { uz: "Telegram belgisi (rasm)", ru: "Значок Telegram (картинка)" }, { uz: "«href» so'zi", ru: "Слово «href»" }], correct: 0 },
+  { q: { uz: "`<a href=\"...\">Kanalimiz</a>` — ekranda nima ko'rinadi?", ru: "`<a href=\"...\">Kanalimiz</a>` — что видно на экране?" }, opts: [{ uz: "Bosiladigan «Kanalimiz»", ru: "Кликабельная надпись «Kanalimiz»" }, { uz: "Link manzilining o'zi", ru: "Сам адрес ссылки" }, { uz: "Telegram belgisi (rasm)", ru: "Значок Telegram (картинка)" }, { uz: "«href» so'zi", ru: "Слово «href»" }], correct: 0 },
   { q: { uz: "Qaysi qatorda teg TO'G'RI yopilgan?", ru: 'В какой строке тег закрыт ВЕРНО?' },
     opts: ["`<li>Aziz<li>`", "`<li>Aziz<il>`", "`<li>Aziz</li`", "`<li>Aziz</li>`"], correct: 3 },
   { q: { uz: "Sardor ismini QALIN qilish uchun qaysi teg?", ru: "Какой тег сделает имя Сардора ЖИРНЫМ?" }, opts: ["`p`", "`li`", "`strong`", "`title`"], correct: 2 },
@@ -2503,8 +2503,8 @@ const STARTER_S2 = { uz: `<!-- Bu yerga yozing -->\n`, ru: `<!-- Пишите з
 
 // — 3-BOSQICH: Telegram havola (a + href) —
 const TASK_S3 = {
-  eyebrow: { uz: '3-bosqich · havola', ru: 'Этап 3 · ссылка' },
-  title: { uz: 'Kanal havolasini ulang', ru: 'Подключите ссылку на канал' },
+  eyebrow: { uz: '3-bosqich · link', ru: 'Этап 3 · ссылка' },
+  title: { uz: 'Kanal linkini ulang', ru: 'Подключите ссылку на канал' },
   brief: {
     uz: "Jamoa kanali: https://t.me/chempionlar. href ichiga manzilni qo'shtirnoq bilan yozing, teglar orasiga bosiladigan matn (masalan, Kanalimiz).",
     ru: 'Канал команды: https://t.me/chempionlar. Напишите адрес в href в кавычках, а между тегами — кликабельный текст (например, Kanalimiz).',
@@ -2536,14 +2536,14 @@ const TASK_FINAL = {
   eyebrow: { uz: '5-bosqich · yakuniy', ru: 'Этап 5 · финал' },
   title: { uz: "«Chempionlar» — to'liq sahifa", ru: '«Чемпионы» — целая страница' },
   brief: {
-    uz: "Eng qiziq joyi: bugungi 4 bosqichning hammasini bitta sahifada yig'asiz — sarlavha, tanishuv, o'yinchilar ro'yxati, kanal havolasi va jamoa surati. Rasm manzili: https://go.coddycamp.uz/uploads/media_library/cf55a3f1c3e9436d5febcd736ed7fc43.jpg",
+    uz: "Eng qiziq joyi: bugungi 4 bosqichning hammasini bitta sahifada yig'asiz — sarlavha, tanishuv, o'yinchilar ro'yxati, kanal linki va jamoa surati. Rasm manzili: https://go.coddycamp.uz/uploads/media_library/cf55a3f1c3e9436d5febcd736ed7fc43.jpg",
     ru: 'Большой момент: собираете все 4 сегодняшних этапа на одной странице — заголовок, знакомство, список игроков, ссылку на канал и фото команды. Адрес фото: https://go.coddycamp.uz/uploads/media_library/cf55a3f1c3e9436d5febcd736ed7fc43.jpg',
   },
   requirements: [
     { id: 'h1', label: { uz: '<h1> — jamoa nomi', ru: '<h1> — имя команды' }, check: C.text('h1', { uz: "`<h1>` ichiga jamoa nomini yozing", ru: 'Напишите имя команды внутри `<h1>`' }) },
     { id: 'p', label: { uz: '<p> — tanishuv gapi', ru: '<p> — фраза-знакомство' }, check: C.text('p', { uz: "`<p>` ichiga jamoa haqida gap yozing", ru: 'Напишите внутри `<p>` фразу о команде' }) },
     { id: 'li3', label: { uz: "ro'yxatda 3 ta <li>", ru: 'в списке 3 <li>' }, check: C.count('li', 3, { uz: "`<ul>` ichida 3 ta `<li>` — Aziz, Sardor, Bek", ru: 'Внутри `<ul>` — 3 `<li>`: Aziz, Sardor, Bek' }) },
-    { id: 'a', label: { uz: '<a> — kanal havolasi', ru: '<a> — ссылка на канал' }, check: C.attr('a', 'href', { uz: "`<a href=\"https://t.me/chempionlar\">Kanalimiz</a>` qo'shing", ru: 'Добавьте `<a href="https://t.me/chempionlar">Kanalimiz</a>`' }) },
+    { id: 'a', label: { uz: '<a> — kanal linki', ru: '<a> — ссылка на канал' }, check: C.attr('a', 'href', { uz: "`<a href=\"https://t.me/chempionlar\">Kanalimiz</a>` qo'shing", ru: 'Добавьте `<a href="https://t.me/chempionlar">Kanalimiz</a>`' }) },
     { id: 'img', label: { uz: '<img> — jamoa surati', ru: '<img> — фото команды' }, check: C.attrs('img', ['src', 'alt'], { uz: "`<img src=\"...\" alt=\"...\">` — manzilni src ichiga, rasm tavsifini alt ichiga yozing", ru: 'Адрес — в src, описание фото — в alt: `<img src="..." alt="...">`' }) },
   ],
 };
@@ -2563,7 +2563,7 @@ const TASK_HW = {
     { id: 'h1', label: { uz: '<h1> — mavzu nomi', ru: '<h1> — название темы' }, check: C.text('h1', { uz: "`<h1>` ichiga mavzuingiz nomini yozing", ru: 'Напишите название темы внутри `<h1>`' }) },
     { id: 'p2', label: { uz: 'kamida 2 ta <p> — tanishuv', ru: 'минимум 2 <p> — знакомство' }, check: C.count('p', 2, { uz: "Mavzu haqida kamida 2 ta `<p>` gap yozing", ru: 'Напишите о теме минимум 2 абзаца `<p>`' }) },
     { id: 'li3', label: { uz: "ro'yxatda kamida 3 ta <li>", ru: 'в списке минимум 3 <li>' }, check: C.count('li', 3, { uz: "`<ul>` ichida kamida 3 ta `<li>` band yozing", ru: 'Напишите минимум 3 пункта `<li>` внутри `<ul>`' }) },
-    { id: 'a', label: { uz: '<a> — bitta sayt havolasi', ru: '<a> — одна ссылка на сайт' }, check: C.attr('a', 'href', { uz: "Mavzuga oid saytga `<a href=\"https://...\">nomi</a>` havola qo'shing", ru: 'Добавьте ссылку на сайт по теме: `<a href="https://...">имя</a>`' }) },
+    { id: 'a', label: { uz: '<a> — bitta sayt linki', ru: '<a> — одна ссылка на сайт' }, check: C.attr('a', 'href', { uz: "Mavzuga oid saytga `<a href=\"https://...\">nomi</a>` link qo'shing", ru: 'Добавьте ссылку на сайт по теме: `<a href="https://...">имя</a>`' }) },
     { id: 'img', label: { uz: '<img> — rasm, src va alt bilan', ru: '<img> — картинка, с src и alt' }, check: C.attrs('img', ['src', 'alt'], { uz: "`<img>` da `src` va `alt` ikkalasini to'ldiring", ru: 'Заполните у `<img>` оба атрибута: `src` и `alt`' }) },
   ],
 };

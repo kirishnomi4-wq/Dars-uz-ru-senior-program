@@ -1250,7 +1250,7 @@ const GFONTS = [
   { k: 'lob', name: 'Lobster', url: 'Lobster', ff: "'Lobster', cursive", l: { uz: 'yozma', ru: 'рукописный' } }
 ];
 const Screen7b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's7b', text: `Kompyuterdagi shriftlar sanoqli. Google Fonts — bepul shriftlar ombori. Ikki qadam kerak: avval havola bilan shriftni sahifaga olib kelasiz, keyin CSS da ishlatasiz. Shriftni tanlang, keyin havolani uzib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's7b', text: `Kompyuterdagi shriftlar sanoqli. Google Fonts — bepul shriftlar ombori. Ikki qadam kerak: avval link bilan shriftni sahifaga olib kelasiz, keyin CSS da ishlatasiz. Shriftni tanlang, keyin linkni uzib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   const [gf, setGf] = useState(() => (GFONTS.some(f => f.k === storedAnswer?.gf) ? storedAnswer.gf : 'mont'));
   const [linked, setLinked] = useState(storedAnswer ? storedAnswer.linked !== false : true);
   const [fTouched, setFTouched] = useState(!!storedAnswer);
@@ -1260,25 +1260,25 @@ const Screen7b = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true, gf, linked }); }, [done]); // eslint-disable-line
   const label = done ? tr({ uz: 'Davom etish', ru: 'Продолжить' })
     : !fTouched ? tr({ uz: 'Shriftni tanlang', ru: 'Выберите шрифт' })
-    : tr({ uz: "Havolani uzib ko'ring", ru: 'Отключите ссылку' });
+    : tr({ uz: "Linkni uzib ko'ring", ru: 'Отключите ссылку' });
   return (
     <Stage eyebrow={tr({ uz: 'Google Fonts', ru: 'Google Fonts' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={label} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yangi shriftni <span className="italic" style={{ color: T.accent }}>qayerdan</span> olamiz?</>, ru: <>Откуда берём <span className="italic" style={{ color: T.accent }}>новый</span> шрифт?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Kompyuterda tayyor shriftlar sanoqli. <b style={{ color: T.ink }}>Google Fonts</b> — bepul shriftlar ombori. Ikki qadam: avval shriftni sahifaga <b style={{ color: T.ink }}>olib kelasiz</b>, keyin CSS'da <b style={{ color: T.ink }}>ishlatasiz</b>. Shriftni tanlang, so'ng havolani uzib ko'ring.</>, ru: <>Готовых шрифтов на компьютере — считаное число. <b style={{ color: T.ink }}>Google Fonts</b> — бесплатный склад шрифтов. Два шага: сначала <b style={{ color: T.ink }}>приносим</b> шрифт на страницу, потом <b style={{ color: T.ink }}>используем</b> в CSS. Выберите шрифт, а потом отключите ссылку.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Kompyuterda tayyor shriftlar sanoqli. <b style={{ color: T.ink }}>Google Fonts</b> — bepul shriftlar ombori. Ikki qadam: avval shriftni sahifaga <b style={{ color: T.ink }}>olib kelasiz</b>, keyin CSS'da <b style={{ color: T.ink }}>ishlatasiz</b>. Shriftni tanlang, so'ng linkni uzib ko'ring.</>, ru: <>Готовых шрифтов на компьютере — считаное число. <b style={{ color: T.ink }}>Google Fonts</b> — бесплатный склад шрифтов. Два шага: сначала <b style={{ color: T.ink }}>приносим</b> шрифт на страницу, потом <b style={{ color: T.ink }}>используем</b> в CSS. Выберите шрифт, а потом отключите ссылку.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <div className="col">
             <div className="fade-up delay-2"><p className="flow-label" style={{ marginBottom: 6 }}>{tr({ uz: '1-qadam — shriftni tanlang', ru: 'Шаг 1 — выберите шрифт' })}</p><div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>{GFONTS.map(f => (<button key={f.k} className={`chip ${gf === f.k ? 'chip-on' : ''}`} onClick={() => { setGf(f.k); setFTouched(true); }} style={{ fontFamily: f.ff }}>{f.name}</button>))}</div></div>
-            <div className="fade-up delay-2"><p className="flow-label" style={{ marginBottom: 6 }}>{tr({ uz: '2-qadam — shriftni sahifaga olib keling', ru: 'Шаг 2 — принесите шрифт на страницу' })}</p><button className={`chip ${linked ? 'chip-on' : ''}`} onClick={() => { setLinked(v => !v); setLTouched(true); }}>{linked ? tr({ uz: '🔗 Havola ulangan', ru: '🔗 Ссылка подключена' }) : tr({ uz: '✂️ Havola uzilgan', ru: '✂️ Ссылка отключена' })}</button></div>
+            <div className="fade-up delay-2"><p className="flow-label" style={{ marginBottom: 6 }}>{tr({ uz: '2-qadam — shriftni sahifaga olib keling', ru: 'Шаг 2 — принесите шрифт на страницу' })}</p><button className={`chip ${linked ? 'chip-on' : ''}`} onClick={() => { setLinked(v => !v); setLTouched(true); }}>{linked ? tr({ uz: '🔗 Link ulangan', ru: '🔗 Ссылка подключена' }) : tr({ uz: '✂️ Link uzilgan', ru: '✂️ Ссылка отключена' })}</button></div>
             <pre className="code-box fade-up delay-3" style={{ fontSize: 'clamp(11px,1.5vw,13px)', opacity: linked ? 1 : 0.4 }}><span style={{ color: CODE.tag }}>{'<head>'}</span>{'\n  '}<span style={{ color: CODE.tag, textDecoration: linked ? 'none' : 'line-through' }}>{'<link '}</span><span style={{ color: CODE.attr, textDecoration: linked ? 'none' : 'line-through' }}>href</span><span style={{ textDecoration: linked ? 'none' : 'line-through' }}>=</span><span style={{ color: CODE.str, textDecoration: linked ? 'none' : 'line-through' }}>"…/css2?family={cur.url}"</span><span style={{ color: CODE.tag, textDecoration: linked ? 'none' : 'line-through' }}>{'>'}</span>{'\n'}<span style={{ color: CODE.tag }}>{'</head>'}</span></pre>
             <pre className="code-box fade-up delay-3" style={{ fontSize: 'clamp(12px,1.7vw,14px)' }}><span style={{ color: CODE.tag }}>h1</span> {'{'}{'\n  '}<span style={{ color: CODE.attr }}>font-family</span>: <span style={{ color: CODE.str }}>'{cur.name}'</span>, <span style={{ color: CODE.str }}>sans-serif</span>;{'\n'}{'}'}</pre>
           </div>
           <div className="col">
             <div className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</div>
             <Preview title="matn.html" minH={150}><div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 120 }}><h1 key={gf + String(linked)} className="fade-step" style={{ fontFamily: linked ? cur.ff : 'system-ui, sans-serif', fontSize: 34, color: T.ink, margin: 0, textAlign: 'center' }}>{tr({ uz: 'Salom, dunyo!', ru: 'Привет, мир!' })}</h1></div></Preview>
-            {!linked && <p className="small fade-step" style={{ margin: '10px 0 0', color: T.accent }}>{tr({ uz: '✂️ Havola yo\'q — brauzer shriftni topolmadi va oddiy shriftga qaytdi.', ru: '✂️ Ссылки нет — браузер не нашёл шрифт и вернулся к обычному.' })}</p>}
-            {linked && lTouched && <p className="small fade-step" style={{ margin: '10px 0 0', color: T.success }}>{tr({ uz: '🔗 Havola bor — shrift yuklandi va ishladi.', ru: '🔗 Ссылка есть — шрифт загрузился и заработал.' })}</p>}
+            {!linked && <p className="small fade-step" style={{ margin: '10px 0 0', color: T.accent }}>{tr({ uz: '✂️ Link yo\'q — brauzer shriftni topolmadi va oddiy shriftga qaytdi.', ru: '✂️ Ссылки нет — браузер не нашёл шрифт и вернулся к обычному.' })}</p>}
+            {linked && lTouched && <p className="small fade-step" style={{ margin: '10px 0 0', color: T.success }}>{tr({ uz: '🔗 Link bor — shrift yuklandi va ishladi.', ru: '🔗 Ссылка есть — шрифт загрузился и заработал.' })}</p>}
           </div>
         </div>
         </Zoomable>
@@ -1704,7 +1704,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     { uz: 'Shakl: selektor { xususiyat: qiymat; }', ru: 'Форма: селектор { свойство: значение; }' },
     { uz: 'Ranglar — color va background-color', ru: 'Цвета — color и background-color' },
     { uz: 'Shriftlar — font-family, font-size, font-weight', ru: 'Шрифты — font-family, font-size, font-weight' },
-    { uz: 'Google Fonts — havola bilan olib kelinadi, keyin ishlatiladi', ru: 'Google Fonts — приносим ссылкой, потом используем' },
+    { uz: 'Google Fonts — link bilan olib kelinadi, keyin ishlatiladi', ru: 'Google Fonts — приносим ссылкой, потом используем' },
     { uz: "Bo'shliqlar — padding (ichki), margin (tashqi)", ru: 'Отступы — padding (внутренний), margin (внешний)' }
   ];
   const HOMEWORK = [

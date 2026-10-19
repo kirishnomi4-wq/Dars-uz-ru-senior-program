@@ -1932,7 +1932,7 @@ const A2_YORDAM = [
 ];
 const a2Qadamlar = (trek) => [
   { h: QADAM.ochish, t: { uz: "o'z repo'ngizda 1-amaliyotdagi holat. Natijani kim va qayerda ko'radi — bir gap bilan o'ylang (Mentor misolida: tashkilotchi, «O'yin» ekranida).", ru: "в своём репо — состояние после 1-й практики. Кто и где видит результат — продумайте одной фразой (в примере Ментора: организатор, на экране игры)." },
-    bandlar: [{ uz: "Ikkinchi foydalanuvchi — o'z telefoningizda «Hisobdan chiqish» bilan ikkinchi akkaunt; sinfdoshingiz telefoni ham bo'ladi (web-trekda — havola, mobil trekda — Android'dagi Expo Go).", ru: "Второй пользователь — второй аккаунт на вашем телефоне через «Hisobdan chiqish» («Выйти из аккаунта»); подойдёт и телефон одноклассника (в веб-треке — ссылка, в мобильном — Expo Go на Android)." }] },
+    bandlar: [{ uz: "Ikkinchi foydalanuvchi — o'z telefoningizda «Hisobdan chiqish» bilan ikkinchi akkaunt; sinfdoshingiz telefoni ham bo'ladi (web-trekda — link, mobil trekda — Android'dagi Expo Go).", ru: "Второй пользователь — второй аккаунт на вашем телефоне через «Hisobdan chiqish» («Выйти из аккаунта»); подойдёт и телефон одноклассника (в веб-треке — ссылка, в мобильном — Expo Go на Android)." }] },
   { h: QADAM.prompt, t: PROMPT_T,
     vazifa: { uz: "Harakat natijasi boshqa foydalanuvchiga ko'rinadi va ekran ochilganda yoki pastga tortilganda Backend'dan qayta olinadi.", ru: "Результат действия виден другому пользователю и заново берётся из Backend при открытии экрана или при потягивании вниз." },
     prompt: PROMPT_UCH,
@@ -1940,7 +1940,7 @@ const a2Qadamlar = (trek) => [
   { h: QADAM.ishga, t: { uz: '`git status` → `git add <fayl>` → commit → `git push`; Render deploy tugashini kuting.', ru: "`git status` → `git add <fayl>` → commit → `git push`; дождитесь, пока на Render закончится деплой." },
     bandlar: [
       { uz: "Ikkinchi akkaunt: «Hisobdan chiqish» → namuna ism va **boshqa** namuna telefon bilan ro'yxatdan o'ting (Mentor misolida `+998 90 000 00 02`; telefon takrorlansa, ro'yxatdan o'tish rad etiladi).", ru: "Второй аккаунт: «Выйти из аккаунта» → зарегистрируйтесь с именем-образцом и **другим** телефоном-образцом (в примере Ментора `+998 90 000 00 02`; если телефон повторяется, регистрацию отклонят)." },
-      { uz: "Sinfdosh telefoni bilan: web-trekda — Netlify havolangiz; mobil trekda — Android'dagi Expo Go QR'ni ochadi (bitta Wi-Fi). Expo akkauntingiz ma'lumotlarini boshqaga bermaysiz.", ru: "С телефоном одноклассника: в веб-треке — ваша ссылка Netlify; в мобильном — Expo Go на Android открывает QR (одна сеть Wi-Fi). Данные своего аккаунта Expo другим не даёте." }
+      { uz: "Sinfdosh telefoni bilan: web-trekda — Netlify linkingiz; mobil trekda — Android'dagi Expo Go QR'ni ochadi (bitta Wi-Fi). Expo akkauntingiz ma'lumotlarini boshqaga bermaysiz.", ru: "С телефоном одноклассника: в веб-треке — ваша ссылка Netlify; в мобильном — Expo Go на Android открывает QR (одна сеть Wi-Fi). Данные своего аккаунта Expo другим не даёте." }
     ],
     err: XATO_GAP },
   { h: QADAM.ikki, t: TEKSHIR_T,

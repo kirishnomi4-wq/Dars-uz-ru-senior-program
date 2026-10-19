@@ -252,11 +252,11 @@ const INLINE_KEYS = { s5: 3 };
 // 📖 RECAPS — ballik test uchun 3 karta (kalit = ekran INDEKSI: 5 — topshirish)
 const RECAPS = {
   5: {
-    title: { uz: "Bo'limga havola", ru: 'Ссылка на раздел' },
+    title: { uz: "Bo'limga link", ru: 'Ссылка на раздел' },
     cards: [
-      { ic: '<a href="#aloqa">', h: { uz: 'Menyudagi havola', ru: 'Ссылка в меню' }, body: { uz: <>Qaysi bo'limga tushishini <b className="mono">#</b> dan keyingi nom aytadi.</>, ru: <>К какому разделу перейти, говорит имя после <b className="mono">#</b>.</> } },
-      { ic: '<section id="aloqa">', h: { uz: "Bo'limning nomi", ru: 'Имя раздела' }, body: { uz: <>Havoladagi nom bilan bir xil bo'lishi kerak.</>, ru: <>Должно совпадать с именем в ссылке.</> } },
-      { ic: '<a href="mailto:…">', h: { uz: 'Pochta havolasi', ru: 'Ссылка на почту' }, body: { uz: <>Xat yozish oynasini ochadi.</>, ru: <>Открывает окно письма.</> }, ask: { uz: "id ni yozish esdan chiqsa, havola bosilganda nima bo'ladi?", ru: 'Что будет при нажатии на ссылку, если забыть написать id?' } }
+      { ic: '<a href="#aloqa">', h: { uz: 'Menudagi link', ru: 'Ссылка в меню' }, body: { uz: <>Qaysi bo'limga tushishini <b className="mono">#</b> dan keyingi nom aytadi.</>, ru: <>К какому разделу перейти, говорит имя после <b className="mono">#</b>.</> } },
+      { ic: '<section id="aloqa">', h: { uz: "Bo'limning nomi", ru: 'Имя раздела' }, body: { uz: <>Linkdagi nom bilan bir xil bo'lishi kerak.</>, ru: <>Должно совпадать с именем в ссылке.</> } },
+      { ic: '<a href="mailto:…">', h: { uz: 'Pochta linki', ru: 'Ссылка на почту' }, body: { uz: <>Xat yozish oynasini ochadi.</>, ru: <>Открывает окно письма.</> }, ask: { uz: "id ni yozish esdan chiqsa, link bosilganda nima bo'ladi?", ru: 'Что будет при нажатии на ссылку, если забыть написать id?' } }
     ]
   }
 };
@@ -630,7 +630,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // ===== SCREEN 1 — REJA (QReja): chapda dars oxiridagi sahifa (bir marta o'zi yuradi) · o'ngda 3 blok · «Avval tayyorlaning» — mentor gapidan keyin, tepada (F-1015-320) =====
 const REJA = [
   { t: { uz: "Header va «Men haqimda»", ru: 'Header и «Обо мне»' }, teg: 'header' },
-  { t: { uz: 'Menyu, loyihalar va aloqa', ru: 'Меню, проекты и контакты' }, teg: 'nav' },
+  { t: { uz: 'Menu, loyihalar va aloqa', ru: 'Меню, проекты и контакты' }, teg: 'nav' },
   { t: { uz: 'Dizayn', ru: 'Дизайн' }, teg: 'style.css' }
 ];
 const TAYYOR = [
@@ -697,19 +697,19 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 // ===== s5 — TOPSHIRISH (QTest, yagona ballik; INLINE_KEYS.s5 = 3 — eski kalit saqlandi). F-1015-324: ko'rinish — boshqa testlar bilan bir xil (tor, mentor qatorisiz) =====
 const Screen5 = (props) => (
   <QuestionScreen {...props} scope="final" eyebrow={tr({ uz: 'Topshirish', ru: 'Сдача' })}
-    questionText="Menyudagi «Aloqa» bosildi, sahifa qimirlamadi. Nima yetishmaydi?"
-    question={tr({ uz: <h2 className="title h-ask">Menyudagi «Aloqa» bosildi, sahifa qimirlamadi. <span className="italic" style={{ color: T.accent }}>Nima yetishmaydi?</span></h2>, ru: <h2 className="title h-ask">Нажали «Контакты» в меню, страница не сдвинулась. <span className="italic" style={{ color: T.accent }}>Чего не хватает?</span></h2> })}
+    questionText="Menudagi «Aloqa» bosildi, sahifa qimirlamadi. Nima yetishmaydi?"
+    question={tr({ uz: <h2 className="title h-ask">Menudagi «Aloqa» bosildi, sahifa qimirlamadi. <span className="italic" style={{ color: T.accent }}>Nima yetishmaydi?</span></h2>, ru: <h2 className="title h-ask">Нажали «Контакты» в меню, страница не сдвинулась. <span className="italic" style={{ color: T.accent }}>Чего не хватает?</span></h2> })}
     options={[
-      { uz: 'Menyu atrofida `<nav>` tegi yo\'q', ru: 'Вокруг меню нет тега `<nav>`' },
+      { uz: 'Menu atrofida `<nav>` tegi yo\'q', ru: 'Вокруг меню нет тега `<nav>`' },
       { uz: '«Aloqa» sarlavhasi `<h3>` bilan yozilgan', ru: 'Заголовок «Контакты» написан через `<h3>`' },
       { uz: 'Sahifa oxirida `<footer>` tegi yo\'q', ru: 'В конце страницы нет тега `<footer>`' },
       { uz: 'Bo\'limda `id="aloqa"` yozilmagan', ru: 'У раздела не написан `id="aloqa"`' }
     ]} correctIdx={3}
     explainCorrect={{ uz: '`#aloqa` sahifadan `id="aloqa"` ni qidiradi — topmasa, joyida qoladi.', ru: '`#aloqa` ищет на странице `id="aloqa"` — не найдя, остаётся на месте.' }}
     explainWrong={{
-      0: { uz: "Havola `<nav>` ichida bo'lmasa ham ishlaydi.", ru: 'Ссылка работает и без `<nav>`.' },
-      1: { uz: "Sarlavha o'lchami havolaga ta'sir qilmaydi.", ru: 'Размер заголовка не влияет на ссылку.' },
-      2: { uz: 'Footer yo\'qligi menyuga tegmaydi.', ru: 'Отсутствие footer не влияет на меню.' },
+      0: { uz: "Link `<nav>` ichida bo'lmasa ham ishlaydi.", ru: 'Ссылка работает и без `<nav>`.' },
+      1: { uz: "Sarlavha o'lchami linkka ta'sir qilmaydi.", ru: 'Размер заголовка не влияет на ссылку.' },
+      2: { uz: 'Footer yo\'qligi menuga tegmaydi.', ru: 'Отсутствие footer не влияет на меню.' },
       default: { uz: '`#aloqa` sahifadan nimani qidirishini eslang.', ru: 'Вспомните, что ищет на странице `#aloqa`.' }
     }} />
 );
@@ -717,7 +717,7 @@ const Screen5 = (props) => (
 // ===== 🏅 BADGES (nishonlar) — faqat REAL bosqichlar uchun (tekin emas) =====
 const ACHIEVEMENTS = {
   built:    { icon: '🧲', name: 'Built It!', desc: { uz: "Sahifa boshini va birinchi bo'limni qurdingiz", ru: 'Вы собрали начало страницы и первый раздел' } },
-  coder:    { icon: '🏷️', name: 'Tag It!',   desc: { uz: "Menyu havolalarini bo'limlarga uladingiz", ru: 'Вы связали ссылки меню с разделами' } },
+  coder:    { icon: '🏷️', name: 'Tag It!',   desc: { uz: "Menu linklarini bo'limlarga uladingiz", ru: 'Вы связали ссылки меню с разделами' } },
   graduate: { icon: '🏆', name: 'Level Up!', desc: { uz: 'Portfolio sahifangizni oxirigacha qurdingiz', ru: 'Вы собрали страницу-портфолио до конца' } },
 };
 // F-1015-320 (pilot F-1015-303 naqshi): nishon BLOKKA bog'lanadi — blok «Davom etish»da beriladi (bonus; isbot yo'q — ustoz ko'rib turadi).
@@ -781,7 +781,7 @@ const Confetti = () => {
 
 // Podium savol yorlig'i (SCORED_IDX: 5)
 const Q_LABELS = {
-  5: { uz: "Bo'limga havola", ru: 'Ссылка на раздел' }
+  5: { uz: "Bo'limga link", ru: 'Ссылка на раздел' }
 };
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning lug'ati (kod-belgi o'zgarmaydi)
@@ -801,7 +801,7 @@ const QUIZ_BANK = [
   { q: { uz: "Sarlavha teglari orasida eng KICHIGI qaysi?", ru: 'Какой из тегов заголовков — самый МАЛЕНЬКИЙ?' }, opts: ["`h1`", "`h3`", "`h6`", "`p`"], correct: 2 },
   { q: { uz: "Loyihalar ro'yxatini (nuqtali) qaysi teg boshlaydi?", ru: 'Какой тег начинает список проектов (с точками)?' }, opts: ["`ul`", "`ol`", "`li`", "`a`"], correct: 0 },
   { q: { uz: "Loyihalar ro'yxatida har bir loyiha qaysi tegga o'raladi?", ru: 'В какой тег оборачивается каждый проект в списке?' }, opts: ["`ul`", "`li`", "`ol`", "`dd`"], correct: 1 },
-  { q: { uz: "Aloqa havolasida manzil qaysi atributga yoziladi?", ru: 'В какой атрибут пишется адрес в контактной ссылке?' }, opts: ["`src`", "`link`", "`href`", "`url`"], correct: 2 },
+  { q: { uz: "Aloqa linkida manzil qaysi atributga yoziladi?", ru: 'В какой атрибут пишется адрес в контактной ссылке?' }, opts: ["`src`", "`link`", "`href`", "`url`"], correct: 2 },
   { q: { uz: "Sahifa `title` ichidagi matn qayerda ko'rinadi?", ru: "Где виден текст из `title` страницы?" }, opts: [{ uz: "Sahifaning o'rtasida", ru: "В центре страницы" }, { uz: "Brauzer tabchasida", ru: "На вкладке браузера" }, { uz: "Tugmaning ustida", ru: "На кнопке" }, { uz: "Hech qayerda ko'rinmaydi", ru: "Нигде не виден" }], correct: 1 },
   { q: { uz: "`title` kabi ko'rinmas sozlamalar qayerga yoziladi?", ru: "Куда пишутся невидимые настройки, такие как `title`?" }, opts: ["`body`", "`p`", "`head`", "`h1`"], correct: 2 },
   { q: { uz: "Ismingizni QALIN (bold) qilish uchun qaysi teg?", ru: 'Какой тег сделает ваше имя ЖИРНЫМ (bold)?' }, opts: ["`strong`", "`small`", "`span`", "`mark`"], correct: 0 },
@@ -1326,7 +1326,7 @@ export const HOMEWORK = {
   items: [
     { uz: "«Men haqimda»ga yana bitta gap qo'shing — nimaga qiziqasiz", ru: 'Добавьте в «Обо мне» ещё одно предложение — чем увлекаетесь' },
     { uz: "«Loyihalarim»ga to'rtinchi ish qo'shing", ru: 'Добавьте в «Мои проекты» четвёртую работу' },
-    { uz: "Gemini'ga bitta aniq dizayn so'rovi yozing (masalan: «Menyu havolasi ustiga sichqoncha borganda rangi o'zgarsin»), natijani tekshiring", ru: 'Напишите Gemini один точный запрос по дизайну (например: «Пусть ссылка меню меняет цвет при наведении мыши»), проверьте результат' },
+    { uz: "Gemini'ga bitta aniq dizayn so'rovi yozing (masalan: «Menu linki ustiga sichqoncha borganda rangi o'zgarsin»), natijani tekshiring", ru: 'Напишите Gemini один точный запрос по дизайну (например: «Пусть ссылка меню меняет цвет при наведении мыши»), проверьте результат' },
   ],
 };
 
@@ -1368,8 +1368,8 @@ const AMALIYOT = {
     natija: () => <PfSite xom qismlar={['header', 'men']} menyu={0} baland={220} />
   },
   a2: {
-    eyebrow: { uz: 'Amaliyot 2 · menyu, havola', ru: 'Практика 2 · меню, ссылка' },
-    title: { uz: "Menyu, loyihalar va aloqa bo'limini qo'shing.", ru: 'Добавьте меню, проекты и раздел контактов.' },
+    eyebrow: { uz: 'Amaliyot 2 · menu, link', ru: 'Практика 2 · меню, ссылка' },
+    title: { uz: "Menu, loyihalar va aloqa bo'limini qo'shing.", ru: 'Добавьте меню, проекты и раздел контактов.' },
     karta: { uz: 'Loyihalar va aloqa', ru: 'Проекты и контакты' }, forma: true,
     toldir: { uz: "To'rtala qatorni to'ldiring", ru: 'Заполните четыре строки' },
     yordam: { uz: 'Haqiqiy telefon raqamingiz va uy manzilingizni yozmang.', ru: 'Не пишите настоящий номер телефона и домашний адрес.' },
@@ -1377,9 +1377,9 @@ const AMALIYOT = {
       { uz: "Loyihalaringiz va pochtangizni yozing, «Saqlash»ni bosing — prompt tayyor bo'ladi.", ru: 'Впишите свои проекты и почту, нажмите «Сохранить» — промпт будет готов.' },
       { uz: "«Promptni nusxalash» → Gemini'ga qo'ying, oxiridagi `{…}` o'rniga `index.html` kodingizni qo'ying.", ru: '«Скопировать промпт» → вставьте в Gemini, вместо `{…}` в конце — код вашего `index.html`.' },
       { uz: "Javobdagi kodni `index.html` ga qo'ying (bor kod o'rniga), `Ctrl+S`.", ru: 'Вставьте код из ответа в `index.html` (вместо старого), `Ctrl+S`.' },
-      { uz: "Menyudagi har havolani bosing: o'z bo'limiga tushadimi? Tushmasa, Gemini'ga yozing: «Aloqa bosilsa, sahifa qimirlamayapti. href va id ni tekshirib tuzat.»", ru: 'Нажмите каждую ссылку меню: переходит к своему разделу? Если нет, напишите Gemini: «При нажатии на Контакты страница не двигается. Проверь href и id и исправь.»' }
+      { uz: "Menudagi har linkni bosing: o'z bo'limiga tushadimi? Tushmasa, Gemini'ga yozing: «Aloqa bosilsa, sahifa qimirlamayapti. href va id ni tekshirib tuzat.»", ru: 'Нажмите каждую ссылку меню: переходит к своему разделу? Если нет, напишите Gemini: «При нажатии на Контакты страница не двигается. Проверь href и id и исправь.»' }
     ],
-    prompt: (p) => ({ uz: `Sahifamga menyu va qolgan bo'limlarni qo'sh.\n<header> ichida, yo'nalishimdan keyin <nav>: «Men haqimda» (#men), «Loyihalarim» (#loyihalar), «Aloqa» (#aloqa).\n«Men haqimda»dan keyin <section id="loyihalar">: sarlavha «Loyihalarim» (<h2>) va 3 bandli ro'yxat (<ul>): ${p.l1}; ${p.l2}; ${p.l3}.\nKeyin <section id="aloqa">: sarlavha «Aloqa» (<h2>) va pochta havolasi: ${p.pochta} (mailto:).\nEng oxirida <footer>: ${p.ism}, 2026.\nBor matnlarimni o'zgartirma. To'liq index.html'ni qaytar.\nMana hozirgi kodim: {index.html kodini shu yerga qo'ying}`, ru: `Добавь на мою страницу меню и остальные разделы.\nВнутри <header>, после направления, <nav>: «Обо мне» (#men), «Мои проекты» (#loyihalar), «Контакты» (#aloqa).\nПосле «Обо мне» — <section id="loyihalar">: заголовок «Мои проекты» (<h2>) и список из 3 пунктов (<ul>): ${p.l1}; ${p.l2}; ${p.l3}.\nЗатем <section id="aloqa">: заголовок «Контакты» (<h2>) и ссылка на почту: ${p.pochta} (mailto:).\nВ самом конце <footer>: ${p.ism}, 2026.\nМои тексты не меняй. Верни index.html целиком.\nВот мой текущий код: {вставьте сюда код index.html}` }),
+    prompt: (p) => ({ uz: `Sahifamga menu va qolgan bo'limlarni qo'sh.\n<header> ichida, yo'nalishimdan keyin <nav>: «Men haqimda» (#men), «Loyihalarim» (#loyihalar), «Aloqa» (#aloqa).\n«Men haqimda»dan keyin <section id="loyihalar">: sarlavha «Loyihalarim» (<h2>) va 3 bandli ro'yxat (<ul>): ${p.l1}; ${p.l2}; ${p.l3}.\nKeyin <section id="aloqa">: sarlavha «Aloqa» (<h2>) va pochta linki: ${p.pochta} (mailto:).\nEng oxirida <footer>: ${p.ism}, 2026.\nBor matnlarimni o'zgartirma. To'liq index.html'ni qaytar.\nMana hozirgi kodim: {index.html kodini shu yerga qo'ying}`, ru: `Добавь на мою страницу меню и остальные разделы.\nВнутри <header>, после направления, <nav>: «Обо мне» (#men), «Мои проекты» (#loyihalar), «Контакты» (#aloqa).\nПосле «Обо мне» — <section id="loyihalar">: заголовок «Мои проекты» (<h2>) и список из 3 пунктов (<ul>): ${p.l1}; ${p.l2}; ${p.l3}.\nЗатем <section id="aloqa">: заголовок «Контакты» (<h2>) и ссылка на почту: ${p.pochta} (mailto:).\nВ самом конце <footer>: ${p.ism}, 2026.\nМои тексты не меняй. Верни index.html целиком.\nВот мой текущий код: {вставьте сюда код index.html}` }),
     yigilgan: (f) => <><ul className="am-band">{['l1', 'l2', 'l3'].map(k => <li key={k}>{f[k]}</li>)}</ul><p className="am-satr"><b>{tr({ uz: 'Pochta:', ru: 'Почта:' })}</b> {f.pochta}</p></>,
     natija: () => <PfSite xom baland={260} />
   },
@@ -1391,9 +1391,9 @@ const AMALIYOT = {
     qadamlar: [
       { uz: "«Promptni nusxalash» → Gemini'ga qo'ying, oxiridagi `{…}` o'rniga `index.html` kodingizni qo'ying.", ru: '«Скопировать промпт» → вставьте в Gemini, вместо `{…}` в конце — код вашего `index.html`.' },
       { uz: "Javobdagi kodni `style.css` ga qo'ying, `Ctrl+S`.", ru: 'Вставьте код из ответа в `style.css`, `Ctrl+S`.' },
-      { uz: "Live Server'da qarang: rang, kartochkalar, menyu — siz yozgandekmi? Mos kelmasa, Gemini'ga aniq yozing.", ru: 'Посмотрите в Live Server: цвет, карточки, меню — как вы написали? Если нет — точно напишите Gemini.' }
+      { uz: "Live Server'da qarang: rang, kartochkalar, menu — siz yozgandekmi? Mos kelmasa, Gemini'ga aniq yozing.", ru: 'Посмотрите в Live Server: цвет, карточки, меню — как вы написали? Если нет — точно напишите Gemini.' }
     ],
-    prompt: (p) => ({ uz: `Sahifamga dizayn ber — faqat style.css'ni yoz, HTML'ni o'zgartirma.\nAsosiy rang — ${p.rang}: sarlavhalar va havolalar shu rangda.\nFon och kulrang, sahifa markazda, eni 800px dan oshmasin.\nHeader qorong'i, ism oq; har bo'lim oq kartochka, burchaklari yumaloq; menyu bir qatorda.\nMana kodim: {index.html kodini shu yerga qo'ying}`, ru: `Задай дизайн моей странице — напиши только style.css, HTML не меняй.\nОсновной цвет — ${p.rang}: заголовки и ссылки этого цвета.\nФон светло-серый, страница по центру, ширина не больше 800px.\nHeader тёмный, имя белое; каждый раздел — белая карточка со скруглёнными углами; меню в одну строку.\nВот мой код: {вставьте сюда код index.html}` }),
+    prompt: (p) => ({ uz: `Sahifamga dizayn ber — faqat style.css'ni yoz, HTML'ni o'zgartirma.\nAsosiy rang — ${p.rang}: sarlavhalar va linklar shu rangda.\nFon och kulrang, sahifa markazda, eni 800px dan oshmasin.\nHeader qorong'i, ism oq; har bo'lim oq kartochka, burchaklari yumaloq; menu bir qatorda.\nMana kodim: {index.html kodini shu yerga qo'ying}`, ru: `Задай дизайн моей странице — напиши только style.css, HTML не меняй.\nОсновной цвет — ${p.rang}: заголовки и ссылки этого цвета.\nФон светло-серый, страница по центру, ширина не больше 800px.\nHeader тёмный, имя белое; каждый раздел — белая карточка со скруглёнными углами; меню в одну строку.\nВот мой код: {вставьте сюда код index.html}` }),
     natija: () => <PfSite baland={260} />,
     osti: { uz: "HTML — sahifaning tuzilmasi, CSS — ko'rinishi.", ru: 'HTML — структура страницы, CSS — её вид.' }
   }
@@ -1463,7 +1463,7 @@ const ScreenAmaliyot = ({ screen, onNext, onPrev }) => {
 
 // ===== a4 — YAXSHILASH (F-1015-320, pilot m1-10: kartochkalar o'rniga): ro'yxat bo'yicha tekshirish → bitta kamchilik → prompt; dars oxirigacha takror =====
 const TEKSHIR = [
-  { uz: "Menyudagi uchala havola o'z bo'limiga tushadimi?", ru: 'Все три ссылки меню ведут к своим разделам?' },
+  { uz: "Menudagi uchala link o'z bo'limiga tushadimi?", ru: 'Все три ссылки меню ведут к своим разделам?' },
   { uz: '«Pochta» bosilsa, xat oynasi ochiladimi?', ru: 'При нажатии «Почта» открывается окно письма?' },
   { uz: 'Hamma matn siz haqingizdami?', ru: 'Весь текст — про вас?' },
   { uz: "Oynani toraytiring: telefonda hammasi sig'adimi?", ru: 'Сузьте окно: на телефоне всё помещается?' },
@@ -1478,8 +1478,8 @@ const YAX_QADAM = {
   ]
 };
 const YAX_MAYDON = [
-  { k: 'yoqmadi', l: { uz: 'Nima yoqmadi?', ru: 'Что не нравится?' }, ph: { uz: 'masalan: menyu havolalari bir-biriga yopishib turibdi', ru: 'например: ссылки меню слиплись друг с другом' } },
-  { k: 'qanday', l: { uz: "Qanday bo'lsin?", ru: 'Как должно быть?' }, ph: { uz: "masalan: havolalar orasida bo'sh joy bo'lsin", ru: 'например: пусть между ссылками будет отступ' } }
+  { k: 'yoqmadi', l: { uz: 'Nima yoqmadi?', ru: 'Что не нравится?' }, ph: { uz: 'masalan: menu linklari bir-biriga yopishib turibdi', ru: 'например: ссылки меню слиплись друг с другом' } },
+  { k: 'qanday', l: { uz: "Qanday bo'lsin?", ru: 'Как должно быть?' }, ph: { uz: "masalan: linklar orasida bo'sh joy bo'lsin", ru: 'например: пусть между ссылками будет отступ' } }
 ];
 const ScreenYaxshilash = ({ screen, onNext, onPrev }) => {
   const [f, setF] = useState({ yoqmadi: '', qanday: '' });
@@ -1532,14 +1532,14 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   };
   const RECAP = [
     { uz: "Gemini'ga sahifani qismlari bilan aniq so'raysiz: header, bo'limlar, footer", ru: 'Точно просите у Gemini страницу по частям: header, разделы, footer' },
-    { uz: "Menyu havolasini `id` orqali bo'limga ulaysiz", ru: 'Связываете ссылку меню с разделом через `id`' },
+    { uz: "Menu linkini `id` orqali bo'limga ulaysiz", ru: 'Связываете ссылку меню с разделом через `id`' },
     { uz: "Dizaynni faqat `style.css` da so'raysiz — HTML o'zgarmaydi", ru: 'Дизайн просите только в `style.css` — HTML не меняется' },
     { uz: "Sahifani ro'yxat bo'yicha tekshirib, aniq so'rov bilan yaxshilaysiz", ru: 'Проверяете страницу по списку и улучшаете её точным запросом' }
   ];
   const UYGA = [
     { b: '1', t: { uz: "«Men haqimda»ga yana bitta gap qo'shing — nimaga qiziqasiz", ru: 'Добавьте в «Обо мне» ещё одно предложение — чем увлекаетесь' } },
     { b: '2', t: { uz: "«Loyihalarim»ga to'rtinchi ish qo'shing", ru: 'Добавьте в «Мои проекты» четвёртую работу' } },
-    { b: '3', t: { uz: "Gemini'ga bitta aniq dizayn so'rovi yozing (masalan: «Menyu havolasi ustiga sichqoncha borganda rangi o'zgarsin»), natijani tekshiring", ru: 'Напишите Gemini один точный запрос по дизайну (например: «Пусть ссылка меню меняет цвет при наведении мыши»), проверьте результат' } }
+    { b: '3', t: { uz: "Gemini'ga bitta aniq dizayn so'rovi yozing (masalan: «Menu linki ustiga sichqoncha borganda rangi o'zgarsin»), natijani tekshiring", ru: 'Напишите Gemini один точный запрос по дизайну (например: «Пусть ссылка меню меняет цвет при наведении мыши»), проверьте результат' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;

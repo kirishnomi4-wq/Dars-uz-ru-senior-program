@@ -766,7 +766,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 // Demo-uchligi ATAYLAB s4 bo'laklaridan ham, s9 nomzodlaridan ham TASHQARIDA (spoyler-taqiq).
 const DEMO_REJA = [
   { h: { uz: '1-hafta', ru: '1-я неделя' }, ish: { uz: "E'lonni tahrirlash tugmasi — bossa, yozuvni to'g'rilaydi", ru: 'Кнопка редактирования объявления — нажал, и запись исправлена' } },
-  { h: { uz: '2-hafta', ru: '2-я неделя' }, ish: { uz: "E'lonni ulashish havolasi — bossa, havola nusxalanadi", ru: 'Ссылка «поделиться объявлением» — нажал, и ссылка скопирована' } },
+  { h: { uz: '2-hafta', ru: '2-я неделя' }, ish: { uz: "E'lonni ulashish linki — bossa, link nusxalanadi", ru: 'Ссылка «поделиться объявлением» — нажал, и ссылка скопирована' } },
   { h: { uz: '3-hafta', ru: '3-я неделя' }, ish: { uz: "«Mening e'lonlarim» ro'yxati — bossa, o'z e'lonlarini ko'radi", ru: 'Список «мои объявления» — нажал и видит свои объявления' } },
 ];
 const Screen1 = ({ screen, onNext, onPrev }) => (

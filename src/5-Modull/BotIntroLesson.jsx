@@ -787,7 +787,7 @@ function DragDropOrder({ items, hints, onSolved, doneText, onChange, cycle }) {
 // ===== BOT: UCH ASOSIY TUSHUNCHA (s2) =====
 const BOT_PARTS = [
   { id: 'token', label: { uz: 'Token', ru: "Токен" }, desc: { uz: "Bot aynan sizniki ekanini tasdiqlaydigan maxfiy qator. Uni @BotFather beradi. Telegram uni botning kaliti deb ataydi: Bot API faqat to'g'ri token bilan kelgan so'rovni qabul qiladi.", ru: "Секретная строка, которая подтверждает, что бот именно ваш. Её выдаёт @BotFather. Telegram называет её ключом бота: Bot API принимает только запросы с правильным токеном." } },
-  { id: 'handler', label: { uz: 'Handler', ru: "Handler" }, desc: { uz: "«Shu hodisa kelsa, shuni qil» deydigan kod qismi. Masalan: /start kelsa — salom va menyu yuborilsin. Botda odatda bir nechta handler bo'ladi.", ru: "Часть кода, которая говорит «пришло это событие — сделай это». Например: пришёл /start — отправить приветствие и меню. Обычно в боте несколько handler-ов." } },
+  { id: 'handler', label: { uz: 'Handler', ru: "Handler" }, desc: { uz: "«Shu hodisa kelsa, shuni qil» deydigan kod qismi. Masalan: /start kelsa — salom va menu yuborilsin. Botda odatda bir nechta handler bo'ladi.", ru: "Часть кода, которая говорит «пришло это событие — сделай это». Например: пришёл /start — отправить приветствие и меню. Обычно в боте несколько handler-ов." } },
   { id: 'cycle', label: { uz: 'Sikl', ru: "Цикл" }, desc: { uz: "Bot dasturi ishlab turadi va hodisani kutadi: kutadi → hodisa keladi → handler ishlaydi → javob ketadi → yana kutadi.", ru: "Программа бота работает и ждёт событие: ждёт → приходит событие → работает handler → уходит ответ → снова ждёт." } }
 ];
 
@@ -821,8 +821,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <Bubble from="user">{tr({ uz: 'Salom, hali ochiqmisiz?', ru: "Здравствуйте, вы ещё открыты?" })}</Bubble>
               {tried && !replied && <TgTyping />}
               {replied && <>
-                <Bubble from="bot">{tr({ uz: "Salom! Ha, buyurtma qabul qilyapmiz. Menyuni ko'rasizmi?", ru: "Здравствуйте! Да, мы принимаем заказы. Показать меню?" })}</Bubble>
-                <TgBtns items={[{ uz: 'Menyu', ru: "Меню" }, { uz: 'Buyurtma', ru: "Заказ" }, { uz: 'Manzil', ru: "Адрес" }]} />
+                <Bubble from="bot">{tr({ uz: "Salom! Ha, buyurtma qabul qilyapmiz. Menuni ko'rasizmi?", ru: "Здравствуйте! Да, мы принимаем заказы. Показать меню?" })}</Bubble>
+                <TgBtns items={[{ uz: 'Menu', ru: "Меню" }, { uz: 'Buyurtma', ru: "Заказ" }, { uz: 'Manzil', ru: "Адрес" }]} />
               </>}
             </TgChat>
             <button className={`btn ${tried ? '' : 'tap-hint'}`} style={{ alignSelf: 'flex-start' }} onClick={poke} disabled={tried}>{replied ? tr({ uz: '✓ Bot javob berdi (03:00)', ru: "✓ Бот ответил (03:00)" }) : tr({ uz: '▶ Mijoz xabar yozdi (03:00)', ru: '▶ Клиент написал сообщение (03:00)' })}</button>
@@ -1145,14 +1145,14 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // mos qator bo'lmasa chiziq chizilmaydi, «…» qoladi. Natija-ramka bittasi, sanoq ostida.
 const NS_SIGNALS = [
   { id: 'start', label: '/start' },
-  { id: 'menubtn', label: { uz: '«Menyu» tugmasi', ru: "Кнопка «Меню»" } },
+  { id: 'menubtn', label: { uz: '«Menu» tugmasi', ru: "Кнопка «Меню»" } },
   { id: 'help', label: '/help' },
   { id: 'fallback', label: { uz: 'Boshqa har qanday xabar', ru: "Любое другое сообщение" } },
   { id: 'settings', label: '/settings' },
   { id: 'photo', label: { uz: 'Rasm yuborildi', ru: 'Отправлено фото' } }
 ];
 const NS_ACTIONS = [
-  { id: 'welcome', label: { uz: 'Salom va menyu yuboradi', ru: "Отправляет приветствие и меню" } },
+  { id: 'welcome', label: { uz: 'Salom va menu yuboradi', ru: "Отправляет приветствие и меню" } },
   { id: 'menu', label: { uz: "Taomlar ro'yxatini yuboradi", ru: 'Отправляет список блюд' } },
   { id: 'help', label: { uz: 'Yordam matnini yuboradi', ru: 'Отправляет текст помощи' } },
   { id: 'sorry', label: { uz: '«Uzr, tushunmadim. /help ni bosing»', ru: "«Извините, не понял. Нажмите /help»" } },
@@ -1162,7 +1162,7 @@ const NS_ACTIONS = [
 const NS_CORRECT = { start: 'welcome', menubtn: 'menu', help: 'help', fallback: 'sorry' };
 const NS_CUSTOMERS = [
   { id: 'aziza', name: { uz: 'Aziza', ru: 'Азиза' }, sigId: 'start', text: '/start' },
-  { id: 'bek', name: { uz: 'Bek', ru: 'Бек' }, sigId: 'menubtn', text: { uz: '«Menyu» tugmasi', ru: "Кнопка «Меню»" } },
+  { id: 'bek', name: { uz: 'Bek', ru: 'Бек' }, sigId: 'menubtn', text: { uz: '«Menu» tugmasi', ru: "Кнопка «Меню»" } },
   { id: 'dilnoza', name: { uz: 'Dilnoza', ru: 'Дилноза' }, sigId: 'help', text: '/help' },
   { id: 'sardor', name: { uz: 'Sardor', ru: 'Сардор' }, sigId: 'fallback', text: { uz: '«Pitsa bormi?»', ru: "«Пицца есть?»" } }
 ];
@@ -1380,8 +1380,8 @@ const Screen8 = (props) => (
 // Qatorlar bosilganda bittadan ochiladi; «Uchalasi birdan yozsin» tugmasi 3/3 dan keyin chiqadi (KOD 8).
 // A7: «Uchalasi birdan» bosilganda uch chiziq bir vaqtda chiziladi (har mijozdan o'z handleriga), keyin uch javob chiqadi.
 const NS_PARALLEL = [
-  { id: 'aziza', name: { uz: 'Aziza', ru: 'Азиза' }, trig: '/start', msg: '/start', reply: { uz: "Salom! Buyurtma uchun «Menyu» ni bosing.", ru: "Здравствуйте! Для заказа нажмите «Меню»." } },
-  { id: 'bek', name: { uz: 'Bek', ru: 'Бек' }, trig: { uz: '«Menyu» tugmasi', ru: "Кнопка «Меню»" }, msg: { uz: 'Menyu', ru: 'Меню' }, reply: { uz: "Taomlar: Margarita, Pepperoni, To'rt pishloq.", ru: "Блюда: Маргарита, Пепперони, Четыре сыра." } },
+  { id: 'aziza', name: { uz: 'Aziza', ru: 'Азиза' }, trig: '/start', msg: '/start', reply: { uz: "Salom! Buyurtma uchun «Menu» ni bosing.", ru: "Здравствуйте! Для заказа нажмите «Меню»." } },
+  { id: 'bek', name: { uz: 'Bek', ru: 'Бек' }, trig: { uz: '«Menu» tugmasi', ru: "Кнопка «Меню»" }, msg: { uz: 'Menu', ru: 'Меню' }, reply: { uz: "Taomlar: Margarita, Pepperoni, To'rt pishloq.", ru: "Блюда: Маргарита, Пепперони, Четыре сыра." } },
   { id: 'dilnoza', name: { uz: 'Dilnoza', ru: 'Дилноза' }, trig: '/help', msg: '/help', reply: { uz: "Yordam: /start — boshlash, /help — shu matn.", ru: "Помощь: /start — начать, /help — этот текст." } }
 ];
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1527,8 +1527,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // Xabarlar navbat bilan; har bot javobidan oldin «yozmoqda…» (0-ekrandagi bilan bir xil); izoh faqat o'sha javob chiqqanda.
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const STEPS = [
-    { u: '/start', b: { uz: "Salom! AvtoPizza botiga xush kelibsiz. Nima qilamiz?", ru: "Здравствуйте! Добро пожаловать в бот AvtoPizza. Что будем делать?" }, btns: [{ uz: 'Menyu', ru: "Меню" }, { uz: 'Buyurtma', ru: "Заказ" }], sig: '/start', act: { uz: 'salom va tugmalar', ru: "приветствие и кнопки" } },
-    { u: { uz: 'Menyu', ru: "Меню" }, b: { uz: "Bizda: Margarita, Pepperoni, To'rt pishloq. Qaysi birini?", ru: 'У нас: Маргарита, Пепперони, Четыре сыра. Какую выберете?' }, btns: null, sig: { uz: '«Menyu» tugmasi', ru: "кнопка «Меню»" }, act: { uz: "taomlar ro'yxati", ru: 'список блюд' } },
+    { u: '/start', b: { uz: "Salom! AvtoPizza botiga xush kelibsiz. Nima qilamiz?", ru: "Здравствуйте! Добро пожаловать в бот AvtoPizza. Что будем делать?" }, btns: [{ uz: 'Menu', ru: "Меню" }, { uz: 'Buyurtma', ru: "Заказ" }], sig: '/start', act: { uz: 'salom va tugmalar', ru: "приветствие и кнопки" } },
+    { u: { uz: 'Menu', ru: "Меню" }, b: { uz: "Bizda: Margarita, Pepperoni, To'rt pishloq. Qaysi birini?", ru: 'У нас: Маргарита, Пепперони, Четыре сыра. Какую выберете?' }, btns: null, sig: { uz: '«Menu» tugmasi', ru: "кнопка «Меню»" }, act: { uz: "taomlar ro'yxati", ru: 'список блюд' } },
     { u: { uz: 'Pepperoni', ru: 'Пепперони' }, b: { uz: "Ajoyib tanlov! Manzilingizni yuboring.", ru: "Отличный выбор! Отправьте ваш адрес." }, btns: null, sig: { uz: 'taom tanlandi', ru: 'блюдо выбрано' }, act: { uz: "manzil so'raladi", ru: "запрос адреса" } },
     { u: { uz: 'Chilonzor 5-kvartal', ru: 'Чиланзар, 5-квартал' }, b: { uz: "Qabul qilindi. 25 daqiqada yetib boradi. Rahmat!", ru: "Принято. Доставим за 25 минут. Спасибо!" }, btns: null, sig: { uz: 'manzil keldi', ru: "адрес пришёл" }, act: { uz: 'buyurtma tasdiqlandi', ru: "заказ подтверждён" } }
   ];
@@ -1586,7 +1586,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const BOT_BLANKS = [
   { key: 'trig1', label: "bot.____((ctx) => …)", correct: 'start', options: ['hears', 'start', 'launch'], wrong: { hears: { uz: "hears — matnli xabar uchun handler; /start uchun `start` bor.", ru: "hears — handler для текстового сообщения; для /start есть `start`." }, launch: { uz: "launch — botni ishga tushiradi, handler emas.", ru: "launch — запускает бота, это не handler." } } },
   { key: 'method', label: "ctx.____('Salom!')", correct: 'reply', options: ['delete', 'forward', 'reply'], wrong: { delete: { uz: "delete — xabarni o'chiradi, javob yubormaydi.", ru: "delete — удаляет сообщение, ответ не отправляет." }, forward: { uz: "forward — xabarni boshqa joyga uzatadi, bu javob emas.", ru: "forward — пересылает сообщение в другое место, это не ответ." } } },
-  { key: 'trig2', label: { uz: "bot.____('Menyu', …)", ru: "bot.____('Меню', …)" }, correct: 'hears', options: ['start', 'stop', 'hears'], wrong: { start: { uz: "start — faqat /start buyrug'i uchun; bu yerda «Menyu» matni keladi.", ru: "start — только для команды /start; здесь приходит текст «Меню»." }, stop: { uz: "stop — botni to'xtatadi, handler emas.", ru: "stop — останавливает бота, это не handler." } } }
+  { key: 'trig2', label: { uz: "bot.____('Menyu', …)", ru: "bot.____('Меню', …)" }, correct: 'hears', options: ['start', 'stop', 'hears'], wrong: { start: { uz: "start — faqat /start buyrug'i uchun; bu yerda «Menu» matni keladi.", ru: "start — только для команды /start; здесь приходит текст «Меню»." }, stop: { uz: "stop — botni to'xtatadi, handler emas.", ru: "stop — останавливает бота, это не handler." } } }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -2612,7 +2612,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   ];
   const HOMEWORK = [
     { b: tr({ uz: "O'ylang", ru: 'Подумайте' }), t: tr({ uz: "— kundalik hayotda qaysi ishni bot bajarishi mumkin? 3 ta g'oya yozing", ru: "— какую повседневную работу мог бы делать бот? Напишите 3 идеи" }) },
-    { b: tr({ uz: 'Yozing', ru: 'Запишите' }), t: tr({ uz: "— har g'oya uchun kamida bitta «hodisa → javob» juftini yozing (masalan: /start → salom va menyu)", ru: "— для каждой идеи напишите хотя бы одну пару «событие → ответ» (например: /start → приветствие и меню)" }) },
+    { b: tr({ uz: 'Yozing', ru: 'Запишите' }), t: tr({ uz: "— har g'oya uchun kamida bitta «hodisa → javob» juftini yozing (masalan: /start → salom va menu)", ru: "— для каждой идеи напишите хотя бы одну пару «событие → ответ» (например: /start → приветствие и меню)" }) },
     { b: tr({ uz: 'Saqlang', ru: 'Сохраните' }), t: tr({ uz: "— @BotFather bergan tokenni xavfsiz joyda saqlang: u 3-darsda kerak bo'ladi", ru: "— сохраните токен от @BotFather в надёжном месте: он понадобится на 3-м уроке" }) }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;

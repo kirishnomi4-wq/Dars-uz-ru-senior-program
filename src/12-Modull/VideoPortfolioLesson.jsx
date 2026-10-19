@@ -770,7 +770,7 @@ const FaylKarta = ({ holat = 'kompyuter', yangi }) => (
     <span className="vp-fayl-ic" aria-hidden="true"><i /></span>
     <span className="vp-fayl-t"><b>{tr({ uz: 'video · fayl', ru: 'видео · файл' })}</b>
       {holat === 'havola'
-        ? <span className="vp-fayl-s h"><QulfIc />{tr({ uz: 'faqat havola bilan', ru: 'только по ссылке' })}</span>
+        ? <span className="vp-fayl-s h"><QulfIc />{tr({ uz: 'faqat link bilan', ru: 'только по ссылке' })}</span>
         : <span className="vp-fayl-s">{tr({ uz: 'kompyuterda · repo papkasidan tashqarida', ru: 'на компьютере · вне папки репозитория' })}</span>}
     </span>
   </div>
@@ -856,14 +856,14 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
     <QReja zoom={Zoomable}
       sarlavha={tr({ uz: <>Bugun o'zingiz va mahsulotingiz haqida <span className="italic" style={{ color: T.accent }}>video yozasiz</span>.</>, ru: <>Сегодня вы <span className="italic" style={{ color: T.accent }}>запишете видео</span> о себе и своём продукте.</> })}
       mentor={<Mentor>{tr({ uz: "Avval nima aytishingizni yozasiz, keyin ekran yozuvi bilan aytasiz; Mentor misoli «Yordam»da turadi.", ru: 'Сначала напишете, что скажете, потом скажете это с записью экрана; пример наставника — в «Подсказке».' })}</Mentor>}
-      chapYorliq={tr({ uz: 'ssenariy, ekran yozuvi va havola', ru: 'сценарий, запись экрана и ссылка' })}
+      chapYorliq={tr({ uz: 'ssenariy, ekran yozuvi va link', ru: 'сценарий, запись экрана и ссылка' })}
       chap={<RejaSahna />}
       qadamlar={REJA.map(r => ({ t: tr(r) }))}
     >
       <p className="vp-reja-p mono">{tr({ uz: "Bugun kod o'zgarmaydi: video repo'ga qo'shilmaydi · Mentor misoli", ru: 'Сегодня код не меняется: видео не добавляется в репозиторий · пример наставника' })} <code className="qcode">maydon-jamoa</code> · {tr({ uz: 'namuna', ru: 'образец' })} <code className="qcode">m14-dars-09-done</code></p>
       <p className="vp-reja-p">{tr({ uz: "«Maydon Jamoa» — namuna; videoni o'z mahsulotingiz haqida yozasiz.", ru: '«Maydon Jamoa» — образец; видео вы пишете о своём продукте.' })}</p>
       <Ustoz satrlar={[
-        { uz: "Video — o'quvchining shaxsiy ma'lumoti: yuz, ism, ovoz. Yuz va ism — ixtiyoriy; video hamma ko'radigan joyga joylanmaydi; havola — faqat ota-ona roziligi bilan va faqat «faqat havola bilan ko'rinadigan joy»ga; havola hech qayerga yozilmaydi.", ru: 'Видео — личные данные ученика: лицо, имя, голос. Лицо и имя — по желанию; видео не выкладывается туда, где его видят все; ссылка — только с согласия родителей и только в «место, видимое только по ссылке»; ссылка никуда не записывается.' },
+        { uz: "Video — o'quvchining shaxsiy ma'lumoti: yuz, ism, ovoz. Yuz va ism — ixtiyoriy; video hamma ko'radigan joyga joylanmaydi; link — faqat ota-ona roziligi bilan va faqat «faqat link bilan ko'rinadigan joy»ga; link hech qayerga yozilmaydi.", ru: 'Видео — личные данные ученика: лицо, имя, голос. Лицо и имя — по желанию; видео не выкладывается туда, где его видят все; ссылка — только с согласия родителей и только в «место, видимое только по ссылке»; ссылка никуда не записывается.' },
         { uz: "Ota-ona roziligi qanday olinishi — maktab tartibida; darsda o'quvchi o'zi belgilaydi, Mentor uning yoki ota-onasi nomidan tasdiqlamaydi. Rozilik bo'lmasa ham dars to'liq o'tadi: video kompyuterda fayl bo'lib qoladi.", ru: 'Как получить согласие родителей — по порядку школы; на уроке ученик отмечает сам, наставник не подтверждает за него или родителей. Даже без согласия урок проходит полностью: видео остаётся файлом на компьютере.' },
         { uz: "Ovoz: 12–15 o'quvchi bir xonada bir vaqtda gapirsa, ovozlar bir-biriga tushadi — imkon bo'lsa Amaliyot 2 ni navbat bilan (3–4 kishidan) qiling, qolganlar shu payt Amaliyot 1 dagi ovoz chiqarib o'qishni tugatadi yoki navbatini kutib, ekranini tayyorlaydi.", ru: 'Голос: если 12–15 учеников говорят одновременно в одной комнате, голоса накладываются — по возможности делайте Практику 2 по очереди (по 3–4 человека), остальные заканчивают чтение вслух из Практики 1 или готовят экран.' },
         { uz: "Ekran yozish dasturining nomi va tugmalari bu darsda yozilmagan; ishlamasa — telefonning ekran yozuvi (11-Modul zaxirasi). O'quvchi videolarini proyektorga chiqarmang; kim yuzi bilan yozgani sanalmaydi. Uyga vazifa yo'q. Darsdan oldin: har o'quvchida 6-darsdagi namuna akkaunt bor-yo'qligini tekshiring — bu darsda agent bilan ochilmaydi.", ru: 'Название и кнопки средства записи экрана в уроке не указаны; если не работает — запись экрана телефона (запасной путь из 11-го модуля). Не выводите видео учеников на проектор; кто записался с лицом — не считается. Домашнего задания нет. До урока проверьте у каждого демо-аккаунт из 6-го урока — на этом уроке он не создаётся через агента.' }
@@ -1186,7 +1186,7 @@ const QZ_BG_SHAPES = [
   { ch: { uz: 'Nima qurdim', ru: 'Что я построил' }, l: 42, t: 86, s: 22, d: 25, dl: 1.1 },
   { ch: { uz: 'Qanday ishlayman', ru: 'Как я работаю' }, l: 60, t: 26, s: 22, d: 17, dl: 0.4 },
   { ch: { uz: '3 daqiqa', ru: '3 минуты' }, l: 24, t: 34, s: 24, d: 20, dl: 1.9 },
-  { ch: { uz: 'havola', ru: 'ссылка' }, l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
+  { ch: { uz: 'link', ru: 'ссылка' }, l: 20, t: 16, s: 22, d: 18, dl: 2.9 },
   { ch: 'Maydon Jamoa', l: 50, t: 52, s: 20, d: 24, dl: 3.3 },
 ];
 // ⚡ Mustahkamlash-jang savollari — 12 savol, to'g'ri javob A 1·5·9 · B 2·6·10 · C 3·7·11 · D 4·8·12 (3/3/3/3)
@@ -1202,7 +1202,7 @@ const QUIZ_BANK = [
   { q: { uz: "Video 3 daqiqaga sig'ganini qanday bilasiz?", ru: "Как узнать, что видео уложилось в 3 минуты?" }, opts: [{ uz: "Video oynasidagi vaqtdan", ru: "По времени в окне видео" }, { uz: "Agentdan so'rab", ru: "Спросив агента" }, { uz: "Ssenariy qisqaligidan", ru: "По краткости сценария" }, { uz: "Fayl hajmidan", ru: "По размеру файла" }], correct: 0 },
   { q: { uz: "Videoda login ko'rindi. Nima qilasiz?", ru: "В видео виден логин. Что сделаете?" }, opts: [{ uz: "Shundayligicha qoldiraman", ru: "Оставлю как есть" }, { uz: "O'chirib, qayta yozaman", ru: "Удалю и перезапишу" }, { uz: "Faqat sinfdoshga yuboraman", ru: "Отправлю только однокласснику" }, { uz: "Login ko'rinsa bo'laveradi", ru: "Логин виден — не страшно" }], correct: 1 },
   { q: { uz: "Mahsulot ochilmasa, «Nima qurdim»da nima qilasiz?", ru: "Если продукт не открылся, что делаете в «Что я построил»?" }, opts: [{ uz: "Mentor misolini olaman", ru: "Возьму пример Ментора" }, { uz: "Sahifani kutib turaman", ru: "Буду ждать страницу" }, { uz: "B reja videosini ochaman", ru: "Открою видео плана Б" }, { uz: "Bu bo'lakni tashlayman", ru: "Уберу эту часть" }], correct: 2 },
-  { q: { uz: "Ota-ona rozi. Videoni qayerga joylaysiz?", ru: "Родители согласны. Куда выложите видео?" }, opts: [{ uz: "Hamma ko'radigan sahifaga", ru: "На страницу, видную всем" }, { uz: "Sinfning ochiq kanaliga", ru: "В открытый канал класса" }, { uz: "Repo'ga, README bilan", ru: "В репо, с README" }, { uz: "Havola bilan ochiladigan joyga", ru: "Туда, где открывается по ссылке" }], correct: 3 },
+  { q: { uz: "Ota-ona rozi. Videoni qayerga joylaysiz?", ru: "Родители согласны. Куда выложите видео?" }, opts: [{ uz: "Hamma ko'radigan sahifaga", ru: "На страницу, видную всем" }, { uz: "Sinfning ochiq kanaliga", ru: "В открытый канал класса" }, { uz: "Repo'ga, README bilan", ru: "В репо, с README" }, { uz: "Link bilan ochiladigan joyga", ru: "Туда, где открывается по ссылке" }], correct: 3 },
 ];
 
 const CsNeonBolt = ({ flip }) => (
@@ -1856,7 +1856,7 @@ const bolakTekshir = (id, s, yumshoqOtdi) => {
   const t = String(s || '').trim();
   if (!t) return { tur: 'blok', m: { uz: "Bu bo'lakni bir gap bilan yozing.", ru: 'Напишите эту часть одним предложением.' } };
   if (!manoliMatn(t)) return { tur: 'blok', m: MANOSIZ_XATO }; // F-1015-377/390
-  if (id === 'kimman' && ALOQA_RE.test(t)) return { tur: 'blok', m: { uz: "Ssenariyga telefon, akkaunt va havola yozilmaydi.", ru: 'В сценарий не пишут телефон, аккаунт и ссылку.' } };
+  if (id === 'kimman' && ALOQA_RE.test(t)) return { tur: 'blok', m: { uz: "Ssenariyga telefon, akkaunt va link yozilmaydi.", ru: 'В сценарий не пишут телефон, аккаунт и ссылку.' } };
   if (yumshoqOtdi) return null;
   if (id === 'kimman' && RAQAM7_RE.test(t.replace(/[\s()-]/g, ''))) return { tur: 'yumshoq', m: { uz: "Maktabingizning nomi yoki aloqa ma'lumoti bo'lmasin.", ru: 'Пусть не будет названия школы или контактов.' } };
   if (id === 'qandayIshlayman' && !SABAB_RE.uz.test(t) && !SABAB_RE.ru.test(t)) return { tur: 'yumshoq', m: { uz: 'Qarorning sababini ham yozing: nega shunday qildingiz?', ru: 'Напишите и причину решения: почему вы так сделали?' } };
@@ -2075,7 +2075,7 @@ const ScreenA3 = (props) => {
       {sek != null && sek > 180 && <Kulrang>{tr({ uz: "Qaysi bo'lak uzun chiqdi? Vaqt bo'lsa, o'shani qisqartirib qayta yozing.", ru: 'Какая часть вышла длинной? Если есть время, сократите её и перезапишите.' })}</Kulrang>}</> },
     { h: { uz: "Kim ko'radi", ru: 'Кто увидит' }, t: <>{tr({ uz: 'tanlang:', ru: 'выберите:' })}
       <Tanlov chorla qiymat={kim} onTanla={setKim} variantlar={[{ k: 'rozi', t: { uz: 'Ota-onam rozi', ru: 'Родители согласны' } }, { k: 'hali', t: { uz: 'Hali gaplashmadim', ru: 'Ещё не говорил' } }]} />
-      {kim === 'rozi' && <span className="fade-step"><Band>{tr({ uz: "Videoni ota-onangiz bilan tanlagan, faqat havola bilan ko'rinadigan joyga yuklang — hamma ko'radigan joyga emas.", ru: 'Загрузите видео в выбранное с родителями место, видимое только по ссылке, — не туда, где его видят все.' })}</Band><b className="vp-qalin">{tr({ uz: "Havolani dars formasiga, sinf chatiga va repo'ga yozmang; kimga yuborishni ota-onangiz bilan hal qilasiz.", ru: 'Не пишите ссылку в форму урока, чат класса и репозиторий; кому отправить, решаете с родителями.' })}</b></span>}
+      {kim === 'rozi' && <span className="fade-step"><Band>{tr({ uz: "Videoni ota-onangiz bilan tanlagan, faqat link bilan ko'rinadigan joyga yuklang — hamma ko'radigan joyga emas.", ru: 'Загрузите видео в выбранное с родителями место, видимое только по ссылке, — не туда, где его видят все.' })}</Band><b className="vp-qalin">{tr({ uz: "Linkni dars formasiga, sinf chatiga va repo'ga yozmang; kimga yuborishni ota-onangiz bilan hal qilasiz.", ru: 'Не пишите ссылку в форму урока, чат класса и репозиторий; кому отправить, решаете с родителями.' })}</b></span>}
       {kim === 'hali' && <Band>{tr({ uz: "Video kompyuteringizda fayl bo'lib qoladi — bu ham tayyor natija. Kimgadir ko'rsatish — ota-onangiz roziligi bilan.", ru: 'Видео остаётся файлом на компьютере — это тоже готовый результат. Показать кому-то — с согласия родителей.' })}</Band>}</> }
   ];
   const done = !!props.storedAnswer?.solved;
@@ -2097,11 +2097,11 @@ const ScreenA3 = (props) => {
       qulf={(n) => (n === 1 && !toliq) || (n === 3 && kim === null)}
       ulgurQadam={2} ulgurShart={() => toliq}
       extra={() => ({ kim: kimRef.current })}
-      ulgur={{ uz: "Ulgurmasangiz: 2-qadam — eng muhimi: «Davom etish» shundan keyin ochiladi. Vaqt va havola — dars oxirida. Maxfiy narsa ko'ringan video darsdan keyin qolmaydi: o'chiring, «Qayta yozish»ni bosing, hech kimga yubormang; qayta yozish — keyin.", ru: 'Не успеваете: 2-й шаг — самый важный: после него откроется «Продолжить». Время и ссылка — в конце урока. Видео, где видно секретное, после урока не остаётся: удалите, нажмите «Перезаписать», никому не отправляйте; перезапись — потом.' }}
+      ulgur={{ uz: "Ulgurmasangiz: 2-qadam — eng muhimi: «Davom etish» shundan keyin ochiladi. Vaqt va link — dars oxirida. Maxfiy narsa ko'ringan video darsdan keyin qolmaydi: o'chiring, «Qayta yozish»ni bosing, hech kimga yubormang; qayta yozish — keyin.", ru: 'Не успеваете: 2-й шаг — самый важный: после него откроется «Продолжить». Время и ссылка — в конце урока. Видео, где видно секретное, после урока не остаётся: удалите, нажмите «Перезаписать», никому не отправляйте; перезапись — потом.' }}
       doneText={uchala ? { uz: "Video tekshirildi: maxfiy narsa yo'q, 3 daqiqaga sig'di.", ru: 'Видео проверено: секретного нет, уложились в 3 минуты.' } : { uz: 'Tekshiruv belgilandi — tuzatiladigan joy yozuvda turibdi.', ru: 'Проверка отмечена — то, что нужно исправить, указано в записи.' }}
       ustoz={[
         { uz: "Videoda haqiqiy maxfiy kalit yoki token ko'ringan bo'lsa — o'quvchi sizga aytadi; kalitni yangilash kerakligini birga tekshiring (13-Modul odati: yangi kalit `.env` da va Render'da) — video yuborilmagan bo'lsa ham, faylda nusxasi bor.", ru: 'Если в видео виден настоящий секретный ключ или токен — ученик скажет вам; вместе проверьте, нужно ли обновить ключ (привычка 13-го модуля: новый ключ в `.env` и в Render) — даже если видео не отправлено, копия есть в файле.' },
-        { uz: "Havola masalasida o'quvchini shoshirmang: «Hali gaplashmadim» — to'g'ri javob. Kim havola qilganini so'ramang va sanamang.", ru: 'Не торопите ученика со ссылкой: «Ещё не говорил» — правильный ответ. Не спрашивайте и не считайте, кто сделал ссылку.' }
+        { uz: "Link masalasida o'quvchini shoshirmang: «Hali gaplashmadim» — to'g'ri javob. Kim link qilganini so'ramang va sanamang.", ru: 'Не торопите ученика со ссылкой: «Ещё не говорил» — правильный ответ. Не спрашивайте и не считайте, кто сделал ссылку.' }
       ]} />
   );
 };
@@ -2118,8 +2118,8 @@ const FLASHCARDS = [
   { front: { uz: 'Video fayl qayerda saqlanadi?', ru: 'Где хранится видеофайл?' }, back: { uz: 'Repo papkasidan tashqarida', ru: 'Вне папки репозитория' }, note: { uz: '`git status` da ko\'rinmasligi kerak', ru: 'В `git status` его быть не должно' } },
   { front: { uz: "Video 3 daqiqaga sig'ganini qanday bilasiz?", ru: 'Как узнать, что видео уложилось в 3 минуты?' }, back: { uz: 'Video oynasidagi vaqtga qaraysiz', ru: 'Смотрите на время в окне видео' }, note: { uz: "Tekshiruvni o'zingiz qilasiz", ru: 'Проверку делаете сами' } },
   { front: { uz: "Tekshiruvda maxfiy narsa ko'rindi. Nima qilasiz?", ru: 'При проверке видно секретное. Что делать?' }, back: { uz: "Videoni o'chirib, ekranni tayyorlab, qayta yozasiz", ru: 'Удалить видео, подготовить экран и перезаписать' }, note: { uz: 'Hech kimga yubormaysiz; maxfiy kalit bo\'lsa — Mentorga aytasiz', ru: 'Никому не отправлять; если это секретный ключ — сказать наставнику' } },
-  { front: { uz: "Videoni kimgadir ko'rsatish uchun nima kerak?", ru: 'Что нужно, чтобы кому-то показать видео?' }, back: { uz: 'Ota-onangiz roziligi', ru: 'Согласие родителей' }, note: { uz: "Joy — faqat havola bilan ko'rinadigan", ru: 'Место — видимое только по ссылке' } },
-  { front: { uz: 'Video havolasi qayerga yoziladi?', ru: 'Куда записывается ссылка на видео?' }, back: { uz: "Hech qayerga: dars formasiga ham, sinf chatiga ham, repo'ga ham", ru: 'Никуда: ни в форму урока, ни в чат класса, ни в репозиторий' }, note: { uz: 'Kimga yuborishni ota-onangiz bilan hal qilasiz', ru: 'Кому отправить, решаете с родителями' } }
+  { front: { uz: "Videoni kimgadir ko'rsatish uchun nima kerak?", ru: 'Что нужно, чтобы кому-то показать видео?' }, back: { uz: 'Ota-onangiz roziligi', ru: 'Согласие родителей' }, note: { uz: "Joy — faqat link bilan ko'rinadigan", ru: 'Место — видимое только по ссылке' } },
+  { front: { uz: 'Video linki qayerga yoziladi?', ru: 'Куда записывается ссылка на видео?' }, back: { uz: "Hech qayerga: dars formasiga ham, sinf chatiga ham, repo'ga ham", ru: 'Никуда: ни в форму урока, ни в чат класса, ни в репозиторий' }, note: { uz: 'Kimga yuborishni ota-onangiz bilan hal qilasiz', ru: 'Кому отправить, решаете с родителями' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line

@@ -1382,10 +1382,10 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="wsp-ed rq-ed" key={`c${cur}`} ref={edRef}>
                 <span className="rq-h"><RowDot v={card.dot} />{tr(card.nom) || tr({ uz: "O'z raqamingiz", ru: 'Ваша цифра' })}</span>
                 {!card.fixedNom && (
-                  <GrowInput className={`reflect-input${dNom.trim() ? ' filled' : ''}`} value={dNom} maxLength={32} placeholder={tr({ uz: 'Masalan: Menyu bosganlar', ru: 'Например: Нажали «Меню»' })} aria-label={tr({ uz: 'Raqamning qisqa nomi', ru: 'Короткое название цифры' })} onChange={e => setDNom(e.target.value)} />
+                  <GrowInput className={`reflect-input${dNom.trim() ? ' filled' : ''}`} value={dNom} maxLength={32} placeholder={tr({ uz: 'Masalan: Menu bosganlar', ru: 'Например: Нажали «Меню»' })} aria-label={tr({ uz: 'Raqamning qisqa nomi', ru: 'Короткое название цифры' })} onChange={e => setDNom(e.target.value)} />
                 )}
                 <span className="rq-lbl">{tr({ uz: 'Nimani sanaydi:', ru: 'Что считает:' })}</span>
-                <GrowInput className={`reflect-input${nimaOk ? ' filled' : ''}`} value={dNima} maxLength={80} placeholder={cur === 3 ? tr({ uz: "Masalan: «Menyu» tugmasini bosgan odamlar", ru: 'Например: люди, нажавшие кнопку «Меню»' }) : tr({ uz: 'Nimani sanaysiz?', ru: 'Что вы считаете?' })} aria-label={tr({ uz: 'Bu raqam nimani sanaydi', ru: 'Что считает эта цифра' })} onChange={e => setDNima(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') save(); }} />
+                <GrowInput className={`reflect-input${nimaOk ? ' filled' : ''}`} value={dNima} maxLength={80} placeholder={cur === 3 ? tr({ uz: "Masalan: «Menu» tugmasini bosgan odamlar", ru: 'Например: люди, нажавшие кнопку «Меню»' }) : tr({ uz: 'Nimani sanaysiz?', ru: 'Что вы считаете?' })} aria-label={tr({ uz: 'Bu raqam nimani sanaydi', ru: 'Что считает эта цифра' })} onChange={e => setDNima(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') save(); }} />
                 {/* A6: «Nimani sanaydi» to'lgach — «Nima bo'lganda sanaladi» */}
                 {nimaOk && <span className="rq-lbl fade-step">{tr({ uz: "Nima bo'lganda sanaladi:", ru: 'Когда считается:' })}</span>}
                 {nimaOk && <div className="rq-chips fade-step">

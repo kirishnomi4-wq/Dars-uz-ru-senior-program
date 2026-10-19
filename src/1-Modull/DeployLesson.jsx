@@ -139,15 +139,15 @@ const LESSON_META = { lessonId: 'netlify-deploy-v19', lessonTitle: { uz: 'Netlif
 // o'quvchi jonli saytining HAVOLASINI platformadagi «Text» savoliga yozib yuboradi.
 export const HOMEWORK = {
   type: 'text',
-  title: { uz: 'Saytingizni tugatib, havolasini yuboring', ru: 'Доделайте сайт и отправьте ссылку' },
+  title: { uz: 'Saytingizni tugatib, linkini yuboring', ru: 'Доделайте сайт и отправьте ссылку' },
   brief: {
-    uz: "Uyda saytni tugatasiz va jonli havolangizni (https://...netlify.app) platformadagi vazifa-savoliga yozib yuborasiz.",
+    uz: "Uyda saytni tugatasiz va jonli linkingizni (https://...netlify.app) platformadagi vazifa-savoliga yozib yuborasiz.",
     ru: 'Дома доделаете сайт и отправите живую ссылку (https://...netlify.app) в задание на платформе.',
   },
   items: [
     { uz: 'Saytni uyda tugating — kontent va bezakni yakunlang', ru: 'Доделайте сайт дома — контент и оформление' },
-    { uz: 'Jonli havolani tekshiring — telefonda ham ochilsin', ru: 'Проверьте живую ссылку — пусть открывается и на телефоне' },
-    { uz: 'Havolani platformadagi vazifa-savoliga yozib yuboring', ru: 'Отправьте ссылку в задание на платформе' },
+    { uz: 'Jonli linkni tekshiring — telefonda ham ochilsin', ru: 'Проверьте живую ссылку — пусть открывается и на телефоне' },
+    { uz: 'Linkni platformadagi vazifa-savoliga yozib yuboring', ru: 'Отправьте ссылку в задание на платформе' },
   ],
 };
 const HW_TOKENS = [
@@ -322,14 +322,14 @@ const RECAPS = {
   6: {
     title: { uz: 'Netlify — saytning internetdagi joyi', ru: 'Netlify — место сайта в интернете' }, cards: [
       { ic: '📁', h: { uz: 'Netlify nima qiladi?', ru: 'Что делает Netlify?' },
-        body: { uz: <><b>Netlify</b> sayt papkangizni <b>doimo yonib turgan</b> kompyuterda saqlab, <b>havola</b> beradi.</>, ru: <><b>Netlify</b> хранит папку сайта на <b>всегда включённом</b> компьютере и выдаёт <b>ссылку</b>.</> },
-        vis: <RcFlow items={[{ uz: 'Sayt papkasi', ru: 'Папка сайта' }, '🌐 Netlify', { uz: 'Havola', ru: 'Ссылка' }]} />,
+        body: { uz: <><b>Netlify</b> sayt papkangizni <b>doimo yonib turgan</b> kompyuterda saqlab, <b>link</b> beradi.</>, ru: <><b>Netlify</b> хранит папку сайта на <b>всегда включённом</b> компьютере и выдаёт <b>ссылку</b>.</> },
+        vis: <RcFlow items={[{ uz: 'Sayt papkasi', ru: 'Папка сайта' }, '🌐 Netlify', { uz: 'Link', ru: 'Ссылка' }]} />,
         ask: { uz: "Netlify bo'lmasa, saytingizni kim ko'ra oladi?", ru: 'Кто увидит ваш сайт без Netlify?' } },
       { ic: '💻', h: { uz: 'Kompyuteringiz va Netlify farqi', ru: 'Разница между вашим компьютером и Netlify' },
         body: { uz: <>Netlify'dagi kompyuter <b>doimo yonib turadi</b>, shuning uchun sayt kechasi ham ochiq.</>, ru: <>Компьютер у Netlify <b>работает всегда</b>, поэтому сайт открыт даже ночью.</> },
         vis: <RcFlow items={[{ uz: 'faqat men', ru: 'только я' }, { uz: 'Netlify — hamma', ru: 'Netlify — все' }]} sep="·" /> },
       { ic: '☝️', h: { uz: 'Adashtirmang!', ru: 'Не путайте!' },
-        body: { uz: <>Netlify saytni <b>bezamaydi</b> va tezlashtirmaydi — u faqat fayllarni saqlab, havola beradi.</>, ru: <>Netlify сайт <b>не украшает</b> и не ускоряет — он только хранит файлы и выдаёт ссылку.</> },
+        body: { uz: <>Netlify saytni <b>bezamaydi</b> va tezlashtirmaydi — u faqat fayllarni saqlab, link beradi.</>, ru: <>Netlify сайт <b>не украшает</b> и не ускоряет — он только хранит файлы и выдаёт ссылку.</> },
         ask: { uz: 'Saytni kim bezaydi — Netlify yoki CSS?', ru: 'Кто украшает сайт — Netlify или CSS?' } },
     ]
   },
@@ -816,7 +816,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [view, setView] = useState('me');
   const OPTS = [
     { id: 'a', label: { uz: 'Sayt faylini Telegram orqali yuboraman', ru: 'Отправлю файл сайта через Telegram' } },
-    { id: 'b', label: { uz: 'Saytni internetga chiqarib, havolasini yuboraman', ru: 'Опубликую сайт в интернете и отправлю ссылку' } },
+    { id: 'b', label: { uz: 'Saytni internetga chiqarib, linkini yuboraman', ru: 'Опубликую сайт в интернете и отправлю ссылку' } },
     { id: 'c', label: { uz: "Do'stim mening kompyuterimga kelib ko'radi", ru: 'Друг придёт к моему компьютеру и посмотрит' } }
   ];
   const pick = (v) => { if (picked !== null) return; setPicked(v); onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: v, correct: true }); };
@@ -862,7 +862,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 );
               })}
             </div>
-            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: 'Bugun saytni internetga chiqarib, havola olasiz.', ru: 'Сегодня выложите сайт в интернет и получите ссылку.' })}</p>}
+            {picked !== null && <p className="hook-ack fade-step"><b>{tr(ACK_KIRISH[picked])}</b> {tr({ uz: 'Bugun saytni internetga chiqarib, link olasiz.', ru: 'Сегодня выложите сайт в интернет и получите ссылку.' })}</p>}
           </Col>
         </Split>
       </div>
@@ -875,7 +875,7 @@ const Screen1 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const STEPS = [
     { ic: '📁', h: { uz: 'Sayt papkangiz', ru: 'Папка вашего сайта' }, s: 'index.html, style.css' },
     { ic: '🌐', h: { uz: 'Netlify', ru: 'Netlify' }, s: { uz: "hech qachon o'chmaydigan kompyuter", ru: 'компьютер, который никогда не выключается' } },
-    { ic: '🔗', h: { uz: 'Havola', ru: 'Ссылка' }, s: { uz: 'saytingiz barchaga ochiladi', ru: 'сайт откроется всем' } }
+    { ic: '🔗', h: { uz: 'Link', ru: 'Ссылка' }, s: { uz: 'saytingiz barchaga ochiladi', ru: 'сайт откроется всем' } }
   ];
   const [step, setStep] = useState(storedAnswer ? STEPS.length : 0);
   const [running, setRunning] = useState(false);
@@ -892,7 +892,7 @@ const Screen1 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="Netlify" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Yo'lni ko'rsating", ru: 'Покажите путь' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sayt papkangiz internetda <span className="italic" style={{ color: T.accent }}>qayerda</span> turadi?</>, ru: <>Где в интернете <span className="italic" style={{ color: T.accent }}>находится</span> папка вашего сайта?</> }) /* F-1015-383: «yashaydi» — bolalarcha */}</h2></div>
-        <Mentor>{tr({ uz: <>Sayt papkangizni doimo yonib turadigan begona kompyuterga qo'yish kerak. Shunday kompyuter <b style={{ color: T.ink }}>Netlify</b>da turadi: u papkani oladi va sizga havola beradi. Tugmani bosing.</>, ru: <>Папку сайта нужно положить на чужой компьютер, который работает всегда. Такой компьютер стоит у <b style={{ color: T.ink }}>Netlify</b>: он принимает папку и выдаёт вам ссылку. Нажмите кнопку.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Sayt papkangizni doimo yonib turadigan begona kompyuterga qo'yish kerak. Shunday kompyuter <b style={{ color: T.ink }}>Netlify</b>da turadi: u papkani oladi va sizga link beradi. Tugmani bosing.</>, ru: <>Папку сайта нужно положить на чужой компьютер, который работает всегда. Такой компьютер стоит у <b style={{ color: T.ink }}>Netlify</b>: он принимает папку и выдаёт вам ссылку. Нажмите кнопку.</> })}</Mentor>
         <div className="frame-col">
           <div className="pz-flow" style={{ justifyContent: 'center' }}>
             {STEPS.map((s, i) => (
@@ -923,7 +923,7 @@ const Screen2 = (props) => (
     questionText="Netlify nima qiladi?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'Netlify nima qiladi?', ru: 'Что делает Netlify?' })}</h2></>}
     options={[
-      { uz: 'Sayt papkangizni internetda saqlaydi va havola beradi', ru: 'Хранит папку вашего сайта в интернете и выдаёт ссылку' },
+      { uz: 'Sayt papkangizni internetda saqlaydi va link beradi', ru: 'Хранит папку вашего сайта в интернете и выдаёт ссылку' },
       { uz: 'Kodni chiroyli ranglar bilan bezaydi', ru: 'Красиво раскрашивает код' },
       { uz: 'Internet tezligini oshiradi', ru: 'Увеличивает скорость интернета' },
       { uz: "Telefonga o'yin o'rnatadi", ru: 'Устанавливает игры на телефон' }
@@ -941,7 +941,7 @@ const Screen2 = (props) => (
 const PLAN = [
   { ic: '⭐', h: { uz: 'Saytingizni davom ettirasiz', ru: 'Продолжаете свой сайт' }, s: { uz: "qolgan sahifalar va animatsiya", ru: 'остальные страницы и анимация' } },
   { ic: '🌐', h: { uz: 'Netlify bilan tanishasiz', ru: 'Знакомитесь с Netlify' }, s: { uz: 'saytlar internetda shu yerda turadi', ru: 'здесь сайты живут в интернете' } },
-  { ic: '🚀', h: { uz: "Saytingizni internetga chiqarasiz", ru: 'Выкладываете сайт в интернет' }, s: { uz: "havolasini do'stlaringizga yuborasiz", ru: 'отправляете ссылку друзьям' } },
+  { ic: '🚀', h: { uz: "Saytingizni internetga chiqarasiz", ru: 'Выкладываете сайт в интернет' }, s: { uz: "linkini do'stlaringizga yuborasiz", ru: 'отправляете ссылку друзьям' } },
 ];
 const TAYYOR = [
   { uz: <>CSS Praktikada boshlagan <span className="qcode">mening-saytim</span> papkangizni VS Code'da oching.</>, ru: <>Откройте в VS Code папку <span className="qcode">mening-saytim</span>, которую начали на CSS-практике.</> },
@@ -987,7 +987,7 @@ const ScreenReja = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.4vw,22px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun <span className="italic" style={{ color: T.accent }}>nima</span> qilamiz?</>, ru: <><span className="italic" style={{ color: T.accent }}>Что</span> сегодня делаем?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Dars oxirida saytingiz internetda turadi — havolasini istagan odamga yubora olasiz.", ru: 'К концу урока ваш сайт будет в интернете — ссылку можно отправить кому угодно.' })}</Mentor>
+        <Mentor>{tr({ uz: "Dars oxirida saytingiz internetda turadi — linkini istagan odamga yubora olasiz.", ru: 'К концу урока ваш сайт будет в интернете — ссылку можно отправить кому угодно.' })}</Mentor>
         <TayyorTugma />
         <div className="rj-row">
           {PLAN.map((p, i) => (
@@ -1130,11 +1130,11 @@ const A1 = {
     { uz: "Sahifalaringizni yozing va «Saqlash»ni bosing — prompt tayyor bo'ladi.", ru: 'Впишите свои страницы и нажмите «Сохранить» — промпт будет готов.' },
     { uz: "«Promptni nusxalash» → Gemini'ga qo'ying, oxiridagi `{…}` o'rniga `index.html` va `style.css` kodingizni qo'ying.", ru: '«Скопировать промпт» → вставьте в Gemini, вместо `{…}` в конце — код `index.html` и `style.css`.' },
     { uz: "`mening-saytim` papkasida Gemini aytgan nomlar bilan yangi fayllar yarating, kodlarni qo'ying; `index.html` ni ham yangisiga almashtiring, `Ctrl+S`.", ru: 'В папке `mening-saytim` создайте новые файлы с именами от Gemini и вставьте код; `index.html` тоже замените новым, `Ctrl+S`.' },
-    { uz: "Live Server'da menyudagi har havolani bosing: sahifa ochiladimi, dizayni bir xilmi? Ochilmasa, Gemini'ga yozing: «… sahifasi ochilmayapti, menyudagi havolani tuzat».", ru: 'В Live Server нажмите каждую ссылку меню: страница открывается, дизайн тот же? Если нет, напишите Gemini: «Страница … не открывается, исправь ссылку в меню».' }
+    { uz: "Live Server'da menudagi har linkni bosing: sahifa ochiladimi, dizayni bir xilmi? Ochilmasa, Gemini'ga yozing: «… sahifasi ochilmayapti, menudagi linkni tuzat».", ru: 'В Live Server нажмите каждую ссылку меню: страница открывается, дизайн тот же? Если нет, напишите Gemini: «Страница … не открывается, исправь ссылку в меню».' }
   ]
 };
 const a1Prompt = (nom, sh) => ({
-  uz: `Saytimni davom ettiramiz. Loyiham — «${nom}». Bosh sahifa (index.html) va style.css tayyor, ular quyida.\nYana 3 sahifa qo'sh, har biri alohida .html fayl:\n${sh.map(x => `– «${x.n}» — ${x.m};`).join('\n')}\nFayl nomlari lotin harflarida, kichik harf, bo'sh joysiz bo'lsin (masalan: jadval.html).\nHar sahifada bosh sahifadagi menyu va footer bir xil tursin; menyuda hamma sahifa bo'lsin, index.html dagi menyuni ham yangila.\nYangi sahifalar ham shu style.css ga ulansin va shu dizaynda bo'lsin; kerak bo'lsa style.css ga yangi qoidalar qo'sh.\nHar faylni alohida, to'liq yoz va tepasiga fayl nomini yoz.\nMana kodim: {index.html va style.css kodini shu yerga qo'ying}`,
+  uz: `Saytimni davom ettiramiz. Loyiham — «${nom}». Bosh sahifa (index.html) va style.css tayyor, ular quyida.\nYana 3 sahifa qo'sh, har biri alohida .html fayl:\n${sh.map(x => `– «${x.n}» — ${x.m};`).join('\n')}\nFayl nomlari lotin harflarida, kichik harf, bo'sh joysiz bo'lsin (masalan: jadval.html).\nHar sahifada bosh sahifadagi menu va footer bir xil tursin; menuda hamma sahifa bo'lsin, index.html dagi menuni ham yangila.\nYangi sahifalar ham shu style.css ga ulansin va shu dizaynda bo'lsin; kerak bo'lsa style.css ga yangi qoidalar qo'sh.\nHar faylni alohida, to'liq yoz va tepasiga fayl nomini yoz.\nMana kodim: {index.html va style.css kodini shu yerga qo'ying}`,
   ru: `Продолжаем мой сайт. Мой проект — «${nom}». Главная страница (index.html) и style.css готовы, они ниже.\nДобавь ещё 3 страницы, каждая — отдельный .html файл:\n${sh.map(x => `– «${x.n}» — ${x.m};`).join('\n')}\nИмена файлов — латиницей, маленькими буквами, без пробелов (например: jadval.html).\nНа каждой странице — то же меню и footer, что на главной; в меню все страницы, меню в index.html тоже обнови.\nНовые страницы подключи к тому же style.css и сделай в том же дизайне; при необходимости добавь в style.css новые правила.\nКаждый файл напиши отдельно и целиком, сверху укажи имя файла.\nВот мой код: {вставьте сюда код index.html и style.css}`
 });
 // F-1015-330: a2/a3 da qadamlar bitta tugmada — o'ngdagi namuna ostida, bosilsa ochiladi
@@ -1386,9 +1386,9 @@ const DROP_STEPS = [
     d: { uz: "Papkaning o'zini tashlang, ichidagi fayllarni birma-bir emas. Bir necha soniya kutasiz.", ru: 'Бросайте саму папку, а не файлы по одному. Подождите несколько секунд.' },
     help: { uz: "Sayt ochilmasa — `index.html` papkaning o'zida turganini tekshiring, ichki papkada emas.", ru: 'Если сайт не открылся — проверьте, что `index.html` лежит прямо в папке, а не во вложенной.' },
     res: () => <NetWin title="app.netlify.com"><span className="nfy-row on">📂 mening-saytim</span><span className="nfy-row">⏳ {tr({ uz: 'yuklanmoqda…', ru: 'загрузка…' })}</span></NetWin> },
-  { id: 'live', nav: { uz: 'havola', ru: 'ссылка' },
-    t: { uz: 'Havola chiqadi — uni nusxalang va bosib, saytingiz ochilishini tekshiring', ru: 'Появится ссылка — скопируйте её и откройте, чтобы проверить сайт' },
-    d: { uz: "Havola oxiri `.netlify.app` bo'ladi, boshidagi nomni Netlify o'zi tanlaydi.", ru: 'Ссылка заканчивается на `.netlify.app`, имя в начале Netlify выбирает сам.' },
+  { id: 'live', nav: { uz: 'link', ru: 'ссылка' },
+    t: { uz: 'Link chiqadi — uni nusxalang va bosib, saytingiz ochilishini tekshiring', ru: 'Появится ссылка — скопируйте её и откройте, чтобы проверить сайт' },
+    d: { uz: "Link oxiri `.netlify.app` bo'ladi, boshidagi nomni Netlify o'zi tanlaydi.", ru: 'Ссылка заканчивается на `.netlify.app`, имя в начале Netlify выбирает сам.' },
     help: { uz: "Nomni keyin sayt sozlamalarida o'zgartirsa bo'ladi.", ru: 'Имя потом можно поменять в настройках сайта.' },
     res: () => <NetWin title="app.netlify.com"><span className="nfy-live">✓ {tr({ uz: 'sayt internetda', ru: 'сайт в интернете' })}</span><span className="nfy-link">https://…….netlify.app</span></NetWin> },
 ];
@@ -1419,9 +1419,9 @@ const ScreenDrop = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {allDone && !isMentorLive ? (
               <>
                 {/* F-0926-06: maydon ustidagi yorliq placeholder ichiga kirdi (159/2) */}
-                <input className="text-input fade-up" value={url} onChange={e => setUrl(e.target.value)} spellCheck={false} autoCapitalize="off" autoCorrect="off" aria-label={tr({ uz: "Netlify bergan havolani shu yerga qo'ying", ru: 'Вставьте сюда ссылку от Netlify' })} placeholder={tr({ uz: 'Netlify bergan havola: https://….netlify.app', ru: 'Ссылка от Netlify: https://….netlify.app' })} />
+                <input className="text-input fade-up" value={url} onChange={e => setUrl(e.target.value)} spellCheck={false} autoCapitalize="off" autoCorrect="off" aria-label={tr({ uz: "Netlify bergan linkni shu yerga qo'ying", ru: 'Вставьте сюда ссылку от Netlify' })} placeholder={tr({ uz: 'Netlify bergan link: https://….netlify.app', ru: 'Ссылка от Netlify: https://….netlify.app' })} />
                 <button className="btn" style={{ alignSelf: 'flex-start' }} disabled={!looksOk} onClick={save}>{saved ? tr({ uz: '✓ Saqlandi', ru: '✓ Сохранено' }) : tr({ uz: 'Saqlash', ru: 'Сохранить' })}</button>
-                <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Bu havola Demo Day darsida kerak bo\'ladi.', ru: 'Эта ссылка понадобится на уроке Demo Day.' })}</p>
+                <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'Bu link Demo Day darsida kerak bo\'ladi.', ru: 'Эта ссылка понадобится на уроке Demo Day.' })}</p>
               </>
             ) : (
               <>
@@ -1448,9 +1448,9 @@ const Screen12 = (props) => (
       { uz: '`index.html` faylini', ru: 'Файл `index.html`' },
       { uz: 'Sayt papkasini arxiv qilib', ru: 'Папку сайта архивом' },
       { uz: 'GitHub parolimni', ru: 'Свой пароль от GitHub' },
-      { uz: 'Netlify bergan havolani', ru: 'Ссылку, которую выдал Netlify' }
+      { uz: 'Netlify bergan linkni', ru: 'Ссылку, которую выдал Netlify' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: "Sayt internetda — do'stingizga havolaning o'zi yetadi.", ru: 'Сайт уже в интернете — другу хватит самой ссылки.' } /* F-0926-06: «To'g'ri!» olindi (159/11) */}
+    explainCorrect={{ uz: "Sayt internetda — do'stingizga linkning o'zi yetadi.", ru: 'Сайт уже в интернете — другу хватит самой ссылки.' } /* F-0926-06: «To'g'ri!» olindi (159/11) */}
     explainWrong={{
       0: { uz: "Bitta fayl do'stning telefonida sayt bo'lib ochilmaydi.", ru: 'Один файл на телефоне друга сайтом не откроется.' },
       1: { uz: 'Arxivni ochish uchun kompyuter kerak — do\'stingiz qiynaladi.', ru: 'Чтобы открыть архив, нужен компьютер — другу будет неудобно.' },
@@ -1461,10 +1461,10 @@ const Screen12 = (props) => (
 
 // Uyga vazifa (F-1015-328: alohida ekran o'rniga yakun kartasida)
 const UYGA_TASKS = [
-  { b: { uz: 'Saytni tugating', ru: 'Доведите сайт до конца' }, t: { uz: '— hamma sahifa ochilsin, menyu ishlasin', ru: '— чтобы открывались все страницы и работало меню' } },
+  { b: { uz: 'Saytni tugating', ru: 'Доведите сайт до конца' }, t: { uz: '— hamma sahifa ochilsin, menu ishlasin', ru: '— чтобы открывались все страницы и работало меню' } },
   { b: { uz: 'Matnni tekshiring', ru: 'Проверьте тексты' }, t: { uz: "— har gap loyihangiz haqida bo'lsin", ru: '— каждая фраза должна быть о вашем проекте' } },
   { b: { uz: 'Saytni yangilang', ru: 'Обновите сайт' }, t: { uz: "— Netlify'da saytingiz nomini bosing, Deploys bo'limini oching va o'zgargan papkani o'sha yerga qayta sudrab tashlang", ru: '— в Netlify нажмите на имя сайта, откройте раздел Deploys и снова перетащите туда изменённую папку' } },
-  { b: { uz: 'Havolani yuboring', ru: 'Отправьте ссылку' }, t: { uz: "— platformadagi vazifa-savoliga va do'stlaringizga", ru: '— в задание на платформе и друзьям' } },
+  { b: { uz: 'Linkni yuboring', ru: 'Отправьте ссылку' }, t: { uz: "— platformadagi vazifa-savoliga va do'stlaringizga", ru: '— в задание на платформе и друзьям' } },
 ];
 // ===== SCREEN 16 — YAKUN =====
 const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
@@ -1489,11 +1489,11 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   };
   const url = siteUrlRead();
   const RECAP = [
-    { uz: 'Netlify sayt papkasini internetda saqlaydi va havola beradi', ru: 'Netlify хранит папку сайта в интернете и выдаёт ссылку' },
-    { uz: "Saytga Gemini bilan qolgan sahifalarni qo'shish va menyuni ulash", ru: 'Добавление страниц через Gemini и связка меню' },
+    { uz: 'Netlify sayt papkasini internetda saqlaydi va link beradi', ru: 'Netlify хранит папку сайта в интернете и выдаёт ссылку' },
+    { uz: "Saytga Gemini bilan qolgan sahifalarni qo'shish va menuni ulash", ru: 'Добавление страниц через Gemini и связка меню' },
     { uz: 'Saytni CSS animatsiya va scroll effekti bilan jonlantirish', ru: 'Оживление сайта CSS-анимацией и эффектом прокрутки' },
     { uz: "Netlify'ga GitHub hisobi bilan kirish", ru: 'Вход в Netlify через аккаунт GitHub' },
-    { uz: 'Papkani sudrab tashlab deploy qilish va havolani olish', ru: 'Деплой перетаскиванием папки и получение ссылки' },
+    { uz: 'Papkani sudrab tashlab deploy qilish va linkni olish', ru: 'Деплой перетаскиванием папки и получение ссылки' },
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1524,10 +1524,10 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
           </button>
         </div>
         {!isMentorL && hwOpen && <div className="card hw fade-up d4">
-            <div className="card-lbl" style={{ color: T.accent }}>🔗 {tr({ uz: 'Sizning havolangiz', ru: 'Ваша ссылка' })}</div>
-            <p className="mono" style={{ margin: '0 0 10px', color: url ? T.success : T.ink3, wordBreak: 'break-all', fontSize: 14 }}>{url || tr({ uz: 'havola hali saqlanmagan', ru: 'ссылка пока не сохранена' })}</p>
+            <div className="card-lbl" style={{ color: T.accent }}>🔗 {tr({ uz: 'Sizning linkingiz', ru: 'Ваша ссылка' })}</div>
+            <p className="mono" style={{ margin: '0 0 10px', color: url ? T.success : T.ink3, wordBreak: 'break-all', fontSize: 14 }}>{url || tr({ uz: 'link hali saqlanmagan', ru: 'ссылка пока не сохранена' })}</p>
             <ul>{UYGA_TASKS.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul>
-            <p className="hw-note">{tr({ uz: <>Bu havola <b>Demo Day</b> repetitsiyasida ham kerak bo'ladi.</>, ru: <>Эта ссылка понадобится и на репетиции <b>Demo Day</b>.</> })}</p>
+            <p className="hw-note">{tr({ uz: <>Bu link <b>Demo Day</b> repetitsiyasida ham kerak bo'ladi.</>, ru: <>Эта ссылка понадобится и на репетиции <b>Demo Day</b>.</> })}</p>
           </div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
@@ -1548,7 +1548,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
 
 // ============================================================ LESSON ROOT — ({ lang, onFinished })
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 6: { uz: 'Netlify vazifasi', ru: 'Задача Netlify' }, 8: { uz: 'Havola (yakuniy)', ru: 'Ссылка (финал)' } };
+const Q_LABELS = { 6: { uz: 'Netlify vazifasi', ru: 'Задача Netlify' }, 8: { uz: 'Link (yakuniy)', ru: 'Ссылка (финал)' } };
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];
@@ -1687,13 +1687,13 @@ const QUIZ_BANK = [
   { q: { uz: 'Saytni internetga chiqarish qanday ataladi?', ru: 'Как называется выкладка сайта в интернет?' }, opts: [{ uz: 'Nusxalash', ru: 'Копирование' }, { uz: 'Restart', ru: 'Рестарт' }, { uz: 'Deploy', ru: 'Деплой' }, { uz: 'Zoom', ru: 'Zoom' }], correct: 2 },
   { q: { uz: "Netlify'ga qanday kiriladi?", ru: 'Как входят в Netlify?' }, opts: [{ uz: "Yangi parol o'ylab topib", ru: 'Придумав новый пароль' }, { uz: 'SMS kod bilan', ru: 'По коду из SMS' }, { uz: 'Bank kartasi bilan', ru: 'По банковской карте' }, { uz: 'GitHub hisobi bilan', ru: 'Через аккаунт GitHub' }], correct: 3 },
   { q: { uz: "Bugun saytni Netlify'ga qanday qo'ydik?", ru: 'Как мы сегодня положили сайт на Netlify?' }, opts: [{ uz: 'Telegram orqali yuborib', ru: 'Отправив через Telegram' }, { uz: 'Elektron pochtaga yozib', ru: 'Написав на электронную почту' }, { uz: 'Sayt papkasini sudrab tashlab', ru: 'Перетащив папку сайта' }, { uz: 'Flesh kartaga yozib', ru: 'Записав на флешку' }], correct: 2 },
-  { q: { uz: "O'zgargan sayt Netlify'da qanday yangilanadi?", ru: "Как обновить изменённый сайт на Netlify?" }, opts: [{ uz: "Papkani qayta sudrab tashlab", ru: "Снова перетащить папку" }, { uz: "Havolani qayta yozib", ru: "Заново написать ссылку" }, { uz: "Kompyuterni qayta yoqib", ru: "Перезагрузить компьютер" }, { uz: "O'z-o'zidan yangilanadi", ru: "Обновится сам" }], correct: 0 },
-  { q: { uz: 'Deploydan keyin Netlify sizga nima beradi?', ru: 'Что выдаёт Netlify после деплоя?' }, opts: [{ uz: 'Yangi kompyuter', ru: 'Новый компьютер' }, { uz: 'Sayt havolasini', ru: 'Ссылку на сайт' }, { uz: 'Yangi parol', ru: 'Новый пароль' }, { uz: 'Bepul internet', ru: 'Бесплатный интернет' }], correct: 1 },
-  { q: { uz: "Do'stingiz saytni telefonda ochishi uchun nima yuborasiz?", ru: "Что отправить другу, чтобы он открыл сайт на телефоне?" }, opts: [{ uz: "index.html faylini", ru: "Файл index.html" }, { uz: "GitHub parolimni", ru: "Свой пароль от GitHub" }, { uz: "Sayt papkasini arxiv qilib", ru: "Папку сайта архивом" }, { uz: "Sayt havolasini", ru: "Ссылку на сайт" }], correct: 3 },
-  { q: { uz: "Sayt sahifalari bir-biriga nima orqali ulanadi?", ru: "Через что страницы сайта связаны между собой?" }, opts: [{ uz: "Havolalar orqali", ru: "Через ссылки" }, { uz: "Rasmlar orqali", ru: "Через картинки" }, { uz: "Parol orqali", ru: "Через пароль" }, { uz: "Fayl nomi orqali", ru: "Через имя файла" }], correct: 0 },
+  { q: { uz: "O'zgargan sayt Netlify'da qanday yangilanadi?", ru: "Как обновить изменённый сайт на Netlify?" }, opts: [{ uz: "Papkani qayta sudrab tashlab", ru: "Снова перетащить папку" }, { uz: "Linkni qayta yozib", ru: "Заново написать ссылку" }, { uz: "Kompyuterni qayta yoqib", ru: "Перезагрузить компьютер" }, { uz: "O'z-o'zidan yangilanadi", ru: "Обновится сам" }], correct: 0 },
+  { q: { uz: 'Deploydan keyin Netlify sizga nima beradi?', ru: 'Что выдаёт Netlify после деплоя?' }, opts: [{ uz: 'Yangi kompyuter', ru: 'Новый компьютер' }, { uz: 'Sayt linkini', ru: 'Ссылку на сайт' }, { uz: 'Yangi parol', ru: 'Новый пароль' }, { uz: 'Bepul internet', ru: 'Бесплатный интернет' }], correct: 1 },
+  { q: { uz: "Do'stingiz saytni telefonda ochishi uchun nima yuborasiz?", ru: "Что отправить другу, чтобы он открыл сайт на телефоне?" }, opts: [{ uz: "index.html faylini", ru: "Файл index.html" }, { uz: "GitHub parolimni", ru: "Свой пароль от GitHub" }, { uz: "Sayt papkasini arxiv qilib", ru: "Папку сайта архивом" }, { uz: "Sayt linkini", ru: "Ссылку на сайт" }], correct: 3 },
+  { q: { uz: "Sayt sahifalari bir-biriga nima orqali ulanadi?", ru: "Через что страницы сайта связаны между собой?" }, opts: [{ uz: "Linklar orqali", ru: "Через ссылки" }, { uz: "Rasmlar orqali", ru: "Через картинки" }, { uz: "Parol orqali", ru: "Через пароль" }, { uz: "Fayl nomi orqali", ru: "Через имя файла" }], correct: 0 },
   { q: { uz: "AI'ga sayt topshirig'ini yozganda nima ko'rsatiladi?", ru: "Что указывают, когда пишут AI задание на сайт?" }, opts: [{ uz: "Faqat sevimli rangingiz", ru: "Только любимый цвет" }, { uz: "Faqat ismingiz", ru: "Только ваше имя" }, { uz: "Sahifalar va shartlar", ru: "Страницы и условия" }, { uz: "Faqat sayt nomi", ru: "Только название сайта" }], correct: 2 },
-  { q: { uz: "Promptda menyu haqida nima yoziladi?", ru: "Что пишут в промпте про меню?" }, opts: [{ uz: "Menyu faqat bosh sahifada", ru: "Меню только на главной" }, { uz: "Menyu umuman kerak emas", ru: "Меню вообще не нужно" }, { uz: "Har sahifada boshqa menyu", ru: "На каждой странице своё меню" }, { uz: "Har sahifada bir xil menyu", ru: "На всех страницах одно меню" }], correct: 3 },
-  { q: { uz: "Deploydan keyin saytni kim ko'ra oladi?", ru: 'Кто сможет увидеть сайт после деплоя?' }, opts: [{ uz: "Faqat men, o'z kompyuterimda", ru: 'Только я, на своём компьютере' }, { uz: 'Havolani bilgan har kim', ru: 'Каждый, кто знает ссылку' }, { uz: 'Faqat mentor', ru: 'Только ментор' }, { uz: 'Faqat GitHub xodimlari', ru: 'Только сотрудники GitHub' }], correct: 1 },
+  { q: { uz: "Promptda menu haqida nima yoziladi?", ru: "Что пишут в промпте про меню?" }, opts: [{ uz: "Menu faqat bosh sahifada", ru: "Меню только на главной" }, { uz: "Menu umuman kerak emas", ru: "Меню вообще не нужно" }, { uz: "Har sahifada boshqa menu", ru: "На каждой странице своё меню" }, { uz: "Har sahifada bir xil menu", ru: "На всех страницах одно меню" }], correct: 3 },
+  { q: { uz: "Deploydan keyin saytni kim ko'ra oladi?", ru: 'Кто сможет увидеть сайт после деплоя?' }, opts: [{ uz: "Faqat men, o'z kompyuterimda", ru: 'Только я, на своём компьютере' }, { uz: 'Linkni bilgan har kim', ru: 'Каждый, кто знает ссылку' }, { uz: 'Faqat mentor', ru: 'Только ментор' }, { uz: 'Faqat GitHub xodimlari', ru: 'Только сотрудники GitHub' }], correct: 1 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)

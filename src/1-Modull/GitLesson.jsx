@@ -145,7 +145,7 @@ export const HOMEWORK = {
   type: 'text',
   title: { uz: 'Uch qadamni yana bir marta takrorlang', ru: 'Повторите три шага ещё раз' },
   brief: {
-    uz: "Uyda repo'ga yangi sahifa qo'shib, GitHub havolangizni platformadagi vazifa-savoliga yozib yuborasiz.",
+    uz: "Uyda repo'ga yangi sahifa qo'shib, GitHub linkingizni platformadagi vazifa-savoliga yozib yuborasiz.",
     ru: 'Дома добавите в репо новую страницу и отправите ссылку на GitHub в задание на платформе.',
   },
   items: [
@@ -358,9 +358,9 @@ const RECAPS = {
       { ic: '🛡️', h: { uz: 'Kompyuter buzilsa ham qoladi', ru: 'Останется, даже если компьютер сломается' },
         body: { uz: <>Repo internetda turadi: yangi kompyuterda uning <b>nusxasini olasiz</b>.</>, ru: <>Репо лежит в интернете: на новом компьютере вы <b>забираете копию</b>.</> },
         vis: <RcFlow items={[{ uz: 'GitHub repo', ru: 'Репо GitHub' }, { uz: 'yangi kompyuter', ru: 'новый компьютер' }]} /> },
-      { ic: '🔗', h: { uz: 'Havolasi bor', ru: 'У него есть ссылка' },
-        body: { uz: <>Repo manzili — <span className="mono">github.com/nomingiz/loyiha</span>: havolani ochgan odam kodni ko'radi.</>, ru: <>Адрес репо — <span className="mono">github.com/vashe-imya/proekt</span>: кто откроет ссылку, тот увидит код.</> },
-        ask: { uz: 'Havolangizni birinchi kimga yuborardingiz?', ru: 'Кому бы вы первым отправили свою ссылку?' } },
+      { ic: '🔗', h: { uz: 'Linki bor', ru: 'У него есть ссылка' },
+        body: { uz: <>Repo manzili — <span className="mono">github.com/nomingiz/loyiha</span>: linkni ochgan odam kodni ko'radi.</>, ru: <>Адрес репо — <span className="mono">github.com/vashe-imya/proekt</span>: кто откроет ссылку, тот увидит код.</> },
+        ask: { uz: 'Linkingizni birinchi kimga yuborardingiz?', ru: 'Кому бы вы первым отправили свою ссылку?' } },
     ]
   },
 };
@@ -890,7 +890,7 @@ const ScreenGoal = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Bugungi natija', ru: 'Результат дня' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun kod kompyuterdan <span className="italic" style={{ color: T.accent }}>internetga</span> chiqadi</>, ru: <>Сегодня код выйдет с компьютера <span className="italic" style={{ color: T.accent }}>в интернет</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Dars oxirida kodingiz internetda turadi va uning <b style={{ color: T.ink }}>havolasi</b> bo'ladi. Buni <b style={{ color: T.ink }}>5 qadamda</b> o'zingiz qilasiz.</>, ru: <>К концу урока ваш код будет в интернете, и у него появится <b style={{ color: T.ink }}>ссылка</b>. Вы сделаете это сами за <b style={{ color: T.ink }}>5 шагов</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Dars oxirida kodingiz internetda turadi va uning <b style={{ color: T.ink }}>linki</b> bo'ladi. Buni <b style={{ color: T.ink }}>5 qadamda</b> o'zingiz qilasiz.</>, ru: <>К концу урока ваш код будет в интернете, и у него появится <b style={{ color: T.ink }}>ссылка</b>. Вы сделаете это сами за <b style={{ color: T.ink }}>5 шагов</b>.</> })}</Mentor>
         {!isNarrow ? (<Split>{PreviewBlock}{StepsBlock}</Split>)
           : !showSteps ? (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{PreviewBlock}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>📋 {tr({ uz: "5 qadamni ko'rish", ru: 'Посмотреть 5 шагов' })}</button></div>)
             : (<div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>↩ {tr({ uz: "Natijani ko'rish", ru: 'Посмотреть результат' })}</button>{StepsBlock}</div>)}
@@ -946,7 +946,7 @@ const GIT_STEPS = [
     res: () => <div className="ginst"><div className="ginst-bar">Git Setup</div><div className="ginst-body"><p className="ginst-row">☑ Git Bash Here</p><p className="ginst-row">☑ Git GUI Here</p><div className="ginst-btns"><span>Back</span><span className="on">Install</span><span>Cancel</span></div></div></div> },
   { id: 'ver', nav: { uz: "o'rnatilganini tekshiring", ru: 'проверьте установку' },
     t: { uz: "VS Code'da terminal oching va `git --version` yozib Enter bosing", ru: 'Откройте терминал в VS Code, наберите `git --version` и нажмите Enter' },
-    d: { uz: 'Terminal: yuqoridagi menyudan Terminal → New Terminal.', ru: 'Терминал: в верхнем меню Terminal → New Terminal.' },
+    d: { uz: 'Terminal: yuqoridagi menudan Terminal → New Terminal.', ru: 'Терминал: в верхнем меню Terminal → New Terminal.' },
     help: { uz: "«git is not recognized» chiqsa — VS Code'ni butunlay yopib, qaytadan oching.", ru: 'Появилось «git is not recognized» — закройте VS Code полностью и откройте заново.' },
     res: () => <div className="term"><span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">git --version</span></span><span className="term-row"><span className="term-ok">git version 2.45.2.windows.1</span></span></div> },
 ];
@@ -970,7 +970,7 @@ const ScreenGitInstall = (props) => (
           <span className="term-row"><span className="term-prompt">$ </span><span className="term-cmd">sudo apt install git</span></span>
         </div>
         <p className="dsx-fb-h">{tr({ uz: '2 · Hech biri ishlamasa — dars TO\'XTAMAYDI', ru: '2 · Если ничего не сработало — урок НЕ ОСТАНАВЛИВАЕТСЯ' })}</p>
-        <p className="dsx-fb-t">{tr({ uz: <>Kodni GitHub'ning <b>o'ziga</b> ham yuklash mumkin: repo sahifasida <b>Add file → Upload files</b>. Natija bir xil — saytingiz internetda va havolasi bo'ladi. Bu yo'l amaliyot ekranida ham eslatiladi.</>, ru: <>Код можно загрузить и <b>прямо на GitHub</b>: на странице репо <b>Add file → Upload files</b>. Результат тот же — сайт в интернете и у него есть ссылка. Этот путь напомним и на экране практики.</> })}</p>
+        <p className="dsx-fb-t">{tr({ uz: <>Kodni GitHub'ning <b>o'ziga</b> ham yuklash mumkin: repo sahifasida <b>Add file → Upload files</b>. Natija bir xil — saytingiz internetda va linki bo'ladi. Bu yo'l amaliyot ekranida ham eslatiladi.</>, ru: <>Код можно загрузить и <b>прямо на GitHub</b>: на странице репо <b>Add file → Upload files</b>. Результат тот же — сайт в интернете и у него есть ссылка. Этот путь напомним и на экране практики.</> })}</p>
         <p className="dsx-fb-t" style={{ color: T.ink3 }}>{tr({ uz: <>Git'ni keyinroq uyda o'rnatasiz — u ishni tezlashtiradi, lekin bugungi natijani to'sib qo'ymaydi. Shuning uchun bajarolmagan qadamlarni ham belgilab, <b>keyingi ekranga o'ting</b>.</>, ru: <>Git поставите позже дома — он ускоряет работу, но не блокирует сегодняшний результат. Поэтому отметьте и невыполненные шаги и <b>переходите к следующему экрану</b>.</> })}</p>
       </FallbackPanel>
     } />
@@ -1009,7 +1009,7 @@ const GH_STEPS = [
     res: () => <Preview title="github.com/signup" minH={150}><div style={{ ...winBox, minHeight: 120, alignItems: 'stretch', padding: '0 8px' }}><span className="mono small" style={{ color: T.ink3 }}>Email</span><span style={{ height: 26, borderRadius: 8, background: '#fff', boxShadow: `inset 0 0 0 1.5px ${T.line}` }} /><span className="mono small" style={{ color: T.ink3 }}>Password</span><span style={{ height: 26, borderRadius: 8, background: '#fff', boxShadow: `inset 0 0 0 1.5px ${T.line}` }} /></div></Preview> },
   { id: 'form', nav: { uz: "ma'lumotlarni to'ldiring", ru: 'заполните данные' },
     t: { uz: 'Pochta, parol va foydalanuvchi nomini yozing', ru: 'Введите почту, пароль и имя пользователя' },
-    d: { uz: "Foydalanuvchi nomi (username) lotin harflarida bo'lsin: masalan ali-karimov. Shu nom havolangizda turadi.", ru: 'Имя пользователя (username) пишите латиницей: например ali-karimov. Оно будет стоять в вашей ссылке.' },
+    d: { uz: "Foydalanuvchi nomi (username) lotin harflarida bo'lsin: masalan ali-karimov. Shu nom linkingizda turadi.", ru: 'Имя пользователя (username) пишите латиницей: например ali-karimov. Оно будет стоять в вашей ссылке.' },
     help: { uz: "Nom band bo'lsa — oxiriga raqam qo'shing: ali-karimov7.", ru: 'Имя занято — добавьте в конец цифру: ali-karimov7.' },
     res: () => <Preview title="github.com/signup" minH={150}><div style={{ ...winBox, minHeight: 120, alignItems: 'stretch', padding: '0 8px' }}><span className="mono small">ali@gmail.com</span><span className="mono small">••••••••</span><span className="mono small" style={{ color: T.accent, fontWeight: 700 }}>ali-karimov</span><span className="mono small" style={{ color: T.success }}>✓ {tr({ uz: "nom bo'sh", ru: 'имя свободно' })}</span></div></Preview> },
   { id: 'code', nav: { uz: 'pochtadagi kodni kiriting', ru: 'введите код из почты' },
@@ -1246,12 +1246,12 @@ const ScreenMakeRepo = (props) => (
 
 // ===== SCREEN 13 — AMALIYOT: KODNI PUSH QILISH =====
 const PUSH_STEPS = [
-  { id: 'copy', nav: { uz: 'havolani nusxalang', ru: 'скопируйте ссылку' },
-    t: { uz: 'Repo sahifasidagi yashil «Code» tugmasini bosing va havolani nusxalang', ru: 'На странице репо нажмите зелёную кнопку «Code» и скопируйте ссылку' },
-    d: { uz: 'Havola shunday tugaydi: .git', ru: 'Ссылка заканчивается так: .git' },
+  { id: 'copy', nav: { uz: 'linkni nusxalang', ru: 'скопируйте ссылку' },
+    t: { uz: 'Repo sahifasidagi yashil «Code» tugmasini bosing va linkni nusxalang', ru: 'На странице репо нажмите зелёную кнопку «Code» и скопируйте ссылку' },
+    d: { uz: 'Link shunday tugaydi: .git', ru: 'Ссылка заканчивается так: .git' },
     res: () => <Preview title="github.com/ali-karimov/mening-saytim" minH={150}><div style={{ ...winBox, minHeight: 120 }}><span style={{ background: T.success, color: '#fff', borderRadius: 8, padding: '6px 14px', fontWeight: 700, fontSize: 13 }}>Code ▾</span><span className="mono small" style={{ background: '#fff', borderRadius: 8, padding: '6px 10px', boxShadow: `inset 0 0 0 1.5px ${T.line}` }}>https://github.com/ali-karimov/mening-saytim.git</span></div></Preview> },
   { id: 'clone', nav: { uz: 'reponi kompyuterga oling', ru: 'заберите репо на компьютер' },
-    t: { uz: "VS Code'da Ctrl+Shift+P bosing, `Git: Clone` yozing va havolani qo'ying", ru: 'В VS Code нажмите Ctrl+Shift+P, наберите `Git: Clone` и вставьте ссылку' },
+    t: { uz: "VS Code'da Ctrl+Shift+P bosing, `Git: Clone` yozing va linkni qo'ying", ru: 'В VS Code нажмите Ctrl+Shift+P, наберите `Git: Clone` и вставьте ссылку' },
     d: { uz: "Papkani tanlaysiz — repo o'sha yerga tushadi va VS Code uni ochadi.", ru: 'Выбираете папку — репо попадёт туда, и VS Code его откроет.' },
     help: { uz: "Ro'yxatda Git: Clone yo'q bo'lsa — Git o'rnatilmagan. Pastdagi «🛟 Git o'rnatilmadimi?» panelini oching — kodni GitHub'ning o'zida yuklaysiz, natija bir xil.", ru: 'В списке нет Git: Clone — значит Git не установлен. Откройте панель «🛟 Git не установился?» ниже — загрузите код прямо на GitHub, результат тот же.' },
     res: () => <div className="term"><span className="term-row"><span className="term-prompt">&gt; </span><span className="term-cmd">Git: Clone</span></span><span className="term-row"><span className="term-out">https://github.com/ali-karimov/mening-saytim.git</span></span><span className="term-row"><span className="term-ok">✓ {tr({ uz: 'papka ochildi', ru: 'папка открыта' })}</span></span></div> },
@@ -1313,7 +1313,7 @@ const ScreenFinalTest = (props) => (
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const GIT_FLASHCARDS = [
   { front: { uz: "Kodning versiyalarini saqlaydigan dastur qanday ataladi?", ru: 'Как называется программа, которая хранит версии кода?' }, back: 'Git', note: { uz: "Kompyuterga o'rnatiladi, internetsiz ham ishlaydi", ru: 'Ставится на компьютер, работает и без интернета' } },
-  { front: { uz: "Kod internetda saqlanadigan sayt qaysi?", ru: 'На каком сайте код хранится в интернете?' }, back: 'GitHub', note: { uz: "Brauzerda ochiladi, havolasi bo'ladi", ru: 'Открывается в браузере, у него есть ссылка' } },
+  { front: { uz: "Kod internetda saqlanadigan sayt qaysi?", ru: 'На каком сайте код хранится в интернете?' }, back: 'GitHub', note: { uz: "Brauzerda ochiladi, linki bo'ladi", ru: 'Открывается в браузере, у него есть ссылка' } },
   { front: { uz: "GitHub'da bitta loyiha uchun ochilgan joy qanday ataladi?", ru: 'Как называется место, открытое на GitHub под один проект?' }, back: 'repo (repository)', note: { uz: "Ichida fayllar, saqlangan nuqtalar va README turadi", ru: 'Внутри файлы, сохранённые точки и README' } },
   { front: { uz: "Qaysi qadam yuboriladigan fayllarni tanlaydi?", ru: 'Какой шаг выбирает файлы для отправки?' }, back: 'add', note: { uz: "Terminalda: git add . — barcha o'zgargan fayllar", ru: 'В терминале: git add . — все изменённые файлы' } },
   { front: { uz: "Saqlangan nuqta qanday ataladi?", ru: 'Как называется сохранённая точка?' }, back: 'commit', note: { uz: "Har nuqtaning izohi va vaqti bo'ladi", ru: 'У каждой точки есть комментарий и время' } },
@@ -1548,14 +1548,14 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const audio = useAudio([{ id: 's16', text: "Bugun Git dasturini o'rnatdingiz, GitHub'da ro'yxatdan o'tdingiz, loyiha uchun repo yaratdingiz va kodni internetga yubordingiz. Endi kodingizning havolasi bor.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's16', text: "Bugun Git dasturini o'rnatdingiz, GitHub'da ro'yxatdan o'tdingiz, loyiha uchun repo yaratdingiz va kodni internetga yubordingiz. Endi kodingizning linki bor.", trigger: 'on_mount', waits_for: null }]);
   const RECAP = [
     { uz: "Git dasturini o'rnatdingiz", ru: 'Установили программу Git' },
     { uz: "GitHub'da ro'yxatdan o'tdingiz", ru: 'Зарегистрировались на GitHub' },
     { uz: 'Loyiha uchun repo yaratdingiz', ru: 'Создали репо для проекта' },
     { uz: 'Fayllarni tanlab, saqlash nuqtasini belgiladingiz', ru: 'Выбрали файлы и отметили точку сохранения' },
     { uz: 'Kodni internetga yubordingiz', ru: 'Отправили код в интернет' },
-    { uz: 'Kod havolasini boshqalarga ulasha olasiz', ru: 'Можете поделиться ссылкой на код' },
+    { uz: 'Kod linkini boshqalarga ulasha olasiz', ru: 'Можете поделиться ссылкой на код' },
   ];
   const HOMEWORK = [
     { b: { uz: "Yangi fayl qo'shing", ru: 'Добавьте новый файл' }, t: { uz: '— repo papkasiga about.html yarating', ru: '— создайте about.html в папке репо' } },
@@ -1590,7 +1590,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔎 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Uch qadamni yana bir marta takrorlang:', ru: 'Повторите три шага ещё раз:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Repo havolangizni platformadagi vazifa-savoliga yozib yuboring. Sinfdoshingizga ham yuboring — u brauzerda ochib sahifangizni ko'radi.", ru: 'Отправьте ссылку на репо в задание на платформе. И однокласснику тоже — он откроет вашу страницу в браузере.' })}</p></div>}
+        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔎 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Uch qadamni yana bir marta takrorlang:', ru: 'Повторите три шага ещё раз:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Repo linkingizni platformadagi vazifa-savoliga yozib yuboring. Sinfdoshingizga ham yuboring — u brauzerda ochib sahifangizni ko'radi.", ru: 'Отправьте ссылку на репо в задание на платформе. И однокласснику тоже — он откроет вашу страницу в браузере.' })}</p></div>}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -630,7 +630,7 @@ const Ustoz = ({ satrlar }) => {
 };
 const USTOZ = {
   s0: [{ uz: "Javoblarni muhokama qilmang — bugun Mentor bu gapni qanday tekshirganini ko'rasiz. 6-darsdan keyin uyda suhbat o'tkazganlar qog'ozini olib qo'ysin — 7-ekranda kerak bo'ladi.", ru: 'Не обсуждайте ответы — сегодня вы увидите, как Ментор проверил эти слова. Кто после 6-го урока провёл разговор дома, пусть приготовит бумагу — она понадобится на 7-м экране.' }],
-  s1: [{ uz: "Menyu ostidagi «uchta yozma tasdiq» — dastur natijasi. Darsda — xabar va kelgan javoblar; ko'p o'quvchida darsda yozma tasdiq 0–1 bo'ladi, qolgani uyda. Uchtaga yetmaslik — baho emas. Darsda hech kim pul olmaydi va hech narsa sotmaydi.", ru: '«Три письменных подтверждения» под названием в меню — результат программы. На уроке — сообщение и пришедшие ответы; у многих на уроке будет 0–1 подтверждение, остальное — дома. Не набрать трёх — не оценка. На уроке никто не берёт денег и ничего не продаёт.' }],
+  s1: [{ uz: "Menu ostidagi «uchta yozma tasdiq» — dastur natijasi. Darsda — xabar va kelgan javoblar; ko'p o'quvchida darsda yozma tasdiq 0–1 bo'ladi, qolgani uyda. Uchtaga yetmaslik — baho emas. Darsda hech kim pul olmaydi va hech narsa sotmaydi.", ru: '«Три письменных подтверждения» под названием в меню — результат программы. На уроке — сообщение и пришедшие ответы; у многих на уроке будет 0–1 подтверждение, остальное — дома. Не набрать трёх — не оценка. На уроке никто не берёт денег и ничего не продаёт.' }],
   s2: [
     { uz: "Mentor misolida Pro — tashkilotchi uchun, o'yinchilar bepul: shuning uchun Mentor ilovadagi oltita tashkilotchiga yozdi — 6-darsdagi uchtasi ham. 4, 5, 6-tashkilotchi bilan 6-darsda suhbat bo'lmagan.", ru: 'В примере Ментора Pro — для организатора, игрокам бесплатно: поэтому Ментор написал шести организаторам в приложении — включая троих из 6-го урока. С 4-м, 5-м и 6-м организатором на 6-м уроке разговора не было.' },
     { uz: "3-tashkilotchining 10 000 i — uning yozma tasdig'i: Mentor narxni bu darsda o'zgartirmadi. Mentor xabarini ovoz chiqarib o'qing: narx bor, «Bu to'lov emas», «Yozmasangiz ham bo'ladi» — bosim yo'q.", ru: '10 000 у 3-го организатора — его письменное подтверждение: Ментор на этом уроке цену не менял. Прочитайте сообщение Ментора вслух: цена есть, «Это не оплата», «Можете не писать» — давления нет.' },
@@ -1190,13 +1190,13 @@ const Screen8 = (props) => (
       { uz: 'Uchalasini yozib, keyingi qadamni yozaman', ru: 'Запишу всех троих и напишу следующий шаг' },
       { uz: "«Hozir yo'q» deganga har kuni qayta yozaman", ru: 'Буду каждый день писать сказавшему «сейчас нет»' },
       { uz: 'Uchinchisini ham yozma tasdiq deb yozaman', ru: 'Третьего тоже запишу как подтверждение' },
-      { uz: "Ikkalasiga «mashq to'lov» havolasini beraman", ru: 'Дам обоим ссылку на «учебную оплату»' }
+      { uz: "Ikkalasiga «mashq to'lov» linkini beraman", ru: 'Дам обоим ссылку на «учебную оплату»' }
     ]} correctIdx={0}
     explainCorrect={{ uz: 'Yozuv halol qoladi; uchtaga yetmasa — keyingi qadam.', ru: 'Запись остаётся честной; не набралось трёх — следующий шаг.' }}
     explainWrong={{
       1: { uz: "Bu bosim emasmi? «Hozir yo'q» ham natija.", ru: 'Разве это не давление? «Сейчас нет» — тоже результат.' },
       2: { uz: 'U narx yozdimi? Uning xabari nima edi?', ru: 'Он написал цену? Каким было его сообщение?' },
-      3: { uz: "Yozma tasdiq — to'lov emas: havola berilmaydi.", ru: 'Письменное подтверждение — не оплата: ссылку не дают.' },
+      3: { uz: "Yozma tasdiq — to'lov emas: link berilmaydi.", ru: 'Письменное подтверждение — не оплата: ссылку не дают.' },
       default: { uz: 'Uchtaga yetmasa nima yoziladi — eslang.', ru: 'Вспомните, что пишут, если не набралось трёх.' }
     }}
  />
@@ -1269,7 +1269,7 @@ const TX = {
   xulosa1: { uz: "Bu xulosaga o'xshaydi — gapini so'zma-so'z yozing.", ru: 'Похоже на вывод — запишите его слова дословно.' },
   nimaBosh: { uz: "Odam nima uchun to'lashini yozing.", ru: 'Напишите, за что человек заплатит.' },
   narxBosh: { uz: 'Narxni yozing — 4-darsdagi taxminingiz.', ru: 'Напишите цену — ваше предположение с 4-го урока.' },
-  havola: { uz: "Xabarga havola qo'yilmaydi — pul so'ralmaydi.", ru: 'Ссылку в сообщение не ставят — денег не просят.' },
+  havola: { uz: "Xabarga link qo'yilmaydi — pul so'ralmaydi.", ru: 'Ссылку в сообщение не ставят — денег не просят.' },
   sotish: { uz: "Bu sotish gapiga o'xshaydi — nima uchun ekanini yozing.", ru: 'Похоже на продающую фразу — напишите, за что именно.' },
   gapBosh3: { uz: "U nima deb yozdi — so'zma-so'z ko'chiring.", ru: 'Что он написал — перепишите дословно.' },
   narxBosh3: { uz: "Narx yozilmagan javob — hali yozma tasdiq emas.", ru: 'Ответ без цены — ещё не письменное подтверждение.' },
@@ -2083,7 +2083,7 @@ const QUIZ_BANK = [
   { q: { uz: "O'zingiz yozgan «tasdiq» nima bo'ladi?", ru: "Что будет с «подтверждением», которое вы написали сами?" }, opts: [{ uz: "Qabul: narx bo'lsa", ru: "Принято, если есть цена" }, { uz: "Tuzatish: odam yozmagan", ru: "Исправить: писал не человек" }, { uz: "Tuzatish: uchta emas", ru: "Исправить: их не три" }, { uz: "Qabul: so'zma-so'z bo'lsa", ru: "Принято, если дословно" }], correct: 1 },
   { q: { uz: "Tasdiq «hozir olmasangiz, qimmatlashadi» deb olindi. Natija?", ru: "Подтверждение получено словами «не возьмёте сейчас — подорожает». Итог?" }, opts: [{ uz: "Qabul: odam o'zi yozgan", ru: "Принято: человек написал сам" }, { uz: "Qabul: narxi bor", ru: "Принято: цена есть" }, { uz: "Tuzatish: narx qimmat", ru: "Исправить: цена дорогая" }, { uz: "Tuzatish: bosim bor", ru: "Исправить: было давление" }], correct: 3 },
   { q: { uz: "Mentor misolida yozma tasdiq kimlardan so'raldi?", ru: "У кого просили письменное подтверждение в примере Ментора?" }, opts: [{ uz: "Tashkilotchilardan", ru: "У организаторов" }, { uz: "O'yinchilardan", ru: "У игроков" }, { uz: "Sinfdoshlardan", ru: "У одноклассников" }, { uz: "Maydon egasidan", ru: "У владельца поля" }], correct: 0 },
-  { q: { uz: "Yozma tasdiq bergan odamga nima yuboriladi?", ru: "Что отправляют человеку, давшему письменное подтверждение?" }, opts: [{ uz: "Mashq to'lov havolasi", ru: "Ссылку на учебную оплату" }, { uz: "Pul o'tkazish iltimosi", ru: "Просьбу перевести деньги" }, { uz: "Hech narsa", ru: "Ничего" }, { uz: "Do'stlarni chaqirish", ru: "Просьбу позвать друзей" }], correct: 2 },
+  { q: { uz: "Yozma tasdiq bergan odamga nima yuboriladi?", ru: "Что отправляют человеку, давшему письменное подтверждение?" }, opts: [{ uz: "Mashq to'lov linki", ru: "Ссылку на учебную оплату" }, { uz: "Pul o'tkazish iltimosi", ru: "Просьбу перевести деньги" }, { uz: "Hech narsa", ru: "Ничего" }, { uz: "Do'stlarni chaqirish", ru: "Просьбу позвать друзей" }], correct: 2 },
   { q: { uz: "Skrinshot ko'rsatsangiz, nimani yopasiz?", ru: "Что закрываете, если показываете скриншот?" }, opts: [{ uz: "Odam yozib bergan narxni", ru: "Цену, которую написал человек" }, { uz: "Ism va telefon raqamini", ru: "Имя и номер телефона" }, { uz: "Nima uchun to'layotganini", ru: "За что он платит" }, { uz: "Xabar kelgan kun va vaqtni", ru: "День и время сообщения" }], correct: 1 },
   { q: { uz: "Mentor xabarida qaysi gap bor?", ru: "Какая фраза есть в сообщении Ментора?" }, opts: [{ uz: "«Bu to'lov emas»", ru: "«Это не оплата»" }, { uz: "«Olmasangiz, qimmatlashadi»", ru: "«Не возьмёте — подорожает»" }, { uz: "«Boshqalar ham oldi»", ru: "«Другие тоже взяли»" }, { uz: "«Do'stlarga ham yuboring»", ru: "«Отправьте и друзьям»" }], correct: 0 },
 ];
@@ -2605,7 +2605,7 @@ const ScreenPodium = ({ screen, answers, achievements, onNext, onPrev }) => {
 const KARTOCHKALAR = [
   { front: { uz: 'Bu darsda yozma tasdiq nima?', ru: 'Что на этом уроке письменное подтверждение?' }, back: { uz: "Odamning o'zi yozgan javobi: narx va nima uchun to'lashi bilan", ru: 'Ответ, который человек написал сам: с ценой и тем, за что заплатит' }, note: { uz: "Chat xabari yoki qog'oz", ru: 'Сообщение в чате или бумага' } },
   { front: { uz: 'Suhbat yozuvi bilan yozma tasdiqning farqi nima?', ru: 'Чем запись разговора отличается от письменного подтверждения?' }, back: { uz: "Suhbat yozuvini siz yozasiz, yozma tasdiqni — odamning o'zi", ru: 'Запись разговора пишете вы, подтверждение — сам человек' }, note: { uz: 'Mentor misolida: 6-darsdagi gapni Mentor yozgan edi', ru: 'В примере Ментора: слова с 6-го урока записал Ментор' } },
-  { front: { uz: 'Yozma tasdiq bergan odamdan pul olinadimi?', ru: 'Берут ли деньги у того, кто дал письменное подтверждение?' }, back: { uz: "Yo'q — yozma tasdiq to'lov emas", ru: 'Нет — письменное подтверждение не оплата' }, note: { uz: "«Mashq to'lov» va to'lov sahifasi havolasi ham berilmaydi", ru: 'Ссылку на «учебную оплату» и страницу оплаты тоже не дают' } },
+  { front: { uz: 'Yozma tasdiq bergan odamdan pul olinadimi?', ru: 'Берут ли деньги у того, кто дал письменное подтверждение?' }, back: { uz: "Yo'q — yozma tasdiq to'lov emas", ru: 'Нет — письменное подтверждение не оплата' }, note: { uz: "«Mashq to'lov» va to'lov sahifasi linki ham berilmaydi", ru: 'Ссылку на «учебную оплату» и страницу оплаты тоже не дают' } },
   { front: { uz: 'Yozma tasdiqdagi «nima uchun» nimani bildiradi?', ru: 'Что означает «за что» в письменном подтверждении?' }, back: { uz: "Odam nimaga pul to'lashini — Mentor misolida «Doimiy o'yin»", ru: 'За что человек заплатит — в примере Ментора «Постоянная игра»' }, note: { uz: "Sabab («charchadim» kabi) gapda qoladi", ru: 'Причина (вроде «устал») остаётся в словах' } },
   { front: { uz: 'Mentor nechta tashkilotchidan so\'radi va nechta yozma tasdiq oldi?', ru: 'Скольких организаторов спросил Ментор и сколько подтверждений получил?' }, back: { uz: '6 dan 3: ikkitasi 15 000 da, bittasi 10 000 da', ru: '3 из 6: два по 15 000, одно по 10 000' }, note: { uz: "2 — «hozir yo'q», 1 — javob bermadi", ru: '2 — «сейчас нет», 1 — не ответил' } },
   { front: { uz: 'Mentor tekshiruvi qaysi uch savolni beradi?', ru: 'Какие три вопроса задаёт проверка Ментора?' }, back: { uz: "Kim tasdiqladi? Narx va nima uchun yozilganmi? So'zma-so'z va bosimsiz olinganmi?", ru: 'Кто подтвердил? Записаны цена и «за что»? Получено дословно и без давления?' }, note: { uz: 'Javob — qabul yoki tuzatish', ru: 'Ответ — принято или исправление' } },
@@ -2658,7 +2658,7 @@ const HwCard = ({ qolgan, keyingi }) => (
       {HW_BANDLAR.map((b, i) => <li key={i}><i>{HW_RAQAM[i]}</i><span>{tr(b)}</span></li>)}
       {qolgan && <li><i>{HW_RAQAM[3]}</i><span>{qolgan}</span></li>}
     </ol>
-    <p className="tv-hw-ost">{tr({ uz: "Pul olmang va to'lov havolasini bermang — yozma tasdiq to'lov emas. Notanishga yozmang.", ru: 'Не берите денег и не давайте ссылку на оплату — письменное подтверждение не оплата. Не пишите незнакомым.' })}</p>
+    <p className="tv-hw-ost">{tr({ uz: "Pul olmang va to'lov linkini bermang — yozma tasdiq to'lov emas. Notanishga yozmang.", ru: 'Не берите денег и не давайте ссылку на оплату — письменное подтверждение не оплата. Не пишите незнакомым.' })}</p>
     {keyingi && <span className="tv-hw-keyingi">{keyingi}</span>}
   </div>
 );
@@ -2684,7 +2684,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   // «Endi siz bilasiz» — MD 11-ekran aynan (asosiy fikr so'zma-so'z takrorlanmaydi — T-048)
   const RECAP = [
     { uz: "Bu darsda yozma tasdiq — odamning o'zi yozgan javobi: narx va nima uchun to'lashi bilan.", ru: 'На этом уроке письменное подтверждение — ответ, который человек написал сам: с ценой и тем, за что заплатит.' },
-    { uz: "Yozma tasdiq — to'lov emas: pul olinmaydi, to'lov havolasi berilmaydi.", ru: 'Письменное подтверждение — не оплата: денег не берут, ссылку на оплату не дают.' },
+    { uz: "Yozma tasdiq — to'lov emas: pul olinmaydi, to'lov linki berilmaydi.", ru: 'Письменное подтверждение — не оплата: денег не берут, ссылку на оплату не дают.' },
     { uz: "Mentor tekshiruvi uch savol beradi: kim tasdiqladi, narx va nima uchun yozilganmi, so'zma-so'z va bosimsiz olinganmi.", ru: 'Проверка Ментора задаёт три вопроса: кто подтвердил, записаны ли цена и «за что», получено ли дословно и без давления.' },
     { uz: "Uchta yozma tasdiq — narx haqida dalil, lekin narx to'g'ri ekanining isboti emas.", ru: 'Три письменных подтверждения — довод о цене, но не доказательство, что цена верна.' },
     { uz: "Uchtaga yetmaslik — baho emas: halol natija va bitta keyingi qadam.", ru: 'Не набралось трёх — не оценка: честный результат и один следующий шаг.' }
@@ -2713,7 +2713,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     tn > 0 && !k.tekshiruv && tr({ uz: "Tekshiruv qoldi: uch savolni o'zingizga bering", ru: 'Осталась проверка: задайте себе три вопроса' }),
     k.xabar && faolN < 3 && !k.keyingiQadam && tr({ uz: "Keyingi qadam qoldi: bitta ishni qog'ozga yozing", ru: 'Остался следующий шаг: запишите одно дело на бумаге' })
   ].filter(Boolean);
-  const keyingi = tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: taklif havolasi va mukofot»</b></>, ru: <>Следующий урок — <b>«День проекта: ссылка-приглашение и награда»</b></> });
+  const keyingi = tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: taklif linki va mukofot»</b></>, ru: <>Следующий урок — <b>«День проекта: ссылка-приглашение и награда»</b></> });
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (

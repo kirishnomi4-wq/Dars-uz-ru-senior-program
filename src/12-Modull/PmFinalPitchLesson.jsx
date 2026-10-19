@@ -603,8 +603,8 @@ const JAMOA_PITCH = {
   },
   yechim: { eski: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут.' } },
   raqamlar: {
-    eski: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора дали письменное подтверждение на Pro — это ещё не оплата.' },
-    yangi: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro uchun to'lashga tayyorligini yozdi — real to'lov hali yo'q.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора написали, что готовы платить за Pro, — реальной оплаты ещё нет.' }
+    eski: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора дали письменное подтверждение на Pro — это ещё не оплата.' },
+    yangi: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro uchun to'lashga tayyorligini yozdi — real to'lov hali yo'q.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора написали, что готовы платить за Pro, — реальной оплаты ещё нет.' }
   },
   jamoa: { eski: { uz: "Men — g'oya, mahsulot va kod (agent bilan). Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.", ru: 'Я — идея, продукт и код (с агентом). Пробовали — 6 организаторов и игроки.' } },
   keyingi: {
@@ -1105,7 +1105,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const S5_XATO = {
   ozgarmadi: { uz: "Matn o'zgarmadi — tuzatishni qayta o'qing.", ru: 'Текст не изменился — перечитайте исправление.' },
   bosh: { uz: "Bo'lakka bitta-ikkita gap yozing.", ru: 'Напишите в часть одну-две фразы.' },
-  pii: { uz: 'Pitchga telefon, akkaunt va havola yozilmaydi.', ru: 'В питч не пишут телефон, аккаунт и ссылку.' },
+  pii: { uz: 'Pitchga telefon, akkaunt va link yozilmaydi.', ru: 'В питч не пишут телефон, аккаунт и ссылку.' },
   uzun: { uz: "160 belgidan oshdi — bitta gapni qisqartiring.", ru: 'Больше 160 знаков — сократите одну фразу.' },
   uzaydi: { uz: 'Gap ancha uzaydi — vaqtini taymer bilan tekshiring.', ru: 'Фраза заметно удлинилась — проверьте время таймером.' },
   pul: { uz: "Bu kursda pul so'ralmaydi — bitta aniq so'rov yozing.", ru: 'На этом курсе деньги не просят — напишите одну точную просьбу.' },
@@ -1340,7 +1340,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, live }) => {
 const S7_XATO = {
   bosh: { uz: 'Javobingizni bir qatorda yozing.', ru: 'Напишите ответ одной строкой.' },
   tekbosh: { uz: 'Nimani tekshirishingizni bir qatorda yozing.', ru: 'Одной строкой напишите, что будете проверять.' },
-  pii: { uz: 'Pitchga telefon, akkaunt va havola yozilmaydi.', ru: 'В питч не пишут телефон, аккаунт и ссылку.' },
+  pii: { uz: 'Pitchga telefon, akkaunt va link yozilmaydi.', ru: 'В питч не пишут телефон, аккаунт и ссылку.' },
   taxmin: { uz: "Bu taxmin — bilmasangiz, «Tekshirib aytaman»ni bosing.", ru: 'Это догадка — если не знаете, нажмите «Проверю и скажу».' },
   vada: { uz: "Bu va'da — bugun nimani aniq bilasiz?", ru: 'Это обещание — что вы точно знаете сегодня?' },
   pul: { uz: "Bu kursda pul so'ralmaydi — bitta aniq so'rov ayting.", ru: 'На этом курсе деньги не просят — назовите одну точную просьбу.' }

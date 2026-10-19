@@ -71,7 +71,7 @@ const LESSON_META = { lessonId: 'pm-m11d7-v1', lessonTitle: { uz: 'Foydalanuvchi
 const HW_TOKENS = [
   { t: { uz: 'oferta', ru: 'оферта' }, l: 8, tp: 22, s: 13, d: 6 },
   { t: { uz: 'shart', ru: 'условие' }, l: 68, tp: 16, s: 12, d: 7.5 },
-  { t: { uz: 'havola', ru: 'ссылка' }, l: 24, tp: 70, s: 12, d: 8.5 }
+  { t: { uz: 'link', ru: 'ссылка' }, l: 24, tp: 70, s: 12, d: 8.5 }
 ];
 const SCREEN_META = [
   { id: 's0',  type: 'hook',        template: 'custom',   scored: false, scope: 'hook' },
@@ -812,7 +812,7 @@ const useIpucha = (faol, kalit) => {
 };
 const USTOZ = {
   s0: [{ uz: "Sinfdan so'rang: «Telefoningizda biror narsa uchun to'lashdan oldin nimaga qaraysiz?» Javoblarni taxtaga yozing — ular keyin ofertaning bandlariga o'xshab chiqadi. Javoblarni hozir baholamang.", ru: 'Спросите класс: «На что вы смотрите в телефоне, прежде чем за что-то заплатить?» Запишите ответы на доске — потом они окажутся похожи на пункты оферты. Сейчас ответы не оценивайте.' }],
-  s1: [{ uz: "Menyu ostidagi «saytda» — dars natijasi: oferta va siyosat lending sahifalari bo'lib internetda turadi. Darsda hech kim pul olmaydi va hech narsa sotmaydi; oferta — mashq hujjati. Sotuvchi, pulni qaytarish va aloqa — real ishga tushirishda (bu kursda emas).", ru: '«На сайте» под названием в меню — результат урока: оферта и политика будут страницами лендинга в интернете. На уроке никто не берёт денег и ничего не продаёт; оферта — учебный документ. Продавец, возврат денег и контакты — при реальном запуске (не в этом курсе).' }],
+  s1: [{ uz: "Menu ostidagi «saytda» — dars natijasi: oferta va siyosat lending sahifalari bo'lib internetda turadi. Darsda hech kim pul olmaydi va hech narsa sotmaydi; oferta — mashq hujjati. Sotuvchi, pulni qaytarish va aloqa — real ishga tushirishda (bu kursda emas).", ru: '«На сайте» под названием в меню — результат урока: оферта и политика будут страницами лендинга в интернете. На уроке никто не берёт денег и ничего не продаёт; оферта — учебный документ. Продавец, возврат денег и контакты — при реальном запуске (не в этом курсе).' }],
   s2: [
     { uz: "To'lov taklifi ekrani qisqa: asosiy qulaylik va narx. Qolgan shartlar alohida sahifada yoziladi — to'lovchi uni to'lashdan oldin ochishi kerak. 3-savolda «Test rejim» qatori bugungi mashq haqida: bu kursda pul umuman yechilmaydi; keyingi oy uchun pul yechilish-yechilmasligi — ofertaning shartlaridan biri.", ru: 'Экран предложения оплаты короткий: главная функция и цена. Остальные условия пишут на отдельной странице — плательщик должен открыть её до оплаты. В 3-м вопросе строка «Тестовый режим» — о сегодняшнем упражнении: в этом курсе деньги вообще не списываются; спишутся ли деньги в следующем месяце — одно из условий оферты.' },
     { uz: 'Qonunda bunday taklif ommaviy oferta deb ataladi (369-modda); dars yuridik maslahat bermaydi.', ru: 'В законе такое предложение называется публичной офертой (статья 369); урок не даёт юридических консультаций.' }
@@ -832,7 +832,7 @@ const USTOZ = {
   ],
   s7: [
     { uz: "Siyosatning to'rt savoli 10 va 12-Moduldagidek qoladi — faqat to'lov bandi qo'shiladi. Karta ma'lumoti mahsulotga kirmaydi: mashq to'lov karta so'ramaydi (haqiqiy xizmatda kartani to'lov xizmati qabul qiladi — bu siyosatga yozilmaydi: siyosat bugungi holatni aytadi).", ru: 'Четыре вопроса политики остаются как в 10-м и 12-м модулях — добавляется только пункт об оплате. Данные карты в продукт не попадают: учебная оплата карту не запрашивает (в настоящем сервисе карту принимает платёжный сервис — в политику это не пишется: политика говорит о сегодняшнем положении).' },
-    { uz: "Pro'siz hisob uchun yangi akkaunt ochilmaydi: o'quvchi o'z hisobida Pro'ni Neon'da bo'sh qiladi (5-darsdagidek); `UPDATE` bitta qatorga tegishi kerak (Neon «1 row affected»). Havola to'lovdan oldin ko'rinishi kerak — shuning uchun to'lov taklifi ekranining o'zida. O'rnatish fayli bu darsda qayta tayyorlanmaydi.", ru: 'Для аккаунта без Pro новый аккаунт не открывают: ученик очищает Pro в своём аккаунте в Neon (как на 5-м уроке); `UPDATE` должен затронуть одну строку (Neon «1 row affected»). Ссылка должна быть видна до оплаты — поэтому она на самом экране предложения оплаты. Установочный файл на этом уроке заново не собирается.' }
+    { uz: "Pro'siz hisob uchun yangi akkaunt ochilmaydi: o'quvchi o'z hisobida Pro'ni Neon'da bo'sh qiladi (5-darsdagidek); `UPDATE` bitta qatorga tegishi kerak (Neon «1 row affected»). Link to'lovdan oldin ko'rinishi kerak — shuning uchun to'lov taklifi ekranining o'zida. O'rnatish fayli bu darsda qayta tayyorlanmaydi.", ru: 'Для аккаунта без Pro новый аккаунт не открывают: ученик очищает Pro в своём аккаунте в Neon (как на 5-м уроке); `UPDATE` должен затронуть одну строку (Neon «1 row affected»). Ссылка должна быть видна до оплаты — поэтому она на самом экране предложения оплаты. Установочный файл на этом уроке заново не собирается.' }
   ]
 };
 // Jonli dars: sinf ovozlari chizig'i — faqat variantlar soni, ism yo'q (MD KOD 10)
@@ -904,7 +904,7 @@ const REJA = [
   { t: { uz: "To'lovchi nimaga rozi bo'lishini bilib oling", ru: 'Узнайте, на что соглашается плательщик' }, teg: { uz: 'oferta', ru: 'оферта' } },
   { t: { uz: 'Qaysi shart bugun yozilishini ajrating', ru: 'Отделите, какое условие пишется сегодня' }, teg: { uz: 'real ishga tushirish', ru: 'реальный запуск' } },
   { t: { uz: "O'z shartlaringizni sahifaga yozing", ru: 'Запишите свои условия на страницу' }, teg: { uz: 'oferta.html', ru: 'oferta.html' } },
-  { t: { uz: "Siyosatga to'lov haqida gap qo'shib, havola qo'ying", ru: 'Добавьте в политику фразу об оплате и поставьте ссылку' }, teg: { uz: 'maxfiylik siyosati', ru: 'политика конфиденциальности' } }
+  { t: { uz: "Siyosatga to'lov haqida gap qo'shib, link qo'ying", ru: 'Добавьте в политику фразу об оплате и поставьте ссылку' }, teg: { uz: 'maxfiylik siyosati', ru: 'политика конфиденциальности' } }
 ];
 const RejaSahna = () => {
   const [k, setK] = useState(() => (kamHarakat() ? 3 : 0));
@@ -1193,7 +1193,7 @@ const s5Bosh = (st, narx) => {
 };
 const S5_YORDAM = [
   { uz: "Mentor misolida: Pro · «Doimiy o'yin»: har hafta shu kun va soatda o'yin o'zi e'lon qilinadi · 30 kun, 15 000 so'm · e'lon qilingan o'yinlar qoladi, yangi o'yin o'zi e'lon qilinmaydi.", ru: 'В примере Ментора: Pro · «Постоянная игра»: каждую неделю в тот же день и час игра объявляется сама · 30 дней, 15 000 сумов · объявленные игры остаются, новая игра сама не объявляется.' },
-  { uz: "Bandda faqat mahsulotingiz bugun qiladigan narsani yozing. 4-darsda narx yozmagan bo'lsangiz — bugungi taxminingizni yozing, u ham taxmin. Modelingiz reklama, B2B yoki tranzaksiya bo'lsa — bandlarni 4-darsdagi alohida mashq ekrani uchun yozing: bu ham mashq hujjati, lending pastiga havola qo'yilmaydi.", ru: 'Пишите в пункт только то, что ваш продукт делает сегодня. Если на 4-м уроке не записали цену — напишите сегодняшнее предположение, это тоже предположение. Если ваша модель — реклама, B2B или транзакция — пишите пункты для отдельного учебного экрана из 4-го урока: это тоже учебный документ, ссылку внизу лендинга не ставят.' }
+  { uz: "Bandda faqat mahsulotingiz bugun qiladigan narsani yozing. 4-darsda narx yozmagan bo'lsangiz — bugungi taxminingizni yozing, u ham taxmin. Modelingiz reklama, B2B yoki tranzaksiya bo'lsa — bandlarni 4-darsdagi alohida mashq ekrani uchun yozing: bu ham mashq hujjati, lending pastiga link qo'yilmaydi.", ru: 'Пишите в пункт только то, что ваш продукт делает сегодня. Если на 4-м уроке не записали цену — напишите сегодняшнее предположение, это тоже предположение. Если ваша модель — реклама, B2B или транзакция — пишите пункты для отдельного учебного экрана из 4-го урока: это тоже учебный документ, ссылку внизу лендинга не ставят.' }
 ];
 const StYordam = ({ satrlar }) => {
   const [ochiq, setOchiq] = useState(false);
@@ -1441,7 +1441,7 @@ const QZ_BG_SHAPES = [
   { ch: { uz: 'band', ru: 'пункт' }, l: 8, t: 72, s: 24, d: 27, dl: 0.8 },
   { ch: { uz: 'narx', ru: 'цена' }, l: 76, t: 68, s: 24, d: 21, dl: 2.2 },
   { ch: { uz: 'muddat', ru: 'срок' }, l: 45, t: 86, s: 22, d: 25, dl: 1.1 },
-  { ch: { uz: 'havola', ru: 'ссылка' }, l: 66, t: 26, s: 22, d: 17, dl: 0.4 },
+  { ch: { uz: 'link', ru: 'ссылка' }, l: 66, t: 26, s: 22, d: 17, dl: 0.4 },
   { ch: { uz: 'siyosat', ru: 'политика' }, l: 26, t: 34, s: 22, d: 20, dl: 1.9 },
   { ch: { uz: 'mashq hujjati', ru: 'учебный документ' }, l: 20, t: 16, s: 20, d: 18, dl: 2.9 },
   { ch: 'Maydon Jamoa', l: 56, t: 52, s: 20, d: 24, dl: 3.3 }
@@ -2260,8 +2260,8 @@ const A2_PROMPT = (boshqa) => [
   { uz: "Qayerda: `lending/maxfiylik.html` — «Qaysi ma'lumot?» va «Nima uchun?» javoblari; `lending/index.html` — sahifaning pastki qismi; {to'lov taklifi ekrani}.", ru: 'Где: `lending/maxfiylik.html` — ответы на «Какие данные?» и «Зачем?»; `lending/index.html` — нижняя часть страницы; {экран предложения оплаты}.' },
   { uz: "Nima qilsin: 1) Maxfiylik siyosatiga to'lov bandini qo'sh, gaplarini «Qaysi ma'lumot?» va «Nima uchun?» javoblariga mos joyiga qo'y: {to'lov bandi}", ru: 'Что сделать: 1) Добавь в политику конфиденциальности пункт об оплате, поставь его фразы в подходящие места ответов «Какие данные?» и «Зачем?»: {пункт об оплате}' },
   { uz: "To'lov uchun qaysi ma'lumot saqlanishini koddan tekshir va qaysi faylga qarab aytganingni ayt; kod boshqacha bo'lsa, koddan bilinmasa yoki kodda saqlanadigan, lekin bandda yo'q ma'lumot bo'lsa — o'sha joyni «[savol]» deb qoldir va nimaligini ayt, uni men yozaman. Siyosatning boshqa gaplariga tegma; to'lov qo'shilgani boshqa javobga ham tegsa (masalan, «Qancha saqlanadi?») — buni ayt, o'zing o'zgartirma.", ru: 'Проверь по коду, какие данные хранятся об оплате, и скажи, по какому файлу; если код иначе, из кода не понятно или в коде хранятся данные, которых нет в пункте, — оставь это место «[savol]» и скажи, что это, я напишу сам. Другие фразы политики не трогай; если добавление оплаты касается другого ответа (например, «Сколько хранится?») — скажи об этом, сам не меняй.' },
-  !boshqa && { uz: "2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «{nom} shartlari» havolasi, `oferta.html` ga.", ru: '2) Внизу страницы лендинга, рядом с «Политика конфиденциальности» — ссылка «Условия {название}» на `oferta.html`.' },
-  { uz: "3) To'lov taklifi ekranida «{to'lov tugmasi}» ostida ikki kichik havola: «{nom} shartlari» va «Maxfiylik siyosati». Ular brauzerda {lending manzili}/oferta.html va {lending manzili}/maxfiylik.html ni ochsin.", ru: '3) На экране предложения оплаты под «{кнопка оплаты}» две маленькие ссылки: «Условия {название}» и «Политика конфиденциальности». Пусть они открывают в браузере {адрес лендинга}/oferta.html и {адрес лендинга}/maxfiylik.html.' },
+  !boshqa && { uz: "2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «{nom} shartlari» linki, `oferta.html` ga.", ru: '2) Внизу страницы лендинга, рядом с «Политика конфиденциальности» — ссылка «Условия {название}» на `oferta.html`.' },
+  { uz: "3) To'lov taklifi ekranida «{to'lov tugmasi}» ostida ikki kichik link: «{nom} shartlari» va «Maxfiylik siyosati». Ular brauzerda {lending manzili}/oferta.html va {lending manzili}/maxfiylik.html ni ochsin.", ru: '3) На экране предложения оплаты под «{кнопка оплаты}» две маленькие ссылки: «Условия {название}» и «Политика конфиденциальности». Пусть они открывают в браузере {адрес лендинга}/oferta.html и {адрес лендинга}/maxfiylik.html.' },
   { uz: "Nima buzilmasin: «{to'lov tugmasi}» va mashq to'lov avvalgidek ishlasin; «Test rejim: pul yechilmaydi» qatori joyida qolsin; lending sarlavhasi, foydalar, asosiy tugma va Umami o'zgarmasin. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: «{кнопка оплаты}» и учебная оплата работают как раньше; строка «Тестовый режим: деньги не списываются» остаётся на месте; заголовок лендинга, преимущества, главная кнопка и Umami не меняются. Не трогай файлы `.env`. Больше ничего не трогай, назови изменённые файлы.' }
 ].filter(Boolean);
 const A2_YORDAM = [
@@ -2269,8 +2269,8 @@ const A2_YORDAM = [
   { uz: "Qayerda: `lending/maxfiylik.html` — «Qaysi ma'lumot?» va «Nima uchun?» javoblari; `lending/index.html` — sahifaning pastki qismi; ilovadagi to'lov taklifi ekrani (`mobil/`).", ru: 'Где: `lending/maxfiylik.html` — ответы на «Какие данные?» и «Зачем?»; `lending/index.html` — нижняя часть страницы; экран предложения оплаты в приложении (`mobil/`).' },
   { uz: "Nima qilsin: 1) Maxfiylik siyosatiga to'lov bandini qo'sh, gaplarini «Qaysi ma'lumot?» va «Nima uchun?» javoblariga mos joyiga qo'y — «Qaysi ma'lumot?» ga: " + MENTOR_TOLOV_BANDI.qaysi.uz + " «Nima uchun?» ga: " + MENTOR_TOLOV_BANDI.nimaUchun.uz, ru: 'Что сделать: 1) Добавь в политику конфиденциальности пункт об оплате, поставь его фразы в подходящие места ответов «Какие данные?» и «Зачем?» — в «Какие данные?»: ' + MENTOR_TOLOV_BANDI.qaysi.ru + ' В «Зачем?»: ' + MENTOR_TOLOV_BANDI.nimaUchun.ru },
   { uz: "To'lov uchun qaysi ma'lumot saqlanishini koddan tekshir va qaysi faylga qarab aytganingni ayt; kod boshqacha bo'lsa, koddan bilinmasa yoki kodda saqlanadigan, lekin bandda yo'q ma'lumot bo'lsa — o'sha joyni «[savol]» deb qoldir va nimaligini ayt, uni men yozaman. Siyosatning boshqa gaplariga tegma; to'lov qo'shilgani boshqa javobga ham tegsa (masalan, «Qancha saqlanadi?») — buni ayt, o'zing o'zgartirma.", ru: 'Проверь по коду, какие данные хранятся об оплате, и скажи, по какому файлу; если код иначе, из кода не понятно или в коде хранятся данные, которых нет в пункте, — оставь это место «[savol]» и скажи, что это, я напишу сам. Другие фразы политики не трогай; если добавление оплаты касается другого ответа (например, «Сколько хранится?») — скажи об этом, сам не меняй.' },
-  { uz: "2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «Pro shartlari» havolasi, `oferta.html` ga.", ru: '2) Внизу страницы лендинга, рядом с «Политика конфиденциальности» — ссылка «Условия Pro» на `oferta.html`.' },
-  { uz: "3) To'lov taklifi ekranida «To'lovga o'tish» ostida ikki kichik havola: «Pro shartlari» va «Maxfiylik siyosati». Ular brauzerda maydon-jamoa-….netlify.app/oferta.html va maydon-jamoa-….netlify.app/maxfiylik.html ni ochsin.", ru: '3) На экране предложения оплаты под «Перейти к оплате» две маленькие ссылки: «Условия Pro» и «Политика конфиденциальности». Пусть они открывают в браузере maydon-jamoa-….netlify.app/oferta.html и maydon-jamoa-….netlify.app/maxfiylik.html.' },
+  { uz: "2) Lending sahifasining pastida, «Maxfiylik siyosati» yonida — «Pro shartlari» linki, `oferta.html` ga.", ru: '2) Внизу страницы лендинга, рядом с «Политика конфиденциальности» — ссылка «Условия Pro» на `oferta.html`.' },
+  { uz: "3) To'lov taklifi ekranida «To'lovga o'tish» ostida ikki kichik link: «Pro shartlari» va «Maxfiylik siyosati». Ular brauzerda maydon-jamoa-….netlify.app/oferta.html va maydon-jamoa-….netlify.app/maxfiylik.html ni ochsin.", ru: '3) На экране предложения оплаты под «Перейти к оплате» две маленькие ссылки: «Условия Pro» и «Политика конфиденциальности». Пусть они открывают в браузере maydon-jamoa-….netlify.app/oferta.html и maydon-jamoa-….netlify.app/maxfiylik.html.' },
   { uz: "Nima buzilmasin: «To'lovga o'tish» va mashq to'lov avvalgidek ishlasin; «Test rejim: pul yechilmaydi» qatori joyida qolsin; lending sarlavhasi, foydalar, asosiy tugma va Umami o'zgarmasin. `.env` fayllariga tegma. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: 'Что не сломать: «Перейти к оплате» и учебная оплата работают как раньше; строка «Тестовый режим: деньги не списываются» остаётся на месте; заголовок лендинга, преимущества, главная кнопка и Umami не меняются. Не трогай файлы `.env`. Больше ничего не трогай, назови изменённые файлы.' }
 ];
 const T7 = {
@@ -2288,7 +2288,7 @@ const tolovBandXato = (s) => {
 const TEK = [
   { k: 'chiqdi', uz: "(1) Telefon brauzerida lending manzilingizga `/oferta.html` qo'shib oching — tepada «Mashq hujjati — real to'lov qabul qilinmaydi».", ru: '(1) В браузере телефона откройте адрес лендинга с `/oferta.html` — вверху «Учебный документ — реальная оплата не принимается».' },
   { k: 'lending', uz: "(2) Lendingning o'zini oching: pastdagi «Maxfiylik siyosati» va «{nom} shartlari» — ikkalasi ochiladi; siyosatda «Qaysi ma'lumot?» va «Nima uchun?» ostida to'lov bandi bor. Bandning har gapini agent aytgan fayl bilan solishtiring.", ru: '(2) Откройте сам лендинг: внизу «Политика конфиденциальности» и «Условия {название}» — обе открываются; в политике под «Какие данные?» и «Зачем?» есть пункт об оплате. Сверьте каждую фразу пункта с файлом, который назвал агент.' },
-  { k: 'ekran', uz: "(3) To'lov taklifi ekranini oching — Pro'siz hisob kerak (mobil — Expo Go'da, web — saytingizda). Hisobingizda Pro yoqilgan bo'lsa — Neon SQL Editor'da 5-darsdagi so'rov bilan uni bo'sh qiling: `UPDATE oyinchilar SET pro_gacha = NULL WHERE id = {hisob raqami};` — `WHERE` siz yubormang. Keyin ilovani yopib oching. «{to'lov tugmasi}» ostidagi ikki havolani bosing — brauzerda oferta va siyosat ochiladi; «{to'lov tugmasi}» avvalgidek mashq to'lov sahifasini ochadi.", ru: '(3) Откройте экран предложения оплаты — нужен аккаунт без Pro (мобильный — в Expo Go, веб — на сайте). Если в вашем аккаунте включён Pro — очистите его в Neon SQL Editor запросом из 5-го урока: `UPDATE oyinchilar SET pro_gacha = NULL WHERE id = {номер аккаунта};` — без `WHERE` не отправляйте. Затем закройте и откройте приложение. Нажмите две ссылки под «{кнопка оплаты}» — в браузере откроются оферта и политика; «{кнопка оплаты}» как раньше открывает учебную страницу оплаты.' }
+  { k: 'ekran', uz: "(3) To'lov taklifi ekranini oching — Pro'siz hisob kerak (mobil — Expo Go'da, web — saytingizda). Hisobingizda Pro yoqilgan bo'lsa — Neon SQL Editor'da 5-darsdagi so'rov bilan uni bo'sh qiling: `UPDATE oyinchilar SET pro_gacha = NULL WHERE id = {hisob raqami};` — `WHERE` siz yubormang. Keyin ilovani yopib oching. «{to'lov tugmasi}» ostidagi ikki linkni bosing — brauzerda oferta va siyosat ochiladi; «{to'lov tugmasi}» avvalgidek mashq to'lov sahifasini ochadi.", ru: '(3) Откройте экран предложения оплаты — нужен аккаунт без Pro (мобильный — в Expo Go, веб — на сайте). Если в вашем аккаунте включён Pro — очистите его в Neon SQL Editor запросом из 5-го урока: `UPDATE oyinchilar SET pro_gacha = NULL WHERE id = {номер аккаунта};` — без `WHERE` не отправляйте. Затем закройте и откройте приложение. Нажмите две ссылки под «{кнопка оплаты}» — в браузере откроются оферта и политика; «{кнопка оплаты}» как раньше открывает учебную страницу оплаты.' }
 ];
 const ScreenA2 = (props) => {
   const { storedAnswer, onAnswer, screen, answers } = props;
@@ -2347,7 +2347,7 @@ const ScreenA2 = (props) => {
         );
       })}
       {Object.values(tek).some(v => v === false) && <Band>{tr({ uz: "«Ochilmadi» bo'lsa — agentga: «{nima}: kutganim {nima kutdim}, bo'ldi {nima bo'ldi}. Tuzat, o'zgargan fayllarni ayt.» → push → qayta oching. Lending yangilanmagan bo'lsa — bir necha daqiqadan keyin qayta oching.", ru: 'Если «Не открылось» — агенту: «{что}: ожидал {что ожидал}, получилось {что получилось}. Исправь, назови изменённые файлы.» → push → откройте снова. Если лендинг не обновился — откройте снова через несколько минут.' })}</Band>}
-      {trek !== 'web' && <Band kul>{tr({ uz: "O'rnatish fayli va brauzer ko'rinishi o'zi yangilanmaydi: odamlardagi ilovada havolalar faqat yangi versiyada ko'rinadi.", ru: 'Установочный файл и браузерная версия сами не обновляются: у людей в приложении ссылки появятся только в новой версии.' })}</Band>}
+      {trek !== 'web' && <Band kul>{tr({ uz: "O'rnatish fayli va brauzer ko'rinishi o'zi yangilanmaydi: odamlardagi ilovada linklar faqat yangi versiyada ko'rinadi.", ru: 'Установочный файл и браузерная версия сами не обновляются: у людей в приложении ссылки появятся только в новой версии.' })}</Band>}
     </span>
   );
   return (
@@ -2361,8 +2361,8 @@ const ScreenA2 = (props) => {
         { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "`lending/maxfiylik.html` ni oching: 12-Modulda yozgan to'rt javobingiz. Ular o'zgarmaydi — faqat to'lov bandi qo'shiladi. To'lov uchun nima saqlanishini 3-darsdagi jadvalingizdan eslang (Mentor misolida — `tolovlar`).", ru: 'Откройте `lending/maxfiylik.html`: ваши четыре ответа из 12-го модуля. Они не меняются — добавляется только пункт об оплате. Что хранится об оплате, вспомните по своей таблице из 3-го урока (в примере Ментора — `tolovlar`).' },
           bandlar: [
             trekGap(trek, { uz: "Mobil trek — to'lov taklifi ekrani ilovada (`mobil/`), uni Expo Go'da ochasiz.", ru: 'Мобильный трек — экран предложения оплаты в приложении (`mobil/`), открываете его в Expo Go.' }, { uz: "Web-trek — to'lov taklifi ekrani saytingizda.", ru: 'Веб-трек — экран предложения оплаты на вашем сайте.' }, { uz: "Mobil trek — to'lov taklifi ekrani ilovada (`mobil/`), uni Expo Go'da ochasiz · web-trek — to'lov taklifi ekrani saytingizda.", ru: 'Мобильный трек — экран предложения оплаты в приложении (`mobil/`), открываете его в Expo Go · веб-трек — экран предложения оплаты на вашем сайте.' }),
-            { uz: "To'lov taklifi ekrani hali yo'q bo'lsa — promptdagi 3-bandni o'chiring: havolalar faqat lendingda turadi.", ru: 'Если экрана предложения оплаты ещё нет — удалите в промпте пункт 3: ссылки будут только на лендинге.' },
-            { accent: boshqa, t: { uz: "Modelingiz reklama, B2B yoki tranzaksiya bo'lsa (4-darsdagi alohida mashq ekrani) — promptdagi 2-band o'zi tushib qoladi: shartlar havolasi faqat mashq ekranida bo'ladi.", ru: 'Если ваша модель — реклама, B2B или транзакция (отдельный учебный экран из 4-го урока) — пункт 2 промпта уберётся сам: ссылка на условия будет только на учебном экране.' } }
+            { uz: "To'lov taklifi ekrani hali yo'q bo'lsa — promptdagi 3-bandni o'chiring: linklar faqat lendingda turadi.", ru: 'Если экрана предложения оплаты ещё нет — удалите в промпте пункт 3: ссылки будут только на лендинге.' },
+            { accent: boshqa, t: { uz: "Modelingiz reklama, B2B yoki tranzaksiya bo'lsa (4-darsdagi alohida mashq ekrani) — promptdagi 2-band o'zi tushib qoladi: shartlar linki faqat mashq ekranida bo'ladi.", ru: 'Если ваша модель — реклама, B2B или транзакция (отдельный учебный экран из 4-го урока) — пункт 2 промпта уберётся сам: ссылка на условия будет только на учебном экране.' } }
           ] },
         { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "«To'lov bandi»ni o'zingiz yozing, lending manzilini tekshiring, «Nusxalash»ni bosing va Antigravity'ga yuboring:", ru: '«Пункт об оплате» напишите сами, проверьте адрес лендинга, нажмите «Скопировать» и отправьте в Antigravity:' },
           ichi: <span className="st-a2-in">
@@ -2400,7 +2400,7 @@ const KARTALAR = [
   { front: { uz: 'Agent koddan bilmagan joyni qanday belgilaydi?', ru: 'Как агент отмечает место, которое не узнал из кода?' }, back: { uz: '«[savol]» deb qoldiradi', ru: 'Оставляет «[savol]»' }, note: { uz: "Gapni kod va ilovaga qarab o'zingiz yozasiz", ru: 'Фразу пишете сами, глядя в код и приложение' } },
   { front: { uz: 'Mashq ofertasining tepasida va oxirida nima yoziladi?', ru: 'Что пишут вверху и в конце учебной оферты?' }, back: { uz: "«Mashq hujjati — real to'lov qabul qilinmaydi» va «Bu hujjat yuridik maslahat emas.»", ru: '«Учебный документ — реальная оплата не принимается» и «Этот документ — не юридическая консультация.»' }, note: { uz: 'Sahifa mashq ekanini ochiq aytadi', ru: 'Страница открыто говорит, что она учебная' } },
   { front: { uz: "Siyosatdagi to'lov bandi nimani aytadi?", ru: 'О чём говорит пункт об оплате в политике?' }, back: { uz: "Karta so'ralmasligini va mahsulot nimani saqlashini", ru: 'Что карту не запрашивают и что хранит продукт' }, note: { uz: "Mentor misolida: to'lov raqami, hisob, holat, summa, sana va Pro muddati", ru: 'В примере Ментора: номер платежа, аккаунт, статус, сумма, дата и срок Pro' } },
-  { front: { uz: "To'lovchi shartlarni qayerdan ochadi?", ru: 'Где плательщик открывает условия?' }, back: { uz: "To'lov taklifi ekranidagi va lendingdagi havoladan", ru: 'По ссылке на экране предложения оплаты и на лендинге' }, note: { uz: "To'lashdan oldin", ru: 'До оплаты' } }
+  { front: { uz: "To'lovchi shartlarni qayerdan ochadi?", ru: 'Где плательщик открывает условия?' }, back: { uz: "To'lov taklifi ekranidagi va lendingdagi linkdan", ru: 'По ссылке на экране предложения оплаты и на лендинге' }, note: { uz: "To'lashdan oldin", ru: 'До оплаты' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line
@@ -2428,9 +2428,9 @@ const RECAP_YAKUN = [
   { uz: "Siyosatdagi to'lov bandi karta so'ralmasligini va mahsulot nimani saqlashini aytadi.", ru: 'Пункт об оплате в политике говорит, что карту не запрашивают и что хранит продукт.' }
 ];
 const SARLAVHA = {
-  tayyor: { uz: 'Oferta va siyosat saytda — havolalar ishlaydi.', ru: 'Оферта и политика на сайте — ссылки работают.' },
+  tayyor: { uz: 'Oferta va siyosat saytda — linklar ishlaydi.', ru: 'Оферта и политика на сайте — ссылки работают.' },
   tekshir: { uz: 'Hujjatlar yozildi — saytda tekshirish qoldi.', ru: 'Документы написаны — осталось проверить на сайте.' },
-  a1: { uz: 'Oferta yozildi — siyosat va havolalar qoldi.', ru: 'Оферта написана — остались политика и ссылки.' },
+  a1: { uz: 'Oferta yozildi — siyosat va linklar qoldi.', ru: 'Оферта написана — остались политика и ссылки.' },
   bandlar: { uz: 'Bandlaringiz tayyor — sahifani yozish qoldi.', ru: 'Пункты готовы — осталось написать страницу.' },
   yoq: { uz: 'Oferta hali yozilmagan — bandlarni uyda yozing.', ru: 'Оферта ещё не написана — напишите пункты дома.' }
 };
@@ -2480,7 +2480,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const qolgan = [];
   if (!h) qolgan.push({ uz: 'oferta bandlarini yozing', ru: 'напишите пункты оферты' });
   else if (savol) qolgan.push({ uz: '«[savol]» joylarini kod va ilovaga qarab yozing', ru: 'напишите места «[savol]», глядя в код и приложение' });
-  if (!a2) qolgan.push({ uz: "siyosatga to'lov bandi va havolalarni qo'shing", ru: 'добавьте в политику пункт об оплате и ссылки' });
+  if (!a2) qolgan.push({ uz: "siyosatga to'lov bandi va linklarni qo'shing", ru: 'добавьте в политику пункт об оплате и ссылки' });
   if (!ochildi) qolgan.push({ uz: 'push qilib, telefonda oching', ru: 'сделайте push и откройте на телефоне' });
   const keyingi = tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: ketayotgan foydalanuvchini qaytarish»</b></>, ru: <>Следующий урок — <b>«Loyiha kuni: ketayotgan foydalanuvchini qaytarish»</b></> });
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;

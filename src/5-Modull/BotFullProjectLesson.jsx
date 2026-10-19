@@ -744,8 +744,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <TgChat status={{ uz: 'bot · serverda', ru: 'бот · на сервере' }} minH={0} fit>
         <Bubble from="user">03:00 — /start</Bubble>
         <Bubble from="bot">{tr({ uz: "Yana salom, Aziz! AvtoPizza'ga xush kelibsiz!", ru: "Снова привет, Азиз! Добро пожаловать в AvtoPizza!" })}</Bubble>
-        <TgBtns items={['🍕 Menyu', { uz: 'Buyurtma', ru: 'Заказ' }]} />
-        <Bubble from="user" muted>{tr({ uz: '«🍕 Menyu» bosildi', ru: 'нажата «🍕 Menyu»' })}</Bubble>
+        <TgBtns items={['🍕 Menu', { uz: 'Buyurtma', ru: 'Заказ' }]} />
+        <Bubble from="user" muted>{tr({ uz: '«🍕 Menu» bosildi', ru: 'нажата «🍕 Menu»' })}</Bubble>
         <Bubble from="bot">{tr({ uz: 'Tanlang:', ru: 'Выберите:' })}</Bubble>
         <TgBtns items={['Margarita', 'Pepperoni', { uz: 'Pishloqli', ru: 'С сыром' }]} />
       </TgChat>
@@ -951,7 +951,7 @@ const ScreenA3 = (props) => (
     chatStatus={{ uz: 'bot · serverda', ru: 'бот · на сервере' }}
     chat={[
       { from: 'user', t: '/start' },
-      { from: 'bot', t: { uz: "(… 40 s) Yana salom, Aziz! AvtoPizza'ga xush kelibsiz!", ru: "(… 40 с) Снова привет, Азиз! Добро пожаловать в AvtoPizza!" }, btns: ['🍕 Menyu', { uz: 'Buyurtma', ru: 'Заказ' }] },
+      { from: 'bot', t: { uz: "(… 40 s) Yana salom, Aziz! AvtoPizza'ga xush kelibsiz!", ru: "(… 40 с) Снова привет, Азиз! Добро пожаловать в AvtoPizza!" }, btns: ['🍕 Menu', { uz: 'Buyurtma', ru: 'Заказ' }] },
       { from: 'user', t: { uz: "Achchiq bo'lmagani qaysi?", ru: 'Какая не острая?' } },
       { from: 'bot', t: { uz: 'Margarita achchiq emas: pomidor sousi va pishloq. Tanlaysizmi? (AI)', ru: 'Margarita не острая: томатный соус и сыр. Выбираете? (ИИ)' } }
     ]}

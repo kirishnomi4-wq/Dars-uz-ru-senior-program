@@ -141,12 +141,12 @@ const QUIZ = [
     opts: [
       { uz: 'Ish chindan bajariladigan joy', ru: 'Место, где дело действительно выполняется' },
       { uz: 'Eng chiroyli bezalgan sahifa', ru: 'Самая красиво оформленная страница' },
-      { uz: 'Menyudagi barcha bandlar', ru: 'Все пункты меню подряд' },
+      { uz: 'Menudagi barcha bandlar', ru: 'Все пункты меню подряд' },
       { uz: 'Logotip turgan burchak', ru: 'Угол с логотипом' },
     ],
     correct: 0,
     okText: { uz: "To'g'ri! Tinglovchi ishning bajarilganini ko'rishi kerak — bezak emas, natija bosiladi.", ru: 'Верно! Слушатель должен увидеть, что дело сделано, — нажимается результат, а не украшение.' },
-    noText: { uz: 'Adashdingiz — menyu va bezak ishni isbotlamaydi: ish chindan bajariladigan joy bosiladi.', ru: 'Неверно — меню и украшения не доказывают дело: нажимается место, где оно действительно выполняется.' },
+    noText: { uz: 'Adashdingiz — menu va bezak ishni isbotlamaydi: ish chindan bajariladigan joy bosiladi.', ru: 'Неверно — меню и украшения не доказывают дело: нажимается место, где оно действительно выполняется.' },
   },
 ];
 

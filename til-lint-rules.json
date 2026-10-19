@@ -841,6 +841,14 @@
       "except": "\\bvosita\\s*(===|=|:\\s*id|\\})|\\.vosita\\b|\\bvosita \\}",
       "suggest": "kitobiy — o'quvchi tushunmaydi. Narsaning o'z nomi: dastur (Live Server, npm, Node.js) · usul (sikl, algoritm) · mavzu (dars bo'limi) · AI yordamchi / Gemini / Copilot; yoki gapni «nima ishlatiladi?» qilib qayta tuzing",
       "law": "MATN_ETALONI lug'at · MATN_KORPUS §229 · F-1017-203 (17.10)"
+    },
+    {
+      "id": "havola-link",
+      "pattern": "(?<![A-Za-z_\\-'])[Hh]avola",
+      "flags": "",
+      "severity": "warn",
+      "suggest": "dasturlash/internet ma'nosida — «link» (linkni, linklar, linkka, linki); kod id'si bo'lsa (holat: 'havola') — e'tibor bermang",
+      "law": "MATN_ETALONI lug'at · KORPUS §LINK-MENU · F-1019-10"
     }
   ]
 }

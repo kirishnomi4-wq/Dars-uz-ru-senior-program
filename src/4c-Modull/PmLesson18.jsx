@@ -721,7 +721,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish · saytingiz', ru: 'Введение · ваш сайт' })} screen={screen} navContent={<NavNext optionalLive turnBusy={picked === null && !isMentor} disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один' })} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytingiz hozir <span className="italic" style={{ color: T.accent }}>ochilyaptimi?</span></>, ru: <>Ваш сайт сейчас <span className="italic" style={{ color: T.accent }}>открывается?</span></> })}</h2></div>
-        <Mentor>{nom ? tr({ uz: <>Saytingizni Netlify'ga chiqarib qo'ygansiz — havolasi {nom}.</>, ru: <>Вы выложили свой сайт на Netlify — ссылка {nom}.</> }) : tr({ uz: <>Saytingizni Netlify'ga chiqarib qo'ygansiz — u hozir ham o'sha yerda turibdi.</>, ru: <>Вы выложили свой сайт на Netlify — он и сейчас там.</> })}</Mentor>
+        <Mentor>{nom ? tr({ uz: <>Saytingizni Netlify'ga chiqarib qo'ygansiz — linki {nom}.</>, ru: <>Вы выложили свой сайт на Netlify — ссылка {nom}.</> }) : tr({ uz: <>Saytingizni Netlify'ga chiqarib qo'ygansiz — u hozir ham o'sha yerda turibdi.</>, ru: <>Вы выложили свой сайт на Netlify — он и сейчас там.</> })}</Mentor>
         <div className="hrow two fade-up delay-1">
           {HOOK_OPTS.map((o, i) => (
             <button key={o.k} className={`hopt${picked === i ? ' on' : ''}${opened ? ' open' : ''}${!opened && optWave ? waveCls(true, i, HOOK_OPTS.length) : ''}`} disabled={opened} onClick={() => pick(i)}>
@@ -1531,7 +1531,7 @@ const GATE_OPTS = [
   { t: { uz: 'signal: xato 200', ru: 'сигнал: ошибка 200' } },
 ];
 const kodMatn = (nom) => tr({ uz: `// tekshir.js — o'lchagichning bir marta ishlashi
-const MANZIL = 'https://${nom}'; // ← o'z saytingiz havolasi
+const MANZIL = 'https://${nom}'; // ← o'z saytingiz linki
 
 async function olchagich() {
   const boshlandi = Date.now();          // hozirgi vaqt, millisekundda
@@ -1999,7 +1999,7 @@ const QZ_BG_SHAPES = [
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · to'g'ri indekslar 0,3,2,1 · 1,0,2,3 · 0,2,1,3.
 // darslik-jonli TASDIQLAYDI. Har savol darsda AYTILGAN ekranga bog'langan (65-qonun).
 const QUIZ_BANK = [
-  { q: { uz: "O'lchagich nima?", ru: "Что такое измеритель?" }, opts: [{ uz: "Chiqqan saytni o'lchab turadi", ru: "Измеряет сайт после выпуска" }, { uz: "Kodni oldindan tekshiradi", ru: "Проверяет код заранее" }, { uz: "Sahifalarni yozib beradi", ru: "Пишет страницы" }, { uz: "Havolalarni saqlab qo'yadi", ru: "Хранит ссылки" }], correct: 0 },
+  { q: { uz: "O'lchagich nima?", ru: "Что такое измеритель?" }, opts: [{ uz: "Chiqqan saytni o'lchab turadi", ru: "Измеряет сайт после выпуска" }, { uz: "Kodni oldindan tekshiradi", ru: "Проверяет код заранее" }, { uz: "Sahifalarni yozib beradi", ru: "Пишет страницы" }, { uz: "Linklarni saqlab qo'yadi", ru: "Хранит ссылки" }], correct: 0 },
   // §107: ikki variantlik olam — 2/2 yoziladi, farq SABABda qoladi.
   { q: { uz: "O'lchagich qachon ishlaydi?", ru: "Когда работает измеритель?" }, opts: [{ uz: "Chiqarishdan oldin, bir marta", ru: "До выпуска, один раз" }, { uz: "Kod yozilayotgan paytda", ru: "Пока пишется код" }, { uz: "Faqat siz qaraganingizda", ru: "Только когда вы смотрите" }, { uz: "Chiqqandan keyin, to'xtovsiz", ru: "После выпуска, без остановки" }], correct: 3 },
   { q: { uz: "«Javob vaqti» nimani ko'rsatadi?", ru: "Что показывает «время ответа»?" }, opts: [{ uz: "Xato bilan tugaganlar sonini", ru: "Сколько заходов кончились ошибкой" }, { uz: "Sahifadagi rasmlar sonini", ru: "Сколько на странице картинок" }, { uz: "Sahifa qancha vaqtda kelganini", ru: "За сколько пришла страница" }, { uz: "Kuniga necha ochilganini", ru: "Сколько раз открыли за день" }], correct: 2 },
@@ -2009,7 +2009,7 @@ const QUIZ_BANK = [
   { q: { uz: "Kechasi bir zumlik sekinlashuv — qanday signal?", ru: "Мгновенное замедление ночью — какой это сигнал?" }, opts: [{ uz: "Quruq — hech kim sezmadi", ru: "Пустой — никто не заметил" }, { uz: "Quruq — kechasi keldi", ru: "Пустой — пришёл ночью" }, { uz: "Chin — javob sekinlashdi", ru: "Настоящий — ответ замедлился" }, { uz: "Chin — o'lchagich aytdi", ru: "Настоящий — измеритель сообщил" }], correct: 0 },
   { q: { uz: "Chegara juda past bo'lsa nima bo'ladi?", ru: "Что будет, если граница слишком низкая?" }, opts: [{ uz: "Quruq signal kelmaydi", ru: "Пустых сигналов не будет" }, { uz: "Xato ko'rinmay qoladi", ru: "Ошибка останется незамеченной" }, { uz: "Quruq signallar ko'payadi", ru: "Пустых сигналов станет больше" }, { uz: "Sayt tezroq ochiladi", ru: "Сайт будет открываться быстрее" }], correct: 2 },
   { q: { uz: "Chegara juda baland bo'lsa nima bo'ladi?", ru: "Что будет, если граница слишком высокая?" }, opts: [{ uz: "Har sakrash xabar beradi", ru: "Каждый скачок шлёт сообщение" }, { uz: "Sayt ochilmay qoladi", ru: "Сайт перестанет открываться" }, { uz: "Quruq signallar ko'payadi", ru: "Пустых сигналов станет больше" }, { uz: "Odam sizdan oldin sezadi", ru: "Человек заметит раньше вас" }], correct: 3 },
-  { q: { uz: "Network qatorida qaysi ikki raqam bor?", ru: "Какие два числа в строке Network?" }, opts: [{ uz: "Holat (200, 404) va vaqt (ms)", ru: "Состояние (200, 404) и время (мс)" }, { uz: "Nom va rasm o'lchami", ru: "Имя и размер картинки" }, { uz: "Holat va kirganlar soni", ru: "Состояние и число заходов" }, { uz: "Havola va ochilgan soat", ru: "Ссылка и время открытия" }], correct: 0 },
+  { q: { uz: "Network qatorida qaysi ikki raqam bor?", ru: "Какие два числа в строке Network?" }, opts: [{ uz: "Holat (200, 404) va vaqt (ms)", ru: "Состояние (200, 404) и время (мс)" }, { uz: "Nom va rasm o'lchami", ru: "Имя и размер картинки" }, { uz: "Holat va kirganlar soni", ru: "Состояние и число заходов" }, { uz: "Link va ochilgan soat", ru: "Ссылка и время открытия" }], correct: 0 },
   { q: { uz: 'Holat 404 nimani bildiradi?', ru: 'Что означает состояние 404?' }, opts: [{ uz: 'Sahifa odatdagidek keldi', ru: 'Страница пришла как обычно' }, { uz: 'Sahifa juda sekin keldi', ru: 'Страница пришла очень медленно' }, { uz: 'Bunday sahifa topilmadi', ru: 'Такая страница не найдена' }, { uz: 'Sayt butunlay ochilmadi', ru: 'Сайт не открылся совсем' }], correct: 2 },
   // 2 «jurnalga» / 2 «hozir xabarga»; har distraktorning sababi savol-materialida yolg'on.
   { q: { uz: "Bir zumlik sekinlashuvga qaysi yo'l?", ru: "Какой путь для мгновенного замедления?" }, opts: [{ uz: "Hozir xabar — sekinlashdi", ru: "Сообщить сейчас — замедлился" }, { uz: "Jurnalga — hech kim sezmadi", ru: "В журнал — никто не заметил" }, { uz: "Hozir xabar — sayt ochilmadi", ru: "Сообщить сейчас — сайт не открылся" }, { uz: "Jurnalga — xato ko'paydi", ru: "В журнал — ошибок стало больше" }], correct: 1 },

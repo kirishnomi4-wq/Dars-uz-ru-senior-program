@@ -326,7 +326,7 @@ const RECAPS = {
     cards: [
       { ic: '1', h: { uz: 'Loyiha', ru: 'Проект' }, body: { uz: 'Boshlanishi va oxiri bor qurish ishi.', ru: 'Работа по созданию, у которой есть начало и конец.' } },
       { ic: '2', h: { uz: 'Mahsulot', ru: 'Продукт' }, body: { uz: "Odamlar o'z muammosi uchun ishlatadigan sayt, ilova yoki xizmat.", ru: 'Сайт, приложение или сервис, которым люди пользуются для своей проблемы.' } },
-      { ic: '3', h: { uz: 'Qanday bilinadi', ru: 'Как понять' }, body: { uz: "So'rang: odamlar uni o'z ishi uchun ishlatyaptimi? Havola qayerdan kelgani muhim emas.", ru: 'Спросите: пользуются ли им люди для своего дела? Откуда пришла ссылка — неважно.' }, ask: { uz: "Do'stingiz siz yuborgan havolani bir marta ochib ko'rdi. Bu mahsulotmi?", ru: 'Друг один раз открыл ссылку, которую вы прислали. Это продукт?' } }
+      { ic: '3', h: { uz: 'Qanday bilinadi', ru: 'Как понять' }, body: { uz: "So'rang: odamlar uni o'z ishi uchun ishlatyaptimi? Link qayerdan kelgani muhim emas.", ru: 'Спросите: пользуются ли им люди для своего дела? Откуда пришла ссылка — неважно.' }, ask: { uz: "Do'stingiz siz yuborgan linkni bir marta ochib ko'rdi. Bu mahsulotmi?", ru: 'Друг один раз открыл ссылку, которую вы прислали. Это продукт?' } }
     ]
   },
   5: {
@@ -902,7 +902,7 @@ const OvozChizigi = ({ live, screen, variantlar, mening }) => {
 const HOOK_OPTS = [
   { id: 'ozim', t: { uz: "O'zim — ishlayaptimi deb tekshirdim", ru: 'Я сам — проверял, работает ли' }, odam: SIZ },
   { id: 'mentor', t: { uz: "Mentor — vazifamni ko'rib chiqish uchun", ru: 'Ментор — чтобы проверить задание' }, odam: { uz: 'mentor', ru: 'ментор' } },
-  { id: 'dost', t: { uz: "Do'stim — havolasini o'zim yuborgandim", ru: 'Друг — ссылку я отправил сам' }, odam: DOST }
+  { id: 'dost', t: { uz: "Do'stim — linkini o'zim yuborgandim", ru: 'Друг — ссылку я отправил сам' }, odam: DOST }
 ];
 const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -2080,7 +2080,7 @@ const QUIZ_BANK = [
   { q: { uz: "«Oshxona qurish kerak.» Bu nima?", ru: "«Нужно построить столовую». Что это?" }, opts: [{ uz: "Yechim — kim qiynalgani yo'q", ru: "Решение — нет, кто страдает" }, { uz: "Muammo — «kerak» so'zi bor", ru: "Проблема — есть слово «нужно»" }, { uz: "Muammo — maktabda bo'lyapti", ru: "Проблема — это происходит в школе" }, { uz: "Yechim — chunki qimmat", ru: "Решение — потому что дорого" }], correct: 0 },
   { q: { uz: "Dropbox qanday muammodan boshlangan?", ru: "С какой проблемы начался Dropbox?" }, opts: [{ uz: "Kompyuter juda qimmat edi", ru: "Компьютеры были очень дорогими" }, { uz: "Internet juda sekin edi", ru: "Интернет был очень медленным" }, { uz: "Fayl chop etish qiyin edi", ru: "Файлы было трудно печатать" }, { uz: "Fleshka uyda qolgan edi", ru: "Флешка осталась дома" }], correct: 3 },
   { q: { uz: "Dropbox videosi chiqqach nima bo'ldi?", ru: "Что случилось после видео Dropbox?" }, opts: [{ uz: "Faqat do'stlari ko'rdi", ru: "Посмотрели только друзья" }, { uz: "Dastur yopib qo'yildi", ru: "Программу закрыли" }, { uz: "Videoni hech kim ko'rmadi", ru: "Видео никто не посмотрел" }, { uz: "75 000 kishi ro'yxatga yozildi", ru: "75 000 человек записались в список" }], correct: 3 },
-  { q: { uz: "Havola sizdan, do'st botni doim ishlatadi. Bot nima?", ru: "Ссылка от вас, друг постоянно пользуется ботом. Что такое бот?" }, opts: [{ uz: "Loyiha — havola sizdan", ru: "Проект — ссылка от вас" }, { uz: "Mahsulot — o'z ishi uchun", ru: "Продукт — для своего дела" }, { uz: "Mahsulot — havola bor", ru: "Продукт — есть ссылка" }, { uz: "Loyiha — bot kichik", ru: "Проект — бот маленький" }], correct: 1 },
+  { q: { uz: "Link sizdan, do'st botni doim ishlatadi. Bot nima?", ru: "Ссылка от вас, друг постоянно пользуется ботом. Что такое бот?" }, opts: [{ uz: "Loyiha — link sizdan", ru: "Проект — ссылка от вас" }, { uz: "Mahsulot — o'z ishi uchun", ru: "Продукт — для своего дела" }, { uz: "Mahsulot — link bor", ru: "Продукт — есть ссылка" }, { uz: "Loyiha — bot kichik", ru: "Проект — бот маленький" }], correct: 1 },
   { q: { uz: "Muammo yig'ishda sherikdan nimani so'raysiz?", ru: "Что спрашиваете у партнёра при сборе проблем?" }, opts: [{ uz: "Nimani kimdandir so'ragani", ru: "Что он у кого-то спрашивал" }, { uz: "Qanday ilova xohlashini", ru: "Какое приложение он хочет" }, { uz: "Qaysi ilova chiroyliroq", ru: "Какое приложение красивее" }, { uz: "G'oyangiz unga yoqadimi", ru: "Нравится ли ему ваша идея" }], correct: 0 },
   { q: { uz: "Mentor nega maydon muammosini tanladi?", ru: "Почему ментор выбрал проблему с полем?" }, opts: [{ uz: "Futbolni yaxshi ko'rgani", ru: "Любит футбол" }, { uz: "Maydon qurish arzonligi", ru: "Построить поле дёшево" }, { uz: "O'yinchilardan so'ray olgani", ru: "Можно спросить у игроков" }, { uz: "Ro'yxatda birinchi turgani", ru: "Стоит первой в списке" }], correct: 2 },
 ];
@@ -2643,7 +2643,7 @@ const KARTOCHKALAR = [
   { front: { uz: 'Loyiha nima?', ru: 'Что такое проект?' }, back: { uz: 'Boshlanishi va oxiri bor qurish ishi', ru: 'Работа по созданию, у которой есть начало и конец' } },
   { front: { uz: 'Mahsulot nima?', ru: 'Что такое продукт?' }, back: { uz: "Odamlar o'z muammosi uchun ishlatadigan sayt, ilova yoki xizmat", ru: 'Сайт, приложение или сервис, которым люди пользуются для своей проблемы' } },
   { front: { uz: "Loyiha va mahsulot qanday bog'lanadi?", ru: 'Как связаны проект и продукт?' }, back: { uz: "Saytni qurish — loyiha; tayyor saytni odamlar o'z ishi uchun ishlatsa, u mahsulot bo'lib ishlaydi", ru: 'Построить сайт — проект; если готовым сайтом люди пользуются для своего дела, он работает как продукт' } },
-  { front: { uz: "Do'stingiz siz yuborgan havola orqali kelib, botdan har kuni jadvalini ko'radi. Bu mahsulotmi?", ru: 'Друг пришёл по вашей ссылке и каждый день смотрит в боте своё расписание. Это продукт?' }, back: { uz: "Ha: u botni o'z ishi uchun ishlatyapti — havola qayerdan kelgani muhim emas", ru: 'Да: он пользуется ботом для своего дела — откуда пришла ссылка, неважно' } },
+  { front: { uz: "Do'stingiz siz yuborgan link orqali kelib, botdan har kuni jadvalini ko'radi. Bu mahsulotmi?", ru: 'Друг пришёл по вашей ссылке и каждый день смотрит в боте своё расписание. Это продукт?' }, back: { uz: "Ha: u botni o'z ishi uchun ishlatyapti — link qayerdan kelgani muhim emas", ru: 'Да: он пользуется ботом для своего дела — откуда пришла ссылка, неважно' } },
   { front: { uz: 'Auditoriya-kartada qaysi uch qator bor?', ru: 'Какие три строки есть в карте аудитории?' }, back: { uz: 'KIM, MUAMMO, YECHIM', ru: 'КТО, ПРОБЛЕМА, РЕШЕНИЕ' } },
   { front: { uz: "Ilovada odatda avval qaysi qator ko'rinadi?", ru: 'Какая строка обычно видна в приложении первой?' }, back: { uz: 'YECHIM — ilova nima qilishi', ru: 'РЕШЕНИЕ — что делает приложение' } },
   { front: { uz: 'MUAMMO qatoriga nima yoziladi?', ru: 'Что пишется в строку ПРОБЛЕМА?' }, back: { uz: 'Ilovasiz odam nimadan qiynalgani', ru: 'С чем человек мучился без приложения' } },

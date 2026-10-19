@@ -1043,7 +1043,7 @@ const Screen3 = (props) => (
     explainCorrect={{ uz: "Kim va yechim yozilgan, lekin o'quvchilar nimadan qiynalishi yo'q.", ru: "Для кого и решение написаны, но нет того, с чем мучаются ученики." }}
     explainWrong={{
       0: { uz: "Kim yozilgan: o'quvchilar. Boshqa qatorni qidiring.", ru: 'Для кого написано: ученики. Ищите другую строку.' },
-      1: { uz: "Yechim yozilgan: bot menyuni ko'rsatadi.", ru: 'Решение написано: бот показывает меню.' },
+      1: { uz: "Yechim yozilgan: bot menuni ko'rsatadi.", ru: 'Решение написано: бот показывает меню.' },
       3: { uz: "Nom g'oyaning qatori emas — uch qatorga qarang.", ru: 'Название — не строка идеи: смотрите на три строки.' },
       default: { uz: 'Uch qatorni birma-bir qidiring: qaysi biri yo\'q?', ru: 'Ищите три строки по очереди: какой нет?' }
     }}

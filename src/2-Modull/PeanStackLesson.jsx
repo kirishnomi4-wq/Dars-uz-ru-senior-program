@@ -1262,7 +1262,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Zoomable off={!cur /* F-0926-06: taom tanlanguncha o'ng ustun bo'sh — zoom-tugma ham yo'q */}>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Menyu — buyurtma bering', ru: 'Меню — сделайте заказ' })}</p>
+            <p className="flow-label">{tr({ uz: 'Menu — buyurtma bering', ru: 'Меню — сделайте заказ' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {MENU.map(m => (<button key={m.key} className={`chip ${order === m.key ? 'chip-on' : ''}`} onClick={() => tap(m.key)}>{tr(m.label)}{seen.has(m.key) && ' ✓'}</button>))}
             </div>

@@ -122,7 +122,7 @@ const REGISTRY = [
   { id: 'pm-m4c-02', C: PmLesson17Homework, seed: {
     'pm-m4c2-reliz': { bolaklar: [
       { hafta: 1, ish: "«Yozilish» tugmasi — bossa, ism ro'yxatga tushadi" },
-      { hafta: 2, ish: "E'lonni ulashish havolasi — bossa, havola nusxalanadi" },
+      { hafta: 2, ish: "E'lonni ulashish linki — bossa, link nusxalanadi" },
       { hafta: 3, ish: "«Mening e'lonlarim» ro'yxati — bossa, o'z e'lonlarini ko'radi" },
     ] },
   } },

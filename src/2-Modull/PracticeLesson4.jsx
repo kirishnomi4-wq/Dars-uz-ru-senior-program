@@ -993,7 +993,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={{ uz: 'Boshlaymiz', ru: 'Начинаем' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.4vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Do'konni <span className="italic" style={{ color: T.accent }}>oxiriga</span> yetkazamiz.</>, ru: <>Доводим магазин <span className="italic" style={{ color: T.accent }}>до конца</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>O'tgan darsda katalog, toifa tugmalari va qidiruvni qurdingiz. Bugun <b style={{ color: T.ink }}>savat va jami narxni</b> qo'shasiz, xatoni topib tuzatasiz va do'konni internetga chiqarasiz — dars oxirida havolani do'stingizga yuborasiz.</>, ru: <>На прошлом уроке Вы построили каталог, кнопки категорий и поиск. Сегодня добавите <b style={{ color: T.ink }}>корзину и итоговую цену</b>, найдёте и исправите ошибку и выпустите магазин в интернет — в конце урока отправите ссылку другу.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>O'tgan darsda katalog, toifa tugmalari va qidiruvni qurdingiz. Bugun <b style={{ color: T.ink }}>savat va jami narxni</b> qo'shasiz, xatoni topib tuzatasiz va do'konni internetga chiqarasiz — dars oxirida linkni do'stingizga yuborasiz.</>, ru: <>На прошлом уроке Вы построили каталог, кнопки категорий и поиск. Сегодня добавите <b style={{ color: T.ink }}>корзину и итоговую цену</b>, найдёте и исправите ошибку и выпустите магазин в интернет — в конце урока отправите ссылку другу.</> })}</Mentor>
         <TayyorTugma />
         <Split>
           <Col>
@@ -1208,8 +1208,8 @@ const A3_QADAM = [
   { uz: "netlify.com'ni oching va GitHub bilan kiring.", ru: 'Откройте netlify.com и войдите через GitHub.' },
   { uz: "Projects sahifasining eng pastiga tushing — papka tashlanadigan katta maydon bor (topilmasa: app.netlify.com/drop).", ru: 'Спуститесь в самый низ страницы Projects — там большое поле для папки (если не нашли: app.netlify.com/drop).' },
   { uz: "`mini-dokon` papkasini shu maydonga sudrab tashlang — papkaning o'zini, fayllarni birma-bir emas.", ru: 'Перетащите папку `mini-dokon` в это поле — саму папку, а не файлы по одному.' },
-  { uz: "Havola chiqadi (oxiri .netlify.app) — nusxalang va shu yerga qo'ying.", ru: 'Появится ссылка (заканчивается на .netlify.app) — скопируйте и вставьте сюда.' },
-  { uz: "Havolani telefoningizda oching: savat va jami ishlayaptimi?", ru: 'Откройте ссылку на телефоне: корзина и итог работают?' }
+  { uz: "Link chiqadi (oxiri .netlify.app) — nusxalang va shu yerga qo'ying.", ru: 'Появится ссылка (заканчивается на .netlify.app) — скопируйте и вставьте сюда.' },
+  { uz: "Linkni telefoningizda oching: savat va jami ishlayaptimi?", ru: 'Откройте ссылку на телефоне: корзина и итог работают?' }
 ];
 const havolaToza = (s) => String(s || '').trim();
 const havolaOk = (s) => /^https?:\/\/[^\s/]+\.[^\s/]+(\/\S*)?$/i.test(havolaToza(s));
@@ -1226,7 +1226,7 @@ const ScreenDeploy = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Amaliyot 3 · Netlify', ru: 'Практика 3 · Netlify' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Do'konni <span className="italic" style={{ color: T.accent }}>internetga</span> chiqaring.</>, ru: <>Выпустите магазин <span className="italic" style={{ color: T.accent }}>в интернет</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>1-moduldagi yo'l: Netlify'ga <b style={{ color: T.ink }}>papkani sudrab tashlaysiz</b> — havola tayyor. Havolani shu yerga qo'ying: do'konni ulashadigan karta chiqadi.</>, ru: <>Путь из 1-го модуля: <b style={{ color: T.ink }}>перетаскиваете папку</b> в Netlify — ссылка готова. Вставьте ссылку сюда: появится карточка, чтобы поделиться магазином.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>1-moduldagi yo'l: Netlify'ga <b style={{ color: T.ink }}>papkani sudrab tashlaysiz</b> — link tayyor. Linkni shu yerga qo'ying: do'konni ulashadigan karta chiqadi.</>, ru: <>Путь из 1-го модуля: <b style={{ color: T.ink }}>перетаскиваете папку</b> в Netlify — ссылка готова. Вставьте ссылку сюда: появится карточка, чтобы поделиться магазином.</> })}</Mentor>
         <Split>
           <Col>
             <div className="am-karta">
@@ -1234,16 +1234,16 @@ const ScreenDeploy = ({ screen, onNext, onPrev }) => {
               <ol className="am-qadam">{A3_QADAM.map((x, i) => <li key={i}><span className="am-qn">{i + 1}</span><span>{fmtCode(tr(x))}</span></li>)}</ol>
             </div>
             {!saqlangan && <div className="am-karta">
-              <label className="am-maydon"><span>{tr({ uz: 'Netlify bergan havola', ru: 'Ссылка от Netlify' })}</span><input className="am-input" value={havola} onChange={e => setHavola(e.target.value)} placeholder="https://….netlify.app" inputMode="url" /></label>
-              {ok && !netlify && <p className="am-satr">{tr({ uz: "Netlify havolasi odatda .netlify.app bilan tugaydi — tekshirib ko'ring.", ru: 'Ссылка Netlify обычно заканчивается на .netlify.app — проверьте.' })}</p>}
-              <button type="button" className="am-saqla" disabled={!ok} onClick={saqla}>{ok ? tr({ uz: 'Saqlash', ru: 'Сохранить' }) : tr({ uz: 'Havolani qo\'ying', ru: 'Вставьте ссылку' })}</button>
+              <label className="am-maydon"><span>{tr({ uz: 'Netlify bergan link', ru: 'Ссылка от Netlify' })}</span><input className="am-input" value={havola} onChange={e => setHavola(e.target.value)} placeholder="https://….netlify.app" inputMode="url" /></label>
+              {ok && !netlify && <p className="am-satr">{tr({ uz: "Netlify linki odatda .netlify.app bilan tugaydi — tekshirib ko'ring.", ru: 'Ссылка Netlify обычно заканчивается на .netlify.app — проверьте.' })}</p>}
+              <button type="button" className="am-saqla" disabled={!ok} onClick={saqla}>{ok ? tr({ uz: 'Saqlash', ru: 'Сохранить' }) : tr({ uz: 'Linkni qo\'ying', ru: 'Вставьте ссылку' })}</button>
             </div>}
             {saqlangan && <div className="am-karta dp-karta am-ochil">
               <div className="am-prompt-h"><p className="am-tayyor-ok">{tr({ uz: "Do'koningiz internetda!", ru: 'Ваш магазин в интернете!' })}</p><button type="button" className="am-nusxa" onClick={() => setSaqlangan(false)}>{tr({ uz: 'Tahrirlash', ru: 'Изменить' })}</button></div>
               <a className="dp-havola" href={havolaToza(havola)} target="_blank" rel="noopener noreferrer">{havolaToza(havola)}</a>
               <p className="am-satr">{tr({ uz: 'Do\'stingizga yuboring:', ru: 'Отправьте другу:' })}</p>
               <pre className="am-masalan">{xabar}</pre>
-              <div className="am-chips"><NusxaTugma matn={xabar} yorliq={{ uz: 'Xabarni nusxalash', ru: 'Скопировать сообщение' }} /><NusxaTugma matn={havolaToza(havola)} yorliq={{ uz: 'Havolani nusxalash', ru: 'Скопировать ссылку' }} /></div>
+              <div className="am-chips"><NusxaTugma matn={xabar} yorliq={{ uz: 'Xabarni nusxalash', ru: 'Скопировать сообщение' }} /><NusxaTugma matn={havolaToza(havola)} yorliq={{ uz: 'Linkni nusxalash', ru: 'Скопировать ссылку' }} /></div>
             </div>}
           </Col>
           <Col>
@@ -1316,8 +1316,8 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const RECAP = [{ uz: "Savat — massiv: «Savatga» bosilganda mahsulot push bilan qo'shiladi", ru: 'Корзина — массив: при нажатии «В корзину» товар добавляется через push' }, { uz: "Jami — for sikli bilan narxlar yig'indisi, funksiyada hisoblanadi", ru: 'Итог — сумма цен циклом for, считается в функции' }, { uz: '"3000" — matn, 3000 — son: matnga «+» yopishtiradi, songa qo\'shadi', ru: '"3000" — текст, 3000 — число: к тексту «+» приклеивает, к числу прибавляет' }, { uz: "AI'ga xatoni aniq aytasiz: nima bo'ldi va nima bo'lishi kerak", ru: 'Ошибку AI описываете точно: что случилось и как должно быть' }, { uz: "Deploy — papkani Netlify'ga tashlab, havolani ulashish", ru: 'Деплой — перетащить папку в Netlify и поделиться ссылкой' }];
-  const HOMEWORK = [{ b: { uz: '«Buyurtma berish»', ru: '«Оформить заказ»' }, t: { uz: "— tugma qo'shing: bosilsa savat tozalansin va «Rahmat!» chiqsin (Gemini yoki Copilot bilan)", ru: '— добавьте кнопку: по нажатию корзина очищается и появляется «Спасибо!» (с Gemini или Copilot)' } }, { b: { uz: "Bo'sh savat", ru: 'Пустая корзина' }, t: { uz: "— savat bo'sh bo'lsa «Savat bo'sh» yozuvi chiqsin", ru: '— если корзина пуста, пусть появляется надпись «Корзина пуста»' } }, { b: { uz: 'Havolani yuboring', ru: 'Отправьте ссылку' }, t: { uz: "— do'stingiz savatni sinab ko'rsin; o'zgargan papkani Netlify'ga qayta tashlang", ru: '— пусть друг проверит корзину; изменённую папку снова перетащите в Netlify' } }];
+  const RECAP = [{ uz: "Savat — massiv: «Savatga» bosilganda mahsulot push bilan qo'shiladi", ru: 'Корзина — массив: при нажатии «В корзину» товар добавляется через push' }, { uz: "Jami — for sikli bilan narxlar yig'indisi, funksiyada hisoblanadi", ru: 'Итог — сумма цен циклом for, считается в функции' }, { uz: '"3000" — matn, 3000 — son: matnga «+» yopishtiradi, songa qo\'shadi', ru: '"3000" — текст, 3000 — число: к тексту «+» приклеивает, к числу прибавляет' }, { uz: "AI'ga xatoni aniq aytasiz: nima bo'ldi va nima bo'lishi kerak", ru: 'Ошибку AI описываете точно: что случилось и как должно быть' }, { uz: "Deploy — papkani Netlify'ga tashlab, linkni ulashish", ru: 'Деплой — перетащить папку в Netlify и поделиться ссылкой' }];
+  const HOMEWORK = [{ b: { uz: '«Buyurtma berish»', ru: '«Оформить заказ»' }, t: { uz: "— tugma qo'shing: bosilsa savat tozalansin va «Rahmat!» chiqsin (Gemini yoki Copilot bilan)", ru: '— добавьте кнопку: по нажатию корзина очищается и появляется «Спасибо!» (с Gemini или Copilot)' } }, { b: { uz: "Bo'sh savat", ru: 'Пустая корзина' }, t: { uz: "— savat bo'sh bo'lsa «Savat bo'sh» yozuvi chiqsin", ru: '— если корзина пуста, пусть появляется надпись «Корзина пуста»' } }, { b: { uz: 'Linkni yuboring', ru: 'Отправьте ссылку' }, t: { uz: "— do'stingiz savatni sinab ko'rsin; o'zgargan papkani Netlify'ga qayta tashlang", ru: '— пусть друг проверит корзину; изменённую папку снова перетащите в Netlify' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1583,7 +1583,7 @@ const SHOP_FLASHCARDS = [
   { front: { uz: "AI bugni tuzatishi uchun unga nima aytasiz?", ru: 'Что Вы скажете ИИ, чтобы он починил баг?' }, back: { uz: "Nima noto'g'ri va qanday kerak", ru: 'Что не так и как должно быть' }, note: { uz: "faqat «tuzat» — yetarli emas", ru: 'просто «почини» — этого мало' } },
   { front: { uz: "MVP «tayyor» degani nima?", ru: 'Что значит «MVP готов»?' }, back: { uz: 'Asosiy funksiyalar ishlaydi', ru: 'Основные функции работают' }, note: { uz: "mukammal bo'lishi shart emas", ru: 'идеальным быть не обязательно' } },
   { front: { uz: 'Saytni internetga chiqarish qanday ataladi?', ru: 'Как называется выпуск сайта в интернет?' }, back: { uz: 'Deploy', ru: 'Деплой' }, note: { uz: 'shundan keyin uni istalgan odam ochadi', ru: 'после него сайт откроет любой человек' } },
-  { front: { uz: "Deploydan keyin do'stlaringizga nimani yuborasiz?", ru: 'Что Вы отправите друзьям после деплоя?' }, back: { uz: 'Sayt havolasini', ru: 'Ссылку на сайт' }, note: { uz: 'butun kodni emas — bitta havola', ru: 'не весь код, а одну ссылку' } },
+  { front: { uz: "Deploydan keyin do'stlaringizga nimani yuborasiz?", ru: 'Что Вы отправите друзьям после деплоя?' }, back: { uz: 'Sayt linkini', ru: 'Ссылку на сайт' }, note: { uz: 'butun kodni emas — bitta link', ru: 'не весь код, а одну ссылку' } },
   { front: { uz: "Har qanday loyihaning universal 5 qadami qanday?", ru: 'Каковы универсальные 5 шагов любого проекта?' }, back: { uz: "Reja → MVP → qurish → tekshirish → deploy", ru: 'План → MVP → стройка → проверка → деплой' }, note: { uz: "do'kon ham, o'yin ham — shu yo'l bilan", ru: 'и магазин, и игра — по этому же пути' } },
 ];
 // F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
@@ -1774,7 +1774,7 @@ const QUIZ_BANK = [
   { q: { uz: 'Debugging nima?', ru: 'Что такое дебаггинг?' }, opts: [{ uz: 'Xatoni topib tuzatish', ru: 'Поиск и исправление ошибки' }, { uz: "Yangi funksiya qo'shish", ru: 'Добавление новой функции' }, { uz: "Saytni chiroyli bo'yash", ru: 'Красивая раскраска сайта' }, { uz: 'Internetga deploy qilish', ru: 'Деплой в интернет' }], correct: 0 },
   { q: { uz: "MVP 'tayyor' degani nima?", ru: 'Что значит «MVP готов»?' }, opts: [{ uz: 'Mutlaqo mukammal, kamchiliksiz', ru: 'Абсолютно идеален, без недостатков' }, { uz: 'Faqat dizayni chiroyli', ru: 'Только красивый дизайн' }, { uz: 'Asosiy funksiyalar ishlaydi', ru: 'Основные функции работают' }, { uz: "Juda ko'p funksiyasi bor", ru: 'Очень много функций' }], correct: 2 },
   { q: { uz: 'Deploy nima?', ru: 'Что такое деплой?' }, opts: [{ uz: "Kodni butunlay o'chirish", ru: 'Полное удаление кода' }, { uz: 'Ataylab bug qilish', ru: 'Баг нарочно' }, { uz: 'Fon rangini tanlash', ru: 'Выбор цвета фона' }, { uz: 'Saytni internetga chiqarish', ru: 'Выпуск сайта в интернет' }], correct: 3 },
-  { q: { uz: "Deploydan keyin do'stlaringizga nimani yuborasiz?", ru: 'Что Вы отправите друзьям после деплоя?' }, opts: [{ uz: 'Sayt havolasini', ru: 'Ссылку на сайт' }, { uz: 'Butun kod faylini', ru: 'Весь файл с кодом' }, { uz: 'Butun kompyuteringizni', ru: 'Весь свой компьютер' }, { uz: 'Mahsulot rasmini', ru: 'Фото товара' }], correct: 0 },
+  { q: { uz: "Deploydan keyin do'stlaringizga nimani yuborasiz?", ru: 'Что Вы отправите друзьям после деплоя?' }, opts: [{ uz: 'Sayt linkini', ru: 'Ссылку на сайт' }, { uz: 'Butun kod faylini', ru: 'Весь файл с кодом' }, { uz: 'Butun kompyuteringizni', ru: 'Весь свой компьютер' }, { uz: 'Mahsulot rasmini', ru: 'Фото товара' }], correct: 0 },
   { q: { uz: "Uyga vazifada do'konga qaysi tugma qo'shiladi?", ru: "Какую кнопку добавляют в магазин в домашнем задании?" }, opts: [{ uz: "«Kodni o'chirish»", ru: "«Удалить код»" }, { uz: "«Saytni yopish»", ru: "«Закрыть сайт»" }, { uz: "«Buyurtma berish»", ru: "«Оформить заказ»" }, { uz: "«Internetni uzish»", ru: "«Отключить интернет»" }], correct: 2 },
   { q: { uz: 'Narx "3000" (qo\'shtirnoqda) bo\'lsa, 0 + "3000" nima beradi?', ru: 'Если цена "3000" (в кавычках), что даст 0 + "3000"?' }, opts: [{ uz: '3000 — son', ru: '3000 — число' }, { uz: 'Sayt to\'xtab qoladi', ru: 'Сайт зависнет' }, { uz: '0 — nol', ru: '0 — ноль' }, { uz: '"03000" — matn', ru: '"03000" — текст' }], correct: 3 },
   { q: { uz: "Universal yo'l: Reja → MVP → qurish → ? → deploy", ru: "Универсальный путь: план → MVP → сборка → ? → деплой" }, opts: [{ uz: "Reklama qilish", ru: "Реклама" }, { uz: "Tekshirish", ru: "Проверка" }, { uz: "Qayta reja", ru: "Новый план" }, { uz: "Kodni o'chirish", ru: "Удаление кода" }], correct: 1 },

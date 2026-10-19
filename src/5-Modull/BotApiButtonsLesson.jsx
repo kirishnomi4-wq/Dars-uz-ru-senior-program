@@ -927,7 +927,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const [showSteps, setShowSteps] = useState(false);
   const Preview = (
     <Col>
-      <p className="flow-label">{tr({ uz: 'Dars oxirida bu menyuning har qismini tushuntirib bera olasiz', ru: "К концу урока вы сможете объяснить каждую часть этого меню" })}</p>
+      <p className="flow-label">{tr({ uz: 'Dars oxirida bu menuning har qismini tushuntirib bera olasiz', ru: "К концу урока вы сможете объяснить каждую часть этого меню" })}</p>
       <TgChat input={false} minH={0} replyKb={[[{ label: { uz: 'Biz haqimizda', ru: "О нас" } }]]}>
         <Bubble from="user">/menu</Bubble>
         <Bubble from="bot" inline={[[{ label: { uz: 'Pitsa', ru: "Пицца" } }, { label: { uz: 'Ichimlik', ru: "Напитки" } }]]}>{tr({ uz: "Salom! AvtoPizza'ga xush kelibsiz. Nima qilamiz?", ru: "Привет! Добро пожаловать в AvtoPizza. Что делаем?" })}</Bubble>
@@ -945,10 +945,10 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} mentorStatic scrollSignal={showSteps} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive label={{ uz: 'Boshlaymiz →', ru: 'Начинаем →' }} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bugun botingiz <span className="italic" style={{ color: T.accent }}>javob beradi</span> va tugmalar ko'rsatadi.</>, ru: <>Сегодня ваш бот <span className="italic" style={{ color: T.accent }}>ответит</span> и покажет кнопки.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>1-darsda <b style={{ color: T.ink }}>hodisa → handler → javob</b> modelini ko'rdingiz. Bugun uni Telegraf kodida yozasiz. Chapdagi menyuda uch xil hodisa bor: buyruq, inline tugma va reply klaviatura — har biriga o'z handleri kerak.</>, ru: <>На 1-м уроке вы видели модель <b style={{ color: T.ink }}>событие → handler → ответ</b>. Сегодня вы напишете её в коде Telegraf. В меню слева три вида событий: команда, inline-кнопка и reply-клавиатура — каждому нужен свой handler.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>1-darsda <b style={{ color: T.ink }}>hodisa → handler → javob</b> modelini ko'rdingiz. Bugun uni Telegraf kodida yozasiz. Chapdagi menuda uch xil hodisa bor: buyruq, inline tugma va reply klaviatura — har biriga o'z handleri kerak.</>, ru: <>На 1-м уроке вы видели модель <b style={{ color: T.ink }}>событие → handler → ответ</b>. Сегодня вы напишете её в коде Telegraf. В меню слева три вида событий: команда, inline-кнопка и reply-клавиатура — каждому нужен свой handler.</> })}</Mentor>
         {!isNarrow ? (<Split>{Preview}{StepsB}</Split>)
           : !showSteps ? <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}>{Preview}<button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(true)}>{tr({ uz: "4 qadamni ko'rish", ru: 'Посмотреть 4 шага' })}</button></div>
-            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Menyuni ko'rish", ru: "↩ Посмотреть меню" })}</button>{StepsB}</div>}
+            : <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(12px,2vw,16px)' }}><button className="btn" style={{ alignSelf: 'flex-start' }} onClick={() => setShowSteps(false)}>{tr({ uz: "↩ Menuni ko'rish", ru: "↩ Посмотреть меню" })}</button>{StepsB}</div>}
       </div>
     </Stage>
   );
@@ -1160,7 +1160,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <p className="small chat-note">{tr({ uz: 'Inline tugma — xabarning tagida, unga yopishib turadigan tugma.', ru: "Inline-кнопка — кнопка под сообщением, прикреплённая к нему." })}</p>
           <TgChat input={false} minH={0}>
             <Bubble from="user">/menu</Bubble>
-            <Bubble from="bot" inline={[[{ label: S7_PIZZA, ref: pBtn, fired: cb === 'pizza', hint: !cb, onClick: cb ? undefined : () => inlineClick('pizza') }, { label: S7_DRINK, ref: dBtn, fired: cb === 'drink', hint: !cb, onClick: cb ? undefined : () => inlineClick('drink') }]]}>{tr({ uz: 'Menyuni tanlang:', ru: 'Выберите из меню:' })}</Bubble>
+            <Bubble from="bot" inline={[[{ label: S7_PIZZA, ref: pBtn, fired: cb === 'pizza', hint: !cb, onClick: cb ? undefined : () => inlineClick('pizza') }, { label: S7_DRINK, ref: dBtn, fired: cb === 'drink', hint: !cb, onClick: cb ? undefined : () => inlineClick('drink') }]]}>{tr({ uz: 'Menuni tanlang:', ru: 'Выберите из меню:' })}</Bubble>
           </TgChat>
         </Col>
         <Col>
@@ -1218,7 +1218,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <FoldRow open={peek === 2} onClick={() => togglePeek(2)}>{row2}</FoldRow>
               {peek === 2 && step2}
             </>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Inline tugma — shu xabarga tegishli tanlov. Reply klaviatura — doim kerak tugmalar: Menyu, Savat, Yordam.</>, ru: <>Inline-кнопка — выбор для этого сообщения. Reply-клавиатура — кнопки, нужные всегда: Меню, Корзина, Помощь.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Inline tugma — shu xabarga tegishli tanlov. Reply klaviatura — doim kerak tugmalar: Menu, Savat, Yordam.</>, ru: <>Inline-кнопка — выбор для этого сообщения. Reply-клавиатура — кнопки, нужные всегда: Меню, Корзина, Помощь.</> })}</p></div>}
           </div>
         </Zoomable>
       </div>
@@ -1249,7 +1249,7 @@ const Screen8 = (props) => (
 // ===== ★ SCREEN 9 — MARKAZIY O'YIN: UCH HODISA — UCH HANDLER (A6: navbat bilan · A7: hodisa → handler chizig'i) =====
 const S9_STEPS = [
   { id: 'cmd', rule: "bot.command('menu', ...)",
-    reply: { uz: 'Menyu. Tanlang:', ru: "Меню. Выберите:" },
+    reply: { uz: 'Menu. Tanlang:', ru: "Меню. Выберите:" },
     row: { uz: <>/menu → <span className="mono">bot.command('menu')</span></>, ru: <>/menu → <span className="mono">bot.command('menu')</span></> } },
   { id: 'pizza', rule: "bot.action('pizza', ...)",
     tip: { uz: 'Chatdagi «Pitsa» tugmasini bosing.', ru: "Нажмите кнопку «Пицца» в чате." },
@@ -1364,7 +1364,7 @@ const Screen10 = (props) => (
     options={[
       { uz: "bot.action('pizza', ...) — tugma ma'lumoti 'pizza' bo'lgani uchun", ru: "bot.action('pizza', ...) — потому что данные кнопки — 'pizza'" },
       { uz: "bot.hears('Pitsa', ...) — tugma yozuvi 'Pitsa' bo'lgani uchun", ru: "bot.hears('Pitsa', ...) — потому что надпись на кнопке — 'Pitsa'" },
-      { uz: 'bot.start(...) — tugma /start javobidagi menyuda turgani uchun', ru: "bot.start(...) — потому что кнопка стоит в меню из ответа на /start" },
+      { uz: 'bot.start(...) — tugma /start javobidagi menuda turgani uchun', ru: "bot.start(...) — потому что кнопка стоит в меню из ответа на /start" },
       { uz: "bot.launch() — botni ishga tushiradigan qator bo'lgani uchun", ru: "bot.launch() — потому что эта строка запускает бота" }
     ]} correctIdx={0}
     explainCorrect={{ uz: "Inline tugma bosilganda callback keladi — uni bot.action('pizza', ...) ushlaydi.", ru: "При нажатии inline-кнопки приходит callback — его ловит bot.action('pizza', ...)." }}
@@ -1457,7 +1457,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     }
   }, [done]); // eslint-disable-line
   const ASK = { uz: 'Necha daqiqada yetib keladi?', ru: "Через сколько минут привезут?" };
-  const FB = { uz: 'Tushunmadim. Menyu uchun /menu ni bosing.', ru: "Не понял. Чтобы открыть меню, нажмите /menu." };
+  const FB = { uz: 'Tushunmadim. Menu uchun /menu ni bosing.', ru: "Не понял. Чтобы открыть меню, нажмите /menu." };
   const send = () => { setSent(true); setSc(n => n + 1); };
   const addFallback = () => { setFallbackOn(true); setSc(n => n + 1); };
   const resend = () => { setTested(true); setSc(n => n + 1); };
@@ -1468,7 +1468,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <Mentor>{tr({ uz: <>1-darsda fallback handler kerakligini ko'rdingiz. Endi uni kodda yozamiz. Avval noma'lum xabar yuboring va nima bo'lishini ko'ring.</>, ru: <>На 1-м уроке вы видели, зачем нужен fallback handler. Теперь напишем его в коде. Сначала отправьте незнакомое сообщение и посмотрите, что будет.</> })}</Mentor>
         <div className="col one-col">
           <TgChat input={false} minH={120}>
-            <Bubble from="bot">{tr({ uz: 'Salom! Menyu uchun /menu ni bosing.', ru: "Привет! Чтобы открыть меню, нажмите /menu." })}</Bubble>
+            <Bubble from="bot">{tr({ uz: 'Salom! Menu uchun /menu ni bosing.', ru: "Привет! Чтобы открыть меню, нажмите /menu." })}</Bubble>
             {sent && <Bubble from="user">{tr(ASK)}</Bubble>}
             {sent && <p className="small chat-quiet">{tr({ uz: 'Bot jim qoldi…', ru: "Бот промолчал…" })}</p>}
             {tested && <Bubble from="user">{tr(ASK)}</Bubble>}
@@ -1476,7 +1476,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </TgChat>
           {!sent && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={send}>{tr({ uz: "▶ Noma'lum xabar yuborish", ru: "▶ Отправить незнакомое сообщение" })}</button>}
           {fallbackOn && <CodeFile name="bot.js" minH={0}>
-            <Kw>bot</Kw>{'.'}<At>on</At>{'('}<St>'text'</St>{', ('}<Kw>ctx</Kw>{') => '}<Kw>ctx</Kw>{'.'}<At>reply</At>{'('}<St>{tr({ uz: "'Tushunmadim. Menyu uchun /menu ni bosing.'", ru: "'Не понял. Чтобы открыть меню, нажмите /menu.'" })}</St>{'))'}
+            <Kw>bot</Kw>{'.'}<At>on</At>{'('}<St>'text'</St>{', ('}<Kw>ctx</Kw>{') => '}<Kw>ctx</Kw>{'.'}<At>reply</At>{'('}<St>{tr({ uz: "'Tushunmadim. Menu uchun /menu ni bosing.'", ru: "'Не понял. Чтобы открыть меню, нажмите /menu.'" })}</St>{'))'}
           </CodeFile>}
           {fallbackOn && !tested && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={resend}>{tr({ uz: '▶ Qayta yuborish', ru: "▶ Отправить снова" })}</button>}
           {sent && !tested && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu xabarga mos handler yo'q — bot jim qoldi.</>, ru: <>Для этого сообщения нет handler-а — бот промолчал.</> })}</p>{!fallbackOn && <button className="btn" style={{ marginTop: 8 }} onClick={addFallback}>{tr({ uz: "Fallback handler qo'shish", ru: "Добавить fallback handler" })}</button>}</div>}
@@ -1492,9 +1492,9 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const CMD_BLANKS = [
   { key: 'start', label: '/start —', correct: 'run', options: [
       { id: 'off', t: { uz: "Botni butunlay o'chirib tashlaydi", ru: 'Полностью выключает бота' } },
-      { id: 'run', t: { uz: 'Suhbatni boshlaydi: salom va menyu yuboradi', ru: "Начинает разговор: шлёт приветствие и меню" } },
+      { id: 'run', t: { uz: 'Suhbatni boshlaydi: salom va menu yuboradi', ru: "Начинает разговор: шлёт приветствие и меню" } },
       { id: 'img', t: { uz: 'Faqat rasm yuboradi', ru: 'Отправляет только картинку' } }
-    ], wrong: { off: { uz: "/start botni o'chirmaydi — u suhbatni boshlaydi: bot salom va menyu yuboradi.", ru: "/start не выключает бота — он начинает разговор: бот шлёт приветствие и меню." }, img: { uz: "/start rasm bilan bog'liq emas — u suhbatni boshlaydi.", ru: '/start не связан с картинками — он начинает разговор.' } } },
+    ], wrong: { off: { uz: "/start botni o'chirmaydi — u suhbatni boshlaydi: bot salom va menu yuboradi.", ru: "/start не выключает бота — он начинает разговор: бот шлёт приветствие и меню." }, img: { uz: "/start rasm bilan bog'liq emas — u suhbatni boshlaydi.", ru: '/start не связан с картинками — он начинает разговор.' } } },
   { key: 'help', label: '/help —', correct: 'help', options: [
       { id: 'pass', t: { uz: 'Mijozning parolini qayta tiklaydi', ru: 'Восстанавливает пароль клиента' } },
       { id: 'reinstall', t: { uz: "Botni qayta o'rnatadi", ru: "Переустанавливает бота" } },
@@ -1502,9 +1502,9 @@ const CMD_BLANKS = [
     ], wrong: { pass: { uz: "Botlarda odatda parol bo'lmaydi — /help yordam matnini ko'rsatadi.", ru: "У ботов обычно нет пароля — /help показывает текст помощи." }, reinstall: { uz: "/help hech narsani o'rnatmaydi — faqat yordam beradi.", ru: "/help ничего не устанавливает — он только помогает." } } },
   { key: 'menu', label: '/menu —', correct: 'menu', options: [
       { id: 'kick', t: { uz: 'Mijozni chatdan chiqarib yuboradi', ru: 'Выгоняет клиента из чата' } },
-      { id: 'menu', t: { uz: 'Menyuni qayta ochadi', ru: 'Снова открывает меню' } },
+      { id: 'menu', t: { uz: 'Menuni qayta ochadi', ru: 'Снова открывает меню' } },
       { id: 'token', t: { uz: "Botning tokenini ko'rsatadi", ru: "Показывает токен бота" } }
-    ], wrong: { kick: { uz: "/menu hech kimni chiqarib yubormaydi — u menyuni ko'rsatadi.", ru: '/menu никого не выгоняет — он показывает меню.' }, token: { uz: "Token maxfiy — uni bot hech kimga ko'rsatmaydi.", ru: "Токен секретный — бот никому его не показывает." } } }
+    ], wrong: { kick: { uz: "/menu hech kimni chiqarib yubormaydi — u menuni ko'rsatadi.", ru: '/menu никого не выгоняет — он показывает меню.' }, token: { uz: "Token maxfiy — uni bot hech kimga ko'rsatmaydi.", ru: "Токен секретный — бот никому его не показывает." } } }
 ];
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -2386,7 +2386,7 @@ function ScreenBlok({ screen, storedAnswer, onAnswer, onNext, onPrev, live, eyeb
 }
 const ScreenBotPractice = (props) => (
   <ScreenBlok {...props} eyebrow={{ uz: 'Amaliyot · TelegramBotNest', ru: 'Практика · TelegramBotNest' }} tail="git checkout -f dars-03-done"
-    title={{ uz: <>Repo'ni oling, botingizga <span className="italic" style={{ color: T.accent }}>menyu</span> qo'shing.</>, ru: <>Возьмите репозиторий, добавьте боту <span className="italic" style={{ color: T.accent }}>меню</span>.</> }}
+    title={{ uz: <>Repo'ni oling, botingizga <span className="italic" style={{ color: T.accent }}>menu</span> qo'shing.</>, ru: <>Возьмите репозиторий, добавьте боту <span className="italic" style={{ color: T.accent }}>меню</span>.</> }}
     mentor={{ uz: <>Shu papka modul oxirigacha sizniki — avval o'z nusxangizni yuklab olasiz, keyin unga /menu qo'shasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>Эта папка — ваша до конца модуля: сначала скачиваете свою копию, потом добавляете в неё /menu; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
     steps={[
       { h: { uz: 'Ochish', ru: 'Открыть' }, t: { uz: "GitHub'da `github.com/Azizbekcrypto/TelegramBotNest` → «Fork» (o'z nusxangiz). Unda faqat skelet bor — bot /start ga javob beradi; qolganini shu darsdan o'zingiz qo'shasiz (tayyor namuna — `yechim` tarmog'ida). Terminalda:", ru: "На GitHub `github.com/Azizbekcrypto/TelegramBotNest` → «Fork» (ваша копия). В нём только каркас — бот отвечает на /start; остальное вы добавляете сами с этого урока (готовый пример — в ветке `yechim`). В терминале:" }, code: [{ uz: 'git clone https://github.com/{sizning login}/TelegramBotNest.git', ru: 'git clone https://github.com/{ваш логин}/TelegramBotNest.git' }, 'cd TelegramBotNest', 'npm install'] },
@@ -2399,7 +2399,7 @@ const ScreenBotPractice = (props) => (
     ]}
     chat={[
       { from: 'user', t: '/start' },
-      { from: 'bot', t: { uz: 'Salom! Bot ishlayapti. Menyu uchun /menu ni bosing.', ru: 'Salom! Bot ishlayapti. Menyu uchun /menu ni bosing.' } },
+      { from: 'bot', t: { uz: 'Salom! Bot ishlayapti. Menu uchun /menu ni bosing.', ru: 'Salom! Bot ishlayapti. Menu uchun /menu ni bosing.' } },
       { from: 'user', t: '/menu' },
       { from: 'bot', t: { uz: 'Nima qilamiz?', ru: 'Nima qilamiz?' }, btns: ['🍕 Pitsa', '❓ Yordam'] },
       { from: 'user', muted: true, t: { uz: '«🍕 Pitsa» bosildi', ru: 'нажата «🍕 Pitsa»' } },

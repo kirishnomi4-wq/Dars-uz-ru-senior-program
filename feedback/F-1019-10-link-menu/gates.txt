@@ -1,0 +1,101 @@
+src/10-Modull/BreakAndFixLesson.jsx | 13/13 darvoza toza.
+src/10-Modull/PmChannelsLesson.jsx | 13/13 darvoza toza.
+src/10-Modull/PmDropOffLesson.jsx | 13/13 darvoza toza.
+src/10-Modull/PmFiftyUsersLesson.jsx | 13/13 darvoza toza.
+src/10-Modull/PmGrowthPitchLesson.jsx | 13/13 darvoza toza.
+src/10-Modull/PmLandingLesson.jsx | 13/13 darvoza toza.
+src/10-Modull/PmPitchReviewLesson.jsx | 13/13 darvoza toza.
+src/10-Modull/PmRealtimeSpecLesson.jsx | 13/13 darvoza toza.
+src/10-Modull/PmUsersCheckLesson.jsx | 13/13 darvoza toza.
+src/10-Modull/RetentionDayLesson.jsx | 13/13 darvoza toza.
+src/11-Modull/PmMoneyTalkLesson.jsx | 13/13 darvoza toza.
+src/11-Modull/PmPayCheckLesson.jsx | 13/13 darvoza toza.
+src/11-Modull/PmPricingLesson.jsx | 13/13 darvoza toza.
+src/11-Modull/PmReflectionLesson.jsx | 13/13 darvoza toza.
+src/11-Modull/PmTermsLesson.jsx | 13/13 darvoza toza.
+src/11-Modull/ReferralDayLesson.jsx | 13/13 darvoza toza.
+src/11-Modull/StabilizeDayLesson.jsx | 13/13 darvoza toza.
+src/11-Modull/WinBackDayLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/DemoPrepLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/PmDemoTestLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/PmFinalPitchLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/PmFreelanceLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/PmInvestorPitchLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/PmPitchTrainingLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/PmProgramsLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/PmStoryPitchLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/PolishDayLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/ProductSpeedLesson.jsx | 13/13 darvoza toza.
+src/12-Modull/VideoPortfolioLesson.jsx | 13/13 darvoza toza.
+src/1-Modull/CssLesson1.jsx | 1/13 darvoza yiqildi: emoji
+src/1-Modull/CssLesson2.jsx | 1/13 darvoza yiqildi: emoji
+src/1-Modull/CssPractice.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/1-Modull/DeployLesson.jsx | 1/13 darvoza yiqildi: emoji
+src/1-Modull/GitLesson.jsx | 1/13 darvoza yiqildi: emoji
+src/1-Modull/Htmllesson1.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/1-Modull/Htmllesson2.jsx | 1/13 darvoza yiqildi: emoji
+src/1-Modull/HtmlPractice.jsx | 13/13 darvoza toza.
+src/1-Modull/HtmlTakrorlashLesson.jsx | 1/13 darvoza yiqildi: emoji
+src/1-Modull/PmLesson1.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/1-Modull/PmLesson2.homework.jsx | 13/13 darvoza toza.
+src/1-Modull/PmLesson2.jsx | 1/13 darvoza yiqildi: emoji
+src/1-Modull/PmLesson3.jsx | 1/13 darvoza yiqildi: emoji
+src/1-Modull/VsCodeLesson.jsx | 1/13 darvoza yiqildi: emoji
+src/2-Modull/PeanStackLesson.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/2-Modull/PmLesson4.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/2-Modull/PmLesson5.jsx | 1/13 darvoza yiqildi: emoji
+src/2-Modull/PmLesson6.homework.jsx | 13/13 darvoza toza.
+src/2-Modull/PmLesson6.jsx | 1/13 darvoza yiqildi: emoji
+src/2-Modull/PracticeLesson1.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/2-Modull/PracticeLesson2.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/2-Modull/PracticeLesson4.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/3-Modull/PmLesson10.homework.jsx | 13/13 darvoza toza.
+src/3-Modull/PmLesson10.jsx | 1/13 darvoza yiqildi: emoji
+src/3-Modull/PmLesson9.jsx | 1/13 darvoza yiqildi: emoji
+src/3-Modull/ReactBuildSiteLesson.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactIntroLesson.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactProjectDayLesson.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/3-Modull/ReactRouterPracticeLesson.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/4a-Modull/NestArchAliveLesson.jsx | 2/13 darvoza yiqildi: tell, emoji
+src/4c-Modull/FullPipelineProjectLesson.jsx | 1/13 darvoza yiqildi: emoji
+src/4c-Modull/PmLesson17.homework.jsx | 13/13 darvoza toza.
+src/4c-Modull/PmLesson17.jsx | 1/13 darvoza yiqildi: emoji
+src/4c-Modull/PmLesson18.jsx | 1/13 darvoza yiqildi: emoji
+src/5-Modull/BotAiAgentLesson.jsx | 13/13 darvoza toza.
+src/5-Modull/BotAiBrainLesson.jsx | 13/13 darvoza toza.
+src/5-Modull/BotAiProjectLesson.jsx | 13/13 darvoza toza.
+src/5-Modull/BotApiButtonsLesson.jsx | 13/13 darvoza toza.
+src/5-Modull/BotFeedbackIterationLesson.jsx | 13/13 darvoza toza.
+src/5-Modull/BotFullProjectLesson.jsx | 13/13 darvoza toza.
+src/5-Modull/BotIntroLesson.jsx | 13/13 darvoza toza.
+src/5-Modull/BotStatefulMemoryLesson.jsx | 13/13 darvoza toza.
+src/5-Modull/PmLesson19.jsx | 13/13 darvoza toza.
+src/6-Modull/ArchPatternsLesson.jsx | 13/13 darvoza toza.
+src/6-Modull/FullSystemProjectLesson.jsx | 13/13 darvoza toza.
+src/6-Modull/MobileAppPracticeLesson.jsx | 13/13 darvoza toza.
+src/6-Modull/PipelineProjectLesson.jsx | 13/13 darvoza toza.
+src/6-Modull/ReactNativeAppLesson.jsx | 13/13 darvoza toza.
+src/7-Modull/MvpCompleteLesson.jsx | 13/13 darvoza toza.
+src/7-Modull/PmProductProblemLesson.jsx | 13/13 darvoza toza.
+src/8-Modull/PmAbTestLesson.jsx | 13/13 darvoza toza.
+src/8-Modull/PmOkrLesson.jsx | 13/13 darvoza toza.
+src/8-Modull/PmTrustAuditLesson.jsx | 13/13 darvoza toza.
+src/8-Modull/ProdReviewLesson.jsx | 13/13 darvoza toza.
+src/8-Modull/ProductionDeployLesson.jsx | 13/13 darvoza toza.
+src/9-Modull/ExpoPrototypeLesson.jsx | 13/13 darvoza toza.
+src/9-Modull/FeatureTwoLesson.jsx | 13/13 darvoza toza.
+src/9-Modull/PlatformChoiceLesson.jsx | 13/13 darvoza toza.
+src/9-Modull/PmTenIdeasLesson.jsx | 13/13 darvoza toza.
+src/App.jsx | 2/13 darvoza yiqildi: dark, emoji
+src/bridge/lessons/BridgeKimUchun.jsx | 2/13 darvoza yiqildi: emoji, qolip
+src/bridge/lessons/BridgeMuammoniTopamiz.jsx | 2/13 darvoza yiqildi: emoji, qolip
+src/compilator/HtmlCompiler.jsx | 1/13 darvoza yiqildi: emoji
+src/hw-demo/main.jsx | 13/13 darvoza toza.
+src/kompilyator-demo/OddiyKompilyator.jsx | 13/13 darvoza toza.
+src/m11-demo/M11DemoApp.jsx | 1/13 darvoza yiqildi: dark
+src/m1-demo/M1DemoApp.jsx | 3/13 darvoza yiqildi: dark, til, emoji
+src/mentor/lessons.jsx | 2/13 darvoza yiqildi: til, emoji
+src/mentor/MentorApp.jsx | 13/13 darvoza toza.
+src/pm/PmMetricsLesson.jsx | 13/13 darvoza toza.
+src/texnik-demo/TexnikDemoApp.jsx | 2/13 darvoza yiqildi: dark, emoji
+TAYYOR

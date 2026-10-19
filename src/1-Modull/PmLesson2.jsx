@@ -1317,7 +1317,7 @@ const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 1-savol', ru: 'Упражнение · вопрос 1' })}
     questionText={{ uz: "Saytga kirgan foydalanuvchi birinchi nimani ko'rishi kerak?", ru: 'Что пользователь должен увидеть на сайте первым?' }}
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Saytga kirgan foydalanuvchi birinchi <span className="italic" style={{ color: T.accent }}>nimani</span> ko'rishi kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Что</span> пользователь должен увидеть на сайте первым?</h2></> }}
-    options={[{ uz: 'Birinchi blokni — sayt nima taklif qilishini', ru: 'Первый блок — что предлагает сайт' }, { uz: 'Eng pastdagi `footer`ni — havolalar va aloqani', ru: 'Нижний `footer` — ссылки и контакты' }, { uz: "Harakat tugmasini — darrov bosib qo'yishi uchun", ru: 'Кнопку действия — чтобы сразу нажал' }, { uz: "Mahsulotlar ro'yxatini — narxlari bilan", ru: 'Список товаров — вместе с ценами' }]} correctIdx={0}
+    options={[{ uz: 'Birinchi blokni — sayt nima taklif qilishini', ru: 'Первый блок — что предлагает сайт' }, { uz: 'Eng pastdagi `footer`ni — linklar va aloqani', ru: 'Нижний `footer` — ссылки и контакты' }, { uz: "Harakat tugmasini — darrov bosib qo'yishi uchun", ru: 'Кнопку действия — чтобы сразу нажал' }, { uz: "Mahsulotlar ro'yxatini — narxlari bilan", ru: 'Список товаров — вместе с ценами' }]} correctIdx={0}
     explainCorrect={{ uz: "Odam bir zumda hal qiladi: qolamanmi yoki ketamanmi.", ru: 'Человек решает мгновенно: остаться или уйти.' }}
     explainWrong={{ 1: { uz: "Footer — sahifaning eng pasti, unga oxirida yetib boriladi.", ru: 'Footer — самый низ страницы, до него доходят в конце.' }, 2: { uz: "Sababsiz tugmani odam nega bosishini tushunmaydi.", ru: 'Без причины человек не поймёт, зачем жать на кнопку.' }, 3: { uz: "Narxlar odam taklifni tushungandan keyin kerak bo'ladi.", ru: 'Цены нужны, когда человек уже понял предложение.' }, default: { uz: 'Odam birinchi soniyada nimani bilishi kerak — shuni o\'ylang.', ru: 'Подумайте, что человек должен понять в первую же секунду.' } }} />
 );
@@ -1391,9 +1391,9 @@ const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Упражнение · вопрос 2' })}
     questionText={{ uz: 'Harakat tugmasi sahifaning qayerida turishi kerak?', ru: 'Где на странице должна стоять кнопка действия?' }}
     question={{ uz: <><p className="eyebrow" style={{ color: T.accent }}>To'g'ri javobni tanlang</p><h2 className="title h-ask" style={{ marginTop: 8 }}>Harakat tugmasi (CTA) sahifaning <span className="italic" style={{ color: T.accent }}>qayerida</span> turishi kerak?</h2></>, ru: <><p className="eyebrow" style={{ color: T.accent }}>Выберите верный ответ</p><h2 className="title h-ask" style={{ marginTop: 8 }}><span className="italic" style={{ color: T.accent }}>Где</span> на странице должна стоять кнопка действия (CTA)?</h2></> }}
-    options={[{ uz: 'Eng tepada, hammadan ham oldin', ru: 'В самом верху, раньше всего' }, { uz: "Sahifa o'rtasida, muammodan oldin", ru: 'В середине страницы, до проблемы' }, { uz: "Sabab ko'rsatilgandan keyin, oxirroqda", ru: 'После того как показана причина, ближе к концу' }, { uz: 'Menyuda, boshqa havolalar orasida', ru: 'В меню, среди других ссылок' }]} correctIdx={2}
+    options={[{ uz: 'Eng tepada, hammadan ham oldin', ru: 'В самом верху, раньше всего' }, { uz: "Sahifa o'rtasida, muammodan oldin", ru: 'В середине страницы, до проблемы' }, { uz: "Sabab ko'rsatilgandan keyin, oxirroqda", ru: 'После того как показана причина, ближе к концу' }, { uz: 'Menuda, boshqa linklar orasida', ru: 'В меню, среди других ссылок' }]} correctIdx={2}
     explainCorrect={{ uz: "Isbotni ko'rgach, odamda tugmani bosishga sabab bo'ladi.", ru: 'Увидев доказательство, человек получает причину нажать.' }}
-    explainWrong={{ 0: { uz: "Tepada odam hali nega bosishini bilmaydi.", ru: 'Наверху человек ещё не знает, зачем жать.' }, 1: { uz: "Muammodan oldin hali erta — odam hali ishonmagan.", ru: 'До проблемы ещё рано — человек пока не доверяет.' }, 3: { uz: "Havolalar orasida tugma ko'zga tashlanmaydi.", ru: 'Среди ссылок кнопка теряется.' }, default: { uz: 'Odam tugmani qachon bosishga tayyor bo\'lishini o\'ylang.', ru: 'Подумайте, когда человек будет готов нажать кнопку.' } }} />
+    explainWrong={{ 0: { uz: "Tepada odam hali nega bosishini bilmaydi.", ru: 'Наверху человек ещё не знает, зачем жать.' }, 1: { uz: "Muammodan oldin hali erta — odam hali ishonmagan.", ru: 'До проблемы ещё рано — человек пока не доверяет.' }, 3: { uz: "Linklar orasida tugma ko'zga tashlanmaydi.", ru: 'Среди ссылок кнопка теряется.' }, default: { uz: 'Odam tugmani qachon bosishga tayyor bo\'lishini o\'ylang.', ru: 'Подумайте, когда человек будет готов нажать кнопку.' } }} />
 );
 
 // ===== SCREEN 6 — TARTIB = HIKOYA (stepper) =====
@@ -1610,7 +1610,7 @@ function checkStructure(html) {
     const empty = [];
     if (!txt(header)) empty.push('<header>');
     if (!txt(footer)) empty.push('<footer>');
-    if (empty.length) res.hints.c1 = tr({ uz: `${empty.join(' va ')} ichi bo'sh — tepaga sayt nomini, pastga havola yoki aloqa ma'lumotini yozing.`, ru: `${empty.join(' и ')} — внутри пусто. Наверх напишите название сайта, вниз — ссылку или контакты.` });
+    if (empty.length) res.hints.c1 = tr({ uz: `${empty.join(' va ')} ichi bo'sh — tepaga sayt nomini, pastga link yoki aloqa ma'lumotini yozing.`, ru: `${empty.join(' и ')} — внутри пусто. Наверх напишите название сайта, вниз — ссылку или контакты.` });
     else res.c1 = true;
   }
 
@@ -1808,7 +1808,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <span className="stq-l dim">   &lt;h2&gt; + &lt;p&gt; × 4</span>
               <span className="stq-l m">&lt;/main&gt;</span>
               <span className="stq-l f">&lt;footer&gt;</span>
-              <span className="stq-l dim">   {tr({ uz: 'havolalar, aloqa', ru: 'ссылки, контакты' })}</span>
+              <span className="stq-l dim">   {tr({ uz: 'linklar, aloqa', ru: 'ссылки, контакты' })}</span>
               <span className="stq-l f">&lt;/footer&gt;</span>
             </code>
           </div>
@@ -2094,7 +2094,7 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: "Sayt strukturasi (bo'limlar tartibi) aslida nima?", ru: "Что на самом деле структура сайта (порядок разделов)?" }, opts: [{ uz: "Foydalanuvchi uchun qulaylik", ru: "Удобство для пользователя" }, { uz: "Sahifa uchun bezak", ru: "Украшение страницы" }, { uz: "Dizaynerning didi", ru: "Вкус дизайнера" }, { uz: "Hamma uchun bir xil andoza", ru: "Одинаковый шаблон для всех" }], correct: 0 },
   { q: { uz: "Saytni ochgan odam avval qaysi bo'limni ko'radi?", ru: "Какой раздел человек видит первым, открыв сайт?" }, opts: [{ uz: "Pastdagi aloqa qismini", ru: "Контакты внизу" }, { uz: "Sarlavha va izohni", ru: "Заголовок и пояснение" }, { uz: "Isbot bo'limini", ru: "Раздел «Доказательство»" }, { uz: "Harakat tugmasini", ru: "Кнопку действия" }], correct: 1 },
-  { q: { uz: "Harakat tugmasi (CTA) qayerda turishi mantiqiy?", ru: "Где логично стоять кнопке действия (CTA)?" }, opts: [{ uz: "Eng tepada, birinchi", ru: "В самом верху, первой" }, { uz: "Menyuda, havolalar bilan", ru: "В меню, среди ссылок" }, { uz: "Odam ishongandan keyin", ru: "После того как человек поверил" }, { uz: "Yon tomonda, alohida", ru: "Сбоку, отдельно" }], correct: 2 },
+  { q: { uz: "Harakat tugmasi (CTA) qayerda turishi mantiqiy?", ru: "Где логично стоять кнопке действия (CTA)?" }, opts: [{ uz: "Eng tepada, birinchi", ru: "В самом верху, первой" }, { uz: "Menuda, linklar bilan", ru: "В меню, среди ссылок" }, { uz: "Odam ishongandan keyin", ru: "После того как человек поверил" }, { uz: "Yon tomonda, alohida", ru: "Сбоку, отдельно" }], correct: 2 },
   { q: { uz: "Eng mantiqiy tartib qaysi?", ru: "Какой порядок самый логичный?" }, opts: [{ uz: "CTA→isbot→hero→muammo→yechim", ru: "CTA→доказ.→hero→проблема→решение" }, { uz: "Isbot→CTA→muammo→yechim→hero", ru: "Доказ.→CTA→проблема→решение→hero" }, { uz: "Muammo→CTA→hero→yechim→isbot", ru: "Проблема→CTA→hero→решение→доказ." }, { uz: "Hero→muammo→yechim→isbot→CTA", ru: "Hero→проблема→решение→доказ.→CTA" }], correct: 3 },
   { q: { uz: "Birinchi blok (hero) nima qiladi?", ru: "Что делает первый блок (hero)?" }, opts: [{ uz: "Ariza va to'lov qabul qiladi", ru: "Принимает заявки и оплату" }, { uz: "Taklifni bir jumlada aytadi", ru: "Одной фразой говорит, что предлагают" }, { uz: "Mijozlar izohini ko'rsatadi", ru: "Показывает отзывы клиентов" }, { uz: "Aloqa ma'lumotini beradi", ru: "Даёт контакты" }], correct: 1 },
   { q: { uz: "«Isbot» bo'limi nima uchun kerak?", ru: "Зачем нужен раздел «Доказательство»?" }, opts: [{ uz: "Ishonch uyg'otish uchun", ru: "Чтобы вызвать доверие" }, { uz: "Narxni e'lon qilish uchun", ru: "Чтобы объявить цену" }, { uz: "Sayt nomini eslatish uchun", ru: "Чтобы напомнить название" }, { uz: "Aloqa ma'lumoti uchun", ru: "Для контактов" }], correct: 0 },

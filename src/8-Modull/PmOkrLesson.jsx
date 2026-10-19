@@ -1202,13 +1202,13 @@ const Screen5 = (props) => (
       { uz: 'Buyurtma berganlar haftada 3 tadan 10 taga', ru: 'Сделавшие заказ за неделю: с 3 до 10' },
       { uz: 'Yozilgan mahsulot tavsiflari 5 tadan 20 taga', ru: 'Написанные описания товаров: с 5 до 20' },
       { uz: "Saytga qo'shilgan rasmlar 10 tadan 30 taga", ru: 'Добавленные на сайт фото: с 10 до 30' },
-      { uz: "Do'stlarga yuborilgan havolalar 0 dan 15 taga", ru: 'Отправленные друзьям ссылки: с 0 до 15' }
+      { uz: "Do'stlarga yuborilgan linklar 0 dan 15 taga", ru: 'Отправленные друзьям ссылки: с 0 до 15' }
     ]} correctIdx={0}
     explainCorrect={{ uz: 'Buyurtmalar — maqsaddagi natija; qolgan qatorlar siz qiladigan ishni sanaydi.', ru: 'Заказы — результат из цели; остальные строки считают вашу работу.' }}
     explainWrong={{
       1: { uz: 'Tavsiflarni siz yozasiz — bu mehnat raqami.', ru: "Описания пишете вы — это число труда." },
       2: { uz: "Rasmlarni siz qo'shasiz — bu ham sizning ishingiz.", ru: 'Фото добавляете вы — это тоже ваша работа.' },
-      3: { uz: 'Havolani siz yuborasiz — xaridor hali hech narsa qilmadi.', ru: 'Ссылку отправляете вы — покупатель ещё ничего не сделал.' },
+      3: { uz: 'Linkni siz yuborasiz — xaridor hali hech narsa qilmadi.', ru: 'Ссылку отправляете вы — покупатель ещё ничего не сделал.' },
       default: { uz: 'Mehnatni emas, natijani sanaydigan qatorni toping.', ru: "Найдите строку, которая считает результат, а не труд." }
     }} />
 );

@@ -2583,7 +2583,7 @@ const A2_PROMPT = {
     { uz: "ekranlar, namuna ma'lumot va bosish yo'llari o'zgarmasin; telefonda harakatni kamaytirish yoqilgan bo'lsa, kichrayish va kattalashish bo'lmasin. Paket kerak bo'lsa — faqat `npx expo install` bilan. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "экраны, данные-образцы и пути нажатий не меняются; если на телефоне уменьшено движение — пусть ничего не уменьшается и не увеличивается. Нужен пакет — только через `npx expo install`. Больше ничего не трогай, назови изменённые файлы." }
   ],
   web: [
-    { uz: '`prototip/` — `public/manifest.webmanifest`, ikonkalar `public/` da, `index.html` da manifestga havola.', ru: "`prototip/` — `public/manifest.webmanifest`, иконки в `public/`, в `index.html` ссылка на manifest." },
+    { uz: '`prototip/` — `public/manifest.webmanifest`, ikonkalar `public/` da, `index.html` da manifestga link.', ru: "`prototip/` — `public/manifest.webmanifest`, иконки в `public/`, в `index.html` ссылка на manifest." },
     { uz: "manifestda `name` va `short_name` — {nom}, `start_url` — `/`, `display` — `standalone`, `icons` — 192 va 512 piksel PNG ({rang}, matnsiz oddiy shakl). Ikonka faylini yarata olmasang — bitta kvadrat rasmdan shu ikki o'lchamni qanday tayyorlashni menga ayt.", ru: "в manifest `name` и `short_name` — {nom}, `start_url` — `/`, `display` — `standalone`, `icons` — PNG 192 и 512 пикселей ({rang}, простая фигура без текста). Если не можешь создать файл иконки — скажи мне, как подготовить эти два размера из одной квадратной картинки." },
     { uz: "ekranlar, namuna ma'lumot, bosish yo'llari va animatsiyalar o'zgarmasin. Boshqa joyga tegma, o'zgargan fayllarni ayt.", ru: "экраны, данные-образцы, пути нажатий и анимации не меняются. Больше ничего не трогай, назови изменённые файлы." }
   ]
@@ -2612,7 +2612,7 @@ const A2_QADAMLAR = {
       prompt: talab(A2_PROMPT.web), joylar: A2_JOYLAR.web,
       yordam: talab(toldir(A2_PROMPT.web, { nom: { uz: 'Maydon Jamoa', ru: 'Maydon Jamoa' }, rang: { uz: 'yashil', ru: 'зелёный' } })) },
     { h: QADAM.ishga, t: { uz: "GitHub'ga: `git status` — o'zgargan fayllar agent aytgan ro'yxat bilan bir xil; `git add prototip`, `git commit -m \"PWA\"`, `git push`.", ru: 'на GitHub: `git status` — изменённые файлы совпадают со списком агента; `git add prototip`, `git commit -m "PWA"`, `git push`.' },
-      bandlar: [{ uz: "Keyin app.netlify.com → yangi loyiha → GitHub'dan import → o'z repo'ngiz. Base directory `prototip`, build `npm run build`, publish `dist`. Havola chiqadi: `….netlify.app`; keyingi har push'da sayt o'zi yangilanadi.", ru: 'Потом app.netlify.com → новый проект → импорт из GitHub → ваш репо. Base directory `prototip`, build `npm run build`, publish `dist`. Появится ссылка: `….netlify.app`; при каждом следующем push сайт обновится сам.' }], err: XATO_GAP },
+      bandlar: [{ uz: "Keyin app.netlify.com → yangi loyiha → GitHub'dan import → o'z repo'ngiz. Base directory `prototip`, build `npm run build`, publish `dist`. Link chiqadi: `….netlify.app`; keyingi har push'da sayt o'zi yangilanadi.", ru: 'Потом app.netlify.com → новый проект → импорт из GitHub → ваш репо. Base directory `prototip`, build `npm run build`, publish `dist`. Появится ссылка: `….netlify.app`; при каждом следующем push сайт обновится сам.' }], err: XATO_GAP },
     { h: QADAM.telefon, t: { uz: 'telefonda `….netlify.app` ni oching.', ru: 'откройте на телефоне `….netlify.app`.' },
       bandlar: [
         { uz: "Android'da Chrome: manzil qatori o'ngidagi «⋮» → «Install and create shortcut» → «Install» (telefon tili boshqa bo'lsa — o'sha tildagi nomi).", ru: 'На Android в Chrome: «⋮» справа от адресной строки → «Install and create shortcut» → «Install» (если язык телефона другой — название на этом языке).' },
@@ -2746,7 +2746,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const HOMEWORK = [
     { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— darsda ulgurmagan qadamlarni o'z trekingizda bajaring: prototip telefoningizda ochilsin.", ru: '— выполните в своём треке шаги, которые не успели на уроке: прототип должен открываться на телефоне.' } },
     { b: { uz: 'Tekshirish', ru: 'Проверить' }, t: { uz: "— telefonda bosib chiqing: wireframe'dagi har tugma kerakli ekranni ochadimi? Farq bo'lsa — agentga bitta tuzatish talabi.", ru: '— пройдите нажатиями на телефоне: каждая кнопка из wireframe открывает нужный экран? Есть отличие — одно требование-исправление агенту.' } },
-    { b: { uz: 'GitHub', ru: 'GitHub' }, t: { uz: '— o\'zgarishlar GitHub\'da tursin: mobil trekda `mobil/`, web-trekda `prototip/` va `README.md` da Netlify havolasi.', ru: '— изменения должны быть на GitHub: в мобильном треке `mobil/`, в веб-треке `prototip/` и ссылка Netlify в `README.md`.' } }
+    { b: { uz: 'GitHub', ru: 'GitHub' }, t: { uz: '— o\'zgarishlar GitHub\'da tursin: mobil trekda `mobil/`, web-trekda `prototip/` va `README.md` da Netlify linki.', ru: '— изменения должны быть на GitHub: в мобильном треке `mobil/`, в веб-треке `prototip/` и ссылка Netlify в `README.md`.' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;

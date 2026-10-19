@@ -215,7 +215,7 @@ const IshBlock = ({ r, setR, pulse, ph, takror }) => {
 // — 1-BOSQICH: bo'laklarim —
 const ISH_PH = [
   { uz: "Masalan: «Yozilish» tugmasi — bossa, ism ro'yxatga tushadi", ru: 'Например: кнопка «Записаться» — нажал, и имя попадает в список' },
-  { uz: "Masalan: e'lonni ulashish havolasi — bossa, havola nusxalanadi", ru: 'Например: ссылка «поделиться» — нажал, и ссылка скопирована' },
+  { uz: "Masalan: e'lonni ulashish linki — bossa, link nusxalanadi", ru: 'Например: ссылка «поделиться» — нажал, и ссылка скопирована' },
   { uz: "Masalan: «Mening e'lonlarim» ro'yxati — bossa, o'z e'lonlarini ko'radi", ru: 'Например: список «мои объявления» — нажал и видит свои' },
 ];
 const StageRows = ({ rows, setRows }) => {

@@ -698,7 +698,7 @@ const kutishTekshir = (qildim, kutdim) => {
 const S5_XATO = {
   manosiz: MANOSIZ_XATO,
   bosh: { uz: 'Nima kutishingizni yozing: ekranda nima ko\'rinadi?', ru: 'Напишите, чего ждёте: что видно на экране?' },
-  pii: { uz: 'Yozuvga telefon, akkaunt va havola yozilmaydi.', ru: 'В запись не пишут телефон, аккаунт и ссылку.' },
+  pii: { uz: 'Yozuvga telefon, akkaunt va link yozilmaydi.', ru: 'В запись не пишут телефон, аккаунт и ссылку.' },
   mavhum: { uz: 'Buni ekranda qanday ko\'rasiz? Son yoki yozuvni ayting.', ru: 'Как вы увидите это на экране? Назовите число или надпись.' }
 };
 
@@ -898,7 +898,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
         qadamlar={REJA.map(r => ({ t: tr(r.t) }))}
       >
         <p className="dt-pastki">{tr({ uz: "repo — o'z repo'ngiz", ru: 'репо — ваш собственный' })} · {tr({ uz: 'Mentor misoli', ru: 'пример Ментора' })} <code className="qcode">maydon-jamoa</code> · {tr({ uz: 'namuna', ru: 'образец' })} <code className="qcode">m14-dars-07-done</code></p>
-        <Ustoz satrlar={[{ uz: "Menyu ostidagi «uch marta to'liq o'tish» — Amaliyot 2: demo boshidan oxirigacha uch marta, ikkinchisida B reja. Bugun yangi funksiya qo'shilmaydi: 6-darsdan beri faqat tuzatish. Buzish — faqat o'quvchining o'z mahsulotida.", ru: '«Три полных прохода» под меню — это Практика 2: демо от начала до конца три раза, во втором — План Б. Сегодня новых функций не добавляем: с 6-го урока — только исправления. Ломать — только собственный продукт ученика.' }]} />
+        <Ustoz satrlar={[{ uz: "Menu ostidagi «uch marta to'liq o'tish» — Amaliyot 2: demo boshidan oxirigacha uch marta, ikkinchisida B reja. Bugun yangi funksiya qo'shilmaydi: 6-darsdan beri faqat tuzatish. Buzish — faqat o'quvchining o'z mahsulotida.", ru: '«Три полных прохода» под меню — это Практика 2: демо от начала до конца три раза, во втором — План Б. Сегодня новых функций не добавляем: с 6-го урока — только исправления. Ломать — только собственный продукт ученика.' }]} />
       </QReja>
     </Stage>
   );

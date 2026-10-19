@@ -1829,7 +1829,7 @@ const Screen14 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   const HOMEWORK = [
     { b: { uz: 'Ulang', ru: 'Подключите' }, t: { uz: "— darsda ulgurmagan bo'lsangiz, KitobShop'ga ci.yml qo'shib push qiling", ru: '— если не успели на уроке, добавьте ci.yml в KitobShop и сделайте push' } },
     { b: { uz: 'Kuzating', ru: 'Проследите' }, t: { uz: "— Actions bo'limida barcha nuqta yashil bo'lishini tasdiqlang", ru: '— убедитесь в разделе Actions, что все точки зелёные' } },
-    { b: { uz: "Ko'rsating", ru: 'Покажите' }, t: { uz: "— TABLONI README.md ga qo'yib, mentorga repo havolasini yuboring", ru: '— повесьте ТАБЛО в README.md и отправьте ментору ссылку на репозиторий' } }
+    { b: { uz: "Ko'rsating", ru: 'Покажите' }, t: { uz: "— TABLONI README.md ga qo'yib, mentorga repo linkini yuboring", ru: '— повесьте ТАБЛО в README.md и отправьте ментору ссылку на репозиторий' } }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;

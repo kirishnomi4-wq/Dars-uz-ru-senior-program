@@ -690,8 +690,8 @@ const BOGINLAR = [
 const MENTOR_ZAXIRA = {
   boginda: 'kanal',
   sabab: { uz: 'Kanal: post faqat ikki joyga yetdi (60 kishilik guruh va sinf chati).', ru: "Канал: пост дошёл только до двух мест (группа на 60 человек и чат класса)." },
-  gipoteza: { uz: "Agar har o'yin e'loni bilan birga havola yuborilsa, yangi odamlar keladi, chunki tashkilotchi o'z jamoasini o'zi chaqiradi.", ru: "Если с каждым объявлением об игре отправлять ссылку, придут новые люди, потому что организатор сам зовёт свою команду." },
-  ish: { uz: "E'lon berilgach ilovada «Havolani ulashish» tugmasi — rejaning 3-bosqichi oldinga suriladi.", ru: "Кнопка «Поделиться ссылкой» в приложении после объявления — 3-й этап плана сдвигается вперёд." }
+  gipoteza: { uz: "Agar har o'yin e'loni bilan birga link yuborilsa, yangi odamlar keladi, chunki tashkilotchi o'z jamoasini o'zi chaqiradi.", ru: "Если с каждым объявлением об игре отправлять ссылку, придут новые люди, потому что организатор сам зовёт свою команду." },
+  ish: { uz: "E'lon berilgach ilovada «Linkni ulashish» tugmasi — rejaning 3-bosqichi oldinga suriladi.", ru: "Кнопка «Поделиться ссылкой» в приложении после объявления — 3-й этап плана сдвигается вперёд." }
 };
 // 6-darsdagi olti bandli ro'yxat (tayanch 1.6, 9.42 f — so'zma-so'z; 6-dars bilan bir xil const)
 const XAVFSIZLIK = {
@@ -794,7 +794,7 @@ const JamoaTelefon = ({ ulashish, className }) => (
         <span className="uc-tel-orqa">‹ {tr({ uz: "O'yin", ru: "Игра" })}</span>
         <span className="uc-tel-karta"><b>{tr({ uz: 'Shanba', ru: "Суббота" })}, 18:00</b><span>{tr({ uz: 'Mahalla maydoni', ru: "Поле махалли" })}</span><b className="uc-tel-son">8 / 10</b><Doiralar bor={8} kerak={10} /></span>
         <span className="uc-tel-tug">{tr({ uz: "Qo'shilaman", ru: "Присоединяюсь" })}</span>
-        <span className="uc-tel-tug uc-ulash">{tr({ uz: 'Havolani ulashish', ru: "Поделиться ссылкой" })}</span>
+        <span className="uc-tel-tug uc-ulash">{tr({ uz: 'Linkni ulashish', ru: "Поделиться ссылкой" })}</span>
       </span>
     ) : (
       <span className="uc-tel-ekran">
@@ -2111,7 +2111,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev, answers }) =
       {yordam && <div className="uc-yordam fade-step">
         <QIzoh>{tr(MENTOR_ZAXIRA.sabab)}</QIzoh>
         <QIzoh>{tr(MENTOR_ZAXIRA.gipoteza)}</QIzoh>
-        <QIzoh>{tr({ uz: "E'lon berilgach ilovada «Havolani ulashish» tugmasi.", ru: "Кнопка «Поделиться ссылкой» в приложении после объявления." })}</QIzoh>
+        <QIzoh>{tr({ uz: "E'lon berilgach ilovada «Linkni ulashish» tugmasi.", ru: "Кнопка «Поделиться ссылкой» в приложении после объявления." })}</QIzoh>
         {z.boginda === 'royxat' && chiqarildi && <>
           <QIzoh>{tr({ uz: 'Agentga:', ru: "Агенту:" })}</QIzoh>
           <QPrompt til={__lang} satrlar={[
@@ -2900,9 +2900,9 @@ const HwCard = ({ keyingi }) => (
     <div className="uc-hw-karta">{HW_KARTA.map((r, i) => <div key={i} className="uc-hw-q"><span className="uc-hw-k">{tr(r.k)}</span><span className="uc-hw-v">{tr(r.v)}</span></div>)}</div>
     <ol className="uc-hw-qadam">
       <li><i>1</i><div>
-        <p>{tr({ uz: "Zaxira rejangizdagi ishni bajaring. Ilovada o'zgarish bo'lsa — agentga talab yozing (qayerda · nima qilsin · nima buzilmasin): nima o'zgarishi va foydalanuvchini qayerga olib borishini o'zingiz yozing — agent o'zi tanlamasin. Keyin push qiling; mobil trekda APK o'zi yangilanmaydi — yangi o'rnatish fayli tayyorlanadi va lendingdagi havola almashtiriladi.", ru: "Выполните дело из своего запасного плана. Если меняется приложение — напишите агенту требование (где · что сделать · что не сломать): что изменится и куда это приведёт пользователя — напишите сами, чтобы агент не выбирал. Потом сделайте push; в мобильном треке APK сам не обновится — готовится новый установочный файл, и ссылка на лендинге заменяется." })}</p>
+        <p>{tr({ uz: "Zaxira rejangizdagi ishni bajaring. Ilovada o'zgarish bo'lsa — agentga talab yozing (qayerda · nima qilsin · nima buzilmasin): nima o'zgarishi va foydalanuvchini qayerga olib borishini o'zingiz yozing — agent o'zi tanlamasin. Keyin push qiling; mobil trekda APK o'zi yangilanmaydi — yangi o'rnatish fayli tayyorlanadi va lendingdagi link almashtiriladi.", ru: "Выполните дело из своего запасного плана. Если меняется приложение — напишите агенту требование (где · что сделать · что не сломать): что изменится и куда это приведёт пользователя — напишите сами, чтобы агент не выбирал. Потом сделайте push; в мобильном треке APK сам не обновится — готовится новый установочный файл, и ссылка на лендинге заменяется." })}</p>
         <p>{tr({ uz: "50 ga yetgan va zaxira reja yozmagan bo'lsangiz — bu band ixtiyoriy: xohlasangiz, hisobotdan yaxshilamoqchi bo'lgan bitta bo'g'inni tanlab, unga bitta ish qiling.", ru: "Если вы дошли до 50 и не писали запасной план — этот пункт по желанию: если хотите, выберите по отчёту одно звено, которое хотите улучшить, и сделайте для него одно дело." })}</p>
-        <p className="uc-hw-iz">{fmtCode(tr({ uz: "Mentor misolini ko'rmoqchi bo'lsangiz (majburiy emas): «Havolani ulashish» tugmasi — `git checkout -f m12-dars-10-done` (Mentor repo'si, alohida yangi papkada — buyruq papkadagi o'zgarishlarni o'chiradi).", ru: "Если хотите посмотреть пример Ментора (не обязательно): кнопка «Поделиться ссылкой» — `git checkout -f m12-dars-10-done` (репозиторий Ментора, в отдельной новой папке — команда удаляет изменения в папке)." }))}</p>
+        <p className="uc-hw-iz">{fmtCode(tr({ uz: "Mentor misolini ko'rmoqchi bo'lsangiz (majburiy emas): «Linkni ulashish» tugmasi — `git checkout -f m12-dars-10-done` (Mentor repo'si, alohida yangi papkada — buyruq papkadagi o'zgarishlarni o'chiradi).", ru: "Если хотите посмотреть пример Ментора (не обязательно): кнопка «Поделиться ссылкой» — `git checkout -f m12-dars-10-done` (репозиторий Ментора, в отдельной новой папке — команда удаляет изменения в папке)." }))}</p>
       </div></li>
       <li><i>2</i><div>
         <p>{tr({ uz: "Ish post yoki xabar bo'lsa — 6-darsdagi olti bandli ro'yxat bilan tekshiring: guruhga — egasidan ruxsat so'rab, ota-onangizga ko'rsatib.", ru: "Если дело — пост или сообщение, проверьте по списку из шести пунктов из 6-го урока: в группу — спросив разрешения владельца, показав родителям." })}</p>

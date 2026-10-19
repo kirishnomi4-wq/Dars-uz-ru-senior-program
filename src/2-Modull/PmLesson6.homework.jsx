@@ -93,13 +93,13 @@ const PITCH_FIELDS = [
     ph: { uz: "Masalan: narxni bilish uchun har safar do'konga kirish kerak", ru: 'Например: чтобы узнать цену, каждый раз нужно заходить в магазин' } },
   { key: 'qiladi', min: 8, max: 200, short: { uz: 'Nima qiladi', ru: 'Что делает' },
     ask: { uz: 'Sayt buni qanday hal qiladi?', ru: 'Как сайт это решает?' },
-    ph: { uz: "Masalan: bugungi menyu va narxlarni telefon ekranida ko'rsatadi", ru: 'Например: показывает меню дня и цены на экране телефона' } },
+    ph: { uz: "Masalan: bugungi menu va narxlarni telefon ekranida ko'rsatadi", ru: 'Например: показывает меню дня и цены на экране телефона' } },
   { key: 'ishlaydi', min: 8, max: 200, short: { uz: 'Nega ishlaydi', ru: 'Почему работает' },
     ask: { uz: 'Sayt buni qanday uddalaydi? Bitta o\'xshatish bilan ayting', ru: 'Как сайт справляется? Скажите одним сравнением' },
     ph: { uz: "Masalan: bosh sahifa peshtaxtaga o'xshaydi — hammasi bir ko'rinishda", ru: 'Например: главная похожа на прилавок — всё видно с одного взгляда' } },
   { key: 'soraym', min: 6, max: 200, short: { uz: "Nima so'rayman", ru: 'О чём прошу' },
     ask: { uz: 'Tinglovchidan aynan nima kerak?', ru: 'Что именно нужно от слушателя?' },
-    ph: { uz: "Masalan: menyu rasmlarini juma kunigacha yuborishni so'rayman", ru: 'Например: прошу прислать фото меню до пятницы' } },
+    ph: { uz: "Masalan: menu rasmlarini juma kunigacha yuborishni so'rayman", ru: 'Например: прошу прислать фото меню до пятницы' } },
 ];
 const fieldErr = (key, v) => {
   const t = (v || '').trim();

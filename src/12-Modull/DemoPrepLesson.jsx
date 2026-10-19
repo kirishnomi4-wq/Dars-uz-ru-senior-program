@@ -705,7 +705,7 @@ const RISKLAR = [
 const B_REJA_GAPI = { uz: "Internet uzildi — shu demoning 60 soniyalik videosini ko'rsataman.", ru: 'Интернет пропал — покажу 60-секундное видео этого демо.' };
 const B_REJA_YOLLAR = [
   { id: 'kutish', nom: { uz: 'Internet qaytishini kutish', ru: 'Ждать, пока вернётся интернет' }, natija: 'vaqt' },
-  { id: 'havola', nom: { uz: 'Havoladagi video', ru: 'Видео по ссылке' }, natija: 'ochilmadi' },
+  { id: 'havola', nom: { uz: 'Linkdagi video', ru: 'Видео по ссылке' }, natija: 'ochilmadi' },
   { id: 'fayl', nom: { uz: 'Laptopdagi video fayl', ru: 'Видеофайл на ноутбуке' }, natija: 'video' }
 ];
 const B_REJA_QATOR = [
@@ -758,7 +758,7 @@ const Laptop = ({ ekran = 'oyin', son = 8, qoshildi, sonYangi, korayapti, chiroq
     <span className="dp-qur-y"><span>{tr(yorliq)}</span>{chiroq && <Chiroq holat={chiroq} yozuvsiz={chiroqYozuvsiz} soat={soat} />}</span>
     {ust}
     <div className="dp-lap">
-      <span className="dp-lap-bar"><i /><i /><i /><span className={cx('dp-url', ekran === 'havola' && 'qizil')}>{ekran === 'havola' ? tr({ uz: 'video havolasi', ru: 'ссылка на видео' }) : ekran === 'video' ? tr({ uz: 'demo-video · laptopdagi fayl', ru: 'demo-video · файл на ноутбуке' }) : manzil}</span><WifiIc yoq={wifiYoq} /></span>
+      <span className="dp-lap-bar"><i /><i /><i /><span className={cx('dp-url', ekran === 'havola' && 'qizil')}>{ekran === 'havola' ? tr({ uz: 'video linki', ru: 'ссылка на видео' }) : ekran === 'video' ? tr({ uz: 'demo-video · laptopdagi fayl', ru: 'demo-video · файл на ноутбуке' }) : manzil}</span><WifiIc yoq={wifiYoq} /></span>
       <div className="dp-lap-ekran">
         {ekran !== 'video' && ekran !== 'havola' && <span className="dp-lap-ust"><MJ />{akkaunt && <em>{tr(akkaunt)}</em>}</span>}
         {ekran === 'bosh' && <span className="dp-lap-bosh">
@@ -1105,7 +1105,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const fn = [kutish, havola, fayl];
   const mGap = !taxmin ? { uz: "Mentor misolida 2-qadamda zal Wi-Fi'i uzildi — avval taxminingizni belgilang.", ru: 'В примере Ментора на шаге 2 отключился Wi-Fi зала — сначала отметьте предположение.' }
     : q === 0 ? { uz: "«Internet qaytishini kutish»ni bosing va taymerga qarang.", ru: 'Нажмите «Ждать, пока вернётся интернет» и смотрите на таймер.' }
-      : q === 1 ? { uz: "Endi «Havoladagi video»ni bosing.", ru: 'Теперь нажмите «Видео по ссылке».' }
+      : q === 1 ? { uz: "Endi «Linkdagi video»ni bosing.", ru: 'Теперь нажмите «Видео по ссылке».' }
         : q === 2 ? { uz: "Oxirgisi — «Laptopdagi video fayl».", ru: 'Последнее — «Видеофайл на ноутбуке».' }
           : { uz: 'Natijani taxminingiz bilan solishtiring.', ru: 'Сравните результат со своим предположением.' };
   return (
@@ -1126,11 +1126,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </div>
         </div>}
         xulosa={done && <XulosaQ natija={taxmin && <Natija togri={taxmin === 'bitta'} haqiqat={{ uz: 'bittasi', ru: 'один' }} />}
-          matn={tr({ uz: "Bu misolda internet uzilganda faqat laptopdagi video fayl ochildi — havolaga ham internet kerak.", ru: 'В этом примере без интернета открылся только видеофайл на ноутбуке — для ссылки тоже нужен интернет.' })}
+          matn={tr({ uz: "Bu misolda internet uzilganda faqat laptopdagi video fayl ochildi — linkka ham internet kerak.", ru: 'В этом примере без интернета открылся только видеофайл на ноутбуке — для ссылки тоже нужен интернет.' })}
           izoh={tr({ uz: "Demo ishlamay qolsa, o'rniga ko'rsatiladigan oldindan yozilgan ekran videosi — B reja.", ru: 'Заранее записанное видео экрана, которое показывают, если демо не сработало, — план Б.' })} />}
       >
         <Ustoz satrlar={[
-          { uz: "«Kutish» va «havola» — hayotda tez-tez tanlanadigan yo'l; bu misolda internet qaytmadi. Telefon internetini laptopga ulash ham yo'l bo'lishi mumkin, lekin telefon demoning ikkinchi qurilmasi va u ham internetga bog'liq — B reja internetsiz ochilishi kerak.", ru: '«Ждать» и «ссылка» — путь, который в жизни выбирают часто; в этом примере интернет не вернулся. Можно раздать интернет с телефона на ноутбук, но телефон — второе устройство демо и тоже зависит от интернета: план Б должен открываться без интернета.' },
+          { uz: "«Kutish» va «link» — hayotda tez-tez tanlanadigan yo'l; bu misolda internet qaytmadi. Telefon internetini laptopga ulash ham yo'l bo'lishi mumkin, lekin telefon demoning ikkinchi qurilmasi va u ham internetga bog'liq — B reja internetsiz ochilishi kerak.", ru: '«Ждать» и «ссылка» — путь, который в жизни выбирают часто; в этом примере интернет не вернулся. Можно раздать интернет с телефона на ноутбук, но телефон — второе устройство демо и тоже зависит от интернета: план Б должен открываться без интернета.' },
           { uz: "Video ommaviy joyga, sinf chatiga yuklanmaydi va repo'ga qo'shilmaydi (Amaliyot 2). Ekran yozish dasturi har kompyuterda boshqacha — umumiy so'z bilan ayting.", ru: 'Видео не выкладывают в открытый доступ, в чат класса и не добавляют в репо (Практика 2). Средство записи экрана на каждом компьютере своё — говорите общими словами.' }
         ]} />
       </QTushuncha>
@@ -1256,7 +1256,7 @@ const QUIZ_BANK = [
   { q: { uz: "Demoning besh qadami bir marta ko'rsatildi. Bu nima?", ru: "Пять шагов демо показали один раз. Что это?" }, opts: [{ uz: "Demo ssenariysi", ru: "Сценарий демо" }, { uz: "Demo o'tishi", ru: "Прогон демо" }, { uz: "B yo'l", ru: "Путь Б" }, { uz: "Risklar ro'yxati", ru: "Список рисков" }], correct: 1 },
   { q: { uz: "Mentor «O'yindan chiqish»ni qachon bosadi?", ru: "Когда Ментор нажимает «Выйти из игры»?" }, opts: [{ uz: "Demoning birinchi qadamida", ru: "На первом шаге демо" }, { uz: "Hakamlar savol berganda", ru: "Когда судьи задают вопросы" }, { uz: "Keyingi o'tishdan oldin", ru: "Перед следующим прогоном" }, { uz: "Internet uzilganda", ru: "Когда пропал интернет" }], correct: 2 },
   { q: { uz: "«Backend uxlagan» riskiga qaysi biri B yo'l?", ru: "Что из этого — путь Б для риска «Backend уснул»?" }, opts: [{ uz: "Agentga kod yozdirish", ru: "Попросить агента написать код" }, { uz: "Hakamdan kutishni so'rash", ru: "Попросить судью подождать" }, { uz: "Demoni tashlab ketish", ru: "Бросить демо" }, { uz: "Navbatdan oldin uyg'otish", ru: "Разбудить перед очередью" }], correct: 3 },
-  { q: { uz: "B reja videosi nega havolada emas, faylda?", ru: "Почему видео плана Б в файле, а не по ссылке?" }, opts: [{ uz: "Internetsiz ham ochiladi", ru: "Откроется и без интернета" }, { uz: "Hakam o'zi yuklab oladi", ru: "Судья сам скачает" }, { uz: "Havolani agent o'chiradi", ru: "Агент удалит ссылку" }, { uz: "Fayl repo'ga o'zi tushadi", ru: "Файл сам попадёт в репо" }], correct: 0 },
+  { q: { uz: "B reja videosi nega linkda emas, faylda?", ru: "Почему видео плана Б в файле, а не по ссылке?" }, opts: [{ uz: "Internetsiz ham ochiladi", ru: "Откроется и без интернета" }, { uz: "Hakam o'zi yuklab oladi", ru: "Судья сам скачает" }, { uz: "Linkni agent o'chiradi", ru: "Агент удалит ссылку" }, { uz: "Fayl repo'ga o'zi tushadi", ru: "Файл сам попадёт в репо" }], correct: 0 },
   { q: { uz: "Demoni qaysi akkaunt bilan ko'rsatasiz?", ru: "С каким аккаунтом вы показываете демо?" }, opts: [{ uz: "Faol o'yinchi akkaunti", ru: "Аккаунт активного игрока" }, { uz: "Namuna akkaunt", ru: "Образцовый аккаунт" }, { uz: "Sinfdosh akkaunti", ru: "Аккаунт одноклассника" }, { uz: "Demo kuni ochilgan akkaunt", ru: "Аккаунт, созданный в день демо" }], correct: 1 },
   { q: { uz: "Video yozishdan oldin ekranda nimani yopasiz?", ru: "Что вы закрываете на экране перед записью видео?" }, opts: [{ uz: "«O'yinlar» ro'yxatini", ru: "Список «O'yinlar»" }, { uz: "`DEMO.md` va taymerni", ru: "`DEMO.md` и таймер" }, { uz: "Parol, `.env`, chatlarni", ru: "Пароль, `.env`, чаты" }, { uz: "Mahsulot sarlavhasini", ru: "Заголовок продукта" }], correct: 2 },
   { q: { uz: "Bepul Backend qachon uxlab qoladi?", ru: "Когда бесплатный Backend засыпает?" }, opts: [{ uz: "Har kuni soat 00:00 da", ru: "Каждый день в 00:00" }, { uz: "Ssenariydan 1 daqiqa keyin", ru: "Через 1 минуту после сценария" }, { uz: "Proyektorga ulangan zahoti", ru: "Сразу при подключении к проектору" }, { uz: "15 daqiqa so'rovsiz qolsa", ru: "После 15 минут без запросов" }], correct: 3 },
@@ -1873,7 +1873,7 @@ const XATO = {
   rsYangi: { uz: 'Bu — yangi funksiya. Demodan oldin tayyor ishni yozing.', ru: 'Это новая функция. Напишите готовое действие до демо.' },
   rsUmid: { uz: 'Buni demodan oldin qanday qilasiz? Bitta ishni yozing.', ru: 'Как вы сделаете это до демо? Напишите одно действие.' },
   manosiz: MANOSIZ_XATO,
-  pii: { uz: 'Bu yerga login, telefon va havola yozilmaydi.', ru: 'Сюда не пишут логин, телефон и ссылку.' },
+  pii: { uz: 'Bu yerga login, telefon va link yozilmaydi.', ru: 'Сюда не пишут логин, телефон и ссылку.' },
   yana: { uz: 'Shunday qoldirsangiz — yana bosing.', ru: 'Если оставляете так — нажмите ещё раз.' },
   nimaBoldi: { uz: "Qaysi qadamda nima bo'lganini bir qatorda yozing.", ru: 'Напишите в одну строку, на каком шаге что случилось.' }
 };
@@ -2161,7 +2161,7 @@ const A2_BREJA_PROMPT = [
 const VIDEO_TEK = [
   { uz: "beshala qadam ko'rinadi", ru: 'видны все пять шагов' },
   { uz: "parol, `.env`, maxfiy tokenli manzil va haqiqiy foydalanuvchi ismi ko'rinmaydi", ru: 'не видно пароля, `.env`, адреса с секретным токеном и имени настоящего пользователя' },
-  { uz: 'fayl laptopda, havola emas', ru: 'файл на ноутбуке, не ссылка' }
+  { uz: 'fayl laptopda, link emas', ru: 'файл на ноутбуке, не ссылка' }
 ];
 const A2Natija = ({ uygotish, video }) => (
   <div className="dp-an">
@@ -2384,7 +2384,7 @@ const KARTALAR = [
   { front: { uz: 'Bu darsda risk nima?', ru: 'Что такое риск на этом уроке?' }, back: { uz: "Demoga xalaqit berishi mumkin bo'lgan narsa", ru: 'То, что может помешать демо' }, note: { uz: '11-Modulda — rejaga xalaqit beradigan narsa edi', ru: 'В 11-м модуле — то, что мешает плану' } },
   { front: { uz: "B yo'l nima?", ru: 'Что такое путь Б?' }, back: { uz: "Risk bo'lsa ham demo davom etishi uchun oldindan qilinadigan ish", ru: 'Действие заранее, чтобы демо продолжилось даже при риске' }, note: { uz: 'Yangi funksiya emas; tuzatish mumkin', ru: 'Не новая функция; исправление можно' } },
   { front: { uz: 'B reja nima?', ru: 'Что такое план Б?' }, back: { uz: "Demo ishlamay qolsa ko'rsatiladigan oldindan yozilgan ekran videosi", ru: 'Заранее записанное видео экрана, которое показывают, если демо не сработало' }, note: { uz: '11-Modulda — ekran videosi; Mentor misolida 60 soniya', ru: 'В 11-м модуле — видео экрана; в примере Ментора 60 секунд' } },
-  { front: { uz: 'B reja videosi qayerda turadi?', ru: 'Где хранится видео плана Б?' }, back: { uz: 'Demo ochiladigan laptopda, faylda', ru: 'На ноутбуке, где открывают демо, в файле' }, note: { uz: "Havola internetsiz ochilmaydi; repo'ga qo'shilmaydi", ru: 'Ссылка без интернета не откроется; в репо не добавляют' } },
+  { front: { uz: 'B reja videosi qayerda turadi?', ru: 'Где хранится видео плана Б?' }, back: { uz: 'Demo ochiladigan laptopda, faylda', ru: 'На ноутбуке, где открывают демо, в файле' }, note: { uz: "Link internetsiz ochilmaydi; repo'ga qo'shilmaydi", ru: 'Ссылка без интернета не откроется; в репо не добавляют' } },
   { front: { uz: 'Bepul Backend qachon uxlab qoladi?', ru: 'Когда засыпает бесплатный Backend?' }, back: { uz: "15 daqiqa so'rovsiz qolganda", ru: 'Когда 15 минут нет запросов' }, note: { uz: "Render; uyg'onishi taxminan bir daqiqa", ru: 'Render; просыпается примерно за минуту' } },
   { front: { uz: "Backend'ni qanday uyg'otasiz?", ru: 'Как разбудить Backend?' }, back: { uz: "Navbatdan bir necha daqiqa oldin demo yo'lini ochib", ru: 'Открыв путь демо за несколько минут до очереди' }, note: { uz: "Ro'yxat chiqsa — uyg'ondi", ru: 'Появился список — проснулся' } },
   { front: { uz: "Demoni qaysi akkaunt bilan ko'rsatasiz?", ru: 'С какого аккаунта показываете демо?' }, back: { uz: 'Namuna akkaunt bilan — ikkala qurilmada oldindan kirilgan', ru: 'С образцового аккаунта — вход заранее на обоих устройствах' }, note: { uz: "Sanoqqa kirmaydi; parol `DEMO.md` ga yozilmaydi", ru: 'Не входит в подсчёт; пароль в `DEMO.md` не пишут' } },

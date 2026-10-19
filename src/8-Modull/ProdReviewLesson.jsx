@@ -1971,12 +1971,12 @@ const ScreenA1 = (props) => (
       ] },
       { h: { uz: 'PR ochish', ru: "Открыть PR" }, t: [
         { uz: "«Create pull request» → sarlavha (masalan: `Prod ro'yxati: chegara, xato holatlari, A/B yakuni`) → tavsifga shablonni qo'ying → yana «Create pull request».", ru: "«Create pull request» → заголовок (например: `Прод-список: лимит, состояния ошибок, итог A/B`) → вставьте шаблон в описание → снова «Create pull request»." },
-        { uz: "PR havolasini sinfdoshingizga Telegram'da yuboring. PR ostida Netlify'ning «Deploy Preview» qatori chiqishi mumkin — bu alohida manzil, bugun kerak emas.", ru: "Отправьте ссылку на PR однокласснику в Telegram. Под PR может появиться строка Netlify «Deploy Preview» — это отдельный адрес, сегодня он не нужен." }
+        { uz: "PR linkini sinfdoshingizga Telegram'da yuboring. PR ostida Netlify'ning «Deploy Preview» qatori chiqishi mumkin — bu alohida manzil, bugun kerak emas.", ru: "Отправьте ссылку на PR однокласснику в Telegram. Под PR может появиться строка Netlify «Deploy Preview» — это отдельный адрес, сегодня он не нужен." }
       ], err: { uz: "PR `Azizbekcrypto/maydon` da ochilib qolsa — uni «Close pull request» bilan yoping va 1-qadamdagi «base repository»ni qayta tanlang.", ru: "Если PR открылся в `Azizbekcrypto/maydon` — закройте его через «Close pull request» и заново выберите «base repository» из шага 1." } },
       { h: QADAM_GOYA, t: { uz: "shu tavsifni o'tgan darsda tanlagan eng yaxshi loyihangiz uchun yozing: unda nima o'zgardi va nega? Uch qatorni to'ldiring.", ru: "напишите это описание для лучшего проекта, выбранного на прошлом уроке: что в нём изменилось и почему? Заполните три строки." }, forma: true }
     ]}
     natija={<NatijaA1 />} natijaYorliq={NATIJA_YORLIQ}
-    doneText={{ uz: 'PR ochildi: har o\'zgarish yonida sababi bor, havola sinfdoshingizda.', ru: "PR открыт: рядом с каждым изменением есть причина, ссылка у одноклассника." }} />
+    doneText={{ uz: 'PR ochildi: har o\'zgarish yonida sababi bor, link sinfdoshingizda.', ru: "PR открыт: рядом с каждым изменением есть причина, ссылка у одноклассника." }} />
 );
 
 const ScreenA2 = (props) => (
@@ -1985,7 +1985,7 @@ const ScreenA2 = (props) => (
     mentor={{ uz: <>Juftlikda ikki PR bor: birini siz o'qiysiz, ikkinchisiga siz javob berasiz; <b style={{ color: T.ink }}>«1 · Ochish»</b>dan boshlang.</>, ru: <>В паре два PR: один читаете вы, на второй отвечаете вы; начните с <b style={{ color: T.ink }}>«1 · Открыть»</b>.</> }}
     steps={[
       { h: { uz: 'Ochish', ru: 'Открыть' }, t: [
-        { uz: "sinfdoshingiz yuborgan PR havolasini oching → «Files changed». Har faylni oxirigacha o'qing, o'qib bo'lgan faylga «Viewed» belgisini qo'ying.", ru: "откройте ссылку на PR от одноклассника → «Files changed». Читайте каждый файл до конца, прочитанный отмечайте «Viewed»." },
+        { uz: "sinfdoshingiz yuborgan PR linkini oching → «Files changed». Har faylni oxirigacha o'qing, o'qib bo'lgan faylga «Viewed» belgisini qo'ying.", ru: "откройте ссылку на PR от одноклассника → «Files changed». Читайте каждый файл до конца, прочитанный отмечайте «Viewed»." },
         { uz: "Uch savol bilan o'qing: tavsifdagi sabab kodga mosmi? Xato bo'lsa, o'yinchi yoki ega nimani ko'radi? Maxfiy kalit (`JWT_SECRET`, `EGA_PAROLI`, `EGA_2FA_KALITI`) kodda ochiq turibdimi?", ru: "Читайте с тремя вопросами: совпадает ли причина из описания с кодом? Что увидит игрок или владелец при ошибке? Не лежит ли секретный ключ (`JWT_SECRET`, `EGA_PAROLI`, `EGA_2FA_KALITI`) открыто в коде?" }
       ] },
       { h: { uz: 'Izoh', ru: "Комментарий" }, t: [

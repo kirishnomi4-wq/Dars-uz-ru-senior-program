@@ -862,7 +862,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
     { text: { uz: 'Clone qilib ishga tushiramiz', ru: 'Клонируем и запускаем' }, tag: 'git clone + run' },
-    { text: { uz: "Swagger'da tirik API ko'ramiz", ru: 'Смотрим живой API в Swagger' }, tag: { uz: 'menyu', ru: 'меню' } },
+    { text: { uz: "Swagger'da tirik API ko'ramiz", ru: 'Смотрим живой API в Swagger' }, tag: { uz: 'menu', ru: 'меню' } },
     { text: { uz: "Restoran binosini o'rganamiz", ru: 'Изучаем здание ресторана' }, tag: { uz: 'qaysi papka nima', ru: 'какая папка за что' } },
     { text: { uz: "Buyurtma yo'lini o'zimiz yig'amiz", ru: 'Сами собираем путь заказа' }, tag: { uz: '6 bekat', ru: '6 станций' } }
   ];
@@ -969,7 +969,7 @@ const Screen4 = (props) => (
     explainCorrect={{ uz: ".env GitHub'ga chiqmaydi — kalitlar u yerda xavfsiz.", ru: 'Файл .env не попадает на GitHub — ключи там в безопасности.' }}
     explainWrong={{
       0: { uz: "Kodga yozilgan kalitni GitHub'da hamma ko'radi — xavfli.", ru: 'Ключ в коде на GitHub увидят все — опасно.' },
-      2: { uz: "Swagger — menyu (API eshiklari ro'yxati), sozlama joyi emas.", ru: 'Swagger — меню (список дверей API), а не место для настроек.' },
+      2: { uz: "Swagger — menu (API eshiklari ro'yxati), sozlama joyi emas.", ru: 'Swagger — меню (список дверей API), а не место для настроек.' },
       3: { uz: "README loyihani tanishtiradi, uni esa hamma o'qiydi.", ru: 'README знакомит с проектом, и его читают все.' },
       default: { uz: "Kalit qayerda tursa, GitHub'ga chiqmaydi?", ru: 'Где должен лежать ключ, чтобы не попасть на GitHub?' }
     }} />
@@ -989,14 +989,14 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: '2-qadam · Swagger', ru: 'Шаг 2 · Swagger' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bitta eshikni sinang', ru: 'Попробуйте одну дверь' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hech narsa yozmadik — <span className="italic" style={{ color: T.accent }}>API qayerda</span>?</>, ru: <>Мы ничего не написали — <span className="italic" style={{ color: T.accent }}>откуда API</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Swagger</b> — restoranning <b style={{ color: T.ink }}>menyusi</b>: mijoz ko'radigan barcha eshiklar ro'yxati. Har bir eshikning kod tilidagi nomi — <span className="mono">endpoint</span>: mijoz so'rov yuboradigan manzil. Bittasini ochib, <b style={{ color: T.ink }}>"Try it out"</b> bilan sinab ko'ring — javob keladi.</>, ru: <><b style={{ color: T.ink }}>Swagger</b> — это <b style={{ color: T.ink }}>меню</b> ресторана: список всех дверей, которые видит клиент. На языке кода каждая дверь называется <span className="mono">endpoint</span>: адрес, куда клиент шлёт запрос. Откройте одну и попробуйте <b style={{ color: T.ink }}>"Try it out"</b> — придёт ответ.</> })}</Mentor>
+        <Mentor>{tr({ uz: <><b style={{ color: T.ink }}>Swagger</b> — restoranning <b style={{ color: T.ink }}>menusi</b>: mijoz ko'radigan barcha eshiklar ro'yxati. Har bir eshikning kod tilidagi nomi — <span className="mono">endpoint</span>: mijoz so'rov yuboradigan manzil. Bittasini ochib, <b style={{ color: T.ink }}>"Try it out"</b> bilan sinab ko'ring — javob keladi.</>, ru: <><b style={{ color: T.ink }}>Swagger</b> — это <b style={{ color: T.ink }}>меню</b> ресторана: список всех дверей, которые видит клиент. На языке кода каждая дверь называется <span className="mono">endpoint</span>: адрес, куда клиент шлёт запрос. Откройте одну и попробуйте <b style={{ color: T.ink }}>"Try it out"</b> — придёт ответ.</> })}</Mentor>
         <Zoomable><Split>
           <Col>
             <Swagger openId={openId} onToggle={toggle} triedIds={tried} onTry={onTry} />
           </Col>
           <Col>
             <div className="sk-info"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Rangli yorliqlar — <b style={{ color: T.blue }}>GET</b> (o'qish), <b style={{ color: T.success }}>POST</b> (qo'shish), <b style={{ color: T.amber }}>PATCH</b> (o'zgartirish), <b style={{ color: T.danger }}>DELETE</b> (o'chirish).</>, ru: <>Цветные метки — <b style={{ color: T.blue }}>GET</b> (чтение), <b style={{ color: T.success }}>POST</b> (добавление), <b style={{ color: T.amber }}>PATCH</b> (изменение), <b style={{ color: T.danger }}>DELETE</b> (удаление).</> })}</p></div>
-            <div className="real-try"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Haqiqiy hayotda sinang:</b> o'z kompyuteringizda serverni yoqib, brauzerda <span className="mono">localhost:3000/api/v1</span> ni oching — aynan shu menyuni ko'rasiz.</>, ru: <><b>Попробуйте по-настоящему:</b> включите сервер на своём компьютере и откройте в браузере <span className="mono">localhost:3000/api/v1</span> — увидите ровно это меню.</> })}</p></div>
+            <div className="real-try"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>Haqiqiy hayotda sinang:</b> o'z kompyuteringizda serverni yoqib, brauzerda <span className="mono">localhost:3000/api/v1</span> ni oching — aynan shu menuni ko'rasiz.</>, ru: <><b>Попробуйте по-настоящему:</b> включите сервер на своём компьютере и откройте в браузере <span className="mono">localhost:3000/api/v1</span> — увидите ровно это меню.</> })}</p></div>
             {done
               ? <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ko'rdingizmi? API <b>tirik</b> — bir qator ham yozmadingiz, lekin to'liq ishlaydigan admin tizimi bor. Endi: bularning hammasi qayerda turibdi?</>, ru: <>Видели? API <b>живой</b> — вы не написали ни строчки, а полноценная админ-система уже работает. Теперь вопрос: где всё это лежит?</> })}</p></div>
               : null /* F-0926-06: mentor gapini takrorlagan yo'riq-quti olindi (159/7) */}
@@ -1847,7 +1847,7 @@ const QUIZ_BANK = [
   { q: { uz: "Anketa xato to'ldirilsa qaysi kod qaytadi?", ru: "Какой код вернётся, если анкета заполнена неверно?" }, opts: [{ uz: "`201` — yozuv yaratildi", ru: "`201` — запись создана" }, { uz: "`401` — ruxsat berilmadi", ru: "`401` — доступ запрещён" }, { uz: "`400` — so'rov noto'g'ri", ru: "`400` — неверный запрос" }, { uz: "`200` — hammasi joyida", ru: "`200` — всё в порядке" }], correct: 2 },
   { q: { uz: "`Entity` nimani belgilaydi?", ru: "Что задаёт `Entity`?" }, opts: [{ uz: "Sahifa ranglarini", ru: "Цвета страницы" }, { uz: "Ombordagi tokchalarni", ru: "Полки на складе" }, { uz: "Server tezligini", ru: "Скорость сервера" }, { uz: "Ofitsiant ish vaqtini", ru: "График официанта" }], correct: 1 },
   { q: { uz: "`git clone` nima qiladi?", ru: "Что делает `git clone`?" }, opts: [{ uz: "Loyihani kompyuterga oladi", ru: "Скачивает проект на компьютер" }, { uz: "Loyihani o'chirib tashlaydi", ru: "Удаляет проект" }, { uz: "Bazani ma'lumotga to'ldiradi", ru: "Заполняет базу данными" }, { uz: "Yoqilgan serverni o'chiradi", ru: "Выключает работающий сервер" }], correct: 0 },
-  { q: { uz: "`Swagger` — bu nima?", ru: "`Swagger` — что это?" }, opts: [{ uz: "Ombordagi javon chizmasi", ru: "Чертёж стеллажа на складе" }, { uz: "Maxfiy kalitlar fayli", ru: "Файл секретных ключей" }, { uz: "Menyu — eshiklar ro'yxati", ru: "Меню — список дверей" }, { uz: "Parol shifrlovchi dastur", ru: "Программа шифрования паролей" }], correct: 2 },
+  { q: { uz: "`Swagger` — bu nima?", ru: "`Swagger` — что это?" }, opts: [{ uz: "Ombordagi javon chizmasi", ru: "Чертёж стеллажа на складе" }, { uz: "Maxfiy kalitlar fayli", ru: "Файл секретных ключей" }, { uz: "Menu — eshiklar ro'yxati", ru: "Меню — список дверей" }, { uz: "Parol shifrlovchi dastur", ru: "Программа шифрования паролей" }], correct: 2 },
   { q: { uz: "Yangi bo'lim: birinchi uch qadam?", ru: "Новый раздел: первые три шага?" }, opts: ["Module → Controller → DTO", "Controller → Module → Entity", "Service → Entity → Module", "Entity → DTO → Service"], correct: 3 },
   { q: { uz: "`successRes` nima uchun kerak?", ru: "Зачем нужен `successRes`?" }, opts: [{ uz: "Xatoni mijozdan yashiradi", ru: "Прячет ошибки от клиента" }, { uz: "Javoblarni bir xil qiladi", ru: "Делает ответы одинаковыми" }, { uz: "Serverni tezlashtiradi", ru: "Ускоряет сервер" }, { uz: "Parolni shifrlab saqlaydi", ru: "Хранит пароль в шифре" }], correct: 1 },
 ];
@@ -2434,7 +2434,7 @@ function ScreenLivePractice({ title, task, checklist, screen, storedAnswer, onAn
     if (_live && _live.mode === 'student') _live.submitAnswer(PRACTICE_BASE + screen, 'practice', 0, true, 0);
   };
   // JONLI: mentor keyingi sahifaga o'tmaguncha NavNext qulf bo'ladi (optionalLive + LiveGateCtx gate). Hozircha done bo'lsa ochiq.
-  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z kompyuteringizda, VS Code'da bajarasiz. Loyihani clone qiling, serverni yoqing va Swagger menyusida bitta eshikni sinab ko'ring. So'ng bitta so'rovning butun yo'lini ekranga qaramasdan, yoddan aytib bering. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: `practice_${screen}`, text: `Endi navbat sizda — bu topshiriqni o'z kompyuteringizda, VS Code'da bajarasiz. Loyihani clone qiling, serverni yoqing va Swagger menusida bitta eshikni sinab ko'ring. So'ng bitta so'rovning butun yo'lini ekranga qaramasdan, yoddan aytib bering. Har bosqichni bajarib, belgilab boring. Tugagach «Bajardim» tugmasini bosing — ustoz kuzatib turadi.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot · VS Code', ru: 'Практика · VS Code' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval bajaring', ru: 'Сначала выполните' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
@@ -2552,11 +2552,11 @@ function Flashcards({ cards }) {
 const ScreenNestPractice = (props) => (
   <ScreenLivePractice {...props}
     title={{ uz: "Restoranni o'z kompyuteringizda oching", ru: 'Откройте ресторан на своём компьютере' }}
-    task={{ uz: "Loyihani clone qilib ishga tushiring, Swagger menyusida bitta eshikni sinang va bitta so'rovning yo'lini ekranga qaramasdan, yoddan aytib bering: mijoz qaysi bekatlardan o'tadi?", ru: 'Клонируйте проект и запустите его, попробуйте одну дверь в меню Swagger и расскажите своими словами путь одного запроса: через какие станции проходит клиент?' }}
+    task={{ uz: "Loyihani clone qilib ishga tushiring, Swagger menusida bitta eshikni sinang va bitta so'rovning yo'lini ekranga qaramasdan, yoddan aytib bering: mijoz qaysi bekatlardan o'tadi?", ru: 'Клонируйте проект и запустите его, попробуйте одну дверь в меню Swagger и расскажите своими словами путь одного запроса: через какие станции проходит клиент?' }}
     checklist={[
       { uz: "Repo'ni clone qiling: `git clone` + `npm install`", ru: 'Склонируйте репозиторий: `git clone` + `npm install`' },
       { uz: "`.env` faylini to'ldiring va `npm run start:dev` bilan serverni yoqing", ru: 'Заполните файл `.env` и включите сервер командой `npm run start:dev`' },
-      { uz: "Brauzerda `localhost:3000/api/v1` — Swagger menyusini oching", ru: 'Откройте в браузере `localhost:3000/api/v1` — меню Swagger' },
+      { uz: "Brauzerda `localhost:3000/api/v1` — Swagger menusini oching", ru: 'Откройте в браузере `localhost:3000/api/v1` — меню Swagger' },
       { uz: "Bitta endpointni `Try it out` bilan sinang va javobni ko'ring", ru: 'Попробуйте один endpoint через `Try it out` и посмотрите ответ' },
       { uz: "Yoningizdagi do'stingizga `POST /admin` yo'lini aytib bering: qo'riqchi → nazoratchi → ofitsiant → oshpaz → ombor → lagan", ru: 'Расскажите соседу путь `POST /admin`: охранник → контролёр → официант → повар → склад → поднос' },
     ]} />

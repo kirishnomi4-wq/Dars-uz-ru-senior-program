@@ -593,14 +593,14 @@ const JAMOA_PITCH = {
   muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi. Men so'ragan 3 o'yinchidan 3 tasida oxirgi o'yinda odam yetmagan yoki kimdir kelmagan.", ru: 'Игрокам трудно собрать людей в команду. У 3 из 3 игроков, которых я спросил, в последней игре не хватило людей или кто-то не пришёл.' },
   bozor: { uz: "Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi. Boshqa mahallalarni hali tekshirmaganmiz.", ru: 'В футбольной группе махалли — 60 человек; в приложении — 6 организаторов. Другие махалли мы ещё не проверяли.' },
   yechim: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут.' },
-  raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора дали письменное подтверждение на Pro — это ещё не оплата.' },
+  raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi. 3 tashkilotchi Pro'ga yozma tasdiq berdi — bu hali to'lov emas.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению. 3 организатора дали письменное подтверждение на Pro — это ещё не оплата.' },
   jamoa: { uz: "Men — g'oya, mahsulot va kod (agent bilan). Sinab ko'rganlar — 6 tashkilotchi va o'yinchilar.", ru: 'Я — идея, продукт и код (с агентом). Пробовали — 6 организаторов и игроки.' },
   keyingi: { uz: "Uch tashkilotchi bilan \"Doimiy o'yin\"ni test rejimda sinayman. Sizdan bitta so'rov: mahalladagi maydon egalari bilan tanishtiring.", ru: 'С тремя организаторами проверю «Постоянную игру» в тестовом режиме. Одна просьба к вам: познакомьте с владельцами площадок в махалле.' },
   birinchi: { // har bo'lakning birinchi gapi — 10-ekran
     muammo: { uz: "O'yinchilar jamoaga odam yig'ishda qiynaladi.", ru: 'Игрокам трудно собрать людей в команду.' },
     bozor: { uz: "Mahalla futbol guruhida — 60 kishi; ilovada — 6 tashkilotchi.", ru: 'В футбольной группе махалли — 60 человек; в приложении — 6 организаторов.' },
     yechim: { uz: "Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.", ru: 'Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут.' },
-    raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif havolasidan keldi.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению.' },
+    raqamlar: { uz: "51 foydalanuvchi; 11 tasi — sinfdoshlarim, 7 tasi taklif linkidan keldi.", ru: '51 пользователь; 11 из них — мои одноклассники, 7 пришли по ссылке-приглашению.' },
     jamoa: { uz: "Men — g'oya, mahsulot va kod (agent bilan).", ru: 'Я — идея, продукт и код (с агентом).' },
     keyingi: { uz: "Uch tashkilotchi bilan \"Doimiy o'yin\"ni test rejimda sinayman.", ru: 'С тремя организаторами проверю «Постоянную игру» в тестовом режиме.' }
   },
@@ -612,7 +612,7 @@ const JAMOA_PITCH_12 = {
   yechim: JAMOA_PITCH.yechim,
   demo: { uz: "2-telefonda «8 / 10» o'rniga «9 / 10» o'zi chiqadi", ru: 'На 2-м телефоне вместо «8 / 10» само появляется «9 / 10»' },
   raqamlar: { uz: "44 kishidan 11 tasi — sinfdoshlarim", ru: 'Из 44 человек 11 — мои одноклассники' },
-  keyingi: { uz: "E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi — maqsad 50.", ru: 'После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде — цель 50.' }
+  keyingi: { uz: "E'lon berilgach «Linkni ulashish» tugmasi bilan tashkilotchi linkni o'z jamoasiga yuboradi — maqsad 50.", ru: 'После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде — цель 50.' }
 };
 // Hakam savollari — bitta manba (tayanch 9.3; to'rttasi 12-Modul ZAL_SAVOL aynan). Kurs savollari, real hakam gapi emas.
 const HAKAM_SAVOL = {
@@ -1310,7 +1310,7 @@ const S11_XATO = {
   manosiz: MANOSIZ_XATO,
   uzun: { uz: "160 belgidan oshdi — bitta gapni qisqartiring.", ru: 'Больше 160 знаков — сократите одну фразу.' },
   qavs: { uz: "{…} o'rniga o'zingiznikini yozing.", ru: 'Вместо {…} напишите своё.' },
-  pii: { uz: 'Pitchga telefon, akkaunt va havola yozilmaydi.', ru: 'В питч не пишут телефон, аккаунт и ссылку.' },
+  pii: { uz: 'Pitchga telefon, akkaunt va link yozilmaydi.', ru: 'В питч не пишут телефон, аккаунт и ссылку.' },
   umumiy: { uz: "Son qayerdan? Manbasini yozing yoki «hali tekshirilmagan».", ru: 'Откуда число? Напишите источник или «ещё не проверено».' },
   texno: { uz: "Bu texnologiya — mahsulot odamga nima beradi?", ru: 'Это технология — а что продукт даёт человеку?' },
   tasdiq: { uz: "Tasdiq hali to'lov emas — buni gapda ayting.", ru: 'Подтверждение — ещё не оплата: скажите это во фразе.' },
@@ -1628,7 +1628,7 @@ const QUIZ_BANK = [
   { q: { uz: "Mentor Jamoa bo'lagida agentni qanday aytgan?", ru: "Как Ментор назвал агента в Команде?" }, opts: [{ uz: "Jamoa a'zosi deb aytgan", ru: "Назвал членом команды" }, { uz: "Bosh dasturchi deb aytgan", ru: "Назвал главным программистом" }, { uz: "Agentni tilga olmagan", ru: "Не упомянул агента" }, { uz: "Kodni agent bilan yozgan", ru: "Писал код с агентом" }], correct: 3 },
   { q: { uz: "Mentor misolida sinab ko'rganlar kimlar?", ru: "Кто тестировал в примере Ментора?" }, opts: [{ uz: "Faqat sinfdoshlari", ru: "Только одноклассники" }, { uz: "6 tashkilotchi va o'yinchilar", ru: "6 организаторов и игроки" }, { uz: "Investor va tadbirkorlar", ru: "Инвесторы и предприниматели" }, { uz: "Agent va Mentorning o'zi", ru: "Агент и сам Ментор" }], correct: 1 },
   { q: { uz: "Mentor hakamdan nima so'raydi?", ru: "О чём Ментор просит судью?" }, opts: [{ uz: "Pro uchun yozma tasdiq", ru: "Письменное согласие на Pro" }, { uz: "Ilovani guruhga ulashish", ru: "Поделиться приложением в группе" }, { uz: "Ilova uchun pul summasi", ru: "Сумму денег на приложение" }, { uz: "Maydon egalarini tanishtirish", ru: "Познакомить с владельцами полей" }], correct: 3 },
-  { q: { uz: "12-Moduldagi «maqsad 50» nega yangilandi?", ru: "Почему обновили «цель 50» из 12-го модуля?" }, opts: [{ uz: "Foydalanuvchi 51 taga yetdi", ru: "Пользователей стало 51" }, { uz: "Maqsad juda katta bo'ldi", ru: "Цель оказалась слишком большой" }, { uz: "Ro'yxatdagi son xato edi", ru: "Число в списке было ошибочным" }, { uz: "Taklif havolasi buzildi", ru: "Пригласительная ссылка сломалась" }], correct: 0 },
+  { q: { uz: "12-Moduldagi «maqsad 50» nega yangilandi?", ru: "Почему обновили «цель 50» из 12-го модуля?" }, opts: [{ uz: "Foydalanuvchi 51 taga yetdi", ru: "Пользователей стало 51" }, { uz: "Maqsad juda katta bo'ldi", ru: "Цель оказалась слишком большой" }, { uz: "Ro'yxatdagi son xato edi", ru: "Число в списке было ошибочным" }, { uz: "Taklif linki buzildi", ru: "Пригласительная ссылка сломалась" }], correct: 0 },
   { q: { uz: "Mentor 3 yozma tasdiqni qanday aytgan?", ru: "Как Ментор назвал 3 письменных согласия?" }, opts: [{ uz: "Uchtasi Pro'ni sotib oldi", ru: "Трое купили Pro" }, { uz: "Tasdiq bor, to'lov hali yo'q", ru: "Согласие есть, оплаты ещё нет" }, { uz: "Hamma tashkilotchi yozildi", ru: "Все организаторы записались" }, { uz: "Pitchda umuman aytmagan", ru: "В питче не упомянул" }], correct: 1 },
   { q: { uz: "Mentor Muammo dalilini qayerdan olgan?", ru: "Откуда Ментор взял довод для Проблемы?" }, opts: [{ uz: "Ilovadagi 51 kishidan", ru: "От 51 человека в приложении" }, { uz: "Guruhdagi 60 kishidan", ru: "От 60 человек в группе" }, { uz: "So'ralgan 3 o'yinchidan", ru: "От 3 опрошенных игроков" }, { uz: "3 tashkilotchi tasdig'idan", ru: "Из согласия 3 организаторов" }], correct: 2 },
 ];

@@ -782,7 +782,7 @@ const ScreenMashina = ({ screen, onNext, onPrev }) => {
 
 // ----- a3 · Ijaralar va jami -----
 const a3Prompt = () => tr({
-  uz: "AvtoIjara saytimga ijaralarni qo'sh (kodim pastda):\n1. Mashina sahifasidagi «Ijaraga olish» bosilganda ijara bookings ro'yxatiga qo'shilsin: setBookings([...bookings, { id, name, price, days }]). bookings state App.jsx da tursin.\n2. Yangi sahifa «Mening ijaralarim» (/bookings): har ijara — nomi, kun va price * days; pastda jami — for sikli bilan yig'indi. Menyuga <Link> qo'sh.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{App.jsx va sahifalar kodini shu yerga qo'ying}",
+  uz: "AvtoIjara saytimga ijaralarni qo'sh (kodim pastda):\n1. Mashina sahifasidagi «Ijaraga olish» bosilganda ijara bookings ro'yxatiga qo'shilsin: setBookings([...bookings, { id, name, price, days }]). bookings state App.jsx da tursin.\n2. Yangi sahifa «Mening ijaralarim» (/bookings): har ijara — nomi, kun va price * days; pastda jami — for sikli bilan yig'indi. Menuga <Link> qo'sh.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{App.jsx va sahifalar kodini shu yerga qo'ying}",
   ru: 'Добавь в мой сайт AvtoIjara аренды (код ниже):\n1. По нажатию «Взять в аренду» на странице машины аренда добавляется в список bookings: setBookings([...bookings, { id, name, price, days }]). State bookings пусть лежит в App.jsx.\n2. Новая страница «Мои аренды» (/bookings): каждая аренда — название, дни и price * days; внизу итог — сумма циклом for. Добавь <Link> в меню.\nК каждому разделу — короткий комментарий. Изменённые файлы верни целиком.\nВот мой код:\n{вставьте сюда код App.jsx и страниц}'
 });
 const A3_QADAM = [

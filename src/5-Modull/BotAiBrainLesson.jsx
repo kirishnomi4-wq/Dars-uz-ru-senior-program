@@ -359,7 +359,7 @@ const RECAPS = {
     cards: [
       { ic: 'temperature: 0.1', h: { uz: "Past — qat'iy", ru: 'Низко — строго' }, body: { uz: "Temperature past bo'lsa, AI deyarli bir xil javob beradi; aniq ma'lumot uchun shu tanlanadi.", ru: "При низкой temperature ИИ отвечает почти одинаково — её выбирают для точных данных." } },
       { ic: 'temperature: 1.5', h: { uz: 'Baland — erkin', ru: "Высоко — свободно" }, body: { uz: "Baland bo'lsa, javob har safar boshqacha; ijodiy matn uchun qulay.", ru: "При высокой temperature ответ каждый раз другой — это удобно для творческого текста." } },
-      { ic: '3', h: { uz: "To'g'rilikni kafolatlamaydi", ru: "Правильность не гарантирует" }, body: { uz: 'Past qiymatda ham javob menyu bilan tekshiriladi.', ru: "Даже при низком значении ответ сверяют с меню." }, ask: { uz: 'Menyuni bir xil aytish uchun qaysi temperature tanlanadi?', ru: "Какую temperature выбрать, чтобы меню звучало всегда одинаково?" } },
+      { ic: '3', h: { uz: "To'g'rilikni kafolatlamaydi", ru: "Правильность не гарантирует" }, body: { uz: 'Past qiymatda ham javob menu bilan tekshiriladi.', ru: "Даже при низком значении ответ сверяют с меню." }, ask: { uz: 'Menuni bir xil aytish uchun qaysi temperature tanlanadi?', ru: "Какую temperature выбрать, чтобы меню звучало всегда одинаково?" } },
     ]
   },
   14: {
@@ -375,7 +375,7 @@ const RECAPS = {
     cards: [
       { ic: 'ctx.message.text', h: { uz: 'Avval — xabar va kontekst', ru: "Сначала — сообщение и контекст" }, body: { uz: "Mijoz xabari keladi, bot unga system prompt va suhbat tarixini qo'shadi.", ru: "Приходит сообщение клиента, бот добавляет к нему system prompt и историю диалога." } },
       { ic: 'soraAI({ systemPrompt, tarix, xabar })', h: { uz: 'Keyin — AI javobi', ru: "Потом — ответ ИИ" }, body: { uz: "AI API shu hammasini o'qib, javob yozadi.", ru: "AI API читает всё это и пишет ответ." } },
-      { ic: 'ctx.reply(javob)', h: { uz: 'Oxiri — tekshirish va yuborish', ru: "В конце — проверка и отправка" }, body: { uz: 'Javob menyu bilan tekshiriladi, keyin mijozga ketadi va tarixga yoziladi.', ru: "Ответ сверяют с меню, потом он уходит клиенту и записывается в историю." }, vis: { uz: <RcFlow items={['Xabar', 'System prompt + tarix', 'AI javobi', 'Tekshirish', 'Yuborish']} />, ru: <RcFlow items={['Сообщение', 'System prompt + история', 'Ответ ИИ', 'Проверка', 'Отправка']} /> }, ask: { uz: 'Nega javob yuborishdan oldin tekshiriladi?', ru: "Почему ответ проверяют до отправки?" } },
+      { ic: 'ctx.reply(javob)', h: { uz: 'Oxiri — tekshirish va yuborish', ru: "В конце — проверка и отправка" }, body: { uz: 'Javob menu bilan tekshiriladi, keyin mijozga ketadi va tarixga yoziladi.', ru: "Ответ сверяют с меню, потом он уходит клиенту и записывается в историю." }, vis: { uz: <RcFlow items={['Xabar', 'System prompt + tarix', 'AI javobi', 'Tekshirish', 'Yuborish']} />, ru: <RcFlow items={['Сообщение', 'System prompt + история', 'Ответ ИИ', 'Проверка', 'Отправка']} /> }, ask: { uz: 'Nega javob yuborishdan oldin tekshiriladi?', ru: "Почему ответ проверяют до отправки?" } },
     ]
   }
 };
@@ -990,7 +990,7 @@ const YR_SLOTS = [
   ] },
   { id: 'limit', q: { uz: 'Nima haqida?', ru: "О чём говорить?" }, opts: [
     { id: 'any', ok: false, t: { uz: 'Istalgan mavzuda erkin gaplashaver', ru: "Говори свободно на любую тему" } },
-    { id: 'menu', ok: true, t: { uz: 'Faqat menyu va buyurtma haqida gaplash', ru: "Говори только о меню и заказах" } },
+    { id: 'menu', ok: true, t: { uz: 'Faqat menu va buyurtma haqida gaplash', ru: "Говори только о меню и заказах" } },
     { id: 'none', ok: false, t: { uz: 'Hech qanday savolga javob berma', ru: "Не отвечай ни на один вопрос" } }
   ] }
 ];
@@ -1219,7 +1219,7 @@ const Screen8 = (props) => (
 // ===== SCREEN 9 — MARKAZIY #3: TEMPERATURE (navbat: 0.1 → 1.5 → savol; ikkala javob to'plami yonma-yon qoladi) =====
 const DIAL_REPLIES = {
   low: [{ uz: "Bizda Margarita, Pepperoni va To'rt pishloq bor.", ru: "У нас есть Маргарита, Пепперони и Четыре сыра." }, { uz: "Bizda Margarita, Pepperoni va To'rt pishloq bor.", ru: "У нас есть Маргарита, Пепперони и Четыре сыра." }, { uz: "Bizda Margarita, Pepperoni va To'rt pishloq bor.", ru: "У нас есть Маргарита, Пепперони и Четыре сыра." }],
-  high: [{ uz: 'Bizda Margarita va Pepperoni bor — qaysi birini tanlaysiz?', ru: "У нас есть Маргарита и Пепперони — какую выберете?" }, { uz: "Bugun Margarita bilan boshlang, Pepperoni ham bor — albatta sinab ko'ring!", ru: "Начните сегодня с Маргариты, а ещё есть Пепперони — обязательно попробуйте!" }, { uz: "Menyuda Pepperoni va To'rt pishloq — ikkalasi ham mazali!", ru: "В меню Пепперони и Четыре сыра — обе очень вкусные!" }]
+  high: [{ uz: 'Bizda Margarita va Pepperoni bor — qaysi birini tanlaysiz?', ru: "У нас есть Маргарита и Пепперони — какую выберете?" }, { uz: "Bugun Margarita bilan boshlang, Pepperoni ham bor — albatta sinab ko'ring!", ru: "Начните сегодня с Маргариты, а ещё есть Пепперони — обязательно попробуйте!" }, { uz: "Menuda Pepperoni va To'rt pishloq — ikkalasi ham mazali!", ru: "В меню Пепперони и Четыре сыра — обе очень вкусные!" }]
 };
 const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
@@ -1254,13 +1254,13 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
         </div></Zoomable>
         {bothSeen && <div className="fade-step" style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-          <p className="q-lbl">{tr({ uz: 'Menyuni har safar bir xil va aniq aytish kerak. Qaysi temperature mos?', ru: "Меню нужно каждый раз называть одинаково и точно. Какая temperature подходит?" })}</p>
+          <p className="q-lbl">{tr({ uz: 'Menuni har safar bir xil va aniq aytish kerak. Qaysi temperature mos?', ru: "Меню нужно каждый раз называть одинаково и точно. Какая temperature подходит?" })}</p>
           <div className="dial-row">
             <button className={`dial-btn ${choice === 'low' ? 'on' : ''}`} disabled={choice !== null} onClick={() => pick('low')}>{tr({ uz: 'Past (0.1)', ru: "Низкая (0.1)" })}</button>
             <button className={`dial-btn ${choice === 'high' ? 'on' : ''}`} disabled={choice !== null} onClick={() => pick('high')}>{tr({ uz: 'Baland (1.5)', ru: "Высокая (1.5)" })}</button>
           </div>
           <AchRule screen={screen} once />
-          {done && choice === 'low' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Past temperature'da javob deyarli bir xil chiqadi — menyu uchun shu mos.", ru: "При низкой temperature ответ получается почти одинаковым — для меню подходит она." })}</p></div>}
+          {done && choice === 'low' && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Past temperature'da javob deyarli bir xil chiqadi — menu uchun shu mos.", ru: "При низкой temperature ответ получается почти одинаковым — для меню подходит она." })}</p></div>}
           {done && choice === 'high' && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Baland temperature'da javob har safar o'zgaradi.", ru: "При высокой temperature ответ каждый раз меняется." })}</p></div>}
         </div>}
       </div>
@@ -1336,7 +1336,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Markaziy · faktni tekshirish', ru: "Ключевое · проверка фактов" }} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : tr({ uz: `Har gapni tekshiring (${Object.keys(answers).length}/3)`, ru: `Проверьте каждое утверждение (${Object.keys(answers).length}/3)` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <><span className="italic" style={{ color: T.accent }}>Faktni</span> tekshiring.</>, ru: <>Проверьте <span className="italic" style={{ color: T.accent }}>факты</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: "AI menyu haqida uchta gap aytdi. Har birini haqiqiy menyu bilan solishtiring — buni inglizcha fact-checking deyishadi.", ru: "ИИ сказал о меню три вещи. Сверьте каждую с настоящим меню — по-английски это называют fact-checking." })}</Mentor>
+        <Mentor>{tr({ uz: "AI menu haqida uchta gap aytdi. Har birini haqiqiy menu bilan solishtiring — buni inglizcha fact-checking deyishadi.", ru: "ИИ сказал о меню три вещи. Сверьте каждую с настоящим меню — по-английски это называют fact-checking." })}</Mentor>
         <Zoomable>
           <div className="ckbox" ref={boxRef}>
             <svg className="ck-svg" aria-hidden="true">{lines.map(l => <path key={l.id} className="ck-line" d={l.d} pathLength="1" />)}</svg>
@@ -1366,7 +1366,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div className="ck-col">
               <div className="ck-db">
-                <div className="ck-db-hd"><span>menyu · PostgreSQL</span><span>{tr({ uz: '3 qator', ru: '3 строки' })}</span></div>
+                <div className="ck-db-hd"><span>menu · PostgreSQL</span><span>{tr({ uz: '3 qator', ru: '3 строки' })}</span></div>
                 <table className="ck-tbl"><tbody>
                   {MENU_ROWS.map((m, i) => { const hit = CLAIMS.some(c => c.menu === i && answers[c.id] !== undefined); return <tr key={i} ref={el => { menuRefs.current[i] = el; }} className={hit ? 'hit' : ''}><td>{tr(m.n)}</td><td>{tr(m.p)}</td></tr>; })}
                 </tbody></table>
@@ -1387,7 +1387,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 12 — HAYOTIY: AVTOPIZZA SUHBATI (o'ngda — AI'ga har so'rovda nima boradi) =====
 const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const STEPS = [
-    { u: { uz: 'Salom! Juda ochman, nima tavsiya qilasiz?', ru: "Привет! Очень хочу есть, что посоветуете?" }, b: { uz: "Salom! Menyudan Pepperoni'ni tavsiya qilaman — go'shtli va to'yimli. Yoki klassik Margarita?", ru: "Здравствуйте! Из меню советую Пепперони — мясная и сытная. Или классическую Маргариту?" } },
+    { u: { uz: 'Salom! Juda ochman, nima tavsiya qilasiz?', ru: "Привет! Очень хочу есть, что посоветуете?" }, b: { uz: "Salom! Menudan Pepperoni'ni tavsiya qilaman — go'shtli va to'yimli. Yoki klassik Margarita?", ru: "Здравствуйте! Из меню советую Пепперони — мясная и сытная. Или классическую Маргариту?" } },
     { u: { uz: 'Achchiq narsani yoqtirmayman', ru: "Острое я не люблю" }, b: { uz: 'Unda Margarita sizga mos: achchiq emas, yumshoq pishloqli. Buyurtma qilamizmi?', ru: "Тогда вам подойдёт Маргарита: не острая, с мягким сыром. Оформляем заказ?" } },
     { u: { uz: 'Ha, bittasini olaman', ru: 'Да, возьму одну' }, b: { uz: "Ajoyib! Margarita — 35 000 so'm. Manzilingizni yuboring, buyurtmani rasmiylashtiramiz.", ru: "Отлично! Маргарита — 35 000 сумов. Пришлите адрес, и мы оформим заказ." } }
   ];
@@ -1403,7 +1403,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const REQ_IN = [
     { k: { uz: 'System prompt', ru: "System prompt" }, v: { uz: "«Sen AvtoPizza do'konining yordamchisisan. Qisqa, samimiy, aniq gapir. Faqat menyu va buyurtma haqida gaplash.»", ru: "«Ты — помощник магазина AvtoPizza. Говори коротко, дружелюбно, чётко. Говори только о меню и заказах.»" } },
-    { k: { uz: 'Menyu (bazadan)', ru: "Меню (из базы)" }, v: { uz: MENU_REAL.map(m => m.uz).join(' · '), ru: MENU_REAL.map(m => m.ru).join(' · ') } },
+    { k: { uz: 'Menu (bazadan)', ru: "Меню (из базы)" }, v: { uz: MENU_REAL.map(m => m.uz).join(' · '), ru: MENU_REAL.map(m => m.ru).join(' · ') } },
     { k: { uz: 'Suhbat tarixi', ru: "История диалога" }, v: { uz: 'shu suhbatdagi oldingi xabarlar', ru: "предыдущие сообщения этого разговора" } }
   ];
   return (
@@ -1429,7 +1429,7 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <p className="note-h">{tr({ uz: "So'rov ichida", ru: "Внутри запроса" })}</p>
               {REQ_IN.map((r, i) => <p key={i} className="body req-ln"><b>{tr(r.k)}:</b> {tr(r.v)}</p>)}
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Bittasini» Margarita ekanini AI suhbat tarixidan bildi. Narx esa AI'dan emas, bazadagi menyudan olindi.", ru: "Что «одну» — это Маргарита, ИИ понял из истории диалога. А цена взята не у ИИ, а из меню в базе." })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "«Bittasini» Margarita ekanini AI suhbat tarixidan bildi. Narx esa AI'dan emas, bazadagi menudan olindi.", ru: "Что «одну» — это Маргарита, ИИ понял из истории диалога. А цена взята не у ИИ, а из меню в базе." })}</p></div>}
           </Col>
         </div></Zoomable>
       </div>
@@ -1439,11 +1439,11 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 13 — AI BOTGA QANDAY ULANADI (soddalashtirilgan kod + 2 qisqa karta) =====
 const AI_CODE = [
-  ['', { uz: "// /start va «Menyu» — oddiy handlerlar. Qolgan erkin savol — AI'ga:", ru: "// /start и «Меню» — обычные handler-ы. Остальные свободные вопросы — в ИИ:" }],
+  ['', { uz: "// /start va «Menu» — oddiy handlerlar. Qolgan erkin savol — AI'ga:", ru: "// /start и «Меню» — обычные handler-ы. Остальные свободные вопросы — в ИИ:" }],
   ["bot.on('text', async (ctx) => {", null],
   ['  const tarix = await suhbatTarixi(ctx.from.id) ', { uz: '// bazadan: oldingi xabarlar', ru: "// из базы: предыдущие сообщения" }],
   ['  const javob = await soraAI({', null],
-  ['    systemPrompt,             ', { uz: '// kim · qanday · nima haqida + menyu', ru: "// кто · как · о чём + меню" }],
+  ['    systemPrompt,             ', { uz: '// kim · qanday · nima haqida + menu', ru: "// кто · как · о чём + меню" }],
   ['    tarix,', null],
   ['    xabar: ctx.message.text,', null],
   ['    temperature: 0.2,', null],
@@ -1484,11 +1484,11 @@ const Screen14 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
     questionText="AI «Bizda ananasli pitsa bor» deb yozdi. Nima qilish kerak?"
     question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>AI <span className="italic" style={{ color: T.accent }}>«Bizda ananasli pitsa bor»</span> deb yozdi. Nima qilish kerak?</>, ru: <>ИИ написал: <span className="italic" style={{ color: T.accent }}>«У нас есть пицца с ананасом»</span>. Что нужно сделать?</> })}</h2></>}
-    options={[tr({ uz: 'Ishonib, mijozga shundayligicha yuborish', ru: "Поверить и отправить клиенту как есть" }), tr({ uz: "Menyu bilan solishtirib, tekshirib ko'rish", ru: "Сверить с меню и проверить" }), tr({ uz: "Mijozdan savolni qaytadan yozishni so'rash", ru: "Попросить клиента переписать вопрос" }), tr({ uz: 'Botni to\'xtatib, qayta ishga tushirish', ru: "Остановить бота и запустить заново" })]} correctIdx={1}
-    explainCorrect={tr({ uz: "AI menyuda yo'q narsani ham aytishi mumkin — narx va nomni menyu bilan solishtiring.", ru: "ИИ может назвать и то, чего нет в меню, — сверяйте цену и название с меню." })}
+    options={[tr({ uz: 'Ishonib, mijozga shundayligicha yuborish', ru: "Поверить и отправить клиенту как есть" }), tr({ uz: "Menu bilan solishtirib, tekshirib ko'rish", ru: "Сверить с меню и проверить" }), tr({ uz: "Mijozdan savolni qaytadan yozishni so'rash", ru: "Попросить клиента переписать вопрос" }), tr({ uz: 'Botni to\'xtatib, qayta ishga tushirish', ru: "Остановить бота и запустить заново" })]} correctIdx={1}
+    explainCorrect={tr({ uz: "AI menuda yo'q narsani ham aytishi mumkin — narx va nomni menu bilan solishtiring.", ru: "ИИ может назвать и то, чего нет в меню, — сверяйте цену и название с меню." })}
     explainWrong={{
       0: tr({ uz: "Tekshirmasdan yuborish xavfli: mijoz menyuda yo'q pitsani buyurtma qiladi.", ru: "Отправлять без проверки опасно: клиент закажет пиццу, которой нет в меню." }),
-      2: tr({ uz: 'Muammo mijozning savolida emas, AI javobida. Javob menyu bilan tekshiriladi.', ru: "Проблема не в вопросе клиента, а в ответе ИИ. Ответ сверяют с меню." }),
+      2: tr({ uz: 'Muammo mijozning savolida emas, AI javobida. Javob menu bilan tekshiriladi.', ru: "Проблема не в вопросе клиента, а в ответе ИИ. Ответ сверяют с меню." }),
       3: tr({ uz: "Qayta ishga tushirish javobni to'g'rilamaydi — AI yana shunday yozishi mumkin.", ru: "Перезапуск не исправит ответ — ИИ может снова написать так же." }),
       default: tr({ uz: 'AI javobidagi narx va taomni menyu bilan solishtiring.', ru: "Сверяйте цену и блюдо из ответа ИИ с меню." })
     }} />
@@ -1499,7 +1499,7 @@ const SAFE_CYCLE = [
   { id: 'instruct', label: { uz: 'Mijoz xabari keladi', ru: "Приходит сообщение клиента" } },
   { id: 'dial', label: { uz: "Xabarga system prompt va suhbat tarixi qo'shiladi", ru: "К сообщению добавляются system prompt и история диалога" } },
   { id: 'ask', label: { uz: 'AI API javob yozadi', ru: "AI API пишет ответ" } },
-  { id: 'check', label: { uz: 'Javob menyu bilan tekshiriladi', ru: "Ответ сверяется с меню" } },
+  { id: 'check', label: { uz: 'Javob menu bilan tekshiriladi', ru: "Ответ сверяется с меню" } },
   { id: 'note', label: { uz: 'Javob yuboriladi va tarixga yoziladi', ru: "Ответ отправляется и записывается в историю" } }
 ];
 const SAFE_CYCLE_ITEMS = SAFE_CYCLE.map(c => ({ id: c.id, label: { uz: `${c.label.uz}`, ru: `${c.label.ru}` } }));
@@ -1536,7 +1536,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const ACHIEVEMENTS = {
   ruleWriter:   { icon: '📜', name: 'Prompt Writer',     desc: { uz: 'AvtoPizza boti uchun system prompt yozdingiz', ru: "Вы написали system prompt для бота AvtoPizza" } },
   tableManager: { icon: '🪟', name: 'Context Keeper',    desc: { uz: "Oynadan chiqib ketadigan muhim ma'lumotni topdingiz", ru: "Вы нашли важные данные, которые выходят из окна" } },
-  dialMaster:   { icon: '🎚️', name: 'Temperature Tuner', desc: { uz: "Menyu uchun to'g'ri temperature tanladingiz", ru: "Вы выбрали верную temperature для меню" } },
+  dialMaster:   { icon: '🎚️', name: 'Temperature Tuner', desc: { uz: "Menu uchun to'g'ri temperature tanladingiz", ru: "Вы выбрали верную temperature для меню" } },
   factChecker:  { icon: '🔍', name: 'Fact Checker',      desc: { uz: "To'qib chiqarilgan pitsani menyu bilan tutdingiz", ru: "Вы поймали выдуманную пиццу, сверив с меню" } },
 };
 // Ekran id → nishon. ❗ FAQAT ma'noli, real-xato-imkonli ekranlar: s5 (system prompt builder — xato variant tanlansa
@@ -1643,8 +1643,8 @@ const QUIZ_BANK = [
   { q: { uz: "Tarix oynaga sig'masa, qaysi xabar chiqib ketadi?", ru: "История не влезает в окно. Какое сообщение уйдёт?" }, opts: [{ uz: "Eng yangi xabar", ru: "Самое новое" }, { uz: "Eng eski xabar", ru: "Самое старое" }, { uz: "Eng qisqa xabar", ru: "Самое короткое" }, { uz: "Tasodifiy bir xabar", ru: "Случайное" }], correct: 1 },
   { q: { uz: "Ism yo'qolmasligi uchun bot nima qiladi?", ru: "Что делает бот, чтобы имя не потерялось?" }, opts: [{ uz: "Ismni bazada saqlaydi", ru: "Хранит имя в базе" }, { uz: "Oynani kattalashtiradi", ru: "Увеличивает окно" }, { uz: "Temperature'ni pastlatadi", ru: "Понижает temperature" }, { uz: "AI'ni qayta yoqadi", ru: "Перезапускает AI" }], correct: 0 },
   { q: { uz: "Temperature past (0.1) bo'lsa, javob qanday?", ru: "Temperature низкая (0.1) — каким будет ответ?" }, opts: [{ uz: "Har safar boshqacha", ru: "Каждый раз другой" }, { uz: "Har safar xato", ru: "Каждый раз ошибка" }, { uz: "Juda uzun va batafsil", ru: "Очень длинный" }, { uz: "Deyarli bir xil", ru: "Почти одинаковый" }], correct: 3 },
-  { q: { uz: "Temperature baland (1.5): menyu uchun nima yomon?", ru: "Temperature высокая (1.5): что плохо для меню?" }, opts: [{ uz: "Bot to'xtab qoladi", ru: "Бот остановится" }, { uz: "Javob har safar boshqacha", ru: "Ответ каждый раз другой" }, { uz: "Internet uziladi", ru: "Пропадёт интернет" }, { uz: "API kaliti oshkor bo'ladi", ru: "Раскроется ключ API" }], correct: 1 },
-  { q: { uz: "Menyuni har safar bir xil aytish uchun qaysi temperature?", ru: "Какая temperature, чтобы меню звучало одинаково?" }, opts: [{ uz: "Baland (1.5)", ru: "Высокая (1.5)" }, { uz: "O'rtacha, xohlagancha", ru: "Средняя, любая" }, { uz: "Past (0.1)", ru: "Низкая (0.1)" }, { uz: "Har so'rovda boshqa", ru: "Разная в каждом запросе" }], correct: 2 },
+  { q: { uz: "Temperature baland (1.5): menu uchun nima yomon?", ru: "Temperature высокая (1.5): что плохо для меню?" }, opts: [{ uz: "Bot to'xtab qoladi", ru: "Бот остановится" }, { uz: "Javob har safar boshqacha", ru: "Ответ каждый раз другой" }, { uz: "Internet uziladi", ru: "Пропадёт интернет" }, { uz: "API kaliti oshkor bo'ladi", ru: "Раскроется ключ API" }], correct: 1 },
+  { q: { uz: "Menuni har safar bir xil aytish uchun qaysi temperature?", ru: "Какая temperature, чтобы меню звучало одинаково?" }, opts: [{ uz: "Baland (1.5)", ru: "Высокая (1.5)" }, { uz: "O'rtacha, xohlagancha", ru: "Средняя, любая" }, { uz: "Past (0.1)", ru: "Низкая (0.1)" }, { uz: "Har so'rovda boshqa", ru: "Разная в каждом запросе" }], correct: 2 },
   { q: { uz: "AI menyuda yo'q «ananasli pitsa»ni aytdi. Bu nima?", ru: "AI назвал «пиццу с ананасом», которой нет в меню. Что это?" }, opts: [{ uz: "To'g'ri javob", ru: "Верный ответ" }, { uz: "Bot API xatosi", ru: "Ошибка Bot API" }, { uz: "Kalit oshkor bo'lgani", ru: "Утечка ключа" }, { uz: "Hallutsinatsiya", ru: "Галлюцинация" }], correct: 3 },
   { q: { uz: "AI aytgan narx qachon tekshiriladi?", ru: "Когда проверяют цену, названную AI?" }, opts: [{ uz: "Mijozga yuborishdan oldin", ru: "До отправки клиенту" }, { uz: "Hech qachon", ru: "Никогда" }, { uz: "Temperature past bo'lsagina", ru: "Только при низкой temperature" }, { uz: "Faqat mijoz shikoyat qilsa", ru: "Только если клиент жалуется" }], correct: 0 },
   { q: { uz: "AI API kaliti qayerda saqlanadi?", ru: "Где хранится ключ AI API?" }, opts: [{ uz: "bot.js kodida, ochiq holda", ru: "Открыто в коде bot.js" }, { uz: "Mijozga chatda yuboriladi", ru: "Отправляется клиенту в чат" }, { uz: ".env faylida", ru: "В файле .env" }, { uz: "Telegram profil sozlamasida", ru: "В настройках профиля Telegram" }], correct: 2 },
@@ -2363,12 +2363,12 @@ const ScreenBotPractice = (props) => (
     steps={[
       { h: { uz: 'Kalit', ru: 'Ключ' }, t: { uz: "aistudio.google.com → «Get API key» → Create → nusxalang → `.env` ga `GEMINI_API_KEY=` (chatga, skrinshotga emas).", ru: "aistudio.google.com → «Get API key» → Create → скопируйте → в `.env` как `GEMINI_API_KEY=` (не в чат и не на скриншот)." } },
       { h: { uz: 'Prompt', ru: 'Промпт' }, t: { uz: "qavsga o'z system prompt'ingizni qo'ying, «Nusxalash», Antigravity'ga.", ru: "в скобки подставьте свой system prompt, «Скопировать», в Antigravity." }, prompt: [
-        { uz: "src/api/ai/system-prompt.ts yarat: SYSTEM_PROMPT = «{sen kimsan, qanday gapirasan, faqat nima haqida}» + menyu/ma'lumotlaring.", ru: "Создай src/api/ai/system-prompt.ts: SYSTEM_PROMPT = «{кто ты, как говоришь, только о чём}» + меню/твои данные." },
+        { uz: "src/api/ai/system-prompt.ts yarat: SYSTEM_PROMPT = «{sen kimsan, qanday gapirasan, faqat nima haqida}» + menu/ma'lumotlaring.", ru: "Создай src/api/ai/system-prompt.ts: SYSTEM_PROMPT = «{кто ты, как говоришь, только о чём}» + меню/твои данные." },
         { uz: "AiService (@google/genai, model gemini-2.5-flash, systemInstruction: SYSTEM_PROMPT, temperature 0.4); kalit bo'lmasa null qaytarsin.", ru: "AiService (@google/genai, модель gemini-2.5-flash, systemInstruction: SYSTEM_PROMPT, temperature 0.4); если ключа нет — возвращает null." },
-        { uz: "bot.on('text') da holat tayyor bo'lsa — AI javobi; null bo'lsa eski «Bu buyruqni bilmayman». Ism so'rash va menyu o'zgarmasin.", ru: "В bot.on('text') при holat = tayyor — ответ ИИ; если null — старое «Bu buyruqni bilmayman». Запрос имени и меню не меняются." }
+        { uz: "bot.on('text') da holat tayyor bo'lsa — AI javobi; null bo'lsa eski «Bu buyruqni bilmayman». Ism so'rash va menu o'zgarmasin.", ru: "В bot.on('text') при holat = tayyor — ответ ИИ; если null — старое «Bu buyruqni bilmayman». Запрос имени и меню не меняются." }
       ] },
       { h: { uz: 'Ishga tushirish', ru: 'Запустить' }, t: { uz: 'terminal xatosiz, «Telegram bot ulandi».', ru: 'терминал без ошибок, «Telegram bot ulandi».' }, err: { uz: "Xato bo'lsa: «Shu xato chiqdi: {xato}. Tuzat.»", ru: "Если ошибка: «Вышла такая ошибка: {ошибка}. Исправь.»" } },
-      { h: { uz: 'Telegramda tekshirish', ru: 'Проверить в Telegram' }, t: { uz: "mavzuga oid savol → javob system prompt'ga mos; mavzudan tashqari («Ertaga ob-havo?») → chegarada qoladi; narx so'rang → o'z menyungiz bilan solishtiring (mos kelmasa — hallutsinatsiya, system prompt'ga menyuni aniqroq yozing).", ru: "вопрос по теме → ответ по system prompt; не по теме («Какая завтра погода?») → остаётся в рамках; спросите цену → сверьте со своим меню (не совпало — галлюцинация, впишите меню в system prompt точнее)." } }
+      { h: { uz: 'Telegramda tekshirish', ru: 'Проверить в Telegram' }, t: { uz: "mavzuga oid savol → javob system prompt'ga mos; mavzudan tashqari («Ertaga ob-havo?») → chegarada qoladi; narx so'rang → o'z menungiz bilan solishtiring (mos kelmasa — hallutsinatsiya, system prompt'ga menuni aniqroq yozing).", ru: "вопрос по теме → ответ по system prompt; не по теме («Какая завтра погода?») → остаётся в рамках; спросите цену → сверьте со своим меню (не совпало — галлюцинация, впишите меню в system prompt точнее)." } }
     ]}
     chat={[
       { from: 'user', t: { uz: "Achchiq bo'lmagani qaysi?", ru: 'Какая не острая?' } },
@@ -2388,10 +2388,10 @@ const BOT_FLASHCARDS = [
   { front: { uz: "Tarix oynaga sig'masa, qaysi xabar birinchi chiqib ketadi?", ru: "Какое сообщение выходит первым, если история диалога не помещается в окно?" }, back: { uz: 'Eng eski xabar', ru: 'Самое старое сообщение' }, note: { uz: "AI uni endi ko'rmaydi", ru: "ИИ его больше не видит" } },
   { front: { uz: "Ism, manzil kabi muhim ma'lumot yo'qolmasligi uchun qayerda saqlanadi?", ru: "Где хранят важные данные, например имя и адрес, чтобы они не потерялись?" }, back: { uz: 'Bazada', ru: "В базе" }, note: { uz: "Har so'rovda system prompt'ga qo'shiladi", ru: "При каждом запросе добавляются в system prompt" } },
   { front: { uz: "Javob qanchalik erkin bo'lishini qaysi sozlama belgilaydi?", ru: "Какая настройка задаёт, насколько свободным будет ответ?" }, back: { uz: 'Temperature', ru: "Temperature" }, note: { uz: "Gemini'da 0 dan 2 gacha", ru: "В Gemini — от 0 до 2" } },
-  { front: { uz: "Temperature past bo'lsa, javob qanday bo'ladi?", ru: "Каким будет ответ при низкой temperature?" }, back: { uz: 'Deyarli bir xil', ru: "Почти одинаковым" }, note: { uz: "Menyu, narx kabi aniq ma'lumot uchun", ru: "Для точных данных, например меню и цен" } },
+  { front: { uz: "Temperature past bo'lsa, javob qanday bo'ladi?", ru: "Каким будет ответ при низкой temperature?" }, back: { uz: 'Deyarli bir xil', ru: "Почти одинаковым" }, note: { uz: "Menu, narx kabi aniq ma'lumot uchun", ru: "Для точных данных, например меню и цен" } },
   { front: { uz: "Temperature baland bo'lsa, javob qanday bo'ladi?", ru: "Каким будет ответ при высокой temperature?" }, back: { uz: 'Xilma-xil', ru: "Разнообразным" }, note: { uz: "Ijodiy matn uchun qulay; to'g'rilikni esa tekshirish ko'rsatadi", ru: "Удобно для творческого текста; а правильность показывает проверка" } },
   { front: { uz: "AI ishonch bilan aytgan, lekin haqiqatga to'g'ri kelmaydigan javob nima deyiladi?", ru: "Как называется ответ, который ИИ говорит уверенно, но который не соответствует правде?" }, back: { uz: 'Hallutsinatsiya', ru: 'Галлюцинация' }, note: { uz: "Masalan, menyuda yo'q «ananasli pitsa»", ru: "Например, «пицца с ананасом», которой нет в меню" } },
-  { front: { uz: 'AI aytgan narxni qanday tekshirasiz?', ru: "Как проверить цену, которую назвал ИИ?" }, back: { uz: 'Menyu bilan solishtiraman', ru: 'Сверяю с меню' }, note: { uz: 'Narx bazadagi menyudan olinadi', ru: "Цену берут из меню в базе" } },
+  { front: { uz: 'AI aytgan narxni qanday tekshirasiz?', ru: "Как проверить цену, которую назвал ИИ?" }, back: { uz: 'Menu bilan solishtiraman', ru: 'Сверяю с меню' }, note: { uz: 'Narx bazadagi menudan olinadi', ru: "Цену берут из меню в базе" } },
   { front: { uz: 'AI API kaliti qaysi faylda saqlanadi?', ru: "В каком файле хранится ключ AI API?" }, back: { uz: '.env faylida', ru: "В файле .env" }, note: { uz: <>Kodda faqat <code className="qcode">process.env.AI_API_KEY</code> ko'rinadi</>, ru: <>В коде видно только <code className="qcode">process.env.AI_API_KEY</code></> } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -2432,7 +2432,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { uz: "System prompt AI'ga u kim ekanini, qanday va nima haqida gapirishini aytadi", ru: "System prompt говорит ИИ, кто он, как и о чём ему говорить" },
     { uz: "Kontekst oynasi cheklangan — muhim ma'lumot tarixda emas, bazada saqlanadi", ru: "Окно контекста ограничено — важные данные хранятся не в истории, а в базе" },
     { uz: "Temperature: past — deyarli bir xil javob, baland — xilma-xil. Javob to'g'riligini temperature emas, tekshirish ko'rsatadi", ru: "Temperature: низкая — почти одинаковые ответы, высокая — разнообразные. Правильность ответа показывает не temperature, а проверка" },
-    { uz: 'AI hallutsinatsiya qilishi mumkin — narx va faktni menyu bilan solishtiring', ru: "ИИ может галлюцинировать — сверяйте цены и факты с меню" }
+    { uz: 'AI hallutsinatsiya qilishi mumkin — narx va faktni menu bilan solishtiring', ru: "ИИ может галлюцинировать — сверяйте цены и факты с меню" }
   ];
   const HW_KARTA = [ // F-1015-123: P-025 maydonlari — qiymatlar shu topshiriq matnidan
     { k: { uz: 'Kim uchun', ru: 'Для кого' }, v: { uz: "o'z botingiz", ru: 'ваш бот' } },

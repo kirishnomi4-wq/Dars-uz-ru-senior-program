@@ -2216,7 +2216,7 @@ const ScreenA1 = (props) => (
       </div>
     </div>}
     ortdaIzoh={{ uz: "(bu blok repo'ni o'zgartirmaydi — Netlify va Render sozlamalari o'zingizda)", ru: '(этот блок не меняет репо — настройки Netlify и Render у вас)' }}
-    doneText={<Tugadi asosiy={{ uz: 'Yangi manzil ishlayapti: kataklar chiqadi, ulanish HTTPS bilan.', ru: "Новый адрес работает: ячейки появляются, соединение по HTTPS." }} izoh={{ uz: "Eski havolani kimgadir yuborgan bo'lsangiz, yangisini qayta yuboring.", ru: 'Если вы кому-то отправляли старую ссылку, отправьте новую.' }} />} />
+    doneText={<Tugadi asosiy={{ uz: 'Yangi manzil ishlayapti: kataklar chiqadi, ulanish HTTPS bilan.', ru: "Новый адрес работает: ячейки появляются, соединение по HTTPS." }} izoh={{ uz: "Eski linkni kimgadir yuborgan bo'lsangiz, yangisini qayta yuboring.", ru: 'Если вы кому-то отправляли старую ссылку, отправьте новую.' }} />} />
 );
 // A2 kutilgan natija: uch brauzer qatori (xaritadagi Backend tugunining kattasi); tugagach navbat bilan yonadi
 const A2_QATORLAR = [

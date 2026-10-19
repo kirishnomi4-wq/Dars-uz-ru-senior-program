@@ -649,7 +649,7 @@ const JAMOA_PITCH = {
     bosh: { uz: "Haftada to'lgan o'yinlar: birinchi haftada 1, ikkinchi haftada 3", ru: 'Заполненных игр в неделю: в первую неделю 1, во вторую 3' },
     halolGap: { uz: "44 kishidan 11 tasi — sinfdoshlarim; ikkinchi haftada o'sish sekinlashdi (18 dan keyin 6).", ru: 'Из 44 человек 11 — мои одноклассники; во вторую неделю рост замедлился (после 18 — 6).' }
   },
-  keyingi: { uz: "E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi — maqsad 50.", ru: 'После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде — цель 50.' },
+  keyingi: { uz: "E'lon berilgach «Linkni ulashish» tugmasi bilan tashkilotchi linkni o'z jamoasiga yuboradi — maqsad 50.", ru: 'После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде — цель 50.' },
   vaqt: VAQT
 };
 const MENTOR_GRAFIK = () => JAMOA_PITCH.raqamlar.grafik.map(h => ({ sana: tr(h.sana), soni: h.soni }));
@@ -1607,7 +1607,7 @@ const YORDAM10 = {
   yechim: { uz: "Mentor misolida: «Tashkilotchi o'yinni e'lon qiladi, o'yinchilar bir bosishda qo'shiladi va o'yin kuni kelishini tasdiqlaydi.» va lendingdagi foydalar: «Bir bosishda jamoadasiz», «Nechta odam yig'ilganini so'rab o'tirmaysiz», «Kim aniq kelishini o'yindan oldin bilasiz».", ru: "В примере Ментора: «Организатор объявляет игру, игроки присоединяются одним нажатием и в день игры подтверждают, что придут», а польза на лендинге: «Одно нажатие — и вы в команде», «Не нужно спрашивать, сколько людей собралось», «До игры знаете, кто точно придёт»." },
   demo: { uz: "Mentor misolida: 1-telefonda «Shanba, 18:00» o'yinida «Qo'shilaman» bosiladi, 2-telefonda «8 / 10» o'rniga «9 / 10» o'zi chiqadi.", ru: 'В примере Ментора: на 1-м телефоне в игре «Суббота, 18:00» нажимают «Присоединяюсь», на 2-м вместо «8 / 10» само появляется «9 / 10».' },
   raqamlar: { uz: "Mentor misolida: grafik «Ro'yxatdan o'tganlar, jami» — 20, 38, 44; bosh raqam — haftada to'lgan o'yinlar: birinchi haftada 1, ikkinchi haftada 3; halol gap — «44 kishidan 11 tasi — sinfdoshlarim; ikkinchi haftada o'sish sekinlashdi (18 dan keyin 6).» Sonlarni o'zini ayting: «uch barobar oshdi» emas — «1 ta edi, 3 ta bo'ldi».", ru: "В примере Ментора: график «Зарегистрировались, всего» — 20, 38, 44; главное число — заполненные игры в неделю: в первую неделю 1, во вторую 3; честная фраза — «Из 44 человек 11 — мои одноклассники; во вторую неделю рост замедлился (после 18 — 6)». Называйте сами числа: не «выросло втрое», а «было 1, стало 3»." },
-  keyingi: { uz: "Mentor misolida: «E'lon berilgach «Havolani ulashish» tugmasi bilan tashkilotchi havolani o'z jamoasiga yuboradi — maqsad 50.»", ru: 'В примере Ментора: «После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде — цель 50».' }
+  keyingi: { uz: "Mentor misolida: «E'lon berilgach «Linkni ulashish» tugmasi bilan tashkilotchi linkni o'z jamoasiga yuboradi — maqsad 50.»", ru: 'В примере Ментора: «После объявления организатор кнопкой «Поделиться ссылкой» отправляет ссылку своей команде — цель 50».' }
 };
 const YORDAM_UMUMIY = { uz: "Sonlaringiz kichik bo'lsa ham — o'zingizniki: o'ylab topilmaydi. 50 — baho emas. Web-trekda ham shunday: ikkinchi qurilma — boshqa brauzer oynasi.", ru: 'Даже если числа маленькие — они ваши: их не придумывают. 50 — не оценка. В веб-треке так же: второе устройство — другое окно браузера.' };
 // Bo'lak kartasi (bitta katta karta; s10 va s11 tuzatishida bir xil): yorliq input ichida (E 43), tugmalar bir qatorda — asosiy · o'ngda «Yordam»

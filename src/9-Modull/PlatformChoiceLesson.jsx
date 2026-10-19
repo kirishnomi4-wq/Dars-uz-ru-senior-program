@@ -353,7 +353,7 @@ const RECAPS = {
     title: { uz: "To'rt savol", ru: 'Четыре вопроса' },
     cards: [
       { ic: null, h: { uz: "1 · Qayerda ochadi: yo'lda telefonda yoki uyda kompyuterda.", ru: '1 · Где открывает: в пути на телефоне или дома на компьютере.' } },
-      { ic: null, h: { uz: '2 · Telefon imkoniyati kerakmi · 3 · Havola bilan ulashish muhimmi.', ru: '2 · Нужны ли возможности телефона · 3 · Важно ли делиться ссылкой.' } },
+      { ic: null, h: { uz: '2 · Telefon imkoniyati kerakmi · 3 · Link bilan ulashish muhimmi.', ru: '2 · Нужны ли возможности телефона · 3 · Важно ли делиться ссылкой.' } },
       { ic: null, h: { uz: '4 · Qaysi stekni yaxshiroq bilasiz — natija: web yoki mobil + bir gapli asos.', ru: '4 · Какой стек вы знаете лучше — итог: веб или мобильное + обоснование одним предложением.' }, ask: { uz: 'Savollar ikki tomonga tortsa, qanday tanlaysiz?', ru: 'Если вопросы тянут в разные стороны, как выбрать?' } }
     ]
   },
@@ -1483,8 +1483,8 @@ const TORT_SAVOL = [
     s: { uz: 'Telefonning o\'z imkoniyati kerakmi — kamera, joylashuv yoki telefonga keladigan eslatma?', ru: 'Нужны ли возможности самого телефона — камера, геолокация или напоминание на телефон?' }, s13: { uz: 'Telefonning o\'z imkoniyati kerakmi — kamera, joylashuv yoki eslatma?', ru: 'Нужны ли возможности самого телефона — камера, геолокация или напоминание?' },
     togri: { t: { uz: "Ha — o'yindan oldin eslatma", ru: 'Да — напоминание перед игрой' }, tomon: 'mobil', izoh: { uz: "Mobil tomonga tortadi — web'da umuman yo'q degani emas.", ru: 'Тянет к мобильному — это не значит, что в вебе этого совсем нет.' } }, xato: { t: { uz: "Yo'q — hammasi ekranda", ru: 'Нет — всё на экране' }, x: { uz: "PRD dagi «Keyin» ro'yxatida eslatma bor.", ru: "В списке «Потом» в PRD есть напоминание." } }, avval: 'xato',
     chip13: [{ t: { uz: 'Ha, kerak', ru: 'Да, нужны' }, tomon: 'mobil' }, { t: { uz: "Yo'q, kerak emas", ru: 'Нет, не нужны' }, tomon: 'teng' }] },
-  { n: 3, tur: 'signal', qisqa: { uz: 'havola bilan ulashish', ru: 'поделиться ссылкой' },
-    s: { uz: "Odamlar uni hech narsa o'rnatmasdan havoladan darhol ochishi muhimmi?", ru: 'Важно ли, чтобы люди открывали его по ссылке сразу, ничего не устанавливая?' }, s13: { uz: "Odamlar uni hech narsa o'rnatmasdan havoladan ochishi muhimmi?", ru: 'Важно ли, чтобы люди открывали его по ссылке, ничего не устанавливая?' },
+  { n: 3, tur: 'signal', qisqa: { uz: 'link bilan ulashish', ru: 'поделиться ссылкой' },
+    s: { uz: "Odamlar uni hech narsa o'rnatmasdan linkdan darhol ochishi muhimmi?", ru: 'Важно ли, чтобы люди открывали его по ссылке сразу, ничего не устанавливая?' }, s13: { uz: "Odamlar uni hech narsa o'rnatmasdan linkdan ochishi muhimmi?", ru: 'Важно ли, чтобы люди открывали его по ссылке, ничего не устанавливая?' },
     togri: { t: { uz: "Ha — e'lonni Telegram guruhiga tashlash", ru: 'Да — скинуть объявление в Telegram-группу' }, tomon: 'web' }, xato: { t: { uz: "Yo'q — hech kim ulashmaydi", ru: 'Нет — никто не делится' }, x: { uz: "Hozir o'yinchilar Telegram guruhida yig'ilishadi.", ru: 'Сейчас игроки собираются в Telegram-группе.' } }, avval: 'togri',
     chip13: [{ t: { uz: 'Ha, muhim', ru: 'Да, важно' }, tomon: 'web' }, { t: { uz: 'Unchalik emas', ru: 'Не особо' }, tomon: 'teng' }] },
   { n: 4, tur: 'qurish', qisqa: { uz: 'qaysi stek tanish', ru: 'какой стек знаком' },
@@ -1556,7 +1556,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         </div>}
         natija={done && tx10 && <NatijaBlok togri={taxmin === 'mobil'}
           haqiqat={<Haqiqat taxmin={tr(tx10.t)} yorliq={tr({ uz: 'Mentor misolida', ru: 'в примере Ментора' })} haqiqat={tr({ uz: 'ilova — telefonda', ru: 'приложение — на телефоне' })} />}
-          xulosa={tr({ uz: "Bu misolda hal qiluvchi signal — o'yinchi maydonda, qo'lida telefon; havoladan ochish web tomonda qoldi.", ru: 'В этом примере решающий сигнал — игрок на поле, в руке телефон; открытие по ссылке осталось на стороне веба.' })}
+          xulosa={tr({ uz: "Bu misolda hal qiluvchi signal — o'yinchi maydonda, qo'lida telefon; linkdan ochish web tomonda qoldi.", ru: 'В этом примере решающий сигнал — игрок на поле, в руке телефон; открытие по ссылке осталось на стороне веба.' })}
           izoh={tr({ uz: 'Signallar sanalmaydi: asos qaysi signal muhimroq ekanini aytadi.', ru: 'Сигналы не считают: обоснование говорит, какой сигнал важнее.' })} />}
       />
     </Stage>
@@ -1566,15 +1566,15 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — 4-SAVOL (QuestionScreen; INLINE_KEYS.s11 = 1, B) — Maydon Jamoa emas, boshqa holat (§106) =====
 const Screen11 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Упражнение · вопрос 4' })}
-    questionText="Foydalanuvchilar mahsulotni kompyuterda ochadi, havola ulashadi. Qaysi platforma?"
-    question={tr({ uz: <h2 className="title h-ask">Foydalanuvchilar mahsulotni kompyuterda ochadi, havola ulashadi. <span className="italic" style={{ color: T.accent }}>Qaysi platforma?</span></h2>, ru: <h2 className="title h-ask">Пользователи открывают продукт на компьютере и делятся ссылкой. <span className="italic" style={{ color: T.accent }}>Какая платформа?</span></h2> })}
+    questionText="Foydalanuvchilar mahsulotni kompyuterda ochadi, link ulashadi. Qaysi platforma?"
+    question={tr({ uz: <h2 className="title h-ask">Foydalanuvchilar mahsulotni kompyuterda ochadi, link ulashadi. <span className="italic" style={{ color: T.accent }}>Qaysi platforma?</span></h2>, ru: <h2 className="title h-ask">Пользователи открывают продукт на компьютере и делятся ссылкой. <span className="italic" style={{ color: T.accent }}>Какая платформа?</span></h2> })}
     options={[
       { uz: "Mobil — telefon ko'pchilikning cho'ntagida", ru: 'Мобильное — телефон у многих в кармане' },
-      { uz: 'Web — kompyuterda ochiladi, havola ulashiladi', ru: 'Веб — открывается на компьютере, ссылкой делятся' },
+      { uz: 'Web — kompyuterda ochiladi, link ulashiladi', ru: 'Веб — открывается на компьютере, ссылкой делятся' },
       { uz: "Web — sayt ilovadan chiroyliroq ko'rinadi", ru: 'Веб — сайт выглядит красивее приложения' },
       { uz: 'Mobil — eslatma telefonga kelishi mumkin', ru: 'Мобильное — напоминание может прийти на телефон' }
     ]} correctIdx={1}
-    explainCorrect={{ uz: 'Kompyuterda ochiladi va havola bilan ulashiladi — ikkala javob web tomonga tortadi.', ru: 'Открывается на компьютере и делится ссылкой — оба ответа тянут к вебу.' }}
+    explainCorrect={{ uz: 'Kompyuterda ochiladi va link bilan ulashiladi — ikkala javob web tomonga tortadi.', ru: 'Открывается на компьютере и делится ссылкой — оба ответа тянут к вебу.' }}
     explainWrong={{
       0: { uz: 'Telefon bor, lekin bu odamlar mahsulotni kompyuterda ochadi.', ru: 'Телефон есть, но эти люди открывают продукт на компьютере.' },
       2: { uz: "Ko'rinish to'rt savolga kirmaydi.", ru: 'Внешний вид не входит в четыре вопроса.' },
@@ -1882,8 +1882,8 @@ const QUIZ_BANK = [
   { q: { uz: "`korsat()` nega ochilishda chaqiriladi?", ru: "Зачем `korsat()` вызывают при открытии?" }, opts: [{ uz: "Tugma o'zi bosilmasin deb", ru: "Чтобы кнопка не нажалась сама" }, { uz: "Son darhol so'ralsin deb", ru: "Чтобы число запросилось сразу" }, { uz: "`sora` o'chmasin deb", ru: "Чтобы `sora` не выключилась" }, { uz: "Sahifa tez ochilsin deb", ru: "Чтобы страница открылась быстрее" }], correct: 1 },
   { q: { uz: "Platforma nima?", ru: "Что такое платформа?" }, opts: [{ uz: "Backend turadigan xizmat", ru: "Сервис, где стоит Backend" }, { uz: "Ekranlarning qog'oz chizmasi", ru: "Рисунок экранов на бумаге" }, { uz: "Mahsulot qayerda ishlashi", ru: "Где работает продукт" }, { uz: "Database jadvallari", ru: "Таблицы Database" }], correct: 2 },
   { q: { uz: "Yo'lda, telefonda ochiladi. Qaysi tomonga tortadi?", ru: "Открывают в пути, на телефоне. Куда это тянет?" }, opts: [{ uz: "Web tomoniga", ru: "К вебу" }, { uz: "Ikkalasiga teng", ru: "Поровну" }, { uz: "Hech qaysisiga", ru: "Никуда" }, { uz: "Mobil tomoniga", ru: "К мобильному" }], correct: 3 },
-  { q: { uz: "Havola bilan tez ulashish muhim. Qaysi tomonga tortadi?", ru: "Важно быстро делиться ссылкой. Куда это тянет?" }, opts: [{ uz: "Web tomoniga", ru: "К вебу" }, { uz: "Mobil tomoniga", ru: "К мобильному" }, { uz: "Hech qaysisiga", ru: "Никуда" }, { uz: "Ikkalasiga teng", ru: "Поровну" }], correct: 0 },
-  { q: { uz: "Mentor misolida nega mobil?", ru: "Почему в примере Ментора мобильная?" }, opts: [{ uz: "Ilova chiroyliroq ko'rinadi", ru: "Приложение выглядит красивее" }, { uz: "O'yinchi maydonda, telefonda", ru: "Игрок на поле, с телефоном" }, { uz: "Faqat React Native tanish", ru: "Знаком только React Native" }, { uz: "Havola guruhga tashlanadi", ru: "Ссылку кидают в группу" }], correct: 1 },
+  { q: { uz: "Link bilan tez ulashish muhim. Qaysi tomonga tortadi?", ru: "Важно быстро делиться ссылкой. Куда это тянет?" }, opts: [{ uz: "Web tomoniga", ru: "К вебу" }, { uz: "Mobil tomoniga", ru: "К мобильному" }, { uz: "Hech qaysisiga", ru: "Никуда" }, { uz: "Ikkalasiga teng", ru: "Поровну" }], correct: 0 },
+  { q: { uz: "Mentor misolida nega mobil?", ru: "Почему в примере Ментора мобильная?" }, opts: [{ uz: "Ilova chiroyliroq ko'rinadi", ru: "Приложение выглядит красивее" }, { uz: "O'yinchi maydonda, telefonda", ru: "Игрок на поле, с телефоном" }, { uz: "Faqat React Native tanish", ru: "Знаком только React Native" }, { uz: "Link guruhga tashlanadi", ru: "Ссылку кидают в группу" }], correct: 1 },
   { q: { uz: "Stek nima?", ru: "Что такое стек?" }, opts: [{ uz: "Ilova ochiladigan platforma", ru: "Платформа, где открывается продукт" }, { uz: "PRD dagi funksiyalar ro'yxati", ru: "Список функций в PRD" }, { uz: "Birga ishlovchi texnologiyalar", ru: "Технологии, работающие вместе" }, { uz: "Ilova ekranlari va tugmalari", ru: "Экраны и кнопки приложения" }], correct: 2 },
   { q: { uz: "Mobil trekka o'tsangiz, nima o'zgaradi?", ru: "Что изменится при переходе на мобильный трек?" }, opts: [{ uz: "Backend va Database", ru: "Backend и Database" }, { uz: "Faqat Database jadvallari", ru: "Только таблицы Database" }, { uz: "Uchala qism birdan", ru: "Все три части сразу" }, { uz: "Foydalanuvchi ochadigan qism", ru: "Часть, которую открывает пользователь" }], correct: 3 }
 ];
