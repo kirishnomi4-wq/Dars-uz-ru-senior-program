@@ -1,0 +1,3347 @@
+{
+ "_izoh": "LMS deploy reestri — faqat scripts/lms-farq.mjs yozadi (farq/paket/muhrla). Har dars: oxirgi LMS'ga yuklangan yig'ma (md5 — yig'ilgan faylniki, yig'ma deterministik), versiya (fayl nomidagi -vN), commit. server — prod dars-api holati. crm_bolim — go.coddycamp bo'lim id'lari. crm_tashqari — CRM'da bor, biz boshqarmaydigan qatorlar. chetda — App.jsx registrida bor, lekin LMS'ga ataylab chiqarilmaydigan dars kalitlari.",
+ "versiya": 1,
+ "yangilandi": "2026-10-21",
+ "server": {
+  "gitlab_commit": "7071117",
+  "monorepo_commit": "34b725cf",
+  "katalog_md5": "375334361b3775f630d3b463f7f8b3be",
+  "katalog_darslar": 183,
+  "deploy_sana": "2026-10-21",
+  "health": "https://dars-api.coddycamp.uz/api/v1/health"
+ },
+ "crm_bolim": {
+  "2": {
+   "id": 70,
+   "nom": "Men internetdaman"
+  },
+  "3": {
+   "id": 73,
+   "nom": "Sistemalar qanday o'ylaydi"
+  },
+  "4": {
+   "id": 74,
+   "nom": "Frontend — React"
+  },
+  "5": {
+   "id": 75,
+   "nom": "Ma'lumot va bog'lanishlar"
+  },
+  "6": {
+   "id": 90,
+   "nom": "NestJS + Test + CI/CD"
+  },
+  "7": {
+   "id": 80,
+   "nom": "Botlar va avtomatlashtirish"
+  },
+  "8": {
+   "id": 81,
+   "nom": "Tizimni to'liq yig'aman"
+  },
+  "9": {
+   "id": 108,
+   "nom": "Loyiham kim uchun va nima uchun"
+  },
+  "10": {
+   "id": 109,
+   "nom": "Gipotezani qanday tekshirish"
+  },
+  "11": {
+   "id": 110,
+   "nom": "Final loyiha: g'oya va rivojlantirish"
+  },
+  "12": {
+   "id": 111,
+   "nom": "Real vaqt va ishga tushirish"
+  },
+  "13": {
+   "id": 112,
+   "nom": "O'sish va monetizatsiya"
+  },
+  "14": {
+   "id": 113,
+   "nom": "Bitiruvchi va mahsulot tezligi"
+  }
+ },
+ "crm_tashqari": [
+  "#2980 «Test uchun uz» (8-Modul) — foydalanuvchi arxivladi",
+  "3060 «Bitiruvchilar bilan uchrashuv», 3062 «Bitiruv marosimi» (14-Modul) — tadbir, fayl yo'q",
+  "3-/4-Modul «03» qatorlari — bo'sh, paketda yo'q (2440, 2452/2454/2457, 2470 arxivda)",
+  "Uyga vazifalar — paketga kirmaydi (--uyga-vazifasiz), CRM'dagilari o'zgarmaydi"
+ ],
+ "darslar": {
+  "pm-m8d1-okr-v1": {
+   "src": "src/8-Modull/PmOkrLesson.jsx",
+   "modul": 10,
+   "tartib": 1,
+   "key": "m8-01",
+   "tur": "PM",
+   "nom_uz": "Bir oyda qaysi raqamni o'stirasiz?",
+   "nom_ru": "Какое число вы увеличите за месяц?",
+   "fayl": "01-PmOkrLesson-v3.jsx",
+   "v": 3,
+   "md5": "e00384859d58b15b7d9f75230e80de68",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m8-02-event-tracking-v1": {
+   "src": "src/8-Modull/EventTrackingLesson.jsx",
+   "modul": 10,
+   "tartib": 2,
+   "key": "m8-02",
+   "tur": "Kod",
+   "nom_uz": "Hodisalar tizimi: har harakat jadvalga yoziladi",
+   "nom_ru": "Система событий: каждое действие записывается в таблицу",
+   "fayl": "02-EventTrackingLesson-v3.jsx",
+   "v": 3,
+   "md5": "2f9f483fa8e63da063d04ce1a6200cab",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m8-03-v1": {
+   "src": "src/8-Modull/LiveDashboardLesson.jsx",
+   "modul": 10,
+   "tartib": 3,
+   "key": "m8-03",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: jonli dashboard",
+   "nom_ru": "День проекта: живой дашборд",
+   "fayl": "03-LiveDashboardLesson-v3.jsx",
+   "v": 3,
+   "md5": "7235759c98bda4d36e9b99eef1fa0968",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m8-04-v1": {
+   "src": "src/8-Modull/PmAbTestLesson.jsx",
+   "modul": 10,
+   "tartib": 4,
+   "key": "m8-04",
+   "tur": "PM",
+   "nom_uz": "Ikki variantdan qaysi biri yaxshiroq ishlaydi?",
+   "nom_ru": "Какой из двух вариантов работает лучше?",
+   "fayl": "04-PmAbTestLesson-v3.jsx",
+   "v": 3,
+   "md5": "24681d4602ec4133635f24a5d4c4cf44",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m8-05-security-basics-v1": {
+   "src": "src/8-Modull/SecurityBasicsLesson.jsx",
+   "modul": 10,
+   "tartib": 5,
+   "key": "m8-05",
+   "tur": "Kod",
+   "nom_uz": "Kiberxavfsizlik: zaiflikni topib yopamiz",
+   "nom_ru": "Кибербезопасность: находим и закрываем уязвимости",
+   "fayl": "05-SecurityBasicsLesson-v3.jsx",
+   "v": 3,
+   "md5": "0e9a37010ee2afae6ddc682a5b60471e",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m8-06-v1": {
+   "src": "src/8-Modull/PmTrustAuditLesson.jsx",
+   "modul": 10,
+   "tartib": 6,
+   "key": "m8-06",
+   "tur": "PM",
+   "nom_uz": "Foydalanuvchi sizga ma'lumotini ishonadimi?",
+   "nom_ru": "Доверяет ли вам пользователь свои данные?",
+   "fayl": "06-PmTrustAuditLesson-v3.jsx",
+   "v": 3,
+   "md5": "5bec1c8633c56b98a170d4d30f60de20",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m8-07-production-deploy-v1": {
+   "src": "src/8-Modull/ProductionDeployLesson.jsx",
+   "modul": 10,
+   "tartib": 7,
+   "key": "m8-07",
+   "tur": "Kod",
+   "nom_uz": "Production deploy: domen, SSL, monitoring",
+   "nom_ru": "Production deploy: домен, SSL, мониторинг",
+   "fayl": "07-ProductionDeployLesson-v3.jsx",
+   "v": 3,
+   "md5": "bef4721827f89ce275af2ac4651ef645",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m8-08-v1": {
+   "src": "src/8-Modull/ProdUpgradeLesson.jsx",
+   "modul": 10,
+   "tartib": 8,
+   "key": "m8-08",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: prodga ko'tarish — 1-qism",
+   "nom_ru": "День проекта: вывод в прод — часть 1",
+   "fayl": "08-ProdUpgradeLesson-v3.jsx",
+   "v": 3,
+   "md5": "e0d5f4814ba689f14739421ba998d67e",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m8-09-v1": {
+   "src": "src/8-Modull/ProdReviewLesson.jsx",
+   "modul": 10,
+   "tartib": 9,
+   "key": "m8-09",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: prodga ko'tarish — 2-qism",
+   "nom_ru": "День проекта: вывод в прод — часть 2",
+   "fayl": "09-ProdReviewLesson-v3.jsx",
+   "v": 3,
+   "md5": "95d53171c67228ce7ec632ecde50ae48",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m8d10-yol-v1": {
+   "src": "src/8-Modull/PmYearPathLesson.jsx",
+   "modul": 10,
+   "tartib": 10,
+   "key": "m8-10",
+   "tur": "PM",
+   "nom_uz": "Bir yilda nimalarni qurdingiz?",
+   "nom_ru": "Что вы построили за год?",
+   "fayl": "10-PmYearPathLesson-v3.jsx",
+   "v": 3,
+   "md5": "74d0a777ec13af453bd489f8168caf4d",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m8d11-pitch-v2": {
+   "src": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+   "modul": 10,
+   "tartib": 11,
+   "key": "m8-11",
+   "tur": "PM",
+   "nom_uz": "Besh daqiqada nimani ko'rsatasiz?",
+   "nom_ru": "Что вы покажете за пять минут?",
+   "fayl": "11-PmPitchRehearsalLesson-v3.jsx",
+   "v": 3,
+   "md5": "168dece5a4175e9f7944b6a0bb07ae94",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m9d1-v1": {
+   "src": "src/9-Modull/PmTenIdeasLesson.jsx",
+   "modul": 11,
+   "tartib": 1,
+   "key": "m9-01",
+   "tur": "PM",
+   "nom_uz": "Beshta g'oyani qayerdan topasiz?",
+   "nom_ru": "Где найти пять идей?",
+   "fayl": "01-PmTenIdeasLesson-v3.jsx",
+   "v": 3,
+   "md5": "7c0df2a568069a02416104b5711b1575",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m9d2-v1": {
+   "src": "src/9-Modull/PmIdeaRiceLesson.jsx",
+   "modul": 11,
+   "tartib": 2,
+   "key": "m9-02",
+   "tur": "PM",
+   "nom_uz": "Beshta g'oyadan qaysi uchtasi qoladi?",
+   "nom_ru": "Какие три из пяти идей останутся?",
+   "fayl": "02-PmIdeaRiceLesson-v3.jsx",
+   "v": 3,
+   "md5": "ba5fdb9886d6e3938454ff58e518704b",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m9d3-v1": {
+   "src": "src/9-Modull/PmInterviewsOneLesson.jsx",
+   "modul": 11,
+   "tartib": 3,
+   "key": "m9-03",
+   "tur": "PM",
+   "nom_uz": "Ikki g'oyadan qaysi biri odamlarga kerak?",
+   "nom_ru": "Какая из двух идей нужна людям?",
+   "fayl": "03-PmInterviewsOneLesson-v3.jsx",
+   "v": 3,
+   "md5": "e8f71c65a587a1b213c304bb1d62b396",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m9d4-v1": {
+   "src": "src/9-Modull/PmFinalIdeaLesson.jsx",
+   "modul": 11,
+   "tartib": 4,
+   "key": "m9-04",
+   "tur": "PM",
+   "nom_uz": "O'n intervyudan keyin qaysi g'oya qoladi?",
+   "nom_ru": "Какая идея останется после десяти интервью?",
+   "fayl": "04-PmFinalIdeaLesson-v3.jsx",
+   "v": 3,
+   "md5": "4bdd4a5ab818ac3a5cce5fa4ec92ec32",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m9d5-v1": {
+   "src": "src/9-Modull/PmPrdLesson.jsx",
+   "modul": 11,
+   "tartib": 5,
+   "key": "m9-05",
+   "tur": "PM",
+   "nom_uz": "G'oyangiz bir sahifaga sig'adimi?",
+   "nom_ru": "Поместится ли ваша идея на одну страницу?",
+   "fayl": "05-PmPrdLesson-v3.jsx",
+   "v": 3,
+   "md5": "24d468942bfc126310d4e5cf1d7f03a0",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m9d6-v1": {
+   "src": "src/9-Modull/PmRoadmapLesson.jsx",
+   "modul": 11,
+   "tartib": 6,
+   "key": "m9-06",
+   "tur": "PM",
+   "nom_uz": "Bitiruvgacha nimani qachon qurasiz?",
+   "nom_ru": "Что и когда вы построите до выпуска?",
+   "fayl": "06-PmRoadmapLesson-v3.jsx",
+   "v": 3,
+   "md5": "14e4c3809d5846a739cf688b23224cdd",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m9-07-v1": {
+   "src": "src/9-Modull/LivePrototypeLesson.jsx",
+   "modul": 11,
+   "tartib": 7,
+   "key": "m9-07",
+   "tur": "Kod",
+   "nom_uz": "Jonli prototip: qog'ozdan bosiladigan ekrangacha",
+   "nom_ru": "Живой прототип: от бумаги до кликабельного экрана",
+   "fayl": "07-LivePrototypeLesson-v3.jsx",
+   "v": 3,
+   "md5": "82732184f1d497f1cf2fada4fe0c2bf6",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m9-08-v1": {
+   "src": "src/9-Modull/PlatformChoiceLesson.jsx",
+   "modul": 11,
+   "tartib": 8,
+   "key": "m9-08",
+   "tur": "Kod",
+   "nom_uz": "Arxitektura va platforma: web yoki mobil ilova",
+   "nom_ru": "Архитектура и платформа: веб или мобильное приложение",
+   "fayl": "08-PlatformChoiceLesson-v3.jsx",
+   "v": 3,
+   "md5": "53b324c939e61cfa41620ddc1d3eafb4",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m9-09-v1": {
+   "src": "src/9-Modull/ExpoPrototypeLesson.jsx",
+   "modul": 11,
+   "tartib": 9,
+   "key": "m9-09",
+   "tur": "Kod",
+   "nom_uz": "React Native va Expo: prototip telefonda",
+   "nom_ru": "React Native и Expo: прототип на телефоне",
+   "fayl": "09-ExpoPrototypeLesson-v3.jsx",
+   "v": 3,
+   "md5": "ad5699054e1960d8dba6d1544de612dd",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m9-10-v1": {
+   "src": "src/9-Modull/FoundationDayLesson.jsx",
+   "modul": 11,
+   "tartib": 10,
+   "key": "m9-10",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: poydevor — Database, kirish, deploy",
+   "nom_ru": "День проекта: фундамент — Database, вход, деплой",
+   "fayl": "10-FoundationDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "27344634e5cd9593ac1e2a26e94e37a5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m9-11-v1": {
+   "src": "src/9-Modull/FeatureOneLesson.jsx",
+   "modul": 11,
+   "tartib": 11,
+   "key": "m9-11",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: 1-asosiy funksiya",
+   "nom_ru": "День проекта: 1-я основная функция",
+   "fayl": "11-FeatureOneLesson-v3.jsx",
+   "v": 3,
+   "md5": "a4b775fabb35c91cee75cefae94d1a8d",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m9-12-v1": {
+   "src": "src/9-Modull/FeatureTwoLesson.jsx",
+   "modul": 11,
+   "tartib": 12,
+   "key": "m9-12",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: 2-asosiy funksiya",
+   "nom_ru": "День проекта: 2-я основная функция",
+   "fayl": "12-FeatureTwoLesson-v3.jsx",
+   "v": 3,
+   "md5": "0d6ca47a1f7661b83c5033f7c455e546",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m9d13-v1": {
+   "src": "src/9-Modull/PmAudienceTestLesson.jsx",
+   "modul": 11,
+   "tartib": 13,
+   "key": "m9-13",
+   "tur": "PM",
+   "nom_uz": "Uch foydalanuvchidan keyin nimani tuzatasiz?",
+   "nom_ru": "Что вы исправите после трёх пользователей?",
+   "fayl": "13-PmAudienceTestLesson-v3.jsx",
+   "v": 3,
+   "md5": "1a98c1005dcd79b6426ce89ef5ea5977",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m9-14-v1": {
+   "src": "src/9-Modull/FeatureThreeLesson.jsx",
+   "modul": 11,
+   "tartib": 14,
+   "key": "m9-14",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: 3-asosiy funksiya",
+   "nom_ru": "День проекта: 3-я основная функция",
+   "fayl": "14-FeatureThreeLesson-v3.jsx",
+   "v": 3,
+   "md5": "ec9e887262b63a9a6ceeba20f5436b2c",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m9d15-v1": {
+   "src": "src/9-Modull/PmOneOnOneLesson.jsx",
+   "modul": 11,
+   "tartib": 15,
+   "key": "m9-15",
+   "tur": "PM",
+   "nom_uz": "Roadmap bo'yicha qayerdasiz?",
+   "nom_ru": "Где вы сейчас по roadmap?",
+   "fayl": "15-PmOneOnOneLesson-v3.jsx",
+   "v": 3,
+   "md5": "02fbc90f385ad1505a05403e22799927",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m9d16-v2": {
+   "src": "src/9-Modull/PmPrototypePitchLesson.jsx",
+   "modul": 11,
+   "tartib": 16,
+   "key": "m9-16",
+   "tur": "PM",
+   "nom_uz": "G'oyangiz va ilovangiz guruhni ishontiradimi?",
+   "nom_ru": "Убедят ли группу ваша идея и приложение?",
+   "fayl": "16-PmPrototypePitchLesson-v3.jsx",
+   "v": 3,
+   "md5": "054463b2fcc022680dfec78d61ec2d66",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m10d1-v1": {
+   "src": "src/10-Modull/PmLandingLesson.jsx",
+   "modul": 12,
+   "tartib": 1,
+   "key": "m10-01",
+   "tur": "PM",
+   "nom_uz": "Mahsulotingizni bir sahifada qanday tanishtirasiz?",
+   "nom_ru": "Как представить продукт на одной странице?",
+   "fayl": "01-PmLandingLesson-v3.jsx",
+   "v": 3,
+   "md5": "2091050a3ddab6e5cf3519066ea6d4de",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m10-02-v1": {
+   "src": "src/10-Modull/WebSocketBasicsLesson.jsx",
+   "modul": 12,
+   "tartib": 2,
+   "key": "m10-02",
+   "tur": "Kod",
+   "nom_uz": "WebSocket: ekran o'zi yangilanadigan ulanish",
+   "nom_ru": "WebSocket: соединение, при котором экран обновляется сам",
+   "fayl": "02-WebSocketBasicsLesson-v3.jsx",
+   "v": 3,
+   "md5": "59dec39b6eea4c8c2e17426835c71deb",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m10d3-v1": {
+   "src": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+   "modul": 12,
+   "tartib": 3,
+   "key": "m10-03",
+   "tur": "PM",
+   "nom_uz": "Ekran o'zi yangilanishi uchun nimani yozasiz?",
+   "nom_ru": "Что написать, чтобы экран обновлялся сам?",
+   "fayl": "03-PmRealtimeSpecLesson-v3.jsx",
+   "v": 3,
+   "md5": "97e47e9dd8d28e68c93da0ab159f7103",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m10-04-v1": {
+   "src": "src/10-Modull/LiveNotifyDayLesson.jsx",
+   "modul": 12,
+   "tartib": 4,
+   "key": "m10-04",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: jonli xabar va eslatma",
+   "nom_ru": "День проекта: живое сообщение и напоминание",
+   "fayl": "04-LiveNotifyDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "850d46c08990758197f3c036e322653f",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m10-05-v1": {
+   "src": "src/10-Modull/BreakAndFixLesson.jsx",
+   "modul": 12,
+   "tartib": 5,
+   "key": "m10-05",
+   "tur": "Kod",
+   "nom_uz": "Ulanish uzilsa: buzamiz va tuzatamiz",
+   "nom_ru": "Если соединение оборвётся: ломаем и чиним",
+   "fayl": "05-BreakAndFixLesson-v3.jsx",
+   "v": 3,
+   "md5": "fce6e5913921fa9c5e83ad2ec6e3bf89",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m10d6-v1": {
+   "src": "src/10-Modull/PmChannelsLesson.jsx",
+   "modul": 12,
+   "tartib": 6,
+   "key": "m10-06",
+   "tur": "PM",
+   "nom_uz": "Birinchi foydalanuvchilar sizni qayerdan topadi?",
+   "nom_ru": "Где вас найдут первые пользователи?",
+   "fayl": "06-PmChannelsLesson-v3.jsx",
+   "v": 3,
+   "md5": "793998784eb1b71e66df3b6fe632f6e2",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m10d7-v1": {
+   "src": "src/10-Modull/PmFiftyUsersLesson.jsx",
+   "modul": 12,
+   "tartib": 7,
+   "key": "m10-07",
+   "tur": "PM",
+   "nom_uz": "50 foydalanuvchiga qanday yetasiz?",
+   "nom_ru": "Как дойти до 50 пользователей?",
+   "fayl": "07-PmFiftyUsersLesson-v3.jsx",
+   "v": 3,
+   "md5": "539516a55fb850e0458bba78d0be46d7",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m10d8-v1": {
+   "src": "src/10-Modull/PmDropOffLesson.jsx",
+   "modul": 12,
+   "tartib": 8,
+   "key": "m10-08",
+   "tur": "PM",
+   "nom_uz": "Foydalanuvchilar qaysi qadamda to'xtab qolyapti?",
+   "nom_ru": "На каком шаге пользователи останавливаются?",
+   "fayl": "08-PmDropOffLesson-v3.jsx",
+   "v": 3,
+   "md5": "8195688fc13c64c551c3bd8ab967d333",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m10-09-v1": {
+   "src": "src/10-Modull/RetentionDayLesson.jsx",
+   "modul": 12,
+   "tartib": 9,
+   "key": "m10-09",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: foydalanuvchini qaytaradigan eslatma",
+   "nom_ru": "День проекта: напоминание, которое возвращает пользователя",
+   "fayl": "09-RetentionDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "64cdc861feb1765ff2093dd27e6c2627",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m10d10-v1": {
+   "src": "src/10-Modull/PmUsersCheckLesson.jsx",
+   "modul": 12,
+   "tartib": 10,
+   "key": "m10-10",
+   "tur": "PM",
+   "nom_uz": "50 foydalanuvchiga yetdingizmi?",
+   "nom_ru": "Дошли до 50 пользователей?",
+   "fayl": "10-PmUsersCheckLesson-v3.jsx",
+   "v": 3,
+   "md5": "134e404b294cc8da17bd63411ffc5956",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m10d11-v2": {
+   "src": "src/10-Modull/PmPitchReviewLesson.jsx",
+   "modul": 12,
+   "tartib": 11,
+   "key": "m10-11",
+   "tur": "PM",
+   "nom_uz": "Raqamlaringiz pitchni qanday o'zgartiradi?",
+   "nom_ru": "Как ваши цифры меняют питч?",
+   "fayl": "11-PmPitchReviewLesson-v3.jsx",
+   "v": 3,
+   "md5": "fe1d8f89cc455851e16141898c8c083e",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m10d12-v2": {
+   "src": "src/10-Modull/PmGrowthPitchLesson.jsx",
+   "modul": 12,
+   "tartib": 12,
+   "key": "m10-12",
+   "tur": "PM",
+   "nom_uz": "Raqamlaringiz zalni ishontiradimi?",
+   "nom_ru": "Убедят ли ваши цифры зал?",
+   "fayl": "12-PmGrowthPitchLesson-v3.jsx",
+   "v": 3,
+   "md5": "29437186b881d19fd61b6f9874d75201",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m11d1-v1": {
+   "src": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+   "modul": 13,
+   "tartib": 1,
+   "key": "m11-01",
+   "tur": "PM",
+   "nom_uz": "Bitta foydalanuvchi sizga qanchaga tushadi?",
+   "nom_ru": "Во сколько вам обходится один пользователь?",
+   "fayl": "01-PmUnitEconomicsLesson-v3.jsx",
+   "v": 3,
+   "md5": "1f05e4e853425eb1e485ea7f8f85f939",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m11d2-v1": {
+   "src": "src/11-Modull/PmMonetizationLesson.jsx",
+   "modul": 13,
+   "tartib": 2,
+   "key": "m11-02",
+   "tur": "PM",
+   "nom_uz": "Mahsulotingiz qanday pul topadi?",
+   "nom_ru": "Как ваш продукт зарабатывает?",
+   "fayl": "02-PmMonetizationLesson-v3.jsx",
+   "v": 3,
+   "md5": "5f09786fe75451e2960c228d6eaed5e5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m11-03-v1": {
+   "src": "src/11-Modull/PaymentWebhookLesson.jsx",
+   "modul": 13,
+   "tartib": 3,
+   "key": "m11-03",
+   "tur": "Kod",
+   "nom_uz": "Webhook: to'lov Backend'ga qanday yetib keladi",
+   "nom_ru": "Вебхук: как платёж доходит до Backend",
+   "fayl": "03-PaymentWebhookLesson-v3.jsx",
+   "v": 3,
+   "md5": "95bec1a3349c713b76e5addce72ecd49",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m11d4-v1": {
+   "src": "src/11-Modull/PmPricingLesson.jsx",
+   "modul": 13,
+   "tartib": 4,
+   "key": "m11-04",
+   "tur": "PM",
+   "nom_uz": "Narxni qanday belgilaysiz?",
+   "nom_ru": "Как назначить цену?",
+   "fayl": "04-PmPricingLesson-v3.jsx",
+   "v": 3,
+   "md5": "971a0b9c0d2b26191bfef5cfbea612dc",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m11-05-v1": {
+   "src": "src/11-Modull/PaymentDayLesson.jsx",
+   "modul": 13,
+   "tartib": 5,
+   "key": "m11-05",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: to'lovni ulaymiz va buzib ko'ramiz",
+   "nom_ru": "День проекта: подключаем оплату и ломаем её",
+   "fayl": "05-PaymentDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "96939730e8af9ccdb0a256ddbef40d0b",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m11d6-v1": {
+   "src": "src/11-Modull/PmMoneyTalkLesson.jsx",
+   "modul": 13,
+   "tartib": 6,
+   "key": "m11-06",
+   "tur": "PM",
+   "nom_uz": "Pul haqida qanday gaplashasiz?",
+   "nom_ru": "Как говорить о деньгах?",
+   "fayl": "06-PmMoneyTalkLesson-v3.jsx",
+   "v": 3,
+   "md5": "b20789634cd52d13eb465c20ca268f35",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m11d7-v1": {
+   "src": "src/11-Modull/PmTermsLesson.jsx",
+   "modul": 13,
+   "tartib": 7,
+   "key": "m11-07",
+   "tur": "PM",
+   "nom_uz": "Foydalanuvchiga shartlarni qanday ochiq aytasiz?",
+   "nom_ru": "Как честно сказать пользователю об условиях?",
+   "fayl": "07-PmTermsLesson-v3.jsx",
+   "v": 3,
+   "md5": "a6b3365e42da30561cc60500d5a945a2",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m11-08-v1": {
+   "src": "src/11-Modull/WinBackDayLesson.jsx",
+   "modul": 13,
+   "tartib": 8,
+   "key": "m11-08",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: ketayotgan foydalanuvchini qaytarish",
+   "nom_ru": "День проекта: вернуть уходящего пользователя",
+   "fayl": "08-WinBackDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "e6f8564617af984ba3761810b0632698",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m11d9-v1": {
+   "src": "src/11-Modull/PmPayCheckLesson.jsx",
+   "modul": 13,
+   "tartib": 9,
+   "key": "m11-09",
+   "tur": "PM",
+   "nom_uz": "Kim haqiqatan to'lashga tayyor?",
+   "nom_ru": "Кто действительно готов платить?",
+   "fayl": "09-PmPayCheckLesson-v3.jsx",
+   "v": 3,
+   "md5": "feb6f0a8391d163b252f0ce35c9a3688",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m11-10-v1": {
+   "src": "src/11-Modull/ReferralDayLesson.jsx",
+   "modul": 13,
+   "tartib": 10,
+   "key": "m11-10",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: taklif linki va mukofot",
+   "nom_ru": "День проекта: ссылка-приглашение и награда",
+   "fayl": "10-ReferralDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "2693101b8b9e9873b7e8d3e85adc9eaa",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m11d11-v1": {
+   "src": "src/11-Modull/PmReflectionLesson.jsx",
+   "modul": 13,
+   "tartib": 11,
+   "key": "m11-11",
+   "tur": "PM",
+   "nom_uz": "Mahsulotingiz hozir qayerda?",
+   "nom_ru": "Где сейчас ваш продукт?",
+   "fayl": "11-PmReflectionLesson-v3.jsx",
+   "v": 3,
+   "md5": "67bbefed84db390001b59eefd357bbb2",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m11-12-v1": {
+   "src": "src/11-Modull/StabilizeDayLesson.jsx",
+   "modul": 13,
+   "tartib": 12,
+   "key": "m11-12",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: barqarorlashtirish",
+   "nom_ru": "День проекта: стабилизация",
+   "fayl": "12-StabilizeDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "af9f5499b1ad2f33eddc31bcd4924279",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m12d1-v2": {
+   "src": "src/12-Modull/PmInvestorPitchLesson.jsx",
+   "modul": 14,
+   "tartib": 1,
+   "key": "m12-01",
+   "tur": "PM",
+   "nom_uz": "Investorga pitchni qanday tuzasiz?",
+   "nom_ru": "Как построить питч для инвестора?",
+   "fayl": "01-PmInvestorPitchLesson-v3.jsx",
+   "v": 3,
+   "md5": "bae33ce251295589558174dd2e178223",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m12d2-v2": {
+   "src": "src/12-Modull/PmStoryPitchLesson.jsx",
+   "modul": 14,
+   "tartib": 2,
+   "key": "m12-02",
+   "tur": "PM",
+   "nom_uz": "Mahsulotingiz hikoyasini qanday aytasiz?",
+   "nom_ru": "Как рассказать историю вашего продукта?",
+   "fayl": "02-PmStoryPitchLesson-v3.jsx",
+   "v": 3,
+   "md5": "aac492d69fcd4b31d877ad16e6d9efa4",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m12-03-v1": {
+   "src": "src/12-Modull/ProductSpeedLesson.jsx",
+   "modul": 14,
+   "tartib": 3,
+   "key": "m12-03",
+   "tur": "Kod",
+   "nom_uz": "Mahsulot tezligi: o'lchaymiz va tezlashtiramiz",
+   "nom_ru": "Скорость продукта: измеряем и ускоряем",
+   "fayl": "03-ProductSpeedLesson-v3.jsx",
+   "v": 3,
+   "md5": "4beade47e7d4bc0a3d83dcf71855be0e",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m12-04-v1": {
+   "src": "src/12-Modull/PolishDayLesson.jsx",
+   "modul": 14,
+   "tartib": 4,
+   "key": "m12-04",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: demo uchun sayqal",
+   "nom_ru": "День проекта: шлифовка для демо",
+   "fayl": "04-PolishDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "01e7f09fa93f093917b0062b626c262b",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m12d5-v2": {
+   "src": "src/12-Modull/PmPitchTrainingLesson.jsx",
+   "modul": 14,
+   "tartib": 5,
+   "key": "m12-05",
+   "tur": "PM",
+   "nom_uz": "Guruh pitchingizda nimani tuzatishni aytadi?",
+   "nom_ru": "Что группа советует исправить в вашем питче?",
+   "fayl": "05-PmPitchTrainingLesson-v3.jsx",
+   "v": 3,
+   "md5": "bad16197d54a3e49850be593c5d9d5eb",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m12-06-v1": {
+   "src": "src/12-Modull/DemoPrepLesson.jsx",
+   "modul": 14,
+   "tartib": 6,
+   "key": "m12-06",
+   "tur": "Kod",
+   "nom_uz": "Demoga tayyorgarlik: risklar va B reja",
+   "nom_ru": "Подготовка к демо: риски и план Б",
+   "fayl": "06-DemoPrepLesson-v3.jsx",
+   "v": 3,
+   "md5": "bfc0643bb49c0cb824229c63bde8cf4d",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m12d7-v1": {
+   "src": "src/12-Modull/PmDemoTestLesson.jsx",
+   "modul": 14,
+   "tartib": 7,
+   "key": "m12-07",
+   "tur": "PM",
+   "nom_uz": "Investor ko'zi bilan: demo buzilmaydimi?",
+   "nom_ru": "Глазами инвестора: не сломается ли демо?",
+   "fayl": "07-PmDemoTestLesson-v3.jsx",
+   "v": 3,
+   "md5": "84f740f18e6288cf16b8818c3a66186a",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m12d8-v2": {
+   "src": "src/12-Modull/PmFinalPitchLesson.jsx",
+   "modul": 14,
+   "tartib": 8,
+   "key": "m12-08",
+   "tur": "PM",
+   "nom_uz": "Final pitchingiz 5 daqiqaga tayyormi?",
+   "nom_ru": "Готов ли ваш финальный питч на 5 минут?",
+   "fayl": "08-PmFinalPitchLesson-v3.jsx",
+   "v": 3,
+   "md5": "2569435e4a6273f9f0cc7dab916b1d8f",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m12-09-v1": {
+   "src": "src/12-Modull/VideoPortfolioLesson.jsx",
+   "modul": 14,
+   "tartib": 9,
+   "key": "m12-09",
+   "tur": "Kod",
+   "nom_uz": "Video-portfolio: 3 daqiqada o'zingiz va mahsulot",
+   "nom_ru": "Видео-портфолио: вы и продукт за 3 минуты",
+   "fayl": "09-VideoPortfolioLesson-v3.jsx",
+   "v": 3,
+   "md5": "981df37e8132d0feaff5b6a6bd755ce1",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m12d10-v1": {
+   "src": "src/12-Modull/PmFreelanceLesson.jsx",
+   "modul": 14,
+   "tartib": 10,
+   "key": "m12-10",
+   "tur": "PM",
+   "nom_uz": "Birinchi buyurtmani qayerdan topasiz?",
+   "nom_ru": "Где найти первый заказ?",
+   "fayl": "10-PmFreelanceLesson-v3.jsx",
+   "v": 3,
+   "md5": "fb8f45b295856829cff166676494e4f8",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m12d11-v1": {
+   "src": "src/12-Modull/PmProgramsLesson.jsx",
+   "modul": 14,
+   "tartib": 11,
+   "key": "m12-11",
+   "tur": "PM",
+   "nom_uz": "Qaysi xalqaro dasturga ariza berasiz?",
+   "nom_ru": "В какую международную программу подадите заявку?",
+   "fayl": "11-PmProgramsLesson-v3.jsx",
+   "v": 3,
+   "md5": "125987a61beaa02d346c7f3f5822919f",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m12d12-v1": {
+   "src": "src/12-Modull/PmNextStepsLesson.jsx",
+   "modul": 14,
+   "tartib": 12,
+   "key": "m12-12",
+   "tur": "PM",
+   "nom_uz": "Keyingi olti oyda nima qilasiz?",
+   "nom_ru": "Что вы будете делать следующие полгода?",
+   "fayl": "12-PmNextStepsLesson-v3.jsx",
+   "v": 3,
+   "md5": "70f40581fd22d6f4807fefa83d63bb3c",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m12d13-v1": {
+   "src": "src/12-Modull/PmDressRehearsalLesson.jsx",
+   "modul": 14,
+   "tartib": 13,
+   "key": "m12-13",
+   "tur": "PM",
+   "nom_uz": "Demo Day'ga tayyormisiz?",
+   "nom_ru": "Готовы ли вы к Demo Day?",
+   "fayl": "13-PmDressRehearsalLesson-v3.jsx",
+   "v": 3,
+   "md5": "8eba9508167ab6dd6db4553ea6b929ac",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "internet-01-v18": {
+   "src": "src/1-Modull/InternetLesson.jsx",
+   "modul": 2,
+   "tartib": 1,
+   "key": "m1-01",
+   "tur": "Kod",
+   "nom_uz": "Internet qanday ishlaydi",
+   "nom_ru": "Как устроен интернет",
+   "fayl": "01-InternetLesson-v3.jsx",
+   "v": 3,
+   "md5": "4b13e7413480f5ff593d7c1e71c692e0",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m1d2-v1": {
+   "src": "src/1-Modull/PmLesson1.jsx",
+   "modul": 2,
+   "tartib": 2,
+   "key": "m1-02",
+   "tur": "PM",
+   "nom_uz": "Kim mening foydalanuvchim?",
+   "nom_ru": "Кто мой пользователь?",
+   "fayl": "02-PmLesson1-v3.jsx",
+   "v": 3,
+   "md5": "7829e9c28089cb1d820900d709b2d12a",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "html-01-v17": {
+   "src": "src/1-Modull/Htmllesson1.jsx",
+   "modul": 2,
+   "tartib": 3,
+   "key": "m1-03",
+   "tur": "Kod",
+   "nom_uz": "HTML asoslari",
+   "nom_ru": "Основы HTML",
+   "fayl": "03-Htmllesson1-v3.jsx",
+   "v": 3,
+   "md5": "849f3407a460c56cdbd0cff149452c71",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "html-02-v16": {
+   "src": "src/1-Modull/Htmllesson2.jsx",
+   "modul": 2,
+   "tartib": 4,
+   "key": "m1-04",
+   "tur": "Kod",
+   "nom_uz": "HTML: rasm, struktura, forma, DevTools",
+   "nom_ru": "HTML: картинки, структура, формы, DevTools",
+   "fayl": "04-Htmllesson2-v3.jsx",
+   "v": 3,
+   "md5": "a826ad99ead78918afdc430456255dac",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "html-takrorlash-01-05-v2": {
+   "src": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+   "modul": 2,
+   "tartib": 5,
+   "key": "m1-14",
+   "tur": "Kod",
+   "nom_uz": "Takrorlash: HTML ustaxonasi",
+   "nom_ru": "Повторение: мастерская HTML",
+   "fayl": "05-HtmlTakrorlashLesson-v3.jsx",
+   "v": 3,
+   "md5": "1713a48eaaa7e1535173a58082bc9405",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m1d6-v1": {
+   "src": "src/1-Modull/PmLesson2.jsx",
+   "modul": 2,
+   "tartib": 6,
+   "key": "m1-05",
+   "tur": "PM",
+   "nom_uz": "Struktura — foydalanuvchi uchun qilingan qulaylik",
+   "nom_ru": "Структура — удобство для пользователя",
+   "fayl": "06-PmLesson2-v3.jsx",
+   "v": 3,
+   "md5": "251976681e3d7124f8c7e8058025dd86",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "css-01-v17": {
+   "src": "src/1-Modull/CssLesson1.jsx",
+   "modul": 2,
+   "tartib": 7,
+   "key": "m1-06",
+   "tur": "Kod",
+   "nom_uz": "CSS asoslari: ranglar, shriftlar, bo'shliqlar",
+   "nom_ru": "CSS руками — часть 1",
+   "fayl": "07-CssLesson1-v3.jsx",
+   "v": 3,
+   "md5": "ae2e685ede4155817f01948248deb91b",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "css-02-v18": {
+   "src": "src/1-Modull/CssLesson2.jsx",
+   "modul": 2,
+   "tartib": 8,
+   "key": "m1-07",
+   "tur": "Kod",
+   "nom_uz": "CSS: layout, flexbox, DevTools",
+   "nom_ru": "CSS руками — часть 2",
+   "fayl": "08-CssLesson2-v3.jsx",
+   "v": 3,
+   "md5": "7f4883de229cc421b1440e3909bf915c",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "vscode-start-01-v1": {
+   "src": "src/1-Modull/VsCodeLesson.jsx",
+   "modul": 2,
+   "tartib": 9,
+   "key": "m1-15",
+   "tur": "Kod",
+   "nom_uz": "VS Code",
+   "nom_ru": "VS Code",
+   "fayl": "09-VsCodeLesson-v3.jsx",
+   "v": 3,
+   "md5": "dde2ea5d4068d15269f44eb387216302",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "html-practice-portfolio-v2": {
+   "src": "src/1-Modull/HtmlPractice.jsx",
+   "modul": 2,
+   "tartib": 10,
+   "key": "m1-08",
+   "tur": "Proyekt",
+   "nom_uz": "HTML Praktika — Portfolio sayt",
+   "nom_ru": "HTML практика — портфолио",
+   "fayl": "10-HtmlPractice-v3.jsx",
+   "v": 3,
+   "md5": "6bcbc6da81e63aedf7ce7baadf16f924",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "css-practice-portfolio-v3": {
+   "src": "src/1-Modull/CssPractice.jsx",
+   "modul": 2,
+   "tartib": 11,
+   "key": "m1-10",
+   "tur": "Proyekt",
+   "nom_uz": "CSS Praktika — Demo Day saytini bezaymiz",
+   "nom_ru": "CSS практика — оформляем сайт для Demo Day",
+   "fayl": "11-CssPractice-v3.jsx",
+   "v": 3,
+   "md5": "3fb4878dc4d49b01257683b39eb4bf0e",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "git-github-v19": {
+   "src": "src/1-Modull/GitLesson.jsx",
+   "modul": 2,
+   "tartib": 12,
+   "key": "m1-09",
+   "tur": "Kod",
+   "nom_uz": "Git va GitHub — kodni internetga chiqaramiz",
+   "nom_ru": "Git и GitHub — выкладываем код в интернет",
+   "fayl": "12-GitLesson-v3.jsx",
+   "v": 3,
+   "md5": "29c40147682641e389ce0a0bd51c6b3d",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "netlify-deploy-v19": {
+   "src": "src/1-Modull/DeployLesson.jsx",
+   "modul": 2,
+   "tartib": 13,
+   "key": "m1-11",
+   "tur": "Kod",
+   "nom_uz": "Netlify va deploy",
+   "nom_ru": "Netlify и деплой",
+   "fayl": "13-DeployLesson-v3.jsx",
+   "v": 3,
+   "md5": "1c9020f18501e275374be7a7ddb842b7",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-pitch-03-v20": {
+   "src": "src/1-Modull/PmLesson3.jsx",
+   "modul": 2,
+   "tartib": 14,
+   "key": "m1-12",
+   "tur": "PM",
+   "nom_uz": "Demo Day — 3 daqiqalik nutq",
+   "nom_ru": "Демо-день — трёхминутная речь",
+   "fayl": "14-PmLesson3-v3.jsx",
+   "v": 3,
+   "md5": "1b78752d4cd261fc5e6fdba6f264e340",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "js-intro-01-v18": {
+   "src": "src/2-Modull/JsIntroLesson.jsx",
+   "modul": 3,
+   "tartib": 1,
+   "key": "m2-01",
+   "tur": "Kod",
+   "nom_uz": "Sistema va Algoritm",
+   "nom_ru": "Система и алгоритм",
+   "fayl": "01-JsIntroLesson-v3.jsx",
+   "v": 3,
+   "md5": "8ccbe44c8e3c786d1c804fa8a81443f8",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m2d2-v1": {
+   "src": "src/2-Modull/PmLesson4.jsx",
+   "modul": 3,
+   "tartib": 2,
+   "key": "m2-02",
+   "tur": "PM",
+   "nom_uz": "Muammodan yechimga",
+   "nom_ru": "От проблемы к решению",
+   "fayl": "02-PmLesson4-v3.jsx",
+   "v": 3,
+   "md5": "acaa42a25ec98a237b21d2e701da287a",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "js-vars-01-v18": {
+   "src": "src/2-Modull/JsVarsLesson.jsx",
+   "modul": 3,
+   "tartib": 4,
+   "key": "m2-03",
+   "tur": "Kod",
+   "nom_uz": "JavaScript — O'zgaruvchilar",
+   "nom_ru": "JavaScript — Переменные",
+   "fayl": "04-JsVarsLesson-v3.jsx",
+   "v": 3,
+   "md5": "a175b78559701b8513b1407e01bcc5ef",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "js-cond-01-v18": {
+   "src": "src/2-Modull/JsConditionsLesson.jsx",
+   "modul": 3,
+   "tartib": 5,
+   "key": "m2-04",
+   "tur": "Kod",
+   "nom_uz": "JavaScript — if/else",
+   "nom_ru": "JavaScript — if/else",
+   "fayl": "05-JsConditionsLesson-v3.jsx",
+   "v": 3,
+   "md5": "52173b2ba852029a7515f03a58fcae07",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "js-loops-01-v18": {
+   "src": "src/2-Modull/JsLoopsLesson.jsx",
+   "modul": 3,
+   "tartib": 6,
+   "key": "m2-05",
+   "tur": "Kod",
+   "nom_uz": "JavaScript — Sikllar (for, while)",
+   "nom_ru": "JavaScript — Циклы (for, while)",
+   "fayl": "06-JsLoopsLesson-v3.jsx",
+   "v": 3,
+   "md5": "f73a9100e8553eb2e5df7fbd8ea89908",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "js-functions-01-v18": {
+   "src": "src/2-Modull/JsFunctionsLesson.jsx",
+   "modul": 3,
+   "tartib": 7,
+   "key": "m2-06",
+   "tur": "Kod",
+   "nom_uz": "JavaScript — Funksiya, parametr, return",
+   "nom_ru": "JavaScript — Функция, параметры, return",
+   "fayl": "07-JsFunctionsLesson-v3.jsx",
+   "v": 3,
+   "md5": "8c3f116268088d788e145e39bf2b7e73",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m2d7-v1": {
+   "src": "src/2-Modull/PmLesson5.jsx",
+   "modul": 3,
+   "tartib": 8,
+   "key": "m2-07",
+   "tur": "PM",
+   "nom_uz": "Dekompozitsiya — ochilish ro'yxati",
+   "nom_ru": "Декомпозиция — список к открытию",
+   "fayl": "08-PmLesson5-v3.jsx",
+   "v": 3,
+   "md5": "59a686af15cdb75aa7a2fac0444e7032",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "practice-01-jonlantirish-v18": {
+   "src": "src/2-Modull/PracticeLesson1.jsx",
+   "modul": 3,
+   "tartib": 9,
+   "key": "m2-08",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika 1 — Saytni jonlantiramiz",
+   "nom_ru": "Практика 1 — Оживляем сайт",
+   "fayl": "09-PracticeLesson1-v3.jsx",
+   "v": 3,
+   "md5": "ed8b3e48f8aaa08f49d8125a4bb1de16",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "practice-02-ai-promo-v18": {
+   "src": "src/2-Modull/PracticeLesson2.jsx",
+   "modul": 3,
+   "tartib": 10,
+   "key": "m2-09",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika 2 — AI bilan tez sayt",
+   "nom_ru": "Практика 2 — Быстрый сайт через AI",
+   "fayl": "10-PracticeLesson2-v3.jsx",
+   "v": 3,
+   "md5": "c7c68decd1d941c58e9022e48607d1f9",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pean-stack-01-v18": {
+   "src": "src/2-Modull/PeanStackLesson.jsx",
+   "modul": 3,
+   "tartib": 11,
+   "key": "m2-10",
+   "tur": "Kod",
+   "nom_uz": "PERN Stack — 4 texnologiya, bitta jamoa",
+   "nom_ru": "PERN Stack — 4 технологии, одна команда",
+   "fayl": "11-PeanStackLesson-v3.jsx",
+   "v": 3,
+   "md5": "73d057871a8aeabb55e0e8d477daa37f",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "practice-03-decompose-v18": {
+   "src": "src/2-Modull/PracticeLesson3.jsx",
+   "modul": 3,
+   "tartib": 12,
+   "key": "m2-11",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika 3 — Dekompozitsiya (mini-do'kon)",
+   "nom_ru": "Практика 3 — Декомпозиция (мини-магазин)",
+   "fayl": "12-PracticeLesson3-v3.jsx",
+   "v": 3,
+   "md5": "0a49200e6cd97e5337361f918dde9022",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "practice-04-mvp-deploy-v18": {
+   "src": "src/2-Modull/PracticeLesson4.jsx",
+   "modul": 3,
+   "tartib": 13,
+   "key": "m2-12",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika 4 — MVP tayyor (deploy)",
+   "nom_ru": "Практика 4 — MVP готов (деплой)",
+   "fayl": "13-PracticeLesson4-v3.jsx",
+   "v": 3,
+   "md5": "031f485d33967c1d77813fde61f6535a",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m2d13-v2": {
+   "src": "src/2-Modull/PmLesson6.jsx",
+   "modul": 3,
+   "tartib": 14,
+   "key": "m2-13",
+   "tur": "PM",
+   "nom_uz": "Sistemani qanday pitch qilish",
+   "nom_ru": "Как рассказать о системе",
+   "fayl": "14-PmLesson6-v3.jsx",
+   "v": 3,
+   "md5": "ef63b5f0b90739834ae30409f080dad5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-intro-01-v18": {
+   "src": "src/3-Modull/ReactIntroLesson.jsx",
+   "modul": 4,
+   "tartib": 1,
+   "key": "m3-01",
+   "tur": "Kod",
+   "nom_uz": "React nima va nima uchun?",
+   "nom_ru": "Что такое React и зачем",
+   "fayl": "01-ReactIntroLesson-v3.jsx",
+   "v": 3,
+   "md5": "57ce8a03ef277c60d24b33335f82a5af",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m3d2-v3": {
+   "src": "src/pm/PmUserStoryLesson.jsx",
+   "modul": 4,
+   "tartib": 2,
+   "key": "m3-02",
+   "tur": "PM",
+   "nom_uz": "User Story: kim va nima uchun?",
+   "nom_ru": "User Story",
+   "fayl": "02-PmUserStoryLesson-v3.jsx",
+   "v": 3,
+   "md5": "6c2cdc8b718f16c6c0a4b9f90a04e889",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-first-component-02-v18": {
+   "src": "src/3-Modull/ReactFirstComponentLesson.jsx",
+   "modul": 4,
+   "tartib": 4,
+   "key": "m3-03",
+   "tur": "Kod",
+   "nom_uz": "Birinchi komponent: Vite, JSX, props",
+   "nom_ru": "Первый компонент: Vite, JSX, props",
+   "fayl": "04-ReactFirstComponentLesson-v3.jsx",
+   "v": 3,
+   "md5": "443da943cf869b702149a6c49d58b7db",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-state-effect-03-v18": {
+   "src": "src/3-Modull/ReactStateEffectLesson.jsx",
+   "modul": 4,
+   "tartib": 5,
+   "key": "m3-04",
+   "tur": "Kod",
+   "nom_uz": "State va Effect: useState + useEffect",
+   "nom_ru": "State и Effect: useState + useEffect",
+   "fayl": "05-ReactStateEffectLesson-v3.jsx",
+   "v": 3,
+   "md5": "7fe73318535623ed51e13ad4524968b2",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m3d5-v1": {
+   "src": "src/3-Modull/PmLesson8.jsx",
+   "modul": 4,
+   "tartib": 6,
+   "key": "m3-05",
+   "tur": "PM",
+   "nom_uz": "Qaysi ishni birinchi qilasiz?",
+   "nom_ru": "Какую задачу сделаете первой?",
+   "fayl": "06-PmLesson8-v3.jsx",
+   "v": 3,
+   "md5": "1cf830c8d7462a0452398022b114c78a",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-props-reuse-04-v18": {
+   "src": "src/3-Modull/ReactPropsReuseLesson.jsx",
+   "modul": 4,
+   "tartib": 7,
+   "key": "m3-06",
+   "tur": "Kod",
+   "nom_uz": "Props va qayta ishlatish",
+   "nom_ru": "Props и переиспользование",
+   "fayl": "07-ReactPropsReuseLesson-v3.jsx",
+   "v": 3,
+   "md5": "f06e02680d63660c7653583569b95132",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-crud-practice-p1-v18": {
+   "src": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+   "modul": 4,
+   "tartib": 8,
+   "key": "m3-07",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika: CRUD — to'liq boshqariladigan ilova",
+   "nom_ru": "Практика: CRUD — управляемое приложение",
+   "fayl": "08-ReactCrudPracticeLesson-v3.jsx",
+   "v": 3,
+   "md5": "319c17af73ac931ffa30b07a6eb81c58",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-api-get-05-v18": {
+   "src": "src/3-Modull/ReactApiGetLesson.jsx",
+   "modul": 4,
+   "tartib": 9,
+   "key": "m3-08",
+   "tur": "Kod",
+   "nom_uz": "API bilan ishlash: GET — serverdan ma'lumot olish",
+   "nom_ru": "Работа с API — GET",
+   "fayl": "09-ReactApiGetLesson-v3.jsx",
+   "v": 3,
+   "md5": "f678787e0feeae9402e9c855ce247bf5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-api-post-06-v18": {
+   "src": "src/3-Modull/ReactApiPostLesson.jsx",
+   "modul": 4,
+   "tartib": 10,
+   "key": "m3-09",
+   "tur": "Kod",
+   "nom_uz": "API: POST/PUT/DELETE — serverga ma'lumot yuborish",
+   "nom_ru": "Работа с API — POST/PUT/DELETE",
+   "fayl": "10-ReactApiPostLesson-v3.jsx",
+   "v": 3,
+   "md5": "4897d92917bbbec43a65b1c3a45e1da1",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m3d10-v1": {
+   "src": "src/3-Modull/PmLesson9.jsx",
+   "modul": 4,
+   "tartib": 11,
+   "key": "m3-10",
+   "tur": "PM",
+   "nom_uz": "Qachon «tayyor» deb ayta olamiz?",
+   "nom_ru": "Когда можно сказать «готово»?",
+   "fayl": "11-PmLesson9-v3.jsx",
+   "v": 3,
+   "md5": "73acd515f1492329729b7cedd0480b92",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-router-practice-p2-v18": {
+   "src": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+   "modul": 4,
+   "tartib": 12,
+   "key": "m3-11",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika: React Router — ko'p sahifali ilova",
+   "nom_ru": "Практика: React Router — многостраничное приложение",
+   "fayl": "12-ReactRouterPracticeLesson-v3.jsx",
+   "v": 3,
+   "md5": "a3900c65f6800ce748c751f6687bb540",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-project-day-p3-v18": {
+   "src": "src/3-Modull/ReactProjectDayLesson.jsx",
+   "modul": 4,
+   "tartib": 13,
+   "key": "m3-12",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika: Loyiha kuni — AvtoIjara",
+   "nom_ru": "Практика: Проектный день — AvtoIjara",
+   "fayl": "13-ReactProjectDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "36b0d926740be2a8cb45f72fcb9b39d9",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "react-build-site-final-p4-v18": {
+   "src": "src/3-Modull/ReactBuildSiteLesson.jsx",
+   "modul": 4,
+   "tartib": 14,
+   "key": "m3-13",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt",
+   "nom_ru": "Практика: Сборка любого сайта — декомпозиция + точный промпт",
+   "fayl": "14-ReactBuildSiteLesson-v3.jsx",
+   "v": 3,
+   "md5": "fb9f99aefabe1fe2b8c5b658bb2deb60",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m3d14-v1": {
+   "src": "src/3-Modull/PmLesson10.jsx",
+   "modul": 4,
+   "tartib": 15,
+   "key": "m3-14",
+   "tur": "PM",
+   "nom_uz": "Ishlayotgan saytingizni qanday ko'rsatasiz?",
+   "nom_ru": "Как показать свой работающий сайт?",
+   "fayl": "15-PmLesson10-v3.jsx",
+   "v": 3,
+   "md5": "909aae24e5ba4994276553a7223b9cdf",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "data-intro-04-01-v18": {
+   "src": "src/4-Modull/DataIntroLesson.jsx",
+   "modul": 5,
+   "tartib": 1,
+   "key": "m4-01",
+   "tur": "Kod",
+   "nom_uz": "Ma'lumot va bog'lanishlar: JSON, jadval, sxema",
+   "nom_ru": "Данные и связи: JSON, таблицы, схема",
+   "fayl": "01-DataIntroLesson-v3.jsx",
+   "v": 3,
+   "md5": "3d5b8891ca9faaf3cbd515ae59a55ce4",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m4d2-v1": {
+   "src": "src/4-Modull/PmLesson11.jsx",
+   "modul": 5,
+   "tartib": 2,
+   "key": "m4-02",
+   "tur": "PM",
+   "nom_uz": "Ilova nimani eslab qolsin?",
+   "nom_ru": "Что приложению запомнить?",
+   "fayl": "02-PmLesson11-v3.jsx",
+   "v": 3,
+   "md5": "e651058172271770148e9189a493876c",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "db-sql-nosql-04-02-v18": {
+   "src": "src/4-Modull/DbSqlNosqlLesson.jsx",
+   "modul": 5,
+   "tartib": 3,
+   "key": "m4-03",
+   "tur": "Kod",
+   "nom_uz": "SQL vs NoSQL — nega PostgreSQL",
+   "nom_ru": "SQL vs NoSQL — почему PostgreSQL",
+   "fayl": "03-DbSqlNosqlLesson-v3.jsx",
+   "v": 3,
+   "md5": "3b5c60533c9c2294beaf30e64f18f8e3",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "node-server-04-03-v18": {
+   "src": "src/4-Modull/NodeServerLesson.jsx",
+   "modul": 5,
+   "tartib": 4,
+   "key": "m4-04",
+   "tur": "Kod",
+   "nom_uz": "Node.js — birinchi serveringiz",
+   "nom_ru": "Node.js — первый сервер",
+   "fayl": "04-NodeServerLesson-v3.jsx",
+   "v": 3,
+   "md5": "e1d813f57425e402cfd43c3aa0e1838e",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "nest-routing-04-04-v18": {
+   "src": "src/4-Modull/RoutingLesson.jsx",
+   "modul": 5,
+   "tartib": 5,
+   "key": "m4-05",
+   "tur": "Kod",
+   "nom_uz": "Routing: server so'rovni qanday topadi",
+   "nom_ru": "Роутинг: как сервер находит запрос",
+   "fayl": "05-RoutingLesson-v4.jsx",
+   "v": 4,
+   "md5": "a0b9caf11a801902bbd0761d7dd1a825",
+   "commit": "34b725cf",
+   "yuklandi": "2026-10-21",
+   "kim": "claude (F-1021 seans)",
+   "crm": {
+    "uz": "16393",
+    "ru": "16392"
+   }
+  },
+  "pg-crud-04-05-v18": {
+   "src": "src/4-Modull/PostgresCrudLesson.jsx",
+   "modul": 5,
+   "tartib": 6,
+   "key": "m4-06",
+   "tur": "Kod",
+   "nom_uz": "PostgreSQL so'rovlar — CRUD + AI bilan",
+   "nom_ru": "Запросы PostgreSQL — CRUD + ИИ",
+   "fayl": "06-PostgresCrudLesson-v3.jsx",
+   "v": 3,
+   "md5": "7d1639498918bfa5cbbc493790fbc4b7",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m4d7-v1": {
+   "src": "src/4-Modull/PmLesson12.jsx",
+   "modul": 5,
+   "tartib": 7,
+   "key": "m4-07",
+   "tur": "PM",
+   "nom_uz": "Sinfdoshingiz sahifangizni ochsa, nimani ko'radi?",
+   "nom_ru": "Что увидит одноклассник, открыв вашу страницу?",
+   "fayl": "07-PmLesson12-v3.jsx",
+   "v": 3,
+   "md5": "9097d702dbee9f300896c221efc77e24",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "backend-crud-practice-p1-v18": {
+   "src": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+   "modul": 5,
+   "tartib": 8,
+   "key": "m4-08",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika: Backend CRUD — AvtoIjara",
+   "nom_ru": "Практика: Backend CRUD — AvtoIjara",
+   "fayl": "08-BackendCrudPracticeLesson-v3.jsx",
+   "v": 3,
+   "md5": "4c85236eb86dec429a520a4d4b14803b",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "api-postman-04-06-v18": {
+   "src": "src/4-Modull/ApiPostmanLesson.jsx",
+   "modul": 5,
+   "tartib": 9,
+   "key": "m4-09",
+   "tur": "Kod",
+   "nom_uz": "API va Postman — front backend bilan qanday gaplashadi",
+   "nom_ru": "API и Postman — как фронт говорит с бэком",
+   "fayl": "09-ApiPostmanLesson-v4.jsx",
+   "v": 4,
+   "md5": "b5a21fced14279e43d9d2b32887f2354",
+   "commit": "34b725cf",
+   "yuklandi": "2026-10-21",
+   "kim": "claude (F-1021 seans)",
+   "crm": {
+    "uz": "16401",
+    "ru": "16400"
+   }
+  },
+  "fullstack-connect-practice-p2-v18": {
+   "src": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+   "modul": 5,
+   "tartib": 10,
+   "key": "m4-10",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika: Fullstack ulash — AvtoIjara",
+   "nom_ru": "Практика: Fullstack связка — AvtoIjara",
+   "fayl": "10-FullstackConnectPracticeLesson-v3.jsx",
+   "v": 3,
+   "md5": "0611cbd8abb6fa690ac139f9f11d5552",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "auth-env-04-07-v18": {
+   "src": "src/4-Modull/AuthEnvLesson.jsx",
+   "modul": 5,
+   "tartib": 11,
+   "key": "m4-11",
+   "tur": "Kod",
+   "nom_uz": "Autentifikatsiya va .env — login, JWT, maxfiy kalitlar",
+   "nom_ru": "Аутентификация и .env — логин, JWT, секреты",
+   "fayl": "11-AuthEnvLesson-v3.jsx",
+   "v": 3,
+   "md5": "7d3c62f214d795d399ccddd4637e0f2f",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m4d12-v1": {
+   "src": "src/4-Modull/PmLesson13.jsx",
+   "modul": 5,
+   "tartib": 12,
+   "key": "m4-12",
+   "tur": "PM",
+   "nom_uz": "Ilova nimani yozib qoladi?",
+   "nom_ru": "Что приложение записывает?",
+   "fayl": "12-PmLesson13-v3.jsx",
+   "v": 3,
+   "md5": "8948d474ffa9487dd4d5756357b8b9c5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "fullstack-projectday-p3-v18": {
+   "src": "src/4-Modull/FullstackProjectDayLesson.jsx",
+   "modul": 5,
+   "tartib": 13,
+   "key": "m4-13",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika: Loyiha kuni — AvtoStoyanka",
+   "nom_ru": "Практика: Проектный день — AvtoStoyanka",
+   "fayl": "13-FullstackProjectDayLesson-v3.jsx",
+   "v": 3,
+   "md5": "8b5eec5b33879a74532170e1e13448e1",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "fullstack-feedback-p4-v18": {
+   "src": "src/4-Modull/FullstackFeedbackLesson.jsx",
+   "modul": 5,
+   "tartib": 14,
+   "key": "m4-14",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika: Feedback bilan yaxshilash — AvtoStoyanka",
+   "nom_ru": "Практика: Доработка по фидбеку — AvtoStoyanka",
+   "fayl": "14-FullstackFeedbackLesson-v3.jsx",
+   "v": 3,
+   "md5": "797f2727e8bd34428e831a889fe99a43",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m4d15-v1": {
+   "src": "src/4-Modull/PmLesson14.jsx",
+   "modul": 5,
+   "tartib": 15,
+   "key": "m4-15",
+   "tur": "PM",
+   "nom_uz": "«Qanday ishlaydi?» deb so'rashsa",
+   "nom_ru": "Если спросят: «Как это работает?»",
+   "fayl": "15-PmLesson14-v3.jsx",
+   "v": 3,
+   "md5": "092e6595bc420b7c4eaba19cb7d6f95d",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "nest-arch-alive-4a-01-v18": {
+   "src": "src/4a-Modull/NestArchAliveLesson.jsx",
+   "modul": 6,
+   "tartib": 1,
+   "key": "m4a-01",
+   "tur": "Kod",
+   "nom_uz": "Nest arxitektura — tirik ko'rish",
+   "nom_ru": "Nest архитектура — живой обзор",
+   "fayl": "01-NestArchAliveLesson-v3.jsx",
+   "v": 3,
+   "md5": "8ad5fcb828ccd438e712dc3cc8dc08c5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m4a2-v1": {
+   "src": "src/4a-Modull/PmLesson15.jsx",
+   "modul": 6,
+   "tartib": 2,
+   "key": "m4a-02",
+   "tur": "PM",
+   "nom_uz": "Hamma birdan kirsa, sayt chidaydimi?",
+   "nom_ru": "Выдержит ли сайт, если все зайдут разом?",
+   "fayl": "02-PmLesson15-v3.jsx",
+   "v": 3,
+   "md5": "d25be0583c3c3cae9fa39b1cdb178a49",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "nest-arch-resource-4a-02-v18": {
+   "src": "src/4a-Modull/NestArchResourceLesson.jsx",
+   "modul": 6,
+   "tartib": 3,
+   "key": "m4a-03",
+   "tur": "Kod",
+   "nom_uz": "Birinchi resursni qo'lda qo'shish — mashinalar",
+   "nom_ru": "Добавляем первый ресурс вручную — машины",
+   "fayl": "03-NestArchResourceLesson-v3.jsx",
+   "v": 3,
+   "md5": "88b84bcd8dc611460bf7b2f5f2719b6c",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "nest-arch-practice-4a-03-v18": {
+   "src": "src/4a-Modull/NestArchPracticeLesson.jsx",
+   "modul": 6,
+   "tartib": 4,
+   "key": "m4a-04",
+   "tur": "Proyekt",
+   "nom_uz": "Praktika — KitobShop backend",
+   "nom_ru": "Практика — бэкенд KitobShop",
+   "fayl": "04-NestArchPracticeLesson-v3.jsx",
+   "v": 3,
+   "md5": "eccd10ae0bddefa3c4a6b8dee449fd9f",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "jest-unit-04b-01-v18": {
+   "src": "src/4b-Modull/JestUnitTestLesson.jsx",
+   "modul": 6,
+   "tartib": 5,
+   "key": "m4b-01",
+   "tur": "Kod",
+   "nom_uz": "Unit-test: Jest",
+   "nom_ru": "Юнит-тесты: Jest",
+   "fayl": "05-JestUnitTestLesson-v3.jsx",
+   "v": 3,
+   "md5": "357258a80a120ebfaa54ae6280dda44e",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m4b2-v1": {
+   "src": "src/4b-Modull/PmLesson16.jsx",
+   "modul": 6,
+   "tartib": 6,
+   "key": "m4b-02",
+   "tur": "PM",
+   "nom_uz": "Bitta xato — nechta odam ketadi?",
+   "nom_ru": "Одна ошибка — сколько людей уйдёт?",
+   "fayl": "06-PmLesson16-v3.jsx",
+   "v": 3,
+   "md5": "c044bb37c0274125c152ef2512c83dc5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "edge-cases-04b-02-v18": {
+   "src": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+   "modul": 6,
+   "tartib": 7,
+   "key": "m4b-03",
+   "tur": "Kod",
+   "nom_uz": "Edge cases va error path",
+   "nom_ru": "Граничные случаи и обработка ошибок",
+   "fayl": "07-EdgeCasesTestLesson-v3.jsx",
+   "v": 3,
+   "md5": "5a6992d7ae8e1fab867cbf0dca01a556",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "cicd-intro-4c-01-v18": {
+   "src": "src/4c-Modull/CiCdIntroLesson.jsx",
+   "modul": 6,
+   "tartib": 8,
+   "key": "m4c-01",
+   "tur": "Kod",
+   "nom_uz": "CI/CD nima va nega kerak",
+   "nom_ru": "Что такое CI/CD и зачем",
+   "fayl": "08-CiCdIntroLesson-v3.jsx",
+   "v": 3,
+   "md5": "04c7a08e3995f0c137949b87d3d9e65a",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m4c2-v1": {
+   "src": "src/4c-Modull/PmLesson17.jsx",
+   "modul": 6,
+   "tartib": 9,
+   "key": "m4c-02",
+   "tur": "PM",
+   "nom_uz": "Hammasini birdan chiqaraymi — yoki har hafta bo'lak?",
+   "nom_ru": "Выпустить всё разом — или по кусочку каждую неделю?",
+   "fayl": "09-PmLesson17-v3.jsx",
+   "v": 3,
+   "md5": "80ff14e2ed658b26ab0fbbba63c2f8db",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "github-actions-4c-02-v18": {
+   "src": "src/4c-Modull/GithubActionsLesson.jsx",
+   "modul": 6,
+   "tartib": 10,
+   "key": "m4c-03",
+   "tur": "Kod",
+   "nom_uz": "GitHub Actions — yo'l xaritasini yozish",
+   "nom_ru": "GitHub Actions — написание карты маршрута",
+   "fayl": "10-GithubActionsLesson-v3.jsx",
+   "v": 3,
+   "md5": "8318ca9a0fdc2410fde1e6f832e852a5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "cicd-full-pipeline-4c-03-v18": {
+   "src": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+   "modul": 6,
+   "tartib": 11,
+   "key": "m4c-04",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni — to'liq lentani qurish",
+   "nom_ru": "Проектный день — построение полного конвейера",
+   "fayl": "11-FullPipelineProjectLesson-v3.jsx",
+   "v": 3,
+   "md5": "11117001f17c517d18c8fc6b377b7f47",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "cicd-ai-pipeline-4c-05-v18": {
+   "src": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+   "modul": 6,
+   "tartib": 12,
+   "key": "m4c-05",
+   "tur": "Proyekt",
+   "nom_uz": "AI bilan lentani boshqarish",
+   "nom_ru": "Управление конвейером с AI",
+   "fayl": "12-AiPipelineProjectLesson-v3.jsx",
+   "v": 3,
+   "md5": "d9ff8e2934c0dbefbd5723095614e043",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m4c6-v1": {
+   "src": "src/4c-Modull/PmLesson18.jsx",
+   "modul": 6,
+   "tartib": 13,
+   "key": "m4c-06",
+   "tur": "PM",
+   "nom_uz": "Saytingiz hozir ochilyaptimi?",
+   "nom_ru": "Ваш сайт сейчас открывается?",
+   "fayl": "13-PmLesson18-v3.jsx",
+   "v": 3,
+   "md5": "f41abfa1bd92eb7d43bcf4e1d0cb05a9",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "full-pro-pipeline-4c-04-v18": {
+   "src": "src/4c-Modull/FullProPipelineLesson.jsx",
+   "modul": 6,
+   "tartib": 14,
+   "key": "m4c-07",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: ishonchli lenta",
+   "nom_ru": "Проектный день: надёжная лента",
+   "fayl": "14-FullProPipelineLesson-v3.jsx",
+   "v": 3,
+   "md5": "772116b8e7b6632d0a167382d642eac5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "bot-intro-05-01-v18": {
+   "src": "src/5-Modull/BotIntroLesson.jsx",
+   "modul": 7,
+   "tartib": 1,
+   "key": "m5-01",
+   "tur": "Kod",
+   "nom_uz": "Bot nima",
+   "nom_ru": "Что такое бот",
+   "fayl": "01-BotIntroLesson-v3.jsx",
+   "v": 3,
+   "md5": "a15f12b2926e89cd83f34c4fe4f08acb",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m5d2-v1": {
+   "src": "src/5-Modull/PmLesson19.jsx",
+   "modul": 7,
+   "tartib": 2,
+   "key": "m5-02",
+   "tur": "PM",
+   "nom_uz": "Botingizni birinchi kim ochadi?",
+   "nom_ru": "Кто первым откроет вашего бота?",
+   "fayl": "02-PmLesson19-v3.jsx",
+   "v": 3,
+   "md5": "519167687c4966503db7d9e4dc7fba49",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "bot-api-buttons-05-02-v18": {
+   "src": "src/5-Modull/BotApiButtonsLesson.jsx",
+   "modul": 7,
+   "tartib": 3,
+   "key": "m5-03",
+   "tur": "Kod",
+   "nom_uz": "Telegram Bot API + tugmalar",
+   "nom_ru": "Telegram Bot API + кнопки",
+   "fayl": "03-BotApiButtonsLesson-v3.jsx",
+   "v": 3,
+   "md5": "85f506e750efe086e5b3f812674bfff2",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "bot-stateful-memory-05-03-v18": {
+   "src": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+   "modul": 7,
+   "tartib": 4,
+   "key": "m5-04",
+   "tur": "Kod",
+   "nom_uz": "Bot eslab qoladi — holat va PostgreSQL",
+   "nom_ru": "Бот запоминает — состояние и PostgreSQL",
+   "fayl": "04-BotStatefulMemoryLesson-v3.jsx",
+   "v": 3,
+   "md5": "dda62f5925c9c0cfd09f2fa6a6800323",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "bot-ai-project-05-05-v18": {
+   "src": "src/5-Modull/BotAiProjectLesson.jsx",
+   "modul": 7,
+   "tartib": 5,
+   "key": "m5-05",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: AI bilan bot",
+   "nom_ru": "Проектный день: бот с ИИ",
+   "fayl": "05-BotAiProjectLesson-v3.jsx",
+   "v": 3,
+   "md5": "5c6ca095d3121acccf0e76b79a1d469c",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "bot-ai-brain-05-04-v18": {
+   "src": "src/5-Modull/BotAiBrainLesson.jsx",
+   "modul": 7,
+   "tartib": 6,
+   "key": "m5-06",
+   "tur": "Proyekt",
+   "nom_uz": "Bot ichida AI",
+   "nom_ru": "ИИ внутри бота",
+   "fayl": "06-BotAiBrainLesson-v3.jsx",
+   "v": 3,
+   "md5": "cfa833242831cdaf76433707d8b5b899",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "bot-full-project-05-07-v18": {
+   "src": "src/5-Modull/BotFullProjectLesson.jsx",
+   "modul": 7,
+   "tartib": 7,
+   "key": "m5-07",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: bot + DB + AI",
+   "nom_ru": "Проектный день: бот + БД + ИИ",
+   "fayl": "07-BotFullProjectLesson-v3.jsx",
+   "v": 3,
+   "md5": "177164d43d6d17e21ab6c53f398b0cfb",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m5d8-v1": {
+   "src": "src/5-Modull/PmLesson20.jsx",
+   "modul": 7,
+   "tartib": 8,
+   "key": "m5-08",
+   "tur": "PM",
+   "nom_uz": "Botingizni ishlatgan odamdan nimani so'raysiz?",
+   "nom_ru": "О чём спросить человека, который пользовался вашим ботом?",
+   "fayl": "08-PmLesson20-v3.jsx",
+   "v": 3,
+   "md5": "33e6deaa1dd3de3691a2739884235d5c",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "bot-feedback-05-06-v18": {
+   "src": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+   "modul": 7,
+   "tartib": 9,
+   "key": "m5-09",
+   "tur": "Proyekt",
+   "nom_uz": "Foydalanuvchi fikri va iteratsiya",
+   "nom_ru": "Отзывы пользователей и итерация",
+   "fayl": "09-BotFeedbackIterationLesson-v3.jsx",
+   "v": 3,
+   "md5": "91156c052dd4488f3616c261874f2909",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "bot-ai-agent-05-10-v18": {
+   "src": "src/5-Modull/BotAiAgentLesson.jsx",
+   "modul": 7,
+   "tartib": 10,
+   "key": "m5-10",
+   "tur": "Proyekt",
+   "nom_uz": "AI-agent yaratish",
+   "nom_ru": "Создание ИИ-агента",
+   "fayl": "10-BotAiAgentLesson-v3.jsx",
+   "v": 3,
+   "md5": "1d77d30e980de57061feeee68fdbd4f8",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m5d11-metrika-v1": {
+   "src": "src/pm/PmMetricsLesson.jsx",
+   "modul": 7,
+   "tartib": 11,
+   "key": "m5-14",
+   "tur": "PM",
+   "nom_uz": "Botingiz yaxshi ishlayotganini qaysi raqam aytadi?",
+   "nom_ru": "Какая цифра скажет, что ваш бот работает хорошо?",
+   "fayl": "11-PmMetricsLesson-v3.jsx",
+   "v": 3,
+   "md5": "396f5e1ecd8bcc58df4888ab8d487f66",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m5d11-v1": {
+   "src": "src/5-Modull/PmLesson21.jsx",
+   "modul": 7,
+   "tartib": 12,
+   "key": "m5-11",
+   "tur": "PM",
+   "nom_uz": "Kecha kelgan odam bugun ham keldimi?",
+   "nom_ru": "Тот, кто пришёл вчера, пришёл ли сегодня?",
+   "fayl": "12-PmLesson21-v3.jsx",
+   "v": 3,
+   "md5": "f97ace7bdc0f5fb79a161b76ba10421e",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "sys-arch-06-01-v18": {
+   "src": "src/6-Modull/SystemArchitectureLesson.jsx",
+   "modul": 8,
+   "tartib": 1,
+   "key": "m6-01",
+   "tur": "Kod",
+   "nom_uz": "Komponentlardan tizim",
+   "nom_ru": "Система из компонентов",
+   "fayl": "01-SystemArchitectureLesson-v3.jsx",
+   "v": 3,
+   "md5": "6bb517c29e93bf21ee050522505ec249",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m6d2-v1": {
+   "src": "src/6-Modull/PmLesson22.jsx",
+   "modul": 8,
+   "tartib": 2,
+   "key": "m6-02",
+   "tur": "PM",
+   "nom_uz": "Bitta gapni uch kishi bir xil tushunadimi?",
+   "nom_ru": "Поймут ли одну фразу трое одинаково?",
+   "fayl": "02-PmLesson22-v3.jsx",
+   "v": 3,
+   "md5": "cd99ba60ededb278d4bd5d9086f5cca4",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "arch-patterns-06-03-v18": {
+   "src": "src/6-Modull/ArchPatternsLesson.jsx",
+   "modul": 8,
+   "tartib": 3,
+   "key": "m6-03",
+   "tur": "Kod",
+   "nom_uz": "Arxitektura patternlari",
+   "nom_ru": "Паттерны архитектуры",
+   "fayl": "03-ArchPatternsLesson-v3.jsx",
+   "v": 3,
+   "md5": "20f50dcd5f0ab8f4ef69b1a644ae57f5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "agent-arch-06-04-v18": {
+   "src": "src/6-Modull/AgentArchitectureLesson.jsx",
+   "modul": 8,
+   "tartib": 4,
+   "key": "m6-04",
+   "tur": "Kod",
+   "nom_uz": "AI-agent nima",
+   "nom_ru": "Что такое AI-агент",
+   "fayl": "04-AgentArchitectureLesson-v3.jsx",
+   "v": 3,
+   "md5": "adf01ccaf0395477b94106414c30df9b",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "claude-skills-06-05-v18": {
+   "src": "src/6-Modull/ClaudeSkillsLesson.jsx",
+   "modul": 8,
+   "tartib": 5,
+   "key": "m6-05",
+   "tur": "Kod",
+   "nom_uz": "Claude Skills — nima",
+   "nom_ru": "Claude Skills",
+   "fayl": "05-ClaudeSkillsLesson-v3.jsx",
+   "v": 3,
+   "md5": "294a762f1c23bc8bb1d849361de72604",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m6d6-v1": {
+   "src": "src/6-Modull/PmLesson23.jsx",
+   "modul": 8,
+   "tartib": 6,
+   "key": "m6-06",
+   "tur": "PM",
+   "nom_uz": "Ilova o'zi qaror qilsa, kimga tegadi?",
+   "nom_ru": "Если приложение решает само, кого это касается?",
+   "fayl": "06-PmLesson23-v3.jsx",
+   "v": 3,
+   "md5": "0782a9353218d1d0488e956e95c66cd0",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "write-skill-06-07-v18": {
+   "src": "src/6-Modull/WriteSkillLesson.jsx",
+   "modul": 8,
+   "tartib": 7,
+   "key": "m6-07",
+   "tur": "Kod",
+   "nom_uz": "O'z Skill'ingizni yozing",
+   "nom_ru": "Создаём свой Skill",
+   "fayl": "07-WriteSkillLesson-v3.jsx",
+   "v": 3,
+   "md5": "151bc8f9305aa53662c26e774c15911c",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pipeline-project-06-08-v18": {
+   "src": "src/6-Modull/PipelineProjectLesson.jsx",
+   "modul": 8,
+   "tartib": 8,
+   "key": "m6-08",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: to'liq pipeline",
+   "nom_ru": "Проектный день: полный pipeline",
+   "fayl": "08-PipelineProjectLesson-v3.jsx",
+   "v": 3,
+   "md5": "ea06c94aff344c4ad83c46a19d75f2c5",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "rn-basics-06-09-v18": {
+   "src": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+   "modul": 8,
+   "tartib": 9,
+   "key": "m6-09",
+   "tur": "Kod",
+   "nom_uz": "React Native — asoslari",
+   "nom_ru": "React Native — основы",
+   "fayl": "09-ReactNativeBasicsLesson-v3.jsx",
+   "v": 3,
+   "md5": "c2a5782da95f55caa30133a8c7cf1126",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "rn-app-06-10-v18": {
+   "src": "src/6-Modull/ReactNativeAppLesson.jsx",
+   "modul": 8,
+   "tartib": 10,
+   "key": "m6-10",
+   "tur": "Kod",
+   "nom_uz": "RN: komponent, navigatsiya, API",
+   "nom_ru": "RN: компоненты, навигация, API",
+   "fayl": "10-ReactNativeAppLesson-v3.jsx",
+   "v": 3,
+   "md5": "6640bf5d2a374fe5074780861f1538d9",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "mobile-practice-06-11-v18": {
+   "src": "src/6-Modull/MobileAppPracticeLesson.jsx",
+   "modul": 8,
+   "tartib": 11,
+   "key": "m6-11",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: mobil ilova",
+   "nom_ru": "Проектный день: мобильное приложение",
+   "fayl": "11-MobileAppPracticeLesson-v3.jsx",
+   "v": 3,
+   "md5": "3099bdfabdc62a1b1ba5ed8fe88eca12",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m6d12-v1": {
+   "src": "src/6-Modull/PmLesson24.jsx",
+   "modul": 8,
+   "tartib": 12,
+   "key": "m6-12",
+   "tur": "PM",
+   "nom_uz": "Bugun qaysi ish boshlanadi?",
+   "nom_ru": "Какую задачу начинаем сегодня?",
+   "fayl": "12-PmLesson24-v3.jsx",
+   "v": 3,
+   "md5": "274ebac0e2c383509b938d6a73e59451",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "full-system-06-13-v18": {
+   "src": "src/6-Modull/FullSystemProjectLesson.jsx",
+   "modul": 8,
+   "tartib": 13,
+   "key": "m6-13",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: to'liq tizim",
+   "nom_ru": "Проектный день: полная система",
+   "fayl": "13-FullSystemProjectLesson-v3.jsx",
+   "v": 3,
+   "md5": "1a2250e9d312ce3dc4825d12a9b5d1e3",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m6d14-v1": {
+   "src": "src/6-Modull/PmLesson25.jsx",
+   "modul": 8,
+   "tartib": 14,
+   "key": "m6-14",
+   "tur": "PM",
+   "nom_uz": "Raqamingiz nimani isbotlaydi?",
+   "nom_ru": "Что доказывает ваше число?",
+   "fayl": "14-PmLesson25-v3.jsx",
+   "v": 3,
+   "md5": "eb9894171736cb0519b004a323c82dea",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m7d1-v1": {
+   "src": "src/7-Modull/PmProductProblemLesson.jsx",
+   "modul": 9,
+   "tartib": 1,
+   "key": "m7-01",
+   "tur": "PM",
+   "nom_uz": "Loyihangiz kimga kerak?",
+   "nom_ru": "Кому нужен ваш проект?",
+   "fayl": "01-PmProductProblemLesson-v3.jsx",
+   "v": 3,
+   "md5": "e1b557be6c268e453b89aab52f782cc3",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-02-v1": {
+   "src": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+   "modul": 9,
+   "tartib": 2,
+   "key": "m7-02",
+   "tur": "PM",
+   "nom_uz": "Besh odamdan nimani bilib olasiz?",
+   "nom_ru": "Что вы узнаете от пяти человек?",
+   "fayl": "02-PmFiveInterviewsLesson-v3.jsx",
+   "v": 3,
+   "md5": "081ffe24af7c1d49e394fdd069ec2384",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "pm-m7d3-v1": {
+   "src": "src/7-Modull/PmInterviewMvpLesson.jsx",
+   "modul": 9,
+   "tartib": 3,
+   "key": "m7-03",
+   "tur": "PM",
+   "nom_uz": "Besh suhbatdan qaysi muammo chiqdi?",
+   "nom_ru": "Какая проблема вышла из пяти разговоров?",
+   "fayl": "03-PmInterviewMvpLesson-v3.jsx",
+   "v": 3,
+   "md5": "be6a90c58d065751970ec96c64ed9c60",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-04-v1": {
+   "src": "src/7-Modull/MvpArchitectureLesson.jsx",
+   "modul": 9,
+   "tartib": 4,
+   "key": "m7-04",
+   "tur": "Kod",
+   "nom_uz": "Mini-MVP arxitekturasi",
+   "nom_ru": "Архитектура мини-MVP",
+   "fayl": "04-MvpArchitectureLesson-v3.jsx",
+   "v": 3,
+   "md5": "42aa050bdaddea85a57041b1f260c628",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-05-v1": {
+   "src": "src/7-Modull/AnimationLesson.jsx",
+   "modul": 9,
+   "tartib": 5,
+   "key": "m7-05",
+   "tur": "Kod",
+   "nom_uz": "Animatsiya: interfeys javob beradi",
+   "nom_ru": "Анимация: интерфейс отвечает",
+   "fayl": "05-AnimationLesson-v3.jsx",
+   "v": 3,
+   "md5": "e8a2b05aa7cb493eef4cbcc5709e8dae",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-06-v1": {
+   "src": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+   "modul": 9,
+   "tartib": 6,
+   "key": "m7-06",
+   "tur": "PM",
+   "nom_uz": "Birinchi odam kirganda nimani ko'rasiz?",
+   "nom_ru": "Что вы увидите, когда придёт первый человек?",
+   "fayl": "06-PmAnalyticsDayOneLesson-v3.jsx",
+   "v": 3,
+   "md5": "f1c66bfe9be245dbb68e6495e3002cba",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-07-v1": {
+   "src": "src/7-Modull/MvpFirstScreenLesson.jsx",
+   "modul": 9,
+   "tartib": 7,
+   "key": "m7-07",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: MVP — birinchi ekran",
+   "nom_ru": "День проекта: MVP — первый экран",
+   "fayl": "07-MvpFirstScreenLesson-v3.jsx",
+   "v": 3,
+   "md5": "8b3e7605fea715e7a3e06ef0c4b66e20",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-08-v1": {
+   "src": "src/7-Modull/PmDesignMotionLesson.jsx",
+   "modul": 9,
+   "tartib": 8,
+   "key": "m7-08",
+   "tur": "PM",
+   "nom_uz": "Yaxshi interfeysdan nimani olasiz?",
+   "nom_ru": "Что взять из хорошего интерфейса?",
+   "fayl": "08-PmDesignMotionLesson-v3.jsx",
+   "v": 3,
+   "md5": "6131a5833663c8eb8f06d07758a025af",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-09-v1": {
+   "src": "src/7-Modull/MvpCompleteLesson.jsx",
+   "modul": 9,
+   "tartib": 9,
+   "key": "m7-09",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: MVP tayyor",
+   "nom_ru": "День проекта: MVP готов",
+   "fayl": "09-MvpCompleteLesson-v3.jsx",
+   "v": 3,
+   "md5": "c60f50e7b0d51ff9fadf5b24e1079059",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-10-v1": {
+   "src": "src/7-Modull/PmUsabilityTestLesson.jsx",
+   "modul": 9,
+   "tartib": 10,
+   "key": "m7-10",
+   "tur": "PM",
+   "nom_uz": "Odam ilovangizda qayerda to'xtab qoladi?",
+   "nom_ru": "Где человек застревает в вашем приложении?",
+   "fayl": "10-PmUsabilityTestLesson-v3.jsx",
+   "v": 3,
+   "md5": "858c5b6d510835dfc0d90a8e4c464738",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-11-v1": {
+   "src": "src/7-Modull/MvpIterationLesson.jsx",
+   "modul": 9,
+   "tartib": 11,
+   "key": "m7-11",
+   "tur": "Proyekt",
+   "nom_uz": "Loyiha kuni: sinovdan keyingi tuzatish",
+   "nom_ru": "День проекта: исправление после теста",
+   "fayl": "11-MvpIterationLesson-v3.jsx",
+   "v": 3,
+   "md5": "0fefabc15e9130a04c414c086f23fe2b",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  },
+  "m7-12-v2": {
+   "src": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+   "modul": 9,
+   "tartib": 12,
+   "key": "m7-12",
+   "tur": "PM",
+   "nom_uz": "Pitchingizda kimning hikoyasi bor?",
+   "nom_ru": "Чья история в вашем питче?",
+   "fayl": "12-PmUserStoryPitchLesson-v3.jsx",
+   "v": 3,
+   "md5": "5f1771e23e75e3c29f8f70411e5d34f2",
+   "commit": "6df7225c",
+   "yuklandi": "2026-10-19",
+   "kim": "claude-yuklovchi (F-1019-11)",
+   "crm": {
+    "uz": null,
+    "ru": null
+   }
+  }
+ },
+ "chetda": {
+  "m2-16": "registrda bor, lekin LMS'ga chiqmaydi (preview-reliz SKIP, F-0929-93)",
+  "m3-17": "registrda bor, lekin LMS'ga chiqmaydi (preview-reliz SKIP, F-0929-93)"
+ }
+}
