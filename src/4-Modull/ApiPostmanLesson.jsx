@@ -8,7 +8,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 //        Postman = "postachi" — frontend yozmasdan API'ni sinab ko'radigan dastur · o'z API'ingizni Postman'da chaqirish.
 // ANALOGIYA (user): POCHTA — API=pochta tizimi; so'rov=xat (konvert: manzil URL + niyat METHOD + ichi BODY);
 //        javob=qaytgan xat (shtamp=status kodi 200/201/404 + ichi=JSON ma'lumot); Postman=POSTACHI (xatni eltadi, javobni keltiradi).
-// KO'PRIK: id31 (routing, METHOD+PATH, Nest) + id32 (bazada CRUD: SQL) — endi o'sha 4 amalni INTERNET orqali API bilan so'raymiz:
+// KO'PRIK: id31 (routing, METHOD+PATH, Express — F-1021-01) + id32 (bazada CRUD: SQL) — endi o'sha 4 amalni INTERNET orqali API bilan so'raymiz:
 //        GET=SELECT(o'qish) · POST=INSERT(qo'shish) · PUT=UPDATE(o'zgartirish) · DELETE=DELETE(o'chirish).
 // Misol: onlayn do'kon `/api/products` (id32 dagi aynan products jadvali, endi API orqali).
 // QAROR (user): final = Postman so'rov-quruvchi (method+URL tanlab → Send → to'g'ri status).
@@ -1195,13 +1195,13 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const JNODES = [
   { k: 'sayt', label: { uz: 'Sayt', ru: 'Сайт' } },
   { k: 'api', label: 'API' },
-  { k: 'server', label: 'Nest server' },
+  { k: 'server', label: 'Express server' },
   { k: 'baza', label: { uz: 'Baza', ru: 'База' } }
 ];
 const JSEQ = [
   { idx: 0, dir: 'req', note: { uz: "Sayt so'rov yaratadi: GET /api/products", ru: 'Сайт создаёт запрос: GET /api/products' } },
   { idx: 1, dir: 'req', note: { uz: "API so'rovni qabul qiladi (pochta)", ru: 'API принимает запрос (почта)' } },
-  { idx: 2, dir: 'req', note: { uz: 'Nest server kerakli kodni topadi (routing)', ru: 'Nest-сервер находит нужный код (routing)' } },
+  { idx: 2, dir: 'req', note: { uz: 'Express server kerakli kodni topadi (routing)', ru: 'Express-сервер находит нужный код (routing)' } },
   { idx: 3, dir: 'req', note: { uz: "Baza SELECT bajaradi — ma'lumotni topadi", ru: 'База выполняет SELECT — находит данные' } },
   { idx: 2, dir: 'res', note: { uz: 'Server javobni JSON qiladi', ru: 'Сервер упаковывает ответ в JSON' } },
   { idx: 1, dir: 'res', note: { uz: 'API javobni ortga uzatadi', ru: 'API передаёт ответ обратно' } },
@@ -1233,7 +1233,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "To'liq sayohat", ru: 'Полное путешествие' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Sayohatni ko'ring (▶)", ru: 'Посмотрите путешествие (▶)' }))} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Send bosganda konvert <span className="italic" style={{ color: T.accent }}>shu yo'lni</span> bosib o'tadi</>, ru: <>Когда вы жмёте Send, конверт проходит <span className="italic" style={{ color: T.accent }}>вот этот путь</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Postman (yoki sayt) Send bosganda so'rov konverti: Sayt → API → Nest server → Baza, keyin javob xuddi shu yo'l bilan ortga qaytadi. <b style={{ color: T.accent }}>▶ tugmasini</b> bosib, butun sayohatni kuzating.</>, ru: <>Когда Postman (или сайт) жмёт Send, конверт запроса летит: Сайт → API → Nest-сервер → База, а ответ возвращается тем же путём. Нажмите <b style={{ color: T.accent }}>кнопку ▶</b> и проследите всё путешествие.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Postman (yoki sayt) Send bosganda so'rov konverti: Sayt → API → Express server → Baza, keyin javob xuddi shu yo'l bilan ortga qaytadi. <b style={{ color: T.accent }}>▶ tugmasini</b> bosib, butun sayohatni kuzating.</>, ru: <>Когда Postman (или сайт) жмёт Send, конверт запроса летит: Сайт → API → Express-сервер → База, а ответ возвращается тем же путём. Нажмите <b style={{ color: T.accent }}>кнопку ▶</b> и проследите всё путешествие.</> })}</Mentor>
         {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 ▶ tugmasini bosing — konvert 4 bekatdan o'tib qaytadi, kuzating.", ru: '💡 Нажмите ▶ — конверт пройдёт 4 станции и вернётся, наблюдайте.' })}</p>}
         <div className="jflow">
           {JNODES.map((n, i) => (

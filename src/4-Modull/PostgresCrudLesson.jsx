@@ -17,7 +17,7 @@ const tr = (node) => {
 //        INSERT (qo'shish) · SELECT (+WHERE filtr) (ko'rish) · UPDATE (o'zgartirish) · DELETE (o'chirish);
 //        va eng muhimi: AI/agent yordamida SQL yozdirish — o'quvchi oddiy tilda so'raydi, AI SQL yozadi, o'quvchi TEKSHIRADI.
 // Misol: onlayn do'kon → `products` jadvali (id, nom, narx, soni). Yon misol: `users` jadvali (agent demosi).
-// Ko'prik: o'tgan darslarda server (Node) va routing (Nest controller) qurdik — endi ma'lumot QAYERDA va QANDAY saqlanadi.
+// Ko'prik: o'tgan darslarda server (Node) va routing (Express: app.get / app.post — F-1021-01) qurdik — endi ma'lumot QAYERDA va QANDAY saqlanadi.
 // QAROR (user): bitta jadval CRUD, JOIN yo'q; AI bilan ishlashga kuchli urg'u; yakunda o'quvchi INSERT'ni O'ZI yozadi.
 // AI FRAMING: "AI yozadi, siz arxitektor/tekshiruvchisiz" — SQL'ni yoddan bilish shart emas, tushunish va tekshirish muhim.
 // AUDIOSIZ: ovoz (TTS) yo'q — platforma qarori. Har ekran global savol bilan ochiladi.

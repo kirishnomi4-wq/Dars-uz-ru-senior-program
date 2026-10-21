@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-19T06:45:37.182Z",
+  "generated_at": "2026-10-21T07:27:44.909Z",
   "count": 183,
   "lessons": [
     {
@@ -2961,14 +2961,14 @@
         {
           "id": "returnsender",
           "name": "Return to Sender!",
-          "title_uz": "404 xatoni topib tabelkani tuzatdingiz",
-          "title_ru": "Вы нашли ошибку 404 и исправили табличку"
+          "title_uz": "404 xatoni topib eshikni tuzatdingiz",
+          "title_ru": "Вы нашли ошибку 404 и исправили дверь"
         },
         {
           "id": "doorbuilder",
           "name": "Doorbuilder!",
-          "title_uz": "Yangi eshikni o'zingiz ochdingiz (@Post)",
-          "title_ru": "Вы сами открыли новую дверь (@Post)"
+          "title_uz": "Har so'rovni to'g'ri eshikka yubordingiz",
+          "title_ru": "Вы отправили каждый запрос в правильную дверь"
         }
       ]
     },
