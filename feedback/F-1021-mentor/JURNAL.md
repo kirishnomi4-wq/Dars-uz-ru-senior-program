@@ -69,3 +69,5 @@ Gates 12/13 (tell — eski QUIZ_BANK #6). Saboq: sudrash ekranini suratga olishd
 - Gates 12/13 (tell — eski), lint:undef toza; suratlar s5 (bosilgan), s9, s10, s13, s17 — pageerror 0, yakun «0/4».
 - m10-10 nishoni — boshqa seans darsi, tegilmadi (dars yuklanganda mos tushadi).
 - LMS: bu tuzatish hali LMS'da EMAS (oxirgi yuklash 34b725cf = 20 ekranli versiya).
+- **LMS (21.10, «ha yukla»):** paket `yuklash-2026-10-21b-prod` (commit e483787b, toza worktree; 1 dars, server kerak emas, smoke 1/1) →
+  Routing 2466 uz 16393 · ru 16392 → v5, SHA-256 2/2 ✓, LMS preview «01 / 18». `muhrla` → reestr v5.
