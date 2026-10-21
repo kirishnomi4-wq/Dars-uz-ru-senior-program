@@ -52,3 +52,20 @@ Gates 12/13 (tell — eski QUIZ_BANK #6). Saboq: sudrash ekranini suratga olishd
   tushadi (`.s7-fall`, reduced-motion o'chiradi). Ma'lumot galma-gal: oyna faqat bosilgan qism uchun, keyingisida almashadi.
 - Gates 12/13 (tell — eski). Suratlar: s7 getid/param uz 1440, ru 390; amaliyot 1440. gen-hw-qa2: faqat 5-5 o'zgargan.
 - Ochiq (foydalanuvchi bilan alohida): 4-band — «method+path → 404» 6 ekranda takror, Minecraft o'xshatishi pochta ipini buzadi.
+
+## LMS PROD (21.10, foydalanuvchi: «ha, yukla»)
+- Commit **34b725cf** (faqat F-1021 fayllari + katalogning Routing qismi; boshqa seansning qolip/compilator/m10-10 o'zgarishlari commit'ga KIRMADI).
+- Server: foydalanuvchi `sync-dars-api.sh main` → dars-api **7071117** (ishchi papkadan — m10-10 nishonining uz matni ham ketdi, boshqa seansniki) → GitLab deploy → health `0.1.0+70711173`, catalog 183.
+- Paket toza worktree'da (`yuklash-2026-10-21-prod`): 2 dars, lint:jsx ✓, smoke 2/2. Darslar: Routing 2466 (uz 16393 · ru 16392), Postman 2471 (uz 16401 · ru 16400) → v4; LMS faylining SHA-256 = lokal 4/4 ✓.
+  LMS preview: Routing «01 / 20» ochildi. `muhrla` → LMS_REESTR v4 + LMS_DEPLOY_JURNAL (server 7071117).
+- Uyga vazifa 5-5: 10 test bandi joyida tahrir, 10/10 ✓ (uyga-vazifa-v2/lms/JURNAL.md).
+- Saboq: `lms-farq` ishchi papkada boshqa seansning umumiy modul o'zgarishi bilan 106 dars ko'rsatdi — paket toza worktree'da yig'iladi.
+
+## F-1021-07 · Takror va Minecraft (4-band, foydalanuvchi: «tavsiyang maqul»)
+- 20 → 18 ekran: s10 «To'liq sayohat» (passiv animatsiya; s7 jonli brauzer shu yo'lni ko'rsatadi) va s12 «404» testi (s11 debug + yakuniy sinov) olindi.
+  SCREEN_META, screens, INLINE_KEYS (s12 kaliti), RECAPS (404 kartasi), Q_LABELS (final 13: «4 — eshik yoki 404») yangilandi; ballik savol 5 → 4.
+  Server katalogida faqat nishonlar — server sync kerak emas.
+- s5 (HTTP method'lar): Minecraft sandig'i olindi; kartada o'yinlar misoli («GET /games — ro'yxatni qaytaradi») asosiy matn.
+- Gates 12/13 (tell — eski), lint:undef toza; suratlar s5 (bosilgan), s9, s10, s13, s17 — pageerror 0, yakun «0/4».
+- m10-10 nishoni — boshqa seans darsi, tegilmadi (dars yuklanganda mos tushadi).
+- LMS: bu tuzatish hali LMS'da EMAS (oxirgi yuklash 34b725cf = 20 ekranli versiya).

@@ -88,9 +88,7 @@ const SCREEN_META = [
   { id: 's6',  type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's7',  type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's9', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
-  { id: 's10', type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's11', type: 'case',        template: 'custom',   scored: false, scope: null },
-  { id: 's12', type: 'test',        template: 'MCScreen', scored: true,  scope: 'module-mikro' },
   { id: 's13', type: 'exploration', template: 'custom',   scored: false, scope: null },
   { id: 's14', type: 'rule',        template: 'custom',   scored: false, scope: null },
   { id: 's15', type: 'test',        template: 'custom',   scored: true,  scope: 'final' },
@@ -229,7 +227,7 @@ const FeedbackBlock = ({ show, isCorrect, neutral, children }) => {
 };
 
 // JONLI JAVOB KALITI — har SCORED ekranning correctIdx'idan (praktika -1 sentinel). Kalit-to'g'riligini ⚡ Jonli tekshiradi.
-const INLINE_KEYS = { s4: 2, s5b: 1, s9: 0, s12: 3, s15: 0, practice: -1 };
+const INLINE_KEYS = { s4: 2, s5b: 1, s9: 0, s15: 0, practice: -1 }; // F-1021-07: s12 (404 testi) olindi
 const MSTATS_COLORS = ['#019ACB', '#8B5CF6', '#E8A13A', '#E0559A'];
 const RECAP_NEED_PCT = 60;
 const RECAP_GOOD_PCT = 75;
@@ -237,7 +235,7 @@ const RECAP_MIN_ANSWERS = 3;
 const RcFlow = ({ items, sep = '→' }) => (
   <div className="rc-flow">{items.map((t, i) => <React.Fragment key={i}><span className="rc-chip">{t}</span>{sep && i < items.length - 1 && <span className="rc-arr">{sep}</span>}</React.Fragment>)}</div>
 );
-// 📖 Qayta tushuntirish kartalari — SCORED ekran indekslariga (4=s4, 6=s5b, 9=s9, 12=s12; F-1021-01: s8 olingach siljidi)
+// 📖 Qayta tushuntirish kartalari — SCORED ekran indekslariga (4=s4, 6=s5b, 9=s9; F-1021-01: s8 olingach siljidi · F-1021-07: s12 olindi)
 const RECAPS = {
   4: {
     title: { uz: "Route — shtamp va manzil", ru: 'Route — штамп и адрес' },
@@ -261,14 +259,6 @@ const RECAPS = {
       { ic: "🚪", h: { uz: "/:id — o'zgaruvchi manzil", ru: '/:id — переменный адрес' }, body: { uz: <><span className="mono">/games/:id</span> — bitta eshik, <span className="mono">:id</span> o'rniga istalgan raqam keladi.</>, ru: <><span className="mono">/games/:id</span> — одна дверь, на место <span className="mono">:id</span> приходит любое число.</> } },
       { ic: "♾️", h: { uz: "Bitta eshik — ko'p qiymat", ru: 'Одна дверь — много значений' }, body: { uz: <>Har o'yinga alohida eshik shart emas: bitta <span className="mono">/:id</span> minglab o'yinga yetadi.</>, ru: <>Отдельная дверь каждой игре не нужна: одного <span className="mono">/:id</span> хватит на тысячи игр.</> } },
       { ic: "🎯", h: { uz: "req.params ushlaydi", ru: 'req.params ловит значение' }, body: { uz: <>So'rovdagi raqam <span className="mono">req.params.id</span> ga tushadi — endi kod <span className="mono">id</span> ni biladi.</>, ru: <>Число из запроса попадает в <span className="mono">req.params.id</span> — теперь код знает <span className="mono">id</span>.</> }, ask: { uz: "/games/7 kelsa, id nimaga teng?", ru: 'Пришёл /games/7 — чему равен id?' } },
-    ]
-  },
-  12: {
-    title: { uz: "404 — mos eshik yo'q", ru: '404 — подходящей двери нет' },
-    cards: [
-      { ic: "📭", h: { uz: "Mos eshik yo'q → 404", ru: 'Нет подходящей двери → 404' }, body: { uz: <>Server route ro'yxatidan mosini topolmasa — <b>404 Not Found</b> qaytaradi: «Adresat topilmadi».</>, ru: <>Если сервер не нашёл совпадения в списке route'ов — возвращает <b>404 Not Found</b>: «Адресат не найден».</> } },
-      { ic: "🔀", h: { uz: "Method mos kelmasa ham 404", ru: 'Method не совпал — тоже 404' }, body: { uz: <>Path to'g'ri bo'lsa-yu, method xato bo'lsa (POST kelib, faqat app.get bo'lsa) — baribir 404.</>, ru: <>Даже если path верный, а method не тот (пришёл POST, но есть только app.get) — всё равно 404.</> } },
-      { ic: "🔁", h: { uz: "404 — vozvrat, server tirik", ru: '404 — возврат, сервер жив' }, body: { uz: <>404 — xat egasiga qaytadi, lekin server o'chmaydi va ishlashda davom etadi.</>, ru: <>404 — письмо возвращается отправителю, но сервер не выключается и работает дальше.</> }, ask: { uz: "Xat POST, eshik app.get — natija nima?", ru: 'Письмо POST, дверь app.get — что получится?' } },
     ]
   }
 };
@@ -796,10 +786,10 @@ const Screen4 = (props) => (
 // ===== SCREEN 5 — HTTP METHOD'LAR (niyatlar / CRUD) =====
 const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const M = [
-    { id: 'GET', t: tr({ uz: "olish (o'qish)", ru: 'получить (чтение)' }), crud: 'Read', mc: tr({ uz: "Sandiqqa qarash — ichidagini ko'rish", ru: 'Заглянуть в сундук — посмотреть содержимое' }), ex: tr({ uz: "GET /games — ro'yxatni qaytaradi", ru: 'GET /games — возвращает список' }) },
-    { id: 'POST', t: tr({ uz: 'yaratish', ru: 'создать' }), crud: 'Create', mc: tr({ uz: "Sandiqqa yangi predmet qo'shish", ru: 'Положить в сундук новый предмет' }), ex: tr({ uz: "POST /games — yangi o'yin qo'shadi", ru: 'POST /games — добавляет новую игру' }) },
-    { id: 'PUT', t: tr({ uz: 'yangilash', ru: 'обновить' }), crud: 'Update', mc: tr({ uz: "Predmetni boshqasiga almashtirish", ru: 'Заменить предмет на другой' }), ex: tr({ uz: "PUT /games/3 — 3-o'yinni yangilaydi", ru: 'PUT /games/3 — обновляет игру №3' }) },
-    { id: 'DELETE', t: tr({ uz: "o'chirish", ru: 'удалить' }), crud: 'Delete', mc: tr({ uz: "Predmetni tashlab yuborish", ru: 'Выбросить предмет' }), ex: tr({ uz: "DELETE /games/3 — 3-o'yinni o'chiradi", ru: 'DELETE /games/3 — удаляет игру №3' }) }
+    { id: 'GET', t: tr({ uz: "olish (o'qish)", ru: 'получить (чтение)' }), crud: 'Read', ex: tr({ uz: "GET /games — ro'yxatni qaytaradi", ru: 'GET /games — возвращает список' }) },
+    { id: 'POST', t: tr({ uz: 'yaratish', ru: 'создать' }), crud: 'Create', ex: tr({ uz: "POST /games — yangi o'yin qo'shadi", ru: 'POST /games — добавляет новую игру' }) },
+    { id: 'PUT', t: tr({ uz: 'yangilash', ru: 'обновить' }), crud: 'Update', ex: tr({ uz: "PUT /games/3 — 3-o'yinni yangilaydi", ru: 'PUT /games/3 — обновляет игру №3' }) },
+    { id: 'DELETE', t: tr({ uz: "o'chirish", ru: 'удалить' }), crud: 'Delete', ex: tr({ uz: "DELETE /games/3 — 3-o'yinni o'chiradi", ru: 'DELETE /games/3 — удаляет игру №3' }) }
   ];
   const [seen, setSeen] = useState(() => new Set(storedAnswer ? M.map(m => m.id) : []));
   const [active, setActive] = useState(storedAnswer ? 'GET' : null);
@@ -807,12 +797,12 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (id) => { setActive(id); setSeen(s => { const n = new Set(s); n.add(id); return n; }); };
   const cur = M.find(m => m.id === active);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's5', text: `Method — xatning shtampi, ya'ni niyati. To'rttasi asosiy: GET — menga ko'rsat, olish; POST — buni qo'sh, yaratish; PUT — buni yangila; DELETE — buni o'chir. Minecraft sandig'i bilan tasavvur qiling: ichiga qarash, yangi predmet qo'shish, almashtirish, tashlab yuborish. Har method'ni bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's5', text: `Method — xatning shtampi, ya'ni niyati. To'rttasi asosiy: GET — menga ko'rsat, olish; POST — buni qo'sh, yaratish; PUT — buni yangila; DELETE — buni o'chir. Har method'ni bosib ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: "HTTP method'lar", ru: 'HTTP-методы' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/4 method ko'ring`, ru: `Посмотрите методы: ${seen.size}/4` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Method <span className="italic" style={{ color: T.accent }}>nimani</span> bildiradi?</>, ru: <>Что <span className="italic" style={{ color: T.accent }}>означает</span> method?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Method — so'rovning <b style={{ color: T.ink }}>maqsadi</b>. To'rttasi asosiy: <b style={{ color: T.ink }}>GET</b> olish, <b style={{ color: T.ink }}>POST</b> yaratish, <b style={{ color: T.ink }}>PUT</b> yangilash, <b style={{ color: T.ink }}>DELETE</b> o'chirish. Buni Minecraft sandig'i bilan tasavvur qiling. Har birini bosib ko'ring.</>, ru: <>Method — это <b style={{ color: T.ink }}>цель</b> запроса. Четыре основных: <b style={{ color: T.ink }}>GET</b> получить, <b style={{ color: T.ink }}>POST</b> создать, <b style={{ color: T.ink }}>PUT</b> обновить, <b style={{ color: T.ink }}>DELETE</b> удалить. Представьте это через сундук в Minecraft. Нажмите на каждый.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Method — so'rovning <b style={{ color: T.ink }}>maqsadi</b>. To'rttasi asosiy: <b style={{ color: T.ink }}>GET</b> olish, <b style={{ color: T.ink }}>POST</b> yaratish, <b style={{ color: T.ink }}>PUT</b> yangilash, <b style={{ color: T.ink }}>DELETE</b> o'chirish. Har birini bosib ko'ring — o'yinlar misolida ko'rasiz.</>, ru: <>Method — это <b style={{ color: T.ink }}>цель</b> запроса. Четыре основных: <b style={{ color: T.ink }}>GET</b> получить, <b style={{ color: T.ink }}>POST</b> создать, <b style={{ color: T.ink }}>PUT</b> обновить, <b style={{ color: T.ink }}>DELETE</b> удалить. Нажмите на каждый — увидите на примере игр.</> })}</Mentor>
         <Zoomable off={!cur}>{/* F-0926-06: ⛶ birinchi bosishgacha yashirin; «Method'ni bosing» yorlig'i olindi — chorlov mentor gapida */}
         <div className="split">
           <Col>
@@ -827,8 +817,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             {cur ? <div className="sk-info" key={cur.id}>
               <span className="sk-tagbig"><span className="mbadge" style={{ color: METHODS[cur.id], background: METHODS[cur.id] + '22', fontSize: 13, padding: '4px 11px' }}>{cur.id}</span><span className="sk-wordbadge">{cur.t} · {cur.crud}</span></span>
-              <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>Minecraft: <b>{cur.mc}</b></p>
-              <p className="mono small" style={{ color: T.ink3, margin: '8px 0 0' }}>{cur.ex}</p>
+              <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{cur.ex}</p>{/* F-1021-07: Minecraft o'xshatishi olindi — pochta ipi bitta */}
             </div>
               : null}
             {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>To'rt niyat — to'rt method. Endi — bitta route ko'p qiymatga qanday xizmat qilishini ko'ramiz.</>, ru: <>Четыре намерения — четыре метода. Теперь — как один route обслуживает много значений.</> })}</p></div>}
@@ -986,54 +975,7 @@ const Screen9 = (props) => (
     }} />
 );
 
-// ===== SCREEN 10 — TO'LIQ SAYOHAT (so'rov → route → funksiya → javob) =====
-const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const STEPS = [
-    { t: tr({ uz: <>So'rov keladi: <span className="mono" style={{ color: T.accent }}>POST /games</span></>, ru: <>Приходит запрос: <span className="mono" style={{ color: T.accent }}>POST /games</span></> }) },
-    { t: tr({ uz: <>Express route'larni yuqoridan pastga tekshiradi</>, ru: <>Express проверяет route'ы сверху вниз</> }) },
-    { t: tr({ uz: <><span className="mono">app.post('/games')</span> topildi → funksiyasi ishga tushadi</>, ru: <><span className="mono">app.post('/games')</span> найден → запускается его функция</> }) },
-    { t: tr({ uz: <><span className="mono">res.send</span> → javob mijozga ketadi</>, ru: <><span className="mono">res.send</span> → ответ уходит клиенту</> }) }
-  ];
-  const [step, setStep] = useState(storedAnswer ? STEPS.length : 0);
-  const timers = useRef([]);
-  const done = step >= STEPS.length;
-  useEffect(() => () => timers.current.forEach(clearTimeout), []);
-  const run = () => {
-    timers.current.forEach(clearTimeout);
-    setStep(1);
-    timers.current = [600, 1200, 1800].map((ms, i) => setTimeout(() => setStep(i + 2), ms));
-  };
-  useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's10', text: `Endi hammasini birlashtiramiz. Tugmani bosing — bitta POST /games xati yo'lni bosqichma-bosqich bosib o'tadi: so'rov keladi, Express route'larni tekshiradi, app.post topiladi, uning funksiyasi ishlaydi, so'ng res.send bilan javob mijozga qaytadi. So'rovning to'liq sayohatini kuzating.`, trigger: 'on_mount', waits_for: null }]);
-  return (
-    <Stage eyebrow={tr({ uz: "To'liq sayohat", ru: 'Полное путешествие' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni kuzating", ru: 'Понаблюдайте за запросом' })} onClick={onNext} /></>}>
-      <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>So'rov kerakli funksiyagacha <span className="italic" style={{ color: T.accent }}>qanday yetib boradi</span>?</>, ru: <>Как запрос <span className="italic" style={{ color: T.accent }}>добирается</span> до нужной функции?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Hammasini birlashtiramiz. Tugmani bosing — bitta <span className="mono">POST /games</span> so'rovi yo'lni bosqichma-bosqich bosib o'tadi: route'lar ro'yxatidan kerakli funksiyagacha, so'ng javob qaytadi.</>, ru: <>Соберём всё вместе. Нажмите кнопку — один запрос <span className="mono">POST /games</span> пройдёт путь шаг за шагом: от списка route'ов до нужной функции, затем вернётся ответ.</> })}</Mentor>
-        <Zoomable>
-        <div className="split">
-          <Col>
-            {step === 0 && <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run}>{tr({ uz: '▶ POST /games yuborish', ru: '▶ Отправить POST /games' })}</button>}
-            {step > 0 && !done && <button className="btn-soft" style={{ alignSelf: 'flex-start' }} disabled>{tr({ uz: '⏳ ketyapti…', ru: '⏳ в пути…' })}</button>}
-            {done && <button className="btn-soft" style={{ alignSelf: 'flex-start' }} onClick={run}>{tr({ uz: '↺ Qayta yuborish', ru: '↺ Отправить ещё раз' })}</button>}
-            <div className="jflow fade-up delay-2" style={{ marginTop: 4 }}>
-              {STEPS.map((s, i) => <div key={i} className={`jstep ${step >= i + 1 ? 'on' : ''}`}><span className="jn">{i + 1}</span><span className="jt">{s.t}</span></div>)}
-            </div>
-          </Col>
-          <Col>
-            <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
-            <Win title={tr({ uz: 'brauzer — POST /games', ru: 'браузер — POST /games' })} minH={92} hotTitle={done}>
-              {done ? <div className="demo-swap" style={{ fontFamily: 'Georgia, serif', fontSize: 18, color: T.ink }}>{tr({ uz: "Yangi o'yin qo'shildi!", ru: 'Новая игра добавлена!' })}</div>
-                : null /* F-0926-06: bo'sh oyna yo'rig'i olindi (P1) */}
-            </Win>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana to'liq yo'l: so'rov → route'lar → <span className="mono">app.post</span> → funksiya → <span className="mono">res.send</span> → javob. Routingni endi to'liq tushunasiz!</>, ru: <>Вот полный путь: запрос → route'ы → <span className="mono">app.post</span> → функция → <span className="mono">res.send</span> → ответ. Теперь вы полностью понимаете роутинг!</> })}</p></div>}
-          </Col>
-        </div>
-        </Zoomable>
-      </div>
-    </Stage>
-  );
-};
+// F-1021-07: s10 «To'liq sayohat» (passiv animatsiya) olindi — route → javob yo'lini s7 jonli brauzeri ko'rsatadi.
 
 // 🧲 Qayta ishlatiladigan DRAG-DROP ORDER — bo'laklarni to'g'ri tartibda joylash (StrictMode-safe, atomik holat).
 function DragDropOrder({ items, hints, onSolved, onWrong }) {
@@ -1190,21 +1132,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 12 — TEST 4 (404) =====
-const Screen12 = (props) => (
-  <QuestionScreen {...props} idx={12} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 4-savol', ru: 'Практика · вопрос 4' })}
-    audioText="Oxirgi savol. So'rovga mos route topilmasa — mos eshik bo'lmasa — server nima qaytaradi? Tanlang."
-    questionText="So'rovga mos route topilmasa, server nima qaytaradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите правильный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <>So'rovga <span style={{ color: T.accent }}>mos route topilmasa</span> — server nima qaytaradi?</>, ru: <>Для запроса <span style={{ color: T.accent }}>не нашлось подходящего route</span> — что вернёт сервер?</> })}</h2></>}
-    options={[{ uz: '200 — hammasi joyida (javob topildi)', ru: '200 — всё в порядке (ответ найден)' }, { uz: "Serverni butunlay o'chirib qo'yadi", ru: 'Полностью выключит сервер' }, { uz: "Eng birinchi route'ni ishga tushiradi", ru: 'Запустит самый первый route' }, { uz: '404 — Not Found (adresat topilmadi)', ru: '404 — Not Found (адресат не найден)' }]} correctIdx={3}
-    explainCorrect={{ uz: "Mos route bo'lmasa, server 404 — «adresat topilmadi» deydi.", ru: 'Нет подходящего route — сервер отвечает 404: «адресат не найден».' }}
-    explainWrong={{
-      0: { uz: "200 — javob topilganda chiqadi, bu yerda esa mos route yo'q.", ru: '200 бывает, когда ответ найден, а здесь совпадения нет.' },
-      1: { uz: "Server o'chmaydi — xato so'rovdan keyin ham ishlayveradi.", ru: 'Сервер не выключается — он работает и после неудачного запроса.' },
-      2: { uz: "Server tasodifiy route tanlamaydi — faqat mosini qidiradi.", ru: 'Сервер не берёт route наугад — ищет только подходящий.' },
-      default: { uz: "Xat adresatni topmasa, pochta nima qiladi — eslang.", ru: 'Вспомните, что делает почта, если адресат не найден.' }
-    }} />
-);
+// F-1021-07: s12 «404» testi olindi — s11 (debug) va yakuniy sinov shu fikrni tekshiradi.
 
 // ===== SCREEN 13 — SO'ROV POCHTASI: xatlarni to'g'ri eshiklarga sortlash (DragDrop) =====
 const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1685,7 +1613,7 @@ const Confetti = () => {
 };
 
 // Podium savol yorliqlari (SCORED_IDX indekslariga mos)
-const Q_LABELS = { 4: "1 — route", 6: "2 — POST", 9: "3 — :id", 12: "4 — 404", 15: { uz: "5 — eshik yoki 404", ru: '5 — дверь или 404' } }; // F-1021-01: s8 olingach indekslar siljidi
+const Q_LABELS = { 4: "1 — route", 6: "2 — POST", 9: "3 — :id", 13: { uz: "4 — eshik yoki 404", ru: '4 — дверь или 404' } }; // F-1021-01/07: s8, s10, s12 olingach indekslar siljidi
 const QUIZ_MS = 15000;
 // Kapsula ichida suzuvchi tokenlar — darsning "DNK"si (routing)
 const QZ_BG_SHAPES = [
@@ -2378,7 +2306,7 @@ export default function RoutingLesson({ lang: langProp, onFinished, liveToken })
     if (typeof onFinished === 'function') onFinished(sealPayload(LESSON_META.lessonId, payload));
   };
 
-  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen9, Screen10, Screen11, Screen12, Screen13, Screen14, ScreenDoorMatch, ScreenRoutingPractice, ScreenPodium, ScreenFlashcards, Screen16];
+  const screens = [Screen0, Screen1, Screen2, Screen3, Screen4, Screen5, Screen5b, Screen6, Screen7, Screen9, Screen11, Screen13, Screen14, ScreenDoorMatch, ScreenRoutingPractice, ScreenPodium, ScreenFlashcards, Screen16];
   const Current = screens[screen];
   return (
     <LangContext.Provider value={lang}>
