@@ -1,13 +1,13 @@
 {
  "_izoh": "LMS deploy reestri — faqat scripts/lms-farq.mjs yozadi (farq/paket/muhrla). Har dars: oxirgi LMS'ga yuklangan yig'ma (md5 — yig'ilgan faylniki, yig'ma deterministik), versiya (fayl nomidagi -vN), commit. server — prod dars-api holati. crm_bolim — go.coddycamp bo'lim id'lari. crm_tashqari — CRM'da bor, biz boshqarmaydigan qatorlar. chetda — App.jsx registrida bor, lekin LMS'ga ataylab chiqarilmaydigan dars kalitlari.",
  "versiya": 1,
- "yangilandi": "2026-10-21",
+ "yangilandi": "2026-10-23",
  "server": {
-  "gitlab_commit": "7071117",
-  "monorepo_commit": "34b725cf",
-  "katalog_md5": "375334361b3775f630d3b463f7f8b3be",
+  "gitlab_commit": "7dd3d9cb",
+  "monorepo_commit": "8aaf193a",
+  "katalog_md5": "4da0745a67392c66ddf3abeb316e6666",
   "katalog_darslar": 183,
-  "deploy_sana": "2026-10-21",
+  "deploy_sana": "2026-10-23",
   "health": "https://dars-api.coddycamp.uz/api/v1/health"
  },
  "crm_bolim": {
@@ -79,15 +79,15 @@
    "tur": "PM",
    "nom_uz": "Bir oyda qaysi raqamni o'stirasiz?",
    "nom_ru": "Какое число вы увеличите за месяц?",
-   "fayl": "01-PmOkrLesson-v3.jsx",
-   "v": 3,
-   "md5": "e00384859d58b15b7d9f75230e80de68",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-PmOkrLesson-v4.jsx",
+   "v": 4,
+   "md5": "aac2388622003672626e19a8b42f5380",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17171",
+    "ru": "17172"
    }
   },
   "m8-02-event-tracking-v1": {
@@ -98,15 +98,15 @@
    "tur": "Kod",
    "nom_uz": "Hodisalar tizimi: har harakat jadvalga yoziladi",
    "nom_ru": "Система событий: каждое действие записывается в таблицу",
-   "fayl": "02-EventTrackingLesson-v3.jsx",
-   "v": 3,
-   "md5": "2f9f483fa8e63da063d04ce1a6200cab",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-EventTrackingLesson-v4.jsx",
+   "v": 4,
+   "md5": "98ce1bb550324f517b75758eb328287d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17173",
+    "ru": "17174"
    }
   },
   "m8-03-v1": {
@@ -117,15 +117,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: jonli dashboard",
    "nom_ru": "День проекта: живой дашборд",
-   "fayl": "03-LiveDashboardLesson-v3.jsx",
-   "v": 3,
-   "md5": "7235759c98bda4d36e9b99eef1fa0968",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-LiveDashboardLesson-v4.jsx",
+   "v": 4,
+   "md5": "49ae52a77ee3d4cc5b135ccddb52b60d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17175",
+    "ru": "17176"
    }
   },
   "m8-04-v1": {
@@ -136,15 +136,15 @@
    "tur": "PM",
    "nom_uz": "Ikki variantdan qaysi biri yaxshiroq ishlaydi?",
    "nom_ru": "Какой из двух вариантов работает лучше?",
-   "fayl": "04-PmAbTestLesson-v3.jsx",
-   "v": 3,
-   "md5": "24681d4602ec4133635f24a5d4c4cf44",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-PmAbTestLesson-v4.jsx",
+   "v": 4,
+   "md5": "65329c1137e658c311c55e4d99c7dd03",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17177",
+    "ru": "17178"
    }
   },
   "m8-05-security-basics-v1": {
@@ -155,15 +155,15 @@
    "tur": "Kod",
    "nom_uz": "Kiberxavfsizlik: zaiflikni topib yopamiz",
    "nom_ru": "Кибербезопасность: находим и закрываем уязвимости",
-   "fayl": "05-SecurityBasicsLesson-v3.jsx",
-   "v": 3,
-   "md5": "0e9a37010ee2afae6ddc682a5b60471e",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-SecurityBasicsLesson-v4.jsx",
+   "v": 4,
+   "md5": "425c2646c48db3f6dd5fa98b12dba39c",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17179",
+    "ru": "17180"
    }
   },
   "m8-06-v1": {
@@ -174,15 +174,15 @@
    "tur": "PM",
    "nom_uz": "Foydalanuvchi sizga ma'lumotini ishonadimi?",
    "nom_ru": "Доверяет ли вам пользователь свои данные?",
-   "fayl": "06-PmTrustAuditLesson-v3.jsx",
-   "v": 3,
-   "md5": "5bec1c8633c56b98a170d4d30f60de20",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PmTrustAuditLesson-v4.jsx",
+   "v": 4,
+   "md5": "09ee02770899207b2f5668bd9de50493",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17181",
+    "ru": "17182"
    }
   },
   "m8-07-production-deploy-v1": {
@@ -193,15 +193,15 @@
    "tur": "Kod",
    "nom_uz": "Production deploy: domen, SSL, monitoring",
    "nom_ru": "Production deploy: домен, SSL, мониторинг",
-   "fayl": "07-ProductionDeployLesson-v3.jsx",
-   "v": 3,
-   "md5": "bef4721827f89ce275af2ac4651ef645",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-ProductionDeployLesson-v4.jsx",
+   "v": 4,
+   "md5": "533869a5805adb8a9320847916350afe",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17183",
+    "ru": "17184"
    }
   },
   "m8-08-v1": {
@@ -212,15 +212,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: prodga ko'tarish — 1-qism",
    "nom_ru": "День проекта: вывод в прод — часть 1",
-   "fayl": "08-ProdUpgradeLesson-v3.jsx",
-   "v": 3,
-   "md5": "e0d5f4814ba689f14739421ba998d67e",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-ProdUpgradeLesson-v4.jsx",
+   "v": 4,
+   "md5": "46319274753b98835de6555f641eaf58",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17185",
+    "ru": "17186"
    }
   },
   "m8-09-v1": {
@@ -231,15 +231,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: prodga ko'tarish — 2-qism",
    "nom_ru": "День проекта: вывод в прод — часть 2",
-   "fayl": "09-ProdReviewLesson-v3.jsx",
-   "v": 3,
-   "md5": "95d53171c67228ce7ec632ecde50ae48",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-ProdReviewLesson-v4.jsx",
+   "v": 4,
+   "md5": "c1b9372d5cb1e8ba2daa59ba81b2c5cf",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17187",
+    "ru": "17188"
    }
   },
   "pm-m8d10-yol-v1": {
@@ -250,15 +250,15 @@
    "tur": "PM",
    "nom_uz": "Bir yilda nimalarni qurdingiz?",
    "nom_ru": "Что вы построили за год?",
-   "fayl": "10-PmYearPathLesson-v3.jsx",
-   "v": 3,
-   "md5": "74d0a777ec13af453bd489f8168caf4d",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-PmYearPathLesson-v4.jsx",
+   "v": 4,
+   "md5": "b43531c303c66b22336b932c945325ae",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17189",
+    "ru": "17190"
    }
   },
   "pm-m8d11-pitch-v2": {
@@ -269,15 +269,15 @@
    "tur": "PM",
    "nom_uz": "Besh daqiqada nimani ko'rsatasiz?",
    "nom_ru": "Что вы покажете за пять минут?",
-   "fayl": "11-PmPitchRehearsalLesson-v3.jsx",
-   "v": 3,
-   "md5": "168dece5a4175e9f7944b6a0bb07ae94",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-PmPitchRehearsalLesson-v4.jsx",
+   "v": 4,
+   "md5": "c164815efca2ef05308ef1d0206284fc",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17191",
+    "ru": "17192"
    }
   },
   "pm-m9d1-v1": {
@@ -288,15 +288,15 @@
    "tur": "PM",
    "nom_uz": "Beshta g'oyani qayerdan topasiz?",
    "nom_ru": "Где найти пять идей?",
-   "fayl": "01-PmTenIdeasLesson-v3.jsx",
-   "v": 3,
-   "md5": "7c0df2a568069a02416104b5711b1575",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-PmTenIdeasLesson-v4.jsx",
+   "v": 4,
+   "md5": "27eeccda3e69cb864a561549c6107b81",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17193",
+    "ru": "17194"
    }
   },
   "pm-m9d2-v1": {
@@ -307,15 +307,15 @@
    "tur": "PM",
    "nom_uz": "Beshta g'oyadan qaysi uchtasi qoladi?",
    "nom_ru": "Какие три из пяти идей останутся?",
-   "fayl": "02-PmIdeaRiceLesson-v3.jsx",
-   "v": 3,
-   "md5": "ba5fdb9886d6e3938454ff58e518704b",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmIdeaRiceLesson-v4.jsx",
+   "v": 4,
+   "md5": "0629c0f4dd34e2e122b482dbc90ae100",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17195",
+    "ru": "17196"
    }
   },
   "pm-m9d3-v1": {
@@ -326,15 +326,15 @@
    "tur": "PM",
    "nom_uz": "Ikki g'oyadan qaysi biri odamlarga kerak?",
    "nom_ru": "Какая из двух идей нужна людям?",
-   "fayl": "03-PmInterviewsOneLesson-v3.jsx",
-   "v": 3,
-   "md5": "e8f71c65a587a1b213c304bb1d62b396",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-PmInterviewsOneLesson-v4.jsx",
+   "v": 4,
+   "md5": "9eccceb3e6d2a450c34d0a4508667026",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17197",
+    "ru": "17198"
    }
   },
   "pm-m9d4-v1": {
@@ -345,15 +345,15 @@
    "tur": "PM",
    "nom_uz": "O'n intervyudan keyin qaysi g'oya qoladi?",
    "nom_ru": "Какая идея останется после десяти интервью?",
-   "fayl": "04-PmFinalIdeaLesson-v3.jsx",
-   "v": 3,
-   "md5": "4bdd4a5ab818ac3a5cce5fa4ec92ec32",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-PmFinalIdeaLesson-v4.jsx",
+   "v": 4,
+   "md5": "e7ee9b5c639ff9314d3a32999218f6ef",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17199",
+    "ru": "17200"
    }
   },
   "pm-m9d5-v1": {
@@ -364,15 +364,15 @@
    "tur": "PM",
    "nom_uz": "G'oyangiz bir sahifaga sig'adimi?",
    "nom_ru": "Поместится ли ваша идея на одну страницу?",
-   "fayl": "05-PmPrdLesson-v3.jsx",
-   "v": 3,
-   "md5": "24d468942bfc126310d4e5cf1d7f03a0",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-PmPrdLesson-v4.jsx",
+   "v": 4,
+   "md5": "18527dd32a4c2279a25ca9d5957385dc",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17201",
+    "ru": "17202"
    }
   },
   "pm-m9d6-v1": {
@@ -383,15 +383,15 @@
    "tur": "PM",
    "nom_uz": "Bitiruvgacha nimani qachon qurasiz?",
    "nom_ru": "Что и когда вы построите до выпуска?",
-   "fayl": "06-PmRoadmapLesson-v3.jsx",
-   "v": 3,
-   "md5": "14e4c3809d5846a739cf688b23224cdd",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PmRoadmapLesson-v4.jsx",
+   "v": 4,
+   "md5": "574af540ee77ddaf612a12c47709fac0",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17203",
+    "ru": "17204"
    }
   },
   "m9-07-v1": {
@@ -402,15 +402,15 @@
    "tur": "Kod",
    "nom_uz": "Jonli prototip: qog'ozdan bosiladigan ekrangacha",
    "nom_ru": "Живой прототип: от бумаги до кликабельного экрана",
-   "fayl": "07-LivePrototypeLesson-v3.jsx",
-   "v": 3,
-   "md5": "82732184f1d497f1cf2fada4fe0c2bf6",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-LivePrototypeLesson-v4.jsx",
+   "v": 4,
+   "md5": "0d5fa1bafe6dd8562f814e2588ade3d9",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17205",
+    "ru": "17206"
    }
   },
   "m9-08-v1": {
@@ -421,15 +421,15 @@
    "tur": "Kod",
    "nom_uz": "Arxitektura va platforma: web yoki mobil ilova",
    "nom_ru": "Архитектура и платформа: веб или мобильное приложение",
-   "fayl": "08-PlatformChoiceLesson-v3.jsx",
-   "v": 3,
-   "md5": "53b324c939e61cfa41620ddc1d3eafb4",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-PlatformChoiceLesson-v4.jsx",
+   "v": 4,
+   "md5": "629a536c40b5df118949439b844e58df",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17207",
+    "ru": "17208"
    }
   },
   "m9-09-v1": {
@@ -440,15 +440,15 @@
    "tur": "Kod",
    "nom_uz": "React Native va Expo: prototip telefonda",
    "nom_ru": "React Native и Expo: прототип на телефоне",
-   "fayl": "09-ExpoPrototypeLesson-v3.jsx",
-   "v": 3,
-   "md5": "ad5699054e1960d8dba6d1544de612dd",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-ExpoPrototypeLesson-v4.jsx",
+   "v": 4,
+   "md5": "a28be15e10402db553f9c4779863a26b",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17209",
+    "ru": "17210"
    }
   },
   "m9-10-v1": {
@@ -459,15 +459,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: poydevor — Database, kirish, deploy",
    "nom_ru": "День проекта: фундамент — Database, вход, деплой",
-   "fayl": "10-FoundationDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "27344634e5cd9593ac1e2a26e94e37a5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-FoundationDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "bf7f482ced3a43bd798572b967868148",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17211",
+    "ru": "17212"
    }
   },
   "m9-11-v1": {
@@ -478,15 +478,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: 1-asosiy funksiya",
    "nom_ru": "День проекта: 1-я основная функция",
-   "fayl": "11-FeatureOneLesson-v3.jsx",
-   "v": 3,
-   "md5": "a4b775fabb35c91cee75cefae94d1a8d",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-FeatureOneLesson-v4.jsx",
+   "v": 4,
+   "md5": "0fb7b00b429d5a5b83d1c24800e3314f",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17213",
+    "ru": "17214"
    }
   },
   "m9-12-v1": {
@@ -497,15 +497,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: 2-asosiy funksiya",
    "nom_ru": "День проекта: 2-я основная функция",
-   "fayl": "12-FeatureTwoLesson-v3.jsx",
-   "v": 3,
-   "md5": "0d6ca47a1f7661b83c5033f7c455e546",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-FeatureTwoLesson-v4.jsx",
+   "v": 4,
+   "md5": "9060104bb38fbb1d022d0ea5bc1d2eeb",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17215",
+    "ru": "17216"
    }
   },
   "pm-m9d13-v1": {
@@ -516,15 +516,15 @@
    "tur": "PM",
    "nom_uz": "Uch foydalanuvchidan keyin nimani tuzatasiz?",
    "nom_ru": "Что вы исправите после трёх пользователей?",
-   "fayl": "13-PmAudienceTestLesson-v3.jsx",
-   "v": 3,
-   "md5": "1a98c1005dcd79b6426ce89ef5ea5977",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "13-PmAudienceTestLesson-v4.jsx",
+   "v": 4,
+   "md5": "cad49ae0b3e9dcfa215f63b4c72d56a4",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17217",
+    "ru": "17218"
    }
   },
   "m9-14-v1": {
@@ -535,15 +535,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: 3-asosiy funksiya",
    "nom_ru": "День проекта: 3-я основная функция",
-   "fayl": "14-FeatureThreeLesson-v3.jsx",
-   "v": 3,
-   "md5": "ec9e887262b63a9a6ceeba20f5436b2c",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "14-FeatureThreeLesson-v4.jsx",
+   "v": 4,
+   "md5": "d38e7fb3e9420a696ae908df3882d03d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17219",
+    "ru": "17220"
    }
   },
   "pm-m9d15-v1": {
@@ -554,15 +554,15 @@
    "tur": "PM",
    "nom_uz": "Roadmap bo'yicha qayerdasiz?",
    "nom_ru": "Где вы сейчас по roadmap?",
-   "fayl": "15-PmOneOnOneLesson-v3.jsx",
-   "v": 3,
-   "md5": "02fbc90f385ad1505a05403e22799927",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "15-PmOneOnOneLesson-v4.jsx",
+   "v": 4,
+   "md5": "7ff483a70e260b0449309c2d8b0b5146",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17221",
+    "ru": "17222"
    }
   },
   "pm-m9d16-v2": {
@@ -573,15 +573,15 @@
    "tur": "PM",
    "nom_uz": "G'oyangiz va ilovangiz guruhni ishontiradimi?",
    "nom_ru": "Убедят ли группу ваша идея и приложение?",
-   "fayl": "16-PmPrototypePitchLesson-v3.jsx",
-   "v": 3,
-   "md5": "054463b2fcc022680dfec78d61ec2d66",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "16-PmPrototypePitchLesson-v4.jsx",
+   "v": 4,
+   "md5": "04740b04275f98a354d64e14e5e35a38",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17223",
+    "ru": "17224"
    }
   },
   "pm-m10d1-v1": {
@@ -592,15 +592,15 @@
    "tur": "PM",
    "nom_uz": "Mahsulotingizni bir sahifada qanday tanishtirasiz?",
    "nom_ru": "Как представить продукт на одной странице?",
-   "fayl": "01-PmLandingLesson-v3.jsx",
-   "v": 3,
-   "md5": "2091050a3ddab6e5cf3519066ea6d4de",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-PmLandingLesson-v4.jsx",
+   "v": 4,
+   "md5": "568acb60ea0bdf4f1aa5ddc2cfa6ccd6",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17225",
+    "ru": "17226"
    }
   },
   "m10-02-v1": {
@@ -611,15 +611,15 @@
    "tur": "Kod",
    "nom_uz": "WebSocket: ekran o'zi yangilanadigan ulanish",
    "nom_ru": "WebSocket: соединение, при котором экран обновляется сам",
-   "fayl": "02-WebSocketBasicsLesson-v3.jsx",
-   "v": 3,
-   "md5": "59dec39b6eea4c8c2e17426835c71deb",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-WebSocketBasicsLesson-v4.jsx",
+   "v": 4,
+   "md5": "82840fdf6ab1ae1287837f56a0d5359d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17227",
+    "ru": "17228"
    }
   },
   "pm-m10d3-v1": {
@@ -630,15 +630,15 @@
    "tur": "PM",
    "nom_uz": "Ekran o'zi yangilanishi uchun nimani yozasiz?",
    "nom_ru": "Что написать, чтобы экран обновлялся сам?",
-   "fayl": "03-PmRealtimeSpecLesson-v3.jsx",
-   "v": 3,
-   "md5": "97e47e9dd8d28e68c93da0ab159f7103",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-PmRealtimeSpecLesson-v4.jsx",
+   "v": 4,
+   "md5": "b4ad0f581ce4c00ff3f8a0046aac8418",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17229",
+    "ru": "17230"
    }
   },
   "m10-04-v1": {
@@ -649,15 +649,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: jonli xabar va eslatma",
    "nom_ru": "День проекта: живое сообщение и напоминание",
-   "fayl": "04-LiveNotifyDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "850d46c08990758197f3c036e322653f",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-LiveNotifyDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "3e7a7bd900993386a1d46a9ff10e085b",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17231",
+    "ru": "17232"
    }
   },
   "m10-05-v1": {
@@ -668,15 +668,15 @@
    "tur": "Kod",
    "nom_uz": "Ulanish uzilsa: buzamiz va tuzatamiz",
    "nom_ru": "Если соединение оборвётся: ломаем и чиним",
-   "fayl": "05-BreakAndFixLesson-v3.jsx",
-   "v": 3,
-   "md5": "fce6e5913921fa9c5e83ad2ec6e3bf89",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-BreakAndFixLesson-v4.jsx",
+   "v": 4,
+   "md5": "dc1d73cf036afe4d594d8d371775cccb",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17233",
+    "ru": "17234"
    }
   },
   "pm-m10d6-v1": {
@@ -687,15 +687,15 @@
    "tur": "PM",
    "nom_uz": "Birinchi foydalanuvchilar sizni qayerdan topadi?",
    "nom_ru": "Где вас найдут первые пользователи?",
-   "fayl": "06-PmChannelsLesson-v3.jsx",
-   "v": 3,
-   "md5": "793998784eb1b71e66df3b6fe632f6e2",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PmChannelsLesson-v4.jsx",
+   "v": 4,
+   "md5": "482c9110ed4d7dfc4b766da17cfc925d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17235",
+    "ru": "17236"
    }
   },
   "pm-m10d7-v1": {
@@ -706,15 +706,15 @@
    "tur": "PM",
    "nom_uz": "50 foydalanuvchiga qanday yetasiz?",
    "nom_ru": "Как дойти до 50 пользователей?",
-   "fayl": "07-PmFiftyUsersLesson-v3.jsx",
-   "v": 3,
-   "md5": "539516a55fb850e0458bba78d0be46d7",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-PmFiftyUsersLesson-v4.jsx",
+   "v": 4,
+   "md5": "d84ff8d45327eecfb3b6e5d4cd97fdb8",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17237",
+    "ru": "17238"
    }
   },
   "pm-m10d8-v1": {
@@ -725,15 +725,15 @@
    "tur": "PM",
    "nom_uz": "Foydalanuvchilar qaysi qadamda to'xtab qolyapti?",
    "nom_ru": "На каком шаге пользователи останавливаются?",
-   "fayl": "08-PmDropOffLesson-v3.jsx",
-   "v": 3,
-   "md5": "8195688fc13c64c551c3bd8ab967d333",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-PmDropOffLesson-v4.jsx",
+   "v": 4,
+   "md5": "0aac9d1c8740a4de65c604f542119808",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17239",
+    "ru": "17240"
    }
   },
   "m10-09-v1": {
@@ -744,15 +744,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: foydalanuvchini qaytaradigan eslatma",
    "nom_ru": "День проекта: напоминание, которое возвращает пользователя",
-   "fayl": "09-RetentionDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "64cdc861feb1765ff2093dd27e6c2627",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-RetentionDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "01071230039b0408f3fe392ea694f5cd",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17241",
+    "ru": "17242"
    }
   },
   "pm-m10d10-v1": {
@@ -763,15 +763,15 @@
    "tur": "PM",
    "nom_uz": "50 foydalanuvchiga yetdingizmi?",
    "nom_ru": "Дошли до 50 пользователей?",
-   "fayl": "10-PmUsersCheckLesson-v3.jsx",
-   "v": 3,
-   "md5": "134e404b294cc8da17bd63411ffc5956",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-PmUsersCheckLesson-v4.jsx",
+   "v": 4,
+   "md5": "4cf3f4364d2894a46fabd6e7566f63bc",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17243",
+    "ru": "17244"
    }
   },
   "pm-m10d11-v2": {
@@ -782,15 +782,15 @@
    "tur": "PM",
    "nom_uz": "Raqamlaringiz pitchni qanday o'zgartiradi?",
    "nom_ru": "Как ваши цифры меняют питч?",
-   "fayl": "11-PmPitchReviewLesson-v3.jsx",
-   "v": 3,
-   "md5": "fe1d8f89cc455851e16141898c8c083e",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-PmPitchReviewLesson-v4.jsx",
+   "v": 4,
+   "md5": "ee1097ebae340e8e09fb8fc9e64cf8bd",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17245",
+    "ru": "17246"
    }
   },
   "pm-m10d12-v2": {
@@ -801,15 +801,15 @@
    "tur": "PM",
    "nom_uz": "Raqamlaringiz zalni ishontiradimi?",
    "nom_ru": "Убедят ли ваши цифры зал?",
-   "fayl": "12-PmGrowthPitchLesson-v3.jsx",
-   "v": 3,
-   "md5": "29437186b881d19fd61b6f9874d75201",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-PmGrowthPitchLesson-v4.jsx",
+   "v": 4,
+   "md5": "d5c738d18756c72a783116fac60c0b51",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17247",
+    "ru": "17248"
    }
   },
   "pm-m11d1-v1": {
@@ -820,15 +820,15 @@
    "tur": "PM",
    "nom_uz": "Bitta foydalanuvchi sizga qanchaga tushadi?",
    "nom_ru": "Во сколько вам обходится один пользователь?",
-   "fayl": "01-PmUnitEconomicsLesson-v3.jsx",
-   "v": 3,
-   "md5": "1f05e4e853425eb1e485ea7f8f85f939",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-PmUnitEconomicsLesson-v4.jsx",
+   "v": 4,
+   "md5": "5fb52ad7ab256ed2e086d8e689dcd043",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17249",
+    "ru": "17250"
    }
   },
   "pm-m11d2-v1": {
@@ -839,15 +839,15 @@
    "tur": "PM",
    "nom_uz": "Mahsulotingiz qanday pul topadi?",
    "nom_ru": "Как ваш продукт зарабатывает?",
-   "fayl": "02-PmMonetizationLesson-v3.jsx",
-   "v": 3,
-   "md5": "5f09786fe75451e2960c228d6eaed5e5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmMonetizationLesson-v4.jsx",
+   "v": 4,
+   "md5": "fb5a8e76528c4113bb58a2d5d2cfbe39",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17251",
+    "ru": "17252"
    }
   },
   "m11-03-v1": {
@@ -858,15 +858,15 @@
    "tur": "Kod",
    "nom_uz": "Webhook: to'lov Backend'ga qanday yetib keladi",
    "nom_ru": "Вебхук: как платёж доходит до Backend",
-   "fayl": "03-PaymentWebhookLesson-v3.jsx",
-   "v": 3,
-   "md5": "95bec1a3349c713b76e5addce72ecd49",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-PaymentWebhookLesson-v4.jsx",
+   "v": 4,
+   "md5": "5d534192895ad0e44b65bff7d2df0c23",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17253",
+    "ru": "17254"
    }
   },
   "pm-m11d4-v1": {
@@ -877,15 +877,15 @@
    "tur": "PM",
    "nom_uz": "Narxni qanday belgilaysiz?",
    "nom_ru": "Как назначить цену?",
-   "fayl": "04-PmPricingLesson-v3.jsx",
-   "v": 3,
-   "md5": "971a0b9c0d2b26191bfef5cfbea612dc",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-PmPricingLesson-v4.jsx",
+   "v": 4,
+   "md5": "5d5af6463b606d6370e79d0428563547",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17255",
+    "ru": "17256"
    }
   },
   "m11-05-v1": {
@@ -896,15 +896,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: to'lovni ulaymiz va buzib ko'ramiz",
    "nom_ru": "День проекта: подключаем оплату и ломаем её",
-   "fayl": "05-PaymentDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "96939730e8af9ccdb0a256ddbef40d0b",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-PaymentDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "a4af1cd1bc8a6f05c34bf68b77a9ee79",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17257",
+    "ru": "17258"
    }
   },
   "pm-m11d6-v1": {
@@ -915,15 +915,15 @@
    "tur": "PM",
    "nom_uz": "Pul haqida qanday gaplashasiz?",
    "nom_ru": "Как говорить о деньгах?",
-   "fayl": "06-PmMoneyTalkLesson-v3.jsx",
-   "v": 3,
-   "md5": "b20789634cd52d13eb465c20ca268f35",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PmMoneyTalkLesson-v4.jsx",
+   "v": 4,
+   "md5": "8f5cf15f4638cda9942bad4952fc35c3",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17259",
+    "ru": "17260"
    }
   },
   "pm-m11d7-v1": {
@@ -934,15 +934,15 @@
    "tur": "PM",
    "nom_uz": "Foydalanuvchiga shartlarni qanday ochiq aytasiz?",
    "nom_ru": "Как честно сказать пользователю об условиях?",
-   "fayl": "07-PmTermsLesson-v3.jsx",
-   "v": 3,
-   "md5": "a6b3365e42da30561cc60500d5a945a2",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-PmTermsLesson-v4.jsx",
+   "v": 4,
+   "md5": "31c524cdbfbdcbdc45c89c4054fd7827",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17261",
+    "ru": "17262"
    }
   },
   "m11-08-v1": {
@@ -953,15 +953,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: ketayotgan foydalanuvchini qaytarish",
    "nom_ru": "День проекта: вернуть уходящего пользователя",
-   "fayl": "08-WinBackDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "e6f8564617af984ba3761810b0632698",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-WinBackDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "ebe38a6c84bd11b80701e7c9896f032f",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17263",
+    "ru": "17264"
    }
   },
   "pm-m11d9-v1": {
@@ -972,15 +972,15 @@
    "tur": "PM",
    "nom_uz": "Kim haqiqatan to'lashga tayyor?",
    "nom_ru": "Кто действительно готов платить?",
-   "fayl": "09-PmPayCheckLesson-v3.jsx",
-   "v": 3,
-   "md5": "feb6f0a8391d163b252f0ce35c9a3688",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-PmPayCheckLesson-v4.jsx",
+   "v": 4,
+   "md5": "c37ff8aa7e2d71b80c1c81b1887aa204",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17265",
+    "ru": "17266"
    }
   },
   "m11-10-v1": {
@@ -991,15 +991,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: taklif linki va mukofot",
    "nom_ru": "День проекта: ссылка-приглашение и награда",
-   "fayl": "10-ReferralDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "2693101b8b9e9873b7e8d3e85adc9eaa",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-ReferralDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "9a948aa8f2086f1f2da7f23b8d11a453",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17267",
+    "ru": "17268"
    }
   },
   "pm-m11d11-v1": {
@@ -1010,15 +1010,15 @@
    "tur": "PM",
    "nom_uz": "Mahsulotingiz hozir qayerda?",
    "nom_ru": "Где сейчас ваш продукт?",
-   "fayl": "11-PmReflectionLesson-v3.jsx",
-   "v": 3,
-   "md5": "67bbefed84db390001b59eefd357bbb2",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-PmReflectionLesson-v4.jsx",
+   "v": 4,
+   "md5": "27b3c8659cd850744eba08de6c55e81b",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17269",
+    "ru": "17270"
    }
   },
   "m11-12-v1": {
@@ -1029,15 +1029,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: barqarorlashtirish",
    "nom_ru": "День проекта: стабилизация",
-   "fayl": "12-StabilizeDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "af9f5499b1ad2f33eddc31bcd4924279",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-StabilizeDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "eea9b8415067b1642196adfd3c3a3b65",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17271",
+    "ru": "17272"
    }
   },
   "pm-m12d1-v2": {
@@ -1048,15 +1048,15 @@
    "tur": "PM",
    "nom_uz": "Investorga pitchni qanday tuzasiz?",
    "nom_ru": "Как построить питч для инвестора?",
-   "fayl": "01-PmInvestorPitchLesson-v3.jsx",
-   "v": 3,
-   "md5": "bae33ce251295589558174dd2e178223",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-PmInvestorPitchLesson-v4.jsx",
+   "v": 4,
+   "md5": "da73b2a330b0cd372b92eb1a7df0f7ce",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17273",
+    "ru": "17274"
    }
   },
   "pm-m12d2-v2": {
@@ -1067,15 +1067,15 @@
    "tur": "PM",
    "nom_uz": "Mahsulotingiz hikoyasini qanday aytasiz?",
    "nom_ru": "Как рассказать историю вашего продукта?",
-   "fayl": "02-PmStoryPitchLesson-v3.jsx",
-   "v": 3,
-   "md5": "aac492d69fcd4b31d877ad16e6d9efa4",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmStoryPitchLesson-v4.jsx",
+   "v": 4,
+   "md5": "055c503b2a897a9d460dd5cb7013b8d4",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17275",
+    "ru": "17276"
    }
   },
   "m12-03-v1": {
@@ -1086,15 +1086,15 @@
    "tur": "Kod",
    "nom_uz": "Mahsulot tezligi: o'lchaymiz va tezlashtiramiz",
    "nom_ru": "Скорость продукта: измеряем и ускоряем",
-   "fayl": "03-ProductSpeedLesson-v3.jsx",
-   "v": 3,
-   "md5": "4beade47e7d4bc0a3d83dcf71855be0e",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-ProductSpeedLesson-v4.jsx",
+   "v": 4,
+   "md5": "bee47a32ab624901ffe34a3d648fb700",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17277",
+    "ru": "17278"
    }
   },
   "m12-04-v1": {
@@ -1105,15 +1105,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: demo uchun sayqal",
    "nom_ru": "День проекта: шлифовка для демо",
-   "fayl": "04-PolishDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "01e7f09fa93f093917b0062b626c262b",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-PolishDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "a84b52eec84c13da052b1ac1b234f911",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17279",
+    "ru": "17280"
    }
   },
   "pm-m12d5-v2": {
@@ -1124,15 +1124,15 @@
    "tur": "PM",
    "nom_uz": "Guruh pitchingizda nimani tuzatishni aytadi?",
    "nom_ru": "Что группа советует исправить в вашем питче?",
-   "fayl": "05-PmPitchTrainingLesson-v3.jsx",
-   "v": 3,
-   "md5": "bad16197d54a3e49850be593c5d9d5eb",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-PmPitchTrainingLesson-v4.jsx",
+   "v": 4,
+   "md5": "a0f4b4e245c234807ee363f2ab8ff72f",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17281",
+    "ru": "17282"
    }
   },
   "m12-06-v1": {
@@ -1143,15 +1143,15 @@
    "tur": "Kod",
    "nom_uz": "Demoga tayyorgarlik: risklar va B reja",
    "nom_ru": "Подготовка к демо: риски и план Б",
-   "fayl": "06-DemoPrepLesson-v3.jsx",
-   "v": 3,
-   "md5": "bfc0643bb49c0cb824229c63bde8cf4d",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-DemoPrepLesson-v4.jsx",
+   "v": 4,
+   "md5": "166a2f29afff3ad2c4f6942b0c052915",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17283",
+    "ru": "17284"
    }
   },
   "pm-m12d7-v1": {
@@ -1162,15 +1162,15 @@
    "tur": "PM",
    "nom_uz": "Investor ko'zi bilan: demo buzilmaydimi?",
    "nom_ru": "Глазами инвестора: не сломается ли демо?",
-   "fayl": "07-PmDemoTestLesson-v3.jsx",
-   "v": 3,
-   "md5": "84f740f18e6288cf16b8818c3a66186a",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-PmDemoTestLesson-v4.jsx",
+   "v": 4,
+   "md5": "6181813d28142c812a36dec92fec0e27",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17285",
+    "ru": "17286"
    }
   },
   "pm-m12d8-v2": {
@@ -1181,15 +1181,15 @@
    "tur": "PM",
    "nom_uz": "Final pitchingiz 5 daqiqaga tayyormi?",
    "nom_ru": "Готов ли ваш финальный питч на 5 минут?",
-   "fayl": "08-PmFinalPitchLesson-v3.jsx",
-   "v": 3,
-   "md5": "2569435e4a6273f9f0cc7dab916b1d8f",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-PmFinalPitchLesson-v4.jsx",
+   "v": 4,
+   "md5": "c36a67b11e5787d5fc668705230f3739",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17287",
+    "ru": "17288"
    }
   },
   "m12-09-v1": {
@@ -1200,15 +1200,15 @@
    "tur": "Kod",
    "nom_uz": "Video-portfolio: 3 daqiqada o'zingiz va mahsulot",
    "nom_ru": "Видео-портфолио: вы и продукт за 3 минуты",
-   "fayl": "09-VideoPortfolioLesson-v3.jsx",
-   "v": 3,
-   "md5": "981df37e8132d0feaff5b6a6bd755ce1",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-VideoPortfolioLesson-v4.jsx",
+   "v": 4,
+   "md5": "bcb8342cb191b0a51dbf6f594b67a8d1",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17289",
+    "ru": "17290"
    }
   },
   "pm-m12d10-v1": {
@@ -1219,15 +1219,15 @@
    "tur": "PM",
    "nom_uz": "Birinchi buyurtmani qayerdan topasiz?",
    "nom_ru": "Где найти первый заказ?",
-   "fayl": "10-PmFreelanceLesson-v3.jsx",
-   "v": 3,
-   "md5": "fb8f45b295856829cff166676494e4f8",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-PmFreelanceLesson-v4.jsx",
+   "v": 4,
+   "md5": "8163a0b5a98b876ea8647ed67b0651da",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17291",
+    "ru": "17292"
    }
   },
   "pm-m12d11-v1": {
@@ -1238,15 +1238,15 @@
    "tur": "PM",
    "nom_uz": "Qaysi xalqaro dasturga ariza berasiz?",
    "nom_ru": "В какую международную программу подадите заявку?",
-   "fayl": "11-PmProgramsLesson-v3.jsx",
-   "v": 3,
-   "md5": "125987a61beaa02d346c7f3f5822919f",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-PmProgramsLesson-v4.jsx",
+   "v": 4,
+   "md5": "20f09873d88873ae20d658cc3137965d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17293",
+    "ru": "17294"
    }
   },
   "pm-m12d12-v1": {
@@ -1257,15 +1257,15 @@
    "tur": "PM",
    "nom_uz": "Keyingi olti oyda nima qilasiz?",
    "nom_ru": "Что вы будете делать следующие полгода?",
-   "fayl": "12-PmNextStepsLesson-v3.jsx",
-   "v": 3,
-   "md5": "70f40581fd22d6f4807fefa83d63bb3c",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-PmNextStepsLesson-v4.jsx",
+   "v": 4,
+   "md5": "7a14eed077b6fc8e9f443ca87dc4b872",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17295",
+    "ru": "17296"
    }
   },
   "pm-m12d13-v1": {
@@ -1276,15 +1276,15 @@
    "tur": "PM",
    "nom_uz": "Demo Day'ga tayyormisiz?",
    "nom_ru": "Готовы ли вы к Demo Day?",
-   "fayl": "13-PmDressRehearsalLesson-v3.jsx",
-   "v": 3,
-   "md5": "8eba9508167ab6dd6db4553ea6b929ac",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "13-PmDressRehearsalLesson-v4.jsx",
+   "v": 4,
+   "md5": "2c8ddda12b10c6b0198185cb9b385aa1",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17297",
+    "ru": "17298"
    }
   },
   "internet-01-v18": {
@@ -1295,15 +1295,15 @@
    "tur": "Kod",
    "nom_uz": "Internet qanday ishlaydi",
    "nom_ru": "Как устроен интернет",
-   "fayl": "01-InternetLesson-v3.jsx",
-   "v": 3,
-   "md5": "4b13e7413480f5ff593d7c1e71c692e0",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-InternetLesson-v4.jsx",
+   "v": 4,
+   "md5": "90b5fd543b6249cebd7fa3d6ab416ea9",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "13381",
+    "ru": "14091"
    }
   },
   "pm-m1d2-v1": {
@@ -1314,15 +1314,15 @@
    "tur": "PM",
    "nom_uz": "Kim mening foydalanuvchim?",
    "nom_ru": "Кто мой пользователь?",
-   "fayl": "02-PmLesson1-v3.jsx",
-   "v": 3,
-   "md5": "7829e9c28089cb1d820900d709b2d12a",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmLesson1-v4.jsx",
+   "v": 4,
+   "md5": "97b0e2375e864bacd429c3a07c907669",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "13535",
+    "ru": "13640"
    }
   },
   "html-01-v17": {
@@ -1333,15 +1333,15 @@
    "tur": "Kod",
    "nom_uz": "HTML asoslari",
    "nom_ru": "Основы HTML",
-   "fayl": "03-Htmllesson1-v3.jsx",
-   "v": 3,
-   "md5": "849f3407a460c56cdbd0cff149452c71",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-Htmllesson1-v4.jsx",
+   "v": 4,
+   "md5": "bc66d37053ffe55427eaf0d07b748849",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "13556",
+    "ru": "14092"
    }
   },
   "html-02-v16": {
@@ -1352,15 +1352,15 @@
    "tur": "Kod",
    "nom_uz": "HTML: rasm, struktura, forma, DevTools",
    "nom_ru": "HTML: картинки, структура, формы, DevTools",
-   "fayl": "04-Htmllesson2-v3.jsx",
-   "v": 3,
-   "md5": "a826ad99ead78918afdc430456255dac",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-Htmllesson2-v4.jsx",
+   "v": 4,
+   "md5": "d3cfcd7a6ae7d53d11873044f72f3d08",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "13559",
+    "ru": "13705"
    }
   },
   "html-takrorlash-01-05-v2": {
@@ -1371,15 +1371,15 @@
    "tur": "Kod",
    "nom_uz": "Takrorlash: HTML ustaxonasi",
    "nom_ru": "Повторение: мастерская HTML",
-   "fayl": "05-HtmlTakrorlashLesson-v3.jsx",
-   "v": 3,
-   "md5": "1713a48eaaa7e1535173a58082bc9405",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-HtmlTakrorlashLesson-v4.jsx",
+   "v": 4,
+   "md5": "90ef85e85cd5fcf06f58ea8fc8cf6fad",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14088",
+    "ru": "14089"
    }
   },
   "pm-m1d6-v1": {
@@ -1390,15 +1390,15 @@
    "tur": "PM",
    "nom_uz": "Struktura — foydalanuvchi uchun qilingan qulaylik",
    "nom_ru": "Структура — удобство для пользователя",
-   "fayl": "06-PmLesson2-v3.jsx",
-   "v": 3,
-   "md5": "251976681e3d7124f8c7e8058025dd86",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PmLesson2-v4.jsx",
+   "v": 4,
+   "md5": "d4b03358a2d8ef9d2d937696382efe6a",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "13570",
+    "ru": "14093"
    }
   },
   "css-01-v17": {
@@ -1409,15 +1409,15 @@
    "tur": "Kod",
    "nom_uz": "CSS asoslari: ranglar, shriftlar, bo'shliqlar",
    "nom_ru": "CSS руками — часть 1",
-   "fayl": "07-CssLesson1-v3.jsx",
-   "v": 3,
-   "md5": "ae2e685ede4155817f01948248deb91b",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-CssLesson1-v4.jsx",
+   "v": 4,
+   "md5": "341349791996c17cad979b4c45f7f454",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "13599",
+    "ru": "14094"
    }
   },
   "css-02-v18": {
@@ -1428,15 +1428,15 @@
    "tur": "Kod",
    "nom_uz": "CSS: layout, flexbox, DevTools",
    "nom_ru": "CSS руками — часть 2",
-   "fayl": "08-CssLesson2-v3.jsx",
-   "v": 3,
-   "md5": "7f4883de229cc421b1440e3909bf915c",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-CssLesson2-v4.jsx",
+   "v": 4,
+   "md5": "8b7a4acfff227ed0f15c23b7f76ca905",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "13600",
+    "ru": "14095"
    }
   },
   "vscode-start-01-v1": {
@@ -1447,15 +1447,15 @@
    "tur": "Kod",
    "nom_uz": "VS Code",
    "nom_ru": "VS Code",
-   "fayl": "09-VsCodeLesson-v3.jsx",
-   "v": 3,
-   "md5": "dde2ea5d4068d15269f44eb387216302",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-VsCodeLesson-v4.jsx",
+   "v": 4,
+   "md5": "67be9cc7ccafc60040a7c8ab3d8ef4bb",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14097",
+    "ru": "14100"
    }
   },
   "html-practice-portfolio-v2": {
@@ -1466,15 +1466,15 @@
    "tur": "Proyekt",
    "nom_uz": "HTML Praktika — Portfolio sayt",
    "nom_ru": "HTML практика — портфолио",
-   "fayl": "10-HtmlPractice-v3.jsx",
-   "v": 3,
-   "md5": "6bcbc6da81e63aedf7ce7baadf16f924",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-HtmlPractice-v4.jsx",
+   "v": 4,
+   "md5": "4e0f76e305329954b6b28b2be298702f",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "13635",
+    "ru": "14096"
    }
   },
   "css-practice-portfolio-v3": {
@@ -1485,15 +1485,15 @@
    "tur": "Proyekt",
    "nom_uz": "CSS Praktika — Demo Day saytini bezaymiz",
    "nom_ru": "CSS практика — оформляем сайт для Demo Day",
-   "fayl": "11-CssPractice-v3.jsx",
-   "v": 3,
-   "md5": "3fb4878dc4d49b01257683b39eb4bf0e",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-CssPractice-v4.jsx",
+   "v": 4,
+   "md5": "83e63bc22146594fd4c980db15f42695",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14099",
+    "ru": "14098"
    }
   },
   "git-github-v19": {
@@ -1504,15 +1504,15 @@
    "tur": "Kod",
    "nom_uz": "Git va GitHub — kodni internetga chiqaramiz",
    "nom_ru": "Git и GitHub — выкладываем код в интернет",
-   "fayl": "12-GitLesson-v3.jsx",
-   "v": 3,
-   "md5": "29c40147682641e389ce0a0bd51c6b3d",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-GitLesson-v4.jsx",
+   "v": 4,
+   "md5": "4f97bb578a2729f5ddbcd01999be9d11",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "13637",
+    "ru": "14101"
    }
   },
   "netlify-deploy-v19": {
@@ -1523,15 +1523,15 @@
    "tur": "Kod",
    "nom_uz": "Netlify va deploy",
    "nom_ru": "Netlify и деплой",
-   "fayl": "13-DeployLesson-v3.jsx",
-   "v": 3,
-   "md5": "1c9020f18501e275374be7a7ddb842b7",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "13-DeployLesson-v4.jsx",
+   "v": 4,
+   "md5": "3f1470fe9c5cc8d796a3dbf57d13b731",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14085",
+    "ru": "14086"
    }
   },
   "pm-pitch-03-v20": {
@@ -1542,15 +1542,15 @@
    "tur": "PM",
    "nom_uz": "Demo Day — 3 daqiqalik nutq",
    "nom_ru": "Демо-день — трёхминутная речь",
-   "fayl": "14-PmLesson3-v3.jsx",
-   "v": 3,
-   "md5": "1b78752d4cd261fc5e6fdba6f264e340",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "14-PmLesson3-v4.jsx",
+   "v": 4,
+   "md5": "3246bb9fc7e79cebcc4be56da84a13ff",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14090",
+    "ru": "14102"
    }
   },
   "js-intro-01-v18": {
@@ -1561,15 +1561,15 @@
    "tur": "Kod",
    "nom_uz": "Sistema va Algoritm",
    "nom_ru": "Система и алгоритм",
-   "fayl": "01-JsIntroLesson-v3.jsx",
-   "v": 3,
-   "md5": "8ccbe44c8e3c786d1c804fa8a81443f8",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-JsIntroLesson-v4.jsx",
+   "v": 4,
+   "md5": "3f41f0f65f622a1aa5a04d43666fa26d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14104",
+    "ru": "14103"
    }
   },
   "pm-m2d2-v1": {
@@ -1580,15 +1580,15 @@
    "tur": "PM",
    "nom_uz": "Muammodan yechimga",
    "nom_ru": "От проблемы к решению",
-   "fayl": "02-PmLesson4-v3.jsx",
-   "v": 3,
-   "md5": "acaa42a25ec98a237b21d2e701da287a",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmLesson4-v4.jsx",
+   "v": 4,
+   "md5": "965293d0ec600d90c21d494beb6f8e47",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14106",
+    "ru": "14105"
    }
   },
   "js-vars-01-v18": {
@@ -1599,15 +1599,15 @@
    "tur": "Kod",
    "nom_uz": "JavaScript — O'zgaruvchilar",
    "nom_ru": "JavaScript — Переменные",
-   "fayl": "04-JsVarsLesson-v3.jsx",
-   "v": 3,
-   "md5": "a175b78559701b8513b1407e01bcc5ef",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-JsVarsLesson-v4.jsx",
+   "v": 4,
+   "md5": "66ae2a1d13d701227e36ba1f5c977668",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14108",
+    "ru": "14107"
    }
   },
   "js-cond-01-v18": {
@@ -1618,15 +1618,15 @@
    "tur": "Kod",
    "nom_uz": "JavaScript — if/else",
    "nom_ru": "JavaScript — if/else",
-   "fayl": "05-JsConditionsLesson-v3.jsx",
-   "v": 3,
-   "md5": "52173b2ba852029a7515f03a58fcae07",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-JsConditionsLesson-v4.jsx",
+   "v": 4,
+   "md5": "d1e2c26914474baca80d17a018c24413",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14110",
+    "ru": "14109"
    }
   },
   "js-loops-01-v18": {
@@ -1637,15 +1637,15 @@
    "tur": "Kod",
    "nom_uz": "JavaScript — Sikllar (for, while)",
    "nom_ru": "JavaScript — Циклы (for, while)",
-   "fayl": "06-JsLoopsLesson-v3.jsx",
-   "v": 3,
-   "md5": "f73a9100e8553eb2e5df7fbd8ea89908",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-JsLoopsLesson-v4.jsx",
+   "v": 4,
+   "md5": "c57e53891236cf28586a01790121edf5",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14112",
+    "ru": "14111"
    }
   },
   "js-functions-01-v18": {
@@ -1656,15 +1656,15 @@
    "tur": "Kod",
    "nom_uz": "JavaScript — Funksiya, parametr, return",
    "nom_ru": "JavaScript — Функция, параметры, return",
-   "fayl": "07-JsFunctionsLesson-v3.jsx",
-   "v": 3,
-   "md5": "8c3f116268088d788e145e39bf2b7e73",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-JsFunctionsLesson-v4.jsx",
+   "v": 4,
+   "md5": "723b4e8480a23d4e80bae851ef7b0f74",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14114",
+    "ru": "14113"
    }
   },
   "pm-m2d7-v1": {
@@ -1675,15 +1675,15 @@
    "tur": "PM",
    "nom_uz": "Dekompozitsiya — ochilish ro'yxati",
    "nom_ru": "Декомпозиция — список к открытию",
-   "fayl": "08-PmLesson5-v3.jsx",
-   "v": 3,
-   "md5": "59a686af15cdb75aa7a2fac0444e7032",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-PmLesson5-v4.jsx",
+   "v": 4,
+   "md5": "7708f7b31752f4e20162ccfc0ddd817c",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14123",
+    "ru": "14115"
    }
   },
   "practice-01-jonlantirish-v18": {
@@ -1694,15 +1694,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika 1 — Saytni jonlantiramiz",
    "nom_ru": "Практика 1 — Оживляем сайт",
-   "fayl": "09-PracticeLesson1-v3.jsx",
-   "v": 3,
-   "md5": "ed8b3e48f8aaa08f49d8125a4bb1de16",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-PracticeLesson1-v4.jsx",
+   "v": 4,
+   "md5": "514d05f7e9bb66be90e503e308d5cdd3",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14122",
+    "ru": "14116"
    }
   },
   "practice-02-ai-promo-v18": {
@@ -1713,15 +1713,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika 2 — AI bilan tez sayt",
    "nom_ru": "Практика 2 — Быстрый сайт через AI",
-   "fayl": "10-PracticeLesson2-v3.jsx",
-   "v": 3,
-   "md5": "c7c68decd1d941c58e9022e48607d1f9",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-PracticeLesson2-v4.jsx",
+   "v": 4,
+   "md5": "c975312f5ee93f669a84da72196bbbca",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14124",
+    "ru": "14117"
    }
   },
   "pean-stack-01-v18": {
@@ -1732,15 +1732,15 @@
    "tur": "Kod",
    "nom_uz": "PERN Stack — 4 texnologiya, bitta jamoa",
    "nom_ru": "PERN Stack — 4 технологии, одна команда",
-   "fayl": "11-PeanStackLesson-v3.jsx",
-   "v": 3,
-   "md5": "73d057871a8aeabb55e0e8d477daa37f",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-PeanStackLesson-v4.jsx",
+   "v": 4,
+   "md5": "8c1452b358f4c211a4181462a4686911",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14128",
+    "ru": "14118"
    }
   },
   "practice-03-decompose-v18": {
@@ -1751,15 +1751,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika 3 — Dekompozitsiya (mini-do'kon)",
    "nom_ru": "Практика 3 — Декомпозиция (мини-магазин)",
-   "fayl": "12-PracticeLesson3-v3.jsx",
-   "v": 3,
-   "md5": "0a49200e6cd97e5337361f918dde9022",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-PracticeLesson3-v4.jsx",
+   "v": 4,
+   "md5": "ae8e740dd47f4c2d73c8b3920558bb7c",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14125",
+    "ru": "14119"
    }
   },
   "practice-04-mvp-deploy-v18": {
@@ -1770,15 +1770,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika 4 — MVP tayyor (deploy)",
    "nom_ru": "Практика 4 — MVP готов (деплой)",
-   "fayl": "13-PracticeLesson4-v3.jsx",
-   "v": 3,
-   "md5": "031f485d33967c1d77813fde61f6535a",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "13-PracticeLesson4-v4.jsx",
+   "v": 4,
+   "md5": "1b40389c65d32702c9c8cd676a551edd",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14126",
+    "ru": "14120"
    }
   },
   "pm-m2d13-v2": {
@@ -1789,15 +1789,15 @@
    "tur": "PM",
    "nom_uz": "Sistemani qanday pitch qilish",
    "nom_ru": "Как рассказать о системе",
-   "fayl": "14-PmLesson6-v3.jsx",
-   "v": 3,
-   "md5": "ef63b5f0b90739834ae30409f080dad5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "14-PmLesson6-v4.jsx",
+   "v": 4,
+   "md5": "e0dabac71b05c10f2e84545223addb46",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "14127",
+    "ru": "14121"
    }
   },
   "react-intro-01-v18": {
@@ -1808,15 +1808,15 @@
    "tur": "Kod",
    "nom_uz": "React nima va nima uchun?",
    "nom_ru": "Что такое React и зачем",
-   "fayl": "01-ReactIntroLesson-v3.jsx",
-   "v": 3,
-   "md5": "57ce8a03ef277c60d24b33335f82a5af",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-ReactIntroLesson-v4.jsx",
+   "v": 4,
+   "md5": "646126aaba8e953c16c7265acc21c4cb",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16356",
+    "ru": "16357"
    }
   },
   "pm-m3d2-v3": {
@@ -1827,15 +1827,15 @@
    "tur": "PM",
    "nom_uz": "User Story: kim va nima uchun?",
    "nom_ru": "User Story",
-   "fayl": "02-PmUserStoryLesson-v3.jsx",
-   "v": 3,
-   "md5": "6c2cdc8b718f16c6c0a4b9f90a04e889",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmUserStoryLesson-v4.jsx",
+   "v": 4,
+   "md5": "1c57f5699996d716dfb1bab5a3cab42d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16358",
+    "ru": "16359"
    }
   },
   "react-first-component-02-v18": {
@@ -1846,15 +1846,15 @@
    "tur": "Kod",
    "nom_uz": "Birinchi komponent: Vite, JSX, props",
    "nom_ru": "Первый компонент: Vite, JSX, props",
-   "fayl": "04-ReactFirstComponentLesson-v3.jsx",
-   "v": 3,
-   "md5": "443da943cf869b702149a6c49d58b7db",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-ReactFirstComponentLesson-v4.jsx",
+   "v": 4,
+   "md5": "b7bbc468d63dac1bcc0dc843504ca74a",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16360",
+    "ru": "16361"
    }
   },
   "react-state-effect-03-v18": {
@@ -1865,15 +1865,15 @@
    "tur": "Kod",
    "nom_uz": "State va Effect: useState + useEffect",
    "nom_ru": "State и Effect: useState + useEffect",
-   "fayl": "05-ReactStateEffectLesson-v3.jsx",
-   "v": 3,
-   "md5": "7fe73318535623ed51e13ad4524968b2",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-ReactStateEffectLesson-v4.jsx",
+   "v": 4,
+   "md5": "2b96869c7116319f51487113f041fc4f",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16362",
+    "ru": "16363"
    }
   },
   "pm-m3d5-v1": {
@@ -1884,15 +1884,15 @@
    "tur": "PM",
    "nom_uz": "Qaysi ishni birinchi qilasiz?",
    "nom_ru": "Какую задачу сделаете первой?",
-   "fayl": "06-PmLesson8-v3.jsx",
-   "v": 3,
-   "md5": "1cf830c8d7462a0452398022b114c78a",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PmLesson8-v4.jsx",
+   "v": 4,
+   "md5": "03b4a6ca3a6dc516a98938aa0d60bc33",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16364",
+    "ru": "16365"
    }
   },
   "react-props-reuse-04-v18": {
@@ -1903,15 +1903,15 @@
    "tur": "Kod",
    "nom_uz": "Props va qayta ishlatish",
    "nom_ru": "Props и переиспользование",
-   "fayl": "07-ReactPropsReuseLesson-v3.jsx",
-   "v": 3,
-   "md5": "f06e02680d63660c7653583569b95132",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-ReactPropsReuseLesson-v4.jsx",
+   "v": 4,
+   "md5": "f47d88258327f87f2bdd178f25f8b86e",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16366",
+    "ru": "16367"
    }
   },
   "react-crud-practice-p1-v18": {
@@ -1922,15 +1922,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika: CRUD — to'liq boshqariladigan ilova",
    "nom_ru": "Практика: CRUD — управляемое приложение",
-   "fayl": "08-ReactCrudPracticeLesson-v3.jsx",
-   "v": 3,
-   "md5": "319c17af73ac931ffa30b07a6eb81c58",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-ReactCrudPracticeLesson-v4.jsx",
+   "v": 4,
+   "md5": "ba5de33329dab817a194f9092f492473",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16368",
+    "ru": "16369"
    }
   },
   "react-api-get-05-v18": {
@@ -1941,15 +1941,15 @@
    "tur": "Kod",
    "nom_uz": "API bilan ishlash: GET — serverdan ma'lumot olish",
    "nom_ru": "Работа с API — GET",
-   "fayl": "09-ReactApiGetLesson-v3.jsx",
-   "v": 3,
-   "md5": "f678787e0feeae9402e9c855ce247bf5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-ReactApiGetLesson-v4.jsx",
+   "v": 4,
+   "md5": "77a96643da9e3ad290c139770fbe2feb",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16370",
+    "ru": "16371"
    }
   },
   "react-api-post-06-v18": {
@@ -1960,15 +1960,15 @@
    "tur": "Kod",
    "nom_uz": "API: POST/PUT/DELETE — serverga ma'lumot yuborish",
    "nom_ru": "Работа с API — POST/PUT/DELETE",
-   "fayl": "10-ReactApiPostLesson-v3.jsx",
-   "v": 3,
-   "md5": "4897d92917bbbec43a65b1c3a45e1da1",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-ReactApiPostLesson-v4.jsx",
+   "v": 4,
+   "md5": "773f5619c8cd45a9e3d58e7298707118",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16372",
+    "ru": "16373"
    }
   },
   "pm-m3d10-v1": {
@@ -1979,15 +1979,15 @@
    "tur": "PM",
    "nom_uz": "Qachon «tayyor» deb ayta olamiz?",
    "nom_ru": "Когда можно сказать «готово»?",
-   "fayl": "11-PmLesson9-v3.jsx",
-   "v": 3,
-   "md5": "73acd515f1492329729b7cedd0480b92",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-PmLesson9-v4.jsx",
+   "v": 4,
+   "md5": "177975941239edd91c58336510b1620b",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16374",
+    "ru": "16375"
    }
   },
   "react-router-practice-p2-v18": {
@@ -1998,15 +1998,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika: React Router — ko'p sahifali ilova",
    "nom_ru": "Практика: React Router — многостраничное приложение",
-   "fayl": "12-ReactRouterPracticeLesson-v3.jsx",
-   "v": 3,
-   "md5": "a3900c65f6800ce748c751f6687bb540",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-ReactRouterPracticeLesson-v4.jsx",
+   "v": 4,
+   "md5": "b8865e73c307ff088f35eef93979ee48",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16376",
+    "ru": "16377"
    }
   },
   "react-project-day-p3-v18": {
@@ -2017,15 +2017,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika: Loyiha kuni — AvtoIjara",
    "nom_ru": "Практика: Проектный день — AvtoIjara",
-   "fayl": "13-ReactProjectDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "36b0d926740be2a8cb45f72fcb9b39d9",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "13-ReactProjectDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "01ec5c4c72251761fcae78be4c01c5cd",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16378",
+    "ru": "16379"
    }
   },
   "react-build-site-final-p4-v18": {
@@ -2036,15 +2036,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt",
    "nom_ru": "Практика: Сборка любого сайта — декомпозиция + точный промпт",
-   "fayl": "14-ReactBuildSiteLesson-v3.jsx",
-   "v": 3,
-   "md5": "fb9f99aefabe1fe2b8c5b658bb2deb60",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "14-ReactBuildSiteLesson-v4.jsx",
+   "v": 4,
+   "md5": "ae822ef2a6dcb048e5d365098e6e6fdb",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16380",
+    "ru": "16381"
    }
   },
   "pm-m3d14-v1": {
@@ -2055,15 +2055,15 @@
    "tur": "PM",
    "nom_uz": "Ishlayotgan saytingizni qanday ko'rsatasiz?",
    "nom_ru": "Как показать свой работающий сайт?",
-   "fayl": "15-PmLesson10-v3.jsx",
-   "v": 3,
-   "md5": "909aae24e5ba4994276553a7223b9cdf",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "15-PmLesson10-v4.jsx",
+   "v": 4,
+   "md5": "87b7a13f14382341975c967699a51a67",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16382",
+    "ru": "16383"
    }
   },
   "data-intro-04-01-v18": {
@@ -2074,15 +2074,15 @@
    "tur": "Kod",
    "nom_uz": "Ma'lumot va bog'lanishlar: JSON, jadval, sxema",
    "nom_ru": "Данные и связи: JSON, таблицы, схема",
-   "fayl": "01-DataIntroLesson-v3.jsx",
-   "v": 3,
-   "md5": "3d5b8891ca9faaf3cbd515ae59a55ce4",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-DataIntroLesson-v4.jsx",
+   "v": 4,
+   "md5": "fcabedf94de2ff9f5a0b5396a6673002",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16384",
+    "ru": "16385"
    }
   },
   "pm-m4d2-v1": {
@@ -2093,15 +2093,15 @@
    "tur": "PM",
    "nom_uz": "Ilova nimani eslab qolsin?",
    "nom_ru": "Что приложению запомнить?",
-   "fayl": "02-PmLesson11-v3.jsx",
-   "v": 3,
-   "md5": "e651058172271770148e9189a493876c",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmLesson11-v4.jsx",
+   "v": 4,
+   "md5": "5687bac371336aca295f6e37edcda974",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16386",
+    "ru": "16387"
    }
   },
   "db-sql-nosql-04-02-v18": {
@@ -2112,15 +2112,15 @@
    "tur": "Kod",
    "nom_uz": "SQL vs NoSQL — nega PostgreSQL",
    "nom_ru": "SQL vs NoSQL — почему PostgreSQL",
-   "fayl": "03-DbSqlNosqlLesson-v3.jsx",
-   "v": 3,
-   "md5": "3b5c60533c9c2294beaf30e64f18f8e3",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-DbSqlNosqlLesson-v4.jsx",
+   "v": 4,
+   "md5": "9cb047e9d121e09a6a7226468679d517",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16388",
+    "ru": "16389"
    }
   },
   "node-server-04-03-v18": {
@@ -2131,15 +2131,15 @@
    "tur": "Kod",
    "nom_uz": "Node.js — birinchi serveringiz",
    "nom_ru": "Node.js — первый сервер",
-   "fayl": "04-NodeServerLesson-v3.jsx",
-   "v": 3,
-   "md5": "e1d813f57425e402cfd43c3aa0e1838e",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-NodeServerLesson-v4.jsx",
+   "v": 4,
+   "md5": "ac8f0838300e818c25440dba4c7b1890",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16391",
+    "ru": "16390"
    }
   },
   "nest-routing-04-04-v18": {
@@ -2150,12 +2150,12 @@
    "tur": "Kod",
    "nom_uz": "Routing: server so'rovni qanday topadi",
    "nom_ru": "Роутинг: как сервер находит запрос",
-   "fayl": "05-RoutingLesson-v5.jsx",
-   "v": 5,
-   "md5": "a768cc80bba480f26ade1d7ec881560b",
-   "commit": "e483787b",
-   "yuklandi": "2026-10-21",
-   "kim": "claude (F-1021 seans)",
+   "fayl": "05-RoutingLesson-v6.jsx",
+   "v": 6,
+   "md5": "7e79c120ef8f5b4263ac7283b1943f6f",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
     "uz": "16393",
     "ru": "16392"
@@ -2169,15 +2169,15 @@
    "tur": "Kod",
    "nom_uz": "PostgreSQL so'rovlar — CRUD + AI bilan",
    "nom_ru": "Запросы PostgreSQL — CRUD + ИИ",
-   "fayl": "06-PostgresCrudLesson-v3.jsx",
-   "v": 3,
-   "md5": "7d1639498918bfa5cbbc493790fbc4b7",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PostgresCrudLesson-v4.jsx",
+   "v": 4,
+   "md5": "2657dbfc362d1e4d98bd1f74a657d7c0",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16395",
+    "ru": "16394"
    }
   },
   "pm-m4d7-v1": {
@@ -2188,15 +2188,15 @@
    "tur": "PM",
    "nom_uz": "Sinfdoshingiz sahifangizni ochsa, nimani ko'radi?",
    "nom_ru": "Что увидит одноклассник, открыв вашу страницу?",
-   "fayl": "07-PmLesson12-v3.jsx",
-   "v": 3,
-   "md5": "9097d702dbee9f300896c221efc77e24",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-PmLesson12-v4.jsx",
+   "v": 4,
+   "md5": "61ca5d23ee4d6d8070e129ecf2b2bfc8",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16397",
+    "ru": "16396"
    }
   },
   "backend-crud-practice-p1-v18": {
@@ -2207,15 +2207,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika: Backend CRUD — AvtoIjara",
    "nom_ru": "Практика: Backend CRUD — AvtoIjara",
-   "fayl": "08-BackendCrudPracticeLesson-v3.jsx",
-   "v": 3,
-   "md5": "4c85236eb86dec429a520a4d4b14803b",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-BackendCrudPracticeLesson-v4.jsx",
+   "v": 4,
+   "md5": "71aaddd6ee14447f72cd8ab94714ec7e",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16399",
+    "ru": "16398"
    }
   },
   "api-postman-04-06-v18": {
@@ -2226,12 +2226,12 @@
    "tur": "Kod",
    "nom_uz": "API va Postman — front backend bilan qanday gaplashadi",
    "nom_ru": "API и Postman — как фронт говорит с бэком",
-   "fayl": "09-ApiPostmanLesson-v4.jsx",
-   "v": 4,
-   "md5": "b5a21fced14279e43d9d2b32887f2354",
-   "commit": "34b725cf",
-   "yuklandi": "2026-10-21",
-   "kim": "claude (F-1021 seans)",
+   "fayl": "09-ApiPostmanLesson-v5.jsx",
+   "v": 5,
+   "md5": "b60f052c0ee4e4ac46bbcbfa2f8a29f1",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
     "uz": "16401",
     "ru": "16400"
@@ -2245,15 +2245,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika: Fullstack ulash — AvtoIjara",
    "nom_ru": "Практика: Fullstack связка — AvtoIjara",
-   "fayl": "10-FullstackConnectPracticeLesson-v3.jsx",
-   "v": 3,
-   "md5": "0611cbd8abb6fa690ac139f9f11d5552",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-FullstackConnectPracticeLesson-v4.jsx",
+   "v": 4,
+   "md5": "de3666971947fc9b0825de4ee29b06c8",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16403",
+    "ru": "16402"
    }
   },
   "auth-env-04-07-v18": {
@@ -2264,15 +2264,15 @@
    "tur": "Kod",
    "nom_uz": "Autentifikatsiya va .env — login, JWT, maxfiy kalitlar",
    "nom_ru": "Аутентификация и .env — логин, JWT, секреты",
-   "fayl": "11-AuthEnvLesson-v3.jsx",
-   "v": 3,
-   "md5": "7d3c62f214d795d399ccddd4637e0f2f",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-AuthEnvLesson-v4.jsx",
+   "v": 4,
+   "md5": "ce56d1c3ed271c4cbbc0b44bd480312b",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16405",
+    "ru": "16404"
    }
   },
   "pm-m4d12-v1": {
@@ -2283,15 +2283,15 @@
    "tur": "PM",
    "nom_uz": "Ilova nimani yozib qoladi?",
    "nom_ru": "Что приложение записывает?",
-   "fayl": "12-PmLesson13-v3.jsx",
-   "v": 3,
-   "md5": "8948d474ffa9487dd4d5756357b8b9c5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-PmLesson13-v4.jsx",
+   "v": 4,
+   "md5": "d4828e7341b0877b70585ee215026f68",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16406",
+    "ru": "16407"
    }
   },
   "fullstack-projectday-p3-v18": {
@@ -2302,15 +2302,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika: Loyiha kuni — AvtoStoyanka",
    "nom_ru": "Практика: Проектный день — AvtoStoyanka",
-   "fayl": "13-FullstackProjectDayLesson-v3.jsx",
-   "v": 3,
-   "md5": "8b5eec5b33879a74532170e1e13448e1",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "13-FullstackProjectDayLesson-v4.jsx",
+   "v": 4,
+   "md5": "6f7dcd138be0f699bdfbe2e0ee10e49a",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16409",
+    "ru": "16408"
    }
   },
   "fullstack-feedback-p4-v18": {
@@ -2321,15 +2321,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika: Feedback bilan yaxshilash — AvtoStoyanka",
    "nom_ru": "Практика: Доработка по фидбеку — AvtoStoyanka",
-   "fayl": "14-FullstackFeedbackLesson-v3.jsx",
-   "v": 3,
-   "md5": "797f2727e8bd34428e831a889fe99a43",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "14-FullstackFeedbackLesson-v4.jsx",
+   "v": 4,
+   "md5": "58915d491d536c833ecd526e92a72b64",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16411",
+    "ru": "16410"
    }
   },
   "pm-m4d15-v1": {
@@ -2340,15 +2340,15 @@
    "tur": "PM",
    "nom_uz": "«Qanday ishlaydi?» deb so'rashsa",
    "nom_ru": "Если спросят: «Как это работает?»",
-   "fayl": "15-PmLesson14-v3.jsx",
-   "v": 3,
-   "md5": "092e6595bc420b7c4eaba19cb7d6f95d",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "15-PmLesson14-v4.jsx",
+   "v": 4,
+   "md5": "67119d6d5c4dddab52adf14d2c751cff",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16413",
+    "ru": "16412"
    }
   },
   "nest-arch-alive-4a-01-v18": {
@@ -2359,15 +2359,15 @@
    "tur": "Kod",
    "nom_uz": "Nest arxitektura — tirik ko'rish",
    "nom_ru": "Nest архитектура — живой обзор",
-   "fayl": "01-NestArchAliveLesson-v3.jsx",
-   "v": 3,
-   "md5": "8ad5fcb828ccd438e712dc3cc8dc08c5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-NestArchAliveLesson-v4.jsx",
+   "v": 4,
+   "md5": "ef1797eb32919789ee3ca69ffb7b6c2e",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16414",
+    "ru": "16415"
    }
   },
   "pm-m4a2-v1": {
@@ -2378,15 +2378,15 @@
    "tur": "PM",
    "nom_uz": "Hamma birdan kirsa, sayt chidaydimi?",
    "nom_ru": "Выдержит ли сайт, если все зайдут разом?",
-   "fayl": "02-PmLesson15-v3.jsx",
-   "v": 3,
-   "md5": "d25be0583c3c3cae9fa39b1cdb178a49",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmLesson15-v4.jsx",
+   "v": 4,
+   "md5": "2e93687445bf34a5d717a517b03ac9a0",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16416",
+    "ru": "16417"
    }
   },
   "nest-arch-resource-4a-02-v18": {
@@ -2397,15 +2397,15 @@
    "tur": "Kod",
    "nom_uz": "Birinchi resursni qo'lda qo'shish — mashinalar",
    "nom_ru": "Добавляем первый ресурс вручную — машины",
-   "fayl": "03-NestArchResourceLesson-v3.jsx",
-   "v": 3,
-   "md5": "88b84bcd8dc611460bf7b2f5f2719b6c",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-NestArchResourceLesson-v4.jsx",
+   "v": 4,
+   "md5": "0d3a3f755ea1a8e8fdd80e63c252ad86",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16419",
+    "ru": "16418"
    }
   },
   "nest-arch-practice-4a-03-v18": {
@@ -2416,15 +2416,15 @@
    "tur": "Proyekt",
    "nom_uz": "Praktika — KitobShop backend",
    "nom_ru": "Практика — бэкенд KitobShop",
-   "fayl": "04-NestArchPracticeLesson-v3.jsx",
-   "v": 3,
-   "md5": "eccd10ae0bddefa3c4a6b8dee449fd9f",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-NestArchPracticeLesson-v4.jsx",
+   "v": 4,
+   "md5": "c38b87b40e6ec3ca95268f6b8a008044",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16421",
+    "ru": "16420"
    }
   },
   "jest-unit-04b-01-v18": {
@@ -2435,15 +2435,15 @@
    "tur": "Kod",
    "nom_uz": "Unit-test: Jest",
    "nom_ru": "Юнит-тесты: Jest",
-   "fayl": "05-JestUnitTestLesson-v3.jsx",
-   "v": 3,
-   "md5": "357258a80a120ebfaa54ae6280dda44e",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-JestUnitTestLesson-v4.jsx",
+   "v": 4,
+   "md5": "e512380cf347c7868aef0559788b5f1d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16423",
+    "ru": "16422"
    }
   },
   "pm-m4b2-v1": {
@@ -2454,15 +2454,15 @@
    "tur": "PM",
    "nom_uz": "Bitta xato — nechta odam ketadi?",
    "nom_ru": "Одна ошибка — сколько людей уйдёт?",
-   "fayl": "06-PmLesson16-v3.jsx",
-   "v": 3,
-   "md5": "c044bb37c0274125c152ef2512c83dc5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PmLesson16-v4.jsx",
+   "v": 4,
+   "md5": "458e2bc59822f1ff38d33675504a02e8",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16427",
+    "ru": "16424"
    }
   },
   "edge-cases-04b-02-v18": {
@@ -2473,15 +2473,15 @@
    "tur": "Kod",
    "nom_uz": "Edge cases va error path",
    "nom_ru": "Граничные случаи и обработка ошибок",
-   "fayl": "07-EdgeCasesTestLesson-v3.jsx",
-   "v": 3,
-   "md5": "5a6992d7ae8e1fab867cbf0dca01a556",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-EdgeCasesTestLesson-v4.jsx",
+   "v": 4,
+   "md5": "01ee51bc81839f2ccd233fad63033a87",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16426",
+    "ru": "16425"
    }
   },
   "cicd-intro-4c-01-v18": {
@@ -2492,15 +2492,15 @@
    "tur": "Kod",
    "nom_uz": "CI/CD nima va nega kerak",
    "nom_ru": "Что такое CI/CD и зачем",
-   "fayl": "08-CiCdIntroLesson-v3.jsx",
-   "v": 3,
-   "md5": "04c7a08e3995f0c137949b87d3d9e65a",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-CiCdIntroLesson-v4.jsx",
+   "v": 4,
+   "md5": "43759aa3807e531db64ae003d3a5daf0",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16429",
+    "ru": "16428"
    }
   },
   "pm-m4c2-v1": {
@@ -2511,15 +2511,15 @@
    "tur": "PM",
    "nom_uz": "Hammasini birdan chiqaraymi — yoki har hafta bo'lak?",
    "nom_ru": "Выпустить всё разом — или по кусочку каждую неделю?",
-   "fayl": "09-PmLesson17-v3.jsx",
-   "v": 3,
-   "md5": "80ff14e2ed658b26ab0fbbba63c2f8db",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-PmLesson17-v4.jsx",
+   "v": 4,
+   "md5": "5fe4b8f9a18cb1c9b320965d9e869244",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16431",
+    "ru": "16430"
    }
   },
   "github-actions-4c-02-v18": {
@@ -2530,15 +2530,15 @@
    "tur": "Kod",
    "nom_uz": "GitHub Actions — yo'l xaritasini yozish",
    "nom_ru": "GitHub Actions — написание карты маршрута",
-   "fayl": "10-GithubActionsLesson-v3.jsx",
-   "v": 3,
-   "md5": "8318ca9a0fdc2410fde1e6f832e852a5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-GithubActionsLesson-v4.jsx",
+   "v": 4,
+   "md5": "5a1e3a79fe78416a82d5f5f78d28c359",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16433",
+    "ru": "16432"
    }
   },
   "cicd-full-pipeline-4c-03-v18": {
@@ -2549,15 +2549,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni — to'liq lentani qurish",
    "nom_ru": "Проектный день — построение полного конвейера",
-   "fayl": "11-FullPipelineProjectLesson-v3.jsx",
-   "v": 3,
-   "md5": "11117001f17c517d18c8fc6b377b7f47",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-FullPipelineProjectLesson-v4.jsx",
+   "v": 4,
+   "md5": "a80288b2d3be0c5444aae83d9d2785aa",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16435",
+    "ru": "16434"
    }
   },
   "cicd-ai-pipeline-4c-05-v18": {
@@ -2568,15 +2568,15 @@
    "tur": "Proyekt",
    "nom_uz": "AI bilan lentani boshqarish",
    "nom_ru": "Управление конвейером с AI",
-   "fayl": "12-AiPipelineProjectLesson-v3.jsx",
-   "v": 3,
-   "md5": "d9ff8e2934c0dbefbd5723095614e043",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-AiPipelineProjectLesson-v4.jsx",
+   "v": 4,
+   "md5": "6ee7ed38a234504998f7f02e4b401887",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16436",
+    "ru": "16437"
    }
   },
   "pm-m4c6-v1": {
@@ -2587,15 +2587,15 @@
    "tur": "PM",
    "nom_uz": "Saytingiz hozir ochilyaptimi?",
    "nom_ru": "Ваш сайт сейчас открывается?",
-   "fayl": "13-PmLesson18-v3.jsx",
-   "v": 3,
-   "md5": "f41abfa1bd92eb7d43bcf4e1d0cb05a9",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "13-PmLesson18-v4.jsx",
+   "v": 4,
+   "md5": "efba442896cc9755f2732d9bccce7201",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16438",
+    "ru": "16441"
    }
   },
   "full-pro-pipeline-4c-04-v18": {
@@ -2606,15 +2606,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: ishonchli lenta",
    "nom_ru": "Проектный день: надёжная лента",
-   "fayl": "14-FullProPipelineLesson-v3.jsx",
-   "v": 3,
-   "md5": "772116b8e7b6632d0a167382d642eac5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "14-FullProPipelineLesson-v4.jsx",
+   "v": 4,
+   "md5": "2be28443695538a125cd9ed14c5a201c",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "16440",
+    "ru": "16439"
    }
   },
   "bot-intro-05-01-v18": {
@@ -2625,15 +2625,15 @@
    "tur": "Kod",
    "nom_uz": "Bot nima",
    "nom_ru": "Что такое бот",
-   "fayl": "01-BotIntroLesson-v3.jsx",
-   "v": 3,
-   "md5": "a15f12b2926e89cd83f34c4fe4f08acb",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-BotIntroLesson-v4.jsx",
+   "v": 4,
+   "md5": "45bbf40d5657ca05f6cadaed6a162b0d",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17095",
+    "ru": "17096"
    }
   },
   "pm-m5d2-v1": {
@@ -2644,15 +2644,15 @@
    "tur": "PM",
    "nom_uz": "Botingizni birinchi kim ochadi?",
    "nom_ru": "Кто первым откроет вашего бота?",
-   "fayl": "02-PmLesson19-v3.jsx",
-   "v": 3,
-   "md5": "519167687c4966503db7d9e4dc7fba49",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmLesson19-v4.jsx",
+   "v": 4,
+   "md5": "9b6a1e1bcd21a7030d197f08ff630c41",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17097",
+    "ru": "17098"
    }
   },
   "bot-api-buttons-05-02-v18": {
@@ -2663,15 +2663,15 @@
    "tur": "Kod",
    "nom_uz": "Telegram Bot API + tugmalar",
    "nom_ru": "Telegram Bot API + кнопки",
-   "fayl": "03-BotApiButtonsLesson-v3.jsx",
-   "v": 3,
-   "md5": "85f506e750efe086e5b3f812674bfff2",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-BotApiButtonsLesson-v4.jsx",
+   "v": 4,
+   "md5": "cff240d23582c03ba2a97595e996831e",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17099",
+    "ru": "17100"
    }
   },
   "bot-stateful-memory-05-03-v18": {
@@ -2682,15 +2682,15 @@
    "tur": "Kod",
    "nom_uz": "Bot eslab qoladi — holat va PostgreSQL",
    "nom_ru": "Бот запоминает — состояние и PostgreSQL",
-   "fayl": "04-BotStatefulMemoryLesson-v3.jsx",
-   "v": 3,
-   "md5": "dda62f5925c9c0cfd09f2fa6a6800323",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-BotStatefulMemoryLesson-v4.jsx",
+   "v": 4,
+   "md5": "1f72978db51c6df5f41588e49cf9e505",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17101",
+    "ru": "17102"
    }
   },
   "bot-ai-project-05-05-v18": {
@@ -2701,15 +2701,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: AI bilan bot",
    "nom_ru": "Проектный день: бот с ИИ",
-   "fayl": "05-BotAiProjectLesson-v3.jsx",
-   "v": 3,
-   "md5": "5c6ca095d3121acccf0e76b79a1d469c",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-BotAiProjectLesson-v4.jsx",
+   "v": 4,
+   "md5": "ef45f2b080d305b4db1009a4c8103f10",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17103",
+    "ru": "17104"
    }
   },
   "bot-ai-brain-05-04-v18": {
@@ -2720,15 +2720,15 @@
    "tur": "Proyekt",
    "nom_uz": "Bot ichida AI",
    "nom_ru": "ИИ внутри бота",
-   "fayl": "06-BotAiBrainLesson-v3.jsx",
-   "v": 3,
-   "md5": "cfa833242831cdaf76433707d8b5b899",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-BotAiBrainLesson-v4.jsx",
+   "v": 4,
+   "md5": "345eb43e05fe50021f300be993b03516",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17105",
+    "ru": "17106"
    }
   },
   "bot-full-project-05-07-v18": {
@@ -2739,15 +2739,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: bot + DB + AI",
    "nom_ru": "Проектный день: бот + БД + ИИ",
-   "fayl": "07-BotFullProjectLesson-v3.jsx",
-   "v": 3,
-   "md5": "177164d43d6d17e21ab6c53f398b0cfb",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-BotFullProjectLesson-v4.jsx",
+   "v": 4,
+   "md5": "62f67a4d12102655e953d9611a4b04d1",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17107",
+    "ru": "17108"
    }
   },
   "pm-m5d8-v1": {
@@ -2758,15 +2758,15 @@
    "tur": "PM",
    "nom_uz": "Botingizni ishlatgan odamdan nimani so'raysiz?",
    "nom_ru": "О чём спросить человека, который пользовался вашим ботом?",
-   "fayl": "08-PmLesson20-v3.jsx",
-   "v": 3,
-   "md5": "33e6deaa1dd3de3691a2739884235d5c",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-PmLesson20-v4.jsx",
+   "v": 4,
+   "md5": "bff59722d8b9464acb2ec9f839d8715f",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17109",
+    "ru": "17110"
    }
   },
   "bot-feedback-05-06-v18": {
@@ -2777,15 +2777,15 @@
    "tur": "Proyekt",
    "nom_uz": "Foydalanuvchi fikri va iteratsiya",
    "nom_ru": "Отзывы пользователей и итерация",
-   "fayl": "09-BotFeedbackIterationLesson-v3.jsx",
-   "v": 3,
-   "md5": "91156c052dd4488f3616c261874f2909",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-BotFeedbackIterationLesson-v4.jsx",
+   "v": 4,
+   "md5": "63c8f8058e00fbba9fe66a7d5305f8d9",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17111",
+    "ru": "17112"
    }
   },
   "bot-ai-agent-05-10-v18": {
@@ -2796,15 +2796,15 @@
    "tur": "Proyekt",
    "nom_uz": "AI-agent yaratish",
    "nom_ru": "Создание ИИ-агента",
-   "fayl": "10-BotAiAgentLesson-v3.jsx",
-   "v": 3,
-   "md5": "1d77d30e980de57061feeee68fdbd4f8",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-BotAiAgentLesson-v4.jsx",
+   "v": 4,
+   "md5": "92d74b5ee249f9872430dab84bd17bc0",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17113",
+    "ru": "17114"
    }
   },
   "pm-m5d11-metrika-v1": {
@@ -2815,15 +2815,15 @@
    "tur": "PM",
    "nom_uz": "Botingiz yaxshi ishlayotganini qaysi raqam aytadi?",
    "nom_ru": "Какая цифра скажет, что ваш бот работает хорошо?",
-   "fayl": "11-PmMetricsLesson-v3.jsx",
-   "v": 3,
-   "md5": "396f5e1ecd8bcc58df4888ab8d487f66",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-PmMetricsLesson-v4.jsx",
+   "v": 4,
+   "md5": "a20f979d5eb1079619b48e74963db9b4",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17115",
+    "ru": "17116"
    }
   },
   "pm-m5d11-v1": {
@@ -2834,15 +2834,15 @@
    "tur": "PM",
    "nom_uz": "Kecha kelgan odam bugun ham keldimi?",
    "nom_ru": "Тот, кто пришёл вчера, пришёл ли сегодня?",
-   "fayl": "12-PmLesson21-v3.jsx",
-   "v": 3,
-   "md5": "f97ace7bdc0f5fb79a161b76ba10421e",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-PmLesson21-v4.jsx",
+   "v": 4,
+   "md5": "5e2cab840799d6956fd7e1eafee797d2",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17117",
+    "ru": "17118"
    }
   },
   "sys-arch-06-01-v18": {
@@ -2853,15 +2853,15 @@
    "tur": "Kod",
    "nom_uz": "Komponentlardan tizim",
    "nom_ru": "Система из компонентов",
-   "fayl": "01-SystemArchitectureLesson-v3.jsx",
-   "v": 3,
-   "md5": "6bb517c29e93bf21ee050522505ec249",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-SystemArchitectureLesson-v4.jsx",
+   "v": 4,
+   "md5": "9e554edcdd19dd9e67b07342cbe7da06",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17119",
+    "ru": "17120"
    }
   },
   "pm-m6d2-v1": {
@@ -2872,15 +2872,15 @@
    "tur": "PM",
    "nom_uz": "Bitta gapni uch kishi bir xil tushunadimi?",
    "nom_ru": "Поймут ли одну фразу трое одинаково?",
-   "fayl": "02-PmLesson22-v3.jsx",
-   "v": 3,
-   "md5": "cd99ba60ededb278d4bd5d9086f5cca4",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmLesson22-v4.jsx",
+   "v": 4,
+   "md5": "5d7dfa5c316ffbff18637276d3ac9046",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17121",
+    "ru": "17122"
    }
   },
   "arch-patterns-06-03-v18": {
@@ -2891,15 +2891,15 @@
    "tur": "Kod",
    "nom_uz": "Arxitektura patternlari",
    "nom_ru": "Паттерны архитектуры",
-   "fayl": "03-ArchPatternsLesson-v3.jsx",
-   "v": 3,
-   "md5": "20f50dcd5f0ab8f4ef69b1a644ae57f5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-ArchPatternsLesson-v4.jsx",
+   "v": 4,
+   "md5": "f35599dc7727dc250ac28e103d30980b",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17123",
+    "ru": "17124"
    }
   },
   "agent-arch-06-04-v18": {
@@ -2910,15 +2910,15 @@
    "tur": "Kod",
    "nom_uz": "AI-agent nima",
    "nom_ru": "Что такое AI-агент",
-   "fayl": "04-AgentArchitectureLesson-v3.jsx",
-   "v": 3,
-   "md5": "adf01ccaf0395477b94106414c30df9b",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-AgentArchitectureLesson-v4.jsx",
+   "v": 4,
+   "md5": "e8b1d4a198f205dd0bca5da22bb27040",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17125",
+    "ru": "17126"
    }
   },
   "claude-skills-06-05-v18": {
@@ -2929,15 +2929,15 @@
    "tur": "Kod",
    "nom_uz": "Claude Skills — nima",
    "nom_ru": "Claude Skills",
-   "fayl": "05-ClaudeSkillsLesson-v3.jsx",
-   "v": 3,
-   "md5": "294a762f1c23bc8bb1d849361de72604",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-ClaudeSkillsLesson-v4.jsx",
+   "v": 4,
+   "md5": "d428c7bde3180ac15fe4627cbf5db7ed",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17127",
+    "ru": "17128"
    }
   },
   "pm-m6d6-v1": {
@@ -2948,15 +2948,15 @@
    "tur": "PM",
    "nom_uz": "Ilova o'zi qaror qilsa, kimga tegadi?",
    "nom_ru": "Если приложение решает само, кого это касается?",
-   "fayl": "06-PmLesson23-v3.jsx",
-   "v": 3,
-   "md5": "0782a9353218d1d0488e956e95c66cd0",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PmLesson23-v4.jsx",
+   "v": 4,
+   "md5": "75485529398c1030ff1f213621008680",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17129",
+    "ru": "17130"
    }
   },
   "write-skill-06-07-v18": {
@@ -2967,15 +2967,15 @@
    "tur": "Kod",
    "nom_uz": "O'z Skill'ingizni yozing",
    "nom_ru": "Создаём свой Skill",
-   "fayl": "07-WriteSkillLesson-v3.jsx",
-   "v": 3,
-   "md5": "151bc8f9305aa53662c26e774c15911c",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-WriteSkillLesson-v4.jsx",
+   "v": 4,
+   "md5": "4a94f8539c949b1129f0763659268d42",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17131",
+    "ru": "17132"
    }
   },
   "pipeline-project-06-08-v18": {
@@ -2986,15 +2986,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: to'liq pipeline",
    "nom_ru": "Проектный день: полный pipeline",
-   "fayl": "08-PipelineProjectLesson-v3.jsx",
-   "v": 3,
-   "md5": "ea06c94aff344c4ad83c46a19d75f2c5",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-PipelineProjectLesson-v4.jsx",
+   "v": 4,
+   "md5": "a0a1107e2c11d9a6d53fe260dcfe6dae",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17133",
+    "ru": "17134"
    }
   },
   "rn-basics-06-09-v18": {
@@ -3005,15 +3005,15 @@
    "tur": "Kod",
    "nom_uz": "React Native — asoslari",
    "nom_ru": "React Native — основы",
-   "fayl": "09-ReactNativeBasicsLesson-v3.jsx",
-   "v": 3,
-   "md5": "c2a5782da95f55caa30133a8c7cf1126",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-ReactNativeBasicsLesson-v4.jsx",
+   "v": 4,
+   "md5": "275d2147f67d59c15b6de44f5e191e09",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17135",
+    "ru": "17136"
    }
   },
   "rn-app-06-10-v18": {
@@ -3024,15 +3024,15 @@
    "tur": "Kod",
    "nom_uz": "RN: komponent, navigatsiya, API",
    "nom_ru": "RN: компоненты, навигация, API",
-   "fayl": "10-ReactNativeAppLesson-v3.jsx",
-   "v": 3,
-   "md5": "6640bf5d2a374fe5074780861f1538d9",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-ReactNativeAppLesson-v4.jsx",
+   "v": 4,
+   "md5": "201a42386dd9963d94b0a10ca76067cc",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17137",
+    "ru": "17138"
    }
   },
   "mobile-practice-06-11-v18": {
@@ -3043,15 +3043,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: mobil ilova",
    "nom_ru": "Проектный день: мобильное приложение",
-   "fayl": "11-MobileAppPracticeLesson-v3.jsx",
-   "v": 3,
-   "md5": "3099bdfabdc62a1b1ba5ed8fe88eca12",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-MobileAppPracticeLesson-v4.jsx",
+   "v": 4,
+   "md5": "c8040b7373b489366277a99479283025",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17139",
+    "ru": "17140"
    }
   },
   "pm-m6d12-v1": {
@@ -3062,15 +3062,15 @@
    "tur": "PM",
    "nom_uz": "Bugun qaysi ish boshlanadi?",
    "nom_ru": "Какую задачу начинаем сегодня?",
-   "fayl": "12-PmLesson24-v3.jsx",
-   "v": 3,
-   "md5": "274ebac0e2c383509b938d6a73e59451",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-PmLesson24-v4.jsx",
+   "v": 4,
+   "md5": "c2c2bbfcb58bde822bdccb8fdc062e40",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17141",
+    "ru": "17142"
    }
   },
   "full-system-06-13-v18": {
@@ -3081,15 +3081,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: to'liq tizim",
    "nom_ru": "Проектный день: полная система",
-   "fayl": "13-FullSystemProjectLesson-v3.jsx",
-   "v": 3,
-   "md5": "1a2250e9d312ce3dc4825d12a9b5d1e3",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "13-FullSystemProjectLesson-v4.jsx",
+   "v": 4,
+   "md5": "5701e3d314879611c49cc39f68f44f34",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17143",
+    "ru": "17144"
    }
   },
   "pm-m6d14-v1": {
@@ -3100,15 +3100,15 @@
    "tur": "PM",
    "nom_uz": "Raqamingiz nimani isbotlaydi?",
    "nom_ru": "Что доказывает ваше число?",
-   "fayl": "14-PmLesson25-v3.jsx",
-   "v": 3,
-   "md5": "eb9894171736cb0519b004a323c82dea",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "14-PmLesson25-v4.jsx",
+   "v": 4,
+   "md5": "42aa6f4d12044cc4488ce70deb0de127",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17145",
+    "ru": "17146"
    }
   },
   "pm-m7d1-v1": {
@@ -3119,15 +3119,15 @@
    "tur": "PM",
    "nom_uz": "Loyihangiz kimga kerak?",
    "nom_ru": "Кому нужен ваш проект?",
-   "fayl": "01-PmProductProblemLesson-v3.jsx",
-   "v": 3,
-   "md5": "e1b557be6c268e453b89aab52f782cc3",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "01-PmProductProblemLesson-v4.jsx",
+   "v": 4,
+   "md5": "7d4e78b66b5fb6e9c4f1d5ec11ef23f2",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17147",
+    "ru": "17148"
    }
   },
   "m7-02-v1": {
@@ -3138,15 +3138,15 @@
    "tur": "PM",
    "nom_uz": "Besh odamdan nimani bilib olasiz?",
    "nom_ru": "Что вы узнаете от пяти человек?",
-   "fayl": "02-PmFiveInterviewsLesson-v3.jsx",
-   "v": 3,
-   "md5": "081ffe24af7c1d49e394fdd069ec2384",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "02-PmFiveInterviewsLesson-v4.jsx",
+   "v": 4,
+   "md5": "82ea10807b49940665642c2add116744",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17149",
+    "ru": "17150"
    }
   },
   "pm-m7d3-v1": {
@@ -3157,15 +3157,15 @@
    "tur": "PM",
    "nom_uz": "Besh suhbatdan qaysi muammo chiqdi?",
    "nom_ru": "Какая проблема вышла из пяти разговоров?",
-   "fayl": "03-PmInterviewMvpLesson-v3.jsx",
-   "v": 3,
-   "md5": "be6a90c58d065751970ec96c64ed9c60",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "03-PmInterviewMvpLesson-v4.jsx",
+   "v": 4,
+   "md5": "e0b9c4f59d04cbfd04585a04a8106001",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17151",
+    "ru": "17152"
    }
   },
   "m7-04-v1": {
@@ -3176,15 +3176,15 @@
    "tur": "Kod",
    "nom_uz": "Mini-MVP arxitekturasi",
    "nom_ru": "Архитектура мини-MVP",
-   "fayl": "04-MvpArchitectureLesson-v3.jsx",
-   "v": 3,
-   "md5": "42aa050bdaddea85a57041b1f260c628",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "04-MvpArchitectureLesson-v4.jsx",
+   "v": 4,
+   "md5": "97d4aa4b58988ed2dc3cea47679dd061",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17153",
+    "ru": "17154"
    }
   },
   "m7-05-v1": {
@@ -3195,15 +3195,15 @@
    "tur": "Kod",
    "nom_uz": "Animatsiya: interfeys javob beradi",
    "nom_ru": "Анимация: интерфейс отвечает",
-   "fayl": "05-AnimationLesson-v3.jsx",
-   "v": 3,
-   "md5": "e8a2b05aa7cb493eef4cbcc5709e8dae",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "05-AnimationLesson-v4.jsx",
+   "v": 4,
+   "md5": "6ab54e33959ce23fcfe5db9943aa1931",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17155",
+    "ru": "17156"
    }
   },
   "m7-06-v1": {
@@ -3214,15 +3214,15 @@
    "tur": "PM",
    "nom_uz": "Birinchi odam kirganda nimani ko'rasiz?",
    "nom_ru": "Что вы увидите, когда придёт первый человек?",
-   "fayl": "06-PmAnalyticsDayOneLesson-v3.jsx",
-   "v": 3,
-   "md5": "f1c66bfe9be245dbb68e6495e3002cba",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "06-PmAnalyticsDayOneLesson-v4.jsx",
+   "v": 4,
+   "md5": "4e96c81c609e2796926585c3a3eeaca9",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17157",
+    "ru": "17158"
    }
   },
   "m7-07-v1": {
@@ -3233,15 +3233,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: MVP — birinchi ekran",
    "nom_ru": "День проекта: MVP — первый экран",
-   "fayl": "07-MvpFirstScreenLesson-v3.jsx",
-   "v": 3,
-   "md5": "8b3e7605fea715e7a3e06ef0c4b66e20",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "07-MvpFirstScreenLesson-v4.jsx",
+   "v": 4,
+   "md5": "9bb629598f3e84745e355a1c3f2235f2",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17159",
+    "ru": "17160"
    }
   },
   "m7-08-v1": {
@@ -3252,15 +3252,15 @@
    "tur": "PM",
    "nom_uz": "Yaxshi interfeysdan nimani olasiz?",
    "nom_ru": "Что взять из хорошего интерфейса?",
-   "fayl": "08-PmDesignMotionLesson-v3.jsx",
-   "v": 3,
-   "md5": "6131a5833663c8eb8f06d07758a025af",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "08-PmDesignMotionLesson-v4.jsx",
+   "v": 4,
+   "md5": "819b11ad41e93ad8ac061de0a5c823dc",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17161",
+    "ru": "17162"
    }
   },
   "m7-09-v1": {
@@ -3271,15 +3271,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: MVP tayyor",
    "nom_ru": "День проекта: MVP готов",
-   "fayl": "09-MvpCompleteLesson-v3.jsx",
-   "v": 3,
-   "md5": "c60f50e7b0d51ff9fadf5b24e1079059",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "09-MvpCompleteLesson-v4.jsx",
+   "v": 4,
+   "md5": "1a3e99b089f5e58aaf2f2790ed892dcc",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17163",
+    "ru": "17164"
    }
   },
   "m7-10-v1": {
@@ -3290,15 +3290,15 @@
    "tur": "PM",
    "nom_uz": "Odam ilovangizda qayerda to'xtab qoladi?",
    "nom_ru": "Где человек застревает в вашем приложении?",
-   "fayl": "10-PmUsabilityTestLesson-v3.jsx",
-   "v": 3,
-   "md5": "858c5b6d510835dfc0d90a8e4c464738",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "10-PmUsabilityTestLesson-v4.jsx",
+   "v": 4,
+   "md5": "faee9e85d860e011f26a6b99f54fc168",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17165",
+    "ru": "17166"
    }
   },
   "m7-11-v1": {
@@ -3309,15 +3309,15 @@
    "tur": "Proyekt",
    "nom_uz": "Loyiha kuni: sinovdan keyingi tuzatish",
    "nom_ru": "День проекта: исправление после теста",
-   "fayl": "11-MvpIterationLesson-v3.jsx",
-   "v": 3,
-   "md5": "0fefabc15e9130a04c414c086f23fe2b",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "11-MvpIterationLesson-v4.jsx",
+   "v": 4,
+   "md5": "f856c7da095096fbe9b2a119425bf262",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17167",
+    "ru": "17168"
    }
   },
   "m7-12-v2": {
@@ -3328,15 +3328,15 @@
    "tur": "PM",
    "nom_uz": "Pitchingizda kimning hikoyasi bor?",
    "nom_ru": "Чья история в вашем питче?",
-   "fayl": "12-PmUserStoryPitchLesson-v3.jsx",
-   "v": 3,
-   "md5": "5f1771e23e75e3c29f8f70411e5d34f2",
-   "commit": "6df7225c",
-   "yuklandi": "2026-10-19",
-   "kim": "claude-yuklovchi (F-1019-11)",
+   "fayl": "12-PmUserStoryPitchLesson-v4.jsx",
+   "v": 4,
+   "md5": "00db61a0564d38eef4ee675c06c21230",
+   "commit": "8aaf193a",
+   "yuklandi": "2026-10-23",
+   "kim": "claude-yuklovchi-F-1023",
    "crm": {
-    "uz": null,
-    "ru": null
+    "uz": "17169",
+    "ru": "17170"
    }
   }
  },
