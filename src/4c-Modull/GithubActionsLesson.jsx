@@ -30,6 +30,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: GitHub Actions» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-10). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"6-10","tur":"text","nom":{"uz":"Uyga vazifa: GitHub Actions","ru":"Домашнее задание: GitHub Actions"},"matn":{"uz":"6-5/6-7 dagi test loyihangizga birinchi haqiqiy lentani (pipeline) yozing.\n\n1. Loyihani GitHub'ga joylang.\n2. .github/workflows/ci.yml: push'da ishga tushsin, checkout, Node o'rnatish, npm install, npm test.\n3. Push qiling — Actions'da yashil run.\n4. Ataylab bitta testni buzing va push qiling — qizil run. Jurnaldan sababni toping.\n5. Tuzating — yana yashil. Repo linki va uchala run linki.\n\nNima tekshiriladi:\n— ci.yml to'g'ri papkada\n— 3 run: yashil → qizil → yashil\n— qizil run jurnalida test nomi\n— steps tartibi to'g'ri.","ru":"Напишите первую настоящую ленту (pipeline) для своего тестового проекта из 6-5/6-7.\n\n1. Выложите проект на GitHub.\n2. .github/workflows/ci.yml: запуск на push, checkout, установка Node, npm install, npm test.\n3. Сделайте push — в Actions зелёный run.\n4. Специально сломайте один тест и сделайте push — красный run. Найдите причину в журнале.\n5. Исправьте — снова зелёный. Ссылка на репозиторий и ссылки на все три run.\n\nЧто проверяется:\n— ci.yml в правильной папке\n— 3 run: зелёный → красный → зелёный\n— в журнале красного run — имя теста\n— порядок steps верный."}};
 
 
 
@@ -2498,11 +2501,6 @@ const Screen19 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Maxfiy kalit — SEYFda (${{ secrets.NOM }}), hech qachon ochiq emas", ru: 'Секретный ключ — в СЕЙФЕ (${{ secrets.NOM }}), никогда не в открытую' },
     { uz: 'Qizil chiroq sababi — LENTA JURNALIDA', ru: 'Причина красного света — в ЖУРНАЛЕ ЛЕНТЫ' }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Qo'shing", ru: 'Добавьте' }, t: { uz: "— o'z repongizga .github/workflows/ci.yml fayl yarating", ru: '— создайте в своём репозитории файл .github/workflows/ci.yml' } },
-    { b: { uz: 'Yozing', ru: 'Напишите' }, t: { uz: '— on: push va steps: checkout + npm install + npm test', ru: '— on: push и steps: checkout + npm install + npm test' } },
-    { b: { uz: "Ko'ring", ru: 'Посмотрите' }, t: { uz: "— lentaga qo'yib, Actions bo'limida yashil chiroqni kuzating", ru: '— запушьте и наблюдайте зелёный свет во вкладке Actions' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2525,7 +2523,7 @@ const Screen19 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — bitta yukni to'liq lentadan o'tkazamiz: 🔍 skaner + 🎁 o'rash + ✈️ uchirish!", ru: '🚀 Следующий урок — проведём один груз через всю ленту: 🔍 сканер + 🎁 упаковка + ✈️ взлёт!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

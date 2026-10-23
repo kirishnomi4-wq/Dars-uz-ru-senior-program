@@ -27,6 +27,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: React: 1-komponent» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-3). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-3","tur":"file","nom":{"uz":"Uyga vazifa: React: 1-komponent","ru":"Домашнее задание: React: первый компонент"},"matn":{"uz":"Sevimli o'yinlaringiz uchun kartochka komponentini yasang.\n\n1. Vite bilan yangi loyiha oching.\n2. GameCard komponentini alohida faylda yozing: o'yin nomi, emoji va reyting (props orqali).\n3. App'da uni 3 marta, har xil ma'lumot bilan chaqiring.\n4. Kartochkaga className bilan stil bering.\n5. GitHub'ga yuklang. Linkni va localhost:5173 skrinshotini topshiring.\n\nNima tekshiriladi:\n— GameCard.jsx alohida fayl, nomi katta harfda\n— App'da 3 ta chaqiruv, props har xil\n— class emas className\n— skrinshotda 3 ta har xil kartochka.","ru":"Сделайте компонент-карточку для своих любимых игр.\n\n1. Создайте новый проект через Vite.\n2. Напишите компонент GameCard в отдельном файле: название игры, эмодзи и рейтинг (через props).\n3. В App вызовите его 3 раза с разными данными.\n4. Оформите карточку через className.\n5. Загрузите проект на GitHub. Сдайте ссылку и скриншот localhost:5173.\n\nЧто проверяется:\n— GameCard.jsx — отдельный файл, имя с большой буквы\n— в App 3 вызова, props разные\n— className, а не class\n— на скриншоте 3 разные карточки."}};
 
 
 
@@ -2291,11 +2294,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Komponent — Katta harfli funksiya, JSX qaytaradi", ru: 'Компонент — функция с Заглавной буквы, возвращает JSX' },
     { uz: "Props — komponentga ma'lumot: <GameCard name=\"Blox Fruits\" />", ru: 'Props — данные компоненту: <GameCard name="Blox Fruits" />' }
   ];
-  const HOMEWORK = [
-    { b: { uz: "O'rnatish", ru: 'Установка' }, t: { uz: "— kompyuteringizda npm create vite@latest buyrug'i bilan loyiha yarating va npm run dev qiling", ru: '— создайте на своём компьютере проект командой npm create vite@latest и выполните npm run dev' } },
-    { b: { uz: 'Birinchi komponent', ru: 'Первый компонент' }, t: { uz: "— App.jsx ichida OyinKartam komponentini yozib, <OyinKartam /> deb chaqiring", ru: '— напишите в App.jsx компонент OyinKartam и вызовите его: <OyinKartam />' } },
-    { b: { uz: 'Props ovi', ru: 'Охота на props' }, t: { uz: "— unga name props uzatib, sevimli 3 ta o'yiningiz kartochkasini chiqaring", ru: '— передайте ему props name и выведите карточки 3 своих любимых игр' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2318,7 +2316,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Bugungi qadamlarni o'z kompyuteringizda takrorlang:", ru: 'Повторите сегодняшние шаги на своём компьютере:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda kartochkangiz jonlanadi: 👍 bosilganda son o'zi yangilanadi — bu State! 🚀", ru: 'На следующем уроке ваша карточка оживёт: при нажатии 👍 число обновится само — это State! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -36,6 +36,9 @@ const ou = (x) => (x && typeof x === 'object' && !React.isValidElement(x) && x.u
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Navigation va AsyncStorage» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-10). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-10","tur":"file","nom":{"uz":"Uyga vazifa: Navigation va AsyncStorage","ru":"Домашнее задание: Navigation и AsyncStorage"},"matn":{"uz":"Sevimli pitsalarni telefonda saqlang.\n\n1. Tafsilot ekranida «⭐ Sevimli» tugmasi.\n2. Sevimlilar AsyncStorage'da saqlansin.\n3. Menyu'da sevimli pitsa yonida ⭐.\n4. Ilovani butunlay yopib qayta oching — ⭐ joyida turibdi.\n5. Ikki skrinshot (yopishdan oldin va keyin) va repo linki.\n\nNima tekshiriladi:\n— AsyncStorage'ga yozish va o'qish\n— route.params bilan to'g'ri pitsa\n— menyuda belgi\n— qayta ochilganda saqlangan.","ru":"Сохраняйте избранные пиццы в телефоне.\n\n1. На экране деталей — кнопка «⭐ В избранное».\n2. Избранное сохраняется в AsyncStorage.\n3. В меню рядом с избранной пиццей — ⭐.\n4. Полностью закройте приложение и откройте снова — ⭐ на месте.\n5. Два скриншота (до и после закрытия) и ссылка на репозиторий.\n\nЧто проверяется:\n— запись и чтение AsyncStorage\n— правильная пицца через route.params\n— значок в меню\n— сохраняется после повторного открытия."}};
 
 
 
@@ -2105,11 +2108,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 chizma', ru: '1 схема' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Chizing", ru: 'Нарисуйте' }, t: { uz: "— mobil ilovangiz ekranlarini: qaysi ro'yxat, qaysi tafsilot ekrani?", ru: '— экраны своего мобильного приложения: где список, где экран подробностей?' } },
-    { b: { uz: "Ulang", ru: 'Свяжите' }, t: { uz: "— qaysi ekran backend'dan qaysi ma'lumotni oladi?", ru: '— какой экран какие данные получает с бэкенда?' } },
-    { b: { uz: "O'ylang", ru: 'Подумайте' }, t: { uz: "— qaysi kichik ma'lumotni telefonda saqlash qulay?", ru: '— какие небольшие данные удобно хранить в телефоне?' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2132,7 +2130,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>Loyiha kuni: mobil ilova.</b> Bugungi AvtoPizza ilovasiga savat va buyurtma qo'shasiz.</>, ru: <>Следующий урок — <b>Проектный день: мобильное приложение.</b> В сегодняшнее приложение AvtoPizza добавите корзину и заказ.</> })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -1,0 +1,1409 @@
+{
+ "_izoh": "Uyga vazifa testlari (T). Har savol: q — savol, kod — savol ostidagi kod/matn bloki (ixtiyoriy), rasm — rasm/ dagi fayl (ixtiyoriy), v — 4 variant, t — to'g'ri variant indeksi (0–3), h — har variantga neytral hint (LMS talabi), why — ichki izoh (o'quvchiga ko'rinmaydi). Manba: VAZIFALAR.md kartalari va darsning o'zi.",
+ "2-1": [
+  {
+   "q": "kun.uz yozib Enter bosdingiz. Sahifa qaysi tartibda ochiladi?",
+   "v": [
+    "Server → DNS → Brauzer → Ekran",
+    "DNS → Brauzer → Ekran → Server",
+    "Brauzer → DNS → Server → Ekran",
+    "Brauzer → Server → DNS → Ekran"
+   ],
+   "t": 2,
+   "h": [
+    "Server birinchi",
+    "Server oxirida",
+    "DNS server'dan oldin",
+    "Server DNS'dan oldin"
+   ],
+   "why": "Darsdagi tartib: Brauzer → DNS → Server → Ekran. Server manzilini bilish uchun avval DNS'dan IP olinadi."
+  },
+  {
+   "q": "Qaysi biri IP manzil?",
+   "v": [
+    "kun.uz",
+    "www.kun.uz",
+    ".uz",
+    "185.74.5.120"
+   ],
+   "t": 3,
+   "h": [
+    "Harflardan iborat domen",
+    "Domen www bilan",
+    "Domen zonasi",
+    "Nuqta bilan ajratilgan to'rt son"
+   ],
+   "why": "IP manzil — raqamli manzil; qolganlari domen yoki zona."
+  },
+  {
+   "q": "DNS brauzerga nima qaytaradi?",
+   "v": [
+    "Domenning IP manzilini",
+    "Sayt rasmlari va videosini",
+    "Saytning HTML kodini",
+    "Wi-Fi parolini"
+   ],
+   "t": 0,
+   "h": [
+    "Domen raqamga aylanadi",
+    "Saytdagi fayllar",
+    "Sahifaning retsepti",
+    "Uydagi tarmoq kaliti"
+   ],
+   "why": "DNS — telefon kitobi: domen → IP. HTML'ni server yuboradi."
+  },
+  {
+   "q": "Server brauzerga nima yuboradi?",
+   "v": [
+    "Domen nomini",
+    "IP manzilni",
+    "Tayyor sahifa rasmini",
+    "HTML kodni"
+   ],
+   "t": 3,
+   "h": [
+    "Sayt manzilining nomi",
+    "Kompyuterning raqami",
+    "Ekranning surati",
+    "Sahifaning retsepti"
+   ],
+   "why": "Server HTML kod yuboradi, uni brauzer chizadi (kod — retsept, brauzer — oshpaz)."
+  },
+  {
+   "q": "Brauzerga coddycmp.uz yozildi va shu oyna chiqdi. Oynadagi yozuvni o'qing: sayt nega ochilmadi?",
+   "rasm": "2-1-q5.png",
+   "v": [
+    "Brauzer eskirgan",
+    "HTML kodda xato bor",
+    "Domen xato yozilgan",
+    "Server dam olyapti"
+   ],
+   "t": 2,
+   "h": [
+    "Brauzer versiyasi",
+    "Sahifa kodi",
+    "Manzildagi harflar",
+    "Serverning ish vaqti"
+   ],
+   "why": "Haqiqiy Chrome oynasi: «Check if there is a typo» — domen xato (coddycamp.uz da bitta harf tushgan), DNS topmadi (NXDOMAIN). Ko'nikma: xato oynasini o'qib sababni topish."
+  }
+ ],
+ "3-1": [
+  {
+   "q": "Choy damlash qadamlari aralashib ketdi. To'g'ri tartib qaysi?",
+   "v": [
+    "Qaynatish → choy solish → suv quyish → kutish",
+    "Qaynatish → suv quyish → kutish → choy solish",
+    "Suv quyish → qaynatish → choy solish → kutish",
+    "Choy solish → kutish → qaynatish → suv quyish"
+   ],
+   "t": 0,
+   "h": [
+    "Qaynatish birinchi, kutish oxirida",
+    "Choy oxirida",
+    "Suv quyish birinchi",
+    "Choy birinchi"
+   ],
+   "why": "Algoritmda tartib muhim: avval suv qaynaydi, keyin choy, keyin suv quyiladi va kutiladi."
+  },
+  {
+   "q": "«Zaryad 20% dan kam bo'lsa — quvvatlagichga ulang». Bu qaysi tushuncha?",
+   "v": [
+    "Sikl",
+    "Komponent",
+    "Bog'lanish",
+    "Shart"
+   ],
+   "t": 3,
+   "h": [
+    "Bir ishni ko'p marta qaytaradi",
+    "Sistemaning bir qismi",
+    "Qismlarni ulaydigan yo'l",
+    "«…bo'lsa» bilan yo'l tanlaydi"
+   ],
+   "why": "«Agar … bo'lsa» — shart (darsdagi soyabon misoli kabi)."
+  },
+  {
+   "q": "Qaysi qadam sikl?",
+   "v": [
+    "3-qavatgacha har pog'onaga bitta qadam qo'ying",
+    "Velosipedda g'ildirak, rul va pedal bor — uch qism",
+    "Eshik qulf bo'lsa — kalitni oling",
+    "Avval poyabzal, keyin kurtka kiying"
+   ],
+   "t": 0,
+   "h": [
+    "Pog'onalar bo'ylab qadamlar haqida",
+    "Velosiped qismlari haqida",
+    "Eshik va kalit haqida",
+    "Poyabzal va kurtka haqida"
+   ],
+   "why": "Bir harakat ko'p marta takrorlanadi — sikl. 1 — shart, 3 — ketma-ketlik, 4 — sistema."
+  },
+  {
+   "q": "Sxemaga qarang. Yomg'ir yog'masa, nima qilasiz?",
+   "rasm": "3-1-q4.png",
+   "v": [
+    "Soyabon olaman",
+    "Kepka kiyaman",
+    "Uyda qolaman",
+    "Ikkalasini olaman"
+   ],
+   "t": 1,
+   "h": [
+    "«Ha» tarmog'i",
+    "«Yo'q» tarmog'i",
+    "Sxemada yo'q qadam",
+    "Ikki tarmoq birga"
+   ],
+   "why": "Romb — shart; «Yo'q» strelkasi «Kepka kiying» ga boradi."
+  }
+ ],
+ "3-10": [
+  {
+   "q": "Telegram'dagi «Yuborish» tugmasi saytning qaysi qismi?",
+   "v": [
+    "Baza",
+    "Backend",
+    "Frontend",
+    "Server"
+   ],
+   "t": 2,
+   "h": [
+    "Ma'lumot ombori",
+    "Yashirin ishlaydigan qism",
+    "Ko'rib, bosib turadigan qism",
+    "Doim yoniq kompyuter"
+   ],
+   "why": "Ko'rinadigan va bosiladigan hamma narsa — frontend (restoranda zal)."
+  },
+  {
+   "q": "Izoh yozdingiz, sahifani yangiladingiz — izoh yo'qoldi. Nega?",
+   "v": [
+    "Izoh bazaga yozilmagan",
+    "Brauzer eskirgan",
+    "Internet sekin ishlagan",
+    "Izoh juda uzun bo'lgan"
+   ],
+   "t": 0,
+   "h": [
+    "Izoh qayerda saqlanadi",
+    "Brauzer versiyasi",
+    "Tarmoq tezligi",
+    "Matn uzunligi"
+   ],
+   "why": "Darsning hook'i: saqlash yo'q — izoh bazaga (PostgreSQL) yozilmasa, yangilashda yo'qoladi."
+  },
+  {
+   "q": "Foydalanuvchilar ro'yxati yillar davomida qayerda saqlanadi?",
+   "v": [
+    "React komponentida",
+    "Brauzer oynasida",
+    "Express yo'lida",
+    "PostgreSQL bazasida"
+   ],
+   "t": 3,
+   "h": [
+    "Ko'rinish bloki",
+    "Sahifa ochiladigan joy",
+    "So'rov yo'llari",
+    "Restorandagi ombor"
+   ],
+   "why": "PostgreSQL — doimiy ombor; React ko'rsatadi, Express so'rovni yo'naltiradi."
+  },
+  {
+   "q": "Sxemadagi bo'sh katakda nima turadi?",
+   "rasm": "3-10-q4.png",
+   "v": [
+    "Wi-Fi router",
+    "DNS server",
+    "Node.js va Express",
+    "Yana bitta React"
+   ],
+   "t": 2,
+   "h": [
+    "Uydagi internet qurilmasi",
+    "Domen → IP kitobi",
+    "Serverdagi JavaScript va yo'llar",
+    "Ko'rinish kutubxonasi"
+   ],
+   "why": "So'rov sayohati: React (zal) → Express/Node (ofitsiant, oshxona) → PostgreSQL (ombor)."
+  },
+  {
+   "q": "«Stack» nima?",
+   "v": [
+    "Saytning foydalanuvchi ko'radigan qismi",
+    "Bir loyihadagi texnologiyalar to'plami",
+    "Bitta dasturning nomi",
+    "Bazaning bir turi"
+   ],
+   "t": 1,
+   "h": [
+    "Frontend",
+    "Bir nechta texnologiya birga",
+    "Bitta narsa",
+    "Ma'lumot ombori"
+   ],
+   "why": "PERN — stack: PostgreSQL + Express + React + Node bitta jamoa."
+  }
+ ],
+ "4-1": [
+  {
+   "q": "React nima?",
+   "v": [
+    "Brauzerning bir turi",
+    "Interfeys quradigan JS kutubxonasi",
+    "Yangi dasturlash tili",
+    "Sayt ma'lumotlarini saqlaydigan baza"
+   ],
+   "t": 1,
+   "h": [
+    "Saytlarni ochadigan dastur",
+    "Tayyor bo'laklar to'plami",
+    "Dasturlash tili",
+    "Ma'lumot ombori"
+   ],
+   "why": "Dars: React — til emas, JS'da yozilgan kutubxona; interfeys quradi."
+  },
+  {
+   "q": "Rasmdagi 6 ta kartochka bir xil ko'rinishda. React'da ular qanday yasaladi?",
+   "rasm": "4-1-q2.png",
+   "v": [
+    "Har biri alohida sahifada",
+    "6 ta alohida komponent, har biri o'z kodi bilan",
+    "Bitta katta HTML fayl",
+    "Bitta komponent, 6 marta chaqiriladi"
+   ],
+   "t": 3,
+   "h": [
+    "Olti sahifa",
+    "Har kartaga o'z kodi",
+    "Hammasi bir faylda qo'lda",
+    "Bitta qolip, ko'p marta"
+   ],
+   "why": "Komponent — qayta ishlatiladigan bo'lak; kartochka ko'payadi, kod bitta qoladi."
+  },
+  {
+   "q": "Kartochkada like bosildi. React sahifaning nimasini yangilaydi?",
+   "v": [
+    "Faqat like sonini",
+    "Faqat sarlavhani",
+    "Butun sahifani",
+    "Hamma kartochkalarni"
+   ],
+   "t": 0,
+   "h": [
+    "Faqat o'zgargan joy",
+    "Sahifa tepasi",
+    "Hamma narsa qaytadan",
+    "Ro'yxatdagi hamma karta"
+   ],
+   "why": "Virtual DOM farqni topadi — faqat o'zgargan joy yangilanadi."
+  },
+  {
+   "q": "Virtual DOM yangi nusxani nima bilan solishtiradi?",
+   "v": [
+    "Serverdagi sahifa bilan",
+    "CSS fayl bilan",
+    "Eski nusxa bilan",
+    "Boshqa sayt bilan"
+   ],
+   "t": 2,
+   "h": [
+    "Internetdagi sahifa",
+    "Bezak fayli",
+    "Xotiradagi oldingi holat",
+    "Begona sayt"
+   ],
+   "why": "Xotirada eski va yangi nusxa solishtirilib, farq topiladi."
+  },
+  {
+   "q": "React bilimi bilan telefon ilovasi nima orqali yasaladi?",
+   "v": [
+    "Virtual DOM",
+    "React Native",
+    "Vite",
+    "JSX"
+   ],
+   "t": 1,
+   "h": [
+    "Xotiradagi nusxa",
+    "Mobil ilova uchun React",
+    "Loyiha yaratish dasturi",
+    "HTML'ga o'xshash yozuv"
+   ],
+   "why": "Dars: React Native — bir bilim, sayt ham, telefon ilovasi ham."
+  }
+ ],
+ "5-1": [
+  {
+   "q": "Bu yozuvda nechta kalit bor?",
+   "kod": "{ \"title\": \"Chorvoq\", \"likes\": 120, \"user_id\": 3 }",
+   "kodTil": "json",
+   "v": [
+    "1 ta",
+    "3 ta",
+    "6 ta",
+    "120 ta"
+   ],
+   "t": 1,
+   "h": [
+    "Butun yozuv bitta",
+    "Ikki nuqtadan oldingi nomlar",
+    "Kalit va qiymatlar birga",
+    "likes qiymati"
+   ],
+   "why": "Kalitlar: title, likes, user_id — 3 ta."
+  },
+  {
+   "q": "JSON'da qaysi qiymat matn sifatida to'g'ri yozilgan?",
+   "v": [
+    "Toshkent",
+    "120",
+    "\"Toshkent\"",
+    "true"
+   ],
+   "t": 2,
+   "h": [
+    "Qo'shtirnoqsiz so'z",
+    "Qo'shtirnoqsiz son",
+    "Qo'shtirnoq ichidagi so'z",
+    "Rost/yolg'on qiymat"
+   ],
+   "why": "Matn qiymat qo'shtirnoq ichida yoziladi; qo'shtirnoqsiz so'z JSON'da xato."
+  },
+  {
+   "q": "Ikki jadvalga qarang. «Chorvoq» posti qaysi foydalanuvchiniki?",
+   "rasm": "5-1-q3.png",
+   "v": [
+    "tog_sayyoh",
+    "futbol_fan",
+    "rasm_chizar",
+    "Hech kimniki"
+   ],
+   "t": 0,
+   "h": [
+    "users jadvalidagi 3-qator",
+    "users jadvalidagi 1-qator",
+    "users jadvalidagi 2-qator",
+    "Bog'lovchi ustunsiz"
+   ],
+   "why": "posts.user_id = 3 → users.id = 3 → tog_sayyoh (bog'lovchi ustun FK)."
+  },
+  {
+   "q": "Bitta foydalanuvchi va uning postlari qanday bog'langan?",
+   "v": [
+    "Har post — yangi foydalanuvchi",
+    "Bitta → bitta",
+    "Bog'lanmagan",
+    "Bitta → ko'p"
+   ],
+   "t": 3,
+   "h": [
+    "Post soni = odam soni",
+    "Har birida bittadan",
+    "Jadvallar alohida",
+    "Bitta odam, ko'p post"
+   ],
+   "why": "Bitta user ko'p post yozadi — one-to-many."
+  },
+  {
+   "q": "Server o'chib-yondi. Postlar qayerdan qaytadi?",
+   "v": [
+    "Brauzer tarixidan",
+    "Ma'lumotlar bazasidan",
+    "RAM xotiradan",
+    "Hech qayerdan — yo'qoladi"
+   ],
+   "t": 1,
+   "h": [
+    "Brauzerdagi ro'yxat",
+    "Diskka yozilgan ombor",
+    "Vaqtinchalik xotira",
+    "Saqlanmaydi"
+   ],
+   "why": "Baza diskka yozadi; RAM o'chganda tozalanadi."
+  }
+ ],
+ "5-3": [
+  {
+   "q": "Qaysi biri NoSQL bazasi?",
+   "v": [
+    "MySQL",
+    "SQL",
+    "PostgreSQL",
+    "MongoDB"
+   ],
+   "t": 3,
+   "h": [
+    "Jadvalli baza, nomida My",
+    "So'rov tili",
+    "Jadvalli baza, nomida Postgres",
+    "{ } hujjatlar"
+   ],
+   "why": "Dars: NoSQL — MongoDB, Firebase; SQL — PostgreSQL, MySQL."
+  },
+  {
+   "q": "Ikki jadvalni id bo'yicha bitta so'rovda birlashtiradigan amal qaysi?",
+   "v": [
+    "INSERT",
+    "UPDATE",
+    "JOIN",
+    "WHERE"
+   ],
+   "t": 2,
+   "h": [
+    "Qator qo'shadi",
+    "Qiymatni o'zgartiradi",
+    "Jadvallarni birlashtiradi",
+    "Qatorlarni saralaydi"
+   ],
+   "why": "JOIN — SQL'ning bog'lanish kuchi."
+  },
+  {
+   "q": "Oxirgi chiptani ikki kishi bir vaqtda ololmasligini nima kafolatlaydi?",
+   "v": [
+    "Tranzaksiya",
+    "Yangi ustun",
+    "Tez internet",
+    "JSON hujjat"
+   ],
+   "t": 0,
+   "h": [
+    "Amal yo bitta, yo yo'q",
+    "Jadvalga maydon",
+    "Tarmoq tezligi",
+    "Erkin yozuv shakli"
+   ],
+   "why": "Tranzaksiya — SQL bir lahzada faqat bittasiga sotadi."
+  },
+  {
+   "q": "Postlarning birida «musiqa» maydoni bor, qolganlarida yo'q. Qaysi turda yangi maydon qo'shish oson?",
+   "v": [
+    "NoSQL — hujjatga yozib",
+    "SQL — ustun qo'shib",
+    "Ikkalasida bir xil qiyin",
+    "Hech birida bo'lmaydi"
+   ],
+   "t": 0,
+   "h": [
+    "Faqat o'sha hujjatga",
+    "Hamma qatorga ustun",
+    "Farqi yo'q",
+    "Imkonsiz"
+   ],
+   "why": "NoSQL hujjatiga yangi maydon qo'shish oson — boshqalari o'zgarmaydi."
+  },
+  {
+   "q": "PostgreSQL JSON ko'rinishidagi ma'lumotni saqlay oladimi?",
+   "v": [
+    "Faqat MongoDB bilan birga",
+    "Yo'q, faqat jadval",
+    "Ha, saqlay oladi",
+    "Faqat bitta qatorda"
+   ],
+   "t": 2,
+   "h": [
+    "Ikki baza kerak",
+    "Faqat ustunlar",
+    "Egiluvchanligi bor",
+    "Cheklangan joy"
+   ],
+   "why": "Dars kartochkasi: PostgreSQL kerak bo'lsa erkin ma'lumotni ham saqlaydi."
+  }
+ ],
+ "5-5": [
+  {
+   "q": "GET /games/12 keldi. Qaysi eshik ochiladi?",
+   "kod": "app.get('/games', (req, res) => res.send(\"O'yinlar: Adopt Me, Blox Fruits\"))\napp.get('/games/:id', (req, res) => res.send(\"O'yin raqami: \" + req.params.id))\napp.post('/games', (req, res) => res.send(\"Qo'shildi!\"))",
+   "kodTil": "js",
+   "v": [
+    "GET /games",
+    "GET /games/:id",
+    "POST /games",
+    "Hech biri — 404"
+   ],
+   "t": 1,
+   "h": [
+    "app.get('/games') — :id yo'q",
+    "app.get('/games/:id')",
+    "app.post('/games')",
+    "Mos eshik yo'q"
+   ],
+   "why": "GET + /games/:id → app.get('/games/:id')."
+  },
+  {
+   "q": "Shu so'rovda (GET /games/12) req.params.id nimaga teng?",
+   "kod": "app.get('/games/:id', (req, res) => res.send(\"O'yin raqami: \" + req.params.id))",
+   "kodTil": "js",
+   "v": [
+    "'/games/12'",
+    "':id'",
+    "'games'",
+    "'12'"
+   ],
+   "t": 3,
+   "h": [
+    "To'liq manzil",
+    "Path'dagi belgi",
+    "Manzilning boshi",
+    "Manzildagi oxirgi bo'lak"
+   ],
+   "why": "req.params.id — :id o'rnidagi qiymat: '12'."
+  },
+  {
+   "q": "POST /games qaysi eshikka tushadi?",
+   "kod": "app.get('/games', (req, res) => res.send(\"O'yinlar: Adopt Me, Blox Fruits\"))\napp.get('/games/:id', (req, res) => res.send(\"O'yin raqami: \" + req.params.id))\napp.post('/games', (req, res) => res.send(\"Qo'shildi!\"))",
+   "kodTil": "js",
+   "v": [
+    "GET /games/:id",
+    "GET /games",
+    "POST /games",
+    "Hech biri — 404"
+   ],
+   "t": 2,
+   "h": [
+    "app.get('/games/:id')",
+    "app.get('/games') — manzil bir xil",
+    "app.post('/games')",
+    "Mos eshik yo'q"
+   ],
+   "why": "Route = METHOD + PATH: POST /games → app.post('/games')."
+  },
+  {
+   "q": "DELETE /games/3 keldi. Natija?",
+   "kod": "app.get('/games', (req, res) => res.send(\"O'yinlar: Adopt Me, Blox Fruits\"))\napp.get('/games/:id', (req, res) => res.send(\"O'yin raqami: \" + req.params.id))\napp.post('/games', (req, res) => res.send(\"Qo'shildi!\"))",
+   "kodTil": "js",
+   "v": [
+    "app.post ishlaydi",
+    "404 — mos route yo'q",
+    "app.get ishlaydi",
+    "O'yin o'chadi"
+   ],
+   "t": 1,
+   "h": [
+    "POST eshigi",
+    "Mos eshik bo'lmasligi",
+    "Path mos keladi",
+    "O'chirish amali"
+   ],
+   "why": "Method mos kelmasa ham 404 — app.delete yo'q."
+  },
+  {
+   "q": "Route qaysi ikki qismdan iborat?",
+   "v": [
+    "Method va path",
+    "Fayl va papka",
+    "URL va port",
+    "Server va baza"
+   ],
+   "t": 0,
+   "h": [
+    "Shtamp va manzil",
+    "Ikki fayl",
+    "Manzil va eshik raqami",
+    "Ikki qism"
+   ],
+   "why": "Dars: route = METHOD (shtamp) + PATH (manzil)."
+  }
+ ],
+ "5-6": [
+  {
+   "q": "Jadvalga qarang. Bu so'rov nechta qator qaytaradi?",
+   "rasm": "5-6-jadval.png",
+   "kod": "SELECT nom FROM products WHERE narx < 60000;",
+   "kodTil": "sql",
+   "v": [
+    "2 ta",
+    "3 ta",
+    "4 ta",
+    "5 ta"
+   ],
+   "t": 1,
+   "h": [
+    "Ikkita qator",
+    "Uchta qator",
+    "To'rtta qator",
+    "Jadvalning hammasi"
+   ],
+   "why": "Mishka 50000, Sichqoncha 55000, Ruchka 3000 — 3 ta."
+  },
+  {
+   "q": "Qaysi so'rov jadvalga Koptok (45000 so'm, 8 dona) qo'shadi?",
+   "rasm": "5-6-jadval.png",
+   "v": [
+    "SELECT 'Koptok', 45000, 8 FROM products;",
+    "INSERT INTO products (nom, narx, soni) VALUES (Koptok, 45000, 8);",
+    "UPDATE products SET nom = 'Koptok';",
+    "INSERT INTO products (nom, narx, soni) VALUES ('Koptok', 45000, 8);"
+   ],
+   "t": 3,
+   "h": [
+    "SELECT buyrug'i",
+    "INSERT, Koptok qo'shtirnoqsiz",
+    "UPDATE buyrug'i",
+    "INSERT, Koptok qo'shtirnoqda"
+   ],
+   "why": "INSERT + VALUES; matn qiymat qo'shtirnoq ichida."
+  },
+  {
+   "q": "UPDATE products SET narx = 99000; bajarildi. Nima bo'ladi?",
+   "rasm": "5-6-jadval.png",
+   "v": [
+    "Yangi qator qo'shiladi",
+    "Faqat 1-mahsulot narxi o'zgaradi",
+    "Hamma mahsulot narxi 99000 bo'ladi",
+    "Xato chiqadi, hech narsa o'zgarmaydi"
+   ],
+   "t": 2,
+   "h": [
+    "Yangi qator qo'shiladi",
+    "Bitta qatorga ta'sir",
+    "Hamma qatorga ta'sir",
+    "Buyruq xato beradi"
+   ],
+   "why": "WHERE unutilsa — barcha qator o'zgaradi."
+  },
+  {
+   "q": "id = 3 mahsulotni o'chiradigan so'rov qaysi?",
+   "rasm": "5-6-jadval.png",
+   "v": [
+    "SELECT * FROM products WHERE id = 3;",
+    "UPDATE products SET id = 3;",
+    "DELETE FROM products;",
+    "DELETE FROM products WHERE id = 3;"
+   ],
+   "t": 3,
+   "h": [
+    "SELECT buyrug'i",
+    "UPDATE buyrug'i",
+    "Shartsiz DELETE",
+    "Shartli DELETE"
+   ],
+   "why": "DELETE FROM … WHERE id = 3."
+  },
+  {
+   "q": "AI shunday yozdi. Xato qayerda?",
+   "kod": "DELETE FROM product WHERE id = 3;",
+   "kodTil": "sql",
+   "v": [
+    "Jadval nomi — products",
+    "= o'rniga == kerak",
+    "WHERE ortiqcha",
+    "3 qo'shtirnoqqa olinishi kerak"
+   ],
+   "t": 0,
+   "h": [
+    "Jadval nomi",
+    "Tenglik belgisi",
+    "Shart qismi",
+    "Son yozilishi"
+   ],
+   "why": "Dars: AI SQL'ini o'qib tekshirish — jadval nomi products (s bilan)."
+  }
+ ],
+ "5-11": [
+  {
+   "q": "Login (email + parol) to'g'ri bo'lsa, server nima qaytaradi?",
+   "v": [
+    "404 xatoni",
+    "Token",
+    "Parolning o'zini",
+    "Foydalanuvchilar ro'yxatini"
+   ],
+   "t": 1,
+   "h": [
+    "Topilmadi",
+    "Konsert bilaguzugi",
+    "Yuborilgan maxfiy so'z",
+    "Hamma foydalanuvchi"
+   ],
+   "why": "Login to'g'ri — token (bilaguzuk); keyingi so'rovlar token bilan."
+  },
+  {
+   "q": "Token har so'rovda qayerda yuboriladi?",
+   "v": [
+    "Faqat birinchi so'rovda, keyin kerak emas",
+    "Body'da, parol bilan",
+    "Manzil oxirida",
+    "Authorization sarlavhasida"
+   ],
+   "t": 3,
+   "h": [
+    "Bir martalik",
+    "So'rov ichida",
+    "URL ichida",
+    "Bearer bilan sarlavhada"
+   ],
+   "why": "Authorization: Bearer <token> — so'rov sarlavhasida."
+  },
+  {
+   "q": "Himoyalangan route'ga tokensiz so'rov keldi. Server qaysi status qaytaradi?",
+   "v": [
+    "200",
+    "401",
+    "404",
+    "201"
+   ],
+   "t": 1,
+   "h": [
+    "Hammasi joyida",
+    "Kim ekaningiz noma'lum",
+    "Manzil topilmadi",
+    "Yangi yozuv yaratildi"
+   ],
+   "why": "Tokensiz yoki soxta — 401."
+  },
+  {
+   "q": "Tokenning qaysi qismi uni soxta yasashga yo'l qo'ymaydi?",
+   "v": [
+    "Payload",
+    "userId",
+    "Signature (imzo)",
+    "Header"
+   ],
+   "t": 2,
+   "h": [
+    "Kim ekaningiz",
+    "Payload ichidagi qiymat",
+    "Maxfiy kalit bilan qo'yilgan",
+    "Token turi"
+   ],
+   "why": "Imzo JWT_SECRET bilan qo'yiladi; jwt.verify uni tekshiradi."
+  },
+  {
+   "q": ".env fayli .gitignore'da yo'q edi va GitHub'ga yuklandi. Qanday xavf bor?",
+   "v": [
+    "Maxfiy kalit hammaga ochiladi",
+    "Sayt sekinlashadi",
+    "Token muddati darhol tugab qoladi",
+    "Kod o'chib ketadi"
+   ],
+   "t": 0,
+   "h": [
+    "Maxfiy qiymatlar",
+    "Sayt tezligi",
+    "Token muddati",
+    "Repo fayllari"
+   ],
+   "why": ".env ichida JWT_SECRET — repo ochiq bo'lsa, kalitni hamma ko'radi."
+  }
+ ],
+ "6-1": [
+  {
+   "q": "NestJS'da so'rov eng birinchi kimga uchraydi?",
+   "v": [
+    "Controller",
+    "Service",
+    "Guard",
+    "Repository"
+   ],
+   "t": 2,
+   "h": [
+    "Ofitsiant",
+    "Oshpaz",
+    "Eshik qo'riqchisi",
+    "Omborchi"
+   ],
+   "why": "Tartib: Guard → Pipe/DTO → Controller → Service → Repository."
+  },
+  {
+   "q": "Ro'yxatdan o'tishda username bo'sh yuborildi. Qaysi kod qaytadi?",
+   "v": [
+    "404",
+    "400",
+    "401",
+    "500"
+   ],
+   "t": 1,
+   "h": [
+    "Manzil topilmadi",
+    "Anketa xato to'ldirilgan",
+    "Token yo'q",
+    "Server ichida xato"
+   ],
+   "why": "DTO qoidasi buzilsa — nazoratchi to'xtatadi, 400."
+  },
+  {
+   "q": "Parolni shifrlash qaysi qatlamda bo'ladi?",
+   "v": [
+    "DTO",
+    "Controller",
+    "Module",
+    "Service"
+   ],
+   "t": 3,
+   "h": [
+    "Anketa qoidalari",
+    "So'rovni qabul qiladi",
+    "Ro'yxatga olish",
+    "Asosiy ish shu yerda"
+   ],
+   "why": "Asosiy ish har doim Service'da (bcrypt.hash)."
+  },
+  {
+   "q": "Jadvalda qaysi ustunlar borligini qaysi fayl belgilaydi?",
+   "kod": "src/admin/\n├── admin.controller.ts\n├── admin.service.ts\n├── admin.module.ts\n├── dto/create-admin.dto.ts\n└── entities/admin.entity.ts",
+   "kodTil": "text",
+   "v": [
+    "admin.entity.ts",
+    "admin.controller.ts",
+    "create-admin.dto.ts",
+    "admin.module.ts"
+   ],
+   "t": 0,
+   "h": [
+    "Javon chizmasi",
+    "Eshiklar",
+    "Kelgan ma'lumot qoidasi",
+    "Bo'lim ro'yxati"
+   ],
+   "why": "Entity — omborda qanday tokchalar (ustunlar) bo'lishi."
+  },
+  {
+   "q": "Controller yangi service'ni ishlatadi, lekin u Module'dagi providers ro'yxatiga qo'shilmagan. Nima bo'ladi?",
+   "v": [
+    "Baza o'chib ketadi",
+    "Faqat Swagger ro'yxatida ko'rinmay qoladi",
+    "Nest uni topa olmaydi — xato chiqadi",
+    "Hammasi ishlayveradi"
+   ],
+   "t": 2,
+   "h": [
+    "Ma'lumot yo'qoladi",
+    "Hujjatda yo'q",
+    "Shtat jadvalida yo'q",
+    "O'zgarish yo'q"
+   ],
+   "why": "providers — shtat jadvali; ro'yxatda yo'q service'ni Nest ulay olmaydi (dependency xatosi)."
+  }
+ ],
+ "6-8": [
+  {
+   "q": "Lentaga qarang. Endi nima bo'ladi?",
+   "rasm": "6-8-q1.png",
+   "v": [
+    "Lenta to'xtaydi — sayt chiqmaydi",
+    "Skaner o'zi yashil bo'ladi",
+    "Uchirish baribir ishlaydi",
+    "Faqat O'rash o'tkazib yuboriladi"
+   ],
+   "t": 0,
+   "h": [
+    "Keyingi nuqtalar o'tkaziladi",
+    "Qizil o'zi tuzaladi",
+    "Oxirgi nuqta ishlaydi",
+    "Bitta nuqta o'tkaziladi"
+   ],
+   "why": "Bitta nuqta qizil — lenta to'xtaydi, buzuq yuk uchmaydi."
+  },
+  {
+   "q": "npm test lentaning qaysi nuqtasida ishlaydi?",
+   "v": [
+    "Yig'ish",
+    "Skaner",
+    "Uchirish",
+    "O'rash"
+   ],
+   "t": 1,
+   "h": [
+    "Paketlar o'rnatiladi",
+    "Testlar",
+    "Internetga chiqadi",
+    "Sayt tayyor holga keladi"
+   ],
+   "why": "Skaner — test."
+  },
+  {
+   "q": "CI va CD farqi nimada?",
+   "v": [
+    "CI tekshiradi, CD chiqaradi",
+    "CI chiqaradi, CD tekshiradi",
+    "CI — GitHub, CD — Vercel",
+    "Ikkalasi bir xil"
+   ],
+   "t": 0,
+   "h": [
+    "Avval tekshiruv",
+    "Teskari tartib",
+    "Sayt nomlari",
+    "Farq yo'q"
+   ],
+   "why": "CI — har push tekshiriladi; CD — o'tgan yuk o'zi chiqadi."
+  },
+  {
+   "q": "Lentani nima ishga tushiradi?",
+   "v": [
+    "steps",
+    "npm install",
+    "runs-on",
+    "on: push"
+   ],
+   "t": 3,
+   "h": [
+    "Amallar ro'yxati",
+    "Paket o'rnatish",
+    "Qaysi mashina",
+    "Start signali"
+   ],
+   "why": "on: push — har push'da lenta o'zi aylanadi."
+  },
+  {
+   "q": "API kalitini qayerda saqlash kerak?",
+   "v": [
+    "ci.yml ichida, ochiq qatorda",
+    "README'da",
+    "GitHub seyfida (secrets)",
+    "Kod izohida"
+   ],
+   "t": 2,
+   "h": [
+    "Yo'l xaritasi fayli",
+    "Loyiha tavsifi",
+    "Maxfiy saqlash joyi",
+    "Kod ichida"
+   ],
+   "why": "Kalit ci.yml'da ochiq yozilmaydi — secrets (seyf)."
+  }
+ ],
+ "7-1": [
+  {
+   "q": "Bot uch xabar oldi. «salom!!!» ga qaysi handler javob beradi?",
+   "kod": "Siz: /start        → start handleri javob berdi\nSiz: Pitsa         → «Pitsa» handleri javob berdi\nSiz: salom!!!      → ?",
+   "kodTil": "text",
+   "v": [
+    "«Pitsa» handleri",
+    "Fallback handler",
+    "start handleri",
+    "Hech qaysi — bot jim"
+   ],
+   "t": 1,
+   "h": [
+    "Aniq so'z uchun",
+    "Boshqa hamma matn uchun",
+    "/start buyrug'i uchun",
+    "Javob yo'q"
+   ],
+   "why": "Tushunmagan xabarga fallback handler javob beradi."
+  },
+  {
+   "q": "Bot uchun token nima?",
+   "v": [
+    "Telegram parolingiz",
+    "Botning foydalanuvchi nomi",
+    "Botning rasmi",
+    "Botni boshqarish kaliti"
+   ],
+   "t": 3,
+   "h": [
+    "Akkaunt paroli",
+    "@…_bot",
+    "Profil surati",
+    "@BotFather beradi"
+   ],
+   "why": "Token — botni boshqarish kaliti; hech kimga berilmaydi."
+  },
+  {
+   "q": "Token qayerda saqlanadi?",
+   "v": [
+    "Telegram guruhida",
+    "README'da",
+    ".env faylida",
+    "bot.js ichida"
+   ],
+   "t": 2,
+   "h": [
+    "Guruhdagi xabar",
+    "Loyiha tavsifi",
+    "Maxfiy sozlamalar fayli",
+    "Kod fayli"
+   ],
+   "why": ".env — kodda faqat process.env.BOT_TOKEN."
+  },
+  {
+   "q": "Soat 03:00, kompyuteringiz o'chiq. Bot xabarga javob beradimi?",
+   "v": [
+    "Faqat /start ga",
+    "Yo'q — bot dasturi ishlamayapti",
+    "Ha, lekin kechikib",
+    "Ha, Telegram o'zi javob berib turadi"
+   ],
+   "t": 1,
+   "h": [
+    "Bitta buyruq",
+    "Dastur sizning kompyuteringizda",
+    "Kechikish",
+    "Telegram serveri"
+   ],
+   "why": "03:00 sinovi: bot dasturi o'chiq bo'lsa, javob yo'q."
+  },
+  {
+   "q": "Hodisa → ? → javob. O'rtada nima turadi?",
+   "v": [
+    "Handler",
+    "Token",
+    "Webhook",
+    "@BotFather"
+   ],
+   "t": 0,
+   "h": [
+    "Hodisani ushlaydigan kod",
+    "Kalit",
+    "Xabar yetkazish usuli",
+    "Bot ochadigan akkaunt"
+   ],
+   "why": "Hodisa → handler → javob — darsning asosiy modeli."
+  }
+ ],
+ "8-1": [
+  {
+   "q": "To'g'ri tartibdagi buyurtma yo'li qaysi?",
+   "v": [
+    "Foydalanuvchi → Backend → Frontend → Database",
+    "Foydalanuvchi → Frontend → Database",
+    "Foydalanuvchi → Database → Backend",
+    "Foydalanuvchi → Frontend → Backend → Database"
+   ],
+   "t": 3,
+   "h": [
+    "Backend Frontend'dan oldin",
+    "Backend yo'q",
+    "Database ikkinchi",
+    "Har qism o'z joyida"
+   ],
+   "why": "Foydalanuvchi → Frontend → Backend → Database."
+  },
+  {
+   "q": "Chizmadagi xato nima?",
+   "rasm": "8-1-q2.png",
+   "v": [
+    "Database'ga hech qanday strelka kerak emas",
+    "Backend ortiqcha",
+    "Frontend Database'ga Backend'siz ulangan",
+    "Foydalanuvchi chizilmagan"
+   ],
+   "t": 2,
+   "h": [
+    "Baza ulanishi",
+    "Qism ortiqchami",
+    "Strelka qayerga boradi",
+    "Foydalanuvchi qayerda"
+   ],
+   "why": "So'rov Backend orqali o'tadi; Frontend → Database to'g'ridan-to'g'ri — xato."
+  },
+  {
+   "q": "Backend ishlayapti, Database o'chdi. Foydalanuvchi nimani ko'radi?",
+   "v": [
+    "Faqat rasmlar yo'qoladi",
+    "Ma'lumot olinmaydi — xato chiqadi",
+    "Sahifa tezlashadi",
+    "Hammasi avvalgidek ishlayveradi, xato yo'q"
+   ],
+   "t": 1,
+   "h": [
+    "Faqat rasmlar",
+    "Ma'lumot ombori yo'q",
+    "Tezlik",
+    "O'zgarish yo'q"
+   ],
+   "why": "Database — doimiy xotira; usiz ma'lumot kelmaydi."
+  },
+  {
+   "q": "Sayt, bot va mobil ilova bitta mahsulotda. Nechta Backend kerak?",
+   "v": [
+    "Faqat botga bitta",
+    "Backend kerak emas",
+    "Har biriga alohida — 3 ta",
+    "Bitta umumiy Backend"
+   ],
+   "t": 3,
+   "h": [
+    "Bitta kirish yo'li",
+    "Backend'siz",
+    "Uch tizim",
+    "Bitta tizim"
+   ],
+   "why": "Ko'p kirish yo'li — bitta Backend (1-dars, s10)."
+  },
+  {
+   "q": "AI tizimga qayerdan ulanadi?",
+   "v": [
+    "Backend orqali",
+    "Brauzerdan to'g'ridan-to'g'ri",
+    "Telegram orqali",
+    "Database ichidan"
+   ],
+   "t": 0,
+   "h": [
+    "Server tomoni",
+    "Foydalanuvchi qurilmasi",
+    "Messenjer",
+    "Ma'lumot ombori"
+   ],
+   "why": "AI — alohida qism, Backend chaqiradi (kalit serverda)."
+  }
+ ],
+ "8-3": [
+  {
+   "q": "telegram.controller.ts MVC'ning qaysi qismi?",
+   "v": [
+    "Database",
+    "View",
+    "Model",
+    "Controller"
+   ],
+   "t": 3,
+   "h": [
+    "Ombor",
+    "Ko'rinish",
+    "Ma'lumot bilan ishlaydi",
+    "So'rovni qabul qiladi"
+   ],
+   "why": "Controller — so'rovni qabul qiladi (ofitsiant)."
+  },
+  {
+   "q": "Menyu ekrani (React komponent) qaysi qism?",
+   "v": [
+    "View",
+    "Controller",
+    "Service",
+    "Model"
+   ],
+   "t": 0,
+   "h": [
+    "Foydalanuvchi ko'radigan qism",
+    "So'rovni qabul qiladi",
+    "Ish bajaradi",
+    "Ma'lumot bilan ishlaydi"
+   ],
+   "why": "View — zal va menyu (ko'rinish)."
+  },
+  {
+   "q": "Darsdagi MVC bo'yicha: buyurtmani bazaga yozadigan service qaysi qism?",
+   "v": [
+    "View",
+    "Model",
+    "Controller",
+    "PostgreSQL'ning o'zi"
+   ],
+   "t": 1,
+   "h": [
+    "Ko'rinish",
+    "Ma'lumot bilan ishlaydi",
+    "So'rovni qabul qiladi",
+    "Ombor"
+   ],
+   "why": "Dars: baza Model emas — Model u bilan ishlaydi."
+  },
+  {
+   "q": "Bitta Nest ilovasi ichida sayt API'si, bot va admin — hammasi. Bu qanday arxitektura?",
+   "v": [
+    "MVC",
+    "Faqat View",
+    "Monolit",
+    "Mikroservislar"
+   ],
+   "t": 2,
+   "h": [
+    "Ilova ichidagi tartib",
+    "Ko'rinish",
+    "Bitta ilova",
+    "Ko'p mustaqil ilova"
+   ],
+   "why": "Monolit — tizim bitta ilova; MVC — boshqa savol (ichki tartib)."
+  },
+  {
+   "q": "To'lov alohida server, bildirishnoma alohida server. Bu nima?",
+   "v": [
+    "Bitta Controller",
+    "Monolit",
+    "MVC",
+    "Mikroservislar"
+   ],
+   "t": 3,
+   "h": [
+    "Bitta fayl",
+    "Bitta ilova",
+    "Ichki tartib",
+    "Ko'p mustaqil ilova"
+   ],
+   "why": "Tizim bir nechta mustaqil ilovaga bo'lingan — mikroservislar."
+  }
+ ],
+ "8-5": [
+  {
+   "q": "Claude Skill'ni ishlatish-ishlatmaslikni nimaga qarab hal qiladi?",
+   "v": [
+    "name va description'ga",
+    "Papka rangiga",
+    "Fayl hajmiga",
+    "Body'dagi qadamlarga"
+   ],
+   "t": 0,
+   "h": [
+    "Frontmatter",
+    "Ko'rinish",
+    "Fayl o'lchami",
+    "Faylning asosiy qismi"
+   ],
+   "why": "Claude oldindan faqat name + description'ni ko'radi."
+  },
+  {
+   "q": "Bu SKILL.md'da nima yetishmaydi?",
+   "kod": "---\nname: mahsulot-tavsifi\n---\n# Qadamlar\n1. 3 jumla yoz\n2. Narxni ayt",
+   "kodTil": "md",
+   "v": [
+    "--- belgilari",
+    "Body",
+    "description",
+    "name"
+   ],
+   "t": 2,
+   "h": [
+    "Frontmatter chegarasi",
+    "Qadamlar qismi",
+    "Nima qiladi va qachon",
+    "Skill nomi"
+   ],
+   "why": "Frontmatter: name + description. description yo'q — Claude qachon ishlatishni bilmaydi."
+  },
+  {
+   "q": "Body'ga nima yoziladi?",
+   "v": [
+    "Parol va kalitlar",
+    "Qadamlar va misol",
+    "Faqat Skill nomi",
+    "Papka manzili"
+   ],
+   "t": 1,
+   "h": [
+    "Maxfiy narsa",
+    "Ish tartibi",
+    "Frontmatter'da",
+    "Joylashuv"
+   ],
+   "why": "SKILL.md = frontmatter + body (qadamlar + misol)."
+  },
+  {
+   "q": "Bir xil so'rovga Skill ikki marta javob berdi, so'zlar biroz farq qildi. Bu xatomi?",
+   "v": [
+    "Ha — description noto'g'ri yozilgan",
+    "Ha — body juda qisqa",
+    "Ha — Skill buzilgan",
+    "Yo'q — natija uslubga yaqin chiqadi"
+   ],
+   "t": 3,
+   "h": [
+    "Tavsif",
+    "Uzunlik",
+    "Buzilish",
+    "Uslub bir xil"
+   ],
+   "why": "Dars: qarorni Claude qiladi — natija uslubga yaqin, so'zma-so'z bir xil emas."
+  },
+  {
+   "q": "Skill qanday saqlanadi?",
+   "v": [
+    "Papka, ichida SKILL.md",
+    "Telegram xabari",
+    "Bitta .js fayl, papkasiz",
+    "Rasm fayli"
+   ],
+   "t": 0,
+   "h": [
+    "Papka va asosiy fayl",
+    "Messenjer xabari",
+    "Kod fayli",
+    "Surat fayli"
+   ],
+   "why": "Skill — papka, asosiy fayl SKILL.md."
+  }
+ ],
+ "11-8": [
+  {
+   "q": "Foydalanuvchi mahsulotni ko'chada, telefonda ochadi; unga eslatma kelishi kerak. Qaysi trek?",
+   "v": [
+    "Trek kerak emas",
+    "Web-trek",
+    "Mobil trek",
+    "Ikkalasi teng"
+   ],
+   "t": 2,
+   "h": [
+    "Tanlov qilinmaydi",
+    "Brauzerda ochiladigan sayt",
+    "Telefonga o'rnatiladigan ilova",
+    "Farqi yo'q"
+   ],
+   "why": "To'rt savoldan 1 va 2 — mobil tomonga tortadi."
+  },
+  {
+   "q": "To'rt savoldan qaysi javob web tomonga tortadi?",
+   "v": [
+    "Eslatma telefonga kelishi kerak",
+    "Link bilan tez ulashish muhim",
+    "Foydalanuvchi yo'lda ochadi",
+    "Telefon kamerasi kerak"
+   ],
+   "t": 1,
+   "h": [
+    "Telefonga eslatma haqida",
+    "Ulashish",
+    "Qayerda ochadi",
+    "Telefon kamerasi haqida"
+   ],
+   "why": "Mentor misoli: «e'lonni Telegram guruhiga tashlash qulay → web»."
+  },
+  {
+   "q": "Mobil trekdan web-trekka o'tdingiz. Qaysi qism boshqa texnologiyaga o'tadi?",
+   "v": [
+    "Faqat Database",
+    "Faqat ilova — u sayt bo'ladi",
+    "Backend ham, Database ham almashadi",
+    "Hammasi"
+   ],
+   "t": 1,
+   "h": [
+    "Ombor",
+    "Birinchi qism",
+    "Ikki qism",
+    "Uchala qism"
+   ],
+   "why": "Trek faqat birinchi qismni almashtiradi (Expo → React/Vite); Backend va Database o'zgarmaydi."
+  },
+  {
+   "q": "2-telefonda kimdir qo'shildi. 1-telefondagi «8 / 10» qachon «9 / 10» bo'ladi?",
+   "v": [
+    "Hech qachon",
+    "Backend qayta ishga tushganda",
+    "O'sha soniyada o'zi",
+    "Ilova qayta so'raganda"
+   ],
+   "t": 3,
+   "h": [
+    "O'zgarmaydi",
+    "Server qayta yoqilishi",
+    "Darhol",
+    "Yangi so'rov"
+   ],
+   "why": "Ekran ilova qayta so'raganda yangilanadi (pastga tortish / «Yangilash»)."
+  },
+  {
+   "q": "Ilovaning ko'rinishi (rang, dizayn) to'rt savolga kiradimi?",
+   "v": [
+    "Yo'q, kirmaydi",
+    "Ha, to'rtinchi savol",
+    "Faqat web-trekda",
+    "Ha, birinchi savol"
+   ],
+   "t": 0,
+   "h": [
+    "Mezonlar ro'yxati",
+    "Qaysi stek",
+    "Bitta trek",
+    "Qayerda ochadi"
+   ],
+   "why": "Dars s10: «Ko'rinish to'rt savolga kirmaydi»."
+  }
+ ]
+}

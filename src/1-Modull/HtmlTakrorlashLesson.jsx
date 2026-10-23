@@ -24,6 +24,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Takrorlash: HTMLda ishlash» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-5","tur":"compiler","nom":{"uz":"Uyga vazifa: Takrorlash: HTMLda ishlash","ru":"Домашнее задание: Повторение: работа с HTML"},"matn":{"uz":"Rasmdagi kirish (login) sahifasini yasang. HTML'ni o'zingiz yozing. Ranglar va harakatni compiler'dagi AI-agentga yozdiring — unga rasmda nima borligini aniq ayting.\n\n1. Logotip: img + alt.\n2. h1 — «Xush kelibsiz» (yoki rasmdagi sarlavha).\n3. form: «Email» (email) va «Parol» (password), har birida label.\n4. «Kirish» tugmasi.\n5. «Parolni unutdingizmi?» — link (a).\n\nLogotip manzili: https://coddycamp-uyga-vazifa-v2.vercel.app/rasm/assets/logo.png","ru":"Сделайте страницу входа (login), как на картинке. HTML пишите сами. Цвета и анимацию поручите AI-агенту в компиляторе — точно опишите ему, что изображено на картинке.\n\n1. Логотип: img + alt.\n2. h1 — «Добро пожаловать» (или заголовок с картинки).\n3. form: «Email» (email) и «Пароль» (password), у каждого поля — label.\n4. Кнопка «Войти».\n5. «Забыли пароль?» — ссылка (a).\n\nАдрес логотипа: https://coddycamp-uyga-vazifa-v2.vercel.app/rasm/assets/logo.png"}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -1780,12 +1783,6 @@ const ScreenFinal = ({ screen, answers, achievements, onReset, onPrev, onFinish,
     tr({ uz: "Rasm qo'yish (img, src, alt)", ru: 'Ставить картинку (img, src, alt)' }),
     tr({ uz: "Xatoni topib tuzatish va to'liq qobiq yig'ish", ru: 'Находить и чинить ошибки, собирать полную оболочку' }),
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: 'Mavzu tanlang', ru: 'Выберите тему' }), t: tr({ uz: "— sevimli o'yin, musiqa yoki kitob", ru: '— любимая игра, музыка или книга' }) },
-    { b: 'h1 + p', t: tr({ uz: '— nom va 2-3 gap tanishuv', ru: '— название и 2–3 фразы о теме' }) },
-    { b: tr({ uz: "Ro'yxat + link", ru: 'Список + ссылка' }), t: tr({ uz: "— kamida 3 band va bitta sayt", ru: '— минимум 3 пункта и один сайт' }) },
-    { b: tr({ uz: 'Rasm', ru: 'Картинка' }), t: tr({ uz: '— src va alt bilan', ru: '— со src и alt' }) },
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1814,15 +1811,7 @@ const ScreenFinal = ({ screen, answers, achievements, onReset, onPrev, onFinish,
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Xuddi shunday sahifani O'Z mavzuingizda yasang:", ru: 'Сделайте такую же страницу на СВОЮ тему:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. Dars tugagach istalgan payt qaytib kirib davom etsangiz bo'ladi.", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. После урока можно вернуться и продолжить в любой момент.' })}</p>
-          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
-              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-          {!isMentorL && onHomework && (
-            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
-              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
-            </button>
-          )}
-        </div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

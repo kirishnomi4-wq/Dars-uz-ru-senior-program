@@ -30,6 +30,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QXulosa, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Performance: mahsulot tezligi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 14-3). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"14-3","tur":"text","nom":{"uz":"Uyga vazifa: Performance: mahsulot tezligi","ru":"Домашнее задание: Performance: скорость продукта"},"matn":{"uz":"Endi mahsulotingizning eng ko'p ochiladigan ekranini o'lchang.\n\n1. O'sha ekranda «Oldin» — to'rt son (darsdagi sharoitda).\n2. Bitta dalilli tuzatish (rasm, keraksiz kod yoki rasm joyi) — dalili yo'q bo'lsa, «tuzatish kerak emas» va sababi.\n3. «Keyin» — xuddi shu sharoitda.\n4. TEZLIK.md ga ikkinchi bo'lim; repo linki.\n\nNima tekshiriladi:\n— ikkala ustun to'la\n— sharoit bir xil (Incognito, o'sha qurilma)\n— tuzatish dalil bilan\n— natija halol yozilgan (yaxshilanmagan bo'lsa ham).","ru":"Теперь измерьте самый часто открываемый экран своего продукта.\n\n1. На этом экране «До» — четыре числа (в тех же условиях, что на уроке).\n2. Одно исправление с доказательством (картинка, лишний код или место под картинку) — если доказательства нет, «исправление не нужно» и причина.\n3. «После» — в точно таких же условиях.\n4. Второй раздел в TEZLIK.md; ссылка на репозиторий.\n\nЧто проверяется:\n— оба столбца заполнены\n— условия одинаковые (Incognito, то же устройство)\n— исправление с доказательством\n— результат записан честно (даже если не улучшился)."}};
 
 
 
@@ -2858,22 +2861,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== YAKUN — QYakun (texnik darslar standarti, 192/204; SABOQ E 50 — «Bugungi asosiy fikr» yo'q). Sarlavha holatga qarab, har biri rost (E 54); baho taqqoslanmaydi =====
-const HW_QADAM = [
-  { b: { uz: 'Tugatish va yangi versiya', ru: 'Завершить и новая версия' }, t: { uz: "— darsda ulgurmagan qismni bajaring: «Keyin» sonlari `TEZLIK.md` da bo'lsin. Ilova o'zgargan bo'lsa (2-tuzatish) — yangi versiyasini chiqaring: mobil trek — `mobil/` da `npx expo export -p web` → `netlify deploy --prod --dir dist`; APK — `eas build -p android --profile preview` (navbat uzoq), tayyor bo'lgach lendingdagi «Android: ilovani o'rnatish» linki; web-trek — push'dan keyin Netlify o'zi yangilaydi, eski ko'rinsa `prototip/` da `netlify deploy --prod`.", ru: '— доделайте то, на что не хватило времени на уроке: числа «После» должны быть в `TEZLIK.md`. Если приложение изменилось (2-е исправление) — выпустите новую версию: мобильный трек — в `mobil/` `npx expo export -p web` → `netlify deploy --prod --dir dist`; APK — `eas build -p android --profile preview` (очередь долгая), когда будет готов — ссылка «Android: ilovani o\'rnatish» на лендинге; веб-трек — после push Netlify обновит сам, если видна старая версия — в `prototip/` `netlify deploy --prod`.' } },
-  { b: { uz: 'Ilova sahifasi (xohlasangiz)', ru: 'Страница приложения (по желанию)' }, t: { uz: "— Lighthouse'ni ilovangiz sahifasida ham ishlating (web-trek — sayt, mobil trek — brauzer ko'rinishi), xuddi shu sozlama bilan; sonlarni `TEZLIK.md` ga alohida qator qilib yozing.", ru: '— запустите Lighthouse и на странице приложения (веб-трек — сайт, мобильный трек — браузерная версия) с теми же настройками; запишите числа в `TEZLIK.md` отдельной строкой.' } }
-];
-const HwCard = ({ keyingi }) => (
-  <div className="card tz-hw fade-up">
-    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
-    <div className="tz-hw-karta">
-      <span className="tz-hw-q"><em>{tr({ uz: 'kim uchun', ru: 'для кого' })}</em><b>{tr({ uz: "o'z mahsulotingiz", ru: 'ваш продукт' })}</b></span>
-      <span className="tz-hw-q"><em>{tr({ uz: 'nechta', ru: 'сколько' })}</em><b>{tr({ uz: 'ikki ish', ru: 'два дела' })}</b></span>
-      <span className="tz-hw-q"><em>{tr({ uz: 'muddat', ru: 'срок' })}</em><b>{tr({ uz: 'keyingi darsgacha', ru: 'до следующего урока' })}</b></span>
-    </div>
-    <ol className="tz-hw-qadam">{HW_QADAM.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tx(h.t)}</span></li>)}</ol>
-    {keyingi && <span className="tz-hw-keyingi">{keyingi}</span>}
-  </div>
-);
+const HwCard = ({ keyingi }) => <UygaVazifaKarta v={HW_V2} tr={tr} keyingi={keyingi} />;
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;

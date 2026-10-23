@@ -27,6 +27,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Telegram Bot API: menyu va tugmali bot» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-3). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"7-3","tur":"file","nom":{"uz":"Uyga vazifa: Telegram Bot API: menyu va tugmali bot","ru":"Домашнее задание: Telegram Bot API: меню и бот с кнопками"},"matn":{"uz":"Botingizga ikkinchi turdagi tugmalarni qo'shing.\n\n1. /start javobi ostida reply klaviatura: «📋 Menyu» va «📞 Aloqa».\n2. «📋 Menyu» bosilsa — 3-darsdagi inline tugmalar chiqsin (bot.hears).\n3. «📞 Aloqa» bosilsa — telefon raqami yoki manzil.\n4. /help — bot nima qila olishini 3 qatorda aytsin.\n5. @BotFather'da /setcommands bilan buyruqlar ro'yxatini kiriting.\n6. Telegram skrinshotlari va bot.js (tokensiz) faylini yuklang.\n\nNima tekshiriladi:\n— tokensiz fayl, process.env.BOT_TOKEN\n— bot.hears ikki tugmaga\n— /help\n— fallback oxirida\n— skrinshotda reply klaviatura va buyruqlar ro'yxati.","ru":"Добавьте боту кнопки второго типа.\n\n1. Под ответом на /start — reply-клавиатура: «📋 Меню» и «📞 Контакты».\n2. При нажатии «📋 Меню» появляются inline-кнопки с 3-го урока (bot.hears).\n3. При нажатии «📞 Контакты» — номер телефона или адрес.\n4. /help — бот в 3 строках рассказывает, что умеет.\n5. В @BotFather через /setcommands введите список команд.\n6. Загрузите скриншоты из Telegram и файл bot.js (без токена).\n\nЧто проверяется:\n— файл без токена, process.env.BOT_TOKEN\n— bot.hears на две кнопки\n— /help\n— fallback в конце\n— на скриншоте reply-клавиатура и список команд."}};
 
 
 
@@ -2543,11 +2546,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '3 hodisa, 1 buyruq', ru: '3 события, 1 команда' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Sinang', ru: "Попробуйте" }, t: { uz: "— amaliyotdagi botni ishga tushirib, uch hodisani tekshiring: /menu buyrug'i, inline tugma, reply klaviatura", ru: "— запустите бота из практики и проверьте три события: команду /menu, inline-кнопку, reply-клавиатуру" } },
-    { b: { uz: "Qo'shing", ru: "Добавьте" }, t: { uz: "— /help buyrug'ini qo'shing: u 13-ekrandagi buyruqlar ro'yxatini yuborsin", ru: "— команду /help: пусть она присылает список команд с 13-го экрана" } },
-    { b: { uz: 'Tekshiring', ru: "Проверьте" }, t: { uz: "— kodda token yo'qligini, .env esa .gitignore'da ekanini tekshiring", ru: "— что в коде нет токена, а .env указан в .gitignore" } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2570,7 +2568,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>«Bot eslab qoladi — holat va PostgreSQL»</b>. Bot mijoz tanlagan pitsani eslab qoladi: suhbat holatini PostgreSQL bazasida saqlaymiz.</>, ru: <>Следующий урок — <b>«Бот запоминает — состояние и PostgreSQL»</b>. Бот запомнит, какую пиццу выбрал клиент: состояние разговора сохраним в базе PostgreSQL.</> })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Nishonlaringiz —', ru: "Ваши значки —" })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

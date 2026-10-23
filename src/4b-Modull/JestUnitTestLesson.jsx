@@ -28,6 +28,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Loyihani sinovdan o'tkazish (Jest)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"6-5","tur":"file","nom":{"uz":"Uyga vazifa: Loyihani sinovdan o'tkazish (Jest)","ru":"Домашнее задание: Тестирование проекта (Jest)"},"matn":{"uz":"KitobShop uchun yangi funksiyani testlang.\n\n1. deliveryFee(total): buyurtma 100 000 so'm va undan ko'p bo'lsa — 0, kam bo'lsa — 15 000.\n2. delivery.spec.ts da uch test: 150 000 → 0, aynan 100 000 → 0, 99 000 → 15 000. Birinchisi namuna: it('150 000 — yetkazish bepul', () => { expect(deliveryFee(150000)).toBe(0); }); — qolgan ikkitasini o'zingiz yozing.\n3. Ataylab bitta etalonni xato yozing — npm test qizil chiqsin. Skrinshot (Expected/Received ko'rinsin).\n4. Etalonni tuzating — hammasi yashil. Skrinshot.\n5. delivery.ts va delivery.spec.ts fayllarini yuklang.\n\nNima tekshiriladi:\n— 3 ta it, har birida expect\n— chegara 100 000 sinalgan\n— qizil skrinshotda Expected/Received\n— yashil skrinshot.","ru":"Протестируйте новую функцию для KitobShop.\n\n1. deliveryFee(total): если заказ 100 000 сум и больше — 0, если меньше — 15 000.\n2. В delivery.spec.ts три теста: 150 000 → 0, ровно 100 000 → 0, 99 000 → 15 000. Первый — образец: it('150 000 — доставка бесплатно', () => { expect(deliveryFee(150000)).toBe(0); }); — остальные два напишите сами.\n3. Специально напишите один эталон неправильно — npm test должен стать красным. Скриншот (видны Expected/Received).\n4. Исправьте эталон — всё зелёное. Скриншот.\n5. Загрузите файлы delivery.ts и delivery.spec.ts.\n\nЧто проверяется:\n— 3 it, в каждом есть expect\n— граница 100 000 проверена\n— на красном скриншоте Expected/Received\n— зелёный скриншот."}};
 
 
 
@@ -2429,11 +2432,6 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "expect(...).toBe(...) — etalon kartochkasi; expectsiz test yolg'on", ru: 'expect(...).toBe(...) — карточка-эталон; тест без expect — ложный' },
     { uz: "npm test → yashil PASS / qizil FAIL (Expected va Received)", ru: 'npm test → зелёный PASS / красный FAIL (Expected и Received)' }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Yangi test', ru: 'Новый тест' }, t: { uz: "— orderTotal(7000, 4) uchun etalon kartochkasini yozing", ru: '— напишите карточку-эталон для orderTotal(7000, 4)' } },
-    { b: 'AAA', t: { uz: "— Tayyorlash → Chaqirish → Tekshirish tartibini qo'llang", ru: '— примените порядок «Подготовка → Вызов → Проверка»' } },
-    { b: { uz: 'AI bilan', ru: 'С ИИ' }, t: { uz: "— AI'dan test so'rang: expect bormi, etalon raqami to'g'rimi", ru: '— попросите тест у ИИ: есть ли expect, верно ли число эталона' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2456,7 +2454,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi dars — Jestbotning og'ir rejimi: 0 dona, manfiy narx, bo'sh matn (edge cases).", ru: '🚀 Следующий урок — тяжёлый режим Джестбота: 0 штук, отрицательная цена, пустая строка (edge cases).' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

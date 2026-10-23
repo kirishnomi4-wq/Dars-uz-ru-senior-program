@@ -28,6 +28,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Retention-mexanikalar (Telegram xabari)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 13-8). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"13-8","tur":"file","nom":{"uz":"Uyga vazifa: Retention-mexanikalar (Telegram xabari)","ru":"Домашнее задание: Механики удержания (сообщение в Telegram)"},"matn":{"uz":"Telegram xabarini haqiqiy foydalanuvchilarda ko'ring.\n\n1. Ikki do'stingiz Telegram'ni mahsulotingizga ulasin.\n2. Haqiqiy o'zgarish yuz berganda xabar ularga borsin — skrinshot (ruxsat bilan).\n3. Shu hafta ikkinchi marta o'zgarish bo'lsa — chegara ishlab, xabar ketmaganini log yoki jadvaldan ko'rsating.\n4. Sanoq sahifasidagi «Telegram'dan ochdi» soni skrinshoti va repo linki.\n\nNima tekshiriladi:\n— 2 ta real ulanish\n— xabar haqiqiy o'zgarishda\n— haftalik chegara isboti\n— o'chirish linki xabarda bor.","ru":"Посмотрите, как сообщение в Telegram работает на реальных пользователях.\n\n1. Пусть два друга подключат Telegram к вашему продукту.\n2. Когда происходит реальное изменение, им приходит сообщение — скриншот (с их разрешения).\n3. Если на этой неделе изменение случилось второй раз — покажите по логу или таблице, что сработало ограничение и сообщение не ушло.\n4. Скриншот числа «Открыли из Telegram» на странице счёта и ссылка на репозиторий.\n\nЧто проверяется:\n— 2 реальных подключения\n— сообщение — при реальном изменении\n— доказательство недельного ограничения\n— в сообщении есть ссылка для отключения."}};
 
 
 
@@ -2325,7 +2328,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className={cx('wb-yakun', !uchala && 'belgisiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}

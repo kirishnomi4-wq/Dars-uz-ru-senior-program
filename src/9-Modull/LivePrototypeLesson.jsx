@@ -36,6 +36,9 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QTaxmin, QQadamlar, QXato, QIzoh, QXulosa, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKod, QMustaqil, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Figma o'rniga jonli prototip» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 11-7). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"11-7","tur":"text","nom":{"uz":"Uyga vazifa: Figma o'rniga jonli prototip","ru":"Домашнее задание: Живой прототип вместо Figma"},"matn":{"uz":"Prototipingizni ikki odamda sinang — kod yozishdan oldin.\n\n1. Ikki odamga (oila, do'st) bitta vazifa bering: asosiy yo'lni bosib o'tish. Tushuntirmang.\n2. README'ga «Prototip sinovi»: kim, qanday vazifa, qayerda to'xtadi yoki adashdi.\n3. Ikkalasi to'xtagan joyni tuzating (ekran yoki tugma yozuvi); push qiling.\n4. Repo linki.\n\nNima tekshiriladi:\n— 2 ta real odam\n— to'xtagan joy aniq yozilgan\n— tuzatish commit'i\n— prototip hali ham bosiladi.","ru":"Проверьте свой прототип на двух людях — до того, как писать код.\n\n1. Дайте двум людям (семья, друзья) одно задание: пройти основной путь. Ничего не объясняйте.\n2. В README — «Проверка прототипа»: кто, какое задание, где остановился или запутался.\n3. Исправьте место, где остановились оба (экран или надпись на кнопке); сделайте push.\n4. Ссылка на репозиторий.\n\nЧто проверяется:\n— 2 реальных человека\n— место остановки описано точно\n— коммит с исправлением\n— прототип по-прежнему кликается."}};
 
 
 
@@ -2561,23 +2564,7 @@ const YAKUN = {
   a1: { chip: { uz: 'Prototip bosiladi', ru: "Прототип кликабельный" }, s: { uz: <>Bosiladigan prototipingiz tayyor — <span className="italic" style={{ color: T.accent }}>animatsiya uyda</span>.</>, ru: <>Ваш кликабельный прототип готов — <span className="italic" style={{ color: T.accent }}>анимация дома</span>.</> } },
   yoq: { chip: null, s: { uz: <>Prototip boshlandi — <span className="italic" style={{ color: T.accent }}>qolgan qadamlar uyda</span>.</>, ru: <>Прототип начат — <span className="italic" style={{ color: T.accent }}>остальные шаги дома</span>.</> } }
 };
-const HW_KARTA = [
-  { k: { uz: 'Kim uchun', ru: 'Для кого' }, v: { uz: "o'z mahsulotingiz", ru: 'ваш продукт' } },
-  { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
-];
-const HW_BAND = [
-  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "darsda ulgurmagan qadamlarni o'z repo'ngizda bajaring: ekranlar bosilsin, uch animatsiya ishlasin.", ru: "выполните в своём репо шаги, на которые не хватило урока: экраны кликабельные, три анимации работают." } },
-  { b: { uz: 'README', ru: 'README' }, t: { uz: "`README.md` da talab va wireframe surati tursin, GitHub'ga yuborilgan bo'lsin.", ru: 'в `README.md` есть требование и снимок wireframe, и всё отправлено на GitHub.' } },
-  { b: { uz: 'Tekshirish', ru: 'Проверка' }, t: { uz: "prototipni telefon ko'rinishida bosib chiqing: wireframe'dagi har tugma kerakli ekranni ochadimi?", ru: 'пройдите прототип в виде телефона: открывает ли каждая кнопка из wireframe нужный экран?' } }
-];
-const HwCard = ({ keyingi }) => (
-  <div className="card jp-hw fade-up">
-    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
-    <div className="jp-hw-karta">{HW_KARTA.map((r, i) => <div key={i} className="jp-hw-q"><span className="jp-hw-k">{tr(r.k)}</span><span className="jp-hw-v">{tr(r.v)}</span></div>)}</div>
-    <ol className="jp-hw-band">{HW_BAND.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> — {tx(h.t)}</span></li>)}</ol>
-    {keyingi && <p className="jp-hw-keyingi">{keyingi}</p>}
-  </div>
-);
+const HwCard = ({ keyingi }) => <UygaVazifaKarta v={HW_V2} tr={tr} keyingi={keyingi} />;
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;

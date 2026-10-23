@@ -3463,6 +3463,9 @@ ammo vizual ham ko'rinsin, mos bo'lsin, yaxshi bo'lsin» · javobida: «faqat UI
    test-ekranlarga bog'liq emas — o'zgarmaydi (faqat darsga zid variant matni, o'rni saqlanadi). `INLINE_KEYS` 2 ta, RECAPS 2 ta.
 4. **Nishonlar 3:** ikki test + bitta amaliyot-bonus (A3 oxirgi «Bajardim», birinchi urinish sharti yo'q — memory `nishon-bonus-qismaslik`).
    Uyga vazifa bloki yakundan olinadi — ish repo'da, keyingi dars shu repo ustida.
+   **Tuzatish (F-1023-03, 23.10.2026, foydalanuvchi):** bu jumla bekor. LMS'da har kod/praktika darsiga uyga vazifa v2 bor (21.10, 101 ta) —
+   yakunda «Uyga vazifa» tugmasi va `UygaVazifaKarta` (`src/qolip/UygaVazifaKarta.jsx`); shartlar LMS bilan bir xil, manba
+   `uyga-vazifa-v2/lms/paket.json`, darsga `scripts/hw-v2-kartalar.mjs` yozadi. Vazifa matni o'zgarsa — paket.json, keyin skript qayta yuradi.
 5. **Jarayon:** MD v2 (retsept F, A-bo'lim = qolip qoidalari, har ekran ostida `✎` eski ekran qayerga ketgani) → GATE M → kod bitta
    anchor-tekshiruvli skript bilan (asl nusxa `arxiv/`ga) → `gates` 11/11 + `lint:jsx` + `lint:sarlavha` → surat (uz + 2–3 ru) → ko'z → foydalanuvchi.
    Suratdan topilgan nuqson MD'ga `⚙` bilan qaytariladi (MD = manba-haqiqat).

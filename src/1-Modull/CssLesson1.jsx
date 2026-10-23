@@ -24,6 +24,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: CSS asoslari» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-7). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-7","tur":"compiler","nom":{"uz":"Uyga vazifa: CSS asoslari","ru":"Домашнее задание: Основы CSS"},"matn":{"uz":"Kino afishasi tayyor HTML'da turibdi. style.css ga qoidalar yozib, rasmdagidek qiling.\n\n1. body — fon rangi #F4F4F4, shrift Arial.\n2. .card — fon oq, ichki bo'shliq 24px, tashqi bo'shliq 40px.\n3. #title — rang #FF4D26, o'lcham 32px, markazda.\n4. .genre — qalin.\n5. p — o'lcham 18px.","ru":"HTML киноафиши уже готов. Напишите правила в style.css, чтобы получилось как на картинке.\n\n1. body — цвет фона #F4F4F4, шрифт Arial.\n2. .card — белый фон, внутренний отступ 24px, внешний отступ 40px.\n3. #title — цвет #FF4D26, размер 32px, по центру.\n4. .genre — жирный.\n5. p — размер 18px."}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -1707,11 +1710,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     { uz: 'Google Fonts — link bilan olib kelinadi, keyin ishlatiladi', ru: 'Google Fonts — приносим ссылкой, потом используем' },
     { uz: "Bo'shliqlar — padding (ichki), margin (tashqi)", ru: 'Отступы — padding (внутренний), margin (внешний)' }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Ranglar', ru: 'Цвета' }, t: { uz: '— sahifangizga color va background bering', ru: '— задайте странице color и background' } },
-    { b: { uz: 'Shrift', ru: 'Шрифт' }, t: { uz: '— font-family va font-size tanlang', ru: '— выберите font-family и font-size' } },
-    { b: { uz: "Bo'shliq", ru: 'Отступы' }, t: { uz: '— padding va margin bilan tartibga soling', ru: '— наведите порядок с padding и margin' } }
-  ];
   const GLOSSARY = [
     { b: 'CSS', t: { uz: '— bezak tili', ru: '— язык оформления' } },
     { b: { uz: 'Selektor', ru: 'Селектор' }, t: { uz: '— qaysi element (h1)', ru: '— какой элемент (h1)' } },
@@ -1750,15 +1748,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🎨 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'HTML sahifangizni CSS bilan bezang:', ru: 'Украсьте свою HTML-страницу с помощью CSS:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. Keyingi darsda chegaralar, soyalar va joylashuvni o'rganamiz!", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. На следующем уроке — рамки, тени и расположение!' })}</p>
-          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
-              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-          {!isMentorL && onHomework && (
-            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
-              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
-            </button>
-          )}
-        </div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

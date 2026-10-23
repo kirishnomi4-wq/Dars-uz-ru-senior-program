@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from 'react';
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, setLiveLang, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Internet qanday ishlaydi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-1). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-1","tur":"test","nom":{"uz":"Uyga vazifa: Internet qanday ishlaydi","ru":"Домашнее задание: Как работает интернет"},"matn":null,"n":5};
 
 // ===== Mentor avatari — oddiy emoji icon (rasmga bog'liq emas) =====
 
@@ -2618,7 +2621,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArena(true);
   };
   const RECAP = [{ uz: 'Internet — qurilmalarni bog\'lovchi tarmoq', ru: 'Интернет — сеть, связывающая устройства' }, { uz: 'Brauzer — saytni ochib beruvchi dastur', ru: 'Браузер — программа, открывающая сайт' }, { uz: 'Domen — saytning manzili (youtube.com)', ru: 'Домен — адрес сайта (youtube.com)' }, { uz: 'IP — kompyuterlar uchun raqamli manzil', ru: 'IP — числовой адрес для компьютеров' }, { uz: 'DNS — domenni IP\'ga aylantiradi', ru: 'DNS — превращает домен в IP' }, { uz: 'Server — saytni saqlaydi va qaytaradi', ru: 'Сервер — хранит и отдаёт сайт' }];
-  const HOMEWORK = [{ b: { uz: 'Kuzating', ru: 'Понаблюдайте' }, t: { uz: '— sevimli saytingiz domeni nima?', ru: '— какой домен у вашего любимого сайта?' } }, { b: { uz: 'Tasavvur qiling', ru: 'Представьте' }, t: { uz: '— sayt brauzeringizga qanday yo\'l bosib kelishini', ru: '— какой путь сайт проходит до вашего браузера' } }, { b: { uz: 'Tushuntiring', ru: 'Объясните' }, t: { uz: '— do\'stingizga internet qanday ishlashini', ru: '— другу, как работает интернет' } }];
   const GLOSSARY = [{ b: 'Internet', t: { uz: '— tarmoqlar tarmog\'i', ru: '— сеть сетей' } }, { b: 'Brauzer', t: { uz: '— saytni ochuvchi dastur', ru: '— программа, открывающая сайт' } }, { b: 'Domen', t: { uz: '— sayt manzili', ru: '— адрес сайта' } }, { b: 'IP', t: { uz: '— raqamli manzil', ru: '— числовой адрес' } }, { b: 'DNS', t: { uz: '— domen → IP', ru: '— домен → IP' } }, { b: 'Server', t: { uz: '— saytni saqlovchi kompyuter', ru: '— компьютер, хранящий сайт' } }, { b: 'So\'rov', t: { uz: '— brauzer → DNS → server → ekran', ru: '— браузер → DNS → сервер → экран' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2651,7 +2653,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🔎 Uyga vazifa', ru: '🔎 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Internetni hayotda kuzating:', ru: 'Понаблюдайте за интернетом в жизни:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Javoblaringizni platformadagi vazifa-savoliga yozib yuborasiz.", ru: 'Ответы отправите в задание на платформе.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -1,6 +1,16 @@
 {
-  "_izoh": "TIL-LINT qoidalari — MATN_ETALONI.md lug'ati + PM_DARS_ETALON qonunlaridan distillangan. Yangi feedback kelganda: (1) MATN_ETALONI lug'atiga qator, (2) SHU YERGA qoida. Har qoida: pattern (JS regex), severity (error=aniq taqiq / warn=ko'rib chiqish), suggest (nima deyish), law (manba), except (shu regex mos kelgan qator o'tkaziladi), allowFiles (shu fayllarda ruxsat).",
+  "_izoh": "TIL-LINT qoidalari — MATN_ETALONI.md lug'ati + PM_DARS_ETALON qonunlaridan distillangan. Yangi feedback kelganda: (1) MATN_ETALONI lug'atiga qator, (2) SHU YERGA qoida. Har qoida: pattern (JS regex), severity (error=aniq taqiq / warn=ko'rib chiqish), suggest (nima deyish), law (manba), except (shu regex mos kelgan qator o'tkaziladi), allowFiles (shu fayllarda ruxsat), onlyFiles (faqat yo'lida shu bo'lak bor fayllarda ishlaydi).",
   "rules": [
+    {
+      "id": "dasturchi-topshiriq",
+      "pattern": "[Dd]asturchi(lar)?(ga|dan|ning)\\b|[Dd]asturchi(lar)? [^.\"'«]{0,25}(dedi|aytdi|aytadi|yozib berdi|yozdi|yozadi|taklif qildi|tuzatdi|topshirdi|tekshirgan)|[Dd]asturchi(lar)? «",
+      "severity": "error",
+      "onlyFiles": ["/Pm", "bridge/lessons/"],
+      "allowFiles": [".homework", "PmAudienceLesson", "PmLesson22", "PmLesson13", "PmLesson16", "PmLesson12", "PmLesson10", "PmProductProblemLesson", "BridgeNimaQuramiz", "BridgeKimUchun"],
+      "except": "Cyberpunk|studiya|Frontend dasturchi|Backend dasturchi|kasb|yo'nalish",
+      "suggest": "110-qonun (F-1022-01): o'quvchi PM emas, startapchi — ish beradigan dasturchisi yo'q. Ish bajaruvchi va «tayyor» deydigan — AI (Gemini): «dasturchidan so'radingiz» → «Gemini'dan so'radingiz», «dasturchiga beramiz» → «promptga qo'shamiz», «dasturchi yozadi» → «AI yozadi». Ruxsat: haqiqiy keysdagi uchinchi shaxs, kasb nomi. allowFiles — hali tuzatilmagan darslar (KATTA §31), yopilgach o'chiriladi; `.homework` doimiy (PM uy vazifalariga tegilmaydi — memory pm-homework-tegilmaydi).",
+      "law": "PM_DARS_ETALON 110 · KORPUS §O'QUVCHI-STARTAPCHI"
+    },
     {
       "id": "masalliq",
       "pattern": "masalliq",

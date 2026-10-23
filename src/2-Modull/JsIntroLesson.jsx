@@ -22,6 +22,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Sistema va Algoritm» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-1). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"3-1","tur":"test","nom":{"uz":"Uyga vazifa: Sistema va Algoritm","ru":"Домашнее задание: Система и алгоритм"},"matn":null,"n":4};
 
 
 
@@ -1731,7 +1734,6 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
     setArena(true);
   };
   const RECAP = [tr({ uz: "Sistema — komponentlar va bog'lanishlar", ru: 'Система — компоненты и связи' }), tr({ uz: 'Atrofdagi sistemalar (jamoa, maktab, sayt)', ru: 'Системы вокруг нас (команда, школа, сайт)' }), tr({ uz: 'Algoritm — aniq qadamlar tartibi', ru: 'Алгоритм — порядок точных шагов' }), tr({ uz: 'Ketma-ketlik — tartib muhim', ru: 'Последовательность — порядок важен' }), tr({ uz: "Shart (agar...bo'lsa) va Sikl (takrorla)", ru: 'Условие (если... то) и Цикл (повтори)' })];
-  const HOMEWORK = [{ b: tr({ uz: 'Sistemani toping', ru: 'Найдите систему' }), t: tr({ uz: '— atrofingizdan 1 sistema toping, qismlarini yozing', ru: '— найдите вокруг себя 1 систему и запишите её части' }) }, { b: tr({ uz: 'Algoritm yozing', ru: 'Напишите алгоритм' }), t: tr({ uz: '— maktabga tayyorgarlikni qadam-baqadam yozing', ru: '— распишите сборы в школу шаг за шагом' }) }, { b: tr({ uz: "Shart qo'shing", ru: 'Добавьте условие' }), t: tr({ uz: '— "agar... bo\'lsa..." qadamini qo\'shing', ru: '— добавьте шаг «если... то...»' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1762,7 +1764,7 @@ const Screen16 = ({ screen, answers, onReset, onPrev, onFinish }) => {
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Atrofingizdagi hayotni algoritm qilib yozing:', ru: 'Опишите жизнь вокруг себя в виде алгоритма:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Keyingi darsda shu algoritmlarni kompyuterga JavaScript tilida yozishni boshlaymiz! 🚀', ru: 'На следующем уроке начнём записывать эти алгоритмы для компьютера на языке JavaScript! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {/* 🔴 Nishon-kolleksiyasi — SHAXSIY hisob, mentor proyektorida ko'rsatilmaydi (90-qonun) */}
         {!isMentorL && <div className="card fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши награды —' })} {earned ? earned.size : 0}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid" style={{ marginTop: 8 }}>{Object.entries(ACHIEVEMENTS).map(([id, a]) => { const got = !!(earned && earned.has(id)); return (

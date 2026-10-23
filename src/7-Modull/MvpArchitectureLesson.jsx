@@ -34,6 +34,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKarta, QChip, QBashorat, QTaxmin, QQadamlar, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Mini-MVP arxitekturasi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 9-4). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"9-4","tur":"file","nom":{"uz":"Uyga vazifa: Mini-MVP arxitekturasi","ru":"Домашнее задание: Архитектура мини-MVP"},"matn":{"uz":"Darsda saqlagan ikki promptni o'z MVP'ingiz papkasida bajaring.\n\n1. O'z MVP'ingiz uchun repo: backend/ va web/.\n2. Backend Neon'ga ulansin; asosiy jadvalingiz yaratilsin (ustunlarini README'ga yozing).\n3. Birinchi ekran hozircha statik ma'lumot bilan chiqsin.\n4. README'ga uch qism chizmasi: sayt → Backend → Database, har biri qayerda turadi.\n5. Repo linki; Neon'dagi jadval va localhost:5173 skrinshotlari.\n\nNima tekshiriladi:\n— repo'da backend va web\n— jadval Neon'da, ustunlar README'da\n— birinchi ekran ochiladi\n— .env repo'da yo'q\n— chizma.","ru":"Выполните два промпта, сохранённые на уроке, в папке своего MVP.\n\n1. Репозиторий для вашего MVP: backend/ и web/.\n2. Backend подключён к Neon; создана ваша основная таблица (столбцы запишите в README).\n3. Первый экран пока выводится со статичными данными.\n4. В README — схема из трёх частей: сайт → Backend → Database, где находится каждая.\n5. Ссылка на репозиторий; скриншоты таблицы в Neon и localhost:5173.\n\nЧто проверяется:\n— в репозитории есть backend и web\n— таблица в Neon, столбцы в README\n— первый экран открывается\n— .env нет в репозитории\n— схема."}};
 
 
 
@@ -2316,11 +2319,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '2 prompt', ru: '2 промпта' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Chizma', ru: 'Схема' }, t: { uz: "— o'z MVP ingiz chizmasini chizing: qismlar, jadval ustunlari va yo'llar.", ru: '— нарисуйте схему своего MVP: части, столбцы таблицы и маршруты.' } },
-    { b: { uz: 'Skelet', ru: 'Каркас' }, t: { uz: '— bloklarda yozgan ikki promptingizni o\'z loyihangiz papkasida yuboring.', ru: '— отправьте два промпта из блоков в папке своего проекта.' } },
-    { b: { uz: 'Tekshirish', ru: 'Проверка' }, t: { uz: "— `localhost:5173` va `localhost:3000` ochiladi, jadval Neon'da ko'rinadi.", ru: '— открываются `localhost:5173` и `localhost:3000`, таблица видна в Neon.' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
@@ -2336,7 +2334,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         </>}
         recap={RECAP.map(tr)}
-        uyga={<div className="card hwk fade-up d4"><div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {fmtCode(tr(h.t))}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>«Animatsiya: interfeys javob beradi»</b>. Bugungi statik kataklar bosilganda javob beradigan bo'ladi.</>, ru: <>Следующий урок — <b>«Анимация: интерфейс отвечает»</b>. Сегодняшние статичные ячейки начнут отвечать на нажатие.</> })}</p></div>}
+        uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
         nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
       />

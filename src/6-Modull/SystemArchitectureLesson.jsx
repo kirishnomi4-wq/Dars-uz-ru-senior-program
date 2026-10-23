@@ -34,6 +34,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKarta, QChip, QBashorat, QTaxmin, QQadamlar, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Front + back + baza + AI + bot» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-1). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-1","tur":"test","nom":{"uz":"Uyga vazifa: Front + back + baza + AI + bot","ru":"Домашнее задание: Front + back + база + AI + бот"},"matn":null,"n":5};
 
 
 
@@ -2131,11 +2134,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: "1 chizma, 1 so'rov yo'li", ru: '1 схема, 1 путь запроса' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Chizing", ru: 'Нарисуйте' }, t: { uz: "— o'z loyihangiz arxitekturasini chizing: unda qaysi qismlar bor?", ru: '— нарисуйте архитектуру своего проекта: какие в нём есть части?' } },
-    { b: { uz: "Yo'l", ru: 'Путь' }, t: { uz: "— bitta amal uchun (masalan, «buyurtma berish») so'rov yo'lini chizib chiqing", ru: '— нарисуйте путь запроса для одного действия (например, «оформить заказ»)' } },
-    { b: { uz: "Kirish yo'llari", ru: 'Точки входа' }, t: { uz: "— loyihangizga qaysilari kerak: web, bot, mobil?", ru: '— какие из них нужны вашему проекту: веб, бот, мобильное?' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
@@ -2151,7 +2149,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         </>}
         recap={RECAP.map(tr)}
-        uyga={<div className="card hwk fade-up d4"><div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>Bitta gapni uch kishi bir xil tushunadimi?</b> Kod yozishdan oldin g'oyani bitta varaqqa yozishni o'rganamiz.</>, ru: <>Следующий урок — <b>Поймут ли одну фразу трое одинаково?</b> Научимся записывать идею на одном листе, прежде чем писать код.</> })}</p></div>}
+        uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
         nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
       />

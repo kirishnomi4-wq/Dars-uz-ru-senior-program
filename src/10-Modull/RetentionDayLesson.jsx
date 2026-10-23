@@ -28,6 +28,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Real vaqt retention-mexanikasi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 12-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"12-9","tur":"file","nom":{"uz":"Uyga vazifa: Real vaqt retention-mexanikasi","ru":"Домашнее задание: Механика удержания в реальном времени"},"matn":{"uz":"Eslatma haqiqatan qaytaryaptimi — real son bilan tekshiring.\n\n1. 3 kun davomida sanoq sahifangizdan har kuni bir marta son yozing: eslatma yuborildi · eslatmadan ochildi · o'chirganlar.\n2. README'ga jadval va bitta qaror: eslatma matni yoki vaqtini o'zgartirasizmi — nega.\n3. Qaror bo'yicha bitta o'zgarish qiling (yoki «o'zgarish kerak emas» — sababi bilan).\n4. Sanoq sahifasi skrinshoti va repo linki.\n\nNima tekshiriladi:\n— 3 kunlik sonlar\n— qaror songa asoslangan\n— o'chirgich ishlaydi (kamida bitta sinov)\n— o'zgarish commit'i yoki asosli «kerak emas».","ru":"Проверьте реальными числами, действительно ли напоминание возвращает пользователей.\n\n1. 3 дня подряд раз в день записывайте числа со страницы счёта: напоминание отправлено · открыли из напоминания · отключили.\n2. В README — таблица и одно решение: меняете ли вы текст или время напоминания — и почему.\n3. Сделайте одно изменение по решению (или «изменение не нужно» — с причиной).\n4. Скриншот страницы счёта и ссылка на репозиторий.\n\nЧто проверяется:\n— числа за 3 дня\n— решение основано на числах\n— выключатель работает (хотя бы одна проверка)\n— коммит с изменением или обоснованное «не нужно»."}};
 
 
 
@@ -2197,7 +2200,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className={cx('qs-yakun', !uchala && 'belgisiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}

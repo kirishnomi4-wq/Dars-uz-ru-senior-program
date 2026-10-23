@@ -27,3 +27,8 @@ Qaytish: eski fayllar CRM'da (yoki `yuklash-2026-10-04/`); server — GitLab'da 
 - Pipeline #2961759103: test ✓ · build ✓ · deploy ✓ (job #17273914930, manual, 32 s).
 - Prod health (`dars-api.coddycamp.uz/api/v1/health`): status ok · env prod · version `0.1.0+e1a9fa70` · db ok · migrations 9 · **catalog 183** (faol).
 - Keyingi: CRM'ga yuklash (`-v3` fayllar), avval m1-12 va m2-13; keyin prod smoke.
+
+## Qayta yig'ma (F-1019-10 dan keyin, 19.10 12:45)
+`preview-reliz --api prod --moduls 2-14 --suffix v3` (foydalanuvchi) → **O'TDI ✓**: ro'yxat 172 ✓ (katalog 19.10) · unit 24/0 · yig'ish 172 (`-v3`) · statik ✓ · smoke-lms ✗0 · smoke-preview 172/172. Commit `6df7225c`.
+Server: GitLab `main` = `54e7b37` (sync @ 6df7225c) → deploy ✓, prod health `0.1.0+54e7b37f`, catalog 183.
+Yuklash: boshqa seans (Claude + brauzer). VS Code — qayta (eski 05a99dba → yangi dde2ea5d). InternetLesson o'zgarmagan (4b13e741).

@@ -39,6 +39,9 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QXulosa, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKod, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 // Kod oynasi (8-ekran): umumiy modul — ko'p fayl, runtime tekshiruvlar
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Kiberxavfsizlik asoslari» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 10-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"10-5","tur":"text","nom":{"uz":"Uyga vazifa: Kiberxavfsizlik asoslari","ru":"Домашнее задание: Основы кибербезопасности"},"matn":{"uz":"O'z MVP'ingizni uch zaiflik bo'yicha tekshiring va README'ga audit yozing.\n\n1. Har so'rov parametrli — matn qo'shib yasalgan SQL yo'q.\n2. Kodda birorta kalit yoki parol yo'q (zaxira qiymat ham) — hammasi .env/Render'da.\n3. Foydalanuvchi yozgan matn sahifaga xavfsiz chiqadi (dangerouslySetInnerHTML yo'q).\n4. README'da jadval: zaiflik · qayerda tekshirdim (fayl) · natija · tuzatdimmi.\n5. Ega sahifangiz bo'lsa — 2FA (ixtiyoriy). Repo linki.\n\nNima tekshiriladi:\n— kodda qidiruvda kalit/parol yo'q\n— so'rovlar parametrli\n— XSS yo'q\n— audit jadvali fayl nomlari bilan\n— topilgan bo'lsa — tuzatish commit'i.","ru":"Проверьте свой MVP на три уязвимости и напишите аудит в README.\n\n1. Каждый запрос параметризован — нет SQL, собранного склейкой строк.\n2. В коде нет ни одного ключа или пароля (даже запасного значения) — всё в .env/Render.\n3. Текст, который пишет пользователь, безопасно выводится на страницу (нет dangerouslySetInnerHTML).\n4. Таблица в README: уязвимость · где проверил (файл) · результат · исправил ли.\n5. Если есть страница владельца — 2FA (по желанию). Ссылка на репозиторий.\n\nЧто проверяется:\n— поиск по коду не находит ключей/паролей\n— запросы параметризованы\n— нет XSS\n— таблица аудита с именами файлов\n— если что-то найдено — коммит с исправлением."}};
 
 
 
@@ -2344,23 +2347,7 @@ const YAKUN_RECAP = [
   { uz: "2FA — parol va telefon ilovasidagi 6 xonali kod; parol begona qo'lga o'tsa ham kod kerak.", ru: '2FA — пароль и 6-значный код из приложения на телефоне; даже если пароль в чужих руках, нужен код.' },
   { uz: "Zaiflikni kodni o'qib va saytni oddiy ma'lumot bilan sinab tekshiramiz — faqat o'z saytingizda.", ru: 'Уязвимость проверяем, читая код и пробуя сайт на обычных данных, — только на своём сайте.' }
 ];
-const UYGA = [
-  { b: { uz: 'Zaifliklar', ru: 'Уязвимости' }, t: { uz: "A1 dagi «O'z g'oyangiz» promptini loyihangizda yuboring: foydalanuvchi matnli so'rovlar parametrli, maxfiy kalitlar faqat `.env` da.", ru: 'Отправьте в своём проекте промпт «Ваша идея» из A1: запросы с текстом пользователя параметризованы, секретные ключи только в `.env`.' } },
-  { b: { uz: 'Ism', ru: 'Имя' }, t: { uz: 'A2 dagi promptni yuboring: foydalanuvchi yozgan matn oddiy matn bo\'lib chiqsin.', ru: 'Отправьте промпт из A2: текст пользователя выводится обычным текстом.' } },
-  { b: { uz: 'Ikkinchi qadam', ru: 'Второй шаг' }, t: { uz: "ega yoki admin kirishiga 6 xonali kod qo'shing, kodni o'qib tekshiring va push qiling.", ru: 'добавьте ко входу владельца или админа 6-значный код, проверьте, читая код, и сделайте push.' } }
-];
-const HwKarta = () => (
-  <div className="card hw fade-up">
-    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
-    <div className="xr-hw-meta">
-      <span><small>{tr({ uz: 'kim uchun', ru: 'для кого' })}</small>{tr({ uz: "o'z loyihangiz", ru: 'ваш проект' })}</span>
-      <span><small>{tr({ uz: 'nechta', ru: 'сколько' })}</small>{tr({ uz: '3 zaiflik + 2FA', ru: '3 уязвимости + 2FA' })}</span>
-      <span><small>{tr({ uz: 'muddat', ru: 'срок' })}</small>{tr({ uz: 'keyingi darsgacha', ru: 'до следующего урока' })}</span>
-    </div>
-    <ol className="xr-hw-q">{UYGA.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> — {fmtCode(tr(h.t))}</span></li>)}</ol>
-    <p className="xr-hw-keyingi">{tr({ uz: <>Keyingi dars — <b>«Foydalanuvchi sizga ma'lumotini ishonadimi?»</b>. Ma'lumot sizib chiqsa nima bo'ladi: audit va maxfiylik siyosati.</>, ru: <>Следующий урок — <b>«Доверяет ли вам пользователь свои данные?»</b>. Что будет, если данные утекут: аудит и политика конфиденциальности.</> })}</p>
-  </div>
-);
+const HwKarta = () => <UygaVazifaKarta v={HW_V2} tr={tr} keyingi={tr({ uz: <>Keyingi dars — <b>«Foydalanuvchi sizga ma'lumotini ishonadimi?»</b>. Ma'lumot sizib chiqsa nima bo'ladi: audit va maxfiylik siyosati.</>, ru: <>Следующий урок — <b>«Доверяет ли вам пользователь свои данные?»</b>. Что будет, если данные утекут: аудит и политика конфиденциальности.</> })} />;
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;

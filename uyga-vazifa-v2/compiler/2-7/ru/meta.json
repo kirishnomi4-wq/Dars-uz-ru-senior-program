@@ -1,0 +1,9 @@
+{
+ "tur": [
+  "html",
+  "css"
+ ],
+ "rasm": "2-7-natija.png",
+ "faqat_css": true,
+ "rubrika": "Grade a beginner CSS task out of 10. index.html is given and must not be changed; grade style.css only.\n1. (2) body: background-color #F4F4F4 and font-family Arial (1 each).\n2. (2) .card: white background, padding 24px, margin 40px (white may be white/#fff/#ffffff; padding+margin 0.5 each, background 1).\n3. (2) #title: color #FF4D26, font-size 32px, text-align center (0.7/0.7/0.6).\n4. (2) .genre: font-weight bold (700 accepted).\n5. (2) p: font-size 18px.\nSelectors must be the class/id/tag named in the task. Hex case does not matter; 'background' instead of 'background-color' is accepted. Do not penalize extra properties or comments."
+}

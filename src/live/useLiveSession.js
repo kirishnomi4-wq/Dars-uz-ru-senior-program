@@ -145,8 +145,8 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
           : st
             ? tr({ uz: `Server javob bermadi (xato ${st}). Birozdan keyin urinib ko'ring.`, ru: `Сервер не ответил (ошибка ${st}). Попробуйте чуть позже.` })
             : tr({
-                uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «Kodsiz, o'zim ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
-                ru: 'Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Без кода, смотрю сам», чтобы провести урок без живого режима.',
+                uz: "Serverga ulanib bo'lmadi. Internetni tekshiring — yoki «← Orqaga» bosib, «O'zim mustaqil ko'raman» bilan darsni jonli rejimsiz o'tkazing.",
+                ru: 'Не удалось подключиться к серверу. Проверьте интернет — или нажмите «← Назад» и выберите «Смотрю самостоятельно», чтобы провести урок без живого режима.',
               })
       );
     }

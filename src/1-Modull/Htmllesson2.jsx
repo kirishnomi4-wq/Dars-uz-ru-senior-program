@@ -24,6 +24,9 @@ const asset = (name) => /^https?:\/\//.test(name) ? name : `${ASSET_BASE}/${name
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: HTML: rasm, struktura, forma» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-4). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-4","tur":"compiler","nom":{"uz":"Uyga vazifa: HTML: rasm, struktura, forma","ru":"Домашнее задание: HTML: картинки, структура, формы"},"matn":{"uz":"Sport to'garagiga yozilish sahifasini yasang. Rasmdagidek uch qismdan iborat bo'lsin.\n\n1. header ichida h1 — to'garak nomi.\n2. main ichida rasm: src — vazifadagi manzil, alt — rasmda nima borligi.\n3. Rasm ostida form: «Ismingiz» (text), «Email» (email), «Parol» (password). Har maydon oldida label.\n4. Forma oxirida «Yozilish» tugmasi (button).\n5. footer ichida telefon raqam va «© 2026».\n\nRasm manzili: https://coddycamp-uyga-vazifa-v2.vercel.app/rasm/assets/futbol.png","ru":"Сделайте страницу записи в спортивную секцию. Как на картинке, в ней три части.\n\n1. Внутри header — h1 с названием секции.\n2. Внутри main — картинка: src — адрес из задания, alt — что изображено на картинке.\n3. Под картинкой — form: «Ваше имя» (text), «Email» (email), «Пароль» (password). Перед каждым полем — label.\n4. В конце формы — кнопка «Записаться» (button).\n5. Внутри footer — номер телефона и «© 2026».\n\nАдрес картинки: https://coddycamp-uyga-vazifa-v2.vercel.app/rasm/assets/futbol.png"}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -2288,7 +2291,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   };
   const audio = useAudio([{ id: 's16', text: "Ikkinchi dars yakunlandi! Endi saytingizga rasm qo'sha olasiz, uni header, main va footer bo'limlarga ajratasiz, forma yasaysiz va DevTools bilan kodni ko'rib, tuzata olasiz.", trigger: 'on_mount', waits_for: null }]);
   const RECAP = [{ uz: "Rasm qo'shish (img, src, alt)", ru: 'Добавление картинки (img, src, alt)' }, { uz: 'Sahifa strukturasi (header, main, footer, div)', ru: 'Структура страницы (header, main, footer, div)' }, { uz: 'Forma yasash (form, label, input, button)', ru: 'Создание формы (form, label, input, button)' }, { uz: 'input turlari (text, email, password, number)', ru: 'Типы input (text, email, password, number)' }, { uz: "DevTools bilan kodni ko'rish va tuzatish", ru: 'Просмотр и правка кода через DevTools' }];
-  const HOMEWORK = [{ b: { uz: 'Rasm (img)', ru: 'Картинка (img)' }, t: { uz: "— o'zingizning rasmingiz, alt bilan", ru: '— ваша собственная картинка, с alt' } }, { b: { uz: 'Struktura', ru: 'Структура' }, t: { uz: "— header, main, footer bo'limlari", ru: '— разделы header, main, footer' } }, { b: { uz: 'Aloqa formasi', ru: 'Форма связи' }, t: { uz: '— ism va email uchun input', ru: '— input для имени и email' } }, { b: 'DevTools', t: { uz: "— sahifangizni Inspect qilib ko'ring", ru: '— изучите свою страницу через Inspect' } }];
   const GLOSSARY = [{ b: 'img', t: { uz: '— rasm', ru: '— картинка' } }, { b: 'src', t: { uz: '— rasm manzili', ru: '— адрес картинки' } }, { b: 'alt', t: { uz: '— rasm tavsifi', ru: '— описание картинки' } }, { b: 'header/main/footer', t: { uz: "— sahifa bo'limlari", ru: '— разделы страницы' } }, { b: 'div', t: { uz: '— guruhlovchi quti', ru: '— группирующая коробка' } }, { b: 'form/input/label', t: { uz: '— forma qismlari', ru: '— части формы' } }, { b: 'DevTools', t: { uz: "— F12, kodni ko'rish va tuzatish", ru: '— F12, просмотр и правка кода' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -2319,15 +2321,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: '1-darsdagi saytingizni boyiting:', ru: 'Обогатите свой сайт из 1-го урока:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. DevTools bandini esa o'z brauzeringizda sinaysiz (F12).", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. Пункт про DevTools попробуйте в своём браузере (F12).' })}</p>
-          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
-              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-          {!isMentorL && onHomework && (
-            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
-              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
-            </button>
-          )}
-        </div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

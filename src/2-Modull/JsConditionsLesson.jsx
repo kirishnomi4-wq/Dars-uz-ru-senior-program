@@ -26,6 +26,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: JS: Shart operatorlari» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-4). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"3-4","tur":"compiler","nom":{"uz":"Uyga vazifa: JS: Shart operatorlari","ru":"Домашнее задание: JS: Условные операторы"},"matn":{"uz":"Uchta kichik tekshiruv yozing.\n\n1. let score = 78; — baho chiqaring: 90 va undan yuqori → «Baho: 5», 70+ → «Baho: 4», 60+ → «Baho: 3», qolgani → «Baho: 2».\n2. let pin = 1234; let entered = 1111; — teng bo'lsa «Telefon ochildi», aks holda «PIN noto'g'ri».\n3. let battery = 15; — 20 dan kichik bo'lsa «Zaryad kam!», aks holda «Zaryad yetarli».\n4. score ni 95, 61, 40 qilib sinab ko'ring — har safar to'g'ri baho chiqsin. Sinab bo'lgach, score ni yana 78 ga qaytaring.","ru":"Напишите три небольшие проверки.\n\n1. let score = 78; — выведите оценку: 90 и выше → «Оценка: 5», 70+ → «Оценка: 4», 60+ → «Оценка: 3», остальное → «Оценка: 2».\n2. let pin = 1234; let entered = 1111; — если равны, «Телефон разблокирован», иначе «Неверный PIN».\n3. let battery = 15; — если меньше 20, «Мало заряда!», иначе «Заряда хватает».\n4. Попробуйте score = 95, 61, 40 — каждый раз должна выходить правильная оценка. После проверки верните score обратно на 78."}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -1554,7 +1557,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   };
   const audio = useAudio([{ id: 's16', text: "Tabriklaymiz — endi dasturingiz qaror qabul qila oladi! Eslab qoling: if shart rost bo'lsa ishlaydi, else aks holda, else if bir nechta yo'l uchun, taqqoslash operatorlari true yoki false beradi, bitta teng qiymat beradi, ikki teng tekshiradi. Keyingi darsda kompyuterni ko'p marta takrorlatishni — sikllarni o'rganamiz.", trigger: 'on_mount', waits_for: null }]);
   const RECAP = [{ uz: "if — shart rost bo'lsa kod ishlaydi", ru: 'if — код работает, если условие истинно' }, { uz: 'Taqqoslash: > < >= <= == !=', ru: 'Сравнение: > < >= <= == !=' }, { uz: 'else — aks holda', ru: 'else — иначе' }, { uz: "else if — bir nechta yo'l", ru: 'else if — несколько путей' }, { uz: '= qiymat beradi, == tekshiradi', ru: '= даёт значение, == проверяет' }];
-  const HOMEWORK = [{ b: 'age', t: { uz: '— if/else bilan "ID-karta olsa bo\'ladimi?" ni aniqlang', ru: '— через if/else определите «можно ли получить ID-карту?»' } }, { b: 'score', t: { uz: '— else if bilan ball → 5/4/3/2', ru: '— балл → 5/4/3/2 через else if' } }, { b: 'pin', t: { uz: "— == bilan PIN-kod to'g'ri/xato ekanini tekshiring", ru: '— проверьте через ==, верный PIN-код или нет' } }];
   // 4.2: GLOSSARY olib tashlandi — takrorlash alohida Flashcard sahifasida (ScreenFlashcards)
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1584,7 +1586,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Mana bu shartlarni yozib ko'ring:", ru: 'Попробуйте написать эти условия:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b className="mono">{h.b}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda kompyuterni ko'p marta takrorlatamiz — sikllar! 🔁", ru: 'На следующем уроке заставим компьютер повторять много раз — циклы! 🔁' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

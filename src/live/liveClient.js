@@ -26,8 +26,9 @@ const API = `${LIVE_API_URL}/api/v1/live`;
 // Server har xatoni { error, message } shaklida beradi; `message` o'quvchiga ko'rsatiladi
 // (masalan «Bu ism band — boshqa ism tanlang»). Shakl buzilsa — umumiy xabar.
 // F-1015: preview'da dars-api'ga so'rov chiqmaydi — ikkinchi himoya qatlami (hook preview'da baribir chaqirmaydi)
-function net(url, init) {
-  if (isPreview()) { const e = new Error('preview: dars-api yopiq'); e.code = 'preview_offline'; return Promise.reject(e); }
+// liveRun: oldingi JONLI ishga tushirishning so'nggi yozuvi (progressSync kanali) — SPA'da preview'ga o'tilganda ham ketadi (F-1021-09)
+function net(url, init, liveRun = false) {
+  if (isPreview() && !liveRun) { const e = new Error('preview: dars-api yopiq'); e.code = 'preview_offline'; return Promise.reject(e); }
   return fetch(url, init);
 }
 
@@ -98,13 +99,13 @@ export const lmsMe = (liveToken, lessonId) => lmsFetch('GET', `${LIVE_API_URL}/a
 /** POST /lms/restart — ko'rishdan yangi solo urinish */
 export const lmsRestart = (liveToken, lessonId) => lmsFetch('POST', `${LIVE_API_URL}/api/v1/lms/restart`, liveToken, { lesson_id: lessonId });
 /** PUT /me/progress — server-progress (progressSync.js chaqiradi). keepalive: sahifa yopilayotganda ham yetib borsin. */
-export async function progressPut(liveToken, body, { keepalive = false } = {}) {
+export async function progressPut(liveToken, body, { keepalive = false, liveRun = false } = {}) {
   const r = await net(`${LIVE_API_URL}/api/v1/me/progress`, {
     method: 'PUT',
     headers: { Authorization: `Bearer ${liveToken}`, 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
     keepalive,
-  });
+  }, liveRun);
   let data = null;
   try { data = await r.json(); } catch { /* tanasiz */ }
   if (!r.ok) {

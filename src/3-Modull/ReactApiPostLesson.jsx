@@ -36,6 +36,9 @@ const MentorCtx = createContext(null); // mobil: yig'iladigan Mentor
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: POST, PUT, DELETE» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-9","tur":"file","nom":{"uz":"Uyga vazifa: POST, PUT, DELETE","ru":"Домашнее задание: POST, PUT, DELETE"},"matn":{"uz":"Sinov serveri bilan ishlang: https://jsonplaceholder.typicode.com/posts. U javob qaytaradi, lekin haqiqatan saqlamaydi.\n\n1. Forma (sarlavha, matn) → POST; javobdagi id va status 201 ni sahifada ko'rsating.\n2. «Tahrirlash» tugmasi → PUT /posts/1 yangi sarlavha bilan; javobni ko'rsating.\n3. «O'chirish» tugmasi → DELETE /posts/1; status 200 ni ko'rsating.\n4. Uchala so'rovda method to'g'ri, POST/PUT da JSON.stringify.\n5. Link va skrinshot (uchala javob ko'ringan holat).\n\nNima tekshiriladi:\n— POST + body stringify + 201\n— PUT ID bilan\n— DELETE ID bilan, body yo'q\n— javoblar ekranda.","ru":"Поработайте с тестовым сервером: https://jsonplaceholder.typicode.com/posts. Он возвращает ответ, но на самом деле ничего не сохраняет.\n\n1. Форма (заголовок, текст) → POST; покажите на странице id из ответа и статус 201.\n2. Кнопка «Редактировать» → PUT /posts/1 с новым заголовком; покажите ответ.\n3. Кнопка «Удалить» → DELETE /posts/1; покажите статус 200.\n4. Во всех трёх запросах правильный method, в POST/PUT — JSON.stringify.\n5. Ссылка и скриншот (видны все три ответа).\n\nЧто проверяется:\n— POST + body через stringify + 201\n— PUT с ID\n— DELETE с ID, без body\n— ответы на экране."}};
 
 
 
@@ -2085,11 +2088,6 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "201 Created = yaratildi; DELETE qaytarilmaydi — avval tasdiqlash", ru: '201 Created = создано; DELETE не отменить — сначала подтверждение' }),
     tr({ uz: "Bularning umumiy nomi — CRUD", ru: 'Общее имя всего этого — CRUD' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: "Qo'shish formasi", ru: 'Форма добавления' }), t: tr({ uz: "— robo-games loyihangizga agent bilan forma qo'shing: nom + emoji → POST bilan serverga ketsin", ru: '— добавьте с агентом форму в свой проект robo-games: название + эмодзи → пусть уходит POST на сервер' }) },
-    { b: tr({ uz: 'Jonli like', ru: 'Живой лайк' }), t: tr({ uz: "— like tugmasi PUT yuborsin; sahifani yangilab, saqlanganini tekshiring", ru: '— пусть кнопка лайка отправляет PUT; обновите страницу и проверьте, что он сохранился' }) },
-    { b: tr({ uz: "Xavfsiz o'chirish", ru: 'Безопасное удаление' }), t: tr({ uz: "— DELETE tugmasi qo'shing, lekin avval \"Ishonchingiz komilmi?\" so'ralsin", ru: '— добавьте кнопку DELETE, но пусть сначала спрашивает «Вы уверены?»' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2113,7 +2111,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте с Antigravity в своём проекте:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Sizda endi to'liq quvvat bor: React + server + 4 fe'l. Keyingi qadam — hammasini birlashtirib, o'ZINGIZNING ilovangizni qurish! 🚀", ru: 'У Вас теперь полная мощность: React + сервер + 4 глагола. Следующий шаг — соединить всё и построить СВОЁ приложение! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

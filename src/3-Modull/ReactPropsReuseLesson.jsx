@@ -29,6 +29,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Props orqali ma'lumot uzatish» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-6). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-6","tur":"file","nom":{"uz":"Uyga vazifa: Props orqali ma'lumot uzatish","ru":"Домашнее задание: Передача данных через props"},"matn":{"uz":"Kartochkalarni qo'lda yozmang — ro'yxatdan chiqaring.\n\n1. App'da 6 ta o'yinli massiv: name, players, emoji.\n2. games.map(...) bilan har o'yinga GameCard chizing; key bering.\n3. Har o'yinga 4-ma'lumot qo'shing — genre (janr) — va GameCard uni ko'rsatsin.\n4. Massivga 7-o'yinni qo'shing — map qatoriga tegmasdan kartochka chiqsin.\n5. Link va skrinshot.\n\nNima tekshiriladi:\n— massiv + map, qo'lda yozilgan GameCard yo'q\n— key bor\n— janr props orqali keladi\n— 7 ta kartochka.","ru":"Не пишите карточки вручную — выводите их из списка.\n\n1. В App — массив из 6 игр: name, players, emoji.\n2. Через games.map(...) отрисуйте GameCard для каждой игры; задайте key.\n3. Добавьте каждой игре четвёртое поле — genre (жанр) — и пусть GameCard его показывает.\n4. Добавьте в массив 7-ю игру — карточка должна появиться, не трогая строку с map.\n5. Ссылка и скриншот.\n\nЧто проверяется:\n— массив + map, нет GameCard, написанных вручную\n— есть key\n— жанр приходит через props\n— 7 карточек."}};
 
 
 
@@ -2365,11 +2368,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Props faqat o'qiladi — o'zgaruvchan narsa uchun state", ru: 'Props только читаются — для изменяемого есть state' },
     { uz: "Ro'yxat + map = katalog: name={g} jingalak qavs bilan", ru: 'Список + map = каталог: name={g} с фигурными скобками' }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Katalog', ru: 'Каталог' }, t: { uz: "— robo-games loyihangizda 5 ta sevimli o'yindan ro'yxat tuzib, map bilan katalog chizing", ru: '— в проекте robo-games составьте список из 5 любимых игр и нарисуйте каталог через map' } },
-    { b: { uz: 'Boy kartochka', ru: 'Богатая карточка' }, t: { uz: "— har o'yinga players va emoji props'larini ham uzating", ru: '— передайте каждой игре ещё props players и emoji' } },
-    { b: { uz: 'TOP belgisi', ru: 'Значок TOP' }, t: { uz: "— eng sevimli o'yiningizga top={true} uzatib, 🔥 belgi chiqaring", ru: '— передайте top={true} самой любимой игре и выведите значок 🔥' } }
-  ];
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;
   const [arena, setArena] = useState(false);
@@ -2408,7 +2406,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте в своём проекте с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda yangi usulni o'rganamiz: o'yinlar ro'yxati kod ichidan chiqib ketadi — uni internetdagi serverdan olamiz! 🚀", ru: 'На следующем уроке освоим новый способ: список игр покинет код — мы получим его с сервера в интернете! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

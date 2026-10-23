@@ -41,7 +41,8 @@ export const qolipCss = (Q) => `
   .q-radio-dot { width: 10px; height: 10px; border-radius: 50%; background: ${Q.accent}; }
   /* --- Reja standarti (DE-201): «01 · matn · teg» qadam-kartalari --- */
   /* F-1015-388 (QA: «har elementga o'z cardi — bittada jamlansin»): qadamlar bitta kartada, qatorlar oraliq va ingichka chiziq bilan ajraladi */
-  .q-reja-ro { list-style: none; margin: 0; padding: 4px 18px; display: flex; flex-direction: column; background: ${Q.paper}; border-radius: 16px; box-shadow: 0 6px 18px -10px rgba(${Q.shadowBase || '58, 53, 48'},0.18); }
+  /* F-1020-03: .lesson-root prefiksi — har darsdagi «.lesson-root ol/p { margin:0; padding:0 }» reseti (0,1,1) bu qoidalarni bosmasin; raqamlar karta chetiga yopishmasin */
+  .lesson-root .q-reja-ro { list-style: none; margin: 0; padding: 4px 18px; display: flex; flex-direction: column; background: ${Q.paper}; border-radius: 16px; box-shadow: 0 6px 18px -10px rgba(${Q.shadowBase || '58, 53, 48'},0.18); }
   .q-reja-k { display: flex; align-items: baseline; gap: 14px; padding: 14px 0; }
   .q-reja-k + .q-reja-k { border-top: 1px solid ${Q.line}; }
   .q-reja-n { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 13px; color: ${Q.accent}; flex-shrink: 0; }
@@ -97,7 +98,7 @@ export const qolipCss = (Q) => `
 
   /* --- Test (DE-203): texnik darslar standarti — oq variant, A–D harfi; to'g'ri — yashil (202), tanlangan xato — modul rangi, qolgani xira --- */
   .q-test { gap: clamp(16px,2.5vw,24px); }
-  .q-test-ogoh { margin: -8px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; color: ${Q.accent}; }
+  .lesson-root .q-test-ogoh { margin: -8px 0 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; color: ${Q.accent}; }
   .q-test-ro { display: flex; flex-direction: column; gap: 11px; }
   .q-test-ro.ixcham { gap: 8px; }
   .q-test-v { display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; background: ${Q.paper}; border: none; border-radius: 12px; padding: clamp(13px,1.9vw,17px) clamp(15px,2.2vw,20px); font-family: 'Manrope', sans-serif; font-weight: 500; font-size: clamp(15px,1.85vw,17px); line-height: 1.45; color: ${Q.ink}; cursor: pointer; transition: all 0.2s; box-shadow: 0 6px 16px -6px rgba(${Q.shadowBase || '58, 53, 48'},0.14); }
@@ -115,7 +116,7 @@ export const qolipCss = (Q) => `
   .q-test-javob { border-radius: 12px; padding: clamp(14px,2.5vw,20px); animation: q-kir 0.35s ease-out; }
   .q-test-javob.ok { background: ${Q.okFon}; box-shadow: 0 6px 16px -6px rgba(31,122,77,0.22); }
   .q-test-javob.qayta, .q-test-javob.kutish { background: ${Q.accentSoft}; box-shadow: 0 6px 16px -6px ${fon(Q.accent, 0.22)}; }
-  p.q-test-js { margin: 0 0 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: ${Q.accent}; }
+  .lesson-root p.q-test-js { margin: 0 0 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: ${Q.accent}; }
   .q-test-javob.ok p.q-test-js { color: ${Q.ok}; }
   .q-test-jm { font-family: 'Manrope', sans-serif; font-size: clamp(14px,1.6vw,15.5px); line-height: 1.55; color: ${Q.ink}; display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
   .q-test-jm p { margin: 0; }
@@ -163,7 +164,7 @@ export const qolipCss = (Q) => `
   .q-blok-tana .qcode, .q-xulosa .qcode, .q-izoh .qcode, .q-blok-xato .qcode { white-space: normal; overflow-wrap: anywhere; }
   @media (max-width: 640px) { .screen .qcode { white-space: normal; overflow-wrap: anywhere; } }
   p.q-blok-xato { margin: 0; font-size: 12.5px; line-height: 1.45; color: ${Q.ink2}; }
-  p.q-blok-bosh { margin: 0; padding: 6px 10px; border-radius: 8px; background: ${Q.errFon}; font-size: 13px; font-weight: 600; color: ${Q.err}; } /* F-1015-354: bo'sh maydon bilan «Bajardim» */
+  .lesson-root p.q-blok-bosh { margin: 0; padding: 6px 10px; border-radius: 8px; background: ${Q.errFon}; font-size: 13px; font-weight: 600; color: ${Q.err}; } /* F-1015-354: bo'sh maydon bilan «Bajardim» */
   .q-blok-ulgur { font-size: 12.5px; line-height: 1.5; color: ${Q.ink2}; border-top: 1px solid ${Q.line}; padding-top: 8px; }
   .q-blok-ulgur summary { cursor: pointer; font-weight: 700; list-style: none; display: flex; align-items: center; gap: 6px; }
   .q-blok-ulgur summary::-webkit-details-marker { display: none; }
@@ -288,7 +289,7 @@ export const qolipCss = (Q) => `
   @keyframes hw-fire { 0%,100% { box-shadow: 0 0 0 1px rgba(90,40,180,.45), 0 0 26px rgba(124,58,237,.5), 0 0 68px rgba(124,58,237,.28), inset 0 0 48px rgba(124,58,237,.32); } 50% { box-shadow: 0 0 0 1px rgba(120,60,220,.6), 0 0 40px rgba(124,58,237,.72), 0 0 96px rgba(124,58,237,.4), inset 0 0 60px rgba(124,58,237,.44); } }
   @keyframes hw-shine { 0% { left: -60%; } 55%, 100% { left: 130%; } }
   @media (prefers-reduced-motion: reduce) { .hw-big, .hw-big-shine, .hw-big-wrap::before, .hw-tok, .hw-big.charging { animation: none !important; } }
-  .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${Q.ink}; } .hw li b { color: ${Q.accent}; } .hw .t { color: ${Q.ink2}; } .hw-note.hw-note { margin: 11px 0 0; font-size: 12px; color: ${Q.accent}; font-weight: 600; }
+  .hw ul { display: flex; flex-direction: column; gap: 6px; list-style: none; } .hw li { font-size: clamp(13px,1.6vw,15px); color: ${Q.ink}; } .hw li b { color: ${Q.accent}; } .hw .t { color: ${Q.ink2}; } .hw-note.lesson-root .hw-note { margin: 11px 0 0; font-size: 12px; color: ${Q.accent}; font-weight: 600; }
   .ach-coll { display: flex; flex-direction: column; gap: 10px; }
   .ach-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   @media (max-width: 560px) { .ach-grid { grid-template-columns: repeat(2, 1fr); } }

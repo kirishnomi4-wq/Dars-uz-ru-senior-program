@@ -1,0 +1,8 @@
+{
+ "tur": [
+  "js"
+ ],
+ "rasm": null,
+ "kutilgan": "25\n75\n0\n25000",
+ "rubrika": "Grade a beginner functions task out of 10 (console output).\n1. (2) zarar(kuch, bonus) returns kuch * 3 + bonus.\n2. (3) jon(qoldi, urilgan) returns qoldi - urilgan, and 0 when the result is negative.\n3. (3) jami(narxlar) sums the array with a for loop and returns the sum.\n4. (2) Results are stored in variables and printed: 25, 75, 0, 25000; the functions themselves use return, not console.log.\nArrow functions are accepted. Do not penalize Math.max for the 0 case."
+}

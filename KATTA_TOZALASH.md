@@ -1972,3 +1972,26 @@ Tartib: to'lqin bilan, dars-dars (har darsda bitta–ikki ekran → qaror + saba
 - **Ziddiyat:** MATN_KORPUS (457–475-qatorlar) maqsad-ekranda «bilib olasiz» shaklini namuna qilgan. O'zgartirish — korpus qoidasini almashtirish.
 - **Taklif:** reja qadamlari buyruq shaklida («Varaqdan tuzatishni o'qing», «Pitchingizni guruhga 5 daqiqada ayting»); sarlavha «Bugun … yozasiz» o'zgarmaydi. Foydalanuvchi qaroridan keyin: korpusga juftlik + `REJA = [` massivlari supurilsin (7–14-M, pitch darslari — pitch-seans).
 - **Holat:** ✅ 19.10 — foydalanuvchi: «taklifing maqul». 7–14-M: 40 dars, 150 qadam (145 matn + 5 JSX) «-ing» ga; ruschasi buyruq; 40 yakuniy MD da 147 joy; korpus §REJA-BUYRUQ. Pitch darslari (7 ta) — pitch-seansda; tarixiy MD versiyalari tegilmadi. Jurnal: `feedback/F-1015-7-14M/JURNAL.md` «F-1015-397».
+
+## 31. O'quvchi «dasturchiga ish beradigan PM» rolida — PM/bridge darslarini «AI bilan o'zi quradi»ga o'tkazish (F-1022-01, 2026-10-22) — 11 fayl (uy vazifalari YO'Q)
+**Topilma:** mentor real darsda (m3-10 `PmLesson9` 1-ekran) «dasturchidan so'ragandingiz» slaydini tushunmadi. Foydalanuvchi: «o'quvchimiz PM emas,
+qo'lida 10 ta dasturchisi yo'q — startap qilib muammoga yechim topishni o'rganadi va saytini AI'da qiladi». Ildiz-sabab: `PM_Prompt_v8.md` ROL-bo'limida (РОЛЬ)
+o'quvchining darsdagi roli yozilmagan edi → senariylar «PM → dasturchilar jamoasi» olamiga tushgan. Qonun: `PM_DARS_ETALON.md` **110** (rol) va **111**
+(mentor «Bu slayd nima uchun»), KORPUS §O'QUVCHI-STARTAPCHI, til-lint `dasturchi-topshiriq` (onlyFiles PM+bridge, error).
+**Pilot (alohida, KATTA emas):** `PmLesson9.jsx` (uy vazifasi `*.homework.jsx` — HECH QACHON, memory `pm-homework-tegilmaydi`) — `feedback/F-1022-01-pm-rol/PmLesson9-v2-EKRANLAR.md`.
+**Sinf-supurish ro'yxati (lint 22.10 o'lchovi; hammasi hozircha `allowFiles`da — tuzatilgach ro'yxatdan O'CHIRILADI):**
+| Fayl | Joy | Namuna |
+|---|---|---|
+| `src/6-Modull/PmLesson22.jsx` | 4 (lint) / 20 (so'z) | «Murabbiy dasturchilarga bitta gap aytdi», «uch dasturchi uch xil tushunadi» → AI uch xil tushunadi / bitta aniq prompt |
+| `src/4-Modull/PmLesson13.jsx` | 4 | «Dasturchilarga topshiriq qilib», «Dasturchi «Kitob navbati» ishiga shu sxemani taklif qildi» → AI taklif qildi |
+| `src/3-Modull/PmLesson8.jsx` (m3-05, shu modul) | 3 | «Vaqtni dasturchi aytadi», «har biriga dasturchi qancha vaqt ketishini yozib berdi» → AI bilan qilishga qancha vaqt (o'zi baholaydi / AI'dan so'raydi) |
+| `src/4b-Modull/PmLesson16.jsx` | 1 | «dasturchi shu zahoti tuzatdi», «Dasturchiga qaysi biri osonroq» → o'zingiz/AI bilan tuzatdingiz |
+| `src/4-Modull/PmLesson12.jsx` | 1 | «Dasturchilarga eslatma sifatida» |
+| `src/3-Modull/PmLesson10.jsx` · `PmProductProblemLesson` | 1 tadan | ko'rib chiqiladi: uchinchi shaxs bo'lsa qoladi |
+| `src/bridge/lessons/BridgeNimaQuramiz.jsx` (9) · `BridgeKimUchun.jsx` (1) | 10 | «Dasturchiga ikki xil topshiriq keldi» → AI'ga ikki xil prompt |
+Qo'lda ov (lint ushlamaydi): `grep -nE "jamoangiz|rahbar|mijoz(ingiz)? (buyur|so'ra)|buyurtmachi"` PM/bridge fayllarida.
+**Tartib:** har dars uchun ekranma-ekran ❌→✅ jadval (pilot namunasi) → foydalanuvchi tasdig'i → uz+ru birga → `npm run gates` → `allowFiles`dan o'chirish.
+Yakunda `allowFiles` bo'sh bo'lishi kerak. Eski (`src/eski/PmAudienceLesson`) tegilmaydi.
+**31-b. Mentor ekranida natija tanlovdan OLDIN ochiq (`opened = picked !== null || isMentor`) — 32 fayl (PM + bridge).** Pilot `PmLesson9` s0: natija faqat
+«Natijani ochish» bilan; bo'sh buyurtma qizil. Qolganlari shu naqshga — alohida qaror. Ov: `grep -rlE "= picked !== null \|\| isMentor" src --include='*.jsx'`.
+**31-c. «Bu slayd nima uchun» (111-qonun) — `MentorNote` mexanizmi umumiy komponentga (`src/live/` yoki qolip) ko'chirilsa hamma PM darsi birdan oladi; hozir har darsda inline nusxa.**

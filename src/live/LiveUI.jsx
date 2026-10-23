@@ -8,6 +8,8 @@ import { isPreview } from './previewMode.js'; // F-1017-225: preview'da «natija
 export const LT = { bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2', paper: '#FFFFFF', accent: '#FF4F28', accentSoft: '#FFE8E1', success: '#1F7A4D' };
 
 const _liveBtnPri = { background: LT.accent, color: '#fff', border: 'none', borderRadius: 12, padding: '14px 20px', fontSize: 16, fontWeight: 700, cursor: 'pointer' };
+// F-1023-02 (23.10): «O'zim mustaqil ko'raman» — ilgari 13px kulrang yozuv edi, mentorlar ko'rmay qolardi; endi asosiy tugma kengligida ikkilamchi tugma.
+const _liveBtnSec = { background: LT.paper, color: LT.accent, border: '2px solid ' + LT.accent, borderRadius: 12, padding: '12px 20px', fontSize: 16, fontWeight: 700, cursor: 'pointer' };
 // 🔴 LAVHA BALANDLIGI — O'LCHOVGA BOG'LIQ, «chiroyli ko'ringani uchun» emas (147-qonun, F-0912-06).
 // Dars sarlavhasi (div.chrome > .eyebrow) HAR darsda, har ekran o'lchamida AYNAN y 34..51 da turadi
 // (m1/m2/m4 · 1280 · 1366 · 1024 da o'lchandi — raqam o'zgarmaydi, chunki tasma --lz bilan masshtablanmaydi).
@@ -90,7 +92,7 @@ export function LiveGate({ live, title = 'Jonli dars' }) {
     {live.joinError && <div style={{ color: LT.accent, fontSize: 13, textAlign: 'center' }}>{live.joinError}</div>}
     {lmsNote && <div data-live="lms-note" style={{ color: LT.ink2, fontSize: 13, textAlign: 'center', background: LT.bg, borderRadius: 10, padding: '8px 10px' }}>{lmsNote}</div>}
     {/* Jonli dars bo'lmasa (uyda, keyinroq) — darsni kodsiz ochish yo'li. Ilgari bu yo'l yo'q edi (F-0903-01). */}
-    <button data-live="self" onClick={() => live.selfStudy()} style={link}>{tr({ uz: "Kodsiz, o'zim ko'raman →", ru: 'Без кода, смотрю сам →' })}</button>
+    <button data-live="self" onClick={() => live.selfStudy()} style={_liveBtnSec}>{tr({ uz: "O'zim mustaqil ko'raman →", ru: 'Смотрю самостоятельно →' })}</button>
     <button onClick={() => { setRole('mentor'); setCode(''); }} title="Mentor" aria-label="Mentor" style={{ position: 'absolute', bottom: 10, right: 12, background: 'none', border: 'none', fontSize: 16, opacity: 0.3, cursor: 'pointer', lineHeight: 1, padding: 4 }}>🧑‍🏫</button>
   </div></div>);
 }

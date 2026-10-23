@@ -46,6 +46,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Pre Demo Day: test + lint + deploy (ishonchli lenta)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-14). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"6-14","tur":"text","nom":{"uz":"Uyga vazifa: Pre Demo Day: test + lint + deploy (ishonchli lenta)","ru":"Домашнее задание: Pre Demo Day: test + lint + deploy (надёжная лента)"},"matn":{"uz":"Ishonchli lentani (pipeline) haqiqiy run'da ko'rsating.\n\n1. ci.yml'ga matrix qo'shing: Node 22 va 24 — ikki parallel job.\n2. cache: npm — ikkinchi run tezroq o'tsin (vaqtlarini README'ga yozing).\n3. JWT_SECRET ni GitHub Secrets'ga qo'ying va testda ${{ secrets.JWT_SECRET }} orqali ishlating — jurnalda *** ko'rinsin.\n4. Repo linki va run linki.\n\nNima tekshiriladi:\n— 2 ta parallel job yashil\n— cache ishlagan (2-run tezroq)\n— kalit ci.yml'da ochiq yozilmagan, jurnalda ***\n— README'da vaqtlar.","ru":"Покажите надёжную ленту (pipeline) на настоящем run.\n\n1. Добавьте в ci.yml matrix: Node 22 и 24 — два параллельных job.\n2. cache: npm — второй run проходит быстрее (запишите время в README).\n3. Положите JWT_SECRET в GitHub Secrets и используйте в тесте через ${{ secrets.JWT_SECRET }} — в журнале должно быть ***.\n4. Ссылка на репозиторий и ссылка на run.\n\nЧто проверяется:\n— 2 параллельных job зелёные\n— cache сработал (2-й run быстрее)\n— ключ не записан открыто в ci.yml, в журнале ***\n— время в README."}};
 
 
 
@@ -1899,11 +1902,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { uz: "Staging → Production — avval sinov reysida, keyin haqiqiy reysga chiqariladi", ru: 'Staging → Production — сначала тестовый рейс, потом выход на настоящий' },
     { uz: "Rollback — production'da muammo chiqsa, bir bosishda eski yukka qaytiladi", ru: 'Rollback — при проблеме в продакшене возврат к старому багажу в один клик' }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Qo'shing", ru: 'Добавьте' }, t: { uz: "— darsda ulgurmagan bo'lsangiz, KitobShop ci.yml'iga matrix, kesh va seyfni qo'shib push qiling", ru: '— если не успели на уроке, добавьте в ci.yml KitobShop matrix, кеш и сейф и сделайте push' } },
-    { b: { uz: "O'lchang", ru: 'Измерьте' }, t: { uz: "— Actions'da 1- va 2-push'dagi npm ci vaqtini solishtiring (kesh farqi)", ru: '— сравните в Actions время npm ci на 1-м и 2-м push (разница от кеша)' } },
-    { b: { uz: 'Tekshiring', ru: 'Проверьте' }, t: { uz: "— loyihangizda hech qanday maxfiy kalit ochiq yozilmaganini tekshiring", ru: '— что в вашем проекте ни один секретный ключ не записан открыто' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1926,7 +1924,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Loyiha kuni davom etadi — endi bu ishonchli lentani o'z bitiruv loyihangizga qo'llaysiz!", ru: '🚀 Проектный день продолжается — теперь примените эту надёжную ленту в своём выпускном проекте!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

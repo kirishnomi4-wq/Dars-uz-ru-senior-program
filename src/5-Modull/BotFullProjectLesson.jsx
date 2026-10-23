@@ -25,6 +25,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Loyiha kuni: bot + baza + AI + xosting» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-7). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"7-7","tur":"file","nom":{"uz":"Uyga vazifa: Loyiha kuni: bot + baza + AI + xosting","ru":"Домашнее задание: Проектный день: бот + база + AI + хостинг"},"matn":{"uz":"Serverdagi botingizga buyurtmani bekor qilishni qo'shing.\n\n1. /bekor — foydalanuvchining oxirgi buyurtmasini «bekor qilindi» holatiga o'tkazsin (UPDATE, o'chirmasdan).\n2. Bekor qilishdan oldin bot «Ha / Yo'q» inline tugmasi bilan so'rasin.\n3. /buyurtmalarim bekor qilinganini ko'rsatsin.\n4. Push qiling — Render o'zi yangilaydi. Kompyuter yopiq holatda sinang.\n5. Skrinshotlar + repo linki + bot nomi.\n\nNima tekshiriladi:\n— UPDATE (DELETE emas)\n— tasdiq tugmalari\n— ro'yxatda holat\n— Render'da yangi versiya (deploy vaqti)\n— token/kalit repo'da yo'q.","ru":"Добавьте боту на сервере отмену заказа.\n\n1. /bekor — переводит последний заказ пользователя в состояние «отменён» (UPDATE, без удаления).\n2. Перед отменой бот спрашивает inline-кнопками «Да / Нет».\n3. /buyurtmalarim показывает, что заказ отменён.\n4. Сделайте push — Render обновится сам. Проверьте, когда компьютер выключен.\n5. Скриншоты + ссылка на репозиторий + имя бота.\n\nЧто проверяется:\n— UPDATE (не DELETE)\n— кнопки подтверждения\n— статус в списке\n— новая версия на Render (время деплоя)\n— токена/ключа нет в репозитории."}};
 
 
 
@@ -1888,6 +1891,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             ); })}
           </div>
         </div>}
+        <UygaVazifaKarta v={HW_V2} tr={tr} tugma />
         <p className="next-lesson fade-up d4">{tr({ uz: <>Keyingi dars — <b>«Botingizni ishlatgan odamdan nimani so'raysiz?»</b>. Botingiz endi tunda ham ishlaydi — keyingi darsda uni sinab ko'rgan odamdan nima qilganini so'rashni o'rganasiz.</>, ru: <>Следующий урок — <b>«Что вы спросите у того, кто пользовался вашим ботом?»</b>. Ваш бот теперь работает и ночью — на следующем уроке вы научитесь спрашивать у того, кто его попробовал, что именно он делал.</> })}</p>
       </div>
     </Stage>

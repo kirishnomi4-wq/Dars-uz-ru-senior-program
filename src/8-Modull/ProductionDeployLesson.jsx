@@ -30,6 +30,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QTaxmin, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Production-deploy: domen, SSL va monitoring» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 10-7). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"10-7","tur":"file","nom":{"uz":"Uyga vazifa: Production-deploy: domen, SSL va monitoring","ru":"Домашнее задание: Production-деплой: домен, SSL и мониторинг"},"matn":{"uz":"O'z MVP'ingizni haqiqiy prod holatiga keltiring.\n\n1. Netlify'da tushunarli nom; Backend'da WEB_ORIGIN yangi manzil.\n2. https:// — brauzer ogohlantirishsiz.\n3. GET /health.\n4. UptimeRobot'da ikki monitor (sayt va /health) — ikkalasi «Up».\n5. Manzil, repo linki va UptimeRobot skrinshoti.\n\nNima tekshiriladi:\n— nom va HTTPS\n— /health ochiladi\n— 2 monitor Up\n— CORS yangi manzilga.","ru":"Доведите свой MVP до настоящего прод-состояния.\n\n1. Понятное имя на Netlify; в Backend WEB_ORIGIN — новый адрес.\n2. https:// — браузер без предупреждений.\n3. GET /health.\n4. Два монитора в UptimeRobot (сайт и /health) — оба «Up».\n5. Адрес, ссылка на репозиторий и скриншот UptimeRobot.\n\nЧто проверяется:\n— имя и HTTPS\n— /health открывается\n— 2 монитора Up\n— CORS на новый адрес."}};
 
 
 
@@ -2321,23 +2324,7 @@ const YAKUN_RECAP = [
   { uz: "UptimeRobot sayt va `/health` ni har 5 daqiqada so'raydi; javob bo'lmasa email va ilovaga ogohlantirish yuboradi.", ru: 'UptimeRobot спрашивает сайт и `/health` каждые 5 минут; если ответа нет — отправляет оповещение на email и в приложение.' },
   { uz: "O'z domeni DNS yozuvi bilan ulanadi; DNS tayyor bo'lgach, sertifikatni Netlify o'zi oladi.", ru: 'Свой домен подключается DNS-записью; когда DNS готов, сертификат Netlify получает сам.' }
 ];
-const UYGA = [
-  { b: { uz: 'Manzil', ru: 'Адрес' }, t: { uz: "MVP ingiz internetda bo'lsa, Netlify'da unga nom bering va Backend ruxsat ro'yxatini yangilang. Internetda bo'lmasa — avval «Maydon» README'sidagi «Internetga chiqarish» yo'li bilan chiqaring.", ru: 'Если ваш MVP в интернете, дайте ему имя в Netlify и обновите список разрешений Backend. Если нет — сначала опубликуйте его по пути «Internetga chiqarish» из README «Maydon».' } },
-  { b: '`/health`', t: { uz: "Amaliyot 2 dagi «O'z g'oyangiz» promptini yuboring; `ok` ni va to'xtagan Backend'ni brauzerda tekshiring.", ru: 'Отправьте промпт «Ваша идея» из Практики 2; проверьте в браузере `ok` и остановленный Backend.' } },
-  { b: { uz: 'Monitoring', ru: 'Мониторинг' }, t: { uz: "UptimeRobot'da ikki monitor qo'shing va ogohlantirish kelishini bir marta tekshiring.", ru: 'Добавьте в UptimeRobot два монитора и один раз проверьте, что оповещение приходит.' } }
-];
-const HwKarta = () => (
-  <div className="card hw fade-up">
-    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
-    <div className="pd-hw-meta">
-      <span><small>{tr({ uz: 'kim uchun', ru: 'для кого' })}</small>{tr({ uz: "o'z MVP ingiz", ru: 'ваш MVP' })}</span>
-      <span><small>{tr({ uz: 'nechta', ru: 'сколько' })}</small>{tr({ uz: '3 qadam', ru: '3 шага' })}</span>
-      <span><small>{tr({ uz: 'muddat', ru: 'срок' })}</small>{tr({ uz: 'keyingi darsgacha', ru: 'до следующего урока' })}</span>
-    </div>
-    <ol className="pd-hw-q">{UYGA.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{fmtCode(tr(h.b))}</b> — {fmtCode(tr(h.t))}</span></li>)}</ol>
-    <p className="pd-hw-keyingi">{tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: prodga ko'tarish — 1-qism»</b>. Eng yaxshi loyihangizni prodga tayyorlaysiz.</>, ru: <>Следующий урок — <b>«День проекта: вывод в прод — часть 1»</b>. Вы подготовите свой лучший проект к выводу в прод.</> })}</p>
-  </div>
-);
+const HwKarta = () => <UygaVazifaKarta v={HW_V2} tr={tr} keyingi={tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: prodga ko'tarish — 1-qism»</b>. Eng yaxshi loyihangizni prodga tayyorlaysiz.</>, ru: <>Следующий урок — <b>«День проекта: вывод в прод — часть 1»</b>. Вы подготовите свой лучший проект к выводу в прод.</> })} />;
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;

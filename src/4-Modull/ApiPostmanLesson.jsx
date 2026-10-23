@@ -31,6 +31,9 @@ const STAT = { 200: ['200 OK', T.success], 201: ['201 Created', T.success], 404:
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: API va Postman» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-9","tur":"file","nom":{"uz":"Uyga vazifa: API va Postman","ru":"Домашнее задание: API и Postman"},"matn":{"uz":"8-darsdagi AvtoIjara API'ingizni Postman'da to'liq sinang.\n\n1. GET /api/cars → 200.\n2. POST /api/cars (Body → raw → JSON) → 201, javobda yangi mashina.\n3. PUT /api/cars/<id> — narxini o'zgartiring.\n4. DELETE /api/cars/<id>, keyin shu id bilan GET → 404.\n5. Manzilda harf xato (/api/cras) → 404. Har so'rovning skrinshoti (status ko'rinsin).\n\nNima tekshiriladi:\n— 5 skrinshot\n— to'g'ri method har birida\n— POST body JSON\n— statuslar 200/201/404\n— DELETE'dan keyin 404.","ru":"Полностью проверьте в Postman свой API AvtoIjara с 8-го урока.\n\n1. GET /api/cars → 200.\n2. POST /api/cars (Body → raw → JSON) → 201, в ответе новая машина.\n3. PUT /api/cars/<id> — измените цену.\n4. DELETE /api/cars/<id>, потом GET с тем же id → 404.\n5. Опечатка в адресе (/api/cras) → 404. Скриншот каждого запроса (виден статус).\n\nЧто проверяется:\n— 5 скриншотов\n— в каждом правильный method\n— body у POST — JSON\n— статусы 200/201/404\n— 404 после DELETE."}};
 
 
 
@@ -2303,11 +2306,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Postman — frontend yozmasdan API'ni sinash dasturi", ru: 'Postman — инструмент для проверки API без фронтенда' },
     { uz: "Status: 200 OK · 201 Created · 404 Not Found", ru: 'Статусы: 200 OK · 201 Created · 404 Not Found' }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Postman'ni o'rnating", ru: 'Установите Postman' }, t: { uz: "— postman.com'dan yuklab oling (bepul)", ru: '— скачайте с postman.com (бесплатно)' } },
-    { b: { uz: "Ochiq API'ni chaqiring", ru: 'Вызовите открытый API' }, t: { uz: "— GET so'rov yuboring va kelgan JSON javobni ko'ring", ru: '— отправьте GET-запрос и посмотрите пришедший JSON' } },
-    { b: { uz: "4 method'ni eslang", ru: 'Запомните 4 метода' }, t: { uz: "— har biri qaysi CRUD amaliga to'g'ri kelishini yozib chiqing", ru: '— выпишите, какой операции CRUD соответствует каждый' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2330,7 +2328,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi: Backend praktika — o'z CRUD loyihangiz. Keyin NestJS bilan API'ni haqiqiy loyihadagidek yozamiz! 🚀", ru: 'Дальше: практика по бэкенду — ваш собственный CRUD-проект. А потом напишем API на NestJS — как в настоящем проекте! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

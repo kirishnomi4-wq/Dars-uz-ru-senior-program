@@ -36,6 +36,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: JS: Sikllar» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"3-5","tur":"compiler","nom":{"uz":"Uyga vazifa: JS: Sikllar","ru":"Домашнее задание: JS: Циклы"},"matn":{"uz":"Do'kon narxlari bilan ishlang.\n\n1. const prices = [12000, 8000, 15000, 5000];\n2. for bilan har narxni chiqaring: «1-mahsulot: 12000 so'm» … «4-mahsulot: 5000 so'm».\n3. Yana bir for bilan jamini hisoblang: «Jami: 40000 so'm».\n4. while: kuniga 3000 so'm yig'asiz. 20000 ga yetguncha necha kun ketadi? «7 kunda 21000 so'm».\n5. Shartda 4 yozmang — prices.length ishlating.","ru":"Поработайте с ценами магазина.\n\n1. const prices = [12000, 8000, 15000, 5000];\n2. Через for выведите каждую цену: «Товар 1: 12000 сум» … «Товар 4: 5000 сум».\n3. Ещё одним for посчитайте сумму: «Итого: 40000 сум».\n4. while: вы откладываете 3000 сум в день. Сколько дней нужно, чтобы набрать 20000? «За 7 дней 21000 сум».\n5. Не пишите 4 в условии — используйте prices.length."}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -1538,7 +1541,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [{ uz: "Sikl — bir amalni ko'p marta takrorlaydi", ru: 'Цикл повторяет действие много раз' }, { uz: 'for — 3 qism: boshlanish, shart, qadam', ru: 'for — 3 части: старт, условие, шаг' }, { uz: 'while — shart rost ekan takrorlaydi', ru: 'while повторяет, пока условие истинно' }, { uz: 'Massiv — qutilar qatori, indeks 0 dan', ru: 'Массив — ряд коробок, индекс с 0' }, { uz: 'Aylanib chiqish — for + massiv[i] + .length', ru: 'Обход — for + massiv[i] + .length' }];
-  const HOMEWORK = [{ b: { uz: '1 dan 20 gacha', ru: 'От 1 до 20' }, t: { uz: '— for sikli bilan barcha sonlarni chop eting', ru: '— выведите все числа циклом for' } }, { b: { uz: "O'z ro'yxatingiz", ru: 'Свой список' }, t: { uz: '— 5 ta sevimli narsangizni massivga solib, sikl bilan aylanib chiqing', ru: '— положите 5 любимых вещей в массив и обойдите его циклом' } }, { b: { uz: 'Juft sonlar', ru: 'Чётные числа' }, t: { uz: '— 2 dan 10 gacha faqat juft sonlarni chiqaring (i += 2)', ru: '— выведите только чётные от 2 до 10 (i += 2)' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1567,7 +1569,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Sikllar bilan mashq qiling:', ru: 'Потренируйтесь с циклами:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Sikllar — eng ko'p ishlatiladigan usul. Mashq qilsangiz, qo'lingizga o'tirib qoladi! 🚀", ru: 'Циклы — самый используемый инструмент. Потренируетесь — и рука набьётся! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

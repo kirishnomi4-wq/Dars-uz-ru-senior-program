@@ -24,6 +24,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: React intro» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-1). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-1","tur":"test","nom":{"uz":"Uyga vazifa: React intro","ru":"Домашнее задание: Введение в React"},"matn":null,"n":5};
 
 
 
@@ -1829,11 +1832,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Oddiy sayt to'liq yangilanadi, React — kerakli joynigina", ru: 'Обычный сайт обновляется целиком, React — только нужное место' }),
     tr({ uz: "React Native — shu bilim bilan telefon ilovalari", ru: 'React Native — мобильные приложения с этим же знанием' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: 'Komponent ovi', ru: 'Охота на компоненты' }), t: tr({ uz: "— Instagram yoki YouTube'ni oching, takrorlanadigan 5 ta bo'lakni toping va nomlarini yozib qo'ying", ru: '— откройте Instagram или YouTube, найдите 5 повторяющихся частей и запишите их названия' }) },
-    { b: tr({ uz: "Bo'laklash", ru: 'Разбиение' }), t: tr({ uz: "— sevimli saytingiz bosh sahifasini qog'ozga komponentlarga bo'lib chizing", ru: '— нарисуйте на бумаге главную страницу любимого сайта, разбив её на компоненты' }) },
-    { b: tr({ uz: 'Kuzatuv', ru: 'Наблюдение' }), t: tr({ uz: "— 3 ta ilovada like yoki tugma bosing: sahifa to'liq yangilanadimi yoki faqat bir joyi?", ru: '— нажмите лайк или кнопку в 3 приложениях: обновляется вся страница или только одно место?' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1856,7 +1854,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Atrofingizdagi ilovalarni komponentlarga bo'lib ko'ring:", ru: 'Разберите окружающие приложения на компоненты:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda muhitni o'rnatib, birinchi React komponentingizni o'zingiz yozasiz! 🚀", ru: 'На следующем уроке настроите окружение и сами напишете свой первый React-компонент! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

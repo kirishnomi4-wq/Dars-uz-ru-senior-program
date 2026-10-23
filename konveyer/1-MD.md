@@ -9,6 +9,8 @@ Namuna: `feedback/F-0929-QA-6modul/01-SystemArchitecture-v3.md`. Yozishdan oldin
 - Misol-ip (bitta olam) va uning oldingi darslardagi nomlari; o'tilgan atamalar — grep bilan (bir ma'noga bitta so'z, T-014).
 - Test rejasi: ballik ekranlar soni, final turi, arena 12 savol (to'g'ri javob 3/3/3/3).
 - Eski dars bo'lsa: hozirgi kod va v2 MD (`NN-Nom-v2.md`) — v3 faqat o'zgargan ekranlarni to'liq yozadi.
+- **O'quvchi roli (PM/bridge, 110-qonun):** MD'ning A-bo'limida bir qator — «Bu darsda o'quvchi: startapchi, saytini AI bilan o'zi quradi. Ish bajaruvchi va «tayyor» deydigan — AI». Dasturchi, jamoa, rahbar, mijoz rollari senariyga KIRMAYDI; «dasturchi» faqat haqiqiy keys yoki kasb nomi. Har ekran uchun test: o'quvchi uni o'z nomidan aytib bera oladimi?
+- **Mentor qatori (111-qonun):** har ekranga 1 gap «Bu slayd nima uchun: …» (SCREEN_INTENTS'dan, mentor tilida) — MD'da ekran sarlavhasi ostida `🧑‍🏫` belgisi bilan.
 
 ## Format
 ```

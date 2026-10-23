@@ -28,6 +28,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Fullstack practice 1 (AvtoStoyanka)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-13). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-13","tur":"file","nom":{"uz":"Uyga vazifa: Fullstack practice 1 (AvtoStoyanka)","ru":"Домашнее задание: Fullstack practice 1 (AvtoStoyanka)"},"matn":{"uz":"Panel adashmasin — server noto'g'ri kirishni rad etsin.\n\n1. Band joyga ikkinchi mashina kiritilsa — server rad etsin (status 400, «Joy band»). 400 — so'rov noto'g'ri degani.\n2. Mashina raqami bo'sh bo'lsa — 400, «Raqamni kiriting».\n3. Panel shu xabarni qorovulga ko'rsatsin.\n4. Postman yoki panelda ikkala xatoning skrinshoti + GitHub linki.\n\nNima tekshiriladi:\n— kirishdan oldin joy bandligi SELECT bilan tekshiriladi\n— ikkala holatda 400 + aniq xabar\n— panel xabarni ko'rsatadi\n— to'g'ri kirish avvalgidek ishlaydi.","ru":"Чтобы панель не ошибалась — пусть сервер отклоняет неправильный въезд.\n\n1. Если на занятое место ставят вторую машину — сервер отклоняет (статус 400, «Место занято»). 400 значит: запрос неверный.\n2. Если номер машины пустой — 400, «Введите номер».\n3. Панель показывает это сообщение охраннику.\n4. Скриншот обеих ошибок в Postman или в панели + ссылка на GitHub.\n\nЧто проверяется:\n— занятость места проверяется SELECT до въезда\n— в обоих случаях 400 + понятное сообщение\n— панель показывает сообщение\n— правильный въезд работает как раньше."}};
 
 
 
@@ -1096,11 +1099,6 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Front: 🟩/🟥 panel — rang to'g'ridan-to'g'ri bandmi ustunidan chiqadi", ru: 'Фронт: панель 🟩/🟥 — цвет берётся прямо из столбца bandmi' },
     { uz: "JOIN: ikki jadvalni joy_id = id bo'yicha birlashtirdik — tarix o'qiladigan bo'ldi", ru: 'JOIN: объединили две таблицы по joy_id = id — история стала читаемой' }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Yangi joy qo'shing", ru: 'Добавьте новые места' }, t: { uz: "— stoyankaga C1, C2 joylarini qo'shib, panelda ko'rining", ru: '— добавьте на стоянку места C1, C2 и посмотрите их на панели' } },
-    { b: { uz: "Vaqtga qarab to'lov", ru: 'Оплата по времени' }, t: { uz: "— 1 soat = 5 000 so'm qilib, to'lovni turgan vaqtdan hisoblang", ru: '— сделайте 1 час = 5 000 сум и считайте оплату от времени стоянки' } },
-    { b: { uz: 'Tushum hisoboti', ru: 'Отчёт по выручке' }, t: { uz: "— kunlik jami tushumni chiqaring (SUM to'lovlarni qo'shib jamlaydi)", ru: '— выведите дневную общую выручку (SUM складывает все оплаты)' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1123,7 +1121,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, avto-stoyanka loyihangizda (Gemini bilan):", ru: 'В VS Code, в проекте avto-stoyanka (с Gemini):' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Loyihangiz tayyor! Keyingi praktikada — uni sinfdoshlaringizga ko'rsatamiz, fikr (feedback) yig'amiz va yaxshilaymiz.", ru: '🚀 Ваш проект готов! На следующей практике покажем его одноклассникам, соберём фидбек и улучшим.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

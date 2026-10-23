@@ -30,6 +30,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: MVP ishlab chiqish — 2-qism» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 9-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"9-9","tur":"text","nom":{"uz":"Uyga vazifa: MVP ishlab chiqish — 2-qism","ru":"Домашнее задание: Разработка MVP — часть 2"},"matn":{"uz":"MVP'ingizni internetga chiqaring.\n\n1. Asosiy harakat ishlasin (yozish): ikki oynada sinang — bir xil narsani ikki kishi ololmasin (agar MVP'ingizda shunday holat bo'lsa).\n2. Faqat bir kishi ko'radigan ma'lumot bo'lsa — parol bilan himoyalangan sahifa.\n3. Backend Render'da, sayt Netlify'da; telefondan ochiladi.\n4. Netlify manzili, repo linki va telefondagi skrinshot.\n\nNima tekshiriladi:\n— telefonda ochiladi\n— asosiy harakat ishlaydi, ma'lumot bazada\n— parollar .env/Render'da, repo'da emas\n— ikki oyna sinovi (kerak bo'lsa).","ru":"Выложите свой MVP в интернет.\n\n1. Основное действие работает (запись): проверьте в двух окнах — два человека не могут взять одно и то же (если в вашем MVP есть такая ситуация).\n2. Если есть данные, которые видит только один человек, — страница, защищённая паролем.\n3. Backend на Render, сайт на Netlify; открывается с телефона.\n4. Адрес Netlify, ссылка на репозиторий и скриншот с телефона.\n\nЧто проверяется:\n— открывается на телефоне\n— основное действие работает, данные в базе\n— пароли в .env/Render, а не в репозитории\n— проверка в двух окнах (если нужна)."}};
 
 
 
@@ -1971,7 +1974,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   return (
     <Stage eyebrow={tr({ uz: 'Loyiha kuni · yakun', ru: 'День проекта · итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
-      <QYakun til={__lang}
+      <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
         togri={correct} jami={total}
         sarlavha={tr({ uz: <>MVP tayyor: <span className="italic" style={{ color: T.accent }}>boshqa odam ishlata oladi</span>.</>, ru: <>MVP готов: <span className="italic" style={{ color: T.accent }}>им может пользоваться другой человек</span>.</> })}

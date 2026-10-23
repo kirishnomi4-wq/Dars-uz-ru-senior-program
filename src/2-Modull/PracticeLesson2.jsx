@@ -34,6 +34,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Practice: AI-Agent 1» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"3-9","tur":"compiler","nom":{"uz":"Uyga vazifa: Practice: AI-Agent 1","ru":"Домашнее задание: Practice: AI-Agent 1"},"matn":{"uz":"Promo sahifangizga \"Tariflar\" bo'limini compiler'dagi AI-agent bilan qo'shing.\n\n1. Agentga bo'lim uchun aniq prompt yozing: nechta karta, har kartada nima (nom, narx, 3 ta imkoniyat), qaysi rang va uslub.\n2. Promptni index.html tepasiga izoh qilib qo'ying: <!-- prompt: … -->.\n3. 3 ta tarif kartasi, har birida «Tanlash» tugmasi.\n4. «Tanlash» bosilsa, o'sha karta ajralib tursin, pastda «Siz tanladingiz: <nom>» chiqsin; boshqasini tanlasa — almashsin.\n5. Natija bir urinishda chiqmasa — ikkinchi, aniqlashtiruvchi promptni ham izohga qo'shing.","ru":"Добавьте на промо-страницу раздел «Тарифы» с помощью AI-агента в компиляторе.\n\n1. Напишите агенту точный промпт для раздела: сколько карточек, что в каждой (название, цена, 3 возможности), какой цвет и стиль.\n2. Вставьте промпт комментарием вверху index.html: <!-- prompt: … -->.\n3. 3 карточки тарифов, в каждой — кнопка «Выбрать».\n4. При нажатии «Выбрать» эта карточка выделяется, а внизу появляется «Вы выбрали: <название>»; если выбрать другую — выбор меняется.\n5. Если с первого раза не получилось — добавьте в комментарий и второй, уточняющий промпт."}};
 
 
 
@@ -1462,7 +1465,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [tr({ uz: "AI tezlik beradi — sifatni siz ta'minlaysiz", ru: 'AI даёт скорость — качество обеспечиваете вы' }), tr({ uz: "Yaxshi prompt = 4 qism: mavzu, uslub, rang, bo'limlar", ru: 'Хороший промпт = 4 части: тема, стиль, цвет, разделы' }), tr({ uz: "Iteratsiya — bitta so'rov, bitta o'zgarish", ru: 'Итерация — один запрос, одно изменение' }), tr({ uz: "Copilot taklifini o'qib, keyin qabul qilasiz", ru: 'Подсказку Copilot сначала читаете, потом принимаете' }), tr({ uz: "Murakkab effektni AI yozadi — siz uni aniq tasvirlaysiz", ru: 'Сложный эффект пишет AI — вы точно его описываете' })];
-  const HOMEWORK = [{ b: tr({ uz: 'Ikkinchi promo sahifa', ru: 'Вторая промо-страница' }), t: tr({ uz: "— boshqa mavzuga 4 qismli prompt bilan yangi sahifa quring", ru: '— постройте новую страницу на другую тему промптом из 4 частей' }) }, { b: tr({ uz: 'Ikki marta yaxshilang', ru: 'Улучшите дважды' }), t: tr({ uz: "— har safar bitta aniq so'rov bilan", ru: '— каждый раз одним точным запросом' }) }, { b: tr({ uz: "Netlify'ga chiqaring", ru: 'Выложите на Netlify' }), t: tr({ uz: '— papkani tashlang va linkni platformadagi vazifa-savoliga yuboring', ru: '— перетащите папку и отправьте ссылку в задание на платформе' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1485,7 +1487,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, o'z kompyuteringizda:", ru: 'В VS Code, на своём компьютере:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Esda tuting: AI tezlik beradi — sifatni siz ta'minlaysiz.", ru: 'Помните: AI даёт скорость — качество обеспечиваете вы.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

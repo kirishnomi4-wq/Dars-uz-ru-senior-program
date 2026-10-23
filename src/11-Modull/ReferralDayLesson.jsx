@@ -30,6 +30,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QIzoh, QXato, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Growth: referal tizim» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 13-10). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"13-10","tur":"file","nom":{"uz":"Uyga vazifa: Growth: referal tizim","ru":"Домашнее задание: Growth: реферальная система"},"matn":{"uz":"Taklif tizimini haqiqiy odam bilan sinang.\n\n1. Do'stingizni o'z linkingiz bilan taklif qiling; u ro'yxatdan o'tib, asosiy harakatni bajarsin.\n2. Mukofot shartlarga mos tushganda berilganini ko'rsating.\n3. O'zingizni o'zingiz taklif qilishga urinib ko'ring (ikkinchi akkaunt, o'sha qurilma) — qoida bo'yicha rad etilishi kerak.\n4. Skrinshotlar va repo linki.\n\nNima tekshiriladi:\n— real taklif sanoqda\n— mukofot faqat shart bajarilganda\n— o'zini taklif qilish rad etiladi (yoki topilgan teshik tuzatilgan).","ru":"Проверьте систему приглашений на реальном человеке.\n\n1. Пригласите друга по своей ссылке; пусть он зарегистрируется и выполнит основное действие.\n2. Покажите, что награда выдана, когда условия выполнены.\n3. Попробуйте пригласить самого себя (второй аккаунт, то же устройство) — по правилу это должно отклоняться.\n4. Скриншоты и ссылка на репозиторий.\n\nЧто проверяется:\n— реальное приглашение в счётчике\n— награда только при выполнении условия\n— приглашение самого себя отклоняется (или найденная дыра исправлена)."}};
 
 
 
@@ -2279,7 +2282,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className={cx('rf-yakun', holat !== 'toliq' && 'belgisiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}

@@ -31,6 +31,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: React practice 1 (AvtoIjara)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-12). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-12","tur":"file","nom":{"uz":"Uyga vazifa: React practice 1 (AvtoIjara)","ru":"Домашнее задание: React practice 1 (AvtoIjara)"},"matn":{"uz":"AvtoIjara'ni tugating.\n\n1. /add sahifasi: forma (nom, kunlik narx, yil) → setCars([...cars, yangi]) → navigate('/').\n2. Bo'sh maydon bilan mashina qo'shilmasin.\n3. Katalogda «Arzon → qimmat» va «Qimmat → arzon» saralash.\n4. AI'ga yozgan promptlaringizni README'ga qo'shing (Nima + Qanday + Qayerda).\n5. Link va skrinshot (yangi qo'shilgan mashina katalogda).\n\nNima tekshiriladi:\n— /add Route + forma\n— spread bilan qo'shiladi, navigate('/')\n— bo'sh maydon tekshiruvi\n— saralash nusxada (asl massiv buzilmaydi)\n— README promptlar.","ru":"Доделайте AvtoIjara.\n\n1. Страница /add: форма (название, цена за день, год) → setCars([...cars, yangi]) → navigate('/').\n2. Машина с пустым полем не добавляется.\n3. В каталоге — сортировка «Дешевле → дороже» и «Дороже → дешевле».\n4. Добавьте в README промпты, которые вы писали AI (Что + Как + Где).\n5. Ссылка и скриншот (новая машина в каталоге).\n\nЧто проверяется:\n— Route /add + форма\n— добавление через spread, navigate('/')\n— проверка пустых полей\n— сортировка копии (исходный массив не портится)\n— промпты в README."}};
 
 
 
@@ -985,11 +988,6 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Iteratsiya: natijani ko'rib, aniqlashtiruvchi prompt", ru: 'Итерация: смотрим результат и даём уточняющий промпт' }),
     tr({ uz: "Debug: kodni o'qib xatoni topish (jami = kun × narx)", ru: 'Дебаг: найти ошибку, читая код (итог = дни × цена)' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: "Mashina qo'shish", ru: 'Добавление машины' }), t: tr({ uz: "— /add sahifasi: forma, setCars([...cars, yangi]) va navigate('/') — Gemini bilan", ru: "— страница /add: форма, setCars([...cars, yangi]) и navigate('/') — с Gemini" }) },
-    { b: tr({ uz: 'Ijarani bekor qilish', ru: 'Отмена аренды' }), t: tr({ uz: "— «Mening ijaralarim»da har ijaraga ✕: filter bilan o'chirsin, jami qayta hisoblansin", ru: '— в «Мои аренды» у каждой аренды ✕: удаляет через filter, итог пересчитывается' }) },
-    { b: tr({ uz: 'Tekshiring', ru: 'Проверьте' }), t: tr({ uz: "— har promptdan keyin brauzerda sinang: jami to'g'rimi, sahifa almashsa ma'lumot qoladimi", ru: '— после каждого промпта проверяйте в браузере: итог верный, данные сохраняются при смене страницы' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1013,7 +1011,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, avto-ijara loyihangizda:", ru: 'В VS Code, в проекте avto-ijara:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi va oxirgi qadam: o'z bitiruv loyihangizni katta bo'laklarga ajratib, noldan qurishni boshlaysiz! 🚀", ru: 'Следующий и последний шаг: разобьёте свой выпускной проект на крупные части и начнёте строить его с нуля! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

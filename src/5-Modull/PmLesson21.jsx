@@ -1288,42 +1288,37 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setTried(false);
     save();
   };
-  const navLabel = done || isMentor
-    ? tr({ uz: 'Davom etish', ru: 'Продолжить' })
-    : list.length === 0 ? tr({ uz: "1-kunning ikki sonini yozing", ru: "Запишите два числа 1-го дня" }) : tr({ uz: `Yana ${3 - list.length} kun yozing`, ru: `Запишите ещё дней: ${3 - list.length}` });
+  const navLabel = tr({ uz: 'Davom etish', ru: 'Продолжить' }); // F-1020-18: hisoblagich jadvalning o'zida — pastda takrorlanmaydi
   const yozish = !done || edit !== null;
   return (
     <Stage eyebrow={tr({ uz: 'Mustaqil ish', ru: 'Самостоятельная работа' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Botingizning uch kunini <span className="italic" style={{ color: T.accent }}>yozing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Запишите</span> три дня своего бота.</> })}</h2></div>
-        {eshitgan && (
-          <span className="tasma fade-up">{tr({ uz: <>8-darsda eshitgan javoblaringiz: {eshitgan.join(' · ')}</>, ru: <>Ответы, которые вы услышали на 8-м уроке: {eshitgan.join(' · ')}</> })}</span>
-        )}
         {/* 106d-f: ko'p qadamli mashqda Mentor BIR MARTA gapiradi — 1-kunning birinchi soni yozilguncha.
             106c: kun-izohi chiqqanda pufak o'z o'rnini unga bo'shatadi (bitta yo'l-yo'riq manbasi) */}
         {nQadam === 1 && !kelOk && !done && <Mentor>{eshitgan
           ? tr({ uz: "8-darsda odam nima deganini eshitgansiz — endi sonlarga qaraymiz. Namunadagidek, o'z botingizning uch kunini yozing; aniq son bo'lmasa, taxminiy son yozing.", ru: "На 8-м уроке вы услышали, что сказал человек, — теперь посмотрим на числа. Как в примере, запишите три дня своего бота; если точного числа нет, напишите примерное." })
           : tr({ uz: "Namunadagidek, o'z botingizning uch kunini yozing; aniq son bo'lmasa, taxminiy son yozing.", ru: "Как в примере, запишите три дня своего бота; если точного числа нет, напишите примерное." })}</Mentor>}
         {/* 80a: uch qadam-doira — yozilgani ✓, joriysi ajralgan; uch kun yozilgach o'rnini hisob-jadvaliga bo'shatadi */}
-        {yozish && <div className="stps fade-up">
-          {[0, 1, 2].map(k => (
-            <span key={k} className={`stp ${list.length > k ? 'done' : (edit === null ? list.length : edit) === k ? 'on' : ''}`}><i>{list.length > k ? '✓' : k + 1}</i>{tr({ uz: <>{k + 1}-kun</>, ru: <>{k + 1}-й день</> })}</span>
-          ))}
-        </div>}
+        {/* F-1020-18: ikki ustun — chapda kun kartasi, o'ngda «Botingiz — 3 kun» jadvali boshidanoq to'lib boradi (80c o'rniga: foydalanuvchi qarori 20.10) */}
+        <div className={`wsp-ikki${done && edit === null ? ' tugadi' : ''}`}>
         <div className="wsp-one">
           {/* A6 (MD v2): navbat bilan — 2-katak 1-katak to'lgach chiqadi */}
           {yozish && (
             <div className="wsp-ed" ref={edRef}>
+              <span className="wsp-kun">{tr({ uz: <>{nQadam}-kun</>, ru: <>{nQadam}-й день</> })}</span>
               <div className="numrow">
+                <span className="wsp-lbl">{tr({ uz: 'Kelgan', ru: 'Пришло' })}</span>
                 <input className={`reflect-input num${inputTurn ? ' await' : ''}${kelOk ? ' filled' : ''}`} value={dKel} maxLength={4}
                   inputMode="numeric" placeholder={tr({ uz: 'Nechta odam keldi?', ru: 'Сколько человек пришло?' })} aria-label={tr({ uz: 'Nechta odam keldi?', ru: 'Сколько человек пришло?' })}
                   onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
                   onChange={e => setDKel(e.target.value)}
                   onKeyDown={e => { if (e.key === 'Enter') save(); }} />
               </div>
-              {kelOk && <>
+              {<>
                 {nQadam === 1 && <span className="numlbl fade-step">{tr({ uz: <>Hisobda <span style={{ whiteSpace: 'nowrap' }}>1-kundan</span> oldingi kun yo'q — shuning uchun <span style={{ whiteSpace: 'nowrap' }}>1-kunning</span> qaytgani 0.</>, ru: <>В учёте нет дня раньше <span style={{ whiteSpace: 'nowrap' }}>1-го</span> — поэтому у <span style={{ whiteSpace: 'nowrap' }}>1-го дня</span> вернувшихся 0.</> })}</span>}
-                <div className="numrow fade-step">
+                <div className="numrow">
+                  <span className="wsp-lbl">{tr({ uz: 'Shundan qaytgan', ru: 'Из них вернулось' })}</span>
                   <input className={`reflect-input num${qayOk ? ' filled' : ''}`} value={dQay} maxLength={4}
                     inputMode="numeric" placeholder={tr({ uz: 'Ulardan nechtasi qaytdi?', ru: "Сколько из них вернулось?" })} aria-label={tr({ uz: 'Ulardan nechtasi qaytdi?', ru: "Сколько из них вернулось?" })}
                     onFocus={() => setFocus(true)} onBlur={() => setFocus(false)}
@@ -1335,33 +1330,17 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {((dKel.trim().length > 0 && !kelOk) || (kelOk && dQay.trim().length > 0 && !qayOk)) && <p className="sfb ask">{tr({ uz: "Bu katakka faqat son yoziladi, masalan: 7.", ru: "В эту клетку пишется только число, например: 7." })}</p>}
               {oshib && <p className="sfb ask">{tr({ uz: "Qaytganlar o'sha kuni kelganlardan ko'p bo'lolmaydi — ular shu kelganlar ichidan sanaladi.", ru: "Вернувшихся не может быть больше, чем пришедших в тот день, — их считают среди этих же пришедших." })}</p>}
               {/* 30-qonun: qulf-tugma AYNAN qaysi qadam qolganini aytadi */}
-              <div className="wsp-go">
-                <button type="button" className="wsp-save" onClick={bosSave}>{edit === null ? tr({ uz: 'Saqlash →', ru: 'Сохранить →' }) : tr({ uz: '✓ Yangilash', ru: '✓ Обновить' })}</button>
-                {!canSave && <span className={`wsp-need${tried ? ' on' : ''}`}>{!kelOk ? tr({ uz: 'Nechta odam kelganini yozing', ru: "Напишите, сколько человек пришло" }) : oshib ? tr({ uz: 'Qaytganlar kelganlardan oshmasin', ru: "Вернувшихся не должно быть больше пришедших" }) : tr({ uz: 'Ulardan nechtasi qaytganini yozing', ru: "Напишите, сколько из них вернулось" })}</span>}
-              </div>
-            </div>
-          )}
-          {msg && !done && <p className="sfb ok fade-step">{msg}</p>}
-          {/* 80c: yozilganlar YOZISH PAYTIDA ko'rinmaydi; uchtasi yozilgach jadval ochiladi */}
-          {done && edit === null && (
-            <div className="wsp-list fade-step">
-              <span className="wsp-list-h">{tr({ uz: 'Uch kunlik hisobingiz', ru: "Ваш учёт за три дня" })}</span>
-              {list.slice(0, 3).map((r, k) => (
-                <span key={k} className="wsp-item">
-                  <span className="wsp-item-n">{r.kun}</span>
-                  <span className="wsp-item-t">{tr({ uz: <>{r.kun}-kun <i className="wsp-arw">·</i> {tr(YORLIQ_KELDI)} {r.kelgan} <i className="wsp-arw">·</i> {tr(YORLIQ_QAYTDI)} {r.qaytgan}</>, ru: <>{r.kun}-й день <i className="wsp-arw">·</i> {tr(YORLIQ_KELDI)} {r.kelgan} <i className="wsp-arw">·</i> {tr(YORLIQ_QAYTDI)} {r.qaytgan}</> })}</span>
-                  <button type="button" className="wsp-item-edit" onClick={() => startEdit(k)}>{tr({ uz: 'Tahrirlash', ru: 'Изменить' })}</button>
-                </span>
-              ))}
-            </div>
-          )}
-          <div className="wsxrow">
-            {yozish && (
-              <div className={`wsx ${yordamOpen ? 'open' : ''}`}>
+              <div className={`wsx wsx-ich ${yordamOpen ? 'open' : ''}`}>
                 <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })} {yordamOpen ? '▾' : '›'}</button>
                 {yordamOpen && <div className="wsx-body"><p>{tr({ uz: <>Kechagi ro'yxatni oching va bugungisi bilan solishtiring: <b>ikkalasida ham bor odamlar</b> — qaytganlar.</>, ru: <>Откройте вчерашний список и сравните с сегодняшним: <b>люди, которые есть в обоих</b>, — вернувшиеся.</> })}</p></div>}
               </div>
-            )}
+              <div className="wsp-go">
+                <button type="button" className="wsp-save" onClick={bosSave}>{edit === null ? tr({ uz: 'Saqlash →', ru: 'Сохранить →' }) : tr({ uz: '✓ Yangilash', ru: '✓ Обновить' })}</button>
+                {!canSave && tried && <span className="wsp-sabab">{!kelOk ? tr({ uz: 'Nechta odam kelganini yozing', ru: "Напишите, сколько человек пришло" }) : !qayOk ? tr({ uz: 'Nechtasi qaytganini yozing', ru: 'Напишите, сколько вернулось' }) : tr({ uz: "Qaytganlar kelganlardan oshmasin", ru: 'Вернувшихся не больше, чем пришедших' })}</span>}
+              </div>
+            </div>
+          )}
+          <div className="wsxrow">
             {/* Qo'shimcha ish uchun uchala kunning soni kerak — shuning uchun u faqat hisob to'lgach ochiladi */}
             {done && (
               <div className={`wsx star ${starOpen ? 'open' : ''}`}>
@@ -1370,6 +1349,20 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             )}
           </div>
+        </div>
+        <div className="wsp-jad">
+          <span className="wsp-jad-h">{tr({ uz: 'Botingiz — 3 kun', ru: 'Ваш бот — 3 дня' })}</span>
+          <div className="wsp-jq bosh"><span>{tr({ uz: 'Kun', ru: 'День' })}</span><span>{tr(YORLIQ_KELDI)}</span><span>{tr(YORLIQ_QAYTDI)}</span><span /></div>
+          {[0, 1, 2].map(k => {
+            const r = list[k];
+            const joriy = !r && k === list.length && edit === null;
+            return r
+              ? <div key={k} className={`wsp-jq tolgan${edit === k ? ' joriy' : ''}`}><span>{tr({ uz: <>{r.kun}-kun</>, ru: <>{r.kun}-й день</> })}</span><b>{r.kelgan}</b><b>{r.qaytgan}</b>{edit === null ? <button type="button" className="wsp-item-edit" onClick={() => startEdit(k)}>{tr({ uz: 'Tahrirlash', ru: 'Изменить' })}</button> : <span />}</div>
+              : <div key={k} className={`wsp-jq bosh-q${joriy ? ' joriy' : ''}`}><span>{tr({ uz: <>{k + 1}-kun</>, ru: <>{k + 1}-й день</> })}</span><i /><i /><span /></div>;
+          })}
+        </div>
+        </div>
+        <div className="wsp-ost">
           <StudentPracticePulse live={live} screen={screen} />
           <MentorPracticeStats live={live} screen={screen} label={{ uz: 'Uch kunni yozganlar', ru: "Записали три дня" }} />
         </div>
@@ -3033,38 +3026,44 @@ const CSS_LESSON = `
   .numrow { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
   .numlbl { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; color: ${T.ink2}; min-width: 0; overflow-wrap: anywhere; }
   .reflect-input.num { font-variant-numeric: tabular-nums; font-weight: 700; }
-  .tasma { align-self: flex-start; font-family: 'Manrope'; font-weight: 600; font-size: 11.5px; line-height: 1.4; color: ${T.ink3}; background: ${T.bg}; border-radius: 9px; padding: 5px 11px; max-width: 100%; min-width: 0; overflow-wrap: anywhere; }
   .wsp-save { align-self: flex-start; font-family: 'Manrope'; font-weight: 800; font-size: clamp(13px,1.6vw,14.5px); color: #fff; background: ${T.accent}; border: none; border-radius: 12px; padding: 10px 20px; cursor: pointer; box-shadow: 0 10px 22px -10px rgba(91,61,230,0.6); transition: transform 0.14s, opacity 0.14s, box-shadow 0.14s; }
   .wsp-save:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 13px 26px -10px rgba(91,61,230,0.7); }
   .wsp-save:active:not(:disabled) { transform: translateY(0) scale(0.97); }
   .wsp-save:disabled { opacity: 0.42; cursor: not-allowed; box-shadow: none; }
   @media (prefers-reduced-motion: reduce) { .wsp-save { transition: none; } .wsp-save:hover:not(:disabled), .wsp-save:active:not(:disabled) { transform: none; } }
-  .wsp-list { display: flex; flex-direction: column; gap: 7px; background: ${T.paper}; border-radius: 16px; padding: clamp(12px,2vw,17px); box-shadow: 0 12px 28px -14px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.success}55; min-width: 0; }
-  .wsp-list-h { font-family: 'Manrope'; font-weight: 800; font-size: clamp(12.5px,1.5vw,14px); color: ${T.success}; overflow-wrap: anywhere; }
-  .wsp-item { display: flex; align-items: flex-start; gap: 9px; background: ${T.bg}; border-radius: 11px; padding: 9px 11px; min-width: 0; animation: fade-in-up 0.34s ease-out both; }
-  .wsp-item:nth-child(3) { animation-delay: 0.09s; }
-  .wsp-item:nth-child(4) { animation-delay: 0.18s; }
-  @media (prefers-reduced-motion: reduce) { .wsp-item { animation: none; } }
   /* A-12.1: kun raqami — neytral doira (yashil faqat qaytish) */
-  .wsp-item-n { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: ${T.ink2}; color: #fff; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
-  .wsp-item-t { flex: 1; font-family: 'Manrope'; font-weight: 700; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; line-height: 1.4; min-width: 0; overflow-wrap: anywhere; }
   .wsp-arw { font-style: normal; font-weight: 800; color: ${T.accent}; }
   .wsp-item-edit { flex-shrink: 0; background: none; border: none; cursor: pointer; font-family: 'Manrope'; font-weight: 700; font-size: 12px; color: ${T.accent}; text-decoration: underline; text-underline-offset: 3px; border-radius: 8px; padding: 2px 6px; }
   .wsp-item-edit:hover { color: ${T.accent}; background: ${T.accentSoft}; }
   /* s8 (MD v2): bitta ustun — topshiriq-kartasi olindi, muharrir va Yordam bir-birining ostida */
   .wsp-one { display: flex; flex-direction: column; gap: 9px; width: 100%; max-width: 620px; min-width: 0; }
+  /* F-1020-18: Mustaqil ish — ikki ustun (karta + jonli jadval) */
+  .wsp-ikki { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(16px,2.4vw,24px); align-items: start; width: 100%; }
+  .wsp-ikki .wsp-one { max-width: none; }
+  .wsp-ikki.tugadi { grid-template-columns: 1fr; }
+  .wsp-ikki.tugadi .wsp-one { display: contents; }
+  .wsp-ikki.tugadi .wsp-jad { order: -1; }
+  @media (max-width: 860px) { .wsp-ikki { grid-template-columns: 1fr; } }
+  .wsp-kun { font-family: 'Manrope'; font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: ${T.ink2}; }
+  .wsp-lbl { font-family: 'Manrope'; font-size: 12px; font-weight: 700; color: ${T.ink2}; }
+  .wsp-sabab { font-family: 'Manrope'; font-size: 12.5px; font-weight: 700; color: ${T.err}; }
+  .wsx.wsx-ich { margin: 2px 0; }
+  .wsp-jad { display: flex; flex-direction: column; gap: 6px; padding: clamp(12px,2vw,16px); border-radius: 16px; background: ${T.paper}; border: 1px solid ${T.line}; min-width: 0; }
+  .wsp-jad-h { font-family: 'Manrope'; font-size: 13px; font-weight: 800; color: ${T.ink}; margin-bottom: 2px; }
+  .wsp-jq { display: grid; grid-template-columns: minmax(0,1fr) 72px 72px 96px; gap: 8px; align-items: center; padding: 9px 12px; border-radius: 10px; font-family: 'Manrope'; font-size: 13.5px; color: ${T.ink}; }
+  .wsp-jq.bosh { padding-top: 0; padding-bottom: 2px; font-size: 11px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: ${T.ink2}; }
+  .wsp-jq.tolgan { background: ${T.bg}; animation: fade-step .35s ease-out; }
+  .wsp-jq.tolgan b { font-family: 'JetBrains Mono', monospace; font-size: 15px; }
+  .wsp-jq.bosh-q { border: 1.5px dashed ${T.line}; color: ${T.ink3}; }
+  .wsp-jq.bosh-q i { height: 8px; border-radius: 999px; background: ${T.line}; }
+  .wsp-jq.joriy { box-shadow: inset 0 0 0 1.5px ${T.accent}; border-color: transparent; }
+  .wsp-ost { display: flex; flex-direction: column; gap: 9px; }
+
   .wsp-task { display: flex; flex-direction: column; gap: 5px; background: ${T.paper}; border-radius: 14px; padding: 11px 14px; box-shadow: 0 10px 24px -12px rgba(${T.shadowBase},0.2); min-width: 0; }
   .wsp-task-lbl { font-family: 'Manrope'; font-weight: 800; font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: ${T.accent}; }
   .wsp-task-nom { font-family: 'Source Serif 4', serif; font-weight: 600; font-size: clamp(15px,2vw,18px); color: ${T.ink}; line-height: 1.25; overflow-wrap: anywhere; min-width: 0; }
 
   /* BOSQICHLI OCHILISH (94-qonun): uch qadam-doirasi */
-  .stps { display: flex; flex-wrap: wrap; gap: 8px; }
-  .stp { display: inline-flex; align-items: center; gap: 7px; font-family: 'Manrope'; font-weight: 700; font-size: clamp(11.5px,1.4vw,13px); color: ${T.ink3}; background: ${T.paper}; border-radius: 99px; padding: 5px 12px 5px 5px; box-shadow: inset 0 0 0 1.5px ${T.line}; }
-  .stp i { font-style: normal; width: 20px; height: 20px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: ${T.bg}; color: ${T.ink3}; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-weight: 800; font-size: 11px; }
-  .stp.on { color: ${T.accent}; box-shadow: inset 0 0 0 1.5px ${T.accent}; }
-  .stp.on i { background: ${T.accent}; color: #fff; }
-  .stp.done { color: ${T.success}; box-shadow: inset 0 0 0 1.5px ${T.success}66; }
-  .stp.done i { background: ${T.success}; color: #fff; }
 
   /* 81-qonun: kiritish-belgilari MA'NO rangida (qizil hech qachon). */
   .reflect-input { font-family: 'Manrope'; font-size: 15px; color: ${T.ink}; border: none; border-radius: 10px; padding: 11px 14px; background: ${T.bg}; box-shadow: inset 0 0 0 1.5px ${T.line}; outline: none; width: 100%; min-width: 0; transition: box-shadow 0.18s; }

@@ -32,6 +32,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKarta, QChip, QBashorat, QTaxmin, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Fidbek bo'yicha iteratsiya» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 9-11). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"9-11","tur":"text","nom":{"uz":"Uyga vazifa: Fidbek bo'yicha iteratsiya","ru":"Домашнее задание: Итерация по фидбеку"},"matn":{"uz":"O'z MVP'ingizda kuzatish → tuzatish → qayta sinov aylanasini yuriting.\n\n1. MVP'ingizni oila a'zosi yoki do'stingizga bitta vazifa bilan bering; tushuntirmasdan kuzating.\n2. SINOV.md: kuzatuvlar, «Vazifaga ta'siri», ★.\n3. ★ dan uch qatorli talab yozing va tuzating; git diff bilan faqat kerakli fayllar o'zgarganini tekshiring.\n4. Deploy qiling va o'sha vazifani yangi odamga bering; natijani SINOV.md ga yozing.\n5. Repo linki.\n\nNima tekshiriladi:\n— kuzatuv real odamdan\n— ★ asosli\n— talab uch qatorli\n— tuzatish commit'i\n— qayta sinov natijasi.","ru":"Пройдите в своём MVP круг: наблюдение → исправление → повторная проверка.\n\n1. Дайте свой MVP члену семьи или другу с одним заданием; ничего не объясняйте — наблюдайте.\n2. SINOV.md: наблюдения, «Влияние на задание», ★.\n3. Из ★ напишите требование в три строки и исправьте; через git diff проверьте, что изменились только нужные файлы.\n4. Сделайте деплой и дайте то же задание новому человеку; запишите результат в SINOV.md.\n5. Ссылка на репозиторий.\n\nЧто проверяется:\n— наблюдение за реальным человеком\n— ★ обоснована\n— требование в три строки\n— коммит с исправлением\n— результат повторной проверки."}};
 
 
 
@@ -1856,7 +1859,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   return (
     <Stage eyebrow={tr({ uz: 'Tayyor', ru: 'Готово' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
-      <QYakun til={__lang}
+      <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
         togri={correct} jami={total}
         sarlavha={tr({ uz: <>Birinchi tuzatish tayyor — <span className="italic" style={{ color: T.accent }}>qayta sinov yozildi</span>.</>, ru: <>Первое исправление готово — <span className="italic" style={{ color: T.accent }}>повторный тест записан</span>.</> })}

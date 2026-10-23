@@ -35,6 +35,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Nest arxitekturasi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-3). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"6-3","tur":"file","nom":{"uz":"Uyga vazifa: Nest arxitekturasi","ru":"Домашнее задание: Архитектура Nest"},"matn":{"uz":"Xuddi shu 6 qadam bilan Brand (avtomobil brendi) resursini o'zingiz, agentsiz qo'shing.\n\n1. Entity: name (matn), country (matn).\n2. DTO: ikkalasi @IsString, @IsNotEmpty; tahrirlash DTO — PartialType.\n3. Service BaseService dan meros; Controller — 4 ta eshik.\n4. BrandModule ni AppModule'ga ulang.\n5. Swagger'da ikki skrinshot: POST /brand → 201 va bo'sh name → 400. GitHub linki.\n\nNima tekshiriladi:\n— 5 fayl, nomlari tartibli\n— DTO qoidalari\n— extends BaseService\n— AppModule'da\n— 201 va 400 skrinshotlari.","ru":"Теми же 6 шагами добавьте ресурс Brand (марка автомобиля) — сами, без агента.\n\n1. Entity: name (строка), country (строка).\n2. DTO: у обоих полей @IsString, @IsNotEmpty; DTO для редактирования — PartialType.\n3. Service наследуется от BaseService; Controller — 4 двери.\n4. Подключите BrandModule к AppModule.\n5. Два скриншота из Swagger: POST /brand → 201 и пустой name → 400. Ссылка на GitHub.\n\nЧто проверяется:\n— 5 файлов, имена по порядку\n— правила DTO\n— extends BaseService\n— подключён в AppModule\n— скриншоты 201 и 400."}};
 
 
 
@@ -2411,11 +2414,6 @@ const Screen19 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "CarModule'ni AppModule'ga ulash (aks holda 404)", ru: 'Подключить CarModule к AppModule (иначе 404)' }),
     tr({ uz: "Agent yozgan kodni tekshirish: har qator o'z qatlamida (debug)", ru: 'Проверять код агента: каждая строка в своём слое (отладка)' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: "O'z resursingiz", ru: 'Свой ресурс' }), t: tr({ uz: "— masalan Order (buyurtma) yoki Client (mijoz): 5 qadamni qog'ozga yozing", ru: '— например Order (заказ) или Client (клиент): распишите 5 шагов на бумаге' }) },
-    { b: 'Playbook', t: tr({ uz: '— har qadam uchun agentga beradigan promptni tayyorlang', ru: '— подготовьте промпт для агента на каждый шаг' }) },
-    { b: tr({ uz: 'Tekshiruv', ru: 'Проверка' }), t: tr({ uz: "— AppModule'ga ulanganini va Swagger'da ko'rinishini tasavvur qiling", ru: '— представьте, как он подключён к AppModule и виден в Swagger' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2438,7 +2436,7 @@ const Screen19 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi — PRAKTIKA: o'z mini-loyihangiz uchun 2–3 resurs quring (Avtosalon / Kutubxona / Do'kon), agentni shu playbook bilan boshqarib!", ru: '🚀 Дальше — ПРАКТИКА: постройте 2–3 ресурса для своего мини-проекта (Автосалон / Библиотека / Магазин), управляя агентом по этому playbook!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

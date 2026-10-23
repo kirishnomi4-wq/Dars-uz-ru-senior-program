@@ -1,0 +1,13 @@
+/* Образец (часть, написанная с AI-агентом): картинка к заданию снята с этой страницы */
+body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif; background: linear-gradient(135deg, #FFE9E2, #E7EDFC); }
+.box { width: 320px; background: white; border-radius: 18px; padding: 32px; text-align: center; box-shadow: 0 20px 50px rgba(22, 24, 29, 0.15); animation: kir 0.5s ease-out; }
+@keyframes kir { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+h1 { margin: 12px 0 4px; font-size: 26px; color: #16181D; }
+p { margin: 0 0 18px; color: #6B7585; }
+form { display: flex; flex-direction: column; gap: 8px; text-align: left; }
+label { font-size: 13px; color: #6B7585; }
+input { padding: 10px 12px; border: 1px solid #D9DDE4; border-radius: 10px; font-size: 15px; transition: border-color 0.2s; }
+input:focus { outline: none; border-color: #E8461F; }
+button { margin-top: 8px; padding: 12px; border: 0; border-radius: 10px; background: #E8461F; color: white; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.15s; }
+button:hover { transform: scale(1.03); }
+a { display: inline-block; margin-top: 14px; color: #E8461F; font-size: 14px; }

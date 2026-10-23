@@ -37,6 +37,9 @@ const G = "Georgia, serif";
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Loyiha kuni: to'liq tizim end-to-end» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-13). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-13","tur":"text","nom":{"uz":"Uyga vazifa: Loyiha kuni: to'liq tizim end-to-end","ru":"Домашнее задание: Проектный день: полная система end-to-end"},"matn":{"uz":"Tizimni xato holatlarda sinang.\n\n1. TEST.md ga 3 ta yangi qator: bo'sh savat bilan buyurtma · Backend o'chiq paytda sayt · bot'ga noma'lum buyruq.\n2. Har birining natijasini yozing: tizim nima qildi, foydalanuvchi nima ko'rdi.\n3. Kamida bittasini tuzating (tushunarli xabar chiqsin) va qayta sinang.\n4. README'ga tizim chizmasi va uchala kirish yo'li.\n5. Repo linki.\n\nNima tekshiriladi:\n— 3 yangi qator natijasi bilan\n— bitta tuzatish commit'i\n— qayta sinov ✓\n— README'da chizma.","ru":"Проверьте систему в ошибочных ситуациях.\n\n1. 3 новые строки в TEST.md: заказ с пустой корзиной · сайт, когда Backend выключен · неизвестная команда боту.\n2. Для каждой запишите результат: что сделала система, что увидел пользователь.\n3. Исправьте хотя бы одну (пусть появляется понятное сообщение) и проверьте снова.\n4. В README — схема системы и все три пути входа.\n5. Ссылка на репозиторий.\n\nЧто проверяется:\n— 3 новые строки с результатом\n— коммит с одним исправлением\n— повторная проверка ✓\n— схема в README."}};
 
 
 
@@ -2248,11 +2251,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 backend', ru: '1 backend' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Yig'ing", ru: 'Соберите' }, t: { uz: "— loyihangizning barcha kanalini bitta backend'ga ulang", ru: '— подключите все каналы своего проекта к одному бэкенду' } },
-    { b: { uz: 'Sinang', ru: 'Проверьте' }, t: { uz: '— har kanaldan buyurtma berib, butun oqimni tekshiring', ru: '— сделайте заказ с каждого канала и проверьте весь поток' } },
-    { b: { uz: 'Ishga tushiring', ru: 'Запустите' }, t: { uz: "— .env to'g'ri va test o'tgach, backend'ni serverga joylashtiring", ru: '— когда .env верный и тест пройден, разместите бэкенд на сервере' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2275,7 +2273,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: "1-bosqichning yakuniy loyihasi tayyor: endi o'z g'oyangizni oling, qismlarga bo'ling, yig'ing, sinang va ishga tushiring. Siz buni qila olasiz.", ru: 'Итоговый проект 1-го этапа готов: теперь берите свою идею, разбивайте на части, собирайте, проверяйте и запускайте. Вы это можете.' })}</p><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — PM: <b>Raqamingiz nimani isbotlaydi?</b> Loyihangiz haqida bitta raqam va bitta slayd bilan gapirishni o'rganasiz.</>, ru: <>Следующий урок — PM: <b>Что доказывает ваше число?</b> Вы научитесь рассказывать о своём проекте с помощью одной цифры и одного слайда.</> })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

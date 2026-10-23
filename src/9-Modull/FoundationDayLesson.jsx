@@ -30,6 +30,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKarta, QBashorat, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Vibe-coding: poydevor» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 11-10). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"11-10","tur":"file","nom":{"uz":"Uyga vazifa: Vibe-coding: poydevor","ru":"Домашнее задание: Vibe-coding: фундамент"},"matn":{"uz":"Kirish xato holatlarda nima deyishini tekshiring va tuzating.\n\n1. Noto'g'ri parol bilan kiring — ilova tushunarli xabar bersin.\n2. Bor telefon/login bilan qayta ro'yxatdan o'ting — Backend rad etsin, ilova sababini aytsin.\n3. Internetni o'chirib kiring — ilova qotib qolmasin, xabar bersin.\n4. Qaysi biri yomon chiqqan bo'lsa — tuzating.\n5. Uch holat skrinshoti va repo linki.\n\nNima tekshiriladi:\n— uch holat sinalgan\n— har birida tushunarli xabar (texnik xato matni emas)\n— ikki marta ro'yxatdan o'tish Backend'da to'xtatiladi\n— .env repo'da yo'q.","ru":"Проверьте, что говорит вход в ошибочных ситуациях, и исправьте.\n\n1. Войдите с неверным паролем — приложение должно дать понятное сообщение.\n2. Зарегистрируйтесь повторно с существующим телефоном/логином — Backend отклоняет, приложение объясняет причину.\n3. Отключите интернет и войдите — приложение не зависает, а сообщает об ошибке.\n4. То, что получилось плохо, — исправьте.\n5. Скриншоты трёх ситуаций и ссылка на репозиторий.\n\nЧто проверяется:\n— проверены три ситуации\n— в каждой понятное сообщение (не технический текст ошибки)\n— повторная регистрация останавливается в Backend\n— .env нет в репозитории."}};
 
 
 
@@ -2150,7 +2153,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     <Stage eyebrow={tr({ uz: 'Yakun', ru: "Итог" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: "Завершить ✓" })}</FinishBtn></>}>
       {/* Belgi «✓ Poydevor tayyor» — faqat 3-amaliyot bajarilganda; aks holda belgisiz (MD 7) */}
       <div className={cxx('fd-yakun', belgisiz && 'belgisiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}

@@ -29,6 +29,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: NestJS practice (KitobShop)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-4). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"6-4","tur":"file","nom":{"uz":"Uyga vazifa: NestJS practice (KitobShop)","ru":"Домашнее задание: NestJS practice (KitobShop)"},"matn":{"uz":"KitobShop'ga kitob sharhlari (Review) qo'shing — agent bilan, lekin rejani siz tuzasiz.\n\n1. Review: text, rating (1–5), kitobga @ManyToOne.\n2. GET /review — hamma uchun ochiq; POST — tizimga kirganlar; DELETE — faqat ADMIN.\n3. Agentga yozgan promptlaringizni README'ga qo'shing.\n4. Swagger'da uch skrinshot: tokensiz POST → 401, oddiy foydalanuvchi DELETE → 403, ADMIN DELETE → 200.\n5. GitHub linki.\n\nNima tekshiriladi:\n— ManyToOne Review → Book\n— rollar to'g'ri eshiklarda\n— 3 skrinshot statuslari bilan\n— README'da prompt.","ru":"Добавьте в KitobShop отзывы о книгах (Review) — с агентом, но план составляете вы.\n\n1. Review: text, rating (1–5), связь с книгой @ManyToOne.\n2. GET /review — открыт для всех; POST — для вошедших в систему; DELETE — только ADMIN.\n3. Добавьте в README промпты, которые вы писали агенту.\n4. Три скриншота из Swagger: POST без токена → 401, DELETE обычным пользователем → 403, DELETE от ADMIN → 200.\n5. Ссылка на GitHub.\n\nЧто проверяется:\n— ManyToOne Review → Book\n— роли на правильных дверях\n— 3 скриншота со статусами\n— промпты в README."}};
 
 
 
@@ -1853,11 +1856,6 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Kirish taxtasi: AppModule'ga ulanmagan bo'lim = 404", ru: 'Входная вывеска: отдел, не подключённый к AppModule, = 404' },
     { uz: "AI yo'l qo'ygan xatoni dalil bilan topdingiz (403 — mijozga yopiq qolgan eshik)", ru: 'Ошибку ИИ вы нашли по уликам (403 — дверь, закрытая для клиента)' } // F-1015-401: bitta xato (Screen19 audit kesilgan)
   ];
-  const HOMEWORK = [
-    { b: { uz: "O'z marketplace'ingiz", ru: 'Свой маркетплейс' }, t: { uz: "— elektronika/kiyim do'koni: 3 resursni rejaga soling", ru: '— магазин электроники/одежды: распланируйте 3 ресурса' } },
-    { b: 'Playbook', t: { uz: "— har resurs uchun Copilot agentiga beradigan aniq playbook yozing (5 qadam + AppModule'ga ulash)", ru: '— напишите чёткий промпт для ИИ на каждый ресурс (5 шагов + подключение к AppModule)' } },
-    { b: { uz: 'Tekshiruv', ru: 'Проверка' }, t: { uz: '— har eshikni ikki rolda sinang: mijoz va admin', ru: '— испытайте каждую дверь в двух ролях: клиент и админ' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1880,7 +1878,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Siz endi istalgan g'oyani backendga aylantira olasiz — agentni boshqarib, har eshikni tekshirib!", ru: '🚀 Теперь вы можете превратить любую идею в бэкенд — управляя агентом и проверяя каждую дверь!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

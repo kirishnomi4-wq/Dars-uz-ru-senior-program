@@ -37,6 +37,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Practice 1: backend + frontend (to'liq lenta)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-11). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"6-11","tur":"text","nom":{"uz":"Uyga vazifa: Practice 1: backend + frontend (to'liq lenta)","ru":"Домашнее задание: Practice 1: backend + frontend (полная лента)"},"matn":{"uz":"Darsda yozgan KitobShop lentasini (pipeline) haqiqatan yurgizing.\n\n1. ci.yml'ni repo'ga push qiling: install → test → lint → build.\n2. Lint qoidasini ataylab buzing (masalan ishlatilmagan o'zgaruvchi) — O'lcham ramkasi qizil, keyingi nuqtalar o'tkazib yuborilgani jurnalda ko'rinsin.\n3. Tuzating — hammasi yashil.\n4. README'ga TABLO (status badge) qo'ying.\n5. Repo linki va qizil + yashil run linklari.\n\nNima tekshiriladi:\n— 4 nuqta to'g'ri tartibda\n— lint qizil run'da build o'tkazilgan\n— yashil run\n— README'da badge.","ru":"Запустите по-настоящему ленту (pipeline) KitobShop, которую вы написали на уроке.\n\n1. Сделайте push ci.yml в репозиторий: install → test → lint → build.\n2. Специально нарушьте правило lint (например, неиспользуемая переменная) — Габарит-рамка красная, и в журнале видно, что следующие точки пропущены.\n3. Исправьте — всё зелёное.\n4. Поставьте в README ТАБЛО (status badge).\n5. Ссылка на репозиторий и ссылки на красный и зелёный run.\n\nЧто проверяется:\n— 4 точки в правильном порядке\n— в красном run на lint build пропущен\n— зелёный run\n— badge в README."}};
 
 
 
@@ -1826,11 +1829,6 @@ const Screen14 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Muammo chiqsa — jurnalni o'qib, kerak bo'lsa eski yukni qaytarasiz", ru: 'Если что-то сломалось — читаете журнал и при необходимости возвращаете старый багаж' },
     { uz: "TABLO repo sahifasida yashil yoki qizil — lenta holatini bir qarashda ko'rasiz", ru: 'ТАБЛО на странице репозитория зелёное или красное — состояние конвейера видно с одного взгляда' }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Ulang', ru: 'Подключите' }, t: { uz: "— darsda ulgurmagan bo'lsangiz, KitobShop'ga ci.yml qo'shib push qiling", ru: '— если не успели на уроке, добавьте ci.yml в KitobShop и сделайте push' } },
-    { b: { uz: 'Kuzating', ru: 'Проследите' }, t: { uz: "— Actions bo'limida barcha nuqta yashil bo'lishini tasdiqlang", ru: '— убедитесь в разделе Actions, что все точки зелёные' } },
-    { b: { uz: "Ko'rsating", ru: 'Покажите' }, t: { uz: "— TABLONI README.md ga qo'yib, mentorga repo linkini yuboring", ru: '— повесьте ТАБЛО в README.md и отправьте ментору ссылку на репозиторий' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1853,7 +1851,7 @@ const Screen14 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Endi siz istalgan loyihaga to'liq lentani o'zingiz ulay olasiz!", ru: '🚀 Теперь вы сами можете подключить полный конвейер к любому проекту!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -1,0 +1,41 @@
+/* Flex qoidalari — o'quvchi o'zi yozadi */
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.links {
+  display: flex;
+  gap: 20px;
+}
+.cards {
+  display: flex;
+  gap: 16px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+/* Bezak va harakat — AI-agent bilan */
+body { margin: 0; font-family: Arial, sans-serif; background: #0F172A; color: #E2E8F0; }
+.menu { padding: 18px 40px; background: #111C33; }
+.logo { font-size: 22px; font-weight: bold; color: #38BDF8; }
+.links a { color: #E2E8F0; text-decoration: none; }
+.links a:hover { color: #38BDF8; }
+.hero { text-align: center; padding: 56px 20px 36px; }
+.hero h1 { font-size: 40px; margin: 0 0 8px; }
+.hero p { color: #94A3B8; margin: 0; }
+.cards { padding: 0 40px 48px; }
+.card { flex: 1; background: #1E293B; border-radius: 14px; padding: 22px; transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(56, 189, 248, 0.25); }
+.card h3 { margin: 0; color: #38BDF8; }
+.card p { margin: 0; color: #CBD5E1; }
+.card button { align-self: flex-start; background: #38BDF8; color: #0F172A; border: 0; border-radius: 8px; padding: 9px 16px; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+.card button:hover { background: #7DD3FC; }
+.footer { padding: 20px; background: #111C33; color: #94A3B8; }

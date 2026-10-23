@@ -1,0 +1,8 @@
+{
+ "tur": [
+  "js"
+ ],
+ "rasm": null,
+ "kutilgan": "Aziza\n2011\n75\ntrue",
+ "rubrika": "Grade a beginner JavaScript variables task out of 10 (console output). Name and year values are free.\n1. (2) playerName and birthYear declared with const.\n2. (2) score = 0 and isOnline = true declared with let.\n3. (2) Types correct: name is a string in quotes, year and score are numbers without quotes, isOnline is boolean true (not the string \"true\").\n4. (2) score updated in two steps: set to 50, then score = score + 25 (or score += 25); final value 75.\n5. (2) Four console.log lines print name, year, 75, true in this order.\nDo not accept var for full points (-1). Do not penalize extra logs or comments."
+}

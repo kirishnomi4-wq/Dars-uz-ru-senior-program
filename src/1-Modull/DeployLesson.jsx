@@ -25,6 +25,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Netlify va deploy» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-13). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-13","tur":"text","nom":{"uz":"Uyga vazifa: Netlify va deploy","ru":"Домашнее задание: Netlify и деплой"},"matn":{"uz":"Demo Day saytingizni tugatib, internetga chiqaring.\n\n1. 11-darsda yozgan 3 sahifani qo'shing; har sahifada bir xil menu.\n2. Har sahifada mazmun bo'lsin — bo'sh sahifa qolmasin.\n3. O'zgarishlarni GitHub'ga yuboring — Netlify o'zi yangilaydi.\n4. Linkni telefonda ochib tekshiring.\n5. https://….netlify.app linkini yuklang.\n\nNima tekshiriladi:\n— link ochiladi (telefonda ham)\n— kamida 4 sahifa, menu hammasida ishlaydi\n— bo'sh sahifa yo'q\n— Demo Day g'oyasi (nom, muammo) bosh sahifada.","ru":"Доделайте сайт для Demo Day и выложите его в интернет.\n\n1. Добавьте 3 страницы, которые вы записали на 11-м уроке; на каждой — одинаковое меню.\n2. На каждой странице должно быть содержание — пустых страниц не оставляйте.\n3. Отправьте изменения на GitHub — Netlify обновит сайт сам.\n4. Откройте ссылку на телефоне и проверьте.\n5. Загрузите ссылку https://….netlify.app.\n\nЧто проверяется:\n— ссылка открывается (и на телефоне)\n— минимум 4 страницы, меню работает на всех\n— пустых страниц нет\n— идея Demo Day (название, проблема) — на главной странице."}};
 
 
 
@@ -1523,12 +1526,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {!isMentorL && hwOpen && <div className="card hw fade-up d4">
-            <div className="card-lbl" style={{ color: T.accent }}>🔗 {tr({ uz: 'Sizning linkingiz', ru: 'Ваша ссылка' })}</div>
-            <p className="mono" style={{ margin: '0 0 10px', color: url ? T.success : T.ink3, wordBreak: 'break-all', fontSize: 14 }}>{url || tr({ uz: 'link hali saqlanmagan', ru: 'ссылка пока не сохранена' })}</p>
-            <ul>{UYGA_TASKS.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul>
-            <p className="hw-note">{tr({ uz: <>Bu link <b>Demo Day</b> repetitsiyasida ham kerak bo'ladi.</>, ru: <>Эта ссылка понадобится и на репетиции <b>Demo Day</b>.</> })}</p>
-          </div>}
+        {!isMentorL && hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

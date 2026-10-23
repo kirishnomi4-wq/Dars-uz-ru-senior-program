@@ -39,6 +39,9 @@ const METHODS = { GET: T.success, POST: T.accent, PUT: T.blue, DELETE: '#C2410C'
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Routing» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-5","tur":"test","nom":{"uz":"Uyga vazifa: Routing","ru":"Домашнее задание: Routing"},"matn":null,"n":5};
 
 
 
@@ -2149,11 +2152,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Route param /:id — bitta eshik, ko'p qiymat (req.params.id da turadi)", ru: 'Route-параметр /:id — одна дверь, много значений (лежит в req.params.id)' }),
     tr({ uz: 'Express: har route — bitta app.get / app.post qatori', ru: 'Express: каждый route — одна строка app.get / app.post' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: "O'z route'laringiz", ru: "Ваши route'ы" }), t: tr({ uz: "— server.js'ga /users va /users/:id eshiklarini qo'shing, brauzerda tekshiring", ru: '— добавьте в server.js двери /users и /users/:id, проверьте в браузере' }) },
-    { b: tr({ uz: 'Method mashqi', ru: 'Практика методов' }), t: tr({ uz: "— 5 ta amalni method bilan moslang (o'yin qo'shish, o'chirish, ko'rish...)", ru: '— сопоставьте 5 действий с методами (добавить игру, удалить, посмотреть...)' }) },
-    { b: tr({ uz: "Express'ni o'qing", ru: 'Почитайте Express' }), t: tr({ uz: "— expressjs.com → Guide → Routing bo'limida app.get/app.post'ni ko'ring", ru: '— на expressjs.com → Guide → Routing посмотрите app.get/app.post' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2177,7 +2175,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Routingni mustahkamlang:', ru: 'Закрепите роутинг:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda — o'yinlar qayerda saqlanadi: PostgreSQL bazasi! 🚀", ru: 'На следующем уроке — где хранятся игры: база PostgreSQL! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

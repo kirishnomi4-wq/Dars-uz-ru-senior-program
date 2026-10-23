@@ -30,6 +30,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: To'lov integratsiyasi + «to'lovni buz»» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 13-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"13-5","tur":"file","nom":{"uz":"Uyga vazifa: To'lov integratsiyasi + «to'lovni buz»","ru":"Домашнее задание: Интеграция оплаты + «сломай оплату»"},"matn":{"uz":"Foydalanuvchi o'z to'lovlarini ko'ra olsin.\n\n1. «To'lovlarim» sahifasi: sana, summa, holat (muvaffaqiyatli / rad / kutilmoqda).\n2. Faqat o'z to'lovlari — boshqa akkauntnikini ko'rmasin (ikki akkaunt bilan sinang).\n3. To'lov yo'q bo'lsa — «Hali to'lov yo'q».\n4. Skrinshot va repo linki.\n\nNima tekshiriladi:\n— ma'lumot Backend'dan\n— faqat o'z to'lovlari (token bo'yicha)\n— bo'sh holat\n— holat yozuvi tushunarli.","ru":"Пусть пользователь видит свои оплаты.\n\n1. Страница «Мои оплаты»: дата, сумма, статус (успешно / отклонено / ожидается).\n2. Только свои оплаты — чужие видеть нельзя (проверьте с двумя аккаунтами).\n3. Если оплат нет — «Оплат пока нет».\n4. Скриншот и ссылка на репозиторий.\n\nЧто проверяется:\n— данные из Backend\n— только свои оплаты (по токену)\n— пустое состояние\n— статус написан понятно."}};
 
 
 
@@ -2530,7 +2533,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className={cx('pd-yakun', !a2 && 'belgisiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}

@@ -40,6 +40,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: CSS Praktika» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-11). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-11","tur":"file","nom":{"uz":"Uyga vazifa: CSS Praktika","ru":"Домашнее задание: Практика CSS"},"matn":{"uz":"AI yozgan style.css'ni endi o'zingiz o'zgartiring.\n\n1. F12 → Styles'da sinab ko'ring, keyin 3 ta o'zgarishni style.css ga o'zingiz yozing: asosiy rang, kartochkalar orasidagi gap, kartochka ichidagi padding.\n2. style.css tepasiga izoh: qaysi 3 qatorni o'zgartirdingiz.\n3. Oldin va keyin skrinshotlari.\n4. Saytda yana qaysi 3 sahifa bo'lishini yozing — 13-darsda ularni qo'shasiz.\n\nNima tekshiriladi:\n— oldin/keyin farqi ko'rinadi\n— izohda 3 o'zgarish\n— o'zgarishlar o'tilgan xossalar bilan\n— 3 sahifa nomi.","ru":"Теперь сами измените style.css, который написал AI.\n\n1. Попробуйте в F12 → Styles, потом сами впишите 3 изменения в style.css: основной цвет, gap между карточками, padding внутри карточки.\n2. Вверху style.css — комментарий: какие 3 строки вы изменили.\n3. Скриншоты «до» и «после».\n4. Напишите, какие ещё 3 страницы будут на сайте — на 13-м уроке вы их добавите.\n\nЧто проверяется:\n— видна разница до/после\n— в комментарии 3 изменения\n— изменения сделаны пройденными свойствами\n— названия 3 страниц."}};
 const AchCtx = createContext(null); // 🏅 olingan nishonlar (Set) — Stage hisoblagichi uchun
 const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinish + «Qaytadan» mashq-o'tishi
 
@@ -1030,7 +1033,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: "Topshiriqni ko'rish →", ru: 'Посмотреть задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🎨 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr(HOMEWORK.title)} — {tr({ uz: "VS Code'da:", ru: 'в VS Code:' })}</p><ol className="am-hw">{HW_ITEMS.map((h, i) => (<li key={i}>{tr(h)}</li>))}</ol><p className="hw-note">{tr({ uz: 'Bosh sahifa skrinshotini platformaga yuklang. Keyingi dars — Git va GitHub; Netlify darsida saytni tugatib, internetga chiqarasiz.', ru: 'Загрузите скриншот главной страницы на платформу. Следующий урок — Git и GitHub; на уроке Netlify допишете сайт и выложите его в интернет.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

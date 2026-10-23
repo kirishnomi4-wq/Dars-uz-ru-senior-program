@@ -47,6 +47,7 @@ const tr = (node) => {
   return node[__lang] ?? node.uz ?? node.ru ?? '';
 };
 const MentorCtx = createContext(null);
+const ScreenIdxCtx = createContext(null); // 111-qonun: MentorNote qaysi ekranda turganini biladi
 const AchCtx = createContext(null);
 const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinish + «Qaytadan» mashq-o'tishi
 
@@ -186,6 +187,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   };
   return (
     <MentorCtx.Provider value={{ enabled: collapseOn, collapsed: mCollapsed, setCollapsed }}>
+      <ScreenIdxCtx.Provider value={screen}>
       <div className="stage">
         <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
           <div className="progress-track"><div className="progress-bar" style={{ width: `${((screen + 1) / totalScreens) * 100}%` }} /></div>
@@ -200,6 +202,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
         <div ref={contentRef} onClick={onContentClick} onScroll={onContentScroll} className={`stage-content ${narrow ? 'narrow' : ''}`} style={{ paddingLeft: padH, paddingRight: padH }}>{children}</div>
         {navContent && <div className="stage-nav" style={{ paddingLeft: padH, paddingRight: padH }}>{navContent}</div>}
       </div>
+      </ScreenIdxCtx.Provider>
     </MentorCtx.Provider>
   );
 };
@@ -312,7 +315,7 @@ const RECAPS = {
     cards: [
       { ic: '⚖️', h: { uz: "Vaqt teng bo'lsa", ru: 'Если время одинаковое' }, body: { uz: <>Vaqt teng bo'lsa, qarorni <b>birinchi savol</b> hal qiladi: buni nechta odam so'raydi.</>, ru: <>При равном времени решает <b>первый вопрос</b>: сколько людей об этом просят.</> } },
       { ic: '🔄', h: { uz: 'Qaror bir marta qilinmaydi', ru: 'Решение принимают не один раз' }, body: { uz: <>Ish vaqti o'zgarsa, karta <b>yangi katakka ko'chadi</b> — bu xato emas.</>, ru: <>Изменилось время задачи — карточка <b>переезжает в новую клетку</b>, и это не ошибка.</> } },
-      { ic: '🧑‍💻', h: { uz: 'Vaqtni dasturchi aytadi', ru: 'Время называет программист' }, body: { uz: <>Vaqtni <b>kodni yozadigan odam</b> aytadi, yangi vaqt kelsa kataklar qayta ko'riladi.</>, ru: <>Время называет <b>тот, кто пишет код</b>, и с новым сроком клетки пересматривают.</> }, ask: { uz: "Ish vaqti ikki hafta uzaysa, kataklarda nima o'zgaradi?", ru: 'Если время задачи вырастет на две недели — что изменится в клетках?' } }
+      { ic: '⏱', h: { uz: "Vaqtni o'zingiz chamalaysiz", ru: 'Время прикидываете вы сами' }, body: { uz: <>Qancha ish olishini <b>ishni qiladigan odam — siz</b> chamalaysiz; qilib ko'rganda boshqacha chiqsa, kataklar qayta ko'riladi.</>, ru: <>Сколько займёт задача, прикидывает <b>тот, кто её делает, — вы</b>; вышло иначе — клетки пересматривают.</> }, ask: { uz: "Ish vaqti ikki hafta uzaysa, kataklarda nima o'zgaradi?", ru: 'Если время задачи вырастет на две недели — что изменится в клетках?' } }
     ]
   }
 };
@@ -531,6 +534,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
         {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -573,9 +577,34 @@ const Mentor = ({ children }) => {
 };
 
 // MentorNote — PROYEKTOR-SIR: default yopiq xira chip; bosishda ochiladi/yopiladi.
+// 111-qonun (F-1022-01): mentor har slaydning NIMA UCHUN borligini birinchi qatorda o'qiydi.
+// Manba — SCREEN_INTENTS niyati, mentor tiliga o'girilgan («Bola…» emas, «O'quvchi…»).
+const MENTOR_WHY = {
+  s0:  { uz: "O'quvchi bir hafta vaqt bilan to'rt ishdan bittasini tanlaydi va ko'pchilik xohlagan ish eng uzun ekanini ko'radi.", ru: 'Ученик с одной неделей времени выбирает одну из четырёх задач и видит: то, чего хотят многие, — самая долгая задача.' },
+  s1:  { uz: "Dars oxirida kataklarni o'quvchi o'zi to'ldirib, birinchi ishni tanlay olishini oldindan ko'rsatadi.", ru: 'Показывает заранее: к концу урока ученик сам заполнит клетки и выберет первую задачу.' },
+  s2:  { uz: "Har ishga ikki savol berilishini va bitta savol yetmasligini o'quvchi kartalarni ochib o'zi topadi.", ru: 'Открывая карточки, ученик сам находит: каждой задаче задают два вопроса, одного мало.' },
+  s3:  { uz: "Ikkita ishni ajratadigan savol aynan vaqt savoli ekanini mustahkamlaydi.", ru: 'Закрепляет: две задачи различает именно вопрос о времени.' },
+  s4:  { uz: "O'quvchi oltita ishni ikki javobga qarab to'rt katakka joylaydi — kataklarni o'zi quradi.", ru: 'Ученик раскладывает шесть задач по четырём клеткам по двум ответам — строит клетки сам.' },
+  s4b: { uz: "O'quvchi vaqt va odam sonini o'zi chamalaydi — «to'g'ri javob» yo'q, katakni uning ikki javobi tanlaydi.", ru: 'Ученик сам прикидывает время и число людей — «верного ответа» нет, клетку выбирают его два ответа.' },
+  s5:  { uz: "Ko'p so'raladigan uzoq ish darrov emas, rejaga tushishini aniqlaydi.", ru: 'Долгая задача, которую просят многие, идёт не «сразу», а в план.' },
+  s6:  { uz: "Bir xil ish odam ko'p joyda ko'proq odamga yetib borishini o'quvchi voqeadan biladi.", ru: 'Из истории ученик узнаёт: одна и та же вещь там, где людей много, доходит до большего числа людей.' },
+  s7:  { uz: "Stories nega aynan Instagram'da ko'proq ishlatilganini tanlaydi — birinchi savol (odam soni) kuchini mustahkamlaydi.", ru: 'Выбирает, почему Stories больше использовали в Instagram, — закрепляет силу первого вопроса (число людей).' },
+  s8:  { uz: "O'quvchi o'z uchta ishini kataklarga joylaydi, birinchisini belgilaydi va sababini bir qatorda yozadi — darsning asosiy natijasi.", ru: 'Ученик раскладывает свои три задачи, отмечает первую и пишет причину одной строкой — главный результат урока.' },
+  s9:  { uz: "Qaror bir marta qilinmaydi — vaqt o'zgargach o'quvchi ikki kartani yangi katakka ko'chiradi va buni xato emas, ish-tartibi deb ko'radi.", ru: 'Решение принимают не один раз: время изменилось — ученик переносит две карточки и видит, что это не ошибка, а порядок работы.' },
+  s10: { uz: "O'quvchi VS Code'da Karta komponentini yozib, to'rt ishni o'z katagining rangida chiqaradi — kataklar kodda ham yashaydi.", ru: 'Ученик пишет компонент Karta в VS Code и выводит четыре задачи цветом своей клетки — клетки живут и в коде.' },
+  s11: { uz: "Vaqt teng bo'lganda qarorni birinchi savol (odam soni) hal qilishini tasdiqlaydi.", ru: 'Подтверждает: при равном времени решает первый вопрос — число людей.' },
+  s12: { uz: "O'quvchi birinchi tanlagan ishini va sababini yoddan aytadi, bir qatorda yozib qoldiradi.", ru: 'Ученик по памяти называет первую задачу и причину и записывает одной строкой.' },
+  s13: { uz: "Sinf natijasi va g'oliblar.", ru: 'Результат класса и победители.' },
+  s14: { uz: "O'nta karta bilan o'quvchi o'zini o'zi tekshiradi.", ru: 'Десять карточек — ученик проверяет себя сам.' },
+  s15: { uz: "CodeStrike arenasi, uy vazifasi va nishonlar.", ru: 'Арена CodeStrike, домашнее задание и значки.' },
+};
+// Birinchi qator har doim «Bu slayd nima uchun:» (111-qonun) — ekran id'si ScreenIdxCtx'dan; children bo'lmasa ham chiqadi.
 const MentorNote = ({ children }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
+  const idx = useContext(ScreenIdxCtx);
+  const sid = typeof idx === 'number' && SCREEN_META[idx] ? SCREEN_META[idx].id : null;
+  const why = sid && MENTOR_WHY[sid] ? tr(MENTOR_WHY[sid]) : null;
   const [open, setOpen] = useState(false);
   if (!live || live.mode !== 'mentor') return null;
   if (!open) return (
@@ -584,7 +613,8 @@ const MentorNote = ({ children }) => {
   return (
     <div className="mnote fade-up" onClick={() => setOpen(false)} title={tr({ uz: 'Yopish uchun bosing', ru: 'Нажмите, чтобы закрыть' })}>
       <span className="mnote-lbl">{tr({ uz: '🧑‍🏫 Mentorga eslatma', ru: '🧑‍🏫 Заметка ментору' })}<span className="mnote-x">{tr({ uz: '✕ yopish', ru: '✕ закрыть' })}</span></span>
-      <p className="mnote-body">{children}</p>
+      {why && <p className="mnote-body mnote-why"><b>{tr({ uz: 'Bu slayd nima uchun:', ru: 'Зачем этот слайд:' })}</b> {why}</p>}
+      {children ? <p className="mnote-body">{children}</p> : null}
     </div>
   );
 };
@@ -750,7 +780,9 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: i, correct: false });
     if (live && live.mode === 'student') live.submitAnswer(screen, 's0', i, false, 0);
   };
-  const opened = picked !== null || isMentor;
+  // F-1022-01: mentor ekranida natija o'quvchilar tanlashidan OLDIN ochilmaydi — «Natijani ochish» (test-ekranlar bilan bir yo'l).
+  const [mReveal, setMReveal] = useState(false);
+  const opened = picked !== null || (isMentor && mReveal);
   const shown = counts;
   // 36-qonun + korpus 69: yakka o'qiydigan o'quvchida «ko'pchilik» yo'q — u faqat o'z
   // kartasini ko'radi. Ikki tarmoq bir shaklda: [tanlangan ish — vaqti] + [bir haftaga nima sig'adi].
@@ -758,10 +790,10 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const totalVotes = shown ? shown.reduce((a, b) => a + b, 0) : 0;
   const optWave = useTurnHint(picked === null && !isMentor);
   return (
-    <Stage eyebrow={tr({ uz: 'Kirish · bir hafta vaqt', ru: 'Введение · одна неделя времени' })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите одну' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish · bir hafta vaqt', ru: 'Введение · одна неделя времени' })} screen={screen} navContent={<NavNext optionalLive mentorLock disabled={isMentor ? !mReveal : picked === null} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : isMentor ? tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите одну' })} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qaysi birini <span className="italic" style={{ color: T.accent }}>birinchi</span> qilasiz?</>, ru: <>Какую сделаете <span className="italic" style={{ color: T.accent }}>первой</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Maktab yonidagi o'yin-klub sizdan sayt so'radi. Bir hafta vaqt bor — hammasiga ulgurmaysiz.", ru: 'Игровой клуб рядом со школой попросил у вас сайт. Времени — одна неделя: на всё вы не успеете.' })}</Mentor>
+        <Mentor>{tr({ uz: "Maktab yonidagi o'yin-klub sizdan sayt so'radi — uni AI bilan o'zingiz qilasiz. Bir hafta vaqt bor — hammasiga ulgurmaysiz.", ru: 'Игровой клуб рядом со школой попросил у вас сайт — вы делаете его сами, с AI. Времени — одна неделя: на всё вы не успеете.' })}</Mentor>
         <div className="hrow fade-up delay-1">
           {HOOK_KARTA.map((id, i) => {
             const ish = ISH_BY_ID[id];
@@ -770,7 +802,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <button key={id} className={`hopt${on ? ' on' : ''}${opened ? ' open' : ''}${!opened && optWave ? waveCls(true, i, HOOK_KARTA.length) : ''}`} disabled={opened} onClick={() => pick(i)}>
                 <span className="hopt-ic">{ish.ic}</span>
                 <span className="hopt-nom">{tr(ish.nom)}</span>
-                {opened && <span className="hopt-vaqt">🧑‍💻 {tr({ uz: 'Dasturchi:', ru: 'Программист:' })} {tr(ish.vaqt)}</span>}
+                {opened && <span className="hopt-vaqt">⏱ {tr({ uz: 'Taxminan', ru: 'Примерно' })} {tr(ish.vaqt)}</span>}
               </button>
             );
           })}
@@ -786,7 +818,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             </p>
           </div>
         )}
-        {opened && isLive && shown && (
+        {isMentor && !mReveal && (
+          <button className={`mstats-reveal${totalVotes > 0 ? ' ready' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setMReveal(true)}>
+            {tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}
+          </button>
+        )}
+        {/* Mentor ekranida diagramma tanlov PAYTIDA ham ko'rinadi (kim tanlagani — natija emas). */}
+        {(opened || isMentor) && isLive && shown && totalVotes > 0 && (
           <div className="hvote fade-step" aria-label={tr({ uz: 'Sinf natijasi', ru: 'Результат класса' })}>
             {HOOK_KARTA.map((id, i) => {
               const n = shown[i];
@@ -888,9 +926,10 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
           <div className="xul fade-step" ref={doneRef}>
             <span className="xul-h">{tr({ uz: 'Bitta savol yetmas ekan.', ru: 'Одного вопроса, оказывается, мало.' })}</span>
             <p className="xul-b">{tr({ uz: "«Soatlik narxlar»ni ham, «Hozir nechta joy bo'sh»ni ham deyarli hamma so'raydi — birinchi savol ularni ajratmadi. Narxlar bir kun oladi, bo'sh joylar esa uch hafta: ularni ikkinchi savol ajratdi.", ru: '«Цены по часам» и «Сколько мест свободно сейчас» спрашивают почти все — первый вопрос их не различил. Цены занимают один день, а свободные места — три недели: их различил второй вопрос.' })}</p>
-            <span className="xul-gloss">{tr({ uz: <>Saytga qo'shiladigan har bir yangi ishni dasturchilar <b>imkoniyat</b> deydi (inglizchasi — feature).</>, ru: <>Каждую новую задачу, которую добавляют на сайт, программисты называют <b>возможностью</b> (по-английски — feature).</> })}</span>
+            <span className="xul-gloss">{tr({ uz: <>Saytga qo'shiladigan har bir yangi ishni <b>imkoniyat</b> deyishadi (inglizchasi — feature).</>, ru: <>Каждую новую задачу, которую добавляют на сайт, называют <b>возможностью</b> (по-английски — feature).</> })}</span>
           </div>
         )}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1163,6 +1202,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "Instagram'da odam ko'p edi — shuning uchun bitta ish darrov ko'pchilikka yetib bordi. Yuqoriga qaragan o'q ham aynan shuni so'raydi: buni nechta odam so'raydi?", ru: 'В Instagram людей было много — поэтому одна и та же вещь сразу дошла до большинства. Стрелка вверх спрашивает как раз об этом: сколько людей об этом просят?' })}</p>
           </div>
         )}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1299,7 +1339,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Mustaqil ish · o'z kataklaringiz", ru: 'Самостоятельная работа · ваши клетки' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Endi <span className="italic" style={{ color: T.accent }}>o'z loyihangiz</span>: uch ishni kataklarga qo'ying.</>, ru: <>Теперь <span className="italic" style={{ color: T.accent }}>ваш проект</span>: разложите три задачи по клеткам.</> })}</h2></div>
-        <Mentor>{stories ? tr({ uz: "User Story darsida yozgan uchta hikoyangiz pastda turibdi — har biriga dasturchi qancha vaqt ketishini yozib berdi.", ru: 'Три истории, которые вы написали на уроке про User Story, ниже — программист подписал к каждой, сколько времени она займёт.' }) : tr({ uz: "Boshlash uchun o'yin-klub ishlaridan uchtasini olamiz — har biriga dasturchi qancha vaqt ketishini yozib berdi.", ru: 'Для начала возьмём три задачи игрового клуба — программист подписал к каждой время.' })}</Mentor>
+        <Mentor>{stories ? tr({ uz: "User Story darsida yozgan uchta hikoyangiz pastda turibdi — har birining yonida qancha ish olishi chamalab qo'yilgan.", ru: 'Три истории, которые вы написали на уроке про User Story, ниже — рядом с каждой прикинуто, сколько она займёт.' }) : tr({ uz: "Boshlash uchun o'yin-klub ishlaridan uchtasini olamiz — har birining yonida qancha ish olishi chamalab qo'yilgan.", ru: 'Для начала возьмём три задачи игрового клуба — рядом с каждой прикинуто, сколько она займёт.' })}</Mentor>
         <div className="stps fade-up">
           <span className={`stp ${step1 ? 'done' : 'on'}`}><i>{step1 ? '✓' : '1'}</i>{tr({ uz: "Kataklarga qo'ying", ru: 'Разложите по клеткам' })}</span>
           <span className={`stp ${step2 ? 'done' : step1 ? 'on' : ''}`}><i>{step2 ? '✓' : '2'}</i>{tr({ uz: 'Birinchisini belgilang', ru: 'Отметьте первую' })}</span>
@@ -1389,7 +1429,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 9 — TEKSHIRUV: dasturchi vaqtni qayta hisobladi =====
+// ===== SCREEN 9 — TEKSHIRUV: qilib ko'rganda vaqt boshqacha chiqdi (F-1022-01: vaqtni o'quvchi o'zi chamalaydi) =====
 const QAYTA = [
   { id: 'joy', eski: VAQT.hafta3, yangi: VAQT.kun2, eskiKatak: 'reja', yangiKatak: 'darrov' },
   { id: 'turnir', eski: VAQT.kun1, yangi: VAQT.hafta2, eskiKatak: 'keyin', yangiKatak: 'yoq' },
@@ -1439,10 +1479,10 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: "Tekshiruv · vaqt o'zgardi", ru: 'Проверка · время изменилось' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `Yana ${qolgan.length} kartani ko'chiring`, ru: `Перенесите ещё: ${qolgan.length}` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(8px,1.1vw,11px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ikki kartani yangi katakka <span className="italic" style={{ color: T.accent }}>ko'chiring</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Перенесите</span> две карточки в новые клетки.</> })}</h2></div>
-        <Mentor>{tr({ uz: "Dasturchi kataklarni ko'rib chiqdi: ikki ish endi boshqacha vaqt oladi. Yangi vaqtni o'qing, kartani tanlang, so'ng katakni bosing.", ru: 'Программист пересмотрел клетки: две задачи теперь занимают другое время. Прочитайте новое время, выберите карточку и нажмите на клетку.' })}</Mentor>
+        <Mentor>{tr({ uz: "Ikki ishni qilib ko'rdingiz — vaqti o'ylaganingizdan boshqacha chiqdi. Yangi vaqtni o'qing, kartani tanlang, so'ng katakni bosing.", ru: 'Вы попробовали сделать две задачи — время вышло не таким, как вы думали. Прочитайте новое время, выберите карточку и нажмите на клетку.' })}</Mentor>
         {!done && (
           <>
-          <p className="bhint">🧑‍💻 {tr({ uz: "Yangi vaqt keldi — shu ikki kartani ko'chiring", ru: 'Пришло новое время — перенесите эти две карточки' })}</p>
+          <p className="bhint">⏱ {tr({ uz: "Vaqt o'zgardi — shu ikki kartani ko'chiring", ru: 'Время изменилось — перенесите эти две карточки' })}</p>
           <div className="ipool">
               {QAYTA.map(q => moved[q.id] ? null : (
                 <span key={q.id} className={turnCls(lit, q.id, qolgan.length > 1).trim() ? 'turn-ring turn-step' : ''}>
@@ -1467,7 +1507,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {done && (
               <div className="bdone fade-step">
                 <span className="done-mini">{tr({ uz: "✅ Ikki karta yangi katakka ko'chdi — ish o'zgarmadi, vaqti o'zgardi.", ru: '✅ Две карточки переехали в новые клетки — задача не изменилась, изменилось время.' })}</span>
-                <span className="bdone-sub">{tr({ uz: 'Yangi vaqtni dasturchi aytdi — kataklar shunga qarab qayta ko\'riladi. Bu xato emas, ish shunday yuradi.', ru: 'Новое время назвал программист — клетки пересматривают по нему. Это не ошибка, так и работает.' })}</span>
+                <span className="bdone-sub">{tr({ uz: 'Qilib ko\'rganda vaqt o\'zgardi — kataklar shunga qarab qayta ko\'riladi. Bu xato emas, ish shunday yuradi.', ru: 'Попробовали — время изменилось; клетки пересматривают по нему. Это не ошибка, так и работает.' })}</span>
               </div>
             )}
           </Col>
@@ -1476,7 +1516,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <MentorPracticeStats live={live} screen={screen} label={tr({ uz: '🔄 Kataklarni yangilaganlar', ru: '🔄 Кто обновил клетки' })} />
           </Col>
         </div>
-        <MentorNote>{tr({ uz: "Bu ekran bitta fikrni beradi: qaror bir marta qilinmaydi. Yangi ma'lumot kelganda kataklar qayta ko'riladi — va bu xato emas, ish shunday yuradi. Sinfda juftlikda aytdiring: biri dasturchi, biri ishni tanlaydigan odam. Bu ishni o'quvchilar bajaradi, siz panelda kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Этот экран даёт одну мысль: решение принимают не один раз. Приходит новая информация — клетки пересматривают, и это не ошибка, так и работает. В классе разыграйте в парах: один — программист, другой — тот, кто выбирает задачу. Это задание выполняют ученики, вы наблюдаете на панели; «Продолжить» для вас открыто.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Bu ekran bitta fikrni beradi: qaror bir marta qilinmaydi. Yangi ma'lumot kelganda kataklar qayta ko'riladi — va bu xato emas, ish shunday yuradi. Sinfda juftlikda aytdiring: biri vaqtni chamalaydi, biri ishni tanlaydi. Bu ishni o'quvchilar bajaradi, siz panelda kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Этот экран даёт одну мысль: решение принимают не один раз. Приходит новая информация — клетки пересматривают, и это не ошибка, так и работает. В классе разыграйте в парах: один прикидывает время, другой выбирает задачу. Это задание выполняют ученики, вы наблюдаете на панели; «Продолжить» для вас открыто.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1820,6 +1860,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Проверьте</span> себя.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={FLASHCARDS} /></div>
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -2015,8 +2056,8 @@ const QUIZ_BANK = [
     { uz: '🗑 Kerak emas', ru: '🗑 Не нужно' }, { uz: "🌱 Vaqt bo'lsa", ru: '🌱 Когда будет время' }, { uz: '🎯 Darrov qilinadi', ru: '🎯 Делаем сразу' }, { uz: '🏔 Rejaga tushadi', ru: '🏔 Ставим в план' }], correct: 1 },
   { q: { uz: "Ikki ish ham bir kunlik. Qaysi biri birinchi?", ru: "Обе задачи на один день. Какая первой?" }, opts: [{ uz: "Ro'yxatda yuqori turgani", ru: "Та, что выше в списке" }, { uz: "Qiziqroq bo'lgani", ru: "Та, что интереснее" }, { uz: "Ko'proq odam so'ragani", ru: "Та, что просят больше людей" }, { uz: "Kechroq so'ralgani", ru: "Та, что попросили позже" }], correct: 2 },
   { q: { uz: "Ish vaqti o'zgarsa, nima qilinadi?", ru: "Что делают, если время задачи изменилось?" }, opts: [{ uz: "Kataklar o'chiriladi", ru: "Клетки удаляют" }, { uz: "Ish ro'yxatdan olinadi", ru: "Задачу убирают из списка" }, { uz: "Hech narsa o'zgarmaydi", ru: "Ничего не меняется" }, { uz: "Karta yangi katakka o'tadi", ru: "Карточка переходит в новую клетку" }], correct: 3 },
-  { q: { uz: 'Ish qancha vaqt olishini kim aytadi?', ru: 'Кто говорит, сколько времени займёт задача?' }, opts: [
-    { uz: 'Sayt buyurtma qilgan odam', ru: 'Тот, кто заказал сайт' }, { uz: 'Kodni yozadigan dasturchi', ru: 'Программист, который пишет код' }, { uz: 'Saytga kiradigan mehmon', ru: 'Гость, который заходит на сайт' }, { uz: "Reklama beradigan do'kon", ru: 'Магазин, который даёт рекламу' }], correct: 1 },
+  { q: { uz: 'Ish qancha vaqt olishini kim chamalaydi?', ru: 'Кто прикидывает, сколько времени займёт задача?' }, opts: [
+    { uz: 'Sayt buyurtma qilgan odam', ru: 'Тот, кто заказал сайт' }, { uz: "Ishni o'zi qiladigan odam", ru: 'Тот, кто сам делает задачу' }, { uz: 'Saytga kiradigan mehmon', ru: 'Гость, который заходит на сайт' }, { uz: "Reklama beradigan do'kon", ru: 'Магазин, который даёт рекламу' }], correct: 1 },
   { q: { uz: "Stories'ni kim birinchi o'ylab topgan?", ru: 'Кто придумал Stories первым?' }, opts: ['Instagram', 'YouTube', 'Snapchat', 'Telegram'], correct: 2 },
   { q: { uz: "Nega Stories Instagram'da ko'proq ishlatildi?", ru: "Почему Stories больше использовали в Instagram?" }, opts: [{ uz: "Instagram'da odam ko'p edi", ru: "В Instagram было много людей" }, { uz: "Uni birinchi chiqargan", ru: "Он выпустил их первым" }, { uz: "Rangi chiroyliroq edi", ru: "Цвет был красивее" }, { uz: "Uni bepul qilgan", ru: "Сделал их бесплатными" }], correct: 0 },
 ];
@@ -2540,9 +2581,10 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   const RECAP = [
     { uz: "Har ishga ikki savol beriladi: nechta odam so'raydi va qancha vaqt oladi", ru: 'Каждой задаче задают два вопроса: сколько людей просят и сколько времени займёт' },
-    { uz: "Ikki javob kesishgan joy ishning navbatini aytadi — kataklarda to'rt katak bor", ru: 'Место, где пересеклись два ответа, называет очередь задачи — клеток четыре' },
+    { uz: "Ikki javob kesishgan joy ishning navbatini aytadi — buni prioritet (navbat belgilash) deyishadi", ru: 'Место, где пересеклись два ответа, называет очередь задачи — это называют приоритетом' },
     { uz: "Odam ko'p bo'lgan joyda bitta ish ko'proq odamga yetib boradi", ru: 'Там, где людей больше, одна и та же вещь доходит до большего числа людей' },
     { uz: "Ish vaqti o'zgarsa, karta yangi katakka ko'chadi — bu xato emas", ru: 'Изменилось время задачи — карточка переезжает в новую клетку, и это не ошибка' },
+    { uz: "Birinchi tanlagan ishingizni AI'dan avval so'raysiz — qolganlari navbatda turadi", ru: 'Задачу, которую выбрали первой, вы попросите у AI первой — остальные ждут своей очереди' },
   ];
   // CodeStrike — alohida ekran emas, yakun ichida
   const [arena, setArena] = useState(false);
@@ -2707,6 +2749,8 @@ const CSS_BASE = `
   .mnote-chip:hover, .mnote-chip:focus-visible { opacity: 1; transform: translateY(-1px); }
   @media (hover: none) { .mnote-chip { opacity: 1; } }
   .mnote-body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; line-height: 1.45; }
+  .mnote-why { color: ${T.blue}; }
+  .mnote-why b { font-weight: 800; }
 
   .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
   .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }

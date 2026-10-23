@@ -10,7 +10,7 @@
 |---|---|---|
 | **QONUN** (qanday bo'lishi kerak) | `DARS_ETALON.md` (texnik) · `PM_DARS_ETALON.md` (PM, qonun 1–67) · `MATN_ETALONI.md` (til, umumiy) · **`MATN_KORPUS.md` (oltin-namunalar — matn YOZISHDAN OLDIN o'qiladi, qonunlar tekshiruvga)** · `PM_Prompt_v8.md` (senariy-qonun) · **`AUDIT_PROMPT.md` (doimiy audit-prompti — har YANGI dars shu bilan ochiladi, qayta yuborilmaydi)** · `RU_I18N_SPEC.md` (ru-mexanizm) | Faqat raqamlangan qonun/lug'at. Yangi qonun = yangi raqam, eski raqam o'zgarmaydi |
 | **JARAYON** (qaysi tartibda) | **`konveyer/README.md` (04.10 — yangi dars/modul zanjiri: MD v3 → GATE M → skelet → darvozalar → modul yopish; shablonlar `konveyer/1…7`, karta `konveyer/QURISH_KARTASI.md`)** · `PIPELINE.md` (texnik zanjir) · `PM_PIPELINE.md` (PM zanjir) · `OQUVCHI_DARVOZA.md` (👦 simulyator-spec) | Zanjir/darvoza/o'tish-shartlari. Rol-mazmuni bu yerda YO'Q — u agent-faylda |
-| **HOLAT** (nima bo'ldi) | `PIPELINE_STATE.md` · `PM_PIPELINE_STATE.md` · `KATTA_TOZALASH.md` (loyiha-darajasidagi ish ro'yxati — 8+ faylga tegadigan ishlar; dars ustida ishlaganda ko'tarilmaydi, faqat yoziladi) · **`MODUL_TUR.md` (ekranda tekshiriladigan bandlar — dars sikli to'xtamaydi, modul oxirida bir yo'la ko'riladi)** | Faqat raund-yozuvlar (sana + nima qilindi + hukm). Har feedback F-ID bilan (quyida) |
+| **HOLAT** (nima bo'ldi) | **`LMS_REESTR.json` + `LMS_DEPLOY_JURNAL.md` (LMS'da qaysi dars qaysi versiyada — faqat `scripts/lms-farq.mjs` yozadi)** · `PIPELINE_STATE.md` · `PM_PIPELINE_STATE.md` · `KATTA_TOZALASH.md` (loyiha-darajasidagi ish ro'yxati — 8+ faylga tegadigan ishlar; dars ustida ishlaganda ko'tarilmaydi, faqat yoziladi) · **`MODUL_TUR.md` (ekranda tekshiriladigan bandlar — dars sikli to'xtamaydi, modul oxirida bir yo'la ko'riladi)** | Faqat raund-yozuvlar (sana + nima qilindi + hukm). Har feedback F-ID bilan (quyida) |
 | **ROLLAR** | `.claude/agents/role/*` (texnik + umumiy: jonli, verifikator, o'quvchi, qabulchi) · `.claude/agents/pm/*` (PM) | Har rol o'z scope-fence bilan. `.claude/` da FAQAT agentlar+sozlamalar turadi |
 
 Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski hisobotlar) ·
@@ -27,6 +27,7 @@ Yordamchi joylar: `arxiv/` (eski tarix — L1_TARIX, AVTOPILOT_CHECKPOINT, eski 
 | «yangi dars: <nom> · audit yurgiz» | **E** |
 | «yangi dars yaratamiz / MD yoz / darsni MD'ga tortamiz» (2026-09-29 dan asosiy yo'l) | **F** |
 | «commit / push / deploy» | **D** |
+| «LMS'ga chiqaramiz / qaysi dars o'zgardi / yuklash paketi» (19.10 dan) | **G** — `LMS_DEPLOY.md`: farq → paket → yuklovchi (`YUKLASH_PROTOKOLI.md`) → muhrla; holat `LMS_REESTR.json` |
 | Texnik (HTML/CSS/JS) dars ustida ish | A/C ning texnik varianti — `PIPELINE.md` |
 
 ## 3. Retseptlar

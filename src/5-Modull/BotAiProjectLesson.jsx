@@ -34,6 +34,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Loyiha kuni: prompt orqali istalgan Telegram bot» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"7-5","tur":"file","nom":{"uz":"Uyga vazifa: Loyiha kuni: prompt orqali istalgan Telegram bot","ru":"Домашнее задание: Проектный день: любой Telegram-бот через промпт"},"matn":{"uz":"Botingizni boshqa odam ishlata oladigan holatga keltiring.\n\n1. Rejaga 3-hodisa → javob juftini qo'shing va quring.\n2. Bot tushunmagan xabarga yo'l ko'rsatsin: «Men buni bilmayman. /start bosing».\n3. Botni oila a'zosi yoki do'stingizga bering — u yozgan 5 xabarni va bot javoblarini skrinshot qiling.\n4. Qayerda adashganini README'ga bitta gap bilan yozing.\n5. Repo linki (yoki o'z papkangiz) va skrinshotlar.\n\nNima tekshiriladi:\n— 3 juft ishlaydi\n— fallback yo'l ko'rsatadi\n— boshqa odamning 5 xabari\n— README'da kuzatuv.","ru":"Доведите бота до состояния, когда им может пользоваться другой человек.\n\n1. Добавьте в план 3-ю пару событие → ответ и соберите её.\n2. На непонятное сообщение бот подсказывает путь: «Я этого не знаю. Нажмите /start».\n3. Дайте бота члену семьи или другу — сделайте скриншот 5 его сообщений и ответов бота.\n4. Одним предложением запишите в README, где он запутался.\n5. Ссылка на репозиторий (или ваша папка) и скриншоты.\n\nЧто проверяется:\n— 3 пары работают\n— fallback подсказывает путь\n— 5 сообщений другого человека\n— наблюдение в README."}};
 
 
 
@@ -1876,6 +1879,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             ); })}
           </div>
         </div>}
+        <UygaVazifaKarta v={HW_V2} tr={tr} tugma />
         <p className="next-lesson fade-up d4">{tr({ uz: <>Keyingi dars — <b>«Bot ichida AI»</b>. Bugun AI botingizning kodini yozdi. Keyingi darsda AI botning ichida ishlaydi: mijoz savoliga javobni o'zi yozadi.</>, ru: <>Следующий урок — <b>«ИИ внутри бота»</b>. Сегодня ИИ написал код вашего бота. На следующем уроке ИИ будет работать внутри бота: сам напишет ответ на вопрос клиента.</> })}</p>
       </div>
     </Stage>

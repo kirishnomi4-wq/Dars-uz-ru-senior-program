@@ -53,7 +53,7 @@ async function flush(lessonId, { keepalive = false } = {}) {
   ch.pending = null;
   ch.inFlight = true;
   try {
-    const r = await progressPut(ch.token, body, { keepalive });
+    const r = await progressPut(ch.token, body, { keepalive, liveRun: true }); // kanal faqat jonli ishga tushirishda ochiladi
     if (r && r.status === 'finished') {
       ch.status = 'finished';
       ch.onFinished?.({ reason: r.finish_reason || 'completed' });

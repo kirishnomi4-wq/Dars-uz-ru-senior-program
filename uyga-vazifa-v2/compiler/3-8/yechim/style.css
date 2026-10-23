@@ -1,0 +1,7 @@
+body { font-family: Arial, sans-serif; background: #F5F6F8; display: flex; justify-content: center; padding: 40px; }
+.card { background: white; padding: 28px; border-radius: 16px; width: 360px; }
+h1 { margin-top: 0; }
+button { background: #E8461F; color: white; border: 0; border-radius: 8px; padding: 9px 14px; cursor: pointer; }
+input { width: 100%; padding: 9px; margin: 6px 0; border: 1px solid #D9DDE4; border-radius: 8px; box-sizing: border-box; }
+#about { background: #FFE9E2; border-radius: 10px; padding: 4px 12px; margin: 12px 0; }
+#greet { font-weight: bold; color: #E8461F; }

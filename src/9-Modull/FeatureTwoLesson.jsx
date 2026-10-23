@@ -29,6 +29,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QIzoh, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Vibe-coding: 2-funksiya» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 11-12). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"11-12","tur":"file","nom":{"uz":"Uyga vazifa: Vibe-coding: 2-funksiya","ru":"Домашнее задание: Vibe-coding: 2-я функция"},"matn":{"uz":"Tugmani yashirish yetmaydi — Backend ham ruxsatsiz so'rovni to'xtatsinmi, tekshiring.\n\n1. Tugma yo'q holatda o'sha amalni to'g'ridan-to'g'ri Backend'ga yuboring (Postman yoki brauzer konsoli): tokensiz — 401 kutiladi.\n2. Boshqa akkaunt tokeni bilan, ruxsat yo'q holatda — 403 kutiladi.\n3. Kutilgan javob kelmasa — Backend'ni tuzating va qayta sinang.\n4. Ikki so'rov skrinshoti (status ko'rinsin) va repo linki.\n\nNima tekshiriladi:\n— tokensiz → 401\n— ruxsatsiz akkaunt → 403\n— Database'da o'zgarish yo'q\n— tuzatish (kerak bo'lsa) commit'i.","ru":"Спрятать кнопку недостаточно — проверьте, останавливает ли Backend запрос без прав.\n\n1. Когда кнопки нет, отправьте это действие прямо в Backend (Postman или консоль браузера): без токена ожидается 401.\n2. С токеном другого аккаунта, у которого нет прав, — ожидается 403.\n3. Если ожидаемый ответ не пришёл — исправьте Backend и проверьте снова.\n4. Скриншоты двух запросов (виден статус) и ссылка на репозиторий.\n\nЧто проверяется:\n— без токена → 401\n— аккаунт без прав → 403\n— в Database ничего не изменилось\n— коммит с исправлением (если нужно)."}};
 
 
 
@@ -2034,25 +2037,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== UYGA VAZIFA — istisno (Qaror-0 16): HwCard (P-025: «Kim bilan · Nechta · Muddat» + raqamli qadamlar; alohida .homework.jsx yo'q) =====
-const HW_KARTA = [
-  { k: { uz: 'Kim bilan', ru: "С кем" }, v: { uz: "mahsulotingiz kim uchun bo'lsa, shunday odamlar", ru: "люди, для которых ваш продукт" } },
-  { k: { uz: 'Nechta', ru: "Сколько" }, v: { uz: '3 ta sinov', ru: "3 теста" } },
-  { k: { uz: 'Muddat', ru: "Срок" }, v: { uz: 'keyingi darsgacha', ru: "до следующего урока" } }
-];
-const HW_QADAM = [
-  { uz: "Sinov vazifasini bitta gap qilib yozing: odam nimaga erishsin — qaysi tugmani bosishni emas. Vazifa — mahsulotingizdagi asosiy ish, faqat bugungi funksiya emas. Mentor misolida: «Shanba soat 18:00 dagi o'yinga qo'shiling.»", ru: "Запишите задание теста одной фразой: чего должен добиться человек — а не какую кнопку нажать. Задание — основное дело в вашем продукте, не только сегодняшняя функция. В примере Ментора: «Присоединитесь к игре в субботу в 18:00.»" },
-  { uz: "Har sinovchidan oldin «Hisobdan chiqish»ni bosing: sinovchi namuna ism va har biri boshqa namuna telefon bilan ro'yxatdan o'tadi — o'z raqamini yozmaydi. Telefoningizni bering — unga hech narsa o'rnatish shart emas; mobil trekda laptopda `npx expo start` ishlab tursin (bitta Wi-Fi).", ru: "Перед каждым тестировщиком нажимайте «Hisobdan chiqish» («Выйти из аккаунта»): тестировщик регистрируется с именем-образцом и каждый — с другим телефоном-образцом, свой номер не пишет. Дайте свой телефон — ему ничего не нужно устанавливать; в мобильном треке на ноутбуке пусть работает `npx expo start` (одна сеть Wi-Fi)." },
-  { uz: "Vazifani o'qib bering va kuzating: har to'xtashni vaqti bilan qog'ozga yozing, oxirida belgilang — vazifani bajara oldimi, ha yoki yo'q. Yozuvlarni keyingi darsga olib keling.", ru: "Зачитайте задание и наблюдайте: каждую остановку записывайте на бумагу со временем, в конце отметьте — смог ли выполнить задание, да или нет. Принесите записи на следующий урок." }
-];
-const HwCard = ({ keyingi }) => (
-  <div className="card ft-hw fade-up">
-    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: "Что сделаете дома?" })}</div>
-    <div className="ft-hw-karta">{HW_KARTA.map((r, i) => <div key={i} className="ft-hw-q"><span className="ft-hw-k">{tr(r.k)}</span><span className="ft-hw-v">{tr(r.v)}</span></div>)}</div>
-    <ol className="ft-hw-qadam">{HW_QADAM.map((q, i) => <li key={i}><i>{i + 1}</i><span>{tx(q)}</span></li>)}</ol>
-    <span className="ft-hw-izoh">{tr({ uz: "9-Moduldagidek: vazifa berasiz, yo'lni tushuntirmaysiz, yechimni ko'rsatib bermaysiz va qayerda to'xtaganini yozasiz.", ru: "Как в 9-м модуле: даёте задание, не объясняете путь, не показываете решение и записываете, где человек остановился." })}</span>
-    {keyingi && <p className="ft-keyingi">{keyingi}</p>}
-  </div>
-);
+const HwCard = ({ keyingi }) => <UygaVazifaKarta v={HW_V2} tr={tr} keyingi={keyingi} />;
 
 // ===== YAKUN — QYakun (DE-204) + uyga vazifa (istisno) + «Keyingi dars»; kartochkalar — oldingi alohida ekranda. Sarlavha holatga qarab (P-046; 12-FILTR 42) =====
 const YAKUN_SARLAVHA = {

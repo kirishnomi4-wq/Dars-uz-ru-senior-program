@@ -1,0 +1,8 @@
+{
+ "tur": [
+  "js"
+ ],
+ "rasm": null,
+ "kutilgan": "1-mahsulot: 12000 so'm\n2-mahsulot: 8000 so'm\n3-mahsulot: 15000 so'm\n4-mahsulot: 5000 so'm\nJami: 40000 so'm\n7 kunda 21000 so'm",
+ "rubrika": "Grade a beginner loops task out of 10 (console output).\n1. (3) A for loop prints each price with its number: '1-mahsulot: 12000 so'm' … '4-mahsulot: 5000 so'm' (numbering via i + 1).\n2. (3) Total is calculated with a loop (not written by hand) and printed: 'Jami: 40000 so'm'.\n3. (2) A while loop adds 3000 per day until money >= 20000 and prints '7 kunda 21000 so'm'.\n4. (2) Loop conditions use prices.length, not the literal 4.\nDo not penalize template literals or += ."
+}

@@ -39,6 +39,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Ma'lumotlar qayerda saqlanadi?» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-1). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-1","tur":"test","nom":{"uz":"Uyga vazifa: Ma'lumotlar qayerda saqlanadi?","ru":"Домашнее задание: Где хранятся данные?"},"matn":null,"n":5};
 
 
 
@@ -2567,11 +2570,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "id va bog'lovchi (_id) jadvallarni ulaydi", ru: 'id и связующий (_id) соединяют таблицы' },
     { uz: "Sxema — bitta → ko'p bog'lanishlar xaritasi", ru: 'Схема — карта связей «один → много»' }
   ];
-  const HOMEWORK = [
-    { b: { uz: "O'z ilovangiz", ru: 'Своё приложение' }, t: { uz: "— sevimli ilovangizni tanlang (TikTok, do'kon, o'yin) va unga 3 ta jadval o'ylab toping", ru: '— выберите любимое приложение (TikTok, магазин, игра) и придумайте для него 3 таблицы' } },
-    { b: { uz: "Bog'lovchilar", ru: 'Связующие' }, t: { uz: "— har jadvalga id va kerakli _id (bog'lovchi) ustunlarini yozing", ru: '— напишите каждой таблице id и нужные столбцы _id (связующие)' } },
-    { b: { uz: 'Sxema chizing', ru: 'Нарисуйте схему' }, t: { uz: "— qog'ozda yoki AI bilan jadvallarni chizib, bog'lanish chiziqlarini torting", ru: '— нарисуйте таблицы на бумаге или с AI и проведите линии связей' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const audio = useAudio([{ id: 's16', text: `Tabriklaymiz — ilovaning ma'lumot sxemasini o'zingiz ulab chizdingiz! Esda saqlang: ma'lumot — tartibli kalit va qiymat; JSON bitta narsani yozadi; jadval qator va ustundan iborat; id — rozetka, _id — vilka; sxema esa butun ma'lumot xaritasini ko'rsatadi. Keyingi darsda shu jadvallarni haqiqiy bazada, PostgreSQL'da quramiz.`, trigger: 'on_mount', waits_for: null }]);
@@ -2594,7 +2592,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z ilovangiz sxemasini chizib ko'ring:", ru: 'Попробуйте нарисовать схему своего приложения:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda bu jadvallarni haqiqiy bazada — PostgreSQL'da quramiz! 🚀", ru: 'На следующем уроке мы построим эти таблицы в настоящей базе — в PostgreSQL! 🚀' })}</p><div className="hw-chal"><p className="small" style={{ margin: '0 0 8px', color: T.ink2 }}>{tr({ uz: <><b style={{ color: T.ink }}>Ixtiyoriy challenge.</b> Qog'oz o'rniga kompyuterda chizmoqchimisiz? DrawSQL — sxema chizadigan bepul sayt. Bu topshiriq <b>majburiy emas</b>: xohlagan o'quvchi uchun.</>, ru: <><b style={{ color: T.ink }}>Необязательный челлендж.</b> Хотите нарисовать не на бумаге, а в настоящем инструменте? DrawSQL — бесплатный сайт для схем. Это задание <b>необязательное</b> — для тех, кто захочет.</> })}</p><a className="btn-soft" href="https://drawsql.app/diagrams/new" target="_blank" rel="noopener noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, textDecoration: 'none' }}>{tr({ uz: 'DrawSQL da ochish ↗', ru: 'Открыть в DrawSQL ↗' })}</a></div></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

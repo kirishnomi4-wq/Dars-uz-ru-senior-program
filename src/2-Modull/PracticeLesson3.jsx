@@ -23,6 +23,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Practice: AI-Agent 2» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-11). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"3-11","tur":"compiler","nom":{"uz":"Uyga vazifa: Practice: AI-Agent 2","ru":"Домашнее задание: Practice: AI-Agent 2"},"matn":{"uz":"Mini-do'kon katalogiga \"Sevimli\" qo'shing. Avval rejani yozing, keyin AI-agentga bitta qadam — bitta so'rov bering.\n\n1. script.js tepasiga izoh qilib reja yozing: qanday qadamlar, qaysi tartibda.\n2. Har kartochkada ♥ tugmasi: bosilsa qizil bo'ladi, yana bosilsa oq bo'ladi.\n3. Tepada «Sevimli: N» soni yangilanib tursin.\n4. «Faqat sevimlilar» tugmasi faqat ♥ bosilgan kartochkalarni ko'rsatsin.","ru":"Добавьте в каталог мини-магазина «Избранное». Сначала напишите план, потом давайте AI-агенту по одному запросу на каждый шаг.\n\n1. Вверху script.js напишите план комментарием: какие шаги и в каком порядке.\n2. На каждой карточке — кнопка ♥: при нажатии становится красной, при повторном — снова белой.\n3. Вверху обновляется счётчик «Избранное: N».\n4. Кнопка «Только избранное» показывает только карточки с нажатым ♥."}};
 
 
 
@@ -1400,7 +1403,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [tr({ uz: "Katta ishni AI'ga berishdan oldin qadamlarga bo'lasiz", ru: 'Перед тем как дать большую работу AI, разбиваете её на шаги' }), tr({ uz: "MVP — vaqtga sig'adigan, lekin ishlaydigan qism; qolgani «keyin»", ru: 'MVP — часть, которая укладывается во время и работает; остальное — «потом»' }), tr({ uz: "Ba'zi qism boshqasisiz ishlamaydi: savat — kartochkalardan keyin", ru: 'Некоторые части не работают без других: корзина — после карточек' }), tr({ uz: 'Mahsulotlar massivda, kartochkalar for sikli bilan, toifa tugmalari if bilan', ru: 'Товары — в массиве, карточки — циклом for, кнопки категорий — через if' }), tr({ uz: 'Copilot izohdan funksiya yozadi — nima qilishini siz aytasiz', ru: 'Copilot пишет функцию по комментарию — что она делает, говорите вы' })];
-  const HOMEWORK = [{ b: tr({ uz: 'Sevimli', ru: 'Избранное' }), t: tr({ uz: "— har kartochkaga yurak tugmasi qo'shing: bosilsa to'ladi (Copilot yoki Gemini bilan)", ru: '— добавьте на каждую карточку кнопку-сердечко: по нажатию закрашивается (с Copilot или Gemini)' }) }, { b: tr({ uz: 'Savat uchun prompt', ru: 'Промпт для корзины' }), t: tr({ uz: "— rejangizdagi keyingi qadamga bitta aniq prompt yozib qo'ying", ru: '— напишите один точный промпт для следующего шага плана' }) }, { b: tr({ uz: 'Papkani saqlang', ru: 'Сохраните папку' }), t: tr({ uz: '— mini-dokon keyingi darsda davom etadi', ru: '— mini-dokon продолжится на следующем уроке' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1423,7 +1425,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, mini-dokon papkasida:", ru: 'В VS Code, в папке mini-dokon:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Esda tuting: avval o'ylab bo'laklang, keyin AI'ni oching.", ru: 'Помните: сначала подумайте и разбейте, потом открывайте AI.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши награды' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

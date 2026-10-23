@@ -30,6 +30,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QIzoh, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Vibe-coding: 3-funksiya» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 11-14). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"11-14","tur":"text","nom":{"uz":"Uyga vazifa: Vibe-coding: 3-funksiya","ru":"Домашнее задание: Vibe-coding: 3-я функция"},"matn":{"uz":"Uchala funksiyani deploy qilingan versiyada to'liq tekshiring.\n\n1. Repo ildizida TEST.md: har funksiya uchun ikki qator — asosiy holat va bitta chekka holat.\n2. Har qatorni telefonda, internetdagi versiyada bajaring: ✓ yoki ✗ va nima bo'ldi.\n3. ✗ bo'lsa — tuzating va qatorni qayta tekshiring.\n4. Repo linki.\n\nNima tekshiriladi:\n— 3 funksiya × 2 holat\n— internetdagi versiyada sinalgan\n— ✗ lar tuzatilgan yoki sababi yozilgan\n— oldingi funksiyalar buzilmagan.","ru":"Полностью проверьте все три функции в задеплоенной версии.\n\n1. В корне репозитория — TEST.md: по две строки на каждую функцию — основной случай и один крайний.\n2. Выполните каждую строку на телефоне, в версии из интернета: ✓ или ✗ и что произошло.\n3. Если ✗ — исправьте и проверьте строку снова.\n4. Ссылка на репозиторий.\n\nЧто проверяется:\n— 3 функции × 2 случая\n— проверено в версии из интернета\n— ✗ исправлены или записана причина\n— прошлые функции не сломались."}};
 
 
 
@@ -2199,7 +2202,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       {/* Belgi «✓ Uchinchi funksiya tayyor» — faqat A3 bajarilganda (nishon Third Feature bilan bir). Tartib (MD): belgi va sarlavha · CODE STRIKE · Endi siz bilasiz · Keyingi dars · Nishonlaringiz */}
       <div className={cxx('f3-yakun', belgisiz && 'belgisiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}

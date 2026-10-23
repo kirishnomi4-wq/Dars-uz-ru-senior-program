@@ -1,0 +1,8 @@
+{
+ "tur": [
+  "js"
+ ],
+ "rasm": null,
+ "kutilgan": "Baho: 4\nPIN noto'g'ri\nZaryad kam!",
+ "rubrika": "Grade a beginner if/else task out of 10 (console output).\n1. (4) Grade chain uses if / else if / else with >= boundaries: 90+ → 'Baho: 5', 70+ → 'Baho: 4', 60+ → 'Baho: 3', else 'Baho: 2'. Check it would work for 95, 61 and 40, not only 78. The student is told to set score back to 78 at the end.\n2. (2) PIN check compares with == or === (not =) and prints 'Telefon ochildi' or \"PIN noto'g'ri\".\n3. (2) Battery check uses < 20 and prints 'Zaryad kam!' or 'Zaryad yetarli'.\n4. (2) With the given values output is exactly: Baho: 4 / PIN noto'g'ri / Zaryad kam!\nAccept equivalent correct ordering of conditions; small spelling differences in messages -0.5 at most."
+}

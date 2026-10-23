@@ -11,6 +11,8 @@
 //   forceToken=1                   — preview'da ham #token beriladi (CRM xato qilsa: preview ustun bo'lishi kerak)
 //   id=<lessonId>&seedScreen=N&total=T — SINOV: dars yuklangach ccProgress ekrani N qilib yoziladi (T = darsning ekranlar soni)
 //                                     (preview'da bu varaq xotirasiga tushadi — haqiqiy saqlovga emas)
+//   window.__ccLaunch(props)        — SINOV (F-1021-08/09): LMS kabi SPA o'tish — sahifa qayta yuklanmaydi, eski dars
+//                                     unmount, o'sha JSX yangi proplar bilan yangi mount (scripts/e2e-preview-spa.mjs)
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 
@@ -26,17 +28,23 @@ window.__finishedCalls = 0;
 function Page() {
   const [Comp, setComp] = useState(null);
   const [err, setErr] = useState('');
+  const [launch, setLaunch] = useState(null); // SPA o'tish: { n, props } — n o'zgarsa React eski darsni unmount qiladi
+  useEffect(() => { let n = 0; window.__ccLaunch = (p) => setLaunch({ n: ++n, props: p }); }, []);
   useEffect(() => {
     const jsx = q.get('jsx');
     if (!jsx) { setErr('jsx parametri kerak'); return; }
     import(/* @vite-ignore */ jsx).then((m) => {
+      window.__ccLessonStorage = m.default.localStorage || null; // F-1021-10: sinov dars xotirasini shu adapter orqali o'qiydi
       const id = q.get('id'), seed = Number(q.get('seedScreen'));
       if (id && Number.isInteger(seed)) {
-        // Yagona manba — prop: xotira-qatlami o'ram chizilganda o'rnatiladi. Urug' qatlamga tushishi uchun o'ram bir marta
-        // ODDIY funksiya sifatida chaqiriladi (u hook ishlatmaydi — faqat notePreviewProps). Faqat sinov yo'li.
-        // O'ramsiz (eski/baza) yig'mada default — darsning o'zi: uni funksiya sifatida chaqirib bo'lmaydi (hook'lar)
-        if (PREVIEW && m.default.name === 'CcLessonEntry') m.default({ visitMode: 'preview', previewRunId: RUN_ID });
-        try { localStorage.setItem(`ccProgress:${id}`, JSON.stringify({ screen: seed, maxReached: seed, answers: {}, earned: [], startedAt: Date.now(), total: Number(q.get('total')), savedAt: Date.now() })); } catch { /* yopiq */ }
+        // Yagona manba — prop: xotira-qatlami o'ram chizilganda o'rnatiladi. Urug' qatlamga tushishi uchun ishga tushirish
+        // o'ramning hook'siz kirishi (startRun) bilan oldinroq ochiladi; mount o'sha RUN_ID bilan keladi — xotira saqlanadi.
+        // O'ramsiz (eski/baza) yig'mada startRun yo'q. Faqat sinov yo'li.
+        if (PREVIEW && typeof m.default.startRun === 'function') m.default.startRun({ visitMode: 'preview', previewRunId: RUN_ID });
+        else if (PREVIEW && m.default.name === 'CcLessonEntry') m.default({ visitMode: 'preview', previewRunId: RUN_ID }); // 21.10 gacha o'ram — hook'siz
+        // F-1021-10: dars yig'masi sahifa saqlovini emas, o'z adapterini ishlatadi — urug' o'sha adapter orqali
+        const st = m.default.localStorage || localStorage;
+        try { st.setItem(`ccProgress:${id}`, JSON.stringify({ screen: seed, maxReached: seed, answers: {}, earned: [], startedAt: Date.now(), total: Number(q.get('total')), savedAt: Date.now() })); } catch { /* yopiq */ }
       }
       setComp(() => m.default);
     }).catch((e) => setErr(String(e?.message || e)));
@@ -51,8 +59,8 @@ function Page() {
   if (!Comp) return <div style={{ padding: 20, fontFamily: 'monospace' }}>yuklanmoqda…</div>;
   return (
     <>
-      <div data-harness style={badge}>LMS {PREVIEW ? `preview · run ${RUN_ID.slice(0, 8)}` : 'oddiy'} · token: {props.liveToken ? 'berildi' : "yo'q"}</div>
-      <Comp {...props} />
+      <div data-harness style={badge}>LMS {launch ? `SPA #${launch.n} · ${launch.props.visitMode || 'oddiy'}` : PREVIEW ? `preview · run ${RUN_ID.slice(0, 8)}` : 'oddiy'} · token: {(launch ? launch.props : props).liveToken ? 'berildi' : "yo'q"}</div>
+      {launch ? <Comp key={launch.n} {...launch.props} /> : <Comp {...props} />}
     </>
   );
 }

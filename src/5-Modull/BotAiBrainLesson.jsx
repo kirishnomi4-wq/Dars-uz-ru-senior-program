@@ -37,6 +37,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: AI API botning ichida» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-6). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"7-6","tur":"file","nom":{"uz":"Uyga vazifa: AI API botning ichida","ru":"Домашнее задание: AI API внутри бота"},"matn":{"uz":"System prompt'ingizni botga ulang.\n\n1. Darsda yozgan system prompt'ni bot handleriga qo'ying; AI kaliti — .env da.\n2. Botga uch xabar yuboring: mavzuga oid savol, mavzudan tashqari savol, menyudagi narx.\n3. Mavzudan tashqari savolga bot chegarada qolsin; narx menyudagi bilan bir xil bo'lsin — bo'lmasa, system prompt'ni aniqlashtiring.\n4. Uch javob skrinshoti va yakuniy system prompt matni (alohida fayl).\n\nNima tekshiriladi:\n— kalit kodda yo'q\n— system prompt'da kim/qanday/nima haqida\n— mavzudan tashqari savolga rad javob\n— narx to'g'ri.","ru":"Подключите свой system prompt к боту.\n\n1. Вставьте system prompt, написанный на уроке, в обработчик бота; ключ AI — в .env.\n2. Отправьте боту три сообщения: вопрос по теме, вопрос не по теме, цену из меню.\n3. На вопрос не по теме бот должен оставаться в рамках; цена — совпадать с меню. Если нет — уточните system prompt.\n4. Скриншоты трёх ответов и итоговый текст system prompt (отдельным файлом).\n\nЧто проверяется:\n— ключа нет в коде\n— в system prompt есть кто/как/о чём\n— на вопрос не по теме — отказ\n— цена верная."}};
 
 
 
@@ -2439,11 +2442,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 system prompt, 5 xabar', ru: '1 system prompt, 5 сообщений' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Yozing', ru: 'Напишите' }, t: { uz: "— o'z botingiz uchun system prompt yozing: kim, qanday gapiradi, nima haqida gapiradi", ru: "— system prompt для своего бота: кто он, как говорит, о чём говорит" } },
-    { b: { uz: 'Ajrating', ru: "Разделите" }, t: { uz: '— botingizga keladigan 5 ta xabarni yozing va har biri yoniga belgilang: unga handler javob beradimi yoki AI', ru: "— напишите 5 сообщений, которые придут вашему боту, и у каждого отметьте: ответит handler или ИИ" } },
-    { b: { uz: 'Tekshiring', ru: 'Проверьте' }, t: { uz: "— gemini.google.com'da system prompt'ingizni sinang va bitta faktni o'z ma'lumotingiz bilan solishtiring", ru: "— свой system prompt на gemini.google.com и сверьте один факт со своими данными" } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2466,7 +2464,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: bot + DB + AI»</b>. Handler, baza va AI'ni bitta botga yig'asiz va uni kompyuteringiz yopiq bo'lsa ham ishlaydigan serverga joylaysiz.</>, ru: <>Следующий урок — <b>«Проектный день: бот + БД + ИИ»</b>. Вы соберёте handler, базу и ИИ в одного бота и разместите его на сервере, который работает, даже когда ваш компьютер выключен.</> })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Nishonlaringiz — ', ru: "Ваши значки — " })}{(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

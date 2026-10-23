@@ -18,6 +18,7 @@
 //   Ballga kirmaydi (totalQuestions/correctAnswers faqat testlar). Bir savolga bitta javob (jonli qoida), takrori e'tiborsiz.
 //   Mustaqil rejimda arena mashq — yozilmaydi (submitAnswer chaqirilmaydi). Matnlar `arenaBank` (darsning QUIZ_BANK) berilsa qo'shiladi.
 import { getLiveLang } from './i18n.js';
+import { onRunChange } from './previewMode.js';
 
 const LIM = { questions: 200, attempts: 10, options: 6, text: 300, achievements: 20, name: 40, title: 200, elapsed: 3_600_000 };
 const cut = (v, n) => (typeof v === 'string' ? v.slice(0, n) : undefined);
@@ -190,6 +191,9 @@ export function unsealPayload(lessonId) { sealedByLesson.delete(lessonId); }
 export const _detailsState = () => ({ attemptsByLesson, earnedAtByLesson, arenaByLesson });
 /** Test uchun: «sahifa yangilandi» — xotira unutiladi, saqlov qoladi. */
 export const _forgetMemory = (lessonId) => { attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); loaded.delete(lessonId); };
+// F-1021-08/09: yangi ishga tushirish (SPA'da preview ↔ jonli) — xotira butunlay tozalanadi, keyin saqlovdan qayta o'qiladi.
+// Busiz preview javoblari xuddi shu darsning keyingi jonli natija-yukiga aralashardi (va aksincha).
+onRunChange(() => { attemptsByLesson.clear(); earnedAtByLesson.clear(); arenaByLesson.clear(); loaded.clear(); sealedByLesson.clear(); clearedProgress.clear(); });
 
 /**
  * onFinished payload'iga qo'shiladigan obyekt.

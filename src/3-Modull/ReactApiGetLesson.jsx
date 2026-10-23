@@ -31,6 +31,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: fetch va axios» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-8). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-8","tur":"file","nom":{"uz":"Uyga vazifa: fetch va axios","ru":"Домашнее задание: fetch и axios"},"matn":{"uz":"Haqiqiy serverdan foydalanuvchilar ro'yxatini oling: https://jsonplaceholder.typicode.com/users.\n\n1. Sahifa ochilganda bir marta so'rov yuborilsin (useEffect, []).\n2. Javob kelguncha «Yuklanmoqda…» yoki kulrang kartochkalar ko'rinsin.\n3. Har foydalanuvchi kartochkasida ism, email va shahar (address.city).\n4. Manzilni ataylab buzing (/userz), konsolda 404 ni toping va skrinshot oling. Keyin tuzating.\n5. Link va ikki skrinshot: konsoldagi 404 va tuzatilgandan keyingi ro'yxat.\n\nNima tekshiriladi:\n— fetch → json → set tartibi\n— useEffect []\n— yuklanish holati bor\n— 404 skrinshoti + tuzatilgan manzil\n— 10 ta kartochka.","ru":"Получите список пользователей с настоящего сервера: https://jsonplaceholder.typicode.com/users.\n\n1. Запрос отправляется один раз при открытии страницы (useEffect, []).\n2. Пока нет ответа, видно «Загрузка…» или серые карточки.\n3. В карточке каждого пользователя — имя, email и город (address.city).\n4. Специально сломайте адрес (/userz), найдите в консоли 404 и сделайте скриншот. Потом исправьте.\n5. Ссылка и два скриншота: 404 в консоли и список после исправления.\n\nЧто проверяется:\n— порядок fetch → json → set\n— useEffect []\n— есть состояние загрузки\n— скриншот 404 + исправленный адрес\n— 10 карточек."}};
 
 
 
@@ -2345,11 +2348,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Kutish payti — skeleton: \"ma'lumot yo'lda\" signali", ru: 'Во время ожидания — скелетон: сигнал «данные в пути»' }),
     tr({ uz: "To'liq usul: useEffect + fetch + .json() + setGames", ru: 'Полный приём: useEffect + fetch + .json() + setGames' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: 'Jonli katalog', ru: 'Живой каталог' }), t: tr({ uz: "— robo-games loyihangizga agent bilan haqiqiy API ulang: \"o'yinlar ro'yxatini serverdan fetch bilan yukla\" deb buyuring", ru: '— подключите к своему robo-games настоящий API с агентом: скомандуйте «загрузи список игр с сервера через fetch»' }) },
-    { b: tr({ uz: 'Skeleton', ru: 'Скелетон' }), t: tr({ uz: "— yuklanish paytida skeleton kartochkalar chiqaring", ru: '— выводите скелетон-карточки во время загрузки' }) },
-    { b: tr({ uz: '404 detektivi', ru: 'Детектив 404' }), t: tr({ uz: "— manzilni ataylab xato yozib, konsoldagi 404 ni toping va tuzating", ru: '— нарочно напишите адрес с ошибкой, найдите 404 в консоли и исправьте' }) }
-  ];
   const GLOSSARY = [
     { b: tr({ uz: 'Server', ru: 'Сервер' }), t: tr({ uz: "— ma'lumot markazi: bitta joy, hamma qurilma uchun", ru: '— центр данных: одно место для всех устройств' }) },
     { b: 'fetch', t: tr({ uz: "— so'rov buyrug'i: borib olib kel", ru: '— команда запроса: сходи и принеси' }) },
@@ -2391,7 +2389,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте в своём проекте с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda kuch yana oshadi: serverdan faqat olish emas — unga YUBORISH ham o'rganamiz. O'z o'yiningizni katalogga qo'shasiz! 🚀", ru: 'На следующем уроке сила вырастет: научимся не только получать с сервера, но и ОТПРАВЛЯТЬ на него. Добавите в каталог свою игру! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

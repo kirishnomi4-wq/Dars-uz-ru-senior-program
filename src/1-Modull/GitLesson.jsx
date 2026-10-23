@@ -18,6 +18,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, nickRead, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Git va GitHub» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-12). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-12","tur":"text","nom":{"uz":"Uyga vazifa: Git va GitHub","ru":"Домашнее задание: Git и GitHub"},"matn":{"uz":"Git'ni o'rnating va loyihangizni GitHub'ga terminaldan yuboring.\n\n1. git --version bilan Git o'rnatilganini tekshiring.\n2. GitHub'da ochiq (public) repo oching; ichida index.html va README.md bo'lsin.\n3. README'ga loyiha nomi va u haqida 1–2 gap yozing.\n4. Kamida 2 ta commit qiling — kamida bittasi terminaldan, -m bilan aniq izohli.\n5. Repo linkini yuklang.\n\nNima tekshiriladi:\n— link ochiladi (public)\n— index.html va README bor\n— commitlar ≥ 2, izohlari ma'noli\n— README'da loyiha haqida gap.","ru":"Установите Git и отправьте свой проект на GitHub из терминала.\n\n1. Проверьте командой git --version, что Git установлен.\n2. Создайте на GitHub открытый (public) репозиторий; в нём должны быть index.html и README.md.\n3. В README напишите название проекта и 1–2 предложения о нём.\n4. Сделайте минимум 2 коммита — хотя бы один из терминала, с -m и понятным описанием.\n5. Загрузите ссылку на репозиторий.\n\nЧто проверяется:\n— ссылка открывается (public)\n— есть index.html и README\n— коммитов ≥ 2, описания осмысленные\n— в README есть текст о проекте."}};
 
 const AchCtx = createContext(null); // 🏅 olingan nishonlar (Set) — Stage hisoblagichi uchun
 const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinish + «Qaytadan» mashq-o'tishi
@@ -1557,11 +1560,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: 'Kodni internetga yubordingiz', ru: 'Отправили код в интернет' },
     { uz: 'Kod linkini boshqalarga ulasha olasiz', ru: 'Можете поделиться ссылкой на код' },
   ];
-  const HOMEWORK = [
-    { b: { uz: "Yangi fayl qo'shing", ru: 'Добавьте новый файл' }, t: { uz: '— repo papkasiga about.html yarating', ru: '— создайте about.html в папке репо' } },
-    { b: { uz: 'Nuqtani belgilang', ru: 'Отметьте точку' }, t: { uz: '— izoh yozing: about sahifasi', ru: '— напишите комментарий: about sahifasi' } },
-    { b: { uz: 'Internetga yuboring', ru: 'Отправьте в интернет' }, t: { uz: "— repo sahifangizda fayl paydo bo'lsin", ru: '— пусть файл появится на странице репо' } },
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1590,7 +1588,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🔎 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Uch qadamni yana bir marta takrorlang:', ru: 'Повторите три шага ещё раз:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Repo linkingizni platformadagi vazifa-savoliga yozib yuboring. Sinfdoshingizga ham yuboring — u brauzerda ochib sahifangizni ko'radi.", ru: 'Отправьте ссылку на репо в задание на платформе. И однокласснику тоже — он откроет вашу страницу в браузере.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

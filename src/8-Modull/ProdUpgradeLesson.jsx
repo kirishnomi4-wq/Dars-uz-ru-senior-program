@@ -31,6 +31,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Production darajasiga — 1-qism» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 10-8). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"10-8","tur":"text","nom":{"uz":"Uyga vazifa: Production darajasiga — 1-qism","ru":"Домашнее задание: До уровня production — часть 1"},"matn":{"uz":"Eng yaxshi loyihangizni prod ro'yxati bo'yicha prodga ko'taring.\n\n1. prod tarmog'ida ishlang.\n2. Yozadigan va parol tekshiradigan yo'llarga chegara — ortiqcha so'rovga 429.\n3. Backend kechiksa yoki javob bermasa — foydalanuvchiga nima qilish kerakligi aytiladi.\n4. README'da prod ro'yxati: bugungi ishlar, auditdan qolganlari, gipotezangiz natijasi.\n5. Repo linki (prod tarmog'i).\n\nNima tekshiriladi:\n— 429 ishlaydi (skrinshot yoki sinov)\n— kutish va xato holati\n— README prod ro'yxati\n— ishlar prod tarmog'ida.","ru":"Выведите свой лучший проект в прод по прод-списку.\n\n1. Работайте в ветке prod.\n2. Ограничение на маршруты, которые записывают и проверяют пароль, — на лишние запросы 429.\n3. Если Backend тормозит или не отвечает — пользователю говорится, что делать.\n4. Прод-список в README: что сделано сегодня, что осталось после аудита, результат вашей гипотезы.\n5. Ссылка на репозиторий (ветка prod).\n\nЧто проверяется:\n— 429 работает (скриншот или проверка)\n— состояния ожидания и ошибки\n— прод-список в README\n— работа в ветке prod."}};
 
 
 
@@ -2198,7 +2201,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
-      <QYakun til={__lang}
+      <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
         togri={correct} jami={total}
         sarlavha={tr({ uz: <>«Maydon» prod ro'yxati bo'yicha <span className="italic" style={{ color: T.accent }}>yaxshilandi</span>.</>, ru: <>«Maydon» <span className="italic" style={{ color: T.accent }}>улучшен</span> по прод-списку.</> })}

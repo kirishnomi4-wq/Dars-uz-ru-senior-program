@@ -25,6 +25,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Iteratsiya: fidbekni kodga aylantiraman» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"7-9","tur":"text","nom":{"uz":"Uyga vazifa: Iteratsiya: fidbekni kodga aylantiraman","ru":"Домашнее задание: Итерация: превращаю фидбек в код"},"matn":{"uz":"Ikkinchi aylanani o'zingiz yuriting.\n\n1. FIKRLAR.md dan navbatdagi (2-o'rin) fikrni tanlang; nega aynan u — bitta gap.\n2. Uni bitta aniq o'zgarish qilib yozing va tuzating; oldingi tuzatish buzilmaganini tekshiring.\n3. v3'ni serverga chiqaring.\n4. O'sha fikrni aytgan odamdan qayta so'rang va javobini FIKRLAR.md ga yozing.\n5. Repo linki.\n\nNima tekshiriladi:\n— tanlov sababi\n— commit aniq o'zgarish bilan\n— serverda yangi versiya\n— qayta javob yozilgan.","ru":"Проведите второй круг сами.\n\n1. Выберите в FIKRLAR.md следующий (2-е место) отзыв; почему именно он — одним предложением.\n2. Сформулируйте его как одно конкретное изменение и исправьте; проверьте, что прошлое исправление не сломалось.\n3. Выложите v3 на сервер.\n4. Снова спросите человека, оставившего этот отзыв, и запишите его ответ в FIKRLAR.md.\n5. Ссылка на репозиторий.\n\nЧто проверяется:\n— причина выбора\n— коммит с конкретным изменением\n— новая версия на сервере\n— записан повторный ответ."}};
 
 
 
@@ -1868,6 +1871,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             ); })}
           </div>
         </div>}
+        <UygaVazifaKarta v={HW_V2} tr={tr} tugma />
         <p className="next-lesson fade-up d4">{tr({ uz: <>Keyingi dars — <b>«AI-agent yaratish»</b>. Botga maqsad berasiz — keyingi qadamni u o'zi tanlab, tool chaqiradi: masalan, buyurtmani bazaga saqlaydi.</>, ru: <>Следующий урок — <b>«Создание ИИ-агента»</b>. Вы даёте боту цель — следующий шаг он выбирает сам и вызывает инструмент: например, сохраняет заказ в базу.</> })}</p>
       </div>
     </Stage>

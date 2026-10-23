@@ -28,6 +28,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Sayqallash va barqarorlashtirish» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 13-12). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"13-12","tur":"text","nom":{"uz":"Uyga vazifa: Sayqallash va barqarorlashtirish","ru":"Домашнее задание: Шлифовка и стабилизация"},"matn":{"uz":"Mahsulotingizni boshqa odam tekshirsin.\n\n1. Sinfdoshingiz besh yo'lingizni sizsiz bosib chiqsin; u topganini XATOLAR.md ga qo'shing.\n2. Sinfdoshingiz topgan va siz topmagan bittasini tuzating.\n3. O'sha usul bilan qayta tekshiring va yangi versiyani chiqaring.\n4. Repo linki.\n\nNima tekshiriladi:\n— sinfdosh topilmalari alohida belgilangan\n— bitta tuzatish\n— qayta tekshiruv natijasi\n— yangi versiya chiqarilgan.","ru":"Пусть ваш продукт проверит другой человек.\n\n1. Пусть одноклассник пройдёт ваши пять путей без вас; добавьте то, что он нашёл, в XATOLAR.md.\n2. Исправьте одну ошибку, которую нашёл одноклассник, а вы — нет.\n3. Проверьте снова тем же способом и выпустите новую версию.\n4. Ссылка на репозиторий.\n\nЧто проверяется:\n— находки одноклассника отмечены отдельно\n— одно исправление\n— результат повторной проверки\n— новая версия выпущена."}};
 
 
 
@@ -2393,7 +2396,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className={cx('sb-yakun', !xatolar && 'belgisiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tx(YAKUN_SARLAVHA[holat])}

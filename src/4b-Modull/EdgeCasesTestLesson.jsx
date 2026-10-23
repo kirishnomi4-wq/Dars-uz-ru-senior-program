@@ -44,6 +44,9 @@ const TrS = ({ v }) => tr(v);   /* F-0926-06: S7 — modul-darajali JSX ichida r
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Edge case va error path» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-7). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"6-7","tur":"file","nom":{"uz":"Uyga vazifa: Edge case va error path","ru":"Домашнее задание: Edge case и error path"},"matn":{"uz":"Kupon funksiyasini himoyalang va sinang.\n\n1. applyCoupon(total, percent) — total dan percent foiz chegirma.\n2. Guard: percent 0 dan kichik yoki 100 dan katta bo'lsa — throw; total son bo'lmasa — throw.\n3. Testlar: happy path (100 000, 10 → 90 000); chegaralar 0 va 100 — ishlaydi; 101 va −1 — toThrow; \"ikki\" — toThrow. Namuna: expect(() => applyCoupon(100000, 101)).toThrow(); — () => siz test qulaydi.\n4. npm test yashil skrinshoti; ikki fayl yuklanadi.\n\nNima tekshiriladi:\n— guard funksiya boshida\n— chegaraning ikki tomoni sinalgan\n— () => bilan toThrow\n— NaN/matn holati\n— hammasi yashil.","ru":"Защитите функцию купона и протестируйте её.\n\n1. applyCoupon(total, percent) — скидка percent процентов от total.\n2. Guard: если percent меньше 0 или больше 100 — throw; если total не число — throw.\n3. Тесты: happy path (100 000, 10 → 90 000); границы 0 и 100 — работают; 101 и −1 — toThrow; \"ikki\" — toThrow. Образец: expect(() => applyCoupon(100000, 101)).toThrow(); — без () => тест упадёт.\n4. Скриншот зелёного npm test; загружаются два файла.\n\nЧто проверяется:\n— guard в начале функции\n— проверены обе стороны границы\n— toThrow через () =>\n— случай NaN/строки\n— всё зелёное."}};
 
 
 
@@ -2391,11 +2394,6 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "expect(() => fn()).toThrow() — exceptionni sinaydi", ru: 'expect(() => fn()).toThrow() — проверяет exception' },
     { uz: "Har funksiya = happy path + chegara + noto'g'ri ma'lumot + exception", ru: 'Каждая функция = happy path + граница + неверные данные + exception' }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Edge testlar', ru: 'Edge-тесты' }, t: { uz: "— o'z funksiyangizga 0, manfiy va noto'g'ri tur testlarini yozing", ru: '— напишите для своей функции тесты на 0, отрицательное и неверный тип' } },
-    { b: 'toThrow', t: { uz: "— () => bilan o'rashni unutmang", ru: '— не забудьте обернуть в () =>' } },
-    { b: { uz: 'AI qamrovi', ru: 'Покрытие AI' }, t: { uz: "— AI'dan test so'rang, qaysi edge case qolib ketganini toping", ru: '— попросите тесты у AI и найдите, какой edge case он упустил' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2418,7 +2416,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🎉 Modul 4b tugadi! Endi kodingizni o'zingiz ham, kompyuter ham tekshiradi — happy path va edge case bilan.", ru: '🎉 Модуль 4b завершён! Теперь ваш код проверяете и вы, и компьютер — с happy path и edge case.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Badges — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

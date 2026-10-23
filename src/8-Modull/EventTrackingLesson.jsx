@@ -34,6 +34,9 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QQadamlar, QXulosa, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKod, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: O'z event-tracking tizimim» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 10-2). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"10-2","tur":"file","nom":{"uz":"Uyga vazifa: O'z event-tracking tizimim","ru":"Домашнее задание: Своя система event-tracking"},"matn":{"uz":"O'z MVP'ingizdagi uch qadamni sanang.\n\n1. Uch hodisa tanlang: ochdi → asosiy harakatni boshladi → tugatdi (README'ga yozing).\n2. hodisalar jadvali va POST /hodisalar — o'z Backend'ingizda.\n3. Uch chaqiruvni to'g'ri joyga o'zingiz yozing.\n4. Ikki brauzerdan sinang; Neon'dagi GROUP BY natijasi skrinshoti.\n5. Repo linki.\n\nNima tekshiriladi:\n— 3 hodisa foydalanuvchi o'tadigan tartibda\n— chaqiruvlar to'g'ri joyda (masalan «tugatdi» — muvaffaqiyatdan keyin)\n— brauzer_id bilan sanaladi\n— Neon skrinshoti.","ru":"Посчитайте три шага в своём MVP.\n\n1. Выберите три события: открыл → начал основное действие → завершил (запишите в README).\n2. Таблица hodisalar и POST /hodisalar — в вашем Backend.\n3. Сами поставьте три вызова в правильные места.\n4. Проверьте из двух браузеров; скриншот результата GROUP BY в Neon.\n5. Ссылка на репозиторий.\n\nЧто проверяется:\n— 3 события в том порядке, в котором их проходит пользователь\n— вызовы в правильных местах (например, «завершил» — после успеха)\n— считается по brauzer_id\n— скриншот Neon."}};
 
 
 
@@ -2486,23 +2489,7 @@ const YAKUN_RECAP = [
   { uz: '`band-qildi` faqat band saqlangandan keyin yoziladi.', ru: '`band-qildi` пишется только после сохранения брони.' },
   { uz: "O'z jadvalimizda har qadamda turli brauzerlar sanaladi; Umami brauzerni boshqacha taniydi, shuning uchun farq tabiiy.", ru: 'В нашей таблице на каждом шаге считаются разные браузеры; Umami узнаёт браузер иначе, поэтому разница естественна.' }
 ];
-const UYGA = [
-  { b: 'Backend', t: { uz: "A1 dagi «O'z g'oyangiz» promptini loyihangizda yuboring: hodisalar jadvali va POST /hodisalar paydo bo'lsin.", ru: 'Отправьте в своём проекте промпт «Ваша идея» из A1: должны появиться таблица hodisalar и POST /hodisalar.' } },
-  { b: { uz: 'Sayt', ru: 'Сайт' }, t: { uz: "A2 dagi promptni yuboring va uch chaqiruvni qo'lda yozing — har biri harakat bo'lgan joyda.", ru: 'Отправьте промпт из A2 и напишите три вызова вручную — каждый там, где происходит действие.' } },
-  { b: { uz: 'Ikki tizim', ru: 'Две системы' }, t: { uz: "push qiling, internetdagi saytingizni ikki kishi ochsin. Neon'dagi sanoqni Umami bilan solishtiring va farqni bir gapda yozing.", ru: 'сделайте push, пусть ваш сайт в интернете откроют два человека. Сравните подсчёт в Neon с Umami и напишите разницу одним предложением.' } }
-];
-const HwKarta = () => (
-  <div className="card hw fade-up d4">
-    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
-    <div className="et-hw-meta">
-      <span><small>{tr({ uz: 'kim uchun', ru: 'для кого' })}</small>{tr({ uz: "o'z loyihangiz", ru: 'ваш проект' })}</span>
-      <span><small>{tr({ uz: 'nechta', ru: 'сколько' })}</small>{tr({ uz: '3 hodisa', ru: '3 события' })}</span>
-      <span><small>{tr({ uz: 'muddat', ru: 'срок' })}</small>{tr({ uz: 'keyingi darsgacha', ru: 'до следующего урока' })}</span>
-    </div>
-    <ol className="et-hw-q">{UYGA.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> — {tr(h.t)}</span></li>)}</ol>
-    <p className="et-hw-keyingi">{tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: jonli dashboard»</b>. Talabni siz yozasiz, agent dashboard'ni (holat panelini) yig'adi: jadvaldagi hodisalar bir sahifada ko'rinadi.</>, ru: <>Следующий урок — <b>«День проекта: живой дашборд»</b>. Требование пишете вы, агент собирает дашборд (панель состояния): события из таблицы видны на одной странице.</> })}</p>
-  </div>
-);
+const HwKarta = () => <UygaVazifaKarta v={HW_V2} tr={tr} keyingi={tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: jonli dashboard»</b>. Talabni siz yozasiz, agent dashboard'ni (holat panelini) yig'adi: jadvaldagi hodisalar bir sahifada ko'rinadi.</>, ru: <>Следующий урок — <b>«День проекта: живой дашборд»</b>. Требование пишете вы, агент собирает дашборд (панель состояния): события из таблицы видны на одной странице.</> })} />;
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;

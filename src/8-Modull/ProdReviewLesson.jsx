@@ -32,6 +32,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QXato, QKirish, QReja, QTushuncha, QTest, QTestJavob, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Production darajasiga — 2-qism va code review» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 10-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"10-9","tur":"text","nom":{"uz":"Uyga vazifa: Production darajasiga — 2-qism va code review","ru":"Домашнее задание: До уровня production — часть 2 и code review"},"matn":{"uz":"O'z loyihangizda PR jarayonini oxirigacha olib boring.\n\n1. prod → main PR: tavsifda har o'zgarish va sababi.\n2. Sinfdoshingiz kamida 2 izoh qoldirsin; har biriga «Sabab» va «Qaror» bilan javob bering.\n3. «Tuzataman» degan izohni tuzating; REVIEW.md ga izoh-javoblarni yozing.\n4. PR'ni birlashtiring.\n5. PR linki.\n\nNima tekshiriladi:\n— tavsifda sabablar\n— ≥ 2 izoh va javoblar\n— tuzatish commit'i\n— birlashtirilgan (merged)\n— REVIEW.md.","ru":"Доведите процесс PR в своём проекте до конца.\n\n1. PR prod → main: в описании — каждое изменение и его причина.\n2. Одноклассник оставляет минимум 2 комментария; на каждый ответьте с «Причина» и «Решение».\n3. Исправьте комментарий, на который ответили «Исправлю»; запишите комментарии и ответы в REVIEW.md.\n4. Слейте PR.\n5. Ссылка на PR.\n\nЧто проверяется:\n— причины в описании\n— ≥ 2 комментария и ответы\n— коммит с исправлением\n— слит (merged)\n— REVIEW.md."}};
 
 
 
@@ -2114,7 +2117,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: "Итог" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
-      <QYakun til={__lang}
+      <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
         togri={correct} jami={total}
         sarlavha={tr({ uz: <>PR birlashtirildi — har qaror <span className="italic" style={{ color: T.accent }}>sababi bilan yozilgan</span>.</>, ru: <>PR объединён — каждое решение <span className="italic" style={{ color: T.accent }}>записано с причиной</span>.</> })}

@@ -1654,6 +1654,8 @@ function HtmlCompiler({
   const narrow = useMedia('(max-width: 860px)');
   const touch = useMedia('(pointer: coarse)');
   const [pane, setPane] = useState('code');   // faqat `narrow` da ishlaydi
+  // F-1020-17: tor ekranda «Ishga tushirish» natijaga SAKRAMAYDI (kod yashirinib, «yozib bo'lmayapti» bo'lib ko'rinardi) — «Natija» yorlig'ida yangi natija belgisi yonadi
+  const [yangiNatija, setYangiNatija] = useState(false);
   const hlRef = useRef(null);
   const boxRef = useRef(null);
   const charWRef = useRef(0);            // monoshirift belgi eni (bir marta o'lchanadi)
@@ -2207,7 +2209,7 @@ function HtmlCompiler({
     setDoc(mkDoc(cn != null ? { consoleNonce: cn, doneNonce: dn } : { doneNonce: dn })); expect('doc', dn);
     lastRunRef.current = sig;
     setStale(false);
-    if (narrow) setPane('result');   // tor ekranda «Ishga tushirish» natija tabini ochadi
+    if (narrow && pane !== 'result') setYangiNatija(true);   // F-1020-17: kodda qoladi, natija yorlig'i yonadi
   };
   // ── «Qaytadan» — IKKI QADAM + QAYTARISH (F-0809-03) ────────────────────────
   // Ilgari bitta bosish butun ishni o'chirardi: tasdiq yo'q, Ctrl+Z qaytarmasdi
@@ -2315,8 +2317,8 @@ function HtmlCompiler({
           <button type="button" role="tab" aria-selected={pane === 'code'} className={pane === 'code' ? 'on' : ''} onClick={() => setPane('code')}>
             ⌨ {tr({ uz: 'Kod', ru: 'Код' })}
           </button>
-          <button type="button" role="tab" aria-selected={pane === 'result'} className={pane === 'result' ? 'on' : ''} onClick={() => setPane('result')}>
-            {consoleOnly ? '🖥️ Console' : <>📺 {tr({ uz: 'Natija', ru: 'Результат' })}</>}
+          <button type="button" role="tab" aria-selected={pane === 'result'} className={(pane === 'result' ? 'on' : '') + (yangiNatija && pane !== 'result' ? ' yangi' : '')} onClick={() => { setPane('result'); setYangiNatija(false); }}>
+            {consoleOnly ? '🖥️ Console' : <>📺 {tr({ uz: 'Natija', ru: 'Результат' })}</>}{yangiNatija && pane !== 'result' && <span className="hc-yangi-n" aria-label={tr({ uz: 'yangi natija', ru: 'новый результат' })} />}
           </button>
         </div>
       )}
@@ -2775,6 +2777,10 @@ function StyleTag() {
       .hc-panetabs button{flex:1;max-width:200px;background:${HC_T.paper};border:1px solid ${HC_T.line};color:${HC_T.ink2};
         font-family:'Manrope',sans-serif;font-weight:700;font-size:13px;padding:9px 12px;border-radius:11px;cursor:pointer;transition:all .15s}
       .hc-panetabs button.on{background:${HC_T.ink};color:#fff;border-color:${HC_T.ink}}
+      .hc-panetabs button.yangi{border-color:${HC_T.accent};color:${HC_T.ink}}
+      .hc-yangi-n{display:inline-block;width:8px;height:8px;margin-left:6px;border-radius:50%;background:${HC_T.accent};vertical-align:middle;animation:hc-yangi 1.2s ease-in-out infinite}
+      @keyframes hc-yangi{50%{box-shadow:0 0 0 5px rgba(0,0,0,0);transform:scale(1.35)}}
+      @media (prefers-reduced-motion: reduce){.hc-yangi-n{animation:none}}
 
       /* Tab rejimi: bitta panel to'liq balandlikda */
       .hc-split.tabbed{grid-template-columns:1fr;grid-template-rows:1fr;flex:1;height:auto;min-height:0}

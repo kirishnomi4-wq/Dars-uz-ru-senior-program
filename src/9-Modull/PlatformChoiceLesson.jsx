@@ -36,6 +36,9 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QQadamlar, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKod, QMustaqil, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Arxitektura, stek va platforma tanlovi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 11-8). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"11-8","tur":"test","nom":{"uz":"Uyga vazifa: Arxitektura, stek va platforma tanlovi","ru":"Домашнее задание: Выбор архитектуры, стека и платформы"},"matn":null,"n":5};
 
 
 
@@ -2710,11 +2713,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '3 funksiya', ru: '3 функции' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— README'dagi «Arxitektura» bo'limi to'liq bo'lsin: chizma, jadvallar, real vaqt nuqtalari, platforma va stek; GitHub'ga yuborilgan bo'lsin.", ru: '— раздел «Arxitektura» в README должен быть полным: схема, таблицы, точки реального времени, платформа и стек; и отправлен на GitHub.' } },
-    { b: { uz: 'Tekshirish', ru: 'Проверить' }, t: { uz: "— PRD'dagi uchala funksiyani oling: har biri qaysi jadvalga nima yozadi? Joy topilmasa — agent bilan README'ga ustun qo'shing.", ru: '— возьмите все три функции из PRD: что и в какую таблицу пишет каждая? Если места нет — добавьте столбец в README вместе с агентом.' } },
-    { b: { uz: 'Asos', ru: 'Обоснование' }, t: { uz: "— mahsulotingiz foydalanuvchisidan bitta odamga birinchi savolni bering: u mahsulotni qayerda ochardi? Javobi asosingizga zid bo'lsa — to'rt savolni qayta ko'ring; trek yoki asos o'zgarsa, darsdagi platforma kartasida ham, README'da ham yangilang.", ru: '— задайте одному пользователю вашего продукта первый вопрос: где бы он открывал продукт? Если ответ противоречит обоснованию — пересмотрите четыре вопроса; если меняется трек или обоснование, обновите и карточку платформы в уроке, и README.' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const y = YAKUN[holat];
@@ -2734,7 +2732,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
           </>}
           recap={RECAP.map(tx)}
-          uyga={<div className="card hwk fade-up d4"><div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>«React Native va Expo: prototip telefonda»</b>: platforma tanlandi, endi prototipni shu platformada telefonda ochish navbati.</>, ru: <>Следующий урок — <b>«React Native и Expo: прототип на телефоне»</b>: платформа выбрана, теперь очередь открыть прототип на этой платформе на телефоне.</> })}</p></div>}
+          uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
         />

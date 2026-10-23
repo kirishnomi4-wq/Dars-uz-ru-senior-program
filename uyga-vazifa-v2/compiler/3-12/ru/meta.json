@@ -1,0 +1,10 @@
+{
+ "tur": [
+  "html",
+  "css",
+  "js"
+ ],
+ "rasm": "3-12-natija.png",
+ "sinov": "Bo'sh savat → «Savat bo'sh»; Futbolka + Kepka → Jami 134000 (matn emas); Buyurtma → «Buyurtma qabul qilindi: 134000 so'm», savat va jami 0.",
+ "rubrika": "Grade a debugging + feature task out of 10. A shop with cart and total is given; one price is a string on purpose (\"45000\"). The student adds an order button with the editor's AI agent.\n1. (2) With an empty cart the button shows 'Корзина пуста'.\n2. (3) With items: shows 'Заказ принят: N сум' with the correct numeric total.\n3. (3) After ordering, the cart list is empty and the total shows 0.\n4. (2) The total is always numeric: adding Кепка (\"45000\") must not produce string concatenation like '045000' (Number(), parseInt or fixing the data are all accepted).\nBonus-free: if the AI request is written in a comment at the top of script.js, mention it positively but do not add points. Do not penalize styling."
+}

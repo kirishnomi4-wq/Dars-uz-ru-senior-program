@@ -29,6 +29,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Stateful logika: bot eslab qoladi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-4). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"7-4","tur":"file","nom":{"uz":"Uyga vazifa: Stateful logika: bot eslab qoladi","ru":"Домашнее задание: Stateful-логика: бот запоминает"},"matn":{"uz":"Qog'ozdagi loyihangizni kodga aylantiring — Gemini yoki Copilot yordamida.\n\n1. users jadvali: telegram_id, ism, holat.\n2. /start: yangi foydalanuvchi bo'lsa — INSERT, holat ISM_KUTYAPMAN, «Ismingiz nima?».\n3. Holat ISM_KUTYAPMAN bo'lsa, kelgan matn — ism: UPDATE, «Tanishganimdan xursandman, <ism>!».\n4. Botni to'xtatib qayta ishga tushiring — /start endi «Yana salom, <ism>!» desin.\n5. Telegram skrinshotlari (qayta ishga tushirishdan oldin va keyin), bot.js va jadval SQL'i.\n\nNima tekshiriladi:\n— SELECT → INSERT/UPDATE oqimi\n— holat ustunida\n— qayta ishga tushgandan keyin ism eslab qolingan\n— ikki xil foydalanuvchi aralashmaydi (ikkinchi akkaunt bilan sinalgan bo'lsa — bonus).","ru":"Превратите свой проект с бумаги в код — с помощью Gemini или Copilot.\n\n1. Таблица users: telegram_id, ism, holat.\n2. /start: если пользователь новый — INSERT, состояние ISM_KUTYAPMAN, «Как вас зовут?».\n3. Если состояние ISM_KUTYAPMAN, пришедший текст — это имя: UPDATE, «Рад познакомиться, <имя>!».\n4. Остановите бота и запустите снова — теперь /start должен ответить «Снова привет, <имя>!».\n5. Скриншоты из Telegram (до и после перезапуска), bot.js и SQL таблицы.\n\nЧто проверяется:\n— поток SELECT → INSERT/UPDATE\n— состояние хранится в столбце\n— имя запомнилось после перезапуска\n— два разных пользователя не путаются (если проверено со второго аккаунта — бонус)."}};
 
 
 
@@ -2472,11 +2475,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '2 mijoz uchun kod', ru: 'код для 2 клиентов' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Holatlarni yozing', ru: "Выпишите состояния" }, t: { uz: "— botingiz suhbati qaysi holatlardan o'tadi? Masalan: `OLCHAM_KUTYAPMAN` → `MANZIL_KUTYAPMAN` → `TAYYOR`", ru: "— через какие состояния проходит диалог Вашего бота? Например: `OLCHAM_KUTYAPMAN` → `MANZIL_KUTYAPMAN` → `TAYYOR`" } },
-    { b: { uz: 'Ajrating', ru: 'Разделите' }, t: { uz: "— botingizdagi qaysi ma'lumot vaqtinchalik bo'lsa bo'ladi, qaysi biri PostgreSQL'da saqlanishi kerak?", ru: "— какие данные Вашего бота могут быть временными, а какие нужно хранить в PostgreSQL?" } },
-    { b: { uz: "Gemini'dan so'rang", ru: "Спросите Gemini" }, t: { uz: "— gemini.google.com'ga botingizning users jadvalini va holatlarini yozing, so'ng ikki mijoz uchun kod so'rang: yangi mijoz (INSERT) va jadvalda bor mijoz (SELECT → UPDATE).", ru: "— напишите на gemini.google.com таблицу users и состояния Вашего бота, затем попросите код для двух клиентов: нового (INSERT) и уже записанного в таблицу (SELECT → UPDATE)." } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2499,7 +2497,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: AI bilan bot».</b> Aniq topshiriq yozib, botni AI yordamida qurasiz, uning kodini o'qiysiz va sinab ko'rasiz.</>, ru: <>Следующий урок — <b>«Проектный день: бот с ИИ».</b> Вы напишете чёткое задание, соберёте бота с помощью ИИ, прочитаете его код и проверите его в деле.</> })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Nishonlaringiz', ru: "Ваши значки" })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

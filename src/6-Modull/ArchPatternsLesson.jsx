@@ -35,6 +35,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: MVC va mikroservislar» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-3). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-3","tur":"test","nom":{"uz":"Uyga vazifa: MVC va mikroservislar","ru":"Домашнее задание: MVC и микросервисы"},"matn":null,"n":5};
 
 
 
@@ -2202,11 +2205,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 qaror', ru: '1 решение' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Ta'riflang", ru: 'Опишите' }, t: { uz: "— loyihangiz monolitmi yoki mikroservismi? Ichi MVC bo'yicha qanday tartiblangan?", ru: '— ваш проект монолит или микросервисы? Как он устроен внутри по MVC?' } },
-    { b: { uz: 'Moslang', ru: 'Сопоставьте' }, t: { uz: "— kod bo'laklaringizni View / Controller / Model'ga ajrating", ru: '— разложите свои фрагменты кода по View / Controller / Model' } },
-    { b: { uz: 'Qaror', ru: 'Решите' }, t: { uz: '— loyihangizga monolit yetadimi? Nega?', ru: '— хватит ли вашему проекту монолита? Почему?' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2229,7 +2227,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: 'Keyingi dars — AI-agent: u ham tizimning bir qismi. Arxitekturada qayerda turadi?', ru: 'Следующий урок — ИИ-агент: он тоже часть системы. Где он стоит в архитектуре?' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

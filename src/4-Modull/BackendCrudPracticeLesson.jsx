@@ -42,6 +42,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: CRUD: Express + PostgreSQL (AvtoIjara backend)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-8). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-8","tur":"file","nom":{"uz":"Uyga vazifa: CRUD: Express + PostgreSQL (AvtoIjara backend)","ru":"Домашнее задание: CRUD: Express + PostgreSQL (бэкенд AvtoIjara)"},"matn":{"uz":"AvtoIjara backendiga bitta mashinani olish yo'lini qo'shing.\n\n1. GET /api/cars/:id — WHERE id = $1 bilan bitta mashinani qaytarsin.\n2. Bunday id yo'q bo'lsa — status 404 va «Mashina topilmadi».\n3. SQL'da qiymat yopishtirilmasin — faqat $1.\n4. Postman'da ikki skrinshot: bor id (200) va yo'q id (404).\n5. GitHub linkini topshiring.\n\nNima tekshiriladi:\n— yangi route /:id\n— $1 ishlatilgan\n— 404 holati\n— 2 skrinshot statuslari bilan.","ru":"Добавьте в бэкенд AvtoIjara маршрут для получения одной машины.\n\n1. GET /api/cars/:id — возвращает одну машину через WHERE id = $1.\n2. Если такого id нет — статус 404 и «Машина не найдена».\n3. Не подставляйте значение прямо в SQL — только $1.\n4. Два скриншота из Postman: существующий id (200) и несуществующий (404).\n5. Сдайте ссылку на GitHub.\n\nЧто проверяется:\n— новый route /:id\n— используется $1\n— случай 404\n— 2 скриншота со статусами."}};
 
 
 
@@ -1830,11 +1833,6 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Aniq qator: :id manzilda + WHERE id = $1 bazada", ru: 'Точная строка: :id в адресе + WHERE id = $1 в базе' },
     { uz: "Xavfsizlik: qiymatlar $1, $2 o'rinlariga qo'yiladi — SQL'ga yopishtirilmaydi", ru: 'Безопасность: значения подставляются в $1, $2 — не вклеиваются в SQL' }
   ];
-  const HOMEWORK = [
-    { b: { uz: "O'z jadvalingiz", ru: 'Ваша таблица' }, t: { uz: "— AvtoIjara'ga 'rang' yoki 'transmissiya' ustunini qo'shing (ALTER TABLE)", ru: "— добавьте в AvtoIjara столбец 'rang' или 'transmissiya' (ALTER TABLE)" } },
-    { b: { uz: 'Bitta mashina', ru: 'Одна машина' }, t: { uz: "— GET /api/cars/:id endpointini qo'shing: topilmasa 404 qaytarsin", ru: '— добавьте endpoint GET /api/cars/:id: если не найдена — 404' } },
-    { b: { uz: 'Postman test', ru: 'Postman-тест' }, t: { uz: "— har endpointni o'zingiz sinang: status kod to'g'rimi (200/201)?", ru: '— проверьте каждый endpoint сами: верный ли статус-код (200/201)?' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1857,7 +1855,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, avto-ijara-server loyihangizda:", ru: 'В VS Code, в проекте avto-ijara-server:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Backend tayyor, lekin u hozircha yolg'iz. Keyingi praktikada Modul 3'dagi React frontni aynan shu serverga ulaymiz — to'liq fullstack!", ru: '🚀 Backend готов, но пока он одинок. На следующей практике подключим React-фронт из Модуля 3 именно к этому серверу — полный fullstack!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz — ', ru: '🏅 Ваши значки — ' })}{(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

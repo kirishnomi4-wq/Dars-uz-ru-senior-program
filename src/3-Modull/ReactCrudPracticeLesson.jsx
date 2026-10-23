@@ -31,6 +31,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: CRUD» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-7). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-7","tur":"file","nom":{"uz":"Uyga vazifa: CRUD","ru":"Домашнее задание: CRUD"},"matn":{"uz":"\"Mening o'yinlarim\"ga CRUD'ning yetishmagan qismini qo'shing.\n\n1. Har o'yinda «✏️» tugmasi: nomini o'zgartirish (map + {...g, name: yangi}).\n2. «Faqat Top» tugmasi: faqat belgilangan o'yinlar ko'rinsin; asl ro'yxat o'zgarmasin.\n3. Bo'sh nom bilan o'yin qo'shilmasin.\n4. Ro'yxat bo'sh qolsa «Hali o'yin yo'q» chiqsin.\n5. push yoki splice bo'lmasin. Link va skrinshot.\n\nNima tekshiriladi:\n— tahrir map + spread\n— filtr faqat ko'rinishni o'zgartiradi\n— bo'sh nom tekshiruvi\n— bo'sh holat\n— push/splice yo'q.","ru":"Добавьте в «Мои игры» недостающую часть CRUD.\n\n1. У каждой игры — кнопка «✏️»: изменить название (map + {...g, name: yangi}).\n2. Кнопка «Только Топ»: видны только отмеченные игры; исходный список не меняется.\n3. Игра с пустым названием не добавляется.\n4. Если список пуст — показывается «Игр пока нет».\n5. Без push и splice. Ссылка и скриншот.\n\nЧто проверяется:\n— редактирование через map + spread\n— фильтр меняет только отображение\n— проверка пустого названия\n— пустое состояние\n— нет push/splice."}};
 
 
 
@@ -1783,11 +1786,6 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Delete — o'chirish: games.filter(g => g.id !== id)", ru: 'Delete — удаление: games.filter(g => g.id !== id)' }),
     tr({ uz: "Ro'yxatni buzma — har safar YANGI ro'yxat yasa (React shuni ko'radi)", ru: 'Не ломай список — каждый раз создавай НОВЫЙ (именно его видит React)' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: '❤️ like', ru: '❤️ лайк' }), t: tr({ uz: "— har kartochkaga like tugmasi: bosilsa faqat o'sha o'yinning likes soni +1 (map bilan)", ru: '— на каждую карточку кнопку лайка: по нажатию likes только этой игры +1 (через map)' }) },
-    { b: tr({ uz: "Bo'sh nom", ru: 'Пустое название' }), t: tr({ uz: "— input bo'sh bo'lsa, o'yin qo'shilmasin", ru: '— если input пустой, игра не добавляется' }) },
-    { b: tr({ uz: 'Tekshiring', ru: 'Проверяйте' }), t: tr({ uz: "— qo'shishda [...games] bormi, o'chirishda filter'mi — o'zingiz nazorat qiling", ru: '— есть ли [...games] при добавлении и filter при удалении — контролируйте сами' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1810,7 +1808,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, robo-games loyihangizda:", ru: 'В VS Code, в проекте robo-games:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "⚠️ Lekin sahifani yangilang — ro'yxatingiz YO'QOLADI! Chunki hammasi faqat xotirada. Keyingi darsda buni hal qilamiz: server — ma'lumot abadiy saqlanadigan joy. 🚀", ru: '⚠️ Но обновите страницу — и ваш список ПРОПАДЁТ! Ведь всё живёт только в памяти. На следующем уроке решим это: сервер — место, где данные хранятся вечно. 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz — ', ru: '🏅 Ваши значки — ' })}{(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -52,6 +52,9 @@ const ouz = (v) => (v && v.uz) || v;
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Practice 2 (AI bilan lenta)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-12). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"6-12","tur":"text","nom":{"uz":"Uyga vazifa: Practice 2 (AI bilan lenta)","ru":"Домашнее задание: Practice 2 (лента с AI)"},"matn":{"uz":"Qizil lentani (pipeline) Copilot bilan, lekin o'z qaroringiz bilan tuzating.\n\n1. KitobShop'da bitta testni buzing (masalan servisdagi hisobni o'zgartiring), push — qizil.\n2. Jurnaldan fayl, qator va «kutildi/keldi»ni README'ga yozing.\n3. Copilot'ga shu ma'lumot bilan aniq so'rov bering; so'rov matnini README'ga qo'shing.\n4. Taklifni tekshiring: sababga mos kelsa — qabul, mos kelmasa — nega rad etganingizni yozing.\n5. Yashil run. Repo linki va ikki run linki.\n\nNima tekshiriladi:\n— README'da jurnal tahlili\n— aniq so'rov (fayl/qator bilan)\n— qabul/rad sababi\n— qizil → yashil.","ru":"Почините красную ленту (pipeline) с Copilot, но решение принимайте сами.\n\n1. Сломайте в KitobShop один тест (например, измените расчёт в сервисе), push — красный.\n2. Выпишите из журнала в README файл, строку и «ожидалось/получено».\n3. Дайте Copilot точный запрос с этими данными; добавьте текст запроса в README.\n4. Проверьте предложение: если совпадает с причиной — принимаете, если нет — напишите, почему отклонили.\n5. Зелёный run. Ссылка на репозиторий и ссылки на два run.\n\nЧто проверяется:\n— разбор журнала в README\n— точный запрос (с файлом/строкой)\n— причина принятия/отказа\n— красный → зелёный."}};
 
 
 
@@ -2007,11 +2010,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { uz: "Aniqlashtiruvchi so'rov (follow-up) — birinchi taklif yetarli bo'lmasa", ru: 'Follow-up — уточняете, если первого предложения мало' },
     { uz: "Yakuniy qaror va push tugmasi — doim sizda", ru: 'Финальное решение и кнопка push — всегда у вас' }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Sinang', ru: 'Попробуйте' }, t: { uz: "— darsda ulgurmagan bo'lsangiz, KitobShop'da qizil testni Copilot Chat bilan tuzating", ru: '— если не успели на уроке, почините красный тест KitobShop с Copilot Chat' } },
-    { b: { uz: 'Tekshiring', ru: 'Проверьте' }, t: { uz: "— taklifni jurnal/xato xabari bilan solishtiring, keyin qabul qiling", ru: '— сверьте предложение с журналом/текстом ошибки и только потом принимайте' } },
-    { b: { uz: 'Yozing', ru: 'Запишите' }, t: { uz: "— Copilot qaysi holatda adashishi mumkinligini 2-3 misolda o'zingizga eslatma qiling", ru: '— сделайте себе памятку из 2-3 примеров, где Copilot может ошибиться' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2034,7 +2032,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🎉 Copilot bilan lentani boshqardingiz — tezlik undan, qaror sizdan. Keyingi darsda lentani ishonchli qilasiz.", ru: '🎉 Вы управляли лентой вместе с Copilot — скорость от него, решение за Вами. На следующем уроке сделаете ленту надёжной.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

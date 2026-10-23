@@ -125,6 +125,9 @@ const fmtCode = (s) => (typeof s === 'string' && s.includes('`'))
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Practice: MVP tayyor» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-12). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"3-12","tur":"compiler","nom":{"uz":"Uyga vazifa: Practice: MVP tayyor","ru":"Домашнее задание: Practice: MVP готов"},"matn":{"uz":"Do'koningizga \"Buyurtma berish\" tugmasini qo'shing.\n\n1. Savat bo'sh bo'lsa, tugma bosilganda «Savat bo'sh» chiqsin.\n2. Savatda mahsulot bo'lsa: «Buyurtma qabul qilindi: N so'm» chiqsin, savat tozalanib, jami 0 bo'lsin.\n3. Jami doim son bo'lib hisoblansin — «03000» kabi xato chiqmasin.\n4. Agar AI xato qilsa, unga nima noto'g'ri va qanday bo'lishi kerakligini yozing; o'sha so'rovni script.js tepasiga izoh qilib qo'ying.","ru":"Добавьте в свой магазин кнопку «Оформить заказ».\n\n1. Если корзина пуста, при нажатии появляется «Корзина пуста».\n2. Если в корзине есть товары: появляется «Заказ принят: N сум», корзина очищается, итог становится 0.\n3. Итог всегда считается как число — ошибок вроде «03000» быть не должно.\n4. Если AI ошибётся — напишите ему, что не так и как должно быть; этот запрос вставьте комментарием вверху script.js."}};
 
 
 
@@ -1317,7 +1320,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     setArenaSolo(studentSolo); setArena(true);
   };
   const RECAP = [{ uz: "Savat — massiv: «Savatga» bosilganda mahsulot push bilan qo'shiladi", ru: 'Корзина — массив: при нажатии «В корзину» товар добавляется через push' }, { uz: "Jami — for sikli bilan narxlar yig'indisi, funksiyada hisoblanadi", ru: 'Итог — сумма цен циклом for, считается в функции' }, { uz: '"3000" — matn, 3000 — son: matnga «+» yopishtiradi, songa qo\'shadi', ru: '"3000" — текст, 3000 — число: к тексту «+» приклеивает, к числу прибавляет' }, { uz: "AI'ga xatoni aniq aytasiz: nima bo'ldi va nima bo'lishi kerak", ru: 'Ошибку AI описываете точно: что случилось и как должно быть' }, { uz: "Deploy — papkani Netlify'ga tashlab, linkni ulashish", ru: 'Деплой — перетащить папку в Netlify и поделиться ссылкой' }];
-  const HOMEWORK = [{ b: { uz: '«Buyurtma berish»', ru: '«Оформить заказ»' }, t: { uz: "— tugma qo'shing: bosilsa savat tozalansin va «Rahmat!» chiqsin (Gemini yoki Copilot bilan)", ru: '— добавьте кнопку: по нажатию корзина очищается и появляется «Спасибо!» (с Gemini или Copilot)' } }, { b: { uz: "Bo'sh savat", ru: 'Пустая корзина' }, t: { uz: "— savat bo'sh bo'lsa «Savat bo'sh» yozuvi chiqsin", ru: '— если корзина пуста, пусть появляется надпись «Корзина пуста»' } }, { b: { uz: 'Linkni yuboring', ru: 'Отправьте ссылку' }, t: { uz: "— do'stingiz savatni sinab ko'rsin; o'zgargan papkani Netlify'ga qayta tashlang", ru: '— пусть друг проверит корзину; изменённую папку снова перетащите в Netlify' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1340,7 +1342,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, mini-dokon papkasida:", ru: 'В VS Code, в папке mini-dokon:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Esda tuting: har o'zgarishdan keyin tekshiring — keyin chiqaring.", ru: 'Помните: после каждого изменения проверяйте — потом выпускайте.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

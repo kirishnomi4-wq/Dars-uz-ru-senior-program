@@ -25,6 +25,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 const G = "Georgia, serif";
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Loyiha kuni: mobil versiyani yig'aman» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-11). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-11","tur":"file","nom":{"uz":"Uyga vazifa: Loyiha kuni: mobil versiyani yig'aman","ru":"Домашнее задание: Проектный день: собираю мобильную версию"},"matn":{"uz":"\"Buyurtmalarim\" ekranini qo'shing.\n\n1. Yangi ekran: telefondan berilgan buyurtmalar backend'dan olinadi (GET).\n2. Har buyurtmada taomlar, jami va vaqt.\n3. Buyurtma bo'lmasa: «Hali buyurtma yo'q».\n4. Savat ekranidan «Buyurtmalarim»ga o'tish tugmasi.\n5. Telefon skrinshoti va repo linki.\n\nNima tekshiriladi:\n— ma'lumot backend'dan (qattiq yozilmagan)\n— jami to'g'ri\n— bo'sh holat\n— navigatsiya ishlaydi.","ru":"Добавьте экран «Мои заказы».\n\n1. Новый экран: заказы, сделанные с телефона, загружаются с backend (GET).\n2. В каждом заказе — блюда, итог и время.\n3. Если заказов нет: «Заказов пока нет».\n4. Кнопка перехода с экрана корзины в «Мои заказы».\n5. Скриншот с телефона и ссылка на репозиторий.\n\nЧто проверяется:\n— данные с backend (не зашиты в код)\n— итог верный\n— пустое состояние\n— навигация работает."}};
 
 
 
@@ -2121,11 +2124,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 ilova', ru: '1 приложение' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Quring", ru: 'Соберите' }, t: { uz: "— Mentor bergan tayyor loyihada o'z mobil ilovangizni davom ettiring; backend darslaridagi serveringizga ulang", ru: '— продолжайте своё мобильное приложение в готовом проекте от ментора; подключите его к своему серверу с уроков по бэкенду' } },
-    { b: { uz: 'Sinang', ru: 'Проверьте' }, t: { uz: "— Expo Go'da telefonda har ekranni bosib ko'ring", ru: '— пройдите каждый экран на телефоне в Expo Go' } },
-    { b: { uz: 'Ulashing', ru: 'Поделитесь' }, t: { uz: "— sayqallab, QR bilan do'stingizga bering, fikr oling", ru: '— отполируйте, передайте другу по QR и соберите отзывы' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2148,7 +2146,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — PM: <b>Bugun qaysi ish boshlanadi?</b> Loyihangizdagi ishlarni uch ufqqa ajratamiz: hozir, uch oydan keyin, olti oydan keyin.</>, ru: <>Следующий урок — PM: <b>Какую задачу начинаем сегодня?</b> Разделим задачи вашего проекта на три горизонта: сейчас, через три месяца, через шесть месяцев.</> })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

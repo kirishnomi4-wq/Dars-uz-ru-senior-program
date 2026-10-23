@@ -34,6 +34,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Mahsulot demosiga tayyorgarlik» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 14-6). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"14-6","tur":"file","nom":{"uz":"Uyga vazifa: Mahsulot demosiga tayyorgarlik","ru":"Домашнее задание: Подготовка к демо продукта"},"matn":{"uz":"Uyda bosh repetitsiya qiling — B reja bilan.\n\n1. Oila a'zosi yoki do'stingiz oldida demoni DEMO.md bo'yicha o'ting; vaqtni yozing.\n2. Ikkinchi o'tishda o'rtasida internetni o'chiring — B reja (video) bilan davom eting; necha soniyada o'tganingizni yozing.\n3. Demo kunidan bir kun oldin: Backend uyg'otish va namuna akkaunt bilan kirish ishlashini tekshiring.\n4. DEMO.md ga ikki o'tish vaqti va eshitgan bitta savol; repo linki.\n\nNima tekshiriladi:\n— 2 o'tish vaqti\n— B rejaga o'tish mashq qilingan\n— namuna akkaunt ishlaydi\n— teg tekshirilgan versiyada.","ru":"Проведите дома генеральную репетицию — с планом Б.\n\n1. Пройдите демо по DEMO.md перед членом семьи или другом; запишите время.\n2. Во втором прогоне посередине отключите интернет — продолжите по плану Б (видео); запишите, за сколько секунд перешли.\n3. За день до демо: проверьте, что пробуждение Backend и вход с демо-аккаунтом работают.\n4. В DEMO.md — время двух прогонов и один услышанный вопрос; ссылка на репозиторий.\n\nЧто проверяется:\n— время 2 прогонов\n— переход на план Б отрепетирован\n— демо-аккаунт работает\n— тег — на проверенной версии."}};
 
 
 
@@ -2453,7 +2456,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className={cx('dp-yakun', !chip && 'belgisiz', holat !== 'toliq' && 'nishonsiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}

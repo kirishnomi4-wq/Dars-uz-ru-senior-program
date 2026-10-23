@@ -32,6 +32,9 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QXulosa, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKod, QMustaqil, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: WebSocket: real vaqt asoslari» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 12-2). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"12-2","tur":"file","nom":{"uz":"Uyga vazifa: WebSocket: real vaqt asoslari","ru":"Домашнее задание: WebSocket: основы реального времени"},"matn":{"uz":"Real vaqtni hujjatlang va ikki qurilmada isbotlang.\n\n1. README'ning «Real vaqt» bo'limi: darsdagi sxemangiz jadval ko'rinishida (agar darsda ulgurmagan bo'lsangiz).\n2. Ikki qurilmada oching: birida o'zgartiring — ikkinchisida sahifani yangilamasdan o'zgarsin.\n3. Ulanish belgisi «ulangan» holatda ko'rinsin.\n4. 10–20 soniyalik video yoki ikki skrinshot (oldin/keyin) va repo linki.\n\nNima tekshiriladi:\n— README jadvali sxemaga mos\n— ikkinchi qurilmada o'zi yangilanadi\n— belgi bor.","ru":"Опишите реальное время в документации и докажите его на двух устройствах.\n\n1. Раздел README «Реальное время»: ваша схема с урока в виде таблицы (если не успели на уроке).\n2. Откройте на двух устройствах: измените на одном — на втором меняется без обновления страницы.\n3. Значок подключения виден в состоянии «подключено».\n4. Видео на 10–20 секунд или два скриншота (до/после) и ссылка на репозиторий.\n\nЧто проверяется:\n— таблица в README соответствует схеме\n— на втором устройстве обновляется само\n— значок есть."}};
 
 
 
@@ -2550,22 +2553,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== YAKUN — QYakun (DE-204, texnik darslar standarti). Sarlavha va ✓ yorlig'i holatga qarab (A1, A2 bayroqlari, sxema saqlangani). CODE STRIKE va arena — darsda =====
-const HW_QADAM = [
-  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— darsda ulgurmagan qadamlarni bajaring: mahsulotingizda belgi «Ulangan» bo'lsin, README'da «Real vaqt» bo'limi tursin.", ru: '— выполните шаги, на которые не хватило времени: в продукте значок «Подключено», в README раздел «Real vaqt».' } },
-  { b: { uz: 'Tekshirish', ru: 'Проверить' }, t: { uz: "— uyda uchish rejimini yana bir marta yoqib o'chiring: belgi uch holatdan qaysilarini ko'rsatdi? Kutilganidan farq bo'lsa — nima qilganingiz va nima ko'rganingizni bir qator yozib qo'ying.", ru: '— дома ещё раз включите и выключите режим полёта: какие из трёх состояний показал значок? Если не как ожидалось — запишите одной строкой, что сделали и что увидели.' } },
-  { b: { uz: 'Sxema', ru: 'Схема' }, t: { uz: "— mahsulotingizning har ekranini ochib chiqing: boshqa odam tufayli o'zgaradigan yana joy bormi? Sxemada 5 tadan kam qator bo'lsa — darsdagi sxema kartasiga va README'ga qo'shing.", ru: '— откройте каждый экран продукта: есть ли ещё место, которое меняется из-за другого человека? Если в схеме меньше 5 строк — добавьте в карточку схемы на уроке и в README.' } }
-];
-const HwCard = ({ keyingi }) => (
-  <div className="card ws-hw fade-up">
-    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
-    <div className="ws-hw-karta">
-      <span className="ws-hw-q"><em>{tr({ uz: 'kim uchun', ru: 'для кого' })}</em><b>{tr({ uz: "o'z mahsulotingiz", ru: 'ваш продукт' })}</b></span>
-      <span className="ws-hw-q"><em>{tr({ uz: 'muddat', ru: 'срок' })}</em><b>{tr({ uz: 'keyingi darsgacha', ru: 'до следующего урока' })}</b></span>
-    </div>
-    <ol className="ws-hw-qadam">{HW_QADAM.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol>
-    {keyingi && <span className="ws-hw-keyingi">{keyingi}</span>}
-  </div>
-);
+const HwCard = ({ keyingi }) => <UygaVazifaKarta v={HW_V2} tr={tr} keyingi={keyingi} />;
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;

@@ -53,6 +53,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Frontendni backendga ulash» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-10). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-10","tur":"file","nom":{"uz":"Uyga vazifa: Frontendni backendga ulash","ru":"Домашнее задание: Подключение фронтенда к бэкенду"},"matn":{"uz":"Katalogni to'liq boshqariladigan qiling — narxni o'zgartirish va o'chirish.\n\n1. Har kartochkada «Narxni o'zgartirish»: yangi narx kiritiladi → PUT /api/cars/:id.\n2. «O'chirish» tugmasi: confirm, so'ng DELETE /api/cars/:id.\n3. Har amaldan keyin ro'yxat serverdan qayta olinsin.\n4. Sahifani yangilang — o'zgarishlar saqlanib qolsin (bazada).\n5. GitHub linki (front va back) va oldin/keyin skrinshoti.\n\nNima tekshiriladi:\n— PUT body + JSON.stringify\n— DELETE + confirm\n— ro'yxat qayta olinadi\n— refresh'dan keyin ham saqlangan.","ru":"Сделайте каталог полностью управляемым — изменение цены и удаление.\n\n1. На каждой карточке — «Изменить цену»: вводится новая цена → PUT /api/cars/:id.\n2. Кнопка «Удалить»: confirm, затем DELETE /api/cars/:id.\n3. После каждого действия список заново загружается с сервера.\n4. Обновите страницу — изменения должны сохраниться (в базе).\n5. Ссылка на GitHub (фронт и бэк) и скриншот до/после.\n\nЧто проверяется:\n— body у PUT + JSON.stringify\n— DELETE + confirm\n— список загружается заново\n— сохраняется и после refresh."}};
 
 
 
@@ -1845,11 +1848,6 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "CORS — boshqa portga so'rov to'silsa, serverga app.use(cors())", ru: 'CORS — если запрос на другой порт заблокирован, на сервер app.use(cors())' },
     { uz: "To'liq yo'l: forma → POST → baza → GET → ekran (refresh'da saqlanadi)", ru: 'Полный путь: форма → POST → база → GET → экран (сохраняется при refresh)' }
   ];
-  const HOMEWORK = [ // F-1015-390: o'chirish, holatlar va forma — darsda; uyga — keyingi qadam
-    { b: { uz: 'Qidiruv', ru: 'Поиск' }, t: { uz: "— nom bo'yicha qidiruv maydoni: yozilgan so'z bor mashinalargina ko'rinsin (filter)", ru: '— поле поиска по названию: видны только машины с этим словом (filter)' } },
-    { b: { uz: 'Mashina sahifasi', ru: 'Страница машины' }, t: { uz: "— /car/:id sahifasi ma'lumotni serverdagi GET /api/cars/:id dan olsin", ru: '— страница /car/:id берёт данные с сервера через GET /api/cars/:id' } },
-    { b: { uz: 'Tekshiring', ru: 'Проверьте' }, t: { uz: "— har o'zgarishdan keyin F5: ma'lumot bazadan qayta keladimi?", ru: '— после каждого изменения F5: данные снова приходят из базы?' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1872,7 +1870,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, avto-ijara loyihangizda:", ru: 'В VS Code, в проекте avto-ijara:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: <>🚀 Front, back va baza endi bitta bo'lib ishlaydi! Keyingi praktikada — Loyiha kuni: shu ko'nikmalarni (CRUD, fetch, baza) yangi loyiha — <b>AvtoStoyanka</b>'da qo'llaymiz va noldan to'liq quramiz.</>, ru: <>🚀 Фронт, бэк и база теперь работают как одно целое! На следующей практике — День проекта: применим эти навыки (CRUD, fetch, база) в новом проекте — <b>AvtoStoyanka</b> — и построим его с нуля.</> })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 Badges — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

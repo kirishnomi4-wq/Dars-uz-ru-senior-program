@@ -32,6 +32,9 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QBashorat, QXulosa, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKod, QMustaqil, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: «Buz va tuzat»: ulanish uzilishi va reconnect» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 12-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"12-5","tur":"text","nom":{"uz":"Uyga vazifa: «Buz va tuzat»: ulanish uzilishi va reconnect","ru":"Домашнее задание: «Сломай и почини»: обрыв соединения и reconnect"},"matn":{"uz":"Yana ikki usul bilan buzib ko'ring.\n\n1. Sekin internet: DevTools → Network → «Slow 4G» (yoki telefonda zaif signal).\n2. Ilovani fonda 10 daqiqa qoldirib, qayta oching.\n3. Har usuldan oldin «Nima kutaman», keyin «Nima bo'ldi» — BUZISH.md ga.\n4. «Buzildi» bo'lsa — tuzating va o'sha usul bilan qayta tekshiring.\n5. Repo linki.\n\nNima tekshiriladi:\n— 2 yangi yozuv to'liq\n— «Nima kutdim» oldin yozilgan (taxmin emas)\n— buzilgan bo'lsa — tuzatish va qayta tekshiruv.","ru":"Попробуйте сломать ещё двумя способами.\n\n1. Медленный интернет: DevTools → Network → «Slow 4G» (или слабый сигнал на телефоне).\n2. Оставьте приложение в фоне на 10 минут и откройте снова.\n3. Перед каждым способом — «Что ожидаю», после — «Что произошло» — в BUZISH.md.\n4. Если «Сломалось» — исправьте и проверьте тем же способом.\n5. Ссылка на репозиторий.\n\nЧто проверяется:\n— 2 новые записи полностью\n— «Что ожидал» записано заранее (не догадка задним числом)\n— если сломалось — исправление и повторная проверка."}};
 
 
 
@@ -2701,23 +2704,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== YAKUN — QYakun (DE-204, texnik darslar standarti; E 50). Sarlavha va ✓ yorlig'i holatga qarab (pm-m10d5-buzish + A1, A2 bayroqlari; E 54 — har holatda rost) =====
-const HW_QADAM = [
-  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— darsda ulgurmagan usulni bajaring va yozing (ko'pincha — Render'da qayta chiqarish); «buzildi» bo'lsa — yozuvni agentga bering va o'sha usul bilan qayta tekshiring.", ru: "— выполните и запишите способ, на который не хватило времени (чаще всего — повторный деплой на Render); если «сломалось» — отдайте запись агенту и перепроверьте тем же способом." } },
-  { b: { uz: 'Yana bir marta', ru: 'Ещё раз' }, t: { uz: "— bugun natijasi kutganingizdan boshqacha chiqqan yoki qayta tekshiruvi tugamagan usulni ertaga yana bajaring: natija o'shandaymi? Farq bo'lsa, `BUZISH.md` ga yangi urinish qo'shing.", ru: '— способ, результат которого сегодня отличался от ожидаемого или повторная проверка которого не закончена, выполните завтра ещё раз: результат тот же? Если есть разница, добавьте в `BUZISH.md` новую попытку.' } },
-  { b: { uz: 'Talab', ru: 'Требование' }, t: { uz: "— bugun topilgan har muammo talabingizdagi chekka holatlar ro'yxatida bormi? Yo'q bo'lsa — README'dagi «Real vaqt» bo'limiga bitta chekka holat qo'shing.", ru: '— есть ли каждая найденная сегодня проблема в списке крайних случаев вашего требования? Если нет — добавьте один крайний случай в раздел «Real vaqt» в README.' } }
-];
-const HwCard = ({ keyingi }) => (
-  <div className="card bf-hw fade-up">
-    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
-    <div className="bf-hw-karta">
-      <span className="bf-hw-q"><em>{tr({ uz: 'kim uchun', ru: 'для кого' })}</em><b>{tr({ uz: "o'z ilovangiz", ru: 'ваше приложение' })}</b></span>
-      <span className="bf-hw-q"><em>{tr({ uz: 'nechta', ru: 'сколько' })}</em><b>{tr({ uz: 'uch usul', ru: 'три способа' })}</b></span>
-      <span className="bf-hw-q"><em>{tr({ uz: 'muddat', ru: 'срок' })}</em><b>{tr({ uz: 'keyingi darsgacha', ru: 'до следующего урока' })}</b></span>
-    </div>
-    <ol className="bf-hw-qadam">{HW_QADAM.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tx(h.t)}</span></li>)}</ol>
-    {keyingi && <span className="bf-hw-keyingi">{keyingi}</span>}
-  </div>
-);
+const HwCard = ({ keyingi }) => <UygaVazifaKarta v={HW_V2} tr={tr} keyingi={keyingi} />;
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;

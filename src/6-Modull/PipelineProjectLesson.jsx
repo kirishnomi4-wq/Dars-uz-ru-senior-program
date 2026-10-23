@@ -33,6 +33,9 @@ const tr = (node) => {
 const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.uz ?? '') : o;
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Pipeline: React + Node + PostgreSQL + Telegram + AI» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-8). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-8","tur":"file","nom":{"uz":"Uyga vazifa: Pipeline: React + Node + PostgreSQL + Telegram + AI","ru":"Домашнее задание: Pipeline: React + Node + PostgreSQL + Telegram + AI"},"matn":{"uz":"Admin buyurtmani qabul qilsa, mijoz buni saytda ko'rsin.\n\n1. Adminga kelgan xabar ostida «✅ Qabul qildim» inline tugmasi.\n2. Bosilganda buyurtma holati Database'da qabul qilindi bo'lsin.\n3. Saytda buyurtma holati ko'rinsin (sahifa yangilanganda).\n4. Telegram va sayt skrinshotlari (oldin / keyin), repo linki.\n\nNima tekshiriladi:\n— inline tugma admin xabarida\n— Database'da holat ustuni yangilanadi\n— saytda holat\n— oqim boshidan oxirigacha sinalgan.","ru":"Когда админ принимает заказ, клиент должен увидеть это на сайте.\n\n1. Под сообщением, которое приходит админу, — inline-кнопка «✅ Принял».\n2. При нажатии статус заказа в Database становится qabul qilindi.\n3. Статус заказа виден на сайте (после обновления страницы).\n4. Скриншоты Telegram и сайта (до / после), ссылка на репозиторий.\n\nЧто проверяется:\n— inline-кнопка в сообщении админу\n— столбец статуса в Database обновляется\n— статус на сайте\n— поток проверен от начала до конца."}};
 
 
 
@@ -2141,11 +2144,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: "1 to'liq oqim", ru: '1 полный поток' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Bo'ling", ru: 'Разбейте' }, t: { uz: "— tizimni ulanishlarga bo'ling, har biriga aniq prompt yozing", ru: '— разбейте систему на связки и на каждую напишите точный промпт' } },
-    { b: { uz: 'Ulang', ru: 'Соедините' }, t: { uz: "— qadam-qadam ulang, har ulanishni alohida testlang", ru: '— соединяйте шаг за шагом, каждую связку тестируйте отдельно' } },
-    { b: { uz: 'Sinang', ru: 'Проверьте' }, t: { uz: "— bitta buyurtma bilan butun oqimni (end-to-end) tekshiring", ru: '— одним заказом проверьте весь поток (end-to-end)' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2168,7 +2166,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: "Keyingi dars — React Native: tizimingizga mobil ilova qo'shamiz!", ru: 'Следующий урок — React Native: добавим в вашу систему мобильное приложение!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -38,6 +38,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: React Native: loyiham telefonga chiqadi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-9","tur":"file","nom":{"uz":"Uyga vazifa: React Native: loyiham telefonga chiqadi","ru":"Домашнее задание: React Native: проект выходит на телефон"},"matn":{"uz":"Menyu ekranini bezang.\n\n1. Har pitsaga rasm (Image).\n2. Narx alohida uslubda (Text + StyleSheet).\n3. Ekran tepasida AvtoPizza sarlavhasi va logotip.\n4. Hamma uslub StyleSheet.create ichida — style={{…}} emas.\n5. Telefon skrinshoti va repo linki.\n\nNima tekshiriladi:\n— Image har kartada\n— StyleSheet.create\n— camelCase xossalar\n— telefon skrinshoti (Expo Go).","ru":"Оформите экран меню.\n\n1. У каждой пиццы — картинка (Image).\n2. Цена — в отдельном стиле (Text + StyleSheet).\n3. Вверху экрана — заголовок AvtoPizza и логотип.\n4. Все стили — внутри StyleSheet.create, а не style={{…}}.\n5. Скриншот с телефона и ссылка на репозиторий.\n\nЧто проверяется:\n— Image в каждой карточке\n— StyleSheet.create\n— свойства в camelCase\n— скриншот с телефона (Expo Go)."}};
 
 
 
@@ -2183,11 +2186,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 ekran', ru: '1 экран' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Moslang", ru: 'Сопоставьте' }, t: { uz: "— web React komponentingizni qog'ozda React Native'ga o'tkazing (`div` → `View`, `p` → `Text`)", ru: '— перенесите на бумаге свой веб-компонент React на React Native (`div` → `View`, `p` → `Text`)' } },
-    { b: { uz: 'Yozing', ru: 'Напишите' }, t: { uz: "— bitta View va 2 ta Text bo'lgan birinchi ekran kodini yozing", ru: '— напишите код первого экрана: один View и 2 Text' } },
-    { b: { uz: "O'ylang", ru: 'Подумайте' }, t: { uz: "— AvtoPizza mobil ilovasida yana qanday ekranlar bo'ladi?", ru: '— какие ещё экраны будут в мобильном приложении AvtoPizza?' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2210,7 +2208,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: "Keyingi dars — React Native'da ko'p ekranli ilova: ekranlar orasida o'tish (navigatsiya) va API'dan ma'lumot olish.", ru: 'Следующий урок — приложение из нескольких экранов на React Native: переходы между экранами (навигация) и получение данных из API.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

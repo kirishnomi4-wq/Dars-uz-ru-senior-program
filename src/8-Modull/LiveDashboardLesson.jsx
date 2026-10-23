@@ -31,6 +31,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Jonli mini-dashboard» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 10-3). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"10-3","tur":"file","nom":{"uz":"Uyga vazifa: Jonli mini-dashboard","ru":"Домашнее задание: Живой мини-дашборд"},"matn":{"uz":"O'z MVP'ingiz uchun dashboard.\n\n1. /dashboard — faqat parol bilan; 10-2 dagi uch qadam bugungi soni.\n2. Sahifani yangilamasdan 5 soniyada bir yangilansin; «Yangilandi: …» vaqti.\n3. Egaga kerak bo'lgan yana bitta qator (o'zingiz tanlang, sababi README'da).\n4. Internetda: do'stingiz MVP'ingizni ochsin — raqam oshganini skrinshot qiling.\n5. Repo linki va dashboard manzili.\n\nNima tekshiriladi:\n— parolsiz ochilmaydi\n— avto-yangilanish\n— internetda ishlaydi\n— qo'shimcha qator asosli.","ru":"Дашборд для своего MVP.\n\n1. /dashboard — только с паролем; число по трём шагам из 10-2 за сегодня.\n2. Обновляется раз в 5 секунд без перезагрузки страницы; время «Обновлено: …».\n3. Ещё одна строка, нужная владельцу (выберите сами, причина — в README).\n4. В интернете: пусть друг откроет ваш MVP — сделайте скриншот, как выросло число.\n5. Ссылка на репозиторий и адрес дашборда.\n\nЧто проверяется:\n— без пароля не открывается\n— автообновление\n— работает в интернете\n— дополнительная строка обоснована."}};
 
 
 
@@ -2075,7 +2078,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
-      <QYakun til={__lang}
+      <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
         togri={correct} jami={total}
         sarlavha={tr({ uz: <>Dashboard jonli: har raqamni <span className="italic" style={{ color: T.accent }}>tushunib o'qiysiz</span>.</>, ru: <>Дашборд живой: каждое число <span className="italic" style={{ color: T.accent }}>вам понятно</span>.</> })}

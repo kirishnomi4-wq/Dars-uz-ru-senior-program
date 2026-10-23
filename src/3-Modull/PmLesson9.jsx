@@ -54,6 +54,7 @@ const tr = (node) => {
   return node[__lang] ?? node.uz ?? node.ru ?? '';
 };
 const MentorCtx = createContext(null);
+const ScreenIdxCtx = createContext(null); // 111-qonun: MentorNote qaysi ekranda turganini biladi
 const AchCtx = createContext(null);
 const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinish + «Qaytadan» mashq-o'tishi
 
@@ -100,7 +101,7 @@ const SCORED_IDX = SCREEN_META.map((m, i) => (m.scored ? i : null)).filter(i => 
 
 // SCREEN_INTENTS — har ekran nima uchun mavjud: 1 gaplik niyat (bola nima QILADI yoki nima BILADI).
 export const SCREEN_INTENTS = {
-  s0: "Bola dasturchining «tayyor» so'ziga ishonish-ishonmaslikni tanlaydi va tugma ishlasa ham bo'sh buyurtma ketaverganini ko'radi",
+  s0: "Bola AI'ning «tayyor» so'ziga ishonish-ishonmaslikni tanlaydi va tugma ishlasa ham bo'sh buyurtma ketaverganini ko'radi",
   s1: "Bola dars oxirida «tayyor» so'zini uchta aniq shartga aylantira olishini oldindan ko'radi",
   s2: "Bola ikki kartani ochib «ishlaydi» va «tayyor» bir narsa emasligini o'zi topadi",
   s3: "Bola «ishlaydi» degani bitta yo'l tekshirilgani ekanini tanlaydi",
@@ -192,6 +193,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   };
   return (
     <MentorCtx.Provider value={{ enabled: collapseOn, collapsed: mCollapsed, setCollapsed }}>
+      <ScreenIdxCtx.Provider value={screen}>
       <div className="stage">
         <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
           <div className="progress-track"><div className="progress-bar" style={{ width: `${((screen + 1) / totalScreens) * 100}%` }} /></div>
@@ -206,6 +208,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
         <div ref={contentRef} onClick={onContentClick} onScroll={onContentScroll} className={`stage-content ${narrow ? 'narrow' : ''}`} style={{ paddingLeft: padH, paddingRight: padH }}>{children}</div>
         {navContent && <div className="stage-nav" style={{ paddingLeft: padH, paddingRight: padH }}>{navContent}</div>}
       </div>
+      </ScreenIdxCtx.Provider>
     </MentorCtx.Provider>
   );
 };
@@ -537,6 +540,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
         {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -578,10 +582,34 @@ const Mentor = ({ children }) => {
   );
 };
 
+// 111-qonun (F-1022-01): mentor har slaydning NIMA UCHUN borligini birinchi qatorda o'qiydi.
+// Manba — SCREEN_INTENTS niyati, mentor tiliga o'girilgan («Bola…» emas, «O'quvchi…»).
+const MENTOR_WHY = {
+  s0:  { uz: "AI «tayyor» desa ham, o'zingiz ochib ko'rmaguncha ishonib bo'lmasligini o'quvchi o'z ko'zi bilan ko'radi.", ru: 'Ученик своими глазами видит: даже если AI сказал «готово», верить нельзя, пока сам не открыл и не проверил.' },
+  s1:  { uz: "Dars oxirida nima bo'lishini oldindan ko'rsatadi — «tayyor» degan bitta so'z uchta tekshiriladigan shartga aylanadi.", ru: 'Показывает заранее, чем кончится урок: одно слово «готово» превратится в три проверяемых условия.' },
+  s2:  { uz: "«Ishlaydi» va «tayyor» bir narsa emasligini o'quvchi ikki kartani solishtirib o'zi topadi.", ru: 'Сравнивая две карточки, ученик сам находит: «работает» и «готово» — не одно и то же.' },
+  s3:  { uz: "«Ishlaydi» faqat bitta — hammasi to'g'ri kiritilgan — yo'l ekanini mustahkamlaydi.", ru: 'Закрепляет: «работает» — это только один путь, когда всё введено правильно.' },
+  s4:  { uz: "Darsning asosiy ekrani — o'quvchi oynani o'zi bosib, to'rt shartdan faqat bittasi bajarilganini topadi.", ru: 'Главный экран урока: ученик сам нажимает в окне и находит, что из четырёх условий выполнено только одно.' },
+  s5:  { uz: "Bitta shart bajarilmasa ham ish «tayyor» emas — shartlar orasida «eng muhimi» yo'q.", ru: 'Даже если не выполнено одно условие — работа не «готова»; среди условий нет «самого важного».' },
+  s6:  { uz: "Katta studiya ham «ishlaydi» degan so'zga ishonib chiqargan — odamlarning ishonchi yo'qolgan. Oldindan yozilgan qabul shartlari shundan saqlaydi.", ru: 'Даже большая студия выпустила игру, поверив слову «работает», — и потеряла доверие людей. Заранее написанные условия приёмки от этого берегут.' },
+  s7:  { uz: "Nosozlikning eng qimmat narxi — pul emas, ishonch.", ru: 'Самая дорогая цена неполадки — не деньги, а доверие.' },
+  s8:  { uz: "O'quvchi o'z ishiga tekshirib bo'ladigan uchta shart yozadi — darsning asosiy natijasi.", ru: 'Ученик пишет к своей задаче три проверяемых условия — главный результат урока.' },
+  s9:  { uz: "Shartlar kod yozilishidan OLDIN yozilishini o'quvchi tartib orqali o'zi joylaydi.", ru: 'Раскладывая порядок, ученик сам приходит к тому, что условия пишут ДО кода.' },
+  s10: { uz: "Shartni kod ham tekshira oladi — o'quvchi uchta shartni bitta funksiyaga aylantiradi.", ru: 'Условие может проверить и код: ученик превращает три условия в одну функцию.' },
+  s11: { uz: "Tekshirib bo'ladigan shartni («bo'sh buyurtma yuborilsa, xabar chiqadi») baho-so'zdan («chiroyli», «qulay») ajrata olishini tekshiradi.", ru: 'Проверяет, отличает ли ученик проверяемое условие («если отправить пустой заказ — выйдет сообщение») от слова-оценки («красиво», «удобно»).' },
+  s12: { uz: "O'quvchi uchta shartini ekranga qaramasdan aytadi — eslab qolganini ko'rsatadi.", ru: 'Ученик называет свои три условия, не глядя на экран, — показывает, что запомнил.' },
+  s13: { uz: "Sinf natijasi va g'oliblar.", ru: 'Результат класса и победители.' },
+  s14: { uz: "To'qqizta karta bilan o'quvchi o'zini o'zi tekshiradi.", ru: 'Девять карточек — ученик проверяет себя сам.' },
+  s15: { uz: "CodeStrike arenasi, uy vazifasi va nishonlar.", ru: 'Арена CodeStrike, домашнее задание и значки.' },
+};
 // MentorNote — PROYEKTOR-SIR: default yopiq xira chip; bosishda ochiladi/yopiladi.
+// Birinchi qator har doim «Bu slayd nima uchun:» (111-qonun) — ekran id'si ScreenIdxCtx'dan; children bo'lmasa ham chiqadi.
 const MentorNote = ({ children }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
+  const idx = useContext(ScreenIdxCtx);
+  const sid = typeof idx === 'number' && SCREEN_META[idx] ? SCREEN_META[idx].id : null;
+  const why = sid && MENTOR_WHY[sid] ? tr(MENTOR_WHY[sid]) : null;
   const [open, setOpen] = useState(false);
   if (!live || live.mode !== 'mentor') return null;
   if (!open) return (
@@ -590,7 +618,8 @@ const MentorNote = ({ children }) => {
   return (
     <div className="mnote fade-up" onClick={() => setOpen(false)} title={tr({ uz: 'Yopish uchun bosing', ru: 'Нажмите, чтобы закрыть' })}>
       <span className="mnote-lbl">{tr({ uz: '🧑‍🏫 Mentorga eslatma', ru: '🧑‍🏫 Заметка ментору' })}<span className="mnote-x">{tr({ uz: '✕ yopish', ru: '✕ закрыть' })}</span></span>
-      <p className="mnote-body">{children}</p>
+      {why && <p className="mnote-body mnote-why"><b>{tr({ uz: 'Bu slayd nima uchun:', ru: 'Зачем этот слайд:' })}</b> {why}</p>}
+      {children ? <p className="mnote-body">{children}</p> : null}
     </div>
   );
 };
@@ -679,9 +708,9 @@ const SHARTLAR = [
     ok: false, res: { uz: 'Ikkita buyurtma ketdi — shart bajarilmagan', ru: 'Ушло два заказа — условие не выполнено' } },
 ];
 
-// ===== SCREEN 0 — HOOK: dasturchi «tayyor» dedi, ishonasizmi? =====
+// ===== SCREEN 0 — HOOK: AI «tayyor» dedi, ishonasizmi? (F-1022-01: 110-qonun — ish bajaruvchi AI) =====
 const HOOK_OPTS = [
-  { k: 'ishonaman', ic: '👍', t: { uz: 'Ishonaman — dasturchi tekshirgandir', ru: 'Поверю — наверное, программист проверил' } },
+  { k: 'ishonaman', ic: '👍', t: { uz: 'Ishonaman — AI tekshirgandir', ru: 'Поверю — наверное, AI проверил' } },
   { k: 'ochaman',   ic: '🤔', t: { uz: "O'zim ochib ko'raman", ru: 'Открою и посмотрю сам(а)' } },
 ];
 // 100-qonun: tanlov yoziladi, hech qayerda O'QILMAYDI.
@@ -710,14 +739,16 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: i, correct: false });
     if (live && live.mode === 'student') live.submitAnswer(screen, 's0', i, false, 0);
   };
-  const opened = picked !== null || isMentor;
+  // F-1022-01: mentor ekranida natija o'quvchilar tanlashidan OLDIN ochilmaydi — «Natijani ochish» (test-ekranlar bilan bir yo'l).
+  const [mReveal, setMReveal] = useState(false);
+  const opened = picked !== null || (isMentor && mReveal);
   const totalVotes = counts ? counts.reduce((a, b) => a + b, 0) : 0;
   const optWave = useTurnHint(picked === null && !isMentor);
   return (
-    <Stage eyebrow={tr({ uz: 'Kirish · dasturchi topshirdi', ru: 'Введение · программист сдал работу' })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите одно' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish · AI «tayyor» dedi', ru: 'Введение · AI сказал «готово»' })} screen={screen} navContent={<NavNext optionalLive mentorLock disabled={isMentor ? !mReveal : picked === null} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : isMentor ? tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите одно' })} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Dasturchi «tayyor» dedi. <span className="italic" style={{ color: T.accent }}>Ishonasizmi?</span></>, ru: <>Программист сказал «готово». <span className="italic" style={{ color: T.accent }}>Поверите?</span></> })}</h2></div>
-        <Mentor>{tr({ uz: "Maktab bufeti saytiga «Buyurtma berish» tugmasini qo'shishni dasturchidan so'ragandingiz. Bugun u yozdi: «Tayyor, ishlaydi».", ru: 'Вы попросили программиста добавить на сайт школьного буфета кнопку «Сделать заказ». Сегодня он написал: «Готово, работает».' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI «tayyor» dedi. <span className="italic" style={{ color: T.accent }}>Ishonasizmi?</span></>, ru: <>AI сказал «готово». <span className="italic" style={{ color: T.accent }}>Поверите?</span></> })}</h2></div>
+        <Mentor>{tr({ uz: "Siz maktab bufeti uchun sayt qilyapsiz. Gemini'dan «Buyurtma berish» tugmasini so'radingiz. U kod berdi va yozdi: «Tayyor, hammasi ishlaydi».", ru: 'Вы делаете сайт для школьного буфета. Вы попросили у Gemini кнопку «Сделать заказ». Он дал код и написал: «Готово, всё работает».' })}</Mentor>
         <div className="hrow two fade-up delay-1">
           {HOOK_OPTS.map((o, i) => (
             <button key={o.k} className={`hopt${picked === i ? ' on' : ''}${opened ? ' open' : ''}${!opened && optWave ? waveCls(true, i, HOOK_OPTS.length) : ''}`} disabled={opened} onClick={() => pick(i)}>
@@ -732,17 +763,23 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="h0log fade-step">
               <span className="h0log-bar"><span className="bb-dots"><i /><i /><i /></span>maktab-bufeti.uz</span>
               <span className="h0log-row"><b>🥟 {tr({ uz: 'Somsa', ru: 'Самса' })} × 2</b><span className="h0log-ok">{tr({ uz: 'yuborildi ✓', ru: 'отправлено ✓' })}</span></span>
-              <span className="h0log-row bad"><b>{tr({ uz: '— taom tanlanmagan —', ru: '— блюдо не выбрано —' })}</b><span className="h0log-ok">{tr({ uz: 'yuborildi ✓', ru: 'отправлено ✓' })}</span></span>
+              <span className="h0log-row bad"><b>{tr({ uz: '— taom tanlanmagan —', ru: '— блюдо не выбрано —' })}</b><span className="h0log-bad">{tr({ uz: 'yuborildi ⚠', ru: 'отправлено ⚠' })}</span></span>
             </div>
             <div className="frame-soft fade-step">
               <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ochib ko'ramiz: tugma ishlaydi. Lekin <b>bo'sh</b> buyurtma ham ketaverdi.</>, ru: <>Открываем и смотрим: кнопка работает. Но <b>пустой</b> заказ тоже ушёл.</> })}</p>
             </div>
           </>
         )}
+        {isMentor && !mReveal && (
+          <button className={`mstats-reveal${totalVotes > 0 ? ' ready' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setMReveal(true)}>
+            {tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}
+          </button>
+        )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda — yakka o'quvchida «ko'pchilik» yo'q.
             totalVotes > 0: hali hech kim ovoz bermaganda to'rt chiziq ham 0% bo'lib osilib
-            turardi — bo'sh apparat (F-0819-57 bilan bir sinf). */}
-        {opened && isLive && counts && totalVotes > 0 && (
+            turardi — bo'sh apparat (F-0819-57 bilan bir sinf).
+            Mentor ekranida diagramma tanlov PAYTIDA ham ko'rinadi (kim tanlagani — natija emas). */}
+        {(opened || isMentor) && isLive && counts && totalVotes > 0 && (
           <div className="hvote fade-step" aria-label={tr({ uz: 'Sinf natijasi', ru: 'Результат класса' })}>
             {HOOK_OPTS.map((o, i) => {
               const n = counts[i];
@@ -758,7 +795,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             })}
           </div>
         )}
-        <MentorNote>{tr({ uz: "Ovozlar bo'linadi. «Ishonaman» deganlar ko'p bo'lsa — bu ham dars: ishonch tekshiruvsiz beriladi, keyin muammo chiqadi. Javobni oldindan aytmang.", ru: 'Голоса разделятся. Если «поверю» выберут многие — это тоже урок: доверие дают без проверки, а потом всплывает проблема. Не называйте ответ заранее.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Ovozlar bo'linadi. «Ishonaman» deganlar ko'p bo'lsa — bu ham dars: tekshirmasdan ishonilgan joyda keyin muammo chiqadi. Javobni oldindan aytmang — hamma tanlagach «Natijani ochish»ni bosing.", ru: 'Голоса разделятся. Если «поверю» выберут многие — это тоже урок: там, где поверили без проверки, потом всплывает проблема. Не называйте ответ заранее — когда все выбрали, нажмите «Открыть результат».' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -794,8 +831,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 
 // ===== SCREEN 2 — TEORIYA-1: «ishlaydi» ↔ «tayyor» (46-qonun toggle) =====
 const S2_CARDS = [
-  { ic: '🔧', h: { uz: 'Dasturchi «ishlaydi» deganda', ru: 'Когда программист говорит «работает»' }, b: { uz: 'Kod ishladi, tugma bosildi, buyurtma ketdi', ru: 'Код отработал, кнопку нажали, заказ ушёл' } },
-  { ic: '✅', h: { uz: 'Siz «tayyor» deganda', ru: 'Когда вы говорите «готово»' }, b: { uz: 'Siz va dasturchi kelishgan hamma shart bajarildi', ru: 'Выполнены все условия, о которых вы с программистом договорились' } },
+  { ic: '🔧', h: { uz: 'AI «ishlaydi» deganda', ru: 'Когда AI говорит «работает»' }, b: { uz: 'Kod ishladi, tugma bosildi, buyurtma ketdi', ru: 'Код отработал, кнопку нажали, заказ ушёл' } },
+  { ic: '✅', h: { uz: 'Siz «tayyor» deganda', ru: 'Когда вы говорите «готово»' }, b: { uz: 'Siz oldindan yozgan hamma shart bajarildi', ru: 'Выполнены все условия, которые вы написали заранее' } },
 ];
 const Screen2 = ({ screen, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -814,7 +851,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: "Muhokama · ikki so'z", ru: 'Обсуждение · два слова' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!allSeen && !isMentor} label={allSeen || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `👆 Yana ${qoldi} kartani oching`, ru: `👆 Откройте ещё: ${qoldi}` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Dasturchi «ishlaydi» dedi — bu <span className="italic" style={{ color: T.accent }}>«tayyor»</span> deganimi?</>, ru: <>Программист сказал «работает» — значит ли это <span className="italic" style={{ color: T.accent }}>«готово»</span>?</> })}</h2></div>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI «ishlaydi» dedi — bu <span className="italic" style={{ color: T.accent }}>«tayyor»</span> deganimi?</>, ru: <>AI сказал «работает» — значит ли это <span className="italic" style={{ color: T.accent }}>«готово»</span>?</> })}</h2></div>
         <Mentor>{tr({ uz: 'Ikki kartani bosib solishtiring.', ru: 'Нажмите на две карточки и сравните.' })}</Mentor>
         <div className="dfc-grid fade-up delay-1">
           {S2_CARDS.map((c, i) => (
@@ -830,6 +867,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
             <p className="xul-b">{tr({ uz: "«Ishlaydi» — bitta yo'l tekshirilgan: hammasi to'g'ri kiritilganda. «Tayyor» — odam adashadigan yo'llar (kutilmagan holatlar) ham tekshirilgan.", ru: '«Работает» — проверен один путь: когда всё введено правильно. «Готово» — проверены и те пути, где человек ошибается (неожиданные случаи).' })}</p>
           </div>
         )}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -841,7 +879,7 @@ const TestQ = ({ ask }) => <h2 className="title h-ask">{ask}</h2>;
 const Screen3 = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: 'Tekshiruv · «ishlaydi»', ru: 'Проверка · «работает»' })} scope="module-mikro"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: 'Dasturchi «ishlaydi» dedi. Bu nimani anglatadi?', ru: 'Программист сказал «работает». Что это значит?' })} />}
+    question={<TestQ ask={tr({ uz: 'AI «ishlaydi» dedi. Bu nimani anglatadi?', ru: 'AI сказал «работает». Что это значит?' })} />}
     questionText={tr({ uz: '«Ishlaydi» nimani anglatadi', ru: 'Что значит «работает»' })}
     options={[tr({ uz: "Hamma shart bajarilgan — ishni bemalol qabul qilsa bo'ladi", ru: 'Все условия выполнены — работу спокойно можно принимать' }), tr({ uz: "Bitta yo'l tekshirilgan — hammasi to'g'ri kiritilganda", ru: 'Проверен один путь — когда всё введено правильно' }), tr({ uz: 'Kodda birorta ham xato qolmagan — hammasi joyida', ru: 'В коде не осталось ни одной ошибки — всё на месте' })]}
     correctIdx={1}
@@ -849,7 +887,7 @@ const Screen3 = (props) => (
     explainWrong={{
       0: tr({ uz: "Hamma shart bajarilgani — bu «tayyor», «ishlaydi» emas.", ru: 'Все условия выполнены — это «готово», а не «работает».' }),
       2: tr({ uz: "Odam adashadigan yo'llarda xato hali qolgan bo'lishi mumkin.", ru: 'На путях, где человек ошибается, ошибки ещё могут быть.' }),
-      default: tr({ uz: "Dasturchi qaysi holatni bosib ko'rganini o'ylang.", ru: 'Подумайте, какой случай программист прожал.' })
+      default: tr({ uz: "«Ishlaydi» deyilganda qaysi holat sinalganini o'ylang.", ru: 'Подумайте, какой случай проверили, когда сказали «работает».' })
     }}
   />
 );
@@ -1025,12 +1063,12 @@ const Screen5 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "To'rt shartdan uchtasi bajarilmadi. Ish qabul qilinadimi?", ru: 'Из четырёх условий три не выполнены. Работу примут?' })} />}
     questionText={tr({ uz: 'Uch shart bajarilmasa ish qabul qilinadimi', ru: 'Примут ли работу, если три условия не выполнены' })}
-    options={[tr({ uz: 'Ha — eng muhim shart bajarilgan', ru: 'Да — самое важное условие выполнено' }), tr({ uz: "Yo'q — dasturchi hali kodni yozmagan", ru: 'Нет — программист ещё не написал код' }), tr({ uz: "Yo'q — hamma shart bajarilishi kerak", ru: 'Нет — должны быть выполнены все условия' })]}
+    options={[tr({ uz: 'Ha — eng muhim shart bajarilgan', ru: 'Да — самое важное условие выполнено' }), tr({ uz: "Yo'q — AI hali kodni oxirigacha yozmagan", ru: 'Нет — AI ещё не дописал код' }), tr({ uz: "Yo'q — hamma shart bajarilishi kerak", ru: 'Нет — должны быть выполнены все условия' })]}
     correctIdx={2}
     explainCorrect={tr({ uz: "«Tayyor» — kelishilgan shartlarning hammasi bajarilgani.", ru: '«Готово» — выполнены все условия, о которых договорились.' })}
     explainWrong={{
       0: tr({ uz: "Shartlar orasida «eng muhimi» yo'q — ular teng.", ru: 'Среди условий нет «самого важного» — они равны.' }),
-      1: tr({ uz: "Kod yozilgan — bu shart allaqachon bajarildi.", ru: 'Код написан — это условие уже выполнено.' }),
+      1: tr({ uz: "AI kodni yozib bo'lgan — bu shart allaqachon bajarildi.", ru: 'AI уже написал код — это условие выполнено.' }),
       default: tr({ uz: "Nechta shart hali ochiq qolganini sanab ko'ring.", ru: 'Посчитайте, сколько условий ещё открыто.' })
     }}
   />
@@ -1131,6 +1169,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Cyberpunk 2077 chiqishdan oldin ham «ishlaydi» deyilgan edi. Yetishmagani — oldindan yozilgan shartlar ro'yxati; uni <b>qabul shartlari</b> deyishadi. Endi shunday ro'yxatni o'z ishingizga yozasiz.</>, ru: <>Про Cyberpunk 2077 перед выходом тоже говорили «работает». Не хватало заранее написанного списка условий; его называют <b>условиями приёмки</b>. Теперь такой список вы напишете для своей задачи.</> })}</p>
           </div>
         )}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1231,8 +1270,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       <div className="screen" style={{ gap: 'clamp(8px,1.2vw,12px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ishingizga <span className="italic" style={{ color: T.accent }}>uchta shart</span> yozing.</>, ru: <>Напишите к своей задаче <span className="italic" style={{ color: T.accent }}>три условия</span>.</> })}</h2></div>
         <Mentor>{ownIsh
-          ? tr({ uz: "O'tgan darsda «birinchi qilinadigan» deb tanlagan ishingiz pastda turibdi — dasturchi «tayyor» deganda aynan shu uchta shartni tekshirasiz.", ru: 'Задача, которую вы на прошлом уроке отметили как «делается первой», внизу — когда программист скажет «готово», вы проверите как раз эти три условия.' })
-          : tr({ uz: "Boshlash uchun bufet ishini olamiz: «Buyurtma berish» tugmasi pastda turibdi — dasturchi «tayyor» deganda aynan shu uchta shartni tekshirasiz.", ru: 'Для начала возьмём задачу буфета: кнопка «Сделать заказ» внизу — когда программист скажет «готово», вы проверите как раз эти три условия.' })}</Mentor>
+          ? tr({ uz: "O'tgan darsda «birinchi qilinadigan» deb tanlagan ishingiz pastda turibdi. Uni AI'dan so'rashdan oldin uchta shart yozing — AI «tayyor» desa, aynan shu uchtasini tekshirasiz.", ru: 'Задача, которую вы на прошлом уроке отметили как «делается первой», внизу. Перед тем как просить её у AI, напишите три условия — когда AI скажет «готово», вы проверите как раз эти три.' })
+          : tr({ uz: "Boshlash uchun bufet ishini olamiz: «Buyurtma berish» tugmasi pastda turibdi. AI «tayyor» desa, aynan shu uchta shartni tekshirasiz.", ru: 'Для начала возьмём задачу буфета: кнопка «Сделать заказ» внизу. Когда AI скажет «готово», вы проверите как раз эти три условия.' })}</Mentor>
         {/* 80a: havoda uch doira — yozilgani yashil, joriysi pulsda, kelgusi punktir */}
         <div className="stps fade-up">
           {[0, 1, 2].map(k => (
@@ -1302,9 +1341,9 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 9 — TEKSHIRUV: qabul qadamlarini ketma-ketlikka joylash (26-qonun: yangi mexanika) =====
 const QADAMLAR = [
   { id: 'q1', ic: '📝', t: { uz: 'Shartlarni yozamiz', ru: 'Пишем условия' } },
-  { id: 'q2', ic: '🤝', t: { uz: 'Shartlarni dasturchiga beramiz', ru: 'Отдаём условия программисту' } },
-  { id: 'q3', ic: '💻', t: { uz: 'Dasturchi kodni yozadi', ru: 'Программист пишет код' } },
-  { id: 'q4', ic: '🔎', t: { uz: 'Har shartni birma-bir tekshiramiz', ru: 'Проверяем каждое условие по очереди' } },
+  { id: 'q2', ic: '✍️', t: { uz: "Shartlarni promptga qo'shamiz", ru: 'Добавляем условия в промпт' } },
+  { id: 'q3', ic: '🤖', t: { uz: 'AI kodni yozadi', ru: 'AI пишет код' } },
+  { id: 'q4', ic: '🔎', t: { uz: "Har shartni o'zimiz bosib tekshiramiz", ru: 'Каждое условие проверяем сами, нажимая' } },
   { id: 'q5', ic: '✅', t: { uz: 'Hammasi bajarilsa, «tayyor» deymiz', ru: 'Если всё выполнено — говорим «готово»' } },
 ];
 const Q_BY_ID = Object.fromEntries(QADAMLAR.map(q => [q.id, q]));
@@ -1410,7 +1449,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="bhint fade-step">{tr({ uz: "🤔 Shart bajarilganini tekshirish uchun avval shartning O'ZI yozilgan bo'lishi kerak.", ru: '🤔 Чтобы проверить, выполнено ли условие, сначала должно быть написано САМО условие.' })}</p>
             <div className={`wsx ${yordamOpen ? 'open' : ''}`} style={{ maxWidth: 520 }}>
               <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>💡 {tr({ uz: 'Yordam', ru: 'Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
-              {yordamOpen && <div className="wsx-body"><p>{tr({ uz: 'Bitta savol yetadi: shartlar ish boshlanishidan OLDIN yoziladimi yoki keyinmi?', ru: 'Хватит одного вопроса: условия пишут ДО начала работы или после?' })}</p></div>}
+              {yordamOpen && <div className="wsx-body"><p>{tr({ uz: "Bitta savol yetadi: shartlar AI'ga yozishdan OLDIN yoziladimi yoki keyinmi?", ru: 'Хватит одного вопроса: условия пишут ДО того, как написать AI, или после?' })}</p></div>}
             </div>
           </div>
         )}
@@ -1418,7 +1457,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col gap={8}>
             {done && (
               <div className="bdone fade-step">
-                <span className="done-mini">{tr({ uz: '✅ Shartlar ish boshlanishidan oldin yoziladi — keyin bahs qolmaydi.', ru: '✅ Условия пишут до начала работы — тогда потом не будет споров.' })}</span>
+                <span className="done-mini">{tr({ uz: "✅ Shartlar AI'ga yozishdan oldin yoziladi — keyin «tayyor»mi yoki yo'qmi, ro'yxatga qarab bilasiz.", ru: '✅ Условия пишут до того, как написать AI, — потом по списку видно, готово или нет.' })}</span>
               </div>
             )}
           </Col>
@@ -1427,7 +1466,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <MentorPracticeStats live={live} screen={screen} label={tr({ uz: '🧭 Tartibni joylaganlar', ru: '🧭 Кто разложил порядок' })} />
           </Col>
         </div>
-        <MentorNote>{tr({ uz: "Eng ko'p adashiladigan joy — shartlarni ishdan KEYIN yozish. Aynan shu tartib butun darsning ma'nosi. Sinf ish-tartibi: shartlarni dasturchi bilan BIRGA o'qib chiqing — u «bu qanday tekshiriladi?» deb so'rasa, shart yaxshi yozilmagan; juftlikda sinab ko'ring. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Чаще всего ошибаются здесь: пишут условия ПОСЛЕ работы. Именно этот порядок — смысл всего урока. Порядок работы в классе: прочитайте условия ВМЕСТЕ с программистом — если он спросит «а как это проверить?», условие написано плохо; попробуйте в парах. Это задание выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Eng ko'p adashiladigan joy — shartlarni ishdan KEYIN yozish. Aynan shu tartib butun darsning ma'nosi. Juftlikda: sherigingiz shartlaringizni o'qiydi — u «buni qanday tekshiraman?» deb so'rasa, shart qayta yoziladi. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Чаще всего ошибаются здесь: пишут условия ПОСЛЕ работы. Именно этот порядок — смысл всего урока. В парах: напарник читает ваши условия — если он спросит «а как я это проверю?», условие переписывается. Это задание выполняют ученики, вы наблюдаете; «Продолжить» для вас открыто.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1763,13 +1802,13 @@ function Flashcards({ cards }) {
 }
 const FLASHCARDS = [
   { front: { uz: '«Ishlaydi» va «tayyor» — farqi nimada?', ru: 'В чём разница между «работает» и «готово»?' }, back: { uz: "«Ishlaydi» — bitta yo'l; «tayyor» — kelishilgan hamma shart", ru: '«Работает» — один путь; «готово» — все условия, о которых договорились' } },
-  { front: { uz: 'Dasturchiga oldindan beriladigan shartlar ro\'yxati qanday ataladi?', ru: 'Как называется список условий, который дают программисту заранее?' }, back: { uz: 'Qabul shartlari (inglizchasi — Acceptance Criteria)', ru: 'Условия приёмки (по-английски — Acceptance Criteria)' } },
-  { front: { uz: 'Shartlar qachon yoziladi?', ru: 'Когда пишут условия?' }, back: { uz: 'Ish boshlanishidan oldin', ru: 'До начала работы' } },
+  { front: { uz: 'Kod yozilishidan oldin yoziladigan shartlar ro\'yxati qanday ataladi?', ru: 'Как называется список условий, который пишут до того, как написан код?' }, back: { uz: 'Qabul shartlari (inglizchasi — Acceptance Criteria)', ru: 'Условия приёмки (по-английски — Acceptance Criteria)' } },
+  { front: { uz: 'Shartlar qachon yoziladi?', ru: 'Когда пишут условия?' }, back: { uz: "AI'ga yozishdan oldin", ru: 'До того, как написать AI' } },
   { front: { uz: 'Yaxshi shartda nima bo\'ladi?', ru: 'Что есть в хорошем условии?' }, back: { uz: "Aniq harakat yoki son — tekshirib bo'ladi", ru: 'Конкретное действие или число — это можно проверить' } },
   { front: { uz: '«Chiroyli bo\'lsin» nega yomon shart?', ru: 'Почему «пусть будет красиво» — плохое условие?' }, back: { uz: 'Har kim boshqacha baholaydi', ru: 'Каждый оценит по-своему' } },
   { front: { uz: 'Kutilmagan holat nima?', ru: 'Что такое неожиданный случай?' }, back: { uz: "Odam adashadigan yo'l — bo'sh yuborish, ikki marta bosish", ru: 'Путь, где человек ошибается: отправить пустое, нажать дважды' } },
   { front: { uz: 'Bitta shart bajarilmasa nima bo\'ladi?', ru: 'Что если не выполнено одно условие?' }, back: { uz: 'Ish hali tayyor emas', ru: 'Работа ещё не готова' } },
-  { front: { uz: 'Yozilgan shartlarni kimga berasiz?', ru: 'Кому вы отдаёте написанные условия?' }, back: { uz: 'Ishni bajaradigan dasturchiga', ru: 'Программисту, который делает работу' } },
+  { front: { uz: 'Yozilgan shartlarni qayerga qo\'shasiz?', ru: 'Куда вы добавляете написанные условия?' }, back: { uz: "AI'ga yuboradigan promptingizga", ru: 'В промпт, который отправляете AI' } },
   { front: { uz: 'Kod shart bajarilganini qanday aytadi?', ru: 'Как код сообщает, что условие выполнено?' }, back: { uz: 'true yoki false qaytaradi', ru: 'Возвращает true или false' } },
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
@@ -1779,6 +1818,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Проверьте</span> себя.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={FLASHCARDS} /></div>
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1967,12 +2007,12 @@ const QUIZ_BANK = [
     { uz: 'Hamma shart bajarilgan', ru: 'Выполнены все условия' },
     { uz: 'Ish qabul qilindi', ru: 'Работа принята' },
     { uz: 'Kodda birorta xato qolmagan', ru: 'В коде не осталось ни одной ошибки' }], correct: 0 },
-  { q: { uz: "«Tayyor» nimani anglatadi?", ru: "Что значит «готово»?" }, opts: [{ uz: "Kod xatosiz ishlayapti", ru: "Код работает без ошибок" }, { uz: "Hamma shart bajarilgan", ru: "Все условия выполнены" }, { uz: "Dasturchi topshirdi", ru: "Программист сдал" }, { uz: "Sayt chiroyli ko'rinadi", ru: "Сайт выглядит красиво" }], correct: 1 },
+  { q: { uz: "«Tayyor» nimani anglatadi?", ru: "Что значит «готово»?" }, opts: [{ uz: "Kod xatosiz ishlayapti", ru: "Код работает без ошибок" }, { uz: "Hamma shart bajarilgan", ru: "Все условия выполнены" }, { uz: "AI «tayyor» dedi", ru: "AI сказал «готово»" }, { uz: "Sayt chiroyli ko'rinadi", ru: "Сайт выглядит красиво" }], correct: 1 },
   { q: { uz: 'Qabul shartlari qachon yoziladi?', ru: 'Когда пишут условия приёмки?' }, opts: [
     { uz: 'Ish tugagandan keyin', ru: 'После окончания работы' },
     { uz: 'Sayt ochilgandan keyin', ru: 'После запуска сайта' },
-    { uz: 'Ish boshlanishidan oldin', ru: 'До начала работы' },
-    { uz: "Dasturchi so'rab qolgan paytda", ru: 'Когда программист спросит' }], correct: 2 },
+    { uz: "AI'ga yozishdan oldin", ru: 'До того, как написать AI' },
+    { uz: 'AI «aniqroq yozing» deganda', ru: 'Когда AI скажет «напишите точнее»' }], correct: 2 },
   { q: { uz: "Bo'sh buyurtma ham ketdi. Shart bajarildimi?", ru: "Ушёл и пустой заказ. Условие выполнено?" }, opts: [{ uz: "Ha, tugma ishladi", ru: "Да, кнопка сработала" }, { uz: "Yo'q, bo'sh o'tmasligi kerak", ru: "Нет, пустой не должен проходить" }, { uz: "Ha, shart to'lasi haqida", ru: "Да, условие — про полный" }, { uz: "Yo'q, buyurtma ketmagan", ru: "Нет, заказ не ушёл" }], correct: 1 },
   { q: { uz: 'Tugma tez ikki marta bosilsa, nechta buyurtma ketishi kerak?', ru: 'Если кнопку быстро нажали дважды, сколько заказов должно уйти?' }, opts: [
     { uz: 'Bitta', ru: 'Один' }, { uz: 'Ikkita', ru: 'Два' }, { uz: 'Uchta', ru: 'Три' }, { uz: 'Hech biri', ru: 'Ни одного' }], correct: 0 },
@@ -1981,15 +2021,15 @@ const QUIZ_BANK = [
   { q: { uz: "Tekshirib bo'ladigan shartda nima bo'ladi?", ru: 'Что есть в условии, которое можно проверить?' }, opts: [
     { uz: "Chiroyli va yoqimli so'zlar", ru: 'Красивые и приятные слова' },
     { uz: 'Uzun va batafsil izoh', ru: 'Длинное подробное пояснение' },
-    { uz: 'Dasturchining ismi va sanasi', ru: 'Имя программиста и дата' },
+    { uz: 'Yozgan odamning ismi va sanasi', ru: 'Имя автора и дата' },
     { uz: 'Aniq harakat yoki son', ru: 'Конкретное действие или число' }], correct: 3 },
   { q: { uz: "Cyberpunk 2077 o'yini bilan nima bo'ldi?", ru: "Что случилось с игрой Cyberpunk 2077?" }, opts: [{ uz: "Kompaniyasi yopildi", ru: "Компания закрылась" }, { uz: "Qaytadan chiqarildi", ru: "Её выпустили заново" }, { uz: "Do'kondan olib tashlandi", ru: "Её убрали из магазина" }, { uz: "Nomi o'zgartirildi", ru: "Её переименовали" }], correct: 2 },
   { q: { uz: "Tutilmagan nosozlik eng ko'p nimani yo'qotdi?", ru: "Что больше всего потеряла непойманная неполадка?" }, opts: [{ uz: "Boshqa o'yinlar sotuvini", ru: "Продажи других игр" }, { uz: "Reklama pulini", ru: "Деньги на рекламу" }, { uz: "Xaridorlar pulini", ru: "Деньги покупателей" }, { uz: "Odamlar ishonchini", ru: "Доверие людей" }], correct: 3 },
-  { q: { uz: "Yozilgan shartlarni kimga berasiz?", ru: "Кому вы отдаёте написанные условия?" }, opts: [{ uz: "Ishni bajaradigan dasturchiga", ru: "Программисту, который делает работу" }, { uz: "Bufetdagi xodimga", ru: "Работнику буфета" }, { uz: "Sinfdoshingizga", ru: "Однокласснику" }, { uz: "Hech kimga, o'zimda qoladi", ru: "Никому, оставлю у себя" }], correct: 0 },
+  { q: { uz: "Yozilgan shartlarni qayerga qo'shasiz?", ru: "Куда вы добавляете написанные условия?" }, opts: [{ uz: "AI'ga yuboradigan promptga", ru: "В промпт, который отправляю AI" }, { uz: "Saytning bosh sahifasiga", ru: "На главную страницу сайта" }, { uz: "AI yozib bergan kodning ichiga", ru: "Внутрь кода, который написал AI" }, { uz: "Hech qayerga, o'zimda qoladi", ru: "Никуда, оставлю у себя" }], correct: 0 },
   { q: { uz: 'Kod shart bajarilganini qanday aytadi?', ru: 'Как код сообщает, что условие выполнено?' }, opts: [
     { uz: 'Ekranga rasm chizib beradi', ru: 'Рисует картинку на экране' },
     { uz: "Sahifani yopib qo'yadi", ru: 'Закрывает страницу' },
-    { uz: 'Dasturchiga xabar yuboradi', ru: 'Отправляет сообщение программисту' },
+    { uz: 'Telefoningizga xabar yuboradi', ru: 'Отправляет сообщение на ваш телефон' },
     { uz: 'true yoki false qaytaradi', ru: 'Возвращает true или false' }], correct: 3 },
 ];
 
@@ -2513,7 +2553,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   const RECAP = [
     { uz: '«Ishlaydi» — bitta yo\'l, «tayyor» — kelishilgan hamma shart.', ru: '«Работает» — один путь, «готово» — все условия, о которых договорились.' },
-    { uz: 'Shartlar ish boshlanishidan oldin yoziladi.', ru: 'Условия пишут до начала работы.' },
+    { uz: "Bu ro'yxat — qabul shartlari: AI'ga yozishdan oldin yoziladi, keyin o'zingiz tekshirasiz.", ru: 'Этот список — условия приёмки: их пишут до того, как написать AI, а потом проверяют сами.' },
     { uz: 'Yaxshi shartda aniq harakat yoki son bo\'ladi.', ru: 'В хорошем условии есть конкретное действие или число.' },
     { uz: 'Odam adashadigan yo\'llar (kutilmagan holatlar) ham tekshiriladi.', ru: 'Пути, где человек ошибается (неожиданные случаи), тоже проверяют.' },
   ];
@@ -2688,6 +2728,8 @@ const CSS_BASE = `
   .mnote-chip:hover, .mnote-chip:focus-visible { opacity: 1; transform: translateY(-1px); }
   @media (hover: none) { .mnote-chip { opacity: 0.6; } }
   .mnote-body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; line-height: 1.45; }
+  .mnote-why { color: ${T.blue}; }
+  .mnote-why b { font-weight: 800; }
 
   .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
   .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
@@ -2782,10 +2824,11 @@ const CSS_LESSON = `
   .h0log-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 9px 13px; border-top: 1px solid ${T.line}; font-family: 'Manrope'; font-size: clamp(12.5px,1.5vw,14px); color: ${T.ink}; min-width: 0; overflow-wrap: anywhere; animation: fade-in-up 0.34s ease-out both; }
   .h0log-row:nth-child(2) { animation-delay: 0.10s; }
   .h0log-row:nth-child(3) { animation-delay: 0.55s; }
-  .h0log-row.bad { background: ${T.accentSoft}55; }
-  .h0log-row.bad b { color: ${T.ink3}; font-style: italic; }
+  .h0log-row.bad { background: ${T.errSoft}; }
+  .h0log-row.bad b { color: ${T.err}; font-style: italic; }
   @media (prefers-reduced-motion: reduce) { .h0log-row { animation: none; } }
   .h0log-ok { font-weight: 800; font-size: 11.5px; color: ${T.success}; background: ${T.successSoft}; border-radius: 99px; padding: 3px 9px; white-space: nowrap; }
+  .h0log-bad { font-weight: 800; font-size: 11.5px; color: ${T.err}; background: ${T.errSoft}; border-radius: 99px; padding: 3px 9px; white-space: nowrap; }
 
   /* MAQSAD (s1) — ro'yxat o'z-o'zidan yozilib chiqadi (18-qonun) */
   .s1demo { display: flex; flex-direction: column; gap: 9px; background: ${T.paper}; border-radius: 18px; padding: clamp(13px,2vw,18px) clamp(15px,2.4vw,22px); box-shadow: 0 12px 28px -14px rgba(${T.shadowBase},0.22), inset 0 0 0 1.5px ${T.line}; max-width: 640px; align-self: center; width: 100%; }

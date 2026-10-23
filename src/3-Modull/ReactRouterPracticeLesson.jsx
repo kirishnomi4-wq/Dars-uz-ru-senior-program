@@ -47,6 +47,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: React Router» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-11). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-11","tur":"file","nom":{"uz":"Uyga vazifa: React Router","ru":"Домашнее задание: React Router"},"matn":{"uz":"robo-games'ga \"Sevimlilar\" sahifasini qo'shing.\n\n1. /favorites Route va menu'da unga Link.\n2. O'yin sahifasida «⭐ Sevimliga» tugmasi; sevimlilar ro'yxati App'da saqlansin.\n3. /favorites da faqat sevimli o'yinlar; bo'sh bo'lsa «Hali sevimli yo'q».\n4. Menu'dagi «Sevimlilar» yonida soni: «Sevimlilar (3)».\n5. Link va skrinshot (/favorites).\n\nNima tekshiriladi:\n— yangi Route + Link (a emas)\n— sevimlilar state App'da, sahifa almashsa saqlanadi\n— bo'sh holat\n— son to'g'ri.","ru":"Добавьте в robo-games страницу «Избранное».\n\n1. Route /favorites и Link на неё в меню.\n2. На странице игры — кнопка «⭐ В избранное»; список избранного хранится в App.\n3. На /favorites — только избранные игры; если пусто — «Избранного пока нет».\n4. Рядом с «Избранное» в меню — их число: «Избранное (3)».\n5. Ссылка и скриншот (/favorites).\n\nЧто проверяется:\n— новый Route + Link (не a)\n— state избранного в App, сохраняется при смене страницы\n— пустое состояние\n— число верное."}};
 
 
 
@@ -1979,11 +1982,6 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "URL parametr /game/:id — bitta sahifa, barcha o'yinlar (useParams)", ru: 'URL-параметр /game/:id — одна страница, все игры (useParams)' }),
     tr({ uz: "useNavigate() — kod orqali sahifa almashtirish (POST'dan keyin Bosh'ga)", ru: 'useNavigate() — смена страницы через код (после POST — на Главную)' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: '404 sahifa', ru: 'Страница 404' }), t: tr({ uz: "— <Route path=\"*\"> bilan «Bunday sahifa yo'q» sahifasini qo'shing" /* F-1015-374: ichki qo'shtirnoq ekranlangan (avval NaN chiqardi) */, ru: '— добавьте страницу «Такой страницы нет» через <Route path="*">' }) },
-    { b: tr({ uz: '«Orqaga» tugmasi', ru: 'Кнопка «Назад»' }), t: tr({ uz: "— o'yin sahifasiga useNavigate bilan Bosh sahifaga qaytaradigan tugma qo'ying", ru: '— на страницу игры добавьте кнопку, которая через useNavigate возвращает на Главную' }) },
-    { b: tr({ uz: 'Tekshiring', ru: 'Проверьте' }), t: tr({ uz: "— hamma link <Link>mi, /game/:id parametri bormi — o'zingiz nazorat qiling", ru: '— все ли ссылки <Link>, есть ли параметр /game/:id — проконтролируйте сами' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2006,7 +2004,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "VS Code'da, robo-games loyihangizda:", ru: 'В VS Code, в проекте robo-games:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi qadam — loyiha kuni: React + API + CRUD + Router'ni birlashtirib, o'z ilovangizni boshidan oxirigacha qurasiz! 🚀", ru: 'Следующий шаг — день проекта: объедините React + API + CRUD + Router и постройте своё приложение от начала до конца! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

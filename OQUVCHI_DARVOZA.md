@@ -48,6 +48,7 @@ javob sifatida faylda qoladi va o'lchov-kaliti bo'ladi.
 |---|---|---|
 | Niyatga moslik | ≥ 13/15 ekran | O'quvchining 1-javobi ≈ SCREEN_INTENTS |
 | «Bilmadim» | 0 ekran | 1-savolga javob berolmaslik |
+| Rol-moslik (110-qonun, F-1022-01) | 0 ekran | O'quvchi ekranni O'Z nomidan aytib bera olmaydi: «bu vaziyat menda bo'lmaydi — mening dasturchim/jamoam/rahbarim yo'q, men saytimni AI bilan o'zim qilaman». Har ekranda 👦 o'ziga savol beradi: «bu yerda ish beradigan kim — men AI'ga yozamanmi yoki kimgadir buyuramanmi?». Buyuruvchi rol = darvozadan o'tmaydi |
 | Gloss'siz so'z | 0 ta | Oqlanmagan va rad etilmagan |
 | Gloss-tartib xatosi | 0 ta | So'z o'rgatilishidan oldin ishlatilgan |
 | Ikki marta o'qilgan gap | ≤ 2 ta | Butun darsda. **Sanalmaydi:** (a) test-materiali ataylab-takror bo'lsa (takrorni ko'rish — testning o'zi), (b) distraktor-variant ustida ikkilanish (uning vazifasi shu), (c) darsning markaziy-g'oya gapi — 1 martagacha (chuqur o'ylash ≠ tushunmaslik). Faqat KO'RSATMA/IZOH-matnlarining qayta-o'qilishi sanaladi. (2026-07-24 UserStory 2-o'qish saboqi) |

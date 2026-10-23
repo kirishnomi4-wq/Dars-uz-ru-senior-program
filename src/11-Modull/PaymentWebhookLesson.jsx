@@ -34,6 +34,9 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QXulosa, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKod, QMustaqil, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 // Kod oynasi (7-ekran) — umumiy kompilyator moduli; ko'p fayl: app.js (o'quvchi) · index.html · namuna.js
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Webhook va to'lovning ichki tuzilishi» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 13-3). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"13-3","tur":"file","nom":{"uz":"Uyga vazifa: Webhook va to'lovning ichki tuzilishi","ru":"Домашнее задание: Webhook и внутреннее устройство оплаты"},"matn":{"uz":"To'rtinchi tekshiruvni qo'shing: summa mos kelmasa — rad.\n\n1. To'lov xabaridagi summa tarif narxidan kam bo'lsa — Backend Pro bermasin va sababini yozib qo'ysin.\n2. Mashq to'lovni kam summa bilan yuboring — rad etilganini ko'ring.\n3. To'g'ri summa bilan — Pro ochilsin.\n4. Neon'dagi tolovlar jadvali skrinshoti (ikkala holat) va repo linki.\n\nNima tekshiriladi:\n— summa tekshiruvi Backend'da\n— kam summa → Pro yo'q\n— to'g'ri summa → Pro\n— kalit kodda yo'q.","ru":"Добавьте четвёртую проверку: если сумма не совпадает — отказ.\n\n1. Если сумма в сообщении об оплате меньше цены тарифа — Backend не выдаёт Pro и записывает причину.\n2. Отправьте тестовую оплату с меньшей суммой — убедитесь, что она отклонена.\n3. С правильной суммой — Pro открывается.\n4. Скриншот таблицы tolovlar в Neon (оба случая) и ссылка на репозиторий.\n\nЧто проверяется:\n— проверка суммы в Backend\n— меньшая сумма → нет Pro\n— правильная сумма → Pro\n— ключа нет в коде."}};
 
 
 
@@ -2787,22 +2790,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 };
 
 // ===== YAKUN — qolipdan: QYakun (DE-204, texnik darslar standarti; SABOQ E 50 — «Bugungi asosiy fikr» yo'q). Sarlavha holatga qarab, har biri rost (E 54) =====
-const HW_QADAM = [
-  { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— darsda ulgurmagan blokni bajaring: `tolovlar` da mashq to'lov qatorlari tursin, uchala tekshiruv belgilangan bo'lsin, README'da «To'lov» bo'limi bo'lsin.", ru: '— выполните блок, на который не хватило времени: в `tolovlar` есть строки учебной оплаты, все три проверки отмечены, в README есть раздел «To\'lov».' } },
-  { b: { uz: 'Sxema', ru: 'Схема' }, t: { uz: "— sxemangizni mahsulotingizdagi haqiqiy tugma va ekran nomlari bilan solishtiring: nom farq qilsa — darsdagi sxema kartasida va README'da tuzating.", ru: '— сравните схему с настоящими названиями кнопок и экранов вашего продукта: если название отличается — исправьте в карточке схемы на уроке и в README.' } }
-];
-const HwCard = ({ keyingi }) => (
-  <div className="card pw-hw fade-up">
-    <div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div>
-    <div className="pw-hw-karta">
-      <span className="pw-hw-q"><em>{tr({ uz: 'kim uchun', ru: 'для кого' })}</em><b>{tr({ uz: "o'z mahsulotingiz", ru: 'ваш продукт' })}</b></span>
-      <span className="pw-hw-q"><em>{tr({ uz: 'nechta', ru: 'сколько' })}</em><b>{tr({ uz: 'ikki ish', ru: 'два дела' })}</b></span>
-      <span className="pw-hw-q"><em>{tr({ uz: 'muddat', ru: 'срок' })}</em><b>{tr({ uz: 'keyingi darsgacha', ru: 'до следующего урока' })}</b></span>
-    </div>
-    <ol className="pw-hw-qadam">{HW_QADAM.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tx(h.t)}</span></li>)}</ol>
-    {keyingi && <span className="pw-hw-keyingi">{keyingi}</span>}
-  </div>
-);
+const HwCard = ({ keyingi }) => <UygaVazifaKarta v={HW_V2} tr={tr} keyingi={keyingi} />;
 const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinish }) => {
   const _gate = useContext(LiveGateCtx) || {};
   const _live = _gate.live;

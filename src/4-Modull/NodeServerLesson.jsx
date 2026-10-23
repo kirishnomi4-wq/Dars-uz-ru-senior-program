@@ -41,6 +41,9 @@ const MentorCtx = createContext(null); // mobil: yig'iladigan Mentor
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Server yaratish» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-4). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-4","tur":"file","nom":{"uz":"Uyga vazifa: Server yaratish","ru":"Домашнее задание: Создание сервера"},"matn":{"uz":"Birinchi serveringizni uyda yozing.\n\n1. Yangi papkada npm init -y va npm install express.\n2. server.js da uchta endpoint: /salom → «Salom, dunyo!», /men → ismingiz, /sevimli → sevimli o'yiningiz nomi.\n3. app.listen(3000) va node server.js.\n4. Brauzerda uchala manzilni oching — har birining skrinshoti.\n5. Serverni to'xtatib (Ctrl + C) /salom ni yana oching — chiqqan xatoning skrinshoti. server.js va package.json ni yuklang.\n\nNima tekshiriladi:\n— package.json da express\n— 3 ta app.get\n— app.listen(3000)\n— 3 skrinshot javoblari bilan\n— o'chiq server xatosi.","ru":"Напишите свой первый сервер дома.\n\n1. В новой папке — npm init -y и npm install express.\n2. В server.js три endpoint: /salom → «Привет, мир!», /men → ваше имя, /sevimli → название любимой игры.\n3. app.listen(3000) и node server.js.\n4. Откройте все три адреса в браузере — скриншот каждого.\n5. Остановите сервер (Ctrl + C) и снова откройте /salom — скриншот ошибки. Загрузите server.js и package.json.\n\nЧто проверяется:\n— express в package.json\n— 3 app.get\n— app.listen(3000)\n— 3 скриншота с ответами\n— ошибка выключенного сервера."}};
 
 
 
@@ -1321,10 +1324,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Express — serverni osonlashtiruvchi paket; endpoint = app.get('/manzil')", ru: "Express — пакет, упрощающий сервер; endpoint = app.get('/адрес')" },
     { uz: "node server.js → localhost:3000 da yoqiladi", ru: 'node server.js → включается на localhost:3000' }
   ];
-  const HOMEWORK = [
-    { b: { uz: "O'z serveringiz", ru: 'Свой сервер' }, t: { uz: "— Antigravity bilan Express server yarating va node server.js bilan yoqing", ru: '— создайте Express-сервер с Antigravity и включите его через node server.js' } },
-    { b: { uz: "Yangi endpoint", ru: 'Новый endpoint' }, t: { uz: "— /ism degan endpoint qo'shing, u sizning ismingizni qaytarsin", ru: '— добавьте endpoint /ism, пусть он возвращает Ваше имя' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1347,7 +1346,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z serveringizni quring:", ru: 'Постройте свой сервер:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda serverni PostgreSQL bazaga ulab, haqiqiy ma'lumot qaytaramiz! 🚀", ru: 'На следующем уроке подключим сервер к базе PostgreSQL и вернём настоящие данные! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz — ', ru: '🏅 Ваши бейджи — ' })}{(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

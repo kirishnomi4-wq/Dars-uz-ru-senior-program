@@ -27,6 +27,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: AI-agent: idrok et → qaror qil → harakat qil» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 7-10). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"7-10","tur":"file","nom":{"uz":"Uyga vazifa: AI-agent: idrok et → qaror qil → harakat qil","ru":"Домашнее задание: AI-агент: воспринимает → решает → действует"},"matn":{"uz":"aistudio'dagi agentingizga uchinchi tool va yangi chegara qo'shing.\n\n1. arrangeDelivery tool'ini qo'shing: parametrlar — manzil, vaqt.\n2. Chegara: «Buyurtma bazaga yozilmaguncha yetkazib berish chaqirilmasin» va «Manzil bo'lmasa — avval so'ra».\n3. Ikki suhbat: manzilsiz buyurtma (agent manzil so'raydi) va to'liq buyurtma (checkOrder → saveOrder → arrangeDelivery tartibi).\n4. Har suhbat skrinshoti va tool'lar JSON'i (fayl).\n\nNima tekshiriladi:\n— 3 ta tool JSON'da to'g'ri\n— chegara matni\n— manzilsiz holatda tool chaqirilmagan\n— tartib to'g'ri.","ru":"Добавьте своему агенту в aistudio третий tool и новое ограничение.\n\n1. Добавьте tool arrangeDelivery: параметры — manzil, vaqt.\n2. Ограничение: «Не вызывать доставку, пока заказ не записан в базу» и «Если нет адреса — сначала спроси».\n3. Два диалога: заказ без адреса (агент спрашивает адрес) и полный заказ (порядок checkOrder → saveOrder → arrangeDelivery).\n4. Скриншот каждого диалога и JSON tool'ов (файлом).\n\nЧто проверяется:\n— 3 tool в JSON описаны верно\n— текст ограничения\n— без адреса tool не вызван\n— порядок верный."}};
 
 
 
@@ -2434,11 +2437,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 maqsad, 3–4 tool', ru: '1 цель, 3–4 инструмента' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Loyihalang', ru: 'Спроектируйте' }, t: { uz: "— o'z botingiz uchun bitta maqsad va 3–4 ta tool yozing", ru: "— напишите для своего бота одну цель и 3–4 инструмента" } },
-    { b: { uz: 'Chegaralang', ru: 'Ограничьте' }, t: { uz: "— qaysi amal xavfli (pul yechish, bekor qilish)? Unga odam tasdig'ini qo'ying yoki bu tool'ni bermang", ru: "— какое действие опасно (списание денег, отмена)? Поставьте на него подтверждение человека или не давайте агенту этот инструмент" } },
-    { b: { uz: "Sinab ko'ring", ru: "Попробуйте" }, t: { uz: "— agent.service.ts ga uchinchi tool qo'shing (masalan, buyurtmani bekor qilish, odam tasdig'i bilan) va Telegramda sinang", ru: "— добавьте в agent.service.ts третий инструмент (например, отмену заказа с подтверждением человека) и проверьте в Telegram" } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2461,7 +2459,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>«Botingiz yaxshi ishlayotganini qaysi raqam aytadi?»</b> Botingiz foydali ekanini ko'rsatadigan bitta bosh raqamni va unga yordam beradigan uch raqamni tanlaymiz.</>, ru: <>Следующий урок — <b>«Какое число скажет, что ваш бот работает хорошо?»</b> Выберем одно главное число, которое показывает, что ваш бот полезен, и три числа, которые ему помогают.</> })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Nishonlaringiz —', ru: "Ваши значки —" })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

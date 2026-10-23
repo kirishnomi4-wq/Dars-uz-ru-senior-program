@@ -32,6 +32,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: React practice 2 (istalgan sayt)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-13). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-13","tur":"text","nom":{"uz":"Uyga vazifa: React practice 2 (istalgan sayt)","ru":"Домашнее задание: React practice 2 (любой сайт)"},"matn":{"uz":"O'z saytingizni (do'kon, to'garak, o'yin klubi…) bo'laklab, ikki qismini quring.\n\n1. README'da: sahifalar ro'yxati va Bosh sahifaning bo'limlari.\n2. Ikki bo'lim uchun aniq prompt yozing va README'ga qo'shing.\n3. Shu ikki bo'limni quring; takrorlanadigan kartochka — alohida komponent, map bilan.\n4. AI biror narsani unutgan bo'lsa — tuzatuvchi promptni ham yozing.\n5. GitHub linkini topshiring.\n\nNima tekshiriladi:\n— README'da bo'laklar\n— 2 aniq prompt (3 qismi bor)\n— karta komponenti + map + props\n— 2 bo'lim ishlaydi.","ru":"Разбейте свой сайт (магазин, кружок, игровой клуб…) на части и соберите две из них.\n\n1. В README: список страниц и разделы главной страницы.\n2. Напишите точный промпт для двух разделов и добавьте их в README.\n3. Соберите эти два раздела; повторяющаяся карточка — отдельный компонент, через map.\n4. Если AI что-то упустил — напишите и исправляющий промпт.\n5. Сдайте ссылку на GitHub.\n\nЧто проверяется:\n— части расписаны в README\n— 2 точных промпта (есть все 3 части)\n— компонент карточки + map + props\n— 2 раздела работают."}};
 
 
 
@@ -1801,11 +1804,6 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Qurish → tekshirish → aniqlashtiruvchi prompt bilan tuzatish", ru: 'Сборка → проверка → исправление уточняющим промптом' }),
     tr({ uz: "g'oya → bo'laklash → prompt → qurish → tekshirish", ru: 'идея → декомпозиция → промпт → сборка → проверка' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: "O'z saytingiz", ru: 'Ваш сайт' }), t: tr({ uz: "— g'oyani qog'ozga bo'laklang: sahifalar, komponentlar, birinchi bo'lim prompti", ru: '— разбейте идею на бумаге: страницы, компоненты, промпт первой секции' }) },
-    { b: tr({ uz: 'Qurib boshlang', ru: 'Начните сборку' }), t: tr({ uz: "— Gemini bilan bosh sahifadan boshlab, bo'lim-bo'lim quring: har bo'limga alohida aniq prompt", ru: '— начните с главной вместе с Gemini и собирайте секцию за секцией: на каждую — отдельный точный промпт' }) },
-    { b: tr({ uz: 'Portfolio', ru: 'Портфолио' }), t: tr({ uz: "— tayyor saytni deploy qilib, do'stlaringizga ko'rsating", ru: '— задеплойте готовый сайт и покажите друзьям' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1828,7 +1826,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🎓 Bitiruv vazifasi', ru: '🎓 Выпускное задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Endi o'z saytingizni quring:", ru: 'Теперь соберите свой сайт:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Modul tugadi — lekin sizning yo'lingiz endi boshlanyapti. G'oyangiz bormi? Bugun boshlang! 🚀", ru: 'Модуль завершён — но ваш путь только начинается. Есть идея? Начните сегодня! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

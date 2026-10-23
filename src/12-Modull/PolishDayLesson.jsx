@@ -30,6 +30,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Final sayqal: demo uchun animatsiyalar» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 14-4). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"14-4","tur":"file","nom":{"uz":"Uyga vazifa: Final sayqal: demo uchun animatsiyalar","ru":"Домашнее задание: Финальная шлифовка: анимации для демо"},"matn":{"uz":"Demo yo'lining qolgan ekranlarini o'sha uch qoida bo'yicha tekshiring.\n\n1. Jadval: har ekran · bosish javobi · yuklanish holati · muvaffaqiyat javobi — ✓ / ✗.\n2. ✗ lardan ikkitasini tuzating.\n3. Slow 4G'da butun demo yo'lini bosib chiqing.\n4. Jadval (README yoki SAYQAL.md), oldin/keyin skrinshot va repo linki.\n\nNima tekshiriladi:\n— demo yo'lining hamma ekrani jadvalda\n— 2 tuzatish\n— Slow 4G'da bo'sh ekran yo'q\n— ikki marta bosish muammosi yo'q.","ru":"Проверьте оставшиеся экраны демо-пути по тем же трём правилам.\n\n1. Таблица: каждый экран · ответ на нажатие · состояние загрузки · ответ на успех — ✓ / ✗.\n2. Исправьте два ✗.\n3. Пройдите весь демо-путь на Slow 4G.\n4. Таблица (README или SAYQAL.md), скриншоты до/после и ссылка на репозиторий.\n\nЧто проверяется:\n— все экраны демо-пути в таблице\n— 2 исправления\n— на Slow 4G нет пустого экрана\n— нет проблемы двойного нажатия."}};
 
 
 
@@ -2175,7 +2178,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
       <div className={cx('py-yakun', !uchala && 'belgisiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}

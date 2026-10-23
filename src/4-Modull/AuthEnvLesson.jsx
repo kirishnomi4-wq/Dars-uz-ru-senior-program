@@ -35,6 +35,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: JWT va autentifikatsiya» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-11). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-11","tur":"test","nom":{"uz":"Uyga vazifa: JWT va autentifikatsiya","ru":"Домашнее задание: JWT и аутентификация"},"matn":null,"n":5};
 
 
 
@@ -2275,11 +2278,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Tokensiz himoyalangan route → 401; qo'riqchi (guard) jwt.verify bilan tekshiradi", ru: 'Защищённый route без токена → 401; охранник (guard) проверяет через jwt.verify' }),
     tr({ uz: "Maxfiy kalitlar .env'da (process.env), GitHub'ga ketmaydi", ru: 'Секретные ключи в .env (process.env), на GitHub не попадают' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: "Login qo'shing", ru: 'Добавьте логин' }), t: tr({ uz: "— loyihangizga POST /api/login va token tekshiruvini qo'shing", ru: '— добавьте в проект POST /api/login и проверку токена' }) },
-    { b: tr({ uz: "Kalitlarni .env'ga", ru: 'Ключи в .env' }), t: tr({ uz: "— barcha maxfiy kalitlarni .env'ga ko'chiring", ru: '— перенесите все секретные ключи в .env' }) },
-    { b: ".gitignore", t: tr({ uz: "— .env'ni .gitignore'ga qo'shing, hech qachon commit qilmang", ru: '— добавьте .env в .gitignore и никогда не коммитьте' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2302,7 +2300,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: 'Modul 5 (NestJS): @UseGuards, JWT strategy, role guard — autentifikatsiya va ruxsatlar haqiqiy loyihadagidek, tartibli yoziladi! 🚀', ru: 'Модуль 5 (NestJS): @UseGuards, JWT strategy, role guard — аутентификация и права пишутся как в настоящем проекте, аккуратно! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

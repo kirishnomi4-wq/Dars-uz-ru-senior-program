@@ -209,6 +209,11 @@ keyin `disabled` bo'ladigan tugma ichidagi har belgi/matn `span`ining o'z `color
 8. **Codemod maydonni o'chirgan** — e4d4ced emoji-tozalash `ico:` maydonini olib tashlagan, kod esa `s.ico === '🎯'` bilan yorliq tanlardi
    (1, 4, 7-darslar). Qoida: kod belgiga emas, alohida `phase`/`kind` maydoniga tayansin. Ovlash: `grep -n "\.ico === '"` → maydon borligini tekshir.
 
+## 🔴 F-1022-01 OV-BANDI — O'QUVCHI «DASTURCHIGA ISH BERADIGAN PM» ROLIGA TUSHIB QOLGAN (2026-10-22; mentor real darsda m3-10 1-ekranni tushunmadi; 110-qonun)
+O'quvchi — startapchi, saytini AI bilan o'zi quradi; dasturchi, jamoa, rahbar, mijoz yo'q. Ekran o'quvchini «dasturchidan so'ragandingiz», «dasturchi tayyor dedi», «shartlarni dasturchiga beramiz», «jamoangizga», «rahbaringizga» roliga qo'ysa — NUQSON (quruvchi/metodistga qaytadi; mayda bo'lsa o'zingiz: dasturchi → AI/Gemini, «dasturchiga beramiz» → «promptga qo'shamiz», «dasturchi yozadi» → «AI yozadi», jamoa → siz/sherigingiz).
+Ovlash: `npm run lint:til -- <fayl>` `dasturchi-topshiriq` 0 error (PM + bridge) + qo'lda: `grep -niE "jamoangiz|rahbar|mijoz(ingiz)? (buyur|so'ra)|buyurtmachi"` — har topilma o'quvchining O'Z vaziyatimi («bu menda bo'ladi»)? Ruxsat: haqiqiy keysdagi uchinchi shaxs (Cyberpunk studiyasi), kasb nomi (Frontend dasturchi). Uy vazifasi fayli (`*.homework.jsx`) ham tekshiriladi — 22.10 da 5 joy o'sha yerda edi.
+Qo'shimcha (111-qonun): mentor rejimida HAR ekranda eslatma-chip bor va birinchi qatori «Bu slayd nima uchun:» — yo'q bo'lsa NUQSON (quruvchi).
+
 ## 🔴 F-1018-10 OV-BANDI — DARS CSS'IDAN «O'LIK» DEB O'CHIRILGAN KEYFRAMES QOLIP/JONLI-MODULGA KERAK EDI (2026-10-18; 5 pitch darsida yakun «Endi siz bilasiz» ro'yxati ko'rinmas edi)
 - Belgi: `src/qolip/qolipCss.js` (`.recap li { animation: fade-in-up …; opacity: 0 }`) va `src/live/*` klasslari animatsiya NOMINI dars faylidagi `@keyframes` dan oladi. Dars CSS'i ichida nom ishlatilmagani — o'lik emas.
 - Ov: dars `<style>` ida `@keyframes` ro'yxatini zaxira/skelet (`src/skelet/NamunaDars.jsx`) bilan solishtir; kamaygan bo'lsa — har yo'qolgan nomni `qolipCss.js`, `src/live/`, dars JSX'ida (`style={{ animation }}`) qidir. `fade-in-up`, `cs-charge`, `rev-in`, `think-pulse`, `tap-hint-pulse`, `bot-status-danger`, `ns-dots-pulse`, `rz-shake`, `fl-move`, `lp-done-pop` — har qolip-darsda bo'lishi shart.

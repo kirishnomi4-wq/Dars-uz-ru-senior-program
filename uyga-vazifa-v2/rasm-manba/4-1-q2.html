@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="_uslub.css">
+<style>.g{display:grid;grid-template-columns:repeat(3,180px);gap:14px}.c{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.c .im{height:84px;display:flex;align-items:center;justify-content:center;font-size:40px}.c .t{padding:10px 12px 12px}.c b{display:block;font-size:15px}.c span{font-size:13px;color:var(--muted)}.k{margin-top:8px;font-size:12.5px;border:1px solid var(--line);border-radius:999px;padding:3px 9px;display:inline-block}</style>
+<div id="rasm"><div class="g" id="g"></div></div>
+<script>
+const o=[["🏰","Blox Fruits","#E7EDFC","👥 512 000"],["🚪","Doors","#FDECEC","👥 88 000"],["🐾","Adopt Me!","#E6F6EC","👥 230 000"],["⚔️","Bedwars","#FFF3D6","👥 64 000"],["🏎️","Car Dealership","#EDE7FB","👥 41 000"],["🧱","Tower of Hell","#E2F4F6","👥 37 000"]];
+document.getElementById('g').innerHTML=o.map(([e,n,bg,p])=>`<div class="c"><div class="im" style="background:${bg}">${e}</div><div class="t"><b>${n}</b><span>${p} o'yinchi</span><div class="k">👍 Like</div></div></div>`).join('');
+</script>

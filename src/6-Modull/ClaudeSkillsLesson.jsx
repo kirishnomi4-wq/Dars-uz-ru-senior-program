@@ -37,6 +37,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Claude Skills» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-5","tur":"test","nom":{"uz":"Uyga vazifa: Claude Skills","ru":"Домашнее задание: Claude Skills"},"matn":null,"n":5};
 
 
 
@@ -2248,11 +2251,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 SKILL.md', ru: '1 SKILL.md' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "O'qing", ru: 'Прочитайте' }, t: { uz: "— shu darsdagi yoki internetdagi bitta SKILL.md'ni o'qing", ru: '— прочитайте один SKILL.md из этого урока или из интернета' } },
-    { b: { uz: 'Tahlil', ru: 'Разбор' }, t: { uz: '— description aniqmi? qadamlar aniqmi? misol bormi?', ru: '— точен ли description? точны ли шаги? есть ли пример?' } },
-    { b: { uz: 'Rejalashtiring', ru: 'Спланируйте' }, t: { uz: '— loyihangizda qaysi takrorlanadigan vazifaga Skill kerak?', ru: '— для какой повторяющейся задачи в вашем проекте нужен Skill?' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2275,7 +2273,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: "Keyingi dars — «Ilova o'zi qaror qilsa, kimga tegadi?». Mini-do'koningizda ilova o'zi qilmaydigan ishlarni va ular kimga tegishini yozasiz.", ru: 'Следующий урок — «Если приложение решает само, кого это касается?». В своём мини-магазине вы запишете, какие дела приложение не делает само и кого они касаются.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

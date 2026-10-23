@@ -32,6 +32,9 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QKarta, QBashorat, QTaxmin, QQadamlar, QXato, QIzoh, QXulosa, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QKod, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Animatsiya va mikrointeraksiyalar» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 9-5). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"9-5","tur":"file","nom":{"uz":"Uyga vazifa: Animatsiya va mikrointeraksiyalar","ru":"Домашнее задание: Анимации и микровзаимодействия"},"matn":{"uz":"O'z MVP'ingizga uchta harakat qo'shing — har biri foydalanuvchiga nimadir aytsin.\n\n1. Bosiladigan elementga bosish javobi: transform + transition (CSS'ni o'zingiz yozing).\n2. Holat o'zgarishi rang bilan, silliq.\n3. Paydo bo'ladigan / yo'qoladigan element — Motion bilan.\n4. Hech bir harakat 0.5 soniyadan uzun emas; «harakatni kamaytirish» sozlamasi yoqilgan telefonda harakat o'chadi (MotionConfig).\n5. Repo linki va qisqa ekran yozuvi (10–20 soniya) yoki 3 skrinshot.\n\nNima tekshiriladi:\n— CSS transition qo'lda yozilgan\n— 3 harakat har xil vazifada\n— uzun/ortiqcha harakat yo'q\n— reduced motion hisobga olingan.","ru":"Добавьте в свой MVP три анимации — пусть каждая что-то сообщает пользователю.\n\n1. Отклик на нажатие у кликабельного элемента: transform + transition (CSS пишите сами).\n2. Смена состояния — цветом, плавно.\n3. Появляющийся / исчезающий элемент — через Motion.\n4. Ни одна анимация не длиннее 0.5 секунды; на телефоне с включённой настройкой «уменьшить движение» анимация отключается (MotionConfig).\n5. Ссылка на репозиторий и короткая запись экрана (10–20 секунд) или 3 скриншота.\n\nЧто проверяется:\n— CSS transition написан вручную\n— 3 анимации с разными задачами\n— нет длинных/лишних анимаций\n— reduced motion учтён."}};
 
 
 
@@ -2385,11 +2388,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '3 element', ru: '3 элемента' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "O'z loyihangizda", ru: 'В своём проекте' }, t: { uz: "— amaliyotdagi 5-qadam promptini Antigravity'ga yuboring: uch element bosishga javob bersin", ru: '— отправьте в Antigravity промпт из 5-го шага практики: пусть три элемента отвечают на нажатие' } },
-    { b: { uz: 'Tekshiring', ru: 'Проверьте' }, t: { uz: '— qurilmada harakatni kamaytirishni yoqib, sahifangizni oching: kichrayish o\'chdimi?', ru: '— включите на устройстве уменьшение движения и откройте страницу: уменьшение отключилось?' } },
-    { b: { uz: 'Kuzating', ru: 'Понаблюдайте' }, t: { uz: "— telefoningizdagi bitta ilovada «bosildi», «o'zgardi», «tayyor» javoblarini toping va har birini bir gapda yozing", ru: '— найдите в одном приложении на телефоне ответы «нажато», «изменилось», «готово» и опишите каждый одним предложением' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
@@ -2406,7 +2404,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         </>}
         recap={RECAP.map(tr)}
-        uyga={<div className="card hwk fade-up d4"><div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>«Birinchi odam kirganda nimani ko'rasiz?»</b>: Maydon bosishga javob beradi, endi odamlar unda nima qilayotganini ko'rish navbati.</>, ru: <>Следующий урок — <b>«Что вы увидите, когда зайдёт первый человек?»</b>: Maydon отвечает на нажатие, теперь очередь увидеть, что люди на нём делают.</> })}</p></div>}
+        uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
         nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
       />

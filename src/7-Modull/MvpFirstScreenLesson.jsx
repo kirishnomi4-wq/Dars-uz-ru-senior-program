@@ -34,6 +34,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKarta, QChip, QBashorat, QTaxmin, QXato, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: MVP ishlab chiqish — 1-qism» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 9-7). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"9-7","tur":"file","nom":{"uz":"Uyga vazifa: MVP ishlab chiqish — 1-qism","ru":"Домашнее задание: Разработка MVP — часть 1"},"matn":{"uz":"O'z MVP'ingizning birinchi ekranini Backend'ga ulang.\n\n1. Backend birinchi ekran ro'yxatini beradigan GET yo'li (darsda yozgan talabingiz bo'yicha).\n2. Sayt ro'yxatni Backend'dan olsin (statik ma'lumot olib tashlansin).\n3. Kelguncha «Yuklanmoqda…», Backend javob bermasa — tushunarli xabar.\n4. Talabning har qatorini tekshirib, README'ga ✓ bilan yozing.\n5. Repo linki va 3 skrinshot: ro'yxat, yuklanish, xato (Backend to'xtatilgan).\n\nNima tekshiriladi:\n— GET yo'li\n— statik ma'lumot yo'q\n— yuklanish va xato holati\n— README'da talab ✓.","ru":"Подключите первый экран своего MVP к Backend.\n\n1. GET-маршрут в Backend, который отдаёт список для первого экрана (по требованию, написанному на уроке).\n2. Сайт получает список из Backend (статичные данные убраны).\n3. Пока нет ответа — «Загрузка…», если Backend не отвечает — понятное сообщение.\n4. Проверьте каждую строку требования и отметьте в README ✓.\n5. Ссылка на репозиторий и 3 скриншота: список, загрузка, ошибка (Backend остановлен).\n\nЧто проверяется:\n— GET-маршрут\n— статичных данных нет\n— состояния загрузки и ошибки\n— требование в README с ✓."}};
 
 
 
@@ -1981,7 +1984,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   return (
     <Stage eyebrow={tr({ uz: 'Yakun', ru: 'Итог' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: 'Завершить ✓' })}</FinishBtn></>}>
-      <QYakun til={__lang}
+      <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
         togri={correct} jami={total}
         sarlavha={tr({ uz: <>Birinchi ekran ishlayapti: <span className="italic" style={{ color: T.accent }}>talab bo'yicha tekshirildi</span>.</>, ru: <>Первый экран готов: <span className="italic" style={{ color: T.accent }}>проверен по требованию</span>.</> })}

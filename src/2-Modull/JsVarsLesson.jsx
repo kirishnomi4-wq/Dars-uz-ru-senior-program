@@ -33,6 +33,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: JS: O'zgaruvchilar» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-3). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"3-3","tur":"compiler","nom":{"uz":"Uyga vazifa: JS: O'zgaruvchilar","ru":"Домашнее задание: JS: Переменные"},"matn":{"uz":"O'yinchi profilini o'zgaruvchilarda saqlang va konsolga chiqaring.\n\n1. const bilan playerName (ismingiz, matn) va birthYear (son) oching.\n2. let bilan score = 0 va isOnline = true oching.\n3. Ballni ikki marta yangilang: avval 50 qiling, keyin score = score + 25.\n4. Konsolga to'rt qator chiqaring: ism, tug'ilgan yil, ball, onlayn holati.","ru":"Сохраните профиль игрока в переменных и выведите его в консоль.\n\n1. Через const создайте playerName (ваше имя, строка) и birthYear (число).\n2. Через let создайте score = 0 и isOnline = true.\n3. Обновите баллы два раза: сначала сделайте 50, потом score = score + 25.\n4. Выведите в консоль четыре строки: имя, год рождения, баллы, статус онлайн."}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -1579,7 +1582,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   };
   const audio = useAudio([{ id: 's16', text: "Tabriklaymiz — bugun siz birinchi haqiqiy JavaScript kodingizni yozdingiz! Eslab qoling: o'zgaruvchi — nomlangan quti, let o'zgaradi, const o'zgarmaydi, qiymatlar esa matn, raqam yoki boolean bo'ladi. Keyingi darsda o'zgaruvchilarni ekranga chiqarib, ular bilan amallar bajaramiz.", trigger: 'on_mount', waits_for: null }]);
   const RECAP = [{ uz: "O'zgaruvchi — qiymat saqlaydigan nomlangan quti", ru: 'Переменная — коробка с именем, где хранится значение' }, { uz: "Qiymat berish: = (\"qutiga sol\")", ru: 'Присваивание: = («положи в коробку»)' }, { uz: "let — o'zgaradi, const — o'zgarmas", ru: 'let — меняется, const — неизменный' }, { uz: "var — eski usul, bugun let/const", ru: 'var — старый способ, сегодня let/const' }, { uz: "Turlar: matn (string), son (number), boolean", ru: 'Типы: текст (string), число (number), boolean' }];
-  const HOMEWORK = [{ b: 'name', t: { uz: "— let bilan, qo'shtirnoqda", ru: '— через let, в кавычках' } }, { b: 'age', t: { uz: "— let bilan, qo'shtirnoqsiz son", ru: '— через let, число без кавычек' } }, { b: 'birth_year', t: { uz: '— const bilan', ru: '— через const' } }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1608,7 +1610,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'zingiz haqingizda 3 ta o'zgaruvchi yozing:", ru: 'Напишите 3 переменные о себе:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b className="mono">{h.b}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Avval qo'lda yozing, keyin to'g'ri-noto'g'risini tekshiring. Keyingi darsda ularni ekranga chiqaramiz! 🚀", ru: 'Сначала напишите сами, потом проверьте, всё ли верно. На следующем уроке выведем их на экран! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -34,6 +34,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QKarta, QBashorat, QKirish, QReja, QTushuncha, QTest, QTestJavob, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Vibe-coding: 1-funksiya» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 11-11). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"11-11","tur":"file","nom":{"uz":"Uyga vazifa: Vibe-coding: 1-funksiya","ru":"Домашнее задание: Vibe-coding: 1-я функция"},"matn":{"uz":"1-funksiyangiz formasini chekka holatlarda sinang.\n\n1. Uch chekka holatni sinang: bo'sh maydon · juda uzun matn (500+ belgi) · noto'g'ri format (masalan sana yoki son o'rniga harf).\n2. Har birida Backend yozmasin (400) va ilova nima noto'g'riligini aytsin.\n3. Neon'da noto'g'ri yozuv qolmaganini tekshiring.\n4. Uch holat skrinshoti va repo linki.\n\nNima tekshiriladi:\n— uch holat\n— tekshiruv Backend'da (faqat ilovada emas)\n— ilova xabari aniq\n— Database'da yaroqsiz qator yo'q.","ru":"Проверьте форму своей 1-й функции в крайних случаях.\n\n1. Проверьте три крайних случая: пустое поле · очень длинный текст (500+ символов) · неверный формат (например, буквы вместо даты или числа).\n2. В каждом случае Backend не записывает (400), а приложение говорит, что не так.\n3. Проверьте в Neon, что неправильной записи не осталось.\n4. Скриншоты трёх случаев и ссылка на репозиторий.\n\nЧто проверяется:\n— три случая\n— проверка в Backend (не только в приложении)\n— сообщение приложения понятное\n— в Database нет некорректных строк."}};
 
 
 
@@ -2236,7 +2239,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     <Stage eyebrow={tr({ uz: 'Yakun', ru: "Итог" })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><button className="btn-ghost" onClick={onReset} style={{ padding: 'clamp(11px,1.6vw,13px) clamp(16px,2.2vw,22px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Qaytadan', ru: 'Заново' })}</button><FinishBtn className="btn-white-accent" onClick={onFinish} style={{ marginLeft: 'auto', padding: 'clamp(11px,1.6vw,13px) clamp(22px,2.6vw,30px)', fontSize: 'clamp(13px,1.5vw,15px)' }}>{tr({ uz: 'Yakunlash ✓', ru: "Завершить ✓" })}</FinishBtn></>}>
       {/* Belgi «✓ Birinchi funksiya ishlaydi» — faqat 3-amaliyot bajarilganda; aks holda belgisiz (MD 7) */}
       <div className={cxx('fo-yakun', belgisiz && 'belgisiz')}>
-        <QYakun til={__lang}
+        <QYakun til={__lang} uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           chip={tr({ uz: 'Dars tugadi', ru: 'Урок окончен' })}
           togri={correct} jami={total}
           sarlavha={tr(YAKUN_SARLAVHA[holat])}

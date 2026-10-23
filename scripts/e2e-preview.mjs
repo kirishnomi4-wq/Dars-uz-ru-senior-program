@@ -48,7 +48,7 @@ process.env.DARS_API_URL = API;
 if (process.env.BAZA_LIVE) { await buildBaza(SRC, `${OUT}/InternetLesson.jsx`, process.env.BAZA_LIVE); console.log(`${RED}MUTATSIYA: baza kodi (${process.env.BAZA_LIVE})${R}`); }
 else execFileSync(process.execPath, ['scripts/build-lms.mjs', SRC], { env: { ...process.env, LMS_OUT_DIR: OUT, DARS_API_URL: API }, stdio: 'pipe' });
 const JSX = `/${OUT}/InternetLesson.jsx`;
-if (!process.env.BAZA_LIVE && !readFileSync(`${OUT}/InternetLesson.jsx`, 'utf8').includes('notePreviewProps')) { console.error('yig\'mada preview-o\'ram yo\'q'); }
+if (!process.env.BAZA_LIVE && !readFileSync(`${OUT}/InternetLesson.jsx`, 'utf8').includes('startLessonRun')) { console.error('yig\'mada preview-o\'ram yo\'q'); }
 const previewUrl = (extra = '') => `${BASE}/preview/?jsx=${encodeURIComponent(JSX)}&visit_mode=preview&lang=uz${extra}`;
 
 const browser = await chromium.launch({ executablePath: CHROME, headless: true });
@@ -126,9 +126,10 @@ try {
   });
 
   // Preview'da tanishtiruv-oynasi (onboarding kaliti ham varaq xotirasida) bosishni to'sadi — bosish DOM orqali.
-  // Javob belgisi: varaq xotirasidagi ccProgress.answers (preview'da localStorage.getItem qatlamdan o'qiydi).
+  // Javob belgisi: varaq xotirasidagi ccProgress.answers — dars yig'masining o'z saqlov adapteri orqali (F-1021-10:
+  // Storage.prototype endi tegilmaydi, sahifa localStorage'i preview xotirasini ko'rmaydi; preview/main.jsx ochib beradi).
   const pick = (p) => p.evaluate(() => document.querySelectorAll('button.option')[1].click());
-  const answered = (p) => p.evaluate((id) => Object.keys(JSON.parse(localStorage.getItem(`ccProgress:${id}`) || '{}').answers || {}), LID);
+  const answered = (p) => p.evaluate((id) => Object.keys(JSON.parse((window.__ccLessonStorage || localStorage).getItem(`ccProgress:${id}`) || '{}').answers || {}), LID);
 
   await step('IT-4: preview\'da mentor paneli yo\'q (nazorat: o\'sha brauzerdagi mentor varag\'ida bor)', async () => {
     if (!pv) throw new Error('preview varag\'i ochilmadi');

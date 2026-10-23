@@ -42,6 +42,9 @@ const MentorCtx = createContext(null);
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Fidbek asosida yaxshilash» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-14). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-14","tur":"file","nom":{"uz":"Uyga vazifa: Fidbek asosida yaxshilash","ru":"Домашнее задание: Улучшение по фидбеку"},"matn":{"uz":"Sikldagi oxirgi ikki qadamni bajaring.\n\n1. «Sozlamalar»ga joylar sonini o'zgartirish: ko'paytirilsa yangi joylar qo'shilsin, kamaytirilsa faqat bo'sh joylar olib tashlansin.\n2. Band joyni olib tashlab bo'lmasin — xabar chiqsin.\n3. Panelni o'sha sinfdoshga qayta ko'rsating va yangi fikrini README'ga yozing: nima yaxshilandi, nima qoldi.\n4. GitHub linki va skrinshot (joylar soni o'zgargan panel).\n\nNima tekshiriladi:\n— joy qo'shish INSERT bilan\n— faqat bo'sh joy o'chadi\n— band joy himoyalangan\n— README'da qayta fikr.","ru":"Выполните два последних шага цикла.\n\n1. В «Настройках» — изменение числа мест: при увеличении добавляются новые места, при уменьшении убираются только свободные.\n2. Занятое место убрать нельзя — появляется сообщение.\n3. Снова покажите панель тому же однокласснику и запишите его новое мнение в README: что стало лучше, что осталось.\n4. Ссылка на GitHub и скриншот (панель с изменённым числом мест).\n\nЧто проверяется:\n— места добавляются через INSERT\n— удаляются только свободные места\n— занятое место защищено\n— в README — повторный отзыв."}};
 
 
 
@@ -1182,11 +1185,6 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: 'Upgrade: tasdiq, dashboard, sozlamalar (narx UPDATE, joylar soni)', ru: 'Апгрейды: подтверждение, дашборд, настройки (цена через UPDATE, число мест)' },
     { uz: '4-MODUL: baza → server → ulanish → loyiha → yaxshilash', ru: '4-Й МОДУЛЬ: база → сервер → соединение → проект → улучшение' }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Fikr yig'ing", ru: 'Соберите отзывы' }, t: { uz: "— o'z loyihangizni 2-3 kishiga ko'rsatib, aniq fikr so'rang", ru: '— покажите свой проект 2-3 людям и попросите конкретный отзыв' } },
-    { b: { uz: 'Saralang', ru: 'Приоритизируйте' }, t: { uz: "— fikrlarni foyda/mehnat bo'yicha tartiblang", ru: '— разложите отзывы по пользе/усилиям' } },
-    { b: { uz: 'Bitta upgrade', ru: 'Один апгрейд' }, t: { uz: "— eng yuqorisini AI bilan tuzating va qayta ko'rsating", ru: '— исправьте самый важный с AI и покажите снова' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -1209,7 +1207,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'z loyihangizda siklni o'tang:", ru: 'Пройдите цикл на своём проекте:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">🎉 {tr({ uz: "Backend modulini tamomladingiz: baza, server, fullstack ulanish va mahsulotni yaxshilash — hammasi sizning qo'lingizda!", ru: 'Вы завершили модуль Backend: база, сервер, fullstack-соединение и улучшение продукта — всё в Ваших руках!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

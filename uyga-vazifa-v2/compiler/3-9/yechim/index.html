@@ -1,0 +1,53 @@
+<!-- prompt: Shaxmat to'garagi promo sahifasiga sarlavhasi "Tariflar" bo'lgan yangi bo'lim qo'sh.
+Unda 3 ta karta yonma-yon tursin: "Boshlang'ich" 150 000 so'm, "Faol" 250 000 so'm, "Chempion" 400 000 so'm.
+Har kartada nom, oylik narx va 3 ta imkoniyat ro'yxati, pastida "Tanlash" tugmasi.
+Uslub: sahifadagi mavjud kartalar kabi oq fon, yumshoq burchak; tanlangan karta qora ramka bilan ajralsin.
+"Tanlash" bosilganda pastda "Siz tanladingiz: <nom>" chiqsin, boshqasi tanlansa almashsin. -->
+<!-- 2-prompt: "Faol" kartasi tepasiga kichik "Mashhur" yorlig'ini qo'sh, boshqa hech narsani o'zgartirma. -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shaxmat to'garagi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>Shaxmat to'garagi</h1>
+    <p>Har kuni 30 daqiqa — va har hafta yangi g'alaba.</p>
+    <button>Yozilish</button>
+  </header>
+
+  <section class="cards">
+    <div class="card"><h3>Murabbiy</h3><p>Tajribali murabbiy bilan darslar.</p></div>
+    <div class="card"><h3>Turnirlar</h3><p>Har oy sinf turniri.</p></div>
+    <div class="card"><h3>Onlayn</h3><p>Uydan ham o'ynash mumkin.</p></div>
+  </section>
+
+  <section class="tariflar">
+    <h2>Tariflar</h2>
+    <div class="cards">
+      <div class="card tarif" data-nom="Boshlang'ich">
+        <h3>Boshlang'ich</h3>
+        <p class="narx">150 000 so'm / oy</p>
+        <ul><li>Haftada 2 dars</li><li>Onlayn mashqlar</li><li>Sinf turniri</li></ul>
+        <button class="tanlash">Tanlash</button>
+      </div>
+      <div class="card tarif" data-nom="Faol">
+        <span class="yorliq">Mashhur</span>
+        <h3>Faol</h3>
+        <p class="narx">250 000 so'm / oy</p>
+        <ul><li>Haftada 3 dars</li><li>Partiya tahlili</li><li>Shahar turniri</li></ul>
+        <button class="tanlash">Tanlash</button>
+      </div>
+      <div class="card tarif" data-nom="Chempion">
+        <h3>Chempion</h3>
+        <p class="narx">400 000 so'm / oy</p>
+        <ul><li>Har kuni dars</li><li>Shaxsiy murabbiy</li><li>Respublika turniri</li></ul>
+        <button class="tanlash">Tanlash</button>
+      </div>
+    </div>
+    <p id="tanlov"></p>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>

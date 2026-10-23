@@ -37,6 +37,9 @@ const ou = (node) => (node && typeof node === 'object' && !React.isValidElement(
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: AI-agent vs oddiy AI» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-4). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-4","tur":"file","nom":{"uz":"Uyga vazifa: AI-agent vs oddiy AI","ru":"Домашнее задание: AI-агент vs обычный AI"},"matn":{"uz":"O'z loyihangiz (bot, sayt yoki ilova) uchun agent rejasini AGENT.md ga yozing.\n\n1. Maqsad — bitta gap.\n2. 2–3 ta tool: nomi, nima qiladi, faqat o'qiydimi yoki yozadimi.\n3. 2 ta chegara: agent nimani qilmasin.\n4. Qaysi amaldan oldin odamdan tasdiq so'raladi va nega.\n5. Loyihangizda oddiy AI yetarli bo'ladigan bitta holat — nega u yerda agent kerak emas.\n\nNima tekshiriladi:\n— maqsad aniq\n— tool'lar o'qish/yozish bilan\n— chegaralar aniq amalga bog'langan\n— tasdiq yozadigan amalda\n— oddiy AI misoli asosli.","ru":"Напишите в AGENT.md план агента для своего проекта (бот, сайт или приложение).\n\n1. Цель — одним предложением.\n2. 2–3 tool: название, что делает, только читает или записывает.\n3. 2 ограничения: чего агент делать не должен.\n4. Перед каким действием спрашивается подтверждение человека и почему.\n5. Один случай в вашем проекте, где хватит обычного AI, — почему там агент не нужен.\n\nЧто проверяется:\n— цель понятна\n— у tool указано чтение/запись\n— ограничения привязаны к конкретному действию\n— подтверждение — на действии, которое записывает\n— пример с обычным AI обоснован."}};
 
 
 
@@ -2161,11 +2164,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 vazifa', ru: '1 задача' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: "Toping", ru: 'Найдите' }, t: { uz: "— loyihangizda qaysi vazifa bir necha qadamli? O'sha — agentga nomzod", ru: '— какая задача в вашем проекте состоит из нескольких шагов? Она и есть кандидат для агента' } },
-    { b: { uz: "Tool'lar", ru: 'Инструменты' }, t: { uz: "— agentga qaysi tool'lar kerak: Database? API? xabar?", ru: '— какие инструменты нужны агенту: Database? API? сообщение?' } },
-    { b: { uz: "Chegara", ru: 'Ограничение' }, t: { uz: '— agent nima qila olmasligi kerak? Chegarani yozing', ru: '— чего агент делать не должен? Запишите ограничение' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2188,7 +2186,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: "Keyingi dars — Claude Skills: AI va agentga yozma yo'riqnoma berib, uning ishini aniq shakllantirish.", ru: 'Следующий урок — Claude Skills: даём ИИ и агенту письменную инструкцию, чтобы точно задать их работу.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

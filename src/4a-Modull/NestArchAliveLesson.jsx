@@ -43,6 +43,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: NestJS va arxitektura» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-1). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"6-1","tur":"test","nom":{"uz":"Uyga vazifa: NestJS va arxitektura","ru":"Домашнее задание: NestJS и архитектура"},"matn":null,"n":5};
 
 
 
@@ -2617,11 +2620,6 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "Buyurtma yo'li: qo'riqchi → nazoratchi → ofitsiant → oshpaz → ombor → bir xil lagan", ru: 'Путь заказа: охранник → контролёр → официант → повар → склад → одинаковый поднос' }),
     tr({ uz: "Yangi bo'lim = 5 qadam: Entity → DTO → Service → Controller → Module", ru: 'Новый раздел = 5 шагов: Entity → DTO → Service → Controller → Module' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: "Repo'ni oching", ru: 'Откройте репозиторий' }), t: tr({ uz: "— github.com/Azizbekcrypto/IntroNestArxitechture — papkalarni ko'zdan kechiring", ru: '— github.com/Azizbekcrypto/IntroNestArxitechture — пройдитесь по папкам' }) },
-    { b: tr({ uz: 'Restoran', ru: 'Ресторан' }), t: tr({ uz: "— har papkani restoran bo'limiga moslab ayting", ru: '— назовите для каждой папки её ресторанную роль' }) },
-    { b: tr({ uz: "So'rov yo'li", ru: "Путь запроса" }), t: tr({ uz: "— bitta endpoint uchun buyurtma yo'lini ekranga qaramasdan, yoddan tushuntiring", ru: '— объясните своими словами путь заказа для одного endpoint' }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2644,7 +2642,7 @@ const Screen20 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "🚀 Keyingi darsda — restoranga o'z bo'limingizni ochasiz: Entity → DTO → Service → Controller → Module!", ru: '🚀 На следующем уроке вы откроете в ресторане свой раздел: Entity → DTO → Service → Controller → Module!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

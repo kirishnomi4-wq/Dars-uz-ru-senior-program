@@ -1,0 +1,660 @@
+{
+ "_izoh": "LMS xaritasi (go.coddycamp.uz, 21.10 00:50 o'qildi): karta id → bo'lim, Class dars id, mavjud uyga vazifa (Practice) id yoki null, Class tartibi. 21.10 01:50: 7–14-modulga 49 yangi uyga vazifa ochildi (yangi: true).",
+ "kartalar": {
+  "2-1": {
+   "bolim": 70,
+   "dars": 2374,
+   "uv": 2785,
+   "tartib": 10
+  },
+  "2-3": {
+   "bolim": 70,
+   "dars": 2417,
+   "uv": 2418,
+   "tartib": 30
+  },
+  "2-4": {
+   "bolim": 70,
+   "dars": 2419,
+   "uv": 2421,
+   "tartib": 50
+  },
+  "2-5": {
+   "bolim": 70,
+   "dars": 2541,
+   "uv": 2775,
+   "tartib": 65
+  },
+  "2-7": {
+   "bolim": 70,
+   "dars": 2424,
+   "uv": 2777,
+   "tartib": 80
+  },
+  "2-8": {
+   "bolim": 70,
+   "dars": 2425,
+   "uv": 2778,
+   "tartib": 90
+  },
+  "2-9": {
+   "bolim": 70,
+   "dars": 2542,
+   "uv": 2780,
+   "tartib": 100
+  },
+  "2-10": {
+   "bolim": 70,
+   "dars": 2426,
+   "uv": 2779,
+   "tartib": 105
+  },
+  "2-11": {
+   "bolim": 70,
+   "dars": 2428,
+   "uv": 2781,
+   "tartib": 110
+  },
+  "2-12": {
+   "bolim": 70,
+   "dars": 2427,
+   "uv": 2782,
+   "tartib": 121
+  },
+  "2-13": {
+   "bolim": 70,
+   "dars": 2429,
+   "uv": 2783,
+   "tartib": 130
+  },
+  "3-1": {
+   "bolim": 73,
+   "dars": 2431,
+   "uv": 2789,
+   "tartib": 10
+  },
+  "3-3": {
+   "bolim": 73,
+   "dars": 2433,
+   "uv": 2791,
+   "tartib": 30
+  },
+  "3-4": {
+   "bolim": 73,
+   "dars": 2434,
+   "uv": 2792,
+   "tartib": 40
+  },
+  "3-5": {
+   "bolim": 73,
+   "dars": 2435,
+   "uv": 2793,
+   "tartib": 50
+  },
+  "3-6": {
+   "bolim": 73,
+   "dars": 2436,
+   "uv": 2794,
+   "tartib": 60
+  },
+  "3-8": {
+   "bolim": 73,
+   "dars": 2438,
+   "uv": 2796,
+   "tartib": 80
+  },
+  "3-9": {
+   "bolim": 73,
+   "dars": 2439,
+   "uv": 2797,
+   "tartib": 90
+  },
+  "3-10": {
+   "bolim": 73,
+   "dars": 2441,
+   "uv": 2800,
+   "tartib": 110
+  },
+  "3-11": {
+   "bolim": 73,
+   "dars": 2442,
+   "uv": 2801,
+   "tartib": 120
+  },
+  "3-12": {
+   "bolim": 73,
+   "dars": 2443,
+   "uv": 2798,
+   "tartib": 130
+  },
+  "4-1": {
+   "bolim": 74,
+   "dars": 2445,
+   "uv": 2802,
+   "tartib": 10
+  },
+  "4-3": {
+   "bolim": 74,
+   "dars": 2447,
+   "uv": 2804,
+   "tartib": 30
+  },
+  "4-4": {
+   "bolim": 74,
+   "dars": 2448,
+   "uv": 2805,
+   "tartib": 40
+  },
+  "4-6": {
+   "bolim": 74,
+   "dars": 2450,
+   "uv": 2807,
+   "tartib": 60
+  },
+  "4-7": {
+   "bolim": 74,
+   "dars": 2451,
+   "uv": 2808,
+   "tartib": 70
+  },
+  "4-8": {
+   "bolim": 74,
+   "dars": 2453,
+   "uv": 2809,
+   "tartib": 90
+  },
+  "4-9": {
+   "bolim": 74,
+   "dars": 2455,
+   "uv": 2810,
+   "tartib": 110
+  },
+  "4-11": {
+   "bolim": 74,
+   "dars": 2458,
+   "uv": 2812,
+   "tartib": 140
+  },
+  "4-12": {
+   "bolim": 74,
+   "dars": 2459,
+   "uv": 2813,
+   "tartib": 150
+  },
+  "4-13": {
+   "bolim": 74,
+   "dars": 2460,
+   "uv": 2814,
+   "tartib": 160
+  },
+  "5-1": {
+   "bolim": 75,
+   "dars": 2462,
+   "uv": 2818,
+   "tartib": 10
+  },
+  "5-3": {
+   "bolim": 75,
+   "dars": 2464,
+   "uv": 2820,
+   "tartib": 30
+  },
+  "5-4": {
+   "bolim": 75,
+   "dars": 2465,
+   "uv": 2821,
+   "tartib": 40
+  },
+  "5-5": {
+   "bolim": 75,
+   "dars": 2466,
+   "uv": 2822,
+   "tartib": 50
+  },
+  "5-6": {
+   "bolim": 75,
+   "dars": 2467,
+   "uv": 2823,
+   "tartib": 60
+  },
+  "5-8": {
+   "bolim": 75,
+   "dars": 2469,
+   "uv": 2825,
+   "tartib": 80
+  },
+  "5-9": {
+   "bolim": 75,
+   "dars": 2471,
+   "uv": 2826,
+   "tartib": 90
+  },
+  "5-10": {
+   "bolim": 75,
+   "dars": 2472,
+   "uv": 2827,
+   "tartib": 100
+  },
+  "5-11": {
+   "bolim": 75,
+   "dars": 2473,
+   "uv": 2828,
+   "tartib": 110
+  },
+  "5-13": {
+   "bolim": 75,
+   "dars": 2475,
+   "uv": 2830,
+   "tartib": 130
+  },
+  "5-14": {
+   "bolim": 75,
+   "dars": 2476,
+   "uv": 2831,
+   "tartib": 140
+  },
+  "6-1": {
+   "bolim": 90,
+   "dars": 2761,
+   "uv": 2833,
+   "tartib": 10
+  },
+  "6-3": {
+   "bolim": 90,
+   "dars": 2763,
+   "uv": 2835,
+   "tartib": 30
+  },
+  "6-4": {
+   "bolim": 90,
+   "dars": 2764,
+   "uv": 2836,
+   "tartib": 40
+  },
+  "6-5": {
+   "bolim": 90,
+   "dars": 2765,
+   "uv": 2837,
+   "tartib": 50
+  },
+  "6-7": {
+   "bolim": 90,
+   "dars": 2767,
+   "uv": 2839,
+   "tartib": 70
+  },
+  "6-8": {
+   "bolim": 90,
+   "dars": 2768,
+   "uv": 2840,
+   "tartib": 80
+  },
+  "6-10": {
+   "bolim": 90,
+   "dars": 2770,
+   "uv": 2842,
+   "tartib": 100
+  },
+  "6-11": {
+   "bolim": 90,
+   "dars": 2771,
+   "uv": 2843,
+   "tartib": 110
+  },
+  "6-12": {
+   "bolim": 90,
+   "dars": 2772,
+   "uv": 2845,
+   "tartib": 120
+  },
+  "6-14": {
+   "bolim": 90,
+   "dars": 2774,
+   "uv": 2846,
+   "tartib": 140
+  },
+  "7-1": {
+   "bolim": 80,
+   "dars": 2493,
+   "uv": 3082,
+   "tartib": 10,
+   "yangi": true
+  },
+  "7-3": {
+   "bolim": 80,
+   "dars": 2495,
+   "uv": 3081,
+   "tartib": 30,
+   "yangi": true
+  },
+  "7-4": {
+   "bolim": 80,
+   "dars": 2496,
+   "uv": 3083,
+   "tartib": 40,
+   "yangi": true
+  },
+  "7-5": {
+   "bolim": 80,
+   "dars": 2498,
+   "uv": 3084,
+   "tartib": 50,
+   "yangi": true
+  },
+  "7-6": {
+   "bolim": 80,
+   "dars": 2499,
+   "uv": 3085,
+   "tartib": 60,
+   "yangi": true
+  },
+  "7-7": {
+   "bolim": 80,
+   "dars": 2500,
+   "uv": 3086,
+   "tartib": 70,
+   "yangi": true
+  },
+  "7-9": {
+   "bolim": 80,
+   "dars": 2502,
+   "uv": 3087,
+   "tartib": 90,
+   "yangi": true
+  },
+  "7-10": {
+   "bolim": 80,
+   "dars": 2503,
+   "uv": 3088,
+   "tartib": 100,
+   "yangi": true
+  },
+  "8-1": {
+   "bolim": 81,
+   "dars": 2505,
+   "uv": 3089,
+   "tartib": 10,
+   "yangi": true
+  },
+  "8-3": {
+   "bolim": 81,
+   "dars": 2507,
+   "uv": 3090,
+   "tartib": 30,
+   "yangi": true
+  },
+  "8-4": {
+   "bolim": 81,
+   "dars": 2508,
+   "uv": 3091,
+   "tartib": 40,
+   "yangi": true
+  },
+  "8-5": {
+   "bolim": 81,
+   "dars": 2509,
+   "uv": 3092,
+   "tartib": 50,
+   "yangi": true
+  },
+  "8-7": {
+   "bolim": 81,
+   "dars": 2511,
+   "uv": 3093,
+   "tartib": 70,
+   "yangi": true
+  },
+  "8-8": {
+   "bolim": 81,
+   "dars": 2512,
+   "uv": 3094,
+   "tartib": 80,
+   "yangi": true
+  },
+  "8-9": {
+   "bolim": 81,
+   "dars": 2513,
+   "uv": 3095,
+   "tartib": 90,
+   "yangi": true
+  },
+  "8-10": {
+   "bolim": 81,
+   "dars": 2514,
+   "uv": 3096,
+   "tartib": 100,
+   "yangi": true
+  },
+  "8-11": {
+   "bolim": 81,
+   "dars": 2515,
+   "uv": 3097,
+   "tartib": 110,
+   "yangi": true
+  },
+  "8-13": {
+   "bolim": 81,
+   "dars": 2517,
+   "uv": 3098,
+   "tartib": 130,
+   "yangi": true
+  },
+  "9-4": {
+   "bolim": 108,
+   "dars": 2986,
+   "uv": 3099,
+   "tartib": 40,
+   "yangi": true
+  },
+  "9-5": {
+   "bolim": 108,
+   "dars": 2987,
+   "uv": 3100,
+   "tartib": 50,
+   "yangi": true
+  },
+  "9-7": {
+   "bolim": 108,
+   "dars": 2989,
+   "uv": 3101,
+   "tartib": 70,
+   "yangi": true
+  },
+  "9-9": {
+   "bolim": 108,
+   "dars": 2991,
+   "uv": 3128,
+   "tartib": 90,
+   "yangi": true
+  },
+  "9-11": {
+   "bolim": 108,
+   "dars": 2993,
+   "uv": 3102,
+   "tartib": 110,
+   "yangi": true
+  },
+  "10-2": {
+   "bolim": 109,
+   "dars": 2996,
+   "uv": 3103,
+   "tartib": 20,
+   "yangi": true
+  },
+  "10-3": {
+   "bolim": 109,
+   "dars": 2997,
+   "uv": 3104,
+   "tartib": 30,
+   "yangi": true
+  },
+  "10-5": {
+   "bolim": 109,
+   "dars": 2999,
+   "uv": 3105,
+   "tartib": 50,
+   "yangi": true
+  },
+  "10-7": {
+   "bolim": 109,
+   "dars": 3001,
+   "uv": 3106,
+   "tartib": 70,
+   "yangi": true
+  },
+  "10-8": {
+   "bolim": 109,
+   "dars": 3002,
+   "uv": 3107,
+   "tartib": 80,
+   "yangi": true
+  },
+  "10-9": {
+   "bolim": 109,
+   "dars": 3003,
+   "uv": 3129,
+   "tartib": 90,
+   "yangi": true
+  },
+  "11-7": {
+   "bolim": 110,
+   "dars": 3012,
+   "uv": 3108,
+   "tartib": 70,
+   "yangi": true
+  },
+  "11-8": {
+   "bolim": 110,
+   "dars": 3013,
+   "uv": 3109,
+   "tartib": 80,
+   "yangi": true
+  },
+  "11-9": {
+   "bolim": 110,
+   "dars": 3014,
+   "uv": 3110,
+   "tartib": 90,
+   "yangi": true
+  },
+  "11-10": {
+   "bolim": 110,
+   "dars": 3015,
+   "uv": 3111,
+   "tartib": 100,
+   "yangi": true
+  },
+  "11-11": {
+   "bolim": 110,
+   "dars": 3016,
+   "uv": 3112,
+   "tartib": 110,
+   "yangi": true
+  },
+  "11-12": {
+   "bolim": 110,
+   "dars": 3017,
+   "uv": 3113,
+   "tartib": 120,
+   "yangi": true
+  },
+  "11-14": {
+   "bolim": 110,
+   "dars": 3019,
+   "uv": 3114,
+   "tartib": 140,
+   "yangi": true
+  },
+  "12-2": {
+   "bolim": 111,
+   "dars": 3024,
+   "uv": 3115,
+   "tartib": 20,
+   "yangi": true
+  },
+  "12-4": {
+   "bolim": 111,
+   "dars": 3026,
+   "uv": 3116,
+   "tartib": 40,
+   "yangi": true
+  },
+  "12-5": {
+   "bolim": 111,
+   "dars": 3027,
+   "uv": 3117,
+   "tartib": 50,
+   "yangi": true
+  },
+  "12-9": {
+   "bolim": 111,
+   "dars": 3031,
+   "uv": 3118,
+   "tartib": 90,
+   "yangi": true
+  },
+  "13-3": {
+   "bolim": 112,
+   "dars": 3037,
+   "uv": 3119,
+   "tartib": 30,
+   "yangi": true
+  },
+  "13-5": {
+   "bolim": 112,
+   "dars": 3039,
+   "uv": 3120,
+   "tartib": 50,
+   "yangi": true
+  },
+  "13-8": {
+   "bolim": 112,
+   "dars": 3042,
+   "uv": 3121,
+   "tartib": 80,
+   "yangi": true
+  },
+  "13-10": {
+   "bolim": 112,
+   "dars": 3044,
+   "uv": 3122,
+   "tartib": 100,
+   "yangi": true
+  },
+  "13-12": {
+   "bolim": 112,
+   "dars": 3046,
+   "uv": 3123,
+   "tartib": 120,
+   "yangi": true
+  },
+  "14-3": {
+   "bolim": 113,
+   "dars": 3049,
+   "uv": 3124,
+   "tartib": 30,
+   "yangi": true
+  },
+  "14-4": {
+   "bolim": 113,
+   "dars": 3050,
+   "uv": 3125,
+   "tartib": 40,
+   "yangi": true
+  },
+  "14-6": {
+   "bolim": 113,
+   "dars": 3052,
+   "uv": 3126,
+   "tartib": 60,
+   "yangi": true
+  },
+  "14-9": {
+   "bolim": 113,
+   "dars": 3055,
+   "uv": 3127,
+   "tartib": 90,
+   "yangi": true
+  }
+ }
+}

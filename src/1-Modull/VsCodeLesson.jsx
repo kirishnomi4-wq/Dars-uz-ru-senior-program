@@ -24,6 +24,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: VS Code» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-9","tur":"file","nom":{"uz":"Uyga vazifa: VS Code","ru":"Домашнее задание: VS Code"},"matn":{"uz":"Uy kompyuteringizda saytcha yasang.\n\n1. VS Code va Live Server'ni o'rnating.\n2. my-card papkasini oching, ichida index.html va style.css.\n3. index.html da o'zingiz haqingizda kartochka: rasm, ism (h2), 2 gap (p).\n4. style.css ni ulang va kartochkani bezang (fon, padding, markaz).\n5. «Go Live» bosing va skrinshot oling: chapda Explorer'dagi ikkala fayl, yonida brauzer.\n\nNima tekshiriladi:\n— Explorer'da index.html va style.css\n— brauzer manzili 127.0.0.1:5500\n— kartochkada rasm, ism, matn\n— CSS ishlagan (fon/bo'shliq ko'rinadi).","ru":"Сделайте небольшой сайт на домашнем компьютере.\n\n1. Установите VS Code и Live Server.\n2. Откройте папку my-card, внутри — index.html и style.css.\n3. В index.html — карточка о себе: фото, имя (h2), 2 предложения (p).\n4. Подключите style.css и оформите карточку (фон, padding, по центру).\n5. Нажмите «Go Live» и сделайте скриншот: слева в Explorer оба файла, рядом браузер.\n\nЧто проверяется:\n— в Explorer есть index.html и style.css\n— адрес в браузере 127.0.0.1:5500\n— в карточке есть фото, имя, текст\n— CSS работает (видны фон/отступы)."}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -2299,12 +2302,6 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
     tr({ uz: 'Card yasab, CSS bilan bezash', ru: 'Делать card и оформлять её CSS' }),
     tr({ uz: "AI'ga aniq prompt yozib, kodini o'qib faylga qo'yish", ru: 'Писать ИИ точный промпт, читать код и вставлять его в файл' }),
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: "O'zgartirish so'rovi", ru: 'Запрос на изменение' }), t: tr({ uz: "— Gemini'ga card uchun bitta aniq so'rov yozing (masalan: «Card ostiga Telegram linkini qo'sh»), natijani Live Server'da tekshiring", ru: '— напишите Gemini один точный запрос для карточки (например: «Добавь под карточкой ссылку на Telegram»), проверьте результат в Live Server' }) },
-    { b: tr({ uz: 'Link', ru: 'Ссылка' }), t: tr({ uz: "— Telegram yoki sevimli saytingizga `a href`", ru: '— `a href` на Telegram или любимый сайт' }) },
-    { b: tr({ uz: 'Rang tajribasi', ru: 'Эксперимент с цветом' }), t: tr({ uz: "— fonni boshqa rangga o'zgartirib ko'ring", ru: '— попробуйте другой цвет фона' }) },
-    { b: tr({ uz: 'Sahifa nomi', ru: 'Имя страницы' }), t: tr({ uz: "— `title` ichiga ismingizni yozing", ru: '— напишите своё имя в `title`' }) },
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2333,7 +2330,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Cardingizni VS Code'da boyiting:", ru: 'Обогатите свою карточку в VS Code:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{fmtCode(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Bu vazifa kompilyatorda EMAS — o'z kompyuteringizda, VS Code'da bajariladi: aynan shu darsda o'rgangan ish uslubingiz. Har o'zgarishdan keyin Ctrl+S bosing — brauzer o'zi yangilanadi. Tayyor card'ning skrinshotini platformaga yuklang va keyingi darsga ham olib keling: mentor jonli ko'radi.", ru: 'Это задание выполняется НЕ в компиляторе, а на своём компьютере в VS Code — тем самым способом, который вы освоили на уроке. После каждого изменения нажимайте Ctrl+S — браузер обновится сам. Скриншот готовой карточки загрузите на платформу и принесите на следующий урок: ментор посмотрит вживую.' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

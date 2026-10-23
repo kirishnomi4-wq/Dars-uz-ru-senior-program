@@ -117,6 +117,8 @@ function lintFile(file) {
     // --- qoidalar (tozalangan `s` ustida) ---
     for (const r of compiled) {
       if (r.allowFiles && r.allowFiles.some(a => base.includes(a))) continue;
+      // onlyFiles (F-1022-01): qoida faqat yo'lida shu bo'lak bor fayllarda ishlaydi (masalan PM + bridge darslari)
+      if (r.onlyFiles && !r.onlyFiles.some(a => rel.includes(a))) continue;
       if (inRuNow && /^kirill/.test(r.id)) continue;
       if (r.exceptRe && r.exceptRe.test(s)) continue;
       const m = s.match(r.re);

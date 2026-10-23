@@ -44,6 +44,9 @@ const ou = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: O'z Skill'imni yozaman» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 8-7). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"8-7","tur":"file","nom":{"uz":"Uyga vazifa: O'z Skill'imni yozaman","ru":"Домашнее задание: Пишу свой Skill"},"matn":{"uz":"Skill'ingizni boshqa odam sinab ko'rsin.\n\n1. Do'stingiz yoki oila a'zongizga Skill nima qilishini aytmasdan, o'z so'zi bilan 3 ta so'rov yozdiring.\n2. Har so'rov natijasini README jadvaliga yozing: so'rov · Skill ishladimi · natija qoidaga mosmi.\n3. Ishlamagan joy bo'yicha description yoki body'ni aniqlashtiring; body'ga bitta misol qo'shing.\n4. O'sha 3 so'rovni qayta sinang.\n5. SKILL.md (oldin va keyin) va 2 ta skrinshot.\n\nNima tekshiriladi:\n— 3 so'rov boshqa odamdan\n— jadval to'ldirilgan\n— aniq tuzatish (qaysi qator)\n— misol qo'shilgan\n— qayta sinov natijasi.","ru":"Пусть ваш Skill проверит другой человек.\n\n1. Не объясняя, что делает Skill, попросите друга или члена семьи написать своими словами 3 запроса.\n2. Запишите результат каждого запроса в таблицу в README: запрос · сработал ли Skill · соответствует ли результат правилу.\n3. Там, где не сработало, уточните description или body; добавьте в body один пример.\n4. Проверьте те же 3 запроса ещё раз.\n5. SKILL.md (до и после) и 2 скриншота.\n\nЧто проверяется:\n— 3 запроса от другого человека\n— таблица заполнена\n— конкретное исправление (какая строка)\n— пример добавлен\n— результат повторной проверки."}};
 
 
 
@@ -2230,11 +2233,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 Skill, 2–3 sinov', ru: '1 Skill, 2–3 проверки' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Tanlang', ru: 'Выберите' }, t: { uz: "— tez-tez AI'ga beradigan bitta vazifani tanlang", ru: '— выберите одну задачу, которую часто даёте ИИ' } },
-    { b: { uz: 'Yozing', ru: 'Напишите' }, t: { uz: '— unga SKILL.md yozing: name, description, qadamlar va misol', ru: '— напишите для неё SKILL.md: name, description, шаги и пример' } },
-    { b: { uz: 'Sinang', ru: 'Протестируйте' }, t: { uz: "— 2–3 xil holatda sinab ko'ring; natija chala bo'lsa, aniq qoida qo'shib qayta sinang", ru: '— протестируйте в 2–3 разных ситуациях; если результат неполный, добавьте точное правило и протестируйте снова' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2257,7 +2255,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hwk fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tr(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>Loyiha kuni: to'liq pipeline.</b> React, Node, PostgreSQL, Telegram va AI'ni bitta ishlaydigan tizimga ulaysiz.</>, ru: <>Следующий урок — <b>Проектный день: полный pipeline.</b> Вы соедините React, Node, PostgreSQL, Telegram и ИИ в одну работающую систему.</> })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz —', ru: '🏅 Ваши значки —' })} {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

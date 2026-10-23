@@ -31,6 +31,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QXato, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: HTML Praktika» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-10). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-10","tur":"file","nom":{"uz":"Uyga vazifa: HTML Praktika","ru":"Домашнее задание: Практика HTML"},"matn":{"uz":"Portfolio'ingizga ikki narsa qo'shing. AI ishlatmang, o'zingiz yozing.\n\n1. Header'ga o'z rasmingiz yoki avataringiz (img, mazmunli alt).\n2. «Ko'nikmalarim» bo'limi: id=\"konikmalar\", ichida 4 bandli ro'yxat.\n3. Menu'ga shu bo'limga link (href=\"#konikmalar\").\n4. Har loyiha ostiga bir gaplik tavsif (p).\n5. Live Server skrinshoti va index.html faylini yuklang.\n\nNima tekshiriladi:\n— img + alt\n— bo'lim id va 4 li\n— menu linki ishlaydi (# nomi bir xil)\n— loyihalarda tavsif\n— skrinshot va fayl bir xil.","ru":"Добавьте в своё портфолио две вещи. Не используйте AI — пишите сами.\n\n1. В header — своё фото или аватар (img, осмысленный alt).\n2. Раздел «Мои навыки»: id=\"konikmalar\", внутри список из 4 пунктов.\n3. В меню — ссылка на этот раздел (href=\"#konikmalar\").\n4. Под каждым проектом — описание в одно предложение (p).\n5. Загрузите скриншот Live Server и файл index.html.\n\nЧто проверяется:\n— img + alt\n— у раздела есть id и 4 li\n— ссылка в меню работает (имя после # совпадает)\n— у проектов есть описание\n— скриншот и файл совпадают."}};
 
 
 
@@ -1556,13 +1559,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
           {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         </>}
         recap={RECAP.map(r => fmtCode(tr(r)))}
-        uyga={<div className="card hw fade-up d4">
-          <div className="card-lbl acc">{tr({ uz: "Portfolioni o'zingizniki qiling", ru: 'Сделайте портфолио своим' })}</div>
-          <p className="hw-izoh">{tr({ uz: "VS Code'da, o'z kompyuteringizda:", ru: 'В VS Code, на своём компьютере:' })}</p>
-          <ul>{UYGA.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{tr(h.t)}</span></li>))}</ul>
-          <p className="hw-izoh">{tr({ uz: 'Tayyor sahifaning skrinshotini platformaga yuklang.', ru: 'Скриншот готовой страницы загрузите на платформу.' })}</p>
-          <p className="hw-note">{tr({ uz: <>Keyingi dars — <b>CSS Praktika</b>: Demo Day saytingizni boshlaysiz.</>, ru: <>Следующий урок — <b>CSS практика</b>: начнёте сайт для Demo Day.</> })}</p>
-        </div>}
+        uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
         hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
         nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
       />

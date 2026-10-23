@@ -37,6 +37,9 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun, QChip, QXato, QIzoh, QXulosa, QKod } from '../qolip/index.jsx';
 import HtmlCompiler, { checks as C } from '../compilator/HtmlCompiler.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: React Native'ni yangilash va Expo» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 11-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"11-9","tur":"file","nom":{"uz":"Uyga vazifa: React Native'ni yangilash va Expo","ru":"Домашнее задание: Обновление React Native и Expo"},"matn":{"uz":"Prototipingiz boshqa telefonda ham buzilmasin.\n\n1. Ikkinchi qurilmada oching: boshqa odamning telefoni (mobil trek — Expo Go; web-trek — Netlify manzili).\n2. Kichik ekranni ham tekshiring (web-trekda DevTools'da 360 px).\n3. Uzilgan yozuv, sig'magan tugma yoki ustma-ust tushgan joyni toping va tuzating.\n4. Ikki qurilma skrinshoti (tuzatishdan keyin) va repo linki.\n\nNima tekshiriladi:\n— ikki xil qurilma\n— kichik ekranda yozuvlar uzilmagan\n— tuzatish commit'i (yoki «muammo yo'q» + isbot skrinshoti).","ru":"Пусть ваш прототип не ломается и на другом телефоне.\n\n1. Откройте на втором устройстве: телефон другого человека (мобильный трек — Expo Go; веб-трек — адрес Netlify).\n2. Проверьте и маленький экран (в веб-треке — 360 px в DevTools).\n3. Найдите и исправьте обрезанную надпись, не влезшую кнопку или наложившиеся элементы.\n4. Скриншоты двух устройств (после исправления) и ссылка на репозиторий.\n\nЧто проверяется:\n— два разных устройства\n— на маленьком экране надписи не обрезаны\n— коммит с исправлением (или «проблем нет» + скриншот-доказательство)."}};
 
 
 
@@ -2743,11 +2746,6 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
     { k: { uz: 'Nechta', ru: 'Сколько' }, v: { uz: '1 prototip', ru: '1 прототип' } },
     { k: { uz: 'Muddat', ru: 'Срок' }, v: { uz: 'keyingi darsgacha', ru: 'до следующего урока' } }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Tugatish', ru: 'Завершить' }, t: { uz: "— darsda ulgurmagan qadamlarni o'z trekingizda bajaring: prototip telefoningizda ochilsin.", ru: '— выполните в своём треке шаги, которые не успели на уроке: прототип должен открываться на телефоне.' } },
-    { b: { uz: 'Tekshirish', ru: 'Проверить' }, t: { uz: "— telefonda bosib chiqing: wireframe'dagi har tugma kerakli ekranni ochadimi? Farq bo'lsa — agentga bitta tuzatish talabi.", ru: '— пройдите нажатиями на телефоне: каждая кнопка из wireframe открывает нужный экран? Есть отличие — одно требование-исправление агенту.' } },
-    { b: { uz: 'GitHub', ru: 'GitHub' }, t: { uz: '— o\'zgarishlar GitHub\'da tursin: mobil trekda `mobil/`, web-trekda `prototip/` va `README.md` da Netlify linki.', ru: '— изменения должны быть на GitHub: в мобильном треке `mobil/`, в веб-треке `prototip/` и ссылка Netlify в `README.md`.' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   return (
@@ -2765,7 +2763,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
           </>}
           recap={RECAP.map(tx)}
-          uyga={<div className="card hwk fade-up d4"><div className="card-lbl acc">{tr({ uz: 'Uyda nima qilasiz?', ru: 'Что сделаете дома?' })}</div><div className="hwk-karta">{HW_KARTA.map((r, i) => <div key={i} className="hwk-q"><span className="hwk-k">{tr(r.k)}</span><span className="hwk-v">{tr(r.v)}</span></div>)}</div><ol className="hwk-qadam">{HOMEWORK.map((h, i) => <li key={i}><i>{i + 1}</i><span><b>{tr(h.b)}</b> {tx(h.t)}</span></li>)}</ol><p className="hwk-keyingi">{tr({ uz: <>Keyingi dars — <b>«Loyiha kuni: poydevor — Database, kirish, deploy»</b>: prototip telefonda ochiladi, endi uning ortidagi umumiy Database va kirish navbati.</>, ru: <>Следующий урок — <b>«День проекта: фундамент — Database, вход, деплой»</b>: прототип открывается на телефоне, теперь очередь общей Database и входа, которые стоят за ним.</> })}</p></div>}
+          uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           hwTokens={HW_TOKENS.map(k => ({ ...k, t: tr(k.t) }))}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
         />

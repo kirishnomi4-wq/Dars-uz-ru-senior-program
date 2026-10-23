@@ -543,3 +543,39 @@ B — 52 dars (F-1012/F-1013; commitdan oldin tahlil bilan solishtirildi — o'z
 Commitdan oldin indeks bo'sh edi; praktikalar, `package.json`, `lms/` indeksga tushmagani tekshirildi.
 KIRMADI: 18 praktika (3-seans yakshanbagacha qayta quradi), `package.json`. Bu yozuv commitdan keyin qo'shildi (JURNAL.md — commit qilinmagan o'zgarish).
 Keyingi: YAKSHANBA 18.10 reliz — F-1015-22 tartibi.
+
+## 21.10 19:21 — F-1021-08/09: LMS QA — SPA'da preview izolyatsiyasi (handoff: `jsx_preview_owner_handoff_2026-10-21.md`)
+**Topildi (LMS QA):** sahifa qayta yuklanmasdan (SPA) yangi ishga tushirish oldingisini davom ettiradi.
+F-1021-08 — yangi preview eski ekrandan (02/22) boshlanadi; F-1021-09 — preview'dan keyin mentor darsi ham «Oldindan ko'rish».
+Qo'shimcha (o'zimiz topdik): `resultDetails.js` xotirasi ham sahifa bo'yicha edi — preview javoblari shu darsning keyingi jonli natija-yukiga aralashishi mumkin edi.
+**Sabab:** `previewMode.js` «bir marta yoqilsa — sahifa yopilguncha» (kontrakt: yangi previewRunId faqat sahifa ochilishi/F5 da). LMS SPA'da yangi run beradi.
+**Qilindi (A varianti, foydalanuvchi roziligi):** rejim har mount'da proplardan (`startLessonRun`, build-lms o'rami `useRef` bilan bir marta);
+o'sha previewRunId — xotira saqlanadi, yangi — bo'sh, proplarsiz — qatlam shaffof. resultDetails har yangi runda tozalanadi.
+Oldingi jonli urinishning so'nggi progress-yozuvi (progressSync kanali) preview'ga o'tilganda ham ketadi (`liveRun`).
+**Tekshiruv:** unit 25/25 (yangi SPA testi; eski mantiq bilan yiqiladi) · `scripts/e2e-preview-spa.mjs` yangi 4/4, HEAD yig'masida 2/4 (aynan ikki defekt) ·
+gates InternetLesson 11/13 (tell, emoji — dars faylida, avvaldan; bu ishga aloqasiz) · lint:jsx toza · preview-keys ✓.
+**Ochiq:** to'liq `e2e-preview.mjs` (server stek bilan) yurgizilmadi · 172 JSX qayta yig'ish + LMS yuklash — LMS javobidan keyin ·
+AC-6 (bir sahifada ikki dars bir vaqtda) va AC-7 (`Storage.prototype`ga tegmaslik) yopilmagan — LMS bilan kelishuvga.
+**Sinf-supurish:** `src/live` dagi modul-darajasidagi holat: previewMode, resultDetails, progressSync — tuzatildi; i18n `liveLang`, LiveUI toast — dars o'zi qayta o'rnatadi, xavfsiz.
+Muhr: SPA testi `previewMode.test.mjs` da — `preview-reliz.mjs` darvozasi uni avtomatik yuritadi. Commit YO'Q.
+**21.10 19:33 — QA yig'masi:** `internet-01-v18-preview-fix-20261021.jsx` → https://coddycamp-jsx-qa.vercel.app (Vercel `kirishnomi6-9875/coddycamp-jsx-qa`).
+SHA-256 `688453cb58f984c1c3db5b4dd01a8bac17c59ebdd421113fbbbac6d493ec75f1` · md5 `331c8405436db0eca0a3c8e93c71ede3` · prod API · ishchi daraxtdan (commit YO'Q).
+HEAD'dan qayta yig'ilgan eski fayl = LMS tekshirgan `31b5d3bc…` (bayt-bayt) — farq faqat preview-moduli (diff 72 qator). smoke-lms ✓ · smoke-preview 11/11 · linkdan yuklab olingan fayl SHA mos.
+**21.10 19:53 — HOLAT:** XAT-IT-02-UZ.md (7:27, linksiz) + link/SHA/fayl alohida xabarda Abdullohga berildi. LMS QA javobi kutilmoqda.
+Keyingi: OK → commit (buyruq) → preview-reliz (172 dars) → yuklash → muhrla; yangi defekt → F-1021-10.
+
+## 22.10 12:17 — F-1021-10: LMS qayta QA — mustaqil JSX'lar orasida preview izolyatsiyasi (`F-1021-10-qa/`)
+**Topildi (LMS QA, zip 21.10):** F-1021-08/09 o'tdi, lekin A preview → A jonli → B preview: B «Предпросмотр», yozuvi esa haqiqiy saqlovga.
+**Sabab:** har JSX'da `previewMode.js` ning o'z nusxasi (o'z `on`/`mem`), `Storage.prototype` overlay esa sahifada bitta — `if (P.__ccPreview) return`
+tufayli birinchi o'rnatgan yig'ma hukmron. Ko'zgu holat (o'zimiz): A preview → B jonli — jonli B yozuvi A xotirasiga ketardi (mentor F5 → holat yo'q).
+**Qilindi (foydalanuvchi roziligi «tuzat»):** overlay olib tashlandi, `Storage.prototype` tegilmaydi. `previewMode.js` → `previewLocalStorage`/`previewSessionStorage`
+adapteri; `scripts/build-lms.mjs` define (`localStorage`, `window.`/`globalThis.` bilan) + inject `src/live/previewStorageInject.js` — har yig'ma o'z adapteriga.
+O'ram `CcLessonEntry.localStorage` ni ochadi (preview/main.jsx urug'i va e2e o'qishi uchun).
+**Tekshiruv:** unit 26/26 (yangi «ikki mustaqil yig'ma» testi) · e2e-preview 14/14 (lokal stek) · e2e-preview-spa 4/4 · lint:jsx toza · preview-keys ✓ ·
+smoke-lms ✓ · smoke-preview ✓ · IT `recheck-fixed.mjs` (adapter-mos nusxa, QA LMS brauzerida) 7/7 PASS.
+**Fayl:** `internet-01-v18-preview-fix-20261022.jsx` SHA-256 `df6ad36005bc5102808065ca665d313c56bec50b81fd65cd3ee769bd6782f150` · md5 `98f2298fa7e40a75a4f27946107438a7` · prod API · commit YO'Q.
+**Sinf-supurish:** LMS yig'masini faqat build-lms qiladi (shared ham shu funksiya) — hammasi qoplanadi; boshqa `Storage.prototype` almashtirish: `src/taqdimot/DemoFrame.jsx` (LMS'ga chiqmaydi) — qidirildi, 1 topildi, doiradan tashqari.
+**Muhr:** `previewMode.test.mjs` «ikki mustaqil yig'ma» — `preview-reliz.mjs` darvozasi yuritadi. Xat qoralamasi: `XAT-IT-03-UZ.md`.
+**Ochiq:** QA saytga deploy + IT'ga yuborish (foydalanuvchi qarori) · aralash davr: eski 171 JSX overlay bilan — ommaviy qayta yig'ish IT OK'dan keyin.
+**22.10 12:35 — QA sayt:** https://coddycamp-jsx-qa.vercel.app yangilandi (foydalanuvchi buyrug'i): `…20261022.jsx` (asosiy) + `…20261021.jsx` (oldingi) + `recheck-fixed-20261022.mjs` + `verification-20261022.json` + SHA256SUMS + ruscha index.
+Linkdan yuklangan fayl SHA `df6ad360…f150` mos · CORS * · `vercel link` yaratgan `.env.local` deploy'dan oldin o'chirildi (404). Xat `XAT-IT-03-UZ.md` link bilan — yuborish foydalanuvchida.

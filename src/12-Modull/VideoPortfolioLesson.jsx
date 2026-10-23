@@ -34,6 +34,9 @@ const ou = (o) => (o && typeof o === 'object' && !React.isValidElement(o)) ? (o.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 // D1–D4 (F-1004 2-qism, 04.10.2026): umumiy qolip — ekran turlari, ikki tugma, 9 token, emojisiz yuza (src/qolip/QOLIP.md)
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QTaxmin, QXato, QXulosa, QIzoh, QKirish, QReja, QTushuncha, QTest, QTestJavob, QTartib, QBlok, QKartochka, QYakun, manoliMatn, MANOSIZ_XATO } from '../qolip/index.jsx';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Video-portfolio» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 14-9). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"14-9","tur":"text","nom":{"uz":"Uyga vazifa: Video-portfolio","ru":"Домашнее задание: Видео-портфолио"},"matn":{"uz":"Videongizni yakunlab, linkini topshiring.\n\n1. «Hali gaplashmadim» bo'lsa — avval ota-onangizga ko'rsating va roziligini oling.\n2. Videoni YouTube'ga «Ro'yxatda yo'q» (unlisted) yoki Google Drive'ga yuklang («link bor kishilar ko'radi»).\n3. Linkni o'zingiz boshqa brauzerda ochib tekshiring.\n4. Linkni topshiring.\n\nNima tekshiriladi:\n— link ochiladi\n— 3:00 gacha\n— uch bo'lak bor\n— parol, .env, token, boshqa odamning ma'lumoti ko'rinmaydi.","ru":"Доделайте видео и сдайте ссылку на него.\n\n1. Если у вас «Ещё не говорил» — сначала покажите видео родителям и получите их согласие.\n2. Загрузите видео на YouTube как «Доступ по ссылке» (unlisted) или в Google Drive («все, у кого есть ссылка»).\n3. Сами откройте ссылку в другом браузере и проверьте.\n4. Сдайте ссылку.\n\nЧто проверяется:\n— ссылка открывается\n— до 3:00\n— есть три части\n— не видны пароль, .env, токен, чужие данные."}};
 
 
 
@@ -2187,7 +2190,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
             {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
           </>}
           recap={RECAP.map(r => tx(r))}
-          uyga={null}
+          uyga={<UygaVazifaKarta v={HW_V2} tr={tr} />}
           nishonlar={isMentorL ? null : Object.entries(ACHIEVEMENTS).map(([id, a]) => ({ id, icon: a.icon, name: a.name, desc: tr(a.desc), got: !!(achievements && achievements.has(id)) }))}
         >
           <p className="vp-keyingi fade-up d4">{tr({ uz: <>Keyingi dars — <b>«Birinchi buyurtmani qayerdan topasiz?»</b></>, ru: <>Следующий урок — <b>«Birinchi buyurtmani qayerdan topasiz?»</b></> })}</p>

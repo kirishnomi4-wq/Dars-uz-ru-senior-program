@@ -129,7 +129,7 @@ else {
   const bad = [];
   for (const f of all) {
     const t = readFileSync(f, 'utf8'), n = relative(OUT, f);
-    if (!t.includes('notePreviewProps')) bad.push(`${n}: o'ram yo'q`);
+    if (!t.includes('startLessonRun')) bad.push(`${n}: o'ram yo'q`);
     if (t.includes('__CC_VISIT_MODE__')) bad.push(`${n}: window-belgi`);
     if (/supabase/i.test(t)) bad.push(`${n}: supabase`);
     if (API === 'staging' && !t.includes(`"${API_URL}"`)) bad.push(`${n}: staging manzili yo'q`);

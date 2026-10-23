@@ -24,6 +24,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: HTML asoslari» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-3). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-3","tur":"compiler","nom":{"uz":"Uyga vazifa: HTML asoslari","ru":"Домашнее задание: Основы HTML"},"matn":{"uz":"Sevimli o'yiningiz haqida sahifa yasang. Rasmdagi natijaga o'xshasin.\n\n1. To'liq HTML shablonini yozing; title ga o'yin nomini qo'ying.\n2. h1 — o'yin nomi. Ostida ikkita h2: «Nega yoqadi?» va «Qanday o'ynaladi?».\n3. «Nega yoqadi?» ostida ul — 3 ta sabab.\n4. «Qanday o'ynaladi?» ostida ol — 3 ta qadam.\n5. Bitta p yozing: unda bitta so'z strong, bitta so'z em bilan bo'lsin.\n6. Oxirida o'yinning rasmiy saytiga link (a, href da to'liq manzil).","ru":"Сделайте страницу о своей любимой игре. Она должна быть похожа на результат на картинке.\n\n1. Напишите полный HTML-шаблон; в title укажите название игры.\n2. h1 — название игры. Под ним два h2: «Почему нравится?» и «Как играть?».\n3. Под «Почему нравится?» — ul с 3 причинами.\n4. Под «Как играть?» — ol с 3 шагами.\n5. Напишите один p: одно слово в нём — в strong, ещё одно — в em.\n6. В конце — ссылка на официальный сайт игры (a, в href полный адрес)."}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -2186,7 +2189,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   };
   const audio = useAudio([{ id: 's16', text: "Dars yakunlandi. Birinchi saytingizni yasadingiz! Asosiyni eslab qoling: HTML — veb-sahifalar tili, brauzer HTMLni o'qib sahifani ko'rsatadi, teg ochiladi va yopiladi.", trigger: 'on_mount', waits_for: null }]);
   const RECAP = [tr({ uz: 'HTML bilan veb-sahifa yasash', ru: 'Делать веб-страницу на HTML' }), tr({ uz: 'Sahifa skeletini (shablonini) qurish: head, body', ru: 'Строить скелет (шаблон) страницы: head, body' }), tr({ uz: 'Teglarni ochish va yopish', ru: 'Открывать и закрывать теги' }), tr({ uz: 'Sarlavha (h1–h6) va matn (strong, em)', ru: 'Заголовки (h1–h6) и текст (strong, em)' }), tr({ uz: "Ro'yxat (ul/ol) va link (a) qo'shish", ru: 'Добавлять списки (ul/ol) и ссылки (a)' })];
-  const HOMEWORK = [{ b: tr({ uz: 'Sarlavha (h1)', ru: 'Заголовок (h1)' }), t: tr({ uz: '— ismingiz', ru: '— ваше имя' }) }, { b: tr({ uz: '2–3 paragraf', ru: '2–3 абзаца' }), t: tr({ uz: "— o'zingiz haqingizda", ru: '— о себе' }) }, { b: tr({ uz: "Ro'yxat", ru: 'Список' }), t: tr({ uz: "— sevimli mashg'ulotlaringiz", ru: '— ваши любимые занятия' }) }, { b: tr({ uz: 'Link', ru: 'Ссылка' }), t: tr({ uz: '— sevimli saytingizga', ru: '— на любимый сайт' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2215,15 +2217,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>📝 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "O'zingiz haqingizda HTML sahifa yarating:", ru: 'Создайте HTML-страницу о себе:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. Dars tugagach istalgan payt qaytib kirib davom etsangiz bo'ladi.", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. После урока можно вернуться и продолжить в любой момент.' })}</p>
-          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
-              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-          {!isMentorL && onHomework && (
-            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
-              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
-            </button>
-          )}
-        </div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -24,6 +24,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: CSS: layout, flexbox» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-8). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"2-8","tur":"compiler","nom":{"uz":"Uyga vazifa: CSS: layout, flexbox","ru":"Домашнее задание: CSS: layout, flexbox"},"matn":{"uz":"O'zingiz yoqtirgan mavzuda (o'yin, sport jamoasi, musiqachi) bitta sahifali sayt yasang. Flex qoidalarini o'zingiz yozing. Ranglar, soya va harakatni AI-agent bilan qo'shing.\n\n1. .menu — logotip chapda, linklar o'ngda (space-between), vertikal markazda.\n2. .cards — 3 ta kartochka bir qatorda, orasida gap: 16px.\n3. Har .card ichida sarlavha, matn va tugma ustma-ust (column).\n4. .footer — matn gorizontal markazda.","ru":"Сделайте одностраничный сайт на любимую тему (игра, спортивная команда, музыкант). Flex-правила пишите сами. Цвета, тени и анимацию добавьте с AI-агентом.\n\n1. .menu — логотип слева, ссылки справа (space-between), по центру по вертикали.\n2. .cards — 3 карточки в один ряд, между ними gap: 16px.\n3. В каждой .card заголовок, текст и кнопка — друг под другом (column).\n4. .footer — текст по центру по горизонтали."}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -1592,7 +1595,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
   };
   const audio = useAudio([{ id: 's16', text: "Ikkinchi CSS darsi tugadi! Endi elementlarni joylashtira olasiz: display flex bilan qatorga tizish, flex-direction bilan yo'nalish, justify-content va align-items bilan markazga qo'yish, gap bilan oralarini ochish. Va DevTools'ning Styles paneli bilan CSS'ni jonli o'zgartirasiz.", trigger: 'on_mount', waits_for: null }]);
   const RECAP = [{ uz: 'block (stack) va inline (yonma-yon)', ru: 'block (стопкой) и inline (в ряд)' }, { uz: 'display: flex — konteynerga beriladi', ru: 'display: flex — задаётся контейнеру' }, 'flex-direction — row / column', { uz: 'gorizontal (justify) · vertikal (align)', ru: 'по горизонтали (justify) · по вертикали (align)' }, { uz: "gap — ichki elementlar orasidagi bo'shliq", ru: 'gap — отступ между внутренними элементами' }, { uz: "DevTools Styles — CSS'ni jonli tahrir", ru: 'DevTools Styles — живая правка CSS' }];
-  const HOMEWORK = [{ b: { uz: 'Menu', ru: 'Меню' }, t: { uz: '— navigatsiyani display: flex bilan qatorga tizing', ru: '— выстройте навигацию в ряд с display: flex' } }, { b: { uz: 'Markaz', ru: 'Центр' }, t: { uz: "— justify-content bilan markazga qo'ying", ru: '— поставьте по центру с justify-content' } }, { b: 'DevTools', t: { uz: "— Styles'da qiymatlarni o'zgartirib ko'ring", ru: '— поменяйте значения в Styles' } }];
   // Kalit so'zlar (GLOSSARY) olib tashlandi — takrorlash Flashcard sahifasida (4.2 etalon).
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1626,15 +1628,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>🧩 {tr({ uz: 'Uyga vazifa', ru: 'Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: 'Saytingiz menusini Flexbox bilan yasang:', ru: 'Сделайте меню своего сайта на Flexbox:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Vazifa kompilyatorda bajariladi — har talab avtomatik tekshiriladi. DevTools bandini o'z brauzeringizda sinaysiz (F12 → Styles). Flexbox — deyarli har bir zamonaviy saytda ishlatiladi!", ru: 'Задание выполняется в компиляторе — каждое требование проверяется автоматически. Пункт про DevTools попробуйте в своём браузере (F12 → Styles). Flexbox используется почти на каждом современном сайте!' })}</p>
-          {/* 🏠 Vazifani boshlash — kompilyator ochiladi (LMS'da onPractice, lokalda overlay).
-              Mentor proyektorida KO'RSATILMAYDI: uy ishi shaxsiy (sahna ↔ daftar tamoyili). */}
-          {!isMentorL && onHomework && (
-            <button className="btn" onClick={onHomework} style={{ marginTop: 14, background: T.accent, boxShadow: '0 8px 22px -6px rgba(255,79,40,0.5)' }}>
-              {tr({ uz: 'Vazifani bajarish →', ru: 'Выполнить задание →' })}
-            </button>
-          )}
-        </div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

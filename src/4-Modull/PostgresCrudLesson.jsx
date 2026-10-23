@@ -37,6 +37,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: PostgreSQL so'rovlari» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 5-6). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"5-6","tur":"test","nom":{"uz":"Uyga vazifa: PostgreSQL so'rovlari","ru":"Домашнее задание: Запросы PostgreSQL"},"matn":null,"n":5};
 
 
 
@@ -2236,11 +2239,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     tr({ uz: "WHERE — shart; UPDATE/DELETE'da uni unutmang!", ru: 'WHERE — условие; не забывайте его в UPDATE/DELETE!' }),
     tr({ uz: "AI SQL yozadi — siz o'qib tekshirasiz", ru: 'ИИ пишет SQL — вы читаете и проверяете' })
   ];
-  const HOMEWORK = [
-    { b: tr({ uz: "O'z jadvalingiz", ru: 'Своя таблица' }), t: tr({ uz: "— AI bilan o'z do'koningiz uchun jadval loyihalang (qaysi ustunlar?)", ru: '— спроектируйте с ИИ таблицу для своего магазина (какие столбцы?)' }) },
-    { b: tr({ uz: "3 mahsulot qo'shing", ru: 'Добавьте 3 товара' }), t: tr({ uz: '— INSERT bilan jadvalga 3 ta mahsulot kiriting', ru: '— внесите в таблицу 3 товара через INSERT' }) },
-    { b: tr({ uz: "Bitta so'rov", ru: 'Один запрос' }), t: tr({ uz: "— AI'dan 'arzon mahsulotlarni ko'rsat' degan SELECT'ni yozdiring va tekshiring", ru: "— попросите ИИ написать SELECT «покажи дешёвые товары» и проверьте его" }) }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2264,7 +2262,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "AI bilan o'z bazangizni quring:", ru: 'Постройте с ИИ свою базу:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Modul 5'da: NestJS shu jadval bilan avtomatik ishlaydi — siz faqat so'raysiz! 🚀", ru: 'В модуле 5: NestJS будет работать с этой таблицей автоматически — вы только просите! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

@@ -41,6 +41,9 @@ const tr = (node) => {
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Frontend va Backend» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-10). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"3-10","tur":"test","nom":{"uz":"Uyga vazifa: Frontend va Backend","ru":"Домашнее задание: Frontend и Backend"},"matn":null,"n":5};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -1818,11 +1821,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     tr({ uz: "Express — so'rov yo'llari · PostgreSQL — doimiy ombor", ru: 'Express — маршруты запросов · PostgreSQL — постоянный склад' }),
     tr({ uz: '4 texnologiya birga = PERN stack', ru: '4 технологии вместе = PERN stack' })
   ];
-  const HOMEWORK = [
-    { b: 'YouTube', t: tr({ uz: "— frontend nimani ko'rsatadi, backend nimani saqlaydi? Yozing", ru: '— что показывает frontend и что хранит backend? Запишите' }) },
-    { b: 'Telegram', t: tr({ uz: '— xabaringiz telefonda emas, qayerda saqlanadi?', ru: '— где хранится Ваше сообщение, если не в телефоне?' }) },
-    { b: tr({ uz: "O'z saytingiz", ru: 'Ваш сайт' }), t: tr({ uz: "— unga PERN'ning qaysi a'zolari yetishmayapti?", ru: '— каких участников PERN ему не хватает?' }) }
-  ];
   // Kalit so'zlar (GLOSSARY) olib tashlandi — takrorlash alohida Flashcards sahifasida (4.2 etalon)
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1852,7 +1850,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: "Uyga vazifa — detektiv bo'ling", ru: 'Домашнее задание — побудьте детективом' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: '3 ta tanish ilovani "ichidan" tahlil qiling:', ru: 'Разберите «изнутри» 3 знакомых приложения:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{h.b}</b> <span className="t">{h.t}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Oldinda: avval mini-do'kon praktikasi, so'ng React moduli (frontend) va Node.js + Express + NestJS moduli (backend). Xarita qo'lingizda!", ru: 'Впереди: сначала практика мини-магазина, затем модуль React (frontend) и модуль Node.js + Express + NestJS (backend). Карта у Вас в руках!' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>🏅 {tr({ uz: 'Nishonlaringiz', ru: 'Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

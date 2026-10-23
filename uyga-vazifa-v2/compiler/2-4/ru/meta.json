@@ -1,0 +1,8 @@
+{
+ "tur": [
+  "html"
+ ],
+ "rasm": "2-4-natija.png",
+ "rasm_manzili": "assets/futbol.png",
+ "rubrika": "Grade a beginner HTML structure + form task out of 10. Texts may differ; the given image URL must be used.\n1. (1.5) A <header> containing an <h1>.\n2. (2) Inside <main>: an <img> with the given src and a meaningful alt (describes the picture, not just 'картинка'/'rasm' or empty).\n3. (3) Inside <main>: one <form> with three <input> fields of types text, email and password (1 point each).\n4. (1.5) Every input has a <label> before it (for/id link not required, but accepted).\n5. (1) A <button> inside the form.\n6. (1) A <footer> with a phone number and ©.\nAccept <br> or no line breaks, any order of inputs, extra elements. Do not penalize missing CSS."
+}

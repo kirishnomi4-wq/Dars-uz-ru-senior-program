@@ -4618,3 +4618,20 @@ Sinf-supurish (19.10): ta'rif-qatori faqat 12-M da topildi (13 qator, 5 dars) �
 - ✅ Qoladi: «AvtoPizza **menyusi**», «oshxona menyusi» — ovqat ro'yxati, dasturlash atamasi emas.
 **Qoida:** web/ilova ma'nosidagi so'z dasturchi nutqidagidek — inglizcha, o'zbekcha qo'shimcha bilan (link → linki, linkka, linkingiz; menu → menuni, menudagi). Bir ma'noga bitta so'z: kursda «havola» va «link» aralashmaydi.
 🔧 Almashtirish vositasi (JS parser — faqat matn, kod nomlari/className/CSS/regex tegilmaydi): `feedback/F-1019-10-link-menu/almash.mjs`; til-lint `havola-link` (warn).
+
+## §O'QUVCHI-STARTAPCHI — ish bajaruvchi «dasturchi» emas, AI (F-1022-01, 22.10; mentor real darsda: «shu slaydni ma'nosini tushunmadim»; foydalanuvchi: «o'quvchimiz PM emas, qo'lida 10 ta dasturchisi yo'q — startap qilib muammoga yechim topib o'rganishi va saytini AI'da qilishi kerak»)
+
+- ❌ «Maktab bufeti saytiga «Buyurtma berish» tugmasini qo'shishni **dasturchidan so'ragandingiz**. Bugun u yozdi: «Tayyor, ishlaydi».»
+  ✅ «Siz maktab bufeti uchun sayt qilyapsiz. **Gemini'dan** «Buyurtma berish» tugmasini so'radingiz. U kod berdi va yozdi: «Tayyor, hammasi ishlaydi».»
+  — o'quvchining dasturchisi yo'q; AI bor va u doim ishonch bilan «tayyor» deydi — vaziyat o'quvchining o'zida bo'ladi.
+- ❌ «Dasturchi «tayyor» dedi. Ishonasizmi?»  ✅ «AI «tayyor» dedi. Ishonasizmi?»
+- ❌ «Ishonaman — dasturchi tekshirgandir»  ✅ «Ishonaman — AI tekshirgandir»
+- ❌ «Shartlarni dasturchiga beramiz → Dasturchi kodni yozadi → Har shartni birma-bir tekshiramiz»
+  ✅ «Shartlarni promptga qo'shamiz → AI kodni yozadi → Har shartni o'zimiz bosib tekshiramiz»
+- ❌ «Siz va dasturchi kelishgan hamma shart bajarildi»  ✅ «Siz oldindan yozgan hamma shart bajarildi»
+- ❌ «Yozilgan shartlarni kimga berasiz? — Ishni bajaradigan dasturchiga»
+  ✅ «Yozilgan shartlarni qayerga qo'shasiz? — AI'ga yuboradigan promptingizga»
+- ❌ «…shartlarni dasturchi bilan BIRGA o'qib chiqing — u «bu qanday tekshiriladi?» deb so'rasa…» (mentor eslatmasi)
+  ✅ «Juftlikda: sherigingiz shartlaringizni o'qiydi. U «buni qanday tekshiraman?» deb so'rasa — shart qayta yoziladi.»
+- ✅ Qoladi: «Cyberpunk studiyasi dasturchilari» (haqiqiy keysdagi uchinchi shaxs) · «Frontend dasturchi» (kasb nomi, §214) · texnik darsda «dasturchining, ya'ni sizning ishingiz» (o'quvchining o'zi).
+**Qoida (110-qonun):** PM/bridge darsida o'quvchi ish beruvchi emas — o'zi quradi. Ish bajaruvchi va «tayyor» deydigan tomon — AI; shartlar promptga yoziladi; jamoa o'rniga «siz»/«sherigingiz»; mijoz o'rniga o'quvchining o'zi yoki haqiqiy foydalanuvchi. Test: ekranni o'quvchi o'z nomidan aytib bera oladimi («bu menda bo'ladi»)? — yo'q bo'lsa, qayta yoziladi. til-lint `dasturchi-topshiriq` (PM + bridge, error).

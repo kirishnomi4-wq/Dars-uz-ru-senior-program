@@ -28,6 +28,9 @@ const CODE = { bg: '#1A2436', text: '#E8E5DD', tag: '#FF7755', attr: '#FFD380', 
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
+// F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: useState va useEffect» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 4-4). scripts/hw-v2-kartalar.mjs yozadi.
+const HW_V2 = {"id":"4-4","tur":"file","nom":{"uz":"Uyga vazifa: useState va useEffect","ru":"Домашнее задание: useState и useEffect"},"matn":{"uz":"GameCard'ni jonlantiring.\n\n1. 👍 tugmasi: har bosilganda like soni bittaga oshsin (useState).\n2. «⭐ Sevimli» tugmasi: bosilsa yoqiladi, yana bosilsa o'chadi (true/false state).\n3. Brauzer tabidagi sarlavha like soni bilan yangilansin: «12 like» (useEffect, [likes]).\n4. Konsolga kartochka birinchi chiqqanda bir marta «Kartochka chiqdi» yozilsin (useEffect, []).\n5. Link va skrinshot (bir nechta like bosilgan holat, tab sarlavhasi ko'rinsin).\n\nNima tekshiriladi:\n— likes setLikes bilan oshadi\n— sevimli boolean state\n— title [likes] effektida\n— [] effekti bir marta.","ru":"Оживите GameCard.\n\n1. Кнопка 👍: при каждом нажатии число лайков растёт на один (useState).\n2. Кнопка «⭐ В избранное»: при нажатии включается, при повторном — выключается (state true/false).\n3. Заголовок вкладки браузера обновляется вместе с числом лайков: «12 like» (useEffect, [likes]).\n4. Когда карточка появляется впервые, в консоль один раз пишется «Карточка появилась» (useEffect, []).\n5. Ссылка и скриншот (нажато несколько лайков, виден заголовок вкладки).\n\nЧто проверяется:\n— likes растёт через setLikes\n— избранное — boolean state\n— title — в эффекте с [likes]\n— эффект с [] срабатывает один раз."}};
 
 
 
@@ -2235,11 +2238,6 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "useEffect(…, []) — ekranga chiqqanda; [likes] — har o'zgarishda", ru: 'useEffect(…, []) — при появлении на экране; [likes] — при каждом изменении' },
     { uz: "Hayot yo'li: Mount → Update → Unmount", ru: 'Жизненный путь: Mount → Update → Unmount' }
   ];
-  const HOMEWORK = [
-    { b: { uz: 'Jonli like', ru: 'Живой лайк' }, t: { uz: "— robo-games loyihangizda GameCard'ga useState bilan ishlaydigan 👍 qo'shing", ru: '— в вашем проекте robo-games добавьте GameCard работающий 👍 на useState' } },
-    { b: { uz: 'Ikkinchi xotira', ru: 'Вторая память' }, t: { uz: "— ⭐ sevimlilar tugmasi: bosilganda yulduzcha yonsin/o'chsin (true/false)", ru: '— кнопка ⭐ избранного: при нажатии звёздочка загорается/гаснет (true/false)' } },
-    { b: { uz: 'Tab kuzatuvchisi', ru: 'Наблюдатель вкладки' }, t: { uz: "— useEffect bilan like soni brauzer tab sarlavhasiga chiqsin", ru: '— через useEffect выведите число лайков в заголовок вкладки браузера' } }
-  ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
   const PASSED = (total ? correct / total : 0) >= 0.6;
@@ -2262,7 +2260,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
             <span className="hw-big-s">{tr({ uz: 'Amaliy topshiriqni bajarish →', ru: 'Выполнить практическое задание →' })}</span>
           </button>
         </div>
-        {hwOpen && <div className="card hw fade-up d4"><div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '📝 Uyga vazifa', ru: '📝 Домашнее задание' })}</div><p className="body" style={{ margin: '0 0 10px', color: T.ink }}>{tr({ uz: "Antigravity bilan o'z loyihangizda sinang:", ru: 'Попробуйте в своём проекте вместе с Antigravity:' })}</p><ul>{HOMEWORK.map((h, i) => (<li key={i}><b>{tr(h.b)}</b> <span className="t">{tr(h.t)}</span></li>))}</ul><p className="hw-note">{tr({ uz: "Keyingi darsda komponentlar jamoa bo'lib ishlaydi — ma'lumot bittasidan ikkinchisiga oqadi! 🚀", ru: 'На следующем уроке компоненты заработают командой — данные потекут от одного к другому! 🚀' })}</p></div>}
+        {hwOpen && <UygaVazifaKarta v={HW_V2} tr={tr} />}
         {!isMentorL && <div className="card ach-coll fade-up d3">
           <div className="card-lbl" style={{ color: T.accent }}>{tr({ uz: '🏅 Nishonlaringiz', ru: '🏅 Ваши значки' })} — {(achievements ? achievements.size : 0)}/{Object.keys(ACHIEVEMENTS).length}</div>
           <div className="ach-grid">

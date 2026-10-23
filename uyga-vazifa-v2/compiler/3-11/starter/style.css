@@ -1,0 +1,9 @@
+body { margin: 0; font-family: Arial, sans-serif; background: #F5F6F8; color: #16181D; }
+header { padding: 20px 28px; background: white; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+h1 { margin: 0; font-size: 24px; }
+.toifalar button { background: #F5F6F8; border: 1px solid #D9DDE4; border-radius: 999px; padding: 7px 14px; cursor: pointer; }
+#katalog { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 24px 28px; }
+.karta { background: white; border-radius: 14px; padding: 16px; position: relative; }
+.karta .emoji { font-size: 40px; }
+.karta h3 { margin: 8px 0 4px; }
+.karta .narx { color: #E8461F; font-weight: bold; }

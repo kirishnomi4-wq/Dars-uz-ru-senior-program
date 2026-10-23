@@ -85,15 +85,20 @@ function findLessons() {
 // ── Bitta darsni yig'ish ────────────────────────────────────────────────────
 // sharedSpec berilsa — kompilyator bundle'ga KIRMAYDI: importi <spec> bo'lib qoladi.
 // F-1015 (LMS preview): dars proplari (visitMode, previewRunId) umumiy modulga yetib borishi uchun
-// default eksport kichik o'ram bilan yig'iladi — dars manbasi o'zgarmaydi. visitMode bo'lmasa o'ram
-// hech narsa qilmaydi: proplar darsga o'z holicha uzatiladi.
+// default eksport kichik o'ram bilan yig'iladi — dars manbasi o'zgarmaydi. O'ram har mount'da bir marta rejimni
+// proplardan belgilaydi (F-1021-08/09: SPA'da yangi ishga tushirish oldingisining rejimi va xotirasini olmaydi);
+// proplar darsga o'z holicha uzatiladi. `startRun` — hook'siz kirish, `localStorage` — shu yig'maning saqlov adapteri
+// (F-1021-10; ikkalasi preview/main.jsx sinov-urug'i uchun).
 const PREVIEW_MODULE = resolve('src/live/previewMode.js');
+const PREVIEW_STORAGE = resolve('src/live/previewStorageInject.js');
 const entryWrapper = (abs) =>
-  `import { createElement as __ccEl } from 'react';\n` +
+  `import { createElement as __ccEl, useRef as __ccRef } from 'react';\n` +
   `import __CcLesson from ${JSON.stringify(abs)};\n` +
-  `import { notePreviewProps as __ccNotePreview } from ${JSON.stringify(PREVIEW_MODULE)};\n` +
+  `import { startLessonRun as __ccStartRun, previewLocalStorage as __ccLocal } from ${JSON.stringify(PREVIEW_MODULE)};\n` +
   `export * from ${JSON.stringify(abs)};\n` +
-  `export default function CcLessonEntry(props) { __ccNotePreview(props); return __ccEl(__CcLesson, props); }\n`;
+  `export default function CcLessonEntry(props) { const r = __ccRef(false); if (!r.current) { r.current = true; __ccStartRun(props); } return __ccEl(__CcLesson, props); }\n` +
+  `CcLessonEntry.startRun = __ccStartRun;\n` +
+  `CcLessonEntry.localStorage = __ccLocal;\n`;
 
 // --as (F-1015, reliz): dars boshqa joydagi NUSXADAN yig'iladi (masalan arxiv/…/CssPractice.jsx), lekin xuddi `asPath`
 // joyida turgandek: nisbiy importlar (../live, ../compilator) o'sha papkadan, chiqish nomi va OUT_MAP — `asPath` bo'yicha.
@@ -120,7 +125,15 @@ async function one(entry, sharedSpec, asPath = null) {
     external: ['react', 'react-dom', 'react/jsx-runtime'],
     // Jonli-dars API manzili (src/live/liveClient.js). Bo'sh → prod. Staging uchun:
     //   DARS_API_URL=https://staging-dars-api.coddycamp.uz node scripts/build-lms.mjs <fayl>   (bo'sh → prod dars-api.coddycamp.uz)
-    define: { __DARS_API_URL__: JSON.stringify(process.env.DARS_API_URL || '') },
+    // F-1021-10: saqlov nomlari shu yig'maning preview-adapteriga (src/live/previewStorageInject.js) — Storage.prototype
+    // almashtirilmaydi, har dars o'z rejimi va xotirasiga qaraydi. Faqat erkin (e'lon qilinmagan) nomlar almashadi.
+    define: {
+      __DARS_API_URL__: JSON.stringify(process.env.DARS_API_URL || ''),
+      localStorage: '__ccLocalStorage', sessionStorage: '__ccSessionStorage',
+      'window.localStorage': '__ccLocalStorage', 'window.sessionStorage': '__ccSessionStorage',
+      'globalThis.localStorage': '__ccLocalStorage', 'globalThis.sessionStorage': '__ccSessionStorage',
+    },
+    inject: [PREVIEW_STORAGE],
     legalComments: 'inline',
     write: false,               // birlashtirishdan keyin o'zimiz yozamiz
     logLevel: 'silent',
