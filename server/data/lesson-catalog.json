@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-23T12:29:10.386Z",
+  "generated_at": "2026-10-24T13:34:20.436Z",
   "count": 183,
   "lessons": [
     {
@@ -4752,8 +4752,8 @@
         {
           "id": "rightquestion",
           "name": "Right Question!",
-          "title_uz": "To'rt savolni murabbiydan o'zingiz so'radingiz",
-          "title_ru": "Вы сами задали тренеру четыре вопроса"
+          "title_uz": "To'rt savolni ustozdan o'zingiz so'radingiz",
+          "title_ru": "Вы сами задали наставнику четыре вопроса"
         },
         {
           "id": "onepager",

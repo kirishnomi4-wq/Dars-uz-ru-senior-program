@@ -1,6 +1,6 @@
 # F-1022-01 · m6-02 «Bitta gapni uch kishi bir xil tushunadimi?» — qayta yozish (ekranma-ekran)
 
-> Holat: **QORALAMA — kodga tegilmagan.** Tasdiqdan keyin `src/6-Modull/PmLesson22.jsx` ga o'tadi (uz + ru parallel). Uy vazifasi tegilmaydi.
+> Holat: **✅ KOD 24.10 18:33** (gates 13/13; arena #12 xato varianti tell uchun «PRD'ni yozgan odam»). Avval: QORALAMA. Tasdiqdan keyin `src/6-Modull/PmLesson22.jsx` ga o'tadi (uz + ru parallel). Uy vazifasi tegilmaydi.
 > Foydalanuvchi qarori (22.10): **aralash** — PRD atamasi qoladi (eng kerakli narsa) + haqiqiy AI; gap aytuvchi — **ustoz** («murabbiy» emas).
 
 ## 0. Nima o'zgaradi, nima qoladi

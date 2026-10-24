@@ -47,6 +47,7 @@ const tr = (node) => {
   return node[__lang] ?? node.uz ?? node.ru ?? '';
 };
 const MentorCtx = createContext(null);
+const ScreenIdxCtx = createContext(null); // 111-qonun: MentorNote qaysi ekranda turganini biladi
 const AchCtx = createContext(null);
 const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinish + «Qaytadan» mashq-o'tishi
 
@@ -183,6 +184,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   };
   return (
     <MentorCtx.Provider value={{ enabled: collapseOn, collapsed: mCollapsed, setCollapsed }}>
+      <ScreenIdxCtx.Provider value={screen}>
       <div className="stage">
         <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
           <div className="progress-track"><div className="progress-bar" style={{ width: `${((screen + 1) / totalScreens) * 100}%` }} /></div>
@@ -197,6 +199,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
         <div ref={contentRef} onClick={onContentClick} onScroll={onContentScroll} className={`stage-content ${narrow ? 'narrow' : ''}`} style={{ paddingLeft: padH, paddingRight: padH }}>{children}</div>
         {navContent && <div className="stage-nav" style={{ paddingLeft: padH, paddingRight: padH }}>{navContent}</div>}
       </div>
+      </ScreenIdxCtx.Provider>
     </MentorCtx.Provider>
   );
 };
@@ -284,7 +287,7 @@ const RECAPS = {
     cards: [
       { ic: '📏', h: { uz: "O'lchagich nima", ru: 'Что такое измеритель' }, body: { uz: <>Sayt chiqqandan keyin uni <b>to'xtovsiz o'lchab turadigan dastur</b> — o'lchagich.</>, ru: <>Прибор, который <b>непрерывно измеряет</b> сайт после выпуска, — это измеритель.</> } },
       { ic: '✈️', h: { uz: 'Ikki xil tekshiruv', ru: 'Две разные проверки' }, body: { uz: <>Chiqarishgacha kodni <b>lenta</b>, chiqqandan keyin saytni o'lchagich tekshiradi.</>, ru: <>До выпуска код проверяет <b>конвейер</b>, после выпуска сайт измеряет измеритель.</> } },
-      { ic: '🙋', h: { uz: "O'lchagich bo'lmasa", ru: 'Если измерителя нет' }, body: { uz: <>Sayt ochilmay qolsa, buni birinchi bo'lib <b>kirgan odam</b> ko'radi — dasturchi emas.</>, ru: <>Если сайт перестанет открываться, первым это увидит <b>зашедший человек</b>, а не программист.</> }, ask: { uz: 'Sayt kechasi ochilmay qolsa, buni ertalab kim bilib qoladi?', ru: 'Если сайт перестанет открываться ночью, кто узнает об этом утром?' } }
+      { ic: '🙋', h: { uz: "O'lchagich bo'lmasa", ru: 'Если измерителя нет' }, body: { uz: <>Sayt ochilmay qolsa, buni birinchi bo'lib <b>kirgan odam</b> ko'radi — siz emas.</>, ru: <>Если сайт перестанет открываться, первым это увидит <b>зашедший человек</b>, а не вы.</> }, ask: { uz: 'Sayt kechasi ochilmay qolsa, buni ertalab kim bilib qoladi?', ru: 'Если сайт перестанет открываться ночью, кто узнает об этом утром?' } }
     ]
   },
   5: {
@@ -526,6 +529,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
         {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -568,9 +572,33 @@ const Mentor = ({ children }) => {
 };
 
 // MentorNote — PROYEKTOR-SIR: default yopiq xira chip; bosishda ochiladi/yopiladi.
+// 111-qonun (F-1022-01): mentor har slaydning NIMA UCHUN borligini birinchi qatorda o'qiydi.
+// Manba — SCREEN_INTENTS niyati, mentor tiliga o'girilgan («Bola…» emas, «O'quvchi…»).
+const MENTOR_WHY = {
+  s0:  { uz: "O'quvchi o'z sayti shu daqiqada ochilyaptimi degan savolga javob tanlaydi va buni hech kim aytmasligini ko'radi.", ru: 'Ученик отвечает, открывается ли его сайт прямо сейчас, и видит: об этом никто не скажет.' },
+  s1:  { uz: "Dars oxirida o'quvchi saytiga uchta qoida yozib olishini oldindan ko'rsatadi.", ru: 'Заранее показывает: к концу урока ученик запишет для своего сайта три правила.' },
+  s2:  { uz: "O'quvchi chiqarishgacha va chiqqandan keyingi tekshiruvni solishtirib, o'lchagich nima ekanini biladi.", ru: 'Сравнивая проверку до выпуска и после, ученик узнаёт, что такое измеритель.' },
+  s3:  { uz: "O'lchagichsiz sayt ochilmay qolganini birinchi bo'lib kim ko'rishini mustahkamlaydi.", ru: 'Закрепляет, кто первым увидит, что сайт без измерителя перестал открываться.' },
+  s4:  { uz: "O'quvchi bir kunlik o'lchovlarni ko'radi, uch chegarani qo'yadi va qaysi xabarni odam sezganini o'zi sanaydi — darsning yadrosi.", ru: 'Ученик смотрит замеры за день, ставит три порога и сам считает, какое сообщение люди заметили, — ядро урока.' },
+  s5:  { uz: "Sekin javobda kirgan odam nima qilishini aniqlaydi.", ru: 'Уточняет, что делает зашедший человек, когда ответ медленный.' },
+  s6:  { uz: "O'quvchi brauzeri har kirishda holat va vaqtni o'zi o'lchab yozishini o'z ekranida tekshiradi.", ru: 'Ученик на своём экране проверяет: браузер при каждом заходе сам измеряет и записывает статус и время.' },
+  s7:  { uz: "Xatoni holat raqami aytishini, vaqt emasligini tanlaydi.", ru: 'Выбирает: об ошибке говорит номер статуса, а не время.' },
+  s8:  { uz: "O'quvchi o'z saytiga uchta signal-qoidasini bittalab yozadi: chegara-son va sabab — darsning asosiy natijasi.", ru: 'Ученик по одному пишет для своего сайта три правила-сигнала: пороговое число и причину, — главный результат урока.' },
+  s9:  { uz: "O'quvchi to'rt signalning har biriga yo'l tanlaydi: hozir xabar yoki jurnalga.", ru: 'Ученик выбирает путь для каждого из четырёх сигналов: сообщение сейчас или в журнал.' },
+  s10: { uz: "O'quvchi VS Code'da saytini o'lchaydigan uch shartni yozadi va terminalda natijani ko'radi.", ru: 'Ученик пишет в VS Code три условия, которые измеряют его сайт, и видит результат в терминале.' },
+  s11: { uz: "Juda past chegara qanday xabarlar berishini tasdiqlaydi.", ru: 'Подтверждает, какие сообщения даёт слишком низкий порог.' },
+  s12: { uz: "O'quvchi uch chegarasini yoddan aytadi va bir qatorda yozib qoldiradi.", ru: 'Ученик по памяти называет свои три порога и записывает одной строкой.' },
+  s13: { uz: "Sinf natijasi va g'oliblar.", ru: 'Результат класса и победители.' },
+  s14: { uz: "O'nta karta bilan o'quvchi o'zini o'zi tekshiradi.", ru: 'Десять карточек — ученик проверяет себя сам.' },
+  s15: { uz: "CodeStrike arenasi, uy vazifasi va nishonlar.", ru: 'Арена CodeStrike, домашнее задание и значки.' },
+};
+// Birinchi qator har doim «Bu slayd nima uchun:» (111-qonun) — ekran id'si ScreenIdxCtx'dan; children bo'lmasa ham chiqadi.
 const MentorNote = ({ children }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
+  const idx = useContext(ScreenIdxCtx);
+  const sid = typeof idx === 'number' && SCREEN_META[idx] ? SCREEN_META[idx].id : null;
+  const why = sid && MENTOR_WHY[sid] ? tr(MENTOR_WHY[sid]) : null;
   const [open, setOpen] = useState(false);
   if (!live || live.mode !== 'mentor') return null;
   if (!open) return (
@@ -579,7 +607,8 @@ const MentorNote = ({ children }) => {
   return (
     <div className="mnote fade-up" onClick={() => setOpen(false)} title={tr({ uz: 'Yopish uchun bosing', ru: 'Нажмите, чтобы закрыть' })}>
       <span className="mnote-lbl">{tr({ uz: '🧑‍🏫 Mentorga eslatma', ru: '🧑‍🏫 Заметка ментору' })}<span className="mnote-x">{tr({ uz: '✕ yopish', ru: '✕ закрыть' })}</span></span>
-      <p className="mnote-body">{children}</p>
+      {why && <p className="mnote-body mnote-why"><b>{tr({ uz: 'Bu slayd nima uchun:', ru: 'Зачем этот слайд:' })}</b> {why}</p>}
+      {children ? <p className="mnote-body">{children}</p> : null}
     </div>
   );
 };
@@ -714,11 +743,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: i, correct: false });
     if (live && live.mode === 'student') live.submitAnswer(screen, 's0', i, false, 0);
   };
-  const opened = picked !== null || isMentor;
+  // F-1022-01: mentor ekranida natija o'quvchilar tanlashidan OLDIN ochilmaydi — «Natijani ochish» (test-ekranlar bilan bir yo'l).
+  const [mReveal, setMReveal] = useState(false);
+  const opened = picked !== null || (isMentor && mReveal);
   const totalVotes = counts ? counts.reduce((a, b) => a + b, 0) : 0;
   const optWave = useTurnHint(picked === null && !isMentor);
   return (
-    <Stage eyebrow={tr({ uz: 'Kirish · saytingiz', ru: 'Введение · ваш сайт' })} screen={screen} navContent={<NavNext optionalLive turnBusy={picked === null && !isMentor} disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish · saytingiz', ru: 'Введение · ваш сайт' })} screen={screen} navContent={<NavNext optionalLive mentorLock turnBusy={picked === null && !isMentor} disabled={isMentor ? !mReveal : picked === null} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : isMentor ? tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один' })} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Saytingiz hozir <span className="italic" style={{ color: T.accent }}>ochilyaptimi?</span></>, ru: <>Ваш сайт сейчас <span className="italic" style={{ color: T.accent }}>открывается?</span></> })}</h2></div>
         <Mentor>{nom ? tr({ uz: <>Saytingizni Netlify'ga chiqarib qo'ygansiz — linki {nom}.</>, ru: <>Вы выложили свой сайт на Netlify — ссылка {nom}.</> }) : tr({ uz: <>Saytingizni Netlify'ga chiqarib qo'ygansiz — u hozir ham o'sha yerda turibdi.</>, ru: <>Вы выложили свой сайт на Netlify — он и сейчас там.</> })}</Mentor>
@@ -739,7 +770,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           </>
         )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda — yakka o'quvchida jamoa-murojaati yo'q */}
-        {opened && isLive && counts && (
+        {isMentor && !mReveal && (
+          <button className={`mstats-reveal${totalVotes > 0 ? ' ready' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setMReveal(true)}>
+            {tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}
+          </button>
+        )}
+        {/* Mentor ekranida diagramma tanlov PAYTIDA ham ko'rinadi (kim tanlagani — natija emas). */}
+        {(opened || isMentor) && isLive && counts && totalVotes > 0 && (
           <div className="hvote fade-step" aria-label={tr({ uz: 'Sinf natijasi', ru: 'Результат класса' })}>
             {HOOK_OPTS.map((o, i) => {
               const n = counts[i];
@@ -836,6 +873,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
             <p className="xul-b">{tr({ uz: "Uchta o'lchagich bor: sayt ochiladimi · javob necha soniyada keladi · 100 kirishdan nechtasi xato.", ru: 'Измерителей три: открывается ли сайт · за сколько секунд приходит ответ · сколько из 100 заходов с ошибкой.' })}</p>
           </div>
         )}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -849,11 +887,11 @@ const Screen3 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Kechasi sayt 20 daqiqa ochilmadi, ertalab yana ishlayapti. O'lchagichsiz buni kim bildi?", ru: 'Ночью сайт 20 минут не открывался, утром снова работает. Кто узнал об этом без измерителя?' })} />}
     questionText={tr({ uz: "O'lchagichsiz sayt ochilmay qolganini kim bildi", ru: 'Кто узнал без измерителя, что сайт не открывался' })}
-    options={[tr({ uz: 'Ertalab saytga kirgan dasturchi', ru: 'Программист, зашедший на сайт утром' }), tr({ uz: "O'sha paytda saytga kirgan odamlar", ru: 'Люди, заходившие на сайт в тот момент' }), tr({ uz: 'Kodni chiqarishdan oldin tekshirgan lenta', ru: 'Конвейер, проверявший код перед выпуском' })]}
+    options={[tr({ uz: 'Ertalab saytga kirgan siz', ru: 'Вы сами, зайдя на сайт утром' }), tr({ uz: "O'sha paytda saytga kirgan odamlar", ru: 'Люди, заходившие на сайт в тот момент' }), tr({ uz: 'Kodni chiqarishdan oldin tekshirgan lenta', ru: 'Конвейер, проверявший код перед выпуском' })]}
     correctIdx={1}
     explainCorrect={tr({ uz: "O'lchagichsiz buni birinchi bo'lib kirgan odam ko'radi.", ru: 'Без измерителя первым это увидит зашедший человек.' })}
     explainWrong={{
-      0: tr({ uz: "Ertalab kirgan dasturchi kechasi nima bo'lganini ko'rmaydi.", ru: 'Утром сайт уже работает — ночного сбоя программист не увидит.' }),
+      0: tr({ uz: "Ertalab kirganingizda kechasi nima bo'lganini ko'rmaysiz.", ru: 'Утром сайт уже работает — ночного сбоя вы не увидите.' }),
       2: tr({ uz: 'Lenta kodni chiqarishgacha tekshiradi, keyin qaramaydi.', ru: 'Конвейер проверяет код до выпуска, а после — не смотрит.' }),
       default: tr({ uz: "Sayt ochilmay qolgan payt u yerda kim bo'lganini o'ylang.", ru: 'Подумайте, кто был на сайте в тот момент, когда он не открылся.' })
     }}
@@ -1101,7 +1139,7 @@ const holatSteps = (nom) => [
   { ic: '🖥', h: { uz: 'Kompyuteringizda saytingizni oching', ru: 'Откройте свой сайт на компьютере' },
     body: { uz: <>Sayt bo'lmasa — istalgan saytni. <code className="qcode">F12</code> ni bosing: brauzerning ish paneli (<span className="uic">DevTools</span>) ochiladi. Undagi <span className="uic">Network</span> bo'limini tanlang. Telefonda bu panel yo'q.</>, ru: <>Если сайта нет — любой сайт. Нажмите <code className="qcode">F12</code>: откроется рабочая панель браузера (<span className="uic">DevTools</span>). Выберите в ней раздел <span className="uic">Network</span>. На телефоне такой панели нет.</> } },
   { predict: { ask: { uz: "Sahifa necha soniyada kelganini kim o'lchab yozib qo'yadi?", ru: 'Кто измеряет и записывает, за сколько секунд пришла страница?' }, chips: [
-      { ic: '🧑‍💻', t: { uz: "Saytni yozgan dasturchi yozib qo'ygan", ru: 'Записал программист, написавший сайт' } },
+      { ic: '🧑‍💻', t: { uz: "Saytni yozganingizda o'zingiz yozib qo'ygansiz", ru: 'Вы сами записали, когда писали сайт' } },
       { ic: '🌐',   t: { uz: "Saytning o'zi yozib qo'ygan", ru: 'Записал сам сайт' } },
       { ic: '🖥',   t: { uz: "Brauzeringiz o'zi o'lchab yozgan", ru: 'Ваш браузер измерил и записал сам' } },
     ], ans: 2,
@@ -1832,6 +1870,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Проверьте</span> себя.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={FLASHCARDS} /></div>
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -2710,6 +2749,8 @@ const CSS_BASE = `
   .mnote-chip:hover, .mnote-chip:focus-visible { opacity: 1; transform: translateY(-1px); }
   @media (hover: none) { .mnote-chip { opacity: 0.6; } }
   .mnote-body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; line-height: 1.45; }
+  .mnote-why { color: ${T.blue}; }
+  .mnote-why b { font-weight: 800; }
 
   .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
   .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }

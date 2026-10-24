@@ -6,7 +6,7 @@
       "pattern": "[Dd]asturchi(lar)?(ga|dan|ning)\\b|[Dd]asturchi(lar)? [^.\"'«]{0,25}(dedi|aytdi|aytadi|yozib berdi|yozdi|yozadi|taklif qildi|tuzatdi|topshirdi|tekshirgan)|[Dd]asturchi(lar)? «",
       "severity": "error",
       "onlyFiles": ["/Pm", "bridge/lessons/"],
-      "allowFiles": [".homework", "PmAudienceLesson", "PmLesson22", "PmLesson13", "PmLesson16", "PmLesson12", "PmLesson10", "PmProductProblemLesson", "BridgeNimaQuramiz", "BridgeKimUchun"],
+      "allowFiles": [".homework", "PmAudienceLesson", "PmLesson10", "PmProductProblemLesson", "BridgeNimaQuramiz", "BridgeKimUchun"],
       "except": "Cyberpunk|studiya|Frontend dasturchi|Backend dasturchi|kasb|yo'nalish",
       "suggest": "110-qonun (F-1022-01): o'quvchi PM emas, startapchi — ish beradigan dasturchisi yo'q. Ish bajaruvchi va «tayyor» deydigan — AI (Gemini): «dasturchidan so'radingiz» → «Gemini'dan so'radingiz», «dasturchiga beramiz» → «promptga qo'shamiz», «dasturchi yozadi» → «AI yozadi». Ruxsat: haqiqiy keysdagi uchinchi shaxs, kasb nomi. allowFiles — hali tuzatilmagan darslar (KATTA §31), yopilgach o'chiriladi; `.homework` doimiy (PM uy vazifalariga tegilmaydi — memory pm-homework-tegilmaydi).",
       "law": "PM_DARS_ETALON 110 · KORPUS §O'QUVCHI-STARTAPCHI"

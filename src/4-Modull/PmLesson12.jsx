@@ -50,6 +50,7 @@ const tr = (node) => {
   return node[__lang] ?? node.uz ?? node.ru ?? '';
 };
 const MentorCtx = createContext(null);
+const ScreenIdxCtx = createContext(null); // 111-qonun: MentorNote qaysi ekranda turganini biladi
 const AchCtx = createContext(null);
 const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinish + «Qaytadan» mashq-o'tishi
 
@@ -188,6 +189,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   };
   return (
     <MentorCtx.Provider value={{ enabled: collapseOn, collapsed: mCollapsed, setCollapsed }}>
+      <ScreenIdxCtx.Provider value={screen}>
       <div className="stage">
         <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
           <div className="progress-track"><div className="progress-bar" style={{ width: `${((screen + 1) / totalScreens) * 100}%` }} /></div>
@@ -202,6 +204,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
         <div ref={contentRef} onClick={onContentClick} onScroll={onContentScroll} className={`stage-content ${narrow ? 'narrow' : ''}`} style={{ paddingLeft: padH, paddingRight: padH }}>{children}</div>
         {navContent && <div className="stage-nav" style={{ paddingLeft: padH, paddingRight: padH }}>{navContent}</div>}
       </div>
+      </ScreenIdxCtx.Provider>
     </MentorCtx.Provider>
   );
 };
@@ -533,6 +536,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
         {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -575,9 +579,33 @@ const Mentor = ({ children }) => {
 };
 
 // MentorNote — PROYEKTOR-SIR: default yopiq xira chip; bosishda ochiladi/yopiladi.
+// 111-qonun (F-1022-01): mentor har slaydning NIMA UCHUN borligini birinchi qatorda o'qiydi.
+// Manba — SCREEN_INTENTS niyati, mentor tiliga o'girilgan («Bola…» emas, «O'quvchi…»).
+const MENTOR_WHY = {
+  s0:  { uz: "O'quvchi sinfdoshi sahifasini ochsa nima ko'rishini tanlaydi va sahifada beshala qator ham o'qilib turganini ko'radi.", ru: 'Ученик выбирает, что увидит одноклассник, открыв его страницу, и видит: все пять строк читаются.' },
+  s1:  { uz: "Dars oxirida o'quvchi uch qatorga qaror chiqarib, har biriga sabab yozishini oldindan ko'rsatadi.", ru: 'Заранее показывает: к концу урока ученик примет решение по трём строкам и напишет к каждой причину.' },
+  s2:  { uz: "O'quvchi ikki misolda kim zarar ko'rishini tanlab, ochiq va yopiq ma'lumot farqini o'zi topadi.", ru: 'Выбирая в двух примерах, кто пострадает, ученик сам находит разницу между открытыми и закрытыми данными.' },
+  s3:  { uz: "Ma'lumotni yopiq qiladigan narsa — zarar ekanini mustahkamlaydi.", ru: 'Закрепляет: данные делает закрытыми возможный вред.' },
+  s4:  { uz: "O'quvchi bitta sahifani uch xil odam bo'lib ochadi va sinfdosh ko'rmasligi kerak bo'lgan qatorlarni o'zi topadi — darsning yadrosi.", ru: 'Ученик открывает одну страницу от лица трёх людей и сам находит строки, которые однокласснику видеть нельзя, — ядро урока.' },
+  s5:  { uz: "Ochiq qolish ham qaror ekanini aniqlaydi.", ru: 'Уточняет: оставить открытым — тоже решение.' },
+  s6:  { uz: "O'quvchi ilova qanday ma'lumot yig'ishini ilovalar do'konida oldindan o'qish mumkinligini biladi.", ru: 'Ученик узнаёт: какие данные собирает приложение, можно заранее прочитать в магазине приложений.' },
+  s7:  { uz: "Bu ro'yxatni eng erta qachon o'qish mumkinligini tanlaydi.", ru: 'Выбирает, когда раньше всего можно прочитать этот список.' },
+  s8:  { uz: "O'quvchi o'z uch qatoriga bittalab qaror chiqaradi va har biriga sabab yozadi — darsning asosiy natijasi.", ru: 'Ученик по одной принимает решение по своим трём строкам и пишет к каждой причину, — главный результат урока.' },
+  s9:  { uz: "O'quvchi ota-onaga ketadigan xabardan ortiqcha ikki qatorni olib tashlaydi.", ru: 'Ученик убирает две лишние строки из сообщения, которое уходит родителям.' },
+  s10: { uz: "O'quvchi VS Code'da so'rovni kerakli ustunlargacha qisqartiradi va ikkita ustun qaytishini ko'radi.", ru: 'Ученик в VS Code сокращает запрос до нужных столбцов и видит, что возвращаются два столбца.' },
+  s11: { uz: "Kirish parolini qaysi joydan olib tashlash kerakligini tasdiqlaydi.", ru: 'Подтверждает, откуда нужно убрать пароль для входа.' },
+  s12: { uz: "O'quvchi uch qarorini yoddan aytadi va bir qatorda yozib qoldiradi.", ru: 'Ученик по памяти называет свои три решения и записывает одной строкой.' },
+  s13: { uz: "Sinf natijasi va g'oliblar.", ru: 'Результат класса и победители.' },
+  s14: { uz: "O'nta karta bilan o'quvchi o'zini o'zi tekshiradi.", ru: 'Десять карточек — ученик проверяет себя сам.' },
+  s15: { uz: "CodeStrike arenasi, uy vazifasi va nishonlar.", ru: 'Арена CodeStrike, домашнее задание и значки.' },
+};
+// Birinchi qator har doim «Bu slayd nima uchun:» (111-qonun) — ekran id'si ScreenIdxCtx'dan; children bo'lmasa ham chiqadi.
 const MentorNote = ({ children }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
+  const idx = useContext(ScreenIdxCtx);
+  const sid = typeof idx === 'number' && SCREEN_META[idx] ? SCREEN_META[idx].id : null;
+  const why = sid && MENTOR_WHY[sid] ? tr(MENTOR_WHY[sid]) : null;
   const [open, setOpen] = useState(false);
   if (!live || live.mode !== 'mentor') return null;
   if (!open) return (
@@ -586,7 +614,8 @@ const MentorNote = ({ children }) => {
   return (
     <div className="mnote fade-up" onClick={() => setOpen(false)} title={tr({ uz: 'Yopish uchun bosing', ru: 'Нажмите, чтобы закрыть' })}>
       <span className="mnote-lbl">{tr({ uz: '🧑‍🏫 Mentorga eslatma', ru: '🧑‍🏫 Заметка ментору' })}<span className="mnote-x">{tr({ uz: '✕ yopish', ru: '✕ закрыть' })}</span></span>
-      <p className="mnote-body">{children}</p>
+      {why && <p className="mnote-body mnote-why"><b>{tr({ uz: 'Bu slayd nima uchun:', ru: 'Зачем этот слайд:' })}</b> {why}</p>}
+      {children ? <p className="mnote-body">{children}</p> : null}
     </div>
   );
 };
@@ -743,11 +772,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: i, correct: false });
     if (live && live.mode === 'student') live.submitAnswer(screen, 's0', i, false, 0);
   };
-  const opened = picked !== null || isMentor;
+  // F-1022-01: mentor ekranida natija o'quvchilar tanlashidan OLDIN ochilmaydi — «Natijani ochish» (test-ekranlar bilan bir yo'l).
+  const [mReveal, setMReveal] = useState(false);
+  const opened = picked !== null || (isMentor && mReveal);
   const totalVotes = counts ? counts.reduce((a, b) => a + b, 0) : 0;
   const optWave = useTurnHint(picked === null && !isMentor);
   return (
-    <Stage eyebrow={tr({ uz: 'Kirish · jurnal ilovasi', ru: 'Вход · приложение-журнал' })} screen={screen} navContent={<NavNext optionalLive turnBusy={picked === null && !isMentor} disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один вариант' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish · jurnal ilovasi', ru: 'Вход · приложение-журнал' })} screen={screen} navContent={<NavNext optionalLive mentorLock turnBusy={picked === null && !isMentor} disabled={isMentor ? !mReveal : picked === null} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : isMentor ? tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один вариант' })} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Sinfdoshingiz sahifangizni ochsa, <span className="italic" style={{ color: T.accent }}>nimani ko'radi?</span></>, ru: <>Одноклассник открыл вашу страницу — <span className="italic" style={{ color: T.accent }}>что он увидит?</span></> })}</h2></div>
         <Mentor>{tr({ uz: 'Maktab jurnali ilovasida sizning sahifangiz bor.', ru: 'В приложении школьного журнала есть ваша страница.' })}</Mentor>
@@ -770,7 +801,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           </div>
         )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda — yakka o'quvchida jamoa-murojaati yo'q */}
-        {opened && isLive && counts && (
+        {isMentor && !mReveal && (
+          <button className={`mstats-reveal${totalVotes > 0 ? ' ready' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setMReveal(true)}>
+            {tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}
+          </button>
+        )}
+        {/* Mentor ekranida diagramma tanlov PAYTIDA ham ko'rinadi (kim tanlagani — natija emas). */}
+        {(opened || isMentor) && isLive && counts && totalVotes > 0 && (
           <div className="hvote fade-step" aria-label={tr({ uz: 'Sinf natijasi', ru: 'Результат класса' })}>
             {HOOK_OPTS.map((o, i) => {
               const n = counts[i];
@@ -862,6 +899,7 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
           ))}
         </div>
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1059,7 +1097,7 @@ const HOLAT_SLIDES = [
       miss: { uz: "Adashdingiz — asl javob: do'kondagi har ilovada", ru: 'Не угадали — верный ответ: у каждого приложения в магазине' } } },
   { ic: '🔮', h: null, body: null,
     predict: { ask: { uz: 'Sizningcha, bu ro\'yxat u yerda nima uchun turadi?', ru: 'Как вы думаете, зачем там стоит этот список?' }, chips: [
-      { ic: '🧑‍💻', t: { uz: 'Dasturchilarga eslatma sifatida', ru: 'Как напоминание для программистов' } },
+      { ic: '🧑‍💻', t: { uz: "Ilovani yozganlar o'zi uchun eslatma qilib", ru: 'Как заметку для себя от авторов приложения' } },
       { ic: '📲', t: { uz: 'Telefon uni o\'zi yozib qo\'yadi', ru: 'Телефон записывает его сам' } },
       { ic: '🙋', t: { uz: 'Yuklaydigan odam oldindan bilsin uchun', ru: 'Чтобы тот, кто устанавливает, знал заранее' } },
     ], ans: 2,
@@ -1724,6 +1762,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Проверьте</span> себя.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={FLASHCARDS} /></div>
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -2629,6 +2668,8 @@ const CSS_BASE = `
   .mnote-chip:hover, .mnote-chip:focus-visible { opacity: 1; transform: translateY(-1px); }
   @media (hover: none) { .mnote-chip { opacity: 0.6; } }
   .mnote-body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; line-height: 1.45; }
+  .mnote-why { color: ${T.blue}; }
+  .mnote-why b { font-weight: 800; }
 
   .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
   .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }

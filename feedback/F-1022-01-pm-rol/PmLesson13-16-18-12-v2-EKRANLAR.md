@@ -1,6 +1,6 @@
 # F-1022-01 · QISMAN darslar — m4-12 · m4b-02 · m4c-06 · m4-07 (ekranma-ekran, faqat o'zgaradigan joylar)
 
-> Holat: **QORALAMA — kodga tegilmagan.** Har darsga: matn (uz+ru) + s0 mentor «Natijani ochish» + 111-qonun «Bu slayd nima uchun» 16/16 (mexanizm m3-10 dan). Uy vazifalari tegilmaydi. Test/arena to'g'ri javob o'rinlari o'zgarmaydi.
+> Holat: **✅ KOD 24.10 18:30** (4 dars, gates: faqat eski qarz `emoji`, PmLesson16 `tell`). Avval: QORALAMA. Har darsga: matn (uz+ru) + s0 mentor «Natijani ochish» + 111-qonun «Bu slayd nima uchun» 16/16 (mexanizm m3-10 dan). Uy vazifalari tegilmaydi. Test/arena to'g'ri javob o'rinlari o'zgarmaydi.
 > Mentor «Bu slayd nima uchun» qatorlari — har darsning `SCREEN_INTENTS` matnidan («Bola…» → «O'quvchi…», mentor tilida); alohida jadvalga yozilmadi, kodda `MENTOR_WHY` sifatida 16 tadan yoziladi.
 
 ---

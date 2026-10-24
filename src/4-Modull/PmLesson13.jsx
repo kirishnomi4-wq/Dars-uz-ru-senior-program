@@ -53,6 +53,7 @@ const tr = (node) => {
   return node[__lang] ?? node.uz ?? node.ru ?? '';
 };
 const MentorCtx = createContext(null);
+const ScreenIdxCtx = createContext(null); // 111-qonun: MentorNote qaysi ekranda turganini biladi
 const AchCtx = createContext(null);
 const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinish + «Qaytadan» mashq-o'tishi
 
@@ -108,7 +109,7 @@ export const SCREEN_INTENTS = {
   s6: "Bola Amazon voqeasidan e'lon koddan oldin yozilishini biladi",
   s7: "Bola Amazon jamoasi kodni qachon yoza boshlashini tanlaydi",
   s8: "Bola uch ustunning har biriga odam tilida bitta savol yozadi va sxemasini saqlaydi",
-  s9: "Bola dasturchi taklif qilgan sxemani uch shartdan o'tkazib ikki xatoni topadi",
+  s9: "Bola AI taklif qilgan sxemani uch shartdan o'tkazib ikki xatoni topadi",
   s10: "Bola kompilyatorda yozuvga yetishmagan ikki maydonni qo'shib ikkala savolga javob chiqaradi",
   s11: "Bola hech qaysi gapga ulanmagan ustun nima qilinishini tanlaydi",
   s12: "Bola uch ustunini yoddan aytadi va bir qatorda yozib qoldiradi",
@@ -191,6 +192,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   };
   return (
     <MentorCtx.Provider value={{ enabled: collapseOn, collapsed: mCollapsed, setCollapsed }}>
+      <ScreenIdxCtx.Provider value={screen}>
       <div className="stage">
         <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
           <div className="progress-track"><div className="progress-bar" style={{ width: `${((screen + 1) / totalScreens) * 100}%` }} /></div>
@@ -205,6 +207,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
         <div ref={contentRef} onClick={onContentClick} onScroll={onContentScroll} className={`stage-content ${narrow ? 'narrow' : ''}`} style={{ paddingLeft: padH, paddingRight: padH }}>{children}</div>
         {navContent && <div className="stage-nav" style={{ paddingLeft: padH, paddingRight: padH }}>{navContent}</div>}
       </div>
+      </ScreenIdxCtx.Provider>
     </MentorCtx.Provider>
   );
 };
@@ -536,6 +539,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
         {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} showAsk={isMentorLive} />}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -578,9 +582,33 @@ const Mentor = ({ children }) => {
 };
 
 // MentorNote — PROYEKTOR-SIR: default yopiq xira chip; bosishda ochiladi/yopiladi.
+// 111-qonun (F-1022-01): mentor har slaydning NIMA UCHUN borligini birinchi qatorda o'qiydi.
+// Manba — SCREEN_INTENTS niyati, mentor tiliga o'girilgan («Bola…» emas, «O'quvchi…»).
+const MENTOR_WHY = {
+  s0:  { uz: "O'quvchi «Band qilish» bosilganda ilova nimani yozib qolishini tanlaydi va yozilmagan narsa ertasi kuni yo'q bo'lishini ko'radi.", ru: 'Ученик выбирает, что приложение записывает при нажатии «Забронировать», и видит: незаписанного на следующий день уже нет.' },
+  s1:  { uz: "Dars oxirida o'quvchi uch ustunli sxema tuzishini oldindan ko'rsatadi — har ustun nomi, savoli va belgisi bilan.", ru: 'Заранее показывает: к концу урока ученик составит схему из трёх столбцов — у каждого название, вопрос и значок.' },
+  s2:  { uz: "O'quvchi ikki kartani ochib, sxemaga yozilgan va yozilmagan narsaning farqini o'zi topadi.", ru: 'Открывая две карточки, ученик сам находит разницу между тем, что записано в схему, и тем, что нет.' },
+  s3:  { uz: "Ilova bir ma'lumotni ko'rsatishi uchun sxemada ustun kerakligini mustahkamlaydi.", ru: 'Закрепляет: чтобы приложение показало данные, в схеме нужен столбец.' },
+  s4:  { uz: "O'quvchi e'lonning har gapidan mos ustunga ip tortadi va ustunsiz qolgan gapga yangi ustun ochadi — darsning yadrosi.", ru: 'Ученик тянет нить от каждой фразы анонса к нужному столбцу, а для фразы без столбца открывает новый, — ядро урока.' },
+  s5:  { uz: "Sxemaga yangi ustun qachon qo'shilishini aniqlaydi: e'londagi gap ustunsiz qolganda.", ru: 'Уточняет, когда в схему добавляют новый столбец: когда фраза анонса осталась без столбца.' },
+  s6:  { uz: "O'quvchi Amazon voqeasidan e'lon koddan oldin yozilishini biladi.", ru: 'Из истории Amazon ученик узнаёт: анонс пишут до кода.' },
+  s7:  { uz: "Amazon jamoasi kodni qachon yoza boshlashini tanlaydi — tartibni mustahkamlaydi.", ru: 'Выбирает, когда команда Amazon начинает писать код, — закрепляет порядок.' },
+  s8:  { uz: "O'quvchi uch ustunning har biriga odam tilida bitta savol yozadi va sxemasini saqlaydi — darsning asosiy natijasi.", ru: 'Ученик пишет к каждому из трёх столбцов один вопрос человеческим языком и сохраняет схему — главный результат урока.' },
+  s9:  { uz: "O'quvchi AI taklif qilgan sxemani uch shartdan o'tkazadi va ikki xatoni topadi — AI'ning taklifini e'longa qarab tekshirishni o'rganadi.", ru: 'Ученик проверяет схему, которую предложил AI, по трём условиям и находит две ошибки — учится сверять предложение AI с анонсом.' },
+  s10: { uz: "O'quvchi kompilyatorda yozuvga yetishmagan ikki maydonni qo'shadi va ikkala savolga javob chiqaradi — sxema kodda ham yashaydi.", ru: 'Ученик добавляет в компиляторе два недостающих поля и получает ответы на оба вопроса — схема живёт и в коде.' },
+  s11: { uz: "Hech qaysi gapga ulanmagan ustun nima qilinishini tasdiqlaydi.", ru: 'Подтверждает, что делают со столбцом, который не связан ни с одной фразой.' },
+  s12: { uz: "O'quvchi uch ustunini yoddan aytadi va bir qatorda yozib qoldiradi.", ru: 'Ученик по памяти называет свои три столбца и записывает одной строкой.' },
+  s13: { uz: "Sinf natijasi va g'oliblar.", ru: 'Результат класса и победители.' },
+  s14: { uz: "O'nta karta bilan o'quvchi o'zini o'zi tekshiradi.", ru: 'Десять карточек — ученик проверяет себя сам.' },
+  s15: { uz: "CodeStrike arenasi, uy vazifasi va nishonlar.", ru: 'Арена CodeStrike, домашнее задание и значки.' },
+};
+// Birinchi qator har doim «Bu slayd nima uchun:» (111-qonun) — ekran id'si ScreenIdxCtx'dan; children bo'lmasa ham chiqadi.
 const MentorNote = ({ children }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
+  const idx = useContext(ScreenIdxCtx);
+  const sid = typeof idx === 'number' && SCREEN_META[idx] ? SCREEN_META[idx].id : null;
+  const why = sid && MENTOR_WHY[sid] ? tr(MENTOR_WHY[sid]) : null;
   const [open, setOpen] = useState(false);
   if (!live || live.mode !== 'mentor') return null;
   if (!open) return (
@@ -589,7 +617,8 @@ const MentorNote = ({ children }) => {
   return (
     <div className="mnote fade-up" onClick={() => setOpen(false)} title={tr({ uz: 'Yopish uchun bosing', ru: 'Нажмите, чтобы закрыть' })}>
       <span className="mnote-lbl">{tr({ uz: '🧑‍🏫 Mentorga eslatma', ru: '🧑‍🏫 Заметка ментору' })}<span className="mnote-x">{tr({ uz: '✕ yopish', ru: '✕ закрыть' })}</span></span>
-      <p className="mnote-body">{children}</p>
+      {why && <p className="mnote-body mnote-why"><b>{tr({ uz: 'Bu slayd nima uchun:', ru: 'Зачем этот слайд:' })}</b> {why}</p>}
+      {children ? <p className="mnote-body">{children}</p> : null}
     </div>
   );
 };
@@ -693,11 +722,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: i, correct: false });
     if (live && live.mode === 'student') live.submitAnswer(screen, 's0', i, false, 0);
   };
-  const opened = picked !== null || isMentor;
+  // F-1022-01: mentor ekranida natija o'quvchilar tanlashidan OLDIN ochilmaydi — «Natijani ochish» (test-ekranlar bilan bir yo'l).
+  const [mReveal, setMReveal] = useState(false);
+  const opened = picked !== null || (isMentor && mReveal);
   const totalVotes = counts ? counts.reduce((a, b) => a + b, 0) : 0;
   const optWave = useTurnHint(picked === null && !isMentor);
   return (
-    <Stage eyebrow={tr({ uz: 'Kirish · bitta bosish', ru: 'Вступление · одно нажатие' })} screen={screen} navContent={<NavNext optionalLive disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один вариант' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish · bitta bosish', ru: 'Вступление · одно нажатие' })} screen={screen} navContent={<NavNext optionalLive mentorLock disabled={isMentor ? !mReveal : picked === null} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : isMentor ? tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один вариант' })} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>«Band qilish»ni bossangiz, ilova nimani <span className="italic" style={{ color: T.accent }}>yozib qoladi?</span></>, ru: <>Вы нажали «Забронировать» — что приложение <span className="italic" style={{ color: T.accent }}>записывает?</span></> })}</h2></div>
         <Mentor>{tr({ uz: 'Maktab kutubxonasi ilova chiqardi: kitobni telefondan band qilasiz.', ru: 'Школьная библиотека выпустила приложение: книгу бронируете с телефона.' })}</Mentor>
@@ -722,7 +753,13 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
           </>
         )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda — yakka o'quvchida jamoa-murojaati yo'q */}
-        {opened && isLive && counts && (
+        {isMentor && !mReveal && (
+          <button className={`mstats-reveal${totalVotes > 0 ? ' ready' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setMReveal(true)}>
+            {tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}
+          </button>
+        )}
+        {/* Mentor ekranida diagramma tanlov PAYTIDA ham ko'rinadi (kim tanlagani — natija emas). */}
+        {(opened || isMentor) && isLive && counts && totalVotes > 0 && (
           <div className="hvote fade-step" aria-label={tr({ uz: 'Jonli natija', ru: 'Живой результат' })}>
             {HOOK_OPTS.map((o, i) => {
               const n = counts[i];
@@ -811,6 +848,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
             <span className="xul-h">{tr({ uz: 'Ilova faqat sxemaga yozilganini biladi.', ru: 'Приложение знает только то, что записано в схему.' })}</span>
           </div>
         )}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1025,11 +1063,11 @@ const Screen5 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Sxemaga yangi ustun qachon qo'shiladi?", ru: 'Когда в схему добавляют новый столбец?' })} />}
     questionText={tr({ uz: "Sxemaga yangi ustun qachon qo'shiladi", ru: 'Когда в схему добавляют новый столбец' })}
-    options={[tr({ uz: "Dasturchi e'londa yo'q ustunni xohlaganda", ru: 'Когда разработчик захотел столбец, которого нет в анонсе' }), tr({ uz: "E'londagi bitta gap ustunsiz qolganda", ru: 'Когда одна фраза анонса осталась без столбца' }), tr({ uz: "Kutubxonachi qo'shishni so'raganda", ru: 'Когда библиотекарь попросил добавить' })]}
+    options={[tr({ uz: "AI e'londa yo'q ustunni qo'shganda", ru: 'Когда AI добавил столбец, которого нет в анонсе' }), tr({ uz: "E'londagi bitta gap ustunsiz qolganda", ru: 'Когда одна фраза анонса осталась без столбца' }), tr({ uz: "Kutubxonachi qo'shishni so'raganda", ru: 'Когда библиотекарь попросил добавить' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Ustunni dasturchi emas, e'londagi gap ochadi.", ru: 'Столбец открывает не разработчик, а фраза анонса.' })}
+    explainCorrect={tr({ uz: "Ustunni AI emas, e'londagi gap ochadi.", ru: 'Столбец открывает не AI, а фраза анонса.' })}
     explainWrong={{
-      0: tr({ uz: "Dasturchining xohishi ustun ochmaydi — sabab boshqa joyda.", ru: 'Желание разработчика столбец не открывает — причина в другом.' }),
+      0: tr({ uz: "AI'ning taklifi ustun ochmaydi — sabab boshqa joyda.", ru: 'Предложение AI столбец не открывает — причина в другом.' }),
       2: tr({ uz: "Kutubxonachi so'rovi ham ustun ochmaydi — e'lonni eslang.", ru: 'Просьба библиотекаря тоже не открывает столбец — вспомните анонс.' }),
       default: tr({ uz: "Ustun sababsiz ochilmaydi — sabab qayerda yozilgan?", ru: 'Столбец не открывают без причины — где записана причина?' })
     }}
@@ -1045,7 +1083,7 @@ const K16_SLIDES = [
     body: { uz: <>Yangi mahsulotni ular koddan emas, <b>bitta matndan</b> boshlaydi.</>, ru: <>Новый продукт они начинают не с кода, а <b>с одного текста</b>.</> } },
   { ic: '🔮', h: null, body: null,
     predict: { ask: { uz: 'Sizningcha, jamoa bu matnni qanday yozadi?', ru: 'Как, по-вашему, команда пишет этот текст?' }, chips: [
-      { ic: '📋', t: { uz: 'Dasturchilarga topshiriq qilib', ru: 'Как задание для разработчиков' } },
+      { ic: '📋', t: { uz: "Jamoaga ish ro'yxati qilib", ru: 'Как список дел для команды' } },
       { ic: '🗓️', t: { uz: 'Kelasi yil rejasi qilib', ru: 'Как план на следующий год' } },
       { ic: '✍️', t: { uz: 'Mahsulot chiqqandek qilib', ru: 'Будто продукт уже вышел' } },
     ], ans: 2,
@@ -1129,6 +1167,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Darsdagi kutubxona e'loni ham xuddi shu ishni qildi: har gapi sxemaga bitta ustun ochdi. Endi shunday sxemani <b>o'zingiz</b> tuzasiz.</>, ru: <>Анонс библиотеки из урока сделал то же самое: каждая его фраза открыла в схеме один столбец. Теперь такую схему вы составите <b>сами</b>.</> })}</p>
           </div>
         )}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1381,8 +1420,8 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   return (
     <Stage eyebrow={tr({ uz: 'Tekshiruv · uch shart', ru: 'Проверка · три условия' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!done} disabled={!done && !isMentor} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(9px,1.4vw,14px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Dasturchining sxemasini uch shartdan <span className="italic" style={{ color: T.accent }}>o'tkazing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Проверьте</span> схему разработчика по трём условиям.</> })}</h2></div>
-        <Mentor>{tr({ uz: 'Dasturchi «Kitob navbati» ishiga shu sxemani taklif qildi — shartga mos kelmagan ustunni bosing.', ru: 'Разработчик предложил эту схему для задачи «Очередь на книгу» — нажмите столбец, который не отвечает условию.' })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>AI taklif qilgan sxemani uch shartdan <span className="italic" style={{ color: T.accent }}>o'tkazing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Проверьте</span> схему, которую предложил AI, по трём условиям.</> })}</h2></div>
+        <Mentor>{tr({ uz: "Gemini «Kitob navbati» ishi uchun shu sxemani berdi — e'longa qarang, shartga mos kelmagan ustunni bosing.", ru: 'Gemini выдал эту схему для задачи «Очередь на книгу» — посмотрите на анонс и нажмите столбец, который не отвечает условию.' })}</Mentor>
         <div className="split s9">
           <Col gap={9}>
             <div className={`s9ask${done ? ' ok' : ''}`}>
@@ -1759,6 +1798,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Проверьте</span> себя.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={FLASHCARDS} /></div>
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1928,8 +1968,8 @@ const QZ_BG_SHAPES = [
 ];
 // ⚔️ CodeStrike — 12 savol · 3/3/3/3 · naqshsiz. darslik-jonli TASDIQLAYDI.
 const QUIZ_BANK = [
-  { q: { uz: "Sxema nima?", ru: "Что такое схема?" }, opts: [{ uz: "Yoziladigan ustunlar ro'yxati", ru: "Список столбцов, которые записываются" }, { uz: "Bosiladigan tugmalar ro'yxati", ru: "Список кнопок, которые нажимают" }, { uz: "Ochiladigan bo'limlar ro'yxati", ru: "Список разделов, которые открываются" }, { uz: "Dasturchi kodi qatorlari", ru: "Строки кода программиста" }], correct: 0 },
-  { q: { uz: "Sxemada yo'q narsani ilova ko'rsata oladimi?", ru: "Может ли приложение показать то, чего нет в схеме?" }, opts: [{ uz: "Ha, bir ko'ringan bo'lsa", ru: "Да, если разок мелькнуло" }, { uz: "Ha, qidirsa topadi", ru: "Да, найдёт по поиску" }, { uz: "Yo'q, dasturchi ko'radi", ru: "Нет, это видит программист" }, { uz: "Yo'q, ilova uni bilmaydi", ru: "Нет, приложение этого не знает" }], correct: 3 },
+  { q: { uz: "Sxema nima?", ru: "Что такое схема?" }, opts: [{ uz: "Yoziladigan ustunlar ro'yxati", ru: "Список столбцов, которые записываются" }, { uz: "Bosiladigan tugmalar ro'yxati", ru: "Список кнопок, которые нажимают" }, { uz: "Ochiladigan bo'limlar ro'yxati", ru: "Список разделов, которые открываются" }, { uz: "Saytning kod qatorlari", ru: "Строки кода сайта" }], correct: 0 },
+  { q: { uz: "Sxemada yo'q narsani ilova ko'rsata oladimi?", ru: "Может ли приложение показать то, чего нет в схеме?" }, opts: [{ uz: "Ha, bir ko'ringan bo'lsa", ru: "Да, если разок мелькнуло" }, { uz: "Ha, qidirsa topadi", ru: "Да, найдёт по поиску" }, { uz: "Yo'q, faqat siz ko'rasiz", ru: "Нет, это видите только вы" }, { uz: "Yo'q, ilova uni bilmaydi", ru: "Нет, приложение этого не знает" }], correct: 3 },
   { q: { uz: "Gapga mos ustun yo'q. Nima qilinadi?", ru: "Для фразы нет столбца. Что делать?" }, opts: [{ uz: "Gap e'londan olinadi", ru: "Фразу убирают из анонса" }, { uz: "Gap boshqa ustunga yoziladi", ru: "Фразу пишут в другой столбец" }, { uz: "Sxemaga yangi ustun ochiladi", ru: "В схеме открывают новый столбец" }, { uz: "Ustun nomi qayta yoziladi", ru: "Имя столбца переписывают" }], correct: 2 },
   { q: { uz: "Ustunning ochiq/yopiq belgisi nimani aytadi?", ru: "О чём говорит метка столбца «открыт/закрыт»?" }, opts: [{ uz: "Ustunning tartib raqamini", ru: "Порядковый номер столбца" }, { uz: "Ustunni kim ko'rishini", ru: "Кто видит столбец" }, { uz: "Qiymat uzunligini", ru: "Длину значения" }, { uz: "Ekrandagi rangini", ru: "Его цвет на экране" }], correct: 1 },
   { q: { uz: "Kitob qachon bo'shashini qaysi ustun aytadi?", ru: "Какой столбец говорит, когда книга освободится?" }, opts: [{ uz: "Holati", ru: "Статус" }, { uz: "Qaytarish sanasi", ru: "Дата возврата" }, { uz: "Band qilgan o'quvchi", ru: "Кто забронировал" }, { uz: "Kitob nomi", ru: "Название книги" }], correct: 1 },
@@ -2508,7 +2548,7 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
           
         </div>
         {/* 103-qonun: darsni yopadigan BITTA gap */}
-        <div className="bigidea fade-up d1"><span className="bigidea-lbl">{tr({ uz: 'Bugungi asosiy fikr —', ru: 'Главная мысль дня —' })}</span><span className="bigidea-t">{tr({ uz: "nimani saqlashni dasturchi emas, oldindan yozilgan e'lon hal qiladi.", ru: 'что хранить, решает не разработчик, а заранее написанный анонс.' })}</span></div>
+        <div className="bigidea fade-up d1"><span className="bigidea-lbl">{tr({ uz: 'Bugungi asosiy fikr —', ru: 'Главная мысль дня —' })}</span><span className="bigidea-t">{tr({ uz: "nimani saqlashni AI emas, oldindan yozilgan e'lon hal qiladi.", ru: 'что хранить, решает не AI, а заранее написанный анонс.' })}</span></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
           <CsWordmark liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : undefined} />
         </div>
@@ -2646,6 +2686,8 @@ const CSS_BASE = `
   .mnote-chip:hover, .mnote-chip:focus-visible { opacity: 1; transform: translateY(-1px); }
   @media (hover: none) { .mnote-chip { opacity: 0.6; } }
   .mnote-body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; line-height: 1.45; }
+  .mnote-why { color: ${T.blue}; }
+  .mnote-why b { font-weight: 800; }
 
   .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
   .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }

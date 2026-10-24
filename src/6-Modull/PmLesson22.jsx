@@ -72,6 +72,7 @@ const tr = (node) => {
 
 const LangContext = createContext('uz');
 const MentorCtx = createContext(null);
+const ScreenIdxCtx = createContext(null); // 111-qonun: MentorNote qaysi ekranda turganini biladi
 const AchCtx = createContext(null);
 const AchMissCtx = createContext(null); // 🏅 151-qonun: { missed:Set<ekran id>, miss(idx), practice } — birinchi urinish + «Qaytadan» mashq-o'tishi
 
@@ -122,14 +123,14 @@ export const SCREEN_INTENTS = {
   s1: "Bola dars oxirida to'rt katakli bitta varaq to'ldirishini oldindan ko'radi",
   s2: "Bola ikki kartani ochib og'zaki gap bilan yozilgan qator farqini o'zi topadi",
   s3: "Bola og'zaki aytilgan gapni eshitgach birinchi nima qilishini tanlaydi",
-  s4: "Bola murabbiyga to'rt savolni o'zi beradi va varaq to'lgach uch dasturchi bir xil ekran qurishini ko'radi",
+  s4: "Bola ustozga to'rt savolni o'zi beradi va varaq to'lgach AI har safar bir xil ekran qurishini ko'radi",
   s5: "Bola «Natijani qaysi sondan bilamiz?» katagiga qaysi qator tushishini aniqlaydi",
   s6: "Bola Geyts va Allen ishni aniq gapdan boshlaganini va tilni qanday sinashganini biladi",
   s7: "Bola til haqiqiy Altairda oldin sinalmasa ham nega ishlaganini tanlaydi",
   s8: "Bola o'z mini-do'koni uchun to'rt katakni bittalab to'ldiradi",
   s9: "Bola uch varaqni o'qib, javobsiz katakni topadi va to'liq to'g'ri varaqni ham tanib oladi",
   s10: "Bola VS Code'da yozilmagan katak nomini qaytaradigan funksiyani to'ldiradi",
-  s11: "Bola bo'sh katak dasturchini taxmin qilishga olib kelishini tanlaydi",
+  s11: "Bola bo'sh katak AI'ni taxmin qilishga olib kelishini tanlaydi",
   s12: "Bola qaysi katak qiyin bo'lganini aytadi va bir qatorda yozib qoldiradi",
   s13: "Bola o'z natijasini (jonlida — sinf reytingini) ko'radi",
   s14: "Bola o'nta takrorlash kartasi bilan o'zini o'zi tekshiradi",
@@ -209,6 +210,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
   };
   return (
     <MentorCtx.Provider value={{ enabled: collapseOn, collapsed: mCollapsed, setCollapsed }}>
+      <ScreenIdxCtx.Provider value={screen}>
       <div className="stage">
         <div className="stage-header" style={{ paddingLeft: padH, paddingRight: padH }}>
           <div className="progress-track"><div className="progress-bar" style={{ width: `${((screen + 1) / totalScreens) * 100}%` }} /></div>
@@ -223,6 +225,7 @@ const Stage = ({ children, eyebrow, screen, totalScreens = TOTAL_SCREENS, navCon
         <div ref={contentRef} onClick={onContentClick} onScroll={onContentScroll} className={`stage-content ${narrow ? 'narrow' : ''}`} style={{ paddingLeft: padH, paddingRight: padH }}>{children}</div>
         {navContent && <div className="stage-nav" style={{ paddingLeft: padH, paddingRight: padH }}>{navContent}</div>}
       </div>
+      </ScreenIdxCtx.Provider>
     </MentorCtx.Provider>
   );
 };
@@ -331,7 +334,7 @@ const RECAPS = {
   11: {
     title: { uz: "Bo'sh katak — taxmin", ru: 'Пустая ячейка — догадка' },
     cards: [
-      { ic: '📝', h: { uz: "Bo'sh katak ishni to'xtatmaydi", ru: 'Пустая ячейка не останавливает работу' }, body: { uz: <>Dasturchi uni <b>o'z taxmini</b> bilan to'ldiradi.</>, ru: <>Программист заполняет её <b>своей догадкой</b>.</> } },
+      { ic: '📝', h: { uz: "Bo'sh katak ishni to'xtatmaydi", ru: 'Пустая ячейка не останавливает работу' }, body: { uz: <>AI uni <b>o'z taxmini</b> bilan to'ldiradi.</>, ru: <>AI заполняет её <b>своей догадкой</b>.</> } },
       { ic: '✅', h: { uz: "Shuning uchun to'rttasi ham yoziladi", ru: 'Поэтому заполняются все четыре' }, body: { uz: <>To'rt katak to'lsa, qurilgan narsa <b>siz o'ylagan narsa</b> bo'lib chiqadi.</>, ru: <>Если все четыре ячейки заполнены, построенное окажется <b>тем, что задумали вы</b>.</> } },
       { ic: '🙋', h: { uz: "Bilmasangiz — so'rang", ru: 'Не знаете — спросите' }, body: { uz: <>Varaqni yozayotganda javobini bilmagan katak bo'lsa, taxmin qilmay, <b>so'rab aniqlashtirasiz</b>.</>, ru: <>Если, пока вы пишете лист, попалась ячейка, ответа на которую вы не знаете, — не додумывайте, а <b>спросите и уточните</b>.</> }, ask: { uz: "Qaysi katagingiz eng bo'sh turibdi — nega?", ru: 'Какая ваша ячейка самая пустая — почему?' } }
     ]
@@ -550,6 +553,7 @@ const QuestionScreen = ({ screen, idx, scope, eyebrow, question, questionText, o
         </FeedbackBlock>
         {isMentorLive && <MentorTestStats live={live} screenIdx={screen} options={options} correctIdx={correctIdx} reveal={mReveal} onReveal={doReveal} onOpenRecap={hasRecap ? () => setRecapOpen(true) : null} />}
         {recapOpen && hasRecap && <RecapOverlay screenIdx={screen} onClose={() => setRecapOpen(false)} />}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -592,9 +596,33 @@ const Mentor = ({ children }) => {
 };
 
 // MentorNote — PROYEKTOR-SIR: default yopiq xira chip; bosishda ochiladi/yopiladi.
+// 111-qonun (F-1022-01): mentor har slaydning NIMA UCHUN borligini birinchi qatorda o'qiydi.
+// Manba — SCREEN_INTENTS niyati, mentor tiliga o'girilgan («Bola…» emas, «O'quvchi…»).
+const MENTOR_WHY = {
+  s0:  { uz: "Bitta og'zaki gapdan nega uch xil ilova chiqqanini o'quvchi tanlaydi va sabab gap faqat og'zaki aytilgani ekanini ko'radi.", ru: 'Ученик выбирает, почему из одной устной фразы вышло три разных приложения, и видит причину: фразу сказали только устно.' },
+  s1:  { uz: "Dars oxirida to'rt katakli bitta varaq to'ldirishini oldindan ko'rsatadi; kataklar bo'sh — javobni sinf keyin topadi.", ru: 'Заранее показывает: к концу урока ученик заполнит один лист из четырёх ячеек; ячейки пустые — ответ класс найдёт позже.' },
+  s2:  { uz: "Og'zaki gap bilan yozilgan qator farqini o'quvchi ikki kartani ochib o'zi topadi.", ru: 'Открывая две карточки, ученик сам находит разницу между устной фразой и написанной строкой.' },
+  s3:  { uz: "Og'zaki gapni eshitgach birinchi ish — qatorga yozib olish ekanini mustahkamlaydi.", ru: 'Закрепляет: услышав устную фразу, первым делом её записывают строкой.' },
+  s4:  { uz: "O'quvchi ustozga to'rt savolni o'zi beradi, varaq to'ladi va AI har safar bir xil ekran qurishini ko'radi — darsning asosiy ekrani.", ru: 'Ученик сам задаёт наставнику четыре вопроса, лист заполняется, и он видит: AI каждый раз строит одинаковый экран, — главный экран урока.' },
+  s5:  { uz: "O'lchov katagiga faqat sanab bo'ladigan son tushishini aniqlaydi.", ru: 'Уточняет: в ячейку «Измерение» попадает только число, которое можно посчитать.' },
+  s6:  { uz: "Geyts va Allen ishni aniq yozilgan gapdan boshlagani va tilni qanday sinaganini o'quvchi voqeadan biladi.", ru: 'Из истории ученик узнаёт: Гейтс и Аллен начали с чётко написанной фразы — и как они проверили язык.' },
+  s7:  { uz: "Til haqiqiy Altairda sinalmasa ham nega ishlaganini tanlaydi — aniq yozilgan talab kuchini mustahkamlaydi.", ru: 'Выбирает, почему язык заработал, хотя его не проверяли на настоящем Altair, — закрепляет силу чётко написанного требования.' },
+  s8:  { uz: "O'quvchi o'z mini-do'koni uchun PRD'ning to'rt katagini bittalab to'ldiradi — darsning asosiy natijasi; shu varaq keyin AI'ga prompt bo'ladi.", ru: 'Ученик по одной заполняет четыре ячейки PRD для своего мини-магазина — главный результат урока; потом этот лист станет промптом для AI.' },
+  s9:  { uz: "O'quvchi uch varaqni o'qib, o'z savoliga javob bermaydigan katakni topadi va to'liq to'g'ri varaqni ham tanib oladi.", ru: 'Читая три листа, ученик находит ячейку, которая не отвечает на свой вопрос, и узнаёт полностью верный лист.' },
+  s10: { uz: "Qator ma'nosini odam o'qiydi, umuman yozilmagan katakni esa kod topadi — o'quvchi shu funksiyani VS Code'da to'ldiradi.", ru: 'Смысл строки читает человек, а совсем незаполненную ячейку находит код, — ученик дописывает эту функцию в VS Code.' },
+  s11: { uz: "Bo'sh katak AI'ni taxmin qilishga olib kelishini o'quvchi tanlaydi.", ru: 'Ученик выбирает: пустая ячейка заставляет AI додумывать.' },
+  s12: { uz: "O'quvchi qaysi katak qiyin bo'lganini aytadi va bir qatorda yozib qoldiradi.", ru: 'Ученик называет, какая ячейка далась труднее, и записывает одной строкой.' },
+  s13: { uz: "Sinf natijasi va g'oliblar.", ru: 'Результат класса и победители.' },
+  s14: { uz: "O'nta karta bilan o'quvchi o'zini o'zi tekshiradi.", ru: 'Десять карточек — ученик проверяет себя сам.' },
+  s15: { uz: "CodeStrike arenasi, uy vazifasi va nishonlar.", ru: 'Арена CodeStrike, домашнее задание и значки.' },
+};
+// Birinchi qator har doim «Bu slayd nima uchun:» (111-qonun) — ekran id'si ScreenIdxCtx'dan; children bo'lmasa ham chiqadi.
 const MentorNote = ({ children }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
+  const idx = useContext(ScreenIdxCtx);
+  const sid = typeof idx === 'number' && SCREEN_META[idx] ? SCREEN_META[idx].id : null;
+  const why = sid && MENTOR_WHY[sid] ? tr(MENTOR_WHY[sid]) : null;
   const [open, setOpen] = useState(false);
   if (!live || live.mode !== 'mentor') return null;
   if (!open) return (
@@ -603,7 +631,8 @@ const MentorNote = ({ children }) => {
   return (
     <div className="mnote fade-up" onClick={() => setOpen(false)} title={tr({ uz: 'Yopish uchun bosing', ru: 'Нажмите, чтобы закрыть' })}>
       <span className="mnote-lbl">{tr({ uz: '🧑‍🏫 Mentorga eslatma', ru: '🧑‍🏫 Заметка ментору' })}<span className="mnote-x">{tr({ uz: '✕ yopish', ru: '✕ закрыть' })}</span></span>
-      <p className="mnote-body">{children}</p>
+      {why && <p className="mnote-body mnote-why"><b>{tr({ uz: 'Bu slayd nima uchun:', ru: 'Зачем этот слайд:' })}</b> {why}</p>}
+      {children ? <p className="mnote-body">{children}</p> : null}
     </div>
   );
 };
@@ -738,15 +767,17 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     onAnswer(screen, { stage: 'hook', screenIdx: screen, picked: i, correct: false });
     if (live && live.mode === 'student') live.submitAnswer(screen, 's0', i, false, 0);
   };
-  const opened = picked !== null || isMentor;
+  // F-1022-01: mentor ekranida natija o'quvchilar tanlashidan OLDIN ochilmaydi — «Natijani ochish» (test-ekranlar bilan bir yo'l).
+  const [mReveal, setMReveal] = useState(false);
+  const opened = picked !== null || (isMentor && mReveal);
   const totalVotes = counts ? counts.reduce((a, b) => a + b, 0) : 0;
   const optWave = useTurnHint(picked === null && !isMentor);
   return (
-    <Stage eyebrow={tr({ uz: 'Kirish · basseyn', ru: 'Вступление · бассейн' })} screen={screen} navContent={<NavNext optionalLive turnBusy={picked === null && !isMentor} disabled={picked === null && !isMentor} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один' })} onClick={onNext} />}>
+    <Stage eyebrow={tr({ uz: 'Kirish · basseyn', ru: 'Вступление · бассейн' })} screen={screen} navContent={<NavNext optionalLive mentorLock turnBusy={picked === null && !isMentor} disabled={isMentor ? !mReveal : picked === null} label={opened ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : isMentor ? tr({ uz: 'Avval natijani oching', ru: 'Сначала откройте результат' }) : tr({ uz: 'Bittasini tanlang', ru: 'Выберите один' })} onClick={onNext} />}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta gap — <span className="italic" style={{ color: T.accent }}>nega</span> uch xil ilova chiqdi?</>, ru: <>Одна фраза — <span className="italic" style={{ color: T.accent }}>почему</span> три разных приложения?</> })}</h2></div>
-        <Mentor>{tr({ uz: "Basseynga bordingiz — guruh to'lib qolgan, bekorga qaytdingiz. Siz kabi qaytganlar ko'p. Murabbiy dasturchilarga bitta gap aytdi.", ru: 'Вы пришли в бассейн — группа уже заполнена, и вы вернулись ни с чем. Таких, как вы, много. Тренер сказал программистам одну фразу.' })}</Mentor>
-        <div className="gapcard fade-up">{tr({ uz: 'Murabbiy: «Joy band qiladigan ilova kerak».', ru: 'Тренер: «Нужно приложение, чтобы бронировать место».' })}</div>
+        <Mentor>{tr({ uz: "Basseynga bordingiz — guruh to'lib qolgan, bekorga qaytdingiz. Siz kabi qaytganlar ko'p. Ustozingiz sizga bitta gap aytdi, siz uni Gemini'ga uch marta yozdingiz.", ru: 'Вы пришли в бассейн — группа уже заполнена, и вы вернулись ни с чем. Таких, как вы, много. Наставник сказал вам одну фразу, а вы трижды написали её Gemini.' })}</Mentor>
+        <div className="gapcard fade-up">{tr({ uz: 'Ustoz: «Joy band qiladigan ilova kerak».', ru: 'Наставник: «Нужно приложение, чтобы бронировать место».' })}</div>
         <div className="hrow two fade-up delay-1">
           {HOOK_OPTS.map((o, i) => (
             <button key={o.k} className={`hopt${picked === i ? ' on' : ''}${opened ? ' open' : ''}${!opened && optWave ? waveCls(true, i, HOOK_OPTS.length) : ''}`} disabled={opened} onClick={() => pick(i)}>
@@ -757,11 +788,17 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
         </div>
         {opened && (
           <div className="frame-soft fade-step">
-            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ham to'g'ri. Sabab esa bitta: gap <b>faqat og'zaki</b> aytildi. Og'zaki gapni har kim o'zicha tushunadi. Bugun shu gapni bitta varaqqa yozasiz.</>, ru: <>Оба ответа верны. А причина одна: фразу сказали <b>только устно</b>. Устную фразу каждый понимает по-своему. Сегодня вы запишете эту фразу на один лист.</> })}</p>
+            <p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Ikkalasi ham to'g'ri. Sabab esa bitta: gap <b>faqat og'zaki</b> aytildi, siz uni har safar boshqacha yozdingiz — AI har safar boshqacha qurdi. Bugun shu gapni bitta varaqqa yozasiz.</>, ru: <>Оба ответа верны. А причина одна: фразу сказали <b>только устно</b>, вы каждый раз писали её по-разному — и AI каждый раз строил по-разному. Сегодня вы запишете эту фразу на один лист.</> })}</p>
           </div>
         )}
         {/* Korpus §97: ovoz-diagrammasi FAQAT jonli darsda — yakka o'quvchida jamoa-murojaati yo'q */}
-        {opened && isLive && counts && (
+        {isMentor && !mReveal && (
+          <button className={`mstats-reveal${totalVotes > 0 ? ' ready' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setMReveal(true)}>
+            {tr({ uz: 'Natijani ochish', ru: 'Открыть результат' })}
+          </button>
+        )}
+        {/* Mentor ekranida diagramma tanlov PAYTIDA ham ko'rinadi (kim tanlagani — natija emas). */}
+        {(opened || isMentor) && isLive && counts && totalVotes > 0 && (
           <div className="hvote fade-step" aria-label={tr({ uz: 'Sinf natijasi', ru: 'Результат класса' })}>
             {HOOK_OPTS.map((o, i) => {
               const n = counts[i];
@@ -798,8 +835,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 
 // ===== SCREEN 2 — TEORIYA-1: og'zaki gap ↔ yozilgan qator (46-qonun toggle) =====
 const S2_CARDS = [
-  { ic: '🗣', h: { uz: 'Og\'zaki aytilgan', ru: 'Сказано вслух' }, b: { uz: "Gap yozib olinmasa, keyin har kim uni o'zicha eslaydi. Aytilmay qolgan joyini esa har kim o'zi to'ldiradi.", ru: 'Если фразу не записать, потом каждый вспомнит её по-своему. А то, что не было сказано, каждый додумает сам.' } },
-  { ic: '📄', h: { uz: 'Varaqqa yozilgan', ru: 'Записано на листе' }, b: { uz: "Gap o'zgarmay turadi. Uch kishi ham bitta qatorni o'qiydi.", ru: 'Фраза не меняется. Все трое читают одну и ту же строку.' } },
+  { ic: '🗣', h: { uz: 'Og\'zaki aytilgan', ru: 'Сказано вслух' }, b: { uz: "Gap yozib olinmasa, keyin uni har safar boshqacha yozasiz. Aytilmay qolgan joyini esa AI o'zi to'ldiradi.", ru: 'Если фразу не записать, потом вы каждый раз напишете её по-другому. А то, что не было сказано, AI додумает сам.' } },
+  { ic: '📄', h: { uz: 'Varaqqa yozilgan', ru: 'Записано на листе' }, b: { uz: "Gap o'zgarmay turadi. Uch marta yozsangiz ham AI bitta qatorni o'qiydi.", ru: 'Фраза не меняется. Сколько бы раз вы её ни отправили, AI читает одну и ту же строку.' } },
 ];
 const Screen2 = ({ screen, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -834,6 +871,7 @@ const Screen2 = ({ screen, onNext, onPrev }) => {
             <p className="xul-b">{tr({ uz: 'Shuning uchun ish kod bilan emas, yozilgan qator bilan boshlanadi.', ru: 'Поэтому работа начинается не с кода, а с написанной строки.' })}</p>
           </div>
         )}
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -847,19 +885,19 @@ const Screen3 = (props) => (
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
     question={<TestQ ask={tr({ uz: "Nima kerakligini sizga og'zaki aytishdi. Ish boshlashdan oldin birinchi nima qilasiz?", ru: 'Вам устно сказали, что нужно. Что вы сделаете первым делом, прежде чем начать работу?' })} />}
     questionText={tr({ uz: "Og'zaki aytilgan gapdan keyin birinchi nima qilasiz", ru: 'Что вы делаете первым после устной фразы' })}
-    options={[tr({ uz: 'Eshitganimni yodda saqlab, kod yozaman', ru: 'Запомню услышанное и начну писать код' }), tr({ uz: 'Eshitganimni qatorga yozib olaman', ru: 'Запишу услышанное строкой' }), tr({ uz: 'Qatorni ish tugagach yozib qo\'yaman', ru: 'Запишу строку, когда работа закончится' }), tr({ uz: "Dasturchilarga og'zaki aytaman", ru: 'Устно скажу программистам' })]}
+    options={[tr({ uz: 'Eshitganimni yodda saqlab, kod yozaman', ru: 'Запомню услышанное и начну писать код' }), tr({ uz: 'Eshitganimni qatorga yozib olaman', ru: 'Запишу услышанное строкой' }), tr({ uz: 'Qatorni ish tugagach yozib qo\'yaman', ru: 'Запишу строку, когда работа закончится' }), tr({ uz: "AI'ga eslab qolganimcha yozaman", ru: 'Напишу AI по памяти' })]}
     correctIdx={1}
     explainCorrect={tr({ uz: "Yozilgan qator hammaga bir xil ko'rinadi. Og'zaki gap esa har kimning xotirasida boshqacha qoladi.", ru: 'Написанную строку все видят одинаково. А устная фраза у каждого остаётся в памяти по-разному.' })}
     explainWrong={{
       0: tr({ uz: "Yodda saqlangan gap ham og'zaki gapdek — boshqa odam uni boshqacha tushunadi.", ru: 'Фраза, которую просто запомнили, — та же устная фраза: другой человек поймёт её иначе.' }),
       2: tr({ uz: "Ish tugagach yozilgan qator kech qoladi: kim nima qurishini oldindan bilmaydi.", ru: 'Строка, написанная после работы, опаздывает: никто заранее не знает, кто что строит.' }),
-      3: tr({ uz: "Og'zaki aytilsa, uch dasturchi uch xil tushunadi.", ru: 'Если сказать устно, три программиста поймут по-разному.' }),
+      3: tr({ uz: "Eslab yozilsa, har safar boshqacha chiqadi — AI har safar boshqacha quradi.", ru: 'Если писать по памяти, каждый раз выходит по-другому — и AI каждый раз строит по-другому.' }),
       default: tr({ uz: "Avval eshitganingizni qatorga yozasiz — yozilgan qator hammaga bir xil ko'rinadi.", ru: 'Сначала вы записываете услышанное строкой — написанную строку все видят одинаково.' })
     }}
   />
 );
 // ===== SCREEN 4 — YADRO: BIR VARAQ (markaziy mexanika) =====
-// 1-bosqich: bitta og'zaki gapdan uch xil ilova chiqadi. 2-bosqich: o'quvchi murabbiydan
+// 1-bosqich: bitta og'zaki gapdan uch xil ilova chiqadi. 2-bosqich: o'quvchi ustozdan
 // to'rt savolni O'ZI so'raydi, javob varaqning o'z katagiga yoziladi, keyin qayta quriladi.
 // 🔴 98b: mentor javoblarni AYTMAYDI — ular faqat bosilgandan keyin ochiladi.
 const VARAQ_KEY = 'pm-m6d2-varaq';
@@ -877,7 +915,7 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
   const [hol] = useState(() => readVaraqState());
-  const bosq1 = true; // F-1004-04: uch dasturchi natijasi hook'da (s0) — bu ekran faqat varaq
+  const bosq1 = true; // F-1004-04: uch xil natija hook'da (s0) — bu ekran faqat varaq
   const [sorash, setSorash] = useState(() => Array.isArray(storedAnswer?.sorash) ? storedAnswer.sorash : (hol.sorash || [])); // F-0914-10: saqlangan javob massiv bo'lmasa — bo'sh (oq ekran himoyasi)
   const [bosq2, setBosq2] = useState(() => !!((storedAnswer && storedAnswer.bosq2) || hol.bosq2));
   const [pick, setPick] = useState(null);
@@ -921,21 +959,21 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tugadi = bosq2 || isMentor;
   const navLabel = tugadi ? tr({ uz: 'Davom etish', ru: 'Продолжить' })
     : !hammasi ? tr({ uz: `① Varaq katagini bosing (${sorash.length}/4)`, ru: `① Нажмите ячейку листа (${sorash.length}/4)` })
-      : tr({ uz: '② Endi nima qurishini oching', ru: '② Теперь откройте, что построят' });
+      : tr({ uz: '② Endi AI nima qurishini oching', ru: '② Теперь откройте, что построит AI' });
   return (
     <Stage eyebrow={tr({ uz: 'Sinov · bitta varaq', ru: 'Опыт · один лист' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive turnBusy={!tugadi} disabled={!tugadi} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(7px,1vw,10px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>To'rt savolni bering va <span className="italic" style={{ color: T.accent }}>varaqni</span> to'ldiring.</>, ru: <>Задайте четыре вопроса и заполните <span className="italic" style={{ color: T.accent }}>лист</span>.</> })}</h2></div>
-        {/* F-1004-04 · 163-qonun: bitta vizual — to'rt katakli varaq. Katak = murabbiyga savol, javob o'sha katakka yoziladi.
-            Murabbiy gapi va PRD izohi Mentor gapida; uch dasturchi natijasi hook'da (s0). */}
+        {/* F-1004-04 · 163-qonun: bitta vizual — to'rt katakli varaq. Katak = ustozga savol, javob o'sha katakka yoziladi.
+            Ustoz gapi va PRD izohi Mentor gapida; uch xil natija hook'da (s0). */}
         {!bosq2
-          ? <Mentor>{tr({ uz: <>Murabbiy: «Basseynga joy band qiladigan ilova kerak.» Varaq katagini bosing — bu unga savol, javob o'sha katakka yoziladi.</>, ru: <>Тренер: «Нужно приложение, чтобы бронировать место в бассейне.» Нажмите ячейку листа — это вопрос тренеру, ответ впишется в ту же ячейку.</> })}</Mentor>
-          : <Mentor>{tr({ uz: <>Bunday varaqni <b>PRD</b> deyishadi — mahsulot talablari hujjati (Product Requirements Document). Katta jamoada u bir necha sahifa, bizda — to'rt katak.</>, ru: <>Такой лист называют <b>PRD</b> — документ требований к продукту (Product Requirements Document). В большой команде это несколько страниц, у нас — четыре ячейки.</> })}</Mentor>}
+          ? <Mentor>{tr({ uz: <>Ustoz: «Basseynga joy band qiladigan ilova kerak.» Varaq katagini bosing — bu ustozga savol, javob o'sha katakka yoziladi.</>, ru: <>Наставник: «Нужно приложение, чтобы бронировать место в бассейне.» Нажмите ячейку листа — это вопрос наставнику, ответ впишется в ту же ячейку.</> })}</Mentor>
+          : <Mentor>{tr({ uz: <>Bunday varaqni <b>PRD</b> deyishadi — mahsulot talablari hujjati (Product Requirements Document). Katta kompaniyada u bir necha sahifa, bizda — to'rt katak. Siz uchun bu ikki narsa birdan: startapchining PRD'si va AI'ga beriladigan to'liq prompt.</>, ru: <>Такой лист называют <b>PRD</b> — документ требований к продукту (Product Requirements Document). В большой компании это несколько страниц, у нас — четыре ячейки. Для вас это сразу две вещи: PRD стартапера и полный промпт для AI.</> })}</Mentor>}
         <div className="s4-one">
           <Varaq qatorlar={qatorlar} pick={pick} clickable={!isMentor && !hammasi} onCell={sora} wave={!!lit && !hammasi} bar={{ uz: 'Basseyn ilovasi', ru: 'Приложение бассейна' }} />
           {tip && <p className="bhint fade-step">{tr({ uz: "Yana bitta katakni bosing.", ru: 'Нажмите ещё одну ячейку.' })}</p>}
           {hammasi && !bosq2 && (
-            <button type="button" className="s4-run turn-ring fade-step" style={{ alignSelf: 'flex-end' }} onClick={() => setBosq2(true)}>{tr({ uz: '▶ Endi nima qurishadi?', ru: '▶ Что построят теперь?' })}</button>
+            <button type="button" className="s4-run turn-ring fade-step" style={{ alignSelf: 'flex-end' }} onClick={() => setBosq2(true)}>{tr({ uz: '▶ Endi AI nima quradi?', ru: '▶ Что AI построит теперь?' })}</button>
           )}
           {bosq2 && (
             <div className="qayta fade-step">
@@ -946,11 +984,11 @@ const Screen4 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               ))}
             </div>
           )}
-          {bosq2 && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Bitta varaq — uch dasturchida bir xil natija.', ru: 'Один лист — у трёх программистов одинаковый результат.' })}</p></div>}
+          {bosq2 && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: 'Bitta varaq — AI har safar bir xil quradi.', ru: 'Один лист — AI каждый раз строит одинаково.' })}</p></div>}
           <StudentPracticePulse live={live} screen={screen} />
           <MentorPracticeStats live={live} screen={screen} label={tr({ uz: "To'rt savolni bergani", ru: 'Задали четыре вопроса' })} />
         </div>
-        <MentorNote>{tr({ uz: "Bolalar odatda birinchi bosqichda to'xtaydi. Uchala ilova ochilgach so'rang: «murabbiydan nimani so'rash kerak edi?» — savol-tugmalari shu lahzada ochiq. Javoblarni oldindan aytmang. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Дети обычно останавливаются на первом этапе. Когда все три приложения откроются, спросите: «что нужно было спросить у тренера?» — кнопки-вопросы в этот момент открыты. Не говорите ответы заранее. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыта.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Bolalar odatda birinchi bosqichda to'xtaydi. Uchala ilova ochilgach so'rang: «ustozdan nimani so'rash kerak edi?» — savol-tugmalari shu lahzada ochiq. Javoblarni oldindan aytmang. Bu ishni o'quvchilar bajaradi, siz kuzatasiz; «Davom etish» siz uchun ochiq.", ru: 'Дети обычно останавливаются на первом этапе. Когда все три приложения откроются, спросите: «что нужно было спросить у наставника?» — кнопки-вопросы в этот момент открыты. Не говорите ответы заранее. Эту работу выполняют ученики, вы наблюдаете; «Продолжить» для вас открыта.' })}</MentorNote>
       </div>
     </Stage>
   );
@@ -1116,6 +1154,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           const ochiq = k <= maxSeen && !(betPending && k > i);
           return <button key={k} className={`k-dot ${k === i ? 'cur' : k < i ? 'fill' : ''}`} disabled={!ochiq} onClick={() => ochiq && setI(k)} aria-label={tr({ uz: `${k + 1}-bosqich`, ru: `Шаг ${k + 1}` })} title={ochiq ? undefined : tr({ uz: 'Avval shu bosqichni tugating', ru: 'Сначала завершите этот шаг' })} />;
         })}</div>
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1724,7 +1763,7 @@ const ScreenReflection = ({ screen, onNext, onPrev }) => {
             {/* F-1004-46: yozib bo'lgach bitta xulosa (≤110 belgi, emojisiz) — 106f(b) ga tuzatish */}
             {written && (
               <div className="rwd fade-step">
-                <p className="rwd-t">{tr({ uz: 'Bugungi qoida: aniq yozilmasa — dasturchi taxmin qiladi.', ru: 'Правило дня: не написано чётко — программист додумывает сам.' })}</p>
+                <p className="rwd-t">{tr({ uz: 'Bugungi qoida: aniq yozilmasa — AI taxmin qiladi.', ru: 'Правило дня: не написано чётко — AI додумывает сам.' })}</p>
               </div>
             )}
           </div>
@@ -1784,7 +1823,7 @@ const FLASHCARDS = [
   { front: { uz: '«Kim» katagida nima turadi?', ru: 'Что стоит в ячейке «Кто»?' }, back: { uz: 'Qiynalayotgan odamlarning aniq guruhi', ru: 'Конкретная группа людей, которым мешает' } },
   { front: { uz: '«Yechim» katagida nima turadi?', ru: 'Что стоит в ячейке «Решение»?' }, back: { uz: 'Nima qurilishi', ru: 'Что будет построено' } },
   { front: { uz: "«O'lchov» katagida nima turadi?", ru: 'Что стоит в ячейке «Измерение»?' }, back: { uz: "Natijani ko'rsatadigan son: oldin qancha, keyin qancha", ru: 'Число, которое показывает результат: сколько было раньше, сколько стало потом' } },
-  { front: { uz: "Bitta katak bo'sh qolsa nima bo'ladi?", ru: 'Что будет, если одна ячейка останется пустой?' }, back: { uz: "Dasturchi uni taxmin bilan to'ldiradi", ru: 'Программист заполнит её своей догадкой' } },
+  { front: { uz: "Bitta katak bo'sh qolsa nima bo'ladi?", ru: 'Что будет, если одна ячейка останется пустой?' }, back: { uz: "AI uni taxmin bilan to'ldiradi", ru: 'AI заполнит её своей догадкой' } },
   { front: { uz: 'Geyts va Allen tilni qanday sinashdi?', ru: 'Как Гейтс и Аллен проверяли язык?' }, back: { uz: "Altairga o'xshab ishlaydigan dasturda, katta kompyuterda", ru: 'В программе, которая работала как Altair, на большом компьютере' } },
   { front: { uz: "PRD ning inglizcha to'liq nomi qanday?", ru: 'Как полностью называется PRD по-английски?' }, back: { uz: 'Product Requirements Document — mahsulot talablari hujjati', ru: 'Product Requirements Document — документ с требованиями к продукту' } },
 ];
@@ -1795,6 +1834,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>O'zingizni <span className="italic" style={{ color: T.accent }}>sinab ko'ring</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Проверьте</span> себя.</> })}</h2></div>
         <div className="fc-center"><Flashcards cards={FLASHCARDS} /></div>
+        <MentorNote />
       </div>
     </Stage>
   );
@@ -1803,16 +1843,16 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 const ScreenFinalTest = (props) => (
   <QuestionScreen {...props} eyebrow={tr({ uz: 'Yakuniy tekshiruv', ru: 'Итоговая проверка' })} scope="final"
     ctaLabel={tr({ uz: 'Javobni tanlang', ru: 'Выберите ответ' })} revealPrefix={tr({ uz: "To'g'ri javob", ru: 'Верный ответ' })}
-    question={<TestQ ask={tr({ uz: "Varaqning «Kim» katagi bo'sh qoldi. Dasturchi hech kimdan so'ramay, ishni boshladi. Natijada nima bo'ladi?", ru: 'На листе осталась пустой ячейка «Кто». Программист никого не спросил и начал работу. Что получится в итоге?' })} />}
+    question={<TestQ ask={tr({ uz: "Varaqning «Kim» katagi bo'sh qoldi. Siz shu varaqni AI'ga yubordingiz, u hech narsa so'ramay qurdi. Natijada nima bo'ladi?", ru: 'На листе осталась пустой ячейка «Кто». Вы отправили этот лист AI, и он построил, ничего не спросив. Что получится в итоге?' })} />}
     questionText={tr({ uz: "Kim katagi bo'sh qolsa natijada nima bo'ladi", ru: 'Что получится, если ячейка «Кто» останется пустой' })}
-    options={[tr({ uz: "Ish to'xtaydi, kod umuman yozilmaydi", ru: 'Работа остановится, код вообще не напишут' }), tr({ uz: "Kim uchun qurishni o'zi taxmin qiladi", ru: 'Сам додумает, для кого строить' }), tr({ uz: "Qolgan uch katak ham bekor bo'ladi", ru: 'Остальные три ячейки тоже станут бесполезными' }), tr({ uz: 'Ilova baribir hamma odamlarga mos keladi', ru: 'Приложение всё равно подойдёт всем людям' })]}
+    options={[tr({ uz: "Ish to'xtaydi, kod umuman yozilmaydi", ru: 'Работа остановится, код вообще не напишут' }), tr({ uz: "Kim uchun qurishni AI o'zi taxmin qiladi", ru: 'AI сам додумает, для кого строить' }), tr({ uz: "Qolgan uch katak ham bekor bo'ladi", ru: 'Остальные три ячейки тоже станут бесполезными' }), tr({ uz: 'Ilova baribir hamma odamlarga mos keladi', ru: 'Приложение всё равно подойдёт всем людям' })]}
     correctIdx={1}
-    explainCorrect={tr({ uz: "Katak bo'sh qolsa, dasturchi uni o'z taxmini bilan to'ldiradi. Taxmin noto'g'ri bo'lsa, ilova boshqa odamlar uchun qurilib qoladi. Shuning uchun katak bo'sh qolmaydi: bilmasangiz — so'rab aniqlashtirasiz.", ru: 'Если ячейка пустая, программист заполняет её своей догадкой. Если догадка неверна, приложение построят для других людей. Поэтому ячейка не остаётся пустой: не знаете — спросите и уточните.' })}
+    explainCorrect={tr({ uz: "Katak bo'sh qolsa, AI uni o'z taxmini bilan to'ldiradi. Taxmin noto'g'ri bo'lsa, ilova boshqa odamlar uchun qurilib qoladi. Shuning uchun katak bo'sh qolmaydi: bilmasangiz — so'rab aniqlashtirasiz.", ru: 'Если ячейка пустая, AI заполняет её своей догадкой. Если догадка неверна, приложение построят для других людей. Поэтому ячейка не остаётся пустой: не знаете — спросите и уточните.' })}
     explainWrong={{
-      0: tr({ uz: "Ish to'xtamaydi — dasturchi baribir quradi, faqat kim uchun ekanini o'zi taxmin qiladi.", ru: 'Работа не останавливается — программист всё равно строит, только для кого — додумывает сам.' }),
-      2: tr({ uz: "Qolgan kataklar joyida turibdi — faqat bo'sh qolgan katakni dasturchi o'z taxmini bilan to'ldiradi.", ru: 'Остальные ячейки на месте — программист заполняет своей догадкой только пустую ячейку.' }),
-      3: tr({ uz: 'Hammaga emas — dasturchi taxmin qilgan odamlarga quriladi.', ru: 'Не всем — а тем, кого программист додумал сам.' }),
-      default: tr({ uz: "Katak bo'sh qolsa, dasturchi taxmin qiladi. Bilmasangiz — so'rab aniqlashtiring.", ru: 'Если ячейка пустая, программист додумывает сам. Не знаете — спросите и уточните.' })
+      0: tr({ uz: "Ish to'xtamaydi — AI baribir quradi, faqat kim uchun ekanini o'zi taxmin qiladi.", ru: 'Работа не останавливается — AI всё равно строит, только для кого — додумывает сам.' }),
+      2: tr({ uz: "Qolgan kataklar joyida turibdi — faqat bo'sh qolgan katakni AI o'z taxmini bilan to'ldiradi.", ru: 'Остальные ячейки на месте — AI заполняет своей догадкой только пустую ячейку.' }),
+      3: tr({ uz: 'Hammaga emas — AI taxmin qilgan odamlarga quriladi.', ru: 'Не всем — а тем, кого AI додумал сам.' }),
+      default: tr({ uz: "Katak bo'sh qolsa, AI taxmin qiladi. Bilmasangiz — so'rab aniqlashtiring.", ru: 'Если ячейка пустая, AI додумывает сам. Не знаете — спросите и уточните.' })
     }}
   />
 );
@@ -1873,7 +1913,7 @@ const HwCard = ({ variant, onPick, keyingi }) => {
 };
 // ===== 🏅 NISHONLAR — 4 ta, faqat REAL tekshiriladigan harakatga =====
 const ACHIEVEMENTS = {
-  rightQuestion: { icon: '🙋', name: 'Right Question!', desc: { uz: "To'rt savolni murabbiydan o'zingiz so'radingiz", ru: 'Вы сами задали тренеру четыре вопроса' } },
+  rightQuestion: { icon: '🙋', name: 'Right Question!', desc: { uz: "To'rt savolni ustozdan o'zingiz so'radingiz", ru: 'Вы сами задали наставнику четыре вопроса' } },
   onePager:      { icon: '📄', name: 'One Pager!',      desc: { uz: "To'rt katakni ham to'ldirdingiz", ru: 'Вы заполнили все четыре ячейки' } },
   sharpEye:      { icon: '🔎', name: 'Sharp Eye!',      desc: { uz: "Uch varaqni ham to'g'ri o'qib chiqdingiz", ru: 'Вы правильно прочитали все три листа' } },
   codeCheck:     { icon: '⌨️', name: 'Code Check!',     desc: { uz: "Kod endi bo'sh katakni o'zi topadi", ru: 'Теперь код сам находит пустую ячейку' } },
@@ -1966,17 +2006,17 @@ const QZ_BG_SHAPES = [
 // §138-C: to'g'ri javoblar bitta qolip bilan ajralib turmaydi, uzunlik-narvoni yo'q.
 const QUIZ_BANK = [
   { q: { uz: "G'oya og'zaki aytilsa, nima xavfi bor?", ru: "Чем опасно рассказать идею устно?" }, opts: [{ uz: "Har kim o'zicha tushunadi", ru: "Каждый поймёт по-своему" }, { uz: "Hamma darrov yoqtirib qoladi", ru: "Всем сразу понравится" }, { uz: "G'oya juda tez tarqaladi", ru: "Идея быстро разойдётся" }, { uz: "Yozib berishni so'rashadi", ru: "Попросят записать" }], correct: 0 },
-  { q: { uz: "«Menga PRD bering» — dasturchi nimani so'rayapti?", ru: "«Дайте мне PRD» — что просит разработчик?" }, opts: [{ uz: "Tayyor kodni", ru: "Готовый код" }, { uz: "Narx qog'ozini", ru: "Бумагу с ценой" }, { uz: "Ekran rasmlarini", ru: "Картинки экранов" }, { uz: "Talablar hujjatini", ru: "Документ требований" }], correct: 3 },
+  { q: { uz: "«Menga PRD bering» — hamkoringiz nimani so'rayapti?", ru: "«Дайте мне PRD» — что просит ваш партнёр?" }, opts: [{ uz: "Tayyor kodni", ru: "Готовый код" }, { uz: "Narx qog'ozini", ru: "Бумагу с ценой" }, { uz: "Ekran rasmlarini", ru: "Картинки экранов" }, { uz: "Talablar hujjatini", ru: "Документ требований" }], correct: 3 },
   { q: { uz: "«Guruh to'lib, odam bekorga qaytadi» — qaysi katak?", ru: "«Группа полна, человек уходит зря» — какая ячейка?" }, opts: [{ uz: "Kim", ru: "Кто" }, { uz: "Yechim", ru: "Решение" }, { uz: "Muammo", ru: "Проблема" }, { uz: "O'lchov", ru: "Измерение" }], correct: 2 },
-  { q: { uz: "«Kim» katagiga qaysi qator to'g'ri?", ru: "Какая строка подходит в ячейку «Кто»?" }, opts: [{ uz: "Hamma foydalanuvchilar", ru: "Все пользователи" }, { uz: "Ertalab suzishga keladiganlar", ru: "Кто ходит плавать по утрам" }, { uz: "Ilovaga pul to'laydiganlar", ru: "Кто платит за приложение" }, { uz: "Kod yozadigan dasturchilar", ru: "Разработчики, пишущие код" }], correct: 1 },
+  { q: { uz: "«Kim» katagiga qaysi qator to'g'ri?", ru: "Какая строка подходит в ячейку «Кто»?" }, opts: [{ uz: "Hamma foydalanuvchilar", ru: "Все пользователи" }, { uz: "Ertalab suzishga keladiganlar", ru: "Кто ходит плавать по утрам" }, { uz: "Ilovaga pul to'laydiganlar", ru: "Кто платит за приложение" }, { uz: "Kod yozadigan AI", ru: "AI, который пишет код" }], correct: 1 },
   { q: { uz: "Yechim katagiga qaysi qator tushadi?", ru: "Какая строка идёт в ячейку «Решение»?" }, opts: [{ uz: "Zamonaviy va tez ilova", ru: "Современное быстрое приложение" }, { uz: "Bo'sh joy ko'rsatuvchi sahifa", ru: "Страница, показывающая места" }, { uz: "Ikki haftada bitadigan ish", ru: "Работа на две недели" }, { uz: "JavaScript'dagi kod", ru: "Код на JavaScript" }], correct: 1 },
-  { q: { uz: "O'lchov katagi nima uchun kerak?", ru: "Зачем нужна ячейка «Измерение»?" }, opts: [{ uz: "Natijani son bilan ko'rsatadi", ru: "Показывает результат числом" }, { uz: "Ilova narxini hisoblaydi", ru: "Считает цену приложения" }, { uz: "Dasturchilar sonini aytadi", ru: "Называет число разработчиков" }, { uz: "Ish muddatini aytadi", ru: "Называет срок работы" }], correct: 0 },
-  { q: { uz: "O'lchov katagi bo'sh qolsa, nima yo'qoladi?", ru: "Что теряется, если ячейка «Измерение» пуста?" }, opts: [{ uz: "Ishni boshlash imkoni", ru: "Возможность начать работу" }, { uz: "Qolgan uch katak", ru: "Остальные три ячейки" }, { uz: "Natija bo'ldimi degan javob", ru: "Ответ, был ли результат" }, { uz: "Dasturchining haqi", ru: "Оплата разработчика" }], correct: 2 },
-  { q: { uz: "Varaq to'ldirilgach uch dasturchi nima qurdi?", ru: "Что построили три разработчика по заполненному листу?" }, opts: [{ uz: "Har biri boshqa narsa", ru: "Каждый — своё" }, { uz: "Hech biri boshlay olmadi", ru: "Никто не смог начать" }, { uz: "Ikkitasi qurdi, biri yo'q", ru: "Двое построили, один нет" }, { uz: "Uchalasi bir xil ekran", ru: "Все трое — одинаковый экран" }], correct: 3 },
+  { q: { uz: "O'lchov katagi nima uchun kerak?", ru: "Зачем нужна ячейка «Измерение»?" }, opts: [{ uz: "Natijani son bilan ko'rsatadi", ru: "Показывает результат числом" }, { uz: "Ilova narxini hisoblaydi", ru: "Считает цену приложения" }, { uz: "Ustunlar sonini aytadi", ru: "Называет число столбцов" }, { uz: "Ish muddatini aytadi", ru: "Называет срок работы" }], correct: 0 },
+  { q: { uz: "O'lchov katagi bo'sh qolsa, nima yo'qoladi?", ru: "Что теряется, если ячейка «Измерение» пуста?" }, opts: [{ uz: "Ishni boshlash imkoni", ru: "Возможность начать работу" }, { uz: "Qolgan uch katak", ru: "Остальные три ячейки" }, { uz: "Natija bo'ldimi degan javob", ru: "Ответ, был ли результат" }, { uz: "Ilovaning nomi", ru: "Название приложения" }], correct: 2 },
+  { q: { uz: "Varaq to'ldirilgach AI uch urinishda nima qurdi?", ru: "Что построил AI за три попытки по заполненному листу?" }, opts: [{ uz: "Har biri boshqa narsa", ru: "Каждый раз — своё" }, { uz: "Hech biri boshlay olmadi", ru: "Ни разу не начал" }, { uz: "Ikkitasi qurdi, biri yo'q", ru: "Два раза построил, один — нет" }, { uz: "Uchalasi bir xil ekran", ru: "Все три раза — одинаковый экран" }], correct: 3 },
   { q: { uz: "Geyts va Allen ishni qanday tartibda qildi?", ru: "В каком порядке работали Гейтс и Аллен?" }, opts: [{ uz: "Avval aytdi, keyin yozdi", ru: "Сначала сказали, потом написали" }, { uz: "Avval yozdi, keyin aytdi", ru: "Сначала написали, потом сказали" }, { uz: "Avval sinadi, keyin aytdi", ru: "Сначала проверили, потом сказали" }, { uz: "Uzoq sinab, keyin aytdi", ru: "Долго проверяли, потом сказали" }], correct: 0 },
   { q: { uz: "Til hali yozilmagan payt ular nima qildi?", ru: "Что они сделали, когда язык ещё не был написан?" }, opts: [{ uz: "Altairni sotib oldi", ru: "Купили Altair" }, { uz: "Tayyor tilni yubordi", ru: "Отправили готовый язык" }, { uz: "«Bizda til bor» dedi", ru: "Сказали «у нас есть язык»" }, { uz: "Jurnalga maqola yozdi", ru: "Написали статью в журнал" }], correct: 2 },
   { q: { uz: "Varaq qachon tayyor bo'ladi?", ru: "Когда лист готов?" }, opts: [{ uz: "Ikkita katagi yozilganda", ru: "Когда заполнены две ячейки" }, { uz: "Har katak savolga javob bersa", ru: "Когда каждая ячейка отвечает" }, { uz: "Kod bilan topshirilganda", ru: "Когда сдан вместе с кодом" }, { uz: "Uzun gaplar yozilganda", ru: "Когда написаны длинные фразы" }], correct: 1 },
-  { q: { uz: "Varaq bo'sh qolsa, kim taxmin qiladi?", ru: "Если лист пуст, кто будет угадывать?" }, opts: [{ uz: "Ilovani ochgan odam", ru: "Тот, кто открыл приложение" }, { uz: "Basseyn murabbiysi", ru: "Тренер бассейна" }, { uz: "Sinov o'tkazuvchi", ru: "Тестировщик" }, { uz: "Kod yozadigan dasturchi", ru: "Разработчик, пишущий код" }], correct: 3 },
+  { q: { uz: "Varaq bo'sh qolsa, kim taxmin qiladi?", ru: "Если лист пуст, кто будет угадывать?" }, opts: [{ uz: "Ilovani ochgan odam", ru: "Тот, кто открыл приложение" }, { uz: "Basseyn murabbiysi", ru: "Тренер бассейна" }, { uz: "PRD'ni yozgan odam", ru: "Тот, кто писал PRD" }, { uz: "Kod yozadigan AI", ru: "AI, который пишет код" }], correct: 3 },
 ];
 const CsNeonBolt = ({ flip }) => (
   <span className={`csn-boltwrap ${flip ? 'flip' : ''}`} aria-hidden="true">
@@ -2497,9 +2537,9 @@ const ScreenSummary = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const total = SCORED_IDX.length;
   const RECAP = [
     { uz: "Og'zaki gapni har kim o'zicha tushunadi — yozilgan qator hammaga bir xil ko'rinadi.", ru: 'Устную фразу каждый понимает по-своему — написанную строку все видят одинаково.' },
-    { uz: "PRD — mahsulot talablari hujjati. Uning eng sodda ko'rinishi — bitta varaq, to'rt katak.", ru: 'PRD — документ с требованиями к продукту. Его самая простая форма — один лист, четыре ячейки.' },
+    { uz: "PRD — mahsulot talablari hujjati. Uning eng sodda ko'rinishi — bitta varaq, to'rt katak. Siz uchun u AI'ga beriladigan to'liq prompt ham.", ru: 'PRD — документ с требованиями к продукту. Его самая простая форма — один лист, четыре ячейки. Для вас это ещё и полный промпт для AI.' },
     { uz: "To'rt katak: muammo, kim, yechim, o'lchov.", ru: 'Четыре ячейки: проблема, кто, решение, измерение.' },
-    { uz: "Katak bo'sh qolsa, dasturchi taxmin qiladi — bilmasangiz, so'rab aniqlashtiring.", ru: 'Если ячейка пустая, программист додумывает сам — не знаете, спросите и уточните.' },
+    { uz: "Katak bo'sh qolsa, AI taxmin qiladi — bilmasangiz, so'rab aniqlashtiring.", ru: 'Если ячейка пустая, AI додумывает сам — не знаете, спросите и уточните.' },
   ];
   // CodeStrike — alohida ekran emas, yakun ichida
   const [arena, setArena] = useState(false);
@@ -2671,6 +2711,8 @@ const CSS_BASE = `
   .mnote-chip:hover, .mnote-chip:focus-visible { opacity: 1; transform: translateY(-1px); }
   @media (hover: none) { .mnote-chip { opacity: 0.6; } }
   .mnote-body { margin: 0; font-size: clamp(13px,1.5vw,14.5px); color: ${T.ink}; line-height: 1.45; }
+  .mnote-why { color: ${T.blue}; }
+  .mnote-why b { font-weight: 800; }
 
   .h-title { font-size: clamp(22px,4vw,36px); letter-spacing: -0.015em; text-wrap: balance; }
   .h-ask { font-size: clamp(19px,2.6vw,27px); line-height: 1.32; letter-spacing: -0.01em; text-wrap: balance; }
@@ -2742,7 +2784,7 @@ const CSS_BASE = `
         .qcode.uzun { white-space: normal; overflow-wrap: break-word; } /* F-1015-129: uzun kod (SQL, buyruq) bo'sh joydan bo'linadi, kartadan chiqmaydi */
 `;
 
-// Dars-vizuallari: bir varaq (imzo-vizual), murabbiy savollari, katak-tekshiruv, yozish-ekrani.
+// Dars-vizuallari: bir varaq (imzo-vizual), ustoz savollari, katak-tekshiruv, yozish-ekrani.
 const CSS_LESSON = `
   /* HOOK — to'rt ish bitta qatorda */
   .hrow { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(8px,1.4vw,14px); }
@@ -3148,7 +3190,7 @@ const CSS_LESSON = `
   @keyframes vcaret { 0%, 49% { opacity: 0.9; } 50%, 100% { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { .varaq.draw .vcell { animation: none; opacity: 1; } .vcell.filled, .vcell.hit { animation: none; } button.vcell:active { transform: none; } .varaq.draw .vcell-t.empty::after { animation: none; opacity: 0.45; } }
 
-  /* YADRO (s4): chapda murabbiy va uning gapi, o'ngda varaq */
+  /* YADRO (s4): chapda ustoz va uning gapi, o'ngda varaq */
   .murab { display: flex; flex-direction: column; gap: 3px; background: ${T.paper}; border-radius: 14px; padding: 9px 12px; box-shadow: 0 12px 26px -14px rgba(${T.shadowBase},0.2), inset 0 0 0 1.5px ${T.line}; min-width: 0; }
   .murab-h { font-family: 'Manrope'; font-weight: 800; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: ${T.accent}; }
   .murab-gap { font-family: 'Source Serif 4', serif; font-style: italic; font-size: clamp(13.5px,1.7vw,15.5px); color: ${T.ink}; min-width: 0; overflow-wrap: anywhere; }
@@ -3184,7 +3226,7 @@ const CSS_LESSON = `
   .sbtn:active { transform: translateY(0) scale(0.98); }
   .sbtn.seen { box-shadow: inset 0 0 0 1.5px ${T.success}66; color: ${T.ink2}; }
   @media (prefers-reduced-motion: reduce) { .sdock, .sbtn { animation: none; transition: none; } .sbtn:hover, .sbtn:active { transform: none; } }
-  /* Ikkinchi bosqich natijasi: uch dasturchi — uchta bir xil ekran */
+  /* Ikkinchi bosqich natijasi: AI uch urinishda — uchta bir xil ekran */
   .qayta { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 7px; }
   .qayta-card { position: relative; display: flex; flex-direction: column; gap: 3px; background: ${T.successSoft}; border-radius: 11px; padding: 17px 8px 7px; box-shadow: inset 0 0 0 1.5px ${T.success}55; min-width: 0; animation: qayta-snap 0.44s cubic-bezier(.34,1.5,.4,1) both; }
   .qayta-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 13px; border-radius: 11px 11px 0 0; background: ${T.paper}; box-shadow: inset 0 -1px 0 ${T.success}44; }
@@ -3217,7 +3259,7 @@ const CSS_LESSON = `
      kengroq (kataklar siqilib qolmasin); o'ngda qisqa izoh va tugma turadi. */
   .split.s9v { grid-template-columns: minmax(0,1.3fr) minmax(0,0.95fr); }
   @media (max-width: 1000px) { .split.s9v { grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); } }
-  /* YADRO-ekrani tarhi (s4): chapda murabbiy va savol-tugmalari, o'ngda varaq */
+  /* YADRO-ekrani tarhi (s4): chapda ustoz va savol-tugmalari, o'ngda varaq */
   .split.s4 { grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); }
   @media (max-width: 1000px) { .split.s4 { grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(12px,2vw,20px); } }
   @media (max-width: 860px) { .split.s4 { gap: 10px; } }
