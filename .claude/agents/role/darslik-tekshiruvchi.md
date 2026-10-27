@@ -486,3 +486,7 @@ Statik qismi: `gates:qolip` q13–q16 (qolip-dars), `lint:emoji` qolip-rejim, `l
     `INLINE_KEYS.practice` kabi ishlatilmagan kalitlar, flashcard/jonli-praktika qatlami qoladi. Ko'rinmaydi, lekin `lint:tell`/`emoji`/kontrast darvozalari o'sha o'lik kodga
     yiqiladi va ekranlar soni bilan `SCREEN_META` mos kelmaydi. Ovlash: `python3 feedback/F-1015-amaliyot/seans-vositalar/qurish/olik_ekran_tahlil.py <jsx>` — ishlatilmagan
     komponent/klass/kalit ro'yxati; 0 bo'lmasa — quruvchiga qaytariladi (tozalash `olik_tozalash.py`, sinov `olik_sinov.sh`, zaxira papkasi shart).
+
+## 🔴 F-1027-01 OV-BANDI — KODDA O'ZBEKCHA NOM: RUSCHA REJIMDA BIR OYNADA UCH TIL (2026-10-27; m3-02 koding-ekrani; DARS_ETALON 11.12 · PM_DARS_ETALON 112)
+O'quvchi ko'radigan yoki yozadigan kodda (starter, kod-namuna, test savolidagi kod, `class`/`id`) funksiya, parametr, o'zgaruvchi, klass nomi o'zbekcha bo'lsa — NUQSON (quruvchiga qaytadi): ruscha rejimda `function hikoyaYasa(kim, nima)` + ruscha izoh = uch til. To'g'risi: nom inglizcha va ikkala tilda bir xil, izoh/satr-matn `{ uz, ru }`, funksiya ostida «`who — kim · what — nima`» izoh-qatori.
+Ovlash: `node feedback/F-1027-01-kod-tili/kod-nom-supur.mjs` — tekshirilayotgan dars ro'yxatda bo'lmasin (nomzod ro'yxatidagi ichki harness nomlari, masalan `__tozala`, qo'lda ajratiladi) + ruscha rejimda kod-oynasini ko'z bilan ko'rish. Nom almashsa — `eval`/regex/probe ham almashganini va eski saqlangan kod uchun moslik qolganini tekshiring.

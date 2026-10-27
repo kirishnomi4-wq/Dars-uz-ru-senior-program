@@ -245,6 +245,7 @@ aylantirmang: `{i+1}-kadr` → `tr({uz: <>{i+1}-kadr</>, ru: <>Кадр {i+1}</>
 - Ko'rsatiladigan (o'quvchi yozmaydigan) kod oynasida: `//` izohlari va holat-satrlari → `tr({ uz, ru })`.
 - Koddagi xabar-satr sayt-maketida chiqadigan matn bilan **aynan bir xil** (ikkala tilda): `xato("Ism kiriting!")` ↔ sayt «Ism kiriting!»; ru — «Пожалуйста, введите имя.».
 - **O'zgarmaydi:** o'zgaruvchi/funksiya/komponent nomlari (`tugma`, `matn`, `xato()`, `<Tugma />`) — ru o'quvchi ham shu kodni yozadi;
+- 🔴 **27.10 tuzatma (F-1027-01, foydalanuvchi):** yuqoridagi band «nom ikkala tilda bir xil» qismida qoladi, lekin nom **inglizcha** bo'ladi (`button`, `text`, `showError()`). O'zbekcha nom ruscha rejimda uchinchi til bo'lib chiqadi (m3-02: `hikoyaYasa(kim, nima)` + ruscha izoh). Qoida: `DARS_ETALON` 11.12 · `PM_DARS_ETALON` 112. Eski darslar — `KATTA_TOZALASH.md` «F-1027-01»; yangi tarjimada o'zbekcha nom ko'rilsa — tarjimachi o'zi o'zgartirmaydi, auditorga belgi qo'yadi (tekshiruv nomga bog'liq bo'lishi mumkin).
   mashq topshirig'i va `checks` qidiradigan so'zlar (tekshiruv buziladi).
 - Namuna: `src/2-Modull/PracticeLesson1.jsx` (12 joy). ru-walk qoldig'i shundan keyin faqat nomlar bo'lishi kerak.
 

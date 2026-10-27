@@ -116,7 +116,7 @@ export const SCREEN_INTENTS = {
   peer: "Bola tayyor 3 namuna-kartaga bittalab hukm chiqarib, kamchilikni o'zi nomlaydi",
   s9: "Bola KIM va NATIJA'siz gap imkoniyat-so'rovi ekanini, hikoya emasligini aniqlaydi",
   clinic: "Bola dasturchi o'rnida uch xil so'rovni o'qib, so'rov sifati natijani belgilashini o'z ko'zi bilan ko'radi",
-  s10: "Bola hikoyaYasa funksiyasini to'ldirib, 3 hikoyasini kod orqali chiqaradi",
+  s10: "Bola makeStory funksiyasini to'ldirib, 3 hikoyasini kod orqali chiqaradi",
   priority: "Bola 3 hikoyasini muhimlik darajalariga (yuqori/o'rta/past) ajratadi",
   s11: "Bola bugun o'rganganini sherigiga aytib, bir gapda yozib qoldiradi",
   podium: "Bola o'z natijasini (jonlida — sinf reytingini) ko'radi",
@@ -1710,16 +1710,18 @@ const Screen9 = (props) => (
 //   PM-STUDIA palitrasida self-contained (import yo'q). O'quvchi JS yozadi → ▶ → iframe'da JONLI
 //   User Story kartalari chiqadi; yashirin harness 3 shartni tekshirib parent'ga xabar yuboradi.
 const KODING_STARTER = {
-  uz: `function hikoyaYasa(kim, nima, natija) {
+  uz: `function makeStory(who, what, result) {
+  // who — kim · what — nima · result — natija
   // Hikoya qolipi: Men [kim] sifatida, [nima]ni xohlayman, [natija] uchun.
   return '';
 }
-console.log(hikoyaYasa('yangi mehmon', 'loyihalarni bitta ekranda korish', 'meni tez tanib olishlari'));`,
-  ru: `function hikoyaYasa(kim, nima, natija) {
-  // Шаблон истории: Я как [kim], хочу [nima], чтобы [natija].
+console.log(makeStory('yangi mehmon', 'loyihalarni bitta ekranda korish', 'meni tez tanib olishlari'));`,
+  ru: `function makeStory(who, what, result) {
+  // who — кто · what — что · result — результат
+  // Шаблон истории: Я как [кто], хочу [что], чтобы [результат].
   return '';
 }
-console.log(hikoyaYasa('новый гость', 'видеть проекты на одном экране', 'меня быстро узнавали'));`,
+console.log(makeStory('новый гость', 'видеть проекты на одном экране', 'меня быстро узнавали'));`,
 };
 // Kompilyator-qobiq shartlari (JS-check: funksiya to'ldirilgan + gap formulada + 3 hikoya chiqarilgan).
 const KODING_CONDS = [
@@ -1728,17 +1730,17 @@ const KODING_CONDS = [
     hint: { uz: "return qatorini to'ldiring: hozir bo'sh matn ('') qaytmoqda.", ru: "Заполните строку return: сейчас возвращается пустой текст ('')." } },
   { id: 'c2',
     label: { uz: "Gap to'g'ri qolipda — «sifatida» · «xohlayman» · «uchun» joyida", ru: 'Фраза в правильном шаблоне — «как» · «хочу» · «чтобы» на месте' },
-    hint: { uz: "Qolip (orqa-qo'shtirnoq ` ichida): return `Men ${kim} sifatida, ${nima}ni xohlayman, ${natija} uchun.`", ru: 'Шаблон (внутри обратных кавычек `): return `Я как ${kim}, хочу ${nima}, чтобы ${natija}.`' } },
+    hint: { uz: "Qolip (orqa-qo'shtirnoq ` ichida): return `Men ${who} sifatida, ${what}ni xohlayman, ${result} uchun.`", ru: 'Шаблон (внутри обратных кавычек `): return `Я как ${who}, хочу ${what}, чтобы ${result}.`' } },
   { id: 'c3',
     label: { uz: "O'z 3 hikoyangiz chiqarildi (kamida 3 gap)", ru: 'Ваши 3 истории выведены (минимум 3 фразы)' },
-    hint: { uz: "hikoyaYasa'ni kamida 3 marta chaqirib, o'z hikoyalaringizni console.log qiling.", ru: 'Вызовите hikoyaYasa минимум 3 раза и выведите свои истории через console.log.' } },
+    hint: { uz: "makeStory'ni kamida 3 marta chaqirib, o'z hikoyalaringizni console.log qiling.", ru: 'Вызовите makeStory минимум 3 раза и выведите свои истории через console.log.' } },
 ];
 // KODING endi umumiy HtmlCompiler zanjirida (eski nusxa-harness `window.__logs` bilan o'chirildi — K-C-11 qarzi yopildi).
-// c1/c2 — runtime `eval` (hikoyaYasa probe), c3 — runtime `eval` harness'ning yopiq `logs` massivi ustida (closure ichida
+// c1/c2 — runtime `eval` (makeStory probe; F-1027-01: eski saqlangan kod uchun hikoyaYasa ham qabul qilinadi), c3 — runtime `eval` harness'ning yopiq `logs` massivi ustida (closure ichida
 // bevosita eval → `logs` ko'rinadi; o'quvchi kodi unga yetolmaydi). Muharrir starter bilan boshlanadi (avval: bo'sh + xira namuna).
 // Saqlov-moslik: eski `pm-m3d2-koding`.code → starter; yangi kod `pm-m3d2-koding:code` (HtmlCompiler formati).
-const KOD_FILE = 'hikoyaYasa.js';
-const KOD_PROBE = 'hikoyaYasa("yangi mehmon","loyihalarni bitta ekranda korish","meni tez tanib olishlari")';
+const KOD_FILE = 'makeStory.js';
+const KOD_PROBE = '(typeof makeStory==="function"?makeStory:hikoyaYasa)("yangi mehmon","loyihalarni bitta ekranda korish","meni tez tanib olishlari")';
 const KOD_EVAL_C1 = '(function(){try{var p=' + KOD_PROBE + ';return typeof p==="string"&&p.trim().length>0;}catch(e){return false;}})()';
 const KOD_EVAL_C2 = '(function(){try{var S=typeof _str==="function"?_str:String;var H=typeof has==="function"?has:function(h,n){return S(h).indexOf(n)!==-1;};var p=typeof _low==="function"?_low.call(S(' + KOD_PROBE + ')):S(' + KOD_PROBE + ').toLowerCase();return (H(p,"sifatida")&&H(p,"xohlayman")&&H(p,"uchun"))||(H(p,"как")&&H(p,"хочу")&&H(p,"чтобы"));}catch(e){return false;}})()';
 // c3: harness closure'dagi MUZLATILGAN yordamchilar (`has`/`_low`/`_str` — K-C-11) bilan; o'quvchi String.prototype'ni
@@ -1748,8 +1750,8 @@ const mkKodTask = (starter) => ({
   eyebrow: { uz: 'Koding · praktika', ru: 'Кодинг · практика' },
   title: { uz: "Hikoya qolipini kod o'zi yig'sin", ru: 'Пусть код сам собирает шаблон истории' },
   brief: {
-    uz: <>Funksiyani to'ldiring: <span className="mono">hikoyaYasa</span> uch bo'lakdan bitta User Story gapini qaytarsin, keyin o'z 3 hikoyangizni <span className="mono">console.log</span> bilan chiqaring. Natija konsolda.</>,
-    ru: <>Заполните функцию: <span className="mono">hikoyaYasa</span> должна возвращать из трёх частей одну фразу User Story, а потом выведите свои 3 истории через <span className="mono">console.log</span>. Результат — в консоли.</>,
+    uz: <>Funksiyani to'ldiring: <span className="mono">makeStory</span> uch bo'lakdan bitta User Story gapini qaytarsin, keyin o'z 3 hikoyangizni <span className="mono">console.log</span> bilan chiqaring. Natija konsolda.</>,
+    ru: <>Заполните функцию: <span className="mono">makeStory</span> должна возвращать из трёх частей одну фразу User Story, а потом выведите свои 3 истории через <span className="mono">console.log</span>. Результат — в консоли.</>,
   },
   files: [{ name: KOD_FILE, lang: 'js', starter }],
   requirements: [
@@ -1812,11 +1814,12 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Koding · 🛠 kompilyator', ru: 'Кодинг · 🛠 компилятор' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval kompilyatorda bajaring', ru: 'Сначала выполните в компиляторе' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Hikoyangizni kartaga aylantiradigan <span className="italic" style={{ color: T.accent }}>kod</span> yozamiz</>, ru: <>Пишем <span className="italic" style={{ color: T.accent }}>код</span>, который превратит вашу историю в карточку</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Hikoyalar tayyor — <b style={{ color: T.ink }}>kod esa endi yoziladi</b>: avval kimga nima kerakligini bilamiz, keyin quramiz. <span className="mono">hikoyaYasa</span> funksiyasini to'ldiring.</>, ru: <>Истории готовы — <b style={{ color: T.ink }}>а код пишется только сейчас</b>: сначала узнаём, кому что нужно, потом строим. Заполните функцию <span className="mono">hikoyaYasa</span>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Hikoyalar tayyor — <b style={{ color: T.ink }}>kod esa endi yoziladi</b>: avval kimga nima kerakligini bilamiz, keyin quramiz. <span className="mono">makeStory</span> funksiyasini to'ldiring.</>, ru: <>Истории готовы — <b style={{ color: T.ink }}>а код пишется только сейчас</b>: сначала узнаём, кому что нужно, потом строим. Заполните функцию <span className="mono">makeStory</span>.</> })}</Mentor>
         <div className="kdx fade-up delay-1">
           <div className="kdx-fn">
-            <span className="kdx-fn-bar"><span className="bb-dots"><i /><i /><i /></span>hikoyaYasa.js</span>
-            <code className="kdx-fn-code">hikoyaYasa(<span className="kx-kim">kim</span>, <span className="kx-nima">nima</span>, <span className="kx-natija">natija</span>)</code>
+            <span className="kdx-fn-bar"><span className="bb-dots"><i /><i /><i /></span>makeStory.js</span>
+            <code className="kdx-fn-code">makeStory(<span className="kx-kim">who</span>, <span className="kx-nima">what</span>, <span className="kx-natija">result</span>)</code>
+            <span className="kdx-fn-legend"><span className="kx-kim">who</span> — {tr({ uz: 'kim', ru: 'кто' })} · <span className="kx-nima">what</span> — {tr({ uz: 'nima', ru: 'что' })} · <span className="kx-natija">result</span> — {tr({ uz: 'natija', ru: 'результат' })}</span>
           </div>
           <span className="kdx-arrow" aria-hidden="true">➜</span>
           <div className="kdx-out">
@@ -3375,6 +3378,7 @@ export default function PmUserStoryLesson({ lang: langProp, onFinished, liveToke
         .kdx-fn { flex-shrink: 0; border-radius: 14px; overflow: hidden; background: ${CODE.bg}; box-shadow: 0 12px 28px -10px rgba(${T.shadowBase},0.35); }
         .kdx-fn-bar { display: flex; align-items: center; gap: 8px; background: #141C2B; padding: 8px 13px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: #7E92B4; }
         .kdx-fn-code { display: block; padding: clamp(18px,2.4vw,26px) clamp(18px,2.6vw,28px); font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(13px,1.7vw,16.5px); color: ${CODE.text}; white-space: nowrap; }
+        .kdx-fn-legend { display: block; margin-top: calc(-1 * clamp(8px,1.2vw,12px)); padding: 0 clamp(18px,2.6vw,28px) clamp(14px,2vw,18px); font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #7E92B4; }
         .kx-kim { color: #7DB8E8; } .kx-nima { color: ${CODE.attr}; } .kx-natija { color: ${CODE.str}; }
         .kdx-arrow { font-size: clamp(22px,3vw,30px); color: ${T.accent}; flex-shrink: 0; animation: kdx-arrow-nudge 1.6s ease-in-out infinite; }
         @keyframes kdx-arrow-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
