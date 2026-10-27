@@ -53,3 +53,17 @@ Har qatorda: vazifa · uyga vazifa (bo'lim sahifasi id) · savol id · til · es
 | 6-8 | 2840 | 16563 | uz | text |
 | 6-8 | 2840 | 16564 | ru | text |
 | 6-11 | 2843 | 16568 | ru | text (Draft — eski, o'quvchiga ko'rinmaydi) |
+
+## 2026-10-27 · F-1027-01 (kod nomlari inglizcha) — yangi bandlar qo'shildi va Active, eskilari o'chiriladi
+
+Tahrir oynasida starter kod maydoni yo'q — shuning uchun compiler vazifalariga yangi band qo'shildi (17629–17634).
+Eski bandlar hozir YANGISI BILAN BIRGA Active — o'quvchi ikkala vazifani ko'radi, tezroq o'chirilsin.
+
+| Vazifa | Sahifa | Savol id | Til | Eski turi | Yangi band |
+|---|---|---|---|---|---|
+| 3-6 | 2794 | 17333 | uz | compiler | 17629 |
+| 3-6 | 2794 | 17334 | ru | compiler | 17630 |
+| 3-11 | 2801 | 17349 | uz | compiler | 17631 |
+| 3-11 | 2801 | 17350 | ru | compiler | 17632 |
+| 3-12 | 2798 | 17351 | uz | compiler | 17633 |
+| 3-12 | 2798 | 17352 | ru | compiler | 17634 |
