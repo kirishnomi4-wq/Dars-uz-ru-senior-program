@@ -1,30 +1,35 @@
-# 🔴🔴🔴 DAVOM — F-1022-01 yangi seans shu yerdan boshlanadi
+# 🔴🔴🔴 DAVOM — yangi seans shu yerdan boshlanadi
 
-Yozilgan: 2026-10-22 20:05 (chorshanba). Muddat: **yakshanba 26.10 prodga (LMS)**.
+Yozilgan: 2026-10-25 02:55 (foydalanuvchi uxlashga ketdi, noutbuk o'chiriladi).
 
-## Holat
+## Holat — F-1022-01 «O'quvchi — startapchi, PM emas» YOPILDI ✅
 | Dars | Fayl | Holat |
 |---|---|---|
-| m3-10 «Qachon «tayyor» deb ayta olamiz?» | `src/3-Modull/PmLesson9.jsx` | ✅ KOD (22.10 19:30) — gates 12/13 (`emoji` eski qarz 6) |
-| m3-05 «Qaysi ishni birinchi qilasiz?» | `src/3-Modull/PmLesson8.jsx` | ✅ KOD (22.10 20:05) — gates 12/13 (`emoji` eski qarz 8) |
-| m6-02 «Bitta gapni uch kishi…» | `src/6-Modull/PmLesson22.jsx` | 📋 JADVAL yozildi — `PmLesson22-v2-EKRANLAR.md` — **foydalanuvchi tasdig'i kutilmoqda** |
-| m4-12 · m4b-02 · m4c-06 · m4-07 | PmLesson13 · 16 · 18 · 12 | 📋 JADVAL yozildi — `PmLesson13-16-18-12-v2-EKRANLAR.md` — **tasdiq kutilmoqda** |
-| 1-o'tish «Nima quramiz» | `src/bridge/lessons/BridgeNimaQuramiz.jsx` | ⏳ yakshanbadan keyin (alohida sayt) |
+| m3-10 «Qachon «tayyor» deb ayta olamiz?» | `src/3-Modull/PmLesson9.jsx` | ✅ prodda (23.10 relizi) |
+| m3-05 «Qaysi ishni birinchi qilasiz?» | `src/3-Modull/PmLesson8.jsx` | ✅ prodda (23.10 relizi) |
+| m4-07 · m4-12 · m4b-02 · m4c-06 · m6-02 | PmLesson12 · 13 · 16 · 18 · 22 | ✅ prodda (24.10, v5) |
 
-Foydalanuvchi: «1-2 soatda yozaman, keyin yangi seansdan davom etamiz» — jadvallarga fikr/tasdiq xabar bilan keladi.
+24.10 zanjiri: kod → commit `d7ff60ef` → paket `yuklash-2026-10-24-prod` (O'TDI) → foydalanuvchi ko'rigi «manga yoqdi» → server sync GitLab `53b9388` → pipeline #2984744019 Passed → prod health `0.1.0+53b93883`, catalog 183 → yuklovchi seans CRM'ga 10 qator (md5 10/10) → `lms-farq muhrla` (reestr 5 dars v5, jami 172).
 
-## Yangi seans qadamlari
-1. Foydalanuvchi fikrini o'qi → jadvalga tuzatish (bo'lsa) → tasdiq.
-2. **m6-02 kod** (katta: dasturchi 20 + murabbiy 10 → ustoz; PRD kuchayadi; s0 reveal; MENTOR_WHY 16). Naqsh: PmLesson9/PmLesson8 da qilingan mexanizm — `ScreenIdxCtx` (Stage provider), `MENTOR_WHY`, `MentorNote` why-qatori, bo'sh `<MentorNote />` s2/QuestionScreen/s6/s14, s0 `mReveal` + `mstats-reveal` tugma + `NavNext mentorLock`, CSS `.mnote-why`. Python-skript bilan aniq string almashtirish (har old 1 marta — assert), oldin nusxa scratchpad'ga.
-3. **m4-12, m4b-02, m4c-06, m4-07 kod** — qisqa (20 joy), har biriga shu mexanizm.
-4. Har darsdan keyin `npm run gates -- <fayl>`; `emoji` yiqilsa HEAD nusxasi bilan solishtir (`git show HEAD:<fayl>` → `node lint-emoji.mjs`), eski qarz bo'lsa jurnalga yoz, tegma. `tell` lint: to'g'ri variantda tire/qavs/texnik so'z yolg'iz qolmasin.
-5. `til-lint-rules.json` `allowFiles` dan tuzatilgan darsni chiqar (PmLesson8 22.10 chiqarildi; PmLesson22, PmLesson13, PmLesson16, PmLesson12 — kod bo'lgach). Chiqargach `node til-lint.mjs <fayl>` → `dasturchi-topshiriq` 0.
-6. Skrinshot: `CLICK='.hopt' node scripts/shot-screen.mjs <fayl> 0` (o'quvchi), `node scripts/shot-mentor-panel.mjs <fayl> 0 --wrong 1` (mentor; skript reveal'ni o'zi bosadi), `CHROME=$(command -v google-chrome)`.
-7. Jurnal: `JURNAL.md` + `PM_PIPELINE_STATE.md` + EKRANLAR faylining Holat qatori.
-8. Shanba 25.10: 7 dars `smoke`, QA sayt; yakshanba: `lms-farq` → paket → `YUKLASH_PROTOKOLI` → `lms-farq muhrla`; commit faqat buyruq bilan.
+## Birinchi ish yangi seansda — COMMIT (faqat foydalanuvchi «ha» desa)
+Commit qilinmagan fayllar (hammasi diskda, yo'qolmagan):
+- `LMS_REESTR.json` — 5 dars v5, server `53b93883`
+- `LMS_DEPLOY_JURNAL.md` — 24.10 qatori
+- `PM_PIPELINE_STATE.md` — 24.10 21:48 yakun yozuvi
+- `feedback/F-1022-01-pm-rol/JURNAL.md` · `YUKLOVCHI-PROMPT.md` · `DAVOM.md` (shu fayl)
+
+Taklif etilgan xabar: `chore(lms): 24.10 qisman reliz muhri — 5 PM dars v5, server 53b93883 (F-1022-01)`.
+`yuklash-2026-10-24-prod/` — `.gitignore` da, commitga kirmaydi. Push — faqat alohida buyruq bilan.
+Boshqa untracked fayllar (`.shot*.tmp.mjs`, `arxiv/F-1020-*`, `dist-hwqa2/`, `src/hw-qa2/`, `src/taqdimot/`, `feedback/F-1018-pitch/.../_p.html` va h.k.) — oldingi seanslardan, bu commitga QO'SHILMAYDI.
+
+## Ochiq
+1. **Prod smoke** (foydalanuvchi): LMS preview'da m6-02 «Bitta gapni uch kishi bir xil tushunadimi?» ni mentor sifatida ochish → 1-ekranda «Natijani ochish» tugmasi, eslatmada «Bu slayd nima uchun».
+2. **5-/6-Modul CRM Class nomlari** eski reja nomida («.env va xavfsizlik», «PRD yaratish», «Sifat: bitta xato…», «Monitoring») — avvaldan shunday, tegilmagan; kerak bo'lsa alohida qaror.
+3. **1-o'tish «Nima quramiz»** (`src/bridge/lessons/BridgeNimaQuramiz.jsx`) — F-1022-01 qoidasi bo'yicha keyingi ish (alohida sayt).
+4. **CodeStrike → Learn (F-1023-01)** — Abdulloh javobi kutilmoqda: `feedback/F-1023-reliz/DAVOM.md` «Ochiq» 3-band.
+5. **Push (GitHub)** — 23.10 dan beri push yo'q; foydalanuvchi aytsa `git push origin main`.
 
 ## Qoidalar (o'zgarmas)
-- Uy vazifalari `*.homework.jsx` — TEGILMAYDI. `KATTA_TOZALASH.md` ga hozir yozilmaydi (foydalanuvchi 22.10).
-- Atama qoladi (PRD, qabul shartlari, prioritet) — 110-qonun. Gap aytuvchi — ustoz. Keys-olamidagi uchinchi shaxslar o'z nomida.
-- Test/arena to'g'ri javob o'rinlari, ekran soni, keyslar o'zgarmaydi.
-- Ochiq qaror: yakshanba yig'ish `previewMode` (F-1021-10 adapter) — IT javobi (`feedback/F-1015-preview/`).
+- Uy vazifalari `*.homework.jsx` — TEGILMAYDI. Atama qoladi (PRD, qabul shartlari) — 110-qonun; gap aytuvchi — ustoz.
+- Har tahrir/qadam oldidan reja aytiladi va rozilik olinadi. Commit/push faqat buyruq bilan.
+- Server sync — foydalanuvchi o'zi: `! bash scripts/sync-dars-api.sh main` (oldin `… main --check`).
