@@ -1568,37 +1568,39 @@ const GATE_OPTS = [
   { t: { uz: 'Sayt ishlab turibdi', ru: 'Сайт работает' } },
   { t: { uz: 'signal: xato 200', ru: 'сигнал: ошибка 200' } },
 ];
-const kodMatn = (nom) => tr({ uz: `// tekshir.js — o'lchagichning bir marta ishlashi
-const MANZIL = 'https://${nom}'; // ← o'z saytingiz linki
+const kodMatn = (nom) => tr({ uz: `// check.js — o'lchagichning bir marta ishlashi
+// SITE_URL — sayt linki · response — javob · time — vaqt
+const SITE_URL = 'https://${nom}'; // ← o'z saytingiz linki
 
-async function olchagich() {
-  const boshlandi = Date.now();          // hozirgi vaqt, millisekundda
-  const javob = await fetch(MANZIL);     // saytga so'rov — Network'dagi bitta qator
-  const vaqt = Date.now() - boshlandi;   // necha ms da keldi
+async function checkSite() {
+  const start = Date.now();          // hozirgi time, millisekundda
+  const response = await fetch(SITE_URL);     // saytga so'rov — Network'dagi bitta qator
+  const time = Date.now() - start;   // necha ms da keldi
 
-  console.log('Holat:', javob.status, '· Vaqt:', vaqt, 'ms');
+  console.log('Holat:', response.status, '· Vaqt:', time, 'ms');
 
-  // 1) javob.status 200 bo'lmasa:  '📣 signal: xato ' + javob.status
-  // 2) vaqt 3000 dan katta bo'lsa: '📣 signal: sekin javob'
+  // 1) response.status 200 bo'lmasa:  '📣 signal: xato ' + response.status
+  // 2) time 3000 dan katta bo'lsa: '📣 signal: sekin response'
   // 3) ikkalasi joyida bo'lsa:     '✅ Sayt ishlab turibdi'
 }
 
-olchagich();`, ru: `// tekshir.js — одно срабатывание измерителя
-const MANZIL = 'https://${nom}'; // ← ссылка на ваш сайт
+checkSite();`, ru: `// check.js — одно срабатывание измерителя
+// SITE_URL — ссылка на сайт · response — ответ · time — время
+const SITE_URL = 'https://${nom}'; // ← ссылка на ваш сайт
 
-async function olchagich() {
-  const boshlandi = Date.now();          // текущее время, в миллисекундах
-  const javob = await fetch(MANZIL);     // запрос к сайту — одна строка в Network
-  const vaqt = Date.now() - boshlandi;   // за сколько мс пришёл ответ
+async function checkSite() {
+  const start = Date.now();          // текущее время, в миллисекундах
+  const response = await fetch(SITE_URL);     // запрос к сайту — одна строка в Network
+  const time = Date.now() - start;   // за сколько мс пришёл ответ
 
-  console.log('Holat:', javob.status, '· Vaqt:', vaqt, 'ms');
+  console.log('Статус:', response.status, '· Время:', time, 'ms');
 
-  // 1) если javob.status не 200:      '📣 сигнал: ошибка ' + javob.status
-  // 2) если vaqt больше 3000:         '📣 сигнал: медленный ответ'
+  // 1) если response.status не 200:      '📣 сигнал: ошибка ' + response.status
+  // 2) если time больше 3000:         '📣 сигнал: медленный ответ'
   // 3) если оба в порядке:            '✅ Сайт работает'
 }
 
-olchagich();` });
+checkSite();` });
 const JS_TOKEN = /(\/\/[^\n]*|'[^']*'|\b(?:const|async|function|await|return|if|else)\b|\b\d+\b)/g;
 const jsHl = (ln) => ln.split(JS_TOKEN).filter(p => p !== undefined && p !== '').map((p, i) => {
   if (p.startsWith('//')) return <span key={i} style={{ color: '#6A9955' }}>{p}</span>;
@@ -1608,7 +1610,7 @@ const jsHl = (ln) => ln.split(JS_TOKEN).filter(p => p !== undefined && p !== '')
   return <span key={i}>{p}</span>;
 });
 const KD_SHART = [
-  <>{tr({ uz: <><code className="qcode">node tekshir.js</code> holat va vaqtni chiqaradi</>, ru: <><code className="qcode">node tekshir.js</code> выводит состояние и время</> })}</>,
+  <>{tr({ uz: <><code className="qcode">node check.js</code> holat va vaqtni chiqaradi</>, ru: <><code className="qcode">node check.js</code> выводит состояние и время</> })}</>,
   <>{tr({ uz: <>Uchta alohida <code className="qcode">if</code> uch xil qator chiqaradi</>, ru: <>Три отдельных <code className="qcode">if</code> выводят три разные строки</> })}</>,
   <>{tr({ uz: "O'z saytingiz uchun natija chiqdi", ru: 'Результат получен для вашего сайта' })}</>,
 ];
@@ -1681,9 +1683,9 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Kodni <b>node</b> buyrug'i bilan yurgizgansiz — bu ham shunday: pastdagi qora oynaga (terminal) <b>node tekshir.js</b> deb yozasiz.</>, ru: <>Код вы уже запускали командой <b>node</b> — здесь так же: в чёрное окно снизу (терминал) пишете <b>node tekshir.js</b>.</> })}</p>
+                      <p>{tr({ uz: <>Kodni <b>node</b> buyrug'i bilan yurgizgansiz — bu ham shunday: pastdagi qora oynaga (terminal) <b>node check.js</b> deb yozasiz.</>, ru: <>Код вы уже запускали командой <b>node</b> — здесь так же: в чёрное окно снизу (терминал) пишете <b>node check.js</b>.</> })}</p>
                       <p>{tr({ uz: <>React darsida ko'rgan <b>fetch</b> saytga so'rov yuboradi, <b>await</b> esa javob kelguncha kutadi — shuning uchun funksiya <b>async</b>.</>, ru: <><b>fetch</b>, который вы видели на уроке React, отправляет запрос сайту, а <b>await</b> ждёт ответа — поэтому функция <b>async</b>.</> })}</p>
-                      <p>{tr({ uz: <>Bitta <b>if</b> dan boshlang: <b>javob.status</b> 200 emasmi? Ishlagach <b>vaqt &gt; 3000</b> ni qo'shing. Uchtasi ham alohida <b>if</b> — uchinchisi «ikkalasi joyida» degani: xato ham, sekinlik ham yo'q.</>, ru: <>Начните с одного <b>if</b>: <b>javob.status</b> не 200? Заработало — добавьте <b>vaqt &gt; 3000</b>. Все три — отдельные <b>if</b>; третий срабатывает, когда не сработали первые два.</> })}</p>
+                      <p>{tr({ uz: <>Bitta <b>if</b> dan boshlang: <b>response.status</b> 200 emasmi? Ishlagach <b>time &gt; 3000</b> ni qo'shing. Uchtasi ham alohida <b>if</b> — uchinchisi «ikkalasi joyida» degani: xato ham, sekinlik ham yo'q.</>, ru: <>Начните с одного <b>if</b>: <b>response.status</b> не 200? Заработало — добавьте <b>time &gt; 3000</b>. Все три — отдельные <b>if</b>; третий срабатывает, когда не сработали первые два.</> })}</p>
                       <p>{tr({ uz: <>⭐ Qo'shimcha: <b>for</b> bilan 3 marta ketma-ket o'lchang va eng uzun vaqtni alohida chiqaring.</>, ru: <>⭐ Дополнительно: измерьте <b>for</b>-ом три раза подряд и выведите самое долгое время отдельно.</> })}</p>
                     </div>}
                   </div>
@@ -1698,7 +1700,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <Col gap={10}>
                 <div className="vsc no-copy" onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onPaste={e => e.preventDefault()} onContextMenu={e => e.preventDefault()}>
                   <div className="vsc-bar">
-                    <span className="vsc-tab on"><span style={{ color: '#4FC1FF' }}>⌨️</span> tekshir.js</span>
+                    <span className="vsc-tab on"><span style={{ color: '#4FC1FF' }}>⌨️</span> check.js</span>
                     <span className="vsc-lock" title={tr({ uz: "Kod nusxalanmaydi — o'zingiz terib yozasiz", ru: 'Код не копируется — набираете сами' })}>🔒 {tr({ uz: "qo'lda yoziladi", ru: 'пишется руками' })}</span>
                   </div>
                   <div className="vsc-body">
@@ -1707,7 +1709,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     ))}
                   </div>
                   <div className="term">
-                    <span className="term-l mono"><b>$</b> node tekshir.js</span>
+                    <span className="term-l mono"><b>$</b> node check.js</span>
                     <span className="term-c" aria-hidden="true" />
                   </div>
                 </div>

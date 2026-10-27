@@ -1488,70 +1488,72 @@ const GATE_OPTS = [
   { t: { uz: 'Kim katagida', ru: 'В ячейке «Кто»' } },
 ];
 const KD_CODE = { uz: `// Bir varaq — to'rt katak
-const NOMLAR = ["muammo", "kim", "yechim", "olchov"];
+// sheet — varaq · problem — muammo · who — kim · solution — yechim · metric — o'lchov
+const FIELDS = ["problem", "who", "solution", "metric"];
 
-const varaq1 = {
-  muammo: "Odamlar kelib, guruh to'lib qolganini ko'radi",
-  kim: "Haftada ikki marta suzishga keladiganlar",
-  yechim: "Bo'sh joyni ko'rsatib, joy band qiladigan ilova",
-  olchov: ""
+const sheet1 = {
+  problem: "Odamlar kelib, guruh to'lib qolganini ko'radi",
+  who: "Haftada ikki marta suzishga keladiganlar",
+  solution: "Bo'sh joyni ko'rsatib, joy band qiladigan ilova",
+  metric: ""
 };
 
-const varaq2 = {
-  muammo: "",
-  kim: "",
-  yechim: "Kunlik ro'yxatni ko'rsatadigan sahifa",
-  olchov: "Bilmay qolgan kun 5 tadan 1 taga tushadi"
+const sheet2 = {
+  problem: "",
+  who: "",
+  solution: "Kunlik ro'yxatni ko'rsatadigan sahifa",
+  metric: "Bilmay qolgan kun 5 tadan 1 taga tushadi"
 };
 
-const varaq3 = {
-  muammo: "Odam band qilgan vaqtini o'tkazib yuboradi",
-  kim: "Joyni band qilib, boshqa ishga ketadiganlar",
-  yechim: "",
-  olchov: "O'tkazib yuborish 12 tadan 3 taga tushadi"
+const sheet3 = {
+  problem: "Odam band qilgan vaqtini o'tkazib yuboradi",
+  who: "Joyni band qilib, boshqa ishga ketadiganlar",
+  solution: "",
+  metric: "O'tkazib yuborish 12 tadan 3 taga tushadi"
 };
 
-function yozilmaganKataklar(varaq) {
-  const natija = [];
-  // NOMLAR bo'ylab yuring: qiymati bo'sh bo'lsa, nomni natija ro'yxatiga qo'shing
-  return natija;
+function emptyFields(sheet) {
+  const result = [];
+  // FIELDS bo'ylab yuring: qiymati bo'sh bo'lsa, nomni result ro'yxatiga qo'shing
+  return result;
 }
 
-console.log(yozilmaganKataklar(varaq1));
-console.log(yozilmaganKataklar(varaq2));
-console.log(yozilmaganKataklar(varaq3));`, ru: `// Один лист — четыре ячейки
-const NOMLAR = ["muammo", "kim", "yechim", "olchov"];
+console.log(emptyFields(sheet1));
+console.log(emptyFields(sheet2));
+console.log(emptyFields(sheet3));`, ru: `// Один лист — четыре ячейки
+// sheet — лист · problem — проблема · who — кто · solution — решение · metric — измерение
+const FIELDS = ["problem", "who", "solution", "metric"];
 
-const varaq1 = {
-  muammo: "Люди приходят и видят, что группа заполнена",
-  kim: "Те, кто приходит плавать два раза в неделю",
-  yechim: "Приложение, которое показывает свободные места и бронирует",
-  olchov: ""
+const sheet1 = {
+  problem: "Люди приходят и видят, что группа заполнена",
+  who: "Те, кто приходит плавать два раза в неделю",
+  solution: "Приложение, которое показывает свободные места и бронирует",
+  metric: ""
 };
 
-const varaq2 = {
-  muammo: "",
-  kim: "",
-  yechim: "Страница, которая показывает дневной список",
-  olchov: "Дней, когда тренер не знает, станет 1 из 5"
+const sheet2 = {
+  problem: "",
+  who: "",
+  solution: "Страница, которая показывает дневной список",
+  metric: "Дней, когда тренер не знает, станет 1 из 5"
 };
 
-const varaq3 = {
-  muammo: "Человек пропускает забронированное время",
-  kim: "Те, кто бронирует место и уходит по другим делам",
-  yechim: "",
-  olchov: "Пропусков станет 3 из 12"
+const sheet3 = {
+  problem: "Человек пропускает забронированное время",
+  who: "Те, кто бронирует место и уходит по другим делам",
+  solution: "",
+  metric: "Пропусков станет 3 из 12"
 };
 
-function yozilmaganKataklar(varaq) {
-  const natija = [];
-  // Пройдите по NOMLAR: если значение пустое, добавьте имя в список natija
-  return natija;
+function emptyFields(sheet) {
+  const result = [];
+  // Пройдите по FIELDS: если значение пустое, добавьте имя в список result
+  return result;
 }
 
-console.log(yozilmaganKataklar(varaq1));
-console.log(yozilmaganKataklar(varaq2));
-console.log(yozilmaganKataklar(varaq3));` };
+console.log(emptyFields(sheet1));
+console.log(emptyFields(sheet2));
+console.log(emptyFields(sheet3));` };
 const JS_TOKEN = /(\/\/[^\n]*|"[^"]*"|\b(?:const|function|return|console|log)\b|[[\]{}();,])/g;
 const jsHl = (ln) => ln.split(JS_TOKEN).filter(p => p !== undefined && p !== '').map((p, i) => {
   if (p.startsWith('//')) return <span key={i} style={{ color: '#6A9955' }}>{p}</span>;
@@ -1644,7 +1646,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Bitta katakdan boshlang: <code className="qcode">varaq1.olchov</code> bo'shmi? Ishlagach qolgan uchtasiga o'ting.</>, ru: <>Начните с одной ячейки: пуста ли <code className="qcode">varaq1.olchov</code>? Когда заработает, переходите к остальным трём.</> })}</p>
+                      <p>{tr({ uz: <>Bitta katakdan boshlang: <code className="qcode">sheet1.metric</code> bo'shmi? Ishlagach qolgan uchtasiga o'ting.</>, ru: <>Начните с одной ячейки: пуста ли <code className="qcode">sheet1.metric</code>? Когда заработает, переходите к остальным трём.</> })}</p>
                       <p>{tr({ uz: <>Qo'shimcha: <code className="qcode">tayyormi(varaq)</code> funksiyasini qo'shing — bo'sh katak bo'lmasa <code className="qcode">true</code>, aks holda <code className="qcode">false</code> qaytarsin.</>, ru: <>Дополнительно: добавьте функцию <code className="qcode">tayyormi(varaq)</code> — пусть возвращает <code className="qcode">true</code>, если пустых ячеек нет, иначе <code className="qcode">false</code>.</> })}</p>
                     </div>}
                   </div>

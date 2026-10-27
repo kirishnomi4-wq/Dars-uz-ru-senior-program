@@ -1538,75 +1538,79 @@ const GATE_ITEMS = [
 // Kod-nomlari ASCII, apostrofsiz (kunlar · kelganlar · kelgan · qaytgan · hisob) —
 // artefakt kaliti bilan AYNAN bir xil: pm-m5d11-metrika.kunlar[].kelgan/qaytgan.
 // §135: kod-satrlari qo'shtirnoqda — o'quvchi apostrofli matn qo'ysa kod sinmaydi.
-const KOD_STARTER = { uz: `// kunlar — botingizning uch kuni: har kuni kim kelgani
-const kunlar = [
-  { kun: 1, kelganlar: ["aziz", "dilnoza", "shohrux", "malika"] },
-  { kun: 2, kelganlar: ["dilnoza", "shohrux", "nodira"] },
-  { kun: 3, kelganlar: ["shohrux", "nodira", "jasur", "aziz"] },
+const KOD_STARTER = { uz: `// days — botingizning uch kuni: har kuni kim kelgani
+// day — kun · visitors — kelganlar · visited — kelganlar soni · returned — qaytganlar soni
+const days = [
+  { day: 1, visitors: ["aziz", "dilnoza", "shohrux", "malika"] },
+  { day: 2, visitors: ["dilnoza", "shohrux", "nodira"] },
+  { day: 3, visitors: ["shohrux", "nodira", "jasur", "aziz"] },
 ];
 
-function hisob(kunlar) {
-  const natija = [];
-  for (let i = 0; i < kunlar.length; i++) {
-    const bugungilar = kunlar[i].kelganlar;
-    // 1-kundan oldin ro'yxat yo'q: kechagilar bo'sh qoladi
-    let kechagilar = [];
-    if (i > 0) kechagilar = kunlar[i - 1].kelganlar;
+function retention(days) {
+  const result = [];
+  for (let i = 0; i < days.length; i++) {
+    const today = days[i].visitors;
+    // 1-kundan oldin ro'yxat yo'q: yesterday bo'sh qoladi
+    let yesterday = [];
+    if (i > 0) yesterday = days[i - 1].visitors;
 
-    // Bugungilardan nechtasi kechagilar ichida bor?
-    let qaytgan = 0;
+    // Bugungilardan nechtasi yesterday ichida bor?
+    let returned = 0;
 
-    natija.push({ kun: kunlar[i].kun, kelgan: bugungilar.length, qaytgan: qaytgan });
+    result.push({ day: days[i].day, visited: today.length, returned: returned });
   }
-  return natija;
+  return result;
 }
 
-console.log(hisob(kunlar));
-// [{ kun: 1, kelgan: 4, qaytgan: 0 },
-//  { kun: 2, kelgan: 3, qaytgan: 2 },
-//  { kun: 3, kelgan: 4, qaytgan: 2 }]`, ru: `// kunlar — три дня вашего бота: кто приходил в каждый день
-const kunlar = [
-  { kun: 1, kelganlar: ["aziz", "dilnoza", "shohrux", "malika"] },
-  { kun: 2, kelganlar: ["dilnoza", "shohrux", "nodira"] },
-  { kun: 3, kelganlar: ["shohrux", "nodira", "jasur", "aziz"] },
+console.log(retention(days));
+// [{ day: 1, visited: 4, returned: 0 },
+//  { day: 2, visited: 3, returned: 2 },
+//  { day: 3, visited: 4, returned: 2 }]`, ru: `// days — три дня вашего бота: кто приходил в каждый день
+// day — день · visitors — пришедшие · visited — сколько пришло · returned — сколько вернулось
+const days = [
+  { day: 1, visitors: ["aziz", "dilnoza", "shohrux", "malika"] },
+  { day: 2, visitors: ["dilnoza", "shohrux", "nodira"] },
+  { day: 3, visitors: ["shohrux", "nodira", "jasur", "aziz"] },
 ];
 
-function hisob(kunlar) {
-  const natija = [];
-  for (let i = 0; i < kunlar.length; i++) {
-    const bugungilar = kunlar[i].kelganlar;
-    // До 1-го дня списка нет: kechagilar остаётся пустым
-    let kechagilar = [];
-    if (i > 0) kechagilar = kunlar[i - 1].kelganlar;
+function retention(days) {
+  const result = [];
+  for (let i = 0; i < days.length; i++) {
+    const today = days[i].visitors;
+    // До 1-го дня списка нет: yesterday остаётся пустым
+    let yesterday = [];
+    if (i > 0) yesterday = days[i - 1].visitors;
 
-    // Сколько из bugungilar есть в kechagilar?
-    let qaytgan = 0;
+    // Сколько из today есть в yesterday?
+    let returned = 0;
 
-    natija.push({ kun: kunlar[i].kun, kelgan: bugungilar.length, qaytgan: qaytgan });
+    result.push({ day: days[i].day, visited: today.length, returned: returned });
   }
-  return natija;
+  return result;
 }
 
-console.log(hisob(kunlar));
-// [{ kun: 1, kelgan: 4, qaytgan: 0 },
-//  { kun: 2, kelgan: 3, qaytgan: 2 },
-//  { kun: 3, kelgan: 4, qaytgan: 2 }]` };
+console.log(retention(days));
+// [{ day: 1, visited: 4, returned: 0 },
+//  { day: 2, visited: 3, returned: 2 },
+//  { day: 3, visited: 4, returned: 2 }]` };
 
 // Shartlar XULQ-ATVORGA bog'langan (manba-regex sanog'i emas): for...of bilan ham,
 // filter bilan ham yozilgan to'g'ri yechim o'tadi; starter holatida uchalasi ham qizil.
-const KOD_DATA = '[{kun:1,kelganlar:["aziz","dilnoza","shohrux","malika"]},{kun:2,kelganlar:["dilnoza","shohrux","nodira"]},{kun:3,kelganlar:["shohrux","nodira","jasur","aziz"]}]';
+// F-1027-01: nomlar inglizcha; eski saqlangan kod (hisob · kun · kelganlar · kelgan · qaytgan) ham o'tadi — ma'lumotda ikkala kalit, natija bir xil ko'rinishga keltiriladi.
+const KOD_DATA = '[{day:1,visitors:["aziz","dilnoza","shohrux","malika"],kun:1,kelganlar:["aziz","dilnoza","shohrux","malika"]},{day:2,visitors:["dilnoza","shohrux","nodira"],kun:2,kelganlar:["dilnoza","shohrux","nodira"]},{day:3,visitors:["shohrux","nodira","jasur","aziz"],kun:3,kelganlar:["shohrux","nodira","jasur","aziz"]}]';
+const KOD_RUN = "(function(d){var f=typeof retention==='function'?retention:hisob;var r=f(d);return Array.isArray(r)?r.map(function(x){return x?{day:x.day!==undefined?x.day:x.kun,visited:x.visited!==undefined?x.visited:x.kelgan,returned:x.returned!==undefined?x.returned:x.qaytgan}:x;}):r;})";
 const KOD_TASK = {
   eyebrow: { uz: 'Koding · qaytganlarni sanash', ru: 'Кодинг · считаем вернувшихся' },
-  title: { uz: <>app.js — <span className="mono">hisob</span> funksiyasini yozing</>, ru: <>app.js — напишите функцию <span className="mono">hisob</span></> },
-  brief: { uz: <><span className="mono">hisob</span> funksiyasi har kun uchun obyekt qaytaradi, lekin <span className="mono">qaytgan</span> hozir doim 0. Bugungilardan nechtasi kechagilar ichida borligini sanang (<span className="mono">includes</span>). Pastdagi <span className="mono">console.log</span> natijani ko'rsatadi.</>, ru: <>Функция <span className="mono">hisob</span> возвращает объект на каждый день, но <span className="mono">qaytgan</span> пока всегда 0. Посчитайте, сколько сегодняшних есть среди вчерашних (<span className="mono">includes</span>). <span className="mono">console.log</span> внизу покажет результат.</> },
-  files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// bugungilardan nechtasi kechagilar ichida bor?', ru: "// сколько из bugungilar есть в kechagilar?" } }],
+  title: { uz: <>app.js — <span className="mono">retention</span> funksiyasini yozing</>, ru: <>app.js — напишите функцию <span className="mono">retention</span></> },
+  brief: { uz: <><span className="mono">retention</span> funksiyasi har kun uchun obyekt qaytaradi, lekin <span className="mono">returned</span> hozir doim 0. Bugungilardan nechtasi kechagilar ichida borligini sanang (<span className="mono">includes</span>). Pastdagi <span className="mono">console.log</span> natijani ko'rsatadi.</>, ru: <>Функция <span className="mono">retention</span> возвращает объект на каждый день, но <span className="mono">returned</span> пока всегда 0. Посчитайте, сколько сегодняшних есть среди вчерашних (<span className="mono">includes</span>). <span className="mono">console.log</span> внизу покажет результат.</> },
+  files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// today ichidan nechtasi yesterday ichida bor?', ru: "// сколько из today есть в yesterday?" } }],
   requirements: [
     { id: 'uch', label: { uz: 'Uch kun uchun uchta obyekt qaytadi', ru: "На три дня возвращаются три объекта" },
-      check: C.evalEquals(`(function(){var r=hisob(${KOD_DATA});return Array.isArray(r)&&r.length===3;})()`, 'true', { uz: "Uch kunga uchta obyekt kerak — bo'sh ro'yxat o'tmaydi", ru: "На три дня нужны три объекта — пустой список не проходит" }) },
-    { id: 'maydon', label: { uz: 'Har obyektda kun, kelgan, qaytgan bor', ru: "В каждом объекте есть kun, kelgan, qaytgan" },
-      check: C.evalEquals(`(function(){var r=hisob(${KOD_DATA});if(!Array.isArray(r))return '';return r.map(function(x){return (x&&x.kun)+'/'+(x&&x.kelgan)+'/'+(x&&typeof x.qaytgan);}).join(',');})()`, '1/4/number,2/3/number,3/4/number', { uz: "Har obyektda kun raqami, o'sha kuni kelganlar soni va qaytganlar soni bo'lsin", ru: "В каждом объекте должны быть номер дня, число пришедших в тот день и число вернувшихся" }) },
+      check: C.evalEquals(`(function(){var r=${KOD_RUN}(${KOD_DATA});return Array.isArray(r)&&r.length===3;})()`, 'true', { uz: "Uch kunga uchta obyekt kerak — bo'sh ro'yxat o'tmaydi", ru: "На три дня нужны три объекта — пустой список не проходит" }) },
+    { id: 'maydon', label: { uz: 'Har obyektda day, visited, returned bor', ru: "В каждом объекте есть day, visited, returned" },
+      check: C.evalEquals(`(function(){var r=${KOD_RUN}(${KOD_DATA});if(!Array.isArray(r))return '';return r.map(function(x){return (x&&x.day)+'/'+(x&&x.visited)+'/'+(x&&typeof x.returned);}).join(',');})()`, '1/4/number,2/3/number,3/4/number', { uz: "Har obyektda kun raqami, o'sha kuni kelganlar soni va qaytganlar soni bo'lsin", ru: "В каждом объекте должны быть номер дня, число пришедших в тот день и число вернувшихся" }) },
     { id: 'qaytgan', label: { uz: "Har kunning qaytgani to'g'ri (1-kunda 0)", ru: "Число вернувшихся верно для каждого дня (у 1-го — 0)" },
-      check: C.evalEquals(`(function(){var r=hisob(${KOD_DATA});if(!Array.isArray(r))return '';return r.map(function(x){return x&&x.qaytgan;}).join(',');})()`, '0,2,2', { uz: "1-kundan oldin ro'yxat yo'q — uning qaytgani 0; qolgan kunlar kechagi ro'yxat bilan solishtiriladi", ru: "До 1-го дня списка нет — у него вернувшихся 0; остальные дни сравниваются со вчерашним списком" }) },
+      check: C.evalEquals(`(function(){var r=${KOD_RUN}(${KOD_DATA});if(!Array.isArray(r))return '';return r.map(function(x){return x&&x.returned;}).join(',');})()`, '0,2,2', { uz: "1-kundan oldin ro'yxat yo'q — uning qaytgani 0; qolgan kunlar kechagi ro'yxat bilan solishtiriladi", ru: "До 1-го дня списка нет — у него вернувшихся 0; остальные дни сравниваются со вчерашним списком" }) },
   ],
 };
 
@@ -1694,7 +1698,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })} {yordamOpen ? '▾' : '›'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{fmtCode(tr({ uz: "Bugungilarni birma-bir oling va `kechagilar.includes(...)` bilan tekshiring — `includes` ni o'tgan darsdagi `stat` funksiyasida ishlatgansiz.", ru: "Берите сегодняшних по одному и проверяйте через `kechagilar.includes(...)` — `includes` вы использовали на прошлом уроке в функции `stat`." }))}</p>
+                      <p>{fmtCode(tr({ uz: "Bugungilarni birma-bir oling va `yesterday.includes(...)` bilan tekshiring — `includes` ni o'tgan darsdagi `stat` funksiyasida ishlatgansiz.", ru: "Берите сегодняшних по одному и проверяйте через `yesterday.includes(...)` — `includes` вы использовали на прошлом уроке в функции `stat`." }))}</p>
                       <p>{tr({ uz: "Qo'shimcha: uch kunning qaytgan sonlarini qo'shib, jami nechta qaytish bo'lganini ham chiqaring.", ru: "Дополнительно: сложите числа вернувшихся за три дня и выведите, сколько всего было возвращений." })}</p>
                     </div>}
                   </div>

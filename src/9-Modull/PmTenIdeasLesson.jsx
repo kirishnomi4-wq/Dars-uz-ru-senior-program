@@ -1727,7 +1727,8 @@ const KOD_IZ = {
   sar: { uz: "// sarlavhaga g'oyalar sonini qo'shing: G'oyalarim (5)", ru: '// добавьте в заголовок число идей: Мои идеи (5)' },
   sarS: { uz: "G'oyalarim", ru: 'Мои идеи' },
   ozgar: { uz: '   // shu qatorni siz o\'zgartirasiz', ru: '   // эту строку меняете вы' },
-  tayyor: { uz: "// har g'oya — sahifada bitta karta (bu qism tayyor)", ru: '// каждая идея — одна карточка на странице (эта часть готова)' }
+  tayyor: { uz: "// har g'oya — sahifada bitta karta (bu qism tayyor)", ru: '// каждая идея — одна карточка на странице (эта часть готова)' },
+  nomlar: { uz: "// ideas — g'oyalar · problem — muammo · who — kim uchun · solution — yechim · ideaLines — g'oya qatorlari", ru: '// ideas — идеи · problem — проблема · who — для кого · solution — решение · ideaLines — строки идеи' }
 };
 // Matn JS satri bo'lib yoziladi; 46 belgidan uzun bo'lsa so'z chegarasida « +» bilan bo'linadi
 const kodSatr = (t) => {
@@ -1743,39 +1744,40 @@ const kodGoyalar = () => {
     ? { ozi: true, g: o.map(x => ({ muammo: x.muammo, kim: x.kim, yechim: x.yechim })) }
     : { ozi: false, g: MENTOR_GOYALAR.slice(0, 3).map(m => ({ muammo: tr(m.muammo), kim: tr(m.kim), yechim: tr(m.yechim) })) };
 };
-const kodStarter = (t, d) => [d.ozi ? KOD_IZ.ozi[t] : KOD_IZ.mentor[t], 'const goyalar = [',
-  ...d.g.flatMap((x, i) => ['  {', '    muammo: ' + kodSatr(x.muammo) + ',', '    kim: ' + kodSatr(x.kim) + ',', '    yechim: ' + kodSatr(x.yechim), i < d.g.length - 1 ? '  },' : '  }']),
-  '];', '', 'function qatorlar(goya) {', KOD_IZ.qator[t], '  // "Muammo: …", "Kim uchun: …", "Yechim: …"', '  return [];' + KOD_IZ.siz[t], '}', '',
-  KOD_IZ.sar[t], 'document.getElementById("sarlavha").textContent = ' + JSON.stringify(KOD_IZ.sarS[t]) + ';' + KOD_IZ.ozgar[t], '',
-  KOD_IZ.tayyor[t], 'const joy = document.getElementById("goyalar");', 'goyalar.forEach(function (goya) {', '  const karta = document.createElement("div");', '  karta.className = "goya";',
-  '  qatorlar(goya).forEach(function (matn) {', '    const p = document.createElement("p");', '    p.textContent = matn;', '    karta.appendChild(p);', '  });', '  joy.appendChild(karta);', '});', ''].join('\n');
+const kodStarter = (t, d) => [d.ozi ? KOD_IZ.ozi[t] : KOD_IZ.mentor[t], KOD_IZ.nomlar[t], 'const ideas = [',
+  ...d.g.flatMap((x, i) => ['  {', '    problem: ' + kodSatr(x.muammo) + ',', '    who: ' + kodSatr(x.kim) + ',', '    solution: ' + kodSatr(x.yechim), i < d.g.length - 1 ? '  },' : '  }']),
+  '];', '', 'function ideaLines(idea) {', KOD_IZ.qator[t], '  // "Muammo: …", "Kim uchun: …", "Yechim: …"', '  return [];' + KOD_IZ.siz[t], '}', '',
+  KOD_IZ.sar[t], 'document.getElementById("title").textContent = ' + JSON.stringify(KOD_IZ.sarS[t]) + ';' + KOD_IZ.ozgar[t], '',
+  KOD_IZ.tayyor[t], 'const container = document.getElementById("ideas");', 'ideas.forEach(function (idea) {', '  const card = document.createElement("div");', '  card.className = "idea";',
+  '  ideaLines(idea).forEach(function (text) {', '    const p = document.createElement("p");', '    p.textContent = text;', '    card.appendChild(p);', '  });', '  container.appendChild(card);', '});', ''].join('\n');
 // Tutuq belgisining turli ko'rinishi (o'zbekcha klaviaturadagi) shartni yiqitmasin — «yo'q» qaysi tugmada yozilsa ham bir xil o'qiladi
 const KOD_TUTUQ = 'String(x).replace(/[\\u02BB\\u02BC\\u2018\\u2019]/g, "\'")';
-// Shartlar ma'lumotdan mustaqil (SABOQ 37): kartalar soni — massiv uzunligiga teng; sarlavhada «(N)» — N = goyalar.length
+// Shartlar ma'lumotdan mustaqil (SABOQ 37): kartalar soni — massiv uzunligiga teng; sarlavhada «(N)» — N = ideas.length
 const KOD_SHART_IFODA = [
-  [`(function(x){return ${KOD_TUTUQ}})(qatorlar({ muammo: "a", kim: "b", yechim: "c" }).join("|"))`, 'Muammo: a|Kim uchun: b|Yechim: c'],
-  ['(function(){var h=document.getElementById("sarlavha");return h&&h.textContent.indexOf("("+goyalar.length+")")>=0?"ha":"yoq";})()', 'ha'],
-  ['(function(){var k=document.querySelectorAll("#goyalar .goya");if(!k.length||k.length!==goyalar.length)return "yoq";for(var i=0;i<k.length;i++){if(k[i].querySelectorAll("p").length!==3)return "yoq";}return "ha";})()', 'ha']
+  [`(function(x){return ${KOD_TUTUQ}})((typeof ideaLines==='function'?ideaLines({ problem: "a", who: "b", solution: "c" }):qatorlar({ muammo: "a", kim: "b", yechim: "c" })).join("|"))`, 'Muammo: a|Kim uchun: b|Yechim: c'],
+  ['(function(){var h=document.getElementById("title")||document.getElementById("sarlavha");var G=typeof ideas!=="undefined"?ideas:goyalar;return h&&h.textContent.indexOf("("+G.length+")")>=0?"ha":"yoq";})()', 'ha'],
+  ['(function(){var k=document.querySelectorAll("#ideas .idea, #goyalar .goya");var G=typeof ideas!=="undefined"?ideas:goyalar;if(!k.length||k.length!==G.length)return "yoq";for(var i=0;i<k.length;i++){if(k[i].querySelectorAll("p").length!==3)return "yoq";}return "ha";})()', 'ha']
 ];
-const KOD_INDEX = { uz: '<h1 id="sarlavha"></h1>\n<div id="goyalar"></div>\n', ru: '<h1 id="sarlavha"></h1>\n<div id="goyalar"></div>\n' };
+// F-1027-01: id va nomlar inglizcha; eski saqlangan kod (qatorlar · goyalar · #sarlavha) ham tekshiruvdan o'tadi.
+const KOD_INDEX = { uz: '<h1 id="title"></h1>\n<div id="ideas"></div>\n', ru: '<h1 id="title"></h1>\n<div id="ideas"></div>\n' };
 const kodVazifa = (n) => [
-  { uz: "`qatorlar` uch qatorli ro'yxat qaytaradi", ru: '`qatorlar` возвращает список из трёх строк' },
+  { uz: "`ideaLines` uch qatorli ro'yxat qaytaradi", ru: '`ideaLines` возвращает список из трёх строк' },
   { uz: `Sarlavhada g'oyalar soni chiqadi: «G'oyalarim (${n})»`, ru: `В заголовке видно число идей: «Мои идеи (${n})»` },
   { uz: "Sahifada har g'oya — bitta karta, har birida uch qator", ru: 'На странице каждая идея — одна карточка, в каждой три строки' }
 ];
 const KOD_SHART = [
   { uz: 'Uch qator: «Muammo: …», «Kim uchun: …», «Yechim: …».', ru: 'Три строки: «Muammo: …», «Kim uchun: …», «Yechim: …».' },
-  { uz: "Sarlavhada g'oyalar soni bo'lsin: «(N)», N — goyalar.length.", ru: 'Пусть в заголовке будет число идей: «(N)», N — goyalar.length.' },
+  { uz: "Sarlavhada g'oyalar soni bo'lsin: «(N)», N — ideas.length.", ru: 'Пусть в заголовке будет число идей: «(N)», N — ideas.length.' },
   { uz: "Har g'oya — bitta karta, har birida uch qator bo'lsin.", ru: 'Пусть каждая идея — одна карточка, в каждой три строки.' }
 ];
 const kodTask = (d) => ({
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
-  title: { uz: 'app.js — qatorlar funksiyasi va sarlavha', ru: 'app.js — функция qatorlar и заголовок' },
+  title: { uz: 'app.js — ideaLines funksiyasi va sarlavha', ru: 'app.js — функция ideaLines и заголовок' },
   files: [
     { name: 'app.js', lang: 'js', starter: { uz: kodStarter('uz', d), ru: kodStarter('ru', d) }, placeholder: { uz: "// uch qatorni ro'yxat qilib qaytaring", ru: '// верните три строки списком' } },
     { name: 'index.html', lang: 'html', starter: KOD_INDEX }
   ],
-  previewCss: '.goya{background:#fff;border:1px solid #E7E3F4;border-radius:8px;padding:10px 14px;margin:0 0 10px}.goya p{margin:2px 0;font-weight:400}',
+  previewCss: '.idea,.goya{background:#fff;border:1px solid #E7E3F4;border-radius:8px;padding:10px 14px;margin:0 0 10px}.idea p,.goya p{margin:2px 0;font-weight:400}',
   requirements: [
     { id: 'qator', label: kodVazifa(d.g.length)[0], check: C.evalEquals(KOD_SHART_IFODA[0][0], KOD_SHART_IFODA[0][1], KOD_SHART[0]) },
     { id: 'sarlavha', label: kodVazifa(d.g.length)[1], check: C.evalEquals(KOD_SHART_IFODA[1][0], KOD_SHART_IFODA[1][1], KOD_SHART[1]) },
@@ -1783,14 +1785,14 @@ const kodTask = (d) => ({
   ]
 });
 const KOD_DARVOZA = [
-  { id: 'nom', t: '`nom`, `muammo`, `yechim`', ok: false, x: { uz: "`nom` — yorliq, g'oyaning qatori emas.", ru: '`nom` — ярлык, а не строка идеи.' } },
-  { id: 'kim', t: '`muammo`, `kim`, `yechim`', ok: true },
-  { id: 'manba', t: '`manba`, `kim`, `yechim`', ok: false, x: { uz: '`manba` muammo qayerdan kelganini aytadi, u qator emas.', ru: "`manba` говорит, откуда пришла проблема, — это не часть идеи." } }
+  { id: 'nom', t: '`name`, `problem`, `solution`', ok: false, x: { uz: "`name` — yorliq, g'oyaning qatori emas.", ru: '`name` — ярлык, а не строка идеи.' } },
+  { id: 'kim', t: '`problem`, `who`, `solution`', ok: true },
+  { id: 'manba', t: '`source`, `who`, `solution`', ok: false, x: { uz: '`source` muammo qayerdan kelganini aytadi, u qator emas.', ru: "`source` говорит, откуда пришла проблема, — это не часть идеи." } }
 ];
 // Kod namunasi (o'qish uchun; nusxalanmaydi — PM-082 d): darvozadan keyin muammo · kim · yechim kalitlari bir lahza ajraladi
 const kodParcha = (kod) => {
   const L = kod.split('\n');
-  const tugash = L.indexOf('];'), fn = L.findIndex(l => l.startsWith('function qatorlar'));
+  const tugash = L.indexOf('];'), fn = L.findIndex(l => l.startsWith('function ideaLines'));
   const birinchi = L.findIndex(l => l === '  },' || l === '  }'); // birinchi g'oya obyekti oxiri (uzun matn bir necha qatorda bo'lishi mumkin)
   return [...L.slice(0, birinchi + 1), ...(birinchi + 1 < tugash ? ['  …'] : []), ...L.slice(tugash, fn + 8)];
 };
@@ -1798,7 +1800,7 @@ const KodNamuna = ({ ajrat, kod }) => (
   <pre className={cxx('ti-kod', ajrat && 'ajrat')} onCopy={(e) => e.preventDefault()} aria-label="app.js">
     {kodParcha(kod).map((l, i) => {
       if (l.trim().startsWith('//')) return <span key={i} className="ti-kod-iz">{l}{'\n'}</span>;
-      const b = l.split(/\b(muammo|kim|yechim)(?=:)/);
+      const b = l.split(/\b(problem|who|solution)(?=:)/);
       if (b.length === 1) return <span key={i}>{l}{'\n'}</span>;
       return <span key={i}>{b.map((x, j) => (j % 2 ? <b key={j} className="ti-kod-k">{x}</b> : x))}{'\n'}</span>;
     })}
@@ -1858,8 +1860,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         yordam={stage2 && <div className="ti-kyordam">
           <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM_T)}</QTugma>
           {yordam && <>
-            <QIzoh>{fmtCode(tr({ uz: "Bitta g'oyadan boshlang: `return [\"Muammo: \" + goya.muammo, …];`. Sarlavhaga son: `\"G'oyalarim (\" + goyalar.length + \")\"`.", ru: 'Начните с одной идеи: `return ["Muammo: " + goya.muammo, …];`. Число в заголовок: `"Мои идеи (" + goyalar.length + ")"`.' }))}</QIzoh>
-            <QIzoh>{fmtCode(tr({ uz: "Eslatma (JavaScript darslaridan): massiv — ro'yxat · `+` — ikki matnni qo'shadi · `goyalar.length` — ro'yxatdagi elementlar soni · `forEach` — har element uchun bir marta ishlaydi.", ru: 'Напоминание (из уроков JavaScript): массив — список · `+` — соединяет два текста · `goyalar.length` — число элементов списка · `forEach` — срабатывает один раз для каждого элемента.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: "Bitta g'oyadan boshlang: `return [\"Muammo: \" + idea.problem, …];`. Sarlavhaga son: `\"G'oyalarim (\" + ideas.length + \")\"`.", ru: 'Начните с одной идеи: `return ["Muammo: " + idea.problem, …];`. Число в заголовок: `"Мои идеи (" + ideas.length + ")"`.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: "Eslatma (JavaScript darslaridan): massiv — ro'yxat · `+` — ikki matnni qo'shadi · `ideas.length` — ro'yxatdagi elementlar soni · `forEach` — har element uchun bir marta ishlaydi.", ru: 'Напоминание (из уроков JavaScript): массив — список · `+` — соединяет два текста · `ideas.length` — число элементов списка · `forEach` — срабатывает один раз для каждого элемента.' }))}</QIzoh>
           </>}
         </div>}
         {...{ [QKOD_ONG]: <div className="ti-kodoyna">

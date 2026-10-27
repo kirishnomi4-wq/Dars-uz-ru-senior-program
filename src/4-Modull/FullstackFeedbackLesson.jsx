@@ -593,21 +593,21 @@ const sp = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const mkSpots = (busy = { 2: '01A123BC', 5: '01B456DE' }, count = 8) => {
   const labels = [];
   for (let i = 0; i < count; i++) { const row = String.fromCharCode(65 + Math.floor(i / 4)); labels.push(row + (i % 4 + 1)); }
-  return labels.map((raqam, i) => { const id = i + 1; return busy[id] ? { id, raqam, bandmi: true, mashina: busy[id] } : { id, raqam, bandmi: false, mashina: null }; });
+  return labels.map((label, i) => { const id = i + 1; return busy[id] ? { id, label, is_busy: true, plate: busy[id] } : { id, label, is_busy: false, plate: null }; });
 };
 
 // Qorovul paneli — yangilanadigan (tushum, statlar) bilan
 const Spot = ({ spot, onClick, flash, dim, small }) => (
-  <button className={`spot ${spot.bandmi ? 'busy' : 'free'} ${flash ? 'spot-flash' : ''} ${small ? 'spot-sm' : ''}`} onClick={onClick} disabled={!onClick} style={{ opacity: dim ? 0.45 : 1, cursor: onClick ? 'pointer' : 'default' }}>
-    <span className="spot-tag" style={{ background: spot.bandmi ? T.danger : T.success }}>{spot.bandmi ? tr({ uz: 'BAND', ru: 'ЗАНЯТО' }) : tr({ uz: "BO'SH", ru: 'СВОБОДНО' })}</span>
-    <span className="spot-ico">{spot.bandmi ? '🚗' : '⬚'}</span>
-    <span className="spot-num">{spot.raqam}</span>
-    {!small && spot.bandmi && spot.mashina && <span className="spot-plate">{spot.mashina}</span>}
+  <button className={`spot ${spot.is_busy ? 'busy' : 'free'} ${flash ? 'spot-flash' : ''} ${small ? 'spot-sm' : ''}`} onClick={onClick} disabled={!onClick} style={{ opacity: dim ? 0.45 : 1, cursor: onClick ? 'pointer' : 'default' }}>
+    <span className="spot-tag" style={{ background: spot.is_busy ? T.danger : T.success }}>{spot.is_busy ? tr({ uz: 'BAND', ru: 'ЗАНЯТО' }) : tr({ uz: "BO'SH", ru: 'СВОБОДНО' })}</span>
+    <span className="spot-ico">{spot.is_busy ? '🚗' : '⬚'}</span>
+    <span className="spot-num">{spot.label}</span>
+    {!small && spot.is_busy && spot.plate && <span className="spot-plate">{spot.plate}</span>}
   </button>
 );
 // F-0916-01 Q8: `compact` — joylar ixcham (spot-sm), `note` — xulosa panel ICHIDA, joylar ostida (147 (e): xulosa artefakt yonida qoladi)
 const GuardPanel = ({ spots, onSpotClick, tushum, dash, cols = 4, flashId, onSettings, compact = false, note = null }) => {
-  const band = spots.filter(s => s.bandmi).length;
+  const band = spots.filter(s => s.is_busy).length;
   const bosh = spots.length - band;
   const small = compact || spots.length > 12;
   return (
@@ -708,7 +708,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
   const [tried, setTried] = useState(!!storedAnswer);
   const [picked, setPicked] = useState(storedAnswer?.picked ?? null);
   const [sc, setSc] = useState(0);
-  const oops = (s) => { if (!s.bandmi) return; setSpots(prev => prev.map(x => x.id === s.id ? { ...x, bandmi: false, mashina: null } : x)); setTried(true); setSc(n => n + 1); };
+  const oops = (s) => { if (!s.is_busy) return; setSpots(prev => prev.map(x => x.id === s.id ? { ...x, is_busy: false, plate: null } : x)); setTried(true); setSc(n => n + 1); };
   const OPTS = [
     { id: 'a', label: { uz: "Hech narsa — sinfdosh shoshib bosgan, panel aybdor emas", ru: 'Ничего — одноклассник нажал впопыхах, панель не виновата' } },
     { id: 'b', label: { uz: 'Foydalanuvchidan fikr olib, yaxshilash kerak', ru: 'Собрать отзывы пользователей и улучшить' } },
@@ -924,8 +924,8 @@ const ScreenFikr = ({ screen, onNext, onPrev }) => {
 
 // ===== a3 — Gemini: upgrade (tasdiq, dashboard, narx sozlamasi) + sinfdosh fikrlari promptda =====
 const a3Prompt = (fikrlar) => tr({
-  uz: `AvtoStoyanka panelimni (React, avto-stoyanka) sinfdoshlar fikri bo'yicha yaxshila. Faqat shu o'zgarishlarni qil, qolganiga tegma:\n1. Chiqarishdan oldin confirm("Rostdan chiqarilsinmi?") — «Bekor qilish» bosilsa hech narsa o'zgarmasin.\n2. Tepada dashboard: bo'sh joylar, band joylar va bugungi tushum — yirik raqamlar bilan.\n3. Narx sozlamasi: qorovul narxni o'zgartira olsin. Serverga (avto-stoyanka-server) sozlamalar jadvali (narx INTEGER) va GET/PUT /api/narx qo'sh; chiqishda tolov shu narxdan olinsin.${fikrlar.length ? `\nSinfdoshlarim yana shuni aytdi:\n${fikrlar.map(f => `- ${f}`).join('\n')}` : ''}\nHar o'zgarishga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{panel fayllari va server.js kodini shu yerga qo'ying}`,
-  ru: `Улучши мою панель AvtoStoyanka (React, avto-stoyanka) по отзывам одноклассников. Делай только эти изменения, остальное не трогай:\n1. Перед выпуском — confirm("Точно выпустить?"); при «Отмена» ничего не меняется.\n2. Вверху дашборд: свободные места, занятые места и выручка за сегодня — крупными цифрами.\n3. Настройка цены: охранник может менять цену. Добавь на сервер (avto-stoyanka-server) таблицу sozlamalar (narx INTEGER) и GET/PUT /api/narx; оплата при выезде берётся из этой цены.${fikrlar.length ? `\nОдноклассники ещё сказали:\n${fikrlar.map(f => `- ${f}`).join('\n')}` : ''}\nК каждому изменению — короткий комментарий. Измененные файлы верни целиком.\nВот мой код:\n{вставьте сюда код файлов панели и server.js}`
+  uz: `AvtoStoyanka panelimni (React, avto-stoyanka) sinfdoshlar fikri bo'yicha yaxshila. Faqat shu o'zgarishlarni qil, qolganiga tegma:\n1. Chiqarishdan oldin confirm("Rostdan chiqarilsinmi?") — «Bekor qilish» bosilsa hech narsa o'zgarmasin.\n2. Tepada dashboard: bo'sh spots, band spots va bugungi tushum — yirik raqamlar bilan.\n3. Narx sozlamasi: qorovul narxni o'zgartira olsin. Serverga (avto-stoyanka-server) settings jadvali (price INTEGER) va GET/PUT /api/price qo'sh; chiqishda tolov shu narxdan olinsin.${fikrlar.length ? `\nSinfdoshlarim yana shuni aytdi:\n${fikrlar.map(f => `- ${f}`).join('\n')}` : ''}\nHar o'zgarishga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{panel fayllari va server.js kodini shu yerga qo'ying}`,
+  ru: `Улучши мою панель AvtoStoyanka (React, avto-stoyanka) по отзывам одноклассников. Делай только эти изменения, остальное не трогай:\n1. Перед выпуском — confirm("Точно выпустить?"); при «Отмена» ничего не меняется.\n2. Вверху дашборд: свободные места, занятые места и выручка за сегодня — крупными цифрами.\n3. Настройка цены: охранник может менять цену. Добавь на сервер (avto-stoyanka-server) таблицу settings (price INTEGER) и GET/PUT /api/price; оплата при выезде берётся из этой цены.${fikrlar.length ? `\nОдноклассники ещё сказали:\n${fikrlar.map(f => `- ${f}`).join('\n')}` : ''}\nК каждому изменению — короткий комментарий. Измененные файлы верни целиком.\nВот мой код:\n{вставьте сюда код файлов панели и server.js}`
 });
 const UPG = [
   { id: 'tasdiq', t: { uz: 'Tasdiq', ru: 'Подтверждение' } },
@@ -947,9 +947,9 @@ const ScreenUpgrade = ({ screen, onNext, onPrev }) => {
   const [sorov, setSorov] = useState(null);
   const [oxirgi, setOxirgi] = useState('');
   const almash = (id) => setOn(o => { const n = new Set(o); if (n.has(id)) n.delete(id); else n.add(id); return n; });
-  const chiqar = (x) => { setSpots(a => a.map(z => (z.id === x.id ? { ...z, bandmi: false, mashina: null } : z))); setTushum(t => t + narx); setSorov(null); setOxirgi(`PUT /api/chiqish/${x.id}  // tolov = ${narx}`); };
+  const chiqar = (x) => { setSpots(a => a.map(z => (z.id === x.id ? { ...z, is_busy: false, plate: null } : z))); setTushum(t => t + narx); setSorov(null); setOxirgi(`PUT /api/exit/${x.id}  // fee = ${narx}`); };
   const bos = (x) => {
-    if (!x.bandmi) { setSpots(a => a.map(z => (z.id === x.id ? { ...z, bandmi: true, mashina: '01A777AA' } : z))); setOxirgi(`POST /api/kirish  // joy_id = ${x.id}`); return; }
+    if (!x.is_busy) { setSpots(a => a.map(z => (z.id === x.id ? { ...z, is_busy: true, plate: '01A777AA' } : z))); setOxirgi(`POST /api/enter  // spot_id = ${x.id}`); return; }
     if (on.has('tasdiq')) { setSorov(x); setOxirgi('confirm("Rostdan chiqarilsinmi?")'); } else chiqar(x);
   };
   return (
@@ -961,8 +961,8 @@ const ScreenUpgrade = ({ screen, onNext, onPrev }) => {
           <Col>
             <div className="am-chips">{UPG.map(u => <button key={u.id} type="button" className={`am-chip ${on.has(u.id) ? 'on' : ''}`} aria-pressed={on.has(u.id)} onClick={() => almash(u.id)}>{on.has(u.id) ? '✓ ' : '+ '}{tr(u.t)}</button>)}</div>
             <GuardPanel spots={spots} onSpotClick={bos} tushum={tushum} dash={on.has('dash')} />
-            {sorov && <div className="am-karta fs-forma am-ochil"><p className="am-satr" style={{ flex: 1 }}>{tr({ uz: `Rostdan chiqarilsinmi? ${sorov.raqam} · ${sorov.mashina}`, ru: `Точно выпустить? ${sorov.raqam} · ${sorov.mashina}` })}</p><button type="button" className="am-nusxa" onClick={() => { setSorov(null); setOxirgi('// bekor qilindi — hech narsa o\'zgarmadi'); }}>{tr({ uz: 'Bekor qilish', ru: 'Отмена' })}</button><button type="button" className="am-saqla" onClick={() => chiqar(sorov)}>OK</button></div>}
-            {on.has('narx') && <div className="am-karta fs-forma"><label className="am-maydon"><span>{tr({ uz: "Narx, so'm", ru: 'Цена, сум' })}</span><input className="am-input" value={narx} inputMode="numeric" onChange={e => { const v = parseInt(e.target.value.replace(/\D/g, ''), 10) || 0; setNarx(v); setOxirgi(`PUT /api/narx  // narx = ${v}`); }} /></label></div>}
+            {sorov && <div className="am-karta fs-forma am-ochil"><p className="am-satr" style={{ flex: 1 }}>{tr({ uz: `Rostdan chiqarilsinmi? ${sorov.label} · ${sorov.plate}`, ru: `Точно выпустить? ${sorov.label} · ${sorov.plate}` })}</p><button type="button" className="am-nusxa" onClick={() => { setSorov(null); setOxirgi('// bekor qilindi — hech narsa o\'zgarmadi'); }}>{tr({ uz: 'Bekor qilish', ru: 'Отмена' })}</button><button type="button" className="am-saqla" onClick={() => chiqar(sorov)}>OK</button></div>}
+            {on.has('narx') && <div className="am-karta fs-forma"><label className="am-maydon"><span>{tr({ uz: "Narx, so'm", ru: 'Цена, сум' })}</span><input className="am-input" value={narx} inputMode="numeric" onChange={e => { const v = parseInt(e.target.value.replace(/\D/g, ''), 10) || 0; setNarx(v); setOxirgi(`PUT /api/price  // price = ${v}`); }} /></label></div>}
             <KodOyna oxirgi={oxirgi} qatorlar={[<span key="t" className="sk-izoh">{`// tushum = ${tushum}`}</span>]} />
           </Col>
           <Col>
@@ -1133,7 +1133,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <input className={`vsc-input ${valid ? 'ok' : ''}`} value={value} onChange={e => setValue(e.target.value)} placeholder="…" spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ maxWidth: 130 }} />
                   <span style={{ whiteSpace: 'pre', color: '#D4D4D4' }}>{tr({ uz: "('Rostdan chiqarilsinmi?') ) {", ru: "('Точно выпустить?') ) {" })}</span>
                 </div>
-                <Ln n={3}>{'    '}<Cm>{'// PUT /api/sessiyalar/:id'}</Cm></Ln>
+                <Ln n={3}>{'    '}<Cm>{'// PUT /api/sessions/:id'}</Cm></Ln>
                 <Ln n={4}>{'  }'}</Ln>
                 <Ln n={5}>{'}'}</Ln>
               </div>
@@ -1182,7 +1182,7 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
     { uz: "Mahsulotni qurib, foydalanuvchiga ko'rsatib, fikr olish", ru: 'Построить продукт, показать пользователю и собрать отзывы' },
     { uz: 'Aniq fikr (feedback) — umumiy maqtov emas', ru: 'Конкретный отзыв (feedback) — а не общая похвала' },
     { uz: "Saralash: Foyda / Mehnat doskasida ko'p foyda + kam mehnat avval", ru: 'Приоритизация: на доске Польза / Усилия сначала много пользы + мало усилий' },
-    { uz: 'Upgrade: tasdiq, dashboard, sozlamalar (narx UPDATE, joylar soni)', ru: 'Апгрейды: подтверждение, дашборд, настройки (цена через UPDATE, число мест)' },
+    { uz: 'Upgrade: tasdiq, dashboard, settings (price — UPDATE, joylar soni)', ru: 'Апгрейды: подтверждение, дашборд, настройки (цена через UPDATE, число мест)' },
     { uz: '4-MODUL: baza → server → ulanish → loyiha → yaxshilash', ru: '4-Й МОДУЛЬ: база → сервер → соединение → проект → улучшение' }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;

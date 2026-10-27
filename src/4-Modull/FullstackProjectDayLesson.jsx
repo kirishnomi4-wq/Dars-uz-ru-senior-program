@@ -245,9 +245,9 @@ const RECAPS = {
   6: {
     title: { uz: "JOIN — ikki jadvalni birlashtirish", ru: 'JOIN — объединение двух таблиц' },
     cards: [
-      { ic: "🔍", h: { uz: "sessiyalarda faqat joy_id bor", ru: 'в sessiyalar есть только joy_id' }, body: { uz: <>Sessiyalarda joy belgisi yo'q, faqat <b>joy_id</b> bor — qorovul «2» nimaligini bilmaydi.</>, ru: <>В сеансах нет обозначения места, только <b>joy_id</b> — охранник не знает, что такое «2».</> } },
-      { ic: "🔗", h: { uz: "JOIN joy_id = id bo'yicha", ru: 'JOIN по joy_id = id' }, body: { uz: <>JOIN <b>sessiyalar.joy_id = joylar.id</b> bo'yicha birlashtiradi — joy belgisi tarixda ko'rinadi.</>, ru: <>JOIN объединяет по <b>sessiyalar.joy_id = joylar.id</b> — и в истории видно место (A2).</> }, vis: <RcFlow items={["joylar + sessiyalar", "JOIN", { uz: 'tarix', ru: 'история' }]} /> },
-      { ic: "📋", h: { uz: "Natija: o'qiladigan tarix + tushum", ru: 'Итог: читаемая история + выручка' }, body: { uz: <>JOIN'dan keyin tarix o'qiladi, kunlik tushumni esa <b>SUM(tolov)</b> hisoblaydi.</>, ru: <>После JOIN история читается, а дневную выручку считает <b>SUM(tolov)</b>.</> }, ask: { uz: "Sessiya yoniga joy belgisini qo'shish uchun nima kerak?", ru: 'Что нужно, чтобы рядом с сеансом показать обозначение места?' } },
+      { ic: "🔍", h: { uz: "sessiyalarda faqat spot_id bor", ru: 'в sessions есть только spot_id' }, body: { uz: <>Sessiyalarda joy belgisi yo'q, faqat <b>spot_id</b> bor — qorovul «2» nimaligini bilmaydi.</>, ru: <>В сеансах нет обозначения места, только <b>spot_id</b> — охранник не знает, что такое «2».</> } },
+      { ic: "🔗", h: { uz: "JOIN spot_id = id bo'yicha", ru: 'JOIN по spot_id = id' }, body: { uz: <>JOIN <b>sessions.spot_id = spots.id</b> bo'yicha birlashtiradi — joy belgisi tarixda ko'rinadi.</>, ru: <>JOIN объединяет по <b>sessions.spot_id = spots.id</b> — и в истории видно место (A2).</> }, vis: <RcFlow items={["spots + sessions", "JOIN", { uz: 'tarix', ru: 'история' }]} /> },
+      { ic: "📋", h: { uz: "Natija: o'qiladigan tarix + tushum", ru: 'Итог: читаемая история + выручка' }, body: { uz: <>JOIN'dan keyin tarix o'qiladi, kunlik tushumni esa <b>SUM(fee)</b> hisoblaydi.</>, ru: <>После JOIN история читается, а дневную выручку считает <b>SUM(fee)</b>.</> }, ask: { uz: "Sessiya yoniga joy belgisini qo'shish uchun nima kerak?", ru: 'Что нужно, чтобы рядом с сеансом показать обозначение места?' } },
     ]
   },
   // Eslatma: yakuniy s16 (idx 20) — custom yozma ekran, QuestionScreen EMAS → RecapOverlay u yerda
@@ -531,46 +531,46 @@ const At = ({ children }) => <span style={{ color: CODE.attr }}>{children}</span
 const sp = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const FEE = 10000;
 const mkSpots = (busy = { 2: '01A123BC', 5: '01B456DE' }) => ([
-  { id: 1, raqam: 'A1' }, { id: 2, raqam: 'A2' }, { id: 3, raqam: 'A3' }, { id: 4, raqam: 'A4' },
-  { id: 5, raqam: 'B1' }, { id: 6, raqam: 'B2' }, { id: 7, raqam: 'B3' }, { id: 8, raqam: 'B4' }
-].map(s => busy[s.id] ? { ...s, bandmi: true, mashina: busy[s.id] } : { ...s, bandmi: false, mashina: null }));
+  { id: 1, label: 'A1' }, { id: 2, label: 'A2' }, { id: 3, label: 'A3' }, { id: 4, label: 'A4' },
+  { id: 5, label: 'B1' }, { id: 6, label: 'B2' }, { id: 7, label: 'B3' }, { id: 8, label: 'B4' }
+].map(s => busy[s.id] ? { ...s, is_busy: true, plate: busy[s.id] } : { ...s, is_busy: false, plate: null }));
 
 // joylar jadval ustunlari (ME'MOR)
 const JOY_COLS = [
   { key: 'id', sql: 'id SERIAL PRIMARY KEY', type: { uz: 'raqam', ru: 'число' }, desc: { uz: "Har bir joyning takrorlanmas raqami — avtomatik o'sadi", ru: 'Уникальный номер каждого места — растёт автоматически' } },
-  { key: 'raqam', sql: 'raqam TEXT', type: { uz: 'matn', ru: 'текст' }, desc: { uz: "Joy belgisi — A1, A2, B1... (qorovul o'qiydi)", ru: 'Обозначение места — A1, A2, B1... (его читает охранник)' } },
-  { key: 'bandmi', sql: 'bandmi BOOLEAN', type: { uz: "ha/yo'q", ru: 'да/нет' }, desc: { uz: "Joy bandmi? bo'sh = false (🟩), band = true (🟥)", ru: 'Занято ли место? свободно = false (🟩), занято = true (🟥)' } }
+  { key: 'label', sql: 'label TEXT', type: { uz: 'matn', ru: 'текст' }, desc: { uz: "Joy belgisi — A1, A2, B1... (qorovul o'qiydi)", ru: 'Обозначение места — A1, A2, B1... (его читает охранник)' } },
+  { key: 'is_busy', sql: 'is_busy BOOLEAN', type: { uz: "ha/yo'q", ru: 'да/нет' }, desc: { uz: "Joy is_busy? bo'sh = false (🟩), band = true (🟥)", ru: 'Занято ли место? свободно = false (🟩), занято = true (🟥)' } }
 ];
 // sessiyalar jadval ustunlari (kirish-chiqish tarixi)
 const SES_COLS = [
   { key: 'id', sql: 'id SERIAL PRIMARY KEY', type: { uz: 'raqam', ru: 'число' }, desc: { uz: "Har bir kirish-chiqishning takrorlanmas raqami", ru: 'Уникальный номер каждого въезда-выезда' } },
-  { key: 'joy_id', sql: 'joy_id INTEGER REFERENCES joylar(id)', type: { uz: "bog'lovchi", ru: 'связующий' }, fk: true, desc: { uz: "Qaysi joy? joylar.id ga bog'lanadi — foreign key. SQL'da: joy_id INTEGER REFERENCES joylar(id)", ru: 'Какое место? Привязывается к joylar.id — foreign key. В SQL: joy_id INTEGER REFERENCES joylar(id)' } },
-  { key: 'mashina', sql: 'mashina TEXT', type: { uz: 'matn', ru: 'текст' }, desc: { uz: "Mashina davlat raqami — 01A123BC", ru: 'Госномер машины — 01A123BC' } },
-  { key: 'kirgan', sql: 'kirgan TIMESTAMP', type: { uz: 'vaqt', ru: 'время' }, desc: { uz: "Mashina kirgan vaqti", ru: 'Время въезда машины' } },
-  { key: 'chiqqan', sql: 'chiqqan TIMESTAMP', type: { uz: 'vaqt', ru: 'время' }, desc: { uz: "Chiqqan vaqti (bo'sh = hali turibdi)", ru: 'Время выезда (пусто = ещё стоит)' } },
-  { key: 'tolov', sql: 'tolov INTEGER', type: { uz: 'son', ru: 'число' }, desc: { uz: "To'lov — mashina chiqqanda yoziladi, 10 000 so'm", ru: 'Оплата — записывается при выезде, 10 000 сум' } }
+  { key: 'spot_id', sql: 'spot_id INTEGER REFERENCES spots(id)', type: { uz: "bog'lovchi", ru: 'связующий' }, fk: true, desc: { uz: "Qaysi joy? spots.id ga bog'lanadi — foreign key. SQL'da: spot_id INTEGER REFERENCES spots(id)", ru: 'Какое место? Привязывается к spots.id — foreign key. В SQL: spot_id INTEGER REFERENCES spots(id)' } },
+  { key: 'plate', sql: 'plate TEXT', type: { uz: 'matn', ru: 'текст' }, desc: { uz: "Mashina davlat raqami — 01A123BC", ru: 'Госномер машины — 01A123BC' } },
+  { key: 'entered_at', sql: 'entered_at TIMESTAMP', type: { uz: 'vaqt', ru: 'время' }, desc: { uz: "Mashina kirgan vaqti", ru: 'Время въезда машины' } },
+  { key: 'left_at', sql: 'left_at TIMESTAMP', type: { uz: 'vaqt', ru: 'время' }, desc: { uz: "Chiqqan vaqti (bo'sh = hali turibdi)", ru: 'Время выезда (пусто = ещё стоит)' } },
+  { key: 'fee', sql: 'fee INTEGER', type: { uz: 'son', ru: 'число' }, desc: { uz: "To'lov — mashina chiqqanda yoziladi, 10 000 so'm", ru: 'Оплата — записывается при выезде, 10 000 сум' } }
 ];
 // sessiyalar namuna ma'lumoti (bog'lanish va JOIN uchun)
 const SES_DATA = [
-  { id: 1, joy_id: 2, mashina: '01A123BC', tolov: FEE },
-  { id: 2, joy_id: 2, mashina: '30K500AA', tolov: FEE },
-  { id: 3, joy_id: 5, mashina: '01B456DE', tolov: FEE },
-  { id: 4, joy_id: 1, mashina: '75C300BB', tolov: FEE }
+  { id: 1, spot_id: 2, plate: '01A123BC', fee: FEE },
+  { id: 2, spot_id: 2, plate: '30K500AA', fee: FEE },
+  { id: 3, spot_id: 5, plate: '01B456DE', fee: FEE },
+  { id: 4, spot_id: 1, plate: '75C300BB', fee: FEE }
 ];
 
 // ===== QOROVUL PANELI (vizual yulduz) =====
 // 🎬 Harakat: holat almashinuvi (bo'sh ⇄ band) key-remount orqali qayta o'ynaydi —
 // mashina joyga "kirib keladi" (spot-drive-in) / "chiqib ketadi" (spot-drive-out).
 const Spot = ({ spot, onClick, flash, selected, dim, hint }) => (
-  <button className={`spot ${spot.bandmi ? 'busy' : 'free'} ${flash ? 'spot-flash' : ''} ${selected ? 'spot-sel' : ''} ${hint && onClick ? 'tap-hint' : ''}`} onClick={onClick} disabled={!onClick} style={{ opacity: dim ? 0.45 : 1, cursor: onClick ? 'pointer' : 'default' }}>
-    <span key={spot.bandmi ? 'tb' : 'tf'} className="spot-tag" style={{ background: spot.bandmi ? T.danger : T.success }}>{spot.bandmi ? tr({ uz: 'BAND', ru: 'ЗАНЯТО' }) : tr({ uz: "BO'SH", ru: 'СВОБОДНО' })}</span>
-    <span key={spot.bandmi ? 'cb' : 'cf'} className={`spot-ico ${spot.bandmi ? 'drive-in' : 'drive-out'}`}>{spot.bandmi ? '🚗' : '⬚'}</span>
-    <span className="spot-num">{spot.raqam}</span>
-    {spot.bandmi && spot.mashina && <span key={spot.mashina} className="spot-plate">{spot.mashina}</span>}
+  <button className={`spot ${spot.is_busy ? 'busy' : 'free'} ${flash ? 'spot-flash' : ''} ${selected ? 'spot-sel' : ''} ${hint && onClick ? 'tap-hint' : ''}`} onClick={onClick} disabled={!onClick} style={{ opacity: dim ? 0.45 : 1, cursor: onClick ? 'pointer' : 'default' }}>
+    <span key={spot.is_busy ? 'tb' : 'tf'} className="spot-tag" style={{ background: spot.is_busy ? T.danger : T.success }}>{spot.is_busy ? tr({ uz: 'BAND', ru: 'ЗАНЯТО' }) : tr({ uz: "BO'SH", ru: 'СВОБОДНО' })}</span>
+    <span key={spot.is_busy ? 'cb' : 'cf'} className={`spot-ico ${spot.is_busy ? 'drive-in' : 'drive-out'}`}>{spot.is_busy ? '🚗' : '⬚'}</span>
+    <span className="spot-num">{spot.label}</span>
+    {spot.is_busy && spot.plate && <span key={spot.plate} className="spot-plate">{spot.plate}</span>}
   </button>
 );
 const GuardPanel = ({ spots, onSpotClick, tushum, selectedId, flashId, hintIds, children }) => {
-  const band = spots.filter(s => s.bandmi).length;
+  const band = spots.filter(s => s.is_busy).length;
   const bosh = spots.length - band;
   return (
     <div className="guard">
@@ -822,8 +822,8 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
           <div className="am-karta am-reja-k fade-up delay-1">
             <p className="flow-label">{tr({ uz: "Ikki jadval — bitta bog'lanish", ru: 'Две таблицы — одна связь' })}</p>
             <ul className="cr-jadval">
-              <li><code className="qcode">joylar</code><span>{tr({ uz: 'A1…B4, bo\'sh yoki band', ru: 'A1…B4, свободно или занято' })}</span></li>
-              <li><code className="qcode">sessiyalar</code><span>{tr({ uz: 'kim, qachon, qancha — joy_id orqali', ru: 'кто, когда, сколько — через joy_id' })}</span></li>
+              <li><code className="qcode">spots</code><span>{tr({ uz: 'A1…B4, bo\'sh yoki band', ru: 'A1…B4, свободно или занято' })}</span></li>
+              <li><code className="qcode">sessions</code><span>{tr({ uz: 'kim, qachon, qancha — spot_id orqali', ru: 'кто, когда, сколько — через spot_id' })}</span></li>
             </ul>
             <hr className="am-chiziq" />
             <p className="flow-label">{tr({ uz: `Bugungi ${BLOK4.length} blok`, ru: `${BLOK4.length} блока сегодня` })}</p>
@@ -836,46 +836,46 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 );
 
 // ===== a1 — baza (AI'siz): joylar + sessiyalar (joy_id → joylar.id), joyni bosganda uning sessiyalari =====
-const BAZA_SQL = `CREATE TABLE joylar (
+const BAZA_SQL = `CREATE TABLE spots (
   id SERIAL PRIMARY KEY,
-  raqam TEXT,
-  bandmi BOOLEAN DEFAULT false
+  label TEXT,
+  is_busy BOOLEAN DEFAULT false
 );
 
-CREATE TABLE sessiyalar (
+CREATE TABLE sessions (
   id SERIAL PRIMARY KEY,
-  joy_id INTEGER REFERENCES joylar(id),
-  mashina TEXT,
-  kirgan TIMESTAMP DEFAULT now(),
-  chiqqan TIMESTAMP,
-  tolov INTEGER
+  spot_id INTEGER REFERENCES spots(id),
+  plate TEXT,
+  entered_at TIMESTAMP DEFAULT now(),
+  left_at TIMESTAMP,
+  fee INTEGER
 );
 
-INSERT INTO joylar (raqam) VALUES
+INSERT INTO spots (label) VALUES
   ('A1'), ('A2'), ('A3'), ('A4'), ('B1'), ('B2'), ('B3'), ('B4');
 
-SELECT * FROM joylar;`;
+SELECT * FROM spots;`;
 const A1_QADAM = [
   { uz: "Terminalda: `psql -U postgres`, keyin `CREATE DATABASE stoyanka;` va `\\c stoyanka`.", ru: 'В терминале: `psql -U postgres`, потом `CREATE DATABASE stoyanka;` и `\\c stoyanka`.' },
   { uz: "«Nusxalash» → SQL'ni psql'ga qo'ying, Enter.", ru: '«Скопировать» → вставьте SQL в psql, Enter.' },
   { uz: "Oxirgi `SELECT` 8 ta joyni ko'rsatdimi?", ru: 'Последний `SELECT` показал 8 мест?' },
-  { uz: "Sinab ko'ring: `INSERT INTO sessiyalar (joy_id, mashina) VALUES (99, 'X');` — baza rad etadimi? (99-joy yo'q)", ru: 'Проверьте: `INSERT INTO sessiyalar (joy_id, mashina) VALUES (99, \'X\');` — база отказывает? (места 99 нет)' }
+  { uz: "Sinab ko'ring: `INSERT INTO sessions (spot_id, plate) VALUES (99, 'X');` — baza rad etadimi? (99-joy yo'q)", ru: 'Проверьте: `INSERT INTO sessions (spot_id, plate) VALUES (99, \'X\');` — база отказывает? (места 99 нет)' }
 ];
 const ScreenBaza = ({ screen, onNext, onPrev }) => {
   const spots = useMemo(() => mkSpots(), []);
   const [sel, setSel] = useState(2);
   const s = spots.find(x => x.id === sel);
-  const ses = SES_DATA.filter(x => x.joy_id === sel);
+  const ses = SES_DATA.filter(x => x.spot_id === sel);
   return (
     <Stage eyebrow={tr({ uz: "Amaliyot 1 · AI'siz", ru: 'Практика 1 · без AI' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bazani — <span className="italic" style={{ color: T.accent }}>ikki jadvalni</span> — yozing.</>, ru: <>Напишите базу — <span className="italic" style={{ color: T.accent }}>две таблицы</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bitta joyda kun bo'yi ko'p mashina turadi — bu «bitta → ko'p». <span className="mono">sessiyalar.joy_id</span> har yozuvni o'z joyiga bog'laydi (<span className="mono">REFERENCES joylar(id)</span>). Joyni bosing — uning sessiyalari chiqadi.</>, ru: <>На одном месте за день стоит много машин — это «один → много». <span className="mono">sessiyalar.joy_id</span> связывает каждую запись с её местом (<span className="mono">REFERENCES joylar(id)</span>). Нажмите на место — появятся его сессии.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bitta joyda kun bo'yi ko'p mashina turadi — bu «bitta → ko'p». <span className="mono">sessions.spot_id</span> har yozuvni o'z joyiga bog'laydi (<span className="mono">REFERENCES spots(id)</span>). Joyni bosing — uning sessiyalari chiqadi.</>, ru: <>На одном месте за день стоит много машин — это «один → много». <span className="mono">sessions.spot_id</span> связывает каждую запись с её местом (<span className="mono">REFERENCES spots(id)</span>). Нажмите на место — появятся его сессии.</> })}</Mentor>
         <Split>
           <Col>
             <GuardPanel spots={spots} onSpotClick={(x) => setSel(x.id)} selectedId={sel} />
-            <Table cap="sessiyalar" cols={['id', 'joy_id', 'mashina', 'tolov']} rows={SES_DATA} hi={(r) => r.joy_id === sel} hiCol="joy_id" />
-            <KodOyna oxirgi={`SELECT * FROM sessiyalar WHERE joy_id = ${sel};`} qatorlar={[<span key="r" className="sk-izoh">{`// ${s.raqam} (id ${sel}) — ${ses.length} ${tr({ uz: 'ta sessiya', ru: 'сессий' })}`}</span>]} />
+            <Table cap="sessions" cols={['id', 'spot_id', 'plate', 'fee']} rows={SES_DATA} hi={(r) => r.spot_id === sel} hiCol="spot_id" />
+            <KodOyna oxirgi={`SELECT * FROM sessions WHERE spot_id = ${sel};`} qatorlar={[<span key="r" className="sk-izoh">{`// ${s.label} (id ${sel}) — ${ses.length} ${tr({ uz: 'ta sessiya', ru: 'сессий' })}`}</span>]} />
           </Col>
           <Col>
             <KodNusxa yorliq={{ uz: 'SQL · psql uchun', ru: 'SQL · для psql' }} kod={BAZA_SQL} />
@@ -889,14 +889,14 @@ const ScreenBaza = ({ screen, onNext, onPrev }) => {
 
 // ===== a2 — Gemini: server (GET joylar, POST kirish, PUT chiqish, GET tushum); panelda bosib, SQL'ni ko'rish =====
 const a2Prompt = () => tr({
-  uz: "Node.js + Express loyiham (avto-stoyanka-server): express, pg va cors o'rnatilgan. PostgreSQL'da stoyanka bazasi: joylar (id, raqam, bandmi) va sessiyalar (id, joy_id → joylar.id, mashina, kirgan, chiqqan, tolov).\nserver.js yoz (Pool, express.json, cors, port 3000):\n1. GET /api/joylar — hamma joylar, id tartibida.\n2. POST /api/kirish — body: { joy_id, mashina }. Joy bandmi = true bo'lsin va sessiyalarga yangi qator qo'shilsin.\n3. PUT /api/chiqish/:joy_id — joy bandmi = false; shu joyning ochiq sessiyasiga (chiqqan IS NULL) chiqqan = now() va tolov = 10000 yozilsin.\n4. GET /api/tushum — bugungi tolov yig'indisi (SUM).\nQiymatlar faqat $1, $2 bilan. Xato bo'lsa status 500. Har bo'limga qisqa izoh yoz. Faylni to'liq yoz.",
-  ru: 'Мой проект Node.js + Express (avto-stoyanka-server): установлены express, pg и cors. В PostgreSQL база stoyanka: joylar (id, raqam, bandmi) и sessiyalar (id, joy_id → joylar.id, mashina, kirgan, chiqqan, tolov).\nНапиши server.js (Pool, express.json, cors, порт 3000):\n1. GET /api/joylar — все места по порядку id.\n2. POST /api/kirish — body: { joy_id, mashina }. Место bandmi = true и новая строка в sessiyalar.\n3. PUT /api/chiqish/:joy_id — место bandmi = false; в открытую сессию этого места (chiqqan IS NULL) записать chiqqan = now() и tolov = 10000.\n4. GET /api/tushum — сумма tolov за сегодня (SUM).\nЗначения — только через $1, $2. При ошибке статус 500. К каждому разделу — короткий комментарий. Файл напиши целиком.'
+  uz: "Node.js + Express loyiham (avto-stoyanka-server): express, pg va cors o'rnatilgan. PostgreSQL'da stoyanka bazasi: spots (id, label, is_busy) va sessions (id, spot_id → spots.id, plate, entered_at, left_at, fee).\nserver.js yoz (Pool, express.json, cors, port 3000):\n1. GET /api/spots — hamma spots, id tartibida.\n2. POST /api/enter — body: { spot_id, plate }. Joy is_busy = true bo'lsin va sessiyalarga yangi qator qo'shilsin.\n3. PUT /api/exit/:spot_id — joy is_busy = false; shu joyning ochiq sessiyasiga (left_at IS NULL) left_at = now() va fee = 10000 yozilsin.\n4. GET /api/revenue — bugungi tolov yig'indisi (SUM).\nQiymatlar faqat $1, $2 bilan. Xato bo'lsa status 500. Har bo'limga qisqa izoh yoz. Faylni to'liq yoz.",
+  ru: 'Мой проект Node.js + Express (avto-stoyanka-server): установлены express, pg и cors. В PostgreSQL база stoyanka: spots (id, label, is_busy) и sessions (id, spot_id → spots.id, plate, entered_at, left_at, fee).\nНапиши server.js (Pool, express.json, cors, порт 3000):\n1. GET /api/spots — все места по порядку id.\n2. POST /api/enter — body: { spot_id, plate }. Место is_busy = true и новая строка в sessions.\n3. PUT /api/exit/:spot_id — место is_busy = false; в открытую сессию этого места (left_at IS NULL) записать left_at = now() и fee = 10000.\n4. GET /api/revenue — сумма tolov за сегодня (SUM).\nЗначения — только через $1, $2. При ошибке статус 500. К каждому разделу — короткий комментарий. Файл напиши целиком.'
 });
 const A2_QADAM = [
   { uz: "Chapda bo'sh joyni bosing (kirish), keyin band joyni (chiqish) — kod oynasida ikkala SQL'ni ko'ring.", ru: 'Слева нажмите свободное место (въезд), потом занятое (выезд) — в окне кода оба SQL.' },
   { uz: "«Promptni nusxalash» → gemini.google.com; javobni `server.js` ga qo'ying, parolni yozing, `Ctrl+S`.", ru: '«Скопировать промпт» → gemini.google.com; ответ вставьте в `server.js`, впишите пароль, `Ctrl+S`.' },
-  { uz: "`node server.js`; brauzerda localhost:3000/api/joylar — 8 ta joy chiqdimi?", ru: '`node server.js`; в браузере localhost:3000/api/joylar — видны 8 мест?' },
-  { uz: "Postman'da POST /api/kirish va PUT /api/chiqish/2 ni yuboring, keyin /api/tushum ni oching.", ru: 'В Postman отправьте POST /api/kirish и PUT /api/chiqish/2, потом откройте /api/tushum.' }
+  { uz: "`node server.js`; brauzerda localhost:3000/api/spots — 8 ta joy chiqdimi?", ru: '`node server.js`; в браузере localhost:3000/api/spots — видны 8 мест?' },
+  { uz: "Postman'da POST /api/enter va PUT /api/exit/2 ni yuboring, keyin /api/revenue ni oching.", ru: 'В Postman отправьте POST /api/enter и PUT /api/exit/2, потом откройте /api/revenue.' }
 ];
 const ScreenStServer = ({ screen, onNext, onPrev }) => {
   const [spots, setSpots] = useState(() => mkSpots());
@@ -906,8 +906,8 @@ const ScreenStServer = ({ screen, onNext, onPrev }) => {
   const [flash, setFlash] = useState(null);
   const RAQAM = ['10A777AA', '01Z555ZZ', '40M222MM', '25T888TT'];
   const bos = (x) => {
-    if (!x.bandmi) { const m = RAQAM[spots.filter(z => z.bandmi).length % RAQAM.length]; setSpots(a => a.map(z => (z.id === x.id ? { ...z, bandmi: true, mashina: m } : z))); setOxirgi(`UPDATE joylar SET bandmi = true WHERE id = ${x.id};`); setIkkinchi(`INSERT INTO sessiyalar (joy_id, mashina) VALUES (${x.id}, '${m}');`); }
-    else { setSpots(a => a.map(z => (z.id === x.id ? { ...z, bandmi: false, mashina: null } : z))); setTushum(t => t + FEE); setOxirgi(`UPDATE joylar SET bandmi = false WHERE id = ${x.id};`); setIkkinchi(`UPDATE sessiyalar SET chiqqan = now(), tolov = ${FEE} WHERE joy_id = ${x.id} AND chiqqan IS NULL;`); }
+    if (!x.is_busy) { const m = RAQAM[spots.filter(z => z.is_busy).length % RAQAM.length]; setSpots(a => a.map(z => (z.id === x.id ? { ...z, is_busy: true, plate: m } : z))); setOxirgi(`UPDATE spots SET is_busy = true WHERE id = ${x.id};`); setIkkinchi(`INSERT INTO sessions (spot_id, plate) VALUES (${x.id}, '${m}');`); }
+    else { setSpots(a => a.map(z => (z.id === x.id ? { ...z, is_busy: false, plate: null } : z))); setTushum(t => t + FEE); setOxirgi(`UPDATE spots SET is_busy = false WHERE id = ${x.id};`); setIkkinchi(`UPDATE sessions SET left_at = now(), fee = ${FEE} WHERE spot_id = ${x.id} AND left_at IS NULL;`); }
     setFlash(x.id);
   };
   return (
@@ -932,8 +932,8 @@ const ScreenStServer = ({ screen, onNext, onPrev }) => {
 
 // ===== a3 — Gemini: qorovul paneli (front) — fetch, kirgizish formasi, chiqarish, tushum =====
 const a3Prompt = () => tr({
-  uz: "Vite + React loyiham (avto-stoyanka) uchun qorovul paneli qur. Server: http://localhost:3000.\n1. Sahifa ochilganda GET /api/joylar va GET /api/tushum ni fetch qilsin.\n2. Joylar to'ri: har joy katta kartochka — bo'sh bo'lsa yashil «BO'SH», band bo'lsa qizil «BAND» va mashina raqami.\n3. Bo'sh joy bosilsa — mashina raqami yoziladigan kichik forma; «Kirgizish» POST /api/kirish ga { joy_id, mashina } yuborsin.\n4. Band joy bosilsa — «Chiqarish» tugmasi; PUT /api/chiqish/:joy_id.\n5. Har amaldan keyin joylar va tushum qayta yuklansin. Tepada: bo'sh va band soni, bugungi tushum.\nQorovul uchun: katta yozuv, kam matn, rang bilan tushunarli. Har bo'limga qisqa izoh yoz. Barcha fayllarni to'liq yoz.",
-  ru: 'Сделай панель охранника для моего проекта Vite + React (avto-stoyanka). Сервер: http://localhost:3000.\n1. При открытии страницы делает fetch GET /api/joylar и GET /api/tushum.\n2. Сетка мест: каждое место — крупная карточка; свободное — зелёное «СВОБОДНО», занятое — красное «ЗАНЯТО» и госномер.\n3. По нажатию на свободное место — маленькая форма для госномера; «Впустить» отправляет { joy_id, mashina } на POST /api/kirish.\n4. По нажатию на занятое — кнопка «Выпустить»; PUT /api/chiqish/:joy_id.\n5. После каждого действия места и выручка загружаются заново. Вверху: число свободных и занятых, выручка за сегодня.\nДля охранника: крупный текст, мало слов, понятно по цвету. К каждому разделу — короткий комментарий. Все файлы напиши целиком.'
+  uz: "Vite + React loyiham (avto-stoyanka) uchun qorovul paneli qur. Server: http://localhost:3000.\n1. Sahifa ochilganda GET /api/spots va GET /api/revenue ni fetch qilsin.\n2. Joylar to'ri: har joy katta kartochka — bo'sh bo'lsa yashil «BO'SH», band bo'lsa qizil «BAND» va mashina raqami.\n3. Bo'sh joy bosilsa — mashina raqami yoziladigan kichik forma; «Kirgizish» POST /api/enter ga { spot_id, plate } yuborsin.\n4. Band joy bosilsa — «Chiqarish» tugmasi; PUT /api/exit/:spot_id.\n5. Har amaldan keyin spots va tushum qayta yuklansin. Tepada: bo'sh va band soni, bugungi tushum.\nQorovul uchun: katta yozuv, kam matn, rang bilan tushunarli. Har bo'limga qisqa izoh yoz. Barcha fayllarni to'liq yoz.",
+  ru: 'Сделай панель охранника для моего проекта Vite + React (avto-stoyanka). Сервер: http://localhost:3000.\n1. При открытии страницы делает fetch GET /api/spots и GET /api/revenue.\n2. Сетка мест: каждое место — крупная карточка; свободное — зелёное «СВОБОДНО», занятое — красное «ЗАНЯТО» и госномер.\n3. По нажатию на свободное место — маленькая форма для госномера; «Впустить» отправляет { spot_id, plate } на POST /api/enter.\n4. По нажатию на занятое — кнопка «Выпустить»; PUT /api/exit/:spot_id.\n5. После каждого действия места и выручка загружаются заново. Вверху: число свободных и занятых, выручка за сегодня.\nДля охранника: крупный текст, мало слов, понятно по цвету. К каждому разделу — короткий комментарий. Все файлы напиши целиком.'
 });
 const A3_QADAM = [
   { uz: "Chapdagi panelda mashina kirgizing va chiqaring — qorovul ko'radigan hamma narsa shu.", ru: 'На панели слева впустите и выпустите машину — это всё, что видит охранник.' },
@@ -946,10 +946,10 @@ const ScreenStPanel = ({ screen, onNext, onPrev }) => {
   const [tushum, setTushum] = useState(20000);
   const [tanlangan, setTanlangan] = useState(null);
   const [raqam, setRaqam] = useState('');
-  const [oxirgi, setOxirgi] = useState("fetch('http://localhost:3000/api/joylar')");
+  const [oxirgi, setOxirgi] = useState("fetch('http://localhost:3000/api/spots')");
   const t = spots.find(x => x.id === tanlangan);
-  const kirgiz = () => { const m = raqam.trim().toUpperCase(); if (!m || !t) return; setSpots(a => a.map(z => (z.id === t.id ? { ...z, bandmi: true, mashina: m } : z))); setOxirgi(`fetch('/api/kirish', { method: 'POST', body: JSON.stringify({ joy_id: ${t.id}, mashina: "${m}" }) })`); setRaqam(''); setTanlangan(null); };
-  const chiqar = () => { if (!t) return; setSpots(a => a.map(z => (z.id === t.id ? { ...z, bandmi: false, mashina: null } : z))); setTushum(x => x + FEE); setOxirgi(`fetch('/api/chiqish/${t.id}', { method: 'PUT' })`); setTanlangan(null); };
+  const kirgiz = () => { const m = raqam.trim().toUpperCase(); if (!m || !t) return; setSpots(a => a.map(z => (z.id === t.id ? { ...z, is_busy: true, plate: m } : z))); setOxirgi(`fetch('/api/enter', { method: 'POST', body: JSON.stringify({ spot_id: ${t.id}, plate: "${m}" }) })`); setRaqam(''); setTanlangan(null); };
+  const chiqar = () => { if (!t) return; setSpots(a => a.map(z => (z.id === t.id ? { ...z, is_busy: false, plate: null } : z))); setTushum(x => x + FEE); setOxirgi(`fetch('/api/exit/${t.id}', { method: 'PUT' })`); setTanlangan(null); };
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot 3 · Gemini', ru: 'Практика 3 · Gemini' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
@@ -958,9 +958,9 @@ const ScreenStPanel = ({ screen, onNext, onPrev }) => {
         <Split>
           <Col>
             <GuardPanel spots={spots} onSpotClick={(x) => { setTanlangan(x.id); setRaqam(''); }} tushum={tushum} selectedId={tanlangan} />
-            {t && !t.bandmi && <div className="am-karta fs-forma am-ochil"><label className="am-maydon"><span>{tr({ uz: `${t.raqam} · mashina raqami`, ru: `${t.raqam} · госномер` })}</span><input className="am-input" value={raqam} onChange={e => setRaqam(e.target.value)} placeholder="01A123BC" /></label><button type="button" className="am-saqla" disabled={!raqam.trim()} onClick={kirgiz}>{tr({ uz: 'Kirgizish', ru: 'Впустить' })}</button></div>}
-            {t && t.bandmi && <div className="am-karta fs-forma am-ochil"><p className="am-satr" style={{ flex: 1 }}>{t.raqam} · {t.mashina}</p><button type="button" className="am-saqla" onClick={chiqar}>{tr({ uz: `Chiqarish · ${sp(FEE)} so'm`, ru: `Выпустить · ${sp(FEE)} сум` })}</button></div>}
-            <KodOyna oxirgi={oxirgi} qatorlar={[<span key="s" className="sk-izoh">{`// bo'sh: ${spots.filter(x => !x.bandmi).length}, band: ${spots.filter(x => x.bandmi).length}, tushum: ${tushum}`}</span>]} />
+            {t && !t.is_busy && <div className="am-karta fs-forma am-ochil"><label className="am-maydon"><span>{tr({ uz: `${t.label} · mashina raqami`, ru: `${t.label} · госномер` })}</span><input className="am-input" value={raqam} onChange={e => setRaqam(e.target.value)} placeholder="01A123BC" /></label><button type="button" className="am-saqla" disabled={!raqam.trim()} onClick={kirgiz}>{tr({ uz: 'Kirgizish', ru: 'Впустить' })}</button></div>}
+            {t && t.is_busy && <div className="am-karta fs-forma am-ochil"><p className="am-satr" style={{ flex: 1 }}>{t.label} · {t.plate}</p><button type="button" className="am-saqla" onClick={chiqar}>{tr({ uz: `Chiqarish · ${sp(FEE)} so'm`, ru: `Выпустить · ${sp(FEE)} сум` })}</button></div>}
+            <KodOyna oxirgi={oxirgi} qatorlar={[<span key="s" className="sk-izoh">{`// bo'sh: ${spots.filter(x => !x.is_busy).length}, band: ${spots.filter(x => x.is_busy).length}, tushum: ${tushum}`}</span>]} />
           </Col>
           <Col>
             <PromptKarta matn={a3Prompt()} /> {/* F-1015-385: yig'iq prompt */}
@@ -984,28 +984,28 @@ const Screen12 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Amaliyot 4 · JOIN', ru: 'Практика 4 · JOIN' })} screen={screen} scrollSignal={sc} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "JOIN bilan birlashtiring", ru: 'Объедините через JOIN' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Qorovul <span className="italic" style={{ color: T.accent }}>kunlik tarix</span>ni ochdi — lekin joy "2" deb chiqyapti, A2 qayerda?</>, ru: <>Охранник открыл <span className="italic" style={{ color: T.accent }}>дневную историю</span> — но место показано как «2». Где A2?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Qorovul kunlik tarixni ko'rmoqchi: kim, qaysi joy, qancha. Lekin sessiyalarda faqat <span className="mono" style={{ color: T.blue }}>joy_id</span> bor (mas. 2) — joy belgisi (<b style={{ color: T.ink }}>A2</b>) esa <span className="mono">joylar</span> jadvalida. <b style={{ color: T.ink }}>JOIN</b> ikki jadvalni <span className="mono">joy_id = id</span> bo'yicha birlashtiradi — shunda tarix o'qiladigan bo'ladi.</>, ru: <>Охранник хочет видеть дневную историю: кто, какое место, сколько. Но в сеансах есть только <span className="mono" style={{ color: T.blue }}>joy_id</span> (напр. 2) — а обозначение места (<b style={{ color: T.ink }}>A2</b>) лежит в таблице <span className="mono">joylar</span>. <b style={{ color: T.ink }}>JOIN</b> объединяет две таблицы по <span className="mono">joy_id = id</span> — и история становится читаемой.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Qorovul kunlik tarixni ko'rmoqchi: kim, qaysi joy, qancha. Lekin sessiyalarda faqat <span className="mono" style={{ color: T.blue }}>spot_id</span> bor (mas. 2) — joy belgisi (<b style={{ color: T.ink }}>A2</b>) esa <span className="mono">spots</span> jadvalida. <b style={{ color: T.ink }}>JOIN</b> ikki jadvalni <span className="mono">spot_id = id</span> bo'yicha birlashtiradi — shunda tarix o'qiladigan bo'ladi.</>, ru: <>Охранник хочет видеть дневную историю: кто, какое место, сколько. Но в сеансах есть только <span className="mono" style={{ color: T.blue }}>spot_id</span> (напр. 2) — а обозначение места (<b style={{ color: T.ink }}>A2</b>) лежит в таблице <span className="mono">spots</span>. <b style={{ color: T.ink }}>JOIN</b> объединяет две таблицы по <span className="mono">spot_id = id</span> — и история становится читаемой.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{joined ? tr({ uz: 'JOIN natijasi — o\'qiladi', ru: 'Результат JOIN — читается' }) : tr({ uz: 'sessiyalar — joy_id raqam', ru: 'sessiyalar — joy_id числом' })}</p>
+            <p className="flow-label">{joined ? tr({ uz: 'JOIN natijasi — o\'qiladi', ru: 'Результат JOIN — читается' }) : tr({ uz: 'sessions — spot_id raqam', ru: 'sessions — spot_id числом' })}</p>
             {/* 🎬 JOIN bosilganda jadval "sakrab" emas — sk-swapin bilan silliq almashadi */}
             <div key={joined ? 'joined' : 'raw'} className={joined ? 'sk-swapin' : ''}>
               {!joined
-                ? <Table cap="sessiyalar" cols={['joy_id', 'mashina', 'tolov']} rows={SES_DATA.map(r => ({ joy_id: r.joy_id, mashina: r.mashina, tolov: sp(r.tolov) }))} hiCol="joy_id" />
-                : <Table cap="sessiyalar JOIN joylar" cols={['raqam', 'mashina', 'tolov']} rows={SES_DATA.map(r => ({ raqam: RAQAM[r.joy_id] || ('id' + r.joy_id), mashina: r.mashina, tolov: sp(r.tolov) }))} hiCol="raqam" />}
+                ? <Table cap="sessions" cols={['spot_id', 'plate', 'fee']} rows={SES_DATA.map(r => ({ spot_id: r.spot_id, plate: r.plate, fee: sp(r.fee) }))} hiCol="spot_id" />
+                : <Table cap="sessions JOIN spots" cols={['label', 'plate', 'fee']} rows={SES_DATA.map(r => ({ label: RAQAM[r.spot_id] || ('id' + r.spot_id), plate: r.plate, fee: sp(r.fee) }))} hiCol="label" />}
             </div>
-            {/* F-0926-06: «joy_id: 2 — qaysi joy?» izohi sarlavha va mentor gapini takrorlardi (159/1) — olindi */}
+            {/* F-0926-06: «spot_id: 2 — qaysi joy?» izohi sarlavha va mentor gapini takrorlardi (159/1) — olindi */}
           </Col>
           <Col>
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 1.85 }}>
-              <Jx>{'SELECT'}</Jx>{' raqam, mashina, tolov'}{'\n'}
-              <Jx>{'FROM'}</Jx>{' sessiyalar'}{'\n'}
-              <Jx>{'JOIN'}</Jx>{' joylar'}{'\n'}
-              {'  '}<At>{'ON sessiyalar.joy_id = joylar.id'}</At>{';'}
+              <Jx>{'SELECT'}</Jx>{' label, plate, fee'}{'\n'}
+              <Jx>{'FROM'}</Jx>{' sessions'}{'\n'}
+              <Jx>{'JOIN'}</Jx>{' spots'}{'\n'}
+              {'  '}<At>{'ON sessions.spot_id = spots.id'}</At>{';'}
             </pre>
             {!joined && <button className="btn" style={{ alignSelf: 'flex-start' }} onClick={doJoin}>{tr({ uz: '▶ JOIN bilan birlashtirish', ru: '▶ Объединить через JOIN' })}</button>}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi <b>A2</b> ko'rinadi! JOIN <span className="mono" style={{ color: T.blue }}>joy_id</span> va <span className="mono">id</span> ni moslab, ikki jadvaldan birga ma'lumot oldi. Bog'lanish shuning uchun kerak edi.</>, ru: <>Теперь видно <b>A2</b>! JOIN сопоставил <span className="mono" style={{ color: T.blue }}>joy_id</span> и <span className="mono">id</span> и взял данные сразу из двух таблиц. Вот зачем нужна была связь.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Endi <b>A2</b> ko'rinadi! JOIN <span className="mono" style={{ color: T.blue }}>spot_id</span> va <span className="mono">id</span> ni moslab, ikki jadvaldan birga ma'lumot oldi. Bog'lanish shuning uchun kerak edi.</>, ru: <>Теперь видно <b>A2</b>! JOIN сопоставил <span className="mono" style={{ color: T.blue }}>spot_id</span> и <span className="mono">id</span> и взял данные сразу из двух таблиц. Вот зачем нужна была связь.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1019,9 +1019,9 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [value, setValue] = useState(typeof storedAnswer?.picked === 'string' ? storedAnswer.picked : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
   const norm = value.replace(/\s+/g, ' ').trim();
-  const valid = /^(sessiyalar|s)\s*\.\s*joy_id\s*=\s*(joylar|j)\s*\.\s*id$/i.test(norm) || /^(joylar|j)\s*\.\s*id\s*=\s*(sessiyalar|s)\s*\.\s*joy_id$/i.test(norm);
-  const hasJoyId = /joy_id/i.test(value);
-  const hasId = /joylar\s*\.\s*id|\bj\s*\.\s*id/i.test(value);
+  const valid = /^(sessions|s)\s*\.\s*spot_id\s*=\s*(spots|sp|j)\s*\.\s*id$/i.test(norm) || /^(spots|sp|j)\s*\.\s*id\s*=\s*(sessions|s)\s*\.\s*spot_id$/i.test(norm);
+  const hasJoyId = /spot_id/i.test(value);
+  const hasId = /spots\s*\.\s*id|\b(?:sp|j)\s*\.\s*id/i.test(value);
   useEffect(() => {
     if (valid && !passed) {
       setPassed(true);
@@ -1040,9 +1040,9 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="vsc fade-up delay-2">
               <div className="vsc-bar"><span className="vsc-tab on"><span style={{ color: CODE.str }}>🟢</span> tarix.sql <span style={{ color: CODE.comment, marginLeft: 4 }}>×</span></span></div>
               <div className="vsc-body">
-                <Ln n={1}><Jx>{'SELECT'}</Jx>{' raqam, mashina, tolov'}</Ln>
-                <Ln n={2}><Jx>{'FROM'}</Jx>{' sessiyalar'}</Ln>
-                <Ln n={3}><Jx>{'JOIN'}</Jx>{' joylar'}</Ln>
+                <Ln n={1}><Jx>{'SELECT'}</Jx>{' label, plate, fee'}</Ln>
+                <Ln n={2}><Jx>{'FROM'}</Jx>{' sessions'}</Ln>
+                <Ln n={3}><Jx>{'JOIN'}</Jx>{' spots'}</Ln>
                 <div className="vsc-line">
                   <span className="vsc-ln">4</span>
                   <span style={{ whiteSpace: 'pre' }}>{'  '}<span style={{ color: CODE.attr }}>ON</span>{' '}</span>
@@ -1052,8 +1052,8 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {/* F-0926-06: holat-teglari javob-kodni aytmaydi — faqat tavsif (S6) */}
-              <span className="tagpill" style={{ opacity: hasJoyId ? 1 : 0.4 }}>{hasJoyId ? '✓' : '1'} {tr({ uz: "sessiyalar — bog'lovchi ustun", ru: 'sessiyalar — связующий столбец' })}</span>
-              <span className="tagpill" style={{ opacity: hasId ? 1 : 0.4 }}>{hasId ? '✓' : '2'} {tr({ uz: 'joylar — asosiy kalit', ru: 'joylar — первичный ключ' })}</span>
+              <span className="tagpill" style={{ opacity: hasJoyId ? 1 : 0.4 }}>{hasJoyId ? '✓' : '1'} {tr({ uz: "sessions — bog'lovchi ustun", ru: 'sessions — связующий столбец' })}</span>
+              <span className="tagpill" style={{ opacity: hasId ? 1 : 0.4 }}>{hasId ? '✓' : '2'} {tr({ uz: 'spots — asosiy kalit', ru: 'spots — первичный ключ' })}</span>
             </div>
             {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mukammal! Ikki jadval bog'landi — tarix endi joy belgisi bilan o'qiladi. Loyihangiz to'liq tayyor!", ru: '✓ Отлично! Две таблицы связаны — история теперь читается с обозначением места. Ваш проект полностью готов!' })}</p></div>}
           </Col>
@@ -1061,7 +1061,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {/* F-0926-06: javobgacha bo'sh ustun ustida yolg'iz yorliq va ⛶ turmaydi (159/3) */}
             {valid && <p className="flow-label">{tr({ uz: 'natija — tarix', ru: 'результат — история' })}</p>}
             {valid
-              ? <Table cap="sessiyalar JOIN joylar" cols={['raqam', 'mashina', 'tolov']} rows={[{ raqam: 'A2', mashina: '01A123BC', tolov: sp(FEE) }, { raqam: 'B1', mashina: '01B456DE', tolov: sp(FEE) }]} hiCol="raqam" />
+              ? <Table cap="sessions JOIN spots" cols={['label', 'plate', 'fee']} rows={[{ label: 'A2', plate: '01A123BC', fee: sp(FEE) }, { label: 'B1', plate: '01B456DE', fee: sp(FEE) }]} hiCol="label" />
               : null}
           </Col>
         </div>
@@ -1094,10 +1094,10 @@ const Screen17 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   };
   const RECAP = [
     { uz: "PM: avval foydalanuvchini (qorovul) o'ylab, unga mos sodda panel qurdik", ru: 'PM: сначала подумали о пользователе (охраннике) и построили простую панель под него' },
-    { uz: "Baza: 2 jadval — joylar ◄ joy_id sessiyalar (foreign key bog'lanishi)", ru: 'База: 2 таблицы — joylar ◄ joy_id sessiyalar (связь через foreign key)' },
+    { uz: "Baza: 2 jadval — spots ◄ spot_id sessions (foreign key bog'lanishi)", ru: 'База: 2 таблицы — spots ◄ spot_id sessions (связь через foreign key)' },
     { uz: "Server: kirish (POST) joyni band qiladi, chiqish (PUT) bo'shatib to'lovni yozadi", ru: 'Сервер: въезд (POST) занимает место, выезд (PUT) освобождает его и записывает оплату' },
-    { uz: "Front: 🟩/🟥 panel — rang to'g'ridan-to'g'ri bandmi ustunidan chiqadi", ru: 'Фронт: панель 🟩/🟥 — цвет берётся прямо из столбца bandmi' },
-    { uz: "JOIN: ikki jadvalni joy_id = id bo'yicha birlashtirdik — tarix o'qiladigan bo'ldi", ru: 'JOIN: объединили две таблицы по joy_id = id — история стала читаемой' }
+    { uz: "Front: 🟩/🟥 panel — rang to'g'ridan-to'g'ri is_busy ustunidan chiqadi", ru: 'Фронт: панель 🟩/🟥 — цвет берётся прямо из столбца is_busy' },
+    { uz: "JOIN: ikki jadvalni spot_id = id bo'yicha birlashtirdik — tarix o'qiladigan bo'ldi", ru: 'JOIN: объединили две таблицы по spot_id = id — история стала читаемой' }
   ];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1320,7 +1320,7 @@ const QUIZ_SHAPES = ['▲', '◆', '●', '■'];
 // Arena foni: suzuvchi tokenlar — dars mavzusidan (fullstack · baza · JOIN)
 const QZ_BG_SHAPES = [
   { ch: 'CREATE TABLE', l: 5,  t: 10, s: 26, c: 'rgba(120,235,175,0.15)', d: 19, dl: 0 },
-  { ch: 'joy_id',       l: 84, t: 7,  s: 28, c: 'rgba(80,200,255,0.16)',  d: 23, dl: 1.5 },
+  { ch: 'spot_id',       l: 84, t: 7,  s: 28, c: 'rgba(80,200,255,0.16)',  d: 23, dl: 1.5 },
   { ch: 'JOIN',         l: 8,  t: 72, s: 30, c: 'rgba(80,200,255,0.15)',  d: 27, dl: 0.8 },
   { ch: 'POST',         l: 80, t: 68, s: 28, c: 'rgba(120,235,175,0.15)', d: 21, dl: 2.2 },
   { ch: 'PUT',          l: 44, t: 86, s: 28, c: 'rgba(255,110,70,0.14)',  d: 25, dl: 1.1 },
@@ -1336,14 +1336,14 @@ const QZ_BG_SHAPES = [
 const QUIZ_BANK = [
   { q: { uz: "Baza (2 jadval) nima uchun kerak?", ru: "Зачем нужна база (2 таблицы)?" }, opts: [{ uz: "Ma'lumotni saqlab, bog'lash", ru: "Хранить и связывать данные" }, { uz: "Faqat rang berish uchun", ru: "Только чтобы задать цвет" }, { uz: "Sahifani bezash uchun", ru: "Чтобы украсить страницу" }, { uz: "Internetni tezlatish uchun", ru: "Чтобы ускорить интернет" }], correct: 0 },
   { q: { uz: "Joy bandligi qaysi turda saqlanadi?", ru: 'В каком типе хранится занятость места?' }, opts: [{ uz: "`TEXT` (matn)", ru: '`TEXT` (текст)' }, { uz: "`SERIAL` (raqam)", ru: '`SERIAL` (число)' }, "`BOOLEAN` (true/false)", { uz: "`TIMESTAMP` (sana va vaqt)", ru: '`TIMESTAMP` (дата и время)' }], correct: 2 },
-  { q: { uz: "Sessiyani joyga qaysi ustun bog'laydi?", ru: 'Какой столбец привязывает сеанс к месту?' }, opts: ["`mashina`", "`joy_id`", "`tolov`", "`kirgan`"], correct: 1 },
-  { q: { uz: "`REFERENCES joylar(id)` nima beradi?", ru: "Что даёт `REFERENCES joylar(id)`?" }, opts: [{ uz: "Yangi jadval yaratadi", ru: "Создаёт новую таблицу" }, { uz: "Ustunga rang beradi", ru: "Красит столбец" }, { uz: "So'rovni tezlashtiradi", ru: "Ускоряет запрос" }, { uz: "Foreign key bog'lanishi", ru: "Связь foreign key" }], correct: 3 },
+  { q: { uz: "Sessiyani joyga qaysi ustun bog'laydi?", ru: 'Какой столбец привязывает сеанс к месту?' }, opts: ["`plate`", "`spot_id`", "`fee`", "`entered_at`"], correct: 1 },
+  { q: { uz: "`REFERENCES spots(id)` nima beradi?", ru: "Что даёт `REFERENCES spots(id)`?" }, opts: [{ uz: "Yangi jadval yaratadi", ru: "Создаёт новую таблицу" }, { uz: "Ustunga rang beradi", ru: "Красит столбец" }, { uz: "So'rovni tezlashtiradi", ru: "Ускоряет запрос" }, { uz: "Foreign key bog'lanishi", ru: "Связь foreign key" }], correct: 3 },
   { q: { uz: "Mashina kirganda qaysi amal ishlaydi?", ru: 'Какая операция срабатывает при въезде машины?' }, opts: [ "`DELETE`", "`GET`","`POST`", "`CSS`"], correct: 2 },
   { q: { uz: "Mashina chiqqanida qaysi amal ishlaydi?", ru: 'Какая операция срабатывает при выезде машины?' }, opts: ["`GET`", "`DELETE`", "`POST`", "`PUT`"], correct: 3 },
   { q: { uz: "Ikki jadvalni birga o'qish uchun?", ru: 'Чем читать две таблицы вместе?' }, opts: [ "`JOIN`", "`DELETE`","`INSERT`", "`DROP`"], correct: 0 },
-  { q: { uz: "JOIN `ON` sharti qanday yoziladi?", ru: 'Как пишется условие `ON` у JOIN?' }, opts: ["`id = mashina`", "`joy_id = id`", "`raqam = joy`", "`tolov = id`"], correct: 1 },
+  { q: { uz: "JOIN `ON` sharti qanday yoziladi?", ru: 'Как пишется условие `ON` у JOIN?' }, opts: ["`id = plate`", "`spot_id = id`", "`label = spot`", "`fee = id`"], correct: 1 },
   { q: { uz: "Joylarni panelga qanday olamiz?", ru: 'Как получить места на панель?' }, opts: [ "`DROP`", "`PUT`", "`DELETE`","`GET`"], correct: 3 },
-  { q: { uz: "Panel rangi nimaga qarab o'zgaradi?", ru: 'От чего зависит цвет панели?' }, opts: ["`mashina`", "`bandmi`", "`tolov`", "`id`"], correct: 1 },
+  { q: { uz: "Panel rangi nimaga qarab o'zgaradi?", ru: 'От чего зависит цвет панели?' }, opts: ["`plate`", "`is_busy`", "`fee`", "`id`"], correct: 1 },
   { q: { uz: "Qorovulga eng yaxshi panel qanday?", ru: "Какая панель лучше всего для охранника?" }, opts: [{ uz: "Ko'p matn, mayda tugmalar", ru: "Много текста, мелкие кнопки" }, { uz: "Raqamli quruq jadval", ru: "Сухая таблица с цифрами" }, { uz: "Rang, katta tugma, kam matn", ru: "Цвет, большие кнопки, мало текста" }, { uz: "Uzun ko'rsatma matni", ru: "Длинная инструкция" }], correct: 2 },
   { q: { uz: "Fullstack loyiha nimalardan iborat?", ru: 'Из чего состоит fullstack-проект?' }, opts: [ { uz: "Front + server + baza", ru: 'Фронт + сервер + база' }, { uz: "Faqat ma'lumotlar bazasi", ru: 'Только база данных' }, { uz: "Faqat frontend qismi", ru: 'Только фронтенд' }, { uz: "Faqat rang va bezaklar", ru: 'Только цвета и украшения' }], correct: 0 },
 ];
@@ -1441,7 +1441,7 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['CREATE TABLE', 'joy_id', 'JOIN', 'POST', 'PUT', 'GET', 'fetch', 'REFERENCES', 'BOOLEAN', 'NOW()'];
+    const TOK = ['CREATE TABLE', 'spot_id', 'JOIN', 'POST', 'PUT', 'GET', 'fetch', 'REFERENCES', 'BOOLEAN', 'NOW()'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });

@@ -1335,10 +1335,10 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {POOL.map(g => <button key={g.name} className={`gchip ${mine.includes(g.name) ? '' : ''}`} style={mine.includes(g.name) ? { background: T.accentSoft, color: T.accent, boxShadow: `0 0 0 2px ${T.accent}` /* F-0926-06: to'liq accent -> Soft + halqa (159/10) */ } : undefined} onClick={() => toggle(g.name)}>{g.emoji} {g.name}</button>)}
             </div>
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.8 }}>
-              <Jx>{'const'}</Jx>{' mening = ['}{'\n'}
+              <Jx>{'const'}</Jx>{' myGames = ['}{'\n'}
               {mine.length === 0 ? <Cm>{tr({ uz: "  // o'yinlarni tanlang…", ru: '  // выберите игры…' })}{'\n'}</Cm> : mine.map(nm => <React.Fragment key={nm}>{'  { name: '}<St>"{nm}"</St>{topName === nm ? <>, top: <At>true</At></> : ''}{' },'}{'\n'}</React.Fragment>)}
               {'];'}{'\n\n'}
-              {'{mening.map(g => '}<Jx>{'<GameCard '}</Jx><At>name</At>{'={g.name} '}<At>top</At>{'={g.top}'}<Jx>{' />'}</Jx>{')}'}
+              {'{myGames.map(g => '}<Jx>{'<GameCard '}</Jx><At>name</At>{'={g.name} '}<At>top</At>{'={g.top}'}<Jx>{' />'}</Jx>{')}'}
             </pre>
           </Col>
           <Col>
@@ -1686,9 +1686,9 @@ const ScreenPractice1 = (props) => (
     title={{ uz: "O'z katalogingizni quring", ru: 'Соберите свой каталог' }}
     task={{ uz: "VS Code'da App.jsx faylini ochib, sevimli o'yinlaringizdan ro'yxat tuzing va map bilan katalog chizing. Kamida 3 ta o'yin bo'lsin, bittasiga top belgisi qo'ying.", ru: 'Откройте файл App.jsx в VS Code, составьте список любимых игр и нарисуйте каталог через map. Минимум 3 игры, одной поставьте пометку top.' }}
     checklist={[
-      { uz: "App.jsx ichida `const mening = [...]` ro'yxatini yozing (kamida 3 o'yin)", ru: 'Внутри App.jsx напишите список `const mening = [...]` (минимум 3 игры)' },
+      { uz: "App.jsx ichida `const myGames = [...]` ro'yxatini yozing (kamida 3 o'yin)", ru: 'Внутри App.jsx напишите список `const myGames = [...]` (минимум 3 игры)' },
       { uz: "Har element `{ name: \"...\", top: false }` ko'rinishida — bittasiga `top: true`", ru: 'Каждый элемент в виде `{ name: "...", top: false }` — одному поставьте `top: true`' },
-      { uz: "`{mening.map(g => <GameCard name={g.name} top={g.top} />)}` yozing", ru: 'Напишите `{mening.map(g => <GameCard name={g.name} top={g.top} />)}`' },
+      { uz: "`{myGames.map(g => <GameCard name={g.name} top={g.top} />)}` yozing", ru: 'Напишите `{myGames.map(g => <GameCard name={g.name} top={g.top} />)}`' },
       { uz: "Saqlang — localhost:5173 da 3 kartochka, bittasida 🔥 TOP chiqdimi?", ru: 'Сохраните — на localhost:5173 появились 3 карточки и 🔥 TOP на одной?' },
     ]} />
 );

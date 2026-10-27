@@ -1485,15 +1485,15 @@ const GATE_OPTS = [
   { t: { uz: 'Jadvaldagi hamma ustunni', ru: 'Все столбцы таблицы' }, ok: true },
   { t: { uz: 'Hech narsani', ru: 'Ничего' } },
 ];
-const SCHEMA = ['id', 'ism', 'sinf', 'baho', 'ota_telefon', 'parol'];
+const SCHEMA = ['id', 'name', 'class_name', 'grades', 'parent_phone', 'password'];
 // Kod-namunasida jadval/ustun nomlari ikkala tilda BIR XIL (o'quvchi ularni VS Code'da o'zi teradi);
 // faqat SQL-IZOHLAR tarjima qilinadi (M3-D5/D10 konvensiyasi). Hech bir tekshiruv bu matnga bog'lanmagan.
 const KD_CODE = { uz: `-- hozirgi so'rov:
 
-SELECT * FROM oquvchilar WHERE sinf = '8-B';
+SELECT * FROM students WHERE class_name = '8-B';
 --     ^ bu joyni siz to'ldirasiz`, ru: `-- текущий запрос:
 
-SELECT * FROM oquvchilar WHERE sinf = '8-B';
+SELECT * FROM students WHERE class_name = '8-B';
 --     ^ это место заполняете вы` };
 const SQL_TOKEN = /(--[^\n]*|'[^']*'|\b(?:SELECT|FROM|WHERE)\b|\*)/g;
 const sqlHl = (ln) => ln.split(SQL_TOKEN).filter(p => p !== undefined && p !== '').map((p, i) => {
@@ -1573,7 +1573,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <div className={`kdpanel${done ? ' is-done' : ''}`}>
                   <p className="flow-label">{tr({ uz: "So'rov nima qaytarsin", ru: 'Что должен вернуть запрос' })}</p>
                   <div className="sch">
-                    <span className="sch-lbl">🗄 oquvchilar</span>
+                    <span className="sch-lbl">🗄 students</span>
                     {SCHEMA.map(c => <span key={c} className="sch-col mono">{c}</span>)}
                   </div>
                   <ol className="kdreq">{KD_SHART.map((sh, i) => <li key={i}>{tr(sh)}</li>)}</ol>
@@ -1947,7 +1947,7 @@ const QUIZ_BANK = [
   // haqiqatan boshqa rangda chiziladi (.jrow.closed.masked) — u ROST bo'lib qolardi.
   // §110 (👦 topilmasi): eski 2-variant «Uni ilova katta harflar bilan yozadi» kulgili-bo'sh edi —
   // bola mazmunni o'qimasdan chiqarib tashlardi. Yangi variant ishonarli, lekin s10 sxemasi uni
-  // rad etadi (beshala ustun bitta `oquvchilar` jadvalida turadi) — ya'ni darsni o'qigan yutadi.
+  // rad etadi (beshala ustun bitta `students` jadvalida turadi) — ya'ni darsni o'qigan yutadi.
   // Shu §110-sinfi: «Uni faqat kechqurun ochib o'qish mumkin» kulgili-bo'sh edi va mutlaq
   // so'z olib yurardi — o'rniga vaqt-mezoni qo'yildi (bola «yopiqlik vaqt bilan keladi» deb
   // o'ylashi mumkin), u ham TEST-1 reveali bilan rad etiladi: mezon bitta — zarar.

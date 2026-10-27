@@ -342,7 +342,7 @@ const RECAPS = {
     cards: [
       { ic: "🔒", h: { uz: "O'zgarmasa — const", ru: 'Не меняется — const' },
         body: { uz: <>Tug'ilgan yil kabi o'zgarmas qiymat uchun <b>const</b> — u qutini qulflaydi.</>, ru: <>Для неизменного значения, как год рождения, берём <b>const</b> — он запирает коробку.</> },
-        vis: <RcFlow items={[{ uz: "const yil = 2011", ru: 'const yil = 2011' }, { uz: "🔒 qulf", ru: 'замок' }, { uz: "doim 2011", ru: 'всегда 2011' }]} />,
+        vis: <RcFlow items={[{ uz: "const year = 2011", ru: 'const year = 2011' }, { uz: "🔒 qulf", ru: 'замок' }, { uz: "doim 2011", ru: 'всегда 2011' }]} />,
         ask: { uz: "Bir haftada necha kun bor? Bu o'zgaradimi? Unda let mi, const mi?", ru: 'Сколько дней в неделе? Это меняется? Тогда let или const?' } },
       { ic: "🚫", h: { uz: "O'zgartirsangiz — xato", ru: 'Попробуете изменить — ошибка' },
         body: { uz: <>const PI = 3.14 dan keyin <b>PI = 3</b> desak, <b>xato</b> chiqadi.</>, ru: <>Если после const PI = 3.14 написать <b>PI = 3</b>, будет <b>ошибка</b>.</> },
@@ -1461,7 +1461,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const JS_FLASHCARDS = [
   { front: { uz: "Qiymatni saqlab turadigan nomlangan «quti» qanday ataladi?", ru: 'Как называется «коробка» с именем, которая хранит значение?' }, back: { uz: "o'zgaruvchi", ru: 'переменная' }, note: { uz: "quti + nom + ichidagi qiymat", ru: 'коробка + имя + значение внутри' } },
   { front: { uz: "Qiymati keyin o'zgaradigan qutini qaysi so'z bilan ochamiz?", ru: 'Каким словом создаём коробку, значение которой потом меняется?' }, back: 'let', note: { uz: "let score = 10, keyin score = 25", ru: 'let score = 10, потом score = 25' } },
-  { front: { uz: "Qiymati hech qachon o'zgarmaydigan qutini qaysi so'z ochadi?", ru: 'Какое слово создаёт коробку, значение которой никогда не меняется?' }, back: 'const', note: { uz: "const yil = 2011 — quti qulflangan", ru: 'const yil = 2011 — коробка заперта' } },
+  { front: { uz: "Qiymati hech qachon o'zgarmaydigan qutini qaysi so'z ochadi?", ru: 'Какое слово создаёт коробку, значение которой никогда не меняется?' }, back: 'const', note: { uz: "const year = 2011 — quti qulflangan", ru: 'const year = 2011 — коробка заперта' } },
   { front: { uz: "Qutiga qiymat solish uchun qaysi belgi ishlatiladi?", ru: 'Каким знаком кладут значение в коробку?' }, back: '=', note: { uz: "u \"sol\" degani — \"teng\" degani emas", ru: 'он значит «положи», а не «равно»' } },
   { front: { uz: "Matn (so'z, gap) turi qanday ataladi?", ru: 'Как называется тип для текста (слов, фраз)?' }, back: 'string', note: { uz: 'qo\'shtirnoq ichida yoziladi: "Aziza"', ru: 'пишется в кавычках: "Aziza"' } },
   { front: { uz: "Son turi qanday ataladi?", ru: 'Как называется тип для чисел?' }, back: 'number', note: { uz: "qo'shtirnoqsiz yoziladi: 14, 3.14", ru: 'пишется без кавычек: 14, 3.14' } },

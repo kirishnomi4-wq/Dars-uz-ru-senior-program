@@ -1354,36 +1354,36 @@ const KODING_KEY = 'pm-m3d14-code';
 const readKoding = () => { try { const v = JSON.parse(localStorage.getItem(KODING_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
 // Darvoza-mashq (82e): darsning O'Z bilimi — qaysi qator natijani EKRANDA ko'rsatadi?
 const KD_GATE = [
-  { id: 'a', kod: "console.log('Band qilindi');", ok: false },
-  { id: 'b', kod: '{bandQilindi && <p className="ok">✓ Band qilindi</p>}', ok: true },
-  { id: 'c', kod: '// Band qilindi', ok: false },
+  { id: 'a', kod: { uz: "console.log('Band qilindi');", ru: "console.log('Забронировано');" }, ok: false },
+  { id: 'b', kod: { uz: '{booked && <p className="ok">✓ Band qilindi</p>}', ru: '{booked && <p className="ok">✓ Забронировано</p>}' }, ok: true },
+  { id: 'c', kod: { uz: '// Band qilindi', ru: '// Забронировано' }, ok: false },
 ];
 const KD_FILES = [
-  // Identifikator-nomlar ikkala tilda ham bir xil qoladi (M3-D5/D10 konvensiyasi):
-  // o'quvchi shu nomlarni VS Code'da o'zi teradi. Faqat IZOHLAR tarjima qilinadi.
-  { tab: 'BandQilish.jsx', code: { uz: `function BandQilish() {
-  const [bandQilindi, setBandQilindi] = useState(false);
+  // Identifikator-nomlar ikkala tilda bir xil va INGLIZCHA (F-1027-01, PM 112-qonun):
+  // o'quvchi shu nomlarni VS Code'da o'zi teradi. Izoh va tugma matni o'quvchi tilida.
+  { tab: 'BookButton.jsx', code: { uz: `function BookButton() {
+  const [booked, setBooked] = useState(false);
 
-  function bosildi() {
+  function handleClick() {
     // ← bu joyni siz to'ldirasiz
   }
 
   return (
     <div>
-      <button onClick={bosildi}>Band qilaman</button>
+      <button onClick={handleClick}>Band qilaman</button>
       {/* ← natija qatori shu yerga qo'shiladi */}
     </div>
   );
-}`, ru: `function BandQilish() {
-  const [bandQilindi, setBandQilindi] = useState(false);
+}`, ru: `function BookButton() {
+  const [booked, setBooked] = useState(false);
 
-  function bosildi() {
+  function handleClick() {
     // ← это место заполняете вы
   }
 
   return (
     <div>
-      <button onClick={bosildi}>Band qilaman</button>
+      <button onClick={handleClick}>Забронировать</button>
       {/* ← строка результата добавляется сюда */}
     </div>
   );
@@ -1457,7 +1457,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="cq">
                 {KD_GATE.map(g => (
                   <button key={g.id} type="button" className={`cq-b${miss === g.id ? ' miss' : ''}`} onClick={() => pickKod(g)}>
-                    <span className="cq-k">{g.id})</span><span className="cq-t">{g.kod}</span>
+                    <span className="cq-k">{g.id})</span><span className="cq-t">{tr(g.kod)}</span>
                   </button>
                 ))}
               </div>

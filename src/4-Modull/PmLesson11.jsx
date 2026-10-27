@@ -1396,36 +1396,38 @@ const GATE_ITEMS = [
 
 // UZ-RU: identifikatorlar (tarix, yoqqanlar, oxirigacha) va qo'shiq nomlari ikkala tilda BIR XIL —
 // checks (/oxirigacha/, 'Ohang,Ohang,Shamol') shularga bog'langan; faqat IZOH tarjima qilinadi.
-const KOD_STARTER = { uz: `const tarix = [
-  { qoshiq: 'Ohang',  vaqt: '21:40', oxirigacha: true  },
-  { qoshiq: 'Yo\\'l',  vaqt: '08:15', oxirigacha: false },
-  { qoshiq: 'Ohang',  vaqt: '22:05', oxirigacha: true  },
-  { qoshiq: 'Shamol', vaqt: '07:50', oxirigacha: true  }
+const KOD_STARTER = { uz: `const history = [
+  { song: 'Ohang',  time: '21:40', finished: true  },
+  { song: 'Yo\\'l',  time: '08:15', finished: false },
+  { song: 'Ohang',  time: '22:05', finished: true  },
+  { song: 'Shamol', time: '07:50', finished: true  }
 ];
 
-function yoqqanlar(tarix) {
+function likedSongs(history) {
+  // song — qo'shiq · time — vaqt · finished — oxirigacha tinglandimi
   // Oxirigacha tinglangan qo'shiqlar nomini qaytaring
   return [];
 }
 
-console.log(yoqqanlar(tarix));`, ru: `const tarix = [
-  { qoshiq: 'Ohang',  vaqt: '21:40', oxirigacha: true  },
-  { qoshiq: 'Yo\\'l',  vaqt: '08:15', oxirigacha: false },
-  { qoshiq: 'Ohang',  vaqt: '22:05', oxirigacha: true  },
-  { qoshiq: 'Shamol', vaqt: '07:50', oxirigacha: true  }
+console.log(likedSongs(history));`, ru: `const history = [
+  { song: 'Ohang',  time: '21:40', finished: true  },
+  { song: 'Yo\\'l',  time: '08:15', finished: false },
+  { song: 'Ohang',  time: '22:05', finished: true  },
+  { song: 'Shamol', time: '07:50', finished: true  }
 ];
 
-function yoqqanlar(tarix) {
-  // Верните названия песен, дослушанных до конца (oxirigacha: true)
+function likedSongs(history) {
+  // Верните названия песен, дослушанных до конца (finished: true)
   return [];
 }
 
-console.log(yoqqanlar(tarix));` };
+console.log(likedSongs(history));` };
 
 const jsNoComments = (s) => (s || '').replace(/\/\*[\s\S]*?\*\//g, ' ').replace(/\/\/[^\n]*/g, ' ');
+// F-1027-01: yangi nom likedSongs; eski saqlangan kod (yoqqanlar) ham o'qiladi.
 const yoqqanlarTanasi = (src) => {
   const s = jsNoComments(src);
-  const i = s.indexOf('yoqqanlar');
+  const i0 = s.indexOf('likedSongs'); const i = i0 >= 0 ? i0 : s.indexOf('yoqqanlar');
   if (i < 0) return '';
   const j = s.indexOf('console.log', i);
   return s.slice(i, j < 0 ? s.length : j);
@@ -1439,11 +1441,11 @@ const KOD_TASK = {
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// oxirigacha tinglanganlarni ajratib, nomlarini qaytaring", ru: '// отберите дослушанные до конца и верните их названия' } }],
   requirements: [
     { id: 'royxat', label: { uz: 'Funksiya ro\'yxat qaytaradi', ru: 'Функция возвращает список' },
-      check: C.evalEquals('Array.isArray(yoqqanlar(tarix))', 'true', { uz: "Funksiya ro'yxat (massiv) qaytarsin", ru: 'Пусть функция возвращает список (массив)' }) },
+      check: C.evalEquals("Array.isArray(typeof likedSongs==='function'?likedSongs(history):yoqqanlar(tarix))", 'true', { uz: "Funksiya ro'yxat (massiv) qaytarsin", ru: 'Пусть функция возвращает список (массив)' }) },
     { id: 'oxir', label: { uz: 'Faqat oxirigacha tinglanganlar qoladi', ru: 'Остаются только дослушанные до конца' },
-      check: C.custom((x) => (/oxirigacha/.test(yoqqanlarTanasi(x.js)) ? true : tr({ uz: "Funksiya ichida yozuvning oxirigacha maydonini tekshiring", ru: 'Внутри функции проверьте поле oxirigacha у записи' }))) },
+      check: C.custom((x) => (/finished|oxirigacha/.test(yoqqanlarTanasi(x.js)) ? true : tr({ uz: "Funksiya ichida yozuvning finished maydonini tekshiring", ru: 'Внутри функции проверьте поле finished у записи' }))) },
     { id: 'uch', label: { uz: 'Natijada uch nom chiqadi', ru: 'В результате выходят три названия' },
-      check: C.evalEquals("yoqqanlar(tarix).join(',')", 'Ohang,Ohang,Shamol', { uz: "Natijada Ohang, Ohang va Shamol chiqishi kerak", ru: 'В результате должны выйти Ohang, Ohang и Shamol' }) },
+      check: C.evalEquals("(typeof likedSongs==='function'?likedSongs(history):yoqqanlar(tarix)).join(',')", 'Ohang,Ohang,Shamol', { uz: "Natijada Ohang, Ohang va Shamol chiqishi kerak", ru: 'В результате должны выйти Ohang, Ohang и Shamol' }) },
   ],
 };
 
@@ -1534,7 +1536,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Bitta yozuvdan boshlang: uning <code className="qcode">oxirigacha</code> maydoni rostmi? Ishlagach qolganlariga o'ting.</>, ru: <>Начните с одной записи: её поле <code className="qcode">oxirigacha</code> истинно? Заработало — переходите к остальным.</> })}</p>
+                      <p>{tr({ uz: <>Bitta yozuvdan boshlang: uning <code className="qcode">finished</code> maydoni rostmi? Ishlagach qolganlariga o'ting.</>, ru: <>Начните с одной записи: её поле <code className="qcode">finished</code> истинно? Заработало — переходите к остальным.</> })}</p>
                       <p>{tr({ uz: "⭐ Qo'shimcha: ikkinchi funksiya yozing — kechqurun (soat 20 dan keyin) tinglangan qo'shiqlarni qaytarsin.", ru: '⭐ Дополнительно: напишите вторую функцию — пусть возвращает песни, прослушанные вечером (после 20:00).' })}</p>
                     </div>}
                   </div>

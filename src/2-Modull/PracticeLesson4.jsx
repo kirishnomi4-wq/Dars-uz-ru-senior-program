@@ -1039,8 +1039,8 @@ const A1 = {
   ]
 };
 const a1Prompt = (nom) => tr({
-  uz: `«${nom}» do'konimga savat va jami narx qo'sh. Toifa tugmalari va qidiruv ishlashda davom etsin.\n1. script.js da savat massivi bo'lsin: let savat = [];\n2. Har kartochkada «Savatga» tugmasi. Bosilganda mahsulot savat.push() bilan qo'shilsin.\n3. Tepada «Savat: N» — savatdagi mahsulotlar soni (savat.length).\n4. jamiHisobla() funksiyasi for sikli bilan savatdagi narxlarni qo'shib, «Jami: … so'm» qatoriga yozsin. Har qo'shilganda chaqirilsin.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{index.html, style.css va script.js kodini shu yerga qo'ying}`,
-  ru: `Добавь в мой магазин «${nom}» корзину и итоговую цену. Кнопки категорий и поиск пусть продолжают работать.\n1. В script.js пусть будет массив корзины: let savat = [];\n2. На каждой карточке кнопка «В корзину». По нажатию товар добавляется через savat.push().\n3. Вверху «Корзина: N» — число товаров в корзине (savat.length).\n4. Функция jamiHisobla() циклом for складывает цены товаров в корзине и пишет их в строку «Итого: … сум». Вызывай её после каждого добавления.\nК каждому разделу — короткий комментарий. Измененные файлы верни целиком.\nВот мой код:\n{вставьте сюда код index.html, style.css и script.js}`
+  uz: `«${nom}» do'konimga savat va jami narx qo'sh. Toifa tugmalari va qidiruv ishlashda davom etsin.\n1. script.js da savat massivi bo'lsin: let cart = [];\n2. Har kartochkada «Savatga» tugmasi. Bosilganda mahsulot cart.push() bilan qo'shilsin.\n3. Tepada «Savat: N» — savatdagi mahsulotlar soni (cart.length).\n4. calcTotal() funksiyasi for sikli bilan savatdagi narxlarni qo'shib, «Jami: … so'm» qatoriga yozsin. Har qo'shilganda chaqirilsin.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{index.html, style.css va script.js kodini shu yerga qo'ying}`,
+  ru: `Добавь в мой магазин «${nom}» корзину и итоговую цену. Кнопки категорий и поиск пусть продолжают работать.\n1. В script.js пусть будет массив корзины: let cart = [];\n2. На каждой карточке кнопка «В корзину». По нажатию товар добавляется через cart.push().\n3. Вверху «Корзина: N» — число товаров в корзине (cart.length).\n4. Функция calcTotal() циклом for складывает цены товаров в корзине и пишет их в строку «Итого: … сум». Вызывай её после каждого добавления.\nК каждому разделу — короткий комментарий. Измененные файлы верни целиком.\nВот мой код:\n{вставьте сюда код index.html, style.css и script.js}`
 });
 // Kod oynasi — savat va jami o'zgaruvchilarining hozirgi qiymati
 const SavatKod = ({ items, savat, oxirgi, nur = 0 }) => {
@@ -1054,7 +1054,7 @@ const SavatKod = ({ items, savat, oxirgi, nur = 0 }) => {
         <div className="sk-izoh">// {tr({ uz: 'oxirgi amal', ru: 'последнее действие' })}</div>
         <div key={'o' + nur} className={`rj-li ${nur ? 'sk-nur' : ''}`}>{oxirgi || '—'}</div>
         <div className="sk-izoh">// {tr({ uz: 'hozir', ru: 'сейчас' })}</div>
-        <div key={'s' + nur} className={`rj-li ${nur ? 'sk-nur' : ''}`}><span className="sk-k">savat</span> = [{nomlar.join(', ')}];  <span className="sk-izoh">// savat.length = {savat.length}</span></div>
+        <div key={'s' + nur} className={`rj-li ${nur ? 'sk-nur' : ''}`}><span className="sk-k">cart</span> = [{nomlar.join(', ')}];  <span className="sk-izoh">// cart.length = {savat.length}</span></div>
         <div key={'j' + nur} className={`rj-li ${nur ? 'sk-nur' : ''}`}><span className="sk-k">jami</span> = {jamiSon(items, savat)};{narxlar.length > 1 && <>  <span className="sk-izoh">// for: {yigindi}</span></>}</div>
       </div>
     </div>
@@ -1068,7 +1068,7 @@ const ScreenSavat = ({ screen, onNext, onPrev }) => {
   const [yig, setYig] = useState(0);
   const kodRef = useRef(null);
   const korsat = () => setTimeout(() => { const el = kodRef.current; if (!el) return; const b = el.getBoundingClientRect(); if (b.top < 0 || b.bottom > window.innerHeight) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 420); // Mentor yig'ilib bo'lgach (F-1015-364) — kerak bo'lsagina suriladi
-  const qosh = (i) => { setSavat(s => [...s, i]); setOxirgi(`savat.push("${kat.items[i].n}");`); setNur(n => n + 1); korsat(); };
+  const qosh = (i) => { setSavat(s => [...s, i]); setOxirgi(`cart.push("${kat.items[i].n}");`); setNur(n => n + 1); korsat(); };
   const tozala = () => { setSavat([]); setOxirgi('savat = [];'); setNur(n => n + 1); korsat(); };
   return (
     <Stage mentorYigil eyebrow={tr({ uz: 'Amaliyot 1 · Gemini', ru: 'Практика 1 · Gemini' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
@@ -1120,14 +1120,14 @@ const BugKod = ({ items, savat, tuzatildi, tanlangan, onQator }) => {
   // massivda savatdagi birinchi ikki xil mahsulot ko'rinadi (bo'lmasa — katalogdagi birinchi ikkitasi)
   const ikki = [...new Set([...savat, 0, 1])].slice(0, 2).map(i => items[i]);
   const QATOR = [
-    'let mahsulotlar = [',
-    `  { nom: "${ikki[0].n}", narx: ${q(ikki[0].p)} },`,
-    `  { nom: "${ikki[1].n}", narx: ${q(ikki[1].p)} },`,
+    'let products = [',
+    `  { name: "${ikki[0].n}", price: ${q(ikki[0].p)} },`,
+    `  { name: "${ikki[1].n}", price: ${q(ikki[1].p)} },`,
     '];',
-    'function jamiHisobla() {',
-    '  let jami = 0;',
-    '  for (let i = 0; i < savat.length; i++) jami = jami + savat[i].narx;',
-    tr({ uz: '  jamiQator.textContent = "Jami: " + jami + " so\'m";', ru: '  jamiQator.textContent = "Итого: " + jami + " сум";' }),
+    'function calcTotal() {',
+    '  let total = 0;',
+    '  for (let i = 0; i < cart.length; i++) total = total + cart[i].price;',
+    tr({ uz: '  totalLine.textContent = "Jami: " + total + " so\'m";', ru: '  totalLine.textContent = "Итого: " + total + " сум";' }),
     '}'
   ];
   return (
@@ -1160,7 +1160,7 @@ const ScreenXato = ({ screen, onNext, onPrev }) => {
     : qism === 'nom' ? { t: 'xato', m: tr({ uz: "Nomlar to'g'ri. Jamini qo'lda hisoblab ko'ring.", ru: 'Названия верные. Посчитайте итог вручную.' }) } : null;
   const qatorXabar = qator === null || topildi ? null
     : qator === 7 ? tr({ uz: "Qo'shish shu yerda bo'ladi va qatorning o'zi to'g'ri. Narx qanday saqlangan? Massivga qarang.", ru: 'Сложение происходит здесь, и сама строка верная. Как хранится цена? Посмотрите на массив.' })
-    : qator === 6 ? tr({ uz: 'jami = 0 — son, hisob to\'g\'ri boshlanadi.', ru: 'jami = 0 — число, счёт начинается верно.' })
+    : qator === 6 ? tr({ uz: 'total = 0 — son, hisob to\'g\'ri boshlanadi.', ru: 'total = 0 — число, счёт начинается верно.' })
     : tr({ uz: "Bu qatorda xato yo'q. «+» qaysi qiymatlarni qo'shyapti?", ru: 'В этой строке ошибки нет. Какие значения складывает «+»?' });
   return (
     <Stage eyebrow={tr({ uz: 'Amaliyot 2 · xato ovi', ru: 'Практика 2 · поиск ошибки' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>

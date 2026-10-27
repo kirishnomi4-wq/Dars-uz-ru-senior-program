@@ -1592,65 +1592,67 @@ const maydonQutilar = () => Object.fromEntries(QUTILAR.map(q => [q.k, IMKONIYATL
 // ===== SCREEN 11 — KOD YOZISH (QKod: darvoza-savol → vazifa + Yordam + «Bajardim» · VS Code oynasi qo'lda yoziladi; terminal «Kutilgan natija» boshidan xira, 12-q1 A) =====
 // 87-qonun: kod-atamalar o'tilgan bo'lsa ham birinchi uchraganda bir qatorlik eslatma (Yordam ichida).
 const KD_CODE = {
-  uz: `// sanoq.js — «Maydon» intervyulari: har shikoyat nechta yozuvda chiqdi
+  uz: `// count.js — «Maydon» intervyulari: har shikoyat nechta yozuvda chiqdi
 
-// Kodda shikoyatlarni bitta so'z bilan yozamiz: band, telefon, jamoa, pul
-const yozuvlar = [
-  ["band", "telefon"],
-  ["band", "telefon"],
-  ["band"],
-  ["band", "telefon", "jamoa"],
-  ["jamoa", "pul"],
+// records — yozuvlar · complaints — shikoyatlar · count — son
+// Kodda shikoyatlar bitta so'z: busy (band), phone (telefon), team (jamoa), money (pul)
+const records = [
+  ["busy", "phone"],
+  ["busy", "phone"],
+  ["busy"],
+  ["busy", "phone", "team"],
+  ["team", "money"],
 ];
 
-const shikoyatlar = ["band", "telefon", "jamoa", "pul"];
+const complaints = ["busy", "phone", "team", "money"];
 
-for (let i = 0; i < shikoyatlar.length; i++) {
-  const s = shikoyatlar[i];   // s — shu aylanishda sanalayotgan shikoyat
-  let son = 0;
-  // Shu yerga: yozuvlar'ni ikkinchi sikl bilan aylanib chiqing,
-  // yozuvda s bo'lsa, son'ga bitta qo'shing (Yordam ▸)
-  console.log(s + " — " + son + " / " + yozuvlar.length);
+for (let i = 0; i < complaints.length; i++) {
+  const s = complaints[i];   // s — shu aylanishda sanalayotgan shikoyat
+  let count = 0;
+  // Shu yerga: records'ni ikkinchi sikl bilan aylanib chiqing,
+  // yozuvda s bo'lsa, count'ga bitta qo'shing (Yordam ▸)
+  console.log(s + " — " + count + " / " + records.length);
 }`,
-  ru: `// sanoq.js — интервью «Maydon»: в скольких записях встретилась каждая жалоба
+  ru: `// count.js — интервью «Maydon»: в скольких записях встретилась каждая жалоба
 
-// В коде пишем жалобы одним словом: band, telefon, jamoa, pul
-const yozuvlar = [
-  ["band", "telefon"],
-  ["band", "telefon"],
-  ["band"],
-  ["band", "telefon", "jamoa"],
-  ["jamoa", "pul"],
+// records — записи · complaints — жалобы · count — число
+// В коде жалобы одним словом: busy (занято), phone (телефон), team (команда), money (деньги)
+const records = [
+  ["busy", "phone"],
+  ["busy", "phone"],
+  ["busy"],
+  ["busy", "phone", "team"],
+  ["team", "money"],
 ];
 
-const shikoyatlar = ["band", "telefon", "jamoa", "pul"];
+const complaints = ["busy", "phone", "team", "money"];
 
-for (let i = 0; i < shikoyatlar.length; i++) {
-  const s = shikoyatlar[i];   // s — жалоба, которую считаем в этом проходе
-  let son = 0;
-  // Сюда: пройдите по yozuvlar вторым циклом,
-  // если в записи есть s — прибавьте к son единицу (Подсказка ▸)
-  console.log(s + " — " + son + " / " + yozuvlar.length);
+for (let i = 0; i < complaints.length; i++) {
+  const s = complaints[i];   // s — жалоба, которую считаем в этом проходе
+  let count = 0;
+  // Сюда: пройдите по records вторым циклом,
+  // если в записи есть s — прибавьте к count единицу (Подсказка ▸)
+  console.log(s + " — " + count + " / " + records.length);
 }`
 };
-const KD_NATIJA = ['band — 4 / 5', 'telefon — 3 / 5', 'jamoa — 2 / 5', 'pul — 1 / 5'];
+const KD_NATIJA = ['busy — 4 / 5', 'phone — 3 / 5', 'team — 2 / 5', 'money — 1 / 5'];
 const KD_SHART = [
   { uz: "To'rt shikoyat, har biri alohida qatorda", ru: 'Четыре жалобы, каждая на отдельной строке' },
   { uz: 'Har qator yonida — nechta yozuvda', ru: 'Рядом с каждой строкой — в скольких записях' },
   { uz: 'Sonlar doskadagi bilan bir xil', ru: 'Числа такие же, как на доске' }
 ];
 const KD_ESLATMA = [
-  { k: 'yozuvlar[j]', t: { uz: 'j-indeksdagi yozuv (indeks 0 dan boshlanadi)', ru: 'запись с индексом j (индекс начинается с 0)' } },
+  { k: 'records[j]', t: { uz: 'j-indeksdagi yozuv (indeks 0 dan boshlanadi)', ru: 'запись с индексом j (индекс начинается с 0)' } },
   { k: '.includes(s)', t: { uz: "ro'yxatda s bormi (5-Modulda ishlatgansiz)", ru: 'есть ли s в списке (вы использовали в 5-м модуле)' } },
   { k: 'for', t: { uz: "yozuvlarni birma-bir ko'rib chiqadi (sikl)", ru: 'перебирает записи по одной (цикл)' } },
   { k: 'if (...)', t: { uz: 'shart rost bo\'lsa, qavs ichidagi qator ishlaydi', ru: 'если условие верно, срабатывает строка в скобках' } },
-  { k: 'son = son + 1', t: { uz: "songa bitta qo'shadi", ru: 'прибавляет к числу единицу' } },
-  { k: 'terminal', plain: true, t: { uz: <><code className="qcode">node sanoq.js</code> yozib natijani ko'radigan oyna</>, ru: <>окно, где пишете <code className="qcode">node sanoq.js</code> и видите результат</> } }
+  { k: 'count = count + 1', t: { uz: "songa bitta qo'shadi", ru: 'прибавляет к числу единицу' } },
+  { k: 'terminal', plain: true, t: { uz: <><code className="qcode">node count.js</code> yozib natijani ko'radigan oyna</>, ru: <>окно, где пишете <code className="qcode">node count.js</code> и видите результат</> } }
 ];
 const KD_QADAM = [
-  { uz: <>Ichkariga ikkinchi sikl: <code className="qcode">{'for (let j = 0; j < yozuvlar.length; j++)'}</code></>, ru: <>Внутрь — второй цикл: <code className="qcode">{'for (let j = 0; j < yozuvlar.length; j++)'}</code></> },
-  { uz: <>Ichida shart: <code className="qcode">{'if (yozuvlar[j].includes(s))'}</code></>, ru: <>Внутри условие: <code className="qcode">{'if (yozuvlar[j].includes(s))'}</code></> },
-  { uz: <>Shart rost bo'lsa: <code className="qcode">son = son + 1;</code></>, ru: <>Если условие верно: <code className="qcode">son = son + 1;</code></> }
+  { uz: <>Ichkariga ikkinchi sikl: <code className="qcode">{'for (let j = 0; j < records.length; j++)'}</code></>, ru: <>Внутрь — второй цикл: <code className="qcode">{'for (let j = 0; j < records.length; j++)'}</code></> },
+  { uz: <>Ichida shart: <code className="qcode">{'if (records[j].includes(s))'}</code></>, ru: <>Внутри условие: <code className="qcode">{'if (records[j].includes(s))'}</code></> },
+  { uz: <>Shart rost bo'lsa: <code className="qcode">count = count + 1;</code></>, ru: <>Если условие верно: <code className="qcode">count = count + 1;</code></> }
 ];
 const GATE_OPTS = [
   { t: { uz: "To'rtinchi yozuvdagi shikoyatlar", ru: 'Жалобы из четвёртой записи' }, ok: false },
@@ -1667,11 +1669,11 @@ const jsHl = (ln) => ln.split(JS_TOKEN).filter(p => p !== undefined && p !== '')
 // VS Code oynasi: kod o'qiladi, nusxalanmaydi (PM-082 d); terminal — kutilgan natija, «Bajardim»dan keyin to'liq rangda, qatorlar ketma-ket ajraladi
 const VsOyna = ({ tayyor }) => (
   <div className="im-vsc" onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onContextMenu={e => e.preventDefault()} title={tr({ uz: "Kod nusxalanmaydi — o'zingiz terib yozasiz", ru: 'Код не копируется — наберите сами' })}>
-    <div className="im-vsc-bar"><span className="im-vsc-fayl"><b>JS</b> sanoq.js</span><span className="im-vsc-lock">{tr({ uz: "qo'lda yoziladi", ru: 'пишется вручную' })}</span></div>
+    <div className="im-vsc-bar"><span className="im-vsc-fayl"><b>JS</b> count.js</span><span className="im-vsc-lock">{tr({ uz: "qo'lda yoziladi", ru: 'пишется вручную' })}</span></div>
     <div className="im-vsc-body">{tr(KD_CODE).split('\n').map((ln, i) => <div key={i} className="im-vsc-q"><span className="im-vsc-n">{i + 1}</span><span className="im-vsc-k">{ln ? jsHl(ln) : ' '}</span></div>)}</div>
     <div className={cxx('im-term', tayyor && 'tayyor')}>
       <span className="im-term-l">{tr({ uz: 'Kutilgan natija', ru: 'Ожидаемый результат' })}</span>
-      <span className="im-term-q buyruq">$ node sanoq.js</span>
+      <span className="im-term-q buyruq">$ node count.js</span>
       {KD_NATIJA.map((q, i) => <span key={i} className="im-term-q" style={{ '--i': i }}>{q}</span>)}
     </div>
   </div>
@@ -1710,7 +1712,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           : tr({ uz: 'Doskada qo\'lingiz bilan sanagan shikoyatlarni endi kod xuddi shunday sanaydi.', ru: 'Жалобы, которые вы считали руками на доске, теперь точно так же посчитает код.' })}</Mentor>}
         vazifa={!stage2
           ? <div className="im-darvoza">
-              <span className="im-darvoza-s">{tr({ uz: <>Kod <code className="qcode">yozuvlar[4]</code> ni chiqarsa, terminalda nima ko'rinadi?</>, ru: <>Если код выведет <code className="qcode">yozuvlar[4]</code>, что появится в терминале?</> })}</span>
+              <span className="im-darvoza-s">{tr({ uz: <>Kod <code className="qcode">records[4]</code> ni chiqarsa, terminalda nima ko'rinadi?</>, ru: <>Если код выведет <code className="qcode">records[4]</code>, что появится в терминале?</> })}</span>
               <div className="im-darvoza-v im-kut">{GATE_OPTS.map((g, i) => { const silk = miss && miss.i === i; return <QChip key={silk ? `${i}-${miss.k}` : i} silk={silk} onClick={() => pickGate(i)}>{tr(g.t)}</QChip>; })}</div>
               {miss && <QXato>{tr({ uz: "Ro'yxatda sanash 0 dan boshlanadi.", ru: 'В списке счёт начинается с 0.' })}</QXato>}
             </div>
@@ -1893,7 +1895,7 @@ const QUIZ_BANK = [
   { q: { uz: "Egasi bandlar ro'yxatini ko'rmasa-chi?", ru: "А если владелец не видит список броней?" }, opts: [{ uz: "Hech narsa — u kerak emas", ru: "Ничего — он не нужен" }, { uz: "O'yinchi katak ko'rmaydi", ru: "Игрок не увидит ячейки" }, { uz: "Egasi maydonni boshqaga beradi", ru: "Владелец отдаст поле другим" }, { uz: "Sayt umuman ochilmaydi", ru: "Сайт вообще не откроется" }], correct: 2 },
   { q: { uz: 'Burbn jamoasi qaysi imkoniyatni qoldirdi?', ru: 'Какую возможность оставила команда Burbn?' }, opts: [{ uz: 'Joyni belgilashni', ru: 'Отметку места' }, { uz: 'Uchrashuv rejasini', ru: 'План встречи' }, { uz: "Ball yig'ishni", ru: 'Сбор баллов' }, { uz: 'Surat joylashni', ru: 'Публикацию фото' }], correct: 3 },
   { q: { uz: "Burbn jamoasi nimaga qarab qaror qildi?", ru: "На что смотрела команда Burbn, принимая решение?" }, opts: [{ uz: "O'z xohishiga", ru: "На своё желание" }, { uz: "Odamlar nima qilganiga", ru: "На то, что делали люди" }, { uz: "Eng oson imkoniyatga", ru: "На самую простую возможность" }, { uz: "Bitta odamning gapiga", ru: "На слова одного человека" }], correct: 1 },
-  { q: { uz: "`yozuvlar[j].includes(\"band\")` nimani tekshiradi?", ru: "Что проверяет `yozuvlar[j].includes(\"band\")`?" }, opts: [{ uz: "Yozuvlar nechtaligini", ru: "Сколько всего записей" }, { uz: "Birinchi yozuv nimaligini", ru: "Что в первой записи" }, { uz: "j-yozuvda «band» bormi", ru: "Есть ли «band» в записи j" }, { uz: "«band» so'zi uzunligini", ru: "Длину слова «band»" }], correct: 2 },
+  { q: { uz: "`records[j].includes(\"busy\")` nimani tekshiradi?", ru: "Что проверяет `records[j].includes(\"busy\")`?" }, opts: [{ uz: "Yozuvlar nechtaligini", ru: "Сколько всего записей" }, { uz: "Birinchi yozuv nimaligini", ru: "Что в первой записи" }, { uz: "j-yozuvda «band» bormi", ru: "Есть ли «band» в записи j" }, { uz: "«band» so'zi uzunligini", ru: "Длину слова «band»" }], correct: 2 },
   { q: { uz: "Ikki shikoyat — bir qiyinchilik. Nima qilasiz?", ru: "Две жалобы — одна трудность. Что сделаете?" }, opts: [{ uz: "Bitta gapga birlashtiraman", ru: "Объединю в одну формулировку" }, { uz: "Birini o'chiraman", ru: "Одну удалю" }, { uz: "Har biriga sayt qilaman", ru: "Сделаю сайт для каждой" }, { uz: "Ikkisini «Keyin»ga suraman", ru: "Отложу обе в «Потом»" }], correct: 0 }
 ];
 
@@ -2462,7 +2464,7 @@ const KARTOCHKALAR = [
   { front: { uz: '«Qilamiz» qutisiga qanday imkoniyat kiradi?', ru: 'Какая возможность входит в коробку «Делаем»?' }, back: { uz: "Busiz muammo hal bo'lmaydigani", ru: 'Та, без которой проблема не решится' } },
   { front: { uz: '«Keyin» bilan «Qilmaymiz» farqi nima?', ru: 'Чем «Потом» отличается от «Не делаем»?' }, back: { uz: "«Keyin»ga yozuvlarda sabab bor, «Qilmaymiz»ga yo'q", ru: 'Для «Потом» в записях есть причина, для «Не делаем» — нет' } },
   { front: { uz: "Burbn'dan nima qoldi?", ru: 'Что осталось от Burbn?' }, back: { uz: "Surat, izoh va layk — ilova Instagram bo'ldi (2010)", ru: 'Фото, комментарии и лайки — приложение стало Instagram (2010)' } },
-  { front: { uz: '`yozuvlar[j].includes(s)` nima qiladi?', ru: 'Что делает `yozuvlar[j].includes(s)`?' }, back: { uz: "j-indeksdagi yozuvda s bor-yo'qligini tekshiradi", ru: 'Проверяет, есть ли s в записи с индексом j' } }
+  { front: { uz: '`records[j].includes(s)` nima qiladi?', ru: 'Что делает `records[j].includes(s)`?' }, back: { uz: "j-indeksdagi yozuvda s bor-yo'qligini tekshiradi", ru: 'Проверяет, есть ли s в записи с индексом j' } }
 ];
 const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => { if (storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, []); // eslint-disable-line

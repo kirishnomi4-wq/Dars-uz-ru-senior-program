@@ -546,10 +546,10 @@ const USERS = [
   { id: 3, username: 'bek_777',    avatar: '🐼' }
 ];
 const POSTS = [
-  { id: 10, user_id: 1, rasm: '🏔️', izoh: { uz: "Tog' sayohati", ru: 'Поход в горы' } }, /* F-0926-06: namuna-matn ruscha rejimda tarjima (S7) */
-  { id: 11, user_id: 2, rasm: '🎨', izoh: { uz: 'Yangi rasm', ru: 'Новый рисунок' } },
-  { id: 12, user_id: 1, rasm: '🍜', izoh: { uz: 'Tushlik', ru: 'Обед' } },
-  { id: 13, user_id: 3, rasm: '⚽', izoh: 'Match kuni' }
+  { id: 10, user_id: 1, image: '🏔️', caption: { uz: "Tog' sayohati", ru: 'Поход в горы' } }, /* F-0926-06: namuna-matn ruscha rejimda tarjima (S7) */
+  { id: 11, user_id: 2, image: '🎨', caption: { uz: 'Yangi rasm', ru: 'Новый рисунок' } },
+  { id: 12, user_id: 1, image: '🍜', caption: { uz: 'Tushlik', ru: 'Обед' } },
+  { id: 13, user_id: 3, image: '⚽', caption: 'Match kuni' }
 ];
 const userById = (id) => USERS.find(u => u.id === id);
 
@@ -671,8 +671,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
             <div className="vis-card">{/* F-0926-06 (160-qonun): oyna va uning izohi bitta kartada */}
             <Win title={view === 'sql' ? tr({ uz: 'PostgreSQL — posts jadvali', ru: 'PostgreSQL — таблица posts' }) : tr({ uz: 'MongoDB — posts hujjati', ru: 'MongoDB — документ posts' })} minH={150}>
               {view === 'sql'
-                ? <div className="demo-swap"><DataTable cols={['id', 'user_id', 'rasm', 'izoh']} rows={POSTS.slice(0, 3).map(p => ({ ...p, izoh: tr(p.izoh) }))} fkCols={['user_id']} /></div>
-                : <div className="demo-swap jv-pair">{POSTS.slice(0, 2).map(p => <JsonView key={p.id} obj={{ id: p.id, user_id: p.user_id, izoh: tr(p.izoh) }} />)}</div>}
+                ? <div className="demo-swap"><DataTable cols={['id', 'user_id', 'image', 'caption']} rows={POSTS.slice(0, 3).map(p => ({ ...p, caption: tr(p.caption) }))} fkCols={['user_id']} /></div>
+                : <div className="demo-swap jv-pair">{POSTS.slice(0, 2).map(p => <JsonView key={p.id} obj={{ id: p.id, user_id: p.user_id, caption: tr(p.caption) }} />)}</div>}
             </Win>
             <p className="mono small" style={{ margin: 0, color: view === 'sql' ? T.accent : T.blue }}>{view === 'sql' ? tr({ uz: 'Jadval — har qator bir xil', ru: 'Таблица — все строки одинаковые' }) : tr({ uz: "Hujjat — har biri o'zicha", ru: 'Документ — каждый по-своему' })}</p>
             </div>
@@ -801,12 +801,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const QX_CARDS = [
   { id: 'idc',   label: 'id · 10',       col: 'id',       icon: '🔢' },
   { id: 'user',  label: 'ali_dev',       col: 'user_id',  icon: '👤' },
-  { id: 'rasm',  label: { uz: "Tog' surati", ru: 'Фото гор' }, col: 'rasm',  icon: '🖼' },
-  { id: 'izoh',  label: { uz: "Tog' sayohati", ru: 'Поход в горы' }, col: 'izoh', icon: '📝' },
+  { id: 'image',  label: { uz: "Tog' surati", ru: 'Фото гор' }, col: 'image',  icon: '🖼' },
+  { id: 'caption',  label: { uz: "Tog' sayohati", ru: 'Поход в горы' }, col: 'caption', icon: '📝' },
   { id: 'music', label: 'Lo-fi',         col: null,       icon: '🎵' },
 ];
 const QX_SLOTS = [
-  { col: 'id', label: 'id' }, { col: 'user_id', label: 'user_id' }, { col: 'rasm', label: 'rasm' }, { col: 'izoh', label: 'izoh' }
+  { col: 'id', label: 'id' }, { col: 'user_id', label: 'user_id' }, { col: 'image', label: 'image' }, { col: 'caption', label: 'caption' }
 ];
 const QX_BYID = Object.fromEntries(QX_CARDS.map(c => [c.id, c]));
 function Qadoqxona({ solvedInit, onSolved }) {
@@ -924,7 +924,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [armed, setArmed] = useState(false); // posts.user_id bosildi, endi users.id kutilyapti
   const [joined, setJoined] = useState(!!storedAnswer);
   const done = joined;
-  const result = POSTS.map(p => ({ username: userById(p.user_id).username, izoh: tr(p.izoh) }));
+  const result = POSTS.map(p => ({ username: userById(p.user_id).username, caption: tr(p.caption) }));
   const boxesRef = useRef(null), fkRef = useRef(null), pkRef = useRef(null);
   const [line, setLine] = useState(null);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
@@ -958,7 +958,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="jn-box-h">posts</div>
               <div className="jn-field">id · 10</div>
               <div ref={fkRef} className={`jn-field link ${armed ? 'armed' : ''} ${joined ? 'done' : ''} ${!armed && !joined ? 'taphint' : ''}`} onClick={clickFk}><span className="jn-badge fk">FK</span> user_id · 1 {joined ? '🔗' : '→'}</div>
-              <div className="jn-field">izoh · {tr(POSTS[0].izoh)}</div>
+              <div className="jn-field">caption · {tr(POSTS[0].caption)}</div>
             </div>
             <div className="jn-box">
               <div className="jn-box-h">users</div>
@@ -974,8 +974,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             )}
           </div>
           {/* F-0926-06: «… ustunini bosing» yo'rig'i olindi — mentor aytadi, maydonlarda taphint va «⟵ bosing» bor */}
-          <SqlCode q={"SELECT users.username, posts.izoh\nFROM posts\nJOIN users ON posts.user_id = users.id"} />
-          {joined && <DataTable cols={['username', 'izoh']} rows={result} />}{/* F-0926-06: «Mana SQL'ning kuchi…» mentor gapini takrorlardi — olindi */}
+          <SqlCode q={"SELECT users.username, posts.caption\nFROM posts\nJOIN users ON posts.user_id = users.id"} />
+          {joined && <DataTable cols={['username', 'caption']} rows={result} />}{/* F-0926-06: «Mana SQL'ning kuchi…» mentor gapini takrorlardi — olindi */}
         </div>
         </Zoomable>
       </div>

@@ -800,7 +800,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <p className="body" style={{ color: T.ink, margin: '11px 0 0' }}>{tr(PARTS[active].info)}</p>
               </div>
             ) : null /* F-0926-06: bo'sh-holat ramkasi «Koddan bir qismni bosing» olindi — chorlov mentorda (159/3) */}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Formula: <span className="mono">const [qiymat, setQiymat] = useState(boshlang'ich)</span>. Juftlik nomi erkin — <span className="mono">[son, setSon]</span> ham bo'laveradi.</>, ru: <>Формула: <span className="mono">const [значение, setЗначение] = useState(начальное)</span>. Имена пары свободные — <span className="mono">[son, setSon]</span> тоже подойдёт.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Formula: <span className="mono">const [value, setValue] = useState(initial)</span>. Juftlik nomi erkin — <span className="mono">[son, setSon]</span> ham bo'laveradi.</>, ru: <>Формула: <span className="mono">const [значение, setЗначение] = useState(начальное)</span>. Имена пары свободные — <span className="mono">[son, setSon]</span> тоже подойдёт.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>

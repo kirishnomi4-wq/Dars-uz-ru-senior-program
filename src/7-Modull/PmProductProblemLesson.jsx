@@ -1765,46 +1765,50 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — KOD YOZISH (QKod + HtmlCompiler; darvoza-mashq PM-082 c/e; kod nusxalanmaydi PM-082 d; «kompilyator» ta'riflanmaydi) =====
 // Yozuvlar — Mentor ro'yxatidan (ROYXAT_MENTOR.yozuvlar, matn qisqartirilgan). Kod-nomlari ASCII: joy · matn · tur: "muammo" | "yechim" | "fikr".
 const KOD_STARTER = { uz: `// Mentor ro'yxatidagi yozuvlar: joy, matn va turi
-const yozuvlar = [
-  { joy: "yo'l", matn: "Velosiped teshilsa, ustaxona topilmaydi", tur: "muammo" },
-  { joy: "mahalla", matn: "Yana bitta maydon qurish kerak", tur: "yechim" },
-  { joy: "maktab", matn: "Futbol — eng qiziq o'yin", tur: "fikr" },
-  { joy: "maktab", matn: "Oshxonada nima borligini navbatda bilishadi", tur: "muammo" }
+// notes — yozuvlar · place — joy · text — matn · type — turi ("problem" — muammo, "solution" — yechim, "opinion" — fikr)
+const notes = [
+  { place: "yo'l", text: "Velosiped teshilsa, ustaxona topilmaydi", type: "problem" },
+  { place: "mahalla", text: "Yana bitta maydon qurish kerak", type: "solution" },
+  { place: "maktab", text: "Futbol — eng qiziq o'yin", type: "opinion" },
+  { place: "maktab", text: "Oshxonada nima borligini navbatda bilishadi", type: "problem" }
 ];
 
-function muammolar(royxat) {
+function problems(list) {
   // faqat muammolarning matni qaytsin
   return [];   // shu joyni siz yozasiz
 }
 
-console.log(muammolar(yozuvlar));
+console.log(problems(notes));
 // ["Velosiped teshilsa, ustaxona topilmaydi", "Oshxonada nima borligini navbatda bilishadi"]
-console.log(muammolar([]));
+console.log(problems([]));
 // []
-console.log(muammolar([yozuvlar[1], yozuvlar[3]]));
+console.log(problems([notes[1], notes[3]]));
 // ["Oshxonada nima borligini navbatda bilishadi"]`,
   ru: `// Записи из списка Ментора: место, текст и тип
-const yozuvlar = [
-  { joy: "дорога", matn: "Если проколется колесо, мастерскую не найти", tur: "muammo" },
-  { joy: "махалля", matn: "Нужно построить ещё одно поле", tur: "yechim" },
-  { joy: "школа", matn: "Футбол — самая интересная игра", tur: "fikr" },
-  { joy: "школа", matn: "Что есть в столовой, узнают в очереди", tur: "muammo" }
+// notes — записи · place — место · text — текст · type — тип ("problem" — проблема, "solution" — решение, "opinion" — мнение)
+const notes = [
+  { place: "дорога", text: "Если проколется колесо, мастерскую не найти", type: "problem" },
+  { place: "махалля", text: "Нужно построить ещё одно поле", type: "solution" },
+  { place: "школа", text: "Футбол — самая интересная игра", type: "opinion" },
+  { place: "школа", text: "Что есть в столовой, узнают в очереди", type: "problem" }
 ];
 
-function muammolar(royxat) {
+function problems(list) {
   // пусть вернётся только текст проблем
   return [];   // это место пишете вы
 }
 
-console.log(muammolar(yozuvlar));
+console.log(problems(notes));
 // ["Если проколется колесо, мастерскую не найти",
 //  "Что есть в столовой, узнают в очереди"]
-console.log(muammolar([]));
+console.log(problems([]));
 // []
-console.log(muammolar([yozuvlar[1], yozuvlar[3]]));
+console.log(problems([notes[1], notes[3]]));
 // ["Что есть в столовой, узнают в очереди"]` };
 // Shartlar xulq-atvorga bog'langan (manba-regex emas): for...of ham, filter + map ham o'tadi; starter holatida uchalasi qizil.
-const KOD_DATA = `[{joy:"yo'l",matn:"Velosiped teshilsa, ustaxona topilmaydi",tur:"muammo"},{joy:"mahalla",matn:"Yana bitta maydon qurish kerak",tur:"yechim"},{joy:"maktab",matn:"Futbol — eng qiziq o'yin",tur:"fikr"},{joy:"maktab",matn:"Oshxonada nima borligini navbatda bilishadi",tur:"muammo"}]`;
+// F-1027-01: eski saqlangan kod ham o'tadi — ma'lumotda eski va yangi kalitlar birga.
+const KOD_DATA = `[{place:"yo'l",text:"Velosiped teshilsa, ustaxona topilmaydi",type:"problem",joy:"yo'l",matn:"Velosiped teshilsa, ustaxona topilmaydi",tur:"muammo"},{place:"mahalla",text:"Yana bitta maydon qurish kerak",type:"solution",joy:"mahalla",matn:"Yana bitta maydon qurish kerak",tur:"yechim"},{place:"maktab",text:"Futbol — eng qiziq o'yin",type:"opinion",joy:"maktab",matn:"Futbol — eng qiziq o'yin",tur:"fikr"},{place:"maktab",text:"Oshxonada nima borligini navbatda bilishadi",type:"problem",joy:"maktab",matn:"Oshxonada nima borligini navbatda bilishadi",tur:"muammo"}]`;
+const KOD_FN = "(typeof problems==='function'?problems:muammolar)";
 const KOD_VAZIFA = [
   { uz: "Funksiya ro'yxat (massiv) qaytaradi", ru: 'Функция возвращает список (массив)' },
   { uz: "Ro'yxatga faqat muammolarning matni tushadi", ru: 'В список попадает только текст проблем' },
@@ -1812,30 +1816,30 @@ const KOD_VAZIFA = [
 ];
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
-  title: { uz: 'app.js — muammolar funksiyasini yakunlang', ru: 'app.js — допишите функцию muammolar' },
+  title: { uz: 'app.js — problems funksiyasini yakunlang', ru: 'app.js — допишите функцию problems' },
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// muammolarning matnini yig'ib qaytaring", ru: '// соберите и верните текст проблем' } }],
   requirements: [
     { id: 'royxat', label: KOD_VAZIFA[0],
-      check: C.evalEquals(`(function(){var a=muammolar(${KOD_DATA});return (Array.isArray(a)&&a.length===2)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin: to'rt yozuvdan ikkitasi tushadi.", ru: 'Функция должна вернуть список: из четырёх записей попадают две.' }) },
+      check: C.evalEquals(`(function(){var a=${KOD_FN}(${KOD_DATA});return (Array.isArray(a)&&a.length===2)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin: to'rt yozuvdan ikkitasi tushadi.", ru: 'Функция должна вернуть список: из четырёх записей попадают две.' }) },
     { id: 'faqat', label: KOD_VAZIFA[1],
-      check: C.evalEquals(`(function(){var a=muammolar(${KOD_DATA});if(!Array.isArray(a))return "";return a.join("|");})()`, 'Velosiped teshilsa, ustaxona topilmaydi|Oshxonada nima borligini navbatda bilishadi', { uz: 'Faqat matn tushsin; yechim va fikr tushmasin.', ru: 'Пусть попадает только текст; решение и мнение — нет.' }) },
+      check: C.evalEquals(`(function(){var a=${KOD_FN}(${KOD_DATA});if(!Array.isArray(a))return "";return a.join("|");})()`, 'Velosiped teshilsa, ustaxona topilmaydi|Oshxonada nima borligini navbatda bilishadi', { uz: 'Faqat matn tushsin; yechim va fikr tushmasin.', ru: 'Пусть попадает только текст; решение и мнение — нет.' }) },
     { id: 'uch', label: { uz: 'Uchala console.log kutilgandek chiqdi', ru: 'Все три console.log вывели ожидаемое' },
-      check: C.evalEquals(`(function(){var b=muammolar([]),c=muammolar([${KOD_DATA}[1],${KOD_DATA}[3]]);if(!Array.isArray(b)||!Array.isArray(c))return "";return b.length+"/"+c.join("|");})()`, '0/Oshxonada nima borligini navbatda bilishadi', { uz: "Bo'sh ro'yxatga — bo'sh; ikki yozuvdan bittasi tushadi.", ru: 'Для пустого списка — пустой; из двух записей попадает одна.' }) }
+      check: C.evalEquals(`(function(){var b=${KOD_FN}([]),c=${KOD_FN}([${KOD_DATA}[1],${KOD_DATA}[3]]);if(!Array.isArray(b)||!Array.isArray(c))return "";return b.length+"/"+c.join("|");})()`, '0/Oshxonada nima borligini navbatda bilishadi', { uz: "Bo'sh ro'yxatga — bo'sh; ikki yozuvdan bittasi tushadi.", ru: 'Для пустого списка — пустой; из двух записей попадает одна.' }) }
   ]
 };
 const KOD_DARVOZA = [
-  { id: 'joy', ok: false, x: { uz: 'Joydan yozuv muammomi yoki yechimmi — bilinmaydi.', ru: 'По месту не понять, проблема это или решение.' } },
-  { id: 'matn', ok: false, x: { uz: "Kod gapning ma'nosini o'qimaydi — unga belgi kerak.", ru: 'Код не читает смысл фразы — ему нужна метка.' } },
-  { id: 'tur', ok: true }
+  { id: 'place', ok: false, x: { uz: 'Joydan yozuv muammomi yoki yechimmi — bilinmaydi.', ru: 'По месту не понять, проблема это или решение.' } },
+  { id: 'text', ok: false, x: { uz: "Kod gapning ma'nosini o'qimaydi — unga belgi kerak.", ru: 'Код не читает смысл фразы — ему нужна метка.' } },
+  { id: 'type', ok: true }
 ];
-// Kod namunasi (o'qish uchun; nusxalanmaydi): `tur` qiymatlari darvozadan keyin bir lahza ajraladi — muammo yashil, yechim va fikr kulrang
+// Kod namunasi (o'qish uchun; nusxalanmaydi): `type` qiymatlari darvozadan keyin bir lahza ajraladi — muammo yashil, yechim va fikr kulrang
 const KodNamuna = ({ ajrat }) => (
   <pre className={cxx('pp-kod', ajrat && 'ajrat')} onCopy={(e) => e.preventDefault()} aria-label="app.js">
-    {tr(KOD_STARTER).split('\n').slice(0, 12).map((l, i) => {
+    {tr(KOD_STARTER).split('\n').slice(0, 13).map((l, i) => {
       if (l.trim().startsWith('//')) return <span key={i} className="pp-kod-izoh">{l}{'\n'}</span>;
-      const m = /^(.*tur: )"(muammo|yechim|fikr)"(.*)$/.exec(l);
+      const m = /^(.*type: )"(problem|solution|opinion)"(.*)$/.exec(l);
       if (!m) return <span key={i}>{l}{'\n'}</span>;
-      return <span key={i}>{m[1]}<b className={cxx('pp-tur', m[2])}>"{m[2]}"</b>{m[3]}{'\n'}</span>;
+      return <span key={i}>{m[1]}<b className={cxx('pp-tur', { problem: 'muammo', solution: 'yechim', opinion: 'fikr' }[m[2]])}>"{m[2]}"</b>{m[3]}{'\n'}</span>;
     })}
   </pre>
 );
@@ -1846,7 +1850,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
   const live = gate.live;
   const isMentor = !!(live && live.mode === 'mentor');
-  const [gpick, setGpick] = useState(() => (storedAnswer ? 'tur' : null));
+  const [gpick, setGpick] = useState(() => (storedAnswer ? 'type' : null));
   const [miss, setMiss] = useState(null);
   const [ajrat, setAjrat] = useState(false);
   const [yordam, setYordam] = useState(false);
@@ -1895,7 +1899,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         yordam={stage2 && <div className="pp-yordam">
           <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM)}</QTugma>
           {yordam && <>
-            <QIzoh>{fmtCode(tr({ uz: 'Bitta yozuvdan boshlang: birinchi yozuvning `tur` qiymati `"muammo"` mi? Ishlagach qolganlariga o\'ting.', ru: 'Начните с одной записи: значение `tur` у первой записи — `"muammo"`? Когда заработает, переходите к остальным.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: 'Bitta yozuvdan boshlang: birinchi yozuvning `type` qiymati `"problem"` mi? Ishlagach qolganlariga o\'ting.', ru: 'Начните с одной записи: значение `type` у первой записи — `"problem"`? Когда заработает, переходите к остальным.' }))}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: "Eslatma (JavaScript darslaridan): `function` — bitta vazifani bajaradigan kod bo'lagi · massiv — ro'yxat · `console.log` — qiymatni ekranga chiqaradi.", ru: 'Напоминание (из уроков JavaScript): `function` — кусочек кода, который выполняет одну задачу · массив — список · `console.log` — выводит значение на экран.' }))}</QIzoh>
           </>}
         </div>}

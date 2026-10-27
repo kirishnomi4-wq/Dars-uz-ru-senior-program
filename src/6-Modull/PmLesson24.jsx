@@ -1431,42 +1431,44 @@ const GATE_OPTS = [
   { t: { uz: "To'rtinchi ishning ufq nomi", ru: 'Горизонт четвёртой задачи' }, ok: true },
   { t: { uz: 'Rejadagi ufqlarning umumiy soni', ru: 'Сколько всего горизонтов в плане' } },
 ];
-const KD_CODE = { uz: `// reja.js — sartaroshxona tizimining uch ufqli rejasi
+const KD_CODE = { uz: `// plan.js — sartaroshxona tizimining uch ufqli rejasi
 
-// Kodda ufq nomlarini qisqa yozamiz: hozir, uch-oy, olti-oy
-const reja = [
-  { ish: "Sartarosh suratlari", ufq: "hozir" },
-  { ish: "Eslatma xabari", ufq: "hozir" },
-  { ish: "Manzilni ko'rsatish", ufq: "hozir" },
-  { ish: "Sartaroshga baho qo'yish", ufq: "uch-oy" },
-  { ish: "Band kunlar", ufq: "uch-oy" },
-  { ish: "Oldindan to'lash", ufq: "olti-oy" },
+// plan — reja · task — ish · horizon — ufq
+// Kodda ufq nomlari: now (hozir), 3-months (uch oydan keyin), 6-months (olti oydan keyin)
+const plan = [
+  { task: "Sartarosh suratlari", horizon: "now" },
+  { task: "Eslatma xabari", horizon: "now" },
+  { task: "Manzilni ko'rsatish", horizon: "now" },
+  { task: "Sartaroshga baho qo'yish", horizon: "3-months" },
+  { task: "Band kunlar", horizon: "3-months" },
+  { task: "Oldindan to'lash", horizon: "6-months" },
 ];
 
-const ufqlar = ["hozir", "uch-oy", "olti-oy"];
+const horizons = ["now", "3-months", "6-months"];
 
-for (let i = 0; i < ufqlar.length; i++) {
-  const u = ufqlar[i];   // u — shu aylanishda ochilayotgan ufq nomi
-  // Shu yerga: sarlavhani chiqaring, keyin reja'ni ikkinchi sikl bilan
-  // aylanib, ufqi u ga teng ishni sarlavha ostiga chiqaring (Yordam ▸)
-}`, ru: `// reja.js — план системы парикмахерской на три горизонта
+for (let i = 0; i < horizons.length; i++) {
+  const u = horizons[i];   // u — shu aylanishda ochilayotgan ufq (horizon) nomi
+  // Shu yerga: sarlavhani chiqaring, keyin plan'ni ikkinchi sikl bilan
+  // aylanib, horizon i u ga teng ishni sarlavha ostiga chiqaring (Yordam ▸)
+}`, ru: `// plan.js — план системы парикмахерской на три горизонта
 
-// В коде названия горизонтов пишем коротко: hozir (сейчас), uch-oy (через три месяца), olti-oy (через шесть месяцев)
-const reja = [
-  { ish: "Фото парикмахеров", ufq: "hozir" },
-  { ish: "Напоминание", ufq: "hozir" },
-  { ish: "Показать адрес", ufq: "hozir" },
-  { ish: "Оценка парикмахеру", ufq: "uch-oy" },
-  { ish: "Занятые дни", ufq: "uch-oy" },
-  { ish: "Предоплата", ufq: "olti-oy" },
+// plan — план · task — задача · horizon — горизонт
+// Горизонты в коде: now (сейчас), 3-months (через три месяца), 6-months (через шесть месяцев)
+const plan = [
+  { task: "Фото парикмахеров", horizon: "now" },
+  { task: "Напоминание", horizon: "now" },
+  { task: "Показать адрес", horizon: "now" },
+  { task: "Оценка парикмахеру", horizon: "3-months" },
+  { task: "Занятые дни", horizon: "3-months" },
+  { task: "Предоплата", horizon: "6-months" },
 ];
 
-const ufqlar = ["hozir", "uch-oy", "olti-oy"];
+const horizons = ["now", "3-months", "6-months"];
 
-for (let i = 0; i < ufqlar.length; i++) {
-  const u = ufqlar[i];   // u — горизонт, который открывается на этом круге цикла
-  // Здесь: выведите заголовок, затем вторым циклом пройдите по reja
-  // и выведите под заголовком задачи, у которых ufq равно u (Подсказка ▸)
+for (let i = 0; i < horizons.length; i++) {
+  const u = horizons[i];   // u — горизонт, который открывается на этом круге цикла
+  // Здесь: выведите заголовок, затем вторым циклом пройдите по plan
+  // и выведите под заголовком задачи, у которых horizon равно u (Подсказка ▸)
 }` };
 const JS_TOKEN = /(\/\/[^\n]*|"[^"]*"|\b(?:const|let|for|return)\b)/g;
 const jsHl = (ln) => ln.split(JS_TOKEN).filter(p => p !== undefined && p !== '').map((p, i) => {
@@ -1486,7 +1488,7 @@ const KD_ESLATMA = [
   { k: '.ufq', t: { uz: <>shu ishning ufq maydoni (qiymati)</>, ru: <>поле горизонта этой задачи (его значение)</> } },
   { k: 'for', t: { uz: <>ishlarni birma-bir ko'rib chiqadi (sikl)</>, ru: <>перебирает задачи по одной (цикл)</> } },
   { k: 'if (a === b)', t: { uz: <>shartni tekshiradi: teng bo'lsa, qavs ichidagi qator ishlaydi</>, ru: <>проверяет условие: если значения равны, срабатывает строка в скобках</> } },
-  { k: 'terminal', plain: true, t: { uz: <><code className="qcode">node reja.js</code> yozib natijani ko'radigan oyna</>, ru: <>окно, где вы пишете <code className="qcode">node reja.js</code> и видите результат</> } },
+  { k: 'terminal', plain: true, t: { uz: <><code className="qcode">node plan.js</code> yozib natijani ko'radigan oyna</>, ru: <>окно, где вы пишете <code className="qcode">node plan.js</code> и видите результат</> } },
 ];
 const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -1535,7 +1537,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <>
             <Mentor>{tr({ uz: 'Avval bitta savol — keyin kod yoziladi.', ru: 'Сначала один вопрос — потом пишем код.' })}</Mentor>
             <div className="cmt hunt">
-              <span className="cmt-lbl">{tr({ uz: <>Kod <code className="qcode">reja[3].ufq</code> ni chiqarsa, terminalda nima ko'rinadi?</>, ru: <>Если код выведет <code className="qcode">reja[3].ufq</code>, что появится в терминале?</> })}</span>
+              <span className="cmt-lbl">{tr({ uz: <>Kod <code className="qcode">plan[3].horizon</code> ni chiqarsa, terminalda nima ko'rinadi?</>, ru: <>Если код выведет <code className="qcode">plan[3].horizon</code>, что появится в терминале?</> })}</span>
               <div className="gt-btns col3">
                 {GATE_OPTS.map((g, i) => (
                   <button key={i} type="button" className={`gt-b${miss === i ? ' miss' : ''}`} onClick={() => pickGate(i)}>{tr(g.t)}</button>
@@ -1564,10 +1566,10 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                         <p className="kd-esl-h">{tr({ uz: 'Uch qadam', ru: 'Три шага' })}</p>
                         <ol className="kd-esl">
                           <li>{tr({ uz: <>Sarlavha: <code className="qcode">console.log("== " + u + " ==");</code></>, ru: <>Заголовок: <code className="qcode">console.log("== " + u + " ==");</code></> })}</li>
-                          <li>{tr({ uz: <>Ichkariga ikkinchi sikl: <code className="qcode">{'for (let j = 0; j < reja.length; j++)'}</code>, ichida <code className="qcode">const r = reja[j];</code></>, ru: <>Внутрь — второй цикл: <code className="qcode">{'for (let j = 0; j < reja.length; j++)'}</code>, внутри <code className="qcode">const r = reja[j];</code></> })}</li>
-                          <li>{tr({ uz: <>Faqat <code className="qcode">r.ufq</code> qiymati <code className="qcode">u</code> ga teng bo'lsa: <code className="qcode">console.log("   - " + r.ish);</code></>, ru: <>Только если <code className="qcode">r.ufq</code> равно <code className="qcode">u</code>: <code className="qcode">console.log("   - " + r.ish);</code></> })}</li>
+                          <li>{tr({ uz: <>Ichkariga ikkinchi sikl: <code className="qcode">{'for (let j = 0; j < plan.length; j++)'}</code>, ichida <code className="qcode">const r = plan[j];</code></>, ru: <>Внутрь — второй цикл: <code className="qcode">{'for (let j = 0; j < plan.length; j++)'}</code>, внутри <code className="qcode">const r = plan[j];</code></> })}</li>
+                          <li>{tr({ uz: <>Faqat <code className="qcode">r.horizon</code> qiymati <code className="qcode">u</code> ga teng bo'lsa: <code className="qcode">console.log("   - " + r.task);</code></>, ru: <>Только если <code className="qcode">r.horizon</code> равно <code className="qcode">u</code>: <code className="qcode">console.log("   - " + r.task);</code></> })}</li>
                         </ol>
-                        <p>{tr({ uz: <>Teng bo'lsa qavs ichidagi qator ishlaydi: <code className="qcode">if (kun === "dushanba") {'{'} ... {'}'}</code></>, ru: <>Если значения равны, сработает строка в скобках: <code className="qcode">if (kun === "понедельник") {'{'} ... {'}'}</code></> })}</p>
+                        <p>{tr({ uz: <>Teng bo'lsa qavs ichidagi qator ishlaydi: <code className="qcode">if (day === "dushanba") {'{'} ... {'}'}</code></>, ru: <>Если значения равны, сработает строка в скобках: <code className="qcode">if (day === "понедельник") {'{'} ... {'}'}</code></> })}</p>
                       </div>}
                     </div>
                   </div>
@@ -1589,7 +1591,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                       <div key={i} className="vsc-line"><span className="vsc-ln">{i + 1}</span><span className="vsc-code">{ln ? jsHl(ln) : ' '}</span></div>
                     ))}
                   </div>
-                  <div className="vsc-term"><span className="vsc-term-lbl">TERMINAL</span><span className="mono">$ node reja.js</span></div>
+                  <div className="vsc-term"><span className="vsc-term-lbl">TERMINAL</span><span className="mono">$ node plan.js</span></div>
                 </div>
               </Col>
             </div>

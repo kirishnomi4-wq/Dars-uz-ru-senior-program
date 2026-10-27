@@ -1821,41 +1821,43 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // Starter oddiy satrlardan yig'iladi (backtik yo'q). Tekshiruv ma'lumotdan mustaqil (SABOQ 37): ufq() o'z namuna obyekti bilan chaqiriladi; node sinovi — scratchpad 06-qurish/kod-sinov.mjs.
 // Qatorlar ≤ 70 belgi: «return "uzoqroq";» yonidagi izoh o'z qatoriga ko'chirildi (hisobotda — MD dan chetlashish).
 const KOD_IZ = {
-  bosh: { uz: ['// Mentor misoli: oltita ish va RICE;', '// kutadi — ish 12-Modulni kutadi'], ru: ['// Пример Ментора: шесть работ и RICE;', '// kutadi — работа ждёт 12-й модуль'] },
+  bosh: { uz: ['// Mentor misoli: oltita ish va RICE;', '// tasks — ishlar · name — nomi · waitsFor — ish 12-Modulni kutadi', '// horizon — ustun: "now" (hozir), "later" (keyinroq), "far" (uzoqroq)'], ru: ['// Пример Ментора: шесть работ и RICE;', '// tasks — работы · name — название · waitsFor — работа ждёт 12-й модуль', '// horizon — колонка: "now" (сейчас), "later" (позже), "far" (далеко)'] },
   sort: { uz: ["// RICE bo'yicha tartib: kattasi oldinda", '// (bu qator tayyor)'], ru: ['// Порядок по RICE: больший впереди', '// (эта строка готова)'] },
-  qayer: { uz: ['  // ish qaysi ustunga tushadi:', '  // "hozir", "keyinroq" yoki "uzoqroq"'], ru: ['  // в какую колонку попадёт работа:', '  // "hozir", "keyinroq" или "uzoqroq"'] },
-  soni: { uz: ['  // hozirSoni — «Hozir» ustuniga allaqachon', '  // tushgan ishlar soni'], ru: ['  // hozirSoni — сколько работ уже', '  // попало в колонку «Hozir»'] },
+  qayer: { uz: ['  // ish qaysi ustunga tushadi:', '  // "now", "later" yoki "far"'], ru: ['  // в какую колонку попадёт работа:', '  // "now", "later" или "far"'] },
+  soni: { uz: ['  // nowCount — «Hozir» ustuniga allaqachon', '  // tushgan ishlar soni'], ru: ['  // nowCount — сколько работ уже', '  // попало в колонку «Hozir»'] },
   siz: { uz: ['  // boshida hamma ish shu yerda — shu joyni siz yozasiz'], ru: ['  // сначала все работы здесь — это место пишете вы'] },
   tayyor: { uz: ["// har ish — o'z ustunida (bu qism tayyor)"], ru: ['// каждая работа — в своей колонке (эта часть готова)'] }
 };
 // ru-qoldiq-istisno s11: hozir bo'lishish o'yin o'yindan va qo'shilish ro'yxat o'zi
 const KOD_ISHLAR = [
-  'const ishlar = [',
-  '  { nom: "Maydon pulini bo\'lishish", rice: 5 },',
-  '  { nom: "O\'yin kuni tasdiq", rice: 60 },',
-  '  { nom: "O\'yindan oldin eslatma", rice: 15,',
-  '    kutadi: "12-Modul" },',
-  '  { nom: "O\'yin e\'loni va qo\'shilish", rice: 72 },',
-  '  { nom: "Ro\'yxat o\'zi yangilanadi", rice: 10,',
-  '    kutadi: "12-Modul" },',
-  '  { nom: "Chiqish va navbat", rice: 48 }',
+  'const tasks = [',
+  '  { name: "Maydon pulini bo\'lishish", rice: 5 },',
+  '  { name: "O\'yin kuni tasdiq", rice: 60 },',
+  '  { name: "O\'yindan oldin eslatma", rice: 15,',
+  '    waitsFor: "12-Modul" },',
+  '  { name: "O\'yin e\'loni va qo\'shilish", rice: 72 },',
+  '  { name: "Ro\'yxat o\'zi yangilanadi", rice: 10,',
+  '    waitsFor: "12-Modul" },',
+  '  { name: "Chiqish va navbat", rice: 48 }',
   '];'
 ];
-const kodStarter = (t) => [...KOD_IZ.bosh[t], ...KOD_ISHLAR, '', ...KOD_IZ.sort[t], 'ishlar.sort(function (a, b) { return b.rice - a.rice; });', '',
-  'function ufq(ish, hozirSoni) {', ...KOD_IZ.qayer[t], ...KOD_IZ.soni[t], ...KOD_IZ.siz[t], '  return "uzoqroq";', '}', '',
-  ...KOD_IZ.tayyor[t], 'let hozirSoni = 0;', 'ishlar.forEach(function (ish) {', '  const u = ufq(ish, hozirSoni);', '  if (u === "hozir") hozirSoni = hozirSoni + 1;',
-  '  const p = document.createElement("p");', '  p.textContent = ish.nom + " · " + ish.rice;', '  document.getElementById(u).appendChild(p);', '});', ''].join('\n');
+const kodStarter = (t) => [...KOD_IZ.bosh[t], ...KOD_ISHLAR, '', ...KOD_IZ.sort[t], 'tasks.sort(function (a, b) { return b.rice - a.rice; });', '',
+  'function horizon(task, nowCount) {', ...KOD_IZ.qayer[t], ...KOD_IZ.soni[t], ...KOD_IZ.siz[t], '  return "far";', '}', '',
+  ...KOD_IZ.tayyor[t], 'let nowCount = 0;', 'tasks.forEach(function (task) {', '  const u = horizon(task, nowCount);', '  if (u === "now") nowCount = nowCount + 1;',
+  '  const p = document.createElement("p");', '  p.textContent = task.name + " · " + task.rice;', '  document.getElementById(u).appendChild(p);', '});', ''].join('\n');
 const KOD_STARTER = { uz: kodStarter('uz'), ru: kodStarter('ru') };
-const KOD_INDEX = '<h1>Mentorning roadmap\'i</h1>\n<div class="ufq"><h3>Hozir · 11-Modul</h3><p class="poydevor">Poydevor · RICE ga kirmaydi</p><div id="hozir"></div></div>\n<div class="ufq"><h3>Keyinroq · 12–13-Modul</h3><div id="keyinroq"></div></div>\n<div class="ufq"><h3>Uzoqroq · bitiruvdan keyin</h3><div id="uzoqroq"></div></div>\n';
+const KOD_INDEX = '<h1>Mentorning roadmap\'i</h1>\n<div class="horizon"><h3>Hozir · 11-Modul</h3><p class="base">Poydevor · RICE ga kirmaydi</p><div id="now"></div></div>\n<div class="horizon"><h3>Keyinroq · 12–13-Modul</h3><div id="later"></div></div>\n<div class="horizon"><h3>Uzoqroq · bitiruvdan keyin</h3><div id="far"></div></div>\n';
+// F-1027-01: nomlar va ustun id'lari inglizcha; eski saqlangan kod (ufq · kutadi · #hozir) ham o'tadi.
+const KOD_HF = "(function(t,n){var m={hozir:'now',keyinroq:'later',uzoqroq:'far'};if(typeof horizon==='function')return horizon(t,n);var r=ufq({rice:t.rice,kutadi:t.waitsFor,nom:t.name},n);return m[r]||r;})";
 const KOD_SHART_IFODA = [
-  ['ufq({ rice: 15, kutadi: "12-Modul" }, 0)', 'keyinroq'],
-  ['ufq({ rice: 48 }, 2) + "|" + ufq({ rice: 5 }, 3)', 'hozir|uzoqroq'],
-  ['["hozir", "keyinroq", "uzoqroq"].map(function (id) { return document.querySelectorAll("#" + id + " p").length; }).join(",")', '3,2,1']
+  [KOD_HF + '({ rice: 15, waitsFor: "12-Modul" }, 0)', 'later'],
+  [KOD_HF + '({ rice: 48 }, 2) + "|" + ' + KOD_HF + '({ rice: 5 }, 3)', 'now|far'],
+  ['[["now", "hozir"], ["later", "keyinroq"], ["far", "uzoqroq"]].map(function (p) { return document.querySelectorAll("#" + p[0] + " p").length + document.querySelectorAll("#" + p[1] + " p").length; }).join(",")', '3,2,1']
 ];
 const KOD_VAZIFA = [
-  { uz: '12-Modulni kutadigan ish — `"keyinroq"`', ru: 'Работа, которая ждёт 12-й модуль, — `"keyinroq"`' },
-  { uz: '«Hozir»da uchtadan kam bo\'lsa — `"hozir"`', ru: 'Если в «Hozir» меньше трёх — `"hozir"`' },
-  { uz: 'Qolgani — `"uzoqroq"`', ru: 'Остальные — `"uzoqroq"`' }
+  { uz: '12-Modulni kutadigan ish — `"later"`', ru: 'Работа, которая ждёт 12-й модуль, — `"later"`' },
+  { uz: '«Hozir»da uchtadan kam bo\'lsa — `"now"`', ru: 'Если в «Hozir» меньше трёх — `"now"`' },
+  { uz: 'Qolgani — `"far"`', ru: 'Остальные — `"far"`' }
 ];
 const KOD_SHART = [
   { uz: '12-Modulni kutadigan ish «Keyinroq»ga tushsin.', ru: 'Пусть работа, ждущая 12-й модуль, попадёт в «Keyinroq».' },
@@ -1864,29 +1866,29 @@ const KOD_SHART = [
 ];
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
-  title: { uz: 'app.js — ufq funksiyasini yakunlang', ru: 'app.js — допишите функцию ufq' },
+  title: { uz: 'app.js — horizon funksiyasini yakunlang', ru: 'app.js — допишите функцию horizon' },
   files: [
     { name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// ish qaysi ustunga tushadi', ru: '// в какую колонку попадёт работа' } },
     { name: 'index.html', lang: 'html', starter: KOD_INDEX }
   ],
-  previewCss: 'body{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start}h1{flex-basis:100%;margin:0 0 4px}.ufq{flex:1 1 0;min-width:0;background:#fff;border:1px solid #E7E3F4;border-radius:8px;padding:8px 10px;box-sizing:border-box}.ufq h3{margin:0 0 6px;font-size:14px}.ufq p{background:#fff;border:1px solid #E7E3F4;border-radius:6px;padding:6px 8px;margin:0 0 6px;font-size:13px}.ufq p.poydevor{background:#F2F0FA;color:#565073}',
+  previewCss: 'body{display:flex;flex-wrap:wrap;gap:8px;align-items:flex-start}h1{flex-basis:100%;margin:0 0 4px}.horizon{flex:1 1 0;min-width:0;background:#fff;border:1px solid #E7E3F4;border-radius:8px;padding:8px 10px;box-sizing:border-box}.horizon h3{margin:0 0 6px;font-size:14px}.horizon p{background:#fff;border:1px solid #E7E3F4;border-radius:6px;padding:6px 8px;margin:0 0 6px;font-size:13px}.horizon p.base{background:#F2F0FA;color:#565073}',
   requirements: KOD_SHART_IFODA.map((s, i) => ({ id: 'sh' + i, label: { uz: KOD_VAZIFA[i].uz.split('`').join(''), ru: KOD_VAZIFA[i].ru.split('`').join('') }, check: C.evalEquals(s[0], s[1], KOD_SHART[i]) }))
 };
 const KOD_DARVOZA = [
-  { id: 'hozir', t: '`"hozir"`', ok: false, x: { uz: 'Unga kerak narsa 12-Modulda — «Hozir»ga tushmaydi.', ru: 'Нужное ей будет в 12-м модуле — в «Hozir» не попадает.' } },
-  { id: 'keyinroq', t: '`"keyinroq"`', ok: true },
-  { id: 'uzoqroq', t: '`"uzoqroq"`', ok: false, x: { uz: 'U bitiruvgacha kutmaydi — 12-Modulda boshlanadi.', ru: 'Она ждёт не до выпуска — начнётся в 12-м модуле.' } }
+  { id: 'hozir', t: '`"now"`', ok: false, x: { uz: 'Unga kerak narsa 12-Modulda — «Hozir»ga tushmaydi.', ru: 'Нужное ей будет в 12-м модуле — в «Hozir» не попадает.' } },
+  { id: 'keyinroq', t: '`"later"`', ok: true },
+  { id: 'uzoqroq', t: '`"far"`', ok: false, x: { uz: 'U bitiruvgacha kutmaydi — 12-Modulda boshlanadi.', ru: 'Она ждёт не до выпуска — начнётся в 12-м модуле.' } }
 ];
 // Kod namunasi (o'qish uchun; nusxalanmaydi — PM-082 d): darvozadan keyin kutadi: "12-Modul" qatorlari bir lahza ajraladi
 const KodNamuna = ({ ajrat }) => {
   const L = tr(KOD_STARTER).split('\n');
-  const fn = L.findIndex(l => l.startsWith('function ufq'));
+  const fn = L.findIndex(l => l.startsWith('function horizon'));
   const parcha = [...L.slice(0, L.indexOf('];') + 1), '  …', ...L.slice(fn, L.indexOf('}', fn) + 1)];
   return (
     <pre className={cxx('rm-kod', ajrat && 'ajrat')} onCopy={(e) => e.preventDefault()} aria-label="app.js">
       {parcha.map((l, i) => {
         if (l.trim().startsWith('//')) return <span key={i} className="rm-kod-iz">{l}{'\n'}</span>;
-        const b = l.split(/(kutadi: "12-Modul")/);
+        const b = l.split(/(waitsFor: "12-Modul")/);
         return <span key={i}>{b.map((x, j) => (j % 2 ? <b key={j} className="rm-kod-k">{x}</b> : x))}{'\n'}</span>;
       })}
     </pre>
@@ -1926,7 +1928,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         vazifa={<>
           {!isMentor && <RoadmapStrip />}
           <div className="rm-darvoza">
-            <span className="rm-darvoza-s">{fmtCode(tr({ uz: '`kutadi: "12-Modul"` yozilgan ish qaysi ustunga tushadi?', ru: 'В какую колонку попадёт работа с `kutadi: "12-Modul"`?' }))}</span>
+            <span className="rm-darvoza-s">{fmtCode(tr({ uz: '`waitsFor: "12-Modul"` yozilgan ish qaysi ustunga tushadi?', ru: 'В какую колонку попадёт работа с `waitsFor: "12-Modul"`?' }))}</span>
             <div className={cxx('rm-darvoza-ro', !stage2 && 'rm-guruh')}>
               {KOD_DARVOZA.map(g => {
                 const silk = miss && miss.id === g.id;
@@ -1941,7 +1943,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         yordam={stage2 && <div className="rm-kyordam">
           <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM_T)}</QTugma>
           {yordam && <>
-            <QIzoh>{fmtCode(tr({ uz: 'Avval kutishni tekshiring: `if (ish.kutadi === "12-Modul") return "keyinroq";`. So\'ng «Hozir» sonini: `hozirSoni < 3`. Qolgan holatda — `return "uzoqroq";`.', ru: 'Сначала проверьте ожидание: `if (ish.kutadi === "12-Modul") return "keyinroq";`. Потом число в «Hozir»: `hozirSoni < 3`. В остальных случаях — `return "uzoqroq";`.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: 'Avval kutishni tekshiring: `if (task.waitsFor === "12-Modul") return "later";`. So\'ng «Hozir» sonini: `nowCount < 3`. Qolgan holatda — `return "far";`.', ru: 'Сначала проверьте ожидание: `if (task.waitsFor === "12-Modul") return "later";`. Потом число в «Hozir»: `nowCount < 3`. В остальных случаях — `return "far";`.' }))}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: "Eslatma (JavaScript darslaridan): `sort` — ro'yxatni tartiblaydi (`b.rice - a.rice` — kattasi oldinda) · `return` — funksiya javobini qaytaradi · `if` — shart rost bo'lsa ishlaydi.", ru: 'Напоминание (из уроков JavaScript): `sort` — упорядочивает список (`b.rice - a.rice` — больший впереди) · `return` — возвращает ответ функции · `if` — срабатывает, если условие истинно.' }))}</QIzoh>
           </>}
         </div>}

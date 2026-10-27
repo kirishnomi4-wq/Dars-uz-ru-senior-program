@@ -1783,26 +1783,28 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const KOD_IZ = {
   bosh1: { uz: '// Namuna linklar: lending manzili va oxiridagi kanal belgisi.', ru: '// Примеры ссылок: адрес лендинга и метка канала в конце.' },
   bosh2: { uz: '// Manzil — namuna (haqiqiy sayt emas); sizda — o\'z lendingingiz manzili.', ru: '// Адрес — пример (не настоящий сайт); у вас — адрес вашего лендинга.' },
+  nomlar: { uz: '// links — linklar · getChannel — kanalni olish · params — linkdagi belgilar', ru: '// links — ссылки · getChannel — получить канал · params — метки в ссылке' },
   masalan: { uz: '  // masalan: "?kanal=sinf" yoki ""', ru: '  // например: "?kanal=sinf" или ""' },
-  fn: { uz: '  // belgilar ichidan kanal qiymatini oling;', ru: '  // возьмите из меток значение канала;' },
+  fn: { uz: '  // params ichidan kanal qiymatini oling;', ru: '  // возьмите из params значение канала;' },
   fn2: { uz: '  // belgi bo\'lmasa — "belgisiz"', ru: '  // если метки нет — "belgisiz"' },
   siz: { uz: '   // shu joyni siz yozasiz', ru: '   // это место пишете вы' },
   tayyor: { uz: '// har link — sahifada bitta qator (bu qism tayyor)', ru: '// каждая ссылка — одна строка на странице (эта часть готова)' }
 };
-const KOD_HAVOLALAR = ['const linklar = [', '  "https://maydon-jamoa.example/?kanal=guruh",', '  "https://maydon-jamoa.example/?kanal=sinf",', '  "https://maydon-jamoa.example/?kanal=instagram",', '  "https://maydon-jamoa.example/"', '];', ''];
-const kodStarter = (t) => [KOD_IZ.bosh1[t], KOD_IZ.bosh2[t], ...KOD_HAVOLALAR,
-  'function kanalniOl(link) {', KOD_IZ.masalan[t], '  const belgilar = new URL(link).search;', KOD_IZ.fn[t], KOD_IZ.fn2[t], '  return "";' + KOD_IZ.siz[t], '}', '',
-  KOD_IZ.tayyor[t], 'const joy = document.getElementById("kanallar");', 'linklar.forEach(function (link) {', '  const qator = document.createElement("li");',
-  '  qator.textContent = "kanal: " + kanalniOl(link) + " · " + link;', '  joy.appendChild(qator);', '});', ''].join('\n');
+const KOD_HAVOLALAR = ['const links = [', '  "https://maydon-jamoa.example/?kanal=guruh",', '  "https://maydon-jamoa.example/?kanal=sinf",', '  "https://maydon-jamoa.example/?kanal=instagram",', '  "https://maydon-jamoa.example/"', '];', ''];
+const kodStarter = (t) => [KOD_IZ.bosh1[t], KOD_IZ.bosh2[t], KOD_IZ.nomlar[t], ...KOD_HAVOLALAR,
+  'function getChannel(link) {', KOD_IZ.masalan[t], '  const params = new URL(link).search;', KOD_IZ.fn[t], KOD_IZ.fn2[t], '  return "";' + KOD_IZ.siz[t], '}', '',
+  KOD_IZ.tayyor[t], 'const container = document.getElementById("channels");', 'links.forEach(function (link) {', '  const row = document.createElement("li");',
+  '  row.textContent = "kanal: " + getChannel(link) + " · " + link;', '  container.appendChild(row);', '});', ''].join('\n');
 const KOD_STARTER = { uz: kodStarter('uz'), ru: kodStarter('ru') };
-const KOD_INDEX = { uz: '<h1>Link qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n', ru: '<h1>Link qaysi kanaldan?</h1>\n<ul id="kanallar"></ul>\n' };
+const KOD_INDEX = { uz: '<h1>Link qaysi kanaldan?</h1>\n<ul id="channels"></ul>\n', ru: '<h1>Link qaysi kanaldan?</h1>\n<ul id="channels"></ul>\n' };
 const KOD_SHART_IFODA = [
-  ['kanalniOl("https://maydon-jamoa.example/?kanal=guruh")', 'guruh'],
-  ['kanalniOl("https://maydon-jamoa.example/")', 'belgisiz'],
-  ['(function(){var l=document.querySelectorAll("#kanallar li");if(l.length!==4)return "yoq";for(var i=0;i<l.length;i++){if(!/^kanal: [^ ]+ · /.test(l[i].textContent))return "yoq";}return "ha";})()', 'ha']
+  // F-1027-01: nomlar inglizcha; eski saqlangan kod (kanalniOl · #kanallar) ham o'tadi.
+  ['(typeof getChannel==="function"?getChannel:kanalniOl)("https://maydon-jamoa.example/?kanal=guruh")', 'guruh'],
+  ['(typeof getChannel==="function"?getChannel:kanalniOl)("https://maydon-jamoa.example/")', 'belgisiz'],
+  ['(function(){var l=document.querySelectorAll("#channels li, #kanallar li");if(l.length!==4)return "yoq";for(var i=0;i<l.length;i++){if(!/^kanal: [^ ]+ · /.test(l[i].textContent))return "yoq";}return "ha";})()', 'ha']
 ];
 const KOD_VAZIFA = [
-  { uz: '`kanalniOl` linkdan `kanal` qiymatini qaytaradi', ru: '`kanalniOl` возвращает из ссылки значение `kanal`' },
+  { uz: '`getChannel` linkdan `kanal` qiymatini qaytaradi', ru: '`getChannel` возвращает из ссылки значение `kanal`' },
   { uz: 'Belgi bo\'lmasa — `"belgisiz"`', ru: 'Если метки нет — `"belgisiz"`' },
   { uz: "Namuna sahifada to'rt link, har birining kanali bilan", ru: 'На странице-примере четыре ссылки, у каждой — свой канал' }
 ];
@@ -1815,12 +1817,12 @@ const KOD_SHART = [
 ];
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
-  title: { uz: 'app.js — kanalniOl funksiyasini yakunlang', ru: 'app.js — допишите функцию kanalniOl' },
+  title: { uz: 'app.js — getChannel funksiyasini yakunlang', ru: 'app.js — допишите функцию getChannel' },
   files: [
     { name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// belgilardan kanalni oling; bo\'lmasa — "belgisiz"', ru: '// возьмите канал из меток; если нет — "belgisiz"' } },
     { name: 'index.html', lang: 'html', starter: KOD_INDEX }
   ],
-  previewCss: '#kanallar{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}#kanallar li{background:#fff;border:1px solid #E7E3F4;border-radius:8px;padding:8px 12px;font-size:14px;overflow-wrap:anywhere}#kanallar li::first-line{font-weight:400}',
+  previewCss: '#channels{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}#channels li{background:#fff;border:1px solid #E7E3F4;border-radius:8px;padding:8px 12px;font-size:14px;overflow-wrap:anywhere}#channels li::first-line{font-weight:400}',
   requirements: [
     { id: 'guruh', label: kodYorliq(KOD_VAZIFA[0]), check: C.evalEquals(KOD_SHART_IFODA[0][0], KOD_SHART_IFODA[0][1], KOD_SHART[0]) },
     { id: 'belgisiz', label: kodYorliq(KOD_VAZIFA[1]), check: C.evalEquals(KOD_SHART_IFODA[1][0], KOD_SHART_IFODA[1][1], KOD_SHART[1]) },
@@ -1913,7 +1915,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         yordam={stage2 && <div className="kn-kyordam">
           <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
           {yordam && <>
-            <QIzoh>{fmtCode(tr({ uz: '`new URLSearchParams(belgilar)` belgilarni o\'qiydi, `.get("kanal")` esa `kanal` qiymatini beradi; belgi bo\'lmasa `get` — `null` qaytaradi.', ru: '`new URLSearchParams(belgilar)` читает метки, а `.get("kanal")` даёт значение `kanal`; если метки нет, `get` возвращает `null`.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: '`new URLSearchParams(params)` belgilarni o\'qiydi, `.get("kanal")` esa `kanal` qiymatini beradi; belgi bo\'lmasa `get` — `null` qaytaradi.', ru: '`new URLSearchParams(params)` читает метки, а `.get("kanal")` даёт значение `kanal`; если метки нет, `get` возвращает `null`.' }))}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: '`null` bo\'lsa `"belgisiz"` qaytaring — `||` yoki `if` bilan.', ru: 'Если `null` — верните `"belgisiz"` через `||` или `if`.' }))}</QIzoh>
           </>}
         </div>}

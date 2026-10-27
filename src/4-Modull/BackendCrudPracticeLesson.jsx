@@ -530,30 +530,30 @@ const TLine = ({ cmd, out, dim }) => (
 // ===== AVTOIJARA MA'LUMOTLARI =====
 const sp = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const CARS = [
-  { id: 1, nom: 'Cobalt',  narx: 280000, yil: 2022, emoji: '🚗', bg: 'linear-gradient(135deg,#7EA6F4,#2E4A9E)' },
-  { id: 2, nom: 'Malibu',  narx: 520000, yil: 2023, emoji: '🚙', bg: 'linear-gradient(135deg,#8FD3A8,#2E7A4E)' },
-  { id: 3, nom: 'Kia K5',  narx: 610000, yil: 2023, emoji: '🚘', bg: 'linear-gradient(135deg,#F4B26A,#C9622E)' }
+  { id: 1, model: 'Cobalt',  daily_price: 280000, year: 2022, emoji: '🚗', bg: 'linear-gradient(135deg,#7EA6F4,#2E4A9E)' },
+  { id: 2, model: 'Malibu',  daily_price: 520000, year: 2023, emoji: '🚙', bg: 'linear-gradient(135deg,#8FD3A8,#2E7A4E)' },
+  { id: 3, model: 'Kia K5',  daily_price: 610000, year: 2023, emoji: '🚘', bg: 'linear-gradient(135deg,#F4B26A,#C9622E)' }
 ];
 const POOL_CARS = [
-  { id: 4, nom: 'Spark',   narx: 190000, yil: 2021, emoji: '🚐', bg: 'linear-gradient(135deg,#F4A6C0,#B5446E)' },
-  { id: 5, nom: 'Tracker', narx: 450000, yil: 2024, emoji: '🚓', bg: 'linear-gradient(135deg,#B9A8F4,#6A4AC9)' },
-  { id: 6, nom: 'Onix',    narx: 340000, yil: 2023, emoji: '🚕', bg: 'linear-gradient(135deg,#F4D06A,#C99B2E)' }
+  { id: 4, model: 'Spark',   daily_price: 190000, year: 2021, emoji: '🚐', bg: 'linear-gradient(135deg,#F4A6C0,#B5446E)' },
+  { id: 5, model: 'Tracker', daily_price: 450000, year: 2024, emoji: '🚓', bg: 'linear-gradient(135deg,#B9A8F4,#6A4AC9)' },
+  { id: 6, model: 'Onix',    daily_price: 340000, year: 2023, emoji: '🚕', bg: 'linear-gradient(135deg,#F4D06A,#C99B2E)' }
 ];
 
 // jadval ustunlari (ME'MOR — sxema loyihalash)
 const COLUMNS = [
   { key: 'id',     sql: 'id SERIAL PRIMARY KEY', type: { uz: 'raqam', ru: 'номер' },  desc: { uz: "Har mashinaning takrorlanmas raqami — avtomatik o'sib boradi", ru: 'Уникальный номер каждой машины — растёт автоматически' } },
-  { key: 'nom',    sql: 'nom TEXT',              type: { uz: 'matn', ru: 'текст' },   desc: { uz: "Mashina nomi — masalan 'Cobalt' (matn)", ru: "Название машины — например 'Cobalt' (текст)" } },
-  { key: 'narx',   sql: 'narx INTEGER',          type: { uz: 'son', ru: 'число' },    desc: { uz: 'Kunlik ijara narxi — butun son', ru: 'Цена аренды за день — целое число' } },
-  { key: 'yil',    sql: 'yil INTEGER',           type: { uz: 'son', ru: 'число' },    desc: { uz: 'Ishlab chiqarilgan yili — butun son', ru: 'Год выпуска — целое число' } },
-  { key: 'bandmi', sql: 'bandmi BOOLEAN',        type: { uz: "ha/yo'q", ru: 'да/нет' }, desc: { uz: "Hozir ijaradami? — ha yoki yo'q (true/false)", ru: 'Сдана ли сейчас в аренду? — да или нет (true/false)' } }
+  { key: 'model',    sql: 'model TEXT',              type: { uz: 'matn', ru: 'текст' },   desc: { uz: "Mashina nomi — masalan 'Cobalt' (matn)", ru: "Название машины — например 'Cobalt' (текст)" } },
+  { key: 'daily_price',   sql: 'daily_price INTEGER',          type: { uz: 'son', ru: 'число' },    desc: { uz: 'Kunlik ijara narxi — butun son', ru: 'Цена аренды за день — целое число' } },
+  { key: 'year',    sql: 'year INTEGER',           type: { uz: 'son', ru: 'число' },    desc: { uz: 'Ishlab chiqarilgan yili — butun son', ru: 'Год выпуска — целое число' } },
+  { key: 'is_rented', sql: 'is_rented BOOLEAN',        type: { uz: "ha/yo'q", ru: 'да/нет' }, desc: { uz: "Hozir ijaradami? — ha yoki yo'q (true/false)", ru: 'Сдана ли сейчас в аренду? — да или нет (true/false)' } }
 ];
 
 // CRUD ↔ HTTP ↔ SQL
 const OPS = [
   { key: 'C', en: 'Create', amal: { uz: "Qo'shish", ru: 'Добавить' },   method: 'POST',   sql: 'INSERT', color: T.success, code: 'INSERT INTO cars ... VALUES ($1, $2, $3)' },
   { key: 'R', en: 'Read',   amal: { uz: "Ko'rish", ru: 'Прочитать' },     method: 'GET',    sql: 'SELECT', color: T.blue,    code: 'SELECT * FROM cars' },
-  { key: 'U', en: 'Update', amal: { uz: 'Tahrirlash', ru: 'Изменить' },  method: 'PUT',    sql: 'UPDATE', color: T.amber,   code: 'UPDATE cars SET narx = $1 WHERE id = $2' },
+  { key: 'U', en: 'Update', amal: { uz: 'Tahrirlash', ru: 'Изменить' },  method: 'PUT',    sql: 'UPDATE', color: T.amber,   code: 'UPDATE cars SET daily_price = $1 WHERE id = $2' },
   { key: 'D', en: 'Delete', amal: { uz: "O'chirish", ru: 'Удалить' },   method: 'DELETE', sql: 'DELETE', color: T.danger,  code: 'DELETE FROM cars WHERE id = $1' }
 ];
 const M_COLOR = { GET: '#0B6E8F', POST: T.success, PUT: T.amber, DELETE: T.danger }; // F-1015-352: GET kontrasti (T.blue 3.24)
@@ -621,8 +621,8 @@ const CarCard = ({ car, onDelete, flash }) => (
       {onDelete && <button className="cardx" onClick={onDelete} title={tr({ uz: "O'chirish", ru: 'Удалить' })}>✕</button>}
     </div>
     <div className="robody">
-      <p className="roname">{car.nom}</p>
-      <div className="rostats"><span>{sp(car.narx)} {tr({ uz: "so'm/kun", ru: 'сум/день' })}</span><span style={{ marginLeft: 'auto', color: T.ink3 }}>{car.yil}</span></div>
+      <p className="roname">{car.model}</p>
+      <div className="rostats"><span>{sp(car.daily_price)} {tr({ uz: "so'm/kun", ru: 'сум/день' })}</span><span style={{ marginLeft: 'auto', color: T.ink3 }}>{car.year}</span></div>
     </div>
   </div>
 );
@@ -637,10 +637,10 @@ const DbTable = ({ rows, flashId, dimId, qisqa }) => {
   return (
   <div className="db">
     <div className="db-cap">🗄️ <b>cars</b> <span>· {rows.length} {tr({ uz: 'qator', ru: 'строк' })}</span></div>
-    <div className="db-row db-head"><span>id</span><span>nom</span><span>narx</span><span>yil</span></div>
+    <div className="db-row db-head"><span>id</span><span>model</span><span>daily_price</span><span>year</span></div>
     {rows.length ? korin.map(r => r._k ? <div key="kesik" className="db-row db-kesik"><span>…</span><span>{tr({ uz: `yana ${rows.length - 4} qator`, ru: `ещё ${rows.length - 4} строк` })}</span></div> : (
       <div key={r.id} className={`db-row el-in ${flashId === r.id ? 'flash' : ''}`} style={{ opacity: dimId === r.id ? 0.35 : 1, textDecoration: dimId === r.id ? 'line-through' : 'none' }}>
-        <span>{r.id}</span><span>{r.nom}</span><span>{sp(r.narx)}</span><span>{r.yil}</span>
+        <span>{r.id}</span><span>{r.model}</span><span>{sp(r.daily_price)}</span><span>{r.year}</span>
       </div>
     )) : <div className="db-empty">{tr({ uz: "— bo'sh (0 qator) —", ru: '— пусто (0 строк) —' })}</div>}
   </div>
@@ -741,7 +741,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
                 </CardGrid>
               </Win>
             <pre className="code-box" style={{ padding: '10px 14px', lineHeight: 1.85, margin: 0 }}>
-              <Jx>{'const'}</Jx>{' cars = [ { nom: '}<St>"Cobalt"</St>{', ... }, ... ];'}{'\n'}
+              <Jx>{'const'}</Jx>{' cars = [ { model: '}<St>"Cobalt"</St>{', ... }, ... ];'}{'\n'}
               <Cm>{tr({ uz: "// ↑ ro'yxat kod ichida — bazada saqlanmagan", ru: '// ↑ список внутри кода — в базе не хранится' })}</Cm>
             </pre>
             {tried && <p className="small fade-step" style={{ color: T.accent, fontStyle: 'italic', margin: 0 }}>{tr({ uz: "Tugma bor — lekin hech narsa o'zgarmadi.", ru: 'Кнопка есть — но ничего не изменилось.' })}</p>}
@@ -863,7 +863,7 @@ const KodNusxa = ({ yorliq, kod }) => {
 // F-1015-352: m4-10 bilan bir xil mashinalar (m4-10 kirishi: «Praktika 1'da Postman orqali bazaga Chevrolet Spark'ni qo'shgan edingiz»)
 // F-1015-384: GET javobi ixcham — har qator bitta satrda (20 satrlik JSON sahifani cho'zardi)
 const jsonQator = (rows) => '[\n' + rows.map(r => '  ' + JSON.stringify(r).replace(/,"/g, ', "').replace(/":/g, '": ')).join(',\n') + '\n]';
-const BK_BOSH = [{ id: 1, nom: 'Chevrolet Cobalt', narx: 280000, yil: 2022 }, { id: 2, nom: 'Chevrolet Malibu', narx: 520000, yil: 2023 }, { id: 3, nom: 'Kia K5', narx: 610000, yil: 2023 }];
+const BK_BOSH = [{ id: 1, model: 'Chevrolet Cobalt', daily_price: 280000, year: 2022 }, { id: 2, model: 'Chevrolet Malibu', daily_price: 520000, year: 2023 }, { id: 3, model: 'Kia K5', daily_price: 610000, year: 2023 }];
 const BLOK3 = [
   { t: { uz: 'cars jadvali', ru: 'Таблица cars' }, tag: { uz: "o'zingiz · psql", ru: 'сами · psql' } },
   { t: { uz: "Server va o'qish — GET", ru: 'Сервер и чтение — GET' }, tag: 'Gemini' }, // F-1015-384: 4 blok
@@ -902,25 +902,25 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 
 // ===== a1 — sxema (AI'siz): ustunlarni tanlash → CREATE TABLE + INSERT, psql'da bajarish =====
 const USTUN = [
-  { id: 'nom', tur: 'TEXT', t: { uz: 'nom — mashina nomi', ru: 'nom — название машины' }, shart: true },
-  { id: 'narx', tur: 'INTEGER', t: { uz: "narx — kunlik narx, so'm", ru: 'narx — цена в день, сум' }, shart: true },
-  { id: 'yil', tur: 'INTEGER', t: { uz: 'yil — ishlab chiqarilgan yili', ru: 'yil — год выпуска' } },
-  { id: 'bandmi', tur: 'BOOLEAN', t: { uz: "bandmi — ijarada yoki bo'sh", ru: 'bandmi — в аренде или свободна' } }
+  { id: 'model', tur: 'TEXT', t: { uz: 'model — mashina nomi', ru: 'model — название машины' }, shart: true },
+  { id: 'daily_price', tur: 'INTEGER', t: { uz: "daily_price — kunlik narx, so'm", ru: 'daily_price — цена в день, сум' }, shart: true },
+  { id: 'year', tur: 'INTEGER', t: { uz: 'year — ishlab chiqarilgan yili', ru: 'year — год выпуска' } },
+  { id: 'is_rented', tur: 'BOOLEAN', t: { uz: "is_rented — ijarada yoki bo'sh", ru: 'is_rented — в аренде или свободна' } }
 ];
 const sxemaSql = (on) => {
   const cols = USTUN.filter(u => on.has(u.id));
-  const ins = cols.filter(u => u.id !== 'bandmi');
-  const val = (r) => ins.map(u => (u.id === 'nom' ? `'${r.nom}'` : r[u.id])).join(', ');
+  const ins = cols.filter(u => u.id !== 'is_rented');
+  const val = (r) => ins.map(u => (u.id === 'model' ? `'${r.model}'` : r[u.id])).join(', ');
   return `CREATE TABLE cars (\n  id SERIAL PRIMARY KEY${cols.map(u => `,\n  ${u.id} ${u.tur}`).join('')}\n);\n\nINSERT INTO cars (${ins.map(u => u.id).join(', ')}) VALUES\n${BK_BOSH.map(r => `  (${val(r)})`).join(',\n')};\n\nSELECT * FROM cars;`;
 };
 const A1_QADAM = [
   { uz: "Terminalda: `psql -U postgres` (parol — PostgreSQL o'rnatilganda berilgan).", ru: 'В терминале: `psql -U postgres` (пароль — тот, что задали при установке PostgreSQL).' },
-  { uz: "`CREATE DATABASE avtoijara;` keyin `\\c avtoijara` — bazaga ulanasiz.", ru: '`CREATE DATABASE avtoijara;` потом `\\c avtoijara` — подключаетесь к базе.' },
+  { uz: "`CREATE DATABASE car_rental;` keyin `\\c car_rental` — bazaga ulanasiz.", ru: '`CREATE DATABASE car_rental;` потом `\\c car_rental` — подключаетесь к базе.' },
   { uz: "«Nusxalash» → SQL'ni psql'ga qo'ying, Enter.", ru: '«Скопировать» → вставьте SQL в psql, Enter.' },
   { uz: "Oxirgi `SELECT` 3 ta mashinani ko'rsatdimi?", ru: 'Последний `SELECT` показал 3 машины?' }
 ];
 const ScreenSxema = ({ screen, onNext, onPrev }) => {
-  const [on, setOn] = useState(() => new Set(['nom', 'narx']));
+  const [on, setOn] = useState(() => new Set(['model', 'daily_price']));
   const [xabar, setXabar] = useState('');
   const almash = (u) => {
     if (u.shart && on.has(u.id)) { setXabar(tr({ uz: `«${u.id}»siz mashinani ijaraga berib bo'lmaydi — bu ustun shart.`, ru: `Без «${u.id}» машину не сдать в аренду — эта колонка обязательна.` })); return; }
@@ -1006,8 +1006,8 @@ const usePostman = (sorvlar, boshQator) => {
   const yubor = () => {
     let next = rows; let st = 200; let txt = 'OK'; let json; let fl = null;
     if (s.m === 'GET') json = jsonQator(rows);
-    if (s.m === 'POST') { const id = Math.max(0, ...rows.map(r => r.id)) + 1; const r = { id, nom: 'Chevrolet Spark', narx: 190000, yil: 2021 }; next = [...rows, r]; st = 201; txt = 'Created'; json = JSON.stringify(r, null, 2); fl = id; }
-    if (s.m === 'PUT') { const r = rows.find(x => x.id === 2); if (r) { next = rows.map(x => (x.id === 2 ? { ...x, narx: 480000 } : x)); json = JSON.stringify({ ...r, narx: 480000 }, null, 2); fl = 2; } else { st = 404; txt = 'Not Found'; json = '{ "error": "topilmadi" }'; } }
+    if (s.m === 'POST') { const id = Math.max(0, ...rows.map(r => r.id)) + 1; const r = { id, model: 'Chevrolet Spark', daily_price: 190000, year: 2021 }; next = [...rows, r]; st = 201; txt = 'Created'; json = JSON.stringify(r, null, 2); fl = id; }
+    if (s.m === 'PUT') { const r = rows.find(x => x.id === 2); if (r) { next = rows.map(x => (x.id === 2 ? { ...x, daily_price: 480000 } : x)); json = JSON.stringify({ ...r, daily_price: 480000 }, null, 2); fl = 2; } else { st = 404; txt = 'Not Found'; json = '{ "error": "topilmadi" }'; } }
     if (s.m === 'DELETE') { if (rows.some(x => x.id === 1)) { next = rows.filter(x => x.id !== 1); json = '{ "status": "o\'chirildi" }'; } else { st = 404; txt = 'Not Found'; json = '{ "error": "topilmadi" }'; } }
     setRows(next); setJavob({ st, txt, json }); setOxirgi(s.sql); setFlash(fl); setNur(n => n + 1);
   };
@@ -1026,8 +1026,8 @@ const PostmanOyna = ({ sorvlar, pm }) => (
 // ----- a2 · Server va o'qish (GET) -----
 const SORV_GET = [{ m: 'GET', url: '/api/cars', sql: "pool.query('SELECT * FROM cars')" }];
 const a2Prompt = () => tr({
-  uz: "Node.js + Express loyiham (avto-ijara-server) bor, express va pg o'rnatilgan. PostgreSQL'da avtoijara bazasida cars jadvali bor.\nserver.js yoz:\n1. pg'dan Pool bilan bazaga ulan (user, password, database: avtoijara — tepada o'zgaruvchilarda, parolni o'zim yozaman).\n2. GET /api/cars — SELECT * FROM cars, natijani res.json bilan qaytar. Xato bo'lsa status 500 va xato matni.\nPort 3000. Har bo'limga qisqa izoh yoz. Faylni to'liq yoz.",
-  ru: 'У меня есть проект Node.js + Express (avto-ijara-server), установлены express и pg. В PostgreSQL в базе avtoijara есть таблица cars.\nНапиши server.js:\n1. Подключись к базе через Pool из pg (user, password, database: avtoijara — в переменных вверху, пароль впишу сам).\n2. GET /api/cars — SELECT * FROM cars, верни результат через res.json. При ошибке — статус 500 и текст ошибки.\nПорт 3000. К каждому разделу — короткий комментарий. Файл напиши целиком.'
+  uz: "Node.js + Express loyiham (avto-ijara-server) bor, express va pg o'rnatilgan. PostgreSQL'da car_rental bazasida cars jadvali bor.\nserver.js yoz:\n1. pg'dan Pool bilan bazaga ulan (user, password, database: car_rental — tepada o'zgaruvchilarda, parolni o'zim yozaman).\n2. GET /api/cars — SELECT * FROM cars, natijani res.json bilan qaytar. Xato bo'lsa status 500 va xato matni.\nPort 3000. Har bo'limga qisqa izoh yoz. Faylni to'liq yoz.",
+  ru: 'У меня есть проект Node.js + Express (avto-ijara-server), установлены express и pg. В PostgreSQL в базе car_rental есть таблица cars.\nНапиши server.js:\n1. Подключись к базе через Pool из pg (user, password, database: car_rental — в переменных вверху, пароль впишу сам).\n2. GET /api/cars — SELECT * FROM cars, верни результат через res.json. При ошибке — статус 500 и текст ошибки.\nПорт 3000. К каждому разделу — короткий комментарий. Файл напиши целиком.'
 });
 const A2_QADAM = [
   { uz: "Chapda GET'ni yuboring — javob jadvaldagi qatorlarning o'zi.", ru: 'Слева отправьте GET — ответ совпадает со строками таблицы.' },
@@ -1066,13 +1066,13 @@ const ScreenServer = ({ screen, onNext, onPrev }) => {
 
 // ----- a3 · Yozish (POST, PUT, DELETE) -----
 const SORV_YOZ = [
-  { m: 'POST', url: '/api/cars', body: '{ "nom": "Chevrolet Spark", "narx": 190000, "yil": 2021 }', sql: "pool.query('INSERT INTO cars (nom, narx, yil) VALUES ($1, $2, $3) RETURNING *', [nom, narx, yil])" },
-  { m: 'PUT', url: '/api/cars/2', body: '{ "narx": 480000 }', sql: "pool.query('UPDATE cars SET narx = $1 WHERE id = $2 RETURNING *', [narx, id])" },
+  { m: 'POST', url: '/api/cars', body: '{ "model": "Chevrolet Spark", "daily_price": 190000, "year": 2021 }', sql: "pool.query('INSERT INTO cars (model, daily_price, year) VALUES ($1, $2, $3) RETURNING *', [model, daily_price, year])" },
+  { m: 'PUT', url: '/api/cars/2', body: '{ "daily_price": 480000 }', sql: "pool.query('UPDATE cars SET daily_price = $1 WHERE id = $2 RETURNING *', [daily_price, id])" },
   { m: 'DELETE', url: '/api/cars/1', sql: "pool.query('DELETE FROM cars WHERE id = $1', [id])" }
 ];
 const a3Prompt = () => tr({
-  uz: "server.js ga yozish endpointlarini qo'sh (kodim pastda):\n1. app.use(express.json()).\n2. POST /api/cars — req.body dan nom, narx, yil; INSERT ... VALUES ($1, $2, $3) RETURNING *, status 201.\n3. PUT /api/cars/:id — narxni yangilasin: UPDATE ... SET narx = $1 WHERE id = $2.\n4. DELETE /api/cars/:id — shu mashinani o'chirsin.\nQiymatlarni SQL matniga yopishtirma — faqat $1, $2 bilan. O'zgargan faylni to'liq qaytar.\nMana kodim:\n{server.js kodini shu yerga qo'ying}",
-  ru: 'Добавь в server.js endpoint-ы записи (код ниже):\n1. app.use(express.json()).\n2. POST /api/cars — из req.body nom, narx, yil; INSERT ... VALUES ($1, $2, $3) RETURNING *, статус 201.\n3. PUT /api/cars/:id — обновляет цену: UPDATE ... SET narx = $1 WHERE id = $2.\n4. DELETE /api/cars/:id — удаляет эту машину.\nНе вклеивай значения в текст SQL — только через $1, $2. Изменённый файл верни целиком.\nВот мой код:\n{вставьте сюда код server.js}'
+  uz: "server.js ga yozish endpointlarini qo'sh (kodim pastda):\n1. app.use(express.json()).\n2. POST /api/cars — req.body dan model, daily_price, year; INSERT ... VALUES ($1, $2, $3) RETURNING *, status 201.\n3. PUT /api/cars/:id — narxni yangilasin: UPDATE ... SET daily_price = $1 WHERE id = $2.\n4. DELETE /api/cars/:id — shu mashinani o'chirsin.\nQiymatlarni SQL matniga yopishtirma — faqat $1, $2 bilan. O'zgargan faylni to'liq qaytar.\nMana kodim:\n{server.js kodini shu yerga qo'ying}",
+  ru: 'Добавь в server.js endpoint-ы записи (код ниже):\n1. app.use(express.json()).\n2. POST /api/cars — из req.body model, daily_price, year; INSERT ... VALUES ($1, $2, $3) RETURNING *, статус 201.\n3. PUT /api/cars/:id — обновляет цену: UPDATE ... SET daily_price = $1 WHERE id = $2.\n4. DELETE /api/cars/:id — удаляет эту машину.\nНе вклеивай значения в текст SQL — только через $1, $2. Изменённый файл верни целиком.\nВот мой код:\n{вставьте сюда код server.js}'
 });
 const A3_QADAM = [
   { uz: "Chapda POST, PUT va DELETE'ni yuboring — jadval qanday o'zgarishini ko'ring.", ru: 'Слева отправьте POST, PUT и DELETE — посмотрите, как меняется таблица.' },
@@ -1130,17 +1130,17 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-1">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Qo'shish kodini yozdim:", ru: 'Я написал код добавления:' })}</span></div>
               <div className="ai-code">
-                <div className={`ai-line ${picked === 'a' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0s' }} onClick={() => { if (found) return; if (achMiss) achMiss.miss(screen); setPicked('a'); }}><Jx>{'const'}</Jx>{' { nom, narx, yil } = req.body;'}</div>
+                <div className={`ai-line ${picked === 'a' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0s' }} onClick={() => { if (found) return; if (achMiss) achMiss.miss(screen); setPicked('a'); }}><Jx>{'const'}</Jx>{' { model, daily_price, year } = req.body;'}</div>
                 {!fixed ? (
-                  <div className={`ai-line ${found ? 'bad' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0.5s' }} onClick={() => { if (!found) setPicked('bad'); }}>{"pool.query('INSERT INTO cars (nom, price, yil)...');"}{/* F-0926-06 B1: price ajratilmaydi — javobga ishora edi */}</div>
+                  <div className={`ai-line ${found ? 'bad' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '0.5s' }} onClick={() => { if (!found) setPicked('bad'); }}>{"pool.query('INSERT INTO cars (model, price, year)...');"}{/* F-0926-06 B1: price ajratilmaydi — javobga ishora edi */}</div>
                 ) : (
-                  <div className="ai-line ok fixed-line">{"pool.query('INSERT INTO cars (nom, "}<At>narx</At>{", yil)...');"}{'  '}<Cm>{'// ✓ narx'}</Cm></div>
+                  <div className="ai-line ok fixed-line">{"pool.query('INSERT INTO cars (model, "}<At>daily_price</At>{", year)...');"}{'  '}<Cm>{'// ✓ daily_price'}</Cm></div>
                 )}
                 <div className={`ai-line ${picked === 'c' ? 'ok' : ''} ${!found ? 'scan' : ''}`} style={{ animationDelay: '1s' }} onClick={() => { if (found) return; if (achMiss) achMiss.miss(screen); setPicked('c'); }}>{`res.json({ status: "${tr({ uz: "qo'shildi", ru: 'добавлено' })}" });`}</div>
               </div>
               {/* F-0926-06 (159/6): «Qaysi qator … mos emas? Bosing.» mentor savolini takrorlardi — olindi */}
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: '🔧 price → narx ga tuzatish', ru: '🔧 Исправить price → narx' })}</button>}
-              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Tuzatildi — ustun nomi sxemaga mos: narx', ru: '✓ Исправлено — имя столбца совпадает со схемой: narx' })}</p>}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: '🔧 price → daily_price ga tuzatish', ru: '🔧 Исправить price → daily_price' })}</button>}
+              {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: '✓ Tuzatildi — ustun nomi sxemaga mos: daily_price', ru: '✓ Исправлено — имя столбца совпадает со схемой: daily_price' })}</p>}
             </div>
             {!done && <AchRule screen={screen} />}
           </Col>
@@ -1157,7 +1157,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {!found && (picked === 'a' || picked === 'c')
               ? <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qator to'g'ri. Yana qarang: xato <i>"price" does not exist"</i> deyapti — kodda qayerda <span className="mono">price</span> yozilgan?</>, ru: <>Эта строка правильная. Посмотрите ещё раз: ошибка говорит <i>"price" does not exist</i> — где в коде написано <span className="mono">price</span>?</> })}</p></div>
               : null}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodda ustun <span className="mono">price</span> deb yozilgan, biroq sxemada u <span className="mono">narx</span> — shuning uchun baza topa olmadi. Bitta so'zni to'g'rilaymiz — tuzatish tugmasini bosing.{/* F-0926-06 (159/11): «chapdagi» joy so'zi olindi */}</>, ru: <>В коде столбец записан как <span className="mono">price</span>, но в схеме он <span className="mono">narx</span> — поэтому база его не нашла. Исправим одно слово — нажмите кнопку исправления.</> })}</p></div>}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Kodda ustun <span className="mono">price</span> deb yozilgan, biroq sxemada u <span className="mono">daily_price</span> — shuning uchun baza topa olmadi. Bitta so'zni to'g'rilaymiz — tuzatish tugmasini bosing.{/* F-0926-06 (159/11): «chapdagi» joy so'zi olindi */}</>, ru: <>В коде столбец записан как <span className="mono">price</span>, но в схеме он <span className="mono">daily_price</span> — поэтому база его не нашла. Исправим одно слово — нажмите кнопку исправления.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1185,7 +1185,7 @@ const Screen12 = (props) => (
 const ACHIEVEMENTS = {
   blueprint: { icon: '🏗️', name: 'Blueprint!',      desc: { uz: "cars jadvalini o'zingiz yozdingiz", ru: 'Вы сами написали таблицу cars' } },
   director:  { icon: '🎬', name: "Director's Cut!", desc: { uz: "Serverni Gemini bilan yozdingiz", ru: 'Вы написали сервер с Gemini' } },
-  catcher:   { icon: '🐞', name: 'Nice Catch!',     desc: { uz: "price xatosini narx'ga tuzatdingiz (500 → 201)", ru: "Вы исправили price на narx (500 → 201)" } },
+  catcher:   { icon: '🐞', name: 'Nice Catch!',     desc: { uz: "price xatosini daily_price'ga tuzatdingiz (500 → 201)", ru: "Вы исправили price на daily_price (500 → 201)" } },
   finisher:  { icon: '🚀', name: 'Ship It!',        desc: { uz: "pool.query savolini birinchi urinishda topdingiz", ru: 'Вы с первой попытки ответили про pool.query' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve bilan: scored test / challenge / final)
@@ -1289,9 +1289,9 @@ const QZ_BG_SHAPES = [
 ];
 // JONLI: mustahkamlash-jang savollari — Backend CRUD qamrovi. To'g'ri javoblar 4 pozitsiyaga TENG (3/3/3/3).
 const QUIZ_BANK = [
-  { q: { uz: "Har mashinaga takrorlanmas raqam beradigan ustun qaysi?", ru: 'Какой столбец даёт каждой машине уникальный номер?' }, opts: [ "nom TEXT","id SERIAL PRIMARY KEY", "narx INTEGER NOT NULL", "bandmi BOOLEAN"], correct: 1 },
+  { q: { uz: "Har mashinaga takrorlanmas raqam beradigan ustun qaysi?", ru: 'Какой столбец даёт каждой машине уникальный номер?' }, opts: [ "model TEXT","id SERIAL PRIMARY KEY", "daily_price INTEGER NOT NULL", "is_rented BOOLEAN"], correct: 1 },
   { q: { uz: "cars jadvalini yaratish uchun qaysi SQL to'g'ri?", ru: 'Какой SQL правильный для создания таблицы cars?' }, opts: ["SELECT * FROM cars ORDER BY id", "DELETE FROM cars", "INSERT INTO cars", "CREATE TABLE cars (...)"], correct: 3 },
-  { q: { uz: "narx ustuni uchun qaysi tur mos (butun son)?", ru: 'Какой тип подходит столбцу narx (целое число)?' }, opts: [ "INTEGER", "BOOLEAN","TEXT", "SERIAL LIST"], correct: 0 },
+  { q: { uz: "daily_price ustuni uchun qaysi tur mos (butun son)?", ru: 'Какой тип подходит столбцу daily_price (целое число)?' }, opts: [ "INTEGER", "BOOLEAN","TEXT", "SERIAL LIST"], correct: 0 },
   { q: { uz: "Bazaga yangi mashina qo'shish uchun qaysi juftlik?", ru: 'Какая пара нужна, чтобы добавить в базу новую машину?' }, opts: ["GET → SELECT", "PUT → UPDATE", "POST → INSERT", "DELETE → DELETE"], correct: 2 },
   { q: { uz: "Barcha mashinalarni o'qish uchun qaysi juftlik?", ru: 'Какая пара нужна, чтобы прочитать все машины?' }, opts: ["GET → SELECT", "POST → INSERT", "PUT → UPDATE", "DELETE → DELETE"], correct: 0 },
   { q: { uz: "Bitta mashina narxini nima o'zgartiradi?", ru: "Что меняет цену одной машины?" }, opts: ["POST → INSERT INTO cars", "PUT → UPDATE ... WHERE id", "GET → SELECT * FROM cars", "DELETE → DELETE FROM cars"], correct: 1 },
@@ -1299,7 +1299,7 @@ const QUIZ_BANK = [
   { q: { uz: "AI'ga eng aniq buyruq qaysi?", ru: "Какая команда для AI самая точная?" }, opts: [{ uz: "Mashinalarni chiqarib ber", ru: "Выведи мне машины" }, { uz: "Bazadan biror narsa olib ber", ru: "Достань что-нибудь из базы" }, { uz: "GET /api/cars → SELECT → JSON", ru: "GET /api/cars → SELECT → JSON" }, { uz: "Yaxshi backend kodi yozib ber", ru: "Напиши хороший backend-код" }], correct: 2 },
   { q: { uz: "`res.json(...)` nima qiladi?", ru: "Что делает `res.json(...)`?" }, opts: [{ uz: "Yangi jadval yaratadi", ru: "Создаёт новую таблицу" }, { uz: "Serverni yoqib, port ochadi", ru: "Включает сервер и открывает порт" }, { uz: "Natijani JSON qilib qaytaradi", ru: "Возвращает результат в JSON" }, { uz: "Faylni diskka yozadi", ru: "Пишет файл на диск" }], correct: 2 },
   { q: { uz: "Nega SQL'da $1, $2 ishlatamiz?", ru: "Зачем в SQL пишем $1, $2?" }, opts: [{ uz: "Matn kod bo'lib qolmasin deb", ru: "Чтобы текст не стал кодом" }, { uz: "So'rov tezroq ishlasin deb", ru: "Чтобы запрос шёл быстрее" }, { uz: "PostgreSQL shuni talab qiladi", ru: "Так требует PostgreSQL" }, { uz: "Ustun nomi qisqarsin deb", ru: "Чтобы сократить имя столбца" }], correct: 0 },
-  { q: { uz: "500: column \"price\" does not exist. Sabab?", ru: "500: column \"price\" does not exist. Причина?" }, opts: [{ uz: "Baza o'chib qolgan", ru: "База выключена" }, { uz: "Kodda price, sxemada narx", ru: "В коде price, в схеме narx" }, { uz: "Internet uzilgan", ru: "Пропал интернет" }, { uz: "Postman noto'g'ri sozlangan", ru: "Postman настроен неверно" }], correct: 1 },
+  { q: { uz: "500: column \"price\" does not exist. Sabab?", ru: "500: column \"price\" does not exist. Причина?" }, opts: [{ uz: "Baza o'chib qolgan", ru: "База выключена" }, { uz: "Kodda price, sxemada daily_price", ru: "В коде price, в схеме daily_price" }, { uz: "Internet uzilgan", ru: "Пропал интернет" }, { uz: "Postman noto'g'ri sozlangan", ru: "Postman настроен неверно" }], correct: 1 },
   { q: { uz: "Muvaffaqiyatli POST qaysi status qaytaradi?", ru: "Какой статус возвращает успешный POST?" }, opts: ["404 Not Found", "500 Server Error", "200 OK", "201 Created"], correct: 3 },
 ];
 

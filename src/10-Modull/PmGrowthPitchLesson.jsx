@@ -1297,51 +1297,54 @@ const KOD_IZ = {
   har: { uz: '// har hafta — bitta ustun', ru: '// каждая неделя — один столбик' },
   noldan: { uz: ' // shu joyni siz yozasiz: noldan', ru: ' // это место пишете вы: от нуля' },
   son: { uz: ' // shu joyni siz yozasiz: ustida — son', ru: ' // это место пишете вы: сверху — число' },
-  sana: { uz: ' // shu joyni siz yozasiz: ostida — sana', ru: ' // это место пишете вы: снизу — дата' }
+  sana: { uz: ' // shu joyni siz yozasiz: ostida — sana', ru: ' // это место пишете вы: снизу — дата' },
+  nomlar: { uz: '// weeks — haftalar · date — haftaning sanasi · count — soni · title — sarlavha · MAX_HEIGHT — eng baland ustun · bar — ustun', ru: '// weeks — недели · date — дата · count — число · title — заголовок · MAX_HEIGHT — самый высокий столбик · bar — столбик' }
 };
 const JS_Q = (s) => '"' + String(s).replace(/\\/g, '').replace(/"/g, "'") + '"';
 const kodStarter = (haftalar, sizniki, t) => [
   ...(sizniki ? [KOD_IZ.boshSiz1[t], KOD_IZ.boshSiz2[t]] : [KOD_IZ.bosh[t]]),
-  'const haftalar = [',
-  ...haftalar.map((h, i) => '  { sana: ' + JS_Q(h.sana) + ', soni: ' + h.soni + ' }' + (i < haftalar.length - 1 ? ',' : '')),
+  KOD_IZ.nomlar[t],
+  'const weeks = [',
+  ...haftalar.map((h, i) => '  { date: ' + JS_Q(h.sana) + ', count: ' + h.soni + ' }' + (i < haftalar.length - 1 ? ',' : '')),
   '];',
-  'const sarlavha = "";' + KOD_IZ.sar[t],
-  'const BALANDLIK = 160;' + KOD_IZ.bal[t],
+  'const title = "";' + KOD_IZ.sar[t],
+  'const MAX_HEIGHT = 160;' + KOD_IZ.bal[t],
   '',
   KOD_IZ.katta[t],
-  'let engKatta = 0;',
-  'haftalar.forEach(function (h) {',
-  '  if (h.soni > engKatta) engKatta = h.soni;',
+  'let maxCount = 0;',
+  'weeks.forEach(function (h) {',
+  '  if (h.count > maxCount) maxCount = h.count;',
   '});',
   '',
-  'document.getElementById("sarlavha").textContent = sarlavha;',
+  'document.getElementById("title").textContent = title;',
   '',
   KOD_IZ.har[t],
-  'haftalar.forEach(function (h) {',
-  '  const ustun = document.createElement("div");',
-  '  ustun.className = "ustun";',
-  '  ustun.style.height = 0 + "px";' + KOD_IZ.noldan[t],
+  'weeks.forEach(function (h) {',
+  '  const bar = document.createElement("div");',
+  '  bar.className = "bar";',
+  '  bar.style.height = 0 + "px";' + KOD_IZ.noldan[t],
   '',
-  '  const son = document.createElement("b");',
-  '  son.textContent = "";' + KOD_IZ.son[t],
+  '  const countLabel = document.createElement("b");',
+  '  countLabel.textContent = "";' + KOD_IZ.son[t],
   '',
-  '  const sana = document.createElement("span");',
-  '  sana.textContent = "";' + KOD_IZ.sana[t],
+  '  const dateLabel = document.createElement("span");',
+  '  dateLabel.textContent = "";' + KOD_IZ.sana[t],
   '',
-  '  const joy = document.createElement("div");',
-  '  joy.className = "joy";',
-  '  joy.appendChild(son);',
-  '  joy.appendChild(ustun);',
-  '  joy.appendChild(sana);',
-  '  document.getElementById("grafik").appendChild(joy);',
+  '  const slot = document.createElement("div");',
+  '  slot.className = "slot";',
+  '  slot.appendChild(countLabel);',
+  '  slot.appendChild(bar);',
+  '  slot.appendChild(dateLabel);',
+  '  document.getElementById("chart").appendChild(slot);',
   '});',
   ''
 ].join('\n');
-const KOD_INDEX = '<h3 id="sarlavha"></h3>\n<div id="grafik"></div>\n';
+// F-1027-01: nomlar/id/klasslar inglizcha; eski saqlangan kod (haftalar · BALANDLIK · #sarlavha · .ustun) ham o'tadi.
+const KOD_INDEX = '<h3 id="title"></h3>\n<div id="chart"></div>\n';
 const KOD_SHART_IFODA = [
-  '(function(){var s=document.getElementById("sarlavha");return s&&s.textContent.trim().length>=5?"ha":"yoq";})()',
-  '(function(){if(typeof haftalar==="undefined"||typeof BALANDLIK==="undefined")return "yoq";var u=document.querySelectorAll("#grafik .ustun");if(u.length<1||u.length!==haftalar.length)return "yoq";var mx=0,i;for(i=0;i<haftalar.length;i++){if(haftalar[i].soni>mx)mx=haftalar[i].soni;}if(mx<=0)return "yoq";var top=0;for(i=0;i<u.length;i++){var h=parseFloat(u[i].style.height)||0;if(Math.abs(h-haftalar[i].soni/mx*BALANDLIK)>2)return "yoq";if(h>top)top=h;}return Math.abs(top-BALANDLIK)<=2?"ha":"yoq";})()',
-  '(function(){if(typeof haftalar==="undefined")return "yoq";var j=document.querySelectorAll("#grafik .joy");if(j.length<2||j.length!==haftalar.length)return "yoq";for(var i=0;i<j.length;i++){var b=j[i].querySelector("b"),s=j[i].querySelector("span");if(!b||!s)return "yoq";if(b.textContent.trim()!==String(haftalar[i].soni))return "yoq";if(s.textContent.trim()!==String(haftalar[i].sana).trim())return "yoq";}return "ha";})()'
+  '(function(){var s=document.getElementById("title")||document.getElementById("sarlavha");return s&&s.textContent.trim().length>=5?"ha":"yoq";})()',
+  '(function(){var W=typeof weeks!=="undefined"?weeks.map(function(x){return {soni:x.count,sana:x.date};}):(typeof haftalar!=="undefined"?haftalar:undefined);var H=typeof MAX_HEIGHT!=="undefined"?MAX_HEIGHT:(typeof BALANDLIK!=="undefined"?BALANDLIK:undefined);if(W===undefined||H===undefined)return "yoq";var u=document.querySelectorAll("#chart .bar, #grafik .ustun");if(u.length<1||u.length!==W.length)return "yoq";var mx=0,i;for(i=0;i<W.length;i++){if(W[i].soni>mx)mx=W[i].soni;}if(mx<=0)return "yoq";var top=0;for(i=0;i<u.length;i++){var h=parseFloat(u[i].style.height)||0;if(Math.abs(h-W[i].soni/mx*H)>2)return "yoq";if(h>top)top=h;}return Math.abs(top-H)<=2?"ha":"yoq";})()',
+  '(function(){var W=typeof weeks!=="undefined"?weeks.map(function(x){return {soni:x.count,sana:x.date};}):(typeof haftalar!=="undefined"?haftalar:undefined);var H=typeof MAX_HEIGHT!=="undefined"?MAX_HEIGHT:(typeof BALANDLIK!=="undefined"?BALANDLIK:undefined);if(W===undefined)return "yoq";var j=document.querySelectorAll("#chart .slot, #grafik .joy");if(j.length<2||j.length!==W.length)return "yoq";for(var i=0;i<j.length;i++){var b=j[i].querySelector("b"),s=j[i].querySelector("span");if(!b||!s)return "yoq";if(b.textContent.trim()!==String(W[i].soni))return "yoq";if(s.textContent.trim()!==String(W[i].sana).trim())return "yoq";}return "ha";})()'
 ];
 const KOD_SHART = [
   { uz: '1 — Sarlavhaga grafikda nima sanalganini yozing.', ru: '1 — Напишите в заголовке, что посчитано на графике.' },
@@ -1353,12 +1356,12 @@ const KOD_VAZIFA = [
   { uz: 'Ustun balandligini noldan hisoblang.', ru: 'Посчитайте высоту столбика от нуля.' },
   { uz: "Har ustun ustiga sonini, ostiga sanasini qo'ying.", ru: 'Поставьте над каждым столбиком число, под ним дату.' }
 ];
-const kodPreviewCss = () => '#grafik{display:flex;align-items:flex-end;gap:18px;min-height:210px;padding:8px 6px 0;border-bottom:2px solid ' + T.ink + '}'
-  + '.joy{flex:1;max-width:96px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px}'
-  + '.joy b{font:700 14px Manrope,system-ui,sans-serif;color:' + T.ink + '}'
-  + '.ustun{width:100%;background:' + T.accent + ';border-radius:6px 6px 0 0}'
-  + '.joy span{font:500 12px Manrope,system-ui,sans-serif;color:' + T.ink2 + ';text-align:center;line-height:1.25}'
-  + '#sarlavha{font:700 16px Manrope,system-ui,sans-serif;margin:0 0 10px;min-height:20px}';
+const kodPreviewCss = () => '#chart,#grafik{display:flex;align-items:flex-end;gap:18px;min-height:210px;padding:8px 6px 0;border-bottom:2px solid ' + T.ink + '}'
+  + '.slot,.joy{flex:1;max-width:96px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px}'
+  + '.slot b,.joy b{font:700 14px Manrope,system-ui,sans-serif;color:' + T.ink + '}'
+  + '.bar,.ustun{width:100%;background:' + T.accent + ';border-radius:6px 6px 0 0}'
+  + '.slot span,.joy span{font:500 12px Manrope,system-ui,sans-serif;color:' + T.ink2 + ';text-align:center;line-height:1.25}'
+  + '#title,#sarlavha{font:700 16px Manrope,system-ui,sans-serif;margin:0 0 10px;min-height:20px}';
 const kodTask = (starter) => ({
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
   title: { uz: "app.js — o'sish grafigini yakunlang", ru: 'app.js — допишите график роста' },
@@ -1369,11 +1372,11 @@ const kodTask = (starter) => ({
   previewCss: kodPreviewCss(),
   requirements: KOD_SHART.map((s, i) => ({ id: 'sh' + (i + 1), label: KOD_VAZIFA[i], check: C.evalEquals(KOD_SHART_IFODA[i], 'ha', s) }))
 });
-// Darvoza-mashq (PM-082 c/e): to'g'ri — h.soni / engKatta * BALANDLIK
+// Darvoza-mashq (PM-082 c/e): to'g'ri — h.count / maxCount * MAX_HEIGHT
 const KOD_DARVOZA = [
-  { id: 'kichik', kod: '(h.soni - engKichik) * 10', x: { uz: "Eng kichik ustun nolga tushib qoladi — bu noldan emas.", ru: 'Самый маленький столбик падает до нуля — это не от нуля.' } },
-  { id: 'togri', kod: 'h.soni / engKatta * BALANDLIK', ok: true },
-  { id: 'length', kod: 'BALANDLIK / haftalar.length', x: { uz: "Hamma ustun bir xil bo'ladi — son ko'rinmaydi.", ru: 'Все столбики одинаковые — числа не видно.' } }
+  { id: 'kichik', kod: '(h.count - minCount) * 10', x: { uz: "Eng kichik ustun nolga tushib qoladi — bu noldan emas.", ru: 'Самый маленький столбик падает до нуля — это не от нуля.' } },
+  { id: 'togri', kod: 'h.count / maxCount * MAX_HEIGHT', ok: true },
+  { id: 'length', kod: 'MAX_HEIGHT / weeks.length', x: { uz: "Hamma ustun bir xil bo'ladi — son ko'rinmaydi.", ru: 'Все столбики одинаковые — числа не видно.' } }
 ];
 const darvozaP = (id, haftalar) => {
   const s = haftalar.map(h => h.soni);
@@ -1484,7 +1487,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
               {miss && <QXato>{tr(KOD_DARVOZA.find(g => g.id === miss.id).x)}</QXato>}
             </div>
-          ) : <QIzoh>{fmtCode(tr({ uz: "Ustun balandligi — `h.soni / engKatta * BALANDLIK`: eng katta son eng baland ustun bo'ladi.", ru: 'Высота столбика — `h.soni / engKatta * BALANDLIK`: самое большое число — самый высокий столбик.' }))}</QIzoh>}
+          ) : <QIzoh>{fmtCode(tr({ uz: "Ustun balandligi — `h.count / maxCount * MAX_HEIGHT`: eng katta son eng baland ustun bo'ladi.", ru: 'Высота столбика — `h.count / maxCount * MAX_HEIGHT`: самое большое число — самый высокий столбик.' }))}</QIzoh>}
           <ol className={cxx('gp-vazifa', !stage2 && 'xira')}>{KOD_VAZIFA.map((v, i) => <li key={i} className={cxx(kodOk && 'ok')}><i>{kodOk ? '✓' : i + 1}</i><span>{tr(v)}</span></li>)}</ol>
           {done && <QXulosa>{tr({ uz: "Grafik tayyor — u Raqamlar bo'lagiga qo'yildi.", ru: 'График готов — он поставлен в часть «Цифры».' })}</QXulosa>}
           {yetmaydi && !done && <span className="gp-kulrang fade-step">{tr({ uz: "Bitta son ham yetadi: uni Raqamlar bo'lagida sanasi va manbasi bilan aytasiz.", ru: 'Хватит и одного числа: назовёте его в части «Цифры» с датой и источником.' })}</span>}
@@ -1492,7 +1495,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         yordam={stage2 && !done && <div className="gp-kyordam">
           <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })}</QTugma>
           {yordam && <div className="gp-yordam fade-step">
-            <span>{fmtCode(tr({ uz: "Ustun balandligi — son eng katta songa bo'linib, `BALANDLIK` ga ko'paytiriladi: eng katta son eng baland ustun bo'ladi. Son va sana `h` ichida: `h.soni`, `h.sana`.", ru: 'Высота столбика — число делят на самое большое и умножают на `BALANDLIK`: самое большое число — самый высокий столбик. Число и дата внутри `h`: `h.soni`, `h.sana`.' }))}</span>
+            <span>{fmtCode(tr({ uz: "Ustun balandligi — son eng katta songa bo'linib, `MAX_HEIGHT` ga ko'paytiriladi: eng katta son eng baland ustun bo'ladi. Son va sana `h` ichida: `h.count`, `h.date`.", ru: 'Высота столбика — число делят на самое большое и умножают на `MAX_HEIGHT`: самое большое число — самый высокий столбик. Число и дата внутри `h`: `h.count`, `h.date`.' }))}</span>
             <span>{fmtCode(tr({ uz: "Eslatma (oldingi kod oynalaridan): `forEach` — ro'yxatdagi har element uchun bir marta ishlaydi · `textContent` — elementga matn yozadi · `style.height` — element balandligi.", ru: 'Напоминание (из прошлых окон кода): `forEach` — срабатывает один раз для каждого элемента списка · `textContent` — пишет текст в элемент · `style.height` — высота элемента.' }))}</span>
             <span>{tr({ uz: "O'z sonlaringiz qayerdan: metrika hisobotidagi kunlar bo'yicha sanoq (dars uni haftalik jamiga aylantirib qo'ygan); yangi hafta o'tgan bo'lsa — o'sha so'rovni Neon'da qayta «Run» qiling yoki sanoq sahifasidagi ro'yxatdan o'tganlar sonini oling.", ru: 'Откуда ваши числа: подсчёт по дням в отчёте по метрикам (урок превратил его в недельные итоги); если прошла новая неделя — снова нажмите «Run» для того запроса в Neon или возьмите число зарегистрировавшихся со страницы подсчёта.' })}</span>
             <span>{tr({ uz: "Ikki hafta nuqtasi hali yo'q bo'lsa — sonlarni o'ylab topmang va oraliqni sun'iy tenglashtirmang: Mentor sonlari bilan chizing va pastdagi «Grafikka nuqta yetmaydi»ni bosing.", ru: 'Если точек за две недели ещё нет — не придумывайте числа и не выравнивайте шаг искусственно: чертите по числам Ментора и нажмите внизу «Для графика не хватает точек».' })}</span>

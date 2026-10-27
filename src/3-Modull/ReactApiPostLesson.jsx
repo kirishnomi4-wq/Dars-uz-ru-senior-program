@@ -908,7 +908,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
     { text: tr({ uz: "So'rov fe'llari — 4 buyruq", ru: 'Глаголы запросов — 4 команды' }), tag: 'GET · POST · PUT · DELETE' },
     { text: tr({ uz: "POST — yangi qo'shish", ru: 'POST — добавить новое' }), tag: "method: 'POST'" },
-    { text: tr({ uz: 'Posilka yuki — body', ru: 'Груз посылки — body' }), tag: 'JSON.stringify(yangi)' },
+    { text: tr({ uz: 'Posilka yuki — body', ru: 'Груз посылки — body' }), tag: 'JSON.stringify(newGame)' },
     { text: tr({ uz: 'PUT — almashtirish', ru: 'PUT — заменить' }), tag: '/games/2 + ID' },
     { text: tr({ uz: "DELETE — o'chirish", ru: 'DELETE — удалить' }), tag: tr({ uz: 'tasdiqlash bilan', ru: 'с подтверждением' }) }
   ];
@@ -1127,11 +1127,11 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {EMOJIS.map(v => <button key={v} className="gchip" style={emoji === v ? { background: T.accent } : undefined} onClick={() => setEmoji(v)}>{v}</button>)}
             </div>
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.95 }}>
-              <Jx>{'const'}</Jx>{' yangi = { name: '}{name ? <St>'{name}'</St> : <Cm>?</Cm>}{', emoji: '}{emoji ? <St>'{emoji}'</St> : <Cm>?</Cm>}{' };'}{'\n\n'}
+              <Jx>{'const'}</Jx>{' newGame = { name: '}{name ? <St>'{name}'</St> : <Cm>?</Cm>}{', emoji: '}{emoji ? <St>'{emoji}'</St> : <Cm>?</Cm>}{' };'}{'\n\n'}
               {'fetch(url, {'}{'\n'}
               {'  '}<At>method</At>{': '}<St>'POST'</St>{','}{'\n'}
               {'  '}<At>headers</At>{": { 'Content-Type': 'application/json' },"}{'\n'}
-              {'  '}<span style={{ borderRadius: 6, padding: '1px 5px', background: done ? 'rgba(31,122,77,0.14)' : 'rgba(255,255,255,0.06)' }}><At>body</At>{': JSON.stringify(yangi)'}</span>{'\n'}
+              {'  '}<span style={{ borderRadius: 6, padding: '1px 5px', background: done ? 'rgba(31,122,77,0.14)' : 'rgba(255,255,255,0.06)' }}><At>body</At>{': JSON.stringify(newGame)'}</span>{'\n'}
               {'});'}
             </pre>
           </Col>
@@ -1165,9 +1165,9 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 5b — TEST 2 (JSON.stringify nima qiladi?) =====
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Tekshiruv', ru: 'Проверка' })}
-    questionText={tr({ uz: "JSON.stringify(yangi) nima qiladi?", ru: 'Что делает JSON.stringify(yangi)?' })}
-    audioText="JSON.stringify(yangi) nima qiladi? To'g'ri javobni tanlang."
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>JSON.stringify(yangi)</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>JSON.stringify(yangi)</span>?</> })}</h2></>}
+    questionText={tr({ uz: "JSON.stringify(newGame) nima qiladi?", ru: 'Что делает JSON.stringify(newGame)?' })}
+    audioText="JSON.stringify(newGame) nima qiladi? To'g'ri javobni tanlang."
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: 'Mustahkamlash', ru: 'Закрепление' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>JSON.stringify(newGame)</span> nima qiladi?</>, ru: <>Что делает <span className="mono" style={{ color: T.accent }}>JSON.stringify(newGame)</span>?</> })}</h2></>}
     options={[tr({ uz: "O'yinni darhol katalogga chizadi", ru: 'Сразу рисует игру в каталоге' }), tr({ uz: "Obyektda xato bor-yo'qligini tekshiradi", ru: 'Проверяет объект на ошибки' }), tr({ uz: "Obyektni JSON matnga aylantiradi", ru: 'Превращает объект в JSON-текст' }), tr({ uz: "Serverdan javob olib keladi", ru: 'Приносит ответ с сервера' })]} correctIdx={2}
     explainCorrect={/* F-0926-06: «To'g'ri!» prefiksi va variant takrori olindi (159/11) */ tr({ uz: "Server obyektni emas, JSON matnni tushunadi.", ru: 'Сервер понимает не объект, а JSON-текст.' })}
     explainWrong={{
@@ -1213,10 +1213,10 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <Col>
             <button className="btn fade-up delay-1" style={{ alignSelf: 'flex-start' }} onClick={run} disabled={running}>{running ? tr({ uz: 'Parvozda…', ru: 'В полёте…' }) : (done ? tr({ uz: '↻ Yana kuzatish', ru: '↻ Посмотреть ещё раз' }) : tr({ uz: '▶ Posilkani uchirish', ru: '▶ Запустить посылку' }))}</button>
             <pre className="code-box fade-up delay-2" style={{ lineHeight: 1.95 }}>
-              <span style={hl(1)}><Jx>{'const'}</Jx>{' yangi = { name: '}<St>'Robo Race'</St>{' };'}</span>{'\n\n'}
+              <span style={hl(1)}><Jx>{'const'}</Jx>{' newGame = { name: '}<St>'Robo Race'</St>{' };'}</span>{'\n\n'}
               <span style={hl(2)}>{'fetch('}<St>'https://robo-api.example/games'</St>{', {'}</span>{'\n'}
               <span style={hl(2)}>{'  '}<At>method</At>{': '}<St>'POST'</St>{','}</span>{'\n'}
-              <span style={hl(1)}>{'  '}<At>body</At>{': JSON.stringify(yangi)'}</span>{'\n'}
+              <span style={hl(1)}>{'  '}<At>body</At>{': JSON.stringify(newGame)'}</span>{'\n'}
               {'})'}{'\n'}
               <span style={hl(3)}>{'  .then(res => res.json())'}</span>{'\n'}
               <span style={hl(4)}>{'  .then(data => setGames([...games, data]));'}</span>
@@ -1537,7 +1537,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const POST_ITEMS = [
     { id: 'm', label: "method: 'POST'" },
     { id: 'b', label: 'body:' },
-    { id: 'j', label: 'JSON.stringify(yangi)' }
+    { id: 'j', label: 'JSON.stringify(newGame)' }
   ];
   const postSolved = () => { setPostFly(true); flyTimer.current = setTimeout(() => setStage(1), 950); };
   const pickAddr = (ok) => {
@@ -1629,7 +1629,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 14 — VIBECODING (AI bilan to'liq boshqaruv) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TASKS = [
-    { id: 't1', label: tr({ uz: "O'yin qo'shish formasi yasa — tugma bosilganda POST ketsin", ru: 'Сделай форму добавления игры — по кнопке пусть уходит POST' }), plan: [tr({ uz: "Forma: name + emoji uchun input va state", ru: 'Форма: input и state для name + emoji' }), tr({ uz: "Tugmada: fetch POST + body: JSON.stringify(yangi)", ru: 'В кнопке: fetch POST + body: JSON.stringify(yangi)' })], code: <>{'fetch(url, { '}<At>method</At>{': '}<St>'POST'</St>{', '}<At>body</At>{': JSON.stringify(yangi) })'}</> },
+    { id: 't1', label: tr({ uz: "O'yin qo'shish formasi yasa — tugma bosilganda POST ketsin", ru: 'Сделай форму добавления игры — по кнопке пусть уходит POST' }), plan: [tr({ uz: "Forma: name + emoji uchun input va state", ru: 'Форма: input и state для name + emoji' }), tr({ uz: "Tugmada: fetch POST + body: JSON.stringify(newGame)", ru: 'В кнопке: fetch POST + body: JSON.stringify(newGame)' })], code: <>{'fetch(url, { '}<At>method</At>{': '}<St>'POST'</St>{', '}<At>body</At>{': JSON.stringify(newGame) })'}</> },
     { id: 't2', label: tr({ uz: "Like tugmasi serverda saqlanadigan bo'lsin", ru: 'Пусть лайк сохраняется на сервере' }), plan: [tr({ uz: "onLike ichida PUT yuboraman: /games/ID", ru: 'Внутри onLike отправлю PUT: /games/ID' }), tr({ uz: "body'da yangi likes soni ketadi", ru: 'В body уйдёт новое число likes' })], code: <>{'fetch(url + '}<St>'/'</St>{' + g.id, { '}<At>method</At>{': '}<St>'PUT'</St>{', '}<At>body</At>{': … })'}</> },
     { id: 't3', label: tr({ uz: "O'chirish tugmasi qo'sh — lekin avval tasdiqlash so'rasin", ru: 'Добавь кнопку удаления — но сначала пусть спросит подтверждение' }), plan: [tr({ uz: "Avval confirm: 'Rostdan o'chirilsinmi?'", ru: "Сначала confirm: «Точно удалить?»" }), tr({ uz: "Ha bo'lsa: fetch DELETE /games/ID — body'siz", ru: 'Если да: fetch DELETE /games/ID — без body' })], code: <>{'if (tasdiq) fetch(url + '}<St>'/'</St>{' + g.id, { '}<At>method</At>{': '}<St>'DELETE'</St>{' })'}</> }
   ];
@@ -1735,14 +1735,14 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-2">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Qo'shish kodini yozdim:", ru: 'Написал код добавления:' })}</span></div>
               <div className="ai-code">
-                <div className={`ai-line ${picked === 'obj' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('obj'); }}><Jx>{'const'}</Jx>{' yangi = { name: '}<St>'Super Kart'</St>{' };'}</div>
+                <div className={`ai-line ${picked === 'obj' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('obj'); }}><Jx>{'const'}</Jx>{' newGame = { name: '}<St>'Super Kart'</St>{' };'}</div>
                 {!fixed ? (
                   <div className={`ai-line ${found ? 'bad' : ''}`} onClick={() => { if (!found) setPicked('opts'); }}>{'fetch(url, {'}</div>
                 ) : (
                   <div className="ai-line ok el-in">{'fetch(url, {'}</div>
                 )}
                 {fixed && <div className="ai-line ok el-in">{'  '}<At>method</At>{': '}<St>'POST'</St>{',  '}<Cm>{tr({ uz: "// yetishmagan fe'l!", ru: '// недостающий глагол!' })}</Cm></div>}
-                <div className={`ai-line ${picked === 'body' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('body'); }}>{'  '}<At>body</At>{': JSON.stringify(yangi)'}</div>
+                <div className={`ai-line ${picked === 'body' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('body'); }}>{'  '}<At>body</At>{': JSON.stringify(newGame)'}</div>
                 <div className={`ai-line ${picked === 'end' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('end'); }}>{'});'}</div>
               </div>
               {/* F-0926-06: «Fe'l qayerda…? O'sha qatorni bosing» olindi — mentor so'raydi, «fe'l» javobni aytardi (159/6, 159/17) */}
@@ -1835,7 +1835,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="vsc-tab">GameCard.jsx</span>
               </div>
               <div className="vsc-body" style={{ fontSize: 'clamp(11px,1.35vw,12px)', lineHeight: 1.82 }}>
-                <Ln n={1}><Jx>{'const'}</Jx>{' yangi = { name: '}<St>'{nameOk ? gname : '?'}'</St>{', emoji: '}<St>'{emoji}'</St>{' };'}</Ln>
+                <Ln n={1}><Jx>{'const'}</Jx>{' newGame = { name: '}<St>'{nameOk ? gname : '?'}'</St>{', emoji: '}<St>'{emoji}'</St>{' };'}</Ln>
                 <Ln n={2}>{''}</Ln>
                 <Ln n={3}>{'fetch('}<St>'https://robo-api.example/games'</St>{', {'}</Ln>
                 <div className="vsc-line">
@@ -1843,7 +1843,7 @@ const Screen16 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <span style={{ whiteSpace: 'pre' }}>{'  '}</span>
                   <input className={`vsc-input ${lineOk ? 'ok' : ''}`} value={value} onChange={e => setValue(e.target.value)} placeholder="…" /* F-0927 (S6 namunasi): baholanadigan yakuniy testda mentor va placeholder javobni aynan aytardi (159/17) */ spellCheck={false} autoCapitalize="off" autoCorrect="off" style={{ fontSize: 'clamp(11px,1.35vw,12px)' }} />
                 </div>
-                <Ln n={5}>{'  '}<At>body</At>{': JSON.stringify(yangi)'}</Ln>
+                <Ln n={5}>{'  '}<At>body</At>{': JSON.stringify(newGame)'}</Ln>
                 <Ln n={6}>{'});'}</Ln>
               </div>
             </div>
@@ -2014,9 +2014,9 @@ const ScreenPractice1 = (props) => (
     statsLabel={{ uz: '📤 POST yuborganlar', ru: '📤 Отправили POST' }}
     task={{ uz: "robo-games loyihangizga «O'yin qo'shish» tugmasini qo'shing — bosilganda POST bilan serverga ketsin va katalogda paydo bo'lsin.", ru: 'Добавьте в свой проект robo-games кнопку «Добавить игру» — по нажатию пусть уходит POST на сервер, и игра появляется в каталоге.' }}
     checklist={[
-      { uz: "Obyekt tayyorlang: `const yangi = { name, emoji }`", ru: 'Подготовьте объект: `const yangi = { name, emoji }`' },
+      { uz: "Obyekt tayyorlang: `const newGame = { name, emoji }`", ru: 'Подготовьте объект: `const newGame = { name, emoji }`' },
       { uz: "`fetch(url, { method: 'POST', ... })` yozing", ru: "Напишите `fetch(url, { method: 'POST', ... })`" },
-      { uz: "`body: JSON.stringify(yangi)` qo'shing", ru: 'Добавьте `body: JSON.stringify(yangi)`' },
+      { uz: "`body: JSON.stringify(newGame)` qo'shing", ru: 'Добавьте `body: JSON.stringify(newGame)`' },
       { uz: "Tugmani bosib, sahifani yangilab — o'yin katalogda ko'rinsin", ru: 'Нажмите кнопку, обновите страницу — игра должна появиться в каталоге' },
     ]} />
 );
@@ -2347,7 +2347,7 @@ const QUIZ_BANK = [
   { q: { uz: "Posilka yuki (ma'lumot) qaysi xonada ketadi?", ru: 'В какой «комнате» едет груз посылки (данные)?' }, opts: ["headers", "body", "method", "url"], correct: 1 },
   { q: { uz: "`PUT` nima qiladi?", ru: "Что делает `PUT`?" }, opts: [{ uz: "Yozuvni faqat o'qiydi", ru: "Только читает запись" }, { uz: "Mavjud yozuvni almashtiradi", ru: "Заменяет существующую запись" }, { uz: "Yangi yozuv qo'shib qo'yadi", ru: "Добавляет новую запись" }, { uz: "Yozuvni butunlay o'chiradi", ru: "Полностью удаляет запись" }], correct: 1 },
   { q: { uz: "`GET` nima qiladi?", ru: 'Что делает `GET`?' }, opts: [{ uz: "Yangi yozuv qo'shadi", ru: 'Добавляет новую запись' }, { uz: "Faqat o'qib olib keladi", ru: 'Только читает и приносит' }, { uz: "Yozuvni o'chiradi", ru: 'Удаляет запись' }, { uz: "Yozuvni almashtiradi", ru: 'Заменяет запись' }], correct: 1 },
-  { q: { uz: "`JSON.stringify(yangi)` nima qiladi?", ru: "Что делает `JSON.stringify(yangi)`?" }, opts: [{ uz: "Obyektni ekranga chizadi", ru: "Рисует объект на экране" }, { uz: "Xatolarni tekshirib chiqadi", ru: "Проверяет ошибки" }, { uz: "Obyektni JSON matn qiladi", ru: "Делает из объекта JSON-текст" }, { uz: "Serverdan javob oladi", ru: "Получает ответ сервера" }], correct: 2 },
+  { q: { uz: "`JSON.stringify(newGame)` nima qiladi?", ru: "Что делает `JSON.stringify(newGame)`?" }, opts: [{ uz: "Obyektni ekranga chizadi", ru: "Рисует объект на экране" }, { uz: "Xatolarni tekshirib chiqadi", ru: "Проверяет ошибки" }, { uz: "Obyektni JSON matn qiladi", ru: "Делает из объекта JSON-текст" }, { uz: "Serverdan javob oladi", ru: "Получает ответ сервера" }], correct: 2 },
   { q: { uz: "`PUT` va `DELETE` da nima majburiy?", ru: "Что обязательно в `PUT` и `DELETE`?" }, opts: [{ uz: "Rang nomi", ru: "Название цвета" }, { uz: "body qismi", ru: "Часть body" }, { uz: "ID raqami", ru: "Номер ID" }, { uz: "headers qismi", ru: "Часть headers" }], correct: 2 },
   { q: { uz: "`fetch(url, {…})` — ikkinchi qism nima?", ru: "Что такое вторая часть `fetch(url, {…})`?" }, opts: [{ uz: "Manzilning davomi", ru: "Продолжение адреса" }, { uz: "Kelgan javob", ru: "Пришедший ответ" }, { uz: "Sozlamalar qutisi", ru: "Коробка настроек" }, { uz: "Xato matni", ru: "Текст ошибки" }], correct: 2 },
   { q: { uz: "`DELETE` bilan o'chirilgan yozuv qaytadimi?", ru: "Возвращается ли запись, удалённая `DELETE`?" }, opts: [{ uz: "Ha, oson qaytariladi", ru: "Да, легко вернуть" }, { uz: "Bir daqiqada tiklanadi", ru: "Восстановится через минуту" }, { uz: "Serverda saqlanib qoladi", ru: "Остаётся на сервере" }, { uz: "Yo'q, butunlay ketadi", ru: "Нет, исчезает навсегда" }], correct: 3 },
@@ -3177,7 +3177,7 @@ export default function ReactApiPostLesson({ lang: langProp, onFinished, liveTok
 
         /* ===== v18 QATLAM CSS (DD/DBG/FC/ACH/ARENA/PODIUM/RECAP/MSTATS/CS) ===== */
         /* === 🧲 DRAG-DROP ORDER (reusable) === */
-        .dd { display: grid; grid-template-columns: minmax(0,1fr); gap: 11px; align-items: start; } /* F-0926-06: uyalar ustida hovuz ostida — JSON.stringify(yangi) uyadan va ustundan chiqib ketardi */ /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
+        .dd { display: grid; grid-template-columns: minmax(0,1fr); gap: 11px; align-items: start; } /* F-0926-06: uyalar ustida hovuz ostida — JSON.stringify(newGame) uyadan va ustundan chiqib ketardi */ /* §34: keng ekranda uyalar chapda, hovuz o'ngda */
         @media (max-width: 760px) { .dd { grid-template-columns: 1fr; } }
         .dd-slots { display: flex; flex-direction: column; gap: 9px; }
         .dd-slot { display: flex; align-items: center; gap: 12px; min-height: 46px; border-radius: 14px; border: 2px dashed ${T.ink3}66; background: ${T.paper}; padding: 8px 12px; transition: border-color .18s, background .18s; }

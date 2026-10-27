@@ -581,7 +581,7 @@ const AvtoSite = ({ cars = [], state = 'data', newId, cols = 3 }) => (
 const DbTable = ({ rows, flashId }) => (
   <div className="db">
     <div className="db-cap">🗄️ <b>cars</b> <span>· {rows.length} {tr({ uz: 'qator', ru: 'строк' })}</span></div>
-    <div className="db-row db-head"><span>id</span><span>nom</span><span>narx</span><span>yil</span></div>
+    <div className="db-row db-head"><span>id</span><span>model</span><span>daily_price</span><span>year</span></div>
     {rows.map(r => (
       <div key={r.id} className={`db-row el-in ${flashId === r.id ? 'flash' : ''}`}>
         <span>{r.id}</span><span>{r.nom}</span><span>{sp(r.narx)}</span><span>{r.yil}</span>
@@ -948,8 +948,8 @@ const Tekshir = ({ b }) => (
 );
 // ----- a3 · Maydonlar va holatlar -----
 const a3Prompt = () => tr({
-  uz: `AvtoIjara saytimni (React, avto-ijara) server ma'lumotiga moslashtir. Server ${API} mashinalarni { id, nom, narx, yil } ko'rinishida qaytaradi (cars.json'dagi name/price emas).\n1. Kartochkalar va mashina sahifasi shu maydonlarni ko'rsatsin: nom, narx (so'm/kun), yil.\n2. Uch holat: yuklanayotganda «Yuklanmoqda...», server javob bermasa «Ma'lumotni yuklab bo'lmadi», aks holda ro'yxat.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{Home.jsx va mashina sahifasi kodini shu yerga qo'ying}`,
-  ru: `Подстрой мой сайт AvtoIjara (React, avto-ijara) под данные сервера. Сервер ${API} возвращает машины в виде { id, nom, narx, yil } (не name/price, как в cars.json).\n1. Карточки и страница машины показывают эти поля: nom, narx (сум/день), yil.\n2. Три состояния: во время загрузки «Загрузка...», если сервер не отвечает — «Не удалось загрузить данные», иначе — список.\nК каждому разделу — короткий комментарий. Изменённые файлы верни целиком.\nВот мой код:\n{вставьте сюда код Home.jsx и страницы машины}`
+  uz: `AvtoIjara saytimni (React, avto-ijara) server ma'lumotiga moslashtir. Server ${API} mashinalarni { id, model, daily_price, year } ko'rinishida qaytaradi (cars.json'dagi name/price emas).\n1. Kartochkalar va mashina sahifasi shu maydonlarni ko'rsatsin: model, daily_price (so'm/kun), year.\n2. Uch holat: yuklanayotganda «Yuklanmoqda...», server javob bermasa «Ma'lumotni yuklab bo'lmadi», aks holda ro'yxat.\nHar bo'limga qisqa izoh yoz. O'zgargan fayllarni to'liq qaytar.\nMana kodim:\n{Home.jsx va mashina sahifasi kodini shu yerga qo'ying}`,
+  ru: `Подстрой мой сайт AvtoIjara (React, avto-ijara) под данные сервера. Сервер ${API} возвращает машины в виде { id, model, daily_price, year } (не name/price, как в cars.json).\n1. Карточки и страница машины показывают эти поля: model, daily_price (сум/день), year.\n2. Три состояния: во время загрузки «Загрузка...», если сервер не отвечает — «Не удалось загрузить данные», иначе — список.\nК каждому разделу — короткий комментарий. Изменённые файлы верни целиком.\nВот мой код:\n{вставьте сюда код Home.jsx и страницы машины}`
 });
 const A3_QADAM = [
   { uz: "Chapda holatlarni almashtiring — kod oynasida qaysi qator ishlashini ko'ring.", ru: 'Слева переключайте состояния — в окне кода видно, какая строка срабатывает.' },
@@ -958,7 +958,7 @@ const A3_QADAM = [
   { uz: "«Tekshiring» ro'yxatini o'ting.", ru: 'Пройдите список «Проверьте».' }
 ];
 const A3_TEKSHIR = [
-  { uz: "Kartochkalarda nom, narx va yil ko'rinadimi (undefined emas)?", ru: 'На карточках видны nom, narx и yil (не undefined)?' },
+  { uz: "Kartochkalarda model, daily_price va year ko'rinadimi (undefined emas)?", ru: 'На карточках видны model, daily_price и year (не undefined)?' },
   { uz: "Serverni to'xtatib (Ctrl+C) saytni yangilang — «yuklab bo'lmadi» chiqadimi?", ru: 'Остановите сервер (Ctrl+C) и обновите сайт — появляется «не удалось загрузить»?' }
 ];
 const HOLAT_KOD = { loading: 'setYuklanmoqda(true);', error: 'setXato("Ma\'lumotni yuklab bo\'lmadi");', data: 'setCars(data);' };
@@ -972,7 +972,7 @@ const ScreenHolat = ({ screen, onNext, onPrev }) => {
     <Stage mentorYigil eyebrow={tr({ uz: 'Amaliyot 3 · Gemini', ru: 'Практика 3 · Gemini' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Maydonlar va <span className="italic" style={{ color: T.accent }}>holatlar</span>.</>, ru: <>Поля и <span className="italic" style={{ color: T.accent }}>состояния</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ulandi — lekin server mashinani <span className="mono">nom, narx, yil</span> deb qaytaradi, sayt esa <span className="mono">name, price</span> ni kutadi: kartochkalarda «undefined» chiqadi. Gemini maydonlarni moslaydi va uch holatni qo'shadi.</>, ru: <>Подключено — но сервер отдаёт машину как <span className="mono">nom, narx, yil</span>, а сайт ждёт <span className="mono">name, price</span>: на карточках появится «undefined». Gemini согласует поля и добавит три состояния.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Ulandi — lekin server mashinani <span className="mono">model, daily_price, year</span> deb qaytaradi, sayt esa <span className="mono">name, price</span> ni kutadi: kartochkalarda «undefined» chiqadi. Gemini maydonlarni moslaydi va uch holatni qo'shadi.</>, ru: <>Подключено — но сервер отдаёт машину как <span className="mono">model, daily_price, year</span>, а сайт ждёт <span className="mono">name, price</span>: на карточках появится «undefined». Gemini согласует поля и добавит три состояния.</> })}</Mentor>
         <Split>
           <Col>
             <p className="flow-label">{tr({ uz: "Natija · holatni tanlang", ru: 'Результат · выберите состояние' })}</p>
@@ -983,7 +983,7 @@ const ScreenHolat = ({ screen, onNext, onPrev }) => {
           <Col>
             <PromptKarta matn={a3Prompt()} />
             <QadamTugma b={A3_QADAM} />
-            <KodOyna oxirgi={oxirgi} nur={nur} qatorlar={[<span key="c">cars[0] = {`{ nom: "${c.nom}", narx: ${c.narx}, yil: ${c.yil} }`};</span>, <span key="n" className="sk-izoh">// cars.length = {holat === 'data' ? CARS_DB.length : 0}</span>]} />
+            <KodOyna oxirgi={oxirgi} nur={nur} qatorlar={[<span key="c">cars[0] = {`{ model: "${c.nom}", daily_price: ${c.narx}, year: ${c.yil} }`};</span>, <span key="n" className="sk-izoh">// cars.length = {holat === 'data' ? CARS_DB.length : 0}</span>]} />
           </Col>
         </Split>
       </div>
@@ -992,8 +992,8 @@ const ScreenHolat = ({ screen, onNext, onPrev }) => {
 };
 // ----- a4 · Qo'shish formasi (POST) -----
 const a4Prompt = () => tr({
-  uz: `AvtoIjara saytimga qo'shish formasini qo'sh (kodim pastda):\nBosh sahifada forma: nom, narx, yil. «Qo'shish» bosilganda POST ${API} ga JSON yuborsin (Content-Type: application/json), keyin ro'yxatni qayta fetch qilsin.\nHar bo'limga qisqa izoh yoz. O'zgargan faylni to'liq qaytar.\nMana kodim:\n{Home.jsx kodini shu yerga qo'ying}`,
-  ru: `Добавь в мой сайт AvtoIjara форму добавления (код ниже):\nНа главной — форма: nom, narx, yil. По нажатию «Добавить» отправляет JSON на POST ${API} (Content-Type: application/json), потом заново делает fetch списка.\nК каждому разделу — короткий комментарий. Изменённый файл верни целиком.\nВот мой код:\n{вставьте сюда код Home.jsx}`
+  uz: `AvtoIjara saytimga qo'shish formasini qo'sh (kodim pastda):\nBosh sahifada forma: model, daily_price, year. «Qo'shish» bosilganda POST ${API} ga JSON yuborsin (Content-Type: application/json), keyin ro'yxatni qayta fetch qilsin.\nHar bo'limga qisqa izoh yoz. O'zgargan faylni to'liq qaytar.\nMana kodim:\n{Home.jsx kodini shu yerga qo'ying}`,
+  ru: `Добавь в мой сайт AvtoIjara форму добавления (код ниже):\nНа главной — форма: model, daily_price, year. По нажатию «Добавить» отправляет JSON на POST ${API} (Content-Type: application/json), потом заново делает fetch списка.\nК каждому разделу — короткий комментарий. Изменённый файл верни целиком.\nВот мой код:\n{вставьте сюда код Home.jsx}`
 });
 const A4_QADAM = [
   { uz: "Chapda forma bilan mashina qo'shing — kod oynasida POST so'rovini ko'ring.", ru: 'Слева добавьте машину формой — в окне кода видно POST-запрос.' },

@@ -1490,27 +1490,30 @@ const GATE_ITEMS = [
   { id: 'g3', ic: '🔔', t: { uz: 'Ilova ogohlantirish chiqaradi', ru: 'Приложение покажет предупреждение' }, ok: false },
 ];
 
-// UZ-RU: identifikatorlar (band · kitob_nomi · holati · band_qilgan · qaytarish_sanasi) ikkala tilda BIR XIL —
+// UZ-RU: identifikatorlar (booking · book_title · status · booked_by · return_date) ikkala tilda BIR XIL va inglizcha (F-1027-01) —
+// eski saqlangan kod (band · band_qilgan · qaytarish_sanasi) ham tekshiruvdan o'tadi;
 // shartlar (KOD_TASK.requirements) aynan shu nomlarni tekshiradi; faqat izoh va konsol-matni tarjima qilinadi.
 const KOD_STARTER = {
   uz: `// Kutubxona sxemasi — bitta yozuv
-var band = {
-  kitob_nomi: "Ikki eshik orasi",
-  holati: "band",
+// book_title — kitob nomi · status — holati · booked_by — kim band qilgan · return_date — qaytarish sanasi
+var booking = {
+  book_title: "Ikki eshik orasi",
+  status: "booked",
   // ← qolgan ikki maydonni siz yozasiz
 };
 
-console.log("Kim navbatda: " + (band.band_qilgan || "—"));
-console.log("Qachon bo'shaydi: " + (band.qaytarish_sanasi || "—"));`,
+console.log("Kim navbatda: " + (booking.booked_by || "—"));
+console.log("Qachon bo'shaydi: " + (booking.return_date || "—"));`,
   ru: `// Схема библиотеки — одна запись
-var band = {
-  kitob_nomi: "Ikki eshik orasi",
-  holati: "band",
+// book_title — название · status — статус · booked_by — кто забронировал · return_date — дата возврата
+var booking = {
+  book_title: "Ikki eshik orasi",
+  status: "booked",
   // ← оставшиеся два поля пишете вы
 };
 
-console.log("Кто забронировал: " + (band.band_qilgan || "—"));
-console.log("Когда освободится: " + (band.qaytarish_sanasi || "—"));`,
+console.log("Кто забронировал: " + (booking.booked_by || "—"));
+console.log("Когда освободится: " + (booking.return_date || "—"));`,
 };
 
 const KOD_TASK = {
@@ -1523,11 +1526,11 @@ const KOD_TASK = {
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// yetishmagan ikki maydonni yozuvga qo'shing", ru: '// добавьте в запись два недостающих поля' } }],
   requirements: [
     { id: 'tort', label: { uz: "To'rtala ustun yozuvda bor", ru: 'Все четыре столбца есть в записи' },
-      check: C.evalEquals('Object.keys(band).length >= 4', 'true', { uz: "Yozuvda to'rtta maydon bo'lsin — har ustunga bittadan", ru: 'В записи должно быть четыре поля — по одному на столбец' }) },
+      check: C.evalEquals("Object.keys((typeof booking!=='undefined'?booking:band)).length >= 4", 'true', { uz: "Yozuvda to'rtta maydon bo'lsin — har ustunga bittadan", ru: 'В записи должно быть четыре поля — по одному на столбец' }) },
     { id: 'javob', label: { uz: 'Ikkala savol javob chiqardi', ru: 'Оба вопроса получили ответ' },
-      check: C.evalEquals("[band.band_qilgan, band.qaytarish_sanasi].filter(function(v){ return v !== undefined && String(v).trim() !== ''; }).length", '2', { uz: 'Ikkala yangi maydonga ham qiymat yozing', ru: 'Впишите значение в оба новых поля' }) },
+      check: C.evalEquals("(function(b){return [b.booked_by!==undefined?b.booked_by:b.band_qilgan, b.return_date!==undefined?b.return_date:b.qaytarish_sanasi];})((typeof booking!=='undefined'?booking:band)).filter(function(v){ return v !== undefined && String(v).trim() !== ''; }).length", '2', { uz: 'Ikkala yangi maydonga ham qiymat yozing', ru: 'Впишите значение в оба новых поля' }) },
     { id: 'nom', label: { uz: 'Maydon nomlari pastdagi qatorlardek', ru: 'Имена полей — как в строках внизу' },
-      check: C.evalEquals("Object.keys(band).indexOf('band_qilgan') >= 0 && Object.keys(band).indexOf('qaytarish_sanasi') >= 0", 'true', { uz: "Maydon nomlarini pastdagi ikki qatordan olib yozing", ru: 'Возьмите имена полей из двух строк внизу' }) },
+      check: C.evalEquals("(function(k){return (k.indexOf('booked_by') >= 0 && k.indexOf('return_date') >= 0) || (k.indexOf('band_qilgan') >= 0 && k.indexOf('qaytarish_sanasi') >= 0);})(Object.keys((typeof booking!=='undefined'?booking:band)))", 'true', { uz: "Maydon nomlarini pastdagi ikki qatordan olib yozing", ru: 'Возьмите имена полей из двух строк внизу' }) },
   ],
 };
 

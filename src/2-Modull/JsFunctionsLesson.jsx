@@ -39,7 +39,7 @@ const tr = (node) => {
 import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: JS: Funksiya va Massiv» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 3-6). scripts/hw-v2-kartalar.mjs yozadi.
-const HW_V2 = {"id":"3-6","tur":"compiler","nom":{"uz":"Uyga vazifa: JS: Funksiya va Massiv","ru":"Домашнее задание: JS: Функции и массивы"},"matn":{"uz":"O'yin hisobi uchun uchta funksiya yozing.\n\n1. zarar(kuch, bonus) — kuch — urish kuchi, bonus — krit bonus. Funksiya kuch * 3 + bonus ni qaytarsin.\n2. jon(qoldi, urilgan) — qoldi — qahramonda qolgan jon, urilgan — kelgan zarba. Funksiya qoldi - urilgan ni qaytarsin; natija 0 dan kichik bo'lsa 0 qaytarsin — jon minusga tushmaydi.\n3. jami(narxlar) — narxlar — sonlar massivi. Funksiya for bilan hamma sonni qo'shib, yig'indini qaytarsin.\n4. Natijani o'zgaruvchiga saqlab chiqaring: zarar(5, 10) → 25, jon(100, 25) → 75, jon(20, 25) → 0, jami([12000, 8000, 5000]) → 25000.\n5. Funksiya ichida console.log emas, return bo'lsin.","ru":"Напишите три функции для подсчёта очков в игре.\n\n1. zarar(kuch, bonus) — kuch — сила удара, bonus — крит-бонус. Функция возвращает kuch * 3 + bonus.\n2. jon(qoldi, urilgan) — qoldi — сколько жизни осталось у героя, urilgan — полученный удар. Функция возвращает qoldi - urilgan; если результат меньше 0 — возвращает 0: жизнь не уходит в минус.\n3. jami(narxlar) — narxlar — массив чисел. Функция складывает все числа через for и возвращает сумму.\n4. Сохраните результат в переменную и выведите: zarar(5, 10) → 25, jon(100, 25) → 75, jon(20, 25) → 0, jami([12000, 8000, 5000]) → 25000.\n5. Внутри функции — return, а не console.log."}};
+const HW_V2 = {"id":"3-6","tur":"compiler","nom":{"uz":"Uyga vazifa: JS: Funksiya va Massiv","ru":"Домашнее задание: JS: Функции и массивы"},"matn":{"uz":"O'yin hisobi uchun uchta funksiya yozing.\n\n1. damage(power, bonus) — power — urish kuchi, bonus — krit bonus. Funksiya power * 3 + bonus ni qaytarsin.\n2. health(left, hit) — left — qahramonda qolgan jon, hit — kelgan zarba. Funksiya left - hit ni qaytarsin; natija 0 dan kichik bo'lsa 0 qaytarsin — jon minusga tushmaydi.\n3. total(prices) — prices — sonlar massivi. Funksiya for bilan hamma sonni qo'shib, yig'indini qaytarsin.\n4. Natijani o'zgaruvchiga saqlab chiqaring: damage(5, 10) → 25, health(100, 25) → 75, health(20, 25) → 0, total([12000, 8000, 5000]) → 25000.\n5. Funksiya ichida console.log emas, return bo'lsin.","ru":"Напишите три функции для подсчёта очков в игре.\n\n1. damage(power, bonus) — power — сила удара, bonus — крит-бонус. Функция возвращает power * 3 + bonus.\n2. health(left, hit) — left — сколько жизни осталось у героя, hit — полученный удар. Функция возвращает left - hit; если результат меньше 0 — возвращает 0: жизнь не уходит в минус.\n3. total(prices) — prices — массив чисел. Функция складывает все числа через for и возвращает сумму.\n4. Сохраните результат в переменную и выведите: damage(5, 10) → 25, health(100, 25) → 75, health(20, 25) → 0, total([12000, 8000, 5000]) → 25000.\n5. Внутри функции — return, а не console.log."}};
 // F-0801-01 (102-qonun): ochiq praktika-oynasi ham saqlanadi — Chrome fon-tabni bo'shatib
 // sahifani qayta yuklasa, o'quvchi praktika ICHIGA qaytadi, ortidagi darsga emas.
 const _pracKey = (id) => `ccPractice:${id}`;
@@ -248,8 +248,8 @@ const RECAPS = {
       {
         ic: "▶️",
         h: { uz: "Qavs () — «ishga tushir» tugmasi", ru: 'Скобки () — кнопка «запустить»' },
-        body: { uz: <>Nomdan keyin qavs qo'yilsa — <b>zarar()</b> — ichidagi kod ishga tushadi.</>, ru: <>Если поставить скобки после имени — <b>zarar()</b>, — код внутри запустится.</> },
-        vis: { uz: <RcFlow items={["zarar", "()", "ichidagi kod ishlaydi"]} />, ru: <RcFlow items={['zarar', '()', 'код внутри работает']} /> }
+        body: { uz: <>Nomdan keyin qavs qo'yilsa — <b>damage()</b> — ichidagi kod ishga tushadi.</>, ru: <>Если поставить скобки после имени — <b>damage()</b>, — код внутри запустится.</> },
+        vis: { uz: <RcFlow items={["damage", "()", "ichidagi kod ishlaydi"]} />, ru: <RcFlow items={['damage', '()', 'код внутри работает']} /> }
       },
       {
         ic: "🔁",
@@ -271,10 +271,10 @@ const RECAPS = {
       },
       {
         ic: "🔢",
-        h: { uz: "zarar(3) qanday hisoblanadi", ru: 'Как считается zarar(3)' },
-        body: { uz: <>return kuch * 3 da kuch o'rniga 3 qo'yiladi va funksiya <b>9</b> ni qaytaradi.</>, ru: <>В return kuch * 3 вместо kuch подставляется 3, и функция возвращает <b>9</b>.</> },
-        vis: <RcFlow items={["kuch = 3", "3 * 3", "9"]} />,
-        ask: { uz: "Agar zarar(5) desak, mashina qanday sonni qaytaradi?", ru: 'А если написать zarar(5) — какое число вернёт машина?' }
+        h: { uz: "damage(3) qanday hisoblanadi", ru: 'Как считается damage(3)' },
+        body: { uz: <>return power * 3 da power o'rniga 3 qo'yiladi va funksiya <b>9</b> ni qaytaradi.</>, ru: <>В return power * 3 вместо power подставляется 3, и функция возвращает <b>9</b>.</> },
+        vis: <RcFlow items={["power = 3", "3 * 3", "9"]} />,
+        ask: { uz: "Agar damage(5) desak, mashina qanday sonni qaytaradi?", ru: 'А если написать damage(5) — какое число вернёт машина?' }
       },
       {
         ic: "📤",
@@ -292,19 +292,19 @@ const RECAPS = {
         ic: "📥",
         h: { uz: "Parametr — funksiyaga beriladigan narsa", ru: 'Параметр — то, что передают функции' },
         body: { uz: <>Parametrlar — funksiya ichidagi <b>qutichalar</b>, chaqirganda ularga qiymat solasiz.</>, ru: <>Параметры — это <b>коробочки</b> внутри функции: при вызове вы кладёте в них значения.</> },
-        vis: <RcFlow items={["zarar(10, 3)", "kuch = 10", "bonus = 3"]} />
+        vis: <RcFlow items={["damage(10, 3)", "power = 10", "bonus = 3"]} />
       },
       {
         ic: "🔢",
-        h: { uz: "zarar(10, 3) qanday ishlaydi", ru: 'Как работает zarar(10, 3)' },
+        h: { uz: "damage(10, 3) qanday ishlaydi", ru: 'Как работает damage(10, 3)' },
         body: { uz: <>a ga 10, b ga 3 tushadi va return a - b <b>7</b> ni qaytaradi.</>, ru: <>В a попадает 10, в b — 3, и return a - b возвращает <b>7</b>.</> },
         vis: <RcFlow items={["10 - 3", "7"]} sep="→" />
       },
       {
         ic: "↔️",
         h: { uz: "Tartib muhim", ru: 'Порядок важен' },
-        body: { uz: <>Birinchi son kuch ga, ikkinchisi bonus ga tushadi — <b>tartib</b> natijani o'zgartiradi.</>, ru: <>Первое число попадает в kuch, второе — в bonus: <b>порядок</b> меняет результат.</> },
-        ask: { uz: "zarar(3, 10) desak, natija qancha chiqadi va nega boshqacha?", ru: 'А если zarar(3, 10) — что получится и почему иначе?' }
+        body: { uz: <>Birinchi son power ga, ikkinchisi bonus ga tushadi — <b>tartib</b> natijani o'zgartiradi.</>, ru: <>Первое число попадает в power, второе — в bonus: <b>порядок</b> меняет результат.</> },
+        ask: { uz: "damage(3, 10) desak, natija qancha chiqadi va nega boshqacha?", ru: 'А если damage(3, 10) — что получится и почему иначе?' }
       },
     ]
   },
@@ -316,20 +316,20 @@ const RECAPS = {
       {
         ic: "📦",
         h: { uz: "let x = ... — natijani qutiga solish", ru: 'let x = ... — результат в коробку' },
-        body: { uz: <>let x = salom("Olim") — funksiya natijasini <b>x qutisiga</b> saqlaydi.</>, ru: <>let x = salom("Olim") сохраняет результат функции в <b>коробку x</b>.</> },
-        vis: { uz: <RcFlow items={["salom('Olim')", "natija chiqadi", "x ga saqlanadi"]} />, ru: <RcFlow items={["salom('Olim')", 'выходит результат', 'сохраняется в x']} /> }
+        body: { uz: <>let x = greet("Olim") — funksiya natijasini <b>x qutisiga</b> saqlaydi.</>, ru: <>let x = greet("Olim") сохраняет результат функции в <b>коробку x</b>.</> },
+        vis: { uz: <RcFlow items={["greet('Olim')", "natija chiqadi", "x ga saqlanadi"]} />, ru: <RcFlow items={["greet('Olim')", 'выходит результат', 'сохраняется в x']} /> }
       },
       {
         ic: "🔗",
-        h: { uz: "«Salom, » + ism qanday birlashadi", ru: 'Как склеивается «Salom, » + ism' },
-        body: { uz: <>ism o'rniga "Olim" qo'yiladi va ikki matn <b>yopishtiriladi</b>: "Salom, Olim".</>, ru: <>Вместо ism подставляется "Olim", и два текста <b>склеиваются</b>: "Salom, Olim".</> },
+        h: { uz: "«Salom, » + name qanday birlashadi", ru: 'Как склеивается «Salom, » + name' },
+        body: { uz: <>name o'rniga "Olim" qo'yiladi va ikki matn <b>yopishtiriladi</b>: "Salom, Olim".</>, ru: <>Вместо name подставляется "Olim", и два текста <b>склеиваются</b>: "Salom, Olim".</> },
         vis: <RcFlow items={["'Salom, '", "'Olim'", "'Salom, Olim'"]} sep="+" />
       },
       {
         ic: "🎯",
         h: { uz: "Demak x ichida nima bor", ru: 'Так что же лежит в x' },
         body: { uz: <>x ichida funksiya chindan qaytargan <b>tayyor matn</b> turadi: "Salom, Olim".</>, ru: <>В x лежит <b>готовый текст</b>, который вернула функция: "Salom, Olim".</> },
-        ask: { uz: "Agar salom('Laylo') desak, x ichida qanday matn saqlanardi?", ru: "А если вызвать salom('Laylo') — какой текст окажется в x?" }
+        ask: { uz: "Agar greet('Laylo') desak, x ichida qanday matn saqlanardi?", ru: "А если вызвать greet('Laylo') — какой текст окажется в x?" }
       },
     ]
   },
@@ -708,9 +708,9 @@ const Zoomable = ({ children, off = false }) => { // F-0926-06: off — o'ng ust
 // Boshqa darsga: faqat `items` (to'g'ri tartibda) va `hints` almashtiriladi.
 const FN_PIECES = [
   { id: 'kw', label: 'function' },
-  { id: 'name', label: 'zarar' },
-  { id: 'param', label: '(kuch)' },
-  { id: 'body', label: '{ return kuch * 3 }' },
+  { id: 'name', label: 'damage' },
+  { id: 'param', label: '(power)' },
+  { id: 'body', label: '{ return power * 3 }' },
 ];
 function DragDropOrder({ items, hints, onSolved, onWrong }) {
   const order = items.map(x => x.id);
@@ -795,17 +795,17 @@ function DragDropOrder({ items, hints, onSolved, onWrong }) {
 // Boshqa darsga: faqat `cards` ({ front, back, note }) almashtiriladi.
 const JS_FLASHCARDS = [
   { front: { uz: "Bir xil kodni qayta-qayta yozmaslik uchun nima yasaysiz?", ru: 'Что создают, чтобы не писать один и тот же код много раз?' }, back: { uz: 'funksiya', ru: 'функция' }, note: { uz: 'bir marta yoziladi, keyin nomi bilan chaqiriladi', ru: 'пишут один раз, потом вызывают по имени' } },
-  { front: { uz: "Funksiya yozishni qaysi so'z bilan boshlaysiz?", ru: 'С какого слова начинают запись функции?' }, back: 'function', note: 'function zarar() { ... }' },
-  { front: { uz: "Funksiyani ishga tushirish uchun nomidan keyin nima qo'yiladi?", ru: 'Что ставят после имени, чтобы запустить функцию?' }, back: 'zarar()', note: { uz: 'qavs — «boshla» tugmasi kabi', ru: 'скобки — как кнопка «старт»' } },
+  { front: { uz: "Funksiya yozishni qaysi so'z bilan boshlaysiz?", ru: 'С какого слова начинают запись функции?' }, back: 'function', note: 'function damage() { ... }' },
+  { front: { uz: "Funksiyani ishga tushirish uchun nomidan keyin nima qo'yiladi?", ru: 'Что ставят после имени, чтобы запустить функцию?' }, back: 'damage()', note: { uz: 'qavs — «boshla» tugmasi kabi', ru: 'скобки — как кнопка «старт»' } },
   { front: { uz: 'Funksiyaning ish tartibi qayerga yoziladi?', ru: 'Куда пишут порядок действий функции?' }, back: '{ }', note: { uz: 'jingalak qavslar ichiga', ru: 'внутрь фигурных скобок' } },
-  { front: { uz: 'Funksiyaga tashqaridan qiymat berish uchun qavs ichiga nima yoziladi?', ru: 'Что пишут в скобках, чтобы передать функции значение снаружи?' }, back: { uz: 'parametr', ru: 'параметр' }, note: 'function zarar(ism) { ... }' },
-  { front: { uz: "Chaqirganda parametr o'rniga qo'yiladigan haqiqiy qiymat qanday ataladi?", ru: 'Как называется настоящее значение, которое подставляют вместо параметра при вызове?' }, back: { uz: 'argument', ru: 'аргумент' }, note: 'zarar("Ali") — "Ali"' },
+  { front: { uz: 'Funksiyaga tashqaridan qiymat berish uchun qavs ichiga nima yoziladi?', ru: 'Что пишут в скобках, чтобы передать функции значение снаружи?' }, back: { uz: 'parametr', ru: 'параметр' }, note: 'function damage(name) { ... }' },
+  { front: { uz: "Chaqirganda parametr o'rniga qo'yiladigan haqiqiy qiymat qanday ataladi?", ru: 'Как называется настоящее значение, которое подставляют вместо параметра при вызове?' }, back: { uz: 'argument', ru: 'аргумент' }, note: 'damage("Ali") — "Ali"' },
   { front: { uz: 'Funksiya natijasini tashqariga chiqarish uchun nima yoziladi?', ru: 'Что пишут, чтобы вынести результат функции наружу?' }, back: 'return', note: { uz: 'qaytgan natijani keyin saqlash mumkin', ru: 'возвращённый результат потом можно сохранить' } },
   { front: { uz: "return yozilmasa, funksiya nima qaytaradi?", ru: 'Что вернёт функция, если return не написан?' }, back: 'undefined', note: { uz: '«hech narsa» degani', ru: 'значит «ничего»' } },
   { front: { uz: "Natijani shunchaki ekranda ko'rish uchun nima ishlatiladi?", ru: 'Что используют, чтобы просто увидеть результат на экране?' }, back: 'console.log', note: { uz: "ko'z uchun — natija saqlanmaydi", ru: 'для глаз — результат не сохраняется' } },
-  { front: { uz: "Funksiya qaytargan natijani qanday saqlab qo'yasiz?", ru: 'Как сохранить результат, который вернула функция?' }, back: 'let ochko = zarar(7)', note: { uz: 'natija qutiga tushadi', ru: 'результат попадает в коробку' } },
-  { front: { uz: 'Ikki parametr bir-biridan nima bilan ajratiladi?', ru: 'Чем разделяют два параметра?' }, back: { uz: 'vergul ,', ru: 'запятая ,' }, note: { uz: 'zarar(kuch, bonus) — tartib muhim', ru: 'zarar(kuch, bonus) — порядок важен' } },
-  { front: { uz: 'Funksiyaning qisqa yozuvida qaysi belgi ishlatiladi?', ru: 'Какой знак используют в короткой записи функции?' }, back: '=>', note: 'const zr = (kuch) => kuch * 3' },
+  { front: { uz: "Funksiya qaytargan natijani qanday saqlab qo'yasiz?", ru: 'Как сохранить результат, который вернула функция?' }, back: 'let points = damage(7)', note: { uz: 'natija qutiga tushadi', ru: 'результат попадает в коробку' } },
+  { front: { uz: 'Ikki parametr bir-biridan nima bilan ajratiladi?', ru: 'Чем разделяют два параметра?' }, back: { uz: 'vergul ,', ru: 'запятая ,' }, note: { uz: 'damage(power, bonus) — tartib muhim', ru: 'damage(power, bonus) — порядок важен' } },
+  { front: { uz: 'Funksiyaning qisqa yozuvida qaysi belgi ishlatiladi?', ru: 'Какой знак используют в короткой записи функции?' }, back: '=>', note: 'const dmg = (power) => power * 3' },
 ];
 // F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
 // Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
@@ -956,8 +956,8 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
 const Screen1 = ({ screen, onNext, onPrev }) => {
   const STEPS = [
     { text: { uz: 'Funksiya nima? — nomlangan ish tartibi', ru: 'Что такое функция? — именованный порядок действий' }, tag: '' },
-    { text: { uz: 'Funksiyani chaqirish — nom bilan', ru: 'Вызов функции — по имени' }, tag: 'zarar()' },
-    { text: { uz: 'Parametr — mashinaga kirish', ru: 'Параметр — вход машины' }, tag: '(ism)' },
+    { text: { uz: 'Funksiyani chaqirish — nom bilan', ru: 'Вызов функции — по имени' }, tag: 'damage()' },
+    { text: { uz: 'Parametr — mashinaga kirish', ru: 'Параметр — вход машины' }, tag: '(name)' },
     { text: { uz: 'return — mashinadan natija', ru: 'return — результат из машины' }, tag: { uz: 'javob', ru: 'ответ' } },
     { text: { uz: 'Hammasi birga — kalkulyator mashinasi', ru: 'Всё вместе — машина-калькулятор' }, tag: '' }
   ];
@@ -975,7 +975,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       <div className="frame fade-up" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: 'clamp(16px,2.4vw,22px)', flexWrap: 'wrap' }}>
         <span className="ic-float" style={{ fontSize: 40 }}>🛠️</span>
         <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', alignItems: 'center' }}>
-          {[0, 1, 2].map(i => <span key={i} className="call-pill" style={{ animationDelay: `${i * 0.4}s` }}>zarar()</span>)}
+          {[0, 1, 2].map(i => <span key={i} className="call-pill" style={{ animationDelay: `${i * 0.4}s` }}>damage()</span>)}
           <span className="mono small" style={{ color: T.ink3 }}>{tr({ uz: '… xohlagancha', ru: '… сколько угодно' })}</span>
         </div>
       </div>
@@ -1044,14 +1044,14 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 </>
               ) : (
                 <>
-                  <div><KW>function</KW> <FN>zarar</FN>() {'{'}</div>
+                  <div><KW>function</KW> <FN>damage</FN>() {'{'}</div>
                   <div style={{ paddingLeft: 18 }}><FN>console</FN>.<FN>log</FN>(<STR>"Urish!"</STR>)</div>
                   <div style={{ paddingLeft: 18 }}><FN>console</FN>.<FN>log</FN>(<STR>"Zarar: 15"</STR>)</div>
                   <div style={{ paddingLeft: 18 }}><FN>console</FN>.<FN>log</FN>(<STR>"Jon: 85"</STR>)</div>
                   <div>{'}'}</div>
-                  <div style={{ marginTop: 8 }}><FN>zarar</FN>() <CM>{tr({ uz: '// 1-urish', ru: '// 1-й удар' })}</CM></div>
-                  <div><FN>zarar</FN>() <CM>{tr({ uz: '// 2-urish', ru: '// 2-й удар' })}</CM></div>
-                  <div><FN>zarar</FN>() <CM>{tr({ uz: '// 3-urish', ru: '// 3-й удар' })}</CM></div>
+                  <div style={{ marginTop: 8 }}><FN>damage</FN>() <CM>{tr({ uz: '// 1-urish', ru: '// 1-й удар' })}</CM></div>
+                  <div><FN>damage</FN>() <CM>{tr({ uz: '// 2-urish', ru: '// 2-й удар' })}</CM></div>
+                  <div><FN>damage</FN>() <CM>{tr({ uz: '// 3-urish', ru: '// 3-й удар' })}</CM></div>
                 </>
               )}
             </div>
@@ -1083,9 +1083,9 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const done = dragDone; // Davom etish — funksiya DRAG bilan yig'ilganda
   const showBuild = ran && !dragDone;   // mashina ishlagach — o'ng ustun yig'ish maydoniga aylanadi
   const PARTS = {
-    name: { color: T.blue, num: '1', name: tr({ uz: 'Funksiya nomi', ru: 'Имя функции' }), code: 'zarar', desc: tr({ uz: "Mashinaning nomi. Aynan shu nom bilan funksiyani chaqiramiz: zarar().", ru: 'Имя машины. Именно по этому имени мы вызываем функцию: zarar().' }) },
-    param: { color: T.accent, num: '2', name: tr({ uz: 'Parametr', ru: 'Параметр' }), code: 'kuch', desc: tr({ uz: 'Mashinaga beriladigan kirish (input). Chaqirganda haqiqiy qiymat solamiz, masalan 5.', ru: 'Вход машины (input). При вызове кладём настоящее значение, например 5.' }) },
-    ret: { color: T.success, num: '3', name: 'return', code: 'return', desc: tr({ uz: 'Mashinadan chiqadigan natija (output). Funksiya javobni shu yerda tashqariga qaytaradi.', ru: 'Результат на выходе машины (output). Здесь функция возвращает ответ наружу.' }) }
+    name: { color: T.blue, num: '1', name: tr({ uz: 'Funksiya nomi', ru: 'Имя функции' }), code: 'damage', desc: tr({ uz: "Mashinaning nomi. Aynan shu nom bilan funksiyani chaqiramiz: damage().", ru: 'Имя машины. Именно по этому имени мы вызываем функцию: damage().' }) },
+    param: { color: T.accent, num: '2', name: tr({ uz: 'Parametr', ru: 'Параметр' }), code: 'power', desc: tr({ uz: 'Mashinaga beriladigan kirish (input). Chaqirganda haqiqiy qiymat solamiz, masalan 5.', ru: 'Вход машины (input). При вызове кладём настоящее значение, например 5.' }) },
+    ret: { color: T.success, num: '3', name: 'return', code: 'return', desc: tr({ uz: 'Mashinadan chiqadigan result (output). Funksiya javobni shu yerda tashqariga qaytaradi.', ru: 'Результат на выходе машины (output). Здесь функция возвращает ответ наружу.' }) }
   };
   useEffect(() => () => clearTimeout(timer.current), []);
   const run = () => {
@@ -1104,12 +1104,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="codebox fade-up delay-1" style={{ fontSize: 'clamp(13px,1.8vw,15px)' }}>
               <div>
                 <KW>function</KW>{' '}
-                <span className={part ? undefined : 'cp-hint'} onClick={() => setPart('name')} style={{ cursor: 'pointer', color: '#5BC8EC', fontWeight: 700, outline: part === 'name' ? `2px solid ${T.blue}` : 'none', borderRadius: 4, padding: '0 2px' }}>zarar</span>(
-                <span className={part ? undefined : 'cp-hint'} onClick={() => setPart('param')} style={{ cursor: 'pointer', color: '#FF9777', fontWeight: 700, outline: part === 'param' ? `2px solid ${T.accent}` : 'none', borderRadius: 4, padding: '0 2px' }}>kuch</span>) {'{'}
+                <span className={part ? undefined : 'cp-hint'} onClick={() => setPart('name')} style={{ cursor: 'pointer', color: '#5BC8EC', fontWeight: 700, outline: part === 'name' ? `2px solid ${T.blue}` : 'none', borderRadius: 4, padding: '0 2px' }}>damage</span>(
+                <span className={part ? undefined : 'cp-hint'} onClick={() => setPart('param')} style={{ cursor: 'pointer', color: '#FF9777', fontWeight: 700, outline: part === 'param' ? `2px solid ${T.accent}` : 'none', borderRadius: 4, padding: '0 2px' }}>power</span>) {'{'}
               </div>
               <div style={{ paddingLeft: 18 }}>
                 <span className={part ? undefined : 'cp-hint'} onClick={() => setPart('ret')} style={{ cursor: 'pointer', color: '#6FD79E', fontWeight: 700, outline: part === 'ret' ? `2px solid ${T.success}` : 'none', borderRadius: 4, padding: '0 2px' }}>return</span>{' '}
-                kuch * <NUM>3</NUM>
+                power * <NUM>3</NUM>
               </div>
               <div>{'}'}</div>
             </div>
@@ -1132,7 +1132,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <DragDropOrder items={FN_PIECES} hints={[{ uz: "funksiya e'loni kaliti", ru: 'ключевое слово объявления' }, { uz: 'mashina nomi', ru: 'имя машины' }, { uz: 'kirish — parametr', ru: 'вход — параметр' }, { uz: 'tanasi — return bilan', ru: 'тело — с return' }]} onSolved={() => setDragDone(true)} onWrong={() => { if (achMiss) achMiss.miss(screen); }} />
               </div>
             ) : (<>
-            <div className="codebox fade-up delay-1"><div><FN>console</FN>.<FN>log</FN>(<FN>zarar</FN>(<NUM>5</NUM>))</div></div>
+            <div className="codebox fade-up delay-1"><div><FN>console</FN>.<FN>log</FN>(<FN>damage</FN>(<NUM>5</NUM>))</div></div>
             <div className="pipe fade-up delay-1">
               <div className="pipe-box">
                 <span className="pipe-lbl">{tr({ uz: 'kirish', ru: 'вход' })}</span>
@@ -1150,9 +1150,9 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               </div>
             </div>
             <Terminal lines={out} empty={{ uz: '// ▶ chaqiring', ru: '// ▶ вызовите' }} />
-            <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Ishlayapti…', ru: 'Работает…' }) : (ran ? tr({ uz: '↻ Yana urish', ru: '↻ Ударить ещё раз' }) : tr({ uz: '▶ zarar(5) ni chaqirish', ru: '▶ Вызвать zarar(5)' }))}</button>
+            <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Ishlayapti…', ru: 'Работает…' }) : (ran ? tr({ uz: '↻ Yana urish', ru: '↻ Ударить ещё раз' }) : tr({ uz: '▶ damage(5) ni chaqirish', ru: '▶ Вызвать damage(5)' }))}</button>
             {/* F-0926-06: «ran && !done» holati hech qachon chiqmasdi (showBuild ustunni almashtiradi) + «pastda» joy so'zi — blok olindi */}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>5</b> qiymati <b>kuch</b> parametriga tushdi, funksiya <span className="mono">return</span> orqali <b>15</b> zararni qaytardi. Mana to'liq mashina!</>, ru: <>✓ Значение <b>5</b> попало в параметр <b>kuch</b>, и функция через <span className="mono">return</span> вернула урон <b>15</b>. Вот и вся машина!</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>5</b> qiymati <b>power</b> parametriga tushdi, funksiya <span className="mono">return</span> orqali <b>15</b> zararni qaytardi. Mana to'liq mashina!</>, ru: <>✓ Значение <b>5</b> попало в параметр <b>kuch</b>, и функция через <span className="mono">return</span> вернула урон <b>15</b>. Вот и вся машина!</> })}</p></div>}
             </>)}
             {!done && <AchRule screen={screen} />}
           </Col>
@@ -1166,8 +1166,8 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 4 — TEST 1 =====
 const Screen4 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 1-savol', ru: 'Практика · вопрос 1' }}
-    questionText="zarar() deb yozsak nima bo'ladi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>zarar()</span> deb yozsak nima bo'ladi?</>, ru: <>Что произойдёт, если написать <span className="mono" style={{ color: T.accent }}>zarar()</span>?</> })}</h2></>}
+    questionText="damage() deb yozsak nima bo'ladi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>damage()</span> deb yozsak nima bo'ladi?</>, ru: <>Что произойдёт, если написать <span className="mono" style={{ color: T.accent }}>damage()</span>?</> })}</h2></>}
     options={[tr({ uz: "Hech narsa — u shunchaki nom bo'lib turadi", ru: 'Ничего — это просто имя, оно так и останется' }), tr({ uz: 'Funksiya ichidagi kod ishga tushadi (chaqiriladi)', ru: 'Код внутри функции запустится (вызов)' }), tr({ uz: "Funksiya butunlay o'chib, yo'qoladi", ru: 'Функция полностью сотрётся и исчезнет' }), tr({ uz: 'Noldan yangi funksiya yaratiladi', ru: 'С нуля создастся новая функция' })]} correctIdx={1}
     explainCorrect={tr({ uz: "Nomdan keyingi `()` — chaqirish, u kodni ishga tushiradi.", ru: '`()` после имени — это вызов, он запускает код функции.' })}
     explainWrong={{
@@ -1191,7 +1191,7 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Parametr', ru: 'Параметр' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Kuchni o'zgartiring", ru: 'Поменяйте силу' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bir mashinaga <span className="italic" style={{ color: T.accent }}>har xil kuch</span> bersak-chi?</>, ru: <>А если дать одной машине <span className="italic" style={{ color: T.accent }}>разную силу</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Parametr — mashinaning <b style={{ color: T.ink }}>kirish teshigi</b>. <span className="mono">zarar(5)</span> deb chaqirsangiz, <b style={{ color: T.ink }}>5</b> qiymati <span className="mono">kuch</span> parametriga tushadi. Kuchni o'zgartiring — zarar o'zi o'zgaradi.</>, ru: <>Параметр — <b style={{ color: T.ink }}>входное отверстие</b> машины. Вызовете <span className="mono">zarar(5)</span> — значение <b style={{ color: T.ink }}>5</b> попадёт в параметр <span className="mono">kuch</span>. Поменяйте силу — урон изменится сам.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Parametr — mashinaning <b style={{ color: T.ink }}>kirish teshigi</b>. <span className="mono">damage(5)</span> deb chaqirsangiz, <b style={{ color: T.ink }}>5</b> qiymati <span className="mono">power</span> parametriga tushadi. Kuchni o'zgartiring — zarar o'zi o'zgaradi.</>, ru: <>Параметр — <b style={{ color: T.ink }}>входное отверстие</b> машины. Вызовете <span className="mono">damage(5)</span> — значение <b style={{ color: T.ink }}>5</b> попадёт в параметр <span className="mono">power</span>. Поменяйте силу — урон изменится сам.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1200,10 +1200,10 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {KUCHLAR.map((k, i) => <button key={i} className={`chip ${sel === i ? 'chip-on' : ''}`} onClick={() => pick(i)}>{k}</button>)}
             </div>
             <div className="codebox" style={{ marginTop: 6 }}>
-              <div><KW>function</KW> <FN>zarar</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>kuch</span>) {'{'}</div>
-              <div style={{ paddingLeft: 18 }}><KW>return</KW> <span style={{ color: '#FF9777', fontWeight: 700 }}>kuch</span> * <NUM>3</NUM></div>
+              <div><KW>function</KW> <FN>damage</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>power</span>) {'{'}</div>
+              <div style={{ paddingLeft: 18 }}><KW>return</KW> <span style={{ color: '#FF9777', fontWeight: 700 }}>power</span> * <NUM>3</NUM></div>
               <div>{'}'}</div>
-              <div style={{ marginTop: 8 }}><FN>zarar</FN>(<NUM>{kuch}</NUM>)</div>
+              <div style={{ marginTop: 8 }}><FN>damage</FN>(<NUM>{kuch}</NUM>)</div>
             </div>
           </Col>
           <Col>
@@ -1221,15 +1221,15 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 5b — TEST 2 (chaqiruv natijasi) =====
 const Screen5b = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Tekshiruv', ru: 'Проверка' }}
-    questionText="function zarar(kuch) { return kuch * 3 }. zarar(3) nimani qaytaradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "Funksiyani o'qing", ru: 'Прочитайте функцию' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>zarar</FN>(kuch) {'{'} <KW>return</KW> kuch * <NUM>3</NUM> {'}'}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>zarar(3)</span> nimani qaytaradi?</>, ru: <>Что вернёт <span className="mono" style={{ color: T.accent }}>zarar(3)</span>?</> })}</h2></>}
+    questionText="function damage(power) { return power * 3 }. damage(3) nimani qaytaradi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "Funksiyani o'qing", ru: 'Прочитайте функцию' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>damage</FN>(power) {'{'} <KW>return</KW> power * <NUM>3</NUM> {'}'}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>zarar(3)</span> nimani qaytaradi?</>, ru: <>Что вернёт <span className="mono" style={{ color: T.accent }}>zarar(3)</span>?</> })}</h2></>}
     options={['6', '9', '3', '33']} correctIdx={1}
-    explainCorrect={tr({ uz: "3 qiymati `kuch` ga tushadi: `kuch * 3` = 3 * 3.", ru: 'Значение 3 попадает в `kuch`: `kuch * 3` = 3 * 3.' })}
+    explainCorrect={tr({ uz: "3 qiymati `power` ga tushadi: `power * 3` = 3 * 3.", ru: 'Значение 3 попадает в `power`: `power * 3` = 3 * 3.' })}
     explainWrong={{
       0: tr({ uz: "6 — bu 3 + 3, bizda esa `*` ko'paytirish.", ru: '6 — это 3 + 3, а у нас `*` — умножение.' }),
-      2: tr({ uz: "3 — `kuch` ning o'zi, funksiya esa u bilan hisob qiladi.", ru: '3 — это само `kuch`, а функция с ним ещё считает.' }),
+      2: tr({ uz: "3 — `power` ning o'zi, funksiya esa u bilan hisob qiladi.", ru: '3 — это само `power`, а функция с ним ещё считает.' }),
       3: tr({ uz: "33 — matnlar ulanishi, bizda esa sonlar ko'paytiriladi.", ru: '33 — это склейка текста, а у нас умножаются числа.' }),
-      default: '`kuch = 3` → `kuch * 3` = 9.'
+      default: '`power = 3` → `power * 3` = 9.'
     }} />
 );
 
@@ -1252,7 +1252,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow="return" screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval ishga tushiring', ru: 'Сначала запустите' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Funksiya javobini qanday <span className="italic" style={{ color: T.accent }}>saqlab qolamiz?</span></>, ru: <>Как <span className="italic" style={{ color: T.accent }}>сохранить</span> ответ функции?</> })}</h2></div>
-        <Mentor>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>return</span> funksiyaning <b style={{ color: T.ink }}>javobini tashqariga qaytaradi</b>. Eng muhimi: bu javobni <b style={{ color: T.ink }}>o'zgaruvchiga saqlash</b> va keyin ishlatish mumkin! <span className="mono">zarar</span> mashinasiga kuch kiriting va ishga tushiring — natija <span className="mono">ochko</span> o'zgaruvchisida saqlanadi.</>, ru: <><span className="mono" style={{ color: T.accent }}>return</span> <b style={{ color: T.ink }}>возвращает ответ функции наружу</b>. Самое главное: этот ответ можно <b style={{ color: T.ink }}>сохранить в переменную</b> и использовать дальше! Введите число в машину <span className="mono">zarar</span> и запустите — результат сохранится в переменной <span className="mono">ochko</span>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>return</span> funksiyaning <b style={{ color: T.ink }}>javobini tashqariga qaytaradi</b>. Eng muhimi: bu javobni <b style={{ color: T.ink }}>o'zgaruvchiga saqlash</b> va keyin ishlatish mumkin! <span className="mono">damage</span> mashinasiga kuch kiriting va ishga tushiring — natija <span className="mono">points</span> o'zgaruvchisida saqlanadi.</>, ru: <><span className="mono" style={{ color: T.accent }}>return</span> <b style={{ color: T.ink }}>возвращает ответ функции наружу</b>. Самое главное: этот ответ можно <b style={{ color: T.ink }}>сохранить в переменную</b> и использовать дальше! Введите число в машину <span className="mono">damage</span> и запустите — результат сохранится в переменной <span className="mono">points</span>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1261,20 +1261,20 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {[4, 5, 6].map(v => <button key={v} className={`chip ${n === v ? 'chip-on' : ''}`} onClick={() => setNN(v)}>{v}</button>)}
             </div>
             <div className="codebox" style={{ marginTop: 6 }}>
-              <div><KW>function</KW> <FN>zarar</FN>(kuch) {'{'}</div>
-              <div style={{ paddingLeft: 18 }}><KW>return</KW> kuch * <NUM>3</NUM> <CM>{tr({ uz: '// natijani qaytaradi', ru: '// возвращает результат' })}</CM></div>
+              <div><KW>function</KW> <FN>damage</FN>(power) {'{'}</div>
+              <div style={{ paddingLeft: 18 }}><KW>return</KW> power * <NUM>3</NUM> <CM>{tr({ uz: '// natijani qaytaradi', ru: '// возвращает результат' })}</CM></div>
               <div>{'}'}</div>
-              <div style={{ marginTop: 8 }}><KW>let</KW> ochko = <FN>zarar</FN>(<NUM>{n}</NUM>) <CM>{tr({ uz: '// javobni saqlaydi', ru: '// сохраняет ответ' })}</CM></div>
+              <div style={{ marginTop: 8 }}><KW>let</KW> points = <FN>damage</FN>(<NUM>{n}</NUM>) <CM>{tr({ uz: '// javobni saqlaydi', ru: '// сохраняет ответ' })}</CM></div>
             </div>
             <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Ishlayapti…', ru: 'Работает…' }) : (done ? tr({ uz: '↻ Yana', ru: '↻ Ещё раз' }) : tr({ uz: '▶ Ishga tushir', ru: '▶ Запустить' }))}</button>
           </Col>
           <Col>
             <div className="iwatch fade-up delay-1">
-              <span className="iwatch-lbl">ochko</span>
+              <span className="iwatch-lbl">points</span>
               <span className="iwatch-eq">=</span>
               <span className="iwatch-num">{natija ?? '·'}</span>
             </div>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ {n} × 3 = {n * 3} — endi <span className="mono">ochko</span> ni xohlagancha ishlatishingiz mumkin!</>, ru: <>✓ {n} × 3 = {n * 3} — теперь <span className="mono">ochko</span> можно использовать сколько угодно!</> })}{/* F-0926-06: mentor/izoh «natija» deb, kod esa «ochko» — kodga moslandi (D2); takror qism olindi */}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ {n} × 3 = {n * 3} — endi <span className="mono">points</span> ni xohlagancha ishlatishingiz mumkin!</>, ru: <>✓ {n} × 3 = {n * 3} — теперь <span className="mono">points</span> можно использовать сколько угодно!</> })}{/* F-0926-06: mentor/izoh «natija» deb, kod esa «ochko» — kodga moslandi (D2); takror qism olindi */}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1344,11 +1344,11 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: "Ko'p parametr", ru: 'Много параметров' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Sonlarni o'zgartiring", ru: 'Поменяйте числа' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Mashinaga <span className="italic" style={{ color: T.accent }}>ikkita qiymat</span> bersak-chi?</>, ru: <>А если дать машине <span className="italic" style={{ color: T.accent }}>два числа</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bitta funksiya bir nechta parametr olishi mumkin — ular <b style={{ color: T.ink }}>vergul</b> bilan ajratiladi. <span className="mono">zarar(kuch, bonus)</span> ikkitasini oladi. Tartib muhim: birinchi qiymat <span className="mono">kuch</span>ga, ikkinchisi <span className="mono">bonus</span>ga tushadi.</>, ru: <>Одна функция может брать несколько параметров — их разделяют <b style={{ color: T.ink }}>запятой</b>. <span className="mono">zarar(kuch, bonus)</span> берёт два. Порядок важен: первое значение попадёт в <span className="mono">kuch</span>, второе — в <span className="mono">bonus</span>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bitta funksiya bir nechta parametr olishi mumkin — ular <b style={{ color: T.ink }}>vergul</b> bilan ajratiladi. <span className="mono">damage(power, bonus)</span> ikkitasini oladi. Tartib muhim: birinchi qiymat <span className="mono">power</span>ga, ikkinchisi <span className="mono">bonus</span>ga tushadi.</>, ru: <>Одна функция может брать несколько параметров — их разделяют <b style={{ color: T.ink }}>запятой</b>. <span className="mono">damage(power, bonus)</span> берёт два. Порядок важен: первое значение попадёт в <span className="mono">power</span>, второе — в <span className="mono">bonus</span>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
-            <p className="flow-label">{tr({ uz: 'Urish kuchi — kuch', ru: 'Сила удара — kuch' })}</p>
+            <p className="flow-label">{tr({ uz: 'Urish kuchi — power', ru: 'Сила удара — power' })}</p>
             <div className="fade-up delay-1" style={{ display: 'flex', gap: 8 }}>
               {[2, 5, 10].map(v => <button key={v} className={`chip ${a === v ? 'chip-on' : ''}`} onClick={() => setAA(v)}>{v}</button>)}
             </div>
@@ -1357,10 +1357,10 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {[3, 4, 7].map(v => <button key={v} className={`chip ${b === v ? 'chip-on' : ''}`} onClick={() => setBB(v)}>{v}</button>)}
             </div>
             <div className="codebox" style={{ marginTop: 6 }}>
-              <div><KW>function</KW> <FN>zarar</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>kuch</span>, <span style={{ color: '#FF9777', fontWeight: 700 }}>bonus</span>) {'{'}</div>
-              <div style={{ paddingLeft: 18 }}><KW>return</KW> kuch * <NUM>3</NUM> + bonus</div>
+              <div><KW>function</KW> <FN>damage</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>power</span>, <span style={{ color: '#FF9777', fontWeight: 700 }}>bonus</span>) {'{'}</div>
+              <div style={{ paddingLeft: 18 }}><KW>return</KW> power * <NUM>3</NUM> + bonus</div>
               <div>{'}'}</div>
-              <div style={{ marginTop: 8 }}><FN>zarar</FN>(<NUM>{a}</NUM>, <NUM>{b}</NUM>)</div>
+              <div style={{ marginTop: 8 }}><FN>damage</FN>(<NUM>{a}</NUM>, <NUM>{b}</NUM>)</div>
             </div>
           </Col>
           <Col>
@@ -1378,15 +1378,15 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 9 — TEST 3 (parametr tartibi) =====
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' }}
-    questionText="function zarar(kuch, bonus) { return kuch * 3 + bonus }. zarar(10, 3) nimani qaytaradi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>zarar</FN>(kuch, bonus) {'{'} <KW>return</KW> kuch * <NUM>3</NUM> + bonus {'}'}</div></div><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'zarar(10, 3) nimani qaytaradi?', ru: 'Что вернёт zarar(10, 3)?' })}</h2></>}
+    questionText="function damage(power, bonus) { return power * 3 + bonus }. damage(10, 3) nimani qaytaradi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>damage</FN>(power, bonus) {'{'} <KW>return</KW> power * <NUM>3</NUM> + bonus {'}'}</div></div><h2 className="title h-ask" style={{ marginTop: 8 }}>{tr({ uz: 'damage(10, 3) nimani qaytaradi?', ru: 'Что вернёт damage(10, 3)?' })}</h2></>}
     options={['30', '33', '19', '103']} correctIdx={1}
-    explainCorrect={tr({ uz: "Tartib bo'yicha `kuch` = 10, `bonus` = 3: 10 * 3 + 3.", ru: 'По порядку `kuch` = 10, `bonus` = 3: 10 * 3 + 3.' })}
+    explainCorrect={tr({ uz: "Tartib bo'yicha `power` = 10, `bonus` = 3: 10 * 3 + 3.", ru: 'По порядку `power` = 10, `bonus` = 3: 10 * 3 + 3.' })}
     explainWrong={{
-      0: tr({ uz: "30 — faqat `kuch * 3`, `bonus` ham qo'shiladi.", ru: '30 — это только `kuch * 3`, а ещё прибавляется `bonus`.' }),
-      2: tr({ uz: "Qiymatlar o'rni almashgan: birinchi son `kuch` ga tushadi.", ru: 'Значения перепутаны: первое число попадает в `kuch`.' }),
+      0: tr({ uz: "30 — faqat `power * 3`, `bonus` ham qo'shiladi.", ru: '30 — это только `power * 3`, а ещё прибавляется `bonus`.' }),
+      2: tr({ uz: "Qiymatlar o'rni almashgan: birinchi son `power` ga tushadi.", ru: 'Значения перепутаны: первое число попадает в `power`.' }),
       3: tr({ uz: "103 — matn ulanishi, bizda esa sonlar ustida hisob-kitob.", ru: '103 — это склейка текста, а у нас вычисления с числами.' }),
-      default: '`kuch = 10`, `bonus = 3` → 10 * 3 + 3 = 33.'
+      default: '`power = 10`, `bonus = 3` → 10 * 3 + 3 = 33.'
     }} />
 );
 
@@ -1410,7 +1410,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={{ uz: 'Hammasi birga', ru: 'Всё вместе' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Avval hisoblang', ru: 'Сначала посчитайте' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Uchalasi birga — <span className="italic" style={{ color: T.accent }}>zarar mashinasi</span>ni quramizmi?</>, ru: <>Все три вместе — соберём <span className="italic" style={{ color: T.accent }}>машину урона</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Mana to'liq mashina! <span className="mono">zarar(kuch, bonus)</span> ikkita parametr oladi, hisoblaydi va javobni <b style={{ color: T.ink }}>return</b> bilan qaytaradi. Kuchni tanlang va ishga tushiring.</>, ru: <>Вот и полная машина! <span className="mono">zarar(kuch, bonus)</span> берёт два параметра, считает и возвращает ответ через <b style={{ color: T.ink }}>return</b>. Выберите силу и запустите.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Mana to'liq mashina! <span className="mono">damage(power, bonus)</span> ikkita parametr oladi, hisoblaydi va javobni <b style={{ color: T.ink }}>return</b> bilan qaytaradi. Kuchni tanlang va ishga tushiring.</>, ru: <>Вот и полная машина! <span className="mono">damage(power, bonus)</span> берёт два параметра, считает и возвращает ответ через <b style={{ color: T.ink }}>return</b>. Выберите силу и запустите.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1419,21 +1419,21 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {[4, 5, 8].map(v => <button key={v} className={`chip ${soni === v ? 'chip-on' : ''}`} onClick={() => setSS(v)}>{v}</button>)}
             </div>
             <div className="codebox" style={{ marginTop: 6 }}>
-              <div><KW>function</KW> <FN>zarar</FN>(kuch, bonus) {'{'}</div>
-              <div style={{ paddingLeft: 18 }}><KW>return</KW> kuch * <NUM>3</NUM> + bonus</div>
+              <div><KW>function</KW> <FN>damage</FN>(power, bonus) {'{'}</div>
+              <div style={{ paddingLeft: 18 }}><KW>return</KW> power * <NUM>3</NUM> + bonus</div>
               <div>{'}'}</div>
-              <div style={{ marginTop: 8 }}><KW>let</KW> ochko = <FN>zarar</FN>(<NUM>{soni}</NUM>, <NUM>{BONUS}</NUM>)</div>
+              <div style={{ marginTop: 8 }}><KW>let</KW> points = <FN>damage</FN>(<NUM>{soni}</NUM>, <NUM>{BONUS}</NUM>)</div>
             </div>
             <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Hisoblanyapti…', ru: 'Считаем…' }) : (done ? tr({ uz: '↻ Yana', ru: '↻ Ещё раз' }) : tr({ uz: 'Zararni hisoblash', ru: 'Посчитать урон' }))}</button>
           </Col>
           <Col>
             <div className="iwatch fade-up delay-1">
-              <span className="iwatch-lbl">ochko</span>
+              <span className="iwatch-lbl">points</span>
               <span className="iwatch-eq">=</span>
               <span className="iwatch-num">{jami ?? '·'}</span>
             </div>
             {/* F-0926-06: «34 zarar» izohi ochko-oynasi va ✓ izohni takrorlardi — olindi; tugma «narx» qoldig'idan tozalandi */}
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>Funksiya</b> (zarar), <b>parametrlar</b> (kuch, bonus) va <b>return</b> — uchalasi bitta mashinada ishladi: {soni} × 3 + {BONUS} = {jami}.</>, ru: <>✓ <b>Функция</b> (zarar), <b>параметры</b> (kuch, bonus) и <b>return</b> — все трое сработали в одной машине: {soni} × 3 + {BONUS} = {jami}.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>✓ <b>Funksiya</b> (damage), <b>parametrlar</b> (power, bonus) va <b>return</b> — uchalasi bitta mashinada ishladi: {soni} × 3 + {BONUS} = {jami}.</>, ru: <>✓ <b>Функция</b> (damage), <b>параметры</b> (power, bonus) и <b>return</b> — все трое сработали в одной машине: {soni} × 3 + {BONUS} = {jami}.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1474,13 +1474,13 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="codebox fade-up delay-1" style={{ lineHeight: 1.9 }}>
-              <div><KW>function</KW> <FN>zarar</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>kuch</span>) {'{'}</div>
+              <div><KW>function</KW> <FN>damage</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>power</span>) {'{'}</div>
               <div style={{ paddingLeft: 16 }}><CM>{tr({ uz: '// har kuch birligi 3 zarar', ru: '// каждая единица силы — 3 урона' })}</CM></div>
-              <div style={{ paddingLeft: 16 }}><KW>return</KW> kuch * <span style={{ color: '#FF9777', fontWeight: 700 }}>3</span></div>
+              <div style={{ paddingLeft: 16 }}><KW>return</KW> power * <span style={{ color: '#FF9777', fontWeight: 700 }}>3</span></div>
               <div>{'}'}</div>
-              <div style={{ marginTop: 8 }}><FN>zarar</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>4</span>)</div>
-              <div><FN>zarar</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>6</span>)</div>
-              <div><FN>zarar</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>9</span>)</div>
+              <div style={{ marginTop: 8 }}><FN>damage</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>4</span>)</div>
+              <div><FN>damage</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>6</span>)</div>
+              <div><FN>damage</FN>(<span style={{ color: '#FF9777', fontWeight: 700 }}>9</span>)</div>
             </div>
             <button className="btn" onClick={run} disabled={running} style={{ alignSelf: 'flex-start' }}>{running ? tr({ uz: 'Hisoblanyapti…', ru: 'Считается…' }) : (done ? tr({ uz: '↻ Yana hisoblash', ru: '↻ Посчитать ещё' }) : tr({ uz: 'Funksiya bilan hisoblash', ru: 'Посчитать функцией' }))}</button>
           </Col>
@@ -1511,13 +1511,13 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 12 — TEST 4 (return qiymatini saqlash) =====
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={{ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' }}
-    questionText="function salom(ism) { return 'Salom, ' + ism }. let x = salom('Olim'). x da nima saqlanadi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>salom</FN>(ism) {'{'} <KW>return</KW> <STR>"Salom, "</STR> + ism {'}'}</div><div style={{ marginTop: 4 }}><KW>let</KW> x = <FN>salom</FN>(<STR>"Olim"</STR>)</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>x</span> o'zgaruvchisida nima saqlanadi?</>, ru: <>Что сохранится в переменной <span className="mono" style={{ color: T.accent }}>x</span>?</> })}</h2></>}
-    options={['`"salom"`', '`"ism"`', '`"Salom, Olim"`', '`undefined`']} correctIdx={2}
-    explainCorrect={tr({ uz: `"Olim" \`ism\` ga tushadi va "Salom, " ga yopishtiriladi.`, ru: '"Olim" попадает в `ism` и приклеивается к "Salom, ".' })}
+    questionText="function greet(name) { return 'Salom, ' + name }. let x = greet('Olim'). x da nima saqlanadi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>function</KW> <FN>greet</FN>(name) {'{'} <KW>return</KW> <STR>"Salom, "</STR> + name {'}'}</div><div style={{ marginTop: 4 }}><KW>let</KW> x = <FN>greet</FN>(<STR>"Olim"</STR>)</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>x</span> o'zgaruvchisida nima saqlanadi?</>, ru: <>Что сохранится в переменной <span className="mono" style={{ color: T.accent }}>x</span>?</> })}</h2></>}
+    options={['`"greet"`', '`"name"`', '`"Salom, Olim"`', '`undefined`']} correctIdx={2}
+    explainCorrect={tr({ uz: `"Olim" \`name\` ga tushadi va "Salom, " ga yopishtiriladi.`, ru: '"Olim" попадает в `name` и приклеивается к "Salom, ".' })}
     explainWrong={{
-      0: tr({ uz: "«salom» — funksiya nomi, funksiya uni qaytarmaydi.", ru: '«salom» — это имя функции, его функция не возвращает.' }),
-      1: tr({ uz: "«ism» — parametr nomi, qaytadigan qiymat emas.", ru: '«ism» — имя параметра, а не возвращаемое значение.' }),
+      0: tr({ uz: "«greet» — funksiya nomi, funksiya uni qaytarmaydi.", ru: '«greet» — это имя функции, его функция не возвращает.' }),
+      1: tr({ uz: "«name» — parametr nomi, qaytadigan qiymat emas.", ru: '«name» — имя параметра, а не возвращаемое значение.' }),
       3: tr({ uz: "Funksiyada `return` bor — demak u `undefined` qaytarmaydi.", ru: 'В функции есть `return` — значит, она не вернёт `undefined`.' }),
       default: tr({ uz: '`return` qatoriga qarang: u nimani qaytaradi?', ru: 'Посмотрите на строку с `return`: что она возвращает?' })
     }} />
@@ -1530,12 +1530,12 @@ const Screen12 = (props) => (
 const PRAC_STEPS = [
   {
     lbl: { uz: "1 — E'lon", ru: '1 — Объявление' },
-    task: { uz: <>Salom beruvchi mashinani yozing: nomi <span className="mono">salom</span>, parametrsiz <span className="mono">( )</span>, ichida <span className="mono">return "Salom!"</span>.</>, ru: <>Напишите машину-приветствие: имя <span className="mono">salom</span>, без параметров <span className="mono">( )</span>, внутри <span className="mono">return "Salom!"</span>.</> },
-    placeholder: 'function salom() { return "Salom!" }',
+    task: { uz: <>Salom beruvchi mashinani yozing: nomi <span className="mono">greet</span>, parametrsiz <span className="mono">( )</span>, ichida <span className="mono">return "Salom!"</span>.</>, ru: <>Напишите машину-приветствие: имя <span className="mono">greet</span>, без параметров <span className="mono">( )</span>, внутри <span className="mono">return "Salom!"</span>.</> },
+    placeholder: 'function greet() { return "Salom!" }',
     checks: (v) => [
       { ok: /^function\b/.test(v), lbl: 'function', hint: { uz: <>Funksiya <span className="mono">function</span> kalit so'zi bilan boshlanadi.</>, ru: <>Функция начинается с ключевого слова <span className="mono">function</span>.</> } },
-      { ok: /^function\s+[sS][aA][lL][oO][mM]\s*\(/.test(v), lbl: { uz: 'salom nomi', ru: 'имя salom' }, hint: { uz: <>Kalit so'zdan keyin mashina nomi: <span className="mono">function salom</span>.</>, ru: <>После ключевого слова — имя машины: <span className="mono">function salom</span>.</> } },
-      { ok: /^function\s+[sS][aA][lL][oO][mM]\s*\(\s*\)/.test(v), lbl: '( )', hint: { uz: <>Nomdan keyin bo'sh qavs oching va yoping: <span className="mono">salom()</span>.</>, ru: <>После имени откройте и закройте пустые скобки: <span className="mono">salom()</span>.</> } },
+      { ok: /^function\s+[gG][rR][eE][eE][tT]\s*\(/.test(v), lbl: { uz: 'greet nomi', ru: 'имя greet' }, hint: { uz: <>Kalit so'zdan keyin mashina nomi: <span className="mono">function greet</span>.</>, ru: <>После ключевого слова — имя машины: <span className="mono">function greet</span>.</> } },
+      { ok: /^function\s+[gG][rR][eE][eE][tT]\s*\(\s*\)/.test(v), lbl: '( )', hint: { uz: <>Nomdan keyin bo'sh qavs oching va yoping: <span className="mono">greet()</span>.</>, ru: <>После имени откройте и закройте пустые скобки: <span className="mono">greet()</span>.</> } },
       { ok: /\{/.test(v), lbl: '{', hint: { uz: <>Tanani <span className="mono">{'{'}</span> jingalak qavs bilan oching.</>, ru: <>Откройте тело фигурной скобкой <span className="mono">{'{'}</span>.</> } },
       { ok: /return\s*["'][sS][aA][lL][oO][mM]!?["']/.test(v), lbl: 'return "Salom!"', hint: { uz: <>Ichiga <span className="mono">return "Salom!"</span> yozing — mashina natija qaytarsin.</>, ru: <>Внутри напишите <span className="mono">return "Salom!"</span> — пусть машина вернёт результат.</> } },
       { ok: /\}/.test(v), lbl: '}', hint: { uz: <>Tanani <span className="mono">{'}'}</span> bilan yoping.</>, ru: <>Закройте тело скобкой <span className="mono">{'}'}</span>.</> } },
@@ -1544,11 +1544,11 @@ const PRAC_STEPS = [
   },
   {
     lbl: { uz: '2 — Parametr', ru: '2 — Параметр' },
-    task: { uz: <>Endi mashinaga <b>ikkita kirish</b> bering: <span className="mono">qosh(a, b)</span> funksiyasi yig'indini <span className="mono">return</span> qilsin.</>, ru: <>Теперь дайте машине <b>два входа</b>: пусть функция <span className="mono">qosh(a, b)</span> делает <span className="mono">return</span> суммы.</> },
-    placeholder: 'function qosh(a, b) { return a + b }',
+    task: { uz: <>Endi mashinaga <b>ikkita kirish</b> bering: <span className="mono">add(a, b)</span> funksiyasi yig'indini <span className="mono">return</span> qilsin.</>, ru: <>Теперь дайте машине <b>два входа</b>: пусть функция <span className="mono">add(a, b)</span> делает <span className="mono">return</span> суммы.</> },
+    placeholder: 'function add(a, b) { return a + b }',
     checks: (v) => [
       { ok: /^function\b/.test(v), lbl: 'function', hint: { uz: <>Yana <span className="mono">function</span> kalit so'zidan boshlang.</>, ru: <>Снова начните с ключевого слова <span className="mono">function</span>.</> } },
-      { ok: /^function\s+[qQ][oO][sS][hH]\s*\(/.test(v), lbl: { uz: 'qosh nomi', ru: 'имя qosh' }, hint: { uz: <>Mashina nomi <span className="mono">qosh</span> bo'lsin: <span className="mono">function qosh</span>.</>, ru: <>Пусть имя машины будет <span className="mono">qosh</span>: <span className="mono">function qosh</span>.</> } },
+      { ok: /^function\s+[aA][dD][dD]\s*\(/.test(v), lbl: { uz: 'add nomi', ru: 'имя add' }, hint: { uz: <>Mashina nomi <span className="mono">add</span> bo'lsin: <span className="mono">function add</span>.</>, ru: <>Пусть имя машины будет <span className="mono">add</span>: <span className="mono">function add</span>.</> } },
       { ok: /\(\s*[aA]\s*,\s*[bB]\s*\)/.test(v), lbl: '(a, b)', hint: { uz: <>Qavs ichiga IKKITA parametr yozing, vergul bilan: <span className="mono">(a, b)</span>.</>, ru: <>Внутри скобок напишите ДВА параметра через запятую: <span className="mono">(a, b)</span>.</> } },
       { ok: /\{/.test(v), lbl: '{', hint: { uz: <>Tanani <span className="mono">{'{'}</span> bilan oching.</>, ru: <>Откройте тело скобкой <span className="mono">{'{'}</span>.</> } },
       { ok: /return\s+[aA]\s*\+\s*[bB]/.test(v), lbl: 'return a + b', hint: { uz: <>Ichiga <span className="mono">return a + b</span> yozing — yig'indini qaytarsin.</>, ru: <>Внутри напишите <span className="mono">return a + b</span> — пусть вернёт сумму.</> } },
@@ -1558,11 +1558,11 @@ const PRAC_STEPS = [
   },
   {
     lbl: { uz: '3 — Chaqirish', ru: '3 — Вызов' },
-    task: { uz: <>Mashina tayyor! Endi uni <b>chaqiring</b>: <span className="mono">qosh</span> ga <span className="mono">3</span> va <span className="mono">4</span> bering, keyin return nimani qaytarishini pastdagi katakka yozing.</>, ru: <>Машина готова! Теперь <b>вызовите</b> её: передайте <span className="mono">qosh</span> числа <span className="mono">3</span> и <span className="mono">4</span>, а затем впишите в поле ниже, что вернёт return.</> },
-    placeholder: 'qosh(3, 4)',
+    task: { uz: <>Mashina tayyor! Endi uni <b>chaqiring</b>: <span className="mono">add</span> ga <span className="mono">3</span> va <span className="mono">4</span> bering, keyin return nimani qaytarishini pastdagi katakka yozing.</>, ru: <>Машина готова! Теперь <b>вызовите</b> её: передайте <span className="mono">add</span> числа <span className="mono">3</span> и <span className="mono">4</span>, а затем впишите в поле ниже, что вернёт return.</> },
+    placeholder: 'add(3, 4)',
     checks: (v) => [
-      { ok: /[qQ][oO][sS][hH]\s*\(/.test(v), lbl: 'qosh(', hint: { uz: <>Chaqirish — mashina nomi + qavs: <span className="mono">qosh(</span>.</>, ru: <>Вызов — имя машины + скобки: <span className="mono">qosh(</span>.</> } },
-      { ok: /[qQ][oO][sS][hH]\s*\(\s*3\s*,\s*4\s*\)/.test(v), lbl: '(3, 4)', hint: { uz: <>Qavs ichiga ikki argument yozing: <span className="mono">qosh(3, 4)</span>.</>, ru: <>Впишите два аргумента в скобки: <span className="mono">qosh(3, 4)</span>.</> } },
+      { ok: /[aA][dD][dD]\s*\(/.test(v), lbl: 'add(', hint: { uz: <>Chaqirish — mashina nomi + qavs: <span className="mono">add(</span>.</>, ru: <>Вызов — имя машины + скобки: <span className="mono">add(</span>.</> } },
+      { ok: /[aA][dD][dD]\s*\(\s*3\s*,\s*4\s*\)/.test(v), lbl: '(3, 4)', hint: { uz: <>Qavs ichiga ikki argument yozing: <span className="mono">add(3, 4)</span>.</>, ru: <>Впишите два аргумента в скобки: <span className="mono">add(3, 4)</span>.</> } },
     ],
     predict: '7',
     out: '7',
@@ -1664,14 +1664,14 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="ai-code">
                 <div className="ai-line" style={{ cursor: 'default' }}>
                   <KW>function</KW>{' '}
-                  <span onClick={() => click('name')} style={{ cursor: found ? 'default' : 'pointer' }}>zarar</span>(
+                  <span onClick={() => click('name')} style={{ cursor: found ? 'default' : 'pointer' }}>damage</span>(
                   <span onClick={() => click('param')} style={{ cursor: found ? 'default' : 'pointer' }}>n</span>) {'{'}
                 </div>
                 <div className="ai-line" style={{ cursor: 'default', paddingLeft: 16 }}>
                   <span className={found ? (fixed ? 'tok-ok' : 'tok-bad') : ''} onClick={() => click('body')} style={{ cursor: found ? 'default' : 'pointer' }}>{fixed ? 'return n * n' : 'n * n'}</span>
                 </div>
                 <div className="ai-line" style={{ cursor: 'default' }}>{'}'}</div>
-                <div className="ai-line" style={{ cursor: 'default' }}><KW>let</KW> x = zarar(5)</div>
+                <div className="ai-line" style={{ cursor: 'default' }}><KW>let</KW> x = damage(5)</div>
               </div>
               {/* F-0926-06: «Qaysi qator xato? Ustiga bosing» mentor gapini takrorlardi — olindi */}
               {found && !fixed && (<button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={fix}>{tr({ uz: `"return" so'zini qo'shish`, ru: 'Добавить слово "return"' })}</button>)}
@@ -1685,14 +1685,14 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             ) : (
               <div className="term fade-step">
                 <div className="term-bar"><span className="term-dot" style={{ background: '#FF5F56' }} /><span className="term-dot" style={{ background: '#FFBD2E' }} /><span className="term-dot" style={{ background: '#27C93F' }} /><span className="term-title">console</span></div>
-                <div className="term-body"><div className="term-line"><span className="term-arrow">›</span><span>25</span></div><p className="term-empty" style={{ color: T.success }}>{tr({ uz: '✓ endi natija (5 × 5 = 25) qaytdi', ru: '✓ теперь результат (5 × 5 = 25) вернулся' })}</p></div>
+                <div className="term-body"><div className="term-line"><span className="term-arrow">›</span><span>25</span></div><p className="term-empty" style={{ color: T.success }}>{tr({ uz: '✓ endi result (5 × 5 = 25) qaytdi', ru: '✓ теперь результат (5 × 5 = 25) вернулся' })}</p></div>
               </div>
             )}
           </Col>
           <Col>
             {!found && (
               picked && picked !== 'body'
-                ? (<div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qism to'g'ri. {picked === 'name' ? 'Funksiya nomi (zarar) — joyida.' : 'Parametr (n) — joyida.'} Xato esa <b>ichki qatorida</b> — natija qaytarilyaptimi?</>, ru: <>Эта часть верна. {picked === 'name' ? 'Имя функции (zarar) — на месте.' : 'Параметр (n) — на месте.'} А ошибка — <b>во внутренней строке</b>: возвращается ли результат?</> })}</p></div>)
+                ? (<div className="frame-warn fade-step"><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Bu qism to'g'ri. {picked === 'name' ? 'Funksiya nomi (damage) — joyida.' : 'Parametr (n) — joyida.'} Xato esa <b>ichki qatorida</b> — natija qaytarilyaptimi?</>, ru: <>Эта часть верна. {picked === 'name' ? 'Имя функции (damage) — на месте.' : 'Параметр (n) — на месте.'} А ошибка — <b>во внутренней строке</b>: возвращается ли результат?</> })}</p></div>)
                 : null /* F-0926-06: «return kerak» maslahati javobni oldindan aytardi (159/17) va uzuq quti edi (159/11) — olindi */
             )}
             {found && !fixed && (<div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body zb-notch" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><span className="mono">n * n</span> hisoblanadi, ammo <b>return yo'q</b> — natija tashqariga chiqmaydi, shuning uchun x = undefined. To'g'risi: <span className="mono">return n * n</span>.</>, ru: <><span className="mono">n * n</span> считается, но <b>return отсутствует</b> — результат не выходит наружу, поэтому x = undefined. Правильно: <span className="mono">return n * n</span>.</> })}</p></div>)}
@@ -1716,16 +1716,16 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const hasName = /^function\s+[A-Za-z_$][\w$]*\s*\(/.test(v);
   const hasParen = /^function\s+[A-Za-z_$][\w$]*\s*\([^)]*\)/.test(v);
   const hasOpen = /\{/.test(v);
-  const hasSquare = /[kK][uU][cC][hH]\s*\*\s*3|3\s*\*\s*[kK][uU][cC][hH]/.test(v);
+  const hasSquare = /[pP][oO][wW][eE][rR]\s*\*\s*3|3\s*\*\s*[pP][oO][wW][eE][rR]/.test(v);
   const hasReturn = /\breturn\b/.test(v);
   const hasClose = /\}/.test(v);
   const valid = hasFn && hasName && hasParen && hasOpen && hasReturn && hasSquare && hasClose;
-  useEffect(() => { if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'zarar funksiyasini yozing', studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); } }, [valid]);
+  useEffect(() => { if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'damage funksiyasini yozing', studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); } }, [valid]);
   return (
     <Stage eyebrow={{ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' }} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={isMentorLive ? false : !passed} label={passed ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: 'Funksiyani yozing', ru: 'Напишите функцию' }} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
-        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="mono italic" style={{ color: T.accent }}>zarar</span> funksiyasini o'zingiz yozing.</>, ru: <>Последний шаг: напишите функцию <span className="mono italic" style={{ color: T.accent }}>zarar</span> сами.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Navbat sizga! Endi <b style={{ color: T.ink }}>namuna yo'q</b> — funksiyani o'zingiz yodingizdan yozasiz. <span className="mono">kuch</span> oladigan va <span className="mono">kuch * 3</span> ni qaytaradigan <span className="mono">zarar</span> funksiyasini tuzing.</>, ru: <>Ваш ход! Теперь <b style={{ color: T.ink }}>образца нет</b> — пишете функцию по памяти. Составьте функцию <span className="mono">zarar</span>, которая берёт <span className="mono">kuch</span> и возвращает <span className="mono">kuch * 3</span>.</> })}</Mentor>
+        <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="mono italic" style={{ color: T.accent }}>damage</span> funksiyasini o'zingiz yozing.</>, ru: <>Последний шаг: напишите функцию <span className="mono italic" style={{ color: T.accent }}>zarar</span> сами.</> })}</h2></div>
+        <Mentor>{tr({ uz: <>Navbat sizga! Endi <b style={{ color: T.ink }}>namuna yo'q</b> — funksiyani o'zingiz yodingizdan yozasiz. <span className="mono">power</span> oladigan va <span className="mono">power * 3</span> ni qaytaradigan <span className="mono">damage</span> funksiyasini tuzing.</>, ru: <>Ваш ход! Теперь <b style={{ color: T.ink }}>образца нет</b> — пишете функцию по памяти. Составьте функцию <span className="mono">damage</span>, которая берёт <span className="mono">power</span> и возвращает <span className="mono">power * 3</span>.</> })}</Mentor>
         <Zoomable off={!valid}>
         <div className="split">
           <Col>
@@ -1734,9 +1734,9 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <span className="tagpill" style={{ opacity: hasFn ? 1 : 0.4 }}>{hasFn ? '✓' : '1'} function</span>
               <span className="tagpill" style={{ opacity: hasName ? 1 : 0.4 }}>{hasName ? '✓' : '2'} {tr({ uz: 'nom', ru: 'имя' })}</span>
-              <span className="tagpill" style={{ opacity: hasParen ? 1 : 0.4 }}>{hasParen ? '✓' : '3'} (kuch)</span>{/* F-0926-06: mentor «kuch» deydi — yorliq moslandi (D2); tekshiruv o'zgarmadi */}
+              <span className="tagpill" style={{ opacity: hasParen ? 1 : 0.4 }}>{hasParen ? '✓' : '3'} (power)</span>{/* F-0926-06: mentor «kuch» deydi — yorliq moslandi (D2); tekshiruv o'zgarmadi */}
               <span className="tagpill" style={{ opacity: hasOpen ? 1 : 0.4 }}>{hasOpen ? '✓' : '4'} {'{'}</span>
-              <span className="tagpill" style={{ opacity: (hasReturn && hasSquare) ? 1 : 0.4 }}>{(hasReturn && hasSquare) ? '✓' : '5'} return kuch * 3</span>
+              <span className="tagpill" style={{ opacity: (hasReturn && hasSquare) ? 1 : 0.4 }}>{(hasReturn && hasSquare) ? '✓' : '5'} return power * 3</span>
               <span className="tagpill" style={{ opacity: hasClose ? 1 : 0.4 }}>{hasClose ? '✓' : '6'} {'}'}</span>
             </div>
             {/* F-0926-06: ✓ izoh o'ng kartadagi «Funksiya tayyor!» bilan takror edi (I3); «6 ta belgi…» yo'rig'i mentor va chiplarni takrorlardi — ikkalasi olindi */}
@@ -1746,7 +1746,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {valid && <p className="flow-label">{tr({ uz: 'natija', ru: 'результат' })}</p>}
             {valid && <div style={{ background: T.paper, borderRadius: 14, minHeight: 130, padding: '20px', boxShadow: `0 8px 22px -10px rgba(${T.shadowBase},0.16)`, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
               {valid
-                ? <div className="fade-step"><div style={{ fontSize: 36 }}>🛠️</div><p style={{ fontFamily: "'Source Serif 4',serif", color: T.success, fontWeight: 700, margin: '8px 0 4px', fontSize: 'clamp(16px,2.4vw,20px)' }}>{tr({ uz: 'Funksiya tayyor!', ru: 'Функция готова!' })}</p><p className="mono small" style={{ margin: 0, color: T.ink2 }}>zarar(4) → 12</p></div>
+                ? <div className="fade-step"><div style={{ fontSize: 36 }}>🛠️</div><p style={{ fontFamily: "'Source Serif 4',serif", color: T.success, fontWeight: 700, margin: '8px 0 4px', fontSize: 'clamp(16px,2.4vw,20px)' }}>{tr({ uz: 'Funksiya tayyor!', ru: 'Функция готова!' })}</p><p className="mono small" style={{ margin: 0, color: T.ink2 }}>damage(4) → 12</p></div>
                 : null}
             </div>}
           </Col>
@@ -1778,7 +1778,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const RECAP = [tr({ uz: 'Funksiya — nomlangan, qayta ishlatiladigan kod bloki (mashina)', ru: 'Функция — именованный, многоразовый блок кода (машина)' }), tr({ uz: 'Funksiyani nomi bilan chaqiramiz — zarar()', ru: 'Функцию вызываем по имени — zarar()' }), tr({ uz: 'Parametr — funksiyaga beriladigan kirish (input)', ru: 'Параметр — вход, который передают функции (input)' }), tr({ uz: 'return — funksiya qaytaradigan natija (output)', ru: 'return — результат, который возвращает функция (output)' }), tr({ uz: "console.log ko'rsatadi, return qaytaradi (saqlash uchun)", ru: 'console.log показывает, return возвращает (для сохранения)' })];
+  const RECAP = [tr({ uz: 'Funksiya — nomlangan, qayta ishlatiladigan kod bloki (mashina)', ru: 'Функция — именованный, многоразовый блок кода (машина)' }), tr({ uz: 'Funksiyani nomi bilan chaqiramiz — damage()', ru: 'Функцию вызываем по имени — damage()' }), tr({ uz: 'Parametr — funksiyaga beriladigan kirish (input)', ru: 'Параметр — вход, который передают функции (input)' }), tr({ uz: 'return — funksiya qaytaradigan natija (output)', ru: 'return — результат, который возвращает функция (output)' }), tr({ uz: "console.log ko'rsatadi, return qaytaradi (saqlash uchun)", ru: 'console.log показывает, return возвращает (для сохранения)' })];
   const GLOSSARY = [{ b: tr({ uz: 'Funksiya', ru: 'Функция' }), t: tr({ uz: '— qayta ishlatiladigan kod bloki', ru: '— многоразовый блок кода' }) }, { b: 'function', t: tr({ uz: "— funksiya e'lon qilish kaliti", ru: '— ключевое слово объявления функции' }) }, { b: tr({ uz: 'Parametr', ru: 'Параметр' }), t: tr({ uz: "— kirish o'zgaruvchisi", ru: '— входная переменная' }) }, { b: tr({ uz: 'Argument', ru: 'Аргумент' }), t: tr({ uz: '— chaqiruvda beriladigan haqiqiy qiymat', ru: '— настоящее значение при вызове' }) }, { b: 'return', t: tr({ uz: '— natijani qaytarish', ru: '— возврат результата' }) }, { b: tr({ uz: 'Chaqirish', ru: 'Вызов' }), t: tr({ uz: '— funksiyani ishga tushirish (call)', ru: '— запуск функции (call)' }) }, { b: 'undefined', t: tr({ uz: '— return bo\'lmasa qaytadigan "hech narsa"', ru: '— «ничего», если нет return' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1837,7 +1837,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
 
 // ============================================================ LESSON ROOT
 // Podium yorliqlari (scored indeks -> qisqa nom)
-const Q_LABELS = { 4: { uz: "1 — Chaqirish", ru: '1 — Вызов' }, 6: "2 — zarar(3)", 10: "3 — zarar(10,3)", 13: { uz: "4 — return x da", ru: '4 — return в x' }, 16: { uz: "5 — Funksiya yoz", ru: '5 — Напиши функцию' } };
+const Q_LABELS = { 4: { uz: "1 — Chaqirish", ru: '1 — Вызов' }, 6: "2 — damage(3)", 10: "3 — damage(10,3)", 13: { uz: "4 — return x da", ru: '4 — return в x' }, 16: { uz: "5 — Funksiya yoz", ru: '5 — Напиши функцию' } };
 
 const Confetti = () => {
   const COLORS = [T.accent, T.success, T.blue, '#FFD380', '#FF7755', '#7DD181'];
@@ -1988,7 +1988,7 @@ const ScreenFlashcards = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) =>
 const ACHIEVEMENTS = {
   builder:      { icon: '🛠️', name: 'Machine Builder', desc: { uz: "Funksiya mashinasini o'zingiz yig'dingiz", ru: 'Вы сами собрали машину-функцию' } },
   coder:        { icon: '✍️', name: 'Code Writer',     desc: { uz: "3 bosqichda funksiyani qo'lda yozdingiz", ru: 'Вы написали функцию вручную за 3 шага' } },
-  returnmaster: { icon: '📦', name: 'Return Master',   desc: { uz: 'zarar funksiyasini yoddan yozdingiz', ru: 'Вы написали функцию zarar по памяти' } },
+  returnmaster: { icon: '📦', name: 'Return Master',   desc: { uz: 'damage funksiyasini yoddan yozdingiz', ru: 'Вы написали функцию damage по памяти' } },
   graduate:     { icon: '🏆', name: 'Level Up!',       desc: { uz: "JS funksiyalar darsini to'liq yakunladingiz", ru: 'Вы полностью прошли урок про функции JS' } },
 };
 // Ekran id → nishon (recordAnswer'da avtomatik beriladi) — faqat AKTIV challenge ekranlari:
@@ -2053,7 +2053,7 @@ const QZ_BG_SHAPES = [
   { ch: 'function', l: 5,  t: 16, s: 34, c: 'rgba(203,173,255,0.16)', d: 19, dl: 0 },
   { ch: '{ }',      l: 85, t: 11, s: 34, c: 'rgba(203,173,255,0.13)', d: 23, dl: 1.5 },
   { ch: 'return',   l: 8,  t: 74, s: 30, c: 'rgba(255,110,70,0.15)',  d: 27, dl: 0.8 },
-  { ch: 'salom()',  l: 78, t: 70, s: 28, c: 'rgba(203,173,255,0.11)', d: 21, dl: 2.2 },
+  { ch: 'greet()',  l: 78, t: 70, s: 28, c: 'rgba(203,173,255,0.11)', d: 21, dl: 2.2 },
   { ch: '//',       l: 46, t: 86, s: 30, c: 'rgba(203,173,255,0.14)', d: 25, dl: 1.1 },
   { ch: '=>',       l: 66, t: 24, s: 26, c: 'rgba(80,200,255,0.14)',  d: 17, dl: 0.4 },
   { ch: ';',        l: 24, t: 36, s: 26, c: 'rgba(203,173,255,0.12)', d: 20, dl: 1.9 },
@@ -2067,13 +2067,13 @@ const QUIZ_BANK = [
   { q: { uz: "Parametr nima vazifani bajaradi?", ru: "Какую работу выполняет параметр?" }, opts: [{ uz: "Natijani qaytaradi", ru: "Возвращает результат" }, { uz: "Funksiyani o'chiradi", ru: "Удаляет функцию" }, { uz: "Funksiyaga qiymat beradi", ru: "Передаёт значение в функцию" }, { uz: "Konsolga chiqaradi", ru: "Выводит в консоль" }], correct: 2 },
   { q: { uz: "`return` nima qiladi?", ru: "Что делает `return`?" }, opts: [{ uz: "Konsolga chiqaradi", ru: "Выводит в консоль" }, { uz: "Funksiyaga nom beradi", ru: "Даёт функции имя" }, { uz: "Parametr qo'shadi", ru: "Добавляет параметр" }, { uz: "Natijani qaytaradi", ru: "Возвращает результат" }], correct: 3 },
   { q: { uz: "`console.log` va `return`: qaysi biri qiymat qaytaradi?", ru: "`console.log` и `return`: кто возвращает значение?" }, opts: [{ uz: "Faqat `console.log`", ru: "Только `console.log`" }, { uz: "Faqat `return`", ru: "Только `return`" }, { uz: "Ikkalasi ham", ru: "Оба" }, { uz: "Hech biri", ru: "Никто" }], correct: 1 },
-  { q: { uz: "`return kuch * 3` bo'lsa, `zarar(5)` nima qaytaradi?", ru: "Если `return kuch * 3`, что вернёт `zarar(5)`?" }, opts: ["8", "5", "15", "53"], correct: 2 },
-  { q: { uz: "`function qosh(a,b){ return a+b }`. `qosh(2,7)` natijasi?", ru: '`function qosh(a,b){ return a+b }`. Каков результат `qosh(2,7)`?' }, opts: ["9", "27", "5", "72"], correct: 0 },
+  { q: { uz: "`return power * 3` bo'lsa, `damage(5)` nima qaytaradi?", ru: "Если `return power * 3`, что вернёт `damage(5)`?" }, opts: ["8", "5", "15", "53"], correct: 2 },
+  { q: { uz: "`function add(a,b){ return a+b }`. `add(2,7)` natijasi?", ru: '`function add(a,b){ return a+b }`. Каков результат `add(2,7)`?' }, opts: ["9", "27", "5", "72"], correct: 0 },
   { q: { uz: "`return`'i yo'q funksiya nima qaytaradi?", ru: 'Что вернёт функция без `return`?' }, opts: ["0", "`undefined`", { uz: "bo'sh matn", ru: 'пустой текст' }, { uz: "xato", ru: 'ошибку' }], correct: 1 },
-  { q: { uz: "`zarar(kuch, bonus)` → `kuch * 3 + bonus`. `zarar(3, 10)`?", ru: "`zarar(kuch, bonus)` → `kuch * 3 + bonus`. `zarar(3, 10)` = ?" }, opts: ["13", "33", "30", "19"], correct: 3 },
-  { q: { uz: "`zarar(5)` chaqirilganda `5` qayerga tushadi?", ru: "Куда попадает `5` при вызове `zarar(5)`?" }, opts: [{ uz: "`return` ichiga", ru: 'Внутрь `return`' }, { uz: "funksiya nomiga", ru: 'В имя функции' }, { uz: "parametrga", ru: 'В параметр' }, { uz: "konsolga", ru: 'В консоль' }], correct: 2 },
+  { q: { uz: "`damage(power, bonus)` → `power * 3 + bonus`. `damage(3, 10)`?", ru: "`damage(power, bonus)` → `power * 3 + bonus`. `damage(3, 10)` = ?" }, opts: ["13", "33", "30", "19"], correct: 3 },
+  { q: { uz: "`damage(5)` chaqirilganda `5` qayerga tushadi?", ru: "Куда попадает `5` при вызове `damage(5)`?" }, opts: [{ uz: "`return` ichiga", ru: 'Внутрь `return`' }, { uz: "funksiya nomiga", ru: 'В имя функции' }, { uz: "parametrga", ru: 'В параметр' }, { uz: "konsolga", ru: 'В консоль' }], correct: 2 },
   { q: { uz: "Bir funksiyani necha marta chaqirsa bo'ladi?", ru: 'Сколько раз можно вызвать одну функцию?' }, opts: [{ uz: "Xohlagancha", ru: 'Сколько угодно' }, { uz: "Faqat 1 marta", ru: 'Только 1 раз' }, { uz: "Ko'pi bilan 3 marta", ru: 'Максимум 3 раза' }, { uz: "Hech qachon", ru: 'Никогда' }], correct: 0 },
-  { q: { uz: "`let x = zarar(4)`. `x` ga nima tushadi?", ru: "`let x = zarar(4)`. Что попадёт в `x`?" }, opts: [{ uz: "Funksiya nomi — `zarar`", ru: "Имя функции — `zarar`" }, { uz: "Argument — `4` soni", ru: "Аргумент — число `4`" }, { uz: "Hech narsa — `undefined`", ru: "Ничего — `undefined`" }, { uz: "Funksiya qaytargan qiymat", ru: "Значение, которое вернула функция" }], correct: 3 },
+  { q: { uz: "`let x = damage(4)`. `x` ga nima tushadi?", ru: "`let x = damage(4)`. Что попадёт в `x`?" }, opts: [{ uz: "Funksiya nomi — `damage`", ru: "Имя функции — `damage`" }, { uz: "Argument — `4` soni", ru: "Аргумент — число `4`" }, { uz: "Hech narsa — `undefined`", ru: "Ничего — `undefined`" }, { uz: "Funksiya qaytargan qiymat", ru: "Значение, которое вернула функция" }], correct: 3 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -2185,7 +2185,7 @@ function QzFX() {
     let W = 1, H = 1, raf = 0;
     const size = () => { W = cv.width = Math.max(1, cv.offsetWidth * DPR); H = cv.height = Math.max(1, cv.offsetHeight * DPR); };
     size(); window.addEventListener('resize', size);
-    const TOK = ['function', 'return', '( )', '=>', 'salom()', '{ }', '//', ';'];
+    const TOK = ['function', 'return', '( )', '=>', 'greet()', '{ }', '//', ';'];
     const em = [], toks = [];
     for (let i = 0; i < 26; i++) em.push({ x: Math.random() * W, y: Math.random() * H, z: .3 + Math.random() * .7, ph: Math.random() * 6.28, sw: .3 + Math.random() * .6 });
     for (let i = 0; i < 9; i++) toks.push({ x: Math.random() * W, y: Math.random() * H, z: .4 + Math.random() * .9, vx: (Math.random() - .5) * .16, t: TOK[i % TOK.length], r: (Math.random() - .5) * .5 });
@@ -2604,13 +2604,13 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 const TASK_SALOM = {
   eyebrow: { uz: 'Praktika · funksiya', ru: 'Практика · функция' },
   title: { uz: "Birinchi funksiyangizni yozing", ru: 'Напишите свою первую функцию' },
-  brief: { uz: "`salom` nomli funksiya yozing — ichida `console.log(\"Salom\")` bo'lsin. Keyin uni chaqiring: `salom()`. Funksiya faqat CHAQIRILGANDA ishlaydi — konsolda `Salom` chiqadi.", ru: 'Напишите функцию с именем `salom` — внутри `console.log(\"Salom\")`. Затем вызовите её: `salom()`. Функция работает только при ВЫЗОВЕ — в консоли появится `Salom`.' },
+  brief: { uz: "`greet` nomli funksiya yozing — ichida `console.log(\"Salom\")` bo'lsin. Keyin uni chaqiring: `greet()`. Funksiya faqat CHAQIRILGANDA ishlaydi — konsolda `Salom` chiqadi.", ru: 'Напишите функцию с именем `greet` — внутри `console.log(\"Salom\")`. Затем вызовите её: `greet()`. Функция работает только при ВЫЗОВЕ — в консоли появится `Salom`.' },
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'fn', label: { uz: 'funksiya yozildi', ru: 'функция написана' }, check: C.js(/function\s+\w+\s*\(/, { uz: "`function salom() {` deb boshlang", ru: 'Начните с `function salom() {`' }) },
-    { id: 'log', label: { uz: 'chaqirildi — konsolda Salom', ru: 'вызвана — в консоли Salom' }, check: C.logs('Salom', { uz: "Funksiyani chaqirishni unutmang: pastda `salom()` yozing", ru: 'Не забудьте вызвать: ниже напишите `salom()`' }) },
+    { id: 'fn', label: { uz: 'funksiya yozildi', ru: 'функция написана' }, check: C.js(/function\s+\w+\s*\(/, { uz: "`function greet() {` deb boshlang", ru: 'Начните с `function greet() {`' }) },
+    { id: 'log', label: { uz: 'chaqirildi — konsolda Salom', ru: 'вызвана — в консоли Salom' }, check: C.logs('Salom', { uz: "Funksiyani chaqirishni unutmang: pastda `greet()` yozing", ru: 'Не забудьте вызвать: ниже напишите `greet()`' }) },
   ],
 };
 
@@ -2618,14 +2618,14 @@ const TASK_SALOM = {
 const TASK_KVADRAT = {
   eyebrow: { uz: 'Praktika · return', ru: 'Практика · return' },
   title: { uz: 'Javob qaytaradigan mashina', ru: 'Машина, которая возвращает ответ' },
-  brief: { uz: "`zarar` funksiyasi yozing: bitta parametr (`kuch`) olsin va `return kuch * 3` qilsin. Keyin javobni saqlang: `let natija = zarar(5)`, so'ng `console.log(natija)` yozing — konsolda `15` chiqadi.", ru: 'Напишите функцию `zarar`: принимает один параметр (`kuch`) и делает `return kuch * 3`. Затем сохраните ответ: `let natija = zarar(5)`, потом напишите `console.log(natija)` — в консоли появится `15`.' }, // F-1017-204: darsda o'tilgani — javobni o'zgaruvchiga saqlash (s7)
+  brief: { uz: "`damage` funksiyasi yozing: bitta parametr (`power`) olsin va `return power * 3` qilsin. Keyin javobni saqlang: `let result = damage(5)`, so'ng `console.log(result)` yozing — konsolda `15` chiqadi.", ru: 'Напишите функцию `damage`: принимает один параметр (`power`) и делает `return power * 3`. Затем сохраните ответ: `let result = damage(5)`, потом напишите `console.log(result)` — в консоли появится `15`.' }, // F-1017-204: darsda o'tilgani — javobni o'zgaruvchiga saqlash (s7)
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing
 ` },
   ],
   requirements: [
-    { id: 'ret', label: { uz: 'return ishlatildi', ru: 'использован return' }, check: C.js(/\breturn\b/, { uz: "Funksiya ichida `return kuch * 3` yozing", ru: 'Внутри функции напишите `return kuch * 3`' }) },
-    { id: 'log', label: { uz: 'konsolda 15', ru: 'в консоли 15' }, check: C.logs('15', { uz: "`let natija = zarar(5)` va `console.log(natija)` yozing — javob konsolga chiqadi", ru: 'Напишите `let natija = zarar(5)` и `console.log(natija)` — ответ выйдет в консоль' }) },
+    { id: 'ret', label: { uz: 'return ishlatildi', ru: 'использован return' }, check: C.js(/\breturn\b/, { uz: "Funksiya ichida `return power * 3` yozing", ru: 'Внутри функции напишите `return power * 3`' }) },
+    { id: 'log', label: { uz: 'konsolda 15', ru: 'в консоли 15' }, check: C.logs('15', { uz: "`let result = damage(5)` va `console.log(result)` yozing — javob konsolga chiqadi", ru: 'Напишите `let result = damage(5)` и `console.log(result)` — ответ выйдет в консоль' }) },
   ],
 };
 
@@ -2633,14 +2633,14 @@ const TASK_KVADRAT = {
 const TASK_QAYTA = {
   eyebrow: { uz: 'Praktika · qayta ishlatish', ru: 'Практика · переиспользование' },
   title: { uz: "Bitta funksiya — ikki marta ish", ru: 'Одна функция — работа дважды' },
-  brief: { uz: "`salomla` funksiyasi yozing: `ism` parametrini olsin va `console.log(\"Salom, \" + ism)` qilsin. Keyin uni IKKI marta chaqiring: `salomla(\"Aziza\")` va `salomla(\"Bobur\")`. Bitta funksiya — ikki xil natija.", ru: 'Напишите функцию `salomla`: принимает параметр `ism` и делает `console.log(\"Salom, \" + ism)`. Затем вызовите её ДВАЖДЫ: `salomla(\"Aziza\")` и `salomla(\"Bobur\")`. Одна функция — два разных результата.' },
+  brief: { uz: "`sayHello` funksiyasi yozing: `name` parametrini olsin va `console.log(\"Salom, \" + name)` qilsin. Keyin uni IKKI marta chaqiring: `sayHello(\"Aziza\")` va `sayHello(\"Bobur\")`. Bitta funksiya — ikki xil natija.", ru: 'Напишите функцию `sayHello`: принимает параметр `name` и делает `console.log(\"Salom, \" + name)`. Затем вызовите её ДВАЖДЫ: `sayHello(\"Aziza\")` и `sayHello(\"Bobur\")`. Одна функция — два разных результата.' },
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'param', label: { uz: 'parametrli funksiya', ru: 'функция с параметром' }, check: C.js(/function\s+\w+\s*\(\s*\w+/, { uz: "`function salomla(ism) {` deb boshlang", ru: 'Начните с `function salomla(ism) {`' }) },
-    { id: 'log1', label: { uz: 'konsolda: Salom, Aziza', ru: 'в консоли: Salom, Aziza' }, check: C.logs('Salom, Aziza', { uz: "`salomla(\"Aziza\")` deb chaqiring — konsolda `Salom, Aziza` chiqadi", ru: 'Вызовите `salomla(\"Aziza\")` — в консоли появится `Salom, Aziza`' }) },
-    { id: 'log2', label: { uz: 'konsolda: Salom, Bobur', ru: 'в консоли: Salom, Bobur' }, check: C.logs('Salom, Bobur', { uz: "Yana bir marta chaqiring: `salomla(\"Bobur\")`", ru: 'Вызовите ещё раз: `salomla(\"Bobur\")`' }) }, // F-1017-205: bitta birlashgan logs «!» qo'shilsa rad etardi
+    { id: 'param', label: { uz: 'parametrli funksiya', ru: 'функция с параметром' }, check: C.js(/function\s+\w+\s*\(\s*\w+/, { uz: "`function sayHello(name) {` deb boshlang", ru: 'Начните с `function sayHello(name) {`' }) },
+    { id: 'log1', label: { uz: 'konsolda: Salom, Aziza', ru: 'в консоли: Salom, Aziza' }, check: C.logs('Salom, Aziza', { uz: "`sayHello(\"Aziza\")` deb chaqiring — konsolda `Salom, Aziza` chiqadi", ru: 'Вызовите `sayHello(\"Aziza\")` — в консоли появится `Salom, Aziza`' }) },
+    { id: 'log2', label: { uz: 'konsolda: Salom, Bobur', ru: 'в консоли: Salom, Bobur' }, check: C.logs('Salom, Bobur', { uz: "Yana bir marta chaqiring: `sayHello(\"Bobur\")`", ru: 'Вызовите ещё раз: `sayHello(\"Bobur\")`' }) }, // F-1017-205: bitta birlashgan logs «!» qo'shilsa rad etardi
   ],
 };
 

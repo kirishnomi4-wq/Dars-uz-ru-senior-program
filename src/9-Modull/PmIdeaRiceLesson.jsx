@@ -1889,7 +1889,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const KD_IZ = {
   ozi: { uz: ["// rice.js — g'oyalaringiz:", '// RICE bahosi va eng yuqori uchtasi'], ru: ['// rice.js — ваши идеи:', '// оценка RICE и три верхние'] },
   mentor: { uz: ["// rice.js — g'oyalaringiz topilmadi,", "// Mentorning to'rttasi: RICE va eng yuqori uchtasi"], ru: ['// rice.js — ваши идеи не найдены,', '// четыре идеи Ментора: RICE и три верхние'] },
-  kasr: { uz: '// ishonch kodda kasr bilan: 80% — 0.8, 50% — 0.5', ru: '// уверенность в коде — дробью: 80% — 0.8, 50% — 0.5' },
+  nomlar: { uz: "// ideas — g'oyalar · reach — qamrov · impact — ta'sir · confidence — ishonch · effort — mehnat · score — baho", ru: '// ideas — идеи · reach — охват · impact — влияние · confidence — уверенность · effort — труд · score — оценка' },
+  kasr: { uz: '// confidence kodda kasr bilan: 80% — 0.8, 50% — 0.5', ru: '// confidence в коде — дробью: 80% — 0.8, 50% — 0.5' },
   formula: { uz: ["  // qamrovni ta'sirga va ishonchga ko'paytirib,", "  // mehnatga bo'ling", '  return 0;   // shu joyni siz yozasiz'], ru: ['  // умножьте охват на влияние и уверенность,', '  // разделите на усилия', '  return 0;   // это место пишете вы'] },
   tayyor: { uz: ["// har g'oyaga baho qo'shamiz (bir xonagacha yaxlitlab)", '// va kattadan kichikka tartiblaymiz (bu qism tayyor)'], ru: ['// каждой идее добавляем оценку (с округлением до десятых)', '// и сортируем по убыванию (эта часть готова)'] },
   oxir: { uz: ['// Shu yerga: eng yuqori uchtasini terminalga chiqaring', '// (Yordam ▸)'], ru: ['// Сюда: выведите три верхние в терминал', '// (Подсказка ▸)'] }
@@ -1904,10 +1905,10 @@ const kodData = () => {
 };
 const kdKod = (d) => {
   const iz = (o) => tr(o);
-  return [...iz(d.ozi ? KD_IZ.ozi : KD_IZ.mentor), '', iz(KD_IZ.kasr), 'const goyalar = [',
-    ...d.g.flatMap(x => ['  { nom: ' + JSON.stringify(x.nom) + ',', `    qamrov: ${x.qamrov}, tasir: ${x.tasir}, ishonch: ${x.ishonch}, mehnat: ${x.mehnat} },`]),
+  return [...iz(d.ozi ? KD_IZ.ozi : KD_IZ.mentor), iz(KD_IZ.nomlar), '', iz(KD_IZ.kasr), 'const ideas = [',
+    ...d.g.flatMap(x => ['  { name: ' + JSON.stringify(x.nom) + ',', `    reach: ${x.qamrov}, impact: ${x.tasir}, confidence: ${x.ishonch}, effort: ${x.mehnat} },`]),
     '];', '', 'function rice(g) {', ...iz(KD_IZ.formula), '}', '', ...iz(KD_IZ.tayyor),
-    'goyalar.forEach(function (g) {', '  g.baho = Math.round(rice(g) * 10) / 10;', '});', 'goyalar.sort(function (a, b) { return b.baho - a.baho; });', '', ...iz(KD_IZ.oxir)];
+    'ideas.forEach(function (g) {', '  g.score = Math.round(rice(g) * 10) / 10;', '});', 'ideas.sort(function (a, b) { return b.score - a.score; });', '', ...iz(KD_IZ.oxir)];
 };
 // Kutilgan natija — o'quvchi kodi bilan bir xil hisob (bir xil ifoda, bir xil tartiblash): terminal aynan shuni chiqaradi
 const kdNatija = (d) => d.g.map(x => ({ nom: x.nom, baho: Math.round((x.qamrov * x.tasir * x.ishonch / x.mehnat) * 10) / 10 }))
@@ -1918,7 +1919,7 @@ const kdShart = (d) => [
   { uz: `Birinchi qator — «${kdNatija(d)[0]}»`, ru: `Первая строка — «${kdNatija(d)[0]}»` }
 ];
 const KD_ESLATMA = [
-  { k: 'g.qamrov', t: { uz: "g'oyaning qamrovi", ru: 'охват идеи' } },
+  { k: 'g.reach', t: { uz: "g'oyaning qamrovi (reach)", ru: 'охват идеи (reach)' } },
   { k: null, t: { uz: <><code className="qcode">*</code> — ko'paytirish, <code className="qcode">/</code> — bo'lish</>, ru: <><code className="qcode">*</code> — умножение, <code className="qcode">/</code> — деление</> } },
   { k: 'return', t: { uz: 'funksiya natijasini qaytaradi', ru: 'возвращает результат функции' } },
   { k: 'for', t: { uz: "qatorlarni birma-bir ko'rib chiqadi (sikl)", ru: 'перебирает строки по одной (цикл)' } },
@@ -1928,9 +1929,9 @@ const KD_ESLATMA = [
   { k: null, t: { uz: <>kodda 80% — <code className="qcode">0.8</code> (kasr nuqta bilan)</>, ru: <>в коде 80% — <code className="qcode">0.8</code> (дробь с точкой)</> } }
 ];
 const KD_QADAM = [
-  { uz: <><code className="qcode">rice</code> ichida: <code className="qcode">return g.qamrov * g.tasir * g.ishonch / g.mehnat;</code></>, ru: <>Внутри <code className="qcode">rice</code>: <code className="qcode">return g.qamrov * g.tasir * g.ishonch / g.mehnat;</code></> },
+  { uz: <><code className="qcode">rice</code> ichida: <code className="qcode">return g.reach * g.impact * g.confidence / g.effort;</code></>, ru: <>Внутри <code className="qcode">rice</code>: <code className="qcode">return g.reach * g.impact * g.confidence / g.effort;</code></> },
   { uz: <>Sikl: <code className="qcode">{'for (let i = 0; i < 3; i++)'}</code></>, ru: <>Цикл: <code className="qcode">{'for (let i = 0; i < 3; i++)'}</code></> },
-  { uz: <>Sikl ichida: <code className="qcode">{'console.log((i + 1) + ". " + goyalar[i].nom + " — " + goyalar[i].baho);'}</code></>, ru: <>Внутри цикла: <code className="qcode">{'console.log((i + 1) + ". " + goyalar[i].nom + " — " + goyalar[i].baho);'}</code></> }
+  { uz: <>Sikl ichida: <code className="qcode">{'console.log((i + 1) + ". " + ideas[i].name + " — " + ideas[i].score);'}</code></>, ru: <>Внутри цикла: <code className="qcode">{'console.log((i + 1) + ". " + ideas[i].name + " — " + ideas[i].score);'}</code></> }
 ];
 const KOD_DARVOZA = [
   { t: { uz: 'RICE bahosi eng katta g\'oya', ru: 'Идея с самой большой оценкой RICE' }, ok: true },
@@ -2009,7 +2010,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           : tr({ uz: <>G'oyalaringizga bergan RICE hisobini endi kod qiladi: <code className="qcode">rice</code> funksiyasini va eng yuqori uchtasini yozing.</>, ru: <>Расчёт RICE для ваших идей теперь делает код: напишите функцию <code className="qcode">rice</code> и выведите три верхние.</> })}</Mentor>}
         vazifa={!stage2
           ? <div className="ri-darvoza">
-              <span className="ri-darvoza-s">{tr({ uz: <>Kodda <code className="qcode">sort</code> dan keyin <code className="qcode">goyalar[0]</code> da qaysi g'oya turadi?</>, ru: <>Какая идея окажется в <code className="qcode">goyalar[0]</code> после <code className="qcode">sort</code>?</> })}</span>
+              <span className="ri-darvoza-s">{tr({ uz: <>Kodda <code className="qcode">sort</code> dan keyin <code className="qcode">ideas[0]</code> da qaysi g'oya turadi?</>, ru: <>Какая идея окажется в <code className="qcode">ideas[0]</code> после <code className="qcode">sort</code>?</> })}</span>
               <div className={cxx('ri-darvoza-v', 'ri-guruh')}>{KOD_DARVOZA.map((g, i) => { const silk = miss && miss.i === i; return <QChip key={silk ? `${i}-${miss.k}` : i} silk={silk} onClick={() => pickGate(i)}>{tr(g.t)}</QChip>; })}</div>
               {miss && <QXato>{tr({ uz: <>Bu kodda <code className="qcode">sort</code> bahoni kattadan kichikka tartiblaydi.</>, ru: <>В этом коде <code className="qcode">sort</code> сортирует оценки от большей к меньшей.</> })}</QXato>}
             </div>

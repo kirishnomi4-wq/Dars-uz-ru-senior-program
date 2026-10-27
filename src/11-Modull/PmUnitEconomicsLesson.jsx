@@ -843,7 +843,7 @@ const USTOZ = {
     { uz: "Sinfda kim qancha yozganini so'ramang va qo'l ko'tartirmang.", ru: 'Не спрашивайте в классе, кто сколько написал, и не просите поднять руки.' }],
   s8: [{ uz: "≈ 2 × 3 daqiqa + tuzatish. Sherik son haqida yozadi, odam haqida emas. Halol yozilgan taxmin — ✓: «taxmin» xato emas. 3-savolda «kimdir aytgan» bo'lsa — kim (rol), ism emas; real suhbat bu darsda yo'q.", ru: '≈ 2 × 3 минуты + исправление. Партнёр пишет о числе, а не о человеке. Честно записанное предположение — ✓: «предположение» не ошибка. Если в 3-м вопросе «кто-то сказал» — кто (роль), не имя; реального разговора на этом уроке нет.' },
     { uz: "2-savol to'lovchi mahsulotdan foydalanishini talab qilmaydi: ota-ona farzandi uchun to'lashi ham mumkin — muhimi, u nima olishini aytib bera olish.", ru: '2-й вопрос не требует, чтобы плательщик сам пользовался продуктом: родитель может платить за ребёнка — важно уметь сказать, что он получает.' }],
-  s9: [{ uz: "Ko'p uchraydigan xato — `yangi` 0 ni tekshirmaslik: natijada `Infinity` chiqadi va 2-shart ✕ qoladi. Kod — haqiqiy Backend emas: sonlar qo'lda yozilgan (Mentor misoli — mashq).", ru: 'Частая ошибка — не проверить `yangi` на 0: выйдет `Infinity`, и 2-е условие останется ✕. Код — не настоящий Backend: числа написаны вручную (пример Ментора — упражнение).' },
+  s9: [{ uz: "Ko'p uchraydigan xato — `newUsers` 0 ni tekshirmaslik: natijada `Infinity` chiqadi va 2-shart ✕ qoladi. Kod — haqiqiy Backend emas: sonlar qo'lda yozilgan (Mentor misoli — mashq).", ru: 'Частая ошибка — не проверить `newUsers` на 0: выйдет `Infinity`, и 2-е условие останется ✕. Код — не настоящий Backend: числа написаны вручную (пример Ментора — упражнение).' },
     { uz: "«Mahsulotim» qatorida keltiradigan pul — taxmin; narx yoki oy yozilmagan bo'lsa — «noma'lum» chiqadi («bo'lib bo'lmaydi» — faqat yangi foydalanuvchi 0 bo'lganda). Kalit yo'q bo'lsa qatorlar «Mashq» yorlig'i bilan — Mentor sonlari o'quvchiniki deb ko'rsatilmaydi. Kod o'quvchi uchun xulosa chiqarmaydi: uning xulosasi «Ikki sonim» kartasida (to'lovchilar soni hisobga olinadi).", ru: 'В строке «Мой продукт» приносимые деньги — предположение; если цена или месяцы не указаны — выйдет «неизвестно» («нельзя разделить» — только при 0 новых). Без ключа строки с ярлыком «Mashq» — числа Ментора не выдаются за числа ученика. Код не делает вывод за ученика: его вывод — в карточке «Два моих числа» (учитывается число плательщиков).' }]
 };
 const HOOK_OPTS = [
@@ -1739,12 +1739,12 @@ const menikiOl = () => {
   return { real: b.tur === 'real', sarf, yangi, narx: nn(b.narxTaxmin), oy: nn(b.oyTaxmin) };
 };
 const KOD_M = {
-  uz: { tepa: '// Mentor misoli: pullik kanal — mashq, Mentorning taxmini', mentor: "// Mentor sonlari — o'zingiznikiga almashtiring", siz: "// Sizning sonlaringiz («Ikki sonim» kartasidan)",
-    mahsulot: 'Mahsulotim', mashq: 'Mashq', jIz: "  // yangi 0 bo'lsa — null;\n  // aks holda pulni yangilarga bo'ling", kIz: "  // narxni oylar soniga ko'paytiring", siz2: '  return 0; // shu joyni siz yozasiz',
+  uz: { tepa: "// Mentor misoli: pullik kanal — mashq, Mentorning taxmini\n// channel — kanal · spend — sarf · newUsers — yangi kelganlar · price — narx · months — oy", mentor: "// Mentor sonlari — o'zingiznikiga almashtiring", siz: "// Sizning sonlaringiz («Ikki sonim» kartasidan)",
+    mahsulot: 'Mahsulotim', mashq: 'Mashq', jIz: "  // newUsers 0 bo'lsa — null;\n  // aks holda pulni yangilarga bo'ling", kIz: "  // narxni oylar soniga ko'paytiring", siz2: '  return 0; // shu joyni siz yozasiz',
     tayyor: '// natija — bu qism tayyor', bolmaydi: "bo'lib bo'lmaydi", som: " so'm", nomalum: "noma'lum", qop: 'qoplanadi', zar: 'zarar', teng: 'teng',
     q1: 'Mentor · bitta foydalanuvchi: ', q2: 'Mentor · bitta tashkilotchi: ', q3: 'Mentor · tashkilotchi keltiradi: ', q4: 'Mentor · pullik kanal: ', q5: ' · bitta foydalanuvchi: ', q6: ' · keltiradi, taxmin: ' },
-  ru: { tepa: '// Пример Ментора: платный канал — упражнение, предположение', mentor: '// Числа Ментора — замените своими', siz: '// Ваши числа (из карточки «Два моих числа»)',
-    mahsulot: 'Мой продукт', mashq: 'Упражнение', jIz: '  // если yangi 0 — null;\n  // иначе делите деньги на новых', kIz: '  // умножьте цену на число месяцев', siz2: '  return 0; // это место пишете вы',
+  ru: { tepa: '// Пример Ментора: платный канал — упражнение, предположение\n// channel — канал · spend — расход · newUsers — новые · price — цена · months — месяцы', mentor: '// Числа Ментора — замените своими', siz: '// Ваши числа (из карточки «Два моих числа»)',
+    mahsulot: 'Мой продукт', mashq: 'Упражнение', jIz: '  // если newUsers 0 — null;\n  // иначе делите деньги на новых', kIz: '  // умножьте цену на число месяцев', siz2: '  return 0; // это место пишете вы',
     tayyor: '// результат — эта часть готова', bolmaydi: 'нельзя разделить', som: ' сум', nomalum: 'неизвестно', qop: 'покрывается', zar: 'убыток', teng: 'равно',
     q1: 'Ментор · один пользователь: ', q2: 'Ментор · один организатор: ', q3: 'Ментор · организатор приносит: ', q4: 'Ментор · платный канал: ', q5: ' · один пользователь: ', q6: ' · приносит, предположение: ' }
 };
@@ -1755,80 +1755,81 @@ const kodStarter = (m, til) => {
   const sn = (v) => (v === null ? 'null' : String(v));
   return [
     L.tepa,
-    'const kanal = { sarf: 60000,',
-    '  yangi: 12, tashkilotchi: 1 };',
-    'const pro = { narx: 10000, oy: 3 };',
+    'const channel = { spend: 60000,',
+    '  newUsers: 12, organizers: 1 };',
+    'const pro = { price: 10000, months: 3 };',
     '',
     m ? L.siz : L.mentor,
-    'const meniki = {',
-    '  yorliq: ' + q(m && m.real ? L.mahsulot : L.mashq) + ', sarf: ' + sn(men.sarf) + ', yangi: ' + sn(men.yangi) + ', narx: ' + sn(men.narx) + ', oy: ' + sn(men.oy),
+    'const mine = {',
+    '  label: ' + q(m && m.real ? L.mahsulot : L.mashq) + ', spend: ' + sn(men.sarf) + ', newUsers: ' + sn(men.yangi) + ', price: ' + sn(men.narx) + ', months: ' + sn(men.oy),
     '};',
     '',
-    'function jalbNarxi(sarf, yangi) {',
+    'function acquisitionCost(spend, newUsers) {',
     L.jIz,
     L.siz2,
     '}',
     '',
-    'function keltiradi(narx, oy) {',
+    'function revenue(price, months) {',
     L.kIz,
     L.siz2,
     '}',
     '',
     L.tayyor,
-    'function som(n) {',
+    'function formatSum(n) {',
     '  if (n === null) return ' + q(L.bolmaydi) + ';',
     '  return Math.round(n) + ' + q(L.som) + ';',
     '}',
-    'function xulosa(jalb, pul) {',
-    '  if (jalb === null || pul === null) return ' + q(L.nomalum) + ';',
-    '  if (jalb < pul) return ' + q(L.qop) + ';',
-    '  if (jalb > pul) return ' + q(L.zar) + ';',
+    'function verdict(cost, money) {',
+    '  if (cost === null || money === null) return ' + q(L.nomalum) + ';',
+    '  if (cost < money) return ' + q(L.qop) + ';',
+    '  if (cost > money) return ' + q(L.zar) + ';',
     '  return ' + q(L.teng) + ';',
     '}',
-    'const joy = document.getElementById("natija");',
-    'function qator(matn) {',
+    'const list = document.getElementById("result");',
+    'function addRow(text) {',
     '  const li = document.createElement("li");',
-    '  li.textContent = matn;',
-    '  joy.appendChild(li);',
+    '  li.textContent = text;',
+    '  list.appendChild(li);',
     '}',
-    'const birFoyd = jalbNarxi(kanal.sarf, kanal.yangi);',
-    'const birTash = jalbNarxi(kanal.sarf, kanal.tashkilotchi);',
-    'const proPuli = keltiradi(pro.narx, pro.oy);',
-    'qator(' + q(L.q1) + ' + som(birFoyd));',
-    'qator(' + q(L.q2) + ' + som(birTash));',
-    'qator(' + q(L.q3) + ' + som(proPuli));',
-    'qator(' + q(L.q4) + ' + xulosa(birTash, proPuli));',
+    'const perUser = acquisitionCost(channel.spend, channel.newUsers);',
+    'const perOrganizer = acquisitionCost(channel.spend, channel.organizers);',
+    'const proMoney = revenue(pro.price, pro.months);',
+    'addRow(' + q(L.q1) + ' + formatSum(perUser));',
+    'addRow(' + q(L.q2) + ' + formatSum(perOrganizer));',
+    'addRow(' + q(L.q3) + ' + formatSum(proMoney));',
+    'addRow(' + q(L.q4) + ' + verdict(perOrganizer, proMoney));',
     '',
-    'const menJalb = jalbNarxi(meniki.sarf, meniki.yangi);',
-    'const menPul = meniki.narx === null || meniki.oy === null',
-    '  ? null : keltiradi(meniki.narx, meniki.oy);',
-    'const pulMatn = menPul === null ? ' + q(L.nomalum) + ' : som(menPul);',
-    'qator(meniki.yorliq + ' + q(L.q5) + ' + som(menJalb));',
-    'qator(meniki.yorliq + ' + q(L.q6) + ' + pulMatn);',
+    'const myCost = acquisitionCost(mine.spend, mine.newUsers);',
+    'const myMoney = mine.price === null || mine.months === null',
+    '  ? null : revenue(mine.price, mine.months);',
+    'const moneyText = myMoney === null ? ' + q(L.nomalum) + ' : formatSum(myMoney);',
+    'addRow(mine.label + ' + q(L.q5) + ' + formatSum(myCost));',
+    'addRow(mine.label + ' + q(L.q6) + ' + moneyText);',
     ''
   ].join('\n');
 };
-const KOD_INDEX = { uz: '<h3>Bitta foydalanuvchi: ikki son</h3>\n<ul id="natija"></ul>\n', ru: '<h3>Один пользователь: два числа</h3>\n<ul id="natija"></ul>\n' };
+const KOD_INDEX = { uz: '<h3>Bitta foydalanuvchi: ikki son</h3>\n<ul id="result"></ul>\n', ru: '<h3>Один пользователь: два числа</h3>\n<ul id="result"></ul>\n' };
 const KOD_VAZIFA = [
-  { uz: '`jalbNarxi` pulni yangi kelganlar soniga bo\'ladi.', ru: '`jalbNarxi` делит деньги на число новых.' },
+  { uz: '`acquisitionCost` pulni yangi kelganlar soniga bo\'ladi.', ru: '`acquisitionCost` делит деньги на число новых.' },
   { uz: 'Yangi kelganlar 0 bo\'lsa — `null` qaytaradi.', ru: 'Если новых 0 — возвращает `null`.' },
-  { uz: '`keltiradi` narxni oylar soniga ko\'paytiradi.', ru: '`keltiradi` умножает цену на число месяцев.' }
+  { uz: '`revenue` narxni oylar soniga ko\'paytiradi.', ru: '`revenue` умножает цену на число месяцев.' }
 ];
 const KOD_SHART = [
   { uz: "1 — 60 000 ni 12 ga bo'lganda 5 000 chiqsin.", ru: '1 — 60 000 разделить на 12 — должно выйти 5 000.' },
   { uz: "2 — Yangi kelganlar 0 bo'lsa, null qaytsin.", ru: '2 — Если новых 0, пусть вернётся null.' },
   { uz: "3 — 10 000 ni 3 oyga ko'paytirganda 30 000 chiqsin.", ru: '3 — 10 000 умножить на 3 месяца — должно выйти 30 000.' }
 ];
-const KOD_SHART_IFODA = [['jalbNarxi(60000, 12)', 5000], ['jalbNarxi(5000, 0)', 'null'], ['keltiradi(10000, 3)', 30000]];
+// F-1027-01: nomlar inglizcha; eski saqlangan kod (jalbNarxi · keltiradi) ham o'tadi.
+const KOD_SHART_IFODA = [['(typeof acquisitionCost==="function"?acquisitionCost:jalbNarxi)(60000, 12)', 5000], ['(typeof acquisitionCost==="function"?acquisitionCost:jalbNarxi)(5000, 0)', 'null'], ['(typeof revenue==="function"?revenue:keltiradi)(10000, 3)', 30000]];
 // Kompilyator yorlig'ida kod-chip belgisi ko'rinmasin (u matnni xom chiqaradi)
 const BT = String.fromCharCode(96);
 const belgisiz = (o) => ({ uz: o.uz.split(BT).join(''), ru: o.ru.split(BT).join('') });
 const kodPreviewCss = () => 'h3{font:700 16px Manrope,system-ui,sans-serif;margin:0 0 10px;color:' + T.ink + '}'
-  + '#natija{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}'
-  + '#natija li{font:600 14px Manrope,system-ui,sans-serif;color:' + T.ink + ';background:' + T.bg + ';border:1px solid ' + T.line + ';border-radius:10px;padding:8px 12px}';
+  + '#result,#natija{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}'
+  + '#result li,#natija li{font:600 14px Manrope,system-ui,sans-serif;color:' + T.ink + ';background:' + T.bg + ';border:1px solid ' + T.line + ';border-radius:10px;padding:8px 12px}';
 const kodTask = (starter) => ({
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
-  title: { uz: 'app.js — jalbNarxi va keltiradi funksiyalarini yozing', ru: 'app.js — напишите функции jalbNarxi и keltiradi' },
+  title: { uz: 'app.js — acquisitionCost va revenue funksiyalarini yozing', ru: 'app.js — напишите функции acquisitionCost и revenue' },
   files: [
     { name: 'app.js', lang: 'js', starter, placeholder: { uz: "// bo'sh joylar: bo'lish, null, ko'paytirish", ru: '// пустые места: деление, null, умножение' } },
     { name: 'index.html', lang: 'html', starter: KOD_INDEX }
@@ -1836,11 +1837,11 @@ const kodTask = (starter) => ({
   previewCss: kodPreviewCss(),
   requirements: KOD_SHART_IFODA.map(([ifoda, kut], i) => ({ id: 'sh' + (i + 1), label: belgisiz(KOD_VAZIFA[i]), check: C.evalEquals(ifoda, kut, KOD_SHART[i]) }))
 });
-// Darvoza-mashq (PM-082 c/e): to'g'ri — jalbNarxi(kanal.sarf, kanal.tashkilotchi)
+// Darvoza-mashq (PM-082 c/e): to'g'ri — acquisitionCost(channel.spend, channel.organizers)
 const KOD_DARVOZA = [
-  { id: 'togri', kod: 'jalbNarxi(kanal.sarf, kanal.tashkilotchi)', natija: '60000', ok: true },
-  { id: 'yangi', kod: 'jalbNarxi(kanal.sarf, kanal.yangi)', natija: '5000', x: { uz: "Bu — bitta foydalanuvchi narxi: hammasi ham to'lamaydi.", ru: 'Это цена одного пользователя: платят не все.' } },
-  { id: 'teskari', kod: 'jalbNarxi(kanal.yangi, kanal.sarf)', natija: '0.0002', x: { uz: 'Pul birinchi, kishilar soni ikkinchi turadi.', ru: 'Деньги идут первыми, число людей — вторым.' } }
+  { id: 'togri', kod: 'acquisitionCost(channel.spend, channel.organizers)', natija: '60000', ok: true },
+  { id: 'yangi', kod: 'acquisitionCost(channel.spend, channel.newUsers)', natija: '5000', x: { uz: "Bu — bitta foydalanuvchi narxi: hammasi ham to'lamaydi.", ru: 'Это цена одного пользователя: платят не все.' } },
+  { id: 'teskari', kod: 'acquisitionCost(channel.newUsers, channel.spend)', natija: '0.0002', x: { uz: 'Pul birinchi, kishilar soni ikkinchi turadi.', ru: 'Деньги идут первыми, число людей — вторым.' } }
 ];
 // Kod natijasidan o'quvchi qatorlari (iframe DOM ini o'qib bo'lmaydi — meniki obyekti koddan o'qiladi; funksiyalar uchala shartdan o'tgan)
 const kodMeniki = (code) => {
@@ -1913,7 +1914,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         vazifa={<>
           {!stage2 ? (
             <div className="bs-darvoza">
-              <code className="bs-dv-kod">{'const kanal = { sarf: 60000,\n  yangi: 12, tashkilotchi: 1 };'}</code>
+              <code className="bs-dv-kod">{'const channel = { spend: 60000,\n  newUsers: 12, organizers: 1 };'}</code>
               <span className="bs-dv-s">{tr({ uz: 'Qaysi qator bitta tashkilotchining jalb qilish narxini beradi?', ru: 'Какая строка даёт цену привлечения одного организатора?' })}</span>
               <div className="bs-dv-ro bs-chorla">
                 {KOD_DARVOZA.map(g => {
@@ -1933,7 +1934,7 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <QTugma ikkinchi aria-expanded={yordam} onClick={() => setYordam(o => !o)}>{tr({ uz: 'Yordam', ru: 'Помощь' })}</QTugma>
           {yordam && <div className="bs-yordam fade-step">
             <span>{fmtCode(tr({ uz: "Bo'lish belgisi — `/`, ko'paytirish — `*`. Yangi kelganlar 0 bo'lsa, bo'lishdan oldin `if` bilan `null` qaytaring.", ru: 'Знак деления — `/`, умножения — `*`. Если новых 0, перед делением верните `null` через `if`.' }))}</span>
-            <span>{fmtCode(tr({ uz: "`meniki` — sizning sonlaringiz: «Ikki sonim» saqlangan bo'lsa, o'zi qo'yilgan; bo'lmasa — o'zingiz yozing yoki shunday qoldiring. O'z sonlaringizni yozsangiz, `yorliq` ni «Mahsulotim» qiling. Natija qismiga tegmang — u tayyor.", ru: '`meniki` — ваши числа: если «Два моих числа» сохранены, они уже подставлены; если нет — впишите сами или оставьте так. Если пишете свои числа, сделайте `yorliq` «Мой продукт». Часть с результатом не трогайте — она готова.' }))}</span>
+            <span>{fmtCode(tr({ uz: "`mine` — sizning sonlaringiz: «Ikki sonim» saqlangan bo'lsa, o'zi qo'yilgan; bo'lmasa — o'zingiz yozing yoki shunday qoldiring. O'z sonlaringizni yozsangiz, `label` ni «Mahsulotim» qiling. Natija qismiga tegmang — u tayyor.", ru: '`mine` — ваши числа: если «Два моих числа» сохранены, они уже подставлены; если нет — впишите сами или оставьте так. Если пишете свои числа, сделайте `label` «Мой продукт». Часть с результатом не трогайте — она готова.' }))}</span>
           </div>}
         </div>}
         bajardim={stage2 && !isMentor && !done && <div className="bs-baj">

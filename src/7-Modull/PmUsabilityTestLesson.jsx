@@ -1396,41 +1396,45 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 10 — KOD YOZISH (QKod + HtmlCompiler; darvoza-mashq PM-082 c/e; kod nusxalanmaydi PM-082 d; «kompilyator» ta'riflanmaydi) =====
 // Harakatlar — SINOV dan (faqat bosish/yozish qatorlari, 180). Shartlar xulq-atvorga bog'langan (manba-regex emas): for ham, reduce ham o'tadi; starter holatida uchalasi qizil.
 const HARAKATLAR = SINOV.filter(s => s.nima);
-const harakatQatorlari = (ru) => HARAKATLAR.map((h, i) => `  { t: ${(h.t + ',').padEnd(5)}nima: ${JSON.stringify(ru ? h.ru : h.nima)} }${i < HARAKATLAR.length - 1 ? ',' : ''}`).join('\n');
+const harakatQatorlari = (ru) => HARAKATLAR.map((h, i) => `  { t: ${(h.t + ',').padEnd(5)}what: ${JSON.stringify(ru ? h.ru : h.nima)} }${i < HARAKATLAR.length - 1 ? ',' : ''}`).join('\n');
 const KOD_STARTER = { uz: `// O'yinchining harakatlari: t — sinov boshidan necha soniya o'tgani
-const harakatlar = [
+// actions — harakatlar · what — nima qildi · pauses — to'xtashlar · limit — chegara
+const actions = [
 ${harakatQatorlari(false)}
 ];
 
-function toxtashlar(royxat, chegara) {
+function pauses(list, limit) {
   // ikki harakat orasi chegaradan uzun bo'lsa — to'xtash
   return [];   // shu joyni siz yozasiz
 }
 
-console.log(toxtashlar(harakatlar, 15));
+console.log(pauses(actions, 15));
 // ["saytni ochdi: 25 soniya", "ism va telefonni yozdi: 62 soniya", "Band qilish tugmasini bosdi: 18 soniya"]
-console.log(toxtashlar(harakatlar, 60));
+console.log(pauses(actions, 60));
 // ["ism va telefonni yozdi: 62 soniya"]
-console.log(toxtashlar([], 15));
+console.log(pauses([], 15));
 // []`,
   ru: `// Действия игрока: t — сколько секунд прошло с начала теста
-const harakatlar = [
+// actions — действия · what — что сделал · pauses — остановки · limit — порог
+const actions = [
 ${harakatQatorlari(true)}
 ];
 
-function toxtashlar(royxat, chegara) {
+function pauses(list, limit) {
   // если между двумя действиями прошло больше порога — это остановка
   return [];   // это место пишете вы
 }
 
-console.log(toxtashlar(harakatlar, 15));
+console.log(pauses(actions, 15));
 // ["открыл сайт: 25 soniya", "ввёл имя и телефон: 62 soniya",
 //  "нажал кнопку «Забронировать»: 18 soniya"]
-console.log(toxtashlar(harakatlar, 60));
+console.log(pauses(actions, 60));
 // ["ввёл имя и телефон: 62 soniya"]
-console.log(toxtashlar([], 15));
+console.log(pauses([], 15));
 // []` };
-const KOD_DATA = `[${HARAKATLAR.map(h => `{t:${h.t},nima:${JSON.stringify(h.nima)}}`).join(',')}]`;
+// F-1027-01: ma'lumot yangi kalitda (what); eski saqlangan kod (toxtashlar, .nima) chaqirilsa kalit eskisiga o'giriladi.
+const KOD_DATA = `[${HARAKATLAR.map(h => `{t:${h.t},what:${JSON.stringify(h.nima)}}`).join(',')}]`;
+const KOD_FN = "(function(x,c){if(typeof pauses==='function')return pauses(x,c);return toxtashlar(Array.isArray(x)?x.map(function(o){return o&&typeof o==='object'?{t:o.t,nima:o.what}:o;}):x,c);})";
 const KOD_VAZIFA = [
   { uz: "Funksiya ro'yxat (massiv) qaytaradi", ru: 'Функция возвращает список (массив)' },
   { uz: "Ikki harakat orasi chegaradan uzun bo'lsa, ro'yxatga qator tushadi", ru: 'Если между двумя действиями больше порога, в список попадает строка' },
@@ -1438,15 +1442,15 @@ const KOD_VAZIFA = [
 ];
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
-  title: { uz: 'app.js — toxtashlar funksiyasini yakunlang', ru: 'app.js — допишите функцию toxtashlar' },
+  title: { uz: 'app.js — pauses funksiyasini yakunlang', ru: 'app.js — допишите функцию pauses' },
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// to'xtashlarni yig'ib qaytaring", ru: '// соберите и верните остановки' } }],
   requirements: [
     { id: 'royxat', label: KOD_VAZIFA[0],
-      check: C.evalEquals(`(function(){var a=toxtashlar(${KOD_DATA},15);return (Array.isArray(a)&&a.length===3)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin: chegara 15 da uchta qator.", ru: 'Функция должна вернуть список: при пороге 15 — три строки.' }) },
+      check: C.evalEquals(`(function(){var a=${KOD_FN}(${KOD_DATA},15);return (Array.isArray(a)&&a.length===3)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin: chegara 15 da uchta qator.", ru: 'Функция должна вернуть список: при пороге 15 — три строки.' }) },
     { id: 'qator', label: KOD_VAZIFA[1],
-      check: C.evalEquals(`(function(){var a=toxtashlar(${KOD_DATA},15);if(!Array.isArray(a))return "";return a.join("|").replace(/секунд[а-я]*/g,"soniya");})()`, 'saytni ochdi: 25 soniya|ism va telefonni yozdi: 62 soniya|Band qilish tugmasini bosdi: 18 soniya', { uz: "Har qator «harakat: N soniya» ko'rinishida bo'lsin.", ru: 'Каждая строка — в виде «действие: N soniya».' }) },
+      check: C.evalEquals(`(function(){var a=${KOD_FN}(${KOD_DATA},15);if(!Array.isArray(a))return "";return a.join("|").replace(/секунд[а-я]*/g,"soniya");})()`, 'saytni ochdi: 25 soniya|ism va telefonni yozdi: 62 soniya|Band qilish tugmasini bosdi: 18 soniya', { uz: "Har qator «harakat: N soniya» ko'rinishida bo'lsin.", ru: 'Каждая строка — в виде «действие: N soniya».' }) },
     { id: 'uch', label: { uz: 'Uchala console.log kutilgandek chiqdi', ru: 'Все три console.log вывели ожидаемое' },
-      check: C.evalEquals(`(function(){var b=toxtashlar([],15),c=toxtashlar(${KOD_DATA},60);if(!Array.isArray(b)||!Array.isArray(c))return "";return b.length+"/"+c.join("|").replace(/секунд[а-я]*/g,"soniya");})()`, '0/ism va telefonni yozdi: 62 soniya', { uz: "Bo'sh ro'yxatga — bo'sh; chegara 60 da faqat bitta qator.", ru: 'Для пустого списка — пустой; при пороге 60 — только одна строка.' }) }
+      check: C.evalEquals(`(function(){var b=${KOD_FN}([],15),c=${KOD_FN}(${KOD_DATA},60);if(!Array.isArray(b)||!Array.isArray(c))return "";return b.length+"/"+c.join("|").replace(/секунд[а-я]*/g,"soniya");})()`, '0/ism va telefonni yozdi: 62 soniya', { uz: "Bo'sh ro'yxatga — bo'sh; chegara 60 da faqat bitta qator.", ru: 'Для пустого списка — пустой; при пороге 60 — только одна строка.' }) }
   ]
 };
 const KOD_DARVOZA = [
@@ -1457,7 +1461,7 @@ const KOD_DARVOZA = [
 // Kod namunasi (o'qish uchun; nusxalanmaydi): darvozadan keyin t: 41 va t: 103 qatorlari bir lahza ajraladi, orasida «62» chizig'i
 const KodNamuna = ({ ajrat }) => (
   <pre className={cxx('ut-kod', ajrat && 'ajrat')} onCopy={(e) => e.preventDefault()} aria-label="app.js">
-    {tr(KOD_STARTER).split('\n').slice(0, 15).map((l, i) => {
+    {tr(KOD_STARTER).split('\n').slice(0, 16).map((l, i) => {
       if (l.trim().startsWith('//')) return <span key={i} className="ut-kod-izoh">{l}{'\n'}</span>;
       const m = /^(\s*\{ t: )(41|103)(,.*)$/.exec(l);
       if (!m) return <span key={i}>{l}{'\n'}</span>;
@@ -1520,7 +1524,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         yordam={stage2 && <div className="ut-yordam">
           <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM)}</QTugma>
           {yordam && <>
-            <QIzoh>{fmtCode(tr({ uz: "Qo'shni ikki harakatni oling: `royxat[i]` va `royxat[i + 1]`. Orasi — `royxat[i + 1].t - royxat[i].t`. Ishlagach `for` bilan hammasini aylanib chiqing.", ru: 'Возьмите два соседних действия: `royxat[i]` и `royxat[i + 1]`. Разница — `royxat[i + 1].t - royxat[i].t`. Когда заработает, обойдите все через `for`.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: "Qo'shni ikki harakatni oling: `list[i]` va `list[i + 1]`. Orasi — `list[i + 1].t - list[i].t`. Ishlagach `for` bilan hammasini aylanib chiqing.", ru: 'Возьмите два соседних действия: `list[i]` и `list[i + 1]`. Разница — `list[i + 1].t - list[i].t`. Когда заработает, обойдите все через `for`.' }))}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: "Eslatma (JavaScript darslaridan): `for` — bir ishni ro'yxat bo'ylab takrorlaydi · `push` — ro'yxat oxiriga qo'shadi · `console.log` — qiymatni ekranga chiqaradi.", ru: 'Напоминание (из уроков JavaScript): `for` — повторяет действие по списку · `push` — добавляет в конец списка · `console.log` — выводит значение на экран.' }))}</QIzoh>
           </>}
         </div>}

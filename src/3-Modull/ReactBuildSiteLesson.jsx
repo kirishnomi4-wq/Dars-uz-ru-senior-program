@@ -7,7 +7,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // O'RNI: P3 (AvtoIjara loyiha kuni) dan KEYIN — modulning OXIRGI darsi. O'quvchi hamma narsani biladi.
 // MAQSAD: REAL saytni (footer/header abstraksiyasi emas) sahifalarga + komponentlarga bo'lib, har bo'lakka ANIQ PROMPT
 //        yozib, AI bilan qurish va tekshirish. P3 da AvtoIjara'ni qurdik — endi USULNI istalgan saytga ko'chiramiz.
-// O'rgatish namunasi: "Yetkaz" — ovqat yetkazib berish sayti (Navbar+Hero+Categories+TaomList(TaomCard takrorlanadi)+Footer).
+// O'rgatish namunasi: "Yetkaz" — ovqat yetkazib berish sayti (Navbar+Hero+Categories+TaomList(FoodCard takrorlanadi)+Footer).
 // YURAK (s7): ANIQ PROMPT yozish — Qaysi bo'limlar + Har bo'lim nima ko'rsatadi + Ma'lumot/uslub (aniqlik o'lchagichi).
 // Vibecoding (s8): AgentBuild — promptni yig'ib, agentga yuborib, kodni tekshirish.
 // Debugging (s10): AI bo'limni to'liq qurdi, lekin narxni unutdi → TUZATUVCHI (follow-up) prompt.
@@ -387,7 +387,7 @@ const CATS = [
 
 const OutlineLabel = ({ children }) => <span style={{ position: 'absolute', top: -9, left: 8, background: T.accent, color: '#fff', fontSize: 9, fontWeight: 800, padding: '2px 7px', borderRadius: 5, fontFamily: "'JetBrains Mono',monospace", fontFeatureSettings: '"liga" 0, "calt" 0', whiteSpace: 'nowrap', zIndex: 2 }}>{children}</span>;
 
-const TaomCard = ({ taom, outline, label, hidePrice, btnInteractive, btnActive, btnSeen, onBtnClick }) => (
+const FoodCard = ({ taom, outline, label, hidePrice, btnInteractive, btnActive, btnSeen, onBtnClick }) => (
   <div style={{ position: 'relative', background: '#fff', borderRadius: 12, padding: '9px 10px', boxShadow: '0 3px 12px -5px rgba(0,0,0,0.14)', border: outline ? `1.5px dashed ${T.accent}` : '1px solid rgba(0,0,0,0.05)' }}>
     {outline && label && <OutlineLabel>{label}</OutlineLabel>}
     <div style={{ height: 46, borderRadius: 9, background: taom.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 6 }}>{taom.emoji}</div>
@@ -437,7 +437,7 @@ const TaomGrid = ({ outline, hidePrice }) => (
   <div style={{ position: 'relative', border: outline ? `1.5px dashed ${T.accent}` : 'none', borderRadius: 11, padding: outline ? '11px 8px 8px' : 0 }}>
     {outline && <OutlineLabel>{'<TaomList />'}</OutlineLabel>}
     <div className={outline ? 'card-spread' : undefined} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 7 }}>
-      {TAOMS.map(t => <TaomCard key={t.id} taom={t} outline={outline} label={outline ? '<TaomCard />' : null} hidePrice={hidePrice} />)}
+      {TAOMS.map(t => <FoodCard key={t.id} taom={t} outline={outline} label={outline ? '<FoodCard />' : null} hidePrice={hidePrice} />)}
     </div>
   </div>
 );
@@ -688,7 +688,7 @@ function MentorTestStats({ live, screenIdx, options, correctIdx, reveal, onRevea
 const ACHIEVEMENTS = {
   sniper:   { icon: '🎯', name: 'Prompt Sniper!', desc: { uz: "Yetkaz uchun aniq prompt yozdingiz", ru: 'Вы написали точный промпт для Yetkaz' } },
   debugger: { icon: '🐞', name: 'Nice Catch!',    desc: { uz: "AI xatosini aniqlashtiruvchi prompt bilan tuzatdingiz", ru: 'Вы исправили ошибку ИИ уточняющим промптом' } },
-  builder:  { icon: '🧱', name: 'Block Builder!', desc: { uz: "TaomCard komponentini o'zingiz e'lon qildingiz", ru: 'Вы сами объявили компонент TaomCard' } },
+  builder:  { icon: '🧱', name: 'Block Builder!', desc: { uz: "FoodCard komponentini o'zingiz e'lon qildingiz", ru: 'Вы сами объявили компонент FoodCard' } },
   graduate: { icon: '🏆', name: 'Site Shipped!',  desc: { uz: "Modulning yakuniy darsini to'liq yakunladingiz", ru: 'Вы полностью прошли финальный урок модуля' } },
 };
 // Ekran id → nishon (recordAnswer'da, faqat REAL solve: scored test / challenge). S2/S3/S7 free-pass'larga BOG'LANMAYDI.
@@ -885,7 +885,7 @@ const QZ_BG_SHAPES = [
   { ch: '.map()',      l: 9,  t: 71, s: 30, c: 'rgba(120,235,175,0.15)', d: 26, dl: 0.8 },
   { ch: '<Navbar/>',   l: 78, t: 66, s: 28, c: 'rgba(255,110,70,0.13)',  d: 22, dl: 2.2 },
   { ch: '<Hero/>',     l: 44, t: 86, s: 32, c: 'rgba(203,173,255,0.14)', d: 25, dl: 1.1 },
-  { ch: '<TaomCard/>', l: 64, t: 24, s: 26, c: 'rgba(255,110,70,0.13)',  d: 18, dl: 0.4 },
+  { ch: '<FoodCard/>', l: 64, t: 24, s: 26, c: 'rgba(255,110,70,0.13)',  d: 18, dl: 0.4 },
   { ch: 'prompt',      l: 25, t: 33, s: 30, c: 'rgba(120,235,175,0.14)', d: 21, dl: 1.9 },
   { ch: '<Footer/>',   l: 54, t: 5,  s: 28, c: 'rgba(80,200,255,0.14)',  d: 23, dl: 0.6 },
   { ch: { uz: 'komponent', ru: 'компонент' }, /* F-0926-06: ru-rejimda tarjima (S7) */   l: 90, t: 42, s: 22, c: 'rgba(203,173,255,0.11)', d: 24, dl: 1.3 },
@@ -897,8 +897,8 @@ const QUIZ_BANK = [
   { q: { uz: "Saytni sahifalarga qanday bo'lamiz?", ru: "Как делим сайт на страницы?" }, opts: ["useState bilan", "Router (<Route>)", "props bilan", "map bilan"], correct: 1 },
   { q: { uz: "«Yetkaz» Bosh sahifasi nechta bo'limdan?", ru: 'Из скольких секций главная «Yetkaz»?' }, opts: [{ uz: '1 ta', ru: '1' }, { uz: '2 ta', ru: '2' }, { uz: '4 ta', ru: '4' }, { uz: 'Cheksiz', ru: 'Бесконечно' }], correct: 2 },
   { q: { uz: 'Bir xil karta 8 marta takrorlansa, nima qilasiz?', ru: 'Одинаковая карточка повторяется 8 раз — что делаете?' }, opts: [{ uz: '8 fayl yarataman', ru: 'Создам 8 файлов' }, { uz: "8 marta ko'chiraman", ru: 'Скопирую 8 раз' }, { uz: 'Shundayligicha qoldiraman', ru: 'Оставлю как есть' }, { uz: 'Bitta komponent + props + map', ru: 'Один компонент + props + map' }], correct: 3 },
-  { q: { uz: "TaomCard'ga nom va narxni nima orqali beramiz?", ru: 'Через что передаём TaomCard название и цену?' }, opts: ['props', 'state', 'Router', 'API'], correct: 0 },
-  { q: { uz: "Qaysi prompt eng aniq?", ru: "Какой промпт самый точный?" }, opts: [{ uz: "Chiroyli ovqat sayti qur", ru: "Сделай красивый сайт еды" }, { uz: "Hero, 8 TaomCard (nom, narx)", ru: "Hero, 8 TaomCard (название, цена)" }, { uz: "Sayt qur, tez bo'lsin", ru: "Сделай сайт, побыстрее" }, { uz: "Menga yaxshi kod yoz", ru: "Напиши мне хороший код" }], correct: 1 },
+  { q: { uz: "FoodCard'ga nom va narxni nima orqali beramiz?", ru: 'Через что передаём FoodCard название и цену?' }, opts: ['props', 'state', 'Router', 'API'], correct: 0 },
+  { q: { uz: "Qaysi prompt eng aniq?", ru: "Какой промпт самый точный?" }, opts: [{ uz: "Chiroyli ovqat sayti qur", ru: "Сделай красивый сайт еды" }, { uz: "Hero, 8 FoodCard (nom, narx)", ru: "Hero, 8 FoodCard (название, цена)" }, { uz: "Sayt qur, tez bo'lsin", ru: "Сделай сайт, побыстрее" }, { uz: "Menga yaxshi kod yoz", ru: "Напиши мне хороший код" }], correct: 1 },
   { q: { uz: "Aniq prompt nimalardan iborat?", ru: "Из чего состоит точный промпт?" }, opts: [{ uz: "Rang + shrift + logotip", ru: "Цвет + шрифт + логотип" }, { uz: "Faqat bo'limlar nomi", ru: "Только названия секций" }, { uz: "Bo'limlar + mazmun + ma'lumot", ru: "Секции + содержание + данные" }, { uz: "Faqat sayt mavzusi", ru: "Только тема сайта" }], correct: 2 },
   { q: { uz: 'AI narxni unutdi — nima qilasiz?', ru: 'ИИ забыл цену — что делаете?' }, opts: [{ uz: 'Qoldiraman', ru: 'Оставлю' }, { uz: 'Hammasini qayta yozdiraman', ru: 'Заставлю переписать всё' }, { uz: "Rangni o'zgartiraman", ru: 'Поменяю цвет' }, { uz: "Aniq prompt: narxni qo'sh", ru: 'Точный промпт: добавь цену' }], correct: 3 },
   { q: { uz: "AI hamma kodni bitta komponentga yozdi. Nima qilasiz?", ru: "AI написал весь код в один компонент. Что делать?" }, opts: [{ uz: "Bo'limlarga bo'ldiraman", ru: "Попрошу разбить на секции" }, { uz: "Shundayicha qoldiraman", ru: "Оставлю как есть" }, { uz: "Hammasini o'chiraman", ru: "Удалю всё" }, { uz: "Yana kod qo'shtiraman", ru: "Попрошу добавить код" }], correct: 0 },
@@ -1367,7 +1367,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               })}
             </div>
             {/* F-0926-06: «Avval … bosing ←» yo'rig'i olindi — mentor aytadi (159/6) */}
-            {picked !== null && <p className="hook-ack fade-step">{/* F-0926-06: noto'g'ri variantga «Aynan!» emas — «Aslida» (I2) */}{tr({ uz: <>{picked === 'b' ? 'Aynan! Katta' : 'Aslida katta'} sayt — <b>kichik bloklar</b> yig'indisi: <span className="mono">{'<Navbar />'}</span>, <span className="mono">{'<Hero />'}</span>, <span className="mono">{'<TaomCard />'}</span>… Bugun ikkitasini o'rganamiz: <b>bo'laklash</b> va har bo'lakka <b>aniq prompt</b>.</>, ru: <>{picked === 'b' ? 'Именно! Большой' : 'На самом деле большой'} сайт — сумма <b>маленьких блоков</b>: <span className="mono">{'<Navbar />'}</span>, <span className="mono">{'<Hero />'}</span>, <span className="mono">{'<TaomCard />'}</span>… Сегодня освоим два: <b>разбиение</b> и <b>точный промпт</b> к каждому блоку.</> })}</p>}
+            {picked !== null && <p className="hook-ack fade-step">{/* F-0926-06: noto'g'ri variantga «Aynan!» emas — «Aslida» (I2) */}{tr({ uz: <>{picked === 'b' ? 'Aynan! Katta' : 'Aslida katta'} sayt — <b>kichik bloklar</b> yig'indisi: <span className="mono">{'<Navbar />'}</span>, <span className="mono">{'<Hero />'}</span>, <span className="mono">{'<FoodCard />'}</span>… Bugun ikkitasini o'rganamiz: <b>bo'laklash</b> va har bo'lakka <b>aniq prompt</b>.</>, ru: <>{picked === 'b' ? 'Именно! Большой' : 'На самом деле большой'} сайт — сумма <b>маленьких блоков</b>: <span className="mono">{'<Navbar />'}</span>, <span className="mono">{'<Hero />'}</span>, <span className="mono">{'<FoodCard />'}</span>… Сегодня освоим два: <b>разбиение</b> и <b>точный промпт</b> к каждому блоку.</> })}</p>}
           </Col>
         </Split>
       </div>
@@ -1494,8 +1494,8 @@ const yetkazPrompt = (on) => {
   const uz = ["Vite + React loyiham (yetkaz) uchun ovqat yetkazib berish saytining Bosh sahifasini qur."];
   const ru = ['Сделай главную страницу сайта доставки еды для моего проекта Vite + React (yetkaz).'];
   if (on.has('bolim')) { uz.push("Bo'limlar: Navbar, Hero, Kategoriyalar, Taomlar grid, Footer — har biri alohida komponent (src/components)."); ru.push('Секции: Navbar, Hero, Категории, сетка блюд, Footer — каждая отдельным компонентом (src/components).'); }
-  if (on.has('mazmun')) { uz.push("Har bo'lim: Navbar — logo va «Savat»; Hero — sarlavha va «Buyurtma berish» tugmasi; Kategoriyalar — 5 ta tugma; Taomlar grid — har taom TaomCard: emoji, nom, narx va «Savatga» tugmasi; Footer — manzil va telefon."); ru.push('Каждая секция: Navbar — логотип и «Корзина»; Hero — заголовок и кнопка «Заказать»; Категории — 5 кнопок; сетка блюд — каждое блюдо в TaomCard: эмодзи, название, цена и кнопка «В корзину»; Footer — адрес и телефон.'); }
-  if (on.has('malumot')) { uz.push("Ma'lumot: taomlar App.jsx da massiv ({ id, nom, narx, emoji }), grid ularni map bilan TaomCard'ga props orqali chizsin. Uslub: oq fon, to'q sariq tugmalar, grid kompyuterda 4 ustun, telefonda 2 ustun."); ru.push('Данные: блюда — массив в App.jsx ({ id, nom, narx, emoji }), сетка рисует их через map, передавая в TaomCard через props. Стиль: белый фон, оранжевые кнопки, сетка — 4 колонки на компьютере, 2 на телефоне.'); }
+  if (on.has('mazmun')) { uz.push("Har bo'lim: Navbar — logo va «Savat»; Hero — sarlavha va «Buyurtma berish» tugmasi; Kategoriyalar — 5 ta tugma; Taomlar grid — har taom FoodCard: emoji, nom, narx va «Savatga» tugmasi; Footer — manzil va telefon."); ru.push('Каждая секция: Navbar — логотип и «Корзина»; Hero — заголовок и кнопка «Заказать»; Категории — 5 кнопок; сетка блюд — каждое блюдо в FoodCard: эмодзи, название, цена и кнопка «В корзину»; Footer — адрес и телефон.'); }
+  if (on.has('malumot')) { uz.push("Ma'lumot: taomlar App.jsx da massiv ({ id, nom, narx, emoji }), grid ularni map bilan FoodCard'ga props orqali chizsin. Uslub: oq fon, to'q sariq tugmalar, grid kompyuterda 4 ustun, telefonda 2 ustun."); ru.push('Данные: блюда — массив в App.jsx ({ id, nom, narx, emoji }), сетка рисует их через map, передавая в FoodCard через props. Стиль: белый фон, оранжевые кнопки, сетка — 4 колонки на компьютере, 2 на телефоне.'); }
   uz.push("Har faylni to'liq yoz."); ru.push('Каждый файл напиши целиком.');
   return tr({ uz: uz.join('\n'), ru: ru.join('\n') });
 };
@@ -1503,7 +1503,7 @@ const A2_QADAM = [
   { uz: "Uchala aniqlikni qo'shing — o'lchagich 100% bo'lsin.", ru: 'Добавьте все три уточнения — шкала должна стать 100%.' },
   { uz: "«Promptni nusxalash» → gemini.google.com'ga yuboring.", ru: '«Скопировать промпт» → отправьте в gemini.google.com.' },
   { uz: "Javobdagi komponentlarni `src/components` ga, `App.jsx` ni `src` ga qo'ying, `Ctrl+S`.", ru: 'Компоненты из ответа положите в `src/components`, `App.jsx` — в `src`, `Ctrl+S`.' },
-  { uz: "Brauzerda: 5 bo'lim bormi? Har TaomCard'da narx bormi?", ru: 'В браузере: есть 5 секций? В каждой TaomCard есть цена?' }
+  { uz: "Brauzerda: 5 bo'lim bormi? Har FoodCard'da narx bormi?", ru: 'В браузере: есть 5 секций? В каждой FoodCard есть цена?' }
 ];
 const ScreenYetkaz = ({ screen, onNext, onPrev }) => {
   const [on, setOn] = useState(() => new Set());
@@ -1599,7 +1599,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const COMPS = {
     hero: { lbl: '<Hero />', desc: tr({ uz: 'Tepa banner — aksiya va asosiy tugma.', ru: 'Верхний баннер — акция и главная кнопка.' }) },
     cats: { lbl: '<Categories />', desc: tr({ uz: 'Kategoriyalar qatori — Pitsa, Burger...', ru: 'Ряд категорий — Пицца, Бургеры...' }) },
-    list: { lbl: '<TaomList />', desc: tr({ uz: 'Taomlar grid — ichida TaomCard takrorlanadi.', ru: 'Сетка блюд — внутри повторяется TaomCard.' }) },
+    list: { lbl: '<TaomList />', desc: tr({ uz: 'Taomlar grid — ichida FoodCard takrorlanadi.', ru: 'Сетка блюд — внутри повторяется FoodCard.' }) },
     footer: { lbl: '<Footer />', desc: tr({ uz: 'Pastki qism — aloqa, linklar.', ru: 'Нижняя часть — контакты, ссылки.' }) }
   };
   const KEYS = ['hero', 'cats', 'list', 'footer'];
@@ -1636,12 +1636,12 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {'  '}<span style={{ opacity: seen.has('hero') ? 1 : 0.35 }}><Jx>{'<Hero />'}</Jx></span>{'\n'}
               {'  '}<span style={{ opacity: seen.has('cats') ? 1 : 0.35 }}><Jx>{'<Categories />'}</Jx></span>{'\n'}
               {'  '}<span style={{ opacity: seen.has('list') ? 1 : 0.35 }}><Jx>{'<TaomList>'}</Jx>{'\n'}
-              {'    '}<Jx>{'<TaomCard />'}</Jx> <Cm>{tr({ uz: '// takrorlanadi', ru: '// повторяется' })}</Cm>{'\n'}
+              {'    '}<Jx>{'<FoodCard />'}</Jx> <Cm>{tr({ uz: '// takrorlanadi', ru: '// повторяется' })}</Cm>{'\n'}
               {'  '}<Jx>{'</TaomList>'}</Jx></span>{'\n'}
               {'  '}<span style={{ opacity: seen.has('footer') ? 1 : 0.35 }}><Jx>{'<Footer />'}</Jx></span>{'\n'}
               <Jx>{'</BoshSahifa>'}</Jx>
             </pre>
-            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana daraxt: blok ichida blok. Bosh sahifa — 4 ta bo'limning yig'indisi. Diqqat: <span className="mono">{'<TaomList>'}</span> ichida <span className="mono">{'<TaomCard />'}</span> <b>takrorlanyapti</b> — buni keyin ko'ramiz.</>, ru: <>Вот дерево: блок внутри блока. Главная — сумма 4 секций. Заметьте: внутри <span className="mono">{'<TaomList>'}</span> <b>повторяется</b> <span className="mono">{'<TaomCard />'}</span> — к этому вернёмся.</> })}</p></div>}
+            {done && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Mana daraxt: blok ichida blok. Bosh sahifa — 4 ta bo'limning yig'indisi. Diqqat: <span className="mono">{'<TaomList>'}</span> ichida <span className="mono">{'<FoodCard />'}</span> <b>takrorlanyapti</b> — buni keyin ko'ramiz.</>, ru: <>Вот дерево: блок внутри блока. Главная — сумма 4 секций. Заметьте: внутри <span className="mono">{'<TaomList>'}</span> <b>повторяется</b> <span className="mono">{'<FoodCard />'}</span> — к этому вернёмся.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1654,7 +1654,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const audio = useAudio([{ id: 's10', text: `Gemini bosh sahifani qurdi. Lekin diqqat bilan qarang — bir narsa yetishmayapti! AI har doim ham mukammal qilmaydi. Siz nazoratchisiz: xatoni topib, aniqlashtiruvchi prompt berasiz.`, trigger: 'on_mount', waits_for: null }]);
   const FIXES = [
-    { id: 'price', label: tr({ uz: 'Har TaomCard\'ga narxni qo\'sh (props.narx + " so\'m")', ru: 'Добавь цену в каждый TaomCard (props.narx + " сум")' }), ok: true },
+    { id: 'price', label: tr({ uz: 'Har FoodCard\'ga narxni qo\'sh (props.narx + " so\'m")', ru: 'Добавь цену в каждый FoodCard (props.narx + " сум")' }), ok: true },
     { id: 'redo', label: tr({ uz: "Hammasini o'chirib, qaytadan yozdir", ru: 'Удали всё и напиши заново' }), ok: false },
     { id: 'color', label: tr({ uz: "Kartochka rangini o'zgartir", ru: 'Поменяй цвет карточки' }), ok: false }
   ];
@@ -1707,7 +1707,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 14 — YAKUNIY (VS Code: takrorlanuvchi komponentni e'lon qilish) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's14', text: `Oxirgi qadam — endi takrorlanuvchi komponentni o'zingiz yozasiz. TaomCard komponentini e'lon qiling: function so'zi, katta harf bilan nom, qavs ichida props va ochuvchi jingalak qavs. Bo'laklashning asosi shu.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's14', text: `Oxirgi qadam — endi takrorlanuvchi komponentni o'zingiz yozasiz. FoodCard komponentini e'lon qiling: function so'zi, katta harf bilan nom, qavs ichida props va ochuvchi jingalak qavs. Bo'laklashning asosi shu.`, trigger: 'on_mount', waits_for: null }]);
   const [value, setValue] = useState(typeof storedAnswer?.picked === 'string' ? storedAnswer.picked : ''); // F-0914-10: saqlangan javob matn bo'lmasa — bo'sh (oq ekran himoyasi)
   const [passed, setPassed] = useState(!!storedAnswer?.correct);
   const norm = value.replace(/\s+/g, ' ').trim();
@@ -1721,7 +1721,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   useEffect(() => {
     if (valid && !passed) {
       setPassed(true);
-      onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'VS Code: function TaomCard(props) {', studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value });
+      onAnswer(screen, { stage: 'final', screenIdx: screen, question: 'VS Code: function FoodCard(props) {', studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value });
     }
   }, [valid]);
   const Ln = ({ n, children }) => (
@@ -1731,13 +1731,13 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} scrollSignal={passed} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Komponentni e'lon qiling", ru: 'Объявите компонент' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: takrorlanuvchi <span className="italic" style={{ color: T.accent }}>komponentni</span> o'zingiz yarating.</>, ru: <>Последний шаг: создайте повторяющийся <span className="italic" style={{ color: T.accent }}>компонент</span> сами.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bo'laklashning asosi — takrorlanuvchini komponentga aylantirish. <span className="mono">TaomCard</span> komponentini e'lon qiling: <b style={{ color: T.ink }}>funksiya kalit so'zi</b> + <b style={{ color: T.ink }}>nom — Katta harf bilan</b> + <b style={{ color: T.ink }}>qavs ichida parametr</b> + <b style={{ color: T.ink }}>ochuvchi jingalak qavs</b>.</>, ru: <>Сердце декомпозиции — превратить повторяющееся в компонент. Объявите компонент <span className="mono">TaomCard</span>: <b style={{ color: T.ink }}>ключевое слово функции</b> + <b style={{ color: T.ink }}>имя — с Заглавной буквы</b> + <b style={{ color: T.ink }}>параметр в скобках</b> + <b style={{ color: T.ink }}>открывающая фигурная скобка</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bo'laklashning asosi — takrorlanuvchini komponentga aylantirish. <span className="mono">FoodCard</span> komponentini e'lon qiling: <b style={{ color: T.ink }}>funksiya kalit so'zi</b> + <b style={{ color: T.ink }}>nom — Katta harf bilan</b> + <b style={{ color: T.ink }}>qavs ichida parametr</b> + <b style={{ color: T.ink }}>ochuvchi jingalak qavs</b>.</>, ru: <>Сердце декомпозиции — превратить повторяющееся в компонент. Объявите компонент <span className="mono">FoodCard</span>: <b style={{ color: T.ink }}>ключевое слово функции</b> + <b style={{ color: T.ink }}>имя — с Заглавной буквы</b> + <b style={{ color: T.ink }}>параметр в скобках</b> + <b style={{ color: T.ink }}>открывающая фигурная скобка</b>.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <div className="vsc fade-up delay-2">
               <div className="vsc-bar">
-                <span className="vsc-tab on"><span style={{ color: '#61DAFB' }}>⚛</span> TaomCard.jsx <span style={{ color: '#6E7681', marginLeft: 4 }}>×</span></span>
+                <span className="vsc-tab on"><span style={{ color: '#61DAFB' }}>⚛</span> FoodCard.jsx <span style={{ color: '#6E7681', marginLeft: 4 }}>×</span></span>
               </div>
               <div className="vsc-body">
                 <div className="vsc-line">
@@ -1757,14 +1757,14 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             {caseOnly && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Deyarli to'g'ri! JavaScript <b>katta-kichik harfni farqlaydi</b>: <span className="mono">function</span> va <span className="mono">props</span> — kichik harf bilan, nom — Katta harf bilan.</>, ru: <>Почти верно! JavaScript <b>различает заглавные и строчные буквы</b>: <span className="mono">function</span> и <span className="mono">props</span> — строчными, имя — с Заглавной.</> })}</p></div>}
             {boshqa && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Komponent <span className="mono">function</span> kalit so'zi bilan boshlanadi — «Birinchi komponent» darsidagi <span className="mono">GameCard</span> kabi: kalit so'z, nom, qavsda <span className="mono">props</span>, ochuvchi <span className="mono">{'{'}</span>.</>, ru: <>Компонент начинается с ключевого слова <span className="mono">function</span> — как <span className="mono">GameCard</span> в уроке «Первый компонент»: ключевое слово, имя, <span className="mono">props</span> в скобках, открывающая <span className="mono">{'{'}</span>.</> })}</p></div>}
-            {lowerName && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Komponent nomi <b>Katta harf</b> bilan: <span className="mono">TaomCard</span> (React shundan komponentligini biladi).</>, ru: <>Имя компонента — с <b>Заглавной буквы</b>: <span className="mono">TaomCard</span> (по ней React понимает, что это компонент).</> })}</p></div>}
-            {/* F-0926-06: natija oynadagi «✓ Bitta TaomCard» bilan takror edi — olindi (I3) */}
+            {lowerName && <div className="frame-warn fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>Komponent nomi <b>Katta harf</b> bilan: <span className="mono">FoodCard</span> (React shundan komponentligini biladi).</>, ru: <>Имя компонента — с <b>Заглавной буквы</b>: <span className="mono">FoodCard</span> (по ней React понимает, что это компонент).</> })}</p></div>}
+            {/* F-0926-06: natija oynadagi «✓ Bitta FoodCard» bilan takror edi — olindi (I3) */}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'natija — komponent tayyor', ru: 'результат — компонент готов' })}</p>
             <Win title="Yetkaz — localhost:5173" minH={130}>
               {valid
-                ? <div className="fade-step"><TaomGrid /><p className="small" style={{ color: T.success, fontWeight: 700, margin: '7px 0 0' }}>{tr({ uz: "✓ Bitta TaomCard — to'rtta taom (props bilan)", ru: '✓ Один TaomCard — четыре блюда (через props)' })}</p></div>
+                ? <div className="fade-step"><TaomGrid /><p className="small" style={{ color: T.success, fontWeight: 700, margin: '7px 0 0' }}>{tr({ uz: "✓ Bitta FoodCard — to'rtta taom (props bilan)", ru: '✓ Один FoodCard — четыре блюда (через props)' })}</p></div>
                 : null /* F-0926-06: bo'sh oyna javob kodini aytardi — olindi (S6, P1) */}
             </Win>
           </Col>
@@ -2189,7 +2189,7 @@ export default function ReactBuildSiteLesson({ lang: langProp, onFinished, liveT
         .blk-build > *:nth-child(4) { animation-delay: 0.80s; }
         .blk-build > *:nth-child(5) { animation-delay: 1.05s; }
         @keyframes blk-drop { 0% { opacity: 0; transform: translateY(-26px) scale(0.96); } 60% { opacity: 1; } 100% { opacity: 1; transform: translateY(0) scale(1); } }
-        /* S5 rentgen: TaomCard'lar bittalab tarqalib chiqadi (takror = komponent hissi) */
+        /* S5 rentgen: FoodCard'lar bittalab tarqalib chiqadi (takror = komponent hissi) */
         .card-spread > * { animation: card-pop 0.42s cubic-bezier(.3,1.4,.45,1) both; }
         .card-spread > *:nth-child(1) { animation-delay: 0.04s; }
         .card-spread > *:nth-child(2) { animation-delay: 0.13s; }

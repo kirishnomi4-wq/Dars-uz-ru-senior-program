@@ -1522,33 +1522,33 @@ const GATE_OPTS = [
   { t: { uz: 'Chiqarishdan keyin, birinchi yangilanishda', ru: 'После выпуска, в первом обновлении' } },
 ];
 const KD_FILES = [
-  { k: 'spec', nom: 'narx.spec.ts', ic: '🧪', code: { uz: `// narx.spec.ts — o'tgan darsdagi shakl
-import { ijaraNarxi } from './narx';
+  { k: 'spec', nom: 'price.spec.ts', ic: '🧪', code: { uz: `// price.spec.ts — o'tgan darsdagi shakl
+import { rentalPrice } from './price';
 
-describe('ijaraNarxi', () => {
+describe('rentalPrice', () => {
   it('5 daqiqa uchun boshlash haqi bilan hisoblaydi', () => {
     // ← bu joyni siz to'ldirasiz: expect(...).toBe(...)
   });
-});`, ru: `// narx.spec.ts — форма из прошлого урока
-import { ijaraNarxi } from './narx';
+});`, ru: `// price.spec.ts — форма из прошлого урока
+import { rentalPrice } from './price';
 
-describe('ijaraNarxi', () => {
+describe('rentalPrice', () => {
   it('считает 5 минут вместе с платой за старт', () => {
     // ← это место заполняете вы: expect(...).toBe(...)
   });
 });` } },
-  { k: 'src', nom: 'narx.ts', ic: '📄', code: { uz: `// narx.ts — skuter ijarasi narxi (so'm)
-const BOSHLASH = 2000; // qulfni ochish haqi
-const DAQIQA = 500;    // har daqiqa uchun
+  { k: 'src', nom: 'price.ts', ic: '📄', code: { uz: `// price.ts — skuter ijarasi narxi (so'm)
+const START_FEE = 2000; // qulfni ochish haqi
+const PER_MINUTE = 500; // har daqiqa uchun
 
-export function ijaraNarxi(daqiqa: number): number {
-  return daqiqa * DAQIQA;
-}`, ru: `// narx.ts — цена аренды самоката (сум)
-const BOSHLASH = 2000; // плата за открытие замка
-const DAQIQA = 500;    // за каждую минуту
+export function rentalPrice(minutes: number): number {
+  return minutes * PER_MINUTE;
+}`, ru: `// price.ts — цена аренды самоката (сум)
+const START_FEE = 2000; // плата за открытие замка
+const PER_MINUTE = 500; // за каждую минуту
 
-export function ijaraNarxi(daqiqa: number): number {
-  return daqiqa * DAQIQA;
+export function rentalPrice(minutes: number): number {
+  return minutes * PER_MINUTE;
 }` } },
 ];
 const TS_TOKEN = /(\/\/[^\n]*|'[^']*'|\b(?:const|export|function|return|import|from|number)\b|\b(?:describe|it|expect|toBe)\b|\b\d+\b)/g;
@@ -1563,7 +1563,7 @@ const tsHl = (ln) => ln.split(TS_TOKEN).filter(p => p !== undefined && p !== '')
 const KD_SHART = [
   <>{tr({ uz: <><code className="qcode">it</code> ichida <code className="qcode">expect(...).toBe(4500)</code> yozilgan</>, ru: <>Внутри <code className="qcode">it</code> написано <code className="qcode">expect(...).toBe(4500)</code></> })}</>,
   <>{tr({ uz: 'Test avval qizil chiqdi', ru: 'Сначала тест был красным' })}</>,
-  <>{tr({ uz: <><code className="qcode">narx.ts</code> dagi nosozlik tuzatildi — test yashil chiqdi</>, ru: <>Поломка в <code className="qcode">narx.ts</code> исправлена — тест стал зелёным</> })}</>,
+  <>{tr({ uz: <><code className="qcode">price.ts</code> dagi nosozlik tuzatildi — test yashil chiqdi</>, ru: <>Поломка в <code className="qcode">price.ts</code> исправлена — тест стал зелёным</> })}</>,
 ];
 const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const gate = useContext(LiveGateCtx) || {};
@@ -1642,7 +1642,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
                       <p>{tr({ uz: <>Tarif kartasidan hisoblang: boshlash haqi + daqiqalar soni × daqiqa narxi. Chiqqan sonni <code className="qcode">toBe</code> ichiga yozing, keyin <code className="qcode">npm test</code>.</>, ru: <>Посчитайте по карточке тарифа: плата за старт + число минут × цена минуты. Получившееся число впишите внутрь <code className="qcode">toBe</code>, затем <code className="qcode">npm test</code>.</> })}</p>
-                      <p>{tr({ uz: <>Test qizil chiqsa — nosozlik <code className="qcode">narx.ts</code> da: tarifda ikki raqam bor, hisobda ikkalasi ham qatnashyaptimi? <code className="qcode">toBe</code> ichidagi sonni o'zgartirmang.</>, ru: <>Если тест красный — поломка в <code className="qcode">narx.ts</code>: в тарифе два числа, участвуют ли оба в расчёте? Число внутри <code className="qcode">toBe</code> не меняйте.</> })}</p>
+                      <p>{tr({ uz: <>Test qizil chiqsa — nosozlik <code className="qcode">price.ts</code> da: tarifda ikki raqam bor, hisobda ikkalasi ham qatnashyaptimi? <code className="qcode">toBe</code> ichidagi sonni o'zgartirmang.</>, ru: <>Если тест красный — поломка в <code className="qcode">price.ts</code>: в тарифе два числа, участвуют ли оба в расчёте? Число внутри <code className="qcode">toBe</code> не меняйте.</> })}</p>
                       <p>{tr({ uz: <>⭐ Qo'shimcha: ikkinchi <code className="qcode">it</code> yozing — 12 daqiqa uchun kutilgan narx 8000 so'm.</>, ru: <>⭐ Дополнительно: напишите второй <code className="qcode">it</code> — ожидаемая цена за 12 минут 8000 сум.</> })}</p>
                     </div>}
                   </div>

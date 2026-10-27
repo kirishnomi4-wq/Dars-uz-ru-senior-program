@@ -1,38 +1,38 @@
-const mahsulotlar = [
-  { nom: "Futbolka", narx: 89000 },
-  { nom: "Kepka", narx: "45000" },
-  { nom: "To'p", narx: 120000 },
-  { nom: "Skakalka", narx: 35000 }
+const products = [
+  { name: "Futbolka", price: 89000 },
+  { name: "Kepka", price: "45000" },
+  { name: "To'p", price: 120000 },
+  { name: "Skakalka", price: 35000 }
 ];
-let savat = [];
+let cart = [];
 
-const katalog = document.getElementById("katalog");
-const savatList = document.getElementById("savatList");
-const jamiEl = document.getElementById("jami");
+const catalog = document.getElementById("catalog");
+const cartList = document.getElementById("cartList");
+const totalEl = document.getElementById("total");
 
-for (let i = 0; i < mahsulotlar.length; i++) {
-  katalog.innerHTML += '<div class="karta"><h3>' + mahsulotlar[i].nom + '</h3><p>' + mahsulotlar[i].narx + " so'm</p><button data-i=\"" + i + '">Savatga</button></div>';
+for (let i = 0; i < products.length; i++) {
+  catalog.innerHTML += '<div class="card"><h3>' + products[i].name + '</h3><p>' + products[i].price + " so'm</p><button data-i=\"" + i + '">Savatga</button></div>';
 }
 
-function jami() {
+function total() {
   let s = 0;
-  for (let i = 0; i < savat.length; i++) {
-    s = s + savat[i].narx;
+  for (let i = 0; i < cart.length; i++) {
+    s = s + cart[i].price;
   }
   return s;
 }
 
-function chizSavat() {
-  savatList.innerHTML = "";
-  for (let i = 0; i < savat.length; i++) {
-    savatList.innerHTML += "<li>" + savat[i].nom + "</li>";
+function renderCart() {
+  cartList.innerHTML = "";
+  for (let i = 0; i < cart.length; i++) {
+    cartList.innerHTML += "<li>" + cart[i].name + "</li>";
   }
-  jamiEl.textContent = jami();
+  totalEl.textContent = total();
 }
 
-katalog.addEventListener("click", function (e) {
+catalog.addEventListener("click", function (e) {
   if (e.target.dataset.i !== undefined) {
-    savat.push(mahsulotlar[e.target.dataset.i]);
-    chizSavat();
+    cart.push(products[e.target.dataset.i]);
+    renderCart();
   }
 });

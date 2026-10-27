@@ -1635,42 +1635,83 @@ const GATE_OPTS = [
   { t: { uz: 'Odam botga /stat deb yozganda', ru: 'Когда человек пишет боту /stat' }, ok: true },
   { t: { uz: 'Odam har qanday xabar yozganda', ru: 'Когда человек пишет любое сообщение' } },
 ];
-const KOD_MATN = "// bot.js — bot.launch() qatoridan oldin qo'shing.\n"
-  + "// Seshanba yozuvi (11-ekran): har qator — botning bitta javobi.\n"
-  + "// telegram_id — odamning Telegram raqami (4-darsdagi users jadvalidagidek).\n"
-  + "// kerakli: true — bot kerakli javobni yubordi.\n"
-  + "// Hozircha ro'yxatni qo'lda yozdik. Haqiqiy botda bunday\n"
-  + "// qatorlar bazada turadi (PostgreSQL — 4-darsda o'tgansiz).\n"
-  + "const javoblar = [\n"
-  + "  { telegram_id: 101, kerakli: true },  // Kamola\n"
-  + "  { telegram_id: 102, kerakli: false }, // Otabek — «Tushunmadim»\n"
-  + "  { telegram_id: 101, kerakli: true },  // Kamola\n"
-  + "  { telegram_id: 103, kerakli: true },  // Bekzod\n"
-  + "  { telegram_id: 104, kerakli: false }, // Sevara — salom\n"
-  + "];\n"
-  + "\n"
-  + "function stat(javoblar) {\n"
-  + "  // Bugun kelganlar — tayyor: bir odam bir marta\n"
-  + "  // includes — ro'yxatda bormi? push — ro'yxatga qo'shadi\n"
-  + "  const kelganlar = [];\n"
-  + "  for (const j of javoblar) {\n"
-  + "    if (!kelganlar.includes(j.telegram_id)) {\n"
-  + "      kelganlar.push(j.telegram_id);\n"
-  + "    }\n"
-  + "  }\n"
-  + "\n"
-  + "  // 1) Keragini olganlarni yig'ing: yuqoridagi sikl,\n"
-  + "  //    shartga j.kerakli qo'shiladi\n"
-  + "  const keraginiOlganlar = [];\n"
-  + "\n"
-  + "  // 2) Natijaga bosh raqamni qo'shing: keraginiOlganlar soni\n"
-  + "  return { bugun: kelganlar.length, kerakli: 0 };\n"
-  + "}\n"
-  + "\n"
-  + "bot.command('stat', (ctx) => {\n"
-  + "  const s = stat(javoblar);\n"
-  + "  ctx.reply('Bugun kelganlar: ' + s.bugun + '\\nKeragini olganlar: ' + s.kerakli);\n"
-  + "});";
+// F-1027-01: nomlar inglizcha, izoh va bot javobi o'quvchi tilida.
+const KOD_MATN = {
+  uz: "// bot.js — bot.launch() qatoridan oldin qo'shing.\n"
+    + "// Seshanba yozuvi (11-ekran): har qator — botning bitta javobi.\n"
+    + "// telegram_id — odamning Telegram raqami (4-darsdagi users jadvalidagidek).\n"
+    + "// useful: true — bot kerakli javobni yubordi.\n"
+    + "// replies — javoblar · visitors — kelganlar · gotUseful — keragini olganlar\n"
+    + "// Hozircha ro'yxatni qo'lda yozdik. Haqiqiy botda bunday\n"
+    + "// qatorlar bazada turadi (PostgreSQL — 4-darsda o'tgansiz).\n"
+    + "const replies = [\n"
+    + "  { telegram_id: 101, useful: true },  // Kamola\n"
+    + "  { telegram_id: 102, useful: false }, // Otabek — «Tushunmadim»\n"
+    + "  { telegram_id: 101, useful: true },  // Kamola\n"
+    + "  { telegram_id: 103, useful: true },  // Bekzod\n"
+    + "  { telegram_id: 104, useful: false }, // Sevara — salom\n"
+    + "];\n"
+    + "\n"
+    + "function stat(replies) {\n"
+    + "  // Bugun kelganlar — tayyor: bir odam bir marta\n"
+    + "  // includes — ro'yxatda bormi? push — ro'yxatga qo'shadi\n"
+    + "  const visitors = [];\n"
+    + "  for (const r of replies) {\n"
+    + "    if (!visitors.includes(r.telegram_id)) {\n"
+    + "      visitors.push(r.telegram_id);\n"
+    + "    }\n"
+    + "  }\n"
+    + "\n"
+    + "  // 1) Keragini olganlarni yig'ing: yuqoridagi sikl,\n"
+    + "  //    shartga r.useful qo'shiladi\n"
+    + "  const gotUseful = [];\n"
+    + "\n"
+    + "  // 2) Natijaga bosh raqamni qo'shing: gotUseful soni\n"
+    + "  return { today: visitors.length, useful: 0 };\n"
+    + "}\n"
+    + "\n"
+    + "bot.command('stat', (ctx) => {\n"
+    + "  const s = stat(replies);\n"
+    + "  ctx.reply('Bugun kelganlar: ' + s.today + '\\nKeragini olganlar: ' + s.useful);\n"
+    + "});",
+  ru: "// bot.js — добавьте перед строкой bot.launch().\n"
+    + "// Запись вторника (11-й экран): каждая строка — один ответ бота.\n"
+    + "// telegram_id — номер человека в Telegram (как в таблице users из 4-го урока).\n"
+    + "// useful: true — бот прислал нужный ответ.\n"
+    + "// replies — ответы · visitors — пришедшие · gotUseful — получившие нужное\n"
+    + "// Пока список написали вручную. В настоящем боте такие\n"
+    + "// строки лежат в базе (PostgreSQL — вы проходили в 4-м уроке).\n"
+    + "const replies = [\n"
+    + "  { telegram_id: 101, useful: true },  // Камола\n"
+    + "  { telegram_id: 102, useful: false }, // Отабек — «Не понял»\n"
+    + "  { telegram_id: 101, useful: true },  // Камола\n"
+    + "  { telegram_id: 103, useful: true },  // Бекзод\n"
+    + "  { telegram_id: 104, useful: false }, // Севара — привет\n"
+    + "];\n"
+    + "\n"
+    + "function stat(replies) {\n"
+    + "  // Пришли сегодня — готово: один человек один раз\n"
+    + "  // includes — есть ли в списке? push — добавляет в список\n"
+    + "  const visitors = [];\n"
+    + "  for (const r of replies) {\n"
+    + "    if (!visitors.includes(r.telegram_id)) {\n"
+    + "      visitors.push(r.telegram_id);\n"
+    + "    }\n"
+    + "  }\n"
+    + "\n"
+    + "  // 1) Соберите получивших нужное: тот же цикл,\n"
+    + "  //    в условие добавляется r.useful\n"
+    + "  const gotUseful = [];\n"
+    + "\n"
+    + "  // 2) Добавьте в результат главную цифру: число gotUseful\n"
+    + "  return { today: visitors.length, useful: 0 };\n"
+    + "}\n"
+    + "\n"
+    + "bot.command('stat', (ctx) => {\n"
+    + "  const s = stat(replies);\n"
+    + "  ctx.reply('Пришли сегодня: ' + s.today + '\\nПолучили нужное: ' + s.useful);\n"
+    + "});",
+};
 const JS_TOKEN = /(\/\/[^\n]*|'[^']*'|"[^"]*"|\b(?:const|let|for|of|if|else|return|function)\b|\b\d+\b)/g;
 const jsHl = (ln) => ln.split(JS_TOKEN).filter(p => p !== undefined && p !== '').map((p, i) => {
   if (p.startsWith('//')) return <span key={i} style={{ color: '#6A9955' }}>{p}</span>;
@@ -1715,7 +1756,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     setDone(true);
     try { localStorage.setItem(KODING_KEY, JSON.stringify({ ...(readKoding() || {}), gateOk: true, done: true })); } catch {}
   };
-  const lines = KOD_MATN.split('\n');
+  const lines = tr(KOD_MATN).split('\n');
   const doneTurn = useTurnHint(stage2 && !done && !isMentor);
   const navLabel = done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : !stage2 ? tr({ uz: 'Avval kod-savolini yeching', ru: 'Сначала ответьте на вопрос о коде' }) : tr({ uz: '② Kodni yozing va «Bajardim» tugmasini bosing', ru: '② Напишите код и нажмите «Готово»' });
   return (
@@ -1745,8 +1786,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Kelganlarni yig'adigan uch qatorga qarang: keragini olganlar uchun shartga <b>bitta narsa</b> qo'shiladi — <code className="qcode">j.kerakli &amp;&amp;</code>.</>, ru: <>Посмотрите на три строки, которые собирают пришедших: для получивших нужное в условие добавляется <b>одна вещь</b> — <code className="qcode">j.kerakli &amp;&amp;</code>.</> })}</p>
-                      <p>{tr({ uz: <>Bot ishga tushmasa — bot.launch() qatoridan oldin <b>console.log(stat(javoblar));</b> yozing va terminalda <b>node bot.js</b> bilan natijani ko'ring. Terminalda <code className="qcode">{'{ bugun: 4, kerakli: 2 }'}</code> chiqsa — vazifa bajarilgan.</>, ru: <>Если бот не запускается — перед строкой bot.launch() напишите <b>console.log(stat(javoblar));</b> и посмотрите результат в терминале командой <b>node bot.js</b>. Если в терминале появилось <code className="qcode">{'{ bugun: 4, kerakli: 2 }'}</code> — задание выполнено.</> })}</p>
+                      <p>{tr({ uz: <>Kelganlarni yig'adigan uch qatorga qarang: keragini olganlar uchun shartga <b>bitta narsa</b> qo'shiladi — <code className="qcode">r.useful &amp;&amp;</code>.</>, ru: <>Посмотрите на три строки, которые собирают пришедших: для получивших нужное в условие добавляется <b>одна вещь</b> — <code className="qcode">r.useful &amp;&amp;</code>.</> })}</p>
+                      <p>{tr({ uz: <>Bot ishga tushmasa — bot.launch() qatoridan oldin <b>console.log(stat(replies));</b> yozing va terminalda <b>node bot.js</b> bilan natijani ko'ring. Terminalda <code className="qcode">{'{ today: 4, useful: 2 }'}</code> chiqsa — vazifa bajarilgan.</>, ru: <>Если бот не запускается — перед строкой bot.launch() напишите <b>console.log(stat(replies));</b> и посмотрите результат в терминале командой <b>node bot.js</b>. Если в терминале появилось <code className="qcode">{'{ today: 4, useful: 2 }'}</code> — задание выполнено.</> })}</p>
                       <p>{tr({ uz: "Qo'shimcha: javobga uchinchi qator qo'shing — bugun kelganlarning necha foizi keragini oldi (2 ÷ 4 × 100 = 50).", ru: 'Дополнительно: добавьте в ответ третью строку — какой процент пришедших сегодня получил нужное (2 ÷ 4 × 100 = 50).' })}</p>
                     </div>}
                   </div>

@@ -581,7 +581,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
     <Stage eyebrow={tr({ uz: 'Kirish', ru: 'Введение' })} screen={screen} audioState={audio} navContent={<NavNext optionalLive disabled={picked === null} label={tr({ uz: 'Davom etish', ru: 'Продолжить' })} onClick={onNext} />}>
       <div className="screen">
         <h1 className="title h-title fade-up">{tr({ uz: <>Serveringizda <span className="italic" style={{ color: T.accent }}>o'nlab eshik</span> bor — kimdir so'rasa, server <span className="italic" style={{ color: T.accent }}>qaysi kodni</span> ishga tushiradi?</>, ru: <>На вашем сервере <span className="italic" style={{ color: T.accent }}>десятки дверей</span> — приходит запрос, и <span className="italic" style={{ color: T.accent }}>какой код</span> запустит сервер?</> })}</h1>
-        <Mentor>{tr({ uz: <>O'tgan darsda <b style={{ color: T.ink }}>bitta</b> eshik qurdingiz: <span className="mono">/salom</span>. Lekin haqiqiy ilovada ko'p eshik bor. Brauzer <span className="mono">GET /games/3</span> desa — server <b style={{ color: T.ink }}>qaysi kodni</b> ishga tushiradi? Avval bir nechta so'rov yuborib, qaysi eshik yonishini ko'ring.</>, ru: <>В прошлом уроке вы построили <b style={{ color: T.ink }}>одну</b> дверь: <span className="mono">/salom</span>. Но в настоящем приложении дверей много. Браузер говорит <span className="mono">GET /games/3</span> — <b style={{ color: T.ink }}>какой код</b> запустит сервер? Сначала отправьте несколько запросов и посмотрите, какая дверь загорится.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>O'tgan darsda <b style={{ color: T.ink }}>bitta</b> eshik qurdingiz: <span className="mono">/hello</span>. Lekin haqiqiy ilovada ko'p eshik bor. Brauzer <span className="mono">GET /games/3</span> desa — server <b style={{ color: T.ink }}>qaysi kodni</b> ishga tushiradi? Avval bir nechta so'rov yuborib, qaysi eshik yonishini ko'ring.</>, ru: <>В прошлом уроке вы построили <b style={{ color: T.ink }}>одну</b> дверь: <span className="mono">/hello</span>. Но в настоящем приложении дверей много. Браузер говорит <span className="mono">GET /games/3</span> — <b style={{ color: T.ink }}>какой код</b> запустит сервер? Сначала отправьте несколько запросов и посмотрите, какая дверь загорится.</> })}</Mentor>
         <Zoomable>
         <Split>
           <Col>
@@ -673,7 +673,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 // ===== SCREEN 2 — SO'ROV ANATOMIYASI (method + path) =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const METHS = ['GET', 'POST'];
-  const PATHS = ['/games', '/games/5', '/salom'];
+  const PATHS = ['/games', '/games/5', '/hello'];
   const [method, setMethod] = useState(storedAnswer ? 'GET' : null);
   const [path, setPath] = useState(storedAnswer ? '/games' : null);
   const done = !!method && !!path;
@@ -725,7 +725,7 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const ROUTES = [
     { method: 'GET', path: '/games', reply: "['Adopt Me', 'Blox Fruits']" },
     { method: 'POST', path: '/games', reply: { uz: "Yangi o'yin qo'shildi!", ru: 'Новая игра добавлена!' } },
-    { method: 'GET', path: '/salom', reply: { uz: 'Salom, dunyo!', ru: 'Привет, мир!' } }
+    { method: 'GET', path: '/hello', reply: { uz: 'Salom, dunyo!', ru: 'Привет, мир!' } }
   ];
   const REQS = [
     { method: 'GET', path: '/games' },
@@ -933,7 +933,7 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Express routing', ru: 'Роутинг в Express' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: `${seen.size}/4 qism o'rganildi`, ru: `Изучено частей: ${seen.size}/4` })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Routing kodda <span className="italic" style={{ color: T.accent }}>qanday yoziladi</span>?</>, ru: <>Как роутинг <span className="italic" style={{ color: T.accent }}>пишется в коде</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>O'tgan darsda <span className="mono">app.get('/salom')</span> bilan bitta route ochgan edingiz. Ko'p route ham xuddi shunday: har biri — bitta <b style={{ color: T.ink }}>app.get</b> yoki <b style={{ color: T.ink }}>app.post</b>. Qavs ichida avval path, keyin eshik ochilganda ishlaydigan funksiya. Rangli qismlarni bosing.</>, ru: <>В прошлом уроке вы открыли один route через <span className="mono">app.get('/salom')</span>. Много route'ов пишутся так же: каждый — это один <b style={{ color: T.ink }}>app.get</b> или <b style={{ color: T.ink }}>app.post</b>. В скобках сначала path, потом функция, которая работает, когда дверь открылась. Нажимайте на цветные части.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>O'tgan darsda <span className="mono">app.get('/hello')</span> bilan bitta route ochgan edingiz. Ko'p route ham xuddi shunday: har biri — bitta <b style={{ color: T.ink }}>app.get</b> yoki <b style={{ color: T.ink }}>app.post</b>. Qavs ichida avval path, keyin eshik ochilganda ishlaydigan funksiya. Rangli qismlarni bosing.</>, ru: <>В прошлом уроке вы открыли один route через <span className="mono">app.get('/hello')</span>. Много route'ов пишутся так же: каждый — это один <b style={{ color: T.ink }}>app.get</b> или <b style={{ color: T.ink }}>app.post</b>. В скобках сначала path, потом функция, которая работает, когда дверь открылась. Нажимайте на цветные части.</> })}</Mentor>
         <Zoomable off={!active}>{/* F-0926-06: ⛶ birinchi bosishgacha yashirin */}
         <div className="split">
           <Col>

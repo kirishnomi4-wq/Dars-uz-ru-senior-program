@@ -33,7 +33,7 @@ import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LI
 import { qolipRang, fon, qolipCss, useTugadi, QTugma, QChip, QXato, QBashorat, QTaxmin, QKirish, QReja, QTushuncha, QTest, QTestJavob, QBlok, QKartochka, QYakun } from '../qolip/index.jsx';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: HTML Praktika» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 2-10). scripts/hw-v2-kartalar.mjs yozadi.
-const HW_V2 = {"id":"2-10","tur":"file","nom":{"uz":"Uyga vazifa: HTML Praktika","ru":"Домашнее задание: Практика HTML"},"matn":{"uz":"Portfolio'ingizga ikki narsa qo'shing. AI ishlatmang, o'zingiz yozing.\n\n1. Header'ga o'z rasmingiz yoki avataringiz (img, mazmunli alt).\n2. «Ko'nikmalarim» bo'limi: id=\"konikmalar\", ichida 4 bandli ro'yxat.\n3. Menu'ga shu bo'limga link (href=\"#konikmalar\").\n4. Har loyiha ostiga bir gaplik tavsif (p).\n5. Live Server skrinshoti va index.html faylini yuklang.\n\nNima tekshiriladi:\n— img + alt\n— bo'lim id va 4 li\n— menu linki ishlaydi (# nomi bir xil)\n— loyihalarda tavsif\n— skrinshot va fayl bir xil.","ru":"Добавьте в своё портфолио две вещи. Не используйте AI — пишите сами.\n\n1. В header — своё фото или аватар (img, осмысленный alt).\n2. Раздел «Мои навыки»: id=\"konikmalar\", внутри список из 4 пунктов.\n3. В меню — ссылка на этот раздел (href=\"#konikmalar\").\n4. Под каждым проектом — описание в одно предложение (p).\n5. Загрузите скриншот Live Server и файл index.html.\n\nЧто проверяется:\n— img + alt\n— у раздела есть id и 4 li\n— ссылка в меню работает (имя после # совпадает)\n— у проектов есть описание\n— скриншот и файл совпадают."}};
+const HW_V2 = {"id":"2-10","tur":"file","nom":{"uz":"Uyga vazifa: HTML Praktika","ru":"Домашнее задание: Практика HTML"},"matn":{"uz":"Portfolio'ingizga ikki narsa qo'shing. AI ishlatmang, o'zingiz yozing.\n\n1. Header'ga o'z rasmingiz yoki avataringiz (img, mazmunli alt).\n2. «Ko'nikmalarim» bo'limi: id=\"skills\", ichida 4 bandli ro'yxat.\n3. Menu'ga shu bo'limga link (href=\"#skills\").\n4. Har loyiha ostiga bir gaplik tavsif (p).\n5. Live Server skrinshoti va index.html faylini yuklang.\n\nNima tekshiriladi:\n— img + alt\n— bo'lim id va 4 li\n— menu linki ishlaydi (# nomi bir xil)\n— loyihalarda tavsif\n— skrinshot va fayl bir xil.","ru":"Добавьте в своё портфолио две вещи. Не используйте AI — пишите сами.\n\n1. В header — своё фото или аватар (img, осмысленный alt).\n2. Раздел «Мои навыки»: id=\"skills\", внутри список из 4 пунктов.\n3. В меню — ссылка на этот раздел (href=\"#skills\").\n4. Под каждым проектом — описание в одно предложение (p).\n5. Загрузите скриншот Live Server и файл index.html.\n\nЧто проверяется:\n— img + alt\n— у раздела есть id и 4 li\n— ссылка в меню работает (имя после # совпадает)\n— у проектов есть описание\n— скриншот и файл совпадают."}};
 
 
 
@@ -257,8 +257,8 @@ const RECAPS = {
   5: {
     title: { uz: "Bo'limga link", ru: 'Ссылка на раздел' },
     cards: [
-      { ic: '<a href="#aloqa">', h: { uz: 'Menudagi link', ru: 'Ссылка в меню' }, body: { uz: <>Qaysi bo'limga tushishini <b className="mono">#</b> dan keyingi nom aytadi.</>, ru: <>К какому разделу перейти, говорит имя после <b className="mono">#</b>.</> } },
-      { ic: '<section id="aloqa">', h: { uz: "Bo'limning nomi", ru: 'Имя раздела' }, body: { uz: <>Linkdagi nom bilan bir xil bo'lishi kerak.</>, ru: <>Должно совпадать с именем в ссылке.</> } },
+      { ic: '<a href="#contact">', h: { uz: 'Menudagi link', ru: 'Ссылка в меню' }, body: { uz: <>Qaysi bo'limga tushishini <b className="mono">#</b> dan keyingi nom aytadi.</>, ru: <>К какому разделу перейти, говорит имя после <b className="mono">#</b>.</> } },
+      { ic: '<section id="contact">', h: { uz: "Bo'limning nomi", ru: 'Имя раздела' }, body: { uz: <>Linkdagi nom bilan bir xil bo'lishi kerak.</>, ru: <>Должно совпадать с именем в ссылке.</> } },
       { ic: '<a href="mailto:…">', h: { uz: 'Pochta linki', ru: 'Ссылка на почту' }, body: { uz: <>Xat yozish oynasini ochadi.</>, ru: <>Открывает окно письма.</> }, ask: { uz: "id ni yozish esdan chiqsa, link bosilganda nima bo'ladi?", ru: 'Что будет при нажатии на ссылку, если забыть написать id?' } }
     ]
   }
@@ -706,14 +706,14 @@ const Screen5 = (props) => (
       { uz: 'Menu atrofida `<nav>` tegi yo\'q', ru: 'Вокруг меню нет тега `<nav>`' },
       { uz: '«Aloqa» sarlavhasi `<h3>` bilan yozilgan', ru: 'Заголовок «Контакты» написан через `<h3>`' },
       { uz: 'Sahifa oxirida `<footer>` tegi yo\'q', ru: 'В конце страницы нет тега `<footer>`' },
-      { uz: 'Bo\'limda `id="aloqa"` yozilmagan', ru: 'У раздела не написан `id="aloqa"`' }
+      { uz: 'Bo\'limda `id="contact"` yozilmagan', ru: 'У раздела не написан `id="contact"`' }
     ]} correctIdx={3}
-    explainCorrect={{ uz: '`#aloqa` sahifadan `id="aloqa"` ni qidiradi — topmasa, joyida qoladi.', ru: '`#aloqa` ищет на странице `id="aloqa"` — не найдя, остаётся на месте.' }}
+    explainCorrect={{ uz: '`#contact` sahifadan `id="contact"` ni qidiradi — topmasa, joyida qoladi.', ru: '`#contact` ищет на странице `id="contact"` — не найдя, остаётся на месте.' }}
     explainWrong={{
       0: { uz: "Link `<nav>` ichida bo'lmasa ham ishlaydi.", ru: 'Ссылка работает и без `<nav>`.' },
       1: { uz: "Sarlavha o'lchami linkka ta'sir qilmaydi.", ru: 'Размер заголовка не влияет на ссылку.' },
       2: { uz: 'Footer yo\'qligi menuga tegmaydi.', ru: 'Отсутствие footer не влияет на меню.' },
-      default: { uz: '`#aloqa` sahifadan nimani qidirishini eslang.', ru: 'Вспомните, что ищет на странице `#aloqa`.' }
+      default: { uz: '`#contact` sahifadan nimani qidirishini eslang.', ru: 'Вспомните, что ищет на странице `#contact`.' }
     }} />
 );
 
@@ -1366,7 +1366,7 @@ const AMALIYOT = {
       { uz: "Javobdagi kodni `index.html` ga qo'ying (bor kod o'rniga), `Ctrl+S`.", ru: 'Вставьте код из ответа в `index.html` (вместо старого), `Ctrl+S`.' },
       { uz: "Live Server'da qarang: ismingiz, yo'nalishingiz va «Men haqimda» bormi? Yo'q bo'lsa, Gemini'ga aniq yozing: «… qo'shilmagan, qo'sh».", ru: 'Посмотрите в Live Server: есть имя, направление и «Обо мне»? Если нет, напишите Gemini точно: «… нет, добавь».' }
     ],
-    prompt: (p) => ({ uz: `Portfolio sahifam uchun index.html'ni yozib ber.\n<header> ichida: ismim — ${p.ism} (<h1>), yo'nalishim — ${p.yonalish} (<p>).\nKeyin <section id="men">: sarlavha «Men haqimda» (<h2>) va shu matn: ${p.haqida}\nstyle.css <link> bilan ulangan bo'lsin. Hozircha CSS yozma, faqat HTML. To'liq faylni qaytar.`, ru: `Напиши index.html для моей страницы-портфолио.\nВнутри <header>: моё имя — ${p.ism} (<h1>), направление — ${p.yonalish} (<p>).\nЗатем <section id="men">: заголовок «Обо мне» (<h2>) и этот текст: ${p.haqida}\nПодключи style.css через <link>. Пока не пиши CSS, только HTML. Верни файл целиком.` }),
+    prompt: (p) => ({ uz: `Portfolio sahifam uchun index.html'ni yozib ber.\n<header> ichida: ismim — ${p.ism} (<h1>), yo'nalishim — ${p.yonalish} (<p>).\nKeyin <section id="about">: sarlavha «Men haqimda» (<h2>) va shu matn: ${p.haqida}\nstyle.css <link> bilan ulangan bo'lsin. Hozircha CSS yozma, faqat HTML. To'liq faylni qaytar.`, ru: `Напиши index.html для моей страницы-портфолио.\nВнутри <header>: моё имя — ${p.ism} (<h1>), направление — ${p.yonalish} (<p>).\nЗатем <section id="about">: заголовок «Обо мне» (<h2>) и этот текст: ${p.haqida}\nПодключи style.css через <link>. Пока не пиши CSS, только HTML. Верни файл целиком.` }),
     yigilgan: (f) => <><p className="am-loyiha-nom">{f.ism}</p><p className="am-satr">{f.yonalish}</p><p className="am-satr"><b>{tr({ uz: 'Men haqimda:', ru: 'Обо мне:' })}</b> {f.haqida}</p></>,
     natija: () => <PfSite xom qismlar={['header', 'men']} menyu={0} baland={220} />
   },
@@ -1382,7 +1382,7 @@ const AMALIYOT = {
       { uz: "Javobdagi kodni `index.html` ga qo'ying (bor kod o'rniga), `Ctrl+S`.", ru: 'Вставьте код из ответа в `index.html` (вместо старого), `Ctrl+S`.' },
       { uz: "Menudagi har linkni bosing: o'z bo'limiga tushadimi? Tushmasa, Gemini'ga yozing: «Aloqa bosilsa, sahifa qimirlamayapti. href va id ni tekshirib tuzat.»", ru: 'Нажмите каждую ссылку меню: переходит к своему разделу? Если нет, напишите Gemini: «При нажатии на Контакты страница не двигается. Проверь href и id и исправь.»' }
     ],
-    prompt: (p) => ({ uz: `Sahifamga menu va qolgan bo'limlarni qo'sh.\n<header> ichida, yo'nalishimdan keyin <nav>: «Men haqimda» (#men), «Loyihalarim» (#loyihalar), «Aloqa» (#aloqa).\n«Men haqimda»dan keyin <section id="loyihalar">: sarlavha «Loyihalarim» (<h2>) va 3 bandli ro'yxat (<ul>): ${p.l1}; ${p.l2}; ${p.l3}.\nKeyin <section id="aloqa">: sarlavha «Aloqa» (<h2>) va pochta linki: ${p.pochta} (mailto:).\nEng oxirida <footer>: ${p.ism}, 2026.\nBor matnlarimni o'zgartirma. To'liq index.html'ni qaytar.\nMana hozirgi kodim: {index.html kodini shu yerga qo'ying}`, ru: `Добавь на мою страницу меню и остальные разделы.\nВнутри <header>, после направления, <nav>: «Обо мне» (#men), «Мои проекты» (#loyihalar), «Контакты» (#aloqa).\nПосле «Обо мне» — <section id="loyihalar">: заголовок «Мои проекты» (<h2>) и список из 3 пунктов (<ul>): ${p.l1}; ${p.l2}; ${p.l3}.\nЗатем <section id="aloqa">: заголовок «Контакты» (<h2>) и ссылка на почту: ${p.pochta} (mailto:).\nВ самом конце <footer>: ${p.ism}, 2026.\nМои тексты не меняй. Верни index.html целиком.\nВот мой текущий код: {вставьте сюда код index.html}` }),
+    prompt: (p) => ({ uz: `Sahifamga menu va qolgan bo'limlarni qo'sh.\n<header> ichida, yo'nalishimdan keyin <nav>: «Men haqimda» (#about), «Loyihalarim» (#projects), «Aloqa» (#contact).\n«Men haqimda»dan keyin <section id="projects">: sarlavha «Loyihalarim» (<h2>) va 3 bandli ro'yxat (<ul>): ${p.l1}; ${p.l2}; ${p.l3}.\nKeyin <section id="contact">: sarlavha «Aloqa» (<h2>) va pochta linki: ${p.pochta} (mailto:).\nEng oxirida <footer>: ${p.ism}, 2026.\nBor matnlarimni o'zgartirma. To'liq index.html'ni qaytar.\nMana hozirgi kodim: {index.html kodini shu yerga qo'ying}`, ru: `Добавь на мою страницу меню и остальные разделы.\nВнутри <header>, после направления, <nav>: «Обо мне» (#about), «Мои проекты» (#projects), «Контакты» (#contact).\nПосле «Обо мне» — <section id="projects">: заголовок «Мои проекты» (<h2>) и список из 3 пунктов (<ul>): ${p.l1}; ${p.l2}; ${p.l3}.\nЗатем <section id="contact">: заголовок «Контакты» (<h2>) и ссылка на почту: ${p.pochta} (mailto:).\nВ самом конце <footer>: ${p.ism}, 2026.\nМои тексты не меняй. Верни index.html целиком.\nВот мой текущий код: {вставьте сюда код index.html}` }),
     yigilgan: (f) => <><ul className="am-band">{['l1', 'l2', 'l3'].map(k => <li key={k}>{f[k]}</li>)}</ul><p className="am-satr"><b>{tr({ uz: 'Pochta:', ru: 'Почта:' })}</b> {f.pochta}</p></>,
     natija: () => <PfSite xom baland={260} />
   },

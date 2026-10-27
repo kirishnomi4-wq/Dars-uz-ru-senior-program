@@ -160,8 +160,8 @@ Test (T) uchun bu yerda: savol + ✔ to'g'ri javob + chalg'ituvchi g'oyasi. To'l
 - **Nega shu:** portfolio 11 → 12 → 13-darslarda davom etadi — uyda ham o'sha sayt; yangi qism HTML 2-darsidagi `img` va `alt` ni ishlatadi.
 - **O'quvchiga:** «Portfolio'ingizga ikki narsa qo'shing. AI ishlatmang, o'zingiz yozing.»
   1. Header'ga o'z rasmingiz yoki avataringiz (`img`, mazmunli `alt`).
-  2. «Ko'nikmalarim» bo'limi: `id="konikmalar"`, ichida 4 bandli ro'yxat.
-  3. Menu'ga shu bo'limga link (`href="#konikmalar"`).
+  2. «Ko'nikmalarim» bo'limi: `id="skills"`, ichida 4 bandli ro'yxat.
+  3. Menu'ga shu bo'limga link (`href="#skills"`).
   4. Har loyiha ostiga bir gaplik tavsif (`p`).
   5. Live Server skrinshoti va `index.html` faylini yuklang.
 - **Tekshiruv (mentor):** ☐ img + alt · ☐ bo'lim `id` va 4 `li` · ☐ menu linki ishlaydi (`#` nomi bir xil) · ☐ loyihalarda tavsif · ☐ skrinshot va fayl bir xil.
@@ -268,13 +268,13 @@ Test (T) uchun bu yerda: savol + ✔ to'g'ri javob + chalg'ituvchi g'oyasi. To'l
 
 ### 3-6 · JS: Funksiya va Massiv — C (js)
 - **Darsdan:** `function`, chaqirish `nom()`, parametr va argument, `return`, return yo'q → undefined, `console.log` vs `return`,
-  ikki parametr vergul bilan; darsning o'yin ipi: `zarar(kuch, bonus)` = `kuch * 3 + bonus`.
+  ikki parametr vergul bilan; darsning o'yin ipi: `damage(power, bonus)` = `power * 3 + bonus`.
   Massiv shu darsda o'tilmaydi — 5-darsdagi (Sikllar) massiv va for ishlatiladi; LMS nomi «Funksiya va Massiv».
 - **O'quvchiga:** «O'yin hisobi uchun uchta funksiya yozing.»
-  1. `zarar(kuch, bonus)` — `kuch` — urish kuchi, `bonus` — krit bonus. Funksiya `kuch * 3 + bonus` ni qaytarsin.
-  2. `jon(qoldi, urilgan)` — `qoldi` — qahramonda qolgan jon, `urilgan` — kelgan zarba. Funksiya `qoldi - urilgan` ni qaytarsin; natija 0 dan kichik bo'lsa `0` qaytarsin — jon minusga tushmaydi.
-  3. `jami(narxlar)` — `narxlar` — sonlar massivi. Funksiya `for` bilan hamma sonni qo'shib, yig'indini qaytarsin.
-  4. Natijani o'zgaruvchiga saqlab chiqaring: `zarar(5, 10)` → 25, `jon(100, 25)` → 75, `jon(20, 25)` → 0, `jami([12000, 8000, 5000])` → 25000.
+  1. `damage(power, bonus)` — `power` — urish kuchi, `bonus` — krit bonus. Funksiya `power * 3 + bonus` ni qaytarsin.
+  2. `health(left, hit)` — `left` — qahramonda qolgan jon, `hit` — kelgan zarba. Funksiya `left - hit` ni qaytarsin; natija 0 dan kichik bo'lsa `0` qaytarsin — jon minusga tushmaydi.
+  3. `total(prices)` — `prices` — sonlar massivi. Funksiya `for` bilan hamma sonni qo'shib, yig'indini qaytarsin.
+  4. Natijani o'zgaruvchiga saqlab chiqaring: `damage(5, 10)` → 25, `health(100, 25)` → 75, `health(20, 25)` → 0, `total([12000, 8000, 5000])` → 25000.
   5. Funksiya ichida `console.log` emas, `return` bo'lsin.
 - **Tekshiruv (AI, 10):** zarar 2 · jon + manfiy holat 3 · jami for bilan 3 · natijalar saqlanib chiqarilgan, return bilan 2.
 

@@ -2627,13 +2627,13 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 const TASK_HISOB = {
   eyebrow: { uz: 'Praktika · backend', ru: 'Практика · backend' },
   title: { uz: "Backend narxni o'zi hisoblasin", ru: 'Пусть backend сам посчитает цену' },
-  brief: { uz: "Serverning ishi — hisoblab, javob qaytarish. `narx` funksiyasi yozing: `soni` parametrini olsin va `return soni * 25000` qilsin. Keyin `console.log(narx(3))` yozing — konsolda `75000` chiqadi.", ru: 'Работа сервера — посчитать и вернуть ответ. Напишите функцию `narx`: принимает параметр `soni` и делает `return soni * 25000`. Затем напишите `console.log(narx(3))` — в консоли появится `75000`.' },
+  brief: { uz: "Serverning ishi — hisoblab, javob qaytarish. `price` funksiyasi yozing: `count` parametrini olsin va `return count * 25000` qilsin. Keyin `console.log(price(3))` yozing — konsolda `75000` chiqadi.", ru: 'Работа сервера — посчитать и вернуть ответ. Напишите функцию `price`: принимает параметр `count` и делает `return count * 25000`. Затем напишите `console.log(price(3))` — в консоли появится `75000`.' },
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'ret', label: { uz: 'funksiya javob qaytaradi', ru: 'функция возвращает ответ' }, check: C.js(/\breturn\b/, { uz: "Funksiya ichida `return soni * 25000` yozing", ru: 'Внутри функции напишите `return soni * 25000`' }) },
-    { id: 'log', label: { uz: 'konsolda 75000', ru: 'в консоли 75000' }, check: C.logs('75000', { uz: "`console.log(narx(3))` yozing — server javobi konsolga chiqadi", ru: 'Напишите `console.log(narx(3))` — ответ сервера выйдет в консоль' }) },
+    { id: 'ret', label: { uz: 'funksiya javob qaytaradi', ru: 'функция возвращает ответ' }, check: C.js(/\breturn\b/, { uz: "Funksiya ichida `return count * 25000` yozing", ru: 'Внутри функции напишите `return count * 25000`' }) },
+    { id: 'log', label: { uz: 'konsolda 75000', ru: 'в консоли 75000' }, check: C.logs('75000', { uz: "`console.log(price(3))` yozing — server javobi konsolga chiqadi", ru: 'Напишите `console.log(price(3))` — ответ сервера выйдет в консоль' }) },
   ],
 };
 
@@ -2641,13 +2641,13 @@ const TASK_HISOB = {
 const TASK_BAZA = {
   eyebrow: { uz: "Praktika · ma'lumot", ru: 'Практика · данные' },
   title: { uz: "Bazadagi ro'yxatni chiqaring", ru: 'Выведите список из базы' },
-  brief: { uz: "Baza — saqlangan ro'yxat. `let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]` yozing va `for` sikli bilan har birini konsolga chiqaring — frontend menyuni xuddi shunday oladi.", ru: 'База — это сохранённый список. Напишите `let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]` и циклом `for` выведите каждый в консоль — именно так frontend получает меню.' },
+  brief: { uz: "Baza — saqlangan ro'yxat. `let products = [\"Lavash\", \"Burger\", \"Shashlik\"]` yozing va `for` sikli bilan har birini konsolga chiqaring — frontend menyuni xuddi shunday oladi.", ru: 'База — это сохранённый список. Напишите `let products = [\"Lavash\", \"Burger\", \"Shashlik\"]` и циклом `for` выведите каждый в консоль — именно так frontend получает меню.' },
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'arr', label: { uz: "ro'yxat yozildi", ru: 'список написан' }, check: C.js(/\[\s*["'][^"']+["']\s*,/, { uz: "`let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]` yozing", ru: 'Напишите `let mahsulotlar = [\"Lavash\", \"Burger\", \"Shashlik\"]`' }) },
-    { id: 'log', label: { uz: 'konsolda uchala mahsulot', ru: 'в консоли все три товара' }, check: C.logsEach(['Lavash', 'Burger', 'Shashlik'], { /* F-1017-206: tartibsiz */ uz: "Sikl ichida `console.log(mahsulotlar[i])` yozing", ru: 'Внутри цикла напишите `console.log(mahsulotlar[i])`' }) },
+    { id: 'arr', label: { uz: "ro'yxat yozildi", ru: 'список написан' }, check: C.js(/\[\s*["'][^"']+["']\s*,/, { uz: "`let products = [\"Lavash\", \"Burger\", \"Shashlik\"]` yozing", ru: 'Напишите `let products = [\"Lavash\", \"Burger\", \"Shashlik\"]`' }) },
+    { id: 'log', label: { uz: 'konsolda uchala mahsulot', ru: 'в консоли все три товара' }, check: C.logsEach(['Lavash', 'Burger', 'Shashlik'], { /* F-1017-206: tartibsiz */ uz: "Sikl ichida `console.log(products[i])` yozing", ru: 'Внутри цикла напишите `console.log(products[i])`' }) },
   ],
 };
 

@@ -1462,89 +1462,93 @@ const GATE_ITEMS = [
   { id: 'g3', ic: '🔢', t: { uz: 'Haftadagi ishlar soni 5 tadan oshmaydi', ru: 'Число задач за неделю не превышает 5' },         ok: false },
 ];
 
-// Kod-nomlari ASCII, apostrofsiz (bolaklar · qoshish · SIGIM); prozada «bo'laklar».
-const KOD_STARTER = { uz: `// bolaklar — darvozadan o'tgan uch bo'lakning ichki ishlari, har biriga necha kun ketadi
-const bolaklar = [
-  { nom: 'topdim-tugmasi', kun: 1 },
-  { nom: 'egasiga-xabar',  kun: 2 },
-  { nom: 'menda-belgisi',  kun: 2 },
-  { nom: 'rasm-qoshish',   kun: 2 },
-  { nom: 'chat',           kun: 4 },
+// Kod-nomlari inglizcha (F-1027-01): tasks · splitWeeks · CAPACITY; prozada «bo'laklar».
+const KOD_STARTER = { uz: `// tasks — darvozadan o'tgan uch bo'lakning ichki ishlari, har biriga necha kun ketadi
+// name — nomi · days — necha kun · CAPACITY — haftaga sig'adigan kun
+const tasks = [
+  { name: 'found-button', days: 1 },
+  { name: 'notify-owner',  days: 2 },
+  { name: 'mine-badge',  days: 2 },
+  { name: 'add-photo',   days: 2 },
+  { name: 'chat',           days: 4 },
 ];
-const SIGIM = 5; // bir hafta — 5 ish kuni
+const CAPACITY = 5; // bir week — 5 task kuni
 
-function haftalar(bolaklar) {
-  const natija = [];   // tayyor haftalar
-  let hafta = [];      // hozir to'ldirilayotgan hafta
-  let kunlar = 0;      // shu haftadagi kunlar yig'indisi
+function splitWeeks(tasks) {
+  const result = [];   // tayyor splitWeeks
+  let week = [];      // hozir to'ldirilayotgan week
+  let weekDays = 0;      // shu haftadagi weekDays yig'indisi
 
-  for (let i = 0; i < bolaklar.length; i++) {
-    const ish = bolaklar[i];
-    // ← false o'rniga shart yozing: shu ish qo'shilsa, haftadagi kunlar SIGIM dan oshib ketadimi?
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    // ← false o'rniga shart yozing: shu task qo'shilsa, haftadagi weekDays CAPACITY dan oshib ketadimi?
     if (false) {
-      natija.push(hafta);   // hafta to'ldi — natijaga
-      hafta = [];           // yangi hafta boshlanadi
-      kunlar = 0;
+      result.push(week);   // week to'ldi — natijaga
+      week = [];           // yangi week boshlanadi
+      weekDays = 0;
     }
-    hafta.push(ish.nom);
-    kunlar = kunlar + ish.kun;
+    week.push(task.name);
+    weekDays = weekDays + task.days;
   }
-  natija.push(hafta);       // oxirgi hafta
-  return natija;
+  result.push(week);       // oxirgi week
+  return result;
 }
 
-console.log(haftalar(bolaklar));
-// [['topdim-tugmasi','egasiga-xabar','menda-belgisi'], ['rasm-qoshish'], ['chat']]
-console.log(haftalar(bolaklar).length);   // 3`, ru: `// bolaklar — внутренние задачи трёх кусочков, прошедших ворота, и сколько дней уходит на каждую
-const bolaklar = [
-  { nom: 'topdim-tugmasi', kun: 1 },
-  { nom: 'egasiga-xabar',  kun: 2 },
-  { nom: 'menda-belgisi',  kun: 2 },
-  { nom: 'rasm-qoshish',   kun: 2 },
-  { nom: 'chat',           kun: 4 },
+console.log(splitWeeks(tasks));
+// [['found-button','notify-owner','mine-badge'], ['add-photo'], ['chat']]
+console.log(splitWeeks(tasks).length);   // 3`, ru: `// tasks — внутренние задачи трёх кусочков, прошедших ворота, и сколько дней уходит на каждую
+// name — название · days — сколько дней · CAPACITY — сколько дней влезает в неделю
+const tasks = [
+  { name: 'found-button', days: 1 },
+  { name: 'notify-owner',  days: 2 },
+  { name: 'mine-badge',  days: 2 },
+  { name: 'add-photo',   days: 2 },
+  { name: 'chat',           days: 4 },
 ];
-const SIGIM = 5; // одна неделя — 5 рабочих дней
+const CAPACITY = 5; // одна неделя — 5 рабочих дней
 
-function haftalar(bolaklar) {
-  const natija = [];   // готовые недели
-  let hafta = [];      // неделя, которую сейчас заполняем
-  let kunlar = 0;      // сумма дней в этой неделе
+function splitWeeks(tasks) {
+  const result = [];   // готовые недели
+  let week = [];      // неделя, которую сейчас заполняем
+  let weekDays = 0;      // сумма дней в этой неделе
 
-  for (let i = 0; i < bolaklar.length; i++) {
-    const ish = bolaklar[i];
-    // ← вместо false напишите условие: если добавить эту задачу, дней в неделе станет больше SIGIM?
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    // ← вместо false напишите условие: если добавить эту задачу, дней в неделе станет больше CAPACITY?
     if (false) {
-      natija.push(hafta);   // неделя заполнена — в результат
-      hafta = [];           // начинается новая неделя
-      kunlar = 0;
+      result.push(week);   // неделя заполнена — в результат
+      week = [];           // начинается новая неделя
+      weekDays = 0;
     }
-    hafta.push(ish.nom);
-    kunlar = kunlar + ish.kun;
+    week.push(task.name);
+    weekDays = weekDays + task.days;
   }
-  natija.push(hafta);       // последняя неделя
-  return natija;
+  result.push(week);       // последняя неделя
+  return result;
 }
 
-console.log(haftalar(bolaklar));
-// [['topdim-tugmasi','egasiga-xabar','menda-belgisi'], ['rasm-qoshish'], ['chat']]
-console.log(haftalar(bolaklar).length);   // 3` };
+console.log(splitWeeks(tasks));
+// [['found-button','notify-owner','mine-badge'], ['add-photo'], ['chat']]
+console.log(splitWeeks(tasks).length);   // 3` };
 
 // Shartlar XULQ-ATVORGA bog'langan (manba-regex sanog'i emas): for...of bilan ham,
 // reduce bilan ham yozilgan to'g'ri yechim o'tadi. F-1017-204 dan starter — skelet: 1-shart (massiv ichida massiv)
 // boshidanoq yashil, 2–3 — shart yozilguncha qizil (if (false) da hammasi bitta haftaga tushadi).
-const KOD_DATA = "[{nom:'topdim-tugmasi',kun:1},{nom:'egasiga-xabar',kun:2},{nom:'menda-belgisi',kun:2},{nom:'rasm-qoshish',kun:2},{nom:'chat',kun:4}]";
+// F-1027-01: nomlar inglizcha; eski saqlangan kod (haftalar, nom/kun) ham o'tadi — ma'lumotda ikkala kalit bor.
+const KOD_DATA = "[{name:'found-button',days:1,nom:'found-button',kun:1},{name:'notify-owner',days:2,nom:'notify-owner',kun:2},{name:'mine-badge',days:2,nom:'mine-badge',kun:2},{name:'add-photo',days:2,nom:'add-photo',kun:2},{name:'chat',days:4,nom:'chat',kun:4}]";
+const KOD_FN = "(typeof splitWeeks==='function'?splitWeeks:haftalar)";
 const KOD_TASK = {
   eyebrow: { uz: "Koding · haftalarga bo'lish", ru: 'Кодинг · разбивка по неделям' },
-  title: { uz: 'app.js — haftalar() ga bitta shart yozing', ru: 'app.js — допишите одно условие в haftalar()' },
+  title: { uz: 'app.js — splitWeeks() ga bitta shart yozing', ru: 'app.js — допишите одно условие в splitWeeks()' },
   brief: { uz: <>Sikl tayyor, ishlar haftalarga <b>tartib bilan</b> tushadi. Bitta joyni to'ldiring: <code className="qcode">false</code> o'rniga shart — shu ish qo'shilsa, hafta 5 kundan oshib ketadimi?</>, ru: <>Цикл готов, задачи попадают в недели <b>по порядку</b>. Заполните одно место: вместо <code className="qcode">false</code> — условие: если добавить эту задачу, неделя превысит 5 дней?</> }, // F-1017-204: noldan algoritm o'rniga skelet — ichma-ich massiv va taqsimlash o'tilmagan
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// false o\'rniga shart yozing', ru: '// вместо false напишите условие' } }],
   requirements: [
     { id: 'royxat', label: { uz: "Funksiya haftalar ro'yxatini (massiv ichida massivlar) qaytaradi", ru: 'Функция возвращает список недель (массив массивов)' },
-      check: C.evalEquals(`(function(){var r=haftalar(${KOD_DATA});return Array.isArray(r)&&r.length>0&&r.every(Array.isArray);})()`, 'true', { uz: "Har hafta — alohida ro'yxat; bo'sh massiv o'tmaydi", ru: 'Каждая неделя — отдельный список; пустой массив не проходит' }) },
+      check: C.evalEquals(`(function(){var r=${KOD_FN}(${KOD_DATA});return Array.isArray(r)&&r.length>0&&r.every(Array.isArray);})()`, 'true', { uz: "Har hafta — alohida ro'yxat; bo'sh massiv o'tmaydi", ru: 'Каждая неделя — отдельный список; пустой массив не проходит' }) },
     { id: 'sigim', label: { uz: 'Har haftadagi kunlar 5 dan oshmaydi', ru: 'Дни в каждой неделе не превышают 5' },
-      check: C.evalEquals(`(function(){var K={'topdim-tugmasi':1,'egasiga-xabar':2,'menda-belgisi':2,'rasm-qoshish':2,'chat':4};var r=haftalar(${KOD_DATA});if(!Array.isArray(r))return false;var n=0;for(var i=0;i<r.length;i++){if(!Array.isArray(r[i]))return false;var s=0;for(var j=0;j<r[i].length;j++){var e=r[i][j];var nm=(e&&e.nom)?e.nom:e;s+=K[nm]||0;n++;}if(s>5)return false;}return n===5;})()`, 'true', { uz: "Har haftada kunlar yig'indisi 5 dan oshmasin va bitta ish ham tushib qolmasin", ru: 'Сумма дней в каждой неделе не больше 5, и ни одна задача не потеряна' }) },
+      check: C.evalEquals(`(function(){var K={'found-button':1,'notify-owner':2,'mine-badge':2,'add-photo':2,'chat':4};var r=${KOD_FN}(${KOD_DATA});if(!Array.isArray(r))return false;var n=0;for(var i=0;i<r.length;i++){if(!Array.isArray(r[i]))return false;var s=0;for(var j=0;j<r[i].length;j++){var e=r[i][j];var nm=(e&&(e.name||e.nom))?(e.name||e.nom):e;s+=K[nm]||0;n++;}if(s>5)return false;}return n===5;})()`, 'true', { uz: "Har haftada kunlar yig'indisi 5 dan oshmasin va bitta ish ham tushib qolmasin", ru: 'Сумма дней в каждой неделе не больше 5, и ни одна задача не потеряна' }) },
     { id: 'uch', label: { uz: 'Uch hafta chiqdi va tartib saqlangan', ru: 'Вышли три недели, порядок сохранён' },
-      check: C.evalEquals(`(function(){var r=haftalar(${KOD_DATA});if(!Array.isArray(r))return '';var f=[];for(var i=0;i<r.length;i++){var w=r[i]||[];for(var j=0;j<w.length;j++){var e=w[j];f.push((e&&e.nom)?e.nom:e);}}return r.length+'|'+f.join(',');})()`, '3|topdim-tugmasi,egasiga-xabar,menda-belgisi,rasm-qoshish,chat', { uz: "Uch hafta chiqsin va ishlar boshlang'ich tartibda qolsin", ru: 'Должны выйти три недели, а задачи остаться в исходном порядке' }) },
+      check: C.evalEquals(`(function(){var r=${KOD_FN}(${KOD_DATA});if(!Array.isArray(r))return '';var f=[];for(var i=0;i<r.length;i++){var w=r[i]||[];for(var j=0;j<w.length;j++){var e=w[j];f.push((e&&(e.name||e.nom))?(e.name||e.nom):e);}}return r.length+'|'+f.join(',');})()`, '3|found-button,notify-owner,mine-badge,add-photo,chat', { uz: "Uch hafta chiqsin va ishlar boshlang'ich tartibda qolsin", ru: 'Должны выйти три недели, а задачи остаться в исходном порядке' }) },
   ],
 };
 
@@ -1636,7 +1640,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
                       <p>{tr({ uz: "Ikki narsani ushlab turing: hozirgi hafta ro'yxati va undagi kunlar yig'indisi. Ish sig'masa — haftani natijaga qo'shib, yangisini boshlang.", ru: 'Держите две вещи: список текущей недели и сумму её дней. Если задача не помещается — добавьте неделю в результат и начните новую.' })}</p>
-                      <p>{tr({ uz: <>⭐ Qo'shimcha: hafta sig'imini 7 kunga oshiring (<code className="qcode">SIGIM = 7</code>) va <code className="qcode">haftalar(bolaklar).length</code> endi nima qaytarishini ko'ring.</>, ru: <>⭐ Дополнительно: увеличьте ёмкость недели до 7 дней (<code className="qcode">SIGIM = 7</code>) и посмотрите, что теперь вернёт <code className="qcode">haftalar(bolaklar).length</code>.</> })}</p>
+                      <p>{tr({ uz: <>⭐ Qo'shimcha: hafta sig'imini 7 kunga oshiring (<code className="qcode">CAPACITY = 7</code>) va <code className="qcode">splitWeeks(tasks).length</code> endi nima qaytarishini ko'ring.</>, ru: <>⭐ Дополнительно: увеличьте ёмкость недели до 7 дней (<code className="qcode">CAPACITY = 7</code>) и посмотрите, что теперь вернёт <code className="qcode">splitWeeks(tasks).length</code>.</> })}</p>
                     </div>}
                   </div>
                   {done && <div className="done-mini fade-step">{tr({ uz: <>✅ Uch hafta chiqdi <span className="dm-sub">— kod endi ishni haftalarga o'zi bo'ladi</span></>, ru: <>✅ Вышли три недели <span className="dm-sub">— код теперь сам разбивает задачу по неделям</span></> })}</div>}

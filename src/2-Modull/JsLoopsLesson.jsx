@@ -260,7 +260,7 @@ const RECAPS = {
       {
         ic: "🍎",
         h: { uz: "[0] — birinchi element", ru: '[0] — первый элемент' },
-        body: { uz: <>Massivda sanoq <b>0 dan</b> boshlanadi: mevalar[0] — birinchi meva.</>, ru: <>В массиве счёт начинается <b>с 0</b>: mevalar[0] — первый фрукт.</> },
+        body: { uz: <>Massivda sanoq <b>0 dan</b> boshlanadi: fruits[0] — birinchi meva.</>, ru: <>В массиве счёт начинается <b>с 0</b>: fruits[0] — первый фрукт.</> },
         vis: <RcFlow items={["[0] olma", "[1] banan", "[2] uzum"]} sep="·" />,
         ask: { uz: "Unda \"uzum\" ni chaqirish uchun qaysi indeksni yozamiz?", ru: 'А какой индекс напишем, чтобы получить "uzum"?' }
       },
@@ -1192,12 +1192,12 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Massiv', ru: 'Массив' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Elementlarni bosing', ru: 'Нажимайте на элементы' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ko'p narsani <span className="italic" style={{ color: T.accent }}>bitta joyda</span> qanday saqlaymiz?</>, ru: <>Как хранить много всего <span className="italic" style={{ color: T.accent }}>в одном месте</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>4 ta meva uchun 4 ta alohida o'zgaruvchi (<span className="mono">meva1, meva2…</span>) yasash — noqulay. 100 ta bo'lsa-chi? Yaxshisi — hammasini bitta <b style={{ color: T.ink }}>massivga</b>, raqamlangan qator qutilarga joylaymiz. Eng qizig'i: qutilar <b style={{ color: T.accent }}>1 dan emas, 0 dan</b> sanaladi! Dasturlashda shunday qabul qilingan: birinchi element — 0-o'rinda. Har bir qutini bosib ko'ring.</>, ru: <>Делать 4 отдельные переменные для 4 фруктов (<span className="mono">meva1, meva2…</span>) — неудобно. А если их 100? Лучше сложить всё в один <b style={{ color: T.ink }}>массив</b> — ряд пронумерованных коробок. Самое интересное: коробки считаются <b style={{ color: T.accent }}>не с 1, а с 0</b>! Так принято в программировании: первый элемент — на месте 0. Нажмите на каждую коробку.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>4 ta meva uchun 4 ta alohida o'zgaruvchi (<span className="mono">fruit1, fruit2…</span>) yasash — noqulay. 100 ta bo'lsa-chi? Yaxshisi — hammasini bitta <b style={{ color: T.ink }}>massivga</b>, raqamlangan qator qutilarga joylaymiz. Eng qizig'i: qutilar <b style={{ color: T.accent }}>1 dan emas, 0 dan</b> sanaladi! Dasturlashda shunday qabul qilingan: birinchi element — 0-o'rinda. Har bir qutini bosib ko'ring.</>, ru: <>Делать 4 отдельные переменные для 4 фруктов (<span className="mono">fruit1, fruit2…</span>) — неудобно. А если их 100? Лучше сложить всё в один <b style={{ color: T.ink }}>массив</b> — ряд пронумерованных коробок. Самое интересное: коробки считаются <b style={{ color: T.accent }}>не с 1, а с 0</b>! Так принято в программировании: первый элемент — на месте 0. Нажмите на каждую коробку.</> })}</Mentor>
         <Zoomable off={active === null}>{/* F-0926-06: ramka olingach ⛶ bo'sh ustunda yolg'iz qolmasin */}
         <div className="split">
           <Col>
             <div className="codebox fade-up delay-1">
-              <div><KW>let</KW> mevalar = [<STR>"olma"</STR>, <STR>"banan"</STR>, <STR>"uzum"</STR>, <STR>"qulupnay"</STR>]</div>
+              <div><KW>let</KW> fruits = [<STR>"olma"</STR>, <STR>"banan"</STR>, <STR>"uzum"</STR>, <STR>"qulupnay"</STR>]</div>
             </div>
             <p className="flow-label">{/* F-0926-06: «— indeksini bosing» olindi, chorlov mentor gapida (159/7) */}{tr({ uz: 'Qutilar', ru: 'Коробки' })}</p>
             <div className="arr-row">
@@ -1215,7 +1215,7 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <div className="sk-info fade-step" key={active}>
                 <p className="flow-label" style={{ margin: '0 0 8px' }}>{tr({ uz: 'Indeks orqali olamiz', ru: 'Получаем по индексу' })}</p>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
-                  <span className="mono" style={{ fontSize: 'clamp(18px,3vw,24px)', color: T.ink }}>mevalar[<span style={{ color: T.accent, fontWeight: 700 }}>{active}</span>]</span>
+                  <span className="mono" style={{ fontSize: 'clamp(18px,3vw,24px)', color: T.ink }}>fruits[<span style={{ color: T.accent, fontWeight: 700 }}>{active}</span>]</span>
                   <span className="mono" style={{ color: T.ink3, fontSize: 20 }}>→</span>
                   <span style={{ fontSize: 26 }}>{ARR[active].e}</span>
                   <span className="mono" style={{ fontSize: 'clamp(16px,2.4vw,20px)', color: T.success, fontWeight: 700 }}>"{ARR[active].n}"</span>
@@ -1235,8 +1235,8 @@ const Screen8 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 9 — TEST 3 (indeks) =====
 const Screen9 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 2-savol', ru: 'Практика · вопрос 2' })}
-    questionText="mevalar = ['olma','banan','uzum']. mevalar[0] nima?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>let</KW> mevalar = [<STR>"olma"</STR>, <STR>"banan"</STR>, <STR>"uzum"</STR>]</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>mevalar[0]</span> nimaga teng?</>, ru: <>Чему равно <span className="mono" style={{ color: T.accent }}>mevalar[0]</span>?</> })}</h2></>}
+    questionText="fruits = ['olma','banan','uzum']. fruits[0] nima?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><KW>let</KW> fruits = [<STR>"olma"</STR>, <STR>"banan"</STR>, <STR>"uzum"</STR>]</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <><span className="mono" style={{ color: T.accent }}>fruits[0]</span> nimaga teng?</>, ru: <>Чему равно <span className="mono" style={{ color: T.accent }}>fruits[0]</span>?</> })}</h2></>}
     options={['"banan"', '"olma"', { uz: "Xato — [0] yo'q", ru: 'Ошибка — [0] не существует' }, '"uzum"']} correctIdx={1}
     explainCorrect={{ uz: `Indeks 0 dan boshlanadi — \`[0]\` birinchi elementni oladi.`, ru: 'Индекс начинается с 0 — `[0]` берёт первый элемент.' }}
     explainWrong={{
@@ -1276,12 +1276,12 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="codebox fade-up delay-1">
-              <div><KW>let</KW> mevalar = [{ARR.map((it, i) => (
+              <div><KW>let</KW> fruits = [{ARR.map((it, i) => (
                 <span key={i}><span className={`arr-lit${hi === i ? ' scan' : ''}`}><STR>"{it.n}"</STR></span>{i < N - 1 ? ', ' : ''}</span>
               ))}]</div>
               <div style={{ height: '0.7em' }} />
-              <div><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; mevalar.<FN>length</FN>; i++) {'{'}</div>
-              <div style={{ paddingLeft: 18 }}><FN>console</FN>.<FN>log</FN>(mevalar[<span style={{ color: T.accent }}>i</span>])</div>
+              <div><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; fruits.<FN>length</FN>; i++) {'{'}</div>
+              <div style={{ paddingLeft: 18 }}><FN>console</FN>.<FN>log</FN>(fruits[<span style={{ color: T.accent }}>i</span>])</div>
               <div>{'}'}</div>
             </div>
             <div className="arr-row fade-up delay-2">
@@ -1335,9 +1335,9 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <div className="codebox fade-up delay-1" style={{ lineHeight: 1.7 }}>
-              <div><KW>let</KW> dostlar = [<STR>"Ali"</STR>, <STR>"Laylo"</STR>, <STR>"Bobur"</STR>]</div>
-              <div style={{ marginTop: 10 }}><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; dostlar.<FN>length</FN>; i++) {'{'}</div>
-              <div style={{ paddingLeft: 16 }}><FN>console</FN>.<FN>log</FN>(<STR>{tr({ uz: '"Bayram muborak, "', ru: '"С праздником, "' })}</STR> + dostlar[i])</div>
+              <div><KW>let</KW> friends = [<STR>"Ali"</STR>, <STR>"Laylo"</STR>, <STR>"Bobur"</STR>]</div>
+              <div style={{ marginTop: 10 }}><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; friends.<FN>length</FN>; i++) {'{'}</div>
+              <div style={{ paddingLeft: 16 }}><FN>console</FN>.<FN>log</FN>(<STR>{tr({ uz: '"Bayram muborak, "', ru: '"С праздником, "' })}</STR> + friends[i])</div>
               <div>{'}'}</div>
             </div>
             <Terminal maxH={90} lines={out} empty={{ uz: '// ▶ tugmani bosing', ru: '// ▶ нажмите кнопку' }} title={{ uz: 'xabarlar', ru: 'сообщения' }} />
@@ -1358,7 +1358,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 );
               })}
             </div>
-            <div className="fade-up delay-2"><SiklZavodi count={out.length} max={N} init="i = 0" cond="i < dostlar.length" step="i++" load={NAMES} done={done} compact ding={false} /></div>
+            <div className="fade-up delay-2"><SiklZavodi count={out.length} max={N} init="i = 0" cond="i < friends.length" step="i++" load={NAMES} done={done} compact ding={false} /></div>
           </Col>
         </div>
         </Zoomable>
@@ -1370,8 +1370,8 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 12 — TEST 4 (aylanib chiqish) =====
 const Screen12 = (props) => (
   <QuestionScreen {...props} scope="module-mikro" eyebrow={tr({ uz: 'Mashq · 3-savol', ru: 'Практика · вопрос 3' })}
-    questionText="dostlar massivida 5 ta nom bor. for (i=0; i<dostlar.length; i++) sikli necha marta ishlaydi?"
-    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><CM>{tr({ uz: '// dostlar = 5 ta nom', ru: '// dostlar = 5 имён' })}</CM></div><div><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; dostlar.<FN>length</FN>; i++) {'{ … }'}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <>Sikl <span className="italic" style={{ color: T.accent }}>necha marta</span> ishlaydi?</>, ru: <>Цикл сработает <span className="italic" style={{ color: T.accent }}>сколько раз</span>?</> })}</h2></>}
+    questionText="friends massivida 5 ta nom bor. for (i=0; i<friends.length; i++) sikli necha marta ishlaydi?"
+    question={<><p className="eyebrow" style={{ color: T.accent }}>{tr({ uz: "To'g'ri javobni tanlang", ru: 'Выберите верный ответ' })}</p><div className="codebox" style={{ marginTop: 10, marginBottom: 6 }}><div><CM>{tr({ uz: '// friends = 5 ta nom', ru: '// friends = 5 имён' })}</CM></div><div><KW>for</KW> (<KW>let</KW> i = <NUM>0</NUM>; i &lt; friends.<FN>length</FN>; i++) {'{ … }'}</div></div><h2 className="title h-ask" style={{ marginTop: 6 }}>{tr({ uz: <>Sikl <span className="italic" style={{ color: T.accent }}>necha marta</span> ishlaydi?</>, ru: <>Цикл сработает <span className="italic" style={{ color: T.accent }}>сколько раз</span>?</> })}</h2></>}
     options={[{ uz: '4 marta', ru: '4 раза' }, { uz: '5 marta', ru: '5 раз' }, { uz: '6 marta', ru: '6 раз' }, { uz: 'Cheksiz', ru: 'Бесконечно' }]} correctIdx={1}
     explainCorrect={{ uz: "`i` 0 dan 4 gacha yuradi — har element uchun bir marta.", ru: '`i` идёт от 0 до 4 — по разу на каждый элемент.' }}
     explainWrong={{
@@ -1749,10 +1749,10 @@ const QUIZ_BANK = [
   { q: { uz: "Cheksiz sikl qachon yuzaga keladi?", ru: 'Когда возникает бесконечный цикл?' }, opts: [{ uz: "Shart juda katta bo'lsa", ru: 'если условие слишком большое' }, { uz: "Qadam shartga yaqinlashmasa", ru: 'если шаг не приближает к условию' }, { uz: "Massiv bo'sh bo'lsa", ru: 'если массив пустой' }, { uz: "`i` ni yozib qo'ysak", ru: 'если записать `i`' }], correct: 1 },
   { q: { uz: "Massivda indekslar nechadan boshlanadi?", ru: 'С чего начинаются индексы в массиве?' }, opts: [{ uz: "1 dan", ru: 'с 1' }, { uz: "-1 dan", ru: 'с -1' }, { uz: "0 dan", ru: 'с 0' }, { uz: "uzunligidan", ru: 'с длины' }], correct: 2 },
   { q: { uz: "`['a','b','c']` massivida `'c'` ning indeksi qaysi?", ru: "Какой индекс у `'c'` в массиве `['a','b','c']`?" }, opts: ["1", "3", "2", "0"], correct: 2 },
-  { q: { uz: "`massiv.length` nimani beradi?", ru: 'Что даёт `massiv.length`?' }, opts: [{ uz: "Birinchi element", ru: 'Первый элемент' }, { uz: "Oxirgi indeksni", ru: 'Последний индекс' }, { uz: "Elementlar sonini", ru: 'Число элементов' }, { uz: "Massiv nomini", ru: 'Имя массива' }], correct: 2 },
+  { q: { uz: "`fruits.length` nimani beradi?", ru: 'Что даёт `fruits.length`?' }, opts: [{ uz: "Birinchi element", ru: 'Первый элемент' }, { uz: "Oxirgi indeksni", ru: 'Последний индекс' }, { uz: "Elementlar sonini", ru: 'Число элементов' }, { uz: "Massiv nomini", ru: 'Имя массива' }], correct: 2 },
   { q: { uz: "`for (let i=1; i<=10; i+=2)` qaysi sonlarni beradi?", ru: 'Какие числа даст `for (let i=1; i<=10; i+=2)`?' }, opts: ["1,2,3,...,10", { uz: "faqat 10", ru: 'только 10' }, "2,4,6,8,10", "1,3,5,7,9"], correct: 3 },
   { q: { uz: "`while` sikli qachongacha ishlaydi?", ru: "До каких пор работает цикл `while`?" }, opts: [{ uz: "Massiv bor bo'lsa", ru: "Пока есть массив" }, { uz: "Faqat bir marta", ru: "Только один раз" }, { uz: "Doim aniq 10 marta", ru: "Всегда ровно 10 раз" }, { uz: "Shart `true` ekan", ru: "Пока условие `true`" }], correct: 3 },
-  { q: { uz: "Massivni to'liq aylanish uchun shart qanday yoziladi?", ru: 'Как пишется условие для полного обхода массива?' }, opts: ["`i <= massiv.length`", "`i == massiv.length`", "`i > 0`", "`i < massiv.length`"], correct: 3 },
+  { q: { uz: "Massivni to'liq aylanish uchun shart qanday yoziladi?", ru: 'Как пишется условие для полного обхода массива?' }, opts: ["`i <= fruits.length`", "`i == fruits.length`", "`i > 0`", "`i < fruits.length`"], correct: 3 },
 ];
 const quizPts = (elapsedMs) => elapsedMs <= 500 ? 1000 : Math.max(0, Math.round(1000 * (1 - (Math.min(elapsedMs, QUIZ_MS) / QUIZ_MS) / 2)));
 // Bitta o'yinchining barcha javoblaridan yakuniy hisob (hamma klientda bir xil chiqadi)
@@ -2300,9 +2300,9 @@ const JS_LOOPS_FLASHCARDS = [
   { front: { uz: "Sikl qachon to'xtaydi?", ru: 'Когда цикл останавливается?' }, back: { uz: "shart yolg'on bo'lganda", ru: 'когда условие ложно' }, note: { uz: "masalan i = 6 bo'lsa, i <= 5 endi bajarilmaydi", ru: 'например при i = 6 условие i <= 5 уже не выполняется' } },
   { front: { uz: "Hech to'xtamaydigan sikl qanday ataladi?", ru: 'Как называется цикл, который никогда не останавливается?' }, back: { uz: 'cheksiz sikl', ru: 'бесконечный цикл' }, note: { uz: "qadam shartga yaqinlashtirmasa shunday bo'ladi", ru: 'так бывает, если шаг не приближает к условию' } },
   { front: { uz: 'Bir nechta qiymatni bitta joyda saqlash uchun nima ishlatiladi?', ru: 'Что используют, чтобы хранить несколько значений в одном месте?' }, back: { uz: 'massiv', ru: 'массив' }, note: "['olma', 'anor', 'uzum']" },
-  { front: { uz: 'Massivning birinchi elementini qanday olasiz?', ru: 'Как взять первый элемент массива?' }, back: 'massiv[0]', note: { uz: 'sanoq 0 dan boshlanadi', ru: 'счёт начинается с 0' } },
-  { front: { uz: 'Massivda nechta element borligini nima aytadi?', ru: 'Что подскажет, сколько элементов в массиве?' }, back: 'massiv.length', note: { uz: "3 ta element bo'lsa → 3", ru: 'если элементов 3 → 3' } },
-  { front: { uz: 'Massivning har bir elementini birma-bir ishlatish uchun nima yoziladi?', ru: 'Что пишут, чтобы использовать каждый элемент массива по одному?' }, back: 'for + massiv.length', note: { uz: 'i = 0 dan massiv.length gacha', ru: 'от i = 0 до massiv.length' } },
+  { front: { uz: 'Massivning birinchi elementini qanday olasiz?', ru: 'Как взять первый элемент массива?' }, back: 'fruits[0]', note: { uz: 'sanoq 0 dan boshlanadi', ru: 'счёт начинается с 0' } },
+  { front: { uz: 'Massivda nechta element borligini nima aytadi?', ru: 'Что подскажет, сколько элементов в массиве?' }, back: 'fruits.length', note: { uz: "3 ta element bo'lsa → 3", ru: 'если элементов 3 → 3' } },
+  { front: { uz: 'Massivning har bir elementini birma-bir ishlatish uchun nima yoziladi?', ru: 'Что пишут, чтобы использовать каждый элемент массива по одному?' }, back: 'for + fruits.length', note: { uz: 'i = 0 dan fruits.length gacha', ru: 'от i = 0 до fruits.length' } },
 ];
 // F-0803-13/14: KARTA JAVOBI UZUNLIKKA MOSLASHADI.
 // Muammo edi: `.fc-tag` hamma javobga bir xil katta monoshrift berardi — u bir so'zlik javob
@@ -2487,13 +2487,13 @@ const TASK_SANOQ = {
 const TASK_MEVA = {
   eyebrow: { uz: 'Praktika · massiv', ru: 'Практика · массив' },
   title: { uz: "Ro'yxatni sikl bilan chiqaring", ru: 'Выведите список циклом' },
-  brief: { uz: "Massiv yozing: `let mevalar = [\"olma\", \"banan\", \"uzum\"]`. Keyin `for` sikli bilan har bir mevani konsolga chiqaring — `console.log(mevalar[i])`. Konsolda uchalasi ketma-ket chiqadi.", ru: 'Напишите массив: `let mevalar = [\"olma\", \"banan\", \"uzum\"]`. Затем циклом `for` выведите каждый фрукт — `console.log(mevalar[i])`. В консоли появятся все три подряд.' },
+  brief: { uz: "Massiv yozing: `let fruits = [\"olma\", \"banan\", \"uzum\"]`. Keyin `for` sikli bilan har bir mevani konsolga chiqaring — `console.log(fruits[i])`. Konsolda uchalasi ketma-ket chiqadi.", ru: 'Напишите массив: `let fruits = [\"olma\", \"banan\", \"uzum\"]`. Затем циклом `for` выведите каждый фрукт — `console.log(fruits[i])`. В консоли появятся все три подряд.' },
   files: [
     { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'arr', label: { uz: 'massiv yozildi', ru: 'массив написан' }, check: C.js(/\[\s*["'][^"']+["']\s*,/, { uz: "Massivni shunday yozing: `let mevalar = [\"olma\", \"banan\", \"uzum\"]`", ru: 'Напишите массив так: `let mevalar = [\"olma\", \"banan\", \"uzum\"]`' }) },
-    { id: 'log', label: { uz: 'konsolda uchala meva', ru: 'в консоли все три фрукта' }, check: C.logsEach(['olma', 'banan', 'uzum'], { /* F-1017-206: tartibsiz */ uz: "Sikl ichida `console.log(mevalar[i])` yozing", ru: 'Внутри цикла напишите `console.log(mevalar[i])`' }) },
+    { id: 'arr', label: { uz: 'massiv yozildi', ru: 'массив написан' }, check: C.js(/\[\s*["'][^"']+["']\s*,/, { uz: "Massivni shunday yozing: `let fruits = [\"olma\", \"banan\", \"uzum\"]`", ru: 'Напишите массив так: `let fruits = [\"olma\", \"banan\", \"uzum\"]`' }) },
+    { id: 'log', label: { uz: 'konsolda uchala meva', ru: 'в консоли все три фрукта' }, check: C.logsEach(['olma', 'banan', 'uzum'], { /* F-1017-206: tartibsiz */ uz: "Sikl ichida `console.log(fruits[i])` yozing", ru: 'Внутри цикла напишите `console.log(fruits[i])`' }) },
   ],
 };
 

@@ -1264,7 +1264,7 @@ const a2Prompt = (nom, m) => {
   const tl = DK_TOIFA.filter(t => m.some(x => x.t === t.id));
   const qator = (L) => m.map(x => `- ${x.n.trim()}, ${narxSon(x.p)} ${L === 'uz' ? "so'm" : 'сум'}, ${DK_TOIFA.find(t => t.id === x.t)[L]}`).join('\n');
   return {
-    uz: `${nom} uchun bitta sahifali do'kon yasa. index.html, style.css va script.js'ni alohida, to'liq yoz.\n1. Mahsulotlar script.js da massivda tursin — har biri { nom, narx, toifa }:\n${qator('uz')}\n2. Kartochkalarni for sikli bilan chiz: nomi, narxi va toifasi.\n3. Tepada toifa tugmalari: Hammasi, ${tl.map(t => t.uz).join(', ')}. Bosilganda if bilan faqat shu toifa kartochkalari qolsin.\nHozircha faqat shu: savat va qidiruv qo'shma. Har bo'limga qisqa izoh yoz.`,
+    uz: `${nom} uchun bitta sahifali do'kon yasa. index.html, style.css va script.js'ni alohida, to'liq yoz.\n1. Mahsulotlar script.js da massivda tursin — har biri { name, price, category }:\n${qator('uz')}\n2. Kartochkalarni for sikli bilan chiz: nomi, narxi va toifasi.\n3. Tepada toifa tugmalari: Hammasi, ${tl.map(t => t.uz).join(', ')}. Bosilganda if bilan faqat shu toifa kartochkalari qolsin.\nHozircha faqat shu: savat va qidiruv qo'shma. Har bo'limga qisqa izoh yoz.`,
     ru: `Сделай одностраничный магазин «${nom}». Напиши index.html, style.css и script.js отдельно и целиком.\n1. Товары храни в script.js в массиве — каждый { name, price, category }:\n${qator('ru')}\n2. Карточки рисуй циклом for: название, цена и категория.\n3. Сверху кнопки категорий: Все, ${tl.map(t => t.ru).join(', ')}. По нажатию через if остаются только карточки этой категории.\nПока только это: корзину и поиск не добавляй. К каждому разделу — короткий комментарий.`
   };
 };

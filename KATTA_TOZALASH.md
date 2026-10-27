@@ -1996,72 +1996,21 @@ Yakunda `allowFiles` bo'sh bo'lishi kerak. Eski (`src/eski/PmAudienceLesson`) te
 «Natijani ochish» bilan; bo'sh buyurtma qizil. Qolganlari shu naqshga — alohida qaror. Ov: `grep -rlE "= picked !== null \|\| isMentor" src --include='*.jsx'`.
 **31-c. «Bu slayd nima uchun» (111-qonun) — `MentorNote` mexanizmi umumiy komponentga (`src/live/` yoki qolip) ko'chirilsa hamma PM darsi birdan oladi; hozir har darsda inline nusxa.**
 
-## F-1027-01 ⬜ KODDA O'ZBEKCHA NOMLAR → INGLIZCHA (57 dars, 2026-10-27)
-**Topilma:** foydalanuvchi m3-02 «User Story» koding-ekranini ruscha rejimda ko'rdi: `function` (ingliz) + `hikoyaYasa(kim, nima, natija)` (o'zbek) + ruscha izoh — «3–4 xil til bo'lib ketgan».
-**Qaror (foydalanuvchi, 27.10 — A variant):** nom inglizcha va ikkala tilda bir xil; izoh va satr-matn o'quvchi tilida; funksiya ostida «`who — kim · what — nima`» izoh-qatori. Qonun: `DARS_ETALON` 11.12 (+27.10 aniqlashtirish) · `PM_DARS_ETALON` **112** · `RU_I18N_SPEC` §9 tuzatmasi · ikki tekshiruvchiga ov-bandi.
-**Pilot ✅:** m3-02 `src/pm/PmUserStoryLesson.jsx` — `makeStory(who, what, result)`, eski saqlangan kod ham o'tadi (probe 7/7), gates 11/13 (`tell`, `emoji` — eski qarz, tahrirdan oldin ham shu son).
-**Detektor:** `node feedback/F-1027-01-kod-tili/kod-nom-supur.mjs` (esbuild → satr-literallar → lug'atda yo'q nom). Nomzod ro'yxati to'liq: `feedback/F-1027-01-kod-tili/supurish-2026-10-27.txt`.
-Ro'yxatda harness-ichki nomlar ham bor (`__tozala`, `__qatorlar` — o'quvchi ko'rmaydi) — har darsda qo'lda ajratiladi. Tuzatilgach detektor `npm run lint:kodnom` darvozasiga aylantirilishi mumkin (alohida qaror).
-**Tartib:** modulma-modul; har dars uchun «eski nom → yangi nom» jadvali → foydalanuvchi tasdig'i → kod + probe/regex + mentor/brief matni (uz+ru) → eski saqlov mosligi → `npm run gates` → ru ko'z bilan.
-**Alohida qaror kerak:** m2-05 `JsFunctionsLesson` — bolaning birinchi funksiya darsi (`salom(ism)` → `greet(name)`): 11.12 bilan «so'zlar tushunarli» tamoyili to'qnashadi.
-**Shu modul (3-Modul) navbatda birinchi:** m3-05 `PmLesson8` · m3-10 `PmLesson9` · m3-14 `PmLesson10` · m3-07 `ReactCrudPracticeLesson` · m3-09 `ReactApiPostLesson` · m3-13 `ReactBuildSiteLesson`.
+## F-1027-01 🔄 KODDA O'ZBEKCHA NOMLAR → INGLIZCHA (27.10.2026)
+**Topilma:** foydalanuvchi m3-02 «User Story» koding-ekranini ruscha rejimda ko'rdi: `function` (ingliz) + `hikoyaYasa(kim, nima)` (o'zbek) + ruscha izoh — «3–4 xil til bo'lib ketgan». Foydalanuvchi: «barcha darslarni tekshir, qolib ketmasin»; baza nomlari ham — «Ha, hammasi».
+**Qonun:** `DARS_ETALON` 11.12 (+27.10 aniqlashtirish) · `PM_DARS_ETALON` **112** (a–f) · `RU_I18N_SPEC` §9 tuzatmasi · ikki tekshiruvchiga ov-bandi.
+**Vositalar** (`feedback/F-1027-01-kod-tili/`): `kodnom.mjs scan|decl|apply` (esbuild manba-xaritasi → faqat kod-kontekst) · `fayl-hisobot.mjs` · `pmkod.mjs` (PM-mashq: starter + ikki kalitli ma'lumot + eski-kod mosligi) · `sinov.mjs` · `gates-solishtir.sh` (darvoza — HEAD bilan solishtirma) · `repo-nomlar.txt` (3 repo, barcha teg va branch).
 
-| Dars fayli | Nomzod | Namuna |
-|---|---|---|
-| `11-Modull/PaymentWebhookLesson` | 21 | kutilgan(var) javob(class/id) yangi(class/id) radxabar(class/id) |
-| `11-Modull/PmUnitEconomicsLesson` | 20 | kanal(var) meniki(var) jalbNarxi(fn) sarf(param) |
-| `10-Modull/BreakAndFixLesson` | 18 | belgi(class/id) oyin(class/id) hisob(class/id) xabarlar(class/id) |
-| `8-Modull/EventTrackingLesson` | 17 | tanla(fn) soat(param) saqla(fn) xabar(fn) |
-| `10-Modull/WebSocketBasicsLesson` | 11 | ulanish(var) oyin(class/id) hisob(class/id) yangila(class/id) |
-| `8-Modull/SecurityBasicsLesson` | 8 | kalit(var) qiymatlar(param) korsat(fn) natija(param) |
-| `9-Modull/PmInterviewsOneLesson` | 8 | goyalar(var) umumiy(var) savollar(fn) ustun(var) |
-| `9-Modull/PmRoadmapLesson` | 8 | ishlar(var) ufq(fn) ish(param) hozirSoni(param) |
-| `2-Modull/JsFunctionsLesson` | 7 | zarar(fn) ochko(var) kuch(param) salom(fn) |
-| `4c-Modull/PmLesson17` | 7 | haftalar(fn) bolaklar(param) SIGIM(var) natija(var) |
-| `5-Modull/BotAiAgentLesson` | 7 | taom(param) soni(param) narx(var) manzil(param) |
-| `9-Modull/PlatformChoiceLesson` | 7 | qoshilgan(var) sora(fn) javob(var) yangila(var) |
-| `5-Modull/PmLesson21` | 6 | hisob(fn) kunlar(param) natija(var) bugungilar(var) |
-| `10-Modull/PmGrowthPitchLesson` | 6 | haftalar(var) sarlavha(var) BALANDLIK(var) engKatta(var) |
-| `4c-Modull/PmLesson18` | 5 | olchagich(fn) MANZIL(var) boshlandi(var) javob(var) |
-| `10-Modull/PmChannelsLesson` | 5 | linklar(var) kanalniOl(fn) belgilar(var) qator(var) |
-| `2-Modull/PmLesson5` | 4 | ochilishRoyxati(fn) nomlar(param) darajalar(param) natija(var) |
-| `6-Modull/PmLesson22` | 4 | yozilmaganKataklar(fn) varaq(param) NOMLAR(var) natija(var) |
-| `6-Modull/PmLesson23` | 4 | chegaraKerak(fn) ishlar(param) dokonIshlari(var) botIshlari(var) |
-| `7-Modull/PmUsabilityTestLesson` | 4 | toxtashlar(fn) royxat(param) chegara(param) harakatlar(var) |
-| `8-Modull/PmYearPathLesson` | 4 | vaqtChizigi(fn) royxat(param) keyin(param) loyihalar(var) |
-| `9-Modull/PmTenIdeasLesson` | 4 | goyalar(var) qatorlar(fn) karta(var) sarlavha(class/id) |
-| `9-Modull/PmFinalIdeaLesson` | 4 | yozuvlar(var) sanoq(fn) muammoSoni(var) belgiSoni(var) |
-| `9-Modull/LivePrototypeLesson` | 4 | oyinlar(var) oyin(class/id) hisob(class/id) tugma(class/id) |
-| `1-Modull/HtmlPractice` | 3 | konikmalar(class/id) aloqa(class/id) loyihalar(class/id) |
-| `2-Modull/PracticeLesson1` | 3 | rejim(class/id) yubor(class/id) xabar(class/id) |
-| `2-Modull/PracticeLesson4` | 3 | savat(var) mahsulotlar(var) jamiHisobla(fn) |
-| `4a-Modull/PmLesson15` | 3 | singanlar(fn) odamlar(param) sigim(var) |
-| `4b-Modull/PmLesson16` | 3 | ijaraNarxi(fn) BOSHLASH(var) DAQIQA(var) |
-| `pm/PmMetricsLesson` | 3 | javoblar(param) kelganlar(var) keraginiOlganlar(var) |
-| `6-Modull/PmLesson25` | 3 | dalillar(fn) raqamlar(param) royxat(var) |
-| `7-Modull/PmProductProblemLesson` | 3 | muammolar(fn) royxat(param) yozuvlar(var) |
-| `7-Modull/PmFiveInterviewsLesson` | 3 | yozilmagan(fn) yozuv(param) yozuvlar(var) |
-| `9-Modull/ExpoPrototypeLesson` | 3 | oyin(var) oyinlar(class/id) karta(class/id) |
-| `3-Modull/PmLesson8` | 2 | Karta(fn) ISHLAR(var) |
-| `3-Modull/ReactCrudPracticeLesson` | 2 | yangi(var) qoshish(fn) |
-| `3-Modull/PmLesson9` | 2 | qabulQilinadimi(fn) buyurtma(param) |
-| `3-Modull/PmLesson10` | 2 | BandQilish(fn) bosildi(fn) |
-| `4-Modull/PmLesson11` | 2 | yoqqanlar(fn) tarix(param) |
-| `4-Modull/PmLesson14` | 2 | JoylarPaneli(fn) yukla(fn) |
-| `5-Modull/BotAiBrainLesson` | 2 | tarix(var) javob(var) |
-| `6-Modull/PmLesson24` | 2 | reja(var) ufqlar(var) |
-| `7-Modull/PmInterviewMvpLesson` | 2 | yozuvlar(var) shikoyatlar(var) |
-| `7-Modull/AnimationLesson` | 2 | kataklar(class/id) katak(class/id) |
-| `2-Modull/PmMuammoIzlash` | 1 | birinchi(class/id) |
-| `2-Modull/JsVarsLesson` | 1 | yil(var) |
-| `2-Modull/JsLoopsLesson` | 1 | mevalar(var) |
-| `2-Modull/PeanStackLesson` | 1 | mahsulotlar(var) |
-| `2-Modull/PracticeLesson3` | 1 | qidiruv(class/id) |
-| `3-Modull/ReactApiPostLesson` | 1 | yangi(var) |
-| `3-Modull/ReactBuildSiteLesson` | 1 | TaomCard(fn) |
-| `4b-Modull/JestUnitTestLesson` | 1 | natija(var) |
-| `5-Modull/PmLesson19` | 1 | guruhlar(var) |
-| `5-Modull/BotStatefulMemoryLesson` | 1 | holatlar(var) |
-| `5-Modull/PmLesson20` | 1 | javoblar(var) |
-| `6-Modull/PipelineProjectLesson` | 1 | javob(var) |
-| `9-Modull/PmIdeaRiceLesson` | 1 | goyalar(var) |
+### ✅ Bajarildi (27.10) — 59 dars + 4 uyga vazifa
+- **1–4c-Modul (texnik):** HtmlPractice (`#about/#projects/#contact`) · JsVars · JsLoops · JsFunctions (`damage(power)`, `greet`, `sayHello(name)`, `add` — regex-tekshiruvlar ham) · PeanStack · PracticeLesson1/3/4 (do'kon: `products/cart/calcTotal`, `{ name, price, category }` ikkala tilda) · React darslari (`newGame`, `setName`, `FoodCard`, `myGames`, `total`) · DataIntro/DbSqlNosql (`image/title/caption/text`) · PostgresCrud (`products(name, price, stock)`) · AvtoIjara (`cars(model, daily_price, year)`, baza `car_rental` — FullstackConnect «undefined» saboqi saqlandi) · AvtoStoyanka (`spots/sessions/spot_id/plate/fee`, `/api/enter|exit|revenue`; JOIN-tekshiruv) · Node/Routing (`/hello`, `/time`) · Jest (`result/expected`).
+- **PM (1–11-Modul) kompilyator/VS Code mashqlari:** PmLesson5, 8–25, PmMuammoIzlash, pm/PmMetrics, PmUserStory (m3-02, LMS paket `yuklash-2026-10-27-prod` — bu reliz bilan almashadi), 7–11-Modul PM: ProductProblem · FiveInterviews · InterviewMvp · UsabilityTest · YearPath · TenIdeas · IdeaRice · InterviewsOne · FinalIdea · Roadmap · Channels · GrowthPitch · UnitEconomics. Bir tilli starterlar `{uz, ru}` ga o'tdi; har mashqda tekshiruv yangi, eski saqlangan kod va starterda sinaldi (✓✓✓ / ✓✓✓ / asl holat).
+- **Uyga vazifa** (`uyga-vazifa-v2`): 2-10 (`#skills`) · 3-6 (`damage/health/total` + rubrika) · 3-11/3-12 (do'kon starter va yechim). Manba → `gen-hw-qa2` → `lms-paket.mjs` (faqat shu 4 vazifa o'zgardi) → `hw-v2-kartalar --yoz`. **LMS'dagi 4 uyga vazifa ham qayta yuklanadi.**
+- Darvozalar: o'zgargan 59 faylda yangi xato 0 (`tell`/`emoji` — eski qarz, sanog'i HEAD bilan bir xil); `lint:til` 0 error.
+
+### ⬜ Qoldi — repolar bilan birga (alohida qaror)
+O'quvchi loyiha repolari (`Azizbekcrypto/maydon`, `maydon-jamoa`, `TelegramBotNest`; 30+67 teg) kodni o'zbekcha nomlar bilan saqlaydi (`oyinchilar`, `hodisaYoz`, `sora()`, `PITSALAR`, `TOLOV_KALITI`…). Dars bilan repo bir xil bo'lishi kerak — faqat darsni o'zgartirsa «ortda qoldim» tegidan boshlagan o'quvchi adashadi. Kerak: repolar tarixini qayta yozish + force-push + darslar birga (22 dars):
+5-M: BotAiAgent · BotAiBrain · BotStatefulMemory · 6-M: MobileAppPractice · PipelineProject · 7-M: Animation · MvpArchitecture · MvpComplete · 8-M: EventTracking · SecurityBasics · 9-M: LivePrototype · PlatformChoice · ExpoPrototype · FeatureOne · FeatureThree · 10-M: WebSocketBasics · BreakAndFix · PmUsersCheck · 11-M: PaymentWebhook · PaymentDay · ReferralDay · WinBackDay. (+ 9–12-M inline SQL eslatmalari: PmFiftyUsers · PmPricing · FeatureTwo · FoundationDay · StabilizeDay · PmMonetization; `?kanal=` parametri — PmChannels/Referral/WinBack/FiftyUsers.)
+
+### ⬜ Qoldi — RU rejimdagi o'zbekcha satr-qiymatlar (umumiy kompilyator)
+Runtime tekshiruvlar (`C.toggle`, `C.domAfterClick`, `C.logs`) bitta matnni qabul qiladi, shuning uchun ruscha rejimda ham tugma/konsol matni o'zbekcha («Kunduz/Tun», «Ism kiriting», «Keyin: …», «-modul»). Yechim — `src/compilator/HtmlCompiler.jsx` ga `{uz, ru}` qiymat qabul qilish (umumiy modul → to'liq reliz, «umumiy faylga ikki bosqich»). Misollar: PracticeLesson1 · JsConditions · PmYearPath · PmTenIdeas · PmInterviewsOne.
+**Yana topildi:** PmMuammoIzlash koding-ekrani (KOD_TASK, sarlavha, Mentor) umuman tarjimasiz — ruscha rejimda o'zbekcha.

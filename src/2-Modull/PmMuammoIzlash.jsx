@@ -1470,13 +1470,13 @@ const kodStarter = () => {
   return `<h2>Atrofimdagi eng kuchli muammolar</h2>
 
 <ol>
-  <li class="birinchi">${first.matn} — kuchi ${kuchOf(first)}</li>
+  <li class="first">${first.matn} — kuchi ${kuchOf(first)}</li>
   <!-- Bu yerga yana ikkita muammo: kuchi kattasi yuqorida -->
 </ol>
 
 <style>
   li { margin: 8px 0; }
-  /* .birinchi uchun fon rangini shu yerga yozing */
+  /* .first uchun fon rangini shu yerga yozing */
 </style>`;
 };
 const KOD_PREVIEW_CSS = `
@@ -1492,7 +1492,7 @@ const tailNum = (s) => { const m = /(\d+)\s*$/.exec(s); return m ? Number(m[1]) 
 const KOD_TASK = {
   eyebrow: 'Koding · muammo-reytingi',
   title: "index.html — eng kuchli uchta muammo",
-  brief: <>Ro'yxatga yana ikkita muammo qo'shing: har band oxirida kuchi turadi, kattasi yuqorida. Keyin <span className="mono">.birinchi</span> klassiga fon rangi bering.</>,
+  brief: <>Ro'yxatga yana ikkita muammo qo'shing: har band oxirida kuchi turadi, kattasi yuqorida. Keyin <span className="mono">.first</span> klassiga fon rangi bering.</>,
   previewUrl: 'muammolar.html',
   previewCss: KOD_PREVIEW_CSS,
   requirements: [
@@ -1507,11 +1507,11 @@ const KOD_TASK = {
       }) },
     { id: 'ajrat', label: 'Birinchisi ajralib turadi',
       check: C.custom((x) => {
-        const hint = 'Klass nomi nuqta bilan yoziladi: .birinchi { background: … }';
-        const a = C.cssProp('.birinchi', 'background', hint)(x);
-        const b = C.cssProp('.birinchi', 'background-color', hint)(x);
+        const hint = 'Klass nomi nuqta bilan yoziladi: .first { background: … }';
+        const a = C.cssProp('.first', 'background', hint)(x);
+        const b = C.cssProp('.first', 'background-color', hint)(x);
         if (a === true || b === true) return true;
-        return /\.birinchi\s*\{[^}]*background(-color)?\s*:\s*[^;}\s][^;}]*/i.test(x.html || '') ? true : hint;
+        return /\.first\s*\{[^}]*background(-color)?\s*:\s*[^;}\s][^;}]*/i.test(x.html || '') ? true : hint;
       }) },
   ],
 };
@@ -1539,7 +1539,7 @@ const ScrCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="kdx fade-up delay-1">
           <div className="kdx-fn">
             <span className="kdx-fn-bar"><span className="bb-dots"><i /><i /><i /></span>index.html</span>
-            <code className="kdx-fn-code">&lt;li class="<span className="kx-nima">birinchi</span>"&gt;…&lt;/li&gt;</code>
+            <code className="kdx-fn-code">&lt;li class="<span className="kx-nima">first</span>"&gt;…&lt;/li&gt;</code>
           </div>
           <span className="kdx-arrow" aria-hidden="true">➜</span>
           <div className="kdx-out">

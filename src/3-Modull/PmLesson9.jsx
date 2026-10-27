@@ -1491,24 +1491,26 @@ const GATE_ITEMS = [
 // ikkinchi cheti: oynadagi «+» tugmasi 9 tada to'xtaydi. «Vaqt» maydoni oynada YO'Q,
 // shuning uchun koddan ham olib tashlandi.
 const KOD_STARTER = {
-  uz: `function qabulQilinadimi(buyurtma) {
+  uz: `function canAccept(order) {
+  // order.dish — taom · order.count — soni
   // Uchta shart: taom tanlangan · soni kamida 1 · soni 9 tadan oshmaydi
   return false;   // ← bu joyni siz to'ldirasiz
 }
 
-console.log(qabulQilinadimi({ taom: 'somsa', soni: 2 }));
-console.log(qabulQilinadimi({ taom: '',      soni: 2 }));
-console.log(qabulQilinadimi({ taom: 'somsa', soni: 0 }));
-console.log(qabulQilinadimi({ taom: 'somsa', soni: 12 }));`,
-  ru: `function qabulQilinadimi(buyurtma) {
+console.log(canAccept({ dish: 'somsa', count: 2 }));
+console.log(canAccept({ dish: '',      count: 2 }));
+console.log(canAccept({ dish: 'somsa', count: 0 }));
+console.log(canAccept({ dish: 'somsa', count: 12 }));`,
+  ru: `function canAccept(order) {
+  // order.dish — блюдо · order.count — количество
   // Три условия: блюдо выбрано · количество минимум 1 · количество не больше 9
   return false;   // ← это место заполняете вы
 }
 
-console.log(qabulQilinadimi({ taom: 'somsa', soni: 2 }));
-console.log(qabulQilinadimi({ taom: '',      soni: 2 }));
-console.log(qabulQilinadimi({ taom: 'somsa', soni: 0 }));
-console.log(qabulQilinadimi({ taom: 'somsa', soni: 12 }));`,
+console.log(canAccept({ dish: 'самса', count: 2 }));
+console.log(canAccept({ dish: '',      count: 2 }));
+console.log(canAccept({ dish: 'самса', count: 0 }));
+console.log(canAccept({ dish: 'самса', count: 12 }));`,
 };
 
 // 🔴 F-0814-01: shartlar MANBA-matnga emas, KOD XULQIGA bog'langan. Eski variant
@@ -1517,9 +1519,11 @@ console.log(qabulQilinadimi({ taom: 'somsa', soni: 12 }));`,
 // `return false` bilan ham yashil chiqardi. Endi har uch shart funksiyani ishlatib ko'radi.
 // UCH_EXPR ataylab BOSHQA buyurtmalarni beradi (hot-dog · 5 · 0 · 10) — pastdagi to'rt
 // console.log qiymatiga moslab yozilgan «yodlangan» javob bu shartdan o'tmaydi.
-const UCH_EXPR = "[qabulQilinadimi({taom:'hot-dog',soni:5}),qabulQilinadimi({taom:'',soni:5}),qabulQilinadimi({taom:'hot-dog',soni:0}),qabulQilinadimi({taom:'hot-dog',soni:10})].join(',')";
-const BOOL_EXPR = "qabulQilinadimi({taom:'somsa',soni:2})===true";
-const SINOV_EXPR = "[qabulQilinadimi({taom:'somsa',soni:2}),qabulQilinadimi({taom:'',soni:2}),qabulQilinadimi({taom:'somsa',soni:0}),qabulQilinadimi({taom:'somsa',soni:12})].join(',')";
+const F_EXPR = "(typeof canAccept==='function'?canAccept:qabulQilinadimi)";
+// F-1027-01: nomlar inglizcha (canAccept, order.dish, order.count); eski saqlangan kod (qabulQilinadimi, taom/soni) ham o'tadi.
+const UCH_EXPR = "(function(F){return [F({dish:'hot-dog',count:5,taom:'hot-dog',soni:5}),F({dish:'',count:5,taom:'',soni:5}),F({dish:'hot-dog',count:0,taom:'hot-dog',soni:0}),F({dish:'hot-dog',count:10,taom:'hot-dog',soni:10})].join(',')})("+F_EXPR+")";
+const BOOL_EXPR = "(function(F){return F({dish:'somsa',count:2,taom:'somsa',soni:2})===true})("+F_EXPR+")";
+const SINOV_EXPR = "(function(F){return [F({dish:'somsa',count:2,taom:'somsa',soni:2}),F({dish:'',count:2,taom:'',soni:2}),F({dish:'somsa',count:0,taom:'somsa',soni:0}),F({dish:'somsa',count:12,taom:'somsa',soni:12})].join(',')})("+F_EXPR+")";
 const KOD_TASK = {
   eyebrow: { uz: 'Koding · qabul shartlari', ru: 'Кодинг · условия приёмки' },
   title: { uz: 'Buyurtmani qabul qilsa bo\'ladimi?', ru: 'Можно ли принять этот заказ?' },

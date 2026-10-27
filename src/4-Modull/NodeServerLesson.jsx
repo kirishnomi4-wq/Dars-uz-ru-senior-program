@@ -5,7 +5,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // BACKEND MODULI (4-MODUL) · 3-DARS — NODE.JS: BIRINCHI SERVER — PLATFORM STANDARD v16 (AUDIOSIZ)
 // Mavzu: server nima (doim ishlaydigan dastur, so'rov→javob), Node.js (JS serverda — bir til ikki dunyo),
 //        npm (tayyor paketlar to'plami — npm install express), Express (mashhur 5 qatorli server),
-//        endpoint (eshik: GET /salom), NestJS (ko'prik: bitta ustunlik + bitta gap — kodsiz, B1 qarori 2026-08-20),
+//        endpoint (eshik: GET /hello), NestJS (ko'prik: bitta ustunlik + bitta gap — kodsiz, B1 qarori 2026-08-20),
 //        lokalda yurgizish (node server.js → localhost:3000).
 // Ko'prik: React darsida fetch('server') qildingiz — bugun o'sha JAVOB BERUVCHI serverni o'zingiz quryapsiz.
 //          PEAN restorani: Node = oshxona, Express = ofitsiant, endpoint = xizmat oynasi.
@@ -13,7 +13,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // KOD TA'MI: Express serveri KO'RSATILADI (qismlari bosiladi); yakunda BITTA endpoint qatori YOZILADI.
 //            Nest faqat ko'prik: bitta karta-bosish → bitta ustunlik + «katta loyihalarda keyin tanishasiz»; Nest KODI ko'rsatilmaydi.
 // AUDIOSIZ: ovoz (TTS) yo'q — platforma qarori.
-// Yakuniy ekran (s15): VS Code — server.js, app.get('/salom', ...) endpoint'ini yozib, ▶ Run → brauzerda javob.
+// Yakuniy ekran (s15): VS Code — server.js, app.get('/hello', ...) endpoint'ini yozib, ▶ Run → brauzerda javob.
 // Toza dizayn — ortiqcha emoji yo'q; ma'no so'z va tipografiya bilan beriladi.
 // PRODUCTION: <style> ichidagi @import OLIB TASHLANADI — shriftlarni LMS yuklaydi.
 // ============================================================
@@ -265,8 +265,8 @@ const RECAPS = {
   10: {
     title: { uz: "Endpoint — serverning eshigi", ru: 'Endpoint — дверь сервера' },
     cards: [
-      { ic: "🚪", h: { uz: "Aniq manzil / eshik", ru: 'Точный адрес / дверь' }, body: { uz: <><b>Endpoint</b> — serverning aniq manzili (<span className="mono">/salom</span>), har eshik bitta ishni qiladi.</>, ru: <><b>Endpoint</b> — точный адрес сервера (<span className="mono">/salom</span>), каждая дверь делает одно дело.</> } },
-      { ic: "📥", h: { uz: "app.get bilan ochiladi", ru: 'Открывается через app.get' }, body: { uz: <>Kodda har eshik <span className="mono">app.get('/salom', ...)</span> bilan ochiladi va javob beradi.</>, ru: <>В коде каждая дверь открывается через <span className="mono">app.get('/salom', ...)</span> и отвечает.</> } },
+      { ic: "🚪", h: { uz: "Aniq manzil / eshik", ru: 'Точный адрес / дверь' }, body: { uz: <><b>Endpoint</b> — serverning aniq manzili (<span className="mono">/hello</span>), har eshik bitta ishni qiladi.</>, ru: <><b>Endpoint</b> — точный адрес сервера (<span className="mono">/hello</span>), каждая дверь делает одно дело.</> } },
+      { ic: "📥", h: { uz: "app.get bilan ochiladi", ru: 'Открывается через app.get' }, body: { uz: <>Kodda har eshik <span className="mono">app.get('/hello', ...)</span> bilan ochiladi va javob beradi.</>, ru: <>В коде каждая дверь открывается через <span className="mono">app.get('/hello', ...)</span> и отвечает.</> } },
       { ic: "🛎️", h: { uz: "Front shu manzilga so'raydi", ru: 'Фронт спрашивает этот адрес' }, body: { uz: <>Frontend aynan shu manzilga <span className="mono">fetch</span> qiladi — eshik ochiq bo'lsa, javob keladi.</>, ru: <>Фронтенд делает <span className="mono">fetch</span> именно на этот адрес — если дверь открыта, придёт ответ.</> }, ask: { uz: "Frontend serverning qayeriga so'rov yuboradi?", ru: 'Куда именно фронтенд шлёт запрос на сервере?' } },
     ]
   },
@@ -611,7 +611,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               <StoreSign on={on} />
             </div>
             <Win title={tr({ uz: "brauzer — fetch so'rovi", ru: 'браузер — fetch-запрос' })} minH={120}>
-              <pre className="code-box" style={{ marginBottom: 10 }}><Jx>{'fetch'}</Jx>{'('}<St>{"'http://localhost:3000/salom'"}</St>{')'}</pre>
+              <pre className="code-box" style={{ marginBottom: 10 }}><Jx>{'fetch'}</Jx>{'('}<St>{"'http://localhost:3000/hello'"}</St>{')'}</pre>
               {on
                 ? <div className="frame-success demo-swap" style={{ padding: '10px 13px' }}><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: '✓ Javob: ', ru: '✓ Ответ: ' })}<b style={{ color: T.success }}>"Salom, dunyo!"</b></p></div>
                 : <div className="frame-warn demo-swap" style={{ padding: '10px 13px' }}><p className="body" style={{ margin: 0, color: T.ink }}>❌ <span className="mono">ECONNREFUSED</span>{tr({ uz: " — ulanib bo'lmadi", ru: ' — не удалось подключиться' })}</p></div>}
@@ -660,7 +660,7 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
   const PreviewBlock = (
     <Col>
       <p className="flow-label">{tr({ uz: 'Dars oxirida — sizning serveringiz', ru: 'В конце урока — Ваш сервер' })}</p>
-      <Win title={tr({ uz: 'brauzer — localhost:3000/salom', ru: 'браузер — localhost:3000/salom' })} minH={96}>
+      <Win title={tr({ uz: 'brauzer — localhost:3000/hello', ru: 'браузер — localhost:3000/hello' })} minH={96}>
         <div className="fade-up delay-1" style={{ fontFamily: 'Georgia, serif', fontSize: 20, color: T.ink, padding: '6px 2px' }}>Salom, dunyo!</div>
         <p className="mono small" style={{ margin: '4px 0 0', color: T.success }}>{tr({ uz: '✓ serveringiz javob berdi', ru: '✓ Ваш сервер ответил' })}</p>
       </Win>
@@ -675,12 +675,12 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
       </ol>
     </Col>
   );
-  const audio = useAudio([{ id: 's1', text: `Dars oxirida brauzerda localhost:3000/salom ni ochib, Salom, dunyo! javobini ko'rasiz. Shu javobni beradigan dasturni bugun o'zingiz yozasiz — u ham JavaScript'da ishlaydi. Bugungi yo'l besh qadam.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's1', text: `Dars oxirida brauzerda localhost:3000/hello ni ochib, Salom, dunyo! javobini ko'rasiz. Shu javobni beradigan dasturni bugun o'zingiz yozasiz — u ham JavaScript'da ishlaydi. Bugungi yo'l besh qadam.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Reja', ru: 'План' })} screen={screen} audioState={audio} mentorStatic navContent={<><NavBack onPrev={onPrev} /><NavNext label={tr({ uz: 'Boshlaymiz →', ru: 'Начинаем →' })} onClick={onNext} /></>}>
       <div className="screen">
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Birinchi serveringizni <span className="italic" style={{ color: T.accent }}>5 qadamda</span> quramiz</>, ru: <>Построим Ваш первый сервер <span className="italic" style={{ color: T.accent }}>за 5 шагов</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Dars oxirida brauzerda <span className="mono">localhost:3000/salom</span> ni ochib, «<b style={{ color: T.ink }}>Salom, dunyo!</b>» javobini ko'rasiz. Shu javobni beradigan dasturni bugun o'zingiz yozasiz — u ham <b style={{ color: T.ink }}>JavaScript</b>'da ishlaydi.</>, ru: <>В конце урока Вы откроете в браузере <span className="mono">localhost:3000/salom</span> и увидите ответ «<b style={{ color: T.ink }}>Salom, dunyo!</b>». Программу, которая даёт этот ответ, сегодня Вы напишете сами — она тоже работает на <b style={{ color: T.ink }}>JavaScript</b>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Dars oxirida brauzerda <span className="mono">localhost:3000/hello</span> ni ochib, «<b style={{ color: T.ink }}>Salom, dunyo!</b>» javobini ko'rasiz. Shu javobni beradigan dasturni bugun o'zingiz yozasiz — u ham <b style={{ color: T.ink }}>JavaScript</b>'da ishlaydi.</>, ru: <>В конце урока Вы откроете в браузере <span className="mono">localhost:3000/hello</span> и увидите ответ «<b style={{ color: T.ink }}>Salom, dunyo!</b>». Программу, которая даёт этот ответ, сегодня Вы напишете сами — она тоже работает на <b style={{ color: T.ink }}>JavaScript</b>.</> })}</Mentor>
         {!isNarrow ? (
           <Zoomable><Split>{PreviewBlock}{StepsBlock}</Split></Zoomable>
         ) : !showSteps ? (
@@ -872,7 +872,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const PARTS = {
     req: { word: "require('express')", info: { uz: <>O'rnatgan Express paketini kodga <b>chaqirib olamiz</b>. Endi undan foydalansa bo'ladi.</>, ru: <>Установленный пакет Express <b>подключаем в код</b>. Теперь им можно пользоваться.</> } },
     app: { word: 'const app = express()', info: { uz: <>Serverimizning <b>o'zini yaratamiz</b> — nomi <span className="mono">app</span>. Hamma narsa shu <span className="mono">app</span> orqali bo'ladi.</>, ru: <>Создаём <b>сам сервер</b> — его зовут <span className="mono">app</span>. Всё будет происходить через этот <span className="mono">app</span>.</> } },
-    get: { word: "app.get('/salom', ...)", info: { uz: <>Bitta <b>endpoint</b> (eshik) ochamiz: kimdir <span className="mono">/salom</span> manziliga so'rov yuborsa — javob beramiz.</>, ru: <>Открываем один <b>endpoint</b> (дверь): если кто-то пошлёт запрос на адрес <span className="mono">/salom</span> — ответим.</> } },
+    get: { word: "app.get('/hello', ...)", info: { uz: <>Bitta <b>endpoint</b> (eshik) ochamiz: kimdir <span className="mono">/hello</span> manziliga so'rov yuborsa — javob beramiz.</>, ru: <>Открываем один <b>endpoint</b> (дверь): если кто-то пошлёт запрос на адрес <span className="mono">/hello</span> — ответим.</> } },
     send: { word: 'res.send(...)', info: { uz: <>So'rovga <b>javob qaytarish</b>: <span className="mono">res.send('Salom, dunyo!')</span> — mijozga shu matn boradi.</>, ru: <><b>Возврат ответа</b> на запрос: <span className="mono">res.send('Salom, dunyo!')</span> — клиенту уйдёт этот текст.</> } },
     listen: { word: 'app.listen(3000)', info: { uz: <>Serverni <b>yoqadi</b> va 3000-portda so'rov kuta boshlaydi. Busiz server ishlamaydi!</>, ru: <><b>Включает</b> сервер: тот начинает ждать запросы на порту 3000. Без этого сервер не работает!</> } }
   };
@@ -894,7 +894,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <pre className="code-box fade-up delay-1" style={{ lineHeight: 2 }}>
               <Jx>{'const'}</Jx>{' '}<At>express</At>{' = '}<span style={hl('req')} onClick={() => tap('req')}><Jx>{'require'}</Jx>{'('}<St>{"'express'"}</St>{')'}</span>{'\n'}
               <span style={hl('app')} onClick={() => tap('app')}><Jx>{'const'}</Jx>{' '}<At>app</At>{' = '}<At>express</At>{'()'}</span>{'\n\n'}
-              <span style={hl('get')} onClick={() => tap('get')}><At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'/salom'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}</span>{'\n'}
+              <span style={hl('get')} onClick={() => tap('get')}><At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'/hello'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}</span>{'\n'}
               {'  '}<span style={hl('send')} onClick={() => tap('send')}><At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'Salom, dunyo!'"}</St>{')'}</span>{'\n'}
               {'})'}{'\n\n'}
               <span style={hl('listen')} onClick={() => tap('listen')}><At>app</At>{'.'}<Jx>{'listen'}</Jx>{'('}<St>3000</St>{')'}</span>
@@ -916,8 +916,8 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 7 — ENDPOINT =====
 const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const EPS = [
-    { path: '/salom', desc: { uz: 'salomlashish', ru: 'приветствие' }, reply: 'Salom, dunyo!' },
-    { path: '/vaqt', desc: { uz: 'hozirgi vaqt', ru: 'текущее время' }, reply: '14:30' },
+    { path: '/hello', desc: { uz: 'salomlashish', ru: 'приветствие' }, reply: 'Salom, dunyo!' },
+    { path: '/time', desc: { uz: 'hozirgi vaqt', ru: 'текущее время' }, reply: '14:30' },
     { path: '/games', desc: { uz: "o'yinlar ro'yxati", ru: 'список игр' }, reply: "['Adopt Me', 'Blox Fruits']" }
   ];
   const [active, setActive] = useState(null);
@@ -926,12 +926,12 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const tap = (p) => { setActive(p); setSeen(s => { const n = new Set(s); n.add(p); return n; }); };
   const cur = EPS.find(e => e.path === active);
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const audio = useAudio([{ id: 's7', text: `Bitta server nechta so'rovga javob bera oladi? Istalgancha! Har endpoint — alohida eshik, alohida manzil, va har biri bitta ishni qiladi. /salom salom beradi, /vaqt vaqtni, /games o'yinlarni qaytaradi. Frontend aynan shu manzillarga so'rov yuboradi. Har eshikni bosib, javobini ko'ring.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's7', text: `Bitta server nechta so'rovga javob bera oladi? Istalgancha! Har endpoint — alohida eshik, alohida manzil, va har biri bitta ishni qiladi. /hello salom beradi, /time vaqtni, /games o'yinlarni qaytaradi. Frontend aynan shu manzillarga so'rov yuboradi. Har eshikni bosib, javobini ko'ring.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow="Endpoint" screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${seen.size}/3 ${tr({ uz: 'eshik ochildi', ru: '— откройте двери' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bitta server <span className="italic" style={{ color: T.accent }}>nechta so'rovga</span> javob bera oladi?</>, ru: <>На <span className="italic" style={{ color: T.accent }}>сколько запросов</span> может отвечать один сервер?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Istalgancha! Har bir <b style={{ color: T.ink }}>endpoint</b> — alohida <b style={{ color: T.ink }}>eshik (manzil)</b>, har biri bitta ishni qiladi. <span className="mono">/salom</span> salom beradi, <span className="mono">/vaqt</span> vaqtni, <span className="mono">/games</span> o'yinlarni qaytaradi. Frontend aynan shu manzillarga <span className="mono">fetch</span> qiladi. Har eshikni bosib ko'ring.</>, ru: <>Сколько угодно! Каждый <b style={{ color: T.ink }}>endpoint</b> — отдельная <b style={{ color: T.ink }}>дверь (адрес)</b>, и каждая делает одно дело. <span className="mono">/salom</span> здоровается, <span className="mono">/vaqt</span> возвращает время, <span className="mono">/games</span> — игры. Фронтенд делает <span className="mono">fetch</span> именно на эти адреса. Понажимайте на каждую дверь.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Istalgancha! Har bir <b style={{ color: T.ink }}>endpoint</b> — alohida <b style={{ color: T.ink }}>eshik (manzil)</b>, har biri bitta ishni qiladi. <span className="mono">/hello</span> salom beradi, <span className="mono">/time</span> vaqtni, <span className="mono">/games</span> o'yinlarni qaytaradi. Frontend aynan shu manzillarga <span className="mono">fetch</span> qiladi. Har eshikni bosib ko'ring.</>, ru: <>Сколько угодно! Каждый <b style={{ color: T.ink }}>endpoint</b> — отдельная <b style={{ color: T.ink }}>дверь (адрес)</b>, и каждая делает одно дело. <span className="mono">/hello</span> здоровается, <span className="mono">/time</span> возвращает время, <span className="mono">/games</span> — игры. Фронтенд делает <span className="mono">fetch</span> именно на эти адреса. Понажимайте на каждую дверь.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1031,7 +1031,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <div className="lbl-row"><p className="flow-label" style={{ margin: 0 }}>{tr({ uz: 'Brauzer', ru: 'Браузер' })}</p><StoreSign on={done} /></div>
-            <Win title="localhost:3000/salom" minH={92} hotTitle={done}>
+            <Win title="localhost:3000/hello" minH={92} hotTitle={done}>
               {done ? <div className="demo-swap" style={{ fontFamily: 'Georgia, serif', fontSize: 19, color: T.ink }}>Salom, dunyo!</div>
                 : <p style={{ color: T.ink3, fontStyle: 'italic', margin: 0, fontFamily: 'Georgia, serif', fontSize: 13 }}>{tr({ uz: "Server o'chiq — sahifa ochilmaydi…", ru: 'Сервер выключен — страница не открывается…' })}</p>}
             </Win>
@@ -1047,9 +1047,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — VIBECODING (AI yangi endpoint qo'shadi) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TASKS = [
-    { id: 'vaqt', label: { uz: "/vaqt endpoint qo'shib ber — hozirgi vaqtni qaytarsin", ru: 'Добавь endpoint /vaqt — пусть возвращает текущее время' }, path: '/vaqt', reply: '14:30' },
+    { id: 'vaqt', label: { uz: "/time endpoint qo'shib ber — hozirgi vaqtni qaytarsin", ru: 'Добавь endpoint /time — пусть возвращает текущее время' }, path: '/time', reply: '14:30' },
     { id: 'games', label: { uz: "/games endpoint qo'shib ber — o'yinlar ro'yxatini qaytarsin", ru: 'Добавь endpoint /games — пусть возвращает список игр' }, path: '/games', reply: "['Adopt Me', 'Blox Fruits']" },
-    { id: 'ism', label: { uz: "/ism endpoint qo'shib ber — ismimni qaytarsin", ru: 'Добавь endpoint /ism — пусть возвращает моё имя' }, path: '/ism', reply: 'Ali' }
+    { id: 'ism', label: { uz: "/name endpoint qo'shib ber — ismimni qaytarsin", ru: 'Добавь endpoint /name — пусть возвращает моё имя' }, path: '/name', reply: 'Ali' }
   ];
   const [task, setTask] = useState(null);
   const [phase, setPhase] = useState(storedAnswer ? 'done' : 'idle');
@@ -1119,7 +1119,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const ORDER = [
     { id: 'req', label: "require('express')", hint: { uz: 'paketni chaqir', ru: 'подключи пакет' } },
     { id: 'app', label: 'const app = express()', hint: { uz: 'serverni yarat', ru: 'создай сервер' } },
-    { id: 'get', label: "app.get('/salom', ...)", hint: { uz: 'endpoint och', ru: 'открой endpoint' } },
+    { id: 'get', label: "app.get('/hello', ...)", hint: { uz: 'endpoint och', ru: 'открой endpoint' } },
     { id: 'listen', label: 'app.listen(3000)', hint: { uz: 'serverni yoq', ru: 'включи сервер' } }
   ];
   const SHUFFLED = ['get', 'listen', 'req', 'app'];
@@ -1205,7 +1205,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <pre className="code-box" style={{ fontSize: 12.5, boxShadow: 'none' }}>
                 <Jx>{'const'}</Jx>{' '}<At>express</At>{' = '}<Jx>{'require'}</Jx>{'('}<St>{"'express'"}</St>{')'}{'\n'}
                 <Jx>{'const'}</Jx>{' '}<At>app</At>{' = '}<At>express</At>{'()'}{'\n\n'}
-                <At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'/salom'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}{'\n'}{'  '}<At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'Salom, dunyo!'"}</St>{')'}{'\n'}{'})'}
+                <At>app</At>{'.'}<Jx>{'get'}</Jx>{'('}<St>{"'/hello'"}</St>{', ('}<At>req</At>{', '}<At>res</At>{') => {'}{'\n'}{'  '}<At>res</At>{'.'}<Jx>{'send'}</Jx>{'('}<St>{"'Salom, dunyo!'"}</St>{')'}{'\n'}{'})'}
                 {fixed && <div className="el-in" style={{ marginTop: 8 }}><At>app</At>{'.'}<Jx>{'listen'}</Jx>{'('}<St>3000</St>{')   '}<span style={{ color: CODE.str }}>{tr({ uz: "// ✓ qo'shildi", ru: '// ✓ добавлено' })}</span></div>}
               </pre>
               {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setFixed(true)}>{tr({ uz: "app.listen(3000) qo'shish", ru: 'Добавить app.listen(3000)' }) /* F-0926-06 (H3): tugma emojisi olindi */}</button>}
@@ -1241,23 +1241,23 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [ran, setRan] = useState(false);
   const v = value.replace(/[\u2018\u2019\u02BB]/g, "'").replace(/[\u201C\u201D]/g, '"');
   const hasGet = /app\s*\.\s*get\s*\(/.test(v);
-  const hasPath = /['"]\/salom['"]/.test(v);
+  const hasPath = /['"]\/(?:hello|salom)['"]/.test(v);
   const hasSend = /res\s*\.\s*send\s*\(\s*['"].+['"]/.test(v);
   const valid = hasGet && hasPath && hasSend;
   const m = v.match(/res\s*\.\s*send\s*\(\s*['"](.+?)['"]/);
   const reply = m ? m[1] : 'Salom, dunyo!';
   const done = ran;
   useEffect(() => {
-    if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "app.get('/salom', ...) endpoint'ini yozing", studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); }
+    if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "app.get('/hello', ...) endpoint'ini yozing", studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); }
   }, [valid]);
   const Ln = ({ n, children }) => <div className="vsc-line"><span className="vsc-ln">{n}</span><span style={{ whiteSpace: 'pre' }}>{children}</span></div>;
   const navLabel = ran ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : (valid ? tr({ uz: '▶ Run bosing', ru: '▶ Нажмите Run' }) : tr({ uz: 'Endpoint qatorini yozing', ru: 'Напишите строку endpoint' }));
-  const audio = useAudio([{ id: 's15', text: `Endi navbat sizda — birinchi serveringizni javob berdirasiz. VS Code'da server.js ochiq, faqat endpoint qatori yetishmayapti. To'rtinchi qatorga app.get('/salom', ...) yozing, keyin Run bosing — do'koningiz ochiladi va brauzerda javob beradi.`, trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's15', text: `Endi navbat sizda — birinchi serveringizni javob berdirasiz. VS Code'da server.js ochiq, faqat endpoint qatori yetishmayapti. To'rtinchi qatorga app.get('/hello', ...) yozing, keyin Run bosing — do'koningiz ochiladi va brauzerda javob beradi.`, trigger: 'on_mount', waits_for: null }]);
   return (
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!done} label={navLabel} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Birinchi serveringizni <span className="italic" style={{ color: T.accent }}>javob berdiring</span>.</>, ru: <>Заставьте первый сервер <span className="italic" style={{ color: T.accent }}>ответить Вам</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>VS Code'da <span className="mono">server.js</span> ochiq — faqat <b style={{ color: T.ink }}>endpoint qatori yetishmayapti</b>! 4-qatorga <b style={{ color: T.ink }}>/salom</b> manzili uchun endpoint yozing — u «Salom, dunyo!» deb javob bersin. Yozib bo'lgach <b style={{ color: T.ink }}>▶ Run</b> bosing — serveringiz brauzerda javob beradi!</>, ru: <>В VS Code открыт <span className="mono">server.js</span> — не хватает только <b style={{ color: T.ink }}>строки endpoint</b>! В 4-й строке напишите endpoint для адреса <b style={{ color: T.ink }}>/salom</b> — пусть отвечает «Salom, dunyo!». Когда допишете, нажмите <b style={{ color: T.ink }}>▶ Run</b> — Ваш сервер ответит в браузере!</> })}</Mentor>
+        <Mentor>{tr({ uz: <>VS Code'da <span className="mono">server.js</span> ochiq — faqat <b style={{ color: T.ink }}>endpoint qatori yetishmayapti</b>! 4-qatorga <b style={{ color: T.ink }}>/hello</b> manzili uchun endpoint yozing — u «Salom, dunyo!» deb javob bersin. Yozib bo'lgach <b style={{ color: T.ink }}>▶ Run</b> bosing — serveringiz brauzerda javob beradi!</>, ru: <>В VS Code открыт <span className="mono">server.js</span> — не хватает только <b style={{ color: T.ink }}>строки endpoint</b>! В 4-й строке напишите endpoint для адреса <b style={{ color: T.ink }}>/hello</b> — пусть отвечает «Salom, dunyo!». Когда допишете, нажмите <b style={{ color: T.ink }}>▶ Run</b> — Ваш сервер ответит в браузере!</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1274,7 +1274,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             </div>
             <div className="fade-up delay-2" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <span className="tagpill" style={{ opacity: hasGet ? 1 : 0.4 }}>{hasGet ? '✓' : '1'} {tr({ uz: 'endpoint ochish', ru: 'открыть endpoint' })}</span>{/* F-0926-06 (S6): kod bo'lagi o'rniga tavsif */}
-              <span className="tagpill" style={{ opacity: hasPath ? 1 : 0.4 }}>{hasPath ? '✓' : '2'} {tr({ uz: 'manzil /salom', ru: 'адрес /salom' })}</span>
+              <span className="tagpill" style={{ opacity: hasPath ? 1 : 0.4 }}>{hasPath ? '✓' : '2'} {tr({ uz: 'manzil /hello', ru: 'адрес /hello' })}</span>
               <span className="tagpill" style={{ opacity: hasSend ? 1 : 0.4 }}>{hasSend ? '✓' : '3'} {tr({ uz: 'javob yuborish', ru: 'отправить ответ' })}</span>
             </div>
             {valid && !ran && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => setRan(true)}>▶ Run — node server.js</button>}
@@ -1283,7 +1283,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Terminal', ru: 'Терминал' })}</p>
             <div className="code-box" style={{ minHeight: 44 }}>{ran ? <TLine out={<span style={{ color: CODE.str }}>{tr({ uz: '✓ Server localhost:3000 da ishlayapti', ru: '✓ Сервер работает на localhost:3000' })}</span>} /> : <span style={{ color: CODE.comment, fontFamily: "'JetBrains Mono'", fontFeatureSettings: '"liga" 0, "calt" 0', fontSize: 12 }}>{tr({ uz: 'Run bosilmagan…', ru: 'Run не нажат…' })}</span>}</div>
             <p className="flow-label" style={{ marginTop: 2 }}>{tr({ uz: 'Brauzer', ru: 'Браузер' })}</p>
-            <Win title="localhost:3000/salom" minH={86} hotTitle={ran}>
+            <Win title="localhost:3000/hello" minH={86} hotTitle={ran}>
               {ran ? <div className="demo-swap" style={{ fontFamily: 'Georgia, serif', fontSize: 19, color: T.ink }}>{reply}</div>
                 : null /* F-0926-06 (P1): bo'sh oynadagi yo'riq olindi — tugma aytadi */}
             </Win>
@@ -1485,10 +1485,10 @@ const ScreenNodePractice = (props) => (
     checklist={[
       { uz: "Terminalda `npm install express` — express paketini loyihaga qo'shing", ru: 'В терминале `npm install express` — добавьте пакет express в проект' },
       { uz: "server.js: `const express = require('express')` va `const app = express()`", ru: "server.js: `const express = require('express')` и `const app = express()`" },
-      { uz: "`app.get('/salom', (req, res) => res.send('Salom, dunyo!'))` — eshik oching", ru: "`app.get('/salom', (req, res) => res.send('Salom, dunyo!'))` — откройте дверь" },
+      { uz: "`app.get('/hello', (req, res) => res.send('Salom, dunyo!'))` — eshik oching", ru: "`app.get('/hello', (req, res) => res.send('Salom, dunyo!'))` — откройте дверь" },
       { uz: "`app.listen(3000)` — OCHIQ tablosini yoqing", ru: '`app.listen(3000)` — включите табло ОТКРЫТО' },
       { uz: "Terminalda `node server.js` — \"ishlayapti\" xabarini ko'ring", ru: 'В терминале `node server.js` — увидьте сообщение «работает»' },
-      { uz: "Brauzerda `localhost:3000/salom` oching; bonus: `/ism` eshigini qo'shing", ru: 'Откройте в браузере `localhost:3000/salom`; бонус: добавьте дверь `/ism`' },
+      { uz: "Brauzerda `localhost:3000/hello` oching; bonus: `/name` eshigini qo'shing", ru: 'Откройте в браузере `localhost:3000/hello`; бонус: добавьте дверь `/name`' },
     ]} />
 );
 
@@ -1575,8 +1575,8 @@ const NODE_FLASHCARDS = [
   { front: { uz: "O'rnatgan paketlaringiz ro'yxati qaysi faylda turadi?", ru: 'В каком файле лежит список установленных пакетов?' }, back: "package.json", note: { uz: "nima ishlatganingiz shu yerda ko'rinadi", ru: 'здесь видно, чем Вы пользуетесь' } },
   { front: { uz: "Serverni bir necha qatorda yozishga qaysi paket yordam beradi?", ru: 'Какой пакет помогает написать сервер в несколько строк?' }, back: "Express", note: { uz: "boshlash uchun eng oson yo'l", ru: 'самый простой способ начать' } },
   { front: { uz: "Yirik loyihalarda Express o'rniga qaysi paket ishlatiladi?", ru: 'Какой пакет берут вместо Express в крупных проектах?' }, back: "NestJS", note: { uz: "Express ustiga qurilgan, tartibliroq", ru: 'построен поверх Express, более организован' } },
-  { front: { uz: "Serverning /salom kabi aniq manzili qanday ataladi?", ru: 'Как называется точный адрес сервера, например /salom?' }, back: "Endpoint", note: { uz: "har eshik bitta ishni qiladi", ru: 'каждая дверь делает одно дело' } },
-  { front: { uz: "Kodda yangi eshikni (endpoint) qaysi qator ochadi?", ru: 'Какая строка в коде открывает новую дверь (endpoint)?' }, back: "app.get('/salom', ...)", note: { uz: "manzil + javob beruvchi funksiya", ru: 'адрес + функция, которая отвечает' } },
+  { front: { uz: "Serverning /hello kabi aniq manzili qanday ataladi?", ru: 'Как называется точный адрес сервера, например /hello?' }, back: "Endpoint", note: { uz: "har eshik bitta ishni qiladi", ru: 'каждая дверь делает одно дело' } },
+  { front: { uz: "Kodda yangi eshikni (endpoint) qaysi qator ochadi?", ru: 'Какая строка в коде открывает новую дверь (endpoint)?' }, back: "app.get('/hello', ...)", note: { uz: "manzil + javob beruvchi funksiya", ru: 'адрес + функция, которая отвечает' } },
   { front: { uz: "Mijozga javob matnini qaysi buyruq yuboradi?", ru: 'Какая команда отправляет клиенту текст ответа?' }, back: "res.send('Salom')", note: { uz: "res — javob, send — yubor", ru: 'res — ответ, send — отправь' } },
   { front: { uz: "Serverni yoqib, portda so'rov kutishni qaysi qator buyuradi?", ru: 'Какая строка включает сервер и заставляет ждать запросы на порту?' }, back: "app.listen(3000)", note: { uz: "eshikdagi OCHIQ tablosi yonadi", ru: 'на двери загорается табло ОТКРЫТО' } },
   { front: { uz: "Yozgan serveringizni qaysi buyruq bilan ishga tushirasiz?", ru: 'Какой командой Вы запускаете написанный сервер?' }, back: "node server.js", note: { uz: "keyin brauzerda localhost:3000 ni oching", ru: 'потом откройте в браузере localhost:3000' } },

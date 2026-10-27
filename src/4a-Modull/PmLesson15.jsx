@@ -1441,45 +1441,48 @@ const GATE_ITEMS = [
   { id: 'g3', ic: '📅', t: { uz: 'Bir kunda saytga kirgan odamlar soni', ru: 'Сколько человек зашло на сайт за день' },      ok: false },
 ];
 
-// Kod-nomlari ASCII, apostrofsiz (orindiq · tolov · sigim); prozada «o'rindiq».
+// Kod-nomlari inglizcha (F-1027-01): capacity · seats · payment · page · overloaded; prozada «o'rindiq».
+// Eski saqlangan kod (sigim/orindiq/tolov/sahifa/singanlar) ham tekshiruvdan o'tadi — natija yangi nomlarga o'giriladi.
 const KOD_STARTER = { uz: `// Har qism bir vaqtda shuncha odamni ko'taradi (chipta saytining sig'imlari)
-const sigim = { orindiq: 100, tolov: 500, sahifa: 2000 };
+const capacity = { seats: 100, payment: 500, page: 2000 };
+// capacity — sig'im · seats — o'rindiq · payment — to'lov · page — sahifa
 
-function singanlar(odamlar) {
+function overloaded(people) {
   // Sig'imidan oshgan qismlar ro'yxatini qaytaring
   return [];
 }
 
-console.log(singanlar(50));     // []
-console.log(singanlar(300));    // ['orindiq']
-console.log(singanlar(800));    // ['orindiq', 'tolov']
-console.log(singanlar(3000));   // ['orindiq', 'tolov', 'sahifa']`, ru: `// Каждая часть держит одновременно столько человек (ёмкости сайта билетов)
-const sigim = { orindiq: 100, tolov: 500, sahifa: 2000 };
+console.log(overloaded(50));     // []
+console.log(overloaded(300));    // ['seats']
+console.log(overloaded(800));    // ['seats', 'payment']
+console.log(overloaded(3000));   // ['seats', 'payment', 'page']`, ru: `// Каждая часть держит одновременно столько человек (ёмкости сайта билетов)
+const capacity = { seats: 100, payment: 500, page: 2000 };
+// capacity — ёмкость · seats — места · payment — оплата · page — страница
 
-function singanlar(odamlar) {
+function overloaded(people) {
   // Верните список частей, вышедших за свою ёмкость
   return [];
 }
 
-console.log(singanlar(50));     // []
-console.log(singanlar(300));    // ['orindiq']
-console.log(singanlar(800));    // ['orindiq', 'tolov']
-console.log(singanlar(3000));   // ['orindiq', 'tolov', 'sahifa']` };
+console.log(overloaded(50));     // []
+console.log(overloaded(300));    // ['seats']
+console.log(overloaded(800));    // ['seats', 'payment']
+console.log(overloaded(3000));   // ['seats', 'payment', 'page']` };
 
 // Shartlar XULQ-ATVORGA bog'langan (manba-regex sanog'i emas): if/push bilan ham,
 // filter bilan ham yozilgan to'g'ri yechim o'tadi; starter holatida uchalasi ham qizil.
 const KOD_TASK = {
   eyebrow: { uz: 'Koding · sinadigan qismlar', ru: 'Кодинг · части, которые ломаются' },
-  title: { uz: 'app.js — singanlar funksiyasini to\'ldiring', ru: 'app.js — допишите функцию singanlar' },
-  brief: { uz: <>Funksiya <b>sig'imidan oshgan</b> qismlar ro'yxatini qaytarsin. Kod oxiridagi <span className="mono">console.log</span> to'rt natijani ko'rsatadi — har biri o'z izohiga to'g'ri kelsin. Har qism uchun alohida <span className="mono">if</span> yetadi: <span className="mono">odamlar &gt; sigim.orindiq</span> bo'lsa, <span className="mono">'orindiq'</span> ro'yxatga <span className="mono">push</span> qilinadi.</>, ru: <>Пусть функция вернёт список частей, которые <b>вышли за свою ёмкость</b>. Внизу <span className="mono">console.log</span> покажет четыре результата — каждый должен совпасть с комментарием справа. Для каждой части хватит отдельного <span className="mono">if</span>: если <span className="mono">odamlar &gt; sigim.orindiq</span>, в список через <span className="mono">push</span> добавляется <span className="mono">'orindiq'</span>.</> }, // F-1017-204: obyekt ustidan sikl o'rgatilmagan — 3 ta if yo'li
+  title: { uz: 'app.js — overloaded funksiyasini to\'ldiring', ru: 'app.js — допишите функцию overloaded' },
+  brief: { uz: <>Funksiya <b>sig'imidan oshgan</b> qismlar ro'yxatini qaytarsin. Kod oxiridagi <span className="mono">console.log</span> to'rt natijani ko'rsatadi — har biri o'z izohiga to'g'ri kelsin. Har qism uchun alohida <span className="mono">if</span> yetadi: <span className="mono">people &gt; capacity.seats</span> bo'lsa, <span className="mono">'seats'</span> ro'yxatga <span className="mono">push</span> qilinadi.</>, ru: <>Пусть функция вернёт список частей, которые <b>вышли за свою ёмкость</b>. Внизу <span className="mono">console.log</span> покажет четыре результата — каждый должен совпасть с комментарием справа. Для каждой части хватит отдельного <span className="mono">if</span>: если <span className="mono">people &gt; capacity.seats</span>, в список через <span className="mono">push</span> добавляется <span className="mono">'seats'</span>.</> }, // F-1017-204: obyekt ustidan sikl o'rgatilmagan — 3 ta if yo'li
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// sig'imidan oshgan qismlarni ro'yxatga qo'shing", ru: '// добавьте в список части, вышедшие за ёмкость' } }],
   requirements: [
     { id: 'royxat', label: { uz: "Funksiya ro'yxat (massiv) qaytaradi", ru: 'Функция возвращает список (массив)' },
-      check: C.evalEquals('Array.isArray(singanlar(300)) && singanlar(300).length > 0', 'true', { uz: "300 kishida funksiya bo'sh emas ro'yxat qaytarsin", ru: 'при 300 людях функция должна вернуть непустой список' }) },
+      check: C.evalEquals("Array.isArray((function(n){var f=typeof overloaded==='function'?overloaded:singanlar;var m={orindiq:'seats',tolov:'payment',sahifa:'page'};var r=f(n);return Array.isArray(r)?r.map(function(k){return m[k]||k;}):r;})(300)) && (function(n){var f=typeof overloaded==='function'?overloaded:singanlar;var m={orindiq:'seats',tolov:'payment',sahifa:'page'};var r=f(n);return Array.isArray(r)?r.map(function(k){return m[k]||k;}):r;})(300).length > 0", 'true', { uz: "300 kishida funksiya bo'sh emas ro'yxat qaytarsin", ru: 'при 300 людях функция должна вернуть непустой список' }) },
     { id: 'oshgan', label: { uz: "Sig'imdan oshgan qism ro'yxatga tushadi", ru: 'Часть, вышедшая за ёмкость, попадает в список' },
-      check: C.evalEquals("singanlar(300).join(',')", 'orindiq', { uz: "300 kishida faqat orindiq sig'imidan oshadi", ru: 'при 300 людях за ёмкость выходит только orindiq' }) },
+      check: C.evalEquals("(function(n){var f=typeof overloaded==='function'?overloaded:singanlar;var m={orindiq:'seats',tolov:'payment',sahifa:'page'};var r=f(n);return Array.isArray(r)?r.map(function(k){return m[k]||k;}):r;})(300).join(',')", 'seats', { uz: "300 kishida faqat seats sig'imidan oshadi", ru: 'при 300 людях за ёмкость выходит только seats' }) },
     { id: 'tort', label: { uz: "To'rt natija to'g'ri chiqdi", ru: 'Все четыре результата верны' },
-      check: C.evalEquals("[50,300,800,3000].map(function(n){return singanlar(n).slice().sort().join('|')}).join('/')", '/orindiq/orindiq|tolov/orindiq|sahifa|tolov', { uz: "To'rt natija: bo'sh · orindiq · orindiq+tolov · uchalasi", ru: 'Четыре результата: пусто · orindiq · orindiq+tolov · все три' }) },
+      check: C.evalEquals("[50,300,800,3000].map(function(n){return (function(n){var f=typeof overloaded==='function'?overloaded:singanlar;var m={orindiq:'seats',tolov:'payment',sahifa:'page'};var r=f(n);return Array.isArray(r)?r.map(function(k){return m[k]||k;}):r;})(n).slice().sort().join('|')}).join('/')", '/seats/payment|seats/page|payment|seats', { uz: "To'rt natija: bo'sh · seats · seats+payment · uchalasi", ru: 'Четыре результата: пусто · seats · seats+payment · все три' }) },
   ],
 };
 
@@ -1570,8 +1573,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Bitta qismdan boshlang: 300 kishi <code className="qcode">orindiq</code> sig'imidan ko'pmi? Ishlagach qolgan ikkitasiga o'ting.</>, ru: <>Начните с одной части: 300 человек — это больше ёмкости <code className="qcode">orindiq</code>? Заработало — переходите к двум оставшимся.</> })}</p>
-                      <p>{tr({ uz: <>⭐ Qo'shimcha: <code className="qcode">orindiq</code> sig'imini 10 barobar oshiring (1000) va 300 kishida endi nima chiqishini ko'ring.</>, ru: <>⭐ Дополнительно: увеличьте ёмкость <code className="qcode">orindiq</code> в 10 раз (1000) и посмотрите, что выйдет при 300 людях.</> })}</p>
+                      <p>{tr({ uz: <>Bitta qismdan boshlang: 300 kishi <code className="qcode">seats</code> sig'imidan ko'pmi? Ishlagach qolgan ikkitasiga o'ting.</>, ru: <>Начните с одной части: 300 человек — это больше ёмкости <code className="qcode">seats</code>? Заработало — переходите к двум оставшимся.</> })}</p>
+                      <p>{tr({ uz: <>⭐ Qo'shimcha: <code className="qcode">seats</code> sig'imini 10 barobar oshiring (1000) va 300 kishida endi nima chiqishini ko'ring.</>, ru: <>⭐ Дополнительно: увеличьте ёмкость <code className="qcode">seats</code> в 10 раз (1000) и посмотрите, что выйдет при 300 людях.</> })}</p>
                     </div>}
                   </div>
                   {done && <div className="done-mini fade-step">{tr({ uz: <>✅ To'rt natija to'g'ri chiqdi <span className="dm-sub">— kod endi sinadigan qismlarni o'zi topadi</span></>, ru: <>✅ Все четыре результата верны <span className="dm-sub">— код теперь сам находит ломающиеся части</span></> })}</div>}

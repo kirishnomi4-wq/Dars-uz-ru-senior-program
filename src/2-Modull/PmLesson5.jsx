@@ -1477,25 +1477,44 @@ const ScrFindError = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ============================================================
 // EKRAN 12 — KODING: to'liq-ekran kompilyator (dvijok manbasi: HtmlCompiler / P0 PmCompiler)
 // ============================================================
-const KODING_STARTER = `// Kinoteatr sayti — imkoniyatlar va ularning darajasi.
+const KODING_STARTER = {
+  uz: `// Kinoteatr sayti — imkoniyatlar va ularning darajasi.
 // Ikkala massivda ham bir xil o'rindagi element bir imkoniyatga tegishli.
-const nomlar = ["Seanslar va narxlar", "Ish vaqti va manzil", "Chipta band qilish tugmasi",
-                "Chegirma kodi", "Bufet menusi", "Tomoshabin sharhlari"];
-const darajalar = ["v1", "v1", "v1", "backlog", "v2", "backlog"];
+// names — nomlar · levels — darajalar · result — natija
+const names = ["Seanslar va narxlar", "Ish vaqti va manzil", "Chipta band qilish tugmasi",
+               "Chegirma kodi", "Bufet menusi", "Tomoshabin sharhlari"];
+const levels = ["v1", "v1", "v1", "backlog", "v2", "backlog"];
 
-function ochilishRoyxati(nomlar, darajalar) {
-  let natija = "";
-  for (let i = 0; i < nomlar.length; i++) {
+function launchList(names, levels) {
+  let result = "";
+  for (let i = 0; i < names.length; i++) {
     // ← Bu joyni siz to'ldirasiz
   }
-  return natija;
+  return result;
 }
 
-console.log(ochilishRoyxati(nomlar, darajalar));`;
+console.log(launchList(names, levels));`,
+  ru: `// Сайт кинотеатра — возможности и их уровень.
+// В обоих массивах элементы на одной позиции относятся к одной возможности.
+// names — названия · levels — уровни · result — результат
+const names = ["Сеансы и цены", "Часы работы и адрес", "Кнопка бронирования билета",
+               "Код скидки", "Меню буфета", "Отзывы зрителей"];
+const levels = ["v1", "v1", "v1", "backlog", "v2", "backlog"];
+
+function launchList(names, levels) {
+  let result = "";
+  for (let i = 0; i < names.length; i++) {
+    // ← Это место заполните вы
+  }
+  return result;
+}
+
+console.log(launchList(names, levels));`,
+};
 const KODING_CONDS = [
   { id: 'c1', label: { uz: 'Sikl ichida shart bor', ru: 'Внутри цикла есть условие' }, hint: { uz: 'Sikl har imkoniyatni birma-bir oladi. Ichida so\'rang: bu imkoniyatning darajasi nima?', ru: 'Цикл берёт каждую возможность по очереди. Спросите внутри: какой у неё уровень?' } },
   { id: 'c2', label: { uz: '"v1" tekshirilyapti', ru: 'Проверяется "v1"' }, hint: { uz: 'Tenglikni ikki teng belgi tekshiradi: == "v1". Bitta = qiymat soladi, tekshirmaydi.', ru: 'Равенство проверяют два знака равенства: == "v1". Один = присваивает значение, а не проверяет.' } },
-  { id: 'c3', label: { uz: 'Uchta nom chiqdi', ru: 'Вышли три названия' }, hint: { uz: 'Natija bo\'sh chiqsa — natija ga nom qo\'shilmayapti. natija = natija + nomlar[i] qatorini eslang.', ru: 'Если результат пустой — к natija не добавляется название. Вспомните строку natija = natija + nomlar[i].' } },
+  { id: 'c3', label: { uz: 'Uchta nom chiqdi', ru: 'Вышли три названия' }, hint: { uz: 'Natija bo\'sh chiqsa — result ga nom qo\'shilmayapti. result = result + names[i] qatorini eslang.', ru: 'Если результат пустой — к result не добавляется название. Вспомните строку result = result + names[i].' } },
 ];
 const readKoding = () => { try { const v = JSON.parse(localStorage.getItem(KODING_KEY) || 'null'); return v && typeof v === 'object' ? v : null; } catch { return null; } };
 // F-0801-01: kompilyator ochiq-yopiqligi ham saqlanadi — fon-tabda Chrome sahifani
@@ -1506,15 +1525,16 @@ const writeKodingOpen = (open) => { try { const p = readKoding() || {}; localSto
 // Bitta JS-fayl, 3 shart: c1/c2 — statik (kod matni), c3 — runtime (`eval`: natijada uchala v1-nom BOR, boshqalari YO'Q).
 // Saqlov-moslik: eski `pm-m2d7-code`.code (o'quvchi kodi) → fayl-starter sifatida; yangi kod `pm-m2d7-code:code` da (HtmlCompiler formati);
 // `open/done` avvalgidek `pm-m2d7-code` da.
-const KOD_FILE = 'ochilishRoyxati.js';
-const KOD_EVAL_C3 = "(function(){try{var r=String(ochilishRoyxati(nomlar,darajalar));var A=[\"Seanslar va narxlar\",\"Ish vaqti va manzil\",\"Chipta band qilish tugmasi\"],B=[\"Chegirma kodi\",\"Bufet menusi\",\"Tomoshabin sharhlari\"];for(var i=0;i<A.length;i++)if(r.indexOf(A[i])===-1)return false;for(var j=0;j<B.length;j++)if(r.indexOf(B[j])!==-1)return false;return true;}catch(e){return false;}})()";
+const KOD_FILE = 'launchList.js';
+// F-1027-01: nomlar inglizcha; eski saqlangan kod (ochilishRoyxati/nomlar/darajalar) ham o'tadi; uz va ru satrlar.
+const KOD_EVAL_C3 = "(function(){try{var r=String(typeof launchList===\"function\"?launchList(names,levels):ochilishRoyxati(nomlar,darajalar));var S=[[[\"Seanslar va narxlar\",\"Ish vaqti va manzil\",\"Chipta band qilish tugmasi\"],[\"Chegirma kodi\",\"Bufet menusi\",\"Tomoshabin sharhlari\"]],[[\"Сеансы и цены\",\"Часы работы и адрес\",\"Кнопка бронирования билета\"],[\"Код скидки\",\"Меню буфета\",\"Отзывы зрителей\"]]];for(var k=0;k<S.length;k++){var A=S[k][0],B=S[k][1],ok=true;for(var i=0;i<A.length;i++)if(r.indexOf(A[i])===-1)ok=false;for(var j=0;j<B.length;j++)if(r.indexOf(B[j])!==-1)ok=false;if(ok)return true;}return false;}catch(e){return false;}})()";
 const mkKodTask = (starter) => ({
   eyebrow: { uz: 'Koding · praktika', ru: 'Кодинг · практика' },
-  title: { uz: "ochilishRoyxati.js — siklga bitta shart qo'shing", ru: 'ochilishRoyxati.js — добавьте в цикл одно условие' },
-  brief: { uz: <>Daraja <span className="mono">"v1"</span> bo'lsa, nom <span className="mono">natija</span> ga qo'shilsin. Natija konsolda darhol ko'rinadi.</>, ru: <>Если уровень <span className="mono">"v1"</span> — название добавляется в <span className="mono">natija</span>. Результат сразу виден в консоли.</> },
+  title: { uz: "launchList.js — siklga bitta shart qo'shing", ru: 'launchList.js — добавьте в цикл одно условие' },
+  brief: { uz: <>Daraja <span className="mono">"v1"</span> bo'lsa, nom <span className="mono">result</span> ga qo'shilsin. Natija konsolda darhol ko'rinadi.</>, ru: <>Если уровень <span className="mono">"v1"</span> — название добавляется в <span className="mono">result</span>. Результат сразу виден в консоли.</> },
   files: [{ name: KOD_FILE, lang: 'js', starter }],
   requirements: [
-    { id: 'c1', label: KODING_CONDS[0].label, hint: KODING_CONDS[0].hint, check: C.custom((x) => /if\s*\(/.test(x.js || '') && /darajalar\s*\[\s*i\s*\]/.test(x.js || '')) },
+    { id: 'c1', label: KODING_CONDS[0].label, hint: KODING_CONDS[0].hint, check: C.custom((x) => /if\s*\(/.test(x.js || '') && /(?:levels|darajalar)\s*\[\s*i\s*\]/.test(x.js || '')) },
     { id: 'c2', label: KODING_CONDS[1].label, hint: KODING_CONDS[1].hint, js: /={2,3}\s*("v1"|'v1')/ }, // F-1017-204: darsda == o'tilgan — == ham, === ham qabul
     { id: 'c3', label: KODING_CONDS[2].label, hint: KODING_CONDS[2].hint, eval: KOD_EVAL_C3, equals: 'true' },
   ],
@@ -1528,7 +1548,7 @@ const ScrCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [open, setOpen] = useState(() => { const s = readKoding(); return !!(s && s.open); });
   const [st, setSt] = useState(() => {
     const saved = readKoding();
-    return { code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code) || KODING_STARTER, done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) }; // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
+    return { code: (typeof storedAnswer?.code === 'string' ? storedAnswer.code : null) || (saved && saved.code) || '', done: !!(storedAnswer && storedAnswer.solved) || !!(saved && saved.done) }; // F-0914-10: saqlangan javob matn bo'lmasa — zaxira-zanjir (oq ekran himoyasi)
   });
   const { code, done } = st;
   useEffect(() => {
@@ -1555,11 +1575,12 @@ const ScrCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
       navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !isMentor} label={done || isMentor ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Avval kompilyatorda bajaring', ru: 'Сначала выполните в компиляторе' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(14px,2.2vw,20px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ochilish ro'yxatini <span className="italic" style={{ color: T.accent }}>kod</span> o'zi ajratib beradi</>, ru: <>Список к открытию <span className="italic" style={{ color: T.accent }}>код</span> отберёт сам</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ikki massiv tayyor: nomlar va darajalar. Shu ikkovidan ochilish ro'yxatini yig'adigan kod yozasiz.</>, ru: <>Два массива готовы: названия и уровни. Вы напишете код, который соберёт из них список к открытию.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Ikki massiv tayyor: <span className="mono">names</span> (nomlar) va <span className="mono">levels</span> (darajalar). Shu ikkovidan ochilish ro'yxatini yig'adigan kod yozasiz.</>, ru: <>Два массива готовы: <span className="mono">names</span> (названия) и <span className="mono">levels</span> (уровни). Вы напишете код, который соберёт из них список к открытию.</> })}</Mentor>
         <div className="kdx fade-up delay-1">
           <div className="kdx-fn">
-            <span className="kdx-fn-bar"><span className="bb-dots"><i /><i /><i /></span>ochilishRoyxati.js</span>
-            <code className="kdx-fn-code">ochilishRoyxati(<span className="kx-kim">nomlar</span>, <span className="kx-nima">darajalar</span>)</code>
+            <span className="kdx-fn-bar"><span className="bb-dots"><i /><i /><i /></span>launchList.js</span>
+            <code className="kdx-fn-code">launchList(<span className="kx-kim">names</span>, <span className="kx-nima">levels</span>)</code>
+            <span className="kdx-fn-legend"><span className="kx-kim">names</span> — {tr({ uz: 'nomlar', ru: 'названия' })} · <span className="kx-nima">levels</span> — {tr({ uz: 'darajalar', ru: 'уровни' })}</span>
           </div>
           <span className="kdx-arrow" aria-hidden="true">➜</span>
           <div className="kdx-out">
@@ -2860,6 +2881,7 @@ export default function PmLesson5({ lang: langProp, onFinished, liveToken }) {
         .kdx-fn-bar { display: flex; align-items: center; gap: 8px; background: #141C2B; padding: 8px 13px; font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: 11px; color: #7E92B4; }
         .bb-dots { display: inline-flex; gap: 4px; } .bb-dots i { width: 7px; height: 7px; border-radius: 50%; background: #3A4A63; }
         .kdx-fn-code { display: block; padding: clamp(16px,2.2vw,24px) clamp(16px,2.4vw,26px); font-family: 'JetBrains Mono', monospace; font-feature-settings: "liga" 0, "calt" 0; font-size: clamp(12.5px,1.6vw,15.5px); color: ${CODE.text}; white-space: nowrap; }
+        .kdx-fn-legend { display: block; margin-top: calc(-1 * clamp(8px,1.2vw,12px)); padding: 0 clamp(16px,2.4vw,26px) clamp(12px,1.8vw,16px); font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #7E92B4; }
         .kx-kim { color: #7DB8E8; } .kx-nima { color: ${CODE.attr}; }
         .kdx-arrow { font-size: clamp(22px,3vw,30px); color: ${T.accent}; flex-shrink: 0; align-self: center; animation: kdx-arrow-nudge 1.6s ease-in-out infinite; }
         @keyframes kdx-arrow-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }

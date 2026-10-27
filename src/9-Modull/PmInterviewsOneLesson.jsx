@@ -1731,20 +1731,20 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // Tekshiruv ma'lumotdan mustaqil (SABOQ 37): funksiya o'z namuna obyekti bilan chaqiriladi; ustunlar soni — goyalar uzunligiga teng (node sinovi: scratchpad 03-qurish/kod-sinov.mjs).
 // ru-qoldiq-istisno s11: savollar yig'ish o'yinga odam yig'ganingiz to'garaklari to'garak
 const KOD_DATA = [
-  'const goyalar = [',
+  'const ideas = [',
   '  {',
-  '    nom: "Jamoa yig\'ish",',
-  '    bolak: "o\'yinga odam yig\'ganingiz"',
+  '    name: "Jamoa yig\'ish",',
+  '    part: "o\'yinga odam yig\'ganingiz"',
   '  },',
   '  {',
-  '    nom: "Mahalla to\'garaklari",',
-  '    bolak: "to\'garak izlaganingiz"',
+  '    name: "Mahalla to\'garaklari",',
+  '    part: "to\'garak izlaganingiz"',
   '  }',
   '];',
   ''
 ];
 const KOD_UMUMIY = [
-  'const umumiy = [',
+  'const common = [',
   '  "O\'shanda qanday qildingiz?",',
   '  "Eng qiyini nima bo\'ldi?",',
   '  "Hozir buni nima bilan hal qilyapsiz?",',
@@ -1754,32 +1754,33 @@ const KOD_UMUMIY = [
   ''
 ];
 const KOD_IZ = {
-  bosh: { uz: "// Mentorning ikki g'oyasi:\n// birinchi savolda almashadigan bo'lak", ru: '// Две идеи Ментора:\n// часть, которая меняется в первом вопросе' },
+  bosh: { uz: "// Mentorning ikki g'oyasi:\n// birinchi savolda almashadigan bo'lak\n// ideas — g'oyalar · name — nomi · part — bo'lak · common — umumiy savollar · questions — savollar", ru: '// Две идеи Ментора:\n// часть, которая меняется в первом вопросе\n// ideas — идеи · name — название · part — часть · common — общие вопросы · questions — вопросы' },
   umumiy: { uz: "// 2–5-savollar ikkala g'oyaga bir xil", ru: '// Вопросы 2–5 одинаковые для обеих идей' },
-  fn1: { uz: '  // birinchi savolni goya.bolak bilan yasang,', ru: '  // соберите первый вопрос с goya.bolak,' },
+  fn1: { uz: '  // birinchi savolni idea.part bilan yasang,', ru: '  // соберите первый вопрос с idea.part,' },
   fn2: { uz: "  // keyin umumiy savollarni qo'shing", ru: '  // потом добавьте общие вопросы' },
   siz: { uz: '   // shu joyni siz yozasiz', ru: '   // это место пишете вы' },
   tayyor: { uz: "// har g'oya — sahifada bitta ustun (bu qism tayyor)", ru: '// каждая идея — одна колонка на странице (эта часть готова)' }
 };
 const kodStarter = (t) => [KOD_IZ.bosh[t], ...KOD_DATA, KOD_IZ.umumiy[t], ...KOD_UMUMIY,
-  'function savollar(goya) {', KOD_IZ.fn1[t], KOD_IZ.fn2[t], '  return [];' + KOD_IZ.siz[t], '}', '',
-  KOD_IZ.tayyor[t], 'const joy = document.getElementById("shablon");', 'goyalar.forEach(function (goya) {',
-  '  const ustun = document.createElement("div");', '  ustun.className = "ustun";', '  const sarlavha = document.createElement("h2");',
-  '  sarlavha.textContent = goya.nom;', '  ustun.appendChild(sarlavha);', '  const royxat = document.createElement("ol");',
-  '  savollar(goya).forEach(function (matn) {', '    const qator = document.createElement("li");', '    qator.textContent = matn;',
-  '    royxat.appendChild(qator);', '  });', '  ustun.appendChild(royxat);', '  joy.appendChild(ustun);', '});', ''].join('\n');
+  'function questions(idea) {', KOD_IZ.fn1[t], KOD_IZ.fn2[t], '  return [];' + KOD_IZ.siz[t], '}', '',
+  KOD_IZ.tayyor[t], 'const container = document.getElementById("template");', 'ideas.forEach(function (idea) {',
+  '  const column = document.createElement("div");', '  column.className = "column";', '  const heading = document.createElement("h2");',
+  '  heading.textContent = idea.name;', '  column.appendChild(heading);', '  const list = document.createElement("ol");',
+  '  questions(idea).forEach(function (text) {', '    const item = document.createElement("li");', '    item.textContent = text;',
+  '    list.appendChild(item);', '  });', '  column.appendChild(list);', '  container.appendChild(column);', '});', ''].join('\n');
 const KOD_STARTER = { uz: kodStarter('uz'), ru: kodStarter('ru') };
 // Tutuq belgisining turli ko'rinishi (o'zbekcha klaviaturadagi) shartni yiqitmasin
 const KOD_TUTUQ = 'String(x).replace(/[\\u02BB\\u02BC\\u2018\\u2019]/g, "\'")';
 const KOD_SHART_IFODA = [
-  ['String(savollar({ nom: "x", bolak: "a" }).length) + "|" + String(savollar({ nom: "y", bolak: "b" }).length)', '5|5'],
-  [`(function(){var s=savollar({ nom: "x", bolak: "a" });return (function(x){return ${KOD_TUTUQ}})(s[0])+"#"+(s.slice(1).join("|")===umumiy.join("|"));})()`, "Oxirgi marta a qachon bo'ldi?#true"],
-  ['(function(){var u=document.querySelectorAll("#shablon .ustun");if(u.length<2||u.length!==goyalar.length)return "yoq";for(var i=0;i<u.length;i++){if(u[i].querySelectorAll("li").length!==5)return "yoq";}return "ha";})()', 'ha']
+  // F-1027-01: nomlar inglizcha; eski saqlangan kod (savollar · umumiy · #shablon) ham o'tadi.
+  ['(function(F){return String(F({ nom: "x", bolak: "a" }).length) + "|" + String(F({ nom: "y", bolak: "b" }).length);})((typeof questions==="function"?function(o){return questions({name:o.nom,part:o.bolak});}:savollar))', '5|5'],
+  [`(function(){var s=((typeof questions==="function"?function(o){return questions({name:o.nom,part:o.bolak});}:savollar))({ nom: "x", bolak: "a" });var U=typeof common!=="undefined"?common:umumiy;return (function(x){return ${KOD_TUTUQ}})(s[0])+"#"+(s.slice(1).join("|")===U.join("|"));})()`, "Oxirgi marta a qachon bo'ldi?#true"],
+  ['(function(){var u=document.querySelectorAll("#template .column, #shablon .ustun");var G=typeof ideas!=="undefined"?ideas:goyalar;if(u.length<2||u.length!==G.length)return "yoq";for(var i=0;i<u.length;i++){if(u[i].querySelectorAll("li").length!==5)return "yoq";}return "ha";})()', 'ha']
 ];
-const KOD_INDEX = { uz: "<h1>Shablon: ikki g'oya</h1>\n<div id=\"shablon\"></div>\n", ru: "<h1>Шаблон: две идеи</h1>\n<div id=\"shablon\"></div>\n" };
+const KOD_INDEX = { uz: "<h1>Shablon: ikki g'oya</h1>\n<div id=\"template\"></div>\n", ru: "<h1>Шаблон: две идеи</h1>\n<div id=\"template\"></div>\n" };
 const KOD_VAZIFA = [
-  { uz: "`savollar` besh savollik ro'yxat qaytaradi", ru: '`savollar` возвращает список из пяти вопросов' },
-  { uz: 'Birinchi savolda `goya.bolak` turadi', ru: 'В первом вопросе стоит `goya.bolak`' },
+  { uz: "`questions` besh savollik ro'yxat qaytaradi", ru: '`questions` возвращает список из пяти вопросов' },
+  { uz: 'Birinchi savolda `idea.part` turadi', ru: 'В первом вопросе стоит `idea.part`' },
   { uz: 'Sahifada ikki ustun, har birida besh savol', ru: 'На странице две колонки, в каждой пять вопросов' }
 ];
 const KOD_SHART = [
@@ -1789,12 +1790,12 @@ const KOD_SHART = [
 ];
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
-  title: { uz: 'app.js — savollar funksiyasini yakunlang', ru: 'app.js — допишите функцию savollar' },
+  title: { uz: 'app.js — questions funksiyasini yakunlang', ru: 'app.js — допишите функцию questions' },
   files: [
     { name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// birinchi savolni yasang, keyin umumiy savollarni qo'shing", ru: '// соберите первый вопрос, потом добавьте общие' } },
     { name: 'index.html', lang: 'html', starter: KOD_INDEX }
   ],
-  previewCss: '#shablon{display:grid;grid-template-columns:1fr 1fr;gap:16px}.ustun{background:#fff;border:1px solid #E7E3F4;border-radius:8px;padding:10px 14px}.ustun h2{font-size:17px;margin:0 0 8px}.ustun ol{margin:0;padding-left:22px}.ustun li{margin:0 0 8px;line-height:1.4}',
+  previewCss: '#template,#shablon{display:grid;grid-template-columns:1fr 1fr;gap:16px}.column{background:#fff;border:1px solid #E7E3F4;border-radius:8px;padding:10px 14px}.column h2{font-size:17px;margin:0 0 8px}.column ol{margin:0;padding-left:22px}.column li{margin:0 0 8px;line-height:1.4}',
   requirements: [
     { id: 'besh', label: KOD_VAZIFA[0], check: C.evalEquals(KOD_SHART_IFODA[0][0], KOD_SHART_IFODA[0][1], KOD_SHART[0]) },
     { id: 'bolak', label: KOD_VAZIFA[1], check: C.evalEquals(KOD_SHART_IFODA[1][0], KOD_SHART_IFODA[1][1], KOD_SHART[1]) },
@@ -1809,14 +1810,14 @@ const KOD_DARVOZA = [
 // Kod namunasi (o'qish uchun; nusxalanmaydi — PM-082 d): darvozadan keyin bolak qiymatlari bir lahza ajraladi (shablondagi accent rangida)
 const kodParcha = (kod) => {
   const L = kod.split('\n').filter(l => l.trim());
-  const u = L.findIndex(l => l.startsWith('const umumiy')), fn = L.findIndex(l => l.startsWith('function savollar'));
-  return [...L.slice(0, u), 'const umumiy = [ … ];', ...L.slice(fn, fn + 5)];
+  const u = L.findIndex(l => l.startsWith('const common')), fn = L.findIndex(l => l.startsWith('function questions'));
+  return [...L.slice(0, u), 'const common = [ … ];', ...L.slice(fn, fn + 5)];
 };
 const KodNamuna = ({ ajrat }) => (
   <pre className={cxx('io-kod', ajrat && 'ajrat')} onCopy={(e) => e.preventDefault()} aria-label="app.js">
     {kodParcha(tr(KOD_STARTER)).map((l, i) => {
       if (l.trim().startsWith('//')) return <span key={i} className="io-kod-iz">{l}{'\n'}</span>;
-      const m = l.match(/^(.*bolak: )(".*?")(.*)$/);
+      const m = l.match(/^(.*part: )(".*?")(.*)$/);
       if (!m) return <span key={i}>{l}{'\n'}</span>;
       return <span key={i}>{m[1]}<b className="io-kod-b">{m[2]}</b>{m[3]}{'\n'}</span>;
     })}
@@ -1871,9 +1872,9 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         yordam={stage2 && <div className="io-kyordam">
           <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM_T)}</QTugma>
           {yordam && <>
-            <QIzoh>{fmtCode(tr({ uz: "Avval birinchi savolni yasang: `\"Oxirgi marta \" + goya.bolak + \" qachon bo'ldi?\"`. Keyin `umumiy` dagi to'rt savolni `forEach` bilan ro'yxatga `push` qiling.", ru: 'Сначала соберите первый вопрос: `"Oxirgi marta " + goya.bolak + " qachon bo\'ldi?"`. Потом добавьте `push` четыре вопроса из `umumiy` через `forEach`.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: "Avval birinchi savolni yasang: `\"Oxirgi marta \" + idea.part + \" qachon bo'ldi?\"`. Keyin `common` dagi to'rt savolni `forEach` bilan ro'yxatga `push` qiling.", ru: 'Сначала соберите первый вопрос: `"Oxirgi marta " + idea.part + " qachon bo\'ldi?"`. Потом добавьте `push` четыре вопроса из `common` через `forEach`.' }))}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: "Eslatma (JavaScript darslaridan): massiv — ro'yxat · `+` — ikki matnni qo'shadi · `push` — ro'yxat oxiriga qo'shadi · `forEach` — ro'yxatdagi har element uchun bir marta ishlaydi.", ru: 'Напоминание (из уроков JavaScript): массив — список · `+` — соединяет два текста · `push` — добавляет в конец списка · `forEach` — срабатывает один раз для каждого элемента списка.' }))}</QIzoh>
-            <QIzoh>{fmtCode(tr({ uz: "Qo'shimcha: `goyalar` ga o'z ikki g'oyangizning bo'lagini yozing — sahifada o'z shabloningiz chiqadi.", ru: 'Дополнительно: запишите в `goyalar` части своих двух идей — на странице появится ваш шаблон.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: "Qo'shimcha: `ideas` ga o'z ikki g'oyangizning bo'lagini yozing — sahifada o'z shabloningiz chiqadi.", ru: 'Дополнительно: запишите в `ideas` части своих двух идей — на странице появится ваш шаблон.' }))}</QIzoh>
           </>}
         </div>}
         {...{ [QKOD_ONG]: <div className="io-kodoyna">
@@ -1885,7 +1886,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           {isMentor && <MentorPracticeStats live={live} screen={screen} />}
         </div> }}
       >
-        <MentorNote>{tr({ uz: "Kod — 3–4 daqiqalik mashq, yangi qoida yo'q: bir xil savollar va almashadigan bo'lak. O'z g'oyalarini `goyalar` ga yozgan o'quvchini maqtang — shart emas.", ru: 'Код — упражнение на 3–4 минуты, нового правила нет: одинаковые вопросы и меняющаяся часть. Похвалите ученика, который записал в `goyalar` свои идеи, — это не обязательно.' })}</MentorNote>
+        <MentorNote>{tr({ uz: "Kod — 3–4 daqiqalik mashq, yangi qoida yo'q: bir xil savollar va almashadigan bo'lak. O'z g'oyalarini `ideas` ga yozgan o'quvchini maqtang — shart emas.", ru: 'Код — упражнение на 3–4 минуты, нового правила нет: одинаковые вопросы и меняющаяся часть. Похвалите ученика, который записал в `ideas` свои идеи, — это не обязательно.' })}</MentorNote>
       </QKod>
       {/* Zoom ikki marta tushmasin: .lesson-root da zoom: var(--lz), kod oynasi qobig'i tashqi zoomni bekor qiladi */}
       {open && (

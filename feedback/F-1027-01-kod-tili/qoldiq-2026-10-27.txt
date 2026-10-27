@@ -1,0 +1,72 @@
+ 24 R17 11-Modull/PaymentWebhookLesson.jsx           kutilgan TOLOV_KALITI javob yangi radxabar yana jadval yozilganlar raqam oxirgi
+ 21 R20 8-Modull/EventTrackingLesson.jsx             nom brauzer_id hodisalar kataklar soat katak xabar namuna izoh tanlangan
+ 18 R14 10-Modull/BreakAndFixLesson.jsx              ulanish belgi oyin hisob xabarlar uzish qaytar qoshilgan ulangan sora
+ 16 R11 4-Modull/PostgresCrudLesson.jsx              bazadan faqat qatorni hammasi narxni Jadvalni yaratadi emas chirmaydi Quloqchin
+ 14 R11 5-Modull/BotAiAgentLesson.jsx                taom soni narx narxi manzil saqlandi buyurtmalar yoz buyurtmaId kuryer
+ 14 R12 10-Modull/WebSocketBasicsLesson.jsx          ulanish BACKEND_MANZILI oyin hisob yangila qoshilgan sora tinglovchilar nom kod
+ 11 R10 11-Modull/ReferralDayLesson.jsx              oyinchilar taklif_kodi namuna taklif_qilgan_id ishtirokchilar oyinchi_id holat oyinlar tashkilotchi_id loginingiz
+ 10 R10 8-Modull/SecurityBasicsLesson.jsx            kalit telefon qidir natija bandlar soat qiymatlar xabar korsat qatorlar
+ 10 R10 11-Modull/PaymentDayLesson.jsx               pro_gacha oyinchilar hisob raqami tolov_raqami holat yaratilgan tolovlar oyinchi_id DESC
+  8 R 4 2-Modull/JsFunctionsLesson.jsx               dmg nimani qaytaradi nima saqlanadi natijasi tushadi boshlang
+  8 R 0 6-Modull/PmLesson23.jsx                      chegaraKerak javobYozish narxOzgartirish buyurtmaBekor hisobotYigish kechasiXabar adminXabar chegirmaXabar
+  7 R 4 2-Modull/JsVarsLesson.jsx                    keyin quti qulflangan Endi qancha yozing Qiymatni
+  7 R 5 2-Modull/JsLoopsLesson.jsx                   sikli necha ishlaydi boshlang Sikl ichida yozing
+  7 R 2 4-Modull/BackendCrudPracticeLesson.jsx       Oxirgi mashinani avto ijara PostgreSQL avtoijara endpoint
+  7 R 2 4-Modull/FullstackFeedbackLesson.jsx         mavjudni AvtoStoyanka avto stoyanka tasdiq joylar soni
+  7 R 7 6-Modull/PipelineProjectLesson.jsx           javob savol yarat buyurtmalar yoz taom manzil
+  7 R 3 9-Modull/PmRoadmapLesson.jsx                 hozir keyinroq uzoqroq ufq kutadi nom Hozir
+  7 R 7 9-Modull/PlatformChoiceLesson.jsx            yangila korsat qoshilgan sora javob oyin hisob
+  7 R 6 9-Modull/FeatureOneLesson.jsx                oyinlar yaratilgan DESC kerak Qaytaring yana pastga
+  7 R 7 10-Modull/PmUsersCheckLesson.jsx             oyinchilar namuna ishtirokchilar oyinchi_id holat oyinlar tashkilotchi_id
+  7 R 7 11-Modull/WinBackDayLesson.jsx               oyinchilar ulangan hisob raqamingiz yaratilgan hodisalar nom
+  6 R 4 3-Modull/ReactStateEffectLesson.jsx          Tugmaga qachon ishlaydi ichidagi nima uchun
+  6 R 4 4b-Modull/EdgeCasesTestLesson.jsx            bilan yozing Yana bir exceptionni sinaydi
+  6 R 5 5-Modull/BotStatefulMemoryLesson.jsx         holatlar yangilash shadi bilan yozadi Holatni
+  6 R 3 11-Modull/PmUnitEconomicsLesson.jsx          jalbNarxi keltiradi kanal sarf yangi tashkilotchi
+  5 R 3 2-Modull/JsConditionsLesson.jsx              ishlaydimi Shart ichida yozing Oxirgi
+  5 R 4 3-Modull/ReactFirstComponentLesson.jsx       ichida yozing Katta harf qaytaring
+  5 R 5 7-Modull/MvpArchitectureLesson.jsx           bandlar soat kun EGA_PAROLI vaqtlar
+  5 R 2 9-Modull/PmInterviewsOneLesson.jsx           nom bolak savollar umumiy goyalar
+  4 R 2 2-Modull/PeanStackLesson.jsx                 frontend yozing Sikl ichida
+  4 R 2 4a-Modull/PmLesson15.jsx                     singanlar orindiq tolov sahifa
+  4 R 3 5-Modull/PmLesson19.jsx                      deg guruhlar nechta nom
+  4 R 2 5-Modull/BotApiButtonsLesson.jsx             Kodda faqat faylni yuklaydi
+  4 R 2 5-Modull/BotAiBrainLesson.jsx                tarix suhbatTarixi javob soraAI
+  4 R 3 5-Modull/PmLesson21.jsx                      hisob kun kelgan qaytgan
+  4 R 4 6-Modull/MobileAppPracticeLesson.jsx         setSavat savat pitsa soni
+  4 R 2 8-Modull/PmAbTestLesson.jsx                  qilish Ctrl Cmd GitHub
+  4 R 3 8-Modull/PmYearPathLesson.jsx                vaqtChizigi modul nom nima
+  4 R 1 9-Modull/PmTenIdeasLesson.jsx                qatorlar muammo yechim goyalar
+  4 R 4 9-Modull/LivePrototypeLesson.jsx             oyin hisob tugma setTimeout
+  4 R 3 9-Modull/ExpoPrototypeLesson.jsx             nconst oyin oyinlar karta
+  4 R 4 9-Modull/FeatureThreeLesson.jsx              oyinchi_id holat ishtirokchilar oyin_id
+  3 R 3 2-Modull/PracticeLesson3.jsx                 shart keyin qator
+  3 R 0 pm/PmUserStoryLesson.jsx                     Qolip orqa hikoyaYasa
+  3 R 3 3-Modull/ReactPropsReuseLesson.jsx           ichida yin yozing
+  3 R 2 3-Modull/PmLesson9.jsx                       qabulQilinadimi taom soni
+  3 R 1 10-Modull/PmGrowthPitchLesson.jsx            soni haftalar BALANDLIK
+  2 R 0 2-Modull/PmMuammoIzlash.jsx                  Surgichni yulduzgacha
+  2 R 2 2-Modull/PracticeLesson4.jsx                 shart keyin
+  2 R 1 3-Modull/ReactCrudPracticeLesson.jsx         robo yozing
+  2 R 0 3-Modull/ReactApiPostLesson.jsx              Obyekt tayyorlang
+  2 R 1 4-Modull/PmLesson11.jsx                      yoqqanlar tarix
+  2 R 1 4-Modull/NodeServerLesson.jsx                eshik oching
+  2 R 1 4-Modull/PmLesson12.jsx                      nimani qaytaradi
+  2 R 1 4-Modull/ApiPostmanLesson.jsx                Baza bajaradi
+  2 R 0 4-Modull/PmLesson13.jsx                      band_qilgan qaytarish_sanasi
+  2 R 2 4-Modull/FullstackProjectDayLesson.jsx       Oxirgi joyni
+  2 R 1 4c-Modull/PmLesson17.jsx                     haftalar nom
+  2 R 0 6-Modull/PmLesson24.jsx                      wsp qoyilgan
+  2 R 2 7-Modull/AnimationLesson.jsx                 kataklar katak
+  2 R 2 7-Modull/MvpCompleteLesson.jsx               EGA_PAROLI vaqt
+  2 R 1 8-Modull/PmTrustAuditLesson.jsx              Backend Ctrl
+  2 R 1 10-Modull/PmChannelsLesson.jsx               kanalniOl kanal
+  1 R 1 1-Modull/DeployLesson.jsx                    jadval
+  1 R 0 3-Modull/ReactRouterPracticeLesson.jsx       RouteQator
+  1 R 1 6-Modull/AgentArchitectureLesson.jsx         ishlatildi
+  1 R 0 6-Modull/PmLesson25.jsx                      dalillar
+  1 R 0 7-Modull/PmProductProblemLesson.jsx          muammolar
+  1 R 1 7-Modull/PmFiveInterviewsLesson.jsx          yozilmagan
+  1 R 1 8-Modull/PmOkrLesson.jsx                     Backend
+  1 R 1 11-Modull/PmPricingLesson.jsx                tekshiruv
+JAMI 71 dars

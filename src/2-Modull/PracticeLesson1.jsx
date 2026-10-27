@@ -989,8 +989,8 @@ const JonliSayt = ({ rejim = false, like = false, tabrik = false, vosita = null,
     </div>
   );
 };
-const NUSXA_HTML = '<button id="like">Like</button> <span id="son">0</span>';
-const NUSXA_IZOH = '// like tugmasi bosilsa son 1 ga oshsin';
+const NUSXA_HTML = '<button id="like">Like</button> <span id="count">0</span>';
+const NUSXA_IZOH = { uz: '// like tugmasi bosilsa count 1 ga oshsin', ru: '// при нажатии like count увеличивается на 1' }; // F-1027-01: izoh o'quvchi tilida
 const KodNusxa = ({ yorliq, kod }) => {
   const [ok, setOk] = useState(false);
   const nusxa = async () => { try { await navigator.clipboard.writeText(kod); setOk(true); setTimeout(() => setOk(false), 1600); } catch { /* clipboard yopiq — ustoz ko'rsatadi */ } };
@@ -1043,7 +1043,7 @@ const ScreenLike = ({ screen, onNext, onPrev }) => (
         <Col>
           <div className="am-karta fade-up delay-1">
             <KodNusxa yorliq={{ uz: '1 · index.html ga', ru: '1 · в index.html' }} kod={NUSXA_HTML} />
-            <KodNusxa yorliq={{ uz: '2 · script.js oxiriga', ru: '2 · в конец script.js' }} kod={NUSXA_IZOH} />
+            <KodNusxa yorliq={{ uz: '2 · script.js oxiriga', ru: '2 · в конец script.js' }} kod={tr(NUSXA_IZOH)} />
           </div>
           <Qadamlar b={A2} cls="fade-up delay-2" />
           <details className="am-yordam"><summary>{tr({ uz: 'Taklif chiqmadimi?', ru: 'Подсказка не появилась?' })}</summary><p>{tr({ uz: "Izohdan keyin Enter'ni yana bir bosing. Baribir chiqmasa — Copilot'ga kirganingizni tekshiring (pastki chiziqdagi Copilot belgisi) yoki shu izohni Gemini'ga yuboring.", ru: 'Нажмите Enter после комментария ещё раз. Если всё равно нет — проверьте, что вошли в Copilot (значок Copilot в нижней строке), или отправьте этот комментарий в Gemini.' })}</p></details>
@@ -1051,7 +1051,7 @@ const ScreenLike = ({ screen, onNext, onPrev }) => (
         <Col>
           <p className="flow-label">{tr({ uz: "Kutilgan natija · bosib ko'ring", ru: 'Ожидаемый результат · нажмите' })}</p>
           <JonliSayt rejim like />
-          <p className="small am-osti">{fmtCode(tr({ uz: "Copilot `let son = 0` va `click` hodisasini yozadi — o'zgaruvchi va hodisa JS darslaridagi bilan bir xil.", ru: 'Copilot напишет `let son = 0` и событие `click` — переменная и событие те же, что на уроках JS.' }))}</p>
+          <p className="small am-osti">{fmtCode(tr({ uz: "Copilot `let count = 0` va `click` hodisasini yozadi — o'zgaruvchi va hodisa JS darslaridagi bilan bir xil.", ru: 'Copilot напишет `let count = 0` и событие `click` — переменная и событие те же, что на уроках JS.' }))}</p>
         </Col>
       </Split>
     </div>
@@ -1059,7 +1059,7 @@ const ScreenLike = ({ screen, onNext, onPrev }) => (
 );
 const A3 = {
   qadamlar: [
-    { uz: "`script.js` da son oshadigan qatorni toping (`son = son + 1` yoki `son++`).", ru: 'Найдите в `script.js` строку, где растёт число (`son = son + 1` или `son++`).' },
+    { uz: "`script.js` da son oshadigan qatorni toping (`count = count + 1` yoki `count++`).", ru: 'Найдите в `script.js` строку, где растёт число (`count = count + 1` или `count++`).' },
     { uz: "Undan keyin o'zingiz shart yozing: son 10 ga teng bo'lsa — sahifada «Rahmat! 10 like» yozuvi chiqsin.", ru: 'После неё сами напишите условие: если число равно 10 — на странице появляется «Спасибо! 10 лайков».' },
     { uz: "`Ctrl+S` — brauzerda 10 marta bosib tekshiring.", ru: '`Ctrl+S` — проверьте в браузере, нажав 10 раз.' }
   ]
@@ -1074,9 +1074,9 @@ const ScreenTabrik = ({ screen, onNext, onPrev }) => (
           <Qadamlar b={A3} cls="fade-up delay-1" />
           <div className="am-karta fade-up delay-2">
             <p className="flow-label">{tr({ uz: 'Qolip', ru: 'Шаблон' })}</p>
-            <pre className="am-masalan">{"if (son === …) {\n  …\n}"}</pre>
+            <pre className="am-masalan">{"if (count === …) {\n  …\n}"}</pre>
           </div>
-          <details className="am-yordam"><summary>{tr({ uz: 'Qiynalyapsizmi?', ru: 'Трудно?' })}</summary><pre className="am-masalan">{'if (son === 10) {\n  alert("Rahmat! 10 like");\n}'}</pre></details>
+          <details className="am-yordam"><summary>{tr({ uz: 'Qiynalyapsizmi?', ru: 'Трудно?' })}</summary><pre className="am-masalan">{'if (count === 10) {\n  alert("Rahmat! 10 like");\n}'}</pre></details>
         </Col>
         <Col>
           <p className="flow-label">{tr({ uz: "Kutilgan natija · 10 marta bosing", ru: 'Ожидаемый результат · нажмите 10 раз' })}</p>
@@ -1237,7 +1237,7 @@ const Screen16 = ({ screen, answers, achievements, onReset, onPrev, onFinish, on
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
   };
-  const RECAP = [tr({ uz: "Asosiy qoida: HODISA → REAKSIYA → O'ZGARISH", ru: 'Главное правило: СОБЫТИЕ → РЕАКЦИЯ → ИЗМЕНЕНИЕ' }), fmtCode(tr({ uz: "Tungi rejim — `if` / `else` hozirgi holatga qarab tanlaydi", ru: 'Ночной режим — `if` / `else` выбирает по текущему состоянию' })), fmtCode(tr({ uz: "Copilot: izoh yozasiz → taklifni `Tab` bilan qabul qilasiz", ru: 'Copilot: пишете комментарий → принимаете подсказку клавишей `Tab`' })), fmtCode(tr({ uz: "Shartni o'zingiz yozdingiz: `if (son === 10)`", ru: 'Условие вы написали сами: `if (son === 10)`' })), tr({ uz: "JavaScript alohida script.js faylida turadi", ru: 'JavaScript находится в отдельном файле script.js' })];
+  const RECAP = [tr({ uz: "Asosiy qoida: HODISA → REAKSIYA → O'ZGARISH", ru: 'Главное правило: СОБЫТИЕ → РЕАКЦИЯ → ИЗМЕНЕНИЕ' }), fmtCode(tr({ uz: "Tungi rejim — `if` / `else` hozirgi holatga qarab tanlaydi", ru: 'Ночной режим — `if` / `else` выбирает по текущему состоянию' })), fmtCode(tr({ uz: "Copilot: izoh yozasiz → taklifni `Tab` bilan qabul qilasiz", ru: 'Copilot: пишете комментарий → принимаете подсказку клавишей `Tab`' })), fmtCode(tr({ uz: "Shartni o'zingiz yozdingiz: `if (count === 10)`", ru: 'Условие вы написали сами: `if (count === 10)`' })), tr({ uz: "JavaScript alohida script.js faylida turadi", ru: 'JavaScript находится в отдельном файле script.js' })];
   const GLOSSARY = [{ b: tr({ uz: 'Interaktivlik', ru: 'Интерактивность' }), t: tr({ uz: '— saytning foydalanuvchiga javob berishi', ru: '— способность сайта отвечать пользователю' }) }, { b: tr({ uz: 'Hodisa (event)', ru: 'Событие (event)' }), t: tr({ uz: '— foydalanuvchi harakati (bosish, yozish)', ru: '— действие пользователя (клик, ввод)' }) }, { b: tr({ uz: 'Reaksiya', ru: 'Реакция' }), t: tr({ uz: '— ishga tushadigan JavaScript funksiyasi', ru: '— функция JavaScript, которая запускается' }) }, { b: 'click', t: tr({ uz: '— bosish hodisasi', ru: '— событие клика' }) }, { b: 'input', t: tr({ uz: '— yozish hodisasi', ru: '— событие ввода' }) }, { b: 'hover', t: tr({ uz: '— ustiga olib borish hodisasi', ru: '— событие наведения' }) }, { b: 'Copilot', t: tr({ uz: "— VS Code ichidagi AI: siz yozgan izohdan kod taklif qiladi", ru: '— AI внутри VS Code: предлагает код по вашему комментарию' }) }];
   const correct = SCORED_IDX.filter(i => answers[i]?.correct).length;
   const total = SCORED_IDX.length;
@@ -1522,7 +1522,7 @@ const HTML_FLASHCARDS = [
   { front: { uz: "Sichqoncha element ustiga kelganda qaysi hodisa yuz beradi?", ru: 'Какое событие происходит, когда мышка оказывается над элементом?' }, back: 'hover', note: { uz: 'telefonda — barmoqni bosib turish', ru: 'на телефоне — держать палец' } },
   { front: { uz: "Sayt jonlanishining uch qadami qanday tartibda boradi?", ru: 'В каком порядке идут три шага оживления сайта?' }, back: { uz: "Hodisa → Reaksiya → O'zgarish", ru: 'Событие → Реакция → Изменение' }, note: { uz: "bosdingiz → JavaScript ishladi → ekran o'zgardi", ru: 'нажали → JavaScript сработал → экран изменился' } },
   { front: { uz: "Sayt like sonini nimada eslab qoladi?", ru: 'Где сайт запоминает число лайков?' }, back: { uz: "o'zgaruvchida", ru: 'в переменной' }, note: { uz: "son — ichiga qiymat solinadigan quti", ru: 'son — коробка, в которую кладут значение' } },
-  { front: { uz: "son = 0 edi, tugma 3 marta bosildi (son = son + 1). Ekranda nechta chiqadi?", ru: 'son = 0, кнопку нажали 3 раза (son = son + 1). Что будет на экране?' }, back: '3', note: { uz: '0 → 1 → 2 → 3', ru: '0 → 1 → 2 → 3' } },
+  { front: { uz: "count = 0 edi, tugma 3 marta bosildi (count = count + 1). Ekranda nechta chiqadi?", ru: 'count = 0, кнопку нажали 3 раза (count = count + 1). Что будет на экране?' }, back: '3', note: { uz: '0 → 1 → 2 → 3', ru: '0 → 1 → 2 → 3' } },
   { front: { uz: "Forma bo'sh yoki to'ldirilganini qaysi shart tekshiradi?", ru: 'Какое условие проверяет, пустая форма или заполненная?' }, back: 'if / else', note: { uz: "bo'sh bo'lsa «Ism kiriting», aks holda «Rahmat»", ru: 'пусто — «Ism kiriting», иначе — «Rahmat»' } },
   { front: { uz: "Kodni yozmasdan, so'z bilan aytib AI'ga qurdirish nima deyiladi?", ru: 'Как называется, когда код не пишут, а словами поручают его AI?' }, back: 'Vibecoding', note: { uz: 'agent quradi, natijani siz tekshirasiz', ru: 'агент строит, результат проверяете вы' } },
 ];
@@ -1693,15 +1693,15 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 const TASK_LIKE = {
   eyebrow: { uz: 'Praktika · Like', ru: 'Практика · Like' },
   title: { uz: "Like tugmasini jonlantiring", ru: 'Оживите кнопку Like' },
-  brief: { uz: "HTML'da tugma `<button id=\"like\">Like</button>` va son uchun `<span id=\"son\">0</span>` yozing. JS faylida tugma bosilganda son 1 taga oshsin (`son = son + 1`). To'g'ri bo'lsa — bosilganda 0 → 1 bo'ladi.", ru: 'В HTML напишите кнопку `<button id=\"like\">Like</button>` и `<span id=\"son\">0</span>` для числа. В JS-файле: при нажатии кнопки число растёт на 1 (`son = son + 1`). Если всё верно — при нажатии 0 → 1.' },
+  brief: { uz: "HTML'da tugma `<button id=\"like\">Like</button>` va son uchun `<span id=\"count\">0</span>` yozing. JS faylida tugma bosilganda son 1 taga oshsin (`count = count + 1`). To'g'ri bo'lsa — bosilganda 0 → 1 bo'ladi.", ru: 'В HTML напишите кнопку `<button id=\"like\">Like</button>` и `<span id=\"count\">0</span>` для числа. В JS-файле: при нажатии кнопки число растёт на 1 (`count = count + 1`). Если всё верно — при нажатии 0 → 1.' },
   files: [
     { name: 'index.html', lang: 'html', starter: `<!-- Bu yerga yozing -->\n` },
     { name: 'script.js',  lang: 'js',   starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
     { id: 'btn', label: { uz: '<button id="like"> tugma', ru: '<button id="like"> кнопка' }, check: C.has('#like', { uz: "`<button id=\"like\">Like</button>` qo'shing", ru: 'Добавьте `<button id=\"like\">Like</button>`' }) },
-    { id: 'son', label: { uz: '<span id="son">0</span> — son', ru: '<span id="son">0</span> — число' }, check: C.has('#son', { uz: "Son uchun `<span id=\"son\">0</span>` qo'shing", ru: 'Добавьте `<span id=\"son\">0</span>` для числа' }) },
-    { id: 'click', label: { uz: 'bosilganda son 1 ga oshadi', ru: 'при нажатии число растёт на 1' }, check: C.domAfterClick('#like', '#son', '1', { uz: "JS'da: bosilganda `son`ni +1 qilib, `son` matnini yangilang", ru: 'В JS: при нажатии прибавьте к `son` +1 и обновите текст `son`' }) },
+    { id: 'son', label: { uz: '<span id="count">0</span> — son', ru: '<span id="count">0</span> — число' }, check: C.has('#count', { uz: "Son uchun `<span id=\"count\">0</span>` qo'shing", ru: 'Добавьте `<span id=\"count\">0</span>` для числа' }) },
+    { id: 'click', label: { uz: 'bosilganda son 1 ga oshadi', ru: 'при нажатии число растёт на 1' }, check: C.domAfterClick('#like', '#count', '1', { uz: "JS'da: bosilganda `count`ni +1 qilib, `count` matnini yangilang", ru: 'В JS: при нажатии прибавьте к `count` +1 и обновите текст `count`' }) },
   ],
 };
 
@@ -1709,14 +1709,14 @@ const TASK_LIKE = {
 const TASK_TOGGLE = {
   eyebrow: { uz: 'Praktika · Rejim', ru: 'Практика · Режим' },
   title: { uz: "Rejim tugmasini yasang", ru: 'Сделайте кнопку режима' },
-  brief: { uz: "HTML'da `<button id=\"rejim\">Kunduz</button>` yozing. JS'da tugma bosilganda matn «Kunduz» va «Tun» orasida almashsin (if/else). 1-bosishda Tun, 2-bosishda yana Kunduz bo'lishi kerak.", ru: 'В HTML напишите `<button id=\"rejim\">Kunduz</button>`. В JS: при нажатии текст переключается между «Kunduz» и «Tun» (if/else). После 1-го нажатия — Tun, после 2-го — снова Kunduz.' },
+  brief: { uz: "HTML'da `<button id=\"mode\">Kunduz</button>` yozing. JS'da tugma bosilganda matn «Kunduz» va «Tun» orasida almashsin (if/else). 1-bosishda Tun, 2-bosishda yana Kunduz bo'lishi kerak.", ru: 'В HTML напишите `<button id=\"mode\">Kunduz</button>`. В JS: при нажатии текст переключается между «Kunduz» и «Tun» (if/else). После 1-го нажатия — Tun, после 2-го — снова Kunduz.' },
   files: [
     { name: 'index.html', lang: 'html', starter: `<!-- Bu yerga yozing -->\n` },
     { name: 'script.js',  lang: 'js',   starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'btn', label: '<button id="rejim">Kunduz</button>', check: C.has('#rejim', { uz: "`<button id=\"rejim\">Kunduz</button>` qo'shing", ru: 'Добавьте `<button id=\"rejim\">Kunduz</button>`' }) },
-    { id: 'toggle', label: { uz: 'Kunduz ⇄ Tun almashadi', ru: 'Kunduz ⇄ Tun переключается' }, check: C.toggle('#rejim', '#rejim', 'Kunduz', 'Tun', { uz: "JS'da: agar matn «Kunduz» bo'lsa «Tun»ga, aks holda «Kunduz»ga o'zgartiring", ru: 'В JS: если текст «Kunduz» — поменяйте на «Tun», иначе — на «Kunduz»' }) },
+    { id: 'btn', label: '<button id="mode">Kunduz</button>', check: C.has('#mode', { uz: "`<button id=\"mode\">Kunduz</button>` qo'shing", ru: 'Добавьте `<button id=\"mode\">Kunduz</button>`' }) },
+    { id: 'toggle', label: { uz: 'Kunduz ⇄ Tun almashadi', ru: 'Kunduz ⇄ Tun переключается' }, check: C.toggle('#mode', '#mode', 'Kunduz', 'Tun', { uz: "JS'da: agar matn «Kunduz» bo'lsa «Tun»ga, aks holda «Kunduz»ga o'zgartiring", ru: 'В JS: если текст «Kunduz» — поменяйте на «Tun», иначе — на «Kunduz»' }) },
   ],
 };
 
@@ -1724,15 +1724,15 @@ const TASK_TOGGLE = {
 const TASK_FORM = {
   eyebrow: { uz: 'Praktika · Forma', ru: 'Практика · Форма' },
   title: { uz: "Formani tekshiring (if/else)", ru: 'Проверьте форму (if/else)' },
-  brief: { uz: "HTML'da `<input id=\"ism\">`, `<button id=\"yubor\">Yuborish</button>` va xabar uchun `<span id=\"xabar\"></span>` yozing. JS'da: agar input bo'sh bo'lsa — «Ism kiriting» yozing, aks holda «Rahmat». Bo'sh formada bosilsa «Ism kiriting» chiqadi.", ru: 'В HTML напишите `<input id=\"ism\">`, `<button id=\"yubor\">Yuborish</button>` и `<span id=\"xabar\"></span>` для сообщения. В JS: если input пустой — выведите «Ism kiriting», иначе — «Rahmat». При пустой форме после нажатия появится «Ism kiriting».' },
+  brief: { uz: "HTML'da `<input id=\"name\">`, `<button id=\"send\">Yuborish</button>` va xabar uchun `<span id=\"message\"></span>` yozing. JS'da: agar input bo'sh bo'lsa — «Ism kiriting» yozing, aks holda «Rahmat». Bo'sh formada bosilsa «Ism kiriting» chiqadi.", ru: 'В HTML напишите `<input id=\"name\">`, `<button id=\"send\">Yuborish</button>` и `<span id=\"message\"></span>` для сообщения. В JS: если input пустой — выведите «Ism kiriting», иначе — «Rahmat». При пустой форме после нажатия появится «Ism kiriting».' },
   files: [
     { name: 'index.html', lang: 'html', starter: `<!-- Bu yerga yozing -->\n` },
     { name: 'script.js',  lang: 'js',   starter: `// Bu yerga yozing\n` },
   ],
   requirements: [
-    { id: 'btn', label: { uz: '<button id="yubor"> tugma', ru: '<button id="yubor"> кнопка' }, check: C.has('#yubor', { uz: "`<button id=\"yubor\">Yuborish</button>` qo'shing", ru: 'Добавьте `<button id=\"yubor\">Yuborish</button>`' }) },
+    { id: 'btn', label: { uz: '<button id="send"> tugma', ru: '<button id="send"> кнопка' }, check: C.has('#send', { uz: "`<button id=\"send\">Yuborish</button>` qo'shing", ru: 'Добавьте `<button id=\"send\">Yuborish</button>`' }) },
     { id: 'ifelse', label: { uz: 'if/else ishlatilgan', ru: 'использован if/else' }, check: C.js(/if\s*\(/, { uz: "Tekshiruv uchun `if (...)` sharti yozing", ru: 'Напишите условие `if (...)` для проверки' }) },
-    { id: 'check', label: { uz: "bo'sh formada «Ism kiriting»", ru: 'при пустой форме — «Ism kiriting»' }, check: C.domAfterClick('#yubor', '#xabar', 'kiriting', { uz: "JS'da: agar `ism` qiymati bo'sh bo'lsa `xabar`ga «Ism kiriting» yozing", ru: 'В JS: если значение `ism` пустое, выведите в `xabar` текст «Ism kiriting»' }) },
+    { id: 'check', label: { uz: "bo'sh formada «Ism kiriting»", ru: 'при пустой форме — «Ism kiriting»' }, check: C.domAfterClick('#send', '#message', 'kiriting', { uz: "JS'da: agar `name` qiymati bo'sh bo'lsa `message`ga «Ism kiriting» yozing", ru: 'В JS: если значение `name` пустое, выведите в `message` текст «Ism kiriting»' }) },
   ],
 };
 
@@ -1748,11 +1748,11 @@ const QUIZ_SHAPES = ['▲', '◆', '●', '■'];
 const QZ_BG_SHAPES = [
   { ch: 'onclick',  l: 6,  t: 18, s: 30, c: 'rgba(203,173,255,0.16)', d: 19, dl: 0 },
   { ch: 'click',    l: 82, t: 12, s: 26, c: 'rgba(203,173,255,0.13)', d: 23, dl: 1.5 },
-  { ch: 'son=0',    l: 9,  t: 74, s: 30, c: 'rgba(255,110,70,0.15)',  d: 27, dl: 0.8 },
+  { ch: 'count=0',    l: 9,  t: 74, s: 30, c: 'rgba(255,110,70,0.15)',  d: 27, dl: 0.8 },
   { ch: 'input',    l: 76, t: 70, s: 26, c: 'rgba(203,173,255,0.11)', d: 21, dl: 2.2 },
   { ch: 'if/else',  l: 46, t: 86, s: 28, c: 'rgba(203,173,255,0.14)', d: 25, dl: 1.1 },
   { ch: 'hover',    l: 66, t: 24, s: 22, c: 'rgba(80,200,255,0.14)',  d: 17, dl: 0.4 },
-  { ch: 'son+1',    l: 22, t: 36, s: 22, c: 'rgba(203,173,255,0.12)', d: 20, dl: 1.9 },
+  { ch: 'count+1',    l: 22, t: 36, s: 22, c: 'rgba(203,173,255,0.12)', d: 20, dl: 1.9 },
   { ch: 'toggle',   l: 92, t: 46, s: 24, c: 'rgba(120,235,175,0.13)', d: 24, dl: 1.3 },
   { ch: 'event',    l: 2,  t: 46, s: 24, c: 'rgba(203,173,255,0.10)', d: 26, dl: 2.6 },
 ];
@@ -1763,7 +1763,7 @@ const QUIZ_BANK = [
   { q: { uz: "Saytni jonlantirish tartibi?", ru: "Порядок оживления сайта?" }, opts: [{ uz: "O'zgarish → Hodisa → Reaksiya", ru: "Изменение → Событие → Реакция" }, { uz: "Hodisa → Reaksiya → O'zgarish", ru: "Событие → Реакция → Изменение" }, { uz: "Reaksiya → Hodisa → O'zgarish", ru: "Реакция → Событие → Изменение" }, { uz: "Faqat o'zgarish", ru: "Только изменение" }], correct: 1 },
   { q: { uz: "Tugmani bosish qaysi hodisaga misol?", ru: 'Нажатие кнопки — пример какого события?' }, opts: ["input", "hover", "click", "scroll"], correct: 2 },
   { q: { uz: "Matn maydoniga yozish qaysi hodisa?", ru: 'Ввод в текстовое поле — какое событие?' }, opts: ["input", "click", "hover", "load"], correct: 0 },
-  { q: { uz: "son = 0. 3 marta son = son + 1 bajarildi. Natija?", ru: "son = 0. Три раза выполнили son = son + 1. Итог?" }, opts: ["0", "1", "3", "33"], correct: 2 },
+  { q: { uz: "count = 0. 3 marta count = count + 1 bajarildi. Natija?", ru: "count = 0. Три раза выполнили count = count + 1. Итог?" }, opts: ["0", "1", "3", "33"], correct: 2 },
   { q: { uz: "Sayt nechta like borligini nimada eslab qoladi?", ru: 'Где сайт запоминает, сколько лайков?' }, opts: [{ uz: "Rasm faylida", ru: 'В файле картинки' }, { uz: "URL manzilda", ru: 'В URL-адресе' }, { uz: "CSS faylida", ru: 'В CSS-файле' }, { uz: "O'zgaruvchida", ru: 'В переменной' }], correct: 3 },
   { q: { uz: "Tungi/kunduzgi rejim tugmasi asosan nimani o'zgartiradi?", ru: 'Что в основном меняет кнопка ночного/дневного режима?' }, opts: [{ uz: "Internet tezligini", ru: 'Скорость интернета' }, { uz: "Ranglar va mavzuni", ru: 'Цвета и тему' }, { uz: "Fayl nomlarini", ru: 'Имена файлов' }, { uz: "Server manzilini", ru: 'Адрес сервера' }], correct: 1 },
   { q: { uz: "«Ko'rsat / yashir» tugmasi nimani boshqaradi?", ru: 'Чем управляет кнопка «показать / скрыть»?' }, opts: [{ uz: "Element ko'rinishini", ru: 'Видимостью элемента' }, { uz: "Internet ulanishini", ru: 'Интернет-соединением' }, { uz: "Shriftni yuklashni", ru: 'Загрузкой шрифта' }, { uz: "Domen manzilini", ru: 'Адресом домена' }], correct: 0 },

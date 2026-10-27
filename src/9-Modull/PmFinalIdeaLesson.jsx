@@ -1705,23 +1705,23 @@ const Screen10 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =
 // Kod matni qatorlar massivi (template-satr emas — backtik yo'q). Kod oynasi (HtmlCompiler) yo'q — pm-m9d4-code kaliti kerak emas.
 // ru-qoldiq-istisno s11: muammo to'garak
 const KD_BOSH = {
-  uz: ["// sanoq.js — Mentor misoli: ikki g'oya bo'yicha oltita yozuv", "// muammo — oxirgi marta muammo bo'lganmi · belgi — sinovga kun belgilaganmi"],
-  ru: ['// sanoq.js — пример Ментора: шесть записей по двум идеям', '// muammo — была ли проблема в последний раз · belgi — назначил ли день пробы']
+  uz: ["// count.js — Mentor misoli: ikki g'oya bo'yicha oltita yozuv", "// records — yozuvlar · idea — g'oya · hadProblem — oxirgi marta muammo bo'lganmi · bookedTrial — sinovga kun belgilaganmi"],
+  ru: ['// count.js — пример Ментора: шесть записей по двум идеям', '// records — записи · idea — идея · hadProblem — была ли проблема в последний раз · bookedTrial — назначил ли день пробы']
 };
 const KD_YOZUVLAR = [
-  '  { goya: "jamoa", muammo: true, belgi: true },          // 1',
-  '  { goya: "jamoa", muammo: true, belgi: true },          // 2',
-  '  { goya: "jamoa", muammo: true, belgi: true },          // 3',
-  '  { goya: "to\'garak", muammo: true, belgi: false },      // 4',
-  '  { goya: "to\'garak", muammo: true, belgi: true },       // 5',
-  '  { goya: "to\'garak", muammo: false, belgi: false },     // 6'
+  '  { idea: "jamoa", hadProblem: true, bookedTrial: true },          // 1',
+  '  { idea: "jamoa", hadProblem: true, bookedTrial: true },          // 2',
+  '  { idea: "jamoa", hadProblem: true, bookedTrial: true },          // 3',
+  '  { idea: "to\'garak", hadProblem: true, bookedTrial: false },      // 4',
+  '  { idea: "to\'garak", hadProblem: true, bookedTrial: true },       // 5',
+  '  { idea: "to\'garak", hadProblem: false, bookedTrial: false },     // 6'
 ];
 const KD_ICHI = {
-  uz: ['    const y = yozuvlar[i];   // y — shu aylanishdagi yozuv', "    // Shu yerga: y.goya shu g'oya bo'lsa — jami'ga bitta qo'shing,", "    // ichida: y.muammo rost bo'lsa — muammoSoni'ga, y.belgi rost bo'lsa — belgiSoni'ga (Yordam ▸)"],
-  ru: ['    const y = yozuvlar[i];   // y — запись на этом проходе цикла', '    // Сюда: если y.goya — эта идея, прибавьте к jami единицу,', '    // внутри: если y.muammo истинно — к muammoSoni, если y.belgi истинно — к belgiSoni (Подсказка ▸)']
+  uz: ['    const y = records[i];   // y — shu aylanishdagi yozuv', "    // Shu yerga: y.idea shu g'oya bo'lsa — total'ga bitta qo'shing,", "    // ichida: y.hadProblem rost bo'lsa — problemCount'ga, y.bookedTrial rost bo'lsa — trialCount'ga (Yordam ▸)"],
+  ru: ['    const y = records[i];   // y — запись на этом проходе цикла', '    // Сюда: если y.idea — эта идея, прибавьте к total единицу,', '    // внутри: если y.hadProblem истинно — к problemCount, если y.bookedTrial истинно — к trialCount (Подсказка ▸)']
 };
-const kdKod = (t) => [...KD_BOSH[t], 'const yozuvlar = [', ...KD_YOZUVLAR, '];', '', 'function sanoq(goya) {', '  let jami = 0;', '  let muammoSoni = 0;', '  let belgiSoni = 0;',
-  '  for (let i = 0; i < yozuvlar.length; i++) {', ...KD_ICHI[t], '  }', '  console.log(goya + " — muammo " + muammoSoni + " / " + jami + " · belgi " + belgiSoni + " / " + jami);', '}', '', 'sanoq("jamoa");', 'sanoq("to\'garak");'];
+const kdKod = (t) => [...KD_BOSH[t], 'const records = [', ...KD_YOZUVLAR, '];', '', 'function countIdea(idea) {', '  let total = 0;', '  let problemCount = 0;', '  let trialCount = 0;',
+  '  for (let i = 0; i < records.length; i++) {', ...KD_ICHI[t], '  }', '  console.log(idea + " — muammo " + problemCount + " / " + total + " · belgi " + trialCount + " / " + total);', '}', '', 'countIdea("jamoa");', 'countIdea("to\'garak");'];
 const KD_NATIJA = ['jamoa — muammo 3 / 3 · belgi 3 / 3', "to'garak — muammo 2 / 3 · belgi 1 / 3"];
 const KD_SHART = [
   { uz: "Har g'oya uchun bitta qator", ru: 'По одной строке на каждую идею' },
@@ -1729,29 +1729,29 @@ const KD_SHART = [
   { uz: 'Sonlar doskadagi bilan bir xil', ru: 'Числа такие же, как на доске' }
 ];
 const KD_ESLATMA = [
-  { k: 'y.goya', t: { uz: 'yozuvdagi `goya` qiymati', ru: 'значение `goya` в записи' } },
+  { k: 'y.idea', t: { uz: "yozuvdagi `idea` (g'oya) qiymati", ru: 'значение `idea` (идея) в записи' } },
   { k: '===', t: { uz: 'ikki qiymat tengmi', ru: 'равны ли два значения' } },
   { k: 'if (...)', t: { uz: "shart rost bo'lsa, ichidagi qator ishlaydi", ru: "если условие истинно, срабатывает строка внутри" } },
-  { k: 'if (y.muammo)', t: { uz: "`y.muammo` rost (`true`) bo'lsa ishlaydi", ru: 'срабатывает, если `y.muammo` истинно (`true`)' } },
-  { k: 'jami = jami + 1', t: { uz: "songa bitta qo'shadi", ru: 'прибавляет к числу единицу' } },
-  { k: 'terminal', plain: true, t: { uz: <><code className="qcode">node sanoq.js</code> yozib natijani ko'radigan oyna</>, ru: <>окно, где пишете <code className="qcode">node sanoq.js</code> и видите результат</> } }
+  { k: 'if (y.hadProblem)', t: { uz: "`y.hadProblem` rost (`true`) bo'lsa ishlaydi", ru: 'срабатывает, если `y.hadProblem` истинно (`true`)' } },
+  { k: 'total = total + 1', t: { uz: "songa bitta qo'shadi", ru: 'прибавляет к числу единицу' } },
+  { k: 'terminal', plain: true, t: { uz: <><code className="qcode">node count.js</code> yozib natijani ko'radigan oyna</>, ru: <>окно, где пишете <code className="qcode">node count.js</code> и видите результат</> } }
 ];
 const KD_QADAM = [
-  { uz: <>Shart: <code className="qcode">{'if (y.goya === goya) { … }'}</code></>, ru: <>Условие: <code className="qcode">{'if (y.goya === goya) { … }'}</code></> },
-  { uz: <>Ichida: <code className="qcode">jami = jami + 1;</code></>, ru: <>Внутри: <code className="qcode">jami = jami + 1;</code></> },
-  { uz: <>Yana ichida ikki shart: <code className="qcode">if (y.muammo) muammoSoni = muammoSoni + 1;</code> va <code className="qcode">if (y.belgi) belgiSoni = belgiSoni + 1;</code></>, ru: <>Ещё внутри два условия: <code className="qcode">if (y.muammo) muammoSoni = muammoSoni + 1;</code> и <code className="qcode">if (y.belgi) belgiSoni = belgiSoni + 1;</code></> }
+  { uz: <>Shart: <code className="qcode">{'if (y.idea === idea) { … }'}</code></>, ru: <>Условие: <code className="qcode">{'if (y.idea === idea) { … }'}</code></> },
+  { uz: <>Ichida: <code className="qcode">total = total + 1;</code></>, ru: <>Внутри: <code className="qcode">total = total + 1;</code></> },
+  { uz: <>Yana ichida ikki shart: <code className="qcode">if (y.hadProblem) problemCount = problemCount + 1;</code> va <code className="qcode">if (y.bookedTrial) trialCount = trialCount + 1;</code></>, ru: <>Ещё внутри два условия: <code className="qcode">if (y.hadProblem) problemCount = problemCount + 1;</code> и <code className="qcode">if (y.bookedTrial) trialCount = trialCount + 1;</code></> }
 ];
 const GATE_OPTS = [
-  { t: { uz: <><code className="qcode">goya</code> qiymati "jamoa" bo'lgan yozuvlarni oladi</>, ru: <>Берёт записи, где значение <code className="qcode">goya</code> — "jamoa"</> }, ok: true },
-  { t: { uz: "Ro'yxatdagi birinchi uchta yozuvni oladi", ru: "Берёт первые три записи списка" }, xato: { uz: "Yozuvlar aralash bo'lishi mumkin: g'oya `goya` dan bilinadi.", ru: 'Записи могут идти вперемешку: идею узнают по `goya`.' } },
-  { t: { uz: <><code className="qcode">belgi</code> qiymati <code className="qcode">true</code> bo'lgan yozuvlarni oladi</>, ru: <>Берёт записи, где значение <code className="qcode">belgi</code> — <code className="qcode">true</code></> }, xato: { uz: "`belgi` kun belgilaganini aytadi, g'oyani emas.", ru: '`belgi` говорит о назначенном дне, а не об идее.' } }
+  { t: { uz: <><code className="qcode">idea</code> qiymati "jamoa" bo'lgan yozuvlarni oladi</>, ru: <>Берёт записи, где значение <code className="qcode">idea</code> — "jamoa"</> }, ok: true },
+  { t: { uz: "Ro'yxatdagi birinchi uchta yozuvni oladi", ru: "Берёт первые три записи списка" }, xato: { uz: "Yozuvlar aralash bo'lishi mumkin: g'oya `idea` dan bilinadi.", ru: 'Записи могут идти вперемешку: идею узнают по `idea`.' } },
+  { t: { uz: <><code className="qcode">bookedTrial</code> qiymati <code className="qcode">true</code> bo'lgan yozuvlarni oladi</>, ru: <>Берёт записи, где значение <code className="qcode">bookedTrial</code> — <code className="qcode">true</code></> }, xato: { uz: "`belgi` kun belgilaganini aytadi, g'oyani emas.", ru: '`belgi` говорит о назначенном дне, а не об идее.' } }
 ];
-const JS_TOKEN = /(\/\/[^\n]*|"[^"]*"|\b(?:const|let|for|function)\b|\bgoya\b)/g;
+const JS_TOKEN = /(\/\/[^\n]*|"[^"]*"|\b(?:const|let|for|function)\b|\bidea\b)/g;
 const jsHl = (ln, ajrat) => ln.split(JS_TOKEN).filter(p => p !== undefined && p !== '').map((p, i) => {
   if (p.startsWith('//')) return <span key={i} className="fi-kd-iz">{p}</span>;
   if (p.startsWith('"')) return <span key={i} className="fi-kd-str">{p}</span>;
   if (/^(const|let|for|function)$/.test(p)) return <span key={i} className="fi-kd-kw">{p}</span>;
-  if (p === 'goya') return <span key={i} className={cxx('fi-kd-goya', ajrat && 'ajrat')}>{p}</span>;
+  if (p === 'idea') return <span key={i} className={cxx('fi-kd-goya', ajrat && 'ajrat')}>{p}</span>;
   return <span key={i}>{p}</span>;
 });
 // VS Code oynasi: kod o'qiladi, nusxalanmaydi (PM-082 d); terminal — kutilgan natija, «Bajardim»dan keyin to'liq rangda

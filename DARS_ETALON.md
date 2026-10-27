@@ -693,7 +693,7 @@ Namuna-tatbiq: `src/pm/PmUserStoryLesson.jsx` (qstats allaqachon yo'q) · `src/1
 
 | 11.12 | **Kod namunalarida identifikatorlar INGLIZCHA** | Ekranda ko'rsatiladigan kodda class/id/o'zgaruvchi nomlari inglizcha yoziladi: ✅ `class="card"` ❌ `class="karta"`. Sabab: real dasturlashda nomlar inglizcha — bola boshidan to'g'ri odat oladi. Izoh/kontent matni o'zbekcha qolaveradi |
 | 11.13 | 🟢 **Vosita ekranlarida "haqiqiy hayotda sinang" bloki** | DevTools/terminal kabi VOSITA o'rgatilgan ekranda mashq tugagach yashil blok: real misolda sinash taklifi («🌐 Istalgan saytni oching (masalan, kun.uz), F12 bosing...») — mentor proyektorda jonli ko'rsatadi, o'quvchi uyda takrorlaydi. Audio/Mentor matniga ham jumla qo'shiladi |
-> **11.12 aniqlashtirish (2026-10-27, F-1027-01):** qoida PM darslariga ham, ruscha rejimga ham tegishli — nom ikkala tilda bir xil inglizcha, izoh va satr-matn o'quvchi tilida (bir oynada ikki tildan ortiq emas). Batafsil: `PM_DARS_ETALON` **112**. 27.10 da 57 darsda buzilgan — `KATTA_TOZALASH.md` «F-1027-01».
+> **11.12 aniqlashtirish (2026-10-27, F-1027-01):** qoida PM darslariga ham, ruscha rejimga ham tegishli — nom ikkala tilda bir xil inglizcha, izoh va satr-matn o'quvchi tilida (bir oynada ikki tildan ortiq emas). Batafsil: `PM_DARS_ETALON` **112**. 27.10 da 59 dars + 4 uyga vazifa tuzatildi; repoga bog'langan 22 dars — `KATTA_TOZALASH.md` «F-1027-01».
 
 > ⚠️ **2026-07-10 FOYDALANUVCHI QARORI — onboarding YANGI darslarga QO'SHILMAYDI.** Mavjud darslar (L1, L2, Css1, Css2, Internet, PM1, PM2, PM3, Git, Deploy) yetarli. Auditor buni GAP deb BELGILAMAYDI, Quruvchi YANGI darsga TourGuide qo'shmaydi. 11.14'ning «katta PIN auto-ochilmaydi» qismi esa BARCHA darslarga tegishli bo'lib qolaveradi.
 

@@ -789,7 +789,7 @@ const a3Prompt = () => tr({
   ru: 'Добавь в мой сайт AvtoIjara аренды (код ниже):\n1. По нажатию «Взять в аренду» на странице машины аренда добавляется в список bookings: setBookings([...bookings, { id, name, price, days }]). State bookings пусть лежит в App.jsx.\n2. Новая страница «Мои аренды» (/bookings): каждая аренда — название, дни и price * days; внизу итог — сумма циклом for. Добавь <Link> в меню.\nК каждому разделу — короткий комментарий. Изменённые файлы верни целиком.\nВот мой код:\n{вставьте сюда код App.jsx и страниц}'
 });
 const A3_QADAM = [
-  { uz: "Chapda ijaraga oling va «Mening ijaralarim»ni oching — kod oynasida `setBookings` va `jami` ni ko'ring.", ru: 'Слева возьмите в аренду и откройте «Мои аренды» — в окне кода видно `setBookings` и `jami`.' },
+  { uz: "Chapda ijaraga oling va «Mening ijaralarim»ni oching — kod oynasida `setBookings` va `total` ni ko'ring.", ru: 'Слева возьмите в аренду и откройте «Мои аренды» — в окне кода видно `setBookings` и `total`.' },
   { uz: "«Promptni nusxalash» → gemini.google.com, oxiriga `App.jsx` va sahifalar kodini qo'shing va yuboring.", ru: '«Скопировать промпт» → gemini.google.com, в конце добавьте код `App.jsx` и страниц и отправьте.' },
   { uz: "Javobdagi fayllarni almashtiring, `Ctrl+S`.", ru: 'Замените файлы на файлы из ответа, `Ctrl+S`.' },
   { uz: "«Tekshiring» ro'yxatini brauzerda o'ting.", ru: 'Пройдите список «Проверьте» в браузере.' }
@@ -809,7 +809,7 @@ const ScreenIjara = ({ screen, onNext, onPrev }) => {
   const ol = () => { setList(l => [...l, { name: c.name, price: c.price, days: kun }]); k.setOx(`setBookings([...bookings, { name: "${c.name}", price: ${c.price}, days: ${kun} }]);`); setPath('/bookings'); };
   const jami = list.reduce((s, b) => s + b.price * b.days, 0);
   const qatorlar = [<span key="u">URL = "{avUrl(path, id)}";</span>, <span key="l">bookings.length = {list.length};</span>];
-  qatorlar.push(<span key="j">jami = {jami};  {list.length > 0 && <span className="sk-izoh">{`// for: ${list.map(b => `${b.price}*${b.days}`).join(' + ')}`}</span>}</span>);
+  qatorlar.push(<span key="j">total = {jami};  {list.length > 0 && <span className="sk-izoh">{`// for: ${list.map(b => `${b.price}*${b.days}`).join(' + ')}`}</span>}</span>);
   return (
     <Stage mentorYigil eyebrow={tr({ uz: 'Amaliyot 3 · Gemini', ru: 'Практика 3 · Gemini' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
@@ -854,7 +854,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-2">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: 'Jami narx kodi:', ru: 'Код итоговой цены:' })}</span></div>
               <div className="ai-code">
-                <div className={`ai-line ${picked === 'list' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('list'); }}><Jx>{'const'}</Jx>{' jami = bookings.reduce('}</div>
+                <div className={`ai-line ${picked === 'list' ? 'ok' : ''}`} onClick={() => { if (!found) setPicked('list'); }}><Jx>{'const'}</Jx>{' total = bookings.reduce('}</div>
                 {!fixed ? (
                   <div className={`ai-line ${found ? 'bad' : ''}`} onClick={() => { if (!found) setPicked('total'); }}>{'  (s, b) => s + b.car.price'}{found && <>{'  '}<Cm>{tr({ uz: '// kun qani?', ru: '// а где дни?' })}</Cm></>}{/* F-0926-06: izoh xato qatorni oldindan aytardi (159/17) */}</div>
                 ) : (
@@ -926,7 +926,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="vsc-tab on"><span style={{ color: '#61DAFB' }}>⚛</span> Bookings.jsx <span style={{ color: '#6E7681', marginLeft: 4 }}>×</span></span>
               </div>
               <div className="vsc-body">
-                <Ln n={1}><Jx>{'const'}</Jx>{' jami = bookings.reduce('}</Ln>
+                <Ln n={1}><Jx>{'const'}</Jx>{' total = bookings.reduce('}</Ln>
                 <Ln n={2}>{'  (s, b) => s +'}<span style={{ color: '#6A9955' }}>{'   // b: { price, days }'}</span></Ln>{/* F-0927: ma'lumot shakli kontekst sifatida (RouterPractice namunasi) — formula o'quvchida */}
                 <div className="vsc-line">
                   <span className="vsc-ln">3</span>

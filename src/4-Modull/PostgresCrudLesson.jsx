@@ -16,7 +16,7 @@ const tr = (node) => {
 // Mavzu: ma'lumotlar bazasi va jadval yaratish (CREATE TABLE), bitta `products` jadvali ustida to'liq CRUD —
 //        INSERT (qo'shish) · SELECT (+WHERE filtr) (ko'rish) · UPDATE (o'zgartirish) · DELETE (o'chirish);
 //        va eng muhimi: AI/agent yordamida SQL yozdirish — o'quvchi oddiy tilda so'raydi, AI SQL yozadi, o'quvchi TEKSHIRADI.
-// Misol: onlayn do'kon → `products` jadvali (id, nom, narx, soni). Yon misol: `users` jadvali (agent demosi).
+// Misol: onlayn do'kon → `products` jadvali (id, name, price, stock). Yon misol: `users` jadvali (agent demosi).
 // Ko'prik: o'tgan darslarda server (Node) va routing (Express: app.get / app.post — F-1021-01) qurdik — endi ma'lumot QAYERDA va QANDAY saqlanadi.
 // QAROR (user): bitta jadval CRUD, JOIN yo'q; AI bilan ishlashga kuchli urg'u; yakunda o'quvchi INSERT'ni O'ZI yozadi.
 // AI FRAMING: "AI yozadi, siz arxitektor/tekshiruvchisiz" — SQL'ni yoddan bilish shart emas, tushunish va tekshirish muhim.
@@ -230,13 +230,13 @@ const RECAPS = {
     cards: [
       { ic: "👁️", h: { uz: "SELECT faqat o'qiydi", ru: 'SELECT только читает' }, body: { uz: <><span className="mono">SELECT</span> ma'lumotni <b>ko'rsatadi</b>, hech narsani o'chirmaydi yoki o'zgartirmaydi.</>, ru: <><span className="mono">SELECT</span> <b>показывает</b> данные, ничего не удаляет и не изменяет.</> } },
       { ic: "✳️", h: { uz: "* = hamma ustun", ru: '* = все столбцы' }, body: { uz: <><span className="mono">SELECT * FROM products</span> — yulduzcha <b>barcha ustunlarni</b> so'raydi.</>, ru: <><span className="mono">SELECT * FROM products</span> — звёздочка запрашивает <b>все столбцы</b>.</> } },
-      { ic: "📋", h: { uz: "Tanlab olish", ru: 'Выбрать нужное' }, body: { uz: <>Faqat keraklisini ham so'rash mumkin: <span className="mono">SELECT nom, narx FROM products</span>.</>, ru: <>Можно запросить и только нужное: <span className="mono">SELECT nom, narx FROM products</span>.</> }, ask: { uz: "SELECT buyrug'i ma'lumot bilan nima qiladi?", ru: 'Что команда SELECT делает с данными?' } },
+      { ic: "📋", h: { uz: "Tanlab olish", ru: 'Выбрать нужное' }, body: { uz: <>Faqat keraklisini ham so'rash mumkin: <span className="mono">SELECT name, price FROM products</span>.</>, ru: <>Можно запросить и только нужное: <span className="mono">SELECT name, price FROM products</span>.</> }, ask: { uz: "SELECT buyrug'i ma'lumot bilan nima qiladi?", ru: 'Что команда SELECT делает с данными?' } },
     ]
   },
   10: {
     title: { uz: "UPDATE — qatorni o'zgartirish", ru: 'UPDATE — изменение строки' },
     cards: [
-      { ic: "🏷️", h: { uz: "SET — yangi qiymat", ru: 'SET — новое значение' }, body: { uz: <><span className="mono">UPDATE products SET narx = 99000</span> — qaysi ustunni qanday qiymatga o'zgartirishni aytadi.</>, ru: <><span className="mono">UPDATE products SET narx = 99000</span> — говорит, какой столбец на какое значение поменять.</> } },
+      { ic: "🏷️", h: { uz: "SET — yangi qiymat", ru: 'SET — новое значение' }, body: { uz: <><span className="mono">UPDATE products SET price = 99000</span> — qaysi ustunni qanday qiymatga o'zgartirishni aytadi.</>, ru: <><span className="mono">UPDATE products SET price = 99000</span> — говорит, какой столбец на какое значение поменять.</> } },
       { ic: "🎯", h: { uz: "WHERE — qaysi qator", ru: 'WHERE — какая строка' }, body: { uz: <><span className="mono">WHERE id = 1</span> — <b>qaysi qatorni</b> o'zgartirishni aniqlaydi.</>, ru: <><span className="mono">WHERE id = 1</span> — определяет, <b>какую строку</b> изменить.</> } },
       { ic: "⚠️", h: { uz: "WHERE'siz — hammasi!", ru: 'Без WHERE — все сразу!' }, body: { uz: <><span className="mono">WHERE</span> unutilsa, <b>BARCHA</b> qator o'zgaradi.</>, ru: <>Забыли <span className="mono">WHERE</span> — изменятся <b>ВСЕ</b> строки.</> }, ask: { uz: "Mahsulot narxini o'zgartirish uchun qaysi buyruq?", ru: 'Какой командой изменить цену товара?' } },
     ]
@@ -557,11 +557,11 @@ const Win = ({ title, children, minH, hotTitle }) => (
 // ============================================================
 // products jadvali — dars bo'ylab ustida ishlaydigan asosiy ma'lumot
 const PRODUCTS = [
-  { id: 1, nom: 'Klaviatura', narx: 120000, soni: 8 },
-  { id: 2, nom: 'Sichqoncha', narx: 75000,  soni: 15 },
-  { id: 3, nom: 'Quloqchin',  narx: 95000,  soni: 5 }
+  { id: 1, name: 'Klaviatura', price: 120000, stock: 8 },
+  { id: 2, name: 'Sichqoncha', price: 75000,  stock: 15 },
+  { id: 3, name: 'Quloqchin',  price: 95000,  stock: 5 }
 ];
-const PCOLS = ['id', 'nom', 'narx', 'soni'];
+const PCOLS = ['id', 'name', 'price', 'stock'];
 // users jadvali — agent demosi (s13) uchun yon misol
 const USERS = [
   { id: 1, ism: 'Ali',    shahar: 'Toshkent' },
@@ -586,7 +586,7 @@ const DataTable = ({ cols, rows, hiRow, hiCol, onCol, onRow, flashRi, flashCell,
           ? <tr><td colSpan={cols.length} style={{ color: T.ink3, fontStyle: 'italic', textAlign: 'center' }}>{tr({ uz: "— jadval bo'sh (0 qator) —", ru: '— таблица пуста (0 строк) —' })}</td></tr>
           : rows.map((r, ri) => (
             <tr key={r.id ?? ri} className={`row-in ${hiRow === ri ? 'hi' : ''} ${flashRi === ri ? 'flash-green' : ''} ${exitRi === ri ? 'deleting' : ''} ${dimFn && dimFn(r) ? 'dimmed' : ''} ${onRow ? 'click' : ''}`} onClick={onRow ? () => onRow(ri) : undefined}>
-              {cols.map(c => <td key={c} className={`${hiCol === c ? 'hi' : ''} ${(flashCell && flashCell.ri === ri && flashCell.col === c) ? 'num-flash' : ''}`}>{c === 'narx' ? fmtNarx(r[c]) : String(r[c])}</td>)}
+              {cols.map(c => <td key={c} className={`${hiCol === c ? 'hi' : ''} ${(flashCell && flashCell.ri === ri && flashCell.col === c) ? 'num-flash' : ''}`}>{c === 'price' ? fmtNarx(r[c]) : String(r[c])}</td>)}
             </tr>
           ))}
       </tbody>
@@ -664,7 +664,7 @@ const Screen0 = ({ screen, storedAnswer, onAnswer, onNext }) => {
               ? <Win title={tr({ uz: "zakaz-shop.uz — onlayn do'kon", ru: 'zakaz-shop.uz — онлайн-магазин' })} minH={172}>
                   <div className="demo-swap shopmock">
                     {PRODUCTS.map(p => (
-                      <div key={p.id} className="shop-card"><div className="shop-name">{p.nom}</div><div className="shop-narx">{fmtNarx(p.narx)} {tr({ uz: "so'm", ru: 'сум' })}</div><button className="shop-buy">{tr({ uz: 'Savatga', ru: 'В корзину' })}</button></div>
+                      <div key={p.id} className="shop-card"><div className="shop-name">{p.name}</div><div className="shop-narx">{fmtNarx(p.price)} {tr({ uz: "so'm", ru: 'сум' })}</div><button className="shop-buy">{tr({ uz: 'Savatga', ru: 'В корзину' })}</button></div>
                     ))}
                   </div>
                 </Win>
@@ -749,15 +749,15 @@ const Screen1 = ({ screen, onNext, onPrev }) => {
 
 // ===== SCREEN 2 — BAZA & JADVAL (CREATE TABLE) =====
 const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
-  const audio = useAudio([{ id: 's2', text: "Ma'lumotni saqlash uchun avval jadval kerak. products jadvali ustunlardan — nom, narx, soni — va qatorlardan iborat. Har ustunni bosib ko'ring, keyin jadvalni yarating.", trigger: 'on_mount', waits_for: null }]);
+  const audio = useAudio([{ id: 's2', text: "Ma'lumotni saqlash uchun avval jadval kerak. products jadvali ustunlardan — name, price, stock — va qatorlardan iborat. Har ustunni bosib ko'ring, keyin jadvalni yarating.", trigger: 'on_mount', waits_for: null }]);
   const [ran, setRan] = useState(!!storedAnswer);
   const [activeCol, setActiveCol] = useState(null);
   const done = ran;
   const FIELDS = [
     { k: 'id', tip: 'SERIAL PRIMARY KEY', desc: tr({ uz: "Har mahsulotning takrorlanmas raqami. Avtomatik o'sib boradi (1, 2, 3...) — PRIMARY KEY = asosiy kalit.", ru: 'Уникальный номер каждого товара. Растёт автоматически (1, 2, 3...) — PRIMARY KEY = первичный ключ.' }) },
-    { k: 'nom', tip: 'TEXT', desc: tr({ uz: "Mahsulot nomi — matn (TEXT). Masalan: 'Klaviatura'.", ru: "Название товара — текст (TEXT). Например: 'Klaviatura'." }) },
-    { k: 'narx', tip: 'INTEGER', desc: tr({ uz: 'Narx — butun son (INTEGER). Masalan: 120000.', ru: 'Цена — целое число (INTEGER). Например: 120000.' }) },
-    { k: 'soni', tip: 'INTEGER', desc: tr({ uz: 'Ombordagi soni — butun son (INTEGER).', ru: 'Количество на складе — целое число (INTEGER).' }) }
+    { k: 'name', tip: 'TEXT', desc: tr({ uz: "Mahsulot nomi — matn (TEXT). Masalan: 'Klaviatura'.", ru: "Название товара — текст (TEXT). Например: 'Klaviatura'." }) },
+    { k: 'price', tip: 'INTEGER', desc: tr({ uz: 'Narx — butun son (INTEGER). Masalan: 120000.', ru: 'Цена — целое число (INTEGER). Например: 120000.' }) },
+    { k: 'stock', tip: 'INTEGER', desc: tr({ uz: 'Ombordagi stock — butun son (INTEGER).', ru: 'Количество на складе — целое число (INTEGER).' }) }
   ];
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
   const cur = FIELDS.find(f => f.k === activeCol);
@@ -765,12 +765,12 @@ const Screen2 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Jadval yaratish', ru: 'Создание таблицы' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Jadvalni yarating', ru: 'Создайте таблицу' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Ma'lumotni saqlash uchun avval <span className="italic" style={{ color: T.accent }}>jadval</span> kerak</>, ru: <>Чтобы хранить данные, сначала нужна <span className="italic" style={{ color: T.accent }}>таблица</span></> })}</h2></div>
-        <Mentor>{tr({ uz: <>Baza — jadvallar saqlanadigan ombor. Jadval = <b style={{ color: T.ink }}>ustunlar</b> (xususiyatlar: nom, narx, soni) va <b style={{ color: T.ink }}>qatorlar</b> (har bir mahsulot). <span className="mono">CREATE TABLE</span> buyrug'i bo'sh jadval yasaydi. Ustunlarni bosib, har birining tipini ko'ring, keyin jadvalni yarating.</>, ru: <>База — это склад, где хранятся таблицы. Таблица = <b style={{ color: T.ink }}>столбцы</b> (свойства: nom, narx, soni) и <b style={{ color: T.ink }}>строки</b> (каждый товар). Команда <span className="mono">CREATE TABLE</span> создаёт пустую таблицу. Нажимайте на столбцы, посмотрите тип каждого, потом создайте таблицу.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Baza — jadvallar saqlanadigan ombor. Jadval = <b style={{ color: T.ink }}>ustunlar</b> (xususiyatlar: name, price, stock) va <b style={{ color: T.ink }}>qatorlar</b> (har bir mahsulot). <span className="mono">CREATE TABLE</span> buyrug'i bo'sh jadval yasaydi. Ustunlarni bosib, har birining tipini ko'ring, keyin jadvalni yarating.</>, ru: <>База — это склад, где хранятся таблицы. Таблица = <b style={{ color: T.ink }}>столбцы</b> (свойства: name, price, stock) и <b style={{ color: T.ink }}>строки</b> (каждый товар). Команда <span className="mono">CREATE TABLE</span> создаёт пустую таблицу. Нажимайте на столбцы, посмотрите тип каждого, потом создайте таблицу.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: 'products jadvalining "chizmasi"', ru: '«чертёж» таблицы products' })}</p>
-            <SqlCode q={"CREATE TABLE products (\n  id    SERIAL PRIMARY KEY,\n  nom   TEXT,\n  narx  INTEGER,\n  soni  INTEGER\n)"} />
+            <SqlCode q={"CREATE TABLE products (\n  id    SERIAL PRIMARY KEY,\n  name   TEXT,\n  price  INTEGER,\n  stock  INTEGER\n)"} />
             <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap' }}>
               {FIELDS.map(f => <button key={f.k} className={`chip ${activeCol === f.k ? 'chip-on' : ''}`} onClick={() => setActiveCol(f.k)}>{f.k}</button>)}
             </div>
@@ -813,11 +813,11 @@ const Screen3 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               {PRODUCTS.map(p => (
                 <button key={p.id} className={`pick-row ${added.has(p.id) ? 'on' : ''}`} disabled={added.has(p.id)} onClick={() => add(p)}>
                   <span className="pick-box">{added.has(p.id) ? '✓' : '+'}</span>
-                  <span><b>{p.nom}</b> <span className="mono small" style={{ color: T.ink2 }}>{fmtNarx(p.narx)} · {p.soni} {tr({ uz: 'dona', ru: 'шт.' })}</span></span>
+                  <span><b>{p.name}</b> <span className="mono small" style={{ color: T.ink2 }}>{fmtNarx(p.price)} · {p.stock} {tr({ uz: 'dona', ru: 'шт.' })}</span></span>
                 </button>
               ))}
             </div>
-            {lastQ && <SqlCode mini q={`INSERT INTO products (nom, narx, soni)\nVALUES ('${lastQ.nom}', ${lastQ.narx}, ${lastQ.soni})`} />}
+            {lastQ && <SqlCode mini q={`INSERT INTO products (name, price, stock)\nVALUES ('${lastQ.name}', ${lastQ.price}, ${lastQ.stock})`} />}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'products jadvali', ru: 'таблица products' })}</p>
@@ -853,24 +853,24 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [mode, setMode] = useState(null); // null | 'all' | 'cols'
   const done = mode !== null;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  const query = mode === 'cols' ? 'SELECT nom, narx FROM products' : 'SELECT * FROM products';
-  const cols = mode === 'cols' ? ['nom', 'narx'] : PCOLS;
+  const query = mode === 'cols' ? 'SELECT name, price FROM products' : 'SELECT * FROM products';
+  const cols = mode === 'cols' ? ['name', 'price'] : PCOLS;
   return (
     <Stage eyebrow={tr({ uz: "SELECT · ko'rish", ru: 'SELECT · просмотр' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni ishga tushiring", ru: 'Запустите запрос' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Bazadagi ma'lumotni <span className="italic" style={{ color: T.accent }}>qanday ko'ramiz?</span></>, ru: <>Как <span className="italic" style={{ color: T.accent }}>посмотреть данные</span> в базе?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Ma'lumotni o'qib olish — <span className="mono">SELECT</span> buyrug'i. <span className="mono">SELECT * FROM products</span> = "products jadvalidagi <b>hamma ustunni</b> ko'rsat" (yulduzcha <b>*</b> = barchasi). Faqat kerakli ustunlarni ham so'rash mumkin: <span className="mono">SELECT nom, narx</span>.</>, ru: <>Прочитать данные — команда <span className="mono">SELECT</span>. <span className="mono">SELECT * FROM products</span> = «покажи <b>все столбцы</b> таблицы products» (звёздочка <b>*</b> = всё). Можно запросить и только нужные столбцы: <span className="mono">SELECT nom, narx</span>.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Ma'lumotni o'qib olish — <span className="mono">SELECT</span> buyrug'i. <span className="mono">SELECT * FROM products</span> = "products jadvalidagi <b>hamma ustunni</b> ko'rsat" (yulduzcha <b>*</b> = barchasi). Faqat kerakli ustunlarni ham so'rash mumkin: <span className="mono">SELECT name, price</span>.</>, ru: <>Прочитать данные — команда <span className="mono">SELECT</span>. <span className="mono">SELECT * FROM products</span> = «покажи <b>все столбцы</b> таблицы products» (звёздочка <b>*</b> = всё). Можно запросить и только нужные столбцы: <span className="mono">SELECT name, price</span>.</> })}</Mentor>
         <Zoomable off={!done}>
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "So'rovni tanlang", ru: 'Выберите запрос' })}</p>
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               <button className={`chip ${mode === 'all' ? 'chip-on' : ''}`} onClick={() => setMode('all')}>{tr({ uz: 'SELECT * (hammasi)', ru: 'SELECT * (всё)' })}</button>
-              <button className={`chip ${mode === 'cols' ? 'chip-on' : ''}`} onClick={() => setMode('cols')}>SELECT nom, narx</button>
+              <button className={`chip ${mode === 'cols' ? 'chip-on' : ''}`} onClick={() => setMode('cols')}>SELECT name, price</button>
             </div>
             <div className="vis-card">{/* F-0926-06 (160-qonun): so'rov va uning «O'qilishi» izohi bitta kartada */}
             <SqlCode q={mode ? query : 'SELECT * FROM products'} />
-            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'O\'qilishi:', ru: 'Читается так:' })} "{mode === 'cols' ? tr({ uz: 'products jadvalidan faqat nom va narx ustunlarini', ru: 'покажи из таблицы products только столбцы nom и narx' }) : tr({ uz: 'products jadvalidan hamma narsani', ru: 'покажи из таблицы products всё' })}{tr({ uz: ' ko\'rsat', ru: '' })}".</p></div>
+            <p className="small" style={{ color: T.ink2, margin: 0 }}>{tr({ uz: 'O\'qilishi:', ru: 'Читается так:' })} "{mode === 'cols' ? tr({ uz: 'products jadvalidan faqat name va price ustunlarini', ru: 'покажи из таблицы products только столбцы name и price' }) : tr({ uz: 'products jadvalidan hamma narsani', ru: 'покажи из таблицы products всё' })}{tr({ uz: ' ko\'rsat', ru: '' })}".</p></div>
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
@@ -904,9 +904,9 @@ const Screen5b = (props) => (
 // ===== SCREEN 6 — WHERE (filtr) =====
 const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const CONDS = [
-    { id: 'cheap', sql: 'narx < 100000', label: tr({ uz: 'Arzonlar: narx < 100000', ru: 'Дешёвые: narx < 100000' }), test: r => r.narx < 100000 },
-    { id: 'low',   sql: 'soni < 6',      label: tr({ uz: 'Tugayotgan: soni < 6', ru: 'Заканчиваются: soni < 6' }),    test: r => r.soni < 6 },
-    { id: 'exp',   sql: 'narx > 100000', label: tr({ uz: 'Qimmatlar: narx > 100000', ru: 'Дорогие: narx > 100000' }), test: r => r.narx > 100000 }
+    { id: 'cheap', sql: 'price < 100000', label: tr({ uz: 'Arzonlar: price < 100000', ru: 'Дешёвые: price < 100000' }), test: r => r.price < 100000 },
+    { id: 'low',   sql: 'stock < 6',      label: tr({ uz: 'Tugayotgan: stock < 6', ru: 'Заканчиваются: stock < 6' }),    test: r => r.stock < 6 },
+    { id: 'exp',   sql: 'price > 100000', label: tr({ uz: 'Qimmatlar: price > 100000', ru: 'Дорогие: price > 100000' }), test: r => r.price > 100000 }
   ];
   const audio = useAudio([{ id: 's6', text: "Minglab mahsulotdan faqat kerakligini topish — WHERE sharti. U jadvalga filtr qo'yadi. Bir shartni tanlang va jadval qanday filtrlanishini ko'ring.", trigger: 'on_mount', waits_for: null }]);
   const [sel, setSel] = useState(storedAnswer ? 'cheap' : null);
@@ -918,7 +918,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'WHERE · filtr', ru: 'WHERE · фильтр' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "Bitta filtrni sinab ko'ring", ru: 'Попробуйте один фильтр' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Minglab mahsulotdan <span className="italic" style={{ color: T.accent }}>faqat kerakligini</span> qanday topamiz?</>, ru: <>Как из тысяч товаров найти <span className="italic" style={{ color: T.accent }}>только нужные</span>?</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Bu yerda <span className="mono">WHERE</span> kuchga kiradi — u <b style={{ color: T.ink }}>shart</b> qo'yadi. <span className="mono">SELECT * FROM products WHERE narx &lt; 100000</span> = "faqat narxi 100 000 dan arzonlarini ko'rsat". Shartni tanlang — jadval jonli filtrlanadi.</>, ru: <>Здесь вступает в силу <span className="mono">WHERE</span> — он задаёт <b style={{ color: T.ink }}>условие</b>. <span className="mono">SELECT * FROM products WHERE narx &lt; 100000</span> = «покажи только те, что дешевле 100 000». Выберите условие — таблица отфильтруется вживую.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Bu yerda <span className="mono">WHERE</span> kuchga kiradi — u <b style={{ color: T.ink }}>shart</b> qo'yadi. <span className="mono">SELECT * FROM products WHERE price &lt; 100000</span> = "faqat narxi 100 000 dan arzonlarini ko'rsat". Shartni tanlang — jadval jonli filtrlanadi.</>, ru: <>Здесь вступает в силу <span className="mono">WHERE</span> — он задаёт <b style={{ color: T.ink }}>условие</b>. <span className="mono">SELECT * FROM products WHERE price &lt; 100000</span> = «покажи только те, что дешевле 100 000». Выберите условие — таблица отфильтруется вживую.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -930,7 +930,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })} {cond && <span className="mono" style={{ color: T.accent }}>({rows.length} {tr({ uz: 'ta topildi', ru: 'найдено' })})</span>}</p>
-            <DataTable key={sel} cols={PCOLS} rows={rows} hiCol={cond ? (cond.id === 'low' ? 'soni' : 'narx') : null} />
+            <DataTable key={sel} cols={PCOLS} rows={rows} hiCol={cond ? (cond.id === 'low' ? 'stock' : 'price') : null} />
             {done && <SqlStatus>{tr({ uz: <>WHERE — bu <b>shart (filtr)</b>. U faqat mos qatorlarni qaytaradi.</>, ru: <>WHERE — это <b>условие (фильтр)</b>. Он возвращает только подходящие строки.</> })}</SqlStatus>}
           </Col>
         </div>
@@ -947,9 +947,9 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [danger, setDanger] = useState(false);
   const done = ran;
   useEffect(() => { if (done && storedAnswer === undefined) onAnswer(screen, { correct: true, picked: true }); }, [done]);
-  useEffect(() => { if (storedAnswer) setRows(PRODUCTS.map(p => p.id === 1 ? { ...p, narx: 99000 } : { ...p })); }, []);
+  useEffect(() => { if (storedAnswer) setRows(PRODUCTS.map(p => p.id === 1 ? { ...p, price: 99000 } : { ...p })); }, []);
   const audio = useAudio([{ id: 's7', text: "Klaviatura narxi tushdi. Mavjud qatorni o'zgartirish — UPDATE buyrug'i. SET bilan yangi qiymatni, WHERE bilan qaysi qatorni ko'rsatasiz. Diqqat: WHERE'ni unutsangiz, hamma qator o'zgaradi.", trigger: 'on_mount', waits_for: null }]);
-  const run = () => { setRows(rs => rs.map(r => r.id === 1 ? { ...r, narx: 99000 } : r)); setRan(true); };
+  const run = () => { setRows(rs => rs.map(r => r.id === 1 ? { ...r, price: 99000 } : r)); setRan(true); };
   return (
     <Stage eyebrow={tr({ uz: "UPDATE · o'zgartirish", ru: 'UPDATE · изменение' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: "So'rovni ishga tushiring", ru: 'Запустите запрос' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -959,13 +959,13 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         <div className="split">
           <Col>
             <p className="flow-label">{tr({ uz: "So'rov: Klaviatura (id=1) narxini yangilash", ru: 'Запрос: обновить цену Klaviatura (id=1)' })}</p>
-            <SqlRunner ran={ran} onRun={run} query={"UPDATE products\nSET narx = 99000\nWHERE id = 1"} />
+            <SqlRunner ran={ran} onRun={run} query={"UPDATE products\nSET price = 99000\nWHERE id = 1"} />
             <button className={`chip ${danger ? 'chip-on' : ''}`} style={{ alignSelf: 'flex-start' }} onClick={() => setDanger(d => !d)}>{danger ? tr({ uz: '✕ Yashirish', ru: '✕ Скрыть' }) : tr({ uz: "⚠ WHERE'siz nima bo'ladi?", ru: '⚠ А что будет без WHERE?' })}</button>
-            {danger && <div className="frame-warn fade-step"><SqlCode mini q={"UPDATE products\nSET narx = 99000"} /><p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{tr({ uz: <>WHERE yo'q → <b>BARCHA</b> mahsulot narxi 99000 bo'lib qoladi! Shuning uchun UPDATE'da WHERE deyarli doim kerak.</>, ru: <>Нет WHERE → цена <b>ВСЕХ</b> товаров станет 99000! Поэтому в UPDATE почти всегда нужен WHERE.</> })}</p></div>}
+            {danger && <div className="frame-warn fade-step"><SqlCode mini q={"UPDATE products\nSET price = 99000"} /><p className="body" style={{ margin: '8px 0 0', color: T.ink }}>{tr({ uz: <>WHERE yo'q → <b>BARCHA</b> mahsulot narxi 99000 bo'lib qoladi! Shuning uchun UPDATE'da WHERE deyarli doim kerak.</>, ru: <>Нет WHERE → цена <b>ВСЕХ</b> товаров станет 99000! Поэтому в UPDATE почти всегда нужен WHERE.</> })}</p></div>}
           </Col>
           <Col>
             <p className="flow-label">{tr({ uz: 'products jadvali', ru: 'таблица products' })}</p>
-            <DataTable cols={PCOLS} rows={rows} hiRow={ran ? 0 : null} hiCol={ran ? 'narx' : null} />
+            <DataTable cols={PCOLS} rows={rows} hiRow={ran ? 0 : null} hiCol={ran ? 'price' : null} />
             {ran && <SqlStatus>{tr({ uz: <><b>1 qator yangilandi.</b> Klaviatura narxi 120 000 → 99 000 bo'ldi.</>, ru: <><b>Обновлена 1 строка.</b> Цена Klaviatura стала 120 000 → 99 000.</> })}</SqlStatus>}
           </Col>
         </div>
@@ -1030,13 +1030,13 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const achMiss = useContext(AchMissCtx);
   const EVENTS = [
     { id: 'e1', icon: '🛒', title: tr({ uz: 'Yangi mahsulot keldi', ru: 'Привезли новый товар' }), desc: tr({ uz: "Mishka o'yinchoq — 50 000 so'm, 10 dona. Uni jadvalga kiriting.", ru: 'Игрушка Mishka — 50 000 сум, 10 штук. Внесите её в таблицу.' }), op: 'insert',
-      sql: "INSERT INTO products (nom, narx, soni)\nVALUES ('Mishka', 50000, 10)", okNote: tr({ uz: "Yangi qator qo'shildi — Mishka jadvalga tushdi.", ru: 'Новая строка добавлена — Mishka попал в таблицу.' }),
+      sql: "INSERT INTO products (name, price, stock)\nVALUES ('Mishka', 50000, 10)", okNote: tr({ uz: "Yangi qator qo'shildi — Mishka jadvalga tushdi.", ru: 'Новая строка добавлена — Mishka попал в таблицу.' }),
       wrongNote: { select: tr({ uz: "SELECT faqat ko'radi — yangi mahsulot qo'shilmaydi.", ru: 'SELECT только смотрит — новый товар не добавится.' }), update: tr({ uz: "UPDATE mavjudini o'zgartiradi — yangi qo'shmaydi.", ru: 'UPDATE меняет существующее — нового не добавляет.' }), delete: tr({ uz: "DELETE tanladingiz — Mishka jadvalga tushmasdi, aksincha o'chirardi!", ru: 'Вы выбрали DELETE — Mishka не попал бы в таблицу, наоборот, что-то удалилось бы!' }) } },
     { id: 'e2', icon: '🔍', title: tr({ uz: "Mijoz arzonlarini so'rayapti", ru: 'Клиент просит что подешевле' }), desc: tr({ uz: "Narxi 100 000 dan past mahsulotlarni ko'rsating (o'zgartirmang!).", ru: 'Покажите товары дешевле 100 000 (ничего не меняя!).' }), op: 'select',
-      sql: "SELECT * FROM products\nWHERE narx < 100000", okNote: tr({ uz: "Jadval filtrlandi — faqat arzonlari ko'rindi. Ma'lumot o'zgarmadi.", ru: 'Таблица отфильтрована — видны только дешёвые. Данные не изменились.' }),
+      sql: "SELECT * FROM products\nWHERE price < 100000", okNote: tr({ uz: "Jadval filtrlandi — faqat arzonlari ko'rindi. Ma'lumot o'zgarmadi.", ru: 'Таблица отфильтрована — видны только дешёвые. Данные не изменились.' }),
       wrongNote: { insert: tr({ uz: "INSERT yangi qator qo'shadi — mijoz faqat ko'rmoqchi edi.", ru: 'INSERT добавит новую строку — а клиент хотел только посмотреть.' }), update: tr({ uz: "UPDATE narxni buzadi — mijoz faqat ko'rmoqchi edi!", ru: 'UPDATE испортит цену — клиент хотел только посмотреть!' }), delete: tr({ uz: "DELETE mahsulotni o'chiradi — mijoz ko'rmoqchi, o'chirmoqchi emas!", ru: 'DELETE удалит товар — клиент хотел посмотреть, а не удалять!' }) } },
     { id: 'e3', icon: '🏷️', title: tr({ uz: 'Klaviatura chegirmada', ru: 'Скидка на Klaviatura' }), desc: tr({ uz: "Klaviatura narxini 99 000 so'mga tushiring.", ru: 'Снизьте цену Klaviatura до 99 000 сум.' }), op: 'update',
-      sql: "UPDATE products\nSET narx = 99000\nWHERE id = 1", okNote: tr({ uz: "Klaviatura narxi 120 000 → 99 000 bo'ldi.", ru: 'Цена Klaviatura стала 120 000 → 99 000.' }),
+      sql: "UPDATE products\nSET price = 99000\nWHERE id = 1", okNote: tr({ uz: "Klaviatura narxi 120 000 → 99 000 bo'ldi.", ru: 'Цена Klaviatura стала 120 000 → 99 000.' }),
       wrongNote: { insert: tr({ uz: "INSERT yangi qator qo'shadi — narx o'zgarmaydi.", ru: 'INSERT добавит новую строку — цена не изменится.' }), select: tr({ uz: "SELECT faqat ko'radi — narx o'zgarmaydi.", ru: 'SELECT только смотрит — цена не изменится.' }), delete: tr({ uz: "DELETE Klaviaturani butunlay o'chiradi — bu chegirma emas!", ru: 'DELETE удалит Klaviatura совсем — это не скидка!' }) } },
     { id: 'e4', icon: '📦', title: tr({ uz: 'Quloqchin sotuvdan chiqdi', ru: 'Quloqchin сняли с продажи' }), desc: tr({ uz: 'Quloqchinni jadvaldan olib tashlang.', ru: 'Уберите Quloqchin из таблицы.' }), op: 'delete',
       sql: "DELETE FROM products\nWHERE id = 3", okNote: tr({ uz: "Quloqchin jadvaldan o'chirildi.", ru: 'Quloqchin удалён из таблицы.' }),
@@ -1048,7 +1048,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { op: 'update', word: 'UPDATE', label: tr({ uz: "o'zgartirish", ru: 'изменить' }), col: T.accent },
     { op: 'delete', word: 'DELETE', label: tr({ uz: "o'chirish", ru: 'удалить' }), col: '#9333ea' },
   ];
-  const FINAL_ROWS = [{ id: 1, nom: 'Klaviatura', narx: 99000, soni: 8 }, { id: 2, nom: 'Sichqoncha', narx: 75000, soni: 15 }, { id: 4, nom: 'Mishka', narx: 50000, soni: 10 }];
+  const FINAL_ROWS = [{ id: 1, name: 'Klaviatura', price: 99000, stock: 8 }, { id: 2, name: 'Sichqoncha', price: 75000, stock: 15 }, { id: 4, name: 'Mishka', price: 50000, stock: 10 }];
   const [rows, setRows] = useState(() => storedAnswer ? FINAL_ROWS : PRODUCTS.map(p => ({ ...p })));
   const [step, setStep] = useState(storedAnswer ? 4 : 0);
   const [resolved, setResolved] = useState(false);
@@ -1065,8 +1065,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     if (resolved || !ev) return;
     if (op === ev.op) {
       setWrong(null); setPickedOp(op);
-      if (ev.op === 'insert') setRows(rs => [...rs, { id: 4, nom: 'Mishka', narx: 50000, soni: 10 }]);
-      else if (ev.op === 'update') setRows(rs => rs.map(r => r.id === 1 ? { ...r, narx: 99000 } : r));
+      if (ev.op === 'insert') setRows(rs => [...rs, { id: 4, name: 'Mishka', price: 50000, stock: 10 }]);
+      else if (ev.op === 'update') setRows(rs => rs.map(r => r.id === 1 ? { ...r, price: 99000 } : r));
       else if (ev.op === 'delete') { setDeleting(true); setTimeout(() => { setRows(rs => rs.filter(r => r.id !== 3)); setDeleting(false); }, 440); }
       setResolved(true);
       setSolvedCount(c => c + 1);
@@ -1078,12 +1078,12 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const nextEvent = () => { setResolved(false); setWrong(null); setPickedOp(null); setDeleting(false); setStep(s => s + 1); };
   const showFiltered = resolved && ev && ev.op === 'select';
   const displayRows = rows; // SELECT'da qatorlar yo'qolmaydi — mos kelmaydiganlar xiralashadi (dim)
-  const dimFn = showFiltered ? (r => r.narx >= 100000) : null;
+  const dimFn = showFiltered ? (r => r.price >= 100000) : null;
   const idxId = (id) => displayRows.findIndex(r => r.id === id);
   const flashRi = resolved && ev && ev.op === 'insert' ? displayRows.length - 1 : null;    // yangi qator yashil chaqnash
-  const flashCell = resolved && ev && ev.op === 'update' ? { ri: idxId(1), col: 'narx' } : null; // narx katakcha raqam-flash
+  const flashCell = resolved && ev && ev.op === 'update' ? { ri: idxId(1), col: 'price' } : null; // price katakcha raqam-flash
   const exitRi = deleting && ev && ev.op === 'delete' ? idxId(3) : null;                    // o'chirilayotgan qator slide-out
-  const hiCol = (resolved && ev && ev.op === 'update') ? 'narx' : (showFiltered ? 'narx' : null);
+  const hiCol = (resolved && ev && ev.op === 'update') ? 'price' : (showFiltered ? 'price' : null);
   return (
     <Stage eyebrow={tr({ uz: 'Menejer navbati', ru: 'Смена менеджера' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : `${solvedCount}/4 ${tr({ uz: 'hodisa', ru: 'событий' })}`} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
@@ -1135,8 +1135,8 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — AI BILAN #1 (vibecoding) =====
 const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const TASKS = [
-    { id: 't1', talab: tr({ uz: "100 000 so'mdan arzon mahsulotlarni ko'rsat", ru: 'покажи товары дешевле 100 000 сум' }), sql: 'SELECT * FROM products\nWHERE narx < 100000', filter: r => r.narx < 100000 },
-    { id: 't2', talab: tr({ uz: "soni 6 dan kam (tugayotgan) mahsulotlarni ko'rsat", ru: 'покажи товары, которых меньше 6 штук (заканчиваются)' }), sql: 'SELECT * FROM products\nWHERE soni < 6', filter: r => r.soni < 6 }
+    { id: 't1', talab: tr({ uz: "100 000 so'mdan arzon mahsulotlarni ko'rsat", ru: 'покажи товары дешевле 100 000 сум' }), sql: 'SELECT * FROM products\nWHERE price < 100000', filter: r => r.price < 100000 },
+    { id: 't2', talab: tr({ uz: "stock 6 dan kam (tugayotgan) mahsulotlarni ko'rsat", ru: 'покажи товары, которых меньше 6 штук (заканчиваются)' }), sql: 'SELECT * FROM products\nWHERE stock < 6', filter: r => r.stock < 6 }
   ];
   const audio = useAudio([{ id: 's11', text: "SQL'ni yoddan bilish shart emas. Oddiy tilda nima xohlashingizni aytasiz — AI SQL yozadi. Muhimi: AI yozgan kodni o'qib, tekshirib ishlatasiz. Bir vazifani tanlang.", trigger: 'on_mount', waits_for: null }]);
   const [task, setTask] = useState(null);
@@ -1272,7 +1272,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const LINES = [
     { text: 'SELECT *', bug: false },
     { text: 'FROM product', bug: true },
-    { text: 'WHERE narx < 100000', bug: false },
+    { text: 'WHERE price < 100000', bug: false },
   ];
   return (
     <Stage eyebrow={tr({ uz: 'Tekshiruv · AI xatosini tut', ru: 'Проверка · поймайте ошибку ИИ' })} screen={screen} audioState={audio} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done} label={done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Xatoni toping va tuzating', ru: 'Найдите и исправьте ошибку' })} onClick={onNext} /></>}>
@@ -1297,7 +1297,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <p className="flow-label">{tr({ uz: 'Natija', ru: 'Результат' })}</p>
             {!solved
               ? <div className="code-box" style={{ minHeight: 80 }}><span style={{ color: T.accent }}>{tr({ uz: '✕ XATO:', ru: '✕ ОШИБКА:' })}</span> <span style={{ color: CODE.text }}>relation "product" does not exist</span></div>
-              : <><DataTable cols={PCOLS} rows={PRODUCTS.filter(r => r.narx < 100000)} /><SqlStatus>{tr({ uz: <>Topdingiz va tuzatdingiz! Bitta harf (s) butun so'rovni ishlatdi. <b>AI yozadi — siz tekshirasiz.</b></>, ru: <>Нашли и исправили! Одна буква (s) оживила весь запрос. <b>ИИ пишет — вы проверяете.</b></> })}</SqlStatus></>}
+              : <><DataTable cols={PCOLS} rows={PRODUCTS.filter(r => r.price < 100000)} /><SqlStatus>{tr({ uz: <>Topdingiz va tuzatdingiz! Bitta harf (s) butun so'rovni ishlatdi. <b>AI yozadi — siz tekshirasiz.</b></>, ru: <>Нашли и исправили! Одна буква (s) оживила весь запрос. <b>ИИ пишет — вы проверяете.</b></> })}</SqlStatus></>}
           </Col>
         </div>
         </Zoomable>
@@ -1318,7 +1318,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const m = v.match(/values\s*\(\s*'([^']+)'\s*,\s*(\d[\d\s]*)\s*,\s*(\d[\d\s]*)\s*\)/i);
   const hasThree = !!m;
   const valid = hasInsert && hasValues && hasThree;
-  const newRow = m ? { id: 4, nom: m[1], narx: +String(m[2]).replace(/\s/g, ''), soni: +String(m[3]).replace(/\s/g, '') } : null;
+  const newRow = m ? { id: 4, name: m[1], price: +String(m[2]).replace(/\s/g, ''), stock: +String(m[3]).replace(/\s/g, '') } : null;
   const done = ran;
   useEffect(() => {
     if (valid && !passed) { setPassed(true); onAnswer(screen, { stage: 'final', screenIdx: screen, question: "products jadvaliga INSERT yozing", studentAnswer: value, correct: true, firstAttemptCorrect: true, solved: true, picked: value }); }
@@ -1354,7 +1354,7 @@ const Screen15 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {ran && newRow
               ? <DataTable cols={PCOLS} rows={[...PRODUCTS, newRow]} hiRow={PRODUCTS.length} />
               : null /* F-0926-06: bo'sh-holat ramkasi olindi — chorlov mentor gapida va «▶ Run» tugmasida (159/3) */}
-            {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Tabriklaymiz! Siz bazaga <b>"{newRow ? newRow.nom : ''}"</b> ni qo'shdingiz. Endi siz ma'lumotlar bazasini boshqara olasiz!</>, ru: <>🎉 Поздравляем! Вы добавили в базу <b>«{newRow ? newRow.nom : ''}»</b>. Теперь вы умеете управлять базой данных!</> })}</p></div>}
+            {ran && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <>🎉 Tabriklaymiz! Siz bazaga <b>"{newRow ? newRow.name : ''}"</b> ni qo'shdingiz. Endi siz ma'lumotlar bazasini boshqara olasiz!</>, ru: <>🎉 Поздравляем! Вы добавили в базу <b>«{newRow ? newRow.name : ''}»</b>. Теперь вы умеете управлять базой данных!</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1442,13 +1442,13 @@ function Flashcards({ cards }) {
 // 🃏 PostgreSQL CRUD FLASHCARD KARTALARI (front=savol, back=qisqa javob)
 const CRUD_FLASHCARDS = [
   { front: { uz: "Bazada ma'lumot ustun va qatorlar bilan qayerda saqlanadi?", ru: 'Где в базе данные хранятся столбцами и строками?' }, back: { uz: 'Jadval', ru: 'Таблица' }, note: { uz: "do'konimizda u — products jadvali", ru: 'в нашем магазине это таблица products' } },
-  { front: { uz: "products jadvalidagi bitta qator nimani bildiradi?", ru: 'Что означает одна строка в таблице products?' }, back: { uz: 'Bitta mahsulot', ru: 'Один товар' }, note: { uz: "ustunlar esa uning xususiyatlari: nom, narx, soni", ru: 'а столбцы — его свойства: nom, narx, soni' } },
+  { front: { uz: "products jadvalidagi bitta qator nimani bildiradi?", ru: 'Что означает одна строка в таблице products?' }, back: { uz: 'Bitta mahsulot', ru: 'Один товар' }, note: { uz: "ustunlar esa uning xususiyatlari: name, price, stock", ru: 'а столбцы — его свойства: name, price, stock' } },
   { front: { uz: "Yangi jadval yaratadigan buyruq qaysi?", ru: 'Какая команда создаёт новую таблицу?' }, back: "CREATE TABLE", note: "CREATE TABLE products (...)" },
   { front: { uz: "Jadvalga yangi mahsulot qo'shadigan buyruq qaysi?", ru: 'Какая команда добавляет в таблицу новый товар?' }, back: "INSERT INTO", note: { uz: "har INSERT bitta yangi qator qo'shadi", ru: 'каждый INSERT добавляет одну новую строку' } },
   { front: { uz: "INSERT'da kiritiladigan qiymatlar qaysi so'zdan keyin yoziladi?", ru: 'После какого слова в INSERT пишутся вводимые значения?' }, back: "VALUES", note: "VALUES ('Mishka', 50000, 10)" },
   { front: { uz: "Bazadagi ma'lumotni ko'rish uchun qaysi buyruqni yozasiz?", ru: 'Какую команду Вы пишете, чтобы посмотреть данные в базе?' }, back: "SELECT * FROM products", note: { uz: "yulduzcha — barcha ustunlar", ru: 'звёздочка — все столбцы' } },
-  { front: { uz: "Minglab qatordan faqat keraklisini topish uchun nima qo'shasiz?", ru: 'Что Вы добавляете, чтобы найти из тысяч строк только нужные?' }, back: "WHERE", note: "WHERE narx < 100000" },
-  { front: { uz: "Mahsulot narxini o'zgartirish uchun qaysi buyruq kerak?", ru: 'Какая команда нужна, чтобы изменить цену товара?' }, back: "UPDATE ... SET", note: "UPDATE products SET narx = 99000 WHERE id = 1" },
+  { front: { uz: "Minglab qatordan faqat keraklisini topish uchun nima qo'shasiz?", ru: 'Что Вы добавляете, чтобы найти из тысяч строк только нужные?' }, back: "WHERE", note: "WHERE price < 100000" },
+  { front: { uz: "Mahsulot narxini o'zgartirish uchun qaysi buyruq kerak?", ru: 'Какая команда нужна, чтобы изменить цену товара?' }, back: "UPDATE ... SET", note: "UPDATE products SET price = 99000 WHERE id = 1" },
   { front: { uz: "Mahsulotni jadvaldan o'chiradigan buyruq qaysi?", ru: 'Какая команда удаляет товар из таблицы?' }, back: "DELETE FROM", note: "DELETE FROM products WHERE id = 3" },
   { front: { uz: "UPDATE yoki DELETE'da WHERE unutilsa nima bo'ladi?", ru: 'Что будет, если в UPDATE или DELETE забыть WHERE?' }, back: { uz: "Barcha qator o'zgaradi", ru: 'Изменятся все строки' }, note: { uz: "shuning uchun WHERE deyarli doim kerak", ru: 'поэтому WHERE нужен почти всегда' } },
   { front: { uz: "Bazaning to'rt asosiy amali qanday nomlanadi?", ru: 'Как называются четыре основных действия базы?' }, back: "CRUD", note: { uz: "qo'shish · ko'rish · o'zgartirish · o'chirish", ru: 'добавить · посмотреть · изменить · удалить' } },
@@ -2423,7 +2423,7 @@ export default function PostgresCrudLesson({ lang: langProp, onFinished, liveTok
         @keyframes dt-flash-green-cell { 0%,18% { background: ${T.successSoft}; box-shadow: inset 0 0 0 2px ${T.success}; color: ${T.success}; } 100% { background: #fff; box-shadow: inset 0 0 0 0 ${T.success}; color: ${T.ink}; } }
         .dtable tr.flash-green { animation: dt-flash-green 0.42s cubic-bezier(.2,.7,.3,1); }
         .dtable tr.flash-green td { animation: dt-flash-green-cell 1.3s ease-out; }
-        /* UPDATE — narx katakcha kuchli chaqnab, yangi qiymatga sakraydi */
+        /* UPDATE — price katakcha kuchli chaqnab, yangi qiymatga sakraydi */
         @keyframes dt-num-flash { 0% { background: ${T.accent}; color: #fff; transform: scale(1.14); } 45% { background: ${T.accent}; color: #fff; transform: scale(1.14); } 100% { background: ${T.accentSoft}; color: ${T.accent}; transform: scale(1); } }
         .dtable td.num-flash { animation: dt-num-flash 0.95s cubic-bezier(.3,1.4,.5,1) both; transform-origin: center; }
         /* DELETE — qator o'ngga sirg'alib chiqadi va so'nadi */

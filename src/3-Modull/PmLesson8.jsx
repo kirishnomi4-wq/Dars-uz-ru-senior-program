@@ -1534,44 +1534,44 @@ const RANGLAR = [
 ];
 const RANG_ORDER = [1, 3, 0, 2];
 const KD_FILES = [
-  { tab: 'Karta.jsx', code: `function Karta(props) {
+  { tab: 'Card.jsx', code: `function Card(props) {
   return (
-    <div className="karta">
-      <b>{props.nom}</b>
-      <span>{props.katak}</span>
+    <div className="card">
+      <b>{props.name}</b>
+      <span>{props.zone}</span>
     </div>
   );
 }
 
-export default Karta;` },
-  { tab: 'App.jsx', code: { uz: `import Karta from "./Karta";
+export default Card;` },
+  { tab: 'App.jsx', code: { uz: `import Card from "./Card";
 
-const ISHLAR = [
-  { nom: "Soatlik narxlar",        katak: "darrov" },
-  { nom: "Hozir nechta joy bo'sh", katak: "reja"   },
-  { nom: "Turnir g'oliblari",      katak: "keyin"  },
-  { nom: "Zalni 3D'da ko'rish",    katak: "yoq"    },
+const TASKS = [
+  { name: "Soatlik narxlar",        zone: "now"   },
+  { name: "Hozir nechta joy bo'sh", zone: "plan"  },
+  { name: "Turnir g'oliblari",      zone: "later" },
+  { name: "Zalni 3D'da ko'rish",    zone: "skip"  },
 ];
 
 export default function App() {
   return (
     <div>
-      {/* ← Bu joyni siz to'ldirasiz: har ish uchun bitta Karta chiqsin */}
+      {/* ← Bu joyni siz to'ldirasiz: har ish uchun bitta Card chiqsin */}
     </div>
   );
-}`, ru: `import Karta from "./Karta";
+}`, ru: `import Card from "./Card";
 
-const ISHLAR = [
-  { nom: "Цены по часам",          katak: "darrov" },
-  { nom: "Сколько мест свободно",  katak: "reja"   },
-  { nom: "Победители турнира",     katak: "keyin"  },
-  { nom: "Прогулка по залу в 3D",  katak: "yoq"    },
+const TASKS = [
+  { name: "Цены по часам",          zone: "now"   },
+  { name: "Сколько мест свободно",  zone: "plan"  },
+  { name: "Победители турнира",     zone: "later" },
+  { name: "Прогулка по залу в 3D",  zone: "skip"  },
 ];
 
 export default function App() {
   return (
     <div>
-      {/* ← Это место заполняете вы: пусть на каждую задачу выйдет одна Karta */}
+      {/* ← Это место заполняете вы: пусть на каждую задачу выйдет одна Card */}
     </div>
   );
 }` } },
@@ -1587,8 +1587,8 @@ const kdHl = (ln) => ln.split(KD_TOKEN).filter(p => p !== undefined && p !== '')
   return <span key={i}>{p}</span>;
 });
 const KD_SHART = [
-  { uz: <>«Karta» <code className="qcode">props.nom</code> va <code className="qcode">props.katak</code> ni oladi</>, ru: <>«Karta» принимает <code className="qcode">props.nom</code> и <code className="qcode">props.katak</code></> },
-  { uz: <>Rang <code className="qcode">props.katak</code> ga qarab tanlanadi</>, ru: <>Цвет выбирается по <code className="qcode">props.katak</code></> },
+  { uz: <>«Card» <code className="qcode">props.name</code> va <code className="qcode">props.zone</code> ni oladi</>, ru: <>«Card» принимает <code className="qcode">props.name</code> и <code className="qcode">props.zone</code></> },
+  { uz: <>Rang <code className="qcode">props.zone</code> ga qarab tanlanadi</>, ru: <>Цвет выбирается по <code className="qcode">props.zone</code></> },
   { uz: <><code className="qcode">map()</code> bilan to'rtta karta chiqadi</>, ru: <>Через <code className="qcode">map()</code> выводятся четыре карточки</> },
 ];
 

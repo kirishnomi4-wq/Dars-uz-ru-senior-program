@@ -1529,35 +1529,36 @@ const GATE_OPTS = [
   { t: { uz: 'Birinchi yozuvdagi savol matni', ru: 'Текст вопроса из первой записи' }, ok: true },
   { t: { uz: 'Birinchi yozuvdagi javob matni', ru: 'Текст ответа из первой записи' } },
 ];
-const KOD_MATN = { uz: `// suhbat.js — suhbat varag'i
-const javoblar = [
-  { savol: "Uy vazifasini oxirgi marta qachon unutgansiz?",
-    eshitgan: "O'tgan payshanba. Ertalab guruhni ochsam, vazifa kechqurun yozilgan ekan." },
-  { savol: "", eshitgan: "" },
-  { savol: "", eshitgan: "" },
+const KOD_MATN = { uz: `// interview.js — suhbat varag'i
+const answers = [
+  { question: "Uy vazifasini oxirgi marta qachon unutgansiz?",
+    heard: "O'tgan payshanba. Ertalab guruhni ochsam, vazifa kechqurun yozilgan ekan." },
+  { question: "", heard: "" },
+  { question: "", heard: "" },
 ];
 
-for (let i = 0; i < javoblar.length; i++) {
-  const j = javoblar[i];
+for (let i = 0; i < answers.length; i++) {
+  const j = answers[i];
 
   // 1) har yozuvni bitta qatorda chiqaring:
-  //    console.log((i + 1) + ") " + j.savol + "  ->  " + j.eshitgan);
-  // 2) j.eshitgan bo'sh ("") bo'lsa, yana bir qator chiqaring:
+  //    console.log((i + 1) + ") " + j.question + "  ->  " + j.heard);
+  // 2) j.heard bo'sh ("") bo'lsa, yana bir qator chiqaring:
   //    "   javob hali yozilmagan"
-}`, ru: `// suhbat.js — лист беседы
-const javoblar = [
-  { savol: "Когда ты в последний раз забыл про домашнее задание?",
-    eshitgan: "В прошлый четверг. Утром открыл группу — а задание оказалось написано ещё вечером." },
-  { savol: "", eshitgan: "" },
-  { savol: "", eshitgan: "" },
+}`, ru: `// interview.js — лист беседы
+// answers — ответы · question — вопрос · heard — услышанный ответ
+const answers = [
+  { question: "Когда ты в последний раз забыл про домашнее задание?",
+    heard: "В прошлый четверг. Утром открыл группу — а задание оказалось написано ещё вечером." },
+  { question: "", heard: "" },
+  { question: "", heard: "" },
 ];
 
-for (let i = 0; i < javoblar.length; i++) {
-  const j = javoblar[i];
+for (let i = 0; i < answers.length; i++) {
+  const j = answers[i];
 
   // 1) выведите каждую запись одной строкой:
-  //    console.log((i + 1) + ") " + j.savol + "  ->  " + j.eshitgan);
-  // 2) если j.eshitgan пустой (""), выведите ещё одну строку:
+  //    console.log((i + 1) + ") " + j.question + "  ->  " + j.heard);
+  // 2) если j.heard пустой (""), выведите ещё одну строку:
   //    "   ответ ещё не записан"
 }` };
 const JS_TOKEN = /(\/\/[^\n]*|"[^"]*"|\b(?:const|let|for|if|else|return)\b|\b\d+\b)/g;
@@ -1569,7 +1570,7 @@ const jsHl = (ln) => ln.split(JS_TOKEN).filter(p => p !== undefined && p !== '')
   return <span key={i}>{p}</span>;
 });
 const KD_SHART = [
-  { uz: <><code className="qcode">node suhbat.js</code> har yozuv uchun bitta qator chiqaradi</>, ru: <><code className="qcode">node suhbat.js</code> выводит по одной строке на каждую запись</> },
+  { uz: <><code className="qcode">node interview.js</code> har yozuv uchun bitta qator chiqaradi</>, ru: <><code className="qcode">node interview.js</code> выводит по одной строке на каждую запись</> },
   { uz: <>Har qatorda savol va javobi</>, ru: <>В каждой строке — вопрос и ответ</> },
   { uz: <>Javobi bo'sh yozuv ostida «javob hali yozilmagan» qatori</>, ru: <>Под записью с пустым ответом — строка «ответ ещё не записан»</> },
 ];
@@ -1620,19 +1621,19 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           <>
             <Mentor>{tr({ uz: 'Avval bitta savol, keyin kod yozasiz.', ru: "Сначала один вопрос, потом пишете код." })}</Mentor>
             <div className="cmt hunt">
-              <span className="cmt-lbl">{tr({ uz: <>Kod <code className="qcode">javoblar[0].savol</code> ni chiqarsa, terminalda nima ko'rinadi?</>, ru: <>Если код выведет <code className="qcode">javoblar[0].savol</code>, что появится в терминале?</> })}</span>
+              <span className="cmt-lbl">{tr({ uz: <>Kod <code className="qcode">answers[0].question</code> ni chiqarsa, terminalda nima ko'rinadi?</>, ru: <>Если код выведет <code className="qcode">answers[0].question</code>, что появится в терминале?</> })}</span>
               <div className="gt-btns col3">
                 {GATE_OPTS.map((g, i) => (
                   <button key={tr(g.t)} type="button" className={`gt-b${miss === i ? ' miss' : ''}`} onClick={() => pickGate(i)}>{tr(g.t)}</button>
                 ))}
               </div>
-              {missedOnce && <p className="cmt-tip">{tr({ uz: <>Ikki bo'lakni alohida o'qing: <b>javoblar[0]</b> — birinchi yozuv, <b>.savol</b> — shu yozuvning savol bo'lagi.</>, ru: <>Прочитайте две части по отдельности: <b>javoblar[0]</b> — первая запись, <b>.savol</b> — часть «вопрос» этой записи.</> })}</p>}
+              {missedOnce && <p className="cmt-tip">{tr({ uz: <>Ikki bo'lakni alohida o'qing: <b>answers[0]</b> — birinchi yozuv, <b>.question</b> — shu yozuvning savol bo'lagi.</>, ru: <>Прочитайте две части по отдельности: <b>answers[0]</b> — первая запись, <b>.question</b> — часть «вопрос» этой записи.</> })}</p>}
             </div>
           </>
         ) : (
           <>
             <Mentor>{tr({ uz: <>Kodda bitta namuna yozuv bor. Bo'sh yozuvlarga o'zingiz yozgan savol va javoblarni qo'ying, keyin bitta <code className="qcode">for</code> sikli va bitta <code className="qcode">if</code> shartini yozing.</>, ru: <>В коде есть одна запись-образец. В пустые записи впишите свои вопросы и ответы, потом напишите один цикл <code className="qcode">for</code> и одно условие <code className="qcode">if</code>.</> })}</Mentor>
-            <div className="cmt-fold fade-step"><span className="cmt-done">{tr({ uz: '✓ javoblar[0].savol — birinchi savol matni', ru: '✓ javoblar[0].savol — текст первого вопроса' })}</span></div>
+            <div className="cmt-fold fade-step"><span className="cmt-done">{tr({ uz: '✓ answers[0].question — birinchi savol matni', ru: '✓ answers[0].question — текст первого вопроса' })}</span></div>
             <div className="split">
               <Col gap={10}>
                 <div className={`kdpanel${done ? ' is-done' : ''}`}>
@@ -1641,8 +1642,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })} {yordamOpen ? '▾' : '›'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Backend darslarida kodni <code className="qcode">node</code> bilan ishga tushirgansiz: terminalga <b>node suhbat.js</b> deb yozing.</>, ru: <>На уроках по бэкенду вы запускали код командой <code className="qcode">node</code>: напишите в терминале <b>node suhbat.js</b>.</> })}</p>
-                      <p>{tr({ uz: <>Avval bitta qatorni chiqarib ko'ring: <b>javoblar[0].savol</b>. Ishlagach siklni, keyin <b>if</b> ni qo'shing.</>, ru: <>Сначала выведите одну строку: <b>javoblar[0].savol</b>. Заработало — добавьте цикл, потом <b>if</b>.</> })}</p>
+                      <p>{tr({ uz: <>Backend darslarida kodni <code className="qcode">node</code> bilan ishga tushirgansiz: terminalga <b>node interview.js</b> deb yozing.</>, ru: <>На уроках по бэкенду вы запускали код командой <code className="qcode">node</code>: напишите в терминале <b>node interview.js</b>.</> })}</p>
+                      <p>{tr({ uz: <>Avval bitta qatorni chiqarib ko'ring: <b>answers[0].question</b>. Ishlagach siklni, keyin <b>if</b> ni qo'shing.</>, ru: <>Сначала выведите одну строку: <b>answers[0].question</b>. Заработало — добавьте цикл, потом <b>if</b>.</> })}</p>
                       <p>{tr({ uz: <>Javob matnini qo'shtirnoq (<code className="qcode">"..."</code>) ichida yozing: yakka tirnoq (<code className="qcode">'...'</code>) ichidagi apostrof kodni buzadi.</>, ru: <>Текст ответа пишите в двойных кавычках (<code className="qcode">"..."</code>): апостроф внутри одинарных кавычек (<code className="qcode">'...'</code>) ломает код.</> })}</p>
                       <p>{tr({ uz: "Qo'shimcha: javobi bo'sh yozuvlarni sanab boring va oxirida bitta qatorda chiqaring: «n ta javob yozilmagan».", ru: "Дополнительно: считайте записи с пустым ответом и в конце выведите одной строкой: «не записано ответов: n»." })}</p>
                     </div>}
@@ -1658,7 +1659,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <Col gap={10}>
                 <div className="vsc no-copy" onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onPaste={e => e.preventDefault()} onContextMenu={e => e.preventDefault()}>
                   <div className="vsc-bar">
-                    <span className="vsc-tab on">suhbat.js</span>
+                    <span className="vsc-tab on">interview.js</span>
                     <span className="vsc-lock" title={tr({ uz: "Kod nusxalanmaydi — o'zingiz terib yozasiz", ru: 'Код не копируется — набираете сами' })}>{tr({ uz: "qo'lda yoziladi", ru: 'пишется руками' })}</span>
                   </div>
                   <div className="vsc-body">
@@ -1667,7 +1668,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     ))}
                   </div>
                   <div className="term">
-                    <span className="term-l mono"><b>$</b> node suhbat.js</span>
+                    <span className="term-l mono"><b>$</b> node interview.js</span>
                     <span className="term-c" aria-hidden="true" />
                   </div>
                 </div>

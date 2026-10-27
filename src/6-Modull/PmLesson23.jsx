@@ -1430,63 +1430,67 @@ const GATE_ITEMS = [
 ];
 
 const KOD_STARTER = { uz: `// Har ishda ikki qiymat:
-// oziQiladi — ilova buni o'zi qiladimi
-// tegadi — kimga tegadi ("" — hech kimga)
-const dokonIshlari = [
-  { nom: "javobYozish",     oziQiladi: true,  tegadi: "mijoz" },
-  { nom: "narxOzgartirish", oziQiladi: false, tegadi: "mijoz" },
-  { nom: "buyurtmaBekor",   oziQiladi: true,  tegadi: "mijoz" },
-  { nom: "hisobotYigish",   oziQiladi: true,  tegadi: "" }
+// automatic — ilova buni o'zi qiladimi
+// affects — kimga tegadi ("" — hech kimga) · "customer" — mijoz
+const shopTasks = [
+  { name: "writeReply",      automatic: true,  affects: "customer" },
+  { name: "changePrice",     automatic: false, affects: "customer" },
+  { name: "cancelOrder",     automatic: true,  affects: "customer" },
+  { name: "buildReport",     automatic: true,  affects: "" }
 ];
 
-const botIshlari = [
-  { nom: "kechasiXabar",  oziQiladi: true,  tegadi: "mijoz" },
-  { nom: "adminXabar",    oziQiladi: true,  tegadi: "" },
-  { nom: "chegirmaXabar", oziQiladi: false, tegadi: "mijoz" }
+const botTasks = [
+  { name: "nightMessage",    automatic: true,  affects: "customer" },
+  { name: "adminMessage",    automatic: true,  affects: "" },
+  { name: "discountMessage", automatic: false, affects: "customer" }
 ];
 
-function chegaraKerak(ishlar) {
-  // o'zi qiladigan va odamga tegadigan ishlar nomi
+function needsBoundary(tasks) {
+  // o'zi qiladigan va odamga tegadigan tasks nomi
   return [];   // <- bu joyni siz to'ldirasiz
 }
 
-console.log(chegaraKerak(dokonIshlari));
-console.log(chegaraKerak(botIshlari));`, ru: `// У каждой работы два значения:
-// oziQiladi — делает ли приложение это само
-// tegadi — кого касается ("" — никого)
-const dokonIshlari = [
-  { nom: "javobYozish",     oziQiladi: true,  tegadi: "mijoz" },
-  { nom: "narxOzgartirish", oziQiladi: false, tegadi: "mijoz" },
-  { nom: "buyurtmaBekor",   oziQiladi: true,  tegadi: "mijoz" },
-  { nom: "hisobotYigish",   oziQiladi: true,  tegadi: "" }
+console.log(needsBoundary(shopTasks));
+console.log(needsBoundary(botTasks));`, ru: `// У каждой работы два значения:
+// automatic — делает ли приложение это само
+// affects — кого касается ("" — никого) · "customer" — клиент
+const shopTasks = [
+  { name: "writeReply",      automatic: true,  affects: "customer" },
+  { name: "changePrice",     automatic: false, affects: "customer" },
+  { name: "cancelOrder",     automatic: true,  affects: "customer" },
+  { name: "buildReport",     automatic: true,  affects: "" }
 ];
 
-const botIshlari = [
-  { nom: "kechasiXabar",  oziQiladi: true,  tegadi: "mijoz" },
-  { nom: "adminXabar",    oziQiladi: true,  tegadi: "" },
-  { nom: "chegirmaXabar", oziQiladi: false, tegadi: "mijoz" }
+const botTasks = [
+  { name: "nightMessage",    automatic: true,  affects: "customer" },
+  { name: "adminMessage",    automatic: true,  affects: "" },
+  { name: "discountMessage", automatic: false, affects: "customer" }
 ];
 
-function chegaraKerak(ishlar) {
+function needsBoundary(tasks) {
   // имена работ: делает само и касается человека
   return [];   // <- это место заполняете вы
 }
 
-console.log(chegaraKerak(dokonIshlari));
-console.log(chegaraKerak(botIshlari));` };
+console.log(needsBoundary(shopTasks));
+console.log(needsBoundary(botTasks));` };
 
+// F-1027-01: nomlar inglizcha; eski saqlangan kod (chegaraKerak · dokonIshlari · botIshlari) ham o'tadi — natija yangi nomlarga o'giriladi.
+const KOD_FN = "(function(L){var f=typeof needsBoundary==='function'?needsBoundary:chegaraKerak;var m={javobYozish:'writeReply',narxOzgartirish:'changePrice',buyurtmaBekor:'cancelOrder',hisobotYigish:'buildReport',kechasiXabar:'nightMessage',adminXabar:'adminMessage',chegirmaXabar:'discountMessage'};var r=f(L);return Array.isArray(r)?r.map(function(k){return m[k]||k;}):r;})";
+const KOD_SHOP = "(typeof shopTasks!=='undefined'?shopTasks:dokonIshlari)";
+const KOD_BOT = "(typeof botTasks!=='undefined'?botTasks:botIshlari)";
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish · chegara kerak ishlar', ru: 'Пишем код · работы, которым нужна граница' },
   title: { uz: 'Chegara kerak ishlarni toping', ru: 'Найдите работы, которым нужна граница' },
   brief: { uz: <>Funksiya ilova <b>o'zi qiladigan</b> va <b>odamga tegadigan</b> ishlarning nomini qaytarsin. Pastdagi <span className="mono">console.log</span> ikki ro'yxatning natijasini ko'rsatadi.</>, ru: <>Пусть функция вернёт имена работ, которые приложение <b>делает само</b> и которые <b>касаются человека</b>. Внизу <span className="mono">console.log</span> покажет результат для двух списков.</> },
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// ikki shartga ham mos ishlarning nomini yig'ib qaytaring", ru: '// соберите и верните имена работ, подходящих под оба условия' } }],
   requirements: [
-    { id: 'r1', label: { uz: "Do'kon ro'yxatidan javobYozish qaytdi", ru: 'Из списка магазина вернулся javobYozish' },
-      check: C.evalEquals("chegaraKerak(dokonIshlari).includes('javobYozish')", 'true', { uz: "javobYozish ni ilova o'zi qiladi va u mijozga tegadi — nomi ro'yxatga tushsin", ru: 'javobYozish приложение делает само, и эта работа касается клиента — пусть её имя попадёт в список' }) },
-    { id: 'r2', label: { uz: "Do'kon ro'yxatidan buyurtmaBekor qaytdi, hisobotYigish esa qaytmadi", ru: 'Из списка магазина вернулся buyurtmaBekor, а hisobotYigish — нет' },
-      check: C.evalEquals("chegaraKerak(dokonIshlari).includes('buyurtmaBekor') && !chegaraKerak(dokonIshlari).includes('hisobotYigish')", 'true', { uz: "hisobotYigish hech kimga tegmaydi (tegadi bo'sh) — u ro'yxatga tushmasin", ru: 'hisobotYigish никого не касается (tegadi пустое) — пусть она не попадёт в список' }) },
-    { id: 'r3', label: { uz: "Bot ro'yxatidan faqat kechasiXabar qaytdi", ru: 'Из списка бота вернулся только kechasiXabar' },
-      check: C.evalEquals("chegaraKerak(botIshlari).join(',')", 'kechasiXabar', { uz: "Bot ro'yxatida ikki shartga ham mos ish bitta", ru: 'В списке бота под оба условия подходит только одна работа' }) },
+    { id: 'r1', label: { uz: "Do'kon ro'yxatidan writeReply qaytdi", ru: 'Из списка магазина вернулся writeReply' },
+      check: C.evalEquals(KOD_FN + "(" + KOD_SHOP + ").includes('writeReply')", 'true', { uz: "writeReply ni ilova o'zi qiladi va u mijozga tegadi — nomi ro'yxatga tushsin", ru: 'writeReply приложение делает само, и эта работа касается клиента — пусть её имя попадёт в список' }) },
+    { id: 'r2', label: { uz: "Do'kon ro'yxatidan cancelOrder qaytdi, buildReport esa qaytmadi", ru: 'Из списка магазина вернулся cancelOrder, а buildReport — нет' },
+      check: C.evalEquals(KOD_FN + "(" + KOD_SHOP + ").includes('cancelOrder') && !" + KOD_FN + "(" + KOD_SHOP + ").includes('buildReport')", 'true', { uz: "buildReport hech kimga tegmaydi (tegadi bo'sh) — u ro'yxatga tushmasin", ru: 'buildReport никого не касается (tegadi пустое) — пусть она не попадёт в список' }) },
+    { id: 'r3', label: { uz: "Bot ro'yxatidan faqat nightMessage qaytdi", ru: 'Из списка бота вернулся только nightMessage' },
+      check: C.evalEquals(KOD_FN + "(" + KOD_BOT + ").join(',')", 'nightMessage', { uz: "Bot ro'yxatida ikki shartga ham mos ish bitta", ru: 'В списке бота под оба условия подходит только одна работа' }) },
   ],
 };
 
@@ -1560,21 +1564,21 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
           </>
         ) : (
           <>
-            <Mentor>{tr({ uz: <>Hozir har qarorni odamiga qo'shdingiz — endi shu ishni kod bajaradi. Kodda har ishning ikki qiymati bor: <b style={{ color: T.ink }}>oziQiladi</b> — ilova buni o'zi qiladimi, <b style={{ color: T.ink }}>tegadi</b> — bu ish kimga tegadi.</>, ru: <>Вы только что соединили каждое решение с его человеком — теперь эту работу выполнит код. В коде у каждой работы два значения: <b style={{ color: T.ink }}>oziQiladi</b> — делает ли приложение это само, <b style={{ color: T.ink }}>tegadi</b> — кого касается эта работа.</> })}</Mentor>
+            <Mentor>{tr({ uz: <>Hozir har qarorni odamiga qo'shdingiz — endi shu ishni kod bajaradi. Kodda har ishning ikki qiymati bor: <b style={{ color: T.ink }}>automatic</b> — ilova buni o'zi qiladimi, <b style={{ color: T.ink }}>affects</b> — bu ish kimga tegadi.</>, ru: <>Вы только что соединили каждое решение с его человеком — теперь эту работу выполнит код. В коде у каждой работы два значения: <b style={{ color: T.ink }}>automatic</b> — делает ли приложение это само, <b style={{ color: T.ink }}>affects</b> — кого касается эта работа.</> })}</Mentor>
             <div className="split">
               <Col gap={10}>
                 <div className={`kdpanel${done ? ' is-done' : ''}`}>
                   <p className="flow-label">{tr({ uz: 'Kod nima qilsin', ru: 'Что должен делать код' })}</p>
                   <ol className="kdreq">
-                    <li>{tr({ uz: <>Do'kon ro'yxatidan <code className="qcode">javobYozish</code> qaytdi</>, ru: <>Из списка магазина вернулся <code className="qcode">javobYozish</code></> })}</li>
-                    <li>{tr({ uz: <>Do'kon ro'yxatidan <code className="qcode">buyurtmaBekor</code> qaytdi, <code className="qcode">hisobotYigish</code> esa qaytmadi</>, ru: <>Из списка магазина вернулся <code className="qcode">buyurtmaBekor</code>, а <code className="qcode">hisobotYigish</code> — нет</> })}</li>
-                    <li>{tr({ uz: <>Bot ro'yxatidan faqat <code className="qcode">kechasiXabar</code> qaytdi</>, ru: <>Из списка бота вернулся только <code className="qcode">kechasiXabar</code></> })}</li>
+                    <li>{tr({ uz: <>Do'kon ro'yxatidan <code className="qcode">writeReply</code> qaytdi</>, ru: <>Из списка магазина вернулся <code className="qcode">writeReply</code></> })}</li>
+                    <li>{tr({ uz: <>Do'kon ro'yxatidan <code className="qcode">cancelOrder</code> qaytdi, <code className="qcode">buildReport</code> esa qaytmadi</>, ru: <>Из списка магазина вернулся <code className="qcode">cancelOrder</code>, а <code className="qcode">buildReport</code> — нет</> })}</li>
+                    <li>{tr({ uz: <>Bot ro'yxatidan faqat <code className="qcode">nightMessage</code> qaytdi</>, ru: <>Из списка бота вернулся только <code className="qcode">nightMessage</code></> })}</li>
                   </ol>
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Bitta ishdan boshlang: <code className="qcode">javobYozish</code> ni ilova o'zi qiladimi? Bu ish odamga tegadimi? Ikkalasi ham ha bo'lsa — nomi ro'yxatga tushadi.</>, ru: <>Начните с одной работы: <code className="qcode">javobYozish</code> приложение делает само? Эта работа касается человека? Если оба ответа «да» — её имя попадает в список.</> })}</p>
-                      <p>{tr({ uz: <>Qo'shimcha: <code className="qcode">narxOzgartirish</code> ishining <code className="qcode">oziQiladi</code> qiymatini <code className="qcode">true</code> ga o'zgartiring va do'kon ro'yxati endi nima berishini ko'ring.</>, ru: <>Дополнительно: поменяйте у работы <code className="qcode">narxOzgartirish</code> значение <code className="qcode">oziQiladi</code> на <code className="qcode">true</code> и посмотрите, что теперь выдаст список магазина.</> })}</p>
+                      <p>{tr({ uz: <>Bitta ishdan boshlang: <code className="qcode">writeReply</code> ni ilova o'zi qiladimi? Bu ish odamga tegadimi? Ikkalasi ham ha bo'lsa — nomi ro'yxatga tushadi.</>, ru: <>Начните с одной работы: <code className="qcode">writeReply</code> приложение делает само? Эта работа касается человека? Если оба ответа «да» — её имя попадает в список.</> })}</p>
+                      <p>{tr({ uz: <>Qo'shimcha: <code className="qcode">changePrice</code> ishining <code className="qcode">automatic</code> qiymatini <code className="qcode">true</code> ga o'zgartiring va do'kon ro'yxati endi nima berishini ko'ring.</>, ru: <>Дополнительно: поменяйте у работы <code className="qcode">changePrice</code> значение <code className="qcode">automatic</code> на <code className="qcode">true</code> и посмотрите, что теперь выдаст список магазина.</> })}</p>
                     </div>}
                   </div>
                 </div>

@@ -1411,35 +1411,35 @@ const GATE_OPTS = [
   { t: { uz: "Ro'yxat serverdan keldi — 5 ta joy band", ru: 'Список пришёл с сервера — занято 5 мест' }, ok: true },
   { t: { uz: "Massiv 5 ta element bilan to'ldi", ru: 'Массив заполнился 5 элементами' } },
 ];
-// UZ-RU: kod-namunada identifikatorlar (JoylarPaneli, yozuvlar, yukla, malumot) ikkala tilda BIR XIL —
+// UZ-RU: kod-namunada identifikatorlar (SpotsPanel, spots, loadSpots, data) ikkala tilda BIR XIL va inglizcha (F-1027-01) —
 // o'quvchi ularni VS Code'da o'zi teradi; faqat tugma-matni va izoh tarjima qilinadi (M3-D5/D10/D14 konvensiyasi).
-const KD_CODE = { uz: `function JoylarPaneli() {
-  const [yozuvlar, setYozuvlar] = useState([]);
+const KD_CODE = { uz: `function SpotsPanel() {
+  const [spots, setSpots] = useState([]);
 
-  function yukla() {
-    fetch('http://localhost:3000/joylar')
+  function loadSpots() {
+    fetch('http://localhost:3000/spots')
       .then(r => r.json())
-      .then(malumot => setYozuvlar(malumot));
+      .then(data => setSpots(data));
   }
 
   return (
     <div>
-      <button onClick={yukla}>Joylarni ko'rish</button>
+      <button onClick={loadSpots}>Joylarni ko'rish</button>
       {/* holat-qatori shu yerga: nechta joy band, odam tilida */}
     </div>
   );
-}`, ru: `function JoylarPaneli() {
-  const [yozuvlar, setYozuvlar] = useState([]);
+}`, ru: `function SpotsPanel() {
+  const [spots, setSpots] = useState([]);
 
-  function yukla() {
-    fetch('http://localhost:3000/joylar')
+  function loadSpots() {
+    fetch('http://localhost:3000/spots')
       .then(r => r.json())
-      .then(malumot => setYozuvlar(malumot));
+      .then(data => setSpots(data));
   }
 
   return (
     <div>
-      <button onClick={yukla}>Показать места</button>
+      <button onClick={loadSpots}>Показать места</button>
       {/* строка состояния сюда: сколько мест занято, языком человека */}
     </div>
   );
@@ -1525,7 +1525,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: '💡 Yordam', ru: '💡 Помощь' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: "Holat-qatori tugma ostidagi izoh turgan joyga yoziladi. Gap shakli: «Ro'yxat serverdan keldi — 5 ta joy band» — sonni yozuvlar.length beradi.", ru: 'Строка состояния пишется там, где под кнопкой стоит комментарий. Форма фразы: «Список пришёл с сервера — занято 5 мест» — число даёт yozuvlar.length.' })}</p>
+                      <p>{tr({ uz: "Holat-qatori tugma ostidagi izoh turgan joyga yoziladi. Gap shakli: «Ro'yxat serverdan keldi — 5 ta joy band» — sonni spots.length beradi.", ru: 'Строка состояния пишется там, где под кнопкой стоит комментарий. Форма фразы: «Список пришёл с сервера — занято 5 мест» — число даёт spots.length.' })}</p>
                       <p>{tr({ uz: "⭐ Qo'shimcha: ro'yxat bo'sh bo'lsa ham odam tilida ayting — «Hali birorta joy band emas».", ru: '⭐ Дополнительно: даже если список пуст, скажите языком человека — «Пока ни одно место не занято».' })}</p>
                     </div>}
                   </div>
@@ -1539,7 +1539,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
               <Col gap={10}>
                 <div className="vsc no-copy" onCopy={e => e.preventDefault()} onCut={e => e.preventDefault()} onPaste={e => e.preventDefault()} onContextMenu={e => e.preventDefault()}>
                   <div className="vsc-bar">
-                    <span className="vsc-tab on"><span style={{ color: '#4FC1FF' }}>🧩</span> JoylarPaneli.jsx</span>
+                    <span className="vsc-tab on"><span style={{ color: '#4FC1FF' }}>🧩</span> SpotsPanel.jsx</span>
                   </div>
                   <div className="vsc-body">
                     {lines.map((ln, i) => (

@@ -983,8 +983,8 @@ const Screen5 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     curly: {
       chip: { uz: '{ } — jingalak qavs', ru: '{ } — фигурные скобки' }, word: { uz: 'JS ichida', ru: 'JS внутри' },
       info: { uz: "Jingalak qavs ichida JavaScript ishlaydi: o'zgaruvchi, hisob-kitob — hammasi. HTML'da bunday imkon yo'q edi!", ru: 'Внутри фигурных скобок работает JavaScript: переменные, вычисления — всё. В HTML такой возможности не было!' },
-      code: <><Jx>{'<h3>'}</Jx>{'{'}<At>nom</At>{'}'}<Jx>{'</h3>'}</Jx></>,
-      result: { uz: <>Agar <span className="mono">nom = "Blox Fruits"</span> bo'lsa → ekranda: <b>Blox Fruits</b></>, ru: <>Если <span className="mono">nom = "Blox Fruits"</span> → на экране: <b>Blox Fruits</b></> }
+      code: <><Jx>{'<h3>'}</Jx>{'{'}<At>name</At>{'}'}<Jx>{'</h3>'}</Jx></>,
+      result: { uz: <>Agar <span className="mono">name = "Blox Fruits"</span> bo'lsa → ekranda: <b>Blox Fruits</b></>, ru: <>Если <span className="mono">name = "Blox Fruits"</span> → на экране: <b>Blox Fruits</b></> }
     },
     cls: {
       chip: 'className', word: { uz: 'class emas', ru: 'не class' },

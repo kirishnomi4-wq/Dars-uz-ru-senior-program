@@ -241,7 +241,7 @@ const RECAPS = {
   8: {
     title: { uz: 'expect(...).toBe(...) — etalon kartochkasi', ru: 'expect(...).toBe(...) — карточка-эталон' },
     cards: [
-      { ic: '🎯', h: { uz: 'Etalon kartochkasi', ru: 'Карточка-эталон' }, body: { uz: <><span className="mono">expect(natija).toBe(kutilgan)</span> — robotga <b>kutilgan qiymat</b>ni berasiz.</>, ru: <><span className="mono">expect(результат).toBe(ожидаемое)</span> — вы даёте роботу <b>ожидаемое значение</b>.</> } },
+      { ic: '🎯', h: { uz: 'Etalon kartochkasi', ru: 'Карточка-эталон' }, body: { uz: <><span className="mono">expect(result).toBe(expected)</span> — robotga <b>kutilgan qiymat</b>ni berasiz.</>, ru: <><span className="mono">expect(result).toBe(expected)</span> — вы даёте роботу <b>ожидаемое значение</b>.</> } },
       { ic: '🚫', h: { uz: 'console.log test emas', ru: 'console.log — не тест' }, body: { uz: <><span className="mono">console.log</span> faqat ekranga chiqaradi — hech narsani <b>tekshirmaydi</b>.</>, ru: <><span className="mono">console.log</span> только выводит на экран — ничего <b>не проверяет</b>.</> } },
       { ic: '💡', h: { uz: "Jestbot o'zi bilmaydi", ru: 'Джестбот сам не знает' }, body: { uz: <>Robot to'g'ri javobni bilmaydi — u faqat sizning <b>etaloningiz</b> bilan solishtiradi.</>, ru: <>Робот не знает правильный ответ — он лишь сверяет с вашим <b>эталоном</b>.</> }, ask: { uz: 'Natija 15000 ekanini qanday tekshiramiz?', ru: 'Как проверить, что результат равен 15000?' } }
     ]
@@ -1023,7 +1023,7 @@ const Screen6 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     { id: 'import', t: 'import', d: { uz: "Sinaladigan funksiyani olib kiramiz: import { orderTotal } from './order'.", ru: "Подключаем испытуемую функцию: import { orderTotal } from './order'." } },
     { id: 'describe', t: 'describe', d: { uz: "Bog'liq testlarni guruhlaydi: describe('orderTotal', () => { ... }).", ru: "Группирует связанные тесты: describe('orderTotal', () => { ... })." } },
     { id: 'it', t: 'it', d: { uz: "Bitta testni yozadi: it('2 kitob narxini hisoblaydi', () => { ... }).", ru: "Описывает один тест: it('считает цену 2 книг', () => { ... })." } },
-    { id: 'expect', t: 'expect', d: { uz: "Tasdiq: expect(natija).toBe(kutilgan) — to'g'rimi tekshiradi.", ru: 'Утверждение: expect(результат).toBe(ожидаемое) — сверяет, всё ли верно.' } }
+    { id: 'expect', t: 'expect', d: { uz: "Tasdiq: expect(result).toBe(expected) — to'g'rimi tekshiradi.", ru: 'Утверждение: expect(result).toBe(expected) — сверяет, всё ли верно.' } }
   ];
   const [seen, setSeen] = useState(storedAnswer ? new Set(PARTS.map(p => p.id)) : new Set());
   const [active, setActive] = useState(null);
@@ -1074,17 +1074,17 @@ const Screen7 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [prog, setProg] = useState(0);
   const { tip: _tip, rescue: _resc } = useStuckValve(done, prog);   // 13-band klapan
   const candidates = [
-    { id: 'act', correct: true, label: 'const natija = orderTotal(10000, 2);', node: <>{'const natija = orderTotal(10000, 2);'}</> },
-    { id: 'assert', correct: true, label: 'expect(natija).toBe(20000);', node: <><At>expect</At>{'(natija).'}<At>toBe</At>{'(20000);'}</> },
+    { id: 'act', correct: true, label: 'const result = orderTotal(10000, 2);', node: <>{'const result = orderTotal(10000, 2);'}</> },
+    { id: 'assert', correct: true, label: 'expect(result).toBe(20000);', node: <><At>expect</At>{'(result).'}<At>toBe</At>{'(20000);'}</> },
     { id: 'log', correct: false, label: "console.log('" + tr(LOGMSG) + "');", why: { uz: "console.log faqat ekranga chiqaradi — hech narsani tekshirmaydi. Test uchun expect kerak.", ru: 'console.log только выводит на экран — ничего не проверяет. Для теста нужен expect.' } },
-    { id: 'if', correct: false, label: 'if (natija === 20000) ok();', why: { uz: "Jest'da qo'lda if yozilmaydi — expect(...).toBe(...) buni o'zi tekshiradi va hisobot beradi.", ru: 'В Jest не пишут if вручную — expect(...).toBe(...) сам проверит и отчитается.' } }
+    { id: 'if', correct: false, label: 'if (result === 20000) ok();', why: { uz: "Jest'da qo'lda if yozilmaydi — expect(...).toBe(...) buni o'zi tekshiradi va hisobot beradi.", ru: 'В Jest не пишут if вручную — expect(...).toBe(...) сам проверит и отчитается.' } }
   ];
   return (
     <Stage eyebrow={tr({ uz: '2-qadam · expect', ru: 'Шаг 2 · expect' })} screen={screen} scrollSignal={done ? 1 : 0} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive disabled={!done && !_resc} label={_resc && !done ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : ((done || _resc) ? { uz: 'Davom etish', ru: 'Продолжить' } : { uz: "Testni yig'ing", ru: 'Соберите тест' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Kompyuterga "shu javob <span className="italic" style={{ color: T.accent }}>to'g'ri</span>" deb qanday aytamiz?</>, ru: <>Как сказать компьютеру: «вот этот ответ — <span className="italic" style={{ color: T.accent }}>правильный</span>»?</> })}</h2></div>
-        <Mentor>{tr({ uz: <><span className="mono">expect(natija).toBe(kutilgan)</span> — bu tasdiq (assertion): "natija aynan shu bo'lishi kerak". Agar boshqacha bo'lsa, Jest qizil xato beradi. Testni yig'ing — faqat haqiqiy tekshiruvchi qatorlarni tanlang.</>, ru: <><span className="mono">expect(результат).toBe(ожидаемое)</span> — это утверждение (assertion): «результат должен быть именно таким». Если он другой — Jest даст красную ошибку. Соберите тест — выбирайте только строки, которые действительно проверяют.</> })}</Mentor>
-        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikki qator kerak: biri funksiyani chaqiradi (natija = …), ikkinchisi natijani expect bilan tekshiradi. Noto'g'ri qatorni bossangiz sabab chiqadi.", ru: '💡 Нужны две строки: одна вызывает функцию (natija = …), вторая проверяет результат через expect. Нажмёте не ту строку — появится причина.' })}</p>}
+        <Mentor>{tr({ uz: <><span className="mono">expect(result).toBe(expected)</span> — bu tasdiq (assertion): "natija aynan shu bo'lishi kerak". Agar boshqacha bo'lsa, Jest qizil xato beradi. Testni yig'ing — faqat haqiqiy tekshiruvchi qatorlarni tanlang.</>, ru: <><span className="mono">expect(result).toBe(expected)</span> — это утверждение (assertion): «результат должен быть именно таким». Если он другой — Jest даст красную ошибку. Соберите тест — выбирайте только строки, которые действительно проверяют.</> })}</Mentor>
+        {_tip && !done && <p className="bhint fade-step">{tr({ uz: "💡 Ikki qator kerak: biri funksiyani chaqiradi (result = …), ikkinchisi natijani expect bilan tekshiradi. Noto'g'ri qatorni bossangiz sabab chiqadi.", ru: '💡 Нужны две строки: одна вызывает функцию (natija = …), вторая проверяет результат через expect. Нажмёте не ту строку — появится причина.' })}</p>}
         <PickLines
           fileName="order.spec.ts"
           scaffoldTop={<><At>it</At>{'('}<St>{"'" + tr(TN2) + "'"}</St>{', () => {'}</>}

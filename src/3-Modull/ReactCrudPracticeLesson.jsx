@@ -7,13 +7,13 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // O'RNI: "Props va qayta ishlatish" darsidan KEYIN, "API — GET" darsidan OLDIN.
 //        O'quvchi biladi: komponent, props, useState, map. Hali bilmaydi: server, fetch.
 // Mavzu: CRUD = ilovaning 4 amali — Create (qo'shish), Read (ko'rsatish), Update (o'zgartirish), Delete (o'chirish).
-//        Hammasi FAQAT React state bilan (serversiz): [...games, yangi] / games.map(... ? {...g} : g) / games.filter(...).
+//        Hammasi FAQAT React state bilan (serversiz): [...games, newGame] / games.map(... ? {...g} : g) / games.filter(...).
 //        AI bilan bitta to'liq loyiha ("Mening o'yinlarim") bitiriladi: o'quvchi rejani tuzadi, AI quradi, o'quvchi tekshiradi.
 // KO'PRIK: yakunda — "ishlaydi, lekin sahifani yangilasangiz yo'qoladi (faqat xotirada)" → keyingi dars (server/GET) ga intro.
 // PEDAGOGIKA: rejani siz tuzasiz → AI quradi → siz tekshirasiz (debugging). "me'mor"/"xarita" so'zlari ishlatilmaydi.
-// Klassik xato (s13): games.push(yangi) — mutatsiya, React ko'rmaydi → setGames([...games, yangi]). State darsidagi bug'ning ukasi.
+// Klassik xato (s13): games.push(newGame) — mutatsiya, React ko'rmaydi → setGames([...games, newGame]). State darsidagi bug'ning ukasi.
 // MUHIM: kelgusi darslar ro'yxati AYTILMAYDI — faqat yakunda teaser. AUDIOSIZ. "sehr"/"g'isht" yo'q.
-// Yakuniy ekran (s14): VS Code — setGames([...games, yangi]) ni qo'lda yozish.
+// Yakuniy ekran (s14): VS Code — setGames([...games, newGame]) ni qo'lda yozish.
 // F-1015-344 (17.10, tungi avtopilot): 22 → 8 ekran. Ip — robo-games (GameCard + games). a1 qo'shish — o'zingiz VS Code'da (kod oynasi),
 //        a2 TOP (map + {...g}) va o'chirish (filter + confirm) — Gemini prompti, a3 — AI xatosi (push, eski s13), s14 yakuniy. Antigravity olindi.
 //        Oldingi 22 ekranli: arxiv/F-1015-reactcrud-oldin/.
@@ -253,11 +253,11 @@ const RECAPS = {
     ]
   },
   7: {
-    title: { uz: "Create — [...games, yangi] bilan qo'shish", ru: 'Create — добавление через [...games, yangi]' },
+    title: { uz: "Create — [...games, newGame] bilan qo'shish", ru: 'Create — добавление через [...games, newGame]' },
     cards: [
-      { ic: "➕", h: { uz: "Qo'shish = eski hammasi + yangisi", ru: 'Добавить = всё старое + новое' }, body: { uz: <>Qo'shishda eski ro'yxatni ko'chirib, <b>oxiriga yangisini</b> qo'yamiz: <span className="mono">[...games, yangi]</span>.</>, ru: <>При добавлении копируем старый список и ставим <b>новую в конец</b>: <span className="mono">[...games, yangi]</span>.</> }, vis: <RcFlow items={["...games", "yangi", { uz: "= yangi ro'yxat", ru: '= новый список' }]} /> },
+      { ic: "➕", h: { uz: "Qo'shish = eski hammasi + yangisi", ru: 'Добавить = всё старое + новое' }, body: { uz: <>Qo'shishda eski ro'yxatni ko'chirib, <b>oxiriga yangisini</b> qo'yamiz: <span className="mono">[...games, newGame]</span>.</>, ru: <>При добавлении копируем старый список и ставим <b>новую в конец</b>: <span className="mono">[...games, newGame]</span>.</> }, vis: <RcFlow items={["...games", "yangi", { uz: "= yangi ro'yxat", ru: '= новый список' }]} /> },
       { ic: "⋯", h: { uz: "Uch nuqta — spread", ru: 'Три точки — spread' }, body: { uz: <>Uch nuqta (<b>spread</b>) eski ro'yxatni to'liq ko'chiradi, yangisi verguldan keyin yoziladi.</>, ru: <>Три точки (<b>spread</b>) копируют весь старый список, а новая пишется после запятой.</> } },
-      { ic: "⚠️", h: { uz: "games = yangi — xato", ru: 'games = yangi — ошибка' }, body: { uz: <><span className="mono">games = yangi</span> bilan <b>eski o'yinlar yo'qoladi</b>, to'g'ri yo'l — <span className="mono">setGames([...games, yangi])</span>.</>, ru: <><span className="mono">games = yangi</span> стирает <b>старые игры</b>, верный путь — <span className="mono">setGames([...games, yangi])</span>.</> }, ask: { uz: "Nega [...games, yangi] eski o'yinlarni saqlaydi, games = yangi esa saqlamaydi?", ru: 'Почему [...games, yangi] сохраняет старые игры, а games = yangi — нет?' } },
+      { ic: "⚠️", h: { uz: "games = newGame — xato", ru: 'games = newGame — ошибка' }, body: { uz: <><span className="mono">games = newGame</span> bilan <b>eski o'yinlar yo'qoladi</b>, to'g'ri yo'l — <span className="mono">setGames([...games, newGame])</span>.</>, ru: <><span className="mono">games = newGame</span> стирает <b>старые игры</b>, верный путь — <span className="mono">setGames([...games, newGame])</span>.</> }, ask: { uz: "Nega [...games, newGame] eski o'yinlarni saqlaydi, games = newGame esa saqlamaydi?", ru: 'Почему [...games, newGame] сохраняет старые игры, а games = newGame — нет?' } },
     ]
   },
   12: {
@@ -265,7 +265,7 @@ const RECAPS = {
     cards: [
       { ic: "🗑️", h: { uz: "O'chirish = boshqasini saqlab qolish", ru: 'Удалить = сохранить всё остальное' }, body: { uz: <>O'chirish — <b>boshqa hammasini</b> saqlab qolish: <span className="mono">games.filter(g =&gt; g.id !== id)</span>.</>, ru: <>Удалить — значит <b>оставить все остальные</b>: <span className="mono">games.filter(g =&gt; g.id !== id)</span>.</> }, vis: <RcFlow items={["games", { uz: "filter(id !== o'chiriladigan)", ru: 'filter(id !== удаляемый)' }, { uz: "qolgani", ru: 'остальное' }]} /> },
       { ic: "🔍", h: { uz: "filter — shartga mos kelganini olib qol", ru: 'filter — оставь подходящее под условие' }, body: { uz: <><b>filter</b> shartga mos kelganlarni saqlaydi: <span className="mono">g.id !== id</span> — o'chirilayotganidan boshqa hammasi.</>, ru: <><b>filter</b> оставляет подходящие под условие: <span className="mono">g.id !== id</span> — все, кроме удаляемой.</> } },
-      { ic: "🚫", h: { uz: "map ham, [...games] ham emas", ru: 'не map и не [...games]' }, body: { uz: <>map — o'zgartirish, <span className="mono">[...games, yangi]</span> — qo'shish, o'chirish esa <b>faqat filter</b> bilan.</>, ru: <>map — изменение, <span className="mono">[...games, yangi]</span> — добавление, а удаление — <b>только через filter</b>.</> }, ask: { uz: "Nega o'chirishni 'boshqasini saqlash' deb tushunish osonroq?", ru: 'Почему удаление проще понимать как «сохранить остальные»?' } },
+      { ic: "🚫", h: { uz: "map ham, [...games] ham emas", ru: 'не map и не [...games]' }, body: { uz: <>map — o'zgartirish, <span className="mono">[...games, newGame]</span> — qo'shish, o'chirish esa <b>faqat filter</b> bilan.</>, ru: <>map — изменение, <span className="mono">[...games, newGame]</span> — добавление, а удаление — <b>только через filter</b>.</> }, ask: { uz: "Nega o'chirishni 'boshqasini saqlash' deb tushunish osonroq?", ru: 'Почему удаление проще понимать как «сохранить остальные»?' } },
     ]
   },
   16: {
@@ -616,7 +616,7 @@ const CardGrid = ({ children, cols = 3 }) => (
 
 // CRUD 4 amali
 const OPS = [
-  { key: 'C', amal: { uz: "Qo'shish", ru: 'Добавить' }, en: 'Create', effId: 'add', eff: { uz: "+1 element qo'shiladi", ru: '+1 элемент добавляется' }, code: 'setGames([...games, yangi])' },
+  { key: 'C', amal: { uz: "Qo'shish", ru: 'Добавить' }, en: 'Create', effId: 'add', eff: { uz: "+1 element qo'shiladi", ru: '+1 элемент добавляется' }, code: 'setGames([...games, newGame])' },
   { key: 'R', amal: { uz: "Ko'rsatish", ru: 'Показать' }, en: 'Read', effId: 'map', eff: { uz: 'map bilan chiziladi', ru: 'рисуется через map' }, code: 'games.map(g => <Card />)' },
   { key: 'U', amal: { uz: "O'zgartirish", ru: 'Изменить' }, en: 'Update', effId: 'change', eff: { uz: "1 element o'zgaradi", ru: '1 элемент меняется' }, code: 'games.map(... ? {...g} : g)' },
   { key: 'D', amal: { uz: "O'chirish", ru: 'Удалить' }, en: 'Delete', effId: 'remove', eff: { uz: '1 element olib tashlanadi', ru: '1 элемент убирается' }, code: 'games.filter(g => g.id !== id)' }
@@ -842,7 +842,7 @@ const CrudNamuna = () => {
   );
 };
 const CRUD4 = [
-  { en: 'Create', uz: "qo'shish", ru: 'добавить', kod: '[...games, yangi]' },
+  { en: 'Create', uz: "qo'shish", ru: 'добавить', kod: '[...games, newGame]' },
   { en: 'Read', uz: "ko'rsatish", ru: 'показать', kod: 'games.map(...)' },
   { en: 'Update', uz: "o'zgartirish", ru: 'изменить', kod: '{ ...g, top: !g.top }' },
   { en: 'Delete', uz: "o'chirish", ru: 'удалить', kod: 'games.filter(...)' }
@@ -881,21 +881,21 @@ const Screen1 = ({ screen, onNext, onPrev }) => (
 // ===== a1 — qo'shish (AI'siz): shu yerda sinab ko'rish + VS Code'da o'zingiz yozasiz =====
 const A1_QADAM = [
   { uz: "`App.jsx` da o'yinlar state'da tursin: `const [games, setGames] = useState([...])` — o'tgan darsdagi ro'yxatingiz.", ru: 'В `App.jsx` игры пусть лежат в state: `const [games, setGames] = useState([...])` — Ваш список с прошлого урока.' },
-  { uz: "Ro'yxat tepasiga input va «+ O'yin qo'shish» tugmasini qo'ying; yozilgan nom `nom` state'ida tursin.", ru: 'Над списком поставьте input и кнопку «+ Добавить игру»; введённое название пусть лежит в state `nom`.' },
-  { uz: "Tugma bosilganda yangi o'yin yasang: `const yangi = { id: Date.now(), name: nom }`.", ru: 'По нажатию кнопки создайте новую игру: `const yangi = { id: Date.now(), name: nom }`.' },
-  { uz: "Ro'yxatga qo'shing: `setGames([...games, yangi])` — push emas.", ru: 'Добавьте в список: `setGames([...games, yangi])` — не push.' },
+  { uz: "Ro'yxat tepasiga input va «+ O'yin qo'shish» tugmasini qo'ying; yozilgan nom `name` state'ida tursin.", ru: 'Над списком поставьте input и кнопку «+ Добавить игру»; введённое название пусть лежит в state `name`.' },
+  { uz: "Tugma bosilganda yangi o'yin yasang: `const newGame = { id: Date.now(), name }`.", ru: 'По нажатию кнопки создайте новую игру: `const newGame = { id: Date.now(), name }`.' },
+  { uz: "Ro'yxatga qo'shing: `setGames([...games, newGame])` — push emas.", ru: 'Добавьте в список: `setGames([...games, newGame])` — не push.' },
   { uz: "Saqlang — localhost:5173 da yangi kartochka chiqdimi?", ru: 'Сохраните — на localhost:5173 появилась новая карточка?' }
 ];
-const A1_KOD = `const [nom, setNom] = useState('');
+const A1_KOD = `const [name, setName] = useState('');
 
-function qoshish() {
-  const yangi = { id: Date.now(), name: nom };
-  setGames([...games, yangi]);
-  setNom('');
+function addGame() {
+  const newGame = { id: Date.now(), name };
+  setGames([...games, newGame]);
+  setName('');
 }
 
-<input value={nom} onChange={e => setNom(e.target.value)} />
-<button onClick={qoshish}>+ O'yin qo'shish</button>`;
+<input value={name} onChange={e => setName(e.target.value)} />
+<button onClick={addGame}>+ O'yin qo'shish</button>`;
 const ScreenQoshish = ({ screen, onNext, onPrev }) => {
   const [list, setList] = useState(() => GAMES.slice(0, 2));
   const [oxirgi, setOxirgi] = useState('');
@@ -907,7 +907,7 @@ const ScreenQoshish = ({ screen, onNext, onPrev }) => {
     <Stage mentorYigil eyebrow={tr({ uz: "Amaliyot 1 · AI'siz", ru: 'Практика 1 · без AI' })} screen={screen} navContent={<><NavBack onPrev={onPrev} /><NavNext optionalLive onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(12px,2vw,18px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Yangi o'yinni ro'yxatga <span className="italic" style={{ color: T.accent }}>qo'shing</span>.</>, ru: <><span className="italic" style={{ color: T.accent }}>Добавьте</span> новую игру в список.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>Qo'shishning kaliti — uch nuqta: <span className="mono">[...games, yangi]</span> — «eski ro'yxatning hammasi, oxiriga yangisi». Avval shu yerda sinab ko'ring, keyin VS Code'da o'zingiz yozasiz.</>, ru: <>Ключ добавления — три точки: <span className="mono">[...games, yangi]</span> — «весь старый список, а в конец новый». Сначала попробуйте здесь, потом напишете сами в VS Code.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>Qo'shishning kaliti — uch nuqta: <span className="mono">[...games, newGame]</span> — «eski ro'yxatning hammasi, oxiriga yangisi». Avval shu yerda sinab ko'ring, keyin VS Code'da o'zingiz yozasiz.</>, ru: <>Ключ добавления — три точки: <span className="mono">[...games, newGame]</span> — «весь старый список, а в конец новый». Сначала попробуйте здесь, потом напишете сами в VS Code.</> })}</Mentor>
         <Split>
           <Col>
             <p className="flow-label">{tr({ uz: "Ilova · bosib qo'shing", ru: 'Приложение · нажмите, чтобы добавить' })}</p>
@@ -1007,23 +1007,23 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             <div className="ai-card fade-up delay-2">
               <div className="ai-row"><span className="ai-badge">AI</span><span className="ai-bubble">{tr({ uz: "Qo'shish kodini yozdim:", ru: 'Я написал код добавления:' })}</span></div>
               <div className="ai-code">
-                <div className={`ai-line ${picked === 'obj' ? 'ok' : ''}`} onClick={() => { if (!found) { setPicked('obj'); if (achMiss) achMiss.miss(screen); } }}><Jx>{'const'}</Jx>{' yangi = { name: '}<St>"Piggy"</St>{' };'}</div>
+                <div className={`ai-line ${picked === 'obj' ? 'ok' : ''}`} onClick={() => { if (!found) { setPicked('obj'); if (achMiss) achMiss.miss(screen); } }}><Jx>{'const'}</Jx>{' newGame = { name: '}<St>"Piggy"</St>{' };'}</div>
                 {!fixed ? (
-                  <div className={`ai-line ${found ? 'bad' : ''}`} onClick={() => { if (!found) setPicked('push'); }}>{'games.'}<At>push</At>{'(yangi);'}{'  '}<Cm>{tr({ uz: "// yangi o'yinni qo'shdi", ru: '// добавил новую игру' })}</Cm></div>
+                  <div className={`ai-line ${found ? 'bad' : ''}`} onClick={() => { if (!found) setPicked('push'); }}>{'games.'}<At>push</At>{'(newGame);'}{'  '}<Cm>{tr({ uz: "// yangi o'yinni qo'shdi", ru: '// добавил новую игру' })}</Cm></div>
                 ) : (
-                  <div className="ai-line ok el-in">{'setGames('}<At>{'[...games, yangi]'}</At>{');'}{'  '}<Cm>{tr({ uz: "// yangi ro'yxat — React ko'radi!", ru: '// новый список — React видит!' })}</Cm></div>
+                  <div className="ai-line ok el-in">{'setGames('}<At>{'[...games, newGame]'}</At>{');'}{'  '}<Cm>{tr({ uz: "// yangi ro'yxat — React ko'radi!", ru: '// новый список — React видит!' })}</Cm></div>
                 )}
                 {!fixed && <div className={`ai-line ${picked === 'set' ? 'ok' : ''}`} onClick={() => { if (!found) { setPicked('set'); if (achMiss) achMiss.miss(screen); } }}>{'setGames(games);'}{'  '}<Cm>{tr({ uz: "// ro'yxatni yangiladi", ru: '// обновил список' })}</Cm></div>}
               </div>
               {/* F-0926-06: kod ostidagi «Xato qatorni bosing» yo'rig'i mentor gapiga ko'chdi (159/6) */}
-              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => { setFixed(true); setClicks(0); }}>{tr({ uz: '🔧 setGames([...games, yangi]) ga almashtirish', ru: '🔧 Заменить на setGames([...games, yangi])' })}</button>}
+              {found && !fixed && <button className="btn fade-step" style={{ alignSelf: 'flex-start' }} onClick={() => { setFixed(true); setClicks(0); }}>{tr({ uz: '🔧 setGames([...games, newGame]) ga almashtirish', ru: '🔧 Заменить на setGames([...games, newGame])' })}</button>}
               {fixed && <p className="ai-prompt" style={{ color: T.success, fontStyle: 'normal', fontWeight: 600 }}>{tr({ uz: "✓ Tuzatildi — endi yangi ro'yxat yasaladi, React ko'radi!", ru: '✓ Исправлено — теперь создаётся новый список, React видит!' })}</p>}
               {!fixed && <AchRule screen={screen} />}
             </div>
           </Col>
           <Col>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <button className="chip" style={{ padding: '6px 12px', fontSize: 12 }} disabled={clicks >= 2} onClick={() => setClicks(c => Math.min(c + 1, 2))}>{fixed ? tr({ uz: '+ [...games, yangi]', ru: '+ [...games, yangi]' }) : tr({ uz: "+ push (tez qo'l)", ru: '+ push (на скорую руку)' })}</button>
+              <button className="chip" style={{ padding: '6px 12px', fontSize: 12 }} disabled={clicks >= 2} onClick={() => setClicks(c => Math.min(c + 1, 2))}>{fixed ? tr({ uz: '+ [...games, newGame]', ru: '+ [...games, newGame]' }) : tr({ uz: "+ push (tez qo'l)", ru: '+ push (на скорую руку)' })}</button>
             </div>
             <Aquarium fish={shown} frozen={!fixed} minH={110} addId={fixed && clicks > 0 ? shown[shown.length - 1]?.id : null} />
             {!found && (
@@ -1033,7 +1033,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                     : tr({ uz: <>Yaqin! Bu qator o'zi xato emas — muammo unga <b>o'sha eski ro'yxat</b> uzatilayotganida. Uni o'sha holicha kim qoldirdi? Yuqoridagi qatorga qarang.</>, ru: <>Близко! Сама строка не ошибка — проблема в том, что в неё передаётся <b>тот же старый список</b>. А кто оставил его таким? Посмотрите на строку выше.</> })}</p></div>
                 : <p className="body" style={{ margin: 0, color: T.ink2, fontSize: 14 }}>{/* F-0926-06: uzuq-chiziqli quti va «State darsini eslang» takrori olindi — mentor aytadi (159/7, 159/11) */}{tr({ uz: "\"+ push\"ni bosing — son o'zgarmaydi. React ro'yxat o'zgarganini qachon sezadi?", ru: 'Нажмите «+ push» — число не меняется. Когда React замечает, что список изменился?' })}</p>
             )}
-            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>①</b> <span className="mono">games.push(yangi)</span> — o'sha eski ro'yxatning <b>o'ziga</b> qo'shadi, yangi ro'yxat yasamaydi. <b>②</b> <span className="mono">setGames(games)</span> React'ga <b>o'sha eski ro'yxatni</b> uzatadi — React uchun hech narsa o'zgarmagan, shuning uchun qayta chizmaydi. To'g'risi: <span className="mono">setGames([...games, yangi])</span> — yangi ro'yxat. Tugma bilan tuzating.{/* F-0926-06: joy so'zi «Chapdagi» olindi — telefonda joylashuv o'zgaradi (159/11) */}</>, ru: <><b>①</b> <span className="mono">games.push(yangi)</span> добавляет в <b>тот же</b> старый список, нового не создаёт. <b>②</b> <span className="mono">setGames(games)</span> передаёт React <b>тот же самый старый список</b> — для React ничего не изменилось, поэтому он не перерисовывает. Правильно: <span className="mono">setGames([...games, yangi])</span> — новый список. Исправьте кнопкой.</> })}</p></div>}
+            {found && !fixed && <div className="frame-warn fade-step"><p className="note-h" style={{ color: T.accent }}>{tr({ uz: '✓ Topdingiz!', ru: '✓ Нашли!' })}</p><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: <><b>①</b> <span className="mono">games.push(newGame)</span> — o'sha eski ro'yxatning <b>o'ziga</b> qo'shadi, yangi ro'yxat yasamaydi. <b>②</b> <span className="mono">setGames(games)</span> React'ga <b>o'sha eski ro'yxatni</b> uzatadi — React uchun hech narsa o'zgarmagan, shuning uchun qayta chizmaydi. To'g'risi: <span className="mono">setGames([...games, newGame])</span> — yangi ro'yxat. Tugma bilan tuzating.{/* F-0926-06: joy so'zi «Chapdagi» olindi — telefonda joylashuv o'zgaradi (159/11) */}</>, ru: <><b>①</b> <span className="mono">games.push(newGame)</span> добавляет в <b>тот же</b> старый список, нового не создаёт. <b>②</b> <span className="mono">setGames(games)</span> передаёт React <b>тот же самый старый список</b> — для React ничего не изменилось, поэтому он не перерисовывает. Правильно: <span className="mono">setGames([...games, newGame])</span> — новый список. Исправьте кнопкой.</> })}</p></div>}
           </Col>
         </div>
         </Zoomable>
@@ -1042,7 +1042,7 @@ const Screen13 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   );
 };
 
-// ===== SCREEN 14 — YAKUNIY (VS Code: setGames([...games, yangi])) =====
+// ===== SCREEN 14 — YAKUNIY (VS Code: setGames([...games, newGame])) =====
 const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   // F-1015-352 (foydalanuvchi): a1 da qo'shish (spread) yoziladi — yakuniy endi o'chirish (filter) qatorini so'raydi
   const [value, setValue] = useState(typeof storedAnswer?.picked === 'string' ? storedAnswer.picked : '');
@@ -1068,7 +1068,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
     <Stage eyebrow={tr({ uz: 'Yakuniy · amaliy', ru: 'Финал · практика' })} screen={screen} scrollSignal={passed} navContent={<><NavBack onPrev={onPrev} /><NavNext disabled={!passed} label={passed ? tr({ uz: 'Davom etish', ru: 'Продолжить' }) : tr({ uz: 'Kodni yozing', ru: 'Напишите код' })} onClick={onNext} /></>}>
       <div className="screen" style={{ gap: 'clamp(10px,1.6vw,16px)' }}>
         <div className="head"><h2 className="title h-title fade-up">{tr({ uz: <>Oxirgi qadam: <span className="italic" style={{ color: T.accent }}>o'chirish</span> kodini o'zingiz yozing.</>, ru: <>Последний шаг: сами напишите код <span className="italic" style={{ color: T.accent }}>удаления</span>.</> })}</h2></div>
-        <Mentor>{tr({ uz: <>VS Code'da <span className="mono">App.jsx</span> ochiq: <span className="mono">ochirish(id)</span> funksiyasi tayyor — faqat <b style={{ color: T.ink }}>2-qator bo'sh</b>. Bosilgan o'yindan boshqa hammasi ro'yxatda qolsin.</>, ru: <>В VS Code открыт <span className="mono">App.jsx</span>: функция <span className="mono">ochirish(id)</span> готова — пуста только <b style={{ color: T.ink }}>2-я строка</b>. Пусть в списке останутся все игры, кроме нажатой.</> })}</Mentor>
+        <Mentor>{tr({ uz: <>VS Code'da <span className="mono">App.jsx</span> ochiq: <span className="mono">removeGame(id)</span> funksiyasi tayyor — faqat <b style={{ color: T.ink }}>2-qator bo'sh</b>. Bosilgan o'yindan boshqa hammasi ro'yxatda qolsin.</>, ru: <>В VS Code открыт <span className="mono">App.jsx</span>: функция <span className="mono">removeGame(id)</span> готова — пуста только <b style={{ color: T.ink }}>2-я строка</b>. Пусть в списке останутся все игры, кроме нажатой.</> })}</Mentor>
         <Zoomable>
         <div className="split">
           <Col>
@@ -1078,7 +1078,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                 <span className="vsc-tab">GameCard.jsx</span>
               </div>
               <div className="vsc-body">
-                <Ln n={1}><Jx>{'function'}</Jx><span style={{ color: '#DCDCAA' }}> ochirish</span>{'(id) {'}</Ln>
+                <Ln n={1}><Jx>{'function'}</Jx><span style={{ color: '#DCDCAA' }}> removeGame</span>{'(id) {'}</Ln>
                 <div className="vsc-line">
                   <span className="vsc-ln">2</span>
                   <span style={{ whiteSpace: 'pre' }}>{'  '}</span>
@@ -1097,7 +1097,7 @@ const Screen14 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
             {passed && <div className="frame-success fade-step"><p className="body" style={{ margin: 0, color: T.ink }}>{tr({ uz: "✓ Mukammal! O'chirish ishladi — shu o'yindan boshqa hammasi qoldi. To'liq CRUD ilovasi sizning qo'lingizda.", ru: '✓ Отлично! Удаление сработало — остались все, кроме этой игры. Полное CRUD-приложение в Ваших руках.' })}</p></div>}
           </Col>
           <Col>
-            <p className="flow-label">{tr({ uz: 'natija · ochirish(2)', ru: 'результат · ochirish(2)' })}</p>
+            <p className="flow-label">{tr({ uz: 'natija · removeGame(2)', ru: 'результат · removeGame(2)' })}</p>
             <Win title={tr({ uz: "Mening o'yinlarim — localhost:5173", ru: 'Мои игры — localhost:5173' })} minH={130}>
               <div className="fade-step"><CardGrid cols={3}>{GAMES.slice(0, 3).filter(g => !(valid && g.id === 2)).map(g => <MyCard key={g.id} game={g} dim={!valid && g.id === 2} />)}</CardGrid></div>
             </Win>
@@ -1245,7 +1245,7 @@ const QZ_BG_SHAPES = [
 // To'g'ri javoblar 4 pozitsiyaga TENG taqsimlangan: 3/3/3/3 (0→Q1,Q5,Q9 · 1→Q2,Q6,Q10 · 2→Q3,Q7,Q11 · 3→Q4,Q8,Q12).
 const QUIZ_BANK = [
   { q: { uz: "CRUD nimaning qisqartmasi?", ru: 'Сокращением чего является CRUD?' }, opts: ["Create, Read, Update, Delete", "Copy, Run, Undo, Delete", "Code, Read, Update, Deploy", "Create, React, Update, Data"], correct: 0 },
-  { q: { uz: "Yangi o'yin qo'shish (Create) uchun to'g'ri kod?", ru: "Верный код для добавления игры (Create)?" }, opts: ["games.push(yangi)", "setGames([...games, yangi])", "games = [...games, yangi]", "setGames(yangi)"], correct: 1 },
+  { q: { uz: "Yangi o'yin qo'shish (Create) uchun to'g'ri kod?", ru: "Верный код для добавления игры (Create)?" }, opts: ["games.push(newGame)", "setGames([...games, newGame])", "games = [...games, newGame]", "setGames(yangi)"], correct: 1 },
   { q: { uz: "Ro'yxatni ekranga chizish (Read) uchun nima ishlatiladi?", ru: 'Что используется, чтобы нарисовать список на экране (Read)?' }, opts: ["filter", "push", "map", "confirm"], correct: 2 },
   { q: { uz: "O'yinni o'zgartirish (Update) uchun qaysi amal?", ru: "Какой метод для изменения игры (Update)?" }, opts: ["push", "filter", "pop", "map"], correct: 3 },
   { q: { uz: "O'chirish (Delete) kodi qaysi?", ru: "Какой код удаляет (Delete)?" }, opts: ["games.filter(g => g.id !== id)", "games.map(g => g.id !== id)", "games.filter(g => g.id === id)", "games.push(id)"], correct: 0 },
@@ -1781,7 +1781,7 @@ const Screen15 = ({ screen, answers, achievements, onReset, onPrev, onFinish }) 
   };
   const RECAP = [
     tr({ uz: 'CRUD = ilovaning 4 amali: Create · Read · Update · Delete', ru: 'CRUD = 4 действия приложения: Create · Read · Update · Delete' }),
-    tr({ uz: "Create — qo'shish: setGames([...games, yangi])", ru: 'Create — добавление: setGames([...games, yangi])' }),
+    tr({ uz: "Create — qo'shish: setGames([...games, newGame])", ru: 'Create — добавление: setGames([...games, newGame])' }),
     tr({ uz: "Update — o'zgartirish: games.map(... ? {...g} : g)", ru: 'Update — изменение: games.map(... ? {...g} : g)' }),
     tr({ uz: "Delete — o'chirish: games.filter(g => g.id !== id)", ru: 'Delete — удаление: games.filter(g => g.id !== id)' }),
     tr({ uz: "Ro'yxatni buzma — har safar YANGI ro'yxat yasa (React shuni ko'radi)", ru: 'Не ломай список — каждый раз создавай НОВЫЙ (именно его видит React)' })

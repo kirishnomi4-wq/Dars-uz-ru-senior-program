@@ -1712,54 +1712,58 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 // ===== SCREEN 11 — KOD YOZISH (QKod; darvoza → vazifa → kod oynasi; ma'lumot shakli pm-m8d10-yol.loyihalar bilan bir xil) =====
 const KOD_STARTER = {
   uz: `// «Maydon» — vaqt chizig'ining oxirgi qismi (Mentor misoli)
-const loyihalar = [
-  { modul: 8, nom: "To'liq tizim", nima: "sayt, ilova va botni bitta Backend'ga ulash" },
-  { modul: 9, nom: "Maydon", nima: "muammoni odamlardan so'rab topish" },
-  { modul: 10, nom: "Maydon prodda", nima: "hodisalarni sanab, gipotezani raqam bilan tekshirish" }
+// projects — loyihalar · module — modul · name — nomi · learned — nimani o'rgandim · next — keyingi qadam
+const projects = [
+  { module: 8, name: "To'liq tizim", learned: "sayt, ilova va botni bitta Backend'ga ulash" },
+  { module: 9, name: "Maydon", learned: "muammoni odamlardan so'rab topish" },
+  { module: 10, name: "Maydon prodda", learned: "hodisalarni sanab, gipotezani raqam bilan tekshirish" }
 ];
 
-function vaqtChizigi(royxat, keyin) {
+function timeline(list, next) {
   // har loyiha uchun: "Maydon (9-modul): muammoni odamlardan so'rab topish"
   // "O'rgandim" bo'sh bo'lsa — "?"; eng oxirida: "Keyin: ..."
   return [];   // shu joyni siz yozasiz
 }
 
-console.log(vaqtChizigi(loyihalar, "jamoa yig'ish"));
+console.log(timeline(projects, "jamoa yig'ish"));
 // [ "To'liq tizim (8-modul): sayt, ilova va botni bitta Backend'ga ulash",
 //   "Maydon (9-modul): muammoni odamlardan so'rab topish",
 //   "Maydon prodda (10-modul): hodisalarni sanab, gipotezani raqam bilan tekshirish",
 //   "Keyin: jamoa yig'ish" ]
-console.log(vaqtChizigi([], "birinchi loyiha"));
+console.log(timeline([], "birinchi loyiha"));
 // [ "Keyin: birinchi loyiha" ]
-console.log(vaqtChizigi([{ modul: 7, nom: "Telegram bot", nima: "" }], "qidiruv qo'shish"));
+console.log(timeline([{ module: 7, name: "Telegram bot", learned: "" }], "qidiruv qo'shish"));
 // [ "Telegram bot (7-modul): ?", "Keyin: qidiruv qo'shish" ]
 `,
   ru: `// «Maydon» — последняя часть линии времени (пример Ментора)
-const loyihalar = [
-  { modul: 8, nom: "To'liq tizim", nima: "sayt, ilova va botni bitta Backend'ga ulash" },
-  { modul: 9, nom: "Maydon", nima: "muammoni odamlardan so'rab topish" },
-  { modul: 10, nom: "Maydon prodda", nima: "hodisalarni sanab, gipotezani raqam bilan tekshirish" }
+// projects — проекты · module — модуль · name — название · learned — чему научился · next — следующий шаг
+const projects = [
+  { module: 8, name: "To'liq tizim", learned: "sayt, ilova va botni bitta Backend'ga ulash" },
+  { module: 9, name: "Maydon", learned: "muammoni odamlardan so'rab topish" },
+  { module: 10, name: "Maydon prodda", learned: "hodisalarni sanab, gipotezani raqam bilan tekshirish" }
 ];
 
-function vaqtChizigi(royxat, keyin) {
+function timeline(list, next) {
   // для каждого проекта: "Maydon (9-modul): muammoni odamlardan so'rab topish"
   // если «Умею» пусто — "?"; в самом конце: "Keyin: ..."
   return [];   // это место пишете вы
 }
 
-console.log(vaqtChizigi(loyihalar, "jamoa yig'ish"));
+console.log(timeline(projects, "jamoa yig'ish"));
 // [ "To'liq tizim (8-modul): sayt, ilova va botni bitta Backend'ga ulash",
 //   "Maydon (9-modul): muammoni odamlardan so'rab topish",
 //   "Maydon prodda (10-modul): hodisalarni sanab, gipotezani raqam bilan tekshirish",
 //   "Keyin: jamoa yig'ish" ]
-console.log(vaqtChizigi([], "birinchi loyiha"));
+console.log(timeline([], "birinchi loyiha"));
 // [ "Keyin: birinchi loyiha" ]
-console.log(vaqtChizigi([{ modul: 7, nom: "Telegram bot", nima: "" }], "qidiruv qo'shish"));
+console.log(timeline([{ module: 7, name: "Telegram bot", learned: "" }], "qidiruv qo'shish"));
 // [ "Telegram bot (7-modul): ?", "Keyin: qidiruv qo'shish" ]
 `
 };
 // Shartlar xulq-atvorga bog'langan (for ham, map ham o'tadi); boshlang'ich kod 0/3 (§140-B) — node sinovi: scratchpad 10-qurish/kod-sinov.mjs
-const KOD_UCH = `[{modul:8,nom:"To'liq tizim",nima:"sayt, ilova va botni bitta Backend'ga ulash"},{modul:9,nom:"Maydon",nima:"muammoni odamlardan so'rab topish"},{modul:10,nom:"Maydon prodda",nima:"hodisalarni sanab, gipotezani raqam bilan tekshirish"}]`;
+// F-1027-01: ma'lumot yangi kalitlarda; eski saqlangan kod (vaqtChizigi · modul/nom/nima) chaqirilsa kalitlar eskisiga o'giriladi.
+const KOD_UCH = `[{module:8,name:"To'liq tizim",learned:"sayt, ilova va botni bitta Backend'ga ulash"},{module:9,name:"Maydon",learned:"muammoni odamlardan so'rab topish"},{module:10,name:"Maydon prodda",learned:"hodisalarni sanab, gipotezani raqam bilan tekshirish"}]`;
+const KOD_FN = "(function(L,k){if(typeof timeline==='function')return timeline(L,k);return vaqtChizigi((L||[]).map(function(o){return {modul:o.module,nom:o.name,nima:o.learned};}),k);})";
 const KOD_VAZIFA = [
   { uz: "Har loyiha uchun «Nom (N-modul): o'rgandim» matni qo'shiladi", ru: "Для каждого проекта добавляется текст «Название (N-modul): умею»" },
   { uz: "«O'rgandim» bo'sh bo'lsa, o'rniga «?» qo'yiladi", ru: "Если поле «Умею» пустое, вместо него ставится «?»" },
@@ -1767,15 +1771,15 @@ const KOD_VAZIFA = [
 ];
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish', ru: "Пишем код" },
-  title: { uz: 'app.js — vaqtChizigi funksiyasini yakunlang', ru: "app.js — допишите функцию vaqtChizigi" },
+  title: { uz: 'app.js — timeline funksiyasini yakunlang', ru: "app.js — допишите функцию timeline" },
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// har loyiha uchun matn, oxirida «Keyin»', ru: "// текст для каждого проекта, в конце «Keyin»" } }],
   requirements: [
     { id: 'matn', label: KOD_VAZIFA[0],
-      check: C.evalEquals(`JSON.stringify(vaqtChizigi(${KOD_UCH},"jamoa yig'ish"))`, JSON.stringify(["To'liq tizim (8-modul): sayt, ilova va botni bitta Backend'ga ulash", "Maydon (9-modul): muammoni odamlardan so'rab topish", 'Maydon prodda (10-modul): hodisalarni sanab, gipotezani raqam bilan tekshirish', "Keyin: jamoa yig'ish"]), { uz: "Har loyihaga «Nom (N-modul): o'rgandim» matni qo'shilsin.", ru: "Для каждого проекта пусть добавляется текст «Название (N-modul): умею»." }) },
+      check: C.evalEquals(`JSON.stringify(${KOD_FN}(${KOD_UCH},"jamoa yig'ish"))`, JSON.stringify(["To'liq tizim (8-modul): sayt, ilova va botni bitta Backend'ga ulash", "Maydon (9-modul): muammoni odamlardan so'rab topish", 'Maydon prodda (10-modul): hodisalarni sanab, gipotezani raqam bilan tekshirish', "Keyin: jamoa yig'ish"]), { uz: "Har loyihaga «Nom (N-modul): o'rgandim» matni qo'shilsin.", ru: "Для каждого проекта пусть добавляется текст «Название (N-modul): умею»." }) },
     { id: 'keyin', label: KOD_VAZIFA[2],
-      check: C.evalEquals('JSON.stringify(vaqtChizigi([],"birinchi loyiha"))', JSON.stringify(['Keyin: birinchi loyiha']), { uz: "Bo'sh ro'yxatda ham oxirida «Keyin: …» tursin.", ru: "И в пустом списке в конце пусть стоит «Keyin: …»." }) },
+      check: C.evalEquals(`JSON.stringify(${KOD_FN}([],"birinchi loyiha"))`, JSON.stringify(['Keyin: birinchi loyiha']), { uz: "Bo'sh ro'yxatda ham oxirida «Keyin: …» tursin.", ru: "И в пустом списке в конце пусть стоит «Keyin: …»." }) },
     { id: 'savol', label: KOD_VAZIFA[1],
-      check: C.evalEquals(`JSON.stringify(vaqtChizigi([{modul:7,nom:"Telegram bot",nima:""}],"qidiruv qo'shish"))`, JSON.stringify(['Telegram bot (7-modul): ?', "Keyin: qidiruv qo'shish"]), { uz: "«O'rgandim» bo'sh bo'lsa, o'rniga «?» qo'ying.", ru: "Если поле «Умею» пустое, поставьте вместо него «?»." }) }
+      check: C.evalEquals(`JSON.stringify(${KOD_FN}([{module:7,name:"Telegram bot",learned:""}],"qidiruv qo'shish"))`, JSON.stringify(['Telegram bot (7-modul): ?', "Keyin: qidiruv qo'shish"]), { uz: "«O'rgandim» bo'sh bo'lsa, o'rniga «?» qo'ying.", ru: "Если поле «Умею» пустое, поставьте вместо него «?»." }) }
   ]
 };
 const KOD_DARVOZA = [

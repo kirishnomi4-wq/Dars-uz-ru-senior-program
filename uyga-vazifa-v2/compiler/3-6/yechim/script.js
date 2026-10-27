@@ -1,27 +1,27 @@
-function zarar(kuch, bonus) {
-  return kuch * 3 + bonus;
+function damage(power, bonus) {
+  return power * 3 + bonus;
 }
 
-function jon(qoldi, urilgan) {
-  let natija = qoldi - urilgan;
-  if (natija < 0) {
+function health(left, hit) {
+  let result = left - hit;
+  if (result < 0) {
     return 0;
   }
-  return natija;
+  return result;
 }
 
-function jami(narxlar) {
+function total(prices) {
   let s = 0;
-  for (let i = 0; i < narxlar.length; i++) {
-    s = s + narxlar[i];
+  for (let i = 0; i < prices.length; i++) {
+    s = s + prices[i];
   }
   return s;
 }
 
-let a = zarar(5, 10);
-let b = jon(100, 25);
-let c = jon(20, 25);
-let d = jami([12000, 8000, 5000]);
+let a = damage(5, 10);
+let b = health(100, 25);
+let c = health(20, 25);
+let d = total([12000, 8000, 5000]);
 console.log(a);
 console.log(b);
 console.log(c);

@@ -1579,23 +1579,44 @@ const writeKodingOpen = (open) => { try { const p = readKoding() || {}; localSto
 // §135: kod-satrlari QO'SHTIRNOQDA — o'quvchi yozgan guruh nomidagi apostrof kodni sindirmaydi.
 // v2 (🔴 FAKT): zaxirada nom `tr(d.nom)` bilan satr bo'lib tushadi (avval obyekt → JSON chiqardi);
 //    zaxira bo'lsa 2-izoh qatori boshqacha (`demo` belgisi). Kodda `joylar/joy` → `guruhlar/nom`.
-const kodStarter = (rows, demo) => `// yigirma.js — birinchi yigirmata foydalanuvchini sanaydigan kod
+// F-1027-01: nomlar inglizcha (groups · name · count · total); izohlar o'quvchi tilida.
+const kodStarter = (rows, demo) => {
+  const rowsJs = rows.map(r => `  { name: ${JSON.stringify(r.nom)}, count: ${r.nechta} }`).join(',\n');
+  return tr({
+    uz: `// yigirma.js — birinchi yigirmata foydalanuvchini sanaydigan kod
 ${demo ? "// Ro'yxatda namunadagi uchta guruh turibdi." : "// Ro'yxat siz yozgan uchta guruhdan to'ldirildi."}
-const guruhlar = [
-  { nom: ${JSON.stringify(rows[0].nom)}, nechta: ${rows[0].nechta} },
-  { nom: ${JSON.stringify(rows[1].nom)}, nechta: ${rows[1].nechta} },
-  { nom: ${JSON.stringify(rows[2].nom)}, nechta: ${rows[2].nechta} }
+// groups — guruhlar · name — nomi · count — nechta odam · total — jami
+const groups = [
+${rowsJs}
 ];
 
-let jami = 0;
+let total = 0;
 
-for (let i = 0; i < guruhlar.length; i++) {
+for (let i = 0; i < groups.length; i++) {
   // 1) shu guruh uchun bitta qator chiqaring: console.log ichida guruh nomi va nechta odam
-  // 2) jami ga shu guruhning odam sonini qo'shing
+  // 2) total ga shu guruhning odam sonini qo'shing
 }
 
-// 3) jami 20 dan kam bo'lsa: "Yana ... odam kerak"
-//    aks holda:              "Yigirmata odam bor"`;
+// 3) total 20 dan kam bo'lsa: "Yana ... odam kerak"
+//    aks holda:               "Yigirmata odam bor"`,
+    ru: `// yigirma.js — код, который считает первых двадцать пользователей
+${demo ? '// В списке три группы из примера.' : '// Список заполнен тремя группами, которые вы написали.'}
+// groups — группы · name — название · count — сколько людей · total — всего
+const groups = [
+${rowsJs}
+];
+
+let total = 0;
+
+for (let i = 0; i < groups.length; i++) {
+  // 1) выведите одну строку для этой группы: в console.log — название группы и число людей
+  // 2) прибавьте к total число людей этой группы
+}
+
+// 3) если total меньше 20: "Нужно ещё ... человек"
+//    иначе:                "Двадцать человек есть"`,
+  });
+};
 const kodStarterFor = () => {
   const mine = readJoylar();
   return mine
@@ -1603,17 +1624,18 @@ const kodStarterFor = () => {
     : kodStarter(DEMO_JOY.map(d => ({ nom: tr(d.nom), nechta: d.n })), true);
 };
 // Xulq-atvor shartlari: chiqqan qatorlar bo'yicha tekshiriladi (manba-regex sanog'i EMAS).
-const JAMI_EXPR = 'var s=0;for(var i=0;i<guruhlar.length;i++){s+=guruhlar[i].nechta;}';
+// eski saqlangan kod (guruhlar · nom · nechta · jami) ham o'tadi
+const JAMI_EXPR = "var G=typeof groups!=='undefined'?groups:guruhlar;var T=typeof total!=='undefined'?total:jami;var s=0;for(var i=0;i<G.length;i++){var g=G[i];s+=(g.count!==undefined?g.count:g.nechta);}";
 const KOD_REQS = [
   {
     id: 'qatorlar', label: { uz: 'Har guruh uchun bitta qator chiqadi', ru: "Для каждой группы выводится одна строка" },
-    check: C.evalEquals(`(function(){${JAMI_EXPR}return logs.length>=3 && guruhlar.every(function(j){return joined.indexOf(j.nom)!==-1;});})()`, 'true',
+    check: C.evalEquals(`(function(){${JAMI_EXPR}return logs.length>=3 && G.every(function(j){return joined.indexOf(j.name!==undefined?j.name:j.nom)!==-1;});})()`, 'true',
       { uz: "Uchala guruh nomi uchta alohida qatorda chiqsin — har guruh uchun console.log yozing", ru: "Названия всех трёх групп должны выйти в трёх отдельных строках — напишите console.log для каждой группы" })
   },
   {
     id: 'jami', label: { uz: 'Jami son chiqadi', ru: 'Выводится общее число' },
-    check: C.evalEquals(`(function(){${JAMI_EXPR}return jami===s && joined.indexOf(""+s)!==-1;})()`, 'true',
-      { uz: "jami ga har guruhning sonini qo'shing va oxirida uni chiqaring", ru: "Прибавьте к jami число людей каждой группы и в конце выведите его" })
+    check: C.evalEquals(`(function(){${JAMI_EXPR}return T===s && joined.indexOf(""+s)!==-1;})()`, 'true',
+      { uz: "total ga har guruhning sonini qo'shing va oxirida uni chiqaring", ru: "Прибавьте к total число людей каждой группы и в конце выведите его" })
   },
   {
     id: 'yetdimi', label: { uz: "Oxirgi qator: yigirmaga yetdi yoki yana nechta odam kerak", ru: 'Последняя строка: набралось ли двадцать или сколько ещё человек нужно' },
@@ -1636,7 +1658,7 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   const [task] = useState(() => ({
     eyebrow: { uz: 'Koding · odamlarni sanaymiz', ru: 'Кодинг · считаем людей' },
     title: { uz: 'Odamlarni sanaydigan kod', ru: 'Код, который считает людей' },
-    brief: { uz: <>Ro'yxat bo'ylab yuring: console.log ichida guruh nomi va odam soni, sonni <b>jami</b> ga qo'shing, oxirida — «Yigirmata odam bor» yoki «Yana ... odam kerak».</>, ru: <>Пройдитесь по списку: в console.log название группы и число людей, прибавьте число к <b>jami</b>, в конце — «Двадцать человек есть» или «Нужно ещё ... человек».</> },
+    brief: { uz: <>Ro'yxat bo'ylab yuring: console.log ichida guruh nomi va odam soni, sonni <b>total</b> ga qo'shing, oxirida — «Yigirmata odam bor» yoki «Yana ... odam kerak».</>, ru: <>Пройдитесь по списку: в console.log название группы и число людей, прибавьте число к <b>total</b>, в конце — «Двадцать человек есть» или «Нужно ещё ... человек».</> },
     files: [{ name: 'yigirma.js', lang: 'js', starter, placeholder: { uz: '// shu guruh uchun bitta qator chiqaring', ru: "// выведите одну строку для этой группы" } }],
     requirements: KOD_REQS,
   }));
@@ -1715,8 +1737,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: "Подсказка" })} {yordamOpen ? '▾' : '›'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Qatorni <code className="qcode">console.log(...)</code> ekranga chiqaradi. Bittasidan boshlang: <code className="qcode">console.log(guruhlar[0].nom)</code>.</>, ru: <>Строку на экран выводит <code className="qcode">console.log(...)</code>. Начните с одной: <code className="qcode">console.log(guruhlar[0].nom)</code>.</> })}</p>
-                      <p>{tr({ uz: <>Ishlagach, shu guruhning sonini <code className="qcode">jami</code> ga qo'shing.</>, ru: <>Когда заработает, прибавьте число людей этой группы к <code className="qcode">jami</code>.</> })}</p>
+                      <p>{tr({ uz: <>Qatorni <code className="qcode">console.log(...)</code> ekranga chiqaradi. Bittasidan boshlang: <code className="qcode">console.log(groups[0].name)</code>.</>, ru: <>Строку на экран выводит <code className="qcode">console.log(...)</code>. Начните с одной: <code className="qcode">console.log(groups[0].name)</code>.</> })}</p>
+                      <p>{tr({ uz: <>Ishlagach, shu guruhning sonini <code className="qcode">total</code> ga qo'shing.</>, ru: <>Когда заработает, прибавьте число людей этой группы к <code className="qcode">total</code>.</> })}</p>
                       <p>{tr({ uz: "Qo'shimcha: eng ko'p odam beradigan guruhning nomini alohida qatorda chiqaring.", ru: "Дополнительно: выведите отдельной строкой название группы, которая даёт больше всего людей." })}</p>
                     </div>}
                   </div>

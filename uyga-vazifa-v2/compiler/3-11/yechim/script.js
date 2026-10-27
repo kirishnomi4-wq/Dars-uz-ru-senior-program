@@ -4,47 +4,47 @@
 // 3. Tepada "Sevimli: N" — belgilanganlar soni.
 // 4. "Faqat sevimlilar" tugmasi — faqat belgilanganlarni ko'rsatadi.
 
-const mahsulotlar = [
-  { nom: "Futbolka", narx: 89000, toifa: "kiyim", emoji: "👕", sevimli: false },
-  { nom: "Kepka", narx: 45000, toifa: "kiyim", emoji: "🧢", sevimli: false },
-  { nom: "Krossovka", narx: 320000, toifa: "kiyim", emoji: "👟", sevimli: false },
-  { nom: "To'p", narx: 120000, toifa: "sport", emoji: "⚽", sevimli: false },
-  { nom: "Raketka", narx: 210000, toifa: "sport", emoji: "🏸", sevimli: false },
-  { nom: "Skakalka", narx: 35000, toifa: "sport", emoji: "🪢", sevimli: false }
+const products = [
+  { name: "Futbolka", price: 89000, category: "kiyim", emoji: "👕", favorite: false },
+  { name: "Kepka", price: 45000, category: "kiyim", emoji: "🧢", favorite: false },
+  { name: "Krossovka", price: 320000, category: "kiyim", emoji: "👟", favorite: false },
+  { name: "To'p", price: 120000, category: "sport", emoji: "⚽", favorite: false },
+  { name: "Raketka", price: 210000, category: "sport", emoji: "🏸", favorite: false },
+  { name: "Skakalka", price: 35000, category: "sport", emoji: "🪢", favorite: false }
 ];
 
-const katalog = document.getElementById("katalog");
-const sevSon = document.getElementById("sevSon");
-let joriyToifa = "hammasi";
+const catalog = document.getElementById("catalog");
+const favCount = document.getElementById("favCount");
+let currentCategory = "all";
 
-function chiz(toifa) {
-  joriyToifa = toifa;
-  katalog.innerHTML = "";
-  let son = 0;
-  for (let i = 0; i < mahsulotlar.length; i++) {
-    const m = mahsulotlar[i];
-    if (m.sevimli) son++;
-    const korsat = toifa === "hammasi" || m.toifa === toifa || (toifa === "sevimli" && m.sevimli);
-    if (korsat) {
-      katalog.innerHTML += '<div class="karta"><button class="sev' + (m.sevimli ? ' on' : '') + '" data-i="' + i + '">♥</button><div class="emoji">' + m.emoji + '</div><h3>' + m.nom + '</h3><div class="narx">' + m.narx + " so'm</div></div>";
+function render(category) {
+  currentCategory = category;
+  catalog.innerHTML = "";
+  let count = 0;
+  for (let i = 0; i < products.length; i++) {
+    const m = products[i];
+    if (m.favorite) count++;
+    const visible = category === "all" || m.category === category || (category === "favorites" && m.favorite);
+    if (visible) {
+      catalog.innerHTML += '<div class="card"><button class="fav' + (m.favorite ? ' on' : '') + '" data-i="' + i + '">♥</button><div class="emoji">' + m.emoji + '</div><h3>' + m.name + '</h3><div class="price">' + m.price + " so'm</div></div>";
     }
   }
-  sevSon.textContent = "Sevimli: " + son;
+  favCount.textContent = "Sevimli: " + count;
 }
 
-katalog.addEventListener("click", function (e) {
-  if (e.target.classList.contains("sev")) {
+catalog.addEventListener("click", function (e) {
+  if (e.target.classList.contains("fav")) {
     const i = e.target.dataset.i;
-    mahsulotlar[i].sevimli = !mahsulotlar[i].sevimli;
-    chiz(joriyToifa);
+    products[i].favorite = !products[i].favorite;
+    render(currentCategory);
   }
 });
 
-const tugmalar = document.querySelectorAll(".toifalar button");
-for (let i = 0; i < tugmalar.length; i++) {
-  tugmalar[i].addEventListener("click", function () {
-    chiz(tugmalar[i].dataset.t);
+const buttons = document.querySelectorAll(".categories button");
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function () {
+    render(buttons[i].dataset.t);
   });
 }
 
-chiz("hammasi");
+render("all");

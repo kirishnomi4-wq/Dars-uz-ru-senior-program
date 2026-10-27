@@ -1360,55 +1360,59 @@ const Screen9 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
 
 // ===== SCREEN 10 — KOD YOZISH (QKod + HtmlCompiler; darvoza-mashq PM-082 c/e; kod nusxalanmaydi PM-082 d; «kompilyator» ta'riflanmaydi) =====
 const KOD_STARTER = { uz: `// Maydon intervyulari — uchta yozuv
-const yozuvlar = [
-  { kim: "o'yinchi",
-    voqea: "O'tgan shanba bordik — maydon band ekan",
-    qildi: "Egasiga qo'ng'iroq qildik — ko'tarmadi",
-    qiyin: "Yarim soat yo'l yurib keldik — bekorga" },
-  { kim: "maydon egasi",
-    voqea: "Kecha bir soatga uch kishi qo'ng'iroq qildi",
-    qildi: "",
-    qiyin: "Kim birinchi qo'ng'iroq qilganini eslay olmadim" },
-  { kim: "o'yinchi", voqea: "", qildi: "", qiyin: "" }
+// who — kim · event — nima bo'ldi · did — nima qildi · struggle — nimasi qiyin bo'ldi
+const records = [
+  { who: "o'yinchi",
+    event: "O'tgan shanba bordik — maydon band ekan",
+    did: "Egasiga qo'ng'iroq qildik — ko'tarmadi",
+    struggle: "Yarim soat yo'l yurib keldik — bekorga" },
+  { who: "maydon egasi",
+    event: "Kecha bir soatga uch kishi qo'ng'iroq qildi",
+    did: "",
+    struggle: "Kim birinchi qo'ng'iroq qilganini eslay olmadim" },
+  { who: "o'yinchi", event: "", did: "", struggle: "" }
 ];
 
-function yozilmagan(yozuv) {
+function missingFields(record) {
   // yozilmagan qatorlarning nomini ro'yxatga yig'ing
   return [];   // shu joyni siz yozasiz
 }
 
-console.log(yozilmagan(yozuvlar[0]));
+console.log(missingFields(records[0]));
 // []
-console.log(yozilmagan(yozuvlar[1]));
-// ["qildi"]
-console.log(yozilmagan(yozuvlar[2]));
-// ["voqea", "qildi", "qiyin"]
+console.log(missingFields(records[1]));
+// ["did"]
+console.log(missingFields(records[2]));
+// ["event", "did", "struggle"]
 `, ru: `// Интервью о поле — три записи
-const yozuvlar = [
-  { kim: "o'yinchi",
-    voqea: "O'tgan shanba bordik — maydon band ekan",
-    qildi: "Egasiga qo'ng'iroq qildik — ko'tarmadi",
-    qiyin: "Yarim soat yo'l yurib keldik — bekorga" },
-  { kim: "maydon egasi",
-    voqea: "Kecha bir soatga uch kishi qo'ng'iroq qildi",
-    qildi: "",
-    qiyin: "Kim birinchi qo'ng'iroq qilganini eslay olmadim" },
-  { kim: "o'yinchi", voqea: "", qildi: "", qiyin: "" }
+// who — кто · event — что случилось · did — что сделал · struggle — что было трудно
+const records = [
+  { who: "игрок",
+    event: "В прошлую субботу пришли — поле занято",
+    did: "Позвонили владельцу — не ответил",
+    struggle: "Полчаса добирались — зря" },
+  { who: "владелец поля",
+    event: "Вчера на один час позвонили три человека",
+    did: "",
+    struggle: "Не смог вспомнить, кто позвонил первым" },
+  { who: "игрок", event: "", did: "", struggle: "" }
 ];
 
-function yozilmagan(yozuv) {
+function missingFields(record) {
   // соберите в список названия незаполненных строк
   return [];   // это место пишете вы
 }
 
-console.log(yozilmagan(yozuvlar[0]));
+console.log(missingFields(records[0]));
 // []
-console.log(yozilmagan(yozuvlar[1]));
-// ["qildi"]
-console.log(yozilmagan(yozuvlar[2]));
-// ["voqea", "qildi", "qiyin"]
+console.log(missingFields(records[1]));
+// ["did"]
+console.log(missingFields(records[2]));
+// ["event", "did", "struggle"]
 ` };
-const KOD_DATA = `[{kim:"o'yinchi",voqea:"O'tgan shanba bordik",qildi:"Egasiga qo'ng'iroq qildik",qiyin:"Yarim soat yo'l yurib keldik"},{kim:"maydon egasi",voqea:"Kecha bir soatga uch kishi qo'ng'iroq qildi",qildi:"",qiyin:"Kim birinchi qo'ng'iroq qilganini eslay olmadim"},{kim:"o'yinchi",voqea:"",qildi:"",qiyin:""}]`;
+// F-1027-01: ma'lumot yangi kalitlarda; eski saqlangan kod (yozilmagan) chaqirilsa kalitlar eskisiga o'giriladi.
+const KOD_DATA = `[{who:"o'yinchi",event:"O'tgan shanba bordik",did:"Egasiga qo'ng'iroq qildik",struggle:"Yarim soat yo'l yurib keldik"},{who:"maydon egasi",event:"Kecha bir soatga uch kishi qo'ng'iroq qildi",did:"",struggle:"Kim birinchi qo'ng'iroq qilganini eslay olmadim"},{who:"o'yinchi",event:"",did:"",struggle:""}]`;
+const KOD_FN = "(function(x){if(typeof missingFields==='function')return missingFields(x);var B={'who':'kim','event':'voqea','did':'qildi','struggle':'qiyin'},m={'kim':'who','voqea':'event','qildi':'did','qiyin':'struggle'};var c=function(o){if(!o||typeof o!=='object')return o;var r={};for(var k in o){r[B[k]||k]=o[k];}return r;};var r=yozilmagan(c(x));return Array.isArray(r)?r.map(function(k){return m[k]||k;}):r;})";
 const KOD_VAZIFA = [
   { uz: "Funksiya ro'yxat (massiv) qaytaradi", ru: 'Функция возвращает список (массив)' },
   { uz: "Ro'yxatda faqat yozilmagan qatorlar nomi", ru: 'В списке — только названия незаполненных строк' },
@@ -1416,15 +1420,15 @@ const KOD_VAZIFA = [
 ];
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish', ru: 'Пишем код' },
-  title: { uz: 'app.js — yozilmagan funksiyasini yakunlang', ru: 'app.js — допишите функцию yozilmagan' },
+  title: { uz: 'app.js — missingFields funksiyasini yakunlang', ru: 'app.js — допишите функцию missingFields' },
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// yozilmagan qatorlar nomini qaytaring', ru: '// верните названия незаполненных строк' } }],
   requirements: [
     { id: 'royxat', label: KOD_VAZIFA[0],
-      check: C.evalEquals(`(function(){var a=yozilmagan(${KOD_DATA}[0]);return (Array.isArray(a)&&a.length===0)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin: to'liq yozuvga — bo'sh ro'yxat.", ru: 'Функция должна вернуть список: для полной записи — пустой список.' }) },
+      check: C.evalEquals(`(function(){var a=${KOD_FN}(${KOD_DATA}[0]);return (Array.isArray(a)&&a.length===0)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin: to'liq yozuvga — bo'sh ro'yxat.", ru: 'Функция должна вернуть список: для полной записи — пустой список.' }) },
     { id: 'faqat', label: KOD_VAZIFA[1],
-      check: C.evalEquals(`(function(){var a=yozilmagan(${KOD_DATA}[1]);if(!Array.isArray(a))return "";return a.join("|");})()`, 'qildi', { uz: 'Ro\'yxatga faqat qiymati "" bo\'lgan qator nomi tushsin.', ru: 'В список должно попасть только название строки со значением "".' }) },
+      check: C.evalEquals(`(function(){var a=${KOD_FN}(${KOD_DATA}[1]);if(!Array.isArray(a))return "";return a.join("|");})()`, 'did', { uz: 'Ro\'yxatga faqat qiymati "" bo\'lgan qator nomi tushsin.', ru: 'В список должно попасть только название строки со значением "".' }) },
     { id: 'uch', label: { uz: 'Uchala console.log kutilgandek chiqdi', ru: 'Все три console.log вывели ожидаемое' },
-      check: C.evalEquals(`(function(){var a=yozilmagan(${KOD_DATA}[2]);if(!Array.isArray(a))return "";return a.join("|");})()`, 'voqea|qildi|qiyin', { uz: 'Uchinchi yozuvda uch qator yozilmagan — uchalasi chiqsin.', ru: 'В третьей записи три пустые строки — пусть выйдут все три.' }) }
+      check: C.evalEquals(`(function(){var a=${KOD_FN}(${KOD_DATA}[2]);if(!Array.isArray(a))return "";return a.join("|");})()`, 'event|did|struggle', { uz: 'Uchinchi yozuvda uch qator yozilmagan — uchalasi chiqsin.', ru: 'В третьей записи три пустые строки — пусть выйдут все три.' }) }
   ]
 };
 const KOD_DARVOZA = [
@@ -1435,7 +1439,7 @@ const KOD_DARVOZA = [
 // Kod namunasi (o'qish uchun; nusxalanmaydi): darvozadan keyin "" qiymatlar bir lahza ajraladi
 const KodNamuna = ({ ajrat }) => (
   <pre className={cxx('fi-kod', ajrat && 'ajrat')} onCopy={(e) => e.preventDefault()} aria-label="app.js">
-    {tr(KOD_STARTER).split('\n').slice(0, 13).map((l, i) => {
+    {tr(KOD_STARTER).split('\n').slice(0, 14).map((l, i) => {
       if (l.trim().startsWith('//')) return <span key={i} className="fi-kod-izoh">{l}{'\n'}</span>;
       const qism = l.split(/("")/g);
       return <span key={i}>{qism.map((p, j) => (p === '""' ? <b key={j} className="fi-bosh-q">""</b> : p))}{'\n'}</span>;
@@ -1475,7 +1479,7 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
   };
   const darvoza = (
     <div className="fi-darvoza">
-      <span className="fi-darvoza-s">{fmtCode(tr({ uz: '`yozuv.qildi` qiymati `""` bo\'lsa, nima bilinadi?', ru: 'Если значение `yozuv.qildi` равно `""`, что это значит?' }))}</span>
+      <span className="fi-darvoza-s">{fmtCode(tr({ uz: '`record.did` qiymati `""` bo\'lsa, nima bilinadi?', ru: 'Если значение `record.did` равно `""`, что это значит?' }))}</span>
       <div className="fi-tanlov">
         {KOD_DARVOZA.map(g => {
           const silk = miss && miss.id === g.id;
@@ -1499,9 +1503,9 @@ const Screen10 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         yordam={stage2 && <div className="fi-yordam">
           <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM)}</QTugma>
           {yordam && <>
-            <QIzoh>{fmtCode(tr({ uz: 'Bitta qatordan boshlang: `yozuv.voqea === ""` bo\'lsa, ro\'yxatga `"voqea"` ni qo\'shing. Ishlagach qolgan ikkitasiga o\'ting.', ru: 'Начните с одной строки: если `yozuv.voqea === ""`, добавьте в список `"voqea"`. Когда заработает, переходите к двум остальным.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: 'Bitta qatordan boshlang: `record.event === ""` bo\'lsa, ro\'yxatga `"event"` ni qo\'shing. Ishlagach qolgan ikkitasiga o\'ting.', ru: 'Начните с одной строки: если `record.event === ""`, добавьте в список `"event"`. Когда заработает, переходите к двум остальным.' }))}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: "Eslatma (JavaScript darslaridan): `function` — bitta vazifani bajaradigan kod bo'lagi · massiv — ro'yxat · `if` — shart · `push` — ro'yxat oxiriga qo'shadi · `console.log` — qiymatni ekranga chiqaradi.", ru: 'Напоминание (из уроков JavaScript): `function` — кусочек кода, который выполняет одну задачу · массив — список · `if` — условие · `push` — добавляет в конец списка · `console.log` — выводит значение на экран.' }))}</QIzoh>
-            <QIzoh>{fmtCode(tr({ uz: "Qo'shimcha: `yozuvlar` ga sinfdoshingizdan olgan mashq yozuvini qo'shing va tekshiring.", ru: 'Дополнительно: добавьте в `yozuvlar` тренировочную запись от одноклассника и проверьте.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: "Qo'shimcha: `records` ga sinfdoshingizdan olgan mashq yozuvini qo'shing va tekshiring.", ru: 'Дополнительно: добавьте в `records` тренировочную запись от одноклассника и проверьте.' }))}</QIzoh>
           </>}
         </div>}
         bajardim={!isMentor && <div className="fi-amal">

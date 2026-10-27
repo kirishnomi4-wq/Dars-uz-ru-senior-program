@@ -1483,63 +1483,66 @@ const GATE_ITEMS = [
   { id: 'g3', ic: '📄', t: { uz: 'Tizim kodidagi satrlar sonini', ru: 'Число строк в коде системы' }, ok: false },
 ];
 
-// Kod-nomlari ASCII, apostrofsiz (royxat · dalillar · son · nima · sanagani: "natija" | "mehnat").
+// Kod-nomlari inglizcha (F-1027-01): items · evidence · count · what · kind: "result" | "effort".
 // §135-D: kod-satrlaridagi o'zbekcha matn faqat qo'shtirnoqda — bitta tirnoq kodni sindiradi.
 const KOD_STARTER = { uz: `// Sahnadagi tizimning raqamlari (juftliklardan tanish)
-const royxat = [
-  { son: 312, nima: "kod satri yozildi", sanagani: "mehnat" },
-  { son: 41, nima: "odam tizimni ochdi", sanagani: "natija" },
-  { son: 5, nima: "hafta ishlandi", sanagani: "mehnat" },
-  { son: 12, nima: "odam arizasiga javob oldi", sanagani: "natija" }
+// count — son · what — nima · kind: "result" — natijani sanaydi, "effort" — mehnatni
+const items = [
+  { count: 312, what: "kod satri yozildi", kind: "effort" },
+  { count: 41, what: "odam tizimni ochdi", kind: "result" },
+  { count: 5, what: "hafta ishlandi", kind: "effort" },
+  { count: 12, what: "odam arizasiga javob oldi", kind: "result" }
 ];
 
-function dalillar(raqamlar) {
-  // natijani sanagan raqamlar: avval son, keyin nima
+function evidence(numbers) {
+  // natijani sanagan numbers: avval son, keyin nima
   return [];   // shu joyni siz yozasiz
 }
 
-console.log(dalillar(royxat));
+console.log(evidence(items));
 // ["41 odam tizimni ochdi", "12 odam arizasiga javob oldi"]
-console.log(dalillar([]));
+console.log(evidence([]));
 // []
-console.log(dalillar([royxat[1]]));
+console.log(evidence([items[1]]));
 // ["41 odam tizimni ochdi"]`, ru: `// Числа системы на сцене (знакомые по парам)
-// sanagani: "natija" — число результата, "mehnat" — число труда
-const royxat = [
-  { son: 312, nima: "строк кода написано", sanagani: "mehnat" },
-  { son: 41, nima: "человек открыли систему", sanagani: "natija" },
-  { son: 5, nima: "недель работы", sanagani: "mehnat" },
-  { son: 12, nima: "человек получили ответ на заявку", sanagani: "natija" }
+// count — число · what — что · kind: "result" — число результата, "effort" — число труда
+const items = [
+  { count: 312, what: "строк кода написано", kind: "effort" },
+  { count: 41, what: "человек открыли систему", kind: "result" },
+  { count: 5, what: "недель работы", kind: "effort" },
+  { count: 12, what: "человек получили ответ на заявку", kind: "result" }
 ];
 
-function dalillar(raqamlar) {
-  // числа результата: сначала son, потом nima
+function evidence(numbers) {
+  // числа результата: сначала count, потом what
   return [];   // это место пишете вы
 }
 
-console.log(dalillar(royxat));
+console.log(evidence(items));
 // ["41 человек открыли систему",
 //  "12 человек получили ответ на заявку"]
-console.log(dalillar([]));
+console.log(evidence([]));
 // []
-console.log(dalillar([royxat[1]]));
+console.log(evidence([items[1]]));
 // ["41 человек открыли систему"]` };
 
 // Shartlar XULQ-ATVORGA bog'langan (manba-regex sanog'i emas): for...of bilan ham,
 // filter bilan ham yozilgan to'g'ri yechim o'tadi; starter holatida uchalasi ham qizil.
-const KOD_DATA = '[{son:312,nima:"kod satri yozildi",sanagani:"mehnat"},{son:41,nima:"odam tizimni ochdi",sanagani:"natija"},{son:5,nima:"hafta ishlandi",sanagani:"mehnat"},{son:12,nima:"odam arizasiga javob oldi",sanagani:"natija"}]';
+// F-1027-01: eski saqlangan kod (dalillar · son/nima/sanagani) ham o'tadi — ma'lumotda ikkala kalit.
+const KOD_DATA = '[{count:312,what:"kod satri yozildi",kind:"effort",son:312,nima:"kod satri yozildi",sanagani:"mehnat"},{count:41,what:"odam tizimni ochdi",kind:"result",son:41,nima:"odam tizimni ochdi",sanagani:"natija"},{count:5,what:"hafta ishlandi",kind:"effort",son:5,nima:"hafta ishlandi",sanagani:"mehnat"},{count:12,what:"odam arizasiga javob oldi",kind:"result",son:12,nima:"odam arizasiga javob oldi",sanagani:"natija"}]';
+const KOD_FN = "(typeof evidence==='function'?evidence:dalillar)";
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish · dalillarni ajratish', ru: 'Пишем код · отбираем доводы' },
   title: { uz: 'app.js — dalillar funksiyasini yakunlang', ru: 'app.js — допишите функцию dalillar' },
-  brief: { uz: <>Kodda tayyor bo'lak turibdi — <span className="mono">dalillar</span> funksiyasi. U natijani sanagan raqamlarni bitta ro'yxatga yig'ib qaytarsin. Har yozuvda avval <span className="mono">son</span>, keyin uning yonidagi <span className="mono">nima</span> tursin. Pastdagi <span className="mono">console.log</span> uch natijani ko'rsatadi.</>, ru: <>В коде есть готовый кусочек — функция <span className="mono">dalillar</span>. Пусть она соберёт в один список числа, которые считают результат, и вернёт его. В каждой записи сначала <span className="mono">son</span>, потом стоящее рядом <span className="mono">nima</span>. Нижние <span className="mono">console.log</span> покажут три результата.</> },
+  brief: { uz: <>Kodda tayyor bo'lak turibdi — <span className="mono">evidence</span> funksiyasi. U natijani sanagan raqamlarni bitta ro'yxatga yig'ib qaytarsin. Har yozuvda avval <span className="mono">count</span>, keyin uning yonidagi <span className="mono">what</span> tursin. Pastdagi <span className="mono">console.log</span> uch natijani ko'rsatadi.</>, ru: <>В коде есть готовый кусочек — функция <span className="mono">evidence</span>. Пусть она соберёт в один список числа, которые считают результат, и вернёт его. В каждой записи сначала <span className="mono">count</span>, потом стоящее рядом <span className="mono">what</span>. Нижние <span className="mono">console.log</span> покажут три результата.</> },
   files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: "// natija raqamlarini yig'ib qaytaring", ru: '// соберите и верните числа результата' } }],
   requirements: [
     { id: 'royxat', label: { uz: "Funksiya ro'yxat (massiv) qaytaradi", ru: 'Функция возвращает список (массив)' },
-      check: C.evalEquals(`(function(){var a=dalillar(${KOD_DATA}),b=dalillar([]);return (Array.isArray(a)&&Array.isArray(b)&&a.length===2)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin — to'rt raqamdan natijani sanagan ikkitasi ichiga tushsin", ru: 'Функция должна вернуть список — из четырёх чисел в него попадают два, которые считают результат' }) },
+      check: C.evalEquals(`(function(){var a=${KOD_FN}(${KOD_DATA}),b=${KOD_FN}([]);return (Array.isArray(a)&&Array.isArray(b)&&a.length===2)?"ha":"yoq";})()`, 'ha', { uz: "Funksiya ro'yxat qaytarsin — to'rt raqamdan natijani sanagan ikkitasi ichiga tushsin", ru: 'Функция должна вернуть список — из четырёх чисел в него попадают два, которые считают результат' }) },
     { id: 'faqat', label: { uz: 'Faqat natija raqamlari tushadi', ru: 'Попадают только числа результата' },
-      check: C.evalEquals(`(function(){var a=dalillar(${KOD_DATA});if(!Array.isArray(a))return "";return a.join("|");})()`, '41 odam tizimni ochdi|12 odam arizasiga javob oldi', { uz: "Har yozuv «son bo'shliq nima» ko'rinishida bo'lsin; mehnatni sanagan raqamlar tushmasin", ru: 'Каждая запись — в виде «son пробел nima»; числа, которые считают труд, не попадают' }) },
+      check: C.evalEquals(`(function(){var a=${KOD_FN}(${KOD_DATA});if(!Array.isArray(a))return "";return a.join("|");})()`, '41 odam tizimni ochdi|12 odam arizasiga javob oldi', { uz: "Har yozuv «son bo'shliq nima» ko'rinishida bo'lsin; mehnatni sanagan raqamlar tushmasin", ru: 'Каждая запись — в виде «son пробел nima»; числа, которые считают труд, не попадают' }) },
     { id: 'uch', label: { uz: "Uch natija to'g'ri chiqdi", ru: 'Все три результата верные' },
-      check: C.evalEquals(`(function(){var b=dalillar([]),c=dalillar([${KOD_DATA}[1]]);if(!Array.isArray(b)||!Array.isArray(c))return "";return b.length+"/"+c.join("|");})()`, '0/41 odam tizimni ochdi', { uz: "Bo'sh ro'yxat kelsa natija ham bo'sh; bitta natija raqami kelsa faqat o'sha chiqadi", ru: 'Пришёл пустой список — вернётся пустой; пришло одно число результата — выйдет только оно' }) },
+      check: C.evalEquals(`(function(){var b=${KOD_FN}([]),c=${KOD_FN}([${KOD_DATA}[1]]);if(!Array.isArray(b)||!Array.isArray(c))return "";return b.length+"/"+c.join("|");})()`, '0/41 odam tizimni ochdi', { uz: "Bo'sh ro'yxat kelsa natija ham bo'sh; bitta natija raqami kelsa faqat o'sha chiqadi", ru: 'Пришёл пустой список — вернётся пустой; пришло одно число результата — выйдет только оно' }) },
   ],
 };
 
@@ -1627,8 +1630,8 @@ const ScreenCoding = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
                   <div className={`wsx star ${yordamOpen ? 'open' : ''}`}>
                     <button className="wsx-toggle" onClick={() => setYordamOpen(o => !o)}>{tr({ uz: 'Yordam', ru: 'Подсказка' })} {yordamOpen ? '▾' : '▸'}</button>
                     {yordamOpen && <div className="wsx-body">
-                      <p>{tr({ uz: <>Bitta yozuvdan boshlang: birinchi raqamning <span className="mono">sanagani</span> qiymati <span className="mono">"natija"</span> mi? Ishlagach qolganlariga o'ting.</>, ru: <>Начните с одной записи: равно ли значение <span className="mono">sanagani</span> у первого числа <span className="mono">"natija"</span>? Когда заработает, переходите к остальным.</> })}</p>
-                      <p>{tr({ uz: <>Qo'shimcha: <span className="mono">royxat</span> ga o'z tizimingizdan bitta raqam qo'shing va natijada chiqishini ko'ring.</>, ru: <>Дополнительно: добавьте в <span className="mono">royxat</span> одно число из своей системы и посмотрите, попадёт ли оно в результат.</> })}</p>
+                      <p>{tr({ uz: <>Bitta yozuvdan boshlang: birinchi raqamning <span className="mono">kind</span> qiymati <span className="mono">"result"</span> mi? Ishlagach qolganlariga o'ting.</>, ru: <>Начните с одной записи: равно ли значение <span className="mono">kind</span> у первого числа <span className="mono">"result"</span>? Когда заработает, переходите к остальным.</> })}</p>
+                      <p>{tr({ uz: <>Qo'shimcha: <span className="mono">items</span> ga o'z tizimingizdan bitta raqam qo'shing va natijada chiqishini ko'ring.</>, ru: <>Дополнительно: добавьте в <span className="mono">items</span> одно число из своей системы и посмотрите, попадёт ли оно в результат.</> })}</p>
                     </div>}
                   </div>
                 </div>

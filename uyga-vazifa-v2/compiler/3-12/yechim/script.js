@@ -1,55 +1,55 @@
 // AI'ga yozgan so'rovim: "Savatga Kepka qo'shsam jami 0 o'rniga «045000» chiqyapti. Narx matn bo'lib qolgan.
 // Jami doim son bo'lib hisoblansin — Number() bilan. Boshqa joyni o'zgartirma."
 
-const mahsulotlar = [
-  { nom: "Futbolka", narx: 89000 },
-  { nom: "Kepka", narx: "45000" },
-  { nom: "To'p", narx: 120000 },
-  { nom: "Skakalka", narx: 35000 }
+const products = [
+  { name: "Futbolka", price: 89000 },
+  { name: "Kepka", price: "45000" },
+  { name: "To'p", price: 120000 },
+  { name: "Skakalka", price: 35000 }
 ];
-let savat = [];
+let cart = [];
 
-const katalog = document.getElementById("katalog");
-const savatList = document.getElementById("savatList");
-const jamiEl = document.getElementById("jami");
+const catalog = document.getElementById("catalog");
+const cartList = document.getElementById("cartList");
+const totalEl = document.getElementById("total");
 
-for (let i = 0; i < mahsulotlar.length; i++) {
-  katalog.innerHTML += '<div class="karta"><h3>' + mahsulotlar[i].nom + '</h3><p>' + mahsulotlar[i].narx + " so'm</p><button data-i=\"" + i + '">Savatga</button></div>';
+for (let i = 0; i < products.length; i++) {
+  catalog.innerHTML += '<div class="card"><h3>' + products[i].name + '</h3><p>' + products[i].price + " so'm</p><button data-i=\"" + i + '">Savatga</button></div>';
 }
 
-function jami() {
+function total() {
   let s = 0;
-  for (let i = 0; i < savat.length; i++) {
-    s = s + Number(savat[i].narx);
+  for (let i = 0; i < cart.length; i++) {
+    s = s + Number(cart[i].price);
   }
   return s;
 }
 
-function chizSavat() {
-  savatList.innerHTML = "";
-  for (let i = 0; i < savat.length; i++) {
-    savatList.innerHTML += "<li>" + savat[i].nom + "</li>";
+function renderCart() {
+  cartList.innerHTML = "";
+  for (let i = 0; i < cart.length; i++) {
+    cartList.innerHTML += "<li>" + cart[i].name + "</li>";
   }
-  jamiEl.textContent = jami();
+  totalEl.textContent = total();
 }
 
-katalog.addEventListener("click", function (e) {
+catalog.addEventListener("click", function (e) {
   if (e.target.dataset.i !== undefined) {
-    savat.push(mahsulotlar[e.target.dataset.i]);
-    chizSavat();
+    cart.push(products[e.target.dataset.i]);
+    renderCart();
   }
 });
 
 // Buyurtma berish
-const buyurtma = document.getElementById("buyurtma");
-const xabar = document.getElementById("xabar");
-buyurtma.addEventListener("click", function () {
-  if (savat.length === 0) {
-    xabar.textContent = "Savat bo'sh";
+const orderBtn = document.getElementById("orderBtn");
+const message = document.getElementById("message");
+orderBtn.addEventListener("click", function () {
+  if (cart.length === 0) {
+    message.textContent = "Savat bo'sh";
     return;
   }
-  xabar.textContent = "Buyurtma qabul qilindi: " + jami() + " so'm";
-  savat = [];
-  savatList.innerHTML = "";
-  jamiEl.textContent = 0;
+  message.textContent = "Buyurtma qabul qilindi: " + total() + " so'm";
+  cart = [];
+  cartList.innerHTML = "";
+  totalEl.textContent = 0;
 });
