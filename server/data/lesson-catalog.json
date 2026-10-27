@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-24T13:34:20.436Z",
+  "generated_at": "2026-10-27T08:41:02.053Z",
   "count": 183,
   "lessons": [
     {
@@ -156,8 +156,8 @@
         {
           "id": "catcher",
           "name": "Nice Catch!",
-          "title_uz": "price xatosini narx'ga tuzatdingiz (500 → 201)",
-          "title_ru": "Вы исправили price на narx (500 → 201)"
+          "title_uz": "price xatosini daily_price'ga tuzatdingiz (500 → 201)",
+          "title_ru": "Вы исправили price на daily_price (500 → 201)"
         },
         {
           "id": "finisher",
@@ -1452,8 +1452,8 @@
         {
           "id": "returnmaster",
           "name": "Return Master",
-          "title_uz": "zarar funksiyasini yoddan yozdingiz",
-          "title_ru": "Вы написали функцию zarar по памяти"
+          "title_uz": "damage funksiyasini yoddan yozdingiz",
+          "title_ru": "Вы написали функцию damage по памяти"
         },
         {
           "id": "graduate",
@@ -5537,8 +5537,8 @@
         {
           "id": "builder",
           "name": "Block Builder!",
-          "title_uz": "TaomCard komponentini o'zingiz e'lon qildingiz",
-          "title_ru": "Вы сами объявили компонент TaomCard"
+          "title_uz": "FoodCard komponentini o'zingiz e'lon qildingiz",
+          "title_ru": "Вы сами объявили компонент FoodCard"
         },
         {
           "id": "graduate",
