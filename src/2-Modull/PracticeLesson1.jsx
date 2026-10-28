@@ -165,7 +165,7 @@ const STR = ({ children }) => <span style={{ color: CODE.str }}>{children}</span
 const FN = ({ children }) => <span style={{ color: CODE.punct }}>{children}</span>;
 const CM = ({ children }) => <span style={{ color: CODE.comment }}>{children}</span>;
 
-/* F-0927 (S7, foydalanuvchi C): ko'rsatiladigan kod oynalarida izoh va holat-satrlari ru-rejimda ruscha; nomlar (tugma, matn, xato) va mashq-tekshiruvi («Ism kiriting») O'ZGARMAYDI */
+/* F-0927 (S7, foydalanuvchi C): ko'rsatiladigan kod oynalarida izoh va holat-satrlari ru-rejimda ruscha; nomlar (tugma, matn, xato) O'ZGARMAYDI. F-1027-01: mashq-matnlari («Kunduz/Tun», «Ism kiriting») ru-rejimda ruscha — kompilyator tekshiruvi { uz, ru } qabul qiladi */
 const LESSON_META = { lessonId: 'practice-01-jonlantirish-v18', lessonTitle: { uz: 'Praktika 1 — Saytni jonlantiramiz', ru: 'Практика 1 — Оживляем сайт' } /* 27.09: LMS katalog nomi asl holida — jon-kiritish qoidasi JS moduliga tegishli emas */ };
 const HW_TOKENS = [
   { t: { uz: 'amaliyot', ru: 'практика' }, l: 8, tp: 22, s: 13, d: 6 },
@@ -1076,7 +1076,7 @@ const ScreenTabrik = ({ screen, onNext, onPrev }) => (
             <p className="flow-label">{tr({ uz: 'Qolip', ru: 'Шаблон' })}</p>
             <pre className="am-masalan">{"if (count === …) {\n  …\n}"}</pre>
           </div>
-          <details className="am-yordam"><summary>{tr({ uz: 'Qiynalyapsizmi?', ru: 'Трудно?' })}</summary><pre className="am-masalan">{'if (count === 10) {\n  alert("Rahmat! 10 like");\n}'}</pre></details>
+          <details className="am-yordam"><summary>{tr({ uz: 'Qiynalyapsizmi?', ru: 'Трудно?' })}</summary><pre className="am-masalan">{tr({ uz: 'if (count === 10) {\n  alert("Rahmat! 10 like");\n}', ru: 'if (count === 10) {\n  alert("Спасибо! 10 лайков");\n}' })}</pre></details>
         </Col>
         <Col>
           <p className="flow-label">{tr({ uz: "Kutilgan natija · 10 marta bosing", ru: 'Ожидаемый результат · нажмите 10 раз' })}</p>
@@ -1523,7 +1523,7 @@ const HTML_FLASHCARDS = [
   { front: { uz: "Sayt jonlanishining uch qadami qanday tartibda boradi?", ru: 'В каком порядке идут три шага оживления сайта?' }, back: { uz: "Hodisa → Reaksiya → O'zgarish", ru: 'Событие → Реакция → Изменение' }, note: { uz: "bosdingiz → JavaScript ishladi → ekran o'zgardi", ru: 'нажали → JavaScript сработал → экран изменился' } },
   { front: { uz: "Sayt like sonini nimada eslab qoladi?", ru: 'Где сайт запоминает число лайков?' }, back: { uz: "o'zgaruvchida", ru: 'в переменной' }, note: { uz: "son — ichiga qiymat solinadigan quti", ru: 'son — коробка, в которую кладут значение' } },
   { front: { uz: "count = 0 edi, tugma 3 marta bosildi (count = count + 1). Ekranda nechta chiqadi?", ru: 'count = 0, кнопку нажали 3 раза (count = count + 1). Что будет на экране?' }, back: '3', note: { uz: '0 → 1 → 2 → 3', ru: '0 → 1 → 2 → 3' } },
-  { front: { uz: "Forma bo'sh yoki to'ldirilganini qaysi shart tekshiradi?", ru: 'Какое условие проверяет, пустая форма или заполненная?' }, back: 'if / else', note: { uz: "bo'sh bo'lsa «Ism kiriting», aks holda «Rahmat»", ru: 'пусто — «Ism kiriting», иначе — «Rahmat»' } },
+  { front: { uz: "Forma bo'sh yoki to'ldirilganini qaysi shart tekshiradi?", ru: 'Какое условие проверяет, пустая форма или заполненная?' }, back: 'if / else', note: { uz: "bo'sh bo'lsa «Ism kiriting», aks holda «Rahmat»", ru: 'пусто — «Введите имя», иначе — «Спасибо»' } },
   { front: { uz: "Kodni yozmasdan, so'z bilan aytib AI'ga qurdirish nima deyiladi?", ru: 'Как называется, когда код не пишут, а словами поручают его AI?' }, back: 'Vibecoding', note: { uz: 'agent quradi, natijani siz tekshirasiz', ru: 'агент строит, результат проверяете вы' } },
 ];
 
@@ -1695,8 +1695,8 @@ const TASK_LIKE = {
   title: { uz: "Like tugmasini jonlantiring", ru: 'Оживите кнопку Like' },
   brief: { uz: "HTML'da tugma `<button id=\"like\">Like</button>` va son uchun `<span id=\"count\">0</span>` yozing. JS faylida tugma bosilganda son 1 taga oshsin (`count = count + 1`). To'g'ri bo'lsa — bosilganda 0 → 1 bo'ladi.", ru: 'В HTML напишите кнопку `<button id=\"like\">Like</button>` и `<span id=\"count\">0</span>` для числа. В JS-файле: при нажатии кнопки число растёт на 1 (`count = count + 1`). Если всё верно — при нажатии 0 → 1.' },
   files: [
-    { name: 'index.html', lang: 'html', starter: `<!-- Bu yerga yozing -->\n` },
-    { name: 'script.js',  lang: 'js',   starter: `// Bu yerga yozing\n` },
+    { name: 'index.html', lang: 'html', starter: { uz: `<!-- Bu yerga yozing -->\n`, ru: `<!-- Пишите здесь -->\n` } },
+    { name: 'script.js',  lang: 'js',   starter: { uz: `// Bu yerga yozing\n`, ru: `// Пишите здесь\n` } },
   ],
   requirements: [
     { id: 'btn', label: { uz: '<button id="like"> tugma', ru: '<button id="like"> кнопка' }, check: C.has('#like', { uz: "`<button id=\"like\">Like</button>` qo'shing", ru: 'Добавьте `<button id=\"like\">Like</button>`' }) },
@@ -1709,14 +1709,14 @@ const TASK_LIKE = {
 const TASK_TOGGLE = {
   eyebrow: { uz: 'Praktika · Rejim', ru: 'Практика · Режим' },
   title: { uz: "Rejim tugmasini yasang", ru: 'Сделайте кнопку режима' },
-  brief: { uz: "HTML'da `<button id=\"mode\">Kunduz</button>` yozing. JS'da tugma bosilganda matn «Kunduz» va «Tun» orasida almashsin (if/else). 1-bosishda Tun, 2-bosishda yana Kunduz bo'lishi kerak.", ru: 'В HTML напишите `<button id=\"mode\">Kunduz</button>`. В JS: при нажатии текст переключается между «Kunduz» и «Tun» (if/else). После 1-го нажатия — Tun, после 2-го — снова Kunduz.' },
+  brief: { uz: "HTML'da `<button id=\"mode\">Kunduz</button>` yozing. JS'da tugma bosilganda matn «Kunduz» va «Tun» orasida almashsin (if/else). 1-bosishda Tun, 2-bosishda yana Kunduz bo'lishi kerak.", ru: 'В HTML напишите `<button id=\"mode\">День</button>`. В JS: при нажатии текст переключается между «День» и «Ночь» (if/else). После 1-го нажатия — Ночь, после 2-го — снова День.' },
   files: [
-    { name: 'index.html', lang: 'html', starter: `<!-- Bu yerga yozing -->\n` },
-    { name: 'script.js',  lang: 'js',   starter: `// Bu yerga yozing\n` },
+    { name: 'index.html', lang: 'html', starter: { uz: `<!-- Bu yerga yozing -->\n`, ru: `<!-- Пишите здесь -->\n` } },
+    { name: 'script.js',  lang: 'js',   starter: { uz: `// Bu yerga yozing\n`, ru: `// Пишите здесь\n` } },
   ],
   requirements: [
-    { id: 'btn', label: '<button id="mode">Kunduz</button>', check: C.has('#mode', { uz: "`<button id=\"mode\">Kunduz</button>` qo'shing", ru: 'Добавьте `<button id=\"mode\">Kunduz</button>`' }) },
-    { id: 'toggle', label: { uz: 'Kunduz ⇄ Tun almashadi', ru: 'Kunduz ⇄ Tun переключается' }, check: C.toggle('#mode', '#mode', 'Kunduz', 'Tun', { uz: "JS'da: agar matn «Kunduz» bo'lsa «Tun»ga, aks holda «Kunduz»ga o'zgartiring", ru: 'В JS: если текст «Kunduz» — поменяйте на «Tun», иначе — на «Kunduz»' }) },
+    { id: 'btn', label: { uz: '<button id="mode">Kunduz</button>', ru: '<button id="mode">День</button>' }, check: C.has('#mode', { uz: "`<button id=\"mode\">Kunduz</button>` qo'shing", ru: 'Добавьте `<button id=\"mode\">День</button>`' }) },
+    { id: 'toggle', label: { uz: 'Kunduz ⇄ Tun almashadi', ru: 'День ⇄ Ночь переключается' }, check: C.toggle('#mode', '#mode', { uz: 'Kunduz', ru: 'День' }, { uz: 'Tun', ru: 'Ночь' }, { uz: "JS'da: agar matn «Kunduz» bo'lsa «Tun»ga, aks holda «Kunduz»ga o'zgartiring", ru: 'В JS: если текст «День» — поменяйте на «Ночь», иначе — на «День»' }) },
   ],
 };
 
@@ -1724,15 +1724,15 @@ const TASK_TOGGLE = {
 const TASK_FORM = {
   eyebrow: { uz: 'Praktika · Forma', ru: 'Практика · Форма' },
   title: { uz: "Formani tekshiring (if/else)", ru: 'Проверьте форму (if/else)' },
-  brief: { uz: "HTML'da `<input id=\"name\">`, `<button id=\"send\">Yuborish</button>` va xabar uchun `<span id=\"message\"></span>` yozing. JS'da: agar input bo'sh bo'lsa — «Ism kiriting» yozing, aks holda «Rahmat». Bo'sh formada bosilsa «Ism kiriting» chiqadi.", ru: 'В HTML напишите `<input id=\"name\">`, `<button id=\"send\">Yuborish</button>` и `<span id=\"message\"></span>` для сообщения. В JS: если input пустой — выведите «Ism kiriting», иначе — «Rahmat». При пустой форме после нажатия появится «Ism kiriting».' },
+  brief: { uz: "HTML'da `<input id=\"name\">`, `<button id=\"send\">Yuborish</button>` va xabar uchun `<span id=\"message\"></span>` yozing. JS'da: agar input bo'sh bo'lsa — «Ism kiriting» yozing, aks holda «Rahmat». Bo'sh formada bosilsa «Ism kiriting» chiqadi.", ru: 'В HTML напишите `<input id=\"name\">`, `<button id=\"send\">Отправить</button>` и `<span id=\"message\"></span>` для сообщения. В JS: если input пустой — выведите «Введите имя», иначе — «Спасибо». При пустой форме после нажатия появится «Введите имя».' },
   files: [
-    { name: 'index.html', lang: 'html', starter: `<!-- Bu yerga yozing -->\n` },
-    { name: 'script.js',  lang: 'js',   starter: `// Bu yerga yozing\n` },
+    { name: 'index.html', lang: 'html', starter: { uz: `<!-- Bu yerga yozing -->\n`, ru: `<!-- Пишите здесь -->\n` } },
+    { name: 'script.js',  lang: 'js',   starter: { uz: `// Bu yerga yozing\n`, ru: `// Пишите здесь\n` } },
   ],
   requirements: [
-    { id: 'btn', label: { uz: '<button id="send"> tugma', ru: '<button id="send"> кнопка' }, check: C.has('#send', { uz: "`<button id=\"send\">Yuborish</button>` qo'shing", ru: 'Добавьте `<button id=\"send\">Yuborish</button>`' }) },
+    { id: 'btn', label: { uz: '<button id="send"> tugma', ru: '<button id="send"> кнопка' }, check: C.has('#send', { uz: "`<button id=\"send\">Yuborish</button>` qo'shing", ru: 'Добавьте `<button id=\"send\">Отправить</button>`' }) },
     { id: 'ifelse', label: { uz: 'if/else ishlatilgan', ru: 'использован if/else' }, check: C.js(/if\s*\(/, { uz: "Tekshiruv uchun `if (...)` sharti yozing", ru: 'Напишите условие `if (...)` для проверки' }) },
-    { id: 'check', label: { uz: "bo'sh formada «Ism kiriting»", ru: 'при пустой форме — «Ism kiriting»' }, check: C.domAfterClick('#send', '#message', 'kiriting', { uz: "JS'da: agar `name` qiymati bo'sh bo'lsa `message`ga «Ism kiriting» yozing", ru: 'В JS: если значение `name` пустое, выведите в `message` текст «Ism kiriting»' }) },
+    { id: 'check', label: { uz: "bo'sh formada «Ism kiriting»", ru: 'при пустой форме — «Введите имя»' }, check: C.domAfterClick('#send', '#message', { uz: 'kiriting', ru: 'Введите' }, { uz: "JS'da: agar `name` qiymati bo'sh bo'lsa `message`ga «Ism kiriting» yozing", ru: 'В JS: если значение `name` пустое, выведите в `message` текст «Введите имя»' }) },
   ],
 };
 

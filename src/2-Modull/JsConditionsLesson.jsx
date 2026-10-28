@@ -2360,14 +2360,14 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 const TASK_RADAR = {
   eyebrow: { uz: 'Praktika · if / else', ru: 'Практика · if / else' },
   title: { uz: 'Radar: jarima bormi?', ru: 'Радар: есть штраф?' },
-  brief: { uz: "Yo'lda «60» belgisi turibdi. Birinchi qator tayyor: `let speed = 75` (tezlik, km/soat). Agar `speed` 60 dan katta bo'lsa — konsolga `Siz jarimaga tushdingiz`, aks holda — `Jarima yo'q` chiqsin. Tezlik 75 bo'lgani uchun konsolda `Siz jarimaga tushdingiz` chiqadi.", ru: 'На дороге знак «60». Первая строка готова: `let speed = 75` (скорость, км/ч). Если `speed` больше 60 — в консоль `Siz jarimaga tushdingiz`, иначе — `Jarima yo\'q`. Так как скорость 75, в консоли появится `Siz jarimaga tushdingiz`.' },
+  brief: { uz: "Yo'lda «60» belgisi turibdi. Birinchi qator tayyor: `let speed = 75` (tezlik, km/soat). Agar `speed` 60 dan katta bo'lsa — konsolga `Siz jarimaga tushdingiz`, aks holda — `Jarima yo'q` chiqsin. Tezlik 75 bo'lgani uchun konsolda `Siz jarimaga tushdingiz` chiqadi.", ru: 'На дороге знак «60». Первая строка готова: `let speed = 75` (скорость, км/ч). Если `speed` больше 60 — в консоль `Вы получили штраф`, иначе — `Штрафа нет`. Так как скорость 75, в консоли появится `Вы получили штраф`.' },
   files: [
-    { name: 'script.js', lang: 'js', starter: `let speed = 75\n\n// if ... else ni shu yerga yozing\n` },
+    { name: 'script.js', lang: 'js', starter: { uz: `let speed = 75\n\n// if ... else ni shu yerga yozing\n`, ru: `let speed = 75\n\n// напишите if ... else здесь\n` } },
   ],
   requirements: [
     { id: 'if', label: { uz: 'if sharti yozildi', ru: 'условие if написано' }, check: C.js(/if\s*\(/, { uz: "`if (speed > 60) {` deb yozing", ru: 'Напишите `if (speed > 60) {`' }) },
     { id: 'else', label: { uz: 'else qismi yozildi', ru: 'часть else написана' }, check: C.js(/\belse\b/, { uz: "Shartdan keyin `} else {` qo'shing", ru: 'После условия добавьте `} else {`' }) },
-    { id: 'log', label: { uz: 'konsolda: Siz jarimaga tushdingiz', ru: 'в консоли: Siz jarimaga tushdingiz' }, check: C.logs('Siz jarimaga tushdingiz', { uz: "Shart ichida `console.log(\"Siz jarimaga tushdingiz\")` yozing", ru: 'Внутри условия напишите `console.log(\"Siz jarimaga tushdingiz\")`' }) },
+    { id: 'log', label: { uz: 'konsolda: Siz jarimaga tushdingiz', ru: 'в консоли: Вы получили штраф' }, check: C.logs({ uz: 'Siz jarimaga tushdingiz', ru: 'Вы получили штраф' }, { uz: "Shart ichida `console.log(\"Siz jarimaga tushdingiz\")` yozing", ru: 'Внутри условия напишите `console.log(\"Вы получили штраф\")`' }) },
   ],
 };
 
@@ -2377,7 +2377,7 @@ const TASK_TRANSLATE = {
   title: { uz: 'Ilova qaysi tilda salomlashadi?', ru: 'На каком языке приложение здоровается?' },
   brief: { uz: "`let lang = \"en\"` yozing. Agar `lang` `\"uz\"` ga teng bo'lsa (`==`) — konsolga `Salom`, aks holda — `Hello` chiqsin. Til \"en\" bo'lgani uchun konsolda `Hello` chiqadi.", ru: 'Напишите `let lang = "en"`. Если `lang` равен `"uz"` (`==`) — в консоль `Salom`, иначе — `Hello`. Так как язык "en", в консоли появится `Hello`.' },
   files: [
-    { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
+    { name: 'script.js', lang: 'js', starter: { uz: `// Bu yerga yozing\n`, ru: `// Пишите здесь\n` } },
   ],
   requirements: [
     { id: 'eq', label: { uz: '== bilan tekshirildi', ru: 'проверено через ==' }, check: C.js(/==/, { uz: "Shartni `if (lang == \"uz\") {` deb yozing", ru: 'Напишите условие `if (lang == "uz") {`' }) },
@@ -2390,13 +2390,13 @@ const TASK_TRANSLATE = {
 const TASK_RADAR_LEVELS = {
   eyebrow: { uz: 'Praktika · else if', ru: 'Практика · else if' },
   title: { uz: "Radar: uch xil javob", ru: 'Радар: три разных ответа' },
-  brief: { uz: "`let speed = 85` yozing. Uch yo'l: 60 yoki undan kam (`<= 60`) — `Jarima yo'q`, 80 yoki undan kam (`<= 80`) — `Ogohlantirish`, aks holda — `Katta jarima`. Tezlik 85 bo'lgani uchun konsolda `Katta jarima` chiqadi.", ru: 'Напишите `let speed = 85`. Три пути: 60 или меньше (`<= 60`) — `Jarima yo\'q`, 80 или меньше (`<= 80`) — `Ogohlantirish`, иначе — `Katta jarima`. Так как скорость 85, в консоли появится `Katta jarima`.' },
+  brief: { uz: "`let speed = 85` yozing. Uch yo'l: 60 yoki undan kam (`<= 60`) — `Jarima yo'q`, 80 yoki undan kam (`<= 80`) — `Ogohlantirish`, aks holda — `Katta jarima`. Tezlik 85 bo'lgani uchun konsolda `Katta jarima` chiqadi.", ru: 'Напишите `let speed = 85`. Три пути: 60 или меньше (`<= 60`) — `Штрафа нет`, 80 или меньше (`<= 80`) — `Предупреждение`, иначе — `Большой штраф`. Так как скорость 85, в консоли появится `Большой штраф`.' },
   files: [
-    { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
+    { name: 'script.js', lang: 'js', starter: { uz: `// Bu yerga yozing\n`, ru: `// Пишите здесь\n` } },
   ],
   requirements: [
     { id: 'elseif', label: { uz: 'else if ishlatildi', ru: 'использован else if' }, check: C.js(/else\s+if\s*\(/, { uz: "Ikkinchi yo'l uchun `} else if (speed <= 80) {` yozing", ru: 'Для второго пути напишите `} else if (speed <= 80) {`' }) },
-    { id: 'log', label: { uz: 'konsolda Katta jarima', ru: 'в консоли Katta jarima' }, check: C.logs('Katta jarima', { uz: "Oxirgi `else` ichida `console.log(\"Katta jarima\")` yozing", ru: 'В последнем `else` напишите `console.log(\"Katta jarima\")`' }) },
+    { id: 'log', label: { uz: 'konsolda Katta jarima', ru: 'в консоли Большой штраф' }, check: C.logs({ uz: 'Katta jarima', ru: 'Большой штраф' }, { uz: "Oxirgi `else` ichida `console.log(\"Katta jarima\")` yozing", ru: 'В последнем `else` напишите `console.log(\"Большой штраф\")`' }) },
   ],
 };
 

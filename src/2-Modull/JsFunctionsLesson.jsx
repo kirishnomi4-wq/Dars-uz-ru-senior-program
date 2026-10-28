@@ -2604,13 +2604,13 @@ function MentorPracticeOverlay({ entry, live, onClose }) {
 const TASK_SALOM = {
   eyebrow: { uz: 'Praktika · funksiya', ru: 'Практика · функция' },
   title: { uz: "Birinchi funksiyangizni yozing", ru: 'Напишите свою первую функцию' },
-  brief: { uz: "`greet` nomli funksiya yozing — ichida `console.log(\"Salom\")` bo'lsin. Keyin uni chaqiring: `greet()`. Funksiya faqat CHAQIRILGANDA ishlaydi — konsolda `Salom` chiqadi.", ru: 'Напишите функцию с именем `greet` — внутри `console.log(\"Salom\")`. Затем вызовите её: `greet()`. Функция работает только при ВЫЗОВЕ — в консоли появится `Salom`.' },
+  brief: { uz: "`greet` nomli funksiya yozing — ichida `console.log(\"Salom\")` bo'lsin. Keyin uni chaqiring: `greet()`. Funksiya faqat CHAQIRILGANDA ishlaydi — konsolda `Salom` chiqadi.", ru: 'Напишите функцию с именем `greet` — внутри `console.log(\"Привет\")`. Затем вызовите её: `greet()`. Функция работает только при ВЫЗОВЕ — в консоли появится `Привет`.' },
   files: [
-    { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
+    { name: 'script.js', lang: 'js', starter: { uz: `// Bu yerga yozing\n`, ru: `// Пишите здесь\n` } },
   ],
   requirements: [
     { id: 'fn', label: { uz: 'funksiya yozildi', ru: 'функция написана' }, check: C.js(/function\s+\w+\s*\(/, { uz: "`function greet() {` deb boshlang", ru: 'Начните с `function greet() {`' }) },
-    { id: 'log', label: { uz: 'chaqirildi — konsolda Salom', ru: 'вызвана — в консоли Salom' }, check: C.logs('Salom', { uz: "Funksiyani chaqirishni unutmang: pastda `greet()` yozing", ru: 'Не забудьте вызвать: ниже напишите `greet()`' }) },
+    { id: 'log', label: { uz: 'chaqirildi — konsolda Salom', ru: 'вызвана — в консоли Привет' }, check: C.logs({ uz: 'Salom', ru: 'Привет' }, { uz: "Funksiyani chaqirishni unutmang: pastda `greet()` yozing", ru: 'Не забудьте вызвать: ниже напишите `greet()`' }) },
   ],
 };
 
@@ -2620,8 +2620,9 @@ const TASK_KVADRAT = {
   title: { uz: 'Javob qaytaradigan mashina', ru: 'Машина, которая возвращает ответ' },
   brief: { uz: "`damage` funksiyasi yozing: bitta parametr (`power`) olsin va `return power * 3` qilsin. Keyin javobni saqlang: `let result = damage(5)`, so'ng `console.log(result)` yozing — konsolda `15` chiqadi.", ru: 'Напишите функцию `damage`: принимает один параметр (`power`) и делает `return power * 3`. Затем сохраните ответ: `let result = damage(5)`, потом напишите `console.log(result)` — в консоли появится `15`.' }, // F-1017-204: darsda o'tilgani — javobni o'zgaruvchiga saqlash (s7)
   files: [
-    { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing
-` },
+    { name: 'script.js', lang: 'js', starter: { uz: `// Bu yerga yozing
+`, ru: `// Пишите здесь
+` } },
   ],
   requirements: [
     { id: 'ret', label: { uz: 'return ishlatildi', ru: 'использован return' }, check: C.js(/\breturn\b/, { uz: "Funksiya ichida `return power * 3` yozing", ru: 'Внутри функции напишите `return power * 3`' }) },
@@ -2633,14 +2634,14 @@ const TASK_KVADRAT = {
 const TASK_QAYTA = {
   eyebrow: { uz: 'Praktika · qayta ishlatish', ru: 'Практика · переиспользование' },
   title: { uz: "Bitta funksiya — ikki marta ish", ru: 'Одна функция — работа дважды' },
-  brief: { uz: "`sayHello` funksiyasi yozing: `name` parametrini olsin va `console.log(\"Salom, \" + name)` qilsin. Keyin uni IKKI marta chaqiring: `sayHello(\"Aziza\")` va `sayHello(\"Bobur\")`. Bitta funksiya — ikki xil natija.", ru: 'Напишите функцию `sayHello`: принимает параметр `name` и делает `console.log(\"Salom, \" + name)`. Затем вызовите её ДВАЖДЫ: `sayHello(\"Aziza\")` и `sayHello(\"Bobur\")`. Одна функция — два разных результата.' },
+  brief: { uz: "`sayHello` funksiyasi yozing: `name` parametrini olsin va `console.log(\"Salom, \" + name)` qilsin. Keyin uni IKKI marta chaqiring: `sayHello(\"Aziza\")` va `sayHello(\"Bobur\")`. Bitta funksiya — ikki xil natija.", ru: 'Напишите функцию `sayHello`: принимает параметр `name` и делает `console.log(\"Привет, \" + name)`. Затем вызовите её ДВАЖДЫ: `sayHello(\"Азиза\")` и `sayHello(\"Бобур\")`. Одна функция — два разных результата.' },
   files: [
-    { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
+    { name: 'script.js', lang: 'js', starter: { uz: `// Bu yerga yozing\n`, ru: `// Пишите здесь\n` } },
   ],
   requirements: [
     { id: 'param', label: { uz: 'parametrli funksiya', ru: 'функция с параметром' }, check: C.js(/function\s+\w+\s*\(\s*\w+/, { uz: "`function sayHello(name) {` deb boshlang", ru: 'Начните с `function sayHello(name) {`' }) },
-    { id: 'log1', label: { uz: 'konsolda: Salom, Aziza', ru: 'в консоли: Salom, Aziza' }, check: C.logs('Salom, Aziza', { uz: "`sayHello(\"Aziza\")` deb chaqiring — konsolda `Salom, Aziza` chiqadi", ru: 'Вызовите `sayHello(\"Aziza\")` — в консоли появится `Salom, Aziza`' }) },
-    { id: 'log2', label: { uz: 'konsolda: Salom, Bobur', ru: 'в консоли: Salom, Bobur' }, check: C.logs('Salom, Bobur', { uz: "Yana bir marta chaqiring: `sayHello(\"Bobur\")`", ru: 'Вызовите ещё раз: `sayHello(\"Bobur\")`' }) }, // F-1017-205: bitta birlashgan logs «!» qo'shilsa rad etardi
+    { id: 'log1', label: { uz: 'konsolda: Salom, Aziza', ru: 'в консоли: Привет, Азиза' }, check: C.logs({ uz: 'Salom, Aziza', ru: 'Привет, Азиза' }, { uz: "`sayHello(\"Aziza\")` deb chaqiring — konsolda `Salom, Aziza` chiqadi", ru: 'Вызовите `sayHello(\"Азиза\")` — в консоли появится `Привет, Азиза`' }) },
+    { id: 'log2', label: { uz: 'konsolda: Salom, Bobur', ru: 'в консоли: Привет, Бобур' }, check: C.logs({ uz: 'Salom, Bobur', ru: 'Привет, Бобур' }, { uz: "Yana bir marta chaqiring: `sayHello(\"Bobur\")`", ru: 'Вызовите ещё раз: `sayHello(\"Бобур\")`' }) }, // F-1017-205: bitta birlashgan logs «!» qo'shilsa rad etardi
   ],
 };
 

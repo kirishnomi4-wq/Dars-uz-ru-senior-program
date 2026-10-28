@@ -1746,7 +1746,7 @@ const kodGoyalar = () => {
 };
 const kodStarter = (t, d) => [d.ozi ? KOD_IZ.ozi[t] : KOD_IZ.mentor[t], KOD_IZ.nomlar[t], 'const ideas = [',
   ...d.g.flatMap((x, i) => ['  {', '    problem: ' + kodSatr(x.muammo) + ',', '    who: ' + kodSatr(x.kim) + ',', '    solution: ' + kodSatr(x.yechim), i < d.g.length - 1 ? '  },' : '  }']),
-  '];', '', 'function ideaLines(idea) {', KOD_IZ.qator[t], '  // "Muammo: …", "Kim uchun: …", "Yechim: …"', '  return [];' + KOD_IZ.siz[t], '}', '',
+  '];', '', 'function ideaLines(idea) {', KOD_IZ.qator[t], t === 'ru' ? '  // "Проблема: …", "Для кого: …", "Решение: …"' : '  // "Muammo: …", "Kim uchun: …", "Yechim: …"', '  return [];' + KOD_IZ.siz[t], '}', '',
   KOD_IZ.sar[t], 'document.getElementById("title").textContent = ' + JSON.stringify(KOD_IZ.sarS[t]) + ';' + KOD_IZ.ozgar[t], '',
   KOD_IZ.tayyor[t], 'const container = document.getElementById("ideas");', 'ideas.forEach(function (idea) {', '  const card = document.createElement("div");', '  card.className = "idea";',
   '  ideaLines(idea).forEach(function (text) {', '    const p = document.createElement("p");', '    p.textContent = text;', '    card.appendChild(p);', '  });', '  container.appendChild(card);', '});', ''].join('\n');
@@ -1754,7 +1754,7 @@ const kodStarter = (t, d) => [d.ozi ? KOD_IZ.ozi[t] : KOD_IZ.mentor[t], KOD_IZ.n
 const KOD_TUTUQ = 'String(x).replace(/[\\u02BB\\u02BC\\u2018\\u2019]/g, "\'")';
 // Shartlar ma'lumotdan mustaqil (SABOQ 37): kartalar soni — massiv uzunligiga teng; sarlavhada «(N)» — N = ideas.length
 const KOD_SHART_IFODA = [
-  [`(function(x){return ${KOD_TUTUQ}})((typeof ideaLines==='function'?ideaLines({ problem: "a", who: "b", solution: "c" }):qatorlar({ muammo: "a", kim: "b", yechim: "c" })).join("|"))`, 'Muammo: a|Kim uchun: b|Yechim: c'],
+  [`(function(x){return ${KOD_TUTUQ}})((typeof ideaLines==='function'?ideaLines({ problem: "a", who: "b", solution: "c" }):qatorlar({ muammo: "a", kim: "b", yechim: "c" })).join("|"))`, { uz: 'Muammo: a|Kim uchun: b|Yechim: c', ru: 'Проблема: a|Для кого: b|Решение: c' }], // F-1027-01: ru-rejimda ruscha yorliqlar
   ['(function(){var h=document.getElementById("title")||document.getElementById("sarlavha");var G=typeof ideas!=="undefined"?ideas:goyalar;return h&&h.textContent.indexOf("("+G.length+")")>=0?"ha":"yoq";})()', 'ha'],
   ['(function(){var k=document.querySelectorAll("#ideas .idea, #goyalar .goya");var G=typeof ideas!=="undefined"?ideas:goyalar;if(!k.length||k.length!==G.length)return "yoq";for(var i=0;i<k.length;i++){if(k[i].querySelectorAll("p").length!==3)return "yoq";}return "ha";})()', 'ha']
 ];
@@ -1766,7 +1766,7 @@ const kodVazifa = (n) => [
   { uz: "Sahifada har g'oya — bitta karta, har birida uch qator", ru: 'На странице каждая идея — одна карточка, в каждой три строки' }
 ];
 const KOD_SHART = [
-  { uz: 'Uch qator: «Muammo: …», «Kim uchun: …», «Yechim: …».', ru: 'Три строки: «Muammo: …», «Kim uchun: …», «Yechim: …».' },
+  { uz: 'Uch qator: «Muammo: …», «Kim uchun: …», «Yechim: …».', ru: 'Три строки: «Проблема: …», «Для кого: …», «Решение: …».' },
   { uz: "Sarlavhada g'oyalar soni bo'lsin: «(N)», N — ideas.length.", ru: 'Пусть в заголовке будет число идей: «(N)», N — ideas.length.' },
   { uz: "Har g'oya — bitta karta, har birida uch qator bo'lsin.", ru: 'Пусть каждая идея — одна карточка, в каждой три строки.' }
 ];
@@ -1860,7 +1860,7 @@ const Screen11 = ({ screen, storedAnswer, onAnswer, onNext, onPrev }) => {
         yordam={stage2 && <div className="ti-kyordam">
           <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM_T)}</QTugma>
           {yordam && <>
-            <QIzoh>{fmtCode(tr({ uz: "Bitta g'oyadan boshlang: `return [\"Muammo: \" + idea.problem, …];`. Sarlavhaga son: `\"G'oyalarim (\" + ideas.length + \")\"`.", ru: 'Начните с одной идеи: `return ["Muammo: " + idea.problem, …];`. Число в заголовок: `"Мои идеи (" + ideas.length + ")"`.' }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: "Bitta g'oyadan boshlang: `return [\"Muammo: \" + idea.problem, …];`. Sarlavhaga son: `\"G'oyalarim (\" + ideas.length + \")\"`.", ru: 'Начните с одной идеи: `return ["Проблема: " + idea.problem, …];`. Число в заголовок: `"Мои идеи (" + ideas.length + ")"`.' }))}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: "Eslatma (JavaScript darslaridan): massiv — ro'yxat · `+` — ikki matnni qo'shadi · `ideas.length` — ro'yxatdagi elementlar soni · `forEach` — har element uchun bir marta ishlaydi.", ru: 'Напоминание (из уроков JavaScript): массив — список · `+` — соединяет два текста · `ideas.length` — число элементов списка · `forEach` — срабатывает один раз для каждого элемента.' }))}</QIzoh>
           </>}
         </div>}

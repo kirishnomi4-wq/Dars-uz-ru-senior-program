@@ -2475,7 +2475,7 @@ const TASK_SANOQ = {
   title: { uz: "Kompyuterga 1 dan 5 gacha sanatib ko'ring", ru: 'Заставьте компьютер посчитать от 1 до 5' },
   brief: { uz: "`for` sikli yozing: `i` birdan boshlansin, `5` gacha borsin, har qadamda bittaga oshsin. Sikl ichida `console.log(i)` yozing — konsolda `1 2 3 4 5` chiqadi.", ru: 'Напишите цикл `for`: `i` начинается с единицы, идёт до `5`, на каждом шаге растёт на 1. Внутри цикла напишите `console.log(i)` — в консоли появится `1 2 3 4 5`.' },
   files: [
-    { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
+    { name: 'script.js', lang: 'js', starter: { uz: `// Bu yerga yozing\n`, ru: `// Пишите здесь\n` } },
   ],
   requirements: [
     { id: 'for', label: { uz: 'for sikli yozildi', ru: 'цикл for написан' }, check: C.js(/for\s*\([^)]*;[^)]*;[^)]*\)/, { uz: "`for (let i = 1; i <= 5; i++) {` deb boshlang", ru: 'Начните с `for (let i = 1; i <= 5; i++) {`' }) },
@@ -2487,13 +2487,13 @@ const TASK_SANOQ = {
 const TASK_MEVA = {
   eyebrow: { uz: 'Praktika · massiv', ru: 'Практика · массив' },
   title: { uz: "Ro'yxatni sikl bilan chiqaring", ru: 'Выведите список циклом' },
-  brief: { uz: "Massiv yozing: `let fruits = [\"olma\", \"banan\", \"uzum\"]`. Keyin `for` sikli bilan har bir mevani konsolga chiqaring — `console.log(fruits[i])`. Konsolda uchalasi ketma-ket chiqadi.", ru: 'Напишите массив: `let fruits = [\"olma\", \"banan\", \"uzum\"]`. Затем циклом `for` выведите каждый фрукт — `console.log(fruits[i])`. В консоли появятся все три подряд.' },
+  brief: { uz: "Massiv yozing: `let fruits = [\"olma\", \"banan\", \"uzum\"]`. Keyin `for` sikli bilan har bir mevani konsolga chiqaring — `console.log(fruits[i])`. Konsolda uchalasi ketma-ket chiqadi.", ru: 'Напишите массив: `let fruits = [\"яблоко\", \"банан\", \"виноград\"]`. Затем циклом `for` выведите каждый фрукт — `console.log(fruits[i])`. В консоли появятся все три подряд.' },
   files: [
-    { name: 'script.js', lang: 'js', starter: `// Bu yerga yozing\n` },
+    { name: 'script.js', lang: 'js', starter: { uz: `// Bu yerga yozing\n`, ru: `// Пишите здесь\n` } },
   ],
   requirements: [
-    { id: 'arr', label: { uz: 'massiv yozildi', ru: 'массив написан' }, check: C.js(/\[\s*["'][^"']+["']\s*,/, { uz: "Massivni shunday yozing: `let fruits = [\"olma\", \"banan\", \"uzum\"]`", ru: 'Напишите массив так: `let fruits = [\"olma\", \"banan\", \"uzum\"]`' }) },
-    { id: 'log', label: { uz: 'konsolda uchala meva', ru: 'в консоли все три фрукта' }, check: C.logsEach(['olma', 'banan', 'uzum'], { /* F-1017-206: tartibsiz */ uz: "Sikl ichida `console.log(fruits[i])` yozing", ru: 'Внутри цикла напишите `console.log(fruits[i])`' }) },
+    { id: 'arr', label: { uz: 'massiv yozildi', ru: 'массив написан' }, check: C.js(/\[\s*["'][^"']+["']\s*,/, { uz: "Massivni shunday yozing: `let fruits = [\"olma\", \"banan\", \"uzum\"]`", ru: 'Напишите массив так: `let fruits = [\"яблоко\", \"банан\", \"виноград\"]`' }) },
+    { id: 'log', label: { uz: 'konsolda uchala meva', ru: 'в консоли все три фрукта' }, check: C.logsEach({ uz: ['olma', 'banan', 'uzum'], ru: ['яблоко', 'банан', 'виноград'] }, { /* F-1017-206: tartibsiz */ uz: "Sikl ichida `console.log(fruits[i])` yozing", ru: 'Внутри цикла напишите `console.log(fruits[i])`' }) },
   ],
 };
 

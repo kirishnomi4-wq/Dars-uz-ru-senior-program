@@ -6,8 +6,8 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 // Manba-haqiqat: feedback/F-1005-10modul/10-PmYearPath-v3.md (GATE M) · saboqlar: feedback/F-1005-10modul/QURUVCHI_SABOQ.md.
 // Bitta vizual — vaqt chizig'i (YilChizigi, bitta manba CHIZIQ). Keys — K1 Uzum (bank). USTAXONA — 9 va 10-ekran; artefakt pm-m8d10-yol (11-dars o'qiydi).
 // JONLI: useLiveSession + INLINE_KEYS + CodeStrike arena + Podium. PRODUCTION: <style> ichidagi @import OLIB TASHLANADI.
-// ru-qoldiq-istisno s11: to'liq nima sayt va so'rab bilan tekshirish keyin
-// (11-ekran kodi: ma'lumot va «Keyin:» qiymatlari tekshiruv solishtiradigan o'zbekcha qiymat — KOD_UCH bilan bir xil; ruschaga o'girilmaydi)
+// F-1027-01: 11-ekran kodi ru-rejimda ruscha (ma'lumot, «-модуль», «Дальше:») — kompilyator tekshiruvi { uz, ru } qabul qiladi;
+// yashirin sinov ma'lumoti (KOD_UCH) bitta — natija formati tilga qarab solishtiriladi.
 // ============================================================
 
 // D3: palitra umumiy qolipdan — neytral 5 · modul rangi 2 · holat 2 (shadowBase — soya, rang tokeni emas)
@@ -1738,26 +1738,26 @@ console.log(timeline([{ module: 7, name: "Telegram bot", learned: "" }], "qidiru
   ru: `// «Maydon» — последняя часть линии времени (пример Ментора)
 // projects — проекты · module — модуль · name — название · learned — чему научился · next — следующий шаг
 const projects = [
-  { module: 8, name: "To'liq tizim", learned: "sayt, ilova va botni bitta Backend'ga ulash" },
-  { module: 9, name: "Maydon", learned: "muammoni odamlardan so'rab topish" },
-  { module: 10, name: "Maydon prodda", learned: "hodisalarni sanab, gipotezani raqam bilan tekshirish" }
+  { module: 8, name: "Полная система", learned: "подключать сайт, приложение и бота к одному Backend" },
+  { module: 9, name: "Maydon", learned: "находить проблему, расспрашивая людей" },
+  { module: 10, name: "Maydon в проде", learned: "считать события и проверять гипотезу числом" }
 ];
 
 function timeline(list, next) {
-  // для каждого проекта: "Maydon (9-modul): muammoni odamlardan so'rab topish"
-  // если «Умею» пусто — "?"; в самом конце: "Keyin: ..."
+  // для каждого проекта: "Maydon (9-модуль): находить проблему, расспрашивая людей"
+  // если «Умею» пусто — "?"; в самом конце: "Дальше: ..."
   return [];   // это место пишете вы
 }
 
-console.log(timeline(projects, "jamoa yig'ish"));
-// [ "To'liq tizim (8-modul): sayt, ilova va botni bitta Backend'ga ulash",
-//   "Maydon (9-modul): muammoni odamlardan so'rab topish",
-//   "Maydon prodda (10-modul): hodisalarni sanab, gipotezani raqam bilan tekshirish",
-//   "Keyin: jamoa yig'ish" ]
-console.log(timeline([], "birinchi loyiha"));
-// [ "Keyin: birinchi loyiha" ]
-console.log(timeline([{ module: 7, name: "Telegram bot", learned: "" }], "qidiruv qo'shish"));
-// [ "Telegram bot (7-modul): ?", "Keyin: qidiruv qo'shish" ]
+console.log(timeline(projects, "собрать команду"));
+// [ "Полная система (8-модуль): подключать сайт, приложение и бота к одному Backend",
+//   "Maydon (9-модуль): находить проблему, расспрашивая людей",
+//   "Maydon в проде (10-модуль): считать события и проверять гипотезу числом",
+//   "Дальше: собрать команду" ]
+console.log(timeline([], "первый проект"));
+// [ "Дальше: первый проект" ]
+console.log(timeline([{ module: 7, name: "Telegram-бот", learned: "" }], "добавить поиск"));
+// [ "Telegram-бот (7-модуль): ?", "Дальше: добавить поиск" ]
 `
 };
 // Shartlar xulq-atvorga bog'langan (for ham, map ham o'tadi); boshlang'ich kod 0/3 (§140-B) — node sinovi: scratchpad 10-qurish/kod-sinov.mjs
@@ -1765,21 +1765,21 @@ console.log(timeline([{ module: 7, name: "Telegram bot", learned: "" }], "qidiru
 const KOD_UCH = `[{module:8,name:"To'liq tizim",learned:"sayt, ilova va botni bitta Backend'ga ulash"},{module:9,name:"Maydon",learned:"muammoni odamlardan so'rab topish"},{module:10,name:"Maydon prodda",learned:"hodisalarni sanab, gipotezani raqam bilan tekshirish"}]`;
 const KOD_FN = "(function(L,k){if(typeof timeline==='function')return timeline(L,k);return vaqtChizigi((L||[]).map(function(o){return {modul:o.module,nom:o.name,nima:o.learned};}),k);})";
 const KOD_VAZIFA = [
-  { uz: "Har loyiha uchun «Nom (N-modul): o'rgandim» matni qo'shiladi", ru: "Для каждого проекта добавляется текст «Название (N-modul): умею»" },
+  { uz: "Har loyiha uchun «Nom (N-modul): o'rgandim» matni qo'shiladi", ru: "Для каждого проекта добавляется текст «Название (N-модуль): умею»" },
   { uz: "«O'rgandim» bo'sh bo'lsa, o'rniga «?» qo'yiladi", ru: "Если поле «Умею» пустое, вместо него ставится «?»" },
-  { uz: 'Oxirida «Keyin: …» turadi', ru: "В конце стоит «Keyin: …»" }
+  { uz: 'Oxirida «Keyin: …» turadi', ru: "В конце стоит «Дальше: …»" }
 ];
 const KOD_TASK = {
   eyebrow: { uz: 'Kod yozish', ru: "Пишем код" },
   title: { uz: 'app.js — timeline funksiyasini yakunlang', ru: "app.js — допишите функцию timeline" },
-  files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// har loyiha uchun matn, oxirida «Keyin»', ru: "// текст для каждого проекта, в конце «Keyin»" } }],
+  files: [{ name: 'app.js', lang: 'js', starter: KOD_STARTER, placeholder: { uz: '// har loyiha uchun matn, oxirida «Keyin»', ru: "// текст для каждого проекта, в конце «Дальше»" } }],
   requirements: [
     { id: 'matn', label: KOD_VAZIFA[0],
-      check: C.evalEquals(`JSON.stringify(${KOD_FN}(${KOD_UCH},"jamoa yig'ish"))`, JSON.stringify(["To'liq tizim (8-modul): sayt, ilova va botni bitta Backend'ga ulash", "Maydon (9-modul): muammoni odamlardan so'rab topish", 'Maydon prodda (10-modul): hodisalarni sanab, gipotezani raqam bilan tekshirish', "Keyin: jamoa yig'ish"]), { uz: "Har loyihaga «Nom (N-modul): o'rgandim» matni qo'shilsin.", ru: "Для каждого проекта пусть добавляется текст «Название (N-modul): умею»." }) },
+      check: C.evalEquals(`JSON.stringify(${KOD_FN}(${KOD_UCH},"jamoa yig'ish"))`, { uz: JSON.stringify(["To'liq tizim (8-modul): sayt, ilova va botni bitta Backend'ga ulash", "Maydon (9-modul): muammoni odamlardan so'rab topish", 'Maydon prodda (10-modul): hodisalarni sanab, gipotezani raqam bilan tekshirish', "Keyin: jamoa yig'ish"]), ru: JSON.stringify(["To'liq tizim (8-модуль): sayt, ilova va botni bitta Backend'ga ulash", "Maydon (9-модуль): muammoni odamlardan so'rab topish", 'Maydon prodda (10-модуль): hodisalarni sanab, gipotezani raqam bilan tekshirish', "Дальше: jamoa yig'ish"]) }, { uz: "Har loyihaga «Nom (N-modul): o'rgandim» matni qo'shilsin.", ru: "Для каждого проекта пусть добавляется текст «Название (N-модуль): умею»." }) },
     { id: 'keyin', label: KOD_VAZIFA[2],
-      check: C.evalEquals(`JSON.stringify(${KOD_FN}([],"birinchi loyiha"))`, JSON.stringify(['Keyin: birinchi loyiha']), { uz: "Bo'sh ro'yxatda ham oxirida «Keyin: …» tursin.", ru: "И в пустом списке в конце пусть стоит «Keyin: …»." }) },
+      check: C.evalEquals(`JSON.stringify(${KOD_FN}([],"birinchi loyiha"))`, { uz: JSON.stringify(['Keyin: birinchi loyiha']), ru: JSON.stringify(['Дальше: birinchi loyiha']) }, { uz: "Bo'sh ro'yxatda ham oxirida «Keyin: …» tursin.", ru: "И в пустом списке в конце пусть стоит «Дальше: …»." }) },
     { id: 'savol', label: KOD_VAZIFA[1],
-      check: C.evalEquals(`JSON.stringify(${KOD_FN}([{module:7,name:"Telegram bot",learned:""}],"qidiruv qo'shish"))`, JSON.stringify(['Telegram bot (7-modul): ?', "Keyin: qidiruv qo'shish"]), { uz: "«O'rgandim» bo'sh bo'lsa, o'rniga «?» qo'ying.", ru: "Если поле «Умею» пустое, поставьте вместо него «?»." }) }
+      check: C.evalEquals(`JSON.stringify(${KOD_FN}([{module:7,name:"Telegram bot",learned:""}],"qidiruv qo'shish"))`, { uz: JSON.stringify(['Telegram bot (7-modul): ?', "Keyin: qidiruv qo'shish"]), ru: JSON.stringify(['Telegram bot (7-модуль): ?', "Дальше: qidiruv qo'shish"]) }, { uz: "«O'rgandim» bo'sh bo'lsa, o'rniga «?» qo'ying.", ru: "Если поле «Умею» пустое, поставьте вместо него «?»." }) }
   ]
 };
 const KOD_DARVOZA = [
@@ -1792,7 +1792,7 @@ const KodNamuna = ({ ajrat }) => (
   <pre className={cxx('yp-kod', ajrat && 'ajrat')} onCopy={(e) => e.preventDefault()} aria-label="app.js">
     {tr(KOD_STARTER).split('\n').slice(0, 12).map((l, i) => {
       if (l.trim().startsWith('//')) return <span key={i} className="yp-kod-iz">{l}{'\n'}</span>;
-      const m = /^(function vaqtChizigi\(royxat, )(keyin)(\) \{)$/.exec(l);
+      const m = /^(function timeline\(list, )(next)(\) \{)$/.exec(l); // F-1027-01: nomlar inglizcha — `next` ajratiladi
       if (!m) return <span key={i}>{l}{'\n'}</span>;
       return <span key={i}>{m[1]}<b className="yp-kod-k">{m[2]}</b>{m[3]}{'\n'}</span>;
     })}
@@ -1800,14 +1800,19 @@ const KodNamuna = ({ ajrat }) => (
 );
 // Natija massivi oldindan (SABOQ 20 — chap karta bo'sh qolmaydi): savoldan oldin to'rt bo'sh katak, oxirgisida «?»;
 // to'g'ri javobdan keyin funksiya qaytaradigan qatorlar navbat bilan tushadi (oxirgisi — «Keyin»), kod yechilgach har biri ✓
-const NATIJA_QATOR = ["To'liq tizim (8-modul): sayt, ilova va botni bitta Backend'ga ulash", "Maydon (9-modul): muammoni odamlardan so'rab topish", 'Maydon prodda (10-modul): hodisalarni sanab, gipotezani raqam bilan tekshirish', "Keyin: jamoa yig'ish"];
+const NATIJA_QATOR = [
+  { uz: "To'liq tizim (8-modul): sayt, ilova va botni bitta Backend'ga ulash", ru: "Полная система (8-модуль): подключать сайт, приложение и бота к одному Backend" },
+  { uz: "Maydon (9-modul): muammoni odamlardan so'rab topish", ru: "Maydon (9-модуль): находить проблему, расспрашивая людей" },
+  { uz: 'Maydon prodda (10-modul): hodisalarni sanab, gipotezani raqam bilan tekshirish', ru: "Maydon в проде (10-модуль): считать события и проверять гипотезу числом" },
+  { uz: "Keyin: jamoa yig'ish", ru: "Дальше: собрать команду" }
+];
 const NatijaKorinish = ({ ochiq, yon }) => (
   <ol className={cxx('yp-nat', ochiq && 'ochiq')}>
     {NATIJA_QATOR.map((q, i) => (
       <li key={i} className={cxx(i === NATIJA_QATOR.length - 1 && 'oxir', yon > i && 'yon')} style={{ '--j': i }}>
         <i className="yp-nat-i" aria-hidden="true">[{i}]</i>
         {yon > i && <b className="yp-nat-ok" aria-hidden="true">✓</b>}
-        <span className="yp-nat-t">{ochiq ? q : (i === NATIJA_QATOR.length - 1 ? '?' : '')}</span>
+        <span className="yp-nat-t">{ochiq ? tr(q) : (i === NATIJA_QATOR.length - 1 ? '?' : '')}</span>
       </li>
     ))}
   </ol>
@@ -1866,7 +1871,7 @@ const Screen11 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =
         yordam={stage2 && <div className="yp-yordam">
           <QTugma ikkinchi onClick={() => setYordam(o => !o)}>{tr(YORDAM)}</QTugma>
           {yordam && <>
-            <QIzoh>{fmtCode(tr({ uz: "Bo'sh massiv oching, loyihalarni `for` bilan aylanib, har biriga matn qo'shing. Sikl tugagach, «Keyin: …» ni qo'shing.", ru: "Создайте пустой массив, пройдите по проектам циклом `for` и добавьте текст для каждого. Когда цикл закончится, добавьте «Keyin: …»." }))}</QIzoh>
+            <QIzoh>{fmtCode(tr({ uz: "Bo'sh massiv oching, loyihalarni `for` bilan aylanib, har biriga matn qo'shing. Sikl tugagach, «Keyin: …» ni qo'shing.", ru: "Создайте пустой массив, пройдите по проектам циклом `for` и добавьте текст для каждого. Когда цикл закончится, добавьте «Дальше: …»." }))}</QIzoh>
             <QIzoh>{fmtCode(tr({ uz: "Eslatma (JavaScript darslaridan): `for` — ro'yxatni birma-bir aylanadi · `if` — shart to'g'ri bo'lsa ishlaydi · `push` — massiv oxiriga qo'shadi · `return` — qiymatni qaytaradi.", ru: "Напоминание (из уроков JavaScript): `for` — проходит список по одному · `if` — срабатывает, если условие верно · `push` — добавляет в конец массива · `return` — возвращает значение." }))}</QIzoh>
           </>}
         </div>}
@@ -1876,7 +1881,7 @@ const Screen11 = ({ screen, storedAnswer, answers, onAnswer, onNext, onPrev }) =
           {isMentor && <MentorPracticeStats live={live} screen={screen} />}
         </div> }}
       />
-      <MentorNote>{tr({ uz: "Ko'p uchraydigan xato — «Keyin»ni sikl ichiga qo'yish: u har loyihadan keyin takrorlanadi. Console'da ko'rsating: chiziqda «Keyin» bitta va eng oxirida.", ru: "Частая ошибка — поставить «Keyin» внутрь цикла: он повторяется после каждого проекта. Покажите в Console: на линии «Keyin» один и в самом конце." })}</MentorNote>
+      <MentorNote>{tr({ uz: "Ko'p uchraydigan xato — «Keyin»ni sikl ichiga qo'yish: u har loyihadan keyin takrorlanadi. Console'da ko'rsating: chiziqda «Keyin» bitta va eng oxirida.", ru: "Частая ошибка — поставить «Дальше» внутрь цикла: он повторяется после каждого проекта. Покажите в Console: на линии «Дальше» один и в самом конце." })}</MentorNote>
       {/* Zoom ikki marta tushmasin: .lesson-root da zoom: var(--lz), kod oynasi qobig'i tashqi zoomni bekor qiladi */}
       {open && (
         <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: T.bg, zoom: 'calc(1 / var(--lz, 1))' }}>

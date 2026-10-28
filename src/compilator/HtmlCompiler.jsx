@@ -38,6 +38,18 @@ const tr = (node) => {
   return node[__lang] ?? node.uz ?? node.ru ?? '';
 };
 
+// F-1027-01: runtime tekshiruv qiymati `{ uz, ru }` bo'lishi mumkin (konsol/tugma matni
+// o'quvchi tilida). Satr berilsa — avvalgidek, ikkala tilda bir xil.
+const isLangVal = (v) => !!v && typeof v === 'object' && !Array.isArray(v) && !isValidElement(v) && ('uz' in v || 'ru' in v);
+const langVal = (v) => (isLangVal(v) ? v : String(v));
+const langPick = (v, l) => (isLangVal(v) ? (v[l] ?? v.uz ?? v.ru) : v);
+const langEach = (values) => {
+  if (isLangVal(values)) return { uz: [].concat(values.uz ?? values.ru).map(String), ru: [].concat(values.ru ?? values.uz).map(String) };
+  const arr = Array.isArray(values) ? values : [values];
+  if (!arr.some(isLangVal)) return arr.map(String);
+  return { uz: arr.map((x) => String(langPick(x, 'uz'))), ru: arr.map((x) => String(langPick(x, 'ru'))) };
+};
+
 // ── Qurilma-so'rovi (F-0808-03, 3-bosqich) ──────────────────
 // Ekran eni EMAS, qurilma XUSUSIYATI so'raladi: `pointer: coarse` — barmoq bilan
 // ishlanadigan ekran (planshet/telefon). Shu tufayli tor oynadagi noutbukka
@@ -614,24 +626,24 @@ const checks = {
   // console.log chiqishida shu qiymat bormi?
   // F-1017-206: solishtirish NORMALLASHGAN — katta-kichik harf, ortiqcha probel va apostrof turi (' ‘ ’ ʻ) farq qilmaydi
   // («hello» = «Hello»). Ko'p so'zli qiymat TARTIBLI qoladi («1 2 3 4 5» — sanoq); tartibsiz ro'yxat uchun logsEach.
-  logs: (value, hint) => ({ __runtime: 'log_includes', value: String(value), hint }),
+  logs: (value, hint) => ({ __runtime: 'log_includes', value: langVal(value), hint }),
 
   // Bir nechta qiymat — HAR BIRI chiqishda bor, TARTIBI muhim emas (massiv/ro'yxat natijalari:
   // o'quvchi «uzum banan olma» deb yozsa ham to'g'ri). F-1017-206.
-  logsEach: (values, hint) => ({ __runtime: 'log_each', values: (Array.isArray(values) ? values : [values]).map(String), hint }),
+  logsEach: (values, hint) => ({ __runtime: 'log_each', values: langEach(values), hint }),
 
   // JS ifoda (masalan global o'zgaruvchi yoki typeof) shu qiymatga tengmi?
-  evalEquals: (expr, expected, hint) => ({ __runtime: 'eval_equals', expr, expected: String(expected), hint }),
+  evalEquals: (expr, expected, hint) => ({ __runtime: 'eval_equals', expr, expected: langVal(expected), hint }),
 
   // clickSel bosilgach, readSel matni expected'ni o'z ichiga oladimi?
   domAfterClick: (clickSel, readSel, expected, hint) =>
-    ({ __runtime: 'click_text', clickSel, readSel, expected: String(expected), hint }),
+    ({ __runtime: 'click_text', clickSel, readSel, expected: langVal(expected), hint }),
 
   // ALMASHISH (toggle): clickSel ni ikki marta bosamiz.
   //   boshida readSel matni = textA, 1-bosishdan keyin = textB,
   //   2-bosishdan keyin yana = textA. Hammasi to'g'ri bo'lsa — haqiqiy toggle.
   toggle: (clickSel, readSel, textA, textB, hint) =>
-    ({ __runtime: 'toggle', clickSel, readSel, textA: String(textA), textB: String(textB), hint }),
+    ({ __runtime: 'toggle', clickSel, readSel, textA: langVal(textA), textB: langVal(textB), hint }),
 };
 
 // ============================================================
@@ -683,10 +695,11 @@ function specToCheck(s) {
 // Deklarativ shartdan o'qiladigan label avtomatik yasaymiz (label berilmasa)
 function buildLabel(s) {
   if (s.css) return `CSS: ${s.css.sel} { ${s.css.prop}${s.css.value != null ? `: ${s.css.value}` : ''} }`;
-  if (s.logs !== undefined) return { uz: `konsolda «${s.logs}»`, ru: `в консоли «${s.logs}»` };
-  if (s.toggle) return `${s.a} ⇄ ${s.b}`;
-  if (s.click) return { uz: `bosilsa «${s.expect}»`, ru: `по клику «${s.expect}»` };
-  if (s.eval !== undefined) return `${s.eval} = ${s.equals}`;
+  const P = (v, l) => langPick(v, l);
+  if (s.logs !== undefined) return { uz: `konsolda «${P(s.logs, 'uz')}»`, ru: `в консоли «${P(s.logs, 'ru')}»` };
+  if (s.toggle) return { uz: `${P(s.a, 'uz')} ⇄ ${P(s.b, 'uz')}`, ru: `${P(s.a, 'ru')} ⇄ ${P(s.b, 'ru')}` };
+  if (s.click) return { uz: `bosilsa «${P(s.expect, 'uz')}»`, ru: `по клику «${P(s.expect, 'ru')}»` };
+  if (s.eval !== undefined) return { uz: `${s.eval} = ${P(s.equals, 'uz')}`, ru: `${s.eval} = ${P(s.equals, 'ru')}` };
   if (s.js) return s.js instanceof RegExp ? { uz: 'JS namunasi', ru: 'фрагмент JS' } : `JS: ${s.js}`;
   const sel = s.tag || s.sel;
   if (sel) {
@@ -1081,6 +1094,29 @@ const CONSOLE_FORWARD = (nonce, pos) => `<script>
 // (push/String/JSON.stringify/indexOf/trim/toLowerCase) o'quvchi kodi ishlashidan OLDIN saqlanadi —
 // prototip zaharlansa (`String.prototype.indexOf=()=>0`) ham probe aldanmaydi. Skript elementi
 // DOM'dan olib tashlanadi (K-C-02 — nonce o'qilmasin). Probes 'load'dan keyin ishlaydi (avvalgidek).
+// F-1027-01: ikki tilli qiymatli probe → variantlar. O'zbekcha rejimda faqat uz qiymat;
+// ruscha rejimda avval ru, keyin uz ham (ilgari o'zbekcha yozib saqlangan kod «xato» bo'lib qolmasin).
+// Ikki tilli qiymat bo'lmasa probe avvalgidek, variantsiz.
+const PROBE_KEYS = ['value', 'values', 'expected', 'textA', 'textB'];
+function probeVariants(p, lang) {
+  if (!PROBE_KEYS.some((k) => isLangVal(p[k]))) return null;
+  const pick = (l) => {
+    const v = {};
+    for (const k of PROBE_KEYS) {
+      if (p[k] === undefined) continue;
+      const x = langPick(p[k], l);
+      v[k] = k === 'values' ? [].concat(x).map(String) : String(x);
+    }
+    return v;
+  };
+  const out = [];
+  for (const l of (lang === 'ru' ? ['ru', 'uz'] : ['uz'])) {
+    const v = pick(l);
+    if (!out.some((o) => JSON.stringify(o) === JSON.stringify(v))) out.push(v);
+  }
+  return out;
+}
+
 const buildHarness = (probes, nonce) => `<script>
 (function(){
   try{var _cs=document.currentScript;if(_cs)_cs.parentNode.removeChild(_cs);}catch(e){}
@@ -1101,43 +1137,51 @@ const buildHarness = (probes, nonce) => `<script>
     var joined='';for(var j=0;j<logs.length;j++)joined+=(j?' ':'')+logs[j];
     var out={};
     for(var k=0;k<P.length;k++){
-      var p=P[k],ok=false;
+      // F-1027-01: V — qiymat variantlari (ikki tilli bo'lsa ru, uz); bittasi mos kelsa o'tadi.
+      var p=P[k],ok=false,V=p.variants||[p],w;
       try{
         if(p.type==='log_includes'){
-          var v=norm(p.value);
-          ok=has(norm(joined),v);
-          if(!ok){for(var q=0;q<logs.length;q++){if(has(norm(logs[q]),v)){ok=true;break;}}}
+          for(w=0;w<V.length&&!ok;w++){
+            var v=norm(V[w].value);
+            ok=has(norm(joined),v);
+            if(!ok){for(var q=0;q<logs.length;q++){if(has(norm(logs[q]),v)){ok=true;break;}}}
+          }
         }else if(p.type==='log_each'){
-          var J=norm(joined),vals=p.values||[];
-          ok=vals.length>0;
-          for(var m=0;m<vals.length;m++){if(!has(J,norm(vals[m]))){ok=false;break;}}
+          var J=norm(joined);
+          for(w=0;w<V.length&&!ok;w++){
+            var vals=V[w].values||[];
+            ok=vals.length>0;
+            for(var m=0;m<vals.length;m++){if(!has(J,norm(vals[m]))){ok=false;break;}}
+          }
         }else if(p.type==='eval_equals'){
           var r; try{r=eval(p.expr);}catch(e){r=undefined;}
-          ok=_str(r)===_str(p.expected);
+          for(w=0;w<V.length&&!ok;w++){ok=_str(r)===_str(V[w].expected);}
         }else if(p.type==='click_text'){
-          var exp=_str(p.expected);
           var t0=qs(p.readSel);
           var before=t0?t0.textContent:'';
           var b=qs(p.clickSel);
           if(b){try{b.click();}catch(e){}}
           var t1=qs(p.readSel);
           var after=t1?t1.textContent:'';
-          // Matn bosishdan KEYIN paydo bo'lishi kerak (oldin bo'lmagan) — JS'siz o'tmaydi
-          ok=has(after,exp) && !has(before,exp);
+          // Matn bosishdan KEYIN paydo bo'lishi kerak (oldin bo'lmagan) — JS'siz o'tmaydi.
+          // Bosish BIR marta — variantlar shu ikki o'qishga solishtiriladi.
+          for(w=0;w<V.length&&!ok;w++){var exp=_str(V[w].expected);ok=has(after,exp) && !has(before,exp);}
         }else if(p.type==='toggle'){
-          var A=_trim.call(_low.call(_str(p.textA)));
-          var B=_trim.call(_low.call(_str(p.textB)));
           var rd=function(){var e=qs(p.readSel);return _low.call(_str(e?e.textContent:''));};
           var b2=qs(p.clickSel);
           var s0=rd();
-          var startOk=has(s0,A) && !has(s0,B); // boshida A
           if(b2){try{b2.click();}catch(e){}}
           var s1=rd();
-          var firstOk=has(s1,B) && !has(s1,A); // 1-bosish -> B
           if(b2){try{b2.click();}catch(e){}}
           var s2=rd();
-          var secondOk=has(s2,A) && !has(s2,B); // 2-bosish -> A
-          ok=startOk && firstOk && secondOk;
+          for(w=0;w<V.length&&!ok;w++){
+            var A=_trim.call(_low.call(_str(V[w].textA)));
+            var B=_trim.call(_low.call(_str(V[w].textB)));
+            var startOk=has(s0,A) && !has(s0,B); // boshida A
+            var firstOk=has(s1,B) && !has(s1,A); // 1-bosish -> B
+            var secondOk=has(s2,A) && !has(s2,B); // 2-bosish -> A
+            ok=startOk && firstOk && secondOk;
+          }
         }
       }catch(e){ok=false;}
       out[p.id]=ok;
@@ -1385,8 +1429,12 @@ function HtmlCompiler({
   // Runtime shartlar (iframe'da ishlatib tekshiriladi)
   const runtimeProbes = useMemo(
     () => reqs.filter((r) => r.check && r.check.__runtime)
-      .map((r) => ({ id: r.id, type: r.check.__runtime, ...r.check })),
-    [reqs]
+      .map((r) => {
+        const p = { id: r.id, type: r.check.__runtime, ...r.check };
+        const variants = probeVariants(p, lang);   // F-1027-01: ikki tilli qiymat bo'lsa
+        return variants ? { ...p, variants } : p;
+      }),
+    [reqs, lang]
   );
   const hasRuntime = runtimeProbes.length > 0;
   const nonceRef = useRef('');
