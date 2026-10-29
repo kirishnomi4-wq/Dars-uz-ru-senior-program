@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что меняет имя в Netlify?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Начало адреса сайта",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Адрес Render",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имена таблиц",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Текст кнопки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "После смены имени слоты не появились. Почему?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Брони удалились",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В WEB_ORIGIN старый адрес",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Netlify не обновил DNS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Браузер не узнал имя",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен WEB_ORIGIN?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Хранить адрес Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проверять пароль владельца",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Разрешать запросы сайта",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Задавать интервал монитора",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что видит Wi-Fi по пути, если есть HTTPS?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Имя и телефон открыто",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только номер телефона",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никаких запросов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нечитаемые данные",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает SSL-сертификат?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Включает HTTPS на сайте",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Открывает сайт быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Защищает Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сам даёт разрешение CORS",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто включает HTTPS на адресе *.netlify.app?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Ученик покупает сертификат",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Netlify включает сам",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Render через WEB_ORIGIN",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Монитор UptimeRobot",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Когда получают сертификат для своего домена?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Сразу после покупки домена",
+        "hint": "Неверно"
+      },
+      {
+        "value": "После обновления WEB_ORIGIN",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Когда DNS-запись верна",
+        "hint": "Верно!"
+      },
+      {
+        "value": "После добавления монитора",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что вернёт /health, если Database остановилась?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Возвращает error Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вообще не отвечает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Делает stop Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Всё равно возвращает ok",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему /health не спрашивает Database?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Чтобы не кончился лимит Neon",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Backend её не видит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Database отвечает медленно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "UptimeRobot не знает SQL",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как часто бесплатный UptimeRobot спрашивает адрес?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Каждую минуту",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Каждые 5 минут",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Каждый час",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Раз в день",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Куда приходит оповещение на бесплатном плане?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "В Telegram-бот",
+        "hint": "Неверно"
+      },
+      {
+        "value": "SMS и звонком",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На email и в приложение",
+        "hint": "Верно!"
+      },
+      {
+        "value": "На страницу Render",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что запросы UptimeRobot делают с бесплатным Render?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Backend замедляется",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Render становится платным",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Database переполняется",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Backend не засыпает",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mahsulot hikoyasi qaysi uch qismdan iborat?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Kim, lahza va o'zgarish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Muammo, Bozor va Jamoa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiya, ekran, tugma",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Logotip, rang, shrift",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida lahza qachon bo'lgan?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Juma kuni, soat 18:00 da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shanba kuni, soat 18:00 da",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yakshanba kuni, soat 9:00 da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dushanba kuni, tanaffusda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor lahzasida maydonda nechta odam bo'lgan?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "10 kishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "9 kishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "8 kishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "2 kishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'zgarishdan keyin Mentor ekranida nima chiqadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "8 / 10, ikki joy bo'sh",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "10 / 10, hamma joy band",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "0 / 10, hech kim yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "9 / 10, bitta joy bo'sh",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Funksiyalar ro'yxati zalga nimani aytadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Mahsulotda nima borligini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kimda nima bo'lganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi kuni nima bo'lganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulot nima o'zgartirgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hikoyada ro'yxat chiqsa, nima qilasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ro'yxatni tezroq aytaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatga funksiya qo'shaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta o'zgarishni aytaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hikoyani olib tashlayman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mahsulot hikoyasi qaysi gap bilan boshlanadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Mahsulot nomi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta lahza bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Funksiyalar soni bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchilar soni bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hikoya necha daqiqaga sig'ishi kerak?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "3 daqiqaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5 daqiqaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2 daqiqaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1 daqiqaga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hikoyadagi o'zgarish pitchning qaysi bo'lagida ko'rinadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bozor bo'lagida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo bo'lagida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yechim bo'lagida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Keyingi qadamda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Raqamlar bo'lagi nimani aytadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Foydalanuvchilar sonini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Lahza qachon bo'lganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotni kim qilganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakamdan nima so'ralishini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Videodan keyin qaysi savolni berasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Video nechta layk oldi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi chatga tashlayman?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuzim yaxshi chiqdimi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hikoya lahzadan boshlandimi?",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hikoya videosi qayerda qoladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Sinf chatida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat telefoningizda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Maktab saytida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentorning telefonida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

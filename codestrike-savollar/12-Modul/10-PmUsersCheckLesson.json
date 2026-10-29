@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m10d10-v1",
+  "key": "m10-10",
+  "modul": 12,
+  "tartib": 10,
+  "nom": {
+    "uz": "50 foydalanuvchiga yetdingizmi?",
+    "ru": "Дошли до 50 пользователей?"
+  },
+  "src": "src/10-Modull/PmUsersCheckLesson.jsx",
+  "barmoq_izi": "76e262c99aa05303151e05b8c7eb7438",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Hisobotda «ro'yxatdan o'tgan» soni qayerdan olingan?",
+        "variantlar": [
+          "Umami tashriflaridan",
+          "Database'dan, namunasiz",
+          "Sinf chati javoblaridan",
+          "Lending tugmasidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда в отчёте взято число «зарегистрировались»?",
+        "variantlar": [
+          "Из посещений в Umami",
+          "Из Database, без образцов",
+          "Из ответов в чате класса",
+          "Из кнопки лендинга"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Sanoq sahifasidagi qadamlar nimani sanaydi?",
+        "variantlar": [
+          "Turli qurilmalarni",
+          "Turli akkauntlarni",
+          "Lending tashriflarini",
+          "Tugma bosilishlarini"
+        ]
+      },
+      "ru": {
+        "savol": "Что считают шаги на странице подсчёта?",
+        "variantlar": [
+          "Разные устройства",
+          "Разные аккаунты",
+          "Посещения лендинга",
+          "Нажатия кнопки"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "Hisobotda sinfdoshlar qanday aytiladi?",
+        "variantlar": [
+          "Sanalmaydi, chiqariladi",
+          "Sanaladi, alohida emas",
+          "Faqat ular yoziladi",
+          "Sanaladi, alohida aytiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Как в отчёте указывают одноклассников?",
+        "variantlar": [
+          "Не считают, исключают",
+          "Считают, но не отдельно",
+          "Пишут только их",
+          "Считают, но называют отдельно"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "WHERE namuna = false nima qiladi?",
+        "variantlar": [
+          "Faqat sinfdoshlarni qoldiradi",
+          "Kunlarni tartiblaydi",
+          "Namuna akkauntlarni sanamaydi",
+          "Ism va loginni yashiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает WHERE namuna = false?",
+        "variantlar": [
+          "Оставляет только одноклассников",
+          "Сортирует дни",
+          "Не считает образцовые аккаунты",
+          "Скрывает имя и логин"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "SQL'ga GROUP BY kun qo'shilsa, Neon nima ko'rsatadi?",
+        "variantlar": [
+          "Hamma kunga bitta son",
+          "Har kunga alohida son",
+          "Faqat bugungi son",
+          "Eng ko'p ro'yxatli kun"
+        ]
+      },
+      "ru": {
+        "savol": "Что покажет Neon, если добавить в SQL GROUP BY kun?",
+        "variantlar": [
+          "Одно число на все дни",
+          "Отдельное число на каждый день",
+          "Только сегодняшнее число",
+          "День с наибольшим числом"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor tekshiruvining uchinchi savoli nimaga qaraydi?",
+        "variantlar": [
+          "50 ga qancha qolganiga",
+          "Sinfdoshlar o'sishiga",
+          "Lending tashriflariga",
+          "Oldingi son borligiga"
+        ]
+      },
+      "ru": {
+        "savol": "На что смотрит третий вопрос проверки Ментора?",
+        "variantlar": [
+          "Сколько осталось до 50",
+          "На рост одноклассников",
+          "На посещения лендинга",
+          "Есть ли прежнее число"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Hisobotda foydalanuvchilar haqida nima yoziladi?",
+        "variantlar": [
+          "Faqat sonlar, ismsiz",
+          "Har odamning ismi va sanasi",
+          "Sinfdoshlar ismlari",
+          "Har birining logini"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в отчёте о пользователях?",
+        "variantlar": [
+          "Только числа, без имён",
+          "Имя и дата каждого",
+          "Имена одноклассников",
+          "Логин каждого"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Duolingo'ning asosiy qaytarish mexanikasi qaysi?",
+        "variantlar": [
+          "Eslatmalar",
+          "«Muzlatish»",
+          "Ketma-ket kunlar",
+          "Yangi so'zlar"
+        ]
+      },
+      "ru": {
+        "savol": "Какая главная механика возврата у Duolingo?",
+        "variantlar": [
+          "Напоминания",
+          "«Заморозка»",
+          "Дни подряд",
+          "Новые слова"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Qaytganlar foizi nimani ko'rsatadi?",
+        "variantlar": [
+          "Keyin ham ochganlar foizini",
+          "Yangi ro'yxatlar sonini",
+          "Tugmani bosganlar foizini",
+          "Qo'shilganlar foizini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает процент вернувшихся?",
+        "variantlar": [
+          "Долю тех, кто открыл и позже",
+          "Число новых регистраций",
+          "Долю нажавших кнопку",
+          "Долю записавшихся"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Zaxira rejada bir haftaga nechta ish yoziladi?",
+        "variantlar": [
+          "Har bo'g'inga bittadan",
+          "Iloji boricha ko'p",
+          "Ish yo'q, faqat gipoteza",
+          "Bitta bo'g'inga bitta"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько дел на неделю пишут в запасном плане?",
+        "variantlar": [
+          "По одному на каждое звено",
+          "Как можно больше",
+          "Без дел, только гипотеза",
+          "Одно дело на одно звено"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor zaxira reja uchun qaysi bo'g'inni tanladi?",
+        "variantlar": [
+          "Lending: kam bosilgan",
+          "Ro'yxat: kam o'tilgan",
+          "Kanal: post kam yetgan",
+          "Asosiy harakat: kam"
+        ]
+      },
+      "ru": {
+        "savol": "Какое звено Ментор выбрал для запасного плана?",
+        "variantlar": [
+          "Лендинг: мало нажатий",
+          "Регистрация: мало прошли",
+          "Канал: пост дошёл мало куда",
+          "Главное действие: мало"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Lendingga 90 tashrif, tugma 6 marta bosildi. Qaysi bo'g'in?",
+        "variantlar": [
+          "Kanal",
+          "Lending",
+          "Ro'yxat",
+          "Asosiy harakat"
+        ]
+      },
+      "ru": {
+        "savol": "На лендинге 90 посещений, кнопку нажали 6 раз. Какое звено?",
+        "variantlar": [
+          "Канал",
+          "Лендинг",
+          "Регистрация",
+          "Главное действие"
+        ]
+      }
+    }
+  ]
+}

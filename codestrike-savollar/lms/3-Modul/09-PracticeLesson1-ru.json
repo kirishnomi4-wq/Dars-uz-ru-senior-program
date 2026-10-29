@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что дают сайту HTML и CSS?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Внешний вид",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Живость и реакции",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Скорость интернета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Базу данных",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой язык вдыхает в сайт жизнь (интерактивность)?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "HTML",
+        "hint": "Неверно"
+      },
+      {
+        "value": "CSS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "JavaScript",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Microsoft Word",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое «событие» (event)?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Внешний цвет сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя загруженного файла",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Скорость интернет-соединения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Действие пользователя",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Порядок оживления сайта?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Изменение → Событие → Реакция",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Событие → Реакция → Изменение",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Реакция → Событие → Изменение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только изменение",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Нажатие кнопки — пример какого события?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "input",
+        "hint": "Неверно"
+      },
+      {
+        "value": "hover",
+        "hint": "Неверно"
+      },
+      {
+        "value": "click",
+        "hint": "Верно!"
+      },
+      {
+        "value": "scroll",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Ввод в текстовое поле — какое событие?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "input",
+        "hint": "Верно!"
+      },
+      {
+        "value": "click",
+        "hint": "Неверно"
+      },
+      {
+        "value": "hover",
+        "hint": "Неверно"
+      },
+      {
+        "value": "load",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "count = 0. Три раза выполнили count = count + 1. Итог?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "0 (ноль)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "1",
+        "hint": "Неверно"
+      },
+      {
+        "value": "3",
+        "hint": "Верно!"
+      },
+      {
+        "value": "33",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где сайт запоминает, сколько лайков?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "В файле картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В URL-адресе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В CSS-файле",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В переменной",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что в основном меняет кнопка ночного/дневного режима?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Скорость интернета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Цвета и тему",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Имена файлов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Адрес сервера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем управляет кнопка «показать / скрыть»?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Видимостью элемента",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Интернет-соединением",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Загрузкой шрифта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Адресом домена",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что используется для проверки пустого поля в форме?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Смена цвета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Условие if/else",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Добавление картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Воспроизведение видео",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое событие срабатывает в «Живом приветствии» при вводе имени?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "click",
+        "hint": "Неверно"
+      },
+      {
+        "value": "load",
+        "hint": "Неверно"
+      },
+      {
+        "value": "hover",
+        "hint": "Неверно"
+      },
+      {
+        "value": "input",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

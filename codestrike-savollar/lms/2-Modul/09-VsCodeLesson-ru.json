@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким редактором кода пользуется больше всего разработчиков?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Word",
+        "hint": "Неверно"
+      },
+      {
+        "value": "VS Code",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Excel",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PowerPoint",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "С какого сайта скачивается VS Code?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "code.visualstudio.com",
+        "hint": "Верно!"
+      },
+      {
+        "value": "vscode-download.net",
+        "hint": "Неверно"
+      },
+      {
+        "value": "microsoft-code.uz",
+        "hint": "Неверно"
+      },
+      {
+        "value": "get-vscode.org",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется левая панель со списком файлов?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Terminal",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Extensions",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Explorer",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Status bar",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое Live Server?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Редактор картинок",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Память для хранения кода",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Программа для установки шрифтов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Программа, открывающая страницу вживую",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где находится кнопка «Go Live»?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "В строке меню сверху",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На нижней синей полосе status bar",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Внутри панели Explorer",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В меню правой кнопки мыши",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает адрес 127.0.0.1?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Большой сервер в интернете",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Главную страницу Google",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ваш собственный компьютер",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Домашний Wi-Fi роутер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что за число 5500 в 127.0.0.1:5500?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Порт, то есть номер двери",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Число символов на странице",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Число строк в коде",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Числовой пароль для входа",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что выдаёт готовый HTML-шаблон в пустом index.html?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "? + Enter",
+        "hint": "Неверно"
+      },
+      {
+        "value": "# + Space",
+        "hint": "Неверно"
+      },
+      {
+        "value": "* + Shift",
+        "hint": "Неверно"
+      },
+      {
+        "value": "! + Tab",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает сочетание Ctrl + S?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Сохраняет файл",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удаляет файл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Открывает новый файл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Копирует код",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Откуда устанавливается новое дополнение (extension)?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Из панели Explorer",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из панели Terminal",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С кнопки на status bar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из панели Extensions",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким тегом подключается style.css?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "<style src=\"style.css\">",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<link rel=\"stylesheet\">",
+        "hint": "Верно!"
+      },
+      {
+        "value": "<css href=\"style.css\">",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<script src=\"style.css\">",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как открыть папку проекта в VS Code?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Edit → Copy Folder",
+        "hint": "Неверно"
+      },
+      {
+        "value": "View → Show Folder",
+        "hint": "Неверно"
+      },
+      {
+        "value": "File → Open Folder",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Help → Load Folder",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

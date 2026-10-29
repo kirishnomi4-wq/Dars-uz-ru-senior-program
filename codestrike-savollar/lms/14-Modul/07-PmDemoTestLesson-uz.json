@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demo tekshiruvida demoni kim buzadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "O'quvchi, o'z mahsulotida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent, o'z bilganicha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdosh, sizning hisobda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakam, chiqish kuni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demo xatosiz o'tdi. Bu nimani ko'rsatadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Har sharoitda ishlashini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oddiy sharoitda ishlashini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent to'g'ri tuzatganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakamga yoqishini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki marta bosish demoning qayerida tekshiriladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sahifa sarlavhasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "B reja videosida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Asosiy tugmada",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Taymer tugmasida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Telefonda 9 / 10 ko'rinadi» qatori nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Buzishdan keyingi natija",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Riskning oldini olish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ssenariyning bir qadami",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buzishdan oldingi kutish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'sh ma'lumotni qaysi hisobda yaratasiz?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Tekshiruv akkauntida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faol foydalanuvchi hisobida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshingiz hisobida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'z demo hisobingizda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi kutishni ekranda tekshirsa bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Sahifa chiroyli ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«0 / 10» va tugma ko'rinadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hammasi «to'g'ri» ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Demo hakamga yoqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent tuzatgan fayl git status da. Nima belgilaysiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«Takrorlanmadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Buzilmadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Tuzatish qilindi»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Demo tayyor»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta tekshiruvda yana buzildi. Nima qilasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Yozuvni o'chiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu qadamni yashiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi funksiya so'rayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentga yana bir bor beraman",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uch demo o'tishining birida nima mashq qilinadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "B rejaga o'tish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi funksiyani ko'rsatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakam savollariga javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ni qayta yozish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demo o'tishida B reja videosi qayerda ochiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Hakam telefonida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Laptopning o'zida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinf chatida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkinchi telefonda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tekshiruvdan keyin tekshiruv akkaunti nima bo'ladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Hakamlar uchun saqlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Haqiqiy hisobga aylanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent uni o'chiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdoshga beriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "XATOLAR.md ga nima yoziladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Faqat agent tuzatishlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa yozilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat buzilgan usullar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har usul, natija va holat",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

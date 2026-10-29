@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая часть хранит новое объявление?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Database, в строке таблицы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Backend, в своём коде",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Приложение, в памяти телефона",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Telegram, в сообщении группы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Один игрок во многих играх. Где это записано?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "в столбце oyinchilar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "в строках ishtirokchilar",
+        "hint": "Верно!"
+      },
+      {
+        "value": "в столбце oyinlar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "в памяти телефона",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что показывает столбец tashkilotchi_id?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Присоединившегося игрока",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На каком поле игра",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Кто объявил игру",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сколько людей нужно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что из этого — точка реального времени?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "День и время игры",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Название поля",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Форма объявления",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Список присоединившихся",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Когда в этом модуле приложение запрашивает?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "При открытии и потягивании вниз",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только в день установки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "При перезагрузке телефона",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Само каждую минуту",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем korsat() вызывают при открытии?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Чтобы кнопка не нажалась сама",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы число запросилось сразу",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы sora не выключилась",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы страница открылась быстрее",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое платформа?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Сервис, где стоит Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Рисунок экранов на бумаге",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Где работает продукт",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Таблицы Database",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Открывают в пути, на телефоне. Куда это тянет?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "К вебу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Поровну",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никуда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "К мобильному",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Важно быстро делиться ссылкой. Куда это тянет?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "К вебу",
+        "hint": "Верно!"
+      },
+      {
+        "value": "К мобильному",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никуда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Поровну",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему в примере Ментора мобильная?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Приложение выглядит красивее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Игрок на поле, с телефоном",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Знаком только React Native",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ссылку кидают в группу",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое стек?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Платформа, где открывается продукт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Список функций в PRD",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Технологии, работающие вместе",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Экраны и кнопки приложения",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что изменится при переходе на мобильный трек?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Backend и Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только таблицы Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Все три части сразу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Часть, которую открывает пользователь",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

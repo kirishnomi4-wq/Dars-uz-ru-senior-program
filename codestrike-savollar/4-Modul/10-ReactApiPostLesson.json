@@ -1,0 +1,278 @@
+{
+  "lessonId": "react-api-post-06-v18",
+  "key": "m3-09",
+  "modul": 4,
+  "tartib": 10,
+  "nom": {
+    "uz": "API: POST/PUT/DELETE — serverga ma'lumot yuborish",
+    "ru": "Работа с API — POST/PUT/DELETE"
+  },
+  "src": "src/3-Modull/ReactApiPostLesson.jsx",
+  "barmoq_izi": "e286bc000e2e793a3e5ac73daa62a8e3",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Serverga yangi o'yin qo'shish uchun qaysi fe'l?",
+        "variantlar": [
+          "POST",
+          "GET",
+          "DELETE",
+          "PUT"
+        ]
+      },
+      "ru": {
+        "savol": "Какой глагол добавит новую игру на сервер?",
+        "variantlar": [
+          "POST",
+          "GET",
+          "DELETE",
+          "PUT"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "DELETE so'rovida body kerakmi?",
+        "variantlar": [
+          "Yo'q — faqat manzil va ID",
+          "Ha, har doim yuboriladi",
+          "Faqat POST bilan birga",
+          "Ha, JSON ko'rinishida"
+        ]
+      },
+      "ru": {
+        "savol": "Нужен ли body в запросе DELETE?",
+        "variantlar": [
+          "Нет — только адрес и ID",
+          "Да, отправляется всегда",
+          "Только вместе с POST",
+          "Да, в виде JSON"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "201 Created javobi qachon keladi?",
+        "variantlar": [
+          "POST yangi yozuv qo'shganda",
+          "GET yozuvni o'qiganda",
+          "Har doim, har so'rovda",
+          "Faqat xato bo'lganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда приходит ответ 201 Created?",
+        "variantlar": [
+          "Когда POST добавил новую запись",
+          "Когда GET прочитал запись",
+          "Всегда, на любой запрос",
+          "Только при ошибке"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Posilka yuki (ma'lumot) qaysi xonada ketadi?",
+        "variantlar": [
+          "headers",
+          "body",
+          "method",
+          "url"
+        ]
+      },
+      "ru": {
+        "savol": "В какой «комнате» едет груз посылки (данные)?",
+        "variantlar": [
+          "headers",
+          "body",
+          "method",
+          "url"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "PUT nima qiladi?",
+        "variantlar": [
+          "Yozuvni faqat o'qiydi",
+          "Mavjud yozuvni almashtiradi",
+          "Yangi yozuv qo'shib qo'yadi",
+          "Yozuvni butunlay o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает PUT?",
+        "variantlar": [
+          "Только читает запись",
+          "Заменяет существующую запись",
+          "Добавляет новую запись",
+          "Полностью удаляет запись"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "GET nima qiladi?",
+        "variantlar": [
+          "Yangi yozuv qo'shadi",
+          "Faqat o'qib olib keladi",
+          "Yozuvni o'chiradi",
+          "Yozuvni almashtiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает GET?",
+        "variantlar": [
+          "Добавляет новую запись",
+          "Только читает и приносит",
+          "Удаляет запись",
+          "Заменяет запись"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "JSON.stringify(newGame) nima qiladi?",
+        "variantlar": [
+          "Obyektni ekranga chizadi",
+          "Xatolarni tekshirib chiqadi",
+          "Obyektni JSON matn qiladi",
+          "Serverdan javob oladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает JSON.stringify(newGame)?",
+        "variantlar": [
+          "Рисует объект на экране",
+          "Проверяет ошибки",
+          "Делает из объекта JSON-текст",
+          "Получает ответ сервера"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "PUT va DELETE da nima majburiy?",
+        "variantlar": [
+          "Rang nomi",
+          "body qismi",
+          "ID raqami",
+          "headers qismi"
+        ]
+      },
+      "ru": {
+        "savol": "Что обязательно в PUT и DELETE?",
+        "variantlar": [
+          "Название цвета",
+          "Часть body",
+          "Номер ID",
+          "Часть headers"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "fetch(url, {…}) — ikkinchi qism nima?",
+        "variantlar": [
+          "Manzilning davomi",
+          "Kelgan javob",
+          "Sozlamalar qutisi",
+          "Xato matni"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое вторая часть fetch(url, {…})?",
+        "variantlar": [
+          "Продолжение адреса",
+          "Пришедший ответ",
+          "Коробка настроек",
+          "Текст ошибки"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "DELETE bilan o'chirilgan yozuv qaytadimi?",
+        "variantlar": [
+          "Ha, oson qaytariladi",
+          "Bir daqiqada tiklanadi",
+          "Serverda saqlanib qoladi",
+          "Yo'q, butunlay ketadi"
+        ]
+      },
+      "ru": {
+        "savol": "Возвращается ли запись, удалённая DELETE?",
+        "variantlar": [
+          "Да, легко вернуть",
+          "Восстановится через минуту",
+          "Остаётся на сервере",
+          "Нет, исчезает навсегда"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "CRUD nima?",
+        "variantlar": [
+          "Copy, Run, Undo, Done",
+          "Create, Read, Undo, Done",
+          "Code, Read, Use, Debug",
+          "Create, Read, Update, Delete"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое CRUD?",
+        "variantlar": [
+          "Copy, Run, Undo, Done",
+          "Create, Read, Undo, Done",
+          "Code, Read, Use, Debug",
+          "Create, Read, Update, Delete"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "method: 'POST' serverga nima deydi?",
+        "variantlar": [
+          "«Rangni o'zgartir»",
+          "«O'lchamni kichraytir»",
+          "«Tezlikni oshir»",
+          "«Yangi yozuv yarat»"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорит серверу method: 'POST'?",
+        "variantlar": [
+          "«Поменяй цвет»",
+          "«Уменьши размер»",
+          "«Увеличь скорость»",
+          "«Создай новую запись»"
+        ]
+      }
+    }
+  ]
+}

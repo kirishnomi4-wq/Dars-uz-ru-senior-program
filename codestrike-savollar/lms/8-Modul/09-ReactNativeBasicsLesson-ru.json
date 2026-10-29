@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое React Native?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Мобильное приложение на React",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Библиотека украшения сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сервер управления Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Программа для редактирования фото",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чему в React Native соответствует <div> из веба?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "<p>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<View>",
+        "hint": "Верно!"
+      },
+      {
+        "value": "<div> — не меняется",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<span>",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чему в React Native соответствует <p> из веба?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "<View>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<div>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<Text>",
+        "hint": "Верно!"
+      },
+      {
+        "value": "<label>",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где в React Native обязательно должен быть любой текст?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Прямо внутри <View>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри <div>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри <p>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри <Text>",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое StyleSheet?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "JS-объект, в котором пишут стили",
+        "hint": "Верно!"
+      },
+      {
+        "value": ".css-файл, подключаемый к проекту",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Таблица для хранения данных",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Формат файла для картинок",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как в StyleSheet пишется background-color из CSS?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "background-color — не меняется",
+        "hint": "Неверно"
+      },
+      {
+        "value": "backgroundColor",
+        "hint": "Верно!"
+      },
+      {
+        "value": "bg_color",
+        "hint": "Неверно"
+      },
+      {
+        "value": "colorBackground",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен Expo?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Чтобы управлять Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы разместить сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы легко проверять на телефоне",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы рисовать картинки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает Expo Go с QR-кодом?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Сам пишет код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранит данные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Открывает сайт в браузере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Открывает проект на телефоне",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На каких платформах работает приложение на React Native?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "На iOS и Android",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только на Apple iOS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только в браузере компьютера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только на компьютерах с Windows",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что не меняется при переходе на React Native?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Элементы экрана (div, p)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Компоненты, props и state",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Отдельный CSS-файл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "HTML-теги",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "React Native — это веб-сайт?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Да, это обычный веб-сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, работает только в браузере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет — это настоящее мобильное приложение",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Нет — это просто картинка",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "С какого шага начинается сегодняшняя практика?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Скан QR",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Просмотр на телефоне",
+        "hint": "Неверно"
+      },
+      {
+        "value": "StyleSheet",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проект Expo",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

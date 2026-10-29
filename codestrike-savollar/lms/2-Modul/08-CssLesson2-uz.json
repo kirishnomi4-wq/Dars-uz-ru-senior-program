@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "'block' element sahifada qanday joylashadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Butun qatorni egallaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yonma-yon joylashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har doim markazda turadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat o'z kengligini oladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri 'inline' element?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "div",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "h1",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "span",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "main",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Elementlarni yonma-yon qatorga tizish uchun qaysi xususiyat?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "display: flex",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "font-size: 20px",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "color: red",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "'display: flex' qayerga yoziladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "O'rab turgan konteynerga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har bir ichki elementga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat body tegiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Matnning o'ziga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Flex elementlarni vertikal ustunga tizish uchun?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "flex-direction: row",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "display: block",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "flex-direction: column",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "justify-content: center",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Flex elementlar orasidagi bo'shliqni qaysi xususiyat ochadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "margin-top",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "padding",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "border",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "gap",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Flex'ni gorizontal markazga qo'yish uchun?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "align-items: center",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "flex-direction: row",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "justify-content: center",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Flex'ni vertikal markazga qo'yish uchun?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "justify-content: center",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "flex-direction: column",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "gap: center",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "align-items: center",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "'justify-content: space-between' nima qiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Markazga to'playdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chetlarga teng yoyadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ustma-ust taxlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Elementlarni yashiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DevTools'ni odatda qaysi tugma ochadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ctrl + S",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "F12",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ctrl + P",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Alt + Tab",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DevTools'da CSS qaysi panelda ko'rinadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Console",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Network",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Styles",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sources",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DevTools'da CSS qiymatini o'zgartirsangiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Fayl butunlay o'zgaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqtincha, faqat sizda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Butun sayt buziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa bo'lmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

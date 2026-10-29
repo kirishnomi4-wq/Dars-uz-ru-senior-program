@@ -1,0 +1,278 @@
+{
+  "lessonId": "m8-07-production-deploy-v1",
+  "key": "m8-07",
+  "modul": 10,
+  "tartib": 7,
+  "nom": {
+    "uz": "Production deploy: domen, SSL, monitoring",
+    "ru": "Production deploy: домен, SSL, мониторинг"
+  },
+  "src": "src/8-Modull/ProductionDeployLesson.jsx",
+  "barmoq_izi": "217277fe88843fa4d7125312ef06f1af",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Netlify nomi nimani o'zgartiradi?",
+        "variantlar": [
+          "Sayt manzili boshini",
+          "Render manzilini",
+          "Jadvallar nomini",
+          "Tugma matnini"
+        ]
+      },
+      "ru": {
+        "savol": "Что меняет имя в Netlify?",
+        "variantlar": [
+          "Начало адреса сайта",
+          "Адрес Render",
+          "Имена таблиц",
+          "Текст кнопки"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Nom o'zgargach kataklar chiqmadi. Nega?",
+        "variantlar": [
+          "Bandlar o'chib ketgan",
+          "WEB_ORIGIN da eski manzil",
+          "Netlify DNS yangilamagan",
+          "Brauzer nomni tanimagan"
+        ]
+      },
+      "ru": {
+        "savol": "После смены имени слоты не появились. Почему?",
+        "variantlar": [
+          "Брони удалились",
+          "В WEB_ORIGIN старый адрес",
+          "Netlify не обновил DNS",
+          "Браузер не узнал имя"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "WEB_ORIGIN nima uchun kerak?",
+        "variantlar": [
+          "Database manzilini saqlash",
+          "Ega parolini tekshirish",
+          "Sayt so'roviga ruxsat berish",
+          "Monitor intervalini berish"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен WEB_ORIGIN?",
+        "variantlar": [
+          "Хранить адрес Database",
+          "Проверять пароль владельца",
+          "Разрешать запросы сайта",
+          "Задавать интервал монитора"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "HTTPS bo'lsa, yo'ldagi Wi-Fi nimani ko'radi?",
+        "variantlar": [
+          "Ism va telefonni ochiq",
+          "Faqat telefon raqamini",
+          "Hech qanday so'rovni",
+          "O'qib bo'lmaydigan ma'lumot"
+        ]
+      },
+      "ru": {
+        "savol": "Что видит Wi-Fi по пути, если есть HTTPS?",
+        "variantlar": [
+          "Имя и телефон открыто",
+          "Только номер телефона",
+          "Никаких запросов",
+          "Нечитаемые данные"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "SSL sertifikati nima qiladi?",
+        "variantlar": [
+          "Saytda HTTPS ni yoqadi",
+          "Saytni tezroq ochadi",
+          "Database'ni himoya qiladi",
+          "CORS ruxsatini o'zi beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает SSL-сертификат?",
+        "variantlar": [
+          "Включает HTTPS на сайте",
+          "Открывает сайт быстрее",
+          "Защищает Database",
+          "Сам даёт разрешение CORS"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "*.netlify.app manzilida HTTPS ni kim yoqadi?",
+        "variantlar": [
+          "O'quvchi sertifikat oladi",
+          "Netlify o'zi yoqadi",
+          "Render WEB_ORIGIN orqali",
+          "UptimeRobot monitori"
+        ]
+      },
+      "ru": {
+        "savol": "Кто включает HTTPS на адресе *.netlify.app?",
+        "variantlar": [
+          "Ученик покупает сертификат",
+          "Netlify включает сам",
+          "Render через WEB_ORIGIN",
+          "Монитор UptimeRobot"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "O'z domenida sertifikat qachon olinadi?",
+        "variantlar": [
+          "Domen olingan zahoti",
+          "WEB_ORIGIN yangilangach",
+          "DNS yozuvi to'g'ri bo'lgach",
+          "Monitor qo'shilgach"
+        ]
+      },
+      "ru": {
+        "savol": "Когда получают сертификат для своего домена?",
+        "variantlar": [
+          "Сразу после покупки домена",
+          "После обновления WEB_ORIGIN",
+          "Когда DNS-запись верна",
+          "После добавления монитора"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Database to'xtasa, /health nima qaytaradi?",
+        "variantlar": [
+          "Database errorini qaytaradi",
+          "Umuman javob bermaydi",
+          "Backend'ni stop qiladi",
+          "Baribir ok qaytaradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что вернёт /health, если Database остановилась?",
+        "variantlar": [
+          "Возвращает error Database",
+          "Вообще не отвечает",
+          "Делает stop Backend",
+          "Всё равно возвращает ok"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "/health nega Database'ni so'ramaydi?",
+        "variantlar": [
+          "Bepul Neon limiti tugamasin",
+          "Backend uni ko'rmaydi",
+          "Database sekin javob beradi",
+          "UptimeRobot SQL bilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему /health не спрашивает Database?",
+        "variantlar": [
+          "Чтобы не кончился лимит Neon",
+          "Backend её не видит",
+          "Database отвечает медленно",
+          "UptimeRobot не знает SQL"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Bepul UptimeRobot manzilni necha daqiqada so'raydi?",
+        "variantlar": [
+          "Har bir daqiqada",
+          "Har 5 daqiqada",
+          "Har bir soatda",
+          "Kuniga bir marta"
+        ]
+      },
+      "ru": {
+        "savol": "Как часто бесплатный UptimeRobot спрашивает адрес?",
+        "variantlar": [
+          "Каждую минуту",
+          "Каждые 5 минут",
+          "Каждый час",
+          "Раз в день"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Bepul rejada ogohlantirish qayerga keladi?",
+        "variantlar": [
+          "Telegram botiga",
+          "SMS va qo'ng'iroq bilan",
+          "Email va telefon ilovasiga",
+          "Render sahifasiga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда приходит оповещение на бесплатном плане?",
+        "variantlar": [
+          "В Telegram-бот",
+          "SMS и звонком",
+          "На email и в приложение",
+          "На страницу Render"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "UptimeRobot so'rovlari bepul Render'ga nima qiladi?",
+        "variantlar": [
+          "Backend sekinlashadi",
+          "Render pullik bo'ladi",
+          "Database to'lib qoladi",
+          "Backend uxlab qolmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что запросы UptimeRobot делают с бесплатным Render?",
+        "variantlar": [
+          "Backend замедляется",
+          "Render становится платным",
+          "Database переполняется",
+          "Backend не засыпает"
+        ]
+      }
+    }
+  ]
+}

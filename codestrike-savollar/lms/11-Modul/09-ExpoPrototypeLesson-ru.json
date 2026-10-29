@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Куда в React Native пишется текст на экране?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "внутрь <Text>",
+        "hint": "Верно!"
+      },
+      {
+        "value": "внутрь <View>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "внутрь <div>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "внутрь <span>",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На что в React Native меняется onClick из прототипа?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "onChange",
+        "hint": "Неверно"
+      },
+      {
+        "value": "onPress",
+        "hint": "Верно!"
+      },
+      {
+        "value": "onSubmit",
+        "hint": "Неверно"
+      },
+      {
+        "value": "onInput",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой файл открывает /oyin/3 в примере ментора?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "oyin/index.tsx",
+        "hint": "Неверно"
+      },
+      {
+        "value": "oyin/3.tsx",
+        "hint": "Неверно"
+      },
+      {
+        "value": "oyin/[id].tsx",
+        "hint": "Верно!"
+      },
+      {
+        "value": "oyinlar.tsx",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает <Stack />?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Размещает экраны во вкладках",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Даёт каждому экрану шрифт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Создаёт новый файл экрана",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Кладёт экраны друг на друга",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает router.push('/elon')?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Открывает экран «Дать объявление»",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Перезагружает приложение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Создаёт elon.tsx",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перерисовывает список",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что обычно нужно, чтобы QR открылся?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Открытый Chrome на телефоне",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Один Wi-Fi с компьютером",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Expo Go и на компьютере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Мобильный интернет на телефоне",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как соединяет --tunnel?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "В одном Wi-Fi, быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Соединяет только на iPhone",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через интернет, медленнее",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Без компьютера, только на телефоне",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Expo Go попросил аккаунт. Что вы сделаете?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Переустановлю приложение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Создам проект заново",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Снова отсканирую QR",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Войду в один аккаунт Expo",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Откуда Expo Go берёт код приложения?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Из expo start на компьютере",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Со страницы в Play Market",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С сайта на Netlify",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из памяти телефона",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое адаптивный сайт?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Сайт только для телефона",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт, подстраивающийся под ширину",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Приложение из магазина",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт с анимацией и кнопками",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Откуда PWA добавляется на телефон?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Из магазина Play Market",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через QR в Expo Go",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В браузере, с самого сайта",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Из магазина App Store",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой адрес нужен для PWA?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "localhost на компьютере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Адрес в домашнем Wi-Fi",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Адрес с http://",
+        "hint": "Неверно"
+      },
+      {
+        "value": "HTTPS-адрес на Netlify",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

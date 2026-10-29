@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki kishi bir xil link yubordi. Umami nimani ko'radi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Faqat kanalni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kim yuborganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Login va ismini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kim o'ynaganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida taklif kodi nimadan iborat?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ism va ikki raqam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Olti belgili harf-raqam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon raqami oxiri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin raqami va kuni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Taklif linki ochilganda lending Umami'ga nima yuboradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Kod va kanal belgisini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taklif qilgan loginini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat «taklif» kanalini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech narsa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Taklif kodisiz ro'yxatdan o'tsa bo'ladimi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Yo'q, kod majburiy",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, faqat link orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, faqat iPhone'da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, maydon majburiy emas",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida taklif uchun mukofot nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Pro'ga 7 kun qo'shiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "So'mda pul beriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Obunaga chegirma beriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pro'ga bir oy qo'shiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi hisob hech narsa qilmadi. Mukofot bormi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bor, ro'yxat yetarli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hali yo'q, harakat kutiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bor, kod to'g'ri yozilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, hisob sanalmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir hisobga haftasiga nechta mukofot beriladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Cheklovsiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oyiga bitta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'pi bilan ikkita",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat birinchisiga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'zini boshqa telefondan taklif qildi. Ushlanadimi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ha, kod bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, loginlar o'xshash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, harakat yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, qurilmalar har xil",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "18 tashrif va 7 hisob. Ayirsa bo'ladimi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Yo'q, o'lchovlar har xil",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, 11 kishi o'tmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, 11 tasi o'chirgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, Umami ishonchsiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jami ro'yxatdan o'tgan 51. Bu qanday son?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Har hafta keladiganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "44 eski va 7 yangi hisob",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat link orqali kelgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "50 maqsadi, ish tugadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinfda tekshiruv akkaunti ochdingiz. Keyin nima qilasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Sanoqda qoldiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parolini o'zgartiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hisobni o'chiraman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sherigimga beraman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Linkingizni qayerga yuborasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Shahar futbol kanaliga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Egasidan so'ramay guruhga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Notanish tashkilotchilarga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat tanishlaringizga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

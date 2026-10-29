@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dribbble'da dizayner nimani ko'rsatadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "O'z ishidan ekranlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat o'z rezyumesini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovasining tayyor kodini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova yuklanish sonini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Musiqa ilovasida qaysi biri usul?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Fon qora, harflar oq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirgi qo'shiq tepada turadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Albom rasmlari katta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugmalar och ko'k rangda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon misolida qaysi biri bezak?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Band katak bosilmasligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butun kun bir ekranda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fon rangi va shrift",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kun almashish yo'nalishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'p rasmi qo'yilganda nima bo'ldi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bo'sh vaqt tezroq topildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kataklar uch ustunga o'tdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kun almashtirgich yo'qoldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kataklar yana pastga tushdi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kunlar tasmasi qaysi savolga javob beradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "«Bugun qaysi vaqt bo'sh?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Boshqa kun-chi?»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Egasi telefoni qaysi?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Band qilish necha pul?»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Usulni qayerdan boshlab izlaysiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Foydalanuvchining savolidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng ko'p layk olgan ishdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yoqqan rang va shriftdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'st ilovasi ekranidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tweetie'gacha yangi post qanday ko'rilardi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Telefonni silkitib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova o'zi yangilardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabarnoma chiqardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tepadagi tugmani bosib",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tortib turganingizda belgi nima qiladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ilovani tezlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranni chiroyli qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangilanishni ko'rsatadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi postlarni sanaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Qayerda» qismi nega kerak?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Hamma joyga qo'shmasligi uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni tezroq yozishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod qisqaroq chiqishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Talab jiddiy ko'rinishi uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon'dagi ro'yxat animatsiyasiga qaysi vaqt tanlandi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "2 soniyadan ham uzunroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Roppa-rosa bir soniya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3–5 soniya oralig'ida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasi 0,4 soniyada",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'yinchi › ni bosdi. Yangi kun qayerdan kiradi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Chap tomondan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tepadan pastga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'ng tomondan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Pastdan tepaga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Nima buzilmasin» nega yoziladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ko'proq kod yozilsin deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishlagan narsa saqlansin deb",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Talab rasmiy ko'rinsin deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi paket o'rnatilsin deb",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

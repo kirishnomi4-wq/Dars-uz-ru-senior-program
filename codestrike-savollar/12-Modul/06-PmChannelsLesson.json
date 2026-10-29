@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m10d6-v1",
+  "key": "m10-06",
+  "modul": 12,
+  "tartib": 6,
+  "nom": {
+    "uz": "Birinchi foydalanuvchilar sizni qayerdan topadi?",
+    "ru": "Где вас найдут первые пользователи?"
+  },
+  "src": "src/10-Modull/PmChannelsLesson.jsx",
+  "barmoq_izi": "cc4042da1a084fb4a06a166d68eecf5e",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Intervyu javobi qaysi savolga dalil bo'ladi?",
+        "variantlar": [
+          "Siz u yerda a'zomisiz?",
+          "U yerda ruxsat bormi?",
+          "Auditoriyangiz shu yerdami?",
+          "U yerda necha kishi bor?"
+        ]
+      },
+      "ru": {
+        "savol": "На какой вопрос ответ из интервью — доказательство?",
+        "variantlar": [
+          "Вы там участник?",
+          "Там есть разрешение?",
+          "Ваша аудитория здесь?",
+          "Сколько там человек?"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor misolida shahar futbol kanali nega tanlanmadi?",
+        "variantlar": [
+          "A'zo emas, ruxsat yo'q",
+          "Futbol haqida emas",
+          "Kanalda odam kam",
+          "Kanal yangi ochilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему в примере Ментора не выбран городской футбольный канал?",
+        "variantlar": [
+          "Не участник, нет разрешения",
+          "Он не про футбол",
+          "В канале мало людей",
+          "Канал только открылся"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Guruhga qo'shilgan kuniyoq post yozildi. Nima qilinmadi?",
+        "variantlar": [
+          "Rasm qo'yilmadi",
+          "Ruxsat so'ralmadi",
+          "Post qisqartirilmadi",
+          "Link qo'yilmadi"
+        ]
+      },
+      "ru": {
+        "savol": "Пост написали в день вступления в группу. Что не сделали?",
+        "variantlar": [
+          "Не добавили фото",
+          "Не спросили разрешения",
+          "Не сократили пост",
+          "Не поставили ссылку"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Postning qaysi qatori odamni sahifaga olib boradi?",
+        "variantlar": [
+          "Kim uchun",
+          "Nima foyda",
+          "Halol holat",
+          "Bitta harakat"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка поста ведёт человека на страницу?",
+        "variantlar": [
+          "Для кого",
+          "Какая польза",
+          "Честное состояние",
+          "Одно действие"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Postda «Tez orada hammasi bo'ladi». Nima qilasiz?",
+        "variantlar": [
+          "Tayyor narsani yozasiz",
+          "Gapni oxiriga surasiz",
+          "Undov belgisi qo'yasiz",
+          "Qalin harfda yozasiz"
+        ]
+      },
+      "ru": {
+        "savol": "В посте «Скоро будет всё». Что сделаете?",
+        "variantlar": [
+          "Напишете, что готово сейчас",
+          "Перенесёте фразу в конец",
+          "Поставите восклицательный знак",
+          "Напишете жирным"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Postga qaysi ma'lumot yozilmaydi?",
+        "variantlar": [
+          "Mahsulotning nomi",
+          "Lendingning linki",
+          "Maktabingiz raqami",
+          "Mahsulotning foydasi"
+        ]
+      },
+      "ru": {
+        "savol": "Какие данные не пишут в пост?",
+        "variantlar": [
+          "Название продукта",
+          "Ссылка на лендинг",
+          "Номер вашей школы",
+          "Польза продукта"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Notanish odam uchrashuvga chaqirdi. Nima qilasiz?",
+        "variantlar": [
+          "Yolg'iz borasiz",
+          "Kattalar bilan hal qilasiz",
+          "Sinfdosh bilan borasiz",
+          "Manzilingizni yozasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Незнакомец зовёт на встречу. Что сделаете?",
+        "variantlar": [
+          "Пойдёте один",
+          "Решите только со взрослыми",
+          "Пойдёте с одноклассником",
+          "Напишете свой адрес"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Facebook voqeasida nima hajmdan muhimroq?",
+        "variantlar": [
+          "Saytdagi rasmlar ko'pligi",
+          "Funksiyalarning ko'pligi",
+          "Auditoriyaning zichligi",
+          "Asoschilarning tajribasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что в истории Facebook важнее размера?",
+        "variantlar": [
+          "Много картинок на сайте",
+          "Много функций",
+          "Плотность аудитории",
+          "Опыт основателей"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Facebook hamma uchun qachon ochilgan?",
+        "variantlar": [
+          "Birinchi kuniyoq",
+          "Bir oydan keyin",
+          "Besh yildan keyin",
+          "Ikki yildan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Facebook открылся для всех?",
+        "variantlar": [
+          "В первый же день",
+          "Через месяц",
+          "Через пять лет",
+          "Через два года"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Guruh egasi javob bermadi. Nima qilasiz?",
+        "variantlar": [
+          "Boshqa kanaldan boshlaysiz",
+          "Kutmasdan yuborasiz",
+          "A'zolarga alohida yozasiz",
+          "Boshqa akkauntdan yozasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Владелец группы не ответил. Что сделаете?",
+        "variantlar": [
+          "Начнёте с другого канала",
+          "Отправите, не дожидаясь",
+          "Напишете участникам лично",
+          "Напишете с другого аккаунта"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Linkdagi «?kanal=sinf» nimani ko'rsatadi?",
+        "variantlar": [
+          "Bosgan odamning ismini",
+          "Sinf chatidan kelganini",
+          "Sinfdagi o'quvchilar sonini",
+          "Chatdagi postlar sonini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает «?kanal=sinf» в ссылке?",
+        "variantlar": [
+          "Имя того, кто нажал",
+          "Что пришли из чата класса",
+          "Число учеников в классе",
+          "Число постов в чате"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Postdan keyin tashriflar 31 ta. Bu nima?",
+        "variantlar": [
+          "Ro'yxatdan o'tganlar soni",
+          "Ilovani o'rnatganlar soni",
+          "Postni o'qiganlar soni",
+          "Sahifa ochilishlari soni"
+        ]
+      },
+      "ru": {
+        "savol": "После поста 31 посещение. Что это?",
+        "variantlar": [
+          "Число регистраций",
+          "Число установок приложения",
+          "Число прочитавших пост",
+          "Сколько раз открыли страницу"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "m11-03-v1",
+  "key": "m11-03",
+  "modul": 13,
+  "tartib": 3,
+  "nom": {
+    "uz": "Webhook: to'lov Backend'ga qanday yetib keladi",
+    "ru": "Вебхук: как платёж доходит до Backend"
+  },
+  "src": "src/11-Modull/PaymentWebhookLesson.jsx",
+  "barmoq_izi": "f4fc2b2f17bec7d106c7ae9a8d1380e1",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Webhook bilan bot xabarni qanday olardi?",
+        "variantlar": [
+          "Telegram o'zi yuborardi",
+          "Bot Telegram'dan so'rardi",
+          "Foydalanuvchi yuborardi",
+          "Render tekshirib turardi"
+        ]
+      },
+      "ru": {
+        "savol": "Как бот получал сообщение через webhook?",
+        "variantlar": [
+          "Telegram сам присылал",
+          "Бот спрашивал у Telegram",
+          "Присылал пользователь",
+          "Render проверял"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor sxemasida karta ma'lumoti qayerda qoladi?",
+        "variantlar": [
+          "Backend'ning jadvalida",
+          "Faqat to'lov xizmatida",
+          "Ilovaning xotirasida",
+          "README faylining ichida"
+        ]
+      },
+      "ru": {
+        "savol": "Где остаются данные карты в схеме Ментора?",
+        "variantlar": [
+          "В таблице Backend",
+          "Только у платёжного сервиса",
+          "В памяти приложения",
+          "Внутри файла README"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "X-Imzo sarlavhasida nima keladi?",
+        "variantlar": [
+          ".env dagi kalitning o'zi",
+          "Tashkilotchining paroli",
+          "Kalit bilan hisoblangan imzo",
+          "To'lovning summasi va sanasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что приходит в заголовке X-Imzo?",
+        "variantlar": [
+          "Сам ключ из .env",
+          "Пароль организатора",
+          "Подпись, вычисленная ключом",
+          "Сумма и дата платежа"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "TOLOV_KALITI qiymatini qayerga yozasiz?",
+        "variantlar": [
+          "README.md fayliga",
+          "app.js kodiga",
+          "Agent promptiga",
+          ".env va Render'ga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда вы запишете значение TOLOV_KALITI?",
+        "variantlar": [
+          "В файл README.md",
+          "В код app.js",
+          "В промпт агента",
+          "В .env и в Render"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Imzo mos keldi. Bu nimani ko'rsatadi?",
+        "variantlar": [
+          "Kalitni bilgan yuborgan",
+          "To'lov o'tib bo'lgan",
+          "Summa narxga teng",
+          "Xabar ilk bor kelgan"
+        ]
+      },
+      "ru": {
+        "savol": "Подпись совпала. Что это показывает?",
+        "variantlar": [
+          "Отправил знающий ключ",
+          "Оплата уже прошла",
+          "Сумма равна цене",
+          "Сообщение пришло впервые"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Javob yo'qolsa, Payme nima qiladi?",
+        "variantlar": [
+          "Boshqa yubormaydi",
+          "Shu so'rovni qayta yuboradi",
+          "Yangi raqam bilan yuboradi",
+          "Tashkilotchiga yozadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает Payme, если ответ потерялся?",
+        "variantlar": [
+          "Больше не отправляет",
+          "Отправляет тот же запрос снова",
+          "Отправляет с новым номером",
+          "Пишет организатору"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Stripe takror xabar uchun nima deydi?",
+        "variantlar": [
+          "Xabarni ikki marta yozishni",
+          "Tartib bilan kutishni",
+          "Ishlangan raqamni yozishni",
+          "Takrorga 401 qaytarishni"
+        ]
+      },
+      "ru": {
+        "savol": "Что советует Stripe про повторные сообщения?",
+        "variantlar": [
+          "Записывать сообщение дважды",
+          "Ждать по порядку",
+          "Записывать обработанные номера",
+          "Возвращать 401 на повтор"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Backend takror xabarni nimaga qarab taniydi?",
+        "variantlar": [
+          "Xabardagi summaga",
+          "To'lovchi ismiga",
+          "Kelgan vaqtiga",
+          "To'lov raqamiga"
+        ]
+      },
+      "ru": {
+        "savol": "По чему Backend узнаёт повторное сообщение?",
+        "variantlar": [
+          "По сумме в сообщении",
+          "По имени плательщика",
+          "По времени прихода",
+          "По номеру оплаты"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Mashq to'lov sahifasi qayerda turadi?",
+        "variantlar": [
+          "Backend'ingizda",
+          "Payme serverida",
+          "Telefon xotirasida",
+          "GitHub sahifasida"
+        ]
+      },
+      "ru": {
+        "savol": "Где находится учебная страница оплаты?",
+        "variantlar": [
+          "В вашем Backend",
+          "На сервере Payme",
+          "В памяти телефона",
+          "На странице GitHub"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Mashq to'lov sahifasi xabarni qayerda imzolaydi?",
+        "variantlar": [
+          "Brauzerda",
+          "Backend'da",
+          "Telefonda",
+          "GitHub'da"
+        ]
+      },
+      "ru": {
+        "savol": "Где учебная страница оплаты подписывает сообщение?",
+        "variantlar": [
+          "В браузере",
+          "В Backend",
+          "В телефоне",
+          "В GitHub"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Sxemadagi «Kimga» ustuni nimani aytadi?",
+        "variantlar": [
+          "Kim to'lov qilganini",
+          "Qancha to'langanini",
+          "Ish kimga borishini",
+          "Qachon to'langanini"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорит столбец «Кому» в схеме?",
+        "variantlar": [
+          "Кто заплатил",
+          "Сколько заплачено",
+          "К кому идёт действие",
+          "Когда заплачено"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Sxemada ilova Pro holatini qayerdan biladi?",
+        "variantlar": [
+          "To'lov xizmati xabaridan",
+          "To'lov sahifasidan",
+          "Telefonga kelgan SMS'dan",
+          "Backend'dan so'rab"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда приложение в схеме знает статус Pro?",
+        "variantlar": [
+          "Из сообщения платёжного сервиса",
+          "Со страницы оплаты",
+          "Из SMS на телефон",
+          "Спросив у Backend"
+        ]
+      }
+    }
+  ]
+}

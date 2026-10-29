@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-06-v1",
+  "key": "m7-06",
+  "modul": 9,
+  "tartib": 6,
+  "nom": {
+    "uz": "Birinchi odam kirganda nimani ko'rasiz?",
+    "ru": "Что вы увидите, когда придёт первый человек?"
+  },
+  "src": "src/7-Modull/PmAnalyticsDayOneLesson.jsx",
+  "barmoq_izi": "f29f1cf8fe0a6a5e4682c414a6dc1660",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Analitika saytda nimani yozib boradi?",
+        "variantlar": [
+          "Odamlar nima qilganini",
+          "Sayt qancha tez ochilishini",
+          "Kodda qancha xato qolganini",
+          "Saytni kim qurganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что записывает аналитика на сайте?",
+        "variantlar": [
+          "Что делали люди",
+          "Как быстро открывается сайт",
+          "Сколько ошибок в коде",
+          "Кто сделал сайт"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Umami 4-kuni ulandi. 1-kundan nima ma'lum?",
+        "variantlar": [
+          "Hamma qadam, kechikib",
+          "Faqat Database'dagi bandlar",
+          "Faqat ochganlar soni",
+          "Hech narsa — bandlar o'chgan"
+        ]
+      },
+      "ru": {
+        "savol": "Umami подключили на 4-й день. Что известно о 1-м дне?",
+        "variantlar": [
+          "Все шаги, но позже",
+          "Только брони в Database",
+          "Только число открывших",
+          "Ничего — брони стёрлись"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Uch qadam qaysi tartibda?",
+        "variantlar": [
+          "Band qildi → Tanladi → Ochdi",
+          "Tanladi → Ochdi → Band qildi",
+          "Ochdi → Tanladi → Band qildi",
+          "Ochdi → Band qildi → Tanladi"
+        ]
+      },
+      "ru": {
+        "savol": "В каком порядке три шага?",
+        "variantlar": [
+          "Забронировал → Выбрал → Открыл",
+          "Выбрал → Открыл → Забронировал",
+          "Открыл → Выбрал → Забронировал",
+          "Открыл → Забронировал → Выбрал"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "10 ochdi, 8 tanladi, 1 band qildi. Qayerda keskin kamaydi?",
+        "variantlar": [
+          "Saytni ochgach",
+          "Band qilgach",
+          "Ochishdan oldin",
+          "Vaqtni tanlagach"
+        ]
+      },
+      "ru": {
+        "savol": "10 открыли, 8 выбрали, 1 забронировал. Где резкое падение?",
+        "variantlar": [
+          "После открытия сайта",
+          "После брони",
+          "До открытия",
+          "После выбора времени"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Analitikaga yoziladigan bitta harakat nima deyiladi?",
+        "variantlar": [
+          "Hodisa",
+          "Metrika",
+          "Bosh raqam",
+          "Sinov"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется одно действие, записанное в аналитику?",
+        "variantlar": [
+          "Событие",
+          "Метрика",
+          "Главное число",
+          "Испытание"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Sayt ochilishini Umami qanday yozadi?",
+        "variantlar": [
+          "Har sahifaga nom qo'shiladi",
+          "Skript ulangach, o'zi yozadi",
+          "Ega qo'lda kiritib boradi",
+          "Faqat band qilinganda"
+        ]
+      },
+      "ru": {
+        "savol": "Как Umami записывает открытие сайта?",
+        "variantlar": [
+          "Каждой странице дают имя",
+          "После подключения скрипт пишет сам",
+          "Владелец вносит вручную",
+          "Только при брони"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Nega bugun bitta hodisa qo'shildi?",
+        "variantlar": [
+          "Umami bittadan ko'p olmaydi",
+          "Ochilish ham nom kutadi",
+          "Band qilish hali qurilmagan",
+          "Bitta hodisa hammasini yozadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему сегодня добавили одно событие?",
+        "variantlar": [
+          "Umami не берёт больше одного",
+          "Открытию тоже нужно имя",
+          "Бронь ещё не сделана",
+          "Одно событие пишет всё"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "«Kun almashtirish» hodisasiga qaysi nom darsdagidek?",
+        "variantlar": [
+          "Kun Almashtirdi",
+          "kun almashtirdi",
+          "KUN_ALMASHTIRDI",
+          "kun-almashtirdi"
+        ]
+      },
+      "ru": {
+        "savol": "Какое имя для события «смена дня» — как на уроке?",
+        "variantlar": [
+          "Kun Almashtirdi",
+          "kun almashtirdi",
+          "KUN_ALMASHTIRDI",
+          "kun-almashtirdi"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Katak bosilishini Umami'ga qaysi yozuv aytadi?",
+        "variantlar": [
+          "data-umami-event",
+          "data-website-id",
+          "VITE_UMAMI_ID",
+          "cloud.umami.is/script.js"
+        ]
+      },
+      "ru": {
+        "savol": "Какая запись сообщает Umami о нажатии ячейки?",
+        "variantlar": [
+          "data-umami-event",
+          "data-website-id",
+          "VITE_UMAMI_ID",
+          "cloud.umami.is/script.js"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Website ID nega web/.env da turadi?",
+        "variantlar": [
+          "Uni hech kim ko'rmasin deb",
+          "Har o'quvchida u boshqa",
+          "Umami faqat .env'dan o'qiydi",
+          "index.html uni o'qiy olmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему Website ID лежит в web/.env?",
+        "variantlar": [
+          "Чтобы его никто не увидел",
+          "У каждого ученика он свой",
+          "Umami читает только из .env",
+          "index.html не может его прочитать"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Sayt ochildi, Umami'da 0. Sabab nima?",
+        "variantlar": [
+          "Katakda hodisa nomi yo'q",
+          "Band tugmasi qurilmagan",
+          "Reklama to'sgichi yoqilgan",
+          "Database'ga ulanish uzilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Сайт открыли, в Umami 0. В чём причина?",
+        "variantlar": [
+          "У ячейки нет имени события",
+          "Кнопку брони не сделали",
+          "Включён блокировщик рекламы",
+          "Оборвалась связь с Database"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "«Maydon»ning bosh raqami nimani sanaydi?",
+        "variantlar": [
+          "Saytni ochgan odamlarni",
+          "Vaqtni tanlagan odamlarni",
+          "Kunni almashtirgan odamlarni",
+          "Band qilgan odamlarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает главное число «Maydon»?",
+        "variantlar": [
+          "Людей, открывших сайт",
+          "Людей, выбравших время",
+          "Людей, сменивших день",
+          "Людей, которые забронировали"
+        ]
+      }
+    }
+  ]
+}

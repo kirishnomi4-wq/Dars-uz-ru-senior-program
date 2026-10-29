@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dekompozitsiya nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Vazifani qadamlarga bo'lish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni butunlay o'chirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rang va shrift tanlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni serverga joylash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "MVP nima ma'noni beradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Eng qimmat, murakkab versiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng kichik ishlaydigan versiya",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng chiroyli, jozibali dizayn",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyihaning oxirgi varianti",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI'ni ochishdan oldin nima qilinadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Reja tuziladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Do'kon yasab ber» deyiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuter yangilanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rang tanlanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri mini-do'kon MVP'siga kiradi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Login va parol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI chat-bot",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklama bannerlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotlar ro'yxati",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Do'kon qurishni qaysi qadamdan boshlaymiz?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Savatga qo'shish tugmasidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qidiruv oynasidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotlar ro'yxatidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'lov va bank kartasidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri MVP uchun SHART emas (keyin qo'shiladi)?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Mahsulotlar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har biriga narx",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lov va login",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mahsulot nomi va rasmi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Rejani kim tuzadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Siz, AI'ni ochishdan oldin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "AI, birinchi so'rovdan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Copilot, kod yozayotganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech kim, reja shart emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Aniq buyruq nega muhim?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Chiroyliroq ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq buyruq → aniq natija",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tezroq yozib bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI'ni ortiqcha charchatmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi buyruq eng aniq?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Menga bir ro'yxat qil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yaxshi narsa qilib ber",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "4 mahsulotli do'kon ro'yxati",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Chiroyliroq qilib yasab ber",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'g'ri qurish tartibi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Qidiruv → ro'yxat → kartochka",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kartochka → qidiruv → ro'yxat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qidiruv → kartochka → ro'yxat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxat → kartochka → qidiruv",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Gemini'ga bir so'rovda nimani berasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Butun do'konni birdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rejadagi bitta qadamni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng chiroyli qadamni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Keyin» qadamini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Keyin» qadamlar qachon quriladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "MVP'dan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qachon",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dizayn tayyor bo'lgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "MVP ishlagandan keyin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

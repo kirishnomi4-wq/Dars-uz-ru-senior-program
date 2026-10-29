@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m9d16-v2",
+  "key": "m9-16",
+  "modul": 11,
+  "tartib": 16,
+  "nom": {
+    "uz": "G'oyangiz va ilovangiz guruhni ishontiradimi?",
+    "ru": "Убедят ли группу ваша идея и приложение?"
+  },
+  "src": "src/9-Modull/PmPrototypePitchLesson.jsx",
+  "barmoq_izi": "5d59c0393a8cacfbfc3a46bd08c0e079",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Zal ilova ishlashini ko'rmoqchi. Nima qilasiz?",
+        "variantlar": [
+          "Telefonda ko'rsatasiz",
+          "Bir gapda tushuntirasiz",
+          "Sanoqni aytasiz",
+          "Rejani aytasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Зал хочет увидеть, что приложение работает. Что делаете?",
+        "variantlar": [
+          "Показываете на телефоне",
+          "Объясняете одной фразой",
+          "Называете подсчёт",
+          "Рассказываете план"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Muammoni qayerdan bilasiz?» Nima deysiz?",
+        "variantlar": [
+          "Ilova texnologiyalari",
+          "Necha kishidan nechtasida",
+          "Ekran va tugmalar soni",
+          "Keyingi oy rejalari"
+        ]
+      },
+      "ru": {
+        "savol": "«Откуда вы знаете о проблеме?» Что ответите?",
+        "variantlar": [
+          "Технологии приложения",
+          "У скольких из скольких",
+          "Число экранов и кнопок",
+          "Планы на следующий месяц"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Harakat belgisi nimani ko'rsatadi?",
+        "variantlar": [
+          "Intervyuda uzoq gapirganini",
+          "G'oyani maqtaganini",
+          "Sinovga kun belgilaganini",
+          "Tez javob berganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает сигнал действия?",
+        "variantlar": [
+          "Что долго говорил на интервью",
+          "Что хвалил идею",
+          "Что назначил день для теста",
+          "Что быстро отвечал"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Olti intervyu — kichik son» nimani aytadi?",
+        "variantlar": [
+          "Intervyular foydasiz",
+          "Yuzta intervyu shart",
+          "To'garaklar yaxshiroq",
+          "Dalil bor, isbot yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит «Шесть интервью — малое число»?",
+        "variantlar": [
+          "Интервью бесполезны",
+          "Нужно сто интервью",
+          "Кружки лучше",
+          "Довод есть, доказательства нет"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Bo'lak nega darhol qayta aytiladi?",
+        "variantlar": [
+          "Vaqt ortib qolgani uchun",
+          "Sherik so'ragani uchun",
+          "Javob bo'ldimi, bilish uchun",
+          "Taymer talab qilgani uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем часть сразу рассказывают снова?",
+        "variantlar": [
+          "Осталось лишнее время",
+          "Попросил партнёр",
+          "Проверить, есть ли теперь ответ",
+          "Так требует таймер"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Demo Day oldidan nimani tekshirasiz?",
+        "variantlar": [
+          "Ochilishi va asosiy harakatni",
+          "Koddagi fayllar sonini",
+          "Ranglar sherikka yoqishini",
+          "Ilova nomi uzunligini"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяете перед Demo Day?",
+        "variantlar": [
+          "Открытие и главное действие",
+          "Число файлов в коде",
+          "Нравятся ли цвета партнёру",
+          "Длину названия приложения"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Yechim bo'lagida nima aytiladi?",
+        "variantlar": [
+          "Ishlatilgan texnologiyalar",
+          "Odamga nima qilishi, bir gapda",
+          "Hamma ekranlarning nomi",
+          "Qurishga ketgan haftalar"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорят в части «Решение»?",
+        "variantlar": [
+          "Использованные технологии",
+          "Что продукт делает человеку, одной фразой",
+          "Названия всех экранов",
+          "Сколько недель строили"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Ilovani nega pitchdan oldin ochasiz?",
+        "variantlar": [
+          "Ekran yorishishi uchun",
+          "Zal ko'rib turishi uchun",
+          "Zaryad to'lishi uchun",
+          "Backend uyg'onishi uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем открывать приложение до питча?",
+        "variantlar": [
+          "Чтобы экран стал ярче",
+          "Чтобы зал видел заранее",
+          "Чтобы зарядился телефон",
+          "Чтобы проснулся Backend"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Jonli demoda qaysi harakatni ko'rsatasiz?",
+        "variantlar": [
+          "Hamma tugmalarni",
+          "Kod fayllarini",
+          "Sozlamalar sahifasini",
+          "Sinov vazifasidagi ishni"
+        ]
+      },
+      "ru": {
+        "savol": "Какое действие показываете в живом демо?",
+        "variantlar": [
+          "Все кнопки",
+          "Файлы кода",
+          "Страницу настроек",
+          "Главное действие из теста"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Keyingi qadam bo'lagiga nima yoziladi?",
+        "variantlar": [
+          "Kelajakdagi hamma ishlar",
+          "Rejangizdagi birinchi ish",
+          "Hamma to'xtashlar",
+          "Ilova qanday qurilgani"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в часть «Следующий шаг»?",
+        "variantlar": [
+          "Все будущие дела",
+          "Первое дело из вашего плана",
+          "Все застревания",
+          "Как построено приложение"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "«Jonli demo»: ✗, «uzoq kutdik». Nima qilasiz?",
+        "variantlar": [
+          "Ilovani oldindan ochasiz",
+          "Demo bo'lagini olasiz",
+          "Zalga hazil aytasiz",
+          "Sherikdan ✓ so'raysiz"
+        ]
+      },
+      "ru": {
+        "savol": "«Живое демо»: ✗, «долго ждали». Что делаете?",
+        "variantlar": [
+          "Откроете приложение заранее",
+          "Уберёте часть демо",
+          "Пошутите для зала",
+          "Попросите партнёра поставить ✓"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Pitch 3:40 davom etdi. Nima qilasiz?",
+        "variantlar": [
+          "Taymerni o'chirib qo'yasiz",
+          "Muammo bo'lagini olasiz",
+          "Ortiqcha gapni olasiz",
+          "Oxirini tezroq aytasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Питч длился 3:40. Что делаете?",
+        "variantlar": [
+          "Выключите таймер",
+          "Уберёте часть «Проблема»",
+          "Уберёте лишние слова",
+          "Скажете конец быстрее"
+        ]
+      }
+    }
+  ]
+}

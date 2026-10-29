@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida buyurtmachi kim?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Maktab to'garagi murabbiyi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mahalladagi maydonning egasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova qiladigan kompaniya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Upwork'dagi notanish odam",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor buyurtmachiga nima qilib beradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "To'garak uchun o'yin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'garak uchun lending",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'garak uchun kanal",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'garak uchun videolar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Buyurtmada pul va kelishuv kim orqali bo'ladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sinfdoshingiz orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat o'zingiz orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ota-onangiz orqali",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Xalqaro sayt orqali",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor birinchi xatida nimani so'raydi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ilovasi uchun investitsiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompaniyada doimiy ish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovasini sotib olishni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Stajirovka bor-yo'qligini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uchrashuv taklifi kelsa, kim bilan borasiz?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Faqat kattalar bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yolg'iz o'zim boraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshim bilan birga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chatdagi tanishim bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Upwork kabi saytning yosh shartini qayerdan bilasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Sinfdoshlar gapidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytdan, ota-ona bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yoshni katta yozib ko'rib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kanaldagi reklamadan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bitta xat nechta kompaniyaga yuboriladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ikkitaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Beshtaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bittaga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'ntaga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kompaniyadan javob kelmadi. Nima qilasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Har hafta yana so'rayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xodim telefonini so'rayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ofisiga borib so'rayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa kompaniyaga yozaman",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Birinchi buyurtmaga qanday ish olasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Kursdagiga o'xshash ish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hali qilmagan katta ish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aytilgan har qanday ish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'st maslahat bergan ish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor buyurtmachi bilan qachon gaplashadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Lending tayyor bo'lgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi mashg'ulotdan keyin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kompaniya javob bergach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Upwork profili ochilgach",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Xatning «Nima qurdim» qismiga nima yoziladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Hamma funksiyalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefon va uy manzili",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulot va u nima qiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kompaniyaga maqtov",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Rejaning «Kim» qatoriga nima yoziladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ish tugaydigan kun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishning narxi so'mda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buyurtmachining ismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uning roli, ismsiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "js-vars-01-v18",
+  "key": "m2-03",
+  "modul": 3,
+  "tartib": 4,
+  "nom": {
+    "uz": "JavaScript — O'zgaruvchilar",
+    "ru": "JavaScript — Переменные"
+  },
+  "src": "src/2-Modull/JsVarsLesson.jsx",
+  "barmoq_izi": "b0f6ec1e24de545bb450499e2dacca24",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "let name = \"Aziza\" — bu yerda «quti»ning nomi qaysi?",
+        "variantlar": [
+          "name",
+          "\"Aziza\"",
+          "let",
+          "="
+        ]
+      },
+      "ru": {
+        "savol": "let name = \"Aziza\" — где здесь имя «коробки»?",
+        "variantlar": [
+          "name",
+          "\"Aziza\"",
+          "let",
+          "="
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "let age = 14 — 14 qanday ma'lumot turi?",
+        "variantlar": [
+          "string (matn)",
+          "number (son)",
+          "boolean",
+          "const"
+        ]
+      },
+      "ru": {
+        "savol": "let age = 14 — какой тип данных у 14?",
+        "variantlar": [
+          "string (текст)",
+          "number (число)",
+          "boolean",
+          "const"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi qiymat string (matn) hisoblanadi?",
+        "variantlar": [
+          "42",
+          "true",
+          "\"Toshkent\"",
+          "3.141592"
+        ]
+      },
+      "ru": {
+        "savol": "Какое значение считается string (текстом)?",
+        "variantlar": [
+          "42",
+          "true",
+          "\"Toshkent\"",
+          "3.141592"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "const PI = 3.14 dan keyin PI = 3 desak nima bo'ladi?",
+        "variantlar": [
+          "Xato beradi",
+          "PI 3 ga o'zgaradi",
+          "Ikkalasi saqlanadi",
+          "PI o'chib ketadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если после const PI = 3.14 написать PI = 3?",
+        "variantlar": [
+          "Будет ошибка",
+          "PI станет 3",
+          "Сохранятся оба",
+          "PI удалится"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Kodda = belgisi nimani bildiradi?",
+        "variantlar": [
+          "Ikki qiymat teng",
+          "Qutiga qiymat sol",
+          "Ikki qiymatni taqqosla",
+          "Qiymatni o'chir"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает знак = в коде?",
+        "variantlar": [
+          "Два значения равны",
+          "Положи значение в коробку",
+          "Сравни два значения",
+          "Удали значение"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "true va false qaysi ma'lumot turiga tegishli?",
+        "variantlar": [
+          "string",
+          "number",
+          "boolean",
+          "const"
+        ]
+      },
+      "ru": {
+        "savol": "К какому типу данных относятся true и false?",
+        "variantlar": [
+          "string",
+          "number",
+          "boolean",
+          "const"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Qaysi holatda const ishlatgan ma'qul?",
+        "variantlar": [
+          "Haftadagi kunlar soni (7)",
+          "O'yin bali (o'zgarib turadi)",
+          "Foydalanuvchi kiritgan matn",
+          "Jon soni jangda"
+        ]
+      },
+      "ru": {
+        "savol": "В каком случае лучше использовать const?",
+        "variantlar": [
+          "Число дней в неделе (7)",
+          "Счёт в игре (всё время меняется)",
+          "Текст, который ввёл пользователь",
+          "Число жизней в бою"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "let score = 10; score = 25. Endi score qancha?",
+        "variantlar": [
+          "10",
+          "25",
+          "35",
+          "1025"
+        ]
+      },
+      "ru": {
+        "savol": "let score = 10; score = 25. Сколько теперь в score?",
+        "variantlar": [
+          "10",
+          "25",
+          "35",
+          "1025"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "let va const farqi nima?",
+        "variantlar": [
+          "let son, const matn uchun",
+          "const tezroq ishlaydi",
+          "let o'zgaradi, const yo'q",
+          "Farqi yo'q, bir xil"
+        ]
+      },
+      "ru": {
+        "savol": "Чем отличаются let и const?",
+        "variantlar": [
+          "let для чисел, const для текста",
+          "const работает быстрее",
+          "let меняется, const — нет",
+          "Разницы нет, одно и то же"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "\"14\" (qo'shtirnoqda) qanday tur?",
+        "variantlar": [
+          "number — son",
+          "boolean — ha/yo'q",
+          "const — o'zgarmas",
+          "string — matn"
+        ]
+      },
+      "ru": {
+        "savol": "\"14\" (в кавычках) — какой это тип?",
+        "variantlar": [
+          "number — число",
+          "boolean — да/нет",
+          "const — константа",
+          "string — текст"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "var haqida to'g'ri gap qaysi?",
+        "variantlar": [
+          "Yangi usul, doim ishlating",
+          "const bilan bir xil",
+          "Faqat sonlar uchun",
+          "Eski usul, let/const afzal"
+        ]
+      },
+      "ru": {
+        "savol": "Какое утверждение о var верно?",
+        "variantlar": [
+          "Новый способ, используйте всегда",
+          "То же самое, что const",
+          "Только для чисел",
+          "Старый способ, лучше let/const"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "let city = \"Toshkent\" da qiymat qo'shtirnoqda. Nega?",
+        "variantlar": [
+          "Chunki u son",
+          "Qo'shtirnoq shart emas edi",
+          "Chunki u boolean",
+          "Chunki u matn (string)"
+        ]
+      },
+      "ru": {
+        "savol": "В let city = \"Toshkent\" значение в кавычках. Почему?",
+        "variantlar": [
+          "Потому что это число",
+          "Кавычки были не обязательны",
+          "Потому что это boolean",
+          "Потому что это текст (string)"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "fetch nima qiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ma'lumot olib keladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni qayta yuklaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faylni diskka saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi bo'sh oyna ochadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Server nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ma'lumot saqlanadigan markaz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefonning ichki xotirasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuterdagi rasm papkasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer xotirasidagi nusxa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GET so'rovi serverda nimani o'zgartiradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Hech narsani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ma'lumotni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi yozuv yaratadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni o'chiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Server javobi dastlab qanday keladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Tayyor massiv",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Matn (string)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasm",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "HTML sahifa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": ".json() nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Qaytadan so'rov yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Matnni massivga aylantiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Javobni faylga saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani qayta yangilaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "useEffectda bo'sh [] nima uchun?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Har soniyada ishlashi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir marta ishlashi uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har bosishda ishlashi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech ishlamasligi uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Javob kelguncha nima ko'rsatgan ma'qul?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Xatolik oynasi chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh oq ekran turadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Skeleton — kulrang sharpa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Reklama ko'rsatiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Serverdan kelgan ro'yxatni ekranga kim chizadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "fetch o'zi chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "useEffect o'zi chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "setGames → React chizadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qo'lda yoziladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Endpoint nimani bildiradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Manzilning boshlanishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faylning to'liq ismini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverning qaysi bo'limini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internet ulanish tezligini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Konsolda 404 ko'rsangiz birinchi nima qilasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Kompyuterni o'chirib yoqasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "React'ni qayta o'rnatasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Biroz kutasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Manzilni tekshirasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "200 OK nimani bildiradi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Server o'chib qoldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'ralgan manzil topilmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet ulanishi yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muvaffaqiyat — javob keldi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega fetch → .json() → set tartibi muhim?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kod chiroyli ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tartib muhim emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tasodifan shunday yozilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har qadam oldingisini kutadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

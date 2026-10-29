@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какую работу Git делает на компьютере?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Хранит версии кода",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Раскрашивает код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ускоряет интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Редактирует картинки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На каком сайте код хранится в интернете?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "google.com",
+        "hint": "Неверно"
+      },
+      {
+        "value": "github.com",
+        "hint": "Верно!"
+      },
+      {
+        "value": "youtube.com",
+        "hint": "Неверно"
+      },
+      {
+        "value": "telegram.org",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая команда проверяет, что Git установлен?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "git --start",
+        "hint": "Неверно"
+      },
+      {
+        "value": "git --open",
+        "hint": "Неверно"
+      },
+      {
+        "value": "git --version",
+        "hint": "Верно!"
+      },
+      {
+        "value": "git --check",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется место на GitHub для одного проекта?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Браузер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Домен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Репо",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой шаг выбирает файлы для отправки?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "push",
+        "hint": "Неверно"
+      },
+      {
+        "value": "add",
+        "hint": "Верно!"
+      },
+      {
+        "value": "pull",
+        "hint": "Неверно"
+      },
+      {
+        "value": "clone",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется сохранённая точка?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "commit",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Домен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Папка",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каком порядке идут шаги?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "commit → add → push",
+        "hint": "Неверно"
+      },
+      {
+        "value": "push → commit → add",
+        "hint": "Неверно"
+      },
+      {
+        "value": "add → push → commit",
+        "hint": "Неверно"
+      },
+      {
+        "value": "add → commit → push",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем в команде commit нужен -m?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Чтобы удалить файл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы задать цвет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы написать комментарий",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы подключиться к интернету",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В чём разница Git и GitHub?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Git — программа, GitHub — сайт",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Git — сайт, GitHub — программа",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Они одинаковые",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Оба — сайты",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Компьютер сломался. Откуда вернётся код?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Из истории браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ниоткуда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из репо на GitHub",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Из настроек VS Code",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая команда забирает новые точки из репо на компьютер?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "git push",
+        "hint": "Неверно"
+      },
+      {
+        "value": "git pull",
+        "hint": "Верно!"
+      },
+      {
+        "value": "git add",
+        "hint": "Неверно"
+      },
+      {
+        "value": "git commit",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Для чего в репо файл README?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Чтобы хранить пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы ускорить сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы хранить картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Короткая запись о проекте",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "m11-12-v1",
+  "key": "m11-12",
+  "modul": 13,
+  "tartib": 12,
+  "nom": {
+    "uz": "Loyiha kuni: barqarorlashtirish",
+    "ru": "День проекта: стабилизация"
+  },
+  "src": "src/11-Modull/StabilizeDayLesson.jsx",
+  "barmoq_izi": "da08993c9ae30062f93af456b00ec48a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Besh yo'lni yozuv bilan tekshirish nima deyiladi?",
+        "variantlar": [
+          "Barqarorlik tekshiruvi",
+          "Yangi funksiya qo'shish",
+          "Pullik obunani yoqish",
+          "Linkni tarqatish"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется проверка пяти путей с записью?",
+        "variantlar": [
+          "Проверка стабильности",
+          "Добавление новой функции",
+          "Включение платной подписки",
+          "Рассылка ссылки"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Kod qo'shilgach, nega ro'yxatdan o'tish tekshirildi?",
+        "variantlar": [
+          "Login o'zgargani uchun",
+          "Kod shu formada turadi",
+          "Bot formani yangilagan",
+          "Ro'yxat o'zi o'zgaradi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему после добавления кода проверили регистрацию?",
+        "variantlar": [
+          "Потому что изменился логин",
+          "Код стоит в этой форме",
+          "Бот обновил форму",
+          "Список меняется сам"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Tekshirishda qaysi hisobdan foydalanasiz?",
+        "variantlar": [
+          "Sinfdosh hisobidan",
+          "Eng faol o'yinchi hisobidan",
+          "Yangi tekshiruv akkauntidan",
+          "Hisobsiz, mehmon bo'lib"
+        ]
+      },
+      "ru": {
+        "savol": "Какой аккаунт вы используете для проверки?",
+        "variantlar": [
+          "Аккаунт одноклассника",
+          "Аккаунт самого активного игрока",
+          "Новый проверочный аккаунт",
+          "Без аккаунта, как гость"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Nima kutishingizni qachon yozasiz?",
+        "variantlar": [
+          "Natijani ko'rgach",
+          "Agent «Tayyor!» degach",
+          "Dars oxirida",
+          "Tekshirishdan oldin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда вы пишете, что ожидаете?",
+        "variantlar": [
+          "После того как увидели результат",
+          "Когда агент сказал «Готово!»",
+          "В конце урока",
+          "До проверки"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega bugun yangi funksiya qo'shilmaydi?",
+        "variantlar": [
+          "Tekshirilmagan yo'l ochadi",
+          "Agent bugun kod yozmaydi",
+          "U faqat pullik bo'ladi",
+          "Foydalanuvchi sezmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему сегодня не добавляют новую функцию?",
+        "variantlar": [
+          "Открывает непроверенный путь",
+          "Агент сегодня не пишет код",
+          "Она будет только платной",
+          "Пользователь не заметит"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Ulgurmagan topilma nima qilinadi?",
+        "variantlar": [
+          "XATOLAR.md dan o'chiriladi",
+          "XATOLAR.md da «qoldi» deb",
+          "«Tuzatish qilindi» deb",
+          "Aytilmay keyinga qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают с находкой, до которой не дошли руки?",
+        "variantlar": [
+          "Удаляется из XATOLAR.md",
+          "В XATOLAR.md как «осталось»",
+          "Пишется «Исправление сделано»",
+          "Молча откладывается"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "«Ikki marta yuborish»dan keyin Pro necha kunga yoqildi?",
+        "variantlar": [
+          "60 kunga",
+          "7 kunga",
+          "30 kunga",
+          "Yoqilmadi"
+        ]
+      },
+      "ru": {
+        "savol": "На сколько дней включился Pro после «Отправить дважды»?",
+        "variantlar": [
+          "На 60 дней",
+          "На 7 дней",
+          "На 30 дней",
+          "Не включился"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "«Tuzatish qilindi» nimani bildiradi?",
+        "variantlar": [
+          "Qayta buzilmaganini",
+          "Topilma o'chganini",
+          "Agent ish boshlaganini",
+          "Kod o'zgarganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает «Исправление сделано»?",
+        "variantlar": [
+          "Что повторно не сломалось",
+          "Что находка удалена",
+          "Что агент начал работу",
+          "Что код изменён"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "backend/ tuzatildi. APK kerakmi?",
+        "variantlar": [
+          "Yo'q, ilova Backend'ga ulanadi",
+          "Ha, APK har safar yangilanadi",
+          "Ha, Render APK yig'adi",
+          "Yo'q, APK yangilanmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Исправлен backend/. Нужен ли новый APK?",
+        "variantlar": [
+          "Нет, приложение подключено к Backend",
+          "Да, APK каждый раз обновляется",
+          "Да, Render собирает APK",
+          "Нет, APK не обновить"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Push'dan keyin brauzer ko'rinishi yangilanadimi?",
+        "variantlar": [
+          "Ha, Netlify o'zi yig'adi",
+          "Yo'q, qayta deploy kerak",
+          "Ha, Expo Go yangilaydi",
+          "Yo'q, APK almashtiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Обновляется ли браузерная версия после push?",
+        "variantlar": [
+          "Да, Netlify сам собирает",
+          "Нет, нужен повторный deploy",
+          "Да, Expo Go обновляет",
+          "Нет, её заменяет APK"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Ikki telefon bir vaqtda «O'yinlar»ni ochdi. Natija?",
+        "variantlar": [
+          "Bitta o'yin, bitta xabar",
+          "Ilova yopildi",
+          "O'yin ikki marta yaratildi",
+          "O'yinlar o'chib ketdi"
+        ]
+      },
+      "ru": {
+        "savol": "Два телефона одновременно открыли «Игры». Итог?",
+        "variantlar": [
+          "Одна игра, одно сообщение",
+          "Приложение закрылось",
+          "Игра создалась дважды",
+          "Игры удалились"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Darsdan keyin tekshiruv akkauntlari nima qilinadi?",
+        "variantlar": [
+          "Sanoqda qolaveradi",
+          "Sinfdoshlarga beriladi",
+          "Bir haftada o'zi o'chadi",
+          "Tekshirgach o'chiriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают с проверочными аккаунтами после урока?",
+        "variantlar": [
+          "Остаются в подсчёте",
+          "Отдаются одноклассникам",
+          "Сами удалятся через неделю",
+          "Удаляются после проверки"
+        ]
+      }
+    }
+  ]
+}

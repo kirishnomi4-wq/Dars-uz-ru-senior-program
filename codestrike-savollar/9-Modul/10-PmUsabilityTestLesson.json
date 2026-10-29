@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-10-v1",
+  "key": "m7-10",
+  "modul": 9,
+  "tartib": 10,
+  "nom": {
+    "uz": "Odam ilovangizda qayerda to'xtab qoladi?",
+    "ru": "Где человек застревает в вашем приложении?"
+  },
+  "src": "src/7-Modull/PmUsabilityTestLesson.jsx",
+  "barmoq_izi": "d7cb49d78b4a5bf4b9fb22cb9e87e084",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Sinov nima?",
+        "variantlar": [
+          "Odam ishlatadi, siz kuzatasiz",
+          "Siz ishlatasiz, odam kuzatadi",
+          "Odamdan fikrini so'raysiz",
+          "O'zingiz qayta-qayta sinaysiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое тест?",
+        "variantlar": [
+          "Человек пользуется, вы наблюдаете",
+          "Вы пользуетесь, человек наблюдает",
+          "Спрашиваете мнение человека",
+          "Сами снова и снова пробуете"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Sinov intervyudan nimasi bilan farq qiladi?",
+        "variantlar": [
+          "Sinovda savol ko'p",
+          "Intervyuda odam ishlatadi",
+          "Sinovda so'ramay, kuzatasiz",
+          "Sinovda faqat sinfdoshlar"
+        ]
+      },
+      "ru": {
+        "savol": "Чем тест отличается от интервью?",
+        "variantlar": [
+          "На тесте больше вопросов",
+          "На интервью человек пользуется сам",
+          "На тесте не спрашиваете, а наблюдаете",
+          "В тесте только одноклассники"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "O'yinchi 25 soniya hech narsa bosmadi. Bu nima?",
+        "variantlar": [
+          "Sayt sekin ochilyapti",
+          "Bu to'xtash, yozib qo'yiladi",
+          "Odam saytni yoqtirmadi",
+          "Sinov shu yerda tugadi"
+        ]
+      },
+      "ru": {
+        "savol": "Игрок 25 секунд ничего не нажимал. Что это?",
+        "variantlar": [
+          "Сайт медленно открывается",
+          "Это остановка, её записывают",
+          "Сайт не понравился",
+          "Тест здесь закончился"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Yordam bersangiz, yozuvda nima bo'ladi?",
+        "variantlar": [
+          "To'xtash ko'payadi",
+          "Yozuv o'zgarmaydi",
+          "To'xtash ikki marta yoziladi",
+          "To'xtash yozuvdan yo'qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "Если помогаете, что будет в записи?",
+        "variantlar": [
+          "Остановок станет больше",
+          "Запись не изменится",
+          "Остановка запишется дважды",
+          "Остановка пропадёт из записи"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Yaxshi sinov vazifasi nimani aytadi?",
+        "variantlar": [
+          "Qaysi tugmani bosishni",
+          "Odam nimaga erishishini",
+          "Sayt qanday qurilganini",
+          "Sayt yoqdimi-yo'qmi"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорит хорошее задание для теста?",
+        "variantlar": [
+          "Какую кнопку нажать",
+          "Чего человек должен добиться",
+          "Как устроен сайт",
+          "Понравился ли сайт"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Qaysi biri sinov vazifasi?",
+        "variantlar": [
+          "«Shanba 18:00 ga band qiling»",
+          "«18:00 ni bosib, ism yozing»",
+          "«Sayt qulaymi? Ayting»",
+          "«Band qilish tugmasini bosing»"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — задание для теста?",
+        "variantlar": [
+          "«Забронируйте субботу на 18:00»",
+          "«Нажмите 18:00 и введите имя»",
+          "«Удобен ли сайт? Скажите»",
+          "«Нажмите кнопку брони»"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Kuzatuv yozuviga qaysi qator tushadi?",
+        "variantlar": [
+          "Tugma noqulay joyda ekan",
+          "Hamma formani yomon ko'radi",
+          "Menga ham chalkash tuyuldi",
+          "Tugmani 1 daqiqa qidirdi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка попадёт в запись наблюдения?",
+        "variantlar": [
+          "Кнопка стоит неудобно",
+          "Все не любят формы",
+          "Мне тоже показалось запутанным",
+          "Искал кнопку 1 минуту"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Internet-magazinda odamlar qayerda to'xtagan?",
+        "variantlar": [
+          "Savatga narsa solayotganda",
+          "Qidiruvdan izlayotganda",
+          "Email va parol formasida",
+          "Manzil yozayotganda"
+        ]
+      },
+      "ru": {
+        "savol": "Где застревали люди в интернет-магазине?",
+        "variantlar": [
+          "Когда клали товар в корзину",
+          "Когда искали в поиске",
+          "На форме email и пароля",
+          "Когда писали адрес"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Internet-magazinda nima o'zgardi?",
+        "variantlar": [
+          "Tugma yozuvi: «Davom etish»",
+          "Formaga qator qo'shildi",
+          "Sayt boshidan qayta qurildi",
+          "Yangilarga chegirma berildi"
+        ]
+      },
+      "ru": {
+        "savol": "Что изменилось в интернет-магазине?",
+        "variantlar": [
+          "Надпись кнопки: «Продолжить»",
+          "В форму добавили строку",
+          "Сайт пересобрали с нуля",
+          "Новым дали скидку"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Uch to'xtashdan qaysi biri birinchi tuzatiladi?",
+        "variantlar": [
+          "Eng oxirida bo'lgani",
+          "Eng qisqa vaqt olgani",
+          "O'zingizga qizig'i",
+          "Vazifani to'xtatadigani"
+        ]
+      },
+      "ru": {
+        "savol": "Какую из трёх остановок исправляют первой?",
+        "variantlar": [
+          "Ту, что была в конце",
+          "Самую короткую",
+          "Ту, что интереснее вам",
+          "Ту, что останавливает задание"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Real sinovni kim bilan o'tkazasiz?",
+        "variantlar": [
+          "Saytni qurgan o'zingiz",
+          "Saytingiz mo'ljallangan odam",
+          "Saytni ko'rgan dasturchi",
+          "Sinfdagi a'lochi o'quvchi"
+        ]
+      },
+      "ru": {
+        "savol": "С кем проводите реальный тест?",
+        "variantlar": [
+          "С собой — автором сайта",
+          "С человеком, для которого сайт",
+          "С программистом, видевшим сайт",
+          "С лучшим учеником класса"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Yozuv tayyor. Endi nima qilasiz?",
+        "variantlar": [
+          "Yozuvni o'chirib tashlayman",
+          "Hammasini darhol tuzataman",
+          "Birinchi tuzatishni tanlayman",
+          "Odamdan tasdiq so'rayman"
+        ]
+      },
+      "ru": {
+        "savol": "Запись готова. Что делаете дальше?",
+        "variantlar": [
+          "Удалю запись",
+          "Сразу исправлю всё",
+          "Выберу, что исправлять первым",
+          "Попрошу человека подтвердить"
+        ]
+      }
+    }
+  ]
+}

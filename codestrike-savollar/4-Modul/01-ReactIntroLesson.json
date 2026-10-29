@@ -1,0 +1,278 @@
+{
+  "lessonId": "react-intro-01-v18",
+  "key": "m3-01",
+  "modul": 4,
+  "tartib": 1,
+  "nom": {
+    "uz": "React nima va nima uchun?",
+    "ru": "Что такое React и зачем"
+  },
+  "src": "src/3-Modull/ReactIntroLesson.jsx",
+  "barmoq_izi": "0c0a7e5eed8a5d64dd1568238a6d6cfb",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "React aslida nima?",
+        "variantlar": [
+          "Yangi dasturlash tili",
+          "JavaScript kutubxonasi",
+          "Brauzer dasturining nomi",
+          "Operatsion tizim turi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое React на самом деле?",
+        "variantlar": [
+          "Новый язык программирования",
+          "Библиотека JavaScript",
+          "Название браузера",
+          "Вид операционной системы"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "React'ni kim va qachon yaratgan?",
+        "variantlar": [
+          "Google, 2020-yil",
+          "Apple, 2010-yil",
+          "Microsoft, 2015-yil",
+          "Facebook, 2013-yil"
+        ]
+      },
+      "ru": {
+        "savol": "Кто и когда создал React?",
+        "variantlar": [
+          "Google, 2020 год",
+          "Apple, 2010 год",
+          "Microsoft, 2015 год",
+          "Facebook, 2013 год"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Komponent nima?",
+        "variantlar": [
+          "Rasm fayllarining turi",
+          "Internet tezligini oshiradi",
+          "Qayta ishlatiladigan bo'lak",
+          "Brauzer ichki sozlamasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое компонент?",
+        "variantlar": [
+          "Тип файлов картинок",
+          "Повышает скорость интернета",
+          "Переиспользуемая часть",
+          "Внутренняя настройка браузера"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "Virtual DOM asosiy vazifasi nima?",
+        "variantlar": [
+          "Farqni topib yangilaydi",
+          "Internetni tezlashtiradi",
+          "Kodni avtomatik yozadi",
+          "Saytga rang beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Главная задача Virtual DOM?",
+        "variantlar": [
+          "Находит разницу и обновляет",
+          "Ускоряет интернет",
+          "Автоматически пишет код",
+          "Красит сайт"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "React qaysi tilda yozilgan?",
+        "variantlar": [
+          "Python",
+          "JavaScript",
+          "HTML va CSS",
+          "C++"
+        ]
+      },
+      "ru": {
+        "savol": "На каком языке написан React?",
+        "variantlar": [
+          "Python",
+          "JavaScript",
+          "HTML va CSS",
+          "C++"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "React bilan telefon ilovasi qanday yasaladi?",
+        "variantlar": [
+          "React DOM orqali",
+          "React CSS orqali",
+          "React Web orqali",
+          "React Native orqali"
+        ]
+      },
+      "ru": {
+        "savol": "Как с React делают мобильное приложение?",
+        "variantlar": [
+          "Через React DOM",
+          "Через React CSS",
+          "Через React Web",
+          "Через React Native"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Komponentning asosiy foydasi nima?",
+        "variantlar": [
+          "Kodni ancha sekinlashtiradi",
+          "Internetga tezroq ulaydi",
+          "Bir marta yoz, ko'p ishlat",
+          "Rasmlarni ekranga chizadi"
+        ]
+      },
+      "ru": {
+        "savol": "Главная польза компонента?",
+        "variantlar": [
+          "Сильно замедляет код",
+          "Быстрее подключает к интернету",
+          "Напиши раз — используй много",
+          "Рисует картинки на экране"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "Eski saytda like bosilsa nima bo'ladi?",
+        "variantlar": [
+          "Butun sahifa qayta yuklanadi",
+          "Umuman javob qaytarmaydi",
+          "Sayt butunlay o'chib qoladi",
+          "Faqat rangi o'zgaradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что происходит на старом сайте при лайке?",
+        "variantlar": [
+          "Перезагружается вся страница",
+          "Вообще не отвечает",
+          "Сайт полностью выключается",
+          "Меняется только цвет"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Virtual DOM nima?",
+        "variantlar": [
+          "Kod yozadigan dastur",
+          "Sahifaning yengil nusxasi",
+          "Ranglar palitrasi",
+          "Internet provayderi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое Virtual DOM?",
+        "variantlar": [
+          "Программа для кода",
+          "Лёгкая копия страницы",
+          "Палитра цветов",
+          "Интернет-провайдер"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Virtual DOM qayerda turadi?",
+        "variantlar": [
+          "Ekranda, ko'z oldida",
+          "Serverda, uzoq joyda",
+          "Internet bulutida",
+          "Xotirada, ko'rinmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Где находится Virtual DOM?",
+        "variantlar": [
+          "На экране, у всех на виду",
+          "На сервере, далеко",
+          "В интернет-облаке",
+          "В памяти, невидим"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Bir komponentni ko'p marta ishlatish nima deyiladi?",
+        "variantlar": [
+          "Qaytadan yuklash",
+          "Butunlay o'chirish",
+          "Qayta ishlatish",
+          "Boshqa tilga tarjima"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется использование одного компонента много раз?",
+        "variantlar": [
+          "Перезагрузка",
+          "Полное удаление",
+          "Переиспользование",
+          "Перевод на другой язык"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "JSX'da komponent qanday chaqiriladi?",
+        "variantlar": [
+          "<SkinCard />",
+          "call SkinCard",
+          "SkinCard()",
+          "{SkinCard}"
+        ]
+      },
+      "ru": {
+        "savol": "Как вызывается компонент в JSX?",
+        "variantlar": [
+          "<SkinCard />",
+          "call SkinCard",
+          "SkinCard()",
+          "{SkinCard}"
+        ]
+      }
+    }
+  ]
+}

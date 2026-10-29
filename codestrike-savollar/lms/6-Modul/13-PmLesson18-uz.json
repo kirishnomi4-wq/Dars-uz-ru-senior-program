@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'lchagich nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Chiqqan saytni o'lchab turadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni oldindan tekshiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifalarni yozib beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Linklarni saqlab qo'yadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'lchagich qachon ishlaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Chiqarishdan oldin, bir marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod yozilayotgan paytda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat siz qaraganingizda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chiqqandan keyin, to'xtovsiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Javob vaqti» nimani ko'rsatadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Xato bilan tugaganlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifadagi rasmlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa qancha vaqtda kelganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kuniga necha ochilganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Signal nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Chegara qilib qo'ygan son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chegaradan o'tgandagi xabar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Odam qoldirgan izoh-xabar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt ochilmay qolgan payt",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi signal chin?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Kechasi kelgan signal",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam sezgan signal",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har mayda sakrashdagi signal",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ketma-ket ikki kelgan signal",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kechasi bir zumlik sekinlashuv — qanday signal?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Quruq — hech kim sezmadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Quruq — kechasi keldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chin — javob sekinlashdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chin — o'lchagich aytdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chegara juda past bo'lsa nima bo'ladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Quruq signal kelmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato ko'rinmay qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Quruq signallar ko'payadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt tezroq ochiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chegara juda baland bo'lsa nima bo'ladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Har sakrash xabar beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt ochilmay qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Quruq signallar ko'payadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam sizdan oldin sezadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Network qatorida qaysi ikki raqam bor?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Holat (200, 404) va vaqt (ms)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nom va rasm o'lchami",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Holat va kirganlar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Link va ochilgan soat",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Holat 404 nimani bildiradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Sahifa odatdagidek keldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa juda sekin keldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bunday sahifa topilmadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt butunlay ochilmadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir zumlik sekinlashuvga qaysi yo'l?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Hozir xabar — sekinlashdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jurnalga — hech kim sezmadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hozir xabar — sayt ochilmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jurnalga — xato ko'paydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chiqqan saytni o'lchashni kim hal qiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Brauzer — xabar yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytga kirgan odamlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech kim, o'zi ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni chiqargan odam — siz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

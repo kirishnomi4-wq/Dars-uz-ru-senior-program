@@ -1,0 +1,278 @@
+{
+  "lessonId": "bot-api-buttons-05-02-v18",
+  "key": "m5-03",
+  "modul": 7,
+  "tartib": 3,
+  "nom": {
+    "uz": "Telegram Bot API + tugmalar",
+    "ru": "Telegram Bot API + кнопки"
+  },
+  "src": "src/5-Modull/BotApiButtonsLesson.jsx",
+  "barmoq_izi": "6a5a7a3a7c765b5ce38bd9a1f12007be",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Bot tokeni qayerda saqlanadi?",
+        "variantlar": [
+          "new Telegraf(...) qatorida",
+          "README.md faylida",
+          ".env faylida",
+          "@BotFather tavsifida"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранится токен бота?",
+        "variantlar": [
+          "В строке new Telegraf(...)",
+          "В файле README.md",
+          "В файле .env",
+          "В описании у @BotFather"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Telegraf nima?",
+        "variantlar": [
+          "Bot uchun Node.js kutubxonasi",
+          "Node.js'dagi xabarlar bazasi",
+          "Rasm yuklaydigan xizmat",
+          "Kompyuterdagi Telegram ilovasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое Telegraf?",
+        "variantlar": [
+          "Библиотека Node.js для ботов",
+          "База сообщений в Node.js",
+          "Сервис загрузки картинок",
+          "Приложение Telegram на компьютере"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "ctx nima?",
+        "variantlar": [
+          "Bot sozlamalari fayli",
+          "Parol saqlanadigan obyekt",
+          "Server soati funksiyasi",
+          "Hodisa haqidagi ma'lumot"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое ctx?",
+        "variantlar": [
+          "Файл настроек бота",
+          "Объект для хранения пароля",
+          "Функция часов сервера",
+          "Данные о событии"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Inline tugma bosilganda nima bo'ladi?",
+        "variantlar": [
+          "Matni chatga xabar bo'ladi",
+          "Botga tugma ma'lumoti keladi",
+          "Serverga rasm yuklanadi",
+          "Bot suhbatni tozalaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что происходит при нажатии inline-кнопки?",
+        "variantlar": [
+          "Текст уходит в чат",
+          "Боту приходят данные кнопки",
+          "На сервер грузится картинка",
+          "Бот очищает переписку"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Reply klaviatura bosilsa nima bo'ladi?",
+        "variantlar": [
+          "Hech narsa, u faqat bezak",
+          "Matni chatga xabar bo'ladi",
+          "Bot chatdan chiqib ketadi",
+          "Akkaunt bloklanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что происходит при нажатии reply-клавиатуры?",
+        "variantlar": [
+          "Ничего, это украшение",
+          "Текст уходит в чат",
+          "Бот выходит из чата",
+          "Аккаунт блокируется"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "bot.action(...) nimani ushlaydi?",
+        "variantlar": [
+          "Faqat / bilan buyruqlarni",
+          "Reply tugmadagi matnni",
+          "Inline tugma bosilishini",
+          "Yuborilgan rasm va fayllarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что ловит bot.action(...)?",
+        "variantlar": [
+          "Только команды с /",
+          "Текст reply-кнопки",
+          "Нажатие inline-кнопки",
+          "Присланные фото и файлы"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "bot.hears(...) nimani ushlaydi?",
+        "variantlar": [
+          "Aniq matnli xabarni",
+          "Inline tugma bosilishini",
+          "Bot yoqilgan-o'chganini",
+          "Faqat ovozli xabarlarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что ловит bot.hears(...)?",
+        "variantlar": [
+          "Сообщение с точным текстом",
+          "Нажатие inline-кнопки",
+          "Включение и выключение бота",
+          "Только голосовые"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Fallback handler nima uchun kerak?",
+        "variantlar": [
+          "Bot tezroq ishlashi uchun",
+          "Rasmga xato yozish uchun",
+          "Tokenni himoyalash uchun",
+          "Har xabarga javob berish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен fallback handler?",
+        "variantlar": [
+          "Чтобы бот работал быстрее",
+          "Чтобы писать ошибку на фото",
+          "Чтобы защитить токен",
+          "Чтобы ответить на любое сообщение"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "ctx.reply(...) javobni qaysi chatga yuboradi?",
+        "variantlar": [
+          "Bot egasining chatiga",
+          "Oxirgi yozgan odamga",
+          "Hamma foydalanuvchiga",
+          "Xabar kelgan chatga"
+        ]
+      },
+      "ru": {
+        "savol": "В какой чат ctx.reply(...) шлёт ответ?",
+        "variantlar": [
+          "В чат владельца бота",
+          "Последнему написавшему",
+          "Всем пользователям",
+          "В чат, откуда пришло сообщение"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Polling nimani bildiradi?",
+        "variantlar": [
+          "Telegram xabarni o'zi yuboradi",
+          "Bot qayta-qayta xabar so'raydi",
+          "Ovozni matnga aylantirish",
+          "Xabarlarni o'chirish"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает polling?",
+        "variantlar": [
+          "Telegram сам шлёт сообщение",
+          "Бот снова и снова спрашивает",
+          "Перевод голоса в текст",
+          "Удаление сообщений"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "bot.launch() nima qiladi?",
+        "variantlar": [
+          "Yangi token yaratadi",
+          "Botni Telegram'dan o'chiradi",
+          "Botni ishga tushiradi",
+          "Bot rasmini yangilaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает bot.launch()?",
+        "variantlar": [
+          "Создаёт новый токен",
+          "Удаляет бота из Telegram",
+          "Запускает бота",
+          "Обновляет фото бота"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "/start va /help qanday belgi bilan boshlanadi?",
+        "variantlar": [
+          "Qiyshiq chiziq (/) bilan",
+          "Yulduzcha (*) bilan",
+          "Ikki nuqta (:) bilan",
+          "Hech qanday belgisiz"
+        ]
+      },
+      "ru": {
+        "savol": "С какого знака начинаются /start и /help?",
+        "variantlar": [
+          "С косой черты (/)",
+          "Со звёздочки (*)",
+          "С двоеточия (:)",
+          "Без всякого знака"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jalb qilish narxida qaysi pul olinadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Kanallarga ketgan pul",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Pro uchun to'langan pul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchi bergan pul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postga ketgan vaqt",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida bepul kanallar nimaga tushdi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Har kishiga 5 000 so'm",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pulga emas, vaqtga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Pro narxiga, 10 000 so'm",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsaga, vaqt ham yo'q",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida ilovaga kim pul to'lashi mumkin?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Har bir foydalanuvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat sinfdoshlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pro oladigan tashkilotchi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Maydon egasi har o'yinda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida Pro nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bir martalik kirish puli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har o'yin uchun to'lov",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi ilova versiyasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "30 kunlik pullik obuna",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor taxmini: Pro tashkilotchi qancha keltiradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "30 000 so'm",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "10 000 so'm",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "60 000 so'm",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "20 000 so'm",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi kelganlar 0 bo'lsa, jalbNarxi nima qaytaradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "0 (nol)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "null",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sarflangan pulni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Infinity",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaytganlar foizi nimani sanaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Obunani uzaytirganlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pro olgan tashkilotchilarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yana ochgan qurilmalarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kanaldan kelgan yangilarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jalb qilish narxi 25 000, keltiradi 20 000. Natija?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Qoplanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Teng",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Noma'lum",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Zarar",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida bepul kanallar nega chegarali?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "A'zolar soni cheklangan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Keyin pul to'lash kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Post yozish taqiqlangan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir haftada yopiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jalb qilish narxida kim yangi sanaladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ilovani bir marta ochgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shu davrda ro'yxatdan o'tgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Pro uchun pul to'lagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postni o'qigan har kim",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pullik kanalda kimni jalb qilish narxi olinadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Kanaldan kelgan har kishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovadagi hammani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lovchini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng ko'p o'ynaganni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Keltiradigan pulni qanday hisoblaymiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Narx × kishilar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narx + kanal puli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oylar ÷ kishilar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narx × oylar soni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

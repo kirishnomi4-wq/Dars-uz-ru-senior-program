@@ -1,0 +1,278 @@
+{
+  "lessonId": "m10-05-v1",
+  "key": "m10-05",
+  "modul": 12,
+  "tartib": 5,
+  "nom": {
+    "uz": "Ulanish uzilsa: buzamiz va tuzatamiz",
+    "ru": "Если соединение оборвётся: ломаем и чиним"
+  },
+  "src": "src/10-Modull/BreakAndFixLesson.jsx",
+  "barmoq_izi": "470889b01a2a652f20681648f1a2d71b",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Uchish rejimi yoqilsa, ulanish nima bo'ladi?",
+        "variantlar": [
+          "Uziladi, qayta urinadi",
+          "Ochiq qoladi, kutadi",
+          "Yopiladi, urinmaydi",
+          "O'zi tiklanib qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет с соединением в режиме полёта?",
+        "variantlar": [
+          "Обрывается, пробует снова",
+          "Остаётся открытым, ждёт",
+          "Закрывается, не пробует",
+          "Само восстанавливается"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Ilova qayta ulanganda qaysi hodisa ishlaydi?",
+        "variantlar": [
+          "Hech qaysi hodisa",
+          "connect yana ishlaydi",
+          "disconnect yana ishlaydi",
+          "Ilova qaytadan ochiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Какое событие срабатывает при переподключении?",
+        "variantlar": [
+          "Никакое событие",
+          "Снова срабатывает connect",
+          "Снова срабатывает disconnect",
+          "Приложение открывается заново"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "connect ichidagi kod qachon ishlaydi?",
+        "variantlar": [
+          "Faqat birinchi ulanishda",
+          "Faqat hodisa kelganda",
+          "Har ulanishda, qaytada ham",
+          "Faqat ilova yopilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда работает код внутри connect?",
+        "variantlar": [
+          "Только при первом подключении",
+          "Только когда приходит событие",
+          "При каждом подключении, и повторном",
+          "Только когда приложение закрыто"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Takror hodisa nima?",
+        "variantlar": [
+          "Ikki o'yindagi o'zgarish",
+          "Ikki telefondagi bir xil son",
+          "Bir o'yinchining ikki akkaunti",
+          "Bir o'zgarishning ikki ta'siri"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое повторное событие?",
+        "variantlar": [
+          "Изменение в двух играх",
+          "Одно число на двух телефонах",
+          "Два аккаунта одного игрока",
+          "Два действия одного изменения"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Qayta ulangach ro'yxat nega qayta so'raladi?",
+        "variantlar": [
+          "Uzilishdagi o'zgarish uchun",
+          "Belgi o'zgarishi uchun",
+          "Tinglovchi uchun",
+          "Hodisani olish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем после переподключения список запрашивают заново?",
+        "variantlar": [
+          "Ради изменения во время обрыва",
+          "Чтобы сменился значок",
+          "Ради слушателя",
+          "Чтобы получить событие"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Buzish yozuvida qaysi uch qator bor?",
+        "variantlar": [
+          "Kim bosdi, qachon va qayerda",
+          "Nima qildim, kutdim, bo'ldi",
+          "Usul, telefon, versiya",
+          "Muammo, sabab, tuzatish"
+        ]
+      },
+      "ru": {
+        "savol": "Какие три строки есть в записи поломки?",
+        "variantlar": [
+          "Кто нажал, когда и где",
+          "Что сделал, ожидал, произошло",
+          "Способ, телефон, версия",
+          "Проблема, причина, исправление"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Agent «tuzatdim» dedi, siz tekshirmadingiz. Nima yoziladi?",
+        "variantlar": [
+          "«Takrorlanmadi»",
+          "«Buzilmadi»",
+          "«Tuzatish qilindi»",
+          "«Hammasi ishlaydi»"
+        ]
+      },
+      "ru": {
+        "savol": "Агент сказал «исправил», вы не проверили. Что пишется?",
+        "variantlar": [
+          "«Не повторилось»",
+          "«Не сломалось»",
+          "«Исправление сделано»",
+          "«Всё работает»"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Agent tuzatgach, natijani qanday tekshirasiz?",
+        "variantlar": [
+          "Yangi usul bilan buzib",
+          "Agent javobini o'qib",
+          "Koddagi o'zgarishni o'qib",
+          "O'sha usul bilan qayta buzib"
+        ]
+      },
+      "ru": {
+        "savol": "Агент исправил. Как проверите результат?",
+        "variantlar": [
+          "Сломав новым способом",
+          "Прочитав ответ агента",
+          "Прочитав изменения в коде",
+          "Снова сломав тем же способом"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Render yangi versiyani chiqarsa, ulanishlar nima bo'ladi?",
+        "variantlar": [
+          "Uziladi, qayta urinadi",
+          "Ochiq qoladi",
+          "Faqat yangilari uziladi",
+          "Database saqlab turadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что с соединениями, когда Render выпускает новую версию?",
+        "variantlar": [
+          "Обрываются, пробуют снова",
+          "Остаются открытыми",
+          "Обрываются только новые",
+          "Database их хранит"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "socket.io'dagi xona qayerda turadi?",
+        "variantlar": [
+          "Ilovaning o'zida",
+          "Backend'ning o'zida",
+          "Database jadvalida",
+          "Telefon sozlamasida"
+        ]
+      },
+      "ru": {
+        "savol": "Где находится комната в socket.io?",
+        "variantlar": [
+          "В самом приложении",
+          "В самом Backend",
+          "В таблице Database",
+          "В настройках телефона"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida fonga olish urinishi nima ko'rsatdi?",
+        "variantlar": [
+          "Son eski qoldi",
+          "Xabar ikki marta chiqdi",
+          "Buzilmadi, son yangi",
+          "Ilova qayta ochildi"
+        ]
+      },
+      "ru": {
+        "savol": "Что показала попытка с фоном в примере Ментора?",
+        "variantlar": [
+          "Число осталось старым",
+          "Сообщение пришло дважды",
+          "Не сломалось, число новое",
+          "Приложение перезапустилось"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Kimning ilovasini buzib tekshirasiz?",
+        "variantlar": [
+          "Sinfdoshingizning ilovasini",
+          "Mashhur ilovalardan birini",
+          "Istalgan ochiq saytni",
+          "O'zingizning ilovangizni"
+        ]
+      },
+      "ru": {
+        "savol": "Чьё приложение вы ломаете для проверки?",
+        "variantlar": [
+          "Приложение одноклассника",
+          "Одно из популярных приложений",
+          "Любой открытый сайт",
+          "Своё собственное приложение"
+        ]
+      }
+    }
+  ]
+}

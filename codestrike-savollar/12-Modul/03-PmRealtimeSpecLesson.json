@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m10d3-v1",
+  "key": "m10-03",
+  "modul": 12,
+  "tartib": 3,
+  "nom": {
+    "uz": "Ekran o'zi yangilanishi uchun nimani yozasiz?",
+    "ru": "Что написать, чтобы экран обновлялся сам?"
+  },
+  "src": "src/10-Modull/PmRealtimeSpecLesson.jsx",
+  "barmoq_izi": "c8e4779e5403092433650db143e4bc7c",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Backend hodisani qachon yuboradi?",
+        "variantlar": [
+          "Database'ga yozib bo'lgach",
+          "Database'ga yozishdan oldin",
+          "Ilova so'rov yuborganda",
+          "Ro'yxat tortilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Backend отправляет событие?",
+        "variantlar": [
+          "После записи в Database",
+          "До записи в Database",
+          "Когда приложение шлёт запрос",
+          "Когда тянут список"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Ulanmoqda…» paytida ro'yxat nima bo'ladi?",
+        "variantlar": [
+          "Ekrandan o'chib ketadi",
+          "Ekranda eski holicha qoladi",
+          "Har soniyada yangilanadi",
+          "Xato oynasiga almashadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что со списком во время «Подключение…»?",
+        "variantlar": [
+          "Исчезает с экрана",
+          "Остаётся на экране, как был",
+          "Обновляется каждую секунду",
+          "Сменяется окном ошибки"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Belgi «Ulanmagan». Ro'yxatni qanday yangilaysiz?",
+        "variantlar": [
+          "Ilovani qayta o'rnatib",
+          "Backend'ni qayta yoqib",
+          "Ekranni pastga tortib",
+          "Database'da o'zgartirib"
+        ]
+      },
+      "ru": {
+        "savol": "Значок «Не подключено». Как обновите список?",
+        "variantlar": [
+          "Переустановив приложение",
+          "Перезапустив Backend",
+          "Потянув экран вниз",
+          "Изменив в Database"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi biri chekka holat?",
+        "variantlar": [
+          "«Qo'shilaman» bosildi",
+          "Yangi o'yin e'lon qilindi",
+          "O'yin kuni «Kelaman» bosildi",
+          "Qo'shilishda internet uzildi"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — крайний случай?",
+        "variantlar": [
+          "Нажали «Присоединиться»",
+          "Объявлена новая игра",
+          "В день игры нажали «Приду»",
+          "При записи пропал интернет"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Chekka holat qatorida vaziyatdan tashqari nima yoziladi?",
+        "variantlar": [
+          "Unda nima bo'lishi",
+          "Uni kim yaratgani",
+          "Qaysi faylda turishi",
+          "Necha marta bo'lgani"
+        ]
+      },
+      "ru": {
+        "savol": "Что, кроме ситуации, пишут в строке крайнего случая?",
+        "variantlar": [
+          "Что в ней должно быть",
+          "Кто её создал",
+          "В каком файле она лежит",
+          "Сколько раз она была"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Uzilish paytida kimdir qo'shildi. Hodisa keyin keladimi?",
+        "variantlar": [
+          "Ha, ulanish qaytgach",
+          "Yo'q, umuman kelmaydi",
+          "Ha, Backend saqlaydi",
+          "Yo'q, boshqa telefonga"
+        ]
+      },
+      "ru": {
+        "savol": "Во время обрыва кто-то записался. Событие придёт потом?",
+        "variantlar": [
+          "Да, когда связь вернётся",
+          "Нет, вообще не придёт",
+          "Да, Backend его хранит",
+          "Нет, на другой телефон"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Ilova fondan qaytganda nima ko'rinishi kerak?",
+        "variantlar": [
+          "Oxirgi ko'rilgan eski son",
+          "Bo'sh ro'yxat va kutish",
+          "O'yinlarning yangi holati",
+          "Faqat ulanish belgisi"
+        ]
+      },
+      "ru": {
+        "savol": "Что должно быть видно, когда приложение вернулось из фона?",
+        "variantlar": [
+          "Последнее увиденное старое число",
+          "Пустой список и ожидание",
+          "Новое состояние игр",
+          "Только значок соединения"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Mobil trekda tekshiruv so'rovini kim yuboradi?",
+        "variantlar": [
+          "Notanish o'yinchi",
+          "Tashkilotchi",
+          "Ilovaning o'zi",
+          "Agentning o'zi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто в мобильном треке отправляет проверочный запрос?",
+        "variantlar": [
+          "Незнакомый игрок",
+          "Организатор",
+          "Само приложение",
+          "Сам агент"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Agent yaratgan tekshiruv yozuvlarini qanday o'chirasiz?",
+        "variantlar": [
+          "U aytgan id lar bo'yicha",
+          "Jadvalni tozalab",
+          "Ilovani qayta yoqib",
+          "Oxirgi o'ntasini o'chirib"
+        ]
+      },
+      "ru": {
+        "savol": "Как удалите проверочные записи, созданные агентом?",
+        "variantlar": [
+          "По id, которые он назвал",
+          "Очистив таблицу",
+          "Перезапустив приложение",
+          "Удалив последние десять"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Real vaqt talabi PRD'dan farqli nimani aytadi?",
+        "variantlar": [
+          "Mahsulot kim uchun ekani",
+          "O'zgarish ekranda ko'rinishi",
+          "Bosh raqam sanog'i",
+          "Qaysi muammoni yechishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что, в отличие от PRD, говорит требование реального времени?",
+        "variantlar": [
+          "Для кого продукт",
+          "Как изменение видно на экране",
+          "Подсчёт главной цифры",
+          "Какую проблему решает"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Qayta ulangach ekran bir marta yangilansin. Qaysi bo'lim?",
+        "variantlar": [
+          "Hodisalar",
+          "Ulanish holatlari",
+          "Chekka holatlar",
+          "Nima buzilmasin"
+        ]
+      },
+      "ru": {
+        "savol": "После переподключения экран обновится один раз. Какой раздел?",
+        "variantlar": [
+          "События",
+          "Состояния соединения",
+          "Крайние случаи",
+          "Что не должно сломаться"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Web-trekda «Ulanmagan». Ro'yxat nima bilan yangilanadi?",
+        "variantlar": [
+          "Sahifani yopib-ochib",
+          "Agentga talab yozib",
+          "Backend'ni qayta yoqib",
+          "«Yangilash»ni bosib"
+        ]
+      },
+      "ru": {
+        "savol": "В веб-треке «Не подключено». Чем обновить список?",
+        "variantlar": [
+          "Закрыв и открыв страницу",
+          "Написав агенту требование",
+          "Перезапустив Backend",
+          "Нажав «Обновить»"
+        ]
+      }
+    }
+  ]
+}

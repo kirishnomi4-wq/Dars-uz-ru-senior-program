@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое JSON?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Формат сжатия картинок",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Упорядоченные ключ: значение",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Измерение скорости интернета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вид браузера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем в таблице столбец id?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Уникальный номер каждой записи",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Хранить цвет записи",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Рисовать страницу на экране",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ни для чего — лишний",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где остаются посты, если сервер выключен?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Нигде — пропадают",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В памяти сервера (RAM)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В интернете — «в воздухе»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В базе данных",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое одна строка (row) таблицы?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Название одного столбца",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вся таблица целиком",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Одна полная запись (пост)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Строка с названиями столбцов",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен столбец posts.user_id?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Хранить цвет поста",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ни для чего — лишний",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Полностью удалять пост",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Связать пост с владельцем",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое схема?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Название одной таблицы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Карта связей",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Цветовая палитра приложения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Адрес сервера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "comments.post_id — к какому столбцу подключается?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "users.id",
+        "hint": "Неверно"
+      },
+      {
+        "value": "comments.id",
+        "hint": "Неверно"
+      },
+      {
+        "value": "posts.id",
+        "hint": "Верно!"
+      },
+      {
+        "value": "users.username",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое один столбец (column) таблицы?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Одно поле (например, заголовок)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вся таблица целиком",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Одна полная запись (пост)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Строка с названиями столбцов",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как связаны пользователь и его посты?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Один — один",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Связи нет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Один → много",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Каждый пост — общий",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что из этого — PK (первичный ключ)?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "username",
+        "hint": "Неверно"
+      },
+      {
+        "value": "user_id",
+        "hint": "Неверно"
+      },
+      {
+        "value": "post_id",
+        "hint": "Неверно"
+      },
+      {
+        "value": "id",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем отличаются RAM и база данных?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "RAM стирается, база остаётся",
+        "hint": "Верно!"
+      },
+      {
+        "value": "RAM хранит больше",
+        "hint": "Неверно"
+      },
+      {
+        "value": "База быстрее RAM",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Разницы нет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как понять, куда ведёт столбец FK?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "По цвету столбца",
+        "hint": "Неверно"
+      },
+      {
+        "value": "По названию столбца",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Узнать нельзя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "По месту столбца",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  }
+]

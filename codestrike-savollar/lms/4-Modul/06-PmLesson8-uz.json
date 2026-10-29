@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Har ishga nechta savol beriladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bitta savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkita savol",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uchta savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'rtta savol",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Birinchi savol nimani so'raydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Buni nechta odam so'raydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bu qancha vaqt oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buni kim buyurtma qildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu qanday ko'rinadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikkinchi savol nimani so'raydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ishni kim buyurtma qilganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishni nechta odam so'rashini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish qanday ko'rinishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish qancha vaqt olishini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'p odam so'raydi, kam vaqt oladi — qaysi katak?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "🏔 Rejaga tushadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "🌱 Vaqt bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "🎯 Darrov qilinadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "🗑 Kerak emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'p odam so'raydi, ko'p vaqt oladi — qaysi katak?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "🏔 Rejaga tushadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "🎯 Darrov qilinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "🌱 Vaqt bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "🗑 Kerak emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kam odam so'raydi, ko'p vaqt oladi — qaysi katak?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "🎯 Darrov qilinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "🏔 Rejaga tushadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "🌱 Vaqt bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "🗑 Kerak emas",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kam odam so'raydi, kam vaqt oladi — qaysi katak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "🗑 Kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "🌱 Vaqt bo'lsa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "🎯 Darrov qilinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "🏔 Rejaga tushadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki ish ham bir kunlik. Qaysi biri birinchi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ro'yxatda yuqori turgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qiziqroq bo'lgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'proq odam so'ragani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kechroq so'ralgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ish vaqti o'zgarsa, nima qilinadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Kataklar o'chiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish ro'yxatdan olinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Karta yangi katakka o'tadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ish qancha vaqt olishini kim chamalaydi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Sayt buyurtma qilgan odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishni o'zi qiladigan odam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytga kiradigan mehmon",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklama beradigan do'kon",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Stories'ni kim birinchi o'ylab topgan?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Instagram",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "YouTube",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Snapchat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telegram",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega Stories Instagram'da ko'proq ishlatildi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Instagram'da odam ko'p edi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uni birinchi chiqargan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rangi chiroyliroq edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uni bepul qilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

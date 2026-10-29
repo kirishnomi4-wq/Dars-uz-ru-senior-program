@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki g'oyaga intervyu savollari qanday bo'ladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ikkalasiga bir xil",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har biriga alohida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kuchlisiga ko'proq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har biriga bitta-ikkita",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'garak g'oyasida savollarning nimasi almashadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Beshala savol birdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirgi savoldagi so'z",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi savoldagi bo'lak",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Savollar tartibi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi savol voqeani ochadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "«Xarita bo'lsa, ochasizmi?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«To'garak topish qiyinmi?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Odatda qanday tanlaysiz?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yozda qanday qidirdingiz?»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Hozir nima bilan hal qilyapsiz?» nimani ochadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Qachon yuklab olishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bugun qanday yo'l tutishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qaysi g'oya yoqishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kimdan eshitganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida jamoa qanday yig'iladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Maktabdagi e'lon taxtasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon egasiga qo'ng'iroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram guruhiga yozib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Futbol ilovasi orqali",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida qaysi biri harakat belgisi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Sinovga kun belgiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Ajoyib g'oya» deb maqtadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Ishlatardim» deb aytdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Intervyuda uzoq gapirdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Harakat belgisi savoli qachon beriladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Salomlashgandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi savoldan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchinchi savoldan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo savollaridan keyin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yozuvning harakat belgisi qatoriga nima tushadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ism va sinov kuni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat «ha» yoki «yo'q»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Ishlatardim» degan gapi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "G'oya haqidagi fikringiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb o'smaganda asoschilar nima qilgan?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Tugmalarni o'zgartirgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uy egalariga xat yozgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uylarga o'zlari borgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'proq reklama bergan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb asoschilari uylarda nimani bilgan?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Narxlar balandligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Egalar saytni bilmasligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mehmonlar shovqin qilishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Suratlar yomonligini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sherik auditoriyadan emas. Yozuvi qanday?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Mashq yozuvi bo'ladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Haqiqiy yozuv bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuv olinmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkita yozuv bo'ladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sherik javobini qanday yozasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Uyda, eslab qolganingizcha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha zahoti, u aytganidek",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'z xulosangiz bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta so'z bilan qisqartirib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

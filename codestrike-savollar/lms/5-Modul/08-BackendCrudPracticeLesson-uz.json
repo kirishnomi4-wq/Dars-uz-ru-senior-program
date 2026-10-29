@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Har mashinaga takrorlanmas raqam beradigan ustun qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "model TEXT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "id SERIAL PRIMARY KEY",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "daily_price INTEGER NOT NULL",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "is_rented BOOLEAN",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "cars jadvalini yaratish uchun qaysi SQL to'g'ri?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "SELECT * FROM cars ORDER BY id",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE FROM cars",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "INSERT INTO cars",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "CREATE TABLE cars (...)",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "daily_price ustuni uchun qaysi tur mos (butun son)?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "INTEGER",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "BOOLEAN",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "TEXT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "SERIAL LIST",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bazaga yangi mashina qo'shish uchun qaysi juftlik?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "GET → SELECT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT → UPDATE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "POST → INSERT",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "DELETE → DELETE",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Barcha mashinalarni o'qish uchun qaysi juftlik?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "GET → SELECT",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "POST → INSERT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT → UPDATE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE → DELETE",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bitta mashina narxini nima o'zgartiradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "POST → INSERT INTO cars",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT → UPDATE ... WHERE id",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "GET → SELECT * FROM cars",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE → DELETE FROM cars",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Express ichida bazaga SQL yuborish uchun nima ishlatiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "res.send(...)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "app.listen(3000, callback)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "console.log(...)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "pool.query('...')",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI'ga eng aniq buyruq qaysi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Mashinalarni chiqarib ber",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bazadan biror narsa olib ber",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET /api/cars → SELECT → JSON",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yaxshi backend kodi yozib ber",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "res.json(...) nima qiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Yangi jadval yaratadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni yoqib, port ochadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Natijani JSON qilib qaytaradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faylni diskka yozadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega SQL'da $1, $2 ishlatamiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Matn kod bo'lib qolmasin deb",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "So'rov tezroq ishlasin deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PostgreSQL shuni talab qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustun nomi qisqarsin deb",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "500: column \"price\" does not exist. Sabab?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Baza o'chib qolgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodda price, sxemada daily_price",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internet uzilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postman noto'g'ri sozlangan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Muvaffaqiyatli POST qaysi status qaytaradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "404 Not Found",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "500 Server Error",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "200 OK",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "201 Created",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

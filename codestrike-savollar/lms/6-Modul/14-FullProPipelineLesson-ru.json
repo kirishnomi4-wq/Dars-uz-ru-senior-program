@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужны параллельные ленты (matrix)?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Проверить сразу в разных средах",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Перезагрузить сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Медленно проверить в одной среде",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Спрятать ключи",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что ускоряет ближняя полка (cache)?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Отрисовку страницы в браузере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Интернет сервера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вычисления в тестах",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Этап install",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как безопасно использовать секретный ключ?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Открыто записать в файл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Записать в начало README",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Положить в сейф, звать по имени",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Записать в комментарий коммита",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен тестовый рейс (staging)?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Быстрее доставить груз",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Заранее проверить без пассажиров",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Объединить ленты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранить ключ открыто",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сломанный груз в production. Самое быстрое решение?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Очистить кеш",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Создать ключи заново",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Добавить лент",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вернуть старый груз",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что если в matrix красный только Node 22?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Видно, в какой среде сломалось",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Node 24 тоже покраснеет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Лента полностью выключится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Выйдет средний результат",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как работает ближняя полка?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Каждый раз качает с нуля",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сохраняет пакеты и отдаёт снова",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Запоминает результаты тестов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранит только ключи",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где хранится сейф (secrets)?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Открытым текстом в ci.yml",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В последней строке журнала",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В настройках сейфа платформы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В открытом для всех README",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем отличаются staging и production?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "На staging нет пассажиров",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Staging работает быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Разницы нет, только имя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Production не проверяют",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Когда нужно вернуть старый груз?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Всегда, после каждого push",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Когда новая версия сломалась",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Когда кеш пуст",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Когда все среды зелёные",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Может ли код работать по-разному в разных средах?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Да, только в Windows",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет, всегда одинаково",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет, меняется только дизайн",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, результат может отличаться",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой порядок верный в надёжной ленте?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Сначала production, потом staging",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сначала rollback, потом новый груз",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сначала staging, потом production",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сначала сейф, потом код",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

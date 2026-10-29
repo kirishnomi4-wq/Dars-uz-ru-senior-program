@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CSS nima uchun ishlatiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Sahifani bezash uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tuzilma yaratish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumot saqlash uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'rov yuborish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "h1 { color: red; } da h1 nima deb ataladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Xususiyat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Selektor",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qiymat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Izoh",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "color: red; da red nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Selektor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xususiyat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qiymat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Property",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Matn rangini qaysi xususiyat o'zgartiradi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "background-color",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "margin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "font-size",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "color",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Fon rangini qaysi xususiyat belgilaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "background-color",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "color",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "border-color",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "font-family",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Shrift turini (Arial) qaysi xususiyat tanlaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "font-size",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "font-family",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "font-weight",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "text-align",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Shrift o'lchamini qaysi xususiyat belgilaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "font-family",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "color",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "font-size",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "line-height",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Matnni qalin (bold) qilish uchun qaysi xususiyat?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "font-style",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "text-align",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "font-size",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "font-weight",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kontent bilan chet orasidagi ICHKI bo'shliq qaysi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "padding",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "margin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "border",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "gap",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Element bilan boshqalar orasidagi TASHQI bo'shliq qaysi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "padding",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "margin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "color",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "font-size",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Har CSS satri oxiriga nima qo'yiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Nuqta (.)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vergul (,)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nuqta-vergul (;)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikki nuqta (:)",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Xususiyat va qiymat orasida qaysi belgi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Nuqta-vergul (;)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Teng (=)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vergul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki nuqta (:)",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

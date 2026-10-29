@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-05-v1",
+  "key": "m7-05",
+  "modul": 9,
+  "tartib": 5,
+  "nom": {
+    "uz": "Animatsiya: interfeys javob beradi",
+    "ru": "Анимация: интерфейс отвечает"
+  },
+  "src": "src/7-Modull/AnimationLesson.jsx",
+  "barmoq_izi": "98e35ee1c90f01c66623a7a2a5e465a7",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Animatsiya o'yinchiga nima deydi?",
+        "variantlar": [
+          "Bosildi, o'zgardi, tayyor",
+          "Necha odam borligini",
+          "Sahifa qachondan ochiqligini",
+          "Qaysi rang chiroyli ekanini"
+        ]
+      },
+      "ru": {
+        "savol": "Что анимация говорит игроку?",
+        "variantlar": [
+          "Нажато, изменилось, готово",
+          "Сколько людей на сайте",
+          "Как давно открыта страница",
+          "Какой цвет красивее"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "transform: scale(1.1) nima qiladi?",
+        "variantlar": [
+          "10% ga kichraytiradi",
+          "10% ga kattalashtiradi",
+          "10 piksel o'ngga suradi",
+          "Rangini 10% ochadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает transform: scale(1.1)?",
+        "variantlar": [
+          "Уменьшает на 10%",
+          "Увеличивает на 10%",
+          "Сдвигает на 10 пикселей вправо",
+          "Осветляет цвет на 10%"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Tugma scale(0.9) bilan kichraydi. Ostidagi matn-chi?",
+        "variantlar": [
+          "Tepaga ko'tariladi",
+          "Pastga tushadi",
+          "Joyida qoladi",
+          "U ham kichrayadi"
+        ]
+      },
+      "ru": {
+        "savol": "Кнопка уменьшается через scale(0.9). А текст под ней?",
+        "variantlar": [
+          "Поднимется вверх",
+          "Опустится вниз",
+          "Останется на месте",
+          "Тоже уменьшится"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "transition: transform 0.15s — 0.15s nima?",
+        "variantlar": [
+          "Necha marta kichrayishini",
+          "Qancha kichrayishini",
+          "Qachon bosilishini",
+          "Qancha vaqt davom etishini"
+        ]
+      },
+      "ru": {
+        "savol": "transition: transform 0.15s — что такое 0.15s?",
+        "variantlar": [
+          "Сколько раз уменьшится",
+          "Насколько уменьшится",
+          "Когда нажмут",
+          "Сколько длится изменение"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Bir transition da ikki xususiyat qanday ajratiladi?",
+        "variantlar": [
+          "Vergul bilan",
+          "Nuqta-vergul bilan",
+          "Bo'sh joy bilan",
+          "Ikki nuqta bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Как разделяют два свойства в одном transition?",
+        "variantlar": [
+          "Запятой",
+          "Точкой с запятой",
+          "Пробелом",
+          "Двоеточием"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": ".katak.band qaysi elementni topadi?",
+        "variantlar": [
+          "katak ichidagi band ni",
+          "Ikkala klassi bor elementni",
+          "Faqat band klassi borini",
+          "Hamma katak klassi borini"
+        ]
+      },
+      "ru": {
+        "savol": "Какой элемент находит .katak.band?",
+        "variantlar": [
+          "band внутри katak",
+          "Элемент с обоими классами",
+          "Любой элемент с классом band",
+          "Все элементы с классом katak"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Tugma bosib turilgan payt CSS'da qanday yoziladi?",
+        "variantlar": [
+          ".tugma:hover",
+          ".tugma.band",
+          ".tugma:active",
+          ".tugma .active"
+        ]
+      },
+      "ru": {
+        "savol": "Как в CSS записать момент, когда кнопку зажали?",
+        "variantlar": [
+          ".tugma:hover",
+          ".tugma.band",
+          ".tugma:active",
+          ".tugma .active"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Motion'ni loyihaga qaysi buyruq qo'shadi?",
+        "variantlar": [
+          "npm run motion",
+          "npm motion install",
+          "npx motion",
+          "npm install motion"
+        ]
+      },
+      "ru": {
+        "savol": "Какая команда добавляет Motion в проект?",
+        "variantlar": [
+          "npm run motion",
+          "npm motion install",
+          "npx motion",
+          "npm install motion"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "motion.div dagi initial nimani bildiradi?",
+        "variantlar": [
+          "Chiqishdan oldingi holat",
+          "To'xtaydigan oxirgi holat",
+          "Ketayotgandagi holat",
+          "Bosilgan paytdagi holat"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает initial в motion.div?",
+        "variantlar": [
+          "Состояние до появления",
+          "Последнее состояние остановки",
+          "Состояние при уходе",
+          "Состояние при нажатии"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "O'chirilgan qator silliq ketishi uchun nima kerak?",
+        "variantlar": [
+          "initial da opacity: 0",
+          "AnimatePresence va exit",
+          "animate da y: 0",
+          "CSS'dagi transition"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно, чтобы удалённая строка ушла плавно?",
+        "variantlar": [
+          "opacity: 0 в initial",
+          "AnimatePresence и exit",
+          "y: 0 в animate",
+          "transition в CSS"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Do'kon saytida qaysi harakat ortiqcha?",
+        "variantlar": [
+          "Savatdagi son o'zgarishi",
+          "Bosilgan tugma kichrayishi",
+          "Doim miltillovchi «Aksiya»",
+          "«Qabul qilindi» belgisi"
+        ]
+      },
+      "ru": {
+        "savol": "Какое движение на сайте магазина лишнее?",
+        "variantlar": [
+          "Смена числа в корзине",
+          "Нажатая кнопка уменьшается",
+          "Постоянно мигающая «Акция»",
+          "Надпись «Принято»"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "prefers-reduced-motion nimani bildiradi?",
+        "variantlar": [
+          "Internet sekinligini",
+          "Quvvat kamligini",
+          "Ekran xiraligini",
+          "Harakat kamaytirilganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает prefers-reduced-motion?",
+        "variantlar": [
+          "Что интернет медленный",
+          "Что мало заряда",
+          "Что экран тусклый",
+          "Что движение уменьшено"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Diamond Challenge jamoasida nechta o'quvchi bo'ladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "2 tadan 4 tagacha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "1 tadan 3 tagacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3 tadan 6 tagacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5 tadan 10 tagacha",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Topshirish kuni jamoa a'zolari necha yoshda bo'ladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "12 dan 16 yoshgacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "14 dan 18 yoshgacha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "16 dan 21 yoshgacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "18 dan 25 yoshgacha",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Diamond Challenge'da maslahatchi kamida necha yoshda?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "16 yoshdan katta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "18 yoshdan katta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "21 yoshdan katta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "25 yoshdan katta",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Diamond Challenge'ga ariza qaysi tilda yoziladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "O'zbek tilida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fransuz tilida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Istalgan tilda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ingliz tilida",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ariza bergan har jamoa finalga chiqadimi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Yo'q, finalistlar tanlanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, ariza bergan hamma",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, onlayn qatnashganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, faqat Amerikadan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Y Combinator sahifasida qaysi yosh chegarasi yozilgan?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "14 yoshdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozilmagan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "16 yoshdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "21 yoshdan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Y Combinator asoschilardan nimani kutadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Faqat ta'tilda ishlashni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat onlayn ishlashni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'liq vaqt ishlashni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Haftada bir kun kelishni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Y Combinator dasturi qayerda o'tadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Toshkent shahrida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Istalgan shaharda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat internetda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "San-Fransiskoda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Early Decision kim uchun?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "O'qishni tugatmoqchi talabalar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "14–18 yoshli o'quvchilar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Diamond Challenge finalistlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishlayotgan kattalar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Konsept qaysi uch qismdan iborat?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Bozor, Raqamlar va Jamoa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo, kim uchun, yechim",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yosh, til va maslahatchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muddat, mamlakat va video",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Konseptdagi «Kim uchun» qatoriga nima yoziladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Guruhdagi odamlar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulot texnologiyasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotga muhtoj odamlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jamoa a'zolari ismlari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinfdosh aytgan gap rasmiy sahifada yo'q. U nima?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Rasmiy shart",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ariza qismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muhim qoida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat taxmin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

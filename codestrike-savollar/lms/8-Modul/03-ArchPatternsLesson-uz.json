@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "MVC'da foydalanuvchi ko'radigan qism qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "View — ko'rinish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Controller — yo'naltiruvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Model — ma'lumot va qoidalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qaysi qism mos emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "MVC'da ma'lumot va qoidalar bilan qaysi qism ishlaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "View",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Model",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Controller",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qaysi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "So'rovni qabul qilib, yo'naltiradigan qism qaysi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "View",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Model",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Controller",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Hamma asosiy qism bitta ilovada» — bu qaysi usul?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Mikroservis",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "MVC",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Frontend",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Monolit",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Alohida ishlaydigan bir nechta xizmat — bu nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Mikroservis",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Monolit",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "MVC",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Controller",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kichik yangi loyiha uchun ko'pincha nima qulay?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Mikroservis",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Monolit",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkalasi birga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Usul kerak emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "MVC'da so'rovni birinchi bo'lib kim qabul qiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Model",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "View",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Controller",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Band xizmatga yana bir nusxa qo'shish nima deyiladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Qayta yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Joylashtirish (deploy)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xatoni tuzatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Miqyoslash (scaling)",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pattern nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Sinab ko'rilgan yechim usuli",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi dasturlash tili",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database'ning bir turi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tayyor nusxalanadigan kod",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "PostgreSQL MVC'da nima qiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "So'rovni yo'naltiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotni saqlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sahifani ko'rsatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qoidalarni tekshiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mikroservisning asosiy foydasi nimada?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Soddalik va arzonlik",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasi bitta katta faylda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qismlarni alohida kuchaytirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod yozish shart emasligi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nest'dagi controller MVC'da qaysi qism?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "View — ko'rinish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Model — ma'lumot va qoidalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database — ma'lumot saqlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Controller — yo'naltiruvchi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

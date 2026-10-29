@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое React на самом деле?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Новый язык программирования",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Библиотека JavaScript",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Название браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вид операционной системы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто и когда создал React?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Google, 2020 год",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Apple, 2010 год",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Microsoft, 2015 год",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Facebook, 2013 год",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое компонент?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Тип файлов картинок",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Повышает скорость интернета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переиспользуемая часть",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Внутренняя настройка браузера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Главная задача Virtual DOM?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Находит разницу и обновляет",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ускоряет интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Автоматически пишет код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Красит сайт",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На каком языке написан React?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Python",
+        "hint": "Неверно"
+      },
+      {
+        "value": "JavaScript",
+        "hint": "Верно!"
+      },
+      {
+        "value": "HTML va CSS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "C++",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как с React делают мобильное приложение?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Через React DOM",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через React CSS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через React Web",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через React Native",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Главная польза компонента?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Сильно замедляет код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Быстрее подключает к интернету",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Напиши раз — используй много",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Рисует картинки на экране",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что происходит на старом сайте при лайке?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Перезагружается вся страница",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вообще не отвечает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт полностью выключается",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Меняется только цвет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое Virtual DOM?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Программа для кода",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Лёгкая копия страницы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Палитра цветов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Интернет-провайдер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где находится Virtual DOM?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "На экране, у всех на виду",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На сервере, далеко",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В интернет-облаке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В памяти, невидим",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется использование одного компонента много раз?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Перезагрузка",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Полное удаление",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переиспользование",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Перевод на другой язык",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как вызывается компонент в JSX?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "<SkinCard />",
+        "hint": "Верно!"
+      },
+      {
+        "value": "call SkinCard",
+        "hint": "Неверно"
+      },
+      {
+        "value": "SkinCard()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "{SkinCard}",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  }
+]

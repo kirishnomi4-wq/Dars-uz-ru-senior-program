@@ -1,0 +1,278 @@
+{
+  "lessonId": "html-practice-portfolio-v2",
+  "key": "m1-08",
+  "modul": 2,
+  "tartib": 10,
+  "nom": {
+    "uz": "HTML Praktika — Portfolio sayt",
+    "ru": "HTML практика — портфолио"
+  },
+  "src": "src/1-Modull/HtmlPractice.jsx",
+  "barmoq_izi": "25167f23386b34fe9d9ae0799f8c5fb0",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 3,
+      "uz": {
+        "savol": "Yopuvchi teg nomidan oldin qaysi belgi turadi?",
+        "variantlar": [
+          "\\",
+          "!",
+          "#",
+          "/"
+        ]
+      },
+      "ru": {
+        "savol": "Какой символ стоит перед именем закрывающего тега?",
+        "variantlar": [
+          "\\",
+          "!",
+          "#",
+          "/"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Sarlavha teglari orasida eng KICHIGI qaysi?",
+        "variantlar": [
+          "h1",
+          "h3",
+          "h6",
+          "p"
+        ]
+      },
+      "ru": {
+        "savol": "Какой из тегов заголовков — самый МАЛЕНЬКИЙ?",
+        "variantlar": [
+          "h1",
+          "h3",
+          "h6",
+          "p"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Loyihalar ro'yxatini (nuqtali) qaysi teg boshlaydi?",
+        "variantlar": [
+          "ul",
+          "ol",
+          "li",
+          "a"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег начинает список проектов (с точками)?",
+        "variantlar": [
+          "ul",
+          "ol",
+          "li",
+          "a"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Loyihalar ro'yxatida har bir loyiha qaysi tegga o'raladi?",
+        "variantlar": [
+          "ul",
+          "li",
+          "ol",
+          "dd"
+        ]
+      },
+      "ru": {
+        "savol": "В какой тег оборачивается каждый проект в списке?",
+        "variantlar": [
+          "ul",
+          "li",
+          "ol",
+          "dd"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Aloqa linkida manzil qaysi atributga yoziladi?",
+        "variantlar": [
+          "src",
+          "link",
+          "href",
+          "url"
+        ]
+      },
+      "ru": {
+        "savol": "В какой атрибут пишется адрес в контактной ссылке?",
+        "variantlar": [
+          "src",
+          "link",
+          "href",
+          "url"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Sahifa title ichidagi matn qayerda ko'rinadi?",
+        "variantlar": [
+          "Sahifaning o'rtasida",
+          "Brauzer tabchasida",
+          "Tugmaning ustida",
+          "Hech qayerda ko'rinmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Где виден текст из title страницы?",
+        "variantlar": [
+          "В центре страницы",
+          "На вкладке браузера",
+          "На кнопке",
+          "Нигде не виден"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "title kabi ko'rinmas sozlamalar qayerga yoziladi?",
+        "variantlar": [
+          "body",
+          "p",
+          "head",
+          "h1"
+        ]
+      },
+      "ru": {
+        "savol": "Куда пишутся невидимые настройки, такие как title?",
+        "variantlar": [
+          "body",
+          "p",
+          "head",
+          "h1"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "Ismingizni QALIN (bold) qilish uchun qaysi teg?",
+        "variantlar": [
+          "strong",
+          "small",
+          "span",
+          "mark"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег сделает ваше имя ЖИРНЫМ (bold)?",
+        "variantlar": [
+          "strong",
+          "small",
+          "span",
+          "mark"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "<!DOCTYPE html> nimani bildiradi?",
+        "variantlar": [
+          "HTML faylning nomini",
+          "Sahifa tili o'zbekcha ekanini",
+          "Sahifa tugaganini",
+          "HTML5 hujjat ekanini"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает <!DOCTYPE html>?",
+        "variantlar": [
+          "Имя HTML-файла",
+          "Что язык страницы узбекский",
+          "Конец страницы",
+          "Что это документ HTML5"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Skeletning to'g'ri tartibi qaysi?",
+        "variantlar": [
+          "head ichida html, body",
+          "body ichida head, html",
+          "title ichida head",
+          "html ichida head, body"
+        ]
+      },
+      "ru": {
+        "savol": "Какой порядок скелета верный?",
+        "variantlar": [
+          "html и body внутри head",
+          "head и html внутри body",
+          "head внутри title",
+          "head и body внутри html"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Portfolio kodini o'qib, saytga aylantiradigan dastur qaysi?",
+        "variantlar": [
+          "Server",
+          "Brauzer",
+          "Word",
+          "Fayl menejeri"
+        ]
+      },
+      "ru": {
+        "savol": "Какая программа читает код портфолио и превращает его в сайт?",
+        "variantlar": [
+          "Сервер",
+          "Браузер",
+          "Word",
+          "Файловый менеджер"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Yo'nalishingizni QIYA (kursiv) qilish uchun qaysi teg?",
+        "variantlar": [
+          "em",
+          "ul",
+          "a",
+          "h1"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег сделает ваше направление НАКЛОННЫМ (курсив)?",
+        "variantlar": [
+          "em",
+          "ul",
+          "a",
+          "h1"
+        ]
+      }
+    }
+  ]
+}

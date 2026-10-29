@@ -1,0 +1,278 @@
+{
+  "lessonId": "agent-arch-06-04-v18",
+  "key": "m6-04",
+  "modul": 8,
+  "tartib": 4,
+  "nom": {
+    "uz": "AI-agent nima",
+    "ru": "Что такое AI-агент"
+  },
+  "src": "src/6-Modull/AgentArchitectureLesson.jsx",
+  "barmoq_izi": "ff403185ee625ed84be31b1eadf73e30",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Oddiy AI va agentning asosiy farqi nima?",
+        "variantlar": [
+          "Agent ishni bajaradi",
+          "Agent chiroyliroq gapiradi",
+          "Oddiy AI doim tezroq",
+          "Hech qanday farqi yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "В чём главное отличие обычного AI от агента?",
+        "variantlar": [
+          "Агент выполняет работу",
+          "Агент говорит красивее",
+          "Обычный AI всегда быстрее",
+          "Разницы нет"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Agent sikli qanday nomlanadi?",
+        "variantlar": [
+          "Kirish → ishlov → chiqish",
+          "Boshlash → kutish → tugatish",
+          "Idrok → qaror → amal",
+          "Savol → javob → to'xtash"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется цикл агента?",
+        "variantlar": [
+          "Ввод → обработка → вывод",
+          "Старт → ожидание → финиш",
+          "Восприятие → решение → действие",
+          "Вопрос → ответ → остановка"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Tool nima?",
+        "variantlar": [
+          "AI modelining nomi",
+          "Agent chaqiradigan funksiya",
+          "Database'ning bir turi",
+          "Frontend sahifasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое tool?",
+        "variantlar": [
+          "Название AI-модели",
+          "Функция, которую вызывает агент",
+          "Вид Database",
+          "Страница Frontend"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "Agent buyurtma holatini o'qishi — qaysi tool?",
+        "variantlar": [
+          "Database tool'i",
+          "API tool'i",
+          "Xabar tool'i",
+          "Tool kerak emas"
+        ]
+      },
+      "ru": {
+        "savol": "Агент читает статус заказа — какой это tool?",
+        "variantlar": [
+          "Tool Database",
+          "Tool API",
+          "Tool сообщений",
+          "Tool не нужен"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "Bir martalik ish (masalan, tarjima) uchun nima yetadi?",
+        "variantlar": [
+          "Albatta agent kerak",
+          "Hech qaysi to'g'ri emas",
+          "AI va agent birga",
+          "Oddiy AI"
+        ]
+      },
+      "ru": {
+        "savol": "Чего хватит для разовой задачи (например, перевода)?",
+        "variantlar": [
+          "Обязательно нужен агент",
+          "Ничего не подходит",
+          "AI и агент вместе",
+          "Обычный AI"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Bir necha qadamli, tool kerak ishga nima mos?",
+        "variantlar": [
+          "Bitta javobli oddiy AI",
+          "Faqat Database",
+          "Faqat frontend qismi",
+          "AI-agent"
+        ]
+      },
+      "ru": {
+        "savol": "Что подходит для многошаговой задачи с tool?",
+        "variantlar": [
+          "Обычный AI с одним ответом",
+          "Только Database",
+          "Только frontend",
+          "AI-агент"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Bizning tizimda agent qayerda ishlaydi?",
+        "variantlar": [
+          "Frontendda",
+          "Backend ichida",
+          "Database ichida",
+          "Tizimdan tashqarida"
+        ]
+      },
+      "ru": {
+        "savol": "Где работает агент в нашей системе?",
+        "variantlar": [
+          "Во frontend",
+          "Внутри backend",
+          "Внутри Database",
+          "Вне системы"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Agent tizimga qanday amal qiladi?",
+        "variantlar": [
+          "O'z-o'zidan, tool'siz",
+          "Siz bergan tool'lar orqali",
+          "Faqat javob yozib",
+          "Ekranni o'zi chizib"
+        ]
+      },
+      "ru": {
+        "savol": "Как агент действует в системе?",
+        "variantlar": [
+          "Сам по себе, без tool",
+          "Через выданные вами tool",
+          "Только пишет ответ",
+          "Сам рисует экран"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega agentga chegara kerak?",
+        "variantlar": [
+          "U real amal qiladi",
+          "U juda sekin ishlaydi",
+          "U ko'p xotira egallaydi",
+          "Chegara kerak emas"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем агенту ограничения?",
+        "variantlar": [
+          "Он совершает реальные действия",
+          "Он работает очень медленно",
+          "Он занимает много памяти",
+          "Ограничения не нужны"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Agentga ketma-ket qadamlar imkonini nima beradi?",
+        "variantlar": [
+          "Katta xotira",
+          "Chiroyli interfeys",
+          "Agent sikli",
+          "Tez internet"
+        ]
+      },
+      "ru": {
+        "savol": "Что позволяет агенту делать шаги подряд?",
+        "variantlar": [
+          "Большая память",
+          "Красивый интерфейс",
+          "Цикл агента",
+          "Быстрый интернет"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Har vazifaga agent ishlatish — bu nima?",
+        "variantlar": [
+          "Doim eng to'g'ri yechim",
+          "Vaqtni tejash usuli",
+          "Tizimni tezlashtirish",
+          "Ortiqcha murakkablik"
+        ]
+      },
+      "ru": {
+        "savol": "Агент для каждой задачи — это что?",
+        "variantlar": [
+          "Всегда лучшее решение",
+          "Способ сэкономить время",
+          "Ускорение системы",
+          "Лишняя сложность"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Agent har amaldan keyin nima qiladi?",
+        "variantlar": [
+          "Darhol to'xtaydi",
+          "Foydalanuvchini kutadi",
+          "Natijani tekshiradi",
+          "Siklni o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает агент после каждого действия?",
+        "variantlar": [
+          "Сразу останавливается",
+          "Ждёт пользователя",
+          "Проверяет результат",
+          "Выключает цикл"
+        ]
+      }
+    }
+  ]
+}

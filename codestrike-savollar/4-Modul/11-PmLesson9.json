@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m3d10-v1",
+  "key": "m3-10",
+  "modul": 4,
+  "tartib": 11,
+  "nom": {
+    "uz": "Qachon «tayyor» deb ayta olamiz?",
+    "ru": "Когда можно сказать «готово»?"
+  },
+  "src": "src/3-Modull/PmLesson9.jsx",
+  "barmoq_izi": "8469c2d47953c41550a4effc707b01dd",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "«Ishlaydi» nimani anglatadi?",
+        "variantlar": [
+          "Bitta yo'l tekshirilgan",
+          "Hamma shart bajarilgan",
+          "Ish qabul qilindi",
+          "Kodda birorta xato qolmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит «работает»?",
+        "variantlar": [
+          "Проверен один путь",
+          "Выполнены все условия",
+          "Работа принята",
+          "В коде не осталось ни одной ошибки"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Tayyor» nimani anglatadi?",
+        "variantlar": [
+          "Kod xatosiz ishlayapti",
+          "Hamma shart bajarilgan",
+          "AI «tayyor» dedi",
+          "Sayt chiroyli ko'rinadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит «готово»?",
+        "variantlar": [
+          "Код работает без ошибок",
+          "Все условия выполнены",
+          "AI сказал «готово»",
+          "Сайт выглядит красиво"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Qabul shartlari qachon yoziladi?",
+        "variantlar": [
+          "Ish tugagandan keyin",
+          "Sayt ochilgandan keyin",
+          "AI'ga yozishdan oldin",
+          "AI «aniqroq yozing» deganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда пишут условия приёмки?",
+        "variantlar": [
+          "После окончания работы",
+          "После запуска сайта",
+          "До того, как написать AI",
+          "Когда AI скажет «напишите точнее»"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Bo'sh buyurtma ham ketdi. Shart bajarildimi?",
+        "variantlar": [
+          "Ha, tugma ishladi",
+          "Yo'q, bo'sh o'tmasligi kerak",
+          "Ha, shart to'lasi haqida",
+          "Yo'q, buyurtma ketmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Ушёл и пустой заказ. Условие выполнено?",
+        "variantlar": [
+          "Да, кнопка сработала",
+          "Нет, пустой не должен проходить",
+          "Да, условие — про полный",
+          "Нет, заказ не ушёл"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Tugma tez ikki marta bosilsa, nechta buyurtma ketishi kerak?",
+        "variantlar": [
+          "Bitta",
+          "Ikkita",
+          "Uchta",
+          "Hech biri"
+        ]
+      },
+      "ru": {
+        "savol": "Если кнопку быстро нажали дважды, сколько заказов должно уйти?",
+        "variantlar": [
+          "Один",
+          "Два",
+          "Три",
+          "Ни одного"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "4 shartdan faqat 1 tasi bajarildi. Ish qabul qilinadimi?",
+        "variantlar": [
+          "Ha, muhimi bajarildi",
+          "Ha, qolgani keyin",
+          "Yo'q, hammasi bajarilsin",
+          "Yo'q, shart yozilmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Из 4 условий выполнено только 1. Работу примут?",
+        "variantlar": [
+          "Да, главное выполнено",
+          "Да, остальное потом",
+          "Нет, нужно выполнить все",
+          "Нет, условия не написаны"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "«Sayt chiroyli bo'lsin» — yaxshi shartmi?",
+        "variantlar": [
+          "Ha, qisqa va aniq",
+          "Yo'q, har kim har xil ko'radi",
+          "Ha, bosib tekshirsa bo'ladi",
+          "Yo'q, juda uzun yozilgan"
+        ]
+      },
+      "ru": {
+        "savol": "«Пусть сайт будет красивым» — хорошее условие?",
+        "variantlar": [
+          "Да, коротко и ясно",
+          "Нет, каждый видит по-своему",
+          "Да, можно проверить нажатием",
+          "Нет, слишком длинно"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Tekshirib bo'ladigan shartda nima bo'ladi?",
+        "variantlar": [
+          "Chiroyli va yoqimli so'zlar",
+          "Uzun va batafsil izoh",
+          "Yozgan odamning ismi va sanasi",
+          "Aniq harakat yoki son"
+        ]
+      },
+      "ru": {
+        "savol": "Что есть в условии, которое можно проверить?",
+        "variantlar": [
+          "Красивые и приятные слова",
+          "Длинное подробное пояснение",
+          "Имя автора и дата",
+          "Конкретное действие или число"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Cyberpunk 2077 o'yini bilan nima bo'ldi?",
+        "variantlar": [
+          "Kompaniyasi yopildi",
+          "Qaytadan chiqarildi",
+          "Do'kondan olib tashlandi",
+          "Nomi o'zgartirildi"
+        ]
+      },
+      "ru": {
+        "savol": "Что случилось с игрой Cyberpunk 2077?",
+        "variantlar": [
+          "Компания закрылась",
+          "Её выпустили заново",
+          "Её убрали из магазина",
+          "Её переименовали"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Tutilmagan nosozlik eng ko'p nimani yo'qotdi?",
+        "variantlar": [
+          "Boshqa o'yinlar sotuvini",
+          "Reklama pulini",
+          "Xaridorlar pulini",
+          "Odamlar ishonchini"
+        ]
+      },
+      "ru": {
+        "savol": "Что больше всего потеряла непойманная неполадка?",
+        "variantlar": [
+          "Продажи других игр",
+          "Деньги на рекламу",
+          "Деньги покупателей",
+          "Доверие людей"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Yozilgan shartlarni qayerga qo'shasiz?",
+        "variantlar": [
+          "AI'ga yuboradigan promptga",
+          "Saytning bosh sahifasiga",
+          "AI yozib bergan kodning ichiga",
+          "Hech qayerga, o'zimda qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "Куда вы добавляете написанные условия?",
+        "variantlar": [
+          "В промпт, который отправляю AI",
+          "На главную страницу сайта",
+          "Внутрь кода, который написал AI",
+          "Никуда, оставлю у себя"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Kod shart bajarilganini qanday aytadi?",
+        "variantlar": [
+          "Ekranga rasm chizib beradi",
+          "Sahifani yopib qo'yadi",
+          "Telefoningizga xabar yuboradi",
+          "true yoki false qaytaradi"
+        ]
+      },
+      "ru": {
+        "savol": "Как код сообщает, что условие выполнено?",
+        "variantlar": [
+          "Рисует картинку на экране",
+          "Закрывает страницу",
+          "Отправляет сообщение на ваш телефон",
+          "Возвращает true или false"
+        ]
+      }
+    }
+  ]
+}

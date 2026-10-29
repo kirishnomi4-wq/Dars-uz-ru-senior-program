@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Часть кода «пришло событие — сделай это»?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Handler",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Токен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Webhook",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Файл .env",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен токен?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Задаёт цвет бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переводит сообщения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подтверждает, что бот ваш",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Хранит пароль клиента",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Пользователь отправил боту /start. Что это?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Это ответ бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Это событие, пришедшее боту",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Это токен бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Это список handler-ов",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Нет ни подходящего handler, ни fallback. Что сделает бот?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Выдаст ошибку и выключится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Напишет случайный ответ",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подключится к другому боту",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Промолчит, не ответит",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто выдаёт токен бота?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Администратор Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пользователь придумывает сам",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@BotFather",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Bot API создаёт сам",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Токен остался в открытом коде — в чём опасность?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Чужой пишет от имени бота",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Бот начнёт работать быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никакой опасности",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Telegram удалит бота",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Токен раскрыт — каков первый шаг?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Удалить через /start",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переустановить Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Новый бот через /newbot",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отменить через /revoke",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где обычно хранят токен?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Прямо в файле bot.js",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В файле .env",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В настройках профиля Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В истории поиска браузера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему бот отвечает даже в 03:00?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Ночью отвечает человек",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Программа ждёт событие",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Telegram отвечает сам",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Включается в случайное время",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Трое клиентов пишут сразу. Что сделает бот?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Ответит только первому",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Склеит сообщения в одно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Заставит ждать до утра",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ответит каждому отдельно",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Ни один handler не подошёл. Что поможет?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Fallback handler",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Перезапустить бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Закрыть Bot API",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Получить новый токен",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Три главных понятия сегодняшнего урока?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Цвет, шрифт и дизайн",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Экран, мышь, клавиатура",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Токен, handler и цикл",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Фото, видео и звук",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

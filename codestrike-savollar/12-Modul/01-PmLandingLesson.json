@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m10d1-v1",
+  "key": "m10-01",
+  "modul": 12,
+  "tartib": 1,
+  "nom": {
+    "uz": "Mahsulotingizni bir sahifada qanday tanishtirasiz?",
+    "ru": "Как представить продукт на одной странице?"
+  },
+  "src": "src/10-Modull/PmLandingLesson.jsx",
+  "barmoq_izi": "8b95c9fec0b1e8e03753edae6bcfe105",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Sarlavhada faqat nom bor. Nima yetishmaydi?",
+        "variantlar": [
+          "Kim uchun va nima foyda",
+          "Rang va shrift kattaligi",
+          "Narxi va chiqqan sanasi",
+          "Logotip va nomning rangi"
+        ]
+      },
+      "ru": {
+        "savol": "В заголовке только название. Чего не хватает?",
+        "variantlar": [
+          "Для кого и какая польза",
+          "Цвета и размера шрифта",
+          "Цены и даты выхода",
+          "Логотипа и цвета названия"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Lendingda «Maydon Jamoa» nomi qayerda turadi?",
+        "variantlar": [
+          "Sarlavha o'rnida, katta",
+          "Tepada, kichik yozuv",
+          "Tugma ichida, qalin",
+          "Eng pastda, xira"
+        ]
+      },
+      "ru": {
+        "savol": "Где на лендинге стоит название «Maydon Jamoa»?",
+        "variantlar": [
+          "На месте заголовка, крупно",
+          "Наверху, мелкой надписью",
+          "Внутри кнопки, жирно",
+          "В самом низу, бледно"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Kutubxona sayti kitob bor-yo'qligini aytadi. Foyda qaysi?",
+        "variantlar": [
+          "Ro'yxat saqlanadi",
+          "Nomini qidirasiz",
+          "Bekorga bormaysiz",
+          "Ro'yxat yangilanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Сайт библиотеки показывает, есть ли книга. Где польза?",
+        "variantlar": [
+          "Список хранится",
+          "Ищете по названию",
+          "Не ходите зря",
+          "Список обновляется"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor sahifasiga «eslatma» nega yozilmadi?",
+        "variantlar": [
+          "O'yinchilarga yoqmagan",
+          "Sahifada joy qolmagan",
+          "Eslatma juda uzun",
+          "Ilovada hali qurilmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему на странице Ментора нет «напоминания»?",
+        "variantlar": [
+          "Не понравилось игрокам",
+          "На странице нет места",
+          "Напоминание слишком длинное",
+          "В приложении его ещё нет"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "«Qanday qo'shilaman» bo'limida nima yozilgan?",
+        "variantlar": [
+          "Yuklab olish linki",
+          "Ism va telefon formasi",
+          "O'yinlar va «8 / 10» soni",
+          "Link hozircha yo'qligi"
+        ]
+      },
+      "ru": {
+        "savol": "Что написано в разделе «Как присоединиться»?",
+        "variantlar": [
+          "Ссылка на скачивание",
+          "Форма для имени и телефона",
+          "Игры и число «8 / 10»",
+          "Что ссылки пока нет"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Sahifada uchta tugma bor. Qoidaga ko'ra nima qilasiz?",
+        "variantlar": [
+          "Bittasini qoldirasiz",
+          "Bir qatorga terasiz",
+          "Yana bitta qo'shasiz",
+          "Kichikroq qilasiz"
+        ]
+      },
+      "ru": {
+        "savol": "На странице три кнопки. Что делаете по правилу?",
+        "variantlar": [
+          "Оставляете одну",
+          "Ставите в один ряд",
+          "Добавляете ещё одну",
+          "Делаете поменьше"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Asoschilar Burbn'da qaysi funksiyalarni qoldirgan?",
+        "variantlar": [
+          "Eng qiyinlarini",
+          "Odamlarga yoqqanlarini",
+          "O'zlariga yoqqanlarini",
+          "Oxirgilarini"
+        ]
+      },
+      "ru": {
+        "savol": "Какие функции основатели оставили в Burbn?",
+        "variantlar": [
+          "Самые сложные",
+          "Те, что понравились людям",
+          "Те, что понравились им самим",
+          "Последние"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Instagram voqeasidagi «25 000» soni nima?",
+        "variantlar": [
+          "Kunlik eng kam natija",
+          "Har lending maqsadi",
+          "Faqat shu voqea soni",
+          "Sarlavhadagi son"
+        ]
+      },
+      "ru": {
+        "savol": "Что за число «25 000» в истории Instagram?",
+        "variantlar": [
+          "Минимальный результат за день",
+          "Цель каждого лендинга",
+          "Просто число этой истории",
+          "Число для заголовка"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Sahifaga ism va telefon formasi qo'yasizmi?",
+        "variantlar": [
+          "Ha, asosiy tugma ostiga",
+          "Ha, faqat telefon uchun",
+          "Yo'q, ma'lumot yig'ilmaydi",
+          "Ha, faqat mobil trekda"
+        ]
+      },
+      "ru": {
+        "savol": "Ставите на страницу форму для имени и телефона?",
+        "variantlar": [
+          "Да, под главной кнопкой",
+          "Да, только для телефона",
+          "Нет, данные не собираются",
+          "Да, только в мобильном треке"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Sherik «Kim uchun?»ga javob bermadi. Nimani tuzatasiz?",
+        "variantlar": [
+          "Uchta foyda qatorini",
+          "Tugmaning yozuvini",
+          "Sahifa manzilini",
+          "Sahifa sarlavhasini"
+        ]
+      },
+      "ru": {
+        "savol": "Партнёр не ответил на «Для кого?». Что исправите?",
+        "variantlar": [
+          "Три строки пользы",
+          "Надпись на кнопке",
+          "Адрес страницы",
+          "Заголовок страницы"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Agent yig'gan sahifa matnini qanday tekshirasiz?",
+        "variantlar": [
+          "Yozganingizga solishtirib",
+          "Agent hisobotini o'qib",
+          "Brauzerda ochilganiga qarab",
+          "Fayllarni sanab"
+        ]
+      },
+      "ru": {
+        "savol": "Как проверите текст страницы, собранной агентом?",
+        "variantlar": [
+          "Сравнив со своим текстом",
+          "Прочитав отчёт агента",
+          "По тому, что открылась в браузере",
+          "Посчитав файлы"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Tugma necha marta bosilganini qayerdan bilasiz?",
+        "variantlar": [
+          "Netlify sozlamalaridan",
+          "Umami hodisalaridan",
+          "GitHub commitlaridan",
+          "Brauzer tarixidan"
+        ]
+      },
+      "ru": {
+        "savol": "Где узнаете, сколько раз нажали кнопку?",
+        "variantlar": [
+          "Из настроек Netlify",
+          "Из событий в Umami",
+          "Из коммитов в GitHub",
+          "Из истории браузера"
+        ]
+      }
+    }
+  ]
+}

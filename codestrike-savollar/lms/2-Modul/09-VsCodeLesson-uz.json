@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dasturchilar eng ko'p ishlatadigan kod redaktori qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Word",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "VS Code",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Excel",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PowerPoint",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "VS Code qaysi saytdan yuklab olinadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "code.visualstudio.com",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "vscode-download.net",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "microsoft-code.uz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "get-vscode.org",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Fayllar ro'yxati turadigan chap panel nomi nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Terminal",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Extensions",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Explorer",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Status bar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Live Server nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Rasm tahrirlovchi dastur",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod saqlanadigan xotira",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shrift o'rnatuvchi dastur",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani jonli ochuvchi dastur",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Go Live» tugmasi qayerda turadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Yuqoridagi menu qatorida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pastdagi ko'k status barda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Explorer paneli ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'ng tugma menusida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "127.0.0.1 manzili nimani bildiradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Internetdagi katta serverni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Google'ning bosh sahifasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'z kompyuteringizni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uydagi Wi-Fi routerni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "127.0.0.1:5500 dagi 5500 raqami nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Port, ya'ni eshik raqami",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sahifadagi belgilar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Koddagi qatorlar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kirish uchun parol raqami",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'sh index.html'da tayyor HTML shablonni nima chiqaradi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "? + Enter",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "# + Space",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "* + Shift",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "! + Tab",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ctrl + S birikmasi nima qiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Faylni saqlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faylni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi fayl ochadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni nusxalaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi qo'shimcha dastur (extension) qayerdan o'rnatiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Explorer panelidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Terminal panelidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Status bar'dagi tugmadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Extensions panelidan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "style.css qaysi teg bilan ulanadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "<style src=\"style.css\">",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<link rel=\"stylesheet\">",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<css href=\"style.css\">",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<script src=\"style.css\">",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Loyiha papkasi VS Code'da qanday ochiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Edit → Copy Folder",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "View → Show Folder",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "File → Open Folder",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Help → Load Folder",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

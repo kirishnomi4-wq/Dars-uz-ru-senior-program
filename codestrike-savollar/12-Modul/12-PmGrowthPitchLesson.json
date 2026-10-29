@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m10d12-v2",
+  "key": "m10-12",
+  "modul": 12,
+  "tartib": 12,
+  "nom": {
+    "uz": "Raqamlaringiz zalni ishontiradimi?",
+    "ru": "Убедят ли ваши цифры зал?"
+  },
+  "src": "src/10-Modull/PmGrowthPitchLesson.jsx",
+  "barmoq_izi": "cb77255f88c6e74e5fb5a377d25c9bde",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor misolida Muammo bo'lagiga qancha vaqt ajratilgan?",
+        "variantlar": [
+          "Taxminan 40 soniya",
+          "Taxminan 2 daqiqa",
+          "Taxminan 3 daqiqa",
+          "Taxminan 10 soniya"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько времени в примере Ментора отведено на часть «Проблема»?",
+        "variantlar": [
+          "Около 40 секунд",
+          "Около 2 минут",
+          "Около 3 минут",
+          "Около 10 секунд"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Raqamlarda grafik va bosh raqam yonida yana nima bor?",
+        "variantlar": [
+          "Boshqa ilova bilan farq",
+          "Sonlar haqida halol gap",
+          "Hamma kunlar jadvali",
+          "Sinfdoshlar ismlari"
+        ]
+      },
+      "ru": {
+        "savol": "Что ещё есть в «Цифрах» рядом с графиком и главным числом?",
+        "variantlar": [
+          "Сравнение с другим приложением",
+          "Честная фраза о числах",
+          "Таблица всех дней",
+          "Имена одноклассников"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Grafikda «ishga tushirish kuni» qayerda turadi?",
+        "variantlar": [
+          "Birinchi ustun ustida",
+          "Sarlavha o'rnida",
+          "Birinchi ustun ostida",
+          "Eng baland ustun ichida"
+        ]
+      },
+      "ru": {
+        "savol": "Где на графике стоит «день запуска»?",
+        "variantlar": [
+          "Над первым столбиком",
+          "На месте заголовка",
+          "Под первым столбиком",
+          "Внутри самого высокого столбика"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "O'sish grafigining sarlavhasiga nima yoziladi?",
+        "variantlar": [
+          "Mahsulot nomi va logotipi",
+          "Pitch aytiladigan sana",
+          "Grafikdagi eng katta son",
+          "Grafikda nima sanalgani"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в заголовке графика роста?",
+        "variantlar": [
+          "Название и логотип продукта",
+          "Дату, когда расскажут питч",
+          "Самое большое число на графике",
+          "Что посчитано на графике"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "Grafikdan bir hafta tushib qolsa, nima buziladi?",
+        "variantlar": [
+          "Noldan boshlanmay qoladi",
+          "Sarlavha o'chib qoladi",
+          "Sonlar kattalashadi",
+          "Oraliqlar teng bo'lmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что сломается, если на графике пропустить неделю?",
+        "variantlar": [
+          "Перестанет начинаться с нуля",
+          "Пропадёт заголовок",
+          "Числа станут больше",
+          "Промежутки станут неравными"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega o'zgargan bo'lakni qayta aytasiz?",
+        "variantlar": [
+          "Zal savoliga javob bo'ldimi",
+          "Dars vaqti ortgani uchun",
+          "Sherik xohlagani uchun",
+          "Taymer shunday sozlangan"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем снова рассказываете изменённую часть?",
+        "variantlar": [
+          "Ответила ли она на вопрос зала",
+          "Потому что осталось время",
+          "Потому что партнёр хочет",
+          "Так настроен таймер"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Noldan chizilsa, 44 ustuni 20 dan necha barobar baland?",
+        "variantlar": [
+          "O'n barobarga yaqin",
+          "Ikki barobarga yaqin",
+          "Besh barobarga yaqin",
+          "To'rt barobarga yaqin"
+        ]
+      },
+      "ru": {
+        "savol": "Если рисовать с нуля, во сколько раз столбик 44 выше столбика 20?",
+        "variantlar": [
+          "Почти в десять раз",
+          "Почти в два раза",
+          "Почти в пять раз",
+          "Почти в четыре раза"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Jonli demoda ikkinchi telefonda zal nimani ko'radi?",
+        "variantlar": [
+          "Tugma o'chib qolganini",
+          "Ilova qayta yuklanganini",
+          "Son o'zi o'zgarganini",
+          "Belgi o'chib qolganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что зал видит на втором телефоне в живом демо?",
+        "variantlar": [
+          "Что кнопка пропала",
+          "Что приложение перезагрузилось",
+          "Что число изменилось само",
+          "Что значок пропал"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Pitchdan oldin ikkala qurilmada nimani tekshirasiz?",
+        "variantlar": [
+          "Bitta akkaunt borligini",
+          "Ilova yopiq turganini",
+          "Ro'yxat tortilganini",
+          "Belgi «Ulangan» ekanini"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяете на обоих устройствах перед питчем?",
+        "variantlar": [
+          "Что там один аккаунт",
+          "Что приложение закрыто",
+          "Что список обновлён потягиванием",
+          "Что значок «Подключено»"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Sanoqda sinfdoshlar bor. Halol gapda nima deysiz?",
+        "variantlar": [
+          "Sanoqdan chiqaraman",
+          "Sonini alohida aytaman",
+          "Hech narsa demayman",
+          "Foydalanuvchi deyman"
+        ]
+      },
+      "ru": {
+        "savol": "В подсчёте есть одноклассники. Что скажете в честной фразе?",
+        "variantlar": [
+          "Уберу их из подсчёта",
+          "Назову их число отдельно",
+          "Ничего не скажу",
+          "Назову пользователями"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Grafikdagi sonlarni qayerdan olasiz?",
+        "variantlar": [
+          "O'z Database'ingizdan",
+          "Sinfdoshlar taxminidan",
+          "Mentor misoli sonlaridan",
+          "Umami tashriflaridan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда берёте числа для графика?",
+        "variantlar": [
+          "Из своей Database",
+          "Из догадок одноклассников",
+          "Из чисел примера Ментора",
+          "Из посещений в Umami"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Raqamlarga izoh: «nima sanalgan?». Nima qilasiz?",
+        "variantlar": [
+          "Raqamlarni olasiz",
+          "Sonni kattalashtirasiz",
+          "Sarlavhaga buni yozasiz",
+          "Sherikdan ✓ so'raysiz"
+        ]
+      },
+      "ru": {
+        "savol": "Комментарий к «Цифрам»: «что посчитано?». Что сделаете?",
+        "variantlar": [
+          "Уберёте «Цифры»",
+          "Увеличите числа",
+          "Напишете это в заголовке",
+          "Попросите у партнёра ✓"
+        ]
+      }
+    }
+  ]
+}

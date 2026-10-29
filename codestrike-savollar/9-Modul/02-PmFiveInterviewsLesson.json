@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-02-v1",
+  "key": "m7-02",
+  "modul": 9,
+  "tartib": 2,
+  "nom": {
+    "uz": "Besh odamdan nimani bilib olasiz?",
+    "ru": "Что вы узнаете от пяти человек?"
+  },
+  "src": "src/7-Modull/PmFiveInterviewsLesson.jsx",
+  "barmoq_izi": "c80b6e4a28eaceb7b9f76dd6d17bc203",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Intervyu nima?",
+        "variantlar": [
+          "Bitta odam bilan suhbat",
+          "Ko'p odamga bitta e'lon",
+          "Sinfga g'oyani aytish",
+          "Odamni jim kuzatib turish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое интервью?",
+        "variantlar": [
+          "Разговор с одним человеком",
+          "Одно объявление для многих",
+          "Рассказать идею классу",
+          "Молча наблюдать за человеком"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Yozuv nima?",
+        "variantlar": [
+          "Intervyu savollari ro'yxati",
+          "To'ldirilgan shablon",
+          "Intervyudan chiqqan xulosa",
+          "G'oyangiz haqidagi matn"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое запись?",
+        "variantlar": [
+          "Список вопросов интервью",
+          "Заполненный шаблон",
+          "Вывод из интервью",
+          "Текст о вашей идее"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«Sayt bo'lsa, ishlatarmidingiz?» Qanday savol?",
+        "variantlar": [
+          "Voqea savoli — maydon bor",
+          "Voqea savoli — qisqa",
+          "Bo'sh savol — javobi va'da",
+          "Bo'sh savol — qisqa"
+        ]
+      },
+      "ru": {
+        "savol": "«Если бы был сайт, пользовались бы?» Что это за вопрос?",
+        "variantlar": [
+          "Вопрос о событии — есть поле",
+          "Вопрос о событии — короткий",
+          "Пустой вопрос — ответ-обещание",
+          "Пустой вопрос — короткий"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Oxirgi marta qachon bordingiz?» Qanday savol?",
+        "variantlar": [
+          "Bo'sh savol — kelajak",
+          "Bo'sh savol — javobi «ha»",
+          "Voqea savoli — g'oya",
+          "Voqea savoli — o'tgan kun"
+        ]
+      },
+      "ru": {
+        "savol": "«Когда вы ходили в последний раз?» Что это за вопрос?",
+        "variantlar": [
+          "Пустой вопрос — о будущем",
+          "Пустой вопрос — ответ «да»",
+          "Вопрос о событии — об идее",
+          "Вопрос о событии — о прошедшем дне"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Shablondagi to'rt qatordan biri qaysi?",
+        "variantlar": [
+          "Sayt sizga yoqdimi?",
+          "Nima qiyin bo'ldi?",
+          "Kelasi safar nima qilasiz?",
+          "Narxi qancha bo'lsin?"
+        ]
+      },
+      "ru": {
+        "savol": "Какая из этих — одна из четырёх строк шаблона?",
+        "variantlar": [
+          "Вам понравился сайт?",
+          "Что было трудно?",
+          "Что сделаете в следующий раз?",
+          "Какой должна быть цена?"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "«Maydon band ekan.» Keyingi savol qaysi?",
+        "variantlar": [
+          "O'shanda nima qildingiz?",
+          "Sayt bo'lsa, band qilasizmi?",
+          "Maydon ko'p band bo'ladimi?",
+          "Keyin qachon borasiz?"
+        ]
+      },
+      "ru": {
+        "savol": "«Поле было занято». Какой следующий вопрос?",
+        "variantlar": [
+          "Что вы тогда сделали?",
+          "Если бы был сайт, бронировали бы?",
+          "Поле часто бывает занято?",
+          "Когда пойдёте в следующий раз?"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Yozuvga qaysi gap tushadi?",
+        "variantlar": [
+          "Siz chiqargan xulosa",
+          "Odam haqida taxminingiz",
+          "Hammaga oid umumiy gap",
+          "Eshitgan javob, u aytganidek"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза попадает в запись?",
+        "variantlar": [
+          "Ваш вывод",
+          "Ваша догадка о человеке",
+          "Общая фраза обо всех",
+          "Услышанный ответ, как он сказал"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Kitobdagi ona g'oyani nega maqtadi?",
+        "variantlar": [
+          "Bunday ilova qidirgan edi",
+          "Planshetda ko'p o'tirardi",
+          "O'g'lini xafa qilmaslik uchun",
+          "Taomlar kitobi kerak edi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему мама из книги похвалила идею?",
+        "variantlar": [
+          "Искала такое приложение",
+          "Много сидела в планшете",
+          "Чтобы не обидеть сына",
+          "Ей была нужна книга рецептов"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Kitobda qaysi savol voqeani ochdi?",
+        "variantlar": [
+          "«Ilova sizga kerakmi?»",
+          "«Odatda nima qilasiz?»",
+          "«Ilovani sotib olasizmi?»",
+          "«Oxirgi marta nima oldingiz?»"
+        ]
+      },
+      "ru": {
+        "savol": "Какой вопрос в книге открыл событие?",
+        "variantlar": [
+          "«Вам нужно приложение?»",
+          "«Что вы обычно делаете?»",
+          "«Купите приложение?»",
+          "«Что вы купили в последний раз?»"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Kitob nomi nimani anglatadi?",
+        "variantlar": [
+          "Ona ham rost aytadigan savol",
+          "Faqat onaga beriladigan savol",
+          "Onaga g'oyani aytish usuli",
+          "Ona bilan maslahat qoidasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает название книги?",
+        "variantlar": [
+          "Вопросы, на которые и мама скажет правду",
+          "Вопросы только для мамы",
+          "Способ рассказать идею маме",
+          "Правило совета с мамой"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Maydon muammosida kimdan intervyu olasiz?",
+        "variantlar": [
+          "O'ynamaydigan qo'shnidan",
+          "Sayt yasaydigan do'stdan",
+          "O'yinchi va maydon egasidan",
+          "Maqtaydigan sinfdoshdan"
+        ]
+      },
+      "ru": {
+        "savol": "У кого возьмёте интервью о проблеме поля?",
+        "variantlar": [
+          "У соседа, который не играет",
+          "У друга, который делает сайты",
+          "У игрока и владельца поля",
+          "У одноклассника, который хвалит"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Nega bitta intervyu yetmaydi?",
+        "variantlar": [
+          "Bir odam ko'p gapirmaydi",
+          "Yozuv — bitta odam voqeasi",
+          "Shablonda 4 qator xolos",
+          "Ko'p maqtov — g'oya to'g'ri"
+        ]
+      },
+      "ru": {
+        "savol": "Почему одного интервью мало?",
+        "variantlar": [
+          "Один человек мало говорит",
+          "Запись — событие одного человека",
+          "В шаблоне всего 4 строки",
+          "Много похвал — идея верна"
+        ]
+      }
+    }
+  ]
+}

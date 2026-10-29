@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой глагол добавит новую игру на сервер?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "POST",
+        "hint": "Верно!"
+      },
+      {
+        "value": "GET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PUT",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Нужен ли body в запросе DELETE?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Нет — только адрес и ID",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Да, отправляется всегда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только вместе с POST",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, в виде JSON",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Когда приходит ответ 201 Created?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Когда POST добавил новую запись",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Когда GET прочитал запись",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Всегда, на любой запрос",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только при ошибке",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В какой «комнате» едет груз посылки (данные)?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "headers",
+        "hint": "Неверно"
+      },
+      {
+        "value": "body",
+        "hint": "Верно!"
+      },
+      {
+        "value": "method",
+        "hint": "Неверно"
+      },
+      {
+        "value": "url",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает PUT?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Только читает запись",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Заменяет существующую запись",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Добавляет новую запись",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Полностью удаляет запись",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает GET?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Добавляет новую запись",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только читает и приносит",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удаляет запись",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Заменяет запись",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает JSON.stringify(newGame)?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Рисует объект на экране",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проверяет ошибки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Делает из объекта JSON-текст",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Получает ответ сервера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что обязательно в PUT и DELETE?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Название цвета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Часть body",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Номер ID",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Часть headers",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое вторая часть fetch(url, {…})?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Продолжение адреса",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пришедший ответ",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Коробка настроек",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Текст ошибки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Возвращается ли запись, удалённая DELETE?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Да, легко вернуть",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Восстановится через минуту",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Остаётся на сервере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет, исчезает навсегда",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое CRUD?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Copy, Run, Undo, Done",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Create, Read, Undo, Done",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Code, Read, Use, Debug",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Create, Read, Update, Delete",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что говорит серверу method: 'POST'?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "«Поменяй цвет»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "«Уменьши размер»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "«Увеличь скорость»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "«Создай новую запись»",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

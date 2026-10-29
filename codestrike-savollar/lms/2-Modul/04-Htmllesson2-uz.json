@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifaga rasm qo'shish uchun qaysi teg ishlatiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "<img>",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<image>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<src>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<pic>",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Rasmning manzili (qayerdaligi) qaysi atributga yoziladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "href",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "alt",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "src",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "link",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Rasm yuklanmasa o'rniga chiqadigan matn qaysi atribut?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "title",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "alt",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "name",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "text",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Logo va asosiy menu odatda qaysi bo'limga joylanadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "<main>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<footer>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<aside>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<header>",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifaning ASOSIY mazmuni qaysi teg ichiga yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "<header>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<main>",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<footer>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<body2>",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifaning eng pastki qismi (aloqa, ©) uchun qaysi teg?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "<end>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<bottom>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<header>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<footer>",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Butun formani o'rab turuvchi teg qaysi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "<form>",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<input>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<fieldset>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<div>",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Foydalanuvchi matn kiritadigan maydonni qaysi teg yasaydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "<label>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<button>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<input>",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<text>",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon oldidagi «Ismingiz:» yozuvi qaysi teg?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "<label>",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<title>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<span>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<p>",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Email uchun to'g'ri input turi qaysi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "type=\"text\"",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "type=\"mail\"",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "type=\"email\"",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "type=\"@\"",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Parolni nuqta bilan yashiradigan input turi qaysi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "type=\"hidden\"",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "type=\"password\"",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "type=\"secret\"",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "type=\"lock\"",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DevTools qaysi tugma bilan ochiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ctrl+P",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Esc",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Caps Lock",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "F12",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

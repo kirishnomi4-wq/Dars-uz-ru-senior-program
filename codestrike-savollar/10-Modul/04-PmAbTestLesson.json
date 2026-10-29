@@ -1,0 +1,278 @@
+{
+  "lessonId": "m8-04-v1",
+  "key": "m8-04",
+  "modul": 10,
+  "tartib": 4,
+  "nom": {
+    "uz": "Ikki variantdan qaysi biri yaxshiroq ishlaydi?",
+    "ru": "Какой из двух вариантов работает лучше?"
+  },
+  "src": "src/8-Modull/PmAbTestLesson.jsx",
+  "barmoq_izi": "fb16536fa6098e631c36ecb08b93fb18",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Gipoteza qanday yoziladi?",
+        "variantlar": [
+          "Agar …, … o'zgaradi, chunki …",
+          "… qilamiz, chunki bu yaxshi",
+          "Hozir … ta, oy oxirida … ta",
+          "Avval …, keyin … ko'ramiz"
+        ]
+      },
+      "ru": {
+        "savol": "Как записывается гипотеза?",
+        "variantlar": [
+          "Если …, изменится …, потому что …",
+          "Делаем …, потому что это хорошо",
+          "Сейчас …, к концу месяца …",
+          "Сначала …, потом посмотрим …"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Maydon» gipotezasida «chunki» qismi qaysi?",
+        "variantlar": [
+          "Tugmada soat yozilsa",
+          "Tanlaganini tugmada ko'radi",
+          "Ko'proq o'yinchi band qiladi",
+          "Band qilganlar foizi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая часть гипотезы «Maydon» — «потому что»?",
+        "variantlar": [
+          "Если на кнопке будет час",
+          "Видит выбранное на кнопке",
+          "Больше игроков забронирует",
+          "Процент забронировавших"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«Band qilish» tugmasi qaysi qadamdan keyin chiqadi?",
+        "variantlar": [
+          "Sahifa ochilgach",
+          "Band qilingach",
+          "Vaqt tanlangach",
+          "Parol kiritilgach"
+        ]
+      },
+      "ru": {
+        "savol": "После какого шага появляется кнопка «Забронировать»?",
+        "variantlar": [
+          "После открытия страницы",
+          "После брони",
+          "После выбора времени",
+          "После ввода пароля"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "A/B testda variant A qaysi biri?",
+        "variantlar": [
+          "Yangi, sinaladigan variant",
+          "Ega tanlagan eng yaxshisi",
+          "Dashboard'da birinchisi",
+          "Hozirgi, o'zgarmagan variant"
+        ]
+      },
+      "ru": {
+        "savol": "Какой вариант в A/B-тесте — A?",
+        "variantlar": [
+          "Новый, проверяемый вариант",
+          "Лучший по выбору владельца",
+          "Первый на дашборде",
+          "Текущий, неизменённый вариант"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega A va B bir vaqtda ishlaydi?",
+        "variantlar": [
+          "E'lon kabi farq aralashmasin",
+          "Backend'ga kam so'rov kelsin",
+          "O'yinchi ikkalasini ko'rsin",
+          "Raqamlar tez chiqsin"
+        ]
+      },
+      "ru": {
+        "savol": "Почему A и B работают одновременно?",
+        "variantlar": [
+          "Чтобы не примешались объявления и т. п.",
+          "Чтобы в Backend шло меньше запросов",
+          "Чтобы игрок увидел оба",
+          "Чтобы числа появились быстрее"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Bizning testda brauzer variantni qachon oladi?",
+        "variantlar": [
+          "Har yangilanganda",
+          "Birinchi kirganda",
+          "Tugmani bosganda",
+          "Ega dashboard ochganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда браузер получает вариант в нашем тесте?",
+        "variantlar": [
+          "При каждом обновлении",
+          "При первом входе",
+          "При нажатии кнопки",
+          "Когда владелец откроет дашборд"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Brauzer A va B ni ko'rdi. Muammo nima?",
+        "variantlar": [
+          "Tugma matni uzun bo'ldi",
+          "Backend hodisani olmadi",
+          "Guruhi noma'lum bo'lib qoldi",
+          "Brauzer ID o'zgarib qoldi"
+        ]
+      },
+      "ru": {
+        "savol": "Браузер увидел и A, и B. В чём проблема?",
+        "variantlar": [
+          "Текст кнопки стал длинным",
+          "Backend не принял событие",
+          "Непонятно, в какой он группе",
+          "ID браузера изменился"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "A — 9 tadan 3, B — 8 tadan 4. B ning foizi qancha?",
+        "variantlar": [
+          "4 foiz",
+          "33 foiz",
+          "12 foiz",
+          "50 foiz"
+        ]
+      },
+      "ru": {
+        "savol": "A — 3 из 9, B — 4 из 8. Какой процент у B?",
+        "variantlar": [
+          "4 процента",
+          "33 процента",
+          "12 процентов",
+          "50 процентов"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Guruhlar 9 va 8 chiqdi. Bu nima degani?",
+        "variantlar": [
+          "Tasodifda bu tabiiy hol",
+          "Bo'lish xato, qaytadan",
+          "B dagi tugma kamroq yoqqan",
+          "Kimdir ikki marta sanalgan"
+        ]
+      },
+      "ru": {
+        "savol": "Группы вышли 9 и 8. Что это значит?",
+        "variantlar": [
+          "При случайном делении это нормально",
+          "Деление неверное, заново",
+          "Кнопка B понравилась меньше",
+          "Кого-то посчитали дважды"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "2017-yilda Booking.com bir vaqtda nechta A/B test o'tkazgan?",
+        "variantlar": [
+          "10 dan ortiq",
+          "1000 dan ortiq",
+          "100 dan ortiq",
+          "5000 dan ortiq"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько A/B-тестов одновременно проводил Booking.com в 2017 году?",
+        "variantlar": [
+          "Больше 10",
+          "Больше 1000",
+          "Больше 100",
+          "Больше 5000"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Backend hodisa variantini qanday biladi?",
+        "variantlar": [
+          "Brauzer ID ning harfidan",
+          "Hodisa yozilgan soatdan",
+          "Hodisadagi variantdan",
+          "Bandlar ro'yxatidan"
+        ]
+      },
+      "ru": {
+        "savol": "Как Backend узнаёт вариант события?",
+        "variantlar": [
+          "По букве ID браузера",
+          "По времени события",
+          "По variant в событии",
+          "По списку броней"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "«Sayt yaxshiroq bo'ladi» — gipotezada nima yetishmaydi?",
+        "variantlar": [
+          "Qancha kutish kerakligi",
+          "Nechta odam kirishi",
+          "Kodni kim yozishi",
+          "Qaysi raqam o'zgarishi"
+        ]
+      },
+      "ru": {
+        "savol": "«Сайт станет лучше» — чего не хватает в гипотезе?",
+        "variantlar": [
+          "Сколько ждать",
+          "Сколько людей зайдёт",
+          "Кто напишет код",
+          "Какое число изменится"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m9d5-v1",
+  "key": "m9-05",
+  "modul": 11,
+  "tartib": 5,
+  "nom": {
+    "uz": "G'oyangiz bir sahifaga sig'adimi?",
+    "ru": "Поместится ли ваша идея на одну страницу?"
+  },
+  "src": "src/9-Modull/PmPrdLesson.jsx",
+  "barmoq_izi": "7928614771e5eb6d50993d478d698264",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "To'rt katakka PRD da nima qo'shildi?",
+        "variantlar": [
+          "Rang, shrift, ekran rasmi",
+          "Dalil, funksiya, Qilmaymiz",
+          "Narx, muddat, ish jadvali",
+          "Jamoa, vazifa, ish soati"
+        ]
+      },
+      "ru": {
+        "savol": "Что добавилось в PRD к четырём ячейкам?",
+        "variantlar": [
+          "Цвета, шрифты, экраны",
+          "Довод, функции, «Не делаем»",
+          "Цена, срок, график",
+          "Команда, задачи, часы"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Dalilda «hammaga yoqadi». Nima yetishmaydi?",
+        "variantlar": [
+          "Ilovaning nomi va rangi",
+          "Yechimning uzun matni",
+          "O'xshash ilovalar ro'yxati",
+          "Intervyudan olingan sanoq"
+        ]
+      },
+      "ru": {
+        "savol": "В доводе «всем нравится». Чего не хватает?",
+        "variantlar": [
+          "Название и цвет",
+          "Длинный текст решения",
+          "Список похожих приложений",
+          "Подсчёт из интервью"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Asosiy funksiyaga qanday ish kiradi?",
+        "variantlar": [
+          "Busiz muammo hal bo'lmaydigan",
+          "Eng chiroyli ko'rinadigan",
+          "Boshqa ilovada bor bo'lgan",
+          "Qurish eng oson bo'lgan"
+        ]
+      },
+      "ru": {
+        "savol": "Какая работа входит в основные функции?",
+        "variantlar": [
+          "Без которой проблема не решится",
+          "Самая красивая на вид",
+          "Которая есть в других приложениях",
+          "Самая лёгкая в постройке"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Yozuvlarda sababi bor, hozir shart emas. Qayerga?",
+        "variantlar": [
+          "Asosiy funksiyalarga",
+          "«Qilmaymiz» qutisiga",
+          "«Keyin» qutisiga",
+          "Yechim gapiga"
+        ]
+      },
+      "ru": {
+        "savol": "Причина в записях есть, но сейчас не обязательно. Куда?",
+        "variantlar": [
+          "В основные функции",
+          "В коробку «Не делаем»",
+          "В коробку «Потом»",
+          "Во фразу решения"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "«O'yinchilar mamnun» bosh raqam bo'ladimi?",
+        "variantlar": [
+          "Ha, fikr ham muhim",
+          "Yo'q, uni sanab bo'lmaydi",
+          "Ha, intervyuda aytilgan",
+          "Yo'q, faqat pul sanaladi"
+        ]
+      },
+      "ru": {
+        "savol": "«Игроки довольны» может быть главным числом?",
+        "variantlar": [
+          "Да, мнение тоже важно",
+          "Нет, это нельзя посчитать",
+          "Да, так сказали в интервью",
+          "Нет, считают только деньги"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "«Bajariladimi?» savoli nimani tekshiradi?",
+        "variantlar": [
+          "Funksiya modulga sig'ishini",
+          "Muammo gapi qisqaligini",
+          "Dalildagi odamlar sonini",
+          "Bosh raqam nomini"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяет вопрос «Выполнимо?»",
+        "variantlar": [
+          "Влезают ли функции в модуль",
+          "Краткость фразы проблемы",
+          "Число людей в доводе",
+          "Название главного числа"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Uch savolga ham «ha». Mentor javobi qanday?",
+        "variantlar": [
+          "Tuzatish, ehtiyot uchun",
+          "Tuzatish, yana intervyu",
+          "Avval kod yozish kerak",
+          "Qabul, qurish mumkin"
+        ]
+      },
+      "ru": {
+        "savol": "На все три вопроса «да». Какой ответ ментора?",
+        "variantlar": [
+          "Исправление, на всякий случай",
+          "Исправление, ещё интервью",
+          "Сначала нужен код",
+          "Принято, можно строить"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Amazon'da press-reliz qanday yoziladi?",
+        "variantlar": [
+          "Mahsulot chiqqan kuni",
+          "Kod tugagach yoziladi",
+          "Go'yo mahsulot chiqqandek",
+          "Ichki xat sifatida"
+        ]
+      },
+      "ru": {
+        "savol": "Как в Amazon пишут пресс-релиз?",
+        "variantlar": [
+          "В день выхода продукта",
+          "Когда код готов",
+          "Будто продукт уже вышел",
+          "Как внутреннее письмо"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Press-reliz hech kimni qiziqtirmasa, nima bo'ladi?",
+        "variantlar": [
+          "Mahsulot qilinmaydi",
+          "Kichikroq quriladi",
+          "Baribir quriladi",
+          "Boshqa nom bilan chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если пресс-релиз никого не заинтересует?",
+        "variantlar": [
+          "Продукт не делают",
+          "Строят поменьше",
+          "Всё равно строят",
+          "Выходит под другим именем"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Nega maydon pulini bo'lishish funksiya bo'lmadi?",
+        "variantlar": [
+          "Yozuvlarda sababi yo'q",
+          "Bosh raqamni sanamaydi",
+          "Telegram guruhida bor",
+          "Alohida g'oya, sig'maydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему деление платы за поле не стало функцией?",
+        "variantlar": [
+          "В записях нет причины",
+          "Не считает главное число",
+          "Это есть в Telegram-группе",
+          "Отдельная идея, не влезает"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "PRD.md da «## Dalil» qatori nima?",
+        "variantlar": [
+          "JavaScript izohi",
+          "Fayl nomining qismi",
+          "Dalil bo'limi sarlavhasi",
+          "Ro'yxatdagi bitta band"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое строка «## Довод» в PRD.md?",
+        "variantlar": [
+          "Комментарий JavaScript",
+          "Часть имени файла",
+          "Заголовок раздела «Довод»",
+          "Один пункт списка"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Yechim bo'limiga nima yoziladi?",
+        "variantlar": [
+          "Uch funksiya tavsifi",
+          "Mahsulot nima qiladi, bir gap",
+          "Intervyudagi har bir gap",
+          "Ilova yoziladigan kod tili"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в разделе «Решение»?",
+        "variantlar": [
+          "Описание трёх функций",
+          "Что делает продукт, одной фразой",
+          "Каждая фраза из интервью",
+          "Язык кода приложения"
+        ]
+      }
+    }
+  ]
+}

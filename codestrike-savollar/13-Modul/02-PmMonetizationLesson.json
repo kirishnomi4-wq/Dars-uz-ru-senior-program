@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m11d2-v1",
+  "key": "m11-02",
+  "modul": 13,
+  "tartib": 2,
+  "nom": {
+    "uz": "Mahsulotingiz qanday pul topadi?",
+    "ru": "Как ваш продукт зарабатывает?"
+  },
+  "src": "src/11-Modull/PmMonetizationLesson.jsx",
+  "barmoq_izi": "bb821912513e48acda76630da9828a00",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Bepul asos va pullik qo'shimchada nima bepul?",
+        "variantlar": [
+          "Hamma uchun asosiy ish",
+          "Faqat birinchi o'ttiz kun",
+          "Faqat reklamali sahifalar",
+          "Qo'shimcha qulayliklar"
+        ]
+      },
+      "ru": {
+        "savol": "Что бесплатно в бесплатной основе с платным дополнением?",
+        "variantlar": [
+          "Основное для всех",
+          "Только первые тридцать дней",
+          "Только страницы с рекламой",
+          "Дополнительные удобства"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Reklama modelida pulni kim to'laydi?",
+        "variantlar": [
+          "Ilovani ishlatgan har kim",
+          "Reklamani ko'rgan odam",
+          "Reklama bergan kompaniya",
+          "Ilova xizmat qilgan biznes"
+        ]
+      },
+      "ru": {
+        "savol": "Кто платит в рекламной модели?",
+        "variantlar": [
+          "Каждый, кто пользуется",
+          "Кто увидел рекламу",
+          "Компания, давшая рекламу",
+          "Бизнес, которому служит"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor misolida B2B bo'lsa, kim to'lardi?",
+        "variantlar": [
+          "Qo'shiladigan o'yinchilar",
+          "Maydonning egasi",
+          "Reklama bergan kompaniya",
+          "E'lon beruvchi tashkilotchi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто платил бы в примере Ментора при B2B?",
+        "variantlar": [
+          "Присоединяющиеся игроки",
+          "Владелец поля",
+          "Компания, давшая рекламу",
+          "Организатор, дающий объявление"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor misolida tranzaksiya qaysi ish bo'lardi?",
+        "variantlar": [
+          "Har hafta o'yin e'loni",
+          "O'yinga qo'shilish",
+          "Eslatma yuborish",
+          "Maydon pulini bo'lishish"
+        ]
+      },
+      "ru": {
+        "savol": "Что было бы транзакцией в примере Ментора?",
+        "variantlar": [
+          "Объявление игры каждую неделю",
+          "Присоединение к игре",
+          "Отправка напоминаний",
+          "Деление денег за поле"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Maydon pulini bo'lishish nega hozir emas?",
+        "variantlar": [
+          "Foydalanuvchi hali kam",
+          "Maydon egasi ishlatmaydi",
+          "Yuridik shaxs va shartnoma",
+          "Roadmap'da hozirgi ufqda"
+        ]
+      },
+      "ru": {
+        "savol": "Почему деление денег за поле не сейчас?",
+        "variantlar": [
+          "Пользователей пока мало",
+          "Владелец поля не пользуется",
+          "Юрлицо и договор",
+          "В roadmap на текущем горизонте"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Pro'siz o'yinchi ilovada nima qila oladi?",
+        "variantlar": [
+          "Bepul o'yinga qo'shiladi",
+          "Faqat e'lonlarni o'qiydi",
+          "Faqat bitta o'yinga kiradi",
+          "Hech narsa, ilova pullik"
+        ]
+      },
+      "ru": {
+        "savol": "Что игрок может делать в приложении без Pro?",
+        "variantlar": [
+          "Бесплатно присоединяется к игре",
+          "Только читает объявления",
+          "Входит только в одну игру",
+          "Ничего, приложение платное"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Telegram pullik obunani qachon ishga tushirgan?",
+        "variantlar": [
+          "2020-yil iyunda",
+          "2024-yil mayda",
+          "2019-yil martda",
+          "2022-yil iyunda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Telegram запустил платную подписку?",
+        "variantlar": [
+          "В июне 2020",
+          "В мае 2024",
+          "В марте 2019",
+          "В июне 2022"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "2024-yilda Premium'ga obunalar qanday o'zgardi?",
+        "variantlar": [
+          "Deyarli o'zgarmadi",
+          "Uch barobar ko'paydi",
+          "Ikki barobar kamaydi",
+          "O'n barobar ko'paydi"
+        ]
+      },
+      "ru": {
+        "savol": "Как изменились подписки на Premium в 2024 году?",
+        "variantlar": [
+          "Почти не изменились",
+          "Выросли в три раза",
+          "Упали в два раза",
+          "Выросли в десять раз"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Pullik obuna modelida bepul qism bormi?",
+        "variantlar": [
+          "Asosiy ish bepul",
+          "Faqat reklamali qism",
+          "Bepul qism kattaroq",
+          "Yo'q, hamma to'laydi"
+        ]
+      },
+      "ru": {
+        "savol": "Есть ли бесплатная часть в модели платной подписки?",
+        "variantlar": [
+          "Основное бесплатно",
+          "Только часть с рекламой",
+          "Бесплатная часть больше",
+          "Нет, платят все"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "SQL'da DISTINCT nima uchun kerak?",
+        "variantlar": [
+          "Tashkilotchi bir marta kirsin",
+          "Namuna hisoblar kirmasin",
+          "Jadvallar id bilan bog'lansin",
+          "Faqat Pro olganlar kirsin"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем в SQL нужен DISTINCT?",
+        "variantlar": [
+          "Чтобы организатор вошёл один раз",
+          "Чтобы не вошли образцовые аккаунты",
+          "Чтобы таблицы связались по id",
+          "Чтобы вошли только с Pro"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "namuna = false sharti nima qiladi?",
+        "variantlar": [
+          "Pro'siz akkauntni sanamaydi",
+          "Namuna akkauntni sanamaydi",
+          "E'lonsizni ham sanaydi",
+          "Sinfdoshni alohida sanaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает условие namuna = false?",
+        "variantlar": [
+          "Не считает аккаунты без Pro",
+          "Не считает образцовые аккаунты",
+          "Считает и тех, кто без объявлений",
+          "Считает одноклассников отдельно"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Telegram Premium nima?",
+        "variantlar": [
+          "Telegram'ning yangi versiyasi",
+          "Telegram'ning bepul qismi",
+          "Telegram'ning pullik obunasi",
+          "Telegram'dagi reklama turi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое Telegram Premium?",
+        "variantlar": [
+          "Новая версия Telegram",
+          "Бесплатная часть Telegram",
+          "Платная подписка Telegram",
+          "Вид рекламы в Telegram"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m12d13-v1",
+  "key": "m12-13",
+  "modul": 14,
+  "tartib": 13,
+  "nom": {
+    "uz": "Demo Day'ga tayyormisiz?",
+    "ru": "Готовы ли вы к Demo Day?"
+  },
+  "src": "src/12-Modull/PmDressRehearsalLesson.jsx",
+  "barmoq_izi": "3ecd2db90eb8771400a54e8ec92db987",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Repetitsiyada demo ochilmadi. Taymer nima bo'ladi?",
+        "variantlar": [
+          "To'xtamaydi, yuraveradi",
+          "Pauza qilinadi",
+          "Nolga qaytadi",
+          "Demoni kutib turadi"
+        ]
+      },
+      "ru": {
+        "savol": "На репетиции демо не открылось. Что с таймером?",
+        "variantlar": [
+          "Не останавливается, идёт",
+          "Ставится на паузу",
+          "Сбрасывается на ноль",
+          "Ждёт демо"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Bu mashqda pitchdan keyin hakam nechta savol beradi?",
+        "variantlar": [
+          "Bitta savol",
+          "Uchta savol",
+          "Oltita savol",
+          "Beshta savol"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько вопросов задаёт судья после питча в этом упражнении?",
+        "variantlar": [
+          "Один вопрос",
+          "Три вопроса",
+          "Шесть вопросов",
+          "Пять вопросов"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Hakam varag'i nimaga belgi qo'yadi?",
+        "variantlar": [
+          "Har bo'lakdagi gapga",
+          "Slaydlar ko'rinishiga",
+          "Vaqt, demo va javoblarga",
+          "Kod hajmi va tezligiga"
+        ]
+      },
+      "ru": {
+        "savol": "Что отмечает лист судьи?",
+        "variantlar": [
+          "Фразы в каждой части",
+          "Вид слайдов",
+          "Время, демо и ответы",
+          "Объём и скорость кода"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Javob: «Bu sonni keyin aniqlab beraman». Qaysi belgi?",
+        "variantlar": [
+          "Son yoki fakt bilan",
+          "Javob savolga tegmadi",
+          "Belgisiz qoldiriladi",
+          "Tekshirib aytaman"
+        ]
+      },
+      "ru": {
+        "savol": "Ответ: «Это число уточню позже». Какой знак?",
+        "variantlar": [
+          "С числом или фактом",
+          "Ответ не по вопросу",
+          "Без знака",
+          "Проверю и скажу"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Chiqishdan oldin Backend nega uyg'otiladi?",
+        "variantlar": [
+          "Demo sekin ochilmasin",
+          "Hakam kodni ko'rsin",
+          "Video tez ochilsin",
+          "Telefon zaryadi tejalsin"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем будить Backend перед выступлением?",
+        "variantlar": [
+          "Чтобы демо не открывалось медленно",
+          "Чтобы судья увидел код",
+          "Чтобы видео открылось быстрее",
+          "Чтобы сэкономить заряд"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Demo yo'liga qaysi hisob bilan kirasiz?",
+        "variantlar": [
+          "Shaxsiy hisobingiz bilan",
+          "Namuna akkauntingiz bilan",
+          "Sinfdoshning hisobi bilan",
+          "Hakam bergan hisob bilan"
+        ]
+      },
+      "ru": {
+        "savol": "С каким аккаунтом вы входите в путь демо?",
+        "variantlar": [
+          "Со своим личным аккаунтом",
+          "С демо-аккаунтом",
+          "С аккаунтом одноклассника",
+          "С аккаунтом, который дал судья"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Pitch 5:20 da tugadi. Varaqda vaqt qatori qanday?",
+        "variantlar": [
+          "Sig'di",
+          "Belgisiz",
+          "Oshdi",
+          "B reja"
+        ]
+      },
+      "ru": {
+        "savol": "Питч закончился на 5:20. Что в строке времени?",
+        "variantlar": [
+          "Уложился",
+          "Без знака",
+          "Превысил",
+          "План Б"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor misolida B reja video qayerda turadi?",
+        "variantlar": [
+          "Hakam telefonida",
+          "Sinf chatida",
+          "Ochiq video saytida",
+          "Demo turgan laptopda"
+        ]
+      },
+      "ru": {
+        "savol": "Где в примере Ментора видео плана Б?",
+        "variantlar": [
+          "На телефоне судьи",
+          "В чате класса",
+          "На открытом видеосайте",
+          "На ноутбуке с демо"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "«Odamlar hozir bu ishni nima bilan qiladi?» Nima aytasiz?",
+        "variantlar": [
+          "Hozirgi yo'lni",
+          "Ilova imkoniyatlarini",
+          "Kelgusi yangiliklarni",
+          "Pitchdagi gapimni"
+        ]
+      },
+      "ru": {
+        "savol": "«Чем люди сейчас это делают?» Что скажете?",
+        "variantlar": [
+          "Нынешний способ",
+          "Возможности приложения",
+          "Будущие новинки",
+          "Фразу из питча"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Hakam varag'ida hakamning ismi qayerda?",
+        "variantlar": [
+          "Varaq tepasida",
+          "Hech qayerda",
+          "Har belgi yonida",
+          "Mentor statistikasida"
+        ]
+      },
+      "ru": {
+        "savol": "Где имя судьи в листе судьи?",
+        "variantlar": [
+          "Вверху листа",
+          "Нигде",
+          "Рядом с каждым знаком",
+          "В статистике Ментора"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Chiqishdan keyin demo holati nima qilinadi?",
+        "variantlar": [
+          "O'sha holatda qoladi",
+          "Hakamga topshiriladi",
+          "Boshiga qaytariladi",
+          "Hammasi o'chiriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают с состоянием демо после выступления?",
+        "variantlar": [
+          "Оставляют как есть",
+          "Передают судье",
+          "Возвращают в начало",
+          "Всё удаляют"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Guruhda taymerni kim boshqaradi?",
+        "variantlar": [
+          "Gapirayotgan o'quvchi",
+          "Mentor, proyektorda",
+          "Hech kim, taymer yo'q",
+          "Hakam bo'lgan tinglovchi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто в группе управляет таймером?",
+        "variantlar": [
+          "Выступающий ученик",
+          "Ментор, на проекторе",
+          "Никто, таймера нет",
+          "Слушатель-судья"
+        ]
+      }
+    }
+  ]
+}

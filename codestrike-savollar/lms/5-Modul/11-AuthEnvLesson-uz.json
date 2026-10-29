@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Login (email+parol) to'g'ri bo'lsa, server nima qaytaradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "token (bilaguzuk)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "yangi parol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "faqat xato xabari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "sahifani qayta yuklaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Token har so'rovda qayerda yuboriladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "URL manzil ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Authorization: Bearer",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Parol maydonida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Cookie nomida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "jwt.sign tokenni nimadan yasaydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Brauzer nomi va versiyasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuterning IP manzili",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat foydalanuvchi paroli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "userId va JWT_SECRET",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Himoyalangan route'ga tokensiz so'rov kelsa?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "200 OK",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "yangi token beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "401 Unauthorized",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "parolni so'raydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guard tokenni qanday tekshiradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Bazadan qidirib solishtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "jwt.verify(token, SECRET)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Parolni qayta so'raydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umuman tekshirmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega soxta imzoli token rad etiladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Token juda uzunligidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet sekinligidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer uni bloklaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Imzo SECRET'ga mos kelmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "JWT token necha qismdan iborat?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "1 ta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2 ta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3 ta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "4 ta",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega JWT'ni soxta yasab bo'lmaydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Imzo SECRET bilan qo'yiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "U juda qisqa bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har kuni o'zi o'zgaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uni hech kim ko'rmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Payload ichida nima saqlanadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Server paroli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi paroli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maxfiy kalit (SECRET)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "userId (kim ekaningiz)",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "JWT_SECRET qayerda saqlanishi kerak?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "kod ichida ochiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": ".env faylida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "HTML sahifada",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "URL manzilida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kod .env qiymatini qanday o'qiydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "fetch so'rovi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faylni import qilib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "process.env.JWT_SECRET",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "console.log bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": ".env .gitignoreda bo'lmasa nima xavf?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kalit GitHub'ga chiqadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod ishlamay qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qanday xavf yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt sekinlashadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

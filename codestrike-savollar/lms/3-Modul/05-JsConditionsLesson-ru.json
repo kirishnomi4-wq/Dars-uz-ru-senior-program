@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "if (age >= 16) — если age равен 14, код внутри сработает?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Да, работает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Будет ошибка",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет, false",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Иногда",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое значение вернёт выражение 20 > 15?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "true",
+        "hint": "Верно!"
+      },
+      {
+        "value": "20",
+        "hint": "Неверно"
+      },
+      {
+        "value": "false",
+        "hint": "Неверно"
+      },
+      {
+        "value": "15",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем отличаются = и ==?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Разницы нет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "= присваивает, == сравнивает",
+        "hint": "Верно!"
+      },
+      {
+        "value": "= сравнивает, == присваивает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "== только для чисел",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Если блок if не сработал, какой блок работает вместо него?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Снова if",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никакой",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Цикл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "else",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает оператор !=?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Равно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Не равно",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Больше",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Меньше или равно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каков результат 7 == 9?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "false",
+        "hint": "Верно!"
+      },
+      {
+        "value": "true",
+        "hint": "Неверно"
+      },
+      {
+        "value": "9",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ошибка",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что пишут для нескольких условий подряд?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "else",
+        "hint": "Неверно"
+      },
+      {
+        "value": "let",
+        "hint": "Неверно"
+      },
+      {
+        "value": "const",
+        "hint": "Неверно"
+      },
+      {
+        "value": "else if",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "let battery = 30. Сработает ли if (battery < 20)?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Да, ведь 30 — большое число",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет, 30 < 20 — false",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только при 20",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Будет ошибка",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Если score 90, будет ли score >= 90 равно true?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Нет, только с 91",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Будет ошибка",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, >= включает равенство",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только при score 100",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что вернёт выражение 5 <= 3?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "true",
+        "hint": "Неверно"
+      },
+      {
+        "value": "5",
+        "hint": "Неверно"
+      },
+      {
+        "value": "3",
+        "hint": "Неверно"
+      },
+      {
+        "value": "false",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сколько блоков работает в if/else одновременно?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Только один",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Оба",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ни одного",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Три",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким знаком проверяем равенство в условии?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "=",
+        "hint": "Неверно"
+      },
+      {
+        "value": "!=",
+        "hint": "Неверно"
+      },
+      {
+        "value": "==",
+        "hint": "Верно!"
+      },
+      {
+        "value": "+",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

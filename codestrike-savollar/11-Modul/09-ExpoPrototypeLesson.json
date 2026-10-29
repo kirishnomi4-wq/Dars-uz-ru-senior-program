@@ -1,0 +1,278 @@
+{
+  "lessonId": "m9-09-v1",
+  "key": "m9-09",
+  "modul": 11,
+  "tartib": 9,
+  "nom": {
+    "uz": "React Native va Expo: prototip telefonda",
+    "ru": "React Native и Expo: прототип на телефоне"
+  },
+  "src": "src/9-Modull/ExpoPrototypeLesson.jsx",
+  "barmoq_izi": "aed8e57327c288704f8f28bcb880be4a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "React Native'da ekrandagi matn qayerga yoziladi?",
+        "variantlar": [
+          "<Text> ichiga",
+          "<View> ichiga",
+          "<div> ichiga",
+          "<span> ichiga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда в React Native пишется текст на экране?",
+        "variantlar": [
+          "внутрь <Text>",
+          "внутрь <View>",
+          "внутрь <div>",
+          "внутрь <span>"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Prototipdagi onClick React Native'da nimaga almashadi?",
+        "variantlar": [
+          "onChange",
+          "onPress",
+          "onSubmit",
+          "onInput"
+        ]
+      },
+      "ru": {
+        "savol": "На что в React Native меняется onClick из прототипа?",
+        "variantlar": [
+          "onChange",
+          "onPress",
+          "onSubmit",
+          "onInput"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida /oyin/3 ni qaysi fayl ochadi?",
+        "variantlar": [
+          "oyin/index.tsx",
+          "oyin/3.tsx",
+          "oyin/[id].tsx",
+          "oyinlar.tsx"
+        ]
+      },
+      "ru": {
+        "savol": "Какой файл открывает /oyin/3 в примере ментора?",
+        "variantlar": [
+          "oyin/index.tsx",
+          "oyin/3.tsx",
+          "oyin/[id].tsx",
+          "oyinlar.tsx"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "<Stack /> nima qiladi?",
+        "variantlar": [
+          "Ekranlarni tablarga joylaydi",
+          "Har ekranga shrift beradi",
+          "Yangi ekran fayli yaratadi",
+          "Ekranlarni ustma-ust qo'yadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает <Stack />?",
+        "variantlar": [
+          "Размещает экраны во вкладках",
+          "Даёт каждому экрану шрифт",
+          "Создаёт новый файл экрана",
+          "Кладёт экраны друг на друга"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "router.push('/elon') nima qiladi?",
+        "variantlar": [
+          "E'lon berish ekranini ochadi",
+          "Ilovani qayta yuklaydi",
+          "elon.tsx ni yaratadi",
+          "Ro'yxatni qayta chizadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает router.push('/elon')?",
+        "variantlar": [
+          "Открывает экран «Дать объявление»",
+          "Перезагружает приложение",
+          "Создаёт elon.tsx",
+          "Перерисовывает список"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "QR ochilishi uchun odatda nima kerak?",
+        "variantlar": [
+          "Telefonda ochiq Chrome",
+          "Kompyuter bilan bitta Wi-Fi",
+          "Kompyuterda ham Expo Go",
+          "Telefonda mobil internet"
+        ]
+      },
+      "ru": {
+        "savol": "Что обычно нужно, чтобы QR открылся?",
+        "variantlar": [
+          "Открытый Chrome на телефоне",
+          "Один Wi-Fi с компьютером",
+          "Expo Go и на компьютере",
+          "Мобильный интернет на телефоне"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "--tunnel qanday ulaydi?",
+        "variantlar": [
+          "Bitta Wi-Fi ichida, tezroq",
+          "Faqat iPhone'larda ulanadi",
+          "Internet orqali, sekinroq",
+          "Kompyutersiz, faqat telefonda"
+        ]
+      },
+      "ru": {
+        "savol": "Как соединяет --tunnel?",
+        "variantlar": [
+          "В одном Wi-Fi, быстрее",
+          "Соединяет только на iPhone",
+          "Через интернет, медленнее",
+          "Без компьютера, только на телефоне"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Expo Go akkaunt so'radi. Nima qilasiz?",
+        "variantlar": [
+          "Ilovani qayta o'rnataman",
+          "Loyihani qayta yarataman",
+          "QR'ni qayta skanerlayman",
+          "Bitta Expo akkauntiga kiraman"
+        ]
+      },
+      "ru": {
+        "savol": "Expo Go попросил аккаунт. Что вы сделаете?",
+        "variantlar": [
+          "Переустановлю приложение",
+          "Создам проект заново",
+          "Снова отсканирую QR",
+          "Войду в один аккаунт Expo"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Expo Go ilova kodini qayerdan oladi?",
+        "variantlar": [
+          "Kompyuterdagi expo start'dan",
+          "Play Market sahifasidan",
+          "Netlify'dagi saytdan",
+          "Telefon xotirasidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда Expo Go берёт код приложения?",
+        "variantlar": [
+          "Из expo start на компьютере",
+          "Со страницы в Play Market",
+          "С сайта на Netlify",
+          "Из памяти телефона"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Adaptiv sayt nima?",
+        "variantlar": [
+          "Faqat telefon uchun sayt",
+          "Ekran eniga moslashadigan sayt",
+          "Do'kondan o'rnatiladigan ilova",
+          "Animatsiyali, bosiladigan sayt"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое адаптивный сайт?",
+        "variantlar": [
+          "Сайт только для телефона",
+          "Сайт, подстраивающийся под ширину",
+          "Приложение из магазина",
+          "Сайт с анимацией и кнопками"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "PWA telefonga qayerdan qo'shiladi?",
+        "variantlar": [
+          "Play Market do'konidan",
+          "Expo Go'dagi QR orqali",
+          "Brauzerda saytning o'zidan",
+          "App Store do'konidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда PWA добавляется на телефон?",
+        "variantlar": [
+          "Из магазина Play Market",
+          "Через QR в Expo Go",
+          "В браузере, с самого сайта",
+          "Из магазина App Store"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "PWA uchun qanday manzil kerak?",
+        "variantlar": [
+          "Kompyuterdagi localhost",
+          "Uydagi Wi-Fi manzili",
+          "http:// bilan manzil",
+          "Netlify'dagi HTTPS manzil"
+        ]
+      },
+      "ru": {
+        "savol": "Какой адрес нужен для PWA?",
+        "variantlar": [
+          "localhost на компьютере",
+          "Адрес в домашнем Wi-Fi",
+          "Адрес с http://",
+          "HTTPS-адрес на Netlify"
+        ]
+      }
+    }
+  ]
+}

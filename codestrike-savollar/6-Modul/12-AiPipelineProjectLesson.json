@@ -1,0 +1,278 @@
+{
+  "lessonId": "cicd-ai-pipeline-4c-05-v18",
+  "key": "m4c-05",
+  "modul": 6,
+  "tartib": 12,
+  "nom": {
+    "uz": "AI bilan lentani boshqarish",
+    "ru": "Управление конвейером с AI"
+  },
+  "src": "src/4c-Modull/AiPipelineProjectLesson.jsx",
+  "barmoq_izi": "4ecfda4cecd5b04a321bf7b411cfd9cf",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Qizil chiroq yondi. Birinchi nima qilasiz?",
+        "variantlar": [
+          "Indamay kutib turaman",
+          "Loyihani qayta yozaman",
+          "Jurnalni o'zim o'qiyman",
+          "Darhol qayta push qilaman"
+        ]
+      },
+      "ru": {
+        "savol": "Загорелся красный. Что сделаете сначала?",
+        "variantlar": [
+          "Молча подожду",
+          "Перепишу проект",
+          "Сам прочитаю журнал",
+          "Сразу снова сделаю push"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Copilot'ga qaysi so'rov foydali?",
+        "variantlar": [
+          "Qator, kutilgan, kelgan qiymat",
+          "Tafsilotsiz «yordam ber»",
+          "Kodsiz «xatoni top» deyish",
+          "Bitta so'z: «ishlamayapti»"
+        ]
+      },
+      "ru": {
+        "savol": "Какой запрос к Copilot полезен?",
+        "variantlar": [
+          "Строка, ожидаемое и полученное",
+          "«Помоги» без подробностей",
+          "«Найди ошибку» без кода",
+          "Одно слово: «не работает»"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Copilot taklifi — bu nima?",
+        "variantlar": [
+          "100% to'g'ri yechim",
+          "Tekshiriladigan taxmin",
+          "O'zi push bo'ladigan kod",
+          "Doim oxirgi yechim"
+        ]
+      },
+      "ru": {
+        "savol": "Предложение Copilot — это что?",
+        "variantlar": [
+          "100% верное решение",
+          "Догадка, которую надо проверить",
+          "Код, который сам уйдёт в push",
+          "Всегда окончательное решение"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«kutildi: Ali, keldi: undefined» — bu nima?",
+        "variantlar": [
+          "Fayl serverda topilmadi",
+          "Internet ulanishi uzildi",
+          "Lenta ishga tushmadi",
+          "Kutilgan va kelgan farq qildi"
+        ]
+      },
+      "ru": {
+        "savol": "«ожидалось: Ali, получено: undefined» — что это?",
+        "variantlar": [
+          "Файл не найден на сервере",
+          "Пропал интернет",
+          "Лента не запустилась",
+          "Ожидаемое и полученное разные"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Copilot taklifini nima bilan tekshirasiz?",
+        "variantlar": [
+          "Jurnaldagi dalil bilan",
+          "Tasodifiy taxmin bilan",
+          "Eski loyiha kodi bilan",
+          "Xotiradagi taxmin bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Чем вы проверяете предложение Copilot?",
+        "variantlar": [
+          "Уликой из журнала",
+          "Случайной догадкой",
+          "Кодом старого проекта",
+          "Догадкой по памяти"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Copilot adashishi mumkinmi?",
+        "variantlar": [
+          "Yo'q, u hech qachon adashmaydi",
+          "Ha, shuning uchun tekshirasiz",
+          "Yo'q, u dastur, odam emas",
+          "Faqat eski kodda adashadi"
+        ]
+      },
+      "ru": {
+        "savol": "Может ли Copilot ошибиться?",
+        "variantlar": [
+          "Нет, он никогда не ошибается",
+          "Да, поэтому вы проверяете",
+          "Нет, он программа, а не человек",
+          "Ошибается только в старом коде"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Aniqlashtiruvchi so'rov qachon kerak?",
+        "variantlar": [
+          "Taklif to'g'ri bo'lsa",
+          "Lenta yoqilmagan bo'lsa",
+          "Hamma test yashil bo'lsa",
+          "Taklif xato bo'lsa"
+        ]
+      },
+      "ru": {
+        "savol": "Когда нужен уточняющий запрос?",
+        "variantlar": [
+          "Когда предложение верное",
+          "Когда лента не запущена",
+          "Когда все тесты зелёные",
+          "Когда предложение ошибочное"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Tuzatishni qabul qilishni kim hal qiladi?",
+        "variantlar": [
+          "Copilot o'zi hal qiladi",
+          "Hech kim, o'zi hal bo'ladi",
+          "Siz — mas'uliyat sizda",
+          "Lenta mashinasi hal qiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто решает, принять ли исправление?",
+        "variantlar": [
+          "Copilot решает сам",
+          "Никто, решится само",
+          "Вы — ответственность на вас",
+          "Решает машина ленты"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Taklif jurnaldagi sababga mos kelmasa?",
+        "variantlar": [
+          "Baribir qo'llab, push qilish",
+          "Rad etib, asl sababni izlash",
+          "Loyihadan voz kechish",
+          "Boshqa so'ramaslik"
+        ]
+      },
+      "ru": {
+        "savol": "Что делать, если предложение не совпадает с журналом?",
+        "variantlar": [
+          "Всё равно применить и push",
+          "Отклонить и искать причину",
+          "Бросить проект",
+          "Больше не спрашивать"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Jurnaldagi fayl va qator raqami nega kerak?",
+        "variantlar": [
+          "Sayt ranglarini belgilaydi",
+          "Deploy tugmasi o'rnida",
+          "Faqat bezak uchun",
+          "Xato joyini ko'rsatadi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем в журнале имя файла и номер строки?",
+        "variantlar": [
+          "Задают цвета сайта",
+          "Заменяют кнопку deploy",
+          "Только для красоты",
+          "Показывают место ошибки"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Copilot bilan: dastlabki uch qadam?",
+        "variantlar": [
+          "Jurnal → so'rov → tekshirish",
+          "Tekshirish → push → jurnal",
+          "Push → so'rov → tekshirish",
+          "So'rov → push → jurnal"
+        ]
+      },
+      "ru": {
+        "savol": "С Copilot: первые три шага?",
+        "variantlar": [
+          "Журнал → запрос → проверка",
+          "Проверка → push → журнал",
+          "Push → запрос → проверка",
+          "Запрос → push → журнал"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Copilot bilan ishlashning asosiy saboqi?",
+        "variantlar": [
+          "AI hammasini o'zi hal qiladi",
+          "AI faqat rasm chizadi",
+          "AI yordam beradi, qaror sizda",
+          "AI umuman foydasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Главный урок работы с Copilot?",
+        "variantlar": [
+          "ИИ сам всё решит",
+          "ИИ только рисует картинки",
+          "ИИ помогает, решение за вами",
+          "ИИ совсем бесполезен"
+        ]
+      }
+    }
+  ]
+}

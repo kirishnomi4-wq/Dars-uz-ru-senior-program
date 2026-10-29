@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitsalar ro'yxati uchun qaysi komponent?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "FlatList",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Text",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Image",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "TextInput",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Boshqa ekranga o'tish uchun nima chaqiriladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "window.location.reload()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "navigation.navigate()",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "app.open()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<a href> tegi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi ekran ochilganda dastada nima bo'ladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Eski ekran o'chadi (pop)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayta yuklanadi (reload)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustiga qo'yiladi (push)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech narsa o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend'dan ma'lumot nima bilan olinadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "AsyncStorage",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "localStorage",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'lda yozilgan massiv",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "fetch",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ma'lumotni bir marta yuklash qayerda yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "useEffect(…, []) ichida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Komponent tanasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "useState([]) ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Savatni telefonning o'zida nima saqlaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Backend Database'i",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AsyncStorage",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "fetch",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "FlatList",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mobil ilova uchun backend'ni nima qilasiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Yangisi quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha backend'ga ulanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ma'lumot qo'lda ko'chiriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bosiladigan element uchun qaysi komponent?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "FlatList",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "ScrollView",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Image",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pressable",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'p ekranni boshqaradigan tizim qanday nomlanadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Stack Navigator",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "FlatList",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AsyncStorage",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "useEffect",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Rasm ko'rsatish uchun qaysi komponent?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Text",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Image",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Pressable",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "FlatList",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Matn kiritish maydoni — qaysi komponent?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "ScrollView",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Image",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "TextInput",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "FlatList",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Web, bot, mobil — bitta serverda. Bu nima?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Har biriga alohida backend",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat web ulanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'p kirish yo'li, bitta tizim",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

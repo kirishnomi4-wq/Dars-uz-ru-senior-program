@@ -1,0 +1,278 @@
+{
+  "lessonId": "netlify-deploy-v19",
+  "key": "m1-11",
+  "modul": 2,
+  "tartib": 13,
+  "nom": {
+    "uz": "Netlify va deploy",
+    "ru": "Netlify и деплой"
+  },
+  "src": "src/1-Modull/DeployLesson.jsx",
+  "barmoq_izi": "f4784330609361a6c038ef99102ca831",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Netlify nima qiladi?",
+        "variantlar": [
+          "Saytni internetga chiqaradi",
+          "Kodni ranglarga bo'yaydi",
+          "Internetni tezlashtiradi",
+          "Telefonni zaryadlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает Netlify?",
+        "variantlar": [
+          "Выкладывает сайт в интернет",
+          "Раскрашивает код",
+          "Ускоряет интернет",
+          "Заряжает телефон"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "AI bergan bosh sahifa faylini qaysi nom bilan saqlaysiz?",
+        "variantlar": [
+          "style.css",
+          "index.html",
+          "rasm.jpg",
+          "netlify.txt"
+        ]
+      },
+      "ru": {
+        "savol": "Под каким именем сохраните файл главной страницы от AI?",
+        "variantlar": [
+          "style.css",
+          "index.html",
+          "rasm.jpg",
+          "netlify.txt"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Saytni internetga chiqarish qanday ataladi?",
+        "variantlar": [
+          "Nusxalash",
+          "Restart",
+          "Deploy",
+          "Zoom"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется выкладка сайта в интернет?",
+        "variantlar": [
+          "Копирование",
+          "Рестарт",
+          "Деплой",
+          "Zoom"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Netlify'ga qanday kiriladi?",
+        "variantlar": [
+          "Yangi parol o'ylab topib",
+          "SMS kod bilan",
+          "Bank kartasi bilan",
+          "GitHub hisobi bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Как входят в Netlify?",
+        "variantlar": [
+          "Придумав новый пароль",
+          "По коду из SMS",
+          "По банковской карте",
+          "Через аккаунт GitHub"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Bugun saytni Netlify'ga qanday qo'ydik?",
+        "variantlar": [
+          "Telegram orqali yuborib",
+          "Elektron pochtaga yozib",
+          "Sayt papkasini sudrab tashlab",
+          "Flesh kartaga yozib"
+        ]
+      },
+      "ru": {
+        "savol": "Как мы сегодня положили сайт на Netlify?",
+        "variantlar": [
+          "Отправив через Telegram",
+          "Написав на электронную почту",
+          "Перетащив папку сайта",
+          "Записав на флешку"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "O'zgargan sayt Netlify'da qanday yangilanadi?",
+        "variantlar": [
+          "Papkani qayta sudrab tashlab",
+          "Linkni qayta yozib",
+          "Kompyuterni qayta yoqib",
+          "O'z-o'zidan yangilanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Как обновить изменённый сайт на Netlify?",
+        "variantlar": [
+          "Снова перетащить папку",
+          "Заново написать ссылку",
+          "Перезагрузить компьютер",
+          "Обновится сам"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Deploydan keyin Netlify sizga nima beradi?",
+        "variantlar": [
+          "Yangi kompyuter",
+          "Sayt linkini",
+          "Yangi parol",
+          "Bepul internet"
+        ]
+      },
+      "ru": {
+        "savol": "Что выдаёт Netlify после деплоя?",
+        "variantlar": [
+          "Новый компьютер",
+          "Ссылку на сайт",
+          "Новый пароль",
+          "Бесплатный интернет"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Do'stingiz saytni telefonda ochishi uchun nima yuborasiz?",
+        "variantlar": [
+          "index.html faylini",
+          "GitHub parolimni",
+          "Sayt papkasini arxiv qilib",
+          "Sayt linkini"
+        ]
+      },
+      "ru": {
+        "savol": "Что отправить другу, чтобы он открыл сайт на телефоне?",
+        "variantlar": [
+          "Файл index.html",
+          "Свой пароль от GitHub",
+          "Папку сайта архивом",
+          "Ссылку на сайт"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Sayt sahifalari bir-biriga nima orqali ulanadi?",
+        "variantlar": [
+          "Linklar orqali",
+          "Rasmlar orqali",
+          "Parol orqali",
+          "Fayl nomi orqali"
+        ]
+      },
+      "ru": {
+        "savol": "Через что страницы сайта связаны между собой?",
+        "variantlar": [
+          "Через ссылки",
+          "Через картинки",
+          "Через пароль",
+          "Через имя файла"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "AI'ga sayt topshirig'ini yozganda nima ko'rsatiladi?",
+        "variantlar": [
+          "Faqat sevimli rangingiz",
+          "Faqat ismingiz",
+          "Sahifalar va shartlar",
+          "Faqat sayt nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Что указывают, когда пишут AI задание на сайт?",
+        "variantlar": [
+          "Только любимый цвет",
+          "Только ваше имя",
+          "Страницы и условия",
+          "Только название сайта"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Promptda menu haqida nima yoziladi?",
+        "variantlar": [
+          "Menu faqat bosh sahifada",
+          "Menu umuman kerak emas",
+          "Har sahifada boshqa menu",
+          "Har sahifada bir xil menu"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в промпте про меню?",
+        "variantlar": [
+          "Меню только на главной",
+          "Меню вообще не нужно",
+          "На каждой странице своё меню",
+          "На всех страницах одно меню"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Deploydan keyin saytni kim ko'ra oladi?",
+        "variantlar": [
+          "Faqat men, o'z kompyuterimda",
+          "Linkni bilgan har kim",
+          "Faqat mentor",
+          "Faqat GitHub xodimlari"
+        ]
+      },
+      "ru": {
+        "savol": "Кто сможет увидеть сайт после деплоя?",
+        "variantlar": [
+          "Только я, на своём компьютере",
+          "Каждый, кто знает ссылку",
+          "Только ментор",
+          "Только сотрудники GitHub"
+        ]
+      }
+    }
+  ]
+}

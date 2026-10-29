@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m12d7-v1",
+  "key": "m12-07",
+  "modul": 14,
+  "tartib": 7,
+  "nom": {
+    "uz": "Investor ko'zi bilan: demo buzilmaydimi?",
+    "ru": "Глазами инвестора: не сломается ли демо?"
+  },
+  "src": "src/12-Modull/PmDemoTestLesson.jsx",
+  "barmoq_izi": "8fa4f82d7ad2e7cc2216a030ce78c6c8",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Demo tekshiruvida demoni kim buzadi?",
+        "variantlar": [
+          "O'quvchi, o'z mahsulotida",
+          "Agent, o'z bilganicha",
+          "Sinfdosh, sizning hisobda",
+          "Hakam, chiqish kuni"
+        ]
+      },
+      "ru": {
+        "savol": "Кто ломает демо при проверке?",
+        "variantlar": [
+          "Ученик, в своём продукте",
+          "Агент, по своему усмотрению",
+          "Одноклассник, в вашем аккаунте",
+          "Судья, в день выступления"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Demo xatosiz o'tdi. Bu nimani ko'rsatadi?",
+        "variantlar": [
+          "Har sharoitda ishlashini",
+          "Oddiy sharoitda ishlashini",
+          "Agent to'g'ri tuzatganini",
+          "Hakamga yoqishini"
+        ]
+      },
+      "ru": {
+        "savol": "Демо прошло без ошибок. Что это показывает?",
+        "variantlar": [
+          "Что работает в любых условиях",
+          "Что работает в обычных условиях",
+          "Что агент исправил верно",
+          "Что понравится судье"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Ikki marta bosish demoning qayerida tekshiriladi?",
+        "variantlar": [
+          "Sahifa sarlavhasida",
+          "B reja videosida",
+          "Asosiy tugmada",
+          "Taymer tugmasida"
+        ]
+      },
+      "ru": {
+        "savol": "Где в демо проверяют двойное нажатие?",
+        "variantlar": [
+          "В заголовке страницы",
+          "В видео плана Б",
+          "На главной кнопке",
+          "На кнопке таймера"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Telefonda 9 / 10 ko'rinadi» qatori nima?",
+        "variantlar": [
+          "Buzishdan keyingi natija",
+          "Riskning oldini olish",
+          "Ssenariyning bir qadami",
+          "Buzishdan oldingi kutish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое строка «На телефоне видно 9 / 10»?",
+        "variantlar": [
+          "Результат после поломки",
+          "Предотвращение риска",
+          "Один шаг сценария",
+          "Ожидание до поломки"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Bo'sh ma'lumotni qaysi hisobda yaratasiz?",
+        "variantlar": [
+          "Tekshiruv akkauntida",
+          "Faol foydalanuvchi hisobida",
+          "Sinfdoshingiz hisobida",
+          "O'z demo hisobingizda"
+        ]
+      },
+      "ru": {
+        "savol": "В каком аккаунте создаёте пустые данные?",
+        "variantlar": [
+          "В проверочном аккаунте",
+          "В аккаунте активного пользователя",
+          "В аккаунте одноклассника",
+          "В своём демо-аккаунте"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Qaysi kutishni ekranda tekshirsa bo'ladi?",
+        "variantlar": [
+          "Sahifa chiroyli ochiladi",
+          "«0 / 10» va tugma ko'rinadi",
+          "Hammasi «to'g'ri» ishlaydi",
+          "Demo hakamga yoqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Какое ожидание можно проверить на экране?",
+        "variantlar": [
+          "Страница красиво открывается",
+          "Видно «0 / 10» и кнопку",
+          "Всё работает «правильно»",
+          "Демо понравится судье"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Agent tuzatgan fayl git status da. Nima belgilaysiz?",
+        "variantlar": [
+          "«Takrorlanmadi»",
+          "«Buzilmadi»",
+          "«Tuzatish qilindi»",
+          "«Demo tayyor»"
+        ]
+      },
+      "ru": {
+        "savol": "Исправленный агентом файл в git status. Что отметите?",
+        "variantlar": [
+          "«Не повторилось»",
+          "«Не сломалось»",
+          "«Исправление сделано»",
+          "«Демо готово»"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Qayta tekshiruvda yana buzildi. Nima qilasiz?",
+        "variantlar": [
+          "Yozuvni o'chiraman",
+          "Bu qadamni yashiraman",
+          "Yangi funksiya so'rayman",
+          "Agentga yana bir bor beraman"
+        ]
+      },
+      "ru": {
+        "savol": "При повторной проверке снова сломалось. Что сделаете?",
+        "variantlar": [
+          "Удалю запись",
+          "Скрою этот шаг",
+          "Попрошу новую функцию",
+          "Ещё раз отдам агенту"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Uch demo o'tishining birida nima mashq qilinadi?",
+        "variantlar": [
+          "B rejaga o'tish",
+          "Yangi funksiyani ko'rsatish",
+          "Hakam savollariga javob",
+          "Backend'ni qayta yozish"
+        ]
+      },
+      "ru": {
+        "savol": "Что тренируют в одном из трёх прогонов?",
+        "variantlar": [
+          "Переход на план Б",
+          "Показ новой функции",
+          "Ответы на вопросы судьи",
+          "Переписывание Backend"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Demo o'tishida B reja videosi qayerda ochiladi?",
+        "variantlar": [
+          "Hakam telefonida",
+          "Laptopning o'zida",
+          "Sinf chatida",
+          "Ikkinchi telefonda"
+        ]
+      },
+      "ru": {
+        "savol": "Где в прогоне открывается видео плана Б?",
+        "variantlar": [
+          "На телефоне судьи",
+          "На самом ноутбуке",
+          "В чате класса",
+          "На втором телефоне"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Tekshiruvdan keyin tekshiruv akkaunti nima bo'ladi?",
+        "variantlar": [
+          "Hakamlar uchun saqlanadi",
+          "Haqiqiy hisobga aylanadi",
+          "Agent uni o'chiradi",
+          "Sinfdoshga beriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что после проверки делают с проверочным аккаунтом?",
+        "variantlar": [
+          "Сохраняют для судей",
+          "Становится настоящим",
+          "Агент его удаляет",
+          "Отдают однокласснику"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "XATOLAR.md ga nima yoziladi?",
+        "variantlar": [
+          "Faqat agent tuzatishlari",
+          "Hech narsa yozilmaydi",
+          "Faqat buzilgan usullar",
+          "Har usul, natija va holat"
+        ]
+      },
+      "ru": {
+        "savol": "Что записывают в XATOLAR.md?",
+        "variantlar": [
+          "Только исправления агента",
+          "Ничего не записывают",
+          "Только сломанные способы",
+          "Каждый способ, итог и статус"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каком диапазоне оценка Lighthouse?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "от 0 до 100",
+        "hint": "Верно!"
+      },
+      {
+        "value": "от 10 до 50",
+        "hint": "Неверно"
+      },
+      {
+        "value": "от 0 до 5",
+        "hint": "Неверно"
+      },
+      {
+        "value": "от 1 до 50",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой диапазон оценки Lighthouse зелёный?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "от 50 до 89",
+        "hint": "Неверно"
+      },
+      {
+        "value": "от 90 до 100",
+        "hint": "Верно!"
+      },
+      {
+        "value": "от 0 до 49",
+        "hint": "Неверно"
+      },
+      {
+        "value": "от 70 до 100",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что Lighthouse говорит о 100 баллах?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Обязательно для каждой страницы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только в режиме Desktop",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Очень трудно, не обязательно",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только у новых сайтов",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая официальная рекомендация для LCP?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "0,1 секунды или меньше",
+        "hint": "Неверно"
+      },
+      {
+        "value": "200 мс или меньше",
+        "hint": "Неверно"
+      },
+      {
+        "value": "25 секунд или меньше",
+        "hint": "Неверно"
+      },
+      {
+        "value": "2,5 секунды или меньше",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каких единицах измеряется CLS?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Число без единиц, например 0,05",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В секундах, например 2,5 секунды",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В миллисекундах, например 200 мс",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В килобайтах, например 300",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "У какого числа самая большая доля в оценке Lighthouse?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "LCP — 25 процентов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "TBT — 30 процентов",
+        "hint": "Верно!"
+      },
+      {
+        "value": "CLS — 25 процентов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "FCP — 10 процентов",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если верхней картинке поставить загрузку позже?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "CLS упадёт до нуля",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Объём кода уменьшится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "LCP может задержаться",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Картинка совсем не появится",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что в мобильном треке показывает объём загружаемого кода?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Оценка Lighthouse",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Страница Netlify",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Настройка Render",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Окно Expo Atlas",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каком окне вы запускаете Lighthouse?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "В окне Incognito",
+        "hint": "Верно!"
+      },
+      {
+        "value": "На странице Netlify",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В окне Antigravity",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В окне Expo Atlas",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Когда TBT в режиме Mobile зелёный?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Если больше 600 мс",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Если до 200 мс",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Если до 2500 мс",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Если больше 1000 мс",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что агент показывает перед удалением библиотеки?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Оценку Lighthouse",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя новой библиотеки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Доказательство, что она не нужна",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сдвиг страницы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что нужно, чтобы сказать «ускорился»?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "«Готово» от агента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Новый вид страницы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "«Быстро» от одноклассника",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Числа «до» и «после»",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "css-01-v17",
+  "key": "m1-06",
+  "modul": 2,
+  "tartib": 7,
+  "nom": {
+    "uz": "CSS asoslari: ranglar, shriftlar, bo'shliqlar",
+    "ru": "CSS руками — часть 1"
+  },
+  "src": "src/1-Modull/CssLesson1.jsx",
+  "barmoq_izi": "75fa251d7afd2ddd993df592129b48d9",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "CSS nima uchun ishlatiladi?",
+        "variantlar": [
+          "Sahifani bezash uchun",
+          "Tuzilma yaratish uchun",
+          "Ma'lumot saqlash uchun",
+          "So'rov yuborish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Для чего используется CSS?",
+        "variantlar": [
+          "Чтобы оформлять страницу",
+          "Чтобы создавать структуру",
+          "Чтобы хранить данные",
+          "Чтобы отправлять запросы"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "h1 { color: red; } da h1 nima deb ataladi?",
+        "variantlar": [
+          "Xususiyat",
+          "Selektor",
+          "Qiymat",
+          "Izoh"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется h1 в h1 { color: red; }?",
+        "variantlar": [
+          "Свойство",
+          "Селектор",
+          "Значение",
+          "Комментарий"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "color: red; da red nima?",
+        "variantlar": [
+          "Selektor",
+          "Xususiyat",
+          "Qiymat",
+          "Property"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое red в color: red;?",
+        "variantlar": [
+          "Селектор",
+          "Свойство",
+          "Значение",
+          "Property"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Matn rangini qaysi xususiyat o'zgartiradi?",
+        "variantlar": [
+          "background-color",
+          "margin",
+          "font-size",
+          "color"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство меняет цвет текста?",
+        "variantlar": [
+          "background-color",
+          "margin",
+          "font-size",
+          "color"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Fon rangini qaysi xususiyat belgilaydi?",
+        "variantlar": [
+          "background-color",
+          "color",
+          "border-color",
+          "font-family"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство задаёт цвет фона?",
+        "variantlar": [
+          "background-color",
+          "color",
+          "border-color",
+          "font-family"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Shrift turini (Arial) qaysi xususiyat tanlaydi?",
+        "variantlar": [
+          "font-size",
+          "font-family",
+          "font-weight",
+          "text-align"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство выбирает вид шрифта (Arial)?",
+        "variantlar": [
+          "font-size",
+          "font-family",
+          "font-weight",
+          "text-align"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Shrift o'lchamini qaysi xususiyat belgilaydi?",
+        "variantlar": [
+          "font-family",
+          "color",
+          "font-size",
+          "line-height"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство задаёт размер шрифта?",
+        "variantlar": [
+          "font-family",
+          "color",
+          "font-size",
+          "line-height"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Matnni qalin (bold) qilish uchun qaysi xususiyat?",
+        "variantlar": [
+          "font-style",
+          "text-align",
+          "font-size",
+          "font-weight"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство делает текст жирным (bold)?",
+        "variantlar": [
+          "font-style",
+          "text-align",
+          "font-size",
+          "font-weight"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Kontent bilan chet orasidagi ICHKI bo'shliq qaysi?",
+        "variantlar": [
+          "padding",
+          "margin",
+          "border",
+          "gap"
+        ]
+      },
+      "ru": {
+        "savol": "Какой из них — ВНУТРЕННИЙ отступ между контентом и краем?",
+        "variantlar": [
+          "padding",
+          "margin",
+          "border",
+          "gap"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Element bilan boshqalar orasidagi TASHQI bo'shliq qaysi?",
+        "variantlar": [
+          "padding",
+          "margin",
+          "color",
+          "font-size"
+        ]
+      },
+      "ru": {
+        "savol": "Какой из них — ВНЕШНИЙ отступ между элементом и остальными?",
+        "variantlar": [
+          "padding",
+          "margin",
+          "color",
+          "font-size"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Har CSS satri oxiriga nima qo'yiladi?",
+        "variantlar": [
+          "Nuqta (.)",
+          "Vergul (,)",
+          "Nuqta-vergul (;)",
+          "Ikki nuqta (:)"
+        ]
+      },
+      "ru": {
+        "savol": "Что ставится в конце каждой строки CSS?",
+        "variantlar": [
+          "Точка (.)",
+          "Запятая (,)",
+          "Точка с запятой (;)",
+          "Двоеточие (:)"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Xususiyat va qiymat orasida qaysi belgi?",
+        "variantlar": [
+          "Nuqta-vergul (;)",
+          "Teng (=)",
+          "Vergul",
+          "Ikki nuqta (:)"
+        ]
+      },
+      "ru": {
+        "savol": "Какой знак стоит между свойством и значением?",
+        "variantlar": [
+          "Точка с запятой (;)",
+          "Равно (=)",
+          "Запятая",
+          "Двоеточие (:)"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "bot-stateful-memory-05-03-v18",
+  "key": "m5-04",
+  "modul": 7,
+  "tartib": 4,
+  "nom": {
+    "uz": "Bot eslab qoladi — holat va PostgreSQL",
+    "ru": "Бот запоминает — состояние и PostgreSQL"
+  },
+  "src": "src/5-Modull/BotStatefulMemoryLesson.jsx",
+  "barmoq_izi": "555da7390714906bfc014966a87d1a07",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Bot nega oldingi javobni unutadi?",
+        "variantlar": [
+          "Internetda xabar yo'qoladi",
+          "Mijoz juda tez yozadi",
+          "Bot holatni saqlamaydi",
+          "Telegram tartibni buzadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему бот забывает предыдущий ответ?",
+        "variantlar": [
+          "Сообщение теряется в сети",
+          "Клиент пишет слишком быстро",
+          "Бот не хранит состояние",
+          "Telegram путает порядок"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Ikki mijoz aralashmasligi uchun nima kerak?",
+        "variantlar": [
+          "Bitta umumiy o'zgaruvchi",
+          "Har biriga o'z boti",
+          "Umumiy holat PostgreSQL'da",
+          "Har biriga alohida sessiya"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно, чтобы два клиента не смешивались?",
+        "variantlar": [
+          "Одна общая переменная",
+          "Каждому свой бот",
+          "Общее состояние в PostgreSQL",
+          "Каждому отдельная сессия"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Qayta ishga tushganda qaysi ma'lumot qoladi?",
+        "variantlar": [
+          "PostgreSQL jadvalidagi",
+          "JavaScript obyektidagi",
+          "Hech qaysi biri",
+          "Handler o'zgaruvchisidagi"
+        ]
+      },
+      "ru": {
+        "savol": "Какие данные останутся после перезапуска?",
+        "variantlar": [
+          "В таблице PostgreSQL",
+          "В объекте JavaScript",
+          "Никакие",
+          "В переменной handler"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Bot «o'lchamni kutyapman» deb yozib qo'ydi. Bu nima?",
+        "variantlar": [
+          "Webhook",
+          "Holat",
+          "Token",
+          "Fallback"
+        ]
+      },
+      "ru": {
+        "savol": "Бот записал «жду размер». Что это?",
+        "variantlar": [
+          "Webhook",
+          "Состояние",
+          "Токен",
+          "Fallback"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "SELECT botga nima uchun kerak?",
+        "variantlar": [
+          "Yangi mijozni qo'shish uchun",
+          "Ma'lumotni o'chirish uchun",
+          "Jadvalni qayta qurish uchun",
+          "Holatni bazadan o'qish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем боту SELECT?",
+        "variantlar": [
+          "Добавить нового клиента",
+          "Удалить данные",
+          "Перестроить таблицу",
+          "Прочитать состояние из базы"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Yangi mijoz /start bosdi, qatori yo'q. Qaysi buyruq?",
+        "variantlar": [
+          "SELECT",
+          "INSERT",
+          "UPDATE",
+          "DELETE"
+        ]
+      },
+      "ru": {
+        "savol": "Новый клиент нажал /start, строки нет. Какая команда?",
+        "variantlar": [
+          "SELECT",
+          "INSERT",
+          "UPDATE",
+          "DELETE"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Holat keyingi bosqichga qanday o'tadi?",
+        "variantlar": [
+          "UPDATE bilan o'zgaradi",
+          "INSERT bilan qo'shiladi",
+          "SELECT bilan o'qiladi",
+          "DELETE bilan o'chadi"
+        ]
+      },
+      "ru": {
+        "savol": "Как состояние переходит на следующий шаг?",
+        "variantlar": [
+          "Меняется через UPDATE",
+          "Добавляется через INSERT",
+          "Читается через SELECT",
+          "Удаляется через DELETE"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Holat koddagi obyektda: kamchiligi?",
+        "variantlar": [
+          "Botni juda sekinlashtiradi",
+          "Diskda ko'p joy oladi",
+          "Qayta ishga tushsa, yo'qoladi",
+          "Faqat bitta mijozga yetadi"
+        ]
+      },
+      "ru": {
+        "savol": "Состояние в объекте кода: в чём минус?",
+        "variantlar": [
+          "Сильно замедляет бота",
+          "Занимает много места на диске",
+          "При перезапуске пропадает",
+          "Хватает только на одного клиента"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "users jadvalidagi holat ustuni nima uchun?",
+        "variantlar": [
+          "Mijoz ismini saqlash",
+          "Tanlangan pitsani saqlash",
+          "Suhbat bosqichini saqlash",
+          "Xabar vaqtini yozish"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем столбец holat в таблице users?",
+        "variantlar": [
+          "Хранить имя клиента",
+          "Хранить выбранную пиццу",
+          "Хранить шаг беседы",
+          "Записывать время сообщения"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Har mijozga alohida sessiya nega kerak?",
+        "variantlar": [
+          "Suhbatlar aralashmaydi",
+          "Bot tezroq ishlaydi",
+          "Qayta yonsa ham saqlanadi",
+          "Faqat katta botlarga kerak"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем каждому клиенту отдельная сессия?",
+        "variantlar": [
+          "Беседы не смешиваются",
+          "Бот работает быстрее",
+          "Сохранится после перезапуска",
+          "Нужно только большим ботам"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Xabar kelganda bot birinchi nima qiladi?",
+        "variantlar": [
+          "INSERT bilan qo'shadi",
+          "SELECT bilan o'qiydi",
+          "UPDATE bilan yozadi",
+          "Ismini qayta so'raydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что бот делает первым, когда приходит сообщение?",
+        "variantlar": [
+          "Добавляет через INSERT",
+          "Читает через SELECT",
+          "Записывает через UPDATE",
+          "Снова спрашивает имя"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Qayta ishga tushsa ham suhbat saqlanishi uchun?",
+        "variantlar": [
+          "/start qayta bosilsin",
+          "Internet tezroq bo'lsin",
+          "Holat obyektda tursin",
+          "Holat PostgreSQL'da tursin"
+        ]
+      },
+      "ru": {
+        "savol": "Чтобы беседа сохранилась и после перезапуска?",
+        "variantlar": [
+          "Снова нажать /start",
+          "Интернет побыстрее",
+          "Состояние в объекте",
+          "Состояние в PostgreSQL"
+        ]
+      }
+    }
+  ]
+}

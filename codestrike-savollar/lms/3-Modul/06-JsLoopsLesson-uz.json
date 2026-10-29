@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "for siklining 3 qismi to'g'ri tartibda qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "boshlanish, shart, qadam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "shart, qadam, boshlanish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "qadam, boshlanish, shart",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "faqat shart",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "let i = 1 — siklning qaysi qismi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Boshlanish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Shart (i < 5)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qadam (i++)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tana",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "for (let i = 0; i < 3; i++) sikli necha marta ishlaydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "3",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "2",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "4",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "cheksiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "i++ har aylanishda i ni nima qiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "1 ga kamaytiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1 ga oshiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "0 qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "o'zgartirmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sikl qachon to'xtaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "i = 0 bo'lganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shart false bo'lganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qachon to'xtamaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi aylanishdan keyin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Cheksiz sikl qachon yuzaga keladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Shart juda katta bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qadam shartga yaqinlashmasa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Massiv bo'sh bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "i ni yozib qo'ysak",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Massivda indekslar nechadan boshlanadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "1 dan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "-1 dan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "0 dan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "uzunligidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "['a','b','c'] massivida 'c' ning indeksi qaysi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "1",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "0 (nol)",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "fruits.length nimani beradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Birinchi element",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirgi indeksni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Elementlar sonini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Massiv nomini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "for (let i=1; i<=10; i+=2) qaysi sonlarni beradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "1,2,3,...,10",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "faqat 10",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2,4,6,8,10",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1,3,5,7,9",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "while sikli qachongacha ishlaydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Massiv bor bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat bir marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Doim aniq 10 marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shart true ekan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Massivni to'liq aylanish uchun shart qanday yoziladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "i <= fruits.length",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "i == fruits.length",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "i > 0",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "i < fruits.length",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

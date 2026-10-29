@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "useState nimani qaytaradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Qiymat va yangilovchi funksiya",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat boshlang'ich sonni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butunlay yangi HTML sahifa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "CSS uslublar to'plamini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Oddiy let likes o'zgarsa, React nima qiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ekranni darhol yangilaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa — sezmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Xatolik chiqaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani qayta yuklaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Like sonini to'g'ri oshirish qaysi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "likes = likes + 1",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "likes++",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "setLikes(likes + 1)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "return likes + 1",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "useState(5) yozsangiz, boshlang'ich qiymat qanday bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "0 (nol)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "null",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "undefined",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "set funksiyasi chaqirilsa, React nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Komponentni qayta chizadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Konsolga xabar yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverga so'rov yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa qilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "useEffect(() => {...}, []) qachon ishlaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Har qayta chizishda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranga chiqqanda bir marta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qachon ishlamaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Komponent o'chirilganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "[likes] bo'lsa, effect qachon ishlaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Hech qachon ishlamaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har soniyada bir marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har safar likes o'zgarsa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat bir marta, boshida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hayot yo'lining to'g'ri tartibi qaysi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Unmount → Update → Mount",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Update → Mount → Unmount",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mount → Unmount → Update",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mount → Update → Unmount",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "State va props farqi nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "State ichki, props tashqaridan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ular aynan bir xil narsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Props o'zgaradi, state yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "State faqat sonlar uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Xotirada son o'sdi, ekranda esa o'smadi — nega?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Internet juda sekin edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "set yo'q — React chizmadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod butunlay buzuq edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer juda eskirgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Effect ichidagi return () => {} nima uchun?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "State yaratish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qiymat qaytarish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tozalash uchun (unmount)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rang berish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bitta komponentda nechta useState bo'lishi mumkin?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Faqat bitta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'pi bilan ikkita",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'pi bilan uchta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Istagancha ko'p",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

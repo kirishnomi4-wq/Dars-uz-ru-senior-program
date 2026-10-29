@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'yinchi kela olmaydi. Ilovada nima qiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "«O'yindan chiqish»ni bosadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Kelaman»ni bosmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovaga kirmay qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani o'chiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'lgan o'yinda o'ynamoqchisiz. Nimani bosasiz?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "«Qo'shilaman»ni qayta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Navbatga yozilish»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Kelaman»ni o'yin kuni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«E'lon berish»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'shagan joyni kim oladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ekranni birinchi yangilagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchi tanlagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Navbatga birinchi yozilgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Navbatga oxirgi yozilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«10 / 10», navbat bo'sh. Biri chiqsa, kartada nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "10 / 10, «O'yin to'ldi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "9 / 10, «O'yin to'ldi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "10 / 10, «Qo'shilaman»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "9 / 10, «Qo'shilaman»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Navbatdagi kishi joy olganini qachon biladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ekranni yangilaganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tashkilotchi aytganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydonga borganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Navbatga yozilgan zahoti",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Navbatdagi o'yinchi jadvalda qanday turadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "qoshildi holatida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "navbatda holatida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "chiqdi holatida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Alohida navbat jadvalida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova Backend o'zgarishini qachon ko'radi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "start:dev qilgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Expo Go o'rnatilgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Push'dan, Render yangilagach",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Neon'da jadval ochilgach",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bir vaqtda» qatori yo'q. Oxirgi joyni ikki kishi bossa?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ikkalasi rad etiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Biri o'zi o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchi tanlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasi ham yoziladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Oxirgi joy bir kishiga qanday tegadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Tekshiruv va yozuv bitta ish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Avval yozib, keyin o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yaqin telefonni tanlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasini rad etadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bitta ish»da ikkinchi so'rov nima qiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Oldinga o'tib yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kutib, keyin javob oladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Javobsiz yo'qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U ham birga yoziladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir lahzadagi so'rovlarni qanday sinaysiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ikki telefonda bosib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta telefonda tez bosib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent so'rovlari bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Neon'da qo'lda yozib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uchinchi funksiyada nima buzilmasin?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Faqat yangi funksiyangiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "README.md fayli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelgusi funksiyalaringiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oldingi ikki funksiyangiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

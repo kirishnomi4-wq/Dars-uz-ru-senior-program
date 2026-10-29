@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi resurs uchun nechta fayl kerak?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "2 — entity va controller",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3 — entity, service, module",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5 — har qatlamga bittadan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "1 — hammasi bitta faylda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'lim AppModule'ga ulanmasa nima bo'ladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Eshik topilmaydi — 404",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Server ishga tushmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumot saqlanmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Swagger'da 500 chiqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kitobni kategoriyaga qaysi dekorator bog'laydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "@Column()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@UseGuards()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@Roles()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@ManyToOne()",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "@ManyToOne qaysi faylga yoziladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "category.entity.ts",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "book.entity.ts",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "book.controller.ts",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "app.module.ts",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tokensiz mijoz POST /book qilsa?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "401/403 — qo'riqchi rad etadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "201 — kitob baribir qo'shiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "404 — eshik topilmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "200 — bo'sh ro'yxat",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Eshikka qo'riqchi qo'yadigan dekorator qaysi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "@Injectable()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@Entity()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@UseGuards()",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "@Controller()",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GET /book hamma uchun ochiq bo'lsin desak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "@Roles(UserRole.ADMIN)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@Roles('public')",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qo'riqchini o'chiramiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Frontend'da yashiramiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent yozgan kodni qachon «Keep» qilasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Darhol, o'qimasdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent tugatishi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server yoqilmasdan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tekshiruvdan o'tganda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "BaseService ni meros olgan service nimani tekin oladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Eshik qo'riqchisini (guard)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Swagger hujjatini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bazaga ulanishni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tayyor CRUD metodlarini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Muvaffaqiyatli POST qaysi kodni qaytaradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "200 OK",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "201 Created",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "204 No Content",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "301 Moved",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DTO nima uchun kerak?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Kelgan so'rovni tekshirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jadval ustunlarini belgilash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'limni AppModule'ga ulash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bazaga ulanishni sozlash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mijoz POST /order da 403 oldi. Sabab?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "@Controller('order')",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@Post()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@Roles(UserRole.ADMIN)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "@Get()",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

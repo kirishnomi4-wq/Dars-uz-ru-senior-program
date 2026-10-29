@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В чём главное отличие обычного AI от агента?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Агент выполняет работу",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Агент говорит красивее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Обычный AI всегда быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Разницы нет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется цикл агента?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Ввод → обработка → вывод",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Старт → ожидание → финиш",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Восприятие → решение → действие",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вопрос → ответ → остановка",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое tool?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Название AI-модели",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Функция, которую вызывает агент",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вид Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Страница Frontend",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Агент читает статус заказа — какой это tool?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Tool Database",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Tool API",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Tool сообщений",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Tool не нужен",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чего хватит для разовой задачи (например, перевода)?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Обязательно нужен агент",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего не подходит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "AI и агент вместе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Обычный AI",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что подходит для многошаговой задачи с tool?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Обычный AI с одним ответом",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только frontend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "AI-агент",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где работает агент в нашей системе?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Во frontend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри backend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Внутри Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вне системы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как агент действует в системе?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Сам по себе, без tool",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через выданные вами tool",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только пишет ответ",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сам рисует экран",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем агенту ограничения?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Он совершает реальные действия",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Он работает очень медленно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Он занимает много памяти",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ограничения не нужны",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что позволяет агенту делать шаги подряд?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Большая память",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Красивый интерфейс",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Цикл агента",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Быстрый интернет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Агент для каждой задачи — это что?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Всегда лучшее решение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Способ сэкономить время",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ускорение системы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Лишняя сложность",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает агент после каждого действия?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Сразу останавливается",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ждёт пользователя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проверяет результат",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Выключает цикл",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

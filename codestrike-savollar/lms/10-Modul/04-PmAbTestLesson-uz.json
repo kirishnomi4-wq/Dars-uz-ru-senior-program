@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Gipoteza qanday yoziladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Agar …, … o'zgaradi, chunki …",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "… qilamiz, chunki bu yaxshi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hozir … ta, oy oxirida … ta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Avval …, keyin … ko'ramiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Maydon» gipotezasida «chunki» qismi qaysi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Tugmada soat yozilsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tanlaganini tugmada ko'radi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'proq o'yinchi band qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band qilganlar foizi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Band qilish» tugmasi qaysi qadamdan keyin chiqadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sahifa ochilgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band qilingach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqt tanlangach",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Parol kiritilgach",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "A/B testda variant A qaysi biri?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Yangi, sinaladigan variant",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ega tanlagan eng yaxshisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dashboard'da birinchisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hozirgi, o'zgarmagan variant",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega A va B bir vaqtda ishlaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "E'lon kabi farq aralashmasin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend'ga kam so'rov kelsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchi ikkalasini ko'rsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Raqamlar tez chiqsin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bizning testda brauzer variantni qachon oladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Har yangilanganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi kirganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugmani bosganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ega dashboard ochganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Brauzer A va B ni ko'rdi. Muammo nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Tugma matni uzun bo'ldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend hodisani olmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Guruhi noma'lum bo'lib qoldi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Brauzer ID o'zgarib qoldi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "A — 9 tadan 3, B — 8 tadan 4. B ning foizi qancha?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "4 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "33 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "12 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "50 foiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guruhlar 9 va 8 chiqdi. Bu nima degani?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Tasodifda bu tabiiy hol",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bo'lish xato, qaytadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "B dagi tugma kamroq yoqqan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kimdir ikki marta sanalgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "2017-yilda Booking.com bir vaqtda nechta A/B test o'tkazgan?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "10 dan ortiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1000 dan ortiq",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "100 dan ortiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5000 dan ortiq",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend hodisa variantini qanday biladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Brauzer ID ning harfidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa yozilgan soatdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisadagi variantdan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bandlar ro'yxatidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Sayt yaxshiroq bo'ladi» — gipotezada nima yetishmaydi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Qancha kutish kerakligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nechta odam kirishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni kim yozishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi raqam o'zgarishi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

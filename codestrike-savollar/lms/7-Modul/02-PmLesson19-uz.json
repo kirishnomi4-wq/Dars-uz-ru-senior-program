@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Birinchi foydalanuvchilar kim?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Botni birinchi ishlatganlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot yozishga yordam berganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botga bir marta yozganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot haqida faqat eshitganlar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Botga birinchi odamlarni kim olib keladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Telegram — hammaga aytadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qidiruv — bot o'zi chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot — odamlarni chaqiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Siz — o'zingiz aytasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tanish guruhda xabar nega tez tarqaladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "U yerda odam soni ko'p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabarni bot o'zi aytadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir-birini tez-tez ko'radi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir-birini izlab yuradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi halqa ko'proq odam berdi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Sizni tanimaydiganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har kuni ko'rishadiganlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ba'zan ko'rishadiganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchalasi bir xil",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Katta guruhda odam ko'p — nega ishlatgani kam?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "U yerda bot ochilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ular sizni tanimaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Xabar u yerga yetmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot u yerda sekin ishlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Xabar qaysi guruhda tez tarqaladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Tanish: bir-biriga aytadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tanish: odam soni ko'p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Notanish: odam soni ko'p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Notanish: bir-biriga aytadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Odam botga kelguncha qaysi uch qadamdan o'tadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Qidirdi, topdi, yozdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochdi, ishlatdi, eshitdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eshitdi, ochdi, ishlatdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'rdi, yozdi, o'chirdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Facebook 2004-yilda qayerda ochilgan?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Butun dunyoda, hamma uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki shahardagi maktablarda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uch shaharda, bittadan joyda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta universitetda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Facebook butun dunyo uchun qachon ochilgan?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Oradan ikki yarim yil o'tgach",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Birinchi kunidan boshlab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir necha oydan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha yilning oxirida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Facebook voqeasida nima ish bergan?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Saytning tez ochilishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozilgan odamlar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlar bir-birini tanishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytdagi tugmalar ko'pligi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri tanish guruh?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Bir mahalladagi notanishlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlar: har kuni birga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kanalning 5000 obunachisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bekatda avtobus kutganlar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Har guruh haqida nimalarni yozasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Guruh nomi va odamlar yoshi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat odam soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Guruh nomi, admini, sanasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nomi, kimlar bor, odam soni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

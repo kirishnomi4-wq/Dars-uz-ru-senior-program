@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Varaq qachon to'ldiriladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Pitch tugagandan keyin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har bo'lak aytilayotganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitch boshlanishidan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat uyda, darsdan keyin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida guruh qaysi bo'laklarga ✗ qo'ydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Muammo va Yechim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bozor va Raqamlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jamoa va Raqamlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo va Bozor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor tuzatishida «60 kishi» kimlar?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ilovadagi tashkilotchilar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahalladagi maydon egalari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Futbol guruhi a'zolari",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mentorning sinfdoshlari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guruh rejimida hakam savolini kim yozadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Pitchni aytgan o'quvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor, dars boshida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent, matnni o'qib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitchni tinglaganlar",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Fikrlar har xil bo'lsa, varaqqa nima qo'yiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Kelishilgan bitta belgi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'pchilikning ✓ belgisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qator belgisiz qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkala belgi yonma-yon",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor varag'ida ikkita ✗. Uchinchi tuzatish qayerdan?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Sinf ovozlaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakam savolidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mentor taxminidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitch vaqtidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tuzatish qanday yoziladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Faqat bo'lak nomi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitchdagi hamma gaplar bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'lak va unda nima o'zgarishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tinglovchi ismi bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor tasdiq haqidagi izohga nima yozdi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Tasdiqni olib tashlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Pro'ni sotib oldi» deyish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tasdiqlar sonini oshirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tasdiq nimaligini aytish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi izoh bo'lak haqida?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "«Yechim tushunarsiz qoldi»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Juda hayajonlandingiz»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Menga umuman yoqmadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Meniki yaxshiroq chiqdi»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guruh bo'lmasa, varaqni kim to'ldiradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Mentor, darsdan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zingiz, yozuvni ko'rib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech kim, varaq kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent, matnni o'qib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yakka rejimda pitch yozuvi qayerda qoladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Sinf chatida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentorning telefonida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat telefoningizda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Guruh kanalida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega maydon egalari to'lamaydi? Mentor nima deydi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "«Keyin to'lab beradi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Pitchga aloqasi yo'q»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Ular bizga kerak emas»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bugun to'lovchi emas»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

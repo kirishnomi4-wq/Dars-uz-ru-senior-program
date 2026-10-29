@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mobil ilova menuni qayerdan oladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Tayyor backend'dan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qo'lda yozilgan ro'yxatdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi mobil serverdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerdan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Loyiha kunida sizning vazifangiz nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Kodni o'qimay ishlatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Topshiriq, o'qish va sinash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma kodni qo'lda yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat dizaynni tanlash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React Native'da ro'yxatni ko'rsatish uchun qaysi komponent?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "<div>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<table>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<FlatList>",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<ScrollView>",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Yuborish» bosilsa nima bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Faqat telefonda saqlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa bo'lmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi mobil API ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ga POST /buyurtma",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Savat soni belgisi nima bilan bog'lanadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Backend fayl nomi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "savat.length bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "rasm.width bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa title bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jami narxni hisoblash uchun qaysi usul qulay?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "reduce",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "map",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "filter",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "sort",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Expo Go asosan nima uchun kerak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Kodni tarjima qilish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend qurish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasm chizish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinash va ulashish uchun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mobil ilovani qanday sinaymiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Umuman sinamaymiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat kodga qarab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni o'qib, telefonda bosib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat ranglarni ko'rib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Web, bot va mobil bir xil buyurtmani qanday ko'radi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bitta backend'ga ulanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Alohida Database quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'lda nusxalanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buning iloji yo'q",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova ishlagach, yana nima kerak?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Boshqa hech narsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "StyleSheet'ni o'chirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasini qayta yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "StyleSheet bilan sayqal",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tafsilot ekraniga o'tish uchun nima ishlatiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "reduce",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "fetch",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "navigation.navigate",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "StyleSheet.create",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega telefonda ham sinash kerak?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kod tezroq yuklanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qurilma xatolari ko'rinadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod yozish kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet kerak emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

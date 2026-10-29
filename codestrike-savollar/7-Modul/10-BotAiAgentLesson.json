@@ -1,0 +1,278 @@
+{
+  "lessonId": "bot-ai-agent-05-10-v18",
+  "key": "m5-10",
+  "modul": 7,
+  "tartib": 10,
+  "nom": {
+    "uz": "AI-agent yaratish",
+    "ru": "Создание ИИ-агента"
+  },
+  "src": "src/5-Modull/BotAiAgentLesson.jsx",
+  "barmoq_izi": "50db5e9e290e3e61a53803a3cf86517f",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "AI-bot va AI-agentning asosiy farqi?",
+        "variantlar": [
+          "Agentning rangi boshqacha",
+          "Agent qadamni o'zi tanlaydi",
+          "Hech qanday farq yo'q",
+          "Agent ancha sekin ishlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Главное отличие AI-бота от AI-агента?",
+        "variantlar": [
+          "У агента другой цвет",
+          "Агент сам выбирает шаг",
+          "Разницы нет",
+          "Агент намного медленнее"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Agent siklidagi «Amal» qadami nima?",
+        "variantlar": [
+          "Keyingi xabarni kutish",
+          "Salom va menu yuborish",
+          "O'zini o'chirib qo'yish",
+          "Tanlangan tool'ni chaqirish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое шаг «Действие» в цикле агента?",
+        "variantlar": [
+          "Ждать следующее сообщение",
+          "Отправить привет и меню",
+          "Выключить себя",
+          "Вызвать выбранный tool"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Tool nima?",
+        "variantlar": [
+          "Agent chaqiradigan funksiya",
+          "Botning shrift sozlamasi",
+          "Serverning IP-manzili",
+          "Internet tezligi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое tool?",
+        "variantlar": [
+          "Функция, которую вызывает агент",
+          "Настройка шрифта бота",
+          "IP-адрес сервера",
+          "Скорость интернета"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Agent tool'ni qanday tanlaydi?",
+        "variantlar": [
+          "Ro'yxatda birinchisini oladi",
+          "Tavakkaliga tanlaydi",
+          "Maqsad va vaziyatga qarab",
+          "Odam qo'lda tanlab beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Как агент выбирает tool?",
+        "variantlar": [
+          "Берёт первый в списке",
+          "Наугад",
+          "По цели и ситуации",
+          "Выбирает человек вручную"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Agent bitta amalni bajardi. Endi nima qiladi?",
+        "variantlar": [
+          "Shu zahoti to'xtaydi",
+          "Natijaga qarab davom etadi",
+          "O'sha amalni takrorlaydi",
+          "Mijoz buyrug'ini kutadi"
+        ]
+      },
+      "ru": {
+        "savol": "Агент выполнил одно действие. Что дальше?",
+        "variantlar": [
+          "Сразу останавливается",
+          "Смотрит на результат и продолжает",
+          "Повторяет то же действие",
+          "Ждёт команды клиента"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Agentga siz qaysi uch narsani berasiz?",
+        "variantlar": [
+          "Maqsad, tool'lar va chegara",
+          "Faqat system prompt",
+          "Har hodisaga tayyor javob",
+          "Token va server manzili"
+        ]
+      },
+      "ru": {
+        "savol": "Какие три вещи вы даёте агенту?",
+        "variantlar": [
+          "Цель, tools и границы",
+          "Только system prompt",
+          "Готовый ответ на каждое событие",
+          "Токен и адрес сервера"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Chegara (guardrail) nima uchun kerak?",
+        "variantlar": [
+          "Botni chiroyli ko'rsatish",
+          "Javobni tezlashtirish",
+          "Mijozga rang tanlash",
+          "Xavfli amalni to'xtatish"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужна граница (guardrail)?",
+        "variantlar": [
+          "Чтобы бот выглядел красиво",
+          "Чтобы ускорить ответ",
+          "Чтобы выбрать клиенту цвет",
+          "Чтобы остановить опасное действие"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Agent pul yechishdan oldin nima qilishi kerak?",
+        "variantlar": [
+          "Tasdiqsiz yechaverishi",
+          "Odamdan tasdiq so'rashi",
+          "Botni o'chirib qo'yishi",
+          "Tezroq yechishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что агент должен сделать перед списанием денег?",
+        "variantlar": [
+          "Списать без подтверждения",
+          "Спросить подтверждение у человека",
+          "Выключить бота",
+          "Списать побыстрее"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Odam nazorati (human-in-the-loop) nima?",
+        "variantlar": [
+          "Agent hammasini o'zi qiladi",
+          "Odam umuman aralashmaydi",
+          "Muhim qarorni odam qiladi",
+          "Mijoz bloklanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое человеческий контроль (human-in-the-loop)?",
+        "variantlar": [
+          "Агент делает всё сам",
+          "Человек не вмешивается",
+          "Важное решение принимает человек",
+          "Клиента блокируют"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "«Cheklangan tool'lar» nimani bildiradi?",
+        "variantlar": [
+          "Tool'lar sekin ishlaydi",
+          "Tool'lar bepul bo'ladi",
+          "Agentga hamma tool beriladi",
+          "Faqat kerakli tool beriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает «ограниченные tools»?",
+        "variantlar": [
+          "Tools работают медленно",
+          "Tools бесплатны",
+          "Агенту дают все tools",
+          "Дают только нужные tools"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Agent sikli qaysi tartibda ishlaydi?",
+        "variantlar": [
+          "Idrok → Qaror → Amal",
+          "Amal → Idrok → Qaror",
+          "Qaror → Amal → Idrok",
+          "Idrok → Amal → Qaror"
+        ]
+      },
+      "ru": {
+        "savol": "В каком порядке идёт цикл агента?",
+        "variantlar": [
+          "Восприятие → Решение → Действие",
+          "Действие → Восприятие → Решение",
+          "Решение → Действие → Восприятие",
+          "Восприятие → Действие → Решение"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Agent siklida «Qaror» qadamini kim bajaradi?",
+        "variantlar": [
+          "Foydalanuvchi qo'lda tanlaydi",
+          "Server tasodifiy tanlaydi",
+          "AI tool'ni tanlaydi",
+          "Tool AI'siz hal qiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто выполняет шаг «Решение» в цикле агента?",
+        "variantlar": [
+          "Пользователь выбирает вручную",
+          "Сервер выбирает случайно",
+          "AI выбирает tool",
+          "Tool решает без AI"
+        ]
+      }
+    }
+  ]
+}

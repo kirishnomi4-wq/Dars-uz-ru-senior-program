@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'liq botning to'rt qismi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Token, API, dizayn, reklama",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Token, handler, baza, AI",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Handler, rasm, video, musiqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefon, laptop, kabel, Wi-Fi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Buyurtmani ertasi kungacha qaysi qism saqlaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Token",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Handler",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baza",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Deploy nima degani?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Kodni serverda ishga tushirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Botni o'chirib, qayta yaratish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tokenni yangisiga almashtirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botga mijoz taklif qilish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Server — bu nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Telegram ichidagi kanal",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Laptopdagi alohida papka",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Doim ishlab turuvchi kompyuter",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefondagi Telegram ilovasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Botni serverga joylasak, nima o'zgaradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Bot sekinroq javob beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Laptopsiz ham javob beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat kunduzi javob beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Serverda BOT_TOKEN qayerga yoziladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Server sozlamalariga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "bot.js kodining ichiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botning Telegram tavsifiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerga, o'zi topadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Polling'da yangi xabarni kim so'raydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Mijoz — Telegram'dan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram — botdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server — mijozdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot — Telegram'dan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Webhook'da xabarni botga kim yetkazadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Bot o'zi so'rab oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram o'zi yuboradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mijoz serverga yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech kim, o'zi paydo bo'ladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Laptopda bot qaysi usulda ishlaydi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Webhook",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasini birga ishlatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Polling",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qaysi, bot o'zi biladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Serverga joylashdan oldin nima qilinadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Token kodga yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa qilinmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Laptopdagi baza o'chiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod laptopda sinab ko'riladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI javob bermasa, bot jim qolmasligi uchun?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Xatoni ushlab, uzr so'raydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot qo'lda qayta yoqiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi token olinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa, o'zi tuzaladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Laptop yopiq, bot javob beryapti. Nega?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Javoblar navbatda turgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram botni o'zi ishlatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot serverda ishlayapti",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mijoz botni yoqqan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

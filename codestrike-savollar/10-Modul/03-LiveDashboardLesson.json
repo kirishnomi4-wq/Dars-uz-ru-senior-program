@@ -1,0 +1,278 @@
+{
+  "lessonId": "m8-03-v1",
+  "key": "m8-03",
+  "modul": 10,
+  "tartib": 3,
+  "nom": {
+    "uz": "Loyiha kuni: jonli dashboard",
+    "ru": "День проекта: живой дашборд"
+  },
+  "src": "src/8-Modull/LiveDashboardLesson.jsx",
+  "barmoq_izi": "1f2af507049cedccbd12e88198ec6721",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Dashboard (holat paneli) nima?",
+        "variantlar": [
+          "Raqamlar jamlangan sahifa",
+          "Vaqt band qilinadigan sahifa",
+          "Hodisalar jadvali",
+          "Backend'ni yoqish buyrug'i"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое дашборд (панель состояния)?",
+        "variantlar": [
+          "Страница со всеми числами",
+          "Страница бронирования",
+          "Таблица событий",
+          "Команда запуска Backend"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Oxirgi 5 daqiqada» nimani sanaydi?",
+        "variantlar": [
+          "Bugun ochgan brauzerlarni",
+          "Hodisa yuborgan brauzerlarni",
+          "Sahifasi ochiq odamlarni",
+          "Band qilgan o'yinchilarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает «За последние 5 минут»?",
+        "variantlar": [
+          "Браузеры, открывшие сегодня",
+          "Браузеры, отправившие событие",
+          "Людей с открытой страницей",
+          "Забронировавших игроков"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Brauzer uch katak bosdi. «Vaqtni tanladi» nechaga oshadi?",
+        "variantlar": [
+          "Uchtaga",
+          "Oshmaydi",
+          "Bittaga",
+          "Ikkitaga"
+        ]
+      },
+      "ru": {
+        "savol": "Один браузер нажал три слота. На сколько вырастет «Выбрали время»?",
+        "variantlar": [
+          "На три",
+          "Не вырастет",
+          "На один",
+          "На два"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Nega turli brauzerlar sanaladi?",
+        "variantlar": [
+          "Raqamlar katta ko'rinadi",
+          "Backend tezroq javob beradi",
+          "Database'da joy tejaladi",
+          "Qadamlarni solishtirsa bo'ladi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему считают разные браузеры?",
+        "variantlar": [
+          "Числа выглядят больше",
+          "Backend отвечает быстрее",
+          "Экономится место в Database",
+          "Шаги можно сравнить"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Dashboard raqamlarni qanday yangilaydi?",
+        "variantlar": [
+          "Sayt har 5 soniyada so'raydi",
+          "Ega F5 ni bosib turadi",
+          "Database o'zi yuboradi",
+          "Umami ko'chirib beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Как дашборд обновляет числа?",
+        "variantlar": [
+          "Сайт спрашивает каждые 5 секунд",
+          "Владелец жмёт F5",
+          "Database присылает сама",
+          "Umami копирует их"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Tokensiz GET /hodisalar/sanoq nima qaytaradi?",
+        "variantlar": [
+          "Hamma raqamlarni beradi",
+          "401 qaytaradi",
+          "Faqat 5 daqiqalikni beradi",
+          "Parol sahifasini ochadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что вернёт GET /hodisalar/sanoq без токена?",
+        "variantlar": [
+          "Отдаст все числа",
+          "Вернёт 401",
+          "Отдаст только 5-минутное",
+          "Откроет страницу пароля"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Saytni yopgan «Oxirgi 5 daqiqada»dan qachon tushadi?",
+        "variantlar": [
+          "Yopgan soniyadayoq",
+          "Yangi kun boshlanganda",
+          "Hodisadan 5 daqiqa keyin",
+          "Ega yangilaganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда закрывший сайт пропадёт из «За последние 5 минут»?",
+        "variantlar": [
+          "В ту же секунду",
+          "Когда начнётся новый день",
+          "Через 5 минут после события",
+          "Когда владелец обновит"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Dashboard ochilsa, «Oxirgi 5 daqiqada» oshadimi?",
+        "variantlar": [
+          "Ha — sahifa sanaladi",
+          "Ha — ega ham odam",
+          "Yo'q — parol to'xtatadi",
+          "Yo'q — hodisa yozilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Если открыть дашборд, вырастет ли «За последние 5 минут»?",
+        "variantlar": [
+          "Да — страница считается",
+          "Да — владелец тоже человек",
+          "Нет — пароль останавливает",
+          "Нет — событие не пишется"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Brauzer ID nimani bildiradi?",
+        "variantlar": [
+          "Brauzerni, odamni emas",
+          "O'yinchi ismi va telefonini",
+          "Odamning yoshi va shahrini",
+          "Ega paroli bilan tokenni"
+        ]
+      },
+      "ru": {
+        "savol": "Что обозначает ID браузера?",
+        "variantlar": [
+          "Браузер, а не человека",
+          "Имя и телефон игрока",
+          "Возраст и город человека",
+          "Токен по паролю владельца"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "«Yangilandi» har 5 soniyada o'zgaradi. Bu nima degani?",
+        "variantlar": [
+          "O'yinchilar kiryapti",
+          "Backend javob beryapti",
+          "Token eskirib qoldi",
+          "Raqamlar oshyapti"
+        ]
+      },
+      "ru": {
+        "savol": "«Обновлено» меняется каждые 5 секунд. Что это значит?",
+        "variantlar": [
+          "Заходят игроки",
+          "Backend отвечает",
+          "Токен устарел",
+          "Числа растут"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Vaqtni tanladi 9, band qildi 3. Necha foizi band qildi?",
+        "variantlar": [
+          "Taxminan 3 foizi",
+          "Taxminan 6 foizi",
+          "Taxminan 33 foizi",
+          "Taxminan 300 foizi"
+        ]
+      },
+      "ru": {
+        "savol": "Выбрали время — 9, забронировали — 3. Какой процент забронировал?",
+        "variantlar": [
+          "Примерно 3 процента",
+          "Примерно 6 процентов",
+          "Примерно 33 процента",
+          "Примерно 300 процентов"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Sanoq to'g'riligini qanday tekshirasiz?",
+        "variantlar": [
+          "Agentdan yana so'raysiz",
+          "Katta raqamga ishonasiz",
+          "Keyingi talabga o'tasiz",
+          "Inkognitoda bosib ko'rasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Как проверите, что подсчёт верный?",
+        "variantlar": [
+          "Ещё раз спросите агента",
+          "Поверите большому числу",
+          "Перейдёте к следующему",
+          "Нажмёте в инкогнито"
+        ]
+      }
+    }
+  ]
+}

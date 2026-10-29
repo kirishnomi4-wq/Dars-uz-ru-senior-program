@@ -1,0 +1,278 @@
+{
+  "lessonId": "rn-basics-06-09-v18",
+  "key": "m6-09",
+  "modul": 8,
+  "tartib": 9,
+  "nom": {
+    "uz": "React Native — asoslari",
+    "ru": "React Native — основы"
+  },
+  "src": "src/6-Modull/ReactNativeBasicsLesson.jsx",
+  "barmoq_izi": "097a39ede5cd9b68815f285c3dfa97f5",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "React Native nima?",
+        "variantlar": [
+          "React bilan mobil ilova",
+          "Saytni bezash kutubxonasi",
+          "Database boshqaruvchi server",
+          "Rasm tahrirlash dasturi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое React Native?",
+        "variantlar": [
+          "Мобильное приложение на React",
+          "Библиотека украшения сайта",
+          "Сервер управления Database",
+          "Программа для редактирования фото"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Web'dagi <div> React Native'da nimaga mos keladi?",
+        "variantlar": [
+          "<p>",
+          "<View>",
+          "<div> — o'zgarmaydi",
+          "<span>"
+        ]
+      },
+      "ru": {
+        "savol": "Чему в React Native соответствует <div> из веба?",
+        "variantlar": [
+          "<p>",
+          "<View>",
+          "<div> — не меняется",
+          "<span>"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Web'dagi <p> React Native'da nimaga mos keladi?",
+        "variantlar": [
+          "<View>",
+          "<div>",
+          "<Text>",
+          "<label>"
+        ]
+      },
+      "ru": {
+        "savol": "Чему в React Native соответствует <p> из веба?",
+        "variantlar": [
+          "<View>",
+          "<div>",
+          "<Text>",
+          "<label>"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "React Native'da har qanday matn qayerda bo'lishi shart?",
+        "variantlar": [
+          "<View> ichida to'g'ridan",
+          "<div> ichida",
+          "<p> ichida",
+          "<Text> ichida"
+        ]
+      },
+      "ru": {
+        "savol": "Где в React Native обязательно должен быть любой текст?",
+        "variantlar": [
+          "Прямо внутри <View>",
+          "Внутри <div>",
+          "Внутри <p>",
+          "Внутри <Text>"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "StyleSheet nima?",
+        "variantlar": [
+          "Stillar yoziladigan JS obyekt",
+          "Loyihaga ulanadigan .css fayl",
+          "Ma'lumot saqlaydigan jadval",
+          "Rasmlar uchun fayl formati"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое StyleSheet?",
+        "variantlar": [
+          "JS-объект, в котором пишут стили",
+          ".css-файл, подключаемый к проекту",
+          "Таблица для хранения данных",
+          "Формат файла для картинок"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "CSS'dagi background-color StyleSheet'da qanday yoziladi?",
+        "variantlar": [
+          "background-color — o'zgarmaydi",
+          "backgroundColor",
+          "bg_color",
+          "colorBackground"
+        ]
+      },
+      "ru": {
+        "savol": "Как в StyleSheet пишется background-color из CSS?",
+        "variantlar": [
+          "background-color — не меняется",
+          "backgroundColor",
+          "bg_color",
+          "colorBackground"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Expo nima uchun kerak?",
+        "variantlar": [
+          "Database'ni boshqarish uchun",
+          "Saytni joylash uchun",
+          "Telefonda oson sinash uchun",
+          "Rasm chizish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен Expo?",
+        "variantlar": [
+          "Чтобы управлять Database",
+          "Чтобы разместить сайт",
+          "Чтобы легко проверять на телефоне",
+          "Чтобы рисовать картинки"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Expo Go QR kod bilan nima qiladi?",
+        "variantlar": [
+          "Kodni o'zi yozib beradi",
+          "Ma'lumotni saqlaydi",
+          "Saytni brauzerda ochadi",
+          "Loyihani telefonda ochadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает Expo Go с QR-кодом?",
+        "variantlar": [
+          "Сам пишет код",
+          "Хранит данные",
+          "Открывает сайт в браузере",
+          "Открывает проект на телефоне"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "React Native ilova qaysi platformalarda ishlaydi?",
+        "variantlar": [
+          "iOS va Android'da",
+          "Faqat Apple iOS'da",
+          "Faqat kompyuter brauzerida",
+          "Faqat Windows kompyuterlarida"
+        ]
+      },
+      "ru": {
+        "savol": "На каких платформах работает приложение на React Native?",
+        "variantlar": [
+          "На iOS и Android",
+          "Только на Apple iOS",
+          "Только в браузере компьютера",
+          "Только на компьютерах с Windows"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "React Native'ga o'tganda nima o'zgarmaydi?",
+        "variantlar": [
+          "Ekran elementlari (div, p)",
+          "Komponent, props va state",
+          "Alohida CSS fayl",
+          "HTML teglari"
+        ]
+      },
+      "ru": {
+        "savol": "Что не меняется при переходе на React Native?",
+        "variantlar": [
+          "Элементы экрана (div, p)",
+          "Компоненты, props и state",
+          "Отдельный CSS-файл",
+          "HTML-теги"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "React Native — bu web-saytmi?",
+        "variantlar": [
+          "Ha, u oddiy web-sayt",
+          "Ha, faqat brauzerda ishlaydi",
+          "Yo'q — u haqiqiy mobil ilova",
+          "Yo'q — u faqat rasm"
+        ]
+      },
+      "ru": {
+        "savol": "React Native — это веб-сайт?",
+        "variantlar": [
+          "Да, это обычный веб-сайт",
+          "Да, работает только в браузере",
+          "Нет — это настоящее мобильное приложение",
+          "Нет — это просто картинка"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Bugungi mashq qaysi qadamdan boshlanadi?",
+        "variantlar": [
+          "QR skan",
+          "Telefonda ko'rish",
+          "StyleSheet",
+          "Expo loyiha"
+        ]
+      },
+      "ru": {
+        "savol": "С какого шага начинается сегодняшняя практика?",
+        "variantlar": [
+          "Скан QR",
+          "Просмотр на телефоне",
+          "StyleSheet",
+          "Проект Expo"
+        ]
+      }
+    }
+  ]
+}

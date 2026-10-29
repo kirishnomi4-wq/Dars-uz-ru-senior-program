@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какие три места меняются на пути демо?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Нажатие, загрузка, результат",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вход, регистрация, выход",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Картинки, библиотека, объём кода",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Лендинг, конфиденциальность, оферта",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что меняется на пути демо после шлифовки?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Число экранов и порядок",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вид трёх мест",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Backend и Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Название и цвет приложения",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как выглядит нажатая кнопка, если ответ медленный?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Как прежде",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Исчезает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "«Qo'shilmoqda…», неактивна",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Становится «Qo'shildingiz»",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где стоит заполнитель?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "В самом верху экрана",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На экране перед списком",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вместо надписи кнопки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На месте данных",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему серая карточка размером с настоящую?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Чтобы не было скачка при загрузке списка",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы выглядела красиво",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы Backend ответил быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Надпись ожидания не нужна",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что дают серые карточки, если есть надпись ожидания?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Ускоряют список",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Показывают, что придёт",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Будят Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Заменяют надпись",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что остаётся от шлифовки при уменьшенном движении?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Ничего не остаётся",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только анимации",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Надпись, карточки и число",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только значок ожидания",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где в DevTools выбрать уменьшение движения?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "В разделе Network",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В разделе Lighthouse",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В разделе Console",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В разделе Rendering",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как в DevTools увидеть медленную загрузку списка?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "«Slow 4G» в Network",
+        "hint": "Верно!"
+      },
+      {
+        "value": "«Mobile» в Lighthouse",
+        "hint": "Неверно"
+      },
+      {
+        "value": "«reduce» в Rendering",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Строка ошибки в Console",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой бывает анимация успеха?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Долгой, на весь экран",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Короткой и один раз",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Мигает без остановки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Повторяется каждую секунду",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему для анимации не добавляют новую библиотеку?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Работает только в вебе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Агент не может установить",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Может вырасти объём кода",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Замедляет Backend",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как узнать, что шлифовка работает?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Агент говорит «готово»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В коде есть анимация",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Одноклассник говорит «красиво»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Видите сами на медленной сети",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

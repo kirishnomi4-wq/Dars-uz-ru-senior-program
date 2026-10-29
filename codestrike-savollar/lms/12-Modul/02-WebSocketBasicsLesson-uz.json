@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta-qayta so'rashda yangi son qachon chiqadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Keyingi so'rovda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database o'zgarganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa kelganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ulanish tiklanganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Doimiy ulanishni kim ochadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Backend ilovaga ulanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova Backend'ga ulanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database ikkalasini ulaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkinchi telefon ulaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "WebSocket nima beradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Parolni tekshiradigan token",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinlar saqlanadigan jadval",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochiq turadigan doimiy ulanish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefonga o'rnatiladigan fayl",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hodisaning qaysi ikki qismi bor?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Sarlavhasi va rasmi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Manzili va paroli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jadvali va ustuni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nomi va ma'lumoti",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hodisada sabab: 'chiqdi' nimani bildiradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "O'yinchi o'yindan chiqdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova hisobdan chiqdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ulanish uzilib qoldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend o'chib qoldi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hodisa kelgach, ilova yangi sonni qayerdan oladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Hodisaning ma'lumotidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'dan qayta so'rab",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon xotirasidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkinchi telefondan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": ".on('oyin-ozgardi', korsat) — korsat qachon ishlaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Tugma bosilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ulanish ochilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa kelganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ulanish uzilganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend ulanayotgan ilovani nimadan taniydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Yuborgan ismidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozgan parolidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefon rusumidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuborgan tokenidan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Belgi «Ulanmagan». Bu nimani bildiradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Ilova urinmayapti",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova qayta urinmoqda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisalar kelmoqda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Son yangilanmoqda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uchish rejimi o'chirildi. socket.io nima qiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Parolni qayta so'raydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayta ulanishga urinadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilovani qayta ochadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisalarni saqlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sxemadagi «Kim oladi» ustuni nimani aytadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Tugmani kim bosganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni kim yozib berganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa kimga borishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "E'lonni kim berganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sxemada elon-berildi sababi qachon yuboriladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "O'yinchi qo'shilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Navbatga yozilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelishi tasdiqlanganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin e'lon qilinganda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

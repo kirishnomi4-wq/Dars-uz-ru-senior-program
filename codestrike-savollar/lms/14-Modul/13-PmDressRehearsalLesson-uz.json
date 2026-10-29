@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Repetitsiyada demo ochilmadi. Taymer nima bo'ladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "To'xtamaydi, yuraveradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Pauza qilinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nolga qaytadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Demoni kutib turadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu mashqda pitchdan keyin hakam nechta savol beradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Bitta savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta savol",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oltita savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Beshta savol",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hakam varag'i nimaga belgi qo'yadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Har bo'lakdagi gapga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Slaydlar ko'rinishiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqt, demo va javoblarga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod hajmi va tezligiga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Javob: «Bu sonni keyin aniqlab beraman». Qaysi belgi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Son yoki fakt bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javob savolga tegmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Belgisiz qoldiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tekshirib aytaman",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chiqishdan oldin Backend nega uyg'otiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Demo sekin ochilmasin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hakam kodni ko'rsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Video tez ochilsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefon zaryadi tejalsin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demo yo'liga qaysi hisob bilan kirasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Shaxsiy hisobingiz bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Namuna akkauntingiz bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdoshning hisobi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakam bergan hisob bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitch 5:20 da tugadi. Varaqda vaqt qatori qanday?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Sig'di",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Belgisiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oshdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "B reja",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida B reja video qayerda turadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Hakam telefonida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinf chatida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochiq video saytida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Demo turgan laptopda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Odamlar hozir bu ishni nima bilan qiladi?» Nima aytasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Hozirgi yo'lni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova imkoniyatlarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelgusi yangiliklarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitchdagi gapimni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hakam varag'ida hakamning ismi qayerda?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Varaq tepasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har belgi yonida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor statistikasida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chiqishdan keyin demo holati nima qilinadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "O'sha holatda qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakamga topshiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshiga qaytariladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hammasi o'chiriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guruhda taymerni kim boshqaradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Gapirayotgan o'quvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor, proyektorda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech kim, taymer yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakam bo'lgan tinglovchi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

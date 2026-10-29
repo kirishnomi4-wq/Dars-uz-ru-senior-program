@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pipeline nima degani?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Qismdan qismga ma'lumot oqimi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bitta katta kod fayli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat frontend qismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ulanmagan alohida dasturlar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI bilan kod yozganda sizning vazifangiz?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Hamma kodni qo'lda yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq topshiriq, o'qish, sinash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech narsa qilmaslik",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni o'qimay ishlatish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Frontend so'rovni qayerga yuboradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Brauzer tarixiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchining telefoniga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend manziliga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'g'ridan-to'g'ri Telegram'ga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Failed to fetch» ko'pincha nimadan chiqadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Logotip kichikligidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasm rangi xatosidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sarlavha xatosidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend manzili xatosidan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Aniq prompt qanday bo'ladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Nima, qayerda, qanday natija",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Saytni yaxshi qilib ber»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«O'zing bilganingcha qil»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Topshiriqsiz, umumiy",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI yozgan kodni nega o'qiysiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Rangini o'zgartirish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xatoni ko'rib tuzatish uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faylni kattalashtirish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chiroyli ko'rsatish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ulanish xatosini qanday topamiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Faqat rangga qaraymiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umuman sinamaymiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshidan oxirigacha sinaymiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "AI xato qilmaydi deb ishonamiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Buyurtma yuborilganda qaysi qism birinchi ishlaydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "PostgreSQL (Database)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram (bot)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI (yordamchi xizmat)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "React (frontend)",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu loyihada NestJS nima qiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "So'rovlarni qabul qiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasm va chizma chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotni saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parolni ekranda ko'rsatadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Buyurtma ma'lumoti qayerda saqlanadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Admin Telegram xabarida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database'dagi jadvalda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mijoz brauzeri tarixida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI bilan kod yozish sikli qanday?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Prompt → kod → ishlatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni o'qimay ishlatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Prompt → kod → test → tuzatish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bitta promptda hammasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«End-to-end test» nimani tekshiradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Bitta tugmaning rangini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat login sahifasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database'ning nomini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butun buyurtma oqimini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

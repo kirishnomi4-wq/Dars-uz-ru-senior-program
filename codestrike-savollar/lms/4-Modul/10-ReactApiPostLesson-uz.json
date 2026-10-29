@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Serverga yangi o'yin qo'shish uchun qaysi fe'l?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "POST",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "GET",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DELETE so'rovida body kerakmi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Yo'q — faqat manzil va ID",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, har doim yuboriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat POST bilan birga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, JSON ko'rinishida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "201 Created javobi qachon keladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "POST yangi yozuv qo'shganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "GET yozuvni o'qiganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har doim, har so'rovda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat xato bo'lganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Posilka yuki (ma'lumot) qaysi xonada ketadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "headers",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "body",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "method",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "url",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "PUT nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Yozuvni faqat o'qiydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mavjud yozuvni almashtiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi yozuv qo'shib qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuvni butunlay o'chiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GET nima qiladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Yangi yozuv qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat o'qib olib keladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yozuvni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuvni almashtiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "JSON.stringify(newGame) nima qiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Obyektni ekranga chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xatolarni tekshirib chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Obyektni JSON matn qiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Serverdan javob oladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "PUT va DELETE da nima majburiy?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Rang nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "body qismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "ID raqami",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "headers qismi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "fetch(url, {…}) — ikkinchi qism nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Manzilning davomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelgan javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sozlamalar qutisi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Xato matni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DELETE bilan o'chirilgan yozuv qaytadimi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ha, oson qaytariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir daqiqada tiklanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverda saqlanib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, butunlay ketadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CRUD nima?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Copy, Run, Undo, Done",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Create, Read, Undo, Done",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Code, Read, Use, Debug",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Create, Read, Update, Delete",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "method: 'POST' serverga nima deydi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "«Rangni o'zgartir»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«O'lchamni kichraytir»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Tezlikni oshir»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yangi yozuv yarat»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

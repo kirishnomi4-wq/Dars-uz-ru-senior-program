@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kuchli dalil raqami nimani sanaydi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Foydalanuvchi olgan natijani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qurishga ketgan vaqtni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod satrlari sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishlagan odamlar sonini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«28 ta rasm chizildi» nimani sanaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Tizimni ochgan odamlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javob olgan odamlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefondan ochganlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sizning mehnatingizni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Slaydda faqat «150». Bu raqam nima qiladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Hammasini aytib beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlarni sanab turadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Savol tug'diradi, xolos",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qatorlarni o'zi to'ldiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Gapiradigan slaydda nechta qator bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ikkita",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'rtta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Slaydda «120 · odam saytdan foydalandi». Yana nima kerak?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Qaysi kuni sanalgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U nimani ko'rsatishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qaysi sahifa sanagani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "120 ni yana bir bor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki natija raqamidan qaysi biri sahnaga chiqadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ish oxirigacha yetgani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Foydalanish boshlangani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Soni kattarog'i",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi yozilgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«41 odam tizimni ochdi» nimani ko'rsatadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Necha hafta qurilganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nechta sahifa borligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanish boshlanganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Arizaga javob berilganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb varaqlarida raqam qayerda turgan?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Oxirida, jamoadan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotdan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qiyinchilikdan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yechimdan keyin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb raqami qiyinchilik haqida nimani aytgan?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Qancha odamda borligini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qancha vaqtda yechilganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nechta uy qo'yilganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jamoa a'zolari ismini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«5 hafta ishlandi» nega natija raqami emas?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "5 juda kichik son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hafta soni o'zgaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U mehnatni sanaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uni hech kim ko'rmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tizimni hech kim sinamagan. Nima qilinadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Taxminiy raqam o'ylanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tizim qilgan ishlar sanaladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Slayd raqamsiz chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ketgan soatlar yoziladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahnaga qaysi raqam chiqishini kim hal qiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Sahnadagi katta ekran",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tizimning o'zi tanlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Zaldagi mehmonlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani yaratayotgan siz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

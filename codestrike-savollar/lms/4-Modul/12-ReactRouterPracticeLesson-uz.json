@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Route nima vazifasini bajaradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Manzilni sahifaga bog'laydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasmlarni ekranga chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverga so'rov yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotni bazaga saqlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "<Routes> o'rami nima ish qiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Barcha rasmlarni yuklaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "URL'ga qarab sahifani tanlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ma'lumotlarni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat menuni chizadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Routedagi path nimani bildiradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sahifaning fon rangini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi ismini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi manzilda ishlashini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Fayl hajmini baytlarda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Routedagi element nimani ko'rsatadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Qaysi serverga ulanishni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotlar bazasi nomini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Linkning rang kodini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi sahifa ko'rsatilishini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "<Link> va <a> farqi nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "<Link> qayta yuklamaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<Link> doim sekinroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<a> — Router linki",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ular aynan bir xil",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Oddiy <a href> bosilsa nima bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Faqat rang o'zgaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butun sahifa qayta yuklanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech narsa o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova butunlay o'chadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "/game/:id dagi :id nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Sahifadagi rasm o'lchami",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har doim 7-o'yin raqami",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zgaruvchan o'yin raqami",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "7 soniya kutish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "URL'dagi :id qiymatini qaysi hook o'qiydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "useState()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "useEffect()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "useNavigate()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "useParams()",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "useNavigate() hook nimaga kerak?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Kod orqali sahifa ochishga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ma'lumot yuklab olishga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ranglarni o'zgartirishga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmlarni yuklab olishga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "POST bilan saqlagandan keyin Bosh sahifaga qanday qaytamiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "<a href='/'> bosib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "navigate('/') chaqirib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sahifani yangilab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni o'chirib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "SPA nimasi bilan ajralib turadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Bitta rasmdan iborat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetsiz ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa qayta yuklanmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bitta tugmasi bor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "main.jsx'da ilova nima bilan o'raladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "<Routes>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<Link>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "useNavigate()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<BrowserRouter>",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

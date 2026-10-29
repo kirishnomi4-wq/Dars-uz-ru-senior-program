@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«/start bosdim, menu chiqmadi» — qaysi tur?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Maqtov: mijoz mamnun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bug: joy va muammo bor",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Taklif: yo'q narsa so'radi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shovqin: e'tibor shart emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Yaxshi bot» degan fikr nega kam foydali?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Bu salbiy fikr",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maqtov kam uchraydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botni yomon ko'rsatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq joy aytilmagan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "18 kishi bir xil, 1 kishi boshqa narsa yozdi. Qaysi avval?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "18 kishinikini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "1 kishinikini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasini birga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech birini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi tuzatish birinchi — nimaga qarab?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Eng jahldor fikrga qarab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi kelgan fikrga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chastota va ta'sirga qarab",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'zimga qiziq tuyulganiga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'p odam suhbatning bir joyida ketdi. Demak?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Odamlar botdan mamnun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha qadam xalaqit beryapti",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot juda tez ishlayapti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu shunchaki tasodif",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Narx qo'shilgach, shikoyat 18 dan 2 ga tushdi. Demak?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Tuzatish ishlamadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sonlar tasodifiy",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi bug chiqdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tuzatish ishladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bot ahmoq» fikridan nega tuzatish chiqmaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Unda joy va muammo yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Unga javob yozib bo'lmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozgan odam ishlatmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U maqtov hisoblanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Taklif faqat 1 kishiga kerak. Nima qilasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Darrov qo'shaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U odamni bloklayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Hozir emas» deyman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma so'rovni qo'shaman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tuzatishdan keyin nima qilasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Hech narsa: albatta ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayta o'lchayman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yana katta o'zgarish qilaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fikr yig'ishni to'xtataman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Birinchi versiya chiqdi. Ish tugadimi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Yo'q: fikr bilan yaxshilanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha: bu tayyor mahsulot",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testlar o'tsa — tugadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shikoyat kelmasa — tugadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Antigravity'ga shikoyat o'rniga nima berasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Fikr yozgan odam ismini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot tokenini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi g'oyalar ro'yxatini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq o'zgarishni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maqtovga nega e'tibor berasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Maqtovni ham tuzatish kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozganga chegirma beriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nima yaxshi ishlashini aytadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Maqtovda ko'p bug bo'ladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

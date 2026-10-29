@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "MVP qachon tayyor deyiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "«Qilamiz» qutisi ishlaganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Keyin» ham qo'shilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasi mukammal bo'lganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi to'lov kelganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent: «To'lovni qo'shaymi?» Javobingiz?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ha — o'yinchiga qulay",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — to'lov «keyin»da",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha — to'lovsiz bo'lmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — to'lov «qilmaymiz»da",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Katak bo'shligini kim tekshiradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sayt — katak rangiga qarab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umami — hodisa soniga qarab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend — Database'ga qarab",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ega — ro'yxatga qarab",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Katak band. POST /bandlar nima qiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ikkinchisini ham yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eskisini o'chirib yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasiga «Band qilindi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bu vaqt band» deb rad etadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "band-qildi hodisasi qachon yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Band saqlangandan keyin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugma bosilishi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa ochilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ega ro'yxatni ochganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'yinchi sahifasida bandlar haqida nima ko'rinadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ism va telefon",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Soat va holat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ega paroli va token",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma telefon raqami",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tokensiz GET /bandlar nima qaytaradi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ro'yxatni to'liq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ismlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "401, ro'yxat yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ega sahifasini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon egasining paroli qayerda turadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Sayt kodida, tugma yonida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub'dagi README'da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentga berilgan talabda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": ".env da va Render'da",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Talabda «qayerda», «nima qilsin» va …?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "«nima buzilmasin»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«qancha vaqt»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«qaysi rang»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«kim tekshiradi»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Nima buzilmasin» qatoriga nima yoziladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Yangi funksiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zgarmay qoladigan ish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Terminaldagi xato",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ertangi ishlar rejasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "MVP nega internetga chiqariladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Laptopda tez ishlashi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodi qisqarishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefondan ochilishi uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Umami hodisa yozishi uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bepul Render'da birinchi javob nega kechikadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Neon'da joy tugagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt kodi juda katta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Netlify linki eskirgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend uxlab qolgan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

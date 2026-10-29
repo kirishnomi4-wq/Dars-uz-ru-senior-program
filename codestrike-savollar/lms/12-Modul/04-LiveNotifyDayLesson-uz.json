@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "korayotganlar-ozgardi kimlarga boradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Shu o'yin xonasidagilarga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma ulangan ilovalarga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin tashkilotchisiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma o'yinchilarga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«O'yinlar» ekranidasiz, kimdir o'yinni ochdi. Son keladimi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ha, hammaga boradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, xonada emassiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, har kartaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, son Database'da",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kimdir o'yinni yopdi. «Hozir ko'ryapti» nima bo'ladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Tortganda kamayadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nolga tushib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zi bittaga kamayadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'zi bittaga oshadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega «Hozir ko'ryapti» sonini hodisaning o'zi olib keladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Son tez o'zgaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova so'ray olmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Son Database'da yo'q",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova ochiq, o'yinda joy bo'shadi. Nima ko'rasiz?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Tepada qisqa jonli xabar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefonda eslatma kartasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa ko'rinmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova qayta ochiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'zingiz «Qo'shilaman»ni bosdingiz. Jonli xabar chiqadimi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ha, har qo'shilishda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, o'z harakatingiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, ismingiz bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat tashkilotchiga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Rejalashtirilgan eslatmani kim qo'yadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Backend, hodisa zahoti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchi, e'londa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova, oldindan belgilab",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon, har kuni o'zi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida eslatma qachon chiqishi kerak?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "O'yin boshlanganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilgan zahoti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yindan bir kun oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yindan bir soat oldin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«O'yindan chiqish» bosildi. Eslatma nima bo'ladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bekor qilinadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Baribir chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa o'yinga o'tadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchiga ketadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend yuboradigan eslatma uchun nima kerak?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Expo Go va eslatma ruxsati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Google yoki Apple xizmati",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ochiq ulanish va xona",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat eslatma paketi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Eslatmaga ruxsat berilmadi. Nima bo'ladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ikkalasi ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova ochilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ilova ishlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat eslatma chiqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Web-trekda uchinchi amaliyotda nima quriladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Brauzer eslatmasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefonga SMS xabar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani avto yangilash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Xabarlar» tasmasi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m6d6-v1",
+  "key": "m6-06",
+  "modul": 8,
+  "tartib": 6,
+  "nom": {
+    "uz": "Ilova o'zi qaror qilsa, kimga tegadi?",
+    "ru": "Если приложение решает само, кого это касается?"
+  },
+  "src": "src/6-Modull/PmLesson23.jsx",
+  "barmoq_izi": "cfa27f28e1e6db5373179d584fbd07ab",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Chegara nima haqidagi qaror?",
+        "variantlar": [
+          "Ilova o'zi nima qilmasligi",
+          "Ilova avval nima qilishi",
+          "Ilova kimga yozishi",
+          "Ilova qaysi rangda bo'lishi"
+        ]
+      },
+      "ru": {
+        "savol": "Чего касается решение-граница?",
+        "variantlar": [
+          "Что приложение не делает само",
+          "Что приложение делает первым",
+          "Кому пишет приложение",
+          "Какого цвета приложение"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Ilova so'rab qiladigan ishning afzalligi nima?",
+        "variantlar": [
+          "Tezroq bajariladi",
+          "Ikki marta bajariladi",
+          "Odamga ko'rinmaydi",
+          "Odam to'xtata oladi"
+        ]
+      },
+      "ru": {
+        "savol": "В чём плюс дела, которое приложение делает со спросом?",
+        "variantlar": [
+          "Выполняется быстрее",
+          "Выполняется дважды",
+          "Не видно человеку",
+          "Человек может остановить"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Chegara avvalo qaysi ishga kerak?",
+        "variantlar": [
+          "Qo'lda qilinadigan ishga",
+          "So'rab qilinadigan ishga",
+          "So'ramay qilinadigan ishga",
+          "Hech qilinmaydigan ishga"
+        ]
+      },
+      "ru": {
+        "savol": "Для какого дела граница нужна в первую очередь?",
+        "variantlar": [
+          "Для дела, сделанного вручную",
+          "Для дела со спросом",
+          "Для дела без спроса",
+          "Для дела, которое не делают"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Ilova savatdan mahsulotni o'zi olsa, kimga tegadi?",
+        "variantlar": [
+          "Tovar keltiruvchi sotuvchi",
+          "To'lovga o'tayotgan mijoz",
+          "Saytni yasagan dasturchi",
+          "Ombordagi xodim"
+        ]
+      },
+      "ru": {
+        "savol": "Если приложение само уберёт товар из корзины — кого заденет?",
+        "variantlar": [
+          "Поставщик товара",
+          "Клиент, идущий к оплате",
+          "Разработчик сайта",
+          "Работник склада"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Tavsifni hech kim o'qimasa, nima bo'ladi?",
+        "variantlar": [
+          "Mijoz tavsifni ko'rmaydi",
+          "Mijoz xato tavsifga ishonadi",
+          "Sayt uni qayta yozadi",
+          "Buyurtma bekor bo'ladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если описание никто не прочитает?",
+        "variantlar": [
+          "Клиент не увидит описание",
+          "Клиент поверит ошибочному описанию",
+          "Сайт перепишет его",
+          "Заказ отменится"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Ilova buyurtmani o'zi bekor qilsa, kimga tegadi?",
+        "variantlar": [
+          "Manzilni qisqa yozgan mijoz",
+          "Yetkazuvchi haydovchi",
+          "Tovar keltiruvchi",
+          "To'lov hisobchisi"
+        ]
+      },
+      "ru": {
+        "savol": "Если приложение само отменит заказ — кого заденет?",
+        "variantlar": [
+          "Клиент с коротким адресом",
+          "Водитель-курьер",
+          "Поставщик",
+          "Бухгалтер оплат"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Ilova yetkazish vaqtini o'zi surdi. Nega chegara kerak?",
+        "variantlar": [
+          "Sayt sekinlashadi",
+          "Vaqt ikki marta yoziladi",
+          "Kutgan mijoz aldanadi",
+          "Hisobotga tushmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Приложение само перенесло доставку. Зачем граница?",
+        "variantlar": [
+          "Сайт замедлится",
+          "Время запишется дважды",
+          "Ждущий клиент будет обманут",
+          "Не попадёт в отчёт"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Bot tasdiqni kechasi ikkida yuborsa, kimga tegadi?",
+        "variantlar": [
+          "Ertalab shoshadigan mijoz",
+          "Do'kon egasi",
+          "Ertalabki haydovchi",
+          "Telefoni yostiq yonidagi mijoz"
+        ]
+      },
+      "ru": {
+        "savol": "Если бот пришлёт подтверждение в два ночи — кого заденет?",
+        "variantlar": [
+          "Клиент, спешащий утром",
+          "Владелец магазина",
+          "Утренний водитель",
+          "Клиент с телефоном у подушки"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Kasal yotgan mijozga botning qaysi qarori tegdi?",
+        "variantlar": [
+          "Buyurtmani bekor qilish",
+          "Kechasi tasdiq yuborish",
+          "Tavsifni qayta yozish",
+          "Har o'n daqiqada yozish"
+        ]
+      },
+      "ru": {
+        "savol": "Какое решение бота задело заболевшего клиента?",
+        "variantlar": [
+          "Отмена заказа",
+          "Подтверждение ночью",
+          "Переписать описание",
+          "Писать каждые десять минут"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Yangi mijoz chegirmani bilmadi. Nega?",
+        "variantlar": [
+          "Kechasi tasdiq yuborish",
+          "Buyurtmani bekor qilish",
+          "Chegirma faqat doimiy mijozga",
+          "Har o'n daqiqada yozish"
+        ]
+      },
+      "ru": {
+        "savol": "Новый клиент не узнал о скидке. Почему?",
+        "variantlar": [
+          "Подтверждение ночью",
+          "Отмена заказа",
+          "Скидка только постоянным",
+          "Писать каждые десять минут"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Egasi har buyurtmani o'qishga majbur. Nega?",
+        "variantlar": [
+          "AI o'zi javob yozgan",
+          "Hamma ishga chegara qo'yilgan",
+          "Bot kechasi ishlamaydi",
+          "Chegirma hammaga ketgan"
+        ]
+      },
+      "ru": {
+        "savol": "Владелец вынужден читать каждый заказ. Почему?",
+        "variantlar": [
+          "AI сам написал ответ",
+          "Граница стоит на всех делах",
+          "Бот не работает ночью",
+          "Скидка ушла всем"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Tabrikni bot o'zi yuborsinmi — buni kim hal qiladi?",
+        "variantlar": [
+          "Ilovaning o'zi",
+          "Tabrik olgan mijoz",
+          "Yetkazuvchi haydovchi",
+          "Ilovani yaratayotgan odam"
+        ]
+      },
+      "ru": {
+        "savol": "Слать ли боту поздравление самому — кто решает?",
+        "variantlar": [
+          "Само приложение",
+          "Клиент, получивший поздравление",
+          "Водитель-курьер",
+          "Человек, создающий приложение"
+        ]
+      }
+    }
+  ]
+}

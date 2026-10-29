@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m4a2-v1",
+  "key": "m4a-02",
+  "modul": 6,
+  "tartib": 2,
+  "nom": {
+    "uz": "Hamma birdan kirsa, sayt chidaydimi?",
+    "ru": "Выдержит ли сайт, если все зайдут разом?"
+  },
+  "src": "src/4a-Modull/PmLesson15.jsx",
+  "barmoq_izi": "1b40473005bfcd788395a6c836698439",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Yuk nima?",
+        "variantlar": [
+          "Birdan kelgan og'irlik",
+          "Sahifani kutish vaqti",
+          "Saytdagi rasmlar hajmi",
+          "Bir kunda kirganlar soni"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое нагрузка?",
+        "variantlar": [
+          "Тяжесть, пришедшая разом",
+          "Время ожидания страницы",
+          "Объём картинок на сайте",
+          "Сколько зашло за день"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Yuk qachon og'irlashadi?",
+        "variantlar": [
+          "Har xil vaqtda kirganda",
+          "Yangi sahifa qo'shilganda",
+          "Kun bo'yi tarqalib kirganda",
+          "Hammasi bir vaqtda kirganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда нагрузка тяжелеет?",
+        "variantlar": [
+          "Когда заходят в разное время",
+          "Когда добавили страницу",
+          "Когда заходят весь день вразброс",
+          "Когда все заходят одновременно"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi qism birinchi sinadi?",
+        "variantlar": [
+          "Hech kim talashmaydigan qism",
+          "Eng oxirida ochiladigan qism",
+          "Hamma talashadigan qism",
+          "Kam odam ochadigan qism"
+        ]
+      },
+      "ru": {
+        "savol": "Какая часть ломается первой?",
+        "variantlar": [
+          "Та, за которую никто не борется",
+          "Та, что открывают последней",
+          "Та, за которую борются все",
+          "Та, что открывают немногие"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "O'rindiq tanlash nega birinchi sindi?",
+        "variantlar": [
+          "Uni ochish uzoq kutiladi",
+          "Hamma bir joyni talashadi",
+          "Uni har xil vaqtda ochishadi",
+          "Unda rasm va video ko'p"
+        ]
+      },
+      "ru": {
+        "savol": "Почему выбор места сломался первым?",
+        "variantlar": [
+          "Его долго ждут",
+          "Все борются за одно место",
+          "Его открывают в разное время",
+          "В нём много фото и видео"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "E'lon sahifasi nega oxirida sindi?",
+        "variantlar": [
+          "Har kimga alohida javob",
+          "Hammaga bir xil, yengil",
+          "Hamma uni talashadi",
+          "Uni hech kim ochmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему страница афиши сломалась последней?",
+        "variantlar": [
+          "Каждому отдельный ответ",
+          "Для всех одинакова, лёгкая",
+          "Все за неё борются",
+          "Её никто не открывает"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Sig'im nima?",
+        "variantlar": [
+          "Qism ko'taradigan odam soni",
+          "Saytdagi sahifalar soni",
+          "Bir kunda kirganlar soni",
+          "Saytni qurganlar soni"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое ёмкость?",
+        "variantlar": [
+          "Сколько людей держит часть",
+          "Число страниц сайта",
+          "Сколько зашло за день",
+          "Сколько людей строили сайт"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi qism birinchi kuchaytiriladi?",
+        "variantlar": [
+          "Birinchi ko'rinadigan qism",
+          "Hech kim talashmaydigan qism",
+          "Hamma talashadigan qism",
+          "Oxirida sinadigan qism"
+        ]
+      },
+      "ru": {
+        "savol": "Какую часть усиливают первой?",
+        "variantlar": [
+          "Та, что видна первой",
+          "Та, за которую никто не борется",
+          "Та, за которую борются все",
+          "Та, что ломается последней"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Nega hamma qismni kuchaytirmaymiz?",
+        "variantlar": [
+          "Baribir hammasi sinadi",
+          "Kod juda uzun bo'lib qoladi",
+          "Sahifalar sekin ochiladi",
+          "Kuch hech qayerga yetmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему не усиливаем все части?",
+        "variantlar": [
+          "Всё равно всё сломается",
+          "Код станет слишком длинным",
+          "Страницы будут медленными",
+          "Сил ни на что не хватит"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Uzum yetkazish yo'lini qachon qurgan?",
+        "variantlar": [
+          "Birinchi kundanoq",
+          "2025-yilda, o'sgach",
+          "Mashhur bo'lgandan keyin",
+          "Odamlar qiynalgandan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Uzum построил доставку?",
+        "variantlar": [
+          "С первого же дня",
+          "В 2025-м, когда вырос",
+          "После того как стал известен",
+          "Когда люди намучились"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "2025-yilda Uzumdan oyiga nechta odam foydalanadi?",
+        "variantlar": [
+          "Qariyb 2 million",
+          "Qariyb 40 million",
+          "Qariyb 17 million",
+          "Qariyb 12 million"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько человек в месяц пользуются Uzum в 2025 году?",
+        "variantlar": [
+          "Почти 2 миллиона",
+          "Почти 40 миллионов",
+          "Почти 17 миллионов",
+          "Почти 12 миллионов"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Sayt yukka nega chidadi?",
+        "variantlar": [
+          "U keyinroq ochilgan",
+          "Oldindan shunga qurilgan",
+          "Unda rasm va video kam",
+          "O'sha kuni omadi kelgan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему сайт выдержал нагрузку?",
+        "variantlar": [
+          "Его открыли позже",
+          "Его заранее так построили",
+          "В нём мало фото и видео",
+          "В тот день ему повезло"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Yukni oldindan o'ylashni kim hal qiladi?",
+        "variantlar": [
+          "Chipta sotib olgan odam",
+          "Konsert tashkilotchisi",
+          "Kodni yozgan dasturchi",
+          "Mahsulotni o'ylaydigan odam"
+        ]
+      },
+      "ru": {
+        "savol": "Кто решает, что о нагрузке надо подумать заранее?",
+        "variantlar": [
+          "Человек, купивший билет",
+          "Организатор концерта",
+          "Программист, написавший код",
+          "Человек, который думает о продукте"
+        ]
+      }
+    }
+  ]
+}

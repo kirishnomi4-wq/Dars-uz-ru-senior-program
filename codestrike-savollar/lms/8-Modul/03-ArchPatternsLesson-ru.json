@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какую часть MVC видит пользователь?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "View — представление",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Controller — направляющий",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Model — слой данных",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ни одна часть не подходит",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая часть MVC работает с данными и правилами?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "View",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Model",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Controller",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никакая",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая часть принимает и направляет запрос?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "View",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Model",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Controller",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Database",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "«Все основные части в одном приложении» — какой это способ?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Микросервисы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Serverless",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Peer-to-peer",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Монолит",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Несколько отдельно работающих сервисов — это что?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Микросервис",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Монолит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "MVC",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Controller",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что обычно удобнее для небольшого нового проекта?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Микросервис",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Монолит",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Оба вместе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подход не нужен",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто в MVC первым принимает запрос?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Сразу в Model",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сразу во View",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В Controller (центр)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сразу в Database",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется добавление копии загруженному сервису?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Переписывание",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Размещение (deploy)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Исправление ошибки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Масштабирование (scaling)",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое паттерн?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Проверенный способ решения",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Новый язык программирования",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вид Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Готовый код для копирования",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает PostgreSQL в MVC?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Направляет запрос",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранит данные",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Показывает страницу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проверяет правила",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В чём главная польза микросервисов?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Простота и дешевизна",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Всё в одном большом файле",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Усиливать части по отдельности",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Что код писать не нужно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Контроллер в Nest — какая это часть MVC?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "View — представление",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Model — данные и правила",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Database — хранение данных",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Controller — направляющий",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

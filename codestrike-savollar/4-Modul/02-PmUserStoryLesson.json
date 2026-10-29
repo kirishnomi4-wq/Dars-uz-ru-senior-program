@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m3d2-v3",
+  "key": "m3-02",
+  "modul": 4,
+  "tartib": 2,
+  "nom": {
+    "uz": "User Story: kim va nima uchun?",
+    "ru": "User Story"
+  },
+  "src": "src/pm/PmUserStoryLesson.jsx",
+  "barmoq_izi": "1a8de42aabfe75e97eb2597fd3f2dd3e",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "User Story qaysi uch bo'lakdan iborat?",
+        "variantlar": [
+          "Sana + vazifa + mas'ul",
+          "Shart + natija + xato",
+          "KIM + NIMA + NATIJA",
+          "Tugma + rang + sahifa"
+        ]
+      },
+      "ru": {
+        "savol": "Из каких трёх частей состоит User Story?",
+        "variantlar": [
+          "Дата + задача + ответственный",
+          "Условие + результат + ошибка",
+          "КТО + ЧТО + РЕЗУЛЬТАТ",
+          "Кнопка + цвет + страница"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Hikoyadagi [KIM] bo'lagi nimani bildiradi?",
+        "variantlar": [
+          "Foydalanuvchi turi",
+          "Tugmaning rangi",
+          "Dasturchi ismi",
+          "Sahifaning to'liq manzili"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает часть [КТО] в истории?",
+        "variantlar": [
+          "Тип пользователя",
+          "Цвет кнопки",
+          "Имя программиста",
+          "Полный адрес страницы"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "User Story qachon yoziladi?",
+        "variantlar": [
+          "Loyiha topshirilgach",
+          "Kod yozishdan oldin",
+          "Kod yozib bo'lingach",
+          "Faqat xato chiqqanda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда пишут User Story?",
+        "variantlar": [
+          "После сдачи проекта",
+          "До написания кода",
+          "Когда код уже написан",
+          "Только при ошибке"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "[NATIJA] qismi qanday bo'lishi kerak?",
+        "variantlar": [
+          "Yozilgan kod qatorlari soni",
+          "Tugmaning nomi va rangi",
+          "Sahifaning fon rangi",
+          "Foydalanuvchi oladigan foyda"
+        ]
+      },
+      "ru": {
+        "savol": "Какой должна быть часть [РЕЗУЛЬТАТ]?",
+        "variantlar": [
+          "Число строк кода",
+          "Название и цвет кнопки",
+          "Цвет фона страницы",
+          "Польза, которую получит пользователь"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "«Foydalanuvchi sifatida qizil tugma xohlayman» — nima yo'q?",
+        "variantlar": [
+          "NATIJA (real foyda)",
+          "KIM",
+          "NIMA",
+          "Hech nima, to'liq"
+        ]
+      },
+      "ru": {
+        "savol": "«Как пользователь, хочу красную кнопку» — чего нет?",
+        "variantlar": [
+          "РЕЗУЛЬТАТ (польза)",
+          "КТО",
+          "ЧТО",
+          "Ничего, всё есть"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Jobs-to-be-Done (JTBD) g'oyasi nima?",
+        "variantlar": [
+          "Ko'proq tugma qo'shish",
+          "Kodni tezroq yozish",
+          "Har kimga alohida ilova",
+          "Odam natijani sotib oladi"
+        ]
+      },
+      "ru": {
+        "savol": "В чём идея Jobs-to-be-Done (JTBD)?",
+        "variantlar": [
+          "Добавлять больше кнопок",
+          "Писать код быстрее",
+          "Каждому отдельное приложение",
+          "Человек покупает результат"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Milkshake xaridorga qanday natija berardi?",
+        "variantlar": [
+          "Arzonligi bilan yoqardi",
+          "Yo'lda zerikmaslik va to'qlik",
+          "Sovg'a bilan berilardi",
+          "Reklamasi chiroyli edi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой результат давал покупателю коктейль?",
+        "variantlar": [
+          "Нравился дешевизной",
+          "Не скучать в пути и сытость",
+          "Давали с подарком",
+          "Красивая реклама"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "McDonald's sababni bilgach nima qildi?",
+        "variantlar": [
+          "Narxini tushirdi",
+          "Faqat kechqurun sotdi",
+          "Yanada quyuq qildi",
+          "O'rniga banan sotdi"
+        ]
+      },
+      "ru": {
+        "savol": "Что сделал McDonald's, узнав причину?",
+        "variantlar": [
+          "Снизил цену",
+          "Продавал только вечером",
+          "Сделал гуще",
+          "Стал продавать банан"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "«Saytda dark mode bo'lsin» — bu nima?",
+        "variantlar": [
+          "To'liq User Story",
+          "Foydalanuvchi turi",
+          "JTBD natijasi",
+          "Imkoniyat-so'rovi"
+        ]
+      },
+      "ru": {
+        "savol": "«Пусть на сайте будет dark mode» — что это?",
+        "variantlar": [
+          "Полная User Story",
+          "Тип пользователя",
+          "Результат JTBD",
+          "Заявка на возможность"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "NATIJA harakatni takrorlasa, nima bo'ladi?",
+        "variantlar": [
+          "Foyda ko'rinmay qoladi",
+          "Kod tezroq ishlaydi",
+          "Hikoya kuchayadi",
+          "KIM o'zi aniqlashadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если РЕЗУЛЬТАТ повторяет действие?",
+        "variantlar": [
+          "Пользы не видно",
+          "Код работает быстрее",
+          "История становится сильнее",
+          "КТО сам уточнится"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Hikoyadagi [NIMA] bo'lagi nimani bildiradi?",
+        "variantlar": [
+          "Oxirida oladigan foyda",
+          "Foydalanuvchi turi",
+          "Bajarmoqchi bo'lgan harakat",
+          "Loyiha muddati"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает часть [ЧТО] в истории?",
+        "variantlar": [
+          "Польза в конце",
+          "Тип пользователя",
+          "Действие, которое он хочет сделать",
+          "Срок проекта"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Nega avval User Story, keyin kod?",
+        "variantlar": [
+          "Chunki kod yozish qiyin",
+          "Kimga nima kerakligini bilish",
+          "Mijoz shuni talab qiladi",
+          "Tartib farq qilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему сначала User Story, потом код?",
+        "variantlar": [
+          "Потому что код писать трудно",
+          "Узнать, кому что нужно",
+          "Так требует заказчик",
+          "Порядок не важен"
+        ]
+      }
+    }
+  ]
+}

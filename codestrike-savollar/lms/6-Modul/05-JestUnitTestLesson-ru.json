@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает unit-тест?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Делает сайт красивым",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пишет данные в базу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запускает сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проверяет результат функции",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает expect(...).toBe(...)?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Выводит результат на экран",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вызывает функцию",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сравнивает результат с эталоном",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удаляет тест",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен describe?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Устанавливает Jest в проект",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Собирает тесты в одну группу",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Проверяет результат",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запускает функцию",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется файл теста?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "order.js",
+        "hint": "Неверно"
+      },
+      {
+        "value": "order.spec.ts",
+        "hint": "Верно!"
+      },
+      {
+        "value": "order.jest",
+        "hint": "Неверно"
+      },
+      {
+        "value": "order.test.html",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает npm test?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Очищает базу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Загружает проект на сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пишет новую функцию",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запускает тесты",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что проверяет console.log в тесте?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Равен ли результат эталону",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Скорость функции",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего не проверяет",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Число строк кода",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сколько поведений проверяет один it?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Только одно",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ни одного",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Не меньше пяти",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сколько угодно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Ожидалось 20000, пришло 10002. Что сделает Jest?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "FAIL: Expected и Received",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ничего не скажет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удалит функцию",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сам исправит код",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если в тесте нет expect?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Всегда красный FAIL",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Всегда PASS — ложный тест",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Jest остановится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Тест запустится дважды",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если эталон записан неверно?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Красный, даже если код верный",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Jest сам исправит эталон",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Тест будет пропущен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Изменится логика функции",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое порядок AAA?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Определи → Поверни → Архивируй",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Связь → Акция → Точность",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подготовь → Вызови → Проверь",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Автомат → Анализ → Аудит",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему Jest ставят с --save-dev?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Чтобы работал быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Потому что бесплатный",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы сам писал тесты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нужен только в разработке",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

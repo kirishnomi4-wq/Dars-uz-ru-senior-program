@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m10d11-v2",
+  "key": "m10-11",
+  "modul": 12,
+  "tartib": 11,
+  "nom": {
+    "uz": "Raqamlaringiz pitchni qanday o'zgartiradi?",
+    "ru": "Как ваши цифры меняют питч?"
+  },
+  "src": "src/10-Modull/PmPitchReviewLesson.jsx",
+  "barmoq_izi": "f065645b04f8852f73e90058204d64ea",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Pitchdagi qaysi gap da'vo?",
+        "variantlar": [
+          "30 kishi ro'yxatdan o'tdi",
+          "Hozir telefonda ko'rsataman",
+          "Savollaringizni bering",
+          "Tinglaganingiz uchun rahmat"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза в питче — утверждение?",
+        "variantlar": [
+          "Зарегистрировались 30 человек",
+          "Сейчас покажу на телефоне",
+          "Задавайте вопросы",
+          "Спасибо, что выслушали"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Dalil nima?",
+        "variantlar": [
+          "Eng ishonchli ko'ringan gap",
+          "Da'voni ko'rsatadigan son",
+          "Zal beradigan savol",
+          "Keyingi qadam gapi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое доказательство?",
+        "variantlar": [
+          "Самая убедительная фраза",
+          "Число, которое подтверждает утверждение",
+          "Вопрос, который задаст зал",
+          "Фраза о следующем шаге"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Dalildagi manba nimani aytadi?",
+        "variantlar": [
+          "Son qanchalik katta ekanini",
+          "Son qaysi kuni sanalganini",
+          "Bu son qayerdan olinganini",
+          "Sonni kim aytib berganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорит источник в доводе?",
+        "variantlar": [
+          "Насколько большое число",
+          "В какой день посчитано число",
+          "Откуда взято это число",
+          "Кто назвал это число"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Ilovani odamlar ishlatyapti» dalili qayerdan?",
+        "variantlar": [
+          "Umami: lending tashriflari",
+          "11-Modul intervyulari",
+          "Sinfdoshlar gapi",
+          "Database: ro'yxatdan o'tganlar"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда доказательство «Приложением пользуются»?",
+        "variantlar": [
+          "Umami: посещения лендинга",
+          "Интервью из 11-го модуля",
+          "Слова одноклассников",
+          "Database: зарегистрированные"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Umami lendingda nimani sanaydi?",
+        "variantlar": [
+          "Tashrif va tugma bosilishini",
+          "Ro'yxatdan o'tganlarni",
+          "O'yinga qo'shilganlarni",
+          "Ilovani ochgan qurilmalarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает Umami на лендинге?",
+        "variantlar": [
+          "Посещения и нажатия кнопки",
+          "Зарегистрированных",
+          "Записавшихся в игру",
+          "Устройства, открывшие приложение"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Foydalanuvchilar soni o'sdi. Pitchda qaysi sonni aytasiz?",
+        "variantlar": [
+          "Birinchi kungi sonni",
+          "Yangisini, sanasi bilan",
+          "Ikkisining o'rtachasini",
+          "Ikkisining jamini"
+        ]
+      },
+      "ru": {
+        "savol": "Число пользователей выросло. Какое назовёте в питче?",
+        "variantlar": [
+          "Число первого дня",
+          "Новое, с датой",
+          "Среднее двух",
+          "Сумму двух"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "«Ilova yoqdi» gapi bilan Mentor nima qildi?",
+        "variantlar": [
+          "O'zgarishsiz qoldirdi",
+          "Keyingi qadamga ko'chirdi",
+          "Sonlar bilan qayta yozdi",
+          "Sinfdoshlardan so'radi"
+        ]
+      },
+      "ru": {
+        "savol": "Что Ментор сделал с фразой «Приложение понравилось»?",
+        "variantlar": [
+          "Оставил без изменений",
+          "Перенёс в следующий шаг",
+          "Переписал с числами",
+          "Спросил у одноклассников"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "«Tez orada 50 ga yetamiz» nega olib tashlandi?",
+        "variantlar": [
+          "Maqsad juda katta edi",
+          "Zal kelajakni eshitmaydi",
+          "Sinfdoshlar aytilmagan edi",
+          "Dalili yo'q, bu va'da"
+        ]
+      },
+      "ru": {
+        "savol": "Почему убрали «Скоро дойдём до 50»?",
+        "variantlar": [
+          "Цель была слишком большой",
+          "Зал не слушает о будущем",
+          "Не назвали одноклассников",
+          "Нет доказательства, это обещание"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Dalilda sinfdoshlar qanday aytiladi?",
+        "variantlar": [
+          "Alohida, nechtasi sinfdosh",
+          "Aytilmaydi, ular ham odam",
+          "Sanoqdan chiqariladi",
+          "Faqat ular aytiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Как в доказательстве указывают одноклассников?",
+        "variantlar": [
+          "Отдельно: сколько из них одноклассники",
+          "Не указывают, они тоже люди",
+          "Исключают из подсчёта",
+          "Называют только их"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Qayta yozilgan da'voda nima bo'ladi?",
+        "variantlar": [
+          "Chiroyli sifat so'zlari",
+          "Dalildagi son gapning o'zida",
+          "Zal savoliga javob",
+          "Avvalgi gapning qisqasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что есть в переписанном утверждении?",
+        "variantlar": [
+          "Красивые прилагательные",
+          "Число из доказательства в самой фразе",
+          "Ответ на вопрос зала",
+          "Короткая версия прежней фразы"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Intervyu yozuvlari qaysi da'voga dalil bo'ladi?",
+        "variantlar": [
+          "Foydalanuvchilar soniga",
+          "Lending tashriflariga",
+          "Odamlar qiynalganiga",
+          "To'lgan o'yinlar soniga"
+        ]
+      },
+      "ru": {
+        "savol": "Для какого утверждения записи интервью — доказательство?",
+        "variantlar": [
+          "Числу пользователей",
+          "Посещениям лендинга",
+          "Тому, что людям трудно",
+          "Числу заполненных игр"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Yakkama-yakkada Mentor bilan nimani ko'rasiz?",
+        "variantlar": [
+          "Arena ballaringizni",
+          "Kodning har qatorini",
+          "Lending dizaynini",
+          "Da'vo va dalillaringizni"
+        ]
+      },
+      "ru": {
+        "savol": "Что смотрите с Ментором один на один?",
+        "variantlar": [
+          "Баллы арены",
+          "Каждую строку кода",
+          "Дизайн лендинга",
+          "Утверждения и доказательства"
+        ]
+      }
+    }
+  ]
+}

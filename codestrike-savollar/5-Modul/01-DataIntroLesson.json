@@ -1,0 +1,278 @@
+{
+  "lessonId": "data-intro-04-01-v18",
+  "key": "m4-01",
+  "modul": 5,
+  "tartib": 1,
+  "nom": {
+    "uz": "Ma'lumot va bog'lanishlar: JSON, jadval, sxema",
+    "ru": "Данные и связи: JSON, таблицы, схема"
+  },
+  "src": "src/4-Modull/DataIntroLesson.jsx",
+  "barmoq_izi": "52dddcb83ed5b4a7932807758f6c0951",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "JSON nima?",
+        "variantlar": [
+          "Rasm siqadigan format",
+          "Tartibli kalit: qiymat",
+          "Internet tezligi o'lchovi",
+          "Brauzerning bir turi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое JSON?",
+        "variantlar": [
+          "Формат сжатия картинок",
+          "Упорядоченные ключ: значение",
+          "Измерение скорости интернета",
+          "Вид браузера"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Jadvalda id ustuni nimaga kerak?",
+        "variantlar": [
+          "Har yozuvga yagona raqam",
+          "Yozuv rangini saqlash",
+          "Sahifani ekranga chizish",
+          "Hech narsaga — ortiqcha"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем в таблице столбец id?",
+        "variantlar": [
+          "Уникальный номер каждой записи",
+          "Хранить цвет записи",
+          "Рисовать страницу на экране",
+          "Ни для чего — лишний"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "Server o'chsa, postlar qayerda qoladi?",
+        "variantlar": [
+          "Hech qayerda — yo'qoladi",
+          "Server xotirasida (RAM)",
+          "Internetda — «havoda»",
+          "Ma'lumotlar bazasida"
+        ]
+      },
+      "ru": {
+        "savol": "Где остаются посты, если сервер выключен?",
+        "variantlar": [
+          "Нигде — пропадают",
+          "В памяти сервера (RAM)",
+          "В интернете — «в воздухе»",
+          "В базе данных"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Jadvaldagi bitta qator (row) nima?",
+        "variantlar": [
+          "Bitta ustunning nomi",
+          "Butun jadvalning o'zi",
+          "Bitta to'liq yozuv (post)",
+          "Ustun nomlari qatori"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое одна строка (row) таблицы?",
+        "variantlar": [
+          "Название одного столбца",
+          "Вся таблица целиком",
+          "Одна полная запись (пост)",
+          "Строка с названиями столбцов"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "posts.user_id ustuni nimaga kerak?",
+        "variantlar": [
+          "Post rangini saqlash",
+          "Hech narsaga — ortiqcha",
+          "Postni butunlay o'chirish",
+          "Postni egasiga bog'lash"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен столбец posts.user_id?",
+        "variantlar": [
+          "Хранить цвет поста",
+          "Ни для чего — лишний",
+          "Полностью удалять пост",
+          "Связать пост с владельцем"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Sxema nima?",
+        "variantlar": [
+          "Bitta jadvalning nomi",
+          "Bog'lanishlar xaritasi",
+          "Ilova rang palitrasi",
+          "Serverning manzili"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое схема?",
+        "variantlar": [
+          "Название одной таблицы",
+          "Карта связей",
+          "Цветовая палитра приложения",
+          "Адрес сервера"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "comments.post_id qaysi ustunga ulanadi?",
+        "variantlar": [
+          "users.id",
+          "comments.id",
+          "posts.id",
+          "users.username"
+        ]
+      },
+      "ru": {
+        "savol": "comments.post_id — к какому столбцу подключается?",
+        "variantlar": [
+          "users.id",
+          "comments.id",
+          "posts.id",
+          "users.username"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "Jadvaldagi bitta ustun (column) nima?",
+        "variantlar": [
+          "Bitta maydon (sarlavha kabi)",
+          "Butun jadvalning o'zi",
+          "Bitta to'liq yozuv (post)",
+          "Ustun nomlari qatori"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое один столбец (column) таблицы?",
+        "variantlar": [
+          "Одно поле (например, заголовок)",
+          "Вся таблица целиком",
+          "Одна полная запись (пост)",
+          "Строка с названиями столбцов"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Foydalanuvchi va postlari qanday bog'langan?",
+        "variantlar": [
+          "Bitta — bitta",
+          "Bog'lanish yo'q",
+          "Bitta → ko'p",
+          "Har post — hammaniki"
+        ]
+      },
+      "ru": {
+        "savol": "Как связаны пользователь и его посты?",
+        "variantlar": [
+          "Один — один",
+          "Связи нет",
+          "Один → много",
+          "Каждый пост — общий"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Quyidagilardan qaysi biri PK (birlamchi kalit)?",
+        "variantlar": [
+          "username",
+          "user_id",
+          "post_id",
+          "id"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — PK (первичный ключ)?",
+        "variantlar": [
+          "username",
+          "user_id",
+          "post_id",
+          "id"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "RAM va ma'lumotlar bazasi farqi nimada?",
+        "variantlar": [
+          "RAM o'chadi, baza qoladi",
+          "RAM ko'proq saqlaydi",
+          "Baza RAM'dan tezroq",
+          "Farqi yo'q, bir xil"
+        ]
+      },
+      "ru": {
+        "savol": "Чем отличаются RAM и база данных?",
+        "variantlar": [
+          "RAM стирается, база остаётся",
+          "RAM хранит больше",
+          "База быстрее RAM",
+          "Разницы нет"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "FK ustun qayerga ulanishini qanday bilamiz?",
+        "variantlar": [
+          "Ustunning rangidan",
+          "Ustunning nomidan",
+          "Bilib bo'lmaydi",
+          "Ustunning o'rnidan"
+        ]
+      },
+      "ru": {
+        "savol": "Как понять, куда ведёт столбец FK?",
+        "variantlar": [
+          "По цвету столбца",
+          "По названию столбца",
+          "Узнать нельзя",
+          "По месту столбца"
+        ]
+      }
+    }
+  ]
+}

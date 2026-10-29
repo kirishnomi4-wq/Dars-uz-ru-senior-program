@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor rejasida 1-bosqich kanali qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Sinf chati, mahalla guruhi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Shahar futbol kanali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Notanishlarga shaxsiy xabar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sotib olingan obunachilar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida asosiy harakat nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ilovani o'rnatib ochish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilish yoki e'lon berish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Lending tugmasini bosish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postni do'stga yuborish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor nega telefon raqamini so'ramaydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Raqam yozish uzoq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Raqamni hamma bilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotga raqam kerak emas",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Raqam Database'ga sig'maydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir odam ikki telefonda ochdi. ochdi qanchaga oshadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bittaga, login bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bittaga, ism bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oshmaydi, bu egasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkitaga, ikki qurilma",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ro'yxatdan o'tganlar soni qayerdan olinadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Database'dan, so'rov bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rejadagi kutilgan sondan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending tashriflaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Guruh a'zolari sonidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Hisobni o'chirish» tasdiqlansa nima bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Faqat parol o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Akkaunt va yozuvlari o'chadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova telefondan o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma akkauntlar o'chadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maxfiylik sahifasini nima bilan solishtirasiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Agent hisoboti bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa ilova sahifasi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovangiz kodi bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Lending sarlavhasi bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida brauzer ko'rinishida hozircha nima yo'q?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "O'yinlar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilish tugmasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatdan o'tish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin eslatmasi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agentga xato yuborganda nimani yuborasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Xato qatorining o'zini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": ".env dagi qiymatlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Token va xato qatorini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maxfiy kalit va kodni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guruhga post yuborishdan oldin nima qilasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Yangi akkaunt ochasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Egasidan ruxsat so'raysiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'nta guruhga tashlaysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefon raqam qo'shasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "ochdi hodisasi bilan Backend'ga nima boradi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Hodisa nomi va login",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchi ismi va qurilma ID",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa nomi va qurilma ID",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Login va parol hash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Rejada 20, aslida 12 kishi. Nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Soxta akkaunt ochasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yana 8 marta o'tasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Notanishlarga yuborasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sonni yozib, davom etasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "JSON nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Rasm siqadigan format",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tartibli kalit: qiymat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internet tezligi o'lchovi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzerning bir turi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jadvalda id ustuni nimaga kerak?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Har yozuvga yagona raqam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yozuv rangini saqlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani ekranga chizish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsaga — ortiqcha",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Server o'chsa, postlar qayerda qoladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Hech qayerda — yo'qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server xotirasida (RAM)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetda — «havoda»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotlar bazasida",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jadvaldagi bitta qator (row) nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bitta ustunning nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butun jadvalning o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta to'liq yozuv (post)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ustun nomlari qatori",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "posts.user_id ustuni nimaga kerak?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Post rangini saqlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsaga — ortiqcha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postni butunlay o'chirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postni egasiga bog'lash",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sxema nima?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bitta jadvalning nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bog'lanishlar xaritasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova rang palitrasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverning manzili",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "comments.post_id qaysi ustunga ulanadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "users.id",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "comments.id",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "posts.id",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "users.username",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jadvaldagi bitta ustun (column) nima?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Bitta maydon (sarlavha kabi)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Butun jadvalning o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta to'liq yozuv (post)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustun nomlari qatori",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Foydalanuvchi va postlari qanday bog'langan?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bitta — bitta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bog'lanish yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta → ko'p",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har post — hammaniki",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Quyidagilardan qaysi biri PK (birlamchi kalit)?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "username",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "user_id",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "post_id",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "id",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "RAM va ma'lumotlar bazasi farqi nimada?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "RAM o'chadi, baza qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "RAM ko'proq saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baza RAM'dan tezroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Farqi yo'q, bir xil",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "FK ustun qayerga ulanishini qanday bilamiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ustunning rangidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustunning nomidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bilib bo'lmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustunning o'rnidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

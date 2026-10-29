@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Kelaman» bosildi. Ruxsatni kim beradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Backend, qoida bo'yicha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova, tugmani ko'rsatib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database, qatorni ko'rib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchi, qo'lda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Token bor, o'yinchi qo'shilmagan. Qaysi javob?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "401 — kimligi noma'lum",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "403 — ruxsat yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "201 — qator yozildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "404 — yo'l topilmadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Shanbalik o'yinga juma kuni «Kelaman». Nima bo'ladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "keladi yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin jumaga ko'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend rad etadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tashkilotchi tasdiqlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Kelishini tasdiqladi: 7 / 9» da 9 nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Tasdiqlagan o'yinchilar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinga kerak odamlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydondagi bo'sh o'rinlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilgan o'yinchilar",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tashkilotchi yangi tasdiqni qanday ko'radi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ekranni pastga tortadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend xabarini kutadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har o'yinchiga yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin boshlanishini kutadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tashkilotchidagi son o'zi yangilanadimi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ha, Backend o'zi yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, ilova so'raganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, bosilgan zahoti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, faqat o'yin kuni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugma yashirildi. Backend'dagi qoida-chi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "O'chiriladi, kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovaga ko'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qoladi, ruxsatni u beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database'ga ko'chadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Boshqa odam tufayli ekranda nima o'zgaradi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "«‹ O'yinlar» tugmasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Maydon Jamoa» nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Formadagi «Soat»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tasdiqlaganlar soni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugmani yashirganda «Nima buzilmasin»ga nima yozasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Backend qoidasi qolsin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugma doim tursin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jadval tozalansin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'l tokensiz ochilsin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bugun o'yin yo'q. Tasdiqni qanday sinaysiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Qoidani o'chirib turasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bugunga yangi e'lon berasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon soatini surasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shanbagacha kutasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend o'zgarishi Render'ga qanday chiqadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Render'da qo'lda yozasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "npx expo start qilasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git push qilasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Neon'da jadval yaratasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikkinchi telefon nima uchun kerak?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Tezroq ishlashi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Expo Go yangilanishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dizayn bir xilligi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa odam ko'rishi uchun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

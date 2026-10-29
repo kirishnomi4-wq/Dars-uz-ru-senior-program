@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как Backend узнаёт вошедшего игрока?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "По токену в запросе",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Спрашивая номер телефона",
+        "hint": "Неверно"
+      },
+      {
+        "value": "По паролю в Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "По аккаунту Expo Go",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как пароль хранится в таблице?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Как сам пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Как hash из пароля",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вместе с номером телефона",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри токена",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает Backend, если пришёл GET /oyinlar без токена?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Отдаёт список",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отдаёт первую игру",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Возвращает 401",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Открывает «Вход»",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где токен хранится на телефоне?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "В таблице oyinchilar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В файле .env приложения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В README.md в репо",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В expo-secure-store",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает localhost для приложения на телефоне?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Сам телефон",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Backend на ноутбуке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Backend на Render",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Database на Neon",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем Backend выкладывают на Render?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "На ноутбуке он медленный",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Телефон сможет к нему подключиться",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Render создаёт Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Expo Go требует Render",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что пишется в EXPO_PUBLIC_API_URL?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "http://localhost:3000",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Значение JWT_SECRET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Адрес Backend на Render",
+        "hint": "Верно!"
+      },
+      {
+        "value": "DATABASE_URL из Neon",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему секретный ключ не пишут в EXPO_PUBLIC_?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Приложение замедлится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Expo Go его удалит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Render его не прочитает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Он открыто виден в приложении",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где хранится JWT_SECRET после деплоя?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "На Render, в Environment",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В файле mobil/.env",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В файле README.md",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В тексте требования агенту",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "По адресу Render — 401. Что это значит?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Backend не работает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Работает, без токена закрыт",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В Database нет игр",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На телефоне нет интернета",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как вы добавляете файлы перед push?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Сразу через git add .",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вместе с .env",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Названные агентом — по одному",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только README.md",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Приложение получило 401 от GET /oyinlar. Что оно делает?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Показывает образец",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Снова отправляет пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перезапускает Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Открывает «Вход»",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

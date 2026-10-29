@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent «to'lov ishlaydi» dedi. Bu nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Hali tekshirilmagan da'vo",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod yozilganining isboti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pro yoqilganining dalili",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'rt usuldan o'tgan natija",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Kechiktirib yuborish» nimaning mashqi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ikki marta kelgan xabar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uxlab qolgan Backend",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Soxta imzoli xabar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rad etilgan to'lov",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'lovni qayerda, qanday buzasiz?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sinfdosh saytida, mashq bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Payme'da, kartam bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'z mahsulotimda, mashq bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'z mahsulotimda, pul bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Imzo noto'g'ri. Backend nima qilishi kerak?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "200, to'lovni yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "200, faqat Pro'ni yoqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "401, lekin Pro'ni yoqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "401, hech narsa yozmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'lov rad etildi. Pro nima bo'lishi kerak?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "O'zgarmaydi, yoqilmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "30 kunga baribir yoqiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat bir kunga yoqiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yarim muddatga yoqiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki marta kelgan xabar nimani buzdi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Jadvalda ikki qator bo'ldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pro ikki marta uzaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Imzodan o'tmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova Pro'ni ko'rsatmadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Javob 10 soniyada kelmadi. Sahifa nima deyishi kerak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«To'lov o'tmadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«To'landi (mashq)»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Javob kutilmoqda»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech narsa demaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova Pro holatini qachon qayta so'raydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Faqat ilk ochilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har soniyada, to'xtamasdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat to'lov rad etilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaytganda, tugma bosilganda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Nima kutdim» qatori qachon yoziladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Tugmani bosishdan oldin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Natija ko'ringandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent tuzatgandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dars oxirida, birdaniga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Tuzatish qilindi» belgisi nimani aytadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Muammo qaytmasligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod o'zgarganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent yozuvni o'qiganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Urinish buzilmaganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pro tugadi. E'lon qilingan o'yinlar nima bo'ladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Pro bilan o'chib ketadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pro qaytguncha yashirinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatda qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Keyingi haftaga ko'chadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kech urinishda Pro yoqilgani qayerda ko'rindi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ilovada, ekran yangilanib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifadagi «To'landi»dan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentning javobidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Neon'dagi muddat qatoridan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

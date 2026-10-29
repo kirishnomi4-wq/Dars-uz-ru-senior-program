@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Olti oylik reja qaysi uch yo'nalishdan iborat?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Mahsulot, ko'nikma va ish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Muammo, Bozor va Yechim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitch, demo va video",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending, ilova, Backend",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor «Backend testlari»ni qayerga qo'ydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Mahsulot yo'nalishiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'nikma yo'nalishiga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ish yo'nalishiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rejadan tashqariga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mahsulot yo'nalishida qanday qaror yoziladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ilova rangini tanlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Investordan pul so'rash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Davom etish yoki to'xtatish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kimdan baho olish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'xtatish haqida qaysi gap to'g'ri?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "To'xtatish — mag'lubiyat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'nikma ham to'xtaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat Mentor ruxsati bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sababi bilan yozilsa — qaror",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor davom ettirishga qaysi sababni yozgan?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Uch yozma tasdiqni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Guruhdagi 60 kishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiyalar ko'pligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pul va'da qilinganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Oylik maqsad nimani aytadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bir kundagi aniq harakatni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oy oxirida nimaga yetishni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Olti oydagi katta natijani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor qo'ygan bahoni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Birinchi qadamda qaysi ikki narsa bo'ladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Mentor imzosi va tasdig'i",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Katta natija va narxi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq harakat va sanasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Do'stlar ismi va telefoni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentorning 1-oy maqsadi qayerdan ko'chdi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "1-darsdagi Bozordan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Demo ssenariysidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Diamond Challenge'dan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "13-Modul hisobotidan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qadam o'z kunida qilinmadi. Nima qilasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Sabab va yangi sana yozaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Qilindi» deb qo'yaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rejani o'chirib tashlayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Indamay o'tib ketaman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yakkama-yakkada reja bilan nima bo'ladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Sinfga o'qib beriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor bilan ko'riladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mentor qayta yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baholanib, reyting chiqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Buyurtmada pul va kelishuv kim orqali bo'ladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Buyurtmachi bilan yolg'iz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdosh orqali, yashirin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ota-onangiz orqali",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Notanish odam orqali",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi reja gapi aniq yozilgan?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "6-oy: ilovam mashhur bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1-oy: hammasini o'rganaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2-oy: qachondir boshlayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1-oy: sinfda kitob almashuvi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

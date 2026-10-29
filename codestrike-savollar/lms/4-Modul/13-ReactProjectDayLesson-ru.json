@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Хороший промпт точно называет 3 вещи — какие?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Что + Как + Где",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только цвет и шрифт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Длину и язык",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя файла и размер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делают после каждой части при сборке с AI?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Проект пишут заново",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего не делают",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ждут ответа AI",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проверяют в браузере",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делать, если ответ AI неполный?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Брошу проект",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Уточняющий промпт",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Напишу всё вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Приму как есть",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем каталог машин выводится на экран?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Router + Link",
+        "hint": "Неверно"
+      },
+      {
+        "value": "confirm + CSS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GET + map",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только CSS",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как добавить новую машину на сервер?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "POST",
+        "hint": "Верно!"
+      },
+      {
+        "value": "GET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удалив её",
+        "hint": "Неверно"
+      },
+      {
+        "value": "только map",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где хранится список арендованных машин?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "В файле картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В отдельном документе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В папке сервера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "State (useState)",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем делается переход между страницами?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "useState bilan",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Router (<Route>)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "fetch bilan",
+        "hint": "Неверно"
+      },
+      {
+        "value": "map bilan",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какова формула итоговой цены?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "дни + цена",
+        "hint": "Неверно"
+      },
+      {
+        "value": "цена − дни",
+        "hint": "Неверно"
+      },
+      {
+        "value": "дни × цена",
+        "hint": "Верно!"
+      },
+      {
+        "value": "только цена",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Cobalt 280 000 сум/день, 3 дня — сколько всего?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "840 000 сум",
+        "hint": "Верно!"
+      },
+      {
+        "value": "280 000 сум",
+        "hint": "Неверно"
+      },
+      {
+        "value": "280 003 сум",
+        "hint": "Неверно"
+      },
+      {
+        "value": "3 сум",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое дебаггинг?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Красиво оформить сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перезапустить сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Добавить новый шрифт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Найти и исправить ошибку",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой первый шаг в проекте?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Сразу писать код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Разбить на страницы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ждать AI",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Выбрать цвет сайта",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто в проекте руководитель?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "AI руководит — а я жду",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Решаем на равных",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Я руководитель — AI строит",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Никто не управляет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

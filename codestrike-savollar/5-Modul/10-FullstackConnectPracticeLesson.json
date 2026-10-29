@@ -1,0 +1,278 @@
+{
+  "lessonId": "fullstack-connect-practice-p2-v18",
+  "key": "m4-10",
+  "modul": 5,
+  "tartib": 10,
+  "nom": {
+    "uz": "Praktika: Fullstack ulash — AvtoIjara",
+    "ru": "Практика: Fullstack связка — AvtoIjara"
+  },
+  "src": "src/4-Modull/FullstackConnectPracticeLesson.jsx",
+  "barmoq_izi": "ba01df73b9b44076442cfc0c6f0c563c",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "fetch nima qiladi?",
+        "variantlar": [
+          "Faylni papkaga yuklab oladi",
+          "Sahifa dizaynini bezaydi",
+          "Serverdan ma'lumot so'raydi",
+          "Bazani o'chirib tashlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает fetch?",
+        "variantlar": [
+          "Скачивает файл в папку",
+          "Украшает дизайн страницы",
+          "Запрашивает данные у сервера",
+          "Удаляет базу"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "useEffect([]) nega bo'sh massiv bilan?",
+        "variantlar": [
+          "Faqat bir marta ishlasin",
+          "Har soniyada ishlab tursin",
+          "Hech qachon ishlamasin",
+          "Xatoni yashirib tursin"
+        ]
+      },
+      "ru": {
+        "savol": "Почему useEffect([]) с пустым массивом?",
+        "variantlar": [
+          "Чтобы сработал один раз",
+          "Чтобы работал каждую секунду",
+          "Чтобы никогда не работал",
+          "Чтобы прятал ошибку"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "app.use(cors()) qayerga yoziladi?",
+        "variantlar": [
+          "Front (sayt) kodiga",
+          "CSS fayliga",
+          "Bazaga to'g'ridan-to'g'ri",
+          "Server (back) kodiga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда пишется app.use(cors())?",
+        "variantlar": [
+          "В код фронта (сайта)",
+          "В CSS-файл",
+          "Прямо в базу данных",
+          "В код сервера (бэка)"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "CORS xatosini ko'rsangiz, nima qilasiz?",
+        "variantlar": [
+          "Saytni qaytadan yozaman",
+          "Serverga cors() qo'shaman",
+          "Internetni tekshiraman",
+          "Brauzerni almashtiraman"
+        ]
+      },
+      "ru": {
+        "savol": "Видите ошибку CORS — что делаете?",
+        "variantlar": [
+          "Перепишу сайт заново",
+          "Добавлю cors() на сервер",
+          "Проверю интернет",
+          "Сменю браузер"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "CORS xatosi nega chiqadi?",
+        "variantlar": [
+          "Baza to'lib qolgani uchun",
+          "Internet aloqasi yo'qligidan",
+          "Kodda imlo xatosi borligidan",
+          "Brauzer boshqa portni to'sadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему возникает ошибка CORS?",
+        "variantlar": [
+          "Потому что база переполнена",
+          "Из-за отсутствия интернета",
+          "Из-за опечатки в коде",
+          "Браузер блокирует другой порт"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "res.json() nima qiladi?",
+        "variantlar": [
+          "So'rovni butunlay bekor qiladi",
+          "Yangi server ochib beradi",
+          "Javobni massivga aylantiradi",
+          "CSS faylini o'qiydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает res.json()?",
+        "variantlar": [
+          "Полностью отменяет запрос",
+          "Открывает новый сервер",
+          "Превращает ответ в массив",
+          "Читает CSS-файл"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Javob kelguncha sahifada nima ko'rsatiladi?",
+        "variantlar": [
+          "«Yuklanmoqda» yozuvi",
+          "Bo'sh oq ekran",
+          "Qizil xato xabari",
+          "Boshqa sayt"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает страница, пока нет ответа?",
+        "variantlar": [
+          "Надпись «Загрузка»",
+          "Пустой белый экран",
+          "Красное сообщение об ошибке",
+          "Другой сайт"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Sahifani yangilaganda yangi mashina nega yo'qolmaydi?",
+        "variantlar": [
+          "Brauzer eslab qoladi",
+          "U bazada saqlangan",
+          "Tasodifan qoladi",
+          "CSS saqlab qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему новая машина не пропадает при обновлении страницы?",
+        "variantlar": [
+          "Браузер её запоминает",
+          "Она сохранена в базе",
+          "Остаётся случайно",
+          "Её сохраняет CSS"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "GET bazada nimani o'zgartiradi?",
+        "variantlar": [
+          "Hamma qatorni o'chiradi",
+          "Hech narsani — faqat o'qiydi",
+          "Jadvalga yangi qator qo'shadi",
+          "Jadval nomini yangilaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что GET меняет в базе?",
+        "variantlar": [
+          "Удаляет все строки",
+          "Ничего — только читает",
+          "Добавляет новую строку",
+          "Меняет имя таблицы"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Front va back qanday gaplashadi?",
+        "variantlar": [
+          "Bitta fayl ichida",
+          "Hech qanday — mustaqil",
+          "Faqat CSS orqali",
+          "fetch so'rovi orqali"
+        ]
+      },
+      "ru": {
+        "savol": "Как общаются фронт и бэк?",
+        "variantlar": [
+          "Внутри одного файла",
+          "Никак — каждый сам",
+          "Только через CSS",
+          "Через запрос fetch"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Bazaga yangi mashina qo'shish uchun qaysi metod?",
+        "variantlar": [
+          "POST",
+          "DELETE",
+          "GET",
+          "PUT"
+        ]
+      },
+      "ru": {
+        "savol": "Какой метод добавляет в базу новую машину?",
+        "variantlar": [
+          "POST",
+          "DELETE",
+          "GET",
+          "PUT"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Nega tartib fetch → json → setCars?",
+        "variantlar": [
+          "Tartib muhim emas",
+          "Avval setCars, keyin fetch",
+          "Olamiz, o'qiymiz, saqlaymiz",
+          "Faqat json yetarli"
+        ]
+      },
+      "ru": {
+        "savol": "Почему порядок fetch → json → setCars?",
+        "variantlar": [
+          "Порядок не важен",
+          "Сначала setCars, потом fetch",
+          "Получаем, читаем, сохраняем",
+          "Хватит одного json"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что показывает wireframe?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Что где стоит",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Цвет кнопок",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Шрифт заголовка",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Где хранятся данные",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На каком экране организатор пишет день и время?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "На экране «Игры»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На экране «Объявить игру»",
+        "hint": "Верно!"
+      },
+      {
+        "value": "На экране «Игра»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На экране «Вход»",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какие экраны называют прототипом?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Версия, вышедшая в магазин",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Простой рисунок на бумаге",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Кликабельные, но не сохраняют",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Схема Backend и Database",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Откуда берётся список игр в прототипе?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Из таблицы oyinlar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из пути в Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из группы в Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из файла namuna.js",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что на этом уроке пишут в строку требования «где»?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Папка prototip/",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Экран телефона",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Страница GitHub",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Папка backend/",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен снимок wireframe?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Выбирает агенту цвета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Показывает, где какие экраны",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Подключает агенту Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отправляется вместо требования",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Агент сказал «Готово!». Что дальше?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Сразу отправляю на GitHub",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пишу требование заново",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сравниваю с wireframe",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Добавляю анимации",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Найдено три отличия. Как написать агенту?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Прошу написать всё заново",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пишу только самое большое",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего, сам найдёт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Все три одним требованием",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой прототип называют живым?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Прототип с анимацией",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Прототип, установленный на телефон",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Прототип, подключённый к Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Прототип, нарисованный в цвете",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Карточка при нажатии сжимается и возвращается. Что нужно?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "transition и font-size",
+        "hint": "Неверно"
+      },
+      {
+        "value": "transform и transition",
+        "hint": "Верно!"
+      },
+      {
+        "value": "initial и exit",
+        "hint": "Неверно"
+      },
+      {
+        "value": "display и width",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что в этом прототипе делает плавный переход между экранами?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Состояние :active",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Значение scale(1.3)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Библиотека Motion",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Функция setTimeout",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая команда копирует репо с GitHub на компьютер?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "git push",
+        "hint": "Неверно"
+      },
+      {
+        "value": "git commit",
+        "hint": "Неверно"
+      },
+      {
+        "value": "git status",
+        "hint": "Неверно"
+      },
+      {
+        "value": "git clone",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

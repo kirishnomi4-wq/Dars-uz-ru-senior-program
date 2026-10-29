@@ -1,0 +1,278 @@
+{
+  "lessonId": "js-loops-01-v18",
+  "key": "m2-05",
+  "modul": 3,
+  "tartib": 6,
+  "nom": {
+    "uz": "JavaScript — Sikllar (for, while)",
+    "ru": "JavaScript — Циклы (for, while)"
+  },
+  "src": "src/2-Modull/JsLoopsLesson.jsx",
+  "barmoq_izi": "f8d4b4370743186b9596f529b15e0e20",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "for siklining 3 qismi to'g'ri tartibda qaysi?",
+        "variantlar": [
+          "boshlanish, shart, qadam",
+          "shart, qadam, boshlanish",
+          "qadam, boshlanish, shart",
+          "faqat shart"
+        ]
+      },
+      "ru": {
+        "savol": "Три части цикла for в правильном порядке?",
+        "variantlar": [
+          "старт, условие, шаг",
+          "условие, шаг, старт",
+          "шаг, старт, условие",
+          "только условие"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "let i = 1 — siklning qaysi qismi?",
+        "variantlar": [
+          "Boshlanish",
+          "Shart (i < 5)",
+          "Qadam (i++)",
+          "Tana"
+        ]
+      },
+      "ru": {
+        "savol": "let i = 1 — какая часть цикла?",
+        "variantlar": [
+          "Начало",
+          "Условие (i < 5)",
+          "Шаг (i++)",
+          "Тело"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "for (let i = 0; i < 3; i++) sikli necha marta ishlaydi?",
+        "variantlar": [
+          "3",
+          "2",
+          "4",
+          "cheksiz"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько раз сработает цикл for (let i = 0; i < 3; i++)?",
+        "variantlar": [
+          "3",
+          "2",
+          "4",
+          "бесконечно"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "i++ har aylanishda i ni nima qiladi?",
+        "variantlar": [
+          "1 ga kamaytiradi",
+          "1 ga oshiradi",
+          "0 qiladi",
+          "o'zgartirmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что i++ делает с i на каждой итерации?",
+        "variantlar": [
+          "уменьшает на 1",
+          "увеличивает на 1",
+          "обнуляет",
+          "не меняет"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Sikl qachon to'xtaydi?",
+        "variantlar": [
+          "i = 0 bo'lganda",
+          "Shart false bo'lganda",
+          "Hech qachon to'xtamaydi",
+          "Birinchi aylanishdan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда цикл останавливается?",
+        "variantlar": [
+          "Когда i = 0",
+          "Когда условие станет false",
+          "Никогда не остановится",
+          "После первого круга"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Cheksiz sikl qachon yuzaga keladi?",
+        "variantlar": [
+          "Shart juda katta bo'lsa",
+          "Qadam shartga yaqinlashmasa",
+          "Massiv bo'sh bo'lsa",
+          "i ni yozib qo'ysak"
+        ]
+      },
+      "ru": {
+        "savol": "Когда возникает бесконечный цикл?",
+        "variantlar": [
+          "если условие слишком большое",
+          "если шаг не приближает к условию",
+          "если массив пустой",
+          "если записать i"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Massivda indekslar nechadan boshlanadi?",
+        "variantlar": [
+          "1 dan",
+          "-1 dan",
+          "0 dan",
+          "uzunligidan"
+        ]
+      },
+      "ru": {
+        "savol": "С чего начинаются индексы в массиве?",
+        "variantlar": [
+          "с 1",
+          "с -1",
+          "с 0",
+          "с длины"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "['a','b','c'] massivida 'c' ning indeksi qaysi?",
+        "variantlar": [
+          "1",
+          "3",
+          "2",
+          "0"
+        ]
+      },
+      "ru": {
+        "savol": "Какой индекс у 'c' в массиве ['a','b','c']?",
+        "variantlar": [
+          "1",
+          "3",
+          "2",
+          "0"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "fruits.length nimani beradi?",
+        "variantlar": [
+          "Birinchi element",
+          "Oxirgi indeksni",
+          "Elementlar sonini",
+          "Massiv nomini"
+        ]
+      },
+      "ru": {
+        "savol": "Что даёт fruits.length?",
+        "variantlar": [
+          "Первый элемент",
+          "Последний индекс",
+          "Число элементов",
+          "Имя массива"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "for (let i=1; i<=10; i+=2) qaysi sonlarni beradi?",
+        "variantlar": [
+          "1,2,3,...,10",
+          "faqat 10",
+          "2,4,6,8,10",
+          "1,3,5,7,9"
+        ]
+      },
+      "ru": {
+        "savol": "Какие числа даст for (let i=1; i<=10; i+=2)?",
+        "variantlar": [
+          "1,2,3,...,10",
+          "только 10",
+          "2,4,6,8,10",
+          "1,3,5,7,9"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "while sikli qachongacha ishlaydi?",
+        "variantlar": [
+          "Massiv bor bo'lsa",
+          "Faqat bir marta",
+          "Doim aniq 10 marta",
+          "Shart true ekan"
+        ]
+      },
+      "ru": {
+        "savol": "До каких пор работает цикл while?",
+        "variantlar": [
+          "Пока есть массив",
+          "Только один раз",
+          "Всегда ровно 10 раз",
+          "Пока условие true"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Massivni to'liq aylanish uchun shart qanday yoziladi?",
+        "variantlar": [
+          "i <= fruits.length",
+          "i == fruits.length",
+          "i > 0",
+          "i < fruits.length"
+        ]
+      },
+      "ru": {
+        "savol": "Как пишется условие для полного обхода массива?",
+        "variantlar": [
+          "i <= fruits.length",
+          "i == fruits.length",
+          "i > 0",
+          "i < fruits.length"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m2d2-v1",
+  "key": "m2-02",
+  "modul": 3,
+  "tartib": 2,
+  "nom": {
+    "uz": "Muammodan yechimga",
+    "ru": "От проблемы к решению"
+  },
+  "src": "src/2-Modull/PmLesson4.jsx",
+  "barmoq_izi": "196ee7409104b05723b6b692674f31ac",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Yechim (feature) nima?",
+        "variantlar": [
+          "Saytning rangi va shrifti",
+          "Saytning bitta aniq foydasi",
+          "Saytning internet manzili",
+          "Saytni ochadigan dastur"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое решение (feature)?",
+        "variantlar": [
+          "Цвет и шрифт сайта",
+          "Одна конкретная польза сайта",
+          "Адрес сайта в интернете",
+          "Программа, открывающая сайт"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Har yechim qaysi savolga javob beradi?",
+        "variantlar": [
+          "Necha kunda yasaladi?",
+          "Sahifaning qayerida turadi?",
+          "Qaysi muammoni yo'qotadi?",
+          "Qancha pul turadi?"
+        ]
+      },
+      "ru": {
+        "savol": "На какой вопрос отвечает каждое решение?",
+        "variantlar": [
+          "За сколько дней сделаем?",
+          "Где стоит на странице?",
+          "Какую проблему убирает?",
+          "Сколько стоит?"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Muammoga bog'lanmagan yechim nima bo'ladi?",
+        "variantlar": [
+          "Ro'yxatdan chiqariladi",
+          "Eng oxirida qilinadi",
+          "Ikki marta tekshiriladi",
+          "Boshqa saytga beriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают с решением, не связанным с проблемой?",
+        "variantlar": [
+          "Убирают из списка",
+          "Делают в самом конце",
+          "Проверяют дважды",
+          "Отдают другому сайту"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Karta nechta bo'lakdan iborat?",
+        "variantlar": [
+          "Bittadan",
+          "Uchtadan",
+          "To'rttadan",
+          "Ikkitadan"
+        ]
+      },
+      "ru": {
+        "savol": "Из скольких частей состоит карточка?",
+        "variantlar": [
+          "Из одной",
+          "Из трёх",
+          "Из четырёх",
+          "Из двух"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "«Sayt chiroyli bo'lsin» qaysi muammoni yo'qotadi?",
+        "variantlar": [
+          "Seans vaqti noma'lumligini",
+          "Hech qaysi muammoni",
+          "Chipta olish qiyinligini",
+          "Joy bor-yo'qligini"
+        ]
+      },
+      "ru": {
+        "savol": "Какую проблему убирает «пусть сайт будет красивым»?",
+        "variantlar": [
+          "Неизвестное время сеанса",
+          "Никакую",
+          "Трудность покупки билета",
+          "Есть ли места в зале"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Yechim qanday yoziladi?",
+        "variantlar": [
+          "Sayt nima qilishi bilan",
+          "Bitta sifat bilan",
+          "Kinoteatr nomi bilan",
+          "Sana va vaqt bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Как записывают решение?",
+        "variantlar": [
+          "Тем, что делает сайт",
+          "Одним прилагательным",
+          "Названием кинотеатра",
+          "Датой и временем"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Uzum ishni nimadan boshlagan?",
+        "variantlar": [
+          "Reklama roliklaridan",
+          "Chiroyli bosh sahifadan",
+          "O'z yetkazib berishidan",
+          "Katta chegirmalardan"
+        ]
+      },
+      "ru": {
+        "savol": "С чего начал Uzum?",
+        "variantlar": [
+          "С рекламных роликов",
+          "С красивой главной страницы",
+          "Со своей доставки",
+          "С больших скидок"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "Uzumgacha odamlar qayerdan xarid qilardi?",
+        "variantlar": [
+          "Telegram va Instagram'dan",
+          "Faqat katta bozordan",
+          "Chet el saytlaridan",
+          "Gazeta e'lonlaridan"
+        ]
+      },
+      "ru": {
+        "savol": "Где покупали люди до Uzum?",
+        "variantlar": [
+          "В Telegram и Instagram",
+          "Только на большом базаре",
+          "На зарубежных сайтах",
+          "По газетным объявлениям"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Uzum qachon mamlakatning birinchi «unicorn»i bo'ldi?",
+        "variantlar": [
+          "2022-yil oktyabrda",
+          "2023-yil yanvarda",
+          "2025-yil dekabrda",
+          "2024-yil martda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Uzum стал первым «единорогом» страны?",
+        "variantlar": [
+          "В октябре 2022 года",
+          "В январе 2023 года",
+          "В декабре 2025 года",
+          "В марте 2024 года"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "«Unicorn» degani nima?",
+        "variantlar": [
+          "Ishchisi eng ko'p kompaniya",
+          "Bahosi 1 mlrd dollardan yuqori",
+          "Eng eski, birinchi kompaniya",
+          "Faqat onlayn kompaniya"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает «единорог»?",
+        "variantlar": [
+          "Компания с наибольшим штатом",
+          "Оценка выше 1 млрд долларов",
+          "Самая старая, первая компания",
+          "Компания только онлайн"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Ega yangi yechim so'radi. Birinchi nima qilinadi?",
+        "variantlar": [
+          "Darhol qo'shiladi",
+          "Narxi hisoblanadi",
+          "Qaysi muammo uchun — so'raladi",
+          "Boshqa saytlar ko'riladi"
+        ]
+      },
+      "ru": {
+        "savol": "Владелец просит новое решение. Что делают сначала?",
+        "variantlar": [
+          "Сразу добавляют",
+          "Считают цену",
+          "Спрашивают: для какой проблемы",
+          "Смотрят другие сайты"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Muammo va yechim ro'yxatda qanday yoziladi?",
+        "variantlar": [
+          "Sarlavha tegida, bitta so'z",
+          "Rasm tegi ichida",
+          "Link tegi ichida",
+          "Qalin yechim — tire — muammo"
+        ]
+      },
+      "ru": {
+        "savol": "Как записывают проблему и решение в списке?",
+        "variantlar": [
+          "В теге заголовка, одним словом",
+          "В теге картинки",
+          "В теге ссылки",
+          "Жирное решение — тире — проблема"
+        ]
+      }
+    }
+  ]
+}

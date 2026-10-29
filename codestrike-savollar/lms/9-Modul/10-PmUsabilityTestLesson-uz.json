@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinov nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Odam ishlatadi, siz kuzatasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Siz ishlatasiz, odam kuzatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamdan fikrini so'raysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zingiz qayta-qayta sinaysiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinov intervyudan nimasi bilan farq qiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Sinovda savol ko'p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Intervyuda odam ishlatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinovda so'ramay, kuzatasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinovda faqat sinfdoshlar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'yinchi 25 soniya hech narsa bosmadi. Bu nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sayt sekin ochilyapti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu to'xtash, yozib qo'yiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Odam saytni yoqtirmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinov shu yerda tugadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yordam bersangiz, yozuvda nima bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "To'xtash ko'payadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuv o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'xtash ikki marta yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'xtash yozuvdan yo'qoladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi sinov vazifasi nimani aytadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Qaysi tugmani bosishni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam nimaga erishishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt qanday qurilganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt yoqdimi-yo'qmi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri sinov vazifasi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "«Shanba 18:00 ga band qiling»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«18:00 ni bosib, ism yozing»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Sayt qulaymi? Ayting»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Band qilish tugmasini bosing»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kuzatuv yozuviga qaysi qator tushadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Tugma noqulay joyda ekan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma formani yomon ko'radi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Menga ham chalkash tuyuldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugmani 1 daqiqa qidirdi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Internet-magazinda odamlar qayerda to'xtagan?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Savatga narsa solayotganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qidiruvdan izlayotganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Email va parol formasida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Manzil yozayotganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Internet-magazinda nima o'zgardi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Tugma yozuvi: «Davom etish»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Formaga qator qo'shildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt boshidan qayta qurildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangilarga chegirma berildi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uch to'xtashdan qaysi biri birinchi tuzatiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Eng oxirida bo'lgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng qisqa vaqt olgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zingizga qizig'i",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vazifani to'xtatadigani",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Real sinovni kim bilan o'tkazasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Saytni qurgan o'zingiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytingiz mo'ljallangan odam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni ko'rgan dasturchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdagi a'lochi o'quvchi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yozuv tayyor. Endi nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yozuvni o'chirib tashlayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasini darhol tuzataman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi tuzatishni tanlayman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Odamdan tasdiq so'rayman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

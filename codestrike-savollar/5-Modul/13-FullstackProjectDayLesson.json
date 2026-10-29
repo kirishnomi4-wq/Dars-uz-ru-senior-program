@@ -1,0 +1,278 @@
+{
+  "lessonId": "fullstack-projectday-p3-v18",
+  "key": "m4-13",
+  "modul": 5,
+  "tartib": 13,
+  "nom": {
+    "uz": "Praktika: Loyiha kuni — AvtoStoyanka",
+    "ru": "Практика: Проектный день — AvtoStoyanka"
+  },
+  "src": "src/4-Modull/FullstackProjectDayLesson.jsx",
+  "barmoq_izi": "f90987acba46791323fca275d87f4454",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Baza (2 jadval) nima uchun kerak?",
+        "variantlar": [
+          "Ma'lumotni saqlab, bog'lash",
+          "Faqat rang berish uchun",
+          "Sahifani bezash uchun",
+          "Internetni tezlatish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужна база (2 таблицы)?",
+        "variantlar": [
+          "Хранить и связывать данные",
+          "Только чтобы задать цвет",
+          "Чтобы украсить страницу",
+          "Чтобы ускорить интернет"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Joy bandligi qaysi turda saqlanadi?",
+        "variantlar": [
+          "TEXT (matn)",
+          "SERIAL (raqam)",
+          "BOOLEAN (true/false)",
+          "TIMESTAMP (sana va vaqt)"
+        ]
+      },
+      "ru": {
+        "savol": "В каком типе хранится занятость места?",
+        "variantlar": [
+          "TEXT (текст)",
+          "SERIAL (число)",
+          "BOOLEAN (true/false)",
+          "TIMESTAMP (дата и время)"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Sessiyani joyga qaysi ustun bog'laydi?",
+        "variantlar": [
+          "plate",
+          "spot_id",
+          "fee",
+          "entered_at"
+        ]
+      },
+      "ru": {
+        "savol": "Какой столбец привязывает сеанс к месту?",
+        "variantlar": [
+          "plate",
+          "spot_id",
+          "fee",
+          "entered_at"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "REFERENCES spots(id) nima beradi?",
+        "variantlar": [
+          "Yangi jadval yaratadi",
+          "Ustunga rang beradi",
+          "So'rovni tezlashtiradi",
+          "Foreign key bog'lanishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что даёт REFERENCES spots(id)?",
+        "variantlar": [
+          "Создаёт новую таблицу",
+          "Красит столбец",
+          "Ускоряет запрос",
+          "Связь foreign key"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Mashina kirganda qaysi amal ishlaydi?",
+        "variantlar": [
+          "DELETE",
+          "GET",
+          "POST",
+          "CSS"
+        ]
+      },
+      "ru": {
+        "savol": "Какая операция срабатывает при въезде машины?",
+        "variantlar": [
+          "DELETE",
+          "GET",
+          "POST",
+          "CSS"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Mashina chiqqanida qaysi amal ishlaydi?",
+        "variantlar": [
+          "GET",
+          "DELETE",
+          "POST",
+          "PUT"
+        ]
+      },
+      "ru": {
+        "savol": "Какая операция срабатывает при выезде машины?",
+        "variantlar": [
+          "GET",
+          "DELETE",
+          "POST",
+          "PUT"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Ikki jadvalni birga o'qish uchun?",
+        "variantlar": [
+          "JOIN",
+          "DELETE",
+          "INSERT",
+          "DROP"
+        ]
+      },
+      "ru": {
+        "savol": "Чем читать две таблицы вместе?",
+        "variantlar": [
+          "JOIN",
+          "DELETE",
+          "INSERT",
+          "DROP"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "JOIN ON sharti qanday yoziladi?",
+        "variantlar": [
+          "id = plate",
+          "spot_id = id",
+          "label = spot",
+          "fee = id"
+        ]
+      },
+      "ru": {
+        "savol": "Как пишется условие ON у JOIN?",
+        "variantlar": [
+          "id = plate",
+          "spot_id = id",
+          "label = spot",
+          "fee = id"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Joylarni panelga qanday olamiz?",
+        "variantlar": [
+          "DROP",
+          "PUT",
+          "DELETE",
+          "GET"
+        ]
+      },
+      "ru": {
+        "savol": "Как получить места на панель?",
+        "variantlar": [
+          "DROP",
+          "PUT",
+          "DELETE",
+          "GET"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Panel rangi nimaga qarab o'zgaradi?",
+        "variantlar": [
+          "plate",
+          "is_busy",
+          "fee",
+          "id"
+        ]
+      },
+      "ru": {
+        "savol": "От чего зависит цвет панели?",
+        "variantlar": [
+          "plate",
+          "is_busy",
+          "fee",
+          "id"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Qorovulga eng yaxshi panel qanday?",
+        "variantlar": [
+          "Ko'p matn, mayda tugmalar",
+          "Raqamli quruq jadval",
+          "Rang, katta tugma, kam matn",
+          "Uzun ko'rsatma matni"
+        ]
+      },
+      "ru": {
+        "savol": "Какая панель лучше всего для охранника?",
+        "variantlar": [
+          "Много текста, мелкие кнопки",
+          "Сухая таблица с цифрами",
+          "Цвет, большие кнопки, мало текста",
+          "Длинная инструкция"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Fullstack loyiha nimalardan iborat?",
+        "variantlar": [
+          "Front + server + baza",
+          "Faqat ma'lumotlar bazasi",
+          "Faqat frontend qismi",
+          "Faqat rang va bezaklar"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего состоит fullstack-проект?",
+        "variantlar": [
+          "Фронт + сервер + база",
+          "Только база данных",
+          "Только фронтенд",
+          "Только цвета и украшения"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pipeline-project-06-08-v18",
+  "key": "m6-08",
+  "modul": 8,
+  "tartib": 8,
+  "nom": {
+    "uz": "Loyiha kuni: to'liq pipeline",
+    "ru": "Проектный день: полный pipeline"
+  },
+  "src": "src/6-Modull/PipelineProjectLesson.jsx",
+  "barmoq_izi": "59ecdbe069f6dc68825663ca8782dd91",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Pipeline nima degani?",
+        "variantlar": [
+          "Qismdan qismga ma'lumot oqimi",
+          "Bitta katta kod fayli",
+          "Faqat frontend qismi",
+          "Ulanmagan alohida dasturlar"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит pipeline?",
+        "variantlar": [
+          "Поток данных от части к части",
+          "Один большой файл кода",
+          "Только frontend",
+          "Отдельные несвязанные программы"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "AI bilan kod yozganda sizning vazifangiz?",
+        "variantlar": [
+          "Hamma kodni qo'lda yozish",
+          "Aniq topshiriq, o'qish, sinash",
+          "Hech narsa qilmaslik",
+          "Kodni o'qimay ishlatish"
+        ]
+      },
+      "ru": {
+        "savol": "Ваша задача при коде с AI?",
+        "variantlar": [
+          "Писать весь код вручную",
+          "Чёткое задание, чтение, проверка",
+          "Ничего не делать",
+          "Запускать код не читая"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Frontend so'rovni qayerga yuboradi?",
+        "variantlar": [
+          "Brauzer tarixiga",
+          "Foydalanuvchining telefoniga",
+          "Backend manziliga",
+          "To'g'ridan-to'g'ri Telegram'ga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда frontend отправляет запрос?",
+        "variantlar": [
+          "В историю браузера",
+          "На телефон пользователя",
+          "На адрес backend",
+          "Прямо в Telegram"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Failed to fetch» ko'pincha nimadan chiqadi?",
+        "variantlar": [
+          "Logotip kichikligidan",
+          "Rasm rangi xatosidan",
+          "Sarlavha xatosidan",
+          "Backend manzili xatosidan"
+        ]
+      },
+      "ru": {
+        "savol": "Отчего чаще всего бывает «Failed to fetch»?",
+        "variantlar": [
+          "Из-за маленького логотипа",
+          "Из-за цвета картинки",
+          "Из-за ошибки в заголовке",
+          "Из-за неверного адреса backend"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Aniq prompt qanday bo'ladi?",
+        "variantlar": [
+          "Nima, qayerda, qanday natija",
+          "«Saytni yaxshi qilib ber»",
+          "«O'zing bilganingcha qil»",
+          "Topshiriqsiz, umumiy"
+        ]
+      },
+      "ru": {
+        "savol": "Каким бывает точный промпт?",
+        "variantlar": [
+          "Что, где и какой результат",
+          "«Сделай сайт получше»",
+          "«Делай как знаешь»",
+          "Общий, без задания"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "AI yozgan kodni nega o'qiysiz?",
+        "variantlar": [
+          "Rangini o'zgartirish uchun",
+          "Xatoni ko'rib tuzatish uchun",
+          "Faylni kattalashtirish uchun",
+          "Chiroyli ko'rsatish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем читать код, написанный AI?",
+        "variantlar": [
+          "Чтобы сменить цвет",
+          "Чтобы увидеть и исправить ошибку",
+          "Чтобы увеличить файл",
+          "Чтобы красиво показать"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Ulanish xatosini qanday topamiz?",
+        "variantlar": [
+          "Faqat rangga qaraymiz",
+          "Umuman sinamaymiz",
+          "Boshidan oxirigacha sinaymiz",
+          "AI xato qilmaydi deb ishonamiz"
+        ]
+      },
+      "ru": {
+        "savol": "Как найти ошибку связки?",
+        "variantlar": [
+          "Смотрим только на цвета",
+          "Вообще не проверяем",
+          "Проверяем от начала до конца",
+          "Верим, что ИИ не ошибается"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Buyurtma yuborilganda qaysi qism birinchi ishlaydi?",
+        "variantlar": [
+          "PostgreSQL (Database)",
+          "Telegram (bot)",
+          "AI (yordamchi xizmat)",
+          "React (frontend)"
+        ]
+      },
+      "ru": {
+        "savol": "Какая часть срабатывает первой при отправке заказа?",
+        "variantlar": [
+          "PostgreSQL (Database)",
+          "Telegram (бот)",
+          "ИИ (вспомогательный сервис)",
+          "React (frontend)"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Bu loyihada NestJS nima qiladi?",
+        "variantlar": [
+          "So'rovlarni qabul qiladi",
+          "Rasm va chizma chizadi",
+          "Ma'lumotni saqlaydi",
+          "Parolni ekranda ko'rsatadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает NestJS в этом проекте?",
+        "variantlar": [
+          "Принимает запросы",
+          "Рисует картинки",
+          "Хранит данные",
+          "Показывает пароль на экране"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Buyurtma ma'lumoti qayerda saqlanadi?",
+        "variantlar": [
+          "Admin Telegram xabarida",
+          "Database'dagi jadvalda",
+          "Mijoz brauzeri tarixida",
+          "Hech qayerda"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранятся данные заказа?",
+        "variantlar": [
+          "В Telegram-сообщении админу",
+          "В таблице Database",
+          "В истории браузера клиента",
+          "Нигде"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "AI bilan kod yozish sikli qanday?",
+        "variantlar": [
+          "Prompt → kod → ishlatish",
+          "Kodni o'qimay ishlatish",
+          "Prompt → kod → test → tuzatish",
+          "Bitta promptda hammasi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой цикл кода с AI?",
+        "variantlar": [
+          "Промпт → код → запуск",
+          "Запуск кода без чтения",
+          "Промпт → код → тест → исправление",
+          "Всё в одном промпте"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "«End-to-end test» nimani tekshiradi?",
+        "variantlar": [
+          "Bitta tugmaning rangini",
+          "Faqat login sahifasini",
+          "Database'ning nomini",
+          "Butun buyurtma oqimini"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяет «end-to-end тест»?",
+        "variantlar": [
+          "Цвет одной кнопки",
+          "Только страницу входа",
+          "Имя Database",
+          "Весь поток заказа"
+        ]
+      }
+    }
+  ]
+}

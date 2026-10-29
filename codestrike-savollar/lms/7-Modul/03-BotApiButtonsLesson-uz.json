@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bot tokeni qayerda saqlanadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "new Telegraf(...) qatorida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "README.md faylida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": ".env faylida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "@BotFather tavsifida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telegraf nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Bot uchun Node.js kutubxonasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Node.js'dagi xabarlar bazasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasm yuklaydigan xizmat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuterdagi Telegram ilovasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "ctx nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Bot sozlamalari fayli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parol saqlanadigan obyekt",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server soati funksiyasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa haqidagi ma'lumot",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Inline tugma bosilganda nima bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Matni chatga xabar bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botga tugma ma'lumoti keladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Serverga rasm yuklanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot suhbatni tozalaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Reply klaviatura bosilsa nima bo'ladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Hech narsa, u faqat bezak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Matni chatga xabar bo'ladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot chatdan chiqib ketadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Akkaunt bloklanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "bot.action(...) nimani ushlaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Faqat / bilan buyruqlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reply tugmadagi matnni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Inline tugma bosilishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yuborilgan rasm va fayllarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "bot.hears(...) nimani ushlaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Aniq matnli xabarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Inline tugma bosilishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot yoqilgan-o'chganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ovozli xabarlarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Fallback handler nima uchun kerak?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Bot tezroq ishlashi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmga xato yozish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tokenni himoyalash uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har xabarga javob berish uchun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "ctx.reply(...) javobni qaysi chatga yuboradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bot egasining chatiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirgi yozgan odamga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma foydalanuvchiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabar kelgan chatga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Polling nimani bildiradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Telegram xabarni o'zi yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot qayta-qayta xabar so'raydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ovozni matnga aylantirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabarlarni o'chirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "bot.launch() nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Yangi token yaratadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botni Telegram'dan o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botni ishga tushiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot rasmini yangilaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "/start va /help qanday belgi bilan boshlanadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Qiyshiq chiziq (/) bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yulduzcha (*) bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki nuqta (:) bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qanday belgisiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

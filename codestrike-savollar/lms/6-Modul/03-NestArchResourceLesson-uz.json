@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Entity nimani belgilaydi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "So'rov kiradigan eshikni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishga tushish tartibini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekrandagi ranglarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bazadagi jadval ko'rinishini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "BaseEntity qaysi ustunlarni tekin beradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "brand, model va price",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "id, created_at, updated_at",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "username, password",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "imports, controllers",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DTO nima uchun kerak?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Kelgan ma'lumotni tekshirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jadval ustunlarini yaratish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'limni AppModule'ga ulash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni ishga tushirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'sh brand bilan POST /car yuborilsa?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Mashina baribir saqlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server ishdan chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "400 — bazaga bormaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "brand o'zi to'ldiriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "PartialType nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Maydonlarni majburiy qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydonlarni ixtiyoriy qiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bazada yangi jadval yaratadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Endpointlarni o'chiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tayyor CRUD metodlarini kim beradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Controller o'zi yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PostgreSQL o'zi yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har resursda qo'lda yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "BaseService — meros bilan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi mashina qo'shish uchun qaysi dekorator?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "@Post()",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "@Get()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@Column()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@Module()",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Controller nima qiladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Jadval ustunlarini belgilaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotni diskka yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'rov olib, service chaqiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Loyihani build qilib yoqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CarModule AppModule'ga ulanmasa?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Hammasi avvalgidek ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "/car topilmaydi — 404",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat GET ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyiha umuman yoqilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "super(carRepo) nima qiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Yangi jadval yaratadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni qayta yoqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eshikni ro'yxatga oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Omborni BaseService'ga beradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "car.module.ts ichida nima bo'ladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "@Column ustunlari ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@IsString qoidalari ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "controllers va providers",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "main.ts port sozlamalari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi resurs: birinchi uch qadam?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Entity → DTO → Service",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Controller → Module → Entity",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Module → Controller → Service",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DTO → Entity → Controller",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "arch-patterns-06-03-v18",
+  "key": "m6-03",
+  "modul": 8,
+  "tartib": 3,
+  "nom": {
+    "uz": "Arxitektura patternlari",
+    "ru": "Паттерны архитектуры"
+  },
+  "src": "src/6-Modull/ArchPatternsLesson.jsx",
+  "barmoq_izi": "c29be360b6a0e30696edb7dbad19303f",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "MVC'da foydalanuvchi ko'radigan qism qaysi?",
+        "variantlar": [
+          "View — ko'rinish",
+          "Controller — yo'naltiruvchi",
+          "Model — ma'lumot va qoidalar",
+          "Hech qaysi qism mos emas"
+        ]
+      },
+      "ru": {
+        "savol": "Какую часть MVC видит пользователь?",
+        "variantlar": [
+          "View — представление",
+          "Controller — направляющий",
+          "Model — слой данных",
+          "Ни одна часть не подходит"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "MVC'da ma'lumot va qoidalar bilan qaysi qism ishlaydi?",
+        "variantlar": [
+          "View",
+          "Model",
+          "Controller",
+          "Hech qaysi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая часть MVC работает с данными и правилами?",
+        "variantlar": [
+          "View",
+          "Model",
+          "Controller",
+          "Никакая"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "So'rovni qabul qilib, yo'naltiradigan qism qaysi?",
+        "variantlar": [
+          "View",
+          "Model",
+          "Controller",
+          "Database"
+        ]
+      },
+      "ru": {
+        "savol": "Какая часть принимает и направляет запрос?",
+        "variantlar": [
+          "View",
+          "Model",
+          "Controller",
+          "Database"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Hamma asosiy qism bitta ilovada» — bu qaysi usul?",
+        "variantlar": [
+          "Mikroservis",
+          "MVC",
+          "Frontend",
+          "Monolit"
+        ]
+      },
+      "ru": {
+        "savol": "«Все основные части в одном приложении» — какой это способ?",
+        "variantlar": [
+          "Микросервисы",
+          "Serverless",
+          "Peer-to-peer",
+          "Монолит"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Alohida ishlaydigan bir nechta xizmat — bu nima?",
+        "variantlar": [
+          "Mikroservis",
+          "Monolit",
+          "MVC",
+          "Controller"
+        ]
+      },
+      "ru": {
+        "savol": "Несколько отдельно работающих сервисов — это что?",
+        "variantlar": [
+          "Микросервис",
+          "Монолит",
+          "MVC",
+          "Controller"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Kichik yangi loyiha uchun ko'pincha nima qulay?",
+        "variantlar": [
+          "Mikroservis",
+          "Monolit",
+          "Ikkalasi birga",
+          "Usul kerak emas"
+        ]
+      },
+      "ru": {
+        "savol": "Что обычно удобнее для небольшого нового проекта?",
+        "variantlar": [
+          "Микросервис",
+          "Монолит",
+          "Оба вместе",
+          "Подход не нужен"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "MVC'da so'rovni birinchi bo'lib kim qabul qiladi?",
+        "variantlar": [
+          "Model",
+          "View",
+          "Controller",
+          "Database"
+        ]
+      },
+      "ru": {
+        "savol": "Кто в MVC первым принимает запрос?",
+        "variantlar": [
+          "Сразу в Model",
+          "Сразу во View",
+          "В Controller (центр)",
+          "Сразу в Database"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Band xizmatga yana bir nusxa qo'shish nima deyiladi?",
+        "variantlar": [
+          "Qayta yozish",
+          "Joylashtirish (deploy)",
+          "Xatoni tuzatish",
+          "Miqyoslash (scaling)"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется добавление копии загруженному сервису?",
+        "variantlar": [
+          "Переписывание",
+          "Размещение (deploy)",
+          "Исправление ошибки",
+          "Масштабирование (scaling)"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Pattern nima?",
+        "variantlar": [
+          "Sinab ko'rilgan yechim usuli",
+          "Yangi dasturlash tili",
+          "Database'ning bir turi",
+          "Tayyor nusxalanadigan kod"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое паттерн?",
+        "variantlar": [
+          "Проверенный способ решения",
+          "Новый язык программирования",
+          "Вид Database",
+          "Готовый код для копирования"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "PostgreSQL MVC'da nima qiladi?",
+        "variantlar": [
+          "So'rovni yo'naltiradi",
+          "Ma'lumotni saqlaydi",
+          "Sahifani ko'rsatadi",
+          "Qoidalarni tekshiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает PostgreSQL в MVC?",
+        "variantlar": [
+          "Направляет запрос",
+          "Хранит данные",
+          "Показывает страницу",
+          "Проверяет правила"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Mikroservisning asosiy foydasi nimada?",
+        "variantlar": [
+          "Soddalik va arzonlik",
+          "Hammasi bitta katta faylda",
+          "Qismlarni alohida kuchaytirish",
+          "Kod yozish shart emasligi"
+        ]
+      },
+      "ru": {
+        "savol": "В чём главная польза микросервисов?",
+        "variantlar": [
+          "Простота и дешевизна",
+          "Всё в одном большом файле",
+          "Усиливать части по отдельности",
+          "Что код писать не нужно"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Nest'dagi controller MVC'da qaysi qism?",
+        "variantlar": [
+          "View — ko'rinish",
+          "Model — ma'lumot va qoidalar",
+          "Database — ma'lumot saqlash",
+          "Controller — yo'naltiruvchi"
+        ]
+      },
+      "ru": {
+        "savol": "Контроллер в Nest — какая это часть MVC?",
+        "variantlar": [
+          "View — представление",
+          "Model — данные и правила",
+          "Database — хранение данных",
+          "Controller — направляющий"
+        ]
+      }
+    }
+  ]
+}

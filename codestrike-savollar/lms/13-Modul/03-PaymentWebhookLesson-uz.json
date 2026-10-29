@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Webhook bilan bot xabarni qanday olardi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Telegram o'zi yuborardi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot Telegram'dan so'rardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi yuborardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Render tekshirib turardi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor sxemasida karta ma'lumoti qayerda qoladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Backend'ning jadvalida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat to'lov xizmatida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilovaning xotirasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "README faylining ichida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "X-Imzo sarlavhasida nima keladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": ".env dagi kalitning o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchining paroli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kalit bilan hisoblangan imzo",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'lovning summasi va sanasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "TOLOV_KALITI qiymatini qayerga yozasiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "README.md fayliga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "app.js kodiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent promptiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": ".env va Render'ga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Imzo mos keldi. Bu nimani ko'rsatadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Kalitni bilgan yuborgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'lov o'tib bo'lgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Summa narxga teng",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabar ilk bor kelgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Javob yo'qolsa, Payme nima qiladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Boshqa yubormaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shu so'rovni qayta yuboradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi raqam bilan yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchiga yozadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Stripe takror xabar uchun nima deydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Xabarni ikki marta yozishni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tartib bilan kutishni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishlangan raqamni yozishni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Takrorga 401 qaytarishni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend takror xabarni nimaga qarab taniydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Xabardagi summaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lovchi ismiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelgan vaqtiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lov raqamiga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mashq to'lov sahifasi qayerda turadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Backend'ingizda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Payme serverida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefon xotirasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub sahifasida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mashq to'lov sahifasi xabarni qayerda imzolaydi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Brauzerda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'da",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefonda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub'da",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sxemadagi «Kimga» ustuni nimani aytadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Kim to'lov qilganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qancha to'langanini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish kimga borishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qachon to'langanini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sxemada ilova Pro holatini qayerdan biladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "To'lov xizmati xabaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lov sahifasidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefonga kelgan SMS'dan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'dan so'rab",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

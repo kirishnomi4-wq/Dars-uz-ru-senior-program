@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Funksiya nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bir marta ishlaydigan buyruq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayta ishlatiladigan kod bloki",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qiymat saqlaydigan quti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotlar ro'yxati",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Funksiyani qanday chaqiramiz?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Nom bilan va () qavs",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat nom yozib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "function so'zi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "return bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Parametr nima vazifani bajaradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Natijani qaytaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiyani o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiyaga qiymat beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Konsolga chiqaradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "return nima qiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Konsolga chiqaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiyaga nom beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parametr qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Natijani qaytaradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "console.log va return: qaysi biri qiymat qaytaradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Faqat console.log",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat return",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkalasi ham",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech biri",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "return power * 3 bo'lsa, damage(5) nima qaytaradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "8",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "15",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "53",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "function add(a,b){ return a+b }. add(2,7) natijasi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "9",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "27",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "72",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "return'i yo'q funksiya nima qaytaradi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "0 (nol)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "undefined",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "bo'sh matn",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "xato",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "damage(power, bonus) → power * 3 + bonus. damage(3, 10)?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "13",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "33",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "30",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "19",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "damage(5) chaqirilganda 5 qayerga tushadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "return ichiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "funksiya nomiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "parametrga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "konsolga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir funksiyani necha marta chaqirsa bo'ladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Xohlagancha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat 1 marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'pi bilan 3 marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qachon",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "let x = damage(4). x ga nima tushadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Funksiya nomi — damage",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Argument — 4 soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa — undefined",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiya qaytargan qiymat",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

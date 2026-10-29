@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m4b2-v1",
+  "key": "m4b-02",
+  "modul": 6,
+  "tartib": 6,
+  "nom": {
+    "uz": "Bitta xato — nechta odam ketadi?",
+    "ru": "Одна ошибка — сколько людей уйдёт?"
+  },
+  "src": "src/4b-Modull/PmLesson16.jsx",
+  "barmoq_izi": "3a9ced882f68744c5a456b3904f97c7c",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Sifat nima?",
+        "variantlar": [
+          "Ilova har gal aytganini qilsa",
+          "Ilovani ko'p odam yuklasa",
+          "Ilova hammadan tez ochilsa",
+          "Tugmalari chiroyli tursa"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое качество?",
+        "variantlar": [
+          "Приложение каждый раз делает обещанное",
+          "Приложение скачали многие",
+          "Приложение открывается быстрее всех",
+          "Кнопки стоят красиво"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi holat — nosozlik?",
+        "variantlar": [
+          "Skuter uzoqroqda ko'rinadi",
+          "Safardan keyin baho so'raladi",
+          "Narx kecha arzonroq edi",
+          "Tugatsa ham hisoblagich yuradi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой случай — поломка?",
+        "variantlar": [
+          "Самокат виден дальше",
+          "После поездки просят оценку",
+          "Вчера цена была ниже",
+          "Завершили, а счётчик идёт"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Aytganini qildi, ammo yoqmadi — bu?",
+        "variantlar": [
+          "Nosozlik — karta yoziladi",
+          "Nosozlik — tuzatiladi",
+          "Nosozlik emas — yoqmagan narsa",
+          "Nosozlik — Keyin javoniga"
+        ]
+      },
+      "ru": {
+        "savol": "Сделало обещанное, но не понравилось — это?",
+        "variantlar": [
+          "Поломка — пишем карточку",
+          "Поломка — её чинят",
+          "Не поломка — просто не понравилось",
+          "Поломка — на полку «Потом»"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Nosozlik qayerda tutilsa eng arzon?",
+        "variantlar": [
+          "Chiqarishdan oldin",
+          "Kod yozilayotganda",
+          "Odamlar qo'lida",
+          "Birinchi sharhlar chiqqanda"
+        ]
+      },
+      "ru": {
+        "savol": "Где поломку поймать дешевле всего?",
+        "variantlar": [
+          "Перед выпуском",
+          "Пока пишется код",
+          "В руках у людей",
+          "Когда выйдут первые отзывы"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Nosozlik qayerda chiqsa odam ketadi?",
+        "variantlar": [
+          "Kod yozilayotganda",
+          "Odamlar qo'lida",
+          "Chiqarishdan oldin",
+          "Test yozilayotganda"
+        ]
+      },
+      "ru": {
+        "savol": "Где вылезшая поломка уводит людей?",
+        "variantlar": [
+          "Пока пишется код",
+          "В руках у людей",
+          "Перед выпуском",
+          "Пока пишется тест"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Nosozlik qancha kech topilsa nima bo'ladi?",
+        "variantlar": [
+          "Shuncha qimmatga tushadi",
+          "Shuncha tez tuzatiladi",
+          "Shuncha kam odam ko'radi",
+          "Shuncha arzonga tushadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, чем позже найдена поломка?",
+        "variantlar": [
+          "Тем дороже она обойдётся",
+          "Тем быстрее её починят",
+          "Тем меньше людей её увидит",
+          "Тем дешевле она обойдётся"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Karta birinchi qatorida nima yoziladi?",
+        "variantlar": [
+          "Nosozlik qachon tuzatilishi",
+          "Nosozlikni kim topgani",
+          "Nima bosildi — nima bo'ldi",
+          "Qaysi javonga tushishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в первой строке карточки?",
+        "variantlar": [
+          "Когда починят поломку",
+          "Кто нашёл поломку",
+          "Что нажали — что произошло",
+          "На какую полку попадёт"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi nosozlik birinchi tuzatiladi?",
+        "variantlar": [
+          "Ba'zilarda — ish to'xtaydi",
+          "Ba'zilarda — noqulay",
+          "Hammada — noqulay",
+          "Hammada — ish to'xtaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Какую поломку чинят первой?",
+        "variantlar": [
+          "У некоторых — работа стоит",
+          "У некоторых — неудобно",
+          "У всех — неудобно",
+          "У всех — работа стоит"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "«Ba'zilarda · noqulay» karta qaysi javonga tushadi?",
+        "variantlar": [
+          "Keyin javoniga",
+          "Kartaga yozilmaydi",
+          "Hozir javoniga",
+          "Bugun javoniga"
+        ]
+      },
+      "ru": {
+        "savol": "На какую полку попадает карточка «у некоторых · неудобно»?",
+        "variantlar": [
+          "На полку «Потом»",
+          "Её не записывают в карточку",
+          "На полку «Сейчас»",
+          "На полку «Сегодня»"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Cyberpunk 2077 nosozliklari qayerda chiqdi?",
+        "variantlar": [
+          "O'yinni yasagan jamoada",
+          "Do'kon tekshiruvchilarida",
+          "Sotib olgan o'yinchilarda",
+          "Reklama yozganlarda"
+        ]
+      },
+      "ru": {
+        "savol": "Где вылезли поломки Cyberpunk 2077?",
+        "variantlar": [
+          "У команды разработчиков",
+          "У проверяющих магазина",
+          "У купивших игроков",
+          "У авторов рекламы"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Sony o'yinni do'kondan qancha vaqtga olib tashladi?",
+        "variantlar": [
+          "Bir necha kunga",
+          "Qariyb yarim yilga",
+          "Bir oyga yaqin",
+          "Butunlay, qaytarmadi"
+        ]
+      },
+      "ru": {
+        "savol": "На сколько Sony убрала игру из магазина?",
+        "variantlar": [
+          "На несколько дней",
+          "Почти на полгода",
+          "Примерно на месяц",
+          "Совсем, не вернула"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Narx testi qizil chiqdi — bu nima degani?",
+        "variantlar": [
+          "Kod ishga tushmay qoldi",
+          "Testni qayta yozish kerak",
+          "Odamlar shikoyat qildi",
+          "Nosozlik odamgacha tutildi"
+        ]
+      },
+      "ru": {
+        "savol": "Тест цены покраснел — что это значит?",
+        "variantlar": [
+          "Код не запустился",
+          "Тест надо переписать",
+          "Люди пожаловались",
+          "Поломку поймали до людей"
+        ]
+      }
+    }
+  ]
+}

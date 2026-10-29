@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-pitch-03-v20",
+  "key": "m1-12",
+  "modul": 2,
+  "tartib": 14,
+  "nom": {
+    "uz": "Demo Day — 3 daqiqalik nutq",
+    "ru": "Демо-день — трёхминутная речь"
+  },
+  "src": "src/1-Modull/PmLesson3.jsx",
+  "barmoq_izi": "0d7e950f8e86f2483ece95e4e5ac02f2",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Demo Day nutqi qancha davom etadi?",
+        "variantlar": [
+          "3 daqiqa",
+          "Yarim soat",
+          "10 soniya",
+          "Qancha xohlasangiz, shuncha"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько длится речь на Демо-дне?",
+        "variantlar": [
+          "3 минуты",
+          "Полчаса",
+          "10 секунд",
+          "Сколько захотите"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Nutqning eng katta bo'lagi qaysi?",
+        "variantlar": [
+          "Birinchi savol",
+          "Jonli demo",
+          "Qanday qildim",
+          "Keyingi qadam"
+        ]
+      },
+      "ru": {
+        "savol": "Какая часть речи самая большая?",
+        "variantlar": [
+          "Первый вопрос",
+          "Живое демо",
+          "Как я это сделал",
+          "Следующий шаг"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Nutq nima bilan boshlanadi?",
+        "variantlar": [
+          "Saytning nomi bilan",
+          "Uzun salomlashuv bilan",
+          "Zalga savol bilan",
+          "Dastur nomi bilan"
+        ]
+      },
+      "ru": {
+        "savol": "С чего начинается речь?",
+        "variantlar": [
+          "С названия сайта",
+          "С длинного приветствия",
+          "С вопроса залу",
+          "С названия программы"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Sayt nega kerakligi qanday aytiladi?",
+        "variantlar": [
+          "Bo'limlar soni bilan",
+          "Qaysi rangdaligi bilan",
+          "Ish kunlari soni bilan",
+          "Kimga nima qiyinligi bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Как объяснить, зачем нужен сайт?",
+        "variantlar": [
+          "Через число разделов",
+          "Через цвет сайта",
+          "Через число дней работы",
+          "Через то, кому и что было трудно"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Jonli demoda nima ochiladi?",
+        "variantlar": [
+          "Saytning o'zi",
+          "VS Code oynasi",
+          "GitHub papkasi",
+          "Netlify sozlamasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что открывают в живом демо?",
+        "variantlar": [
+          "Сам сайт",
+          "Окно VS Code",
+          "Папка на GitHub",
+          "Настройки Netlify"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Ota-onangizga qaysi gap tushunarli?",
+        "variantlar": [
+          "«Semantik struktura yasadim»",
+          "«Bo'limlarni o'zim tuzdim»",
+          "«Kaskad stillar qo'lladim»",
+          "«Repo'ni deploy qildim»"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза понятна вашим родителям?",
+        "variantlar": [
+          "«Я создал семантическую структуру»",
+          "«Разделы я выстроил сам»",
+          "«Я применил стили каскадом»",
+          "«Я задеплоил репо»"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "«Bu kimga kerak?» — qaysi javob kuchli?",
+        "variantlar": [
+          "«Hammaga kerak»",
+          "«Bilmadim, shunchaki qildim»",
+          "«Mentor shunday degan edi»",
+          "«Kitob izlagan sinfdoshlarga»"
+        ]
+      },
+      "ru": {
+        "savol": "«А кому это нужно?» — какой ответ сильный?",
+        "variantlar": [
+          "«Всем нужно»",
+          "«Не знаю, просто так сделал»",
+          "«Так сказал ментор»",
+          "«Одноклассникам, которые ищут книги»"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Juftlik mashqida sherigingiz kim rolida?",
+        "variantlar": [
+          "Hakam — ball qo'yadi",
+          "Mentor — xatoni tuzatadi",
+          "Zaldagi ota-ona — savol beradi",
+          "Tomoshabin — jim o'tiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто ваш напарник в парной тренировке?",
+        "variantlar": [
+          "Судья — ставит баллы",
+          "Ментор — исправляет ошибки",
+          "Родитель в зале — задаёт вопросы",
+          "Зритель — молча сидит"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "«HTML va CSS ishlatdim» nega yetarli emas?",
+        "variantlar": [
+          "Ota-onaga bu so'z tushunarsiz",
+          "Bunday deyish taqiqlangan",
+          "Juda uzun, vaqt yetmaydi",
+          "Netlify aytilmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему мало сказать «я использовал HTML и CSS»?",
+        "variantlar": [
+          "Родителям эти слова непонятны",
+          "Так говорить запрещено",
+          "Слишком длинно, не хватит времени",
+          "Не назван Netlify"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "«O'zing qildingmi?» — qaysi javob halol?",
+        "variantlar": [
+          "«Bilmadim, chiqib qoldi»",
+          "«Mentor o'rgatdi, men qildim»",
+          "«Hech kim yordam bermadi»",
+          "«Javob bermayman»"
+        ]
+      },
+      "ru": {
+        "savol": "«Ты сам это сделал?» — какой ответ честный?",
+        "variantlar": [
+          "«Не знаю, само получилось»",
+          "«Ментор научил, а сделал я»",
+          "«Мне никто не помогал»",
+          "«Не буду отвечать»"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Jonli demo necha qadamdan iborat?",
+        "variantlar": [
+          "Bitta qadam",
+          "Ikki qadam",
+          "Uch qadam",
+          "To'rt qadam"
+        ]
+      },
+      "ru": {
+        "savol": "Из скольких шагов состоит живое демо?",
+        "variantlar": [
+          "Из одного",
+          "Из двух",
+          "Из трёх",
+          "Из четырёх"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Nutqni yozib bo'lgach nima qilinadi?",
+        "variantlar": [
+          "Yodlamasdan qoldiriladi",
+          "Ikki barobar uzaytiriladi",
+          "Qog'ozga ko'chirib qo'yiladi",
+          "Taymer bilan aytib ko'riladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают, когда речь написана?",
+        "variantlar": [
+          "Оставляют, не заучивая",
+          "Удлиняют вдвое",
+          "Переписывают на бумагу",
+          "Проговаривают вслух с таймером"
+        ]
+      }
+    }
+  ]
+}

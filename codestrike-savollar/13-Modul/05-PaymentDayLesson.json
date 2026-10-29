@@ -1,0 +1,278 @@
+{
+  "lessonId": "m11-05-v1",
+  "key": "m11-05",
+  "modul": 13,
+  "tartib": 5,
+  "nom": {
+    "uz": "Loyiha kuni: to'lovni ulaymiz va buzib ko'ramiz",
+    "ru": "День проекта: подключаем оплату и ломаем её"
+  },
+  "src": "src/11-Modull/PaymentDayLesson.jsx",
+  "barmoq_izi": "f3a178821e43999a7dbd23d3358f92ea",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Agent «to'lov ishlaydi» dedi. Bu nima?",
+        "variantlar": [
+          "Hali tekshirilmagan da'vo",
+          "Kod yozilganining isboti",
+          "Pro yoqilganining dalili",
+          "To'rt usuldan o'tgan natija"
+        ]
+      },
+      "ru": {
+        "savol": "Агент сказал «оплата работает». Что это?",
+        "variantlar": [
+          "Ещё не проверенное заявление",
+          "Доказательство, что код написан",
+          "Подтверждение, что Pro включён",
+          "Результат, прошедший четыре способа"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Kechiktirib yuborish» nimaning mashqi?",
+        "variantlar": [
+          "Ikki marta kelgan xabar",
+          "Uxlab qolgan Backend",
+          "Soxta imzoli xabar",
+          "Rad etilgan to'lov"
+        ]
+      },
+      "ru": {
+        "savol": "Упражнением на что является «Kechiktirib yuborish»?",
+        "variantlar": [
+          "Сообщение, пришедшее дважды",
+          "Уснувший Backend",
+          "Сообщение с поддельной подписью",
+          "Отклонённая оплата"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "To'lovni qayerda, qanday buzasiz?",
+        "variantlar": [
+          "Sinfdosh saytida, mashq bilan",
+          "Payme'da, kartam bilan",
+          "O'z mahsulotimda, mashq bilan",
+          "O'z mahsulotimda, pul bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Где и как вы ломаете оплату?",
+        "variantlar": [
+          "На сайте одноклассника, учебной кнопкой",
+          "В Payme, своей картой",
+          "В своём продукте, учебной кнопкой",
+          "В своём продукте, деньгами"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Imzo noto'g'ri. Backend nima qilishi kerak?",
+        "variantlar": [
+          "200, to'lovni yozadi",
+          "200, faqat Pro'ni yoqadi",
+          "401, lekin Pro'ni yoqadi",
+          "401, hech narsa yozmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Подпись неверна. Что должен сделать Backend?",
+        "variantlar": [
+          "200, записывает оплату",
+          "200, только включает Pro",
+          "401, но включает Pro",
+          "401, ничего не записывает"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "To'lov rad etildi. Pro nima bo'lishi kerak?",
+        "variantlar": [
+          "O'zgarmaydi, yoqilmaydi",
+          "30 kunga baribir yoqiladi",
+          "Faqat bir kunga yoqiladi",
+          "Yarim muddatga yoqiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Платёж отклонён. Что должно быть с Pro?",
+        "variantlar": [
+          "Не меняется, не включается",
+          "Всё равно включается на 30 дней",
+          "Включается только на один день",
+          "Включается на половину срока"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Ikki marta kelgan xabar nimani buzdi?",
+        "variantlar": [
+          "Jadvalda ikki qator bo'ldi",
+          "Pro ikki marta uzaydi",
+          "Imzodan o'tmadi",
+          "Ilova Pro'ni ko'rsatmadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что сломало сообщение, пришедшее дважды?",
+        "variantlar": [
+          "В таблице стало две строки",
+          "Pro продлился дважды",
+          "Не прошло подпись",
+          "Приложение не показало Pro"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Javob 10 soniyada kelmadi. Sahifa nima deyishi kerak?",
+        "variantlar": [
+          "«To'lov o'tmadi»",
+          "«To'landi (mashq)»",
+          "«Javob kutilmoqda»",
+          "Hech narsa demaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Ответ не пришёл за 10 секунд. Что должна сказать страница?",
+        "variantlar": [
+          "«Оплата не прошла»",
+          "«Оплачено (учебно)»",
+          "«Ожидается ответ»",
+          "Ничего не говорит"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Ilova Pro holatini qachon qayta so'raydi?",
+        "variantlar": [
+          "Faqat ilk ochilganda",
+          "Har soniyada, to'xtamasdan",
+          "Faqat to'lov rad etilganda",
+          "Qaytganda, tugma bosilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда приложение снова запрашивает статус Pro?",
+        "variantlar": [
+          "Только при первом открытии",
+          "Каждую секунду, без остановки",
+          "Только при отказе в оплате",
+          "При возврате и нажатии кнопки"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "«Nima kutdim» qatori qachon yoziladi?",
+        "variantlar": [
+          "Tugmani bosishdan oldin",
+          "Natija ko'ringandan keyin",
+          "Agent tuzatgandan keyin",
+          "Dars oxirida, birdaniga"
+        ]
+      },
+      "ru": {
+        "savol": "Когда пишется строка «Что ожидал»?",
+        "variantlar": [
+          "До нажатия кнопки",
+          "После того как виден результат",
+          "После исправления агентом",
+          "В конце урока, разом"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "«Tuzatish qilindi» belgisi nimani aytadi?",
+        "variantlar": [
+          "Muammo qaytmasligini",
+          "Kod o'zgarganini",
+          "Agent yozuvni o'qiganini",
+          "Urinish buzilmaganini"
+        ]
+      },
+      "ru": {
+        "savol": "О чём говорит отметка «Исправление сделано»?",
+        "variantlar": [
+          "Что проблема не вернётся",
+          "Что код изменён",
+          "Что агент прочитал запись",
+          "Что попытка не сломалась"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Pro tugadi. E'lon qilingan o'yinlar nima bo'ladi?",
+        "variantlar": [
+          "Pro bilan o'chib ketadi",
+          "Pro qaytguncha yashirinadi",
+          "Ro'yxatda qoladi",
+          "Keyingi haftaga ko'chadi"
+        ]
+      },
+      "ru": {
+        "savol": "Pro закончился. Что будет с объявленными играми?",
+        "variantlar": [
+          "Удалятся вместе с Pro",
+          "Скроются, пока Pro не вернётся",
+          "Останутся в списке",
+          "Перенесутся на неделю"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Kech urinishda Pro yoqilgani qayerda ko'rindi?",
+        "variantlar": [
+          "Ilovada, ekran yangilanib",
+          "Sahifadagi «To'landi»dan",
+          "Agentning javobidan",
+          "Neon'dagi muddat qatoridan"
+        ]
+      },
+      "ru": {
+        "savol": "Где в поздней попытке было видно, что Pro включён?",
+        "variantlar": [
+          "В приложении, экран обновился",
+          "По «Оплачено» на странице",
+          "По ответу агента",
+          "По строке срока в Neon"
+        ]
+      }
+    }
+  ]
+}

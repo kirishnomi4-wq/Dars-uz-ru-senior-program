@@ -1,0 +1,278 @@
+{
+  "lessonId": "m8-02-event-tracking-v1",
+  "key": "m8-02",
+  "modul": 10,
+  "tartib": 2,
+  "nom": {
+    "uz": "Hodisalar tizimi: har harakat jadvalga yoziladi",
+    "ru": "Система событий: каждое действие записывается в таблицу"
+  },
+  "src": "src/8-Modull/EventTrackingLesson.jsx",
+  "barmoq_izi": "606ff6b945cd5f62181b3aeb6e8cfa07",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Hodisa nima?",
+        "variantlar": [
+          "Jadvalga yoziladigan harakat",
+          "Jadvaldagi yangi ustun",
+          "Saytdagi katta tugma",
+          "Backend'dagi so'rov yo'li"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое событие?",
+        "variantlar": [
+          "Действие, записываемое в таблицу",
+          "Новый столбец таблицы",
+          "Большая кнопка на сайте",
+          "Маршрут запроса в Backend"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "hodisalar jadvalidagi bitta qator nimani bildiradi?",
+        "variantlar": [
+          "Bitta brauzerni",
+          "Bitta hodisani",
+          "Bitta o'yinchini",
+          "Bitta kunni"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает одна строка в таблице hodisalar?",
+        "variantlar": [
+          "Один браузер",
+          "Одно событие",
+          "Одного игрока",
+          "Один день"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Sahifa ochilishini jadvalga kim yuboradi?",
+        "variantlar": [
+          "Umami ochdini yozadi",
+          "Database ochdi qo'shadi",
+          "Sayt ochdi deb yuboradi",
+          "Backend ochdi qo'shadi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто отправляет открытие страницы в таблицу?",
+        "variantlar": [
+          "Umami пишет ochdi",
+          "Database сама добавит ochdi",
+          "Сайт отправляет ochdi",
+          "Backend сам добавит ochdi"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Hodisaga nega telefon yozilmaydi?",
+        "variantlar": [
+          "Raqam jadvalga sig'maydi",
+          "Backend raqamni o'qimaydi",
+          "Umami raqamni yashiradi",
+          "Ochgan odam hali bermagan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему в событие не пишут телефон?",
+        "variantlar": [
+          "Номер не помещается",
+          "Backend не читает номер",
+          "Umami скрывает номер",
+          "Открывший его ещё не дал"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Brauzer ID qayerda saqlanadi?",
+        "variantlar": [
+          "Brauzer xotirasida",
+          "bandlar jadvalida",
+          "Umami sozlamalarida",
+          "Backend'ning .env faylida"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранится ID браузера?",
+        "variantlar": [
+          "В памяти браузера",
+          "В таблице bandlar",
+          "В настройках Umami",
+          "В файле .env Backend"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Sahifa yangilandi. Brauzer ID nima bo'ladi?",
+        "variantlar": [
+          "Yangi ID olinadi",
+          "O'zgarmay qoladi",
+          "Telefonga almashadi",
+          "Backend uni o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Страницу обновили. Что будет с ID браузера?",
+        "variantlar": [
+          "Берётся новый ID",
+          "Остаётся прежним",
+          "Заменяется телефоном",
+          "Backend его удаляет"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "band-qildi qachon yuboriladi?",
+        "variantlar": [
+          "«Band qilish» bosilishi bilan",
+          "Forma ochilgan zahoti",
+          "Band saqlangandan keyin",
+          "Ega ro'yxatni ochganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда отправляется band-qildi?",
+        "variantlar": [
+          "Сразу при нажатии «Забронировать»",
+          "Как только открылась форма",
+          "После сохранения брони",
+          "Когда владелец открыл список"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "COUNT(DISTINCT brauzer_id) nimani sanaydi?",
+        "variantlar": [
+          "Hamma qatorlar sonini",
+          "Hodisa nomlari sonini",
+          "Bo'sh kataklar sonini",
+          "Har xil brauzerlar sonini"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает COUNT(DISTINCT brauzer_id)?",
+        "variantlar": [
+          "Число всех строк",
+          "Число названий событий",
+          "Число пустых слотов",
+          "Число разных браузеров"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Qatorlarni sanasak, qanday xato chiqadi?",
+        "variantlar": [
+          "Bir brauzer ko'p sanaladi",
+          "Band qilganlar sanalmaydi",
+          "Umami soni ikkilanadi",
+          "Bo'sh kataklar sanaladi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая ошибка, если считать строки?",
+        "variantlar": [
+          "Один браузер считается много раз",
+          "Забронировавшие не считаются",
+          "Число Umami удваивается",
+          "Считаются пустые слоты"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Umami 31, jadval 36. Bu nima degani?",
+        "variantlar": [
+          "Jadval xato, tuzatamiz",
+          "Ikki tizim har xil sanaydi",
+          "Umami xato, o'chiramiz",
+          "Besh kishi ikki marta ochgan"
+        ]
+      },
+      "ru": {
+        "savol": "Umami 31, таблица 36. Что это значит?",
+        "variantlar": [
+          "Таблица ошибается, исправим",
+          "Две системы считают по-разному",
+          "Umami ошибается, уберём",
+          "Пятеро открыли дважды"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida reklama to'sgichi nimani to'sdi?",
+        "variantlar": [
+          "POST /bandlar so'rovini",
+          "Saytdagi vaqt kataklarini",
+          "Umami skriptini",
+          "Brauzer xotirasini"
+        ]
+      },
+      "ru": {
+        "savol": "Что заблокировал блокировщик рекламы в примере Ментора?",
+        "variantlar": [
+          "Запрос POST /bandlar",
+          "Ячейки времени на сайте",
+          "Скрипт Umami",
+          "Память браузера"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Hodisalarni nega o'z jadvalimizga ham yozamiz?",
+        "variantlar": [
+          "Umami endi kerak emas",
+          "Sayt tezroq ochiladi",
+          "Backend shunda uxlamaydi",
+          "Sonlarni o'zimiz sanaymiz"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем пишем события ещё и в свою таблицу?",
+        "variantlar": [
+          "Umami больше не нужен",
+          "Сайт открывается быстрее",
+          "Тогда Backend не засыпает",
+          "Считаем числа сами"
+        ]
+      }
+    }
+  ]
+}

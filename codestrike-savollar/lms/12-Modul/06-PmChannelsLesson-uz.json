@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Intervyu javobi qaysi savolga dalil bo'ladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Siz u yerda a'zomisiz?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U yerda ruxsat bormi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Auditoriyangiz shu yerdami?",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "U yerda necha kishi bor?",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida shahar futbol kanali nega tanlanmadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "A'zo emas, ruxsat yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Futbol haqida emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kanalda odam kam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kanal yangi ochilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guruhga qo'shilgan kuniyoq post yozildi. Nima qilinmadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Rasm qo'yilmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ruxsat so'ralmadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Post qisqartirilmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Link qo'yilmadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Postning qaysi qatori odamni sahifaga olib boradi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Kim uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nima foyda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Halol holat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta harakat",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Postda «Tez orada hammasi bo'ladi». Nima qilasiz?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Tayyor narsani yozasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Gapni oxiriga surasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Undov belgisi qo'yasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qalin harfda yozasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Postga qaysi ma'lumot yozilmaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Mahsulotning nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lendingning linki",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maktabingiz raqami",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mahsulotning foydasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Notanish odam uchrashuvga chaqirdi. Nima qilasiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Yolg'iz borasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kattalar bilan hal qilasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdosh bilan borasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Manzilingizni yozasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Facebook voqeasida nima hajmdan muhimroq?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Saytdagi rasmlar ko'pligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiyalarning ko'pligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Auditoriyaning zichligi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Asoschilarning tajribasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Facebook hamma uchun qachon ochilgan?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Birinchi kuniyoq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir oydan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Besh yildan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki yildan keyin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guruh egasi javob bermadi. Nima qilasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Boshqa kanaldan boshlaysiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kutmasdan yuborasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "A'zolarga alohida yozasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa akkauntdan yozasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Linkdagi «?kanal=sinf» nimani ko'rsatadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Bosgan odamning ismini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinf chatidan kelganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdagi o'quvchilar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chatdagi postlar sonini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Postdan keyin tashriflar 31 ta. Bu nima?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ro'yxatdan o'tganlar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani o'rnatganlar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postni o'qiganlar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa ochilishlari soni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

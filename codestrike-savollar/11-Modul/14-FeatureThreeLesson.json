@@ -1,0 +1,278 @@
+{
+  "lessonId": "m9-14-v1",
+  "key": "m9-14",
+  "modul": 11,
+  "tartib": 14,
+  "nom": {
+    "uz": "Loyiha kuni: 3-asosiy funksiya",
+    "ru": "День проекта: 3-я основная функция"
+  },
+  "src": "src/9-Modull/FeatureThreeLesson.jsx",
+  "barmoq_izi": "bdbb3a2dad20f0fb0de415077cf12810",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "O'yinchi kela olmaydi. Ilovada nima qiladi?",
+        "variantlar": [
+          "«O'yindan chiqish»ni bosadi",
+          "«Kelaman»ni bosmaydi",
+          "Ilovaga kirmay qo'yadi",
+          "Ilovani o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Игрок не сможет прийти. Что он делает в приложении?",
+        "variantlar": [
+          "Нажимает «Выйти из игры»",
+          "Не нажимает «Приду»",
+          "Перестаёт заходить в приложение",
+          "Удаляет приложение"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "To'lgan o'yinda o'ynamoqchisiz. Nimani bosasiz?",
+        "variantlar": [
+          "«Qo'shilaman»ni qayta",
+          "«Navbatga yozilish»",
+          "«Kelaman»ni o'yin kuni",
+          "«E'lon berish»"
+        ]
+      },
+      "ru": {
+        "savol": "Хотите сыграть в заполненной игре. Что нажмёте?",
+        "variantlar": [
+          "Снова «Присоединяюсь»",
+          "«Записаться в очередь»",
+          "«Приду» в день игры",
+          "«Объявить игру»"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Bo'shagan joyni kim oladi?",
+        "variantlar": [
+          "Ekranni birinchi yangilagan",
+          "Tashkilotchi tanlagan",
+          "Navbatga birinchi yozilgan",
+          "Navbatga oxirgi yozilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Кто получает освободившееся место?",
+        "variantlar": [
+          "Первый, кто обновил экран",
+          "Тот, кого выбрал организатор",
+          "Первый записавшийся в очередь",
+          "Последний записавшийся в очередь"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«10 / 10», navbat bo'sh. Biri chiqsa, kartada nima?",
+        "variantlar": [
+          "10 / 10, «O'yin to'ldi»",
+          "9 / 10, «O'yin to'ldi»",
+          "10 / 10, «Qo'shilaman»",
+          "9 / 10, «Qo'shilaman»"
+        ]
+      },
+      "ru": {
+        "savol": "«10 / 10», очередь пуста. Один вышел — что на карточке?",
+        "variantlar": [
+          "10 / 10, «Игра заполнена»",
+          "9 / 10, «Игра заполнена»",
+          "10 / 10, «Присоединяюсь»",
+          "9 / 10, «Присоединяюсь»"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Navbatdagi kishi joy olganini qachon biladi?",
+        "variantlar": [
+          "Ekranni yangilaganda",
+          "Tashkilotchi aytganda",
+          "Maydonga borganda",
+          "Navbatga yozilgan zahoti"
+        ]
+      },
+      "ru": {
+        "savol": "Когда игрок из очереди узнаёт, что получил место?",
+        "variantlar": [
+          "Когда обновит экран",
+          "Когда скажет организатор",
+          "Когда придёт на поле",
+          "Сразу при записи в очередь"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Navbatdagi o'yinchi jadvalda qanday turadi?",
+        "variantlar": [
+          "qoshildi holatida",
+          "navbatda holatida",
+          "chiqdi holatida",
+          "Alohida navbat jadvalida"
+        ]
+      },
+      "ru": {
+        "savol": "Как игрок из очереди записан в таблице?",
+        "variantlar": [
+          "Со статусом qoshildi",
+          "Со статусом navbatda",
+          "Со статусом chiqdi",
+          "В отдельной таблице navbat"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Ilova Backend o'zgarishini qachon ko'radi?",
+        "variantlar": [
+          "start:dev qilgach",
+          "Expo Go o'rnatilgach",
+          "Push'dan, Render yangilagach",
+          "Neon'da jadval ochilgach"
+        ]
+      },
+      "ru": {
+        "savol": "Когда приложение увидит изменение Backend?",
+        "variantlar": [
+          "После start:dev",
+          "После установки Expo Go",
+          "После push, когда Render обновит",
+          "Когда откроете таблицу в Neon"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "«Bir vaqtda» qatori yo'q. Oxirgi joyni ikki kishi bossa?",
+        "variantlar": [
+          "Ikkalasi rad etiladi",
+          "Biri o'zi o'chadi",
+          "Tashkilotchi tanlaydi",
+          "Ikkalasi ham yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Строки «одновременно» нет. Двое нажали на последнее место?",
+        "variantlar": [
+          "Обоим откажут",
+          "Одно нажатие само пропадёт",
+          "Выберет организатор",
+          "Запишутся оба"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Oxirgi joy bir kishiga qanday tegadi?",
+        "variantlar": [
+          "Tekshiruv va yozuv bitta ish",
+          "Avval yozib, keyin o'chiradi",
+          "Yaqin telefonni tanlaydi",
+          "Ikkalasini rad etadi"
+        ]
+      },
+      "ru": {
+        "savol": "Как последнее место достаётся одному?",
+        "variantlar": [
+          "Проверка и запись — одна операция",
+          "Записывает, потом удаляет",
+          "Выбирает ближайший телефон",
+          "Отклоняет оба запроса"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "«Bitta ish»da ikkinchi so'rov nima qiladi?",
+        "variantlar": [
+          "Oldinga o'tib yoziladi",
+          "Kutib, keyin javob oladi",
+          "Javobsiz yo'qoladi",
+          "U ham birga yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает второй запрос во время «одной операции»?",
+        "variantlar": [
+          "Проскакивает и записывается",
+          "Ждёт, потом получает ответ",
+          "Пропадает без ответа",
+          "Записывается вместе"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Bir lahzadagi so'rovlarni qanday sinaysiz?",
+        "variantlar": [
+          "Ikki telefonda bosib",
+          "Bitta telefonda tez bosib",
+          "Agent so'rovlari bilan",
+          "Neon'da qo'lda yozib"
+        ]
+      },
+      "ru": {
+        "savol": "Как проверить запросы в один миг?",
+        "variantlar": [
+          "Нажав на двух телефонах",
+          "Быстро нажав на одном телефоне",
+          "Запросами агента",
+          "Вписав вручную в Neon"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Uchinchi funksiyada nima buzilmasin?",
+        "variantlar": [
+          "Faqat yangi funksiyangiz",
+          "README.md fayli",
+          "Kelgusi funksiyalaringiz",
+          "Oldingi ikki funksiyangiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что не должно сломаться в третьей функции?",
+        "variantlar": [
+          "Только ваша новая функция",
+          "Файл README.md",
+          "Ваши будущие функции",
+          "Две ваши прежние функции"
+        ]
+      }
+    }
+  ]
+}

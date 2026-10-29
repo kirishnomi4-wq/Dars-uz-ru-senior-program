@@ -1,0 +1,278 @@
+{
+  "lessonId": "m12-06-v1",
+  "key": "m12-06",
+  "modul": 14,
+  "tartib": 6,
+  "nom": {
+    "uz": "Demoga tayyorgarlik: risklar va B reja",
+    "ru": "Подготовка к демо: риски и план Б"
+  },
+  "src": "src/12-Modull/DemoPrepLesson.jsx",
+  "barmoq_izi": "854f94a238e58ddd3de297799c83c85d",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Demo uchun nimani oldindan yozib qo'yasiz?",
+        "variantlar": [
+          "Bosiladigan qadamlarni",
+          "Hakamlar savollarini",
+          "Hamma funksiyalarni",
+          "Sinfdoshlar fikrlarini"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы заранее записываете для демо?",
+        "variantlar": [
+          "Шаги, которые нажимают",
+          "Вопросы судей",
+          "Все функции",
+          "Мнения одноклассников"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Demoning besh qadami bir marta ko'rsatildi. Bu nima?",
+        "variantlar": [
+          "Demo ssenariysi",
+          "Demo o'tishi",
+          "B yo'l",
+          "Risklar ro'yxati"
+        ]
+      },
+      "ru": {
+        "savol": "Пять шагов демо показали один раз. Что это?",
+        "variantlar": [
+          "Сценарий демо",
+          "Прогон демо",
+          "Путь Б",
+          "Список рисков"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor «O'yindan chiqish»ni qachon bosadi?",
+        "variantlar": [
+          "Demoning birinchi qadamida",
+          "Hakamlar savol berganda",
+          "Keyingi o'tishdan oldin",
+          "Internet uzilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Ментор нажимает «Выйти из игры»?",
+        "variantlar": [
+          "На первом шаге демо",
+          "Когда судьи задают вопросы",
+          "Перед следующим прогоном",
+          "Когда пропал интернет"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Backend uxlagan» riskiga qaysi biri B yo'l?",
+        "variantlar": [
+          "Agentga kod yozdirish",
+          "Hakamdan kutishni so'rash",
+          "Demoni tashlab ketish",
+          "Navbatdan oldin uyg'otish"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — путь Б для риска «Backend уснул»?",
+        "variantlar": [
+          "Попросить агента написать код",
+          "Попросить судью подождать",
+          "Бросить демо",
+          "Разбудить перед очередью"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "B reja videosi nega linkda emas, faylda?",
+        "variantlar": [
+          "Internetsiz ham ochiladi",
+          "Hakam o'zi yuklab oladi",
+          "Linkni agent o'chiradi",
+          "Fayl repo'ga o'zi tushadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему видео плана Б в файле, а не по ссылке?",
+        "variantlar": [
+          "Откроется и без интернета",
+          "Судья сам скачает",
+          "Агент удалит ссылку",
+          "Файл сам попадёт в репо"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Demoni qaysi akkaunt bilan ko'rsatasiz?",
+        "variantlar": [
+          "Faol o'yinchi akkaunti",
+          "Namuna akkaunt",
+          "Sinfdosh akkaunti",
+          "Demo kuni ochilgan akkaunt"
+        ]
+      },
+      "ru": {
+        "savol": "С каким аккаунтом вы показываете демо?",
+        "variantlar": [
+          "Аккаунт активного игрока",
+          "Образцовый аккаунт",
+          "Аккаунт одноклассника",
+          "Аккаунт, созданный в день демо"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Video yozishdan oldin ekranda nimani yopasiz?",
+        "variantlar": [
+          "«O'yinlar» ro'yxatini",
+          "DEMO.md va taymerni",
+          "Parol, .env, chatlarni",
+          "Mahsulot sarlavhasini"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы закрываете на экране перед записью видео?",
+        "variantlar": [
+          "Список «O'yinlar»",
+          "DEMO.md и таймер",
+          "Пароль, .env, чаты",
+          "Заголовок продукта"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Bepul Backend qachon uxlab qoladi?",
+        "variantlar": [
+          "Har kuni soat 00:00 da",
+          "Ssenariydan 1 daqiqa keyin",
+          "Proyektorga ulangan zahoti",
+          "15 daqiqa so'rovsiz qolsa"
+        ]
+      },
+      "ru": {
+        "savol": "Когда бесплатный Backend засыпает?",
+        "variantlar": [
+          "Каждый день в 00:00",
+          "Через 1 минуту после сценария",
+          "Сразу при подключении к проектору",
+          "После 15 минут без запросов"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "m14-demo tegidan keyin nima qilinadi?",
+        "variantlar": [
+          "Faqat tuzatish",
+          "Faqat yangi funksiya",
+          "Repo qayta ochiladi",
+          "Video repo'ga yuklanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают после тега m14-demo?",
+        "variantlar": [
+          "Только исправления",
+          "Только новые функции",
+          "Репо создают заново",
+          "Видео загружают в репо"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Tegni GitHub'ga qaysi buyruq chiqaradi?",
+        "variantlar": [
+          "Oddiy git push",
+          "git push origin m14-demo",
+          "Faqat git tag m14-demo",
+          "git add m14-demo"
+        ]
+      },
+      "ru": {
+        "savol": "Какая команда отправляет тег на GitHub?",
+        "variantlar": [
+          "Обычный git push",
+          "git push origin m14-demo",
+          "Только git tag m14-demo",
+          "git add m14-demo"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Telefonda demo qayerda ochiladi?",
+        "variantlar": [
+          "O'rnatilgan APK ilovada",
+          "Hakam telefonida",
+          "Brauzerda, o'sha manzilda",
+          "Sinfdosh akkauntida"
+        ]
+      },
+      "ru": {
+        "savol": "Где открывается демо на телефоне?",
+        "variantlar": [
+          "В установленном APK",
+          "На телефоне судьи",
+          "В браузере, по тому же адресу",
+          "В аккаунте одноклассника"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Bir qadam rejadagidek bo'lmadi. Nima qilasiz?",
+        "variantlar": [
+          "Hakamdan yashiraman",
+          "Yangi funksiya qo'shaman",
+          "Hech narsa qilmayman",
+          "Risklar ro'yxatiga yozaman"
+        ]
+      },
+      "ru": {
+        "savol": "Один шаг демо прошёл не по плану. Что сделаете?",
+        "variantlar": [
+          "Скрою от судьи",
+          "Добавлю новую функцию",
+          "Ничего не сделаю",
+          "Запишу в список рисков"
+        ]
+      }
+    }
+  ]
+}

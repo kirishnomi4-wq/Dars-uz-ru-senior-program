@@ -1,0 +1,278 @@
+{
+  "lessonId": "react-router-practice-p2-v18",
+  "key": "m3-11",
+  "modul": 4,
+  "tartib": 12,
+  "nom": {
+    "uz": "Praktika: React Router — ko'p sahifali ilova",
+    "ru": "Практика: React Router — многостраничное приложение"
+  },
+  "src": "src/3-Modull/ReactRouterPracticeLesson.jsx",
+  "barmoq_izi": "0d38b4d4bb0846de3c83215979dd3e2e",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Route nima vazifasini bajaradi?",
+        "variantlar": [
+          "Manzilni sahifaga bog'laydi",
+          "Rasmlarni ekranga chizadi",
+          "Serverga so'rov yuboradi",
+          "Ma'lumotni bazaga saqlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Какую задачу выполняет Route?",
+        "variantlar": [
+          "Связывает адрес со страницей",
+          "Рисует картинки на экране",
+          "Отправляет запрос на сервер",
+          "Сохраняет данные в базу"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "<Routes> o'rami nima ish qiladi?",
+        "variantlar": [
+          "Barcha rasmlarni yuklaydi",
+          "URL'ga qarab sahifani tanlaydi",
+          "Ma'lumotlarni o'chiradi",
+          "Faqat menuni chizadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает обёртка <Routes>?",
+        "variantlar": [
+          "Загружает все картинки",
+          "Выбирает страницу по URL",
+          "Удаляет данные",
+          "Рисует только меню"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Routedagi path nimani bildiradi?",
+        "variantlar": [
+          "Sahifaning fon rangini",
+          "Foydalanuvchi ismini",
+          "Qaysi manzilda ishlashini",
+          "Fayl hajmini baytlarda"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает path в Route?",
+        "variantlar": [
+          "Цвет фона страницы",
+          "Имя пользователя",
+          "На каком адресе работать",
+          "Размер файла в байтах"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Routedagi element nimani ko'rsatadi?",
+        "variantlar": [
+          "Qaysi serverga ulanishni",
+          "Ma'lumotlar bazasi nomini",
+          "Linkning rang kodini",
+          "Qaysi sahifa ko'rsatilishini"
+        ]
+      },
+      "ru": {
+        "savol": "На что указывает element в Route?",
+        "variantlar": [
+          "К какому серверу подключаться",
+          "Название базы данных",
+          "Код цвета ссылки",
+          "Какую страницу показать"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "<Link> va <a> farqi nima?",
+        "variantlar": [
+          "<Link> qayta yuklamaydi",
+          "<Link> doim sekinroq",
+          "<a> — Router linki",
+          "Ular aynan bir xil"
+        ]
+      },
+      "ru": {
+        "savol": "Чем отличаются <Link> и <a>?",
+        "variantlar": [
+          "<Link> не перезагружает",
+          "<Link> всегда медленнее",
+          "<a> — ссылка Router",
+          "Они одинаковые"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Oddiy <a href> bosilsa nima bo'ladi?",
+        "variantlar": [
+          "Faqat rang o'zgaradi",
+          "Butun sahifa qayta yuklanadi",
+          "Hech narsa o'zgarmaydi",
+          "Ilova butunlay o'chadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет при клике на обычный <a href>?",
+        "variantlar": [
+          "Меняется только цвет",
+          "Перезагружается вся страница",
+          "Ничего не меняется",
+          "Приложение выключается"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "/game/:id dagi :id nima?",
+        "variantlar": [
+          "Sahifadagi rasm o'lchami",
+          "Har doim 7-o'yin raqami",
+          "O'zgaruvchan o'yin raqami",
+          "7 soniya kutish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое :id в /game/:id?",
+        "variantlar": [
+          "Размер картинки",
+          "Всегда номер 7-й игры",
+          "Меняющийся номер игры",
+          "Ожидание 7 секунд"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "URL'dagi :id qiymatini qaysi hook o'qiydi?",
+        "variantlar": [
+          "useState()",
+          "useEffect()",
+          "useNavigate()",
+          "useParams()"
+        ]
+      },
+      "ru": {
+        "savol": "Какой хук читает значение :id из URL?",
+        "variantlar": [
+          "useState()",
+          "useEffect()",
+          "useNavigate()",
+          "useParams()"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "useNavigate() hook nimaga kerak?",
+        "variantlar": [
+          "Kod orqali sahifa ochishga",
+          "Ma'lumot yuklab olishga",
+          "Ranglarni o'zgartirishga",
+          "Rasmlarni yuklab olishga"
+        ]
+      },
+      "ru": {
+        "savol": "Для чего нужен хук useNavigate()?",
+        "variantlar": [
+          "Открывать страницу через код",
+          "Скачивать данные",
+          "Менять цвета",
+          "Скачивать картинки"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "POST bilan saqlagandan keyin Bosh sahifaga qanday qaytamiz?",
+        "variantlar": [
+          "<a href='/'> bosib",
+          "navigate('/') chaqirib",
+          "Sahifani yangilab",
+          "Serverni o'chirib"
+        ]
+      },
+      "ru": {
+        "savol": "Как вернуться на Главную после сохранения через POST?",
+        "variantlar": [
+          "Нажав <a href='/'>",
+          "Вызвав navigate('/')",
+          "Обновив страницу",
+          "Выключив сервер"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "SPA nimasi bilan ajralib turadi?",
+        "variantlar": [
+          "Bitta rasmdan iborat",
+          "Internetsiz ishlaydi",
+          "Sahifa qayta yuklanmaydi",
+          "Bitta tugmasi bor"
+        ]
+      },
+      "ru": {
+        "savol": "Чем отличается SPA?",
+        "variantlar": [
+          "Состоит из одной картинки",
+          "Работает без интернета",
+          "Страница не перезагружается",
+          "Есть одна кнопка"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "main.jsx'da ilova nima bilan o'raladi?",
+        "variantlar": [
+          "<Routes>",
+          "<Link>",
+          "useNavigate()",
+          "<BrowserRouter>"
+        ]
+      },
+      "ru": {
+        "savol": "Чем оборачивают приложение в main.jsx?",
+        "variantlar": [
+          "<Routes>",
+          "<Link>",
+          "useNavigate()",
+          "<BrowserRouter>"
+        ]
+      }
+    }
+  ]
+}

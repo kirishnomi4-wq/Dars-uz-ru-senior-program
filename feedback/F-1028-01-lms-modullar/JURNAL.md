@@ -1,0 +1,5 @@
+# F-1028-01 — LMS'dagi modullar jadvali (rasm)
+
+| Vaqt | Nima qilindi |
+|---|---|
+| 28.10 16:03 | Foydalanuvchi: LMS'dagi haqiqiy holat bo'yicha rasm — modul tartibi, LMS nomi, darslar soni (Demo Day = 1 dars), haftasiga 3 dars hisobida muddat; LMS'ga o'zgartirish yo'q. Qarorlar (savol orqali): dars = turi Class yoki Demoday (Active), nomi «amaliyot» bo'lsa ham · «Sinov darslari» rasmda bor, muddatga kirmaydi · raqam ketma-ket 1–16. CRM faqat o'qildi (kurs 20 + 16 faol bo'lim, ikki marta — sonlar bir xil); 4 Archive modul (76–79) kiritilmadi. Natija: 198 dars (Class 190 + DD 8) · 66 hafta · 15,2 oy; Sinov 3 dars alohida. Fayllar: `lms-modullar-20261028.json` (o'qilgan ma'lumot), `jadval.mjs` → `jadval.html` → `LMS-modullar-oqish-muddati-20261028.png`. Kuzatuv (tegilmadi): Demo Day nomlari 1, 2, 3, 5, 6, 7, 8 — «Demo Day 4» nomli yozuv yo'q, FIGMA'dagisi faqat «Demoday». Xato-tan: o'qish paytida CRM saytining localStorage'iga yordamchi kalit `__ccJadval` yozildi va darhol o'chirildi (tekshirildi); JSON'da 110-modul ru nomi bir lahza taxmin bilan to'ldirilgan edi — LMS'dan aniq olib almashtirildi. |

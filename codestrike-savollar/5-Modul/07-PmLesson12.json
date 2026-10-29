@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m4d7-v1",
+  "key": "m4-07",
+  "modul": 5,
+  "tartib": 7,
+  "nom": {
+    "uz": "Sinfdoshingiz sahifangizni ochsa, nimani ko'radi?",
+    "ru": "Что увидит одноклассник, открыв вашу страницу?"
+  },
+  "src": "src/4-Modull/PmLesson12.jsx",
+  "barmoq_izi": "c41e6fc351d967ffc4a827647e1c6060",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Ochiq ma'lumot nima?",
+        "variantlar": [
+          "Begona ko'rsa ham zarar yo'q",
+          "Ko'p odam o'qiydigan narsa",
+          "Kam vaqtda yozilgan narsa",
+          "Ilova birinchi saqlagani"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое открытые данные?",
+        "variantlar": [
+          "Даже если увидит чужой — вреда нет",
+          "То, что читают многие",
+          "То, что записали быстро",
+          "То, что приложение сохранило первым"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Yopiq ma'lumot nima?",
+        "variantlar": [
+          "Ilova uzunroq yozadigani",
+          "Alohida joyda saqlangani",
+          "Bir necha kunda yopiladigani",
+          "Begona ko'rsa, egasiga zarar"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое закрытые данные?",
+        "variantlar": [
+          "То, что приложение пишет длиннее",
+          "То, что хранится отдельно",
+          "То, что закроется через пару дней",
+          "Увидит чужой — владельцу вред"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Ma'lumotni yopiq qiladigan narsa nima?",
+        "variantlar": [
+          "Ma'lumotning turi",
+          "Yozgan odamning ismi",
+          "Begona ko'rsa zarar",
+          "Qo'shilgan sanasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает данные закрытыми?",
+        "variantlar": [
+          "Тип данных",
+          "Имя того, кто записал",
+          "Вред, если увидит чужой",
+          "Дата добавления"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Sinfdoshingiz ochganda qaysi qator turmasligi kerak?",
+        "variantlar": [
+          "Ism qatori",
+          "Kirish paroli",
+          "Sinf qatori",
+          "Maktab nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой строки не должно быть, когда открывает одноклассник?",
+        "variantlar": [
+          "Строка с именем",
+          "Пароль для входа",
+          "Строка с классом",
+          "Название школы"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Ism va sinf nega ochiq qoladi?",
+        "variantlar": [
+          "Har kuni yangilanib turadi",
+          "Ko'rgan odam zarar bermaydi",
+          "Ularni yopish ilovaga qiyin",
+          "Ular keyin qo'shilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему имя и класс остаются открытыми?",
+        "variantlar": [
+          "Обновляются каждый день",
+          "Увидевший не навредит",
+          "Приложению трудно их закрыть",
+          "Их добавили позже"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Hamma qatorni yopsangiz nima bo'ladi?",
+        "variantlar": [
+          "Ilovadan foyda qolmaydi",
+          "Ilova tezroq ishlaydi",
+          "Sinfdosh baribir ko'radi",
+          "Ilova ularni o'zi ochadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если закрыть все строки?",
+        "variantlar": [
+          "От приложения не будет пользы",
+          "Приложение заработает быстрее",
+          "Одноклассник всё равно увидит",
+          "Приложение само их откроет"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Ota-onaning telefon raqami kimniki?",
+        "variantlar": [
+          "Jurnal ilovasiniki",
+          "Sinf rahbariniki",
+          "Boshqa odamniki",
+          "Sizning o'zingizniki"
+        ]
+      },
+      "ru": {
+        "savol": "Кому принадлежит номер телефона родителей?",
+        "variantlar": [
+          "Приложению-журналу",
+          "Классному руководителю",
+          "Другому человеку",
+          "Лично вам"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Parolni bilgan odam nima qila oladi?",
+        "variantlar": [
+          "Sahifa rangini almashtiradi",
+          "Baholarni to'g'rilaydi",
+          "Yangi ilova yuklab oladi",
+          "Sizning nomingizdan kiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что может человек, знающий пароль?",
+        "variantlar": [
+          "Сменит цвет страницы",
+          "Исправит оценки",
+          "Скачает новое приложение",
+          "Войдёт от вашего имени"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Ilova nima yig'ishini eng erta qachon bilasiz?",
+        "variantlar": [
+          "Yuklashdan oldin ham",
+          "Bir oy ishlatgach",
+          "Yuklab bo'lgach",
+          "Birinchi xabar kelganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда раньше всего можно узнать, что собирает приложение?",
+        "variantlar": [
+          "Ещё до установки",
+          "Через месяц использования",
+          "После установки",
+          "Когда придёт первое сообщение"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Ota-onaga ketadigan xabarga nima yozilmaydi?",
+        "variantlar": [
+          "Bu hafta olgan baholaringiz",
+          "Ertangi dars jadvali",
+          "Ilovaga kirish paroli",
+          "Maktab manzili va telefoni"
+        ]
+      },
+      "ru": {
+        "savol": "Что не пишут в сообщении родителям?",
+        "variantlar": [
+          "Ваши оценки за эту неделю",
+          "Расписание на завтра",
+          "Пароль для входа в приложение",
+          "Адрес и телефон школы"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Yuborilmagan ma'lumot haqida qoida nima?",
+        "variantlar": [
+          "Ilova uni o'zi yuboradi",
+          "U sizib ham ketmaydi",
+          "U yopiq hisoblanmaydi",
+          "U xabarga qaytadi"
+        ]
+      },
+      "ru": {
+        "savol": "Какое правило о неотправленных данных?",
+        "variantlar": [
+          "Приложение отправит их само",
+          "Они и не утекут",
+          "Они не считаются закрытыми",
+          "Они вернутся в сообщение"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "SELECT * nimani qaytaradi?",
+        "variantlar": [
+          "Jadvaldagi birinchi ustunni",
+          "Jadvaldagi birinchi qatorni",
+          "Ustunlarning nomlarini",
+          "Jadvaldagi hamma ustunni"
+        ]
+      },
+      "ru": {
+        "savol": "Что возвращает SELECT *?",
+        "variantlar": [
+          "Первый столбец таблицы",
+          "Первую строку таблицы",
+          "Имена столбцов",
+          "Все столбцы таблицы"
+        ]
+      }
+    }
+  ]
+}

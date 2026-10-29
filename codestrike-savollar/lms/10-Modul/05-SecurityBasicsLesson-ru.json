@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое SQL injection?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Текст становится командой в запросе",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Неверное имя таблицы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Backend медленно отвечает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Телефон показан с ошибкой",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что защищает поиск от SQL injection?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Перевести телефон в заглавные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Параметризованный запрос",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Убрать поиск",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отправлять через POST",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой признак SQL injection в коде?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Запрос идёт в bandlar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Поиск по телефону",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Текст вклеен в запрос",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вернулся один ответ",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое XSS (Cross-Site Scripting)?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Backend запускается дважды",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пароль открыт в коде",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Database тормозит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Текст становится кодом на странице",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что защищает имя от XSS?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Выводить как обычный текст",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удалить имя из Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сделать имя заглавными",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ограничить длину имени",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой признак XSS в коде?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Имя сохранено в Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя выведено как HTML",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Имя видно в списке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя — простой текст без HTML",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где должен храниться секретный ключ?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "В начале app.module.ts",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри кода сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В файле .env",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В таблице Database",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему ключу не пишут запасное значение?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Backend его не читает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Значение слишком длинное",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Оно попадёт в Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Его увидит читающий код",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое 2FA?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Пароль + 6-значный код из приложения",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вход по двум паролям",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запись пароля в два места",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Две копии Database",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что вычисляет 6-значный код?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Только Backend, без приложения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Приложение и Backend из одного ключа",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только приложение, без Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Database создаёт каждый раз",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как узнаём, что уязвимость закрыта?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Проверив чужой сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Поверив ответу агента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Прочитав код и проверив",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Дождавшись открытия страницы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Когда делается push?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "До исправлений",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В начале урока",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Как только скажет агент",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Когда уязвимости закрыты",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

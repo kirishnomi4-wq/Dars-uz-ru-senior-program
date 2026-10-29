@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bepul asos va pullik qo'shimchada nima bepul?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Hamma uchun asosiy ish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat birinchi o'ttiz kun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat reklamali sahifalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shimcha qulayliklar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Reklama modelida pulni kim to'laydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ilovani ishlatgan har kim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklamani ko'rgan odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklama bergan kompaniya",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova xizmat qilgan biznes",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida B2B bo'lsa, kim to'lardi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Qo'shiladigan o'yinchilar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydonning egasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Reklama bergan kompaniya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "E'lon beruvchi tashkilotchi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida tranzaksiya qaysi ish bo'lardi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Har hafta o'yin e'loni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinga qo'shilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eslatma yuborish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon pulini bo'lishish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon pulini bo'lishish nega hozir emas?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Foydalanuvchi hali kam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon egasi ishlatmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuridik shaxs va shartnoma",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Roadmap'da hozirgi ufqda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pro'siz o'yinchi ilovada nima qila oladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bepul o'yinga qo'shiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat e'lonlarni o'qiydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat bitta o'yinga kiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa, ilova pullik",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telegram pullik obunani qachon ishga tushirgan?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "2020-yil iyunda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2024-yil mayda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2019-yil martda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2022-yil iyunda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "2024-yilda Premium'ga obunalar qanday o'zgardi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Deyarli o'zgarmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uch barobar ko'paydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikki barobar kamaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'n barobar ko'paydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pullik obuna modelida bepul qism bormi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Asosiy ish bepul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat reklamali qism",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bepul qism kattaroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, hamma to'laydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "SQL'da DISTINCT nima uchun kerak?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Tashkilotchi bir marta kirsin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Namuna hisoblar kirmasin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jadvallar id bilan bog'lansin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat Pro olganlar kirsin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "namuna = false sharti nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Pro'siz akkauntni sanamaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Namuna akkauntni sanamaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "E'lonsizni ham sanaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshni alohida sanaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telegram Premium nima?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Telegram'ning yangi versiyasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram'ning bepul qismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram'ning pullik obunasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telegram'dagi reklama turi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

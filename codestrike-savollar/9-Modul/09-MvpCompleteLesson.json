@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-09-v1",
+  "key": "m7-09",
+  "modul": 9,
+  "tartib": 9,
+  "nom": {
+    "uz": "Loyiha kuni: MVP tayyor",
+    "ru": "День проекта: MVP готов"
+  },
+  "src": "src/7-Modull/MvpCompleteLesson.jsx",
+  "barmoq_izi": "e291a63ce89114e63afb3a21533bb034",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "MVP qachon tayyor deyiladi?",
+        "variantlar": [
+          "«Qilamiz» qutisi ishlaganda",
+          "«Keyin» ham qo'shilganda",
+          "Hammasi mukammal bo'lganda",
+          "Birinchi to'lov kelganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда MVP называют готовым?",
+        "variantlar": [
+          "Когда работает коробка «делаем»",
+          "Когда добавлено и «потом»",
+          "Когда всё идеально",
+          "Когда пришла первая оплата"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Agent: «To'lovni qo'shaymi?» Javobingiz?",
+        "variantlar": [
+          "Ha — o'yinchiga qulay",
+          "Yo'q — to'lov «keyin»da",
+          "Ha — to'lovsiz bo'lmaydi",
+          "Yo'q — to'lov «qilmaymiz»da"
+        ]
+      },
+      "ru": {
+        "savol": "Агент: «Добавить оплату?» Ваш ответ?",
+        "variantlar": [
+          "Да — игроку удобно",
+          "Нет — оплата в «потом»",
+          "Да — без оплаты нельзя",
+          "Нет — оплата в «не делаем»"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Katak bo'shligini kim tekshiradi?",
+        "variantlar": [
+          "Sayt — katak rangiga qarab",
+          "Umami — hodisa soniga qarab",
+          "Backend — Database'ga qarab",
+          "Ega — ro'yxatga qarab"
+        ]
+      },
+      "ru": {
+        "savol": "Кто проверяет, свободна ли ячейка?",
+        "variantlar": [
+          "Сайт — по цвету ячейки",
+          "Umami — по числу событий",
+          "Backend — по Database",
+          "Владелец — по списку"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Katak band. POST /bandlar nima qiladi?",
+        "variantlar": [
+          "Ikkinchisini ham yozadi",
+          "Eskisini o'chirib yozadi",
+          "Ikkalasiga «Band qilindi»",
+          "«Bu vaqt band» deb rad etadi"
+        ]
+      },
+      "ru": {
+        "savol": "Ячейка занята. Что делает POST /bandlar?",
+        "variantlar": [
+          "Пишет и вторую бронь",
+          "Удаляет старую и пишет новую",
+          "Обоим: «Забронировано»",
+          "Отказывает: «Это время занято»"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "band-qildi hodisasi qachon yoziladi?",
+        "variantlar": [
+          "Band saqlangandan keyin",
+          "Tugma bosilishi bilan",
+          "Sahifa ochilganda",
+          "Ega ro'yxatni ochganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда записывается событие band-qildi?",
+        "variantlar": [
+          "После сохранения брони",
+          "Сразу при нажатии кнопки",
+          "Когда открылась страница",
+          "Когда владелец открыл список"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "O'yinchi sahifasida bandlar haqida nima ko'rinadi?",
+        "variantlar": [
+          "Ism va telefon",
+          "Soat va holat",
+          "Ega paroli va token",
+          "Hamma telefon raqami"
+        ]
+      },
+      "ru": {
+        "savol": "Что о бронях видно на странице игрока?",
+        "variantlar": [
+          "Имя и телефон",
+          "Час и состояние",
+          "Пароль владельца и токен",
+          "Все номера телефонов"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Tokensiz GET /bandlar nima qaytaradi?",
+        "variantlar": [
+          "Ro'yxatni to'liq",
+          "Faqat ismlarni",
+          "401, ro'yxat yo'q",
+          "Ega sahifasini"
+        ]
+      },
+      "ru": {
+        "savol": "Что вернёт GET /bandlar без токена?",
+        "variantlar": [
+          "Весь список",
+          "Только имена",
+          "401, списка нет",
+          "Страницу владельца"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Maydon egasining paroli qayerda turadi?",
+        "variantlar": [
+          "Sayt kodida, tugma yonida",
+          "GitHub'dagi README'da",
+          "Agentga berilgan talabda",
+          ".env da va Render'da"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранится пароль владельца поля?",
+        "variantlar": [
+          "В коде сайта, рядом с кнопкой",
+          "В README на GitHub",
+          "В требовании для агента",
+          "В .env и в Render"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Talabda «qayerda», «nima qilsin» va …?",
+        "variantlar": [
+          "«nima buzilmasin»",
+          "«qancha vaqt»",
+          "«qaysi rang»",
+          "«kim tekshiradi»"
+        ]
+      },
+      "ru": {
+        "savol": "В требовании «где», «что сделать» и …?",
+        "variantlar": [
+          "«что не сломать»",
+          "«сколько времени»",
+          "«какой цвет»",
+          "«кто проверит»"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "«Nima buzilmasin» qatoriga nima yoziladi?",
+        "variantlar": [
+          "Yangi funksiya",
+          "O'zgarmay qoladigan ish",
+          "Terminaldagi xato",
+          "Ertangi ishlar rejasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в строке «что не сломать»?",
+        "variantlar": [
+          "Новую функцию",
+          "То, что должно остаться",
+          "Ошибку из терминала",
+          "План на завтра"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "MVP nega internetga chiqariladi?",
+        "variantlar": [
+          "Laptopda tez ishlashi uchun",
+          "Kodi qisqarishi uchun",
+          "Telefondan ochilishi uchun",
+          "Umami hodisa yozishi uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем выкладывать MVP в интернет?",
+        "variantlar": [
+          "Чтобы быстро работал на ноутбуке",
+          "Чтобы код стал короче",
+          "Чтобы открывался с телефона",
+          "Чтобы Umami писал события"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Bepul Render'da birinchi javob nega kechikadi?",
+        "variantlar": [
+          "Neon'da joy tugagan",
+          "Sayt kodi juda katta",
+          "Netlify linki eskirgan",
+          "Backend uxlab qolgan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему на бесплатном Render первый ответ запаздывает?",
+        "variantlar": [
+          "В Neon кончилось место",
+          "Код сайта слишком большой",
+          "Ссылка Netlify устарела",
+          "Backend уснул"
+        ]
+      }
+    }
+  ]
+}

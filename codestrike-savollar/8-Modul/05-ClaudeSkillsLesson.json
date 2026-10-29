@@ -1,0 +1,278 @@
+{
+  "lessonId": "claude-skills-06-05-v18",
+  "key": "m6-05",
+  "modul": 8,
+  "tartib": 5,
+  "nom": {
+    "uz": "Claude Skills — nima",
+    "ru": "Claude Skills"
+  },
+  "src": "src/6-Modull/ClaudeSkillsLesson.jsx",
+  "barmoq_izi": "614ed175eae3e54e71db64753d8f8148",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Claude Skill nima?",
+        "variantlar": [
+          "Kuchliroq AI modeli nomi",
+          "Internetdagi qidiruv",
+          "AI uchun yozma yo'riqnoma",
+          "Dastur ikonka fayli"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое Claude Skill?",
+        "variantlar": [
+          "Название более сильной AI-модели",
+          "Поиск в интернете",
+          "Письменная инструкция для AI",
+          "Файл иконки программы"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "SKILL.md qaysi ikki qismdan iborat?",
+        "variantlar": [
+          "Frontmatter va body",
+          "Rasm va ovoz fayllari",
+          "Parol va foydalanuvchi nomi",
+          "Server va Database manzili"
+        ]
+      },
+      "ru": {
+        "savol": "Из каких двух частей состоит SKILL.md?",
+        "variantlar": [
+          "frontmatter (name + description) и body",
+          "Файлы картинок и звука",
+          "Пароль и имя пользователя",
+          "Адрес сервера и Database"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "description nima uchun kerak?",
+        "variantlar": [
+          "Skill'ni bezash uchun",
+          "Modelni almashtirish uchun",
+          "Faqat odam o'qishi uchun",
+          "Qachon ishlashini aytish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен description?",
+        "variantlar": [
+          "Чтобы украсить Skill",
+          "Чтобы сменить модель",
+          "Только чтобы читал человек",
+          "Чтобы сказать, когда он нужен"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Skill body'sida odatda nima bo'ladi?",
+        "variantlar": [
+          "Faqat Skill nomi",
+          "Aniq qadamlar va misol",
+          "Foydalanuvchi paroli",
+          "AI modelining versiyasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что обычно находится в body Skill?",
+        "variantlar": [
+          "Только имя Skill",
+          "Точные шаги и пример",
+          "Пароль пользователя",
+          "Версия модели ИИ"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "Progressive disclosure nima?",
+        "variantlar": [
+          "Hamma Skill doim ochiq",
+          "Skill faqat kechasi ishlaydi",
+          "Skill AI'ni tezlashtiradi",
+          "Matn kerak bo'lganda ochiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое progressive disclosure?",
+        "variantlar": [
+          "Все Skill всегда открыты",
+          "Skill работает только ночью",
+          "Skill ускоряет AI",
+          "Текст открывается, когда нужен"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Claude oldindan nimani ko'rib turadi?",
+        "variantlar": [
+          "Skill nomi va description'i",
+          "Har Skill'ning butun matni",
+          "Foydalanuvchi suhbatlari",
+          "Kompyuterdagi fayllar"
+        ]
+      },
+      "ru": {
+        "savol": "Что Claude видит заранее?",
+        "variantlar": [
+          "Имя и description Skill",
+          "Весь текст каждого Skill",
+          "Чаты пользователя",
+          "Файлы на компьютере"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Skill oddiy so'rovdan nimasi bilan farq qiladi?",
+        "variantlar": [
+          "Skill — bir martalik gap",
+          "Saqlanadi, qayta ishlatiladi",
+          "Modelni kuchaytiradi",
+          "Internetga ulaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем Skill отличается от обычного запроса?",
+        "variantlar": [
+          "Skill — разовая фраза",
+          "Хранится и используется снова",
+          "Усиливает модель",
+          "Подключает к интернету"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Yaxshi Skill'ning belgisi qaysi?",
+        "variantlar": [
+          "Uzun, chalkash matn",
+          "Faqat bitta so'z",
+          "Aniq qadamlar va misol",
+          "Ko'p rangli bezaklar"
+        ]
+      },
+      "ru": {
+        "savol": "Какой признак хорошего Skill?",
+        "variantlar": [
+          "Длинный запутанный текст",
+          "Только одно слово",
+          "Чёткие шаги и пример",
+          "Много цветных украшений"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Qanday vazifa Skill uchun eng mos?",
+        "variantlar": [
+          "Takrorlanadigan vazifa",
+          "Bir martalik tasodifiy ish",
+          "Faqat rasm chizish",
+          "Faqat o'yin o'ynash"
+        ]
+      },
+      "ru": {
+        "savol": "Какая задача лучше всего подходит для Skill?",
+        "variantlar": [
+          "Повторяющаяся задача",
+          "Разовое случайное дело",
+          "Только рисование",
+          "Только игры"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Skill natijaga qanday ta'sir qiladi?",
+        "variantlar": [
+          "Natijani tasodifiy qiladi",
+          "Hech ta'sir qilmaydi",
+          "AI'ni sekinlashtiradi",
+          "Uslubingizga yaqinlashtiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Как Skill влияет на результат?",
+        "variantlar": [
+          "Делает результат случайным",
+          "Никак не влияет",
+          "Замедляет AI",
+          "Приближает к вашему стилю"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "System prompt va Skill farqi qaysi?",
+        "variantlar": [
+          "Ikkalasi aynan bir xil",
+          "System prompt kechasi ishlaydi",
+          "Skill faqat kerak bo'lganda",
+          "Skill — AI modelining nomi"
+        ]
+      },
+      "ru": {
+        "savol": "В чём разница system prompt и Skill?",
+        "variantlar": [
+          "Это одно и то же",
+          "System prompt работает ночью",
+          "Skill — только когда нужен",
+          "Skill — название AI-модели"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Noaniq description nimaga olib keladi?",
+        "variantlar": [
+          "Skill tezroq ishlaydi",
+          "Skill ochilmay qolishi mumkin",
+          "AI modeli o'zgarib qoladi",
+          "Internet aloqasi uziladi"
+        ]
+      },
+      "ru": {
+        "savol": "К чему приводит неточный description?",
+        "variantlar": [
+          "Skill работает быстрее",
+          "Skill может не открыться",
+          "AI-модель сменится",
+          "Пропадёт интернет"
+        ]
+      }
+    }
+  ]
+}

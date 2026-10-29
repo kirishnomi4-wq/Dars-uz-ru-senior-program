@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt ENG AVVAL nima uchun yaratiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ko'p odam kirishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Egasiga pul topish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam muammosini yechish uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Chiroyli ko'rinish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Hamma uchun» qilingan sayt aslida…",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "hech kim uchun bo'ladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "eng ko'p odam yig'adi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "eng tez ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "eng ko'p pul topadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mahsulot menejeri avval nimani aniqlaydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Saytning dizayni va rangini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "KIM va uning MUAMMOSINI",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytning nomi va logosini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytga ketadigan pulni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt hech kimning muammosini yechmasa, nima bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Tezroq ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'proq odam kiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklama ko'payadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Unga hech kim kirmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'liq g'oyada qaysi uch javob bo'ladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "KIM + MUAMMO + YECHIM",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "NOM + RANG + TUGMA",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DIZAYN + REKLAMA + PUL",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "SAYT + ILOVA + O'YIN",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Lavash saytiga kirgan O'QUVCHI avval nimaga qaraydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Buyurtmalar ro'yxatiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirgi buyurtmasiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oldindan buyurtmaga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytning bezagiga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mashhurlik va pul — bu…",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "yechimdan keyingi NATIJA",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "saytning birinchi maqsadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "faqat reklama samarasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "faqat omad va tasodif",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri REAL muammo?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Sayt rangi ko'k emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytning nomi zo'r emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytda tugma kam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Avtobus qachon kelishi noaniq",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "G'oyada MUAMMO katagi bo'sh. Bu nima degani?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "G'oya to'liq va tayyor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt nega kerak — noma'lum",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat dizayn yetmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat nom yetmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'quvchi, sotuvchi va ofis xodimi bitta saytda…",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "bir xil narsani izlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "faqat dizaynga qaraydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "har biri o'zinikini izlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "faqat narxga qaraydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yechim qanday bo'lishi SHART?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Iloji boricha kattaroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aynan o'sha muammoga mos",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hammaga birdek yoqadigan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng zamonaviy uslubda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Shoshgan o'quvchiga oldindan buyurtma» — nima aniq?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Faqat YECHIM",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat KIM va YECHIM",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa aniq emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "KIM, MUAMMO va YECHIM",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

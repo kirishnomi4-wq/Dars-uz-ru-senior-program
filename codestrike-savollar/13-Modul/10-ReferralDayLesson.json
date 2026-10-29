@@ -1,0 +1,278 @@
+{
+  "lessonId": "m11-10-v1",
+  "key": "m11-10",
+  "modul": 13,
+  "tartib": 10,
+  "nom": {
+    "uz": "Loyiha kuni: taklif linki va mukofot",
+    "ru": "День проекта: ссылка-приглашение и награда"
+  },
+  "src": "src/11-Modull/ReferralDayLesson.jsx",
+  "barmoq_izi": "0490c9e82728de4bdde8f0d32cd364dc",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Ikki kishi bir xil link yubordi. Umami nimani ko'radi?",
+        "variantlar": [
+          "Faqat kanalni",
+          "Kim yuborganini",
+          "Login va ismini",
+          "Kim o'ynaganini"
+        ]
+      },
+      "ru": {
+        "savol": "Двое отправили одинаковую ссылку. Что видит Umami?",
+        "variantlar": [
+          "Только канал",
+          "Кто отправил",
+          "Логин и имя",
+          "Кто играл"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor misolida taklif kodi nimadan iborat?",
+        "variantlar": [
+          "Ism va ikki raqam",
+          "Olti belgili harf-raqam",
+          "Telefon raqami oxiri",
+          "O'yin raqami va kuni"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего состоит код приглашения в примере Ментора?",
+        "variantlar": [
+          "Имя и две цифры",
+          "Шесть знаков: буквы и цифры",
+          "Конец номера телефона",
+          "Номер игры и день"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Taklif linki ochilganda lending Umami'ga nima yuboradi?",
+        "variantlar": [
+          "Kod va kanal belgisini",
+          "Taklif qilgan loginini",
+          "Faqat «taklif» kanalini",
+          "Hech narsa"
+        ]
+      },
+      "ru": {
+        "savol": "Что лендинг отправляет в Umami при открытии ссылки-приглашения?",
+        "variantlar": [
+          "Код и метку канала",
+          "Логин пригласившего",
+          "Только канал «taklif»",
+          "Ничего"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Taklif kodisiz ro'yxatdan o'tsa bo'ladimi?",
+        "variantlar": [
+          "Yo'q, kod majburiy",
+          "Yo'q, faqat link orqali",
+          "Ha, faqat iPhone'da",
+          "Ha, maydon majburiy emas"
+        ]
+      },
+      "ru": {
+        "savol": "Можно ли зарегистрироваться без кода приглашения?",
+        "variantlar": [
+          "Нет, код обязателен",
+          "Нет, только по ссылке",
+          "Да, только на iPhone",
+          "Да, поле не обязательно"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor misolida taklif uchun mukofot nima?",
+        "variantlar": [
+          "Pro'ga 7 kun qo'shiladi",
+          "So'mda pul beriladi",
+          "Obunaga chegirma beriladi",
+          "Pro'ga bir oy qo'shiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая награда за приглашение в примере Ментора?",
+        "variantlar": [
+          "К Pro добавляется 7 дней",
+          "Даются деньги в сумах",
+          "Даётся скидка на подписку",
+          "К Pro добавляется месяц"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Yangi hisob hech narsa qilmadi. Mukofot bormi?",
+        "variantlar": [
+          "Bor, ro'yxat yetarli",
+          "Hali yo'q, harakat kutiladi",
+          "Bor, kod to'g'ri yozilgan",
+          "Yo'q, hisob sanalmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Новый аккаунт ничего не сделал. Награда есть?",
+        "variantlar": [
+          "Есть, регистрации достаточно",
+          "Пока нет, ждём действия",
+          "Есть, код введён верно",
+          "Нет, аккаунт не считается"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Bir hisobga haftasiga nechta mukofot beriladi?",
+        "variantlar": [
+          "Cheklovsiz",
+          "Oyiga bitta",
+          "Ko'pi bilan ikkita",
+          "Faqat birinchisiga"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько наград в неделю даётся одному аккаунту?",
+        "variantlar": [
+          "Без ограничений",
+          "Одна в месяц",
+          "Не больше двух",
+          "Только за первое"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "O'zini boshqa telefondan taklif qildi. Ushlanadimi?",
+        "variantlar": [
+          "Ha, kod bir xil",
+          "Ha, loginlar o'xshash",
+          "Yo'q, harakat yo'q",
+          "Yo'q, qurilmalar har xil"
+        ]
+      },
+      "ru": {
+        "savol": "Пригласил себя с другого телефона. Это поймают?",
+        "variantlar": [
+          "Да, код одинаковый",
+          "Да, логины похожи",
+          "Нет, действия нет",
+          "Нет, устройства разные"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "18 tashrif va 7 hisob. Ayirsa bo'ladimi?",
+        "variantlar": [
+          "Yo'q, o'lchovlar har xil",
+          "Ha, 11 kishi o'tmagan",
+          "Ha, 11 tasi o'chirgan",
+          "Yo'q, Umami ishonchsiz"
+        ]
+      },
+      "ru": {
+        "savol": "18 посещений и 7 аккаунтов. Можно ли вычесть?",
+        "variantlar": [
+          "Нет, это разные измерения",
+          "Да, 11 не зарегистрировались",
+          "Да, 11 удалили",
+          "Нет, Umami ненадёжен"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Jami ro'yxatdan o'tgan 51. Bu qanday son?",
+        "variantlar": [
+          "Har hafta keladiganlar",
+          "44 eski va 7 yangi hisob",
+          "Faqat link orqali kelgan",
+          "50 maqsadi, ish tugadi"
+        ]
+      },
+      "ru": {
+        "savol": "Всего зарегистрировано 51. Что это за число?",
+        "variantlar": [
+          "Кто приходит каждую неделю",
+          "44 старых и 7 новых аккаунтов",
+          "Только пришедшие по ссылке",
+          "Цель 50, работа окончена"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Sinfda tekshiruv akkaunti ochdingiz. Keyin nima qilasiz?",
+        "variantlar": [
+          "Sanoqda qoldiraman",
+          "Parolini o'zgartiraman",
+          "Hisobni o'chiraman",
+          "Sherigimga beraman"
+        ]
+      },
+      "ru": {
+        "savol": "Вы открыли в классе проверочный аккаунт. Что дальше?",
+        "variantlar": [
+          "Оставлю в подсчёте",
+          "Сменю пароль",
+          "Удалю аккаунт",
+          "Отдам партнёру"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Linkingizni qayerga yuborasiz?",
+        "variantlar": [
+          "Shahar futbol kanaliga",
+          "Egasidan so'ramay guruhga",
+          "Notanish tashkilotchilarga",
+          "Faqat tanishlaringizga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда вы отправите свою ссылку?",
+        "variantlar": [
+          "В городской футбольный канал",
+          "В группу, не спросив владельца",
+          "Незнакомым организаторам",
+          "Только знакомым"
+        ]
+      }
+    }
+  ]
+}

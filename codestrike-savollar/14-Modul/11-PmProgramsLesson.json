@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m12d11-v1",
+  "key": "m12-11",
+  "modul": 14,
+  "tartib": 11,
+  "nom": {
+    "uz": "Qaysi xalqaro dasturga ariza berasiz?",
+    "ru": "В какую международную программу подадите заявку?"
+  },
+  "src": "src/12-Modull/PmProgramsLesson.jsx",
+  "barmoq_izi": "9da9de8eba283c14640752c4a9a86ac8",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Diamond Challenge jamoasida nechta o'quvchi bo'ladi?",
+        "variantlar": [
+          "2 tadan 4 tagacha",
+          "1 tadan 3 tagacha",
+          "3 tadan 6 tagacha",
+          "5 tadan 10 tagacha"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько учеников в команде Diamond Challenge?",
+        "variantlar": [
+          "От 2 до 4",
+          "От 1 до 3",
+          "От 3 до 6",
+          "От 5 до 10"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Topshirish kuni jamoa a'zolari necha yoshda bo'ladi?",
+        "variantlar": [
+          "12 dan 16 yoshgacha",
+          "14 dan 18 yoshgacha",
+          "16 dan 21 yoshgacha",
+          "18 dan 25 yoshgacha"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько лет участникам команды в день подачи?",
+        "variantlar": [
+          "От 12 до 16 лет",
+          "От 14 до 18 лет",
+          "От 16 до 21 года",
+          "От 18 до 25 лет"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Diamond Challenge'da maslahatchi kamida necha yoshda?",
+        "variantlar": [
+          "16 yoshdan katta",
+          "18 yoshdan katta",
+          "21 yoshdan katta",
+          "25 yoshdan katta"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько лет как минимум консультанту в Diamond Challenge?",
+        "variantlar": [
+          "Старше 16 лет",
+          "Старше 18 лет",
+          "Старше 21 года",
+          "Старше 25 лет"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Diamond Challenge'ga ariza qaysi tilda yoziladi?",
+        "variantlar": [
+          "O'zbek tilida",
+          "Fransuz tilida",
+          "Istalgan tilda",
+          "Ingliz tilida"
+        ]
+      },
+      "ru": {
+        "savol": "На каком языке пишут заявку в Diamond Challenge?",
+        "variantlar": [
+          "На узбекском",
+          "На французском",
+          "На любом языке",
+          "На английском"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Ariza bergan har jamoa finalga chiqadimi?",
+        "variantlar": [
+          "Yo'q, finalistlar tanlanadi",
+          "Ha, ariza bergan hamma",
+          "Ha, onlayn qatnashganlar",
+          "Yo'q, faqat Amerikadan"
+        ]
+      },
+      "ru": {
+        "savol": "Каждая подавшая команда выходит в финал?",
+        "variantlar": [
+          "Нет, финалистов отбирают",
+          "Да, все подавшие",
+          "Да, участвовавшие онлайн",
+          "Нет, только из Америки"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Y Combinator sahifasida qaysi yosh chegarasi yozilgan?",
+        "variantlar": [
+          "14 yoshdan",
+          "Yozilmagan",
+          "16 yoshdan",
+          "21 yoshdan"
+        ]
+      },
+      "ru": {
+        "savol": "Какой возрастной предел указан на странице Y Combinator?",
+        "variantlar": [
+          "С 14 лет",
+          "Не указан",
+          "С 16 лет",
+          "С 21 года"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Y Combinator asoschilardan nimani kutadi?",
+        "variantlar": [
+          "Faqat ta'tilda ishlashni",
+          "Faqat onlayn ishlashni",
+          "To'liq vaqt ishlashni",
+          "Haftada bir kun kelishni"
+        ]
+      },
+      "ru": {
+        "savol": "Чего Y Combinator ждёт от основателей?",
+        "variantlar": [
+          "Работать только на каникулах",
+          "Работать только онлайн",
+          "Работать полный день",
+          "Приходить раз в неделю"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Y Combinator dasturi qayerda o'tadi?",
+        "variantlar": [
+          "Toshkent shahrida",
+          "Istalgan shaharda",
+          "Faqat internetda",
+          "San-Fransiskoda"
+        ]
+      },
+      "ru": {
+        "savol": "Где проходит программа Y Combinator?",
+        "variantlar": [
+          "В Ташкенте",
+          "В любом городе",
+          "Только в интернете",
+          "В Сан-Франциско"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Early Decision kim uchun?",
+        "variantlar": [
+          "O'qishni tugatmoqchi talabalar",
+          "14–18 yoshli o'quvchilar",
+          "Diamond Challenge finalistlari",
+          "Ishlayotgan kattalar"
+        ]
+      },
+      "ru": {
+        "savol": "Для кого Early Decision?",
+        "variantlar": [
+          "Студенты, желающие доучиться",
+          "Школьники 14–18 лет",
+          "Финалисты Diamond Challenge",
+          "Работающие взрослые"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Konsept qaysi uch qismdan iborat?",
+        "variantlar": [
+          "Bozor, Raqamlar va Jamoa",
+          "Muammo, kim uchun, yechim",
+          "Yosh, til va maslahatchi",
+          "Muddat, mamlakat va video"
+        ]
+      },
+      "ru": {
+        "savol": "Из каких трёх частей состоит концепт?",
+        "variantlar": [
+          "Рынок, Цифры и Команда",
+          "Проблема, для кого, решение",
+          "Возраст, язык и консультант",
+          "Срок, страна и видео"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Konseptdagi «Kim uchun» qatoriga nima yoziladi?",
+        "variantlar": [
+          "Guruhdagi odamlar soni",
+          "Mahsulot texnologiyasi",
+          "Mahsulotga muhtoj odamlar",
+          "Jamoa a'zolari ismlari"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в строке «Для кого» в концепте?",
+        "variantlar": [
+          "Число людей в группе",
+          "Технология продукта",
+          "Люди, которым нужен продукт",
+          "Имена участников команды"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Sinfdosh aytgan gap rasmiy sahifada yo'q. U nima?",
+        "variantlar": [
+          "Rasmiy shart",
+          "Ariza qismi",
+          "Muhim qoida",
+          "Faqat taxmin"
+        ]
+      },
+      "ru": {
+        "savol": "Фразы одноклассника нет на официальной странице. Что это?",
+        "variantlar": [
+          "Официальное условие",
+          "Часть заявки",
+          "Важное правило",
+          "Только догадка"
+        ]
+      }
+    }
+  ]
+}

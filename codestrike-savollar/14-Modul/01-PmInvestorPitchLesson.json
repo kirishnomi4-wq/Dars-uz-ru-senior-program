@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m12d1-v2",
+  "key": "m12-01",
+  "modul": 14,
+  "tartib": 1,
+  "nom": {
+    "uz": "Investorga pitchni qanday tuzasiz?",
+    "ru": "Как построить питч для инвестора?"
+  },
+  "src": "src/12-Modull/PmInvestorPitchLesson.jsx",
+  "barmoq_izi": "a4f2b3984d05c46ee99a65b1b8abf5e1",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Bizda Bozor qaysi bo'lakdan keyin turadi?",
+        "variantlar": [
+          "Muammodan keyin",
+          "Yechimdan keyin",
+          "Jamoadan keyin",
+          "Raqamlardan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "После какой части у нас стоит Рынок?",
+        "variantlar": [
+          "После Проблемы",
+          "После Решения",
+          "После Команды",
+          "После Цифр"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor Raqamlar bo'lagida nechta foydalanuvchi aytgan?",
+        "variantlar": [
+          "44 foydalanuvchi",
+          "51 foydalanuvchi",
+          "60 foydalanuvchi",
+          "6 foydalanuvchi"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько пользователей Ментор назвал в Цифрах?",
+        "variantlar": [
+          "44 пользователя",
+          "51 пользователь",
+          "60 пользователей",
+          "6 пользователей"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Bozor bo'lagi qaysi savolga javob beradi?",
+        "variantlar": [
+          "«Buni kim qilyapti?»",
+          "«Endi nima qilasiz?»",
+          "«Yana qancha odamga kerak?»",
+          "«Mahsulot nima qiladi?»"
+        ]
+      },
+      "ru": {
+        "savol": "На какой вопрос отвечает часть «Рынок»?",
+        "variantlar": [
+          "«Кто это делает?»",
+          "«Что будете делать дальше?»",
+          "«Скольким ещё людям нужно?»",
+          "«Что делает продукт?»"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "5 daqiqalik pitchdan keyin nima bo'ladi?",
+        "variantlar": [
+          "Hakam darhol ball qo'yadi",
+          "Keyingi o'quvchi chiqadi",
+          "Pitch qayta boshlanadi",
+          "Savol-javob boshlanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что происходит после 5-минутного питча?",
+        "variantlar": [
+          "Судья сразу ставит балл",
+          "Выходит следующий ученик",
+          "Питч начинается заново",
+          "Начинаются вопросы-ответы"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Hakam «Buni kim qilyapti?» desa, qaysi bo'lak javob beradi?",
+        "variantlar": [
+          "Jamoa bo'lagi",
+          "Bozor bo'lagi",
+          "Yechim bo'lagi",
+          "Muammo bo'lagi"
+        ]
+      },
+      "ru": {
+        "savol": "Судья спросил «Кто это делает?» — какая часть отвечает?",
+        "variantlar": [
+          "Часть «Команда»",
+          "Часть «Рынок»",
+          "Часть «Решение»",
+          "Часть «Проблема»"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor boshqa mahallalar haqida nima degan?",
+        "variantlar": [
+          "Ularda ham 60 kishi bor",
+          "Ularga ilova kerak emas",
+          "Hali tekshirilmagan",
+          "Ularda o'yin o'tmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что Ментор сказал о других махаллях?",
+        "variantlar": [
+          "Там тоже по 60 человек",
+          "Им приложение не нужно",
+          "Ещё не проверены",
+          "Там игр не бывает"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor Jamoa bo'lagida agentni qanday aytgan?",
+        "variantlar": [
+          "Jamoa a'zosi deb aytgan",
+          "Bosh dasturchi deb aytgan",
+          "Agentni tilga olmagan",
+          "Kodni agent bilan yozgan"
+        ]
+      },
+      "ru": {
+        "savol": "Как Ментор назвал агента в Команде?",
+        "variantlar": [
+          "Назвал членом команды",
+          "Назвал главным программистом",
+          "Не упомянул агента",
+          "Писал код с агентом"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor misolida sinab ko'rganlar kimlar?",
+        "variantlar": [
+          "Faqat sinfdoshlari",
+          "6 tashkilotchi va o'yinchilar",
+          "Investor va tadbirkorlar",
+          "Agent va Mentorning o'zi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто тестировал в примере Ментора?",
+        "variantlar": [
+          "Только одноклассники",
+          "6 организаторов и игроки",
+          "Инвесторы и предприниматели",
+          "Агент и сам Ментор"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor hakamdan nima so'raydi?",
+        "variantlar": [
+          "Pro uchun yozma tasdiq",
+          "Ilovani guruhga ulashish",
+          "Ilova uchun pul summasi",
+          "Maydon egalarini tanishtirish"
+        ]
+      },
+      "ru": {
+        "savol": "О чём Ментор просит судью?",
+        "variantlar": [
+          "Письменное согласие на Pro",
+          "Поделиться приложением в группе",
+          "Сумму денег на приложение",
+          "Познакомить с владельцами полей"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "12-Moduldagi «maqsad 50» nega yangilandi?",
+        "variantlar": [
+          "Foydalanuvchi 51 taga yetdi",
+          "Maqsad juda katta bo'ldi",
+          "Ro'yxatdagi son xato edi",
+          "Taklif linki buzildi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему обновили «цель 50» из 12-го модуля?",
+        "variantlar": [
+          "Пользователей стало 51",
+          "Цель оказалась слишком большой",
+          "Число в списке было ошибочным",
+          "Пригласительная ссылка сломалась"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor 3 yozma tasdiqni qanday aytgan?",
+        "variantlar": [
+          "Uchtasi Pro'ni sotib oldi",
+          "Tasdiq bor, to'lov hali yo'q",
+          "Hamma tashkilotchi yozildi",
+          "Pitchda umuman aytmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Как Ментор назвал 3 письменных согласия?",
+        "variantlar": [
+          "Трое купили Pro",
+          "Согласие есть, оплаты ещё нет",
+          "Все организаторы записались",
+          "В питче не упомянул"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor Muammo dalilini qayerdan olgan?",
+        "variantlar": [
+          "Ilovadagi 51 kishidan",
+          "Guruhdagi 60 kishidan",
+          "So'ralgan 3 o'yinchidan",
+          "3 tashkilotchi tasdig'idan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда Ментор взял довод для Проблемы?",
+        "variantlar": [
+          "От 51 человека в приложении",
+          "От 60 человек в группе",
+          "От 3 опрошенных игроков",
+          "Из согласия 3 организаторов"
+        ]
+      }
+    }
+  ]
+}

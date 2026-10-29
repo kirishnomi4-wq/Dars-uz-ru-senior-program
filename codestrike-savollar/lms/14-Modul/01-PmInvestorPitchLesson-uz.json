@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bizda Bozor qaysi bo'lakdan keyin turadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Muammodan keyin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yechimdan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jamoadan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Raqamlardan keyin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor Raqamlar bo'lagida nechta foydalanuvchi aytgan?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "44 foydalanuvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "51 foydalanuvchi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "60 foydalanuvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "6 foydalanuvchi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bozor bo'lagi qaysi savolga javob beradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "«Buni kim qilyapti?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Endi nima qilasiz?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yana qancha odamga kerak?»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Mahsulot nima qiladi?»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "5 daqiqalik pitchdan keyin nima bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Hakam darhol ball qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi o'quvchi chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitch qayta boshlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Savol-javob boshlanadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hakam «Buni kim qilyapti?» desa, qaysi bo'lak javob beradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Jamoa bo'lagi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bozor bo'lagi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yechim bo'lagi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo bo'lagi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor boshqa mahallalar haqida nima degan?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ularda ham 60 kishi bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ularga ilova kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hali tekshirilmagan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ularda o'yin o'tmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor Jamoa bo'lagida agentni qanday aytgan?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Jamoa a'zosi deb aytgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosh dasturchi deb aytgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentni tilga olmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni agent bilan yozgan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida sinab ko'rganlar kimlar?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Faqat sinfdoshlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "6 tashkilotchi va o'yinchilar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Investor va tadbirkorlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent va Mentorning o'zi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor hakamdan nima so'raydi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Pro uchun yozma tasdiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani guruhga ulashish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova uchun pul summasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon egalarini tanishtirish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "12-Moduldagi «maqsad 50» nega yangilandi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Foydalanuvchi 51 taga yetdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Maqsad juda katta bo'ldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatdagi son xato edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taklif linki buzildi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor 3 yozma tasdiqni qanday aytgan?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Uchtasi Pro'ni sotib oldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tasdiq bor, to'lov hali yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma tashkilotchi yozildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitchda umuman aytmagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor Muammo dalilini qayerdan olgan?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ilovadagi 51 kishidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Guruhdagi 60 kishidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'ralgan 3 o'yinchidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "3 tashkilotchi tasdig'idan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

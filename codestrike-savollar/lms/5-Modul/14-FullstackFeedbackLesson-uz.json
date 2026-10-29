@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi fikr eng foydali?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "«Rangi chiroyli ekan»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Umuman zo'r ekan!»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bilmadim, normal»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Chiqishda tasdiq yo'q»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Zo'r ekan!» nega yetarli fikr emas?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Juda uzun yozilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nimani tuzatishni aytmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Doim yolg'on bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uni faqat mentor aytadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Yoqmadi» degan fikrni qanday aniqlaymiz?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "E'tibor bermaymiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Ko'proq yoqsin» deymiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Nima chalkash edi?» deymiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Loyihani o'chirib tashlaymiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Doskaning qaysi katagidagi ishni avval qilamiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ko'p foyda + kam mehnat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'p foyda + ko'p mehnat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kam foyda + kam mehnat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kam foyda + ko'p mehnat",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Eng qiyinini avval qilamiz» nega xato?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Qiyin ish doim befoyda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Natija juda kech ko'rinadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oson ishlar qolib ketadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foyda muhim emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'p foydali, lekin katta ish qayerga?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "«Rejaga ol»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Avval shu»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Shart emas»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Oson, keyin»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Band joyni adashib chiqarishni nima to'xtatadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Dashboard paneli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxni oshirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Joylarni ko'paytirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chiqishda tasdiq",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'sh, band va tushumni bir qarashda nima ko'rsatadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Chiqishda tasdiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Joylarni kamaytirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dashboard (holat paneli)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Narxni yashirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qorovul narxni o'zi o'zgartirishi uchun nima kerak?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Sozlamalar paneli",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni qayta yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi sayt ochish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa — imkonsiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Narxni o'zgartirish uchun qaysi SQL amali?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "INSERT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "UPDATE",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "SELECT",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "UPDATE'ning INSERT'dan farqi nimada?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Farqi yo'q, bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mavjud qatorni o'zgartiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jadvalga yangi qator qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat nomi boshqacha",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qurgandan keyin yaxshilash sikli qanday?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "E'lon qilish → unutish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fikrsiz o'zicha tuzatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasini birdan tuzatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fikr → saralash → upgrade",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

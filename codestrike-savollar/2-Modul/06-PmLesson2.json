@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m1d6-v1",
+  "key": "m1-05",
+  "modul": 2,
+  "tartib": 6,
+  "nom": {
+    "uz": "Struktura — foydalanuvchi uchun qilingan qulaylik",
+    "ru": "Структура — удобство для пользователя"
+  },
+  "src": "src/1-Modull/PmLesson2.jsx",
+  "barmoq_izi": "f7c9fbdc66dfecf8af029d0b9ab4de97",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Sayt strukturasi (bo'limlar tartibi) aslida nima?",
+        "variantlar": [
+          "Foydalanuvchi uchun qulaylik",
+          "Sahifa uchun bezak",
+          "Dizaynerning didi",
+          "Hamma uchun bir xil andoza"
+        ]
+      },
+      "ru": {
+        "savol": "Что на самом деле структура сайта (порядок разделов)?",
+        "variantlar": [
+          "Удобство для пользователя",
+          "Украшение страницы",
+          "Вкус дизайнера",
+          "Одинаковый шаблон для всех"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Saytni ochgan odam avval qaysi bo'limni ko'radi?",
+        "variantlar": [
+          "Pastdagi aloqa qismini",
+          "Sarlavha va izohni",
+          "Isbot bo'limini",
+          "Harakat tugmasini"
+        ]
+      },
+      "ru": {
+        "savol": "Какой раздел человек видит первым, открыв сайт?",
+        "variantlar": [
+          "Контакты внизу",
+          "Заголовок и пояснение",
+          "Раздел «Доказательство»",
+          "Кнопку действия"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Harakat tugmasi (CTA) qayerda turishi mantiqiy?",
+        "variantlar": [
+          "Eng tepada, birinchi",
+          "Menuda, linklar bilan",
+          "Odam ishongandan keyin",
+          "Yon tomonda, alohida"
+        ]
+      },
+      "ru": {
+        "savol": "Где логично стоять кнопке действия (CTA)?",
+        "variantlar": [
+          "В самом верху, первой",
+          "В меню, среди ссылок",
+          "После того как человек поверил",
+          "Сбоку, отдельно"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Eng mantiqiy tartib qaysi?",
+        "variantlar": [
+          "CTA→isbot→hero→muammo→yechim",
+          "Isbot→CTA→muammo→yechim→hero",
+          "Muammo→CTA→hero→yechim→isbot",
+          "Hero→muammo→yechim→isbot→CTA"
+        ]
+      },
+      "ru": {
+        "savol": "Какой порядок самый логичный?",
+        "variantlar": [
+          "CTA→доказ.→hero→проблема→решение",
+          "Доказ.→CTA→проблема→решение→hero",
+          "Проблема→CTA→hero→решение→доказ.",
+          "Hero→проблема→решение→доказ.→CTA"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Birinchi blok (hero) nima qiladi?",
+        "variantlar": [
+          "Ariza va to'lov qabul qiladi",
+          "Taklifni bir jumlada aytadi",
+          "Mijozlar izohini ko'rsatadi",
+          "Aloqa ma'lumotini beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает первый блок (hero)?",
+        "variantlar": [
+          "Принимает заявки и оплату",
+          "Одной фразой говорит, что предлагают",
+          "Показывает отзывы клиентов",
+          "Даёт контакты"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "«Isbot» bo'limi nima uchun kerak?",
+        "variantlar": [
+          "Ishonch uyg'otish uchun",
+          "Narxni e'lon qilish uchun",
+          "Sayt nomini eslatish uchun",
+          "Aloqa ma'lumoti uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен раздел «Доказательство»?",
+        "variantlar": [
+          "Чтобы вызвать доверие",
+          "Чтобы объявить цену",
+          "Чтобы напомнить название",
+          "Для контактов"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Yaxshi tuzilgan sahifa nimaga o'xshaydi?",
+        "variantlar": [
+          "Alifbodagi lug'atga",
+          "Mahsulot katalogiga",
+          "Xabarlar lentasiga",
+          "Qadam-baqadam hikoyaga"
+        ]
+      },
+      "ru": {
+        "savol": "На что похожа хорошо выстроенная страница?",
+        "variantlar": [
+          "На словарь по алфавиту",
+          "На каталог товаров",
+          "На ленту сообщений",
+          "На историю шаг за шагом"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Bo'limlar tartibi nega muhim?",
+        "variantlar": [
+          "Sahifa chiroyli ko'rinadi",
+          "Sahifa uzunroq bo'ladi",
+          "Odamni yechimga yetaklaydi",
+          "Qidiruvda yuqori chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему важен порядок разделов?",
+        "variantlar": [
+          "Страница выглядит красиво",
+          "Страница становится длиннее",
+          "Ведёт человека к решению",
+          "Выше в поиске"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Bo'limlar aralashib ketsa nima bo'ladi?",
+        "variantlar": [
+          "Odam adashib, ketib qoladi",
+          "Odam kerakli joyni topadi",
+          "Sahifa qiziqroq ko'rinadi",
+          "Sahifa tezroq ochiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если разделы перемешаны?",
+        "variantlar": [
+          "Человек теряется и уходит",
+          "Человек сам найдёт нужное",
+          "Страница выглядит интереснее",
+          "Страница быстрее открывается"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "«Muammo» bo'limi qanday his uyg'otishi kerak?",
+        "variantlar": [
+          "«Endi darrov sotib olaman»",
+          "«Bu sayt ishonchli ekan»",
+          "«Bu qanday ishlar ekan?»",
+          "«Bu menga tanish»"
+        ]
+      },
+      "ru": {
+        "savol": "Какое чувство должен вызывать раздел «Проблема»?",
+        "variantlar": [
+          "«Сейчас же куплю»",
+          "«А сайт-то надёжный»",
+          "«А как это работает?»",
+          "«Это мне знакомо»"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Chiroyli va ishonchli sayt farqi ko'pincha nimada?",
+        "variantlar": [
+          "Ranglarida",
+          "Tartibida",
+          "Shriftida",
+          "Rasmlarida"
+        ]
+      },
+      "ru": {
+        "savol": "В чём чаще всего разница красивого и надёжного сайта?",
+        "variantlar": [
+          "В цветах",
+          "В порядке (структуре)",
+          "В шрифте",
+          "В картинках"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Sahifa qanday mantiq bilan tuziladi?",
+        "variantlar": [
+          "Avval tugma, keyin izoh",
+          "Bo'limlar alifbo tartibida",
+          "Avval muhimi, oxirida tugma",
+          "Avval aloqa, keyin mahsulot"
+        ]
+      },
+      "ru": {
+        "savol": "По какой логике строится страница?",
+        "variantlar": [
+          "Сначала кнопка, потом пояснение",
+          "Разделы по алфавиту",
+          "Сначала главное, в конце кнопка",
+          "Сначала контакты, потом товар"
+        ]
+      }
+    }
+  ]
+}

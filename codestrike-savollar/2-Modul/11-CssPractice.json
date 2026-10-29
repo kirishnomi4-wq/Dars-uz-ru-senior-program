@@ -1,0 +1,278 @@
+{
+  "lessonId": "css-practice-portfolio-v3",
+  "key": "m1-10",
+  "modul": 2,
+  "tartib": 11,
+  "nom": {
+    "uz": "CSS Praktika — Demo Day saytini bezaymiz",
+    "ru": "CSS практика — оформляем сайт для Demo Day"
+  },
+  "src": "src/1-Modull/CssPractice.jsx",
+  "barmoq_izi": "09fc12b4a024b634e5096443094ddb0a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Matn (harflar) rangini qaysi xususiyat beradi?",
+        "variantlar": [
+          "color",
+          "background-color",
+          "font-size",
+          "text-align"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство задаёт цвет текста (букв)?",
+        "variantlar": [
+          "color",
+          "background-color",
+          "font-size",
+          "text-align"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Element orqa fon rangini qaysi xususiyat beradi?",
+        "variantlar": [
+          "color",
+          "border",
+          "background-color",
+          "margin"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство задаёт цвет заднего фона элемента?",
+        "variantlar": [
+          "color",
+          "border",
+          "background-color",
+          "margin"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Matnni markazga qaysi qiymat qo'yadi?",
+        "variantlar": [
+          "text-align: left",
+          "text-align: center",
+          "text-align: middle",
+          "align: center"
+        ]
+      },
+      "ru": {
+        "savol": "Какое значение ставит текст по центру?",
+        "variantlar": [
+          "text-align: left",
+          "text-align: center",
+          "text-align: middle",
+          "align: center"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Linklarni bir qatorga tizadigan qoida?",
+        "variantlar": [
+          "display: block",
+          "display: none",
+          "text-align: center",
+          "display: flex"
+        ]
+      },
+      "ru": {
+        "savol": "Правило, выстраивающее ссылки в один ряд?",
+        "variantlar": [
+          "display: block",
+          "display: none",
+          "text-align: center",
+          "display: flex"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Flex elementlar orasidagi bo'shliqni nima ochadi?",
+        "variantlar": [
+          "gap",
+          "padding",
+          "margin-top",
+          "border"
+        ]
+      },
+      "ru": {
+        "savol": "Что раздвигает flex-элементы (промежуток между ними)?",
+        "variantlar": [
+          "gap",
+          "padding",
+          "margin-top",
+          "border"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Element ICHIDAGI bo'shliq qaysi xususiyat?",
+        "variantlar": [
+          "margin",
+          "gap",
+          "padding",
+          "text-align"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство — отступ ВНУТРИ элемента?",
+        "variantlar": [
+          "margin",
+          "gap",
+          "padding",
+          "text-align"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Elementlar ORASIDAGI (tashqi) bo'shliq qaysi xususiyat?",
+        "variantlar": [
+          "padding",
+          "gap",
+          "border",
+          "margin"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство — отступ МЕЖДУ элементами (внешний)?",
+        "variantlar": [
+          "padding",
+          "gap",
+          "border",
+          "margin"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "CSS qoidasida h1 — bu qaysi qism?",
+        "variantlar": [
+          "xususiyat",
+          "selektor",
+          "qiymat",
+          "izoh"
+        ]
+      },
+      "ru": {
+        "savol": "Какая это часть правила CSS — h1?",
+        "variantlar": [
+          "свойство",
+          "селектор",
+          "значение",
+          "комментарий"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "CSS qoidasida color — bu qaysi qism?",
+        "variantlar": [
+          "xususiyat",
+          "selektor",
+          "qiymat",
+          "teg"
+        ]
+      },
+      "ru": {
+        "savol": "Какая это часть правила CSS — color?",
+        "variantlar": [
+          "свойство",
+          "селектор",
+          "значение",
+          "тег"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Har bir CSS satri qaysi belgi bilan tugaydi?",
+        "variantlar": [
+          "vergul ,",
+          "nuqta .",
+          "ikki nuqta :",
+          "nuqta-vergul ;"
+        ]
+      },
+      "ru": {
+        "savol": "Каким символом заканчивается каждая строка CSS?",
+        "variantlar": [
+          "запятая ,",
+          "точка .",
+          "двоеточие :",
+          "точка с запятой ;"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Flex menuni gorizontal markazga qaysi xususiyat qo'yadi?",
+        "variantlar": [
+          "align-items: center",
+          "justify-content: center",
+          "text-align: center",
+          "gap: center"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство ставит flex-меню в горизонтальный центр?",
+        "variantlar": [
+          "align-items: center",
+          "justify-content: center",
+          "text-align: center",
+          "gap: center"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Kartani ekran markaziga qo'yuvchi qiymat?",
+        "variantlar": [
+          "margin: 0",
+          "margin: center",
+          "margin: 0 auto",
+          "padding: auto"
+        ]
+      },
+      "ru": {
+        "savol": "Значение, ставящее карточку в центр экрана?",
+        "variantlar": [
+          "margin: 0",
+          "margin: center",
+          "margin: 0 auto",
+          "padding: auto"
+        ]
+      }
+    }
+  ]
+}

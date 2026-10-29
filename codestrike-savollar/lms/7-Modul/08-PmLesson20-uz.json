@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Suhbat nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Odamdan o'tgan ishini so'rash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'zingiz taxmin qilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelasi haftasini so'rash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot haqidagi fikrini so'rash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Suhbatda nima so'raladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "O'tgan ishga qo'ygan bahosi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelasi haftadagi rejasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot haqidagi fikri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'tgan kunlarda qilgan ishi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Voqea savoli nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Kelajakni so'ragan savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kerakli tugmani so'ragan savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'lgan ishni so'ragan savol",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Javobi «ha» bo'ladigan savol",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'sh savol nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Javobida ish ko'p aytilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javobidan ish bilinmaydigan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Suhbat oxiridagi savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki marta berilgan savol",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Botim yoqdimi?» — qanday savol va nega?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Voqea: botni tilga oldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh: ish so'ralmadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bo'sh: savol juda qisqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Voqea: javobi bir og'iz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Oxirgi marta qachon unutgansiz?» — qanday savol?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Voqea: kunni so'radi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Voqea: javobi «ha»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh: kelajakni so'radi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh: botni so'ramadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Suhbatdosh «Ha, ishlataman» dedi. Nima bilinadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Botni har kuni ochishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eslatmani bosgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat uning va'dasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Vazifani unutgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Varaqqa qaysi gap tushadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Siz chiqargan xulosa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kerakli tugmalar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammaga oid umumiy gap",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eshitgan javobning o'zi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uylar band qilinmagach, Airbnb asoschilari qayerga bordi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Nyu-Yorkka, uy egalariga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "San-Frantsiskodagi yig'inga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mehmonxonalarga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb asoschilari Nyu-Yorkda nimani bildi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Narx juda baland ekanini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytga kam kirishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Suratlar yomon chiqqanini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mehmonlar bekor qilishini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Suhbatni kimdan boshlaysiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Bot haqida eshitmagan odamdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botingizni ishlatgan odamdan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdagi a'lochi odamdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot yozishga yordamlashgandan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Eshitgan javobni varaqqa qanday yozasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "«Hamma shunday deydi» deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qisqartirib, xulosam bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozmayman, esimda qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U aytganidek yozaman",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

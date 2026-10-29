@@ -1,0 +1,278 @@
+{
+  "lessonId": "cicd-intro-4c-01-v18",
+  "key": "m4c-01",
+  "modul": 6,
+  "tartib": 8,
+  "nom": {
+    "uz": "CI/CD nima va nega kerak",
+    "ru": "Что такое CI/CD и зачем"
+  },
+  "src": "src/4c-Modull/CiCdIntroLesson.jsx",
+  "barmoq_izi": "8d1ad8f287e1df3bc139980440b4ecce",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Pipeline (lenta) nima?",
+        "variantlar": [
+          "Kodni formatlovchi dastur",
+          "Test yozib beruvchi dastur",
+          "Kodni tekshiruvchi nuqtalar",
+          "Serverni yoquvchi buyruq"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое pipeline (лента)?",
+        "variantlar": [
+          "Программа форматирования кода",
+          "Программа, пишущая тесты",
+          "Точки, проверяющие код",
+          "Команда запуска сервера"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "npm install qaysi nuqtada ishlaydi?",
+        "variantlar": [
+          "Yig'ish (install)",
+          "Uchirish (deploy)",
+          "O'lcham ramkasi (lint)",
+          "O'rash (build)"
+        ]
+      },
+      "ru": {
+        "savol": "На какой точке работает npm install?",
+        "variantlar": [
+          "Сборка (install)",
+          "Взлёт (deploy)",
+          "Рамка (lint)",
+          "Упаковка (build)"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Test qizil (FAIL) bo'lsa nima bo'ladi?",
+        "variantlar": [
+          "Lenta davom etib, uchiradi",
+          "Lenta shu yerda to'xtaydi",
+          "Server butunlay o'chadi",
+          "Xato o'zi tuzatiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если тест красный (FAIL)?",
+        "variantlar": [
+          "Лента продолжит и выложит",
+          "Лента остановится здесь",
+          "Сервер полностью выключится",
+          "Ошибка исправится сама"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "CI nimani anglatadi?",
+        "variantlar": [
+          "Dizaynni doim yangilash",
+          "Serverni uzluksiz kuzatish",
+          "Kodni qo'lda birlashtirish",
+          "Har push'ni o'zi tekshirish"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает CI?",
+        "variantlar": [
+          "Постоянно обновлять дизайн",
+          "Непрерывно следить за сервером",
+          "Вручную объединять код",
+          "Автоматически проверять каждый push"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "CD nima qiladi?",
+        "variantlar": [
+          "Tekshirilgan yukni chiqaradi",
+          "Kodni qo'lda nusxalaydi",
+          "Testlarni o'zi yozib beradi",
+          "Loyihani repoga yuklaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает CD?",
+        "variantlar": [
+          "Выкладывает проверенный груз",
+          "Копирует код вручную",
+          "Сам пишет тесты",
+          "Загружает проект в репозиторий"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "on: push nimani bildiradi?",
+        "variantlar": [
+          "Tugma bosilganda ishlaydi",
+          "Yiliga bir marta ishlaydi",
+          "Har push'da o'zi ishlaydi",
+          "Hech qachon o'zi ishlamaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает on: push?",
+        "variantlar": [
+          "Работает по нажатию кнопки",
+          "Работает раз в год",
+          "Сама запускается на каждый push",
+          "Никогда не запускается сама"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "eslint . qaysi nuqtada ishlatiladi?",
+        "variantlar": [
+          "Uchirish (deploy)",
+          "Yig'ish (install)",
+          "O'rash (build)",
+          "O'lcham ramkasi (lint)"
+        ]
+      },
+      "ru": {
+        "savol": "На какой точке используют eslint .?",
+        "variantlar": [
+          "Взлёт (deploy)",
+          "Сборка (install)",
+          "Упаковка (build)",
+          "Рамка (lint)"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Yukni internetga tayyor holga qaysi nuqta o'raydi?",
+        "variantlar": [
+          "Skaner (test)",
+          "O'rash (build)",
+          "Yig'ish (install)",
+          "Uchirish (deploy)"
+        ]
+      },
+      "ru": {
+        "savol": "Какая точка упаковывает груз для интернета?",
+        "variantlar": [
+          "Сканер (test)",
+          "Упаковка (build)",
+          "Сборка (install)",
+          "Взлёт (deploy)"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "runs-on: ubuntu-latest nima?",
+        "variantlar": [
+          "Loyihaning rasmiy nomi",
+          "Bazaning maxfiy paroli",
+          "Lenta mashinasining muhiti",
+          "Lentadagi testlar soni"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое runs-on: ubuntu-latest?",
+        "variantlar": [
+          "Официальное имя проекта",
+          "Секретный пароль базы",
+          "Среда машины ленты",
+          "Число тестов в ленте"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Uchirish uchun nima shart?",
+        "variantlar": [
+          "Dasturchi tugma bosishi",
+          "Kod hajmi kichik bo'lishi",
+          "Hafta oxiri bo'lishi",
+          "Hamma nuqta yashil bo'lishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно для взлёта?",
+        "variantlar": [
+          "Чтобы программист нажал кнопку",
+          "Чтобы код был маленьким",
+          "Чтобы были выходные",
+          "Чтобы все точки были зелёными"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Test qizil bo'lsa, foydalanuvchi nimani ko'radi?",
+        "variantlar": [
+          "Eski, ishlaydigan saytni",
+          "Buzuq yangi saytni",
+          "Bo'sh oq sahifani",
+          "Xato haqida xabarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что видит пользователь, если тест красный?",
+        "variantlar": [
+          "Старый рабочий сайт",
+          "Сломанный новый сайт",
+          "Пустую белую страницу",
+          "Сообщение об ошибке"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Maxfiy kalit (secret) qayerda saqlanadi?",
+        "variantlar": [
+          "ci.yml ichida, ochiq holda",
+          "Maxsus seyf sozlamalarida",
+          "README oxirgi qatorida",
+          "Terminal tarixida"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранится секретный ключ (secret)?",
+        "variantlar": [
+          "Открыто внутри ci.yml",
+          "В особых настройках сейфа",
+          "В последней строке README",
+          "В истории терминала"
+        ]
+      }
+    }
+  ]
+}

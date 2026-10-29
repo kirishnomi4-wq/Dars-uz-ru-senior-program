@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-04-v1",
+  "key": "m7-04",
+  "modul": 9,
+  "tartib": 4,
+  "nom": {
+    "uz": "Mini-MVP arxitekturasi",
+    "ru": "Архитектура мини-MVP"
+  },
+  "src": "src/7-Modull/MvpArchitectureLesson.jsx",
+  "barmoq_izi": "beb4d0b577288211d2ecbb218e87f49c",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "«Maydon» MVP siga qaysi qismlar yetadi?",
+        "variantlar": [
+          "Sayt, Backend va Database",
+          "Faqat sayt — brauzerda",
+          "Sayt, Backend, AI va Bot",
+          "Faqat Database va jadval"
+        ]
+      },
+      "ru": {
+        "savol": "Каких частей хватает MVP «Maydon»?",
+        "variantlar": [
+          "Сайт, Backend и Database",
+          "Только сайт — в браузере",
+          "Сайт, Backend, AI и бот",
+          "Только Database и таблица"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Kataklarni ekranda qaysi qism chizadi?",
+        "variantlar": [
+          "Backend — hisoblaydi",
+          "Sayt — ko'rsatadi",
+          "Database — saqlaydi",
+          "Agent — kod yozgan"
+        ]
+      },
+      "ru": {
+        "savol": "Какая часть рисует ячейки на экране?",
+        "variantlar": [
+          "Backend — вычисляет",
+          "Сайт — показывает",
+          "Database — хранит",
+          "Агент — написал код"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Yangi band qilinganda bandlar jadvaliga nima qo'shiladi?",
+        "variantlar": [
+          "Yangi ustun",
+          "Yangi jadval",
+          "Yangi qator",
+          "Yangi yo'l"
+        ]
+      },
+      "ru": {
+        "savol": "Что добавляется в таблицу bandlar при новой брони?",
+        "variantlar": [
+          "Новый столбец",
+          "Новая таблица",
+          "Новая строка",
+          "Новый маршрут"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "baho ustuni nega jadvalda yo'q?",
+        "variantlar": [
+          "Database baho saqlamaydi",
+          "Bahoni sayt hisoblaydi",
+          "Ustunlar soni cheklangan",
+          "Baho «qilmaymiz» ro'yxatida"
+        ]
+      },
+      "ru": {
+        "savol": "Почему в таблице нет столбца baho?",
+        "variantlar": [
+          "Database не хранит оценку",
+          "Оценку вычисляет сайт",
+          "Число столбцов ограничено",
+          "Оценка в списке «не делаем»"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Sayt kataklarni qaysi yo'ldan oladi?",
+        "variantlar": [
+          "GET /vaqtlar",
+          "POST /bandlar",
+          "POST /kirish",
+          "GET /bandlar"
+        ]
+      },
+      "ru": {
+        "savol": "По какому маршруту сайт получает ячейки?",
+        "variantlar": [
+          "GET /vaqtlar",
+          "POST /bandlar",
+          "POST /kirish",
+          "GET /bandlar"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Dushanba uchun qator yo'q. Sayt nima ko'rsatadi?",
+        "variantlar": [
+          "Kataklar chiqmaydi",
+          "Olti katak, hammasi bo'sh",
+          "Olti katak, hammasi band",
+          "Sayt xato ko'rsatadi"
+        ]
+      },
+      "ru": {
+        "savol": "На понедельник строк нет. Что покажет сайт?",
+        "variantlar": [
+          "Ячейки не появятся",
+          "Шесть ячеек, все свободны",
+          "Шесть ячеек, все заняты",
+          "Сайт покажет ошибку"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Tokensiz bandlar so'raldi. Backend nima qiladi?",
+        "variantlar": [
+          "Ro'yxatni to'liq qaytaradi",
+          "Bo'sh ro'yxat qaytaradi",
+          "401 bilan rad etadi",
+          "Saytni yopib qo'yadi"
+        ]
+      },
+      "ru": {
+        "savol": "Брони запросили без токена. Что сделает Backend?",
+        "variantlar": [
+          "Вернёт весь список",
+          "Вернёт пустой список",
+          "Откажет с кодом 401",
+          "Закроет сайт"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Ega to'g'ri parol yozdi. POST /kirish nima qaytaradi?",
+        "variantlar": [
+          "Bandlar ro'yxatini",
+          "Parolning o'zini",
+          "Kataklar ro'yxatini",
+          "Ega uchun tokenni"
+        ]
+      },
+      "ru": {
+        "savol": "Владелец ввёл верный пароль. Что вернёт POST /kirish?",
+        "variantlar": [
+          "Список броней",
+          "Сам пароль",
+          "Список ячеек",
+          "Токен для владельца"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": ".env repo'ga qo'shilmasin. Nima qilasiz?",
+        "variantlar": [
+          ".gitignore ga yozaman",
+          "Fayl nomini o'zgartiraman",
+          "Faylni web/ ga ko'chiraman",
+          "Qatorlarini o'chiraman"
+        ]
+      },
+      "ru": {
+        "savol": ".env не должен попасть в репо. Что делаете?",
+        "variantlar": [
+          "Впишу в .gitignore",
+          "Поменяю имя файла",
+          "Перенесу файл в web/",
+          "Удалю строки внутри"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Stack nima?",
+        "variantlar": [
+          "Bitta katta dastur fayli",
+          "Birga ishlovchi texnologiyalar",
+          "Saytdagi tugma va sahifalar",
+          "Database'dagi jadvallar"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое стек?",
+        "variantlar": [
+          "Один большой файл программы",
+          "Технологии, работающие вместе",
+          "Кнопки и страницы сайта",
+          "Таблицы в Database"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Sayt internetda, Backend sizda. Do'st nima ko'radi?",
+        "variantlar": [
+          "Hamma kataklarni",
+          "Hech narsa — ochilmaydi",
+          "Sahifani, lekin kataklarsiz",
+          "Faqat band kataklarni"
+        ]
+      },
+      "ru": {
+        "savol": "Сайт в интернете, Backend у вас. Что увидит друг?",
+        "variantlar": [
+          "Все ячейки",
+          "Ничего — не откроется",
+          "Страницу, но без ячеек",
+          "Только занятые ячейки"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Kod yozishdan oldin chizma nega kerak?",
+        "variantlar": [
+          "Kod tezroq ishlaydi",
+          "Dizayn chiroyli chiqadi",
+          "Deploy shart bo'lmaydi",
+          "Agentga joyni aniq aytasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем схема до написания кода?",
+        "variantlar": [
+          "Код работает быстрее",
+          "Дизайн получится красивее",
+          "Деплой не понадобится",
+          "Вы точно скажете агенту, где что"
+        ]
+      }
+    }
+  ]
+}

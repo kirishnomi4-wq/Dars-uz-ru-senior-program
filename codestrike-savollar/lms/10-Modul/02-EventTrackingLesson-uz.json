@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hodisa nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Jadvalga yoziladigan harakat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jadvaldagi yangi ustun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytdagi katta tugma",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'dagi so'rov yo'li",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "hodisalar jadvalidagi bitta qator nimani bildiradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Bitta brauzerni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta hodisani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bitta o'yinchini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta kunni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifa ochilishini jadvalga kim yuboradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Umami ochdini yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database ochdi qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt ochdi deb yuboradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend ochdi qo'shadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hodisaga nega telefon yozilmaydi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Raqam jadvalga sig'maydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend raqamni o'qimaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umami raqamni yashiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochgan odam hali bermagan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Brauzer ID qayerda saqlanadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Brauzer xotirasida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "bandlar jadvalida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umami sozlamalarida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ning .env faylida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifa yangilandi. Brauzer ID nima bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Yangi ID olinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zgarmay qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefonga almashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend uni o'chiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "band-qildi qachon yuboriladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«Band qilish» bosilishi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Forma ochilgan zahoti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band saqlangandan keyin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ega ro'yxatni ochganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "COUNT(DISTINCT brauzer_id) nimani sanaydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Hamma qatorlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa nomlari sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh kataklar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har xil brauzerlar sonini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qatorlarni sanasak, qanday xato chiqadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bir brauzer ko'p sanaladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Band qilganlar sanalmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umami soni ikkilanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh kataklar sanaladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Umami 31, jadval 36. Bu nima degani?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Jadval xato, tuzatamiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki tizim har xil sanaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Umami xato, o'chiramiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Besh kishi ikki marta ochgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida reklama to'sgichi nimani to'sdi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "POST /bandlar so'rovini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytdagi vaqt kataklarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umami skriptini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Brauzer xotirasini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hodisalarni nega o'z jadvalimizga ham yozamiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Umami endi kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt tezroq ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend shunda uxlamaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sonlarni o'zimiz sanaymiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

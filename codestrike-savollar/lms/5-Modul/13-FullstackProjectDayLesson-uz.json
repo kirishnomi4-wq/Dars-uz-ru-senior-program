@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Baza (2 jadval) nima uchun kerak?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ma'lumotni saqlab, bog'lash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat rang berish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani bezash uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetni tezlatish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Joy bandligi qaysi turda saqlanadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "TEXT (matn)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "SERIAL (raqam)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "BOOLEAN (true/false)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "TIMESTAMP (sana va vaqt)",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sessiyani joyga qaysi ustun bog'laydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "plate",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "spot_id",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "fee",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "entered_at",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "REFERENCES spots(id) nima beradi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Yangi jadval yaratadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustunga rang beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'rovni tezlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foreign key bog'lanishi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mashina kirganda qaysi amal ishlaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "POST",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "CSS",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mashina chiqqanida qaysi amal ishlaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "GET",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "POST",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki jadvalni birga o'qish uchun?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "JOIN",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "INSERT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DROP",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "JOIN ON sharti qanday yoziladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "id = plate",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "spot_id = id",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "label = spot",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "fee = id",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Joylarni panelga qanday olamiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "DROP",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Panel rangi nimaga qarab o'zgaradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "plate",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "is_busy",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "fee",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "id",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qorovulga eng yaxshi panel qanday?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ko'p matn, mayda tugmalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Raqamli quruq jadval",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rang, katta tugma, kam matn",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uzun ko'rsatma matni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Fullstack loyiha nimalardan iborat?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Front + server + baza",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat ma'lumotlar bazasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat frontend qismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat rang va bezaklar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

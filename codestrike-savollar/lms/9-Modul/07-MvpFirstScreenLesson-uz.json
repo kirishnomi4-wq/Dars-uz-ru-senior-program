@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Talab nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Promptdagi uch qismli vazifa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agentning «Tayyor» javobi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytdagi tugma va ranglar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'dagi yo'llar ro'yxati",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kataklar ostida 2-ro'yxat chiqdi. Nima yetmadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Nima qilsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayerda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nima buzilmasin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Texnologiya",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri yaxshi talab?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Chiroyli, zamonaviy qil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zing bilganingcha tuzat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kataklar Backend'dan kelsin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kataklar bilan nimadir qil",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent «Tayyor» dedi. Nima qilasiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Keyingi talabni yuborasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Rostdanmi?» deb so'raysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni qayta yozdirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har qatorni saytda tekshirasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Nima buzilmasin» qatoriga nima yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ishlab turgan narsalar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qurilmagan funksiyalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi kutubxona kerakligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish necha daqiqa olishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GET /vaqtlar?kun=2026-10-10 nima qaytaradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Band qilganlar ismlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shu kun kataklari va holati",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hafta kunlari nomlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosh sahifaning kodi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Katak «band» ekanini Backend qayerdan biladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Almashtirgich rangidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umami hodisasidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "bandlar jadvalidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Brauzer localStorageidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir qator mos kelmadi. Agentga nima yozasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "«Ishlamayapti, tuzat»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni qayta yozdirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa agentga o'tish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'rganingiz va kutganingiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Terminalda xato chiqdi. Agentga nima yuborasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Xato matni va «Tuzat»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat «Ishlamayapti»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyihani qayta yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat «Yordam ber»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Talabda React yoki NestJS ni yozish kerakmi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ha — har talabda kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — stack repo'da bor",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha — agent usiz bilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — agent o'zi topadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend javob bermasa, sayt nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Oq sahifa ko'rsatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eski kataklarni ko'rsatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuklab bo'lmadi deydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend'ni qayta yoqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "9-oktabr tanlandi. So'rov qaysi manzilga ketadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "/vaqtlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "/bandlar?kun=2026-10-09",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "/kirish?kun=2026-10-09",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "/vaqtlar?kun=2026-10-09",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

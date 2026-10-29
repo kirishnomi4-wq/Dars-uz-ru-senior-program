@@ -1,0 +1,278 @@
+{
+  "lessonId": "node-server-04-03-v18",
+  "key": "m4-04",
+  "modul": 5,
+  "tartib": 4,
+  "nom": {
+    "uz": "Node.js — birinchi serveringiz",
+    "ru": "Node.js — первый сервер"
+  },
+  "src": "src/4-Modull/NodeServerLesson.jsx",
+  "barmoq_izi": "8a5cba829901ba038d114809ddcf7ccb",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 3,
+      "uz": {
+        "savol": "Server nima?",
+        "variantlar": [
+          "Internetni tezlatuvchi qurilma",
+          "Rasmlar turadigan papka",
+          "Brauzerdagi bitta oyna",
+          "So'rovga javob beruvchi dastur"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое сервер?",
+        "variantlar": [
+          "Устройство, ускоряющее интернет",
+          "Папка с картинками",
+          "Одно окно в браузере",
+          "Программа, отвечающая на запросы"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Node.js nima imkon beradi?",
+        "variantlar": [
+          "Faqat HTML sahifa yasaydi",
+          "Rasmlarni tahrirlaydi",
+          "JavaScript serverda ishlaydi",
+          "Internetni ulab beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что позволяет Node.js?",
+        "variantlar": [
+          "Делает только HTML-страницы",
+          "Редактирует картинки",
+          "JavaScript работает на сервере",
+          "Подключает интернет"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "npm nima qiladi?",
+        "variantlar": [
+          "Tayyor paketlarni o'rnatadi",
+          "Kodni o'zi o'chiradi",
+          "Serverni butunlay o'chiradi",
+          "Brauzer oynasini ochadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает npm?",
+        "variantlar": [
+          "Устанавливает готовые пакеты",
+          "Сам удаляет код",
+          "Полностью выключает сервер",
+          "Открывает окно браузера"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Express nima?",
+        "variantlar": [
+          "Ma'lumot saqlovchi baza",
+          "Serverni osonlatuvchi paket",
+          "Rasm uchun maxsus format",
+          "Brauzerning yangi turi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое Express?",
+        "variantlar": [
+          "База для хранения данных",
+          "Пакет, упрощающий сервер",
+          "Особый формат картинок",
+          "Новый вид браузера"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Endpoint nima?",
+        "variantlar": [
+          "Serverni o'chiradigan tugmacha",
+          "Serverning aniq manzil-eshigi",
+          "Internet ulanish tezligi",
+          "Saqlangan faylning nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое endpoint?",
+        "variantlar": [
+          "Кнопка выключения сервера",
+          "Точный адрес-дверь сервера",
+          "Скорость интернет-соединения",
+          "Имя сохранённого файла"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "res.send nima qiladi?",
+        "variantlar": [
+          "Serverni ishga tushiradi",
+          "Yangi paket o'rnatadi",
+          "Yangi bitta endpoint yaratadi",
+          "So'rovga javob (tovar) beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает res.send?",
+        "variantlar": [
+          "Запускает сервер",
+          "Устанавливает новый пакет",
+          "Создаёт один новый endpoint",
+          "Отдаёт ответ (товар) на запрос"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "app.listen(3000) nima qiladi?",
+        "variantlar": [
+          "Serverni yoqib, so'rov kutadi",
+          "Yangi bo'sh fayl yaratadi",
+          "Barcha ma'lumotni o'chiradi",
+          "Brauzer oynasini yopadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает app.listen(3000)?",
+        "variantlar": [
+          "Включает сервер и ждёт запросы",
+          "Создаёт новый пустой файл",
+          "Удаляет все данные",
+          "Закрывает окно браузера"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "localhost:3000 nima?",
+        "variantlar": [
+          "Uzoqdagi tashqi sayt",
+          "Ma'lumot saqlovchi baza",
+          "O'z kompyuteringizdagi server",
+          "Wi-Fi routerning nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое localhost:3000?",
+        "variantlar": [
+          "Удалённый внешний сайт",
+          "База для хранения данных",
+          "Сервер на вашем компьютере",
+          "Имя Wi-Fi роутера"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "ECONNREFUSED xatosi nega chiqadi?",
+        "variantlar": [
+          "Server o'chiq (do'kon yopiq)",
+          "Kod juda uzun yozilgan",
+          "Rasm hajmi juda katta",
+          "Internet juda sekin ishlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему появляется ошибка ECONNREFUSED?",
+        "variantlar": [
+          "Сервер выключен (магазин закрыт)",
+          "Код написан слишком длинно",
+          "Картинка слишком большая",
+          "Интернет работает слишком медленно"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "NestJS Express'dan nimasi bilan farq qiladi?",
+        "variantlar": [
+          "U umuman ishlamaydi",
+          "Tartibli, katta loyihaga",
+          "Faqat HTML kod yozadi",
+          "Serverni sekinlatadi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем NestJS отличается от Express?",
+        "variantlar": [
+          "Он вообще не работает",
+          "Упорядочен, для больших проектов",
+          "Пишет только HTML",
+          "Замедляет сервер"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Server kodi tartibi qanday?",
+        "variantlar": [
+          "Yoq → eshik → yarat → chaqir",
+          "Eshik → yoq → chaqir → yarat",
+          "Yarat → yoq → chaqir → eshik",
+          "Chaqir → yarat → eshik → yoq"
+        ]
+      },
+      "ru": {
+        "savol": "Каков порядок кода сервера?",
+        "variantlar": [
+          "Включить → вход → создать → подключить",
+          "Вход → включить → подключить → создать",
+          "Создать → включить → подключить → вход",
+          "Подключить → создать → вход → включить"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "package.json nima?",
+        "variantlar": [
+          "Serverni yoqadigan kod qatori",
+          "Endpoint ning manzili",
+          "O'rnatilgan paketlar ro'yxati",
+          "Brauzer sozlama fayli"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое package.json?",
+        "variantlar": [
+          "Строка кода, включающая сервер",
+          "Адрес endpoint",
+          "Список установленных пакетов",
+          "Файл настроек браузера"
+        ]
+      }
+    }
+  ]
+}

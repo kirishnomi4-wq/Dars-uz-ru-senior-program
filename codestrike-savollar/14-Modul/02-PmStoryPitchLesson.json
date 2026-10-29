@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m12d2-v2",
+  "key": "m12-02",
+  "modul": 14,
+  "tartib": 2,
+  "nom": {
+    "uz": "Mahsulotingiz hikoyasini qanday aytasiz?",
+    "ru": "Как рассказать историю вашего продукта?"
+  },
+  "src": "src/12-Modull/PmStoryPitchLesson.jsx",
+  "barmoq_izi": "b550c815cb8677858910af5088539462",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Mahsulot hikoyasi qaysi uch qismdan iborat?",
+        "variantlar": [
+          "Kim, lahza va o'zgarish",
+          "Muammo, Bozor va Jamoa",
+          "Funksiya, ekran, tugma",
+          "Logotip, rang, shrift"
+        ]
+      },
+      "ru": {
+        "savol": "Из каких трёх частей состоит история продукта?",
+        "variantlar": [
+          "Кто, момент и изменение",
+          "Проблема, Рынок и Команда",
+          "Функция, экран, кнопка",
+          "Логотип, цвет, шрифт"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor misolida lahza qachon bo'lgan?",
+        "variantlar": [
+          "Juma kuni, soat 18:00 da",
+          "Shanba kuni, soat 18:00 da",
+          "Yakshanba kuni, soat 9:00 da",
+          "Dushanba kuni, tanaffusda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда в примере Ментора был момент?",
+        "variantlar": [
+          "В пятницу, в 18:00",
+          "В субботу, в 18:00",
+          "В воскресенье, в 9:00",
+          "В понедельник, на перемене"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor lahzasida maydonda nechta odam bo'lgan?",
+        "variantlar": [
+          "10 kishi",
+          "9 kishi",
+          "8 kishi",
+          "2 kishi"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько человек было на площадке в моменте Ментора?",
+        "variantlar": [
+          "10 человек",
+          "9 человек",
+          "8 человек",
+          "2 человека"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "O'zgarishdan keyin Mentor ekranida nima chiqadi?",
+        "variantlar": [
+          "8 / 10, ikki joy bo'sh",
+          "10 / 10, hamma joy band",
+          "0 / 10, hech kim yo'q",
+          "9 / 10, bitta joy bo'sh"
+        ]
+      },
+      "ru": {
+        "savol": "Что видно на экране Ментора после изменения?",
+        "variantlar": [
+          "8 / 10, два места свободны",
+          "10 / 10, все места заняты",
+          "0 / 10, никого нет",
+          "9 / 10, одно место свободно"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Funksiyalar ro'yxati zalga nimani aytadi?",
+        "variantlar": [
+          "Mahsulotda nima borligini",
+          "Kimda nima bo'lganini",
+          "Qaysi kuni nima bo'lganini",
+          "Mahsulot nima o'zgartirgani"
+        ]
+      },
+      "ru": {
+        "savol": "Что список функций говорит залу?",
+        "variantlar": [
+          "Что есть в продукте",
+          "Что случилось и с кем",
+          "Что было в какой день",
+          "Что изменил продукт"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Hikoyada ro'yxat chiqsa, nima qilasiz?",
+        "variantlar": [
+          "Ro'yxatni tezroq aytaman",
+          "Ro'yxatga funksiya qo'shaman",
+          "Bitta o'zgarishni aytaman",
+          "Hikoyani olib tashlayman"
+        ]
+      },
+      "ru": {
+        "savol": "Если в истории появился список, что сделаете?",
+        "variantlar": [
+          "Скажу список быстрее",
+          "Добавлю функцию в список",
+          "Назову одно изменение",
+          "Уберу историю"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Mahsulot hikoyasi qaysi gap bilan boshlanadi?",
+        "variantlar": [
+          "Mahsulot nomi bilan",
+          "Bitta lahza bilan",
+          "Funksiyalar soni bilan",
+          "Foydalanuvchilar soni bilan"
+        ]
+      },
+      "ru": {
+        "savol": "С какой фразы начинается история продукта?",
+        "variantlar": [
+          "С названия продукта",
+          "С одного момента",
+          "С числа функций",
+          "С числа пользователей"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Hikoya necha daqiqaga sig'ishi kerak?",
+        "variantlar": [
+          "3 daqiqaga",
+          "5 daqiqaga",
+          "2 daqiqaga",
+          "1 daqiqaga"
+        ]
+      },
+      "ru": {
+        "savol": "Во сколько минут должна уложиться история?",
+        "variantlar": [
+          "В 3 минуты",
+          "В 5 минут",
+          "В 2 минуты",
+          "В 1 минуту"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Hikoyadagi o'zgarish pitchning qaysi bo'lagida ko'rinadi?",
+        "variantlar": [
+          "Bozor bo'lagida",
+          "Muammo bo'lagida",
+          "Yechim bo'lagida",
+          "Keyingi qadamda"
+        ]
+      },
+      "ru": {
+        "savol": "В какой части питча видно изменение из истории?",
+        "variantlar": [
+          "В части «Рынок»",
+          "В части «Проблема»",
+          "В части «Решение»",
+          "В Следующем шаге"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Raqamlar bo'lagi nimani aytadi?",
+        "variantlar": [
+          "Foydalanuvchilar sonini",
+          "Lahza qachon bo'lganini",
+          "Mahsulotni kim qilganini",
+          "Hakamdan nima so'ralishini"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорит часть «Цифры»?",
+        "variantlar": [
+          "Число пользователей",
+          "Когда был момент",
+          "Кто делает продукт",
+          "О чём просят судью"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Videodan keyin qaysi savolni berasiz?",
+        "variantlar": [
+          "Video nechta layk oldi?",
+          "Qaysi chatga tashlayman?",
+          "Yuzim yaxshi chiqdimi?",
+          "Hikoya lahzadan boshlandimi?"
+        ]
+      },
+      "ru": {
+        "savol": "Какой вопрос зададите после видео?",
+        "variantlar": [
+          "Сколько лайков у видео?",
+          "В какой чат отправлю?",
+          "Хорошо ли вышло лицо?",
+          "Началась ли история с момента?"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Hikoya videosi qayerda qoladi?",
+        "variantlar": [
+          "Sinf chatida",
+          "Faqat telefoningizda",
+          "Maktab saytida",
+          "Mentorning telefonida"
+        ]
+      },
+      "ru": {
+        "savol": "Где остаётся видео с историей?",
+        "variantlar": [
+          "В чате класса",
+          "Только на вашем телефоне",
+          "На сайте школы",
+          "На телефоне Ментора"
+        ]
+      }
+    }
+  ]
+}

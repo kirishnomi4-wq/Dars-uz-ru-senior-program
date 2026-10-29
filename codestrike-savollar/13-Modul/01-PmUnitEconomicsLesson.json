@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m11d1-v1",
+  "key": "m11-01",
+  "modul": 13,
+  "tartib": 1,
+  "nom": {
+    "uz": "Bitta foydalanuvchi sizga qanchaga tushadi?",
+    "ru": "Во сколько вам обходится один пользователь?"
+  },
+  "src": "src/11-Modull/PmUnitEconomicsLesson.jsx",
+  "barmoq_izi": "8f412c3b239819aa530c995846a80c7c",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Jalb qilish narxida qaysi pul olinadi?",
+        "variantlar": [
+          "Kanallarga ketgan pul",
+          "Pro uchun to'langan pul",
+          "O'yinchi bergan pul",
+          "Postga ketgan vaqt"
+        ]
+      },
+      "ru": {
+        "savol": "Какие деньги берут для цены привлечения?",
+        "variantlar": [
+          "Деньги на каналы",
+          "Деньги за Pro",
+          "Деньги от игрока",
+          "Время на пост"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor misolida bepul kanallar nimaga tushdi?",
+        "variantlar": [
+          "Har kishiga 5 000 so'm",
+          "Pulga emas, vaqtga",
+          "Pro narxiga, 10 000 so'm",
+          "Hech narsaga, vaqt ham yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Во что обошлись бесплатные каналы в примере Ментора?",
+        "variantlar": [
+          "5 000 сумов на человека",
+          "Не в деньги, а во время",
+          "В цену Pro, 10 000 сумов",
+          "Ни во что, даже времени нет"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida ilovaga kim pul to'lashi mumkin?",
+        "variantlar": [
+          "Har bir foydalanuvchi",
+          "Faqat sinfdoshlar",
+          "Pro oladigan tashkilotchi",
+          "Maydon egasi har o'yinda"
+        ]
+      },
+      "ru": {
+        "savol": "Кто может платить за приложение в примере Ментора?",
+        "variantlar": [
+          "Каждый пользователь",
+          "Только одноклассники",
+          "Организатор, берущий Pro",
+          "Владелец поля за каждую игру"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor misolida Pro nima?",
+        "variantlar": [
+          "Bir martalik kirish puli",
+          "Har o'yin uchun to'lov",
+          "Yangi ilova versiyasi",
+          "30 kunlik pullik obuna"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое Pro в примере Ментора?",
+        "variantlar": [
+          "Разовая плата за вход",
+          "Плата за каждую игру",
+          "Новая версия приложения",
+          "Платная подписка на 30 дней"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor taxmini: Pro tashkilotchi qancha keltiradi?",
+        "variantlar": [
+          "30 000 so'm",
+          "10 000 so'm",
+          "60 000 so'm",
+          "20 000 so'm"
+        ]
+      },
+      "ru": {
+        "savol": "Предположение Ментора: сколько принесёт организатор с Pro?",
+        "variantlar": [
+          "30 000 сумов",
+          "10 000 сумов",
+          "60 000 сумов",
+          "20 000 сумов"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Yangi kelganlar 0 bo'lsa, jalbNarxi nima qaytaradi?",
+        "variantlar": [
+          "0",
+          "null",
+          "Sarflangan pulni",
+          "Infinity"
+        ]
+      },
+      "ru": {
+        "savol": "Что вернёт jalbNarxi, если новых пользователей 0?",
+        "variantlar": [
+          "0",
+          "null",
+          "Потраченные деньги",
+          "Infinity"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaytganlar foizi nimani sanaydi?",
+        "variantlar": [
+          "Obunani uzaytirganlarni",
+          "Pro olgan tashkilotchilarni",
+          "Yana ochgan qurilmalarni",
+          "Kanaldan kelgan yangilarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает процент вернувшихся?",
+        "variantlar": [
+          "Тех, кто продлил подписку",
+          "Организаторов, взявших Pro",
+          "Устройства, открывшие снова",
+          "Новых людей из каналов"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Jalb qilish narxi 25 000, keltiradi 20 000. Natija?",
+        "variantlar": [
+          "Qoplanadi",
+          "Teng",
+          "Noma'lum",
+          "Zarar"
+        ]
+      },
+      "ru": {
+        "savol": "Цена привлечения 25 000, приносит 20 000. Итог?",
+        "variantlar": [
+          "Окупается",
+          "Равно",
+          "Неизвестно",
+          "Убыток"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor misolida bepul kanallar nega chegarali?",
+        "variantlar": [
+          "A'zolar soni cheklangan",
+          "Keyin pul to'lash kerak",
+          "Post yozish taqiqlangan",
+          "Bir haftada yopiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему бесплатные каналы в примере Ментора ограничены?",
+        "variantlar": [
+          "Число участников ограничено",
+          "Потом нужно платить",
+          "Посты писать запрещено",
+          "Закрываются через неделю"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Jalb qilish narxida kim yangi sanaladi?",
+        "variantlar": [
+          "Ilovani bir marta ochgan",
+          "Shu davrda ro'yxatdan o'tgan",
+          "Pro uchun pul to'lagan",
+          "Postni o'qigan har kim"
+        ]
+      },
+      "ru": {
+        "savol": "Кто считается новым в цене привлечения?",
+        "variantlar": [
+          "Кто раз открыл приложение",
+          "Кто зарегистрировался за период",
+          "Кто заплатил за Pro",
+          "Каждый, кто прочитал пост"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Pullik kanalda kimni jalb qilish narxi olinadi?",
+        "variantlar": [
+          "Kanaldan kelgan har kishini",
+          "Ilovadagi hammani",
+          "To'lovchini",
+          "Eng ko'p o'ynaganni"
+        ]
+      },
+      "ru": {
+        "savol": "Чью цену привлечения берут для платного канала?",
+        "variantlar": [
+          "Каждого пришедшего из канала",
+          "Всех в приложении",
+          "Плательщика",
+          "Кто больше всех играет"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Keltiradigan pulni qanday hisoblaymiz?",
+        "variantlar": [
+          "Narx × kishilar soni",
+          "Narx + kanal puli",
+          "Oylar ÷ kishilar soni",
+          "Narx × oylar soni"
+        ]
+      },
+      "ru": {
+        "savol": "Как считаем приносимые деньги?",
+        "variantlar": [
+          "Цена × число людей",
+          "Цена + деньги на канал",
+          "Месяцы ÷ число людей",
+          "Цена × число месяцев"
+        ]
+      }
+    }
+  ]
+}

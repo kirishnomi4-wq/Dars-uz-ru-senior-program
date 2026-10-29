@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinfdosh sanoq sahifasi manzilini bildi. Sonlarni ko'radimi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Yo'q, kalit kerak",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, manzil yetadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, lending ochiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, ilovasi bo'lsa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend SANOQ_KALITI ni qayerdan oladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Backend kodidagi qatordan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Render'dagi Environment'dan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Repo'dagi README'dan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending sahifasi kodidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sanoq sahifasi o'zi qanday yangilanadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Har 5 soniyada so'raydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ega qo'lda yangilaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ulanishdan xabar keladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova sonni yozib boradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "20 qurilmadan 15 tasi keyingi qadamga o'tdi. Foiz qancha?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "15 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "20 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "75 foiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi telefonda 3 marta ochdingiz. ochdi qanchaga oshadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Bittaga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uchtaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oshmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkitaga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ro'yxatdan o'tdi»: sanoqda 30, Database'da 28. Nega?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Sanoq xato sanagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qurilma va akkaunt farqi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database xato yozgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kimdir ikki marta ochgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Netflix: ko'rishlarning qariyb 80 foizi qayerdan keladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Qidiruv qatoridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklama oynalaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tavsiyalar qatoridan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Do'stlar linkidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu darsda nechta to'xtab qolish qadami tuzatiladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ikkalasi, birdaniga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech biri, kutiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchalasi, navbat bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bittasi, ikkinchisi keyin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kirmagan odam «Qo'shilaman»ni bossa, nima ochiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "«Ro'yxatdan o'tish» ekrani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«O'yin to'ldi» yozuvi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchilar ismlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'rnatish fayli",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mehmon ko'rinishi APK'li telefonda qachon chiqadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "git push qilinganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi faylni o'rnatgach",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Render qayta yoqilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova qayta ochilganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Gipotezada «chunki» qismi nimani aytadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Nimani o'zgartirishimizni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qancha vaqt ketishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nega shunday kutishimizni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kim tuzatib berishini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent «tuzatdim» dedi. Birinchi nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yangi fayl tayyorlaysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lendingga link qo'yasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Gipoteza isbotlandi deysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zingiz tekshirasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

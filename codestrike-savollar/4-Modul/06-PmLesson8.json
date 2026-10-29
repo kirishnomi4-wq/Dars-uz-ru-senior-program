@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m3d5-v1",
+  "key": "m3-05",
+  "modul": 4,
+  "tartib": 6,
+  "nom": {
+    "uz": "Qaysi ishni birinchi qilasiz?",
+    "ru": "Какую задачу сделаете первой?"
+  },
+  "src": "src/3-Modull/PmLesson8.jsx",
+  "barmoq_izi": "5fd1d3150e8b2ea4913aaf7b5ac0a172",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Har ishga nechta savol beriladi?",
+        "variantlar": [
+          "Bitta savol",
+          "Ikkita savol",
+          "Uchta savol",
+          "To'rtta savol"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько вопросов задают каждой задаче?",
+        "variantlar": [
+          "Один вопрос",
+          "Два вопроса",
+          "Три вопроса",
+          "Четыре вопроса"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Birinchi savol nimani so'raydi?",
+        "variantlar": [
+          "Buni nechta odam so'raydi",
+          "Bu qancha vaqt oladi",
+          "Buni kim buyurtma qildi",
+          "Bu qanday ko'rinadi"
+        ]
+      },
+      "ru": {
+        "savol": "О чём спрашивает первый вопрос?",
+        "variantlar": [
+          "Сколько людей об этом просят",
+          "Сколько времени это займёт",
+          "Кто это заказал",
+          "Как это выглядит"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "Ikkinchi savol nimani so'raydi?",
+        "variantlar": [
+          "Ishni kim buyurtma qilganini",
+          "Ishni nechta odam so'rashini",
+          "Ish qanday ko'rinishini",
+          "Ish qancha vaqt olishini"
+        ]
+      },
+      "ru": {
+        "savol": "О чём спрашивает второй вопрос?",
+        "variantlar": [
+          "Кто заказал задачу",
+          "Сколько людей просят задачу",
+          "Как задача выглядит",
+          "Сколько времени займёт задача"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Ko'p odam so'raydi, kam vaqt oladi — qaysi katak?",
+        "variantlar": [
+          "🏔 Rejaga tushadi",
+          "🌱 Vaqt bo'lsa",
+          "🎯 Darrov qilinadi",
+          "🗑 Kerak emas"
+        ]
+      },
+      "ru": {
+        "savol": "Просят многие, времени мало — какая клетка?",
+        "variantlar": [
+          "🏔 Ставим в план",
+          "🌱 Когда будет время",
+          "🎯 Делаем сразу",
+          "🗑 Не нужно"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Ko'p odam so'raydi, ko'p vaqt oladi — qaysi katak?",
+        "variantlar": [
+          "🏔 Rejaga tushadi",
+          "🎯 Darrov qilinadi",
+          "🌱 Vaqt bo'lsa",
+          "🗑 Kerak emas"
+        ]
+      },
+      "ru": {
+        "savol": "Просят многие, времени много — какая клетка?",
+        "variantlar": [
+          "🏔 Ставим в план",
+          "🎯 Делаем сразу",
+          "🌱 Когда будет время",
+          "🗑 Не нужно"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Kam odam so'raydi, ko'p vaqt oladi — qaysi katak?",
+        "variantlar": [
+          "🎯 Darrov qilinadi",
+          "🏔 Rejaga tushadi",
+          "🌱 Vaqt bo'lsa",
+          "🗑 Kerak emas"
+        ]
+      },
+      "ru": {
+        "savol": "Просят немногие, времени много — какая клетка?",
+        "variantlar": [
+          "🎯 Делаем сразу",
+          "🏔 Ставим в план",
+          "🌱 Когда будет время",
+          "🗑 Не нужно"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Kam odam so'raydi, kam vaqt oladi — qaysi katak?",
+        "variantlar": [
+          "🗑 Kerak emas",
+          "🌱 Vaqt bo'lsa",
+          "🎯 Darrov qilinadi",
+          "🏔 Rejaga tushadi"
+        ]
+      },
+      "ru": {
+        "savol": "Просят немногие, времени мало — какая клетка?",
+        "variantlar": [
+          "🗑 Не нужно",
+          "🌱 Когда будет время",
+          "🎯 Делаем сразу",
+          "🏔 Ставим в план"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Ikki ish ham bir kunlik. Qaysi biri birinchi?",
+        "variantlar": [
+          "Ro'yxatda yuqori turgani",
+          "Qiziqroq bo'lgani",
+          "Ko'proq odam so'ragani",
+          "Kechroq so'ralgani"
+        ]
+      },
+      "ru": {
+        "savol": "Обе задачи на один день. Какая первой?",
+        "variantlar": [
+          "Та, что выше в списке",
+          "Та, что интереснее",
+          "Та, что просят больше людей",
+          "Та, что попросили позже"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Ish vaqti o'zgarsa, nima qilinadi?",
+        "variantlar": [
+          "Kataklar o'chiriladi",
+          "Ish ro'yxatdan olinadi",
+          "Hech narsa o'zgarmaydi",
+          "Karta yangi katakka o'tadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают, если время задачи изменилось?",
+        "variantlar": [
+          "Клетки удаляют",
+          "Задачу убирают из списка",
+          "Ничего не меняется",
+          "Карточка переходит в новую клетку"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Ish qancha vaqt olishini kim chamalaydi?",
+        "variantlar": [
+          "Sayt buyurtma qilgan odam",
+          "Ishni o'zi qiladigan odam",
+          "Saytga kiradigan mehmon",
+          "Reklama beradigan do'kon"
+        ]
+      },
+      "ru": {
+        "savol": "Кто прикидывает, сколько времени займёт задача?",
+        "variantlar": [
+          "Тот, кто заказал сайт",
+          "Тот, кто сам делает задачу",
+          "Гость, который заходит на сайт",
+          "Магазин, который даёт рекламу"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Stories'ni kim birinchi o'ylab topgan?",
+        "variantlar": [
+          "Instagram",
+          "YouTube",
+          "Snapchat",
+          "Telegram"
+        ]
+      },
+      "ru": {
+        "savol": "Кто придумал Stories первым?",
+        "variantlar": [
+          "Instagram",
+          "YouTube",
+          "Snapchat",
+          "Telegram"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega Stories Instagram'da ko'proq ishlatildi?",
+        "variantlar": [
+          "Instagram'da odam ko'p edi",
+          "Uni birinchi chiqargan",
+          "Rangi chiroyliroq edi",
+          "Uni bepul qilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему Stories больше использовали в Instagram?",
+        "variantlar": [
+          "В Instagram было много людей",
+          "Он выпустил их первым",
+          "Цвет был красивее",
+          "Сделал их бесплатными"
+        ]
+      }
+    }
+  ]
+}

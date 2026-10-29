@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает fetch?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Скачивает файл в папку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Украшает дизайн страницы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запрашивает данные у сервера",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удаляет базу",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему useEffect([]) с пустым массивом?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Чтобы сработал один раз",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы работал каждую секунду",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы никогда не работал",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы прятал ошибку",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Куда пишется app.use(cors())?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "В код фронта (сайта)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В CSS-файл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Прямо в базу данных",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В код сервера (бэка)",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Видите ошибку CORS — что делаете?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Перепишу сайт заново",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Добавлю cors() на сервер",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Проверю интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сменю браузер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему возникает ошибка CORS?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Потому что база переполнена",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из-за отсутствия интернета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из-за опечатки в коде",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Браузер блокирует другой порт",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает res.json()?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Полностью отменяет запрос",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Открывает новый сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Превращает ответ в массив",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Читает CSS-файл",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что показывает страница, пока нет ответа?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Надпись «Загрузка»",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Пустой белый экран",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Красное сообщение об ошибке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Другой сайт",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему новая машина не пропадает при обновлении страницы?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Браузер её запоминает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Она сохранена в базе",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Остаётся случайно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Её сохраняет CSS",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что GET меняет в базе?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Удаляет все строки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего — только читает",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Добавляет новую строку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Меняет имя таблицы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как общаются фронт и бэк?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Внутри одного файла",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никак — каждый сам",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только через CSS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через запрос fetch",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой метод добавляет в базу новую машину?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "POST",
+        "hint": "Верно!"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PUT",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему порядок fetch → json → setCars?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Порядок не важен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сначала setCars, потом fetch",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Получаем, читаем, сохраняем",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Хватит одного json",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

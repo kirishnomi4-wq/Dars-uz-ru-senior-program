@@ -1,0 +1,278 @@
+{
+  "lessonId": "react-api-get-05-v18",
+  "key": "m3-08",
+  "modul": 4,
+  "tartib": 9,
+  "nom": {
+    "uz": "API bilan ishlash: GET — serverdan ma'lumot olish",
+    "ru": "Работа с API — GET"
+  },
+  "src": "src/3-Modull/ReactApiGetLesson.jsx",
+  "barmoq_izi": "54b8ef089ea9bfe3a793513d5552487a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "fetch nima qiladi?",
+        "variantlar": [
+          "Ma'lumot olib keladi",
+          "Saytni qayta yuklaydi",
+          "Faylni diskka saqlaydi",
+          "Yangi bo'sh oyna ochadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает fetch?",
+        "variantlar": [
+          "Приносит данные",
+          "Перезагружает сайт",
+          "Сохраняет файл на диск",
+          "Открывает новое пустое окно"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Server nima?",
+        "variantlar": [
+          "Ma'lumot saqlanadigan markaz",
+          "Telefonning ichki xotirasi",
+          "Kompyuterdagi rasm papkasi",
+          "Brauzer xotirasidagi nusxa"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое сервер?",
+        "variantlar": [
+          "Центр, где хранятся данные",
+          "Внутренняя память телефона",
+          "Папка с картинками на компьютере",
+          "Копия в памяти браузера"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "GET so'rovi serverda nimani o'zgartiradi?",
+        "variantlar": [
+          "Hech narsani",
+          "Ma'lumotni o'chiradi",
+          "Yangi yozuv yaratadi",
+          "Serverni o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что меняет на сервере запрос GET?",
+        "variantlar": [
+          "Ничего",
+          "Удаляет данные",
+          "Создаёт новую запись",
+          "Выключает сервер"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Server javobi dastlab qanday keladi?",
+        "variantlar": [
+          "Tayyor massiv",
+          "Matn (string)",
+          "Rasm",
+          "HTML sahifa"
+        ]
+      },
+      "ru": {
+        "savol": "В каком виде сначала приходит ответ сервера?",
+        "variantlar": [
+          "Готовый массив",
+          "Текст (string)",
+          "Картинка",
+          "HTML-страница"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": ".json() nima qiladi?",
+        "variantlar": [
+          "Qaytadan so'rov yuboradi",
+          "Matnni massivga aylantiradi",
+          "Javobni faylga saqlaydi",
+          "Sahifani qayta yangilaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает .json()?",
+        "variantlar": [
+          "Отправляет запрос заново",
+          "Превращает текст в массив",
+          "Сохраняет ответ в файл",
+          "Обновляет страницу"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "useEffectda bo'sh [] nima uchun?",
+        "variantlar": [
+          "Har soniyada ishlashi uchun",
+          "Bir marta ishlashi uchun",
+          "Har bosishda ishlashi uchun",
+          "Hech ishlamasligi uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем пустой [] в useEffect?",
+        "variantlar": [
+          "Чтобы работал каждую секунду",
+          "Чтобы сработал один раз",
+          "Чтобы работал при каждом клике",
+          "Чтобы не работал вовсе"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Javob kelguncha nima ko'rsatgan ma'qul?",
+        "variantlar": [
+          "Xatolik oynasi chiqadi",
+          "Bo'sh oq ekran turadi",
+          "Skeleton — kulrang sharpa",
+          "Reklama ko'rsatiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что лучше показывать, пока нет ответа?",
+        "variantlar": [
+          "Окно с ошибкой",
+          "Пустой белый экран",
+          "Skeleton — серый силуэт",
+          "Показывают рекламу"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Serverdan kelgan ro'yxatni ekranga kim chizadi?",
+        "variantlar": [
+          "fetch o'zi chizadi",
+          "useEffect o'zi chizadi",
+          "setGames → React chizadi",
+          "Qo'lda yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто рисует на экране список с сервера?",
+        "variantlar": [
+          "fetch рисует сам",
+          "useEffect рисует сам",
+          "setGames → рисует React",
+          "Пишется вручную"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Endpoint nimani bildiradi?",
+        "variantlar": [
+          "Manzilning boshlanishini",
+          "Faylning to'liq ismini",
+          "Serverning qaysi bo'limini",
+          "Internet ulanish tezligini"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает эндпоинт?",
+        "variantlar": [
+          "Начало адреса",
+          "Полное имя файла",
+          "Какой раздел сервера нужен",
+          "Скорость интернет-соединения"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Konsolda 404 ko'rsangiz birinchi nima qilasiz?",
+        "variantlar": [
+          "Kompyuterni o'chirib yoqasiz",
+          "React'ni qayta o'rnatasiz",
+          "Biroz kutasiz",
+          "Manzilni tekshirasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Увидели 404 в консоли — что сделаете первым?",
+        "variantlar": [
+          "Перезагрузите компьютер",
+          "Переустановите React",
+          "Немного подождёте",
+          "Проверите адрес"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "200 OK nimani bildiradi?",
+        "variantlar": [
+          "Server o'chib qoldi",
+          "So'ralgan manzil topilmadi",
+          "Internet ulanishi yo'q",
+          "Muvaffaqiyat — javob keldi"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает 200 OK?",
+        "variantlar": [
+          "Сервер отключился",
+          "Запрошенный адрес не найден",
+          "Нет интернет-соединения",
+          "Успех — ответ пришёл"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Nega fetch → .json() → set tartibi muhim?",
+        "variantlar": [
+          "Kod chiroyli ko'rinadi",
+          "Tartib muhim emas",
+          "Tasodifan shunday yozilgan",
+          "Har qadam oldingisini kutadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему важен порядок fetch → .json() → set?",
+        "variantlar": [
+          "Код выглядит красиво",
+          "Порядок не важен",
+          "Так написано случайно",
+          "Каждый шаг ждёт предыдущий"
+        ]
+      }
+    }
+  ]
+}

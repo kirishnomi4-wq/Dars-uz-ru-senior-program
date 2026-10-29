@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Netlify nima qiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Saytni internetga chiqaradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni ranglarga bo'yaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetni tezlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefonni zaryadlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI bergan bosh sahifa faylini qaysi nom bilan saqlaysiz?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "style.css",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "index.html",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "rasm.jpg",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "netlify.txt",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saytni internetga chiqarish qanday ataladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Nusxalash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Restart",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Deploy",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Zoom",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Netlify'ga qanday kiriladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Yangi parol o'ylab topib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "SMS kod bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bank kartasi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub hisobi bilan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bugun saytni Netlify'ga qanday qo'ydik?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Telegram orqali yuborib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Elektron pochtaga yozib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt papkasini sudrab tashlab",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Flesh kartaga yozib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'zgargan sayt Netlify'da qanday yangilanadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Papkani qayta sudrab tashlab",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Linkni qayta yozib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuterni qayta yoqib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'z-o'zidan yangilanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Deploydan keyin Netlify sizga nima beradi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Yangi kompyuter",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt linkini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi parol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bepul internet",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Do'stingiz saytni telefonda ochishi uchun nima yuborasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "index.html faylini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub parolimni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt papkasini arxiv qilib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt linkini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt sahifalari bir-biriga nima orqali ulanadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Linklar orqali",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasmlar orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parol orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayl nomi orqali",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI'ga sayt topshirig'ini yozganda nima ko'rsatiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Faqat sevimli rangingiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ismingiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifalar va shartlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat sayt nomi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Promptda menu haqida nima yoziladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Menu faqat bosh sahifada",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Menu umuman kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har sahifada boshqa menu",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har sahifada bir xil menu",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Deploydan keyin saytni kim ko'ra oladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Faqat men, o'z kompyuterimda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Linkni bilgan har kim",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat mentor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat GitHub xodimlari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

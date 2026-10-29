@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-08-v1",
+  "key": "m7-08",
+  "modul": 9,
+  "tartib": 8,
+  "nom": {
+    "uz": "Yaxshi interfeysdan nimani olasiz?",
+    "ru": "Что взять из хорошего интерфейса?"
+  },
+  "src": "src/7-Modull/PmDesignMotionLesson.jsx",
+  "barmoq_izi": "b6da49633ec9d80cc9218bd166dd985b",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Dribbble'da dizayner nimani ko'rsatadi?",
+        "variantlar": [
+          "O'z ishidan ekranlar",
+          "Faqat o'z rezyumesini",
+          "Ilovasining tayyor kodini",
+          "Ilova yuklanish sonini"
+        ]
+      },
+      "ru": {
+        "savol": "Что дизайнер показывает на Dribbble?",
+        "variantlar": [
+          "Экраны из своих работ",
+          "Только своё резюме",
+          "Готовый код приложения",
+          "Число скачиваний"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Musiqa ilovasida qaysi biri usul?",
+        "variantlar": [
+          "Fon qora, harflar oq",
+          "Oxirgi qo'shiq tepada turadi",
+          "Albom rasmlari katta",
+          "Tugmalar och ko'k rangda"
+        ]
+      },
+      "ru": {
+        "savol": "Что в музыкальном приложении — приём?",
+        "variantlar": [
+          "Фон чёрный, буквы белые",
+          "Последняя песня стоит сверху",
+          "Обложки альбомов большие",
+          "Кнопки светло-голубые"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Maydon misolida qaysi biri bezak?",
+        "variantlar": [
+          "Band katak bosilmasligi",
+          "Butun kun bir ekranda",
+          "Fon rangi va shrift",
+          "Kun almashish yo'nalishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что в примере Maydon — украшение?",
+        "variantlar": [
+          "Занятую ячейку нельзя нажать",
+          "Весь день на одном экране",
+          "Цвет фона и шрифт",
+          "Направление смены дня"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "To'p rasmi qo'yilganda nima bo'ldi?",
+        "variantlar": [
+          "Bo'sh vaqt tezroq topildi",
+          "Kataklar uch ustunga o'tdi",
+          "Kun almashtirgich yo'qoldi",
+          "Kataklar yana pastga tushdi"
+        ]
+      },
+      "ru": {
+        "savol": "Что стало, когда поставили картинку мяча?",
+        "variantlar": [
+          "Свободное время нашли быстрее",
+          "Ячейки встали в три столбца",
+          "Пропал переключатель дня",
+          "Ячейки опустились ещё ниже"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Kunlar tasmasi qaysi savolga javob beradi?",
+        "variantlar": [
+          "«Bugun qaysi vaqt bo'sh?»",
+          "«Boshqa kun-chi?»",
+          "«Egasi telefoni qaysi?»",
+          "«Band qilish necha pul?»"
+        ]
+      },
+      "ru": {
+        "savol": "На какой вопрос отвечает лента дней?",
+        "variantlar": [
+          "«Какое время сегодня свободно?»",
+          "«А другой день?»",
+          "«Какой телефон у хозяина?»",
+          "«Сколько стоит бронь?»"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Usulni qayerdan boshlab izlaysiz?",
+        "variantlar": [
+          "Foydalanuvchining savolidan",
+          "Eng ko'p layk olgan ishdan",
+          "Yoqqan rang va shriftdan",
+          "Do'st ilovasi ekranidan"
+        ]
+      },
+      "ru": {
+        "savol": "С чего начинаете искать приём?",
+        "variantlar": [
+          "С вопроса пользователя",
+          "С самой залайканной работы",
+          "С понравившихся цвета и шрифта",
+          "С экрана приложения друга"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Tweetie'gacha yangi post qanday ko'rilardi?",
+        "variantlar": [
+          "Telefonni silkitib",
+          "Ilova o'zi yangilardi",
+          "Xabarnoma chiqardi",
+          "Tepadagi tugmani bosib"
+        ]
+      },
+      "ru": {
+        "savol": "Как до Tweetie смотрели новые посты?",
+        "variantlar": [
+          "Встряхнув телефон",
+          "Приложение обновлялось само",
+          "Приходило уведомление",
+          "Нажав кнопку наверху"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Tortib turganingizda belgi nima qiladi?",
+        "variantlar": [
+          "Ilovani tezlashtiradi",
+          "Ekranni chiroyli qiladi",
+          "Yangilanishni ko'rsatadi",
+          "Yangi postlarni sanaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает значок, пока вы тянете?",
+        "variantlar": [
+          "Ускоряет приложение",
+          "Делает экран красивее",
+          "Показывает начало обновления",
+          "Считает новые посты"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "«Qayerda» qismi nega kerak?",
+        "variantlar": [
+          "Hamma joyga qo'shmasligi uchun",
+          "Kodni tezroq yozishi uchun",
+          "Kod qisqaroq chiqishi uchun",
+          "Talab jiddiy ko'rinishi uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужна часть «где»?",
+        "variantlar": [
+          "Чтобы агент не добавил везде",
+          "Чтобы быстрее написал код",
+          "Чтобы код был короче",
+          "Чтобы требование выглядело серьёзно"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Maydon'dagi ro'yxat animatsiyasiga qaysi vaqt tanlandi?",
+        "variantlar": [
+          "2 soniyadan ham uzunroq",
+          "Roppa-rosa bir soniya",
+          "3–5 soniya oralig'ida",
+          "Hammasi 0,4 soniyada"
+        ]
+      },
+      "ru": {
+        "savol": "Какое время выбрали для анимации списка в Maydon?",
+        "variantlar": [
+          "Даже дольше 2 секунд",
+          "Ровно одна секунда",
+          "От 3 до 5 секунд",
+          "Всё за 0,4 секунды"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "O'yinchi › ni bosdi. Yangi kun qayerdan kiradi?",
+        "variantlar": [
+          "Chap tomondan",
+          "Tepadan pastga",
+          "O'ng tomondan",
+          "Pastdan tepaga"
+        ]
+      },
+      "ru": {
+        "savol": "Игрок нажал ›. Откуда входит новый день?",
+        "variantlar": [
+          "Слева",
+          "Сверху вниз",
+          "Справа",
+          "Снизу вверх"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "«Nima buzilmasin» nega yoziladi?",
+        "variantlar": [
+          "Ko'proq kod yozilsin deb",
+          "Ishlagan narsa saqlansin deb",
+          "Talab rasmiy ko'rinsin deb",
+          "Yangi paket o'rnatilsin deb"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем пишут «что не сломать»?",
+        "variantlar": [
+          "Чтобы кода было больше",
+          "Чтобы сохранилось работающее",
+          "Чтобы выглядело официально",
+          "Чтобы поставили новые пакеты"
+        ]
+      }
+    }
+  ]
+}

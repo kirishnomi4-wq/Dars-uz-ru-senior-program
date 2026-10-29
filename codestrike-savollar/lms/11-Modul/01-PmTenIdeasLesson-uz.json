@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Maktab ilovasi» g'oyasiga yana nima kerak?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Muammo, kim uchun, yechim",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Chiroyli nom va rang",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxi va reklamasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugmalar soni, rangi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi gap yechim qatoriga yoziladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Vazifa chatda yo'qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maktab o'quvchilari uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vazifalar bir joyda turadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Chiroyli bo'lsin deyishadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi gap muammo qatoriga yoziladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ilovada chat bo'lsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vazifa chatda yo'qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova chiroyli bo'lsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot tez ishlasin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi «Kim uchun» qatori aniq?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Shahardagi har xil odamlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefoni bor har bir odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yoshlar ham, kattalar ham",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'garak izlayotgan o'smirlar",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ilovada to'lov tugmasi yo'q» qaysi qatorga mos?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Yechimga: ichida yechim bor",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Muammoga: odam qiynalgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kim uchun qatoriga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qaysi qatorga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb asoschilari g'oyani qayerdan topgan?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Investor topshirig'idan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa ilovadan ko'chirib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuter o'yinidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zlari ko'rgan voqeadan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "2007-yilda San-Fransiskoda nima bo'lgan?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Yangi aeroport ochilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Katta konferensiya bo'lgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Transport to'xtab qolgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uylar sotuvga chiqqan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb asoschilari avval nima qilgan?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Mehmonxona qurgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovaga reklama bergan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Havo to'shagini ijaraga bergan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Konferensiyani ko'chirgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Beshta g'oya yozganda nima qilasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Kuchsizini o'chirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat uchtasini yozasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har biriga nom o'ylaysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har biriga uch qator yozasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sherik yechimdan boshqa muammo aytdi. Nega?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Yechim ikki muammoga mos",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sherik yaxshi eshitmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "G'oya yaroqsiz bo'lgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yechim qatori ortiqcha",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Atrofni kuzatganda nimaga qaraysiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Eng ko'p yuklangan ilovaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'stlar o'ynaydigan o'yinga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kim nimadan qiynalganiga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng yangi texnologiyaga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Funksiyadan g'oya qilish uchun nima topasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Qisqa va qiziq nom",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U hal qiladigan muammo",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yana bitta funksiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uni quradigan kod",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Wireframe nimani ko'rsatadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Qayerda nima turishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugmalar rangini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sarlavha shriftini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumot qayerda saqlanishini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tashkilotchi kun va soatni qaysi ekranda yozadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "O'yinlar ekranida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "E'lon berish ekranida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'yin ekranida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kirish ekranida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Prototip qanday ekranlar?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Do'konga chiqqan versiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qog'ozdagi sodda chizma",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosiladi, lekin saqlamaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend va Database chizmasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Prototipdagi o'yinlar ro'yxati qayerdan keladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "oyinlar jadvalidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'dagi yo'ldan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram guruhidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "namuna.js faylidan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu darsda talabning «qayerda» qatoriga nima yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "prototip/ papkasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon ekrani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub sahifasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "backend/ papkasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Wireframe surati nimaga kerak?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Agentga rang tanlab beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranlar joyini ko'rsatadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agentga Backend'ni ulatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Talab o'rniga yuboriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent «Tayyor!» dedi. Keyin nima qilasiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Darhol GitHub'ga yuboraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Talabni qayta yozaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Wireframe bilan solishtiraman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Animatsiya qo'shaman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uch farq topildi. Agentga qanday yozasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Hammasini qayta yozdiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat kattasini yozaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa, o'zi topadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchalasini bitta talabda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jonli prototip qanday prototip?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Animatsiyasi bor prototip",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefonga o'rnatilgan prototip",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ga ulangan prototip",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rangli chizilgan prototip",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Karta bosilsa kichrayib qaytsin. Nima kerak?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "transition va font-size",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "transform va transition",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "initial va exit",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "display va width",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu prototipda ekrandan ekranga silliq o'tishni nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": ":active holati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "scale(1.3) qiymati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Motion kutubxonasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "setTimeout funksiyasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GitHub'dagi repo'ni kompyuterga qaysi buyruq ko'chiradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "git push",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git commit",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git status",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git clone",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

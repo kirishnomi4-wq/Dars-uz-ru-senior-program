@@ -1,0 +1,278 @@
+{
+  "lessonId": "backend-crud-practice-p1-v18",
+  "key": "m4-08",
+  "modul": 5,
+  "tartib": 8,
+  "nom": {
+    "uz": "Praktika: Backend CRUD — AvtoIjara",
+    "ru": "Практика: Backend CRUD — AvtoIjara"
+  },
+  "src": "src/4-Modull/BackendCrudPracticeLesson.jsx",
+  "barmoq_izi": "1e5d531bead813c0dbce462767fdbc8f",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Har mashinaga takrorlanmas raqam beradigan ustun qaysi?",
+        "variantlar": [
+          "model TEXT",
+          "id SERIAL PRIMARY KEY",
+          "daily_price INTEGER NOT NULL",
+          "is_rented BOOLEAN"
+        ]
+      },
+      "ru": {
+        "savol": "Какой столбец даёт каждой машине уникальный номер?",
+        "variantlar": [
+          "model TEXT",
+          "id SERIAL PRIMARY KEY",
+          "daily_price INTEGER NOT NULL",
+          "is_rented BOOLEAN"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "cars jadvalini yaratish uchun qaysi SQL to'g'ri?",
+        "variantlar": [
+          "SELECT * FROM cars ORDER BY id",
+          "DELETE FROM cars",
+          "INSERT INTO cars",
+          "CREATE TABLE cars (...)"
+        ]
+      },
+      "ru": {
+        "savol": "Какой SQL правильный для создания таблицы cars?",
+        "variantlar": [
+          "SELECT * FROM cars ORDER BY id",
+          "DELETE FROM cars",
+          "INSERT INTO cars",
+          "CREATE TABLE cars (...)"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "daily_price ustuni uchun qaysi tur mos (butun son)?",
+        "variantlar": [
+          "INTEGER",
+          "BOOLEAN",
+          "TEXT",
+          "SERIAL LIST"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тип подходит столбцу daily_price (целое число)?",
+        "variantlar": [
+          "INTEGER",
+          "BOOLEAN",
+          "TEXT",
+          "SERIAL LIST"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Bazaga yangi mashina qo'shish uchun qaysi juftlik?",
+        "variantlar": [
+          "GET → SELECT",
+          "PUT → UPDATE",
+          "POST → INSERT",
+          "DELETE → DELETE"
+        ]
+      },
+      "ru": {
+        "savol": "Какая пара нужна, чтобы добавить в базу новую машину?",
+        "variantlar": [
+          "GET → SELECT",
+          "PUT → UPDATE",
+          "POST → INSERT",
+          "DELETE → DELETE"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Barcha mashinalarni o'qish uchun qaysi juftlik?",
+        "variantlar": [
+          "GET → SELECT",
+          "POST → INSERT",
+          "PUT → UPDATE",
+          "DELETE → DELETE"
+        ]
+      },
+      "ru": {
+        "savol": "Какая пара нужна, чтобы прочитать все машины?",
+        "variantlar": [
+          "GET → SELECT",
+          "POST → INSERT",
+          "PUT → UPDATE",
+          "DELETE → DELETE"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Bitta mashina narxini nima o'zgartiradi?",
+        "variantlar": [
+          "POST → INSERT INTO cars",
+          "PUT → UPDATE ... WHERE id",
+          "GET → SELECT * FROM cars",
+          "DELETE → DELETE FROM cars"
+        ]
+      },
+      "ru": {
+        "savol": "Что меняет цену одной машины?",
+        "variantlar": [
+          "POST → INSERT INTO cars",
+          "PUT → UPDATE ... WHERE id",
+          "GET → SELECT * FROM cars",
+          "DELETE → DELETE FROM cars"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Express ichida bazaga SQL yuborish uchun nima ishlatiladi?",
+        "variantlar": [
+          "res.send(...)",
+          "app.listen(3000, callback)",
+          "console.log(...)",
+          "pool.query('...')"
+        ]
+      },
+      "ru": {
+        "savol": "Что используется в Express, чтобы отправить SQL в базу?",
+        "variantlar": [
+          "res.send(...)",
+          "app.listen(3000, callback)",
+          "console.log(...)",
+          "pool.query('...')"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "AI'ga eng aniq buyruq qaysi?",
+        "variantlar": [
+          "Mashinalarni chiqarib ber",
+          "Bazadan biror narsa olib ber",
+          "GET /api/cars → SELECT → JSON",
+          "Yaxshi backend kodi yozib ber"
+        ]
+      },
+      "ru": {
+        "savol": "Какая команда для AI самая точная?",
+        "variantlar": [
+          "Выведи мне машины",
+          "Достань что-нибудь из базы",
+          "GET /api/cars → SELECT → JSON",
+          "Напиши хороший backend-код"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "res.json(...) nima qiladi?",
+        "variantlar": [
+          "Yangi jadval yaratadi",
+          "Serverni yoqib, port ochadi",
+          "Natijani JSON qilib qaytaradi",
+          "Faylni diskka yozadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает res.json(...)?",
+        "variantlar": [
+          "Создаёт новую таблицу",
+          "Включает сервер и открывает порт",
+          "Возвращает результат в JSON",
+          "Пишет файл на диск"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega SQL'da $1, $2 ishlatamiz?",
+        "variantlar": [
+          "Matn kod bo'lib qolmasin deb",
+          "So'rov tezroq ishlasin deb",
+          "PostgreSQL shuni talab qiladi",
+          "Ustun nomi qisqarsin deb"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем в SQL пишем $1, $2?",
+        "variantlar": [
+          "Чтобы текст не стал кодом",
+          "Чтобы запрос шёл быстрее",
+          "Так требует PostgreSQL",
+          "Чтобы сократить имя столбца"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "500: column \"price\" does not exist. Sabab?",
+        "variantlar": [
+          "Baza o'chib qolgan",
+          "Kodda price, sxemada daily_price",
+          "Internet uzilgan",
+          "Postman noto'g'ri sozlangan"
+        ]
+      },
+      "ru": {
+        "savol": "500: column \"price\" does not exist. Причина?",
+        "variantlar": [
+          "База выключена",
+          "В коде price, в схеме daily_price",
+          "Пропал интернет",
+          "Postman настроен неверно"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Muvaffaqiyatli POST qaysi status qaytaradi?",
+        "variantlar": [
+          "404 Not Found",
+          "500 Server Error",
+          "200 OK",
+          "201 Created"
+        ]
+      },
+      "ru": {
+        "savol": "Какой статус возвращает успешный POST?",
+        "variantlar": [
+          "404 Not Found",
+          "500 Server Error",
+          "200 OK",
+          "201 Created"
+        ]
+      }
+    }
+  ]
+}

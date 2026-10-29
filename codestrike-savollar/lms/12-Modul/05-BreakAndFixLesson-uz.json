@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uchish rejimi yoqilsa, ulanish nima bo'ladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Uziladi, qayta urinadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ochiq qoladi, kutadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yopiladi, urinmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zi tiklanib qoladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova qayta ulanganda qaysi hodisa ishlaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Hech qaysi hodisa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "connect yana ishlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "disconnect yana ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova qaytadan ochiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "connect ichidagi kod qachon ishlaydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Faqat birinchi ulanishda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat hodisa kelganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har ulanishda, qaytada ham",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat ilova yopilganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Takror hodisa nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ikki o'yindagi o'zgarish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki telefondagi bir xil son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir o'yinchining ikki akkaunti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir o'zgarishning ikki ta'siri",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta ulangach ro'yxat nega qayta so'raladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Uzilishdagi o'zgarish uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Belgi o'zgarishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tinglovchi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisani olish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Buzish yozuvida qaysi uch qator bor?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Kim bosdi, qachon va qayerda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nima qildim, kutdim, bo'ldi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Usul, telefon, versiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo, sabab, tuzatish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent «tuzatdim» dedi, siz tekshirmadingiz. Nima yoziladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«Takrorlanmadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Buzilmadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Tuzatish qilindi»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Hammasi ishlaydi»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent tuzatgach, natijani qanday tekshirasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Yangi usul bilan buzib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent javobini o'qib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Koddagi o'zgarishni o'qib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha usul bilan qayta buzib",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Render yangi versiyani chiqarsa, ulanishlar nima bo'ladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Uziladi, qayta urinadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ochiq qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat yangilari uziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database saqlab turadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "socket.io'dagi xona qayerda turadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ilovaning o'zida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ning o'zida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database jadvalida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefon sozlamasida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida fonga olish urinishi nima ko'rsatdi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Son eski qoldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabar ikki marta chiqdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buzilmadi, son yangi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova qayta ochildi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kimning ilovasini buzib tekshirasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Sinfdoshingizning ilovasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mashhur ilovalardan birini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Istalgan ochiq saytni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zingizning ilovangizni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

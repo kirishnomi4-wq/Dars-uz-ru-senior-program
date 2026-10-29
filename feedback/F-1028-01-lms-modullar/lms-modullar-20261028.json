@@ -1,0 +1,143 @@
+{
+ "manba": "go.coddycamp.uz · Kurs 20 «AI startup» · /account/student_courses/detail/20 va detail_part/<id> · faqat o'qildi 28.10.2026 16:00",
+ "qoida": "dars = turi Class yoki Demoday, holati Active; Learn / Practice / Uyga vazifa / Archive / Draft sanalmaydi; Archive modullar (76, 77, 78, 79) kiritilmadi",
+ "modullar": [
+  {
+   "id": 84,
+   "lms_tartib": 1,
+   "uz": "Sinov darslari",
+   "ru": "Пробный уроки",
+   "class": 3,
+   "demoday": 0,
+   "muddatga": false
+  },
+  {
+   "id": 85,
+   "lms_tartib": 2,
+   "uz": "FOUNDATION",
+   "ru": "FOUNDATION",
+   "class": 11,
+   "demoday": 0
+  },
+  {
+   "id": 86,
+   "lms_tartib": 3,
+   "uz": "FIGMA",
+   "ru": "FIGMA",
+   "class": 5,
+   "demoday": 1,
+   "dd": "Demoday"
+  },
+  {
+   "id": 70,
+   "lms_tartib": 4,
+   "uz": "HTML-CSS",
+   "ru": "HTML-CSS",
+   "class": 14,
+   "demoday": 1,
+   "dd": "Demo Day - 1"
+  },
+  {
+   "id": 73,
+   "lms_tartib": 5,
+   "uz": "JavaScript",
+   "ru": "JavaScript",
+   "class": 13,
+   "demoday": 1,
+   "dd": "Demo Day - 2"
+  },
+  {
+   "id": 74,
+   "lms_tartib": 6,
+   "uz": "Frontend-React",
+   "ru": "Frontend-React",
+   "class": 14,
+   "demoday": 1,
+   "dd": "Demo Day-3"
+  },
+  {
+   "id": 75,
+   "lms_tartib": 7,
+   "uz": "Backend: Node-Express + PostgreSQL",
+   "ru": "Backend: Node-Express + PostgreSQL",
+   "class": 15,
+   "demoday": 0
+  },
+  {
+   "id": 90,
+   "lms_tartib": 10,
+   "uz": "BACKEND: NESTJS + TESTIROVANIE + CI/CD DEPLOY",
+   "ru": "BACKEND: NESTJS + TESTIROVANIE + CI/CD DEPLOY",
+   "class": 14,
+   "demoday": 1,
+   "dd": "Demo Day - 5"
+  },
+  {
+   "id": 80,
+   "lms_tartib": 11,
+   "uz": "Botlar va avtomatlashtirish",
+   "ru": "Боты и автоматизация",
+   "class": 12,
+   "demoday": 1,
+   "dd": "Demo Day 6: jonli bot va metrikalar"
+  },
+  {
+   "id": 81,
+   "lms_tartib": 12,
+   "uz": "Tizimni yig'aman",
+   "ru": "Собираю систему целиком",
+   "class": 14,
+   "demoday": 0
+  },
+  {
+   "id": 108,
+   "lms_tartib": 13,
+   "uz": "Loyiham kim uchun va nima uchun + Animatsiya",
+   "ru": "Для кого и зачем мой проект + Анимация",
+   "class": 12,
+   "demoday": 0
+  },
+  {
+   "id": 109,
+   "lms_tartib": 14,
+   "uz": "Gipotezani qanday tekshirish + texnik MVP praktikasi",
+   "ru": "Как проверить гипотезу + практика технического MVP",
+   "class": 11,
+   "demoday": 0
+  },
+  {
+   "id": 110,
+   "lms_tartib": 15,
+   "uz": "Final loyiha: g'oya va rivojlantirish + React Native mobil ilova",
+   "ru": "Финальный проект: идея и развитие + мобильное приложение на React Native",
+   "class": 16,
+   "demoday": 1,
+   "dd": "Demo Day 7: final g'oya va jonli prototip"
+  },
+  {
+   "id": 111,
+   "lms_tartib": 16,
+   "uz": "Real vaqt: WebSocket + ishga tushirish — Flagman",
+   "ru": "Real-time: WebSocket + запуск — Флагман",
+   "class": 12,
+   "demoday": 0
+  },
+  {
+   "id": 112,
+   "lms_tartib": 17,
+   "uz": "O'sish va monetizatsiya",
+   "ru": "Рост и монетизация",
+   "class": 12,
+   "demoday": 0
+  },
+  {
+   "id": 113,
+   "lms_tartib": 18,
+   "uz": "Bitiruvchi + Performance",
+   "ru": "Выпускник + Performance",
+   "class": 15,
+   "demoday": 1,
+   "dd": "Demo Day 8: Bitiruv himoyasi"
+  }
+ ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "internet-01-v18",
+  "key": "m1-01",
+  "modul": 2,
+  "tartib": 1,
+  "nom": {
+    "uz": "Internet qanday ishlaydi",
+    "ru": "Как устроен интернет"
+  },
+  "src": "src/1-Modull/InternetLesson.jsx",
+  "barmoq_izi": "bde99afb0a038a67cf035e4ea6c7f7ae",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "youtube.com yozildi. Brauzer AVVAL kimga murojaat qiladi?",
+        "variantlar": [
+          "Serverga",
+          "DNS'ga",
+          "Ekranga",
+          "Domenga"
+        ]
+      },
+      "ru": {
+        "savol": "Набрали youtube.com. К кому браузер обращается ПЕРВЫМ?",
+        "variantlar": [
+          "К серверу",
+          "К DNS",
+          "К экрану",
+          "К домену"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "DNS'ning asl vazifasi qaysi qatorda?",
+        "variantlar": [
+          "Saytni ekranga chizish",
+          "Sahifalarni saqlash",
+          "Domenni IP raqamga aylantirish",
+          "Internet tezligini oshirish"
+        ]
+      },
+      "ru": {
+        "savol": "В какой строке настоящая задача DNS?",
+        "variantlar": [
+          "Нарисовать сайт на экране",
+          "Хранить страницы",
+          "Превратить домен в IP-адрес",
+          "Повысить скорость интернета"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "142.250.190.78 va 142.250.190.87 — bular…",
+        "variantlar": [
+          "Ikki XIL kompyuter",
+          "Bitta kompyuter",
+          "Bitta saytning ikki nomi",
+          "Xato yozilgan bitta IP"
+        ]
+      },
+      "ru": {
+        "savol": "142.250.190.78 и 142.250.190.87 — это…",
+        "variantlar": [
+          "Два РАЗНЫХ компьютера",
+          "Один компьютер",
+          "Два имени одного сайта",
+          "Один IP, записанный с ошибкой"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "Server brauzerga aniq nima yuboradi?",
+        "variantlar": [
+          "HTML kodni",
+          "Tayyor suratni",
+          "IP manzilni",
+          "Yangi brauzerni"
+        ]
+      },
+      "ru": {
+        "savol": "Что именно сервер отправляет браузеру?",
+        "variantlar": [
+          "HTML-код",
+          "Готовую картинку",
+          "IP-адрес",
+          "Новый браузер"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "«Inter-net» so'zining asl ma'nosi nima?",
+        "variantlar": [
+          "Tezkor aloqa",
+          "Simsiz aloqa",
+          "Butunjahon kompyuteri",
+          "Tarmoqlararo"
+        ]
+      },
+      "ru": {
+        "savol": "Что на самом деле означает слово «Интер-нет»?",
+        "variantlar": [
+          "Быстрая связь",
+          "Беспроводная связь",
+          "Всемирный компьютер",
+          "Между сетями"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "youtub.com (bir harf kam!) yozsangiz nima bo'ladi?",
+        "variantlar": [
+          "YouTube baribir ochiladi",
+          "Kompyuter sekinlashadi",
+          "Butun internet uziladi",
+          "DNS saytni topolmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если набрать youtub.com (одной буквы не хватает)?",
+        "variantlar": [
+          "YouTube всё равно откроется",
+          "Компьютер замедлится",
+          "Весь интернет отключится",
+          "DNS не найдёт сайт"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Sayt «yashaydigan», DOIM yoniq turadigan kompyuter?",
+        "variantlar": [
+          "Router",
+          "Server",
+          "Brauzer",
+          "Planshet"
+        ]
+      },
+      "ru": {
+        "savol": "Компьютер, где «живёт» сайт и который ВСЕГДА включён?",
+        "variantlar": [
+          "Роутер",
+          "Сервер",
+          "Браузер",
+          "Планшет"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi biri DOMEN?",
+        "variantlar": [
+          "142.250.190.78",
+          "Chrome",
+          "wikipedia.org",
+          "HTML"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — ДОМЕН?",
+        "variantlar": [
+          "142.250.190.78",
+          "Chrome",
+          "wikipedia.org",
+          "HTML"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "HTML kodni o'qib, chiroyli sahifaga aylantiradigan kim?",
+        "variantlar": [
+          "Server",
+          "DNS",
+          "Domen",
+          "Brauzer"
+        ]
+      },
+      "ru": {
+        "savol": "Кто читает HTML-код и превращает его в красивую страницу?",
+        "variantlar": [
+          "Сервер",
+          "DNS",
+          "Домен",
+          "Браузер"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "So'rovning to'g'ri tartibi qaysi?",
+        "variantlar": [
+          "Brauzer→DNS→Server→Ekran",
+          "DNS→Brauzer→Ekran→Server",
+          "Server→Brauzer→DNS→Ekran",
+          "Brauzer→Server→DNS→Ekran"
+        ]
+      },
+      "ru": {
+        "savol": "Какой порядок запроса верный?",
+        "variantlar": [
+          "Браузер→DNS→Сервер→Экран",
+          "DNS→Браузер→Экран→Сервер",
+          "Сервер→Браузер→DNS→Экран",
+          "Браузер→Сервер→DNS→Экран"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "coddycamp.uz'dagi «.uz» nimani bildiradi?",
+        "variantlar": [
+          "Saytning nomi",
+          "O'zbekiston zonasi",
+          "Parol",
+          "Serverning IP'si"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает «.uz» в coddycamp.uz?",
+        "variantlar": [
+          "Название сайта",
+          "Зона Узбекистана",
+          "Пароль",
+          "IP сервера"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "DNS — telefon kitobi. Undagi ism va raqam nima?",
+        "variantlar": [
+          "Ism=IP, raqam=domen",
+          "Ism=brauzer, raqam=server",
+          "Ism=domen, raqam=IP",
+          "Ism=sayt, raqam=parol"
+        ]
+      },
+      "ru": {
+        "savol": "DNS — телефонная книга. Что в ней имя и номер?",
+        "variantlar": [
+          "Имя=IP, номер=домен",
+          "Имя=браузер, номер=сервер",
+          "Имя=домен, номер=IP",
+          "Имя=сайт, номер=пароль"
+        ]
+      }
+    }
+  ]
+}

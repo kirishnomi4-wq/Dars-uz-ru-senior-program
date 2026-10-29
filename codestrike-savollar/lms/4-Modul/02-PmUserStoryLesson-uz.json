@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "User Story qaysi uch bo'lakdan iborat?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Sana + vazifa + mas'ul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shart + natija + xato",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "KIM + NIMA + NATIJA",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugma + rang + sahifa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hikoyadagi [KIM] bo'lagi nimani bildiradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Foydalanuvchi turi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugmaning rangi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dasturchi ismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifaning to'liq manzili",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "User Story qachon yoziladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Loyiha topshirilgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod yozishdan oldin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod yozib bo'lingach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat xato chiqqanda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "[NATIJA] qismi qanday bo'lishi kerak?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Yozilgan kod qatorlari soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugmaning nomi va rangi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifaning fon rangi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi oladigan foyda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Foydalanuvchi sifatida qizil tugma xohlayman» — nima yo'q?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "NATIJA (real foyda)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "KIM",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "NIMA",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech nima, to'liq",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jobs-to-be-Done (JTBD) g'oyasi nima?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ko'proq tugma qo'shish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni tezroq yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har kimga alohida ilova",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam natijani sotib oladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Milkshake xaridorga qanday natija berardi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Arzonligi bilan yoqardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'lda zerikmaslik va to'qlik",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sovg'a bilan berilardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklamasi chiroyli edi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "McDonald's sababni bilgach nima qildi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Narxini tushirdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat kechqurun sotdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yanada quyuq qildi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'rniga banan sotdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Saytda dark mode bo'lsin» — bu nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "To'liq User Story",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi turi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "JTBD natijasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Imkoniyat-so'rovi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "NATIJA harakatni takrorlasa, nima bo'ladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Foyda ko'rinmay qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hikoya kuchayadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "KIM o'zi aniqlashadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hikoyadagi [NIMA] bo'lagi nimani bildiradi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Oxirida oladigan foyda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi turi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bajarmoqchi bo'lgan harakat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Loyiha muddati",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega avval User Story, keyin kod?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Chunki kod yozish qiyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kimga nima kerakligini bilish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mijoz shuni talab qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tartib farq qilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

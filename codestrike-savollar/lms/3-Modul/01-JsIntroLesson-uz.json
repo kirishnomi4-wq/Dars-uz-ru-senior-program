@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sistema — bu nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Tasodifiy narsalar to'plami",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birga ishlaydigan qismlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat kompyuter dasturi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'linmaydigan bitta qism",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri sistema?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Yo'ldagi bitta tosh",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh yopiq quti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Futbol jamoasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Alohida bitta harf",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sistemada «komponent» nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sistemaning bir qismi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sistemaning umumiy nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sistemadan tashqari narsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sistemadagi kichik xato",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sistemada «bog'lanish» nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Qismlar orasidagi aloqa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng katta va og'ir qism",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sistemaning umumiy nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keraksiz ortiqcha qism",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Algoritm — bu nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Tartibsiz fikrlar to'plami",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq qadamlar ketma-ketligi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Murakkab matematik formula",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuterning boshqa nomi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ertalabki tartib — uyg'on, yuvin, kiyin — bu nimaga misol?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Sistema",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Komponent",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Algoritm",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bog'lanish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Algoritmda qadamlar tartibi muhimmi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Yo'q, farqi yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat kompyuterda muhim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, natija buziladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat oxirgi qadam muhim",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Yomg'ir yog'sa — soyabon ol» — bu nima?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ketma-ketlik",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sikl",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Komponent",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shart",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Amalni ko'p marta takrorlash nima deyiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Shart",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sikl",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bog'lanish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Komponent",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Futbol jamoasi nega sistema?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "O'yinchi ko'p bo'lgani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon katta bo'lgani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'p dumaloq bo'lgani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasi birga ishlagani uchun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Algoritmning 3 asosiy «g'ishti» qaysilar?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ketma-ketlik, Shart, Sikl",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rang, Shakl, O'lcham",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kim, Muammo, Yechim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshi, O'rtasi, Oxiri",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Yashil bo'lsa — yur, qizil bo'lsa — to'xta» — bu nima?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Sikl",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ketma-ketlik",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bog'lanish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shart",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

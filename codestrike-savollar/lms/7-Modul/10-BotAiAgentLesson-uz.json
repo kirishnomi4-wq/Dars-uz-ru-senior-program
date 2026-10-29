@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI-bot va AI-agentning asosiy farqi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Agentning rangi boshqacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent qadamni o'zi tanlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qanday farq yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent ancha sekin ishlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent siklidagi «Amal» qadami nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Keyingi xabarni kutish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Salom va menu yuborish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zini o'chirib qo'yish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tanlangan tool'ni chaqirish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tool nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Agent chaqiradigan funksiya",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Botning shrift sozlamasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverning IP-manzili",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet tezligi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent tool'ni qanday tanlaydi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ro'yxatda birinchisini oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tavakkaliga tanlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maqsad va vaziyatga qarab",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Odam qo'lda tanlab beradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent bitta amalni bajardi. Endi nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Shu zahoti to'xtaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Natijaga qarab davom etadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'sha amalni takrorlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mijoz buyrug'ini kutadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agentga siz qaysi uch narsani berasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Maqsad, tool'lar va chegara",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat system prompt",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har hodisaga tayyor javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Token va server manzili",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chegara (guardrail) nima uchun kerak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Botni chiroyli ko'rsatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javobni tezlashtirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mijozga rang tanlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xavfli amalni to'xtatish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent pul yechishdan oldin nima qilishi kerak?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Tasdiqsiz yechaverishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamdan tasdiq so'rashi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Botni o'chirib qo'yishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tezroq yechishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Odam nazorati (human-in-the-loop) nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Agent hammasini o'zi qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam umuman aralashmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muhim qarorni odam qiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mijoz bloklanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Cheklangan tool'lar» nimani bildiradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Tool'lar sekin ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tool'lar bepul bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentga hamma tool beriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat kerakli tool beriladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent sikli qaysi tartibda ishlaydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Idrok → Qaror → Amal",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Amal → Idrok → Qaror",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaror → Amal → Idrok",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Idrok → Amal → Qaror",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent siklida «Qaror» qadamini kim bajaradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Foydalanuvchi qo'lda tanlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server tasodifiy tanlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI tool'ni tanlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tool AI'siz hal qiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

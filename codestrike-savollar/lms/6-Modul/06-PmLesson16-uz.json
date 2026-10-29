@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sifat nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ilova har gal aytganini qilsa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilovani ko'p odam yuklasa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova hammadan tez ochilsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugmalari chiroyli tursa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi holat — nosozlik?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Skuter uzoqroqda ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Safardan keyin baho so'raladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narx kecha arzonroq edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugatsa ham hisoblagich yuradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Aytganini qildi, ammo yoqmadi — bu?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Nosozlik — karta yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nosozlik — tuzatiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nosozlik emas — yoqmagan narsa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nosozlik — Keyin javoniga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nosozlik qayerda tutilsa eng arzon?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Chiqarishdan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod yozilayotganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Odamlar qo'lida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi sharhlar chiqqanda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nosozlik qayerda chiqsa odam ketadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Kod yozilayotganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlar qo'lida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Chiqarishdan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Test yozilayotganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nosozlik qancha kech topilsa nima bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Shuncha qimmatga tushadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Shuncha tez tuzatiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shuncha kam odam ko'radi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shuncha arzonga tushadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Karta birinchi qatorida nima yoziladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Nosozlik qachon tuzatilishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nosozlikni kim topgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nima bosildi — nima bo'ldi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qaysi javonga tushishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi nosozlik birinchi tuzatiladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ba'zilarda — ish to'xtaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ba'zilarda — noqulay",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammada — noqulay",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammada — ish to'xtaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ba'zilarda · noqulay» karta qaysi javonga tushadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Keyin javoniga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kartaga yozilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hozir javoniga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bugun javoniga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Cyberpunk 2077 nosozliklari qayerda chiqdi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "O'yinni yasagan jamoada",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'kon tekshiruvchilarida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sotib olgan o'yinchilarda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Reklama yozganlarda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sony o'yinni do'kondan qancha vaqtga olib tashladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Bir necha kunga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qariyb yarim yilga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir oyga yaqin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butunlay, qaytarmadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Narx testi qizil chiqdi — bu nima degani?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kod ishga tushmay qoldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testni qayta yozish kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlar shikoyat qildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nosozlik odamgacha tutildi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

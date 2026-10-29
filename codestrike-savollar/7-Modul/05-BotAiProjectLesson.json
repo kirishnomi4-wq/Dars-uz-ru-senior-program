@@ -1,0 +1,278 @@
+{
+  "lessonId": "bot-ai-project-05-05-v18",
+  "key": "m5-05",
+  "modul": 7,
+  "tartib": 5,
+  "nom": {
+    "uz": "Loyiha kuni: AI bilan bot",
+    "ru": "Проектный день: бот с ИИ"
+  },
+  "src": "src/5-Modull/BotAiProjectLesson.jsx",
+  "barmoq_izi": "8ee87d30d65fa42a9af863450b7928b1",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "«Bot yasab ber» nega noaniq prompt?",
+        "variantlar": [
+          "AI o'zbekchani tushunmaydi",
+          "Juftlar va tugma turi yo'q",
+          "«Iltimos» deyilmagan",
+          "AI bot kodini yoza olmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему «сделай бота» — нечёткий промпт?",
+        "variantlar": [
+          "AI не понимает узбекский",
+          "Нет пар и типа кнопок",
+          "Не сказано «пожалуйста»",
+          "AI не умеет писать ботов"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Prompt yozishdan oldin nima qilinadi?",
+        "variantlar": [
+          "Tayyor kod olinadi",
+          "Kod → serverga joylanadi",
+          "Token → kodga yoziladi",
+          "Hodisa → javob rejasi tuziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают до того, как писать промпт?",
+        "variantlar": [
+          "Берётся готовый код",
+          "Код → выкладывается на сервер",
+          "Токен → пишется в код",
+          "Составляется план событие → ответ"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Bugungi promptda nima aytiladi?",
+        "variantlar": [
+          "Hodisa → javob, tugma turi",
+          "Bot nomi → rangi, rasmi",
+          "Token → parol va login",
+          "Server → domen va narx"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорится в сегодняшнем промпте?",
+        "variantlar": [
+          "Событие → ответ, тип кнопки",
+          "Имя бота → цвет, картинка",
+          "Токен → пароль и логин",
+          "Сервер → домен и цена"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "AI kod bergach, birinchi nima qilasiz?",
+        "variantlar": [
+          "Darrov mijozlarga beraman",
+          "O'chirib, o'zim yozaman",
+          "O'qiyman va test qilaman",
+          "Yana o'sha kodni so'rayman"
+        ]
+      },
+      "ru": {
+        "savol": "AI дал код. Что вы делаете сначала?",
+        "variantlar": [
+          "Сразу отдаю клиентам",
+          "Удаляю и пишу сам",
+          "Читаю и тестирую",
+          "Прошу тот же код ещё раз"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Tugmali xabar keldi, bosilsa jim. Sabab?",
+        "variantlar": [
+          "Token noto'g'ri",
+          "bot.action handleri yo'q",
+          "Reply tugma kerak edi",
+          "bot.launch() yozilmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Сообщение с кнопкой пришло, но нажатие — тишина. Причина?",
+        "variantlar": [
+          "Неверный токен",
+          "Нет handler bot.action",
+          "Нужна была reply-кнопка",
+          "Не написан bot.launch()"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "AI tokenni kodga ochiq yozdi. Nima qilasiz?",
+        "variantlar": [
+          ".env fayliga ko'chiraman",
+          "bot.js oxiriga ko'chiraman",
+          "Uzunroq qilib yozaman",
+          "Shundayligicha qoldiraman"
+        ]
+      },
+      "ru": {
+        "savol": "AI записал токен прямо в код. Что делать?",
+        "variantlar": [
+          "Перенесу в файл .env",
+          "Перенесу в конец bot.js",
+          "Сделаю его длиннее",
+          "Оставлю как есть"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "AI bilan ishda kim nima qiladi?",
+        "variantlar": [
+          "AI hal qiladi, siz kutasiz",
+          "Siz yozasiz, AI o'qiydi",
+          "AI yozadi va o'zi tekshiradi",
+          "AI kod yozadi, siz tekshirasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Кто что делает при работе с AI?",
+        "variantlar": [
+          "AI решает, вы ждёте",
+          "Вы пишете, AI читает",
+          "AI пишет и сам проверяет",
+          "AI пишет код, вы проверяете"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "AI kodida qanday xato uchraydi?",
+        "variantlar": [
+          "Xato bo'lmaydi, u mukammal",
+          "Tugma handleri yozilmay qoladi",
+          "Faqat token xato bo'ladi",
+          "Faqat sekin internetda"
+        ]
+      },
+      "ru": {
+        "savol": "Какая ошибка бывает в коде от AI?",
+        "variantlar": [
+          "Ошибок нет, он идеален",
+          "Не написан handler кнопки",
+          "Ошибается только токен",
+          "Только при медленном интернете"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Test paytida xato topildi. Keyin nima qilinadi?",
+        "variantlar": [
+          "Boshqa g'oya olinadi",
+          "Bot noldan yoziladi",
+          "Tuzatish prompti yoziladi",
+          "Kod o'chirib tashlanadi"
+        ]
+      },
+      "ru": {
+        "savol": "В тесте нашли ошибку. Что дальше?",
+        "variantlar": [
+          "Берут другую идею",
+          "Пишут бота с нуля",
+          "Пишут промпт на исправление",
+          "Удаляют код"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Bot yozishning to'g'ri tartibi?",
+        "variantlar": [
+          "Prompt → kod → ishlatish",
+          "Test → reja → prompt → kod",
+          "Kod → ishlatish → tashlash",
+          "Reja → prompt → kod → test"
+        ]
+      },
+      "ru": {
+        "savol": "Правильный порядок создания бота?",
+        "variantlar": [
+          "Промпт → код → запуск",
+          "Тест → план → промпт → код",
+          "Код → запуск → бросить",
+          "План → промпт → код → тест"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "«Iteratsiya» nima?",
+        "variantlar": [
+          "Test → tuzatish → qayta test",
+          "Yozish → tegmaslik",
+          "Token → yangi token",
+          "Bot → qayta ishga tushirish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое «итерация»?",
+        "variantlar": [
+          "Тест → исправление → снова тест",
+          "Написать → не трогать",
+          "Токен → новый токен",
+          "Бот → перезапуск"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "AI yozsa ham, kodni tushunish nega kerak?",
+        "variantlar": [
+          "AI faqat bilganga yozadi",
+          "Aks holda AI yozmaydi",
+          "Xatoni topib tuzatish uchun",
+          "Kod tezroq ishlashi uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем понимать код, если его пишет AI?",
+        "variantlar": [
+          "AI пишет только знающим",
+          "Иначе AI не станет писать",
+          "Чтобы найти и исправить ошибку",
+          "Чтобы код работал быстрее"
+        ]
+      }
+    }
+  ]
+}

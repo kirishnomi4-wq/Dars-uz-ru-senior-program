@@ -1,0 +1,278 @@
+{
+  "lessonId": "db-sql-nosql-04-02-v18",
+  "key": "m4-03",
+  "modul": 5,
+  "tartib": 3,
+  "nom": {
+    "uz": "SQL vs NoSQL — nega PostgreSQL",
+    "ru": "SQL vs NoSQL — почему PostgreSQL"
+  },
+  "src": "src/4-Modull/DbSqlNosqlLesson.jsx",
+  "barmoq_izi": "0e5481296e80655d65ad1c725a1c05cb",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Bitta yozuvga yangi maydon qayerda oson?",
+        "variantlar": [
+          "Ikkalasida ham bo'lmaydi",
+          "SQL — ustun o'zi ochiladi",
+          "NoSQL — hujjatga qo'shiladi",
+          "Faqat qo'lda yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Где легче добавить поле одной записи?",
+        "variantlar": [
+          "Нигде нельзя",
+          "SQL — столбец появится сам",
+          "NoSQL — добавляется в документ",
+          "Только вручную"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "SQL'da yangi ustun uchun nima kerak?",
+        "variantlar": [
+          "Faqat NoSQL'da mumkin",
+          "Hech narsa — o'zi qo'shiladi",
+          "Bazani o'chirish kerak",
+          "Jadval shaklini o'zgartirish"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно для нового столбца в SQL?",
+        "variantlar": [
+          "Можно только в NoSQL",
+          "Ничего — добавится сам",
+          "Нужно удалить базу",
+          "Изменить структуру таблицы"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "«Har yozuv har xil maydonga ega» — bu qaysi tur?",
+        "variantlar": [
+          "SQL (qat'iy jadval)",
+          "NoSQL (erkin { } hujjat)",
+          "Ikkalasi bir xil",
+          "Hech biri"
+        ]
+      },
+      "ru": {
+        "savol": "«У каждой записи свои поля» — какой это тип?",
+        "variantlar": [
+          "SQL (строгая таблица)",
+          "NoSQL (свободный { } документ)",
+          "Оба одинаковы",
+          "Ни одно"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "JOIN nima qiladi?",
+        "variantlar": [
+          "Ikki jadvalni id bilan ulaydi",
+          "Hamma faylni o'chiradi",
+          "Yangi bo'sh baza yaratadi",
+          "Sahifani qayta yuklaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает JOIN?",
+        "variantlar": [
+          "Связывает две таблицы по id",
+          "Удаляет все файлы",
+          "Создаёт новую пустую базу",
+          "Перезагружает страницу"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Bank ilovasi uchun qaysi baza to'g'ri?",
+        "variantlar": [
+          "SQL — bog'langan, ishonchli",
+          "NoSQL — tezroq javob beradi",
+          "Ikkalasi bir xil",
+          "Bunga baza kerak emas"
+        ]
+      },
+      "ru": {
+        "savol": "Какая база подходит банковскому приложению?",
+        "variantlar": [
+          "SQL — связанная, надёжная",
+          "NoSQL — быстрее отвечает",
+          "Обе одинаковы",
+          "База здесь не нужна"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "users↔posts bog'langan ma'lumot uchun qaysi qulay?",
+        "variantlar": [
+          "NoSQL — takrorlab yozamiz",
+          "Ikkalasi ham qiyin",
+          "SQL — JOIN bilan ulaydi",
+          "Faqat qo'lda"
+        ]
+      },
+      "ru": {
+        "savol": "Что удобнее для связанных данных users↔posts?",
+        "variantlar": [
+          "NoSQL — будем дублировать",
+          "Оба сложны",
+          "SQL — свяжет через JOIN",
+          "Только вручную"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Millionlab oddiy chat xabari uchun qaysi ideal?",
+        "variantlar": [
+          "SQL — har xabar JOIN bilan",
+          "NoSQL — ulkan, oddiy, tez",
+          "Faqat qog'ozda",
+          "Hech qanday"
+        ]
+      },
+      "ru": {
+        "savol": "Что идеально для миллионов простых чат-сообщений?",
+        "variantlar": [
+          "SQL — каждое сообщение через JOIN",
+          "NoSQL — огромно, просто, быстро",
+          "Только на бумаге",
+          "Никакое"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "«Katta hajm, oddiy tuzilish, tezlik» — qaysi tur?",
+        "variantlar": [
+          "SQL",
+          "Ikkalasi teng",
+          "Hech biri",
+          "NoSQL"
+        ]
+      },
+      "ru": {
+        "savol": "«Большой объём, простая структура, скорость» — какой тип?",
+        "variantlar": [
+          "SQL",
+          "Оба поровну",
+          "Ни одно",
+          "NoSQL"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Server loglari (ulkan, bog'lanishsiz) uchun qaysi?",
+        "variantlar": [
+          "SQL — tranzaksiya kerak",
+          "Faqat Excel",
+          "Baza kerak emas",
+          "NoSQL — katta hajm va tezlik"
+        ]
+      },
+      "ru": {
+        "savol": "Что подходит для логов сервера (огромные, без связей)?",
+        "variantlar": [
+          "SQL — нужны транзакции",
+          "Только Excel",
+          "База не нужна",
+          "NoSQL — большой объём и скорость"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega loyihalarimizga PostgreSQL?",
+        "variantlar": [
+          "Ishonchli, bepul, JSON ham",
+          "Boshqa baza yo'qligidan",
+          "Faqat kichik loyihaga mos",
+          "Eng modaviy bo'lgani uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Почему для наших проектов PostgreSQL?",
+        "variantlar": [
+          "Надёжная, бесплатная, и JSON тоже",
+          "Других баз нет",
+          "Подходит только маленьким",
+          "Потому что самая модная"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Baza modaga qarab tanlanadimi?",
+        "variantlar": [
+          "Ha, doim yangisi yaxshi",
+          "Ha, NoSQL doim ustun",
+          "Yo'q — vazifaga qarab",
+          "Faqat narxga qarab"
+        ]
+      },
+      "ru": {
+        "savol": "Базу выбирают по моде?",
+        "variantlar": [
+          "Да, новее — лучше",
+          "Да, NoSQL всегда лучше",
+          "Нет — по задаче",
+          "Только по цене"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "PostgreSQL JSON ham saqlay oladimi?",
+        "variantlar": [
+          "Yo'q, faqat jadval",
+          "Ha — kerak bo'lsa JSON ham",
+          "Yo'q, umuman imkonsiz",
+          "Faqat MongoDB saqlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "PostgreSQL умеет хранить и JSON?",
+        "variantlar": [
+          "Нет, только таблицы",
+          "Да — при необходимости и JSON",
+          "Нет, это вообще невозможно",
+          "Только MongoDB хранит"
+        ]
+      }
+    }
+  ]
+}

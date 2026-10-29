@@ -1,0 +1,278 @@
+{
+  "lessonId": "practice-03-decompose-v18",
+  "key": "m2-11",
+  "modul": 3,
+  "tartib": 12,
+  "nom": {
+    "uz": "Praktika 3 — Dekompozitsiya (mini-do'kon)",
+    "ru": "Практика 3 — Декомпозиция (мини-магазин)"
+  },
+  "src": "src/2-Modull/PracticeLesson3.jsx",
+  "barmoq_izi": "3e0043e316fe13022216e22fbded93dc",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Dekompozitsiya nima?",
+        "variantlar": [
+          "Vazifani qadamlarga bo'lish",
+          "Kodni butunlay o'chirish",
+          "Rang va shrift tanlash",
+          "Saytni serverga joylash"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое декомпозиция?",
+        "variantlar": [
+          "Разбить задачу на шаги",
+          "Полностью удалить код",
+          "Выбрать цвет и шрифт",
+          "Выложить сайт на сервер"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "MVP nima ma'noni beradi?",
+        "variantlar": [
+          "Eng qimmat, murakkab versiya",
+          "Eng kichik ishlaydigan versiya",
+          "Eng chiroyli, jozibali dizayn",
+          "Loyihaning oxirgi varianti"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает MVP?",
+        "variantlar": [
+          "Самая дорогая, сложная версия",
+          "Минимальная работающая версия",
+          "Самый красивый, эффектный дизайн",
+          "Финальная версия проекта"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "AI'ni ochishdan oldin nima qilinadi?",
+        "variantlar": [
+          "Reja tuziladi",
+          "«Do'kon yasab ber» deyiladi",
+          "Kompyuter yangilanadi",
+          "Rang tanlanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают до того, как открыть AI?",
+        "variantlar": [
+          "Составляют план",
+          "Пишут «сделай магазин»",
+          "Обновляют компьютер",
+          "Выбирают цвет"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi biri mini-do'kon MVP'siga kiradi?",
+        "variantlar": [
+          "Login va parol",
+          "AI chat-bot",
+          "Reklama bannerlari",
+          "Mahsulotlar ro'yxati"
+        ]
+      },
+      "ru": {
+        "savol": "Что входит в MVP мини-магазина?",
+        "variantlar": [
+          "Логин и пароль",
+          "AI чат-бот",
+          "Рекламные баннеры",
+          "Список товаров"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Do'kon qurishni qaysi qadamdan boshlaymiz?",
+        "variantlar": [
+          "Savatga qo'shish tugmasidan",
+          "Qidiruv oynasidan",
+          "Mahsulotlar ro'yxatidan",
+          "To'lov va bank kartasidan"
+        ]
+      },
+      "ru": {
+        "savol": "С какого шага начинаем строить магазин?",
+        "variantlar": [
+          "С кнопки «в корзину»",
+          "С окна поиска",
+          "Со списка товаров",
+          "С оплаты и банковской карты"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi biri MVP uchun SHART emas (keyin qo'shiladi)?",
+        "variantlar": [
+          "Mahsulotlar ro'yxati",
+          "Har biriga narx",
+          "To'lov va login",
+          "Mahsulot nomi va rasmi"
+        ]
+      },
+      "ru": {
+        "savol": "Что НЕ обязательно для MVP (добавляется потом)?",
+        "variantlar": [
+          "Список товаров",
+          "Цена у каждого",
+          "Оплата и логин",
+          "Название и фото товара"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Rejani kim tuzadi?",
+        "variantlar": [
+          "Siz, AI'ni ochishdan oldin",
+          "AI, birinchi so'rovdan keyin",
+          "Copilot, kod yozayotganda",
+          "Hech kim, reja shart emas"
+        ]
+      },
+      "ru": {
+        "savol": "Кто составляет план?",
+        "variantlar": [
+          "Вы, до того как открыть AI",
+          "AI, после первого запроса",
+          "Copilot, пока пишет код",
+          "Никто, план не нужен"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Aniq buyruq nega muhim?",
+        "variantlar": [
+          "Chiroyliroq ko'rinadi",
+          "Aniq buyruq → aniq natija",
+          "Tezroq yozib bo'ladi",
+          "AI'ni ortiqcha charchatmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему важна точная команда?",
+        "variantlar": [
+          "Выглядит красивее",
+          "Точная команда → точный результат",
+          "Быстрее печатать",
+          "Не утомляет AI лишний раз"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi buyruq eng aniq?",
+        "variantlar": [
+          "Menga bir ro'yxat qil",
+          "Yaxshi narsa qilib ber",
+          "4 mahsulotli do'kon ro'yxati",
+          "Chiroyliroq qilib yasab ber"
+        ]
+      },
+      "ru": {
+        "savol": "Какая команда самая точная?",
+        "variantlar": [
+          "Сделай мне список",
+          "Сделай что-нибудь хорошее",
+          "Список магазина из 4 товаров",
+          "Сделай покрасивее"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "To'g'ri qurish tartibi?",
+        "variantlar": [
+          "Qidiruv → ro'yxat → kartochka",
+          "Kartochka → qidiruv → ro'yxat",
+          "Qidiruv → kartochka → ro'yxat",
+          "Ro'yxat → kartochka → qidiruv"
+        ]
+      },
+      "ru": {
+        "savol": "Правильный порядок сборки?",
+        "variantlar": [
+          "Поиск → список → карточки",
+          "Карточки → поиск → список",
+          "Поиск → карточки → список",
+          "Список → карточки → поиск"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Gemini'ga bir so'rovda nimani berasiz?",
+        "variantlar": [
+          "Butun do'konni birdan",
+          "Rejadagi bitta qadamni",
+          "Eng chiroyli qadamni",
+          "«Keyin» qadamini"
+        ]
+      },
+      "ru": {
+        "savol": "Что Вы даёте Gemini в одном запросе?",
+        "variantlar": [
+          "Весь магазин сразу",
+          "Один шаг из плана",
+          "Самый красивый шаг",
+          "Шаг «потом»"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "«Keyin» qadamlar qachon quriladi?",
+        "variantlar": [
+          "MVP'dan oldin",
+          "Hech qachon",
+          "Dizayn tayyor bo'lgach",
+          "MVP ishlagandan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда строятся шаги «потом»?",
+        "variantlar": [
+          "До MVP",
+          "Никогда",
+          "Когда готов дизайн",
+          "После того как MVP заработал"
+        ]
+      }
+    }
+  ]
+}

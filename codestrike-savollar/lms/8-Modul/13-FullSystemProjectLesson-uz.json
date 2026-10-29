@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Web, mobil va bot nega «bitta tizim»?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bitta backend'dan foydalanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har birida alohida Database",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir-biriga bog'liq emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ranglari o'xshash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ko'p kirish yo'li, bitta tizim» nima degani?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Hammasi bitta backend'ga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bitta kanal yetarli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har kanalga alohida tizim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat web bo'ladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "End-to-end test nimani sinaydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Bitta funksiyani alohida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ranglar va dizaynni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Amalning barcha qadamlarini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni o'qib, ishlatmay",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Integratsiya xatosi qayerda bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Qismlar ulangan joyda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat frontend rangida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qachon paydo bo'lmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat Database'ning ichida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Test jadvalida qizil katak nimani bildiradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Hammasi to'g'ri ishladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha kanal × qadamda xato",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Dizayn ishi tugadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database tez ishlayapti",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ulanish joyidagi xatoni qanday tuzatamiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Hammasini qayta yozamiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "E'tibor bermaymiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sababini topib tuzatamiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat rangni o'zgartiramiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ishga tushirishdan oldin nima shart?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Hech narsa, darrov chiqaramiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Test o'tgan, sozlama to'g'ri",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'proq rang va bezak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Logotip va nom tayyor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Deploy» nima degani?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Kodni o'chirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dizayn chizish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverga joylashtirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi til o'rganish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir kanaldagi buyurtma boshqasida ko'rinadimi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Yo'q, har kanal alohida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat qo'lda ko'chirsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buni qilib bo'lmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, Database bitta",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tizimga mobil kanal qo'shishning oson yo'li?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Hammasini noldan yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi frontend'ni ulash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Alohida Database qurish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buni qilib bo'lmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI tizimda qanday rol o'ynaydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ma'lumotni saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma qarorni o'zi qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buyurtmani o'zi yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Savolga javob yozadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'liq tizimni yetkazishda oxirgi qadam qaysi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yig'ish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xatoni topish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishga tushirish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

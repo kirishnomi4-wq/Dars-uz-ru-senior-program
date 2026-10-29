@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое props?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Данные, переданные компоненту",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Внутренний цвет компонента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Настройка, ускоряющая интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Дополнение для браузера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как App передаёт данные в GameCard?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Сохранив в файл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через атрибут: name=\"...\"",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Отправив через интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GameCard сам забирает",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каком направлении текут props?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "От ребёнка к родителю",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В обе стороны",
+        "hint": "Неверно"
+      },
+      {
+        "value": "От родителя к ребёнку",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вообще не текут",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Может ли компонент менять свои props?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Да, сколько угодно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только один раз",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только маленькие props",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет, они только читаются",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает из списка каталог карточек?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Метод map",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Метод push",
+        "hint": "Неверно"
+      },
+      {
+        "value": "className",
+        "hint": "Неверно"
+      },
+      {
+        "value": "state",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что нужно для меняющихся данных?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "props",
+        "hint": "Неверно"
+      },
+      {
+        "value": "State",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Атрибут",
+        "hint": "Неверно"
+      },
+      {
+        "value": "map",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем скобки { } в name={g}?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Чтобы написать простой текст",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы оставить комментарий",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы передать переменную",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы закрыть тег",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Может ли один GameCard получать несколько props?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Нет, только один",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только name",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только два",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, сколько угодно",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если добавить игру в массив?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Новая карточка появится сама",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Каталог сломается",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт останется прежним",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Код придётся переписать",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется многократное использование компонента?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Перезагрузка (reload)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переиспользование (reuse)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удаление (delete)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перевод (translate)",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Через что \"Doors\" попадает в <GameCard name=\"Doors\" />?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Через state",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через props",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Через отдельный файл",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В чём обычно хранится список данных об играх?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "В одной числовой переменной",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри className",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только в памяти браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В массиве (списке)",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

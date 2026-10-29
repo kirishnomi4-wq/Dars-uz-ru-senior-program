@@ -1,0 +1,278 @@
+{
+  "lessonId": "js-functions-01-v18",
+  "key": "m2-06",
+  "modul": 3,
+  "tartib": 7,
+  "nom": {
+    "uz": "JavaScript — Funksiya, parametr, return",
+    "ru": "JavaScript — Функция, параметры, return"
+  },
+  "src": "src/2-Modull/JsFunctionsLesson.jsx",
+  "barmoq_izi": "18aeac29db8db716ec42aa2ae910e8fd",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Funksiya nima?",
+        "variantlar": [
+          "Bir marta ishlaydigan buyruq",
+          "Qayta ishlatiladigan kod bloki",
+          "Qiymat saqlaydigan quti",
+          "Ma'lumotlar ro'yxati"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое функция?",
+        "variantlar": [
+          "Команда, работающая один раз",
+          "Повторно используемый блок кода",
+          "Коробка для значения",
+          "Список данных"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Funksiyani qanday chaqiramiz?",
+        "variantlar": [
+          "Nom bilan va () qavs",
+          "Faqat nom yozib",
+          "function so'zi bilan",
+          "return bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Как вызвать функцию?",
+        "variantlar": [
+          "По имени со скобками ()",
+          "Просто написав имя",
+          "Словом function",
+          "Через return"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Parametr nima vazifani bajaradi?",
+        "variantlar": [
+          "Natijani qaytaradi",
+          "Funksiyani o'chiradi",
+          "Funksiyaga qiymat beradi",
+          "Konsolga chiqaradi"
+        ]
+      },
+      "ru": {
+        "savol": "Какую работу выполняет параметр?",
+        "variantlar": [
+          "Возвращает результат",
+          "Удаляет функцию",
+          "Передаёт значение в функцию",
+          "Выводит в консоль"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "return nima qiladi?",
+        "variantlar": [
+          "Konsolga chiqaradi",
+          "Funksiyaga nom beradi",
+          "Parametr qo'shadi",
+          "Natijani qaytaradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает return?",
+        "variantlar": [
+          "Выводит в консоль",
+          "Даёт функции имя",
+          "Добавляет параметр",
+          "Возвращает результат"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "console.log va return: qaysi biri qiymat qaytaradi?",
+        "variantlar": [
+          "Faqat console.log",
+          "Faqat return",
+          "Ikkalasi ham",
+          "Hech biri"
+        ]
+      },
+      "ru": {
+        "savol": "console.log и return: кто возвращает значение?",
+        "variantlar": [
+          "Только console.log",
+          "Только return",
+          "Оба",
+          "Никто"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "return power * 3 bo'lsa, damage(5) nima qaytaradi?",
+        "variantlar": [
+          "8",
+          "5",
+          "15",
+          "53"
+        ]
+      },
+      "ru": {
+        "savol": "Если return power * 3, что вернёт damage(5)?",
+        "variantlar": [
+          "8",
+          "5",
+          "15",
+          "53"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "function add(a,b){ return a+b }. add(2,7) natijasi?",
+        "variantlar": [
+          "9",
+          "27",
+          "5",
+          "72"
+        ]
+      },
+      "ru": {
+        "savol": "function add(a,b){ return a+b }. Каков результат add(2,7)?",
+        "variantlar": [
+          "9",
+          "27",
+          "5",
+          "72"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "return'i yo'q funksiya nima qaytaradi?",
+        "variantlar": [
+          "0",
+          "undefined",
+          "bo'sh matn",
+          "xato"
+        ]
+      },
+      "ru": {
+        "savol": "Что вернёт функция без return?",
+        "variantlar": [
+          "0",
+          "undefined",
+          "пустой текст",
+          "ошибку"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "damage(power, bonus) → power * 3 + bonus. damage(3, 10)?",
+        "variantlar": [
+          "13",
+          "33",
+          "30",
+          "19"
+        ]
+      },
+      "ru": {
+        "savol": "damage(power, bonus) → power * 3 + bonus. damage(3, 10) = ?",
+        "variantlar": [
+          "13",
+          "33",
+          "30",
+          "19"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "damage(5) chaqirilganda 5 qayerga tushadi?",
+        "variantlar": [
+          "return ichiga",
+          "funksiya nomiga",
+          "parametrga",
+          "konsolga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда попадает 5 при вызове damage(5)?",
+        "variantlar": [
+          "Внутрь return",
+          "В имя функции",
+          "В параметр",
+          "В консоль"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Bir funksiyani necha marta chaqirsa bo'ladi?",
+        "variantlar": [
+          "Xohlagancha",
+          "Faqat 1 marta",
+          "Ko'pi bilan 3 marta",
+          "Hech qachon"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько раз можно вызвать одну функцию?",
+        "variantlar": [
+          "Сколько угодно",
+          "Только 1 раз",
+          "Максимум 3 раза",
+          "Никогда"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "let x = damage(4). x ga nima tushadi?",
+        "variantlar": [
+          "Funksiya nomi — damage",
+          "Argument — 4 soni",
+          "Hech narsa — undefined",
+          "Funksiya qaytargan qiymat"
+        ]
+      },
+      "ru": {
+        "savol": "let x = damage(4). Что попадёт в x?",
+        "variantlar": [
+          "Имя функции — damage",
+          "Аргумент — число 4",
+          "Ничего — undefined",
+          "Значение, которое вернула функция"
+        ]
+      }
+    }
+  ]
+}

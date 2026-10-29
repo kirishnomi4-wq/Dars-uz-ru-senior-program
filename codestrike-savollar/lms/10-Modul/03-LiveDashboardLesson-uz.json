@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dashboard (holat paneli) nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Raqamlar jamlangan sahifa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Vaqt band qilinadigan sahifa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisalar jadvali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ni yoqish buyrug'i",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Oxirgi 5 daqiqada» nimani sanaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Bugun ochgan brauzerlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa yuborgan brauzerlarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sahifasi ochiq odamlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band qilgan o'yinchilarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Brauzer uch katak bosdi. «Vaqtni tanladi» nechaga oshadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Uchtaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oshmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bittaga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkitaga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega turli brauzerlar sanaladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Raqamlar katta ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend tezroq javob beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database'da joy tejaladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qadamlarni solishtirsa bo'ladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dashboard raqamlarni qanday yangilaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Sayt har 5 soniyada so'raydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ega F5 ni bosib turadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database o'zi yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umami ko'chirib beradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tokensiz GET /hodisalar/sanoq nima qaytaradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Hamma raqamlarni beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "401 qaytaradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat 5 daqiqalikni beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parol sahifasini ochadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saytni yopgan «Oxirgi 5 daqiqada»dan qachon tushadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Yopgan soniyadayoq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi kun boshlanganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisadan 5 daqiqa keyin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ega yangilaganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dashboard ochilsa, «Oxirgi 5 daqiqada» oshadimi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ha — sahifa sanaladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha — ega ham odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — parol to'xtatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — hodisa yozilmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Brauzer ID nimani bildiradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Brauzerni, odamni emas",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'yinchi ismi va telefonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamning yoshi va shahrini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ega paroli bilan tokenni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Yangilandi» har 5 soniyada o'zgaradi. Bu nima degani?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "O'yinchilar kiryapti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend javob beryapti",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Token eskirib qoldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Raqamlar oshyapti",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Vaqtni tanladi 9, band qildi 3. Necha foizi band qildi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Taxminan 3 foizi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taxminan 6 foizi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taxminan 33 foizi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Taxminan 300 foizi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sanoq to'g'riligini qanday tekshirasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Agentdan yana so'raysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Katta raqamga ishonasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi talabga o'tasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Inkognitoda bosib ko'rasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI bilan ishlashda asosiy qoida?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "AI hammasini o'zi hal qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod yozish umuman shart emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI tezlik, sifat esa sizdan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat ingliz tili kerak",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Prompt» nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Saytning asosiy rangi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet brauzeri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faylning kengaytmasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI'ga beriladigan buyruq",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi promptning 4 qismi qaysi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Mavzu, uslub, rang, bo'limlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ism, yosh, shahar, maktab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "HTML, CSS, JS, PHP",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sarlavha, rasm, video, audio",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Menga sayt yasab ber» — bu qanaqa prompt?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Aniq va sifatli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Noaniq — bo'sh natija beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng yaxshi variant",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'liq, to'rt qismli prompt",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi prompt yomonidan nimasi bilan farq qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Uzunroq bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat inglizcha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq tafsilot beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qanday farqi yo'q",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI natijasi yoqmadi. To'g'ri yo'l qaysi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Tashlab ketish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xafa bo'lib to'xtash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'lda qayta yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniqroq qayta so'rash",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Iteratsiya» nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Saytni butunlay o'chirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayta so'rab yaxshilash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasmni kesib olish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Domen sotib olish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Promptdagi «uslub» qismi nimani belgilaydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Sahifa mavzusini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Asosiy rangni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'rinish: zamonaviy/sodda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bo'limlar ro'yxatini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI sayt yasadi. Eng muhim keyingi qadam?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Darhol nashr qilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faylni o'chirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech nima qilmaslik",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Natijani tekshirish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Promo sahifada odatda nima bo'ladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Sarlavha, tugma, kartalar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat bo'sh oq ekran",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat matn fayli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Excel jadvali",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ko'k, zamonaviy o'yin promo, 3 karta» — qanaqa prompt?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Noaniq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq, 4 qismli",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Juda qisqa, foydasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat rang haqida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega AI'ga aniq buyruq berish muhim?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "AI fikringizni o'qiy olmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Aniqlik ta'sir qilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI faqat rasm chiza oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qisqa buyruq doim yaxshiroq",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

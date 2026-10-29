@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m11d6-v1",
+  "key": "m11-06",
+  "modul": 13,
+  "tartib": 6,
+  "nom": {
+    "uz": "Pul haqida qanday gaplashasiz?",
+    "ru": "Как говорить о деньгах?"
+  },
+  "src": "src/11-Modull/PmMoneyTalkLesson.jsx",
+  "barmoq_izi": "23af52ee2314c5a016da59e09074127c",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Bu darsda suhbat nima?",
+        "variantlar": [
+          "Narx haqida odamdan so'rash",
+          "Tanishlarga sotish usuli",
+          "Ilovani do'stlarga ko'rsatish",
+          "Narxni Mentor bilan kelishish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое беседа в этом уроке?",
+        "variantlar": [
+          "Спросить человека о цене",
+          "Способ продать знакомым",
+          "Показать приложение друзьям",
+          "Согласовать цену с Ментором"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida narx qaysi savolda aytiladi?",
+        "variantlar": [
+          "Birinchi savolda",
+          "Ikkinchi savolda",
+          "Uchinchi savolda",
+          "To'rtinchi savolda"
+        ]
+      },
+      "ru": {
+        "savol": "В каком вопросе в примере Ментора называется цена?",
+        "variantlar": [
+          "В первом вопросе",
+          "Во втором вопросе",
+          "В третьем вопросе",
+          "В четвёртом вопросе"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor to'rtinchi savolni qachon beradi?",
+        "variantlar": [
+          "Suhbat boshlanishi bilan",
+          "«Yo'q» yoki «qimmat» desa",
+          "Tashkilotchi «ha» desa",
+          "Umuman javob bermasa"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Ментор задаёт четвёртый вопрос?",
+        "variantlar": [
+          "Сразу в начале беседы",
+          "Если сказали «нет» или «дорого»",
+          "Если организатор сказал «да»",
+          "Если вообще не ответил"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi gap sotish gapi?",
+        "variantlar": [
+          "Hozir buni qanday qilyapsiz?",
+          "Bunga hozir pul sarflaysizmi?",
+          "Vaqtingiz uchun rahmat!",
+          "Hamma oldi, siz ham olasizmi?"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза — фраза продажи?",
+        "variantlar": [
+          "Как вы делаете это сейчас?",
+          "Тратите ли вы на это деньги сейчас?",
+          "Спасибо за ваше время!",
+          "Все взяли, возьмёте и вы?"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "«Qimmat, yarim narxda olardim». Nima yoziladi?",
+        "variantlar": [
+          "«Qimmat» va uning narxi",
+          "«Ha» va savoldagi narx",
+          "«Yo'q», narx yozilmaydi",
+          "«Javob yo'q», gap yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "«Дорого, за полцены взял бы». Что записывается?",
+        "variantlar": [
+          "«Дорого» и его цена",
+          "«Да» и цена из вопроса",
+          "«Нет», цена не пишется",
+          "«Нет ответа», слов нет"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Uch tashkilotchidan nechtasi «ha» dedi?",
+        "variantlar": [
+          "Uchalasi",
+          "Bittasi",
+          "Ikkitasi",
+          "Hech biri"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько из трёх организаторов сказали «да»?",
+        "variantlar": [
+          "Все трое",
+          "Один",
+          "Двое",
+          "Ни один"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Odam xabaringizga javob bermadi. Qaysi belgi qo'yiladi?",
+        "variantlar": [
+          "«Yo'q»",
+          "«Qimmat»",
+          "«Javob yo'q»",
+          "Hech qanday"
+        ]
+      },
+      "ru": {
+        "savol": "Человек не ответил на сообщение. Какая отметка ставится?",
+        "variantlar": [
+          "«Нет»",
+          "«Дорого»",
+          "«Нет ответа»",
+          "Никакая"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Odam «ha, olaman» dedi. Nima qilasiz?",
+        "variantlar": [
+          "Pulni naqd olib qo'yaman",
+          "Narxni oshiraman",
+          "Do'stini ham olishga undayman",
+          "Gapini yozaman, pul olmayman"
+        ]
+      },
+      "ru": {
+        "savol": "Человек сказал «да, возьму». Что вы делаете?",
+        "variantlar": [
+          "Сразу беру деньги наличными",
+          "Повышаю цену",
+          "Уговариваю и его друзей",
+          "Записываю слова, денег не беру"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Narx suhbati uchun kimni tanlaysiz?",
+        "variantlar": [
+          "To'laydigan roldagi tanishni",
+          "Internetdagi notanishni",
+          "Mahsulotga aloqasiz odamni",
+          "O'zimni o'zim so'rayman"
+        ]
+      },
+      "ru": {
+        "savol": "Кого вы выберете для беседы о цене?",
+        "variantlar": [
+          "Знакомого в роли плательщика",
+          "Незнакомца из интернета",
+          "Человека, не связанного с продуктом",
+          "Спрошу сам себя"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Guruhdagi tanishga yozishdan oldin nima qilasiz?",
+        "variantlar": [
+          "Hammaga yozaman",
+          "Guruh egasidan ruxsat olaman",
+          "Telefon raqamini topaman",
+          "Hech narsa, u tanish"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы сделаете, прежде чем написать знакомому из группы?",
+        "variantlar": [
+          "Пишу всем",
+          "Беру разрешение у владельца группы",
+          "Нахожу его номер телефона",
+          "Ничего, он знакомый"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Suhbat yozuvida odam qanday ataladi?",
+        "variantlar": [
+          "Ism: «Akmal Karimov»",
+          "Telegram: «@akmal_07»",
+          "Rol: «tashkilotchi»",
+          "Hech qanday nom yozilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Как называют человека в записи разговора?",
+        "variantlar": [
+          "Имя: «Акмал Каримов»",
+          "Telegram: «@akmal_07»",
+          "Роль: «организатор»",
+          "Никакое имя не пишут"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Rol o'yinidagi yozuv nega real suhbatga kirmaydi?",
+        "variantlar": [
+          "Narx aytilmagan",
+          "Mentor tekshirmagan",
+          "Sherik «yo'q» degan",
+          "Sherik rol o'ynagan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему запись ролевой игры не входит в реальные беседы?",
+        "variantlar": [
+          "Цена не названа",
+          "Ментор не проверил",
+          "Партнёр сказал «нет»",
+          "Партнёр играл роль"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Katalogni haqiqiy do'konga nima aylantiradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ko'proq yorqin rang",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kattaroq qalin shrift",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Savat + jami narx",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'proq mahsulot rasmi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jami narx qanday hisoblanadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Savatdagi narxlar yig'indisi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tasodifiy tanlangan son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng qimmat mahsulot narxi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har doim nolga teng",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI bug qilsa (xato) bu...",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Katta falokat, tashlab ketamiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umuman tuzatib bo'lmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat dasturchining aybi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Normal — tushuntirib tuzatamiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI'ga bug'ni qanday aytish to'g'ri?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Faqat «tuzat» deb yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato va to'g'risini aytish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Ishlamayapti!» deb baqirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa demaslik",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Debugging nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Xatoni topib tuzatish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi funksiya qo'shish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni chiroyli bo'yash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetga deploy qilish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "MVP 'tayyor' degani nima?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Mutlaqo mukammal, kamchiliksiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat dizayni chiroyli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Asosiy funksiyalar ishlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Juda ko'p funksiyasi bor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Deploy nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Kodni butunlay o'chirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ataylab bug qilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fon rangini tanlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni internetga chiqarish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Deploydan keyin do'stlaringizga nimani yuborasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Sayt linkini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Butun kod faylini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butun kompyuteringizni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulot rasmini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uyga vazifada do'konga qaysi tugma qo'shiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "«Kodni o'chirish»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Saytni yopish»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Buyurtma berish»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Internetni uzish»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Narx \"3000\" (qo'shtirnoqda) bo'lsa, 0 + \"3000\" nima beradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "3000 — son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt to'xtab qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "0 — nol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "\"03000\" — matn",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Universal yo'l: Reja → MVP → qurish → ? → deploy",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Reklama qilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tekshirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qayta reja",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni o'chirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Savatga» bosilganda savat massiviga nima bo'ladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Butunlay o'chiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "push bilan qo'shiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Alifbo bo'yicha saralanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

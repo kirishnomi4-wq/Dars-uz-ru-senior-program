@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m8d10-yol-v1",
+  "key": "m8-10",
+  "modul": 10,
+  "tartib": 10,
+  "nom": {
+    "uz": "Bir yilda nimalarni qurdingiz?",
+    "ru": "Что вы построили за год?"
+  },
+  "src": "src/8-Modull/PmYearPathLesson.jsx",
+  "barmoq_izi": "a7914d62fea380e9dd5a097181493f6d",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Vaqt chizig'ida loyihalar qanday turadi?",
+        "variantlar": [
+          "Qurilgan vaqti bo'yicha",
+          "Eng yoqqanidan boshlab",
+          "Eng kattasidan boshlab",
+          "Ko'p vaqt olganidan boshlab"
+        ]
+      },
+      "ru": {
+        "savol": "Как стоят проекты на линии времени?",
+        "variantlar": [
+          "По времени создания",
+          "Начиная с любимого",
+          "Начиная с самого большого",
+          "Начиная с самого долгого"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Bir yil oldingi portfolio chiziqda qayerda?",
+        "variantlar": [
+          "Oxirida — eng yangisi",
+          "Boshida — ilk loyihalardan",
+          "O'rtasida — eng muhimi",
+          "Hech qayerda — juda kichik"
+        ]
+      },
+      "ru": {
+        "savol": "Где на линии портфолио годичной давности?",
+        "variantlar": [
+          "В конце — самый новый",
+          "В начале — среди первых",
+          "В середине — самый важный",
+          "Нигде — слишком маленький"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«AvtoIjara saytini qurdim» — «O'rgandim»ga mosmi?",
+        "variantlar": [
+          "Ha — nomi aniq yozilgan",
+          "Ha — zamoni to'g'ri",
+          "Yo'q — nomni takrorlaydi",
+          "Yo'q — juda qisqa"
+        ]
+      },
+      "ru": {
+        "savol": "«Построил сайт AvtoIjara» — подходит для «Научился»?",
+        "variantlar": [
+          "Да — название указано точно",
+          "Да — время глагола верное",
+          "Нет — повторяет название",
+          "Нет — слишком коротко"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi gap «O'rgandim»ga mos keladi?",
+        "variantlar": [
+          "Loyiham chiroyli ko'rinadi",
+          "KitobShop'ni qurib bo'ldim",
+          "Mentor loyihamni maqtaydi",
+          "Botga AI'ni ulay olaman"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза подходит для «Научился»?",
+        "variantlar": [
+          "Мой проект выглядит красиво",
+          "Достроил KitobShop",
+          "Ментор хвалит мой проект",
+          "Умею подключать AI к боту"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Uzum qachon ishga tushgan?",
+        "variantlar": [
+          "2022-yil oktabrda",
+          "2020-yil sentabrda",
+          "2024-yil martda",
+          "2019-yil oktabrda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда запустился Uzum?",
+        "variantlar": [
+          "В октябре 2022 года",
+          "В сентябре 2020 года",
+          "В марте 2024 года",
+          "В октябре 2019 года"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Uzum'gacha odamlar internetda qayerdan xarid qilardi?",
+        "variantlar": [
+          "Chet el saytlaridan",
+          "Telegram va Instagram'dan",
+          "Bank ilovalari orqali",
+          "Maktab saytlaridan"
+        ]
+      },
+      "ru": {
+        "savol": "Где люди покупали в интернете до Uzum?",
+        "variantlar": [
+          "На зарубежных сайтах",
+          "В Telegram и Instagram",
+          "Через банковские приложения",
+          "На школьных сайтах"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Uzum «unicorn» bo'ldi — bu nima?",
+        "variantlar": [
+          "Ishchilari mingdan oshgan",
+          "O'nta shaharga ochilgan",
+          "Bahosi 1 mlrd dollardan oshgan",
+          "Hammasini o'zi yetkazadi"
+        ]
+      },
+      "ru": {
+        "savol": "Uzum стал «единорогом» — что это значит?",
+        "variantlar": [
+          "Сотрудников больше тысячи",
+          "Открылся в десяти городах",
+          "Оценка выше 1 млрд долларов",
+          "Сам доставляет всё"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Uzum'ning birinchi qadami nimadan o'sgan?",
+        "variantlar": [
+          "Sayt dizayni eskirganidan",
+          "Do'konlar kamligidan",
+          "Reklama arzonlashganidan",
+          "Yetkazib berishsiz xariddan"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего вырос первый шаг Uzum?",
+        "variantlar": [
+          "Из устаревшего дизайна сайта",
+          "Из нехватки магазинов",
+          "Из удешевления рекламы",
+          "Из покупок без доставки"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Keyingi qadamning belgilaridan biri qaysi?",
+        "variantlar": [
+          "Bitta va aniq ish",
+          "Eng katta va qiyin ish",
+          "Hammaga yoqadigan ish",
+          "Tez tugaydigan ish"
+        ]
+      },
+      "ru": {
+        "savol": "Какой из признаков следующего шага?",
+        "variantlar": [
+          "Одна конкретная работа",
+          "Самая большая и трудная работа",
+          "Работа, которая нравится всем",
+          "Работа, которая быстро заканчивается"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "«Ko'proq o'rganaman» — keyingi qadam bo'ladimi?",
+        "variantlar": [
+          "Ha — kelajak haqida",
+          "Yo'q — ish aniq emas",
+          "Ha — o'rganish kerak",
+          "Yo'q — juda uzun"
+        ]
+      },
+      "ru": {
+        "savol": "«Буду больше учиться» — это следующий шаг?",
+        "variantlar": [
+          "Да — это о будущем",
+          "Нет — дело не конкретное",
+          "Да — учиться нужно",
+          "Нет — слишком длинно"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "«Maydon» keyingi qadami nimadan o'sdi?",
+        "variantlar": [
+          "Mentorning qiziqishidan",
+          "Boshqa saytlarda ko'rganidan",
+          "O'yinchilar aytganidan",
+          "B variantining yutug'idan"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего вырос следующий шаг «Maydon»?",
+        "variantlar": [
+          "Из интереса Ментора",
+          "Из увиденного на других сайтах",
+          "Из слов игроков",
+          "Из победы варианта B"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Loyiha qurmagan modulni nima qilasiz?",
+        "variantlar": [
+          "Sinfdoshnikini yozasiz",
+          "O'ylab topib yozasiz",
+          "Chiziqni tugatasiz",
+          "«O'tkazildi» deb belgilaysiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что делаете с модулем, где не было проекта?",
+        "variantlar": [
+          "Пишете проект одноклассника",
+          "Придумываете проект",
+          "Заканчиваете линию",
+          "Отмечаете «пропущен»"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Maydon» MVP siga qaysi qismlar yetadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Sayt, Backend va Database",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat sayt — brauzerda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt, Backend, AI va Bot",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat Database va jadval",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kataklarni ekranda qaysi qism chizadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Backend — hisoblaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt — ko'rsatadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database — saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent — kod yozgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi band qilinganda bandlar jadvaliga nima qo'shiladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Yangi ustun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi jadval",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi qator",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi yo'l",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "baho ustuni nega jadvalda yo'q?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Database baho saqlamaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bahoni sayt hisoblaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustunlar soni cheklangan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baho «qilmaymiz» ro'yxatida",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt kataklarni qaysi yo'ldan oladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "GET /vaqtlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "POST /bandlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "POST /kirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET /bandlar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dushanba uchun qator yo'q. Sayt nima ko'rsatadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Kataklar chiqmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Olti katak, hammasi bo'sh",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Olti katak, hammasi band",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt xato ko'rsatadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tokensiz bandlar so'raldi. Backend nima qiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ro'yxatni to'liq qaytaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh ro'yxat qaytaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "401 bilan rad etadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni yopib qo'yadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ega to'g'ri parol yozdi. POST /kirish nima qaytaradi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Bandlar ro'yxatini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parolning o'zini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kataklar ro'yxatini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ega uchun tokenni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": ".env repo'ga qo'shilmasin. Nima qilasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": ".gitignore ga yozaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Fayl nomini o'zgartiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faylni web/ ga ko'chiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qatorlarini o'chiraman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Stack nima?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Bitta katta dastur fayli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birga ishlovchi texnologiyalar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytdagi tugma va sahifalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database'dagi jadvallar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt internetda, Backend sizda. Do'st nima ko'radi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Hamma kataklarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa — ochilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani, lekin kataklarsiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat band kataklarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kod yozishdan oldin chizma nega kerak?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kod tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dizayn chiroyli chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Deploy shart bo'lmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentga joyni aniq aytasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

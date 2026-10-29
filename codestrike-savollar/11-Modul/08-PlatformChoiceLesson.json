@@ -1,0 +1,278 @@
+{
+  "lessonId": "m9-08-v1",
+  "key": "m9-08",
+  "modul": 11,
+  "tartib": 8,
+  "nom": {
+    "uz": "Arxitektura va platforma: web yoki mobil ilova",
+    "ru": "Архитектура и платформа: веб или мобильное приложение"
+  },
+  "src": "src/9-Modull/PlatformChoiceLesson.jsx",
+  "barmoq_izi": "5a23ddb1ba66b630a639ddd3900ac2a3",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Yangi e'lonni qaysi qism saqlaydi?",
+        "variantlar": [
+          "Database, jadval qatorida",
+          "Backend, o'z kodida",
+          "Ilova, telefon xotirasida",
+          "Telegram, guruh xabarida"
+        ]
+      },
+      "ru": {
+        "savol": "Какая часть хранит новое объявление?",
+        "variantlar": [
+          "Database, в строке таблицы",
+          "Backend, в своём коде",
+          "Приложение, в памяти телефона",
+          "Telegram, в сообщении группы"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Bir o'yinchi ko'p o'yinda. Bu qayerda yoziladi?",
+        "variantlar": [
+          "oyinchilar dagi ustunda",
+          "ishtirokchilar qatorlarida",
+          "oyinlar dagi ustunda",
+          "Telefon xotirasida"
+        ]
+      },
+      "ru": {
+        "savol": "Один игрок во многих играх. Где это записано?",
+        "variantlar": [
+          "в столбце oyinchilar",
+          "в строках ishtirokchilar",
+          "в столбце oyinlar",
+          "в памяти телефона"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "tashkilotchi_id ustuni nimani ko'rsatadi?",
+        "variantlar": [
+          "Qo'shilgan o'yinchini",
+          "O'yin qaysi maydonda",
+          "Kim e'lon qilganini",
+          "Nechta odam kerakligini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает столбец tashkilotchi_id?",
+        "variantlar": [
+          "Присоединившегося игрока",
+          "На каком поле игра",
+          "Кто объявил игру",
+          "Сколько людей нужно"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi biri real vaqt nuqtasi?",
+        "variantlar": [
+          "O'yinning kuni va soati",
+          "O'yin maydonining nomi",
+          "E'lon berish formasi",
+          "Qo'shilganlar ro'yxati"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — точка реального времени?",
+        "variantlar": [
+          "День и время игры",
+          "Название поля",
+          "Форма объявления",
+          "Список присоединившихся"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Bu modulda ilova qachon so'raydi?",
+        "variantlar": [
+          "Ochilganda, pastga tortilganda",
+          "Faqat o'rnatilgan kuni",
+          "Telefon qayta yoqilganda",
+          "Har daqiqada o'zi"
+        ]
+      },
+      "ru": {
+        "savol": "Когда в этом модуле приложение запрашивает?",
+        "variantlar": [
+          "При открытии и потягивании вниз",
+          "Только в день установки",
+          "При перезагрузке телефона",
+          "Само каждую минуту"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "korsat() nega ochilishda chaqiriladi?",
+        "variantlar": [
+          "Tugma o'zi bosilmasin deb",
+          "Son darhol so'ralsin deb",
+          "sora o'chmasin deb",
+          "Sahifa tez ochilsin deb"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем korsat() вызывают при открытии?",
+        "variantlar": [
+          "Чтобы кнопка не нажалась сама",
+          "Чтобы число запросилось сразу",
+          "Чтобы sora не выключилась",
+          "Чтобы страница открылась быстрее"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Platforma nima?",
+        "variantlar": [
+          "Backend turadigan xizmat",
+          "Ekranlarning qog'oz chizmasi",
+          "Mahsulot qayerda ishlashi",
+          "Database jadvallari"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое платформа?",
+        "variantlar": [
+          "Сервис, где стоит Backend",
+          "Рисунок экранов на бумаге",
+          "Где работает продукт",
+          "Таблицы Database"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Yo'lda, telefonda ochiladi. Qaysi tomonga tortadi?",
+        "variantlar": [
+          "Web tomoniga",
+          "Ikkalasiga teng",
+          "Hech qaysisiga",
+          "Mobil tomoniga"
+        ]
+      },
+      "ru": {
+        "savol": "Открывают в пути, на телефоне. Куда это тянет?",
+        "variantlar": [
+          "К вебу",
+          "Поровну",
+          "Никуда",
+          "К мобильному"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Link bilan tez ulashish muhim. Qaysi tomonga tortadi?",
+        "variantlar": [
+          "Web tomoniga",
+          "Mobil tomoniga",
+          "Hech qaysisiga",
+          "Ikkalasiga teng"
+        ]
+      },
+      "ru": {
+        "savol": "Важно быстро делиться ссылкой. Куда это тянет?",
+        "variantlar": [
+          "К вебу",
+          "К мобильному",
+          "Никуда",
+          "Поровну"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor misolida nega mobil?",
+        "variantlar": [
+          "Ilova chiroyliroq ko'rinadi",
+          "O'yinchi maydonda, telefonda",
+          "Faqat React Native tanish",
+          "Link guruhga tashlanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему в примере Ментора мобильная?",
+        "variantlar": [
+          "Приложение выглядит красивее",
+          "Игрок на поле, с телефоном",
+          "Знаком только React Native",
+          "Ссылку кидают в группу"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Stek nima?",
+        "variantlar": [
+          "Ilova ochiladigan platforma",
+          "PRD dagi funksiyalar ro'yxati",
+          "Birga ishlovchi texnologiyalar",
+          "Ilova ekranlari va tugmalari"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое стек?",
+        "variantlar": [
+          "Платформа, где открывается продукт",
+          "Список функций в PRD",
+          "Технологии, работающие вместе",
+          "Экраны и кнопки приложения"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Mobil trekka o'tsangiz, nima o'zgaradi?",
+        "variantlar": [
+          "Backend va Database",
+          "Faqat Database jadvallari",
+          "Uchala qism birdan",
+          "Foydalanuvchi ochadigan qism"
+        ]
+      },
+      "ru": {
+        "savol": "Что изменится при переходе на мобильный трек?",
+        "variantlar": [
+          "Backend и Database",
+          "Только таблицы Database",
+          "Все три части сразу",
+          "Часть, которую открывает пользователь"
+        ]
+      }
+    }
+  ]
+}

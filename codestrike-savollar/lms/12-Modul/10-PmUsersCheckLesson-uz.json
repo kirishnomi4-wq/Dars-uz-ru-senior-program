@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hisobotda «ro'yxatdan o'tgan» soni qayerdan olingan?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Umami tashriflaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database'dan, namunasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinf chati javoblaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending tugmasidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sanoq sahifasidagi qadamlar nimani sanaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Turli qurilmalarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Turli akkauntlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending tashriflarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugma bosilishlarini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hisobotda sinfdoshlar qanday aytiladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sanalmaydi, chiqariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sanaladi, alohida emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ular yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sanaladi, alohida aytiladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "WHERE namuna = false nima qiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Faqat sinfdoshlarni qoldiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kunlarni tartiblaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Namuna akkauntlarni sanamaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ism va loginni yashiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "SQL'ga GROUP BY kun qo'shilsa, Neon nima ko'rsatadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Hamma kunga bitta son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har kunga alohida son",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat bugungi son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng ko'p ro'yxatli kun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor tekshiruvining uchinchi savoli nimaga qaraydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "50 ga qancha qolganiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlar o'sishiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending tashriflariga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oldingi son borligiga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hisobotda foydalanuvchilar haqida nima yoziladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Faqat sonlar, ismsiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har odamning ismi va sanasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlar ismlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har birining logini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Duolingo'ning asosiy qaytarish mexanikasi qaysi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Eslatmalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Muzlatish»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ketma-ket kunlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi so'zlar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaytganlar foizi nimani ko'rsatadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Keyin ham ochganlar foizini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi ro'yxatlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugmani bosganlar foizini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilganlar foizini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Zaxira rejada bir haftaga nechta ish yoziladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Har bo'g'inga bittadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Iloji boricha ko'p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish yo'q, faqat gipoteza",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta bo'g'inga bitta",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor zaxira reja uchun qaysi bo'g'inni tanladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Lending: kam bosilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxat: kam o'tilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kanal: post kam yetgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Asosiy harakat: kam",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Lendingga 90 tashrif, tugma 6 marta bosildi. Qaysi bo'g'in?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kanal",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ro'yxat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Asosiy harakat",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m11d9-v1",
+  "key": "m11-09",
+  "modul": 13,
+  "tartib": 9,
+  "nom": {
+    "uz": "Kim haqiqatan to'lashga tayyor?",
+    "ru": "Кто действительно готов платить?"
+  },
+  "src": "src/11-Modull/PmPayCheckLesson.jsx",
+  "barmoq_izi": "d2017dd2d3d5abebfad53be6bd3900a0",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Bu darsda yozma tasdiq nima?",
+        "variantlar": [
+          "Siz yozib olgan gapi",
+          "Odam yozgan narxli javob",
+          "Oldindan berilgan pul",
+          "Mashq to'lovdagi tugma"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое письменное подтверждение в этом уроке?",
+        "variantlar": [
+          "Его слова, записанные вами",
+          "Ответ с ценой, написанный человеком",
+          "Деньги, отданные заранее",
+          "Кнопка в учебной оплате"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor misolida nechta tashkilotchidan so'raldi?",
+        "variantlar": [
+          "Uchtadan",
+          "Bittadan",
+          "44 tadan",
+          "Oltitadan"
+        ]
+      },
+      "ru": {
+        "savol": "У скольких организаторов спросили в примере Ментора?",
+        "variantlar": [
+          "У трёх",
+          "У одного",
+          "У 44",
+          "У шести"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida nechta yozma tasdiq bor?",
+        "variantlar": [
+          "Bitta",
+          "Oltita",
+          "Uchta",
+          "Ikkita"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько письменных подтверждений в примере Ментора?",
+        "variantlar": [
+          "Одно",
+          "Шесть",
+          "Три",
+          "Два"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«15 000 qimmat. 10 000 bo'lsa, to'layman». Bu nima?",
+        "variantlar": [
+          "Hozir yo'q",
+          "Javob yo'q",
+          "Sotish gapi",
+          "Yozma tasdiq"
+        ]
+      },
+      "ru": {
+        "savol": "«15 000 дорого. За 10 000 заплачу». Что это?",
+        "variantlar": [
+          "Пока нет",
+          "Нет ответа",
+          "Фраза продажи",
+          "Письменное подтверждение"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "«Kim tasdiqladi?» savoli nimani tekshiradi?",
+        "variantlar": [
+          "Yozgan to'lovchi ekanini",
+          "Uning ism-familiyasini",
+          "Necha yoshda ekanini",
+          "Pulni qachon berishini"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяет вопрос «Кто подтвердил?»?",
+        "variantlar": [
+          "Что писавший — плательщик",
+          "Его имя и фамилию",
+          "Сколько ему лет",
+          "Когда он отдаст деньги"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida tekshiruv javobi qanday?",
+        "variantlar": [
+          "Tuzatish: uchtasi yetmaydi",
+          "Tuzatish: biri 10 000 da",
+          "Qabul: uch savolga «ha»",
+          "Tekshirilmadi: sherik yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Каков ответ проверки в примере Ментора?",
+        "variantlar": [
+          "Исправить: трёх не хватает",
+          "Исправить: одно за 10 000",
+          "Принято: «да» на три вопроса",
+          "Не проверено: нет партнёра"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "O'zingiz yozgan «tasdiq» nima bo'ladi?",
+        "variantlar": [
+          "Qabul: narx bo'lsa",
+          "Tuzatish: odam yozmagan",
+          "Tuzatish: uchta emas",
+          "Qabul: so'zma-so'z bo'lsa"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет с «подтверждением», которое вы написали сами?",
+        "variantlar": [
+          "Принято, если есть цена",
+          "Исправить: писал не человек",
+          "Исправить: их не три",
+          "Принято, если дословно"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Tasdiq «hozir olmasangiz, qimmatlashadi» deb olindi. Natija?",
+        "variantlar": [
+          "Qabul: odam o'zi yozgan",
+          "Qabul: narxi bor",
+          "Tuzatish: narx qimmat",
+          "Tuzatish: bosim bor"
+        ]
+      },
+      "ru": {
+        "savol": "Подтверждение получено словами «не возьмёте сейчас — подорожает». Итог?",
+        "variantlar": [
+          "Принято: человек написал сам",
+          "Принято: цена есть",
+          "Исправить: цена дорогая",
+          "Исправить: было давление"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor misolida yozma tasdiq kimlardan so'raldi?",
+        "variantlar": [
+          "Tashkilotchilardan",
+          "O'yinchilardan",
+          "Sinfdoshlardan",
+          "Maydon egasidan"
+        ]
+      },
+      "ru": {
+        "savol": "У кого просили письменное подтверждение в примере Ментора?",
+        "variantlar": [
+          "У организаторов",
+          "У игроков",
+          "У одноклассников",
+          "У владельца поля"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Yozma tasdiq bergan odamga nima yuboriladi?",
+        "variantlar": [
+          "Mashq to'lov linki",
+          "Pul o'tkazish iltimosi",
+          "Hech narsa",
+          "Do'stlarni chaqirish"
+        ]
+      },
+      "ru": {
+        "savol": "Что отправляют человеку, давшему письменное подтверждение?",
+        "variantlar": [
+          "Ссылку на учебную оплату",
+          "Просьбу перевести деньги",
+          "Ничего",
+          "Просьбу позвать друзей"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Skrinshot ko'rsatsangiz, nimani yopasiz?",
+        "variantlar": [
+          "Odam yozib bergan narxni",
+          "Ism va telefon raqamini",
+          "Nima uchun to'layotganini",
+          "Xabar kelgan kun va vaqtni"
+        ]
+      },
+      "ru": {
+        "savol": "Что закрываете, если показываете скриншот?",
+        "variantlar": [
+          "Цену, которую написал человек",
+          "Имя и номер телефона",
+          "За что он платит",
+          "День и время сообщения"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor xabarida qaysi gap bor?",
+        "variantlar": [
+          "«Bu to'lov emas»",
+          "«Olmasangiz, qimmatlashadi»",
+          "«Boshqalar ham oldi»",
+          "«Do'stlarga ham yuboring»"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза есть в сообщении Ментора?",
+        "variantlar": [
+          "«Это не оплата»",
+          "«Не возьмёте — подорожает»",
+          "«Другие тоже взяли»",
+          "«Отправьте и друзьям»"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m7d1-v1",
+  "key": "m7-01",
+  "modul": 9,
+  "tartib": 1,
+  "nom": {
+    "uz": "Loyihangiz kimga kerak?",
+    "ru": "Кому нужен ваш проект?"
+  },
+  "src": "src/7-Modull/PmProductProblemLesson.jsx",
+  "barmoq_izi": "12870168edad544d2805d10980dd38e6",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Qaysi biri loyiha?",
+        "variantlar": [
+          "Saytni 4 hafta qurish ishi",
+          "Sinfdoshlar ishlatadigan bot",
+          "Taksi chaqiradigan ilova",
+          "Hisob to'ldiradigan ilova"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — проект?",
+        "variantlar": [
+          "Работа: сайт за 4 недели",
+          "Бот, которым пользуются одноклассники",
+          "Приложение для вызова такси",
+          "Приложение для пополнения баланса"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Mahsulotni kim ishlatadi?",
+        "variantlar": [
+          "Faqat uni qurgan odam",
+          "Egasi ko'rsatgan do'stlar",
+          "Odamlar — o'z muammosi uchun",
+          "Mentor — tekshirish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Кто пользуется продуктом?",
+        "variantlar": [
+          "Только тот, кто его создал",
+          "Друзья, которым показал автор",
+          "Люди — для своей проблемы",
+          "Ментор — чтобы проверить"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Saytni faqat siz ochasiz. U nima?",
+        "variantlar": [
+          "Mahsulot — internetda bor",
+          "Loyiha — hech kim ishlatmaydi",
+          "Mahsulot — hamma ocha oladi",
+          "Loyiha — kodi hali kam"
+        ]
+      },
+      "ru": {
+        "savol": "Сайт открываете только вы. Что это?",
+        "variantlar": [
+          "Продукт — он в интернете",
+          "Проект — никто не пользуется",
+          "Продукт — открыть может каждый",
+          "Проект — кода пока мало"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Ilovada odatda avval qaysi qator ko'rinadi?",
+        "variantlar": [
+          "KIM — kim ishlatadi",
+          "MUAMMO — nimadan qiynalgan",
+          "Hech biri ko'rinmaydi",
+          "YECHIM — ilova nima qiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка обычно видна в приложении первой?",
+        "variantlar": [
+          "КТО — кто пользуется",
+          "ПРОБЛЕМА — от чего страдал",
+          "Никакая не видна",
+          "РЕШЕНИЕ — что делает приложение"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Google Maps: MUAMMO qatori qaysi?",
+        "variantlar": [
+          "Xarita chiroyli bo'lsin derdi",
+          "Ko'chalar juda ko'p edi",
+          "Joyni so'rab-so'rab topardi",
+          "Xarita ko'rishni yoqtirardi"
+        ]
+      },
+      "ru": {
+        "savol": "Google Maps: какая строка ПРОБЛЕМА?",
+        "variantlar": [
+          "Хотел, чтобы карта была красивой",
+          "Улиц было очень много",
+          "Искал место, расспрашивая людей",
+          "Любил смотреть карты"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Muammoning uch belgisidan biri qaysi?",
+        "variantlar": [
+          "Odam «muammo bor» deydi",
+          "Odam o'zicha yo'l topgan",
+          "Bu haqda internetda yozilgan",
+          "Uni yechadigan ilova bor"
+        ]
+      },
+      "ru": {
+        "savol": "Какой из трёх признаков проблемы?",
+        "variantlar": [
+          "Человек говорит «есть проблема»",
+          "Человек сам нашёл обходной путь",
+          "Об этом написано в интернете",
+          "Есть приложение, которое её решает"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "«Oshxona qurish kerak.» Bu nima?",
+        "variantlar": [
+          "Yechim — kim qiynalgani yo'q",
+          "Muammo — «kerak» so'zi bor",
+          "Muammo — maktabda bo'lyapti",
+          "Yechim — chunki qimmat"
+        ]
+      },
+      "ru": {
+        "savol": "«Нужно построить столовую». Что это?",
+        "variantlar": [
+          "Решение — нет, кто страдает",
+          "Проблема — есть слово «нужно»",
+          "Проблема — это происходит в школе",
+          "Решение — потому что дорого"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Dropbox qanday muammodan boshlangan?",
+        "variantlar": [
+          "Kompyuter juda qimmat edi",
+          "Internet juda sekin edi",
+          "Fayl chop etish qiyin edi",
+          "Fleshka uyda qolgan edi"
+        ]
+      },
+      "ru": {
+        "savol": "С какой проблемы начался Dropbox?",
+        "variantlar": [
+          "Компьютеры были очень дорогими",
+          "Интернет был очень медленным",
+          "Файлы было трудно печатать",
+          "Флешка осталась дома"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Dropbox videosi chiqqach nima bo'ldi?",
+        "variantlar": [
+          "Faqat do'stlari ko'rdi",
+          "Dastur yopib qo'yildi",
+          "Videoni hech kim ko'rmadi",
+          "75 000 kishi ro'yxatga yozildi"
+        ]
+      },
+      "ru": {
+        "savol": "Что случилось после видео Dropbox?",
+        "variantlar": [
+          "Посмотрели только друзья",
+          "Программу закрыли",
+          "Видео никто не посмотрел",
+          "75 000 человек записались в список"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Link sizdan, do'st botni doim ishlatadi. Bot nima?",
+        "variantlar": [
+          "Loyiha — link sizdan",
+          "Mahsulot — o'z ishi uchun",
+          "Mahsulot — link bor",
+          "Loyiha — bot kichik"
+        ]
+      },
+      "ru": {
+        "savol": "Ссылка от вас, друг постоянно пользуется ботом. Что такое бот?",
+        "variantlar": [
+          "Проект — ссылка от вас",
+          "Продукт — для своего дела",
+          "Продукт — есть ссылка",
+          "Проект — бот маленький"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Muammo yig'ishda sherikdan nimani so'raysiz?",
+        "variantlar": [
+          "Nimani kimdandir so'ragani",
+          "Qanday ilova xohlashini",
+          "Qaysi ilova chiroyliroq",
+          "G'oyangiz unga yoqadimi"
+        ]
+      },
+      "ru": {
+        "savol": "Что спрашиваете у партнёра при сборе проблем?",
+        "variantlar": [
+          "Что он у кого-то спрашивал",
+          "Какое приложение он хочет",
+          "Какое приложение красивее",
+          "Нравится ли ему ваша идея"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor nega maydon muammosini tanladi?",
+        "variantlar": [
+          "Futbolni yaxshi ko'rgani",
+          "Maydon qurish arzonligi",
+          "O'yinchilardan so'ray olgani",
+          "Ro'yxatda birinchi turgani"
+        ]
+      },
+      "ru": {
+        "savol": "Почему ментор выбрал проблему с полем?",
+        "variantlar": [
+          "Любит футбол",
+          "Построить поле дёшево",
+          "Можно спросить у игроков",
+          "Стоит первой в списке"
+        ]
+      }
+    }
+  ]
+}

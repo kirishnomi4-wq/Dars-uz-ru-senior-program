@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu darsda yozma tasdiq nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Siz yozib olgan gapi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam yozgan narxli javob",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oldindan berilgan pul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mashq to'lovdagi tugma",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida nechta tashkilotchidan so'raldi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Uchtadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bittadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "44 tadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oltitadan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida nechta yozma tasdiq bor?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Bitta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oltita",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkita",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«15 000 qimmat. 10 000 bo'lsa, to'layman». Bu nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Hozir yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javob yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sotish gapi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozma tasdiq",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Kim tasdiqladi?» savoli nimani tekshiradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Yozgan to'lovchi ekanini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uning ism-familiyasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Necha yoshda ekanini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pulni qachon berishini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida tekshiruv javobi qanday?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Tuzatish: uchtasi yetmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tuzatish: biri 10 000 da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qabul: uch savolga «ha»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tekshirilmadi: sherik yo'q",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'zingiz yozgan «tasdiq» nima bo'ladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Qabul: narx bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tuzatish: odam yozmagan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tuzatish: uchta emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qabul: so'zma-so'z bo'lsa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tasdiq «hozir olmasangiz, qimmatlashadi» deb olindi. Natija?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Qabul: odam o'zi yozgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qabul: narxi bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tuzatish: narx qimmat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tuzatish: bosim bor",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida yozma tasdiq kimlardan so'raldi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Tashkilotchilardan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'yinchilardan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlardan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon egasidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yozma tasdiq bergan odamga nima yuboriladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Mashq to'lov linki",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pul o'tkazish iltimosi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Do'stlarni chaqirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Skrinshot ko'rsatsangiz, nimani yopasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Odam yozib bergan narxni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ism va telefon raqamini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nima uchun to'layotganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabar kelgan kun va vaqtni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor xabarida qaysi gap bor?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "«Bu to'lov emas»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Olmasangiz, qimmatlashadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Boshqalar ham oldi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Do'stlarga ham yuboring»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

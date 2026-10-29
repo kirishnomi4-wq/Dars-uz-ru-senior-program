@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "fetch nima qiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Faylni papkaga yuklab oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa dizaynini bezaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverdan ma'lumot so'raydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bazani o'chirib tashlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "useEffect([]) nega bo'sh massiv bilan?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Faqat bir marta ishlasin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har soniyada ishlab tursin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qachon ishlamasin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xatoni yashirib tursin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "app.use(cors()) qayerga yoziladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Front (sayt) kodiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "CSS fayliga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bazaga to'g'ridan-to'g'ri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server (back) kodiga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CORS xatosini ko'rsangiz, nima qilasiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Saytni qaytadan yozaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverga cors() qo'shaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internetni tekshiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzerni almashtiraman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CORS xatosi nega chiqadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Baza to'lib qolgani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet aloqasi yo'qligidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodda imlo xatosi borligidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer boshqa portni to'sadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "res.json() nima qiladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "So'rovni butunlay bekor qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi server ochib beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javobni massivga aylantiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "CSS faylini o'qiydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Javob kelguncha sahifada nima ko'rsatiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«Yuklanmoqda» yozuvi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bo'sh oq ekran",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qizil xato xabari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa sayt",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifani yangilaganda yangi mashina nega yo'qolmaydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Brauzer eslab qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U bazada saqlangan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tasodifan qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "CSS saqlab qoladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GET bazada nimani o'zgartiradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Hamma qatorni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsani — faqat o'qiydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jadvalga yangi qator qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jadval nomini yangilaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Front va back qanday gaplashadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Bitta fayl ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qanday — mustaqil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat CSS orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "fetch so'rovi orqali",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bazaga yangi mashina qo'shish uchun qaysi metod?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "POST",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega tartib fetch → json → setCars?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Tartib muhim emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Avval setCars, keyin fetch",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Olamiz, o'qiymiz, saqlaymiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat json yetarli",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

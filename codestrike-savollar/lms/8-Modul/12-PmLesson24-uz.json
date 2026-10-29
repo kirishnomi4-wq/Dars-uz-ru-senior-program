@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ishlar nimaga qarab ufqlarga bo'linadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Qachon boshlanishiga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qancha vaqt olishiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nechta odam so'raganiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kim boshlashiga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bugungi rejada nechta ufq bilan ishladik?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ikkita",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Beshta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oltita",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ish qaysi ufqda turishini nima belgilaydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Necha kun olishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Necha odamga kerakligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kerak narsa qachon tayyorligi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ro'yxatga qo'shilgan payti",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'garakning «eng yaxshi ishlar» sahifasi nega kutadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Yozish uzoq vaqt oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishlar hali yig'ilmagan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kam odam kutyapti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rejaga kech qo'shilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Sartarosh suratlari» nega bugun boshlangan?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Eng oson ish ekani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Suratlar allaqachon bor",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'p odam kutgani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Navbat to'plangani uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bu ish olti oydan keyin» — bu nima degani?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "O'shanda ish boshlanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'shanda ish tugaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish olti oy davom etadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Olti oydan beri kutyapti",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinf uzoq ishni «Hozir»ga ko'chirdi. Nima bo'ladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Darhol boshlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa ish kutib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baribir to'xtaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sekinroq boshlanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uch ufqli reja odatda qanday ko'rinadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Uzog'ida ish ko'p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchalasida teng",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'rtasida ish ko'p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yaqinida ish ko'p",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tesla usulida birinchi bosqich qanday bo'ladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Keyingisiga yo'l ochadigan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma birdan ko'radigan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pul deyarli ketmaydigan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng qiyin bo'lgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tesla 1-mashinasi sotilmasa nima bo'lardi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Reja o'zgarmasdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkinchisi tezroq qurilardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkinchisiga pul bo'lmasdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uchinchisi oldin qurilardi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tesla uzoq rejasini kimlar ko'ra olardi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Faqat kompaniya ichidagilar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xohlagan har bir odam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mashina sotib olganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech kim — reja yopiq edi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi ish qaysi ufqqa tushishini kim aytadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Dastur kodining o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani yuklagan odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumot serveri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani yaratayotgan odam",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

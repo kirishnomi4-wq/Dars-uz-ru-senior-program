@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Пришёл новый товар. Какая команда добавит строку?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "INSERT INTO",
+        "hint": "Верно!"
+      },
+      {
+        "value": "SELECT *",
+        "hint": "Неверно"
+      },
+      {
+        "value": "UPDATE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE FROM",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "После чего пишется VALUES в INSERT?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "После условия WHERE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "После списка столбцов",
+        "hint": "Верно!"
+      },
+      {
+        "value": "После SET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "После FROM",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что добавит первый товар в пустую таблицу?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "SELECT * FROM",
+        "hint": "Неверно"
+      },
+      {
+        "value": "UPDATE ... SET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "INSERT INTO",
+        "hint": "Верно!"
+      },
+      {
+        "value": "WHERE",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает SELECT * FROM products?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Полностью удаляет таблицу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Обновляет все цены",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Создаёт новую пустую таблицу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Показывает все столбцы",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое слово отберёт только дешёвые товары?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "VALUES",
+        "hint": "Неверно"
+      },
+      {
+        "value": "SET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "WHERE",
+        "hint": "Верно!"
+      },
+      {
+        "value": "INTO",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Изменяет ли команда SELECT данные?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Нет — только читает и показывает",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Да, удаляет строки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, обновляет цену",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, создаёт таблицу",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Клавиатура подешевела. Какая команда нужна?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "INSERT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "SELECT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "UPDATE",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если в UPDATE нет WHERE?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Ошибка, ничего не меняется",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Изменятся все строки",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ничего не произойдёт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Изменится только 1-я строка",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая команда удаляет товар из таблицы?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "SELECT *",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE FROM",
+        "hint": "Верно!"
+      },
+      {
+        "value": "UPDATE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "INSERT INTO",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "AI написал SQL. Что вы сделаете?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Запущу, не глядя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "AI прав — не проверяю",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Прочитаю, проверю, запущу",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удалю и напишу вручную",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где в основном хранятся товары магазина?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "В HTML-коде сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В памяти браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В папке с картинками",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В базе данных",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какие 4 действия — это CRUD?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Create, Read, Update, Delete",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только добавление и удаление",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Create, Read, Undo, Delete",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только SELECT и UPDATE",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  }
+]

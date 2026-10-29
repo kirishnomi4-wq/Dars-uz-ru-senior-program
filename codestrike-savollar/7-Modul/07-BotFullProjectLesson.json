@@ -1,0 +1,278 @@
+{
+  "lessonId": "bot-full-project-05-07-v18",
+  "key": "m5-07",
+  "modul": 7,
+  "tartib": 7,
+  "nom": {
+    "uz": "Loyiha kuni: bot + DB + AI",
+    "ru": "Проектный день: бот + БД + ИИ"
+  },
+  "src": "src/5-Modull/BotFullProjectLesson.jsx",
+  "barmoq_izi": "154019db594e4841612da9d735982ba4",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "To'liq botning to'rt qismi?",
+        "variantlar": [
+          "Token, API, dizayn, reklama",
+          "Token, handler, baza, AI",
+          "Handler, rasm, video, musiqa",
+          "Telefon, laptop, kabel, Wi-Fi"
+        ]
+      },
+      "ru": {
+        "savol": "Четыре части полного бота?",
+        "variantlar": [
+          "Токен, API, дизайн, реклама",
+          "Токен, handler, база, AI",
+          "Handler, фото, видео, музыка",
+          "Телефон, ноутбук, кабель, Wi-Fi"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Buyurtmani ertasi kungacha qaysi qism saqlaydi?",
+        "variantlar": [
+          "Token",
+          "Handler",
+          "AI",
+          "Baza"
+        ]
+      },
+      "ru": {
+        "savol": "Какая часть хранит заказ до следующего дня?",
+        "variantlar": [
+          "Токен",
+          "Handler",
+          "ИИ",
+          "База"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Deploy nima degani?",
+        "variantlar": [
+          "Kodni serverda ishga tushirish",
+          "Botni o'chirib, qayta yaratish",
+          "Tokenni yangisiga almashtirish",
+          "Botga mijoz taklif qilish"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит deploy?",
+        "variantlar": [
+          "Запустить код на сервере",
+          "Удалить и пересоздать бота",
+          "Сменить токен на новый",
+          "Пригласить клиентов в бота"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Server — bu nima?",
+        "variantlar": [
+          "Telegram ichidagi kanal",
+          "Laptopdagi alohida papka",
+          "Doim ishlab turuvchi kompyuter",
+          "Telefondagi Telegram ilovasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое сервер?",
+        "variantlar": [
+          "Канал внутри Telegram",
+          "Отдельная папка на ноутбуке",
+          "Компьютер, работающий без остановки",
+          "Telegram на телефоне"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Botni serverga joylasak, nima o'zgaradi?",
+        "variantlar": [
+          "Bot sekinroq javob beradi",
+          "Laptopsiz ham javob beradi",
+          "Faqat kunduzi javob beradi",
+          "Hech narsa o'zgarmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что изменится, если выложить бота на сервер?",
+        "variantlar": [
+          "Бот отвечает медленнее",
+          "Отвечает и без ноутбука",
+          "Отвечает только днём",
+          "Ничего не изменится"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Serverda BOT_TOKEN qayerga yoziladi?",
+        "variantlar": [
+          "Server sozlamalariga",
+          "bot.js kodining ichiga",
+          "Botning Telegram tavsifiga",
+          "Hech qayerga, o'zi topadi"
+        ]
+      },
+      "ru": {
+        "savol": "Куда на сервере записывают BOT_TOKEN?",
+        "variantlar": [
+          "В настройки сервера",
+          "Внутрь кода bot.js",
+          "В описание бота в Telegram",
+          "Никуда, сервер найдёт сам"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Polling'da yangi xabarni kim so'raydi?",
+        "variantlar": [
+          "Mijoz — Telegram'dan",
+          "Telegram — botdan",
+          "Server — mijozdan",
+          "Bot — Telegram'dan"
+        ]
+      },
+      "ru": {
+        "savol": "Кто при polling спрашивает о новых сообщениях?",
+        "variantlar": [
+          "Клиент — у Telegram",
+          "Telegram — у бота",
+          "Сервер — у клиента",
+          "Бот — у Telegram"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Webhook'da xabarni botga kim yetkazadi?",
+        "variantlar": [
+          "Bot o'zi so'rab oladi",
+          "Telegram o'zi yuboradi",
+          "Mijoz serverga yozadi",
+          "Hech kim, o'zi paydo bo'ladi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто при webhook доставляет сообщение боту?",
+        "variantlar": [
+          "Бот сам запрашивает",
+          "Telegram сам отправляет",
+          "Клиент пишет на сервер",
+          "Никто, появляется само"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Laptopda bot qaysi usulda ishlaydi?",
+        "variantlar": [
+          "Webhook",
+          "Ikkalasini birga ishlatish",
+          "Polling",
+          "Hech qaysi, bot o'zi biladi"
+        ]
+      },
+      "ru": {
+        "savol": "Каким способом бот работает на ноутбуке?",
+        "variantlar": [
+          "Webhook",
+          "Использовать оба вместе",
+          "Polling",
+          "Никакой, бот сам разберётся"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Serverga joylashdan oldin nima qilinadi?",
+        "variantlar": [
+          "Token kodga yoziladi",
+          "Hech narsa qilinmaydi",
+          "Laptopdagi baza o'chiriladi",
+          "Kod laptopda sinab ko'riladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают перед выкладкой на сервер?",
+        "variantlar": [
+          "Токен пишут в код",
+          "Ничего",
+          "Удаляют базу на ноутбуке",
+          "Проверяют код на ноутбуке"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "AI javob bermasa, bot jim qolmasligi uchun?",
+        "variantlar": [
+          "Xatoni ushlab, uzr so'raydi",
+          "Bot qo'lda qayta yoqiladi",
+          "Yangi token olinadi",
+          "Hech narsa, o'zi tuzaladi"
+        ]
+      },
+      "ru": {
+        "savol": "Чтобы бот не молчал, если AI не ответил?",
+        "variantlar": [
+          "Ловит ошибку и извиняется",
+          "Бота включают вручную",
+          "Берут новый токен",
+          "Ничего, само пройдёт"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Laptop yopiq, bot javob beryapti. Nega?",
+        "variantlar": [
+          "Javoblar navbatda turgan",
+          "Telegram botni o'zi ishlatadi",
+          "Bot serverda ishlayapti",
+          "Mijoz botni yoqqan"
+        ]
+      },
+      "ru": {
+        "savol": "Ноутбук закрыт, а бот отвечает. Почему?",
+        "variantlar": [
+          "Ответы стояли в очереди",
+          "Telegram сам запускает бота",
+          "Бот работает на сервере",
+          "Клиент включил бота"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "m9-10-v1",
+  "key": "m9-10",
+  "modul": 11,
+  "tartib": 10,
+  "nom": {
+    "uz": "Loyiha kuni: poydevor — Database, kirish, deploy",
+    "ru": "День проекта: фундамент — Database, вход, деплой"
+  },
+  "src": "src/9-Modull/FoundationDayLesson.jsx",
+  "barmoq_izi": "cbc86bbe2fc3fb879dab5863d77ce903",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Backend kirgan o'yinchini qanday taniydi?",
+        "variantlar": [
+          "So'rovdagi token orqali",
+          "Telefon raqamini so'rab",
+          "Database'dagi paroldan",
+          "Expo Go akkaunti orqali"
+        ]
+      },
+      "ru": {
+        "savol": "Как Backend узнаёт вошедшего игрока?",
+        "variantlar": [
+          "По токену в запросе",
+          "Спрашивая номер телефона",
+          "По паролю в Database",
+          "По аккаунту Expo Go"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Jadvalda parol qanday saqlanadi?",
+        "variantlar": [
+          "Parolning o'zi bo'lib",
+          "Paroldan yasalgan hash bo'lib",
+          "Telefon raqamiga qo'shilib",
+          "Token ichiga joylanib"
+        ]
+      },
+      "ru": {
+        "savol": "Как пароль хранится в таблице?",
+        "variantlar": [
+          "Как сам пароль",
+          "Как hash из пароля",
+          "Вместе с номером телефона",
+          "Внутри токена"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Tokensiz GET /oyinlar kelsa, Backend nima qiladi?",
+        "variantlar": [
+          "Ro'yxatni beradi",
+          "Birinchi o'yinni beradi",
+          "401 qaytaradi",
+          "«Kirish»ni ochadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает Backend, если пришёл GET /oyinlar без токена?",
+        "variantlar": [
+          "Отдаёт список",
+          "Отдаёт первую игру",
+          "Возвращает 401",
+          "Открывает «Вход»"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Token telefonda qayerda saqlanadi?",
+        "variantlar": [
+          "oyinchilar jadvalida",
+          "Ilovaning .env faylida",
+          "Repo'dagi README.md da",
+          "expo-secure-store da"
+        ]
+      },
+      "ru": {
+        "savol": "Где токен хранится на телефоне?",
+        "variantlar": [
+          "В таблице oyinchilar",
+          "В файле .env приложения",
+          "В README.md в репо",
+          "В expo-secure-store"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Telefondagi ilova uchun localhost nimani bildiradi?",
+        "variantlar": [
+          "Telefonning o'zini",
+          "Laptopdagi Backend'ni",
+          "Render'dagi Backend'ni",
+          "Neon'dagi Database'ni"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает localhost для приложения на телефоне?",
+        "variantlar": [
+          "Сам телефон",
+          "Backend на ноутбуке",
+          "Backend на Render",
+          "Database на Neon"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Backend nega Render'ga chiqadi?",
+        "variantlar": [
+          "Laptopda sekin ishlaydi",
+          "Telefon unga ulana oladi",
+          "Render Database yaratadi",
+          "Expo Go Render'ni talab qiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем Backend выкладывают на Render?",
+        "variantlar": [
+          "На ноутбуке он медленный",
+          "Телефон сможет к нему подключиться",
+          "Render создаёт Database",
+          "Expo Go требует Render"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "EXPO_PUBLIC_API_URL ga nima yoziladi?",
+        "variantlar": [
+          "http://localhost:3000",
+          "JWT_SECRET qiymati",
+          "Render'dagi Backend manzili",
+          "Neon'dagi DATABASE_URL"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишется в EXPO_PUBLIC_API_URL?",
+        "variantlar": [
+          "http://localhost:3000",
+          "Значение JWT_SECRET",
+          "Адрес Backend на Render",
+          "DATABASE_URL из Neon"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Maxfiy kalit nega EXPO_PUBLIC_ ga yozilmaydi?",
+        "variantlar": [
+          "Ilova sekinlashadi",
+          "Expo Go uni o'chiradi",
+          "Render uni o'qimaydi",
+          "Ilovada ochiq ko'rinadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему секретный ключ не пишут в EXPO_PUBLIC_?",
+        "variantlar": [
+          "Приложение замедлится",
+          "Expo Go его удалит",
+          "Render его не прочитает",
+          "Он открыто виден в приложении"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Deploy'dan keyin JWT_SECRET qayerda turadi?",
+        "variantlar": [
+          "Render'da, Environment'da",
+          "mobil/.env faylida",
+          "README.md faylida",
+          "Agentga talab matnida"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранится JWT_SECRET после деплоя?",
+        "variantlar": [
+          "На Render, в Environment",
+          "В файле mobil/.env",
+          "В файле README.md",
+          "В тексте требования агенту"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Render manzilida 401 chiqdi. Bu nima degani?",
+        "variantlar": [
+          "Backend ishlamayapti",
+          "Ishlaydi, tokensiz yopiq",
+          "Database'da o'yin yo'q",
+          "Telefonda internet yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "По адресу Render — 401. Что это значит?",
+        "variantlar": [
+          "Backend не работает",
+          "Работает, без токена закрыт",
+          "В Database нет игр",
+          "На телефоне нет интернета"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Push'dan oldin fayllarni qanday qo'shasiz?",
+        "variantlar": [
+          "git add . bilan birdan",
+          ".env ni ham qo'shib",
+          "Agent aytganlarini bittadan",
+          "Faqat README.md ni"
+        ]
+      },
+      "ru": {
+        "savol": "Как вы добавляете файлы перед push?",
+        "variantlar": [
+          "Сразу через git add .",
+          "Вместе с .env",
+          "Названные агентом — по одному",
+          "Только README.md"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Ilova GET /oyinlar dan 401 oldi. Nima qiladi?",
+        "variantlar": [
+          "Namunani ko'rsatadi",
+          "Parolni qayta yuboradi",
+          "Backend'ni qayta yoqadi",
+          "«Kirish»ni ochadi"
+        ]
+      },
+      "ru": {
+        "savol": "Приложение получило 401 от GET /oyinlar. Что оно делает?",
+        "variantlar": [
+          "Показывает образец",
+          "Снова отправляет пароль",
+          "Перезапускает Backend",
+          "Открывает «Вход»"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demo Day nutqi qancha davom etadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "3 daqiqa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yarim soat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "10 soniya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qancha xohlasangiz, shuncha",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nutqning eng katta bo'lagi qaysi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Birinchi savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jonli demo",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qanday qildim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi qadam",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nutq nima bilan boshlanadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Saytning nomi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uzun salomlashuv bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Zalga savol bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Dastur nomi bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt nega kerakligi qanday aytiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bo'limlar soni bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi rangdaligi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish kunlari soni bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kimga nima qiyinligi bilan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jonli demoda nima ochiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Saytning o'zi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "VS Code oynasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub papkasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Netlify sozlamasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ota-onangizga qaysi gap tushunarli?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "«Semantik struktura yasadim»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bo'limlarni o'zim tuzdim»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Kaskad stillar qo'lladim»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Repo'ni deploy qildim»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bu kimga kerak?» — qaysi javob kuchli?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«Hammaga kerak»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bilmadim, shunchaki qildim»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Mentor shunday degan edi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Kitob izlagan sinfdoshlarga»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Juftlik mashqida sherigingiz kim rolida?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Hakam — ball qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor — xatoni tuzatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Zaldagi ota-ona — savol beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tomoshabin — jim o'tiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«HTML va CSS ishlatdim» nega yetarli emas?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Ota-onaga bu so'z tushunarsiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bunday deyish taqiqlangan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Juda uzun, vaqt yetmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Netlify aytilmagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«O'zing qildingmi?» — qaysi javob halol?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "«Bilmadim, chiqib qoldi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Mentor o'rgatdi, men qildim»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Hech kim yordam bermadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Javob bermayman»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jonli demo necha qadamdan iborat?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Bitta qadam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki qadam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uch qadam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'rt qadam",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nutqni yozib bo'lgach nima qilinadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yodlamasdan qoldiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki barobar uzaytiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qog'ozga ko'chirib qo'yiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taymer bilan aytib ko'riladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

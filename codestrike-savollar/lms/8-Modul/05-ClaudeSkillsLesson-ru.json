@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое Claude Skill?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Название более сильной AI-модели",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Поиск в интернете",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Письменная инструкция для AI",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Файл иконки программы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Из каких двух частей состоит SKILL.md?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "frontmatter (name + description) и body",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Файлы картинок и звука",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пароль и имя пользователя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Адрес сервера и Database",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен description?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Чтобы украсить Skill",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы сменить модель",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только чтобы читал человек",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы сказать, когда он нужен",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что обычно находится в body Skill?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Только имя Skill",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Точные шаги и пример",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Пароль пользователя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Версия модели ИИ",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое progressive disclosure?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Все Skill всегда открыты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Skill работает только ночью",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Skill ускоряет AI",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Текст открывается, когда нужен",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что Claude видит заранее?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Имя и description Skill",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Весь текст каждого Skill",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чаты пользователя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Файлы на компьютере",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем Skill отличается от обычного запроса?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Skill — разовая фраза",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранится и используется снова",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Усиливает модель",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подключает к интернету",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой признак хорошего Skill?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Длинный запутанный текст",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только одно слово",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чёткие шаги и пример",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Много цветных украшений",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая задача лучше всего подходит для Skill?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Повторяющаяся задача",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Разовое случайное дело",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только рисование",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только игры",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как Skill влияет на результат?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Делает результат случайным",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никак не влияет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Замедляет AI",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Приближает к вашему стилю",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В чём разница system prompt и Skill?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Это одно и то же",
+        "hint": "Неверно"
+      },
+      {
+        "value": "System prompt работает ночью",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Skill — только когда нужен",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Skill — название AI-модели",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "К чему приводит неточный description?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Skill работает быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Skill может не открыться",
+        "hint": "Верно!"
+      },
+      {
+        "value": "AI-модель сменится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пропадёт интернет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  }
+]

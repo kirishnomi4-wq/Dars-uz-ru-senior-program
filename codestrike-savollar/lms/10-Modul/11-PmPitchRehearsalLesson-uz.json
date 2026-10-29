@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "5 daqiqalik pitchda birinchi qaysi slayd turadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Muammo slaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Raqamlar slaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yechim slaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi slaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Endi nima qilasiz?» — qaysi slayd javob beradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Foydalanuvchi slaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi qadam slaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Raqamlar slaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo slaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«B — 40 tadan 17» da 40 nimani sanaydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Saytni ochgan brauzerlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band qilgan brauzerlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqt tanlagan brauzerlarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt ishlagan kunlarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tuzatilgan slayd nega darhol qayta aytiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Dars vaqti ortib qoldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sherik zerikib qolmasin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Slaydlar soni o'zgardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javob bo'lganini bilish uchun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«82 ta brauzer hali kam» nimani aytadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Xulosaga brauzer kamligini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend sekinligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklamaga kam pul ketganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "B varianti yomon chiqqanini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Repetitsiyada juftlik qanday ishlaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ikkalasi birga gapiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "A gapiradi, keyin almashasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat bittasi gapiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har kim o'ziga aytadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hamma slaydga ✓ qo'yildi. Nimani tuzatasiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Hech narsani — tayyor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi slaydni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng zaif slaydni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma slaydni qaytadan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi fidbek qattiq, lekin hurmatli?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "«Hammasi yoqdi, zo'r»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Raqamlarda qo'rqdingiz»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Keyingi qadam kerak emas»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yechimda sayt ishi aytilmadi»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Baholash varag'ida har slayd uchun nima yozilgan?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Zalning bitta savoli",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Slayd rangi va shrifti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Gapiruvchi ismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Slayddagi so'zlar soni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yechim slaydiga ✗ qo'yildi. Nima qilasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Slaydni olib tashlaysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Izohga qarab qayta yozasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "✗ belgisini o'chirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshdan ✓ so'raysiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yechim slaydiga nima yoziladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Texnologiyalar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ketgan haftalar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammoni qanday hal qilishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "A/B testi foizlari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitch 5 daqiqadan oshdi. Nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Oxirini tezroq gapirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta slaydni olib tashlaysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taymerni o'chirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har slayddan bir gap olasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

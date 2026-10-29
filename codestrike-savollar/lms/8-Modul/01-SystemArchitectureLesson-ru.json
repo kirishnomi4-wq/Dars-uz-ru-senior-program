@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где постоянно хранятся товары и заказы?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "В Database",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В Frontend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В AI",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем в основном занимается Frontend?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Хранит данные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Считает цену",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Показывает на экране",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Проверяет пароль",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким путём идёт запрос «В корзину»?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Frontend → Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Database → Frontend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Frontend → Backend → Database",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Database → Backend → Frontend",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему Frontend не идёт в Database напрямую?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Database слишком медленная",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ради безопасности",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Они на разных языках",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Технически невозможно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В чём главная задача Backend?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Рисует дизайн страницы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Виден пользователю",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переводит текст",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проверяет, пишет в Database",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как сайт и бот видят одни и те же заказы?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Подключены к одному Backend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Строят отдельные Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переносят вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Это невозможно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что значит «много точек входа, одна система»?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Каждому входу своя система",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хватит одного входа",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Бывает только веб-сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Все входы — в один Backend",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если отключить Database?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Ничего не изменится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Данные не сохранятся",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Погаснут цвета страницы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Система ускорится",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как добавить мобильное приложение к готовой системе?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Всё пишут с нуля",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подключают новый Frontend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Строят отдельную Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Это невозможно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает AI в системе?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Хранит данные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сам принимает все решения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Даёт советы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Показывает страницу",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что идёт в пути данных после пользователя?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "AI",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Frontend",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем схема до написания кода?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Ясно, что делает каждая часть",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сама пишет код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ускоряет сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Делает дизайн красивым",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  }
+]

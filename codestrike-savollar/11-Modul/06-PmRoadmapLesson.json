@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m9d6-v1",
+  "key": "m9-06",
+  "modul": 11,
+  "tartib": 6,
+  "nom": {
+    "uz": "Bitiruvgacha nimani qachon qurasiz?",
+    "ru": "Что и когда вы построите до выпуска?"
+  },
+  "src": "src/9-Modull/PmRoadmapLesson.jsx",
+  "barmoq_izi": "16338b2b152c5cbcae84559e08182a08",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "RICE hisobida qamrov nimani bildiradi?",
+        "variantlar": [
+          "Oyiga nechta odam ishlatishi",
+          "Bir odamga qancha foyda",
+          "Necha hafta quriladi",
+          "Taxminga ishonch darajasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает охват в RICE?",
+        "variantlar": [
+          "Сколько людей пользуются в месяц",
+          "Сколько пользы одному человеку",
+          "Сколько недель строить",
+          "Насколько верите предположению"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Bu kursda mehnat nima bilan o'lchanadi?",
+        "variantlar": [
+          "Guruh necha oy ishlashi",
+          "Kodda nechta qator borligi",
+          "Bir odam necha hafta ishlashi",
+          "Nechta ekran chizilishi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем в этом курсе измеряют усилия?",
+        "variantlar": [
+          "Сколько месяцев работает группа",
+          "Сколько строк в коде",
+          "Сколько недель работает один человек",
+          "Сколько экранов нарисуют"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Ikki ishda faqat mehnat farq qiladi. Qaysi biri yuqori?",
+        "variantlar": [
+          "Mehnati ko'prog'i",
+          "Mehnati kamrog'i",
+          "PRD da birinchi yozilgani",
+          "Ekranda ko'proq ko'ringani"
+        ]
+      },
+      "ru": {
+        "savol": "У двух работ отличаются только усилия. Какая выше?",
+        "variantlar": [
+          "С большими усилиями",
+          "С меньшими усилиями",
+          "Записанная в PRD первой",
+          "Заметнее на экране"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Ish «Keyinroq» ufqida. Bu nimani bildiradi?",
+        "variantlar": [
+          "11-Modulda boshlanadi",
+          "Roadmap'dan chiqariladi",
+          "Bitiruvdan keyin boshlanadi",
+          "12–13-Modulda boshlanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Работа на горизонте «Позже». Что это значит?",
+        "variantlar": [
+          "Начнётся в 11-м модуле",
+          "Убирается из roadmap",
+          "Начнётся после выпуска",
+          "Начнётся в 12–13-м модуле"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega poydevor RICE ga kirmaydi?",
+        "variantlar": [
+          "Busiz hech bir funksiya yo'q",
+          "Uni qurish eng oson",
+          "Foydalanuvchi uni ko'rmaydi",
+          "U PRD da birinchi turadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему фундамент не входит в RICE?",
+        "variantlar": [
+          "Без него не работает ни одна функция",
+          "Его строить проще всего",
+          "Пользователь его не видит",
+          "Он первый в PRD"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Tasdiq qo'shilganlarga tayanadi. U qachon quriladi?",
+        "variantlar": [
+          "Qo'shilishdan oldin",
+          "Qo'shilish bilan birga",
+          "Bitiruvdan keyin",
+          "Qo'shilishdan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "Подтверждение опирается на присоединившихся. Когда его строят?",
+        "variantlar": [
+          "До присоединения",
+          "Вместе с присоединением",
+          "После выпуска",
+          "После присоединения"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "«Hozir» ufqiga nechta funksiya sig'adi?",
+        "variantlar": [
+          "Ikkita, qolgani keyin",
+          "Uchta, har kunga bitta",
+          "Oltita, PRD dagi hammasi",
+          "To'rtta, poydevor bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько функций вмещает горизонт «Сейчас»?",
+        "variantlar": [
+          "Две, остальное потом",
+          "Три, по одной на день",
+          "Шесть, всё из PRD",
+          "Четыре, с фундаментом"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Uzum'da xaridor ekranda nimani ko'rmaydi?",
+        "variantlar": [
+          "Narsalar va narxi",
+          "Surat va nomlar",
+          "Mashina va punktlar",
+          "Qidiruv qatori"
+        ]
+      },
+      "ru": {
+        "savol": "Что покупатель Uzum не видит на экране?",
+        "variantlar": [
+          "Товары и цены",
+          "Фото и названия",
+          "Машины и пункты выдачи",
+          "Строку поиска"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Uzum'dagidek, birinchi ish qanday bo'lishi mumkin?",
+        "variantlar": [
+          "Eng chiroylisi",
+          "Reklamadagisi",
+          "Eng tez quriladigani",
+          "Ko'rinmasa ham keraklisi"
+        ]
+      },
+      "ru": {
+        "savol": "Как у Uzum, какой может быть первая работа?",
+        "variantlar": [
+          "Самая красивая",
+          "Та, что в рекламе",
+          "Самая быстрая в постройке",
+          "Нужная, хоть и не видна"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Sherigingiz ishga boshqa RICE berdi. Bu nima?",
+        "variantlar": [
+          "RICE taxmin, dalil kerak",
+          "Sherik RICE ni bilmaydi",
+          "Ishni o'chirish kerak",
+          "Raqamingiz to'g'ri"
+        ]
+      },
+      "ru": {
+        "savol": "Партнёр дал работе другой RICE. Что это значит?",
+        "variantlar": [
+          "RICE — оценка, нужен довод",
+          "Партнёр не знает RICE",
+          "Работу надо удалить",
+          "Ваше число верное"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Roadmap'da har ish haqida nima ko'rinadi?",
+        "variantlar": [
+          "Uni qaysi o'quvchi quradi",
+          "Unga qancha pul ketadi",
+          "Qaysi ufq va qaysi o'rinda",
+          "Unda necha qator kod bor"
+        ]
+      },
+      "ru": {
+        "savol": "Что видно на роадмапе о каждой работе?",
+        "variantlar": [
+          "Какой ученик её строит",
+          "Сколько денег на неё уйдёт",
+          "На каком горизонте и месте",
+          "Сколько в ней строк кода"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "«Uzoqroq»dagi ish bitiruvgacha nima bo'ladi?",
+        "variantlar": [
+          "«Hozir» bilan quriladi",
+          "Bitiruvni kutadi",
+          "Roadmap'dan o'chadi",
+          "12-Modulda boshlanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что с работой из «Дальше» до выпуска?",
+        "variantlar": [
+          "Строится вместе с «Сейчас»",
+          "Ждёт выпуска",
+          "Удаляется из роадмапа",
+          "Начнётся в 12-м модуле"
+        ]
+      }
+    }
+  ]
+}

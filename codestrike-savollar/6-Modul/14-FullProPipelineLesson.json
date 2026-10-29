@@ -1,0 +1,278 @@
+{
+  "lessonId": "full-pro-pipeline-4c-04-v18",
+  "key": "m4c-07",
+  "modul": 6,
+  "tartib": 14,
+  "nom": {
+    "uz": "Loyiha kuni: ishonchli lenta",
+    "ru": "Проектный день: надёжная лента"
+  },
+  "src": "src/4c-Modull/FullProPipelineLesson.jsx",
+  "barmoq_izi": "f2281c5a634508a485cbe52442d03689",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Parallel lentalar (matrix) nima uchun?",
+        "variantlar": [
+          "Ko'p muhitda birdan sinash",
+          "Serverni qayta yuklash",
+          "Bitta muhitda sekin sinash",
+          "Kalitlarni yashirish"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужны параллельные ленты (matrix)?",
+        "variantlar": [
+          "Проверить сразу в разных средах",
+          "Перезагрузить сервер",
+          "Медленно проверить в одной среде",
+          "Спрятать ключи"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Yaqin javon (cache) nimani tezlashtiradi?",
+        "variantlar": [
+          "Brauzerda sahifa chizishni",
+          "Serverning internetini",
+          "Testlar hisob-kitobini",
+          "Install bosqichini"
+        ]
+      },
+      "ru": {
+        "savol": "Что ускоряет ближняя полка (cache)?",
+        "variantlar": [
+          "Отрисовку страницы в браузере",
+          "Интернет сервера",
+          "Вычисления в тестах",
+          "Этап install"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Maxfiy kalitni qanday ishlatish xavfsiz?",
+        "variantlar": [
+          "Fayl ichiga ochiq yozib",
+          "README boshiga yozib",
+          "Seyfga qo'yib, nomi bilan",
+          "Commit izohiga yozib"
+        ]
+      },
+      "ru": {
+        "savol": "Как безопасно использовать секретный ключ?",
+        "variantlar": [
+          "Открыто записать в файл",
+          "Записать в начало README",
+          "Положить в сейф, звать по имени",
+          "Записать в комментарий коммита"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Sinov reysi (staging) nima uchun kerak?",
+        "variantlar": [
+          "Yukni tezroq yetkazish",
+          "Yo'lovchisiz oldin sinash",
+          "Lentalarni birlashtirish",
+          "Kalitni ochiq saqlash"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен тестовый рейс (staging)?",
+        "variantlar": [
+          "Быстрее доставить груз",
+          "Заранее проверить без пассажиров",
+          "Объединить ленты",
+          "Хранить ключ открыто"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "Productionda buzuq yuk. Eng tez yechim?",
+        "variantlar": [
+          "Keshni tozalash",
+          "Kalitlarni yangidan yaratish",
+          "Lentalar sonini oshirish",
+          "Eski yukni qaytarish"
+        ]
+      },
+      "ru": {
+        "savol": "Сломанный груз в production. Самое быстрое решение?",
+        "variantlar": [
+          "Очистить кеш",
+          "Создать ключи заново",
+          "Добавить лент",
+          "Вернуть старый груз"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Matrix'da faqat Node 22 qizil bo'lsa?",
+        "variantlar": [
+          "Singan muhit aniq ko'rinadi",
+          "Node 24 ham qizil bo'ladi",
+          "Lenta butunlay o'chadi",
+          "O'rtacha natija chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что если в matrix красный только Node 22?",
+        "variantlar": [
+          "Видно, в какой среде сломалось",
+          "Node 24 тоже покраснеет",
+          "Лента полностью выключится",
+          "Выйдет средний результат"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Yaqin javon qanday ishlaydi?",
+        "variantlar": [
+          "Har safar noldan yuklaydi",
+          "Paketni saqlab, qayta beradi",
+          "Test natijasini eslab qoladi",
+          "Faqat kalitlarni saqlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Как работает ближняя полка?",
+        "variantlar": [
+          "Каждый раз качает с нуля",
+          "Сохраняет пакеты и отдаёт снова",
+          "Запоминает результаты тестов",
+          "Хранит только ключи"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Seyf (secrets) qayerda saqlanadi?",
+        "variantlar": [
+          "ci.yml ichida, ochiq matnda",
+          "Jurnalning oxirgi qatorida",
+          "Platforma seyf sozlamasida",
+          "Hammaga ochiq README'da"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранится сейф (secrets)?",
+        "variantlar": [
+          "Открытым текстом в ci.yml",
+          "В последней строке журнала",
+          "В настройках сейфа платформы",
+          "В открытом для всех README"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Staging va production farqi nima?",
+        "variantlar": [
+          "Stagingda yo'lovchi yo'q",
+          "Staging tezroq ishlaydi",
+          "Farqi yo'q, faqat nomi",
+          "Production tekshirilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем отличаются staging и production?",
+        "variantlar": [
+          "На staging нет пассажиров",
+          "Staging работает быстрее",
+          "Разницы нет, только имя",
+          "Production не проверяют"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Eski yukni qaytarish qachon kerak?",
+        "variantlar": [
+          "Har push'dan keyin, doim",
+          "Yangi versiya buzuq chiqqanda",
+          "Kesh bo'sh bo'lganda",
+          "Hamma muhit yashil bo'lganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда нужно вернуть старый груз?",
+        "variantlar": [
+          "Всегда, после каждого push",
+          "Когда новая версия сломалась",
+          "Когда кеш пуст",
+          "Когда все среды зелёные"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Kod turli muhitda turlicha ishlaydimi?",
+        "variantlar": [
+          "Ha, faqat Windows'da",
+          "Yo'q, doim bir xil",
+          "Yo'q, faqat dizayn o'zgaradi",
+          "Ha, natija farq qilishi mumkin"
+        ]
+      },
+      "ru": {
+        "savol": "Может ли код работать по-разному в разных средах?",
+        "variantlar": [
+          "Да, только в Windows",
+          "Нет, всегда одинаково",
+          "Нет, меняется только дизайн",
+          "Да, результат может отличаться"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Ishonchli lentada qaysi tartib to'g'ri?",
+        "variantlar": [
+          "Production, keyin staging",
+          "Rollback, keyin yangi yuk",
+          "Staging, keyin production",
+          "Seyf, keyin kod yozish"
+        ]
+      },
+      "ru": {
+        "savol": "Какой порядок верный в надёжной ленте?",
+        "variantlar": [
+          "Сначала production, потом staging",
+          "Сначала rollback, потом новый груз",
+          "Сначала staging, потом production",
+          "Сначала сейф, потом код"
+        ]
+      }
+    }
+  ]
+}

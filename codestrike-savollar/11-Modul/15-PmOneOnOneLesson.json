@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m9d15-v1",
+  "key": "m9-15",
+  "modul": 11,
+  "tartib": 15,
+  "nom": {
+    "uz": "Roadmap bo'yicha qayerdasiz?",
+    "ru": "Где вы сейчас по roadmap?"
+  },
+  "src": "src/9-Modull/PmOneOnOneLesson.jsx",
+  "barmoq_izi": "d3ec8c55594c40d288a8814c75ce2690",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Holat nimani ko'rsatadi?",
+        "variantlar": [
+          "Ish rejaga ko'ra qayerdaligini",
+          "Ishga necha kun ketishini",
+          "Ishni kim bajarishini",
+          "Ish necha kishiga kerakligini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает статус?",
+        "variantlar": [
+          "Где работа относительно плана",
+          "Сколько дней займёт работа",
+          "Кто выполнит работу",
+          "Скольким людям нужна работа"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Ish o'z darsida tugadi, telefonda ishlaydi. Holati?",
+        "variantlar": [
+          "Kechikdi",
+          "Bajarildi",
+          "Boshlanmadi",
+          "Bekor qilindi"
+        ]
+      },
+      "ru": {
+        "savol": "Работа закончена на своём уроке и работает на телефоне. Статус?",
+        "variantlar": [
+          "С опозданием",
+          "Выполнено",
+          "Не начато",
+          "Отменено"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Keyinroq ufqidagi ish boshlanmagan. Bu nima?",
+        "variantlar": [
+          "Ish kechikkan",
+          "Roadmap xato tuzilgan",
+          "Vaqti hali kelmagan",
+          "Ishni o'chirish kerak"
+        ]
+      },
+      "ru": {
+        "savol": "Работа на горизонте «позже» не начата. Что это значит?",
+        "variantlar": [
+          "Работа опоздала",
+          "Roadmap составлен неверно",
+          "Её время ещё не пришло",
+          "Работу надо удалить"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Risk nima?",
+        "variantlar": [
+          "Bo'lib o'tgan kechikish",
+          "Kelajakdagi yangi funksiya",
+          "Bajarilgan ishlar ro'yxati",
+          "Xalaqit berishi mumkin narsa"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое риск?",
+        "variantlar": [
+          "Уже случившаяся задержка",
+          "Будущая новая функция",
+          "Список выполненных работ",
+          "То, что может помешать плану"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Bepul Render'da Backend qachon uxlaydi?",
+        "variantlar": [
+          "15 daqiqa so'rov kelmasa",
+          "Har kuni yarim tunda",
+          "Kuniga 100 so'rovdan keyin",
+          "Ilova yopilgan zahoti"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Backend засыпает на бесплатном Render?",
+        "variantlar": [
+          "Если 15 минут нет запросов",
+          "Каждый день в полночь",
+          "После 100 запросов в день",
+          "Сразу, как закрыли приложение"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Backend uxlab qolsa, birinchi ochilish qancha kutadi?",
+        "variantlar": [
+          "Bir necha soniya",
+          "Bir daqiqagacha",
+          "Besh daqiqagacha",
+          "Bir soatdan ko'p"
+        ]
+      },
+      "ru": {
+        "savol": "Если Backend уснул, сколько ждать первого открытия?",
+        "variantlar": [
+          "Несколько секунд",
+          "До минуты",
+          "До пяти минут",
+          "Больше часа"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "«3 sinovchi» riskiga qadam qaysi?",
+        "variantlar": [
+          "Yangi funksiya qo'shish",
+          "Odamni keyin qidirish",
+          "10 kishini sinovga chaqirish",
+          "3 kishiga qayta sinatish"
+        ]
+      },
+      "ru": {
+        "savol": "Какой шаг против риска «3 тестировщика»?",
+        "variantlar": [
+          "Добавить новую функцию",
+          "Искать людей позже",
+          "Позвать 10 человек на тест",
+          "Дать троим протестировать снова"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Expo Go nega Mentorga risk bo'ldi?",
+        "variantlar": [
+          "Ilovani sekin ochadi",
+          "Backend'ga ulanmaydi",
+          "Faqat iPhone'da ishlaydi",
+          "Sinash ilovasi, hammada yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Почему Expo Go стал риском для Ментора?",
+        "variantlar": [
+          "Медленно открывает приложение",
+          "Не подключается к Backend",
+          "Работает только на iPhone",
+          "Тестовое приложение, есть не у всех"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "APK nima?",
+        "variantlar": [
+          "Android'ga o'rnatiladigan fayl",
+          "iPhone ilovalar do'koni",
+          "Expo Go'dagi sinov rejimi",
+          "Render sozlamalari fayli"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое APK?",
+        "variantlar": [
+          "Файл приложения для Android",
+          "Магазин приложений iPhone",
+          "Тестовый режим в Expo Go",
+          "Файл настроек Render"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Qadam 12-Modulda bajariladi. Qaysi ufqqa qo'yasiz?",
+        "variantlar": [
+          "Hozir",
+          "Keyinroq",
+          "Uzoqroq",
+          "Ufqsiz"
+        ]
+      },
+      "ru": {
+        "savol": "Шаг выполняется в 12-м модуле. На какой горизонт поставите?",
+        "variantlar": [
+          "Сейчас",
+          "Позже",
+          "Дальше",
+          "Без горизонта"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi biri riskka qarshi aniq qadam?",
+        "variantlar": [
+          "Ko'proq e'tibor berish",
+          "Tezroq harakat qilish",
+          "Shanba 10 kishini chaqirish",
+          "Keyinroq o'ylab ko'rish"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — конкретный шаг против риска?",
+        "variantlar": [
+          "Уделять больше внимания",
+          "Действовать быстрее",
+          "Позвать 10 человек в субботу",
+          "Подумать об этом позже"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Yakkama-yakkada nimani ko'rasiz?",
+        "variantlar": [
+          "Arena natijasi va ballingizni",
+          "Kodingizning har qatorini",
+          "O'nta yangi g'oyangizni",
+          "Holat, risk va qadamlarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что смотрите на встрече один на один?",
+        "variantlar": [
+          "Результат арены и баллы",
+          "Каждую строку кода",
+          "Десять новых идей",
+          "Статусы, риски и шаги"
+        ]
+      }
+    }
+  ]
+}

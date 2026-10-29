@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yopuvchi teg qaysi belgi bilan boshlanadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "\\",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "!",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "#",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "/",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sarlavha teglaridan eng KICHIGI qaysi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "h1",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "h3",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "h6",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "p",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tartibsiz (nuqtali) ro'yxatni qaysi teg boshlaydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "ul",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "ol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "li",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "a",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ro'yxatning har bir bandi qaysi tegga o'raladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "ul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "li",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "ol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "dd",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Linkda (link) manzil qaysi atributga yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "src",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "link",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "href",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "url",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "title tegidagi matn qayerda ko'rinadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Sahifaning o'rtasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer tabchasida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugmaning ustida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerda ko'rinmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "title kabi ko'rinmas sozlamalar qayerga yoziladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "body",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "head",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "h1",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Matnni QALIN (bold) qilish uchun qaysi teg?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "strong",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "em",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "title",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "p",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "<!DOCTYPE html> nimani bildiradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Sahifaning fon rangini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasm qo'shilishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa tugaganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "HTML5 hujjat ekanini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Skeletning to'g'ri tartibi qaysi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "head ichida html, body",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "body ichida head, html",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "title ichida head",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "html ichida head, body",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "HTML kodni o'qib, sahifaga aylantiradigan dastur qaysi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Server",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Word",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayl menejeri",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Matnni QIYA (kursiv) qilish uchun qaysi teg?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "em",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "ul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "a",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "h1",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

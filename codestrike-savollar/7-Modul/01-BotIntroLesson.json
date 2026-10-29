@@ -1,0 +1,278 @@
+{
+  "lessonId": "bot-intro-05-01-v18",
+  "key": "m5-01",
+  "modul": 7,
+  "tartib": 1,
+  "nom": {
+    "uz": "Bot nima",
+    "ru": "Что такое бот"
+  },
+  "src": "src/5-Modull/BotIntroLesson.jsx",
+  "barmoq_izi": "1de760ce22bfcb55dc842ed037c986ec",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "«Shu hodisa kelsa, shuni qil» deydigan kod qismi?",
+        "variantlar": [
+          "Handler",
+          "Token",
+          "Webhook",
+          ".env fayli"
+        ]
+      },
+      "ru": {
+        "savol": "Часть кода «пришло событие — сделай это»?",
+        "variantlar": [
+          "Handler",
+          "Токен",
+          "Webhook",
+          "Файл .env"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Token nima uchun kerak?",
+        "variantlar": [
+          "Botning rangini belgilaydi",
+          "Xabarni boshqa tilga o'giradi",
+          "Botni sizniki deb tasdiqlaydi",
+          "Mijoz parolini saqlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен токен?",
+        "variantlar": [
+          "Задаёт цвет бота",
+          "Переводит сообщения",
+          "Подтверждает, что бот ваш",
+          "Хранит пароль клиента"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Foydalanuvchi botga /start yubordi. Bu nima?",
+        "variantlar": [
+          "Bu — botning javobi",
+          "Bu — botga kelgan hodisa",
+          "Bu — botning tokeni",
+          "Bu — handlerlar ro'yxati"
+        ]
+      },
+      "ru": {
+        "savol": "Пользователь отправил боту /start. Что это?",
+        "variantlar": [
+          "Это ответ бота",
+          "Это событие, пришедшее боту",
+          "Это токен бота",
+          "Это список handler-ов"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mos handler va fallback yo'q. Bot nima qiladi?",
+        "variantlar": [
+          "Xato chiqarib o'chadi",
+          "Tasodifiy javob yozadi",
+          "Boshqa botga ulanadi",
+          "Jim qoladi, javob bermaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Нет ни подходящего handler, ни fallback. Что сделает бот?",
+        "variantlar": [
+          "Выдаст ошибку и выключится",
+          "Напишет случайный ответ",
+          "Подключится к другому боту",
+          "Промолчит, не ответит"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Bot tokenini kim beradi?",
+        "variantlar": [
+          "Telegram administratori",
+          "Foydalanuvchi o'ylab topadi",
+          "@BotFather",
+          "Bot API o'zi yaratadi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто выдаёт токен бота?",
+        "variantlar": [
+          "Администратор Telegram",
+          "Пользователь придумывает сам",
+          "@BotFather",
+          "Bot API создаёт сам"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Token ochiq kodda qolsa, xavfi nima?",
+        "variantlar": [
+          "Begona odam bot nomidan yozadi",
+          "Bot tezroq ishlay boshlaydi",
+          "Hech qanday xavf yo'q",
+          "Telegram botni o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Токен остался в открытом коде — в чём опасность?",
+        "variantlar": [
+          "Чужой пишет от имени бота",
+          "Бот начнёт работать быстрее",
+          "Никакой опасности",
+          "Telegram удалит бота"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Token oshkor bo'lsa, birinchi qadam nima?",
+        "variantlar": [
+          "/start bilan o'chirish",
+          "Telegram'ni qayta o'rnatish",
+          "/newbot bilan yangi bot",
+          "/revoke bilan bekor qilish"
+        ]
+      },
+      "ru": {
+        "savol": "Токен раскрыт — каков первый шаг?",
+        "variantlar": [
+          "Удалить через /start",
+          "Переустановить Telegram",
+          "Новый бот через /newbot",
+          "Отменить через /revoke"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Token odatda qayerda saqlanadi?",
+        "variantlar": [
+          "bot.js faylining o'zida",
+          ".env faylida",
+          "Telegram profil sozlamasida",
+          "Brauzer qidiruv tarixida"
+        ]
+      },
+      "ru": {
+        "savol": "Где обычно хранят токен?",
+        "variantlar": [
+          "Прямо в файле bot.js",
+          "В файле .env",
+          "В настройках профиля Telegram",
+          "В истории поиска браузера"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Bot nega 03:00 da ham javob beradi?",
+        "variantlar": [
+          "Kechasi odam javob yozadi",
+          "Dasturi hodisani kutib turadi",
+          "Telegram o'zi javob beradi",
+          "Tasodifiy vaqtda yonadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему бот отвечает даже в 03:00?",
+        "variantlar": [
+          "Ночью отвечает человек",
+          "Программа ждёт событие",
+          "Telegram отвечает сам",
+          "Включается в случайное время"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Uch mijoz birdan yozsa, bot nima qiladi?",
+        "variantlar": [
+          "Faqat birinchisiga javob",
+          "Xabarlarni qo'shib yuboradi",
+          "Ertalabgacha kutdiradi",
+          "Har biriga alohida javob"
+        ]
+      },
+      "ru": {
+        "savol": "Трое клиентов пишут сразу. Что сделает бот?",
+        "variantlar": [
+          "Ответит только первому",
+          "Склеит сообщения в одно",
+          "Заставит ждать до утра",
+          "Ответит каждому отдельно"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Hech bir handler mos kelmasa, nima yordam beradi?",
+        "variantlar": [
+          "Fallback handler",
+          "Botni qayta yoqish",
+          "Bot API'ni yopish",
+          "Yangi token olish"
+        ]
+      },
+      "ru": {
+        "savol": "Ни один handler не подошёл. Что поможет?",
+        "variantlar": [
+          "Fallback handler",
+          "Перезапустить бота",
+          "Закрыть Bot API",
+          "Получить новый токен"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Bugun o'rgangan uchta asosiy tushuncha?",
+        "variantlar": [
+          "Rang, shrift va dizayn",
+          "Ekran, sichqoncha, klaviatura",
+          "Token, handler va sikl",
+          "Rasm, video va ovoz"
+        ]
+      },
+      "ru": {
+        "savol": "Три главных понятия сегодняшнего урока?",
+        "variantlar": [
+          "Цвет, шрифт и дизайн",
+          "Экран, мышь, клавиатура",
+          "Токен, handler и цикл",
+          "Фото, видео и звук"
+        ]
+      }
+    }
+  ]
+}

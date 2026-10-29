@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m6d14-v1",
+  "key": "m6-14",
+  "modul": 8,
+  "tartib": 14,
+  "nom": {
+    "uz": "Raqamingiz nimani isbotlaydi?",
+    "ru": "Что доказывает ваше число?"
+  },
+  "src": "src/6-Modull/PmLesson25.jsx",
+  "barmoq_izi": "5016314c21ede77145b778050b328b21",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Kuchli dalil raqami nimani sanaydi?",
+        "variantlar": [
+          "Foydalanuvchi olgan natijani",
+          "Qurishga ketgan vaqtni",
+          "Kod satrlari sonini",
+          "Ishlagan odamlar sonini"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает число-доказательство?",
+        "variantlar": [
+          "Результат, полученный пользователем",
+          "Время на постройку",
+          "Число строк кода",
+          "Число работавших людей"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "«28 ta rasm chizildi» nimani sanaydi?",
+        "variantlar": [
+          "Tizimni ochgan odamlarni",
+          "Javob olgan odamlarni",
+          "Telefondan ochganlarni",
+          "Sizning mehnatingizni"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает «нарисовано 28 картинок»?",
+        "variantlar": [
+          "Людей, открывших систему",
+          "Людей, получивших ответ",
+          "Открывших с телефона",
+          "Ваш труд"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Slaydda faqat «150». Bu raqam nima qiladi?",
+        "variantlar": [
+          "Hammasini aytib beradi",
+          "Odamlarni sanab turadi",
+          "Savol tug'diradi, xolos",
+          "Qatorlarni o'zi to'ldiradi"
+        ]
+      },
+      "ru": {
+        "savol": "На слайде только «150». Что делает это число?",
+        "variantlar": [
+          "Рассказывает всё",
+          "Считает людей",
+          "Только вызывает вопрос",
+          "Сам заполняет строки"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Gapiradigan slaydda nechta qator bo'ladi?",
+        "variantlar": [
+          "Ikkita",
+          "Uchta",
+          "To'rtta",
+          "Bitta"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько строк в «говорящем» слайде?",
+        "variantlar": [
+          "Две",
+          "Три",
+          "Четыре",
+          "Одна"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Slaydda «120 · odam saytdan foydalandi». Yana nima kerak?",
+        "variantlar": [
+          "Qaysi kuni sanalgani",
+          "U nimani ko'rsatishi",
+          "Qaysi sahifa sanagani",
+          "120 ni yana bir bor"
+        ]
+      },
+      "ru": {
+        "savol": "На слайде «120 · человек пользовались сайтом». Что ещё нужно?",
+        "variantlar": [
+          "В какой день посчитано",
+          "Что это число показывает",
+          "Какая страница считала",
+          "Ещё раз число 120"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Ikki natija raqamidan qaysi biri sahnaga chiqadi?",
+        "variantlar": [
+          "Ish oxirigacha yetgani",
+          "Foydalanish boshlangani",
+          "Soni kattarog'i",
+          "Birinchi yozilgani"
+        ]
+      },
+      "ru": {
+        "savol": "Какое из двух чисел-результатов выходит на сцену?",
+        "variantlar": [
+          "То, где дело дошло до конца",
+          "То, где использование началось",
+          "То, что больше",
+          "То, что записано первым"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "«41 odam tizimni ochdi» nimani ko'rsatadi?",
+        "variantlar": [
+          "Necha hafta qurilganini",
+          "Nechta sahifa borligini",
+          "Foydalanish boshlanganini",
+          "Arizaga javob berilganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает «41 человек открыл систему»?",
+        "variantlar": [
+          "Сколько недель строили",
+          "Сколько в ней страниц",
+          "Что использование началось",
+          "Что на заявки ответили"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Airbnb varaqlarida raqam qayerda turgan?",
+        "variantlar": [
+          "Oxirida, jamoadan keyin",
+          "Mahsulotdan keyin",
+          "Qiyinchilikdan oldin",
+          "Yechimdan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "Где стояло число на листах Airbnb?",
+        "variantlar": [
+          "В конце, после команды",
+          "После продукта",
+          "Перед проблемой",
+          "После решения"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Airbnb raqami qiyinchilik haqida nimani aytgan?",
+        "variantlar": [
+          "Qancha odamda borligini",
+          "Qancha vaqtda yechilganini",
+          "Nechta uy qo'yilganini",
+          "Jamoa a'zolari ismini"
+        ]
+      },
+      "ru": {
+        "savol": "Что число Airbnb говорило о проблеме?",
+        "variantlar": [
+          "У скольких людей она есть",
+          "За сколько её решили",
+          "Сколько домов выставлено",
+          "Имена членов команды"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "«5 hafta ishlandi» nega natija raqami emas?",
+        "variantlar": [
+          "5 juda kichik son",
+          "Hafta soni o'zgaradi",
+          "U mehnatni sanaydi",
+          "Uni hech kim ko'rmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему «работали 5 недель» — не число-результат?",
+        "variantlar": [
+          "5 — слишком маленькое число",
+          "Число недель меняется",
+          "Оно считает труд",
+          "Его никто не видит"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Tizimni hech kim sinamagan. Nima qilinadi?",
+        "variantlar": [
+          "Taxminiy raqam o'ylanadi",
+          "Tizim qilgan ishlar sanaladi",
+          "Slayd raqamsiz chiqadi",
+          "Ketgan soatlar yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Систему никто не пробовал. Что делать?",
+        "variantlar": [
+          "Придумывают примерное число",
+          "Считают дела, сделанные системой",
+          "Слайд выходит без числа",
+          "Пишут потраченные часы"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Sahnaga qaysi raqam chiqishini kim hal qiladi?",
+        "variantlar": [
+          "Sahnadagi katta ekran",
+          "Tizimning o'zi tanlaydi",
+          "Zaldagi mehmonlar",
+          "Ilovani yaratayotgan siz"
+        ]
+      },
+      "ru": {
+        "savol": "Кто решает, какое число выйдет на сцену?",
+        "variantlar": [
+          "Большой экран на сцене",
+          "Система выбирает сама",
+          "Гости в зале",
+          "Вы, создающий приложение"
+        ]
+      }
+    }
+  ]
+}

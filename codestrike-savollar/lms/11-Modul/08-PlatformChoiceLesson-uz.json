@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi e'lonni qaysi qism saqlaydi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Database, jadval qatorida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend, o'z kodida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova, telefon xotirasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram, guruh xabarida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir o'yinchi ko'p o'yinda. Bu qayerda yoziladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "oyinchilar dagi ustunda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "ishtirokchilar qatorlarida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "oyinlar dagi ustunda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefon xotirasida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "tashkilotchi_id ustuni nimani ko'rsatadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Qo'shilgan o'yinchini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin qaysi maydonda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kim e'lon qilganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nechta odam kerakligini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri real vaqt nuqtasi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "O'yinning kuni va soati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin maydonining nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "E'lon berish formasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilganlar ro'yxati",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu modulda ilova qachon so'raydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ochilganda, pastga tortilganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat o'rnatilgan kuni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefon qayta yoqilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har daqiqada o'zi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "korsat() nega ochilishda chaqiriladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Tugma o'zi bosilmasin deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Son darhol so'ralsin deb",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "sora o'chmasin deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa tez ochilsin deb",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Platforma nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Backend turadigan xizmat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranlarning qog'oz chizmasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulot qayerda ishlashi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database jadvallari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yo'lda, telefonda ochiladi. Qaysi tomonga tortadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Web tomoniga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasiga teng",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qaysisiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mobil tomoniga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Link bilan tez ulashish muhim. Qaysi tomonga tortadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Web tomoniga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mobil tomoniga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qaysisiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasiga teng",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida nega mobil?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ilova chiroyliroq ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchi maydonda, telefonda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat React Native tanish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Link guruhga tashlanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Stek nima?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ilova ochiladigan platforma",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PRD dagi funksiyalar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birga ishlovchi texnologiyalar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova ekranlari va tugmalari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mobil trekka o'tsangiz, nima o'zgaradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Backend va Database",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat Database jadvallari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchala qism birdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi ochadigan qism",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "react-crud-practice-p1-v18",
+  "key": "m3-07",
+  "modul": 4,
+  "tartib": 8,
+  "nom": {
+    "uz": "Praktika: CRUD — to'liq boshqariladigan ilova",
+    "ru": "Практика: CRUD — управляемое приложение"
+  },
+  "src": "src/3-Modull/ReactCrudPracticeLesson.jsx",
+  "barmoq_izi": "bcfa91fad09e24e988ba3e0643398c2b",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "CRUD nimaning qisqartmasi?",
+        "variantlar": [
+          "Create, Read, Update, Delete",
+          "Copy, Run, Undo, Delete",
+          "Code, Read, Update, Deploy",
+          "Create, React, Update, Data"
+        ]
+      },
+      "ru": {
+        "savol": "Сокращением чего является CRUD?",
+        "variantlar": [
+          "Create, Read, Update, Delete",
+          "Copy, Run, Undo, Delete",
+          "Code, Read, Update, Deploy",
+          "Create, React, Update, Data"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Yangi o'yin qo'shish (Create) uchun to'g'ri kod?",
+        "variantlar": [
+          "games.push(newGame)",
+          "setGames([...games, newGame])",
+          "games = [...games, newGame]",
+          "setGames(yangi)"
+        ]
+      },
+      "ru": {
+        "savol": "Верный код для добавления игры (Create)?",
+        "variantlar": [
+          "games.push(newGame)",
+          "setGames([...games, newGame])",
+          "games = [...games, newGame]",
+          "setGames(yangi)"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Ro'yxatni ekranga chizish (Read) uchun nima ishlatiladi?",
+        "variantlar": [
+          "filter",
+          "push",
+          "map",
+          "confirm"
+        ]
+      },
+      "ru": {
+        "savol": "Что используется, чтобы нарисовать список на экране (Read)?",
+        "variantlar": [
+          "filter",
+          "push",
+          "map",
+          "confirm"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "O'yinni o'zgartirish (Update) uchun qaysi amal?",
+        "variantlar": [
+          "push",
+          "filter",
+          "pop",
+          "map"
+        ]
+      },
+      "ru": {
+        "savol": "Какой метод для изменения игры (Update)?",
+        "variantlar": [
+          "push",
+          "filter",
+          "pop",
+          "map"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "O'chirish (Delete) kodi qaysi?",
+        "variantlar": [
+          "games.filter(g => g.id !== id)",
+          "games.map(g => g.id !== id)",
+          "games.filter(g => g.id === id)",
+          "games.push(id)"
+        ]
+      },
+      "ru": {
+        "savol": "Какой код удаляет (Delete)?",
+        "variantlar": [
+          "games.filter(g => g.id !== id)",
+          "games.map(g => g.id !== id)",
+          "games.filter(g => g.id === id)",
+          "games.push(id)"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "...games (spread) nima qiladi?",
+        "variantlar": [
+          "Ro'yxatni o'chiradi",
+          "Eski elementlarni ko'chiradi",
+          "Oxirgisini ajratib oladi",
+          "Tartibni teskari qiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает ...games (spread)?",
+        "variantlar": [
+          "Удаляет список",
+          "Копирует старые элементы",
+          "Вынимает последний",
+          "Переворачивает порядок"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Nega React'da push ishlamaydi?",
+        "variantlar": [
+          "push sahifani qotiradi",
+          "push faqat serverda ishlaydi",
+          "React yangi ro'yxat ko'rmaydi",
+          "push sonlarni qo'sha olmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему в React не работает push?",
+        "variantlar": [
+          "push вешает страницу",
+          "push работает только на сервере",
+          "React не видит нового списка",
+          "push не умеет с числами"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "map bilan {...g, top: true} nima qiladi?",
+        "variantlar": [
+          "Hamma o'yinni o'chiradi",
+          "Yangi o'yin qo'shadi",
+          "Ro'yxatni bo'shatadi",
+          "Bitta o'yinni o'zgartiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает map с {...g, top: true}?",
+        "variantlar": [
+          "Удаляет все игры",
+          "Добавляет новую игру",
+          "Очищает список",
+          "Меняет одну игру"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "filter qanday ishlaydi?",
+        "variantlar": [
+          "Moslarini qoldiradi",
+          "Hammasini o'zgartiradi",
+          "Oxiriga element qo'shadi",
+          "Sonlarni qo'shib chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Как работает filter?",
+        "variantlar": [
+          "Оставляет подходящие",
+          "Меняет все",
+          "Добавляет в конец",
+          "Складывает числа"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "O'yinning like sonini oshirish — CRUD'ning qaysi amali?",
+        "variantlar": [
+          "Delete",
+          "Update",
+          "Create",
+          "Read"
+        ]
+      },
+      "ru": {
+        "savol": "Увеличить число лайков игры — какое это действие CRUD?",
+        "variantlar": [
+          "Delete",
+          "Update",
+          "Create",
+          "Read"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Bu darsda ma'lumot qayerda saqlanadi?",
+        "variantlar": [
+          "Serverda — abadiy turadi",
+          "Diskda — hech o'chmaydi",
+          "State'da — yangilansa ketadi",
+          "Bulutda — hamma ko'radi"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранятся данные в этом уроке?",
+        "variantlar": [
+          "На сервере — навсегда",
+          "На диске — не стираются",
+          "В state — пропадут при обновлении",
+          "В облаке — видят все"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Nega o'chirishdan oldin confirm so'raladi?",
+        "variantlar": [
+          "Kod tezroq ishlashi uchun",
+          "React buni talab qiladi",
+          "Kartaga rang berish uchun",
+          "O'chirilgan qaytmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем перед удалением спрашивают confirm?",
+        "variantlar": [
+          "Чтобы код работал быстрее",
+          "Этого требует React",
+          "Чтобы покрасить карточку",
+          "Удалённое не вернуть"
+        ]
+      }
+    }
+  ]
+}

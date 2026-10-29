@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilovani yana ochmagan beshtadan ko'pi nima dedi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "«Yangi o'yinni bilmadim»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Ilova yoqmadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Telefonda joy qolmadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«O'yinlar qimmat»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bot odamga birinchi yoza oladimi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ha, Backend chatni topadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, odam botni boshlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, istalgan odamga yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, telefon raqami kerak",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir martalik kod nima uchun kerak?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Botni tezroq topish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabarni tezroq yetkazish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chatni hisob bilan bog'lash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tokenni odamga ko'rsatish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telegram so'rovida Backend avval nimani tekshiradi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Odamning Telegram nomini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabardagi chat raqamini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botning nomini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sarlavhadagi maxfiy kalitni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bot tokeni qayerda turadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": ".env va Render'da",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova kodida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "README.md faylida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot javobi matnida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ulanganda Backend Telegram'dan nimani saqlaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ism va Telegram nomini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat chat raqamini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon va chat raqamini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma xabarlarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu hafta ikki xabar ketdi. Uchinchisi nima bo'ladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Baribir yuboriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovada eslatma bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu hafta yuborilmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ertaga yuboriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi Telegram xabari qoidaga mos?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Pro oling, o'yin to'lsin!",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma qaytdi, siz yo'qsiz!",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tezroq ilovani oching!",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yiningiz yana e'lon qilindi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Telegram xabarlarini o'chirish» nima qiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Chat raqamini o'chiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hisobni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botni Telegram'dan o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabarni kechga suradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "telegramdan-ochdi qachon yoziladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Xabar yuborilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Link bilan ochilganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot «Start»ni olganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova o'rnatilganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinfdagi tekshiruv yozuvlari nima bo'ladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Shundayicha qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir haftada o'zi o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tekshirgach o'chiriladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Namunaga ko'chiriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telegram xabarini Backend yuboradi. Eslatmani kim qo'yadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yana Backend",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram bot",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovaning o'zi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

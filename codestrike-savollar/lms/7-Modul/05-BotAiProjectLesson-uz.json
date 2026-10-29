@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bot yasab ber» nega noaniq prompt?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "AI o'zbekchani tushunmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Juftlar va tugma turi yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Iltimos» deyilmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI bot kodini yoza olmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Prompt yozishdan oldin nima qilinadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Tayyor kod olinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod → serverga joylanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Token → kodga yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa → javob rejasi tuziladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bugungi promptda nima aytiladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Hodisa → javob, tugma turi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot nomi → rangi, rasmi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Token → parol va login",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server → domen va narx",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI kod bergach, birinchi nima qilasiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Darrov mijozlarga beraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'chirib, o'zim yozaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'qiyman va test qilaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yana o'sha kodni so'rayman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugmali xabar keldi, bosilsa jim. Sabab?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Token noto'g'ri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "bot.action handleri yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Reply tugma kerak edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "bot.launch() yozilmagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI tokenni kodga ochiq yozdi. Nima qilasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": ".env fayliga ko'chiraman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "bot.js oxiriga ko'chiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uzunroq qilib yozaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shundayligicha qoldiraman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI bilan ishda kim nima qiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "AI hal qiladi, siz kutasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Siz yozasiz, AI o'qiydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI yozadi va o'zi tekshiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI kod yozadi, siz tekshirasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI kodida qanday xato uchraydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Xato bo'lmaydi, u mukammal",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugma handleri yozilmay qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat token xato bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat sekin internetda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Test paytida xato topildi. Keyin nima qilinadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Boshqa g'oya olinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot noldan yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tuzatish prompti yoziladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod o'chirib tashlanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bot yozishning to'g'ri tartibi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Prompt → kod → ishlatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Test → reja → prompt → kod",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod → ishlatish → tashlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reja → prompt → kod → test",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Iteratsiya» nima?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Test → tuzatish → qayta test",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yozish → tegmaslik",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Token → yangi token",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot → qayta ishga tushirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI yozsa ham, kodni tushunish nega kerak?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "AI faqat bilganga yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aks holda AI yozmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xatoni topib tuzatish uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod tezroq ishlashi uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

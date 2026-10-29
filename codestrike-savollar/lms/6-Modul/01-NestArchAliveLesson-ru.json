@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Controller — кто он в ресторане?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Повар — готовит блюдо",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Официант — принимает запрос",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Кладовщик — кладёт на полку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Охранник — проверяет токен",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой ответ получит клиент без токена?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "200 — всё в порядке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "201 — создана новая запись",
+        "hint": "Неверно"
+      },
+      {
+        "value": "500 — внутренняя ошибка сервера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "401 — доступ не разрешён",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает Service?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Делает основную работу",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Наводит порядок в папках",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Держит сервер включённым",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Рисует страницу в браузере",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "DTO — что это?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Чертёж стеллажа — полки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Номер порта сервера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Анкета — правила данных",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Имя проекта на GitHub",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое providers в @Module?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Имя проекта на GitHub",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пароль к базе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Общий объём файлов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Список сотрудников кухни",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает npm run start:dev?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Включает сервер и следит",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Загружает код на GitHub",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Очищает базу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Создаёт новый раздел",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой код вернётся, если анкета заполнена неверно?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "201 — запись создана",
+        "hint": "Неверно"
+      },
+      {
+        "value": "401 — доступ запрещён",
+        "hint": "Неверно"
+      },
+      {
+        "value": "400 — неверный запрос",
+        "hint": "Верно!"
+      },
+      {
+        "value": "200 — всё в порядке",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что задаёт Entity?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Цвета страницы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Полки на складе",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Скорость сервера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "График официанта",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает git clone?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Скачивает проект на компьютер",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удаляет проект",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Заполняет базу данными",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Выключает работающий сервер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Swagger — что это?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Чертёж стеллажа на складе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Файл секретных ключей",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Меню — список дверей",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Программа шифрования паролей",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Новый раздел: первые три шага?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Module → Controller → DTO",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Controller → Module → Entity",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Service → Entity → Module",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Entity → DTO → Service",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен successRes?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Прячет ошибки от клиента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Делает ответы одинаковыми",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ускоряет сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранит пароль в шифре",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  }
+]

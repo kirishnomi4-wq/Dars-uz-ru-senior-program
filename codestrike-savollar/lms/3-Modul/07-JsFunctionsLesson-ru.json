@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое функция?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Команда, работающая один раз",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Повторно используемый блок кода",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Коробка для значения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Список данных",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как вызвать функцию?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "По имени со скобками ()",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Просто написав имя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Словом function",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через return",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какую работу выполняет параметр?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Возвращает результат",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удаляет функцию",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Передаёт значение в функцию",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Выводит в консоль",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает return?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Выводит в консоль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Даёт функции имя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Добавляет параметр",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Возвращает результат",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "console.log и return: кто возвращает значение?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Только console.log",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только return",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Оба",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никто",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Если return power * 3, что вернёт damage(5)?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "8",
+        "hint": "Неверно"
+      },
+      {
+        "value": "5",
+        "hint": "Неверно"
+      },
+      {
+        "value": "15",
+        "hint": "Верно!"
+      },
+      {
+        "value": "53",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "function add(a,b){ return a+b }. Каков результат add(2,7)?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "9",
+        "hint": "Верно!"
+      },
+      {
+        "value": "27",
+        "hint": "Неверно"
+      },
+      {
+        "value": "5",
+        "hint": "Неверно"
+      },
+      {
+        "value": "72",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что вернёт функция без return?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "0 (ноль)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "undefined",
+        "hint": "Верно!"
+      },
+      {
+        "value": "пустой текст",
+        "hint": "Неверно"
+      },
+      {
+        "value": "ошибку",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "damage(power, bonus) → power * 3 + bonus. damage(3, 10) = ?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "13",
+        "hint": "Неверно"
+      },
+      {
+        "value": "33",
+        "hint": "Неверно"
+      },
+      {
+        "value": "30",
+        "hint": "Неверно"
+      },
+      {
+        "value": "19",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Куда попадает 5 при вызове damage(5)?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Внутрь return",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В имя функции",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В параметр",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В консоль",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сколько раз можно вызвать одну функцию?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Сколько угодно",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только 1 раз",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Максимум 3 раза",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никогда",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "let x = damage(4). Что попадёт в x?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Имя функции — damage",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Аргумент — число 4",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего — undefined",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Значение, которое вернула функция",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

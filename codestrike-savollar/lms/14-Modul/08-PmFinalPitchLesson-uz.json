@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu mashqda Raqamlar bo'lagiga qancha vaqt ajratilgan?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Taxminan bir daqiqa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Taxminan yarim daqiqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taxminan ikki daqiqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taxminan uch daqiqa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor «60 kishi»ni qanday aniqlashtirdi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ilovadagi o'yinchilar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram guruhi a'zolari",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telegram kanali obunachilari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zining sinfdoshlari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tuzatilgan gap eskisidan uzun. Nima qilasiz?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Pitchni 6 daqiqa qilaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tuzatishni kiritmayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taymer bilan tekshiraman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Boshqa bo'lakni olaman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor boshqa mahallalar haqida nima dedi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "«U yerda ham 60 kishi bor»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Ularga ilova kerak emas»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Hamma joyda muammo bir»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Tekshirib aytaman»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitch 5 daqiqadan oshdi. Nima qilasiz?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Savol-javobdan vaqt olaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jonli demoni olib tashlayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tezroq gapiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ortiqcha gapni olaman",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu mashqda hakam savoliga javob qancha davom etadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bir daqiqagacha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uch daqiqagacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Besh daqiqagacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki daqiqagacha",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sanamagan son so'raldi. Nima deysiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«Taxminan shuncha» deyman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Tekshirib aytaman» deyman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eshitmagandek davom etaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitchni qayta aytaman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor aytdi: hozir o'yin qanday yig'iladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Sport ilovasida jadval bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maktabda tanaffusda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram guruhida yozib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ota-onalar orqali",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor varag'ida qaysi ikki bo'lak ✗ olgan edi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Muammo va Yechim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bozor va Raqamlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jamoa va Raqamlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yechim va Bozor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitchdan oldin demo uchun nima qilasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Funksiya qo'shaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database'ni ochaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Demo yo'lini ochaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefonni o'chiraman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitch paytida sherigingiz nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Taymer bilan tinglaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bo'laklarga ✓ va ✗ qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Siz bilan birga aytadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Demoni o'zi ko'rsatadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hakam «Endi nima qilasiz?» desa, nimani aytasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kerakli pul summasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tez orada o'sishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma bo'laklarni qayta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi ish va so'rovni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

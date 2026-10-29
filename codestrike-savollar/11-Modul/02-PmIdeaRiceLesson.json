@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m9d2-v1",
+  "key": "m9-02",
+  "modul": 11,
+  "tartib": 2,
+  "nom": {
+    "uz": "Beshta g'oyadan qaysi uchtasi qoladi?",
+    "ru": "Какие три из пяти идей останутся?"
+  },
+  "src": "src/9-Modull/PmIdeaRiceLesson.jsx",
+  "barmoq_izi": "99236845869ff9e4cfb6e9f2da5ef930",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "G'oya uch savoldan qachon o'tadi?",
+        "variantlar": [
+          "Uchala savolga «ha» olsa",
+          "Ikkita savolga «ha» olsa",
+          "Birinchi savolga «ha» olsa",
+          "Bitta savolga «yo'q» olsa"
+        ]
+      },
+      "ru": {
+        "savol": "Когда идея проходит три вопроса?",
+        "variantlar": [
+          "Если получит «да» на все три",
+          "Если получит «да» на два",
+          "Если получит «да» на первый",
+          "Если получит «нет» на один"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Real auditoriya bormi?» nimani so'raydi?",
+        "variantlar": [
+          "6 haftada qura olasizmi",
+          "Kamida 5 tanishingiz bormi",
+          "Bu g'oya sizga qiziqmi",
+          "Necha kishi yuklaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что спрашивает «Есть ли реальная аудитория?»?",
+        "variantlar": [
+          "Сможете ли собрать за 6 недель",
+          "Есть ли хотя бы 5 знакомых",
+          "Интересна ли вам эта идея",
+          "Сколько людей скачает"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi g'oyani 6 haftada qurish qiyin?",
+        "variantlar": [
+          "Sinf vazifalari ro'yxati",
+          "Oshxona menyusi sahifasi",
+          "Uyga ovqat yetkazish",
+          "To'garaklar jadvali"
+        ]
+      },
+      "ru": {
+        "savol": "Какую идею трудно собрать за 6 недель?",
+        "variantlar": [
+          "Список заданий класса",
+          "Страница меню столовой",
+          "Доставка еды на дом",
+          "Расписание кружков"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Ta'sir 3 nimani bildiradi?",
+        "variantlar": [
+          "Uch kishiga foyda yetkazadi",
+          "Uch hafta mehnat talab qiladi",
+          "Ro'yxatda uchinchi o'rinda",
+          "Har odamga juda katta foyda"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает влияние 3?",
+        "variantlar": [
+          "Приносит пользу трём людям",
+          "Требует трёх недель усилий",
+          "На третьем месте в списке",
+          "Очень большая польза каждому"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Bu kursda ishonch 50% qachon qo'yiladi?",
+        "variantlar": [
+          "Dalil yo'q, faqat taxmin",
+          "O'lchangan aniq son bor",
+          "Ko'p odam shuni aytgan",
+          "G'oya yarmi qurilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Когда в этом курсе ставят уверенность 50%?",
+        "variantlar": [
+          "Довода нет, только догадка",
+          "Есть точное измеренное число",
+          "Многие это сказали",
+          "Половина идеи собрана"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Bu kursda mehnat qanday sanaladi?",
+        "variantlar": [
+          "Odam necha oy ishlaydi",
+          "Odam necha hafta ishlaydi",
+          "Sinf necha kun ishlaydi",
+          "Kod necha soat yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Как в этом курсе считают усилия?",
+        "variantlar": [
+          "Сколько месяцев работает человек",
+          "Сколько недель работает человек",
+          "Сколько дней работает класс",
+          "Сколько часов пишется код"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Ishonch 50% dan 80% ga oshsa, baho nima bo'ladi?",
+        "variantlar": [
+          "Kamayadi",
+          "O'zgarmaydi",
+          "Oshadi",
+          "Nolga tushadi"
+        ]
+      },
+      "ru": {
+        "savol": "Если уверенность вырастет с 50% до 80%, что будет с оценкой?",
+        "variantlar": [
+          "Уменьшится",
+          "Не изменится",
+          "Вырастет",
+          "Упадёт до нуля"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Qamrovi katta g'oya nega past baho oladi?",
+        "variantlar": [
+          "Odamlar ko'p bo'lgani",
+          "Qamrov sanalmagani",
+          "Mehnati juda kam bo'lgani",
+          "Ta'siri yoki ishonchi kichik"
+        ]
+      },
+      "ru": {
+        "savol": "Почему идея с большим охватом получает низкую оценку?",
+        "variantlar": [
+          "Потому что людей много",
+          "Охват не учитывается",
+          "Усилий совсем мало",
+          "Влияние или уверенность малы"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Stories voqeasidan qaysi xulosa chiqadi?",
+        "variantlar": [
+          "Yaxshiroq yetkazgan yutdi",
+          "Birinchi o'ylab topgan yutdi",
+          "Arzonroq ilova yutdi",
+          "Eng keyin chiqqan yutdi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой вывод из истории Stories?",
+        "variantlar": [
+          "Победил тот, кто лучше донёс",
+          "Победил тот, кто придумал первым",
+          "Победило более дешёвое приложение",
+          "Победил тот, кто вышел последним"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Sherik soningizga «nega?» dedi. Nima qilasiz?",
+        "variantlar": [
+          "Indamay qoldirasiz",
+          "Sababini tushuntirasiz",
+          "G'oyani chetga chiqarasiz",
+          "Sherik sonini yozasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Партнёр спросил «почему?» про ваше число. Что делаете?",
+        "variantlar": [
+          "Молча оставляете",
+          "Объясняете причину",
+          "Убираете идею в сторону",
+          "Пишете число партнёра"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "«Jamoa yig'ish»da ishonch nega 80%?",
+        "variantlar": [
+          "Mentorga eng qiziq g'oya",
+          "Ta'siri ikkiga teng",
+          "5 kishidan 2 tasi aytgan",
+          "Mehnati eng ko'p, 4 hafta"
+        ]
+      },
+      "ru": {
+        "savol": "Почему у «Сбора команды» уверенность 80%?",
+        "variantlar": [
+          "Самая интересная идея для Ментора",
+          "Влияние равно двум",
+          "Об этом сказали 2 из 5",
+          "Больше всего усилий, 4 недели"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "rice(g) funksiyasi nimani qaytaradi?",
+        "variantlar": [
+          "G'oyaning qisqa nomini",
+          "Eng yaxshi uchta nomni",
+          "Ro'yxat uzunligini",
+          "Bitta g'oyaning bahosini"
+        ]
+      },
+      "ru": {
+        "savol": "Что возвращает функция rice(g)?",
+        "variantlar": [
+          "Короткое название идеи",
+          "Названия трёх лучших",
+          "Длину списка",
+          "Оценку одной идеи"
+        ]
+      }
+    }
+  ]
+}

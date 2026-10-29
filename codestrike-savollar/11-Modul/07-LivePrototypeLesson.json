@@ -1,0 +1,278 @@
+{
+  "lessonId": "m9-07-v1",
+  "key": "m9-07",
+  "modul": 11,
+  "tartib": 7,
+  "nom": {
+    "uz": "Jonli prototip: qog'ozdan bosiladigan ekrangacha",
+    "ru": "Живой прототип: от бумаги до кликабельного экрана"
+  },
+  "src": "src/9-Modull/LivePrototypeLesson.jsx",
+  "barmoq_izi": "7d2aebb5e086e57b83f6304b9ff498eb",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Wireframe nimani ko'rsatadi?",
+        "variantlar": [
+          "Qayerda nima turishini",
+          "Tugmalar rangini",
+          "Sarlavha shriftini",
+          "Ma'lumot qayerda saqlanishini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает wireframe?",
+        "variantlar": [
+          "Что где стоит",
+          "Цвет кнопок",
+          "Шрифт заголовка",
+          "Где хранятся данные"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Tashkilotchi kun va soatni qaysi ekranda yozadi?",
+        "variantlar": [
+          "O'yinlar ekranida",
+          "E'lon berish ekranida",
+          "O'yin ekranida",
+          "Kirish ekranida"
+        ]
+      },
+      "ru": {
+        "savol": "На каком экране организатор пишет день и время?",
+        "variantlar": [
+          "На экране «Игры»",
+          "На экране «Объявить игру»",
+          "На экране «Игра»",
+          "На экране «Вход»"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Prototip qanday ekranlar?",
+        "variantlar": [
+          "Do'konga chiqqan versiya",
+          "Qog'ozdagi sodda chizma",
+          "Bosiladi, lekin saqlamaydi",
+          "Backend va Database chizmasi"
+        ]
+      },
+      "ru": {
+        "savol": "Какие экраны называют прототипом?",
+        "variantlar": [
+          "Версия, вышедшая в магазин",
+          "Простой рисунок на бумаге",
+          "Кликабельные, но не сохраняют",
+          "Схема Backend и Database"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Prototipdagi o'yinlar ro'yxati qayerdan keladi?",
+        "variantlar": [
+          "oyinlar jadvalidan",
+          "Backend'dagi yo'ldan",
+          "Telegram guruhidan",
+          "namuna.js faylidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда берётся список игр в прототипе?",
+        "variantlar": [
+          "Из таблицы oyinlar",
+          "Из пути в Backend",
+          "Из группы в Telegram",
+          "Из файла namuna.js"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Bu darsda talabning «qayerda» qatoriga nima yoziladi?",
+        "variantlar": [
+          "prototip/ papkasi",
+          "Telefon ekrani",
+          "GitHub sahifasi",
+          "backend/ papkasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что на этом уроке пишут в строку требования «где»?",
+        "variantlar": [
+          "Папка prototip/",
+          "Экран телефона",
+          "Страница GitHub",
+          "Папка backend/"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Wireframe surati nimaga kerak?",
+        "variantlar": [
+          "Agentga rang tanlab beradi",
+          "Ekranlar joyini ko'rsatadi",
+          "Agentga Backend'ni ulatadi",
+          "Talab o'rniga yuboriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен снимок wireframe?",
+        "variantlar": [
+          "Выбирает агенту цвета",
+          "Показывает, где какие экраны",
+          "Подключает агенту Backend",
+          "Отправляется вместо требования"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Agent «Tayyor!» dedi. Keyin nima qilasiz?",
+        "variantlar": [
+          "Darhol GitHub'ga yuboraman",
+          "Talabni qayta yozaman",
+          "Wireframe bilan solishtiraman",
+          "Animatsiya qo'shaman"
+        ]
+      },
+      "ru": {
+        "savol": "Агент сказал «Готово!». Что дальше?",
+        "variantlar": [
+          "Сразу отправляю на GitHub",
+          "Пишу требование заново",
+          "Сравниваю с wireframe",
+          "Добавляю анимации"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Uch farq topildi. Agentga qanday yozasiz?",
+        "variantlar": [
+          "Hammasini qayta yozdiraman",
+          "Faqat kattasini yozaman",
+          "Hech narsa, o'zi topadi",
+          "Uchalasini bitta talabda"
+        ]
+      },
+      "ru": {
+        "savol": "Найдено три отличия. Как написать агенту?",
+        "variantlar": [
+          "Прошу написать всё заново",
+          "Пишу только самое большое",
+          "Ничего, сам найдёт",
+          "Все три одним требованием"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Jonli prototip qanday prototip?",
+        "variantlar": [
+          "Animatsiyasi bor prototip",
+          "Telefonga o'rnatilgan prototip",
+          "Backend'ga ulangan prototip",
+          "Rangli chizilgan prototip"
+        ]
+      },
+      "ru": {
+        "savol": "Какой прототип называют живым?",
+        "variantlar": [
+          "Прототип с анимацией",
+          "Прототип, установленный на телефон",
+          "Прототип, подключённый к Backend",
+          "Прототип, нарисованный в цвете"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Karta bosilsa kichrayib qaytsin. Nima kerak?",
+        "variantlar": [
+          "transition va font-size",
+          "transform va transition",
+          "initial va exit",
+          "display va width"
+        ]
+      },
+      "ru": {
+        "savol": "Карточка при нажатии сжимается и возвращается. Что нужно?",
+        "variantlar": [
+          "transition и font-size",
+          "transform и transition",
+          "initial и exit",
+          "display и width"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Bu prototipda ekrandan ekranga silliq o'tishni nima qiladi?",
+        "variantlar": [
+          ":active holati",
+          "scale(1.3) qiymati",
+          "Motion kutubxonasi",
+          "setTimeout funksiyasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что в этом прототипе делает плавный переход между экранами?",
+        "variantlar": [
+          "Состояние :active",
+          "Значение scale(1.3)",
+          "Библиотека Motion",
+          "Функция setTimeout"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "GitHub'dagi repo'ni kompyuterga qaysi buyruq ko'chiradi?",
+        "variantlar": [
+          "git push",
+          "git commit",
+          "git status",
+          "git clone"
+        ]
+      },
+      "ru": {
+        "savol": "Какая команда копирует репо с GitHub на компьютер?",
+        "variantlar": [
+          "git push",
+          "git commit",
+          "git status",
+          "git clone"
+        ]
+      }
+    }
+  ]
+}

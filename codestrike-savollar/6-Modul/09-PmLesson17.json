@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m4c2-v1",
+  "key": "m4c-02",
+  "modul": 6,
+  "tartib": 9,
+  "nom": {
+    "uz": "Hammasini birdan chiqaraymi — yoki har hafta bo'lak?",
+    "ru": "Выпустить всё разом — или по кусочку каждую неделю?"
+  },
+  "src": "src/4c-Modull/PmLesson17.jsx",
+  "barmoq_izi": "2c6906e2d34997ac45d6d02dcbeb0aef",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Reliz nima?",
+        "variantlar": [
+          "Bo'lakni odamlarga chiqarish",
+          "Kodni o'zida sinab ko'rish",
+          "Saytga rasm va rang tanlash",
+          "Ishni haftalarga bo'lish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое релиз?",
+        "variantlar": [
+          "Вывести кусочек к людям",
+          "Проверить код у себя",
+          "Подобрать сайту фото и цвет",
+          "Разбить работу по неделям"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Kod faqat o'zingizda ishlasa — relizmi?",
+        "variantlar": [
+          "Ha — kod ishlayapti",
+          "Yo'q — o'zgarish kichkina",
+          "Ha — sinfdosh ko'rgan",
+          "Yo'q — odamlar ishlata olmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Код работает только у вас — это релиз?",
+        "variantlar": [
+          "Да — код работает",
+          "Нет — изменение маленькое",
+          "Да — одноклассник видел",
+          "Нет — люди не могут пользоваться"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "6-haftada kim keyingi bo'lakni aniq biladi?",
+        "variantlar": [
+          "Ko'proq kod yozgan",
+          "Rejani uzoq o'ylagan",
+          "Har hafta chiqargan",
+          "Saytni kech ochgan"
+        ]
+      },
+      "ru": {
+        "savol": "Кто на 6-й неделе точно знает следующий кусочек?",
+        "variantlar": [
+          "Кто написал больше кода",
+          "Кто дольше думал над планом",
+          "Кто выпускал каждую неделю",
+          "Кто открыл сайт позже"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "«Har hafta kichik» sayti 6 haftada necha marta bilib oldi?",
+        "variantlar": [
+          "3 marta",
+          "6 marta",
+          "Hech marta",
+          "1 marta"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько раз за 6 недель узнал сайт «каждую неделю по чуть-чуть»?",
+        "variantlar": [
+          "3 раза",
+          "6 раз",
+          "Ни разу",
+          "1 раз"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "«Bir marta katta» nimani kech bildi?",
+        "variantlar": [
+          "Saytni topa olmaganlarini",
+          "Xaritani hech kim ochmaganini",
+          "Chat ishlamay qolganini",
+          "E'lonlar ochilmasligini"
+        ]
+      },
+      "ru": {
+        "savol": "Что поздно узнал «Один раз большой»?",
+        "variantlar": [
+          "Что сайт не могли найти",
+          "Что карту никто не открыл",
+          "Что чат перестал работать",
+          "Что объявления не открываются"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Haftalik bo'lakning ikki chirog'i?",
+        "variantlar": [
+          "Haftaga sig'adi · ishlatiladi",
+          "Bir kunda tayyor · bepul",
+          "Tez yoziladi · kodi kam",
+          "Rasmli · chiroyli ko'rinadi"
+        ]
+      },
+      "ru": {
+        "savol": "Две лампочки недельного кусочка?",
+        "variantlar": [
+          "Влезает в неделю · им пользуются",
+          "Готов за день · бесплатный",
+          "Пишется быстро · мало кода",
+          "С картинкой · красиво выглядит"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "«Bosilsa hech narsa bo'lmaydi» — nima yetmaydi?",
+        "variantlar": [
+          "Uni bosadigan odam",
+          "Unga qo'yiladigan rasm",
+          "Bosgandan keyingi ish",
+          "Haftaga sig'adigan vaqt"
+        ]
+      },
+      "ru": {
+        "savol": "«При нажатии ничего не происходит» — чего не хватает?",
+        "variantlar": [
+          "Человека, который нажмёт",
+          "Картинки для него",
+          "Действия после нажатия",
+          "Времени, чтобы влезть в неделю"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "≈11 kunlik bo'lakka darvoza nima deydi?",
+        "variantlar": [
+          "Kunlar hisoblanmagan",
+          "Odam uni ishlata olmaydi",
+          "Bu bo'lak takrorlangan",
+          "Bu hafta sig'maydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что скажут ворота кусочку на ≈11 дней?",
+        "variantlar": [
+          "Дни не посчитаны",
+          "Человек им не сможет пользоваться",
+          "Этот кусочек повторяется",
+          "В неделю не помещается"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Telegram katta yangilanishni qanchalik tez-tez chiqaradi?",
+        "variantlar": [
+          "Deyarli har oy",
+          "Uch yilda bir marta",
+          "Yiliga bir marta",
+          "Ikki haftada bir"
+        ]
+      },
+      "ru": {
+        "savol": "Как часто Telegram выпускает большое обновление?",
+        "variantlar": [
+          "Почти каждый месяц",
+          "Раз в три года",
+          "Раз в год",
+          "Раз в две недели"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Telegramdagi reaksiya boshqa ilovalarga qachon keldi?",
+        "variantlar": [
+          "Bir necha haftada",
+          "O'sha kuniyoq",
+          "Bir necha yildan keyin",
+          "Telegramdan oldin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда реакции из Telegram пришли в другие приложения?",
+        "variantlar": [
+          "Через несколько недель",
+          "В тот же день",
+          "Через несколько лет",
+          "Раньше Telegram"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "2025-yil martida Telegramdan oyiga nechta odam foydalanadi?",
+        "variantlar": [
+          "100 million",
+          "1 milliard",
+          "3 milliard",
+          "500 million"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько человек в месяц пользовались Telegram в марте 2025 года?",
+        "variantlar": [
+          "100 миллионов",
+          "1 миллиард",
+          "3 миллиарда",
+          "500 миллионов"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Nimani qachon chiqarishni kim hal qiladi?",
+        "variantlar": [
+          "Kodni yozgan dasturchi",
+          "Saytga kirgan odam",
+          "Sayt joylangan xizmat",
+          "Mahsulotni o'ylaydigan odam"
+        ]
+      },
+      "ru": {
+        "savol": "Кто решает, что и когда выпускать?",
+        "variantlar": [
+          "Программист, писавший код",
+          "Человек, зашедший на сайт",
+          "Сервис, где размещён сайт",
+          "Человек, который думает о продукте"
+        ]
+      }
+    }
+  ]
+}

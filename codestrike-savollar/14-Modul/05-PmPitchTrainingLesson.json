@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m12d5-v2",
+  "key": "m12-05",
+  "modul": 14,
+  "tartib": 5,
+  "nom": {
+    "uz": "Guruh pitchingizda nimani tuzatishni aytadi?",
+    "ru": "Что группа советует исправить в вашем питче?"
+  },
+  "src": "src/12-Modull/PmPitchTrainingLesson.jsx",
+  "barmoq_izi": "efbc74a6e3cb68d5b6c19336b5d6fa44",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Varaq qachon to'ldiriladi?",
+        "variantlar": [
+          "Pitch tugagandan keyin",
+          "Har bo'lak aytilayotganda",
+          "Pitch boshlanishidan oldin",
+          "Faqat uyda, darsdan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда заполняют лист?",
+        "variantlar": [
+          "После окончания питча",
+          "Пока рассказывают каждую часть",
+          "До начала питча",
+          "Только дома, после урока"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor misolida guruh qaysi bo'laklarga ✗ qo'ydi?",
+        "variantlar": [
+          "Muammo va Yechim",
+          "Bozor va Raqamlar",
+          "Jamoa va Raqamlar",
+          "Muammo va Bozor"
+        ]
+      },
+      "ru": {
+        "savol": "Каким частям в примере Ментора группа поставила ✗?",
+        "variantlar": [
+          "Проблема и Решение",
+          "Рынок и Цифры",
+          "Команда и Цифры",
+          "Проблема и Рынок"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor tuzatishida «60 kishi» kimlar?",
+        "variantlar": [
+          "Ilovadagi tashkilotchilar",
+          "Mahalladagi maydon egalari",
+          "Futbol guruhi a'zolari",
+          "Mentorning sinfdoshlari"
+        ]
+      },
+      "ru": {
+        "savol": "Кто такие «60 человек» в исправлении Ментора?",
+        "variantlar": [
+          "Организаторы в приложении",
+          "Владельцы площадок в махалле",
+          "Участники футбольной группы",
+          "Одноклассники Ментора"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Guruh rejimida hakam savolini kim yozadi?",
+        "variantlar": [
+          "Pitchni aytgan o'quvchi",
+          "Mentor, dars boshida",
+          "Agent, matnni o'qib",
+          "Pitchni tinglaganlar"
+        ]
+      },
+      "ru": {
+        "savol": "Кто в групповом режиме пишет вопрос судьи?",
+        "variantlar": [
+          "Ученик, рассказавший питч",
+          "Ментор, в начале урока",
+          "Агент, прочитав текст",
+          "Те, кто слушал питч"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Fikrlar har xil bo'lsa, varaqqa nima qo'yiladi?",
+        "variantlar": [
+          "Kelishilgan bitta belgi",
+          "Ko'pchilikning ✓ belgisi",
+          "Qator belgisiz qoladi",
+          "Ikkala belgi yonma-yon"
+        ]
+      },
+      "ru": {
+        "savol": "Что ставят в лист, если мнения разные?",
+        "variantlar": [
+          "Один согласованный знак",
+          "Знак ✓ большинства",
+          "Строка остаётся без знака",
+          "Оба знака рядом"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor varag'ida ikkita ✗. Uchinchi tuzatish qayerdan?",
+        "variantlar": [
+          "Sinf ovozlaridan",
+          "Hakam savolidan",
+          "Mentor taxminidan",
+          "Pitch vaqtidan"
+        ]
+      },
+      "ru": {
+        "savol": "В листе Ментора два ✗. Откуда третье исправление?",
+        "variantlar": [
+          "Из голосов класса",
+          "Из вопроса судьи",
+          "Из догадки Ментора",
+          "Из времени питча"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Tuzatish qanday yoziladi?",
+        "variantlar": [
+          "Faqat bo'lak nomi bilan",
+          "Pitchdagi hamma gaplar bilan",
+          "Bo'lak va unda nima o'zgarishi",
+          "Tinglovchi ismi bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Как пишут исправление?",
+        "variantlar": [
+          "Только названием части",
+          "Всеми фразами питча",
+          "Часть и что в ней изменится",
+          "С именем слушателя"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor tasdiq haqidagi izohga nima yozdi?",
+        "variantlar": [
+          "Tasdiqni olib tashlash",
+          "«Pro'ni sotib oldi» deyish",
+          "Tasdiqlar sonini oshirish",
+          "Tasdiq nimaligini aytish"
+        ]
+      },
+      "ru": {
+        "savol": "Что Ментор написал к замечанию о подтверждении?",
+        "variantlar": [
+          "Убрать подтверждения",
+          "Сказать «купили Pro»",
+          "Назвать подтверждений больше",
+          "Объяснить, что такое подтверждение"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Qaysi izoh bo'lak haqida?",
+        "variantlar": [
+          "«Yechim tushunarsiz qoldi»",
+          "«Juda hayajonlandingiz»",
+          "«Menga umuman yoqmadi»",
+          "«Meniki yaxshiroq chiqdi»"
+        ]
+      },
+      "ru": {
+        "savol": "Какое замечание о части?",
+        "variantlar": [
+          "«Решение осталось непонятным»",
+          "«Вы очень волновались»",
+          "«Мне совсем не понравилось»",
+          "«Мой получился лучше»"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Guruh bo'lmasa, varaqni kim to'ldiradi?",
+        "variantlar": [
+          "Mentor, darsdan keyin",
+          "O'zingiz, yozuvni ko'rib",
+          "Hech kim, varaq kerak emas",
+          "Agent, matnni o'qib"
+        ]
+      },
+      "ru": {
+        "savol": "Кто заполняет лист, если группы нет?",
+        "variantlar": [
+          "Ментор, после урока",
+          "Вы сами, посмотрев запись",
+          "Никто, лист не нужен",
+          "Агент, прочитав текст"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Yakka rejimda pitch yozuvi qayerda qoladi?",
+        "variantlar": [
+          "Sinf chatida",
+          "Mentorning telefonida",
+          "Faqat telefoningizda",
+          "Guruh kanalida"
+        ]
+      },
+      "ru": {
+        "savol": "Где остаётся запись питча в одиночном режиме?",
+        "variantlar": [
+          "В чате класса",
+          "На телефоне Ментора",
+          "Только на вашем телефоне",
+          "В канале группы"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Nega maydon egalari to'lamaydi? Mentor nima deydi?",
+        "variantlar": [
+          "«Keyin to'lab beradi»",
+          "«Pitchga aloqasi yo'q»",
+          "«Ular bizga kerak emas»",
+          "«Bugun to'lovchi emas»"
+        ]
+      },
+      "ru": {
+        "savol": "Почему владельцы площадок не платят? Что скажет Ментор?",
+        "variantlar": [
+          "«Потом заплатят»",
+          "«К питчу не относится»",
+          "«Они нам не нужны»",
+          "«Сегодня не плательщики»"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "jest-unit-04b-01-v18",
+  "key": "m4b-01",
+  "modul": 6,
+  "tartib": 5,
+  "nom": {
+    "uz": "Unit-test: Jest",
+    "ru": "Юнит-тесты: Jest"
+  },
+  "src": "src/4b-Modull/JestUnitTestLesson.jsx",
+  "barmoq_izi": "579381cfab7c7e8b69b332eb20367d79",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 3,
+      "uz": {
+        "savol": "Unit-test nima qiladi?",
+        "variantlar": [
+          "Saytni chiroyli qiladi",
+          "Ma'lumotni bazaga yozadi",
+          "Serverni ishga tushiradi",
+          "Funksiya natijasini tekshiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает unit-тест?",
+        "variantlar": [
+          "Делает сайт красивым",
+          "Пишет данные в базу",
+          "Запускает сервер",
+          "Проверяет результат функции"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "expect(...).toBe(...) nima qiladi?",
+        "variantlar": [
+          "Natijani ekranga chiqaradi",
+          "Funksiyani chaqiradi",
+          "Natijani etalonga solishtiradi",
+          "Testni o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает expect(...).toBe(...)?",
+        "variantlar": [
+          "Выводит результат на экран",
+          "Вызывает функцию",
+          "Сравнивает результат с эталоном",
+          "Удаляет тест"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "describe nima uchun kerak?",
+        "variantlar": [
+          "Jest'ni loyihaga o'rnatadi",
+          "Testlarni bir guruhga yig'adi",
+          "Natijani tekshiradi",
+          "Funksiyani ishga tushiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен describe?",
+        "variantlar": [
+          "Устанавливает Jest в проект",
+          "Собирает тесты в одну группу",
+          "Проверяет результат",
+          "Запускает функцию"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Test fayli qanday nomlanadi?",
+        "variantlar": [
+          "order.js",
+          "order.spec.ts",
+          "order.jest",
+          "order.test.html"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется файл теста?",
+        "variantlar": [
+          "order.js",
+          "order.spec.ts",
+          "order.jest",
+          "order.test.html"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "npm test nima qiladi?",
+        "variantlar": [
+          "Bazani tozalab tashlaydi",
+          "Loyihani serverga yuklaydi",
+          "Yangi funksiya yozib beradi",
+          "Testlarni ishga tushiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает npm test?",
+        "variantlar": [
+          "Очищает базу",
+          "Загружает проект на сервер",
+          "Пишет новую функцию",
+          "Запускает тесты"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Testdagi console.log nimani tekshiradi?",
+        "variantlar": [
+          "Natija etalonga tengligini",
+          "Funksiyaning tezligini",
+          "Hech narsani tekshirmaydi",
+          "Kod qatorlari sonini"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяет console.log в тесте?",
+        "variantlar": [
+          "Равен ли результат эталону",
+          "Скорость функции",
+          "Ничего не проверяет",
+          "Число строк кода"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Bitta it nechta xatti-harakatni tekshiradi?",
+        "variantlar": [
+          "Faqat bittasini",
+          "Hech birini",
+          "Kamida beshtasini",
+          "Cheksiz ko'pini"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько поведений проверяет один it?",
+        "variantlar": [
+          "Только одно",
+          "Ни одного",
+          "Не меньше пяти",
+          "Сколько угодно"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "Kutilgan 20000, kelgan 10002. Jest nima qiladi?",
+        "variantlar": [
+          "FAIL: Expected va Received",
+          "Hech narsa demaydi",
+          "Funksiyani o'chiradi",
+          "Kodni o'zi tuzatib beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Ожидалось 20000, пришло 10002. Что сделает Jest?",
+        "variantlar": [
+          "FAIL: Expected и Received",
+          "Ничего не скажет",
+          "Удалит функцию",
+          "Сам исправит код"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Testda expect bo'lmasa nima bo'ladi?",
+        "variantlar": [
+          "Doim qizil FAIL chiqadi",
+          "Doim PASS — yolg'on test",
+          "Jest ishlamay to'xtaydi",
+          "Test ikki marta ishlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если в тесте нет expect?",
+        "variantlar": [
+          "Всегда красный FAIL",
+          "Всегда PASS — ложный тест",
+          "Jest остановится",
+          "Тест запустится дважды"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Etalon xato yozilsa nima bo'ladi?",
+        "variantlar": [
+          "Kod to'g'ri bo'lsa ham qizil",
+          "Jest etalonni o'zi tuzatadi",
+          "Test o'tkazib yuboriladi",
+          "Funksiya mantig'i o'zgaradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если эталон записан неверно?",
+        "variantlar": [
+          "Красный, даже если код верный",
+          "Jest сам исправит эталон",
+          "Тест будет пропущен",
+          "Изменится логика функции"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "AAA tartibi nima?",
+        "variantlar": [
+          "Aniqla → Aylantir → Arxivla",
+          "Aloqa → Aksiya → Aniqlik",
+          "Tayyorla → Chaqir → Tekshir",
+          "Avtomat → Analiz → Audit"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое порядок AAA?",
+        "variantlar": [
+          "Определи → Поверни → Архивируй",
+          "Связь → Акция → Точность",
+          "Подготовь → Вызови → Проверь",
+          "Автомат → Анализ → Аудит"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Jest nega --save-dev bilan o'rnatiladi?",
+        "variantlar": [
+          "Tezroq ishlashi uchun",
+          "Bepul bo'lgani uchun",
+          "Testni o'zi yozishi uchun",
+          "Faqat ishlab chiqish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Почему Jest ставят с --save-dev?",
+        "variantlar": [
+          "Чтобы работал быстрее",
+          "Потому что бесплатный",
+          "Чтобы сам писал тесты",
+          "Нужен только в разработке"
+        ]
+      }
+    }
+  ]
+}

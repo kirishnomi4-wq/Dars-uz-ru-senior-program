@@ -1,0 +1,278 @@
+{
+  "lessonId": "cicd-full-pipeline-4c-03-v18",
+  "key": "m4c-04",
+  "modul": 6,
+  "tartib": 11,
+  "nom": {
+    "uz": "Loyiha kuni — to'liq lentani qurish",
+    "ru": "Проектный день — построение полного конвейера"
+  },
+  "src": "src/4c-Modull/FullPipelineProjectLesson.jsx",
+  "barmoq_izi": "00462aaaa3fae2bb0b34d42e790465c2",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 3,
+      "uz": {
+        "savol": "Lentaning dastlabki uch nuqtasi qaysi?",
+        "variantlar": [
+          "Uchirish → Yig'ish → Skaner",
+          "Skaner → Yig'ish → O'rash",
+          "O'rash → Skaner → Yig'ish",
+          "Yig'ish → Skaner → Ramka"
+        ]
+      },
+      "ru": {
+        "savol": "Какие первые три точки ленты?",
+        "variantlar": [
+          "Взлёт → Сборка → Сканер",
+          "Сканер → Сборка → Упаковка",
+          "Упаковка → Сканер → Сборка",
+          "Сборка → Сканер → Рамка"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "on: push nima qiladi?",
+        "variantlar": [
+          "Push'da lentani o'zi yoqadi",
+          "Testlarni o'chirib qo'yadi",
+          "Maxfiy kalitni saqlaydi",
+          "Faylni serverga ko'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает on: push?",
+        "variantlar": [
+          "Сам запускает ленту при push",
+          "Отключает тесты",
+          "Хранит секретный ключ",
+          "Копирует файл на сервер"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "O'lcham ramkasi bo'lmasa nima bo'ladi?",
+        "variantlar": [
+          "Lenta ishga tushmay qoladi",
+          "Testlar ikki marta ishlaydi",
+          "Qoidaga zid kod tutilmaydi",
+          "Yuk o'ralmay qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет без точки «Рамка»?",
+        "variantlar": [
+          "Лента не запустится",
+          "Тесты запустятся дважды",
+          "Код против правил не поймают",
+          "Груз не упакуется"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Uchirish Skanerdan oldin tursa?",
+        "variantlar": [
+          "Hech narsa o'zgarmaydi",
+          "Buzuq yuk yo'lovchiga ketadi",
+          "Lenta tartibni o'zi tuzatadi",
+          "Faqat ogohlantirish chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если Взлёт стоит перед Сканером?",
+        "variantlar": [
+          "Ничего не изменится",
+          "Сломанный груз уйдёт пассажиру",
+          "Лента сама исправит порядок",
+          "Будет только предупреждение"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Uchirishga kalit ulanmasa nima bo'ladi?",
+        "variantlar": [
+          "Deploy 401 bilan yiqiladi",
+          "Lenta tezroq ishlaydi",
+          "Kalit ochiq ko'rinadi",
+          "Testlar o'tkazib yuboriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если к Взлёту не подключить ключ?",
+        "variantlar": [
+          "Deploy упадёт с 401",
+          "Лента заработает быстрее",
+          "Ключ станет виден",
+          "Тесты будут пропущены"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "START SIGNALI bo'lmasa nima bo'ladi?",
+        "variantlar": [
+          "Faqat Skaner ishlaydi",
+          "Lenta har daqiqa aylanadi",
+          "Uchirish birinchi ishlaydi",
+          "Lenta umuman aylanmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет без СТАРТОВОГО СИГНАЛА?",
+        "variantlar": [
+          "Сработает только Сканер",
+          "Лента крутится каждую минуту",
+          "Взлёт сработает первым",
+          "Лента вообще не крутится"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "O'lcham ramkasi qizil. O'rash va Uchirish-chi?",
+        "variantlar": [
+          "Baribir bajariladi",
+          "O'tkazib yuboriladi",
+          "Birinchi bajariladi",
+          "Ikki marta bajariladi"
+        ]
+      },
+      "ru": {
+        "savol": "Рамка красная. А Упаковка и Взлёт?",
+        "variantlar": [
+          "Всё равно выполнятся",
+          "Будут пропущены",
+          "Выполнятся первыми",
+          "Выполнятся дважды"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Yangi yuk yo'lovchida buzildi. Tez yechim?",
+        "variantlar": [
+          "Repozitoriyni o'chirish",
+          "Hammaga xabar yuborish",
+          "Eski yukni qaytarish",
+          "Lentani o'chirib qo'yish"
+        ]
+      },
+      "ru": {
+        "savol": "Новый груз сломался у пассажира. Быстрое решение?",
+        "variantlar": [
+          "Удалить репозиторий",
+          "Написать всем",
+          "Вернуть старый груз",
+          "Отключить ленту"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Eski yukni qaytarishdan maqsad nima?",
+        "variantlar": [
+          "Lentani tezroq aylantirish",
+          "Testlarni kamaytirish",
+          "Kodni qayta yozmaslik",
+          "Yo'lovchi buzuq yuk olmasin"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем возвращать старый груз?",
+        "variantlar": [
+          "Быстрее крутить ленту",
+          "Сократить тесты",
+          "Не переписывать код",
+          "Чтобы пассажир не получил сломанный груз"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "TABLO nimani ko'rsatadi?",
+        "variantlar": [
+          "Lenta yashilmi yoki qizilmi",
+          "Loyihaning umumiy hajmini",
+          "Nechta o'quvchi tugatganini",
+          "Server qayerda turganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает ТАБЛО?",
+        "variantlar": [
+          "Зелёная лента или красная",
+          "Общий объём проекта",
+          "Сколько учеников закончили",
+          "Где стоит сервер"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "TABLO qizil — birinchi nima qilinadi?",
+        "variantlar": [
+          "Lenta o'chirib tashlanadi",
+          "Jurnaldan sabab topiladi",
+          "Qaytadan push qilinadi",
+          "Yangi kalit so'raladi"
+        ]
+      },
+      "ru": {
+        "savol": "ТАБЛО красное — что делают сначала?",
+        "variantlar": [
+          "Ленту удаляют",
+          "Ищут причину в журнале",
+          "Снова делают push",
+          "Просят новый ключ"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "5 nuqtani qo'lda tekshirishning xavfi nima?",
+        "variantlar": [
+          "Lenta sekinlashadi",
+          "TABLO yashil bo'ladi",
+          "Bittasi unutilishi mumkin",
+          "Kalit ochilib qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем опасна ручная проверка 5 точек?",
+        "variantlar": [
+          "Лента замедлится",
+          "ТАБЛО станет зелёным",
+          "Одну можно забыть",
+          "Ключ станет открытым"
+        ]
+      }
+    }
+  ]
+}

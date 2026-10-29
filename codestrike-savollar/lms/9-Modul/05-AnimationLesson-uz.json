@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Animatsiya o'yinchiga nima deydi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bosildi, o'zgardi, tayyor",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Necha odam borligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa qachondan ochiqligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi rang chiroyli ekanini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "transform: scale(1.1) nima qiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "10% ga kichraytiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "10% ga kattalashtiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "10 piksel o'ngga suradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rangini 10% ochadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugma scale(0.9) bilan kichraydi. Ostidagi matn-chi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Tepaga ko'tariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pastga tushadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Joyida qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "U ham kichrayadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "transition: transform 0.15s — 0.15s nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Necha marta kichrayishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qancha kichrayishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qachon bosilishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qancha vaqt davom etishini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir transition da ikki xususiyat qanday ajratiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Vergul bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nuqta-vergul bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh joy bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki nuqta bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": ".katak.band qaysi elementni topadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "katak ichidagi band ni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkala klassi bor elementni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat band klassi borini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma katak klassi borini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugma bosib turilgan payt CSS'da qanday yoziladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": ".tugma:hover",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": ".tugma.band",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": ".tugma:active",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": ".tugma .active",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Motion'ni loyihaga qaysi buyruq qo'shadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "npm run motion",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "npm motion install",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "npx motion",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "npm install motion",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "motion.div dagi initial nimani bildiradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Chiqishdan oldingi holat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'xtaydigan oxirgi holat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ketayotgandagi holat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosilgan paytdagi holat",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'chirilgan qator silliq ketishi uchun nima kerak?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "initial da opacity: 0",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AnimatePresence va exit",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "animate da y: 0",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "CSS'dagi transition",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Do'kon saytida qaysi harakat ortiqcha?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Savatdagi son o'zgarishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosilgan tugma kichrayishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Doim miltillovchi «Aksiya»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Qabul qilindi» belgisi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "prefers-reduced-motion nimani bildiradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Internet sekinligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Quvvat kamligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekran xiraligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Harakat kamaytirilganini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

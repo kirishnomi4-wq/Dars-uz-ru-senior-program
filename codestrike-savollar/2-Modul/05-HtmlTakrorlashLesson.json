@@ -1,0 +1,278 @@
+{
+  "lessonId": "html-takrorlash-01-05-v2",
+  "key": "m1-14",
+  "modul": 2,
+  "tartib": 5,
+  "nom": {
+    "uz": "Takrorlash: HTML ustaxonasi",
+    "ru": "Повторение: мастерская HTML"
+  },
+  "src": "src/1-Modull/HtmlTakrorlashLesson.jsx",
+  "barmoq_izi": "982d488f3ba52dfbfb925ebf15df6fdd",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "<p>Biz <strong>g'olibmiz</strong></p> — nima ko'rinadi?",
+        "variantlar": [
+          "Butun gap qalin",
+          "Teglar ham ko'rinadi",
+          "Faqat «g'olibmiz» qalin",
+          "Faqat «Biz» ko'rinadi"
+        ]
+      },
+      "ru": {
+        "savol": "<p>Biz <strong>g'olibmiz</strong></p> — что будет видно?",
+        "variantlar": [
+          "Вся фраза жирная",
+          "Видны и сами теги",
+          "Жирное только «g'olibmiz»",
+          "Видно только «Biz»"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Suratni qo'yish uchun qaysi yozuv TO'G'RI?",
+        "variantlar": [
+          "<img scr=\"jamoa.jpg\">",
+          "<img src=\"jamoa.jpg\">",
+          "<imag src=\"jamoa.jpg\">",
+          "<img href=\"jamoa.jpg\">"
+        ]
+      },
+      "ru": {
+        "savol": "Какая запись для картинки ПРАВИЛЬНАЯ?",
+        "variantlar": [
+          "<img scr=\"jamoa.jpg\">",
+          "<img src=\"jamoa.jpg\">",
+          "<imag src=\"jamoa.jpg\">",
+          "<img href=\"jamoa.jpg\">"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Ro'yxatdagi har bir o'yinchi ismi qaysi tegga o'raladi?",
+        "variantlar": [
+          "ul",
+          "ol",
+          "li",
+          "a"
+        ]
+      },
+      "ru": {
+        "savol": "В какой тег оборачивается имя каждого игрока в списке?",
+        "variantlar": [
+          "ul",
+          "ol",
+          "li",
+          "a"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "<ul> ichida 3 ta <li>. Ekranda nima chiqadi?",
+        "variantlar": [
+          "1·2·3 raqamli ro'yxat",
+          "Bir qatorda yonma-yon",
+          "Uchta jadval katagi",
+          "Uchta nuqtali band"
+        ]
+      },
+      "ru": {
+        "savol": "<ul> с тремя <li>. Что будет на экране?",
+        "variantlar": [
+          "Нумерованный список 1·2·3",
+          "Всё в одну строку",
+          "Три ячейки таблицы",
+          "Три пункта с точками"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "<a herf=\"...\">Kanal</a> — nima bo'ladi?",
+        "variantlar": [
+          "«Kanal» chiqadi, bosilmaydi",
+          "Link odatdagidek ishlaydi",
+          "Sahifa ochilmaydi",
+          "Manzil ko'rinib qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "<a herf=\"...\">Kanal</a> — что будет?",
+        "variantlar": [
+          "«Kanal» виден, но не нажимается",
+          "Ссылка работает как обычно",
+          "Страница не откроется",
+          "Вместо текста виден адрес"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "«Chempionlar» hammadan katta chiqsin. Qaysi teg?",
+        "variantlar": [
+          "p",
+          "h1",
+          "li",
+          "strong"
+        ]
+      },
+      "ru": {
+        "savol": "Пусть «Chempionlar» будет крупнее всего. Какой тег?",
+        "variantlar": [
+          "p",
+          "h1",
+          "li",
+          "strong"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "alt=\"Jamoa surati\" nima uchun kerak?",
+        "variantlar": [
+          "Rasm ochilmasa matn chiqadi",
+          "Rasm o'lchamini belgilaydi",
+          "Rasmga ramka chizadi",
+          "Rasmni linkka aylantiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен alt=\"Jamoa surati\"?",
+        "variantlar": [
+          "Текст виден, если фото не открылось",
+          "Задаёт размер фото",
+          "Рисует рамку вокруг фото",
+          "Превращает фото в ссылку"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Formada foydalanuvchi ism YOZADIGAN katak qaysi teg?",
+        "variantlar": [
+          "button",
+          "label",
+          "p",
+          "input"
+        ]
+      },
+      "ru": {
+        "savol": "Каким тегом делается поле, куда пользователь ПИШЕТ имя?",
+        "variantlar": [
+          "button",
+          "label",
+          "p",
+          "input"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Ko'rinadigan mazmun (sarlavha, rasm) qayerga yoziladi?",
+        "variantlar": [
+          "head",
+          "body",
+          "title",
+          "html"
+        ]
+      },
+      "ru": {
+        "savol": "Куда пишется видимое содержимое (заголовок, картинка)?",
+        "variantlar": [
+          "head",
+          "body",
+          "title",
+          "html"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "<a href=\"...\">Kanalimiz</a> — ekranda nima ko'rinadi?",
+        "variantlar": [
+          "Bosiladigan «Kanalimiz»",
+          "Link manzilining o'zi",
+          "Telegram belgisi (rasm)",
+          "«href» so'zi"
+        ]
+      },
+      "ru": {
+        "savol": "<a href=\"...\">Kanalimiz</a> — что видно на экране?",
+        "variantlar": [
+          "Кликабельная надпись «Kanalimiz»",
+          "Сам адрес ссылки",
+          "Значок Telegram (картинка)",
+          "Слово «href»"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi qatorda teg TO'G'RI yopilgan?",
+        "variantlar": [
+          "<li>Aziz<li>",
+          "<li>Aziz<il>",
+          "<li>Aziz</li",
+          "<li>Aziz</li>"
+        ]
+      },
+      "ru": {
+        "savol": "В какой строке тег закрыт ВЕРНО?",
+        "variantlar": [
+          "<li>Aziz<li>",
+          "<li>Aziz<il>",
+          "<li>Aziz</li",
+          "<li>Aziz</li>"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Sardor ismini QALIN qilish uchun qaysi teg?",
+        "variantlar": [
+          "p",
+          "li",
+          "strong",
+          "title"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег сделает имя Сардора ЖИРНЫМ?",
+        "variantlar": [
+          "p",
+          "li",
+          "strong",
+          "title"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'rt katakka PRD da nima qo'shildi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Rang, shrift, ekran rasmi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dalil, funksiya, Qilmaymiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Narx, muddat, ish jadvali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jamoa, vazifa, ish soati",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dalilda «hammaga yoqadi». Nima yetishmaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ilovaning nomi va rangi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yechimning uzun matni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'xshash ilovalar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Intervyudan olingan sanoq",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Asosiy funksiyaga qanday ish kiradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Busiz muammo hal bo'lmaydigan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng chiroyli ko'rinadigan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa ilovada bor bo'lgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qurish eng oson bo'lgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yozuvlarda sababi bor, hozir shart emas. Qayerga?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Asosiy funksiyalarga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Qilmaymiz» qutisiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Keyin» qutisiga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yechim gapiga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«O'yinchilar mamnun» bosh raqam bo'ladimi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ha, fikr ham muhim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, uni sanab bo'lmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, intervyuda aytilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, faqat pul sanaladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bajariladimi?» savoli nimani tekshiradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Funksiya modulga sig'ishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Muammo gapi qisqaligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dalildagi odamlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosh raqam nomini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uch savolga ham «ha». Mentor javobi qanday?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Tuzatish, ehtiyot uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tuzatish, yana intervyu",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Avval kod yozish kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qabul, qurish mumkin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Amazon'da press-reliz qanday yoziladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Mahsulot chiqqan kuni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod tugagach yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Go'yo mahsulot chiqqandek",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ichki xat sifatida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Press-reliz hech kimni qiziqtirmasa, nima bo'ladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Mahsulot qilinmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kichikroq quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baribir quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa nom bilan chiqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega maydon pulini bo'lishish funksiya bo'lmadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Yozuvlarda sababi yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosh raqamni sanamaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram guruhida bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Alohida g'oya, sig'maydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "PRD.md da «## Dalil» qatori nima?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "JavaScript izohi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayl nomining qismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dalil bo'limi sarlavhasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ro'yxatdagi bitta band",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yechim bo'limiga nima yoziladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Uch funksiya tavsifi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulot nima qiladi, bir gap",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Intervyudagi har bir gap",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova yoziladigan kod tili",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

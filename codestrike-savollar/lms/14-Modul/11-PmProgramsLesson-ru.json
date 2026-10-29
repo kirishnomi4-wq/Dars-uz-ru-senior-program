@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сколько учеников в команде Diamond Challenge?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "От 2 до 4",
+        "hint": "Верно!"
+      },
+      {
+        "value": "От 1 до 3",
+        "hint": "Неверно"
+      },
+      {
+        "value": "От 3 до 6",
+        "hint": "Неверно"
+      },
+      {
+        "value": "От 5 до 10",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сколько лет участникам команды в день подачи?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "От 12 до 16 лет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "От 14 до 18 лет",
+        "hint": "Верно!"
+      },
+      {
+        "value": "От 16 до 21 года",
+        "hint": "Неверно"
+      },
+      {
+        "value": "От 18 до 25 лет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сколько лет как минимум консультанту в Diamond Challenge?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Старше 16 лет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Старше 18 лет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Старше 21 года",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Старше 25 лет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На каком языке пишут заявку в Diamond Challenge?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "На узбекском",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На французском",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На любом языке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На английском",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каждая подавшая команда выходит в финал?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Нет, финалистов отбирают",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Да, все подавшие",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, участвовавшие онлайн",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет, только из Америки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой возрастной предел указан на странице Y Combinator?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "С 14 лет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Не указан",
+        "hint": "Верно!"
+      },
+      {
+        "value": "С 16 лет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С 21 года",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чего Y Combinator ждёт от основателей?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Работать только на каникулах",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Работать только онлайн",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Работать полный день",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Приходить раз в неделю",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где проходит программа Y Combinator?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "В Ташкенте",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В любом городе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только в интернете",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В Сан-Франциско",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Для кого Early Decision?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Студенты, желающие доучиться",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Школьники 14–18 лет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Финалисты Diamond Challenge",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Работающие взрослые",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Из каких трёх частей состоит концепт?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Рынок, Цифры и Команда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проблема, для кого, решение",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Возраст, язык и консультант",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Срок, страна и видео",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что пишут в строке «Для кого» в концепте?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Число людей в группе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Технология продукта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Люди, которым нужен продукт",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Имена участников команды",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Фразы одноклассника нет на официальной странице. Что это?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Официальное условие",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Часть заявки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Важное правило",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только догадка",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

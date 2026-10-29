@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m6d12-v1",
+  "key": "m6-12",
+  "modul": 8,
+  "tartib": 12,
+  "nom": {
+    "uz": "Bugun qaysi ish boshlanadi?",
+    "ru": "Какую задачу начинаем сегодня?"
+  },
+  "src": "src/6-Modull/PmLesson24.jsx",
+  "barmoq_izi": "b02958b7c13c27a0c2564204ac59756a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Ishlar nimaga qarab ufqlarga bo'linadi?",
+        "variantlar": [
+          "Qachon boshlanishiga",
+          "Qancha vaqt olishiga",
+          "Nechta odam so'raganiga",
+          "Kim boshlashiga"
+        ]
+      },
+      "ru": {
+        "savol": "По какому признаку дела делятся по горизонтам?",
+        "variantlar": [
+          "Когда они начинаются",
+          "Сколько времени займут",
+          "Сколько людей просили",
+          "Кто их начнёт"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Bugungi rejada nechta ufq bilan ishladik?",
+        "variantlar": [
+          "Ikkita",
+          "Beshta",
+          "Oltita",
+          "Uchta"
+        ]
+      },
+      "ru": {
+        "savol": "Со сколькими горизонтами мы работали в сегодняшнем плане?",
+        "variantlar": [
+          "Два",
+          "Пять",
+          "Шесть",
+          "Три"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Ish qaysi ufqda turishini nima belgilaydi?",
+        "variantlar": [
+          "Necha kun olishi",
+          "Necha odamga kerakligi",
+          "Kerak narsa qachon tayyorligi",
+          "Ro'yxatga qo'shilgan payti"
+        ]
+      },
+      "ru": {
+        "savol": "Что определяет горизонт дела?",
+        "variantlar": [
+          "Сколько дней займёт",
+          "Скольким людям нужно",
+          "Когда готово нужное",
+          "Когда добавлено в список"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "To'garakning «eng yaxshi ishlar» sahifasi nega kutadi?",
+        "variantlar": [
+          "Yozish uzoq vaqt oladi",
+          "Ishlar hali yig'ilmagan",
+          "Kam odam kutyapti",
+          "Rejaga kech qo'shilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему страница «лучшие работы» кружка ждёт?",
+        "variantlar": [
+          "Долго писать",
+          "Работы ещё не собраны",
+          "Мало кто ждёт",
+          "Поздно добавлена в план"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "«Sartarosh suratlari» nega bugun boshlangan?",
+        "variantlar": [
+          "Eng oson ish ekani uchun",
+          "Suratlar allaqachon bor",
+          "Ko'p odam kutgani uchun",
+          "Navbat to'plangani uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Почему «фото барберов» начаты сегодня?",
+        "variantlar": [
+          "Это самое лёгкое дело",
+          "Фото уже есть",
+          "Многие ждали",
+          "Записи уже накопились"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "«Bu ish olti oydan keyin» — bu nima degani?",
+        "variantlar": [
+          "O'shanda ish boshlanadi",
+          "O'shanda ish tugaydi",
+          "Ish olti oy davom etadi",
+          "Olti oydan beri kutyapti"
+        ]
+      },
+      "ru": {
+        "savol": "«Это дело через полгода» — что это значит?",
+        "variantlar": [
+          "Тогда дело начнётся",
+          "Тогда дело закончится",
+          "Дело длится полгода",
+          "Ждёт уже полгода"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Sinf uzoq ishni «Hozir»ga ko'chirdi. Nima bo'ladi?",
+        "variantlar": [
+          "Darhol boshlanadi",
+          "Boshqa ish kutib qoladi",
+          "Baribir to'xtaydi",
+          "Sekinroq boshlanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Класс перенёс дальнее дело в «Сейчас». Что будет?",
+        "variantlar": [
+          "Сразу начнётся",
+          "Другое дело будет ждать",
+          "Всё равно остановится",
+          "Начнётся медленнее"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Uch ufqli reja odatda qanday ko'rinadi?",
+        "variantlar": [
+          "Uzog'ida ish ko'p",
+          "Uchalasida teng",
+          "O'rtasida ish ko'p",
+          "Yaqinida ish ko'p"
+        ]
+      },
+      "ru": {
+        "savol": "Как обычно выглядит план из трёх горизонтов?",
+        "variantlar": [
+          "Больше дел в дальнем",
+          "Поровну во всех",
+          "Больше дел в среднем",
+          "Больше дел в ближнем"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Tesla usulida birinchi bosqich qanday bo'ladi?",
+        "variantlar": [
+          "Keyingisiga yo'l ochadigan",
+          "Hamma birdan ko'radigan",
+          "Pul deyarli ketmaydigan",
+          "Eng qiyin bo'lgan"
+        ]
+      },
+      "ru": {
+        "savol": "Каким бывает первый этап по методу Tesla?",
+        "variantlar": [
+          "Открывает путь следующему",
+          "Который все сразу увидят",
+          "Почти без затрат",
+          "Самый трудный"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Tesla 1-mashinasi sotilmasa nima bo'lardi?",
+        "variantlar": [
+          "Reja o'zgarmasdi",
+          "Ikkinchisi tezroq qurilardi",
+          "Ikkinchisiga pul bo'lmasdi",
+          "Uchinchisi oldin qurilardi"
+        ]
+      },
+      "ru": {
+        "savol": "Что было бы, не продайся первая машина Tesla?",
+        "variantlar": [
+          "План не изменился бы",
+          "Вторую построили бы быстрее",
+          "На вторую не было бы денег",
+          "Третью построили бы раньше"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Tesla uzoq rejasini kimlar ko'ra olardi?",
+        "variantlar": [
+          "Faqat kompaniya ichidagilar",
+          "Xohlagan har bir odam",
+          "Mashina sotib olganlar",
+          "Hech kim — reja yopiq edi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто мог видеть длинный план Tesla?",
+        "variantlar": [
+          "Только сотрудники компании",
+          "Любой желающий",
+          "Те, кто купил машину",
+          "Никто — план был закрытым"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Yangi ish qaysi ufqqa tushishini kim aytadi?",
+        "variantlar": [
+          "Dastur kodining o'zi",
+          "Ilovani yuklagan odam",
+          "Ma'lumot serveri",
+          "Ilovani yaratayotgan odam"
+        ]
+      },
+      "ru": {
+        "savol": "Кто решает, в какой горизонт попадёт новое дело?",
+        "variantlar": [
+          "Сам код программы",
+          "Тот, кто скачал приложение",
+          "Сервер данных",
+          "Человек, создающий приложение"
+        ]
+      }
+    }
+  ]
+}

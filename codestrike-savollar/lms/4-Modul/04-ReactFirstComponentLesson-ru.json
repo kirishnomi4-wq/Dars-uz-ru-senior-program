@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое Vite?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Быстрая программа-сборщик проекта",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Новый язык программирования",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Дополнение для браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "База данных",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает npm create vite@latest?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Публикует сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Создаёт файлы проекта",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сам исправляет ошибки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Скачивает картинки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каком файле в основном пишется ваш код?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "index.html",
+        "hint": "Неверно"
+      },
+      {
+        "value": "package.json",
+        "hint": "Неверно"
+      },
+      {
+        "value": "App.jsx",
+        "hint": "Верно!"
+      },
+      {
+        "value": "style.css",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает npm run dev?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Полностью удаляет проект",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Выкладывает сайт в интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Создаёт новую папку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запускает на localhost",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое JSX?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Похожая на HTML запись в JS",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Формат хранения цветов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вид расширения файла",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Название браузера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое слово пишут в JSX вместо class?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "clsName",
+        "hint": "Неверно"
+      },
+      {
+        "value": "className",
+        "hint": "Верно!"
+      },
+      {
+        "value": "cssClass",
+        "hint": "Неверно"
+      },
+      {
+        "value": "klass",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каких скобках пишут JS-значение внутри JSX?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "( ) круглые скобки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "[ ] квадратные скобки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "{ } фигурные скобки",
+        "hint": "Верно!"
+      },
+      {
+        "value": "\" \" кавычки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое компонент?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Вид файлов картинок",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ускоряет интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутренняя настройка браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переиспользуемая часть",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "С какой буквы начинается имя компонента?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "С заглавной буквы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Со строчной буквы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С цифры",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С дефиса",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что компонент возвращает через return?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Один файл картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "JSX — внешний вид",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только одно число",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя другого файла",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как вызывают компонент в JSX?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "вызови GameCard",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GameCard.call()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<GameCard />",
+        "hint": "Верно!"
+      },
+      {
+        "value": "{GameCard}",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое props?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Внешний цвет компонента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Настройка, ускоряющая код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Дополнение для браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Данные, переданные компоненту",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

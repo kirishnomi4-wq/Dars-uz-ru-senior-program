@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает Netlify?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Выкладывает сайт в интернет",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Раскрашивает код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ускоряет интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Заряжает телефон",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Под каким именем сохраните файл главной страницы от AI?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "style.css",
+        "hint": "Неверно"
+      },
+      {
+        "value": "index.html",
+        "hint": "Верно!"
+      },
+      {
+        "value": "rasm.jpg",
+        "hint": "Неверно"
+      },
+      {
+        "value": "netlify.txt",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется выкладка сайта в интернет?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Копирование",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Рестарт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Деплой",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Zoom",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как входят в Netlify?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Придумав новый пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "По коду из SMS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "По банковской карте",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через аккаунт GitHub",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как мы сегодня положили сайт на Netlify?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Отправив через Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Написав на электронную почту",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перетащив папку сайта",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Записав на флешку",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как обновить изменённый сайт на Netlify?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Снова перетащить папку",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Заново написать ссылку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перезагрузить компьютер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Обновится сам",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что выдаёт Netlify после деплоя?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Новый компьютер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ссылку на сайт",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Новый пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Бесплатный интернет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что отправить другу, чтобы он открыл сайт на телефоне?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Файл index.html",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Свой пароль от GitHub",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Папку сайта архивом",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ссылку на сайт",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Через что страницы сайта связаны между собой?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Через ссылки",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Через картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Через имя файла",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что указывают, когда пишут AI задание на сайт?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Только любимый цвет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только ваше имя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Страницы и условия",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только название сайта",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что пишут в промпте про меню?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Меню только на главной",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Меню вообще не нужно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На каждой странице своё меню",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На всех страницах одно меню",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто сможет увидеть сайт после деплоя?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Только я, на своём компьютере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Каждый, кто знает ссылку",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только ментор",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только сотрудники GitHub",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Git kompyuterda qanday ish qiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Kod versiyalarini saqlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni ranglab beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetni tezlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmlarni tahrirlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kod internetda qaysi saytda saqlanadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "google.com",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "github.com",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "youtube.com",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "telegram.org",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Git o'rnatilganini qaysi buyruq tekshiradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "git --start",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git --open",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git --version",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "git --check",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GitHub'da bitta loyiha uchun ochilgan joy nima deyiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Parol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Domen",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Repo",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi qadam yuboriladigan fayllarni tanlaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "push",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "add",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "pull",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "clone",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saqlangan nuqta qanday ataladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "commit",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Domen",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Papka",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qadamlar qaysi tartibda bajariladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "commit → add → push",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "push → commit → add",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "add → push → commit",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "add → commit → push",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "commit buyrug'idagi -m nima uchun kerak?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Faylni o'chirish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rang berish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Izoh yozish uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internetga ulanish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Git bilan GitHub farqi nimada?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Git — dastur, GitHub — sayt",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Git — sayt, GitHub — dastur",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasi bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasi ham sayt",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kompyuter buzildi. Kod qayerdan qaytadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Brauzer tarixidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub'dagi repodan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "VS Code sozlamalaridan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Repodagi yangi nuqtalarni kompyuterga qaysi buyruq oladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "git push",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git pull",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "git add",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git commit",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Repo ichidagi README fayli nima uchun?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Parolni saqlash uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni tezlashtirish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmlarni saqlash uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyiha haqida qisqa yozuv",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

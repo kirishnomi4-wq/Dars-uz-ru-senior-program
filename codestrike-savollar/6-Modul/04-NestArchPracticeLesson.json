@@ -1,0 +1,278 @@
+{
+  "lessonId": "nest-arch-practice-4a-03-v18",
+  "key": "m4a-04",
+  "modul": 6,
+  "tartib": 4,
+  "nom": {
+    "uz": "Praktika — KitobShop backend",
+    "ru": "Практика — бэкенд KitobShop"
+  },
+  "src": "src/4a-Modull/NestArchPracticeLesson.jsx",
+  "barmoq_izi": "622dea4c703beea1826b17e6b3c27fea",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Yangi resurs uchun nechta fayl kerak?",
+        "variantlar": [
+          "2 — entity va controller",
+          "3 — entity, service, module",
+          "5 — har qatlamga bittadan",
+          "1 — hammasi bitta faylda"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько файлов нужно для нового ресурса?",
+        "variantlar": [
+          "2 — entity и controller",
+          "3 — entity, service, module",
+          "5 — по одному на слой",
+          "1 — всё в одном файле"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Bo'lim AppModule'ga ulanmasa nima bo'ladi?",
+        "variantlar": [
+          "Eshik topilmaydi — 404",
+          "Server ishga tushmaydi",
+          "Ma'lumot saqlanmaydi",
+          "Swagger'da 500 chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если раздел не подключить к AppModule?",
+        "variantlar": [
+          "Дверь не найдена — 404",
+          "Сервер не запустится",
+          "Данные не сохранятся",
+          "В Swagger будет 500"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "Kitobni kategoriyaga qaysi dekorator bog'laydi?",
+        "variantlar": [
+          "@Column()",
+          "@UseGuards()",
+          "@Roles()",
+          "@ManyToOne()"
+        ]
+      },
+      "ru": {
+        "savol": "Какой декоратор связывает книгу с категорией?",
+        "variantlar": [
+          "@Column()",
+          "@UseGuards()",
+          "@Roles()",
+          "@ManyToOne()"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "@ManyToOne qaysi faylga yoziladi?",
+        "variantlar": [
+          "category.entity.ts",
+          "book.entity.ts",
+          "book.controller.ts",
+          "app.module.ts"
+        ]
+      },
+      "ru": {
+        "savol": "В какой файл пишется @ManyToOne?",
+        "variantlar": [
+          "category.entity.ts",
+          "book.entity.ts",
+          "book.controller.ts",
+          "app.module.ts"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Tokensiz mijoz POST /book qilsa?",
+        "variantlar": [
+          "401/403 — qo'riqchi rad etadi",
+          "201 — kitob baribir qo'shiladi",
+          "404 — eshik topilmadi",
+          "200 — bo'sh ro'yxat"
+        ]
+      },
+      "ru": {
+        "savol": "Клиент без токена делает POST /book — что будет?",
+        "variantlar": [
+          "401/403 — страж отказывает",
+          "201 — книга всё равно добавится",
+          "404 — дверь не найдена",
+          "200 — пустой список"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Eshikka qo'riqchi qo'yadigan dekorator qaysi?",
+        "variantlar": [
+          "@Injectable()",
+          "@Entity()",
+          "@UseGuards()",
+          "@Controller()"
+        ]
+      },
+      "ru": {
+        "savol": "Какой декоратор ставит стража у двери?",
+        "variantlar": [
+          "@Injectable()",
+          "@Entity()",
+          "@UseGuards()",
+          "@Controller()"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "GET /book hamma uchun ochiq bo'lsin desak?",
+        "variantlar": [
+          "@Roles(UserRole.ADMIN)",
+          "@Roles('public')",
+          "Qo'riqchini o'chiramiz",
+          "Frontend'da yashiramiz"
+        ]
+      },
+      "ru": {
+        "savol": "Как сделать GET /book открытым для всех?",
+        "variantlar": [
+          "@Roles(UserRole.ADMIN)",
+          "@Roles('public')",
+          "Уберём стража",
+          "Спрячем во фронтенде"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Agent yozgan kodni qachon «Keep» qilasiz?",
+        "variantlar": [
+          "Darhol, o'qimasdan",
+          "Agent tugatishi bilan",
+          "Server yoqilmasdan oldin",
+          "Tekshiruvdan o'tganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда вы нажимаете «Keep» для кода агента?",
+        "variantlar": [
+          "Сразу, не читая",
+          "Как только агент закончит",
+          "До запуска сервера",
+          "Когда прошёл проверку"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "BaseService ni meros olgan service nimani tekin oladi?",
+        "variantlar": [
+          "Eshik qo'riqchisini (guard)",
+          "Swagger hujjatini",
+          "Bazaga ulanishni",
+          "Tayyor CRUD metodlarini"
+        ]
+      },
+      "ru": {
+        "savol": "Что бесплатно получает service, унаследовавший BaseService?",
+        "variantlar": [
+          "Стража двери (guard)",
+          "Документацию Swagger",
+          "Подключение к базе",
+          "Готовые CRUD-методы"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Muvaffaqiyatli POST qaysi kodni qaytaradi?",
+        "variantlar": [
+          "200 OK",
+          "201 Created",
+          "204 No Content",
+          "301 Moved"
+        ]
+      },
+      "ru": {
+        "savol": "Какой код возвращает успешный POST?",
+        "variantlar": [
+          "200 OK",
+          "201 Created",
+          "204 No Content",
+          "301 Moved"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "DTO nima uchun kerak?",
+        "variantlar": [
+          "Kelgan so'rovni tekshirish",
+          "Jadval ustunlarini belgilash",
+          "Bo'limni AppModule'ga ulash",
+          "Bazaga ulanishni sozlash"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен DTO?",
+        "variantlar": [
+          "Проверять входящий запрос",
+          "Задавать столбцы таблицы",
+          "Подключать раздел к AppModule",
+          "Настраивать подключение к базе"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Mijoz POST /order da 403 oldi. Sabab?",
+        "variantlar": [
+          "@Controller('order')",
+          "@Post()",
+          "@Roles(UserRole.ADMIN)",
+          "@Get()"
+        ]
+      },
+      "ru": {
+        "savol": "Клиент получил 403 на POST /order. Причина?",
+        "variantlar": [
+          "@Controller('order')",
+          "@Post()",
+          "@Roles(UserRole.ADMIN)",
+          "@Get()"
+        ]
+      }
+    }
+  ]
+}

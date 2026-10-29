@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m2d13-v2",
+  "key": "m2-13",
+  "modul": 3,
+  "tartib": 14,
+  "nom": {
+    "uz": "Sistemani qanday pitch qilish",
+    "ru": "Как рассказать о системе"
+  },
+  "src": "src/2-Modull/PmLesson6.jsx",
+  "barmoq_izi": "95bd41794949c1525748e6a0f602a00c",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Kasbiy so'z (jargon) nima?",
+        "variantlar": [
+          "Kasb egalari biladigan so'z",
+          "Juda uzun va qiyin so'z",
+          "Xato yozilgan so'z",
+          "Chet tilidan kirgan so'z"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое профессиональное слово (жаргон)?",
+        "variantlar": [
+          "Слово, которое знают люди профессии",
+          "Очень длинное и трудное слово",
+          "Слово с ошибкой",
+          "Слово из иностранного языка"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Pitch nima?",
+        "variantlar": [
+          "Kod yozishning tartibi",
+          "Saytning bo'limlari",
+          "Qisqa tushuntirib berish",
+          "Saytning manzili"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое питч?",
+        "variantlar": [
+          "Порядок написания кода",
+          "Разделы сайта",
+          "Коротко объяснить",
+          "Адрес сайта"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Tushuntirishni nimadan boshlaysiz?",
+        "variantlar": [
+          "Sayt nechta sahifadan iborat",
+          "Tinglovchi oladigan foyda",
+          "Qaysi tilda yozilgani",
+          "Necha kun ishlagan"
+        ]
+      },
+      "ru": {
+        "savol": "С чего начинаете объяснение?",
+        "variantlar": [
+          "Из скольких страниц состоит сайт",
+          "С выгоды слушателя",
+          "На каком языке написан",
+          "Сколько дней работал"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Massiv» so'zini nima bilan almashtirasiz?",
+        "variantlar": [
+          "Obyekt",
+          "Sikl",
+          "Baza",
+          "Ro'yxat"
+        ]
+      },
+      "ru": {
+        "savol": "Чем заменить слово «массив»?",
+        "variantlar": [
+          "Объект",
+          "Цикл",
+          "База",
+          "Список"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Sistemaning ko'rinadigan qismi — do'konda nima?",
+        "variantlar": [
+          "Javon",
+          "Oshxona",
+          "Peshtaxta",
+          "Ombor"
+        ]
+      },
+      "ru": {
+        "savol": "Видимая часть системы — что это в магазине?",
+        "variantlar": [
+          "Полка",
+          "Кухня",
+          "Прилавок",
+          "Склад"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Ma'lumot saqlanadigan joy — do'konda nima?",
+        "variantlar": [
+          "Javon",
+          "Peshtaxta",
+          "Kassa",
+          "Eshik"
+        ]
+      },
+      "ru": {
+        "savol": "Место хранения данных — что это в магазине?",
+        "variantlar": [
+          "Полка",
+          "Прилавок",
+          "Касса",
+          "Дверь"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Yaxshi o'xshatish qayerdan olinadi?",
+        "variantlar": [
+          "Eski kitoblardan",
+          "Kod hujjatlaridan",
+          "Internet saytlaridan",
+          "Tinglovchi hayotidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда берут хорошее сравнение?",
+        "variantlar": [
+          "Из старых книг",
+          "Из документации к коду",
+          "С сайтов в интернете",
+          "Из жизни слушателя"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Sherik «Yarim tushundim» dedi. Nima qilasiz?",
+        "variantlar": [
+          "Balandroq ovozda gapiraman",
+          "Qiyin joyni soddalashtiraman",
+          "Boshqa sherik topaman",
+          "Pitchni uzaytiraman"
+        ]
+      },
+      "ru": {
+        "savol": "Напарник сказал «понял наполовину». Что делаете?",
+        "variantlar": [
+          "Говорю громче",
+          "Упрощаю трудное место",
+          "Ищу другого напарника",
+          "Удлиняю питч"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Saytni nega telefonda ham tekshirasiz?",
+        "variantlar": [
+          "Zaldagilar telefondan ochadi",
+          "Telefonda tezroq ochiladi",
+          "Netlify shuni talab qiladi",
+          "Kompyuterda ochilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем проверять сайт и на телефоне?",
+        "variantlar": [
+          "В зале откроют с телефона",
+          "На телефоне открывается быстрее",
+          "Этого требует Netlify",
+          "На компьютере не открывается"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Pitch nima bilan tugaydi?",
+        "variantlar": [
+          "Rahmat aytish bilan",
+          "Sayt manzili bilan",
+          "Kod ko'rsatish bilan",
+          "Aniq so'rov bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Чем заканчивается питч?",
+        "variantlar": [
+          "Словами благодарности",
+          "Адресом сайта",
+          "Показом кода",
+          "Конкретной просьбой"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Sayt ishini o'zi bajaradigan qism do'konda kimga o'xshaydi?",
+        "variantlar": [
+          "Mijoz",
+          "Oshpaz",
+          "Kuryer",
+          "Kassir"
+        ]
+      },
+      "ru": {
+        "savol": "Часть, которая делает работу сама, — на кого похожа в магазине?",
+        "variantlar": [
+          "Клиент",
+          "Повар",
+          "Курьер",
+          "Кассир"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Tinglovchi «tushunmadim» dedi — birinchi nimani tekshirasiz?",
+        "variantlar": [
+          "Ovoz balandligini",
+          "Nutq uzunligini",
+          "Kasbiy so'z qolganini",
+          "Slayd rangini"
+        ]
+      },
+      "ru": {
+        "savol": "Слушатель сказал «не понял» — что проверите первым?",
+        "variantlar": [
+          "Громкость голоса",
+          "Длину речи",
+          "Остались ли профессиональные слова",
+          "Цвет слайда"
+        ]
+      }
+    }
+  ]
+}

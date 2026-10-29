@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Lighthouse bahosi qaysi oraliqda bo'ladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "0 dan 100 gacha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "10 dan 50 gacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "0 dan 5 gacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1 dan 50 gacha",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Lighthouse bahosida yashil rang qaysi oraliq?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "50 dan 89 gacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "90 dan 100 gacha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "0 dan 49 gacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "70 dan 100 gacha",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Lighthouse 100 ball haqida nima deydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Har sahifaga majburiy",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat Desktop rejimida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Juda qiyin, shart emas",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat yangi saytlarda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "LCP uchun rasmiy tavsiya qancha?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "0,1 soniya yoki kamroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "200 ms yoki kamroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "25 soniya yoki kamroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2,5 soniya yoki kamroq",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CLS qanday birlikda o'lchanadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Birliksiz son, masalan 0,05",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Soniyada, masalan 2,5 soniya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Millisekundda, masalan 200 ms",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kilobaytda, masalan 300",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Lighthouse bahosida qaysi sonning ulushi eng katta?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "LCP — 25 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "TBT — 30 foiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "CLS — 25 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "FCP — 10 foiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tepadagi rasmga keyin yuklash qo'yilsa, nima bo'ladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "CLS nolga tushadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod hajmi kamayadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "LCP kechikishi mumkin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasm umuman chiqmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mobil trekda yuklanadigan kod hajmini nima ko'rsatadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Lighthouse bahosi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Netlify sahifasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Render sozlamasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Expo Atlas oynasi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Lighthouse'ni qaysi oynada ishga tushirasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Incognito oynasida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Netlify sahifasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Antigravity oynasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Expo Atlas oynasida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mobile rejimida TBT qachon yashil bo'ladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "600 ms dan ko'p bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "200 ms gacha bo'lsa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "2500 ms gacha bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1000 ms dan ko'p bo'lsa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kutubxonani o'chirishdan oldin agent nimani ko'rsatadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Lighthouse bahosini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi kutubxona nomini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kerak emasligi dalilini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sahifa siljishini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Tezlashdi» deyish uchun nima kerak?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Agentning «tayyor» degani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifaning yangi ko'rinishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshning «tez» degani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oldin va keyingi sonlar",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

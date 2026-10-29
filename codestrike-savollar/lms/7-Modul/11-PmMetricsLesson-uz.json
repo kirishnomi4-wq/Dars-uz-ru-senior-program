@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Metrika nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Sanab tekshiriladigan raqam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot haqidagi yaxshi fikr",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botga o'zingiz qo'ygan ball",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botdagi har qanday son",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi raqam faqat o'sadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Bugun /start bosganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaytganlar foizi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosh raqam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jami /start bosganlar",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kamola bugun 3 marta yozdi. «Bugun kelganlar»ga nechta?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "3 ta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2 ta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1 ta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "0 ta",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kecha 10 odam keldi, 5 tasi bugun qaytdi. Necha foiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "5 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "50 foiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "10 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "15 foiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir kunda botga 7 xil odam yozdi. Bu son qaysi raqam?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Jami /start bosganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bugun kelganlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qaytganlar foizi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosh raqam",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Darsdagi botda bosh raqam nimani sanaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Keragini olganlarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kelgan hamma odamni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javob olgan hammani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot xabarlari sonini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guruhlar har xil kattalikda bo'lsa, nimani solishtirasiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Qaytgan odamlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelgan odamlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaytganlar foizini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jami /start sonini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bot «Tushunmadim» dedi. Bosh raqamga qo'shiladimi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ha — bot javob berdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha — odam botga yozdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — /start bosmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — keragini olmadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Booking yangi o'zgarishni avval kimga ko'rsatadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Odamlarning bir qismiga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat o'z xodimlariga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma odamga birdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat eski mijozlarga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Booking nega avval bir qismga ko'rsatadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Rang hali tayyor emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma birdan kirmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki guruhni solishtirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Server og'irlashmasin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaytganlar foizi qaysi savolga javob beradi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Bugun nechta odam keldi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kechagilar bugun keldimi?",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot keragini berdimi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jami nechta yig'ildi?",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "/stat buyrug'ining kodini qayerga yozdingiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "users jadvaliga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram kanaliga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "@BotFather'ga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "bot.js faylingizga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

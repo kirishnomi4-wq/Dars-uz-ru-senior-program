@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Oferta qanday taklif?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ochiq, shartlari yozilgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yashirin, faqat do'stlarga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Og'zaki, narxsiz aytilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lovdan keyin ko'rinadigan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Odam to'lasa, ofertaga nisbatan nima bo'ladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Hech narsa, narxni ko'rdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shartlarga rozi bo'ladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oferta bekor bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shartni o'zi o'zgartiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bekor qilsam, pulim qaytadimi?» Javob qayerda?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "To'lov ekranidagi narxda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mashq sahifasi tugmasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ofertaning tegishli bandida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "E'lon qismida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor ofertasida sotuvchi qatori nega bo'sh?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Mentor ismini unutgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent keyin o'zi qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pro olgan odam to'ldiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Real ishga tushirish yo'q",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi gap ofertaga yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Pro tugasa, o'yinlar qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tez orada yangi qulaylik",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqalar ham Pro'ni oldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har o'yiningiz to'lib boradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pro muddati tugasa, nima bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Keyingi oy puli yechiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pro o'zi to'xtaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'yinlar o'chib ketadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova o'yinchiga pullik",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Real ishga tushirishga nima kerak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ilovani do'konga joylash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlar og'zaki roziligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ota-ona roziligi va sotuvchi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ofertani lendingga qo'yish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent ofertada «[savol]» qoldirdi. Bu nimani bildiradi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Bandni o'chirish kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa ochilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent keyin to'ldiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent koddan bilolmagan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ofertadagi narxni qanday tekshirasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Ilova va kodda ko'raman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agentdan so'rayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshdan so'rayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tekshirmayman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'lov bandida qaysi gap rost?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Kartani biz xavfsiz saqlaymiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kartani mahsulot saqlamaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech narsa saqlanmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kartani Mentor tekshiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida to'lov uchun nima saqlanadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Karta raqami va telefon",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ism va maktab raqami",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lov raqami va holati",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech narsa saqlanmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tashkilotchi Pro shartlarini qachon o'qiy olishi kerak?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "To'lovdan keyin, chatda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pro tugagan kuni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentordan so'raganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lashdan oldin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

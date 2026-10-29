@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri loyiha?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Saytni 4 hafta qurish ishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdoshlar ishlatadigan bot",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taksi chaqiradigan ilova",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hisob to'ldiradigan ilova",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mahsulotni kim ishlatadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Faqat uni qurgan odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Egasi ko'rsatgan do'stlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlar — o'z muammosi uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mentor — tekshirish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saytni faqat siz ochasiz. U nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Mahsulot — internetda bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyiha — hech kim ishlatmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mahsulot — hamma ocha oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyiha — kodi hali kam",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilovada odatda avval qaysi qator ko'rinadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "KIM — kim ishlatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "MUAMMO — nimadan qiynalgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech biri ko'rinmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "YECHIM — ilova nima qiladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Google Maps: MUAMMO qatori qaysi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Xarita chiroyli bo'lsin derdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'chalar juda ko'p edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Joyni so'rab-so'rab topardi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Xarita ko'rishni yoqtirardi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Muammoning uch belgisidan biri qaysi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Odam «muammo bor» deydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam o'zicha yo'l topgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bu haqda internetda yozilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uni yechadigan ilova bor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Oshxona qurish kerak.» Bu nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Yechim — kim qiynalgani yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Muammo — «kerak» so'zi bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo — maktabda bo'lyapti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yechim — chunki qimmat",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dropbox qanday muammodan boshlangan?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Kompyuter juda qimmat edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet juda sekin edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayl chop etish qiyin edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fleshka uyda qolgan edi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dropbox videosi chiqqach nima bo'ldi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Faqat do'stlari ko'rdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dastur yopib qo'yildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Videoni hech kim ko'rmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "75 000 kishi ro'yxatga yozildi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Link sizdan, do'st botni doim ishlatadi. Bot nima?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Loyiha — link sizdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulot — o'z ishi uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mahsulot — link bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyiha — bot kichik",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Muammo yig'ishda sherikdan nimani so'raysiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Nimani kimdandir so'ragani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qanday ilova xohlashini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi ilova chiroyliroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "G'oyangiz unga yoqadimi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor nega maydon muammosini tanladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Futbolni yaxshi ko'rgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon qurish arzonligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchilardan so'ray olgani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ro'yxatda birinchi turgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«5 kishidan 4 tasi» nimani aytadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Necha suhbatda chiqqanini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir odamda qanday kechgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni kim qurganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Suhbat qancha davom etgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Slaydda faqat hikoya. Yoniga nima qo'yiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Yana bitta shunday hikoya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Intervyudan olingan raqam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytning rangli rasmi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jamoa a'zolari ro'yxati",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitchdagi qaysi gap fikr?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "«Kelganimizda maydon band edi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Egasi telefonni ko'tarmadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bu sayt juda yaxshi chiqdi»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Tugmani topa olmadim»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Saytni albatta ishlatadi» — bu nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Intervyudan olingan hikoya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinovda yozilgan kuzatuv",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammoni sanagan raqam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hali bo'lib o'tmagan va'da",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Egasi telefonni ko'tarmadi» pitchga qanday yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Xuddi yozuvdagidek",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech bir ega ko'tarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ega bizni yoqtirmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Janjal bo'lib o'tdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Intervyudagi o'yinchining hikoyasi qaysi slaydga chiqadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Foydalanuvchi slaydiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo slaydiga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yechim slaydiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchala slaydga ham",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Slaydlar tartibi qaysi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Yechim, muammo, foydalanuvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi, muammo, yechim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo, yechim, foydalanuvchi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Muammo, foydalanuvchi, yechim",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hikoya bo'lishi uchun gapda nima kerak?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Muammoni boshqacha nomlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Gapni uzaytirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yoniga katta raqam qo'yish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta odam va uning ishi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Repetitsiyadan keyin qatorga nima yoziladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Sherik eslab qolgan odam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Pitch yoqdimi-yo'qmi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nechta slayd bo'lgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ovoz baland-pastligi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinovdagi odamni pitchda qanday tilga olasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ism-familiyasi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kimligi bilan: «o'yinchi»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon raqami bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfi va maktabi bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Repetitsiyada sinfdoshingiz nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Pitchga ball qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitchni siz uchun aytadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eslab qolganini aytadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Slaydlarni qayta yozadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinovda tugma topilmadi. Pitchda nima aytiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Intervyu raqami qayta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qurish haftalari soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi to'lov funksiyasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugma qanday tuzatilgani",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

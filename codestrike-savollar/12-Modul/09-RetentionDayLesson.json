@@ -1,0 +1,278 @@
+{
+  "lessonId": "m10-09-v1",
+  "key": "m10-09",
+  "modul": 12,
+  "tartib": 9,
+  "nom": {
+    "uz": "Loyiha kuni: foydalanuvchini qaytaradigan eslatma",
+    "ru": "День проекта: напоминание, которое возвращает пользователя"
+  },
+  "src": "src/10-Modull/RetentionDayLesson.jsx",
+  "barmoq_izi": "2585058f7f5d8da4e967cc54f757adcd",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "46 qurilmadan 17 tasi yana ochdi. Bu nima?",
+        "variantlar": [
+          "Qaytgan qurilmalar soni",
+          "Ro'yxatdan o'tganlar soni",
+          "Eslatmadan ochganlar soni",
+          "Qo'shilganlar soni"
+        ]
+      },
+      "ru": {
+        "savol": "Из 46 устройств 17 открыли снова. Что это?",
+        "variantlar": [
+          "Число вернувшихся устройств",
+          "Число зарегистрированных",
+          "Число открывших из напоминания",
+          "Число записавшихся"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Web-trekda sayt yopiq. O'yinchiga xabar yetadimi?",
+        "variantlar": [
+          "Ha, brauzer ko'rsatadi",
+          "Yo'q, qaytganda ko'radi",
+          "Ha, Backend ochib beradi",
+          "Yo'q, hech qachon"
+        ]
+      },
+      "ru": {
+        "savol": "В веб-треке сайт закрыт. Сообщение дойдёт до игрока?",
+        "variantlar": [
+          "Да, браузер покажет",
+          "Нет, увидит, когда вернётся",
+          "Да, Backend откроет сайт",
+          "Нет, никогда"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«2 joy qoldi» uchun Backend qaysi hodisani yuboradi?",
+        "variantlar": [
+          "Yangi joy-qoldi ni",
+          "Joy soni hodisasini",
+          "Odatiy oyin-ozgardi",
+          "Har soniyada sonni"
+        ]
+      },
+      "ru": {
+        "savol": "Какое событие Backend шлёт для «осталось 2 места»?",
+        "variantlar": [
+          "Новое joy-qoldi",
+          "Событие с числом мест",
+          "Обычное oyin-ozgardi",
+          "Число каждую секунду"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«2 joy qoldi» xabari kimga chiqadi?",
+        "variantlar": [
+          "O'yinga qo'shilganlarga",
+          "O'yin tashkilotchisiga",
+          "Hozir qo'shilgan o'yinchiga",
+          "O'yinga qo'shilmaganga"
+        ]
+      },
+      "ru": {
+        "savol": "Кому приходит сообщение «осталось 2 места»?",
+        "variantlar": [
+          "Записавшимся в игру",
+          "Организатору игры",
+          "Игроку, который только записался",
+          "Тому, кто не записался"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Rejalashtirilgan eslatmani kim qo'yadi?",
+        "variantlar": [
+          "Ilova, oldindan telefonda",
+          "Backend, kimdir qo'shilsa",
+          "Tashkilotchi, e'lon paytida",
+          "Telefon, har kuni o'zi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто ставит запланированное напоминание?",
+        "variantlar": [
+          "Приложение, заранее на телефоне",
+          "Backend, когда кто-то записался",
+          "Организатор, при объявлении",
+          "Телефон, сам каждый день"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Nega uch kunlik eslatma «Yangi o'yin chiqdi» demaydi?",
+        "variantlar": [
+          "Matn uzun bo'lib qoladi",
+          "Yopiq ilova buni bilmaydi",
+          "Yangi o'yinlar kam",
+          "Telefon ko'rsatmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему трёхдневное напоминание не говорит «Вышла новая игра»?",
+        "variantlar": [
+          "Текст станет длинным",
+          "Закрытое приложение этого не знает",
+          "Новых игр мало",
+          "Телефон не покажет"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Bu hafta ikki o'yin eslatmasi bor. Uch kunligi qo'yiladimi?",
+        "variantlar": [
+          "Ha, uchinchi bo'lib",
+          "Ha, birining o'rniga",
+          "Yo'q, bu hafta emas",
+          "Ha, ikki marta"
+        ]
+      },
+      "ru": {
+        "savol": "На этой неделе два напоминания об играх. Трёхдневное поставят?",
+        "variantlar": [
+          "Да, третьим",
+          "Да, вместо одного из них",
+          "Нет, не на этой неделе",
+          "Да, дважды"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "«Eslatmalar» o'chirilsa, nima bo'ladi?",
+        "variantlar": [
+          "Ruxsat qayta so'raladi",
+          "Faqat ertangisi qoladi",
+          "Ilova hisobdan chiqadi",
+          "Hammasi bekor qilinadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если выключить «Напоминания»?",
+        "variantlar": [
+          "Снова спросят разрешение",
+          "Останется только завтрашнее",
+          "Приложение выйдет из аккаунта",
+          "Все отменятся"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Test holati nima uchun kerak?",
+        "variantlar": [
+          "Bir daqiqada tekshirish uchun",
+          "Tezroq yuborish uchun",
+          "Chegarani butunlay o'chirish",
+          "Ruxsat oynasini yopish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен тестовый режим?",
+        "variantlar": [
+          "Чтобы проверить за минуту",
+          "Чтобы отправить быстрее",
+          "Убрать лимит навсегда",
+          "Чтобы убрать окно разрешения"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "eslatmadan-ochdi qachon yoziladi?",
+        "variantlar": [
+          "Eslatma ekranga chiqqanda",
+          "Eslatma bosib ochilganda",
+          "Eslatma rejalashtirilganda",
+          "Eslatma bekor bo'lganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда записывается eslatmadan-ochdi?",
+        "variantlar": [
+          "Когда напоминание появилось",
+          "Когда по напоминанию открыли",
+          "Когда напоминание запланировали",
+          "Когда напоминание отменили"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Sinfda eslatmani o'zingiz bosdingiz. Bu yozuv nima bo'ladi?",
+        "variantlar": [
+          "Haqiqiy deb sanaladi",
+          "Umuman yozilmaydi",
+          "Tekshirgach o'chiriladi",
+          "Ikki marta sanaladi"
+        ]
+      },
+      "ru": {
+        "savol": "В классе вы сами нажали напоминание. Что с этой записью?",
+        "variantlar": [
+          "Считается настоящей",
+          "Вообще не пишется",
+          "Удаляется после проверки",
+          "Считается дважды"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Ilova o'zgardi. Eski APK'da bugungi eslatma bormi?",
+        "variantlar": [
+          "Bor, APK o'zi yangilanadi",
+          "Yo'q, faqat iPhone'da",
+          "Bor, Render yuboradi",
+          "Yo'q, yangi fayl kerak"
+        ]
+      },
+      "ru": {
+        "savol": "Приложение изменилось. В старом APK есть сегодняшнее напоминание?",
+        "variantlar": [
+          "Есть, APK обновится сам",
+          "Нет, только на iPhone",
+          "Есть, Render пришлёт",
+          "Нет, нужен новый файл"
+        ]
+      }
+    }
+  ]
+}

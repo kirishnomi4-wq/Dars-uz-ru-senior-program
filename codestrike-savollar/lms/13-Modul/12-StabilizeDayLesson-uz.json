@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Besh yo'lni yozuv bilan tekshirish nima deyiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Barqarorlik tekshiruvi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi funksiya qo'shish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pullik obunani yoqish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Linkni tarqatish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kod qo'shilgach, nega ro'yxatdan o'tish tekshirildi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Login o'zgargani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod shu formada turadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot formani yangilagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxat o'zi o'zgaradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tekshirishda qaysi hisobdan foydalanasiz?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sinfdosh hisobidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng faol o'yinchi hisobidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi tekshiruv akkauntidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hisobsiz, mehmon bo'lib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nima kutishingizni qachon yozasiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Natijani ko'rgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent «Tayyor!» degach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dars oxirida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tekshirishdan oldin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega bugun yangi funksiya qo'shilmaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Tekshirilmagan yo'l ochadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent bugun kod yozmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U faqat pullik bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi sezmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ulgurmagan topilma nima qilinadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "XATOLAR.md dan o'chiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "XATOLAR.md da «qoldi» deb",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Tuzatish qilindi» deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aytilmay keyinga qoladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ikki marta yuborish»dan keyin Pro necha kunga yoqildi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "60 kunga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "7 kunga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "30 kunga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yoqilmadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Tuzatish qilindi» nimani bildiradi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Qayta buzilmaganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Topilma o'chganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent ish boshlaganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod o'zgarganini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "backend/ tuzatildi. APK kerakmi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Yo'q, ilova Backend'ga ulanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, APK har safar yangilanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, Render APK yig'adi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, APK yangilanmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Push'dan keyin brauzer ko'rinishi yangilanadimi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ha, Netlify o'zi yig'adi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, qayta deploy kerak",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, Expo Go yangilaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, APK almashtiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki telefon bir vaqtda «O'yinlar»ni ochdi. Natija?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Bitta o'yin, bitta xabar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova yopildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin ikki marta yaratildi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'yinlar o'chib ketdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Darsdan keyin tekshiruv akkauntlari nima qilinadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Sanoqda qolaveradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlarga beriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir haftada o'zi o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tekshirgach o'chiriladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

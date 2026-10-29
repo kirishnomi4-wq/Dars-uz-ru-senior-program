@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое событие?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Действие, записываемое в таблицу",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Новый столбец таблицы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Большая кнопка на сайте",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Маршрут запроса в Backend",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает одна строка в таблице hodisalar?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Один браузер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Одно событие",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Одного игрока",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Один день",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто отправляет открытие страницы в таблицу?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Umami пишет ochdi",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Database сама добавит ochdi",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт отправляет ochdi",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Backend сам добавит ochdi",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему в событие не пишут телефон?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Номер не помещается",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Backend не читает номер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Umami скрывает номер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Открывший его ещё не дал",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где хранится ID браузера?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "В памяти браузера",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В таблице bandlar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В настройках Umami",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В файле .env Backend",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Страницу обновили. Что будет с ID браузера?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Берётся новый ID",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Остаётся прежним",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Заменяется телефоном",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Backend его удаляет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Когда отправляется band-qildi?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Сразу при нажатии «Забронировать»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Как только открылась форма",
+        "hint": "Неверно"
+      },
+      {
+        "value": "После сохранения брони",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Когда владелец открыл список",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что считает COUNT(DISTINCT brauzer_id)?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Число всех строк",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Число названий событий",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Число пустых слотов",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Число разных браузеров",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая ошибка, если считать строки?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Один браузер считается много раз",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Забронировавшие не считаются",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Число Umami удваивается",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Считаются пустые слоты",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Umami 31, таблица 36. Что это значит?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Таблица ошибается, исправим",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Две системы считают по-разному",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Umami ошибается, уберём",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пятеро открыли дважды",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что заблокировал блокировщик рекламы в примере Ментора?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Запрос POST /bandlar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ячейки времени на сайте",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Скрипт Umami",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Память браузера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем пишем события ещё и в свою таблицу?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Umami больше не нужен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт открывается быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Тогда Backend не засыпает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Считаем числа сами",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

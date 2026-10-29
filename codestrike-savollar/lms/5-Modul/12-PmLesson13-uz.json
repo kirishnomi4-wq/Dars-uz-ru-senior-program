@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sxema nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Yoziladigan ustunlar ro'yxati",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bosiladigan tugmalar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochiladigan bo'limlar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytning kod qatorlari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sxemada yo'q narsani ilova ko'rsata oladimi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ha, bir ko'ringan bo'lsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, qidirsa topadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, faqat siz ko'rasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, ilova uni bilmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Gapga mos ustun yo'q. Nima qilinadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Gap e'londan olinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Gap boshqa ustunga yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sxemaga yangi ustun ochiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ustun nomi qayta yoziladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ustunning ochiq/yopiq belgisi nimani aytadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ustunning tartib raqamini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustunni kim ko'rishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qiymat uzunligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekrandagi rangini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kitob qachon bo'shashini qaysi ustun aytadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Holati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaytarish sanasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Band qilgan o'quvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kitob nomi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hech qaysi gapga ulanmagan ustun nima qilinadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Sxemadan olib tashlanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Zaxira uchun saqlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh holida qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa gapga ulanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Faqat kutubxonachi ko'radi» — ustun qanday?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ochiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Belgisiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yopiq",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkalasi birga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "E'lon qachon yoziladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Sxema tuzilgandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod yozilib bo'lgandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulot sotuvga chiqqanda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod yozilishidan oldin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "E'lon hech kimni qiziqtirmasa nima bo'ladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Mahsulot qurilmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kichikroq quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baribir quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa tilda yoziladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Amazon 1995-yilda nima sotardi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Telefon va noutbuk",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oziq-ovqat mahsulotlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat kitob",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kiyim va poyabzal",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ustun savoli nimani aytadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ustunga qancha sig'ishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam undan nimani bilishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ustunni kim yozganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustun nechanchi turishini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sxemadagi ustun yozuvda yozilmasa nima chiqadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yozuv o'chib ketadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova ogohlantiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova o'zi to'ldiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Savol javobsiz qoladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

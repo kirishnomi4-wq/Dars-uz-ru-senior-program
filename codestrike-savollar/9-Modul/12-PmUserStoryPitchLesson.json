@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-12-v2",
+  "key": "m7-12",
+  "modul": 9,
+  "tartib": 12,
+  "nom": {
+    "uz": "Pitchingizda kimning hikoyasi bor?",
+    "ru": "Чья история в вашем питче?"
+  },
+  "src": "src/7-Modull/PmUserStoryPitchLesson.jsx",
+  "barmoq_izi": "4b39a37b0ef5528362d8f66e365e6441",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "«5 kishidan 4 tasi» nimani aytadi?",
+        "variantlar": [
+          "Necha suhbatda chiqqanini",
+          "Bir odamda qanday kechgani",
+          "Saytni kim qurganini",
+          "Suhbat qancha davom etgani"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорит «4 из 5 человек»?",
+        "variantlar": [
+          "В скольких беседах это было",
+          "Как это было у одного человека",
+          "Кто делал сайт",
+          "Сколько длилась беседа"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Slaydda faqat hikoya. Yoniga nima qo'yiladi?",
+        "variantlar": [
+          "Yana bitta shunday hikoya",
+          "Intervyudan olingan raqam",
+          "Saytning rangli rasmi",
+          "Jamoa a'zolari ro'yxati"
+        ]
+      },
+      "ru": {
+        "savol": "На слайде только история. Что ставят рядом?",
+        "variantlar": [
+          "Ещё одну такую историю",
+          "Число из интервью",
+          "Цветную картинку сайта",
+          "Список членов команды"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Pitchdagi qaysi gap fikr?",
+        "variantlar": [
+          "«Kelganimizda maydon band edi»",
+          "«Egasi telefonni ko'tarmadi»",
+          "«Bu sayt juda yaxshi chiqdi»",
+          "«Tugmani topa olmadim»"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза в питче — мнение?",
+        "variantlar": [
+          "«Когда пришли, поле было занято»",
+          "«Владелец не взял трубку»",
+          "«Этот сайт получился очень хорошим»",
+          "«Я не нашёл кнопку»"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Saytni albatta ishlatadi» — bu nima?",
+        "variantlar": [
+          "Intervyudan olingan hikoya",
+          "Sinovda yozilgan kuzatuv",
+          "Muammoni sanagan raqam",
+          "Hali bo'lib o'tmagan va'da"
+        ]
+      },
+      "ru": {
+        "savol": "«Обязательно будут пользоваться сайтом» — что это?",
+        "variantlar": [
+          "История из интервью",
+          "Наблюдение с теста",
+          "Число, посчитавшее проблему",
+          "Обещание, которое ещё не сбылось"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "«Egasi telefonni ko'tarmadi» pitchga qanday yoziladi?",
+        "variantlar": [
+          "Xuddi yozuvdagidek",
+          "Hech bir ega ko'tarmaydi",
+          "Ega bizni yoqtirmaydi",
+          "Janjal bo'lib o'tdi"
+        ]
+      },
+      "ru": {
+        "savol": "Как «владелец не взял трубку» пишется в питч?",
+        "variantlar": [
+          "Точно как в записи",
+          "Ни один владелец не берёт",
+          "Владелец нас не любит",
+          "Была ссора"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Intervyudagi o'yinchining hikoyasi qaysi slaydga chiqadi?",
+        "variantlar": [
+          "Foydalanuvchi slaydiga",
+          "Muammo slaydiga",
+          "Yechim slaydiga",
+          "Uchala slaydga ham"
+        ]
+      },
+      "ru": {
+        "savol": "На какой слайд попадёт история игрока из интервью?",
+        "variantlar": [
+          "На слайд «Пользователь»",
+          "На слайд «Проблема»",
+          "На слайд «Решение»",
+          "На все три слайда"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Slaydlar tartibi qaysi?",
+        "variantlar": [
+          "Yechim, muammo, foydalanuvchi",
+          "Foydalanuvchi, muammo, yechim",
+          "Muammo, yechim, foydalanuvchi",
+          "Muammo, foydalanuvchi, yechim"
+        ]
+      },
+      "ru": {
+        "savol": "Какой порядок слайдов?",
+        "variantlar": [
+          "Решение, проблема, пользователь",
+          "Пользователь, проблема, решение",
+          "Проблема, решение, пользователь",
+          "Проблема, пользователь, решение"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Hikoya bo'lishi uchun gapda nima kerak?",
+        "variantlar": [
+          "Muammoni boshqacha nomlash",
+          "Gapni uzaytirish",
+          "Yoniga katta raqam qo'yish",
+          "Bitta odam va uning ishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно во фразе, чтобы она стала историей?",
+        "variantlar": [
+          "Назвать проблему иначе",
+          "Удлинить фразу",
+          "Поставить рядом большое число",
+          "Один человек и то, что с ним было"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Repetitsiyadan keyin qatorga nima yoziladi?",
+        "variantlar": [
+          "Sherik eslab qolgan odam",
+          "Pitch yoqdimi-yo'qmi",
+          "Nechta slayd bo'lgani",
+          "Ovoz baland-pastligi"
+        ]
+      },
+      "ru": {
+        "savol": "Что записывают в строку после репетиции?",
+        "variantlar": [
+          "Человека, которого запомнил напарник",
+          "Понравился ли питч",
+          "Сколько было слайдов",
+          "Громкий или тихий голос"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Sinovdagi odamni pitchda qanday tilga olasiz?",
+        "variantlar": [
+          "Ism-familiyasi bilan",
+          "Kimligi bilan: «o'yinchi»",
+          "Telefon raqami bilan",
+          "Sinfi va maktabi bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Как упомянете человека с теста в питче?",
+        "variantlar": [
+          "По имени и фамилии",
+          "Кто он: «игрок»",
+          "С номером телефона",
+          "С классом и школой"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Repetitsiyada sinfdoshingiz nima qiladi?",
+        "variantlar": [
+          "Pitchga ball qo'yadi",
+          "Pitchni siz uchun aytadi",
+          "Eslab qolganini aytadi",
+          "Slaydlarni qayta yozadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает одноклассник на репетиции?",
+        "variantlar": [
+          "Ставит оценку питчу",
+          "Рассказывает питч за вас",
+          "Говорит, что запомнил",
+          "Переписывает слайды"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Sinovda tugma topilmadi. Pitchda nima aytiladi?",
+        "variantlar": [
+          "Intervyu raqami qayta",
+          "Qurish haftalari soni",
+          "Keyingi to'lov funksiyasi",
+          "Tugma qanday tuzatilgani"
+        ]
+      },
+      "ru": {
+        "savol": "На тесте не нашли кнопку. Что скажете в питче?",
+        "variantlar": [
+          "Снова число из интервью",
+          "Сколько недель строили",
+          "Будущая функция оплаты",
+          "Как исправили кнопку"
+        ]
+      }
+    }
+  ]
+}

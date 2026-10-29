@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Maydon»da haftalik bosh raqam qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Band qilingan vaqtlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni ochganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqt tanlaganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chatdagi e'lonlar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi gap maqsad bo'la oladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Haftada 20 band bo'lsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchilar oson band qilsin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugmaga soatni yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foiz 40 ga yetsin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bandlar: hozir 6, oy oxirida 20» — bu qaysi qator?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Maqsad qatori",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tajriba qatori",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Asosiy natija",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mehnat raqami",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hozirgi raqamni bilmasangiz, nima yozasiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Oy oxiridagi raqamni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'ylab topilgan raqamni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hozircha 0 raqamini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'roq belgisini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Vaqtni 50 kishi tanladi, 20 tasi band qildi. Foiz qancha?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "40 foiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "20 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "30 foiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "250 foiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Yozilgan yangi matnlar: 0 dan 5 ga» — qanday raqam?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bosh raqam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mehnat raqami",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Asosiy natija",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qadam foizi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Maydon» tajribasida nima o'zgaradi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Saytning ranglari va shrifti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqt kataklarining soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band qilish tugmasi matni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ega sahifasidagi parol",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tajriba nega bitta o'zgarish?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Uni tezroq qilsa bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uni yozish qisqaroq bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Doskada bitta qator bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nima yordam bergani ajraladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "OKR qaysi qismlardan iborat?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Maqsad va asosiy natijalar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bosh raqam va foizlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo va yechimlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tajriba va ishlar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maqsad qatoriga raqam yozilgan. Nima qilasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Shunday qoldirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Asosiy natijaga o'tkazasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tajriba qatoriga o'tkazasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yana bir raqam qo'shasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ikkinchi marta band qilganlar» nimani sanaydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Saytni ochganlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqt tanlaganlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaytib kelganlarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ega ochgan vaqtlarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tajriba hech qatorga ulanmagan. Nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yana tajriba qo'shasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maqsad qatoriga ko'chirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Doskadan o'chirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Asosiy natijaga ulaysiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

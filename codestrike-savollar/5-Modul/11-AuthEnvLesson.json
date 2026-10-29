@@ -1,0 +1,278 @@
+{
+  "lessonId": "auth-env-04-07-v18",
+  "key": "m4-11",
+  "modul": 5,
+  "tartib": 11,
+  "nom": {
+    "uz": "Autentifikatsiya va .env — login, JWT, maxfiy kalitlar",
+    "ru": "Аутентификация и .env — логин, JWT, секреты"
+  },
+  "src": "src/4-Modull/AuthEnvLesson.jsx",
+  "barmoq_izi": "ba80eff4891829c78814be4c02ccfa66",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Login (email+parol) to'g'ri bo'lsa, server nima qaytaradi?",
+        "variantlar": [
+          "token (bilaguzuk)",
+          "yangi parol",
+          "faqat xato xabari",
+          "sahifani qayta yuklaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Логин (email+пароль) верный — что вернёт сервер?",
+        "variantlar": [
+          "токен (браслет)",
+          "новый пароль",
+          "только сообщение об ошибке",
+          "перезагрузит страницу"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Token har so'rovda qayerda yuboriladi?",
+        "variantlar": [
+          "URL manzil ichida",
+          "Authorization: Bearer",
+          "Parol maydonida",
+          "Cookie nomida"
+        ]
+      },
+      "ru": {
+        "savol": "Где отправляется токен в каждом запросе?",
+        "variantlar": [
+          "Внутри URL-адреса",
+          "Authorization: Bearer",
+          "В поле пароля",
+          "В имени cookie"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "jwt.sign tokenni nimadan yasaydi?",
+        "variantlar": [
+          "Brauzer nomi va versiyasi",
+          "Kompyuterning IP manzili",
+          "Faqat foydalanuvchi paroli",
+          "userId va JWT_SECRET"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего jwt.sign делает токен?",
+        "variantlar": [
+          "Имя и версия браузера",
+          "IP-адрес компьютера",
+          "Только пароль пользователя",
+          "userId и JWT_SECRET"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Himoyalangan route'ga tokensiz so'rov kelsa?",
+        "variantlar": [
+          "200 OK",
+          "yangi token beradi",
+          "401 Unauthorized",
+          "parolni so'raydi"
+        ]
+      },
+      "ru": {
+        "savol": "Запрос на защищённый route без токена — что будет?",
+        "variantlar": [
+          "200 OK",
+          "выдаст новый токен",
+          "401 Unauthorized",
+          "спросит пароль"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Guard tokenni qanday tekshiradi?",
+        "variantlar": [
+          "Bazadan qidirib solishtiradi",
+          "jwt.verify(token, SECRET)",
+          "Parolni qayta so'raydi",
+          "Umuman tekshirmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Как guard проверяет токен?",
+        "variantlar": [
+          "Ищет в базе и сравнивает",
+          "jwt.verify(token, SECRET)",
+          "Снова спрашивает пароль",
+          "Вообще не проверяет"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Nega soxta imzoli token rad etiladi?",
+        "variantlar": [
+          "Token juda uzunligidan",
+          "Internet sekinligidan",
+          "Brauzer uni bloklaydi",
+          "Imzo SECRET'ga mos kelmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему токен с поддельной подписью отклоняется?",
+        "variantlar": [
+          "Токен слишком длинный",
+          "Интернет медленный",
+          "Браузер его блокирует",
+          "Подпись не совпадает с SECRET"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "JWT token necha qismdan iborat?",
+        "variantlar": [
+          "1 ta",
+          "2 ta",
+          "3 ta",
+          "4 ta"
+        ]
+      },
+      "ru": {
+        "savol": "Из скольких частей состоит JWT-токен?",
+        "variantlar": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega JWT'ni soxta yasab bo'lmaydi?",
+        "variantlar": [
+          "Imzo SECRET bilan qo'yiladi",
+          "U juda qisqa bo'ladi",
+          "Har kuni o'zi o'zgaradi",
+          "Uni hech kim ko'rmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему JWT нельзя подделать?",
+        "variantlar": [
+          "Подпись ставится с SECRET",
+          "Он очень короткий",
+          "Каждый день меняется сам",
+          "Его никто не видит"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Payload ichida nima saqlanadi?",
+        "variantlar": [
+          "Server paroli",
+          "Foydalanuvchi paroli",
+          "Maxfiy kalit (SECRET)",
+          "userId (kim ekaningiz)"
+        ]
+      },
+      "ru": {
+        "savol": "Что хранится в payload?",
+        "variantlar": [
+          "Пароль сервера",
+          "Пароль пользователя",
+          "Секретный ключ (SECRET)",
+          "userId (кто вы)"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "JWT_SECRET qayerda saqlanishi kerak?",
+        "variantlar": [
+          "kod ichida ochiq",
+          ".env faylida",
+          "HTML sahifada",
+          "URL manzilida"
+        ]
+      },
+      "ru": {
+        "savol": "Где должен храниться JWT_SECRET?",
+        "variantlar": [
+          "открыто в коде",
+          "в файле .env",
+          "на HTML-странице",
+          "в URL-адресе"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Kod .env qiymatini qanday o'qiydi?",
+        "variantlar": [
+          "fetch so'rovi bilan",
+          "Faylni import qilib",
+          "process.env.JWT_SECRET",
+          "console.log bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Как код читает значение из .env?",
+        "variantlar": [
+          "Запросом fetch",
+          "Импортируя файл",
+          "process.env.JWT_SECRET",
+          "Через console.log"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": ".env .gitignoreda bo'lmasa nima xavf?",
+        "variantlar": [
+          "Kalit GitHub'ga chiqadi",
+          "Kod ishlamay qoladi",
+          "Hech qanday xavf yo'q",
+          "Sayt sekinlashadi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем опасно, если .env нет в .gitignore?",
+        "variantlar": [
+          "Ключ попадёт на GitHub",
+          "Код перестанет работать",
+          "Никакой опасности",
+          "Сайт замедлится"
+        ]
+      }
+    }
+  ]
+}

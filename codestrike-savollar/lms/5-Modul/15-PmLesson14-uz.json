@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Texnik so'zli javobdan odam nima oladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Javob o'rniga notanish so'z",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkinchi savoliga javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'ziga tanish misol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javobning qisqasini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Rost javob qachon odamga yetib boradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ikki marta takrorlanganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uzunroq aytilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kasb-so'zi qo'shilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oddiy so'z bilan aytilganda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt nechta qavatdan turadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Bir qavatdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki qavatdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uch qavatdan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'rt qavatdan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'rinadigan sahifa nima qiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Band joylarni tozalaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh joylarni ko'rsatadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Joy narxini hisoblaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatni o'zi yangilaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Server nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Sahifa rangini tanlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Joy bo'shligini tekshiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Joylarga yangi raqam beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugmani kattalashtiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Baza nima qiladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Band joylarni eslab qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Odamga savol berib turadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh joylarni chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa rangini almashtiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bitta bosish qavatlardan qaysi tartibda o'tadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Baza → server → sahifa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server → sahifa → baza",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa → server → baza",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Baza → sahifa → server",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telefon o'chsa ham joylar saqlanadi. Qaysi qavat?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Yuqori — sahifa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'rta — server",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchalasi navbat bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pastki — baza",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb besh qadamida qaysi biri yo'q edi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Sayt qanday qurilgani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Odamlarning qiyinchiligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qancha odam kutayotgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishni kim qilayotgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb ishini avval nima bilan tushuntirgan?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Tayyor sayt bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uzun video bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'nga yaqin varaq bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uzun maktublar bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'rsatuvda texnik qarorni nima tushuntiradi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Qavat nomlari ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uning odamga foydasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod qatorlarining o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server javobining o'zi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'rinmas qavat ishlayotganini odam qanday ko'radi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Server javobini o'qib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baza jadvalini ochib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni ochib ko'rib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Holat-qatorini o'qib",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

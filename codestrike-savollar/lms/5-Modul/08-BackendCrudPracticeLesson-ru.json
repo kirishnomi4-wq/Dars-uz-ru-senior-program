@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой столбец даёт каждой машине уникальный номер?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "model TEXT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "id SERIAL PRIMARY KEY",
+        "hint": "Верно!"
+      },
+      {
+        "value": "daily_price INTEGER NOT NULL",
+        "hint": "Неверно"
+      },
+      {
+        "value": "is_rented BOOLEAN",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой SQL правильный для создания таблицы cars?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "SELECT * FROM cars ORDER BY id",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE FROM cars",
+        "hint": "Неверно"
+      },
+      {
+        "value": "INSERT INTO cars",
+        "hint": "Неверно"
+      },
+      {
+        "value": "CREATE TABLE cars (...)",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой тип подходит столбцу daily_price (целое число)?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "INTEGER",
+        "hint": "Верно!"
+      },
+      {
+        "value": "BOOLEAN",
+        "hint": "Неверно"
+      },
+      {
+        "value": "TEXT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "SERIAL LIST",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая пара нужна, чтобы добавить в базу новую машину?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "GET → SELECT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PUT → UPDATE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "POST → INSERT",
+        "hint": "Верно!"
+      },
+      {
+        "value": "DELETE → DELETE",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая пара нужна, чтобы прочитать все машины?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "GET → SELECT",
+        "hint": "Верно!"
+      },
+      {
+        "value": "POST → INSERT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PUT → UPDATE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE → DELETE",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что меняет цену одной машины?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "POST → INSERT INTO cars",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PUT → UPDATE ... WHERE id",
+        "hint": "Верно!"
+      },
+      {
+        "value": "GET → SELECT * FROM cars",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE → DELETE FROM cars",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что используется в Express, чтобы отправить SQL в базу?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "res.send(...)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "app.listen(3000, callback)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "console.log(...)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "pool.query('...')",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая команда для AI самая точная?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Выведи мне машины",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Достань что-нибудь из базы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GET /api/cars → SELECT → JSON",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Напиши хороший backend-код",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает res.json(...)?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Создаёт новую таблицу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Включает сервер и открывает порт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Возвращает результат в JSON",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Пишет файл на диск",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем в SQL пишем $1, $2?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Чтобы текст не стал кодом",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы запрос шёл быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Так требует PostgreSQL",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы сократить имя столбца",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "500: column \"price\" does not exist. Причина?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "База выключена",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В коде price, в схеме daily_price",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Пропал интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Postman настроен неверно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой статус возвращает успешный POST?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "404 Not Found",
+        "hint": "Неверно"
+      },
+      {
+        "value": "500 Server Error",
+        "hint": "Неверно"
+      },
+      {
+        "value": "200 OK",
+        "hint": "Неверно"
+      },
+      {
+        "value": "201 Created",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

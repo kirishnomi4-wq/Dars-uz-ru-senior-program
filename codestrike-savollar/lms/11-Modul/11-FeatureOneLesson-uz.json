@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Funksiyani agentga qanday berasiz?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Uch qatorli talab yozib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Roadmap qatorini yuborib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PRD'ni to'liq yuborib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat nomini yozib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Talabda ikki marta bosish yo'q. Agent nima qiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Tugmani olib tashlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zicha taxmin qiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Funksiyani qurmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani qayta yozadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Formada «kim» yo'q. Egasi qayerdan olinadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Telefon raqamidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovadagi ism yozuvidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'rovdagi tokendan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jadvalning oxirgi qatoridan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta yuklashda yangi e'lon nega yo'qolmadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Telefonga yozilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent namunaga qo'shgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Expo Go o'zida saqlagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database'ga yozilgan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«8 / 10» dagi 8 qayerdan keladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Database'dagi sanoqdan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefondagi bosishlardan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Namuna faylidagi sondan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchi yozgan sondan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki marta «Qo'shilaman» bosildi. Nima bo'lishi kerak?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Son ikkiga oshadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Son bittaga oshadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Son o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin o'chib ketadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ekranda «9 / 10», o'yin to'lgan. Nega?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Backend noto'g'ri sanagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilganlar yozilmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranda eski son turibdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent ekranni xato qurgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'lgan o'yinni qayerda tekshirish kerak?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ilovada, tugmani yashirib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Talabda, agent bilsin deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Neon'da, qo'lda sanab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'da, Database'dan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "To'lgan o'yinda ilova nima ko'rsatadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "«O'yin to'ldi» xabarini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«11 / 10» degan sonni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuvsiz bo'sh ekranni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Kirish» ekranini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Boshqa telefonda «8 / 10» qachon yangilanadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Har soniyada o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochilganda yoki tortilganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova o'rnatilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchi ruxsat berganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend o'zgarishi telefonga qachon yetadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Agent «Tayyor» desa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git commit qilinganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Render deploy'ni tugatgach",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon qayta yoqilganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent «Tayyor» dedi. Nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Keyingi blokka o'tasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentdan qayta so'raysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "README'ga «tayyor» yozasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Talabni gapma-gap tekshirasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

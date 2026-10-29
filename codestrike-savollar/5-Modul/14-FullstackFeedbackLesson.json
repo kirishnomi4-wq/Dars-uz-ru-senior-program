@@ -1,0 +1,278 @@
+{
+  "lessonId": "fullstack-feedback-p4-v18",
+  "key": "m4-14",
+  "modul": 5,
+  "tartib": 14,
+  "nom": {
+    "uz": "Praktika: Feedback bilan yaxshilash — AvtoStoyanka",
+    "ru": "Практика: Доработка по фидбеку — AvtoStoyanka"
+  },
+  "src": "src/4-Modull/FullstackFeedbackLesson.jsx",
+  "barmoq_izi": "0d5389a5c86469633f52cac565ceb043",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi fikr eng foydali?",
+        "variantlar": [
+          "«Rangi chiroyli ekan»",
+          "«Umuman zo'r ekan!»",
+          "«Bilmadim, normal»",
+          "«Chiqishda tasdiq yo'q»"
+        ]
+      },
+      "ru": {
+        "savol": "Какой отзыв самый полезный?",
+        "variantlar": [
+          "«Красивый цвет»",
+          "«В целом круто!»",
+          "«Не знаю, нормально»",
+          "«Нет подтверждения при выезде»"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Zo'r ekan!» nega yetarli fikr emas?",
+        "variantlar": [
+          "Juda uzun yozilgan",
+          "Nimani tuzatishni aytmaydi",
+          "Doim yolg'on bo'ladi",
+          "Uni faqat mentor aytadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему «Круто!» — недостаточный отзыв?",
+        "variantlar": [
+          "Слишком длинный",
+          "Не говорит, что исправить",
+          "Всегда ложь",
+          "Его говорит только ментор"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«Yoqmadi» degan fikrni qanday aniqlaymiz?",
+        "variantlar": [
+          "E'tibor bermaymiz",
+          "«Ko'proq yoqsin» deymiz",
+          "«Nima chalkash edi?» deymiz",
+          "Loyihani o'chirib tashlaymiz"
+        ]
+      },
+      "ru": {
+        "savol": "Как уточнить отзыв «Не понравилось»?",
+        "variantlar": [
+          "Не обращаем внимания",
+          "Говорим «пусть нравится больше»",
+          "Спрашиваем «что было непонятно?»",
+          "Удаляем проект"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "Doskaning qaysi katagidagi ishni avval qilamiz?",
+        "variantlar": [
+          "Ko'p foyda + kam mehnat",
+          "Ko'p foyda + ko'p mehnat",
+          "Kam foyda + kam mehnat",
+          "Kam foyda + ko'p mehnat"
+        ]
+      },
+      "ru": {
+        "savol": "Из какой клетки доски делаем работу первой?",
+        "variantlar": [
+          "Много пользы + мало усилий",
+          "Много пользы + много усилий",
+          "Мало пользы + мало усилий",
+          "Мало пользы + много усилий"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "«Eng qiyinini avval qilamiz» nega xato?",
+        "variantlar": [
+          "Qiyin ish doim befoyda",
+          "Natija juda kech ko'rinadi",
+          "Oson ishlar qolib ketadi",
+          "Foyda muhim emas"
+        ]
+      },
+      "ru": {
+        "savol": "Почему «сначала самое трудное» — ошибка?",
+        "variantlar": [
+          "Трудное всегда бесполезно",
+          "Результат виден слишком поздно",
+          "Лёгкие дела останутся",
+          "Польза не важна"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Ko'p foydali, lekin katta ish qayerga?",
+        "variantlar": [
+          "«Rejaga ol»",
+          "«Avval shu»",
+          "«Shart emas»",
+          "«Oson, keyin»"
+        ]
+      },
+      "ru": {
+        "savol": "Куда большая, но очень полезная работа?",
+        "variantlar": [
+          "«В план»",
+          "«Сначала это»",
+          "«Не обязательно»",
+          "«Легко, потом»"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Band joyni adashib chiqarishni nima to'xtatadi?",
+        "variantlar": [
+          "Dashboard paneli",
+          "Narxni oshirish",
+          "Joylarni ko'paytirish",
+          "Chiqishda tasdiq"
+        ]
+      },
+      "ru": {
+        "savol": "Что не даст случайно освободить занятое место?",
+        "variantlar": [
+          "Панель dashboard",
+          "Повышение цены",
+          "Больше мест",
+          "Подтверждение при выезде"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Bo'sh, band va tushumni bir qarashda nima ko'rsatadi?",
+        "variantlar": [
+          "Chiqishda tasdiq",
+          "Joylarni kamaytirish",
+          "Dashboard (holat paneli)",
+          "Narxni yashirish"
+        ]
+      },
+      "ru": {
+        "savol": "Что сразу показывает свободные, занятые и выручку?",
+        "variantlar": [
+          "Подтверждение при выезде",
+          "Меньше мест",
+          "Dashboard (панель состояния)",
+          "Скрыть цену"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Qorovul narxni o'zi o'zgartirishi uchun nima kerak?",
+        "variantlar": [
+          "Sozlamalar paneli",
+          "Kodni qayta yozish",
+          "Yangi sayt ochish",
+          "Hech narsa — imkonsiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно, чтобы охранник сам менял цену?",
+        "variantlar": [
+          "Панель настроек",
+          "Переписать код",
+          "Открыть новый сайт",
+          "Ничего — невозможно"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Narxni o'zgartirish uchun qaysi SQL amali?",
+        "variantlar": [
+          "INSERT",
+          "DELETE",
+          "UPDATE",
+          "SELECT"
+        ]
+      },
+      "ru": {
+        "savol": "Какая SQL-команда меняет цену?",
+        "variantlar": [
+          "INSERT",
+          "DELETE",
+          "UPDATE",
+          "SELECT"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "UPDATE'ning INSERT'dan farqi nimada?",
+        "variantlar": [
+          "Farqi yo'q, bir xil",
+          "Mavjud qatorni o'zgartiradi",
+          "Jadvalga yangi qator qo'shadi",
+          "Faqat nomi boshqacha"
+        ]
+      },
+      "ru": {
+        "savol": "Чем UPDATE отличается от INSERT?",
+        "variantlar": [
+          "Разницы нет",
+          "Меняет существующую строку",
+          "Добавляет новую строку",
+          "Отличается только названием"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Qurgandan keyin yaxshilash sikli qanday?",
+        "variantlar": [
+          "E'lon qilish → unutish",
+          "Fikrsiz o'zicha tuzatish",
+          "Hammasini birdan tuzatish",
+          "Fikr → saralash → upgrade"
+        ]
+      },
+      "ru": {
+        "savol": "Каков цикл улучшения после сборки?",
+        "variantlar": [
+          "Объявить → забыть",
+          "Исправлять самому без отзывов",
+          "Исправить всё сразу",
+          "Отзывы → отбор → апгрейд"
+        ]
+      }
+    }
+  ]
+}

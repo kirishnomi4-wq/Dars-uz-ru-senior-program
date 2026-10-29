@@ -1,0 +1,278 @@
+{
+  "lessonId": "m8-06-v1",
+  "key": "m8-06",
+  "modul": 10,
+  "tartib": 6,
+  "nom": {
+    "uz": "Foydalanuvchi sizga ma'lumotini ishonadimi?",
+    "ru": "Доверяет ли вам пользователь свои данные?"
+  },
+  "src": "src/8-Modull/PmTrustAuditLesson.jsx",
+  "barmoq_izi": "8ad213600651ef45755e88b2ccdd8307",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Shaxsiy ma'lumot nima?",
+        "variantlar": [
+          "Odamni aniqlaydigan ma'lumot",
+          "Parolli sahifadagi yozuv",
+          "Jadvaldagi har bir qator",
+          "Eng ko'p bosilgan tugma"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое персональные данные?",
+        "variantlar": [
+          "Данные, по которым узнают человека",
+          "Запись на странице с паролем",
+          "Любая строка таблицы",
+          "Самая нажимаемая кнопка"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "O'yinchi sahifasida band haqida nima ko'rinadi?",
+        "variantlar": [
+          "O'yinchining ismi va soat",
+          "Soat va «band» yozuvi",
+          "O'yinchining telefoni",
+          "Ism, telefon va kun"
+        ]
+      },
+      "ru": {
+        "savol": "Что видно о брони на странице игрока?",
+        "variantlar": [
+          "Имя игрока и час",
+          "Час и надпись «занято»",
+          "Телефон игрока",
+          "Имя, телефон и день"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "GDPR qanday qoida?",
+        "variantlar": [
+          "O'zbekiston qonuni, 2019",
+          "«Maydon»ning ichki qoidasi",
+          "Yevropa Ittifoqi, 2018-yildan",
+          "Umami'ning ichki qoidasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что за правило GDPR?",
+        "variantlar": [
+          "Закон Узбекистана, 2019",
+          "Внутреннее правило «Maydon»",
+          "Евросоюз, с 2018 года",
+          "Внутреннее правило Umami"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Qonunga ko'ra, maqsad tugagach ma'lumot nima qilinadi?",
+        "variantlar": [
+          "Arxivga o'tkaziladi",
+          "Yana bir yil saqlanadi",
+          "Ochiq e'lon qilinadi",
+          "Yo'q qilinadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что по закону делают с данными, когда цель достигнута?",
+        "variantlar": [
+          "Переносят в архив",
+          "Хранят ещё год",
+          "Публикуют открыто",
+          "Уничтожают"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Sizib chiqish nima?",
+        "variantlar": [
+          "Ma'lumot o'chib ketishi",
+          "Begona qo'lga o'tishi",
+          "Backend javob bermasligi",
+          "O'yinchi kelmay qolishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое утечка?",
+        "variantlar": [
+          "Данные удалились",
+          "Попадание к посторонним",
+          "Backend не отвечает",
+          "Игрок не пришёл"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Eski bandlar o'chirilmasa, begona nimani ko'radi?",
+        "variantlar": [
+          "Eng eski bandlarni ham",
+          "Faqat bugungi bandlarni",
+          "Hech qanday bandni",
+          "Faqat parol oynasini"
+        ]
+      },
+      "ru": {
+        "savol": "Если старые брони не удаляются, что увидит посторонний?",
+        "variantlar": [
+          "Даже самые старые брони",
+          "Только сегодняшние брони",
+          "Ни одной брони",
+          "Только окно пароля"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Amaliyotdan keyin band qancha saqlanadi?",
+        "variantlar": [
+          "Sayt ishlagan butun vaqt",
+          "Band kunining oxirigacha",
+          "O'yinchi saytni yopguncha",
+          "O'yindan keyin 30 kun"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько хранится бронь после практики?",
+        "variantlar": [
+          "Всё время работы сайта",
+          "До конца дня брони",
+          "Пока игрок не закроет сайт",
+          "30 дней после игры"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Kerakli minimum nima degani?",
+        "variantlar": [
+          "Formani qisqa bezash",
+          "Ma'lumotni qisqa saqlash",
+          "Faqat keraklisini so'rash",
+          "Parolni qisqa tuzish"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит «необходимый минимум»?",
+        "variantlar": [
+          "Коротко оформить форму",
+          "Коротко хранить данные",
+          "Спрашивать только нужное",
+          "Сделать короткий пароль"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Audit nima?",
+        "variantlar": [
+          "Ro'yxatli maxfiylik tekshiruvi",
+          "Agentga yangi sahifa talabi",
+          "Eski bandlarni o'chiruvchi kod",
+          "Brauzerlarni sanovchi sahifa"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое аудит?",
+        "variantlar": [
+          "Проверка приватности по списку",
+          "Запрос агенту на новую страницу",
+          "Код, удаляющий старые брони",
+          "Страница подсчёта браузеров"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi biri maxfiylik siyosatidagi savol?",
+        "variantlar": [
+          "Sayt qaysi tilda yozilgan?",
+          "Tugma qaysi rangda?",
+          "Maydon qayerda joylashgan?",
+          "Ma'lumot qancha saqlanadi?"
+        ]
+      },
+      "ru": {
+        "savol": "Какой вопрос есть в политике конфиденциальности?",
+        "variantlar": [
+          "На каком языке написан сайт?",
+          "Какого цвета кнопка?",
+          "Где находится поле?",
+          "Сколько хранятся данные?"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Forma ostida siyosat linki turibdi. Bu qaysi fikr?",
+        "variantlar": [
+          "Kerakli minimum",
+          "O'chirish muddati",
+          "Ochiq aytish",
+          "Audit varag'i"
+        ]
+      },
+      "ru": {
+        "savol": "Под формой ссылка на политику. Какая это идея?",
+        "variantlar": [
+          "Необходимый минимум",
+          "Срок удаления",
+          "Открыто сообщать",
+          "Лист аудита"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "«30 kun»ni qanday tekshirasiz?",
+        "variantlar": [
+          "Agentdan yana so'raysiz",
+          "Eski band o'chganini ko'rasiz",
+          "Siyosatni qayta o'qiysiz",
+          "Keyingi ishga o'tasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Как проверите «30 дней»?",
+        "variantlar": [
+          "Ещё раз спросите агента",
+          "Увидите, что старая бронь удалена",
+          "Перечитаете политику",
+          "Перейдёте к следующему"
+        ]
+      }
+    }
+  ]
+}

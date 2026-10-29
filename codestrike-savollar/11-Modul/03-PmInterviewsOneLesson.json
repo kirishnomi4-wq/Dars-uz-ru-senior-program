@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m9d3-v1",
+  "key": "m9-03",
+  "modul": 11,
+  "tartib": 3,
+  "nom": {
+    "uz": "Ikki g'oyadan qaysi biri odamlarga kerak?",
+    "ru": "Какая из двух идей нужна людям?"
+  },
+  "src": "src/9-Modull/PmInterviewsOneLesson.jsx",
+  "barmoq_izi": "eceffde8abb6a36856d4f28c7a88e9b1",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Ikki g'oyaga intervyu savollari qanday bo'ladi?",
+        "variantlar": [
+          "Ikkalasiga bir xil",
+          "Har biriga alohida",
+          "Kuchlisiga ko'proq",
+          "Har biriga bitta-ikkita"
+        ]
+      },
+      "ru": {
+        "savol": "Какими будут вопросы интервью для двух идей?",
+        "variantlar": [
+          "Одинаковыми для обеих",
+          "Отдельными для каждой",
+          "Больше для сильной",
+          "По одному-два на каждую"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "To'garak g'oyasida savollarning nimasi almashadi?",
+        "variantlar": [
+          "Beshala savol birdan",
+          "Oxirgi savoldagi so'z",
+          "Birinchi savoldagi bo'lak",
+          "Savollar tartibi"
+        ]
+      },
+      "ru": {
+        "savol": "Что меняется в вопросах для идеи о кружках?",
+        "variantlar": [
+          "Все пять вопросов сразу",
+          "Слово в последнем вопросе",
+          "Часть в первом вопросе",
+          "Порядок вопросов"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi savol voqeani ochadi?",
+        "variantlar": [
+          "«Xarita bo'lsa, ochasizmi?»",
+          "«To'garak topish qiyinmi?»",
+          "«Odatda qanday tanlaysiz?»",
+          "«Yozda qanday qidirdingiz?»"
+        ]
+      },
+      "ru": {
+        "savol": "Какой вопрос раскрывает случай?",
+        "variantlar": [
+          "«Если будет карта, откроете?»",
+          "«Найти кружок трудно?»",
+          "«Как вы обычно выбираете?»",
+          "«Как вы искали летом?»"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "«Hozir nima bilan hal qilyapsiz?» nimani ochadi?",
+        "variantlar": [
+          "Qachon yuklab olishini",
+          "Bugun qanday yo'l tutishini",
+          "Qaysi g'oya yoqishini",
+          "Kimdan eshitganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что раскрывает «Чем вы решаете это сейчас?»?",
+        "variantlar": [
+          "Когда человек скачает",
+          "Как он поступает сегодня",
+          "Какая идея ему нравится",
+          "От кого он услышал"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida jamoa qanday yig'iladi?",
+        "variantlar": [
+          "Maktabdagi e'lon taxtasida",
+          "Maydon egasiga qo'ng'iroq",
+          "Telegram guruhiga yozib",
+          "Futbol ilovasi orqali"
+        ]
+      },
+      "ru": {
+        "savol": "Как собирают команду в примере Ментора?",
+        "variantlar": [
+          "Через доску объявлений в школе",
+          "Звонком владельцу поля",
+          "Пишут в Telegram-группу",
+          "Через футбольное приложение"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor misolida qaysi biri harakat belgisi?",
+        "variantlar": [
+          "Sinovga kun belgiladi",
+          "«Ajoyib g'oya» deb maqtadi",
+          "«Ishlatardim» deb aytdi",
+          "Intervyuda uzoq gapirdi"
+        ]
+      },
+      "ru": {
+        "savol": "Что в примере Ментора — знак действия?",
+        "variantlar": [
+          "Назначил день пробы",
+          "Похвалил: «Отличная идея»",
+          "Сказал «пользовался бы»",
+          "Долго говорил на интервью"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Harakat belgisi savoli qachon beriladi?",
+        "variantlar": [
+          "Salomlashgandan keyin",
+          "Birinchi savoldan oldin",
+          "Uchinchi savoldan keyin",
+          "Muammo savollaridan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда задают вопрос о знаке действия?",
+        "variantlar": [
+          "Сразу после приветствия",
+          "Перед первым вопросом",
+          "После третьего вопроса",
+          "После вопросов о проблеме"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Yozuvning harakat belgisi qatoriga nima tushadi?",
+        "variantlar": [
+          "Ism va sinov kuni",
+          "Faqat «ha» yoki «yo'q»",
+          "«Ishlatardim» degan gapi",
+          "G'oya haqidagi fikringiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что попадает в строку «знак действия» в записи?",
+        "variantlar": [
+          "Имя и день пробы",
+          "Только «да» или «нет»",
+          "Его слова «пользовался бы»",
+          "Ваше мнение об идее"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Airbnb o'smaganda asoschilar nima qilgan?",
+        "variantlar": [
+          "Tugmalarni o'zgartirgan",
+          "Uy egalariga xat yozgan",
+          "Uylarga o'zlari borgan",
+          "Ko'proq reklama bergan"
+        ]
+      },
+      "ru": {
+        "savol": "Что сделали основатели, когда Airbnb не рос?",
+        "variantlar": [
+          "Поменяли кнопки",
+          "Написали письма хозяевам",
+          "Сами пошли в квартиры",
+          "Дали больше рекламы"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Airbnb asoschilari uylarda nimani bilgan?",
+        "variantlar": [
+          "Narxlar balandligini",
+          "Egalar saytni bilmasligini",
+          "Mehmonlar shovqin qilishini",
+          "Suratlar yomonligini"
+        ]
+      },
+      "ru": {
+        "savol": "Что основатели Airbnb узнали в квартирах?",
+        "variantlar": [
+          "Что цены высокие",
+          "Что хозяева не знают сайт",
+          "Что гости шумят",
+          "Что фотографии плохие"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Sherik auditoriyadan emas. Yozuvi qanday?",
+        "variantlar": [
+          "Mashq yozuvi bo'ladi",
+          "Haqiqiy yozuv bo'ladi",
+          "Yozuv olinmaydi",
+          "Ikkita yozuv bo'ladi"
+        ]
+      },
+      "ru": {
+        "savol": "Партнёр не из аудитории. Какая это запись?",
+        "variantlar": [
+          "Тренировочная запись",
+          "Настоящая запись",
+          "Запись не берётся",
+          "Будет две записи"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Sherik javobini qanday yozasiz?",
+        "variantlar": [
+          "Uyda, eslab qolganingizcha",
+          "O'sha zahoti, u aytganidek",
+          "O'z xulosangiz bilan",
+          "Bitta so'z bilan qisqartirib"
+        ]
+      },
+      "ru": {
+        "savol": "Как вы записываете ответ партнёра?",
+        "variantlar": [
+          "Дома, как запомнили",
+          "Сразу, как он сказал",
+          "С вашим выводом",
+          "Сократив до одного слова"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "<p>Biz <strong>g'olibmiz</strong></p> — что будет видно?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Вся фраза жирная",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Видны и сами теги",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Жирное только «g'olibmiz»",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Видно только «Biz»",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая запись для картинки ПРАВИЛЬНАЯ?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "<img scr=\"jamoa.jpg\">",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<img src=\"jamoa.jpg\">",
+        "hint": "Верно!"
+      },
+      {
+        "value": "<imag src=\"jamoa.jpg\">",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<img href=\"jamoa.jpg\">",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В какой тег оборачивается имя каждого игрока в списке?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "ul",
+        "hint": "Неверно"
+      },
+      {
+        "value": "ol",
+        "hint": "Неверно"
+      },
+      {
+        "value": "li",
+        "hint": "Верно!"
+      },
+      {
+        "value": "a",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "<ul> с тремя <li>. Что будет на экране?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Нумерованный список 1·2·3",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Всё в одну строку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Три ячейки таблицы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Три пункта с точками",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "<a herf=\"...\">Kanal</a> — что будет?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "«Kanal» виден, но не нажимается",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ссылка работает как обычно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Страница не откроется",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вместо текста виден адрес",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Пусть «Chempionlar» будет крупнее всего. Какой тег?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "p",
+        "hint": "Неверно"
+      },
+      {
+        "value": "h1",
+        "hint": "Верно!"
+      },
+      {
+        "value": "li",
+        "hint": "Неверно"
+      },
+      {
+        "value": "strong",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен alt=\"Jamoa surati\"?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Текст виден, если фото не открылось",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Задаёт размер фото",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Рисует рамку вокруг фото",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Превращает фото в ссылку",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким тегом делается поле, куда пользователь ПИШЕТ имя?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "button",
+        "hint": "Неверно"
+      },
+      {
+        "value": "label",
+        "hint": "Неверно"
+      },
+      {
+        "value": "p",
+        "hint": "Неверно"
+      },
+      {
+        "value": "input",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Куда пишется видимое содержимое (заголовок, картинка)?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "head",
+        "hint": "Неверно"
+      },
+      {
+        "value": "body",
+        "hint": "Верно!"
+      },
+      {
+        "value": "title",
+        "hint": "Неверно"
+      },
+      {
+        "value": "html",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "<a href=\"...\">Kanalimiz</a> — что видно на экране?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Кликабельная надпись «Kanalimiz»",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сам адрес ссылки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Значок Telegram (картинка)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Слово «href»",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В какой строке тег закрыт ВЕРНО?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "<li>Aziz<li>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<li>Aziz<il>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<li>Aziz</li",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<li>Aziz</li>",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой тег сделает имя Сардора ЖИРНЫМ?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "p",
+        "hint": "Неверно"
+      },
+      {
+        "value": "li",
+        "hint": "Неверно"
+      },
+      {
+        "value": "strong",
+        "hint": "Верно!"
+      },
+      {
+        "value": "title",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

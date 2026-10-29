@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Для чего используется CSS?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Чтобы оформлять страницу",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы создавать структуру",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы хранить данные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы отправлять запросы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется h1 в h1 { color: red; }?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Свойство",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Селектор",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Значение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Комментарий",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое red в color: red;?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Селектор",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Свойство",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Значение",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Property",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство меняет цвет текста?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "background-color",
+        "hint": "Неверно"
+      },
+      {
+        "value": "margin",
+        "hint": "Неверно"
+      },
+      {
+        "value": "font-size",
+        "hint": "Неверно"
+      },
+      {
+        "value": "color",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство задаёт цвет фона?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "background-color",
+        "hint": "Верно!"
+      },
+      {
+        "value": "color",
+        "hint": "Неверно"
+      },
+      {
+        "value": "border-color",
+        "hint": "Неверно"
+      },
+      {
+        "value": "font-family",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство выбирает вид шрифта (Arial)?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "font-size",
+        "hint": "Неверно"
+      },
+      {
+        "value": "font-family",
+        "hint": "Верно!"
+      },
+      {
+        "value": "font-weight",
+        "hint": "Неверно"
+      },
+      {
+        "value": "text-align",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство задаёт размер шрифта?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "font-family",
+        "hint": "Неверно"
+      },
+      {
+        "value": "color",
+        "hint": "Неверно"
+      },
+      {
+        "value": "font-size",
+        "hint": "Верно!"
+      },
+      {
+        "value": "line-height",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство делает текст жирным (bold)?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "font-style",
+        "hint": "Неверно"
+      },
+      {
+        "value": "text-align",
+        "hint": "Неверно"
+      },
+      {
+        "value": "font-size",
+        "hint": "Неверно"
+      },
+      {
+        "value": "font-weight",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой из них — ВНУТРЕННИЙ отступ между контентом и краем?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "padding",
+        "hint": "Верно!"
+      },
+      {
+        "value": "margin",
+        "hint": "Неверно"
+      },
+      {
+        "value": "border",
+        "hint": "Неверно"
+      },
+      {
+        "value": "gap",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой из них — ВНЕШНИЙ отступ между элементом и остальными?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "padding",
+        "hint": "Неверно"
+      },
+      {
+        "value": "margin",
+        "hint": "Верно!"
+      },
+      {
+        "value": "color",
+        "hint": "Неверно"
+      },
+      {
+        "value": "font-size",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что ставится в конце каждой строки CSS?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Точка (.)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запятая (,)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Точка с запятой (;)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Двоеточие (:)",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой знак стоит между свойством и значением?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Точка с запятой (;)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Равно (=)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запятая",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Двоеточие (:)",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

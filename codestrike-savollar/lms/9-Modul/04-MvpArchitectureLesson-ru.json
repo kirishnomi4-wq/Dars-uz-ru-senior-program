@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каких частей хватает MVP «Maydon»?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Сайт, Backend и Database",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только сайт — в браузере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт, Backend, AI и бот",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только Database и таблица",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая часть рисует ячейки на экране?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Backend — вычисляет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт — показывает",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Database — хранит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Агент — написал код",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что добавляется в таблицу bandlar при новой брони?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Новый столбец",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Новая таблица",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Новая строка",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Новый маршрут",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему в таблице нет столбца baho?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Database не хранит оценку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Оценку вычисляет сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Число столбцов ограничено",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Оценка в списке «не делаем»",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "По какому маршруту сайт получает ячейки?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "GET /vaqtlar",
+        "hint": "Верно!"
+      },
+      {
+        "value": "POST /bandlar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "POST /kirish",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GET /bandlar",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На понедельник строк нет. Что покажет сайт?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Ячейки не появятся",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Шесть ячеек, все свободны",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Шесть ячеек, все заняты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт покажет ошибку",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Брони запросили без токена. Что сделает Backend?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Вернёт весь список",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вернёт пустой список",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Откажет с кодом 401",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Закроет сайт",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Владелец ввёл верный пароль. Что вернёт POST /kirish?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Список броней",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сам пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Список ячеек",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Токен для владельца",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": ".env не должен попасть в репо. Что делаете?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Впишу в .gitignore",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Поменяю имя файла",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перенесу файл в web/",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удалю строки внутри",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое стек?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Один большой файл программы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Технологии, работающие вместе",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Кнопки и страницы сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Таблицы в Database",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сайт в интернете, Backend у вас. Что увидит друг?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Все ячейки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего — не откроется",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Страницу, но без ячеек",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только занятые ячейки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем схема до написания кода?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Код работает быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Дизайн получится красивее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Деплой не понадобится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вы точно скажете агенту, где что",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

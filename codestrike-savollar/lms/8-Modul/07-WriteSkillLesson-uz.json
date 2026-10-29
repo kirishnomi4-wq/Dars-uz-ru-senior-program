@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Skill'ning asosiy qismlari qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Rang, o'lcham va narx",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server, Database va dizayn",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "name, description va body",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasm, video va ovoz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "description AI'ga nimani aytadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Nima qiladi, qachon kerak",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faylning rangi va o'lchami",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabar kimga yuborilishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Necha ball berilishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qadamlarni kuchli qiladigan narsa?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Iloji boricha uzun matn",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat sarlavha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yaxshi qil» degan umumiy gap",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq qadamlar va misol",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kontekst-injiniring nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Skill'ni noldan qayta yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI'ga to'g'ri ko'rsatma berish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "AI modelini almashtirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kuchliroq model sotib olish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Natija kutilgandek chiqmasa, eng yaxshi qadam?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "O'sha joyni tuzatib sinash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Skill'dan voz kechish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasini qayta yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kuchliroq model izlash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega Skill'ni sinab ko'rish kerak?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Chiroyliroq ko'rinishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ballni oshirish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faylni o'chirish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishlashini faqat sinab bilamiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi description qanday bo'ladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Bitta so'z, masalan «javob»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nima va qachon ekanini aytadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Noaniq, har narsaga mos",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat emojidan iborat",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Misol Skill uchun nega foydali?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Faylni uzunroq qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat bezak uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kutilgan natijani ko'rsatadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qanday ta'sir qilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Skill narxni unutyapti. Eng aniq tuzatish?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Hammasini qayta yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "description'ni uzaytirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI'ga ko'proq pul to'lash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qadamlarga narx qoidasi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Skill yozishning to'g'ri sikli qaysi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Yozish → yuborish → kutish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozish → sinash → tuzatish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinash → o'chirish → unutish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nusxalash → yuborish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Noaniq description nimaga olib keladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Skill tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qanday ta'sir yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kerakli paytda ishlamaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ball o'zi oshib ketadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi Skill qanday bo'ladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Bitta vazifaga, aniq, sinalgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Iloji boricha uzun, batafsil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'p vazifani birga qiladigan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat nomdan iborat",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

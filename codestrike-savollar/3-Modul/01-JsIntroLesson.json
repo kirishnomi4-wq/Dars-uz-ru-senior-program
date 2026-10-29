@@ -1,0 +1,278 @@
+{
+  "lessonId": "js-intro-01-v18",
+  "key": "m2-01",
+  "modul": 3,
+  "tartib": 1,
+  "nom": {
+    "uz": "Sistema va Algoritm",
+    "ru": "Система и алгоритм"
+  },
+  "src": "src/2-Modull/JsIntroLesson.jsx",
+  "barmoq_izi": "079fc35bd1cc273b6c4ebb7f43ce0fbf",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Sistema — bu nima?",
+        "variantlar": [
+          "Tasodifiy narsalar to'plami",
+          "Birga ishlaydigan qismlar",
+          "Faqat kompyuter dasturi",
+          "Bo'linmaydigan bitta qism"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое система?",
+        "variantlar": [
+          "Набор случайных вещей",
+          "Части, работающие вместе",
+          "Только компьютерная программа",
+          "Одна неделимая часть"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi biri sistema?",
+        "variantlar": [
+          "Yo'ldagi bitta tosh",
+          "Bo'sh yopiq quti",
+          "Futbol jamoasi",
+          "Alohida bitta harf"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — система?",
+        "variantlar": [
+          "Один камень на дороге",
+          "Пустая закрытая коробка",
+          "Футбольная команда",
+          "Одна отдельная буква"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Sistemada «komponent» nima?",
+        "variantlar": [
+          "Sistemaning bir qismi",
+          "Sistemaning umumiy nomi",
+          "Sistemadan tashqari narsa",
+          "Sistemadagi kichik xato"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое «компонент» в системе?",
+        "variantlar": [
+          "Одна часть системы",
+          "Общее название системы",
+          "Вещь вне системы",
+          "Мелкая ошибка в системе"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "Sistemada «bog'lanish» nima?",
+        "variantlar": [
+          "Qismlar orasidagi aloqa",
+          "Eng katta va og'ir qism",
+          "Sistemaning umumiy nomi",
+          "Keraksiz ortiqcha qism"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое «связь» в системе?",
+        "variantlar": [
+          "Путь влияния между частями",
+          "Самая большая и тяжёлая часть",
+          "Общее название системы",
+          "Лишняя ненужная часть"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Algoritm — bu nima?",
+        "variantlar": [
+          "Tartibsiz fikrlar to'plami",
+          "Aniq qadamlar ketma-ketligi",
+          "Murakkab matematik formula",
+          "Kompyuterning boshqa nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое алгоритм?",
+        "variantlar": [
+          "Набор беспорядочных мыслей",
+          "Чёткая последовательность шагов",
+          "Сложная математическая формула",
+          "Другое название компьютера"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Ertalabki tartib — uyg'on, yuvin, kiyin — bu nimaga misol?",
+        "variantlar": [
+          "Sistema",
+          "Komponent",
+          "Algoritm",
+          "Bog'lanish"
+        ]
+      },
+      "ru": {
+        "savol": "Утренний порядок — проснуться, умыться, одеться — пример чего?",
+        "variantlar": [
+          "Система",
+          "Компонент",
+          "Алгоритм",
+          "Связь"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Algoritmda qadamlar tartibi muhimmi?",
+        "variantlar": [
+          "Yo'q, farqi yo'q",
+          "Faqat kompyuterda muhim",
+          "Ha, natija buziladi",
+          "Faqat oxirgi qadam muhim"
+        ]
+      },
+      "ru": {
+        "savol": "Важен ли в алгоритме порядок шагов?",
+        "variantlar": [
+          "Нет, разницы нет",
+          "Важен только в компьютере",
+          "Да, иначе сломается результат",
+          "Важен только последний шаг"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "«Yomg'ir yog'sa — soyabon ol» — bu nima?",
+        "variantlar": [
+          "Ketma-ketlik",
+          "Sikl",
+          "Komponent",
+          "Shart"
+        ]
+      },
+      "ru": {
+        "savol": "«Если идёт дождь — возьми зонт» — что это?",
+        "variantlar": [
+          "Последовательность",
+          "Цикл",
+          "Компонент",
+          "Условие"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Amalni ko'p marta takrorlash nima deyiladi?",
+        "variantlar": [
+          "Shart",
+          "Sikl",
+          "Bog'lanish",
+          "Komponent"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется многократное повторение действия?",
+        "variantlar": [
+          "Условие",
+          "Цикл",
+          "Связь",
+          "Компонент"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Futbol jamoasi nega sistema?",
+        "variantlar": [
+          "O'yinchi ko'p bo'lgani uchun",
+          "Maydon katta bo'lgani uchun",
+          "To'p dumaloq bo'lgani uchun",
+          "Hammasi birga ishlagani uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Почему футбольная команда — система?",
+        "variantlar": [
+          "Потому что игроков много",
+          "Потому что поле большое",
+          "Потому что мяч круглый",
+          "Потому что все работают вместе"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Algoritmning 3 asosiy «g'ishti» qaysilar?",
+        "variantlar": [
+          "Ketma-ketlik, Shart, Sikl",
+          "Rang, Shakl, O'lcham",
+          "Kim, Muammo, Yechim",
+          "Boshi, O'rtasi, Oxiri"
+        ]
+      },
+      "ru": {
+        "savol": "Какие 3 главных «кирпича» у алгоритма?",
+        "variantlar": [
+          "Последовательность, Условие, Цикл",
+          "Цвет, Форма, Размер",
+          "Кто, Проблема, Решение",
+          "Начало, Середина, Конец"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "«Yashil bo'lsa — yur, qizil bo'lsa — to'xta» — bu nima?",
+        "variantlar": [
+          "Sikl",
+          "Ketma-ketlik",
+          "Bog'lanish",
+          "Shart"
+        ]
+      },
+      "ru": {
+        "savol": "«Зелёный — иди, красный — стой» — что это?",
+        "variantlar": [
+          "Цикл",
+          "Последовательность",
+          "Связь",
+          "Условие"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "bot-feedback-05-06-v18",
+  "key": "m5-09",
+  "modul": 7,
+  "tartib": 9,
+  "nom": {
+    "uz": "Foydalanuvchi fikri va iteratsiya",
+    "ru": "Отзывы пользователей и итерация"
+  },
+  "src": "src/5-Modull/BotFeedbackIterationLesson.jsx",
+  "barmoq_izi": "c180c4506ddd52983397ace4b5cc0bee",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "«/start bosdim, menu chiqmadi» — qaysi tur?",
+        "variantlar": [
+          "Maqtov: mijoz mamnun",
+          "Bug: joy va muammo bor",
+          "Taklif: yo'q narsa so'radi",
+          "Shovqin: e'tibor shart emas"
+        ]
+      },
+      "ru": {
+        "savol": "«Нажал /start, меню не появилось» — какой тип?",
+        "variantlar": [
+          "Похвала: клиент доволен",
+          "Баг: есть место и проблема",
+          "Предложение: просит новое",
+          "Шум: можно не обращать внимания"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "«Yaxshi bot» degan fikr nega kam foydali?",
+        "variantlar": [
+          "Bu salbiy fikr",
+          "Maqtov kam uchraydi",
+          "Botni yomon ko'rsatadi",
+          "Aniq joy aytilmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему отзыв «Хороший бот» мало полезен?",
+        "variantlar": [
+          "Это негативный отзыв",
+          "Похвала редкость",
+          "Выставляет бота плохим",
+          "Не названо конкретное место"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "18 kishi bir xil, 1 kishi boshqa narsa yozdi. Qaysi avval?",
+        "variantlar": [
+          "18 kishinikini",
+          "1 kishinikini",
+          "Ikkalasini birga",
+          "Hech birini"
+        ]
+      },
+      "ru": {
+        "savol": "18 человек написали одно, 1 — другое. Что сначала?",
+        "variantlar": [
+          "То, что написали 18",
+          "То, что написал 1",
+          "Оба сразу",
+          "Ни то, ни другое"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi tuzatish birinchi — nimaga qarab?",
+        "variantlar": [
+          "Eng jahldor fikrga qarab",
+          "Birinchi kelgan fikrga",
+          "Chastota va ta'sirga qarab",
+          "O'zimga qiziq tuyulganiga"
+        ]
+      },
+      "ru": {
+        "savol": "Какую правку первой — по какому признаку?",
+        "variantlar": [
+          "По самому злому отзыву",
+          "По первому пришедшему",
+          "По частоте и влиянию",
+          "По тому, что интересно мне"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Ko'p odam suhbatning bir joyida ketdi. Demak?",
+        "variantlar": [
+          "Odamlar botdan mamnun",
+          "O'sha qadam xalaqit beryapti",
+          "Bot juda tez ishlayapti",
+          "Bu shunchaki tasodif"
+        ]
+      },
+      "ru": {
+        "savol": "Многие ушли в одном месте диалога. Значит?",
+        "variantlar": [
+          "Люди довольны ботом",
+          "Этот шаг чем-то мешает",
+          "Бот работает слишком быстро",
+          "Это просто случайность"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Narx qo'shilgach, shikoyat 18 dan 2 ga tushdi. Demak?",
+        "variantlar": [
+          "Tuzatish ishlamadi",
+          "Sonlar tasodifiy",
+          "Yangi bug chiqdi",
+          "Tuzatish ishladi"
+        ]
+      },
+      "ru": {
+        "savol": "После добавления цены жалоб стало не 18, а 2. Значит?",
+        "variantlar": [
+          "Правка не сработала",
+          "Числа случайны",
+          "Появился новый баг",
+          "Правка сработала"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "«Bot ahmoq» fikridan nega tuzatish chiqmaydi?",
+        "variantlar": [
+          "Unda joy va muammo yo'q",
+          "Unga javob yozib bo'lmaydi",
+          "Yozgan odam ishlatmagan",
+          "U maqtov hisoblanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему из отзыва «Бот тупой» не выйдет правки?",
+        "variantlar": [
+          "В нём нет места и проблемы",
+          "На него нельзя ответить",
+          "Автор не пользовался ботом",
+          "Это считается похвалой"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Taklif faqat 1 kishiga kerak. Nima qilasiz?",
+        "variantlar": [
+          "Darrov qo'shaman",
+          "U odamni bloklayman",
+          "«Hozir emas» deyman",
+          "Hamma so'rovni qo'shaman"
+        ]
+      },
+      "ru": {
+        "savol": "Предложение нужно только одному. Что вы сделаете?",
+        "variantlar": [
+          "Сразу добавлю",
+          "Заблокирую его",
+          "Скажу «не сейчас»",
+          "Добавлю все просьбы"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Tuzatishdan keyin nima qilasiz?",
+        "variantlar": [
+          "Hech narsa: albatta ishlaydi",
+          "Qayta o'lchayman",
+          "Yana katta o'zgarish qilaman",
+          "Fikr yig'ishni to'xtataman"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы делаете после правки?",
+        "variantlar": [
+          "Ничего: точно сработает",
+          "Снова измеряю",
+          "Делаю ещё большое изменение",
+          "Перестаю собирать отзывы"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Birinchi versiya chiqdi. Ish tugadimi?",
+        "variantlar": [
+          "Yo'q: fikr bilan yaxshilanadi",
+          "Ha: bu tayyor mahsulot",
+          "Testlar o'tsa — tugadi",
+          "Shikoyat kelmasa — tugadi"
+        ]
+      },
+      "ru": {
+        "savol": "Первая версия вышла. Работа закончена?",
+        "variantlar": [
+          "Нет: улучшается по отзывам",
+          "Да: это готовый продукт",
+          "Если тесты прошли — да",
+          "Если нет жалоб — да"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Antigravity'ga shikoyat o'rniga nima berasiz?",
+        "variantlar": [
+          "Fikr yozgan odam ismini",
+          "Bot tokenini",
+          "Yangi g'oyalar ro'yxatini",
+          "Aniq o'zgarishni"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы даёте Antigravity вместо жалобы?",
+        "variantlar": [
+          "Имя автора отзыва",
+          "Токен бота",
+          "Список новых идей",
+          "Конкретное изменение"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Maqtovga nega e'tibor berasiz?",
+        "variantlar": [
+          "Maqtovni ham tuzatish kerak",
+          "Yozganga chegirma beriladi",
+          "Nima yaxshi ishlashini aytadi",
+          "Maqtovda ko'p bug bo'ladi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем обращать внимание на похвалу?",
+        "variantlar": [
+          "Похвалу тоже надо править",
+          "Автору дают скидку",
+          "Говорит, что работает хорошо",
+          "В похвале много багов"
+        ]
+      }
+    }
+  ]
+}

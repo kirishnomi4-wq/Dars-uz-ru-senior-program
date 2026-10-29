@@ -1,0 +1,278 @@
+{
+  "lessonId": "m12-04-v1",
+  "key": "m12-04",
+  "modul": 14,
+  "tartib": 4,
+  "nom": {
+    "uz": "Loyiha kuni: demo uchun sayqal",
+    "ru": "День проекта: шлифовка для демо"
+  },
+  "src": "src/12-Modull/PolishDayLesson.jsx",
+  "barmoq_izi": "63e85c45ebf5c3b1f65820de4a8376c3",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Demo yo'lida qaysi uch joy o'zgaradi?",
+        "variantlar": [
+          "Bosish, yuklanish, natija",
+          "Kirish, ro'yxat, chiqish",
+          "Rasm, kutubxona, kod hajmi",
+          "Lending, maxfiylik, oferta"
+        ]
+      },
+      "ru": {
+        "savol": "Какие три места меняются на пути демо?",
+        "variantlar": [
+          "Нажатие, загрузка, результат",
+          "Вход, регистрация, выход",
+          "Картинки, библиотека, объём кода",
+          "Лендинг, конфиденциальность, оферта"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Sayqaldan keyin demo yo'lida nima o'zgaradi?",
+        "variantlar": [
+          "Ekranlar soni va tartibi",
+          "Uch joyning ko'rinishi",
+          "Backend va Database",
+          "Ilova nomi va rangi"
+        ]
+      },
+      "ru": {
+        "savol": "Что меняется на пути демо после шлифовки?",
+        "variantlar": [
+          "Число экранов и порядок",
+          "Вид трёх мест",
+          "Backend и Database",
+          "Название и цвет приложения"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Javob sekin kelsa, bosilgan tugma qanday turadi?",
+        "variantlar": [
+          "Avvalgidek turadi",
+          "Yo'qolib qoladi",
+          "«Qo'shilmoqda…», o'chiq",
+          "«Qo'shildingiz» bo'ladi"
+        ]
+      },
+      "ru": {
+        "savol": "Как выглядит нажатая кнопка, если ответ медленный?",
+        "variantlar": [
+          "Как прежде",
+          "Исчезает",
+          "«Qo'shilmoqda…», неактивна",
+          "Становится «Qo'shildingiz»"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Joy egallovchi qayerda turadi?",
+        "variantlar": [
+          "Ekranning eng tepasida",
+          "Ro'yxatdan oldingi ekranda",
+          "Tugma yozuvi o'rnida",
+          "Ma'lumot o'rnida"
+        ]
+      },
+      "ru": {
+        "savol": "Где стоит заполнитель?",
+        "variantlar": [
+          "В самом верху экрана",
+          "На экране перед списком",
+          "Вместо надписи кнопки",
+          "На месте данных"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Kulrang karta nega haqiqiy karta o'lchamida?",
+        "variantlar": [
+          "Ro'yxat kelganda sakramasin",
+          "Chiroyli ko'rinsin",
+          "Backend tez javob bersin",
+          "Kutish yozuvi kerak emas"
+        ]
+      },
+      "ru": {
+        "savol": "Почему серая карточка размером с настоящую?",
+        "variantlar": [
+          "Чтобы не было скачка при загрузке списка",
+          "Чтобы выглядела красиво",
+          "Чтобы Backend ответил быстрее",
+          "Надпись ожидания не нужна"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Kutish yozuvi bor bo'lsa, kulrang kartalar nima beradi?",
+        "variantlar": [
+          "Ro'yxatni tezlatadi",
+          "Nima kelishini ko'rsatadi",
+          "Backend'ni uyg'otadi",
+          "Yozuvni almashtiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что дают серые карточки, если есть надпись ожидания?",
+        "variantlar": [
+          "Ускоряют список",
+          "Показывают, что придёт",
+          "Будят Backend",
+          "Заменяют надпись"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Harakat kamaytirilsa, sayqaldan nima qoladi?",
+        "variantlar": [
+          "Hech narsa qolmaydi",
+          "Faqat animatsiyalar",
+          "Yozuv, kartalar va son",
+          "Faqat kutish belgisi"
+        ]
+      },
+      "ru": {
+        "savol": "Что остаётся от шлифовки при уменьшенном движении?",
+        "variantlar": [
+          "Ничего не остаётся",
+          "Только анимации",
+          "Надпись, карточки и число",
+          "Только значок ожидания"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Harakat kamaytirilganini DevTools'da qayerda tanlaysiz?",
+        "variantlar": [
+          "Network bo'limida",
+          "Lighthouse bo'limida",
+          "Console bo'limida",
+          "Rendering bo'limida"
+        ]
+      },
+      "ru": {
+        "savol": "Где в DevTools выбрать уменьшение движения?",
+        "variantlar": [
+          "В разделе Network",
+          "В разделе Lighthouse",
+          "В разделе Console",
+          "В разделе Rendering"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Ro'yxat sekin kelishini DevTools'da qanday ko'rasiz?",
+        "variantlar": [
+          "Network'da «Slow 4G»",
+          "Lighthouse'da «Mobile»",
+          "Rendering'da «reduce»",
+          "Console'da xato qatori"
+        ]
+      },
+      "ru": {
+        "savol": "Как в DevTools увидеть медленную загрузку списка?",
+        "variantlar": [
+          "«Slow 4G» в Network",
+          "«Mobile» в Lighthouse",
+          "«reduce» в Rendering",
+          "Строка ошибки в Console"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Muvaffaqiyat animatsiyasi qanday bo'ladi?",
+        "variantlar": [
+          "Uzun, butun ekran bo'ylab",
+          "Qisqa va bir marta",
+          "To'xtamay miltillaydi",
+          "Har soniyada takrorlanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой бывает анимация успеха?",
+        "variantlar": [
+          "Долгой, на весь экран",
+          "Короткой и один раз",
+          "Мигает без остановки",
+          "Повторяется каждую секунду"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Animatsiyaga nega yangi kutubxona qo'shilmaydi?",
+        "variantlar": [
+          "Faqat web'da ishlaydi",
+          "Agent o'rnata olmaydi",
+          "Kod hajmi oshishi mumkin",
+          "Backend'ni sekinlatadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему для анимации не добавляют новую библиотеку?",
+        "variantlar": [
+          "Работает только в вебе",
+          "Агент не может установить",
+          "Может вырасти объём кода",
+          "Замедляет Backend"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Sayqal ishlashini qanday bilasiz?",
+        "variantlar": [
+          "Agent «tayyor» deydi",
+          "Kodda animatsiya bor",
+          "Sinfdosh «chiroyli» deydi",
+          "Sekin tarmoqda ko'rasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Как узнать, что шлифовка работает?",
+        "variantlar": [
+          "Агент говорит «готово»",
+          "В коде есть анимация",
+          "Одноклассник говорит «красиво»",
+          "Видите сами на медленной сети"
+        ]
+      }
+    }
+  ]
+}

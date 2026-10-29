@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m12d12-v1",
+  "key": "m12-12",
+  "modul": 14,
+  "tartib": 12,
+  "nom": {
+    "uz": "Keyingi olti oyda nima qilasiz?",
+    "ru": "Что вы будете делать следующие полгода?"
+  },
+  "src": "src/12-Modull/PmNextStepsLesson.jsx",
+  "barmoq_izi": "e765a069f6a10faa4a073aab1b08ec08",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Olti oylik reja qaysi uch yo'nalishdan iborat?",
+        "variantlar": [
+          "Mahsulot, ko'nikma va ish",
+          "Muammo, Bozor va Yechim",
+          "Pitch, demo va video",
+          "Lending, ilova, Backend"
+        ]
+      },
+      "ru": {
+        "savol": "Из каких трёх направлений состоит план на шесть месяцев?",
+        "variantlar": [
+          "Продукт, навык и работа",
+          "Проблема, Рынок и Решение",
+          "Питч, демо и видео",
+          "Лендинг, приложение, Backend"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor «Backend testlari»ni qayerga qo'ydi?",
+        "variantlar": [
+          "Mahsulot yo'nalishiga",
+          "Ko'nikma yo'nalishiga",
+          "Ish yo'nalishiga",
+          "Rejadan tashqariga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда Ментор отнёс «Тесты Backend»?",
+        "variantlar": [
+          "В направление «Продукт»",
+          "В направление «Навык»",
+          "В направление «Работа»",
+          "Вне плана"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Mahsulot yo'nalishida qanday qaror yoziladi?",
+        "variantlar": [
+          "Ilova rangini tanlash",
+          "Investordan pul so'rash",
+          "Davom etish yoki to'xtatish",
+          "Kimdan baho olish"
+        ]
+      },
+      "ru": {
+        "savol": "Какое решение пишут в направлении «Продукт»?",
+        "variantlar": [
+          "Выбор цвета приложения",
+          "Просьба денег у инвестора",
+          "Продолжать или остановить",
+          "У кого получить оценку"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "To'xtatish haqida qaysi gap to'g'ri?",
+        "variantlar": [
+          "To'xtatish — mag'lubiyat",
+          "Ko'nikma ham to'xtaydi",
+          "Faqat Mentor ruxsati bilan",
+          "Sababi bilan yozilsa — qaror"
+        ]
+      },
+      "ru": {
+        "savol": "Что верно о решении остановить?",
+        "variantlar": [
+          "Остановка — поражение",
+          "Навык тоже остановится",
+          "Только с разрешения Ментора",
+          "С причиной — это решение"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor davom ettirishga qaysi sababni yozgan?",
+        "variantlar": [
+          "Uch yozma tasdiqni",
+          "Guruhdagi 60 kishini",
+          "Funksiyalar ko'pligini",
+          "Pul va'da qilinganini"
+        ]
+      },
+      "ru": {
+        "savol": "Какую причину продолжать написал Ментор?",
+        "variantlar": [
+          "Три письменных согласия",
+          "60 человек в группе",
+          "Много функций",
+          "Обещание денег"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Oylik maqsad nimani aytadi?",
+        "variantlar": [
+          "Bir kundagi aniq harakatni",
+          "Oy oxirida nimaga yetishni",
+          "Olti oydagi katta natijani",
+          "Mentor qo'ygan bahoni"
+        ]
+      },
+      "ru": {
+        "savol": "О чём говорит цель на месяц?",
+        "variantlar": [
+          "Об одном действии на день",
+          "Чего достичь к концу месяца",
+          "О большом итоге за полгода",
+          "Об оценке Ментора"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Birinchi qadamda qaysi ikki narsa bo'ladi?",
+        "variantlar": [
+          "Mentor imzosi va tasdig'i",
+          "Katta natija va narxi",
+          "Aniq harakat va sanasi",
+          "Do'stlar ismi va telefoni"
+        ]
+      },
+      "ru": {
+        "savol": "Какие две вещи есть в первом шаге?",
+        "variantlar": [
+          "Подпись и согласие Ментора",
+          "Большой итог и его цена",
+          "Конкретное действие и дата",
+          "Имена и телефоны друзей"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentorning 1-oy maqsadi qayerdan ko'chdi?",
+        "variantlar": [
+          "1-darsdagi Bozordan",
+          "Demo ssenariysidan",
+          "Diamond Challenge'dan",
+          "13-Modul hisobotidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда перенесена цель Ментора на 1-й месяц?",
+        "variantlar": [
+          "Из Рынка на 1-м уроке",
+          "Из сценария демо",
+          "Из Diamond Challenge",
+          "Из отчёта 13-го модуля"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Qadam o'z kunida qilinmadi. Nima qilasiz?",
+        "variantlar": [
+          "Sabab va yangi sana yozaman",
+          "«Qilindi» deb qo'yaman",
+          "Rejani o'chirib tashlayman",
+          "Indamay o'tib ketaman"
+        ]
+      },
+      "ru": {
+        "savol": "Шаг не сделан в свой день. Что сделаете?",
+        "variantlar": [
+          "Запишу причину и новую дату",
+          "Отмечу «сделано»",
+          "Удалю план",
+          "Молча пропущу"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Yakkama-yakkada reja bilan nima bo'ladi?",
+        "variantlar": [
+          "Sinfga o'qib beriladi",
+          "Mentor bilan ko'riladi",
+          "Mentor qayta yozadi",
+          "Baholanib, reyting chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что происходит с планом один на один?",
+        "variantlar": [
+          "Его читают классу",
+          "Смотрят вместе с Ментором",
+          "Ментор переписывает",
+          "Оценивают и составляют рейтинг"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Buyurtmada pul va kelishuv kim orqali bo'ladi?",
+        "variantlar": [
+          "Buyurtmachi bilan yolg'iz",
+          "Sinfdosh orqali, yashirin",
+          "Ota-onangiz orqali",
+          "Notanish odam orqali"
+        ]
+      },
+      "ru": {
+        "savol": "Через кого деньги и договорённость в заказе?",
+        "variantlar": [
+          "Наедине с заказчиком",
+          "Тайно через одноклассника",
+          "Через родителей",
+          "Через незнакомца"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi reja gapi aniq yozilgan?",
+        "variantlar": [
+          "6-oy: ilovam mashhur bo'ladi",
+          "1-oy: hammasini o'rganaman",
+          "2-oy: qachondir boshlayman",
+          "1-oy: sinfda kitob almashuvi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка плана написана конкретно?",
+        "variantlar": [
+          "6-й месяц: приложение станет известным",
+          "1-й месяц: выучу всё",
+          "2-й месяц: когда-нибудь начну",
+          "1-й месяц: обмен книгами в классе"
+        ]
+      }
+    }
+  ]
+}

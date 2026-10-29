@@ -1,0 +1,278 @@
+{
+  "lessonId": "edge-cases-04b-02-v18",
+  "key": "m4b-03",
+  "modul": 6,
+  "tartib": 7,
+  "nom": {
+    "uz": "Edge cases va error path",
+    "ru": "Граничные случаи и обработка ошибок"
+  },
+  "src": "src/4b-Modull/EdgeCasesTestLesson.jsx",
+  "barmoq_izi": "a3b61dd17bd1745f7bcf9064cde97747",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Edge case nima?",
+        "variantlar": [
+          "Eng ko'p uchraydigan kirish",
+          "Funksiya yoki o'zgaruvchi nomi",
+          "0, manfiy yoki juda katta son",
+          "Doim xatosiz o'tadigan kirish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое edge case?",
+        "variantlar": [
+          "Самый частый ввод",
+          "Имя функции или переменной",
+          "0, отрицательное или огромное число",
+          "Ввод, который всегда проходит"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Himoyasiz orderTotal(10000, 0) nima beradi?",
+        "variantlar": [
+          "Error — darhol to'xtaydi",
+          "NaN — hisob buziladi",
+          "10000 — bitta narx",
+          "0 — bepul, xato sezilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что вернёт незащищённая orderTotal(10000, 0)?",
+        "variantlar": [
+          "Error — сразу остановится",
+          "NaN — расчёт сломается",
+          "10000 — цена одной",
+          "0 — бесплатно, ошибку не видно"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Himoyasiz funksiyaga «ikki» kelsa?",
+        "variantlar": [
+          "0 — matn nolga aylanadi",
+          "NaN — hisob jim buziladi",
+          "Error — so'rov rad etiladi",
+          "10000 — narx o'zgarmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если в незащищённую функцию придёт «ikki»?",
+        "variantlar": [
+          "0 — текст станет нулём",
+          "NaN — расчёт тихо ломается",
+          "Error — запрос отклонён",
+          "10000 — цена не меняется"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "Guard (himoya) qanday yoziladi?",
+        "variantlar": [
+          "if (shart) throw new Error()",
+          "console.log(quantity)",
+          "if (shart) return 0",
+          "Yozilmaydi — Jest o'zi tutadi"
+        ]
+      },
+      "ru": {
+        "savol": "Как пишется guard (защита)?",
+        "variantlar": [
+          "if (условие) throw new Error()",
+          "console.log(quantity)",
+          "if (условие) return 0",
+          "Не пишется — Jest поймает сам"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "f() xato tashlashini qaysi yozuv sinaydi?",
+        "variantlar": [
+          "expect(f()).toThrow()",
+          "expect(f()).toBe(0)",
+          "f().toThrow()",
+          "expect(() => f()).toThrow()"
+        ]
+      },
+      "ru": {
+        "savol": "Какая запись проверяет, что f() бросает ошибку?",
+        "variantlar": [
+          "expect(f()).toThrow()",
+          "expect(f()).toBe(0)",
+          "f().toThrow()",
+          "expect(() => f()).toThrow()"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "toThrow'da () => yozilmasa?",
+        "variantlar": [
+          "Test sekinroq, natija bir xil",
+          "Hech narsa o'zgarmaydi",
+          "Xato chiqib, test o'zi qulaydi",
+          "Jest ogohlantirib, o'tkazadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если в toThrow не написать () =>?",
+        "variantlar": [
+          "Тест медленнее, итог тот же",
+          "Ничего не изменится",
+          "Ошибка вылетит, тест упадёт сам",
+          "Jest предупредит и пропустит"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Boundary sinovida nima tekshiriladi?",
+        "variantlar": [
+          "Ikki tomon: 1 va 0",
+          "Faqat eng katta qiymat",
+          "Faqat manfiy sonlar",
+          "Faqat matnli kirish"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяют в boundary-тесте?",
+        "variantlar": [
+          "Обе стороны: 1 и 0",
+          "Только самое большое значение",
+          "Только отрицательные числа",
+          "Только текстовый ввод"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "throw API'da qanday javobga aylanadi?",
+        "variantlar": [
+          "200 OK",
+          "400 Bad Request",
+          "500 Internal Error",
+          "Hech qanday javob"
+        ]
+      },
+      "ru": {
+        "savol": "Во что превращается throw в API?",
+        "variantlar": [
+          "200 OK",
+          "400 Bad Request",
+          "500 Internal Error",
+          "Ни во что"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Faqat happy path sinalsa, qanday xavf bor?",
+        "variantlar": [
+          "Edge xato sezilmay qoladi",
+          "Test biroz sekinlashadi",
+          "Dastur darhol yiqiladi",
+          "Xavf yo'q — shu yetarli"
+        ]
+      },
+      "ru": {
+        "savol": "Чем опасно, если проверен только happy path?",
+        "variantlar": [
+          "Ошибка на краю останется незамеченной",
+          "Тест немного замедлится",
+          "Программа сразу упадёт",
+          "Опасности нет — этого хватит"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "AI testida faqat happy path bo'lsa?",
+        "variantlar": [
+          "Ishonib o'tkazish",
+          "Edge testlarni qo'shish",
+          "Qaytadan yozib chiqish",
+          "console.log qo'shish"
+        ]
+      },
+      "ru": {
+        "savol": "Что делать, если в тесте от ИИ только happy path?",
+        "variantlar": [
+          "Довериться и пропустить",
+          "Добавить edge-тесты",
+          "Переписать заново",
+          "Добавить console.log"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "-5 dona uchun toBe(-50000) xatoni tutadimi?",
+        "variantlar": [
+          "Ha — manfiy son bor",
+          "Ha — toBe doim edge testi",
+          "Yo'q — xatoni to'g'ri deydi",
+          "Bu umuman test emas"
+        ]
+      },
+      "ru": {
+        "savol": "Ловит ли ошибку toBe(-50000) для -5 штук?",
+        "variantlar": [
+          "Да — там отрицательное число",
+          "Да — toBe всегда edge-тест",
+          "Нет — считает ошибку верной",
+          "Это вообще не тест"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Guard qo'shilgach eski toBe(0) testi?",
+        "variantlar": [
+          "Baribir PASS bo'laveradi",
+          "Jest uni o'zi o'chiradi",
+          "Jest uni o'zi tuzatadi",
+          "FAIL — endi xato tashlanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что станет со старым тестом toBe(0) после guard?",
+        "variantlar": [
+          "Останется PASS",
+          "Jest сам его удалит",
+          "Jest сам его исправит",
+          "FAIL — теперь бросается ошибка"
+        ]
+      }
+    }
+  ]
+}

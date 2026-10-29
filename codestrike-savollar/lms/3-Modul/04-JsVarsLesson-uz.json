@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "let name = \"Aziza\" — bu yerda «quti»ning nomi qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "name",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "\"Aziza\"",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "let",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "=",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "let age = 14 — 14 qanday ma'lumot turi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "string (matn)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "number (son)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "boolean",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "const",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi qiymat string (matn) hisoblanadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "42",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "true",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "\"Toshkent\"",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "3.141592",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "const PI = 3.14 dan keyin PI = 3 desak nima bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Xato beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "PI 3 ga o'zgaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasi saqlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PI o'chib ketadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kodda = belgisi nimani bildiradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ikki qiymat teng",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qutiga qiymat sol",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikki qiymatni taqqosla",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qiymatni o'chir",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "true va false qaysi ma'lumot turiga tegishli?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "string",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "number",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "boolean",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "const",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi holatda const ishlatgan ma'qul?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Haftadagi kunlar soni (7)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'yin bali (o'zgarib turadi)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi kiritgan matn",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jon soni jangda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "let score = 10; score = 25. Endi score qancha?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "10",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "25",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "35",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1025",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "let va const farqi nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "let son, const matn uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "const tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "let o'zgaradi, const yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Farqi yo'q, bir xil",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "\"14\" (qo'shtirnoqda) qanday tur?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "number — son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "boolean — ha/yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "const — o'zgarmas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "string — matn",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "var haqida to'g'ri gap qaysi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Yangi usul, doim ishlating",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "const bilan bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat sonlar uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eski usul, let/const afzal",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "let city = \"Toshkent\" da qiymat qo'shtirnoqda. Nega?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Chunki u son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shtirnoq shart emas edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chunki u boolean",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chunki u matn (string)",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

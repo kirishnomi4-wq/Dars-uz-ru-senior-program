@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m8d11-pitch-v2",
+  "key": "m8-11",
+  "modul": 10,
+  "tartib": 11,
+  "nom": {
+    "uz": "Besh daqiqada nimani ko'rsatasiz?",
+    "ru": "Что вы покажете за пять минут?"
+  },
+  "src": "src/8-Modull/PmPitchRehearsalLesson.jsx",
+  "barmoq_izi": "e9952f3acc8a77eccd8cf8aa7463b429",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "5 daqiqalik pitchda birinchi qaysi slayd turadi?",
+        "variantlar": [
+          "Muammo slaydi",
+          "Raqamlar slaydi",
+          "Yechim slaydi",
+          "Foydalanuvchi slaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой слайд стоит первым в пятиминутном питче?",
+        "variantlar": [
+          "Слайд «Проблема»",
+          "Слайд «Цифры»",
+          "Слайд «Решение»",
+          "Слайд «Пользователь»"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Endi nima qilasiz?» — qaysi slayd javob beradi?",
+        "variantlar": [
+          "Foydalanuvchi slaydi",
+          "Keyingi qadam slaydi",
+          "Raqamlar slaydi",
+          "Muammo slaydi"
+        ]
+      },
+      "ru": {
+        "savol": "«Что будете делать дальше?» — какой слайд отвечает?",
+        "variantlar": [
+          "Слайд пользователя",
+          "Слайд следующего шага",
+          "Слайд с цифрами",
+          "Слайд проблемы"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«B — 40 tadan 17» da 40 nimani sanaydi?",
+        "variantlar": [
+          "Saytni ochgan brauzerlarni",
+          "Band qilgan brauzerlarni",
+          "Vaqt tanlagan brauzerlarni",
+          "Sayt ishlagan kunlarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает 40 в «B — 17 из 40»?",
+        "variantlar": [
+          "Браузеры, открывшие сайт",
+          "Забронировавшие браузеры",
+          "Браузеры, выбравшие время",
+          "Дни работы сайта"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Tuzatilgan slayd nega darhol qayta aytiladi?",
+        "variantlar": [
+          "Dars vaqti ortib qoldi",
+          "Sherik zerikib qolmasin",
+          "Slaydlar soni o'zgardi",
+          "Javob bo'lganini bilish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем исправленный слайд сразу рассказывают снова?",
+        "variantlar": [
+          "Осталось время урока",
+          "Чтобы партнёр не скучал",
+          "Изменилось число слайдов",
+          "Чтобы понять, стал ли он ответом"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "«82 ta brauzer hali kam» nimani aytadi?",
+        "variantlar": [
+          "Xulosaga brauzer kamligini",
+          "Backend sekinligini",
+          "Reklamaga kam pul ketganini",
+          "B varianti yomon chiqqanini"
+        ]
+      },
+      "ru": {
+        "savol": "О чём говорит «82 браузера пока мало»?",
+        "variantlar": [
+          "Для вывода мало браузеров",
+          "Backend медленный",
+          "На рекламу ушло мало денег",
+          "Вариант B оказался плохим"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Repetitsiyada juftlik qanday ishlaydi?",
+        "variantlar": [
+          "Ikkalasi birga gapiradi",
+          "A gapiradi, keyin almashasiz",
+          "Faqat bittasi gapiradi",
+          "Har kim o'ziga aytadi"
+        ]
+      },
+      "ru": {
+        "savol": "Как работает пара на репетиции?",
+        "variantlar": [
+          "Оба говорят одновременно",
+          "Говорит A, потом меняетесь",
+          "Говорит только один",
+          "Каждый рассказывает себе"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Hamma slaydga ✓ qo'yildi. Nimani tuzatasiz?",
+        "variantlar": [
+          "Hech narsani — tayyor",
+          "Birinchi slaydni",
+          "Eng zaif slaydni",
+          "Hamma slaydni qaytadan"
+        ]
+      },
+      "ru": {
+        "savol": "На всех слайдах ✓. Что исправляете?",
+        "variantlar": [
+          "Ничего — готово",
+          "Первый слайд",
+          "Самый слабый слайд",
+          "Все слайды заново"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi fidbek qattiq, lekin hurmatli?",
+        "variantlar": [
+          "«Hammasi yoqdi, zo'r»",
+          "«Raqamlarda qo'rqdingiz»",
+          "«Keyingi qadam kerak emas»",
+          "«Yechimda sayt ishi aytilmadi»"
+        ]
+      },
+      "ru": {
+        "savol": "Какой фидбек жёсткий, но уважительный?",
+        "variantlar": [
+          "«Всё понравилось, супер»",
+          "«На цифрах вы испугались»",
+          "«Следующий шаг не нужен»",
+          "«В решении не сказано, что делает сайт»"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Baholash varag'ida har slayd uchun nima yozilgan?",
+        "variantlar": [
+          "Zalning bitta savoli",
+          "Slayd rangi va shrifti",
+          "Gapiruvchi ismi",
+          "Slayddagi so'zlar soni"
+        ]
+      },
+      "ru": {
+        "savol": "Что написано в листе оценки для каждого слайда?",
+        "variantlar": [
+          "Один вопрос зала",
+          "Цвет и шрифт слайда",
+          "Имя выступающего",
+          "Число слов на слайде"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Yechim slaydiga ✗ qo'yildi. Nima qilasiz?",
+        "variantlar": [
+          "Slaydni olib tashlaysiz",
+          "Izohga qarab qayta yozasiz",
+          "✗ belgisini o'chirasiz",
+          "Sinfdoshdan ✓ so'raysiz"
+        ]
+      },
+      "ru": {
+        "savol": "На слайде решения ✗. Что делаете?",
+        "variantlar": [
+          "Убираете слайд",
+          "Переписываете по комментарию",
+          "Стираете знак ✗",
+          "Просите у одноклассника ✓"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Yechim slaydiga nima yoziladi?",
+        "variantlar": [
+          "Texnologiyalar ro'yxati",
+          "Ketgan haftalar soni",
+          "Muammoni qanday hal qilishi",
+          "A/B testi foizlari"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут на слайде решения?",
+        "variantlar": [
+          "Список технологий",
+          "Сколько ушло недель",
+          "Как сайт решает проблему",
+          "Проценты A/B-теста"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Pitch 5 daqiqadan oshdi. Nima qilasiz?",
+        "variantlar": [
+          "Oxirini tezroq gapirasiz",
+          "Bitta slaydni olib tashlaysiz",
+          "Taymerni o'chirasiz",
+          "Har slayddan bir gap olasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Питч вышел за 5 минут. Что делаете?",
+        "variantlar": [
+          "Говорите конец быстрее",
+          "Убираете один слайд",
+          "Выключаете таймер",
+          "Убираете по фразе с каждого слайда"
+        ]
+      }
+    }
+  ]
+}

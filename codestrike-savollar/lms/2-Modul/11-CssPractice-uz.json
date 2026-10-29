@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Matn (harflar) rangini qaysi xususiyat beradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "color",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "background-color",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "font-size",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "text-align",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Element orqa fon rangini qaysi xususiyat beradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "color",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "border",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "background-color",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "margin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Matnni markazga qaysi qiymat qo'yadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "text-align: left",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "text-align: middle",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "align: center",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Linklarni bir qatorga tizadigan qoida?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "display: block",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "display: none",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "display: flex",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Flex elementlar orasidagi bo'shliqni nima ochadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "gap",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "padding",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "margin-top",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "border",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Element ICHIDAGI bo'shliq qaysi xususiyat?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "margin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "gap",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "padding",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "text-align",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Elementlar ORASIDAGI (tashqi) bo'shliq qaysi xususiyat?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "padding",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "gap",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "border",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "margin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CSS qoidasida h1 — bu qaysi qism?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "xususiyat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "selektor",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "qiymat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "izoh",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CSS qoidasida color — bu qaysi qism?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "xususiyat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "selektor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "qiymat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "teg",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Har bir CSS satri qaysi belgi bilan tugaydi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "vergul ,",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "nuqta .",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "ikki nuqta :",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "nuqta-vergul ;",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Flex menuni gorizontal markazga qaysi xususiyat qo'yadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "align-items: center",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "justify-content: center",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "gap: center",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kartani ekran markaziga qo'yuvchi qiymat?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "margin: 0",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "margin: center",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "margin: 0 auto",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "padding: auto",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

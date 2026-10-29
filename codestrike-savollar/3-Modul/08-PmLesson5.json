@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m2d7-v1",
+  "key": "m2-07",
+  "modul": 3,
+  "tartib": 8,
+  "nom": {
+    "uz": "Dekompozitsiya — ochilish ro'yxati",
+    "ru": "Декомпозиция — список к открытию"
+  },
+  "src": "src/2-Modull/PmLesson5.jsx",
+  "barmoq_izi": "4c4986f8e4fa930b72ba5410821cae89",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Katta ishni bo'laklarga bo'lish nima deyiladi?",
+        "variantlar": [
+          "Dekompozitsiya",
+          "Optimizatsiya",
+          "Prezentatsiya",
+          "Registratsiya"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется разбиение большой работы на части?",
+        "variantlar": [
+          "Декомпозиция",
+          "Оптимизация",
+          "Презентация",
+          "Регистрация"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi biri tugatib bo'ladigan bo'lak?",
+        "variantlar": [
+          "Butun saytni tayyorlash",
+          "Kinoteatrni mashhur qilish",
+          "Seanslar ro'yxatini qo'shish",
+          "Saytni chiroyli qilish"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — завершаемая часть?",
+        "variantlar": [
+          "Подготовить весь сайт",
+          "Сделать кинотеатр известным",
+          "Добавить список сеансов",
+          "Сделать сайт красивым"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "MVP — bu nima?",
+        "variantlar": [
+          "Eng qimmat to'liq versiya",
+          "Eng sodda birinchi versiya",
+          "Reklama uchun reja",
+          "Saytning internet manzili"
+        ]
+      },
+      "ru": {
+        "savol": "MVP — это что?",
+        "variantlar": [
+          "Самая дорогая полная версия",
+          "Самая простая первая версия",
+          "План для рекламы",
+          "Адрес сайта в интернете"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Keyinga qoldirilganlar ro'yxati qanday ataladi?",
+        "variantlar": [
+          "Deadline",
+          "Feedback",
+          "Interfeys",
+          "Backlog"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется список отложенных?",
+        "variantlar": [
+          "Дедлайн",
+          "Фидбэк",
+          "Интерфейс",
+          "Бэклог"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Tarozining birinchi savoli qanday?",
+        "variantlar": [
+          "Bu chiroyli ko'rinadimi?",
+          "Buni kim so'rab kelgan?",
+          "Busiz sayt ish beradimi?",
+          "Bu qanchaga tushadi?"
+        ]
+      },
+      "ru": {
+        "savol": "Каков первый вопрос весов?",
+        "variantlar": [
+          "Это красиво выглядит?",
+          "Кто это просил сделать?",
+          "Работает ли сайт без этого?",
+          "Во сколько это обойдётся?"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Tarozining ikkinchi savoli qanday?",
+        "variantlar": [
+          "Buni qurish qancha vaqt oladi?",
+          "Bu kimga ko'proq yoqadi?",
+          "Bu qanchaga sotib olinadi?",
+          "Buni kim qurib chiqadi?"
+        ]
+      },
+      "ru": {
+        "savol": "Каков второй вопрос весов?",
+        "variantlar": [
+          "Сколько времени займёт это сделать?",
+          "Кому это больше всего нравится?",
+          "За сколько это будут продавать?",
+          "Кто именно это будет делать?"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Kerak, lekin bir necha kun oladigan ish qayerga?",
+        "variantlar": [
+          "Ochilish ro'yxatiga",
+          "Keyinga qoldirilganlarga",
+          "Hech qaysi ro'yxatga",
+          "Keyingi versiyaga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда идёт нужное дело, которое займёт несколько дней?",
+        "variantlar": [
+          "В список к открытию",
+          "В список отложенных",
+          "Ни в один список",
+          "В следующую версию"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Busiz ham ishlaydi, bir kunda bo'ladi. Qayerga?",
+        "variantlar": [
+          "Ochilish ro'yxatiga",
+          "Keyingi versiyaga",
+          "Keyinga qoldirilganlarga",
+          "Butunlay o'chiriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Сайт работает и без этого, делается за день. Куда?",
+        "variantlar": [
+          "В список к открытию",
+          "В следующую версию",
+          "В список отложенных",
+          "Удаляется совсем"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Burbn ilovasi bilan nima qilindi?",
+        "variantlar": [
+          "Yangi imkoniyat qo'shildi",
+          "Narxi ikki baravar oshdi",
+          "Boshqa firmaga sotildi",
+          "Uchta imkoniyat qoldirildi"
+        ]
+      },
+      "ru": {
+        "savol": "Что сделали с приложением Burbn?",
+        "variantlar": [
+          "Добавили новые возможности",
+          "Цену подняли вдвое",
+          "Продали другой фирме",
+          "Оставили три возможности"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Instagram chiqqan birinchi kuni nima bo'ldi?",
+        "variantlar": [
+          "25 000 odam yozildi",
+          "Hech kim yozilmadi",
+          "Do'kondan olib tashlandi",
+          "Ilova nomi o'zgardi"
+        ]
+      },
+      "ru": {
+        "savol": "Что было в первый день выхода Instagram?",
+        "variantlar": [
+          "Зарегистрировались 25 000",
+          "Никто не зарегистрировался",
+          "Убрали из магазина",
+          "Сменили название"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Ochilish ro'yxatiga nechta ish sig'adi?",
+        "variantlar": [
+          "Oltita — hammasi kerak",
+          "Uchta — bir haftaga sig'adi",
+          "Bitta — ko'pi shart emas",
+          "Cheksiz — vaqt muhim emas"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько дел влезает в список к открытию?",
+        "variantlar": [
+          "Шесть — нужно всё",
+          "Три — столько влезает в неделю",
+          "Одно — больше не нужно",
+          "Сколько угодно — время неважно"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Ochilish ro'yxati qachon tuziladi?",
+        "variantlar": [
+          "Kod yozilgandan keyin",
+          "Sayt ochilgandan keyin",
+          "Kod yozishdan oldin",
+          "Umuman tuzilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Когда составляют список к открытию?",
+        "variantlar": [
+          "После написания кода",
+          "После открытия сайта",
+          "До написания кода",
+          "Вообще не составляют"
+        ]
+      }
+    }
+  ]
+}

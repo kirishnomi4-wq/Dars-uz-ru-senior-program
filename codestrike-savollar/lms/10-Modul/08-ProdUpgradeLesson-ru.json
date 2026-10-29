@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое прод-список?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Работы, повышающие надёжность",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Список будущих функций",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Список адресов страниц",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Список сегодняшних броней",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что считает лимит запросов?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Число людей на сайте",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запросы с одного IP за минуту",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Число людей на одном IP",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Брони игроков",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что Backend возвращает на запрос сверх лимита?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "401 — неверный пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "409 — время занято",
+        "hint": "Неверно"
+      },
+      {
+        "value": "429 — слишком много запросов",
+        "hint": "Верно!"
+      },
+      {
+        "value": "400 — нет имени",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему лимит ставят в Backend?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Код сайта работает медленнее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На сайте нет места",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Код Backend скрыт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Каждый запрос идёт через Backend",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На какой путь ставится самый строгий лимит?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "POST /kirish",
+        "hint": "Верно!"
+      },
+      {
+        "value": "POST /hodisalar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GET /vaqtlar",
+        "hint": "Неверно"
+      },
+      {
+        "value": "POST /bandlar",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как телефоны в одном Wi-Fi выглядят для Backend?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Каждый со своим ID браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Как один IP-адрес",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Через отдельный Render",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С адреса Netlify",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает прод-сайт, если Backend задерживается?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Стоит на «Загрузка…»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Рисует пустые слоты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пишет сообщение и спрашивает снова",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Обновляется каждую секунду",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что появится, если ответа нет и через минуту?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Текст ошибки Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пустая белая страница",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Значок «Забронировано»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сообщение и «Повторить»",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Пришёл 429. Что с именем и телефоном в форме брони?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Остаются на месте",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Стираются",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Уходят владельцу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переносятся в завтрашнюю форму",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "A — 12 из 42, B — 17 из 40. Какой остаётся?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "A — выбравших больше",
+        "hint": "Неверно"
+      },
+      {
+        "value": "B — процент выше",
+        "hint": "Верно!"
+      },
+      {
+        "value": "A — текущий вариант",
+        "hint": "Неверно"
+      },
+      {
+        "value": "B — кнопка красивее",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему не делают вывод «B точно лучше»?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Процент выше у A",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Дашборд только за сегодня",
+        "hint": "Неверно"
+      },
+      {
+        "value": "82 браузера пока мало",
+        "hint": "Верно!"
+      },
+      {
+        "value": "SQL посчитал неверно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "prod запушен. А сайт в интернете?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Сразу переходит на prod",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Render засыпает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Выходит на отдельном адресе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Не меняется, берёт из main",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

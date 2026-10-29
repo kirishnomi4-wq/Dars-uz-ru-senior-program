@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужна база (2 таблицы)?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Хранить и связывать данные",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только чтобы задать цвет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы украсить страницу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы ускорить интернет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каком типе хранится занятость места?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "TEXT (текст)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "SERIAL (число)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "BOOLEAN (true/false)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "TIMESTAMP (дата и время)",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой столбец привязывает сеанс к месту?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "plate",
+        "hint": "Неверно"
+      },
+      {
+        "value": "spot_id",
+        "hint": "Верно!"
+      },
+      {
+        "value": "fee",
+        "hint": "Неверно"
+      },
+      {
+        "value": "entered_at",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что даёт REFERENCES spots(id)?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Создаёт новую таблицу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Красит столбец",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ускоряет запрос",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Связь foreign key",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая операция срабатывает при въезде машины?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "DELETE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "POST",
+        "hint": "Верно!"
+      },
+      {
+        "value": "CSS",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая операция срабатывает при выезде машины?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "GET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "POST",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PUT",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем читать две таблицы вместе?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "JOIN",
+        "hint": "Верно!"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "INSERT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DROP",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как пишется условие ON у JOIN?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "id = plate",
+        "hint": "Неверно"
+      },
+      {
+        "value": "spot_id = id",
+        "hint": "Верно!"
+      },
+      {
+        "value": "label = spot",
+        "hint": "Неверно"
+      },
+      {
+        "value": "fee = id",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как получить места на панель?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "DROP",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PUT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GET",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "От чего зависит цвет панели?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "plate",
+        "hint": "Неверно"
+      },
+      {
+        "value": "is_busy",
+        "hint": "Верно!"
+      },
+      {
+        "value": "fee",
+        "hint": "Неверно"
+      },
+      {
+        "value": "id",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая панель лучше всего для охранника?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Много текста, мелкие кнопки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сухая таблица с цифрами",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Цвет, большие кнопки, мало текста",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Длинная инструкция",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Из чего состоит fullstack-проект?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Фронт + сервер + база",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только база данных",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только фронтенд",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только цвета и украшения",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  }
+]

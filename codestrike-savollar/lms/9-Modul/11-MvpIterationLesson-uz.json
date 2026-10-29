@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uch muammo chiqdi. Avval nima qilinadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Eng muhimi tuzatib sinaladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uchalasi birga tuzatiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt oldindan tushuntiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt noldan yoziladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon'da qaysi muammo birinchi tuzatildi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Eng oson tuzatiladigani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vazifaga to'sqinlik qilgani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng oxirgi yozilgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng uzun yozilgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega bir vaqtda bitta muammo tuzatiladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Agent ko'pini tushunmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkinchisi o'zi tuzaladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nima yordam berganini bilasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qolganlari muhim emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Tugmani topa olmadi» — bu nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Agentga beriladigan talab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt kodidagi xato qator",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentga yuboriladigan prompt",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinovda yozilgan kuzatuv",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Talab: «qayerda», «nima buzilmasin» va …?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "«nima qilsin»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«kim, qachon»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«kimning aybi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«rasm joyi»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugma ko'rinmasdi. «Chiroyliroq qil» nega yetmaydi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Agent rangni tushunmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugma joyi o'zgarmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Chiroyli tugma sekin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Talabga rang yozilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Nima buzilmasin» qatoriga nima yoziladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Tuzatiladigan joy",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent qo'shadigan narsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishlab turgan narsalar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'yinchi ismi, telefoni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent tuzatdi. Birinchi nimani o'qiysiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "«Tayyor» degan gapini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyihadagi hamma faylni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "README'dagi yozuvlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zgargan fayl va qatorlarni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telefon muammosini laptopda qanday ko'rasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Telefon o'lchamiga o'tkazib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend'ni qayta yoqib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Katta ekranda yangilab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database jadvalini ochib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta sinovda o'yinchiga qaysi vazifa beriladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Yangi, qiyinroq vazifa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha vazifaning o'zi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat tugmani bosish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vazifasiz aylanish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta sinovda o'yinchi qiynalsa, nima qilasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Tugmani ko'rsatasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni tushuntirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tushuntirmay, kuzatasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinovni to'xtatasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kuzatish → tuzatish → qayta sinov. Bu takror nima?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Deploy",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Talab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinov rejasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Iteratsiya",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

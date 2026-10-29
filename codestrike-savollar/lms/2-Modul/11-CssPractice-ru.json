@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство задаёт цвет текста (букв)?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "color",
+        "hint": "Верно!"
+      },
+      {
+        "value": "background-color",
+        "hint": "Неверно"
+      },
+      {
+        "value": "font-size",
+        "hint": "Неверно"
+      },
+      {
+        "value": "text-align",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство задаёт цвет заднего фона элемента?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "color",
+        "hint": "Неверно"
+      },
+      {
+        "value": "border",
+        "hint": "Неверно"
+      },
+      {
+        "value": "background-color",
+        "hint": "Верно!"
+      },
+      {
+        "value": "margin",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое значение ставит текст по центру?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "text-align: left",
+        "hint": "Неверно"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "Верно!"
+      },
+      {
+        "value": "text-align: middle",
+        "hint": "Неверно"
+      },
+      {
+        "value": "align: center",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Правило, выстраивающее ссылки в один ряд?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "display: block",
+        "hint": "Неверно"
+      },
+      {
+        "value": "display: none",
+        "hint": "Неверно"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "Неверно"
+      },
+      {
+        "value": "display: flex",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что раздвигает flex-элементы (промежуток между ними)?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "gap",
+        "hint": "Верно!"
+      },
+      {
+        "value": "padding",
+        "hint": "Неверно"
+      },
+      {
+        "value": "margin-top",
+        "hint": "Неверно"
+      },
+      {
+        "value": "border",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство — отступ ВНУТРИ элемента?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "margin",
+        "hint": "Неверно"
+      },
+      {
+        "value": "gap",
+        "hint": "Неверно"
+      },
+      {
+        "value": "padding",
+        "hint": "Верно!"
+      },
+      {
+        "value": "text-align",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство — отступ МЕЖДУ элементами (внешний)?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "padding",
+        "hint": "Неверно"
+      },
+      {
+        "value": "gap",
+        "hint": "Неверно"
+      },
+      {
+        "value": "border",
+        "hint": "Неверно"
+      },
+      {
+        "value": "margin",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая это часть правила CSS — h1?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "свойство",
+        "hint": "Неверно"
+      },
+      {
+        "value": "селектор",
+        "hint": "Верно!"
+      },
+      {
+        "value": "значение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "комментарий",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая это часть правила CSS — color?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "свойство",
+        "hint": "Верно!"
+      },
+      {
+        "value": "селектор",
+        "hint": "Неверно"
+      },
+      {
+        "value": "значение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "тег",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким символом заканчивается каждая строка CSS?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "запятая ,",
+        "hint": "Неверно"
+      },
+      {
+        "value": "точка .",
+        "hint": "Неверно"
+      },
+      {
+        "value": "двоеточие :",
+        "hint": "Неверно"
+      },
+      {
+        "value": "точка с запятой ;",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство ставит flex-меню в горизонтальный центр?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "align-items: center",
+        "hint": "Неверно"
+      },
+      {
+        "value": "justify-content: center",
+        "hint": "Верно!"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "Неверно"
+      },
+      {
+        "value": "gap: center",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Значение, ставящее карточку в центр экрана?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "margin: 0",
+        "hint": "Неверно"
+      },
+      {
+        "value": "margin: center",
+        "hint": "Неверно"
+      },
+      {
+        "value": "margin: 0 auto",
+        "hint": "Верно!"
+      },
+      {
+        "value": "padding: auto",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

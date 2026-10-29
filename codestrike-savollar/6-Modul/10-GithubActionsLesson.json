@@ -1,0 +1,278 @@
+{
+  "lessonId": "github-actions-4c-02-v18",
+  "key": "m4c-03",
+  "modul": 6,
+  "tartib": 10,
+  "nom": {
+    "uz": "GitHub Actions — yo'l xaritasini yozish",
+    "ru": "GitHub Actions — написание карты маршрута"
+  },
+  "src": "src/4c-Modull/GithubActionsLesson.jsx",
+  "barmoq_izi": "929cc24eac047ba793af64797d13e311",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": ".github/workflows/ci.yml — bu fayl nima?",
+        "variantlar": [
+          "Loyihaning manba kodi",
+          "Lentaning yo'l xaritasi",
+          "Saytning zaxira nusxasi",
+          "GitHub'ning ichki sozlamasi"
+        ]
+      },
+      "ru": {
+        "savol": ".github/workflows/ci.yml — что это за файл?",
+        "variantlar": [
+          "Исходный код проекта",
+          "Карта маршрута ленты",
+          "Резервная копия сайта",
+          "Внутренняя настройка GitHub"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "on: push nima uchun kerak?",
+        "variantlar": [
+          "Lentani har push'da yoqadi",
+          "Repozitoriyni o'chiradi",
+          "Hujjatlarni yangilaydi",
+          "Kodni qo'lda joylashtiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен on: push?",
+        "variantlar": [
+          "Запускает ленту на каждый push",
+          "Удаляет репозиторий",
+          "Обновляет документы",
+          "Выкладывает код вручную"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "runs-on: ubuntu-latest nima?",
+        "variantlar": [
+          "Kod Ubuntu'da yozilishi",
+          "Loyihaning rasmiy nomi",
+          "GitHub bergan mashina",
+          "Testlar o'chirilgani"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое runs-on: ubuntu-latest?",
+        "variantlar": [
+          "Код пишут в Ubuntu",
+          "Официальное имя проекта",
+          "Машина, которую даёт GitHub",
+          "Тесты отключены"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "YIG'ISH nuqtasida nima bajariladi?",
+        "variantlar": [
+          "Kutubxonalar o'rnatiladi",
+          "Kod qoidaga tekshiriladi",
+          "Sayt foydalanuvchiga ketadi",
+          "Eski yuk tiklanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делается на точке СБОРКА?",
+        "variantlar": [
+          "Ставятся библиотеки",
+          "Код сверяют с правилами",
+          "Сайт уходит пользователю",
+          "Восстанавливается старый груз"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "SKANER nuqtasi bo'lmasa nima bo'ladi?",
+        "variantlar": [
+          "Lenta biroz sekinlashadi",
+          "GitHub uni o'zi qo'shadi",
+          "Buzuq yuk odamlarga ketadi",
+          "Faqat ogohlantirish chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет без точки СКАНЕР?",
+        "variantlar": [
+          "Лента чуть замедлится",
+          "GitHub добавит её сам",
+          "Сломанный груз уйдёт к людям",
+          "Будет только предупреждение"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Amallar (steps) qanday tartibda bajariladi?",
+        "variantlar": [
+          "Tasodifiy tartibda",
+          "Yuqoridan pastga, ketma-ket",
+          "Oxirgisi birinchi bajariladi",
+          "Hammasi bir vaqtda"
+        ]
+      },
+      "ru": {
+        "savol": "В каком порядке выполняются шаги (steps)?",
+        "variantlar": [
+          "В случайном порядке",
+          "Сверху вниз, по очереди",
+          "Последний выполняется первым",
+          "Все одновременно"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "actions/checkout@v4 nima qiladi?",
+        "variantlar": [
+          "Butun kodni o'chiradi",
+          "Yangi mashina sotib oladi",
+          "Testlarni o'zi yozadi",
+          "Kodni repodan mashinaga oladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает actions/checkout@v4?",
+        "variantlar": [
+          "Удаляет весь код",
+          "Покупает новую машину",
+          "Сам пишет тесты",
+          "Переносит код из репо на машину"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "PARALLEL LENTALAR (matrix) nima uchun?",
+        "variantlar": [
+          "Yukni ikkiga bo'lish uchun",
+          "Mashinani to'xtatish uchun",
+          "Ko'p sharoitda sinash uchun",
+          "Rasmlarni siqish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужны ПАРАЛЛЕЛЬНЫЕ ЛЕНТЫ (matrix)?",
+        "variantlar": [
+          "Чтобы разделить груз надвое",
+          "Чтобы остановить машину",
+          "Чтобы проверить в разных условиях",
+          "Чтобы сжать картинки"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "YAQIN JAVON (cache) nima beradi?",
+        "variantlar": [
+          "Faqat mentorda ishlaydi",
+          "Hammasini noldan yuklaydi",
+          "Skanerni o'chirib qo'yadi",
+          "Tayyorini olib, tezlashtiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что даёт БЛИЖНЯЯ ПОЛКА (cache)?",
+        "variantlar": [
+          "Работает только у ментора",
+          "Качает всё с нуля",
+          "Отключает сканер",
+          "Берёт готовое и ускоряет"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Kalitni yo'l xaritasiga ochiq yozsangiz?",
+        "variantlar": [
+          "Uni hamma ko'ra oladi",
+          "Faqat siz ko'rasiz",
+          "GitHub o'zi yashiradi",
+          "Lenta ishga tushmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если открыто написать ключ в карте маршрута?",
+        "variantlar": [
+          "Его увидят все",
+          "Его видите только вы",
+          "GitHub сам его спрячет",
+          "Лента не запустится"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "${{ secrets.API_KEY }} nima qiladi?",
+        "variantlar": [
+          "Kalitni ekranga chiqaradi",
+          "Kalitni seyfdan olib keladi",
+          "Kalitni ko'chirib qo'yadi",
+          "Kalitni o'chirib yuboradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает ${{ secrets.API_KEY }}?",
+        "variantlar": [
+          "Выводит ключ на экран",
+          "Достаёт ключ из сейфа",
+          "Копирует ключ",
+          "Удаляет ключ"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "TABLO (status badge) nimani ko'rsatadi?",
+        "variantlar": [
+          "Loyiha fayllari hajmini",
+          "Server qaysi mamlakatda",
+          "Nechta o'quvchi tugatganini",
+          "Lenta yashilmi yoki qizilmi"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает ТАБЛО (status badge)?",
+        "variantlar": [
+          "Объём файлов проекта",
+          "В какой стране сервер",
+          "Сколько учеников закончили",
+          "Зелёная лента или красная"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "write-skill-06-07-v18",
+  "key": "m6-07",
+  "modul": 8,
+  "tartib": 7,
+  "nom": {
+    "uz": "O'z Skill'ingizni yozing",
+    "ru": "Создаём свой Skill"
+  },
+  "src": "src/6-Modull/WriteSkillLesson.jsx",
+  "barmoq_izi": "e80d1f39e587e94681186340468fbc16",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Skill'ning asosiy qismlari qaysi?",
+        "variantlar": [
+          "Rang, o'lcham va narx",
+          "Server, Database va dizayn",
+          "name, description va body",
+          "Rasm, video va ovoz"
+        ]
+      },
+      "ru": {
+        "savol": "Какие основные части у Skill?",
+        "variantlar": [
+          "Цвет, размер и цена",
+          "Сервер, Database и дизайн",
+          "name, description и body",
+          "Картинка, видео и звук"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "description AI'ga nimani aytadi?",
+        "variantlar": [
+          "Nima qiladi, qachon kerak",
+          "Faylning rangi va o'lchami",
+          "Xabar kimga yuborilishi",
+          "Necha ball berilishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что description сообщает AI?",
+        "variantlar": [
+          "Что делает и когда нужен",
+          "Цвет и размер файла",
+          "Кому отправить сообщение",
+          "Сколько баллов дать"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "Qadamlarni kuchli qiladigan narsa?",
+        "variantlar": [
+          "Iloji boricha uzun matn",
+          "Faqat sarlavha",
+          "«Yaxshi qil» degan umumiy gap",
+          "Aniq qadamlar va misol"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает шаги сильными?",
+        "variantlar": [
+          "Как можно более длинный текст",
+          "Только заголовок",
+          "Общая фраза «сделай хорошо»",
+          "Точные шаги и пример"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Kontekst-injiniring nima?",
+        "variantlar": [
+          "Skill'ni noldan qayta yozish",
+          "AI'ga to'g'ri ko'rsatma berish",
+          "AI modelini almashtirish",
+          "Kuchliroq model sotib olish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое контекст-инжиниринг?",
+        "variantlar": [
+          "Переписать skill с нуля",
+          "Дать AI правильное указание",
+          "Сменить модель AI",
+          "Купить модель мощнее"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Natija kutilgandek chiqmasa, eng yaxshi qadam?",
+        "variantlar": [
+          "O'sha joyni tuzatib sinash",
+          "Skill'dan voz kechish",
+          "Hammasini qayta yozish",
+          "Kuchliroq model izlash"
+        ]
+      },
+      "ru": {
+        "savol": "Лучший шаг, если результат не тот?",
+        "variantlar": [
+          "Исправить то место и проверить",
+          "Отказаться от Skill",
+          "Переписать всё",
+          "Искать модель сильнее"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Nega Skill'ni sinab ko'rish kerak?",
+        "variantlar": [
+          "Chiroyliroq ko'rinishi uchun",
+          "Ballni oshirish uchun",
+          "Faylni o'chirish uchun",
+          "Ishlashini faqat sinab bilamiz"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем тестировать Skill?",
+        "variantlar": [
+          "Чтобы выглядел красивее",
+          "Чтобы повысить баллы",
+          "Чтобы удалить файл",
+          "Работает ли он, узнаём только тестом"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Yaxshi description qanday bo'ladi?",
+        "variantlar": [
+          "Bitta so'z, masalan «javob»",
+          "Nima va qachon ekanini aytadi",
+          "Noaniq, har narsaga mos",
+          "Faqat emojidan iborat"
+        ]
+      },
+      "ru": {
+        "savol": "Каким бывает хороший description?",
+        "variantlar": [
+          "Одно слово, например «ответ»",
+          "Говорит, что и когда",
+          "Размытый, подходит ко всему",
+          "Только из эмодзи"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Misol Skill uchun nega foydali?",
+        "variantlar": [
+          "Faylni uzunroq qiladi",
+          "Faqat bezak uchun",
+          "Kutilgan natijani ko'rsatadi",
+          "Hech qanday ta'sir qilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем пример полезен для Skill?",
+        "variantlar": [
+          "Делает файл длиннее",
+          "Только для украшения",
+          "Показывает ожидаемый результат",
+          "Ни на что не влияет"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Skill narxni unutyapti. Eng aniq tuzatish?",
+        "variantlar": [
+          "Hammasini qayta yozish",
+          "description'ni uzaytirish",
+          "AI'ga ko'proq pul to'lash",
+          "Qadamlarga narx qoidasi"
+        ]
+      },
+      "ru": {
+        "savol": "Skill забывает цену. Самое точное исправление?",
+        "variantlar": [
+          "Переписать всё",
+          "Удлинить description",
+          "Платить AI больше",
+          "Правило о цене в шаги"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Skill yozishning to'g'ri sikli qaysi?",
+        "variantlar": [
+          "Yozish → yuborish → kutish",
+          "Yozish → sinash → tuzatish",
+          "Sinash → o'chirish → unutish",
+          "Nusxalash → yuborish"
+        ]
+      },
+      "ru": {
+        "savol": "Какой правильный цикл написания Skill?",
+        "variantlar": [
+          "Написать → отправить → ждать",
+          "Написать → проверить → исправить",
+          "Проверить → удалить → забыть",
+          "Скопировать → отправить"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Noaniq description nimaga olib keladi?",
+        "variantlar": [
+          "Skill tezroq ishlaydi",
+          "Hech qanday ta'sir yo'q",
+          "Kerakli paytda ishlamaydi",
+          "Ball o'zi oshib ketadi"
+        ]
+      },
+      "ru": {
+        "savol": "К чему приводит неточный description?",
+        "variantlar": [
+          "Skill работает быстрее",
+          "Никакого влияния",
+          "Не срабатывает, когда нужно",
+          "Баллы растут сами"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Yaxshi Skill qanday bo'ladi?",
+        "variantlar": [
+          "Bitta vazifaga, aniq, sinalgan",
+          "Iloji boricha uzun, batafsil",
+          "Ko'p vazifani birga qiladigan",
+          "Faqat nomdan iborat"
+        ]
+      },
+      "ru": {
+        "savol": "Каким бывает хороший Skill?",
+        "variantlar": [
+          "Для одной задачи, чёткий, проверен",
+          "Как можно длиннее и подробнее",
+          "Делает много задач сразу",
+          "Только из названия"
+        ]
+      }
+    }
+  ]
+}

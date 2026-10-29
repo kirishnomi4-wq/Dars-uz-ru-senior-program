@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Набрали youtube.com. К кому браузер обращается ПЕРВЫМ?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "К серверу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "К DNS",
+        "hint": "Верно!"
+      },
+      {
+        "value": "К экрану",
+        "hint": "Неверно"
+      },
+      {
+        "value": "К домену",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В какой строке настоящая задача DNS?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Нарисовать сайт на экране",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранить страницы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Превратить домен в IP-адрес",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Повысить скорость интернета",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "142.250.190.78 и 142.250.190.87 — это…",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Два РАЗНЫХ компьютера",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Один компьютер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Два имени одного сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Один IP, записанный с ошибкой",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что именно сервер отправляет браузеру?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "HTML-код",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Готовую картинку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "IP-адрес",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Новый браузер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что на самом деле означает слово «Интер-нет»?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Быстрая связь",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Беспроводная связь",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Всемирный компьютер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Между сетями",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если набрать youtub.com (одной буквы не хватает)?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "YouTube всё равно откроется",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Компьютер замедлится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Весь интернет отключится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DNS не найдёт сайт",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Компьютер, где «живёт» сайт и который ВСЕГДА включён?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Роутер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сервер",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Браузер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Планшет",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что из этого — ДОМЕН?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "142.250.190.78",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Chrome",
+        "hint": "Неверно"
+      },
+      {
+        "value": "wikipedia.org",
+        "hint": "Верно!"
+      },
+      {
+        "value": "HTML",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто читает HTML-код и превращает его в красивую страницу?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DNS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Домен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Браузер",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой порядок запроса верный?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Браузер→DNS→Сервер→Экран",
+        "hint": "Верно!"
+      },
+      {
+        "value": "DNS→Браузер→Экран→Сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сервер→Браузер→DNS→Экран",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Браузер→Сервер→DNS→Экран",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает «.uz» в coddycamp.uz?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Название сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Зона Узбекистана",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Пароль",
+        "hint": "Неверно"
+      },
+      {
+        "value": "IP сервера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "DNS — телефонная книга. Что в ней имя и номер?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Имя=IP, номер=домен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя=браузер, номер=сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя=домен, номер=IP",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Имя=сайт, номер=пароль",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

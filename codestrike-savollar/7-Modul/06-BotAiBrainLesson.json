@@ -1,0 +1,278 @@
+{
+  "lessonId": "bot-ai-brain-05-04-v18",
+  "key": "m5-06",
+  "modul": 7,
+  "tartib": 6,
+  "nom": {
+    "uz": "Bot ichida AI",
+    "ru": "ИИ внутри бота"
+  },
+  "src": "src/5-Modull/BotAiBrainLesson.jsx",
+  "barmoq_izi": "412e53231b0514f8af8c914173ee41d0",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "System prompt bo'lmasa, AI qanday javob beradi?",
+        "variantlar": [
+          "Umuman javob bermaydi",
+          "Mavzudan chetga chiqadi",
+          "Faqat «tushunmadim» deydi",
+          "Bot o'chib qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "Без system prompt как ответит AI?",
+        "variantlar": [
+          "Вообще не ответит",
+          "Уйдёт от темы",
+          "Скажет только «не понял»",
+          "Бот выключится"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "System prompt nimani belgilaydi?",
+        "variantlar": [
+          "AI javob yozish tezligini",
+          "Botning rangi va shriftini",
+          "Server joylashgan shaharni",
+          "AI kimligi va mavzusini"
+        ]
+      },
+      "ru": {
+        "savol": "Что задаёт system prompt?",
+        "variantlar": [
+          "Скорость ответа AI",
+          "Цвет и шрифт бота",
+          "Город, где стоит сервер",
+          "Кто такой AI и о чём говорит"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Prompt nima?",
+        "variantlar": [
+          "AI'ga yuboriladigan matn",
+          "Botning xatolar jurnali",
+          "AI API manzili",
+          "Telegram kanal nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое промпт?",
+        "variantlar": [
+          "Текст, который шлют AI",
+          "Журнал ошибок бота",
+          "Адрес AI API",
+          "Имя Telegram-канала"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Kontekst oynasi nima?",
+        "variantlar": [
+          "AI javob yozish tezligi",
+          "Telegram'dagi chat oynasi",
+          "AI ko'ra oladigan matn hajmi",
+          "Bazadagi jadvallar soni"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое контекстное окно?",
+        "variantlar": [
+          "Скорость ответа AI",
+          "Окно чата в Telegram",
+          "Объём текста, который видит AI",
+          "Число таблиц в базе"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Tarix oynaga sig'masa, qaysi xabar chiqib ketadi?",
+        "variantlar": [
+          "Eng yangi xabar",
+          "Eng eski xabar",
+          "Eng qisqa xabar",
+          "Tasodifiy bir xabar"
+        ]
+      },
+      "ru": {
+        "savol": "История не влезает в окно. Какое сообщение уйдёт?",
+        "variantlar": [
+          "Самое новое",
+          "Самое старое",
+          "Самое короткое",
+          "Случайное"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Ism yo'qolmasligi uchun bot nima qiladi?",
+        "variantlar": [
+          "Ismni bazada saqlaydi",
+          "Oynani kattalashtiradi",
+          "Temperature'ni pastlatadi",
+          "AI'ni qayta yoqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает бот, чтобы имя не потерялось?",
+        "variantlar": [
+          "Хранит имя в базе",
+          "Увеличивает окно",
+          "Понижает temperature",
+          "Перезапускает AI"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Temperature past (0.1) bo'lsa, javob qanday?",
+        "variantlar": [
+          "Har safar boshqacha",
+          "Har safar xato",
+          "Juda uzun va batafsil",
+          "Deyarli bir xil"
+        ]
+      },
+      "ru": {
+        "savol": "Temperature низкая (0.1) — каким будет ответ?",
+        "variantlar": [
+          "Каждый раз другой",
+          "Каждый раз ошибка",
+          "Очень длинный",
+          "Почти одинаковый"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Temperature baland (1.5): menu uchun nima yomon?",
+        "variantlar": [
+          "Bot to'xtab qoladi",
+          "Javob har safar boshqacha",
+          "Internet uziladi",
+          "API kaliti oshkor bo'ladi"
+        ]
+      },
+      "ru": {
+        "savol": "Temperature высокая (1.5): что плохо для меню?",
+        "variantlar": [
+          "Бот остановится",
+          "Ответ каждый раз другой",
+          "Пропадёт интернет",
+          "Раскроется ключ API"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Menuni har safar bir xil aytish uchun qaysi temperature?",
+        "variantlar": [
+          "Baland (1.5)",
+          "O'rtacha, xohlagancha",
+          "Past (0.1)",
+          "Har so'rovda boshqa"
+        ]
+      },
+      "ru": {
+        "savol": "Какая temperature, чтобы меню звучало одинаково?",
+        "variantlar": [
+          "Высокая (1.5)",
+          "Средняя, любая",
+          "Низкая (0.1)",
+          "Разная в каждом запросе"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "AI menyuda yo'q «ananasli pitsa»ni aytdi. Bu nima?",
+        "variantlar": [
+          "To'g'ri javob",
+          "Bot API xatosi",
+          "Kalit oshkor bo'lgani",
+          "Hallutsinatsiya"
+        ]
+      },
+      "ru": {
+        "savol": "AI назвал «пиццу с ананасом», которой нет в меню. Что это?",
+        "variantlar": [
+          "Верный ответ",
+          "Ошибка Bot API",
+          "Утечка ключа",
+          "Галлюцинация"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "AI aytgan narx qachon tekshiriladi?",
+        "variantlar": [
+          "Mijozga yuborishdan oldin",
+          "Hech qachon",
+          "Temperature past bo'lsagina",
+          "Faqat mijoz shikoyat qilsa"
+        ]
+      },
+      "ru": {
+        "savol": "Когда проверяют цену, названную AI?",
+        "variantlar": [
+          "До отправки клиенту",
+          "Никогда",
+          "Только при низкой temperature",
+          "Только если клиент жалуется"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "AI API kaliti qayerda saqlanadi?",
+        "variantlar": [
+          "bot.js kodida, ochiq holda",
+          "Mijozga chatda yuboriladi",
+          ".env faylida",
+          "Telegram profil sozlamasida"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранится ключ AI API?",
+        "variantlar": [
+          "Открыто в коде bot.js",
+          "Отправляется клиенту в чат",
+          "В файле .env",
+          "В настройках профиля Telegram"
+        ]
+      }
+    }
+  ]
+}

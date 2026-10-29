@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "if (age >= 16) — age 14 bo'lsa, ichidagi kod ishlaydimi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ha, ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, false",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ba'zan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "20 > 15 ifodasi qanday qiymat qaytaradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "true",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "20",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "false",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "15",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "= va == farqi nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Farqi yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "= beradi, == tekshiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "= tekshiradi, == beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "== faqat sonlar uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "if bloki ishlamasa, o'rniga qaysi blok ishlaydi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Yana if",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech biri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sikl",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "else",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "!= operatori nimani bildiradi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Teng",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Teng emas",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Katta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kichik yoki teng",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "7 == 9 natijasi qanday?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "false",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "true",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "9",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ketma-ket bir nechta shart uchun nima yoziladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "else",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "let",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "const",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "else if",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "let battery = 30. if (battery < 20) ishlaydimi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ha, chunki 30 katta son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, 30 < 20 — false",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat 20 bo'lganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato beradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "score 90 bo'lsa, score >= 90 true bo'ladimi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Yo'q, faqat 91 dan boshlab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, >= tenglikni ham oladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat score 100 bo'lsa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "5 <= 3 ifodasi nima qaytaradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "true",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "false",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "if/else da bir vaqtda nechta blok ishlaydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Faqat bittasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkalasi ham",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech biri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchtasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Shartda tenglikni qaysi belgi bilan tekshiramiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "=",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "!=",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "==",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "+",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m9d4-v1",
+  "key": "m9-04",
+  "modul": 11,
+  "tartib": 4,
+  "nom": {
+    "uz": "O'n intervyudan keyin qaysi g'oya qoladi?",
+    "ru": "Какая идея останется после десяти интервью?"
+  },
+  "src": "src/9-Modull/PmFinalIdeaLesson.jsx",
+  "barmoq_izi": "6d4abab6a01763e1368c8e334f48abaf",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Ikki g'oyaga savollar nega bir xil?",
+        "variantlar": [
+          "Intervyu tez o'tsin",
+          "Javoblar yonma-yon sanalsin",
+          "Odamlar yodlab olsin",
+          "Savol yozish oson bo'lsin"
+        ]
+      },
+      "ru": {
+        "savol": "Почему вопросы для двух идей одинаковые?",
+        "variantlar": [
+          "Чтобы интервью шло быстро",
+          "Чтобы считать ответы рядом",
+          "Чтобы люди их выучили",
+          "Чтобы проще писать вопросы"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Takrorlangan javob qaysi?",
+        "variantlar": [
+          "Ko'p yozuvda bir xil ma'noli",
+          "Eng qattiq aytilgan javob",
+          "Eng uzun yozuvdagi javob",
+          "Mentorga yoqqan javob"
+        ]
+      },
+      "ru": {
+        "savol": "Какой ответ — повторяющийся?",
+        "variantlar": [
+          "Одинаковый по смыслу в разных записях",
+          "Ответ, сказанный громче всех",
+          "Ответ из самой длинной записи",
+          "Ответ, понравившийся Ментору"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Odam «Chiqsa, ishlatib ko'raman» dedi. Bu nima?",
+        "variantlar": [
+          "Harakat belgisi",
+          "Takrorlangan javob",
+          "Va'da, hali ish emas",
+          "Muammo gapi"
+        ]
+      },
+      "ru": {
+        "savol": "Человек сказал: «Выйдет — попробую». Что это?",
+        "variantlar": [
+          "Знак действия",
+          "Повторяющийся ответ",
+          "Обещание, ещё не дело",
+          "Фраза о проблеме"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor misolida nechta o'yinchi sinovga kun belgiladi?",
+        "variantlar": [
+          "Hech biri",
+          "3 tadan 1 tasi",
+          "3 tadan 2 tasi",
+          "3 tadan 3 tasi"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько игроков в примере Ментора назначили день пробы?",
+        "variantlar": [
+          "Ни один",
+          "1 из 3",
+          "2 из 3",
+          "3 из 3"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida ikki o'smirning to'garagini kim topadi?",
+        "variantlar": [
+          "O'smirning o'zi",
+          "Uning sinfdoshi",
+          "Uning ota-onasi",
+          "Uning murabbiyi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто в примере Ментора находит кружок двум подросткам?",
+        "variantlar": [
+          "Сам подросток",
+          "Его одноклассник",
+          "Его родители",
+          "Его тренер"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor misolida jamoa nima bilan yig'iladi?",
+        "variantlar": [
+          "Maydon egasi orqali",
+          "Telegram guruhida",
+          "Maktab e'lonlarida",
+          "Maxsus ilova orqali"
+        ]
+      },
+      "ru": {
+        "savol": "Чем собирают команду в примере Ментора?",
+        "variantlar": [
+          "Через владельца поля",
+          "В Telegram-группе",
+          "Через школьные объявления",
+          "Через особое приложение"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Muammo gapida qaysi uch bo'lak bo'ladi?",
+        "variantlar": [
+          "Kim, qachon, nimadan qiynaladi",
+          "Kim, qayerda, qaysi ilova",
+          "Muammo, yechim va nom",
+          "Tugma, rang va narx"
+        ]
+      },
+      "ru": {
+        "savol": "Какие три части во фразе о проблеме?",
+        "variantlar": [
+          "Кто, когда, от чего страдает",
+          "Кто, где, какое приложение",
+          "Проблема, решение и название",
+          "Кнопка, цвет и цена"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Final g'oya qaysi g'oya?",
+        "variantlar": [
+          "Nomi eng chiroyli bo'lgan",
+          "RICE bahosi eng katta",
+          "Ro'yxatda birinchi turgan",
+          "Intervyudan keyin tanlangan"
+        ]
+      },
+      "ru": {
+        "savol": "Какая идея — финальная?",
+        "variantlar": [
+          "С самым красивым названием",
+          "С самой большой оценкой RICE",
+          "Первая в списке",
+          "Выбранная после интервью"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Final tanlangach, ikkinchi g'oya nima bo'ladi?",
+        "variantlar": [
+          "Ro'yxatdan o'chiriladi",
+          "«Final»ga qo'shiladi",
+          "Sinfdoshga beriladi",
+          "«Keyin» qutisiga yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет со второй идеей после выбора финальной?",
+        "variantlar": [
+          "Удаляется из списка",
+          "Добавляется к «Финалу»",
+          "Отдаётся однокласснику",
+          "Записывается в коробку «Потом»"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Olti intervyudan keyin tanlov qanday?",
+        "variantlar": [
+          "Isbotlangan, tekshirilmaydi",
+          "Sanoqqa bog'liq emas",
+          "Dalili bor, isboti yo'q",
+          "Faqat fikrga tayanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Каков выбор после шести интервью?",
+        "variantlar": [
+          "Доказан, проверка не нужна",
+          "Не зависит от подсчёта",
+          "Есть довод, но не доказательство",
+          "Держится только на мнении"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "YouTube asoschilari nimani payqagan?",
+        "variantlar": [
+          "Har xil video yuklanganini",
+          "Faqat o'zi haqida videoni",
+          "Sayt nomi yoqmaganini",
+          "Yuklash sekin ekanini"
+        ]
+      },
+      "ru": {
+        "savol": "Что заметили основатели YouTube?",
+        "variantlar": [
+          "Что загружают разные видео",
+          "Только видео о себе",
+          "Что не нравится название",
+          "Что загрузка медленная"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "y.goya === goya nimani tekshiradi?",
+        "variantlar": [
+          "Yozuvda belgi borligini",
+          "Yozuv shu g'oyaniki ekanini",
+          "Yozuvlar soni nechtaligini",
+          "Nomning uzunligini"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяет y.goya === goya?",
+        "variantlar": [
+          "Есть ли в записи знак",
+          "Что запись от этой идеи",
+          "Сколько всего записей",
+          "Длину названия"
+        ]
+      }
+    }
+  ]
+}

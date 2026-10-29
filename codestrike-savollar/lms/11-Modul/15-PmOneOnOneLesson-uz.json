@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Holat nimani ko'rsatadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ish rejaga ko'ra qayerdaligini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ishga necha kun ketishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishni kim bajarishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish necha kishiga kerakligini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ish o'z darsida tugadi, telefonda ishlaydi. Holati?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Kechikdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bajarildi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Boshlanmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bekor qilindi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Keyinroq ufqidagi ish boshlanmagan. Bu nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ish kechikkan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Roadmap xato tuzilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqti hali kelmagan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ishni o'chirish kerak",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Risk nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bo'lib o'tgan kechikish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelajakdagi yangi funksiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bajarilgan ishlar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xalaqit berishi mumkin narsa",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bepul Render'da Backend qachon uxlaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "15 daqiqa so'rov kelmasa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har kuni yarim tunda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kuniga 100 so'rovdan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova yopilgan zahoti",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend uxlab qolsa, birinchi ochilish qancha kutadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bir necha soniya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir daqiqagacha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Besh daqiqagacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir soatdan ko'p",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«3 sinovchi» riskiga qadam qaysi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Yangi funksiya qo'shish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamni keyin qidirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "10 kishini sinovga chaqirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "3 kishiga qayta sinatish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Expo Go nega Mentorga risk bo'ldi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ilovani sekin ochadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ga ulanmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat iPhone'da ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinash ilovasi, hammada yo'q",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "APK nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Android'ga o'rnatiladigan fayl",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "iPhone ilovalar do'koni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Expo Go'dagi sinov rejimi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Render sozlamalari fayli",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qadam 12-Modulda bajariladi. Qaysi ufqqa qo'yasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Hozir",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyinroq",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uzoqroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ufqsiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri riskka qarshi aniq qadam?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ko'proq e'tibor berish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tezroq harakat qilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shanba 10 kishini chaqirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Keyinroq o'ylab ko'rish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yakkama-yakkada nimani ko'rasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Arena natijasi va ballingizni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodingizning har qatorini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'nta yangi g'oyangizni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Holat, risk va qadamlarni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

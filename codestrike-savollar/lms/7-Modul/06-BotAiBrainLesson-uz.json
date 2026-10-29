@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "System prompt bo'lmasa, AI qanday javob beradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Umuman javob bermaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mavzudan chetga chiqadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat «tushunmadim» deydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot o'chib qoladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "System prompt nimani belgilaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "AI javob yozish tezligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botning rangi va shriftini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server joylashgan shaharni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI kimligi va mavzusini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Prompt nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "AI'ga yuboriladigan matn",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Botning xatolar jurnali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI API manzili",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram kanal nomi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kontekst oynasi nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "AI javob yozish tezligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram'dagi chat oynasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI ko'ra oladigan matn hajmi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bazadagi jadvallar soni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tarix oynaga sig'masa, qaysi xabar chiqib ketadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Eng yangi xabar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng eski xabar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng qisqa xabar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tasodifiy bir xabar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ism yo'qolmasligi uchun bot nima qiladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ismni bazada saqlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oynani kattalashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Temperature'ni pastlatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI'ni qayta yoqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Temperature past (0.1) bo'lsa, javob qanday?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Har safar boshqacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har safar xato",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Juda uzun va batafsil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Deyarli bir xil",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Temperature baland (1.5): menu uchun nima yomon?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Bot to'xtab qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javob har safar boshqacha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internet uziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "API kaliti oshkor bo'ladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Menuni har safar bir xil aytish uchun qaysi temperature?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Baland (1.5)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'rtacha, xohlagancha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Past (0.1)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har so'rovda boshqa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI menyuda yo'q «ananasli pitsa»ni aytdi. Bu nima?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "To'g'ri javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot API xatosi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kalit oshkor bo'lgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hallutsinatsiya",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI aytgan narx qachon tekshiriladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Mijozga yuborishdan oldin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qachon",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Temperature past bo'lsagina",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat mijoz shikoyat qilsa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI API kaliti qayerda saqlanadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "bot.js kodida, ochiq holda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mijozga chatda yuboriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": ".env faylida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telegram profil sozlamasida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

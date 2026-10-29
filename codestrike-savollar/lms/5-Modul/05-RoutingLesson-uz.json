@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Route nimadan iborat?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Faqat path — manzil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "method + path birga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat method — shtamp",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer turi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GET /games va POST /games farqi nimada?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Farqi yo'q — bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server nomi boshqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Biri oladi, biri qo'shadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Javob tili boshqa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Server qaysi kodni ishlatishni qanday biladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Tasodifan tanlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Doim birinchisini oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzerdan so'raydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "method + path bo'yicha",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi o'yin qo'shish uchun qaysi method?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "POST",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "PUT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ro'yxatni olish (o'qish) uchun qaysi method?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "POST",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ma'lumotni o'chirish uchun qaysi method?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "GET",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "POST",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "app.get('/games/:id') ga /games/7 kelsa, id nimaga teng?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "7",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "games",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "':id'",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "/games/7",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": ":id nima?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Har doim 1 ga teng son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Path'ning doimiy qismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qiymat keladigan joy belgisi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Server fayli nomi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "So'rovdagi :id qiymati kodda qayerda turadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "app.get",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "res.send",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "req.params",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "app.listen",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mos route topilmasa, server nima qaytaradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "200 OK",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "birinchi eshikni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "serverni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "404 Not Found",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Express'da POST eshigini qaysi qator ochadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "app.get",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "app.post",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "app.listen",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "res.send",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Xat POST, eshik app.get — natija?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "404 — mos eshik yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "200 OK — hammasi joyida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "server butunlay o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "yangi o'yin qo'shiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

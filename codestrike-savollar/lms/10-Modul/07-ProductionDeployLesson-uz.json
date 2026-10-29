@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Netlify nomi nimani o'zgartiradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Sayt manzili boshini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Render manzilini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jadvallar nomini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugma matnini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nom o'zgargach kataklar chiqmadi. Nega?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Bandlar o'chib ketgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "WEB_ORIGIN da eski manzil",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Netlify DNS yangilamagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer nomni tanimagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "WEB_ORIGIN nima uchun kerak?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Database manzilini saqlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ega parolini tekshirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt so'roviga ruxsat berish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Monitor intervalini berish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "HTTPS bo'lsa, yo'ldagi Wi-Fi nimani ko'radi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ism va telefonni ochiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat telefon raqamini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qanday so'rovni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'qib bo'lmaydigan ma'lumot",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "SSL sertifikati nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Saytda HTTPS ni yoqadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni tezroq ochadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database'ni himoya qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "CORS ruxsatini o'zi beradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "*.netlify.app manzilida HTTPS ni kim yoqadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "O'quvchi sertifikat oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Netlify o'zi yoqadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Render WEB_ORIGIN orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "UptimeRobot monitori",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'z domenida sertifikat qachon olinadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Domen olingan zahoti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "WEB_ORIGIN yangilangach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DNS yozuvi to'g'ri bo'lgach",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Monitor qo'shilgach",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Database to'xtasa, /health nima qaytaradi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Database errorini qaytaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umuman javob bermaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ni stop qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baribir ok qaytaradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "/health nega Database'ni so'ramaydi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bepul Neon limiti tugamasin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend uni ko'rmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database sekin javob beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "UptimeRobot SQL bilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bepul UptimeRobot manzilni necha daqiqada so'raydi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Har bir daqiqada",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har 5 daqiqada",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har bir soatda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kuniga bir marta",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bepul rejada ogohlantirish qayerga keladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Telegram botiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "SMS va qo'ng'iroq bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Email va telefon ilovasiga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Render sahifasiga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "UptimeRobot so'rovlari bepul Render'ga nima qiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Backend sekinlashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Render pullik bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database to'lib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend uxlab qolmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

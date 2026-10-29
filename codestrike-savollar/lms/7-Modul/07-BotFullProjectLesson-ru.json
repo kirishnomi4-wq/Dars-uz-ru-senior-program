@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Четыре части полного бота?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Токен, API, дизайн, реклама",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Токен, handler, база, AI",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Handler, фото, видео, музыка",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Телефон, ноутбук, кабель, Wi-Fi",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая часть хранит заказ до следующего дня?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Токен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Handler",
+        "hint": "Неверно"
+      },
+      {
+        "value": "ИИ",
+        "hint": "Неверно"
+      },
+      {
+        "value": "База",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что значит deploy?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Запустить код на сервере",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удалить и пересоздать бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сменить токен на новый",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пригласить клиентов в бота",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое сервер?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Канал внутри Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отдельная папка на ноутбуке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Компьютер, работающий без остановки",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Telegram на телефоне",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что изменится, если выложить бота на сервер?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Бот отвечает медленнее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отвечает и без ноутбука",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Отвечает только днём",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего не изменится",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Куда на сервере записывают BOT_TOKEN?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "В настройки сервера",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Внутрь кода bot.js",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В описание бота в Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никуда, сервер найдёт сам",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто при polling спрашивает о новых сообщениях?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Клиент — у Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Telegram — у бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сервер — у клиента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Бот — у Telegram",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто при webhook доставляет сообщение боту?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Бот сам запрашивает",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Telegram сам отправляет",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Клиент пишет на сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никто, появляется само",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким способом бот работает на ноутбуке?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Webhook",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Использовать оба вместе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Polling",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Никакой, бот сам разберётся",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делают перед выкладкой на сервер?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Токен пишут в код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удаляют базу на ноутбуке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проверяют код на ноутбуке",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чтобы бот не молчал, если AI не ответил?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Ловит ошибку и извиняется",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Бота включают вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Берут новый токен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего, само пройдёт",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Ноутбук закрыт, а бот отвечает. Почему?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Ответы стояли в очереди",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Telegram сам запускает бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Бот работает на сервере",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Клиент включил бота",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

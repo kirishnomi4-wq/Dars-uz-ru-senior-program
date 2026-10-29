@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что задаёт Entity?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Дверь для запроса",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Порядок запуска",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Цвета на экране",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вид таблицы в базе",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какие столбцы бесплатно даёт BaseEntity?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "brand, model и price",
+        "hint": "Неверно"
+      },
+      {
+        "value": "id, created_at, updated_at",
+        "hint": "Верно!"
+      },
+      {
+        "value": "username, password",
+        "hint": "Неверно"
+      },
+      {
+        "value": "imports, controllers",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен DTO?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Проверять пришедшие данные",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Создавать столбцы таблицы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подключать раздел к AppModule",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запускать сервер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если отправить POST /car с пустым brand?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Машина всё равно сохранится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сервер упадёт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "400 — до базы не дойдёт",
+        "hint": "Верно!"
+      },
+      {
+        "value": "brand заполнится сам",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает PartialType?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Делает поля обязательными",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Делает поля необязательными",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Создаёт новую таблицу в базе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удаляет эндпоинты",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кто даёт готовые CRUD-методы?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Controller пишет сам",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PostgreSQL пишет сам",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пишутся вручную в каждом ресурсе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "BaseService — по наследству",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой декоратор нужен, чтобы добавить машину?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "@Post()",
+        "hint": "Верно!"
+      },
+      {
+        "value": "@Get()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@Column()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@Module()",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает Controller?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Задаёт столбцы таблицы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пишет данные на диск",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Принимает запрос, вызывает service",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Собирает и запускает проект",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если не подключить CarModule к AppModule?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Всё работает как раньше",
+        "hint": "Неверно"
+      },
+      {
+        "value": "/car не найден — 404",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Работает только GET",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проект вообще не запустится",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает super(carRepo)?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Создаёт новую таблицу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перезапускает сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Регистрирует дверь",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Передаёт склад в BaseService",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что находится в car.module.ts?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Список столбцов @Column",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Список правил @IsString",
+        "hint": "Неверно"
+      },
+      {
+        "value": "controllers и providers",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Настройки порта main.ts",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Новый ресурс: первые три шага?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Entity → DTO → Service",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Controller → Module → Entity",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Module → Controller → Service",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DTO → Entity → Controller",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  }
+]

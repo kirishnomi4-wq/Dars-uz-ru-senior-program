@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Analitika saytda nimani yozib boradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Odamlar nima qilganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt qancha tez ochilishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodda qancha xato qolganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni kim qurganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Umami 4-kuni ulandi. 1-kundan nima ma'lum?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Hamma qadam, kechikib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat Database'dagi bandlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat ochganlar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa — bandlar o'chgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uch qadam qaysi tartibda?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Band qildi → Tanladi → Ochdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tanladi → Ochdi → Band qildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochdi → Tanladi → Band qildi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ochdi → Band qildi → Tanladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "10 ochdi, 8 tanladi, 1 band qildi. Qayerda keskin kamaydi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Saytni ochgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band qilgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochishdan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqtni tanlagach",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Analitikaga yoziladigan bitta harakat nima deyiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Hodisa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Metrika",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosh raqam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinov",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt ochilishini Umami qanday yozadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Har sahifaga nom qo'shiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Skript ulangach, o'zi yozadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ega qo'lda kiritib boradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat band qilinganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega bugun bitta hodisa qo'shildi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Umami bittadan ko'p olmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochilish ham nom kutadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band qilish hali qurilmagan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bitta hodisa hammasini yozadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Kun almashtirish» hodisasiga qaysi nom darsdagidek?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Kun Almashtirdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "kun almashtirdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "KUN_ALMASHTIRDI",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "kun-almashtirdi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Katak bosilishini Umami'ga qaysi yozuv aytadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "data-umami-event",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "data-website-id",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "VITE_UMAMI_ID",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "cloud.umami.is/script.js",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Website ID nega web/.env da turadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Uni hech kim ko'rmasin deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har o'quvchida u boshqa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Umami faqat .env'dan o'qiydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "index.html uni o'qiy olmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt ochildi, Umami'da 0. Sabab nima?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Katakda hodisa nomi yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band tugmasi qurilmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklama to'sgichi yoqilgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database'ga ulanish uzilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Maydon»ning bosh raqami nimani sanaydi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Saytni ochgan odamlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqtni tanlagan odamlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kunni almashtirgan odamlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band qilgan odamlarni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

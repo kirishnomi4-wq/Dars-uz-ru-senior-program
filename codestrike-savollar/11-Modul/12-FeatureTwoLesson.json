@@ -1,0 +1,278 @@
+{
+  "lessonId": "m9-12-v1",
+  "key": "m9-12",
+  "modul": 11,
+  "tartib": 12,
+  "nom": {
+    "uz": "Loyiha kuni: 2-asosiy funksiya",
+    "ru": "День проекта: 2-я основная функция"
+  },
+  "src": "src/9-Modull/FeatureTwoLesson.jsx",
+  "barmoq_izi": "ae1a77f235b268dbfeeb5ceb7b89d880",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "«Kelaman» bosildi. Ruxsatni kim beradi?",
+        "variantlar": [
+          "Backend, qoida bo'yicha",
+          "Ilova, tugmani ko'rsatib",
+          "Database, qatorni ko'rib",
+          "Tashkilotchi, qo'lda"
+        ]
+      },
+      "ru": {
+        "savol": "Нажали «Приду». Кто даёт разрешение?",
+        "variantlar": [
+          "Backend, по правилу",
+          "Приложение, показав кнопку",
+          "Database, увидев строку",
+          "Организатор, вручную"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Token bor, o'yinchi qo'shilmagan. Qaysi javob?",
+        "variantlar": [
+          "401 — kimligi noma'lum",
+          "403 — ruxsat yo'q",
+          "201 — qator yozildi",
+          "404 — yo'l topilmadi"
+        ]
+      },
+      "ru": {
+        "savol": "Токен есть, игрок не присоединился. Какой ответ?",
+        "variantlar": [
+          "401 — неизвестно, кто",
+          "403 — нет разрешения",
+          "201 — строка записана",
+          "404 — путь не найден"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Shanbalik o'yinga juma kuni «Kelaman». Nima bo'ladi?",
+        "variantlar": [
+          "keladi yoziladi",
+          "O'yin jumaga ko'chadi",
+          "Backend rad etadi",
+          "Tashkilotchi tasdiqlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "«Приду» в пятницу на субботнюю игру. Что будет?",
+        "variantlar": [
+          "Запишется keladi",
+          "Игра переедет на пятницу",
+          "Backend отклонит",
+          "Организатор подтвердит"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Kelishini tasdiqladi: 7 / 9» da 9 nima?",
+        "variantlar": [
+          "Tasdiqlagan o'yinchilar",
+          "O'yinga kerak odamlar",
+          "Maydondagi bo'sh o'rinlar",
+          "Qo'shilgan o'yinchilar"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит 9 в «Подтвердили приход: 7 / 9»?",
+        "variantlar": [
+          "Подтвердившие игроки",
+          "Нужные для игры люди",
+          "Свободные места на поле",
+          "Присоединившиеся игроки"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Tashkilotchi yangi tasdiqni qanday ko'radi?",
+        "variantlar": [
+          "Ekranni pastga tortadi",
+          "Backend xabarini kutadi",
+          "Har o'yinchiga yozadi",
+          "O'yin boshlanishini kutadi"
+        ]
+      },
+      "ru": {
+        "savol": "Как организатор видит новое подтверждение?",
+        "variantlar": [
+          "Потягивает экран вниз",
+          "Ждёт сообщения от Backend",
+          "Пишет каждому игроку",
+          "Ждёт начала игры"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Tashkilotchidagi son o'zi yangilanadimi?",
+        "variantlar": [
+          "Ha, Backend o'zi yuboradi",
+          "Yo'q, ilova so'raganda",
+          "Ha, bosilgan zahoti",
+          "Yo'q, faqat o'yin kuni"
+        ]
+      },
+      "ru": {
+        "savol": "Обновляется ли число у организатора само?",
+        "variantlar": [
+          "Да, Backend сам присылает",
+          "Нет, когда приложение запросит",
+          "Да, сразу после нажатия",
+          "Нет, только в день игры"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Tugma yashirildi. Backend'dagi qoida-chi?",
+        "variantlar": [
+          "O'chiriladi, kerak emas",
+          "Ilovaga ko'chadi",
+          "Qoladi, ruxsatni u beradi",
+          "Database'ga ko'chadi"
+        ]
+      },
+      "ru": {
+        "savol": "Кнопку скрыли. А правило в Backend?",
+        "variantlar": [
+          "Удаляется, не нужно",
+          "Переносится в приложение",
+          "Остаётся, разрешение даёт оно",
+          "Переносится в Database"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Boshqa odam tufayli ekranda nima o'zgaradi?",
+        "variantlar": [
+          "«‹ O'yinlar» tugmasi",
+          "«Maydon Jamoa» nomi",
+          "Formadagi «Soat»",
+          "Tasdiqlaganlar soni"
+        ]
+      },
+      "ru": {
+        "savol": "Что меняется на экране из-за другого человека?",
+        "variantlar": [
+          "Кнопка «‹ Игры»",
+          "Название «Maydon Jamoa»",
+          "«Время» в форме",
+          "Число подтвердивших"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Tugmani yashirganda «Nima buzilmasin»ga nima yozasiz?",
+        "variantlar": [
+          "Backend qoidasi qolsin",
+          "Tugma doim tursin",
+          "Jadval tozalansin",
+          "Yo'l tokensiz ochilsin"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы пишете в «Что не сломать», скрывая кнопку?",
+        "variantlar": [
+          "Правило Backend остаётся",
+          "Кнопка всегда на месте",
+          "Таблица очищается",
+          "Путь открыт без токена"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Bugun o'yin yo'q. Tasdiqni qanday sinaysiz?",
+        "variantlar": [
+          "Qoidani o'chirib turasiz",
+          "Bugunga yangi e'lon berasiz",
+          "Telefon soatini surasiz",
+          "Shanbagacha kutasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Сегодня игры нет. Как проверите подтверждение?",
+        "variantlar": [
+          "Временно отключите правило",
+          "Дадите новое объявление на сегодня",
+          "Переведёте часы телефона",
+          "Подождёте до субботы"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Backend o'zgarishi Render'ga qanday chiqadi?",
+        "variantlar": [
+          "Render'da qo'lda yozasiz",
+          "npx expo start qilasiz",
+          "git push qilasiz",
+          "Neon'da jadval yaratasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Как изменение Backend попадает на Render?",
+        "variantlar": [
+          "Пишете вручную на Render",
+          "Запускаете npx expo start",
+          "Делаете git push",
+          "Создаёте таблицу в Neon"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Ikkinchi telefon nima uchun kerak?",
+        "variantlar": [
+          "Tezroq ishlashi uchun",
+          "Expo Go yangilanishi uchun",
+          "Dizayn bir xilligi uchun",
+          "Boshqa odam ko'rishi uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен второй телефон?",
+        "variantlar": [
+          "Чтобы работало быстрее",
+          "Чтобы обновился Expo Go",
+          "Ради одинакового дизайна",
+          "Чтобы увидел другой человек"
+        ]
+      }
+    }
+  ]
+}

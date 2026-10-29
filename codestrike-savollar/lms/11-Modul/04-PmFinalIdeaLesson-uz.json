@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki g'oyaga savollar nega bir xil?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Intervyu tez o'tsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javoblar yonma-yon sanalsin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Odamlar yodlab olsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Savol yozish oson bo'lsin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Takrorlangan javob qaysi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ko'p yozuvda bir xil ma'noli",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng qattiq aytilgan javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng uzun yozuvdagi javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentorga yoqqan javob",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Odam «Chiqsa, ishlatib ko'raman» dedi. Bu nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Harakat belgisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Takrorlangan javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Va'da, hali ish emas",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Muammo gapi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida nechta o'yinchi sinovga kun belgiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Hech biri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3 tadan 1 tasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3 tadan 2 tasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3 tadan 3 tasi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida ikki o'smirning to'garagini kim topadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "O'smirning o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uning sinfdoshi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uning ota-onasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uning murabbiyi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida jamoa nima bilan yig'iladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Maydon egasi orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram guruhida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Maktab e'lonlarida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maxsus ilova orqali",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Muammo gapida qaysi uch bo'lak bo'ladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Kim, qachon, nimadan qiynaladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kim, qayerda, qaysi ilova",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo, yechim va nom",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugma, rang va narx",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Final g'oya qaysi g'oya?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Nomi eng chiroyli bo'lgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "RICE bahosi eng katta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatda birinchi turgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Intervyudan keyin tanlangan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Final tanlangach, ikkinchi g'oya nima bo'ladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Ro'yxatdan o'chiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Final»ga qo'shiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshga beriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Keyin» qutisiga yoziladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Olti intervyudan keyin tanlov qanday?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Isbotlangan, tekshirilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sanoqqa bog'liq emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dalili bor, isboti yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat fikrga tayanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "YouTube asoschilari nimani payqagan?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Har xil video yuklanganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat o'zi haqida videoni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt nomi yoqmaganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuklash sekin ekanini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "y.goya === goya nimani tekshiradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yozuvda belgi borligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuv shu g'oyaniki ekanini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yozuvlar soni nechtaligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nomning uzunligini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

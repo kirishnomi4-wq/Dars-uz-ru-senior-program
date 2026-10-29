@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m12d8-v2",
+  "key": "m12-08",
+  "modul": 14,
+  "tartib": 8,
+  "nom": {
+    "uz": "Final pitchingiz 5 daqiqaga tayyormi?",
+    "ru": "Готов ли ваш финальный питч на 5 минут?"
+  },
+  "src": "src/12-Modull/PmFinalPitchLesson.jsx",
+  "barmoq_izi": "50e32a74e1ae0122656f4b874310f976",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Bu mashqda Raqamlar bo'lagiga qancha vaqt ajratilgan?",
+        "variantlar": [
+          "Taxminan bir daqiqa",
+          "Taxminan yarim daqiqa",
+          "Taxminan ikki daqiqa",
+          "Taxminan uch daqiqa"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько времени в этом упражнении отведено на часть «Цифры»?",
+        "variantlar": [
+          "Примерно минута",
+          "Примерно полминуты",
+          "Примерно две минуты",
+          "Примерно три минуты"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor «60 kishi»ni qanday aniqlashtirdi?",
+        "variantlar": [
+          "Ilovadagi o'yinchilar",
+          "Telegram guruhi a'zolari",
+          "Telegram kanali obunachilari",
+          "O'zining sinfdoshlari"
+        ]
+      },
+      "ru": {
+        "savol": "Как Ментор уточнил «60 человек»?",
+        "variantlar": [
+          "Игроки в приложении",
+          "Участники Telegram-группы",
+          "Подписчики Telegram-канала",
+          "Его одноклассники"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Tuzatilgan gap eskisidan uzun. Nima qilasiz?",
+        "variantlar": [
+          "Pitchni 6 daqiqa qilaman",
+          "Tuzatishni kiritmayman",
+          "Taymer bilan tekshiraman",
+          "Boshqa bo'lakni olaman"
+        ]
+      },
+      "ru": {
+        "savol": "Исправленная фраза длиннее старой. Что сделаете?",
+        "variantlar": [
+          "Сделаю питч на 6 минут",
+          "Не внесу исправление",
+          "Проверю таймером",
+          "Уберу другую часть"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor boshqa mahallalar haqida nima dedi?",
+        "variantlar": [
+          "«U yerda ham 60 kishi bor»",
+          "«Ularga ilova kerak emas»",
+          "«Hamma joyda muammo bir»",
+          "«Tekshirib aytaman»"
+        ]
+      },
+      "ru": {
+        "savol": "Что Ментор сказал о других махаллях?",
+        "variantlar": [
+          "«Там тоже по 60 человек»",
+          "«Им приложение не нужно»",
+          "«Везде проблема одна»",
+          "«Проверю и скажу»"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "Pitch 5 daqiqadan oshdi. Nima qilasiz?",
+        "variantlar": [
+          "Savol-javobdan vaqt olaman",
+          "Jonli demoni olib tashlayman",
+          "Tezroq gapiraman",
+          "Ortiqcha gapni olaman"
+        ]
+      },
+      "ru": {
+        "savol": "Питч превысил 5 минут. Что сделаете?",
+        "variantlar": [
+          "Возьму время у вопросов-ответов",
+          "Уберу живое демо",
+          "Буду говорить быстрее",
+          "Уберу лишнюю фразу"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Bu mashqda hakam savoliga javob qancha davom etadi?",
+        "variantlar": [
+          "Bir daqiqagacha",
+          "Uch daqiqagacha",
+          "Besh daqiqagacha",
+          "Ikki daqiqagacha"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько в этом упражнении длится ответ на вопрос судьи?",
+        "variantlar": [
+          "До одной минуты",
+          "До трёх минут",
+          "До пяти минут",
+          "До двух минут"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Sanamagan son so'raldi. Nima deysiz?",
+        "variantlar": [
+          "«Taxminan shuncha» deyman",
+          "«Tekshirib aytaman» deyman",
+          "Eshitmagandek davom etaman",
+          "Pitchni qayta aytaman"
+        ]
+      },
+      "ru": {
+        "savol": "Спросили число, которое вы не считали. Что скажете?",
+        "variantlar": [
+          "Скажу «примерно столько»",
+          "Скажу «проверю и скажу»",
+          "Продолжу, будто не слышал",
+          "Расскажу питч заново"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor aytdi: hozir o'yin qanday yig'iladi?",
+        "variantlar": [
+          "Sport ilovasida jadval bilan",
+          "Maktabda tanaffusda",
+          "Telegram guruhida yozib",
+          "Ota-onalar orqali"
+        ]
+      },
+      "ru": {
+        "savol": "Ментор сказал: как сейчас собирают игру?",
+        "variantlar": [
+          "Таблицей в спортивном приложении",
+          "В школе на перемене",
+          "Пишут в Telegram-группе",
+          "Через родителей"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor varag'ida qaysi ikki bo'lak ✗ olgan edi?",
+        "variantlar": [
+          "Muammo va Yechim",
+          "Bozor va Raqamlar",
+          "Jamoa va Raqamlar",
+          "Yechim va Bozor"
+        ]
+      },
+      "ru": {
+        "savol": "Какие две части получили ✗ в листе Ментора?",
+        "variantlar": [
+          "Проблема и Решение",
+          "Рынок и Цифры",
+          "Команда и Цифры",
+          "Решение и Рынок"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Pitchdan oldin demo uchun nima qilasiz?",
+        "variantlar": [
+          "Funksiya qo'shaman",
+          "Database'ni ochaman",
+          "Demo yo'lini ochaman",
+          "Telefonni o'chiraman"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы делаете для демо перед питчем?",
+        "variantlar": [
+          "Добавлю функцию",
+          "Открою Database",
+          "Открою путь демо",
+          "Выключу телефон"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Pitch paytida sherigingiz nima qiladi?",
+        "variantlar": [
+          "Taymer bilan tinglaydi",
+          "Bo'laklarga ✓ va ✗ qo'yadi",
+          "Siz bilan birga aytadi",
+          "Demoni o'zi ko'rsatadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает партнёр во время питча?",
+        "variantlar": [
+          "Слушает с таймером",
+          "Ставит частям ✓ и ✗",
+          "Говорит вместе с вами",
+          "Сам показывает демо"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Hakam «Endi nima qilasiz?» desa, nimani aytasiz?",
+        "variantlar": [
+          "Kerakli pul summasini",
+          "Tez orada o'sishini",
+          "Hamma bo'laklarni qayta",
+          "Keyingi ish va so'rovni"
+        ]
+      },
+      "ru": {
+        "savol": "Если судья спросит «Что будете делать дальше?», что скажете?",
+        "variantlar": [
+          "Нужную сумму денег",
+          "Что скоро вырастем",
+          "Все части заново",
+          "Следующее дело и просьбу"
+        ]
+      }
+    }
+  ]
+}

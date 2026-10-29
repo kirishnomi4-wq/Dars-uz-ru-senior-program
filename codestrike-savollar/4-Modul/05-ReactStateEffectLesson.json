@@ -1,0 +1,278 @@
+{
+  "lessonId": "react-state-effect-03-v18",
+  "key": "m3-04",
+  "modul": 4,
+  "tartib": 5,
+  "nom": {
+    "uz": "State va Effect: useState + useEffect",
+    "ru": "State и Effect: useState + useEffect"
+  },
+  "src": "src/3-Modull/ReactStateEffectLesson.jsx",
+  "barmoq_izi": "6fbf7749c37bc690508aedc60f869923",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "useState nimani qaytaradi?",
+        "variantlar": [
+          "Qiymat va yangilovchi funksiya",
+          "Faqat boshlang'ich sonni",
+          "Butunlay yangi HTML sahifa",
+          "CSS uslublar to'plamini"
+        ]
+      },
+      "ru": {
+        "savol": "Что возвращает useState?",
+        "variantlar": [
+          "Значение и функцию обновления",
+          "Только начальное число",
+          "Совсем новую HTML-страницу",
+          "Набор CSS-стилей"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Oddiy let likes o'zgarsa, React nima qiladi?",
+        "variantlar": [
+          "Ekranni darhol yangilaydi",
+          "Hech narsa — sezmaydi",
+          "Xatolik chiqaradi",
+          "Sahifani qayta yuklaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает React, если меняется обычный let likes?",
+        "variantlar": [
+          "Сразу обновляет экран",
+          "Ничего — не замечает",
+          "Выдаёт ошибку",
+          "Перезагружает страницу"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Like sonini to'g'ri oshirish qaysi?",
+        "variantlar": [
+          "likes = likes + 1",
+          "likes++",
+          "setLikes(likes + 1)",
+          "return likes + 1"
+        ]
+      },
+      "ru": {
+        "savol": "Как правильно увеличить число лайков?",
+        "variantlar": [
+          "likes = likes + 1",
+          "likes++",
+          "setLikes(likes + 1)",
+          "return likes + 1"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "useState(5) yozsangiz, boshlang'ich qiymat qanday bo'ladi?",
+        "variantlar": [
+          "0",
+          "null",
+          "undefined",
+          "5"
+        ]
+      },
+      "ru": {
+        "savol": "Если написать useState(5), каким будет начальное значение?",
+        "variantlar": [
+          "0",
+          "null",
+          "undefined",
+          "5"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "set funksiyasi chaqirilsa, React nima qiladi?",
+        "variantlar": [
+          "Komponentni qayta chizadi",
+          "Konsolga xabar yozadi",
+          "Serverga so'rov yuboradi",
+          "Hech narsa qilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает React при вызове set-функции?",
+        "variantlar": [
+          "Перерисовывает компонент",
+          "Пишет сообщение в консоль",
+          "Отправляет запрос на сервер",
+          "Ничего не делает"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "useEffect(() => {...}, []) qachon ishlaydi?",
+        "variantlar": [
+          "Har qayta chizishda",
+          "Ekranga chiqqanda bir marta",
+          "Hech qachon ishlamaydi",
+          "Komponent o'chirilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда срабатывает useEffect(() => {...}, [])?",
+        "variantlar": [
+          "При каждой перерисовке",
+          "Один раз при появлении",
+          "Никогда не срабатывает",
+          "Когда компонент удаляют"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "[likes] bo'lsa, effect qachon ishlaydi?",
+        "variantlar": [
+          "Hech qachon ishlamaydi",
+          "Har soniyada bir marta",
+          "Har safar likes o'zgarsa",
+          "Faqat bir marta, boshida"
+        ]
+      },
+      "ru": {
+        "savol": "Когда срабатывает эффект с [likes]?",
+        "variantlar": [
+          "Никогда не срабатывает",
+          "Раз в секунду",
+          "Каждый раз, когда меняется likes",
+          "Только один раз, в начале"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Hayot yo'lining to'g'ri tartibi qaysi?",
+        "variantlar": [
+          "Unmount → Update → Mount",
+          "Update → Mount → Unmount",
+          "Mount → Unmount → Update",
+          "Mount → Update → Unmount"
+        ]
+      },
+      "ru": {
+        "savol": "Какой порядок жизненного пути верный?",
+        "variantlar": [
+          "Unmount → Update → Mount",
+          "Update → Mount → Unmount",
+          "Mount → Unmount → Update",
+          "Mount → Update → Unmount"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "State va props farqi nima?",
+        "variantlar": [
+          "State ichki, props tashqaridan",
+          "Ular aynan bir xil narsa",
+          "Props o'zgaradi, state yo'q",
+          "State faqat sonlar uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Чем state отличается от props?",
+        "variantlar": [
+          "State свой, props приходят извне",
+          "Это одно и то же",
+          "Props меняются, state нет",
+          "State только для чисел"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Xotirada son o'sdi, ekranda esa o'smadi — nega?",
+        "variantlar": [
+          "Internet juda sekin edi",
+          "set yo'q — React chizmadi",
+          "Kod butunlay buzuq edi",
+          "Brauzer juda eskirgan"
+        ]
+      },
+      "ru": {
+        "savol": "Число выросло в памяти, но не на экране — почему?",
+        "variantlar": [
+          "Интернет был очень медленным",
+          "Нет set — React не перерисовал",
+          "Код был полностью сломан",
+          "Браузер слишком старый"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Effect ichidagi return () => {} nima uchun?",
+        "variantlar": [
+          "State yaratish uchun",
+          "Qiymat qaytarish uchun",
+          "Tozalash uchun (unmount)",
+          "Rang berish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем return () => {} внутри эффекта?",
+        "variantlar": [
+          "Чтобы создать state",
+          "Чтобы вернуть значение",
+          "Для уборки (unmount)",
+          "Чтобы задать цвет"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Bitta komponentda nechta useState bo'lishi mumkin?",
+        "variantlar": [
+          "Faqat bitta",
+          "Ko'pi bilan ikkita",
+          "Ko'pi bilan uchta",
+          "Istagancha ko'p"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько useState может быть в одном компоненте?",
+        "variantlar": [
+          "Только один",
+          "Не больше двух",
+          "Не больше трёх",
+          "Сколько угодно"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "mobile-practice-06-11-v18",
+  "key": "m6-11",
+  "modul": 8,
+  "tartib": 11,
+  "nom": {
+    "uz": "Loyiha kuni: mobil ilova",
+    "ru": "Проектный день: мобильное приложение"
+  },
+  "src": "src/6-Modull/MobileAppPracticeLesson.jsx",
+  "barmoq_izi": "5a124b488b9282152ed44215bbcf79b8",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Mobil ilova menuni qayerdan oladi?",
+        "variantlar": [
+          "Tayyor backend'dan",
+          "Qo'lda yozilgan ro'yxatdan",
+          "Yangi mobil serverdan",
+          "Hech qayerdan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда мобильное приложение берёт меню?",
+        "variantlar": [
+          "С готового backend",
+          "Из списка, написанного вручную",
+          "С нового мобильного сервера",
+          "Ниоткуда"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Loyiha kunida sizning vazifangiz nima?",
+        "variantlar": [
+          "Kodni o'qimay ishlatish",
+          "Topshiriq, o'qish va sinash",
+          "Hamma kodni qo'lda yozish",
+          "Faqat dizaynni tanlash"
+        ]
+      },
+      "ru": {
+        "savol": "Ваша задача в день проекта?",
+        "variantlar": [
+          "Запускать код не читая",
+          "Задание, чтение и проверка",
+          "Писать весь код вручную",
+          "Только выбирать дизайн"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "React Native'da ro'yxatni ko'rsatish uchun qaysi komponent?",
+        "variantlar": [
+          "<div>",
+          "<table>",
+          "<FlatList>",
+          "<ScrollView>"
+        ]
+      },
+      "ru": {
+        "savol": "Каким компонентом в React Native показывают список?",
+        "variantlar": [
+          "<div>",
+          "<table>",
+          "<FlatList>",
+          "<ScrollView>"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Yuborish» bosilsa nima bo'ladi?",
+        "variantlar": [
+          "Faqat telefonda saqlanadi",
+          "Hech narsa bo'lmaydi",
+          "Yangi mobil API ishlaydi",
+          "Backend'ga POST /buyurtma"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет при нажатии «Отправить»?",
+        "variantlar": [
+          "Хранится только в телефоне",
+          "Ничего не произойдёт",
+          "Запустится новый мобильный API",
+          "POST /buyurtma на backend"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Savat soni belgisi nima bilan bog'lanadi?",
+        "variantlar": [
+          "Backend fayl nomi bilan",
+          "savat.length bilan",
+          "rasm.width bilan",
+          "Sahifa title bilan"
+        ]
+      },
+      "ru": {
+        "savol": "С чем связан значок количества в корзине?",
+        "variantlar": [
+          "С именем fayl в Backend",
+          "С savat.length",
+          "С rasm.width",
+          "С title страницы"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Jami narxni hisoblash uchun qaysi usul qulay?",
+        "variantlar": [
+          "reduce",
+          "map",
+          "filter",
+          "sort"
+        ]
+      },
+      "ru": {
+        "savol": "Каким методом удобно посчитать итоговую цену?",
+        "variantlar": [
+          "reduce",
+          "map",
+          "filter",
+          "sort"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Expo Go asosan nima uchun kerak?",
+        "variantlar": [
+          "Kodni tarjima qilish uchun",
+          "Backend qurish uchun",
+          "Rasm chizish uchun",
+          "Sinash va ulashish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Для чего в основном нужен Expo Go?",
+        "variantlar": [
+          "Чтобы переводить код",
+          "Чтобы строить backend",
+          "Чтобы рисовать",
+          "Чтобы проверять и делиться"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Mobil ilovani qanday sinaymiz?",
+        "variantlar": [
+          "Umuman sinamaymiz",
+          "Faqat kodga qarab",
+          "Kodni o'qib, telefonda bosib",
+          "Faqat ranglarni ko'rib"
+        ]
+      },
+      "ru": {
+        "savol": "Как проверяем мобильное приложение?",
+        "variantlar": [
+          "Вообще не проверяем",
+          "Только глядя на код",
+          "Читаем код, жмём на телефоне",
+          "Только смотрим цвета"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Web, bot va mobil bir xil buyurtmani qanday ko'radi?",
+        "variantlar": [
+          "Bitta backend'ga ulanadi",
+          "Alohida Database quriladi",
+          "Qo'lda nusxalanadi",
+          "Buning iloji yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Как веб, бот и мобильное видят одни заказы?",
+        "variantlar": [
+          "Подключены к одному backend",
+          "Строят отдельные Database",
+          "Копируются вручную",
+          "Это невозможно"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Ilova ishlagach, yana nima kerak?",
+        "variantlar": [
+          "Boshqa hech narsa",
+          "StyleSheet'ni o'chirish",
+          "Hammasini qayta yozish",
+          "StyleSheet bilan sayqal"
+        ]
+      },
+      "ru": {
+        "savol": "Что ещё нужно, когда приложение работает?",
+        "variantlar": [
+          "Больше ничего",
+          "Удалить StyleSheet",
+          "Переписать всё",
+          "Довести через StyleSheet"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Tafsilot ekraniga o'tish uchun nima ishlatiladi?",
+        "variantlar": [
+          "reduce",
+          "fetch",
+          "navigation.navigate",
+          "StyleSheet.create"
+        ]
+      },
+      "ru": {
+        "savol": "Что используют для перехода на экран Детали?",
+        "variantlar": [
+          "reduce",
+          "fetch",
+          "navigation.navigate",
+          "StyleSheet.create"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Nega telefonda ham sinash kerak?",
+        "variantlar": [
+          "Kod tezroq yuklanadi",
+          "Qurilma xatolari ko'rinadi",
+          "Kod yozish kerak emas",
+          "Internet kerak emas"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем проверять и на телефоне?",
+        "variantlar": [
+          "Код грузится быстрее",
+          "Видны ошибки устройства",
+          "Код писать не нужно",
+          "Интернет не нужен"
+        ]
+      }
+    }
+  ]
+}

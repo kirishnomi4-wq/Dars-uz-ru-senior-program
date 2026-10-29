@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitchdagi qaysi gap da'vo?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "30 kishi ro'yxatdan o'tdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hozir telefonda ko'rsataman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Savollaringizni bering",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tinglaganingiz uchun rahmat",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dalil nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Eng ishonchli ko'ringan gap",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Da'voni ko'rsatadigan son",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Zal beradigan savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi qadam gapi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dalildagi manba nimani aytadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Son qanchalik katta ekanini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Son qaysi kuni sanalganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu son qayerdan olinganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sonni kim aytib berganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ilovani odamlar ishlatyapti» dalili qayerdan?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Umami: lending tashriflari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "11-Modul intervyulari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlar gapi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database: ro'yxatdan o'tganlar",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Umami lendingda nimani sanaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Tashrif va tugma bosilishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ro'yxatdan o'tganlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinga qo'shilganlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani ochgan qurilmalarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Foydalanuvchilar soni o'sdi. Pitchda qaysi sonni aytasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Birinchi kungi sonni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangisini, sanasi bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkisining o'rtachasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkisining jamini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ilova yoqdi» gapi bilan Mentor nima qildi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "O'zgarishsiz qoldirdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi qadamga ko'chirdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sonlar bilan qayta yozdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdoshlardan so'radi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Tez orada 50 ga yetamiz» nega olib tashlandi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Maqsad juda katta edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Zal kelajakni eshitmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlar aytilmagan edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dalili yo'q, bu va'da",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Dalilda sinfdoshlar qanday aytiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Alohida, nechtasi sinfdosh",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Aytilmaydi, ular ham odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sanoqdan chiqariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ular aytiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta yozilgan da'voda nima bo'ladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Chiroyli sifat so'zlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dalildagi son gapning o'zida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Zal savoliga javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Avvalgi gapning qisqasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Intervyu yozuvlari qaysi da'voga dalil bo'ladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Foydalanuvchilar soniga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending tashriflariga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlar qiynalganiga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'lgan o'yinlar soniga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yakkama-yakkada Mentor bilan nimani ko'rasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Arena ballaringizni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodning har qatorini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending dizaynini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Da'vo va dalillaringizni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

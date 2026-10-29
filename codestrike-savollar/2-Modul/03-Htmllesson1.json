@@ -1,0 +1,278 @@
+{
+  "lessonId": "html-01-v17",
+  "key": "m1-03",
+  "modul": 2,
+  "tartib": 3,
+  "nom": {
+    "uz": "HTML asoslari",
+    "ru": "Основы HTML"
+  },
+  "src": "src/1-Modull/Htmllesson1.jsx",
+  "barmoq_izi": "ad2b98b8ff8a59d5bd7706f94fdbc44a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 3,
+      "uz": {
+        "savol": "Yopuvchi teg qaysi belgi bilan boshlanadi?",
+        "variantlar": [
+          "\\",
+          "!",
+          "#",
+          "/"
+        ]
+      },
+      "ru": {
+        "savol": "С какого символа начинается закрывающий тег?",
+        "variantlar": [
+          "\\",
+          "!",
+          "#",
+          "/"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Sarlavha teglaridan eng KICHIGI qaysi?",
+        "variantlar": [
+          "h1",
+          "h3",
+          "h6",
+          "p"
+        ]
+      },
+      "ru": {
+        "savol": "Какой из тегов заголовков — самый МАЛЕНЬКИЙ?",
+        "variantlar": [
+          "h1",
+          "h3",
+          "h6",
+          "p"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Tartibsiz (nuqtali) ro'yxatni qaysi teg boshlaydi?",
+        "variantlar": [
+          "ul",
+          "ol",
+          "li",
+          "a"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег начинает маркированный (с точками) список?",
+        "variantlar": [
+          "ul",
+          "ol",
+          "li",
+          "a"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Ro'yxatning har bir bandi qaysi tegga o'raladi?",
+        "variantlar": [
+          "ul",
+          "li",
+          "ol",
+          "dd"
+        ]
+      },
+      "ru": {
+        "savol": "В какой тег оборачивается каждый пункт списка?",
+        "variantlar": [
+          "ul",
+          "li",
+          "ol",
+          "dd"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Linkda (link) manzil qaysi atributga yoziladi?",
+        "variantlar": [
+          "src",
+          "link",
+          "href",
+          "url"
+        ]
+      },
+      "ru": {
+        "savol": "В какой атрибут ссылки пишется адрес?",
+        "variantlar": [
+          "src",
+          "link",
+          "href",
+          "url"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "title tegidagi matn qayerda ko'rinadi?",
+        "variantlar": [
+          "Sahifaning o'rtasida",
+          "Brauzer tabchasida",
+          "Tugmaning ustida",
+          "Hech qayerda ko'rinmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Где виден текст из тега title?",
+        "variantlar": [
+          "В центре страницы",
+          "На вкладке браузера",
+          "На кнопке",
+          "Нигде не виден"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "title kabi ko'rinmas sozlamalar qayerga yoziladi?",
+        "variantlar": [
+          "body",
+          "p",
+          "head",
+          "h1"
+        ]
+      },
+      "ru": {
+        "savol": "Куда пишутся невидимые настройки, такие как title?",
+        "variantlar": [
+          "body",
+          "p",
+          "head",
+          "h1"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "Matnni QALIN (bold) qilish uchun qaysi teg?",
+        "variantlar": [
+          "strong",
+          "em",
+          "title",
+          "p"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег делает текст ЖИРНЫМ (bold)?",
+        "variantlar": [
+          "strong",
+          "em",
+          "title",
+          "p"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "<!DOCTYPE html> nimani bildiradi?",
+        "variantlar": [
+          "Sahifaning fon rangini",
+          "Rasm qo'shilishini",
+          "Sahifa tugaganini",
+          "HTML5 hujjat ekanini"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает <!DOCTYPE html>?",
+        "variantlar": [
+          "Цвет фона страницы",
+          "Добавление картинки",
+          "Конец страницы",
+          "Что это документ HTML5"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Skeletning to'g'ri tartibi qaysi?",
+        "variantlar": [
+          "head ichida html, body",
+          "body ichida head, html",
+          "title ichida head",
+          "html ichida head, body"
+        ]
+      },
+      "ru": {
+        "savol": "Какой порядок скелета верный?",
+        "variantlar": [
+          "html и body внутри head",
+          "head и html внутри body",
+          "head внутри title",
+          "head и body внутри html"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "HTML kodni o'qib, sahifaga aylantiradigan dastur qaysi?",
+        "variantlar": [
+          "Server",
+          "Brauzer",
+          "Word",
+          "Fayl menejeri"
+        ]
+      },
+      "ru": {
+        "savol": "Какая программа читает HTML-код и превращает его в страницу?",
+        "variantlar": [
+          "Сервер",
+          "Браузер",
+          "Word",
+          "Файловый менеджер"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Matnni QIYA (kursiv) qilish uchun qaysi teg?",
+        "variantlar": [
+          "em",
+          "ul",
+          "a",
+          "h1"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег делает текст НАКЛОННЫМ (курсив)?",
+        "variantlar": [
+          "em",
+          "ul",
+          "a",
+          "h1"
+        ]
+      }
+    }
+  ]
+}

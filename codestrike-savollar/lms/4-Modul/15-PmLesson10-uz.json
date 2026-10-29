@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ishlaydigan sayt o'zi nimani aytmaydi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Nima uchun kerakligini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qanday tugmalar borligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qanday ro'yxat borligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qanday ko'rinishini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ekranni takrorlagan gap nima qo'shadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ko'rinmagan narsani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa qo'shmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilgari og'ir bo'lganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugma natijasini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bu — bosh sahifa» degan gap nima qiladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ilgarisini aytadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Natijani ko'rsatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nega kerakligini aytadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekrandagini takrorlaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'rsatuv nechta kadrdan iborat?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bitta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkita",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Beshta",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Birinchi kadrda nima aytiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Endi nima osonlashgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilgari ish qanday qilinardi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hozir qaysi tugma bosilyapti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt qaysi dasturda yozilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikkinchi kadrda nima bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Hamma sahifa ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilgari og'irligi aytiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kimlar uchun ekani aytiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta bosish va uning natijasi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uchinchi kadrda nima aytiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Sayt qachon tayyor bo'lgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kim bu saytni qurgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Endi nima oson bo'lgani",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qaysi tugma bosilgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'rsatuvda nechta harakat bosiladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Bitta harakat bosiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har kadrda bittadan — uchta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har sahifada bittadan bosiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkita: menu va tugma",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'rsatuvda qanday joy bosiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Eng chiroyli joy",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi ko'ringan joy",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish chindan bajariladigan joy",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Menudagi birinchi bo'lim",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb o'z ishini nima bilan tushuntirgan?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Uzun yozma hisobot bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'ntacha oddiy varaq bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'chadagi reklama bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir soatlik video bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Airbnb taqdimoti nima bilan tugagan?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Jamoa varag'i bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt ekranlari bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narx varag'i bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xarita varag'i bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Odam natijani ko'rishi uchun kodda nima kerak?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Faqat dasturchiga yozuv",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod ichidagi izoh qatori",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa sahifaga tugma",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranda tasdiq qatori",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

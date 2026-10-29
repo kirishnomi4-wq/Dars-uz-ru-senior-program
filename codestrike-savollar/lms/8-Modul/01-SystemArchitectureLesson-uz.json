@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mahsulot va buyurtmalar qayerda doimiy saqlanadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Database'da",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Frontend'da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI'da",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Frontend asosan nima qiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ma'lumotni saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxni hisoblaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranda ko'rsatadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Parolni tekshiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Savatga» so'rovi qaysi yo'ldan boradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Frontend → Database",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database → Frontend",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Frontend → Backend → Database",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database → Backend → Frontend",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega Frontend Database'ga to'g'ridan bormaydi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Database juda sekin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xavfsizlik uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ular boshqa tilda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Texnik iloji yo'q",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend'ning asosiy vazifasi nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Sahifa dizaynini chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchiga ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Matnni tarjima qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tekshiradi, Database'ga yozadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Web sayt va bot bir xil buyurtmani qanday ko'radi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bitta Backend'ga ulanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Alohida Database quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'lda ko'chiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buning iloji yo'q",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ko'p kirish yo'li, bitta tizim» — bu nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Har yo'lga alohida tizim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta yo'l yetarli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat web sayt bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma yo'l bitta Backend'ga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Database o'chirilsa nima bo'ladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Hech narsa o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumot saqlanmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sahifa ranglari o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tizim tezlashadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tayyor tizimga mobil ilova qanday qo'shiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Hammasi noldan yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi Frontend ulanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Alohida Database quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buning iloji yo'q",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI tizimda nima qiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ma'lumotni saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma qarorni o'zi qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maslahat beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sahifani ko'rsatadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ma'lumot yo'lida foydalanuvchidan keyin nima turadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Database",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Frontend",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kod yozishdan oldin chizma nega kerak?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Qism vazifasi aniq bo'ladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni o'zi yozib beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni tezlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dizaynni chiroyli qiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

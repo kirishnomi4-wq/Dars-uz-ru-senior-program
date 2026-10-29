@@ -1,0 +1,278 @@
+{
+  "lessonId": "react-build-site-final-p4-v18",
+  "key": "m3-13",
+  "modul": 4,
+  "tartib": 14,
+  "nom": {
+    "uz": "Praktika: Istalgan saytni qurish — bo'laklash + aniq prompt",
+    "ru": "Практика: Сборка любого сайта — декомпозиция + точный промпт"
+  },
+  "src": "src/3-Modull/ReactBuildSiteLesson.jsx",
+  "barmoq_izi": "33628b86456c0d5282164f4da8ffc5b6",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Katta saytni AI bilan qanday qurasiz?",
+        "variantlar": [
+          "Bo'laklab, har biriga prompt",
+          "Bir jumlada hammasini so'rash",
+          "Hammasini qo'lda yozish",
+          "Avval rangni tanlash"
+        ]
+      },
+      "ru": {
+        "savol": "Как собрать большой сайт с AI?",
+        "variantlar": [
+          "По частям, на каждую промпт",
+          "Попросить всё одной фразой",
+          "Написать всё вручную",
+          "Сначала выбрать цвет"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Saytni sahifalarga qanday bo'lamiz?",
+        "variantlar": [
+          "useState bilan",
+          "Router (<Route>)",
+          "props bilan",
+          "map bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Как делим сайт на страницы?",
+        "variantlar": [
+          "useState bilan",
+          "Router (<Route>)",
+          "props bilan",
+          "map bilan"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«Yetkaz» Bosh sahifasi nechta bo'limdan?",
+        "variantlar": [
+          "1 ta",
+          "2 ta",
+          "4 ta",
+          "Cheksiz"
+        ]
+      },
+      "ru": {
+        "savol": "Из скольких секций главная «Yetkaz»?",
+        "variantlar": [
+          "1",
+          "2",
+          "4",
+          "Бесконечно"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Bir xil karta 8 marta takrorlansa, nima qilasiz?",
+        "variantlar": [
+          "8 fayl yarataman",
+          "8 marta ko'chiraman",
+          "Shundayligicha qoldiraman",
+          "Bitta komponent + props + map"
+        ]
+      },
+      "ru": {
+        "savol": "Одинаковая карточка повторяется 8 раз — что делаете?",
+        "variantlar": [
+          "Создам 8 файлов",
+          "Скопирую 8 раз",
+          "Оставлю как есть",
+          "Один компонент + props + map"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "FoodCard'ga nom va narxni nima orqali beramiz?",
+        "variantlar": [
+          "props",
+          "state",
+          "Router",
+          "API"
+        ]
+      },
+      "ru": {
+        "savol": "Через что передаём FoodCard название и цену?",
+        "variantlar": [
+          "props",
+          "state",
+          "Router",
+          "API"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Qaysi prompt eng aniq?",
+        "variantlar": [
+          "Chiroyli ovqat sayti qur",
+          "Hero, 8 FoodCard (nom, narx)",
+          "Sayt qur, tez bo'lsin",
+          "Menga yaxshi kod yoz"
+        ]
+      },
+      "ru": {
+        "savol": "Какой промпт самый точный?",
+        "variantlar": [
+          "Сделай красивый сайт еды",
+          "Hero, 8 FoodCard (название, цена)",
+          "Сделай сайт, побыстрее",
+          "Напиши мне хороший код"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Aniq prompt nimalardan iborat?",
+        "variantlar": [
+          "Rang + shrift + logotip",
+          "Faqat bo'limlar nomi",
+          "Bo'limlar + mazmun + ma'lumot",
+          "Faqat sayt mavzusi"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего состоит точный промпт?",
+        "variantlar": [
+          "Цвет + шрифт + логотип",
+          "Только названия секций",
+          "Секции + содержание + данные",
+          "Только тема сайта"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "AI narxni unutdi — nima qilasiz?",
+        "variantlar": [
+          "Qoldiraman",
+          "Hammasini qayta yozdiraman",
+          "Rangni o'zgartiraman",
+          "Aniq prompt: narxni qo'sh"
+        ]
+      },
+      "ru": {
+        "savol": "ИИ забыл цену — что делаете?",
+        "variantlar": [
+          "Оставлю",
+          "Заставлю переписать всё",
+          "Поменяю цвет",
+          "Точный промпт: добавь цену"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "AI hamma kodni bitta komponentga yozdi. Nima qilasiz?",
+        "variantlar": [
+          "Bo'limlarga bo'ldiraman",
+          "Shundayicha qoldiraman",
+          "Hammasini o'chiraman",
+          "Yana kod qo'shtiraman"
+        ]
+      },
+      "ru": {
+        "savol": "AI написал весь код в один компонент. Что делать?",
+        "variantlar": [
+          "Попрошу разбить на секции",
+          "Оставлю как есть",
+          "Удалю всё",
+          "Попрошу добавить код"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "«Yetkaz»da taomlar ro'yxati qayerda turadi?",
+        "variantlar": [
+          "Router (<Route>)",
+          "App.jsx'dagi massiv",
+          "Gemini prompti",
+          "index.css fayli"
+        ]
+      },
+      "ru": {
+        "savol": "Где в «Yetkaz» хранится список блюд?",
+        "variantlar": [
+          "Router (<Route>)",
+          "App.jsx'dagi massiv",
+          "Gemini prompti",
+          "index.css fayli"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "map() nima qiladi?",
+        "variantlar": [
+          "Yangi sahifa ochadi",
+          "AI uchun prompt yozadi",
+          "Har elementga karta chizadi",
+          "Kartaga rang beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает map()?",
+        "variantlar": [
+          "Открывает новую страницу",
+          "Пишет промпт для AI",
+          "Рисует карточку для каждого элемента",
+          "Красит карточку"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Qurish formulasi qaysi saytlarga ishlaydi?",
+        "variantlar": [
+          "Faqat ovqat",
+          "Faqat do'kon",
+          "Faqat o'yin",
+          "Istalgan saytga"
+        ]
+      },
+      "ru": {
+        "savol": "Для каких сайтов работает формула сборки?",
+        "variantlar": [
+          "Только еда",
+          "Только магазин",
+          "Только игры",
+          "Для любого сайта"
+        ]
+      }
+    }
+  ]
+}

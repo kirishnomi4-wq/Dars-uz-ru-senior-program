@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ishlaydi» nimani anglatadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bitta yo'l tekshirilgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma shart bajarilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish qabul qilindi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodda birorta xato qolmagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Tayyor» nimani anglatadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Kod xatosiz ishlayapti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma shart bajarilgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "AI «tayyor» dedi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt chiroyli ko'rinadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qabul shartlari qachon yoziladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ish tugagandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt ochilgandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI'ga yozishdan oldin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "AI «aniqroq yozing» deganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'sh buyurtma ham ketdi. Shart bajarildimi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ha, tugma ishladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, bo'sh o'tmasligi kerak",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, shart to'lasi haqida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, buyurtma ketmagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugma tez ikki marta bosilsa, nechta buyurtma ketishi kerak?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Bitta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkita",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech biri",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "4 shartdan faqat 1 tasi bajarildi. Ish qabul qilinadimi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ha, muhimi bajarildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, qolgani keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, hammasi bajarilsin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yo'q, shart yozilmagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Sayt chiroyli bo'lsin» — yaxshi shartmi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ha, qisqa va aniq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, har kim har xil ko'radi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, bosib tekshirsa bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, juda uzun yozilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tekshirib bo'ladigan shartda nima bo'ladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Chiroyli va yoqimli so'zlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uzun va batafsil izoh",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozgan odamning ismi va sanasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq harakat yoki son",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Cyberpunk 2077 o'yini bilan nima bo'ldi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Kompaniyasi yopildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaytadan chiqarildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'kondan olib tashlandi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nomi o'zgartirildi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tutilmagan nosozlik eng ko'p nimani yo'qotdi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Boshqa o'yinlar sotuvini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklama pulini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xaridorlar pulini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlar ishonchini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yozilgan shartlarni qayerga qo'shasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "AI'ga yuboradigan promptga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytning bosh sahifasiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI yozib bergan kodning ichiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerga, o'zimda qoladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kod shart bajarilganini qanday aytadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ekranga rasm chizib beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani yopib qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefoningizga xabar yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "true yoki false qaytaradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

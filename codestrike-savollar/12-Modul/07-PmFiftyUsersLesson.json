@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m10d7-v1",
+  "key": "m10-07",
+  "modul": 12,
+  "tartib": 7,
+  "nom": {
+    "uz": "50 foydalanuvchiga qanday yetasiz?",
+    "ru": "Как дойти до 50 пользователей?"
+  },
+  "src": "src/10-Modull/PmFiftyUsersLesson.jsx",
+  "barmoq_izi": "c1029a6877bb2026fa0aaab7a4680fef",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor rejasida 1-bosqich kanali qaysi?",
+        "variantlar": [
+          "Sinf chati, mahalla guruhi",
+          "Shahar futbol kanali",
+          "Notanishlarga shaxsiy xabar",
+          "Sotib olingan obunachilar"
+        ]
+      },
+      "ru": {
+        "savol": "Какой канал у 1-го этапа в плане Ментора?",
+        "variantlar": [
+          "Чат класса, группа махалли",
+          "Городской футбольный канал",
+          "Личные сообщения незнакомым",
+          "Купленные подписчики"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor misolida asosiy harakat nima?",
+        "variantlar": [
+          "Ilovani o'rnatib ochish",
+          "Qo'shilish yoki e'lon berish",
+          "Lending tugmasini bosish",
+          "Postni do'stga yuborish"
+        ]
+      },
+      "ru": {
+        "savol": "Что в примере Ментора — главное действие?",
+        "variantlar": [
+          "Установить и открыть приложение",
+          "Записаться или объявить игру",
+          "Нажать кнопку на лендинге",
+          "Переслать пост другу"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor nega telefon raqamini so'ramaydi?",
+        "variantlar": [
+          "Raqam yozish uzoq",
+          "Raqamni hamma bilmaydi",
+          "Mahsulotga raqam kerak emas",
+          "Raqam Database'ga sig'maydi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему Ментор не спрашивает номер телефона?",
+        "variantlar": [
+          "Номер долго вводить",
+          "Номер помнят не все",
+          "Продукту номер не нужен",
+          "Номер не влезет в Database"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Bir odam ikki telefonda ochdi. ochdi qanchaga oshadi?",
+        "variantlar": [
+          "Bittaga, login bir xil",
+          "Bittaga, ism bir xil",
+          "Oshmaydi, bu egasi",
+          "Ikkitaga, ikki qurilma"
+        ]
+      },
+      "ru": {
+        "savol": "Человек открыл на двух телефонах. На сколько вырастет ochdi?",
+        "variantlar": [
+          "На один, логин тот же",
+          "На один, имя то же",
+          "Не вырастет, это владелец",
+          "На два, два устройства"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Ro'yxatdan o'tganlar soni qayerdan olinadi?",
+        "variantlar": [
+          "Database'dan, so'rov bilan",
+          "Rejadagi kutilgan sondan",
+          "Lending tashriflaridan",
+          "Guruh a'zolari sonidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда берут число зарегистрированных?",
+        "variantlar": [
+          "Из Database, запросом",
+          "Из ожидаемого числа в плане",
+          "Из посещений лендинга",
+          "Из числа участников группы"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "«Hisobni o'chirish» tasdiqlansa nima bo'ladi?",
+        "variantlar": [
+          "Faqat parol o'chadi",
+          "Akkaunt va yozuvlari o'chadi",
+          "Ilova telefondan o'chadi",
+          "Hamma akkauntlar o'chadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если подтвердить «Удалить аккаунт»?",
+        "variantlar": [
+          "Удалится только пароль",
+          "Удалятся аккаунт и его записи",
+          "Приложение удалится с телефона",
+          "Удалятся все аккаунты"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Maxfiylik sahifasini nima bilan solishtirasiz?",
+        "variantlar": [
+          "Agent hisoboti bilan",
+          "Boshqa ilova sahifasi bilan",
+          "Ilovangiz kodi bilan",
+          "Lending sarlavhasi bilan"
+        ]
+      },
+      "ru": {
+        "savol": "С чем сравниваете страницу конфиденциальности?",
+        "variantlar": [
+          "С отчётом агента",
+          "Со страницей другого приложения",
+          "С кодом вашего приложения",
+          "С заголовком лендинга"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor misolida brauzer ko'rinishida hozircha nima yo'q?",
+        "variantlar": [
+          "O'yinlar ro'yxati",
+          "Qo'shilish tugmasi",
+          "Ro'yxatdan o'tish",
+          "O'yin eslatmasi"
+        ]
+      },
+      "ru": {
+        "savol": "Чего в примере Ментора пока нет в браузерной версии?",
+        "variantlar": [
+          "Экрана со списком игр",
+          "Кнопки присоединения",
+          "Экрана регистрации",
+          "Напоминания об игре"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Agentga xato yuborganda nimani yuborasiz?",
+        "variantlar": [
+          "Xato qatorining o'zini",
+          ".env dagi qiymatlarni",
+          "Token va xato qatorini",
+          "Maxfiy kalit va kodni"
+        ]
+      },
+      "ru": {
+        "savol": "Что отправляете агенту при ошибке?",
+        "variantlar": [
+          "Только строку ошибки",
+          "Значения из .env",
+          "Токен и строку ошибки",
+          "Секретный ключ и код"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Guruhga post yuborishdan oldin nima qilasiz?",
+        "variantlar": [
+          "Yangi akkaunt ochasiz",
+          "Egasidan ruxsat so'raysiz",
+          "O'nta guruhga tashlaysiz",
+          "Telefon raqam qo'shasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что делаете до отправки поста в группу?",
+        "variantlar": [
+          "Создаёте новый аккаунт",
+          "Спрашиваете разрешения у владельца",
+          "Кидаете в десять групп",
+          "Добавляете номер телефона"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "ochdi hodisasi bilan Backend'ga nima boradi?",
+        "variantlar": [
+          "Hodisa nomi va login",
+          "O'yinchi ismi va qurilma ID",
+          "Hodisa nomi va qurilma ID",
+          "Login va parol hash"
+        ]
+      },
+      "ru": {
+        "savol": "Что уходит в Backend с событием ochdi?",
+        "variantlar": [
+          "Имя события и логин",
+          "Имя игрока и ID устройства",
+          "Имя события и ID устройства",
+          "Логин и хеш пароля"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Rejada 20, aslida 12 kishi. Nima qilasiz?",
+        "variantlar": [
+          "Soxta akkaunt ochasiz",
+          "Yana 8 marta o'tasiz",
+          "Notanishlarga yuborasiz",
+          "Sonni yozib, davom etasiz"
+        ]
+      },
+      "ru": {
+        "savol": "В плане 20, на деле 12 человек. Что сделаете?",
+        "variantlar": [
+          "Создадите фейковые аккаунты",
+          "Зарегистрируетесь ещё 8 раз",
+          "Разошлёте незнакомым",
+          "Запишете число и продолжите"
+        ]
+      }
+    }
+  ]
+}

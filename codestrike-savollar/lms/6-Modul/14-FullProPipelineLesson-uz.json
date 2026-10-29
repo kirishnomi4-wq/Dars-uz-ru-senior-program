@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Parallel lentalar (matrix) nima uchun?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ko'p muhitda birdan sinash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Serverni qayta yuklash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta muhitda sekin sinash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kalitlarni yashirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaqin javon (cache) nimani tezlashtiradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Brauzerda sahifa chizishni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverning internetini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testlar hisob-kitobini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Install bosqichini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maxfiy kalitni qanday ishlatish xavfsiz?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Fayl ichiga ochiq yozib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "README boshiga yozib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Seyfga qo'yib, nomi bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Commit izohiga yozib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinov reysi (staging) nima uchun kerak?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Yukni tezroq yetkazish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'lovchisiz oldin sinash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Lentalarni birlashtirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kalitni ochiq saqlash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Productionda buzuq yuk. Eng tez yechim?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Keshni tozalash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kalitlarni yangidan yaratish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lentalar sonini oshirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eski yukni qaytarish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Matrix'da faqat Node 22 qizil bo'lsa?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Singan muhit aniq ko'rinadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Node 24 ham qizil bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lenta butunlay o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'rtacha natija chiqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaqin javon qanday ishlaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Har safar noldan yuklaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Paketni saqlab, qayta beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Test natijasini eslab qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat kalitlarni saqlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Seyf (secrets) qayerda saqlanadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "ci.yml ichida, ochiq matnda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jurnalning oxirgi qatorida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Platforma seyf sozlamasida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hammaga ochiq README'da",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Staging va production farqi nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Stagingda yo'lovchi yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Staging tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Farqi yo'q, faqat nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Production tekshirilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Eski yukni qaytarish qachon kerak?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Har push'dan keyin, doim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi versiya buzuq chiqqanda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kesh bo'sh bo'lganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma muhit yashil bo'lganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kod turli muhitda turlicha ishlaydimi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ha, faqat Windows'da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, doim bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, faqat dizayn o'zgaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, natija farq qilishi mumkin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ishonchli lentada qaysi tartib to'g'ri?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Production, keyin staging",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rollback, keyin yangi yuk",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Staging, keyin production",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Seyf, keyin kod yozish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

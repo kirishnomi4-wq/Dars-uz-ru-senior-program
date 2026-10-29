@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bot nega oldingi javobni unutadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Internetda xabar yo'qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mijoz juda tez yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bot holatni saqlamaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telegram tartibni buzadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki mijoz aralashmasligi uchun nima kerak?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Bitta umumiy o'zgaruvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har biriga o'z boti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umumiy holat PostgreSQL'da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har biriga alohida sessiya",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta ishga tushganda qaysi ma'lumot qoladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "PostgreSQL jadvalidagi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "JavaScript obyektidagi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qaysi biri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Handler o'zgaruvchisidagi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bot «o'lchamni kutyapman» deb yozib qo'ydi. Bu nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Webhook",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Holat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Token",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fallback",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "SELECT botga nima uchun kerak?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Yangi mijozni qo'shish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotni o'chirish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jadvalni qayta qurish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Holatni bazadan o'qish uchun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi mijoz /start bosdi, qatori yo'q. Qaysi buyruq?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "SELECT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "INSERT",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "UPDATE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Holat keyingi bosqichga qanday o'tadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "UPDATE bilan o'zgaradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "INSERT bilan qo'shiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "SELECT bilan o'qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE bilan o'chadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Holat koddagi obyektda: kamchiligi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Botni juda sekinlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Diskda ko'p joy oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayta ishga tushsa, yo'qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat bitta mijozga yetadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "users jadvalidagi holat ustuni nima uchun?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Mijoz ismini saqlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tanlangan pitsani saqlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Suhbat bosqichini saqlash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Xabar vaqtini yozish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Har mijozga alohida sessiya nega kerak?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Suhbatlar aralashmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayta yonsa ham saqlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat katta botlarga kerak",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Xabar kelganda bot birinchi nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "INSERT bilan qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "SELECT bilan o'qiydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "UPDATE bilan yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ismini qayta so'raydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta ishga tushsa ham suhbat saqlanishi uchun?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "/start qayta bosilsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet tezroq bo'lsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Holat obyektda tursin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Holat PostgreSQL'da tursin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

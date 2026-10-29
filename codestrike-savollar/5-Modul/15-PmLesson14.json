@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m4d15-v1",
+  "key": "m4-15",
+  "modul": 5,
+  "tartib": 15,
+  "nom": {
+    "uz": "«Qanday ishlaydi?» deb so'rashsa",
+    "ru": "Если спросят: «Как это работает?»"
+  },
+  "src": "src/4-Modull/PmLesson14.jsx",
+  "barmoq_izi": "5327d0eb37b5b92bb01baf931209b8af",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Texnik so'zli javobdan odam nima oladi?",
+        "variantlar": [
+          "Javob o'rniga notanish so'z",
+          "Ikkinchi savoliga javob",
+          "O'ziga tanish misol",
+          "Javobning qisqasini"
+        ]
+      },
+      "ru": {
+        "savol": "Что человек получает из ответа с техническим словом?",
+        "variantlar": [
+          "Незнакомое слово вместо ответа",
+          "Ответ и на второй вопрос",
+          "Знакомый ему пример",
+          "Короткую версию ответа"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Rost javob qachon odamga yetib boradi?",
+        "variantlar": [
+          "Ikki marta takrorlanganda",
+          "Uzunroq aytilganda",
+          "Kasb-so'zi qo'shilganda",
+          "Oddiy so'z bilan aytilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда правдивый ответ доходит до человека?",
+        "variantlar": [
+          "Когда повторён дважды",
+          "Когда сказан длиннее",
+          "Когда добавлено профи-слово",
+          "Когда сказан простыми словами"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Sayt nechta qavatdan turadi?",
+        "variantlar": [
+          "Bir qavatdan",
+          "Ikki qavatdan",
+          "Uch qavatdan",
+          "To'rt qavatdan"
+        ]
+      },
+      "ru": {
+        "savol": "Из скольких этажей состоит сайт?",
+        "variantlar": [
+          "Из одного",
+          "Из двух",
+          "Из трёх",
+          "Из четырёх"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Ko'rinadigan sahifa nima qiladi?",
+        "variantlar": [
+          "Band joylarni tozalaydi",
+          "Bo'sh joylarni ko'rsatadi",
+          "Joy narxini hisoblaydi",
+          "Ro'yxatni o'zi yangilaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает видимая страница?",
+        "variantlar": [
+          "Очищает занятые места",
+          "Показывает свободные места",
+          "Считает цену места",
+          "Сама обновляет список"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Server nima qiladi?",
+        "variantlar": [
+          "Sahifa rangini tanlaydi",
+          "Joy bo'shligini tekshiradi",
+          "Joylarga yangi raqam beradi",
+          "Tugmani kattalashtiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает сервер?",
+        "variantlar": [
+          "Выбирает цвет страницы",
+          "Проверяет, свободно ли место",
+          "Даёт местам новые номера",
+          "Увеличивает кнопку"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Baza nima qiladi?",
+        "variantlar": [
+          "Band joylarni eslab qoladi",
+          "Odamga savol berib turadi",
+          "Bo'sh joylarni chizadi",
+          "Sahifa rangini almashtiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает база?",
+        "variantlar": [
+          "Запоминает занятые места",
+          "Задаёт человеку вопросы",
+          "Рисует свободные места",
+          "Меняет цвет страницы"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Bitta bosish qavatlardan qaysi tartibda o'tadi?",
+        "variantlar": [
+          "Baza → server → sahifa",
+          "Server → sahifa → baza",
+          "Sahifa → server → baza",
+          "Baza → sahifa → server"
+        ]
+      },
+      "ru": {
+        "savol": "В каком порядке одно нажатие проходит этажи?",
+        "variantlar": [
+          "База → сервер → страница",
+          "Сервер → страница → база",
+          "Страница → сервер → база",
+          "База → страница → сервер"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Telefon o'chsa ham joylar saqlanadi. Qaysi qavat?",
+        "variantlar": [
+          "Yuqori — sahifa",
+          "O'rta — server",
+          "Uchalasi navbat bilan",
+          "Pastki — baza"
+        ]
+      },
+      "ru": {
+        "savol": "Места сохраняются, даже если телефон выключен. Какой этаж?",
+        "variantlar": [
+          "Верхний — страница",
+          "Средний — сервер",
+          "Все три по очереди",
+          "Нижний — база"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Airbnb besh qadamida qaysi biri yo'q edi?",
+        "variantlar": [
+          "Sayt qanday qurilgani",
+          "Odamlarning qiyinchiligi",
+          "Qancha odam kutayotgani",
+          "Ishni kim qilayotgani"
+        ]
+      },
+      "ru": {
+        "savol": "Чего не было в пяти шагах Airbnb?",
+        "variantlar": [
+          "Как устроен сайт",
+          "Трудности людей",
+          "Сколько людей ждут решения",
+          "Кто делает работу"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Airbnb ishini avval nima bilan tushuntirgan?",
+        "variantlar": [
+          "Tayyor sayt bilan",
+          "Uzun video bilan",
+          "O'nga yaqin varaq bilan",
+          "Uzun maktublar bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Чем Airbnb сначала объяснял свою работу?",
+        "variantlar": [
+          "Готовым сайтом",
+          "Длинным видео",
+          "Примерно десятью листами",
+          "Длинными письмами"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Ko'rsatuvda texnik qarorni nima tushuntiradi?",
+        "variantlar": [
+          "Qavat nomlari ro'yxati",
+          "Uning odamga foydasi",
+          "Kod qatorlarining o'zi",
+          "Server javobining o'zi"
+        ]
+      },
+      "ru": {
+        "savol": "Что в показе объясняет техническое решение?",
+        "variantlar": [
+          "Список названий этажей",
+          "Его польза для человека",
+          "Сами строки кода",
+          "Сам ответ сервера"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Ko'rinmas qavat ishlayotganini odam qanday ko'radi?",
+        "variantlar": [
+          "Server javobini o'qib",
+          "Baza jadvalini ochib",
+          "Kodni ochib ko'rib",
+          "Holat-qatorini o'qib"
+        ]
+      },
+      "ru": {
+        "savol": "Как человек видит, что невидимый этаж работает?",
+        "variantlar": [
+          "Читая ответ сервера",
+          "Открыв таблицу базы",
+          "Открыв код",
+          "Читая строку состояния"
+        ]
+      }
+    }
+  ]
+}

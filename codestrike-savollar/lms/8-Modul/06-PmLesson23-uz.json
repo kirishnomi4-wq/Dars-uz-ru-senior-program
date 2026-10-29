@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chegara nima haqidagi qaror?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ilova o'zi nima qilmasligi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova avval nima qilishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova kimga yozishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova qaysi rangda bo'lishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova so'rab qiladigan ishning afzalligi nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Tezroq bajariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki marta bajariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamga ko'rinmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam to'xtata oladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chegara avvalo qaysi ishga kerak?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Qo'lda qilinadigan ishga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'rab qilinadigan ishga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'ramay qilinadigan ishga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qilinmaydigan ishga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova savatdan mahsulotni o'zi olsa, kimga tegadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Tovar keltiruvchi sotuvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lovga o'tayotgan mijoz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni yasagan dasturchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ombordagi xodim",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tavsifni hech kim o'qimasa, nima bo'ladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Mijoz tavsifni ko'rmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mijoz xato tavsifga ishonadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt uni qayta yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buyurtma bekor bo'ladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova buyurtmani o'zi bekor qilsa, kimga tegadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Manzilni qisqa yozgan mijoz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yetkazuvchi haydovchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tovar keltiruvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'lov hisobchisi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova yetkazish vaqtini o'zi surdi. Nega chegara kerak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Sayt sekinlashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqt ikki marta yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kutgan mijoz aldanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hisobotga tushmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bot tasdiqni kechasi ikkida yuborsa, kimga tegadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ertalab shoshadigan mijoz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'kon egasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ertalabki haydovchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefoni yostiq yonidagi mijoz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kasal yotgan mijozga botning qaysi qarori tegdi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Buyurtmani bekor qilish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kechasi tasdiq yuborish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tavsifni qayta yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har o'n daqiqada yozish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi mijoz chegirmani bilmadi. Nega?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Kechasi tasdiq yuborish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buyurtmani bekor qilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chegirma faqat doimiy mijozga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har o'n daqiqada yozish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Egasi har buyurtmani o'qishga majbur. Nega?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "AI o'zi javob yozgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma ishga chegara qo'yilgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bot kechasi ishlamaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chegirma hammaga ketgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tabrikni bot o'zi yuborsinmi — buni kim hal qiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ilovaning o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tabrik olgan mijoz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yetkazuvchi haydovchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani yaratayotgan odam",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

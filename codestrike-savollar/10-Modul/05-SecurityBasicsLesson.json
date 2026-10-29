@@ -1,0 +1,278 @@
+{
+  "lessonId": "m8-05-security-basics-v1",
+  "key": "m8-05",
+  "modul": 10,
+  "tartib": 5,
+  "nom": {
+    "uz": "Kiberxavfsizlik: zaiflikni topib yopamiz",
+    "ru": "Кибербезопасность: находим и закрываем уязвимости"
+  },
+  "src": "src/8-Modull/SecurityBasicsLesson.jsx",
+  "barmoq_izi": "a81918e7f893a8aa9b5761fab7ddc728",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "SQL injection nima?",
+        "variantlar": [
+          "Matn so'rovda buyruq bo'lishi",
+          "Jadval nomi xato bo'lishi",
+          "Backend sekin javob berishi",
+          "Telefon xato ko'rsatilishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое SQL injection?",
+        "variantlar": [
+          "Текст становится командой в запросе",
+          "Неверное имя таблицы",
+          "Backend медленно отвечает",
+          "Телефон показан с ошибкой"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Qidiruvni SQL injection'dan nima yopadi?",
+        "variantlar": [
+          "Telefonni katta harf qilish",
+          "Parametrli so'rov yozish",
+          "Qidiruvni o'chirish",
+          "POST bilan yuborish"
+        ]
+      },
+      "ru": {
+        "savol": "Что защищает поиск от SQL injection?",
+        "variantlar": [
+          "Перевести телефон в заглавные",
+          "Параметризованный запрос",
+          "Убрать поиск",
+          "Отправлять через POST"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Kodda SQL injection belgisi qaysi?",
+        "variantlar": [
+          "So'rov bandlarga borgani",
+          "Qidiruv telefon bo'yicha",
+          "Matn so'rovga qo'shilgani",
+          "Bitta javob qaytgani"
+        ]
+      },
+      "ru": {
+        "savol": "Какой признак SQL injection в коде?",
+        "variantlar": [
+          "Запрос идёт в bandlar",
+          "Поиск по телефону",
+          "Текст вклеен в запрос",
+          "Вернулся один ответ"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "XSS (Cross-Site Scripting) nima?",
+        "variantlar": [
+          "Backend ikki marta ishlashi",
+          "Parol kodda ochiq qolishi",
+          "Database sekinlashishi",
+          "Matn sahifada kod bo'lishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое XSS (Cross-Site Scripting)?",
+        "variantlar": [
+          "Backend запускается дважды",
+          "Пароль открыт в коде",
+          "Database тормозит",
+          "Текст становится кодом на странице"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Ismni XSS'dan nima yopadi?",
+        "variantlar": [
+          "Oddiy matn qilib chiqarish",
+          "Ismni Database'dan o'chirish",
+          "Ismni katta harf qilish",
+          "Ism uzunligini cheklash"
+        ]
+      },
+      "ru": {
+        "savol": "Что защищает имя от XSS?",
+        "variantlar": [
+          "Выводить как обычный текст",
+          "Удалить имя из Database",
+          "Сделать имя заглавными",
+          "Ограничить длину имени"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Kodda XSS belgisi qaysi?",
+        "variantlar": [
+          "Ism Database'da saqlangani",
+          "Ism HTML bo'lib chiqarilgani",
+          "Ism ro'yxatda ko'ringani",
+          "Ism HTML'siz matn bo'lgani"
+        ]
+      },
+      "ru": {
+        "savol": "Какой признак XSS в коде?",
+        "variantlar": [
+          "Имя сохранено в Database",
+          "Имя выведено как HTML",
+          "Имя видно в списке",
+          "Имя — простой текст без HTML"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Maxfiy kalit qayerda turishi kerak?",
+        "variantlar": [
+          "app.module.ts boshida",
+          "Sayt kodining ichida",
+          ".env faylida",
+          "Database jadvalida"
+        ]
+      },
+      "ru": {
+        "savol": "Где должен храниться секретный ключ?",
+        "variantlar": [
+          "В начале app.module.ts",
+          "Внутри кода сайта",
+          "В файле .env",
+          "В таблице Database"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Kalitga zaxira qiymat nega yozilmaydi?",
+        "variantlar": [
+          "Backend uni o'qimaydi",
+          "Qiymat juda uzun bo'ladi",
+          "Database'ga ko'chib qoladi",
+          "Kodni o'qigan uni ko'radi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему ключу не пишут запасное значение?",
+        "variantlar": [
+          "Backend его не читает",
+          "Значение слишком длинное",
+          "Оно попадёт в Database",
+          "Его увидит читающий код"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "2FA nima?",
+        "variantlar": [
+          "Parol + ilovadagi 6 xonali kod",
+          "Ikki parol bilan kirish",
+          "Parolni ikki joyga yozish",
+          "Database'ning ikki nusxasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое 2FA?",
+        "variantlar": [
+          "Пароль + 6-значный код из приложения",
+          "Вход по двум паролям",
+          "Запись пароля в два места",
+          "Две копии Database"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "6 xonali kodni nima hisoblaydi?",
+        "variantlar": [
+          "Faqat Backend, ilovasiz",
+          "Ilova va Backend bir kalitdan",
+          "Faqat ilova, Backend'siz",
+          "Database har safar yaratadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что вычисляет 6-значный код?",
+        "variantlar": [
+          "Только Backend, без приложения",
+          "Приложение и Backend из одного ключа",
+          "Только приложение, без Backend",
+          "Database создаёт каждый раз"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Zaiflik yopilganini qanday bilamiz?",
+        "variantlar": [
+          "Boshqa saytni sinab ko'rib",
+          "Agentning javobiga ishonib",
+          "Kodni o'qib va sinab ko'rib",
+          "Sahifa ochilishini kutib"
+        ]
+      },
+      "ru": {
+        "savol": "Как узнаём, что уязвимость закрыта?",
+        "variantlar": [
+          "Проверив чужой сайт",
+          "Поверив ответу агента",
+          "Прочитав код и проверив",
+          "Дождавшись открытия страницы"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Push qachon qilinadi?",
+        "variantlar": [
+          "Tuzatishdan oldin",
+          "Dars boshida, avval",
+          "Agent aytgan zahoti",
+          "Zaifliklar yopilgach"
+        ]
+      },
+      "ru": {
+        "savol": "Когда делается push?",
+        "variantlar": [
+          "До исправлений",
+          "В начале урока",
+          "Как только скажет агент",
+          "Когда уязвимости закрыты"
+        ]
+      }
+    }
+  ]
+}

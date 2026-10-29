@@ -1,0 +1,278 @@
+{
+  "lessonId": "git-github-v19",
+  "key": "m1-09",
+  "modul": 2,
+  "tartib": 12,
+  "nom": {
+    "uz": "Git va GitHub — kodni internetga chiqaramiz",
+    "ru": "Git и GitHub — выкладываем код в интернет"
+  },
+  "src": "src/1-Modull/GitLesson.jsx",
+  "barmoq_izi": "e3b9fc78786931776b3eb35bf915302a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Git kompyuterda qanday ish qiladi?",
+        "variantlar": [
+          "Kod versiyalarini saqlaydi",
+          "Kodni ranglab beradi",
+          "Internetni tezlashtiradi",
+          "Rasmlarni tahrirlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Какую работу Git делает на компьютере?",
+        "variantlar": [
+          "Хранит версии кода",
+          "Раскрашивает код",
+          "Ускоряет интернет",
+          "Редактирует картинки"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Kod internetda qaysi saytda saqlanadi?",
+        "variantlar": [
+          "google.com",
+          "github.com",
+          "youtube.com",
+          "telegram.org"
+        ]
+      },
+      "ru": {
+        "savol": "На каком сайте код хранится в интернете?",
+        "variantlar": [
+          "google.com",
+          "github.com",
+          "youtube.com",
+          "telegram.org"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Git o'rnatilganini qaysi buyruq tekshiradi?",
+        "variantlar": [
+          "git --start",
+          "git --open",
+          "git --version",
+          "git --check"
+        ]
+      },
+      "ru": {
+        "savol": "Какая команда проверяет, что Git установлен?",
+        "variantlar": [
+          "git --start",
+          "git --open",
+          "git --version",
+          "git --check"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "GitHub'da bitta loyiha uchun ochilgan joy nima deyiladi?",
+        "variantlar": [
+          "Parol",
+          "Brauzer",
+          "Domen",
+          "Repo"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется место на GitHub для одного проекта?",
+        "variantlar": [
+          "Пароль",
+          "Браузер",
+          "Домен",
+          "Репо"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Qaysi qadam yuboriladigan fayllarni tanlaydi?",
+        "variantlar": [
+          "push",
+          "add",
+          "pull",
+          "clone"
+        ]
+      },
+      "ru": {
+        "savol": "Какой шаг выбирает файлы для отправки?",
+        "variantlar": [
+          "push",
+          "add",
+          "pull",
+          "clone"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Saqlangan nuqta qanday ataladi?",
+        "variantlar": [
+          "commit",
+          "Domen",
+          "Parol",
+          "Papka"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется сохранённая точка?",
+        "variantlar": [
+          "commit",
+          "Домен",
+          "Пароль",
+          "Папка"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Qadamlar qaysi tartibda bajariladi?",
+        "variantlar": [
+          "commit → add → push",
+          "push → commit → add",
+          "add → push → commit",
+          "add → commit → push"
+        ]
+      },
+      "ru": {
+        "savol": "В каком порядке идут шаги?",
+        "variantlar": [
+          "commit → add → push",
+          "push → commit → add",
+          "add → push → commit",
+          "add → commit → push"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "commit buyrug'idagi -m nima uchun kerak?",
+        "variantlar": [
+          "Faylni o'chirish uchun",
+          "Rang berish uchun",
+          "Izoh yozish uchun",
+          "Internetga ulanish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем в команде commit нужен -m?",
+        "variantlar": [
+          "Чтобы удалить файл",
+          "Чтобы задать цвет",
+          "Чтобы написать комментарий",
+          "Чтобы подключиться к интернету"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Git bilan GitHub farqi nimada?",
+        "variantlar": [
+          "Git — dastur, GitHub — sayt",
+          "Git — sayt, GitHub — dastur",
+          "Ikkalasi bir xil",
+          "Ikkalasi ham sayt"
+        ]
+      },
+      "ru": {
+        "savol": "В чём разница Git и GitHub?",
+        "variantlar": [
+          "Git — программа, GitHub — сайт",
+          "Git — сайт, GitHub — программа",
+          "Они одинаковые",
+          "Оба — сайты"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Kompyuter buzildi. Kod qayerdan qaytadi?",
+        "variantlar": [
+          "Brauzer tarixidan",
+          "Hech qayerdan",
+          "GitHub'dagi repodan",
+          "VS Code sozlamalaridan"
+        ]
+      },
+      "ru": {
+        "savol": "Компьютер сломался. Откуда вернётся код?",
+        "variantlar": [
+          "Из истории браузера",
+          "Ниоткуда",
+          "Из репо на GitHub",
+          "Из настроек VS Code"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Repodagi yangi nuqtalarni kompyuterga qaysi buyruq oladi?",
+        "variantlar": [
+          "git push",
+          "git pull",
+          "git add",
+          "git commit"
+        ]
+      },
+      "ru": {
+        "savol": "Какая команда забирает новые точки из репо на компьютер?",
+        "variantlar": [
+          "git push",
+          "git pull",
+          "git add",
+          "git commit"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Repo ichidagi README fayli nima uchun?",
+        "variantlar": [
+          "Parolni saqlash uchun",
+          "Saytni tezlashtirish uchun",
+          "Rasmlarni saqlash uchun",
+          "Loyiha haqida qisqa yozuv"
+        ]
+      },
+      "ru": {
+        "savol": "Для чего в репо файл README?",
+        "variantlar": [
+          "Чтобы хранить пароль",
+          "Чтобы ускорить сайт",
+          "Чтобы хранить картинки",
+          "Короткая запись о проекте"
+        ]
+      }
+    }
+  ]
+}

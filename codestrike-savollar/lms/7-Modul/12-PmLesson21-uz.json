@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaytgan odam kim?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Kecha ham, bugun ham kelgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bugun birinchi kelgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kecha kelib, bugun kelmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bugun ikki marta kelgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir kunda qaysi ikki son yoziladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Kelganlar va e'lonlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaytganlar va so'zlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kunlar va soatlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelganlar va qaytganlar",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hisobning 1-kunida qaytganlar nechta?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Kelganlar soniga teng",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oldingi kundan olinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "0 ta, oldingi kun yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ertasi kungi songa teng",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega qaytganlar kelganlardan oshmaydi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bot bir marta sanaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ular shu kelganlar ichidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kechagi ro'yxat o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "E'lon faqat kelganni oshiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Misoldagi e'lon qaysi sonni ko'tardi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Faqat qaytganlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha kuni kelganlarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkalasini bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qaysisini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bugun 10 kishi, 3 tasi kecha ham kelgan. Qaytgan nechta?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "3 — ikkala kunda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "10 — bugungi hamma",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "7 — kecha kelmaganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "13 — ikki son yig'indisi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaytganni bilishga bugungi son nega yetmaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Odam kam keladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "E'lon kunora beriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kechagi kunni ko'rsatmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kechqurun sanaladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaytish nimadan ko'rinadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Bitta kunning katagidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kelganlar sonining o'sishidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botdagi xabarlar sonidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki kunni solishtirishdan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Duolingo'dagi olov belgili raqam nimani sanaydi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Ketma-ket dars kunlarini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yodlangan so'zlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovadagi soatlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'stlar bilan ballarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir kun dars qilinmasa, olov raqami nima bo'ladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Joyida turaveradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir kunga suriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Noldan boshlanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sekinroq o'sadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Odam 1, 3 va 5-kunlari keldi. Nechta qaytish kuni?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Uchta — uch kun kelgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — oldingi kun bo'sh",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkita — 3 va 5-kun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta — 5-kun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Botingizning uch kunlik hisobini kim yozdi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Bot o'zi sanab yozdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor yozib berdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram hisobladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zingiz yozdingiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

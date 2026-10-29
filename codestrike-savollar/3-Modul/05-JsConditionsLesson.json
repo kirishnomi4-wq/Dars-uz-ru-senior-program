@@ -1,0 +1,278 @@
+{
+  "lessonId": "js-cond-01-v18",
+  "key": "m2-04",
+  "modul": 3,
+  "tartib": 5,
+  "nom": {
+    "uz": "JavaScript — if/else",
+    "ru": "JavaScript — if/else"
+  },
+  "src": "src/2-Modull/JsConditionsLesson.jsx",
+  "barmoq_izi": "3ee274b14ec39e67eede878a67de2996",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "if (age >= 16) — age 14 bo'lsa, ichidagi kod ishlaydimi?",
+        "variantlar": [
+          "Ha, ishlaydi",
+          "Xato beradi",
+          "Yo'q, false",
+          "Ba'zan"
+        ]
+      },
+      "ru": {
+        "savol": "if (age >= 16) — если age равен 14, код внутри сработает?",
+        "variantlar": [
+          "Да, работает",
+          "Будет ошибка",
+          "Нет, false",
+          "Иногда"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "20 > 15 ifodasi qanday qiymat qaytaradi?",
+        "variantlar": [
+          "true",
+          "20",
+          "false",
+          "15"
+        ]
+      },
+      "ru": {
+        "savol": "Какое значение вернёт выражение 20 > 15?",
+        "variantlar": [
+          "true",
+          "20",
+          "false",
+          "15"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "= va == farqi nima?",
+        "variantlar": [
+          "Farqi yo'q",
+          "= beradi, == tekshiradi",
+          "= tekshiradi, == beradi",
+          "== faqat sonlar uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Чем отличаются = и ==?",
+        "variantlar": [
+          "Разницы нет",
+          "= присваивает, == сравнивает",
+          "= сравнивает, == присваивает",
+          "== только для чисел"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "if bloki ishlamasa, o'rniga qaysi blok ishlaydi?",
+        "variantlar": [
+          "Yana if",
+          "Hech biri",
+          "Sikl",
+          "else"
+        ]
+      },
+      "ru": {
+        "savol": "Если блок if не сработал, какой блок работает вместо него?",
+        "variantlar": [
+          "Снова if",
+          "Никакой",
+          "Цикл",
+          "else"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "!= operatori nimani bildiradi?",
+        "variantlar": [
+          "Teng",
+          "Teng emas",
+          "Katta",
+          "Kichik yoki teng"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает оператор !=?",
+        "variantlar": [
+          "Равно",
+          "Не равно",
+          "Больше",
+          "Меньше или равно"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "7 == 9 natijasi qanday?",
+        "variantlar": [
+          "false",
+          "true",
+          "9",
+          "Xato"
+        ]
+      },
+      "ru": {
+        "savol": "Каков результат 7 == 9?",
+        "variantlar": [
+          "false",
+          "true",
+          "9",
+          "Ошибка"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Ketma-ket bir nechta shart uchun nima yoziladi?",
+        "variantlar": [
+          "else",
+          "let",
+          "const",
+          "else if"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут для нескольких условий подряд?",
+        "variantlar": [
+          "else",
+          "let",
+          "const",
+          "else if"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "let battery = 30. if (battery < 20) ishlaydimi?",
+        "variantlar": [
+          "Ha, chunki 30 katta son",
+          "Yo'q, 30 < 20 — false",
+          "Faqat 20 bo'lganda",
+          "Xato beradi"
+        ]
+      },
+      "ru": {
+        "savol": "let battery = 30. Сработает ли if (battery < 20)?",
+        "variantlar": [
+          "Да, ведь 30 — большое число",
+          "Нет, 30 < 20 — false",
+          "Только при 20",
+          "Будет ошибка"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "score 90 bo'lsa, score >= 90 true bo'ladimi?",
+        "variantlar": [
+          "Yo'q, faqat 91 dan boshlab",
+          "Xato beradi",
+          "Ha, >= tenglikni ham oladi",
+          "Faqat score 100 bo'lsa"
+        ]
+      },
+      "ru": {
+        "savol": "Если score 90, будет ли score >= 90 равно true?",
+        "variantlar": [
+          "Нет, только с 91",
+          "Будет ошибка",
+          "Да, >= включает равенство",
+          "Только при score 100"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "5 <= 3 ifodasi nima qaytaradi?",
+        "variantlar": [
+          "true",
+          "5",
+          "3",
+          "false"
+        ]
+      },
+      "ru": {
+        "savol": "Что вернёт выражение 5 <= 3?",
+        "variantlar": [
+          "true",
+          "5",
+          "3",
+          "false"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "if/else da bir vaqtda nechta blok ishlaydi?",
+        "variantlar": [
+          "Faqat bittasi",
+          "Ikkalasi ham",
+          "Hech biri",
+          "Uchtasi"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько блоков работает в if/else одновременно?",
+        "variantlar": [
+          "Только один",
+          "Оба",
+          "Ни одного",
+          "Три"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Shartda tenglikni qaysi belgi bilan tekshiramiz?",
+        "variantlar": [
+          "=",
+          "!=",
+          "==",
+          "+"
+        ]
+      },
+      "ru": {
+        "savol": "Каким знаком проверяем равенство в условии?",
+        "variantlar": [
+          "=",
+          "!=",
+          "==",
+          "+"
+        ]
+      }
+    }
+  ]
+}

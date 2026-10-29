@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Katta ishni bo'laklarga bo'lish nima deyiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Dekompozitsiya",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Optimizatsiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Prezentatsiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Registratsiya",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri tugatib bo'ladigan bo'lak?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Butun saytni tayyorlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kinoteatrni mashhur qilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Seanslar ro'yxatini qo'shish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni chiroyli qilish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "MVP — bu nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Eng qimmat to'liq versiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng sodda birinchi versiya",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Reklama uchun reja",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytning internet manzili",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Keyinga qoldirilganlar ro'yxati qanday ataladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Deadline",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Feedback",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Interfeys",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backlog",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tarozining birinchi savoli qanday?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Bu chiroyli ko'rinadimi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buni kim so'rab kelgan?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Busiz sayt ish beradimi?",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bu qanchaga tushadi?",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tarozining ikkinchi savoli qanday?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Buni qurish qancha vaqt oladi?",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bu kimga ko'proq yoqadi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu qanchaga sotib olinadi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buni kim qurib chiqadi?",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kerak, lekin bir necha kun oladigan ish qayerga?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ochilish ro'yxatiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyinga qoldirilganlarga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qaysi ro'yxatga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi versiyaga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Busiz ham ishlaydi, bir kunda bo'ladi. Qayerga?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ochilish ro'yxatiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi versiyaga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Keyinga qoldirilganlarga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butunlay o'chiriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Burbn ilovasi bilan nima qilindi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Yangi imkoniyat qo'shildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxi ikki baravar oshdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa firmaga sotildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta imkoniyat qoldirildi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Instagram chiqqan birinchi kuni nima bo'ldi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "25 000 odam yozildi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech kim yozilmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'kondan olib tashlandi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova nomi o'zgardi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ochilish ro'yxatiga nechta ish sig'adi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Oltita — hammasi kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta — bir haftaga sig'adi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bitta — ko'pi shart emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Cheksiz — vaqt muhim emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ochilish ro'yxati qachon tuziladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kod yozilgandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt ochilgandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod yozishdan oldin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Umuman tuzilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

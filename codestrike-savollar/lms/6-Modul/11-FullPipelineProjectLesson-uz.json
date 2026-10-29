@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Lentaning dastlabki uch nuqtasi qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Uchirish → Yig'ish → Skaner",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Skaner → Yig'ish → O'rash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'rash → Skaner → Yig'ish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yig'ish → Skaner → Ramka",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "on: push nima qiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Push'da lentani o'zi yoqadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Testlarni o'chirib qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maxfiy kalitni saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faylni serverga ko'chiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'lcham ramkasi bo'lmasa nima bo'ladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Lenta ishga tushmay qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testlar ikki marta ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qoidaga zid kod tutilmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yuk o'ralmay qoladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uchirish Skanerdan oldin tursa?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Hech narsa o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buzuq yuk yo'lovchiga ketadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Lenta tartibni o'zi tuzatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ogohlantirish chiqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uchirishga kalit ulanmasa nima bo'ladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Deploy 401 bilan yiqiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Lenta tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kalit ochiq ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testlar o'tkazib yuboriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "START SIGNALI bo'lmasa nima bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Faqat Skaner ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lenta har daqiqa aylanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchirish birinchi ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lenta umuman aylanmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'lcham ramkasi qizil. O'rash va Uchirish-chi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Baribir bajariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'tkazib yuboriladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Birinchi bajariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki marta bajariladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi yuk yo'lovchida buzildi. Tez yechim?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Repozitoriyni o'chirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammaga xabar yuborish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eski yukni qaytarish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Lentani o'chirib qo'yish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Eski yukni qaytarishdan maqsad nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Lentani tezroq aylantirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testlarni kamaytirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni qayta yozmaslik",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'lovchi buzuq yuk olmasin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "TABLO nimani ko'rsatadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Lenta yashilmi yoki qizilmi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Loyihaning umumiy hajmini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nechta o'quvchi tugatganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server qayerda turganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "TABLO qizil — birinchi nima qilinadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Lenta o'chirib tashlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jurnaldan sabab topiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qaytadan push qilinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi kalit so'raladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "5 nuqtani qo'lda tekshirishning xavfi nima?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Lenta sekinlashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "TABLO yashil bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bittasi unutilishi mumkin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kalit ochilib qoladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

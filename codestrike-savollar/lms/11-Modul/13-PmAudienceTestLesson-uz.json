@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinovda siz nima qilasiz?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Vazifa berib, jim kuzatasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilovani o'zingiz ko'rsatasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova yoqdimi, deb so'raysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har tugmani tushuntirasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«3 / 3» sanog'i nimani bildiradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Tugma uch marta bosilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchalasi shu joyda to'xtagan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinov uch daqiqa ketgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uch ekranda to'xtash bor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kuzatuv yozuviga qaysi qator mos?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "0:40 · Ro'yxat noqulay ekan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "0:40 · Hammaga yoqmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "0:40 · Pastga surib, topdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "0:40 · Tugmani kattalash kerak",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Vazifani bajardi: 2 / 3» — bu nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ilova ikki marta ochilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova 2/3 qismi tayyor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki to'xtash takrorlangan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir kishi bajara olmagan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Cyberpunk 2077 qanday chiqdi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ko'p xato bilan chiqdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Xatosiz, tayyor holda chiqdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat kompyuter uchun chiqdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bepul sinov sifatida chiqdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sony Cyberpunk'ni nima qildi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Narxini tushirib qo'ydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'konidan yarim yilga oldi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi nom bilan chiqardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xaridorga o'yin sovg'a qildi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi to'xtash birinchi tuzatiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Eng oson tuzatiladigan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinov oxirida yozilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'p kishida, vazifaga to'siq",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ekran pastida, ko'rinmagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta sinovni kim bilan o'tkazasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Avval sinagan o'sha kishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani yozgan o'zingiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni tekshiradigan agent",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani ko'rmagan yangi odam",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent «tuzatdim» desa, nimaga qaraysiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Faylga va telefonga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent hisobotiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Talab matniga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Prompt matniga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu darsda nechta to'xtash tuzatiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Uchalasi, bitta promptda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bittasi, qolgani «Keyin»ga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkitasi, eng osonlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech biri, avval sinov",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega ilova avval kam odamda sinaladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Tezroq chiqarish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kam talab yozish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xatoni oldin ko'rish uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Reklama uchun fikr olish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Nima qilsin» qatoriga nima yoziladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kishi aytgan shikoyat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butun ekranni qayta qurish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'xtaganlar soni va vaqti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta aniq o'zgarish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

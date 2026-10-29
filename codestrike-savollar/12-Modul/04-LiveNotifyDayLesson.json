@@ -1,0 +1,278 @@
+{
+  "lessonId": "m10-04-v1",
+  "key": "m10-04",
+  "modul": 12,
+  "tartib": 4,
+  "nom": {
+    "uz": "Loyiha kuni: jonli xabar va eslatma",
+    "ru": "День проекта: живое сообщение и напоминание"
+  },
+  "src": "src/10-Modull/LiveNotifyDayLesson.jsx",
+  "barmoq_izi": "981d58823e351d18403fd43a2543538a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "korayotganlar-ozgardi kimlarga boradi?",
+        "variantlar": [
+          "Shu o'yin xonasidagilarga",
+          "Hamma ulangan ilovalarga",
+          "O'yin tashkilotchisiga",
+          "Hamma o'yinchilarga"
+        ]
+      },
+      "ru": {
+        "savol": "Кому уходит korayotganlar-ozgardi?",
+        "variantlar": [
+          "Тем, кто в комнате этой игры",
+          "Всем подключённым приложениям",
+          "Организатору игры",
+          "Всем игрокам"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«O'yinlar» ekranidasiz, kimdir o'yinni ochdi. Son keladimi?",
+        "variantlar": [
+          "Ha, hammaga boradi",
+          "Yo'q, xonada emassiz",
+          "Ha, har kartaga",
+          "Yo'q, son Database'da"
+        ]
+      },
+      "ru": {
+        "savol": "Вы на экране «Игры», кто-то открыл игру. Число придёт?",
+        "variantlar": [
+          "Да, уходит всем",
+          "Нет, вы не в комнате",
+          "Да, в каждую карточку",
+          "Нет, число в Database"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Kimdir o'yinni yopdi. «Hozir ko'ryapti» nima bo'ladi?",
+        "variantlar": [
+          "Tortganda kamayadi",
+          "Nolga tushib qoladi",
+          "O'zi bittaga kamayadi",
+          "O'zi bittaga oshadi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто-то закрыл игру. Что с «Сейчас смотрят»?",
+        "variantlar": [
+          "Уменьшится, если потянуть",
+          "Упадёт до нуля",
+          "Само уменьшится на один",
+          "Само вырастет на один"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Nega «Hozir ko'ryapti» sonini hodisaning o'zi olib keladi?",
+        "variantlar": [
+          "Son tez o'zgaradi",
+          "Ilova so'ray olmaydi",
+          "Backend tezroq ishlaydi",
+          "Son Database'da yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Почему число «Сейчас смотрят» приносит само событие?",
+        "variantlar": [
+          "Число быстро меняется",
+          "Приложение не может спросить",
+          "Backend так быстрее",
+          "Числа нет в Database"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Ilova ochiq, o'yinda joy bo'shadi. Nima ko'rasiz?",
+        "variantlar": [
+          "Tepada qisqa jonli xabar",
+          "Telefonda eslatma kartasi",
+          "Hech narsa ko'rinmaydi",
+          "Ilova qayta ochiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Приложение открыто, в игре освободилось место. Что увидите?",
+        "variantlar": [
+          "Короткое живое сообщение сверху",
+          "Карточку напоминания на телефоне",
+          "Ничего не видно",
+          "Приложение перезапустится"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "O'zingiz «Qo'shilaman»ni bosdingiz. Jonli xabar chiqadimi?",
+        "variantlar": [
+          "Ha, har qo'shilishda",
+          "Yo'q, o'z harakatingiz",
+          "Ha, ismingiz bilan",
+          "Faqat tashkilotchiga"
+        ]
+      },
+      "ru": {
+        "savol": "Вы сами нажали «Присоединиться». Будет живое сообщение?",
+        "variantlar": [
+          "Да, при каждой записи",
+          "Нет, это ваше действие",
+          "Да, с вашим именем",
+          "Только организатору"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Rejalashtirilgan eslatmani kim qo'yadi?",
+        "variantlar": [
+          "Backend, hodisa zahoti",
+          "Tashkilotchi, e'londa",
+          "Ilova, oldindan belgilab",
+          "Telefon, har kuni o'zi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто ставит запланированное напоминание?",
+        "variantlar": [
+          "Backend, сразу при событии",
+          "Организатор, при объявлении",
+          "Приложение, заранее",
+          "Телефон, сам каждый день"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor misolida eslatma qachon chiqishi kerak?",
+        "variantlar": [
+          "O'yin boshlanganda",
+          "Qo'shilgan zahoti",
+          "O'yindan bir kun oldin",
+          "O'yindan bir soat oldin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда в примере Ментора должно прийти напоминание?",
+        "variantlar": [
+          "Когда игра начнётся",
+          "Сразу после записи",
+          "За день до игры",
+          "За час до игры"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "«O'yindan chiqish» bosildi. Eslatma nima bo'ladi?",
+        "variantlar": [
+          "Bekor qilinadi",
+          "Baribir chiqadi",
+          "Boshqa o'yinga o'tadi",
+          "Tashkilotchiga ketadi"
+        ]
+      },
+      "ru": {
+        "savol": "Нажали «Выйти из игры». Что с напоминанием?",
+        "variantlar": [
+          "Отменяется",
+          "Всё равно придёт",
+          "Переходит на другую игру",
+          "Уходит организатору"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Backend yuboradigan eslatma uchun nima kerak?",
+        "variantlar": [
+          "Expo Go va eslatma ruxsati",
+          "Google yoki Apple xizmati",
+          "Ochiq ulanish va xona",
+          "Faqat eslatma paketi"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно для напоминания, которое отправляет Backend?",
+        "variantlar": [
+          "Expo Go и разрешение",
+          "Сервис Google или Apple",
+          "Открытое соединение и комната",
+          "Только пакет напоминаний"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Eslatmaga ruxsat berilmadi. Nima bo'ladi?",
+        "variantlar": [
+          "Ikkalasi ishlaydi",
+          "Ilova ochilmaydi",
+          "Faqat ilova ishlaydi",
+          "Faqat eslatma chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Разрешение на напоминания не дали. Что будет?",
+        "variantlar": [
+          "Работает и то и другое",
+          "Приложение не откроется",
+          "Работает только приложение",
+          "Приходит только напоминание"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Web-trekda uchinchi amaliyotda nima quriladi?",
+        "variantlar": [
+          "Brauzer eslatmasi",
+          "Telefonga SMS xabar",
+          "Sahifani avto yangilash",
+          "«Xabarlar» tasmasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что строят в третьей практике веб-трека?",
+        "variantlar": [
+          "Напоминание браузера",
+          "SMS на телефон",
+          "Автообновление страницы",
+          "Лента «Сообщения»"
+        ]
+      }
+    }
+  ]
+}

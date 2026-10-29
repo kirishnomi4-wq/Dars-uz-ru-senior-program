@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m11d11-v1",
+  "key": "m11-11",
+  "modul": 13,
+  "tartib": 11,
+  "nom": {
+    "uz": "Mahsulotingiz hozir qayerda?",
+    "ru": "Где сейчас ваш продукт?"
+  },
+  "src": "src/11-Modull/PmReflectionLesson.jsx",
+  "barmoq_izi": "1cd1f16f3b2283dd870b80d854fb55e1",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Bu darsda holat nimani aytadi?",
+        "variantlar": [
+          "Ish ufqiga qarab qayerda",
+          "Qancha vaqt sarflangani",
+          "Ishni kim yozib bergani",
+          "Ishning RICE bahosi"
+        ]
+      },
+      "ru": {
+        "savol": "О чём говорит статус в этом уроке?",
+        "variantlar": [
+          "Где работа относительно горизонта",
+          "Сколько времени потрачено",
+          "Кто написал работу",
+          "Оценка RICE работы"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Ish o'z ufqidan keyin tugadi. Holati qanday?",
+        "variantlar": [
+          "Bajarildi",
+          "Olib tashlandi",
+          "Kechikdi",
+          "Yangi qo'shildi"
+        ]
+      },
+      "ru": {
+        "savol": "Работа закончилась после своего горизонта. Какой статус?",
+        "variantlar": [
+          "Выполнено",
+          "Убрано",
+          "Задержано",
+          "Добавлено новое"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor «Maydon pulini bo'lishish»ga qaysi holatni qo'ydi?",
+        "variantlar": [
+          "Olib tashlandi",
+          "Uzoqroqda qoldi",
+          "Kechikdi",
+          "Bajarildi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой статус Ментор поставил «Делению денег за поле»?",
+        "variantlar": [
+          "Убрано",
+          "Осталось на дальнем горизонте",
+          "Задержано",
+          "Выполнено"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor roadmap'ida qaysi ish yo'q edi?",
+        "variantlar": [
+          "O'yin kuni tasdiq",
+          "O'yindan oldin eslatma",
+          "Maydon pulini bo'lishish",
+          "Telegram xabari"
+        ]
+      },
+      "ru": {
+        "savol": "Какой работы не было в roadmap Ментора?",
+        "variantlar": [
+          "Подтверждение в день игры",
+          "Напоминание перед игрой",
+          "Деление денег за поле",
+          "Сообщение Telegram"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Voz kechilgan ish roadmap'da qanday qoladi?",
+        "variantlar": [
+          "«Olib tashlandi» va sabab",
+          "Izi qolmay o'chiriladi",
+          "«Kechikdi» deb suriladi",
+          "Holatsiz, o'z ustunida"
+        ]
+      },
+      "ru": {
+        "savol": "Как в roadmap остаётся работа, от которой отказались?",
+        "variantlar": [
+          "«Убрано» и причина",
+          "Удаляется без следа",
+          "Переносится как «Задержано»",
+          "Без статуса, в своей колонке"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Holat yonida yana nima yoziladi?",
+        "variantlar": [
+          "RICE bahosi va ufqi",
+          "Holatning sababi",
+          "Agentga yozilgan prompt",
+          "Koddan olingan bo'lak"
+        ]
+      },
+      "ru": {
+        "savol": "Что ещё пишется рядом со статусом?",
+        "variantlar": [
+          "Оценка RICE и горизонт",
+          "Причина статуса",
+          "Промпт для агента",
+          "Кусок из кода"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Tesla 2006-yilgi rejasini kimga ko'rsatgan?",
+        "variantlar": [
+          "Faqat kompaniya ichida",
+          "Bir necha tanishga",
+          "Hammaga ochiq qilib",
+          "Hech kimga ko'rsatmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Кому Tesla показала свой план 2006 года?",
+        "variantlar": [
+          "Только внутри компании",
+          "Нескольким знакомым",
+          "Всем, открыто",
+          "Никому не показала"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Tesla rejasining birinchi bosqichi nima edi?",
+        "variantlar": [
+          "Ommaviy mashina",
+          "Arzonroq mashina",
+          "Rejani e'lon qilish",
+          "Qimmat sport mashinasi"
+        ]
+      },
+      "ru": {
+        "savol": "Каким был первый этап плана Tesla?",
+        "variantlar": [
+          "Массовая машина",
+          "Более дешёвая машина",
+          "Объявить план",
+          "Дорогая спортивная машина"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Shaxsiy hisobotning birinchi savoli nima haqida?",
+        "variantlar": [
+          "O'z qarorim haqida",
+          "Agent qilgan ish haqida",
+          "Mentor bahosi haqida",
+          "Kechikkan ish haqida"
+        ]
+      },
+      "ru": {
+        "savol": "О чём первый вопрос личного отчёта?",
+        "variantlar": [
+          "О моём собственном решении",
+          "О том, что сделал агент",
+          "Об оценке Ментора",
+          "О задержанной работе"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor qaysi qarorini qayta ko'rdi?",
+        "variantlar": [
+          "Pro'ni tashkilotchiga qo'yish",
+          "1-darsdagi narx taxmini",
+          "Telegram xabarini qo'shish",
+          "Maydon pulini surish"
+        ]
+      },
+      "ru": {
+        "savol": "Какое своё решение Ментор пересмотрел?",
+        "variantlar": [
+          "Дать Pro организатору",
+          "Оценку цены из 1-го урока",
+          "Добавить сообщение Telegram",
+          "Отложить деление денег за поле"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi biri keyingi 4 haftaga aniq ish?",
+        "variantlar": [
+          "Mahsulotni yaxshilayman",
+          "Hammasini vaqtida qilaman",
+          "Uch tanishdan narx so'rayman",
+          "Ilovam mashhur bo'ladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — конкретная работа на следующие 4 недели?",
+        "variantlar": [
+          "Улучшу продукт",
+          "Всё сделаю вовремя",
+          "Спрошу цену у трёх знакомых",
+          "Приложение станет популярным"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Noto'g'ri chiqqan qarorni hisobotda nima qilasiz?",
+        "variantlar": [
+          "Yashiraman",
+          "To'g'ri deb yozaman",
+          "Faqat og'zaki aytaman",
+          "Dalili bilan yozaman"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы делаете в отчёте с решением, оказавшимся неверным?",
+        "variantlar": [
+          "Скрываю",
+          "Пишу, что оно верное",
+          "Говорю только устно",
+          "Пишу с доказательством"
+        ]
+      }
+    }
+  ]
+}

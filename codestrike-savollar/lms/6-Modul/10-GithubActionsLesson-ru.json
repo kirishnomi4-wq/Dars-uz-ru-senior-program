@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": ".github/workflows/ci.yml — что это за файл?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Исходный код проекта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Карта маршрута ленты",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Резервная копия сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутренняя настройка GitHub",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен on: push?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Запускает ленту на каждый push",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удаляет репозиторий",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Обновляет документы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Выкладывает код вручную",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое runs-on: ubuntu-latest?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Код пишут в Ubuntu",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Официальное имя проекта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Машина, которую даёт GitHub",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Тесты отключены",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делается на точке СБОРКА?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Ставятся библиотеки",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Код сверяют с правилами",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сайт уходит пользователю",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Восстанавливается старый груз",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет без точки СКАНЕР?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Лента чуть замедлится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GitHub добавит её сам",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сломанный груз уйдёт к людям",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Будет только предупреждение",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каком порядке выполняются шаги (steps)?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "В случайном порядке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сверху вниз, по очереди",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Последний выполняется первым",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Все одновременно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает actions/checkout@v4?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Удаляет весь код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Покупает новую машину",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сам пишет тесты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переносит код из репо на машину",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужны ПАРАЛЛЕЛЬНЫЕ ЛЕНТЫ (matrix)?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Чтобы разделить груз надвое",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы остановить машину",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы проверить в разных условиях",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы сжать картинки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что даёт БЛИЖНЯЯ ПОЛКА (cache)?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Работает только у ментора",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Качает всё с нуля",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отключает сканер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Берёт готовое и ускоряет",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если открыто написать ключ в карте маршрута?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Его увидят все",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Его видите только вы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "GitHub сам его спрячет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Лента не запустится",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает ${{ secrets.API_KEY }}?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Выводит ключ на экран",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Достаёт ключ из сейфа",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Копирует ключ",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удаляет ключ",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что показывает ТАБЛО (status badge)?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Объём файлов проекта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В какой стране сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сколько учеников закончили",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Зелёная лента или красная",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

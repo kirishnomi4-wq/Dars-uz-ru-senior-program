@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m4d12-v1",
+  "key": "m4-12",
+  "modul": 5,
+  "tartib": 12,
+  "nom": {
+    "uz": "Ilova nimani yozib qoladi?",
+    "ru": "Что приложение записывает?"
+  },
+  "src": "src/4-Modull/PmLesson13.jsx",
+  "barmoq_izi": "8134ce52a0e046969f2a2aa29351b586",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Sxema nima?",
+        "variantlar": [
+          "Yoziladigan ustunlar ro'yxati",
+          "Bosiladigan tugmalar ro'yxati",
+          "Ochiladigan bo'limlar ro'yxati",
+          "Saytning kod qatorlari"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое схема?",
+        "variantlar": [
+          "Список столбцов, которые записываются",
+          "Список кнопок, которые нажимают",
+          "Список разделов, которые открываются",
+          "Строки кода сайта"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Sxemada yo'q narsani ilova ko'rsata oladimi?",
+        "variantlar": [
+          "Ha, bir ko'ringan bo'lsa",
+          "Ha, qidirsa topadi",
+          "Yo'q, faqat siz ko'rasiz",
+          "Yo'q, ilova uni bilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Может ли приложение показать то, чего нет в схеме?",
+        "variantlar": [
+          "Да, если разок мелькнуло",
+          "Да, найдёт по поиску",
+          "Нет, это видите только вы",
+          "Нет, приложение этого не знает"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Gapga mos ustun yo'q. Nima qilinadi?",
+        "variantlar": [
+          "Gap e'londan olinadi",
+          "Gap boshqa ustunga yoziladi",
+          "Sxemaga yangi ustun ochiladi",
+          "Ustun nomi qayta yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Для фразы нет столбца. Что делать?",
+        "variantlar": [
+          "Фразу убирают из анонса",
+          "Фразу пишут в другой столбец",
+          "В схеме открывают новый столбец",
+          "Имя столбца переписывают"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Ustunning ochiq/yopiq belgisi nimani aytadi?",
+        "variantlar": [
+          "Ustunning tartib raqamini",
+          "Ustunni kim ko'rishini",
+          "Qiymat uzunligini",
+          "Ekrandagi rangini"
+        ]
+      },
+      "ru": {
+        "savol": "О чём говорит метка столбца «открыт/закрыт»?",
+        "variantlar": [
+          "Порядковый номер столбца",
+          "Кто видит столбец",
+          "Длину значения",
+          "Его цвет на экране"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Kitob qachon bo'shashini qaysi ustun aytadi?",
+        "variantlar": [
+          "Holati",
+          "Qaytarish sanasi",
+          "Band qilgan o'quvchi",
+          "Kitob nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой столбец говорит, когда книга освободится?",
+        "variantlar": [
+          "Статус",
+          "Дата возврата",
+          "Кто забронировал",
+          "Название книги"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Hech qaysi gapga ulanmagan ustun nima qilinadi?",
+        "variantlar": [
+          "Sxemadan olib tashlanadi",
+          "Zaxira uchun saqlanadi",
+          "Bo'sh holida qoladi",
+          "Boshqa gapga ulanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают со столбцом, не связанным ни с одной фразой?",
+        "variantlar": [
+          "Убирают из схемы",
+          "Хранят про запас",
+          "Оставляют пустым",
+          "Привязывают к другой фразе"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "«Faqat kutubxonachi ko'radi» — ustun qanday?",
+        "variantlar": [
+          "Ochiq",
+          "Belgisiz",
+          "Yopiq",
+          "Ikkalasi birga"
+        ]
+      },
+      "ru": {
+        "savol": "«Видит только библиотекарь» — какой столбец?",
+        "variantlar": [
+          "Открытый",
+          "Без метки",
+          "Закрытый",
+          "Оба сразу"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "E'lon qachon yoziladi?",
+        "variantlar": [
+          "Sxema tuzilgandan keyin",
+          "Kod yozilib bo'lgandan keyin",
+          "Mahsulot sotuvga chiqqanda",
+          "Kod yozilishidan oldin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда пишут анонс?",
+        "variantlar": [
+          "После того, как составлена схема",
+          "После того, как дописан код",
+          "Когда продукт поступает в продажу",
+          "До того, как написан код"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "E'lon hech kimni qiziqtirmasa nima bo'ladi?",
+        "variantlar": [
+          "Mahsulot qurilmaydi",
+          "Kichikroq quriladi",
+          "Baribir quriladi",
+          "Boshqa tilda yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если анонс никого не заинтересует?",
+        "variantlar": [
+          "Продукт не строят",
+          "Строят поменьше",
+          "Всё равно строят",
+          "Пишут на другом языке"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Amazon 1995-yilda nima sotardi?",
+        "variantlar": [
+          "Telefon va noutbuk",
+          "Oziq-ovqat mahsulotlari",
+          "Faqat kitob",
+          "Kiyim va poyabzal"
+        ]
+      },
+      "ru": {
+        "savol": "Что продавал Amazon в 1995 году?",
+        "variantlar": [
+          "Телефоны и ноутбуки",
+          "Продукты питания",
+          "Только книги",
+          "Одежду и обувь"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Ustun savoli nimani aytadi?",
+        "variantlar": [
+          "Ustunga qancha sig'ishini",
+          "Odam undan nimani bilishini",
+          "Ustunni kim yozganini",
+          "Ustun nechanchi turishini"
+        ]
+      },
+      "ru": {
+        "savol": "О чём говорит вопрос столбца?",
+        "variantlar": [
+          "Сколько влезет в столбец",
+          "Что человек из него узнает",
+          "Кто написал столбец",
+          "Каким по счёту стоит столбец"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Sxemadagi ustun yozuvda yozilmasa nima chiqadi?",
+        "variantlar": [
+          "Yozuv o'chib ketadi",
+          "Ilova ogohlantiradi",
+          "Ilova o'zi to'ldiradi",
+          "Savol javobsiz qoladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если столбца схемы нет в записи?",
+        "variantlar": [
+          "Запись удалится",
+          "Приложение предупредит",
+          "Приложение заполнит само",
+          "Вопрос останется без ответа"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m5d11-metrika-v1",
+  "key": "m5-14",
+  "modul": 7,
+  "tartib": 11,
+  "nom": {
+    "uz": "Botingiz yaxshi ishlayotganini qaysi raqam aytadi?",
+    "ru": "Какая цифра скажет, что ваш бот работает хорошо?"
+  },
+  "src": "src/pm/PmMetricsLesson.jsx",
+  "barmoq_izi": "4d0408c1a0925128d983753952bdceae",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Metrika nima?",
+        "variantlar": [
+          "Sanab tekshiriladigan raqam",
+          "Bot haqidagi yaxshi fikr",
+          "Botga o'zingiz qo'ygan ball",
+          "Botdagi har qanday son"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое метрика?",
+        "variantlar": [
+          "Число, которое можно проверить подсчётом",
+          "Хорошее мнение о боте",
+          "Ваша оценка боту",
+          "Любое число в боте"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi raqam faqat o'sadi?",
+        "variantlar": [
+          "Bugun /start bosganlar",
+          "Qaytganlar foizi",
+          "Bosh raqam",
+          "Jami /start bosganlar"
+        ]
+      },
+      "ru": {
+        "savol": "Какая цифра только растёт?",
+        "variantlar": [
+          "Нажавшие /start сегодня",
+          "Процент вернувшихся",
+          "Главная цифра",
+          "Всего нажавших /start"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Kamola bugun 3 marta yozdi. «Bugun kelganlar»ga nechta?",
+        "variantlar": [
+          "3 ta",
+          "2 ta",
+          "1 ta",
+          "0 ta"
+        ]
+      },
+      "ru": {
+        "savol": "Камола написала сегодня 3 раза. Сколько добавится к «Пришли сегодня»?",
+        "variantlar": [
+          "3",
+          "2",
+          "1",
+          "0"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Kecha 10 odam keldi, 5 tasi bugun qaytdi. Necha foiz?",
+        "variantlar": [
+          "5 foiz",
+          "50 foiz",
+          "10 foiz",
+          "15 foiz"
+        ]
+      },
+      "ru": {
+        "savol": "Вчера пришли 10 человек, 5 из них вернулись сегодня. Сколько процентов?",
+        "variantlar": [
+          "5 процентов",
+          "50 процентов",
+          "10 процентов",
+          "15 процентов"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Bir kunda botga 7 xil odam yozdi. Bu son qaysi raqam?",
+        "variantlar": [
+          "Jami /start bosganlar",
+          "Bugun kelganlar",
+          "Qaytganlar foizi",
+          "Bosh raqam"
+        ]
+      },
+      "ru": {
+        "savol": "За день боту написали 7 разных людей. Какая это цифра?",
+        "variantlar": [
+          "Всего нажавших /start",
+          "Пришли сегодня",
+          "Процент вернувшихся",
+          "Главная цифра"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Darsdagi botda bosh raqam nimani sanaydi?",
+        "variantlar": [
+          "Keragini olganlarni",
+          "Kelgan hamma odamni",
+          "Javob olgan hammani",
+          "Bot xabarlari sonini"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает главное число у бота из урока?",
+        "variantlar": [
+          "Тех, кто получил нужное",
+          "Всех пришедших",
+          "Всех, кто получил ответ",
+          "Число сообщений бота"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Guruhlar har xil kattalikda bo'lsa, nimani solishtirasiz?",
+        "variantlar": [
+          "Qaytgan odamlar sonini",
+          "Kelgan odamlar sonini",
+          "Qaytganlar foizini",
+          "Jami /start sonini"
+        ]
+      },
+      "ru": {
+        "savol": "Если группы разного размера, что вы сравниваете?",
+        "variantlar": [
+          "Число вернувшихся людей",
+          "Число пришедших людей",
+          "Процент вернувшихся",
+          "Всего нажавших /start"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Bot «Tushunmadim» dedi. Bosh raqamga qo'shiladimi?",
+        "variantlar": [
+          "Ha — bot javob berdi",
+          "Ha — odam botga yozdi",
+          "Yo'q — /start bosmagan",
+          "Yo'q — keragini olmadi"
+        ]
+      },
+      "ru": {
+        "savol": "Бот ответил «Не понял». Это идёт в главное число?",
+        "variantlar": [
+          "Да — бот ответил",
+          "Да — человек написал боту",
+          "Нет — не нажал /start",
+          "Нет — не получил нужное"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Booking yangi o'zgarishni avval kimga ko'rsatadi?",
+        "variantlar": [
+          "Odamlarning bir qismiga",
+          "Faqat o'z xodimlariga",
+          "Hamma odamga birdan",
+          "Faqat eski mijozlarga"
+        ]
+      },
+      "ru": {
+        "savol": "Кому Booking сначала показывает новое изменение?",
+        "variantlar": [
+          "Части людей",
+          "Только своим сотрудникам",
+          "Сразу всем",
+          "Только старым клиентам"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Booking nega avval bir qismga ko'rsatadi?",
+        "variantlar": [
+          "Rang hali tayyor emas",
+          "Hamma birdan kirmaydi",
+          "Ikki guruhni solishtirish",
+          "Server og'irlashmasin"
+        ]
+      },
+      "ru": {
+        "savol": "Почему Booking сначала показывает части людей?",
+        "variantlar": [
+          "Цвет ещё не готов",
+          "Все не заходят сразу",
+          "Чтобы сравнить две группы",
+          "Чтобы не нагружать сервер"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Qaytganlar foizi qaysi savolga javob beradi?",
+        "variantlar": [
+          "Bugun nechta odam keldi?",
+          "Kechagilar bugun keldimi?",
+          "Bot keragini berdimi?",
+          "Jami nechta yig'ildi?"
+        ]
+      },
+      "ru": {
+        "savol": "На какой вопрос отвечает процент вернувшихся?",
+        "variantlar": [
+          "Сколько пришло сегодня?",
+          "Вчерашние пришли сегодня?",
+          "Бот дал нужное?",
+          "Сколько набралось всего?"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "/stat buyrug'ining kodini qayerga yozdingiz?",
+        "variantlar": [
+          "users jadvaliga",
+          "Telegram kanaliga",
+          "@BotFather'ga",
+          "bot.js faylingizga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда вы написали код команды /stat?",
+        "variantlar": [
+          "В таблицу users",
+          "В Telegram-канал",
+          "В @BotFather",
+          "В свой файл bot.js"
+        ]
+      }
+    }
+  ]
+}

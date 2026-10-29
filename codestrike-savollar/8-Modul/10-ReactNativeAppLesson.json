@@ -1,0 +1,278 @@
+{
+  "lessonId": "rn-app-06-10-v18",
+  "key": "m6-10",
+  "modul": 8,
+  "tartib": 10,
+  "nom": {
+    "uz": "RN: komponent, navigatsiya, API",
+    "ru": "RN: компоненты, навигация, API"
+  },
+  "src": "src/6-Modull/ReactNativeAppLesson.jsx",
+  "barmoq_izi": "8f3294a4a67d1e20d5b235d97dfb744e",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Pitsalar ro'yxati uchun qaysi komponent?",
+        "variantlar": [
+          "FlatList",
+          "Text",
+          "Image",
+          "TextInput"
+        ]
+      },
+      "ru": {
+        "savol": "Какой компонент для списка пицц?",
+        "variantlar": [
+          "FlatList",
+          "Text",
+          "Image",
+          "TextInput"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Boshqa ekranga o'tish uchun nima chaqiriladi?",
+        "variantlar": [
+          "window.location.reload()",
+          "navigation.navigate()",
+          "app.open()",
+          "<a href> tegi"
+        ]
+      },
+      "ru": {
+        "savol": "Что вызывают для перехода на другой экран?",
+        "variantlar": [
+          "window.location.reload()",
+          "navigation.navigate()",
+          "app.open()",
+          "тег <a href>"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Yangi ekran ochilganda dastada nima bo'ladi?",
+        "variantlar": [
+          "Eski ekran o'chadi (pop)",
+          "Qayta yuklanadi (reload)",
+          "Ustiga qo'yiladi (push)",
+          "Hech narsa o'zgarmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что происходит со стопкой при открытии экрана?",
+        "variantlar": [
+          "Старый экран удаляется (pop)",
+          "Перезагружается (reload)",
+          "Кладётся сверху (push)",
+          "Ничего не меняется"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Backend'dan ma'lumot nima bilan olinadi?",
+        "variantlar": [
+          "AsyncStorage",
+          "localStorage",
+          "Qo'lda yozilgan massiv",
+          "fetch"
+        ]
+      },
+      "ru": {
+        "savol": "Чем получают данные с backend?",
+        "variantlar": [
+          "AsyncStorage",
+          "localStorage",
+          "Массив, написанный вручную",
+          "fetch"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Ma'lumotni bir marta yuklash qayerda yoziladi?",
+        "variantlar": [
+          "useEffect(…, []) ichida",
+          "Komponent tanasida",
+          "useState([]) ichida",
+          "Hech qayerda"
+        ]
+      },
+      "ru": {
+        "savol": "Где пишут однократную загрузку данных?",
+        "variantlar": [
+          "Внутри useEffect(…, [])",
+          "В теле компонента",
+          "Внутри useState([])",
+          "Нигде"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Savatni telefonning o'zida nima saqlaydi?",
+        "variantlar": [
+          "Backend Database'i",
+          "AsyncStorage",
+          "fetch",
+          "FlatList"
+        ]
+      },
+      "ru": {
+        "savol": "Что хранит корзину на самом телефоне?",
+        "variantlar": [
+          "Database на backend",
+          "AsyncStorage",
+          "fetch",
+          "FlatList"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Mobil ilova uchun backend'ni nima qilasiz?",
+        "variantlar": [
+          "Yangisi quriladi",
+          "Backend kerak emas",
+          "O'sha backend'ga ulanadi",
+          "Ma'lumot qo'lda ko'chiriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делаете с backend для мобильного приложения?",
+        "variantlar": [
+          "Строится новый",
+          "Backend не нужен",
+          "Подключается к тому же backend",
+          "Данные переносятся вручную"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Bosiladigan element uchun qaysi komponent?",
+        "variantlar": [
+          "FlatList",
+          "ScrollView",
+          "Image",
+          "Pressable"
+        ]
+      },
+      "ru": {
+        "savol": "Какой компонент для нажимаемого элемента?",
+        "variantlar": [
+          "FlatList",
+          "ScrollView",
+          "Image",
+          "Pressable"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Ko'p ekranni boshqaradigan tizim qanday nomlanadi?",
+        "variantlar": [
+          "Stack Navigator",
+          "FlatList",
+          "AsyncStorage",
+          "useEffect"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется система, управляющая множеством экранов?",
+        "variantlar": [
+          "Stack Navigator",
+          "FlatList",
+          "AsyncStorage",
+          "useEffect"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Rasm ko'rsatish uchun qaysi komponent?",
+        "variantlar": [
+          "Text",
+          "Image",
+          "Pressable",
+          "FlatList"
+        ]
+      },
+      "ru": {
+        "savol": "Какой компонент показывает картинку?",
+        "variantlar": [
+          "Text",
+          "Image",
+          "Pressable",
+          "FlatList"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Matn kiritish maydoni — qaysi komponent?",
+        "variantlar": [
+          "ScrollView",
+          "Image",
+          "TextInput",
+          "FlatList"
+        ]
+      },
+      "ru": {
+        "savol": "Поле ввода текста — какой компонент?",
+        "variantlar": [
+          "ScrollView",
+          "Image",
+          "TextInput",
+          "FlatList"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Web, bot, mobil — bitta serverda. Bu nima?",
+        "variantlar": [
+          "Har biriga alohida backend",
+          "Backend kerak emas",
+          "Faqat web ulanadi",
+          "Ko'p kirish yo'li, bitta tizim"
+        ]
+      },
+      "ru": {
+        "savol": "Веб, бот, мобильное — на одном сервере. Что это?",
+        "variantlar": [
+          "Каждому свой backend",
+          "Backend не нужен",
+          "Подключается только веб",
+          "Много входов, одна система"
+        ]
+      }
+    }
+  ]
+}

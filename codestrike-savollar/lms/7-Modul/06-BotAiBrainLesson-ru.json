@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Без system prompt как ответит AI?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Вообще не ответит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Уйдёт от темы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Скажет только «не понял»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Бот выключится",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что задаёт system prompt?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Скорость ответа AI",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Цвет и шрифт бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Город, где стоит сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Кто такой AI и о чём говорит",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое промпт?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Текст, который шлют AI",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Журнал ошибок бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Адрес AI API",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя Telegram-канала",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое контекстное окно?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Скорость ответа AI",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Окно чата в Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Объём текста, который видит AI",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Число таблиц в базе",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "История не влезает в окно. Какое сообщение уйдёт?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Самое новое",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Самое старое",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Самое короткое",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Случайное",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает бот, чтобы имя не потерялось?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Хранит имя в базе",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Увеличивает окно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Понижает temperature",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перезапускает AI",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Temperature низкая (0.1) — каким будет ответ?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Каждый раз другой",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Каждый раз ошибка",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Очень длинный",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Почти одинаковый",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Temperature высокая (1.5): что плохо для меню?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Бот остановится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ответ каждый раз другой",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Пропадёт интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Раскроется ключ API",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая temperature, чтобы меню звучало одинаково?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Высокая (1.5)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Средняя, любая",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Низкая (0.1)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Разная в каждом запросе",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "AI назвал «пиццу с ананасом», которой нет в меню. Что это?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Верный ответ",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ошибка Bot API",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Утечка ключа",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Галлюцинация",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Когда проверяют цену, названную AI?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "До отправки клиенту",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Никогда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только при низкой temperature",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только если клиент жалуется",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где хранится ключ AI API?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Открыто в коде bot.js",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отправляется клиенту в чат",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В файле .env",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В настройках профиля Telegram",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

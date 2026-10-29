@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "<p>Biz <strong>g'olibmiz</strong></p> — nima ko'rinadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Butun gap qalin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Teglar ham ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat «g'olibmiz» qalin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat «Biz» ko'rinadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Suratni qo'yish uchun qaysi yozuv TO'G'RI?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "<img scr=\"jamoa.jpg\">",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<img src=\"jamoa.jpg\">",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<imag src=\"jamoa.jpg\">",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<img href=\"jamoa.jpg\">",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ro'yxatdagi har bir o'yinchi ismi qaysi tegga o'raladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "ul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "ol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "li",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "a",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "<ul> ichida 3 ta <li>. Ekranda nima chiqadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "1·2·3 raqamli ro'yxat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir qatorda yonma-yon",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta jadval katagi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta nuqtali band",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "<a herf=\"...\">Kanal</a> — nima bo'ladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "«Kanal» chiqadi, bosilmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Link odatdagidek ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa ochilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Manzil ko'rinib qoladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Chempionlar» hammadan katta chiqsin. Qaysi teg?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "h1",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "li",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "strong",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "alt=\"Jamoa surati\" nima uchun kerak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Rasm ochilmasa matn chiqadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasm o'lchamini belgilaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmga ramka chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmni linkka aylantiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Formada foydalanuvchi ism YOZADIGAN katak qaysi teg?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "button",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "label",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "input",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ko'rinadigan mazmun (sarlavha, rasm) qayerga yoziladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "head",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "body",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "title",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "html",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "<a href=\"...\">Kanalimiz</a> — ekranda nima ko'rinadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Bosiladigan «Kanalimiz»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Link manzilining o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram belgisi (rasm)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«href» so'zi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi qatorda teg TO'G'RI yopilgan?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "<li>Aziz<li>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<li>Aziz<il>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<li>Aziz</li",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<li>Aziz</li>",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sardor ismini QALIN qilish uchun qaysi teg?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "p",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "li",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "strong",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "title",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

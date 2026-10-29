@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какую задачу выполняет Route?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Связывает адрес со страницей",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Рисует картинки на экране",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отправляет запрос на сервер",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сохраняет данные в базу",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает обёртка <Routes>?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Загружает все картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Выбирает страницу по URL",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Удаляет данные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Рисует только меню",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает path в Route?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Цвет фона страницы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя пользователя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На каком адресе работать",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Размер файла в байтах",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На что указывает element в Route?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "К какому серверу подключаться",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Название базы данных",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Код цвета ссылки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Какую страницу показать",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем отличаются <Link> и <a>?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "<Link> не перезагружает",
+        "hint": "Верно!"
+      },
+      {
+        "value": "<Link> всегда медленнее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<a> — ссылка Router",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Они одинаковые",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет при клике на обычный <a href>?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Меняется только цвет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перезагружается вся страница",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ничего не меняется",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Приложение выключается",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое :id в /game/:id?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Размер картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Всегда номер 7-й игры",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Меняющийся номер игры",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ожидание 7 секунд",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой хук читает значение :id из URL?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "useState()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "useEffect()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "useNavigate()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "useParams()",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Для чего нужен хук useNavigate()?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Открывать страницу через код",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Скачивать данные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Менять цвета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Скачивать картинки",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как вернуться на Главную после сохранения через POST?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Нажав <a href='/'>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вызвав navigate('/')",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Обновив страницу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Выключив сервер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем отличается SPA?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Состоит из одной картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Работает без интернета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Страница не перезагружается",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Есть одна кнопка",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем оборачивают приложение в main.jsx?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "<Routes>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<Link>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "useNavigate()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<BrowserRouter>",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m11d7-v1",
+  "key": "m11-07",
+  "modul": 13,
+  "tartib": 7,
+  "nom": {
+    "uz": "Foydalanuvchiga shartlarni qanday ochiq aytasiz?",
+    "ru": "Как честно сказать пользователю об условиях?"
+  },
+  "src": "src/11-Modull/PmTermsLesson.jsx",
+  "barmoq_izi": "d9eb7fcd6fdf98c645da70ca77c9c238",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Oferta qanday taklif?",
+        "variantlar": [
+          "Ochiq, shartlari yozilgan",
+          "Yashirin, faqat do'stlarga",
+          "Og'zaki, narxsiz aytilgan",
+          "To'lovdan keyin ko'rinadigan"
+        ]
+      },
+      "ru": {
+        "savol": "Что за предложение — оферта?",
+        "variantlar": [
+          "Открытое, условия записаны",
+          "Скрытое, только друзьям",
+          "Устное, без цены",
+          "Видно только после оплаты"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Odam to'lasa, ofertaga nisbatan nima bo'ladi?",
+        "variantlar": [
+          "Hech narsa, narxni ko'rdi",
+          "Shartlarga rozi bo'ladi",
+          "Oferta bekor bo'ladi",
+          "Shartni o'zi o'zgartiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что происходит с офертой, если человек платит?",
+        "variantlar": [
+          "Ничего, он видел цену",
+          "Соглашается с условиями",
+          "Оферта отменяется",
+          "Сам меняет условия"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«Bekor qilsam, pulim qaytadimi?» Javob qayerda?",
+        "variantlar": [
+          "To'lov ekranidagi narxda",
+          "Mashq sahifasi tugmasida",
+          "Ofertaning tegishli bandida",
+          "E'lon qismida"
+        ]
+      },
+      "ru": {
+        "savol": "«Если отменю, деньги вернутся?» Где ответ?",
+        "variantlar": [
+          "В цене на экране оплаты",
+          "В кнопке учебной страницы",
+          "В нужном пункте оферты",
+          "В разделе объявлений"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor ofertasida sotuvchi qatori nega bo'sh?",
+        "variantlar": [
+          "Mentor ismini unutgan",
+          "Agent keyin o'zi qo'yadi",
+          "Pro olgan odam to'ldiradi",
+          "Real ishga tushirish yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Почему в оферте Ментора пуста строка продавца?",
+        "variantlar": [
+          "Ментор забыл своё имя",
+          "Агент потом впишет сам",
+          "Заполнит тот, кто взял Pro",
+          "Реального запуска нет"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Qaysi gap ofertaga yoziladi?",
+        "variantlar": [
+          "Pro tugasa, o'yinlar qoladi",
+          "Tez orada yangi qulaylik",
+          "Boshqalar ham Pro'ni oldi",
+          "Har o'yiningiz to'lib boradi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза пишется в оферту?",
+        "variantlar": [
+          "Когда Pro кончится, игры останутся",
+          "Скоро новая возможность",
+          "Другие тоже взяли Pro",
+          "Каждая ваша игра заполнится"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Pro muddati tugasa, nima bo'ladi?",
+        "variantlar": [
+          "Keyingi oy puli yechiladi",
+          "Pro o'zi to'xtaydi",
+          "O'yinlar o'chib ketadi",
+          "Ilova o'yinchiga pullik"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, когда закончится срок Pro?",
+        "variantlar": [
+          "Спишутся деньги за след. месяц",
+          "Pro сам остановится",
+          "Игры удалятся",
+          "Приложение платное для игрока"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Real ishga tushirishga nima kerak?",
+        "variantlar": [
+          "Ilovani do'konga joylash",
+          "Sinfdoshlar og'zaki roziligi",
+          "Ota-ona roziligi va sotuvchi",
+          "Ofertani lendingga qo'yish"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно для реального запуска?",
+        "variantlar": [
+          "Выложить приложение в магазин",
+          "Устное согласие одноклассников",
+          "Согласие родителей и продавец",
+          "Разместить оферту на лендинге"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Agent ofertada «[savol]» qoldirdi. Bu nimani bildiradi?",
+        "variantlar": [
+          "Bandni o'chirish kerak",
+          "Sahifa ochilmaydi",
+          "Agent keyin to'ldiradi",
+          "Agent koddan bilolmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Агент оставил в оферте «[savol]». Что это значит?",
+        "variantlar": [
+          "Пункт надо удалить",
+          "Страница не откроется",
+          "Агент заполнит потом",
+          "Агент не узнал это из кода"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Ofertadagi narxni qanday tekshirasiz?",
+        "variantlar": [
+          "Ilova va kodda ko'raman",
+          "Agentdan so'rayman",
+          "Sinfdoshdan so'rayman",
+          "Tekshirmayman"
+        ]
+      },
+      "ru": {
+        "savol": "Как вы проверите цену в оферте?",
+        "variantlar": [
+          "Смотрю в приложении и коде",
+          "Спрашиваю агента",
+          "Спрашиваю одноклассника",
+          "Не проверяю"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "To'lov bandida qaysi gap rost?",
+        "variantlar": [
+          "Kartani biz xavfsiz saqlaymiz",
+          "Kartani mahsulot saqlamaydi",
+          "Hech narsa saqlanmaydi",
+          "Kartani Mentor tekshiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза в пункте об оплате верна?",
+        "variantlar": [
+          "Мы надёжно храним карту",
+          "Продукт не хранит карту",
+          "Ничего не хранится",
+          "Карту проверяет Ментор"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida to'lov uchun nima saqlanadi?",
+        "variantlar": [
+          "Karta raqami va telefon",
+          "Ism va maktab raqami",
+          "To'lov raqami va holati",
+          "Hech narsa saqlanmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что хранится об оплате в примере Ментора?",
+        "variantlar": [
+          "Номер карты и телефон",
+          "Имя и номер школы",
+          "Номер оплаты и её статус",
+          "Ничего не хранится"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Tashkilotchi Pro shartlarini qachon o'qiy olishi kerak?",
+        "variantlar": [
+          "To'lovdan keyin, chatda",
+          "Pro tugagan kuni",
+          "Mentordan so'raganda",
+          "To'lashdan oldin"
+        ]
+      },
+      "ru": {
+        "savol": "Когда организатор должен иметь возможность прочитать условия Pro?",
+        "variantlar": [
+          "После оплаты, в чате",
+          "В день окончания Pro",
+          "Когда спросит Ментора",
+          "До оплаты"
+        ]
+      }
+    }
+  ]
+}

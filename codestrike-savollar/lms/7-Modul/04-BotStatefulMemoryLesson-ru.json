@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему бот забывает предыдущий ответ?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Сообщение теряется в сети",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Клиент пишет слишком быстро",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Бот не хранит состояние",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Telegram путает порядок",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что нужно, чтобы два клиента не смешивались?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Одна общая переменная",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Каждому свой бот",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Общее состояние в PostgreSQL",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Каждому отдельная сессия",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какие данные останутся после перезапуска?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "В таблице PostgreSQL",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В объекте JavaScript",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Никакие",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В переменной handler",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Бот записал «жду размер». Что это?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Webhook",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Состояние",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Токен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Fallback",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем боту SELECT?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Добавить нового клиента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удалить данные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перестроить таблицу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Прочитать состояние из базы",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Новый клиент нажал /start, строки нет. Какая команда?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "SELECT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "INSERT",
+        "hint": "Верно!"
+      },
+      {
+        "value": "UPDATE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как состояние переходит на следующий шаг?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Меняется через UPDATE",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Добавляется через INSERT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Читается через SELECT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удаляется через DELETE",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Состояние в объекте кода: в чём минус?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Сильно замедляет бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Занимает много места на диске",
+        "hint": "Неверно"
+      },
+      {
+        "value": "При перезапуске пропадает",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Хватает только на одного клиента",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем столбец holat в таблице users?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Хранить имя клиента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранить выбранную пиццу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранить шаг беседы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Записывать время сообщения",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем каждому клиенту отдельная сессия?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Беседы не смешиваются",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Бот работает быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сохранится после перезапуска",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нужно только большим ботам",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что бот делает первым, когда приходит сообщение?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Добавляет через INSERT",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Читает через SELECT",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Записывает через UPDATE",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Снова спрашивает имя",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чтобы беседа сохранилась и после перезапуска?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Снова нажать /start",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Интернет побыстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Состояние в объекте",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Состояние в PostgreSQL",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где хранится токен бота?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "В строке new Telegraf(...)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В файле README.md",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В файле .env",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В описании у @BotFather",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое Telegraf?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Библиотека Node.js для ботов",
+        "hint": "Верно!"
+      },
+      {
+        "value": "База сообщений в Node.js",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сервис загрузки картинок",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Приложение Telegram на компьютере",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое ctx?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Файл настроек бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Объект для хранения пароля",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Функция часов сервера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Данные о событии",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что происходит при нажатии inline-кнопки?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Текст уходит в чат",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Боту приходят данные кнопки",
+        "hint": "Верно!"
+      },
+      {
+        "value": "На сервер грузится картинка",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Бот очищает переписку",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что происходит при нажатии reply-клавиатуры?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Ничего, это украшение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Текст уходит в чат",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Бот выходит из чата",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Аккаунт блокируется",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что ловит bot.action(...)?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Только команды с /",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Текст reply-кнопки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нажатие inline-кнопки",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Присланные фото и файлы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что ловит bot.hears(...)?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Сообщение с точным текстом",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Нажатие inline-кнопки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Включение и выключение бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только голосовые",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен fallback handler?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Чтобы бот работал быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы писать ошибку на фото",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы защитить токен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы ответить на любое сообщение",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В какой чат ctx.reply(...) шлёт ответ?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "В чат владельца бота",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Последнему написавшему",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Всем пользователям",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В чат, откуда пришло сообщение",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает polling?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Telegram сам шлёт сообщение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Бот снова и снова спрашивает",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Перевод голоса в текст",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удаление сообщений",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает bot.launch()?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Создаёт новый токен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удаляет бота из Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запускает бота",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Обновляет фото бота",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "С какого знака начинаются /start и /help?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "С косой черты (/)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Со звёздочки (*)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С двоеточия (:)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Без всякого знака",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  }
+]

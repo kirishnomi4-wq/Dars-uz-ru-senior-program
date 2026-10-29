@@ -1,0 +1,278 @@
+{
+  "lessonId": "html-02-v16",
+  "key": "m1-04",
+  "modul": 2,
+  "tartib": 4,
+  "nom": {
+    "uz": "HTML: rasm, struktura, forma, DevTools",
+    "ru": "HTML: картинки, структура, формы, DevTools"
+  },
+  "src": "src/1-Modull/Htmllesson2.jsx",
+  "barmoq_izi": "4d10d4187546e84682f19aa50ca3b327",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Sahifaga rasm qo'shish uchun qaysi teg ishlatiladi?",
+        "variantlar": [
+          "<img>",
+          "<image>",
+          "<src>",
+          "<pic>"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег используется, чтобы добавить картинку на страницу?",
+        "variantlar": [
+          "<img>",
+          "<image>",
+          "<src>",
+          "<pic>"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Rasmning manzili (qayerdaligi) qaysi atributga yoziladi?",
+        "variantlar": [
+          "href",
+          "alt",
+          "src",
+          "link"
+        ]
+      },
+      "ru": {
+        "savol": "В какой атрибут пишется адрес картинки (где она лежит)?",
+        "variantlar": [
+          "href",
+          "alt",
+          "src",
+          "link"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Rasm yuklanmasa o'rniga chiqadigan matn qaysi atribut?",
+        "variantlar": [
+          "title",
+          "alt",
+          "name",
+          "text"
+        ]
+      },
+      "ru": {
+        "savol": "Какой атрибут — текст вместо незагрузившейся картинки?",
+        "variantlar": [
+          "title",
+          "alt",
+          "name",
+          "text"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Logo va asosiy menu odatda qaysi bo'limga joylanadi?",
+        "variantlar": [
+          "<main>",
+          "<footer>",
+          "<aside>",
+          "<header>"
+        ]
+      },
+      "ru": {
+        "savol": "В какой раздел обычно помещаются лого и главное меню?",
+        "variantlar": [
+          "<main>",
+          "<footer>",
+          "<aside>",
+          "<header>"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Sahifaning ASOSIY mazmuni qaysi teg ichiga yoziladi?",
+        "variantlar": [
+          "<header>",
+          "<main>",
+          "<footer>",
+          "<body2>"
+        ]
+      },
+      "ru": {
+        "savol": "Внутрь какого тега пишется ОСНОВНОЕ содержимое страницы?",
+        "variantlar": [
+          "<header>",
+          "<main>",
+          "<footer>",
+          "<body2>"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Sahifaning eng pastki qismi (aloqa, ©) uchun qaysi teg?",
+        "variantlar": [
+          "<end>",
+          "<bottom>",
+          "<header>",
+          "<footer>"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег для самой нижней части страницы (контакты, ©)?",
+        "variantlar": [
+          "<end>",
+          "<bottom>",
+          "<header>",
+          "<footer>"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Butun formani o'rab turuvchi teg qaysi?",
+        "variantlar": [
+          "<form>",
+          "<input>",
+          "<fieldset>",
+          "<div>"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег оборачивает всю форму?",
+        "variantlar": [
+          "<form>",
+          "<input>",
+          "<fieldset>",
+          "<div>"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Foydalanuvchi matn kiritadigan maydonni qaysi teg yasaydi?",
+        "variantlar": [
+          "<label>",
+          "<button>",
+          "<input>",
+          "<text>"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег создаёт поле, куда пользователь вводит текст?",
+        "variantlar": [
+          "<label>",
+          "<button>",
+          "<input>",
+          "<text>"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Maydon oldidagi «Ismingiz:» yozuvi qaysi teg?",
+        "variantlar": [
+          "<label>",
+          "<title>",
+          "<span>",
+          "<p>"
+        ]
+      },
+      "ru": {
+        "savol": "Какой тег — подпись «Ваше имя:» перед полем?",
+        "variantlar": [
+          "<label>",
+          "<title>",
+          "<span>",
+          "<p>"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Email uchun to'g'ri input turi qaysi?",
+        "variantlar": [
+          "type=\"text\"",
+          "type=\"mail\"",
+          "type=\"email\"",
+          "type=\"@\""
+        ]
+      },
+      "ru": {
+        "savol": "Какой тип input правильный для email?",
+        "variantlar": [
+          "type=\"text\"",
+          "type=\"mail\"",
+          "type=\"email\"",
+          "type=\"@\""
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Parolni nuqta bilan yashiradigan input turi qaysi?",
+        "variantlar": [
+          "type=\"hidden\"",
+          "type=\"password\"",
+          "type=\"secret\"",
+          "type=\"lock\""
+        ]
+      },
+      "ru": {
+        "savol": "Какой тип input прячет пароль точками?",
+        "variantlar": [
+          "type=\"hidden\"",
+          "type=\"password\"",
+          "type=\"secret\"",
+          "type=\"lock\""
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "DevTools qaysi tugma bilan ochiladi?",
+        "variantlar": [
+          "Ctrl+P",
+          "Esc",
+          "Caps Lock",
+          "F12"
+        ]
+      },
+      "ru": {
+        "savol": "Какой клавишей открываются DevTools?",
+        "variantlar": [
+          "Ctrl+P",
+          "Esc",
+          "Caps Lock",
+          "F12"
+        ]
+      }
+    }
+  ]
+}

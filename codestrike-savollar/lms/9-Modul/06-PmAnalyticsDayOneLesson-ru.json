@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что записывает аналитика на сайте?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Что делали люди",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Как быстро открывается сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сколько ошибок в коде",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Кто сделал сайт",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Umami подключили на 4-й день. Что известно о 1-м дне?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Все шаги, но позже",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только брони в Database",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только число открывших",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего — брони стёрлись",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каком порядке три шага?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Забронировал → Выбрал → Открыл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Выбрал → Открыл → Забронировал",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Открыл → Выбрал → Забронировал",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Открыл → Забронировал → Выбрал",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "10 открыли, 8 выбрали, 1 забронировал. Где резкое падение?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "После открытия сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "После брони",
+        "hint": "Неверно"
+      },
+      {
+        "value": "До открытия",
+        "hint": "Неверно"
+      },
+      {
+        "value": "После выбора времени",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется одно действие, записанное в аналитику?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Событие",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Метрика",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Главное число",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Испытание",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как Umami записывает открытие сайта?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Каждой странице дают имя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "После подключения скрипт пишет сам",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Владелец вносит вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только при брони",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему сегодня добавили одно событие?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Umami не берёт больше одного",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Открытию тоже нужно имя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Бронь ещё не сделана",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Одно событие пишет всё",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое имя для события «смена дня» — как на уроке?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Kun Almashtirdi",
+        "hint": "Неверно"
+      },
+      {
+        "value": "kun almashtirdi",
+        "hint": "Неверно"
+      },
+      {
+        "value": "KUN_ALMASHTIRDI",
+        "hint": "Неверно"
+      },
+      {
+        "value": "kun-almashtirdi",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая запись сообщает Umami о нажатии ячейки?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "data-umami-event",
+        "hint": "Верно!"
+      },
+      {
+        "value": "data-website-id",
+        "hint": "Неверно"
+      },
+      {
+        "value": "VITE_UMAMI_ID",
+        "hint": "Неверно"
+      },
+      {
+        "value": "cloud.umami.is/script.js",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему Website ID лежит в web/.env?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Чтобы его никто не увидел",
+        "hint": "Неверно"
+      },
+      {
+        "value": "У каждого ученика он свой",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Umami читает только из .env",
+        "hint": "Неверно"
+      },
+      {
+        "value": "index.html не может его прочитать",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сайт открыли, в Umami 0. В чём причина?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "У ячейки нет имени события",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Кнопку брони не сделали",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Включён блокировщик рекламы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Оборвалась связь с Database",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что считает главное число «Maydon»?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Людей, открывших сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Людей, выбравших время",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Людей, сменивших день",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Людей, которые забронировали",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

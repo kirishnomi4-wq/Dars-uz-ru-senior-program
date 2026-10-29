@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Zal ilova ishlashini ko'rmoqchi. Nima qilasiz?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Telefonda ko'rsatasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir gapda tushuntirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sanoqni aytasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rejani aytasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Muammoni qayerdan bilasiz?» Nima deysiz?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ilova texnologiyalari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Necha kishidan nechtasida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ekran va tugmalar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi oy rejalari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Harakat belgisi nimani ko'rsatadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Intervyuda uzoq gapirganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "G'oyani maqtaganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinovga kun belgilaganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tez javob berganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Olti intervyu — kichik son» nimani aytadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Intervyular foydasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuzta intervyu shart",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'garaklar yaxshiroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dalil bor, isbot yo'q",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'lak nega darhol qayta aytiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Vaqt ortib qolgani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sherik so'ragani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javob bo'ldimi, bilish uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Taymer talab qilgani uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demo Day oldidan nimani tekshirasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ochilishi va asosiy harakatni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Koddagi fayllar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ranglar sherikka yoqishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova nomi uzunligini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yechim bo'lagida nima aytiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ishlatilgan texnologiyalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamga nima qilishi, bir gapda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma ekranlarning nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qurishga ketgan haftalar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilovani nega pitchdan oldin ochasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ekran yorishishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Zal ko'rib turishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Zaryad to'lishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend uyg'onishi uchun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jonli demoda qaysi harakatni ko'rsatasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Hamma tugmalarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod fayllarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sozlamalar sahifasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinov vazifasidagi ishni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Keyingi qadam bo'lagiga nima yoziladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Kelajakdagi hamma ishlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rejangizdagi birinchi ish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma to'xtashlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova qanday qurilgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Jonli demo»: ✗, «uzoq kutdik». Nima qilasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ilovani oldindan ochasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Demo bo'lagini olasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Zalga hazil aytasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sherikdan ✓ so'raysiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitch 3:40 davom etdi. Nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Taymerni o'chirib qo'yasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo bo'lagini olasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ortiqcha gapni olasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oxirini tezroq aytasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

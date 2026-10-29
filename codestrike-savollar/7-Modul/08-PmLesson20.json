@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m5d8-v1",
+  "key": "m5-08",
+  "modul": 7,
+  "tartib": 8,
+  "nom": {
+    "uz": "Botingizni ishlatgan odamdan nimani so'raysiz?",
+    "ru": "О чём спросить человека, который пользовался вашим ботом?"
+  },
+  "src": "src/5-Modull/PmLesson20.jsx",
+  "barmoq_izi": "7a927bbc173c7f6c4aff76d15e3dd1bc",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Suhbat nima?",
+        "variantlar": [
+          "Odamdan o'tgan ishini so'rash",
+          "O'zingiz taxmin qilish",
+          "Kelasi haftasini so'rash",
+          "Bot haqidagi fikrini so'rash"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое беседа (интервью)?",
+        "variantlar": [
+          "Спросить человека о прошлом деле",
+          "Догадаться самому",
+          "Спросить о следующей неделе",
+          "Спросить мнение о боте"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Suhbatda nima so'raladi?",
+        "variantlar": [
+          "O'tgan ishga qo'ygan bahosi",
+          "Kelasi haftadagi rejasi",
+          "Bot haqidagi fikri",
+          "O'tgan kunlarda qilgan ishi"
+        ]
+      },
+      "ru": {
+        "savol": "О чём спрашивают в беседе?",
+        "variantlar": [
+          "Его оценку прошлого дела",
+          "Его план на неделю",
+          "Его мнение о боте",
+          "Что он делал в прошлые дни"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Voqea savoli nima?",
+        "variantlar": [
+          "Kelajakni so'ragan savol",
+          "Kerakli tugmani so'ragan savol",
+          "Bo'lgan ishni so'ragan savol",
+          "Javobi «ha» bo'ladigan savol"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое вопрос о случае?",
+        "variantlar": [
+          "Вопрос о будущем",
+          "Вопрос о нужной кнопке",
+          "Вопрос о том, что уже было",
+          "Вопрос с ответом «да»"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Bo'sh savol nima?",
+        "variantlar": [
+          "Javobida ish ko'p aytilgan",
+          "Javobidan ish bilinmaydigan",
+          "Suhbat oxiridagi savol",
+          "Ikki marta berilgan savol"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое пустой вопрос?",
+        "variantlar": [
+          "В ответе много дел",
+          "Из ответа не видно дела",
+          "Вопрос в конце беседы",
+          "Вопрос, заданный дважды"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "«Botim yoqdimi?» — qanday savol va nega?",
+        "variantlar": [
+          "Voqea: botni tilga oldi",
+          "Bo'sh: ish so'ralmadi",
+          "Bo'sh: savol juda qisqa",
+          "Voqea: javobi bir og'iz"
+        ]
+      },
+      "ru": {
+        "savol": "«Понравился мой бот?» — какой это вопрос и почему?",
+        "variantlar": [
+          "О случае: упомянут бот",
+          "Пустой: дело не спросили",
+          "Пустой: слишком короткий",
+          "О случае: ответ в одно слово"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "«Oxirgi marta qachon unutgansiz?» — qanday savol?",
+        "variantlar": [
+          "Voqea: kunni so'radi",
+          "Voqea: javobi «ha»",
+          "Bo'sh: kelajakni so'radi",
+          "Bo'sh: botni so'ramadi"
+        ]
+      },
+      "ru": {
+        "savol": "«Когда вы в последний раз забыли?» — какой это вопрос?",
+        "variantlar": [
+          "О случае: спросил день",
+          "О случае: ответ «да»",
+          "Пустой: спросил о будущем",
+          "Пустой: не спросил о боте"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Suhbatdosh «Ha, ishlataman» dedi. Nima bilinadi?",
+        "variantlar": [
+          "Botni har kuni ochishi",
+          "Eslatmani bosgani",
+          "Faqat uning va'dasi",
+          "Vazifani unutgani"
+        ]
+      },
+      "ru": {
+        "savol": "Собеседник сказал «Да, буду пользоваться». Что это даёт?",
+        "variantlar": [
+          "Что он открывает бота ежедневно",
+          "Что он нажал напоминание",
+          "Только его обещание",
+          "Что он забыл задание"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Varaqqa qaysi gap tushadi?",
+        "variantlar": [
+          "Siz chiqargan xulosa",
+          "Kerakli tugmalar ro'yxati",
+          "Hammaga oid umumiy gap",
+          "Eshitgan javobning o'zi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза попадает на лист?",
+        "variantlar": [
+          "Ваш вывод",
+          "Список нужных кнопок",
+          "Общая фраза обо всех",
+          "Сам услышанный ответ"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Uylar band qilinmagach, Airbnb asoschilari qayerga bordi?",
+        "variantlar": [
+          "Nyu-Yorkka, uy egalariga",
+          "San-Frantsiskodagi yig'inga",
+          "Mehmonxonalarga",
+          "Hech qayerga"
+        ]
+      },
+      "ru": {
+        "savol": "Когда жильё не бронировали, куда поехали основатели Airbnb?",
+        "variantlar": [
+          "В Нью-Йорк, к хозяевам",
+          "На встречу в Сан-Франциско",
+          "В гостиницы",
+          "Никуда"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Airbnb asoschilari Nyu-Yorkda nimani bildi?",
+        "variantlar": [
+          "Narx juda baland ekanini",
+          "Saytga kam kirishini",
+          "Suratlar yomon chiqqanini",
+          "Mehmonlar bekor qilishini"
+        ]
+      },
+      "ru": {
+        "savol": "Что основатели Airbnb узнали в Нью-Йорке?",
+        "variantlar": [
+          "Что цена слишком высокая",
+          "Что редко заходят на сайт",
+          "Что фото получились плохими",
+          "Что гости отменяют бронь"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Suhbatni kimdan boshlaysiz?",
+        "variantlar": [
+          "Bot haqida eshitmagan odamdan",
+          "Botingizni ishlatgan odamdan",
+          "Sinfdagi a'lochi odamdan",
+          "Bot yozishga yordamlashgandan"
+        ]
+      },
+      "ru": {
+        "savol": "С кого вы начнёте беседу?",
+        "variantlar": [
+          "С того, кто не слышал о боте",
+          "С того, кто пользовался ботом",
+          "С отличника класса",
+          "С того, кто помогал писать бота"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Eshitgan javobni varaqqa qanday yozasiz?",
+        "variantlar": [
+          "«Hamma shunday deydi» deb",
+          "Qisqartirib, xulosam bilan",
+          "Yozmayman, esimda qoladi",
+          "U aytganidek yozaman"
+        ]
+      },
+      "ru": {
+        "savol": "Как вы запишете услышанный ответ?",
+        "variantlar": [
+          "«Все так говорят»",
+          "Кратко, со своим выводом",
+          "Не пишу, запомню",
+          "Пишу так, как он сказал"
+        ]
+      }
+    }
+  ]
+}

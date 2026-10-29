@@ -1,0 +1,278 @@
+{
+  "lessonId": "full-system-06-13-v18",
+  "key": "m6-13",
+  "modul": 8,
+  "tartib": 13,
+  "nom": {
+    "uz": "Loyiha kuni: to'liq tizim",
+    "ru": "Проектный день: полная система"
+  },
+  "src": "src/6-Modull/FullSystemProjectLesson.jsx",
+  "barmoq_izi": "9ab04cb3f34f555e36fa7d455325f740",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Web, mobil va bot nega «bitta tizim»?",
+        "variantlar": [
+          "Bitta backend'dan foydalanadi",
+          "Har birida alohida Database",
+          "Bir-biriga bog'liq emas",
+          "Faqat ranglari o'xshash"
+        ]
+      },
+      "ru": {
+        "savol": "Почему веб, мобильное и бот — «одна система»?",
+        "variantlar": [
+          "Используют один backend",
+          "У каждого своя Database",
+          "Не связаны между собой",
+          "Похожи только цвета"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "«Ko'p kirish yo'li, bitta tizim» nima degani?",
+        "variantlar": [
+          "Hammasi bitta backend'ga",
+          "Bitta kanal yetarli",
+          "Har kanalga alohida tizim",
+          "Faqat web bo'ladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит «много входов, одна система»?",
+        "variantlar": [
+          "Все — к одному backend",
+          "Хватит одного канала",
+          "Каждому каналу своя система",
+          "Бывает только веб"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "End-to-end test nimani sinaydi?",
+        "variantlar": [
+          "Bitta funksiyani alohida",
+          "Ranglar va dizaynni",
+          "Amalning barcha qadamlarini",
+          "Kodni o'qib, ishlatmay"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяет end-to-end тест?",
+        "variantlar": [
+          "Одну функцию отдельно",
+          "Цвета и дизайн",
+          "Все шаги одного действия",
+          "Код, прочитав без запуска"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "Integratsiya xatosi qayerda bo'ladi?",
+        "variantlar": [
+          "Qismlar ulangan joyda",
+          "Faqat frontend rangida",
+          "Hech qachon paydo bo'lmaydi",
+          "Faqat Database'ning ichida"
+        ]
+      },
+      "ru": {
+        "savol": "Где возникает ошибка интеграции?",
+        "variantlar": [
+          "Там, где части соединены",
+          "Только в цвете фронтенда",
+          "Она никогда не появляется",
+          "Только внутри Database"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Test jadvalida qizil katak nimani bildiradi?",
+        "variantlar": [
+          "Hammasi to'g'ri ishladi",
+          "O'sha kanal × qadamda xato",
+          "Dizayn ishi tugadi",
+          "Database tez ishlayapti"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит красная клетка в таблице тестов?",
+        "variantlar": [
+          "Всё сработало верно",
+          "Ошибка в этом канале × шаге",
+          "Дизайн закончен",
+          "Database работает быстро"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Ulanish joyidagi xatoni qanday tuzatamiz?",
+        "variantlar": [
+          "Hammasini qayta yozamiz",
+          "E'tibor bermaymiz",
+          "Sababini topib tuzatamiz",
+          "Faqat rangni o'zgartiramiz"
+        ]
+      },
+      "ru": {
+        "savol": "Как исправить ошибку в месте соединения?",
+        "variantlar": [
+          "Переписываем всё",
+          "Не обращаем внимания",
+          "Находим причину и чиним",
+          "Меняем только цвет"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Ishga tushirishdan oldin nima shart?",
+        "variantlar": [
+          "Hech narsa, darrov chiqaramiz",
+          "Test o'tgan, sozlama to'g'ri",
+          "Ko'proq rang va bezak",
+          "Logotip va nom tayyor"
+        ]
+      },
+      "ru": {
+        "savol": "Что обязательно перед запуском?",
+        "variantlar": [
+          "Ничего, сразу выпускаем",
+          "Тест пройден, настройки верны",
+          "Больше цвета и украшений",
+          "Готовы логотип и имя"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "«Deploy» nima degani?",
+        "variantlar": [
+          "Kodni o'chirish",
+          "Dizayn chizish",
+          "Serverga joylashtirish",
+          "Yangi til o'rganish"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит «deploy»?",
+        "variantlar": [
+          "Удалить код",
+          "Нарисовать дизайн",
+          "Разместить на сервере",
+          "Учить новый язык"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Bir kanaldagi buyurtma boshqasida ko'rinadimi?",
+        "variantlar": [
+          "Yo'q, har kanal alohida",
+          "Faqat qo'lda ko'chirsa",
+          "Buni qilib bo'lmaydi",
+          "Ha, Database bitta"
+        ]
+      },
+      "ru": {
+        "savol": "Виден ли заказ из одного канала в другом?",
+        "variantlar": [
+          "Нет, каждый канал отдельно",
+          "Только если перенести вручную",
+          "Это невозможно",
+          "Да, Database одна"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Tizimga mobil kanal qo'shishning oson yo'li?",
+        "variantlar": [
+          "Hammasini noldan yozish",
+          "Yangi frontend'ni ulash",
+          "Alohida Database qurish",
+          "Buni qilib bo'lmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Самый простой способ добавить мобильный канал?",
+        "variantlar": [
+          "Написать всё с нуля",
+          "Подключить новый frontend",
+          "Построить отдельную Database",
+          "Это невозможно"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "AI tizimda qanday rol o'ynaydi?",
+        "variantlar": [
+          "Ma'lumotni saqlaydi",
+          "Hamma qarorni o'zi qiladi",
+          "Buyurtmani o'zi yozadi",
+          "Savolga javob yozadi"
+        ]
+      },
+      "ru": {
+        "savol": "Какую роль играет AI в системе?",
+        "variantlar": [
+          "Хранит данные",
+          "Сам принимает все решения",
+          "Сам записывает заказ",
+          "Пишет ответ на вопрос"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "To'liq tizimni yetkazishda oxirgi qadam qaysi?",
+        "variantlar": [
+          "Yig'ish",
+          "Sinash",
+          "Xatoni topish",
+          "Ishga tushirish"
+        ]
+      },
+      "ru": {
+        "savol": "Какой последний шаг при сдаче полной системы?",
+        "variantlar": [
+          "Сборка",
+          "Проверка",
+          "Поиск ошибки",
+          "Запуск"
+        ]
+      }
+    }
+  ]
+}

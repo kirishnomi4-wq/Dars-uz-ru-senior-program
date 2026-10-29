@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova ertaga nimani qayta ko'rsata oladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Faqat yozib qo'yganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ekranda bir ko'ringanini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Siz so'ragan hamma narsani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa ilovadagi narsani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ekrandagi bo'lim nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Siz bosadigan tugma",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova yozib qo'yadigan narsa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir marta chiqadigan xabar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qo'shiq nomlaridan qaysi bo'lim quriladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "«Sizga yoqadi»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yaqinda tinglaganlaringiz»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Kechqurun tinglaganlaringiz»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Albomdagi qo'shiqlar»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Sizga yoqadi» qaysi maydondan quriladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Qo'shiq qayerda tinglanganidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shiq nomlaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tinglash vaqtidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirigacha tinglanganidan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Kechqurun tinglaganlaringiz» qaysi maydondan quriladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Tinglash vaqtidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qo'shiq nomlaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirigacha tinglanganidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefondagi kontaktlardan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon bo'lim bermadi. Bu nimani bildiradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bo'lim keyin o'zi ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon bekorga saqlangan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova uni o'qiy olmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'lim boshqa ilovada",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi maydonning belgisi nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Nomi qisqa yozilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovada kam joy oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Darhol ekranda ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ortida bitta bo'lim turadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Umumiy ma'lumot» nega yomon maydon?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Yozish uzoq vaqt oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova uni saqlay olmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Undan bo'lim qurilmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Boshqa maydonni o'chiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Netflix bosh sahifasi nimadan yig'iladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Har kim ko'rgan kinolardan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng qimmat kinolardan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammaga bitta ro'yxatdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kino uzunligi tartibidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Netflix ko'rishlarining qanchasi tavsiyadan keladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Har to'rttadan bittasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har ikkitadan bittasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Deyarli hech biri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har beshtadan to'rttasi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'lim ilovada nimadan yig'iladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ilova bezagidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi qidiruvidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saqlangan yozuvlardan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Boshqa ilovalar ro'yxatidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nimani saqlashni kim hal qiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kod o'zi hal qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotni o'ylaydigan odam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon ishlab chiqargan zavod",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shiq kuylagan xonanda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

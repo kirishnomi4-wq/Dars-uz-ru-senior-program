@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m11d4-v1",
+  "key": "m11-04",
+  "modul": 13,
+  "tartib": 4,
+  "nom": {
+    "uz": "Narxni qanday belgilaysiz?",
+    "ru": "Как назначить цену?"
+  },
+  "src": "src/11-Modull/PmPricingLesson.jsx",
+  "barmoq_izi": "b70e7bc93ea2dad588b0fe2a4ad736ed",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor ilovasida to'lov sahifasi qayerda ochiladi?",
+        "variantlar": [
+          "Telefon brauzerida",
+          "Ilova ichidagi oynada",
+          "Telegram botida",
+          "Play do'konida"
+        ]
+      },
+      "ru": {
+        "savol": "Где открывается страница оплаты в приложении Ментора?",
+        "variantlar": [
+          "В браузере телефона",
+          "В окне внутри приложения",
+          "В Telegram-боте",
+          "В магазине Play"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Doimiy o'yin» tashkilotchiga nima beradi?",
+        "variantlar": [
+          "Maydonni o'zi band qiladi",
+          "O'yinni o'zi e'lon qiladi",
+          "O'yinchini pulga chaqiradi",
+          "Guruhni o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что даёт организатору «Постоянная игра»?",
+        "variantlar": [
+          "Сама бронирует поле",
+          "Сама объявляет игру",
+          "Зовёт игроков за деньги",
+          "Удаляет группу"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Mentor misolida Pro muddatini kim uzaytiradi?",
+        "variantlar": [
+          "Ilova, tugma bosilganda",
+          "Mashq sahifasi",
+          "Backend, xabar kelgach",
+          "Tashkilotchi o'zi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто продлевает срок Pro в примере Ментора?",
+        "variantlar": [
+          "Приложение, при нажатии",
+          "Учебная страница",
+          "Backend, после сообщения",
+          "Сам организатор"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mashq to'lovda karta raqami qayerga yoziladi?",
+        "variantlar": [
+          "Sahifadagi maydonga",
+          "Ilovadagi ekranga",
+          ".env fayliga",
+          "Hech qayerga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда вводится номер карты в учебной оплате?",
+        "variantlar": [
+          "В поле на странице",
+          "На экран в приложении",
+          "В файл .env",
+          "Никуда"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Mashq sahifasi qaysi raqam bilan ochiladi?",
+        "variantlar": [
+          "Backend bergan raqam",
+          "Tashkilotchi yozgan raqam",
+          "Ilova o'ylagan raqam",
+          "Hisobingiz raqami"
+        ]
+      },
+      "ru": {
+        "savol": "С каким номером открывается учебная страница?",
+        "variantlar": [
+          "Номер от Backend",
+          "Номер, введённый организатором",
+          "Номер, придуманный приложением",
+          "Номер вашего аккаунта"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Doimiy o'yin vaqti o'tsa, nima bo'ladi?",
+        "variantlar": [
+          "O'yin bekor deb chiqadi",
+          "Keyingi haftaga yangi o'yin",
+          "Ilova xato ko'rsatadi",
+          "Ikkita yangi o'yin chiqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, когда время постоянной игры прошло?",
+        "variantlar": [
+          "Игра показана отменённой",
+          "Новая игра на следующую неделю",
+          "Приложение покажет ошибку",
+          "Появятся две новые игры"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Pro muddati tugasa, nima bo'ladi?",
+        "variantlar": [
+          "Kartadan pul yechiladi",
+          "Pro yana 30 kun uzayadi",
+          "Pro o'zi to'xtaydi",
+          "Hisob o'chib ketadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, когда закончится срок Pro?",
+        "variantlar": [
+          "С карты спишутся деньги",
+          "Pro продлится ещё на 30 дней",
+          "Pro сам остановится",
+          "Аккаунт удалится"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentorning xarajat qatorida nima turadi?",
+        "variantlar": [
+          "Telegram guruhi bepul ekani",
+          "Har haftalik e'lon ishi",
+          "30 kun uchun 15 000 so'm",
+          "Uxlamaydigan Backend puli"
+        ]
+      },
+      "ru": {
+        "savol": "Что стоит в строке расходов у Ментора?",
+        "variantlar": [
+          "Что Telegram-группа бесплатна",
+          "Еженедельная работа с объявлением",
+          "15 000 сумов за 30 дней",
+          "Деньги на неспящий Backend"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Har to'lov ekranida qaysi qator turadi?",
+        "variantlar": [
+          "Test rejim: pul yechilmaydi",
+          "Chegirma: faqat bugun",
+          "Karta raqamini kiriting",
+          "Diqqat: narx oshadi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка есть на каждом экране оплаты?",
+        "variantlar": [
+          "Тестовый режим: деньги не списываются",
+          "Скидка: только сегодня",
+          "Введите номер карты",
+          "Внимание: цена вырастет"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor narxi yonida qaysi yorliq turadi?",
+        "variantlar": [
+          "Render sahifasidan",
+          "Mentorning taxmini",
+          "Tashkilotchilar aytgani",
+          "Bozordagi o'rtacha narx"
+        ]
+      },
+      "ru": {
+        "savol": "Какая метка стоит рядом с ценой Ментора?",
+        "variantlar": [
+          "Со страницы Render",
+          "Предположение Ментора",
+          "Со слов организаторов",
+          "Средняя цена на рынке"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Agent «tayyor» dedi. Keyin nima qilasiz?",
+        "variantlar": [
+          "Darsni tugatib qo'yaman",
+          "Agentdan qayta so'rayman",
+          "O'zim tekshirib ko'raman",
+          "Kodni o'qimay push qilaman"
+        ]
+      },
+      "ru": {
+        "savol": "Агент сказал «готово». Что дальше?",
+        "variantlar": [
+          "Закончу урок",
+          "Спрошу агента ещё раз",
+          "Проверю сам",
+          "Сделаю push, не читая код"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Tashkilotchi bugun o'yinni nima bilan yig'adi?",
+        "variantlar": [
+          "Pro'dagi «Doimiy o'yin»",
+          "Lendingdagi tugma",
+          "Maydon egasi ilovasi",
+          "Bepul Telegram guruhi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем организатор сегодня собирает игру?",
+        "variantlar": [
+          "«Постоянная игра» в Pro",
+          "Кнопка на лендинге",
+          "Приложение владельца поля",
+          "Бесплатная Telegram-группа"
+        ]
+      }
+    }
+  ]
+}

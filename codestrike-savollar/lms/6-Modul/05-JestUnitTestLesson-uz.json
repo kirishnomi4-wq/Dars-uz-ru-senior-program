@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Unit-test nima qiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Saytni chiroyli qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotni bazaga yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni ishga tushiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiya natijasini tekshiradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "expect(...).toBe(...) nima qiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Natijani ekranga chiqaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiyani chaqiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Natijani etalonga solishtiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Testni o'chiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "describe nima uchun kerak?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Jest'ni loyihaga o'rnatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testlarni bir guruhga yig'adi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Natijani tekshiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiyani ishga tushiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Test fayli qanday nomlanadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "order.js",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "order.spec.ts",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "order.jest",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "order.test.html",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "npm test nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Bazani tozalab tashlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyihani serverga yuklaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi funksiya yozib beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testlarni ishga tushiradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Testdagi console.log nimani tekshiradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Natija etalonga tengligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiyaning tezligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsani tekshirmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod qatorlari sonini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bitta it nechta xatti-harakatni tekshiradi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Faqat bittasini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech birini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kamida beshtasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Cheksiz ko'pini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kutilgan 20000, kelgan 10002. Jest nima qiladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "FAIL: Expected va Received",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech narsa demaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiyani o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni o'zi tuzatib beradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Testda expect bo'lmasa nima bo'ladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Doim qizil FAIL chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Doim PASS — yolg'on test",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jest ishlamay to'xtaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Test ikki marta ishlaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Etalon xato yozilsa nima bo'ladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Kod to'g'ri bo'lsa ham qizil",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jest etalonni o'zi tuzatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Test o'tkazib yuboriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiya mantig'i o'zgaradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AAA tartibi nima?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Aniqla → Aylantir → Arxivla",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aloqa → Aksiya → Aniqlik",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tayyorla → Chaqir → Tekshir",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Avtomat → Analiz → Audit",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jest nega --save-dev bilan o'rnatiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Tezroq ishlashi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bepul bo'lgani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testni o'zi yozishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ishlab chiqish uchun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

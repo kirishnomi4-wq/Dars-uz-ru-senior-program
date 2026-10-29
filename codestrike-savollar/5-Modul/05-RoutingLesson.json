@@ -1,0 +1,278 @@
+{
+  "lessonId": "nest-routing-04-04-v18",
+  "key": "m4-05",
+  "modul": 5,
+  "tartib": 5,
+  "nom": {
+    "uz": "Routing: server so'rovni qanday topadi",
+    "ru": "Роутинг: как сервер находит запрос"
+  },
+  "src": "src/4-Modull/RoutingLesson.jsx",
+  "barmoq_izi": "b81ca0f88ba0246c4486a6494ee7446b",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Route nimadan iborat?",
+        "variantlar": [
+          "Faqat path — manzil",
+          "method + path birga",
+          "Faqat method — shtamp",
+          "Brauzer turi"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего состоит route?",
+        "variantlar": [
+          "Только path — адрес",
+          "method + path вместе",
+          "Только method — штамп",
+          "Тип браузера"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "GET /games va POST /games farqi nimada?",
+        "variantlar": [
+          "Farqi yo'q — bir xil",
+          "Server nomi boshqa",
+          "Biri oladi, biri qo'shadi",
+          "Javob tili boshqa"
+        ]
+      },
+      "ru": {
+        "savol": "Чем отличаются GET /games и POST /games?",
+        "variantlar": [
+          "Разницы нет — одинаковы",
+          "Разные имена сервера",
+          "Один получает, другой добавляет",
+          "Разный язык ответа"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "Server qaysi kodni ishlatishni qanday biladi?",
+        "variantlar": [
+          "Tasodifan tanlaydi",
+          "Doim birinchisini oladi",
+          "Brauzerdan so'raydi",
+          "method + path bo'yicha"
+        ]
+      },
+      "ru": {
+        "savol": "Как сервер понимает, какой код запустить?",
+        "variantlar": [
+          "Выбирает случайно",
+          "Всегда берёт первый",
+          "Спрашивает у браузера",
+          "По method + path"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "Yangi o'yin qo'shish uchun qaysi method?",
+        "variantlar": [
+          "POST",
+          "PUT",
+          "DELETE",
+          "GET"
+        ]
+      },
+      "ru": {
+        "savol": "Какой method нужен, чтобы добавить новую игру?",
+        "variantlar": [
+          "POST",
+          "PUT",
+          "DELETE",
+          "GET"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "Ro'yxatni olish (o'qish) uchun qaysi method?",
+        "variantlar": [
+          "DELETE",
+          "POST",
+          "PUT",
+          "GET"
+        ]
+      },
+      "ru": {
+        "savol": "Какой method нужен, чтобы получить список (чтение)?",
+        "variantlar": [
+          "DELETE",
+          "POST",
+          "PUT",
+          "GET"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Ma'lumotni o'chirish uchun qaysi method?",
+        "variantlar": [
+          "GET",
+          "DELETE",
+          "POST",
+          "PUT"
+        ]
+      },
+      "ru": {
+        "savol": "Какой method удаляет данные?",
+        "variantlar": [
+          "GET",
+          "DELETE",
+          "POST",
+          "PUT"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "app.get('/games/:id') ga /games/7 kelsa, id nimaga teng?",
+        "variantlar": [
+          "7",
+          "games",
+          "':id'",
+          "/games/7"
+        ]
+      },
+      "ru": {
+        "savol": "Пришёл /games/7 на app.get('/games/:id') — чему равен id?",
+        "variantlar": [
+          "7",
+          "games",
+          "':id'",
+          "/games/7"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": ":id nima?",
+        "variantlar": [
+          "Har doim 1 ga teng son",
+          "Path'ning doimiy qismi",
+          "Qiymat keladigan joy belgisi",
+          "Server fayli nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое :id?",
+        "variantlar": [
+          "Число, всегда равное 1",
+          "Постоянная часть path",
+          "Метка места, куда придёт значение",
+          "Имя файла сервера"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "So'rovdagi :id qiymati kodda qayerda turadi?",
+        "variantlar": [
+          "app.get",
+          "res.send",
+          "req.params",
+          "app.listen"
+        ]
+      },
+      "ru": {
+        "savol": "Где в коде лежит значение :id из запроса?",
+        "variantlar": [
+          "app.get",
+          "res.send",
+          "req.params",
+          "app.listen"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Mos route topilmasa, server nima qaytaradi?",
+        "variantlar": [
+          "200 OK",
+          "birinchi eshikni",
+          "serverni o'chiradi",
+          "404 Not Found"
+        ]
+      },
+      "ru": {
+        "savol": "Не нашлось подходящего route — что вернёт сервер?",
+        "variantlar": [
+          "200 OK",
+          "первую дверь",
+          "выключит сервер",
+          "404 Not Found"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Express'da POST eshigini qaysi qator ochadi?",
+        "variantlar": [
+          "app.get",
+          "app.post",
+          "app.listen",
+          "res.send"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка в Express открывает дверь для POST?",
+        "variantlar": [
+          "app.get",
+          "app.post",
+          "app.listen",
+          "res.send"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Xat POST, eshik app.get — natija?",
+        "variantlar": [
+          "404 — mos eshik yo'q",
+          "200 OK — hammasi joyida",
+          "server butunlay o'chadi",
+          "yangi o'yin qo'shiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Письмо POST, дверь app.get — результат?",
+        "variantlar": [
+          "404 — подходящей двери нет",
+          "200 OK — всё в порядке",
+          "сервер полностью выключится",
+          "добавится новая игра"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "api-postman-04-06-v18",
+  "key": "m4-09",
+  "modul": 5,
+  "tartib": 9,
+  "nom": {
+    "uz": "API va Postman — front backend bilan qanday gaplashadi",
+    "ru": "API и Postman — как фронт говорит с бэком"
+  },
+  "src": "src/4-Modull/ApiPostmanLesson.jsx",
+  "barmoq_izi": "a397107aff5116884e30112e0b683eb9",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 3,
+      "uz": {
+        "savol": "GET so'rovi nima qiladi?",
+        "variantlar": [
+          "Bazadan ma'lumot o'chiradi",
+          "Yangi ma'lumot qo'shadi",
+          "Serverni o'chirib qo'yadi",
+          "Ma'lumotni o'qib oladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает запрос GET?",
+        "variantlar": [
+          "Удаляет данные из базы",
+          "Добавляет новые данные",
+          "Выключает сервер",
+          "Читает данные"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "API nima?",
+        "variantlar": [
+          "Ikki dastur gaplashadigan til",
+          "Rasmlar saqlanadigan papka",
+          "Sahifani bezaydigan dastur",
+          "Internetni tezlatuvchi qurilma"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое API?",
+        "variantlar": [
+          "Язык общения двух программ",
+          "Папка для картинок",
+          "Программа для украшения страниц",
+          "Устройство, ускоряющее интернет"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "201 Created statusi nimani bildiradi?",
+        "variantlar": [
+          "Server javob bermadi",
+          "Yangi narsa yaratildi",
+          "So'rovda xatolik bor",
+          "Manzil serverda topilmadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает статус 201 Created?",
+        "variantlar": [
+          "Сервер не ответил",
+          "Создано новое",
+          "В запросе ошибка",
+          "Адрес не найден на сервере"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "POST so'rovida BODY nimaga kerak?",
+        "variantlar": [
+          "Sahifani chiroyli qilish",
+          "Javobni tezlashtirish",
+          "Yangi ma'lumotni tashish",
+          "Manzilni yashirish"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем в запросе POST нужен BODY?",
+        "variantlar": [
+          "Сделать страницу красивой",
+          "Ускорить ответ",
+          "Нести новые данные",
+          "Спрятать адрес"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Postman qanday dastur?",
+        "variantlar": [
+          "Sayt dizaynini chizadi",
+          "Serverga rasm yuklaydi",
+          "Frontendsiz API'ni sinaydi",
+          "Bazadan ma'lumot o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что за программа Postman?",
+        "variantlar": [
+          "Рисует дизайн сайта",
+          "Загружает картинки на сервер",
+          "Проверяет API без фронтенда",
+          "Удаляет данные из базы"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "404 Not Found nima demoqchi?",
+        "variantlar": [
+          "Ma'lumot qaytib keldi",
+          "Manzil topilmadi",
+          "Yangi yozuv yaratildi",
+          "Kirish taqiqlangan"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит 404 Not Found?",
+        "variantlar": [
+          "Данные вернулись",
+          "Адрес не найден",
+          "Создана новая запись",
+          "Доступ запрещён"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Mahsulot narxini yangilash uchun qaysi method?",
+        "variantlar": [
+          "POST",
+          "DELETE",
+          "GET",
+          "PUT"
+        ]
+      },
+      "ru": {
+        "savol": "Каким методом обновить цену товара?",
+        "variantlar": [
+          "POST",
+          "DELETE",
+          "GET",
+          "PUT"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "So'rov (request) qismlari qaysilar?",
+        "variantlar": [
+          "METHOD + URL (+ BODY)",
+          "Faqat rang, shrift va bezaklar",
+          "Faqat rasm va videolar",
+          "Faqat login va parol"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего состоит запрос (request)?",
+        "variantlar": [
+          "METHOD + URL (+ BODY)",
+          "Только цвета, шрифты и украшения",
+          "Только картинки и видео",
+          "Только логин и пароль"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "DELETE /api/products/3 nima qiladi?",
+        "variantlar": [
+          "3-mahsulotni o'chiradi",
+          "Yangi mahsulot qo'shadi",
+          "Ro'yxatni o'qib beradi",
+          "Narxni oshirib qo'yadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что сделает DELETE /api/products/3?",
+        "variantlar": [
+          "Удалит товар с id 3",
+          "Добавит новый товар",
+          "Прочитает и вернёт список",
+          "Поднимет цену"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "GET bazadagi qaysi SQL amaliga to'g'ri keladi?",
+        "variantlar": [
+          "INSERT",
+          "UPDATE",
+          "SELECT",
+          "DELETE"
+        ]
+      },
+      "ru": {
+        "savol": "Какой SQL-операции соответствует GET?",
+        "variantlar": [
+          "INSERT",
+          "UPDATE",
+          "SELECT",
+          "DELETE"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Sayt ma'lumot kerak bo'lganda nima qiladi?",
+        "variantlar": [
+          "Bazaga o'zi kiradi",
+          "Hech kimsiz o'zi ishlaydi",
+          "Boshqa saytdan nusxa oladi",
+          "API'ga so'rov yuboradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает сайт, когда нужны данные?",
+        "variantlar": [
+          "Сам заходит в базу",
+          "Работает сам, ни с кем",
+          "Копирует с другого сайта",
+          "Отправляет запрос в API"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Javob konverti (response) nimadan iborat?",
+        "variantlar": [
+          "Faqat bitta rasm fayli",
+          "STATUS + DATA (JSON)",
+          "Faqat foydalanuvchi paroli",
+          "Faqat so'rov manzili (URL)"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего состоит конверт ответа (response)?",
+        "variantlar": [
+          "Только один файл-картинка",
+          "STATUS + DATA (JSON)",
+          "Только пароль пользователя",
+          "Только адрес запроса (URL)"
+        ]
+      }
+    }
+  ]
+}

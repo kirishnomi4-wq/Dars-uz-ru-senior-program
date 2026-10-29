@@ -1,0 +1,278 @@
+{
+  "lessonId": "m8-08-v1",
+  "key": "m8-08",
+  "modul": 10,
+  "tartib": 8,
+  "nom": {
+    "uz": "Loyiha kuni: prodga ko'tarish — 1-qism",
+    "ru": "День проекта: вывод в прод — часть 1"
+  },
+  "src": "src/8-Modull/ProdUpgradeLesson.jsx",
+  "barmoq_izi": "bb52b874f5d6ec6543579fe27044a31a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Prod ro'yxati nima?",
+        "variantlar": [
+          "Ishonchliroq qiladigan ishlar",
+          "Keyingi funksiyalar ro'yxati",
+          "Sahifalar manzillari ro'yxati",
+          "Bugungi bandlar ro'yxati"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое прод-список?",
+        "variantlar": [
+          "Работы, повышающие надёжность",
+          "Список будущих функций",
+          "Список адресов страниц",
+          "Список сегодняшних броней"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "So'rovlar chegarasi nimani sanaydi?",
+        "variantlar": [
+          "Saytdagi odamlar sonini",
+          "Bir IP'dan daqiqalik so'rovni",
+          "Bir IP'dagi odamlar sonini",
+          "O'yinchilar bandlarini"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает лимит запросов?",
+        "variantlar": [
+          "Число людей на сайте",
+          "Запросы с одного IP за минуту",
+          "Число людей на одном IP",
+          "Брони игроков"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Chegaradan oshgan so'rovga Backend nima qaytaradi?",
+        "variantlar": [
+          "401 — parol noto'g'ri",
+          "409 — vaqt band",
+          "429 — ko'p so'rov",
+          "400 — ism yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Что Backend возвращает на запрос сверх лимита?",
+        "variantlar": [
+          "401 — неверный пароль",
+          "409 — время занято",
+          "429 — слишком много запросов",
+          "400 — нет имени"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Chegara nega Backend'da qo'yiladi?",
+        "variantlar": [
+          "Sayt kodi sekinroq ishlaydi",
+          "Saytda joy qolmagan",
+          "Backend kodi yashirin",
+          "Har so'rov Backend'dan o'tadi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему лимит ставят в Backend?",
+        "variantlar": [
+          "Код сайта работает медленнее",
+          "На сайте нет места",
+          "Код Backend скрыт",
+          "Каждый запрос идёт через Backend"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Qaysi yo'lga eng qattiq chegara qo'yiladi?",
+        "variantlar": [
+          "POST /kirish",
+          "POST /hodisalar",
+          "GET /vaqtlar",
+          "POST /bandlar"
+        ]
+      },
+      "ru": {
+        "savol": "На какой путь ставится самый строгий лимит?",
+        "variantlar": [
+          "POST /kirish",
+          "POST /hodisalar",
+          "GET /vaqtlar",
+          "POST /bandlar"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Bir Wi-Fi'dagi telefonlar Backend'ga qanday ko'rinadi?",
+        "variantlar": [
+          "O'z brauzer ID si bilan",
+          "Bitta IP manzildek",
+          "Alohida Render orqali",
+          "Netlify manzilidan"
+        ]
+      },
+      "ru": {
+        "savol": "Как телефоны в одном Wi-Fi выглядят для Backend?",
+        "variantlar": [
+          "Каждый со своим ID браузера",
+          "Как один IP-адрес",
+          "Через отдельный Render",
+          "С адреса Netlify"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Backend kechiksa, prod sayt nima qiladi?",
+        "variantlar": [
+          "«Yuklanmoqda…» deb turadi",
+          "Kataklarni bo'sh chizadi",
+          "Xabar yozib, qayta so'raydi",
+          "Har soniya yangilanadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает прод-сайт, если Backend задерживается?",
+        "variantlar": [
+          "Стоит на «Загрузка…»",
+          "Рисует пустые слоты",
+          "Пишет сообщение и спрашивает снова",
+          "Обновляется каждую секунду"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Bir daqiqadan keyin ham javob bo'lmasa, nima chiqadi?",
+        "variantlar": [
+          "Backend xatosi matni",
+          "Bo'sh oq sahifa",
+          "«Band qilindi» belgisi",
+          "Xabar va «Qayta urinish»"
+        ]
+      },
+      "ru": {
+        "savol": "Что появится, если ответа нет и через минуту?",
+        "variantlar": [
+          "Текст ошибки Backend",
+          "Пустая белая страница",
+          "Значок «Забронировано»",
+          "Сообщение и «Повторить»"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "429 kelsa, band formasidagi ism va telefon-chi?",
+        "variantlar": [
+          "Joyida qoladi",
+          "O'chib ketadi",
+          "Egaga yuboriladi",
+          "Ertangi formaga o'tadi"
+        ]
+      },
+      "ru": {
+        "savol": "Пришёл 429. Что с именем и телефоном в форме брони?",
+        "variantlar": [
+          "Остаются на месте",
+          "Стираются",
+          "Уходят владельцу",
+          "Переносятся в завтрашнюю форму"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "A — 42 tadan 12, B — 40 tadan 17. Qaysi biri qoladi?",
+        "variantlar": [
+          "A — tanlaganlar ko'proq",
+          "B — foizi kattaroq",
+          "A — hozirgi variant",
+          "B — tugmasi chiroyli"
+        ]
+      },
+      "ru": {
+        "savol": "A — 12 из 42, B — 17 из 40. Какой остаётся?",
+        "variantlar": [
+          "A — выбравших больше",
+          "B — процент выше",
+          "A — текущий вариант",
+          "B — кнопка красивее"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Nega «B aniq yaxshi» deb xulosa qilinmaydi?",
+        "variantlar": [
+          "Foiz A da kattaroq",
+          "Dashboard faqat bugungi",
+          "82 ta brauzer hali kam",
+          "SQL noto'g'ri sanagan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему не делают вывод «B точно лучше»?",
+        "variantlar": [
+          "Процент выше у A",
+          "Дашборд только за сегодня",
+          "82 браузера пока мало",
+          "SQL посчитал неверно"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "prod push qilindi. Internetdagi sayt-chi?",
+        "variantlar": [
+          "Darhol prodga o'tadi",
+          "Render uxlab qoladi",
+          "Alohida manzilda chiqadi",
+          "O'zgarmaydi, maindan oladi"
+        ]
+      },
+      "ru": {
+        "savol": "prod запушен. А сайт в интернете?",
+        "variantlar": [
+          "Сразу переходит на prod",
+          "Render засыпает",
+          "Выходит на отдельном адресе",
+          "Не меняется, берёт из main"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "RICE hisobida qamrov nimani bildiradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Oyiga nechta odam ishlatishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir odamga qancha foyda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Necha hafta quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taxminga ishonch darajasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu kursda mehnat nima bilan o'lchanadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Guruh necha oy ishlashi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodda nechta qator borligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir odam necha hafta ishlashi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nechta ekran chizilishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki ishda faqat mehnat farq qiladi. Qaysi biri yuqori?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Mehnati ko'prog'i",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mehnati kamrog'i",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "PRD da birinchi yozilgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranda ko'proq ko'ringani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ish «Keyinroq» ufqida. Bu nimani bildiradi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "11-Modulda boshlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Roadmap'dan chiqariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitiruvdan keyin boshlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "12–13-Modulda boshlanadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega poydevor RICE ga kirmaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Busiz hech bir funksiya yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uni qurish eng oson",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi uni ko'rmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U PRD da birinchi turadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tasdiq qo'shilganlarga tayanadi. U qachon quriladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Qo'shilishdan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilish bilan birga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitiruvdan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilishdan keyin",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Hozir» ufqiga nechta funksiya sig'adi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ikkita, qolgani keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchta, har kunga bitta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oltita, PRD dagi hammasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'rtta, poydevor bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzum'da xaridor ekranda nimani ko'rmaydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Narsalar va narxi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Surat va nomlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mashina va punktlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qidiruv qatori",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzum'dagidek, birinchi ish qanday bo'lishi mumkin?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Eng chiroylisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklamadagisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng tez quriladigani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'rinmasa ham keraklisi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sherigingiz ishga boshqa RICE berdi. Bu nima?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "RICE taxmin, dalil kerak",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sherik RICE ni bilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishni o'chirish kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Raqamingiz to'g'ri",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Roadmap'da har ish haqida nima ko'rinadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Uni qaysi o'quvchi quradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Unga qancha pul ketadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi ufq va qaysi o'rinda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Unda necha qator kod bor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Uzoqroq»dagi ish bitiruvgacha nima bo'ladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "«Hozir» bilan quriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitiruvni kutadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Roadmap'dan o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "12-Modulda boshlanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

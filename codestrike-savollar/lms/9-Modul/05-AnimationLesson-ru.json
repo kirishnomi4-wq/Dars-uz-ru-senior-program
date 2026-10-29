@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что анимация говорит игроку?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Нажато, изменилось, готово",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сколько людей на сайте",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Как давно открыта страница",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Какой цвет красивее",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает transform: scale(1.1)?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Уменьшает на 10%",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Увеличивает на 10%",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сдвигает на 10 пикселей вправо",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Осветляет цвет на 10%",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Кнопка уменьшается через scale(0.9). А текст под ней?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Поднимется вверх",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Опустится вниз",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Останется на месте",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Тоже уменьшится",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "transition: transform 0.15s — что такое 0.15s?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Сколько раз уменьшится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Насколько уменьшится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Когда нажмут",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сколько длится изменение",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как разделяют два свойства в одном transition?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Запятой",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Точкой с запятой",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пробелом",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Двоеточием",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой элемент находит .katak.band?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "band внутри katak",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Элемент с обоими классами",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Любой элемент с классом band",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Все элементы с классом katak",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как в CSS записать момент, когда кнопку зажали?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": ".tugma:hover",
+        "hint": "Неверно"
+      },
+      {
+        "value": ".tugma.band",
+        "hint": "Неверно"
+      },
+      {
+        "value": ".tugma:active",
+        "hint": "Верно!"
+      },
+      {
+        "value": ".tugma .active",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая команда добавляет Motion в проект?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "npm run motion",
+        "hint": "Неверно"
+      },
+      {
+        "value": "npm motion install",
+        "hint": "Неверно"
+      },
+      {
+        "value": "npx motion",
+        "hint": "Неверно"
+      },
+      {
+        "value": "npm install motion",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает initial в motion.div?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Состояние до появления",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Последнее состояние остановки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Состояние при уходе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Состояние при нажатии",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что нужно, чтобы удалённая строка ушла плавно?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "opacity: 0 в initial",
+        "hint": "Неверно"
+      },
+      {
+        "value": "AnimatePresence и exit",
+        "hint": "Верно!"
+      },
+      {
+        "value": "y: 0 в animate",
+        "hint": "Неверно"
+      },
+      {
+        "value": "transition в CSS",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое движение на сайте магазина лишнее?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Смена числа в корзине",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нажатая кнопка уменьшается",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Постоянно мигающая «Акция»",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Надпись «Принято»",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает prefers-reduced-motion?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Что интернет медленный",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Что мало заряда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Что экран тусклый",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Что движение уменьшено",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m6d2-v1",
+  "key": "m6-02",
+  "modul": 8,
+  "tartib": 2,
+  "nom": {
+    "uz": "Bitta gapni uch kishi bir xil tushunadimi?",
+    "ru": "Поймут ли одну фразу трое одинаково?"
+  },
+  "src": "src/6-Modull/PmLesson22.jsx",
+  "barmoq_izi": "8600a31acaf350c104fe946771671ce7",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "G'oya og'zaki aytilsa, nima xavfi bor?",
+        "variantlar": [
+          "Har kim o'zicha tushunadi",
+          "Hamma darrov yoqtirib qoladi",
+          "G'oya juda tez tarqaladi",
+          "Yozib berishni so'rashadi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем опасно рассказать идею устно?",
+        "variantlar": [
+          "Каждый поймёт по-своему",
+          "Всем сразу понравится",
+          "Идея быстро разойдётся",
+          "Попросят записать"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "«Menga PRD bering» — hamkoringiz nimani so'rayapti?",
+        "variantlar": [
+          "Tayyor kodni",
+          "Narx qog'ozini",
+          "Ekran rasmlarini",
+          "Talablar hujjatini"
+        ]
+      },
+      "ru": {
+        "savol": "«Дайте мне PRD» — что просит ваш партнёр?",
+        "variantlar": [
+          "Готовый код",
+          "Бумагу с ценой",
+          "Картинки экранов",
+          "Документ требований"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«Guruh to'lib, odam bekorga qaytadi» — qaysi katak?",
+        "variantlar": [
+          "Kim",
+          "Yechim",
+          "Muammo",
+          "O'lchov"
+        ]
+      },
+      "ru": {
+        "savol": "«Группа полна, человек уходит зря» — какая ячейка?",
+        "variantlar": [
+          "Кто",
+          "Решение",
+          "Проблема",
+          "Измерение"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "«Kim» katagiga qaysi qator to'g'ri?",
+        "variantlar": [
+          "Hamma foydalanuvchilar",
+          "Ertalab suzishga keladiganlar",
+          "Ilovaga pul to'laydiganlar",
+          "Kod yozadigan AI"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка подходит в ячейку «Кто»?",
+        "variantlar": [
+          "Все пользователи",
+          "Кто ходит плавать по утрам",
+          "Кто платит за приложение",
+          "AI, который пишет код"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Yechim katagiga qaysi qator tushadi?",
+        "variantlar": [
+          "Zamonaviy va tez ilova",
+          "Bo'sh joy ko'rsatuvchi sahifa",
+          "Ikki haftada bitadigan ish",
+          "JavaScript'dagi kod"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка идёт в ячейку «Решение»?",
+        "variantlar": [
+          "Современное быстрое приложение",
+          "Страница, показывающая места",
+          "Работа на две недели",
+          "Код на JavaScript"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "O'lchov katagi nima uchun kerak?",
+        "variantlar": [
+          "Natijani son bilan ko'rsatadi",
+          "Ilova narxini hisoblaydi",
+          "Ustunlar sonini aytadi",
+          "Ish muddatini aytadi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужна ячейка «Измерение»?",
+        "variantlar": [
+          "Показывает результат числом",
+          "Считает цену приложения",
+          "Называет число столбцов",
+          "Называет срок работы"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "O'lchov katagi bo'sh qolsa, nima yo'qoladi?",
+        "variantlar": [
+          "Ishni boshlash imkoni",
+          "Qolgan uch katak",
+          "Natija bo'ldimi degan javob",
+          "Ilovaning nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Что теряется, если ячейка «Измерение» пуста?",
+        "variantlar": [
+          "Возможность начать работу",
+          "Остальные три ячейки",
+          "Ответ, был ли результат",
+          "Название приложения"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Varaq to'ldirilgach AI uch urinishda nima qurdi?",
+        "variantlar": [
+          "Har biri boshqa narsa",
+          "Hech biri boshlay olmadi",
+          "Ikkitasi qurdi, biri yo'q",
+          "Uchalasi bir xil ekran"
+        ]
+      },
+      "ru": {
+        "savol": "Что построил AI за три попытки по заполненному листу?",
+        "variantlar": [
+          "Каждый раз — своё",
+          "Ни разу не начал",
+          "Два раза построил, один — нет",
+          "Все три раза — одинаковый экран"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Geyts va Allen ishni qanday tartibda qildi?",
+        "variantlar": [
+          "Avval aytdi, keyin yozdi",
+          "Avval yozdi, keyin aytdi",
+          "Avval sinadi, keyin aytdi",
+          "Uzoq sinab, keyin aytdi"
+        ]
+      },
+      "ru": {
+        "savol": "В каком порядке работали Гейтс и Аллен?",
+        "variantlar": [
+          "Сначала сказали, потом написали",
+          "Сначала написали, потом сказали",
+          "Сначала проверили, потом сказали",
+          "Долго проверяли, потом сказали"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Til hali yozilmagan payt ular nima qildi?",
+        "variantlar": [
+          "Altairni sotib oldi",
+          "Tayyor tilni yubordi",
+          "«Bizda til bor» dedi",
+          "Jurnalga maqola yozdi"
+        ]
+      },
+      "ru": {
+        "savol": "Что они сделали, когда язык ещё не был написан?",
+        "variantlar": [
+          "Купили Altair",
+          "Отправили готовый язык",
+          "Сказали «у нас есть язык»",
+          "Написали статью в журнал"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Varaq qachon tayyor bo'ladi?",
+        "variantlar": [
+          "Ikkita katagi yozilganda",
+          "Har katak savolga javob bersa",
+          "Kod bilan topshirilganda",
+          "Uzun gaplar yozilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда лист готов?",
+        "variantlar": [
+          "Когда заполнены две ячейки",
+          "Когда каждая ячейка отвечает",
+          "Когда сдан вместе с кодом",
+          "Когда написаны длинные фразы"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Varaq bo'sh qolsa, kim taxmin qiladi?",
+        "variantlar": [
+          "Ilovani ochgan odam",
+          "Basseyn murabbiysi",
+          "PRD'ni yozgan odam",
+          "Kod yozadigan AI"
+        ]
+      },
+      "ru": {
+        "savol": "Если лист пуст, кто будет угадывать?",
+        "variantlar": [
+          "Тот, кто открыл приложение",
+          "Тренер бассейна",
+          "Тот, кто писал PRD",
+          "AI, который пишет код"
+        ]
+      }
+    }
+  ]
+}

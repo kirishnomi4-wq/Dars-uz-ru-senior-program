@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Reliz nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bo'lakni odamlarga chiqarish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni o'zida sinab ko'rish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytga rasm va rang tanlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishni haftalarga bo'lish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kod faqat o'zingizda ishlasa — relizmi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ha — kod ishlayapti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — o'zgarish kichkina",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha — sinfdosh ko'rgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — odamlar ishlata olmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "6-haftada kim keyingi bo'lakni aniq biladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ko'proq kod yozgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rejani uzoq o'ylagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har hafta chiqargan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni kech ochgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Har hafta kichik» sayti 6 haftada necha marta bilib oldi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "3 marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "6 marta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1 marta",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bir marta katta» nimani kech bildi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Saytni topa olmaganlarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xaritani hech kim ochmaganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Chat ishlamay qolganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "E'lonlar ochilmasligini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Haftalik bo'lakning ikki chirog'i?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Haftaga sig'adi · ishlatiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir kunda tayyor · bepul",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tez yoziladi · kodi kam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmli · chiroyli ko'rinadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Bosilsa hech narsa bo'lmaydi» — nima yetmaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Uni bosadigan odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Unga qo'yiladigan rasm",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bosgandan keyingi ish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Haftaga sig'adigan vaqt",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "≈11 kunlik bo'lakka darvoza nima deydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Kunlar hisoblanmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam uni ishlata olmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu bo'lak takrorlangan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu hafta sig'maydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telegram katta yangilanishni qanchalik tez-tez chiqaradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Deyarli har oy",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uch yilda bir marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yiliga bir marta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki haftada bir",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telegramdagi reaksiya boshqa ilovalarga qachon keldi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Bir necha haftada",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha kuniyoq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir necha yildan keyin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telegramdan oldin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "2025-yil martida Telegramdan oyiga nechta odam foydalanadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "100 million",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1 milliard",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "3 milliard",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "500 million",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nimani qachon chiqarishni kim hal qiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kodni yozgan dasturchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytga kirgan odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt joylangan xizmat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotni o'ylaydigan odam",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

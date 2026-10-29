@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Intervyu nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bitta odam bilan suhbat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'p odamga bitta e'lon",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfga g'oyani aytish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamni jim kuzatib turish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yozuv nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Intervyu savollari ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'ldirilgan shablon",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Intervyudan chiqqan xulosa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "G'oyangiz haqidagi matn",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Sayt bo'lsa, ishlatarmidingiz?» Qanday savol?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Voqea savoli — maydon bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Voqea savoli — qisqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh savol — javobi va'da",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bo'sh savol — qisqa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Oxirgi marta qachon bordingiz?» Qanday savol?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bo'sh savol — kelajak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh savol — javobi «ha»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Voqea savoli — g'oya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Voqea savoli — o'tgan kun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Shablondagi to'rt qatordan biri qaysi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Sayt sizga yoqdimi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nima qiyin bo'ldi?",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kelasi safar nima qilasiz?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxi qancha bo'lsin?",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Maydon band ekan.» Keyingi savol qaysi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "O'shanda nima qildingiz?",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt bo'lsa, band qilasizmi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon ko'p band bo'ladimi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyin qachon borasiz?",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yozuvga qaysi gap tushadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Siz chiqargan xulosa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam haqida taxminingiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammaga oid umumiy gap",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eshitgan javob, u aytganidek",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kitobdagi ona g'oyani nega maqtadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Bunday ilova qidirgan edi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Planshetda ko'p o'tirardi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'g'lini xafa qilmaslik uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Taomlar kitobi kerak edi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kitobda qaysi savol voqeani ochdi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "«Ilova sizga kerakmi?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Odatda nima qilasiz?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Ilovani sotib olasizmi?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Oxirgi marta nima oldingiz?»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kitob nomi nimani anglatadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ona ham rost aytadigan savol",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat onaga beriladigan savol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Onaga g'oyani aytish usuli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ona bilan maslahat qoidasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon muammosida kimdan intervyu olasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "O'ynamaydigan qo'shnidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt yasaydigan do'stdan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchi va maydon egasidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Maqtaydigan sinfdoshdan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega bitta intervyu yetmaydi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Bir odam ko'p gapirmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuv — bitta odam voqeasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Shablonda 4 qator xolos",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'p maqtov — g'oya to'g'ri",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

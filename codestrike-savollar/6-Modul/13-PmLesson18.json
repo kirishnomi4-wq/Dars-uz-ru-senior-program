@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m4c6-v1",
+  "key": "m4c-06",
+  "modul": 6,
+  "tartib": 13,
+  "nom": {
+    "uz": "Saytingiz hozir ochilyaptimi?",
+    "ru": "Ваш сайт сейчас открывается?"
+  },
+  "src": "src/4c-Modull/PmLesson18.jsx",
+  "barmoq_izi": "2d6ad8cc5c5748be6b1e7dc4c97dce39",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "O'lchagich nima?",
+        "variantlar": [
+          "Chiqqan saytni o'lchab turadi",
+          "Kodni oldindan tekshiradi",
+          "Sahifalarni yozib beradi",
+          "Linklarni saqlab qo'yadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое измеритель?",
+        "variantlar": [
+          "Измеряет сайт после выпуска",
+          "Проверяет код заранее",
+          "Пишет страницы",
+          "Хранит ссылки"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "O'lchagich qachon ishlaydi?",
+        "variantlar": [
+          "Chiqarishdan oldin, bir marta",
+          "Kod yozilayotgan paytda",
+          "Faqat siz qaraganingizda",
+          "Chiqqandan keyin, to'xtovsiz"
+        ]
+      },
+      "ru": {
+        "savol": "Когда работает измеритель?",
+        "variantlar": [
+          "До выпуска, один раз",
+          "Пока пишется код",
+          "Только когда вы смотрите",
+          "После выпуска, без остановки"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«Javob vaqti» nimani ko'rsatadi?",
+        "variantlar": [
+          "Xato bilan tugaganlar sonini",
+          "Sahifadagi rasmlar sonini",
+          "Sahifa qancha vaqtda kelganini",
+          "Kuniga necha ochilganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает «время ответа»?",
+        "variantlar": [
+          "Сколько заходов кончились ошибкой",
+          "Сколько на странице картинок",
+          "За сколько пришла страница",
+          "Сколько раз открыли за день"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Signal nima?",
+        "variantlar": [
+          "Chegara qilib qo'ygan son",
+          "Chegaradan o'tgandagi xabar",
+          "Odam qoldirgan izoh-xabar",
+          "Sayt ochilmay qolgan payt"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое сигнал?",
+        "variantlar": [
+          "Число, поставленное границей",
+          "Сообщение при переходе границы",
+          "Комментарий от человека",
+          "Момент, когда сайт не открылся"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Qaysi signal chin?",
+        "variantlar": [
+          "Kechasi kelgan signal",
+          "Odam sezgan signal",
+          "Har mayda sakrashdagi signal",
+          "Ketma-ket ikki kelgan signal"
+        ]
+      },
+      "ru": {
+        "savol": "Какой сигнал настоящий?",
+        "variantlar": [
+          "Пришедший ночью",
+          "Тот, что заметил человек",
+          "От каждого мелкого скачка",
+          "Пришедший два раза подряд"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Kechasi bir zumlik sekinlashuv — qanday signal?",
+        "variantlar": [
+          "Quruq — hech kim sezmadi",
+          "Quruq — kechasi keldi",
+          "Chin — javob sekinlashdi",
+          "Chin — o'lchagich aytdi"
+        ]
+      },
+      "ru": {
+        "savol": "Мгновенное замедление ночью — какой это сигнал?",
+        "variantlar": [
+          "Пустой — никто не заметил",
+          "Пустой — пришёл ночью",
+          "Настоящий — ответ замедлился",
+          "Настоящий — измеритель сообщил"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Chegara juda past bo'lsa nima bo'ladi?",
+        "variantlar": [
+          "Quruq signal kelmaydi",
+          "Xato ko'rinmay qoladi",
+          "Quruq signallar ko'payadi",
+          "Sayt tezroq ochiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если граница слишком низкая?",
+        "variantlar": [
+          "Пустых сигналов не будет",
+          "Ошибка останется незамеченной",
+          "Пустых сигналов станет больше",
+          "Сайт будет открываться быстрее"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Chegara juda baland bo'lsa nima bo'ladi?",
+        "variantlar": [
+          "Har sakrash xabar beradi",
+          "Sayt ochilmay qoladi",
+          "Quruq signallar ko'payadi",
+          "Odam sizdan oldin sezadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если граница слишком высокая?",
+        "variantlar": [
+          "Каждый скачок шлёт сообщение",
+          "Сайт перестанет открываться",
+          "Пустых сигналов станет больше",
+          "Человек заметит раньше вас"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Network qatorida qaysi ikki raqam bor?",
+        "variantlar": [
+          "Holat (200, 404) va vaqt (ms)",
+          "Nom va rasm o'lchami",
+          "Holat va kirganlar soni",
+          "Link va ochilgan soat"
+        ]
+      },
+      "ru": {
+        "savol": "Какие два числа в строке Network?",
+        "variantlar": [
+          "Состояние (200, 404) и время (мс)",
+          "Имя и размер картинки",
+          "Состояние и число заходов",
+          "Ссылка и время открытия"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Holat 404 nimani bildiradi?",
+        "variantlar": [
+          "Sahifa odatdagidek keldi",
+          "Sahifa juda sekin keldi",
+          "Bunday sahifa topilmadi",
+          "Sayt butunlay ochilmadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает состояние 404?",
+        "variantlar": [
+          "Страница пришла как обычно",
+          "Страница пришла очень медленно",
+          "Такая страница не найдена",
+          "Сайт не открылся совсем"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Bir zumlik sekinlashuvga qaysi yo'l?",
+        "variantlar": [
+          "Hozir xabar — sekinlashdi",
+          "Jurnalga — hech kim sezmadi",
+          "Hozir xabar — sayt ochilmadi",
+          "Jurnalga — xato ko'paydi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой путь для мгновенного замедления?",
+        "variantlar": [
+          "Сообщить сейчас — замедлился",
+          "В журнал — никто не заметил",
+          "Сообщить сейчас — сайт не открылся",
+          "В журнал — ошибок стало больше"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Chiqqan saytni o'lchashni kim hal qiladi?",
+        "variantlar": [
+          "Brauzer — xabar yuboradi",
+          "Saytga kirgan odamlar",
+          "Hech kim, o'zi ishlaydi",
+          "Saytni chiqargan odam — siz"
+        ]
+      },
+      "ru": {
+        "savol": "Кто решает измерять сайт после выпуска?",
+        "variantlar": [
+          "Браузер — он шлёт сообщения",
+          "Люди, зашедшие на сайт",
+          "Никто, работает сам",
+          "Тот, кто выпустил сайт, — вы"
+        ]
+      }
+    }
+  ]
+}

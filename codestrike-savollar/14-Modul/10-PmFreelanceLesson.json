@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m12d10-v1",
+  "key": "m12-10",
+  "modul": 14,
+  "tartib": 10,
+  "nom": {
+    "uz": "Birinchi buyurtmani qayerdan topasiz?",
+    "ru": "Где найти первый заказ?"
+  },
+  "src": "src/12-Modull/PmFreelanceLesson.jsx",
+  "barmoq_izi": "e99e8404cce29b2f1b89b4c5d033f788",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Mentor misolida buyurtmachi kim?",
+        "variantlar": [
+          "Maktab to'garagi murabbiyi",
+          "Mahalladagi maydonning egasi",
+          "Ilova qiladigan kompaniya",
+          "Upwork'dagi notanish odam"
+        ]
+      },
+      "ru": {
+        "savol": "Кто заказчик в примере Ментора?",
+        "variantlar": [
+          "Тренер школьного кружка",
+          "Владелец площадки в махалле",
+          "Компания, которая делает приложения",
+          "Незнакомый человек на Upwork"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor buyurtmachiga nima qilib beradi?",
+        "variantlar": [
+          "To'garak uchun o'yin",
+          "To'garak uchun lending",
+          "To'garak uchun kanal",
+          "To'garak uchun videolar"
+        ]
+      },
+      "ru": {
+        "savol": "Что Ментор сделает для заказчика?",
+        "variantlar": [
+          "Игру для кружка",
+          "Лендинг для кружка",
+          "Канал для кружка",
+          "Видео для кружка"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Buyurtmada pul va kelishuv kim orqali bo'ladi?",
+        "variantlar": [
+          "Sinfdoshingiz orqali",
+          "Faqat o'zingiz orqali",
+          "Ota-onangiz orqali",
+          "Xalqaro sayt orqali"
+        ]
+      },
+      "ru": {
+        "savol": "Через кого в заказе деньги и договорённость?",
+        "variantlar": [
+          "Через одноклассника",
+          "Только через вас самих",
+          "Через ваших родителей",
+          "Через международный сайт"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Mentor birinchi xatida nimani so'raydi?",
+        "variantlar": [
+          "Ilovasi uchun investitsiya",
+          "Kompaniyada doimiy ish",
+          "Ilovasini sotib olishni",
+          "Stajirovka bor-yo'qligini"
+        ]
+      },
+      "ru": {
+        "savol": "О чём Ментор просит в первом письме?",
+        "variantlar": [
+          "Инвестиции в приложение",
+          "Постоянную работу в компании",
+          "Купить его приложение",
+          "Есть ли стажировка"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Uchrashuv taklifi kelsa, kim bilan borasiz?",
+        "variantlar": [
+          "Faqat kattalar bilan",
+          "Yolg'iz o'zim boraman",
+          "Sinfdoshim bilan birga",
+          "Chatdagi tanishim bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Если предложат встречу, с кем пойдёте?",
+        "variantlar": [
+          "Только со взрослыми",
+          "Пойду один",
+          "Вместе с одноклассником",
+          "Со знакомым из чата"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Upwork kabi saytning yosh shartini qayerdan bilasiz?",
+        "variantlar": [
+          "Sinfdoshlar gapidan",
+          "Saytdan, ota-ona bilan",
+          "Yoshni katta yozib ko'rib",
+          "Kanaldagi reklamadan"
+        ]
+      },
+      "ru": {
+        "savol": "Где узнать возрастное условие сайта вроде Upwork?",
+        "variantlar": [
+          "Со слов одноклассников",
+          "На сайте, с родителями",
+          "Указав возраст побольше",
+          "Из рекламы в канале"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Bitta xat nechta kompaniyaga yuboriladi?",
+        "variantlar": [
+          "Ikkitaga",
+          "Beshtaga",
+          "Bittaga",
+          "O'ntaga"
+        ]
+      },
+      "ru": {
+        "savol": "Скольким компаниям отправляют одно письмо?",
+        "variantlar": [
+          "Двум",
+          "Пяти",
+          "Одной",
+          "Десяти"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Kompaniyadan javob kelmadi. Nima qilasiz?",
+        "variantlar": [
+          "Har hafta yana so'rayman",
+          "Xodim telefonini so'rayman",
+          "Ofisiga borib so'rayman",
+          "Boshqa kompaniyaga yozaman"
+        ]
+      },
+      "ru": {
+        "savol": "Компания не ответила. Что сделаете?",
+        "variantlar": [
+          "Буду спрашивать каждую неделю",
+          "Попрошу телефон сотрудника",
+          "Пойду в офис и спрошу",
+          "Напишу другой компании"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Birinchi buyurtmaga qanday ish olasiz?",
+        "variantlar": [
+          "Kursdagiga o'xshash ish",
+          "Hali qilmagan katta ish",
+          "Aytilgan har qanday ish",
+          "Do'st maslahat bergan ish"
+        ]
+      },
+      "ru": {
+        "savol": "Какую работу берёте первым заказом?",
+        "variantlar": [
+          "Похожую на сделанное в курсе",
+          "Большую, какую ещё не делал",
+          "Любую, какую скажут",
+          "Ту, что посоветовал друг"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Mentor buyurtmachi bilan qachon gaplashadi?",
+        "variantlar": [
+          "Lending tayyor bo'lgach",
+          "Keyingi mashg'ulotdan keyin",
+          "Kompaniya javob bergach",
+          "Upwork profili ochilgach"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Ментор поговорит с заказчиком?",
+        "variantlar": [
+          "Когда лендинг будет готов",
+          "После следующей тренировки",
+          "Когда ответит компания",
+          "Когда откроет профиль на Upwork"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Xatning «Nima qurdim» qismiga nima yoziladi?",
+        "variantlar": [
+          "Hamma funksiyalar",
+          "Telefon va uy manzili",
+          "Mahsulot va u nima qiladi",
+          "Kompaniyaga maqtov"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в части письма «Что я построил»?",
+        "variantlar": [
+          "Все функции",
+          "Телефон и домашний адрес",
+          "Продукт и что он делает",
+          "Похвала компании"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Rejaning «Kim» qatoriga nima yoziladi?",
+        "variantlar": [
+          "Ish tugaydigan kun",
+          "Ishning narxi so'mda",
+          "Buyurtmachining ismi",
+          "Uning roli, ismsiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в строку плана «Кто»?",
+        "variantlar": [
+          "День окончания работы",
+          "Цену работы в сумах",
+          "Имя заказчика",
+          "Его роль, без имени"
+        ]
+      }
+    }
+  ]
+}

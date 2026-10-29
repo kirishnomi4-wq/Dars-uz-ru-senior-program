@@ -1,0 +1,278 @@
+{
+  "lessonId": "nest-arch-resource-4a-02-v18",
+  "key": "m4a-03",
+  "modul": 6,
+  "tartib": 3,
+  "nom": {
+    "uz": "Birinchi resursni qo'lda qo'shish — mashinalar",
+    "ru": "Добавляем первый ресурс вручную — машины"
+  },
+  "src": "src/4a-Modull/NestArchResourceLesson.jsx",
+  "barmoq_izi": "be0f9416a13a893f2e51aca43888de98",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 3,
+      "uz": {
+        "savol": "Entity nimani belgilaydi?",
+        "variantlar": [
+          "So'rov kiradigan eshikni",
+          "Ishga tushish tartibini",
+          "Ekrandagi ranglarni",
+          "Bazadagi jadval ko'rinishini"
+        ]
+      },
+      "ru": {
+        "savol": "Что задаёт Entity?",
+        "variantlar": [
+          "Дверь для запроса",
+          "Порядок запуска",
+          "Цвета на экране",
+          "Вид таблицы в базе"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "BaseEntity qaysi ustunlarni tekin beradi?",
+        "variantlar": [
+          "brand, model va price",
+          "id, created_at, updated_at",
+          "username, password",
+          "imports, controllers"
+        ]
+      },
+      "ru": {
+        "savol": "Какие столбцы бесплатно даёт BaseEntity?",
+        "variantlar": [
+          "brand, model и price",
+          "id, created_at, updated_at",
+          "username, password",
+          "imports, controllers"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "DTO nima uchun kerak?",
+        "variantlar": [
+          "Kelgan ma'lumotni tekshirish",
+          "Jadval ustunlarini yaratish",
+          "Bo'limni AppModule'ga ulash",
+          "Serverni ishga tushirish"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен DTO?",
+        "variantlar": [
+          "Проверять пришедшие данные",
+          "Создавать столбцы таблицы",
+          "Подключать раздел к AppModule",
+          "Запускать сервер"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Bo'sh brand bilan POST /car yuborilsa?",
+        "variantlar": [
+          "Mashina baribir saqlanadi",
+          "Server ishdan chiqadi",
+          "400 — bazaga bormaydi",
+          "brand o'zi to'ldiriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если отправить POST /car с пустым brand?",
+        "variantlar": [
+          "Машина всё равно сохранится",
+          "Сервер упадёт",
+          "400 — до базы не дойдёт",
+          "brand заполнится сам"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "PartialType nima qiladi?",
+        "variantlar": [
+          "Maydonlarni majburiy qiladi",
+          "Maydonlarni ixtiyoriy qiladi",
+          "Bazada yangi jadval yaratadi",
+          "Endpointlarni o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает PartialType?",
+        "variantlar": [
+          "Делает поля обязательными",
+          "Делает поля необязательными",
+          "Создаёт новую таблицу в базе",
+          "Удаляет эндпоинты"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Tayyor CRUD metodlarini kim beradi?",
+        "variantlar": [
+          "Controller o'zi yozadi",
+          "PostgreSQL o'zi yozadi",
+          "Har resursda qo'lda yoziladi",
+          "BaseService — meros bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Кто даёт готовые CRUD-методы?",
+        "variantlar": [
+          "Controller пишет сам",
+          "PostgreSQL пишет сам",
+          "Пишутся вручную в каждом ресурсе",
+          "BaseService — по наследству"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Yangi mashina qo'shish uchun qaysi dekorator?",
+        "variantlar": [
+          "@Post()",
+          "@Get()",
+          "@Column()",
+          "@Module()"
+        ]
+      },
+      "ru": {
+        "savol": "Какой декоратор нужен, чтобы добавить машину?",
+        "variantlar": [
+          "@Post()",
+          "@Get()",
+          "@Column()",
+          "@Module()"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Controller nima qiladi?",
+        "variantlar": [
+          "Jadval ustunlarini belgilaydi",
+          "Ma'lumotni diskka yozadi",
+          "So'rov olib, service chaqiradi",
+          "Loyihani build qilib yoqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает Controller?",
+        "variantlar": [
+          "Задаёт столбцы таблицы",
+          "Пишет данные на диск",
+          "Принимает запрос, вызывает service",
+          "Собирает и запускает проект"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "CarModule AppModule'ga ulanmasa?",
+        "variantlar": [
+          "Hammasi avvalgidek ishlaydi",
+          "/car topilmaydi — 404",
+          "Faqat GET ishlaydi",
+          "Loyiha umuman yoqilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если не подключить CarModule к AppModule?",
+        "variantlar": [
+          "Всё работает как раньше",
+          "/car не найден — 404",
+          "Работает только GET",
+          "Проект вообще не запустится"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "super(carRepo) nima qiladi?",
+        "variantlar": [
+          "Yangi jadval yaratadi",
+          "Serverni qayta yoqadi",
+          "Eshikni ro'yxatga oladi",
+          "Omborni BaseService'ga beradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает super(carRepo)?",
+        "variantlar": [
+          "Создаёт новую таблицу",
+          "Перезапускает сервер",
+          "Регистрирует дверь",
+          "Передаёт склад в BaseService"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "car.module.ts ichida nima bo'ladi?",
+        "variantlar": [
+          "@Column ustunlari ro'yxati",
+          "@IsString qoidalari ro'yxati",
+          "controllers va providers",
+          "main.ts port sozlamalari"
+        ]
+      },
+      "ru": {
+        "savol": "Что находится в car.module.ts?",
+        "variantlar": [
+          "Список столбцов @Column",
+          "Список правил @IsString",
+          "controllers и providers",
+          "Настройки порта main.ts"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Yangi resurs: birinchi uch qadam?",
+        "variantlar": [
+          "Entity → DTO → Service",
+          "Controller → Module → Entity",
+          "Module → Controller → Service",
+          "DTO → Entity → Controller"
+        ]
+      },
+      "ru": {
+        "savol": "Новый ресурс: первые три шага?",
+        "variantlar": [
+          "Entity → DTO → Service",
+          "Controller → Module → Entity",
+          "Module → Controller → Service",
+          "DTO → Entity → Controller"
+        ]
+      }
+    }
+  ]
+}

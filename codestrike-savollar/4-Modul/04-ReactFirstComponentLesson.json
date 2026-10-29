@@ -1,0 +1,278 @@
+{
+  "lessonId": "react-first-component-02-v18",
+  "key": "m3-03",
+  "modul": 4,
+  "tartib": 4,
+  "nom": {
+    "uz": "Birinchi komponent: Vite, JSX, props",
+    "ru": "Первый компонент: Vite, JSX, props"
+  },
+  "src": "src/3-Modull/ReactFirstComponentLesson.jsx",
+  "barmoq_izi": "df926013694ac40aef0bf12be6b79ae2",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Vite nima?",
+        "variantlar": [
+          "Loyiha quruvchi tez dastur",
+          "Yangi dasturlash tili",
+          "Brauzer qo'shimchasi",
+          "Ma'lumotlar bazasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое Vite?",
+        "variantlar": [
+          "Быстрая программа-сборщик проекта",
+          "Новый язык программирования",
+          "Дополнение для браузера",
+          "База данных"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "npm create vite@latest nima qiladi?",
+        "variantlar": [
+          "Saytni e'lon qiladi",
+          "Loyiha fayllarini yaratadi",
+          "Xatolarni o'zi tuzatadi",
+          "Rasmlarni yuklab oladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает npm create vite@latest?",
+        "variantlar": [
+          "Публикует сайт",
+          "Создаёт файлы проекта",
+          "Сам исправляет ошибки",
+          "Скачивает картинки"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Sizning kodingiz asosan qaysi faylda yoziladi?",
+        "variantlar": [
+          "index.html",
+          "package.json",
+          "App.jsx",
+          "style.css"
+        ]
+      },
+      "ru": {
+        "savol": "В каком файле в основном пишется ваш код?",
+        "variantlar": [
+          "index.html",
+          "package.json",
+          "App.jsx",
+          "style.css"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "npm run dev nima qiladi?",
+        "variantlar": [
+          "Loyihani butunlay o'chiradi",
+          "Saytni internetga chiqaradi",
+          "Yangi papka yaratadi",
+          "localhost'da ishga tushiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает npm run dev?",
+        "variantlar": [
+          "Полностью удаляет проект",
+          "Выкладывает сайт в интернет",
+          "Создаёт новую папку",
+          "Запускает на localhost"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "JSX nima?",
+        "variantlar": [
+          "HTMLga o'xshash JS yozuvi",
+          "Ranglar saqlash formati",
+          "Fayl kengaytmasi turi",
+          "Brauzer dasturi nomi"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое JSX?",
+        "variantlar": [
+          "Похожая на HTML запись в JS",
+          "Формат хранения цветов",
+          "Вид расширения файла",
+          "Название браузера"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "JSX'da class o'rniga qaysi so'z yoziladi?",
+        "variantlar": [
+          "clsName",
+          "className",
+          "cssClass",
+          "klass"
+        ]
+      },
+      "ru": {
+        "savol": "Какое слово пишут в JSX вместо class?",
+        "variantlar": [
+          "clsName",
+          "className",
+          "cssClass",
+          "klass"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "JSX ichida JavaScript qiymati qaysi qavsda yoziladi?",
+        "variantlar": [
+          "( ) doira qavs",
+          "[ ] kvadrat qavs",
+          "{ } jingalak qavs",
+          "\" \" qo'shtirnoq"
+        ]
+      },
+      "ru": {
+        "savol": "В каких скобках пишут JS-значение внутри JSX?",
+        "variantlar": [
+          "( ) круглые скобки",
+          "[ ] квадратные скобки",
+          "{ } фигурные скобки",
+          "\" \" кавычки"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Komponent nima?",
+        "variantlar": [
+          "Rasm fayllarining turi",
+          "Internet tezligini oshiradi",
+          "Brauzerning ichki sozlamasi",
+          "Qayta ishlatiladigan bo'lak"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое компонент?",
+        "variantlar": [
+          "Вид файлов картинок",
+          "Ускоряет интернет",
+          "Внутренняя настройка браузера",
+          "Переиспользуемая часть"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Komponent nomi qanday harf bilan boshlanadi?",
+        "variantlar": [
+          "Katta harf bilan",
+          "Kichik harf bilan",
+          "Raqam bilan",
+          "Chiziqcha bilan"
+        ]
+      },
+      "ru": {
+        "savol": "С какой буквы начинается имя компонента?",
+        "variantlar": [
+          "С заглавной буквы",
+          "Со строчной буквы",
+          "С цифры",
+          "С дефиса"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Komponent return orqali nimani qaytaradi?",
+        "variantlar": [
+          "Bitta rasm faylini",
+          "JSX — ko'rinishni",
+          "Faqat bitta sonni",
+          "Boshqa faylning nomini"
+        ]
+      },
+      "ru": {
+        "savol": "Что компонент возвращает через return?",
+        "variantlar": [
+          "Один файл картинки",
+          "JSX — внешний вид",
+          "Только одно число",
+          "Имя другого файла"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "JSX'da komponent qanday chaqiriladi?",
+        "variantlar": [
+          "chaqir GameCard",
+          "GameCard.call()",
+          "<GameCard />",
+          "{GameCard}"
+        ]
+      },
+      "ru": {
+        "savol": "Как вызывают компонент в JSX?",
+        "variantlar": [
+          "вызови GameCard",
+          "GameCard.call()",
+          "<GameCard />",
+          "{GameCard}"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Props nima?",
+        "variantlar": [
+          "Komponentning tashqi rangi",
+          "Kodni tezlatuvchi sozlama",
+          "Brauzer qo'shimcha dasturi",
+          "Komponentga uzatilgan ma'lumot"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое props?",
+        "variantlar": [
+          "Внешний цвет компонента",
+          "Настройка, ускоряющая код",
+          "Дополнение для браузера",
+          "Данные, переданные компоненту"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demo uchun nimani oldindan yozib qo'yasiz?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bosiladigan qadamlarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hakamlar savollarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma funksiyalarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlar fikrlarini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demoning besh qadami bir marta ko'rsatildi. Bu nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Demo ssenariysi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Demo o'tishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "B yo'l",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Risklar ro'yxati",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor «O'yindan chiqish»ni qachon bosadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Demoning birinchi qadamida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakamlar savol berganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi o'tishdan oldin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internet uzilganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Backend uxlagan» riskiga qaysi biri B yo'l?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Agentga kod yozdirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakamdan kutishni so'rash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Demoni tashlab ketish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Navbatdan oldin uyg'otish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "B reja videosi nega linkda emas, faylda?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Internetsiz ham ochiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hakam o'zi yuklab oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Linkni agent o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayl repo'ga o'zi tushadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demoni qaysi akkaunt bilan ko'rsatasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Faol o'yinchi akkaunti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Namuna akkaunt",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdosh akkaunti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Demo kuni ochilgan akkaunt",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Video yozishdan oldin ekranda nimani yopasiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«O'yinlar» ro'yxatini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DEMO.md va taymerni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parol, .env, chatlarni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mahsulot sarlavhasini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bepul Backend qachon uxlab qoladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Har kuni soat 00:00 da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ssenariydan 1 daqiqa keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Proyektorga ulangan zahoti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "15 daqiqa so'rovsiz qolsa",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "m14-demo tegidan keyin nima qilinadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Faqat tuzatish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat yangi funksiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Repo qayta ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Video repo'ga yuklanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tegni GitHub'ga qaysi buyruq chiqaradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Oddiy git push",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git push origin m14-demo",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat git tag m14-demo",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "git add m14-demo",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Telefonda demo qayerda ochiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "O'rnatilgan APK ilovada",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hakam telefonida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzerda, o'sha manzilda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdosh akkauntida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir qadam rejadagidek bo'lmadi. Nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Hakamdan yashiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi funksiya qo'shaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa qilmayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Risklar ro'yxatiga yozaman",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "m10-02-v1",
+  "key": "m10-02",
+  "modul": 12,
+  "tartib": 2,
+  "nom": {
+    "uz": "WebSocket: ekran o'zi yangilanadigan ulanish",
+    "ru": "WebSocket: соединение, при котором экран обновляется сам"
+  },
+  "src": "src/10-Modull/WebSocketBasicsLesson.jsx",
+  "barmoq_izi": "79da1e5db6cafdd8e511a5dba9d4b7b0",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Qayta-qayta so'rashda yangi son qachon chiqadi?",
+        "variantlar": [
+          "Keyingi so'rovda",
+          "Database o'zgarganda",
+          "Hodisa kelganda",
+          "Ulanish tiklanganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда при повторных запросах появится новое число?",
+        "variantlar": [
+          "При следующем запросе",
+          "Когда изменится Database",
+          "Когда придёт событие",
+          "Когда восстановится связь"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Doimiy ulanishni kim ochadi?",
+        "variantlar": [
+          "Backend ilovaga ulanadi",
+          "Ilova Backend'ga ulanadi",
+          "Database ikkalasini ulaydi",
+          "Ikkinchi telefon ulaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто открывает постоянное соединение?",
+        "variantlar": [
+          "Backend подключается к приложению",
+          "Приложение подключается к Backend",
+          "Database соединяет обоих",
+          "Второй телефон соединяет"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "WebSocket nima beradi?",
+        "variantlar": [
+          "Parolni tekshiradigan token",
+          "O'yinlar saqlanadigan jadval",
+          "Ochiq turadigan doimiy ulanish",
+          "Telefonga o'rnatiladigan fayl"
+        ]
+      },
+      "ru": {
+        "savol": "Что даёт WebSocket?",
+        "variantlar": [
+          "Токен для проверки пароля",
+          "Таблицу, где хранятся игры",
+          "Открытое постоянное соединение",
+          "Файл для установки на телефон"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Hodisaning qaysi ikki qismi bor?",
+        "variantlar": [
+          "Sarlavhasi va rasmi",
+          "Manzili va paroli",
+          "Jadvali va ustuni",
+          "Nomi va ma'lumoti"
+        ]
+      },
+      "ru": {
+        "savol": "Какие две части есть у события?",
+        "variantlar": [
+          "Заголовок и картинка",
+          "Адрес и пароль",
+          "Таблица и столбец",
+          "Название и данные"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Hodisada sabab: 'chiqdi' nimani bildiradi?",
+        "variantlar": [
+          "O'yinchi o'yindan chiqdi",
+          "Ilova hisobdan chiqdi",
+          "Ulanish uzilib qoldi",
+          "Backend o'chib qoldi"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит sabab: 'chiqdi' в событии?",
+        "variantlar": [
+          "Игрок вышел из игры",
+          "Приложение вышло из аккаунта",
+          "Соединение оборвалось",
+          "Backend выключился"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Hodisa kelgach, ilova yangi sonni qayerdan oladi?",
+        "variantlar": [
+          "Hodisaning ma'lumotidan",
+          "Backend'dan qayta so'rab",
+          "Telefon xotirasidan",
+          "Ikkinchi telefondan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда приложение берёт новое число после события?",
+        "variantlar": [
+          "Из данных события",
+          "Заново запросив у Backend",
+          "Из памяти телефона",
+          "Со второго телефона"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": ".on('oyin-ozgardi', korsat) — korsat qachon ishlaydi?",
+        "variantlar": [
+          "Tugma bosilganda",
+          "Ulanish ochilganda",
+          "Hodisa kelganda",
+          "Ulanish uzilganda"
+        ]
+      },
+      "ru": {
+        "savol": ".on('oyin-ozgardi', korsat) — когда сработает korsat?",
+        "variantlar": [
+          "Когда нажмут кнопку",
+          "Когда откроется соединение",
+          "Когда придёт событие",
+          "Когда соединение оборвётся"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Backend ulanayotgan ilovani nimadan taniydi?",
+        "variantlar": [
+          "Yuborgan ismidan",
+          "Yozgan parolidan",
+          "Telefon rusumidan",
+          "Yuborgan tokenidan"
+        ]
+      },
+      "ru": {
+        "savol": "По чему Backend узнаёт подключающееся приложение?",
+        "variantlar": [
+          "По отправленному имени",
+          "По введённому паролю",
+          "По модели телефона",
+          "По отправленному токену"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Belgi «Ulanmagan». Bu nimani bildiradi?",
+        "variantlar": [
+          "Ilova urinmayapti",
+          "Ilova qayta urinmoqda",
+          "Hodisalar kelmoqda",
+          "Son yangilanmoqda"
+        ]
+      },
+      "ru": {
+        "savol": "Значок «Не подключено». Что это значит?",
+        "variantlar": [
+          "Приложение не пытается",
+          "Приложение пробует снова",
+          "События приходят",
+          "Число обновляется"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Uchish rejimi o'chirildi. socket.io nima qiladi?",
+        "variantlar": [
+          "Parolni qayta so'raydi",
+          "Qayta ulanishga urinadi",
+          "Ilovani qayta ochadi",
+          "Hodisalarni saqlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Режим полёта выключен. Что делает socket.io?",
+        "variantlar": [
+          "Снова спрашивает пароль",
+          "Пытается переподключиться",
+          "Перезапускает приложение",
+          "Сохраняет события"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Sxemadagi «Kim oladi» ustuni nimani aytadi?",
+        "variantlar": [
+          "Tugmani kim bosganini",
+          "Kodni kim yozib berganini",
+          "Hodisa kimga borishini",
+          "E'lonni kim berganini"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорит столбец «Кто получает» в схеме?",
+        "variantlar": [
+          "Кто нажал кнопку",
+          "Кто написал код",
+          "Кому идёт событие",
+          "Кто дал объявление"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Sxemada elon-berildi sababi qachon yuboriladi?",
+        "variantlar": [
+          "O'yinchi qo'shilganda",
+          "Navbatga yozilganda",
+          "Kelishi tasdiqlanganda",
+          "O'yin e'lon qilinganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда в схеме отправляется причина elon-berildi?",
+        "variantlar": [
+          "Когда игрок присоединился",
+          "Когда записался в очередь",
+          "Когда подтвердил приход",
+          "Когда объявили игру"
+        ]
+      }
+    }
+  ]
+}

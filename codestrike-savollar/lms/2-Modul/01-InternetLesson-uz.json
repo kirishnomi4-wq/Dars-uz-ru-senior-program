@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "youtube.com yozildi. Brauzer AVVAL kimga murojaat qiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Serverga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DNS'ga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ekranga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Domenga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DNS'ning asl vazifasi qaysi qatorda?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Saytni ekranga chizish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifalarni saqlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Domenni IP raqamga aylantirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internet tezligini oshirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "142.250.190.78 va 142.250.190.87 — bular…",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ikki XIL kompyuter",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bitta kompyuter",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta saytning ikki nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato yozilgan bitta IP",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Server brauzerga aniq nima yuboradi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "HTML kodni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tayyor suratni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "IP manzilni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi brauzerni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Inter-net» so'zining asl ma'nosi nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Tezkor aloqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Simsiz aloqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butunjahon kompyuteri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tarmoqlararo",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "youtub.com (bir harf kam!) yozsangiz nima bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "YouTube baribir ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuter sekinlashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butun internet uziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DNS saytni topolmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt «yashaydigan», DOIM yoniq turadigan kompyuter?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Router",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Brauzer",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Planshet",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri DOMEN?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "142.250.190.78",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chrome",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "wikipedia.org",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "HTML",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "HTML kodni o'qib, chiroyli sahifaga aylantiradigan kim?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Server",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DNS",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Domen",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "So'rovning to'g'ri tartibi qaysi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Brauzer→DNS→Server→Ekran",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "DNS→Brauzer→Ekran→Server",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server→Brauzer→DNS→Ekran",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer→Server→DNS→Ekran",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "coddycamp.uz'dagi «.uz» nimani bildiradi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Saytning nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zbekiston zonasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Parol",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverning IP'si",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DNS — telefon kitobi. Undagi ism va raqam nima?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ism=IP, raqam=domen",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ism=brauzer, raqam=server",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ism=domen, raqam=IP",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ism=sayt, raqam=parol",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

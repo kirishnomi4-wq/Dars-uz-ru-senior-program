@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend hodisani qachon yuboradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Database'ga yozib bo'lgach",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database'ga yozishdan oldin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova so'rov yuborganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxat tortilganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ulanmoqda…» paytida ro'yxat nima bo'ladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ekrandan o'chib ketadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranda eski holicha qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har soniyada yangilanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato oynasiga almashadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Belgi «Ulanmagan». Ro'yxatni qanday yangilaysiz?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ilovani qayta o'rnatib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ni qayta yoqib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekranni pastga tortib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Database'da o'zgartirib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri chekka holat?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "«Qo'shilaman» bosildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi o'yin e'lon qilindi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yin kuni «Kelaman» bosildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qo'shilishda internet uzildi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chekka holat qatorida vaziyatdan tashqari nima yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Unda nima bo'lishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uni kim yaratgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi faylda turishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Necha marta bo'lgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzilish paytida kimdir qo'shildi. Hodisa keyin keladimi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ha, ulanish qaytgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, umuman kelmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, Backend saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, boshqa telefonga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova fondan qaytganda nima ko'rinishi kerak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Oxirgi ko'rilgan eski son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh ro'yxat va kutish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinlarning yangi holati",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat ulanish belgisi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mobil trekda tekshiruv so'rovini kim yuboradi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Notanish o'yinchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tashkilotchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovaning o'zi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentning o'zi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent yaratgan tekshiruv yozuvlarini qanday o'chirasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "U aytgan id lar bo'yicha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jadvalni tozalab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani qayta yoqib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirgi o'ntasini o'chirib",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Real vaqt talabi PRD'dan farqli nimani aytadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Mahsulot kim uchun ekani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zgarish ekranda ko'rinishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bosh raqam sanog'i",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi muammoni yechishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qayta ulangach ekran bir marta yangilansin. Qaysi bo'lim?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Hodisalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ulanish holatlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chekka holatlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nima buzilmasin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Web-trekda «Ulanmagan». Ro'yxat nima bilan yangilanadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Sahifani yopib-ochib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agentga talab yozib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend'ni qayta yoqib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yangilash»ni bosib",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

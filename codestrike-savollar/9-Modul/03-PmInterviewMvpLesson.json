@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m7d3-v1",
+  "key": "m7-03",
+  "modul": 9,
+  "tartib": 3,
+  "nom": {
+    "uz": "Besh suhbatdan qaysi muammo chiqdi?",
+    "ru": "Какая проблема вышла из пяти разговоров?"
+  },
+  "src": "src/7-Modull/PmInterviewMvpLesson.jsx",
+  "barmoq_izi": "111b8ec701e294c4cbb5d42c7d9297f5",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Besh yozuvda qaysi shikoyatdan boshlaysiz?",
+        "variantlar": [
+          "To'rt yozuvda chiqqanidan",
+          "Eng qattiq aytilganidan",
+          "O'zingizga qiziq bo'lganidan",
+          "Oxirgi yozuvdagisidan"
+        ]
+      },
+      "ru": {
+        "savol": "С какой жалобы из пяти записей начнёте?",
+        "variantlar": [
+          "С той, что в четырёх записях",
+          "С самой резкой",
+          "С интересной вам",
+          "С той, что в последней записи"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi gap muammo gapi bo'la oladi?",
+        "variantlar": [
+          "Band qiladigan sayt kerak",
+          "Futbol o'ynash juda yoqadi",
+          "O'yinchi bo'sh vaqtni bilmaydi",
+          "Mahallada futbolchi ko'p"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза может быть формулировкой проблемы?",
+        "variantlar": [
+          "Нужен сайт для брони",
+          "Очень нравится играть в футбол",
+          "Игрок не знает свободное время",
+          "В махалле много футболистов"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Bir o'yinchi «chat kerak» dedi. Bu nima?",
+        "variantlar": [
+          "Chat — MVP'ning asosi",
+          "Bu hozircha bir odam gapi",
+          "Hamma o'yinchiga chat kerak",
+          "Chatni bugun qurish kerak"
+        ]
+      },
+      "ru": {
+        "savol": "Один игрок сказал «нужен чат». Что это значит?",
+        "variantlar": [
+          "Чат — основа MVP",
+          "Пока это слова одного человека",
+          "Чат нужен всем игрокам",
+          "Чат нужно строить сегодня"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "MVP nima?",
+        "variantlar": [
+          "Eng chiroyli to'liq versiya",
+          "Barcha imkoniyatli versiya",
+          "Faqat rasmi chizilgan versiya",
+          "Ishlaydigan eng sodda versiya"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое MVP?",
+        "variantlar": [
+          "Самая красивая полная версия",
+          "Версия со всеми возможностями",
+          "Версия, где есть только рисунок",
+          "Самая простая работающая версия"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "«Keyin» qutisidagi imkoniyat nima bo'ladi?",
+        "variantlar": [
+          "Butunlay o'chiriladi",
+          "Saqlanadi, navbati suriladi",
+          "Bugunoq MVP'ga qo'shiladi",
+          "Boshqa mahsulotga beriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет с возможностью в коробке «Потом»?",
+        "variantlar": [
+          "Полностью удаляется",
+          "Сохраняется, очередь сдвигается",
+          "Сегодня же добавляется в MVP",
+          "Отдаётся другому продукту"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "«Jamoa yig'ish» nega «Keyin» qutisida?",
+        "variantlar": [
+          "Yozuvda bor, lekin shart emas",
+          "Hech kim uni aytmagan",
+          "Busiz bo'sh vaqt ko'rinmaydi",
+          "Beshala yozuvda aytilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему «Сбор команды» в коробке «Потом»?",
+        "variantlar": [
+          "Есть в записях, но не обязателен",
+          "О нём никто не сказал",
+          "Без него не видно свободное время",
+          "О нём сказали во всех пяти записях"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "«Maydonga baho» nega «Qilmaymiz» qutisida?",
+        "variantlar": [
+          "Uni qurish juda qiyin",
+          "Jamoaning o'ziga yoqmagan",
+          "Ko'p o'yinchi so'ragan",
+          "Yozuvlarda sababi yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Почему «Оценка поля» в коробке «Не делаем»?",
+        "variantlar": [
+          "Её очень трудно сделать",
+          "Она не нравится команде",
+          "Её просили многие игроки",
+          "В записях нет для неё причины"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Egasi bandlar ro'yxatini ko'rmasa-chi?",
+        "variantlar": [
+          "Hech narsa — u kerak emas",
+          "O'yinchi katak ko'rmaydi",
+          "Egasi maydonni boshqaga beradi",
+          "Sayt umuman ochilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "А если владелец не видит список броней?",
+        "variantlar": [
+          "Ничего — он не нужен",
+          "Игрок не увидит ячейки",
+          "Владелец отдаст поле другим",
+          "Сайт вообще не откроется"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Burbn jamoasi qaysi imkoniyatni qoldirdi?",
+        "variantlar": [
+          "Joyni belgilashni",
+          "Uchrashuv rejasini",
+          "Ball yig'ishni",
+          "Surat joylashni"
+        ]
+      },
+      "ru": {
+        "savol": "Какую возможность оставила команда Burbn?",
+        "variantlar": [
+          "Отметку места",
+          "План встречи",
+          "Сбор баллов",
+          "Публикацию фото"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Burbn jamoasi nimaga qarab qaror qildi?",
+        "variantlar": [
+          "O'z xohishiga",
+          "Odamlar nima qilganiga",
+          "Eng oson imkoniyatga",
+          "Bitta odamning gapiga"
+        ]
+      },
+      "ru": {
+        "savol": "На что смотрела команда Burbn, принимая решение?",
+        "variantlar": [
+          "На своё желание",
+          "На то, что делали люди",
+          "На самую простую возможность",
+          "На слова одного человека"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "records[j].includes(\"busy\") nimani tekshiradi?",
+        "variantlar": [
+          "Yozuvlar nechtaligini",
+          "Birinchi yozuv nimaligini",
+          "j-yozuvda «band» bormi",
+          "«band» so'zi uzunligini"
+        ]
+      },
+      "ru": {
+        "savol": "Что проверяет records[j].includes(\"busy\")?",
+        "variantlar": [
+          "Сколько всего записей",
+          "Что в первой записи",
+          "Есть ли «band» в записи j",
+          "Длину слова «band»"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Ikki shikoyat — bir qiyinchilik. Nima qilasiz?",
+        "variantlar": [
+          "Bitta gapga birlashtiraman",
+          "Birini o'chiraman",
+          "Har biriga sayt qilaman",
+          "Ikkisini «Keyin»ga suraman"
+        ]
+      },
+      "ru": {
+        "savol": "Две жалобы — одна трудность. Что сделаете?",
+        "variantlar": [
+          "Объединю в одну формулировку",
+          "Одну удалю",
+          "Сделаю сайт для каждой",
+          "Отложу обе в «Потом»"
+        ]
+      }
+    }
+  ]
+}

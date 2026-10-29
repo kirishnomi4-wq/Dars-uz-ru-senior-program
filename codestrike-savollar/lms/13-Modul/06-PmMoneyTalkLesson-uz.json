@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu darsda suhbat nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Narx haqida odamdan so'rash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tanishlarga sotish usuli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovani do'stlarga ko'rsatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxni Mentor bilan kelishish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida narx qaysi savolda aytiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Birinchi savolda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkinchi savolda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchinchi savolda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'rtinchi savolda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor to'rtinchi savolni qachon beradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Suhbat boshlanishi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yo'q» yoki «qimmat» desa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tashkilotchi «ha» desa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umuman javob bermasa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi gap sotish gapi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Hozir buni qanday qilyapsiz?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bunga hozir pul sarflaysizmi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Vaqtingiz uchun rahmat!",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma oldi, siz ham olasizmi?",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Qimmat, yarim narxda olardim». Nima yoziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "«Qimmat» va uning narxi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Ha» va savoldagi narx",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yo'q», narx yozilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Javob yo'q», gap yo'q",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uch tashkilotchidan nechtasi «ha» dedi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Uchalasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bittasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkitasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech biri",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Odam xabaringizga javob bermadi. Qaysi belgi qo'yiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«Yo'q»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Qimmat»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Javob yo'q»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qanday",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Odam «ha, olaman» dedi. Nima qilasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Pulni naqd olib qo'yaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxni oshiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'stini ham olishga undayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Gapini yozaman, pul olmayman",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Narx suhbati uchun kimni tanlaysiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "To'laydigan roldagi tanishni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internetdagi notanishni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotga aloqasiz odamni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zimni o'zim so'rayman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guruhdagi tanishga yozishdan oldin nima qilasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Hammaga yozaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Guruh egasidan ruxsat olaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefon raqamini topaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa, u tanish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Suhbat yozuvida odam qanday ataladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ism: «Akmal Karimov»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram: «@akmal_07»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rol: «tashkilotchi»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qanday nom yozilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Rol o'yinidagi yozuv nega real suhbatga kirmaydi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Narx aytilmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor tekshirmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sherik «yo'q» degan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sherik rol o'ynagan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

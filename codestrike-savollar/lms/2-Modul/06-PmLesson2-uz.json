@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt strukturasi (bo'limlar tartibi) aslida nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Foydalanuvchi uchun qulaylik",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sahifa uchun bezak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dizaynerning didi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma uchun bir xil andoza",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saytni ochgan odam avval qaysi bo'limni ko'radi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Pastdagi aloqa qismini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sarlavha va izohni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Isbot bo'limini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Harakat tugmasini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Harakat tugmasi (CTA) qayerda turishi mantiqiy?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Eng tepada, birinchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Menuda, linklar bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam ishongandan keyin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yon tomonda, alohida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Eng mantiqiy tartib qaysi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "CTA→isbot→hero→muammo→yechim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Isbot→CTA→muammo→yechim→hero",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo→CTA→hero→yechim→isbot",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hero→muammo→yechim→isbot→CTA",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Birinchi blok (hero) nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ariza va to'lov qabul qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taklifni bir jumlada aytadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mijozlar izohini ko'rsatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aloqa ma'lumotini beradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Isbot» bo'limi nima uchun kerak?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ishonch uyg'otish uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Narxni e'lon qilish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt nomini eslatish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aloqa ma'lumoti uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi tuzilgan sahifa nimaga o'xshaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Alifbodagi lug'atga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulot katalogiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabarlar lentasiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qadam-baqadam hikoyaga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'limlar tartibi nega muhim?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Sahifa chiroyli ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa uzunroq bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamni yechimga yetaklaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qidiruvda yuqori chiqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bo'limlar aralashib ketsa nima bo'ladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Odam adashib, ketib qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Odam kerakli joyni topadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa qiziqroq ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa tezroq ochiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Muammo» bo'limi qanday his uyg'otishi kerak?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "«Endi darrov sotib olaman»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bu sayt ishonchli ekan»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bu qanday ishlar ekan?»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bu menga tanish»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chiroyli va ishonchli sayt farqi ko'pincha nimada?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ranglarida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tartibida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Shriftida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmlarida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifa qanday mantiq bilan tuziladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Avval tugma, keyin izoh",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'limlar alifbo tartibida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Avval muhimi, oxirida tugma",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Avval aloqa, keyin mahsulot",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

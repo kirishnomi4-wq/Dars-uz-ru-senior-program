@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как бот получал сообщение через webhook?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Telegram сам присылал",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Бот спрашивал у Telegram",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Присылал пользователь",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Render проверял",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где остаются данные карты в схеме Ментора?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "В таблице Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только у платёжного сервиса",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В памяти приложения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри файла README",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что приходит в заголовке X-Imzo?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Сам ключ из .env",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пароль организатора",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подпись, вычисленная ключом",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сумма и дата платежа",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Куда вы запишете значение TOLOV_KALITI?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "В файл README.md",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В код app.js",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В промпт агента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В .env и в Render",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Подпись совпала. Что это показывает?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Отправил знающий ключ",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Оплата уже прошла",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сумма равна цене",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сообщение пришло впервые",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает Payme, если ответ потерялся?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Больше не отправляет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отправляет тот же запрос снова",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Отправляет с новым номером",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пишет организатору",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что советует Stripe про повторные сообщения?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Записывать сообщение дважды",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ждать по порядку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Записывать обработанные номера",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Возвращать 401 на повтор",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "По чему Backend узнаёт повторное сообщение?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "По сумме в сообщении",
+        "hint": "Неверно"
+      },
+      {
+        "value": "По имени плательщика",
+        "hint": "Неверно"
+      },
+      {
+        "value": "По времени прихода",
+        "hint": "Неверно"
+      },
+      {
+        "value": "По номеру оплаты",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где находится учебная страница оплаты?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "В вашем Backend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "На сервере Payme",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В памяти телефона",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На странице GitHub",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где учебная страница оплаты подписывает сообщение?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "В браузере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В Backend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В телефоне",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В GitHub",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что говорит столбец «Кому» в схеме?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Кто заплатил",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сколько заплачено",
+        "hint": "Неверно"
+      },
+      {
+        "value": "К кому идёт действие",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Когда заплачено",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Откуда приложение в схеме знает статус Pro?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Из сообщения платёжного сервиса",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Со страницы оплаты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из SMS на телефон",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Спросив у Backend",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "m11-08-v1",
+  "key": "m11-08",
+  "modul": 13,
+  "tartib": 8,
+  "nom": {
+    "uz": "Loyiha kuni: ketayotgan foydalanuvchini qaytarish",
+    "ru": "День проекта: вернуть уходящего пользователя"
+  },
+  "src": "src/11-Modull/WinBackDayLesson.jsx",
+  "barmoq_izi": "5c2b7d6136e1a5300ec8ab596d78ad18",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Ilovani yana ochmagan beshtadan ko'pi nima dedi?",
+        "variantlar": [
+          "«Yangi o'yinni bilmadim»",
+          "«Ilova yoqmadi»",
+          "«Telefonda joy qolmadi»",
+          "«O'yinlar qimmat»"
+        ]
+      },
+      "ru": {
+        "savol": "Что сказали большинство из пяти, кто не открыл снова?",
+        "variantlar": [
+          "«Не знал о новой игре»",
+          "«Приложение не понравилось»",
+          "«На телефоне нет места»",
+          "«Игры дорогие»"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Bot odamga birinchi yoza oladimi?",
+        "variantlar": [
+          "Ha, Backend chatni topadi",
+          "Yo'q, odam botni boshlaydi",
+          "Ha, istalgan odamga yozadi",
+          "Yo'q, telefon raqami kerak"
+        ]
+      },
+      "ru": {
+        "savol": "Может ли бот написать человеку первым?",
+        "variantlar": [
+          "Да, Backend найдёт чат",
+          "Нет, человек сам запускает бота",
+          "Да, пишет любому",
+          "Нет, нужен номер телефона"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Bir martalik kod nima uchun kerak?",
+        "variantlar": [
+          "Botni tezroq topish uchun",
+          "Xabarni tezroq yetkazish",
+          "Chatni hisob bilan bog'lash",
+          "Tokenni odamga ko'rsatish"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен одноразовый код?",
+        "variantlar": [
+          "Чтобы быстрее найти бота",
+          "Быстрее доставить сообщение",
+          "Связать чат с аккаунтом",
+          "Показать токен человеку"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Telegram so'rovida Backend avval nimani tekshiradi?",
+        "variantlar": [
+          "Odamning Telegram nomini",
+          "Xabardagi chat raqamini",
+          "Botning nomini",
+          "Sarlavhadagi maxfiy kalitni"
+        ]
+      },
+      "ru": {
+        "savol": "Что Backend проверяет первым в запросе Telegram?",
+        "variantlar": [
+          "Имя человека в Telegram",
+          "Номер чата в сообщении",
+          "Имя бота",
+          "Секретный ключ в заголовке"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Bot tokeni qayerda turadi?",
+        "variantlar": [
+          ".env va Render'da",
+          "Ilova kodida",
+          "README.md faylida",
+          "Bot javobi matnida"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранится токен бота?",
+        "variantlar": [
+          "В .env и в Render",
+          "В коде приложения",
+          "В файле README.md",
+          "В тексте ответа бота"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Ulanganda Backend Telegram'dan nimani saqlaydi?",
+        "variantlar": [
+          "Ism va Telegram nomini",
+          "Faqat chat raqamini",
+          "Telefon va chat raqamini",
+          "Hamma xabarlarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что Backend сохраняет из Telegram при подключении?",
+        "variantlar": [
+          "Имя и ник в Telegram",
+          "Только номер чата",
+          "Телефон и номер чата",
+          "Все сообщения"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Bu hafta ikki xabar ketdi. Uchinchisi nima bo'ladi?",
+        "variantlar": [
+          "Baribir yuboriladi",
+          "Ilovada eslatma bo'ladi",
+          "Bu hafta yuborilmaydi",
+          "Ertaga yuboriladi"
+        ]
+      },
+      "ru": {
+        "savol": "На этой неделе ушло два сообщения. Что будет с третьим?",
+        "variantlar": [
+          "Всё равно отправится",
+          "Станет напоминанием в приложении",
+          "На этой неделе не отправится",
+          "Отправится завтра"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi Telegram xabari qoidaga mos?",
+        "variantlar": [
+          "Pro oling, o'yin to'lsin!",
+          "Hamma qaytdi, siz yo'qsiz!",
+          "Tezroq ilovani oching!",
+          "O'yiningiz yana e'lon qilindi"
+        ]
+      },
+      "ru": {
+        "savol": "Какое сообщение Telegram соответствует правилу?",
+        "variantlar": [
+          "Возьмите Pro, игра заполнится!",
+          "Все вернулись, нет только вас!",
+          "Скорее откройте приложение!",
+          "Ваша игра снова объявлена"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "«Telegram xabarlarini o'chirish» nima qiladi?",
+        "variantlar": [
+          "Chat raqamini o'chiradi",
+          "Hisobni o'chiradi",
+          "Botni Telegram'dan o'chiradi",
+          "Xabarni kechga suradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает «Отключить сообщения Telegram»?",
+        "variantlar": [
+          "Удаляет номер чата",
+          "Удаляет аккаунт",
+          "Удаляет бота из Telegram",
+          "Переносит сообщения на вечер"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "telegramdan-ochdi qachon yoziladi?",
+        "variantlar": [
+          "Xabar yuborilganda",
+          "Link bilan ochilganda",
+          "Bot «Start»ni olganda",
+          "Ilova o'rnatilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда записывается telegramdan-ochdi?",
+        "variantlar": [
+          "Когда сообщение отправлено",
+          "Когда открыли по ссылке",
+          "Когда бот получил «Start»",
+          "Когда установили приложение"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Sinfdagi tekshiruv yozuvlari nima bo'ladi?",
+        "variantlar": [
+          "Shundayicha qoladi",
+          "Bir haftada o'zi o'chadi",
+          "Tekshirgach o'chiriladi",
+          "Namunaga ko'chiriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет с проверочными записями в классе?",
+        "variantlar": [
+          "Остаются как есть",
+          "Сами удалятся через неделю",
+          "Удаляются после проверки",
+          "Копируются в образец"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Telegram xabarini Backend yuboradi. Eslatmani kim qo'yadi?",
+        "variantlar": [
+          "Yana Backend",
+          "Telegram bot",
+          "Tashkilotchi",
+          "Ilovaning o'zi"
+        ]
+      },
+      "ru": {
+        "savol": "Сообщение Telegram шлёт Backend. Кто ставит напоминание?",
+        "variantlar": [
+          "Тоже Backend",
+          "Telegram-бот",
+          "Организатор",
+          "Само приложение"
+        ]
+      }
+    }
+  ]
+}

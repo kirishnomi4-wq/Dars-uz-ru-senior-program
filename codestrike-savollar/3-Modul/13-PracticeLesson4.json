@@ -1,0 +1,278 @@
+{
+  "lessonId": "practice-04-mvp-deploy-v18",
+  "key": "m2-12",
+  "modul": 3,
+  "tartib": 13,
+  "nom": {
+    "uz": "Praktika 4 — MVP tayyor (deploy)",
+    "ru": "Практика 4 — MVP готов (деплой)"
+  },
+  "src": "src/2-Modull/PracticeLesson4.jsx",
+  "barmoq_izi": "3da28fb696dd9be834d569f27b5424c8",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Katalogni haqiqiy do'konga nima aylantiradi?",
+        "variantlar": [
+          "Ko'proq yorqin rang",
+          "Kattaroq qalin shrift",
+          "Savat + jami narx",
+          "Ko'proq mahsulot rasmi"
+        ]
+      },
+      "ru": {
+        "savol": "Что превращает каталог в настоящий магазин?",
+        "variantlar": [
+          "Больше ярких цветов",
+          "Крупный жирный шрифт",
+          "Корзина + итоговая цена",
+          "Больше фото товаров"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Jami narx qanday hisoblanadi?",
+        "variantlar": [
+          "Savatdagi narxlar yig'indisi",
+          "Tasodifiy tanlangan son",
+          "Eng qimmat mahsulot narxi",
+          "Har doim nolga teng"
+        ]
+      },
+      "ru": {
+        "savol": "Как считается итоговая цена?",
+        "variantlar": [
+          "Сумма цен в корзине",
+          "Случайное число",
+          "Цена самого дорогого товара",
+          "Всегда равна нулю"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "AI bug qilsa (xato) bu...",
+        "variantlar": [
+          "Katta falokat, tashlab ketamiz",
+          "Umuman tuzatib bo'lmaydi",
+          "Faqat dasturchining aybi",
+          "Normal — tushuntirib tuzatamiz"
+        ]
+      },
+      "ru": {
+        "savol": "Если ИИ сделал баг (ошибку), это...",
+        "variantlar": [
+          "Катастрофа, бросаем проект",
+          "Вообще нельзя исправить",
+          "Только вина программиста",
+          "Нормально — объясним и починим"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "AI'ga bug'ni qanday aytish to'g'ri?",
+        "variantlar": [
+          "Faqat «tuzat» deb yozish",
+          "Xato va to'g'risini aytish",
+          "«Ishlamayapti!» deb baqirish",
+          "Hech narsa demaslik"
+        ]
+      },
+      "ru": {
+        "savol": "Как правильно рассказать ИИ о баге?",
+        "variantlar": [
+          "Написать только «исправь»",
+          "Сказать, что не так и как надо",
+          "Кричать «не работает!»",
+          "Ничего не говорить"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Debugging nima?",
+        "variantlar": [
+          "Xatoni topib tuzatish",
+          "Yangi funksiya qo'shish",
+          "Saytni chiroyli bo'yash",
+          "Internetga deploy qilish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое дебаггинг?",
+        "variantlar": [
+          "Поиск и исправление ошибки",
+          "Добавление новой функции",
+          "Красивая раскраска сайта",
+          "Деплой в интернет"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "MVP 'tayyor' degani nima?",
+        "variantlar": [
+          "Mutlaqo mukammal, kamchiliksiz",
+          "Faqat dizayni chiroyli",
+          "Asosiy funksiyalar ishlaydi",
+          "Juda ko'p funksiyasi bor"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит «MVP готов»?",
+        "variantlar": [
+          "Абсолютно идеален, без недостатков",
+          "Только красивый дизайн",
+          "Основные функции работают",
+          "Очень много функций"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Deploy nima?",
+        "variantlar": [
+          "Kodni butunlay o'chirish",
+          "Ataylab bug qilish",
+          "Fon rangini tanlash",
+          "Saytni internetga chiqarish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое деплой?",
+        "variantlar": [
+          "Полное удаление кода",
+          "Баг нарочно",
+          "Выбор цвета фона",
+          "Выпуск сайта в интернет"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "Deploydan keyin do'stlaringizga nimani yuborasiz?",
+        "variantlar": [
+          "Sayt linkini",
+          "Butun kod faylini",
+          "Butun kompyuteringizni",
+          "Mahsulot rasmini"
+        ]
+      },
+      "ru": {
+        "savol": "Что Вы отправите друзьям после деплоя?",
+        "variantlar": [
+          "Ссылку на сайт",
+          "Весь файл с кодом",
+          "Весь свой компьютер",
+          "Фото товара"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Uyga vazifada do'konga qaysi tugma qo'shiladi?",
+        "variantlar": [
+          "«Kodni o'chirish»",
+          "«Saytni yopish»",
+          "«Buyurtma berish»",
+          "«Internetni uzish»"
+        ]
+      },
+      "ru": {
+        "savol": "Какую кнопку добавляют в магазин в домашнем задании?",
+        "variantlar": [
+          "«Удалить код»",
+          "«Закрыть сайт»",
+          "«Оформить заказ»",
+          "«Отключить интернет»"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Narx \"3000\" (qo'shtirnoqda) bo'lsa, 0 + \"3000\" nima beradi?",
+        "variantlar": [
+          "3000 — son",
+          "Sayt to'xtab qoladi",
+          "0 — nol",
+          "\"03000\" — matn"
+        ]
+      },
+      "ru": {
+        "savol": "Если цена \"3000\" (в кавычках), что даст 0 + \"3000\"?",
+        "variantlar": [
+          "3000 — число",
+          "Сайт зависнет",
+          "0 — ноль",
+          "\"03000\" — текст"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Universal yo'l: Reja → MVP → qurish → ? → deploy",
+        "variantlar": [
+          "Reklama qilish",
+          "Tekshirish",
+          "Qayta reja",
+          "Kodni o'chirish"
+        ]
+      },
+      "ru": {
+        "savol": "Универсальный путь: план → MVP → сборка → ? → деплой",
+        "variantlar": [
+          "Реклама",
+          "Проверка",
+          "Новый план",
+          "Удаление кода"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "«Savatga» bosilganda savat massiviga nima bo'ladi?",
+        "variantlar": [
+          "Butunlay o'chiriladi",
+          "push bilan qo'shiladi",
+          "Alifbo bo'yicha saralanadi",
+          "Hech narsa o'zgarmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что происходит с массивом корзины при нажатии «В корзину»?",
+        "variantlar": [
+          "Полностью удаляется",
+          "Товар добавляется через push",
+          "Сортируется по алфавиту",
+          "Ничего не меняется"
+        ]
+      }
+    }
+  ]
+}

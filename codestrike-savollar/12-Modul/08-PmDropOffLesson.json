@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m10d8-v1",
+  "key": "m10-08",
+  "modul": 12,
+  "tartib": 8,
+  "nom": {
+    "uz": "Foydalanuvchilar qaysi qadamda to'xtab qolyapti?",
+    "ru": "На каком шаге пользователи останавливаются?"
+  },
+  "src": "src/10-Modull/PmDropOffLesson.jsx",
+  "barmoq_izi": "9a77a35739731e7362cb1e47c35fa661",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Sinfdosh sanoq sahifasi manzilini bildi. Sonlarni ko'radimi?",
+        "variantlar": [
+          "Yo'q, kalit kerak",
+          "Ha, manzil yetadi",
+          "Ha, lending ochiq",
+          "Ha, ilovasi bo'lsa"
+        ]
+      },
+      "ru": {
+        "savol": "Одноклассник узнал адрес страницы подсчёта. Увидит числа?",
+        "variantlar": [
+          "Нет, нужен ключ",
+          "Да, адреса хватит",
+          "Да, лендинг открыт",
+          "Да, если есть приложение"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Backend SANOQ_KALITI ni qayerdan oladi?",
+        "variantlar": [
+          "Backend kodidagi qatordan",
+          "Render'dagi Environment'dan",
+          "Repo'dagi README'dan",
+          "Lending sahifasi kodidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда Backend берёт SANOQ_KALITI?",
+        "variantlar": [
+          "Из строки в коде Backend",
+          "Из Environment в Render",
+          "Из README в репозитории",
+          "Из кода страницы лендинга"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Sanoq sahifasi o'zi qanday yangilanadi?",
+        "variantlar": [
+          "Har 5 soniyada so'raydi",
+          "Ega qo'lda yangilaydi",
+          "Ulanishdan xabar keladi",
+          "Ilova sonni yozib boradi"
+        ]
+      },
+      "ru": {
+        "savol": "Как страница подсчёта обновляется сама?",
+        "variantlar": [
+          "Спрашивает каждые 5 секунд",
+          "Владелец обновляет вручную",
+          "Сообщение приходит по соединению",
+          "Приложение само пишет числа"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "20 qurilmadan 15 tasi keyingi qadamga o'tdi. Foiz qancha?",
+        "variantlar": [
+          "15 foiz",
+          "20 foiz",
+          "5 foiz",
+          "75 foiz"
+        ]
+      },
+      "ru": {
+        "savol": "Из 20 устройств 15 перешли на следующий шаг. Сколько процентов?",
+        "variantlar": [
+          "15 процентов",
+          "20 процентов",
+          "5 процентов",
+          "75 процентов"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Yangi telefonda 3 marta ochdingiz. ochdi qanchaga oshadi?",
+        "variantlar": [
+          "Bittaga",
+          "Uchtaga",
+          "Oshmaydi",
+          "Ikkitaga"
+        ]
+      },
+      "ru": {
+        "savol": "Открыли 3 раза на новом телефоне. На сколько вырастет ochdi?",
+        "variantlar": [
+          "На один",
+          "На три",
+          "Не вырастет",
+          "На два"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "«Ro'yxatdan o'tdi»: sanoqda 30, Database'da 28. Nega?",
+        "variantlar": [
+          "Sanoq xato sanagan",
+          "Qurilma va akkaunt farqi",
+          "Database xato yozgan",
+          "Kimdir ikki marta ochgan"
+        ]
+      },
+      "ru": {
+        "savol": "«Зарегистрировался»: в подсчёте 30, в Database 28. Почему?",
+        "variantlar": [
+          "Подсчёт ошибся",
+          "Разница устройств и аккаунтов",
+          "Database записала с ошибкой",
+          "Кто-то открыл дважды"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Netflix: ko'rishlarning qariyb 80 foizi qayerdan keladi?",
+        "variantlar": [
+          "Qidiruv qatoridan",
+          "Reklama oynalaridan",
+          "Tavsiyalar qatoridan",
+          "Do'stlar linkidan"
+        ]
+      },
+      "ru": {
+        "savol": "Netflix: откуда приходят почти 80 процентов просмотров?",
+        "variantlar": [
+          "Из строки поиска",
+          "Из рекламных окон",
+          "Из ряда рекомендаций",
+          "Из ссылок друзей"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Bu darsda nechta to'xtab qolish qadami tuzatiladi?",
+        "variantlar": [
+          "Ikkalasi, birdaniga",
+          "Hech biri, kutiladi",
+          "Uchalasi, navbat bilan",
+          "Bittasi, ikkinchisi keyin"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько шагов остановки исправляют на этом уроке?",
+        "variantlar": [
+          "Оба, сразу",
+          "Ни одного, ждём",
+          "Все три, по очереди",
+          "Один, второй потом"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Kirmagan odam «Qo'shilaman»ni bossa, nima ochiladi?",
+        "variantlar": [
+          "«Ro'yxatdan o'tish» ekrani",
+          "«O'yin to'ldi» yozuvi",
+          "O'yinchilar ismlari",
+          "O'rnatish fayli"
+        ]
+      },
+      "ru": {
+        "savol": "Что откроется, если невошедший нажмёт «Присоединиться»?",
+        "variantlar": [
+          "Экран «Регистрация»",
+          "Надпись «Игра заполнена»",
+          "Имена игроков",
+          "Файл установки"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Mehmon ko'rinishi APK'li telefonda qachon chiqadi?",
+        "variantlar": [
+          "git push qilinganda",
+          "Yangi faylni o'rnatgach",
+          "Render qayta yoqilganda",
+          "Ilova qayta ochilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда гостевой вид появится на телефоне с APK?",
+        "variantlar": [
+          "После git push",
+          "После установки нового файла",
+          "Когда перезапустится Render",
+          "Когда приложение переоткроют"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Gipotezada «chunki» qismi nimani aytadi?",
+        "variantlar": [
+          "Nimani o'zgartirishimizni",
+          "Qancha vaqt ketishini",
+          "Nega shunday kutishimizni",
+          "Kim tuzatib berishini"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорит часть «потому что» в гипотезе?",
+        "variantlar": [
+          "Что мы изменим",
+          "Сколько уйдёт времени",
+          "Почему мы этого ждём",
+          "Кто исправит"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Agent «tuzatdim» dedi. Birinchi nima qilasiz?",
+        "variantlar": [
+          "Yangi fayl tayyorlaysiz",
+          "Lendingga link qo'yasiz",
+          "Gipoteza isbotlandi deysiz",
+          "O'zingiz tekshirasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Агент сказал «исправил». Что сделаете сначала?",
+        "variantlar": [
+          "Готовите новый файл",
+          "Ставите ссылку на лендинг",
+          "Говорите, что гипотеза доказана",
+          "Проверяете сами"
+        ]
+      }
+    }
+  ]
+}

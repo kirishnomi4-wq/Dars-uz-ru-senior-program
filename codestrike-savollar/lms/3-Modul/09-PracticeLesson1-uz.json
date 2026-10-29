@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "HTML va CSS saytga nima beradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Tashqi ko'rinish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jonlilik va reaksiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet tezligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotlar bazasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saytga jon (interaktivlik) kiritadigan til qaysi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "HTML",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "CSS",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "JavaScript",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Microsoft Word",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Hodisa» (event) nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Saytning tashqi rangi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuklangan fayl nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet ulanish tezligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchining harakati",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saytni jonlantirish tartibi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "O'zgarish → Hodisa → Reaksiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hodisa → Reaksiya → O'zgarish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Reaksiya → Hodisa → O'zgarish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat o'zgarish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugmani bosish qaysi hodisaga misol?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "input",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "hover",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "click",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "scroll",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Matn maydoniga yozish qaysi hodisa?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "input",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "click",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "hover",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "load",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "count = 0. 3 marta count = count + 1 bajarildi. Natija?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "0 (nol)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "33",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt nechta like borligini nimada eslab qoladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Rasm faylida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "URL manzilda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "CSS faylida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zgaruvchida",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tungi/kunduzgi rejim tugmasi asosan nimani o'zgartiradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Internet tezligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ranglar va mavzuni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Fayl nomlarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server manzilini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ko'rsat / yashir» tugmasi nimani boshqaradi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Element ko'rinishini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internet ulanishini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shriftni yuklashni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Domen manzilini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Forma tekshiruvida bo'sh maydon uchun nima ishlatiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Rang o'zgarishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "if/else sharti",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasm qo'shish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Video ijrosi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Jonli salom»da ism yozilganda qaysi hodisa ishlaydi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "click",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "load",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "hover",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "input",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

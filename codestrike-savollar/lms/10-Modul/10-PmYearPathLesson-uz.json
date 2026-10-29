@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Vaqt chizig'ida loyihalar qanday turadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Qurilgan vaqti bo'yicha",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng yoqqanidan boshlab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng kattasidan boshlab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'p vaqt olganidan boshlab",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir yil oldingi portfolio chiziqda qayerda?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Oxirida — eng yangisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshida — ilk loyihalardan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'rtasida — eng muhimi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qayerda — juda kichik",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«AvtoIjara saytini qurdim» — «O'rgandim»ga mosmi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ha — nomi aniq yozilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha — zamoni to'g'ri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — nomni takrorlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yo'q — juda qisqa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi gap «O'rgandim»ga mos keladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Loyiham chiroyli ko'rinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "KitobShop'ni qurib bo'ldim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor loyihamni maqtaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Botga AI'ni ulay olaman",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzum qachon ishga tushgan?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "2022-yil oktabrda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "2020-yil sentabrda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2024-yil martda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2019-yil oktabrda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzum'gacha odamlar internetda qayerdan xarid qilardi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Chet el saytlaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram va Instagram'dan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bank ilovalari orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maktab saytlaridan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzum «unicorn» bo'ldi — bu nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ishchilari mingdan oshgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'nta shaharga ochilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bahosi 1 mlrd dollardan oshgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hammasini o'zi yetkazadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzum'ning birinchi qadami nimadan o'sgan?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Sayt dizayni eskirganidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Do'konlar kamligidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Reklama arzonlashganidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yetkazib berishsiz xariddan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Keyingi qadamning belgilaridan biri qaysi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bitta va aniq ish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng katta va qiyin ish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammaga yoqadigan ish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tez tugaydigan ish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Ko'proq o'rganaman» — keyingi qadam bo'ladimi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ha — kelajak haqida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — ish aniq emas",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha — o'rganish kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — juda uzun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Maydon» keyingi qadami nimadan o'sdi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Mentorning qiziqishidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa saytlarda ko'rganidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchilar aytganidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "B variantining yutug'idan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Loyiha qurmagan modulni nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Sinfdoshnikini yozasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'ylab topib yozasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chiziqni tugatasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«O'tkazildi» deb belgilaysiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

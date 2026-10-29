@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как располагается элемент 'block' на странице?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Занимает всю строку",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Стоит в ряд с другими",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Всегда стоит по центру",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Занимает только свою ширину",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой из них — 'inline'-элемент?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "div",
+        "hint": "Неверно"
+      },
+      {
+        "value": "h1",
+        "hint": "Неверно"
+      },
+      {
+        "value": "span",
+        "hint": "Верно!"
+      },
+      {
+        "value": "main",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство выстраивает элементы в один ряд?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "display: flex",
+        "hint": "Верно!"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "Неверно"
+      },
+      {
+        "value": "font-size: 20px",
+        "hint": "Неверно"
+      },
+      {
+        "value": "color: red",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Куда пишется 'display: flex'?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Обёртывающему контейнеру",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Каждому внутреннему элементу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только тегу body",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Самому тексту",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как выстроить flex-элементы в вертикальный столбик?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "flex-direction: row",
+        "hint": "Неверно"
+      },
+      {
+        "value": "display: block",
+        "hint": "Неверно"
+      },
+      {
+        "value": "flex-direction: column",
+        "hint": "Верно!"
+      },
+      {
+        "value": "justify-content: center",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое свойство раздвигает flex-элементы?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "margin-top",
+        "hint": "Неверно"
+      },
+      {
+        "value": "padding",
+        "hint": "Неверно"
+      },
+      {
+        "value": "border",
+        "hint": "Неверно"
+      },
+      {
+        "value": "gap",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как поставить flex по центру по горизонтали?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "align-items: center",
+        "hint": "Неверно"
+      },
+      {
+        "value": "text-align: center",
+        "hint": "Неверно"
+      },
+      {
+        "value": "flex-direction: row",
+        "hint": "Неверно"
+      },
+      {
+        "value": "justify-content: center",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как поставить flex по центру по вертикали?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "justify-content: center",
+        "hint": "Неверно"
+      },
+      {
+        "value": "flex-direction: column",
+        "hint": "Неверно"
+      },
+      {
+        "value": "gap: center",
+        "hint": "Неверно"
+      },
+      {
+        "value": "align-items: center",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает 'justify-content: space-between'?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Собирает по центру",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Разводит по краям поровну",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Складывает друг на друга",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Прячет элементы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой клавишей обычно открывают DevTools?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Ctrl + S",
+        "hint": "Неверно"
+      },
+      {
+        "value": "F12",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ctrl + P",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Alt + Tab",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В какой панели DevTools виден CSS?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Console",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Network",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Styles",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Sources",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если изменить значение CSS в DevTools?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Файл изменится навсегда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Временно, только у вас",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Весь сайт сломается",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего не произойдёт",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  }
+]

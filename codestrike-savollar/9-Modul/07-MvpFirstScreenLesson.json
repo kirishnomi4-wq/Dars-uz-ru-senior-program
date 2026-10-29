@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-07-v1",
+  "key": "m7-07",
+  "modul": 9,
+  "tartib": 7,
+  "nom": {
+    "uz": "Loyiha kuni: MVP — birinchi ekran",
+    "ru": "День проекта: MVP — первый экран"
+  },
+  "src": "src/7-Modull/MvpFirstScreenLesson.jsx",
+  "barmoq_izi": "0bab16d41807f185e2a8063202e92215",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Talab nima?",
+        "variantlar": [
+          "Promptdagi uch qismli vazifa",
+          "Agentning «Tayyor» javobi",
+          "Saytdagi tugma va ranglar",
+          "Backend'dagi yo'llar ro'yxati"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое требование?",
+        "variantlar": [
+          "Задача из трёх частей в промпте",
+          "Ответ агента «Готово»",
+          "Кнопки и цвета сайта",
+          "Список путей Backend"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Kataklar ostida 2-ro'yxat chiqdi. Nima yetmadi?",
+        "variantlar": [
+          "Nima qilsin",
+          "Qayerda",
+          "Nima buzilmasin",
+          "Texnologiya"
+        ]
+      },
+      "ru": {
+        "savol": "Под ячейками появился второй список. Чего не хватило?",
+        "variantlar": [
+          "Что сделать",
+          "Где",
+          "Что не сломать",
+          "Технология"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi biri yaxshi talab?",
+        "variantlar": [
+          "Chiroyli, zamonaviy qil",
+          "O'zing bilganingcha tuzat",
+          "Kataklar Backend'dan kelsin",
+          "Kataklar bilan nimadir qil"
+        ]
+      },
+      "ru": {
+        "savol": "Какое требование хорошее?",
+        "variantlar": [
+          "Сделай красиво и современно",
+          "Исправь, как сам знаешь",
+          "Ячейки пусть идут из Backend",
+          "Сделай что-нибудь с ячейками"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Agent «Tayyor» dedi. Nima qilasiz?",
+        "variantlar": [
+          "Keyingi talabni yuborasiz",
+          "«Rostdanmi?» deb so'raysiz",
+          "Kodni qayta yozdirasiz",
+          "Har qatorni saytda tekshirasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Агент сказал «Готово». Что делаете?",
+        "variantlar": [
+          "Отправляете следующее требование",
+          "Спрашиваете: «Правда?»",
+          "Просите переписать код",
+          "Проверяете каждую строку на сайте"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "«Nima buzilmasin» qatoriga nima yoziladi?",
+        "variantlar": [
+          "Ishlab turgan narsalar",
+          "Qurilmagan funksiyalar",
+          "Qaysi kutubxona kerakligi",
+          "Ish necha daqiqa olishi"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в строке «Что не сломать»?",
+        "variantlar": [
+          "То, что уже работает",
+          "Ещё не созданные функции",
+          "Какая библиотека нужна",
+          "Сколько минут займёт работа"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "GET /vaqtlar?kun=2026-10-10 nima qaytaradi?",
+        "variantlar": [
+          "Band qilganlar ismlari",
+          "Shu kun kataklari va holati",
+          "Hafta kunlari nomlari",
+          "Bosh sahifaning kodi"
+        ]
+      },
+      "ru": {
+        "savol": "Что возвращает GET /vaqtlar?kun=2026-10-10?",
+        "variantlar": [
+          "Имена занявших",
+          "Ячейки этого дня и их состояние",
+          "Названия дней недели",
+          "Код главной страницы"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Katak «band» ekanini Backend qayerdan biladi?",
+        "variantlar": [
+          "Almashtirgich rangidan",
+          "Umami hodisasidan",
+          "bandlar jadvalidan",
+          "Brauzer localStorageidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда Backend знает, что ячейка «занята»?",
+        "variantlar": [
+          "Из rang переключателя",
+          "Из hodisa в Umami",
+          "Из таблицы bandlar",
+          "Из localStorage браузера"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Bir qator mos kelmadi. Agentga nima yozasiz?",
+        "variantlar": [
+          "«Ishlamayapti, tuzat»",
+          "Saytni qayta yozdirish",
+          "Boshqa agentga o'tish",
+          "Ko'rganingiz va kutganingiz"
+        ]
+      },
+      "ru": {
+        "savol": "Одна строка не совпала. Что напишете агенту?",
+        "variantlar": [
+          "«Не работает, исправь»",
+          "Просьбу переписать сайт",
+          "Перейти к другому агенту",
+          "Что увидели и что ожидали"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Terminalda xato chiqdi. Agentga nima yuborasiz?",
+        "variantlar": [
+          "Xato matni va «Tuzat»",
+          "Faqat «Ishlamayapti»",
+          "Loyihani qayta yozish",
+          "Faqat «Yordam ber»"
+        ]
+      },
+      "ru": {
+        "savol": "В терминале ошибка. Что отправите агенту?",
+        "variantlar": [
+          "Текст ошибки и «Исправь»",
+          "Только «Не работает»",
+          "Переписать проект",
+          "Только «Помоги»"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Talabda React yoki NestJS ni yozish kerakmi?",
+        "variantlar": [
+          "Ha — har talabda kerak",
+          "Yo'q — stack repo'da bor",
+          "Ha — agent usiz bilmaydi",
+          "Yo'q — agent o'zi topadi"
+        ]
+      },
+      "ru": {
+        "savol": "Нужно ли писать в требовании React или NestJS?",
+        "variantlar": [
+          "Да — нужно в каждом",
+          "Нет — стек уже в репо",
+          "Да — без этого агент не знает",
+          "Нет — агент сам найдёт"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Backend javob bermasa, sayt nima qiladi?",
+        "variantlar": [
+          "Oq sahifa ko'rsatadi",
+          "Eski kataklarni ko'rsatadi",
+          "Yuklab bo'lmadi deydi",
+          "Backend'ni qayta yoqadi"
+        ]
+      },
+      "ru": {
+        "savol": "Если Backend не отвечает, что делает сайт?",
+        "variantlar": [
+          "Показывает белую страницу",
+          "Показывает старые ячейки",
+          "Говорит, что не загрузилось",
+          "Сам перезапускает Backend"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "9-oktabr tanlandi. So'rov qaysi manzilga ketadi?",
+        "variantlar": [
+          "/vaqtlar",
+          "/bandlar?kun=2026-10-09",
+          "/kirish?kun=2026-10-09",
+          "/vaqtlar?kun=2026-10-09"
+        ]
+      },
+      "ru": {
+        "savol": "Выбрано 9 октября. На какой адрес уйдёт запрос?",
+        "variantlar": [
+          "/vaqtlar",
+          "/bandlar?kun=2026-10-09",
+          "/kirish?kun=2026-10-09",
+          "/vaqtlar?kun=2026-10-09"
+        ]
+      }
+    }
+  ]
+}

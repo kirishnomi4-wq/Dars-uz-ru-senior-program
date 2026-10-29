@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pull Request (PR) nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "O'zgarishni ko'rsatish so'rovi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni internetga chiqarish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Repo'dan nusxa olish tugmasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod qatoriga yozilgan izoh",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Code review nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Kodni main'ga birlashtirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa odam kodni o'qishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent kodni o'zi tuzatishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni telefonda sinash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Netlify qaysi tarmoqdan (branch) yangilanadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "prod'dan, har push'da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochiq PR'ning o'zidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "main'dan, PR birlashgach",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Laptopdagi web/ dan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ochiq PR bor. prod'ga push qilsangiz-chi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Sayt darhol yangilanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PR yopilib, yangisi ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Push rad etiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Commit PR'ga qo'shiladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi izoh qaysi uch qismdan iborat?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Joy, nega muhim, taklif",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ism, sana va baho",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayl, tarmoq, commit",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Savol, javob, ball",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi izoh kodga qaratilgan?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "«Siz o'ylamasdan yozgansiz»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Yuklanish holatini qo'shing»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«E'tiborliroq bo'ling»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Mavzuni qayta o'qing»",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinfdosh taklifiga rozi emassiz. Nima yozasiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«Yo'q» deb yopasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javobsiz birlashtirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sabab va «qoldi» yozasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'ylamay qabul qilasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent yozgan kodga «Nega?» deyildi. Nima qilasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "«Agent yozgan» deysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent gapini qo'yasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javobsiz yopasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tekshirib, sabab yozasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "PR tavsifidagi «Sabab» bo'limini kim yozadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Kod muallifi, o'zingiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent, kod farqiga qarab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Izoh yozadigan sinfdosh",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub o'zi, avtomatik",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Izohlar «Submit review»dan oldin kimga ko'rinadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Faqat PR muallifiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat izoh yozganga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Repo'ni ochgan hammaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor va muallifga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maydon PR'ida nega B varianti qoldi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "B matni chiroyliroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlar B ni maqtadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hozircha B foizi yuqori",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "A ni Netlify ko'rsatmadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinfdosh «Approve» berdi. Keyin nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yangi PR ochasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "main'ga qo'lda ko'chirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "prod'ni o'chirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PR'ni birlashtirasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

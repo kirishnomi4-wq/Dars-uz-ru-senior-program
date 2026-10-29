@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yechim (feature) nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Saytning rangi va shrifti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytning bitta aniq foydasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytning internet manzili",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni ochadigan dastur",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Har yechim qaysi savolga javob beradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Necha kunda yasaladi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifaning qayerida turadi?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi muammoni yo'qotadi?",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qancha pul turadi?",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Muammoga bog'lanmagan yechim nima bo'ladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ro'yxatdan chiqariladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng oxirida qilinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki marta tekshiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa saytga beriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Karta nechta bo'lakdan iborat?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Bittadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchtadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'rttadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkitadan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Sayt chiroyli bo'lsin» qaysi muammoni yo'qotadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Seans vaqti noma'lumligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qaysi muammoni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Chipta olish qiyinligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Joy bor-yo'qligini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yechim qanday yoziladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Sayt nima qilishi bilan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bitta sifat bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kinoteatr nomi bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sana va vaqt bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzum ishni nimadan boshlagan?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Reklama roliklaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chiroyli bosh sahifadan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'z yetkazib berishidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Katta chegirmalardan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzumgacha odamlar qayerdan xarid qilardi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Telegram va Instagram'dan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat katta bozordan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chet el saytlaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Gazeta e'lonlaridan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzum qachon mamlakatning birinchi «unicorn»i bo'ldi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "2022-yil oktyabrda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2023-yil yanvarda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2025-yil dekabrda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2024-yil martda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Unicorn» degani nima?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ishchisi eng ko'p kompaniya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bahosi 1 mlrd dollardan yuqori",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng eski, birinchi kompaniya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat onlayn kompaniya",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ega yangi yechim so'radi. Birinchi nima qilinadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Darhol qo'shiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxi hisoblanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qaysi muammo uchun — so'raladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Boshqa saytlar ko'riladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Muammo va yechim ro'yxatda qanday yoziladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Sarlavha tegida, bitta so'z",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasm tegi ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Link tegi ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qalin yechim — tire — muammo",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

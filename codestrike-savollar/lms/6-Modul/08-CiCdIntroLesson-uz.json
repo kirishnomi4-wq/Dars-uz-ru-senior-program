@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pipeline (lenta) nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Kodni formatlovchi dastur",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Test yozib beruvchi dastur",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni tekshiruvchi nuqtalar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Serverni yoquvchi buyruq",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "npm install qaysi nuqtada ishlaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Yig'ish (install)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uchirish (deploy)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'lcham ramkasi (lint)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'rash (build)",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Test qizil (FAIL) bo'lsa nima bo'ladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Lenta davom etib, uchiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lenta shu yerda to'xtaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Server butunlay o'chadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato o'zi tuzatiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CI nimani anglatadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Dizaynni doim yangilash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni uzluksiz kuzatish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni qo'lda birlashtirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har push'ni o'zi tekshirish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CD nima qiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Tekshirilgan yukni chiqaradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kodni qo'lda nusxalaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testlarni o'zi yozib beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyihani repoga yuklaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "on: push nimani bildiradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Tugma bosilganda ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yiliga bir marta ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har push'da o'zi ishlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech qachon o'zi ishlamaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "eslint . qaysi nuqtada ishlatiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Uchirish (deploy)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yig'ish (install)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'rash (build)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'lcham ramkasi (lint)",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yukni internetga tayyor holga qaysi nuqta o'raydi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Skaner (test)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'rash (build)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yig'ish (install)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchirish (deploy)",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "runs-on: ubuntu-latest nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Loyihaning rasmiy nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bazaning maxfiy paroli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lenta mashinasining muhiti",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Lentadagi testlar soni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uchirish uchun nima shart?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Dasturchi tugma bosishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod hajmi kichik bo'lishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hafta oxiri bo'lishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma nuqta yashil bo'lishi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Test qizil bo'lsa, foydalanuvchi nimani ko'radi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Eski, ishlaydigan saytni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Buzuq yangi saytni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh oq sahifani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato haqida xabarni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Maxfiy kalit (secret) qayerda saqlanadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "ci.yml ichida, ochiq holda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maxsus seyf sozlamalarida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "README oxirgi qatorida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Terminal tarixida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

@@ -1,0 +1,278 @@
+{
+  "lessonId": "nest-arch-alive-4a-01-v18",
+  "key": "m4a-01",
+  "modul": 6,
+  "tartib": 1,
+  "nom": {
+    "uz": "Nest arxitektura — tirik ko'rish",
+    "ru": "Nest архитектура — живой обзор"
+  },
+  "src": "src/4a-Modull/NestArchAliveLesson.jsx",
+  "barmoq_izi": "ac8ef94ede70b1e4f571ee597e8fc0e7",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Controller restoranda kim?",
+        "variantlar": [
+          "Oshpaz — taomni pishiradi",
+          "Ofitsiant — so'rov oladi",
+          "Omborchi — javonga qo'yadi",
+          "Qo'riqchi — token tekshiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Controller — кто он в ресторане?",
+        "variantlar": [
+          "Повар — готовит блюдо",
+          "Официант — принимает запрос",
+          "Кладовщик — кладёт на полку",
+          "Охранник — проверяет токен"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Tokensiz mijoz qanday javob oladi?",
+        "variantlar": [
+          "200 — hammasi joyida",
+          "201 — yangi yozuv yaratildi",
+          "500 — serverda ichki xato",
+          "401 — ruxsat berilmadi"
+        ]
+      },
+      "ru": {
+        "savol": "Какой ответ получит клиент без токена?",
+        "variantlar": [
+          "200 — всё в порядке",
+          "201 — создана новая запись",
+          "500 — внутренняя ошибка сервера",
+          "401 — доступ не разрешён"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Service nima qiladi?",
+        "variantlar": [
+          "Asosiy ishni bajaradi",
+          "Papkalarni tartiblaydi",
+          "Serverni yoqib turadi",
+          "Brauzerda sahifa chizadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает Service?",
+        "variantlar": [
+          "Делает основную работу",
+          "Наводит порядок в папках",
+          "Держит сервер включённым",
+          "Рисует страницу в браузере"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "DTO — bu nima?",
+        "variantlar": [
+          "Javon chizmasi — tokchalar",
+          "Server portining raqami",
+          "Anketa — ma'lumot qoidalari",
+          "Loyihaning GitHub nomi"
+        ]
+      },
+      "ru": {
+        "savol": "DTO — что это?",
+        "variantlar": [
+          "Чертёж стеллажа — полки",
+          "Номер порта сервера",
+          "Анкета — правила данных",
+          "Имя проекта на GitHub"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "@Module ichida providers nima?",
+        "variantlar": [
+          "Loyihaning GitHub nomini",
+          "Bazaga ulanish parolini",
+          "Fayllarning umumiy hajmini",
+          "Oshxona xodimlari ro'yxatini"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое providers в @Module?",
+        "variantlar": [
+          "Имя проекта на GitHub",
+          "Пароль к базе",
+          "Общий объём файлов",
+          "Список сотрудников кухни"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "npm run start:dev nima qiladi?",
+        "variantlar": [
+          "Serverni yoqib kuzatadi",
+          "Kodni GitHub'ga yuklaydi",
+          "Bazani tozalab tashlaydi",
+          "Yangi bo'lim yaratadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает npm run start:dev?",
+        "variantlar": [
+          "Включает сервер и следит",
+          "Загружает код на GitHub",
+          "Очищает базу",
+          "Создаёт новый раздел"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Anketa xato to'ldirilsa qaysi kod qaytadi?",
+        "variantlar": [
+          "201 — yozuv yaratildi",
+          "401 — ruxsat berilmadi",
+          "400 — so'rov noto'g'ri",
+          "200 — hammasi joyida"
+        ]
+      },
+      "ru": {
+        "savol": "Какой код вернётся, если анкета заполнена неверно?",
+        "variantlar": [
+          "201 — запись создана",
+          "401 — доступ запрещён",
+          "400 — неверный запрос",
+          "200 — всё в порядке"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Entity nimani belgilaydi?",
+        "variantlar": [
+          "Sahifa ranglarini",
+          "Ombordagi tokchalarni",
+          "Server tezligini",
+          "Ofitsiant ish vaqtini"
+        ]
+      },
+      "ru": {
+        "savol": "Что задаёт Entity?",
+        "variantlar": [
+          "Цвета страницы",
+          "Полки на складе",
+          "Скорость сервера",
+          "График официанта"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "git clone nima qiladi?",
+        "variantlar": [
+          "Loyihani kompyuterga oladi",
+          "Loyihani o'chirib tashlaydi",
+          "Bazani ma'lumotga to'ldiradi",
+          "Yoqilgan serverni o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает git clone?",
+        "variantlar": [
+          "Скачивает проект на компьютер",
+          "Удаляет проект",
+          "Заполняет базу данными",
+          "Выключает работающий сервер"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Swagger — bu nima?",
+        "variantlar": [
+          "Ombordagi javon chizmasi",
+          "Maxfiy kalitlar fayli",
+          "Menu — eshiklar ro'yxati",
+          "Parol shifrlovchi dastur"
+        ]
+      },
+      "ru": {
+        "savol": "Swagger — что это?",
+        "variantlar": [
+          "Чертёж стеллажа на складе",
+          "Файл секретных ключей",
+          "Меню — список дверей",
+          "Программа шифрования паролей"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Yangi bo'lim: birinchi uch qadam?",
+        "variantlar": [
+          "Module → Controller → DTO",
+          "Controller → Module → Entity",
+          "Service → Entity → Module",
+          "Entity → DTO → Service"
+        ]
+      },
+      "ru": {
+        "savol": "Новый раздел: первые три шага?",
+        "variantlar": [
+          "Module → Controller → DTO",
+          "Controller → Module → Entity",
+          "Service → Entity → Module",
+          "Entity → DTO → Service"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "successRes nima uchun kerak?",
+        "variantlar": [
+          "Xatoni mijozdan yashiradi",
+          "Javoblarni bir xil qiladi",
+          "Serverni tezlashtiradi",
+          "Parolni shifrlab saqlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем нужен successRes?",
+        "variantlar": [
+          "Прячет ошибки от клиента",
+          "Делает ответы одинаковыми",
+          "Ускоряет сервер",
+          "Хранит пароль в шифре"
+        ]
+      }
+    }
+  ]
+}

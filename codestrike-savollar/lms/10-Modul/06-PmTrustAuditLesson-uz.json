@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Shaxsiy ma'lumot nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Odamni aniqlaydigan ma'lumot",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Parolli sahifadagi yozuv",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jadvaldagi har bir qator",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng ko'p bosilgan tugma",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'yinchi sahifasida band haqida nima ko'rinadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "O'yinchining ismi va soat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Soat va «band» yozuvi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'yinchining telefoni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ism, telefon va kun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GDPR qanday qoida?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "O'zbekiston qonuni, 2019",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Maydon»ning ichki qoidasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yevropa Ittifoqi, 2018-yildan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Umami'ning ichki qoidasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qonunga ko'ra, maqsad tugagach ma'lumot nima qilinadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Arxivga o'tkaziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yana bir yil saqlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochiq e'lon qilinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q qilinadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sizib chiqish nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ma'lumot o'chib ketishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Begona qo'lga o'tishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend javob bermasligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchi kelmay qolishi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Eski bandlar o'chirilmasa, begona nimani ko'radi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Eng eski bandlarni ham",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat bugungi bandlarni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qanday bandni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat parol oynasini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Amaliyotdan keyin band qancha saqlanadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Sayt ishlagan butun vaqt",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Band kunining oxirigacha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchi saytni yopguncha",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yindan keyin 30 kun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kerakli minimum nima degani?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Formani qisqa bezash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotni qisqa saqlash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat keraklisini so'rash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Parolni qisqa tuzish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Audit nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Ro'yxatli maxfiylik tekshiruvi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agentga yangi sahifa talabi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eski bandlarni o'chiruvchi kod",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzerlarni sanovchi sahifa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri maxfiylik siyosatidagi savol?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Sayt qaysi tilda yozilgan?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugma qaysi rangda?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon qayerda joylashgan?",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumot qancha saqlanadi?",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Forma ostida siyosat linki turibdi. Bu qaysi fikr?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Kerakli minimum",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'chirish muddati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ochiq aytish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Audit varag'i",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«30 kun»ni qanday tekshirasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Agentdan yana so'raysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eski band o'chganini ko'rasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Siyosatni qayta o'qiysiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi ishga o'tasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

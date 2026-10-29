@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "let name = \"Aziza\" — где здесь имя «коробки»?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "name",
+        "hint": "Верно!"
+      },
+      {
+        "value": "\"Aziza\"",
+        "hint": "Неверно"
+      },
+      {
+        "value": "let",
+        "hint": "Неверно"
+      },
+      {
+        "value": "=",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "let age = 14 — какой тип данных у 14?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "string (текст)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "number (число)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "boolean",
+        "hint": "Неверно"
+      },
+      {
+        "value": "const",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое значение считается string (текстом)?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "42",
+        "hint": "Неверно"
+      },
+      {
+        "value": "true",
+        "hint": "Неверно"
+      },
+      {
+        "value": "\"Toshkent\"",
+        "hint": "Верно!"
+      },
+      {
+        "value": "3.141592",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если после const PI = 3.14 написать PI = 3?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Будет ошибка",
+        "hint": "Верно!"
+      },
+      {
+        "value": "PI станет 3",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сохранятся оба",
+        "hint": "Неверно"
+      },
+      {
+        "value": "PI удалится",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает знак = в коде?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Два значения равны",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Положи значение в коробку",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сравни два значения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удали значение",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "К какому типу данных относятся true и false?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "string",
+        "hint": "Неверно"
+      },
+      {
+        "value": "number",
+        "hint": "Неверно"
+      },
+      {
+        "value": "boolean",
+        "hint": "Верно!"
+      },
+      {
+        "value": "const",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В каком случае лучше использовать const?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Число дней в неделе (7)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Счёт в игре (всё время меняется)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Текст, который ввёл пользователь",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Число жизней в бою",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "let score = 10; score = 25. Сколько теперь в score?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "10",
+        "hint": "Неверно"
+      },
+      {
+        "value": "25",
+        "hint": "Верно!"
+      },
+      {
+        "value": "35",
+        "hint": "Неверно"
+      },
+      {
+        "value": "1025",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем отличаются let и const?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "let для чисел, const для текста",
+        "hint": "Неверно"
+      },
+      {
+        "value": "const работает быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "let меняется, const — нет",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Разницы нет, одно и то же",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "\"14\" (в кавычках) — какой это тип?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "number — число",
+        "hint": "Неверно"
+      },
+      {
+        "value": "boolean — да/нет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "const — константа",
+        "hint": "Неверно"
+      },
+      {
+        "value": "string — текст",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какое утверждение о var верно?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Новый способ, используйте всегда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "То же самое, что const",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только для чисел",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Старый способ, лучше let/const",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В let city = \"Toshkent\" значение в кавычках. Почему?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Потому что это число",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Кавычки были не обязательны",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Потому что это boolean",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Потому что это текст (string)",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

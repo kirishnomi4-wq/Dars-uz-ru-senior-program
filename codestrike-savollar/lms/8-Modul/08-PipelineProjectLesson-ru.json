@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что значит pipeline?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Поток данных от части к части",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Один большой файл кода",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только frontend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Отдельные несвязанные программы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Ваша задача при коде с AI?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Писать весь код вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чёткое задание, чтение, проверка",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ничего не делать",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запускать код не читая",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Куда frontend отправляет запрос?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "В историю браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На телефон пользователя",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На адрес backend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Прямо в Telegram",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Отчего чаще всего бывает «Failed to fetch»?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Из-за маленького логотипа",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из-за цвета картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из-за ошибки в заголовке",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Из-за неверного адреса backend",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким бывает точный промпт?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Что, где и какой результат",
+        "hint": "Верно!"
+      },
+      {
+        "value": "«Сделай сайт получше»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "«Делай как знаешь»",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Общий, без задания",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем читать код, написанный AI?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Чтобы сменить цвет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы увидеть и исправить ошибку",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Чтобы увеличить файл",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы красиво показать",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как найти ошибку связки?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Смотрим только на цвета",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вообще не проверяем",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Проверяем от начала до конца",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Верим, что ИИ не ошибается",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая часть срабатывает первой при отправке заказа?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "PostgreSQL (Database)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Telegram (бот)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "ИИ (вспомогательный сервис)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "React (frontend)",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает NestJS в этом проекте?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Принимает запросы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Рисует картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Хранит данные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Показывает пароль на экране",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где хранятся данные заказа?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "В Telegram-сообщении админу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В таблице Database",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В истории браузера клиента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нигде",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой цикл кода с AI?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Промпт → код → запуск",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запуск кода без чтения",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Промпт → код → тест → исправление",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Всё в одном промпте",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что проверяет «end-to-end тест»?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Цвет одной кнопки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только страницу входа",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Весь поток заказа",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

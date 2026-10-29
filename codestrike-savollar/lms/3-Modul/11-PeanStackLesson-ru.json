@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется часть сайта, которую видит пользователь?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Frontend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "База",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сервер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое backend?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Невидимая часть — хранит",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Видимая часть — кнопки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только цвета и шрифты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только картинки и видео",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает React?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Хранит данные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Направляет запросы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Собирает страницу из блоков",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Запускает сервер",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает Node.js?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Украшает страницу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Редактирует картинки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ускоряет интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запускает JS на сервере",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На кого в ресторане похож Express?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Повар — готовит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Официант — относит",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Склад — хранит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Гость — заказывает",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где постоянно хранятся данные (лайки, комментарии)?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "В памяти браузера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри CSS-файла",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В базе PostgreSQL",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только на экране",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему после обновления страницы комментарий исчез?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Нигде не был сохранён",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Пропал интернет",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сломался код сайта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пароль был неверный",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какие 4 технологии — это PERN?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Python, Express, Redux, Node",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Postgres, Ember, Ruby, Nest",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Postgres, Elm, React, Deno",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Postgres, Express, React, Node",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким путём идёт запрос?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Postgres → React → Express",
+        "hint": "Неверно"
+      },
+      {
+        "value": "React → Express → Postgres",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Express → React → Postgres",
+        "hint": "Неверно"
+      },
+      {
+        "value": "React → Postgres → Express",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает слово stack?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Название одной программы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вид ошибки в программе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Набор технологий",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Способ выложить сайт",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На что в ресторане похож PostgreSQL?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Склад — постоянная память",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Зал — место для гостей",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Официант — направляющий",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Меню — список блюд",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Готов ли к backend тот, кто знает JavaScript?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Да, если знает и CSS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет, нужен Python",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, браузер станет сервером",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да, с Node.js",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

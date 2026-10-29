@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor misolida Muammo bo'lagiga qancha vaqt ajratilgan?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Taxminan 40 soniya",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Taxminan 2 daqiqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taxminan 3 daqiqa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taxminan 10 soniya",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Raqamlarda grafik va bosh raqam yonida yana nima bor?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Boshqa ilova bilan farq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sonlar haqida halol gap",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma kunlar jadvali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdoshlar ismlari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Grafikda «ishga tushirish kuni» qayerda turadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Birinchi ustun ustida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sarlavha o'rnida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi ustun ostida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng baland ustun ichida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'sish grafigining sarlavhasiga nima yoziladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Mahsulot nomi va logotipi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitch aytiladigan sana",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Grafikdagi eng katta son",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Grafikda nima sanalgani",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Grafikdan bir hafta tushib qolsa, nima buziladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Noldan boshlanmay qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sarlavha o'chib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sonlar kattalashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oraliqlar teng bo'lmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega o'zgargan bo'lakni qayta aytasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Zal savoliga javob bo'ldimi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Dars vaqti ortgani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sherik xohlagani uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Taymer shunday sozlangan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Noldan chizilsa, 44 ustuni 20 dan necha barobar baland?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "O'n barobarga yaqin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikki barobarga yaqin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Besh barobarga yaqin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'rt barobarga yaqin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jonli demoda ikkinchi telefonda zal nimani ko'radi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Tugma o'chib qolganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova qayta yuklanganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Son o'zi o'zgarganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Belgi o'chib qolganini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitchdan oldin ikkala qurilmada nimani tekshirasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bitta akkaunt borligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova yopiq turganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxat tortilganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Belgi «Ulangan» ekanini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sanoqda sinfdoshlar bor. Halol gapda nima deysiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Sanoqdan chiqaraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sonini alohida aytaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech narsa demayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi deyman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Grafikdagi sonlarni qayerdan olasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "O'z Database'ingizdan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinfdoshlar taxminidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor misoli sonlaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umami tashriflaridan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Raqamlarga izoh: «nima sanalgan?». Nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Raqamlarni olasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sonni kattalashtirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sarlavhaga buni yozasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sherikdan ✓ so'raysiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

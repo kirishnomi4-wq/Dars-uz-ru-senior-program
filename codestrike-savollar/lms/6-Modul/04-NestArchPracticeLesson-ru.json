@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сколько файлов нужно для нового ресурса?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "2 — entity и controller",
+        "hint": "Неверно"
+      },
+      {
+        "value": "3 — entity, service, module",
+        "hint": "Неверно"
+      },
+      {
+        "value": "5 — по одному на слой",
+        "hint": "Верно!"
+      },
+      {
+        "value": "1 — всё в одном файле",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если раздел не подключить к AppModule?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Дверь не найдена — 404",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сервер не запустится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Данные не сохранятся",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В Swagger будет 500",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой декоратор связывает книгу с категорией?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "@Column()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@UseGuards()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@Roles()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@ManyToOne()",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "В какой файл пишется @ManyToOne?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "category.entity.ts",
+        "hint": "Неверно"
+      },
+      {
+        "value": "book.entity.ts",
+        "hint": "Верно!"
+      },
+      {
+        "value": "book.controller.ts",
+        "hint": "Неверно"
+      },
+      {
+        "value": "app.module.ts",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Клиент без токена делает POST /book — что будет?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "401/403 — страж отказывает",
+        "hint": "Верно!"
+      },
+      {
+        "value": "201 — книга всё равно добавится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "404 — дверь не найдена",
+        "hint": "Неверно"
+      },
+      {
+        "value": "200 — пустой список",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой декоратор ставит стража у двери?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "@Injectable()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@Entity()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@UseGuards()",
+        "hint": "Верно!"
+      },
+      {
+        "value": "@Controller()",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как сделать GET /book открытым для всех?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "@Roles(UserRole.ADMIN)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@Roles('public')",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Уберём стража",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Спрячем во фронтенде",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Когда вы нажимаете «Keep» для кода агента?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Сразу, не читая",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Как только агент закончит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "До запуска сервера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Когда прошёл проверку",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что бесплатно получает service, унаследовавший BaseService?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Стража двери (guard)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Документацию Swagger",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подключение к базе",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Готовые CRUD-методы",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой код возвращает успешный POST?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "200 OK",
+        "hint": "Неверно"
+      },
+      {
+        "value": "201 Created",
+        "hint": "Верно!"
+      },
+      {
+        "value": "204 No Content",
+        "hint": "Неверно"
+      },
+      {
+        "value": "301 Moved",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем нужен DTO?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Проверять входящий запрос",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Задавать столбцы таблицы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подключать раздел к AppModule",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Настраивать подключение к базе",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Клиент получил 403 на POST /order. Причина?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "@Controller('order')",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@Post()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "@Roles(UserRole.ADMIN)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "@Get()",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  }
+]

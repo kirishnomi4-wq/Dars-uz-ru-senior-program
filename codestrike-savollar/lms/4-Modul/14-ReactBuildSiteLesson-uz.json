@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Katta saytni AI bilan qanday qurasiz?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bo'laklab, har biriga prompt",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir jumlada hammasini so'rash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasini qo'lda yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Avval rangni tanlash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saytni sahifalarga qanday bo'lamiz?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "useState bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Router (<Route>)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "props bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "map bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Yetkaz» Bosh sahifasi nechta bo'limdan?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "1 ta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "2 ta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "4 ta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Cheksiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir xil karta 8 marta takrorlansa, nima qilasiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "8 fayl yarataman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "8 marta ko'chiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shundayligicha qoldiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta komponent + props + map",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "FoodCard'ga nom va narxni nima orqali beramiz?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "props",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "state",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Router",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "API",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi prompt eng aniq?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Chiroyli ovqat sayti qur",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hero, 8 FoodCard (nom, narx)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt qur, tez bo'lsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Menga yaxshi kod yoz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Aniq prompt nimalardan iborat?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Rang + shrift + logotip",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat bo'limlar nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'limlar + mazmun + ma'lumot",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat sayt mavzusi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI narxni unutdi — nima qilasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Qoldiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasini qayta yozdiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rangni o'zgartiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq prompt: narxni qo'sh",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI hamma kodni bitta komponentga yozdi. Nima qilasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Bo'limlarga bo'ldiraman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Shundayicha qoldiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasini o'chiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yana kod qo'shtiraman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Yetkaz»da taomlar ro'yxati qayerda turadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Router (<Route>)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "App.jsx'dagi massiv",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Gemini prompti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "index.css fayli",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "map() nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Yangi sahifa ochadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI uchun prompt yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har elementga karta chizadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kartaga rang beradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qurish formulasi qaysi saytlarga ishlaydi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Faqat ovqat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat do'kon",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat o'yin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Istalgan saytga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

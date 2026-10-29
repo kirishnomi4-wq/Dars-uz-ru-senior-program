@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": ".github/workflows/ci.yml — bu fayl nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Loyihaning manba kodi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lentaning yo'l xaritasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytning zaxira nusxasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub'ning ichki sozlamasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "on: push nima uchun kerak?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Lentani har push'da yoqadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Repozitoriyni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hujjatlarni yangilaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni qo'lda joylashtiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "runs-on: ubuntu-latest nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Kod Ubuntu'da yozilishi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyihaning rasmiy nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub bergan mashina",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Testlar o'chirilgani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "YIG'ISH nuqtasida nima bajariladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Kutubxonalar o'rnatiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod qoidaga tekshiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt foydalanuvchiga ketadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eski yuk tiklanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "SKANER nuqtasi bo'lmasa nima bo'ladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Lenta biroz sekinlashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub uni o'zi qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Buzuq yuk odamlarga ketadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat ogohlantirish chiqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Amallar (steps) qanday tartibda bajariladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Tasodifiy tartibda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuqoridan pastga, ketma-ket",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oxirgisi birinchi bajariladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasi bir vaqtda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "actions/checkout@v4 nima qiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Butun kodni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi mashina sotib oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Testlarni o'zi yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni repodan mashinaga oladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "PARALLEL LENTALAR (matrix) nima uchun?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Yukni ikkiga bo'lish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mashinani to'xtatish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'p sharoitda sinash uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasmlarni siqish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "YAQIN JAVON (cache) nima beradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Faqat mentorda ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasini noldan yuklaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Skanerni o'chirib qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tayyorini olib, tezlashtiradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kalitni yo'l xaritasiga ochiq yozsangiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Uni hamma ko'ra oladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat siz ko'rasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GitHub o'zi yashiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lenta ishga tushmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "${{ secrets.API_KEY }} nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Kalitni ekranga chiqaradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kalitni seyfdan olib keladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kalitni ko'chirib qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kalitni o'chirib yuboradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "TABLO (status badge) nimani ko'rsatadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Loyiha fayllari hajmini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server qaysi mamlakatda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nechta o'quvchi tugatganini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lenta yashilmi yoki qizilmi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

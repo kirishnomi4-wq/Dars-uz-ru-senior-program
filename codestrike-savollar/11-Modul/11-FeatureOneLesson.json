@@ -1,0 +1,278 @@
+{
+  "lessonId": "m9-11-v1",
+  "key": "m9-11",
+  "modul": 11,
+  "tartib": 11,
+  "nom": {
+    "uz": "Loyiha kuni: 1-asosiy funksiya",
+    "ru": "День проекта: 1-я основная функция"
+  },
+  "src": "src/9-Modull/FeatureOneLesson.jsx",
+  "barmoq_izi": "7d7a2c76082cc180d8245473a4de05e8",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Funksiyani agentga qanday berasiz?",
+        "variantlar": [
+          "Uch qatorli talab yozib",
+          "Roadmap qatorini yuborib",
+          "PRD'ni to'liq yuborib",
+          "Faqat nomini yozib"
+        ]
+      },
+      "ru": {
+        "savol": "Как вы передаёте функцию агенту?",
+        "variantlar": [
+          "Написав требование из трёх строк",
+          "Отправив строку roadmap",
+          "Отправив весь PRD",
+          "Написав только название"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Talabda ikki marta bosish yo'q. Agent nima qiladi?",
+        "variantlar": [
+          "Tugmani olib tashlaydi",
+          "O'zicha taxmin qiladi",
+          "Funksiyani qurmaydi",
+          "Ilovani qayta yozadi"
+        ]
+      },
+      "ru": {
+        "savol": "В требовании нет двойного нажатия. Что сделает агент?",
+        "variantlar": [
+          "Уберёт кнопку",
+          "Додумает сам",
+          "Не построит функцию",
+          "Перепишет приложение"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Formada «kim» yo'q. Egasi qayerdan olinadi?",
+        "variantlar": [
+          "Telefon raqamidan",
+          "Ilovadagi ism yozuvidan",
+          "So'rovdagi tokendan",
+          "Jadvalning oxirgi qatoridan"
+        ]
+      },
+      "ru": {
+        "savol": "В форме нет «кто». Откуда берётся владелец?",
+        "variantlar": [
+          "Из номера телефона",
+          "Из имени в приложении",
+          "Из токена в запросе",
+          "Из последней строки таблицы"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Qayta yuklashda yangi e'lon nega yo'qolmadi?",
+        "variantlar": [
+          "Telefonga yozilgan",
+          "Agent namunaga qo'shgan",
+          "Expo Go o'zida saqlagan",
+          "Database'ga yozilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Почему новое объявление не пропало при перезагрузке?",
+        "variantlar": [
+          "Записано в телефон",
+          "Агент добавил в образец",
+          "Expo Go сохранил у себя",
+          "Записано в Database"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "«8 / 10» dagi 8 qayerdan keladi?",
+        "variantlar": [
+          "Database'dagi sanoqdan",
+          "Telefondagi bosishlardan",
+          "Namuna faylidagi sondan",
+          "Tashkilotchi yozgan sondan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда берётся 8 в «8 / 10»?",
+        "variantlar": [
+          "Из подсчёта в Database",
+          "Из нажатий на телефоне",
+          "Из числа в файле-образце",
+          "Из числа, введённого организатором"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Ikki marta «Qo'shilaman» bosildi. Nima bo'lishi kerak?",
+        "variantlar": [
+          "Son ikkiga oshadi",
+          "Son bittaga oshadi",
+          "Son o'zgarmaydi",
+          "O'yin o'chib ketadi"
+        ]
+      },
+      "ru": {
+        "savol": "«Присоединяюсь» нажали дважды. Что должно произойти?",
+        "variantlar": [
+          "Число растёт на два",
+          "Число растёт на один",
+          "Число не меняется",
+          "Игра удаляется"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Ekranda «9 / 10», o'yin to'lgan. Nega?",
+        "variantlar": [
+          "Backend noto'g'ri sanagan",
+          "Qo'shilganlar yozilmagan",
+          "Ekranda eski son turibdi",
+          "Agent ekranni xato qurgan"
+        ]
+      },
+      "ru": {
+        "savol": "На экране «9 / 10», а игра заполнена. Почему?",
+        "variantlar": [
+          "Backend посчитал неверно",
+          "Участники не записаны",
+          "На экране старое число",
+          "Агент построил экран с ошибкой"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "To'lgan o'yinni qayerda tekshirish kerak?",
+        "variantlar": [
+          "Ilovada, tugmani yashirib",
+          "Talabda, agent bilsin deb",
+          "Neon'da, qo'lda sanab",
+          "Backend'da, Database'dan"
+        ]
+      },
+      "ru": {
+        "savol": "Где нужно проверять заполненную игру?",
+        "variantlar": [
+          "В приложении, скрыв кнопку",
+          "В требовании, чтобы агент знал",
+          "В Neon, считая вручную",
+          "В Backend, по Database"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "To'lgan o'yinda ilova nima ko'rsatadi?",
+        "variantlar": [
+          "«O'yin to'ldi» xabarini",
+          "«11 / 10» degan sonni",
+          "Yozuvsiz bo'sh ekranni",
+          "«Kirish» ekranini"
+        ]
+      },
+      "ru": {
+        "savol": "Что показывает приложение в заполненной игре?",
+        "variantlar": [
+          "Сообщение «Игра заполнена»",
+          "Число «11 / 10»",
+          "Пустой экран без надписей",
+          "Экран «Вход»"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Boshqa telefonda «8 / 10» qachon yangilanadi?",
+        "variantlar": [
+          "Har soniyada o'zi",
+          "Ochilganda yoki tortilganda",
+          "Ilova o'rnatilganda",
+          "Tashkilotchi ruxsat berganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда обновляется «8 / 10» на другом телефоне?",
+        "variantlar": [
+          "Само каждую секунду",
+          "При открытии или потягивании",
+          "При установке приложения",
+          "Когда разрешит организатор"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Backend o'zgarishi telefonga qachon yetadi?",
+        "variantlar": [
+          "Agent «Tayyor» desa",
+          "git commit qilinganda",
+          "Render deploy'ni tugatgach",
+          "Telefon qayta yoqilganda"
+        ]
+      },
+      "ru": {
+        "savol": "Когда изменение Backend доходит до телефона?",
+        "variantlar": [
+          "Когда агент скажет «Готово»",
+          "После git commit",
+          "Когда Render завершит деплой",
+          "После перезагрузки телефона"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Agent «Tayyor» dedi. Nima qilasiz?",
+        "variantlar": [
+          "Keyingi blokka o'tasiz",
+          "Agentdan qayta so'raysiz",
+          "README'ga «tayyor» yozasiz",
+          "Talabni gapma-gap tekshirasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Агент сказал «Готово». Что вы сделаете?",
+        "variantlar": [
+          "Перейдёте к следующему блоку",
+          "Переспросите агента",
+          "Напишете «готово» в README",
+          "Проверите требование по фразам"
+        ]
+      }
+    }
+  ]
+}

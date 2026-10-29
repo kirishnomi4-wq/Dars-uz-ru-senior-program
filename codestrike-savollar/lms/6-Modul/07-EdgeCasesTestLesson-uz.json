@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Edge case nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Eng ko'p uchraydigan kirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Funksiya yoki o'zgaruvchi nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "0, manfiy yoki juda katta son",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Doim xatosiz o'tadigan kirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Himoyasiz orderTotal(10000, 0) nima beradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Error — darhol to'xtaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "NaN — hisob buziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "10000 — bitta narx",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "0 — bepul, xato sezilmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Himoyasiz funksiyaga «ikki» kelsa?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "0 — matn nolga aylanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "NaN — hisob jim buziladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Error — so'rov rad etiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "10000 — narx o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guard (himoya) qanday yoziladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "if (shart) throw new Error()",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "console.log(quantity)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "if (shart) return 0",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozilmaydi — Jest o'zi tutadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "f() xato tashlashini qaysi yozuv sinaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "expect(f()).toThrow()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "expect(f()).toBe(0)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "f().toThrow()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "expect(() => f()).toThrow()",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "toThrow'da () => yozilmasa?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Test sekinroq, natija bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato chiqib, test o'zi qulaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jest ogohlantirib, o'tkazadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Boundary sinovida nima tekshiriladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ikki tomon: 1 va 0",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat eng katta qiymat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat manfiy sonlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat matnli kirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "throw API'da qanday javobga aylanadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "200 OK",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "400 Bad Request",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "500 Internal Error",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech qanday javob",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Faqat happy path sinalsa, qanday xavf bor?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Edge xato sezilmay qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Test biroz sekinlashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dastur darhol yiqiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xavf yo'q — shu yetarli",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI testida faqat happy path bo'lsa?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ishonib o'tkazish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Edge testlarni qo'shish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qaytadan yozib chiqish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "console.log qo'shish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "-5 dona uchun toBe(-50000) xatoni tutadimi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ha — manfiy son bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha — toBe doim edge testi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — xatoni to'g'ri deydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bu umuman test emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Guard qo'shilgach eski toBe(0) testi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Baribir PASS bo'laveradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jest uni o'zi o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jest uni o'zi tuzatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "FAIL — endi xato tashlanadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

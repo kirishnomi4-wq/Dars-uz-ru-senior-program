@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React Native nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "React bilan mobil ilova",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni bezash kutubxonasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Database boshqaruvchi server",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasm tahrirlash dasturi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Web'dagi <div> React Native'da nimaga mos keladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "<p>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<View>",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<div> — o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<span>",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Web'dagi <p> React Native'da nimaga mos keladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "<View>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<div>",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<Text>",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "<label>",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React Native'da har qanday matn qayerda bo'lishi shart?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "<View> ichida to'g'ridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<div> ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<p> ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "<Text> ichida",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "StyleSheet nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Stillar yoziladigan JS obyekt",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Loyihaga ulanadigan .css fayl",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumot saqlaydigan jadval",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmlar uchun fayl formati",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CSS'dagi background-color StyleSheet'da qanday yoziladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "background-color — o'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "backgroundColor",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "bg_color",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "colorBackground",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Expo nima uchun kerak?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Database'ni boshqarish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni joylash uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefonda oson sinash uchun",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasm chizish uchun",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Expo Go QR kod bilan nima qiladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Kodni o'zi yozib beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotni saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni brauzerda ochadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Loyihani telefonda ochadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React Native ilova qaysi platformalarda ishlaydi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "iOS va Android'da",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat Apple iOS'da",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat kompyuter brauzerida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat Windows kompyuterlarida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React Native'ga o'tganda nima o'zgarmaydi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ekran elementlari (div, p)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Komponent, props va state",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Alohida CSS fayl",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "HTML teglari",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React Native — bu web-saytmi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ha, u oddiy web-sayt",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, faqat brauzerda ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q — u haqiqiy mobil ilova",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yo'q — u faqat rasm",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bugungi mashq qaysi qadamdan boshlanadi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "QR skan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telefonda ko'rish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "StyleSheet",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Expo loyiha",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

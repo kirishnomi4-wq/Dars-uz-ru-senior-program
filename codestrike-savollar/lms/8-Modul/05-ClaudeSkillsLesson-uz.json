@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Claude Skill nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Kuchliroq AI modeli nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetdagi qidiruv",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI uchun yozma yo'riqnoma",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Dastur ikonka fayli",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "SKILL.md qaysi ikki qismdan iborat?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Frontmatter va body",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasm va ovoz fayllari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parol va foydalanuvchi nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server va Database manzili",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "description nima uchun kerak?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Skill'ni bezash uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Modelni almashtirish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat odam o'qishi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qachon ishlashini aytish uchun",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Skill body'sida odatda nima bo'ladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Faqat Skill nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq qadamlar va misol",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Foydalanuvchi paroli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI modelining versiyasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Progressive disclosure nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Hamma Skill doim ochiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Skill faqat kechasi ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Skill AI'ni tezlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Matn kerak bo'lganda ochiladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Claude oldindan nimani ko'rib turadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Skill nomi va description'i",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har Skill'ning butun matni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Foydalanuvchi suhbatlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuterdagi fayllar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Skill oddiy so'rovdan nimasi bilan farq qiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Skill — bir martalik gap",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saqlanadi, qayta ishlatiladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Modelni kuchaytiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetga ulaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi Skill'ning belgisi qaysi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Uzun, chalkash matn",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat bitta so'z",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq qadamlar va misol",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'p rangli bezaklar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qanday vazifa Skill uchun eng mos?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Takrorlanadigan vazifa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir martalik tasodifiy ish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat rasm chizish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat o'yin o'ynash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Skill natijaga qanday ta'sir qiladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Natijani tasodifiy qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech ta'sir qilmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI'ni sekinlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uslubingizga yaqinlashtiradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "System prompt va Skill farqi qaysi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ikkalasi aynan bir xil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "System prompt kechasi ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Skill faqat kerak bo'lganda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Skill — AI modelining nomi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Noaniq description nimaga olib keladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Skill tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Skill ochilmay qolishi mumkin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "AI modeli o'zgarib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet aloqasi uziladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

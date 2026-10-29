@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m9d13-v1",
+  "key": "m9-13",
+  "modul": 11,
+  "tartib": 13,
+  "nom": {
+    "uz": "Uch foydalanuvchidan keyin nimani tuzatasiz?",
+    "ru": "Что вы исправите после трёх пользователей?"
+  },
+  "src": "src/9-Modull/PmAudienceTestLesson.jsx",
+  "barmoq_izi": "12a512379ae349a7238117d1ffd440bb",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Sinovda siz nima qilasiz?",
+        "variantlar": [
+          "Vazifa berib, jim kuzatasiz",
+          "Ilovani o'zingiz ko'rsatasiz",
+          "Ilova yoqdimi, deb so'raysiz",
+          "Har tugmani tushuntirasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы делаете на тесте?",
+        "variantlar": [
+          "Даёте задание и молча наблюдаете",
+          "Сами показываете приложение",
+          "Спрашиваете, понравилось ли",
+          "Объясняете каждую кнопку"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«3 / 3» sanog'i nimani bildiradi?",
+        "variantlar": [
+          "Tugma uch marta bosilgan",
+          "Uchalasi shu joyda to'xtagan",
+          "Sinov uch daqiqa ketgan",
+          "Uch ekranda to'xtash bor"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит счёт «3 / 3»?",
+        "variantlar": [
+          "Кнопку нажали три раза",
+          "Все трое застряли здесь",
+          "Тест длился три минуты",
+          "Застревание на трёх экранах"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Kuzatuv yozuviga qaysi qator mos?",
+        "variantlar": [
+          "0:40 · Ro'yxat noqulay ekan",
+          "0:40 · Hammaga yoqmaydi",
+          "0:40 · Pastga surib, topdi",
+          "0:40 · Tugmani kattalash kerak"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка подходит для записи наблюдения?",
+        "variantlar": [
+          "0:40 · Список неудобный",
+          "0:40 · Всем не понравится",
+          "0:40 · Пролистал вниз, нашёл",
+          "0:40 · Кнопку надо увеличить"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Vazifani bajardi: 2 / 3» — bu nima?",
+        "variantlar": [
+          "Ilova ikki marta ochilgan",
+          "Ilova 2/3 qismi tayyor",
+          "Ikki to'xtash takrorlangan",
+          "Bir kishi bajara olmagan"
+        ]
+      },
+      "ru": {
+        "savol": "«Выполнил задание: 2 / 3» — что это?",
+        "variantlar": [
+          "Приложение открыли дважды",
+          "Готово 2/3 приложения",
+          "Два застревания повторились",
+          "Один человек не справился"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Cyberpunk 2077 qanday chiqdi?",
+        "variantlar": [
+          "Ko'p xato bilan chiqdi",
+          "Xatosiz, tayyor holda chiqdi",
+          "Faqat kompyuter uchun chiqdi",
+          "Bepul sinov sifatida chiqdi"
+        ]
+      },
+      "ru": {
+        "savol": "Как вышел Cyberpunk 2077?",
+        "variantlar": [
+          "Вышел с множеством ошибок",
+          "Вышел готовым, без ошибок",
+          "Вышел только для компьютера",
+          "Вышел как бесплатный тест"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Sony Cyberpunk'ni nima qildi?",
+        "variantlar": [
+          "Narxini tushirib qo'ydi",
+          "Do'konidan yarim yilga oldi",
+          "Yangi nom bilan chiqardi",
+          "Xaridorga o'yin sovg'a qildi"
+        ]
+      },
+      "ru": {
+        "savol": "Что Sony сделала с Cyberpunk?",
+        "variantlar": [
+          "Снизила цену",
+          "Убрала из магазина на полгода",
+          "Выпустила под новым названием",
+          "Подарила покупателям игру"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi to'xtash birinchi tuzatiladi?",
+        "variantlar": [
+          "Eng oson tuzatiladigan",
+          "Sinov oxirida yozilgan",
+          "Ko'p kishida, vazifaga to'siq",
+          "Ekran pastida, ko'rinmagan"
+        ]
+      },
+      "ru": {
+        "savol": "Какое застревание исправляют первым?",
+        "variantlar": [
+          "Самое лёгкое в исправлении",
+          "Записанное в конце теста",
+          "У многих и мешает задаче",
+          "Внизу экрана, незаметное"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Qayta sinovni kim bilan o'tkazasiz?",
+        "variantlar": [
+          "Avval sinagan o'sha kishi",
+          "Ilovani yozgan o'zingiz",
+          "Kodni tekshiradigan agent",
+          "Ilovani ko'rmagan yangi odam"
+        ]
+      },
+      "ru": {
+        "savol": "С кем проводите повторный тест?",
+        "variantlar": [
+          "С тем же, кто уже тестировал",
+          "Сами — вы делали приложение",
+          "С агентом, который проверяет код",
+          "С новым человеком, не видевшим приложение"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Agent «tuzatdim» desa, nimaga qaraysiz?",
+        "variantlar": [
+          "Faylga va telefonga",
+          "Agent hisobotiga",
+          "Talab matniga",
+          "Prompt matniga"
+        ]
+      },
+      "ru": {
+        "savol": "Агент сказал «исправил». Куда смотрите?",
+        "variantlar": [
+          "На файл и на телефон",
+          "На отчёт агента",
+          "На текст требования",
+          "На текст промпта"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Bu darsda nechta to'xtash tuzatiladi?",
+        "variantlar": [
+          "Uchalasi, bitta promptda",
+          "Bittasi, qolgani «Keyin»ga",
+          "Ikkitasi, eng osonlari",
+          "Hech biri, avval sinov"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько застреваний исправляют на уроке?",
+        "variantlar": [
+          "Все три, одним промптом",
+          "Одно, остальные в «Потом»",
+          "Два, самые лёгкие",
+          "Ни одного, сначала тест"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Nega ilova avval kam odamda sinaladi?",
+        "variantlar": [
+          "Tezroq chiqarish uchun",
+          "Kam talab yozish uchun",
+          "Xatoni oldin ko'rish uchun",
+          "Reklama uchun fikr olish"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем приложение сначала тестируют на немногих?",
+        "variantlar": [
+          "Чтобы быстрее выпустить",
+          "Чтобы писать меньше требований",
+          "Чтобы раньше увидеть ошибки",
+          "Чтобы получить отзыв для рекламы"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "«Nima qilsin» qatoriga nima yoziladi?",
+        "variantlar": [
+          "Kishi aytgan shikoyat",
+          "Butun ekranni qayta qurish",
+          "To'xtaganlar soni va vaqti",
+          "Bitta aniq o'zgarish"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в строку «Что сделать»?",
+        "variantlar": [
+          "Жалобу человека дословно",
+          "Переделать весь экран",
+          "Число застрявших и время",
+          "Одно конкретное изменение"
+        ]
+      }
+    }
+  ]
+}

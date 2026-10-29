@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое edge case?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Самый частый ввод",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Имя функции или переменной",
+        "hint": "Неверно"
+      },
+      {
+        "value": "0, отрицательное или огромное число",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ввод, который всегда проходит",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что вернёт незащищённая orderTotal(10000, 0)?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Error — сразу остановится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "NaN — расчёт сломается",
+        "hint": "Неверно"
+      },
+      {
+        "value": "10000 — цена одной",
+        "hint": "Неверно"
+      },
+      {
+        "value": "0 — бесплатно, ошибку не видно",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если в незащищённую функцию придёт «ikki»?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "0 — текст станет нулём",
+        "hint": "Неверно"
+      },
+      {
+        "value": "NaN — расчёт тихо ломается",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Error — запрос отклонён",
+        "hint": "Неверно"
+      },
+      {
+        "value": "10000 — цена не меняется",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как пишется guard (защита)?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "if (условие) throw new Error()",
+        "hint": "Верно!"
+      },
+      {
+        "value": "console.log(quantity)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "if (условие) return 0",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Не пишется — Jest поймает сам",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая запись проверяет, что f() бросает ошибку?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "expect(f()).toThrow()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "expect(f()).toBe(0)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "f().toThrow()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "expect(() => f()).toThrow()",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если в toThrow не написать () =>?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Тест медленнее, итог тот же",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего не изменится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ошибка вылетит, тест упадёт сам",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Jest предупредит и пропустит",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что проверяют в boundary-тесте?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Обе стороны: 1 и 0",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только самое большое значение",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только отрицательные числа",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только текстовый ввод",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Во что превращается throw в API?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "200 OK",
+        "hint": "Неверно"
+      },
+      {
+        "value": "400 Bad Request",
+        "hint": "Верно!"
+      },
+      {
+        "value": "500 Internal Error",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ни во что",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем опасно, если проверен только happy path?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Ошибка на краю останется незамеченной",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Тест немного замедлится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Программа сразу упадёт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Опасности нет — этого хватит",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делать, если в тесте от ИИ только happy path?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Довериться и пропустить",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Добавить edge-тесты",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Переписать заново",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Добавить console.log",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Ловит ли ошибку toBe(-50000) для -5 штук?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Да — там отрицательное число",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Да — toBe всегда edge-тест",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нет — считает ошибку верной",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Это вообще не тест",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что станет со старым тестом toBe(0) после guard?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Останется PASS",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Jest сам его удалит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Jest сам его исправит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "FAIL — теперь бросается ошибка",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

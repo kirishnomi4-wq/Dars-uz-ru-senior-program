@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React aslida nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Yangi dasturlash tili",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "JavaScript kutubxonasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Brauzer dasturining nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Operatsion tizim turi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React'ni kim va qachon yaratgan?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Google, 2020-yil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Apple, 2010-yil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Microsoft, 2015-yil",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Facebook, 2013-yil",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Komponent nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Rasm fayllarining turi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet tezligini oshiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayta ishlatiladigan bo'lak",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Brauzer ichki sozlamasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Virtual DOM asosiy vazifasi nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Farqni topib yangilaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internetni tezlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni avtomatik yozadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytga rang beradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React qaysi tilda yozilgan?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Python",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "JavaScript",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "HTML va CSS",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "C++",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React bilan telefon ilovasi qanday yasaladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "React DOM orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "React CSS orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "React Web orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "React Native orqali",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Komponentning asosiy foydasi nima?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Kodni ancha sekinlashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetga tezroq ulaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir marta yoz, ko'p ishlat",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasmlarni ekranga chizadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Eski saytda like bosilsa nima bo'ladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Butun sahifa qayta yuklanadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Umuman javob qaytarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt butunlay o'chib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat rangi o'zgaradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Virtual DOM nima?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Kod yozadigan dastur",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifaning yengil nusxasi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ranglar palitrasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet provayderi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Virtual DOM qayerda turadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Ekranda, ko'z oldida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverda, uzoq joyda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet bulutida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xotirada, ko'rinmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir komponentni ko'p marta ishlatish nima deyiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Qaytadan yuklash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Butunlay o'chirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qayta ishlatish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Boshqa tilga tarjima",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "JSX'da komponent qanday chaqiriladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "<SkinCard />",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "call SkinCard",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "SkinCard()",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "{SkinCard}",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

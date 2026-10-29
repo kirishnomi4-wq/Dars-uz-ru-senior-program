@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое pipeline (лента)?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Программа форматирования кода",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Программа, пишущая тесты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Точки, проверяющие код",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Команда запуска сервера",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На какой точке работает npm install?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Сборка (install)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Взлёт (deploy)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Рамка (lint)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Упаковка (build)",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет, если тест красный (FAIL)?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Лента продолжит и выложит",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Лента остановится здесь",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сервер полностью выключится",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ошибка исправится сама",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает CI?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Постоянно обновлять дизайн",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Непрерывно следить за сервером",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Вручную объединять код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Автоматически проверять каждый push",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает CD?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Выкладывает проверенный груз",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Копирует код вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сам пишет тесты",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Загружает проект в репозиторий",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что означает on: push?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Работает по нажатию кнопки",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Работает раз в год",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сама запускается на каждый push",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Никогда не запускается сама",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "На какой точке используют eslint .?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Взлёт (deploy)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сборка (install)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Упаковка (build)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Рамка (lint)",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какая точка упаковывает груз для интернета?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Сканер (test)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Упаковка (build)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сборка (install)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Взлёт (deploy)",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что такое runs-on: ubuntu-latest?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Официальное имя проекта",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Секретный пароль базы",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Среда машины ленты",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Число тестов в ленте",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что нужно для взлёта?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Чтобы программист нажал кнопку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы код был маленьким",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы были выходные",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы все точки были зелёными",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что видит пользователь, если тест красный?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "Старый рабочий сайт",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Сломанный новый сайт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Пустую белую страницу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Сообщение об ошибке",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где хранится секретный ключ (secret)?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Открыто внутри ci.yml",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В особых настройках сейфа",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В последней строке README",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В истории терминала",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  }
+]

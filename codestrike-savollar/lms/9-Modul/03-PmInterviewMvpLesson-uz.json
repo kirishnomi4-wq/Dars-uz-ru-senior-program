@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Besh yozuvda qaysi shikoyatdan boshlaysiz?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "To'rt yozuvda chiqqanidan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng qattiq aytilganidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zingizga qiziq bo'lganidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirgi yozuvdagisidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi gap muammo gapi bo'la oladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Band qiladigan sayt kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Futbol o'ynash juda yoqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchi bo'sh vaqtni bilmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mahallada futbolchi ko'p",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir o'yinchi «chat kerak» dedi. Bu nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Chat — MVP'ning asosi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bu hozircha bir odam gapi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma o'yinchiga chat kerak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chatni bugun qurish kerak",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "MVP nima?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Eng chiroyli to'liq versiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Barcha imkoniyatli versiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat rasmi chizilgan versiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishlaydigan eng sodda versiya",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Keyin» qutisidagi imkoniyat nima bo'ladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Butunlay o'chiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saqlanadi, navbati suriladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bugunoq MVP'ga qo'shiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa mahsulotga beriladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Jamoa yig'ish» nega «Keyin» qutisida?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Yozuvda bor, lekin shart emas",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech kim uni aytmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Busiz bo'sh vaqt ko'rinmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Beshala yozuvda aytilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Maydonga baho» nega «Qilmaymiz» qutisida?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Uni qurish juda qiyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jamoaning o'ziga yoqmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'p o'yinchi so'ragan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuvlarda sababi yo'q",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Egasi bandlar ro'yxatini ko'rmasa-chi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Hech narsa — u kerak emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchi katak ko'rmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Egasi maydonni boshqaga beradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sayt umuman ochilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Burbn jamoasi qaysi imkoniyatni qoldirdi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Joyni belgilashni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchrashuv rejasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ball yig'ishni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Surat joylashni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Burbn jamoasi nimaga qarab qaror qildi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "O'z xohishiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlar nima qilganiga",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Eng oson imkoniyatga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta odamning gapiga",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "records[j].includes(\"busy\") nimani tekshiradi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Yozuvlar nechtaligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi yozuv nimaligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "j-yozuvda «band» bormi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«band» so'zi uzunligini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ikki shikoyat — bir qiyinchilik. Nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Bitta gapga birlashtiraman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Birini o'chiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har biriga sayt qilaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkisini «Keyin»ga suraman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  }
+]

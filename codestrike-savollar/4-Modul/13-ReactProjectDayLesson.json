@@ -1,0 +1,278 @@
+{
+  "lessonId": "react-project-day-p3-v18",
+  "key": "m3-12",
+  "modul": 4,
+  "tartib": 13,
+  "nom": {
+    "uz": "Praktika: Loyiha kuni — AvtoIjara",
+    "ru": "Практика: Проектный день — AvtoIjara"
+  },
+  "src": "src/3-Modull/ReactProjectDayLesson.jsx",
+  "barmoq_izi": "d796cd104a2cb38a2ee9e044be8f29fa",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Yaxshi prompt 3 narsani aniq aytadi — qaysi?",
+        "variantlar": [
+          "Nima + Qanday + Qayerda",
+          "Faqat rang va shrift",
+          "Uzunligi va tili",
+          "Fayl nomi va hajmi"
+        ]
+      },
+      "ru": {
+        "savol": "Хороший промпт точно называет 3 вещи — какие?",
+        "variantlar": [
+          "Что + Как + Где",
+          "Только цвет и шрифт",
+          "Длину и язык",
+          "Имя файла и размер"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "AI bilan qurishda har qismdan keyin nima qilinadi?",
+        "variantlar": [
+          "Loyiha boshidan yoziladi",
+          "Hech narsa qilinmaydi",
+          "AI javobi kutiladi",
+          "Brauzerda tekshiriladi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делают после каждой части при сборке с AI?",
+        "variantlar": [
+          "Проект пишут заново",
+          "Ничего не делают",
+          "Ждут ответа AI",
+          "Проверяют в браузере"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "AI javobi chala chiqsa, nima qilasiz?",
+        "variantlar": [
+          "Loyihani tashlayman",
+          "Aniqlashtiruvchi prompt",
+          "Hammasini qo'lda yozaman",
+          "Shundayicha qabul qilaman"
+        ]
+      },
+      "ru": {
+        "savol": "Что делать, если ответ AI неполный?",
+        "variantlar": [
+          "Брошу проект",
+          "Уточняющий промпт",
+          "Напишу всё вручную",
+          "Приму как есть"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Mashinalar katalogi ekranga nima bilan chiqadi?",
+        "variantlar": [
+          "Router + Link",
+          "confirm + CSS",
+          "GET + map",
+          "Faqat CSS"
+        ]
+      },
+      "ru": {
+        "savol": "Чем каталог машин выводится на экран?",
+        "variantlar": [
+          "Router + Link",
+          "confirm + CSS",
+          "GET + map",
+          "Только CSS"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Yangi mashinani serverga qanday qo'shamiz?",
+        "variantlar": [
+          "POST",
+          "GET",
+          "O'chirib tashlab",
+          "faqat map"
+        ]
+      },
+      "ru": {
+        "savol": "Как добавить новую машину на сервер?",
+        "variantlar": [
+          "POST",
+          "GET",
+          "Удалив её",
+          "только map"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Ijaraga olingan mashinalar ro'yxati qayerda saqlanadi?",
+        "variantlar": [
+          "Rasm faylida",
+          "Alohida hujjatda",
+          "Server papkasida",
+          "State (useState)"
+        ]
+      },
+      "ru": {
+        "savol": "Где хранится список арендованных машин?",
+        "variantlar": [
+          "В файле картинки",
+          "В отдельном документе",
+          "В папке сервера",
+          "State (useState)"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "Sahifadan sahifaga o'tish nima bilan?",
+        "variantlar": [
+          "useState bilan",
+          "Router (<Route>)",
+          "fetch bilan",
+          "map bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Чем делается переход между страницами?",
+        "variantlar": [
+          "useState bilan",
+          "Router (<Route>)",
+          "fetch bilan",
+          "map bilan"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Jami narx formulasi qanday?",
+        "variantlar": [
+          "kun + narx",
+          "narx − kun",
+          "kun × narx",
+          "faqat narx"
+        ]
+      },
+      "ru": {
+        "savol": "Какова формула итоговой цены?",
+        "variantlar": [
+          "дни + цена",
+          "цена − дни",
+          "дни × цена",
+          "только цена"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Cobalt 280 000 so'm/kun, 3 kun — jami qancha?",
+        "variantlar": [
+          "840 000 so'm",
+          "280 000 so'm",
+          "280 003 so'm",
+          "3 so'm"
+        ]
+      },
+      "ru": {
+        "savol": "Cobalt 280 000 сум/день, 3 дня — сколько всего?",
+        "variantlar": [
+          "840 000 сум",
+          "280 000 сум",
+          "280 003 сум",
+          "3 сум"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Debugging nima?",
+        "variantlar": [
+          "Saytni chiroyli bezash",
+          "Serverni qayta yoqish",
+          "Yangi shrift qo'shish",
+          "Xatoni topib tuzatish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое дебаггинг?",
+        "variantlar": [
+          "Красиво оформить сайт",
+          "Перезапустить сервер",
+          "Добавить новый шрифт",
+          "Найти и исправить ошибку"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Loyihada birinchi qadam nima?",
+        "variantlar": [
+          "Darrov kod yozish",
+          "Sahifalarga bo'laklash",
+          "AI'ni kutib turish",
+          "Sayt rangini tanlash"
+        ]
+      },
+      "ru": {
+        "savol": "Какой первый шаг в проекте?",
+        "variantlar": [
+          "Сразу писать код",
+          "Разбить на страницы",
+          "Ждать AI",
+          "Выбрать цвет сайта"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Loyihada kim boshliq?",
+        "variantlar": [
+          "AI boshliq — men kutaman",
+          "Ikkovimiz teng qaror qilamiz",
+          "Men boshliq — AI quradi",
+          "Hech kim boshqarmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Кто в проекте руководитель?",
+        "variantlar": [
+          "AI руководит — а я жду",
+          "Решаем на равных",
+          "Я руководитель — AI строит",
+          "Никто не управляет"
+        ]
+      }
+    }
+  ]
+}

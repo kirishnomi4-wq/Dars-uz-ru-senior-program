@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu darsda holat nimani aytadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ish ufqiga qarab qayerda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qancha vaqt sarflangani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishni kim yozib bergani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ishning RICE bahosi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ish o'z ufqidan keyin tugadi. Holati qanday?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Bajarildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Olib tashlandi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kechikdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi qo'shildi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor «Maydon pulini bo'lishish»ga qaysi holatni qo'ydi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Olib tashlandi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uzoqroqda qoldi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kechikdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bajarildi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor roadmap'ida qaysi ish yo'q edi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "O'yin kuni tasdiq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yindan oldin eslatma",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon pulini bo'lishish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Telegram xabari",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Voz kechilgan ish roadmap'da qanday qoladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "«Olib tashlandi» va sabab",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Izi qolmay o'chiriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Kechikdi» deb suriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Holatsiz, o'z ustunida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Holat yonida yana nima yoziladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "RICE bahosi va ufqi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Holatning sababi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agentga yozilgan prompt",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Koddan olingan bo'lak",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tesla 2006-yilgi rejasini kimga ko'rsatgan?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Faqat kompaniya ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir necha tanishga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammaga ochiq qilib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech kimga ko'rsatmagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tesla rejasining birinchi bosqichi nima edi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Ommaviy mashina",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Arzonroq mashina",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rejani e'lon qilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qimmat sport mashinasi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Shaxsiy hisobotning birinchi savoli nima haqida?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "O'z qarorim haqida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent qilgan ish haqida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mentor bahosi haqida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kechikkan ish haqida",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor qaysi qarorini qayta ko'rdi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Pro'ni tashkilotchiga qo'yish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "1-darsdagi narx taxmini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telegram xabarini qo'shish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maydon pulini surish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi biri keyingi 4 haftaga aniq ish?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Mahsulotni yaxshilayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasini vaqtida qilaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uch tanishdan narx so'rayman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilovam mashhur bo'ladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Noto'g'ri chiqqan qarorni hisobotda nima qilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Yashiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "To'g'ri deb yozaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat og'zaki aytaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dalili bilan yozaman",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

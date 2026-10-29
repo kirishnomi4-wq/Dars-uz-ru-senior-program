@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m5d11-v1",
+  "key": "m5-11",
+  "modul": 7,
+  "tartib": 12,
+  "nom": {
+    "uz": "Kecha kelgan odam bugun ham keldimi?",
+    "ru": "Тот, кто пришёл вчера, пришёл ли сегодня?"
+  },
+  "src": "src/5-Modull/PmLesson21.jsx",
+  "barmoq_izi": "e19fbe1cb94d398d320cb28fada4124f",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Qaytgan odam kim?",
+        "variantlar": [
+          "Kecha ham, bugun ham kelgan",
+          "Bugun birinchi kelgan",
+          "Kecha kelib, bugun kelmagan",
+          "Bugun ikki marta kelgan"
+        ]
+      },
+      "ru": {
+        "savol": "Кто такой вернувшийся?",
+        "variantlar": [
+          "Пришёл и вчера, и сегодня",
+          "Пришёл сегодня впервые",
+          "Был вчера, сегодня нет",
+          "Пришёл сегодня дважды"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Bir kunda qaysi ikki son yoziladi?",
+        "variantlar": [
+          "Kelganlar va e'lonlar",
+          "Qaytganlar va so'zlar",
+          "Kunlar va soatlar",
+          "Kelganlar va qaytganlar"
+        ]
+      },
+      "ru": {
+        "savol": "Какие два числа записывают за день?",
+        "variantlar": [
+          "Пришедшие и объявления",
+          "Вернувшиеся и слова",
+          "Дни и часы",
+          "Пришедшие и вернувшиеся"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Hisobning 1-kunida qaytganlar nechta?",
+        "variantlar": [
+          "Kelganlar soniga teng",
+          "Oldingi kundan olinadi",
+          "0 ta, oldingi kun yo'q",
+          "Ertasi kungi songa teng"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько вернувшихся в 1-й день учёта?",
+        "variantlar": [
+          "Столько же, сколько пришло",
+          "Берётся из прошлого дня",
+          "0, предыдущего дня нет",
+          "Как на следующий день"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Nega qaytganlar kelganlardan oshmaydi?",
+        "variantlar": [
+          "Bot bir marta sanaydi",
+          "Ular shu kelganlar ichidan",
+          "Kechagi ro'yxat o'chadi",
+          "E'lon faqat kelganni oshiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему вернувшихся не больше пришедших?",
+        "variantlar": [
+          "Бот считает один раз",
+          "Они — из числа пришедших",
+          "Вчерашний список стирается",
+          "Объявление растит только пришедших"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Misoldagi e'lon qaysi sonni ko'tardi?",
+        "variantlar": [
+          "Faqat qaytganlarni",
+          "O'sha kuni kelganlarni",
+          "Ikkalasini bir xil",
+          "Hech qaysisini"
+        ]
+      },
+      "ru": {
+        "savol": "Какое число подняло объявление в примере?",
+        "variantlar": [
+          "Только вернувшихся",
+          "Пришедших в тот день",
+          "Оба одинаково",
+          "Ни одно"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Bugun 10 kishi, 3 tasi kecha ham kelgan. Qaytgan nechta?",
+        "variantlar": [
+          "3 — ikkala kunda",
+          "10 — bugungi hamma",
+          "7 — kecha kelmaganlar",
+          "13 — ikki son yig'indisi"
+        ]
+      },
+      "ru": {
+        "savol": "Сегодня 10 человек, 3 были и вчера. Сколько вернулось?",
+        "variantlar": [
+          "3 — были в оба дня",
+          "10 — все сегодняшние",
+          "7 — не было вчера",
+          "13 — сумма двух чисел"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaytganni bilishga bugungi son nega yetmaydi?",
+        "variantlar": [
+          "Odam kam keladi",
+          "E'lon kunora beriladi",
+          "Kechagi kunni ko'rsatmaydi",
+          "Kechqurun sanaladi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему сегодняшнего числа мало, чтобы узнать вернувшихся?",
+        "variantlar": [
+          "Людей приходит мало",
+          "Объявление через день",
+          "Не показывает вчерашний день",
+          "Считается вечером"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaytish nimadan ko'rinadi?",
+        "variantlar": [
+          "Bitta kunning katagidan",
+          "Kelganlar sonining o'sishidan",
+          "Botdagi xabarlar sonidan",
+          "Ikki kunni solishtirishdan"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего видно возвращение?",
+        "variantlar": [
+          "Из клетки одного дня",
+          "Из роста числа пришедших",
+          "Из числа сообщений боту",
+          "Из сравнения двух дней"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Duolingo'dagi olov belgili raqam nimani sanaydi?",
+        "variantlar": [
+          "Ketma-ket dars kunlarini",
+          "Yodlangan so'zlar sonini",
+          "Ilovadagi soatlarni",
+          "Do'stlar bilan ballarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает число с огоньком в Duolingo?",
+        "variantlar": [
+          "Дни занятий подряд",
+          "Число выученных слов",
+          "Часы в приложении",
+          "Баллы с друзьями"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Bir kun dars qilinmasa, olov raqami nima bo'ladi?",
+        "variantlar": [
+          "Joyida turaveradi",
+          "Bir kunga suriladi",
+          "Noldan boshlanadi",
+          "Sekinroq o'sadi"
+        ]
+      },
+      "ru": {
+        "savol": "Если пропустить день, что станет с числом-огоньком?",
+        "variantlar": [
+          "Останется прежним",
+          "Сдвинется на день",
+          "Начнётся с нуля",
+          "Будет расти медленнее"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Odam 1, 3 va 5-kunlari keldi. Nechta qaytish kuni?",
+        "variantlar": [
+          "Uchta — uch kun kelgan",
+          "Yo'q — oldingi kun bo'sh",
+          "Ikkita — 3 va 5-kun",
+          "Bitta — 5-kun"
+        ]
+      },
+      "ru": {
+        "savol": "Человек приходил в 1, 3 и 5-й дни. Сколько дней возвращения?",
+        "variantlar": [
+          "Три — приходил три дня",
+          "Ни одного — прошлый день пуст",
+          "Два — 3-й и 5-й",
+          "Один — 5-й"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Botingizning uch kunlik hisobini kim yozdi?",
+        "variantlar": [
+          "Bot o'zi sanab yozdi",
+          "Mentor yozib berdi",
+          "Telegram hisobladi",
+          "O'zingiz yozdingiz"
+        ]
+      },
+      "ru": {
+        "savol": "Кто записал трёхдневный учёт вашего бота?",
+        "variantlar": [
+          "Бот посчитал сам",
+          "Записал ментор",
+          "Посчитал Telegram",
+          "Вы сами"
+        ]
+      }
+    }
+  ]
+}

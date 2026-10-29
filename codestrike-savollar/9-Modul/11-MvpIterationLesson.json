@@ -1,0 +1,278 @@
+{
+  "lessonId": "m7-11-v1",
+  "key": "m7-11",
+  "modul": 9,
+  "tartib": 11,
+  "nom": {
+    "uz": "Loyiha kuni: sinovdan keyingi tuzatish",
+    "ru": "День проекта: исправление после теста"
+  },
+  "src": "src/7-Modull/MvpIterationLesson.jsx",
+  "barmoq_izi": "1718c9c9ab44056c82b382b1be804b58",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Uch muammo chiqdi. Avval nima qilinadi?",
+        "variantlar": [
+          "Eng muhimi tuzatib sinaladi",
+          "Uchalasi birga tuzatiladi",
+          "Sayt oldindan tushuntiriladi",
+          "Sayt noldan yoziladi"
+        ]
+      },
+      "ru": {
+        "savol": "Нашлись три проблемы. Что делают сначала?",
+        "variantlar": [
+          "Исправляют главную и тестируют",
+          "Исправляют все три сразу",
+          "Заранее объясняют сайт",
+          "Пишут сайт с нуля"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Maydon'da qaysi muammo birinchi tuzatildi?",
+        "variantlar": [
+          "Eng oson tuzatiladigani",
+          "Vazifaga to'sqinlik qilgani",
+          "Eng oxirgi yozilgani",
+          "Eng uzun yozilgani"
+        ]
+      },
+      "ru": {
+        "savol": "Какую проблему в Maydon исправили первой?",
+        "variantlar": [
+          "Самую лёгкую",
+          "Ту, что мешала заданию",
+          "Записанную последней",
+          "Записанную длиннее всех"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Nega bir vaqtda bitta muammo tuzatiladi?",
+        "variantlar": [
+          "Agent ko'pini tushunmaydi",
+          "Ikkinchisi o'zi tuzaladi",
+          "Nima yordam berganini bilasiz",
+          "Qolganlari muhim emas"
+        ]
+      },
+      "ru": {
+        "savol": "Почему за раз исправляют одну проблему?",
+        "variantlar": [
+          "Агент не понимает больше одной",
+          "Вторая исправится сама",
+          "Понятно, что помогло",
+          "Остальные не важны"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Tugmani topa olmadi» — bu nima?",
+        "variantlar": [
+          "Agentga beriladigan talab",
+          "Sayt kodidagi xato qator",
+          "Agentga yuboriladigan prompt",
+          "Sinovda yozilgan kuzatuv"
+        ]
+      },
+      "ru": {
+        "savol": "«Не нашёл кнопку» — что это?",
+        "variantlar": [
+          "Требование для агента",
+          "Ошибочная строка в коде сайта",
+          "Промпт для агента",
+          "Наблюдение, записанное на тесте"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Talab: «qayerda», «nima buzilmasin» va …?",
+        "variantlar": [
+          "«nima qilsin»",
+          "«kim, qachon»",
+          "«kimning aybi»",
+          "«rasm joyi»"
+        ]
+      },
+      "ru": {
+        "savol": "Требование: «где», «что не сломать» и …?",
+        "variantlar": [
+          "«что сделать»",
+          "«кто, когда»",
+          "«чья вина»",
+          "«место картинки»"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Tugma ko'rinmasdi. «Chiroyliroq qil» nega yetmaydi?",
+        "variantlar": [
+          "Agent rangni tushunmaydi",
+          "Tugma joyi o'zgarmaydi",
+          "Chiroyli tugma sekin",
+          "Talabga rang yozilmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Кнопку не было видно. Почему «сделай красивее» мало?",
+        "variantlar": [
+          "Агент не понимает цвет",
+          "Место кнопки не меняется",
+          "Красивая кнопка медленнее",
+          "Цвет в требование не пишут"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "«Nima buzilmasin» qatoriga nima yoziladi?",
+        "variantlar": [
+          "Tuzatiladigan joy",
+          "Agent qo'shadigan narsa",
+          "Ishlab turgan narsalar",
+          "O'yinchi ismi, telefoni"
+        ]
+      },
+      "ru": {
+        "savol": "Что пишут в строке «что не сломать»?",
+        "variantlar": [
+          "Место для исправления",
+          "То, что добавит агент",
+          "То, что работает",
+          "Имя и телефон игрока"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Agent tuzatdi. Birinchi nimani o'qiysiz?",
+        "variantlar": [
+          "«Tayyor» degan gapini",
+          "Loyihadagi hamma faylni",
+          "README'dagi yozuvlarni",
+          "O'zgargan fayl va qatorlarni"
+        ]
+      },
+      "ru": {
+        "savol": "Агент исправил. Что прочитаете первым?",
+        "variantlar": [
+          "Его слово «готово»",
+          "Все файлы проекта",
+          "Записи в README",
+          "Изменённые файлы и строки"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Telefon muammosini laptopda qanday ko'rasiz?",
+        "variantlar": [
+          "Telefon o'lchamiga o'tkazib",
+          "Backend'ni qayta yoqib",
+          "Katta ekranda yangilab",
+          "Database jadvalini ochib"
+        ]
+      },
+      "ru": {
+        "savol": "Как увидеть проблему телефона на ноутбуке?",
+        "variantlar": [
+          "Переключив на размер телефона",
+          "Перезапустив Backend",
+          "Обновив на большом экране",
+          "Открыв таблицу Database"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Qayta sinovda o'yinchiga qaysi vazifa beriladi?",
+        "variantlar": [
+          "Yangi, qiyinroq vazifa",
+          "O'sha vazifaning o'zi",
+          "Faqat tugmani bosish",
+          "Vazifasiz aylanish"
+        ]
+      },
+      "ru": {
+        "savol": "Какое задание дают на повторном тесте?",
+        "variantlar": [
+          "Новое, более трудное",
+          "То же самое задание",
+          "Только нажать кнопку",
+          "Без задания"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Qayta sinovda o'yinchi qiynalsa, nima qilasiz?",
+        "variantlar": [
+          "Tugmani ko'rsatasiz",
+          "Saytni tushuntirasiz",
+          "Tushuntirmay, kuzatasiz",
+          "Sinovni to'xtatasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что делаете, если игроку трудно на повторном тесте?",
+        "variantlar": [
+          "Показываете кнопку",
+          "Объясняете сайт",
+          "Не объясняете, наблюдаете",
+          "Останавливаете тест"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Kuzatish → tuzatish → qayta sinov. Bu takror nima?",
+        "variantlar": [
+          "Deploy",
+          "Talab",
+          "Sinov rejasi",
+          "Iteratsiya"
+        ]
+      },
+      "ru": {
+        "savol": "Наблюдение → исправление → повторный тест. Что это за повтор?",
+        "variantlar": [
+          "Деплой",
+          "Требование",
+          "План теста",
+          "Итерация"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "vscode-start-01-v1",
+  "key": "m1-15",
+  "modul": 2,
+  "tartib": 9,
+  "nom": {
+    "uz": "VS Code",
+    "ru": "VS Code"
+  },
+  "src": "src/1-Modull/VsCodeLesson.jsx",
+  "barmoq_izi": "aaf9c280f15c4434f5086c0c0ab37ff7",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Dasturchilar eng ko'p ishlatadigan kod redaktori qaysi?",
+        "variantlar": [
+          "Word",
+          "VS Code",
+          "Excel",
+          "PowerPoint"
+        ]
+      },
+      "ru": {
+        "savol": "Каким редактором кода пользуется больше всего разработчиков?",
+        "variantlar": [
+          "Word",
+          "VS Code",
+          "Excel",
+          "PowerPoint"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "VS Code qaysi saytdan yuklab olinadi?",
+        "variantlar": [
+          "code.visualstudio.com",
+          "vscode-download.net",
+          "microsoft-code.uz",
+          "get-vscode.org"
+        ]
+      },
+      "ru": {
+        "savol": "С какого сайта скачивается VS Code?",
+        "variantlar": [
+          "code.visualstudio.com",
+          "vscode-download.net",
+          "microsoft-code.uz",
+          "get-vscode.org"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Fayllar ro'yxati turadigan chap panel nomi nima?",
+        "variantlar": [
+          "Terminal",
+          "Extensions",
+          "Explorer",
+          "Status bar"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется левая панель со списком файлов?",
+        "variantlar": [
+          "Terminal",
+          "Extensions",
+          "Explorer",
+          "Status bar"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Live Server nima?",
+        "variantlar": [
+          "Rasm tahrirlovchi dastur",
+          "Kod saqlanadigan xotira",
+          "Shrift o'rnatuvchi dastur",
+          "Sahifani jonli ochuvchi dastur"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое Live Server?",
+        "variantlar": [
+          "Редактор картинок",
+          "Память для хранения кода",
+          "Программа для установки шрифтов",
+          "Программа, открывающая страницу вживую"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "«Go Live» tugmasi qayerda turadi?",
+        "variantlar": [
+          "Yuqoridagi menu qatorida",
+          "Pastdagi ko'k status barda",
+          "Explorer paneli ichida",
+          "O'ng tugma menusida"
+        ]
+      },
+      "ru": {
+        "savol": "Где находится кнопка «Go Live»?",
+        "variantlar": [
+          "В строке меню сверху",
+          "На нижней синей полосе status bar",
+          "Внутри панели Explorer",
+          "В меню правой кнопки мыши"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "127.0.0.1 manzili nimani bildiradi?",
+        "variantlar": [
+          "Internetdagi katta serverni",
+          "Google'ning bosh sahifasini",
+          "O'z kompyuteringizni",
+          "Uydagi Wi-Fi routerni"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает адрес 127.0.0.1?",
+        "variantlar": [
+          "Большой сервер в интернете",
+          "Главную страницу Google",
+          "Ваш собственный компьютер",
+          "Домашний Wi-Fi роутер"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "127.0.0.1:5500 dagi 5500 raqami nima?",
+        "variantlar": [
+          "Port, ya'ni eshik raqami",
+          "Sahifadagi belgilar soni",
+          "Koddagi qatorlar soni",
+          "Kirish uchun parol raqami"
+        ]
+      },
+      "ru": {
+        "savol": "Что за число 5500 в 127.0.0.1:5500?",
+        "variantlar": [
+          "Порт, то есть номер двери",
+          "Число символов на странице",
+          "Число строк в коде",
+          "Числовой пароль для входа"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Bo'sh index.html'da tayyor HTML shablonni nima chiqaradi?",
+        "variantlar": [
+          "? + Enter",
+          "# + Space",
+          "* + Shift",
+          "! + Tab"
+        ]
+      },
+      "ru": {
+        "savol": "Что выдаёт готовый HTML-шаблон в пустом index.html?",
+        "variantlar": [
+          "? + Enter",
+          "# + Space",
+          "* + Shift",
+          "! + Tab"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Ctrl + S birikmasi nima qiladi?",
+        "variantlar": [
+          "Faylni saqlaydi",
+          "Faylni o'chiradi",
+          "Yangi fayl ochadi",
+          "Kodni nusxalaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает сочетание Ctrl + S?",
+        "variantlar": [
+          "Сохраняет файл",
+          "Удаляет файл",
+          "Открывает новый файл",
+          "Копирует код"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Yangi qo'shimcha dastur (extension) qayerdan o'rnatiladi?",
+        "variantlar": [
+          "Explorer panelidan",
+          "Terminal panelidan",
+          "Status bar'dagi tugmadan",
+          "Extensions panelidan"
+        ]
+      },
+      "ru": {
+        "savol": "Откуда устанавливается новое дополнение (extension)?",
+        "variantlar": [
+          "Из панели Explorer",
+          "Из панели Terminal",
+          "С кнопки на status bar",
+          "Из панели Extensions"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "style.css qaysi teg bilan ulanadi?",
+        "variantlar": [
+          "<style src=\"style.css\">",
+          "<link rel=\"stylesheet\">",
+          "<css href=\"style.css\">",
+          "<script src=\"style.css\">"
+        ]
+      },
+      "ru": {
+        "savol": "Каким тегом подключается style.css?",
+        "variantlar": [
+          "<style src=\"style.css\">",
+          "<link rel=\"stylesheet\">",
+          "<css href=\"style.css\">",
+          "<script src=\"style.css\">"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 2,
+      "uz": {
+        "savol": "Loyiha papkasi VS Code'da qanday ochiladi?",
+        "variantlar": [
+          "Edit → Copy Folder",
+          "View → Show Folder",
+          "File → Open Folder",
+          "Help → Load Folder"
+        ]
+      },
+      "ru": {
+        "savol": "Как открыть папку проекта в VS Code?",
+        "variantlar": [
+          "Edit → Copy Folder",
+          "View → Show Folder",
+          "File → Open Folder",
+          "Help → Load Folder"
+        ]
+      }
+    }
+  ]
+}

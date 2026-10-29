@@ -1,0 +1,278 @@
+{
+  "lessonId": "css-02-v18",
+  "key": "m1-07",
+  "modul": 2,
+  "tartib": 8,
+  "nom": {
+    "uz": "CSS: layout, flexbox, DevTools",
+    "ru": "CSS руками — часть 2"
+  },
+  "src": "src/1-Modull/CssLesson2.jsx",
+  "barmoq_izi": "6c2e35fa657a1829c1531d039801740d",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "'block' element sahifada qanday joylashadi?",
+        "variantlar": [
+          "Butun qatorni egallaydi",
+          "Yonma-yon joylashadi",
+          "Har doim markazda turadi",
+          "Faqat o'z kengligini oladi"
+        ]
+      },
+      "ru": {
+        "savol": "Как располагается элемент 'block' на странице?",
+        "variantlar": [
+          "Занимает всю строку",
+          "Стоит в ряд с другими",
+          "Всегда стоит по центру",
+          "Занимает только свою ширину"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi biri 'inline' element?",
+        "variantlar": [
+          "div",
+          "h1",
+          "span",
+          "main"
+        ]
+      },
+      "ru": {
+        "savol": "Какой из них — 'inline'-элемент?",
+        "variantlar": [
+          "div",
+          "h1",
+          "span",
+          "main"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Elementlarni yonma-yon qatorga tizish uchun qaysi xususiyat?",
+        "variantlar": [
+          "display: flex",
+          "text-align: center",
+          "font-size: 20px",
+          "color: red"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство выстраивает элементы в один ряд?",
+        "variantlar": [
+          "display: flex",
+          "text-align: center",
+          "font-size: 20px",
+          "color: red"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 0,
+      "uz": {
+        "savol": "'display: flex' qayerga yoziladi?",
+        "variantlar": [
+          "O'rab turgan konteynerga",
+          "Har bir ichki elementga",
+          "Faqat body tegiga",
+          "Matnning o'ziga"
+        ]
+      },
+      "ru": {
+        "savol": "Куда пишется 'display: flex'?",
+        "variantlar": [
+          "Обёртывающему контейнеру",
+          "Каждому внутреннему элементу",
+          "Только тегу body",
+          "Самому тексту"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Flex elementlarni vertikal ustunga tizish uchun?",
+        "variantlar": [
+          "flex-direction: row",
+          "display: block",
+          "flex-direction: column",
+          "justify-content: center"
+        ]
+      },
+      "ru": {
+        "savol": "Как выстроить flex-элементы в вертикальный столбик?",
+        "variantlar": [
+          "flex-direction: row",
+          "display: block",
+          "flex-direction: column",
+          "justify-content: center"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Flex elementlar orasidagi bo'shliqni qaysi xususiyat ochadi?",
+        "variantlar": [
+          "margin-top",
+          "padding",
+          "border",
+          "gap"
+        ]
+      },
+      "ru": {
+        "savol": "Какое свойство раздвигает flex-элементы?",
+        "variantlar": [
+          "margin-top",
+          "padding",
+          "border",
+          "gap"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Flex'ni gorizontal markazga qo'yish uchun?",
+        "variantlar": [
+          "align-items: center",
+          "text-align: center",
+          "flex-direction: row",
+          "justify-content: center"
+        ]
+      },
+      "ru": {
+        "savol": "Как поставить flex по центру по горизонтали?",
+        "variantlar": [
+          "align-items: center",
+          "text-align: center",
+          "flex-direction: row",
+          "justify-content: center"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Flex'ni vertikal markazga qo'yish uchun?",
+        "variantlar": [
+          "justify-content: center",
+          "flex-direction: column",
+          "gap: center",
+          "align-items: center"
+        ]
+      },
+      "ru": {
+        "savol": "Как поставить flex по центру по вертикали?",
+        "variantlar": [
+          "justify-content: center",
+          "flex-direction: column",
+          "gap: center",
+          "align-items: center"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "'justify-content: space-between' nima qiladi?",
+        "variantlar": [
+          "Markazga to'playdi",
+          "Chetlarga teng yoyadi",
+          "Ustma-ust taxlaydi",
+          "Elementlarni yashiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает 'justify-content: space-between'?",
+        "variantlar": [
+          "Собирает по центру",
+          "Разводит по краям поровну",
+          "Складывает друг на друга",
+          "Прячет элементы"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "DevTools'ni odatda qaysi tugma ochadi?",
+        "variantlar": [
+          "Ctrl + S",
+          "F12",
+          "Ctrl + P",
+          "Alt + Tab"
+        ]
+      },
+      "ru": {
+        "savol": "Какой клавишей обычно открывают DevTools?",
+        "variantlar": [
+          "Ctrl + S",
+          "F12",
+          "Ctrl + P",
+          "Alt + Tab"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "DevTools'da CSS qaysi panelda ko'rinadi?",
+        "variantlar": [
+          "Console",
+          "Network",
+          "Styles",
+          "Sources"
+        ]
+      },
+      "ru": {
+        "savol": "В какой панели DevTools виден CSS?",
+        "variantlar": [
+          "Console",
+          "Network",
+          "Styles",
+          "Sources"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "DevTools'da CSS qiymatini o'zgartirsangiz?",
+        "variantlar": [
+          "Fayl butunlay o'zgaradi",
+          "Vaqtincha, faqat sizda",
+          "Butun sayt buziladi",
+          "Hech narsa bo'lmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если изменить значение CSS в DevTools?",
+        "variantlar": [
+          "Файл изменится навсегда",
+          "Временно, только у вас",
+          "Весь сайт сломается",
+          "Ничего не произойдёт"
+        ]
+      }
+    }
+  ]
+}

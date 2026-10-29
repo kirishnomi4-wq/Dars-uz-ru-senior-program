@@ -1,0 +1,278 @@
+{
+  "lessonId": "practice-02-ai-promo-v18",
+  "key": "m2-09",
+  "modul": 3,
+  "tartib": 10,
+  "nom": {
+    "uz": "Praktika 2 — AI bilan tez sayt",
+    "ru": "Практика 2 — Быстрый сайт через AI"
+  },
+  "src": "src/2-Modull/PracticeLesson2.jsx",
+  "barmoq_izi": "c31259b25a5a9edcbb9b99e7c3632b9e",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "AI bilan ishlashda asosiy qoida?",
+        "variantlar": [
+          "AI hammasini o'zi hal qiladi",
+          "Kod yozish umuman shart emas",
+          "AI tezlik, sifat esa sizdan",
+          "Faqat ingliz tili kerak"
+        ]
+      },
+      "ru": {
+        "savol": "Главное правило работы с AI?",
+        "variantlar": [
+          "AI сам всё решает",
+          "Писать код вообще не нужно",
+          "AI даёт скорость, качество — вы",
+          "Нужен только английский"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "«Prompt» nima?",
+        "variantlar": [
+          "Saytning asosiy rangi",
+          "Internet brauzeri",
+          "Faylning kengaytmasi",
+          "AI'ga beriladigan buyruq"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое «промпт»?",
+        "variantlar": [
+          "Основной цвет сайта",
+          "Интернет-браузер",
+          "Расширение файла",
+          "Команда для AI"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 0,
+      "uz": {
+        "savol": "Yaxshi promptning 4 qismi qaysi?",
+        "variantlar": [
+          "Mavzu, uslub, rang, bo'limlar",
+          "Ism, yosh, shahar, maktab",
+          "HTML, CSS, JS, PHP",
+          "Sarlavha, rasm, video, audio"
+        ]
+      },
+      "ru": {
+        "savol": "4 части хорошего промпта?",
+        "variantlar": [
+          "Тема, стиль, цвет, разделы",
+          "Имя, возраст, город, школа",
+          "HTML, CSS, JS, PHP",
+          "Заголовок, картинка, видео, аудио"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "«Menga sayt yasab ber» — bu qanaqa prompt?",
+        "variantlar": [
+          "Aniq va sifatli",
+          "Noaniq — bo'sh natija beradi",
+          "Eng yaxshi variant",
+          "To'liq, to'rt qismli prompt"
+        ]
+      },
+      "ru": {
+        "savol": "«Сделай мне сайт» — какой это промпт?",
+        "variantlar": [
+          "Точный и качественный",
+          "Неточный — даст пустой результат",
+          "Лучший вариант",
+          "Полный, из четырёх частей"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Yaxshi prompt yomonidan nimasi bilan farq qiladi?",
+        "variantlar": [
+          "Uzunroq bo'ladi",
+          "Faqat inglizcha",
+          "Aniq tafsilot beradi",
+          "Hech qanday farqi yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Чем хороший промпт отличается от плохого?",
+        "variantlar": [
+          "Он длиннее",
+          "Только по-английски",
+          "Даёт точные детали",
+          "Никакой разницы"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "AI natijasi yoqmadi. To'g'ri yo'l qaysi?",
+        "variantlar": [
+          "Tashlab ketish",
+          "Xafa bo'lib to'xtash",
+          "Qo'lda qayta yozish",
+          "Aniqroq qayta so'rash"
+        ]
+      },
+      "ru": {
+        "savol": "Результат AI не понравился. Как правильно?",
+        "variantlar": [
+          "Бросить",
+          "Расстроиться и остановиться",
+          "Переписать вручную",
+          "Попросить снова, точнее"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "«Iteratsiya» nima?",
+        "variantlar": [
+          "Saytni butunlay o'chirish",
+          "Qayta so'rab yaxshilash",
+          "Rasmni kesib olish",
+          "Domen sotib olish"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое «итерация»?",
+        "variantlar": [
+          "Полностью удалить сайт",
+          "Улучшать, прося снова",
+          "Обрезать картинку",
+          "Купить домен"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Promptdagi «uslub» qismi nimani belgilaydi?",
+        "variantlar": [
+          "Sahifa mavzusini",
+          "Asosiy rangni",
+          "Ko'rinish: zamonaviy/sodda",
+          "Bo'limlar ro'yxatini"
+        ]
+      },
+      "ru": {
+        "savol": "Что задаёт часть «стиль» в промпте?",
+        "variantlar": [
+          "Тему страницы",
+          "Основной цвет",
+          "Вид: современный/простой",
+          "Список разделов"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "AI sayt yasadi. Eng muhim keyingi qadam?",
+        "variantlar": [
+          "Darhol nashr qilish",
+          "Faylni o'chirish",
+          "Hech nima qilmaslik",
+          "Natijani tekshirish"
+        ]
+      },
+      "ru": {
+        "savol": "AI сделал сайт. Самый важный следующий шаг?",
+        "variantlar": [
+          "Сразу опубликовать",
+          "Удалить файл",
+          "Ничего не делать",
+          "Проверить результат"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Promo sahifada odatda nima bo'ladi?",
+        "variantlar": [
+          "Sarlavha, tugma, kartalar",
+          "Faqat bo'sh oq ekran",
+          "Faqat matn fayli",
+          "Excel jadvali"
+        ]
+      },
+      "ru": {
+        "savol": "Что обычно есть на промо-странице?",
+        "variantlar": [
+          "Заголовок, кнопка, карточки",
+          "Только пустой белый экран",
+          "Только текстовый файл",
+          "Таблица Excel"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "«Ko'k, zamonaviy o'yin promo, 3 karta» — qanaqa prompt?",
+        "variantlar": [
+          "Noaniq",
+          "Aniq, 4 qismli",
+          "Juda qisqa, foydasiz",
+          "Faqat rang haqida"
+        ]
+      },
+      "ru": {
+        "savol": "«Синий, современный промо игры, 3 карточки» — какой промпт?",
+        "variantlar": [
+          "Неточный",
+          "Точный, из 4 частей",
+          "Слишком короткий, бесполезный",
+          "Только про цвет"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Nega AI'ga aniq buyruq berish muhim?",
+        "variantlar": [
+          "AI fikringizni o'qiy olmaydi",
+          "Aniqlik ta'sir qilmaydi",
+          "AI faqat rasm chiza oladi",
+          "Qisqa buyruq doim yaxshiroq"
+        ]
+      },
+      "ru": {
+        "savol": "Почему важно давать AI точную команду?",
+        "variantlar": [
+          "AI не умеет читать мысли",
+          "Точность ни на что не влияет",
+          "AI умеет только рисовать",
+          "Короткая команда всегда лучше"
+        ]
+      }
+    }
+  ]
+}

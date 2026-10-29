@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu kursda video-portfolio nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Siz va mahsulot haqida video",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Funksiyalar sanalgan video",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinf kanali uchun reklama",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni tushuntiruvchi video",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Kimman» bo'lagida nima aytiladi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Maktab va sinfim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kim ekanim va nima qilishim",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilovadagi o'nta funksiya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Keyingi oydagi rejam",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Videoda yuz va ism qanday bo'ladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ikkalasi ham shart",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuz shart, ism emas",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkalasi ham ixtiyoriy",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ism shart, yuz emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yozish paytida ssenariy qayerda turadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ekranda, demo yonida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dars oynasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod oynasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qog'ozda yoki telefonda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yozishdan oldin qaysi oynalarni yopasiz?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Chat va pochta oynalarini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Demo ochiq turgan oynani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozish dasturi oynasini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending ochiq oynasini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Login ko'rinmasligi uchun nima qilasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Login joyidan tez o'taman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Namuna akkaunt bilan kiraman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'z akkauntim bilan kiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Videoni qisqa yozaman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Video faylni qayerda saqlaysiz?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Repo papkasida, kod yonida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinf chatida, yo'qolmasin deb",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Repo papkasidan tashqarida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "README fayli yonida, repo'da",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "git status da video ko'rindi. Bu nima degani?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Video GitHub'ga ketdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Video buzilib qoldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Video 3 daqiqadan uzun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayl repo ichida turibdi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Video 3 daqiqaga sig'ganini qanday bilasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Video oynasidagi vaqtdan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agentdan so'rab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ssenariy qisqaligidan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayl hajmidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Videoda login ko'rindi. Nima qilasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Shundayligicha qoldiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'chirib, qayta yozaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat sinfdoshga yuboraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Login ko'rinsa bo'laveradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mahsulot ochilmasa, «Nima qurdim»da nima qilasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Mentor misolini olaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani kutib turaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "B reja videosini ochaman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bu bo'lakni tashlayman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ota-ona rozi. Videoni qayerga joylaysiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Hamma ko'radigan sahifaga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfning ochiq kanaliga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Repo'ga, README bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Link bilan ochiladigan joyga",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

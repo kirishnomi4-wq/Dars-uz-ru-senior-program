@@ -1,0 +1,278 @@
+{
+  "lessonId": "pean-stack-01-v18",
+  "key": "m2-10",
+  "modul": 3,
+  "tartib": 11,
+  "nom": {
+    "uz": "PERN Stack — 4 texnologiya, bitta jamoa",
+    "ru": "PERN Stack — 4 технологии, одна команда"
+  },
+  "src": "src/2-Modull/PeanStackLesson.jsx",
+  "barmoq_izi": "fd92729cd5382a0f63dfe1323e955fab",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 1,
+      "uz": {
+        "savol": "Saytning foydalanuvchi ko'radigan qismi nima deb ataladi?",
+        "variantlar": [
+          "Backend",
+          "Frontend",
+          "Baza",
+          "Server"
+        ]
+      },
+      "ru": {
+        "savol": "Как называется часть сайта, которую видит пользователь?",
+        "variantlar": [
+          "Backend",
+          "Frontend",
+          "База",
+          "Сервер"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "Backend nima?",
+        "variantlar": [
+          "Ko'rinmas qism — saqlaydi",
+          "Ko'rinadigan qism — tugmalar",
+          "Faqat ranglar va shriftlar",
+          "Faqat rasmlar va videolar"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое backend?",
+        "variantlar": [
+          "Невидимая часть — хранит",
+          "Видимая часть — кнопки",
+          "Только цвета и шрифты",
+          "Только картинки и видео"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "React nima qiladi?",
+        "variantlar": [
+          "Ma'lumotni saqlaydi",
+          "So'rovni yo'naltiradi",
+          "Sahifani bloklardan yig'adi",
+          "Serverni ishga tushiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает React?",
+        "variantlar": [
+          "Хранит данные",
+          "Направляет запросы",
+          "Собирает страницу из блоков",
+          "Запускает сервер"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Node.js nima qiladi?",
+        "variantlar": [
+          "Sahifani bezaydi",
+          "Rasmlarni tahrirlaydi",
+          "Internetni tezlatadi",
+          "JS'ni serverda ishlatadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает Node.js?",
+        "variantlar": [
+          "Украшает страницу",
+          "Редактирует картинки",
+          "Ускоряет интернет",
+          "Запускает JS на сервере"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Express restoranda kimga o'xshaydi?",
+        "variantlar": [
+          "Oshpaz — pishiradi",
+          "Ofitsiant — yetkazadi",
+          "Ombor — saqlaydi",
+          "Mehmon — buyuradi"
+        ]
+      },
+      "ru": {
+        "savol": "На кого в ресторане похож Express?",
+        "variantlar": [
+          "Повар — готовит",
+          "Официант — относит",
+          "Склад — хранит",
+          "Гость — заказывает"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Ma'lumot (like, izoh) doimiy qayerda saqlanadi?",
+        "variantlar": [
+          "Brauzer xotirasida",
+          "CSS fayl ichida",
+          "PostgreSQL bazasida",
+          "Faqat ekranda"
+        ]
+      },
+      "ru": {
+        "savol": "Где постоянно хранятся данные (лайки, комментарии)?",
+        "variantlar": [
+          "В памяти браузера",
+          "Внутри CSS-файла",
+          "В базе PostgreSQL",
+          "Только на экране"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Sahifa yangilangach izoh nega yo'qoldi?",
+        "variantlar": [
+          "Hech qayerda saqlanmagan",
+          "Internet uzilib qoldi",
+          "Sayt kodi buzildi",
+          "Parol noto'g'ri edi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему после обновления страницы комментарий исчез?",
+        "variantlar": [
+          "Нигде не был сохранён",
+          "Пропал интернет",
+          "Сломался код сайта",
+          "Пароль был неверный"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "PERN qaysi 4 texnologiya?",
+        "variantlar": [
+          "Python, Express, Redux, Node",
+          "Postgres, Ember, Ruby, Nest",
+          "Postgres, Elm, React, Deno",
+          "Postgres, Express, React, Node"
+        ]
+      },
+      "ru": {
+        "savol": "Какие 4 технологии — это PERN?",
+        "variantlar": [
+          "Python, Express, Redux, Node",
+          "Postgres, Ember, Ruby, Nest",
+          "Postgres, Elm, React, Deno",
+          "Postgres, Express, React, Node"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "So'rov qaysi yo'ldan boradi?",
+        "variantlar": [
+          "Postgres → React → Express",
+          "React → Express → Postgres",
+          "Express → React → Postgres",
+          "React → Postgres → Express"
+        ]
+      },
+      "ru": {
+        "savol": "Каким путём идёт запрос?",
+        "variantlar": [
+          "Postgres → React → Express",
+          "React → Express → Postgres",
+          "Express → React → Postgres",
+          "React → Postgres → Express"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "stack so'zi nimani anglatadi?",
+        "variantlar": [
+          "Bitta dastur nomi",
+          "Dasturdagi xato turi",
+          "Texnologiyalar to'plami",
+          "Saytni chiqarish usuli"
+        ]
+      },
+      "ru": {
+        "savol": "Что означает слово stack?",
+        "variantlar": [
+          "Название одной программы",
+          "Вид ошибки в программе",
+          "Набор технологий",
+          "Способ выложить сайт"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "PostgreSQL restoranda nimaga o'xshaydi?",
+        "variantlar": [
+          "Ombor — doimiy xotira",
+          "Zal — mehmonlar joyi",
+          "Ofitsiant — yo'naltiruvchi",
+          "Menyu — taomlar ro'yxati"
+        ]
+      },
+      "ru": {
+        "savol": "На что в ресторане похож PostgreSQL?",
+        "variantlar": [
+          "Склад — постоянная память",
+          "Зал — место для гостей",
+          "Официант — направляющий",
+          "Меню — список блюд"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "JavaScript bilgan odam backend'ga tayyormi?",
+        "variantlar": [
+          "Ha, CSS ham bilsa",
+          "Yo'q, Python shart",
+          "Ha, brauzer server bo'ladi",
+          "Ha, Node.js bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Готов ли к backend тот, кто знает JavaScript?",
+        "variantlar": [
+          "Да, если знает и CSS",
+          "Нет, нужен Python",
+          "Да, браузер станет сервером",
+          "Да, с Node.js"
+        ]
+      }
+    }
+  ]
+}

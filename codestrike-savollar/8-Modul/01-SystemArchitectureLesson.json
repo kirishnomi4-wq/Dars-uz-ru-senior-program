@@ -1,0 +1,278 @@
+{
+  "lessonId": "sys-arch-06-01-v18",
+  "key": "m6-01",
+  "modul": 8,
+  "tartib": 1,
+  "nom": {
+    "uz": "Komponentlardan tizim",
+    "ru": "Система из компонентов"
+  },
+  "src": "src/6-Modull/SystemArchitectureLesson.jsx",
+  "barmoq_izi": "76c9a5ad30739bef368698dd4bc78224",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Mahsulot va buyurtmalar qayerda doimiy saqlanadi?",
+        "variantlar": [
+          "Database'da",
+          "Frontend'da",
+          "Backend'da",
+          "AI'da"
+        ]
+      },
+      "ru": {
+        "savol": "Где постоянно хранятся товары и заказы?",
+        "variantlar": [
+          "В Database",
+          "В Frontend",
+          "В Backend",
+          "В AI"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Frontend asosan nima qiladi?",
+        "variantlar": [
+          "Ma'lumotni saqlaydi",
+          "Narxni hisoblaydi",
+          "Ekranda ko'rsatadi",
+          "Parolni tekshiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Чем в основном занимается Frontend?",
+        "variantlar": [
+          "Хранит данные",
+          "Считает цену",
+          "Показывает на экране",
+          "Проверяет пароль"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«Savatga» so'rovi qaysi yo'ldan boradi?",
+        "variantlar": [
+          "Frontend → Database",
+          "Database → Frontend",
+          "Frontend → Backend → Database",
+          "Database → Backend → Frontend"
+        ]
+      },
+      "ru": {
+        "savol": "Каким путём идёт запрос «В корзину»?",
+        "variantlar": [
+          "Frontend → Database",
+          "Database → Frontend",
+          "Frontend → Backend → Database",
+          "Database → Backend → Frontend"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Nega Frontend Database'ga to'g'ridan bormaydi?",
+        "variantlar": [
+          "Database juda sekin",
+          "Xavfsizlik uchun",
+          "Ular boshqa tilda",
+          "Texnik iloji yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Почему Frontend не идёт в Database напрямую?",
+        "variantlar": [
+          "Database слишком медленная",
+          "Ради безопасности",
+          "Они на разных языках",
+          "Технически невозможно"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 3,
+      "uz": {
+        "savol": "Backend'ning asosiy vazifasi nima?",
+        "variantlar": [
+          "Sahifa dizaynini chizadi",
+          "Foydalanuvchiga ko'rinadi",
+          "Matnni tarjima qiladi",
+          "Tekshiradi, Database'ga yozadi"
+        ]
+      },
+      "ru": {
+        "savol": "В чём главная задача Backend?",
+        "variantlar": [
+          "Рисует дизайн страницы",
+          "Виден пользователю",
+          "Переводит текст",
+          "Проверяет, пишет в Database"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Web sayt va bot bir xil buyurtmani qanday ko'radi?",
+        "variantlar": [
+          "Bitta Backend'ga ulanadi",
+          "Alohida Database quriladi",
+          "Qo'lda ko'chiriladi",
+          "Buning iloji yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Как сайт и бот видят одни и те же заказы?",
+        "variantlar": [
+          "Подключены к одному Backend",
+          "Строят отдельные Database",
+          "Переносят вручную",
+          "Это невозможно"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "«Ko'p kirish yo'li, bitta tizim» — bu nima?",
+        "variantlar": [
+          "Har yo'lga alohida tizim",
+          "Bitta yo'l yetarli",
+          "Faqat web sayt bo'ladi",
+          "Hamma yo'l bitta Backend'ga"
+        ]
+      },
+      "ru": {
+        "savol": "Что значит «много точек входа, одна система»?",
+        "variantlar": [
+          "Каждому входу своя система",
+          "Хватит одного входа",
+          "Бывает только веб-сайт",
+          "Все входы — в один Backend"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "Database o'chirilsa nima bo'ladi?",
+        "variantlar": [
+          "Hech narsa o'zgarmaydi",
+          "Ma'lumot saqlanmaydi",
+          "Sahifa ranglari o'chadi",
+          "Tizim tezlashadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если отключить Database?",
+        "variantlar": [
+          "Ничего не изменится",
+          "Данные не сохранятся",
+          "Погаснут цвета страницы",
+          "Система ускорится"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Tayyor tizimga mobil ilova qanday qo'shiladi?",
+        "variantlar": [
+          "Hammasi noldan yoziladi",
+          "Yangi Frontend ulanadi",
+          "Alohida Database quriladi",
+          "Buning iloji yo'q"
+        ]
+      },
+      "ru": {
+        "savol": "Как добавить мобильное приложение к готовой системе?",
+        "variantlar": [
+          "Всё пишут с нуля",
+          "Подключают новый Frontend",
+          "Строят отдельную Database",
+          "Это невозможно"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "AI tizimda nima qiladi?",
+        "variantlar": [
+          "Ma'lumotni saqlaydi",
+          "Hamma qarorni o'zi qiladi",
+          "Maslahat beradi",
+          "Sahifani ko'rsatadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает AI в системе?",
+        "variantlar": [
+          "Хранит данные",
+          "Сам принимает все решения",
+          "Даёт советы",
+          "Показывает страницу"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Ma'lumot yo'lida foydalanuvchidan keyin nima turadi?",
+        "variantlar": [
+          "Database",
+          "Backend",
+          "AI",
+          "Frontend"
+        ]
+      },
+      "ru": {
+        "savol": "Что идёт в пути данных после пользователя?",
+        "variantlar": [
+          "Database",
+          "Backend",
+          "AI",
+          "Frontend"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "Kod yozishdan oldin chizma nega kerak?",
+        "variantlar": [
+          "Qism vazifasi aniq bo'ladi",
+          "Kodni o'zi yozib beradi",
+          "Serverni tezlashtiradi",
+          "Dizaynni chiroyli qiladi"
+        ]
+      },
+      "ru": {
+        "savol": "Зачем схема до написания кода?",
+        "variantlar": [
+          "Ясно, что делает каждая часть",
+          "Сама пишет код",
+          "Ускоряет сервер",
+          "Делает дизайн красивым"
+        ]
+      }
+    }
+  ]
+}

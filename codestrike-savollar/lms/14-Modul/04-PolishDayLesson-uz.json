@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Demo yo'lida qaysi uch joy o'zgaradi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bosish, yuklanish, natija",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kirish, ro'yxat, chiqish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasm, kutubxona, kod hajmi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lending, maxfiylik, oferta",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayqaldan keyin demo yo'lida nima o'zgaradi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ekranlar soni va tartibi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uch joyning ko'rinishi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend va Database",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova nomi va rangi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Javob sekin kelsa, bosilgan tugma qanday turadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Avvalgidek turadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'qolib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Qo'shilmoqda…», o'chiq",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "«Qo'shildingiz» bo'ladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Joy egallovchi qayerda turadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ekranning eng tepasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatdan oldingi ekranda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugma yozuvi o'rnida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumot o'rnida",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kulrang karta nega haqiqiy karta o'lchamida?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Ro'yxat kelganda sakramasin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Chiroyli ko'rinsin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend tez javob bersin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kutish yozuvi kerak emas",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kutish yozuvi bor bo'lsa, kulrang kartalar nima beradi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ro'yxatni tezlatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nima kelishini ko'rsatadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend'ni uyg'otadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuvni almashtiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Harakat kamaytirilsa, sayqaldan nima qoladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Hech narsa qolmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat animatsiyalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozuv, kartalar va son",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat kutish belgisi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Harakat kamaytirilganini DevTools'da qayerda tanlaysiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Network bo'limida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Lighthouse bo'limida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Console bo'limida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rendering bo'limida",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ro'yxat sekin kelishini DevTools'da qanday ko'rasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Network'da «Slow 4G»",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Lighthouse'da «Mobile»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rendering'da «reduce»",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Console'da xato qatori",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Muvaffaqiyat animatsiyasi qanday bo'ladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Uzun, butun ekran bo'ylab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qisqa va bir marta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'xtamay miltillaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har soniyada takrorlanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Animatsiyaga nega yangi kutubxona qo'shilmaydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Faqat web'da ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Agent o'rnata olmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod hajmi oshishi mumkin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Backend'ni sekinlatadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayqal ishlashini qanday bilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Agent «tayyor» deydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodda animatsiya bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdosh «chiroyli» deydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sekin tarmoqda ko'rasiz",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "G'oya og'zaki aytilsa, nima xavfi bor?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Har kim o'zicha tushunadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma darrov yoqtirib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "G'oya juda tez tarqaladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozib berishni so'rashadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Menga PRD bering» — hamkoringiz nimani so'rayapti?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Tayyor kodni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narx qog'ozini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ekran rasmlarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Talablar hujjatini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Guruh to'lib, odam bekorga qaytadi» — qaysi katak?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Kim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yechim",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Muammo",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'lchov",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Kim» katagiga qaysi qator to'g'ri?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Hamma foydalanuvchilar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ertalab suzishga keladiganlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilovaga pul to'laydiganlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod yozadigan AI",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yechim katagiga qaysi qator tushadi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Zamonaviy va tez ilova",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh joy ko'rsatuvchi sahifa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikki haftada bitadigan ish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "JavaScript'dagi kod",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'lchov katagi nima uchun kerak?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Natijani son bilan ko'rsatadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova narxini hisoblaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustunlar sonini aytadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ish muddatini aytadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'lchov katagi bo'sh qolsa, nima yo'qoladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Ishni boshlash imkoni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qolgan uch katak",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Natija bo'ldimi degan javob",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilovaning nomi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Varaq to'ldirilgach AI uch urinishda nima qurdi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Har biri boshqa narsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech biri boshlay olmadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkitasi qurdi, biri yo'q",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uchalasi bir xil ekran",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Geyts va Allen ishni qanday tartibda qildi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Avval aytdi, keyin yozdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Avval yozdi, keyin aytdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Avval sinadi, keyin aytdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uzoq sinab, keyin aytdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Til hali yozilmagan payt ular nima qildi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Altairni sotib oldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tayyor tilni yubordi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Bizda til bor» dedi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Jurnalga maqola yozdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Varaq qachon tayyor bo'ladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ikkita katagi yozilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har katak savolga javob bersa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kod bilan topshirilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uzun gaplar yozilganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Varaq bo'sh qolsa, kim taxmin qiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ilovani ochgan odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Basseyn murabbiysi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PRD'ni yozgan odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod yozadigan AI",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

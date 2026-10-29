@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m9d1-v1",
+  "key": "m9-01",
+  "modul": 11,
+  "tartib": 1,
+  "nom": {
+    "uz": "Beshta g'oyani qayerdan topasiz?",
+    "ru": "Где найти пять идей?"
+  },
+  "src": "src/9-Modull/PmTenIdeasLesson.jsx",
+  "barmoq_izi": "d432fd31f9e69c7b8c6475e37b157252",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "«Maktab ilovasi» g'oyasiga yana nima kerak?",
+        "variantlar": [
+          "Muammo, kim uchun, yechim",
+          "Chiroyli nom va rang",
+          "Narxi va reklamasi",
+          "Tugmalar soni, rangi"
+        ]
+      },
+      "ru": {
+        "savol": "Что ещё нужно идее «школьное приложение»?",
+        "variantlar": [
+          "Проблема, для кого, решение",
+          "Красивое название и цвет",
+          "Цена и реклама",
+          "Число и цвет кнопок"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Qaysi gap yechim qatoriga yoziladi?",
+        "variantlar": [
+          "Vazifa chatda yo'qoladi",
+          "Maktab o'quvchilari uchun",
+          "Vazifalar bir joyda turadi",
+          "Chiroyli bo'lsin deyishadi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза пишется в строку «Решение»?",
+        "variantlar": [
+          "Задание теряется в чате",
+          "Для учеников школы",
+          "Все задания в одном месте",
+          "Хотят, чтобы было красиво"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Qaysi gap muammo qatoriga yoziladi?",
+        "variantlar": [
+          "Ilovada chat bo'lsin",
+          "Vazifa chatda yo'qoladi",
+          "Ilova chiroyli bo'lsin",
+          "Bot tez ishlasin"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза пишется в строку «Проблема»?",
+        "variantlar": [
+          "Пусть в приложении будет чат",
+          "Задание теряется в чате",
+          "Пусть приложение будет красивым",
+          "Пусть бот работает быстро"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi «Kim uchun» qatori aniq?",
+        "variantlar": [
+          "Shahardagi har xil odamlar",
+          "Telefoni bor har bir odam",
+          "Yoshlar ham, kattalar ham",
+          "To'garak izlayotgan o'smirlar"
+        ]
+      },
+      "ru": {
+        "savol": "Какая строка «Для кого» точная?",
+        "variantlar": [
+          "Разные люди в городе",
+          "Каждый, у кого есть телефон",
+          "И молодые, и взрослые",
+          "Подростки, которые ищут кружок"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "«Ilovada to'lov tugmasi yo'q» qaysi qatorga mos?",
+        "variantlar": [
+          "Yechimga: ichida yechim bor",
+          "Muammoga: odam qiynalgan",
+          "Kim uchun qatoriga",
+          "Hech qaysi qatorga"
+        ]
+      },
+      "ru": {
+        "savol": "«В приложении нет кнопки оплаты» — к какой строке?",
+        "variantlar": [
+          "К решению: внутри есть решение",
+          "К проблеме: человеку трудно",
+          "К строке «Для кого»",
+          "Ни к какой строке"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Airbnb asoschilari g'oyani qayerdan topgan?",
+        "variantlar": [
+          "Investor topshirig'idan",
+          "Boshqa ilovadan ko'chirib",
+          "Kompyuter o'yinidan",
+          "O'zlari ko'rgan voqeadan"
+        ]
+      },
+      "ru": {
+        "savol": "Где основатели Airbnb нашли идею?",
+        "variantlar": [
+          "Из задания инвестора",
+          "Скопировали у другого приложения",
+          "Из компьютерной игры",
+          "Из случая, который увидели сами"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 1,
+      "uz": {
+        "savol": "2007-yilda San-Fransiskoda nima bo'lgan?",
+        "variantlar": [
+          "Yangi aeroport ochilgan",
+          "Katta konferensiya bo'lgan",
+          "Transport to'xtab qolgan",
+          "Uylar sotuvga chiqqan"
+        ]
+      },
+      "ru": {
+        "savol": "Что было в Сан-Франциско в 2007 году?",
+        "variantlar": [
+          "Открылся новый аэропорт",
+          "Прошла большая конференция",
+          "Остановился транспорт",
+          "Дома выставили на продажу"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "Airbnb asoschilari avval nima qilgan?",
+        "variantlar": [
+          "Mehmonxona qurgan",
+          "Ilovaga reklama bergan",
+          "Havo to'shagini ijaraga bergan",
+          "Konferensiyani ko'chirgan"
+        ]
+      },
+      "ru": {
+        "savol": "Что основатели Airbnb сделали сначала?",
+        "variantlar": [
+          "Построили гостиницу",
+          "Дали рекламу приложению",
+          "Сдали надувной матрас",
+          "Перенесли конференцию"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 3,
+      "uz": {
+        "savol": "Beshta g'oya yozganda nima qilasiz?",
+        "variantlar": [
+          "Kuchsizini o'chirasiz",
+          "Faqat uchtasini yozasiz",
+          "Har biriga nom o'ylaysiz",
+          "Har biriga uch qator yozasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы делаете, когда пишете пять идей?",
+        "variantlar": [
+          "Удаляете слабую",
+          "Пишете только три",
+          "Придумываете каждой название",
+          "Пишете каждой три строки"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 0,
+      "uz": {
+        "savol": "Sherik yechimdan boshqa muammo aytdi. Nega?",
+        "variantlar": [
+          "Yechim ikki muammoga mos",
+          "Sherik yaxshi eshitmagan",
+          "G'oya yaroqsiz bo'lgan",
+          "Yechim qatori ortiqcha"
+        ]
+      },
+      "ru": {
+        "savol": "Партнёр назвал по решению другую проблему. Почему?",
+        "variantlar": [
+          "Решение подходит к двум проблемам",
+          "Партнёр плохо слушал",
+          "Идея оказалась негодной",
+          "Строка решения лишняя"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Atrofni kuzatganda nimaga qaraysiz?",
+        "variantlar": [
+          "Eng ko'p yuklangan ilovaga",
+          "Do'stlar o'ynaydigan o'yinga",
+          "Kim nimadan qiynalganiga",
+          "Eng yangi texnologiyaga"
+        ]
+      },
+      "ru": {
+        "savol": "На что вы смотрите, наблюдая вокруг?",
+        "variantlar": [
+          "На самое скачиваемое приложение",
+          "На игру, в которую играют друзья",
+          "Кому и в чём трудно",
+          "На самую новую технологию"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Funksiyadan g'oya qilish uchun nima topasiz?",
+        "variantlar": [
+          "Qisqa va qiziq nom",
+          "U hal qiladigan muammo",
+          "Yana bitta funksiya",
+          "Uni quradigan kod"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно найти, чтобы из функции сделать идею?",
+        "variantlar": [
+          "Короткое яркое название",
+          "Проблему, которую она решает",
+          "Ещё одну функцию",
+          "Код, который её строит"
+        ]
+      }
+    }
+  ]
+}

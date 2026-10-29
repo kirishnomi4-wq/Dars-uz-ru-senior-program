@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi prompt 3 narsani aniq aytadi — qaysi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Nima + Qanday + Qayerda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat rang va shrift",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uzunligi va tili",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayl nomi va hajmi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI bilan qurishda har qismdan keyin nima qilinadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Loyiha boshidan yoziladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech narsa qilinmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "AI javobi kutiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzerda tekshiriladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "AI javobi chala chiqsa, nima qilasiz?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Loyihani tashlayman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniqlashtiruvchi prompt",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hammasini qo'lda yozaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Shundayicha qabul qilaman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mashinalar katalogi ekranga nima bilan chiqadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Router + Link",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "confirm + CSS",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET + map",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat CSS",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi mashinani serverga qanday qo'shamiz?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "POST",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "GET",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'chirib tashlab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "faqat map",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ijaraga olingan mashinalar ro'yxati qayerda saqlanadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Rasm faylida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Alohida hujjatda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server papkasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "State (useState)",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifadan sahifaga o'tish nima bilan?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "useState bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Router (<Route>)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "fetch bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "map bilan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Jami narx formulasi qanday?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "kun + narx",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "narx − kun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "kun × narx",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "faqat narx",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Cobalt 280 000 so'm/kun, 3 kun — jami qancha?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "840 000 so'm",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "280 000 so'm",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "280 003 so'm",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "3 so'm",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Debugging nima?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Saytni chiroyli bezash",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni qayta yoqish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi shrift qo'shish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xatoni topib tuzatish",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Loyihada birinchi qadam nima?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Darrov kod yozish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifalarga bo'laklash",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "AI'ni kutib turish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt rangini tanlash",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Loyihada kim boshliq?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "AI boshliq — men kutaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ikkovimiz teng qaror qilamiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Men boshliq — AI quradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hech kim boshqarmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

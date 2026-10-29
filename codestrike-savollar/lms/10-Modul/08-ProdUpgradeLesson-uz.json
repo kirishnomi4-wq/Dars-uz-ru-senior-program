@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Prod ro'yxati nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Ishonchliroq qiladigan ishlar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Keyingi funksiyalar ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifalar manzillari ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bugungi bandlar ro'yxati",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "So'rovlar chegarasi nimani sanaydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Saytdagi odamlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir IP'dan daqiqalik so'rovni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir IP'dagi odamlar sonini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinchilar bandlarini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chegaradan oshgan so'rovga Backend nima qaytaradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "401 — parol noto'g'ri",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "409 — vaqt band",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "429 — ko'p so'rov",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "400 — ism yo'q",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Chegara nega Backend'da qo'yiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Sayt kodi sekinroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytda joy qolmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Backend kodi yashirin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har so'rov Backend'dan o'tadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi yo'lga eng qattiq chegara qo'yiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "POST /kirish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "POST /hodisalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET /vaqtlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "POST /bandlar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir Wi-Fi'dagi telefonlar Backend'ga qanday ko'rinadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "O'z brauzer ID si bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta IP manzildek",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Alohida Render orqali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Netlify manzilidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend kechiksa, prod sayt nima qiladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "«Yuklanmoqda…» deb turadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kataklarni bo'sh chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabar yozib, qayta so'raydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Har soniya yangilanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bir daqiqadan keyin ham javob bo'lmasa, nima chiqadi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Backend xatosi matni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bo'sh oq sahifa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "«Band qilindi» belgisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xabar va «Qayta urinish»",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "429 kelsa, band formasidagi ism va telefon-chi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Joyida qoladi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'chib ketadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Egaga yuboriladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ertangi formaga o'tadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "A — 42 tadan 12, B — 40 tadan 17. Qaysi biri qoladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "A — tanlaganlar ko'proq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "B — foizi kattaroq",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "A — hozirgi variant",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "B — tugmasi chiroyli",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega «B aniq yaxshi» deb xulosa qilinmaydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Foiz A da kattaroq",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dashboard faqat bugungi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "82 ta brauzer hali kam",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "SQL noto'g'ri sanagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "prod push qilindi. Internetdagi sayt-chi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Darhol prodga o'tadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Render uxlab qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Alohida manzilda chiqadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zgarmaydi, maindan oladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

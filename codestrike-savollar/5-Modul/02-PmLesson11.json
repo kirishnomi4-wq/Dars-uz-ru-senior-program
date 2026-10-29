@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m4d2-v1",
+  "key": "m4-02",
+  "modul": 5,
+  "tartib": 2,
+  "nom": {
+    "uz": "Ilova nimani eslab qolsin?",
+    "ru": "Что приложению запомнить?"
+  },
+  "src": "src/4-Modull/PmLesson11.jsx",
+  "barmoq_izi": "f675b0088da5036baf074c1f9915913c",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Ilova ertaga nimani qayta ko'rsata oladi?",
+        "variantlar": [
+          "Faqat yozib qo'yganini",
+          "Ekranda bir ko'ringanini",
+          "Siz so'ragan hamma narsani",
+          "Boshqa ilovadagi narsani"
+        ]
+      },
+      "ru": {
+        "savol": "Что приложение сможет показать завтра снова?",
+        "variantlar": [
+          "Только то, что записало",
+          "То, что разок мелькнуло на экране",
+          "Всё, что вы попросите",
+          "То, что было в другом приложении"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 2,
+      "uz": {
+        "savol": "Maydon nima?",
+        "variantlar": [
+          "Ekrandagi bo'lim nomi",
+          "Siz bosadigan tugma",
+          "Ilova yozib qo'yadigan narsa",
+          "Bir marta chiqadigan xabar"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое поле?",
+        "variantlar": [
+          "Название раздела на экране",
+          "Кнопка, которую вы нажимаете",
+          "То, что приложение записывает",
+          "Сообщение, которое появится раз"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Qo'shiq nomlaridan qaysi bo'lim quriladi?",
+        "variantlar": [
+          "«Sizga yoqadi»",
+          "«Yaqinda tinglaganlaringiz»",
+          "«Kechqurun tinglaganlaringiz»",
+          "«Albomdagi qo'shiqlar»"
+        ]
+      },
+      "ru": {
+        "savol": "Какой раздел строится из названий песен?",
+        "variantlar": [
+          "«Вам понравится»",
+          "«Недавно прослушанные»",
+          "«Слушали вечером»",
+          "«Песни из альбома»"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "«Sizga yoqadi» qaysi maydondan quriladi?",
+        "variantlar": [
+          "Qo'shiq qayerda tinglanganidan",
+          "Qo'shiq nomlaridan",
+          "Tinglash vaqtidan",
+          "Oxirigacha tinglanganidan"
+        ]
+      },
+      "ru": {
+        "savol": "Из какого поля строится «Вам нравится»?",
+        "variantlar": [
+          "Из места, где прослушана песня",
+          "Из названий песен",
+          "Из времени прослушивания",
+          "Из «дослушана до конца»"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "«Kechqurun tinglaganlaringiz» qaysi maydondan quriladi?",
+        "variantlar": [
+          "Tinglash vaqtidan",
+          "Qo'shiq nomlaridan",
+          "Oxirigacha tinglanganidan",
+          "Telefondagi kontaktlardan"
+        ]
+      },
+      "ru": {
+        "savol": "Из какого поля строится «Слушали вечером»?",
+        "variantlar": [
+          "Из времени прослушивания",
+          "Из названий песен",
+          "Из «дослушана до конца»",
+          "Из контактов в телефоне"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Maydon bo'lim bermadi. Bu nimani bildiradi?",
+        "variantlar": [
+          "Bo'lim keyin o'zi ochiladi",
+          "Maydon bekorga saqlangan",
+          "Ilova uni o'qiy olmaydi",
+          "Bo'lim boshqa ilovada"
+        ]
+      },
+      "ru": {
+        "savol": "Поле не дало раздела. Что это значит?",
+        "variantlar": [
+          "Раздел потом откроется сам",
+          "Поле хранится зря",
+          "Приложение не может его прочитать",
+          "Раздел в другом приложении"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Yaxshi maydonning belgisi nima?",
+        "variantlar": [
+          "Nomi qisqa yozilgan",
+          "Ilovada kam joy oladi",
+          "Darhol ekranda ko'rinadi",
+          "Ortida bitta bo'lim turadi"
+        ]
+      },
+      "ru": {
+        "savol": "Признак хорошего поля?",
+        "variantlar": [
+          "Короткое название",
+          "Занимает мало места",
+          "Сразу видно на экране",
+          "За ним стоит один раздел"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 2,
+      "uz": {
+        "savol": "«Umumiy ma'lumot» nega yomon maydon?",
+        "variantlar": [
+          "Yozish uzoq vaqt oladi",
+          "Ilova uni saqlay olmaydi",
+          "Undan bo'lim qurilmaydi",
+          "Boshqa maydonni o'chiradi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему «общая информация» — плохое поле?",
+        "variantlar": [
+          "Его долго записывать",
+          "Приложение не может его хранить",
+          "Из него не строится раздел",
+          "Стирает другие поля"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Netflix bosh sahifasi nimadan yig'iladi?",
+        "variantlar": [
+          "Har kim ko'rgan kinolardan",
+          "Eng qimmat kinolardan",
+          "Hammaga bitta ro'yxatdan",
+          "Kino uzunligi tartibidan"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего собирается главная Netflix?",
+        "variantlar": [
+          "Из фильмов, которые смотрел каждый",
+          "Из самых дорогих фильмов",
+          "Из одного списка для всех",
+          "Из порядка по длине фильма"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 3,
+      "uz": {
+        "savol": "Netflix ko'rishlarining qanchasi tavsiyadan keladi?",
+        "variantlar": [
+          "Har to'rttadan bittasi",
+          "Har ikkitadan bittasi",
+          "Deyarli hech biri",
+          "Har beshtadan to'rttasi"
+        ]
+      },
+      "ru": {
+        "savol": "Какая доля просмотров Netflix приходит из рекомендаций?",
+        "variantlar": [
+          "Один из четырёх",
+          "Один из двух",
+          "Почти ни один",
+          "Четыре из пяти"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Bo'lim ilovada nimadan yig'iladi?",
+        "variantlar": [
+          "Ilova bezagidan",
+          "Foydalanuvchi qidiruvidan",
+          "Saqlangan yozuvlardan",
+          "Boshqa ilovalar ro'yxatidan"
+        ]
+      },
+      "ru": {
+        "savol": "Из чего собирается раздел в приложении?",
+        "variantlar": [
+          "Из оформления приложения",
+          "Из поиска пользователя",
+          "Из сохранённых записей",
+          "Из списка других приложений"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 1,
+      "uz": {
+        "savol": "Nimani saqlashni kim hal qiladi?",
+        "variantlar": [
+          "Kod o'zi hal qiladi",
+          "Mahsulotni o'ylaydigan odam",
+          "Telefon ishlab chiqargan zavod",
+          "Qo'shiq kuylagan xonanda"
+        ]
+      },
+      "ru": {
+        "savol": "Кто решает, что хранить?",
+        "variantlar": [
+          "Код решает сам",
+          "Человек, который думает о продукте",
+          "Завод, который сделал телефон",
+          "Певец, который спел песню"
+        ]
+      }
+    }
+  ]
+}

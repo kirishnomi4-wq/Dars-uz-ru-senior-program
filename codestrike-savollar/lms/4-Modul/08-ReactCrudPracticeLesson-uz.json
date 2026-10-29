@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "CRUD nimaning qisqartmasi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Create, Read, Update, Delete",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Copy, Run, Undo, Delete",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Code, Read, Update, Deploy",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Create, React, Update, Data",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yangi o'yin qo'shish (Create) uchun to'g'ri kod?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "games.push(newGame)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "setGames([...games, newGame])",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "games = [...games, newGame]",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "setGames(yangi)",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ro'yxatni ekranga chizish (Read) uchun nima ishlatiladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "filter",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "push",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "map",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "confirm",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'yinni o'zgartirish (Update) uchun qaysi amal?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "push",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "filter",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "pop",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "map",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'chirish (Delete) kodi qaysi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "games.filter(g => g.id !== id)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "games.map(g => g.id !== id)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "games.filter(g => g.id === id)",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "games.push(id)",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "...games (spread) nima qiladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ro'yxatni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eski elementlarni ko'chiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oxirgisini ajratib oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tartibni teskari qiladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega React'da push ishlamaydi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "push sahifani qotiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "push faqat serverda ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "React yangi ro'yxat ko'rmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "push sonlarni qo'sha olmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "map bilan {...g, top: true} nima qiladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Hamma o'yinni o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi o'yin qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatni bo'shatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta o'yinni o'zgartiradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "filter qanday ishlaydi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Moslarini qoldiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hammasini o'zgartiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxiriga element qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sonlarni qo'shib chiqadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'yinning like sonini oshirish — CRUD'ning qaysi amali?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Delete",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Update",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Create",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Read",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu darsda ma'lumot qayerda saqlanadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Serverda — abadiy turadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Diskda — hech o'chmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "State'da — yangilansa ketadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bulutda — hamma ko'radi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega o'chirishdan oldin confirm so'raladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Kod tezroq ishlashi uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "React buni talab qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kartaga rang berish uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'chirilgan qaytmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

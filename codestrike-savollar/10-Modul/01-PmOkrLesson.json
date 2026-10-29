@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m8d1-okr-v1",
+  "key": "m8-01",
+  "modul": 10,
+  "tartib": 1,
+  "nom": {
+    "uz": "Bir oyda qaysi raqamni o'stirasiz?",
+    "ru": "Какое число вы увеличите за месяц?"
+  },
+  "src": "src/8-Modull/PmOkrLesson.jsx",
+  "barmoq_izi": "96b1c5052ef2a20f4849afe2464d29ce",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "«Maydon»da haftalik bosh raqam qaysi?",
+        "variantlar": [
+          "Band qilingan vaqtlar",
+          "Saytni ochganlar",
+          "Vaqt tanlaganlar",
+          "Chatdagi e'lonlar"
+        ]
+      },
+      "ru": {
+        "savol": "Какое главное число «Maydon» за неделю?",
+        "variantlar": [
+          "Забронированные слоты",
+          "Открывшие сайт",
+          "Выбравшие время",
+          "Объявления в чате"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Qaysi gap maqsad bo'la oladi?",
+        "variantlar": [
+          "Haftada 20 band bo'lsin",
+          "O'yinchilar oson band qilsin",
+          "Tugmaga soatni yozish",
+          "Foiz 40 ga yetsin"
+        ]
+      },
+      "ru": {
+        "savol": "Какая фраза может быть целью?",
+        "variantlar": [
+          "20 броней в неделю",
+          "Игроки бронируют легко",
+          "Написать час на кнопке",
+          "Процент дойдёт до 40"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "«Bandlar: hozir 6, oy oxirida 20» — bu qaysi qator?",
+        "variantlar": [
+          "Maqsad qatori",
+          "Tajriba qatori",
+          "Asosiy natija",
+          "Mehnat raqami"
+        ]
+      },
+      "ru": {
+        "savol": "«Брони: сейчас 6, к концу месяца 20» — что это за строка?",
+        "variantlar": [
+          "Строка цели",
+          "Строка эксперимента",
+          "Ключевой результат",
+          "Число труда"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Hozirgi raqamni bilmasangiz, nima yozasiz?",
+        "variantlar": [
+          "Oy oxiridagi raqamni",
+          "O'ylab topilgan raqamni",
+          "Hozircha 0 raqamini",
+          "So'roq belgisini"
+        ]
+      },
+      "ru": {
+        "savol": "Что напишете, если не знаете текущее число?",
+        "variantlar": [
+          "Число к концу месяца",
+          "Придуманное число",
+          "Пока что 0",
+          "Вопросительный знак"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Vaqtni 50 kishi tanladi, 20 tasi band qildi. Foiz qancha?",
+        "variantlar": [
+          "40 foiz",
+          "20 foiz",
+          "30 foiz",
+          "250 foiz"
+        ]
+      },
+      "ru": {
+        "savol": "Время выбрали 50 человек, 20 забронировали. Какой процент?",
+        "variantlar": [
+          "40 процентов",
+          "20 процентов",
+          "30 процентов",
+          "250 процентов"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "«Yozilgan yangi matnlar: 0 dan 5 ga» — qanday raqam?",
+        "variantlar": [
+          "Bosh raqam",
+          "Mehnat raqami",
+          "Asosiy natija",
+          "Qadam foizi"
+        ]
+      },
+      "ru": {
+        "savol": "«Новые написанные тексты: с 0 до 5» — что это за число?",
+        "variantlar": [
+          "Главное число",
+          "Число труда",
+          "Ключевой результат",
+          "Процент шага"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "«Maydon» tajribasida nima o'zgaradi?",
+        "variantlar": [
+          "Saytning ranglari va shrifti",
+          "Vaqt kataklarining soni",
+          "Band qilish tugmasi matni",
+          "Ega sahifasidagi parol"
+        ]
+      },
+      "ru": {
+        "savol": "Что меняется в эксперименте «Maydon»?",
+        "variantlar": [
+          "Цвета и шрифт сайта",
+          "Число ячеек времени",
+          "Текст кнопки бронирования",
+          "Пароль на странице владельца"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Tajriba nega bitta o'zgarish?",
+        "variantlar": [
+          "Uni tezroq qilsa bo'ladi",
+          "Uni yozish qisqaroq bo'ladi",
+          "Doskada bitta qator bor",
+          "Nima yordam bergani ajraladi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему эксперимент — одно изменение?",
+        "variantlar": [
+          "Его можно сделать быстрее",
+          "Его короче записать",
+          "На доске одна строка",
+          "Видно, что именно помогло"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "OKR qaysi qismlardan iborat?",
+        "variantlar": [
+          "Maqsad va asosiy natijalar",
+          "Bosh raqam va foizlar",
+          "Muammo va yechimlar",
+          "Tajriba va ishlar"
+        ]
+      },
+      "ru": {
+        "savol": "Из каких частей состоит OKR?",
+        "variantlar": [
+          "Цель и ключевые результаты",
+          "Главное число и проценты",
+          "Проблема и решения",
+          "Эксперимент и задачи"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Maqsad qatoriga raqam yozilgan. Nima qilasiz?",
+        "variantlar": [
+          "Shunday qoldirasiz",
+          "Asosiy natijaga o'tkazasiz",
+          "Tajriba qatoriga o'tkazasiz",
+          "Yana bir raqam qo'shasiz"
+        ]
+      },
+      "ru": {
+        "savol": "В строке цели написано число. Что делаете?",
+        "variantlar": [
+          "Оставляете так",
+          "Переносите в ключевой результат",
+          "Переносите в эксперимент",
+          "Добавляете ещё число"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "«Ikkinchi marta band qilganlar» nimani sanaydi?",
+        "variantlar": [
+          "Saytni ochganlarni",
+          "Vaqt tanlaganlarni",
+          "Qaytib kelganlarni",
+          "Ega ochgan vaqtlarni"
+        ]
+      },
+      "ru": {
+        "savol": "Что считает «забронировавшие второй раз»?",
+        "variantlar": [
+          "Открывших сайт",
+          "Выбравших время",
+          "Вернувшихся",
+          "Слоты, открытые владельцем"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Tajriba hech qatorga ulanmagan. Nima qilasiz?",
+        "variantlar": [
+          "Yana tajriba qo'shasiz",
+          "Maqsad qatoriga ko'chirasiz",
+          "Doskadan o'chirasiz",
+          "Asosiy natijaga ulaysiz"
+        ]
+      },
+      "ru": {
+        "savol": "Эксперимент не привязан ни к одной строке. Что делаете?",
+        "variantlar": [
+          "Добавляете ещё эксперимент",
+          "Переносите в цель",
+          "Удаляете с доски",
+          "Привязываете к ключевому результату"
+        ]
+      }
+    }
+  ]
+}

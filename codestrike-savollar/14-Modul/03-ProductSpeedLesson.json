@@ -1,0 +1,278 @@
+{
+  "lessonId": "m12-03-v1",
+  "key": "m12-03",
+  "modul": 14,
+  "tartib": 3,
+  "nom": {
+    "uz": "Mahsulot tezligi: o'lchaymiz va tezlashtiramiz",
+    "ru": "Скорость продукта: измеряем и ускоряем"
+  },
+  "src": "src/12-Modull/ProductSpeedLesson.jsx",
+  "barmoq_izi": "b584016a312dd35d2b1149800cc83d8a",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Lighthouse bahosi qaysi oraliqda bo'ladi?",
+        "variantlar": [
+          "0 dan 100 gacha",
+          "10 dan 50 gacha",
+          "0 dan 5 gacha",
+          "1 dan 50 gacha"
+        ]
+      },
+      "ru": {
+        "savol": "В каком диапазоне оценка Lighthouse?",
+        "variantlar": [
+          "от 0 до 100",
+          "от 10 до 50",
+          "от 0 до 5",
+          "от 1 до 50"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Lighthouse bahosida yashil rang qaysi oraliq?",
+        "variantlar": [
+          "50 dan 89 gacha",
+          "90 dan 100 gacha",
+          "0 dan 49 gacha",
+          "70 dan 100 gacha"
+        ]
+      },
+      "ru": {
+        "savol": "Какой диапазон оценки Lighthouse зелёный?",
+        "variantlar": [
+          "от 50 до 89",
+          "от 90 до 100",
+          "от 0 до 49",
+          "от 70 до 100"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Lighthouse 100 ball haqida nima deydi?",
+        "variantlar": [
+          "Har sahifaga majburiy",
+          "Faqat Desktop rejimida",
+          "Juda qiyin, shart emas",
+          "Faqat yangi saytlarda"
+        ]
+      },
+      "ru": {
+        "savol": "Что Lighthouse говорит о 100 баллах?",
+        "variantlar": [
+          "Обязательно для каждой страницы",
+          "Только в режиме Desktop",
+          "Очень трудно, не обязательно",
+          "Только у новых сайтов"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "LCP uchun rasmiy tavsiya qancha?",
+        "variantlar": [
+          "0,1 soniya yoki kamroq",
+          "200 ms yoki kamroq",
+          "25 soniya yoki kamroq",
+          "2,5 soniya yoki kamroq"
+        ]
+      },
+      "ru": {
+        "savol": "Какая официальная рекомендация для LCP?",
+        "variantlar": [
+          "0,1 секунды или меньше",
+          "200 мс или меньше",
+          "25 секунд или меньше",
+          "2,5 секунды или меньше"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "CLS qanday birlikda o'lchanadi?",
+        "variantlar": [
+          "Birliksiz son, masalan 0,05",
+          "Soniyada, masalan 2,5 soniya",
+          "Millisekundda, masalan 200 ms",
+          "Kilobaytda, masalan 300"
+        ]
+      },
+      "ru": {
+        "savol": "В каких единицах измеряется CLS?",
+        "variantlar": [
+          "Число без единиц, например 0,05",
+          "В секундах, например 2,5 секунды",
+          "В миллисекундах, например 200 мс",
+          "В килобайтах, например 300"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Lighthouse bahosida qaysi sonning ulushi eng katta?",
+        "variantlar": [
+          "LCP — 25 foiz",
+          "TBT — 30 foiz",
+          "CLS — 25 foiz",
+          "FCP — 10 foiz"
+        ]
+      },
+      "ru": {
+        "savol": "У какого числа самая большая доля в оценке Lighthouse?",
+        "variantlar": [
+          "LCP — 25 процентов",
+          "TBT — 30 процентов",
+          "CLS — 25 процентов",
+          "FCP — 10 процентов"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Tepadagi rasmga keyin yuklash qo'yilsa, nima bo'ladi?",
+        "variantlar": [
+          "CLS nolga tushadi",
+          "Kod hajmi kamayadi",
+          "LCP kechikishi mumkin",
+          "Rasm umuman chiqmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если верхней картинке поставить загрузку позже?",
+        "variantlar": [
+          "CLS упадёт до нуля",
+          "Объём кода уменьшится",
+          "LCP может задержаться",
+          "Картинка совсем не появится"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Mobil trekda yuklanadigan kod hajmini nima ko'rsatadi?",
+        "variantlar": [
+          "Lighthouse bahosi",
+          "Netlify sahifasi",
+          "Render sozlamasi",
+          "Expo Atlas oynasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что в мобильном треке показывает объём загружаемого кода?",
+        "variantlar": [
+          "Оценка Lighthouse",
+          "Страница Netlify",
+          "Настройка Render",
+          "Окно Expo Atlas"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Lighthouse'ni qaysi oynada ishga tushirasiz?",
+        "variantlar": [
+          "Incognito oynasida",
+          "Netlify sahifasida",
+          "Antigravity oynasida",
+          "Expo Atlas oynasida"
+        ]
+      },
+      "ru": {
+        "savol": "В каком окне вы запускаете Lighthouse?",
+        "variantlar": [
+          "В окне Incognito",
+          "На странице Netlify",
+          "В окне Antigravity",
+          "В окне Expo Atlas"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Mobile rejimida TBT qachon yashil bo'ladi?",
+        "variantlar": [
+          "600 ms dan ko'p bo'lsa",
+          "200 ms gacha bo'lsa",
+          "2500 ms gacha bo'lsa",
+          "1000 ms dan ko'p bo'lsa"
+        ]
+      },
+      "ru": {
+        "savol": "Когда TBT в режиме Mobile зелёный?",
+        "variantlar": [
+          "Если больше 600 мс",
+          "Если до 200 мс",
+          "Если до 2500 мс",
+          "Если больше 1000 мс"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Kutubxonani o'chirishdan oldin agent nimani ko'rsatadi?",
+        "variantlar": [
+          "Lighthouse bahosini",
+          "Yangi kutubxona nomini",
+          "Kerak emasligi dalilini",
+          "Sahifa siljishini"
+        ]
+      },
+      "ru": {
+        "savol": "Что агент показывает перед удалением библиотеки?",
+        "variantlar": [
+          "Оценку Lighthouse",
+          "Имя новой библиотеки",
+          "Доказательство, что она не нужна",
+          "Сдвиг страницы"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "«Tezlashdi» deyish uchun nima kerak?",
+        "variantlar": [
+          "Agentning «tayyor» degani",
+          "Sahifaning yangi ko'rinishi",
+          "Sinfdoshning «tez» degani",
+          "Oldin va keyingi sonlar"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно, чтобы сказать «ускорился»?",
+        "variantlar": [
+          "«Готово» от агента",
+          "Новый вид страницы",
+          "«Быстро» от одноклассника",
+          "Числа «до» и «после»"
+        ]
+      }
+    }
+  ]
+}

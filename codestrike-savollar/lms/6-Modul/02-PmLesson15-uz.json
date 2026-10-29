@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yuk nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Birdan kelgan og'irlik",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sahifani kutish vaqti",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytdagi rasmlar hajmi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir kunda kirganlar soni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yuk qachon og'irlashadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Har xil vaqtda kirganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi sahifa qo'shilganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kun bo'yi tarqalib kirganda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammasi bir vaqtda kirganda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi qism birinchi sinadi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Hech kim talashmaydigan qism",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng oxirida ochiladigan qism",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma talashadigan qism",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kam odam ochadigan qism",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "O'rindiq tanlash nega birinchi sindi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Uni ochish uzoq kutiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma bir joyni talashadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Uni har xil vaqtda ochishadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Unda rasm va video ko'p",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "E'lon sahifasi nega oxirida sindi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Har kimga alohida javob",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hammaga bir xil, yengil",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Hamma uni talashadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uni hech kim ochmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sig'im nima?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Qism ko'taradigan odam soni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytdagi sahifalar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir kunda kirganlar soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytni qurganlar soni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi qism birinchi kuchaytiriladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Birinchi ko'rinadigan qism",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech kim talashmaydigan qism",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hamma talashadigan qism",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Oxirida sinadigan qism",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Nega hamma qismni kuchaytirmaymiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Baribir hammasi sinadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod juda uzun bo'lib qoladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifalar sekin ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kuch hech qayerga yetmaydi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Uzum yetkazish yo'lini qachon qurgan?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Birinchi kundanoq",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "2025-yilda, o'sgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mashhur bo'lgandan keyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlar qiynalgandan keyin",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "2025-yilda Uzumdan oyiga nechta odam foydalanadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Qariyb 2 million",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qariyb 40 million",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qariyb 17 million",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qariyb 12 million",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt yukka nega chidadi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "U keyinroq ochilgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oldindan shunga qurilgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Unda rasm va video kam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'sha kuni omadi kelgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yukni oldindan o'ylashni kim hal qiladi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Chipta sotib olgan odam",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Konsert tashkilotchisi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kodni yozgan dasturchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mahsulotni o'ylaydigan odam",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

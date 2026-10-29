@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sarlavhada faqat nom bor. Nima yetishmaydi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Kim uchun va nima foyda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rang va shrift kattaligi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxi va chiqqan sanasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Logotip va nomning rangi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Lendingda «Maydon Jamoa» nomi qayerda turadi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Sarlavha o'rnida, katta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tepada, kichik yozuv",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Tugma ichida, qalin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng pastda, xira",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kutubxona sayti kitob bor-yo'qligini aytadi. Foyda qaysi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ro'yxat saqlanadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nomini qidirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bekorga bormaysiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ro'yxat yangilanadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mentor sahifasiga «eslatma» nega yozilmadi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "O'yinchilarga yoqmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifada joy qolmagan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eslatma juda uzun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovada hali qurilmagan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Qanday qo'shilaman» bo'limida nima yozilgan?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Yuklab olish linki",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ism va telefon formasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'yinlar va «8 / 10» soni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Link hozircha yo'qligi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifada uchta tugma bor. Qoidaga ko'ra nima qilasiz?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Bittasini qoldirasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir qatorga terasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yana bitta qo'shasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kichikroq qilasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Asoschilar Burbn'da qaysi funksiyalarni qoldirgan?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Eng qiyinlarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odamlarga yoqqanlarini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'zlariga yoqqanlarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oxirgilarini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Instagram voqeasidagi «25 000» soni nima?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Kunlik eng kam natija",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har lending maqsadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat shu voqea soni",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sarlavhadagi son",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifaga ism va telefon formasi qo'yasizmi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Ha, asosiy tugma ostiga",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, faqat telefon uchun",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, ma'lumot yig'ilmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ha, faqat mobil trekda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sherik «Kim uchun?»ga javob bermadi. Nimani tuzatasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Uchta foyda qatorini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tugmaning yozuvini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa manzilini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifa sarlavhasini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Agent yig'gan sahifa matnini qanday tekshirasiz?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Yozganingizga solishtirib",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Agent hisobotini o'qib",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzerda ochilganiga qarab",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Fayllarni sanab",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tugma necha marta bosilganini qayerdan bilasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Netlify sozlamalaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Umami hodisalaridan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "GitHub commitlaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Brauzer tarixidan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

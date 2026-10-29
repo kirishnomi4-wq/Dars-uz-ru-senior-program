@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "G'oya uch savoldan qachon o'tadi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Uchala savolga «ha» olsa",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ikkita savolga «ha» olsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi savolga «ha» olsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta savolga «yo'q» olsa",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Real auditoriya bormi?» nimani so'raydi?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "6 haftada qura olasizmi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kamida 5 tanishingiz bormi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bu g'oya sizga qiziqmi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Necha kishi yuklaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qaysi g'oyani 6 haftada qurish qiyin?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sinf vazifalari ro'yxati",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oshxona menyusi sahifasi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uyga ovqat yetkazish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "To'garaklar jadvali",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ta'sir 3 nimani bildiradi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Uch kishiga foyda yetkazadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Uch hafta mehnat talab qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatda uchinchi o'rinda",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Har odamga juda katta foyda",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu kursda ishonch 50% qachon qo'yiladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Dalil yo'q, faqat taxmin",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "O'lchangan aniq son bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'p odam shuni aytgan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "G'oya yarmi qurilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Bu kursda mehnat qanday sanaladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Odam necha oy ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Odam necha hafta ishlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinf necha kun ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod necha soat yoziladi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ishonch 50% dan 80% ga oshsa, baho nima bo'ladi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Kamayadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "O'zgarmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oshadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Nolga tushadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Qamrovi katta g'oya nega past baho oladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Odamlar ko'p bo'lgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qamrov sanalmagani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mehnati juda kam bo'lgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ta'siri yoki ishonchi kichik",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Stories voqeasidan qaysi xulosa chiqadi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Yaxshiroq yetkazgan yutdi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Birinchi o'ylab topgan yutdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Arzonroq ilova yutdi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng keyin chiqqan yutdi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sherik soningizga «nega?» dedi. Nima qilasiz?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Indamay qoldirasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sababini tushuntirasiz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "G'oyani chetga chiqarasiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sherik sonini yozasiz",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Jamoa yig'ish»da ishonch nega 80%?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Mentorga eng qiziq g'oya",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ta'siri ikkiga teng",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "5 kishidan 2 tasi aytgan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Mehnati eng ko'p, 4 hafta",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "rice(g) funksiyasi nimani qaytaradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "G'oyaning qisqa nomini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eng yaxshi uchta nomni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxat uzunligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bitta g'oyaning bahosini",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

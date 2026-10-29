@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Kasbiy so'z (jargon) nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Kasb egalari biladigan so'z",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Juda uzun va qiyin so'z",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Xato yozilgan so'z",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Chet tilidan kirgan so'z",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitch nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Kod yozishning tartibi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Saytning bo'limlari",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qisqa tushuntirib berish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytning manzili",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tushuntirishni nimadan boshlaysiz?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Sayt nechta sahifadan iborat",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tinglovchi oladigan foyda",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qaysi tilda yozilgani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Necha kun ishlagan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "«Massiv» so'zini nima bilan almashtirasiz?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Obyekt",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sikl",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baza",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxat",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sistemaning ko'rinadigan qismi — do'konda nima?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Javon",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oshxona",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Peshtaxta",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ombor",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ma'lumot saqlanadigan joy — do'konda nima?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Javon",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Peshtaxta",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kassa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Eshik",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yaxshi o'xshatish qayerdan olinadi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Eski kitoblardan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod hujjatlaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internet saytlaridan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Tinglovchi hayotidan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sherik «Yarim tushundim» dedi. Nima qilasiz?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Balandroq ovozda gapiraman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Qiyin joyni soddalashtiraman",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Boshqa sherik topaman",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Pitchni uzaytiraman",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saytni nega telefonda ham tekshirasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Zaldagilar telefondan ochadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Telefonda tezroq ochiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Netlify shuni talab qiladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kompyuterda ochilmaydi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Pitch nima bilan tugaydi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Rahmat aytish bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt manzili bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kod ko'rsatish bilan",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Aniq so'rov bilan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt ishini o'zi bajaradigan qism do'konda kimga o'xshaydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Mijoz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Oshpaz",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Kuryer",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kassir",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Tinglovchi «tushunmadim» dedi — birinchi nimani tekshirasiz?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ovoz balandligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Nutq uzunligini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kasbiy so'z qolganini",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Slayd rangini",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  }
+]

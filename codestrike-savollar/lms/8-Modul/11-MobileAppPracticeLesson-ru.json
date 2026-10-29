@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Откуда мобильное приложение берёт меню?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "С готового backend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Из списка, написанного вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С нового мобильного сервера",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ниоткуда",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Ваша задача в день проекта?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "Запускать код не читая",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Задание, чтение и проверка",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Писать весь код вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только выбирать дизайн",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким компонентом в React Native показывают список?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "<div>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<table>",
+        "hint": "Неверно"
+      },
+      {
+        "value": "<FlatList>",
+        "hint": "Верно!"
+      },
+      {
+        "value": "<ScrollView>",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что будет при нажатии «Отправить»?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "Хранится только в телефоне",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Ничего не произойдёт",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Запустится новый мобильный API",
+        "hint": "Неверно"
+      },
+      {
+        "value": "POST /buyurtma на backend",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "С чем связан значок количества в корзине?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "С именем fayl в Backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С savat.length",
+        "hint": "Верно!"
+      },
+      {
+        "value": "С rasm.width",
+        "hint": "Неверно"
+      },
+      {
+        "value": "С title страницы",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Каким методом удобно посчитать итоговую цену?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "reduce",
+        "hint": "Верно!"
+      },
+      {
+        "value": "map",
+        "hint": "Неверно"
+      },
+      {
+        "value": "filter",
+        "hint": "Неверно"
+      },
+      {
+        "value": "sort",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Для чего в основном нужен Expo Go?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Чтобы переводить код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы строить backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы рисовать",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы проверять и делиться",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как проверяем мобильное приложение?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Вообще не проверяем",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Только глядя на код",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Читаем код, жмём на телефоне",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Только смотрим цвета",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как веб, бот и мобильное видят одни заказы?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Подключены к одному backend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Строят отдельные Database",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Копируются вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Это невозможно",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что ещё нужно, когда приложение работает?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Больше ничего",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удалить StyleSheet",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переписать всё",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Довести через StyleSheet",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что используют для перехода на экран Детали?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "reduce",
+        "hint": "Неверно"
+      },
+      {
+        "value": "fetch",
+        "hint": "Неверно"
+      },
+      {
+        "value": "navigation.navigate",
+        "hint": "Верно!"
+      },
+      {
+        "value": "StyleSheet.create",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем проверять и на телефоне?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Код грузится быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Видны ошибки устройства",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Код писать не нужно",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Интернет не нужен",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  }
+]

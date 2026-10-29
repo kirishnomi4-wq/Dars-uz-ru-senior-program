@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Saytning foydalanuvchi ko'radigan qismi nima deb ataladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Backend",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Frontend",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Baza",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Server",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Backend nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ko'rinmas qism — saqlaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'rinadigan qism — tugmalar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat ranglar va shriftlar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat rasmlar va videolar",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "React nima qiladi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ma'lumotni saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "So'rovni yo'naltiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani bloklardan yig'adi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Serverni ishga tushiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Node.js nima qiladi?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Sahifani bezaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Rasmlarni tahrirlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetni tezlatadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "JS'ni serverda ishlatadi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Express restoranda kimga o'xshaydi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Oshpaz — pishiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ofitsiant — yetkazadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ombor — saqlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Mehmon — buyuradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ma'lumot (like, izoh) doimiy qayerda saqlanadi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Brauzer xotirasida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "CSS fayl ichida",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PostgreSQL bazasida",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat ekranda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sahifa yangilangach izoh nega yo'qoldi?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Hech qayerda saqlanmagan",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Internet uzilib qoldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sayt kodi buzildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Parol noto'g'ri edi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "PERN qaysi 4 texnologiya?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Python, Express, Redux, Node",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postgres, Ember, Ruby, Nest",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postgres, Elm, React, Deno",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Postgres, Express, React, Node",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "So'rov qaysi yo'ldan boradi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Postgres → React → Express",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "React → Express → Postgres",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Express → React → Postgres",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "React → Postgres → Express",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "stack so'zi nimani anglatadi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Bitta dastur nomi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Dasturdagi xato turi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Texnologiyalar to'plami",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Saytni chiqarish usuli",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "PostgreSQL restoranda nimaga o'xshaydi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ombor — doimiy xotira",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Zal — mehmonlar joyi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ofitsiant — yo'naltiruvchi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Menyu — taomlar ro'yxati",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "JavaScript bilgan odam backend'ga tayyormi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Ha, CSS ham bilsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yo'q, Python shart",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, brauzer server bo'ladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ha, Node.js bilan",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

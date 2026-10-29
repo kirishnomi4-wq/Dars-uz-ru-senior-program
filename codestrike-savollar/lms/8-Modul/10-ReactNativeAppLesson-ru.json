@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой компонент для списка пицц?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "FlatList",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Text",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Image",
+        "hint": "Неверно"
+      },
+      {
+        "value": "TextInput",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что вызывают для перехода на другой экран?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "window.location.reload()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "navigation.navigate()",
+        "hint": "Верно!"
+      },
+      {
+        "value": "app.open()",
+        "hint": "Неверно"
+      },
+      {
+        "value": "тег <a href>",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что происходит со стопкой при открытии экрана?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "Старый экран удаляется (pop)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Перезагружается (reload)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Кладётся сверху (push)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Ничего не меняется",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Чем получают данные с backend?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "AsyncStorage",
+        "hint": "Неверно"
+      },
+      {
+        "value": "localStorage",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Массив, написанный вручную",
+        "hint": "Неверно"
+      },
+      {
+        "value": "fetch",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где пишут однократную загрузку данных?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "Внутри useEffect(…, [])",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В теле компонента",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Внутри useState([])",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Нигде",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что хранит корзину на самом телефоне?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Database на backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "AsyncStorage",
+        "hint": "Верно!"
+      },
+      {
+        "value": "fetch",
+        "hint": "Неверно"
+      },
+      {
+        "value": "FlatList",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делаете с backend для мобильного приложения?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "Строится новый",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Backend не нужен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подключается к тому же backend",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Данные переносятся вручную",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой компонент для нажимаемого элемента?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "FlatList",
+        "hint": "Неверно"
+      },
+      {
+        "value": "ScrollView",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Image",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Pressable",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как называется система, управляющая множеством экранов?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Stack Navigator",
+        "hint": "Верно!"
+      },
+      {
+        "value": "FlatList",
+        "hint": "Неверно"
+      },
+      {
+        "value": "AsyncStorage",
+        "hint": "Неверно"
+      },
+      {
+        "value": "useEffect",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой компонент показывает картинку?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Text",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Image",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Pressable",
+        "hint": "Неверно"
+      },
+      {
+        "value": "FlatList",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Поле ввода текста — какой компонент?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "ScrollView",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Image",
+        "hint": "Неверно"
+      },
+      {
+        "value": "TextInput",
+        "hint": "Верно!"
+      },
+      {
+        "value": "FlatList",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Веб, бот, мобильное — на одном сервере. Что это?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Каждому свой backend",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Backend не нужен",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Подключается только веб",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Много входов, одна система",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

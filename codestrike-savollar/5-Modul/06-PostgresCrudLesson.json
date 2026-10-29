@@ -1,0 +1,278 @@
+{
+  "lessonId": "pg-crud-04-05-v18",
+  "key": "m4-06",
+  "modul": 5,
+  "tartib": 6,
+  "nom": {
+    "uz": "PostgreSQL so'rovlar — CRUD + AI bilan",
+    "ru": "Запросы PostgreSQL — CRUD + ИИ"
+  },
+  "src": "src/4-Modull/PostgresCrudLesson.jsx",
+  "barmoq_izi": "f25033b46a7ba48ea2400b3a77e9c9d7",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Yangi mahsulot keldi. Qaysi buyruq qator qo'shadi?",
+        "variantlar": [
+          "INSERT INTO",
+          "SELECT *",
+          "UPDATE",
+          "DELETE FROM"
+        ]
+      },
+      "ru": {
+        "savol": "Пришёл новый товар. Какая команда добавит строку?",
+        "variantlar": [
+          "INSERT INTO",
+          "SELECT *",
+          "UPDATE",
+          "DELETE FROM"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "INSERTda VALUES nimadan keyin yoziladi?",
+        "variantlar": [
+          "WHERE shartidan keyin",
+          "Ustunlar ro'yxatidan keyin",
+          "SET so'zidan keyin",
+          "FROM so'zidan keyin"
+        ]
+      },
+      "ru": {
+        "savol": "После чего пишется VALUES в INSERT?",
+        "variantlar": [
+          "После условия WHERE",
+          "После списка столбцов",
+          "После SET",
+          "После FROM"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Bo'sh jadvalga birinchi mahsulotni nima qo'shadi?",
+        "variantlar": [
+          "SELECT * FROM",
+          "UPDATE ... SET",
+          "INSERT INTO",
+          "WHERE"
+        ]
+      },
+      "ru": {
+        "savol": "Что добавит первый товар в пустую таблицу?",
+        "variantlar": [
+          "SELECT * FROM",
+          "UPDATE ... SET",
+          "INSERT INTO",
+          "WHERE"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "SELECT * FROM products nima qiladi?",
+        "variantlar": [
+          "Jadvalni butunlay o'chiradi",
+          "Barcha narxni yangilaydi",
+          "Yangi bo'sh jadval yasaydi",
+          "Barcha ustunni ko'rsatadi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает SELECT * FROM products?",
+        "variantlar": [
+          "Полностью удаляет таблицу",
+          "Обновляет все цены",
+          "Создаёт новую пустую таблицу",
+          "Показывает все столбцы"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 2,
+      "uz": {
+        "savol": "Faqat arzon mahsulotlarni qaysi so'z ajratadi?",
+        "variantlar": [
+          "VALUES",
+          "SET",
+          "WHERE",
+          "INTO"
+        ]
+      },
+      "ru": {
+        "savol": "Какое слово отберёт только дешёвые товары?",
+        "variantlar": [
+          "VALUES",
+          "SET",
+          "WHERE",
+          "INTO"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "SELECT buyrug'i ma'lumotni o'zgartiradimi?",
+        "variantlar": [
+          "Yo'q — faqat o'qib ko'rsatadi",
+          "Ha, qatorlarni o'chiradi",
+          "Ha, narxni yangilaydi",
+          "Ha, jadval yaratadi"
+        ]
+      },
+      "ru": {
+        "savol": "Изменяет ли команда SELECT данные?",
+        "variantlar": [
+          "Нет — только читает и показывает",
+          "Да, удаляет строки",
+          "Да, обновляет цену",
+          "Да, создаёт таблицу"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 3,
+      "uz": {
+        "savol": "Klaviatura narxi tushdi. Qaysi buyruq kerak?",
+        "variantlar": [
+          "INSERT",
+          "SELECT",
+          "DELETE",
+          "UPDATE"
+        ]
+      },
+      "ru": {
+        "savol": "Клавиатура подешевела. Какая команда нужна?",
+        "variantlar": [
+          "INSERT",
+          "SELECT",
+          "DELETE",
+          "UPDATE"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 1,
+      "uz": {
+        "savol": "UPDATEda WHERE yozilmasa nima bo'ladi?",
+        "variantlar": [
+          "Xato beradi, o'zgarmaydi",
+          "Hamma qator o'zgaradi",
+          "Hech narsa bo'lmaydi",
+          "Faqat 1-qator o'zgaradi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если в UPDATE нет WHERE?",
+        "variantlar": [
+          "Ошибка, ничего не меняется",
+          "Изменятся все строки",
+          "Ничего не произойдёт",
+          "Изменится только 1-я строка"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "Mahsulotni jadvaldan o'chiradigan buyruq qaysi?",
+        "variantlar": [
+          "SELECT *",
+          "DELETE FROM",
+          "UPDATE",
+          "INSERT INTO"
+        ]
+      },
+      "ru": {
+        "savol": "Какая команда удаляет товар из таблицы?",
+        "variantlar": [
+          "SELECT *",
+          "DELETE FROM",
+          "UPDATE",
+          "INSERT INTO"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "AI SQL yozib berdi. Nima qilasiz?",
+        "variantlar": [
+          "Ko'rmasdan ishga tushiraman",
+          "AI to'g'ri — tekshirmayman",
+          "O'qib, tekshirib, ishlataman",
+          "O'chirib, qo'lda yozaman"
+        ]
+      },
+      "ru": {
+        "savol": "AI написал SQL. Что вы сделаете?",
+        "variantlar": [
+          "Запущу, не глядя",
+          "AI прав — не проверяю",
+          "Прочитаю, проверю, запущу",
+          "Удалю и напишу вручную"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 3,
+      "uz": {
+        "savol": "Do'kon mahsulotlari asosan qayerda saqlanadi?",
+        "variantlar": [
+          "Saytning HTML kodida",
+          "Brauzer xotirasida",
+          "Rasm papkasida",
+          "Ma'lumotlar bazasida"
+        ]
+      },
+      "ru": {
+        "savol": "Где в основном хранятся товары магазина?",
+        "variantlar": [
+          "В HTML-коде сайта",
+          "В памяти браузера",
+          "В папке с картинками",
+          "В базе данных"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 0,
+      "uz": {
+        "savol": "CRUD qaysi 4 amal?",
+        "variantlar": [
+          "Create, Read, Update, Delete",
+          "Faqat qo'shish va o'chirish",
+          "Create, Read, Undo, Delete",
+          "Faqat SELECT va UPDATE"
+        ]
+      },
+      "ru": {
+        "savol": "Какие 4 действия — это CRUD?",
+        "variantlar": [
+          "Create, Read, Update, Delete",
+          "Только добавление и удаление",
+          "Create, Read, Undo, Delete",
+          "Только SELECT и UPDATE"
+        ]
+      }
+    }
+  ]
+}

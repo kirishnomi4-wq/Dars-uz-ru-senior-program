@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ochiq ma'lumot nima?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Begona ko'rsa ham zarar yo'q",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ko'p odam o'qiydigan narsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kam vaqtda yozilgan narsa",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova birinchi saqlagani",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yopiq ma'lumot nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ilova uzunroq yozadigani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Alohida joyda saqlangani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Bir necha kunda yopiladigani",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Begona ko'rsa, egasiga zarar",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ma'lumotni yopiq qiladigan narsa nima?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Ma'lumotning turi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yozgan odamning ismi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Begona ko'rsa zarar",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Qo'shilgan sanasi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sinfdoshingiz ochganda qaysi qator turmasligi kerak?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Ism qatori",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kirish paroli",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sinf qatori",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Maktab nomi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ism va sinf nega ochiq qoladi?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Har kuni yangilanib turadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ko'rgan odam zarar bermaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ularni yopish ilovaga qiyin",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ular keyin qo'shilgan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Hamma qatorni yopsangiz nima bo'ladi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ilovadan foyda qolmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Ilova tezroq ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinfdosh baribir ko'radi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilova ularni o'zi ochadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ota-onaning telefon raqami kimniki?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "Jurnal ilovasiniki",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sinf rahbariniki",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa odamniki",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Sizning o'zingizniki",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Parolni bilgan odam nima qila oladi?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "Sahifa rangini almashtiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Baholarni to'g'rilaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi ilova yuklab oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sizning nomingizdan kiradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ilova nima yig'ishini eng erta qachon bilasiz?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "Yuklashdan oldin ham",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bir oy ishlatgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yuklab bo'lgach",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Birinchi xabar kelganda",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Ota-onaga ketadigan xabarga nima yozilmaydi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "Bu hafta olgan baholaringiz",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ertangi dars jadvali",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ilovaga kirish paroli",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Maktab manzili va telefoni",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Yuborilmagan ma'lumot haqida qoida nima?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Ilova uni o'zi yuboradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U sizib ham ketmaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "U yopiq hisoblanmaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "U xabarga qaytadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "SELECT * nimani qaytaradi?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Jadvaldagi birinchi ustunni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jadvaldagi birinchi qatorni",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ustunlarning nomlarini",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Jadvaldagi hamma ustunni",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  }
+]

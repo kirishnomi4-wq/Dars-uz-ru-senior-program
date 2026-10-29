@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m3d14-v1",
+  "key": "m3-14",
+  "modul": 4,
+  "tartib": 15,
+  "nom": {
+    "uz": "Ishlayotgan saytingizni qanday ko'rsatasiz?",
+    "ru": "Как показать свой работающий сайт?"
+  },
+  "src": "src/3-Modull/PmLesson10.jsx",
+  "barmoq_izi": "7f9bea7179da98f78213afa517d850f0",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Ishlaydigan sayt o'zi nimani aytmaydi?",
+        "variantlar": [
+          "Nima uchun kerakligini",
+          "Qanday tugmalar borligini",
+          "Qanday ro'yxat borligini",
+          "Qanday ko'rinishini"
+        ]
+      },
+      "ru": {
+        "savol": "Чего не говорит сам работающий сайт?",
+        "variantlar": [
+          "Зачем он нужен",
+          "Какие есть кнопки",
+          "Какой есть список",
+          "Как он выглядит"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "Ekranni takrorlagan gap nima qo'shadi?",
+        "variantlar": [
+          "Ko'rinmagan narsani",
+          "Hech narsa qo'shmaydi",
+          "Ilgari og'ir bo'lganini",
+          "Tugma natijasini"
+        ]
+      },
+      "ru": {
+        "savol": "Что добавляет фраза, повторяющая экран?",
+        "variantlar": [
+          "То, чего не видно",
+          "Ничего не добавляет",
+          "Как раньше было тяжело",
+          "Результат кнопки"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 3,
+      "uz": {
+        "savol": "«Bu — bosh sahifa» degan gap nima qiladi?",
+        "variantlar": [
+          "Ilgarisini aytadi",
+          "Natijani ko'rsatadi",
+          "Nega kerakligini aytadi",
+          "Ekrandagini takrorlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что делает фраза «Это — главная страница»?",
+        "variantlar": [
+          "Рассказывает, как было",
+          "Показывает результат",
+          "Говорит, зачем нужен",
+          "Повторяет то, что на экране"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 2,
+      "uz": {
+        "savol": "Ko'rsatuv nechta kadrdan iborat?",
+        "variantlar": [
+          "Bitta",
+          "Ikkita",
+          "Uchta",
+          "Beshta"
+        ]
+      },
+      "ru": {
+        "savol": "Из скольких кадров состоит показ?",
+        "variantlar": [
+          "Из одного",
+          "Из двух",
+          "Из трёх",
+          "Из пяти"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Birinchi kadrda nima aytiladi?",
+        "variantlar": [
+          "Endi nima osonlashgani",
+          "Ilgari ish qanday qilinardi",
+          "Hozir qaysi tugma bosilyapti",
+          "Sayt qaysi dasturda yozilgan"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорят в первом кадре?",
+        "variantlar": [
+          "Что теперь стало легче",
+          "Как дело делали раньше",
+          "Какую кнопку нажимают",
+          "В какой программе сделан сайт"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 3,
+      "uz": {
+        "savol": "Ikkinchi kadrda nima bo'ladi?",
+        "variantlar": [
+          "Hamma sahifa ochiladi",
+          "Ilgari og'irligi aytiladi",
+          "Kimlar uchun ekani aytiladi",
+          "Bitta bosish va uning natijasi"
+        ]
+      },
+      "ru": {
+        "savol": "Что происходит во втором кадре?",
+        "variantlar": [
+          "Открывают все страницы",
+          "Говорят, как было тяжело",
+          "Говорят, для кого сайт",
+          "Одно нажатие и его результат"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Uchinchi kadrda nima aytiladi?",
+        "variantlar": [
+          "Sayt qachon tayyor bo'lgani",
+          "Kim bu saytni qurgani",
+          "Endi nima oson bo'lgani",
+          "Qaysi tugma bosilgani"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорят в третьем кадре?",
+        "variantlar": [
+          "Когда сайт был готов",
+          "Кто собрал этот сайт",
+          "Что теперь стало проще",
+          "Какую кнопку нажали"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 0,
+      "uz": {
+        "savol": "Ko'rsatuvda nechta harakat bosiladi?",
+        "variantlar": [
+          "Bitta harakat bosiladi",
+          "Har kadrda bittadan — uchta",
+          "Har sahifada bittadan bosiladi",
+          "Ikkita: menu va tugma"
+        ]
+      },
+      "ru": {
+        "savol": "Сколько действий нажимают во время показа?",
+        "variantlar": [
+          "Нажимают одно действие",
+          "По одному в каждом кадре — три",
+          "По одному на каждой странице",
+          "Два: меню и кнопка"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 2,
+      "uz": {
+        "savol": "Ko'rsatuvda qanday joy bosiladi?",
+        "variantlar": [
+          "Eng chiroyli joy",
+          "Birinchi ko'ringan joy",
+          "Ish chindan bajariladigan joy",
+          "Menudagi birinchi bo'lim"
+        ]
+      },
+      "ru": {
+        "savol": "Какое место нажимают в показе?",
+        "variantlar": [
+          "Самое красивое место",
+          "Первое попавшееся место",
+          "Место, где дело правда делается",
+          "Первый пункт меню"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Airbnb o'z ishini nima bilan tushuntirgan?",
+        "variantlar": [
+          "Uzun yozma hisobot bilan",
+          "O'ntacha oddiy varaq bilan",
+          "Ko'chadagi reklama bilan",
+          "Bir soatlik video bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Чем Airbnb объяснял свою идею?",
+        "variantlar": [
+          "Длинным письменным отчётом",
+          "Примерно десятью простыми слайдами",
+          "Уличной рекламой",
+          "Часовым видео"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 0,
+      "uz": {
+        "savol": "Airbnb taqdimoti nima bilan tugagan?",
+        "variantlar": [
+          "Jamoa varag'i bilan",
+          "Sayt ekranlari bilan",
+          "Narx varag'i bilan",
+          "Xarita varag'i bilan"
+        ]
+      },
+      "ru": {
+        "savol": "Чем закончилась презентация Airbnb?",
+        "variantlar": [
+          "Слайдом о команде",
+          "Экранами сайта",
+          "Слайдом с ценой",
+          "Слайдом с картой"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Odam natijani ko'rishi uchun kodda nima kerak?",
+        "variantlar": [
+          "Faqat dasturchiga yozuv",
+          "Kod ichidagi izoh qatori",
+          "Boshqa sahifaga tugma",
+          "Ekranda tasdiq qatori"
+        ]
+      },
+      "ru": {
+        "savol": "Что нужно в коде, чтобы человек увидел результат?",
+        "variantlar": [
+          "Запись только для программиста",
+          "Строка-комментарий в коде",
+          "Кнопка на другую страницу",
+          "Строка-подтверждение на экране"
+        ]
+      }
+    }
+  ]
+}

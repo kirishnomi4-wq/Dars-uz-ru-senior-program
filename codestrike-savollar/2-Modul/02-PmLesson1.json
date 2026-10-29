@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m1d2-v1",
+  "key": "m1-02",
+  "modul": 2,
+  "tartib": 2,
+  "nom": {
+    "uz": "Kim mening foydalanuvchim?",
+    "ru": "Кто мой пользователь?"
+  },
+  "src": "src/1-Modull/PmLesson1.jsx",
+  "barmoq_izi": "7fd33ecaa748fef8ea65450d03fca271",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 2,
+      "uz": {
+        "savol": "Sayt ENG AVVAL nima uchun yaratiladi?",
+        "variantlar": [
+          "Ko'p odam kirishi uchun",
+          "Egasiga pul topish uchun",
+          "Odam muammosini yechish uchun",
+          "Chiroyli ko'rinish uchun"
+        ]
+      },
+      "ru": {
+        "savol": "Ради чего сайт создают В ПЕРВУЮ ОЧЕРЕДЬ?",
+        "variantlar": [
+          "Чтобы заходило много людей",
+          "Чтобы приносить деньги владельцу",
+          "Чтобы решить проблему человека",
+          "Чтобы красиво выглядеть"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 0,
+      "uz": {
+        "savol": "«Hamma uchun» qilingan sayt aslida…",
+        "variantlar": [
+          "hech kim uchun bo'ladi",
+          "eng ko'p odam yig'adi",
+          "eng tez ishlaydi",
+          "eng ko'p pul topadi"
+        ]
+      },
+      "ru": {
+        "savol": "Сайт, сделанный «для всех», на деле…",
+        "variantlar": [
+          "оказывается ни для кого",
+          "собирает больше всего людей",
+          "работает быстрее всех",
+          "зарабатывает больше всех"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 1,
+      "uz": {
+        "savol": "Mahsulot menejeri avval nimani aniqlaydi?",
+        "variantlar": [
+          "Saytning dizayni va rangini",
+          "KIM va uning MUAMMOSINI",
+          "Saytning nomi va logosini",
+          "Saytga ketadigan pulni"
+        ]
+      },
+      "ru": {
+        "savol": "Что продакт-менеджер выясняет первым?",
+        "variantlar": [
+          "Дизайн и цвета сайта",
+          "КТО и какая у него ПРОБЛЕМА",
+          "Название и логотип сайта",
+          "Сколько денег уйдёт на сайт"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Sayt hech kimning muammosini yechmasa, nima bo'ladi?",
+        "variantlar": [
+          "Tezroq ochiladi",
+          "Ko'proq odam kiradi",
+          "Reklama ko'payadi",
+          "Unga hech kim kirmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "Что будет, если сайт ничью проблему не решает?",
+        "variantlar": [
+          "Будет быстрее открываться",
+          "Зайдёт больше людей",
+          "Станет больше рекламы",
+          "На него никто не заходит"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "To'liq g'oyada qaysi uch javob bo'ladi?",
+        "variantlar": [
+          "KIM + MUAMMO + YECHIM",
+          "NOM + RANG + TUGMA",
+          "DIZAYN + REKLAMA + PUL",
+          "SAYT + ILOVA + O'YIN"
+        ]
+      },
+      "ru": {
+        "savol": "Какие три ответа есть в полной идее?",
+        "variantlar": [
+          "КТО + ПРОБЛЕМА + РЕШЕНИЕ",
+          "ИМЯ + ЦВЕТ + КНОПКА",
+          "ДИЗАЙН + РЕКЛАМА + ДЕНЬГИ",
+          "САЙТ + ПРИЛОЖЕНИЕ + ИГРА"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 2,
+      "uz": {
+        "savol": "Lavash saytiga kirgan O'QUVCHI avval nimaga qaraydi?",
+        "variantlar": [
+          "Buyurtmalar ro'yxatiga",
+          "Oxirgi buyurtmasiga",
+          "Oldindan buyurtmaga",
+          "Saytning bezagiga"
+        ]
+      },
+      "ru": {
+        "savol": "На что первым смотрит ШКОЛЬНИК на сайте лавашной?",
+        "variantlar": [
+          "На список заказов",
+          "На свой последний заказ",
+          "На заказ заранее",
+          "На оформление сайта"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 0,
+      "uz": {
+        "savol": "Mashhurlik va pul — bu…",
+        "variantlar": [
+          "yechimdan keyingi NATIJA",
+          "saytning birinchi maqsadi",
+          "faqat reklama samarasi",
+          "faqat omad va tasodif"
+        ]
+      },
+      "ru": {
+        "savol": "Популярность и деньги — это…",
+        "variantlar": [
+          "РЕЗУЛЬТАТ после решения",
+          "первая цель сайта",
+          "только эффект рекламы",
+          "только удача и случай"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Qaysi biri REAL muammo?",
+        "variantlar": [
+          "Sayt rangi ko'k emas",
+          "Saytning nomi zo'r emas",
+          "Saytda tugma kam",
+          "Avtobus qachon kelishi noaniq"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — НАСТОЯЩАЯ проблема?",
+        "variantlar": [
+          "Сайт не синего цвета",
+          "Название сайта не крутое",
+          "На сайте мало кнопок",
+          "Неизвестно, когда придёт автобус"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 1,
+      "uz": {
+        "savol": "G'oyada MUAMMO katagi bo'sh. Bu nima degani?",
+        "variantlar": [
+          "G'oya to'liq va tayyor",
+          "Sayt nega kerak — noma'lum",
+          "Faqat dizayn yetmaydi",
+          "Faqat nom yetmaydi"
+        ]
+      },
+      "ru": {
+        "savol": "В идее пуста клетка ПРОБЛЕМА. Что это значит?",
+        "variantlar": [
+          "Идея полная и готова",
+          "Непонятно, зачем нужен сайт",
+          "Не хватает только дизайна",
+          "Не хватает только названия"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "O'quvchi, sotuvchi va ofis xodimi bitta saytda…",
+        "variantlar": [
+          "bir xil narsani izlaydi",
+          "faqat dizaynga qaraydi",
+          "har biri o'zinikini izlaydi",
+          "faqat narxga qaraydi"
+        ]
+      },
+      "ru": {
+        "savol": "Школьник, продавец и офисный работник на одном сайте…",
+        "variantlar": [
+          "ищут одно и то же",
+          "смотрят только на дизайн",
+          "каждый ищет своё",
+          "смотрят только на цену"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Yechim qanday bo'lishi SHART?",
+        "variantlar": [
+          "Iloji boricha kattaroq",
+          "Aynan o'sha muammoga mos",
+          "Hammaga birdek yoqadigan",
+          "Eng zamonaviy uslubda"
+        ]
+      },
+      "ru": {
+        "savol": "Каким РЕШЕНИЕ обязано быть?",
+        "variantlar": [
+          "Как можно более крупным",
+          "Подходящим именно к той проблеме",
+          "Нравящимся всем одинаково",
+          "В самом современном стиле"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "«Shoshgan o'quvchiga oldindan buyurtma» — nima aniq?",
+        "variantlar": [
+          "Faqat YECHIM",
+          "Faqat KIM va YECHIM",
+          "Hech narsa aniq emas",
+          "KIM, MUAMMO va YECHIM"
+        ]
+      },
+      "ru": {
+        "savol": "«Предзаказ для спешащего школьника» — что ясно?",
+        "variantlar": [
+          "Только РЕШЕНИЕ",
+          "Только КТО и РЕШЕНИЕ",
+          "Ничего не ясно",
+          "КТО, ПРОБЛЕМА и РЕШЕНИЕ"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "lessonId": "m12-09-v1",
+  "key": "m12-09",
+  "modul": 14,
+  "tartib": 9,
+  "nom": {
+    "uz": "Video-portfolio: 3 daqiqada o'zingiz va mahsulot",
+    "ru": "Видео-портфолио: вы и продукт за 3 минуты"
+  },
+  "src": "src/12-Modull/VideoPortfolioLesson.jsx",
+  "barmoq_izi": "b0d13d05a99529a74cb673d95130cf35",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Bu kursda video-portfolio nima?",
+        "variantlar": [
+          "Siz va mahsulot haqida video",
+          "Funksiyalar sanalgan video",
+          "Sinf kanali uchun reklama",
+          "Kodni tushuntiruvchi video"
+        ]
+      },
+      "ru": {
+        "savol": "Что такое видео-портфолио в этом курсе?",
+        "variantlar": [
+          "Видео о вас и продукте",
+          "Видео с перечнем функций",
+          "Реклама для канала класса",
+          "Видео с разбором кода"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 1,
+      "uz": {
+        "savol": "«Kimman» bo'lagida nima aytiladi?",
+        "variantlar": [
+          "Maktab va sinfim",
+          "Kim ekanim va nima qilishim",
+          "Ilovadagi o'nta funksiya",
+          "Keyingi oydagi rejam"
+        ]
+      },
+      "ru": {
+        "savol": "Что говорят в части «Кто я»?",
+        "variantlar": [
+          "Школа и класс",
+          "Кто я и что делаю",
+          "Десять функций приложения",
+          "План на следующий месяц"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Videoda yuz va ism qanday bo'ladi?",
+        "variantlar": [
+          "Ikkalasi ham shart",
+          "Yuz shart, ism emas",
+          "Ikkalasi ham ixtiyoriy",
+          "Ism shart, yuz emas"
+        ]
+      },
+      "ru": {
+        "savol": "Как в видео с лицом и именем?",
+        "variantlar": [
+          "Оба обязательны",
+          "Лицо обязательно, имя нет",
+          "Оба по желанию",
+          "Имя обязательно, лицо нет"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 3,
+      "uz": {
+        "savol": "Yozish paytida ssenariy qayerda turadi?",
+        "variantlar": [
+          "Ekranda, demo yonida",
+          "Dars oynasida",
+          "Kod oynasida",
+          "Qog'ozda yoki telefonda"
+        ]
+      },
+      "ru": {
+        "savol": "Где находится сценарий во время записи?",
+        "variantlar": [
+          "На экране, рядом с демо",
+          "В окне урока",
+          "В окне кода",
+          "На бумаге или в телефоне"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 0,
+      "uz": {
+        "savol": "Yozishdan oldin qaysi oynalarni yopasiz?",
+        "variantlar": [
+          "Chat va pochta oynalarini",
+          "Demo ochiq turgan oynani",
+          "Yozish dasturi oynasini",
+          "Lending ochiq oynasini"
+        ]
+      },
+      "ru": {
+        "savol": "Какие окна закрываете перед записью?",
+        "variantlar": [
+          "Окна чата и почты",
+          "Окно с открытым демо",
+          "Окно программы записи",
+          "Окно с лендингом"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 1,
+      "uz": {
+        "savol": "Login ko'rinmasligi uchun nima qilasiz?",
+        "variantlar": [
+          "Login joyidan tez o'taman",
+          "Namuna akkaunt bilan kiraman",
+          "O'z akkauntim bilan kiraman",
+          "Videoni qisqa yozaman"
+        ]
+      },
+      "ru": {
+        "savol": "Что делаете, чтобы не было видно логина?",
+        "variantlar": [
+          "Быстро пролистну логин",
+          "Войду с образцовым аккаунтом",
+          "Войду со своим аккаунтом",
+          "Запишу видео короче"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Video faylni qayerda saqlaysiz?",
+        "variantlar": [
+          "Repo papkasida, kod yonida",
+          "Sinf chatida, yo'qolmasin deb",
+          "Repo papkasidan tashqarida",
+          "README fayli yonida, repo'da"
+        ]
+      },
+      "ru": {
+        "savol": "Где вы храните видеофайл?",
+        "variantlar": [
+          "В папке репозитория, рядом с кодом",
+          "В чате класса, чтобы не потерялся",
+          "Вне папки репозитория",
+          "Рядом с README, в репозитории"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "git status da video ko'rindi. Bu nima degani?",
+        "variantlar": [
+          "Video GitHub'ga ketdi",
+          "Video buzilib qoldi",
+          "Video 3 daqiqadan uzun",
+          "Fayl repo ichida turibdi"
+        ]
+      },
+      "ru": {
+        "savol": "В git status видно видео. Что это значит?",
+        "variantlar": [
+          "Видео ушло на GitHub",
+          "Видео испортилось",
+          "Видео длиннее 3 минут",
+          "Файл лежит внутри репо"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Video 3 daqiqaga sig'ganini qanday bilasiz?",
+        "variantlar": [
+          "Video oynasidagi vaqtdan",
+          "Agentdan so'rab",
+          "Ssenariy qisqaligidan",
+          "Fayl hajmidan"
+        ]
+      },
+      "ru": {
+        "savol": "Как узнать, что видео уложилось в 3 минуты?",
+        "variantlar": [
+          "По времени в окне видео",
+          "Спросив агента",
+          "По краткости сценария",
+          "По размеру файла"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 1,
+      "uz": {
+        "savol": "Videoda login ko'rindi. Nima qilasiz?",
+        "variantlar": [
+          "Shundayligicha qoldiraman",
+          "O'chirib, qayta yozaman",
+          "Faqat sinfdoshga yuboraman",
+          "Login ko'rinsa bo'laveradi"
+        ]
+      },
+      "ru": {
+        "savol": "В видео виден логин. Что сделаете?",
+        "variantlar": [
+          "Оставлю как есть",
+          "Удалю и перезапишу",
+          "Отправлю только однокласснику",
+          "Логин виден — не страшно"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 2,
+      "uz": {
+        "savol": "Mahsulot ochilmasa, «Nima qurdim»da nima qilasiz?",
+        "variantlar": [
+          "Mentor misolini olaman",
+          "Sahifani kutib turaman",
+          "B reja videosini ochaman",
+          "Bu bo'lakni tashlayman"
+        ]
+      },
+      "ru": {
+        "savol": "Если продукт не открылся, что делаете в «Что я построил»?",
+        "variantlar": [
+          "Возьму пример Ментора",
+          "Буду ждать страницу",
+          "Открою видео плана Б",
+          "Уберу эту часть"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Ota-ona rozi. Videoni qayerga joylaysiz?",
+        "variantlar": [
+          "Hamma ko'radigan sahifaga",
+          "Sinfning ochiq kanaliga",
+          "Repo'ga, README bilan",
+          "Link bilan ochiladigan joyga"
+        ]
+      },
+      "ru": {
+        "savol": "Родители согласны. Куда выложите видео?",
+        "variantlar": [
+          "На страницу, видную всем",
+          "В открытый канал класса",
+          "В репо, с README",
+          "Туда, где открывается по ссылке"
+        ]
+      }
+    }
+  ]
+}

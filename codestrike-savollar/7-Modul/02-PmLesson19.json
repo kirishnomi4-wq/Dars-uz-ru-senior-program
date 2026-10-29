@@ -1,0 +1,278 @@
+{
+  "lessonId": "pm-m5d2-v1",
+  "key": "m5-02",
+  "modul": 7,
+  "tartib": 2,
+  "nom": {
+    "uz": "Botingizni birinchi kim ochadi?",
+    "ru": "Кто первым откроет вашего бота?"
+  },
+  "src": "src/5-Modull/PmLesson19.jsx",
+  "barmoq_izi": "469836f323d46a243693270b10f0cee6",
+  "savollar": [
+    {
+      "n": 1,
+      "togri": 0,
+      "uz": {
+        "savol": "Birinchi foydalanuvchilar kim?",
+        "variantlar": [
+          "Botni birinchi ishlatganlar",
+          "Bot yozishga yordam berganlar",
+          "Botga bir marta yozganlar",
+          "Bot haqida faqat eshitganlar"
+        ]
+      },
+      "ru": {
+        "savol": "Кто такие первые пользователи?",
+        "variantlar": [
+          "Первыми пользуются ботом",
+          "Помогали писать бота",
+          "Написали боту один раз",
+          "Только слышали о боте"
+        ]
+      }
+    },
+    {
+      "n": 2,
+      "togri": 3,
+      "uz": {
+        "savol": "Botga birinchi odamlarni kim olib keladi?",
+        "variantlar": [
+          "Telegram — hammaga aytadi",
+          "Qidiruv — bot o'zi chiqadi",
+          "Bot — odamlarni chaqiradi",
+          "Siz — o'zingiz aytasiz"
+        ]
+      },
+      "ru": {
+        "savol": "Кто приводит к боту первых людей?",
+        "variantlar": [
+          "Telegram — сообщает всем",
+          "Поиск — бот всплывает сам",
+          "Бот — сам зовёт людей",
+          "Вы — рассказываете сами"
+        ]
+      }
+    },
+    {
+      "n": 3,
+      "togri": 2,
+      "uz": {
+        "savol": "Tanish guruhda xabar nega tez tarqaladi?",
+        "variantlar": [
+          "U yerda odam soni ko'p",
+          "Xabarni bot o'zi aytadi",
+          "Bir-birini tez-tez ko'radi",
+          "Bir-birini izlab yuradi"
+        ]
+      },
+      "ru": {
+        "savol": "Почему в знакомой группе весть расходится быстро?",
+        "variantlar": [
+          "Там много людей",
+          "Бот сам сообщает",
+          "Часто видят друг друга",
+          "Ищут друг друга"
+        ]
+      }
+    },
+    {
+      "n": 4,
+      "togri": 1,
+      "uz": {
+        "savol": "Qaysi halqa ko'proq odam berdi?",
+        "variantlar": [
+          "Sizni tanimaydiganlar",
+          "Har kuni ko'rishadiganlar",
+          "Ba'zan ko'rishadiganlar",
+          "Uchalasi bir xil"
+        ]
+      },
+      "ru": {
+        "savol": "Какое кольцо дало больше людей?",
+        "variantlar": [
+          "Те, кто вас не знает",
+          "Видятся каждый день",
+          "Видятся иногда",
+          "Все три одинаково"
+        ]
+      }
+    },
+    {
+      "n": 5,
+      "togri": 1,
+      "uz": {
+        "savol": "Katta guruhda odam ko'p — nega ishlatgani kam?",
+        "variantlar": [
+          "U yerda bot ochilmaydi",
+          "Ular sizni tanimaydi",
+          "Xabar u yerga yetmaydi",
+          "Bot u yerda sekin ishlaydi"
+        ]
+      },
+      "ru": {
+        "savol": "В большой группе людей много — почему пользуются мало?",
+        "variantlar": [
+          "Там бот не открывается",
+          "Они вас не знают",
+          "Весть туда не доходит",
+          "Там бот работает медленно"
+        ]
+      }
+    },
+    {
+      "n": 6,
+      "togri": 0,
+      "uz": {
+        "savol": "Xabar qaysi guruhda tez tarqaladi?",
+        "variantlar": [
+          "Tanish: bir-biriga aytadi",
+          "Tanish: odam soni ko'p",
+          "Notanish: odam soni ko'p",
+          "Notanish: bir-biriga aytadi"
+        ]
+      },
+      "ru": {
+        "savol": "В какой группе весть расходится быстро?",
+        "variantlar": [
+          "Знакомой: рассказывают друг другу",
+          "Знакомой: людей много",
+          "Незнакомой: людей много",
+          "Незнакомой: рассказывают друг другу"
+        ]
+      }
+    },
+    {
+      "n": 7,
+      "togri": 2,
+      "uz": {
+        "savol": "Odam botga kelguncha qaysi uch qadamdan o'tadi?",
+        "variantlar": [
+          "Qidirdi, topdi, yozdi",
+          "Ochdi, ishlatdi, eshitdi",
+          "Eshitdi, ochdi, ishlatdi",
+          "Ko'rdi, yozdi, o'chirdi"
+        ]
+      },
+      "ru": {
+        "savol": "Какие три шага проходит человек, пока дойдёт до бота?",
+        "variantlar": [
+          "Искал, нашёл, написал",
+          "Открыл, пользуется, услышал",
+          "Услышал, открыл, пользуется",
+          "Увидел, написал, удалил"
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "togri": 3,
+      "uz": {
+        "savol": "Facebook 2004-yilda qayerda ochilgan?",
+        "variantlar": [
+          "Butun dunyoda, hamma uchun",
+          "Ikki shahardagi maktablarda",
+          "Uch shaharda, bittadan joyda",
+          "Bitta universitetda"
+        ]
+      },
+      "ru": {
+        "savol": "Где открылся Facebook в 2004 году?",
+        "variantlar": [
+          "Во всём мире, для всех",
+          "В школах двух городов",
+          "В трёх городах, по одному месту",
+          "В одном университете"
+        ]
+      }
+    },
+    {
+      "n": 9,
+      "togri": 0,
+      "uz": {
+        "savol": "Facebook butun dunyo uchun qachon ochilgan?",
+        "variantlar": [
+          "Oradan ikki yarim yil o'tgach",
+          "Birinchi kunidan boshlab",
+          "Bir necha oydan keyin",
+          "O'sha yilning oxirida"
+        ]
+      },
+      "ru": {
+        "savol": "Когда Facebook открылся для всего мира?",
+        "variantlar": [
+          "Спустя два с половиной года",
+          "С первого же дня",
+          "Через несколько месяцев",
+          "В конце того же года"
+        ]
+      }
+    },
+    {
+      "n": 10,
+      "togri": 2,
+      "uz": {
+        "savol": "Facebook voqeasida nima ish bergan?",
+        "variantlar": [
+          "Saytning tez ochilishi",
+          "Yozilgan odamlar soni",
+          "Odamlar bir-birini tanishi",
+          "Saytdagi tugmalar ko'pligi"
+        ]
+      },
+      "ru": {
+        "savol": "Что сработало в истории Facebook?",
+        "variantlar": [
+          "Сайт быстро открывался",
+          "Число записавшихся",
+          "Люди знали друг друга",
+          "Много кнопок на сайте"
+        ]
+      }
+    },
+    {
+      "n": 11,
+      "togri": 1,
+      "uz": {
+        "savol": "Qaysi biri tanish guruh?",
+        "variantlar": [
+          "Bir mahalladagi notanishlar",
+          "Sinfdoshlar: har kuni birga",
+          "Kanalning 5000 obunachisi",
+          "Bekatda avtobus kutganlar"
+        ]
+      },
+      "ru": {
+        "savol": "Что из этого — знакомая группа?",
+        "variantlar": [
+          "Незнакомые соседи по махалле",
+          "Одноклассники: каждый день вместе",
+          "5000 подписчиков канала",
+          "Ждущие автобус на остановке"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "togri": 3,
+      "uz": {
+        "savol": "Har guruh haqida nimalarni yozasiz?",
+        "variantlar": [
+          "Guruh nomi va odamlar yoshi",
+          "Faqat odam soni",
+          "Guruh nomi, admini, sanasi",
+          "Nomi, kimlar bor, odam soni"
+        ]
+      },
+      "ru": {
+        "savol": "Что вы пишете о каждой группе?",
+        "variantlar": [
+          "Название и возраст людей",
+          "Только число людей",
+          "Название, админ, дата",
+          "Название, кто там, сколько людей"
+        ]
+      }
+    }
+  ]
+}

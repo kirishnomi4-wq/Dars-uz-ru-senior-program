@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GET so'rovi nima qiladi?",
+    "order_number": 1,
+    "options": [
+      {
+        "value": "Bazadan ma'lumot o'chiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi ma'lumot qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverni o'chirib qo'yadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ma'lumotni o'qib oladi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "API nima?",
+    "order_number": 2,
+    "options": [
+      {
+        "value": "Ikki dastur gaplashadigan til",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Rasmlar saqlanadigan papka",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Sahifani bezaydigan dastur",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Internetni tezlatuvchi qurilma",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "201 Created statusi nimani bildiradi?",
+    "order_number": 3,
+    "options": [
+      {
+        "value": "Server javob bermadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi narsa yaratildi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "So'rovda xatolik bor",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Manzil serverda topilmadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "POST so'rovida BODY nimaga kerak?",
+    "order_number": 4,
+    "options": [
+      {
+        "value": "Sahifani chiroyli qilish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Javobni tezlashtirish",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Yangi ma'lumotni tashish",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Manzilni yashirish",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Postman qanday dastur?",
+    "order_number": 5,
+    "options": [
+      {
+        "value": "Sayt dizaynini chizadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Serverga rasm yuklaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Frontendsiz API'ni sinaydi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Bazadan ma'lumot o'chiradi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "404 Not Found nima demoqchi?",
+    "order_number": 6,
+    "options": [
+      {
+        "value": "Ma'lumot qaytib keldi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Manzil topilmadi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi yozuv yaratildi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Kirish taqiqlangan",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Mahsulot narxini yangilash uchun qaysi method?",
+    "order_number": 7,
+    "options": [
+      {
+        "value": "POST",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "GET",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "PUT",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "So'rov (request) qismlari qaysilar?",
+    "order_number": 8,
+    "options": [
+      {
+        "value": "METHOD + URL (+ BODY)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat rang, shrift va bezaklar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat rasm va videolar",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat login va parol",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "DELETE /api/products/3 nima qiladi?",
+    "order_number": 9,
+    "options": [
+      {
+        "value": "3-mahsulotni o'chiradi",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Yangi mahsulot qo'shadi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Ro'yxatni o'qib beradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Narxni oshirib qo'yadi",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "GET bazadagi qaysi SQL amaliga to'g'ri keladi?",
+    "order_number": 10,
+    "options": [
+      {
+        "value": "INSERT",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "UPDATE",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "SELECT",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "DELETE",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Sayt ma'lumot kerak bo'lganda nima qiladi?",
+    "order_number": 11,
+    "options": [
+      {
+        "value": "Bazaga o'zi kiradi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Hech kimsiz o'zi ishlaydi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Boshqa saytdan nusxa oladi",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "API'ga so'rov yuboradi",
+        "hint": "To'g'ri!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "uz",
+    "question": "Javob konverti (response) nimadan iborat?",
+    "order_number": 12,
+    "options": [
+      {
+        "value": "Faqat bitta rasm fayli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "STATUS + DATA (JSON)",
+        "hint": "To'g'ri!"
+      },
+      {
+        "value": "Faqat foydalanuvchi paroli",
+        "hint": "Noto'g'ri"
+      },
+      {
+        "value": "Faqat so'rov manzili (URL)",
+        "hint": "Noto'g'ri"
+      }
+    ],
+    "answer_index": 1
+  }
+]

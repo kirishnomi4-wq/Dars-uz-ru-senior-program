@@ -1,0 +1,302 @@
+[
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Сокращением чего является CRUD?",
+    "order_number": 13,
+    "options": [
+      {
+        "value": "Create, Read, Update, Delete",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Copy, Run, Undo, Delete",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Code, Read, Update, Deploy",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Create, React, Update, Data",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Верный код для добавления игры (Create)?",
+    "order_number": 14,
+    "options": [
+      {
+        "value": "games.push(newGame)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "setGames([...games, newGame])",
+        "hint": "Верно!"
+      },
+      {
+        "value": "games = [...games, newGame]",
+        "hint": "Неверно"
+      },
+      {
+        "value": "setGames(yangi)",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что используется, чтобы нарисовать список на экране (Read)?",
+    "order_number": 15,
+    "options": [
+      {
+        "value": "filter",
+        "hint": "Неверно"
+      },
+      {
+        "value": "push",
+        "hint": "Неверно"
+      },
+      {
+        "value": "map",
+        "hint": "Верно!"
+      },
+      {
+        "value": "confirm",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой метод для изменения игры (Update)?",
+    "order_number": 16,
+    "options": [
+      {
+        "value": "push",
+        "hint": "Неверно"
+      },
+      {
+        "value": "filter",
+        "hint": "Неверно"
+      },
+      {
+        "value": "pop",
+        "hint": "Неверно"
+      },
+      {
+        "value": "map",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Какой код удаляет (Delete)?",
+    "order_number": 17,
+    "options": [
+      {
+        "value": "games.filter(g => g.id !== id)",
+        "hint": "Верно!"
+      },
+      {
+        "value": "games.map(g => g.id !== id)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "games.filter(g => g.id === id)",
+        "hint": "Неверно"
+      },
+      {
+        "value": "games.push(id)",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает ...games (spread)?",
+    "order_number": 18,
+    "options": [
+      {
+        "value": "Удаляет список",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Копирует старые элементы",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Вынимает последний",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Переворачивает порядок",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Почему в React не работает push?",
+    "order_number": 19,
+    "options": [
+      {
+        "value": "push вешает страницу",
+        "hint": "Неверно"
+      },
+      {
+        "value": "push работает только на сервере",
+        "hint": "Неверно"
+      },
+      {
+        "value": "React не видит нового списка",
+        "hint": "Верно!"
+      },
+      {
+        "value": "push не умеет с числами",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Что делает map с {...g, top: true}?",
+    "order_number": 20,
+    "options": [
+      {
+        "value": "Удаляет все игры",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Добавляет новую игру",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Очищает список",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Меняет одну игру",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Как работает filter?",
+    "order_number": 21,
+    "options": [
+      {
+        "value": "Оставляет подходящие",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Меняет все",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Добавляет в конец",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Складывает числа",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 0
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Увеличить число лайков игры — какое это действие CRUD?",
+    "order_number": 22,
+    "options": [
+      {
+        "value": "Delete",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Update",
+        "hint": "Верно!"
+      },
+      {
+        "value": "Create",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Read",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 1
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Где хранятся данные в этом уроке?",
+    "order_number": 23,
+    "options": [
+      {
+        "value": "На сервере — навсегда",
+        "hint": "Неверно"
+      },
+      {
+        "value": "На диске — не стираются",
+        "hint": "Неверно"
+      },
+      {
+        "value": "В state — пропадут при обновлении",
+        "hint": "Верно!"
+      },
+      {
+        "value": "В облаке — видят все",
+        "hint": "Неверно"
+      }
+    ],
+    "answer_index": 2
+  },
+  {
+    "type": "selected-file",
+    "lang": "ru",
+    "question": "Зачем перед удалением спрашивают confirm?",
+    "order_number": 24,
+    "options": [
+      {
+        "value": "Чтобы код работал быстрее",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Этого требует React",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Чтобы покрасить карточку",
+        "hint": "Неверно"
+      },
+      {
+        "value": "Удалённое не вернуть",
+        "hint": "Верно!"
+      }
+    ],
+    "answer_index": 3
+  }
+]
