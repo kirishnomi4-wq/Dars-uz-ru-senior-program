@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { tr } from './i18n.js';
 import { livePlayers, fmtPin, nickRead } from './liveClient.js';
 import { isPreview } from './previewMode.js'; // F-1017-225: preview'da «natija yozilmaydi» xabari
+import { finishHold } from './podium.js';
 
 export const LT = { bg: '#F6F4EF', ink: '#0E0E10', ink2: '#5A5A60', ink3: '#A7A6A2', paper: '#FFFFFF', accent: '#FF4F28', accentSoft: '#FFE8E1', success: '#1F7A4D' };
 
@@ -97,7 +98,36 @@ export function LiveGate({ live, title = 'Jonli dars' }) {
   </div></div>);
 }
 
-export function LiveBadge({ live, total }) {
+// CodeStrike podium (Abdulloh QA 28.10, PODIUM-03): «Tamom» bosilganda yakuniy o'rin hali kelmagan bo'lsa — yuk ushlab turiladi
+// (useLiveSession.holdFinish) va shu oyna chiqadi; o'rin kelishi bilan yuk o'zi ketadi. LiveBadge hamma darsda bor — oyna ham shu yerda.
+// 45 soniyadan keyin zaxira tugma: o'quvchi kutmasdan yakunlashi mumkin (natija saqlanadi, o'rin bonusi berilmaydi).
+const PODIUM_FALLBACK_MS = 45000;
+function PodiumWait({ live }) {
+  const [late, setLate] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setLate(true), PODIUM_FALLBACK_MS); return () => clearTimeout(t); }, []);
+  const overlay = { position: 'fixed', inset: 0, zIndex: 10001, background: 'rgba(14,14,16,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 };
+  const card = { width: '100%', maxWidth: 420, background: LT.paper, borderRadius: 20, padding: 'clamp(22px,4vw,32px)', boxShadow: '0 10px 40px -12px rgba(0,0,0,0.35)', display: 'flex', flexDirection: 'column', gap: 14, textAlign: 'center' };
+  return (
+    <div style={overlay} data-live="podium-wait" role="dialog" aria-live="polite">
+      <div style={card}>
+        <div style={{ fontSize: 34, lineHeight: 1 }}>⏳</div>
+        <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(20px,3vw,24px)', color: LT.ink, margin: 0 }}>{tr({ uz: "CodeStrike o'rinlari hisoblanmoqda", ru: 'Подсчитываем места в CodeStrike' })}</h2>
+        <p style={{ color: LT.ink2, fontSize: 15, margin: 0, lineHeight: 1.5 }}>{tr({ uz: "Mentor testni yakunlashi bilan o'rningiz aniqlanadi va dars natijasi o'zi yuboriladi. Sahifani yopmang.", ru: 'Как только ментор завершит тест, ваше место определится и результат урока отправится сам. Не закрывайте страницу.' })}</p>
+        {late && <button data-live="podium-skip" onClick={live.finishWithoutPodium} style={_liveBtnSec}>{tr({ uz: 'Kutmasdan yakunlash', ru: 'Завершить без ожидания' })}</button>}
+        {late && <p style={{ color: LT.ink3, fontSize: 13, margin: 0 }}>{tr({ uz: "Bunda CodeStrike o'rni uchun bonus berilmaydi.", ru: 'В этом случае бонус за место в CodeStrike не начисляется.' })}</p>}
+      </div>
+    </div>
+  );
+}
+
+export function LiveBadge(props) {
+  return (<>
+    {props.live && props.live.finishHeld && <PodiumWait live={props.live} />}
+    <LiveBadgeMain {...props} />
+  </>);
+}
+
+function LiveBadgeMain({ live, total }) {
   const [bigOpen, setBigOpen] = useState(false);
   const [nPlayers, setNPlayers] = useState(null);
   // Katta PIN ekrani AVTOMATIK ochilmaydi — dars oq holda, onboarding bilan ochiladi.
@@ -194,9 +224,11 @@ export function FinishBtn({ onClick, children, disabled, ...rest }) {
     try { if (typeof onClick === 'function') onClick(e); }
     catch (err) { console.error('[finish]', err); return; }
     setDone(true);
-    liveToast(isPreview()
+    const toast = () => liveToast(isPreview()
       ? { uz: "Ko'rish rejimi — natija yozilmaydi.", ru: 'Режим просмотра — результат не записывается.' }
       : { uz: "Dars yakunlandi ✓ Endi bu oynani yopsangiz bo'ladi.", ru: 'Урок завершён ✓ Теперь это окно можно закрыть.' });
+    if (finishHold.get()) finishHold.whenReleased(toast); // CodeStrike podium kutilmoqda — xabar yuk ketganda (28.10)
+    else toast();
   };
   return <button {...rest} data-live={done ? 'finish-done' : 'finish'} disabled={disabled || done} onClick={click}>{done ? tr({ uz: 'Yakunlandi ✓', ru: 'Завершено ✓' }) : children}</button>;
 }

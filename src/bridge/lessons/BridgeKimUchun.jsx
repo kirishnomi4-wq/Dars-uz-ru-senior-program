@@ -17,7 +17,7 @@ const MENTOR_IMG = 'https://go.coddycamp.uz/uploads/media_library/c7b711619071c9
 
 import { cardRead, cardWrite, READY_IDEAS } from '../bridgeCard.js';
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress).
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang, buildResultDetails, sealPayload, useAutoNext } from '../../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang, buildResultDetails, sealPayload, useAutoNext } from '../../live/index.js';
 
 // ============================================================
 // 🎨 PM-STUDIA IDENTITET (PM_DARS_ETALON 1-bo'lim — P0 dan AYNAN)
@@ -2302,6 +2302,7 @@ function QuizArena({ live, onClose, startSolo }) {
   const isMentor = live.mode === 'mentor';
   const isStudent = live.mode === 'student';
   const [soloMode, setSoloMode] = useState(!!startSolo);
+  const [arenaRun] = useState(() => Date.now().toString(36) + Math.random().toString(36).slice(2, 8)); // BUG-01 v2: shu ochilishning o'yin-ID'si (yopib qayta ochish — yangi o'yin)
   const solo = soloMode || (!isMentor && !isStudent);
   const soloRef = useRef(solo);
   soloRef.current = solo;
@@ -2339,6 +2340,7 @@ function QuizArena({ live, onClose, startSolo }) {
         if (row) {
           const st = row.quiz_state || 'off', q = row.quiz_q ?? -1;
           if (st === 'q' && q !== seenQRef.current) {
+            if (!isMentor && typeof live.arenaStart === 'function') live.arenaStart(arenaRun); // BUG-01 v2
             seenQRef.current = q; qStartRef.current = Date.now();
             deadlineRef.current = Date.now() + QUIZ_MS - (isMentor ? 0 : 700);
             setQi(q); setRemaining(deadlineRef.current - Date.now()); setPhase('q'); setAnsweredN(0);
@@ -2346,7 +2348,7 @@ function QuizArena({ live, onClose, startSolo }) {
             if (q !== seenQRef.current) { seenQRef.current = q; setQi(q); }
             setPhase(p => p === 'done' ? p : 'reveal');
           }
-          else if (st === 'done') { setPhase('done'); }
+          else if (st === 'done') { setPhase('done'); if (!isMentor && typeof live.arenaDone === 'function') live.arenaDone(); }
         }
         const st1 = row ? (row.quiz_state || 'off') : null;
         const ph = st1 === 'r' ? 'reveal' : st1 === 'done' ? 'done' : st1 === 'lobby' ? 'lobby' : st1 === 'q' ? 'q' : phaseRef.current;
@@ -2389,24 +2391,24 @@ function QuizArena({ live, onClose, startSolo }) {
       }
     } catch {}
   };
-  const soloStart = (i) => { seenQRef.current = i; qStartRef.current = Date.now(); deadlineRef.current = Date.now() + QUIZ_MS; setQi(i); setRemaining(QUIZ_MS); setPhase('q'); };
-  const soloNext = () => { const n = qi + 1; if (n >= QUIZ_BANK.length) setPhase('done'); else soloStart(n); };
-  const soloReplay = () => { setMyAnswers({}); soloStart(0); };
-  const startPractice = () => { setSoloMode(true); setMyAnswers({}); soloStart(0); };
+  const soloStart = (i) => { if (typeof live.arenaStart === 'function') live.arenaStart(arenaRun); seenQRef.current = i; qStartRef.current = Date.now(); deadlineRef.current = Date.now() + QUIZ_MS; setQi(i); setRemaining(QUIZ_MS); setPhase('q'); };
+  const soloNext = () => { const n = qi + 1; if (n >= QUIZ_BANK.length) { setPhase('done'); if (typeof live.arenaDone === 'function') live.arenaDone(); } else soloStart(n); };
+  const soloReplay = () => { if (typeof live.arenaDone === 'function') live.arenaDone(); setSoloMode(true); setMyAnswers({}); soloStart(0); }; // BUG-01: qayta o'yin — mashq, CodeStrike natijasiga yozilmaydi
+  const startPractice = () => { if (typeof live.arenaDone === 'function') live.arenaDone(); setSoloMode(true); setMyAnswers({}); soloStart(0); };
 
   const answer = (i) => {
     if (phase !== 'q' || isMentor || myAnswers[qi]) return;
     const elapsed = Math.min(QUIZ_MS, Date.now() - qStartRef.current);
     const correct = i === QUIZ_BANK[qi].correct;
     setMyAnswers(m => ({ ...m, [qi]: { picked: i, correct, elapsed } }));
-    if (isStudent && !solo) live.submitAnswer(QUIZ_BASE_IDX + qi, `quiz-${qi}`, i, correct, elapsed);
+    if (!soloMode && typeof live.submitAnswer === 'function') live.submitAnswer(QUIZ_BASE_IDX + qi, `quiz-${qi}`, i, correct, elapsed); // F-1023-01: jonli va solo birinchi o'yin hisob (codestrike); mashq (soloMode) emas
     if (solo) setPhase('reveal');
   };
 
   const streakUpTo = (k) => { let s = 0; for (let i = 0; i <= k; i++) { if (myAnswers[i]?.correct) s++; else s = 0; } return s; };
   const myPtsFor = (k) => { const a = myAnswers[k]; if (!a || !a.correct) return 0; return quizPts(a.elapsed) + (streakUpTo(k) >= 2 ? 100 : 0); };
 
-  const board = players.map(p => { const s = quizScore(qRows.filter(r => r.player_id === p.id)); return { id: p.id, nickname: p.nickname, ...s }; }).sort((a, b) => b.pts - a.pts || b.ok - a.ok);
+  const board = players.map(p => { const s = quizScore(qRows.filter(r => r.player_id === p.id)); return { id: p.id, nickname: p.nickname, ...s }; }).sort(arenaOrder(players)); // teng ochkoda — oldin qo'shilgan yuqorida; LMS podiumi bilan bitta qoida (28.10)
   const myRank = live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
   const soloRows = Object.entries(myAnswers).map(([k, v]) => ({ player_id: 'me', screen_idx: QUIZ_BASE_IDX + Number(k), correct: v.correct, elapsed_ms: v.elapsed }));
   const soloScore = quizScore(soloRows);
@@ -2449,8 +2451,8 @@ function QuizArena({ live, onClose, startSolo }) {
 
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
-          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: '📖 Mashq rejimida davom etish', ru: '📖 Продолжить в режиме тренировки' })}</button>
+          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — CodeStrike to'xtadi.", ru: '⚠️ Живой урок завершён — CodeStrike остановлен.' })}</span>
+          <button className="qz-btn" onClick={closeArena}>{tr({ uz: 'Yopish', ru: 'Закрыть' })}</button>
         </div>
       )}
 
@@ -2760,6 +2762,7 @@ const ScreenEnd = ({ screen, onReset, onPrev, onFinish }) => {
   const studentSolo = isStudentL && classOver && quizSt !== 'done';
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
+  const csLocked = !!(_live && (_live.mode === 'solo' || _live.mode === 'review' || studentSolo)); // F-1029-01: CodeStrike faqat ustozga ulangan jonli darsda — uyda/ko'rishda/sinf tugaganda yopiq, LMS Learn ochadi
   const openArena = async () => {
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch { return; } }
     setArenaSolo(studentSolo); setArena(true);
@@ -2769,7 +2772,7 @@ const ScreenEnd = ({ screen, onReset, onPrev, onFinish }) => {
       <div className="screen">
         <div className="hero"><div className="hero-l"><h2 className="title h-title fade-up d1">{tr({ uz: <>Siz qo'shilayotgan AI Startup kursida har bir loyiha shu savoldan boshlanadi: <span className="italic" style={{ color: T.accent }}>kim uchun?</span></>, ru: <>На курсе AI Startup, к которому вы присоединяетесь, каждый проект начинается с этого вопроса: <span className="italic" style={{ color: T.accent }}>для кого?</span></> })}</h2></div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : tr({ uz: "12 savolli tezkor o'yin — bugungi dars bo'yicha", ru: 'Быстрая игра из 12 вопросов — по сегодняшнему уроку' })} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait || csLocked} onClick={(studentWait || csLocked) ? undefined : openArena} hint={csLocked ? tr({ uz: "CodeStrike sinfda, ustoz bilan o'ynaladi", ru: 'CodeStrike — в классе, с ментором' }) : studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Подождите ментора' }) : tr({ uz: "12 savolli tezkor o'yin — bugungi dars bo'yicha", ru: 'Быстрая игра из 12 вопросов — по сегодняшнему уроку' })} />
         </div>
         {arena && <QuizArena live={_live || { mode: 'self' }} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}>{tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span>{tr(r)}</span></li>))}</ul></div>
@@ -2833,7 +2836,7 @@ export default function BridgeKimUchun({ lang: langProp, onFinished, liveToken }
     upd(); window.addEventListener('resize', upd); return () => window.removeEventListener('resize', upd);
   }, []);
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken });
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } });
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS });
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   const locked = isStudentLive && (screen + 1 > live.mentorScreen);
@@ -2857,6 +2860,7 @@ export default function BridgeKimUchun({ lang: langProp, onFinished, liveToken }
   }, [screen, answers, earned, missed, fpPractice]);
 
   const finishLesson = () => {
+    if (typeof live.holdFinish === 'function' && live.holdFinish(finishLesson)) return; // CodeStrike podium: yakuniy o'rin kelguncha yuk ushlab turiladi (28.10)
     progClear(LESSON_META.lessonId);
     live.endSession();
     const fp = firstPassRef.current;

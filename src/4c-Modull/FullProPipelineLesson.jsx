@@ -45,7 +45,7 @@ const tr = (node) => {
 };
 
 // Jonli dars (live) — umumiy modul: src/live/ (hook + darvoza + belgi + mijoz + server-progress). Inline nusxa 2026-09-03 da ko'chirildi.
-import { useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
+import { arenaOrder, useLiveSession, useServerProgress, LiveGateCtx, LiveGate, LiveBadge, LIVE_ENABLED, liveGet, liveRead, progRead, progWrite, progClear, livePlayers, liveAnswers, liveQuizAnswers, setLiveLang , buildResultDetails, sealPayload, useAutoNext, FinishBtn, liveToast } from '../live/index.js';
 import { UygaVazifaKarta } from '../qolip/UygaVazifaKarta.jsx'; // F-1023-03: uyga vazifa v2 kartasi
 // F-1023-03: uyga vazifa — LMS'dagi «Uyga vazifa: Pre Demo Day: test + lint + deploy (ishonchli lenta)» bilan bir xil (uyga-vazifa-v2/lms/paket.json, 6-14). scripts/hw-v2-kartalar.mjs yozadi.
 const HW_V2 = {"id":"6-14","tur":"text","nom":{"uz":"Uyga vazifa: Pre Demo Day: test + lint + deploy (ishonchli lenta)","ru":"Домашнее задание: Pre Demo Day: test + lint + deploy (надёжная лента)"},"matn":{"uz":"Ishonchli lentani (pipeline) haqiqiy run'da ko'rsating.\n\n1. ci.yml'ga matrix qo'shing: Node 22 va 24 — ikki parallel job.\n2. cache: npm — ikkinchi run tezroq o'tsin (vaqtlarini README'ga yozing).\n3. JWT_SECRET ni GitHub Secrets'ga qo'ying va testda ${{ secrets.JWT_SECRET }} orqali ishlating — jurnalda *** ko'rinsin.\n4. Repo linki va run linki.\n\nNima tekshiriladi:\n— 2 ta parallel job yashil\n— cache ishlagan (2-run tezroq)\n— kalit ci.yml'da ochiq yozilmagan, jurnalda ***\n— README'da vaqtlar.","ru":"Покажите надёжную ленту (pipeline) на настоящем run.\n\n1. Добавьте в ci.yml matrix: Node 22 и 24 — два параллельных job.\n2. cache: npm — второй run проходит быстрее (запишите время в README).\n3. Положите JWT_SECRET в GitHub Secrets и используйте в тесте через ${{ secrets.JWT_SECRET }} — в журнале должно быть ***.\n4. Ссылка на репозиторий и ссылка на run.\n\nЧто проверяется:\n— 2 параллельных job зелёные\n— cache сработал (2-й run быстрее)\n— ключ не записан открыто в ci.yml, в журнале ***\n— время в README."}};
@@ -1307,6 +1307,7 @@ function QuizArena({ live, onClose, startSolo }) {
   const isMentor = live.mode === 'mentor';
   const isStudent = live.mode === 'student';
   const [soloMode, setSoloMode] = useState(!!startSolo);
+  const [arenaRun] = useState(() => Date.now().toString(36) + Math.random().toString(36).slice(2, 8)); // BUG-01 v2: shu ochilishning o'yin-ID'si (yopib qayta ochish — yangi o'yin)
   const solo = soloMode || (!isMentor && !isStudent);
   const soloRef = useRef(solo);
   soloRef.current = solo;
@@ -1346,6 +1347,7 @@ function QuizArena({ live, onClose, startSolo }) {
         if (row) {
           const st = row.quiz_state || 'off', q = row.quiz_q ?? -1;
           if (st === 'q' && q !== seenQRef.current) {
+            if (!isMentor && typeof live.arenaStart === 'function') live.arenaStart(arenaRun); // BUG-01 v2
             seenQRef.current = q; qStartRef.current = Date.now();
             deadlineRef.current = Date.now() + QUIZ_MS - (isMentor ? 0 : 700);
             setQi(q); setRemaining(deadlineRef.current - Date.now()); setPhase('q'); setAnsweredN(0);
@@ -1353,7 +1355,7 @@ function QuizArena({ live, onClose, startSolo }) {
             if (q !== seenQRef.current) { seenQRef.current = q; setQi(q); }
             setPhase(p => p === 'done' ? p : 'reveal');
           }
-          else if (st === 'done') { setPhase('done'); }
+          else if (st === 'done') { setPhase('done'); if (!isMentor && typeof live.arenaDone === 'function') live.arenaDone(); }
         }
         const st1 = row ? (row.quiz_state || 'off') : null;
         const ph = st1 === 'r' ? 'reveal' : st1 === 'done' ? 'done' : st1 === 'lobby' ? 'lobby' : st1 === 'q' ? 'q' : phaseRef.current;
@@ -1397,24 +1399,24 @@ function QuizArena({ live, onClose, startSolo }) {
       }
     } catch {}
   };
-  const soloStart = (i) => { seenQRef.current = i; qStartRef.current = Date.now(); deadlineRef.current = Date.now() + QUIZ_MS; setQi(i); setRemaining(QUIZ_MS); setPhase('q'); };
-  const soloNext = () => { const n = qi + 1; if (n >= QUIZ_BANK.length) setPhase('done'); else soloStart(n); };
-  const soloReplay = () => { setMyAnswers({}); soloStart(0); };
-  const startPractice = () => { setSoloMode(true); setMyAnswers({}); soloStart(0); };
+  const soloStart = (i) => { if (typeof live.arenaStart === 'function') live.arenaStart(arenaRun); seenQRef.current = i; qStartRef.current = Date.now(); deadlineRef.current = Date.now() + QUIZ_MS; setQi(i); setRemaining(QUIZ_MS); setPhase('q'); };
+  const soloNext = () => { const n = qi + 1; if (n >= QUIZ_BANK.length) { setPhase('done'); if (typeof live.arenaDone === 'function') live.arenaDone(); } else soloStart(n); };
+  const soloReplay = () => { if (typeof live.arenaDone === 'function') live.arenaDone(); setSoloMode(true); setMyAnswers({}); soloStart(0); }; // BUG-01: qayta o'yin — mashq, CodeStrike natijasiga yozilmaydi
+  const startPractice = () => { if (typeof live.arenaDone === 'function') live.arenaDone(); setSoloMode(true); setMyAnswers({}); soloStart(0); };
 
   const answer = (i) => {
     if (phase !== 'q' || isMentor || myAnswers[qi]) return;
     const elapsed = Math.min(QUIZ_MS, Date.now() - qStartRef.current);
     const correct = i === QUIZ_BANK[qi].correct;
     setMyAnswers(m => ({ ...m, [qi]: { picked: i, correct, elapsed } }));
-    if (isStudent && !solo) live.submitAnswer(QUIZ_BASE_IDX + qi, `quiz-${qi}`, i, correct, elapsed);
+    if (!soloMode && typeof live.submitAnswer === 'function') live.submitAnswer(QUIZ_BASE_IDX + qi, `quiz-${qi}`, i, correct, elapsed); // F-1023-01: jonli va solo birinchi o'yin hisob (codestrike); mashq (soloMode) emas
     if (solo) setPhase('reveal');
   };
 
   const streakUpTo = (k) => { let s = 0; for (let i = 0; i <= k; i++) { if (myAnswers[i]?.correct) s++; else s = 0; } return s; };
   const myPtsFor = (k) => { const a = myAnswers[k]; if (!a || !a.correct) return 0; return quizPts(a.elapsed) + (streakUpTo(k) >= 2 ? 100 : 0); };
 
-  const board = players.map(p => { const s = quizScore(qRows.filter(r => r.player_id === p.id)); return { id: p.id, nickname: p.nickname, ...s }; }).sort((a, b) => b.pts - a.pts || b.ok - a.ok);
+  const board = players.map(p => { const s = quizScore(qRows.filter(r => r.player_id === p.id)); return { id: p.id, nickname: p.nickname, ...s }; }).sort(arenaOrder(players)); // teng ochkoda — oldin qo'shilgan yuqorida; LMS podiumi bilan bitta qoida (28.10)
   const myRank = live.playerId ? board.findIndex(b => b.id === live.playerId) : -1;
   const soloRows = Object.entries(myAnswers).map(([k, v]) => ({ player_id: 'me', screen_idx: QUIZ_BASE_IDX + Number(k), correct: v.correct, elapsed_ms: v.elapsed }));
   const soloScore = quizScore(soloRows);
@@ -1457,8 +1459,8 @@ function QuizArena({ live, onClose, startSolo }) {
 
       {classEnded && isStudent && !solo && phase !== 'done' && (
         <div className="qz-endnote fade-step">
-          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — testni o'zingiz davom ettiring:", ru: '⚠️ Живой урок завершён — продолжите тест самостоятельно:' })}</span>
-          <button className="qz-btn" onClick={startPractice}>{tr({ uz: 'Mashq rejimida davom etish', ru: 'Продолжить в режиме практики' })}</button>
+          <span>{tr({ uz: "⚠️ Jonli dars yakunlandi — CodeStrike to'xtadi.", ru: '⚠️ Живой урок завершён — CodeStrike остановлен.' })}</span>
+          <button className="qz-btn" onClick={closeArena}>{tr({ uz: 'Yopish', ru: 'Закрыть' })}</button>
         </div>
       )}
 
@@ -1891,6 +1893,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
   const studentSolo = isStudentL && classOver && quizSt !== 'done';
   const studentLive = isStudentL && !studentSolo && quizSt !== 'off';
   const studentWait = isStudentL && !studentSolo && quizSt === 'off';
+  const csLocked = !!(_live && (_live.mode === 'solo' || _live.mode === 'review' || studentSolo)); // F-1029-01: CodeStrike faqat ustozga ulangan jonli darsda — uyda/ko'rishda/sinf tugaganda yopiq, LMS Learn ochadi
   const openArena = async () => {
     if (isMentorL && quizSt === 'off') { try { await _live.quizControl('lobby', -1); } catch (e) { console.warn('[arena]', e); liveToast({ uz: "Jonli arena ochilmadi: server javob bermadi. Mashq rejimida ochildi — o'quvchilar ekranida ko'rinmaydi.", ru: 'Живая арена не открылась: сервер не ответил. Открыта в режиме тренировки — на экранах учеников не видна.' }); setArenaSolo(true); setArena(true); return; } }
     setArenaSolo(studentSolo); setArena(true);
@@ -1910,7 +1913,7 @@ const SummaryScreen = ({ screen, answers, achievements, onReset, onPrev, onFinis
       <div className="screen">
         <div className="hero"><div className="hero-l"><div className="hero-chips"><span className="done-chip fade-up"><span className="tick">✓</span> {tr({ uz: "Ishonchli lentani yig'dingiz", ru: 'Вы собрали надёжную ленту' })}</span><span className="score-chip fade-up">{correct}/{total} {tr({ uz: "to'g'ri", ru: 'верно' })}</span></div><h2 className="title h-title fade-up d1">{tr({ uz: <>Endi lentangiz — <span className="italic" style={{ color: T.accent }}>tez, xavfsiz, qaytariladigan</span>.</>, ru: <>Теперь ваша лента — <span className="italic" style={{ color: T.accent }}>быстрая, безопасная, обратимая</span>.</> })}</h2>{/* 54-qonun (P0 PmUserStory · PmLesson2 qarori): h-sub qatori YO'Q — sarlavha o'zi yetadi. */}</div></div>
         <div className={`qz-cta cs-cta fade-up d2 ${studentLive ? 'ready' : ''}`}>
-          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait} onClick={studentWait ? undefined : openArena} hint={studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
+          <CsWordmark stats={false} liveOn={studentLive} disabled={studentWait || csLocked} onClick={(studentWait || csLocked) ? undefined : openArena} hint={csLocked ? tr({ uz: "CodeStrike sinfda, ustoz bilan o'ynaladi", ru: 'CodeStrike — в классе, с ментором' }) : studentWait ? tr({ uz: '⏳ Mentorni kuting', ru: '⏳ Ждите ментора' }) : undefined} />
         </div>
         {arena && <QuizArena live={(isMentorL && arenaSolo) ? { mode: 'self' } : (_live || { mode: 'self' })} startSolo={arenaSolo} onClose={() => setArena(false)} />}
         <div className="card fade-up d3"><div className="card-lbl" style={{ color: T.success }}><span className="tick" style={{ width: 16, height: 16, borderRadius: '50%', background: T.success, color: '#fff', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10 }}>✓</span> {tr({ uz: 'Endi siz bilasiz', ru: 'Теперь вы знаете' })}</div><ul className="recap">{RECAP.map((r, i) => (<li key={i} style={{ animationDelay: `${0.3 + i * 0.07}s` }}><span className="ck">✓</span><span>{tr(r)}</span></li>))}</ul></div>
@@ -1997,7 +2000,7 @@ export default function FullProPipelineLesson({ lang: langProp, onFinished, live
   }, []);
   // Javob kaliti: inline testlar + jang savollari (QUIZ_BANK'dan) — mentor ochganda set_quiz_keys bilan serverga yuklanadi
   const answerKey = { ...INLINE_KEYS, ...Object.fromEntries(QUIZ_BANK.map((q, i) => [`quiz-${i}`, q.correct])) };
-  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken }); // liveToken — LMS'dan (avval null, keyin keladi)
+  const live = useLiveSession(LESSON_META.lessonId, answerKey, { liveToken, arena: { total: QUIZ_BANK.length, quizMs: QUIZ_MS, baseIdx: QUIZ_BASE_IDX } }); // liveToken — LMS'dan (avval null, keyin keladi)
   useServerProgress(live, { setScreen, setAnswers, setEarned, earnedRef, startTimeRef, total: TOTAL_SCREENS }); // server-progress: davom / ko'rish / toza boshlash
   const isStudentLive = live.mode === 'student' && live.status !== 'ended' && live.mentorAlive;
   // F-1012-03: eng uzoq yetilgan ekran (qayta boshlashda 0) — undan oldingi ekranlarda «Davom etish» qulflanmaydi
@@ -2034,6 +2037,7 @@ export default function FullProPipelineLesson({ lang: langProp, onFinished, live
   }, [screen, answers, earned, missed, fpPractice]);
 
   const finishLesson = () => {
+    if (typeof live.holdFinish === 'function' && live.holdFinish(finishLesson)) return; // CodeStrike podium: yakuniy o'rin kelguncha yuk ushlab turiladi (28.10)
     progClear(LESSON_META.lessonId); // F-0730-01: yakunlangan dars saqlovi tozalanadi
     live.endSession();
     const fp = firstPassRef.current; // 151-qonun 6-band: «Qaytadan» bosilgan bo'lsa — BIRINCHI o'tish natijasi ketadi

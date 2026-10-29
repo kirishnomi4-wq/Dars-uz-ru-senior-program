@@ -19,6 +19,7 @@
 //   Mustaqil rejimda arena mashq — yozilmaydi (submitAnswer chaqirilmaydi). Matnlar `arenaBank` (darsning QUIZ_BANK) berilsa qo'shiladi.
 import { getLiveLang } from './i18n.js';
 import { onRunChange } from './previewMode.js';
+import { podiumPlace } from './podium.js';
 
 const LIM = { questions: 200, attempts: 10, options: 6, text: 300, achievements: 20, name: 40, title: 200, elapsed: 3_600_000 };
 const cut = (v, n) => (typeof v === 'string' ? v.slice(0, n) : undefined);
@@ -33,6 +34,18 @@ const earnedAtByLesson = new Map();
 /** @type {Map<string, Map<number, {option:number, correct:boolean, elapsed_ms:number, at:number}>>} */
 const arenaByLesson = new Map();
 const ARENA_Q = /^quiz-(\d+)$/;
+// BUG-01 (LMS QA, 23.10): birinchi o'yin YOPILGAN darslar. Arena savollari doim o'sib boradi (1→12, jonlida ham, solo'da ham);
+// oldingi yoki o'sha raqamga javob kelsa — yangi o'yin boshlangan: birinchisi shu holida yopiladi (taymautdagi bo'sh joylar ham),
+// keyingi javoblar yozilmaydi. Belgi saqlovda — qayta yuklash va review'dan keyin ham turadi.
+const arenaClosed = new Set();
+// BUG-01 v2 (Abdulloh review, 23.10): o'yin chegarasi AYNIQ belgi bilan — javob tartibiga qarab taxmin yetmaydi (taymaut javob yozmaydi).
+// Dars arena har ochilishida o'z o'yin-ID'sini (`run`) beradi: birinchi savol ko'ringanda arenaStart, oxirgi savoldan keyin arenaDone.
+// arenaGame: dars-ID → { run, mode, pin } — BIRINCHI boshlangan o'yin. Boshqa run bilan yangi o'yin boshlansa → birinchisi yopiladi.
+const arenaGame = new Map();
+// Podium (Abdulloh, 28.10): jonli arena yakunidagi o'rin — LMS 1–3-o'rin coin bonusi uchun `codestrike.podium` { game_id, place, finalized }.
+// Faqat BIRINCHI o'yin, jonli (student) rejimda, o'sha PIN bilan; game_id — server jonli sessiya id'si (sinfda hammaga bir xil).
+// QA tuzatishlari: place faqat 1–3 yoki null (PODIUM-01) · yakuniy jadvaldan bir marta yoziladi, keyin o'zgarmaydi (PODIUM-04).
+const arenaPodium = new Map();
 
 // ---- Saqlov (F-0909-02): xotira + localStorage. Hammasi jim yiqiladi (private rejim, iframe, kvota).
 const KEY = (lessonId) => `ccDetails:${lessonId}`;
@@ -59,9 +72,16 @@ function load(lessonId) {
   for (const [k, e] of Object.entries(o.arena || {})) {
     const qi = Number(k);
     if (!Number.isInteger(qi) || ar.has(qi) || !e || typeof e !== 'object' || !Number.isFinite(e.at)) continue;
-    ar.set(qi, { option: Number.isInteger(e.option) ? e.option : -1, correct: e.correct === true, elapsed_ms: Number.isFinite(e.elapsed_ms) ? e.elapsed_ms : 0, at: e.at });
+    const rec = { option: Number.isInteger(e.option) ? e.option : -1, correct: e.correct === true, elapsed_ms: Number.isFinite(e.elapsed_ms) ? e.elapsed_ms : 0, at: e.at };
+    if (e.mode === 'student' || e.mode === 'solo') rec.mode = e.mode; // F-1023-01
+    ar.set(qi, rec);
   }
   arenaByLesson.set(lessonId, ar);
+  if (o.arenaClosed === true) arenaClosed.add(lessonId);
+  const g = o.arenaGame;
+  if (g && typeof g === 'object' && typeof g.run === 'string' && !arenaGame.has(lessonId)) arenaGame.set(lessonId, { run: g.run, mode: typeof g.mode === 'string' ? g.mode : null, pin: typeof g.pin === 'string' ? g.pin : null });
+  const pd = o.arenaPodium;
+  if (pd && typeof pd === 'object' && typeof pd.game_id === 'string' && (pd.place === null || podiumPlace(pd.place) !== null) && !arenaPodium.has(lessonId)) arenaPodium.set(lessonId, { game_id: pd.game_id, place: pd.place, finalized: true });
 }
 function persist(lessonId) {
   const st = store(); if (!st) return;
@@ -70,7 +90,11 @@ function persist(lessonId) {
   const earnedAt = Object.fromEntries(earnedAtByLesson.get(lessonId) || []);
   const arena = {};
   for (const [k, v] of arenaByLesson.get(lessonId) || []) arena[k] = v;
-  try { st.setItem(KEY(lessonId), JSON.stringify({ v: 1, attempts, earnedAt, arena })); } catch { /* kvota / private — jim */ }
+  const o = { v: 1, attempts, earnedAt, arena };
+  if (arenaClosed.has(lessonId)) o.arenaClosed = true;
+  if (arenaGame.has(lessonId)) o.arenaGame = arenaGame.get(lessonId);
+  if (arenaPodium.has(lessonId)) o.arenaPodium = arenaPodium.get(lessonId);
+  try { st.setItem(KEY(lessonId), JSON.stringify(o)); } catch { /* kvota / private — jim */ }
 }
 
 /** recordAttempt'dan: har bosish (rejimdan qat'i nazar). */
@@ -87,20 +111,89 @@ export function logAttempt(lessonId, screenIdx, { picked, texts, elapsedMs } = {
 }
 
 /**
- * submitAnswer'dan (faqat jonli o'quvchi): arena savoliga javob — bitta, birinchisi qoladi (jonli qoida: bir urinish).
- * questionId `quiz-N` bo'lmasa — hech narsa. Mustaqil rejimda chaqirilmaydi (arena mashq).
+ * submitAnswer'dan (jonli o'quvchi VA solo, F-1023-01): arena savoliga javob — bitta, birinchisi qoladi (jonli qoida: bir urinish).
+ * questionId `quiz-N` bo'lmasa — hech narsa. `mode` — javob berilgan rejim (student/solo), `codestrike.mode` uchun.
+ * Qayta o'yin (savol raqami oldingisidan katta emas) birinchi o'yinni yopadi — BUG-01: taymautda bo'sh qolgan savol
+ * keyingi o'yindan to'ldirilmaydi. Darsda «Qayta ishlash» ham mashq rejimida (ikkinchi himoya, submitAnswer chaqirilmaydi).
  */
-export function logArena(lessonId, questionId, { picked, correct, elapsedMs } = {}) {
+export function logArena(lessonId, questionId, { picked, correct, elapsedMs, mode } = {}) {
   const m = ARENA_Q.exec(String(questionId || ''));
   if (!lessonId || !m) return false;
   const qi = Number(m[1]);
   load(lessonId);
   if (!arenaByLesson.has(lessonId)) arenaByLesson.set(lessonId, new Map());
   const ar = arenaByLesson.get(lessonId);
-  if (ar.has(qi) || ar.size >= LIM.questions) return false;
-  ar.set(qi, { option: Number.isInteger(picked) ? picked : -1, correct: correct === true, elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() });
+  if (arenaClosed.has(lessonId)) return false;
+  // BUG-01: qayta o'yin — birinchi o'yin yopiladi (o'tkazib yuborilgan savol keyingi o'yindan to'ldirilmaydi)
+  if (ar.size && qi <= Math.max(...ar.keys())) { arenaClosed.add(lessonId); persist(lessonId); return false; }
+  if (ar.size >= LIM.questions) return false;
+  const e = { option: Number.isInteger(picked) ? picked : -1, correct: correct === true, elapsed_ms: Math.max(0, Math.min(LIM.elapsed, Math.round(elapsedMs || 0))), at: Date.now() };
+  if (mode === 'student' || mode === 'solo') e.mode = mode;
+  ar.set(qi, e);
   persist(lessonId);
   return true;
+}
+
+/**
+ * BUG-01 v2: arena o'yini boshlandi (birinchi savol ko'rindi). run — shu ochilishning o'yin-ID'si.
+ * Birinchi chaqiruv o'yinni qayd qiladi. Keyin: o'sha run → davom; o'sha jonli sessiya (student + o'sha PIN) → davom (qayta ulanish);
+ * boshqa run (yopib qayta ochish, sahifa qayta yuklandi, solo ↔ jonli) → birinchi o'yin YOPILADI, javobsiz bo'lsa ham.
+ */
+export function arenaStart(lessonId, { run, mode, pin } = {}) {
+  if (!lessonId || !run) return;
+  load(lessonId);
+  if (arenaClosed.has(lessonId)) return;
+  const g = arenaGame.get(lessonId);
+  const md = typeof mode === 'string' ? mode : null; const pn = pin == null ? null : String(pin);
+  if (!g) { arenaGame.set(lessonId, { run: String(run), mode: md, pin: pn }); persist(lessonId); return; }
+  if (g.run === String(run)) return;
+  if (md === 'student' && g.mode === 'student' && pn && g.pin === pn) return;
+  arenaClosed.add(lessonId); persist(lessonId);
+}
+/** BUG-01 v2: o'yin tugadi (oxirgi savoldan keyin / jonli test yakunlandi / mashqqa o'tildi) — birinchi o'yin yopiladi. */
+export function arenaDone(lessonId) {
+  if (!lessonId) return;
+  load(lessonId);
+  if (arenaClosed.has(lessonId)) return;
+  if (!arenaGame.has(lessonId) && !(arenaByLesson.get(lessonId) || new Map()).size) return; // o'yin boshlanmagan — yopadigan narsa yo'q
+  arenaClosed.add(lessonId); persist(lessonId);
+}
+/** Podium kutiladimi: birinchi o'yin jonli (student) va o'sha PIN bilan · o'quvchi kamida bitta javob bergan · o'rin hali yozilmagan. */
+export function podiumExpected(lessonId, pin) {
+  if (!lessonId || pin == null) return false;
+  load(lessonId);
+  const g = arenaGame.get(lessonId);
+  if (!g || g.mode !== 'student' || g.pin !== String(pin)) return false;
+  if (!(arenaByLesson.get(lessonId) || new Map()).size) return false;
+  return !arenaPodium.has(lessonId);
+}
+/**
+ * Podium: useLiveSession mentor testni yakunlagach (quiz_state 'done') serverdan QAYTA yuklangan jadvaldan hisoblagan o'rinni
+ * beradi (PODIUM-02). Yoziladi faqat podiumExpected bo'lsa — ya'ni BIR MARTA; keyingi chaqiruvlar (boshqa o'rin, qayta yuklash,
+ * yangi urinish) uni almashtirmaydi (PODIUM-04). place 4+ → null: o'yinda qatnashdi, sovrinli o'rin yo'q (PODIUM-01).
+ */
+export function arenaPlace(lessonId, { gameId, pin, place } = {}) {
+  if (!lessonId || !gameId || !Number.isInteger(place) || place < 1) return false;
+  if (!podiumExpected(lessonId, pin)) return false;
+  arenaPodium.set(lessonId, { game_id: String(gameId), place: podiumPlace(place), finalized: true });
+  persist(lessonId);
+  return true;
+}
+
+// F-1023-01 (2026-10-23): CodeStrike → Learn. LMS `codestrike.passed` ga qarab bog'langan Learn darsini ochadi/yopadi.
+// Chegara: 12 savoldan 7 (total boshqa bo'lsa — proporsional, yuqoriga yaxlitlab). Arena ballga (scorePercent) KIRMAYDI.
+export const CODESTRIKE_PASS = { num: 7, den: 12 };
+export const codestrikeNeed = (total) => Math.ceil(total * CODESTRIKE_PASS.num / CODESTRIKE_PASS.den);
+/** @param {Array<[number, {correct:boolean, mode?:string}]>} arena — (savol-raqami, javob) juftliklari; total — bank uzunligi; podium — arenaPlace yozuvi */
+export function buildCodestrike(arena, total, podium = null) {
+  const t = Number.isInteger(total) && total > 0 ? Math.min(total, LIM.questions) : 12;
+  const answered = Math.min(arena.length, t);
+  const correct = Math.min(arena.filter(([, e]) => e && e.correct === true).length, t);
+  const modes = arena.map(([, e]) => e && e.mode).filter(Boolean);
+  const mode = modes.length ? (modes.filter((x) => x === 'solo').length > modes.length / 2 ? 'solo' : modes[0]) : null;
+  const out = { played: answered > 0, total: t, answered, correct, percent: Math.round((correct / t) * 100), passed: correct >= codestrikeNeed(t), mode };
+  if (podium && answered > 0) out.podium = { game_id: podium.game_id, place: podium.place, finalized: true };
+  return out;
 }
 
 /** progressSync'dan: earned ro'yxati — har id birinchi ko'ringan vaqt. Saqlov tufayli sahifa yangilanganda ham birinchi vaqt qoladi (F-0909-02). */
@@ -116,12 +209,17 @@ export function noteEarned(lessonId, ids) {
 }
 
 /** Qaytadan boshlashda (restart) tarix tozalanadi — xotira ham, saqlov ham. */
-export function resetResultDetails(lessonId) {
+export function resetResultDetails(lessonId, { keepArena = false } = {}) {
+  // BUG-01: yangi urinish (restartAttempt) CodeStrike'ning birinchi o'yinini o'chirmaydi — aks holda «yomon o'yin → yangi urinish → yaxshi o'yin».
+  let ar = null, g = null, yopiq = false, pd = null;
+  if (keepArena) { load(lessonId); ar = arenaByLesson.get(lessonId); g = arenaGame.get(lessonId) || null; yopiq = arenaClosed.has(lessonId); pd = arenaPodium.get(lessonId) || null; }
   clearedProgress.delete(lessonId); // F-0924-20
-  attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); loaded.delete(lessonId);
+  attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); arenaClosed.delete(lessonId); arenaGame.delete(lessonId); arenaPodium.delete(lessonId); loaded.delete(lessonId);
   sealedByLesson.delete(lessonId); // yangi urinish — yangi yuk (F-0918-07)
   try { store()?.removeItem(KEY(lessonId)); } catch { /* jim */ }
   try { store()?.removeItem(SEAL_KEY(lessonId)); } catch { /* jim */ } // muhr-saqlovi ham (F-0920-01)
+  // Boshlangan birinchi o'yin (javobsiz bo'lsa ham) yopiq holda qoladi — yangi urinish / solo → jonli o'tish uni almashtirmaydi.
+  if ((ar && ar.size) || g || yopiq) { loaded.add(lessonId); if (ar) arenaByLesson.set(lessonId, ar); if (g) arenaGame.set(lessonId, g); if (pd) arenaPodium.set(lessonId, pd); arenaClosed.add(lessonId); persist(lessonId); }
 }
 
 // ── onFinished yukini MUHRLASH (F-0918-07) ─────────────────────────────────────────────────────────────────
@@ -190,10 +288,10 @@ export function unsealPayload(lessonId) { sealedByLesson.delete(lessonId); }
 /** Test uchun: hozirgi holatni ko'rish. */
 export const _detailsState = () => ({ attemptsByLesson, earnedAtByLesson, arenaByLesson });
 /** Test uchun: «sahifa yangilandi» — xotira unutiladi, saqlov qoladi. */
-export const _forgetMemory = (lessonId) => { attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); loaded.delete(lessonId); };
+export const _forgetMemory = (lessonId) => { attemptsByLesson.delete(lessonId); earnedAtByLesson.delete(lessonId); arenaByLesson.delete(lessonId); arenaClosed.delete(lessonId); arenaGame.delete(lessonId); arenaPodium.delete(lessonId); loaded.delete(lessonId); };
 // F-1021-08/09: yangi ishga tushirish (SPA'da preview ↔ jonli) — xotira butunlay tozalanadi, keyin saqlovdan qayta o'qiladi.
 // Busiz preview javoblari xuddi shu darsning keyingi jonli natija-yukiga aralashardi (va aksincha).
-onRunChange(() => { attemptsByLesson.clear(); earnedAtByLesson.clear(); arenaByLesson.clear(); loaded.clear(); sealedByLesson.clear(); clearedProgress.clear(); });
+onRunChange(() => { attemptsByLesson.clear(); earnedAtByLesson.clear(); arenaByLesson.clear(); arenaClosed.clear(); arenaGame.clear(); arenaPodium.clear(); loaded.clear(); sealedByLesson.clear(); clearedProgress.clear(); });
 
 /**
  * onFinished payload'iga qo'shiladigan obyekt.
@@ -309,7 +407,9 @@ export function buildResultDetails({ lessonId, screenMeta, answers, earned, achi
       retake = { pressed: true, lastPass: passStats(screenMeta, la, started, finish) };
     } else retake = { pressed: false };
   }
-  const out = { detailsVersion: 2, lang, questions, achievements: list.slice(0, LIM.achievements), missed, totalScreens, finishedAt: iso(finish), truncated: false, retake };
+  // v3 (F-1023-01): `codestrike` — arena yakuni bitta ustki maydonda (LMS Learn qarori shu yerdan; questions[] qazish shart emas)
+  const codestrike = buildCodestrike(arena, Array.isArray(arenaBank) ? arenaBank.length : 0, arenaPodium.get(lessonId) || null);
+  const out = { detailsVersion: 3, lang, questions, achievements: list.slice(0, LIM.achievements), missed, totalScreens, finishedAt: iso(finish), truncated: false, retake, codestrike };
   if (started) out.startedAt = iso(started); // «Qaytadan» bo'lsa — oxirgi o'tish boshlanishi (birinchi o'tish boshi saqlanmaydi)
   return out;
 }

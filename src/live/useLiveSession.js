@@ -7,11 +7,12 @@
 //   review (tugagan urinish — javoblar ko'rinadi, yozilmaydi) · self (kodsiz, o'zi ko'radi) · choosing (darvoza)
 // Darslar 'student'/'mentor' bo'lmagan har rejimni 'self' kabi ko'radi — solo/review shu tufayli qo'shimcha kodsiz ishlaydi.
 import { useState, useEffect, useRef, useCallback, createContext, useContext } from 'react';
-import { logAttempt, logArena, resetResultDetails, unsealPayload } from './resultDetails.js';
+import { logAttempt, logArena, resetResultDetails, unsealPayload, arenaStart as rdArenaStart, arenaDone as rdArenaDone, arenaPlace as rdArenaPlace, podiumExpected } from './resultDetails.js';
+import { arenaPlaceOf, finishHold } from './podium.js';
 import { tr } from './i18n.js';
 import {
   LIVE_ENABLED, LIVE_POLL_MS, LIVE_POLL_MAX_MS, LIVE_HEARTBEAT_MS, LIVE_STALE_MS, LMS_SOLO_RECHECK_MS,
-  liveRpc, liveGet, liveRead, liveStore, liveClear, nickStore,
+  liveRpc, liveGet, liveRead, liveStore, liveClear, nickStore, livePlayers, liveQuizAnswers,
   lmsJoin, lmsRestart, peekTokenRole,
 } from './liveClient.js';
 import { setProgressChannel } from './progressSync.js';
@@ -26,7 +27,8 @@ const STORED_MODES = ['self', 'student', 'mentor', 'solo', 'review'];
 /**
  * @param {string} lessonId
  * @param {Record<string, number>|null} answerKey
- * @param {{ liveToken?: string|null, lessonVersion?: string|null }} [opts]
+ * @param {{ liveToken?: string|null, lessonVersion?: string|null, arena?: { total: number, quizMs: number, baseIdx: number } }} [opts]
+ *   arena — darsning QUIZ_BANK.length, QUIZ_MS, QUIZ_BASE_IDX (CodeStrike podium o'rnini hisoblash uchun)
  */
 export function useLiveSession(lessonId, answerKey, opts = {}) {
   // F-1015: preview (Bilimlar bazasi) — doim ustun: token e'tiborsiz, eski liveSession tiklanmaydi, rejim 'self'.
@@ -49,6 +51,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   const [pin, setPin] = useState(init?.pin || null);
   const tokenRef = useRef(init?.token || null);
   const playerRef = useRef(init?.playerId ? { id: init.playerId, token: init.playerToken } : null);
+  const sessionRef = useRef(init?.sessionId || null); // LMS jonli sessiya id'si — CodeStrike podium `game_id` (28.10)
   const nickRef = useRef(init?.nickname || '');
   const [mentorScreen, setMentorScreen] = useState(init?.lastScreen || 0);
   // mentorMax — sinf ENG UZOQ borgan nuqta (faqat o'sadi). DARVOZA mentorScreen (cur) bilan,
@@ -92,7 +95,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
         setMentorMax(p => (mMax > p ? mMax : p)); // klient tomonda ham monoton — hech qachon kamaymaydi
         setStatus(p => p === row.status ? p : row.status);
         syncQuiz(row);
-        if (row.updated_at !== lastUpdatedRef.current) { lastUpdatedRef.current = row.updated_at; lastSeenRef.current = Date.now(); liveStore(lessonId, { mode: 'student', pin, lastScreen: mScr, maxScreen: mMax, playerId: playerRef.current?.id, playerToken: playerRef.current?.token, nickname: nickRef.current }); }
+        if (row.updated_at !== lastUpdatedRef.current) { lastUpdatedRef.current = row.updated_at; lastSeenRef.current = Date.now(); liveStore(lessonId, { mode: 'student', pin, lastScreen: mScr, maxScreen: mMax, playerId: playerRef.current?.id, playerToken: playerRef.current?.token, nickname: nickRef.current, sessionId: sessionRef.current }); }
         const alive = Date.now() - lastSeenRef.current < LIVE_STALE_MS;
         setMentorAlive(p => p === alive ? p : alive);
       } catch { if (!on) return; setConnected(false); delay = Math.min(delay * 2, LIVE_POLL_MAX_MS); }
@@ -167,7 +170,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
       const res = await liveRpc('join_session', { p_pin: p, p_nickname: nick });
       const player = Array.isArray(res) ? res[0] : res;
       if (!player?.player_id) throw new Error('no player');
-      playerRef.current = { id: player.player_id, token: player.token };
+      playerRef.current = { id: player.player_id, token: player.token }; sessionRef.current = null;
       nickRef.current = nick; nickStore(nick);
       lastUpdatedRef.current = row.updated_at; lastSeenRef.current = Date.now();
       const jScr = mentorScreenOf(row), jMax = Math.max(row.max_screen ?? 0, jScr);
@@ -188,8 +191,11 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
   // O'quvchi javobini serverga yozish — birinchi javob qotadi (server unique). Jonli VA solo rejimda.
   // Tarmoq uzilsa 3 martagacha qayta uriniladi (javob yo'qolmasin).
   const submitAnswer = useCallback((screenIdx, questionId, picked, correct, elapsedMs) => {
-    // Arena (quiz-N) javobi — onFinished detallariga ham (2026-09-10), faqat jonli o'quvchi; solo'da arena mashq, bu yerga kelmaydi
-    if (mode === 'student') logArena(lessonId, questionId, { picked, correct, elapsedMs });
+    // Arena (quiz-N) javobi — onFinished detallariga (2026-09-10). F-1023-01: jonli VA solo (uyda, mentorsiz) — birinchi o'yin hisob;
+    // solo'da serverga YOZILMAYDI (yolg'iz o'quvchi arena_top_1 nishoni/tanga olib qolmasin), faqat natija-JSON (`codestrike`).
+    const isArena = /^quiz-\d+$/.test(String(questionId || ''));
+    if (isArena && mode === 'student') { logArena(lessonId, questionId, { picked, correct, elapsedMs, mode }); setArenaRev((n) => n + 1); } // F-1029-01: CodeStrike faqat ustozga ulangan jonli darsda hisob — solo'da yozilmaydi (played:false → Learn)
+    if (isArena && mode === 'solo') return;
     if ((mode !== 'student' && mode !== 'solo') || !pin || !playerRef.current) return;
     const body = {
       p_pin: pin, p_player_id: playerRef.current.id, p_token: playerRef.current.token,
@@ -199,6 +205,52 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
     const attempt = (n) => { liveRpc('submit_answer', body).catch(() => { if (n < 3) setTimeout(() => attempt(n + 1), 3000 * (n + 1)); }); };
     attempt(0);
   }, [mode, pin, lessonId]);
+
+  // BUG-01 v2: arena o'yini chegarasi (dars QuizArena'si chaqiradi). Faqat natija yoziladigan rejimlarda (student / solo).
+  const arenaStart = useCallback((run) => { if (mode === 'student' || mode === 'solo') rdArenaStart(lessonId, { run, mode, pin }); }, [mode, pin, lessonId]);
+  const arenaDone = useCallback(() => { if (mode === 'student' || mode === 'solo') rdArenaDone(lessonId); }, [mode, lessonId]);
+  // ── CodeStrike podium (Abdulloh QA 28.10, PODIUM-02/03) ──────────────────────────────────────────────────────────────
+  // Yakuniy o'rin faqat mentor testni yakunlagach (quiz_state 'done'), serverdan SHUNDAN KEYIN yuklangan jadvaldan hisoblanadi —
+  // oraliq jadval yakuniy deb yozilmaydi. Yuklash xato bo'lsa o'rin yozilmaydi, qayta uriniladi. Arena oynasi yopiq bo'lsa ham ishlaydi.
+  // Faqat LMS orqali kirgan jonli o'quvchi (game_id = sessiya id'si), birinchi o'yini jonli va kamida bitta javob bergan bo'lsa.
+  // podiumWait — o'rin kutilmoqda: «Tamom» (holdFinish) yukni ushlab turadi, o'rin yozilishi bilan o'zi yuboradi.
+  // Kutish tugaydi: o'rin yozildi · arena yakunlanmay sinf yopildi yoki mentor uzildi (podium yo'q — dars podiumsiz yakunlanadi).
+  const arenaOptsRef = useRef(null); arenaOptsRef.current = opts.arena || null;
+  const [arenaRev, setArenaRev] = useState(0); // jonli arena javobi yozildi — podium kutilishi qayta ko'riladi
+  const [podiumWait, setPodiumWait] = useState(false);
+  const podiumWaitRef = useRef(false); podiumWaitRef.current = podiumWait;
+  const quizState = quiz.state;
+  useEffect(() => {
+    const expected = mode === 'student' && !!sessionRef.current && !!arenaOptsRef.current && podiumExpected(lessonId, pin);
+    if (!expected) { setPodiumWait(false); return; }
+    if (quizState !== 'done') { setPodiumWait(status !== 'ended' && mentorAlive); return; }
+    setPodiumWait(true);
+    let on = true, t = null, delay = 1500;
+    const run = async () => {
+      try {
+        const [players, rows] = await Promise.all([livePlayers(pin), liveQuizAnswers(pin)]);
+        if (!on) return;
+        const place = arenaPlaceOf(players, rows, playerRef.current?.id, arenaOptsRef.current);
+        if (place >= 1) { rdArenaPlace(lessonId, { gameId: sessionRef.current, pin, place }); setPodiumWait(false); return; }
+      } catch { if (!on) return; } // tarmoq xatosi — eski jadval yozilmaydi, qayta uriniladi
+      delay = Math.min(delay * 2, 15000);
+      t = setTimeout(run, delay);
+    };
+    run();
+    return () => { on = false; clearTimeout(t); };
+  }, [mode, pin, lessonId, quizState, status, mentorAlive, arenaRev]);
+  // «Tamom» ushlagichi: dars finishLesson boshida holdFinish(finishLesson) chaqiradi; true — yuk hozir yuborilmaydi.
+  const heldFinishRef = useRef(null);
+  const skipPodiumRef = useRef(false);
+  const [finishHeld, setFinishHeld] = useState(false);
+  const holdFinish = useCallback((fn) => {
+    if (skipPodiumRef.current || !podiumWaitRef.current || typeof fn !== 'function') return false;
+    heldFinishRef.current = fn; finishHold.set(true); setFinishHeld(true); return true;
+  }, []);
+  const releaseFinish = useCallback(() => { const fn = heldFinishRef.current; heldFinishRef.current = null; setFinishHeld(false); if (fn) fn(); finishHold.set(false); }, []);
+  useEffect(() => { if (finishHeld && !podiumWait) releaseFinish(); }, [finishHeld, podiumWait, releaseFinish]);
+  // Zaxira chiqish (o'quvchi o'zi tanlaydi, kutish uzoq cho'zilsa): podiumsiz yakunlash — bonus yo'q, natija saqlanadi.
+  const finishWithoutPodium = useCallback(() => { skipPodiumRef.current = true; releaseFinish(); }, [releaseFinish]);
 
   // Har urinish TARIXGA (LMS analitika, 0005): ball emas, yozuv. Jonli va solo rejimda. Birinchi urinishda server
   // ball-qatorini ham qo'yadi — shuning uchun solo'da submitAnswer chaqirilmasa ham natija to'g'ri chiqadi.
@@ -264,17 +316,17 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
       return true;
     }
     if (p.mode === 'student' && p.pin && p.playerId && p.playerToken) {
-      playerRef.current = { id: p.playerId, token: p.playerToken };
+      playerRef.current = { id: p.playerId, token: p.playerToken }; sessionRef.current = typeof p.session_id === 'string' ? p.session_id : null;
       nickRef.current = p.nickname || ''; if (p.nickname) nickStore(p.nickname);
       lastUpdatedRef.current = null; lastSeenRef.current = Date.now();
       const scr = p.lastScreen || 0, mx = Math.max(p.maxScreen || 0, scr);
       setPin(p.pin); setMentorScreen(scr); setMentorMax(mx); setStatus('live'); setJoinError(''); setMode('student');
-      liveStore(lessonId, { mode: 'student', pin: p.pin, lastScreen: scr, maxScreen: mx, playerId: p.playerId, playerToken: p.playerToken, nickname: p.nickname, attemptId: p.attempt?.id });
+      liveStore(lessonId, { mode: 'student', pin: p.pin, lastScreen: scr, maxScreen: mx, playerId: p.playerId, playerToken: p.playerToken, nickname: p.nickname, attemptId: p.attempt?.id, sessionId: sessionRef.current });
       setAttempt(p.attempt || null); if (prog) setServerProgress(prog); openChannel(tok, p.attempt);
       return true;
     }
     if (p.mode === 'solo' && p.pin && p.playerId && p.playerToken) {
-      playerRef.current = { id: p.playerId, token: p.playerToken };
+      playerRef.current = { id: p.playerId, token: p.playerToken }; sessionRef.current = null;
       nickRef.current = p.nickname || ''; if (p.nickname) nickStore(p.nickname);
       setPin(p.pin); setStatus('live'); setJoinError(''); setMode('solo');
       liveStore(lessonId, { mode: 'solo', pin: p.pin, playerId: p.playerId, playerToken: p.playerToken, nickname: p.nickname, attemptId: p.attempt?.id });
@@ -312,7 +364,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
 
   // Ko'rishdan / tugagan solo'dan — yangi urinish (server yangi solo sessiya ochadi, progress toza)
   const restartAttempt = useCallback(async () => {
-    resetResultDetails(lessonId); // urinishlar tarixi va yutuq-vaqtlari yangi urinish uchun tozalanadi
+    resetResultDetails(lessonId, { keepArena: true }); // urinishlar tarixi va yutuq-vaqtlari yangi urinish uchun tozalanadi; CodeStrike birinchi o'yini qoladi (BUG-01)
     const tok = lmsTokenRef.current;
     if (!tok) return false;
     setBusy(true);
@@ -350,7 +402,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
         if (lessonVersion) body.lesson_version = lessonVersion;
         const res = await lmsJoin(tok, body);
         if (!on || !res || res.mode !== 'student') return;
-        resetResultDetails(lessonId); // solo urinishning tarixi jonli urinishga aralashmasin
+        resetResultDetails(lessonId, { keepArena: true }); // solo urinishning tarixi jonli urinishga aralashmasin; CodeStrike birinchi o'yini qoladi (BUG-01 v2)
         if (applyServerSession(res, tok)) setLiveJoinedNote(true);
       } catch { /* tarmoq/server xatosi — solo davom etadi, keyingi so'rovda yana */ }
       finally { inFlight = false; }
@@ -371,7 +423,7 @@ export function useLiveSession(lessonId, answerKey, opts = {}) {
 
   return {
     mode, pin, mentorScreen, mentorMax, status, mentorAlive, connected, ended, joinError, busy,
-    startMentor, joinStudent, selfStudy, reportScreen, endSession, submitAnswer, recordAttempt, quiz, quizControl, revealScreen, mentorReveal,
+    startMentor, joinStudent, selfStudy, reportScreen, endSession, submitAnswer, arenaStart, arenaDone, podiumWait, finishHeld, holdFinish, finishWithoutPodium, recordAttempt, quiz, quizControl, revealScreen, mentorReveal,
     playerId: playerRef.current?.id || null, nickname: nickRef.current,
     lms, joinWithToken, hasLmsToken: !!liveToken, attempt, serverProgress, restartAttempt, liveJoinedNote,
     preview,
