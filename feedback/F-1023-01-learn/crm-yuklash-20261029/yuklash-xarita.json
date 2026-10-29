@@ -1,0 +1,4818 @@
+[
+ {
+  "lesson_id": "internet-01-v18",
+  "m": 2,
+  "yangi": "2-Modul/01-InternetLesson-v5.jsx",
+  "md5_yangi": "6d9616281a379c745fbb9d2b581e8c4a",
+  "eski": "01-InternetLesson-v4.jsx",
+  "md5_eski": "90b5fd543b6249cebd7fa3d6ab416ea9",
+  "uz": {
+   "qid": "13381",
+   "sid": "2374",
+   "hash": "2f79d065be6ca73cd20c8637b56e6d8b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Internet qanday ishlaydi ?",
+   "topicStatus": "Active",
+   "md5_crm": "90b5fd543b6249cebd7fa3d6ab416ea9"
+  },
+  "ru": {
+   "qid": "14091",
+   "sid": "2374",
+   "hash": "11c5b14d6dab924b01005b0d040e1754",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Internet qanday ishlaydi ?",
+   "topicStatus": "Active",
+   "md5_crm": "90b5fd543b6249cebd7fa3d6ab416ea9"
+  }
+ },
+ {
+  "lesson_id": "pm-m1d2-v1",
+  "m": 2,
+  "yangi": "2-Modul/02-PmLesson1-v5.jsx",
+  "md5_yangi": "ece79342d5499d26a284acf5425714a7",
+  "eski": "02-PmLesson1-v4.jsx",
+  "md5_eski": "97b0e2375e864bacd429c3a07c907669",
+  "uz": {
+   "qid": "13535",
+   "sid": "2416",
+   "hash": "18e06eadc0fd6b1f1843716f1071a81f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Saytim kim uchun ?",
+   "topicStatus": "Active",
+   "md5_crm": "97b0e2375e864bacd429c3a07c907669"
+  },
+  "ru": {
+   "qid": "13640",
+   "sid": "2416",
+   "hash": "956aaa98c3b9275cfdc85fdaff0a899f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Saytim kim uchun ?",
+   "topicStatus": "Active",
+   "md5_crm": "97b0e2375e864bacd429c3a07c907669"
+  }
+ },
+ {
+  "lesson_id": "html-01-v17",
+  "m": 2,
+  "yangi": "2-Modul/03-Htmllesson1-v5.jsx",
+  "md5_yangi": "69080df17779bb92a3a5c5ffa28dac91",
+  "eski": "03-Htmllesson1-v4.jsx",
+  "md5_eski": "bc66d37053ffe55427eaf0d07b748849",
+  "uz": {
+   "qid": "13556",
+   "sid": "2417",
+   "hash": "c82bb36d5d656b0fb6f8419b1d6a528b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "HTML- 1",
+   "topicStatus": "Active",
+   "md5_crm": "bc66d37053ffe55427eaf0d07b748849"
+  },
+  "ru": {
+   "qid": "14092",
+   "sid": "2417",
+   "hash": "f5eebaa95911682fb9dbdd2adabb7755",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "HTML- 1",
+   "topicStatus": "Active",
+   "md5_crm": "bc66d37053ffe55427eaf0d07b748849"
+  }
+ },
+ {
+  "lesson_id": "html-02-v16",
+  "m": 2,
+  "yangi": "2-Modul/04-Htmllesson2-v5.jsx",
+  "md5_yangi": "f681ba9f6c010372967ef78f9ae48286",
+  "eski": "04-Htmllesson2-v4.jsx",
+  "md5_eski": "d3cfcd7a6ae7d53d11873044f72f3d08",
+  "uz": {
+   "qid": "13559",
+   "sid": "2419",
+   "hash": "7cec39910c22088adc52c372e64759fb",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "HTML-2",
+   "topicStatus": "Active",
+   "md5_crm": "d3cfcd7a6ae7d53d11873044f72f3d08"
+  },
+  "ru": {
+   "qid": "13705",
+   "sid": "2419",
+   "hash": "7b1d4ac4bd4d0a2e097846883af63e37",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "HTML-2",
+   "topicStatus": "Active",
+   "md5_crm": "d3cfcd7a6ae7d53d11873044f72f3d08"
+  }
+ },
+ {
+  "lesson_id": "html-takrorlash-01-05-v2",
+  "m": 2,
+  "yangi": "2-Modul/05-HtmlTakrorlashLesson-v5.jsx",
+  "md5_yangi": "0d7643ab28adb0793930c70a42f21247",
+  "eski": "05-HtmlTakrorlashLesson-v4.jsx",
+  "md5_eski": "90ef85e85cd5fcf06f58ea8fc8cf6fad",
+  "uz": {
+   "qid": "14088",
+   "sid": "2541",
+   "hash": "234ce8d3557181999d59fd4ce6e1e2bc",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Takrorlash: HTML ustaxonasi",
+   "topicStatus": "Active",
+   "md5_crm": "90ef85e85cd5fcf06f58ea8fc8cf6fad"
+  },
+  "ru": {
+   "qid": "14089",
+   "sid": "2541",
+   "hash": "7cf35df58615844ea9ac7d28a94e02ae",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Takrorlash: HTML ustaxonasi",
+   "topicStatus": "Active",
+   "md5_crm": "90ef85e85cd5fcf06f58ea8fc8cf6fad"
+  }
+ },
+ {
+  "lesson_id": "pm-m1d6-v1",
+  "m": 2,
+  "yangi": "2-Modul/06-PmLesson2-v5.jsx",
+  "md5_yangi": "d59bf75bced19d88683be797e9e935fd",
+  "eski": "06-PmLesson2-v4.jsx",
+  "md5_eski": "d4b03358a2d8ef9d2d937696382efe6a",
+  "uz": {
+   "qid": "13570",
+   "sid": "2423",
+   "hash": "e65878b816e9a946b75a3e48f3224d74",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Sayt va ilova dizayni",
+   "topicStatus": "Active",
+   "md5_crm": "d4b03358a2d8ef9d2d937696382efe6a"
+  },
+  "ru": {
+   "qid": "14093",
+   "sid": "2423",
+   "hash": "6287a0fc2dceab4eb2a8e0c4ff4c517b",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Sayt va ilova dizayni",
+   "topicStatus": "Active",
+   "md5_crm": "d4b03358a2d8ef9d2d937696382efe6a"
+  }
+ },
+ {
+  "lesson_id": "css-01-v17",
+  "m": 2,
+  "yangi": "2-Modul/07-CssLesson1-v5.jsx",
+  "md5_yangi": "44f0eb0ca4363ddc4491dae5ec8d899e",
+  "eski": "07-CssLesson1-v4.jsx",
+  "md5_eski": "341349791996c17cad979b4c45f7f454",
+  "uz": {
+   "qid": "13599",
+   "sid": "2424",
+   "hash": "607ff82339db4e40374292c876e009ae",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "CSS-1",
+   "topicStatus": "Active",
+   "md5_crm": "341349791996c17cad979b4c45f7f454"
+  },
+  "ru": {
+   "qid": "14094",
+   "sid": "2424",
+   "hash": "53c8d2749044ae391fb88f26ab921ea2",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "CSS-1",
+   "topicStatus": "Active",
+   "md5_crm": "341349791996c17cad979b4c45f7f454"
+  }
+ },
+ {
+  "lesson_id": "css-02-v18",
+  "m": 2,
+  "yangi": "2-Modul/08-CssLesson2-v5.jsx",
+  "md5_yangi": "8cffae2ee99e86a0bcfbb17295df66ba",
+  "eski": "08-CssLesson2-v4.jsx",
+  "md5_eski": "8b7a4acfff227ed0f15c23b7f76ca905",
+  "uz": {
+   "qid": "13600",
+   "sid": "2425",
+   "hash": "80f3b055de397ced6dc9036a8cb30a1e",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "CSS-2",
+   "topicStatus": "Active",
+   "md5_crm": "8b7a4acfff227ed0f15c23b7f76ca905"
+  },
+  "ru": {
+   "qid": "14095",
+   "sid": "2425",
+   "hash": "925ef6968d567e7e5c13dec42eacb6c2",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "CSS-2",
+   "topicStatus": "Active",
+   "md5_crm": "8b7a4acfff227ed0f15c23b7f76ca905"
+  }
+ },
+ {
+  "lesson_id": "vscode-start-01-v1",
+  "m": 2,
+  "yangi": "2-Modul/09-VsCodeLesson-v5.jsx",
+  "md5_yangi": "d6d7bfb61bc2ee8c6562139b40ea4b29",
+  "eski": "09-VsCodeLesson-v4.jsx",
+  "md5_eski": "67be9cc7ccafc60040a7c8ab3d8ef4bb",
+  "uz": {
+   "qid": "14097",
+   "sid": "2542",
+   "hash": "02b72906a9b46ccf1cd06d58c47800be",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "VS Code",
+   "topicStatus": "Active",
+   "md5_crm": "67be9cc7ccafc60040a7c8ab3d8ef4bb"
+  },
+  "ru": {
+   "qid": "14100",
+   "sid": "2542",
+   "hash": "01292798783c28059babaf651a38cefa",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "VS Code",
+   "topicStatus": "Active",
+   "md5_crm": "67be9cc7ccafc60040a7c8ab3d8ef4bb"
+  }
+ },
+ {
+  "lesson_id": "html-practice-portfolio-v2",
+  "m": 2,
+  "yangi": "2-Modul/10-HtmlPractice-v6.jsx",
+  "md5_yangi": "3b48ab00cf21aaa8fad8eb41be3ae197",
+  "eski": "10-HtmlPractice-v5.jsx",
+  "md5_eski": "4e7f7662f5107e60e957f9686e4041bd",
+  "uz": {
+   "qid": "13635",
+   "sid": "2426",
+   "hash": "d2ed7f82b387997404d38288bec2f919",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Practice: HML portfolio",
+   "topicStatus": "Active",
+   "md5_crm": "4e7f7662f5107e60e957f9686e4041bd"
+  },
+  "ru": {
+   "qid": "14096",
+   "sid": "2426",
+   "hash": "90a61b3ca9c0a47781c187b71384393d",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Practice: HML portfolio",
+   "topicStatus": "Active",
+   "md5_crm": "4e7f7662f5107e60e957f9686e4041bd"
+  }
+ },
+ {
+  "lesson_id": "css-practice-portfolio-v3",
+  "m": 2,
+  "yangi": "2-Modul/11-CssPractice-v5.jsx",
+  "md5_yangi": "4869ddcd76a876a30060b60b0da3143b",
+  "eski": "11-CssPractice-v4.jsx",
+  "md5_eski": "83e63bc22146594fd4c980db15f42695",
+  "uz": {
+   "qid": "14099",
+   "sid": "2428",
+   "hash": "011efa7424b69f61c7a598546fb3e9a3",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Practice: CSS portfolio",
+   "topicStatus": "Active",
+   "md5_crm": "83e63bc22146594fd4c980db15f42695"
+  },
+  "ru": {
+   "qid": "14098",
+   "sid": "2428",
+   "hash": "440df59bbf37d1b584bd92f4bd0661c4",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Practice: CSS portfolio",
+   "topicStatus": "Active",
+   "md5_crm": "83e63bc22146594fd4c980db15f42695"
+  }
+ },
+ {
+  "lesson_id": "git-github-v19",
+  "m": 2,
+  "yangi": "2-Modul/12-GitLesson-v5.jsx",
+  "md5_yangi": "e64d5b280856a2e36626d4f612bb5ffe",
+  "eski": "12-GitLesson-v4.jsx",
+  "md5_eski": "4f97bb578a2729f5ddbcd01999be9d11",
+  "uz": {
+   "qid": "13637",
+   "sid": "2427",
+   "hash": "37a6bad80d76aa9dcab75cacaddc80e0",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Git va GitHub",
+   "topicStatus": "Active",
+   "md5_crm": "4f97bb578a2729f5ddbcd01999be9d11"
+  },
+  "ru": {
+   "qid": "14101",
+   "sid": "2427",
+   "hash": "87d2726400b1b34546c4dc371c5b0b9b",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Git va GitHub",
+   "topicStatus": "Active",
+   "md5_crm": "4f97bb578a2729f5ddbcd01999be9d11"
+  }
+ },
+ {
+  "lesson_id": "netlify-deploy-v19",
+  "m": 2,
+  "yangi": "2-Modul/13-DeployLesson-v5.jsx",
+  "md5_yangi": "bc2dbdc9cdb677b7b247ea8346c8bd12",
+  "eski": "13-DeployLesson-v4.jsx",
+  "md5_eski": "3f1470fe9c5cc8d796a3dbf57d13b731",
+  "uz": {
+   "qid": "14085",
+   "sid": "2429",
+   "hash": "e35c23ff27fcbc67ed66986f27154057",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Netlify va Deploy",
+   "topicStatus": "Active",
+   "md5_crm": "3f1470fe9c5cc8d796a3dbf57d13b731"
+  },
+  "ru": {
+   "qid": "14086",
+   "sid": "2429",
+   "hash": "ce5aa36fecbd2e16998eed6478a31342",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Netlify va Deploy",
+   "topicStatus": "Active",
+   "md5_crm": "3f1470fe9c5cc8d796a3dbf57d13b731"
+  }
+ },
+ {
+  "lesson_id": "pm-pitch-03-v20",
+  "m": 2,
+  "yangi": "2-Modul/14-PmLesson3-v5.jsx",
+  "md5_yangi": "71f4cd96556316f1b9ea973c9cb63f98",
+  "eski": "14-PmLesson3-v4.jsx",
+  "md5_eski": "3246bb9fc7e79cebcc4be56da84a13ff",
+  "uz": {
+   "qid": "14090",
+   "sid": "2430",
+   "hash": "c326813238a89285b69b8cc41480aebb",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pre Demo Day : Pitch",
+   "topicStatus": "Active",
+   "md5_crm": "3246bb9fc7e79cebcc4be56da84a13ff"
+  },
+  "ru": {
+   "qid": "14102",
+   "sid": "2430",
+   "hash": "51b8a4d6f7e2a094706a6f3079688059",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pre Demo Day : Pitch",
+   "topicStatus": "Active",
+   "md5_crm": "3246bb9fc7e79cebcc4be56da84a13ff"
+  }
+ },
+ {
+  "lesson_id": "js-intro-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/01-JsIntroLesson-v5.jsx",
+  "md5_yangi": "c414a970d16f39fa6a97648b99b38f64",
+  "eski": "01-JsIntroLesson-v4.jsx",
+  "md5_eski": "3f41f0f65f622a1aa5a04d43666fa26d",
+  "uz": {
+   "qid": "14104",
+   "sid": "2431",
+   "hash": "c9ed62abcf3b1ae8c8fa358073d92637",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Sistema va Algoritm",
+   "topicStatus": "Active",
+   "md5_crm": "3f41f0f65f622a1aa5a04d43666fa26d"
+  },
+  "ru": {
+   "qid": "14103",
+   "sid": "2431",
+   "hash": "b8301be9c714a72685d20dec3af5f10b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Sistema va Algoritm",
+   "topicStatus": "Active",
+   "md5_crm": "3f41f0f65f622a1aa5a04d43666fa26d"
+  }
+ },
+ {
+  "lesson_id": "pm-m2d2-v1",
+  "m": 3,
+  "yangi": "3-Modul/02-PmLesson4-v5.jsx",
+  "md5_yangi": "a2dddee3097a1d3db8722c05ca2bf0b3",
+  "eski": "02-PmLesson4-v4.jsx",
+  "md5_eski": "965293d0ec600d90c21d494beb6f8e47",
+  "uz": {
+   "qid": "14106",
+   "sid": "2432",
+   "hash": "725de905116eaf1c2a0d5d9c7e7f5710",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Muammo - Yechim",
+   "topicStatus": "Active",
+   "md5_crm": "965293d0ec600d90c21d494beb6f8e47"
+  },
+  "ru": {
+   "qid": "14105",
+   "sid": "2432",
+   "hash": "9077c9b400e8ac4234799499f829878b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Muammo - Yechim",
+   "topicStatus": "Active",
+   "md5_crm": "965293d0ec600d90c21d494beb6f8e47"
+  }
+ },
+ {
+  "lesson_id": "js-vars-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/04-JsVarsLesson-v6.jsx",
+  "md5_yangi": "40d6805a5bc6a8e1483f88ede0220d0c",
+  "eski": "04-JsVarsLesson-v5.jsx",
+  "md5_eski": "552b796a9194ef6f10a4f3b93356e6ed",
+  "uz": {
+   "qid": "14108",
+   "sid": "2433",
+   "hash": "130a76525b0e60abbf2f51d4282cf9c3",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "JS : O'zgaruvchilar",
+   "topicStatus": "Active",
+   "md5_crm": "552b796a9194ef6f10a4f3b93356e6ed"
+  },
+  "ru": {
+   "qid": "14107",
+   "sid": "2433",
+   "hash": "93219dac8a0e0595e94f6732874413dc",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "JS : O'zgaruvchilar",
+   "topicStatus": "Active",
+   "md5_crm": "552b796a9194ef6f10a4f3b93356e6ed"
+  }
+ },
+ {
+  "lesson_id": "js-cond-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/05-JsConditionsLesson-v5.jsx",
+  "md5_yangi": "edaf44f8f4eec9049cc2dfa0f1009ef4",
+  "eski": "05-JsConditionsLesson-v4.jsx",
+  "md5_eski": "d1e2c26914474baca80d17a018c24413",
+  "uz": {
+   "qid": "14110",
+   "sid": "2434",
+   "hash": "5b8126a15fb845be187cb8960fdc0c7a",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "JS : Shart operatorlari",
+   "topicStatus": "Active",
+   "md5_crm": "d1e2c26914474baca80d17a018c24413"
+  },
+  "ru": {
+   "qid": "14109",
+   "sid": "2434",
+   "hash": "bb4708532bf61a6b4956d4dfb94d127a",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "JS : Shart operatorlari",
+   "topicStatus": "Active",
+   "md5_crm": "d1e2c26914474baca80d17a018c24413"
+  }
+ },
+ {
+  "lesson_id": "js-loops-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/06-JsLoopsLesson-v6.jsx",
+  "md5_yangi": "49e9fbb179083acfc1cfcb5211539ef4",
+  "eski": "06-JsLoopsLesson-v5.jsx",
+  "md5_eski": "ebf5b7c0f259d6ecdd40ee889ae5bce1",
+  "uz": {
+   "qid": "14112",
+   "sid": "2435",
+   "hash": "478e70be4623a831c551285c32684196",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "JS : Sikllar",
+   "topicStatus": "Active",
+   "md5_crm": "ebf5b7c0f259d6ecdd40ee889ae5bce1"
+  },
+  "ru": {
+   "qid": "14111",
+   "sid": "2435",
+   "hash": "ab51634d73ead42d3e36a0cf81d57e72",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "JS : Sikllar",
+   "topicStatus": "Active",
+   "md5_crm": "ebf5b7c0f259d6ecdd40ee889ae5bce1"
+  }
+ },
+ {
+  "lesson_id": "js-functions-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/07-JsFunctionsLesson-v6.jsx",
+  "md5_yangi": "68cb7df867b8f29eaf2df10aa02fbdf9",
+  "eski": "07-JsFunctionsLesson-v5.jsx",
+  "md5_eski": "b3691cee1f56eec2e8ee8a004b31db0b",
+  "uz": {
+   "qid": "14114",
+   "sid": "2436",
+   "hash": "2b71691916b3c2a51b58e218187a064b",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "JS : Funksiya va Massiv",
+   "topicStatus": "Active",
+   "md5_crm": "b3691cee1f56eec2e8ee8a004b31db0b"
+  },
+  "ru": {
+   "qid": "14113",
+   "sid": "2436",
+   "hash": "fa37a9885a7fc790d6d3e675573759b4",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "JS : Funksiya va Massiv",
+   "topicStatus": "Active",
+   "md5_crm": "b3691cee1f56eec2e8ee8a004b31db0b"
+  }
+ },
+ {
+  "lesson_id": "pm-m2d7-v1",
+  "m": 3,
+  "yangi": "3-Modul/08-PmLesson5-v6.jsx",
+  "md5_yangi": "70400227248dc95e01dc684a6492b9f4",
+  "eski": "08-PmLesson5-v5.jsx",
+  "md5_eski": "ff13f1356bbcbb7ffbee22e510f97d37",
+  "uz": {
+   "qid": "14123",
+   "sid": "2437",
+   "hash": "a5cb2bdc6b69f30dd582494fbc7fb74d",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Ilk mahsulot: MVP/Backlog",
+   "topicStatus": "Active",
+   "md5_crm": "ff13f1356bbcbb7ffbee22e510f97d37"
+  },
+  "ru": {
+   "qid": "14115",
+   "sid": "2437",
+   "hash": "3e03aa5625f384c918a7972b56bc1732",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Ilk mahsulot: MVP/Backlog",
+   "topicStatus": "Active",
+   "md5_crm": "ff13f1356bbcbb7ffbee22e510f97d37"
+  }
+ },
+ {
+  "lesson_id": "practice-01-jonlantirish-v18",
+  "m": 3,
+  "yangi": "3-Modul/09-PracticeLesson1-v6.jsx",
+  "md5_yangi": "b5334cbbb39b7c2588981056dce20bfb",
+  "eski": "09-PracticeLesson1-v5.jsx",
+  "md5_eski": "9286fa3d3de4ba1220e49fbe2dd98ec8",
+  "uz": {
+   "qid": "14122",
+   "sid": "2438",
+   "hash": "db06c7e14087204b631f9b0112b2c1f9",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Practice: HTML-CSS-JS",
+   "topicStatus": "Active",
+   "md5_crm": "9286fa3d3de4ba1220e49fbe2dd98ec8"
+  },
+  "ru": {
+   "qid": "14116",
+   "sid": "2438",
+   "hash": "c65c5165229e49a55144aaff8a3c1283",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Practice: HTML-CSS-JS",
+   "topicStatus": "Active",
+   "md5_crm": "9286fa3d3de4ba1220e49fbe2dd98ec8"
+  }
+ },
+ {
+  "lesson_id": "practice-02-ai-promo-v18",
+  "m": 3,
+  "yangi": "3-Modul/10-PracticeLesson2-v5.jsx",
+  "md5_yangi": "142eff509bdef986b38f9f44836f13a4",
+  "eski": "10-PracticeLesson2-v4.jsx",
+  "md5_eski": "c975312f5ee93f669a84da72196bbbca",
+  "uz": {
+   "qid": "14124",
+   "sid": "2439",
+   "hash": "2e8265f4a6814af5fbd23a4ae0fb491b",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Practice: AI-Agent 1",
+   "topicStatus": "Active",
+   "md5_crm": "c975312f5ee93f669a84da72196bbbca"
+  },
+  "ru": {
+   "qid": "14117",
+   "sid": "2439",
+   "hash": "15892ef8709431cf5845e5fa05c57efa",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Practice: AI-Agent 1",
+   "topicStatus": "Active",
+   "md5_crm": "c975312f5ee93f669a84da72196bbbca"
+  }
+ },
+ {
+  "lesson_id": "pean-stack-01-v18",
+  "m": 3,
+  "yangi": "3-Modul/11-PeanStackLesson-v6.jsx",
+  "md5_yangi": "8e64412a0339a860d081e69b484a1e58",
+  "eski": "11-PeanStackLesson-v5.jsx",
+  "md5_eski": "266de8eab7ef9442e56df4beb7bd3ba5",
+  "uz": {
+   "qid": "14128",
+   "sid": "2441",
+   "hash": "f9521a5846a1e3e8be120bcbc12e9324",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Frontend va Backend",
+   "topicStatus": "Active",
+   "md5_crm": "266de8eab7ef9442e56df4beb7bd3ba5"
+  },
+  "ru": {
+   "qid": "14118",
+   "sid": "2441",
+   "hash": "1c04866749d61a0b99520091b5c99efd",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Frontend va Backend",
+   "topicStatus": "Active",
+   "md5_crm": "266de8eab7ef9442e56df4beb7bd3ba5"
+  }
+ },
+ {
+  "lesson_id": "practice-03-decompose-v18",
+  "m": 3,
+  "yangi": "3-Modul/12-PracticeLesson3-v6.jsx",
+  "md5_yangi": "972ccfa33e04032a0f6c96484c9e97ac",
+  "eski": "12-PracticeLesson3-v5.jsx",
+  "md5_eski": "d8a9d87765f2e52da9b05ac94808569c",
+  "uz": {
+   "qid": "14125",
+   "sid": "2442",
+   "hash": "09cddc6b55e64421f830693bbfacc4a8",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Practice: AI-Agent 2",
+   "topicStatus": "Active",
+   "md5_crm": "d8a9d87765f2e52da9b05ac94808569c"
+  },
+  "ru": {
+   "qid": "14119",
+   "sid": "2442",
+   "hash": "4d2762f756038b02beb5a95e37900c7c",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Practice: AI-Agent 2",
+   "topicStatus": "Active",
+   "md5_crm": "d8a9d87765f2e52da9b05ac94808569c"
+  }
+ },
+ {
+  "lesson_id": "practice-04-mvp-deploy-v18",
+  "m": 3,
+  "yangi": "3-Modul/13-PracticeLesson4-v6.jsx",
+  "md5_yangi": "4d420c589583dfc64f176a2ecbdd814d",
+  "eski": "13-PracticeLesson4-v5.jsx",
+  "md5_eski": "4eecdbe8bbf57cfdef45a491cce2d427",
+  "uz": {
+   "qid": "14126",
+   "sid": "2443",
+   "hash": "1e29b50983e4822fd3d479e6e201c831",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Practice: MVP tayyor",
+   "topicStatus": "Active",
+   "md5_crm": "4eecdbe8bbf57cfdef45a491cce2d427"
+  },
+  "ru": {
+   "qid": "14120",
+   "sid": "2443",
+   "hash": "dc7eb28cfc7e6bfaa9bd60afd5989ce5",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Practice: MVP tayyor",
+   "topicStatus": "Active",
+   "md5_crm": "4eecdbe8bbf57cfdef45a491cce2d427"
+  }
+ },
+ {
+  "lesson_id": "pm-m2d13-v2",
+  "m": 3,
+  "yangi": "3-Modul/14-PmLesson6-v5.jsx",
+  "md5_yangi": "b1c4fe480deebacfe4768a89f1de318e",
+  "eski": "14-PmLesson6-v4.jsx",
+  "md5_eski": "e0dabac71b05c10f2e84545223addb46",
+  "uz": {
+   "qid": "14127",
+   "sid": "2444",
+   "hash": "707e1baf473cae6a23acfc86bcb8d564",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pre Demo Day: Pitch",
+   "topicStatus": "Active",
+   "md5_crm": "e0dabac71b05c10f2e84545223addb46"
+  },
+  "ru": {
+   "qid": "14121",
+   "sid": "2444",
+   "hash": "16edca74df9c5b312d0d762e7eb9995f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pre Demo Day: Pitch",
+   "topicStatus": "Active",
+   "md5_crm": "e0dabac71b05c10f2e84545223addb46"
+  }
+ },
+ {
+  "lesson_id": "react-intro-01-v18",
+  "m": 4,
+  "yangi": "4-Modul/01-ReactIntroLesson-v5.jsx",
+  "md5_yangi": "1e834bc61e98a956f3f97dc47ded6c92",
+  "eski": "01-ReactIntroLesson-v4.jsx",
+  "md5_eski": "646126aaba8e953c16c7265acc21c4cb",
+  "uz": {
+   "qid": "16356",
+   "sid": "2445",
+   "hash": "51627b173f9d123969d3023358b237b5",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "React intro",
+   "topicStatus": "Active",
+   "md5_crm": "646126aaba8e953c16c7265acc21c4cb"
+  },
+  "ru": {
+   "qid": "16357",
+   "sid": "2445",
+   "hash": "ee703681f9c3ecdbb733731f85c1e084",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "React intro",
+   "topicStatus": "Active",
+   "md5_crm": "646126aaba8e953c16c7265acc21c4cb"
+  }
+ },
+ {
+  "lesson_id": "pm-m3d2-v3",
+  "m": 4,
+  "yangi": "4-Modul/02-PmUserStoryLesson-v6.jsx",
+  "md5_yangi": "60f900f2dd3bb844c142807441726e0c",
+  "eski": "02-PmUserStoryLesson-v5.jsx",
+  "md5_eski": "ac83dba22f1df96f6f4ce559e11c0ff5",
+  "uz": {
+   "qid": "16358",
+   "sid": "2446",
+   "hash": "f0c0c9292c9d1db62a8e291dc503d5eb",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "User Story",
+   "topicStatus": "Active",
+   "md5_crm": "ac83dba22f1df96f6f4ce559e11c0ff5"
+  },
+  "ru": {
+   "qid": "16359",
+   "sid": "2446",
+   "hash": "7d2dce39324a79ad1d34cd31f9a6d9de",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "User Story",
+   "topicStatus": "Active",
+   "md5_crm": "ac83dba22f1df96f6f4ce559e11c0ff5"
+  }
+ },
+ {
+  "lesson_id": "react-first-component-02-v18",
+  "m": 4,
+  "yangi": "4-Modul/04-ReactFirstComponentLesson-v6.jsx",
+  "md5_yangi": "3aa9ed8c6bca5006f3aa8f301fdbe68e",
+  "eski": "04-ReactFirstComponentLesson-v5.jsx",
+  "md5_eski": "e0167de7787b941a6e8de0e6d61720c3",
+  "uz": {
+   "qid": "16360",
+   "sid": "2447",
+   "hash": "7e23542ffc60a9967b36c96d0a0fd61f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "React: 1- komponent",
+   "topicStatus": "Active",
+   "md5_crm": "e0167de7787b941a6e8de0e6d61720c3"
+  },
+  "ru": {
+   "qid": "16361",
+   "sid": "2447",
+   "hash": "4fef1fa2e1363183619a4d9c152dcaef",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "React: 1- komponent",
+   "topicStatus": "Active",
+   "md5_crm": "e0167de7787b941a6e8de0e6d61720c3"
+  }
+ },
+ {
+  "lesson_id": "react-state-effect-03-v18",
+  "m": 4,
+  "yangi": "4-Modul/05-ReactStateEffectLesson-v6.jsx",
+  "md5_yangi": "d29c6b54e8a379cb1af8a86c4dd6c7fd",
+  "eski": "05-ReactStateEffectLesson-v5.jsx",
+  "md5_eski": "fcfbab94d2ba09715dbba62997c6c220",
+  "uz": {
+   "qid": "16362",
+   "sid": "2448",
+   "hash": "03a8b1a479bacb4880820b0f984a7501",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "useState va useEffect",
+   "topicStatus": "Active",
+   "md5_crm": "fcfbab94d2ba09715dbba62997c6c220"
+  },
+  "ru": {
+   "qid": "16363",
+   "sid": "2448",
+   "hash": "064ec28265c2f3186c6c642d3ca5ce91",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "useState va useEffect",
+   "topicStatus": "Active",
+   "md5_crm": "fcfbab94d2ba09715dbba62997c6c220"
+  }
+ },
+ {
+  "lesson_id": "pm-m3d5-v1",
+  "m": 4,
+  "yangi": "4-Modul/06-PmLesson8-v6.jsx",
+  "md5_yangi": "db8453fa16e483b9d56c84f924c5448a",
+  "eski": "06-PmLesson8-v5.jsx",
+  "md5_eski": "1542b4f837c1d59a9e0496dfae567ab6",
+  "uz": {
+   "qid": "16364",
+   "sid": "2449",
+   "hash": "ced38121e95b36913bb3aec4e707ba85",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Impact vs Effort",
+   "topicStatus": "Active",
+   "md5_crm": "1542b4f837c1d59a9e0496dfae567ab6"
+  },
+  "ru": {
+   "qid": "16365",
+   "sid": "2449",
+   "hash": "4a88fb3323df2fa31bb3db8c8721bf65",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Impact vs Effort",
+   "topicStatus": "Active",
+   "md5_crm": "1542b4f837c1d59a9e0496dfae567ab6"
+  }
+ },
+ {
+  "lesson_id": "react-props-reuse-04-v18",
+  "m": 4,
+  "yangi": "4-Modul/07-ReactPropsReuseLesson-v6.jsx",
+  "md5_yangi": "7978c29f2f515e96678d6c5fff5f2b61",
+  "eski": "07-ReactPropsReuseLesson-v5.jsx",
+  "md5_eski": "3640e23e91190e24c7290fb208ee9658",
+  "uz": {
+   "qid": "16366",
+   "sid": "2450",
+   "hash": "2d03a7294ba7d8a777269b0981db0cee",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Props orqali ma'lumot uzatish",
+   "topicStatus": "Active",
+   "md5_crm": "3640e23e91190e24c7290fb208ee9658"
+  },
+  "ru": {
+   "qid": "16367",
+   "sid": "2450",
+   "hash": "f07ad543315ae06e2e7a943cfaeaafa3",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Props orqali ma'lumot uzatish",
+   "topicStatus": "Active",
+   "md5_crm": "3640e23e91190e24c7290fb208ee9658"
+  }
+ },
+ {
+  "lesson_id": "react-crud-practice-p1-v18",
+  "m": 4,
+  "yangi": "4-Modul/08-ReactCrudPracticeLesson-v6.jsx",
+  "md5_yangi": "48a30bb9dcabaa848042388fda0ad37d",
+  "eski": "08-ReactCrudPracticeLesson-v5.jsx",
+  "md5_eski": "d131b6a9cfd2a22026db6d6cb3c3c3b9",
+  "uz": {
+   "qid": "16368",
+   "sid": "2451",
+   "hash": "88b48862025a7f516d9169bf16e853fd",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "CRUD",
+   "topicStatus": "Active",
+   "md5_crm": "d131b6a9cfd2a22026db6d6cb3c3c3b9"
+  },
+  "ru": {
+   "qid": "16369",
+   "sid": "2451",
+   "hash": "5f4fc4a5cfc9231044edcdb7b7e3b259",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "CRUD",
+   "topicStatus": "Active",
+   "md5_crm": "d131b6a9cfd2a22026db6d6cb3c3c3b9"
+  }
+ },
+ {
+  "lesson_id": "react-api-get-05-v18",
+  "m": 4,
+  "yangi": "4-Modul/09-ReactApiGetLesson-v5.jsx",
+  "md5_yangi": "c3e724c4c04ceeaa1f0691bdd9aa6b38",
+  "eski": "09-ReactApiGetLesson-v4.jsx",
+  "md5_eski": "77a96643da9e3ad290c139770fbe2feb",
+  "uz": {
+   "qid": "16370",
+   "sid": "2453",
+   "hash": "07394fc4288a2a728f94c112024f567d",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "fetch va axios",
+   "topicStatus": "Active",
+   "md5_crm": "77a96643da9e3ad290c139770fbe2feb"
+  },
+  "ru": {
+   "qid": "16371",
+   "sid": "2453",
+   "hash": "09f3c36445de3b6b8068d81b2d320729",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "fetch va axios",
+   "topicStatus": "Active",
+   "md5_crm": "77a96643da9e3ad290c139770fbe2feb"
+  }
+ },
+ {
+  "lesson_id": "react-api-post-06-v18",
+  "m": 4,
+  "yangi": "4-Modul/10-ReactApiPostLesson-v6.jsx",
+  "md5_yangi": "b93134083d49eb129f1c6a16ba4ffa5a",
+  "eski": "10-ReactApiPostLesson-v5.jsx",
+  "md5_eski": "cf2c54d23614a54650a59df61788a13a",
+  "uz": {
+   "qid": "16372",
+   "sid": "2455",
+   "hash": "08c1cffacff6cac275386615ecab644c",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "POST, PUT, DELETE",
+   "topicStatus": "Active",
+   "md5_crm": "cf2c54d23614a54650a59df61788a13a"
+  },
+  "ru": {
+   "qid": "16373",
+   "sid": "2455",
+   "hash": "ace047aa8c12919ab1d90d1091d6ce1e",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "POST, PUT, DELETE",
+   "topicStatus": "Active",
+   "md5_crm": "cf2c54d23614a54650a59df61788a13a"
+  }
+ },
+ {
+  "lesson_id": "pm-m3d10-v1",
+  "m": 4,
+  "yangi": "4-Modul/11-PmLesson9-v6.jsx",
+  "md5_yangi": "777708a5b5ac2488f273de98949b7a43",
+  "eski": "11-PmLesson9-v5.jsx",
+  "md5_eski": "681f5c92dc02ea2b6402116b3aebf311",
+  "uz": {
+   "qid": "16374",
+   "sid": "2456",
+   "hash": "bfc77bb0db76255b71a6794def4093da",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Loyiha tayyorligini aniqlash",
+   "topicStatus": "Active",
+   "md5_crm": "681f5c92dc02ea2b6402116b3aebf311"
+  },
+  "ru": {
+   "qid": "16375",
+   "sid": "2456",
+   "hash": "ee29e2b0e3669a073531342b22b16d74",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Loyiha tayyorligini aniqlash",
+   "topicStatus": "Active",
+   "md5_crm": "681f5c92dc02ea2b6402116b3aebf311"
+  }
+ },
+ {
+  "lesson_id": "react-router-practice-p2-v18",
+  "m": 4,
+  "yangi": "4-Modul/12-ReactRouterPracticeLesson-v5.jsx",
+  "md5_yangi": "86840f8f0a9e8a4ca33e7ec19b25d769",
+  "eski": "12-ReactRouterPracticeLesson-v4.jsx",
+  "md5_eski": "b8865e73c307ff088f35eef93979ee48",
+  "uz": {
+   "qid": "16376",
+   "sid": "2458",
+   "hash": "768b549aa3afb6c6e92a313af76647ab",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "React Router",
+   "topicStatus": "Active",
+   "md5_crm": "b8865e73c307ff088f35eef93979ee48"
+  },
+  "ru": {
+   "qid": "16377",
+   "sid": "2458",
+   "hash": "701fcafb8fe7d954770ecd92eb0d368d",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "React Router",
+   "topicStatus": "Active",
+   "md5_crm": "b8865e73c307ff088f35eef93979ee48"
+  }
+ },
+ {
+  "lesson_id": "react-project-day-p3-v18",
+  "m": 4,
+  "yangi": "4-Modul/13-ReactProjectDayLesson-v6.jsx",
+  "md5_yangi": "606632b936d0075e3cd85b5919b54cb3",
+  "eski": "13-ReactProjectDayLesson-v5.jsx",
+  "md5_eski": "cf2379bf0f56fbc639544f35bf725e5f",
+  "uz": {
+   "qid": "16378",
+   "sid": "2459",
+   "hash": "63b6d655403599954db4f90a12260e34",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "React practice 1",
+   "topicStatus": "Active",
+   "md5_crm": "cf2379bf0f56fbc639544f35bf725e5f"
+  },
+  "ru": {
+   "qid": "16379",
+   "sid": "2459",
+   "hash": "bbaed5649f9c8ea88e1e0ed4883b7ebb",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "React practice 1",
+   "topicStatus": "Active",
+   "md5_crm": "cf2379bf0f56fbc639544f35bf725e5f"
+  }
+ },
+ {
+  "lesson_id": "react-build-site-final-p4-v18",
+  "m": 4,
+  "yangi": "4-Modul/14-ReactBuildSiteLesson-v6.jsx",
+  "md5_yangi": "240f36838dd2eb6810c6ace9f9bc16cc",
+  "eski": "14-ReactBuildSiteLesson-v5.jsx",
+  "md5_eski": "4bb95e15cba2ff1a6d83a1467ac03272",
+  "uz": {
+   "qid": "16380",
+   "sid": "2460",
+   "hash": "cc4ae49dc0cb03a3d9eebac4ddf17c66",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "React practice 2",
+   "topicStatus": "Active",
+   "md5_crm": "4bb95e15cba2ff1a6d83a1467ac03272"
+  },
+  "ru": {
+   "qid": "16381",
+   "sid": "2460",
+   "hash": "05ad9f2d6b8f743db082d539a4431cd6",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "React practice 2",
+   "topicStatus": "Active",
+   "md5_crm": "4bb95e15cba2ff1a6d83a1467ac03272"
+  }
+ },
+ {
+  "lesson_id": "pm-m3d14-v1",
+  "m": 4,
+  "yangi": "4-Modul/15-PmLesson10-v6.jsx",
+  "md5_yangi": "cd310e71d80d18152d62d17c4faf410e",
+  "eski": "15-PmLesson10-v5.jsx",
+  "md5_eski": "7737dc390ae2e8332a74be21473fbf4f",
+  "uz": {
+   "qid": "16382",
+   "sid": "2461",
+   "hash": "793928da6e52b58dc3b400674908db43",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pre Demo Day : Storytelling",
+   "topicStatus": "Active",
+   "md5_crm": "7737dc390ae2e8332a74be21473fbf4f"
+  },
+  "ru": {
+   "qid": "16383",
+   "sid": "2461",
+   "hash": "121cdfea9c42dee19de5a99d304ee123",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pre Demo Day : Storytelling",
+   "topicStatus": "Active",
+   "md5_crm": "7737dc390ae2e8332a74be21473fbf4f"
+  }
+ },
+ {
+  "lesson_id": "data-intro-04-01-v18",
+  "m": 5,
+  "yangi": "5-Modul/01-DataIntroLesson-v6.jsx",
+  "md5_yangi": "24bcd543dab1fb0179193c0515ad4894",
+  "eski": "01-DataIntroLesson-v5.jsx",
+  "md5_eski": "cf4ed30e1dffce1224e08eb0adb6ac76",
+  "uz": {
+   "qid": "16384",
+   "sid": "2462",
+   "hash": "b211030690761108f600ad8c71571b4c",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Ma'lumotlar qayerda saqlanadi?",
+   "topicStatus": "Active",
+   "md5_crm": "cf4ed30e1dffce1224e08eb0adb6ac76"
+  },
+  "ru": {
+   "qid": "16385",
+   "sid": "2462",
+   "hash": "9700aa1a6b948699766893b40b7115db",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Ma'lumotlar qayerda saqlanadi?",
+   "topicStatus": "Active",
+   "md5_crm": "cf4ed30e1dffce1224e08eb0adb6ac76"
+  }
+ },
+ {
+  "lesson_id": "pm-m4d2-v1",
+  "m": 5,
+  "yangi": "5-Modul/02-PmLesson11-v6.jsx",
+  "md5_yangi": "25e277482b1510d96d4f1a727bb08f9b",
+  "eski": "02-PmLesson11-v5.jsx",
+  "md5_eski": "1b8a985a4f1900e6f58a3998d7d21d77",
+  "uz": {
+   "qid": "16386",
+   "sid": "2463",
+   "hash": "030d93b98f03dc266a1eaf90b0115217",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Data model: saqlanadigan ma’lumotlar",
+   "topicStatus": "Active",
+   "md5_crm": "1b8a985a4f1900e6f58a3998d7d21d77"
+  },
+  "ru": {
+   "qid": "16387",
+   "sid": "2463",
+   "hash": "1cd113cabe40a9bf5823f3d24339f0a5",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Data model: saqlanadigan ma’lumotlar",
+   "topicStatus": "Active",
+   "md5_crm": "1b8a985a4f1900e6f58a3998d7d21d77"
+  }
+ },
+ {
+  "lesson_id": "db-sql-nosql-04-02-v18",
+  "m": 5,
+  "yangi": "5-Modul/03-DbSqlNosqlLesson-v6.jsx",
+  "md5_yangi": "81331478ff4a372d586e2f8ffb134754",
+  "eski": "03-DbSqlNosqlLesson-v5.jsx",
+  "md5_eski": "d3d6b23faa4556446c06b22e2581dc5c",
+  "uz": {
+   "qid": "16388",
+   "sid": "2464",
+   "hash": "a582baba95bd291fa88d0d21a6f191b0",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "SQL va NoSQL",
+   "topicStatus": "Active",
+   "md5_crm": "d3d6b23faa4556446c06b22e2581dc5c"
+  },
+  "ru": {
+   "qid": "16389",
+   "sid": "2464",
+   "hash": "e09c728b782cdc22ea292f1360338cca",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "SQL va NoSQL",
+   "topicStatus": "Active",
+   "md5_crm": "d3d6b23faa4556446c06b22e2581dc5c"
+  }
+ },
+ {
+  "lesson_id": "node-server-04-03-v18",
+  "m": 5,
+  "yangi": "5-Modul/04-NodeServerLesson-v6.jsx",
+  "md5_yangi": "ec13bbd7e405956651d85f775d54fc1e",
+  "eski": "04-NodeServerLesson-v5.jsx",
+  "md5_eski": "57bc30adc569042c41d388ff9a850a5b",
+  "uz": {
+   "qid": "16391",
+   "sid": "2465",
+   "hash": "fa76fe9a4b77d30fe9f5f330447b8695",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Server yaratish",
+   "topicStatus": "Active",
+   "md5_crm": "57bc30adc569042c41d388ff9a850a5b"
+  },
+  "ru": {
+   "qid": "16390",
+   "sid": "2465",
+   "hash": "59bbd32f77a1c4f08e0f9bc0e296aec4",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Server yaratish",
+   "topicStatus": "Active",
+   "md5_crm": "57bc30adc569042c41d388ff9a850a5b"
+  }
+ },
+ {
+  "lesson_id": "nest-routing-04-04-v18",
+  "m": 5,
+  "yangi": "5-Modul/05-RoutingLesson-v8.jsx",
+  "md5_yangi": "69a018c171aaa9ca14966d8904cdb8a9",
+  "eski": "05-RoutingLesson-v7.jsx",
+  "md5_eski": "bf8dcefba3d4753a9f09735c368ba798",
+  "uz": {
+   "qid": "16393",
+   "sid": "2466",
+   "hash": "d51fe350c4f1eb34c1433ff06e40ffc8",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Routing",
+   "topicStatus": "Active",
+   "md5_crm": "bf8dcefba3d4753a9f09735c368ba798"
+  },
+  "ru": {
+   "qid": "16392",
+   "sid": "2466",
+   "hash": "accdcca45195c307c8423b48698c8b12",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Routing",
+   "topicStatus": "Active",
+   "md5_crm": "bf8dcefba3d4753a9f09735c368ba798"
+  }
+ },
+ {
+  "lesson_id": "pg-crud-04-05-v18",
+  "m": 5,
+  "yangi": "5-Modul/06-PostgresCrudLesson-v6.jsx",
+  "md5_yangi": "ad0de067140c272bd58283d5d443ed97",
+  "eski": "06-PostgresCrudLesson-v5.jsx",
+  "md5_eski": "e052bc94e9e54f08817670741ebe5a01",
+  "uz": {
+   "qid": "16395",
+   "sid": "2467",
+   "hash": "997973ef4694e4f59922400cf59c1e71",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "PostgreSQL so'rovlari",
+   "topicStatus": "Active",
+   "md5_crm": "e052bc94e9e54f08817670741ebe5a01"
+  },
+  "ru": {
+   "qid": "16394",
+   "sid": "2467",
+   "hash": "e30180d7bf3b838dadf32845ed7f48ad",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "PostgreSQL so'rovlari",
+   "topicStatus": "Active",
+   "md5_crm": "e052bc94e9e54f08817670741ebe5a01"
+  }
+ },
+ {
+  "lesson_id": "pm-m4d7-v1",
+  "m": 5,
+  "yangi": "5-Modul/07-PmLesson12-v7.jsx",
+  "md5_yangi": "a10852dba86aee616055c31773d514c8",
+  "eski": "07-PmLesson12-v6.jsx",
+  "md5_eski": "f6a4a7c2b66464fe13e3412c333f1835",
+  "uz": {
+   "qid": "16397",
+   "sid": "2468",
+   "hash": "ac516efc986bccd56845faa26b47749a",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": ".env va xavfsizlik",
+   "topicStatus": "Active",
+   "md5_crm": "f6a4a7c2b66464fe13e3412c333f1835"
+  },
+  "ru": {
+   "qid": "16396",
+   "sid": "2468",
+   "hash": "2021e1e0a601a039a675c24a4a56d0fd",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": ".env va xavfsizlik",
+   "topicStatus": "Active",
+   "md5_crm": "f6a4a7c2b66464fe13e3412c333f1835"
+  }
+ },
+ {
+  "lesson_id": "backend-crud-practice-p1-v18",
+  "m": 5,
+  "yangi": "5-Modul/08-BackendCrudPracticeLesson-v6.jsx",
+  "md5_yangi": "a013bbe1044750cb15e4ab8c170a9d1d",
+  "eski": "08-BackendCrudPracticeLesson-v5.jsx",
+  "md5_eski": "dd2d9c0b1e465b63bd826f51b96cd944",
+  "uz": {
+   "qid": "16399",
+   "sid": "2469",
+   "hash": "fd96b2729902708888a48c1ab774a279",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "CRUD : Express + PostgreSQL",
+   "topicStatus": "Active",
+   "md5_crm": "dd2d9c0b1e465b63bd826f51b96cd944"
+  },
+  "ru": {
+   "qid": "16398",
+   "sid": "2469",
+   "hash": "4db3c272efed287ae84eaec8065a8272",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "CRUD : Express + PostgreSQL",
+   "topicStatus": "Active",
+   "md5_crm": "dd2d9c0b1e465b63bd826f51b96cd944"
+  }
+ },
+ {
+  "lesson_id": "api-postman-04-06-v18",
+  "m": 5,
+  "yangi": "5-Modul/09-ApiPostmanLesson-v6.jsx",
+  "md5_yangi": "c82a40f95d53cbbb6c3a9b8c17144658",
+  "eski": "09-ApiPostmanLesson-v5.jsx",
+  "md5_eski": "b60f052c0ee4e4ac46bbcbfa2f8a29f1",
+  "uz": {
+   "qid": "16401",
+   "sid": "2471",
+   "hash": "e471a73cebd7d9f15c4dbd37a79c82cc",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "API va Postman",
+   "topicStatus": "Active",
+   "md5_crm": "b60f052c0ee4e4ac46bbcbfa2f8a29f1"
+  },
+  "ru": {
+   "qid": "16400",
+   "sid": "2471",
+   "hash": "1a1e38aba9ff29b7db8acb7288ccde83",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "API va Postman",
+   "topicStatus": "Active",
+   "md5_crm": "b60f052c0ee4e4ac46bbcbfa2f8a29f1"
+  }
+ },
+ {
+  "lesson_id": "fullstack-connect-practice-p2-v18",
+  "m": 5,
+  "yangi": "5-Modul/10-FullstackConnectPracticeLesson-v6.jsx",
+  "md5_yangi": "80677c57f122f00dde5a00c2ffadfbf6",
+  "eski": "10-FullstackConnectPracticeLesson-v5.jsx",
+  "md5_eski": "445a902862d64d5838d3571fa465c1f4",
+  "uz": {
+   "qid": "16403",
+   "sid": "2472",
+   "hash": "cb1b484fd249d419e736d1fc9fe66ff5",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Frontendni backendga ulash",
+   "topicStatus": "Active",
+   "md5_crm": "445a902862d64d5838d3571fa465c1f4"
+  },
+  "ru": {
+   "qid": "16402",
+   "sid": "2472",
+   "hash": "a4dfad311511afe7be57686456197a92",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Frontendni backendga ulash",
+   "topicStatus": "Active",
+   "md5_crm": "445a902862d64d5838d3571fa465c1f4"
+  }
+ },
+ {
+  "lesson_id": "auth-env-04-07-v18",
+  "m": 5,
+  "yangi": "5-Modul/11-AuthEnvLesson-v5.jsx",
+  "md5_yangi": "10d7d6761dbcc82f43fd8b79f4d51f4c",
+  "eski": "11-AuthEnvLesson-v4.jsx",
+  "md5_eski": "ce56d1c3ed271c4cbbc0b44bd480312b",
+  "uz": {
+   "qid": "16405",
+   "sid": "2473",
+   "hash": "53eb9f7cac81a7bd9ad684efaf1aadb3",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "JWT va autentifikatsiya",
+   "topicStatus": "Active",
+   "md5_crm": "ce56d1c3ed271c4cbbc0b44bd480312b"
+  },
+  "ru": {
+   "qid": "16404",
+   "sid": "2473",
+   "hash": "9305f6e2e33e4d913511d06195800f6a",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "JWT va autentifikatsiya",
+   "topicStatus": "Active",
+   "md5_crm": "ce56d1c3ed271c4cbbc0b44bd480312b"
+  }
+ },
+ {
+  "lesson_id": "pm-m4d12-v1",
+  "m": 5,
+  "yangi": "5-Modul/12-PmLesson13-v7.jsx",
+  "md5_yangi": "e228ad78bc2e2322e13b4bbb39045cf0",
+  "eski": "12-PmLesson13-v6.jsx",
+  "md5_eski": "c543acdec599dbddf20731949d02ef17",
+  "uz": {
+   "qid": "16406",
+   "sid": "2474",
+   "hash": "149f53df6a067b93f6c23446b7085e7d",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "PRD yaratish",
+   "topicStatus": "Active",
+   "md5_crm": "c543acdec599dbddf20731949d02ef17"
+  },
+  "ru": {
+   "qid": "16407",
+   "sid": "2474",
+   "hash": "3a5b1f342040f0dc80c9d9abab13dc87",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "PRD yaratish",
+   "topicStatus": "Active",
+   "md5_crm": "c543acdec599dbddf20731949d02ef17"
+  }
+ },
+ {
+  "lesson_id": "fullstack-projectday-p3-v18",
+  "m": 5,
+  "yangi": "5-Modul/13-FullstackProjectDayLesson-v6.jsx",
+  "md5_yangi": "ed35bc84b730074be937cfaaab995977",
+  "eski": "13-FullstackProjectDayLesson-v5.jsx",
+  "md5_eski": "37948ab206fa444e94c92a7da64fceb8",
+  "uz": {
+   "qid": "16409",
+   "sid": "2475",
+   "hash": "ddbcdda3e7eec3f828f66781255fdd87",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Fullstack practice 1",
+   "topicStatus": "Active",
+   "md5_crm": "37948ab206fa444e94c92a7da64fceb8"
+  },
+  "ru": {
+   "qid": "16408",
+   "sid": "2475",
+   "hash": "5f1a02fee0e87285c71d1c4ab4a61231",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Fullstack practice 1",
+   "topicStatus": "Active",
+   "md5_crm": "37948ab206fa444e94c92a7da64fceb8"
+  }
+ },
+ {
+  "lesson_id": "fullstack-feedback-p4-v18",
+  "m": 5,
+  "yangi": "5-Modul/14-FullstackFeedbackLesson-v6.jsx",
+  "md5_yangi": "decaf2bb37beeee41f5623046fc46aab",
+  "eski": "14-FullstackFeedbackLesson-v5.jsx",
+  "md5_eski": "064b85ab9bf4a116f975fb77fc489ca1",
+  "uz": {
+   "qid": "16411",
+   "sid": "2476",
+   "hash": "ec8fe3b443bd15734eb44a1a462b8edd",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Fidbek asosida yaxshilash",
+   "topicStatus": "Active",
+   "md5_crm": "064b85ab9bf4a116f975fb77fc489ca1"
+  },
+  "ru": {
+   "qid": "16410",
+   "sid": "2476",
+   "hash": "523ecfe945fea394e7942f3fa37115fb",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Fidbek asosida yaxshilash",
+   "topicStatus": "Active",
+   "md5_crm": "064b85ab9bf4a116f975fb77fc489ca1"
+  }
+ },
+ {
+  "lesson_id": "pm-m4d15-v1",
+  "m": 5,
+  "yangi": "5-Modul/15-PmLesson14-v6.jsx",
+  "md5_yangi": "3476296e0fc89f65aae56e24f56ae43e",
+  "eski": "15-PmLesson14-v5.jsx",
+  "md5_eski": "df5ca601dea8d45404b186c413666e66",
+  "uz": {
+   "qid": "16413",
+   "sid": "2477",
+   "hash": "ff15e8a7c13d3e031196213bfe3933f5",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Guruhda storytelling",
+   "topicStatus": "Active",
+   "md5_crm": "df5ca601dea8d45404b186c413666e66"
+  },
+  "ru": {
+   "qid": "16412",
+   "sid": "2477",
+   "hash": "e1c136c2e25ecadfff427a41318592a3",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Guruhda storytelling",
+   "topicStatus": "Active",
+   "md5_crm": "df5ca601dea8d45404b186c413666e66"
+  }
+ },
+ {
+  "lesson_id": "nest-arch-alive-4a-01-v18",
+  "m": 6,
+  "yangi": "6-Modul/01-NestArchAliveLesson-v5.jsx",
+  "md5_yangi": "56f91b87b831a5c7ed33aab1e2139c11",
+  "eski": "01-NestArchAliveLesson-v4.jsx",
+  "md5_eski": "ef1797eb32919789ee3ca69ffb7b6c2e",
+  "uz": {
+   "qid": "16414",
+   "sid": "2761",
+   "hash": "354b4a318765a497a8cbde6c3d8a68a7",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "NestJS va arxitektura",
+   "topicStatus": "Active",
+   "md5_crm": "ef1797eb32919789ee3ca69ffb7b6c2e"
+  },
+  "ru": {
+   "qid": "16415",
+   "sid": "2761",
+   "hash": "6777d87afa2635d6fbecb274f4b3a36e",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "NestJS va arxitektura",
+   "topicStatus": "Active",
+   "md5_crm": "ef1797eb32919789ee3ca69ffb7b6c2e"
+  }
+ },
+ {
+  "lesson_id": "pm-m4a2-v1",
+  "m": 6,
+  "yangi": "6-Modul/02-PmLesson15-v6.jsx",
+  "md5_yangi": "53203d0e2deff85d33ab77643db273a0",
+  "eski": "02-PmLesson15-v5.jsx",
+  "md5_eski": "025de67f36bd808b20b1e8efddb4960d",
+  "uz": {
+   "qid": "16416",
+   "sid": "2762",
+   "hash": "e69460b60015f3b2abeb95e6503c924a",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Sayt yuklamasi",
+   "topicStatus": "Active",
+   "md5_crm": "025de67f36bd808b20b1e8efddb4960d"
+  },
+  "ru": {
+   "qid": "16417",
+   "sid": "2762",
+   "hash": "6ca88a300733a8da9e0f5c906d91d87f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Sayt yuklamasi",
+   "topicStatus": "Active",
+   "md5_crm": "025de67f36bd808b20b1e8efddb4960d"
+  }
+ },
+ {
+  "lesson_id": "nest-arch-resource-4a-02-v18",
+  "m": 6,
+  "yangi": "6-Modul/03-NestArchResourceLesson-v5.jsx",
+  "md5_yangi": "0c1da6898719c7ca332a541ae4173e05",
+  "eski": "03-NestArchResourceLesson-v4.jsx",
+  "md5_eski": "0d3a3f755ea1a8e8fdd80e63c252ad86",
+  "uz": {
+   "qid": "16419",
+   "sid": "2763",
+   "hash": "239debf640806491e42bd6fd3a118c45",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Nest arxitekturasi",
+   "topicStatus": "Active",
+   "md5_crm": "0d3a3f755ea1a8e8fdd80e63c252ad86"
+  },
+  "ru": {
+   "qid": "16418",
+   "sid": "2763",
+   "hash": "f6ad3cbbf16a4884c5ed8de2b1408dd2",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Nest arxitekturasi",
+   "topicStatus": "Active",
+   "md5_crm": "0d3a3f755ea1a8e8fdd80e63c252ad86"
+  }
+ },
+ {
+  "lesson_id": "nest-arch-practice-4a-03-v18",
+  "m": 6,
+  "yangi": "6-Modul/04-NestArchPracticeLesson-v5.jsx",
+  "md5_yangi": "388654153a7dedbb2a1b599cb337aa85",
+  "eski": "04-NestArchPracticeLesson-v4.jsx",
+  "md5_eski": "c38b87b40e6ec3ca95268f6b8a008044",
+  "uz": {
+   "qid": "16421",
+   "sid": "2764",
+   "hash": "1cc55c98222589bd19adb48cc528b89c",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "NestJS practice",
+   "topicStatus": "Active",
+   "md5_crm": "c38b87b40e6ec3ca95268f6b8a008044"
+  },
+  "ru": {
+   "qid": "16420",
+   "sid": "2764",
+   "hash": "f196cf6f824beb13974a019660877292",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "NestJS practice",
+   "topicStatus": "Active",
+   "md5_crm": "c38b87b40e6ec3ca95268f6b8a008044"
+  }
+ },
+ {
+  "lesson_id": "jest-unit-04b-01-v18",
+  "m": 6,
+  "yangi": "6-Modul/05-JestUnitTestLesson-v6.jsx",
+  "md5_yangi": "d139fe7f996fae005240b91995102656",
+  "eski": "05-JestUnitTestLesson-v5.jsx",
+  "md5_eski": "a6bd42ef7babe8953f5a9da94bd95adf",
+  "uz": {
+   "qid": "16423",
+   "sid": "2765",
+   "hash": "80c90eb2242b2e64eba18e868bfd1932",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Loyihani sinovdan o'tkazish",
+   "topicStatus": "Active",
+   "md5_crm": "a6bd42ef7babe8953f5a9da94bd95adf"
+  },
+  "ru": {
+   "qid": "16422",
+   "sid": "2765",
+   "hash": "94e841ae900a6caf22e4dd23db70fad2",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Loyihani sinovdan o'tkazish",
+   "topicStatus": "Active",
+   "md5_crm": "a6bd42ef7babe8953f5a9da94bd95adf"
+  }
+ },
+ {
+  "lesson_id": "pm-m4b2-v1",
+  "m": 6,
+  "yangi": "6-Modul/06-PmLesson16-v7.jsx",
+  "md5_yangi": "2f43085ae7ab2d3a1b6c7def0e16f098",
+  "eski": "06-PmLesson16-v6.jsx",
+  "md5_eski": "a5b6b139e01e6a4030b2a4d398b41d81",
+  "uz": {
+   "qid": "16427",
+   "sid": "2766",
+   "hash": "2fbd23139427915a754926fd9c672829",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Sifat: bitta xato — nechta odam ketadi?",
+   "topicStatus": "Active",
+   "md5_crm": "a5b6b139e01e6a4030b2a4d398b41d81"
+  },
+  "ru": {
+   "qid": "16424",
+   "sid": "2766",
+   "hash": "d600cb8878d21dbd6a200544ec9b77fc",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Sifat: bitta xato — nechta odam ketadi?",
+   "topicStatus": "Active",
+   "md5_crm": "a5b6b139e01e6a4030b2a4d398b41d81"
+  }
+ },
+ {
+  "lesson_id": "edge-cases-04b-02-v18",
+  "m": 6,
+  "yangi": "6-Modul/07-EdgeCasesTestLesson-v5.jsx",
+  "md5_yangi": "19819b40eebd371d73d83ffa4a35a8a4",
+  "eski": "07-EdgeCasesTestLesson-v4.jsx",
+  "md5_eski": "01ee51bc81839f2ccd233fad63033a87",
+  "uz": {
+   "qid": "16426",
+   "sid": "2767",
+   "hash": "ceb192b81fa2fdd2b79628883af6f8fb",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Edge case va error path",
+   "topicStatus": "Active",
+   "md5_crm": "01ee51bc81839f2ccd233fad63033a87"
+  },
+  "ru": {
+   "qid": "16425",
+   "sid": "2767",
+   "hash": "ccd99009c40b01d737ae8d80204e27bb",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Edge case va error path",
+   "topicStatus": "Active",
+   "md5_crm": "01ee51bc81839f2ccd233fad63033a87"
+  }
+ },
+ {
+  "lesson_id": "cicd-intro-4c-01-v18",
+  "m": 6,
+  "yangi": "6-Modul/08-CiCdIntroLesson-v5.jsx",
+  "md5_yangi": "350e2660fbb47e09c24e00682a6407c5",
+  "eski": "08-CiCdIntroLesson-v4.jsx",
+  "md5_eski": "43759aa3807e531db64ae003d3a5daf0",
+  "uz": {
+   "qid": "16429",
+   "sid": "2768",
+   "hash": "e52edf79061b5e9e198317500e2df4f4",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "CI/CD nima va nega kerak?",
+   "topicStatus": "Active",
+   "md5_crm": "43759aa3807e531db64ae003d3a5daf0"
+  },
+  "ru": {
+   "qid": "16428",
+   "sid": "2768",
+   "hash": "f5ff024508e8cdd83dddb82d77bb272d",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "CI/CD nima va nega kerak?",
+   "topicStatus": "Active",
+   "md5_crm": "43759aa3807e531db64ae003d3a5daf0"
+  }
+ },
+ {
+  "lesson_id": "pm-m4c2-v1",
+  "m": 6,
+  "yangi": "6-Modul/09-PmLesson17-v6.jsx",
+  "md5_yangi": "1fd53ca429c04b7516dd07b6af58c9c4",
+  "eski": "09-PmLesson17-v5.jsx",
+  "md5_eski": "bd6995d07fc651d0526c217abefc29b8",
+  "uz": {
+   "qid": "16431",
+   "sid": "2769",
+   "hash": "ebaf2f2bf9843c35b837a702ee41ae51",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Reliz",
+   "topicStatus": "Active",
+   "md5_crm": "bd6995d07fc651d0526c217abefc29b8"
+  },
+  "ru": {
+   "qid": "16430",
+   "sid": "2769",
+   "hash": "e140621e62e2a9c0d014be010acb4e58",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Reliz",
+   "topicStatus": "Active",
+   "md5_crm": "bd6995d07fc651d0526c217abefc29b8"
+  }
+ },
+ {
+  "lesson_id": "github-actions-4c-02-v18",
+  "m": 6,
+  "yangi": "6-Modul/10-GithubActionsLesson-v5.jsx",
+  "md5_yangi": "527d2e67f969645dc19baa337509b327",
+  "eski": "10-GithubActionsLesson-v4.jsx",
+  "md5_eski": "5a1e3a79fe78416a82d5f5f78d28c359",
+  "uz": {
+   "qid": "16433",
+   "sid": "2770",
+   "hash": "2b5a84eacb46ef29d54655be7b93522f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "GitHub Actions",
+   "topicStatus": "Active",
+   "md5_crm": "5a1e3a79fe78416a82d5f5f78d28c359"
+  },
+  "ru": {
+   "qid": "16432",
+   "sid": "2770",
+   "hash": "0498e358cf562ca804bbd358f55ab38f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "GitHub Actions",
+   "topicStatus": "Active",
+   "md5_crm": "5a1e3a79fe78416a82d5f5f78d28c359"
+  }
+ },
+ {
+  "lesson_id": "cicd-full-pipeline-4c-03-v18",
+  "m": 6,
+  "yangi": "6-Modul/11-FullPipelineProjectLesson-v5.jsx",
+  "md5_yangi": "f2cf6815f25324f5bd6c99449d1b3bfa",
+  "eski": "11-FullPipelineProjectLesson-v4.jsx",
+  "md5_eski": "a80288b2d3be0c5444aae83d9d2785aa",
+  "uz": {
+   "qid": "16435",
+   "sid": "2771",
+   "hash": "7a5eeb22acd6ac90bd84c49eb22eca05",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Practice 1 : backend + frontend",
+   "topicStatus": "Active",
+   "md5_crm": "a80288b2d3be0c5444aae83d9d2785aa"
+  },
+  "ru": {
+   "qid": "16434",
+   "sid": "2771",
+   "hash": "61df875f2f895b9504e9bb8c86036e19",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Practice 1 : backend + frontend",
+   "topicStatus": "Active",
+   "md5_crm": "a80288b2d3be0c5444aae83d9d2785aa"
+  }
+ },
+ {
+  "lesson_id": "cicd-ai-pipeline-4c-05-v18",
+  "m": 6,
+  "yangi": "6-Modul/12-AiPipelineProjectLesson-v5.jsx",
+  "md5_yangi": "e755a24bd536789d3767d4db2a217fc8",
+  "eski": "12-AiPipelineProjectLesson-v4.jsx",
+  "md5_eski": "6ee7ed38a234504998f7f02e4b401887",
+  "uz": {
+   "qid": "16436",
+   "sid": "2772",
+   "hash": "6eb749f9871137aa13d40b951003a37a",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Practice 2",
+   "topicStatus": "Active",
+   "md5_crm": "6ee7ed38a234504998f7f02e4b401887"
+  },
+  "ru": {
+   "qid": "16437",
+   "sid": "2772",
+   "hash": "61bb9d45a990b54e4ff5c162d58ed3ef",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Practice 2",
+   "topicStatus": "Active",
+   "md5_crm": "6ee7ed38a234504998f7f02e4b401887"
+  }
+ },
+ {
+  "lesson_id": "pm-m4c6-v1",
+  "m": 6,
+  "yangi": "6-Modul/13-PmLesson18-v7.jsx",
+  "md5_yangi": "fff778a03b71bdf25c395d7eb7702e4c",
+  "eski": "13-PmLesson18-v6.jsx",
+  "md5_eski": "93bdb0fcbae6f8c6b8ee8856fd7bb30a",
+  "uz": {
+   "qid": "16438",
+   "sid": "2773",
+   "hash": "80efbdeab8791dd5a94ba9757eaefd0b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Monitoring",
+   "topicStatus": "Active",
+   "md5_crm": "93bdb0fcbae6f8c6b8ee8856fd7bb30a"
+  },
+  "ru": {
+   "qid": "16441",
+   "sid": "2773",
+   "hash": "c08253c416c9ed8e3b0646011ce6f637",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Monitoring",
+   "topicStatus": "Active",
+   "md5_crm": "93bdb0fcbae6f8c6b8ee8856fd7bb30a"
+  }
+ },
+ {
+  "lesson_id": "full-pro-pipeline-4c-04-v18",
+  "m": 6,
+  "yangi": "6-Modul/14-FullProPipelineLesson-v5.jsx",
+  "md5_yangi": "442a158d51cb035a65d110679da949ef",
+  "eski": "14-FullProPipelineLesson-v4.jsx",
+  "md5_eski": "2be28443695538a125cd9ed14c5a201c",
+  "uz": {
+   "qid": "16440",
+   "sid": "2774",
+   "hash": "6c594a1387bcb2824216cfee9b45b588",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pre Demo Day: test + lint + deploy",
+   "topicStatus": "Active",
+   "md5_crm": "2be28443695538a125cd9ed14c5a201c"
+  },
+  "ru": {
+   "qid": "16439",
+   "sid": "2774",
+   "hash": "a53a637cfd96a40a61d965cf956a138b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pre Demo Day: test + lint + deploy",
+   "topicStatus": "Active",
+   "md5_crm": "2be28443695538a125cd9ed14c5a201c"
+  }
+ },
+ {
+  "lesson_id": "bot-intro-05-01-v18",
+  "m": 7,
+  "yangi": "7-Modul/01-BotIntroLesson-v5.jsx",
+  "md5_yangi": "5d7ea4ecc5a3e9377387a449f2e60980",
+  "eski": "01-BotIntroLesson-v4.jsx",
+  "md5_eski": "45bbf40d5657ca05f6cadaed6a162b0d",
+  "uz": {
+   "qid": "17095",
+   "sid": "2493",
+   "hash": "2b2d7944d008b08cdb7bc85c1b7448b7",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Event-driven: bot qanday «o'ylaydi»?",
+   "topicStatus": "Active",
+   "md5_crm": "45bbf40d5657ca05f6cadaed6a162b0d"
+  },
+  "ru": {
+   "qid": "17096",
+   "sid": "2493",
+   "hash": "81d59e2e88172ad24b6433478cd381a9",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Event-driven: bot qanday «o'ylaydi»?",
+   "topicStatus": "Active",
+   "md5_crm": "45bbf40d5657ca05f6cadaed6a162b0d"
+  }
+ },
+ {
+  "lesson_id": "pm-m5d2-v1",
+  "m": 7,
+  "yangi": "7-Modul/02-PmLesson19-v6.jsx",
+  "md5_yangi": "45a3a4ef6f3dc8922aadf836e830429e",
+  "eski": "02-PmLesson19-v5.jsx",
+  "md5_eski": "204ff2001555447fee2ed3d6a6ab22a2",
+  "uz": {
+   "qid": "17097",
+   "sid": "2494",
+   "hash": "229c71e19be627ef44237dd7c8266584",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Growth hacking: pulsiz birinchi 20 foydalanuvchi",
+   "topicStatus": "Active",
+   "md5_crm": "204ff2001555447fee2ed3d6a6ab22a2"
+  },
+  "ru": {
+   "qid": "17098",
+   "sid": "2494",
+   "hash": "0c110bb1ece172a29b5b3ebf96a9cc6c",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Growth hacking: pulsiz birinchi 20 foydalanuvchi",
+   "topicStatus": "Active",
+   "md5_crm": "204ff2001555447fee2ed3d6a6ab22a2"
+  }
+ },
+ {
+  "lesson_id": "bot-api-buttons-05-02-v18",
+  "m": 7,
+  "yangi": "7-Modul/03-BotApiButtonsLesson-v5.jsx",
+  "md5_yangi": "9efba21599c6130bc0c321d5952e1b35",
+  "eski": "03-BotApiButtonsLesson-v4.jsx",
+  "md5_eski": "cff240d23582c03ba2a97595e996831e",
+  "uz": {
+   "qid": "17099",
+   "sid": "2495",
+   "hash": "de182acc1c60010fdaa2f47b84a31c5e",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Telegram Bot API: menyu va tugmali bot",
+   "topicStatus": "Active",
+   "md5_crm": "cff240d23582c03ba2a97595e996831e"
+  },
+  "ru": {
+   "qid": "17100",
+   "sid": "2495",
+   "hash": "d741c078ab7983c97950981b9f72be01",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Telegram Bot API: menyu va tugmali bot",
+   "topicStatus": "Active",
+   "md5_crm": "cff240d23582c03ba2a97595e996831e"
+  }
+ },
+ {
+  "lesson_id": "bot-stateful-memory-05-03-v18",
+  "m": 7,
+  "yangi": "7-Modul/04-BotStatefulMemoryLesson-v5.jsx",
+  "md5_yangi": "e202a62c21b733b3a5ce65e7b8adbd8b",
+  "eski": "04-BotStatefulMemoryLesson-v4.jsx",
+  "md5_eski": "1f72978db51c6df5f41588e49cf9e505",
+  "uz": {
+   "qid": "17101",
+   "sid": "2496",
+   "hash": "0ff7be6fc372930688b07f0a30dc5624",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Stateful logika: bot foydalanuvchini eslab qoladi",
+   "topicStatus": "Active",
+   "md5_crm": "1f72978db51c6df5f41588e49cf9e505"
+  },
+  "ru": {
+   "qid": "17102",
+   "sid": "2496",
+   "hash": "8a6a19d2754d753bbd87eb2568aa44ba",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Stateful logika: bot foydalanuvchini eslab qoladi",
+   "topicStatus": "Active",
+   "md5_crm": "1f72978db51c6df5f41588e49cf9e505"
+  }
+ },
+ {
+  "lesson_id": "bot-ai-project-05-05-v18",
+  "m": 7,
+  "yangi": "7-Modul/05-BotAiProjectLesson-v5.jsx",
+  "md5_yangi": "d282c6e501c412387ab60021d9da5de6",
+  "eski": "05-BotAiProjectLesson-v4.jsx",
+  "md5_eski": "ef45f2b080d305b4db1009a4c8103f10",
+  "uz": {
+   "qid": "17103",
+   "sid": "2498",
+   "hash": "f39e78107634cf2f6d1669bffb5c524f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Loyiha kuni: prompt orqali istalgan Telegram bot",
+   "topicStatus": "Active",
+   "md5_crm": "ef45f2b080d305b4db1009a4c8103f10"
+  },
+  "ru": {
+   "qid": "17104",
+   "sid": "2498",
+   "hash": "78289110be7a3e250b900a90d08de449",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Loyiha kuni: prompt orqali istalgan Telegram bot",
+   "topicStatus": "Active",
+   "md5_crm": "ef45f2b080d305b4db1009a4c8103f10"
+  }
+ },
+ {
+  "lesson_id": "bot-ai-brain-05-04-v18",
+  "m": 7,
+  "yangi": "7-Modul/06-BotAiBrainLesson-v5.jsx",
+  "md5_yangi": "74ddc843903cee2087e64298b351c1d0",
+  "eski": "06-BotAiBrainLesson-v4.jsx",
+  "md5_eski": "345eb43e05fe50021f300be993b03516",
+  "uz": {
+   "qid": "17105",
+   "sid": "2499",
+   "hash": "e3c5222eddc2a44451e2049a124d1163",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "AI API botning ichida: bot javob bera boshlaydi",
+   "topicStatus": "Active",
+   "md5_crm": "345eb43e05fe50021f300be993b03516"
+  },
+  "ru": {
+   "qid": "17106",
+   "sid": "2499",
+   "hash": "70dfb3d9fae17f01ddce1dfcb912da2e",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "AI API botning ichida: bot javob bera boshlaydi",
+   "topicStatus": "Active",
+   "md5_crm": "345eb43e05fe50021f300be993b03516"
+  }
+ },
+ {
+  "lesson_id": "bot-full-project-05-07-v18",
+  "m": 7,
+  "yangi": "7-Modul/07-BotFullProjectLesson-v5.jsx",
+  "md5_yangi": "941a9be598519879185a4542bf528288",
+  "eski": "07-BotFullProjectLesson-v4.jsx",
+  "md5_eski": "62f67a4d12102655e953d9611a4b04d1",
+  "uz": {
+   "qid": "17107",
+   "sid": "2500",
+   "hash": "51153919b60b46d4f2aad3032e3159d3",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Loyiha kuni: bot + baza + AI + xosting",
+   "topicStatus": "Active",
+   "md5_crm": "62f67a4d12102655e953d9611a4b04d1"
+  },
+  "ru": {
+   "qid": "17108",
+   "sid": "2500",
+   "hash": "c5b8c333988af1ea28f979d4d97e80e4",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Loyiha kuni: bot + baza + AI + xosting",
+   "topicStatus": "Active",
+   "md5_crm": "62f67a4d12102655e953d9611a4b04d1"
+  }
+ },
+ {
+  "lesson_id": "pm-m5d8-v1",
+  "m": 7,
+  "yangi": "7-Modul/08-PmLesson20-v6.jsx",
+  "md5_yangi": "243944738d7ca534f39a9565dd07c304",
+  "eski": "08-PmLesson20-v5.jsx",
+  "md5_eski": "4ba123008e13c3b99c4045b63db79fc9",
+  "uz": {
+   "qid": "17109",
+   "sid": "2501",
+   "hash": "b9bb98819ed5717129a2a9bb8971bd10",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Custdev: jonli foydalanuvchidan fikr olish",
+   "topicStatus": "Active",
+   "md5_crm": "4ba123008e13c3b99c4045b63db79fc9"
+  },
+  "ru": {
+   "qid": "17110",
+   "sid": "2501",
+   "hash": "d589e3fa80f3e1640dd26ba1fdb83761",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Custdev: jonli foydalanuvchidan fikr olish",
+   "topicStatus": "Active",
+   "md5_crm": "4ba123008e13c3b99c4045b63db79fc9"
+  }
+ },
+ {
+  "lesson_id": "bot-feedback-05-06-v18",
+  "m": 7,
+  "yangi": "7-Modul/09-BotFeedbackIterationLesson-v5.jsx",
+  "md5_yangi": "511c991f7136850bb8104fc579aef678",
+  "eski": "09-BotFeedbackIterationLesson-v4.jsx",
+  "md5_eski": "63c8f8058e00fbba9fe66a7d5305f8d9",
+  "uz": {
+   "qid": "17111",
+   "sid": "2502",
+   "hash": "7a4c5e7468124376de3fb95e5b8a1e35",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Iteratsiya: fidbekni kodga aylantiraman",
+   "topicStatus": "Active",
+   "md5_crm": "63c8f8058e00fbba9fe66a7d5305f8d9"
+  },
+  "ru": {
+   "qid": "17112",
+   "sid": "2502",
+   "hash": "ca7c2f5f6ea8f7cc05a8b1c4e5b62a1e",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Iteratsiya: fidbekni kodga aylantiraman",
+   "topicStatus": "Active",
+   "md5_crm": "63c8f8058e00fbba9fe66a7d5305f8d9"
+  }
+ },
+ {
+  "lesson_id": "bot-ai-agent-05-10-v18",
+  "m": 7,
+  "yangi": "7-Modul/10-BotAiAgentLesson-v5.jsx",
+  "md5_yangi": "7f7b4f8b0f81c2d2fe674444c257d01a",
+  "eski": "10-BotAiAgentLesson-v4.jsx",
+  "md5_eski": "92d74b5ee249f9872430dab84bd17bc0",
+  "uz": {
+   "qid": "17113",
+   "sid": "2503",
+   "hash": "ead880a1a63ecc1df6c2a91c7d402afd",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "AI-agent: idrok et → qaror qil → harakat qil",
+   "topicStatus": "Active",
+   "md5_crm": "92d74b5ee249f9872430dab84bd17bc0"
+  },
+  "ru": {
+   "qid": "17114",
+   "sid": "2503",
+   "hash": "2ebb154110f0b3a925bcc8c03febd70f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "AI-agent: idrok et → qaror qil → harakat qil",
+   "topicStatus": "Active",
+   "md5_crm": "92d74b5ee249f9872430dab84bd17bc0"
+  }
+ },
+ {
+  "lesson_id": "pm-m5d11-metrika-v1",
+  "m": 7,
+  "yangi": "7-Modul/11-PmMetricsLesson-v6.jsx",
+  "md5_yangi": "f4ca1f4e1de516bb2c4342a0b8011248",
+  "eski": "11-PmMetricsLesson-v5.jsx",
+  "md5_eski": "503459da2b7c0855df7c22619ddc9412",
+  "uz": {
+   "qid": "17115",
+   "sid": "2981",
+   "hash": "711f85270ffe92903a4eadcf79c5aa5b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Metrika nima: bitta bosh raqam va yordamchi raqamlar",
+   "topicStatus": "Active",
+   "md5_crm": "503459da2b7c0855df7c22619ddc9412"
+  },
+  "ru": {
+   "qid": "17116",
+   "sid": "2981",
+   "hash": "dc26e5f02172a56ea256a9a85bd09495",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Metrika nima: bitta bosh raqam va yordamchi raqamlar",
+   "topicStatus": "Active",
+   "md5_crm": "503459da2b7c0855df7c22619ddc9412"
+  }
+ },
+ {
+  "lesson_id": "pm-m5d11-v1",
+  "m": 7,
+  "yangi": "7-Modul/12-PmLesson21-v6.jsx",
+  "md5_yangi": "8e1b39ca4bcc99d7f65fd50ee70dafac",
+  "eski": "12-PmLesson21-v5.jsx",
+  "md5_eski": "abb07ae27fa862ddc67f66d4d8e45601",
+  "uz": {
+   "qid": "17117",
+   "sid": "2504",
+   "hash": "99749b4c25332c49066b89fd93060b8b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "DAU va retention: botim raqamlarda",
+   "topicStatus": "Active",
+   "md5_crm": "abb07ae27fa862ddc67f66d4d8e45601"
+  },
+  "ru": {
+   "qid": "17118",
+   "sid": "2504",
+   "hash": "012c909d25e2434599fa81f972977732",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "DAU va retention: botim raqamlarda",
+   "topicStatus": "Active",
+   "md5_crm": "abb07ae27fa862ddc67f66d4d8e45601"
+  }
+ },
+ {
+  "lesson_id": "sys-arch-06-01-v18",
+  "m": 8,
+  "yangi": "8-Modul/01-SystemArchitectureLesson-v5.jsx",
+  "md5_yangi": "cc56c70097507dde065d58419b4169df",
+  "eski": "01-SystemArchitectureLesson-v4.jsx",
+  "md5_eski": "9e554edcdd19dd9e67b07342cbe7da06",
+  "uz": {
+   "qid": "17119",
+   "sid": "2505",
+   "hash": "debea64d80164ede4bf4eb3d5929b65e",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Front + back + baza + AI + bot: hammasi bir tizimda",
+   "topicStatus": "Active",
+   "md5_crm": "9e554edcdd19dd9e67b07342cbe7da06"
+  },
+  "ru": {
+   "qid": "17120",
+   "sid": "2505",
+   "hash": "bcc677097622cabf412c45b464faf6cb",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Front + back + baza + AI + bot: hammasi bir tizimda",
+   "topicStatus": "Active",
+   "md5_crm": "9e554edcdd19dd9e67b07342cbe7da06"
+  }
+ },
+ {
+  "lesson_id": "pm-m6d2-v1",
+  "m": 8,
+  "yangi": "8-Modul/02-PmLesson22-v7.jsx",
+  "md5_yangi": "5d2ca76ea0d3f5c124f65959b49f52eb",
+  "eski": "02-PmLesson22-v6.jsx",
+  "md5_eski": "a698fdd38adab9f7745832fa7b20a177",
+  "uz": {
+   "qid": "17121",
+   "sid": "2506",
+   "hash": "f232510dc84d073ea15efade1aad34fa",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "PRD: mahsulot hujjatini yozaman",
+   "topicStatus": "Active",
+   "md5_crm": "a698fdd38adab9f7745832fa7b20a177"
+  },
+  "ru": {
+   "qid": "17122",
+   "sid": "2506",
+   "hash": "cc9d857f4b225dc0baff1ee7a5221ed4",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "PRD: mahsulot hujjatini yozaman",
+   "topicStatus": "Active",
+   "md5_crm": "a698fdd38adab9f7745832fa7b20a177"
+  }
+ },
+ {
+  "lesson_id": "arch-patterns-06-03-v18",
+  "m": 8,
+  "yangi": "8-Modul/03-ArchPatternsLesson-v5.jsx",
+  "md5_yangi": "8982824fdf50b60b4c8d1953a29320c9",
+  "eski": "03-ArchPatternsLesson-v4.jsx",
+  "md5_eski": "f35599dc7727dc250ac28e103d30980b",
+  "uz": {
+   "qid": "17123",
+   "sid": "2507",
+   "hash": "1095698ce1a1079f372d38966e9759ed",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "MVC va mikroservislar: arxitektura patternlari",
+   "topicStatus": "Active",
+   "md5_crm": "f35599dc7727dc250ac28e103d30980b"
+  },
+  "ru": {
+   "qid": "17124",
+   "sid": "2507",
+   "hash": "7ccd7a2e7a9bbacc9b63aa22ff98ece5",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "MVC va mikroservislar: arxitektura patternlari",
+   "topicStatus": "Active",
+   "md5_crm": "f35599dc7727dc250ac28e103d30980b"
+  }
+ },
+ {
+  "lesson_id": "agent-arch-06-04-v18",
+  "m": 8,
+  "yangi": "8-Modul/04-AgentArchitectureLesson-v5.jsx",
+  "md5_yangi": "75b6337b9d41118b6a291b611af6224b",
+  "eski": "04-AgentArchitectureLesson-v4.jsx",
+  "md5_eski": "e8b1d4a198f205dd0bca5da22bb27040",
+  "uz": {
+   "qid": "17125",
+   "sid": "2508",
+   "hash": "7fac2a934a33dcc97ca399358ad74aff",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "AI-agent vs oddiy AI: farqi nimada?",
+   "topicStatus": "Active",
+   "md5_crm": "e8b1d4a198f205dd0bca5da22bb27040"
+  },
+  "ru": {
+   "qid": "17126",
+   "sid": "2508",
+   "hash": "f84121767addc83b8f95ab96b94724aa",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "AI-agent vs oddiy AI: farqi nimada?",
+   "topicStatus": "Active",
+   "md5_crm": "e8b1d4a198f205dd0bca5da22bb27040"
+  }
+ },
+ {
+  "lesson_id": "claude-skills-06-05-v18",
+  "m": 8,
+  "yangi": "8-Modul/05-ClaudeSkillsLesson-v5.jsx",
+  "md5_yangi": "43c9fa83d634fde34bbf4c6c416963dc",
+  "eski": "05-ClaudeSkillsLesson-v4.jsx",
+  "md5_eski": "d428c7bde3180ac15fe4627cbf5db7ed",
+  "uz": {
+   "qid": "17127",
+   "sid": "2509",
+   "hash": "b9e4b8acee84377ac339f8f3a38ceda7",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Claude Skills: AI'ning xulqini o'zgartiraman",
+   "topicStatus": "Active",
+   "md5_crm": "d428c7bde3180ac15fe4627cbf5db7ed"
+  },
+  "ru": {
+   "qid": "17128",
+   "sid": "2509",
+   "hash": "01f321d0b10c05c4bbcd929457fc4e29",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Claude Skills: AI'ning xulqini o'zgartiraman",
+   "topicStatus": "Active",
+   "md5_crm": "d428c7bde3180ac15fe4627cbf5db7ed"
+  }
+ },
+ {
+  "lesson_id": "pm-m6d6-v1",
+  "m": 8,
+  "yangi": "8-Modul/06-PmLesson23-v6.jsx",
+  "md5_yangi": "5ee32e48f5518918b4b94a6c00d8d8ca",
+  "eski": "06-PmLesson23-v5.jsx",
+  "md5_eski": "ead47715b8e03783d6a919a9db7fb5ee",
+  "uz": {
+   "qid": "17129",
+   "sid": "2510",
+   "hash": "1b75e96764de37a224fa9cfda19832f1",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "AI-mahsulot etikasi: nima noto'g'ri ketishi mumkin?",
+   "topicStatus": "Active",
+   "md5_crm": "ead47715b8e03783d6a919a9db7fb5ee"
+  },
+  "ru": {
+   "qid": "17130",
+   "sid": "2510",
+   "hash": "9f6f5321aa044fb040d517c2d9847c99",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "AI-mahsulot etikasi: nima noto'g'ri ketishi mumkin?",
+   "topicStatus": "Active",
+   "md5_crm": "ead47715b8e03783d6a919a9db7fb5ee"
+  }
+ },
+ {
+  "lesson_id": "write-skill-06-07-v18",
+  "m": 8,
+  "yangi": "8-Modul/07-WriteSkillLesson-v5.jsx",
+  "md5_yangi": "3aacde9710ba2343dbb62342a585b7ef",
+  "eski": "07-WriteSkillLesson-v4.jsx",
+  "md5_eski": "4a94f8539c949b1129f0763659268d42",
+  "uz": {
+   "qid": "17131",
+   "sid": "2511",
+   "hash": "57489cee4b3ce6cf74e1bf992fde8b95",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "O'z Skill'imni yozaman",
+   "topicStatus": "Active",
+   "md5_crm": "4a94f8539c949b1129f0763659268d42"
+  },
+  "ru": {
+   "qid": "17132",
+   "sid": "2511",
+   "hash": "7ec20512d36f236e55772da19263cc68",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "O'z Skill'imni yozaman",
+   "topicStatus": "Active",
+   "md5_crm": "4a94f8539c949b1129f0763659268d42"
+  }
+ },
+ {
+  "lesson_id": "pipeline-project-06-08-v18",
+  "m": 8,
+  "yangi": "8-Modul/08-PipelineProjectLesson-v5.jsx",
+  "md5_yangi": "f567acd5ecd94359e6b6f41b5b43c41c",
+  "eski": "08-PipelineProjectLesson-v4.jsx",
+  "md5_eski": "a0a1107e2c11d9a6d53fe260dcfe6dae",
+  "uz": {
+   "qid": "17133",
+   "sid": "2512",
+   "hash": "f270c189fe7559463d18cedd9a60061d",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pipeline: React + Node + PostgreSQL + Telegram + AI",
+   "topicStatus": "Active",
+   "md5_crm": "a0a1107e2c11d9a6d53fe260dcfe6dae"
+  },
+  "ru": {
+   "qid": "17134",
+   "sid": "2512",
+   "hash": "bb1c627ce444eb02aa317f7724a5cc8f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pipeline: React + Node + PostgreSQL + Telegram + AI",
+   "topicStatus": "Active",
+   "md5_crm": "a0a1107e2c11d9a6d53fe260dcfe6dae"
+  }
+ },
+ {
+  "lesson_id": "rn-basics-06-09-v18",
+  "m": 8,
+  "yangi": "8-Modul/09-ReactNativeBasicsLesson-v5.jsx",
+  "md5_yangi": "b2051c3b5da9572ffd3d8977f3c74844",
+  "eski": "09-ReactNativeBasicsLesson-v4.jsx",
+  "md5_eski": "275d2147f67d59c15b6de44f5e191e09",
+  "uz": {
+   "qid": "17135",
+   "sid": "2513",
+   "hash": "6119a74adadb5e97ca9556fc9029c658",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "React Native: loyiham telefonga chiqadi",
+   "topicStatus": "Active",
+   "md5_crm": "275d2147f67d59c15b6de44f5e191e09"
+  },
+  "ru": {
+   "qid": "17136",
+   "sid": "2513",
+   "hash": "9a8d271373bfd60bfa9f119f6f1f8392",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "React Native: loyiham telefonga chiqadi",
+   "topicStatus": "Active",
+   "md5_crm": "275d2147f67d59c15b6de44f5e191e09"
+  }
+ },
+ {
+  "lesson_id": "rn-app-06-10-v18",
+  "m": 8,
+  "yangi": "8-Modul/10-ReactNativeAppLesson-v5.jsx",
+  "md5_yangi": "4a64d36aea39868e9f01de91c78be99f",
+  "eski": "10-ReactNativeAppLesson-v4.jsx",
+  "md5_eski": "201a42386dd9963d94b0a10ca76067cc",
+  "uz": {
+   "qid": "17137",
+   "sid": "2514",
+   "hash": "f101e2eb4e6871b2245bb93b4310388a",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Navigation va AsyncStorage: to'liq mobil ilova",
+   "topicStatus": "Active",
+   "md5_crm": "201a42386dd9963d94b0a10ca76067cc"
+  },
+  "ru": {
+   "qid": "17138",
+   "sid": "2514",
+   "hash": "6d0c5ccc137f2c857cb18f975997b7db",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Navigation va AsyncStorage: to'liq mobil ilova",
+   "topicStatus": "Active",
+   "md5_crm": "201a42386dd9963d94b0a10ca76067cc"
+  }
+ },
+ {
+  "lesson_id": "mobile-practice-06-11-v18",
+  "m": 8,
+  "yangi": "8-Modul/11-MobileAppPracticeLesson-v5.jsx",
+  "md5_yangi": "5c1e3f8b2f9ed4cbdb00ce606653f0ee",
+  "eski": "11-MobileAppPracticeLesson-v4.jsx",
+  "md5_eski": "c8040b7373b489366277a99479283025",
+  "uz": {
+   "qid": "17139",
+   "sid": "2515",
+   "hash": "e21ff006af8991f0b2d8ab86bcf29aed",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Loyiha kuni: mobil versiyani yig'aman",
+   "topicStatus": "Active",
+   "md5_crm": "c8040b7373b489366277a99479283025"
+  },
+  "ru": {
+   "qid": "17140",
+   "sid": "2515",
+   "hash": "ac5b9901da8469372d4179e27cd59f87",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Loyiha kuni: mobil versiyani yig'aman",
+   "topicStatus": "Active",
+   "md5_crm": "c8040b7373b489366277a99479283025"
+  }
+ },
+ {
+  "lesson_id": "pm-m6d12-v1",
+  "m": 8,
+  "yangi": "8-Modul/12-PmLesson24-v6.jsx",
+  "md5_yangi": "bfdabf1bd1465f00da0fc09db754a7bc",
+  "eski": "12-PmLesson24-v5.jsx",
+  "md5_eski": "7b772ee9d31af0e4d3f7b099bb041f34",
+  "uz": {
+   "qid": "17141",
+   "sid": "2516",
+   "hash": "790697d9cb59a78bb3b1e892eef8c655",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Roadmap va RICE: hozir / 3 oy / 6 oy",
+   "topicStatus": "Active",
+   "md5_crm": "7b772ee9d31af0e4d3f7b099bb041f34"
+  },
+  "ru": {
+   "qid": "17142",
+   "sid": "2516",
+   "hash": "94ff1b41c499b5251cd77af84b390983",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Roadmap va RICE: hozir / 3 oy / 6 oy",
+   "topicStatus": "Active",
+   "md5_crm": "7b772ee9d31af0e4d3f7b099bb041f34"
+  }
+ },
+ {
+  "lesson_id": "full-system-06-13-v18",
+  "m": 8,
+  "yangi": "8-Modul/13-FullSystemProjectLesson-v5.jsx",
+  "md5_yangi": "739a135b58c954f0c9601da2059dd40d",
+  "eski": "13-FullSystemProjectLesson-v4.jsx",
+  "md5_eski": "5701e3d314879611c49cc39f68f44f34",
+  "uz": {
+   "qid": "17143",
+   "sid": "2517",
+   "hash": "18918f2d1ecfcfdab0903045a1a9620a",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Loyiha kuni: to'liq tizim end-to-end",
+   "topicStatus": "Active",
+   "md5_crm": "5701e3d314879611c49cc39f68f44f34"
+  },
+  "ru": {
+   "qid": "17144",
+   "sid": "2517",
+   "hash": "d304a5915603f70ee15631036706a9c9",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Loyiha kuni: to'liq tizim end-to-end",
+   "topicStatus": "Active",
+   "md5_crm": "5701e3d314879611c49cc39f68f44f34"
+  }
+ },
+ {
+  "lesson_id": "pm-m6d14-v1",
+  "m": 8,
+  "yangi": "8-Modul/14-PmLesson25-v6.jsx",
+  "md5_yangi": "cdc72ddc5d429a0421a2b0eb0db55207",
+  "eski": "14-PmLesson25-v5.jsx",
+  "md5_eski": "606d087459db324262c0e96aa01e25ea",
+  "uz": {
+   "qid": "17145",
+   "sid": "2518",
+   "hash": "7f34508532fda5f92718f69ea93a6307",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Metrikali pitch: raqam — bu isbot",
+   "topicStatus": "Active",
+   "md5_crm": "606d087459db324262c0e96aa01e25ea"
+  },
+  "ru": {
+   "qid": "17146",
+   "sid": "2518",
+   "hash": "9188ecce27f4342cfd6acf591fdbe4c6",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Metrikali pitch: raqam — bu isbot",
+   "topicStatus": "Active",
+   "md5_crm": "606d087459db324262c0e96aa01e25ea"
+  }
+ },
+ {
+  "lesson_id": "pm-m7d1-v1",
+  "m": 9,
+  "yangi": "9-Modul/01-PmProductProblemLesson-v6.jsx",
+  "md5_yangi": "6ad888a39177412bec82698bec215429",
+  "eski": "01-PmProductProblemLesson-v5.jsx",
+  "md5_eski": "15ee6979b458975e8e1822f513ee394d",
+  "uz": {
+   "qid": "17147",
+   "sid": "2983",
+   "hash": "491291a44a3135e36157e24fac11fa63",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Mahsulot va loyiha: farqi nima? Atrofdagi muammolarni izlaymiz",
+   "topicStatus": "Active",
+   "md5_crm": "15ee6979b458975e8e1822f513ee394d"
+  },
+  "ru": {
+   "qid": "17148",
+   "sid": "2983",
+   "hash": "5b9c12e3ff18f30b1428a31a9fed4b30",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Mahsulot va loyiha: farqi nima? Atrofdagi muammolarni izlaymiz",
+   "topicStatus": "Active",
+   "md5_crm": "15ee6979b458975e8e1822f513ee394d"
+  }
+ },
+ {
+  "lesson_id": "m7-02-v1",
+  "m": 9,
+  "yangi": "9-Modul/02-PmFiveInterviewsLesson-v6.jsx",
+  "md5_yangi": "d04c96cd806c55cb7da616e11d72d10f",
+  "eski": "02-PmFiveInterviewsLesson-v5.jsx",
+  "md5_eski": "3d48bf512040ca00e600604878815ebc",
+  "uz": {
+   "qid": "17149",
+   "sid": "2984",
+   "hash": "1ef1ded0084db1d89fef262a8721f4a7",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Custdev: 5 ta real intervyu",
+   "topicStatus": "Active",
+   "md5_crm": "3d48bf512040ca00e600604878815ebc"
+  },
+  "ru": {
+   "qid": "17150",
+   "sid": "2984",
+   "hash": "ac93d854047eecc1d0a2cf3191d09588",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Custdev: 5 ta real intervyu",
+   "topicStatus": "Active",
+   "md5_crm": "3d48bf512040ca00e600604878815ebc"
+  }
+ },
+ {
+  "lesson_id": "pm-m7d3-v1",
+  "m": 9,
+  "yangi": "9-Modul/03-PmInterviewMvpLesson-v6.jsx",
+  "md5_yangi": "7721f83e5f19961378d02710dea0179a",
+  "eski": "03-PmInterviewMvpLesson-v5.jsx",
+  "md5_eski": "1adf3f36563b98d6c8df41d8b17e53be",
+  "uz": {
+   "qid": "17151",
+   "sid": "2985",
+   "hash": "979064cbe2f3dd2e77e9cffe28cc49c9",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Intervyu tahlili va MVP: nima qilamiz, nima qilmaymiz",
+   "topicStatus": "Active",
+   "md5_crm": "1adf3f36563b98d6c8df41d8b17e53be"
+  },
+  "ru": {
+   "qid": "17152",
+   "sid": "2985",
+   "hash": "c27d0a7c0597a705fb638a7f5c36ecbf",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Intervyu tahlili va MVP: nima qilamiz, nima qilmaymiz",
+   "topicStatus": "Active",
+   "md5_crm": "1adf3f36563b98d6c8df41d8b17e53be"
+  }
+ },
+ {
+  "lesson_id": "m7-04-v1",
+  "m": 9,
+  "yangi": "9-Modul/04-MvpArchitectureLesson-v5.jsx",
+  "md5_yangi": "3d94bd45d2fef03512b91606b75b1a30",
+  "eski": "04-MvpArchitectureLesson-v4.jsx",
+  "md5_eski": "97d4aa4b58988ed2dc3cea47679dd061",
+  "uz": {
+   "qid": "17153",
+   "sid": "2986",
+   "hash": "17a789a7c2fb54f08cb9ec58766036b9",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Mini-MVP arxitekturasi: komponentlar, ma'lumotlar va stek",
+   "topicStatus": "Active",
+   "md5_crm": "97d4aa4b58988ed2dc3cea47679dd061"
+  },
+  "ru": {
+   "qid": "17154",
+   "sid": "2986",
+   "hash": "8849db340611d52777108b27ed329851",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Mini-MVP arxitekturasi: komponentlar, ma'lumotlar va stek",
+   "topicStatus": "Active",
+   "md5_crm": "97d4aa4b58988ed2dc3cea47679dd061"
+  }
+ },
+ {
+  "lesson_id": "m7-05-v1",
+  "m": 9,
+  "yangi": "9-Modul/05-AnimationLesson-v5.jsx",
+  "md5_yangi": "532048c01a7ddd7b4d7c8ec470560ec1",
+  "eski": "05-AnimationLesson-v4.jsx",
+  "md5_eski": "6ab54e33959ce23fcfe5db9943aa1931",
+  "uz": {
+   "qid": "17155",
+   "sid": "2987",
+   "hash": "d0483c10992f728c22da0438378de558",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Animatsiya va mikrointeraksiyalar: ilova jonlanadi",
+   "topicStatus": "Active",
+   "md5_crm": "6ab54e33959ce23fcfe5db9943aa1931"
+  },
+  "ru": {
+   "qid": "17156",
+   "sid": "2987",
+   "hash": "0fc239b4de613aa3baf8d5019faffe5f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Animatsiya va mikrointeraksiyalar: ilova jonlanadi",
+   "topicStatus": "Active",
+   "md5_crm": "6ab54e33959ce23fcfe5db9943aa1931"
+  }
+ },
+ {
+  "lesson_id": "m7-06-v1",
+  "m": 9,
+  "yangi": "9-Modul/06-PmAnalyticsDayOneLesson-v5.jsx",
+  "md5_yangi": "40afea62b03e6961e703d9de34ef0802",
+  "eski": "06-PmAnalyticsDayOneLesson-v4.jsx",
+  "md5_eski": "4e96c81c609e2796926585c3a3eeaca9",
+  "uz": {
+   "qid": "17157",
+   "sid": "2988",
+   "hash": "a1150ab01aec653a3cd230aa0bfb1cb8",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Birinchi kundan analitika: nimani o'lchaymiz?",
+   "topicStatus": "Active",
+   "md5_crm": "4e96c81c609e2796926585c3a3eeaca9"
+  },
+  "ru": {
+   "qid": "17158",
+   "sid": "2988",
+   "hash": "65f498e8157f82892a3f443cea30399b",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Birinchi kundan analitika: nimani o'lchaymiz?",
+   "topicStatus": "Active",
+   "md5_crm": "4e96c81c609e2796926585c3a3eeaca9"
+  }
+ },
+ {
+  "lesson_id": "m7-07-v1",
+  "m": 9,
+  "yangi": "9-Modul/07-MvpFirstScreenLesson-v5.jsx",
+  "md5_yangi": "205ea7e038c12c3296b6e0318a2f9ed7",
+  "eski": "07-MvpFirstScreenLesson-v4.jsx",
+  "md5_eski": "9bb629598f3e84745e355a1c3f2235f2",
+  "uz": {
+   "qid": "17159",
+   "sid": "2989",
+   "hash": "5faf0101758c1b904f943d434282dd8d",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "MVP ishlab chiqish — 1-qism: spec yozaman, agent quradi",
+   "topicStatus": "Active",
+   "md5_crm": "9bb629598f3e84745e355a1c3f2235f2"
+  },
+  "ru": {
+   "qid": "17160",
+   "sid": "2989",
+   "hash": "e5d27d04a84de69d35c5410b94205c24",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "MVP ishlab chiqish — 1-qism: spec yozaman, agent quradi",
+   "topicStatus": "Active",
+   "md5_crm": "9bb629598f3e84745e355a1c3f2235f2"
+  }
+ },
+ {
+  "lesson_id": "m7-08-v1",
+  "m": 9,
+  "yangi": "9-Modul/08-PmDesignMotionLesson-v5.jsx",
+  "md5_yangi": "c114a721c9b17a6462f5f51144cf3d07",
+  "eski": "08-PmDesignMotionLesson-v4.jsx",
+  "md5_eski": "819b11ad41e93ad8ac061de0a5c823dc",
+  "uz": {
+   "qid": "17161",
+   "sid": "2990",
+   "hash": "45d3f5b5bcaa68499d1fff79eeb999eb",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Dizayn va MVP'ni jonlantirish",
+   "topicStatus": "Active",
+   "md5_crm": "819b11ad41e93ad8ac061de0a5c823dc"
+  },
+  "ru": {
+   "qid": "17162",
+   "sid": "2990",
+   "hash": "5c3161602a0dbc0448427304cb85d9ca",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Dizayn va MVP'ni jonlantirish",
+   "topicStatus": "Active",
+   "md5_crm": "819b11ad41e93ad8ac061de0a5c823dc"
+  }
+ },
+ {
+  "lesson_id": "m7-09-v1",
+  "m": 9,
+  "yangi": "9-Modul/09-MvpCompleteLesson-v5.jsx",
+  "md5_yangi": "ee6f2a93f392ae538bb66bd1571b0d09",
+  "eski": "09-MvpCompleteLesson-v4.jsx",
+  "md5_eski": "1a3e99b089f5e58aaf2f2790ed892dcc",
+  "uz": {
+   "qid": "17163",
+   "sid": "2991",
+   "hash": "8fce05df01309582ce2207659195f17f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "MVP ishlab chiqish — 2-qism: funksiyalarni yakunlayman",
+   "topicStatus": "Active",
+   "md5_crm": "1a3e99b089f5e58aaf2f2790ed892dcc"
+  },
+  "ru": {
+   "qid": "17164",
+   "sid": "2991",
+   "hash": "b69531ebb64a1b071b591652e01dd79c",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "MVP ishlab chiqish — 2-qism: funksiyalarni yakunlayman",
+   "topicStatus": "Active",
+   "md5_crm": "1a3e99b089f5e58aaf2f2790ed892dcc"
+  }
+ },
+ {
+  "lesson_id": "m7-10-v1",
+  "m": 9,
+  "yangi": "9-Modul/10-PmUsabilityTestLesson-v6.jsx",
+  "md5_yangi": "169a1513e825cdcd322e33de9e22188d",
+  "eski": "10-PmUsabilityTestLesson-v5.jsx",
+  "md5_eski": "90e0a212bbec13d7b18212cab27ac063",
+  "uz": {
+   "qid": "17165",
+   "sid": "2992",
+   "hash": "0fc54307d40bdad490a48ec3ac801e98",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Real odam bilan test: kuzataman, tushuntirmayman",
+   "topicStatus": "Active",
+   "md5_crm": "90e0a212bbec13d7b18212cab27ac063"
+  },
+  "ru": {
+   "qid": "17166",
+   "sid": "2992",
+   "hash": "a600a74d6355ddc30a36d147dbc51e1a",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Real odam bilan test: kuzataman, tushuntirmayman",
+   "topicStatus": "Active",
+   "md5_crm": "90e0a212bbec13d7b18212cab27ac063"
+  }
+ },
+ {
+  "lesson_id": "m7-11-v1",
+  "m": 9,
+  "yangi": "9-Modul/11-MvpIterationLesson-v5.jsx",
+  "md5_yangi": "cfa645e01d7a4a66ab73379a378d9d3f",
+  "eski": "11-MvpIterationLesson-v4.jsx",
+  "md5_eski": "f856c7da095096fbe9b2a119425bf262",
+  "uz": {
+   "qid": "17167",
+   "sid": "2993",
+   "hash": "1df6d5d7c4cf8b42581a2fcc4153b78d",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Fidbek bo'yicha iteratsiya: eng muhim xatoni tuzataman",
+   "topicStatus": "Active",
+   "md5_crm": "f856c7da095096fbe9b2a119425bf262"
+  },
+  "ru": {
+   "qid": "17168",
+   "sid": "2993",
+   "hash": "ed68f639caf9512568516ce013b7ed27",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Fidbek bo'yicha iteratsiya: eng muhim xatoni tuzataman",
+   "topicStatus": "Active",
+   "md5_crm": "f856c7da095096fbe9b2a119425bf262"
+  }
+ },
+ {
+  "lesson_id": "m7-12-v2",
+  "m": 9,
+  "yangi": "9-Modul/12-PmUserStoryPitchLesson-v5.jsx",
+  "md5_yangi": "4df1451be983aa97b214732da9eb2061",
+  "eski": "12-PmUserStoryPitchLesson-v4.jsx",
+  "md5_eski": "00db61a0564d38eef4ee675c06c21230",
+  "uz": {
+   "qid": "17169",
+   "sid": "2994",
+   "hash": "dc3db1746af3e4bc6ba53b4b6c44a2cb",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pitch: muammo → yechim → foydalanuvchi",
+   "topicStatus": "Active",
+   "md5_crm": "00db61a0564d38eef4ee675c06c21230"
+  },
+  "ru": {
+   "qid": "17170",
+   "sid": "2994",
+   "hash": "6a2a49451e5ce0f9ed2e91a19f688122",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pitch: muammo → yechim → foydalanuvchi",
+   "topicStatus": "Active",
+   "md5_crm": "00db61a0564d38eef4ee675c06c21230"
+  }
+ },
+ {
+  "lesson_id": "pm-m8d1-okr-v1",
+  "m": 10,
+  "yangi": "10-Modul/01-PmOkrLesson-v5.jsx",
+  "md5_yangi": "e346fc2889927d48362a0d8452ecdb65",
+  "eski": "01-PmOkrLesson-v4.jsx",
+  "md5_eski": "aac2388622003672626e19a8b42f5380",
+  "uz": {
+   "qid": "17171",
+   "sid": "2995",
+   "hash": "9222b44b62d2b0a5033d58206400c962",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "OKR: maqsad → metrika → tajriba",
+   "topicStatus": "Active",
+   "md5_crm": "aac2388622003672626e19a8b42f5380"
+  },
+  "ru": {
+   "qid": "17172",
+   "sid": "2995",
+   "hash": "76f0f844d2e00c753e170658502b94e8",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "OKR: maqsad → metrika → tajriba",
+   "topicStatus": "Active",
+   "md5_crm": "aac2388622003672626e19a8b42f5380"
+  }
+ },
+ {
+  "lesson_id": "m8-02-event-tracking-v1",
+  "m": 10,
+  "yangi": "10-Modul/02-EventTrackingLesson-v5.jsx",
+  "md5_yangi": "ffb831544f304c947a889e420d41d748",
+  "eski": "02-EventTrackingLesson-v4.jsx",
+  "md5_eski": "98ce1bb550324f517b75758eb328287d",
+  "uz": {
+   "qid": "17173",
+   "sid": "2996",
+   "hash": "8b3aa8282e4aa6b9db3ae59c77c10e17",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "O'z event-tracking tizimim",
+   "topicStatus": "Active",
+   "md5_crm": "98ce1bb550324f517b75758eb328287d"
+  },
+  "ru": {
+   "qid": "17174",
+   "sid": "2996",
+   "hash": "c512131429c5159eec0ce734da74a3b9",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "O'z event-tracking tizimim",
+   "topicStatus": "Active",
+   "md5_crm": "98ce1bb550324f517b75758eb328287d"
+  }
+ },
+ {
+  "lesson_id": "m8-03-v1",
+  "m": 10,
+  "yangi": "10-Modul/03-LiveDashboardLesson-v5.jsx",
+  "md5_yangi": "daef6863f1f3ab4b10907d259bd60080",
+  "eski": "03-LiveDashboardLesson-v4.jsx",
+  "md5_eski": "49ae52a77ee3d4cc5b135ccddb52b60d",
+  "uz": {
+   "qid": "17175",
+   "sid": "2997",
+   "hash": "4a6d514f6abe00eca22a69090378a8b0",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Jonli mini-dashboard",
+   "topicStatus": "Active",
+   "md5_crm": "49ae52a77ee3d4cc5b135ccddb52b60d"
+  },
+  "ru": {
+   "qid": "17176",
+   "sid": "2997",
+   "hash": "d641bbf7dbfe23681f76e2c6fc3afe89",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Jonli mini-dashboard",
+   "topicStatus": "Active",
+   "md5_crm": "49ae52a77ee3d4cc5b135ccddb52b60d"
+  }
+ },
+ {
+  "lesson_id": "m8-04-v1",
+  "m": 10,
+  "yangi": "10-Modul/04-PmAbTestLesson-v5.jsx",
+  "md5_yangi": "cd3e43e9624b8565ba1286a77378e8e6",
+  "eski": "04-PmAbTestLesson-v4.jsx",
+  "md5_eski": "65329c1137e658c311c55e4d99c7dd03",
+  "uz": {
+   "qid": "17177",
+   "sid": "2998",
+   "hash": "24ffb70f573b8b0ff764ca147a9beb90",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "A/B test: gipoteza va ishga tushirish",
+   "topicStatus": "Active",
+   "md5_crm": "65329c1137e658c311c55e4d99c7dd03"
+  },
+  "ru": {
+   "qid": "17178",
+   "sid": "2998",
+   "hash": "9983380147fde8f48845c2d69d8634ee",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "A/B test: gipoteza va ishga tushirish",
+   "topicStatus": "Active",
+   "md5_crm": "65329c1137e658c311c55e4d99c7dd03"
+  }
+ },
+ {
+  "lesson_id": "m8-05-security-basics-v1",
+  "m": 10,
+  "yangi": "10-Modul/05-SecurityBasicsLesson-v5.jsx",
+  "md5_yangi": "1cec2de3305b58aa9593c1b9a631341d",
+  "eski": "05-SecurityBasicsLesson-v4.jsx",
+  "md5_eski": "425c2646c48db3f6dd5fa98b12dba39c",
+  "uz": {
+   "qid": "17179",
+   "sid": "2999",
+   "hash": "bbd88d552d27545237d86aa7a1940244",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Kiberxavfsizlik asoslari: 2FA, SQL injection, XSS",
+   "topicStatus": "Active",
+   "md5_crm": "425c2646c48db3f6dd5fa98b12dba39c"
+  },
+  "ru": {
+   "qid": "17180",
+   "sid": "2999",
+   "hash": "ce5d9cb36ffa285b7a821dc473a7e91d",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Kiberxavfsizlik asoslari: 2FA, SQL injection, XSS",
+   "topicStatus": "Active",
+   "md5_crm": "425c2646c48db3f6dd5fa98b12dba39c"
+  }
+ },
+ {
+  "lesson_id": "m8-06-v1",
+  "m": 10,
+  "yangi": "10-Modul/06-PmTrustAuditLesson-v5.jsx",
+  "md5_yangi": "392d4d5bed683378a7c1e06d4747924f",
+  "eski": "06-PmTrustAuditLesson-v4.jsx",
+  "md5_eski": "09ee02770899207b2f5668bd9de50493",
+  "uz": {
+   "qid": "17181",
+   "sid": "3000",
+   "hash": "825cadf35173b5707a35905ed736fe40",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Xavfsizlik = ishonch: audit va maxfiylik siyosati",
+   "topicStatus": "Active",
+   "md5_crm": "09ee02770899207b2f5668bd9de50493"
+  },
+  "ru": {
+   "qid": "17182",
+   "sid": "3000",
+   "hash": "9dad97acb35663de6ede244f6d0ee611",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Xavfsizlik = ishonch: audit va maxfiylik siyosati",
+   "topicStatus": "Active",
+   "md5_crm": "09ee02770899207b2f5668bd9de50493"
+  }
+ },
+ {
+  "lesson_id": "m8-07-production-deploy-v1",
+  "m": 10,
+  "yangi": "10-Modul/07-ProductionDeployLesson-v5.jsx",
+  "md5_yangi": "c0c91e6148cd0c3e861a48464de4ac50",
+  "eski": "07-ProductionDeployLesson-v4.jsx",
+  "md5_eski": "533869a5805adb8a9320847916350afe",
+  "uz": {
+   "qid": "17183",
+   "sid": "3001",
+   "hash": "885fd1a151222fd557a5f377b46e9f78",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Production-deploy: domen, SSL va monitoring",
+   "topicStatus": "Active",
+   "md5_crm": "533869a5805adb8a9320847916350afe"
+  },
+  "ru": {
+   "qid": "17184",
+   "sid": "3001",
+   "hash": "ec0344ed347b15d24b0404ecaa5317a4",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Production-deploy: domen, SSL va monitoring",
+   "topicStatus": "Active",
+   "md5_crm": "533869a5805adb8a9320847916350afe"
+  }
+ },
+ {
+  "lesson_id": "m8-08-v1",
+  "m": 10,
+  "yangi": "10-Modul/08-ProdUpgradeLesson-v5.jsx",
+  "md5_yangi": "3e0bb3190694a5016bbfaf554116105e",
+  "eski": "08-ProdUpgradeLesson-v4.jsx",
+  "md5_eski": "46319274753b98835de6555f641eaf58",
+  "uz": {
+   "qid": "17185",
+   "sid": "3002",
+   "hash": "14e7ec73319cf969510894ceb9741168",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Loyihani production darajasiga olib chiqish — 1-qism",
+   "topicStatus": "Active",
+   "md5_crm": "46319274753b98835de6555f641eaf58"
+  },
+  "ru": {
+   "qid": "17186",
+   "sid": "3002",
+   "hash": "1a97ab07012f374826591182442d935a",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Loyihani production darajasiga olib chiqish — 1-qism",
+   "topicStatus": "Active",
+   "md5_crm": "46319274753b98835de6555f641eaf58"
+  }
+ },
+ {
+  "lesson_id": "m8-09-v1",
+  "m": 10,
+  "yangi": "10-Modul/09-ProdReviewLesson-v5.jsx",
+  "md5_yangi": "b733b0c175c0282c43b4bf7b60cc43e8",
+  "eski": "09-ProdReviewLesson-v4.jsx",
+  "md5_eski": "c1b9372d5cb1e8ba2daa59ba81b2c5cf",
+  "uz": {
+   "qid": "17187",
+   "sid": "3003",
+   "hash": "fa6762e2859e0379a636b026eafbe945",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Production darajasiga — 2-qism va code review",
+   "topicStatus": "Active",
+   "md5_crm": "c1b9372d5cb1e8ba2daa59ba81b2c5cf"
+  },
+  "ru": {
+   "qid": "17188",
+   "sid": "3003",
+   "hash": "87cdd6485cf5343cf3af60cd7f6cfa14",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Production darajasiga — 2-qism va code review",
+   "topicStatus": "Active",
+   "md5_crm": "c1b9372d5cb1e8ba2daa59ba81b2c5cf"
+  }
+ },
+ {
+  "lesson_id": "pm-m8d10-yol-v1",
+  "m": 10,
+  "yangi": "10-Modul/10-PmYearPathLesson-v6.jsx",
+  "md5_yangi": "6812a8727ff0d560d78f365cd9374949",
+  "eski": "10-PmYearPathLesson-v5.jsx",
+  "md5_eski": "8d11f9fff4bd34de5149f91d77f84c9e",
+  "uz": {
+   "qid": "17189",
+   "sid": "3004",
+   "hash": "24e89dd0551320305f5b4752addc85b1",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Yillik himoya: bir yillik yo'lim",
+   "topicStatus": "Active",
+   "md5_crm": "8d11f9fff4bd34de5149f91d77f84c9e"
+  },
+  "ru": {
+   "qid": "17190",
+   "sid": "3004",
+   "hash": "55c60ca78b89db6a9686f57fd7702bd8",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Yillik himoya: bir yillik yo'lim",
+   "topicStatus": "Active",
+   "md5_crm": "8d11f9fff4bd34de5149f91d77f84c9e"
+  }
+ },
+ {
+  "lesson_id": "pm-m8d11-pitch-v2",
+  "m": 10,
+  "yangi": "10-Modul/11-PmPitchRehearsalLesson-v5.jsx",
+  "md5_yangi": "44163822998dceaa12a8a0812ae943be",
+  "eski": "11-PmPitchRehearsalLesson-v4.jsx",
+  "md5_eski": "c164815efca2ef05308ef1d0206284fc",
+  "uz": {
+   "qid": "17191",
+   "sid": "3005",
+   "hash": "4f21344c06eaf9408045f2c5fb18f9f0",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pitch repetitsiyasi: 5 daqiqa, qattiq fidbek",
+   "topicStatus": "Active",
+   "md5_crm": "c164815efca2ef05308ef1d0206284fc"
+  },
+  "ru": {
+   "qid": "17192",
+   "sid": "3005",
+   "hash": "5cdc8f01582303f774bc855edd8318ea",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pitch repetitsiyasi: 5 daqiqa, qattiq fidbek",
+   "topicStatus": "Active",
+   "md5_crm": "c164815efca2ef05308ef1d0206284fc"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d1-v1",
+  "m": 11,
+  "yangi": "11-Modul/01-PmTenIdeasLesson-v6.jsx",
+  "md5_yangi": "57c27c61eac72ac18418af1984d150c6",
+  "eski": "01-PmTenIdeasLesson-v5.jsx",
+  "md5_eski": "88d4e50f11e86df3b21423de704158d5",
+  "uz": {
+   "qid": "17193",
+   "sid": "3006",
+   "hash": "0d5ece5fa29524f6cc753970d983d65b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "G'oya generatsiyasi: bir darsda 10 ta g'oya",
+   "topicStatus": "Active",
+   "md5_crm": "88d4e50f11e86df3b21423de704158d5"
+  },
+  "ru": {
+   "qid": "17194",
+   "sid": "3006",
+   "hash": "8c08aa2de4575e78de07ae00d2aaf43c",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "G'oya generatsiyasi: bir darsda 10 ta g'oya",
+   "topicStatus": "Active",
+   "md5_crm": "88d4e50f11e86df3b21423de704158d5"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d2-v1",
+  "m": 11,
+  "yangi": "11-Modul/02-PmIdeaRiceLesson-v6.jsx",
+  "md5_yangi": "c2b692a7dc568778b078bb8d81660f15",
+  "eski": "02-PmIdeaRiceLesson-v5.jsx",
+  "md5_eski": "41c2ec4a09e6e2e702c47da65f58a131",
+  "uz": {
+   "qid": "17195",
+   "sid": "3007",
+   "hash": "8fa665e20fee00c3c0d535af94279545",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "G'oyani saralash va tanlash: RICE",
+   "topicStatus": "Active",
+   "md5_crm": "41c2ec4a09e6e2e702c47da65f58a131"
+  },
+  "ru": {
+   "qid": "17196",
+   "sid": "3007",
+   "hash": "81b79018b6b1c717eb2b9721e3868a0f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "G'oyani saralash va tanlash: RICE",
+   "topicStatus": "Active",
+   "md5_crm": "41c2ec4a09e6e2e702c47da65f58a131"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d3-v1",
+  "m": 11,
+  "yangi": "11-Modul/03-PmInterviewsOneLesson-v6.jsx",
+  "md5_yangi": "38689cee13e77e4d72b6b6f45ce7d8b0",
+  "eski": "03-PmInterviewsOneLesson-v5.jsx",
+  "md5_eski": "ed0fbaae0c02a53eb2f900df8a791140",
+  "uz": {
+   "qid": "17197",
+   "sid": "3008",
+   "hash": "4f2734a3a67c19c0a83a37668ec14b7d",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Custdev: 10 ta intervyu — 1-qism",
+   "topicStatus": "Active",
+   "md5_crm": "ed0fbaae0c02a53eb2f900df8a791140"
+  },
+  "ru": {
+   "qid": "17198",
+   "sid": "3008",
+   "hash": "15851cc4f3afbcba15282ffcc4079a10",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Custdev: 10 ta intervyu — 1-qism",
+   "topicStatus": "Active",
+   "md5_crm": "ed0fbaae0c02a53eb2f900df8a791140"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d4-v1",
+  "m": 11,
+  "yangi": "11-Modul/04-PmFinalIdeaLesson-v6.jsx",
+  "md5_yangi": "8e1ae3f169403f4045b1e31b0a04eedb",
+  "eski": "04-PmFinalIdeaLesson-v5.jsx",
+  "md5_eski": "36031d417dd9f9d501c0b175e279dd50",
+  "uz": {
+   "qid": "17199",
+   "sid": "3009",
+   "hash": "c45bf50237defcdcddfa631bff263950",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Custdev: 10 ta intervyu — 2-qism va final g'oya",
+   "topicStatus": "Active",
+   "md5_crm": "36031d417dd9f9d501c0b175e279dd50"
+  },
+  "ru": {
+   "qid": "17200",
+   "sid": "3009",
+   "hash": "d551ad6127a92a8c2b527f5cf0ca1083",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Custdev: 10 ta intervyu — 2-qism va final g'oya",
+   "topicStatus": "Active",
+   "md5_crm": "36031d417dd9f9d501c0b175e279dd50"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d5-v1",
+  "m": 11,
+  "yangi": "11-Modul/05-PmPrdLesson-v5.jsx",
+  "md5_yangi": "b6d6b4c2aa0dca5a0135deab1c65e3d1",
+  "eski": "05-PmPrdLesson-v4.jsx",
+  "md5_eski": "18527dd32a4c2279a25ca9d5957385dc",
+  "uz": {
+   "qid": "17201",
+   "sid": "3010",
+   "hash": "da8fa5e3978ef3e6dc50b4c1b4756834",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Mentor bilan nazorat nuqtasi va PRD",
+   "topicStatus": "Active",
+   "md5_crm": "18527dd32a4c2279a25ca9d5957385dc"
+  },
+  "ru": {
+   "qid": "17202",
+   "sid": "3010",
+   "hash": "963ec7bdefa3a4212b4f1ddc44d2891e",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Mentor bilan nazorat nuqtasi va PRD",
+   "topicStatus": "Active",
+   "md5_crm": "18527dd32a4c2279a25ca9d5957385dc"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d6-v1",
+  "m": 11,
+  "yangi": "11-Modul/06-PmRoadmapLesson-v6.jsx",
+  "md5_yangi": "23e52cf206363335d6baf4dba00aacba",
+  "eski": "06-PmRoadmapLesson-v5.jsx",
+  "md5_eski": "48aeaeb05c7cd0ccdcb29eb429c48a1e",
+  "uz": {
+   "qid": "17203",
+   "sid": "3011",
+   "hash": "4b005773716edd664ffe73ba1746c676",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Final mahsulot roadmap'i",
+   "topicStatus": "Active",
+   "md5_crm": "48aeaeb05c7cd0ccdcb29eb429c48a1e"
+  },
+  "ru": {
+   "qid": "17204",
+   "sid": "3011",
+   "hash": "badb79db84337c4e489773af3c99e705",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Final mahsulot roadmap'i",
+   "topicStatus": "Active",
+   "md5_crm": "48aeaeb05c7cd0ccdcb29eb429c48a1e"
+  }
+ },
+ {
+  "lesson_id": "m9-07-v1",
+  "m": 11,
+  "yangi": "11-Modul/07-LivePrototypeLesson-v5.jsx",
+  "md5_yangi": "f8b883c185a0cdf45e405243126c63e0",
+  "eski": "07-LivePrototypeLesson-v4.jsx",
+  "md5_eski": "0d5fa1bafe6dd8562f814e2588ade3d9",
+  "uz": {
+   "qid": "17205",
+   "sid": "3012",
+   "hash": "9cbfc8623aced90c9fca559d6ca2f8ba",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Figma o'rniga jonli prototip",
+   "topicStatus": "Active",
+   "md5_crm": "0d5fa1bafe6dd8562f814e2588ade3d9"
+  },
+  "ru": {
+   "qid": "17206",
+   "sid": "3012",
+   "hash": "aba7baeccba72aec04f016d12fc70e36",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Figma o'rniga jonli prototip",
+   "topicStatus": "Active",
+   "md5_crm": "0d5fa1bafe6dd8562f814e2588ade3d9"
+  }
+ },
+ {
+  "lesson_id": "m9-08-v1",
+  "m": 11,
+  "yangi": "11-Modul/08-PlatformChoiceLesson-v5.jsx",
+  "md5_yangi": "151e5f18c91ab1a753cff79d0a56fff7",
+  "eski": "08-PlatformChoiceLesson-v4.jsx",
+  "md5_eski": "629a536c40b5df118949439b844e58df",
+  "uz": {
+   "qid": "17207",
+   "sid": "3013",
+   "hash": "d51e8c93136d16caf4a4261ca5172a31",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Arxitektura, stek va platforma tanlovi",
+   "topicStatus": "Active",
+   "md5_crm": "629a536c40b5df118949439b844e58df"
+  },
+  "ru": {
+   "qid": "17208",
+   "sid": "3013",
+   "hash": "ead1203420205a37f65953431129e731",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Arxitektura, stek va platforma tanlovi",
+   "topicStatus": "Active",
+   "md5_crm": "629a536c40b5df118949439b844e58df"
+  }
+ },
+ {
+  "lesson_id": "m9-09-v1",
+  "m": 11,
+  "yangi": "11-Modul/09-ExpoPrototypeLesson-v5.jsx",
+  "md5_yangi": "b1f64db640c0dbfaa5d419f907a61afe",
+  "eski": "09-ExpoPrototypeLesson-v4.jsx",
+  "md5_eski": "a28be15e10402db553f9c4779863a26b",
+  "uz": {
+   "qid": "17209",
+   "sid": "3014",
+   "hash": "1b82729344f9ff036e22aaacb7a8e992",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "React Native'ni yangilash va Expo",
+   "topicStatus": "Active",
+   "md5_crm": "a28be15e10402db553f9c4779863a26b"
+  },
+  "ru": {
+   "qid": "17210",
+   "sid": "3014",
+   "hash": "08cfd0e84a1558973becebfb21044f30",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "React Native'ni yangilash va Expo",
+   "topicStatus": "Active",
+   "md5_crm": "a28be15e10402db553f9c4779863a26b"
+  }
+ },
+ {
+  "lesson_id": "m9-10-v1",
+  "m": 11,
+  "yangi": "11-Modul/10-FoundationDayLesson-v5.jsx",
+  "md5_yangi": "25f02065f7192441c37b314df7bace41",
+  "eski": "10-FoundationDayLesson-v4.jsx",
+  "md5_eski": "bf7f482ced3a43bd798572b967868148",
+  "uz": {
+   "qid": "17211",
+   "sid": "3015",
+   "hash": "70807792d94f641d9da1099bc7739a8f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Vibe-coding: poydevor — baza, avtorizatsiya, deploy",
+   "topicStatus": "Active",
+   "md5_crm": "bf7f482ced3a43bd798572b967868148"
+  },
+  "ru": {
+   "qid": "17212",
+   "sid": "3015",
+   "hash": "bf33314f0dda0b60d22f1d6e357bc99c",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Vibe-coding: poydevor — baza, avtorizatsiya, deploy",
+   "topicStatus": "Active",
+   "md5_crm": "bf7f482ced3a43bd798572b967868148"
+  }
+ },
+ {
+  "lesson_id": "m9-11-v1",
+  "m": 11,
+  "yangi": "11-Modul/11-FeatureOneLesson-v5.jsx",
+  "md5_yangi": "77567517be10a4856df854dc1ced18d0",
+  "eski": "11-FeatureOneLesson-v4.jsx",
+  "md5_eski": "0fb7b00b429d5a5b83d1c24800e3314f",
+  "uz": {
+   "qid": "17213",
+   "sid": "3016",
+   "hash": "1070b4305957a4d584006e98fe529db2",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Vibe-coding: 1-funksiya",
+   "topicStatus": "Active",
+   "md5_crm": "0fb7b00b429d5a5b83d1c24800e3314f"
+  },
+  "ru": {
+   "qid": "17214",
+   "sid": "3016",
+   "hash": "44abcd514d299935664e3576ccb4baaf",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Vibe-coding: 1-funksiya",
+   "topicStatus": "Active",
+   "md5_crm": "0fb7b00b429d5a5b83d1c24800e3314f"
+  }
+ },
+ {
+  "lesson_id": "m9-12-v1",
+  "m": 11,
+  "yangi": "11-Modul/12-FeatureTwoLesson-v5.jsx",
+  "md5_yangi": "85c8a934313c9a93ffc86624c88c4866",
+  "eski": "12-FeatureTwoLesson-v4.jsx",
+  "md5_eski": "9060104bb38fbb1d022d0ea5bc1d2eeb",
+  "uz": {
+   "qid": "17215",
+   "sid": "3017",
+   "hash": "0c247852f9448b886397fc24d4c5c1ad",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Vibe-coding: 2-funksiya",
+   "topicStatus": "Active",
+   "md5_crm": "9060104bb38fbb1d022d0ea5bc1d2eeb"
+  },
+  "ru": {
+   "qid": "17216",
+   "sid": "3017",
+   "hash": "28407a9028dd5744751094665ec662bc",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Vibe-coding: 2-funksiya",
+   "topicStatus": "Active",
+   "md5_crm": "9060104bb38fbb1d022d0ea5bc1d2eeb"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d13-v1",
+  "m": 11,
+  "yangi": "11-Modul/13-PmAudienceTestLesson-v5.jsx",
+  "md5_yangi": "455f6649f79199563703dff6f94d4302",
+  "eski": "13-PmAudienceTestLesson-v4.jsx",
+  "md5_eski": "cad49ae0b3e9dcfa215f63b4c72d56a4",
+  "uz": {
+   "qid": "17217",
+   "sid": "3018",
+   "hash": "20b04ec32702ce5ff787035ce1c2625e",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Auditoriya bilan test va iteratsiya",
+   "topicStatus": "Active",
+   "md5_crm": "cad49ae0b3e9dcfa215f63b4c72d56a4"
+  },
+  "ru": {
+   "qid": "17218",
+   "sid": "3018",
+   "hash": "365048461d35dab78bf34ced45dac50f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Auditoriya bilan test va iteratsiya",
+   "topicStatus": "Active",
+   "md5_crm": "cad49ae0b3e9dcfa215f63b4c72d56a4"
+  }
+ },
+ {
+  "lesson_id": "m9-14-v1",
+  "m": 11,
+  "yangi": "11-Modul/14-FeatureThreeLesson-v5.jsx",
+  "md5_yangi": "7b2e9e3a888d65cb9c91c3b0b37d7366",
+  "eski": "14-FeatureThreeLesson-v4.jsx",
+  "md5_eski": "d38e7fb3e9420a696ae908df3882d03d",
+  "uz": {
+   "qid": "17219",
+   "sid": "3019",
+   "hash": "cf3886505a1fb5c02d49a1f135344d59",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Vibe-coding: 3-funksiya",
+   "topicStatus": "Active",
+   "md5_crm": "d38e7fb3e9420a696ae908df3882d03d"
+  },
+  "ru": {
+   "qid": "17220",
+   "sid": "3019",
+   "hash": "7bb7655015253c16da35fa9552779288",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Vibe-coding: 3-funksiya",
+   "topicStatus": "Active",
+   "md5_crm": "d38e7fb3e9420a696ae908df3882d03d"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d15-v1",
+  "m": 11,
+  "yangi": "11-Modul/15-PmOneOnOneLesson-v5.jsx",
+  "md5_yangi": "1e069a75c277826eb941cc4d090fb462",
+  "eski": "15-PmOneOnOneLesson-v4.jsx",
+  "md5_eski": "7ff483a70e260b0449309c2d8b0b5146",
+  "uz": {
+   "qid": "17221",
+   "sid": "3020",
+   "hash": "379cc528abe654f6dd51117ddeddc84f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Mentor bilan yakkama-yakka: progress va risklar",
+   "topicStatus": "Active",
+   "md5_crm": "7ff483a70e260b0449309c2d8b0b5146"
+  },
+  "ru": {
+   "qid": "17222",
+   "sid": "3020",
+   "hash": "1af3e3bfd4fd87fbc7655e448e51bf85",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Mentor bilan yakkama-yakka: progress va risklar",
+   "topicStatus": "Active",
+   "md5_crm": "7ff483a70e260b0449309c2d8b0b5146"
+  }
+ },
+ {
+  "lesson_id": "pm-m9d16-v2",
+  "m": 11,
+  "yangi": "11-Modul/16-PmPrototypePitchLesson-v5.jsx",
+  "md5_yangi": "ecdbdc2136f0614948851bf30e1cafe5",
+  "eski": "16-PmPrototypePitchLesson-v4.jsx",
+  "md5_eski": "04740b04275f98a354d64e14e5e35a38",
+  "uz": {
+   "qid": "17223",
+   "sid": "3021",
+   "hash": "a50a66fcfd2257e781f491f5a943cacf",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "G'oya va prototip pitchi",
+   "topicStatus": "Active",
+   "md5_crm": "04740b04275f98a354d64e14e5e35a38"
+  },
+  "ru": {
+   "qid": "17224",
+   "sid": "3021",
+   "hash": "3c4fb463dc9bccb23c74d3eec8a7ef31",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "G'oya va prototip pitchi",
+   "topicStatus": "Active",
+   "md5_crm": "04740b04275f98a354d64e14e5e35a38"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d1-v1",
+  "m": 12,
+  "yangi": "12-Modul/01-PmLandingLesson-v5.jsx",
+  "md5_yangi": "5df49efaafee22d4ae17ad573473f05a",
+  "eski": "01-PmLandingLesson-v4.jsx",
+  "md5_eski": "568acb60ea0bdf4f1aa5ddc2cfa6ccd6",
+  "uz": {
+   "qid": "17225",
+   "sid": "3023",
+   "hash": "379c84f83dd1737f79d79df887d61108",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Landing va kopirayting: mahsulotning bir sahifasi",
+   "topicStatus": "Active",
+   "md5_crm": "568acb60ea0bdf4f1aa5ddc2cfa6ccd6"
+  },
+  "ru": {
+   "qid": "17226",
+   "sid": "3023",
+   "hash": "310a0abd353c873332ea7a0cb8e86f69",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Landing va kopirayting: mahsulotning bir sahifasi",
+   "topicStatus": "Active",
+   "md5_crm": "568acb60ea0bdf4f1aa5ddc2cfa6ccd6"
+  }
+ },
+ {
+  "lesson_id": "m10-02-v1",
+  "m": 12,
+  "yangi": "12-Modul/02-WebSocketBasicsLesson-v5.jsx",
+  "md5_yangi": "24942d8565d1758ba8fc52cda2f21c11",
+  "eski": "02-WebSocketBasicsLesson-v4.jsx",
+  "md5_eski": "82840fdf6ab1ae1287837f56a0d5359d",
+  "uz": {
+   "qid": "17227",
+   "sid": "3024",
+   "hash": "ea7769f2a8486f4dbea41bbf331af7ed",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "WebSocket: real vaqt asoslari",
+   "topicStatus": "Active",
+   "md5_crm": "82840fdf6ab1ae1287837f56a0d5359d"
+  },
+  "ru": {
+   "qid": "17228",
+   "sid": "3024",
+   "hash": "6bf7865a276860952882d1e490963563",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "WebSocket: real vaqt asoslari",
+   "topicStatus": "Active",
+   "md5_crm": "82840fdf6ab1ae1287837f56a0d5359d"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d3-v1",
+  "m": 12,
+  "yangi": "12-Modul/03-PmRealtimeSpecLesson-v5.jsx",
+  "md5_yangi": "2e1a91c61f795fdc62a3b25217851f98",
+  "eski": "03-PmRealtimeSpecLesson-v4.jsx",
+  "md5_eski": "b4ad0f581ce4c00ff3f8a0046aac8418",
+  "uz": {
+   "qid": "17229",
+   "sid": "3025",
+   "hash": "ddcf39a9d65934920ab5c2c14da7ffd1",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Real vaqt funksiyasining spetsifikatsiyasi",
+   "topicStatus": "Active",
+   "md5_crm": "b4ad0f581ce4c00ff3f8a0046aac8418"
+  },
+  "ru": {
+   "qid": "17230",
+   "sid": "3025",
+   "hash": "9db74678c4663a28895b62feb061c97e",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Real vaqt funksiyasining spetsifikatsiyasi",
+   "topicStatus": "Active",
+   "md5_crm": "b4ad0f581ce4c00ff3f8a0046aac8418"
+  }
+ },
+ {
+  "lesson_id": "m10-04-v1",
+  "m": 12,
+  "yangi": "12-Modul/04-LiveNotifyDayLesson-v5.jsx",
+  "md5_yangi": "6a1ca7cdef5cbded3c641748746bac79",
+  "eski": "04-LiveNotifyDayLesson-v4.jsx",
+  "md5_eski": "3e7a7bd900993386a1d46a9ff10e085b",
+  "uz": {
+   "qid": "17231",
+   "sid": "3026",
+   "hash": "2d493ea19ee80f056b3c3f658e34273e",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Jonli bildirishnomalar va presence",
+   "topicStatus": "Active",
+   "md5_crm": "3e7a7bd900993386a1d46a9ff10e085b"
+  },
+  "ru": {
+   "qid": "17232",
+   "sid": "3026",
+   "hash": "e7c4ff537411b6f1f96ce1056413d272",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Jonli bildirishnomalar va presence",
+   "topicStatus": "Active",
+   "md5_crm": "3e7a7bd900993386a1d46a9ff10e085b"
+  }
+ },
+ {
+  "lesson_id": "m10-05-v1",
+  "m": 12,
+  "yangi": "12-Modul/05-BreakAndFixLesson-v5.jsx",
+  "md5_yangi": "2688ddf15a9366e38bcc6a3b3027c864",
+  "eski": "05-BreakAndFixLesson-v4.jsx",
+  "md5_eski": "dc1d73cf036afe4d594d8d371775cccb",
+  "uz": {
+   "qid": "17233",
+   "sid": "3027",
+   "hash": "842cc32e82358359120ab31c110ddc20",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "«Buz va tuzat»: ulanish uzilishi va reconnect",
+   "topicStatus": "Active",
+   "md5_crm": "dc1d73cf036afe4d594d8d371775cccb"
+  },
+  "ru": {
+   "qid": "17234",
+   "sid": "3027",
+   "hash": "829e4577a93053916837405da6d39f49",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "«Buz va tuzat»: ulanish uzilishi va reconnect",
+   "topicStatus": "Active",
+   "md5_crm": "dc1d73cf036afe4d594d8d371775cccb"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d6-v1",
+  "m": 12,
+  "yangi": "12-Modul/06-PmChannelsLesson-v6.jsx",
+  "md5_yangi": "51f5b03b593e8a62f818fac01d2d29a6",
+  "eski": "06-PmChannelsLesson-v5.jsx",
+  "md5_eski": "4291f151c4b89b3e9533a59e2922e84a",
+  "uz": {
+   "qid": "17235",
+   "sid": "3028",
+   "hash": "d35514c34fe92974640d8b4d6ce36056",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Foydalanuvchi jalb qilish kanallari",
+   "topicStatus": "Active",
+   "md5_crm": "4291f151c4b89b3e9533a59e2922e84a"
+  },
+  "ru": {
+   "qid": "17236",
+   "sid": "3028",
+   "hash": "f31e3915a20e286540d6f01b3de6c1a8",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Foydalanuvchi jalb qilish kanallari",
+   "topicStatus": "Active",
+   "md5_crm": "4291f151c4b89b3e9533a59e2922e84a"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d7-v1",
+  "m": 12,
+  "yangi": "12-Modul/07-PmFiftyUsersLesson-v5.jsx",
+  "md5_yangi": "0759f8057d97dbeced493ef276285378",
+  "eski": "07-PmFiftyUsersLesson-v4.jsx",
+  "md5_eski": "d84ff8d45327eecfb3b6e5d4cd97fdb8",
+  "uz": {
+   "qid": "17237",
+   "sid": "3029",
+   "hash": "028df8abbe623da1e46f1e6597e08cb9",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "50 foydalanuvchi strategiyasi va ishga tushirish",
+   "topicStatus": "Active",
+   "md5_crm": "d84ff8d45327eecfb3b6e5d4cd97fdb8"
+  },
+  "ru": {
+   "qid": "17238",
+   "sid": "3029",
+   "hash": "c963f17457780d35cad336efd8c3b70f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "50 foydalanuvchi strategiyasi va ishga tushirish",
+   "topicStatus": "Active",
+   "md5_crm": "d84ff8d45327eecfb3b6e5d4cd97fdb8"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d8-v1",
+  "m": 12,
+  "yangi": "12-Modul/08-PmDropOffLesson-v5.jsx",
+  "md5_yangi": "91a2ffc55426f8eec8785da80e46e436",
+  "eski": "08-PmDropOffLesson-v4.jsx",
+  "md5_eski": "0aac9d1c8740a4de65c604f542119808",
+  "uz": {
+   "qid": "17239",
+   "sid": "3030",
+   "hash": "0feef9a90af889dbe05cd108ca13bfa7",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Xulq tahlili va iteratsiya: foydalanuvchi qayerda ketadi?",
+   "topicStatus": "Active",
+   "md5_crm": "0aac9d1c8740a4de65c604f542119808"
+  },
+  "ru": {
+   "qid": "17240",
+   "sid": "3030",
+   "hash": "eac412370bce7b6b123d8d4dca438230",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Xulq tahlili va iteratsiya: foydalanuvchi qayerda ketadi?",
+   "topicStatus": "Active",
+   "md5_crm": "0aac9d1c8740a4de65c604f542119808"
+  }
+ },
+ {
+  "lesson_id": "m10-09-v1",
+  "m": 12,
+  "yangi": "12-Modul/09-RetentionDayLesson-v5.jsx",
+  "md5_yangi": "220defedc02777c3c71c15607dbce9b2",
+  "eski": "09-RetentionDayLesson-v4.jsx",
+  "md5_eski": "01071230039b0408f3fe392ea694f5cd",
+  "uz": {
+   "qid": "17241",
+   "sid": "3031",
+   "hash": "5af1c3af594415e57c3d12a92f2d4a71",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Real vaqt retention-mexanikasi",
+   "topicStatus": "Active",
+   "md5_crm": "01071230039b0408f3fe392ea694f5cd"
+  },
+  "ru": {
+   "qid": "17242",
+   "sid": "3031",
+   "hash": "314dcd780b3a927fedfb5cc9ae7bb94b",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Real vaqt retention-mexanikasi",
+   "topicStatus": "Active",
+   "md5_crm": "01071230039b0408f3fe392ea694f5cd"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d10-v1",
+  "m": 12,
+  "yangi": "12-Modul/10-PmUsersCheckLesson-v5.jsx",
+  "md5_yangi": "1d7c6a109bb109e2c038f59079dc490f",
+  "eski": "10-PmUsersCheckLesson-v4.jsx",
+  "md5_eski": "4cf3f4364d2894a46fabd6e7566f63bc",
+  "uz": {
+   "qid": "17243",
+   "sid": "3032",
+   "hash": "138b9e4b1967551402c3d32062f2faec",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "50 foydalanuvchi: nazorat nuqtasi",
+   "topicStatus": "Active",
+   "md5_crm": "4cf3f4364d2894a46fabd6e7566f63bc"
+  },
+  "ru": {
+   "qid": "17244",
+   "sid": "3032",
+   "hash": "6d9fccaccd88bf062e6139c1f7468dfb",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "50 foydalanuvchi: nazorat nuqtasi",
+   "topicStatus": "Active",
+   "md5_crm": "4cf3f4364d2894a46fabd6e7566f63bc"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d11-v2",
+  "m": 12,
+  "yangi": "12-Modul/11-PmPitchReviewLesson-v5.jsx",
+  "md5_yangi": "9ba146ad643341a126f8681f97ab9a56",
+  "eski": "11-PmPitchReviewLesson-v4.jsx",
+  "md5_eski": "ee1097ebae340e8e09fb8fc9e64cf8bd",
+  "uz": {
+   "qid": "17245",
+   "sid": "3033",
+   "hash": "465181ab5252f227b91af6d9579c5eec",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Mentor bilan yakkama-yakka",
+   "topicStatus": "Active",
+   "md5_crm": "ee1097ebae340e8e09fb8fc9e64cf8bd"
+  },
+  "ru": {
+   "qid": "17246",
+   "sid": "3033",
+   "hash": "33092817286676b308712aa00a1c9291",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Mentor bilan yakkama-yakka",
+   "topicStatus": "Active",
+   "md5_crm": "ee1097ebae340e8e09fb8fc9e64cf8bd"
+  }
+ },
+ {
+  "lesson_id": "pm-m10d12-v2",
+  "m": 12,
+  "yangi": "12-Modul/12-PmGrowthPitchLesson-v6.jsx",
+  "md5_yangi": "37577b4c865f773133e68b9683765cfb",
+  "eski": "12-PmGrowthPitchLesson-v5.jsx",
+  "md5_eski": "d0a6a1ad5c572d3ac1a9d31ad60336a8",
+  "uz": {
+   "qid": "17247",
+   "sid": "3034",
+   "hash": "41e868fbcdcf05f83a701fa542f0baaa",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Metrikali pitch: grafiklar — dalil",
+   "topicStatus": "Active",
+   "md5_crm": "d0a6a1ad5c572d3ac1a9d31ad60336a8"
+  },
+  "ru": {
+   "qid": "17248",
+   "sid": "3034",
+   "hash": "4bd775d41bacabf6951960e9cd1bd051",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Metrikali pitch: grafiklar — dalil",
+   "topicStatus": "Active",
+   "md5_crm": "d0a6a1ad5c572d3ac1a9d31ad60336a8"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d1-v1",
+  "m": 13,
+  "yangi": "13-Modul/01-PmUnitEconomicsLesson-v6.jsx",
+  "md5_yangi": "fa8e5b1e7301fc72c04e0ded2da849f4",
+  "eski": "01-PmUnitEconomicsLesson-v5.jsx",
+  "md5_eski": "fb209def8a899d39a5a414fd5bcc5ff2",
+  "uz": {
+   "qid": "17249",
+   "sid": "3035",
+   "hash": "37a53362f970678cfc10a76d0ed03990",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Yunit-ekonomika: CAC va LTV",
+   "topicStatus": "Active",
+   "md5_crm": "fb209def8a899d39a5a414fd5bcc5ff2"
+  },
+  "ru": {
+   "qid": "17250",
+   "sid": "3035",
+   "hash": "47ef06dbd9832749f84966ee90698ce9",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Yunit-ekonomika: CAC va LTV",
+   "topicStatus": "Active",
+   "md5_crm": "fb209def8a899d39a5a414fd5bcc5ff2"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d2-v1",
+  "m": 13,
+  "yangi": "13-Modul/02-PmMonetizationLesson-v5.jsx",
+  "md5_yangi": "8a4d6655946eb61169f92063259a9755",
+  "eski": "02-PmMonetizationLesson-v4.jsx",
+  "md5_eski": "fb5a8e76528c4113bb58a2d5d2cfbe39",
+  "uz": {
+   "qid": "17251",
+   "sid": "3036",
+   "hash": "260b26a152752d824ac0e38152e1f676",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Monetizatsiya modellari: obuna, reklama, B2B",
+   "topicStatus": "Active",
+   "md5_crm": "fb5a8e76528c4113bb58a2d5d2cfbe39"
+  },
+  "ru": {
+   "qid": "17252",
+   "sid": "3036",
+   "hash": "4082526b1bcc2a68aaaabcbf578cacd7",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Monetizatsiya modellari: obuna, reklama, B2B",
+   "topicStatus": "Active",
+   "md5_crm": "fb5a8e76528c4113bb58a2d5d2cfbe39"
+  }
+ },
+ {
+  "lesson_id": "m11-03-v1",
+  "m": 13,
+  "yangi": "13-Modul/03-PaymentWebhookLesson-v5.jsx",
+  "md5_yangi": "b9abc6a7821d1ba1a7c6deb83cbd4fd8",
+  "eski": "03-PaymentWebhookLesson-v4.jsx",
+  "md5_eski": "5d534192895ad0e44b65bff7d2df0c23",
+  "uz": {
+   "qid": "17253",
+   "sid": "3037",
+   "hash": "4ff8addc6b744bd30f6bbb937808c9f3",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Webhook va to'lovning ichki tuzilishi",
+   "topicStatus": "Active",
+   "md5_crm": "5d534192895ad0e44b65bff7d2df0c23"
+  },
+  "ru": {
+   "qid": "17254",
+   "sid": "3037",
+   "hash": "8a6fcdecb4ab903d21b4c19f10d6adc4",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Webhook va to'lovning ichki tuzilishi",
+   "topicStatus": "Active",
+   "md5_crm": "5d534192895ad0e44b65bff7d2df0c23"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d4-v1",
+  "m": 13,
+  "yangi": "13-Modul/04-PmPricingLesson-v5.jsx",
+  "md5_yangi": "d6bb941a74ac7849bc53c5c7848c5c08",
+  "eski": "04-PmPricingLesson-v4.jsx",
+  "md5_eski": "5d5af6463b606d6370e79d0428563547",
+  "uz": {
+   "qid": "17255",
+   "sid": "3038",
+   "hash": "38ab12ee421fa1bcdbe7e3ed70ad04e0",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Narx belgilash va paywall",
+   "topicStatus": "Active",
+   "md5_crm": "5d5af6463b606d6370e79d0428563547"
+  },
+  "ru": {
+   "qid": "17256",
+   "sid": "3038",
+   "hash": "798899485ccb8509cd64a3fe43f5f56b",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Narx belgilash va paywall",
+   "topicStatus": "Active",
+   "md5_crm": "5d5af6463b606d6370e79d0428563547"
+  }
+ },
+ {
+  "lesson_id": "m11-05-v1",
+  "m": 13,
+  "yangi": "13-Modul/05-PaymentDayLesson-v5.jsx",
+  "md5_yangi": "23852249deefc92f466a8df779f985a6",
+  "eski": "05-PaymentDayLesson-v4.jsx",
+  "md5_eski": "a4af1cd1bc8a6f05c34bf68b77a9ee79",
+  "uz": {
+   "qid": "17257",
+   "sid": "3039",
+   "hash": "8d7864044928218e090a6d0ec86b38a7",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "To'lov integratsiyasi + «to'lovni buz»",
+   "topicStatus": "Active",
+   "md5_crm": "a4af1cd1bc8a6f05c34bf68b77a9ee79"
+  },
+  "ru": {
+   "qid": "17258",
+   "sid": "3039",
+   "hash": "a938bef241c11ef45a4f17f6277a1e14",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "To'lov integratsiyasi + «to'lovni buz»",
+   "topicStatus": "Active",
+   "md5_crm": "a4af1cd1bc8a6f05c34bf68b77a9ee79"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d6-v1",
+  "m": 13,
+  "yangi": "13-Modul/06-PmMoneyTalkLesson-v5.jsx",
+  "md5_yangi": "db1519e2179cebfb766fafc6a37181fc",
+  "eski": "06-PmMoneyTalkLesson-v4.jsx",
+  "md5_eski": "8f5cf15f4638cda9942bad4952fc35c3",
+  "uz": {
+   "qid": "17259",
+   "sid": "3040",
+   "hash": "840c0d0eec4889e993a359d1724aaa32",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pul haqida birinchi suhbat",
+   "topicStatus": "Active",
+   "md5_crm": "8f5cf15f4638cda9942bad4952fc35c3"
+  },
+  "ru": {
+   "qid": "17260",
+   "sid": "3040",
+   "hash": "f8c51f45acc81f4367a9ad791e376404",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pul haqida birinchi suhbat",
+   "topicStatus": "Active",
+   "md5_crm": "8f5cf15f4638cda9942bad4952fc35c3"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d7-v1",
+  "m": 13,
+  "yangi": "13-Modul/07-PmTermsLesson-v5.jsx",
+  "md5_yangi": "95fdb5ad9ffb6a9e48556e62db9e6155",
+  "eski": "07-PmTermsLesson-v4.jsx",
+  "md5_eski": "31c524cdbfbdcbdc45c89c4054fd7827",
+  "uz": {
+   "qid": "17261",
+   "sid": "3041",
+   "hash": "6044d43f1d266be74b3253221479b52a",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Yuridik minimum va e'lon qilish",
+   "topicStatus": "Active",
+   "md5_crm": "31c524cdbfbdcbdc45c89c4054fd7827"
+  },
+  "ru": {
+   "qid": "17262",
+   "sid": "3041",
+   "hash": "9ed760a9795a5f1fa274b3c2608895fa",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Yuridik minimum va e'lon qilish",
+   "topicStatus": "Active",
+   "md5_crm": "31c524cdbfbdcbdc45c89c4054fd7827"
+  }
+ },
+ {
+  "lesson_id": "m11-08-v1",
+  "m": 13,
+  "yangi": "13-Modul/08-WinBackDayLesson-v5.jsx",
+  "md5_yangi": "010b243197558affb3d136b8fb76c119",
+  "eski": "08-WinBackDayLesson-v4.jsx",
+  "md5_eski": "ebe38a6c84bd11b80701e7c9896f032f",
+  "uz": {
+   "qid": "17263",
+   "sid": "3042",
+   "hash": "258e6423ada02be314aa41273512eed6",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Retention-mexanikalar: foydalanuvchini qanday ushlab qolamiz?",
+   "topicStatus": "Active",
+   "md5_crm": "ebe38a6c84bd11b80701e7c9896f032f"
+  },
+  "ru": {
+   "qid": "17264",
+   "sid": "3042",
+   "hash": "cff5a4d1b3f6f481eb9b5e78c18fb11f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Retention-mexanikalar: foydalanuvchini qanday ushlab qolamiz?",
+   "topicStatus": "Active",
+   "md5_crm": "ebe38a6c84bd11b80701e7c9896f032f"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d9-v1",
+  "m": 13,
+  "yangi": "13-Modul/09-PmPayCheckLesson-v5.jsx",
+  "md5_yangi": "7d7012d4736c357ea35f1d47475c93da",
+  "eski": "09-PmPayCheckLesson-v4.jsx",
+  "md5_eski": "c37ff8aa7e2d71b80c1c81b1887aa204",
+  "uz": {
+   "qid": "17265",
+   "sid": "3043",
+   "hash": "505ed1bc0491765c45ce290293b82118",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Monetizatsiya nazorat nuqtasi: 3 kishi to'lashga tayyor",
+   "topicStatus": "Active",
+   "md5_crm": "c37ff8aa7e2d71b80c1c81b1887aa204"
+  },
+  "ru": {
+   "qid": "17266",
+   "sid": "3043",
+   "hash": "82973398925b101e786b18fccc914825",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Monetizatsiya nazorat nuqtasi: 3 kishi to'lashga tayyor",
+   "topicStatus": "Active",
+   "md5_crm": "c37ff8aa7e2d71b80c1c81b1887aa204"
+  }
+ },
+ {
+  "lesson_id": "m11-10-v1",
+  "m": 13,
+  "yangi": "13-Modul/10-ReferralDayLesson-v5.jsx",
+  "md5_yangi": "ae3c031aa0c295db365c20ebbcc84eb2",
+  "eski": "10-ReferralDayLesson-v4.jsx",
+  "md5_eski": "9a948aa8f2086f1f2da7f23b8d11a453",
+  "uz": {
+   "qid": "17267",
+   "sid": "3044",
+   "hash": "f7ec8e7c1fbbba8c243c0fb6033e7e25",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Growth: referal tizim",
+   "topicStatus": "Active",
+   "md5_crm": "9a948aa8f2086f1f2da7f23b8d11a453"
+  },
+  "ru": {
+   "qid": "17268",
+   "sid": "3044",
+   "hash": "609a376a546d19bc71eaa9f41d99c478",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Growth: referal tizim",
+   "topicStatus": "Active",
+   "md5_crm": "9a948aa8f2086f1f2da7f23b8d11a453"
+  }
+ },
+ {
+  "lesson_id": "pm-m11d11-v1",
+  "m": 13,
+  "yangi": "13-Modul/11-PmReflectionLesson-v5.jsx",
+  "md5_yangi": "5cba3e8c97073d0c13a2bc5bac88976a",
+  "eski": "11-PmReflectionLesson-v4.jsx",
+  "md5_eski": "27b3c8659cd850744eba08de6c55e81b",
+  "uz": {
+   "qid": "17269",
+   "sid": "3045",
+   "hash": "86758d529b9d3e0e1b2d44ec0a1f9dd8",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Refleksiya: mahsulot hozir qayerda?",
+   "topicStatus": "Active",
+   "md5_crm": "27b3c8659cd850744eba08de6c55e81b"
+  },
+  "ru": {
+   "qid": "17270",
+   "sid": "3045",
+   "hash": "d61a89c90b97c2b4751cfcab6e7e7b9b",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Refleksiya: mahsulot hozir qayerda?",
+   "topicStatus": "Active",
+   "md5_crm": "27b3c8659cd850744eba08de6c55e81b"
+  }
+ },
+ {
+  "lesson_id": "m11-12-v1",
+  "m": 13,
+  "yangi": "13-Modul/12-StabilizeDayLesson-v5.jsx",
+  "md5_yangi": "5cb1eef1d2c890feaf50d85f996cea7c",
+  "eski": "12-StabilizeDayLesson-v4.jsx",
+  "md5_eski": "eea9b8415067b1642196adfd3c3a3b65",
+  "uz": {
+   "qid": "17271",
+   "sid": "3046",
+   "hash": "b9362f318c37c14791eac23852bc6b71",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Sayqallash va barqarorlashtirish",
+   "topicStatus": "Active",
+   "md5_crm": "eea9b8415067b1642196adfd3c3a3b65"
+  },
+  "ru": {
+   "qid": "17272",
+   "sid": "3046",
+   "hash": "c8dbb527625118c56a6e5f8ea7cf9a7e",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Sayqallash va barqarorlashtirish",
+   "topicStatus": "Active",
+   "md5_crm": "eea9b8415067b1642196adfd3c3a3b65"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d1-v2",
+  "m": 14,
+  "yangi": "14-Modul/01-PmInvestorPitchLesson-v5.jsx",
+  "md5_yangi": "5e50e68adbc90fdcfd0fe8da0f7a3d66",
+  "eski": "01-PmInvestorPitchLesson-v4.jsx",
+  "md5_eski": "da73b2a330b0cd372b92eb1a7df0f7ce",
+  "uz": {
+   "qid": "17273",
+   "sid": "3047",
+   "hash": "b3dfe285df1d318c28a9b6069e0c1503",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Investorga pitch tuzilishi",
+   "topicStatus": "Active",
+   "md5_crm": "da73b2a330b0cd372b92eb1a7df0f7ce"
+  },
+  "ru": {
+   "qid": "17274",
+   "sid": "3047",
+   "hash": "c92fb7c5cbac7ffb644a38ee9075eba8",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Investorga pitch tuzilishi",
+   "topicStatus": "Active",
+   "md5_crm": "da73b2a330b0cd372b92eb1a7df0f7ce"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d2-v2",
+  "m": 14,
+  "yangi": "14-Modul/02-PmStoryPitchLesson-v5.jsx",
+  "md5_yangi": "24626f5b52587118efc00b7bf09f1b05",
+  "eski": "02-PmStoryPitchLesson-v4.jsx",
+  "md5_eski": "055c503b2a897a9d460dd5cb7013b8d4",
+  "uz": {
+   "qid": "17275",
+   "sid": "3048",
+   "hash": "38618f7549808db31da0cc272093fa66",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Storytelling: mahsulot tarixi",
+   "topicStatus": "Active",
+   "md5_crm": "055c503b2a897a9d460dd5cb7013b8d4"
+  },
+  "ru": {
+   "qid": "17276",
+   "sid": "3048",
+   "hash": "db8b25251462a42d04f9ff2d7ba15ecd",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Storytelling: mahsulot tarixi",
+   "topicStatus": "Active",
+   "md5_crm": "055c503b2a897a9d460dd5cb7013b8d4"
+  }
+ },
+ {
+  "lesson_id": "m12-03-v1",
+  "m": 14,
+  "yangi": "14-Modul/03-ProductSpeedLesson-v5.jsx",
+  "md5_yangi": "b45b523c6b89ca6dc33e336075459afc",
+  "eski": "03-ProductSpeedLesson-v4.jsx",
+  "md5_eski": "bee47a32ab624901ffe34a3d648fb700",
+  "uz": {
+   "qid": "17277",
+   "sid": "3049",
+   "hash": "5db55263043835be3ecdd5bbede9acaf",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Performance: mahsulot tezligi",
+   "topicStatus": "Active",
+   "md5_crm": "bee47a32ab624901ffe34a3d648fb700"
+  },
+  "ru": {
+   "qid": "17278",
+   "sid": "3049",
+   "hash": "387de2b1e526af9eec2dd29023360be3",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Performance: mahsulot tezligi",
+   "topicStatus": "Active",
+   "md5_crm": "bee47a32ab624901ffe34a3d648fb700"
+  }
+ },
+ {
+  "lesson_id": "m12-04-v1",
+  "m": 14,
+  "yangi": "14-Modul/04-PolishDayLesson-v5.jsx",
+  "md5_yangi": "b73f2657d82b70f6f3b0dd480cb2775e",
+  "eski": "04-PolishDayLesson-v4.jsx",
+  "md5_eski": "a84b52eec84c13da052b1ac1b234f911",
+  "uz": {
+   "qid": "17279",
+   "sid": "3050",
+   "hash": "b44d3735a2e1a1d3e1f71d9702cc10fd",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Final sayqal: demo uchun animatsiyalar",
+   "topicStatus": "Active",
+   "md5_crm": "a84b52eec84c13da052b1ac1b234f911"
+  },
+  "ru": {
+   "qid": "17280",
+   "sid": "3050",
+   "hash": "302ca4d64251cffe01f54017d83f0133",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Final sayqal: demo uchun animatsiyalar",
+   "topicStatus": "Active",
+   "md5_crm": "a84b52eec84c13da052b1ac1b234f911"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d5-v2",
+  "m": 14,
+  "yangi": "14-Modul/05-PmPitchTrainingLesson-v5.jsx",
+  "md5_yangi": "70082746b525af20cc50513dcdd4d396",
+  "eski": "05-PmPitchTrainingLesson-v4.jsx",
+  "md5_eski": "a0f4b4e245c234807ee363f2ab8ff72f",
+  "uz": {
+   "qid": "17281",
+   "sid": "3051",
+   "hash": "04383c4519afdb18928488f5e410b734",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pitch-trening 1",
+   "topicStatus": "Active",
+   "md5_crm": "a0f4b4e245c234807ee363f2ab8ff72f"
+  },
+  "ru": {
+   "qid": "17282",
+   "sid": "3051",
+   "hash": "5a2601790bfbc37420ce34c41f58e74b",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pitch-trening 1",
+   "topicStatus": "Active",
+   "md5_crm": "a0f4b4e245c234807ee363f2ab8ff72f"
+  }
+ },
+ {
+  "lesson_id": "m12-06-v1",
+  "m": 14,
+  "yangi": "14-Modul/06-DemoPrepLesson-v5.jsx",
+  "md5_yangi": "9712091c274a09cc8127a25cbeef78ec",
+  "eski": "06-DemoPrepLesson-v4.jsx",
+  "md5_eski": "166a2f29afff3ad2c4f6942b0c052915",
+  "uz": {
+   "qid": "17283",
+   "sid": "3052",
+   "hash": "7755398fefec88948699049e73f8005b",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Mahsulot demosiga tayyorgarlik",
+   "topicStatus": "Active",
+   "md5_crm": "166a2f29afff3ad2c4f6942b0c052915"
+  },
+  "ru": {
+   "qid": "17284",
+   "sid": "3052",
+   "hash": "dbeec7bf17feb6e54dcc3af3a92ac4e2",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Mahsulot demosiga tayyorgarlik",
+   "topicStatus": "Active",
+   "md5_crm": "166a2f29afff3ad2c4f6942b0c052915"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d7-v1",
+  "m": 14,
+  "yangi": "14-Modul/07-PmDemoTestLesson-v5.jsx",
+  "md5_yangi": "0e5ea52e5058f8cbb38afdfa0b85a262",
+  "eski": "07-PmDemoTestLesson-v4.jsx",
+  "md5_eski": "6181813d28142c812a36dec92fec0e27",
+  "uz": {
+   "qid": "17285",
+   "sid": "3053",
+   "hash": "463ecd2610c08b04d80775d29f4ef2f7",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Demo-test: mahsulot investor ko'zi bilan",
+   "topicStatus": "Active",
+   "md5_crm": "6181813d28142c812a36dec92fec0e27"
+  },
+  "ru": {
+   "qid": "17286",
+   "sid": "3053",
+   "hash": "1ad88902fc5aa35ecae38081a61dc2d6",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Demo-test: mahsulot investor ko'zi bilan",
+   "topicStatus": "Active",
+   "md5_crm": "6181813d28142c812a36dec92fec0e27"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d8-v2",
+  "m": 14,
+  "yangi": "14-Modul/08-PmFinalPitchLesson-v5.jsx",
+  "md5_yangi": "6324947b4de76f683cc22091b36ee8c5",
+  "eski": "08-PmFinalPitchLesson-v4.jsx",
+  "md5_eski": "c36a67b11e5787d5fc668705230f3739",
+  "uz": {
+   "qid": "17287",
+   "sid": "3054",
+   "hash": "ff108191f15cac1879c6394aff72799f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Pitch-trening 2 (final)",
+   "topicStatus": "Active",
+   "md5_crm": "c36a67b11e5787d5fc668705230f3739"
+  },
+  "ru": {
+   "qid": "17288",
+   "sid": "3054",
+   "hash": "79ec5d4e2e4500a664bf929ec6d1b79f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Pitch-trening 2 (final)",
+   "topicStatus": "Active",
+   "md5_crm": "c36a67b11e5787d5fc668705230f3739"
+  }
+ },
+ {
+  "lesson_id": "m12-09-v1",
+  "m": 14,
+  "yangi": "14-Modul/09-VideoPortfolioLesson-v5.jsx",
+  "md5_yangi": "7f4472550ef68b647d6596ebec8b0f63",
+  "eski": "09-VideoPortfolioLesson-v4.jsx",
+  "md5_eski": "bcb8342cb191b0a51dbf6f594b67a8d1",
+  "uz": {
+   "qid": "17289",
+   "sid": "3055",
+   "hash": "84221b2884066e5fb4beb355ee636670",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Video-portfolio",
+   "topicStatus": "Active",
+   "md5_crm": "bcb8342cb191b0a51dbf6f594b67a8d1"
+  },
+  "ru": {
+   "qid": "17290",
+   "sid": "3055",
+   "hash": "879ede04332cae1c45aed81036b058c6",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Video-portfolio",
+   "topicStatus": "Active",
+   "md5_crm": "bcb8342cb191b0a51dbf6f594b67a8d1"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d10-v1",
+  "m": 14,
+  "yangi": "14-Modul/10-PmFreelanceLesson-v5.jsx",
+  "md5_yangi": "dce214db5d0d9a7fbd79bfd852e4c8b0",
+  "eski": "10-PmFreelanceLesson-v4.jsx",
+  "md5_eski": "8163a0b5a98b876ea8647ed67b0651da",
+  "uz": {
+   "qid": "17291",
+   "sid": "3056",
+   "hash": "bf284307a6765cab70e4783e0bdf5a1f",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Keyin nima: frilans va stajirovka",
+   "topicStatus": "Active",
+   "md5_crm": "8163a0b5a98b876ea8647ed67b0651da"
+  },
+  "ru": {
+   "qid": "17292",
+   "sid": "3056",
+   "hash": "3be606f3b8c62ef154304848e690b39c",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Keyin nima: frilans va stajirovka",
+   "topicStatus": "Active",
+   "md5_crm": "8163a0b5a98b876ea8647ed67b0651da"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d11-v1",
+  "m": 14,
+  "yangi": "14-Modul/11-PmProgramsLesson-v5.jsx",
+  "md5_yangi": "ccf9db8a0bb5c512e05e501b0816b4e9",
+  "eski": "11-PmProgramsLesson-v4.jsx",
+  "md5_eski": "20f09873d88873ae20d658cc3137965d",
+  "uz": {
+   "qid": "17293",
+   "sid": "3057",
+   "hash": "b9f8e7188e61e41ac90c1dcb999b7373",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Xalqaro dasturlar: Y Combinator, Diamond Challenge",
+   "topicStatus": "Active",
+   "md5_crm": "20f09873d88873ae20d658cc3137965d"
+  },
+  "ru": {
+   "qid": "17294",
+   "sid": "3057",
+   "hash": "7132c752a853491d5129b5100df574fc",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Xalqaro dasturlar: Y Combinator, Diamond Challenge",
+   "topicStatus": "Active",
+   "md5_crm": "20f09873d88873ae20d658cc3137965d"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d12-v1",
+  "m": 14,
+  "yangi": "14-Modul/12-PmNextStepsLesson-v5.jsx",
+  "md5_yangi": "b2cdfe4721cf99c65f00725a92954c13",
+  "eski": "12-PmNextStepsLesson-v4.jsx",
+  "md5_eski": "7a14eed077b6fc8e9f443ca87dc4b872",
+  "uz": {
+   "qid": "17295",
+   "sid": "3058",
+   "hash": "9f332de71b720c007a2edbf350f00aec",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Mentor bilan final yakkama-yakka: 6 oylik reja",
+   "topicStatus": "Active",
+   "md5_crm": "7a14eed077b6fc8e9f443ca87dc4b872"
+  },
+  "ru": {
+   "qid": "17296",
+   "sid": "3058",
+   "hash": "e1c8e3be9c2125805918feaf40955779",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Mentor bilan final yakkama-yakka: 6 oylik reja",
+   "topicStatus": "Active",
+   "md5_crm": "7a14eed077b6fc8e9f443ca87dc4b872"
+  }
+ },
+ {
+  "lesson_id": "pm-m12d13-v1",
+  "m": 14,
+  "yangi": "14-Modul/13-PmDressRehearsalLesson-v5.jsx",
+  "md5_yangi": "069adfe7acc13fe8db2950ac9bbb228c",
+  "eski": "13-PmDressRehearsalLesson-v4.jsx",
+  "md5_eski": "2c8ddda12b10c6b0198185cb9b385aa1",
+  "uz": {
+   "qid": "17297",
+   "sid": "3059",
+   "hash": "1f31b3ec103b6b5b46c38f9cf11a9176",
+   "status": "Active",
+   "tartib": "1",
+   "topicUz": "Bosh repetitsiya",
+   "topicStatus": "Active",
+   "md5_crm": "2c8ddda12b10c6b0198185cb9b385aa1"
+  },
+  "ru": {
+   "qid": "17298",
+   "sid": "3059",
+   "hash": "4dacd32111ad78215730b68ff773212f",
+   "status": "Active",
+   "tartib": "2",
+   "topicUz": "Bosh repetitsiya",
+   "topicStatus": "Active",
+   "md5_crm": "2c8ddda12b10c6b0198185cb9b385aa1"
+  }
+ }
+]
