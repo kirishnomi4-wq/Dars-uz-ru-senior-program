@@ -1,0 +1,11 @@
+### /cars
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 107
+ETag: W/"6b-U9tEsK1P2t6NyBUFgT65KfZWeWE"
+Date: Thu, 29 Oct 2026 14:41:57 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+[{"id":1,"brand":"Chevrolet","model":"Malibu","price":250},{"id":2,"brand":"Kia","model":"K5","price":288}]

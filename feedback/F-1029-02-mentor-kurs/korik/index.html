@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nest mentor-darsi — ovozli ko'rik</title>
+<style>
+  :root{--bg:#F5F6F8;--paper:#fff;--ink:#0F1115;--ink2:#4B5162;--ink3:#8A90A2;--line:#E3E6EC;--accent:#E2451F;--blue:#0E7FB8;--green:#12805A;--yellow:#B57A00;--hl:#FFE8A3}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  header{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  header h1{font-size:16px;margin:0;font-weight:700}
+  header .meta{color:var(--ink3);font-size:13px}
+  header label{font-size:13px;color:var(--ink2);display:flex;gap:6px;align-items:center}
+  main{max-width:1180px;margin:0 auto;padding:18px 16px 80px}
+  .nav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+  .nav a{font-size:12px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--ink2);text-decoration:none}
+  .nav a.done{border-color:var(--green);color:var(--green)}
+  section.scr{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 16px;scroll-margin-top:70px}
+  section.scr.active{box-shadow:0 0 0 3px rgba(226,69,31,.25)}
+  .scr h2{margin:0 0 10px;font-size:18px}
+  .scr h2 .num{display:inline-block;min-width:44px;color:var(--accent);font-weight:800}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media (max-width:860px){.cols{grid-template-columns:1fr}}
+  .box h3{margin:0 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3)}
+  .screen{font-size:14px;color:var(--ink2);white-space:pre-wrap}
+  .screen pre{background:#0F1115;color:#E8EAF0;border-radius:8px;padding:10px 12px;font:12.5px/1.45 ui-monospace,Menlo,Consolas,monospace;overflow:auto;white-space:pre}
+  .screen table{border-collapse:collapse;font-size:13px;margin:6px 0}
+  .screen td,.screen th{border:1px solid var(--line);padding:3px 7px;text-align:left;vertical-align:top}
+  .seg{margin:0 0 14px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#FAFBFC}
+  .seg .lab{font-size:12px;color:var(--ink3);margin:0 0 6px}
+  .seg .ctl{display:flex;gap:8px;align-items:center;margin:0 0 8px;flex-wrap:wrap}
+  .seg button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font-size:14px;cursor:pointer}
+  .seg button.play{background:var(--accent);color:#fff;border-color:var(--accent);min-width:92px}
+  .seg .time{font-size:12px;color:var(--ink3);font-variant-numeric:tabular-nums}
+  .seg .txt{font-size:17px;line-height:1.7}
+  .seg .txt .w{border-radius:4px;padding:0 1px}
+  .seg .txt .w.on{background:var(--hl)}
+  .seg .txt .w.past{color:var(--ink2)}
+  .seg .txt .mk{display:inline-block;font-size:10px;color:var(--blue);border:1px solid var(--blue);border-radius:4px;padding:0 4px;margin:0 2px;vertical-align:middle;opacity:.8}
+  .hidemk .mk{display:none}
+  .fb{margin-top:10px}
+  .fb textarea{width:100%;min-height:54px;border:1px solid var(--line);border-radius:8px;padding:8px;font:14px/1.4 inherit}
+  .fb .st{font-size:12px;color:var(--ink3)}
+  footer{position:fixed;bottom:0;left:0;right:0;background:var(--paper);border-top:1px solid var(--line);padding:8px 16px;font-size:13px;color:var(--ink2);display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  footer button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+  <h1>Nest mentor-darsi · ovozli ko'rik (qoralama ovoz: Sardor)</h1>
+  <span class="meta" id="meta">yuklanmoqda…</span>
+  <label><input type="checkbox" id="auto" checked> Ovoz tugagach keyingisiga o'tsin</label>
+  <label>Tezlik <select id="rate"><option>1</option><option>1.25</option><option>1.5</option></select></label>
+  <label><input type="checkbox" id="showmk" checked> [[sinxron]] belgilarini ko'rsat</label>
+</header>
+<main>
+  <div class="nav" id="nav"></div>
+  <div id="list"></div>
+</main>
+<footer>
+  <span>Fikrlaringiz har ekran ostidagi qutiga yoziladi (brauzerda saqlanadi).</span>
+  <button id="export">Fikrlarni nusxalash</button>
+  <span id="expst"></span>
+</footer>
+<script>
+(async function(){
+  const data = await (await fetch('data.json')).json();
+  const list = document.getElementById('list'), nav = document.getElementById('nav');
+  document.getElementById('meta').textContent = data.screens.length + ' ekran · ' + data.segments + ' audio · jami ≈ ' + Math.round(data.total/60) + ' daqiqa · yasalgan: ' + data.made;
+  const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  // Ekranda-matn: ```bloklar``` → pre, | jadval | → table, qolgani pre-wrap
+  function renderScreen(md){
+    let out='', lines=md.split('\n'), i=0;
+    while(i<lines.length){
+      const l=lines[i];
+      if(/^\s*```/.test(l)){ let b=[]; i++; while(i<lines.length && !/^\s*```/.test(lines[i])){ b.push(lines[i]); i++; } i++;
+        const ind=Math.min(...b.filter(x=>x.trim()).map(x=>x.match(/^\s*/)[0].length)); out+='<pre>'+esc(b.map(x=>x.slice(ind)).join('\n'))+'</pre>'; continue; }
+      if(/^\s*\|/.test(l)){ let rows=[]; while(i<lines.length && /^\s*\|/.test(lines[i])){ rows.push(lines[i]); i++; }
+        rows=rows.filter(r=>!/^\s*\|\s*-{2,}/.test(r)); out+='<table>'+rows.map((r,k)=>'<tr>'+r.trim().replace(/^\||\|$/g,'').split('|').map(c=>(k?'<td>':'<th>')+esc(c.trim()).replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>')+(k?'</td>':'</th>')).join('')+'</tr>').join('')+'</table>'; continue; }
+      out+=esc(l).replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>')+'\n'; i++;
+    }
+    return out;
+  }
+  // Asl matn (tinish belgilari bilan) ustiga TTS so'z-vaqtlarini joylash
+  const norm = x => x.toLowerCase().replace(/[^\p{L}\p{N}]/gu,'');
+  function alignTokens(clean, words){
+    const toks = clean.split(/\s+/).filter(Boolean); const out=[]; let j=0;
+    for(const tok of toks){
+      const tn = norm(tok);
+      if(!words.length){ out.push({w:tok,t:0,e:0}); continue; }
+      if(j>=words.length){ const last=words[words.length-1]; out.push({w:tok,t:last.t,e:last.t+last.d}); continue; }
+      if(!tn){ out.push({w:tok,t:words[j].t,e:words[j].t}); continue; }
+      let acc='', start=words[j].t, end=words[j].t+words[j].d, k=j;
+      while(k<words.length && acc.length<tn.length){ acc+=norm(words[k].w); end=words[k].t+words[k].d; k++; if(acc===tn) break; }
+      if(acc===tn || tn.startsWith(acc) || acc.startsWith(tn)){ out.push({w:tok,t:start,e:end}); j=k; }
+      else { out.push({w:tok,t:words[j].t,e:words[j].t+words[j].d}); j++; }
+    }
+    return out;
+  }
+  let current=null; const audios=[];
+  data.screens.forEach((s,si)=>{
+    const a=document.createElement('a'); a.href='#'+s.id; a.textContent=s.id; a.id='nav-'+s.id; nav.appendChild(a);
+    const sec=document.createElement('section'); sec.className='scr'; sec.id=s.id;
+    let segsHtml='';
+    s.segments.forEach((g,gi)=>{
+      const words=alignTokens(g.clean, g.words).map((w,k)=>'<span class="w" data-k="'+k+'" data-t="'+w.t+'" data-e="'+w.e+'">'+esc(w.w)+'</span>').join(' ');
+      const marked = g.marked.split(/\s+/).map(tok=>{const m=tok.match(/^\[\[(.+?)\]\]$/); return m?'<span class="mk">'+esc(m[1])+'</span>':esc(tok);}).join(' ');
+      segsHtml+='<div class="seg" data-src="'+g.audio+'" data-i="'+si+'-'+gi+'">'
+        +'<div class="lab">Ovoz'+(g.label?' '+esc(g.label):'')+' · '+Math.round(g.dur)+' s</div>'
+        +'<div class="ctl"><button class="play">▶ Tinglash</button><button class="back">−10 s</button><span class="time">0:00 / '+fmt(g.dur)+'</span></div>'
+        +'<div class="txt" data-mode="words">'+(g.words.length?words:esc(g.clean))+'</div>'
+        +'<details style="margin-top:8px"><summary style="font-size:12px;color:var(--ink3);cursor:pointer">Ssenariy matni (sinxron belgilari bilan)</summary><div class="txt" style="font-size:14px;color:var(--ink2)">'+marked+'</div></details>'
+        +'</div>';
+    });
+    sec.innerHTML='<h2><span class="num">'+s.id+'</span>'+esc(s.title)+'</h2>'
+      +'<div class="cols"><div class="box"><h3>Ekranda</h3><div class="screen">'+renderScreen(s.screen)+'</div></div>'
+      +'<div class="box"><h3>Ovoz</h3>'+segsHtml+'</div></div>'
+      +'<div class="fb"><textarea placeholder="Fikr, e\'tiroz, tushunarsiz joy — shu ekran uchun"></textarea><div class="st"></div></div>';
+    list.appendChild(sec);
+    // fikr saqlash
+    const ta=sec.querySelector('textarea'), st=sec.querySelector('.fb .st'); const key='nest01-fb-'+s.id;
+    try{ ta.value=localStorage.getItem(key)||''; }catch(e){}
+    ta.addEventListener('input',()=>{ try{ localStorage.setItem(key,ta.value); st.textContent='saqlandi'; }catch(e){ st.textContent='saqlanmadi'; } });
+  });
+  function fmt(t){t=Math.max(0,Math.round(t));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0');}
+  // audio boshqaruvi
+  const segs=[...document.querySelectorAll('.seg')];
+  let player=new Audio(), active=null, raf=null;
+  function setActive(seg){
+    if(active && active!==seg){ active.querySelector('.play').textContent='▶ Tinglash'; }
+    active=seg; document.querySelectorAll('section.scr').forEach(x=>x.classList.remove('active')); seg.closest('section').classList.add('active');
+  }
+  function tick(){
+    if(!active) return;
+    const t=player.currentTime; const ws=active.querySelectorAll('.w');
+    ws.forEach(w=>{ const a=+w.dataset.t, b=+w.dataset.e; w.classList.toggle('on', t>=a && t<b+0.05); w.classList.toggle('past', t>=b+0.05); });
+    active.querySelector('.time').textContent=fmt(t)+' / '+fmt(player.duration||0);
+    raf=requestAnimationFrame(tick);
+  }
+  function play(seg){
+    if(active===seg && !player.paused){ player.pause(); seg.querySelector('.play').textContent='▶ Davom'; cancelAnimationFrame(raf); return; }
+    if(active!==seg){ player.src=seg.dataset.src; }
+    setActive(seg); player.playbackRate=+document.getElementById('rate').value; player.play(); seg.querySelector('.play').textContent='❚❚ Pauza'; cancelAnimationFrame(raf); tick();
+  }
+  segs.forEach(seg=>{
+    seg.querySelector('.play').addEventListener('click',()=>play(seg));
+    seg.querySelector('.back').addEventListener('click',()=>{ if(active===seg){ player.currentTime=Math.max(0,player.currentTime-10);} });
+    seg.querySelectorAll('.w').forEach(w=>w.addEventListener('click',()=>{ if(active!==seg){ player.src=seg.dataset.src; setActive(seg);} player.currentTime=+w.dataset.t; player.play(); seg.querySelector('.play').textContent='❚❚ Pauza'; cancelAnimationFrame(raf); tick(); }));
+  });
+  player.addEventListener('ended',()=>{
+    if(!active) return; active.querySelector('.play').textContent='▶ Qayta'; active.querySelectorAll('.w').forEach(w=>w.classList.remove('on'));
+    const sid=active.closest('section').id; document.getElementById('nav-'+sid).classList.add('done');
+    if(document.getElementById('auto').checked){ const i=segs.indexOf(active); if(i>=0 && segs[i+1]){ const n=segs[i+1]; n.scrollIntoView({behavior:'smooth',block:'center'}); setTimeout(()=>play(n),700); } }
+  });
+  document.getElementById('rate').addEventListener('change',e=>{ player.playbackRate=+e.target.value; });
+  document.getElementById('showmk').addEventListener('change',e=>{ document.body.classList.toggle('hidemk',!e.target.checked); });
+  document.getElementById('export').addEventListener('click',()=>{
+    let out='# Ko\'rik fikrlari — Nest mentor-darsi v1\n';
+    data.screens.forEach(s=>{ let v=''; try{ v=localStorage.getItem('nest01-fb-'+s.id)||''; }catch(e){} if(v.trim()) out+='\n## '+s.id+' · '+s.title+'\n>> '+v.trim().replace(/\n/g,'\n>> ')+'\n'; });
+    navigator.clipboard.writeText(out).then(()=>{ document.getElementById('expst').textContent='nusxalandi — chatga qo\'ying'; }, ()=>{ document.getElementById('expst').textContent='nusxalanmadi'; });
+  });
+})();
+</script>
+</body>
+</html>

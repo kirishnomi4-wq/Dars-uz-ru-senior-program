@@ -1,0 +1,22 @@
+### curl /
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 12
+ETag: W/"c-Lve95gjOVATpfV8EL5X4nxwjKHE"
+Date: Thu, 29 Oct 2026 10:23:35 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+Hello World!
+### curl /cars
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 67
+ETag: W/"43-9hGaAhSoZ6gRzf2SUm8+ssndOTs"
+Date: Thu, 29 Oct 2026 10:23:35 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"message":"Cannot GET /cars","error":"Not Found","statusCode":404}

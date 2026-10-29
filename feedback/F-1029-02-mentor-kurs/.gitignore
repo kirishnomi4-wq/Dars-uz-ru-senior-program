@@ -1,0 +1,4 @@
+# Qayta yasaladigan ovoz (edge-tts) va lokal loglar — commit qilinmaydi
+korik/tts-cache/
+korik/audio/
+korik/*.log

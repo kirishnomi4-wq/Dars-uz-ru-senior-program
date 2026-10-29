@@ -1,0 +1,6 @@
+[32mCREATE[39m src/cars/cars.module.ts (81 bytes)
+[36mUPDATE[39m src/app.module.ts (308 bytes)
+[32mCREATE[39m src/cars/cars.controller.ts (97 bytes)
+[36mUPDATE[39m src/cars/cars.module.ts (166 bytes)
+[32mCREATE[39m src/cars/cars.service.ts (88 bytes)
+[36mUPDATE[39m src/cars/cars.module.ts (240 bytes)

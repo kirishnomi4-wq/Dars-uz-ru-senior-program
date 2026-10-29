@@ -1,0 +1,55 @@
+### curl /cars
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 107
+ETag: W/"6b-3hrt/3fXhZH319qljbximZNmfio"
+Date: Thu, 29 Oct 2026 10:23:49 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+[{"id":1,"brand":"Chevrolet","model":"Malibu","price":250},{"id":2,"brand":"Kia","model":"K5","price":320}]
+### curl /cars/1
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 57
+ETag: W/"39-zppUKf2xL18rpnHJxNo4w26+B3Y"
+Date: Thu, 29 Oct 2026 10:23:49 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"id":1,"brand":"Chevrolet","model":"Malibu","price":250}
+### curl /cars/99
+HTTP/1.1 404 Not Found
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 75
+ETag: W/"4b-rqgas+egrfuX2YBKGNgq0gryLVw"
+Date: Thu, 29 Oct 2026 10:23:50 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"message":"Car with id 99 not found","error":"Not Found","statusCode":404}
+### curl POST /cars
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 57
+ETag: W/"39-exUPktNT1p6w3vzYZPIfuHxZN6g"
+Date: Thu, 29 Oct 2026 10:23:50 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+{"id":3,"brand":"Chevrolet","model":"Cobalt","price":145}
+### curl /cars
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 165
+ETag: W/"a5-XppeRhwtSASCYEaz34fR36xVrTw"
+Date: Thu, 29 Oct 2026 10:23:50 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+[{"id":1,"brand":"Chevrolet","model":"Malibu","price":250},{"id":2,"brand":"Kia","model":"K5","price":320},{"id":3,"brand":"Chevrolet","model":"Cobalt","price":145}]
