@@ -332,9 +332,11 @@ function useBeats(segments, review) {
     const k = segments.findIndex((s, i) => i >= beat && s.ask);
     if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
   }, [audio.waitingFor, audio.currentId, beat, segments]);
+  // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
+  // zanjir tugaganini currentId bo'shagani bilan bilamiz (platforma ham, dev shim ham oxirida null qiladi)
   useEffect(() => {
-    if (!audio.isPlaying && !audio.waitingFor && started.current && beat >= segments.length - 1) setDone(true);
-  }, [audio.isPlaying, audio.waitingFor, beat, segments.length]);
+    if (!audio.isPlaying && !audio.waitingFor && !audio.currentId && started.current && beat >= segments.length - 1) setDone(true);
+  }, [audio.isPlaying, audio.waitingFor, audio.currentId, beat, segments.length]);
   const stepManual = useCallback(() => { setBeat((b) => { const n = Math.min(b + 1, segments.length - 1); if (n === segments.length - 1) setDone(true); return n; }); }, [segments.length]);
   // «O'ylab ko'ring»: tugma ovoz paytida ham bosiladi; runtime hali kutmayotgan bo'lsa, kutishga o'tganda yuboriladi
   const pendingAsk = useRef(false);
@@ -723,7 +725,7 @@ function Practice({ p, S, steps, trouble, code, proof, tree }) {
 }
 
 // ============================================================
-//  MENTOR KURSI · 4-dars (Nest-2) «O'quvchi reposi: bitta resurs, Guard va sinfdagi xatolar»
+//  MENTOR KURSI · Nest-2 «O'quvchi reposi: bitta resurs, Guard va sinfdagi xatolar»
 //  F-1031-01 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/03-Nest2-mentor-v4.md (GATE M 31.10, 30/30)
 //  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/nest2-out/ (00–27)
 // ============================================================
@@ -861,7 +863,7 @@ const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PATCH: '#50E3C2', DELETE: '#
 //  1 · Kirish
 // ============================================================
 const S1 = {
-  kicker: 'Kirish', eyebrow: 'Mentor kursi · 4-dars', title: "Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.",
+  kicker: 'Kirish', eyebrow: 'Mentor kursi · NestJS', title: "Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.",
   plan: ['Ishga tushirish', "cars-api'dan farqlar", 'Resurs: 5 qatlam', 'Guard va token', 'Buzamiz', "O'quvchi darslariga ko'prik"],
   segments: [
     sg('a', "Nest-1 da loyihani noldan qurdingiz — o'quvchi esa <b>tayyor loyihani clone qiladi</b>", "Assalomu alaykum. Nest birinchi darsida siz cars api'ni bo'sh papkadan qurdingiz. O'quvchingiz esa noldan yozmaydi: u GitHub'dan tayyor loyihani clone qiladi. Bugun aynan shu loyihani ochamiz, unga bitta resurs qo'shamiz va sinfda chiqadigan xatolarni ko'ramiz.", { hl: [] }),
@@ -2325,7 +2327,7 @@ function Screen29(p) {
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
   const sheet = t(CHEATSHEET2, CHEATSHEET2_RU);
-  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'nest-2-dars-eslatma.md'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('nest-2-mentor-eslatma.md', 'nest-2-pamyatka-mentora.md'); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
   const passed = (p.testScore || 0) >= 6;
   const segments = useMemo(() => s29Segments(passed), [passed]);
   const b = useBeats(segments, p.review);
@@ -2371,7 +2373,7 @@ function Screen29(p) {
 function Cover({ onStart }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t('Mentor kursi · 4-dars', 'Курс для менторов · урок 4')}</p>
+      <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
       <h1>{t(LESSON_TITLE, 'Репозиторий ученика: один ресурс, Guard и ошибки в классе')}</h1>
       <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>
@@ -2436,7 +2438,7 @@ const rs = (key, text) => ({ key, text, show: text });
 
 // --- 03 · 1–7-ekran, Amaliyot 1 ---
 ru(S1, {
-  kicker: 'Вступление', eyebrow: 'Курс для менторов · урок 4', title: 'Вы собрали cars-api. Теперь — репозиторий ученика.',
+  kicker: 'Вступление', eyebrow: 'Курс для менторов · NestJS', title: 'Вы собрали cars-api. Теперь — репозиторий ученика.',
   plan: ['Запуск', 'Отличия от cars-api', 'Ресурс: 5 слоёв', 'Guard и токен', 'Ломаем', 'Мост к урокам ученика'],
   segments: {
     a: rs('В Nest-1 вы собрали проект с нуля — ученик же <b>клонирует готовый проект</b>', 'Здравствуйте. На первом уроке по Nest вы собрали cars api с пустой папки. Ваш ученик с нуля не пишет: он клонирует готовый проект с GitHub. Сегодня откроем именно этот проект, добавим в него один ресурс и посмотрим ошибки, которые появляются в классе.'),

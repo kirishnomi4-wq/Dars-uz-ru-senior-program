@@ -1,4 +1,10 @@
-# F-1029-02 · Mentor kursi — DAVOM (31.10.2026 18:27 — Nest-1 + Nest-2 TAYYOR (UZ+RU, .oz.jsx), commit qilindi; keyingi — PostgreSQL-1)
+# F-1029-02 · Mentor kursi — DAVOM (31.10.2026 19:18 — Nest yopish qarorlari A–E bajarildi; commit kutilmoqda; keyingi — PostgreSQL-1)
+
+> **31.10 19:18 — NEST YOPILDI: A–E** (JURNAL «19:18»; qaror sahifasi https://claude.ai/artifact/2PZ6bp6g1u5bqDQQPwpqiF):
+> A — dars raqami olib tashlandi, eyebrow «Mentor kursi · NestJS», eslatma fayli nomi raqamsiz (M31, F-1031-15) · B — Nest-1 yakunida «Kursdagi keyingi mentor darsi» + Nest-2 nomi (F-1031-12) · C — o'quvchi darslari m4a-03 (`/api/v1/car`) va m4a-04 (Swagger `/api/v1`, oddiy admin yaratish qadami, HW 6-4) minimal tuzatildi (F-1031-13) · D — `04-Nest1-mentor-yakuniy.md` koddan (`dev/nest1-md.py`, F-1031-14) · E — Davom himoyasi `!audio.currentId` (F-1031-16; eski dvigatelda xato qayta chiqmadi — himoya sifatida).
+> `.oz.jsx` ikkala dars qayta yasaldi va render qilindi (UZ+RU). :5334 yangilandi.
+> **Ochiq:** commit (buyruq bilan; e21fcb65 dan keyingi o'zgarishlar) · LMS (buyruq bilan): Nest-1 + Nest-2 `.oz.jsx`, o'quvchi m4a-03/m4a-04 v5 → v6 · `npm run gates` m4a-03/04 da tell/emoji qizil — eski (asl fayllarda xuddi shu son).
+> **Keyingi:** PostgreSQL-1 (o'quvchi darsi m4-03 `DbSqlNosqlLesson`) — konveyer F: manba yig'ish → yarim sahifa PRD (Ilova A) → MD → [GATE M].
 
 > **31.10 18:27 — IKKALA DARS TAYYOR, COMMIT** (JURNAL «17:59», «18:1x»):
 > **Nest-2** `src/mentor-kurs/NestRepoMentorLesson.jsx` — 29 ekran, UZ yopildi (M22), RU `nest2/parts/08-ru.jsx` (M24): RU qoldiq 0, UZ belgima-belgi o'zgarmagan, ovozli o'tish UZ/RU 1920+1280 passed. Platforma: `tayyor/NestRepoMentorLesson.oz.jsx` (114 KB).

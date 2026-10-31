@@ -14,7 +14,7 @@ MKCFG.files = ALL_FILES;
 //  Ovoz qoidasi: kod o'qilmaydi, nima bo'layotgani aytiladi; «/» va «@» so'z bilan.
 // ============================================================
 const S1 = {
-  kicker: 'Kirish', eyebrow: 'Mentor kursi · 1-dars', title: "Siz Express'ni bilasiz. Endi Nest.",
+  kicker: 'Kirish', eyebrow: 'Mentor kursi · NestJS', title: "Siz Express'ni bilasiz. Endi Nest.",
   plan: ['Nega Nest', "Uch bo'lak: Controller · Service · Module", 'Dependency Injection', "cars route'larini quramiz", "Buzamiz va xatoni o'qiymiz", "Amaliyot (to'rt bo'lak)", "O'quvchi darsiga ko'prik"],
   segments: [
     { id: 'a', key: "Express bilimingiz ustiga <b>Nest</b> qo'yamiz: u Express'ni bekor qilmaydi, tartib beradi", text: "Assalomu alaykum. Siz Express bilan server yozgansiz: route ochgansiz, so'rovni qabul qilgansiz, javob qaytargansiz. Bugun shu bilimingiz ustiga NestJS qo'yamiz. Nest Express'ni bekor qilmaydi, aksincha, uning ustiga tartib o'rnatadi.", hl: [] },

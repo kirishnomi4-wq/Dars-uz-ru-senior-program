@@ -1,4 +1,4 @@
-== NestArchMentorLesson (393 KB) — 2026-10-31 18:12
+== NestArchMentorLesson (393 KB) — 2026-10-31 19:17
 NestArchMentorLesson.jsx: 8/8 katta literal JSON'ga o'tdi (27 KB → 27 KB): RDB 4 KB, R2 3 KB, S25a 3 KB, S21 3 KB, S16 4 KB, S13 3 KB, S11 3 KB, S6 3 KB
 c.jsx: 394 KB → 352 KB (11% kam) | CSS shablon 1/1 ta, 18 KB → 18 KB [xavfsiz] | JSX-min ha | yengil rejim | moslik: JS→chrome70+polyfill, CSS zaxira dvh 0, color-mix 0, inset 0, transform 0; zaxirasiz: :has 0, @container 0, aspect-ratio 0, text-wrap 0
 NestArchMentorLesson.oz.jsx: ichki JS 366 KB (tree-shake) → gzip 96 KB → base64 127 KB → fayl 133 KB | modullar: react, @lesson/runtime

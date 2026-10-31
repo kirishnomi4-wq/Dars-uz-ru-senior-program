@@ -332,9 +332,11 @@ function useBeats(segments, review) {
     const k = segments.findIndex((s, i) => i >= beat && s.ask);
     if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
   }, [audio.waitingFor, audio.currentId, beat, segments]);
+  // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
+  // zanjir tugaganini currentId bo'shagani bilan bilamiz (platforma ham, dev shim ham oxirida null qiladi)
   useEffect(() => {
-    if (!audio.isPlaying && !audio.waitingFor && started.current && beat >= segments.length - 1) setDone(true);
-  }, [audio.isPlaying, audio.waitingFor, beat, segments.length]);
+    if (!audio.isPlaying && !audio.waitingFor && !audio.currentId && started.current && beat >= segments.length - 1) setDone(true);
+  }, [audio.isPlaying, audio.waitingFor, audio.currentId, beat, segments.length]);
   const stepManual = useCallback(() => { setBeat((b) => { const n = Math.min(b + 1, segments.length - 1); if (n === segments.length - 1) setDone(true); return n; }); }, [segments.length]);
   // «O'ylab ko'ring»: tugma ovoz paytida ham bosiladi; runtime hali kutmayotgan bo'lsa, kutishga o'tganda yuboriladi
   const pendingAsk = useRef(false);
@@ -737,7 +739,7 @@ MKCFG.files = ALL_FILES;
 //  Ovoz qoidasi: kod o'qilmaydi, nima bo'layotgani aytiladi; «/» va «@» so'z bilan.
 // ============================================================
 const S1 = {
-  kicker: 'Kirish', eyebrow: 'Mentor kursi · 1-dars', title: "Siz Express'ni bilasiz. Endi Nest.",
+  kicker: 'Kirish', eyebrow: 'Mentor kursi · NestJS', title: "Siz Express'ni bilasiz. Endi Nest.",
   plan: ['Nega Nest', "Uch bo'lak: Controller · Service · Module", 'Dependency Injection', "cars route'larini quramiz", "Buzamiz va xatoni o'qiymiz", "Amaliyot (to'rt bo'lak)", "O'quvchi darsiga ko'prik"],
   segments: [
     { id: 'a', key: "Express bilimingiz ustiga <b>Nest</b> qo'yamiz: u Express'ni bekor qilmaydi, tartib beradi", text: "Assalomu alaykum. Siz Express bilan server yozgansiz: route ochgansiz, so'rovni qabul qilgansiz, javob qaytargansiz. Bugun shu bilimingiz ustiga NestJS qo'yamiz. Nest Express'ni bekor qilmaydi, aksincha, uning ustiga tartib o'rnatadi.", hl: [] },
@@ -2136,7 +2138,7 @@ function Screen27(p) {
 }
 
 // --- S28 Yakun + eslatma ---
-const CHEATSHEET = `# Nest 1-dars — mentor eslatmasi
+const CHEATSHEET = `# Nest-1 — mentor eslatmasi
 ## Buyruqlar
 npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
 nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec
@@ -2227,7 +2229,7 @@ function Screen28(p) {
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
   const sheet = t(CHEATSHEET, CHEATSHEET_RU);
-  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('nest-1-dars-eslatma.md', 'nest-urok-1-pamyatka.md'); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('nest-1-mentor-eslatma.md', 'nest-1-pamyatka-mentora.md'); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
   const passed = (p.testScore || 0) >= 6;
   const segments = useMemo(() => s28Segments(passed), [passed]);
   const b = useBeats(segments, p.review);
@@ -2259,7 +2261,7 @@ function Screen28(p) {
               <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>{t('yuklab olish (.md)', 'скачать (.md)')}</button></div>
             </div>
             <pre style={{ margin: '10px 0 0', font: `12px/1.5 ${MONO}`, whiteSpace: 'pre-wrap', color: T.ink2, maxHeight: 300, overflow: 'auto' }}>{sheet}</pre>
-            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Kursdagi keyingi dars', 'Следующий урок курса')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("Birinchi resursni qo'lda qo'shish — mashinalar", 'Первый ресурс вручную — машины')}</div><div className="exp">{t('Entity, DTO, Repository — CRUD · bugungi cars moduli haqiqiy PostgreSQL bazasiga ulanadi', 'Entity, DTO, Repository — CRUD · сегодняшний модуль cars подключается к настоящей базе PostgreSQL')}</div></div>
+            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Kursdagi keyingi mentor darsi', 'Следующий урок курса для менторов')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("O'quvchi reposi: bitta resurs, Guard va sinfdagi xatolar", 'Репозиторий ученика: один ресурс, Guard и ошибки в классе')}</div><div className="exp">{t("Nest-2 · o'quvchi loyihasi IntroNestArxitechture: car resursi 5 qatlamda, token va rollar, sinfdagi xatolar", 'Nest-2 · проект ученика IntroNestArxitechture: ресурс car в 5 слоях, токен и роли, ошибки в классе')}</div></div>
           </div>}
         </div>
       </div>
@@ -2273,7 +2275,7 @@ function Screen28(p) {
 function Cover({ onStart }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t('Mentor kursi · 1-dars', 'Курс для менторов · урок 1')}</p>
+      <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
       <h1>{t('NestJS arxitekturasi: Module, Controller, Service', 'Архитектура NestJS: Module, Controller, Service')}</h1>
       <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, и экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>
@@ -2337,7 +2339,7 @@ ru(HELP_ROW, ['Ничего не подошло', 'Скриншот и текс�
 
 // --- 03 · S1–S5b, Практика 1 ---
 ru(S1, {
-  kicker: 'Вступление', eyebrow: 'Курс для менторов · урок 1', title: 'Вы знаете Express. Теперь Nest.',
+  kicker: 'Вступление', eyebrow: 'Курс для менторов · NestJS', title: 'Вы знаете Express. Теперь Nest.',
   plan: ['Зачем Nest', 'Три части: Controller · Service · Module', 'Dependency Injection', 'Пишем routes для cars', 'Ломаем и читаем ошибку', 'Практика (четыре части)', 'Мост к уроку ученика'],
   segments: {
     a: { key: 'Поверх ваших знаний Express ставим <b>Nest</b>: он не отменяет Express, а наводит порядок', text: 'Здравствуйте. Вы писали сервер на Express: открывали route, принимали запрос, возвращали ответ. Сегодня поверх этих знаний ставим NestJS. Nest не отменяет Express, наоборот, он наводит над ним порядок.' },
@@ -2847,7 +2849,7 @@ const S28_RU = {
   c: { key: '<b>Возьмите памятку</b>: команды, ошибки, правила и домашнее задание — на одной странице', text: 'Ниже памятка на одну страницу: команды, четыре ошибки Nest, ошибки подключения к базе, правила, словарь урока ученика и домашнее задание. Скопируйте или скачайте её, пусть будет рядом, когда будете вести урок ученика.' },
   z: { key: 'Спасибо! Нажмите <b>«Завершить урок»</b>', text: 'Спасибо. Нажмите кнопку «Завершить урок», и урок будет отмечен как пройденный.' },
 };
-const CHEATSHEET_RU = `# Nest, урок 1 — памятка ментора
+const CHEATSHEET_RU = `# Nest-1 — памятка ментора
 ## Команды
 npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
 nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec

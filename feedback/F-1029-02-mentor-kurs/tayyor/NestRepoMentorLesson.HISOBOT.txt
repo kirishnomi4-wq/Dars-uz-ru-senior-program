@@ -1,4 +1,4 @@
-== NestRepoMentorLesson (302 KB) — 2026-10-31 17:57
+== NestRepoMentorLesson (302 KB) — 2026-10-31 19:17
 NestRepoMentorLesson.jsx: 0/0 katta literal JSON'ga o'tdi (0 KB → 0 KB): —
 c.jsx: 303 KB → 265 KB (13% kam) | CSS shablon 2/2 ta, 20 KB → 20 KB [xavfsiz] | JSX-min ha | yengil rejim | moslik: JS→chrome70+polyfill, CSS zaxira dvh 0, color-mix 0, inset 0, transform 0; zaxirasiz: :has 0, @container 0, aspect-ratio 0, text-wrap 0
 NestRepoMentorLesson.oz.jsx: ichki JS 276 KB (tree-shake) → gzip 81 KB → base64 108 KB → fayl 114 KB | modullar: react, @lesson/runtime

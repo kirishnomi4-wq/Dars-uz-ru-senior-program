@@ -47,9 +47,11 @@ function useBeats(segments, review) {
     const k = segments.findIndex((s, i) => i >= beat && s.ask);
     if (k >= 0) { started.current = true; setBeat((b) => Math.max(b, k)); }
   }, [audio.waitingFor, audio.currentId, beat, segments]);
+  // F-1031-16: oxirgi segment ovozi YUKLANAYOTGANDA ham isPlaying=false bo'ladi — Davom erta ochilmasin:
+  // zanjir tugaganini currentId bo'shagani bilan bilamiz (platforma ham, dev shim ham oxirida null qiladi)
   useEffect(() => {
-    if (!audio.isPlaying && !audio.waitingFor && started.current && beat >= segments.length - 1) setDone(true);
-  }, [audio.isPlaying, audio.waitingFor, beat, segments.length]);
+    if (!audio.isPlaying && !audio.waitingFor && !audio.currentId && started.current && beat >= segments.length - 1) setDone(true);
+  }, [audio.isPlaying, audio.waitingFor, audio.currentId, beat, segments.length]);
   const stepManual = useCallback(() => { setBeat((b) => { const n = Math.min(b + 1, segments.length - 1); if (n === segments.length - 1) setDone(true); return n; }); }, [segments.length]);
   // «O'ylab ko'ring»: tugma ovoz paytida ham bosiladi; runtime hali kutmayotgan bo'lsa, kutishga o'tganda yuboriladi
   const pendingAsk = useRef(false);

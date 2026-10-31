@@ -38,7 +38,7 @@ Tartib — o'quvchi dasturidagi tartib; mentor darsi o'quvchi darsidan **oldin**
 | 1 | PostgreSQL: SQL va NoSQL, nega PostgreSQL | m4-03 | — |
 | 2 | PostgreSQL: CRUD so'rovlar | m4-06 (+ m4-08 praktika) | — |
 | 3 | **Nest-1:** arxitektura — Module, Controller, Service | m4a-01 | ✅ yopildi (UZ 30.10 · RU 31.10) |
-| 4 | **Nest-2:** o'quvchi reposi — Entity, DTO, Repository, BaseService | m4a-03, m4a-04 (repo `IntroNestArxitechture`) | MD v3 navbatda (DAVOM «QAROR 18:14») |
+| 4 | **Nest-2:** o'quvchi reposi — Entity, DTO, Repository, BaseService | m4a-03, m4a-04 (repo `IntroNestArxitechture`) | ✅ tayyor (29 ekran, UZ+RU, `.oz.jsx` — 31.10; commit e21fcb65; LMS — buyruq bilan) |
 | 5 | Jest: birinchi unit-test | m4b-01 | — |
 | 6 | Jest: edge cases va error path | m4b-03 | — |
 | 7 | CI/CD nima va nega | m4c-01 | — |
@@ -128,7 +128,7 @@ Tartib — o'quvchi dasturidagi tartib; mentor darsi o'quvchi darsidan **oldin**
 | 3 | ElevenLabs ruscha ovozi | **Erkak ovozi** (UZ bilan bir xil ohangda). Platformada sinaladi. |
 | 4 | Hajm: 4 amaliyot / 5 tekshiruv qat'iymi? | **Yo'q, moslashuvchan:** har dars o'ziga xos — mavzuga qarab. 4/5 — Nest o'lchovi, qonun emas. Savol tug'ilsa — foydalanuvchidan so'raladi. |
 | 5 | Natijani kim kuzatadi? | **Hozircha hech kim** — keyin hal qilinadi (31.10). Darsda analitika qismi loyihalanmaydi; `onFinished` maydonlari saqlanadi. |
-| 6 | Darslar tartibi | **Avval Nest-2**, keyin **boshidan**: PostgreSQL-1 → PostgreSQL-2 → Telegraf+PG → Jest ×2 → CI/CD ×2 → WebSocket ×2 → Webhook (§4 tartibi). |
+| 6 | Darslar tartibi | **Avval Nest-2** (✅ 31.10), keyin **o'quvchi dasturi tartibida (§4 jadvali), 1 dan 10 gacha**: PostgreSQL-1 → PostgreSQL-2 → Jest-1 → Jest-2 → CI/CD-1 → GitHub Actions → Telegraf+PG → WebSocket-1 → WebSocket-2 → Webhook. *(31.10 kech, foydalanuvchi: «tartib bo'yicha qilamiz, ya'ni 1 dan 10 gacha ketma-ketlikda» — avvalgi «Telegraf+PG uchinchi» o'rniga.)* |
 
 ## 10. Tekshiruv vositalari (31.10 holati)
 

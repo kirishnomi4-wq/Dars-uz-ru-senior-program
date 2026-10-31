@@ -245,6 +245,13 @@ Ovoz qoidalari (29.10): kod ovozda o'qilmaydi — nima bo'layotgani aytiladi; «
 3. «Hech biri emas → skrinshot + xato matni → mentor-kurs Telegram guruhi» (amaliyotdagi yordam qatori) — bu yordam kanali, uyga vazifa topshirish emas; qoladi.
 **Nega.** Foydalanuvchi: «bu darsda nimaga kerak? tekshirishni mentor emas, support mentor qiladi… mentorga qo'ymaylik»; «Telegram'ga tashlashi shart emas, platformaga GitHub reposining URL'ini bersa yetarli». Kod hamma narsani ko'rsatadi; natijani hozircha hech kim kuzatmaydi (PRD §9-5) — skrinshot ortiqcha ish.
 
+### M31 · Dars tartib raqami yozilmaydi — mavzu yoziladi (31.10, F-1031-15 · F-1031-12)
+**Qoida.**
+1. Muqova, 1-ekran eyebrow, eslatma (.md) sarlavhasi va boshqa joylarda «Mentor kursi · 1-dars / 3-dars» kabi **tartib raqami yo'q** — mavzu yoziladi: `Mentor kursi · NestJS` / `Курс для менторов · NestJS`.
+2. Yakundagi «keyingi dars» kartasi — **«Kursdagi keyingi mentor darsi»** + keyingi darsning **nomi** va bir gaplik mazmuni (UZ + RU). Raqam ham, «tez orada» ham emas.
+3. PRD §4 jadvalidagi raqam — faqat ichki qurish tartibi; o'quvchi ko'radigan matnga chiqmaydi.
+**Nega.** Foydalanuvchi: mentor platformasida mentor darslari videodarslar orasida turadi — bizning raqam u yerdagi tartibga to'g'ri kelmaydi va chalg'itadi.
+
 ---
 
 ## 3. Oldingi asos-qoidalar (29.10, audit №1–2)
@@ -277,10 +284,12 @@ Ovoz qoidalari (29.10): kod ovozda o'qilmaydi — nima bo'layotgani aytiladi; «
 | 15 | «Kodni ochish» bor har amaliyotda `tree` berilgan; xira fayl bosilmaydi, «Qadamlarga qaytish» tepada (M27) | `grep -c "code={"` = `grep -c "tree={"`; headless: xira bosish → o'zgarmaydi, qaytish → qadamlar |
 | 16 | Har istisno (public, 'ID', qulfsiz route…) — «nega» va «to'g'rimi» aytilgan (M28) · `after` li tekshiruv 1920 da bir ekranga sig'adi (M29) | ovoz matni ko'z bilan; headless: to'g'ri javobdan keyin `mk-body` aylanmaydi |
 | 17 | O'quvchi uyga vazifasini tekshirish ekrani/bo'limi yo'q; mentor uyga vazifasi topshirish — faqat GitHub linki (M30) | `grep -i "uyga vazifalarni tekshir\|Telegram guruh.*yuboring"` = 0 |
+| 18 | Tartib raqami yo'q, eyebrow'da mavzu; keyingi dars kartasida nom (M31) | `grep -E "[0-9]+-dars\|урок [0-9]"` dars bo'laklarida = 0 |
 
 ---
 
 ## 5. Jurnal (qonun qo'shilishi)
+- **2026-10-31 (6)** — M31 (tartib raqami yozilmaydi, mavzu yoziladi; keyingi dars kartasida nom — F-1031-15, F-1031-12) + tekshiruv 18-band. Sinf-supurish: qurilgan darslar 2 ta — Nest-1 (muqova, eyebrow, eslatma sarlavhasi, keyingi dars kartasi UZ+RU), Nest-2 (muqova, eyebrow UZ+RU).
 - **2026-10-31 (5)** — M30 (mentor o'quvchi uyga vazifasini tekshirmaydi; o'z uyga vazifasi — faqat GitHub linki, F-1031-09/11) + tekshiruv 17-band. Sinf-supurish: Nest-2 (28-ekran olib tashlandi, 29 ekran), Nest-1 (topshirish matni UZ+RU).
 - **2026-10-31 (4)** — M28 (istisno — sababi va bahosi bilan, F-1031-06), M29 (tekshiruvdan keyingi kod yonida, ikki ustun, F-1031-07) + tekshiruv ro'yxati 16-band. F-1031-08 (24-ekran: «qadam» o'rniga «bosqich») — so'z tanlovi, jurnalda.
 - **2026-10-31 (3)** — M27 (kod oynasida loyihaning to'liq daraxti, faqat amaliyot fayllari bosiladi, qaytish tugmasi tepada — F-1031-04/05) + tekshiruv ro'yxati 15-band. Sinf-supurish: «Kodni ochish» bor amaliyotlar — 2 ta (Nest-1 P2, Nest-2 P2), ikkalasi tuzatildi.

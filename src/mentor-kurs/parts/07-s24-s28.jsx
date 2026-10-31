@@ -324,7 +324,7 @@ function Screen27(p) {
 }
 
 // --- S28 Yakun + eslatma ---
-const CHEATSHEET = `# Nest 1-dars — mentor eslatmasi
+const CHEATSHEET = `# Nest-1 — mentor eslatmasi
 ## Buyruqlar
 npm i -g @nestjs/cli · nest new cars-api · npm run start:dev
 nest g module cars · nest g controller cars --no-spec · nest g service cars --no-spec
@@ -415,7 +415,7 @@ function Screen28(p) {
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
   const sheet = t(CHEATSHEET, CHEATSHEET_RU);
-  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('nest-1-dars-eslatma.md', 'nest-urok-1-pamyatka.md'); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('nest-1-mentor-eslatma.md', 'nest-1-pamyatka-mentora.md'); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
   const passed = (p.testScore || 0) >= 6;
   const segments = useMemo(() => s28Segments(passed), [passed]);
   const b = useBeats(segments, p.review);
@@ -447,7 +447,7 @@ function Screen28(p) {
               <div style={{ display: 'flex', gap: 8 }}><CopyBtn text={sheet} /><button className="mk-copy" onClick={download}>{t('yuklab olish (.md)', 'скачать (.md)')}</button></div>
             </div>
             <pre style={{ margin: '10px 0 0', font: `12px/1.5 ${MONO}`, whiteSpace: 'pre-wrap', color: T.ink2, maxHeight: 300, overflow: 'auto' }}>{sheet}</pre>
-            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Kursdagi keyingi dars', 'Следующий урок курса')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("Birinchi resursni qo'lda qo'shish — mashinalar", 'Первый ресурс вручную — машины')}</div><div className="exp">{t('Entity, DTO, Repository — CRUD · bugungi cars moduli haqiqiy PostgreSQL bazasiga ulanadi', 'Entity, DTO, Repository — CRUD · сегодняшний модуль cars подключается к настоящей базе PostgreSQL')}</div></div>
+            <div className="mk-card" style={{ marginTop: 10, borderColor: T.accent }}><h5 style={{ color: T.accent }}>{t('Kursdagi keyingi mentor darsi', 'Следующий урок курса для менторов')}</h5><div style={{ fontSize: 15, fontWeight: 700 }}>{t("O'quvchi reposi: bitta resurs, Guard va sinfdagi xatolar", 'Репозиторий ученика: один ресурс, Guard и ошибки в классе')}</div><div className="exp">{t("Nest-2 · o'quvchi loyihasi IntroNestArxitechture: car resursi 5 qatlamda, token va rollar, sinfdagi xatolar", 'Nest-2 · проект ученика IntroNestArxitechture: ресурс car в 5 слоях, токен и роли, ошибки в классе')}</div></div>
           </div>}
         </div>
       </div>
@@ -461,7 +461,7 @@ function Screen28(p) {
 function Cover({ onStart }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t('Mentor kursi · 1-dars', 'Курс для менторов · урок 1')}</p>
+      <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
       <h1>{t('NestJS arxitekturasi: Module, Controller, Service', 'Архитектура NestJS: Module, Controller, Service')}</h1>
       <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, и экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>

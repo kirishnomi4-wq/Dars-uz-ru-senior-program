@@ -81,7 +81,7 @@ Qonun: `MENTOR_DARS_ETALON.md` M1–M24 · Haqiqiy chiqishlar: `manba/nest2-out/
 ---
 
 ## 1 · Kirish  ← `Lesson`
-- Kicker: `Kirish` · Eyebrow: `Mentor kursi · 4-dars` · Sarlavha: **Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.**
+- Kicker: `Kirish` · Eyebrow: `Mentor kursi · NestJS` · Sarlavha: **Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.**
 - Sahna: chapda reja (6 bosqich, ovoz bilan yonadi); o'ngda natija — Swagger maketi: `GET /api/v1/car` ochiq, javob `{"statusCode":200,"message":"success","data":[…]}`.
 - Reja: 01 Ishga tushirish · 02 cars-api'dan farqlar · 03 Resurs: 5 qatlam · 04 Guard va token · 05 Buzamiz · 06 O'quvchi darslariga ko'prik
 1. **Nest-1 da loyihani noldan qurdingiz — o'quvchi esa tayyor loyihani clone qiladi**

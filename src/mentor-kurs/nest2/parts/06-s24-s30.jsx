@@ -323,7 +323,7 @@ function Screen29(p) {
   const once = useRef(false);
   useEffect(() => { if (once.current) return; once.current = true; completeLesson().catch(() => {}); }, [completeLesson]);
   const sheet = t(CHEATSHEET2, CHEATSHEET2_RU);
-  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'nest-2-dars-eslatma.md'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
+  const download = () => { try { const b = new Blob([sheet], { type: 'text/markdown' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = t('nest-2-mentor-eslatma.md', 'nest-2-pamyatka-mentora.md'); a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); } catch (e) {} };
   const passed = (p.testScore || 0) >= 6;
   const segments = useMemo(() => s29Segments(passed), [passed]);
   const b = useBeats(segments, p.review);
@@ -369,7 +369,7 @@ function Screen29(p) {
 function Cover({ onStart }) {
   return (
     <div className="mk-cover"><div className="card">
-      <p className="mk-eyebrow">{t('Mentor kursi · 4-dars', 'Курс для менторов · урок 4')}</p>
+      <p className="mk-eyebrow">{t('Mentor kursi · NestJS', 'Курс для менторов · NestJS')}</p>
       <h1>{t(LESSON_TITLE, 'Репозиторий ученика: один ресурс, Guard и ошибки в классе')}</h1>
       <p>{t("Bu dars ovozli. Ustoz har ekranda gapiradi, ekran u bilan birga o'zgaradi. Quloqchin yoki ovoz balandligini tekshiring.", 'Урок озвучен. На каждом экране говорит учитель, экран меняется вместе с ним. Проверьте наушники или громкость.')}</p>
       <ul>

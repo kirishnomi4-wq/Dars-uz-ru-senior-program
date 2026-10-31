@@ -1,6 +1,6 @@
 
 // ============================================================
-//  MENTOR KURSI · 4-dars (Nest-2) «O'quvchi reposi: bitta resurs, Guard va sinfdagi xatolar»
+//  MENTOR KURSI · Nest-2 «O'quvchi reposi: bitta resurs, Guard va sinfdagi xatolar»
 //  F-1031-01 · manba-haqiqat: feedback/F-1029-02-mentor-kurs/03-Nest2-mentor-v4.md (GATE M 31.10, 30/30)
 //  Haqiqiy chiqishlar: feedback/F-1029-02-mentor-kurs/manba/nest2-out/ (00–27)
 // ============================================================
@@ -138,7 +138,7 @@ const METHOD_C = { GET: '#61AFFE', POST: '#49CC90', PATCH: '#50E3C2', DELETE: '#
 //  1 · Kirish
 // ============================================================
 const S1 = {
-  kicker: 'Kirish', eyebrow: 'Mentor kursi · 4-dars', title: "Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.",
+  kicker: 'Kirish', eyebrow: 'Mentor kursi · NestJS', title: "Siz cars-api'ni qurdingiz. Endi o'quvchi reposi.",
   plan: ['Ishga tushirish', "cars-api'dan farqlar", 'Resurs: 5 qatlam', 'Guard va token', 'Buzamiz', "O'quvchi darslariga ko'prik"],
   segments: [
     sg('a', "Nest-1 da loyihani noldan qurdingiz — o'quvchi esa <b>tayyor loyihani clone qiladi</b>", "Assalomu alaykum. Nest birinchi darsida siz cars api'ni bo'sh papkadan qurdingiz. O'quvchingiz esa noldan yozmaydi: u GitHub'dan tayyor loyihani clone qiladi. Bugun aynan shu loyihani ochamiz, unga bitta resurs qo'shamiz va sinfda chiqadigan xatolarni ko'ramiz.", { hl: [] }),
